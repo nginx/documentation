@@ -13,18 +13,18 @@ Learn which Gateway API resources NGINX Gateway Fabric supports and to which lev
 
 {{< bootstrap-table "table table-striped table-bordered" >}}
 
-| Resource                              | Core Support Level | Extended Support Level | Implementation-Specific Support Level | API Version | API Release Channel |
-|---------------------------------------|--------------------|------------------------|---------------------------------------|-------------|---------------------|
-| [GatewayClass](#gatewayclass)         | Supported          | Not supported          | Supported                             | v1          | Standard            |
-| [Gateway](#gateway)                   | Supported          | Partially supported    | Not supported                         | v1          | Standard            |
-| [HTTPRoute](#httproute)               | Supported          | Partially supported    | Not supported                         | v1          | Standard            |
-| [GRPCRoute](#grpcroute)               | Supported          | Partially supported    | Not supported                         | v1          | Standard            |
-| [ReferenceGrant](#referencegrant)     | Supported          | N/A                    | Not supported                         | v1beta1     | Standard            |
-| [TLSRoute](#tlsroute)                 | Supported          | Not supported          | Not supported                         | v1alpha2    | Experimental        |
-| [TCPRoute](#tcproute)                 | Not supported      | Not supported          | Not supported                         | v1alpha2    | Experimental        |
-| [UDPRoute](#udproute)                 | Not supported      | Not supported          | Not supported                         | v1alpha2    | Experimental        |
-| [BackendTLSPolicy](#backendtlspolicy) | Supported          | Supported              | Not supported                         | v1alpha3    | Experimental        |
-| [Custom policies](#custom-policies)   | N/A                | N/A                    | Supported                             | N/A         | N/A                 |
+| Resource                              | Core Support Level  | Extended Support Level | Implementation-Specific Support Level | API Version | API Release Channel |
+|---------------------------------------|---------------------|------------------------|---------------------------------------|-------------|---------------------|
+| [GatewayClass](#gatewayclass)         | Supported           | Not supported          | Supported                             | v1          | Standard            |
+| [Gateway](#gateway)                   | Supported           | Partially supported    | Not supported                         | v1          | Standard            |
+| [HTTPRoute](#httproute)               | Supported           | Partially supported    | Not supported                         | v1          | Standard            |
+| [GRPCRoute](#grpcroute)               | Supported           | Partially supported    | Not supported                         | v1          | Standard            |
+| [ReferenceGrant](#referencegrant)     | Supported           | N/A                    | Not supported                         | v1beta1     | Standard            |
+| [TLSRoute](#tlsroute)                 | Supported           | Not supported          | Not supported                         | v1alpha2    | Experimental        |
+| [TCPRoute](#tcproute)                 | Not supported       | Not supported          | Not supported                         | v1alpha2    | Experimental        |
+| [UDPRoute](#udproute)                 | Not supported       | Not supported          | Not supported                         | v1alpha2    | Experimental        |
+| [BackendTLSPolicy](#backendtlspolicy) | Partially Supported | Supported              | Partially supported                   | v1alpha3    | Experimental        |
+| [Custom policies](#custom-policies)   | N/A                 | N/A                    | Supported                             | N/A         | N/A                 |
 
 {{< /bootstrap-table >}}
 
@@ -109,6 +109,8 @@ See the [static-mode]({{< ref "/ngf/reference/cli-help.md#static-mode">}}) comma
       - `options`: Not supported.
     - `allowedRoutes`: Supported.
   - `addresses`: Not supported.
+  - `infrastructure`: Not supported.
+  - `backendTLS`: Not supported.
 - `status`
   - `addresses`: Partially supported (LoadBalancer and Pod IP).
   - `conditions`: Supported (Condition/Status/Reason):
@@ -335,9 +337,9 @@ Fields:
 
 {{< bootstrap-table "table table-striped table-bordered" >}}
 
-| Resource         | Core Support Level | Extended Support Level | Implementation-Specific Support Level | API Version | API Release Channel |
-|------------------|--------------------|------------------------|---------------------------------------|-------------|---------------------|
-| BackendTLSPolicy | Supported          | Supported              | Not supported                         | v1alpha3    | Experimental        |
+| Resource         | Core Support Level  | Extended Support Level | Implementation-Specific Support Level | API Version | API Release Channel |
+|------------------|---------------------|------------------------|---------------------------------------|-------------|---------------------|
+| BackendTLSPolicy | Partially Supported | Supported              | Partially Supported                   | v1alpha3    | Experimental        |
 
 {{< /bootstrap-table >}}
 
@@ -345,20 +347,22 @@ Fields:
 
 - `spec`
   - `targetRefs`
-    - `group` - supported.
-    - `kind` - supports `Service`.
-    - `name` - supported.
+    - `group`: Supported.
+    - `kind`: Supports `Service`.
+    - `name`: Supported.
   - `validation`
-    - `caCertificateRefs` - supports single reference to a `ConfigMap`, with the CA certificate in a key named `ca.crt`.
-      - `name`- supported.
-      - `group` - supported.
-      - `kind` - supports `ConfigMap`.
-    - `hostname` - supported.
-    - `wellKnownCertificates` - supports `System`. This will set the CA certificate to the Alpine system root CA path `/etc/ssl/cert.pem`. NB: This option will only work if the NGINX image used is Alpine based. The NGF NGINX images are Alpine based by default.
+    - `caCertificateRefs`: Supports single reference to a `ConfigMap`, with the CA certificate in a key named `ca.crt`.
+      - `name`: Supported.
+      - `group`: Supported.
+      - `kind`: Supports `ConfigMap`.
+    - `hostname`: Supported.
+    - `wellKnownCertificates`: Supports `System`. This will set the CA certificate to the Alpine system root CA path `/etc/ssl/cert.pem`. NB: This option will only work if the NGINX image used is Alpine based. The NGF NGINX images are Alpine based by default.
+    - `subjectAltNames`: Not supported.
+  - `options`: Not supported.
 - `status`
   - `ancestors`
-    - `ancestorRef` - supported.
-    - `controllerName`: supported.
+    - `ancestorRef`: Supported.
+    - `controllerName`: Supported.
     - `conditions`: Partially supported. Supported (Condition/Status/Reason):
       - `Accepted/True/PolicyReasonAccepted`
       - `Accepted/False/PolicyReasonInvalid`

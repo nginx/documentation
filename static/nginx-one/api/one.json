@@ -52,11 +52,6 @@
       "x-displayName": "Events"
     },
     {
-      "name": "Staged Configs",
-      "description": "The `StagedConfigs` object represents a NGINX staged configuration which users can save to publish at a later time. A staged configuration can be \nimported and exported.\n",
-      "x-displayName": "Staged Configs"
-    },
-    {
       "name": "Metrics",
       "description": "Get system metrics for your NGINX data plane instances. These metrics are collected by the NGINX Agent and reported to NGINX One.\n",
       "x-displayName": "Metrics"
@@ -484,7 +479,6 @@
     },
     "/certificates": {
       "get": {
-        "x-feature-flag": "cert-mgmt",
         "tags": [
           "Certificates"
         ],
@@ -553,7 +547,6 @@
       "post": {
         "x-nginx-one-action": "create",
         "x-nginx-one-entity": "NGINX certificate",
-        "x-feature-flag": "cert-mgmt",
         "tags": [
           "Certificates"
         ],
@@ -618,7 +611,6 @@
       "delete": {
         "x-nginx-one-action": "delete",
         "x-nginx-one-entity": "NGINX certificate",
-        "x-feature-flag": "cert-mgmt",
         "tags": [
           "Certificates"
         ],
@@ -672,7 +664,6 @@
         }
       },
       "get": {
-        "x-feature-flag": "cert-mgmt",
         "tags": [
           "Certificates"
         ],
@@ -730,7 +721,6 @@
       "patch": {
         "x-nginx-one-action": "update",
         "x-nginx-one-entity": "NGINX certificate",
-        "x-feature-flag": "cert-mgmt",
         "tags": [
           "Certificates"
         ],
@@ -803,7 +793,6 @@
     },
     "/certificates/{certificateObjectID}/deployments": {
       "get": {
-        "x-feature-flag": "cert-mgmt",
         "tags": [
           "Certificates"
         ],
@@ -885,7 +874,6 @@
     },
     "/certificates/parse": {
       "post": {
-        "x-feature-flag": "cert-mgmt",
         "x-nginx-one-action": "validate",
         "x-nginx-one-entity": "NGINX certificate",
         "tags": [
@@ -948,6 +936,7 @@
         }
       }
     },
+    "/config-report": {},
     "/config-sync-groups": {
       "get": {
         "tags": [
@@ -3126,641 +3115,7 @@
             }
           },
           "401": {
-            "description": "Access denied",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "An unexpected error occurred on the server. Please try the request again later.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/staged-configs": {
-      "get": {
-        "x-feature-flag": "staged-configs",
-        "tags": [
-          "Staged Configs"
-        ],
-        "summary": "List all staged configs",
-        "operationId": "listStagedConfigs",
-        "description": "Returns a list of all NGINX staged configs, providing details such as:\n  * Name and object_id of staged config\n  * Created and modified timestamps\n",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/Paginated"
-          },
-          {
-            "$ref": "#/components/parameters/Limit"
-          },
-          {
-            "$ref": "#/components/parameters/Offset"
-          },
-          {
-            "$ref": "#/components/parameters/FilterOperands"
-          },
-          {
-            "$ref": "#/components/parameters/FilterValues"
-          },
-          {
-            "$ref": "#/components/parameters/SortDirection"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successfully retrieved the list of NGINX staged configs.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/StagedConfigListResponse"
-                  }
-                }
-              }
-            }
-          },
-          "401": {
             "description": "Access denied.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "An unexpected error occurred on the server. Please try the request again later.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "x-feature-flag": "staged-configs",
-        "x-nginx-one-action": "create",
-        "x-nginx-one-entity": "NGINX staged configs",
-        "tags": [
-          "Staged Configs"
-        ],
-        "summary": "Create an NGINX staged config",
-        "operationId": "createStagedConfig",
-        "description": "Create NGINX staged config with a unique ID to identify it within the tenant namespace.\n",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/StagedConfigCreateRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Successfully created NGINX staged configs",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/StagedConfigCreateResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Access denied",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "An unexpected error occurred on the server. Please try the request again later.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/staged-configs/{stagedConfigObjectID}": {
-      "delete": {
-        "x-feature-flag": "staged-configs",
-        "x-nginx-one-action": "delete",
-        "x-nginx-one-entity": "NGINX staged config",
-        "tags": [
-          "Staged Configs"
-        ],
-        "summary": "Delete an NGINX staged config",
-        "description": "Delete a NGINX staged config from the NGINX One console.\n",
-        "operationId": "deleteStagedConfig",
-        "responses": {
-          "204": {
-            "description": "Successfully deleted the NGINX staged configs"
-          },
-          "401": {
-            "description": "Access denied",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "The NGINX staged config with the specified object_id was not found. Check that the object_id provided is correct and corresponds to an existing resource.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "An unexpected error occurred on the server. Please try the request again later.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      },
-      "get": {
-        "x-feature-flag": "staged-configs",
-        "tags": [
-          "Staged Configs"
-        ],
-        "summary": "Retrieve an NGINX staged config meta",
-        "description": "Retrieve the meta details for an NGINX staged config.\n",
-        "operationId": "getStagedConfigMeta",
-        "responses": {
-          "200": {
-            "description": "Successfully retrieved the details of the NGINX staged config meta.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/StagedConfigMeta"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Access denied",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "The NGINX staged config with the specified object_id was not found. Check that the object_id provided is correct and corresponds to an existing resource.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "An unexpected error occurred on the server. Please try the request again later.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      },
-      "parameters": [
-        {
-          "$ref": "#/components/parameters/StagedConfigParamObjectID"
-        }
-      ]
-    },
-    "/staged-configs/{stagedConfigObjectID}/config": {
-      "get": {
-        "tags": [
-          "Staged Configs"
-        ],
-        "x-feature-flag": "staged-configs",
-        "summary": "Retrieve an NGINX staged config",
-        "description": "Retrieve the details for an NGINX staged config.\n",
-        "operationId": "getStagedConfig",
-        "responses": {
-          "200": {
-            "description": "Successfully retrieved the details of the NGINX staged config.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NginxConfig"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Access denied",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "The NGINX staged config with the specified object_id was not found. Check that the object_id provided is correct and corresponds to an existing resource.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "An unexpected error occurred on the server. Please try the request again later.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      },
-      "parameters": [
-        {
-          "$ref": "#/components/parameters/StagedConfigParamObjectID"
-        }
-      ],
-      "patch": {
-        "tags": [
-          "Staged Configs"
-        ],
-        "x-feature-flag": "staged-configs",
-        "x-nginx-one-action": "update",
-        "x-nginx-one-entity": "NGINX staged config",
-        "summary": "Apply partial updates to staged config",
-        "description": "Applies the specified partial updates to an existing NGINX staged config Details:\n  * This endpoint accepts additive updates to `NginxConfig`. \n  * To delete files, omit the `file.contents` field. \n",
-        "operationId": "patchStagedConfig",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/NginxConfigRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Successfully stored the NGINX staged configuration.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NginxConfig"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Access denied",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "The NGINX config sync group with the specified object_id was not found. Check that the object_id provided is correct and corresponds to an existing resource.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "An unexpected error occurred on the server. Please try the request again later.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "Staged Configs"
-        ],
-        "x-feature-flag": "staged-configs",
-        "x-nginx-one-action": "create",
-        "x-nginx-one-entity": "NGINX staged config",
-        "summary": "Replace existing state",
-        "description": "Completely replaces existing staged config with payload of new request.\n",
-        "operationId": "replaceStagedConfig",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/NginxConfigRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Successfully stored the NGINX staged config.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NginxConfig"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Access denied",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "The NGINX staged config with the specified object_id was not found. Check that the object_id provided is correct and corresponds to an existing resource.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "An unexpected error occurred on the server. Please try the request again later.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/staged-configs/{stagedConfigObjectID}/config-report": {
-      "get": {
-        "tags": [
-          "Staged Configs"
-        ],
-        "x-feature-flag": "staged-configs",
-        "summary": "Retrieve an analysis report for the NGINX staged config",
-        "description": "Analyzes the NGINX staged config and returns a detailed report.\nThe report includes insights, identified issues, and recommendations for optimizing and troubleshooting.\n",
-        "operationId": "getStagedConfigReport",
-        "responses": {
-          "200": {
-            "description": "Successfully retrieved the NGINX configuration analysis for the specified staged config.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NginxConfigReports"
-                }
-              }
-            }
-          },
-          "204": {
-            "description": "The requested staged config exists, but analysis of the NGINX configuration is not yet completed. Please retry the request at a later time to retrieve the report."
-          },
-          "404": {
-            "description": "The NGINX staged config with the specified object_id was not found. Check that the object_id provided is correct and corresponds to an existing resource.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "An unexpected error occurred on the server. Please try the request again later.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      },
-      "parameters": [
-        {
-          "$ref": "#/components/parameters/StagedConfigParamObjectID"
-        }
-      ],
-      "patch": {
-        "x-feature-flag": "staged-configs",
-        "x-nginx-one-action": "analyze",
-        "x-nginx-one-entity": "NGINX staged configuration",
-        "tags": [
-          "Staged Configs"
-        ],
-        "summary": "Generate an analysis report for the modified NGINX staged config",
-        "description": "Analyzes the provided partial updates merging with an existing configuration of an NGINX config sync group. Generates a report detailing potential issues along with optimization suggestions. \nThis analysis accounts for additive updates made to NGINX configuration. To delete files, omit the `file.contents` field. \nNote that this operation is for analysis purposes only and does not apply any changes to the configuration. \nThe report is not stored and is provided only in the API response.\nTo publish the configuration, use the `PATCH /staged-configs/{stagedConfigObjectID}/config` endpoint.\n",
-        "operationId": "analyzeStagedConfigPatch",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/NginxConfigRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Successfully analyzed the provided NGINX configuration",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NginxConfigReports"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Access denied",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "The NGINX staged config with the specified object_id was not found. Check that the object_id provided is correct and corresponds to an existing resource.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "An unexpected error occurred on the server. Please try the request again later.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      },
-      "put": {
-        "x-feature-flag": "staged-configs",
-        "x-nginx-one-action": "analyze",
-        "x-nginx-one-entity": "NGINX staged configuration",
-        "tags": [
-          "Staged Configs"
-        ],
-        "summary": "Generate an analysis report for the NGINX staged config",
-        "description": "Returns an analysis report for the NGINX staged config. This report includes insights, identified issues, and recommendations for optimizing and troubleshooting. Note that this operation is for analysis purposes only and does not apply any changes to the configuration. The report is not stored and is provided only in the API response. To publish the configuration, use the `PUT /config-sync-groups/{configSyncGroupObjectID}/config` endpoint.",
-        "operationId": "analyzeStagedConfig",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/NginxConfigRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Successfully analyzed the provided NGINX configuration.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NginxConfigReports"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Access denied",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "The NGINX staged config with the specified object_id was not found. Check that the object_id provided is correct and corresponds to an existing resource.",
             "content": {
               "application/json": {
                 "schema": {
@@ -3802,11 +3157,7 @@
                 "resolution": "5m",
                 "metrics": [
                   {
-                    "name": "system.cpu.system",
-                    "aggregate": "avg"
-                  },
-                  {
-                    "name": "nginx.http.request.count",
+                    "name": "nginx.http.requests",
                     "aggregate": "sum"
                   }
                 ],
@@ -3885,7 +3236,7 @@
                 "metrics": [
                   {
                     "aggregate": "sum",
-                    "name": "nginx.http.request.count"
+                    "name": "nginx.http.requests"
                   }
                 ],
                 "series_limit": 1,
@@ -4337,15 +3688,6 @@
           "$ref": "#/components/schemas/NginxConfigObjectID"
         },
         "description": "A globally unique identifier for the NGINX instance configuration.\n",
-        "required": true
-      },
-      "StagedConfigParamObjectID": {
-        "name": "stagedConfigObjectID",
-        "in": "path",
-        "schema": {
-          "$ref": "#/components/schemas/StagedConfigObjectID"
-        },
-        "description": "A globally unique identifier for the NGINX staged config.\n",
         "required": true
       }
     },
@@ -6128,6 +5470,17 @@
           "path": "gitlab.com/f5/nginx/one/saas/control-plane/pkg/collections/objects"
         }
       },
+      "PayloadObjectID": {
+        "description": "A globally unique identifier for the valid payload object reference.",
+        "type": "string",
+        "format": "object_id",
+        "pattern": "^(cert|pv)_.*",
+        "x-go-type": "objects.ID",
+        "x-go-type-import": {
+          "name": "objects",
+          "path": "gitlab.com/f5/nginx/one/saas/control-plane/pkg/collections/objects"
+        }
+      },
       "NginxConfigPayload": {
         "type": "object",
         "description": "Details of Aux File Payload that goes with an NGINX configuration. Provide hints for the backend system on \nadditional file contents that should be part of the NGINX Config Publication.\nCan be used to deploy files related to SSL certificates, to a data plane instance.\n",
@@ -6138,20 +5491,22 @@
         "properties": {
           "type": {
             "type": "string",
-            "description": "Types of Aux File Payload:\n  - inline_secret     - indicates the provided content for the payload should be stored in a secret location, and removed after the publication is done.\n  - inline_content    - indicates the provided content for the payload should be stored, and removed after the publication is done. Note, the contents may end up in the `aux` content if used in this NGINX configuration.\n  - unmanaged_certificate - indicates certificate content for an unmanaged certificate detected from a data plane instance through NGINX configurations. Will be filtered and ignored in the payload deployment.\n  - managed_certificate - indicates public certificates managed by NGINX One Console.\n  - managed_key - indicates a private key managed by NGINX One Console.\n",
+            "description": "Types of Aux File Payload:\n  - inline_secret     - indicates the provided content for the payload should be stored in a secret location, and removed after the publication is done.\n  - inline_content    - indicates the provided content for the payload should be stored, and removed after the publication is done. Note, the contents may end up in the `aux` content if used in this NGINX configuration.\n  - unmanaged_certificate - indicates certificate content for an unmanaged certificate detected from a data plane instance through NGINX configurations. Will be filtered and ignored in the payload deployment.\n  - managed_certificate - indicates public certificates managed by NGINX One Console.\n  - managed_key - indicates a private key managed by NGINX One Console.\n  - nap_policy_version - indicates a version of NAP policy managed by NGINX One Console. A valid policy_version object\n",
             "enum": [
               "inline_secret",
               "inline_content",
               "unmanaged_certificate",
               "managed_certificate",
-              "managed_key"
+              "managed_key",
+              "nap_policy_version"
             ],
             "x-enum-varnames": [
               "nginx_config_payload_inline_secret",
               "nginx_config_payload_inline_content",
               "nginx_config_payload_unmanaged_certificate",
               "nginx_config_payload_managed_certificate",
-              "nginx_config_payload_managed_key"
+              "nginx_config_payload_managed_key",
+              "nginx_config_payload_nap_policy_version"
             ]
           },
           "contents": {
@@ -6161,7 +5516,7 @@
             "maxLength": 3145728
           },
           "object_id": {
-            "$ref": "#/components/schemas/CertificateObjectID"
+            "$ref": "#/components/schemas/PayloadObjectID"
           },
           "paths": {
             "type": "array",
@@ -6579,7 +5934,7 @@
               "config_source_other",
               "config_source_unspecified"
             ],
-            "description": "The source from which the config was created:\n-  `NGINX One`: The config was created from NGINX One.\n-  `Other`: The config was created from data plane.\n-  `Unpecified`: The source of the config is unspecified.\n"
+            "description": "The source from which the config was created:\n-  `NGINX One`: The config was created from NGINX One.\n-  `Other`: The config was created from data plane.\n-  `Unspecified`: The source of the config is unspecified.\n"
           }
         },
         "example": {
@@ -7345,155 +6700,6 @@
           }
         }
       },
-      "StagedConfigObjectID": {
-        "description": "A globally unique identifier for the NGINX staged config.",
-        "type": "string",
-        "format": "object_id",
-        "pattern": "^sc_.*",
-        "x-go-type": "objects.ID",
-        "x-go-type-import": {
-          "name": "objects",
-          "path": "gitlab.com/f5/nginx/one/saas/control-plane/pkg/collections/objects"
-        }
-      },
-      "StagedConfigMeta": {
-        "type": "object",
-        "description": "Summary information of the NGINX staged config.",
-        "required": [
-          "object_id",
-          "name",
-          "created_at",
-          "modified_at"
-        ],
-        "properties": {
-          "object_id": {
-            "$ref": "#/components/schemas/StagedConfigObjectID"
-          },
-          "name": {
-            "description": "Name of the NGINX staged config",
-            "type": "string"
-          },
-          "created_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The date and time when the NGINX configuration object was created for the instance."
-          },
-          "modified_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The date and time when the NGINX configuration object was last modified for the instance."
-          }
-        }
-      },
-      "StagedConfigListResponse": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/PaginationResponse"
-          },
-          {
-            "type": "object",
-            "description": "List of NGINX staged configs.",
-            "required": [
-              "items"
-            ],
-            "properties": {
-              "items": {
-                "description": "An array of Staged Config objects.",
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/StagedConfigMeta"
-                }
-              }
-            }
-          }
-        ],
-        "example": {
-          "total": 10,
-          "count": 1,
-          "start_index": 1,
-          "items_per_page": 100,
-          "items": [
-            {
-              "object_id": "sc_Tet21AeYTHCj7taOwVfzyw",
-              "name": "my-nginx-staged-config",
-              "created_at": "2023-08-10T16:59:15Z",
-              "modified_at": "2023-08-10T16:59:15Z"
-            }
-          ]
-        }
-      },
-      "StagedConfigCreateRequest": {
-        "description": "Body to create a NGINX staged config. A staged aonfig can be empty; config payload is optional.",
-        "required": [
-          "name"
-        ],
-        "properties": {
-          "name": {
-            "type": "string",
-            "description": "A name to identify the Nginx staged config.",
-            "minLength": 1,
-            "maxLength": 256
-          },
-          "config": {
-            "$ref": "#/components/schemas/NginxConfigRequest"
-          }
-        },
-        "example": {
-          "name": "my-nginx-staged-config",
-          "aux": [],
-          "conf_path": "/etc/nginx/nginx.conf",
-          "configs": [
-            {
-              "files": [
-                {
-                  "contents": "Cm1hcCAkdXJpICRtYXBwZWRfc2VydmljZSB7CiAgICBkZWZhdWx0IFVOTUFUQ0hFRDsKICAgICJ+Xi9hcGkvdjEvbmFtZXNwYWNlcy9cdysvaW5zdGFuY2VzIiAgICAgICAgaW5zdGFuY2VzLXN2YzsKICAgICJ+Xi9hcGkvdjEvbmFtZXNwYWNlcy9cdysvZGF0YS1wbGFuZS1rZXlzIiAga2V5cy1zdmM7CiAgICAifl4vYXBpL3YxL25hbWVzcGFjZXMvXHcrL21vbml0b3IiICAgICAgICAgIG1vbml0b3Itc3ZjOwp9Cgp1cHN0cmVhbSBpbnN0YW5jZXMtc3ZjIHsKICAgIHNlcnZlciBpbnN0YW5jZXMtc3ZjOjgwODA7Cn0KCnVwc3RyZWFtIGtleXMtc3ZjIHsKICAgIHNlcnZlciBrZXlzLXN2Yzo4MDkwOwp9Cgp1cHN0cmVhbSBkYXRhcGxhbmUtY3RybCB7CiAgICBzZXJ2ZXIgZGF0YXBsYW5lLWN0cmw6ODA4MDsKfQoKdXBzdHJlYW0gbW9uaXRvci1zdmMgewogICAgc2VydmVyIG1vbml0b3Itc3ZjOjgwODA7Cn0KCnVwc3RyZWFtIG1ldHJpY3MtaW5nZXN0IHsKICAgIHNlcnZlciBtZXRyaWNzLWluZ2VzdDo4MDgwOwp9CgpzZXJ2ZXIgewogICAgbGlzdGVuIDg4ODg7CiAgICBzZXJ2ZXJfbmFtZSBfOwogICAgaHR0cDIgb247CgogICAgcHJveHlfcGFzc19yZXF1ZXN0X2hlYWRlcnMgb247CiAgICByZXdyaXRlICJeL2FwaS8obmdpbngvb25lfHYxKS8oLiopJCIgIi9hcGkvdjEvJDIiIGJyZWFrOwogICAgbG9jYXRpb24gL2FwaS92MS8gewogICAgICAgIGlmICgkbWFwcGVkX3NlcnZpY2UgPSAiVU5NQVRDSEVEIikgewogICAgICAgICAgICByZXR1cm4gNDA0ICd7ImVycm9yOiAiTm90IGZvdW5kIn0nOwogICAgICAgIH0KICAgICAgICBwcm94eV9wYXNzX2hlYWRlciBYLVZvbHRlcnJhLUFwaWd3LVRlbmFudDsKICAgICAgICBwcm94eV9wYXNzIGh0dHA6Ly8kbWFwcGVkX3NlcnZpY2U7CiAgICB9CgogICAgIyBnUlBDIHNlcnZpY2UgZm9yIGRhdGFwbGFuZS1jdHJsCiAgICBsb2NhdGlvbiAvZjUubmdpbnguYWdlbnQuc2RrLkNvbW1hbmRlciB7CiAgICAgICAgZ3JwY19zb2NrZXRfa2VlcGFsaXZlIG9uOwogICAgICAgIGdycGNfcmVhZF90aW1lb3V0IDVtOwogICAgICAgIGdycGNfc2VuZF90aW1lb3V0IDVtOwogICAgICAgIGNsaWVudF9ib2R5X3RpbWVvdXQgMTBtOwogICAgICAgIGdycGNfcGFzcyBncnBjOi8vZGF0YXBsYW5lLWN0cmw7CiAgICB9CgogICAgIyBnUlBDIHNlcnZpY2UgZm9yIG1ldHJpY3MgaW5nZXN0aW9uCiAgICBsb2NhdGlvbiAvZjUubmdpbnguYWdlbnQuc2RrLk1ldHJpY3NTZXJ2aWNlIHsKICAgICAgICBncnBjX3NvY2tldF9rZWVwYWxpdmUgb247CiAgICAgICAgZ3JwY19yZWFkX3RpbWVvdXQgNW07CiAgICAgICAgZ3JwY19zZW5kX3RpbWVvdXQgNW07CiAgICAgICAgY2xpZW50X2JvZHlfdGltZW91dCAxMG07CiAgICAgICAgY2xpZW50X21heF9ib2R5X3NpemUgMDsKICAgICAgICBncnBjX3Bhc3MgZ3JwYzovL21ldHJpY3MtaW5nZXN0OwogICAgfQp9CgojIHByb3h5IHRvIHRoZSBtYW5hZ2VtZW50IHNlcnZlcnMKc2VydmVyIHsKICAgIGxpc3RlbiAxNTAwMDsKICAgIHNlcnZlcl9uYW1lIF87CiAgICAjIHVzZSBkb2NrZXIgRE5TCiAgICByZXNvbHZlciAxMjcuMC4wLjExIHZhbGlkPTMwczsKCiAgICAjIG1hdGNoIC88c2VydmljZT4vPG1nbXQgZW5kcG9pbnQ+CiAgICBsb2NhdGlvbiB+Xi8oW14vXSspLyguKykkIHsKICAgICAgICBwcm94eV9wYXNzIGh0dHA6Ly8kMToxNTAwMC8kMjsKICAgIH0KCiAgICBsb2NhdGlvbiAvIHsKICAgICAgICBhZGRfaGVhZGVyICJDb250ZW50LVR5cGUiICJ0ZXh0L2h0bWwiOwogICAgICAgIHJldHVybiAyMDAgIjxwPkFjY2VzcyB0aGUgbWFuYWdlbWVudCBzZXJ2ZXIgb2YgYW55IHNlcnZpY2Ugd2l0aCBVUkxzIGxpa2UgPGNvZGU+aHR0cDovL2xvY2FsaG9zdDoxNTAwMC8mbHQ7U0VSVklDRV9OQU1FJmd0Oy9tZXRyaWNzPC9jb2RlPjwvcD4iOwogICAgfQp9Cg==",
-                  "mtime": "1970-01-01T00:00:00Z",
-                  "name": "default.conf",
-                  "size": 1942
-                }
-              ],
-              "name": "/etc/nginx/conf.d"
-            },
-            {
-              "files": [
-                {
-                  "contents": "CnVzZXIgIG5naW54Owp3b3JrZXJfcHJvY2Vzc2VzICBhdXRvOwoKZXJyb3JfbG9nICAvdmFyL2xvZy9uZ2lueC9lcnJvci5sb2cgbm90aWNlOwpwaWQgICAgICAgIC92YXIvcnVuL25naW54LnBpZDsKCgpldmVudHMgewogICAgd29ya2VyX2Nvbm5lY3Rpb25zICAxMDI0Owp9CgoKaHR0cCB7CiAgICBpbmNsdWRlICAgICAgIC9ldGMvbmdpbngvbWltZS50eXBlczsKICAgIGRlZmF1bHRfdHlwZSAgYXBwbGljYXRpb24vb2N0ZXQtc3RyZWFtOwoKICAgIGxvZ19mb3JtYXQgIG1haW4gICckcmVtb3RlX2FkZHIgLSAkcmVtb3RlX3VzZXIgWyR0aW1lX2xvY2FsXSAiJHJlcXVlc3QiICcKICAgICAgICAgICAgICAgICAgICAgICckc3RhdHVzICRib2R5X2J5dGVzX3NlbnQgIiRodHRwX3JlZmVyZXIiICcKICAgICAgICAgICAgICAgICAgICAgICciJGh0dHBfdXNlcl9hZ2VudCIgIiRodHRwX3hfZm9yd2FyZGVkX2ZvciInOwoKICAgIGFjY2Vzc19sb2cgIC92YXIvbG9nL25naW54L2FjY2Vzcy5sb2cgIG1haW47CgogICAgc2VuZGZpbGUgICAgICAgIG9uOwogICAgI3RjcF9ub3B1c2ggICAgIG9uOwoKICAgIGtlZXBhbGl2ZV90aW1lb3V0ICA2NTsKCiAgICAjZ3ppcCAgb247CgogICAgaW5jbHVkZSAvZXRjL25naW54L2NvbmYuZC8qLmNvbmY7Cn0K",
-                  "mtime": "1970-01-01T00:00:00Z",
-                  "name": "nginx.conf",
-                  "size": 648
-                },
-                {
-                  "contents": "CnR5cGVzIHsKICAgIHRleHQvaHRtbCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBodG1sIGh0bSBzaHRtbDsKICAgIHRleHQvY3NzICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBjc3M7CiAgICB0ZXh0L3htbCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgeG1sOwogICAgaW1hZ2UvZ2lmICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGdpZjsKICAgIGltYWdlL2pwZWcgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBqcGVnIGpwZzsKICAgIGFwcGxpY2F0aW9uL2phdmFzY3JpcHQgICAgICAgICAgICAgICAgICAgICAgICAgICBqczsKICAgIGFwcGxpY2F0aW9uL2F0b20reG1sICAgICAgICAgICAgICAgICAgICAgICAgICAgICBhdG9tOwogICAgYXBwbGljYXRpb24vcnNzK3htbCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHJzczsKCiAgICB0ZXh0L21hdGhtbCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgbW1sOwogICAgdGV4dC9wbGFpbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHR4dDsKICAgIHRleHQvdm5kLnN1bi5qMm1lLmFwcC1kZXNjcmlwdG9yICAgICAgICAgICAgICAgICBqYWQ7CiAgICB0ZXh0L3ZuZC53YXAud21sICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgd21sOwogICAgdGV4dC94LWNvbXBvbmVudCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGh0YzsKCiAgICBpbWFnZS9hdmlmICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgYXZpZjsKICAgIGltYWdlL3BuZyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBwbmc7CiAgICBpbWFnZS9zdmcreG1sICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgc3ZnIHN2Z3o7CiAgICBpbWFnZS90aWZmICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgdGlmIHRpZmY7CiAgICBpbWFnZS92bmQud2FwLndibXAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgd2JtcDsKICAgIGltYWdlL3dlYnAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB3ZWJwOwogICAgaW1hZ2UveC1pY29uICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGljbzsKICAgIGltYWdlL3gtam5nICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBqbmc7CiAgICBpbWFnZS94LW1zLWJtcCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgYm1wOwoKICAgIGZvbnQvd29mZiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB3b2ZmOwogICAgZm9udC93b2ZmMiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHdvZmYyOwoKICAgIGFwcGxpY2F0aW9uL2phdmEtYXJjaGl2ZSAgICAgICAgICAgICAgICAgICAgICAgICBqYXIgd2FyIGVhcjsKICAgIGFwcGxpY2F0aW9uL2pzb24gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBqc29uOwogICAgYXBwbGljYXRpb24vbWFjLWJpbmhleDQwICAgICAgICAgICAgICAgICAgICAgICAgIGhxeDsKICAgIGFwcGxpY2F0aW9uL21zd29yZCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBkb2M7CiAgICBhcHBsaWNhdGlvbi9wZGYgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgcGRmOwogICAgYXBwbGljYXRpb24vcG9zdHNjcmlwdCAgICAgICAgICAgICAgICAgICAgICAgICAgIHBzIGVwcyBhaTsKICAgIGFwcGxpY2F0aW9uL3J0ZiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBydGY7CiAgICBhcHBsaWNhdGlvbi92bmQuYXBwbGUubXBlZ3VybCAgICAgICAgICAgICAgICAgICAgbTN1ODsKICAgIGFwcGxpY2F0aW9uL3ZuZC5nb29nbGUtZWFydGgua21sK3htbCAgICAgICAgICAgICBrbWw7CiAgICBhcHBsaWNhdGlvbi92bmQuZ29vZ2xlLWVhcnRoLmtteiAgICAgICAgICAgICAgICAga216OwogICAgYXBwbGljYXRpb24vdm5kLm1zLWV4Y2VsICAgICAgICAgICAgICAgICAgICAgICAgIHhsczsKICAgIGFwcGxpY2F0aW9uL3ZuZC5tcy1mb250b2JqZWN0ICAgICAgICAgICAgICAgICAgICBlb3Q7CiAgICBhcHBsaWNhdGlvbi92bmQubXMtcG93ZXJwb2ludCAgICAgICAgICAgICAgICAgICAgcHB0OwogICAgYXBwbGljYXRpb24vdm5kLm9hc2lzLm9wZW5kb2N1bWVudC5ncmFwaGljcyAgICAgIG9kZzsKICAgIGFwcGxpY2F0aW9uL3ZuZC5vYXNpcy5vcGVuZG9jdW1lbnQucHJlc2VudGF0aW9uICBvZHA7CiAgICBhcHBsaWNhdGlvbi92bmQub2FzaXMub3BlbmRvY3VtZW50LnNwcmVhZHNoZWV0ICAgb2RzOwogICAgYXBwbGljYXRpb24vdm5kLm9hc2lzLm9wZW5kb2N1bWVudC50ZXh0ICAgICAgICAgIG9kdDsKICAgIGFwcGxpY2F0aW9uL3ZuZC5vcGVueG1sZm9ybWF0cy1vZmZpY2Vkb2N1bWVudC5wcmVzZW50YXRpb25tbC5wcmVzZW50YXRpb24KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBwcHR4OwogICAgYXBwbGljYXRpb24vdm5kLm9wZW54bWxmb3JtYXRzLW9mZmljZWRvY3VtZW50LnNwcmVhZHNoZWV0bWwuc2hlZXQKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB4bHN4OwogICAgYXBwbGljYXRpb24vdm5kLm9wZW54bWxmb3JtYXRzLW9mZmljZWRvY3VtZW50LndvcmRwcm9jZXNzaW5nbWwuZG9jdW1lbnQKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBkb2N4OwogICAgYXBwbGljYXRpb24vdm5kLndhcC53bWxjICAgICAgICAgICAgICAgICAgICAgICAgIHdtbGM7CiAgICBhcHBsaWNhdGlvbi93YXNtICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgd2FzbTsKICAgIGFwcGxpY2F0aW9uL3gtN3otY29tcHJlc3NlZCAgICAgICAgICAgICAgICAgICAgICA3ejsKICAgIGFwcGxpY2F0aW9uL3gtY29jb2EgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBjY287CiAgICBhcHBsaWNhdGlvbi94LWphdmEtYXJjaGl2ZS1kaWZmICAgICAgICAgICAgICAgICAgamFyZGlmZjsKICAgIGFwcGxpY2F0aW9uL3gtamF2YS1qbmxwLWZpbGUgICAgICAgICAgICAgICAgICAgICBqbmxwOwogICAgYXBwbGljYXRpb24veC1tYWtlc2VsZiAgICAgICAgICAgICAgICAgICAgICAgICAgIHJ1bjsKICAgIGFwcGxpY2F0aW9uL3gtcGVybCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBwbCBwbTsKICAgIGFwcGxpY2F0aW9uL3gtcGlsb3QgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBwcmMgcGRiOwogICAgYXBwbGljYXRpb24veC1yYXItY29tcHJlc3NlZCAgICAgICAgICAgICAgICAgICAgIHJhcjsKICAgIGFwcGxpY2F0aW9uL3gtcmVkaGF0LXBhY2thZ2UtbWFuYWdlciAgICAgICAgICAgICBycG07CiAgICBhcHBsaWNhdGlvbi94LXNlYSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgc2VhOwogICAgYXBwbGljYXRpb24veC1zaG9ja3dhdmUtZmxhc2ggICAgICAgICAgICAgICAgICAgIHN3ZjsKICAgIGFwcGxpY2F0aW9uL3gtc3R1ZmZpdCAgICAgICAgICAgICAgICAgICAgICAgICAgICBzaXQ7CiAgICBhcHBsaWNhdGlvbi94LXRjbCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgdGNsIHRrOwogICAgYXBwbGljYXRpb24veC14NTA5LWNhLWNlcnQgICAgICAgICAgICAgICAgICAgICAgIGRlciBwZW0gY3J0OwogICAgYXBwbGljYXRpb24veC14cGluc3RhbGwgICAgICAgICAgICAgICAgICAgICAgICAgIHhwaTsKICAgIGFwcGxpY2F0aW9uL3hodG1sK3htbCAgICAgICAgICAgICAgICAgICAgICAgICAgICB4aHRtbDsKICAgIGFwcGxpY2F0aW9uL3hzcGYreG1sICAgICAgICAgICAgICAgICAgICAgICAgICAgICB4c3BmOwogICAgYXBwbGljYXRpb24vemlwICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHppcDsKCiAgICBhcHBsaWNhdGlvbi9vY3RldC1zdHJlYW0gICAgICAgICAgICAgICAgICAgICAgICAgYmluIGV4ZSBkbGw7CiAgICBhcHBsaWNhdGlvbi9vY3RldC1zdHJlYW0gICAgICAgICAgICAgICAgICAgICAgICAgZGViOwogICAgYXBwbGljYXRpb24vb2N0ZXQtc3RyZWFtICAgICAgICAgICAgICAgICAgICAgICAgIGRtZzsKICAgIGFwcGxpY2F0aW9uL29jdGV0LXN0cmVhbSAgICAgICAgICAgICAgICAgICAgICAgICBpc28gaW1nOwogICAgYXBwbGljYXRpb24vb2N0ZXQtc3RyZWFtICAgICAgICAgICAgICAgICAgICAgICAgIG1zaSBtc3AgbXNtOwoKICAgIGF1ZGlvL21pZGkgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBtaWQgbWlkaSBrYXI7CiAgICBhdWRpby9tcGVnICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgbXAzOwogICAgYXVkaW8vb2dnICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIG9nZzsKICAgIGF1ZGlvL3gtbTRhICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBtNGE7CiAgICBhdWRpby94LXJlYWxhdWRpbyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgcmE7CgogICAgdmlkZW8vM2dwcCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDNncHAgM2dwOwogICAgdmlkZW8vbXAydCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHRzOwogICAgdmlkZW8vbXA0ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIG1wNDsKICAgIHZpZGVvL21wZWcgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBtcGVnIG1wZzsKICAgIHZpZGVvL3F1aWNrdGltZSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBtb3Y7CiAgICB2aWRlby93ZWJtICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgd2VibTsKICAgIHZpZGVvL3gtZmx2ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBmbHY7CiAgICB2aWRlby94LW00diAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgbTR2OwogICAgdmlkZW8veC1tbmcgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIG1uZzsKICAgIHZpZGVvL3gtbXMtYXNmICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBhc3ggYXNmOwogICAgdmlkZW8veC1tcy13bXYgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHdtdjsKICAgIHZpZGVvL3gtbXN2aWRlbyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBhdmk7Cn0K",
-                  "mtime": "1970-01-01T00:00:00Z",
-                  "name": "mime.types",
-                  "size": 5349
-                }
-              ],
-              "name": "/etc/nginx"
-            }
-          ]
-        }
-      },
-      "StagedConfigCreateResponse": {
-        "description": "Response to a create NGINX staged config request.",
-        "required": [
-          "object_id",
-          "name"
-        ],
-        "properties": {
-          "object_id": {
-            "$ref": "#/components/schemas/StagedConfigObjectID"
-          },
-          "name": {
-            "description": "Name of the NGINX staged config.",
-            "type": "string"
-          }
-        },
-        "example": {
-          "name": "my-nginx-staged-config",
-          "object_id": "sc_Tet21AeYTHCj7taOwVfzyw"
-        }
-      },
       "MetricQueryResultEx": {
         "type": "object",
         "required": [
@@ -7822,8 +7028,21 @@
         },
         "example": [
           {
-            "name": "system.cpu.system",
-            "aggregate": "avg"
+            "name": "system.cpu.time",
+            "aggregate": "avg",
+            "filter": [
+              {
+                "filterSet": [
+                  {
+                    "dimension": "mode",
+                    "operator": "=",
+                    "values": [
+                      "system"
+                    ]
+                  }
+                ]
+              }
+            ]
           }
         ]
       },
@@ -7998,56 +7217,8 @@
       "MetricName": {
         "type": "string",
         "description": "Metric names available for querying.\n",
-        "example": "nginx.http.request.count",
+        "example": "nginx.http.requests",
         "oneOf": [
-          {
-            "$ref": "#/components/schemas/MetricNginxHttpRequestCount"
-          },
-          {
-            "$ref": "#/components/schemas/MetricNginxHttpStatus4xx"
-          },
-          {
-            "$ref": "#/components/schemas/MetricNginxHttpStatus5xx"
-          },
-          {
-            "$ref": "#/components/schemas/MetricPlusHttpRequestCount"
-          },
-          {
-            "$ref": "#/components/schemas/MetricPlusHttpStatus4xx"
-          },
-          {
-            "$ref": "#/components/schemas/MetricPlusHttpStatus5xx"
-          },
-          {
-            "$ref": "#/components/schemas/MetricSystemCpuSystem"
-          },
-          {
-            "$ref": "#/components/schemas/MetricSystemCpuUser"
-          },
-          {
-            "$ref": "#/components/schemas/MetricSystemDiskInUse"
-          },
-          {
-            "$ref": "#/components/schemas/MetricSystemDiskTotal"
-          },
-          {
-            "$ref": "#/components/schemas/MetricSystemDiskUsed"
-          },
-          {
-            "$ref": "#/components/schemas/MetricSystemMemoryPctUsed"
-          },
-          {
-            "$ref": "#/components/schemas/MetricSystemMemoryTotal"
-          },
-          {
-            "$ref": "#/components/schemas/MetricSystemMemoryUsed"
-          },
-          {
-            "$ref": "#/components/schemas/MetricSystemNetBytesReceived"
-          },
-          {
-            "$ref": "#/components/schemas/MetricSystemNetBytesSent"
-          },
           {
             "$ref": "#/components/schemas/MetricSystemCpuTime"
           },
@@ -8056,6 +7227,9 @@
           },
           {
             "$ref": "#/components/schemas/MetricSystemMemoryUsage"
+          },
+          {
+            "$ref": "#/components/schemas/MetricSystemCpuLogicalCount"
           },
           {
             "$ref": "#/components/schemas/MetricSystemNetworkIo"
@@ -8068,156 +7242,51 @@
           }
         ]
       },
-      "MetricNginxHttpRequestCount": {
-        "type": "string",
-        "description": "Total number of client requests.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n",
-        "enum": [
-          "nginx.http.request.count"
-        ]
-      },
-      "MetricNginxHttpStatus4xx": {
-        "type": "string",
-        "description": "Number of requests with HTTP status codes 4xx.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n",
-        "enum": [
-          "nginx.http.status.4xx"
-        ]
-      },
-      "MetricNginxHttpStatus5xx": {
-        "type": "string",
-        "description": "Number of requests with HTTP status codes 5xx.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n",
-        "enum": [
-          "nginx.http.status.5xx"
-        ]
-      },
-      "MetricPlusHttpRequestCount": {
-        "type": "string",
-        "description": "The total number of client requests received from clients.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n  * server_zone\n  * location_zone\n",
-        "enum": [
-          "plus.http.request.count"
-        ]
-      },
-      "MetricPlusHttpStatus4xx": {
-        "type": "string",
-        "description": "Number of requests with HTTP status codes 4xx.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n  * server_zone\n  * location_zone\n",
-        "enum": [
-          "plus.http.status.4xx"
-        ]
-      },
-      "MetricPlusHttpStatus5xx": {
-        "type": "string",
-        "description": "Number of requests with HTTP status codes 5xx.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n  * server_zone\n  * location_zone\n",
-        "enum": [
-          "plus.http.status.5xx"
-        ]
-      },
-      "MetricSystemCpuSystem": {
-        "type": "string",
-        "description": "Total system CPU utilization, percentage.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n",
-        "enum": [
-          "system.cpu.system"
-        ]
-      },
-      "MetricSystemCpuUser": {
-        "type": "string",
-        "description": "User CPU utilization, percentage.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n",
-        "enum": [
-          "system.cpu.user"
-        ]
-      },
-      "MetricSystemDiskInUse": {
-        "type": "string",
-        "description": "System disk usage statistic, percentage.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n  * mount_point\n",
-        "enum": [
-          "system.disk.in_use"
-        ]
-      },
-      "MetricSystemDiskTotal": {
-        "type": "string",
-        "description": "Total available system disk usage statistic, bytes.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n  * mount_point\n",
-        "enum": [
-          "system.disk.total"
-        ]
-      },
-      "MetricSystemDiskUsed": {
-        "type": "string",
-        "description": "In-use system disk usage statistic, bytes.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n  * mount_point\n",
-        "enum": [
-          "system.disk.used"
-        ]
-      },
-      "MetricSystemMemoryPctUsed": {
-        "type": "string",
-        "description": "Statistic about system memory usage, percentage.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n",
-        "enum": [
-          "system.mem.pct_used"
-        ]
-      },
-      "MetricSystemMemoryTotal": {
-        "type": "string",
-        "description": "Total available statistic about system memory usage, bytes.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n",
-        "enum": [
-          "system.mem.total"
-        ]
-      },
-      "MetricSystemMemoryUsed": {
-        "type": "string",
-        "description": "In-use statistic about system memory usage, bytes.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n",
-        "enum": [
-          "system.mem.used"
-        ]
-      },
-      "MetricSystemNetBytesReceived": {
-        "type": "string",
-        "description": "Network I/O statistics. Number of bytes received per network interface.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n  * network_interface\n",
-        "enum": [
-          "system.net.bytes_rcvd"
-        ]
-      },
-      "MetricSystemNetBytesSent": {
-        "type": "string",
-        "description": "Network I/O statistics. Number of bytes sent per network interface.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n  * network_interface\n",
-        "enum": [
-          "system.net.bytes_sent"
-        ]
-      },
       "MetricSystemCpuTime": {
         "type": "string",
-        "description": "Total system CPU utilization for 'system' or 'user', percentage. A filter differentiator is needed for specific mode(s).\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension filter differentiator:\n  * mode (applicable filter values: 'system', 'user')\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n",
+        "description": "Total system CPU utilization for 'system' or 'user', percentage. A filter differentiator is needed for specific mode(s).\n\nReplacement for depreciated variant(s):\n  * system.cpu.system\n  * system.cpu.user\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension filter differentiator:\n  * mode (applicable filter values: 'system', 'user')\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n",
         "enum": [
           "system.cpu.time"
         ]
       },
       "MetricSystemFilesystemUsage": {
         "type": "string",
-        "description": "System disk usage statistic, percentage. A filter differentiator is needed for specific state(s).\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension filter differentiator:\n  * state (applicable filter values: 'used', 'free', 'in_use')\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n  * mount_point\n",
+        "description": "System disk usage statistic, percentage. A filter differentiator is needed for specific state(s).\n\nReplacement for depreciated variant(s):\n  * system.disk.in_use\n  * system.disk.total\n  * system.disk.used\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension filter differentiator:\n  * state (applicable filter values: 'used', 'free', 'in_use')\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n  * mount_point\n",
         "enum": [
           "system.filesystem.usage"
         ]
       },
       "MetricSystemMemoryUsage": {
         "type": "string",
-        "description": "Total available statistic about system memory usage, bytes. A filter differentiator is needed for specific state(s).\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate      \n\nCatalog dimension filter differentiator:\n  * state (applicable filter values: 'used', 'free', 'total', 'pct_used')\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n",
+        "description": "Total available statistic about system memory usage, bytes. A filter differentiator is needed for specific state(s).\n\nReplacement for depreciated variant(s):\n  * system.mem.pct_used\n  * system.mem.total\n  * system.mem.used\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate      \n\nCatalog dimension filter differentiator:\n  * state (applicable filter values: 'used', 'free', 'total', 'pct_used')\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n",
         "enum": [
           "system.memory.usage"
         ]
       },
+      "MetricSystemCpuLogicalCount": {
+        "type": "string",
+        "description": "Number of logical (virtual) processor cores created by the operating system.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate      \n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n",
+        "enum": [
+          "system.cpu.logical.count"
+        ]
+      },
       "MetricSystemNetworkIo": {
         "type": "string",
-        "description": "Network I/O statistics. Number of bytes sent or received per network interface. A filter differentiator is needed for specific I/O direction(s).\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension filter differentiator:\n  * io_direction (applicable filter values: 'transmit', 'receive')\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n  * network_interface\n",
+        "description": "Network I/O statistics. Number of bytes sent or received per network interface. A filter differentiator is needed for specific I/O direction(s).\n\nReplacement for depreciated variant(s):\n  * system.net.bytes_rcvd\n  * system.net.bytes_sent\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension filter differentiator:\n  * io_direction (applicable filter values: 'transmit', 'receive')\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n  * network_interface\n",
         "enum": [
           "system.network.io"
         ]
       },
       "MetricNginxHttpRequests": {
         "type": "string",
-        "description": "Total number of client requests received from clients.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n",
+        "description": "Total number of client requests received from clients.\n\nReplacement for depreciated variant(s):\n  * nginx.http.request.count\n  * plus.http.request.count\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n",
         "enum": [
           "nginx.http.requests"
         ]
       },
       "MetricNginxHttpResponseStatus": {
         "type": "string",
-        "description": "Number of responses for by status code range. A filter differentiator is needed for specific status range(s).\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension filter differentiator:\n  * status_range (applicable filter values: '4xx', '5xx')\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id          \n  * server_zone\n  * location_zone\n",
+        "description": "Number of responses for by status code range. A filter differentiator is needed for specific status range(s).\n\nReplacement for depreciated variant(s):\n  * nginx.http.status.4xx\n  * plus.http.status.4xx\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension filter differentiator:\n  * status_range (applicable filter values: '4xx', '5xx')\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id          \n  * server_zone\n  * location_zone\n",
         "enum": [
           "nginx.http.response.status"
         ]
@@ -8303,111 +7372,6 @@
       },
       "NginxUsageStream": {
         "$ref": "#/components/schemas/StreamUsage"
-      },
-      "InventoryResponse": {
-        "type": "object",
-        "required": [
-          "query_metadata",
-          "metrics"
-        ],
-        "properties": {
-          "query_metadata": {
-            "$ref": "#/components/schemas/InventoryMetricQueryMetadata"
-          },
-          "metrics": {
-            "description": "An array of collected metrics, which includes the name of the resource, aggregate function, and series details.",
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Metric"
-            }
-          }
-        }
-      },
-      "InventoryMetricQueryMetadata": {
-        "description": "Includes details about the time period and resolution of the metrics query.\n",
-        "type": "object",
-        "properties": {
-          "start_time": {
-            "description": "The start time of your metrics query.",
-            "type": "string",
-            "format": "date-time",
-            "example": "2019-08-07T09:57:36.088757764Z"
-          },
-          "end_time": {
-            "description": "The end time of your metrics query.",
-            "type": "string",
-            "format": "date-time",
-            "example": "2019-08-07T09:57:36.088757764Z"
-          },
-          "resolution": {
-            "description": "The level of granularity for the time series data.",
-            "type": "string",
-            "example": "1h"
-          }
-        }
-      },
-      "Metric": {
-        "type": "object",
-        "required": [
-          "metric",
-          "series"
-        ],
-        "description": "This object represents a metric, including the name of the metric resource, aggregate function, and series details.\n",
-        "properties": {
-          "metric": {
-            "$ref": "#/components/schemas/InventoryMetricName"
-          },
-          "aggregate": {
-            "$ref": "#/components/schemas/InventoryMetricAggregation"
-          },
-          "series": {
-            "description": "An array of data points.\n",
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Series"
-            },
-            "example": [
-              {
-                "data": [
-                  {
-                    "timestamp": "2019-08-07T09:00:00Z",
-                    "value": 10
-                  }
-                ]
-              },
-              {
-                "data": [
-                  {
-                    "timestamp": "2019-08-07T10:00:00Z",
-                    "value": 5
-                  }
-                ]
-              }
-            ]
-          }
-        }
-      },
-      "Series": {
-        "description": "This object represents a set of data points.",
-        "type": "object",
-        "required": [
-          "data"
-        ],
-        "properties": {
-          "data": {
-            "description": "Array of data points for a metric.\n",
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/MetricData"
-            },
-            "example": [
-              {
-                "timestamp": "2019-08-07T09:00:00Z",
-                "value": 10
-              }
-            ]
-          }
-        }
       },
       "MetricStartTime": {
         "description": "The start time of your metrics query.\n\nUsage:\n* `start_time` is required if `end_time` is specified.\n* If `start_time` and `end_time` isn't provided, the API returns metrics from the current time to the month before the current time.\n* The `start_time` cannot be older than 120 days before the current time.\n\nYou can set the `start_time` in these ways:\n* In ISO 8601 format. For example, \"2019-08-07T09:57:36.088757764Z\".\n* As an offset from the current time. For the offset, use `+` or `-`, followed by a number and unit [`y` (years), `M` (months), `w` (weeks), `d` (days), `h` (hours), `m` (minutes), or `s` (seconds)]. \n* Example of an offset: \"now-3h\" (3 hours before now).\n",
@@ -8560,7 +7524,7 @@
       "DataPlaneKeyResponse": {
         "value": {
           "expires_at": "2023-12-01T00:00:00Z",
-          "key": "AVQFrgADVFpJ9qvI7BX1+OlHUxdZRMsSCm4Q35CrqAQ=",
+          "key": "<data plane key>",
           "name": "my-data-plane-key",
           "object_id": "key_Tet21AeYTHCj7taOwVfzyw"
         }
@@ -8621,8 +7585,7 @@
         "Config Sync Groups",
         "Certificates",
         "CVEs",
-        "Events",
-        "Staged Configs"
+        "Events"
       ]
     },
     {

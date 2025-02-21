@@ -1,5 +1,5 @@
 ---
-description: Learn how to use F5 NGINX Management Suite Instance Manager to secure your
+description: Learn how to use F5 NGINX Instance Manager to secure your
   applications with NGINX App Protect WAF security policies.
 docs: DOCS-996
 doctypes:
@@ -23,7 +23,7 @@ Complete the following prerequisites before proceeding with this guide.
 
 - You have one or more instances of [NGINX App Protect WAF](https://docs.nginx.com/nginx-app-protect/admin-guide/install/) installed and running. See [Support for NGINX App Protect WAF]({{< relref "tech-specs#support-for-nginx-app-protect-waf" >}}) for a list of supported versions.
 
-    {{<note>}}If you are using configuration management and the NGINX Management Suite Security Monitoring module, follow the instructions in the [setup guide]({{<relref "/nim/nginx-app-protect/security-monitoring/set-up-app-protect-instances" >}}) to set up your NGINX App Protect instances before proceeding with this guide.{{</note>}}
+    {{<note>}}If you are using configuration management and the NGINX Instance Manager Security Monitoring, follow the instructions in the [setup guide]({{<relref "/nim/nginx-app-protect/security-monitoring/set-up-app-protect-instances" >}}) to set up your NGINX App Protect instances before proceeding with this guide.{{</note>}}
 
 - You have Instance Manager v2.6.0 or later [installed]({{< relref "/nim/deploy/vm-bare-metal/_index.md" >}}), licensed, and running.
   If you have a subscription to NGINX App Protect WAF, you can find your Instance Manager license in the subscription details section of [MyF5](https://my.f5.com).
@@ -42,7 +42,7 @@ Instance Manager does not support the following NGINX App Protect features:
 
 ## Install the WAF Compiler
 
-Instance Manager can use the NGINX App Protect WAF compiler to "pre-compile" security configurations before syncing them to managed data plane instances. You'll need to install the WAF compiler package on the NGINX Management Suite host to enable this functionality. If you'll be continuing with WAF compilation on the data plane host, installing the WAF compiler on the NGINX Management Suite host is not necessary.
+Instance Manager can use the NGINX App Protect WAF compiler to "pre-compile" security configurations before syncing them to managed data plane instances. You'll need to install the WAF compiler package on the NGINX Instance Manager host to enable this functionality. If you'll be continuing with WAF compilation on the data plane host, installing the WAF compiler on the NGINX Instance Manager host is not necessary.
 
 Be sure to download and install the correct WAF compiler version for your environment:
 
@@ -167,7 +167,7 @@ Take the steps below to download the WAF compiler,  Attack Signatures, and Threa
 1. Select **Product Line**: **NGINX App Protect**.
 1. Select a **Product version**.
 1. Select the **Linux distribution**, **distribution version**, and **Architecture**.
-1. Download the WAF compiler package and transfer it to the NGINX Management Suite host.
+1. Download the WAF compiler package and transfer it to the NGINX Instance Manager host.
 1. Run the appropriate command on the host to install the WAF compiler package from the file.
 
     - Debian or Ubuntu:
@@ -220,7 +220,7 @@ NGINX App Protect provides predefined [Attack Signatures](https://docs.nginx.com
 
 [Threat Campaigns](https://docs.nginx.com/nginx-app-protect/configuration-guide/configuration/#threat-campaigns) is a threat intelligence feature included in an NGINX App Protect WAF subscription. The feature includes frequent update feeds containing contextual information about active attack campaigns currently being observed by F5 Threat Labs that NGINX App Protect WAF can provide protection against. Just like Attack Signatures, the Threat Campaign patterns are updated regularly. Unlike Attack Signatures, the NGINX App Protect WAF installation does not include any Threat Campaigns and you need to install them in order for the protection to take effect. Due to the highly dynamic nature of those campaigns the updates are issued far more frequently than the Attack Signatures. You need to install those updates close to the time they are issued in order to get the most effective protection.
 
-In order to take advantage of new Attack Signature and Threat Campaign packages, you need to upload these packages to NGINX Management Suite.
+In order to take advantage of new Attack Signature and Threat Campaign packages, you need to upload these packages to NGINX Instance Manager.
 
 You can either configure Instance Manager to download new versions automatically, or manage the files manually by downloading the packages from MyF5 and then uploading them to Instance Manager by using the REST API.
 
@@ -462,7 +462,7 @@ To onboard your NGINX App Protect WAF instances to Instance Manager, you need to
 
 1. Use SSH to connect to the NGINX App Protect WAF instance. Take the steps below for each instance to download and install NGINX Agent from the management plane host.
 
-1. Download the NGINX Agent package from the NGINX Management Suite host and run the agent install script.
+1. Download the NGINX Agent package from the NGINX Instance Manager host and run the agent install script.
 
    {{< tip >}}You can add instances with the same version of NGINX App Protect installed to an instance group by running the agent install command on each instance with the optional `--instance-group`` flag.{{< /tip>}}
    {{< include "agent/installation/install-agent-api.md" >}}
@@ -913,12 +913,12 @@ server {
   ## enable logging
   app_protect_security_log_enable on;
   ## Reference to the log profile bundle
-  app_protect_security_log /etc/nms/log-default.tgz;
+  app_protect_security_log /etc/nms/log-default.tgz /var/log/nginx/security-violations.log;
   ...
 }
 ```
 
-{{< note >}}If you're using the NGINX Management Suite Security Monitoring module, you should already have the `app_protect_security_log` directive set to reference the `secops_dashboard.tgz` file as shown below. Do not change this setting.
+{{< note >}}If you're using the NGINX Instance Manager Security Monitoring, you should already have the `app_protect_security_log` directive set to reference the `secops_dashboard.tgz` file as shown below. Do not change this setting.
 
 ```nginx
 app_protect_security_log "/etc/nms/secops_dashboard.tgz" syslog:server=127.0.0.1:514;
@@ -1056,11 +1056,11 @@ Once you have added the NGINX App Protect WAF directives to your NGINX configura
 If you're having issues with NGINX App Protect WAF, we suggest trying the following troubleshooting steps. If none of them helps, please reach out to NGINX Customer Support for further assistance.
 
 <details>
-<summary>Verify that NGINX App Protect WAF is not installed on the NGINX Management Suite host</summary>
+<summary>Verify that NGINX App Protect WAF is not installed on the NGINX Instance Manager host</summary>
 
-To ensure no library conflicts arise when installing `nms-nap-compiler`, verify that NGINX App Protect WAF is not installed on the NGINX Management Suite host. You can do this by taking the following steps:
+To ensure no library conflicts arise when installing `nms-nap-compiler`, verify that NGINX App Protect WAF is not installed on the NGINX Instance Manager host. You can do this by taking the following steps:
 
-1. Open an SSH connection to your NGINX Management Suite host and log in.
+1. Open an SSH connection to your NGINX Instance Manager host and log in.
 2. Run the following command:
 
     - Debian-based distributions, run `dpkg -s app-protect`
@@ -1077,7 +1077,7 @@ Each NGINX App Protect WAF version has a corresponding version of the WAF compil
 
 To view the installed version of the WAF compiler:
 
-1. Open an SSH connection to your NGINX Management Suite host and log in.
+1. Open an SSH connection to your NGINX Instance Manager host and log in.
 2. Run the following command:
 
    ```shell
@@ -1139,7 +1139,7 @@ extensions:
 nginx_app_protect:
   # Report interval for NGINX App Protect details - the frequency the NGINX Agent checks NGINX App Protect for changes.
   report_interval: 15s
-  # Enable precompiled publication from the NGINX Management Suite (true) or perform compilation on the data plane host (false).
+  # Enable precompiled publication from the NGINX Instance Manager (true) or perform compilation on the data plane host (false).
   precompiled_publication: true
 
 nap_monitoring:
