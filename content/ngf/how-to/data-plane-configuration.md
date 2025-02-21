@@ -317,18 +317,29 @@ To run NGINX Gateway Fabric with NGINX in debug mode, follow the [installation d
 
 Using Helm: Set `nginx.debug` to true.
 
-Using Kubernetes Manifests: Under the `nginx` container of the deployment manifest, add `-c` and `rm -rf /var/run/nginx/*.sock && nginx-debug -g 'daemon off;'`
-as arguments and add `/bin/sh` as the command. The deployment manifest should look something like this:
+Using Kubernetes Manifests: In the deployment manifest, set the `spec.kubernetes.deployment.container.debug` field in the `NginxProxy` resource to true.
 
-```text
-...
-- args:
-  - -c
-  - rm -rf /var/run/nginx/*.sock && nginx-debug -g 'daemon off;'
-  command:
-  - /bin/sh
-...
+If you want to change the NGINX mode after deploying NGINX Gateway Fabric, you can do so through the `NginxProxy` `spec.kubernetes.deployment.container.debug` field.
+
+The following command creates a basic `NginxProxy` configuration that both sets the NGINX log level to `debug` and runs NGINX in `debug` mode.
+
+```yaml
+kubectl apply -f - <<EOF
+apiVersion: gateway.nginx.org/v1alpha2
+kind: NginxProxy
+metadata:
+  name: ngf-proxy-config
+spec:
+  logging:
+    errorLevel: debug
+  kubernetes:
+    deployment:
+      container:
+        debug: true
+EOF
 ```
+
+{{< note >}} When modifying any `deployment` field in the `NginxProxy` resource, any corresponding NGINX instances will be restarted. {{< /note >}}
 
 ---
 
