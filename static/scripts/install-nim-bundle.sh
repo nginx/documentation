@@ -972,7 +972,7 @@ else
     echo -n "Creating NGINX Instance Manager install bundle ... ${bundle_file}"
     cp ${NGINX_CERT_PATH}  "${TEMP_DIR}/${target_distribution}/nginx-repo.crt"
     cp ${NGINX_CERT_KEY_PATH} "${TEMP_DIR}/${target_distribution}/nginx-repo.key"
-    tar -zcf "$bundle_file" -C "${TEMP_DIR}/${target_distribution}" .
+    tar -zcf "$bundle_file" -C "${TEMP_DIR}/${target_distribution}/" .
     echo -e "\nSuccessfully created the NGINX Instance Manager bundle - $bundle_file"
     curl -s -o /dev/null --cert ${NGINX_CERT_PATH} --key ${NGINX_CERT_KEY_PATH} "https://pkgs.nginx.com/nms/?using_install_script=true&app=nim&mode=offline"
 
