@@ -1,0 +1,12 @@
+extends: existence
+message: "The word %s' is anthropomorphic. If possible, use a different word if you're referring to a product."
+ignorecase: true
+#code: false
+level: error
+tokens:
+  - decides
+  - knows
+  - listens
+  - hears
+  - sees
+  - walks
