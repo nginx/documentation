@@ -11,9 +11,6 @@ docs: DOCS-1430
 
 Learn how to install, upgrade, and uninstall NGINX Gateway Fabric in a Kubernetes cluster using Helm.
 
-{{< important >}} NGINX Plus users that are upgrading from version 1.4.0 to 1.5.x need to install an NGINX Plus JWT
-Secret before upgrading. Follow the steps in the [Before you begin](#before-you-begin) section to create the Secret. If you use a different name than the default `nplus-license` name, specify the Secret name by setting `--set nginx.usage.secretName=<secret-name>` when running `helm upgrade`. {{< /important >}}
-
 ---
 
 ## Before you begin
@@ -30,15 +27,15 @@ To complete this guide, you'll need to install:
 
 {{< include "/ngf/installation/jwt-password-note.md" >}}
 
-### 1. Download the JWT from MyF5
+### Download the JWT from MyF5
 
 {{< include "/ngf/installation/nginx-plus/download-jwt.md" >}}
 
-### 2. Create the Docker Registry Secret
+### Create the Docker Registry Secret
 
 {{< include "/ngf/installation/nginx-plus/docker-registry-secret.md" >}}
 
-### 3. Create the NGINX Plus Secret
+### Create the NGINX Plus Secret
 
 {{< include "/ngf/installation/nginx-plus/nginx-plus-secret.md" >}}
 
@@ -187,7 +184,10 @@ You can find several examples of configuration options of the `values.yaml` file
 
 ## Upgrade NGINX Gateway Fabric
 
-{{<tip>}}For guidance on zero downtime upgrades, see the [Delay Pod Termination](#configure-delayed-pod-termination-for-zero-downtime-upgrades) section below.{{</tip>}}
+{{< important >}} NGINX Plus users that are upgrading from version 1.4.0 to 1.5.x need to install an NGINX Plus JWT
+Secret before upgrading. Follow the steps in the [Before you begin](#before-you-begin) section to create the Secret. If you use a different name than the default `nplus-license` name, specify the Secret name by setting `--set nginx.usage.secretName=<secret-name>` when running `helm upgrade`. {{< /important >}}
+
+{{< tip >}} For guidance on zero downtime upgrades, see the [Delay Pod Termination](#configure-delayed-pod-termination-for-zero-downtime-upgrades) section below. {{< /tip >}}
 
 To upgrade NGINX Gateway Fabric and get the latest features and improvements, take the following steps:
 
@@ -195,21 +195,7 @@ To upgrade NGINX Gateway Fabric and get the latest features and improvements, ta
 
 ### Upgrade Gateway resources
 
-To upgrade your Gateway API resources, take the following steps:
-
-- Verify the Gateway API resources are compatible with your NGINX Gateway Fabric version. Refer to the [Technical Specifications]({{< ref "/ngf/reference/technical-specifications.md" >}}) for details.
-- Review the [release notes](https://github.com/kubernetes-sigs/gateway-api/releases) for any important upgrade-specific information.
-- To upgrade the Gateway API resources, run:
-
-  ```shell
-  kubectl kustomize "https://github.com/nginx/nginx-gateway-fabric/config/crd/gateway-api/standard?ref=v{{< version-ngf >}}" | kubectl apply -f -
-  ```
-
-  or, if you installed the from the experimental channel:
-
-  ```shell
-  kubectl kustomize "https://github.com/nginx/nginx-gateway-fabric/config/crd/gateway-api/experimental?ref=v{{< version-ngf >}}" | kubectl apply -f -
-  ```
+{{< include "/ngf/installation/upgrade-api-resources.md" >}}
 
 ---
 
