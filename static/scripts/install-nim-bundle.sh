@@ -1004,7 +1004,7 @@ else
         if [ -d "${TEMP_DIR}/keepalived" ]; then
             echo "installing keepalived from ${TEMP_DIR}/keepalived"
             DEBIAN_FRONTEND=noninteractive dpkg -i "${TEMP_DIR}/keepalived/*.deb"
-            check_last_command_status "dpkg -i \"$pkg_nim\"" $?
+            check_last_command_status "dpkg -i ${TEMP_DIR}/keepalived/*.deb" $?
         fi
         for pkg_nim in "${TEMP_DIR}"/nms-instance-manager*.deb; do
             echo "Installing NGINX Instance Manager from ${pkg_nim}"
@@ -1043,7 +1043,7 @@ else
         if [ -d "${TEMP_DIR}/keepalived" ]; then
             echo "installing keepalived from ${TEMP_DIR}/keepalived"
             yum localinstall -y -v --disableplugin=subscription-manager --skip-broken "${TEMP_DIR}/keepalived/*.rpm"
-            DEBIAN_FRONTEND=noninteractive dpkg -i "${TEMP_DIR}/keepalived/*.deb"
+            DEBIAN_FRONTEND=noninteractive dpkg -i "${TEMP_DIR}/keepalived/*.rpm"
             check_last_command_status "dpkg -i yum localinstall -y -v --disableplugin=subscription-manager --skip-broken ${TEMP_DIR}/keepalived/*.rpm" $?
         fi
         for pkg_nim in "${TEMP_DIR}"/nms-instance-manager*.rpm; do
