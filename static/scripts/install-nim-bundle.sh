@@ -702,6 +702,7 @@ download_third_party_dependencies(){
             docker run --rm -it -v "${TEMP_DIR}/${target_distribution}/keepalived":/downloads fedora dnf download --resolve --destdir=/downloads keepalived
         else
             echo "Cross platform packing requires docker, please install docker and then try again"
+            exit 1
         fi
       fi
   elif cat /etc/*-release | grep -iq 'centos\|fedora\|rhel\|Amazon Linux'; then
@@ -716,6 +717,7 @@ download_third_party_dependencies(){
               mv "${TEMP_DIR}/keepalived/archives/*" "${TEMP_DIR}/${target_distribution}/keepalived"
           else
               echo "Cross platform packing requires docker, please install docker and then try again"
+              exit 1
           fi
       fi
   else
