@@ -70,7 +70,7 @@ http {
 
         location / {
             app_protect_enable on;
-            app_protect_policy_file /etc/app_protect/conf/NginxDefaultPolicy.tgz;
+            app_protect_policy_file /etc/app_protect/conf/NginxDefaultPolicy.json;
             proxy_pass http://127.0.0.1:80/proxy/$request_uri;
         }
 
