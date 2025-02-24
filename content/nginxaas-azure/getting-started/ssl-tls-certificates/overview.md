@@ -319,3 +319,33 @@ The following section describes common errors you might encounter while adding S
    az keyvault certificate set-attributes --enabled true --id $certificate_id
    ```
 </details>
+
+#### Error code: `NoCertificateContent`
+
+**Description:** No certificate was found when parsing the file.
+
+**Resolution:** Ensure the file is not empty and contains properly formatted PEM or PKCS12 certificate data.
+
+#### Error code: `MissingContentType`
+
+**Description:** The retrieved secret is missing the *contentType* field.
+
+**Resolution:** When creating an [Azure certificate](https://learn.microsoft.com/en-us/azure/key-vault/certificates/about-certificates) in key vault, the *contentType* field will be properly set to either *application/x-pem-file* or *application/x-pkcs12*. If a certificate is added as a generic [Azure secret](https://learn.microsoft.com/en-us/azure/key-vault/secrets/about-secrets) the *contentType* field must be manually set to help with interpreting the secret data when it is retrieved. We recommend creating a certificate object, instead of a secret object containing certificate data, to ensure proprer formatting and *contentType*. 
+
+#### Error code: `UnrecognizedContentType`
+
+**Description:** The retrieved secret's content type, as interpreted from the *contentType* field, is of an unsupported type.
+
+**Resolution:** When creating an [Azure certificate](https://learn.microsoft.com/en-us/azure/key-vault/certificates/about-certificates) in key vault, the *contentType* field will be properly set to either *application/x-pem-file* or *application/x-pkcs12*. NGINXaaS does not support other content types added as generic [Azure secrets](https://learn.microsoft.com/en-us/azure/key-vault/secrets/about-secrets). Ensure the provided certificate is either a PEM or PKCS12 [Azure certificate](https://learn.microsoft.com/en-us/azure/key-vault/certificates/about-certificates).
+
+#### Error code: `PKCS12ParseFailure`
+
+**Description:** The PKCS12 certificate could not be parsed.
+
+**Resolution:** Ensure the file is not empty and contains properly formatted PKCS12 certificate data.
+
+#### Error code: `PEMParseFailure`
+
+**Description:** The PEM certificate could not be parsed.
+
+**Resolution:** Ensure the file is not empty and contains properly formatted PEM certificate data.
