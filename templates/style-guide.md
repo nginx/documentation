@@ -93,6 +93,7 @@ The table provides guidelines about the terms you should and should not use for 
 | command line and command prompt (usage) | Use "command line".<br><br>NOUN: …at the command line.<br>ADJ: …using command-line tools.<br>At the command prompt, type...<br>Do not use command-line prompt.| |
 | configure | Do not use, except when describing the configuration of an NGINX product, such as when installing NGINX or NGINX Agent.<br>In most cases, use "set up" instead.| |
 | contractions | Contractions are okay to use as long as they're not ambiguous. | |
+| control plane | Write as two words. Definition: The part of a network architecture that manages routing, signaling, and policy enforcement. | |
 | Cookie persistence (option type) | | |
 | cookie/cookies (noun) | | |
 | covers | As in, "this section/topic/chapter covers the following...". Instead, use a phrase such as, "This topic deals with..." or "This topic provides the following information...". More options: communicates, presents, offers, introduces, explains, describes. | |
@@ -102,6 +103,7 @@ The table provides guidelines about the terms you should and should not use for 
 | data center | Write this as two words. | |
 | domain name | example.com, example.net, example.org, or localhost per [RFC 2606](https://www.rfc-editor.org/rfc/rfc2606.html). | |
 | em dash | Allowed in the proper context. May be written using two dashes to ensure it converts correctly when displayed in the web version. | |
+| data plane | Write as two words. Definition: The part of a network architecture responsible for forwarding packets based on established rules. | |
 | data source | | |
 | database | Do not abbreviate as "db". Always a single word. | |
 |date format | Use _month day, year_ format, as in December 4, 2024. Don't use _day month year_, as in 31 July 2016. <br>  In the UI, it's OK to use numbers and slashes for dates if the code supports that format and automatically displays the appropriate date format for different locales. For example, 12/4/2024. | This format aligns with standard American usage for consistency and clarity. |
@@ -197,7 +199,7 @@ The table provides guidelines about the terms you should and should not use for 
 | lets, allows | Avoid. These verbs are system-focused and not user-focused. They may be appropriate to employ in a description about the feature, but not when describing what a user can accomplish by using the feature. | |
 | list box | When possible, don't use the UI item name. Use the label name instead. If necessary for clarity, use list. | |
 | listens | When referring to products, avoid it, it's anthropomorphism. However, it is acceptable only in conjunction with UNIX daemons, which listenon the port specified by a user. When referring to products, stay away from words like decides, knows, sees, listens, and hears. | |
-| load balance, load balancing, load balancer | No hyphen, even as an adjective. | |
+| load balance, load balancing, load balancer | Write as two words. No hyphen, even as an adjective. Definition : A system that distributes network or application traffic across multiple servers to optimize resource use and reliability. | |
 | local domain name system server vs. | Do not use; use local domain name system server or variations as applicable, such as local DNS server or LDNS server and so on. | |
 | Log error message types (format) | The message type should be formatted in lowercase, such as: log_error. | |
 | Log in syntax for products | *Login* is an adjective or noun. Log in is a verb. *Log in* to (F5 product) or verify your login credentials.  | |
@@ -207,6 +209,7 @@ The table provides guidelines about the terms you should and should not use for 
 | make | One of those weak, vague verbs we're supposed to avoid as much as possible: Allow, do, enable, let, perform, enter [usually implies type and press Enter], be, has, make and do. Use direct, active verbs instead. | |
 | man pages, MAN number | Man pages (short for manual pages) are OK to mention in content if appropriate. MAN numbers refer to the manual publication numbers that appear in the front matter of our documentation (such as MAN-0123-04). | |
 | management interface | Synonymous for management port. | |
+| management plane | Use *control plane*. | |
 | management port | Synonymous for management interface. | |
 | manually vs. “from scratch” | Use manually or specify when describing how to create a process from the beginning or at the start. Avoid from scratch to ensure clarity and prevent future localization issues. | |
 | master | Do not use this term in documentation unless you are referring to/quoting specific command line syntax or process. For example: "The nginx master process...". Some possible alternatives, depending on your use case: primary, prime, principal, control, or, possibly, server. For more information, refer to K34150231: Exclusionary language in F5 products and documentation. | |
@@ -446,7 +449,7 @@ To make sure includes are effective and easy to maintain, follow these practices
 - **Keep includes small and modular**: Write narrowly scoped snippets to maximize flexibility and reuse.
 - **Avoid branded product names in includes**: Use the full product name (e.g., "NGINX Instance Manager"), but avoid including the branded version (e.g., "F5 NGINX Instance Manager"). The branded name is required only on the first mention in a document; this is a context-specific rule. Includes, however, are designed to be context-agnostic—they should not rely on or assume any prior content—so including the branded name could repeat information unnecessarily in locations where it has already been introduced.
 - **Don't include headers**: Avoid adding H2 or other headers inside includes. These headers won't appear in the document's table of contents (TOC) and may not fit well with the surrounding content hierarchy. Add headers directly in the document instead.
-- **Avoid nesting includes**: Don't place an include inside another include. While technically possible, it complicates reviews and maintenance. Use a flat structure for simplicity.
+- **Avoid nesting includes**: If there’s another way to achieve the same outcome, avoid nesting includes. While technically possible, it complicates reviews and maintenance. Use a flat structure for simplicity.
 - **Don't start documents with includes**: The opening of a document is usually the introduction, which explains its purpose. Includes are reused text, so starting multiple documents with identical content could look odd, especially in search results.
 
 ## Guidelines for command-line operations
@@ -500,6 +503,7 @@ this style guide over time. This guide uses the Major.Minor.Patch
 
 | Edition | Date          | Lead Author(s) | Comments                                              |
 |---------|---------------|----------------|-------------------------------------------------------|
+| 1.10  | February 19, 2025 | Mike Jang | Clarify use of nested includes. |
 | 1.9   | December 10, 2024 | Mike Jang | Specify the use of "license" when writing about the JWT token associated with licensed versions of NGINX. |
 | 1.8   | December 4, 2024 | Jon Torre | Clarify that heading text must not contain a link to other pages. |
 | 1.7   | November 20, 2024 | Mike Jang  | Specify "includes" must be in at leat two locations. |
