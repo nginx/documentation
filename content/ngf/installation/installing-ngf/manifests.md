@@ -1,5 +1,5 @@
 ---
-title: Installation with Kubernetes manifests
+title: Installation with Manifests
 weight: 200
 toc: true
 type: how-to
@@ -10,9 +10,6 @@ docs: DOCS-1429
 ## Overview
 
 Learn how to install, upgrade, and uninstall NGINX Gateway Fabric using Kubernetes manifests.
-
-{{< important >}} NGINX Plus users that are upgrading from version 1.4.0 to 1.5.x need to install an NGINX Plus JWT
-Secret before upgrading. Follow the steps in the [Before you begin](#before-you-begin) section to create the Secret, which is referenced in the updated deployment manifest for the newest version. {{< /important >}}
 
 ---
 
@@ -29,15 +26,15 @@ To complete this guide, you'll need to install:
 
 {{< include "/ngf/installation/jwt-password-note.md" >}}
 
-### 1. Download the JWT from MyF5
+### Download the JWT from MyF5
 
 {{< include "/ngf/installation/nginx-plus/download-jwt.md" >}}
 
-### 2. Create the Docker Registry Secret
+### Create the Docker Registry Secret
 
 {{< include "/ngf/installation/nginx-plus/docker-registry-secret.md" >}}
 
-### 3. Create the NGINX Plus Secret
+### Create the NGINX Plus Secret
 
 {{< include "/ngf/installation/nginx-plus/nginx-plus-secret.md" >}}
 
@@ -53,13 +50,13 @@ Deploying NGINX Gateway Fabric with Kubernetes manifests takes only a few steps.
 
 ---
 
-### 1. Install the Gateway API resources
+### Install the Gateway API resources
 
 {{< include "/ngf/installation/install-gateway-api-resources.md" >}}
 
 ---
 
-### 2. Deploy the NGINX Gateway Fabric CRDs
+### Deploy the NGINX Gateway Fabric CRDs
 
 #### Stable release
 
@@ -75,7 +72,7 @@ kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/ma
 
 ---
 
-### 3. Deploy NGINX Gateway Fabric
+### Deploy NGINX Gateway Fabric
 
 {{< note >}} By default, NGINX Gateway Fabric is installed in the **nginx-gateway** namespace. You can deploy in another namespace by modifying the manifest files. {{< /note >}}
 
@@ -173,7 +170,7 @@ kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v{
 
 ---
 
-### 4. Verify the Deployment
+### Verify the Deployment
 
 To confirm that NGINX Gateway Fabric is running, check the pods in the `nginx-gateway` namespace:
 
@@ -190,7 +187,7 @@ nginx-gateway-5d4f4c7db7-xk2kq   2/2     Running   0          112s
 
 ---
 
-### 5. Access NGINX Gateway Fabric
+### Access NGINX Gateway Fabric
 
 {{< include "/ngf/installation/expose-nginx-gateway-fabric.md" >}}
 
@@ -205,33 +202,21 @@ Secret before upgrading. Follow the steps in the [Before you begin](#before-you-
 
 To upgrade NGINX Gateway Fabric and get the latest features and improvements, take the following steps:
 
-1. **Upgrade Gateway API resources:**
+### Upgrade Gateway API resources
 
-   - Verify that your NGINX Gateway Fabric version is compatible with the Gateway API resources. Refer to the [Technical Specifications]({{< ref "/ngf/reference/technical-specifications.md" >}}) for details.
-   - Review the [release notes](https://github.com/kubernetes-sigs/gateway-api/releases) for any important upgrade-specific information.
-   - To upgrade the Gateway API resources, run:
+{{< include "/ngf/installation/upgrade-api-resources.md" >}}
 
-     ```shell
-     kubectl kustomize "https://github.com/nginx/nginx-gateway-fabric/config/crd/gateway-api/standard?ref=v{{< version-ngf >}}" | kubectl apply -f -
-     ```
+### Upgrade NGINX Gateway Fabric CRDs
 
-     or, if you installed the from the experimental channel:
+To upgrade the Custom Resource Definitions (CRDs), run:
 
-     ```shell
-     kubectl kustomize "https://github.com/nginx/nginx-gateway-fabric/config/crd/gateway-api/experimental?ref=v{{< version-ngf >}}" | kubectl apply -f -
-     ```
+```shell
+kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v{{< version-ngf >}}/deploy/crds.yaml
+```
 
-1. **Upgrade NGINX Gateway Fabric CRDs:**
+### Upgrade NGINX Gateway Fabric deployment
 
-   - To upgrade the Custom Resource Definitions (CRDs), run:
-
-     ```shell
-     kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v{{< version-ngf >}}/deploy/crds.yaml
-     ```
-
-1. **Upgrade NGINX Gateway Fabric deployment:**
-
-   Select the deployment manifest that matches your current deployment from the table above in the [Deploy NGINX Gateway Fabric](#3-deploy-nginx-gateway-fabric) section and apply it.
+Select the deployment manifest that matches your current deployment from the table above in the [Deploy NGINX Gateway Fabric](#deploy-nginx-gateway-fabric) section and apply it.
 
 ---
 
