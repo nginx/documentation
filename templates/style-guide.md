@@ -449,7 +449,7 @@ To make sure includes are effective and easy to maintain, follow these practices
 - **Keep includes small and modular**: Write narrowly scoped snippets to maximize flexibility and reuse.
 - **Avoid branded product names in includes**: Use the full product name (e.g., "NGINX Instance Manager"), but avoid including the branded version (e.g., "F5 NGINX Instance Manager"). The branded name is required only on the first mention in a document; this is a context-specific rule. Includes, however, are designed to be context-agnostic—they should not rely on or assume any prior content—so including the branded name could repeat information unnecessarily in locations where it has already been introduced.
 - **Don't include headers**: Avoid adding H2 or other headers inside includes. These headers won't appear in the document's table of contents (TOC) and may not fit well with the surrounding content hierarchy. Add headers directly in the document instead.
-- **Avoid nesting includes**: Don't place an include inside another include. While technically possible, it complicates reviews and maintenance. Use a flat structure for simplicity.
+- **Avoid nesting includes**: If there’s another way to achieve the same outcome, avoid nesting includes. While technically possible, it complicates reviews and maintenance. Use a flat structure for simplicity.
 - **Don't start documents with includes**: The opening of a document is usually the introduction, which explains its purpose. Includes are reused text, so starting multiple documents with identical content could look odd, especially in search results.
 
 ## Guidelines for command-line operations
@@ -503,6 +503,7 @@ this style guide over time. This guide uses the Major.Minor.Patch
 
 | Edition | Date          | Lead Author(s) | Comments                                              |
 |---------|---------------|----------------|-------------------------------------------------------|
+| 1.10  | February 19, 2025 | Mike Jang | Clarify use of nested includes. |
 | 1.9   | December 10, 2024 | Mike Jang | Specify the use of "license" when writing about the JWT token associated with licensed versions of NGINX. |
 | 1.8   | December 4, 2024 | Jon Torre | Clarify that heading text must not contain a link to other pages. |
 | 1.7   | November 20, 2024 | Mike Jang  | Specify "includes" must be in at leat two locations. |
