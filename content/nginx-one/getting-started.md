@@ -16,7 +16,7 @@ To get started using NGINX One, enable the service on F5 Distributed Cloud.
 1. Log in to the [F5 Distributed Console](https://www.f5.com/cloud/products/distributed-cloud-console).
 1. Select **NGINX One** from the list of services.
 1. Select **Enable Service**.
-1. After the service has been enabled, select **Visit Service** to load the NGINX One console.
+1. After the service has been enabled, select **Visit Service** to load the NGINX One Console.
 
 ---
 
@@ -26,7 +26,7 @@ Next, add your NGINX instances to NGINX One. You'll need to create a data plane 
 
 ### Add an instance
 
-Depending on whether this is your first time using the NGINX One console or you've used it before, follow the appropriate steps to add an instance:
+Depending on whether this is your first time using the NGINX One Console or you've used it before, follow the appropriate steps to add an instance:
 
 - **For first-time users:** On the welcome screen, select **Add Instance**.
 - **For returning users:** If you've added instances previously and want to add more, select **Instances** on the left menu, then select **Add Instance**.
@@ -136,7 +136,7 @@ If you followed the [Installation and upgrade](https://docs.nginx.com/nginx-agen
 
 ## Enable NGINX metrics reporting
 
-In order for the NGINX One console to show specific traffic and system metrics, you need to enable the appropriate API on your NGINX data plane instances. The sections below provide step-by-step instructions for both NGINX Plus and NGINX Open Source (OSS).
+In order for the NGINX One Console to show specific traffic and system metrics, you need to enable the appropriate API on your NGINX data plane instances. The sections below provide step-by-step instructions for both NGINX Plus and NGINX Open Source (OSS).
 
 ### Enable NGINX Plus API
 
