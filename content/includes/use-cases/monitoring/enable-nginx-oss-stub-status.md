@@ -5,12 +5,11 @@ files:
   - content/nginx-one/getting-started.md  
 ---
 
-To collect basic metrics about server activity for NGINX Open Source, add the following to your NGINX configuration file (for example, `/etc/nginx/nginx.conf` or an included file):
+To collect basic metrics about server activity for NGINX Open Source, add the following to your NGINX configuration file:
 
 ```nginx
 server {
     listen 127.0.0.1:8080;
-    
     location /api {
         stub_status;
         allow 127.0.0.1;
