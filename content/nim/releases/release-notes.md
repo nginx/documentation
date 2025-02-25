@@ -1,8 +1,10 @@
 ---
-docs: DOCS-938
 title: Release Notes
-toc: true
 weight: 100
+toc: true
+type: reference
+product: NIM
+docs: DOCS-938
 ---
 
 The release notes for F5 NGINX Instance Manager highlight the latest features, improvements, and bug fixes in each release. This document helps you stay up to date with the changes and enhancements introduced to improve stability, performance, and usability. For each version, you’ll find details about new features, known issues, and resolved problems, ensuring you get the most out of your NGINX instance management experience.
@@ -145,8 +147,6 @@ This release includes the following updates:
   - **Upload the acknowledgment**: After verification, upload the acknowledgment from F5 to NGINX Instance Manager.
 
 - {{% icon-feature %}} **Resilient Docker Compose NGINX Instance Manager deployment**<a name="2-18-0-whats-new-resilient-docker-compose-nginx-instance-manager-deployment"></a>
-
-  In 2.17, we released a [bundled container image]({{< relref "nim/deploy/docker/deploy-nginx-instance-manager-docker.md" >}}) with all NGINX Instance Manager components. While this is a great option for demos and lab environments, it is not the most fault-tolerant for production.
 
   This [Docker Compose option]({{< relref "nim/deploy/docker/deploy-nginx-instance-manager-docker-compose.md" >}}) unlocks another easy, production-ready installation method for customers using Docker. It will also make upgrades easier when new Docker images are released by F5 NGINX. This option includes health checking, NGINX App Protect compilation support, and security monitoring.
 
@@ -313,8 +313,6 @@ This release includes the following updates:
   The project uses Packer to create images and Terraform to deploy these images to your preferred cloud provider, including GCP, Azure, or vSphere.
 
 - {{% icon-feature %}} **Single docker image with all the NGINX Instance Manager services and dependencies**<a name="2-17-0-whats-new-Single-docker-image-with-all-the-NGINX-Instance-Manager-services-and-dependencies"></a>
-
-  This release includes access to a single Docker image for running NGINX Instance Manager as a container. This allows customers to deploy Instance Manager locally with a single "docker run" command. For more details, see [Deploy NGINX Instance Manager in a Single Docker Container]({{< relref "/nim/deploy/docker/deploy-nginx-instance-manager-docker.md" >}}).
 
 ### Changes in Default Behavior{#2-17-0-changes-in-behavior}
 This release has the following changes in default behavior:
