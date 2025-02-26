@@ -714,7 +714,7 @@ download_third_party_dependencies(){
               mkdir -p "${TEMP_DIR}/keepalived"
               docker run --rm -it -v "${TEMP_DIR}/keepalived":/tmp/nim ubuntu bash -c "apt-get update && mkdir -p /tmp/nim && apt-get install -y --download-only -o Dir::Cache=\"/tmp/nim\" keepalived"
               mkdir "${TEMP_DIR}/${target_distribution}/keepalived"
-              mv "${TEMP_DIR}/keepalived/archives/*" "${TEMP_DIR}/${target_distribution}/keepalived"
+              mv ${TEMP_DIR}/keepalived/archives/* ${TEMP_DIR}/${target_distribution}/keepalived
           else
               echo "Cross platform packing requires docker, please install docker and then try again"
               exit 1
@@ -1003,7 +1003,7 @@ else
         done
         if [ -d "${TEMP_DIR}/keepalived" ]; then
             echo "installing keepalived from ${TEMP_DIR}/keepalived"
-            DEBIAN_FRONTEND=noninteractive dpkg -i "${TEMP_DIR}/keepalived/*.deb"
+            DEBIAN_FRONTEND=noninteractive dpkg -i ${TEMP_DIR}/keepalived/*.deb
             check_last_command_status "dpkg -i ${TEMP_DIR}/keepalived/*.deb" $?
         fi
         for pkg_nim in "${TEMP_DIR}"/nms-instance-manager*.deb; do
