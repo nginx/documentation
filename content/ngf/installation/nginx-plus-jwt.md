@@ -15,7 +15,7 @@ This requirement is part of F5’s broader licensing program and aligns with ind
 
 The JWT is required for validating your subscription and reporting telemetry data. For environments connected to the internet, telemetry is automatically sent to F5’s licensing endpoint. In offline environments, telemetry is routed through [NGINX Instance Manager](https://docs.nginx.com/nginx-instance-manager/). Usage is reported every hour and on startup whenever NGINX is reloaded.
 
-{{< note >}} The following Secrets should be created in the same namespace as the NGINX Gateway Fabric control plane (default: nginx-gateway). The control plane will copy these Secrets into any namespaces where nginx gets deployed. {{< /note >}}
+{{< note >}} The following Secrets should be created in the same namespace as the NGINX Gateway Fabric control plane (default: nginx-gateway). The control plane will copy these Secrets into any namespaces where NGINX gets deployed. {{< /note >}}
 
 ---
 
