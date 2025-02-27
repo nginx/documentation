@@ -60,24 +60,32 @@
   }
 </style>
 <!--Use wide page layout for the API reference pages-->
-<div
-  class="row flex-md-nowrap"
-  style="
-    position: relative;
-    flex-wrap: nowrap;
-    margin-right: 9px;
-    max-width: calc(100% + 9px);
-  "
->
-  <nav
-    class="sidenav overflow-auto col-md-3 d-none d-md-block d-print-none sidebar-toggle-hidden-width"
-    style="width: 25%; border-right: 1px solid #e6e6e6"
-    ;
-  >
-    {{ partial "sidebar.html" . }}
-  </nav>
-  <div class="nginx-docs-api-container">
-    <div id="api-component">{{ .Content}}</div>
+<section class="main-layout api">
+  <div class="sidebar-layout" data-mf="true" style="display:none;">
+    <nav id="sidebar-v2" class="sidebar">
+      {{ partial "sidebar-v2.html" . }}
+    </nav>
   </div>
-</div>
+  <div
+    class="row flex-md-nowrap content-layout"
+    style="
+      position: relative;
+      flex-wrap: nowrap;
+      margin-right: 9px;
+      max-width: calc(100% + 9px);
+    "
+  >
+    <nav
+      id="sidebar"
+      class="sidenav overflow-auto col-md-3 d-none d-md-block d-print-none sidebar-toggle-hidden-width"
+      style="width: 25%; border-right: 1px solid #e6e6e6"
+      ;
+    >
+      {{ partial "sidebar.html" . }}
+    </nav>
+    <div class="nginx-docs-api-container">
+      <div id="api-component">{{ .Content}}</div>
+    </div>
+  </section>
+  </div>
 {{ end }}
