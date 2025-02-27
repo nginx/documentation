@@ -18,6 +18,14 @@
           "default": "tenant-example"
         }
       }
+    },
+    {
+      "url": "/api/v1/namespaces/{namespace}",
+      "variables": {
+        "namespace": {
+          "default": "default"
+        }
+      }
     }
   ],
   "tags": [
@@ -53,13 +61,17 @@
     },
     {
       "name": "Metrics",
-      "description": "Get system metrics for your NGINX data plane instances. These metrics are collected by the NGINX Agent and reported to NGINX One.\n",
       "x-displayName": "Metrics"
     },
     {
       "name": "Settings",
       "description": "Configuration option for different aspect of NGINX One service.\nYou can set NGINX Instance cleanup preferences.\n",
       "x-displayName": "Settings"
+    },
+    {
+      "name": "NGINX App Protect",
+      "description": "Manage and publish security policies on your NGINX data plane instances.\n",
+      "x-displayName": "NGINX App Protect"
     }
   ],
   "paths": {
@@ -3137,84 +3149,6 @@
         }
       }
     },
-    "/monitor/metrics_query": {
-      "post": {
-        "tags": [
-          "Metrics"
-        ],
-        "summary": "Retrieve system metrics for instances",
-        "operationId": "queryMetricsInput",
-        "description": "Returns (up to 10,000) system metrics for NGINX instances based on query parameters.\n\nYou can filter metrics by name and timestamp, aggregate metrics over a configurable period of time, and group metrics by dimension.\n",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/MetricQueryRequest"
-              },
-              "example": {
-                "start_time": "now-1h",
-                "end_time": "now",
-                "resolution": "5m",
-                "metrics": [
-                  {
-                    "name": "nginx.http.requests",
-                    "aggregate": "sum"
-                  }
-                ],
-                "order_by": [
-                  {
-                    "direction": "asc",
-                    "dimension": "instance_object_id"
-                  }
-                ]
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Successfully retrieved system metrics.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MetricQueryResultEx"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "The requested metric resource was not found. Check that the resource name provided is correct and corresponds to an existing resource.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "An unexpected error occurred on the server. Please try the request again later.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/monitor/metrics_query_topx": {
       "post": {
         "tags": [
@@ -3348,6 +3282,1498 @@
           },
           "500": {
             "$ref": "#/components/responses/InternalServerErr"
+          }
+        }
+      }
+    },
+    "/app-protect/attack-signature/versions": {
+      "get": {
+        "x-feature-flag": "nap-waf",
+        "tags": [
+          "NGINX App Protect"
+        ],
+        "summary": "List Attack Signature versions.",
+        "description": "Returns Attack Signature versions.",
+        "operationId": "listAttackSignatureVersions",
+        "responses": {
+          "200": {
+            "description": "Successfully returned Attack Signature versions.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AttackSignatureVersionsListResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/app-protect/bot-signature/versions": {
+      "get": {
+        "x-feature-flag": "nap-waf",
+        "tags": [
+          "NGINX App Protect"
+        ],
+        "summary": "List Bot Signature versions.",
+        "description": "Returns Bot Signature versions.",
+        "operationId": "listBotSignatureVersions",
+        "responses": {
+          "200": {
+            "description": "Successfully returned Bot Signature versions.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BotSignatureVersionsListResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/app-protect/global-settings": {
+      "get": {
+        "x-feature-flag": "nap-waf",
+        "tags": [
+          "NGINX App Protect"
+        ],
+        "summary": "List NGINX App Protect global settings objects.",
+        "description": "Returns NGINX App Protect global settings objects.",
+        "operationId": "listNapGlobalSettings",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Paginated"
+          },
+          {
+            "$ref": "#/components/parameters/Limit"
+          },
+          {
+            "$ref": "#/components/parameters/Offset"
+          },
+          {
+            "$ref": "#/components/parameters/SortDirection"
+          },
+          {
+            "$ref": "#/components/parameters/SortNameNapGlobalSettings"
+          },
+          {
+            "$ref": "#/components/parameters/FilterOperands"
+          },
+          {
+            "$ref": "#/components/parameters/FilterValues"
+          },
+          {
+            "$ref": "#/components/parameters/FilterFieldNapGlobalSettings"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully returned NGINX App Protect global settings.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NapGlobalSettingsListResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "x-feature-flag": "nap-waf",
+        "tags": [
+          "NGINX App Protect"
+        ],
+        "summary": "Create NGINX App Protect global settings object.",
+        "description": "Creates NGINX App Protect global settings object.",
+        "operationId": "createNapGlobalSettings",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NapLogProfileCreateRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successfully created NGINX App Protect global settings object."
+          },
+          "400": {
+            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/app-protect/global-settings/{nap_global_settings_object_id}": {
+      "delete": {
+        "x-feature-flag": "nap-waf",
+        "tags": [
+          "NGINX App Protect"
+        ],
+        "summary": "Delete NGINX App Protect global settings object.",
+        "description": "Deletes NGINX App Protect global settings object.",
+        "operationId": "deleteNapGlobalSettings",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/NapGlobalSettingsParamObjectID"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successfully deleted NGINX App Protect global settings object."
+          },
+          "400": {
+            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The NGINX App Protect global settings object with the specified nap_global_settings_object_id was not found. Check that the nap_global_settings_object_id provided is correct and corresponds to an existing resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "x-feature-flag": "nap-waf",
+        "tags": [
+          "NGINX App Protect"
+        ],
+        "summary": "Get NGINX App Protect global settings details.",
+        "description": "Returns the NGINX App Protect global settings details.",
+        "operationId": "getNapGlobalSettings",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/NapGlobalSettingsParamObjectID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully returned NGINX App Protect global settings details.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NapGlobalSettingsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The NGINX App Protect global settings object with the specified nap_global_settings_object_id was not found. Check that the nap_global_settings_object_id provided is correct and corresponds to an existing resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "x-feature-flag": "nap-waf",
+        "tags": [
+          "NGINX App Protect"
+        ],
+        "summary": "Update NGINX App Protect global settings details.",
+        "description": "Update NGINX App Protect global settings details.",
+        "operationId": "updateNapGlobalSettings",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/NapGlobalSettingsParamObjectID"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NapGlobalSettingsPutRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Successfully updated NGINX App Protect log profile."
+          },
+          "400": {
+            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The NGINX App Protect global settings object with the specified nap_global_settings_object_id was not found. Check that the nap_global_settings_object_id provided is correct and corresponds to an existing resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/app-protect/log-profiles": {
+      "get": {
+        "x-feature-flag": "nap-waf",
+        "tags": [
+          "NGINX App Protect"
+        ],
+        "summary": "List NGINX App Protect log profiles.",
+        "description": "Returns NGINX App Protect log profiles.",
+        "operationId": "listNapLogProfiles",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Paginated"
+          },
+          {
+            "$ref": "#/components/parameters/Limit"
+          },
+          {
+            "$ref": "#/components/parameters/Offset"
+          },
+          {
+            "$ref": "#/components/parameters/SortDirection"
+          },
+          {
+            "$ref": "#/components/parameters/SortNameNapLogProfiles"
+          },
+          {
+            "$ref": "#/components/parameters/FilterOperands"
+          },
+          {
+            "$ref": "#/components/parameters/FilterValues"
+          },
+          {
+            "$ref": "#/components/parameters/FilterFieldNapLogProfile"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully returned NGINX App Protect log profiles.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NapLogProfileListResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "x-feature-flag": "nap-waf",
+        "tags": [
+          "NGINX App Protect"
+        ],
+        "summary": "Create NGINX App Protect log profile.",
+        "description": "Creates NGINX App Protect log profile.",
+        "operationId": "createNapLogProfile",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NapLogProfileCreateRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successfully created NGINX App Protect log profile."
+          },
+          "400": {
+            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/app-protect/log-profiles/{nap_log_profile_object_id}": {
+      "delete": {
+        "x-feature-flag": "nap-waf",
+        "tags": [
+          "NGINX App Protect"
+        ],
+        "summary": "Delete NGINX App Protect log profile.",
+        "description": "Deletes NGINX App Protect log profile.",
+        "operationId": "deleteNapLogProfile",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/NapLogProfileParamObjectID"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successfully deleted NGINX App Protect log profile."
+          },
+          "400": {
+            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The NGINX App Protect log profile with the specified nap_log_profile_object_id was not found. Check that the nap_log_profile_object_id provided is correct and corresponds to an existing resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "x-feature-flag": "nap-waf",
+        "tags": [
+          "NGINX App Protect"
+        ],
+        "summary": "Get NGINX App Protect log profile details.",
+        "description": "Returns NGINX App Protect log profile details.",
+        "operationId": "getNapLogProfile",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/NapLogProfileParamObjectID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully returned NGINX App Protect log profile details.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NapLogProfileResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The NGINX App Protect log profile with the specified nap_log_profile_object_id was not found. Check that the nap_log_profile_object_id provided is correct and corresponds to an existing resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "x-feature-flag": "nap-waf",
+        "tags": [
+          "NGINX App Protect"
+        ],
+        "summary": "Update NGINX App Protect log profile details.",
+        "description": "Update NGINX App Protect log profile details.",
+        "operationId": "updateNapLogProfile",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/NapLogProfileParamObjectID"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NapLogProfilePutRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Successfully updated NGINX App Protect log profile detai;s."
+          },
+          "400": {
+            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The NGINX App Protect log profile with the specified nap_log_profile_object_id was not found. Check that the nap_log_profile_object_id provided is correct and corresponds to an existing resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/app-protect/policies": {
+      "get": {
+        "x-feature-flag": "nap-waf",
+        "tags": [
+          "NGINX App Protect"
+        ],
+        "summary": "List NGINX App Protect policies.",
+        "description": "Returns NGINX App Protect policies.",
+        "operationId": "listNapPolicies",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Paginated"
+          },
+          {
+            "$ref": "#/components/parameters/Limit"
+          },
+          {
+            "$ref": "#/components/parameters/Offset"
+          },
+          {
+            "$ref": "#/components/parameters/SortDirection"
+          },
+          {
+            "$ref": "#/components/parameters/SortNameNapPolicies"
+          },
+          {
+            "$ref": "#/components/parameters/FilterOperands"
+          },
+          {
+            "$ref": "#/components/parameters/FilterValues"
+          },
+          {
+            "$ref": "#/components/parameters/FilterFieldNapPolicy"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully returned NGINX App Protect policies.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NapPoliciesListResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "x-feature-flag": "nap-waf",
+        "tags": [
+          "NGINX App Protect"
+        ],
+        "summary": "Create NGINX App Protect policy.",
+        "description": "Creates NGINX App Protect policy.",
+        "operationId": "createNapPolicy",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NapPolicy"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successfully created NGINX App Protect policy."
+          },
+          "400": {
+            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/app-protect/policies/{nap_policy_object_id}": {
+      "delete": {
+        "x-feature-flag": "nap-waf",
+        "tags": [
+          "NGINX App Protect"
+        ],
+        "summary": "Delete NGINX App Protect policy.",
+        "description": "Deletes NGINX App Protect policy.",
+        "operationId": "deleteNapPolicy",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/NapPolicyParamObjectID"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successfully deleted NGINX App Protect policy."
+          },
+          "400": {
+            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The NGINX App Protect policy with the specified nap_policy_object_id was not found. Check that the nap_policy_object_id provided is correct and corresponds to an existing resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "x-feature-flag": "nap-waf",
+        "tags": [
+          "NGINX App Protect"
+        ],
+        "summary": "Get NGINX App Protect policy details.",
+        "description": "Returns NGINX App Protect policy details.",
+        "operationId": "getNapPolicy",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/NapPolicyParamObjectID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully returned NGINX App Protect policy details.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NapPolicyResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The NGINX App Protect policy with the specified nap_policy_object_id was not found. Check that the nap_policy_object_id provided is correct and corresponds to an existing resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "x-feature-flag": "nap-waf",
+        "tags": [
+          "NGINX App Protect"
+        ],
+        "summary": "Update NGINX App Protect policy details.",
+        "description": "Update NGINX App Protect policy details.",
+        "operationId": "updateNapPolicy",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/NapPolicyParamObjectID"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NapPolicy"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Successfully updated NGINX App Protect policy details."
+          },
+          "400": {
+            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The NGINX App Protect policy with the specified nap_policy_object_id was not found. Check that the nap_policy_object_id provided is correct and corresponds to an existing resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/app-protect/policies/{nap_policy_object_id}/deployments": {
+      "get": {
+        "x-feature-flag": "nap-waf",
+        "tags": [
+          "NGINX App Protect"
+        ],
+        "summary": "List NGINX App Protect deployments.",
+        "description": "Returns NGINX App Protect deployments.",
+        "operationId": "listNapPolicyDeployments",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/NapPolicyParamObjectID"
+          },
+          {
+            "$ref": "#/components/parameters/Paginated"
+          },
+          {
+            "$ref": "#/components/parameters/Limit"
+          },
+          {
+            "$ref": "#/components/parameters/Offset"
+          },
+          {
+            "$ref": "#/components/parameters/SortDirection"
+          },
+          {
+            "$ref": "#/components/parameters/SortNameNapDeployments"
+          },
+          {
+            "$ref": "#/components/parameters/FilterOperands"
+          },
+          {
+            "$ref": "#/components/parameters/FilterValues"
+          },
+          {
+            "$ref": "#/components/parameters/FilterFieldNapDeployment"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully returned NGINX App Protect deployments.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NapPolicyDeploymentsListResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The NGINX App Protect policy with the specified nap_policy_object_id was not found. Check that the nap_policy_object_id provided is correct and corresponds to an existing resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/app-protect/policies/{nap_policy_object_id}/versions": {
+      "get": {
+        "x-feature-flag": "nap-waf",
+        "tags": [
+          "NGINX App Protect"
+        ],
+        "summary": "List NGINX App Protect policy versions.",
+        "description": "Returns NGINX App Protect policy versions.",
+        "operationId": "listNapPolicyVersions",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/NapPolicyParamObjectID"
+          },
+          {
+            "$ref": "#/components/parameters/Paginated"
+          },
+          {
+            "$ref": "#/components/parameters/Limit"
+          },
+          {
+            "$ref": "#/components/parameters/Offset"
+          },
+          {
+            "$ref": "#/components/parameters/SortDirection"
+          },
+          {
+            "$ref": "#/components/parameters/SortNameNapPolicyVersions"
+          },
+          {
+            "$ref": "#/components/parameters/FilterOperands"
+          },
+          {
+            "$ref": "#/components/parameters/FilterValues"
+          },
+          {
+            "$ref": "#/components/parameters/FilterFieldNapPolicyVersion"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully returned the NGINX App Protect policy versions.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NapPolicyVersionsListResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The NGINX App Protect policy with the specified nap_policy_object_id was not found. Check that the nap_policy_object_id provided is correct and corresponds to an existing resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/app-protect/policies/{nap_policy_object_id}/versions/{nap_policy_version_object_id}": {
+      "delete": {
+        "x-feature-flag": "nap-waf",
+        "tags": [
+          "NGINX App Protect"
+        ],
+        "summary": "Delete NGINX App Protect policy version.",
+        "description": "Deletes the NGINX App Protect policy version.",
+        "operationId": "deleteNapPolicyVersion",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/NapPolicyParamObjectID"
+          },
+          {
+            "$ref": "#/components/parameters/NapPolicyVersionParamObjectID"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successfully deleted the NGINX App Protect policy version."
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The NGINX App Protect policy version with the specified nap_policy_version_object_id was not found. Check that the nap_policy_version_object_id provided is correct and corresponds to an existing resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "x-feature-flag": "nap-waf",
+        "tags": [
+          "NGINX App Protect"
+        ],
+        "summary": "Get NGINX App Protect policy version details.",
+        "description": "Returns the NGINX App Protect policy version details.",
+        "operationId": "getNapPolicyVersion",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/NapPolicyParamObjectID"
+          },
+          {
+            "$ref": "#/components/parameters/NapPolicyVersionParamObjectID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully returned NGINX App Protect policy version details.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NapPolicyVersionResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The NGINX App Protect policy version with the specified nap_policy_version_object_id was not found. Check that the nap_policy_version_object_id provided is correct and corresponds to an existing resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/app-protect/policies/validate": {
+      "put": {
+        "x-feature-flag": "nap-waf",
+        "tags": [
+          "NGINX App Protect"
+        ],
+        "summary": "Validate NGINX App Protect policy.",
+        "description": "Returns whether NGINX App Protect policy is valid or not.",
+        "operationId": "validateNapPolicy",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NapPolicy"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully validated the NGINX App Protect policy."
+          },
+          "400": {
+            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/app-protect/threat-campaign/versions": {
+      "get": {
+        "x-feature-flag": "nap-waf",
+        "tags": [
+          "NGINX App Protect"
+        ],
+        "summary": "List Threat Campaign versions.",
+        "description": "Returns Threat Campaign versions.",
+        "operationId": "listThreatCampaignVersions",
+        "responses": {
+          "200": {
+            "description": "Successfully returned Threat Campaign versions.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ThreatCampaignVersionsListResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/app-protect/versions": {
+      "get": {
+        "x-feature-flag": "nap-waf",
+        "tags": [
+          "NGINX App Protect"
+        ],
+        "summary": "List supported NGINX App Protect versions.",
+        "description": "Returns supported NGINX App Protect versions.",
+        "operationId": "listNapVersions",
+        "responses": {
+          "200": {
+            "description": "Successfully returned NGINX App Protect versions.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NapVersionsListResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
           }
         }
       }
@@ -3688,6 +5114,210 @@
           "$ref": "#/components/schemas/NginxConfigObjectID"
         },
         "description": "A globally unique identifier for the NGINX instance configuration.\n",
+        "required": true
+      },
+      "SortNameNapGlobalSettings": {
+        "name": "sort_nap_global_settings",
+        "in": "query",
+        "description": "Sort NGINX App Protect global settings by enumerate value(s). Ordinal position determines primary, secondary, etc.\n",
+        "schema": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "name"
+            ],
+            "x-enum-varnames": [
+              "sort_name_nap_global_settings_name"
+            ]
+          }
+        }
+      },
+      "FilterFieldNapGlobalSettings": {
+        "name": "filter_fields",
+        "in": "query",
+        "description": "An array of strings indicating which fields to filter by (for example, `name`). This parameter works in conjunction with `filter_values` and `filter_ops`.\n",
+        "schema": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/FilterNameNapGlobalSettings"
+          }
+        }
+      },
+      "NapGlobalSettingsParamObjectID": {
+        "name": "nap_global_settings_object_id",
+        "in": "path",
+        "schema": {
+          "$ref": "#/components/schemas/NapGlobalSettingsObjectID"
+        },
+        "description": "A globally unique identifier for the App Protect global settings object.\n",
+        "required": true
+      },
+      "SortNameNapLogProfiles": {
+        "name": "sort_nap_log_profiles",
+        "in": "query",
+        "description": "Sort NGINX App Protect log profiles by enumerate value(s). Ordinal position determines primary, secondary, etc.\n",
+        "schema": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "name"
+            ],
+            "x-enum-varnames": [
+              "sort_name_nap_log_profiles_name"
+            ]
+          }
+        }
+      },
+      "FilterFieldNapLogProfile": {
+        "name": "filter_fields",
+        "in": "query",
+        "description": "An array of strings indicating which fields to filter by (for example, `name`). This parameter works in conjunction with `filter_values` and `filter_ops`.\n",
+        "schema": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/FilterNameNapLogProfile"
+          }
+        }
+      },
+      "NapLogProfileParamObjectID": {
+        "name": "nap_log_profile_object_id",
+        "in": "path",
+        "schema": {
+          "$ref": "#/components/schemas/NapLogProfileObjectID"
+        },
+        "description": "A globally unique identifier for the App Protect log profile.\n",
+        "required": true
+      },
+      "SortNameNapPolicies": {
+        "name": "sort_nap_policies",
+        "in": "query",
+        "description": "Sort NGINX App Protect policies by enumerate value(s). Ordinal position determines primary, secondary, etc.\n",
+        "schema": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "name",
+              "deployment_count",
+              "enforcement_mode",
+              "last_deployed"
+            ],
+            "x-enum-varnames": [
+              "sort_name_nap_policies_name",
+              "sort_name_nap_policies_deployment_count",
+              "sort_name_nap_policies_enforcement_mode",
+              "sort_name_nap_policies_last_deployed"
+            ]
+          }
+        }
+      },
+      "FilterFieldNapPolicy": {
+        "name": "filter_fields",
+        "in": "query",
+        "description": "An array of strings indicating which fields to filter by (for example, `name`). This parameter works in conjunction with `filter_values` and `filter_ops`.\n",
+        "schema": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/FilterNameNapPolicy"
+          }
+        }
+      },
+      "NapPolicyParamObjectID": {
+        "name": "nap_policy_object_id",
+        "in": "path",
+        "schema": {
+          "$ref": "#/components/schemas/NapPolicyObjectID"
+        },
+        "description": "A globally unique identifier for the App Protect policy.\n",
+        "required": true
+      },
+      "SortNameNapDeployments": {
+        "name": "sort_nap_deployments",
+        "in": "query",
+        "description": "Sort NGINX App Protect deployments by enumerate value(s). Ordinal position determines primary, secondary, etc.\n",
+        "schema": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "name",
+              "type",
+              "policy_version",
+              "status",
+              "deployed_on",
+              "threat_campaign_version",
+              "attack_signature_version",
+              "bot_sigature_version"
+            ],
+            "x-enum-varnames": [
+              "sort_name_nap_deployments_name",
+              "sort_name_nap_deployments_type",
+              "sort_name_nap_deployments_policy_version",
+              "sort_name_nap_deployments_status",
+              "sort_name_nap_deployments_deployed_on",
+              "sort_name_nap_deployments_threat_campaign_version",
+              "sort_name_nap_deployments_attack_signature_version",
+              "sort_name_nap_deployments_bot_sigature_version"
+            ]
+          }
+        }
+      },
+      "FilterFieldNapDeployment": {
+        "name": "filter_fields",
+        "in": "query",
+        "description": "An array of strings indicating which fields to filter by (for example, `name`). This parameter works in conjunction with `filter_values` and `filter_ops`.\n",
+        "schema": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/FilterNameNapDeployment"
+          }
+        }
+      },
+      "SortNameNapPolicyVersions": {
+        "name": "sort_nap_policy_versions",
+        "in": "query",
+        "description": "Sort NGINX App Protect policy versions by enumerate value(s). Ordinal position determines primary, secondary, etc.\n",
+        "schema": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "created_on",
+              "created_by",
+              "deployment_status",
+              "deployment_count",
+              "enforcement_mode"
+            ],
+            "x-enum-varnames": [
+              "sort_name_nap_policy_versions_created_on",
+              "sort_name_nap_policy_versions_created_by",
+              "sort_name_nap_policy_versions_deployment_status",
+              "sort_name_nap_policy_versions_deployment_count",
+              "sort_name_nap_policy_versions_enforcement_mode"
+            ]
+          }
+        }
+      },
+      "FilterFieldNapPolicyVersion": {
+        "name": "filter_fields",
+        "in": "query",
+        "description": "An array of strings indicating which fields to filter by (for example, `name`). This parameter works in conjunction with `filter_values` and `filter_ops`.\n",
+        "schema": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/FilterNameNapPolicyVersion"
+          }
+        }
+      },
+      "NapPolicyVersionParamObjectID": {
+        "name": "nap_policy_version_object_id",
+        "in": "path",
+        "schema": {
+          "$ref": "#/components/schemas/NapPolicyVersionObjectID"
+        },
+        "description": "A globally unique identifier for the App Protect policy version.\n",
         "required": true
       }
     },
@@ -7279,7 +8909,7 @@
       },
       "MetricNginxHttpRequests": {
         "type": "string",
-        "description": "Total number of client requests received from clients.\n\nReplacement for depreciated variant(s):\n  * nginx.http.request.count\n  * plus.http.request.count\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n",
+        "description": "Total number of client requests received from clients.\n\nReplacement for depreciated variant(s):\n  * nginx.http.request.count\n  * plus.http.request.count\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n  * server_zone\n  * location_zone\n",
         "enum": [
           "nginx.http.requests"
         ]
@@ -7484,6 +9114,761 @@
         "enum": [
           "k8s.cluster.nodes"
         ]
+      },
+      "NapPolicyEnforcementMode": {
+        "description": "The current enforcement mode of the NGINX App Protect policy, with the following possible values:\n* `blocking` - Any illegal or suspicious requests are logged and blocked.\n* `monitoring` - Any illegal or suspicious requests are logged but not blocked.\n",
+        "type": "string",
+        "enum": [
+          "blocking",
+          "monitoring"
+        ],
+        "x-enum-varnames": [
+          "nap_enforcement_mode_blocking",
+          "nap_enforcement_mode_monitoring"
+        ]
+      },
+      "NapDeploymentStatus": {
+        "description": "The current enforcement mode of the NGINX App Protect policy, with the following possible values:\n* `deployed` - The NGINX App Protect policy has been deployed.\n* `not_deployed` - The NGINX App Protect policy has not been deployed.\n* `deploying` - The NGINX App Protect policy is currently being deployed.\n* `failed` - The NGINX App Protect policy failed deploying.\n",
+        "type": "string",
+        "enum": [
+          "deployed",
+          "not_deployed",
+          "deploying",
+          "failed"
+        ],
+        "x-enum-varnames": [
+          "nap_deployment_status_deployed",
+          "nap_deployment_status_not_deployed",
+          "nap_deployment_status_deploying",
+          "nap_deployment_status_failed"
+        ]
+      },
+      "NapDeploymentType": {
+        "description": "The type of the deployment, with the following possible values:\n  * `instance` - The deployment is of type instance.\n  * `config_sync_group` - The deployment is of type config sync group.\n",
+        "type": "string",
+        "enum": [
+          "instance",
+          "config_sync_group"
+        ],
+        "x-enum-varnames": [
+          "nap_policy_deployment_type_instance",
+          "nap_policy_deployment_type_csg"
+        ]
+      },
+      "Version": {
+        "description": "The version of the NGINX App Protect resource.",
+        "type": "string",
+        "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$",
+        "example": "2023.12.06"
+      },
+      "VersionsList": {
+        "type": "object",
+        "required": [
+          "items"
+        ],
+        "properties": {
+          "items": {
+            "description": "An array of versions.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Version"
+            }
+          }
+        },
+        "example": {
+          "items": [
+            "2023.12.06"
+          ]
+        }
+      },
+      "ThreatCampaignVersionsListResponse": {
+        "description": "List of Threat Campaign versions.",
+        "$ref": "#/components/schemas/VersionsList"
+      },
+      "AttackSignatureVersionsListResponse": {
+        "description": "List of Attack Signature versions.",
+        "$ref": "#/components/schemas/VersionsList"
+      },
+      "BotSignatureVersionsListResponse": {
+        "description": "List of Bot Signature versions.",
+        "$ref": "#/components/schemas/VersionsList"
+      },
+      "NapVersionsListResponse": {
+        "description": "List of NGINX App Protect versions.",
+        "type": "object",
+        "required": [
+          "nap_versions",
+          "signature_versions"
+        ],
+        "properties": {
+          "nap_versions": {
+            "description": "An array of NGINX App Protect versions.",
+            "type": "array",
+            "items": {
+              "description": "A collection of NGINX App Protect release and associated engine versions.",
+              "type": "object",
+              "required": [
+                "release",
+                "engine"
+              ],
+              "properties": {
+                "release": {
+                  "$ref": "#/components/schemas/Version"
+                },
+                "engine": {
+                  "$ref": "#/components/schemas/Version"
+                }
+              }
+            }
+          },
+          "signature_versions": {
+            "description": "An array of signature versions.",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "NapPolicy": {
+        "description": "The JSON contents of the NGINX App Protect policy.",
+        "type": "object",
+        "required": [
+          "policy"
+        ],
+        "properties": {
+          "policy": {
+            "description": "The NGINX App Protect policy configuration.",
+            "type": "object",
+            "minProperties": 1
+          }
+        }
+      },
+      "NapPolicyMetadata": {
+        "description": "Summary information about NGINX App Protect policy.",
+        "type": "object",
+        "required": [
+          "object_id",
+          "name",
+          "deployment_count",
+          "last_updated_by",
+          "latest"
+        ],
+        "properties": {
+          "object_id": {
+            "$ref": "#/components/schemas/NapPolicyObjectID"
+          },
+          "name": {
+            "description": "The name of the NGINX App Protect policy.",
+            "type": "string"
+          },
+          "deployment_count": {
+            "description": "The number of NGINX One instances or config sync groups associated with the NGINX App Protect policy.",
+            "type": "integer"
+          },
+          "last_updated_by": {
+            "description": "The NGINX One user who last modified the NGINX App Protect policy.",
+            "type": "string"
+          },
+          "latest": {
+            "type": "object",
+            "required": [
+              "enforcement_mode",
+              "deployed_on",
+              "version",
+              "created_on",
+              "last_updated_by"
+            ],
+            "properties": {
+              "enforcement_mode": {
+                "$ref": "#/components/schemas/NapPolicyEnforcementMode"
+              },
+              "deployed_on": {
+                "description": "The date and time when the NGINX App Protect policy was last deployed.",
+                "type": "string",
+                "format": "date-time"
+              },
+              "version": {
+                "description": "The latest version of the NGINX App Protect policy.",
+                "$ref": "#/components/schemas/Version"
+              },
+              "created_on": {
+                "description": "The date and time when the NGINX App Protect policy was created.",
+                "type": "string",
+                "format": "date-time"
+              }
+            }
+          },
+          "description": {
+            "type": "string",
+            "description": "Some detail on the NGINX App Protect policy."
+          }
+        },
+        "example": {
+          "object_id": "pol_-uvR3F2TQGm18jnl7bpaGw",
+          "name": "test-policy",
+          "last_updated_by": "john.doe@example.com",
+          "deployment_count": 5,
+          "decription": "test policy",
+          "latest": {
+            "enforcement_mode": "blocking",
+            "deployed_on": "2023-12-06T22:37:24.120114Z",
+            "version": "2023.12.06",
+            "created_on": "2023-12-06T22:37:24.120114Z"
+          }
+        }
+      },
+      "NapPolicyResponse": {
+        "description": "Summary information about NGINX App Protect policy.",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/NapPolicyMetadata"
+          },
+          {
+            "$ref": "#/components/schemas/NapPolicy"
+          }
+        ]
+      },
+      "NapPoliciesListResponse": {
+        "description": "List of all NGINX App Protect policies.",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/PaginationResponse"
+          },
+          {
+            "description": "List of NGINX App Protect policies.",
+            "type": "object",
+            "required": [
+              "items"
+            ],
+            "properties": {
+              "items": {
+                "description": "An array of NGINX App Protect policy objects.",
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/NapPolicyMetadata"
+                }
+              }
+            },
+            "example": {
+              "items": [
+                {
+                  "object_id": "pol_-uvR3F2TQGm18jnl7bpaGw",
+                  "name": "test-policy",
+                  "decription": "test policy",
+                  "created_on": "2023-12-06T22:37:24.120114Z",
+                  "latest_version": "2023.12.06",
+                  "last_updated_by": "john.doe@example.com",
+                  "enforcement_mode": "blocking",
+                  "last_deployed": "2023-12-06T22:37:24.120114Z"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "NapPolicyDeploymentMetadata": {
+        "type": "object",
+        "required": [
+          "object_id",
+          "enforcement_mode",
+          "name",
+          "type",
+          "status",
+          "policy_version",
+          "deployed_on",
+          "threat_campaign_version",
+          "attack_signature_version",
+          "bot_signature_version"
+        ],
+        "properties": {
+          "object_id": {
+            "$ref": "#/components/schemas/PublicationObjectID"
+          },
+          "enforcement_mode": {
+            "$ref": "#/components/schemas/NapPolicyEnforcementMode"
+          },
+          "name": {
+            "description": "The name of the NGINX One instance or config sync group.",
+            "type": "string"
+          },
+          "type": {
+            "$ref": "#/components/schemas/NapDeploymentType"
+          },
+          "status": {
+            "$ref": "#/components/schemas/NapDeploymentStatus"
+          },
+          "policy_version": {
+            "description": "The version associated with the NGINX App Protect policy.",
+            "$ref": "#/components/schemas/Version"
+          },
+          "deployed_on": {
+            "description": "The date and time when the NGINX App Protect policy was deployed.",
+            "type": "string",
+            "format": "date-time"
+          },
+          "threat_campaign_version": {
+            "$ref": "#/components/schemas/Version"
+          },
+          "attack_signature_version": {
+            "$ref": "#/components/schemas/Version"
+          },
+          "bot_sigature_version": {
+            "$ref": "#/components/schemas/Version"
+          }
+        },
+        "example": {
+          "object_id": "pub_-uvR3F2TQGm18jnl7bpaGw",
+          "name": "test-instance",
+          "type": "instance",
+          "status": "deployed",
+          "policy_version": "2023.12.06",
+          "deployed_on": "2023-12-06T22:37:24.120114Z",
+          "enforcement_mode": "blocking",
+          "threat_campaign_version": "2023.12.06",
+          "attack_signature_version": "2023.12.06",
+          "bot_sigature_version": "2023.12.06"
+        }
+      },
+      "NapPolicyDeploymentsListResponse": {
+        "description": "List of all NGINX App Protect deployments.",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/PaginationResponse"
+          },
+          {
+            "type": "object",
+            "required": [
+              "items"
+            ],
+            "properties": {
+              "items": {
+                "description": "An array of NGINX App Protect deployments.",
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/NapPolicyDeploymentMetadata"
+                }
+              }
+            },
+            "example": {
+              "items": [
+                {
+                  "object_id": "pub_-uvR3F2TQGm18jnl7bpaGw",
+                  "name": "test-instance",
+                  "type": "instance",
+                  "status": "deployed",
+                  "policy_version": "2023.12.06",
+                  "deployed_on": "2023-12-06T22:37:24.120114Z",
+                  "enforcement_mode": "blocking",
+                  "threat_campaign_version": "2023.12.06",
+                  "attack_signature_version": "2023.12.06",
+                  "bot_sigature_version": "2023.12.06"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "NapPolicyVersionMetadata": {
+        "type": "object",
+        "required": [
+          "object_id",
+          "enforcement_mode",
+          "deployment_status",
+          "instance_count",
+          "config_sync_group_count",
+          "created_on",
+          "created_by",
+          "latest"
+        ],
+        "properties": {
+          "object_id": {
+            "$ref": "#/components/schemas/NapPolicyVersionObjectID"
+          },
+          "enforcement_mode": {
+            "$ref": "#/components/schemas/NapPolicyEnforcementMode"
+          },
+          "deployment_status": {
+            "$ref": "#/components/schemas/NapDeploymentStatus"
+          },
+          "instance_count": {
+            "description": "The number of NGINX One instances associated with the NGINX App Protect policy version",
+            "type": "integer"
+          },
+          "config_sync_group_count": {
+            "description": "The number of NGINX One config sync groups associated with the NGINX App Protect policy version",
+            "type": "integer"
+          },
+          "created_on": {
+            "description": "The date and time when the NGINX App Protect policy version was created.",
+            "type": "string",
+            "format": "date-time"
+          },
+          "created_by": {
+            "description": "The NGINX One user who created the NGINX App Protect policy.",
+            "type": "string"
+          },
+          "latest": {
+            "description": "Indicates whether the NGINX App Protect policy version is latest. Default (`false`) returns the current policy. \nWhen set to `true`, returns the latest policy.\n",
+            "type": "boolean",
+            "default": false
+          }
+        },
+        "example": {
+          "object_id": "pv_-uvR3F2TQGm18jnl7bpaGw",
+          "created_on": "2023-12-06T22:37:24.120114Z",
+          "created_by": "john.doe@example.com",
+          "deployment_status": "deployed",
+          "enforcement_mode": "blocking",
+          "instance_count": 10,
+          "config_sync_group_count": 15,
+          "latest": false
+        }
+      },
+      "NapPolicyVersionResponse": {
+        "description": "Summary information about NGINX App Protect policy version.",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/NapPolicyVersionMetadata"
+          },
+          {
+            "$ref": "#/components/schemas/NapPolicy"
+          }
+        ]
+      },
+      "NapPolicyVersionsListResponse": {
+        "description": "List of all NGINX App Protect versions.",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/PaginationResponse"
+          },
+          {
+            "type": "object",
+            "required": [
+              "items"
+            ],
+            "properties": {
+              "items": {
+                "description": "An array of NGINX App Protect version objects.",
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/NapPolicyVersionMetadata"
+                }
+              }
+            },
+            "example": {
+              "items": [
+                {
+                  "object_id": "appv_-uvR3F2TQGm18jnl7bpaGw",
+                  "created_on": "2023-12-06T22:37:24.120114Z",
+                  "created_by": "john.doe@example.com",
+                  "deployment_status": "deployed",
+                  "enforcement_mode": "blocking",
+                  "instance_count": 10,
+                  "config_sync_group_count": 15,
+                  "latest": false
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "NapLogProfileListResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/PaginationResponse"
+          },
+          {
+            "type": "object",
+            "required": [
+              "items"
+            ],
+            "properties": {
+              "items": {
+                "description": "An array of NGINX App Protect log profiles.",
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/NapLogProfileMetadata"
+                }
+              }
+            },
+            "example": {
+              "items": [
+                {
+                  "name": "test-log-profile"
+                },
+                {
+                  "object_id": "lp_-uvR3F2TQGm18jnl7bpaGw"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "NapLogProfileResponse": {
+        "$ref": "#/components/schemas/NapLogProfileMetadata"
+      },
+      "NapLogProfileMetadata": {
+        "type": "object",
+        "required": [
+          "name",
+          "object_id"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The name of the NGINX App Protect log profile."
+          },
+          "object_id": {
+            "$ref": "#/components/schemas/NapLogProfileObjectID"
+          },
+          "description": {
+            "description": "Optional field to describe the NGINX App Protect log profile.",
+            "type": "string",
+            "minLength": 5,
+            "maxLength": 256
+          }
+        }
+      },
+      "NapGlobalSettingsListResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/PaginationResponse"
+          },
+          {
+            "type": "object",
+            "required": [
+              "items"
+            ],
+            "properties": {
+              "items": {
+                "description": "An array of NGINX App Protect global settings.",
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/NapGlobalSettingsMetadata"
+                }
+              }
+            },
+            "example": {
+              "items": [
+                {
+                  "name": "test-global-settings"
+                },
+                {
+                  "object_id": "gs_-uvR3F2TQGm18jnl7bpaGw"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "NapGlobalSettingsResponse": {
+        "$ref": "#/components/schemas/NapGlobalSettingsMetadata"
+      },
+      "NapGlobalSettingsMetadata": {
+        "type": "object",
+        "required": [
+          "name",
+          "object_id"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The name of the NGINX App Protect global settings object."
+          },
+          "description": {
+            "description": "Optional field to describe the NGINX App Protect global setting object.",
+            "type": "string",
+            "minLength": 5,
+            "maxLength": 256
+          },
+          "object_id": {
+            "$ref": "#/components/schemas/NapGlobalSettingsObjectID"
+          }
+        }
+      },
+      "NapGlobalSettingsPutRequest": {
+        "description": "Update NGINX App Protect global settings object.",
+        "type": "object",
+        "required": [
+          "config"
+        ],
+        "properties": {
+          "description": {
+            "description": "Optional field to describe the NGINX App Protect global setting object.",
+            "type": "string",
+            "minLength": 5,
+            "maxLength": 256
+          },
+          "config": {
+            "description": "The NGINX App Protect global settings configuration.",
+            "type": "object",
+            "minProperties": 1
+          }
+        }
+      },
+      "NapLogProfileCreateRequest": {
+        "description": "Create NGINX App Protect log profile.",
+        "type": "object",
+        "required": [
+          "name",
+          "config"
+        ],
+        "properties": {
+          "name": {
+            "description": "The name of the NGINX App Protect log profile.",
+            "type": "string",
+            "minLength": 5,
+            "maxLength": 32
+          },
+          "description": {
+            "description": "Optional field to describe the NGINX App Protect log profile.",
+            "type": "string",
+            "minLength": 5,
+            "maxLength": 256
+          },
+          "config": {
+            "description": "The NGINX App Protect log profile configuration.",
+            "type": "object",
+            "minProperties": 1
+          }
+        }
+      },
+      "NapLogProfilePutRequest": {
+        "description": "Update NGINX App Protect log profile.",
+        "type": "object",
+        "required": [
+          "config"
+        ],
+        "properties": {
+          "description": {
+            "description": "Optional field to describe describing the NGINX App Protect log profile.",
+            "type": "string",
+            "minLength": 5,
+            "maxLength": 256
+          },
+          "config": {
+            "description": "The NGINX App Protect log profile configuration.",
+            "type": "object",
+            "minProperties": 1
+          }
+        }
+      },
+      "FilterNameNapGlobalSettings": {
+        "type": "string",
+        "description": "Keywords for NGINX App Protect global settings filters.\n",
+        "enum": [
+          "name",
+          "object_id"
+        ],
+        "x-enum-varnames": [
+          "filter_name_nap_global_settings_name",
+          "filter_name_nap_global_settings_object_id"
+        ]
+      },
+      "NapGlobalSettingsObjectID": {
+        "description": "A globally unique identifier for the App Protect global settings object.",
+        "type": "string",
+        "format": "object_id",
+        "pattern": "^gs_.*",
+        "x-go-type": "objects.ID",
+        "x-go-type-import": {
+          "name": "objects",
+          "path": "gitlab.com/f5/nginx/one/saas/control-plane/pkg/collections/objects"
+        }
+      },
+      "FilterNameNapLogProfile": {
+        "type": "string",
+        "description": "Keywords for NGINX App Protect log profile filters.\n",
+        "enum": [
+          "name",
+          "object_id"
+        ],
+        "x-enum-varnames": [
+          "filter_name_nap_log_profile_name",
+          "filter_name_nap_log_profile_object_id"
+        ]
+      },
+      "NapLogProfileObjectID": {
+        "description": "A globally unique identifier for the App Protect log profile.",
+        "type": "string",
+        "format": "object_id",
+        "pattern": "^lp_.*",
+        "x-go-type": "objects.ID",
+        "x-go-type-import": {
+          "name": "objects",
+          "path": "gitlab.com/f5/nginx/one/saas/control-plane/pkg/collections/objects"
+        }
+      },
+      "FilterNameNapPolicy": {
+        "type": "string",
+        "description": "Keywords for NGINX App Protect policy filters.\nWhen filtering on `enforcement_mode`, only the following `filter_values` are supported:\n  * blocking\n  * monitoring\n",
+        "enum": [
+          "name",
+          "enforcement_mode",
+          "object_id"
+        ],
+        "x-enum-varnames": [
+          "filter_name_nap_policy_name",
+          "filter_name_nap_policy_enforcement_mode",
+          "filter_name_nap_policy_object_id"
+        ]
+      },
+      "NapPolicyObjectID": {
+        "description": "A globally unique identifier for the App Protect policy.",
+        "type": "string",
+        "format": "object_id",
+        "pattern": "^pol_.*",
+        "x-go-type": "objects.ID",
+        "x-go-type-import": {
+          "name": "objects",
+          "path": "gitlab.com/f5/nginx/one/saas/control-plane/pkg/collections/objects"
+        }
+      },
+      "FilterNameNapDeployment": {
+        "type": "string",
+        "description": "Keywords for NGINX App Protect deployment filters.\nWhen filtering on `type`, only the following `filter_values` are supported:\n  * instance\n  * config_sync_group\nWhen filtering on `status`, only the following `filter_values` are supported:\n  * deployed\n  * not_deployed\n  * deploying\n  * failed\n",
+        "enum": [
+          "name",
+          "type",
+          "policy_version",
+          "status",
+          "object_id"
+        ],
+        "x-enum-varnames": [
+          "filter_name_nap_deployment_name",
+          "filter_name_nap_deployment_type",
+          "filter_name_nap_deployment_policy_version",
+          "filter_name_nap_deployment_status",
+          "filter_name_nap_deployment_object_id"
+        ]
+      },
+      "FilterNameNapPolicyVersion": {
+        "type": "string",
+        "description": "Keywords for NGINX App Protect policy version filters.\nWhen filtering on `deployment_status`, only the following `filter_values` are supported:\n  * deployed\n  * not_deployed\n  * deploying\n  * failed\nWhen filtering on `enforcement_mode`, only the following `filter_values` are supported:\n  * blocking\n  * monitoring\n",
+        "enum": [
+          "created_by",
+          "deployment_status",
+          "enforcement_mode",
+          "object_id"
+        ],
+        "x-enum-varnames": [
+          "filter_name_nap_policy_version_created_by",
+          "filter_name_nap_policy_version_deployment_status",
+          "filter_name_nap_policy_version_enforcement_mode",
+          "filter_name_nap_policy_version_object_id"
+        ]
+      },
+      "NapPolicyVersionObjectID": {
+        "description": "A globally unique identifier for the App Protect policy version.",
+        "type": "string",
+        "format": "object_id",
+        "pattern": "^pv_.*",
+        "x-go-type": "objects.ID",
+        "x-go-type-import": {
+          "name": "objects",
+          "path": "gitlab.com/f5/nginx/one/saas/control-plane/pkg/collections/objects"
+        }
       }
     },
     "examples": {
@@ -7598,6 +9983,12 @@
       "name": "Manage NGINX One Settings",
       "tags": [
         "Settings"
+      ]
+    },
+    {
+      "name": "NGINX One App Protect",
+      "tags": [
+        "NGINX App Protect"
       ]
     }
   ]
