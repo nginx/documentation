@@ -56,19 +56,29 @@ Create a Docker registry secret on the cluster, using the JWT token as the usern
 - **Kubernetes**:
 
   ```shell
+  kubectl create namespace nms
+  ```
+
+  ```shell
   kubectl create secret docker-registry regcred \
   --docker-server=private-registry.nginx.com \
   --docker-username=<JWT Token> \
-  --docker-password=none
+  --docker-password=none \
+  -n nms
   ```
 
 - **OpenShift**:
 
   ```shell
+  oc new-project nms
+  ```
+
+  ```shell
   oc create secret docker-registry regcred \
   --docker-server=private-registry.nginx.com \
   --docker-username=<JWT Token> \
-  --docker-password=none
+  --docker-password=none \
+  -n nms
   ```
 
 {{< warning >}} 
@@ -84,13 +94,13 @@ To confirm the secret is created:
 - **Kubernetes**:
 
   ```shell
-  kubectl get secret regcred --output=yaml
+  kubectl get secret regcred --output=yaml -n nms
   ```
 
 - **OpenShift**:
 
   ```shell
-  oc get secret regcred --output=yaml
+  oc get secret regcred --output=yaml -n nms
   ```
 
 
@@ -127,33 +137,36 @@ The `values.yaml` file customizes the Helm chart installation without modifying 
     {{< see-also >}} For details on creating a secret, see Kubernetes [Pull an Image from a Private Registry](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/). {{</ see-also >}}
 
     ```yaml
-    nms-hybrid:
-        imagePullSecrets:
-            - name: regcred
-        apigw:
-            image:
-                repository: private-registry.nginx.com/nms-apigw
-                tag: <version>
-        core:
-            image:
-                repository: private-registry.nginx.com/nms-core
-                tag: <version>
-        dpm:
-            image:
-                repository: private-registry.nginx.com/nms-dpm
-                tag: <version>
-        ingestion:
-            image:
-                repository: private-registry.nginx.com/nms-ingestion
-                tag: <version>
-        integrations:
-            image:
-                repository: private-registry.nginx.com/nms-integrations
-                tag: <version>
-        utility:
-            image:
-                repository: private-registry.nginx.com/nms-utility
-                tag: <version>
+    imagePullSecrets:
+        - name: regcred
+    apigw:
+        image:
+            repository: private-registry.nginx.com/nms/apigw
+            tag: <version>
+    core:
+        image:
+            repository: private-registry.nginx.com/nms/core
+            tag: <version>
+    dpm:
+        image:
+            repository: private-registry.nginx.com/nms/dpm
+            tag: <version>
+    ingestion:
+        image:
+            repository: private-registry.nginx.com/nms/ingestion
+            tag: <version>
+    integrations:
+        image:
+            repository: private-registry.nginx.com/nms/integrations
+            tag: <version>
+    secmon:
+        image:
+            repository: private-registry.nginx.com/nms/secmon
+            tag: <version>
+    utility:
+        image:
+            repository: private-registry.nginx.com/nms/utility
+            tag: <version>
     ```
 
 2. Save and close the `values.yaml` file.
@@ -165,62 +178,24 @@ The `values.yaml` file customizes the Helm chart installation without modifying 
 If deploying on OpenShift, include this setting in the `values.yaml` file:
 
 ```yaml
-nms-hybrid:
-  openshift:
-    enabled: true
+openshift:
+  enabled: true
 ```
+
+{{< note >}} The NIM deployment on OpenShift has been tested with OpenShift v4.13.0 Server. {{< /note >}}
 
 ### How OpenShift handles security constraints
 
-When `openshift.enabled: true` is set in the `values.yaml` file, the NGINX Instance Manager deployment automatically creates a **custom Security Context Constraint (SCC)** and links it to the Service Account used by all pods.  
+When `openshift.enabled: true` is set in the `values.yaml` file, the NGINX Instance Manager deployment automatically creates a **custom [Security Context Constraints](https://docs.redhat.com/en/documentation/openshift_container_platform/4.13/html/authentication_and_authorization/managing-pod-security-policies) (SCCs)** and links it to the Service Account used by all pods.  
 
-By default, OpenShift enforces strict security policies that require containers to run as **non-root** users. The NGINX Instance Manager deployment needs specific user IDs (UIDs) for certain services, such as **1000** for `nms` and **101** for `nginx` and `clickhouse`. Since the default SCCs do not allow these UIDs, a **custom SCC** is created. This ensures that the deployment can run with the necessary permissions while maintaining OpenShift’s security standards.  
+By default, OpenShift enforces strict security policies that require containers to run as **non-root** users. The NGINX Instance Manager deployment needs specific user IDs (UIDs) for certain services, such as **1000** for `nms` and **101** for `nginx` and `clickhouse`. Since the default SCCs do not allow these UIDs, a **custom SCC** is created. This ensures that the deployment can run with the necessary permissions while maintaining OpenShift’s security standards. The custom SCC allows these UIDs by setting the `runAsUser` field, which controls which users can run containers.  
 
-The custom SCC allows these UIDs by setting the `runAsUser` field, which controls which users can run containers. To verify that the SCC has been created, run:  
+{{< note >}} If you’re encountering errors with the custom SCC, you may not have permissions to access the Security Context Constraints resource. Please contact a Cluster Administrator to request access, either through a cluster role binding or by adjusting your user role. {{< /note >}}
+
+To verify that the custom SCC has been created, after installing the helm chart, run:
 
 ```shell
 oc get scc nms-restricted-v2-scc --output=yaml
-```
-
-
----
-
-
-To apply network policies for NGINX Instance Manager, ensure Kubernetes has a [network plugin](https://kubernetes.io/docs/concepts/extend-kubernetes/compute-storage-net/network-plugins/) installed before the Helm chart installation.
-
-By default, the following network policies will be created in the release namespace:
-
-- **Kubernetes**:
-
-  ```shell
-  kubectl get netpol -n nms
-  ```
-
-- **OpenShift**:
-
-  ```shell
-  oc get netpol -n nms
-  ```
-
-  **Output**
-
-  ```text
-  NAME           POD-SELECTOR                          AGE
-  apigw          app.kubernetes.io/name=apigw          4m47s
-  clickhouse     app.kubernetes.io/name=clickhouse     4m47s
-  core           app.kubernetes.io/name=core           4m47s
-  dpm            app.kubernetes.io/name=dpm            4m47s
-  ingestion      app.kubernetes.io/name=ingestion      4m47s
-  integrations   app.kubernetes.io/name=integrations   4m47s
-  utility        app.kubernetes.io/name=integrations   4m47s
-  ```
-
-To disable network policies, update the `values.yaml` file:
-
-```yaml
-networkPolicies:
-    # Set this to true to enable network policies for NGINX Instance Manager.
-    enabled: false
 ```
 
 ---
@@ -234,19 +209,19 @@ Run the `helm install` command to deploy NGINX Instance Manager:
 
    {{< important >}} Remember to save the password for future use. Only the encrypted password is stored, and there's no way to recover or reset it if lost. {{< /important >}}
 
-(Optional) Replace `<nms-chart-version>` with the desired chart version. If omitted, the latest version will be installed.
+(Optional) Replace `<chart-version>` with the desired chart version. If omitted, the latest version will be installed. Currently only version 2.19.0 is supported.
 
 ```shell
 helm install -n nms \
---set nms-hybrid.adminPasswordHash=$(openssl passwd -6 'YourPassword123#') \
-nms nginx-stable/nms \
+--set adminPasswordHash=$(openssl passwd -6 'YourPassword123#') \
+nms nginx-stable/nms-hybrid \
 --create-namespace \
 -f <path-to-your-values.yaml> \
 [--version <chart-version>] \
 --wait
 ```
 
-To help you choose the right NGINX Instance Manager chart version, see the table in:
+To help you choose the right NGINX Instance Manager chart version, see the following table (through version v2.18.0):
 
 {{< include "nim/kubernetes/nms-chart-supported-module-versions.md" >}}
 
@@ -284,14 +259,16 @@ To upgrade:
 
 1. [Update the Helm repository list](#add-helm-repository).
 1. [Adjust your `values.yaml` file](#create-a-helm-deployment-values.yaml-file) if needed.
-1. To upgrade the NGINX instance deployment, run the following command. This command updates the `nms` deployment with a new version from the `nginx-stable/nms` repository. It also hashes the provided password and uses the `values.yaml` file at the path you specify.
+1. To upgrade the NGINX Instance Manager deployment, run the following command. This command updates the `nms` deployment with a new version from the `nginx-stable/nms-hybrid` repository. It also hashes the provided password and uses the `values.yaml` file at the path you specify.
+
+(Optional) Replace `<chart-version>` with the desired chart version. If omitted, the latest version will be installed. Currently only version 2.19.0 is supported.
 
    ```bash
     helm upgrade -n nms \
-    --set nms-hybrid.adminPasswordHash=$(openssl passwd -6 'YourPassword123#') \
-    nms nginx-stable/nms \
+    --set adminPasswordHash=$(openssl passwd -6 'YourPassword123#') \
+    nms nginx-stable/nms-hybrid \
     -f <path-to-your-values.yaml> \
-    [--version <nms-chart-version>] \
+    [--version <chart-version>] \
     --wait
    ```
 
@@ -322,20 +299,30 @@ To apply network policies for NGINX Instance Manager, ensure Kubernetes has a [n
 
 By default, the following network policies will be created in the release namespace:
 
-```shell
-kubectl get netpol -n nms
-```
+- **Kubernetes**:
 
-```text
-NAME           POD-SELECTOR                          AGE
-apigw          app.kubernetes.io/name=apigw          4m47s
-clickhouse     app.kubernetes.io/name=clickhouse     4m47s
-core           app.kubernetes.io/name=core           4m47s
-dpm            app.kubernetes.io/name=dpm            4m47s
-ingestion      app.kubernetes.io/name=ingestion      4m47s
-integrations   app.kubernetes.io/name=integrations   4m47s
-utility        app.kubernetes.io/name=integrations   4m47s
-```
+  ```shell
+  kubectl get netpol -n nms
+  ```
+
+- **OpenShift**:
+
+  ```shell
+  oc get netpol -n nms
+  ```
+  **Output**:
+
+  ```text
+  NAME           POD-SELECTOR                          AGE
+  apigw          app.kubernetes.io/name=apigw          4m47s
+  clickhouse     app.kubernetes.io/name=clickhouse     4m47s
+  core           app.kubernetes.io/name=core           4m47s
+  dpm            app.kubernetes.io/name=dpm            4m47s
+  ingestion      app.kubernetes.io/name=ingestion      4m47s
+  integrations   app.kubernetes.io/name=integrations   4m47s
+  secmon         app.kubernetes.io/name=secmon         4m47s
+  utility        app.kubernetes.io/name=integrations   4m47s
+  ```
 
 To disable network policies, update the `values.yaml` file:
 

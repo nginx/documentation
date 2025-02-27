@@ -37,7 +37,7 @@ TARGET_DISTRIBUTION=""
 PACKAGE_INSTALLER=""
 NMS_NGINX_MGMT_BLOCK="mgmt { \n  usage_report endpoint=127.0.0.1 interval=30m; \n  ssl_verify off; \n}";
 NIM_FQDN=""
-
+NIM_CERTS_DIR="/etc/nms/certs"
 # Added to account for the renaming of the adc dimension from application to app.
 if [ -f "/usr/share/nms/catalogs/dimensions/application.yml" ]; then
     rm /usr/share/nms/catalogs/dimensions/application.yml
@@ -335,6 +335,7 @@ installBundleForDebianDistro() {
   if [ "${USE_SM_MODULE}" == "true" ]; then
       nim_major_version=$(nms-core --version | grep -oE '[0-9]+\.[0-9]+\.[0-9]+' | awk -F. '{print $1}')
       nim_minor_version=$(nms-core --version | grep -oE '[0-9]+\.[0-9]+\.[0-9]+' | awk -F. '{print $2}')
+      echo "Installed NIM major Version: ${nim_major_version}, minor Version:${nim_minor_version}"
       if [[ $nim_major_version -ge 2 && $nim_minor_version -ge 19 ]]; then
         echo "Note: NGINX Instance Manager version 2.19.0 or later comes with security monitoring installed. skipping installing security monitoring"
       else
@@ -477,7 +478,8 @@ installBundleForRPMDistro(){
 
     if [ "${USE_SM_MODULE}" == "true" ]; then
       nim_major_version=$(nms-core --version | grep -oE '[0-9]+\.[0-9]+\.[0-9]+' | awk -F. '{print $1}')
-      nim_minor_version=$(nms-core --version | grep -oE '[0-9]+\.[0-9]+\.[0-9]+' | awk -F. '{print $1}')
+      nim_minor_version=$(nms-core --version | grep -oE '[0-9]+\.[0-9]+\.[0-9]+' | awk -F. '{print $2}')
+      echo "Installed NIM major Version: ${nim_major_version}, minor Version:${nim_minor_version}"
       if [[ $nim_major_version -ge 2 && $nim_minor_version -ge 19 ]]; then
         echo "Note: NGINX Instance Manager version 2.19.0 or later comes with security monitoring installed. skipping installing security monitoring"
       else
@@ -530,7 +532,11 @@ install_nim_online(){
     exit 1
   fi
   if [[ -n ${NIM_FQDN} ]] ; then
-     bash -c "source /etc/nms/scripts/certs.sh || /etc/nms/scripts/certs.sh 0 ${NIM_FQDN}"
+     if [ -d "${NIM_CERTS_DIR}" ]; then
+        echo "removing existing NIM certs"
+        rm -rf "/etc/nms/certs"
+     fi
+     bash -c "source /etc/nms/scripts/certs.sh 0 \"${NIM_FQDN}\" || /etc/nms/scripts/certs.sh 0 ${NIM_FQDN}"
   fi
   curl -s -o /dev/null --cert ${NGINX_CERT_PATH} --key ${NGINX_CERT_KEY_PATH} "https://pkgs.nginx.com/nms/?using_install_script=true&app=nim&mode=online"
 }
@@ -1075,7 +1081,11 @@ else
       exit 1
     fi
     if [[ -n ${NIM_FQDN} ]] ; then
-         bash -c "source /etc/nms/scripts/certs.sh || /etc/nms/scripts/certs.sh 0 ${NIM_FQDN}"
+         if [ -d "${NIM_CERTS_DIR}" ]; then
+             echo "removing existing nim certs"
+             rm -rf "/etc/nms/certs"
+         fi
+         bash -c "source /etc/nms/scripts/certs.sh 0 \"${NIM_FQDN}\" || /etc/nms/scripts/certs.sh 0 ${NIM_FQDN}"
     fi
     curl -s -o /dev/null --cert ${NGINX_CERT_PATH} --key ${NGINX_CERT_KEY_PATH} "https://pkgs.nginx.com/nms/?using_install_script=true&app=nim&mode=offline"
   fi

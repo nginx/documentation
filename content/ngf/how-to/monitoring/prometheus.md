@@ -83,7 +83,7 @@ NGINX Gateway Fabric provides a variety of metrics for monitoring and analyzing 
 
 ### NGINX/NGINX Plus metrics
 
-NGINX metrics cover specific NGINX operations such as the total number of accepted client connections. For a complete list of available NGINX/NGINX Plus metrics, refer to the [NGINX Prometheus Exporter developer docs](https://github.com/nginxinc/nginx-prometheus-exporter#exported-metrics).
+NGINX metrics cover specific NGINX operations such as the total number of accepted client connections. For a complete list of available NGINX/NGINX Plus metrics, refer to the [NGINX Prometheus Exporter developer docs](https://github.com/nginx/nginx-prometheus-exporter#exported-metrics).
 
 These metrics use the `nginx_gateway_fabric` namespace and include the `class` label, indicating the NGINX Gateway class. For example, `nginx_gateway_fabric_connections_accepted{class="nginx"}`.
 
@@ -119,13 +119,13 @@ You can configure monitoring metrics for NGINX Gateway Fabric using Helm or Mani
 
 ### Using Helm
 
-If you're setting up NGINX Gateway Fabric with Helm, you can adjust the `metrics.*` parameters to fit your needs. For detailed options and instructions, see the [Helm README](https://github.com/nginx/nginx-gateway-fabric/blob/v1.5.1/charts/nginx-gateway-fabric/README.md).
+If you're setting up NGINX Gateway Fabric with Helm, you can adjust the `metrics.*` parameters to fit your needs. For detailed options and instructions, see the [Helm README](https://github.com/nginx/nginx-gateway-fabric/blob/v{{< version-ngf >}}/charts/nginx-gateway-fabric/README.md).
 
 ---
 
 ### Using Kubernetes manifests
 
-For setups using Kubernetes manifests, change the metrics configuration by editing the NGINX Gateway Fabric manifest that you want to deploy. You can find some examples in the [deploy](https://github.com/nginx/nginx-gateway-fabric/tree/v1.5.1/deploy) directory.
+For setups using Kubernetes manifests, change the metrics configuration by editing the NGINX Gateway Fabric manifest that you want to deploy. You can find some examples in the [deploy](https://github.com/nginx/nginx-gateway-fabric/tree/v{{< version-ngf >}}/deploy) directory.
 
 ---
 
@@ -136,18 +136,18 @@ If you need to disable metrics:
 1. Set the `-metrics-disable` [command-line argument]({{< ref "/ngf/reference/cli-help.md">}}) to `true` in the NGINX Gateway Fabric Pod's configuration. Remove any other `-metrics-*` arguments.
 2. In the Pod template for NGINX Gateway Fabric, delete the metrics port entry from the container ports list:
 
-    ```yaml
-    - name: metrics
-      containerPort: 9113
-    ```
+   ```yaml
+   - name: metrics
+     containerPort: 9113
+   ```
 
 3. Also, remove the following annotations from the NGINX Gateway Fabric Pod template:
 
-    ```yaml
-    annotations:
-        prometheus.io/scrape: "true"
-        prometheus.io/port: "9113"
-    ```
+   ```yaml
+   annotations:
+     prometheus.io/scrape: "true"
+     prometheus.io/port: "9113"
+   ```
 
 #### Changing the default port
 
@@ -156,19 +156,19 @@ To change the default port for metrics:
 1. Update the `-metrics-port` [command-line argument]({{< ref "/ngf/reference/cli-help.md">}}) in the NGINX Gateway Fabric Pod's configuration to your chosen port number.
 2. In the Pod template, change the metrics port entry to reflect the new port:
 
-    ```yaml
-    - name: metrics
-      containerPort: <new-port>
-    ```
+   ```yaml
+   - name: metrics
+     containerPort: <new-port>
+   ```
 
 3. Modify the `prometheus.io/port` annotation in the Pod template to match the new port:
 
-    ```yaml
-    annotations:
-        <...>
-        prometheus.io/port: "<new-port>"
-        <...>
-    ```
+   ```yaml
+   annotations:
+       <...>
+       prometheus.io/port: "<new-port>"
+       <...>
+   ```
 
 ---
 
@@ -180,9 +180,9 @@ For enhanced security with HTTPS:
 
 2. Add an HTTPS scheme annotation to the Pod template:
 
-    ```yaml
-    annotations:
-        <...>
-        prometheus.io/scheme: "https"
-        <...>
-    ```
+   ```yaml
+   annotations:
+       <...>
+       prometheus.io/scheme: "https"
+       <...>
+   ```

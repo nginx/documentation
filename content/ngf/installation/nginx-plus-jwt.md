@@ -159,10 +159,10 @@ You also need to define the proper volume mount to mount the Secrets to the ngin
 - name: nginx-plus-usage-certs
   projected:
     sources:
-    - secret:
-        name: nim-ca
-    - secret:
-        name: nim-client
+      - secret:
+          name: nim-ca
+      - secret:
+          name: nim-client
 ```
 
 and the following volume mounts to the `nginx` container:
@@ -250,7 +250,7 @@ Replace the contents of `<JWT Token>` with the contents of the JWT token itself.
 You can then pull the image:
 
 ```shell
-docker pull private-registry.nginx.com/nginx-gateway-fabric/nginx-plus:1.5.1
+docker pull private-registry.nginx.com/nginx-gateway-fabric/nginx-plus:{{< version-ngf >}}
 ```
 
 Once you have successfully pulled the image, you can tag it as needed, then push it to a different container registry.

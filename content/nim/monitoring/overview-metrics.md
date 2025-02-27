@@ -12,59 +12,37 @@ weight: 100
 
 ## Overview
 
-The data that NGINX Instance Manager collects can be divided into two categories:
+F5 NGINX Instance Manager collects two types of data:
 
-- **System metrics**: Data collected about the data plane system, such as CPU and memory usage.
-- **Traffic metrics**: Data related to processed traffic from sources such as NGINX OSS, NGINX Plus, or NGINX logs.
+- **System metrics**: Data about the data plane system, such as CPU and memory usage.
+- **Traffic metrics**: Data from processed traffic, including NGINX OSS, NGINX Plus, and NGINX logs.
 
-Metrics are collected every 15 seconds and are published at 60-second intervals.
+The NGINX Agent collects metrics every 15 seconds and publishes them every 60 seconds.
 
-For the full list of metrics, see the [Metrics Catalog Reference]({{< relref "/nms/reference/catalogs//metrics.md" >}})
+For a full list of available metrics, see the [Metrics Catalog Reference]({{< relref "/nms/reference/catalogs//metrics.md" >}}).
 
-## Metrics Collection and Reporting Process
+## How metrics are collected and reported
 
-While the NGINX Agent is running on the host, it collects metrics at regular 15-second intervals. Metrics then are downsampled and sent to the Manager server once per minute.
+The NGINX Agent collects metrics every 15 seconds while running on the host. Metrics are then downsampled and sent to the Manager server once per minute.
 
-NGINX Instance Manager stores historical metrics data in an analytics database. Metrics are aggregated and rolled-up as follows:
+NGINX Instance Manager stores historical data in an analytics database and applies roll-ups:
 
-- Data not older than 8 days are stored with best possible resolution (usually 1 min).
-- Data older than 8 days but not older than 30 days are stored with 5 min resolution.
-- Data older than 30 days but not older than 15 months are stored with 1 hour resolution.
-- Data older than 15 months are stored with 1 day resolution.
+- Data up to **8 days old** is stored with **1-minute resolution**.
+- Data **8 to 30 days old** is stored with **5-minute resolution**.
+- Data **30 days to 15 months old** is stored with **1-hour resolution**.
+- Data older than **15 months** is stored with **1-day resolution**.
 
-### F5 NGINX Plus Metrics
+### F5 NGINX Plus metrics
 
-Enable the NGINX Plus API to collect NGINX Plus metrics by uncommenting the `/api/` location section in `/etc/nginx/conf.d/default.conf`:
+{{< include "/use-cases/monitoring/enable-nginx-plus-api.md" >}}
 
-```nginx {hl_lines=[4]}
-# enable /api/ location with appropriate access control in order
-# to make use of NGINX Plus API
-#
-location /api/ {
-    api write=on;
-    allow 127.0.0.1;
-    deny all;
-}
-```
+### NGINX Open Source metrics
 
-### NGINX OSS Metrics
+{{< include "/use-cases/monitoring/enable-nginx-oss-stub-status.md" >}} 
 
-Enable NGINX Stub Status API to collect NGINX metrics in NGINX OSS. A sample Stub Status API configuration is shown below:
+### NGINX access log metrics
 
-```nginx
-server {
-    listen 127.0.0.1:8080;
-    location /api {
-        stub_status;
-        allow 127.0.0.1;
-        deny all;
-    }
-}
-```
-
-### NGINX Access Log Metrics
-
-Enable NGINX Access Logging to collect metrics from parsing access logs. A sample Access Log format is shown below:
+Enable access logging to collect traffic metrics by parsing logs. Use the following log format:
 
 ```nginx
 log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
@@ -78,4 +56,4 @@ access_log  /var/log/nginx/access.log  main;
 
 ## Troubleshooting
 
-System metrics are collected by the NGINX Agent without requiring the user to perform any additional setup. Additional setup is required to enable collection of NGINX related metrics.
+System metrics are collected automatically by the NGINX Agent. To collect NGINX-specific metrics, additional configuration is required.
