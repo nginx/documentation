@@ -707,7 +707,7 @@ download_third_party_dependencies(){
             mkdir "${TEMP_DIR}/${target_distribution}/keepalived"
             docker run --rm -it -v "${TEMP_DIR}/${target_distribution}/keepalived":/downloads fedora dnf download --resolve --destdir=/downloads keepalived
         else
-            echo "Cross platform packing requires docker, please install docker and then try again"
+            echo "Cross platform packing requires Docker, please install Docker and try again"
             exit 1
         fi
       fi
@@ -722,7 +722,7 @@ download_third_party_dependencies(){
               mkdir "${TEMP_DIR}/${target_distribution}/keepalived"
               mv ${TEMP_DIR}/keepalived/archives/* ${TEMP_DIR}/${target_distribution}/keepalived
           else
-              echo "Cross platform packing requires docker, please install docker and then try again"
+              echo "Cross platform packing requires Docker, please install Docker and try again"
               exit 1
           fi
       fi
@@ -1008,7 +1008,7 @@ else
             check_last_command_status "dpkg -i \"$pkg_clickhouse_srv\"" $?
         done
         if [ -d "${TEMP_DIR}/keepalived" ]; then
-            echo "installing keepalived from ${TEMP_DIR}/keepalived"
+            echo "Installing keepalived from ${TEMP_DIR}/keepalived"
             DEBIAN_FRONTEND=noninteractive dpkg -i ${TEMP_DIR}/keepalived/*.deb
             check_last_command_status "dpkg -i ${TEMP_DIR}/keepalived/*.deb" $?
         fi
@@ -1047,7 +1047,7 @@ else
           yum localinstall -y -v --disableplugin=subscription-manager --skip-broken "$pkg_clickhouse_srv"
         done
         if [ -d "${TEMP_DIR}/keepalived" ]; then
-            echo "installing keepalived from ${TEMP_DIR}/keepalived"
+            echo "Installing keepalived from ${TEMP_DIR}/keepalived"
             yum localinstall -y -v --disableplugin=subscription-manager --skip-broken "${TEMP_DIR}/keepalived/*.rpm"
             check_last_command_status "dpkg -i yum localinstall -y -v --disableplugin=subscription-manager --skip-broken ${TEMP_DIR}/keepalived/*.rpm" $?
         fi
