@@ -6,7 +6,7 @@ test.describe("Testing search page", () => {
         await page.goto('/'); 
         await waitFor(() => handleConsentPopup(page));
 
-        const searchBox = page.locator('.CoveoSearchbox');
+        const searchBox = page.locator('.CoveoSearchbox').first();
         const searchButton = page.locator('.CoveoSearchButton');
         const searchValue = "proxy";
         expect(searchBox).toBeVisible();
@@ -19,7 +19,7 @@ test.describe("Testing search page", () => {
     });
 
     test('Search page returns results without error', async ({ page }) => {
-        await page.goto(`/search.html#q=proxy&sort=relevancy`); 
+        await page.goto("/search.html#q=proxy&sort=relevancy"); 
         await waitFor(() => handleConsentPopup(page));
         
         await page.waitForSelector('div.coveo-result-list-container');
