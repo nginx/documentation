@@ -4,7 +4,7 @@ description: Configure NGINX Open Source as a web server and F5 NGINX Plus as a 
 docs: DOCS-462
 doctypes:
 - task
-title: Setting Up an NGINX Demo Environment
+title: Setting Up an NGINX demo environment
 toc: true
 weight: 100
 ---
@@ -19,7 +19,7 @@ This guide assumes you have already provisioned a number of host systems (physic
 Some commands require `root` privilege. If appropriate for your environment, prefix commands with the `sudo` command.
 
 <span id="nginx-oss"></span>
-## Configuring NGINX Open Source for Web Serving
+## Configuring NGINX open source for web serving
 
 The steps in this section configure an NGINX Open Source instance as a web server to return a page like the following, which specifies the server name, address, and other information. The page is defined in the <span style="white-space: nowrap; font-weight:bold;">demo-index.html</span> configuration file you create in Step 4 below.
 
