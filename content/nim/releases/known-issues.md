@@ -19,7 +19,7 @@ weight: 200
 ## 2.19.0
 February 6, 2025
 
-### {{% icon-bug %}} Publishing the NAP policy fails with the error “The attack signatures with the given version was not found” {#45845}
+### {{% icon-bug %}} Publishing the NAP policy fails with the error "The attack signatures with the given version was not found" {#45845}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
@@ -27,18 +27,29 @@ February 6, 2025
 |----------|--------|
 | 45845    | Open   |
 
-#### Description
+#### Description  
 
 In NGINX Instance Manager (NIM) v2.19.0, publishing a NAP policy from the UI fails if the latest NAP compiler v5.264 (NAP v4.13.0 or NAP v5.5.0) is manually installed without adding the NGINX repository certificate and key.
 
+#### Workaround  
 
-#### Workaround
+1. Download the NGINX repository certificate and key:
+   - Log in to [MyF5](https://account.f5.com/myf5).  
+   - Go to **My Products and Plans > Subscriptions**.  
+   - Download the SSL certificate (*nginx-repo.crt*) and private key (*nginx-repo.key*) for your NGINX App Protect subscription.
 
-1. Add the NGINX repository certificate and key.
-2. Restart the `nms-integrations.service`:
+2. Upload the certificate and key using the NGINX Instance Manager web interface:  
+   - Go to **Settings > NGINX Repo Connect**.  
+   - Select **Add Certificate**.  
+   - Choose **Select PEM files** or **Manual entry**.  
+   - If using manual entry, copy and paste your *certificate* and *key* details.
 
+    For detailed steps, see [Upload NGINX App Protect WAF certificate and key](https://docs.nginx.com/nginx-instance-manager/nginx-app-protect/setup-waf-config-management/#upload-nginx-app-protect-waf-certificate-and-key).
+
+3. Restart the `nms-integrations` service:
+   
     ```shell
-    sudo systemctl restart nms-integrations.service
+    sudo systemctl restart nms-integrations
     ```
 
 {{</bootstrap-table>}}
