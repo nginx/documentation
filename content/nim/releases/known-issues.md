@@ -29,7 +29,7 @@ February 6, 2025
 
 #### Description  
 
-In NGINX Instance Manager (NIM) v2.19.0, publishing a NAP policy from the UI fails if the latest NAP compiler v5.264 (NAP v4.13.0 or NAP v5.5.0) is manually installed without adding the NGINX repository certificate and key.
+In NGINX Instance Manager v2.19.0, publishing an NGINX App Protect WAF policy from the UI fails if the latest NGINX App Protect WAF compiler v5.264.0 (for NGINX App Protect WAF v4.13.0 or v5.5.0) is manually installed without adding the NGINX repository certificate and key.
 
 #### Workaround  
 
@@ -69,7 +69,7 @@ November 8, 2024
 
 #### Description
 
-On Ubuntu 24, NGINX Instance Manager (NIM) v2.18.0 and v2.19.0 fails to automatically download NAP compiler v5.210.0 (for NAP v4.12.0) and v5.264.0 (for NAP v4.13.0) from the NGINX repository.
+On Ubuntu 24, NGINX Instance Manager v2.18.0 and v2.19.0 fail to automatically download NGINX App Protect WAF compiler v5.210.0 (for NGINX App Protect WAF v4.12.0) and v5.264.0 (for NGINX App Protect WAF v4.13.0) from the NGINX repository.
 
 #### Workaround
 
