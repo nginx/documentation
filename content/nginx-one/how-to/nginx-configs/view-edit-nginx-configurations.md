@@ -8,8 +8,9 @@ title: View and edit NGINX configurations
 toc: true
 weight: 300
 ---
+<!-- Possible future include, with similar files in config-sync-groups/ and staged-configs/ subdirectories -->
 
-Once you've registered your NGINX instances with the F5 NGINX One Console, you can view and edit their NGINX configurations on the **Instances** details page.
+Once you've registered your NGINX Instances with the F5 NGINX One Console, you can view and edit their NGINX configurations on the **Instances** details page.
 
 To view and edit an NGINX configuration, follow these steps:
 
