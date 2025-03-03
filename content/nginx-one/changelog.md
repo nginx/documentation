@@ -32,6 +32,12 @@ h2 {
 
 Stay up-to-date with what's new and improved in the F5 NGINX One Console.
 
+## March 11, 2025
+
+### Set up Staged Configurations
+<!-- Set up include, with Glossary -->
+It allows you to save "work in progress." You can create it from scratch, an Instance, another Staged Config, or a Config Sync Group. It does _not_ have to be a working configuration until you publish it to an instance or a Config Sync Group. You can even maanage your **Staged Configurations** through our [API](link to staged configs API page). 
+
 ## January 20, 2025
 
 ### Revert a configuration
