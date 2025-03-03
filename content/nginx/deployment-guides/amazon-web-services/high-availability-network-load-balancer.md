@@ -41,7 +41,7 @@ NGINX Plus also provides reverse‑proxy and load balancing features, including
 - [Management and real‑time configuration changes with DevOps‑friendly tools](https://www.nginx.com/products/nginx/load-balancing/#load-balancing-api)
 
 <span id="overview"></span>
-## Solution Overview
+## Solution overview
 
 The combined solution described further in these instructions consists of:
 
@@ -88,7 +88,7 @@ The steps to set up an AWS NLB for an HA, all‑active NGINX Plus deployment i
 - [Launch the AWS NLB](#nlb-launch)
 
 <span id="nlb-eip"></span>
-### Allocate an Elastic IP Address
+### Allocate an Elastic IP address
 
 The first step is to allocate an Elastic IP address, which becomes the fixed IP address for your AWS NLB. Using an Elastic IP address is optional, but it is strongly recommended that you do so. With a dynamic IP address, the AWS NLB might not remain reachable if you reconfigure or restart it.
 
@@ -139,7 +139,7 @@ The new Elastic IP address displays on the **Elastic IPs** dashboard. Make a no
 5. Select the *Next: Configure Routing* button. The **Step 2: Configure Routing** window opens.
 
 <span id="nlb-routing-options"></span>
-### Configure the AWS NLB Routing Options
+### Configure the AWS NLB routing options
 
 In this step, you create a _target group_, using the **Step 2: Configure Routing** window. The target group contains the set of EC2 instances across which your AWS NLB load balances traffic. You specify those EC2 instances later, in the step [Register Instances in the Target Group](#nlb-register-instances)).
 
@@ -169,7 +169,7 @@ In this step, you create a _target group_, using the **Step 2: Configure Routing
 3. Select the *Next: Register Targets* button. The **Step 3: Register Targets** window opens.
 
 <span id="nlb-register-instances"></span>
-### Register Instances in the Target Group
+### Register instances in the target group
 
 In this step, you add instances to the empty target group you created in the previous section. Use the the **Step 3: Register Targets** window to add both NGINX Plus load balancer instances.
 
@@ -242,7 +242,7 @@ Use our Packer and Terraform scripts to completely automate the process:
 Once you have created and configured the EC2 instances, your prerequisites are complete. Continue to [Configure an AWS Network Load Balancer](#nlb-configure).
 
 <span id="create-instance-install-nginx"></span>
-#### Create EC2 Instances and Install the NGINX Software
+#### Create EC2 instances and install the NGINX software
 
 The deployed solution in these instructions uses six EC2 instances. Two instances run NGINX Plus. These load balance traffic to the other four instances, which run NGINX Open Source as a web server. The four NGINX Open Source instances deploy in two pairs; each pair runs a different app.
 
@@ -267,7 +267,7 @@ Assign the following names to the instances, then install the indicated NGINX so
 <a href="/nginx/images/aws-nlb-instances-summary.png"><img src="/nginx/images/aws-nlb-instances-summary.png" alt="" width="1024" height="263" class="aligncenter size-full wp-image-54856" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
 <span id="configure-web-servers"></span>
-#### Configure NGINX Open Source on the Web Servers
+#### Configure NGINX Open Source on the web servers
 
 Configure NGINX Open Source instances as web servers. These should return a page specifying the server name, address, and other information. As an example, here's the page returned by *App 1*:
 
@@ -285,7 +285,7 @@ Repeat the instructions on all four web servers:
   - <span style="color:#666666; font-weight:bolder">ngx-oss-app2-2</span>
 
 <span id="configure-load-balancers"></span>
-#### Configure NGINX Plus on the Load Balancers
+#### Configure NGINX Plus on the load balancers
 
 Configure NGINX Plus instances as load balancers. These distribute requests to NGINX Open Source web servers set up in [Configure NGINX Open Source on the Web Servers](#configure-web-servers).
 
@@ -294,7 +294,7 @@ Use the *Step‑by‑step* instructions in our deployment guide, [Setting Up an 
 Repeat the instructions on both <span style="color:#666666; font-weight:bolder; white-space: nowrap;">ngx-plus-1</span> and <span style="color:#666666; font-weight:bolder; white-space: nowrap;">ngx-plus-2</span>.
 
 <span id="create-instances-automated"></span>
-### Automate Instance Setup with Packer and Terraform
+### Automate instance setup with Packer and Terraform
 
 You can automate set up of the six instances described in these instructions. Automation is an alternative to creating and configuring each instance one at a time. To automate the set up, use the Packer and Terraform scripts from our [GitHub repository](https://github.com/nginxinc/NGINX-Demos/tree/master/aws-nlb-ha-asg). These scripts will:
 

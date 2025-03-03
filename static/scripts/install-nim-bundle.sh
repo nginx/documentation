@@ -697,6 +697,41 @@ This action deletes all files in the following directories: /etc/nms , /etc/ngin
   fi
 }
 
+download_third_party_dependencies(){
+  if cat /etc/*-release | grep -iq 'debian\|ubuntu'; then
+      if echo "${target_distribution}" | grep -iq 'debian\|ubuntu'; then
+          mkdir "${TEMP_DIR}/${target_distribution}/keepalived"
+          apt-get install --download-only -o Dir::Cache="${TEMP_DIR}/${target_distribution}/keepalived" keepalived
+      else
+        if command -v docker >/dev/null 2>&1; then
+            mkdir "${TEMP_DIR}/${target_distribution}/keepalived"
+            docker run --rm -it -v "${TEMP_DIR}/${target_distribution}/keepalived":/downloads fedora dnf download --resolve --destdir=/downloads keepalived
+        else
+            echo "Cross platform packing requires Docker. Please install Docker and try again."
+            exit 1
+        fi
+      fi
+  elif cat /etc/*-release | grep -iq 'centos\|fedora\|rhel\|Amazon Linux'; then
+      if echo "${target_distribution}" | grep -iq 'centos\|fedora\|rhel\|Amazon Linux'; then
+          mkdir "${TEMP_DIR}/${target_distribution}/keepalived"
+          yumdownloader --destdir="${TEMP_DIR}/${target_distribution}/keepalived" --resolve keepalived
+      else
+          if command -v docker >/dev/null 2>&1; then
+              mkdir -p "${TEMP_DIR}/keepalived"
+              docker run --rm -it -v "${TEMP_DIR}/keepalived":/tmp/nim ubuntu bash -c "apt-get update && mkdir -p /tmp/nim && apt-get install -y --download-only -o Dir::Cache=\"/tmp/nim\" keepalived"
+              mkdir "${TEMP_DIR}/${target_distribution}/keepalived"
+              mv ${TEMP_DIR}/keepalived/archives/* ${TEMP_DIR}/${target_distribution}/keepalived
+          else
+              echo "Cross platform packing requires Docker. Please install Docker and try again."
+              exit 1
+          fi
+      fi
+  else
+      printf "Unsupported distribution"
+      exit 1
+  fi
+}
+
 OPTS_STRING="k:c:m:d:i:s:p:n:hv:t:j:rf:l"
 while getopts ${OPTS_STRING} opt; do
   case ${opt} in
@@ -938,11 +973,12 @@ else
       url_file_download "$file_to_download" "$save_path"
       echo "Downloaded NGINX Instance Manager package - $save_path"
     done
+    download_third_party_dependencies
     bundle_file="nim-${NIM_VERSION}-${target_distribution}.tar.gz"
     echo -n "Creating NGINX Instance Manager install bundle ... ${bundle_file}"
     cp ${NGINX_CERT_PATH}  "${TEMP_DIR}/${target_distribution}/nginx-repo.crt"
     cp ${NGINX_CERT_KEY_PATH} "${TEMP_DIR}/${target_distribution}/nginx-repo.key"
-    tar -zcf "$bundle_file" -C "${TEMP_DIR}/${target_distribution}" .
+    tar -zcf "$bundle_file" -C "${TEMP_DIR}/${target_distribution}/" .
     echo -e "\nSuccessfully created the NGINX Instance Manager bundle - $bundle_file"
     curl -s -o /dev/null --cert ${NGINX_CERT_PATH} --key ${NGINX_CERT_KEY_PATH} "https://pkgs.nginx.com/nms/?using_install_script=true&app=nim&mode=offline"
 
@@ -971,6 +1007,11 @@ else
             DEBIAN_FRONTEND=noninteractive dpkg -i  "$pkg_clickhouse_srv"
             check_last_command_status "dpkg -i \"$pkg_clickhouse_srv\"" $?
         done
+        if [ -d "${TEMP_DIR}/keepalived" ]; then
+            echo "Installing keepalived from ${TEMP_DIR}/keepalived"
+            DEBIAN_FRONTEND=noninteractive dpkg -i ${TEMP_DIR}/keepalived/*.deb
+            check_last_command_status "dpkg -i ${TEMP_DIR}/keepalived/*.deb" $?
+        fi
         for pkg_nim in "${TEMP_DIR}"/nms-instance-manager*.deb; do
             echo "Installing NGINX Instance Manager from ${pkg_nim}"
             DEBIAN_FRONTEND=noninteractive dpkg -i "$pkg_nim"
@@ -1005,6 +1046,11 @@ else
           echo "Installing clickhouse dependencies from ${pkg_clickhouse}"
           yum localinstall -y -v --disableplugin=subscription-manager --skip-broken "$pkg_clickhouse_srv"
         done
+        if [ -d "${TEMP_DIR}/keepalived" ]; then
+            echo "Installing keepalived from ${TEMP_DIR}/keepalived"
+            yum localinstall -y -v --disableplugin=subscription-manager --skip-broken "${TEMP_DIR}/keepalived/*.rpm"
+            check_last_command_status "dpkg -i yum localinstall -y -v --disableplugin=subscription-manager --skip-broken ${TEMP_DIR}/keepalived/*.rpm" $?
+        fi
         for pkg_nim in "${TEMP_DIR}"/nms-instance-manager*.rpm; do
           echo "Installing NGINX Instance Manager from ${pkg_nim}"
           yum localinstall -y -v --disableplugin=subscription-manager --skip-broken "$pkg_nim"
