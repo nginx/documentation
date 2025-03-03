@@ -16,7 +16,7 @@ These are not NGINX One APIs.
 
 ## F5 API groups for NGINX One
 
-The following table lists the **[API Groups](https://docs.cloud.f5.com/docs-v2/administration/how-tos/user-mgmt/roles)** that you can use when you create an F5 XC role. These are narrowly scoped API Groups that align with all the features and functionality within the NGINX One Console. These groups can help you create custom roles tailored to your specific needs.
+The following table lists the **[F5 XC roles](https://docs.cloud.f5.com/docs-v2/administration/how-tos/user-mgmt/roles)** that you can use. These are narrowly scoped API Groups that align with all the features and functionality within the NGINX One Console. These groups can help you create custom roles tailored to your specific needs.
 
 {{< note >}}If you create custom roles using the more granular API Groups, users may not have access until you add the corresponding API Groups to their roles.{{< /note >}}
 
