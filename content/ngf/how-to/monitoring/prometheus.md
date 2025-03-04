@@ -122,8 +122,6 @@ Metrics given in NGINX Plus include those in NGINX OSS in addition to:
 - `nginx_ssl_certificate_verify_failures_certificates_total`: The total number of SSL certificate verification failures.
 - `nginx_ssl_handshakes_total`: The total number of SSL handshakes.
 
-These metrics are available under the namespace where your NGINX Pods are deployed.
-
 ---
 
 ### NGINX Gateway Fabric metrics
@@ -132,7 +130,7 @@ Metrics specific to NGINX Gateway Fabric include:
 
 - `event_batch_processing_milliseconds`: Time in milliseconds to process batches of Kubernetes events.
 
-All these metrics are under the `nginx-gateway` namespace and include a `class` label set to the GatewayClass of NGINX Gateway Fabric. For example, `nginx_gateway_fabric_event_batch_processing_milliseconds_sum{class="nginx"}`.
+All these metrics are under the `nginx_gateway_fabric` namespace and include a `class` label set to the GatewayClass of NGINX Gateway Fabric. For example, `nginx_gateway_fabric_event_batch_processing_milliseconds_sum{class="nginx"}`.
 
 ---
 
