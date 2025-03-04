@@ -339,7 +339,7 @@
           "disableTextWrap": false,
           "editorMode": "builder",
           "exemplar": false,
-          "expr": "nginx_http_connections_count{instance=~\"$nginx_instance\", nginx_connections_outcome=\"ACTIVE\"}",
+          "expr": "irate(nginx_http_connections_count{instance=~\"$nginx_instance\", nginx_connections_outcome=\"ACTIVE\"}[1m])",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
@@ -354,8 +354,8 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "disableTextWrap": false,
-          "editorMode": "code",
-          "expr": "nginx_http_connections_count{instance=~\"$nginx_instance\", nginx_connections_outcome=\"READING\"}",
+          "editorMode": "builder",
+          "expr": "irate(nginx_http_connections_count{instance=~\"$nginx_instance\", nginx_connections_outcome=\"READING\"}[1m])",
           "fullMetaSearch": false,
           "hide": false,
           "includeNullMetadata": true,
@@ -370,26 +370,34 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "editorMode": "code",
-          "expr": "nginx_http_connections_count{instance=~\"$nginx_instance\", nginx_connections_outcome=\"WAITING\"}",
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "expr": "irate(nginx_http_connections_count{instance=~\"$nginx_instance\", nginx_connections_outcome=\"WAITING\"}[1m])",
+          "fullMetaSearch": false,
           "hide": false,
+          "includeNullMetadata": true,
           "instant": false,
           "legendFormat": "{{instance}} waiting",
           "range": true,
-          "refId": "C"
+          "refId": "C",
+          "useBackend": false
         },
         {
           "datasource": {
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "editorMode": "code",
-          "expr": "nginx_http_connections_count{instance=~\"$nginx_instance\", nginx_connections_outcome=\"WRITING\"}",
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "expr": "irate(nginx_http_connections_count{instance=~\"$nginx_instance\", nginx_connections_outcome=\"WRITING\"}[1m])",
+          "fullMetaSearch": false,
           "hide": false,
+          "includeNullMetadata": true,
           "instant": false,
           "legendFormat": "{{instance}} writing",
           "range": true,
-          "refId": "D"
+          "refId": "D",
+          "useBackend": false
         }
       ],
       "title": "NGINX Active Connections",
@@ -658,7 +666,9 @@
       },
       {
         "current": {
-          "text": "All",
+          "text": [
+            "All"
+          ],
           "value": [
             "$__all"
           ]
@@ -685,13 +695,13 @@
     ]
   },
   "time": {
-    "from": "now-15m",
+    "from": "now-5m",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "NGINX Gateway Fabric",
   "uid": "cdb1c6f6-7c77-4cee-a177-593f41364dbe",
-  "version": 4,
+  "version": 5,
   "weekStart": ""
 }
