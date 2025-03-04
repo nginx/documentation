@@ -64,7 +64,7 @@ We have templates for the following types of documentation:
 
 ## How to format docs
 
-### Basic markdown formatting
+### Basic Markdown formatting
 
 There are multiple ways to format text: for consistency and clarity, these are our conventions:
 
@@ -151,6 +151,25 @@ Here are some other shortcodes:
 - `raw-html`: Include a block of raw HTML
 - `readfile`: Include the content of another file in the current file, which can be in an arbitrary location.
 - `bootstrap-table`: formats a table using Bootstrap classes; accepts any bootstrap table classes as additional arguments, e.g. `{{< bootstrap-table "table-bordered table-hover" }}`
+
+### How to use Hugo includes
+
+As mentioned above, [Hugo includes](https://gohugo.io/contribute/documentation/#include) are a custom shortcode that allows you to reference reusable content stored in the [`/content/includes` directory](https://github.com/nginx/documentation/tree/main/content/includes).
+
+For example, if the [`controller/add-existing-instance.md`](https://github.com/nginx/documentation/blob/main/content/includes/controller/add-existing-instance.md) file contains instructions on adding an instance to the NGINX Controller, you can reuse it on multiple pages by adding:
+
+```md
+{{< include "controller/add-existing-instance.md" >}}
+```
+
+The `controller/add-existing-instance.md` file is included in the following pages on the NGINX Docs Site:
+
+- [Add an NGINX App Protect Instance](https://github.com/nginx/documentation/blob/main/content/controller/infrastructure/instances/add-nap-instance.md?plain=1#L35)
+- [Manage Your NGINX Instances](https://github.com/nginx/documentation/blob/main/content/controller/infrastructure/instances/manage-instances.md?plain=1#L29)
+- [Trial NGINX Controller with NGINX Plus](https://github.com/nginx/documentation/blob/main/content/controller/admin-guides/install/try-nginx-controller.md?plain=1#L277)
+- [Trial NGINX Controller with App Security](https://github.com/nginx/documentation/blob/main/content/controller/admin-guides/install/try-nginx-controller-app-sec.md?plain=1#L290)
+
+This ensures that content is defined once and referenced in multiple places without duplication.
 
 ## Linting
 
