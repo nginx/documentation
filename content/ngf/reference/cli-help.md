@@ -13,14 +13,14 @@ Learn about the commands available for the executable file of the NGINX Gateway 
 
 ---
 
-## Static mode
+## Controller
 
-This command configures NGINX for a single NGINX Gateway Fabric resource.
+This command runs the NGINX Gateway Fabric control plane.
 
 *Usage*:
 
 ```shell
-  gateway static-mode [flags]
+  gateway controller [flags]
 ```
 
 ---
@@ -47,6 +47,7 @@ This command configures NGINX for a single NGINX Gateway Fabric resource.
 | _leader-election-disable_           | _bool_   | Disable leader election, which is used to avoid multiple replicas of the NGINX Gateway Fabric reporting the status of the Gateway API resources. If disabled, all replicas of NGINX Gateway Fabric will update the statuses of the Gateway API resources (Default: `false`).                                                                                                             |
 | _leader-election-lock-name_         | _string_ | The name of the leader election lock. A lease object with this name will be created in the same namespace as the controller (Default: `"nginx-gateway-leader-election-lock"`).                                                                                                                                                                                                           |
 | _product-telemetry-disable_         | _bool_   | Disable the collection of product telemetry (Default: `false`).                                                                                                                                                                                                                                                                                                                          |
+| _nginx-docker-secret_               | _list_   | The name of the NGINX docker registry Secret(s). Must exist in the same namespace that the NGINX Gateway Fabric control plane is running in (default namespace: nginx-gateway). |
 | _usage-report-secret_               | _string_ | The name of the Secret containing the JWT for NGINX Plus usage reporting. Must exist in the same namespace that the NGINX Gateway Fabric control plane is running in (default namespace: nginx-gateway)                                                                                                                                                                                                                                                                                              |
 | _usage-report-endpoint_           | _string_ | The endpoint of the NGINX Plus usage reporting server.                                                                                                                                                                                                                                                                                                                            |
 | _usage-report-resolver_         | _string_ | The nameserver used to resolve the NGINX Plus usage reporting endpoint. Used with NGINX Instance Manager.                                                                                                                                                                                                                                                                                                     |
