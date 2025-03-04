@@ -4,6 +4,8 @@ weight: 800
 categories: ["concepts"]
 toc: true
 docs: "DOCS-881"
+url: /nginxaas/azure/faq/
+
 ---
 
 Common questions about F5 NGINX as a Service for Azure (NGINXaaS).
