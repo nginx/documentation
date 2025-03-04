@@ -62,7 +62,7 @@ Some directives cannot be overridden by the user provided configuration.
   |------------------ | ----------------------- | -----------------|
   | `user` | `nginx` | The `nginx` user has the correct permissions for accessing certificates, policy files and other auxfiles. |
   | `worker_processes` | `auto` | Set to `auto` to automatically set `worker_processes` to the number of CPU cores. |
-  | `worker_connections` |   <ul><li>standard plan `4000`</li><li>basic plan `3000`</li></ul> | To ensure reasonable performance of the NGINXaaS deployment for standard plan the `worker_connections` is fixed at 400/NCU; for basic plan this is set lower. |
+  | `worker_connections` |   <ul><li>Standard V2 plan `4000`</li><li>basic plan `3000`</li></ul> | To ensure reasonable performance of the NGINXaaS deployment for Standard V2 plan, the `worker_connections` is fixed at 400/NCU; for basic plan this is set lower. |
   | `pid` | `/run/nginx/nginx.pid` | Set to this value to allow NGINXaaS to automatically manage the NGINX master process. |
   | `daemon` | `on` | Automatically set to `on` to allow NGINXaaS to manage the NGINX master process. |
   | `master_process` | `on` | This directive is intended for NGINX developers. |

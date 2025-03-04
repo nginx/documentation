@@ -11,16 +11,18 @@ F5 NGINX as a Service for Azure (NGINXaaS) provides a rich set of metrics that y
 
 ## Available metrics
 
-- [NGINXaaS Statistics](#nginxaas-statistics)
-- [NGINX connections statistics](#nginx-connections-statistics)
-- [NGINX requests and response statistics](#nginx-requests-and-response-statistics)
-- [NGINX SSL Statistics](#nginx-ssl-statistics)
-- [NGINX Cache Statistics](#nginx-cache-statistics)
-- [NGINX Worker Statistics](#nginx-worker-statistics)
-- [NGINX Upstream Statistics](#nginx-upstream-statistics)
-- [NGINX System Statistics](#nginx-system-statistics)
-- [NGINX Stream Statistics](#nginx-stream-statistics)
-- [NGINX Resolver Statistics](#nginx-resolver-statistics)
+- [Available metrics](#available-metrics)
+- [Metrics](#metrics)
+  - [NGINXaaS statistics](#nginxaas-statistics)
+  - [NGINX connections statistics](#nginx-connections-statistics)
+  - [NGINX requests and response statistics](#nginx-requests-and-response-statistics)
+  - [NGINX SSL statistics](#nginx-ssl-statistics)
+  - [NGINX cache statistics](#nginx-cache-statistics)
+  - [NGINX worker statistics](#nginx-worker-statistics)
+  - [NGINX upstream statistics](#nginx-upstream-statistics)
+  - [NGINX system statistics](#nginx-system-statistics)
+  - [NGINX stream statistics](#nginx-stream-statistics)
+  - [NGINX resolver statistics](#nginx-resolver-statistics)
 
 ## Metrics
 
@@ -33,9 +35,9 @@ The metrics are categorized by the namespace used in Azure Monitor. The dimensio
 
 | **Metric**            | **Dimensions** | **Type** | **Description**                                                                                                                                                                                                                                                                                                           | **Roll-up per** |
 | --------------------- | -------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
-| ncu.provisioned       |                | count    | The number of successfully provisioned NCUs during the aggregation interval. During scaling events, this may lag behind `ncu.requested` as the system works to achieve the request. Available for Standard plan deployments.                                                                                              | deployment      |
-| ncu.requested         |                | count    | The requested number of NCUs during the aggregation interval. Describes the goal state of the system. Available for Standard plan deployments.                                                                                                                                                                            | deployment      |
-| ncu.consumed          |                | count    | The estimated number of NCUs used to handle the current traffic. This may burst above the `ncu.provisioned`. This can be used to guide scaling out or in to match your workload. See [Scaling Guidance]({{< relref "/nginxaas-azure/quickstart/scaling.md#iterative-approach" >}}) for details. Available for Standard plan deployments. | deployment      |
+| ncu.provisioned       |                | count    | The number of successfully provisioned NCUs during the aggregation interval. During scaling events, this may lag behind `ncu.requested` as the system works to achieve the request. Available for Standard plan(s) only.                                                                                              | deployment      |
+| ncu.requested         |                | count    | The requested number of NCUs during the aggregation interval. Describes the goal state of the system. Available for Standard plans(s) only.                                                                                                                                                                            | deployment      |
+| ncu.consumed          |                | count    | The estimated number of NCUs used to handle the current traffic. This may burst above the `ncu.provisioned`. This can be used to guide scaling out or in to match your workload. See [Scaling Guidance]({{< relref "/nginxaas-azure/quickstart/scaling.md#iterative-approach" >}}) for details. Available for Standard plan(s) only. | deployment      |
 | system.worker_connections | pid process_name | count | The number of nginx worker connections used on the dataplane. This metric is one of the factors which determines the deployment's consumed NCU value.  | deployment |
 | nginxaas.certificates | name status    | count    | The number of certificates added to the NGINXaaS deployment dimensioned by the name of the certificate and its status. Refer to [Certificate Health]({{< relref "/nginxaas-azure/getting-started/ssl-tls-certificates/overview.md#monitor-certificates" >}}) to learn more about the status dimension.             | deployment      |
 | nginxaas.maxmind      | status         | count    | The status of any MaxMind license in use for downloading geoip2 databases. Refer to [License Health]({{< relref "/nginxaas-azure/quickstart/geoip2.md#monitoring" >}}) to learn more about the status dimension.                                                                                                                 | deployment      |
