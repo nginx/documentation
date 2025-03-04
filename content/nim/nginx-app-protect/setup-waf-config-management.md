@@ -30,8 +30,6 @@ Complete the following prerequisites before proceeding with this guide.
 
 ### Limitations
 
-{{<important>}}App Protect WAF Config management is currently not supported when [deploying Instance Manager on Kubernetes]({{<relref "/nim/deploy/kubernetes/deploy-using-helm.md" >}}).{{</important>}}
-
 Instance Manager does not support the following NGINX App Protect features:
 
 - [Policies with external references](https://docs.nginx.com/nginx-app-protect/configuration-guide/configuration/#external-references)
