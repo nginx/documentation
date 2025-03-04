@@ -1,13 +1,10 @@
 ---
-description: 
-docs:
-doctypes:
-- reference
-tags:
-- docs
-title: "Overview: set up custom roles"
-toc: true
+title: "Custom roles and API groups"
 weight: 500
+toc: true
+type: reference
+product: NGINX One
+docs: DOCS-000
 ---
 
 Beyond [Default roles]({{< relref "/nginx-one/rbac/roles.md" >}}), you may need to set up custom roles. For convenience, we include a list of API groups that you could use to specify permissions for custom roles.

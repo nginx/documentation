@@ -1,16 +1,13 @@
 ---
-description: 
-docs:
-doctypes:
-- reference
-tags:
-- docs
-title: "Reference: default roles"
-toc: true
+title: "Default roles"
 weight: 500
+toc: true
+type: reference
+product: NGINX One
+docs: DOCS-000
 ---
 
-## Default Roles
+## Default roles
 
 We provide three default **[roles](https://docs.cloud.f5.com/docs-v2/administration/how-tos/user-mgmt/roles)** that can be used for providing various access levels to the NGINX One Console. These roles will be automatically updated as new features are added to the NGINX One Console. Default roles can be scoped to specific namespaces.
 

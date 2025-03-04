@@ -1,13 +1,10 @@
 ---
-description: 
-docs:
-doctypes:
-- reference
-tags:
-- docs
-title: "Overview: Role-based access control"
-toc: true
+title: "Role-based access control overview"
 weight: 400
+toc: true
+type: reference
+product: NGINX One
+docs: DOCS-000
 ---
 
 {{< include "security/rbac-intro.md" >}}
