@@ -96,10 +96,10 @@ Metrics given in NGINX OSS include:
 Metrics given in NGINX Plus include those in NGINX OSS in addition to:
 - `nginx_config_reloads`: The total number of NGINX config reloads.
 - `nginx_http_response_status_responses_total`: The number of responses, grouped by status code range.
-- `nginx_http_upstream_keepalive_count_connections`: The current number of idle keepalive connections per HTTP upstream.
 - `nginx_http_request_discarded_requests_total`: The total number of requests completed without sending a response.
 - `nginx_http_request_processing_count_requests`: The number of client requests that are currently being processed.
 - `nginx_http_request_byte_io_bytes_total`: The total number of HTTP byte IO.
+- `nginx_http_upstream_keepalive_count_connections`: The current number of idle keepalive connections per HTTP upstream.
 - `nginx_http_upstream_peer_byte_io_bytes_total`: The total number of byte IO per HTTP upstream peer.
 - `nginx_http_upstream_peer_count_peers`: The current count of peers on the HTTP upstream grouped by state.
 - `nginx_http_upstream_peer_fails_attempts`: The total number of unsuccessful attempts to communicate with the HTTP upstream peer.
@@ -132,7 +132,7 @@ Metrics specific to NGINX Gateway Fabric include:
 
 - `event_batch_processing_milliseconds`: Time in milliseconds to process batches of Kubernetes events.
 
-All these metrics are under the `nginx-gatewy` namespace and include a `class` label set to the GatewayClass of NGINX Gateway Fabric. For example, `nginx_gateway_fabric_event_batch_processing_milliseconds_sum{class="nginx"}`.
+All these metrics are under the `nginx-gateway` namespace and include a `class` label set to the GatewayClass of NGINX Gateway Fabric. For example, `nginx_gateway_fabric_event_batch_processing_milliseconds_sum{class="nginx"}`.
 
 ---
 

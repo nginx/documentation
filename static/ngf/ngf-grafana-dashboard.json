@@ -19,7 +19,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 2,
+  "id": 1,
   "links": [],
   "panels": [
     {
@@ -93,32 +93,7 @@
             ]
           }
         },
-        "overrides": [
-          {
-            "__systemRef": "hideSeriesFrom",
-            "matcher": {
-              "id": "byNames",
-              "options": {
-                "mode": "exclude",
-                "names": [
-                  "up{app_kubernetes_io_instance=\"my-release\", app_kubernetes_io_name=\"nginx-gateway-fabric\", instance=\"10.244.0.6:9113\", job=\"kubernetes-pods\", namespace=\"nginx-gateway\", node=\"kind-control-plane\", pod=\"my-release-nginx-gateway-fabric-bb7bcd756-clzbt\", pod_template_hash=\"bb7bcd756\"}"
-                ],
-                "prefix": "All except:",
-                "readOnly": true
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": true
-                }
-              }
-            ]
-          }
-        ]
+        "overrides": []
       },
       "gridPos": {
         "h": 8,
@@ -645,7 +620,7 @@
       {
         "current": {
           "text": "prometheus",
-          "value": "beerh65rwdji8d"
+          "value": "aeeumt3huyhogd"
         },
         "includeAll": false,
         "label": "datasource",
@@ -683,9 +658,7 @@
       },
       {
         "current": {
-          "text": [
-            "All"
-          ],
+          "text": "All",
           "value": [
             "$__all"
           ]
