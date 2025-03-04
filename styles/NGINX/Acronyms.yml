@@ -1,0 +1,73 @@
+extends: conditional
+message: "'%s' has no definition."
+level: suggestion
+ignorecase: false
+# Ensures that the existence of 'first' implies the existence of 'second'.
+first: '\b([A-Z]{3,5})\b'
+second: '(?:\b[A-Z][a-z]+ )+\(([A-Z]{3,5})\)'
+# ... with the exception of these:
+exceptions:
+  - API
+  - ASP
+  - CLI
+  - CPU
+  - CSS
+  - CSV
+  - DEBUG
+  - DELETE
+  - DOM
+  - DPI
+  - F5
+  - FAQ
+  - GCC
+  - GDB
+  - GET
+  - GPU
+  - GTK
+  - GUI
+  - HTML
+  - HTTP
+  - HTTPS
+  - IDE
+  - IETF
+  - JAR
+  - JSON
+  - JSX
+  - LESS
+  - LLDB
+  - NET
+  - NOTE
+  - NVDA
+  - NGINX
+  - OSS
+  - PATH
+  - PATCH
+  - PDF
+  - PHP
+  - POST
+  - PUT
+  - RAM
+  - REPL
+  - REST
+  - RSA
+  - SCM
+  - SCSS
+  - SDK
+  - SQL
+  - SSH
+  - SSL
+  - SVG
+  - TBD
+  - TCP
+  - TODO
+  - TMOS
+  - URI
+  - URL
+  - USB
+  - UTF
+  - VLAN
+  - VPN
+  - XML
+  - XSS
+  - YAML
+  - ZIP
