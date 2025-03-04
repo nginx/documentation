@@ -38,7 +38,7 @@
     },
     {
       "name": "Certificates",
-      "description": "The `Certificates` object in the NGINX One console represents an SSL certificate, covering both managed and unmanaged types. \nYou can view essential details like issuer, expiration status, and the instances or config sync groups where each certificate is deployed.\n",
+      "description": "The `Certificates` object in NGINX One Console represents an SSL certificate, covering both managed and unmanaged types. \nYou can view essential details like issuer, expiration status, and the instances or config sync groups where each certificate is deployed.\n",
       "x-displayName": "Certificates"
     },
     {
@@ -48,7 +48,7 @@
     },
     {
       "name": "Events",
-      "description": "Get a list of system events in the NGINX One console.\n",
+      "description": "Get a list of system events in NGINX One Console.\n",
       "x-displayName": "Events"
     },
     {
@@ -616,7 +616,7 @@
         ],
         "summary": "Delete an SSL certificate",
         "operationId": "deleteCertificate",
-        "description": "Deletes a managed SSL certificate from the NGINX One console. This operation is disabled for unmanaged certificates, as they get cleaned up automatically when they are not used in any NGINX configuration.",
+        "description": "Deletes a managed SSL certificate from NGINX One Console. This operation is disabled for unmanaged certificates, as they get cleaned up automatically when they are not used in any NGINX configuration.",
         "responses": {
           "204": {
             "description": "Successfully deleted the SSL certificate."
@@ -1127,7 +1127,7 @@
           "Config Sync Groups"
         ],
         "summary": "Delete an NGINX config sync group",
-        "description": "Delete a NGINX config sync group from the NGINX One console. You can delete a config sync group, only if it contains no NGINX instances.\n",
+        "description": "Delete a NGINX config sync group from NGINX One Console. You can delete a config sync group, only if it contains no NGINX instances.\n",
         "operationId": "deleteConfigSyncGroup",
         "responses": {
           "204": {
@@ -1702,7 +1702,7 @@
           "Config Sync Groups"
         ],
         "summary": "Retrieves stored NGINX configurations for a NGINX config sync group",
-        "description": "Returns a list of all configurations for a NGINX config sync group. Only the last 5 are kept on the NGINX One Console for a NGINX config sync group.",
+        "description": "Returns a list of all configurations for a NGINX config sync group. Only the last 5 are kept on NGINX One Console for a NGINX config sync group.",
         "operationId": "listConfigSyncGroupConfigurations",
         "responses": {
           "200": {
@@ -2811,7 +2811,7 @@
           "Instances"
         ],
         "summary": "Retrieves the stored NGINX configurations for an instance",
-        "description": "Returns a list of all configurations for a NGINX instance. Only the last 5 are kept on the NGINX One Console for a NGINX instance.",
+        "description": "Returns a list of all configurations for a NGINX instance. Only the last 5 are kept on NGINX One Console for a NGINX instance.",
         "operationId": "listInstanceConfigurations",
         "responses": {
           "200": {
@@ -3731,7 +3731,7 @@
         "properties": {
           "total": {
             "type": "integer",
-            "description": "The absolute total number of the resource in the NGINX One Console.\n"
+            "description": "The absolute total number of the resource in NGINX One Console.\n"
           },
           "count": {
             "type": "integer",
@@ -4078,7 +4078,7 @@
       },
       "CertificateType": {
         "type": "string",
-        "description": "Certificate type:\n  * `ca_bundle` - This certificate object is a CA bundle.\n  * `cert_key` - This certificate object is consisted of public certificates and key.\n  * `unmanaged` - This certificate is not managed by NGINX One console and its type is unmanaged.\n",
+        "description": "Certificate type:\n  * `ca_bundle` - This certificate object is a CA bundle.\n  * `cert_key` - This certificate object is consisted of public certificates and key.\n  * `unmanaged` - This certificate is not managed by NGINX One Console and its type is unmanaged.\n",
         "enum": [
           "ca_bundle",
           "cert_key",
@@ -5535,7 +5535,7 @@
       },
       "NginxConfigPayloads": {
         "type": "array",
-        "description": "An array of payloads that track the file paths of each SSL certificates and key, indicating where to deploy\nthem onto the data plane instance.\n* If the `type` is `managed_certificate` or `managed_key`, you need to specify an `object_id`.\n  * The `object_id` must represent a managed certificate object, or a `400 Bad Request` is returned. \n  * The `contents` field is optional and is ignored if included.\n* The NGINX One Console manages deployed file paths only for managed certificates and keys. If you don't want \nthem to be managed by NGINX One Console, `inline_content` and `inline_secret` can be used for certificates or \nkeys, respectively. When you retrieve certificate deployment details, only the file paths of managed \ncertificates and keys will be shown.\n* If you use `inline_content` and `inline_secret` in your NGINX configuration, the NGINX One Console \nwill detect them. When they are used as SSL directives of the NGINX configuration \nfor certificates and keys, the certificates will be listed as `unmanaged_certificate` in the certificate \ndeployment details.\n",
+        "description": "An array of payloads that track the file paths of each SSL certificates and key, indicating where to deploy\nthem onto the data plane instance.\n* If the `type` is `managed_certificate` or `managed_key`, you need to specify an `object_id`.\n  * The `object_id` must represent a managed certificate object, or a `400 Bad Request` is returned. \n  * The `contents` field is optional and is ignored if included.\n* NGINX One Console manages deployed file paths only for managed certificates and keys. If you don't want \nthem to be managed by NGINX One Console, `inline_content` and `inline_secret` can be used for certificates or \nkeys, respectively. When you retrieve certificate deployment details, only the file paths of managed \ncertificates and keys will be shown.\n* If you use `inline_content` and `inline_secret` in your NGINX configuration, NGINX One Console \nwill detect them. When they are used as SSL directives of the NGINX configuration \nfor certificates and keys, the certificates will be listed as `unmanaged_certificate` in the certificate \ndeployment details.\n",
         "items": {
           "$ref": "#/components/schemas/NginxConfigPayload"
         },
