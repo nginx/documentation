@@ -83,17 +83,17 @@ NGINX Gateway Fabric provides a variety of metrics for monitoring and analyzing 
 
 ### NGINX/NGINX Plus metrics
 
-NGINX metrics cover specific NGINX operations such as the total number of accepted client connections. These metrics are 
+NGINX metrics include NGINX-specific data such as the total number of accepted client connections. These metrics are
 collected through NGINX Agent and are reported by each NGINX Pod.
 
 NGINX Gateway Fabric currently supports a subset of all metrics available through NGINX OSS and Plus. Listed below are
 the supported metrics along with a small accompanying description.
 
-Metrics given in NGINX OSS include:
+Metrics provided by NGINX Open Source include:
 - `nginx_http_connections`: NGINX-wide statistics describing HTTP connections.
 - `nginx_http_requests`: The total number of client requests received from clients.
 
-Metrics given in NGINX Plus include those in NGINX OSS in addition to:
+In addition to the previous metrics provided by NGINX Open Source, NGINX Plus includes:
 - `nginx_config_reloads`: The total number of NGINX config reloads.
 - `nginx_http_response_status_responses_total`: The number of responses, grouped by status code range.
 - `nginx_http_request_discarded_requests_total`: The total number of requests completed without sending a response.
