@@ -9,7 +9,7 @@ url: /nginxaas/azure/quickstart/scaling/
 
 F5 NGINX as a Service for Azure (NGINXaaS) supports manual and automatic scaling of your deployment, allowing you to adapt to application traffic demands while controlling cost.
 
-{{<note>}}Scaling requires the Standard plan.{{</note>}}
+{{<note>}}This feature is only available for Standard plan(s).{{</note>}}
 
 An NGINXaaS deployment can be scaled out to increase the capacity (increasing the cost) or scaled in to decrease the capacity (reducing the cost). Capacity is measured in [NGINX Capacity Units (NCU)](#nginx-capacity-unit-ncu).
 
@@ -65,7 +65,7 @@ The following table outlines constraints on the specified capacity based on the 
 {{<bootstrap-table "table table-striped table-bordered">}}
 | **Marketplace Plan**         | **Minimum Capacity (NCUs)** | **Maximum Capacity (NCUs)** | **Multiple of**            |
 |------------------------------|-----------------------------|-----------------------------|----------------------------|
-| Standard                     | 10                          | 500                         | 10                         |
+| Standard plan(s)                  | 10                          | 500                         | 10                         |
 {{</bootstrap-table>}}
 
 {{< note >}}If you need a higher maximum capacity, please [open a request](https://my.f5.com/manage/s/) and specify the Resource ID of your NGINXaaS deployment, the region, and the desired maximum capacity you wish to scale to.{{< /note >}}
