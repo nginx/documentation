@@ -32,8 +32,8 @@ Complete the following prerequisites before proceeding with this guide.
 
 Instance Manager does not support the following NGINX App Protect features:
 
-- [Policies with external references](https://docs.nginx.com/nginx-app-protect/configuration-guide/configuration/#external-references)
-- [Policies with modifications](https://docs.nginx.com/nginx-app-protect/configuration-guide/configuration/#modifying-configurations)
+- [Policies with external references](https://docs.nginx.com/nginx-app-protect-waf/v4/configuration-guide/configuration/#external-references)
+- [Policies with modifications](https://docs.nginx.com/nginx-app-protect-waf/v4/configuration-guide/configuration/#modifying-configurations)
 - Custom signatures
 
 ---
