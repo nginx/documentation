@@ -7,26 +7,26 @@ product: NGINX One
 docs: DOCS-1393
 ---
 
-This guide provides step-by-step instructions on how to activate and start using the F5 NGINX One Console. NGINX One is a management console for monitoring and managing NGINX data plane instances.
+This guide provides step-by-step instructions on how to activate and start using F5 NGINX One Console. NGINX One is a management console for monitoring and managing NGINX data plane instances.
 
 ## Enable the NGINX One service {#enable-nginx-one}
 
 To get started using NGINX One, enable the service on F5 Distributed Cloud.
 
-1. Log in to the [F5 Distributed Console](https://www.f5.com/cloud/products/distributed-cloud-console).
+1. Log in to [F5 Distributed Console](https://www.f5.com/cloud/products/distributed-cloud-console).
 1. Select **NGINX One** from the list of services.
 1. Select **Enable Service**.
-1. After the service has been enabled, select **Visit Service** to load the NGINX One console.
+1. After the service has been enabled, select **Visit Service** to load NGINX One Console.
 
 ---
 
 ## Add your NGINX instances to NGINX One
 
-Next, add your NGINX instances to NGINX One. You'll need to create a data plane key and then install the NGINX Agent on each instance you want to monitor.
+Next, add your NGINX instances to NGINX One. You'll need to create a data plane key and then install NGINX Agent on each instance you want to monitor.
 
 ### Add an instance
 
-Depending on whether this is your first time using the NGINX One console or you've used it before, follow the appropriate steps to add an instance:
+Depending on whether this is your first time using NGINX One Console or you've used it before, follow the appropriate steps to add an instance:
 
 - **For first-time users:** On the welcome screen, select **Add Instance**.
 - **For returning users:** If you've added instances previously and want to add more, select **Instances** on the left menu, then select **Add Instance**.
@@ -51,17 +51,17 @@ Data plane keys expire after one year. You can change this expiration date later
 
 ### Install NGINX Agent
 
-After entering your data plane key, you'll see a `curl` command similar to the one below. Copy and run this command on each NGINX instance to install the NGINX Agent. Once installed, the NGINX Agent typically registers with NGINX One within a few seconds.
+After entering your data plane key, you'll see a `curl` command similar to the one below. Copy and run this command on each NGINX instance to install NGINX Agent. Once installed, NGINX Agent typically registers with NGINX One within a few seconds.
 
 {{<call-out "important" "Connecting to NGINX One" >}}
-The NGINX Agent must be able to establish a connection to the NGINX One Console's Agent endpoint (`agent.connect.nginx.com`). Ensure that any firewall rules you have in place for your NGINX hosts allows network traffic to port `443` for all of the following IPs:
+NGINX Agent must be able to establish a connection to NGINX One Console's Agent endpoint (`agent.connect.nginx.com`). Ensure that any firewall rules you have in place for your NGINX hosts allows network traffic to port `443` for all of the following IPs:
 
 - `3.135.72.139`
 - `3.133.232.50`
 - `52.14.85.249`
 {{</call-out>}}
 
-To install the NGINX Agent on an NGINX instance:
+To install NGINX Agent on an NGINX instance:
 
 1. **Check if NGINX is running and start it if it's not:**
 
@@ -79,7 +79,7 @@ To install the NGINX Agent on an NGINX instance:
 
 2. **Install NGINX Agent:**
 
-    Next, use the `curl` command provided to you to install the NGINX Agent:
+    Next, use the `curl` command provided to you to install NGINX Agent:
 
     ``` shell
     curl https://agent.connect.nginx.com/nginx-agent/install | DATA_PLANE_KEY="YOUR_DATA_PLANE_KEY" sh -s -- -y
@@ -105,11 +105,11 @@ If you followed the [Installation and upgrade](https://docs.nginx.com/nginx-agen
 
 <span style="display: inline-block; margin-top: 20px;" >
 
-{{<call-out "note" "Note: NGINX Agent poll interval" >}} We recommend keeping `dataplane.status.poll_interval` between `30s` and `60s` in the NGINX Agent config (`/etc/nginx-agent/nginx-agent.conf`). If the interval is set above `60s`, the NGINX One Console may report incorrect instance statuses.{{</call-out>}}
+{{<call-out "note" "Note: NGINX Agent poll interval" >}} We recommend keeping `dataplane.status.poll_interval` between `30s` and `60s` in the NGINX Agent config (`/etc/nginx-agent/nginx-agent.conf`). If the interval is set above `60s`, NGINX One Console may report incorrect instance statuses.{{</call-out>}}
 
 <br>
 
-<i class="fa fa-check-circle" aria-hidden="true"></i> Make sure your Linux operating system is listed below. The installation script for the NGINX Agent is compatible with these distributions and versions.
+<i class="fa fa-check-circle" aria-hidden="true"></i> Make sure your Linux operating system is listed below. The installation script for NGINX Agent is compatible with these distributions and versions.
 
 #### NGINX Agent installation script: supported distributions
 
@@ -136,7 +136,7 @@ If you followed the [Installation and upgrade](https://docs.nginx.com/nginx-agen
 
 ## Enable NGINX metrics reporting
 
-In order for the NGINX One console to show specific traffic and system metrics, you need to enable the appropriate API on your NGINX data plane instances. The sections below provide step-by-step instructions for both NGINX Plus and NGINX Open Source (OSS).
+In order for NGINX One Console to show specific traffic and system metrics, you need to enable the appropriate API on your NGINX data plane instances. The sections below provide step-by-step instructions for both NGINX Plus and NGINX Open Source (OSS).
 
 ### Enable NGINX Plus API
 
@@ -154,7 +154,7 @@ After connecting your NGINX instances to NGINX One, you can monitor their perfor
 
 ### Log in to NGINX One
 
-1. Log in to the [F5 Distributed Console](https://www.f5.com/cloud/products/distributed-cloud-console).
+1. Log in to [F5 Distributed Console](https://www.f5.com/cloud/products/distributed-cloud-console).
 1. Select **NGINX One > Visit Service**.
 
 ### Overview of the NGINX One dashboard
@@ -172,7 +172,7 @@ Navigating the dashboard:
 **NGINX One dashboard metrics**
 | Metric | Description | Details |
 |---|---|---|
-| <i class="fas fa-heartbeat"></i> **Instance availability** | Understand the operational status of your NGINX instances. | - **Online**: The NGINX instance is actively connected and functioning properly. <br> - **Offline**: The NGINX Agent is connected but the NGINX instance isn't running, isn't installed, or can't communicate with the NGINX Agent. <br> - **Unavailable**: The connection between the NGINX Agent and NGINX One has been lost or the instance has been decommissioned. <br> - **Unknown**: The current state can't be determined at the moment. |
+| <i class="fas fa-heartbeat"></i> **Instance availability** | Understand the operational status of your NGINX instances. | - **Online**: The NGINX instance is actively connected and functioning properly. <br> - **Offline**: NGINX Agent is connected but the NGINX instance isn't running, isn't installed, or can't communicate with NGINX Agent. <br> - **Unavailable**: The connection between NGINX Agent and NGINX One has been lost or the instance has been decommissioned. <br> - **Unknown**: The current state can't be determined at the moment. |
 | <i class="fas fa-code-branch"></i> **NGINX versions by instance** | See which NGINX versions are in use across your instances. | |
 | <i class="fas fa-desktop"></i> **Operating systems** | Find out which operating systems your instances are running on. | |
 | <i class="fas fa-certificate"></i> **Certificates** | Monitor the status of your SSL certificates to know which are expiring soon and which are still valid. | |

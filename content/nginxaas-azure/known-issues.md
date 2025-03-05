@@ -3,6 +3,8 @@ title: "Known issues"
 weight: 1000
 toc: true
 docs: "DOCS-871"
+url: /nginxaas/azure/known-issues/
+
 ---
 
 List of known issues in the latest release of F5 NGINX as a Service for Azure (NGINXaaS).
