@@ -1,0 +1,148 @@
+extends: substitution
+message: "Consider using '%s' instead of '%s'."
+ignorecase: false
+#code: false
+level: suggestion
+action:
+  name: replace
+swap:
+    above: preceding|previous
+    '(?:anti-virus|anti virus)': antivirus
+    api: API
+    '(?:AskF5 Knowledgebase|AskF5 portal)': AskF5
+    authorisation: authorization
+    '(?:black list|blacklist|blacklisted)': blocklist|block list|deny list|denylisted
+    backwards: backward
+    '(?:bare metal|on-prem)': private cloud
+    baz: a real-world example
+    below: following
+    blade: panel
+    '(?:boot|boot up|reboot)': start|restart
+    BIG-IPs: BIG-IP systems
+    cachable: cacheable
+    cacheing: caching
+    card holder: cardholder
+    case-insensitive: not case-sensitive
+    check: verify|confirm|test|ensure
+    checkbox: check box 
+    cli: CLI
+    click: select
+    client side: hyphenate as client-side when used as adjective
+    cloud native: cloud-native
+    cloud ready: cloud-ready
+    colour: color
+    configure: set
+    core: don't use as a verb
+    core dump: core file
+    coreos: CoreOS
+    controlplane: control plane
+    '(?:cyber-attack|cyberattack)': cyber attack
+    '(?:crash|crashes|crashed)': stops responding|shuts down|system restarts
+    data are: data is
+    datacenter: data center
+    dataplane: data plane
+    datastore: datastor
+    de-duplicate: deduplicate
+    de-duplication: deduplication
+    '(?:demilitarized zone|DMZ)': perimeter network 
+    dev: developer|development
+    dialog box: pop-up window|pop-up screen
+    '(?:drop-down|dropdown|drop-down box)': list
+    e-mail: email
+    enable: use a stronger verb if possible
+    '(?:end point|end-point)': endpoint
+    end-user: user
+    '(?:hand held|hand-held)': handheld
+    '(?:hair pinning|hair-pinning)': hairpinning
+    env: environment
+    etcetera: and so on
+    executables: system files
+    execute: use|enter|start|run
+    extraneous: extra|unneeded
+    Extranet: extranet
+    F5 Technical Support: F5 Support
+    filename: file name
+    forward slash: slash
+    forwards: forward
+    grayed out: unavailable
+    grpc: GRPC
+    '(?:GUI|WebGUI|WebUI|UI)': user interface|browser interface
+    hacker: malicious user
+    hang: fail to respond|become unavailable
+    homepage: home page
+    hostname: host name
+    hot fix: hotfix
+    '(?:hover on|hover in)': hover over
+    impact: affect
+    input: don't use as a verb; use type instead
+    Internet: internet
+    Intranet: intranet
+    jaeger: Jaeger
+    jwt: JWT
+    '(?:K8s|k8s|kubernetes)': Kubernetes
+    leverage: use
+    list box: box
+    load-balance: load balance
+    load-balancer: load balancer
+    load-balancing: load balancing
+    lower case: lowercase
+    master: primary|principal|control|main
+    mouse: cursor
+    mouse over: hover over
+    multi layer: multi-layer
+    '(?:micro-service|micro service)': microservice
+    '(?:multicloud|multi cloud)': multi-cloud
+    '(?:multilayer|multi layer)': multi-layer
+    '(?:multitenancy|multi tenancy)': multi-tenancy
+    '(?:nameserver|name-server)': name server
+    name space: namespace
+    net: network
+    netmask: network mask
+    NGINX Technical Support: NGINX Support
+    '(?:off-load|off load)': offload
+    '(?:plugin|plug in)': plug-in
+    '(?:readonly|read only)': read-only
+    openapi: OpenAPI
+    path name: path|file name
+    pem: PEM
+    pfx: PFX
+    pkcs: PKCS
+    pointer: cursor
+    power off: shut down
+    prometheus: Prometheus
+    query: get|list
+    radio button: refer to the item by its label
+    rbac: RBAC
+    repo: repository
+    reprovision: re-provision
+    roadmap: road map
+    rpc: RPC
+    shortcut menu: menu
+    slave: secondary|replica|agent|worker
+    smart phone: smartphone
+    smartcard: smart card
+    spin down: remove
+    spin up: create
+    subdir: subdirectory
+    '(?:thruput|through put)': throughput
+    text box: box
+    timeframe: time frame
+    tool set: toolset
+    touch screen: touchscreen
+    uncheck: deselect
+    url: URL
+    user name: username
+    userID: user ID
+    utilize: use
+    via: by means of|through
+    vice versa: conversely
+    '(?:virtual IP|VIP)': virtual address
+    web site: website
+    webpage: web page
+    webserver: web server
+    '(?:white list|whitelist|whitelisted)': allowlist|allow list|allowlisted
+    '(?:wifi|WiFi)': Wi-Fi
+    '(?:window|screen)': page
+    '(?:wish|desire)': want|need|require|prefer
+    yaml: YAML
+    zipkin: Zipkin

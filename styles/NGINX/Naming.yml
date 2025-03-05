@@ -1,0 +1,26 @@
+extends: substitution
+message: Make sure to use the full name '%s' instead of the short name '%s'.
+action:
+  name: replace
+level: error
+#code: false
+ignorecase: false
+swap:
+  ACM: NGINX API Connectivity Manager
+  ADM: NGINX App Delivery Manager
+  Amplify: NGINX Amplify
+  App Protect: NGINX App Protect
+  '(?:Dev Central|DC|dc|dev central|devCentral)': DevCentral
+  '(?:big-ip|BigIp|Big-IP|Big IP|Big Ip|BIGIp)': BIG-IP
+  '(?:big-iq|BigIq|Big-IQ|Big IQ|Big Iq|BIGIq)': BIG-IQ
+  F5 Networks: F5, Inc.
+  Controller: NGINX Controller
+  '(?:NIC|Ingress Controller)': NGINX Ingress Controller
+  nginx: NGINX
+  '(?:nginx\+|NGINX\+|N\+)': NGINX Plus
+  '(?:oss|OSS)': NGINX OSS
+  NIM: NGINX Instance Manager
+  NSM: NGINX Service Mesh
+  NMS: NGINX Management Suite
+  Unit: NGINX Unit
+
