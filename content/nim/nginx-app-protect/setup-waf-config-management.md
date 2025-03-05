@@ -30,8 +30,6 @@ Complete the following prerequisites before proceeding with this guide.
 
 ### Limitations
 
-{{<important>}}App Protect WAF Config management is currently not supported when [deploying Instance Manager on Kubernetes]({{<relref "/nim/deploy/kubernetes/deploy-using-helm.md" >}}).{{</important>}}
-
 Instance Manager does not support the following NGINX App Protect features:
 
 - [Policies with external references](https://docs.nginx.com/nginx-app-protect/configuration-guide/configuration/#external-references)
@@ -254,7 +252,7 @@ You will need to use your NGINX repo certificates to setup automatic retrieval o
     <summary>Example request</summary>
 
     ```shell
-    curl -X POST 'https://{{NMS_FQDN}}//api/platform/v1/certs'  \
+    curl -X POST 'https://{{NMS_FQDN}}/api/platform/v1/certs'  \
         --header "Authorization: Bearer <access token>"      \
         --header "Content-Type: application/json"                \
         -d@nginx-repo-certs.json
@@ -374,7 +372,7 @@ You will need to use the [Instance Manager REST API]({{< relref "/nim/fundamenta
 <summary>Attack Signatures Example</summary>
 
 ```shell
-curl -X POST 'https://{{NMS_FQDN}}//api/platform/v1/security/attack-signatures' \
+curl -X POST 'https://{{NMS_FQDN}}/api/platform/v1/security/attack-signatures' \
     --header "Authorization: Bearer <access token>"      \
     --form 'revisionTimestamp="2022.11.16"'                 \
     --form 'filename=@"/attack-signatures.tgz"'
@@ -386,7 +384,7 @@ curl -X POST 'https://{{NMS_FQDN}}//api/platform/v1/security/attack-signatures' 
 <summary>Threat Campaigns Example</summary>
 
 ```shell
-curl -X POST 'https://{{NMS_FQDN}}//api/platform/v1/security/threat-campaigns' \
+curl -X POST 'https://{{NMS_FQDN}}/api/platform/v1/security/threat-campaigns' \
     --header "Authorization: Bearer <access token>"      \
     --form 'revisionTimestamp="2022.11.15"'                 \
     --form 'filename=@"/threat-campaigns.tgz"'
