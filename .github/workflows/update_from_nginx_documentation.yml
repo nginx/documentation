@@ -20,6 +20,6 @@ jobs:
         echo "${{ secrets.UPDATE_REPO }}" | ssh-add -
         git clone https://github.com/nginx/documentation.git
         cd documentation
-        git remote add private git@github.com:nginx/documentation-private.git
+        git remote add private git@github.com:${{ github.repository }}.git
         git checkout -b public
         git push private public
