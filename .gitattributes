@@ -1,4 +1,11 @@
 # Set the default behavior for correcting line endings, 
 # in case people don't have core.autocrlf set.
 * text=auto
-
+F5-NGINX-team-notes.md merge=ours
+README.md merge=ours
+LICENSE merge=ours
+CONTRIBUTING_DOCS.md merge=ours
+CONTRIBUTING.md merge=ours
+.github/pull_request_template.md merge=ours
+.github/workflows/update_from_nginx_documentation.yml merge=ours
+.gitattributes merge=ours

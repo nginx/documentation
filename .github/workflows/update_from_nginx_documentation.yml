@@ -1,0 +1,25 @@
+name: Sync from nginx/documentaion to public
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/10 * * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  checkout:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+    - name: Update Private
+      run: |
+        eval `ssh-agent -s`
+        echo "${{ secrets.UPDATE_REPO }}" | ssh-add -
+        git clone https://github.com/nginx/documentation.git
+        cd documentation
+        git remote add private git@github.com:nginx/documentation-private.git
+        git checkout -b public
+        git push private public
