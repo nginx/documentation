@@ -3,6 +3,8 @@ title: "Changelog"
 weight: 900
 toc: true
 docs: "DOCS-870"
+url: /nginxaas/azure/changelog/
+
 ---
 
 Learn about the latest updates, new features, and resolved bugs in F5 NGINX as a Service for Azure.
