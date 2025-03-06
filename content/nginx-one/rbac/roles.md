@@ -13,7 +13,7 @@ We provide three default **[roles](https://docs.cloud.f5.com/docs-v2/administrat
 
 ### Admin
 
-The Admin role, identified as <code>f5xc-nginx-one-admin</code>, provides full read and write access to all endpoints and features within the NGINX One Console.
+The Admin role, identified as <code>f5xc-nginx-one-admin</code>, provides full read and write access to all endpoints and features within the NGINX One Console, and related services.
 
 ### User
 
