@@ -26,11 +26,11 @@ Before you edit a **Staged Configuration**, ensure:
 ## View and edit a Staged Configuration
 <!-- Possible future include, with similar files in config-sync-groups/, nginx-configs/, and staged-configs/ subdirectories -->
 
-Once you've registered your NGINX Staged Configs with the F5 NGINX One Console, you can view and edit their NGINX configurations on the **Staged Configs** details page.
+Once you've registered your NGINX Staged Configs with the F5 NGINX One Console, you can view and edit their NGINX configurations on the **Staged Configurations** details page.
 
 To view and edit an NGINX configuration, follow these steps:
 
-1. On the left menu, select **Staged Configs**.
+1. On the left menu, select **Staged Configurations**.
 2. Select the staged configuration you want to view or modify.
 3. Select the **Configuration** tab to see the current configuration for the NGINX instance.
 4. Select **Edit Configuration** to make changes to the current configuration.

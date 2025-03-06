@@ -12,3 +12,13 @@ product: NGINX One
 # Intended for internal catalogue
 docs: "DOCS-000"
 ---
+
+## Overview
+
+You can use F5 NGINX One Console API to manage your Staged Configurations. With these endpoints, you can:
+
+- [Create an NGINX Staged Configuration]
+- [Get a list of existing Staged Configruations]  , by object ID.
+- [Get an analysis report for an existing Staged Configuration]()
+
+Review our reference of available [Staged Configs]({{< relref "{{< relref "nginx-one/api/api-reference-guide/#tag/StagedConfigs" >}}.

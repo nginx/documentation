@@ -31,13 +31,13 @@ You can add a **Staged Configuration** from:
 - Empty files
 - An existing Instance
 - An existing Config Sync Group
-- An existing Staged Config
+- An existing Staged Configuration
 
 To start the process from NGINX One Console, select **Manage > Staged Configruations**. Select **Add Staged Configuration**.
 
 The following sections start from the **Add Staged Configuration** window that appears.
 
-### Start from empty files
+### Start from an empty file
 
 To start a new Staged Configuration:
 
@@ -54,9 +54,9 @@ To start a new Staged Configuration:
 To start from an existing Instance:
 
 1. Select From.
+1. Enter a name for your new Staged Configuration.
 1. Select Instance.
 1. In the Choose Instance menu that appears, select an existing Instance.
-1. Enter a name for your new Staged Configuration.
 1. Select Next. 
 
 NGINX One Console imports the configuration from the existing Instance. You can now edit the configuration. When you're ready to stop, select Save.
