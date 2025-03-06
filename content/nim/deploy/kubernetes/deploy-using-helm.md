@@ -171,7 +171,7 @@ The `values.yaml` file customizes the Helm chart installation without modifying 
             tag: <version>
     ```
 
-    {{< note >}} Starting from NGINX Instance Manager 2.19, `secmon` pod is added to the NIM deployment. {{< /note >}}
+    {{< note >}} Starting in NGINX Instance Manager 2.19, the `secmon` pod is included in the NGINX Instance Manager deployment. {{< /note >}}
 
 2. Save and close the `values.yaml` file.
 
