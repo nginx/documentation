@@ -15,7 +15,7 @@ tags:
 
 This guide explains how to deploy F5 NGINX Instance Manager on a Kubernetes or OpenShift cluster using Helm. You’ll learn how to download and use Docker images and customize your deployment.
 
-{{< note >}} Starting from NGINX Instance Manager 2.19, deploying NIM on the OpenShift cluster using Helm is supported. {{< /note >}}  
+{{< note >}} Starting in NGINX Instance Manager 2.19, you can deploy NGINX Instance Manager on an OpenShift cluster using Helm. {{< /note >}}  
 
 ### About Helm
 
