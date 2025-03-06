@@ -1,35 +1,29 @@
 ### Proposed changes
 
-Write a clear and concise description that helps reviewers understand the purpose and impact of your changes. Use the
-following format:
+Describe the use case and detail of the change. 
 
-Problem: Give a brief overview of the problem or feature being addressed.
+If this PR addresses an [issue](https://github.com/nginxinc/docs/issues) on GitHub, ensure that you link to it below.
 
-Solution: Explain the approach you took to implement the solution, highlighting any significant design decisions or
-considerations.
-
-Testing: Describe any testing that you did.
-
-Please focus on (optional): If you any specific areas where you would like reviewers to focus their attention or provide
-specific feedback, add them here.
-
-If this PR addresses an [issue](https://github.com/nginx/documentation/issues) on GitHub, ensure that you link to it here:
-
-Closes #ISSUE
+**GitHub Issue**:
+Closes #<Issue>
 
 ### Checklist
 
-Before merging a pull request, run through this checklist and mark each as complete.
+Before creating a PR, run through this checklist and mark each step as complete.
 
-- [ ] I have read the [contributing guidelines](https://github.com/nginx/documentation/blob/main/CONTRIBUTING.md)
-- [ ] I have signed the [F5 Contributor License Agreement (CLA)](https://github.com/f5/.github/blob/main/CLA/cla-markdown.md)
-- [ ] I have rebased my branch onto main
-- [ ] I have ensured my PR is targeting the main branch and pulling from my branch from my own fork
-- [ ] I have ensured that the commit messages adhere to [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/#summary)
-- [ ] I have ensured that documentation content adheres to [the style guide](https://github.com/nginx/documentation/blob/main/templates/style-guide.md)
-- [ ] If the change involves potentially sensitive changes[^1], I have assessed the possible impact
-- [ ] If applicable, I have added tests that prove my fix is effective or that my feature works
-- [ ] I have ensured that existing tests pass after adding my changes
-- [ ] If applicable, I have updated [`README.md`](https://github.com/nginx/documentation/blob/main/README.md) and [`CHANGELOG.md`](https://github.com/nginx/documentation/blob/main/CHANGELOG.md)
+- [ ] I have read the [`CONTRIBUTING`](https://github.com/nginxinc/docs/blob/main/CONTRIBUTING.md) document
+- [ ] I have viewed my changes in the documentation Deploy Preview
+- [ ] My PR is targeting the correct branch:
+  - main: content that can be released immediately
+  - product release branch: content that should be held for a future release
+- [ ] I have updated any relevant supporting documentation ([`README.md`](https://github.com/nginxinc/docs/blob/main/README.md) and the [`CHANGELOG.md`](https://github.com/nginxinc/docs/blob/main/CHANGELOG.md))
+- [ ] I have followed the [conventional commits guidelines](https://www.conventionalcommits.org/en/v1.0.0/#summary) for all commits on my branch
 
-[^1]: Potentially sensitive changes include anything involving code, personally identify information (PII), live URLs or significant amounts of new or revised documentation. Please refer to [our style guide](https://github.com/nginx/documentation/blob/main/templates/style-guide.md) for guidance about placeholder content.
+When you're ready to merge a PR, run through this checklist and mark each step as complete.
+
+- [ ] Review the doc for spelling errors.
+- [ ] Verify that all links in the doc work.
+- [ ] Verify that the doc follows the appropriate content template.
+- [ ] Add technical and docs reviewers. Refer to the appropriate CODEOWNERS file, which includes authorized teams of reviewers.
+- [ ] Share the PR for review in the [`#nginx-doc-reviews`](https://f5.enterprise.slack.com/archives/C04PYFULN91) channel in Slack.
+
