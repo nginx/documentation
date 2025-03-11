@@ -11,11 +11,12 @@ product: NAP-WAF
 This document explains how to install NGINX App Protect using Helm.
 
 ## Prerequisites
-* Kubernetes cluster
-* Helm installed
-* NGINX Docker Image
-* NGINX JWT License (if NGINX Plus is used)
-* Docker registry credentials for private-registry.nginx.com
+
+- Kubernetes cluster
+- Helm installed
+- NGINX Docker image
+- NGINX JWT license (if NGINX Plus is used)
+- Docker registry credentials for private-registry.nginx.com
 
 ## Build the NGINX Image
 
