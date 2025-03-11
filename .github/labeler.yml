@@ -39,7 +39,9 @@ product/modsec-waf:
 
 product/nap-dos:
   - changed-files:
-      - any-glob-to-any-file: 'content/nap-dos/**'
+      - any-glob-to-any-file:
+          - 'content/nap-dos/**'
+          - 'content/includes/nap-dos/**'
 
 product/nap-waf:
   - changed-files:
@@ -61,7 +63,9 @@ product/nginx-plus:
 
 product/nginx-one:
   - changed-files:
-      - any-glob-to-any-file: 'content/nginx-one/**'
+      - any-glob-to-any-file:
+          - 'content/nginx-one/**'
+          - 'content/includes/nginx-one/**'
 
 product/nginxaas:
   - changed-files:
@@ -80,6 +84,12 @@ product/nms:
       - any-glob-to-any-file:
           - 'content/nms/**'
           - 'content/includes/nms/**'
+
+product/unit:
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'content/unit/**'
+          - 'content/includes/unit/**'
 
 # Other labels
 
