@@ -46,11 +46,11 @@ h2 {
 }
 
 ol {
-    @apply list-decimal list-inside text-lg;
+    @apply list-decimal list-inside;
 }
 
 ul {
-    @apply list-disc list-inside text-lg;
+    @apply list-disc list-inside;
 }
 
 ol > li::marker {
@@ -59,7 +59,7 @@ ol > li::marker {
 
 
 .section-text-content > h2 {
-    @apply font-bold text-3xl uppercase underline underline-offset-8 mb-2;
+    @apply font-bold text-3xl uppercase underline underline-offset-6 mb-2;
     text-decoration-color: var(--nginx-green);
 }
 
@@ -69,7 +69,8 @@ ol > li::marker {
 }
 
 .section-text-content > p {
-    @apply text-lg;
+    @apply font-normal;
+}
 
 .timeline-decimal-offset {
     inset-inline-start: calc(var(--spacing) * -2);
@@ -134,7 +135,7 @@ ol > li::marker {
 }
 
 .content-padding-y {
-    @apply py-12 md:py-[75px];
+    @apply py-12 sm:py-[75px];
 }
 
 .btn-primary {

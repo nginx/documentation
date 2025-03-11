@@ -6,7 +6,7 @@
 
 <div class="bg-offwhite content-padding-y w-full">
     <div class="px-5 md:px-0 flex-col flex gap-12 container mx-auto">
-        <section class="flex flex-col gap-8">
+        <section class="flex flex-col gap-8" id="featured-projects">
             <h2 class="ngx-section-header">FEATURED PROJECTS</h2>
             <div class="flex flex-col gap-8">
                 {{ with index $projects 0 }}
@@ -53,9 +53,9 @@
             </div>
         </section>
         <section>
-            <h2 class="ngx-section-header">NEWS</h2>
+            <h2 class="ngx-section-header" id="news">NEWS</h2>
         </section>
-        <section class="flex flex-col gap-8">
+        <section class="flex flex-col gap-8" id="featured-media">
             <h2 class="ngx-section-header">Featured Media</h2>
             <div class="w-full flex gap-8 flex-wrap md:flex-nowrap justify-between">
                 {{ $featuredMediaItems := where site.RegularPages "Type" "media-item" }}
