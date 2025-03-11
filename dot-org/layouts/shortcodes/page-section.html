@@ -1,7 +1,7 @@
 {{ $fmtSectionId := replace (lower (.Get "title")) " " "-"  }}
 
 <section id='{{ $fmtSectionId }}' class="flex flex-col gap-6">
-    <h2 class="ngx-section-header">{{.Get "title" }}</h2>
+    <h3 class="ngx-section-header">{{.Get "title" }}</h3>
     <div class="section-text-content">
         {{ if .Get "noMarkdownRender" }}
             {{ .Inner }}

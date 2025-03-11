@@ -70,6 +70,9 @@ ol > li::marker {
 
 .section-text-content > p {
     @apply text-lg;
+
+.timeline-decimal-offset {
+    inset-inline-start: calc(var(--spacing) * -2);
 }
 
 .section-text-content > p > a {

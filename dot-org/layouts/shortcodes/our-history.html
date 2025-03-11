@@ -1,0 +1,11 @@
+{{ $timelineEvts := resources.Get "about/history.json" | transform.Unmarshal }}
+
+
+<section id="nginx-history" class="flex flex-col gap-6">
+    <h3 class="ngx-section-header">Our History</h3>
+    <ol class="relative border-s-2 border-black flex gap-6 flex-col">
+        {{ range $timelineEvts }}
+            {{ partial "misc/timeline-item.html" . }}
+        {{ end }}
+    </ol>
+</section>

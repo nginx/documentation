@@ -1,0 +1,107 @@
+[
+  {
+    "title": "Igor Sysoev enhances Apache web server",
+    "desc": "Attempting to speed up Apache and make it more scalable, Igor Sysoev writes mod_accel, discovering inherent limitations in Apache architecture.",
+    "date": "Spring 2001"
+  },
+  {
+    "title": "NGINX development continues",
+    "desc": "Igor continued to assess the C10K problem and ways to optimize handling a large number of concurrent clients. He began to experiment with various operating system efficiency mechanisms and the development of NGINX as its own new software started.",
+    "date": "2002"
+  },
+  {
+    "title": "Pilot deployments start",
+    "desc": "Most of NGINX’s architectural design and main functional modules were completed. Later that year, first pilot deployments of the working prototype were deployed to friendly websites only.",
+    "date": "2003"
+  },
+  {
+    "title": "First open source release of NGINX",
+    "desc": "NGINX was released to the public on October 4th, 2004, aligned with the 47th anniversary of the first artificial satellite launch.",
+    "date": "October 2004"
+  },
+  {
+    "title": "Early adopters Community formed",
+    "desc": "#nginx on IRC was established as a community support channel for NGINX users and developers, providing a space for collaboration and troubleshooting.",
+    "date": "2005-2006"
+  },
+  {
+    "title": "Adopted by cloud-native startups",
+    "desc": "NGINX was deployed at many US-based startups such as Bak, Dropbox, Justin.tv, Facebook, WordPress, Zappos, Scribd, Slideshare, LinkedIn, Mochimedia.",
+    "date": "2007-2009"
+  },
+  {
+    "title": "NGINX 1.0.0 released!",
+    "desc": "On April 12, 2011, NGINX 1.0.0 was released on the 50-year anniversary of the first human in space. ",
+    "date": "April 2011"
+  },
+  {
+    "title": "First commercial product released",
+    "desc": "NGINX Plus was released with a focus on load balancing enhancements, dynamic configuration, and monitoring. With the first commercial release, the team ensured that fundamental features remained open and the free version of NGINX experienced no performance slowdowns.",
+    "date": "December 2013"
+  },
+  {
+    "title": "NGINX becomes a multi-product organization",
+    "desc": "After receiving series B funding and expanding offices, the engineering team shifted its focus from a single product to building a multi-product company.",
+    "date": "2015"
+  },
+  {
+    "title": "HTTP/2 support added",
+    "desc": "The new version of the HTTP protocol took a long time to develop, both within NGINX and across the broader community. For many website owners, the addition of HTTP/2 became a key reason to switch to NGINX from legacy systems. ",
+    "date": "September 2015"
+  },
+  {
+    "title": "NGINX JavaScript (njs) module launched ",
+    "desc": "njs (initially called nginScript) was developed and later became the standard method of adapting configurations to cloud-native and rapidly evolving environments.",
+    "date": "September 2015"
+  },
+  {
+    "title": "NGINX Unit released",
+    "desc": "NGINX released a new dynamically configured server.",
+    "date": "September 2017"
+  },
+  {
+    "title": "F5, Inc. acquires nginx",
+    "desc": "NGINX expanded software offerings into F5’s customer base, while many F5 engineers learned about NGINX and switched to full-time NGINX development.",
+    "date": "May 2019"
+  },
+  {
+    "title": "Programmability features expand",
+    "desc": "NGINX’s programmability features continued to expand, with significant improvements to the njs module. ",
+    "date": "2020-2021"
+  },
+  {
+    "title": "HTTP/3 support added",
+    "desc": "Implementing the new version of the HTTP protocol and developing the new UDP-based transport layer (QUIC) required a lot of effort from our engineers. However, the versatility of NGINX’s core made it possible without a server redesign.",
+    "date": "May 2023"
+  },
+  {
+    "title": "NGINX joins ByteCode Alliance",
+    "desc": "F5 and NGINX embraced WebAssembly, and its impact on web applications, by joining the ByteCode Alliance.",
+    "date": "June 2023"
+  },
+  {
+    "title": "NGINX releases OpenTelemetry module",
+    "desc": "NGINX released an open source module that supports distributed tracing on OpenTelemetry with a focus on performant request tracing.",
+    "date": "August 2023"
+  },
+  {
+    "title": "NGINX Unit adopts WebAssembly",
+    "desc": "NGINX Unit v1.31.0 introduced a Technology Preview for server-side WebAssembly.",
+    "date": "September 2023"
+  },
+  {
+    "title": "Gateway Fabric launches at KubeCon North America",
+    "desc": "The launch of NGINX Gateway Fabric enabled users to start using the Gateway API in Kubernetes clusters while leveraging NGINX as a data plane.",
+    "date": "November 2023"
+  },
+  {
+    "title": "NGINX Core moves to GitHub",
+    "desc": "The original NGINX project moved to GitHub and started accepting contributions through Pull Requests and using the Issues tab to track bug reports, feature requests, and enhancements.",
+    "date": "September 2024"
+  },
+  {
+    "title": "NGINX celebrates 20 years",
+    "desc": "NGINX was excited to celebrate twenty years since the original project’s release. This milestone wouldn’t be possible without the incredible contributions from our community!",
+    "date": "October 2024"
+  }
+]

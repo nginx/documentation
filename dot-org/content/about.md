@@ -1,5 +1,5 @@
 ---
-title: About NGINX
+title: About Us
 description: "NGINX is committed to open source both in ethos and practicality, aiming to deliver reliable and cutting-edge technology within a healthy open source culture."
 params:
   display_breadcrumb: false
@@ -59,4 +59,4 @@ source projects.
 
 {{< /page-section>}}
 
-[//]: # (TODO: History timeline shortcode here)
+{{< our-history >}}
