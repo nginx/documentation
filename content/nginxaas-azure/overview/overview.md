@@ -46,7 +46,7 @@ NGINXaaS for Azure is supported in the following regions:
 
 ### Redundancy
 
-With the Standard Plan, NGINXaaS uses the following redundancy features to keep your service available.
+With the Standard V2 Plan, NGINXaaS uses the following redundancy features to keep your service available.
 
 - We run _at least_ two NGINX Plus instances for each deployment in an active-active pattern
 - NGINX Plus is constantly monitored for health. Any unhealthy instances are replaced with new ones

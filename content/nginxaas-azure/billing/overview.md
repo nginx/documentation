@@ -33,15 +33,6 @@ The SKU for the Basic pricing plan is `basic_Monthly`.
 {{< note >}}The costs for your plan will appear on the Azure Portal Cost Analysis page and the Azure Consumption APIs. There may be a 24h delay before usage is visible.{{< /note >}}
 
 
-### Standard plan (deprecated)
-
-The Standard plan is comparable to the Standard V2 plan except that it doesn't support some features like NGINX App Protect WAF.
-
-The SKU to use for the Standard pricing plan is `standard_Monthly`.
-
-{{< note >}} Standard plan is now deprecated in favor of Standard V2 plan.{{< /note >}}
-
-
 ## NGINX Capacity Unit (NCU)
 
 {{< include "/nginxaas-azure/ncu-description.md" >}}
