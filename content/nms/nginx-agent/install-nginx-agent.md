@@ -17,7 +17,7 @@ This section lists the prerequisites for installing and configuring NGINX Agent.
 
 1. [F5 NGINX Management Suite is installed on a server]({{< relref "/nim/deploy/_index.md" >}}).
 
-    {{<note>}} When installing and configuring NGINX Management Suite, take note of the fully qualified domain name (FQDN) and gRPC port number. You'll need this information to properly configure the NGINX Agent to communicate with NGINX Management Suite.
+    {{<note>}} When installing and configuring NGINX Management Suite, take note of the fully qualified domain name (FQDN) and gRPC port number. You'll need this information to properly configure NGINX Agent to communicate with NGINX Management Suite.
     {{</note>}}
 
 2. Make sure NGINX is running on your instance:
@@ -26,13 +26,13 @@ This section lists the prerequisites for installing and configuring NGINX Agent.
     ps aux | grep nginx
     ```
 
-3. If a previous version of NGINX Agent was installed, you must stop the current NGINX Agent process before running the NGINX Agent install script. To check if any NGINX Agent processes are running, run the following command:
+3. If a previous version of NGINX Agent was installed, you must stop the current NGINX Agent process before running NGINX Agent install script. To check if any NGINX Agent processes are running, run the following command:
 
     ```bash
     ps aux | grep nginx-agent
     ```
 
-4. If a previous version of NGINX Agent was installed, make sure to uninstall `nginx-agent-selinux` before running the NGINX Agent install script.
+4. If a previous version of NGINX Agent was installed, make sure to uninstall `nginx-agent-selinux` before running NGINX Agent install script.
 To see if `nginx_agent_selinux` is installed, run the following command:
 
     {{<tabs name="install_repo">}}
@@ -58,7 +58,7 @@ To see if `nginx_agent_selinux` is installed, run the following command:
 
 ## Install NGINX Agent
 
-You can choose one of the following two methods to install the NGINX Agent on your data plane host:
+You can choose one of the following two methods to install NGINX Agent on your data plane host:
 
 - Install via the NGINX Management Suite API Gateway
 - Install from packages downloaded from [MyF5 Customer Portal](https://account.f5.com/myf5) or from your NGINX/F5 sales team.
@@ -79,7 +79,7 @@ You can choose one of the following two methods to install the NGINX Agent on yo
 
 ## Enable and Start NGINX Agent
 
-Run the following command to enable and start the NGINX Agent service:
+Run the following command to enable and start NGINX Agent service:
 
 ```bash
 sudo systemctl enable nginx-agent --now
@@ -89,7 +89,7 @@ sudo systemctl enable nginx-agent --now
 
 ## Verifying NGINX Agent is Running and Registered
 
-Run the following command on your data plane to verify that the NGINX Agent process is running:
+Run the following command on your data plane to verify that NGINX Agent process is running:
 
 ```bash
 ps aux | grep nginx-agent
@@ -102,7 +102,7 @@ root      293850  109  1.1 1240056 23536 ?       Ssl  22:00   0:07 /usr/local/bi
 vagrant   293866  0.0  0.0   8160   736 pts/0    S+   22:00   0:00 grep --color=auto nginx-agent
 ```
 
-Once you've verified the NGINX Agent is running on your data plane, you should confirm it's registered with NGINX Management Suite. You can do this two ways:
+Once you've verified NGINX Agent is running on your data plane, you should confirm it's registered with NGINX Management Suite. You can do this two ways:
 
 {{<tabs name="verify-nginx">}}
 
@@ -128,27 +128,27 @@ In a web browser, go to the FQDN for your NGINX Management Suite host and log in
 
 <br>
 
-Once you've verified the NGINX Agent instance is registered with NGINX Management Suite, no additional action is required for monitoring the instance.
+Once you've verified NGINX Agent instance is registered with NGINX Management Suite, no additional action is required for monitoring the instance.
 
 {{<note>}}
-If you need to remove the instance, ensure that the NGINX Agent service is stopped first. Then you can remove the instance from the inventory.
+If you need to remove the instance, ensure that NGINX Agent service is stopped first. Then you can remove the instance from the inventory.
 {{</note>}}
 
 ---
 
 ## Configuring the NGINX Agent
 
-The following sections explain how to configure the NGINX Agent using configuration files, CLI flags, and environment variables.
+The following sections explain how to configure NGINX Agent using configuration files, CLI flags, and environment variables.
 
 {{<note>}}
 
-- The NGINX Agent interprets configuration values set by configuration files, CLI flags, and environment variables in the following priorities:
+- NGINX Agent interprets configuration values set by configuration files, CLI flags, and environment variables in the following priorities:
 
   1. CLI flags overwrite configuration files and environment variable values.
   2. Environment variables overwrite configuration file values.
   3. Config files are the lowest priority and config settings are superseded if either of the other options is used.
 
-- The NGINX Agent is configured by default to connect to the NGINX Management Suite on port 443 based on the address used to download the install script. If this setting doesn't work, you can change the `server` fields in the `nginx-agent.conf` file. Instructions are provided in the following sections.
+- NGINX Agent is configured by default to connect to the NGINX Management Suite on port 443 based on the address used to download the install script. If this setting doesn't work, you can change the `server` fields in the `nginx-agent.conf` file. Instructions are provided in the following sections.
 
 - Open any required firewall ports or SELinux/AppArmor rules for the ports and IPs you want to use.
 
@@ -156,7 +156,7 @@ The following sections explain how to configure the NGINX Agent using configurat
 
 ### Configure with Config Files
 
-The configuration files for the NGINX Agent are `/etc/nginx-agent/nginx-agent.conf` and `/var/lib/nginx-agent/agent-dynamic.conf`. These files have comments at the top indicating their purpose.
+The configuration files for NGINX Agent are `/etc/nginx-agent/nginx-agent.conf` and `/var/lib/nginx-agent/agent-dynamic.conf`. These files have comments at the top indicating their purpose.
 
 {{<note>}}If you're running Instance Manager 2.10.1 or earlier or NGINX Agent 2.25.1 or earlier, the `agent-dynamic.conf` file is located in `/etc/nginx-agent/`.{{</note>}}
 
@@ -168,7 +168,7 @@ Examples of the configuration files are provided below:
 {{<note>}}
 In the following example `nginx-agent.conf` file, you can change the `server.host` and `server.grpcPort` to connect to the NGINX Management Suite.
 
-If NGINX Agent was previously installed for data reporting purposes only, you may need to find and remove the following line from the NGINX Agent configuration file:
+If NGINX Agent was previously installed for data reporting purposes only, you may need to find and remove the following line from NGINX Agent configuration file:
 
 ```none
 features: registration,dataplane-status
@@ -231,7 +231,7 @@ extensions:
 
 # Enable reporting NGINX App Protect details to the control plane.
 nginx_app_protect:
-  # Report interval for NGINX App Protect details - the frequency the NGINX Agent checks NGINX App Protect for changes.
+  # Report interval for NGINX App Protect details - the frequency NGINX Agent checks NGINX App Protect for changes.
   report_interval: 15s
   # Enable precompiled publication from the NGINX Management Suite (true) or perform compilation on the data plane host (false).
   precompiled_publication: true
@@ -271,7 +271,7 @@ tags:
 
 ## CLI Flags & Environment Variables
 
-This section details the CLI flags and corresponding environment variables used to configure the NGINX Agent.
+This section details the CLI flags and corresponding environment variables used to configure NGINX Agent.
 
 ### Usage
 
@@ -323,7 +323,7 @@ If you are upgrading from an older version, update your configuration accordingl
 | `--nginx-exclude-logs`                      | `NGINX_AGENT_NGINX_EXCLUDE_LOGS`             | Specifies paths of NGINX access logs to exclude from metrics collection.    |
 | `--nginx-socket`                            | `NGINX_AGENT_NGINX_SOCKET`                   | Specifies the location of the NGINX Plus counting Unix socket. Default: *unix:/var/run/nginx-agent/nginx.sock* |
 | `--nginx-treat-warnings-as-errors`          | `NGINX_AGENT_NGINX_TREAT_WARNINGS_AS_ERRORS` | Treats warnings as failures on configuration application.                   |
-| `--queue-size`                              | `NGINX_AGENT_QUEUE_SIZE`                     | Specifies the size of the NGINX Agent internal queue.                       |
+| `--queue-size`                              | `NGINX_AGENT_QUEUE_SIZE`                     | Specifies the size of NGINX Agent internal queue.                       |
 | `--server-command`                          |                                      | Specifies the name of the command server sent in the TLS configuration.     |
 | `--server-grpcport`                         | `NGINX_AGENT_SERVER_GRPCPORT`                | Sets the desired GRPC port for NGINX Agent traffic.                         |
 | `--server-host`                             | `NGINX_AGENT_SERVER_HOST`                    | Specifies the IP address of the server host.                                |
@@ -402,7 +402,7 @@ Additionally, you can use the agent installation script to add these fields:
 
 ## SELinux for NGINX Agent
 
-This section explains how to install and configure the SELinux policy for the NGINX Agent.
+This section explains how to install and configure the SELinux policy for NGINX Agent.
 
 ### Installing NGINX Agent SELinux Policy Module
 
@@ -412,13 +412,13 @@ The NGINX Agent package includes the following SELinux files:
 - `/usr/share/selinux/devel/include/contrib/nginx_agent.if`
 - `/usr/share/selinux/packages/nginx_agent.pp`
 
-To load the NGINX Agent policy, run the following commands:
+To load NGINX Agent policy, run the following commands:
 
 {{< include "installation/agent-selinux.md" >}}
 
 ### Adding Ports for NGINX Agent SELinux Context
 
-You can configure the NGINX Agent to work with SELinux. Make sure you add external ports to the firewall exception list.
+You can configure NGINX Agent to work with SELinux. Make sure you add external ports to the firewall exception list.
 
 The following example shows how to allow external ports outside the HTTPD context. You may need to enable NGINX to connect to these ports.
 
@@ -430,11 +430,11 @@ For additional information on using NGINX with SELinux, refer to the guide [Usin
 
 ---
 
-## Secure the NGINX Agent with mTLS
+## Secure NGINX Agent with mTLS
 
-{{< important >}}By default, communication between the NGINX Agent and NGINX Management Suite is unsecured.{{< /important >}}
+{{< important >}}By default, communication between NGINX Agent and NGINX Management Suite is unsecured.{{< /important >}}
 
-For instructions on how configure mTLS to secure communication between the NGINX Agent and NGINX Management Suite, see [NGINX Agent TLS Settings](https://docs.nginx.com/nginx-agent/configuration/encrypt-communication/).
+For instructions on how configure mTLS to secure communication between NGINX Agent and NGINX Management Suite, see [NGINX Agent TLS Settings](https://docs.nginx.com/nginx-agent/configuration/encrypt-communication/).
 
 ---
 
