@@ -1,22 +1,24 @@
+<!-- https://gohugo.io/functions/css/tailwindcss/#step-4 -->
 {{ with (templates.Defer (dict "key" "global")) }}
     {{ $t := debug.Timer "tailwindcss" }}
         {{ with resources.Get "styles/main.css" }}
             {{ $opts := dict
+                "minify" hugo.IsProduction
                 "inlineImports" true
-                "optimize" (not hugo.IsDevelopment)
             }}
                 {{ with . | css.TailwindCSS $opts }}
-                    {{ if hugo.IsDevelopment }}
-                        <link rel="stylesheet" href="{{ .RelPermalink }}" />
-                    {{ else }}
-                        {{ with . | minify | fingerprint }}
+                    {{ if hugo.IsProduction }}
+                        {{ with . | fingerprint }}
                             <link
-                                    rel="stylesheet"
-                                    href="{{ .RelPermalink }}"
-                                    integrity="{{ .Data.Integrity }}"
-                                    crossorigin="anonymous" />
+                                rel="stylesheet"
+                                href="{{ .RelPermalink }}"
+                                integrity="{{ .Data.Integrity }}"
+                                crossorigin="anonymous"
+                            />
                         {{ end }}
-                {{ end }}
+                    {{ else }}
+                        <link rel="stylesheet" href="{{ .RelPermalink }}" />
+                    {{ end }}
             {{ end }}
         {{ end }}
     {{ $t.Stop }}

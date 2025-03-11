@@ -1,4 +1,6 @@
 @import "tailwindcss";
+/* https://gohugo.io/functions/css/tailwindcss/#step-3 */
+@source "hugo_stats.json";
 
 @theme {
     --color-ngx-green: var(--nginx-green);
