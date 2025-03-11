@@ -16,7 +16,7 @@ body {
 
 @utility container {
     /*  Overrides unneeded container sizes for >lg screens  */
-    @media (width >= theme(--breakpoint-lg)) {
+    @media (width >= theme(--breakpoint-xl)) {
         max-width: 80rem;
     }
 }
