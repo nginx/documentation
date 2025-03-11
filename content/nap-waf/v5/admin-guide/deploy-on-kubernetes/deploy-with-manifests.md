@@ -1,5 +1,5 @@
 ---
-title: Deploying NGINX App Protect WAF on Kubernetes
+title: Deploying NGINX App Protect WAF with Manifests
 weight: 300
 toc: true
 type: how-to
