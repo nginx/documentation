@@ -61,7 +61,7 @@ product/nginx-plus:
 
 product/nginx-one:
   - changed-files:
-      - any-glob-to-any-file: 'content/nginx/**'
+      - any-glob-to-any-file: 'content/nginx-one/**'
 
 product/nginxaas:
   - changed-files:
