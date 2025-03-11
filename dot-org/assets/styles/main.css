@@ -29,7 +29,7 @@ body {
 
 /* `nginx-hugo-theme` Overrides*/
 .main {
-    display: block; !important;
+    display: block;
 }
 
 a {
@@ -37,12 +37,12 @@ a {
 }
 
 p {
-    margin: 0; !important;
+    margin: 0;
 
 }
 
 h2 {
-    margin: 0; !important;
+    margin: 0;
 }
 
 ol {
