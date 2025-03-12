@@ -21,5 +21,5 @@ You can use F5 NGINX One Console API to manage your Staged Configurations. With 
 - [Get a list of existing Staged Configruations]  , by object ID.
 - [Get an analysis report for an existing Staged Configuration]()
 
-<!-- need API docs to fix
-Review our reference of available [Staged Configs]({{< relref "{{< relref "nginx-one/api/api-reference-guide/#tag/StagedConfigs" >}}. -->
+#<!-- need API docs to fix
+#Review our reference of available [Staged Configs] -->

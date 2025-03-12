@@ -1,6 +1,6 @@
 ---
 # We use sentence case and present imperative tone
-title: View and edit a staged configuration
+title: View and edit a Staged Configuration
 # Weights are assigned in increments of 100: determines sorting order
 weight: 200
 # Creates a table of contents and sidebar, useful for large documents
@@ -15,11 +15,13 @@ docs: "DOCS-000"
 
 ## Overview
 
-This guide explains how to edit an existing **Staged Configuration** in your NGINX One Console. 
+This guide explains how to edit an existing Staged Configuration in your NGINX One Console. 
+
+{{< include "nginx-one/staged-config-overview.md" >}}
 
 ## Before you start
 
-Before you edit a **Staged Configuration**, ensure:
+Before you edit a Staged Configuration, ensure:
 
 - You have administrator access to NGINX One Console.
 
