@@ -2442,3 +2442,19 @@ kubectl create ns appprotect-dos-wp-diff
 ${DIR}/appprotect-dos/install.sh
 ${DIR}/appprotect-dos-arb/install_appprotect-dos-arb.sh
 ```
+
+## App Protect DoS eBPF manager
+
+### Overview
+The eBPF Manager is a powerful and efficient tool designed to simplify and secure the deployment of eBPF (Extended Berkeley Packet Filter) programs for advanced networking use cases. 
+Its primary responsibilities include program installation and managing client interactions to enable real-time packet processing and mitigation solutions.
+
+### CLI Options for Flexible Configuration
+The eBPF Manager comes with configurable command-line flags for ease of use and deployment customization. Key options include:
+
+* Interface Selection:
+    * -i, --interface [interfaces...]: Specify one or more network interfaces for eBPF XDP program deployment. If omitted, it defaults to all non-virtual, active network devices.
+* gRPC UDS Ownership:
+  * -u, --user <user_name>: Set the user ownership for the gRPC Unix Domain Socket (UDS). Defaults to nginx.
+  * -g, --group <group_name>: Set the group ownership for the gRPC Unix Domain Socket (UDS). Defaults to nginx.
+    
