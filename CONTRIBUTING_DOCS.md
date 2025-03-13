@@ -139,7 +139,7 @@ You can also create custom callouts using the `call-out` shortcode `{{< call-out
 {{<call-out "important side-callout" "JWT file required for upgrade" "fa fa-exclamation-triangle">}}
 ```
 
-By default, all custom callouts are inlined unless `side-callout` is passed in to put the callout on the right of the content.
+By default, all custom callouts are included inline, unless you add `side-callout` which places the callout to the right of the content.
 
 Here are some other shortcodes:
 
