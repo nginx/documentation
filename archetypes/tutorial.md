@@ -10,8 +10,6 @@ type: tutorial
 # Intended for internal catalogue and search, case sensitive:
 # Agent, N4Azure, NIC, NIM, NGF, NAP-DOS, NAP-WAF, NGINX One, NGINX+, Solutions, Unit
 product:
-# Intended for internal catalogue
-docs: "DOCS-000"
 ---
 
 [//]: # "These are Markdown comments to guide you through document structure. Remove them as you go, as well as any unnecessary sections."
