@@ -9,7 +9,6 @@ type:
 - tutorial
 ---
 
-
 ## Overview
 
 Follow the steps in this guide to install or upgrade NGINX Instance Manager.
