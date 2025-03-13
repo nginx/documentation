@@ -1,10 +1,5 @@
 ---
-description: 'Modern app security solution that works seamlessly in DevOps environments.
-
-
-  Request your [free 30-day trial](https://www.nginx.com/free-trial-request/) today.
-
-  '
+description: Modern app security solution that works seamlessly in DevOps environments.
 title: F5 NGINX App Protect WAF
 weight: 100
 url: /nginx-app-protect-waf/
