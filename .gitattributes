@@ -7,5 +7,4 @@ LICENSE merge=ours
 CONTRIBUTING_DOCS.md merge=ours
 CONTRIBUTING.md merge=ours
 .github/pull_request_template.md merge=ours
-.github/workflows/update_from_nginx_documentation.yml merge=ours
 .gitattributes merge=ours
