@@ -637,7 +637,7 @@ As a workaround, in such environments NGINX Plus can be installed with a specia
 
 - Makes a backup copy of the configuration directory
 
-- Has an option to upgrade an existing unprivileged installation of NGINX Plus
+- Provides an option to upgrade an existing unprivileged installation of NGINX Plus
 
 Comparing to a standard installation of NGINX Plus, an unprivileged installation has certain limitations and restrictions:
 
@@ -645,7 +645,7 @@ Comparing to a standard installation of NGINX Plus, an unprivileged installatio
 
 - The script is not intended to replace your operating system's package manager and does not allow for the installation of any software other than NGINX Plus and its modules. Modifications to the script for other installations are not covered by the support program.
 
-- NGINX Plus will not start automatically, so, you must add custom `init` script/`systemd`unit file for each unprivileged installation on the host.
+- NGINX Plus will not start automatically, so, you must add a custom `init` script or a `systemd` unit file for each unprivileged installation on the host.
 
 - all dependencies and libraries required by the NGINX Plus binary and its modules are not installed automatically and should be checked and installed manually.
 
@@ -662,6 +662,10 @@ Before starting the unprivileged installation, make sure you have all the prereq
 
 To perform an unprivileged installation of NGINX Plus:
 
+1. {{< include "licensing-and-reporting/download-jwt-crt-from-myf5.md" >}}
+
+1. Ensure that the downloaded JWT license file is named **license.jwt**.
+
 1. Obtain the script:
 
    ```shell
@@ -674,13 +678,11 @@ To perform an unprivileged installation of NGINX Plus:
    chmod +x ngxunprivinst.sh
    ```
 
-1. Download NGINX Plus and its module packages for your operating system. The `<cert_file>`, `<key_file>` and `<license_file>` are your NGINX Plus certificate, private key, and JWT license obtained from [MyF5 Customer Portal](https://account.f5.com/myf5/):
+1. Download NGINX Plus and its module packages for your operating system. The `<cert_file>` and `<key_file>` are your NGINX Plus certificate and a private key required to access the NGINX Plus repo:
 
    ```shell
-   ./ngxunprivinst.sh fetch -c <cert_file> -k <key_file> -j <license_file>
+   ./ngxunprivinst.sh fetch -c <cert_file> -k <key_file>
    ```
-
-   {{< note >}} Starting from [NGINX Plus Release 33]({{< ref "nginx/releases.md#r33" >}}), a JWT license file (`<license_file>`) is required for each NGINX Plus instance. For more information, see [About Subscription Licenses]({{< ref "/solutions/about-subscription-licenses.md">}}). {{< /note >}}
 
    If you need to install a particular version of NGINX Plus:
 
@@ -690,13 +692,13 @@ To perform an unprivileged installation of NGINX Plus:
        ./ngxunprivinst.sh list -c <cert_file> -k <key_file>
        ```
 
-   - then specify a particular NGINX Plus version with the `-v` option:
+   - then specify a particular NGINX Plus version with the `-v` parameter:
 
        ```shell
        ./ngxunprivinst.sh fetch -c <cert_file> -k <key_file> -v <version>
        ```
 
-1. Extract the downloaded packages to the provided NGINX Plus prefix `<path>`. An optional `-y` option will overwrite an existing installation (if any). Starting from version R33, the `-j` option that specifies the `<license_file>` is mandatory:
+1. Extract the downloaded packages to the program prefix `<path>` specified by the `-p` parameter and specify the **license.jwt** `<license_file>` with the `-j` parameter. The optional `-y` parameter allows overwriting an existing installation:
 
    ```shell
    ./ngxunprivinst.sh install [-y] -p <path> -j <license_file> <file1.rpm> <file2.rpm>
@@ -708,7 +710,7 @@ To perform an unprivileged installation of NGINX Plus:
    <path>/usr/sbin/nginx -p <path>/etc/nginx -c <path>/etc/nginx/conf.d
    ```
 
-With this script, you can also upgrade an existing unprivileged installation of NGINX Plus in the provided <path>. An optional `-y` option performs a forced upgrade without any confirmation:
+With this script, you can also upgrade an existing unprivileged installation of NGINX Plus in the provided `<path>`. The optional `-y` parameter performs a forced upgrade without any confirmation:
 
 ```shell
 ./ngxunprivinst.sh upgrade [-y] -p <path> <file1.rpm> <file2.rpm>
