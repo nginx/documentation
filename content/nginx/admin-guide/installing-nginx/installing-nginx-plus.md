@@ -26,10 +26,6 @@ This article explains how to install NGINX Plus on different operating systems,
 
 1. {{< include "licensing-and-reporting/download-jwt-crt-from-myf5.md" >}}
 
-1. {{< include "nginx-plus/install/create-dir-for-jwt.md" >}}
-
-1. {{< include "nginx-plus/install/copy-jwt-to-etc-nginx-dir.md" >}}
-
 1. {{< include "nginx-plus/install/install-ca-certificates-dependency-dnf.md" >}}
 
 1. {{< include "nginx-plus/install/create-dir-for-crt-key.md" >}}
@@ -43,6 +39,8 @@ This article explains how to install NGINX Plus on different operating systems,
     ```
 
 1. {{< include "nginx-plus/install/install-nginx-plus-package-dnf.md" >}}
+
+1. {{< include "nginx-plus/install/copy-jwt-to-etc-nginx-dir.md" >}}
 
 1. {{< include "nginx-plus/install/check-nginx-binary-version.md" >}}
 
@@ -58,10 +56,6 @@ This article explains how to install NGINX Plus on different operating systems,
 
 1. {{< include "licensing-and-reporting/download-jwt-crt-from-myf5.md" >}}
 
-1. {{< include "nginx-plus/install/create-dir-for-jwt.md" >}}
-
-1. {{< include "nginx-plus/install/copy-jwt-to-etc-nginx-dir.md" >}}
-
 1. {{< include "nginx-plus/install/install-ca-certificates-dependency-yum.md" >}}
 
 1. {{< include "nginx-plus/install/create-dir-for-crt-key.md" >}}
@@ -75,6 +69,8 @@ This article explains how to install NGINX Plus on different operating systems,
     ```
 
 1. {{< include "nginx-plus/install/install-nginx-plus-package-yum.md" >}}
+
+1. {{< include "nginx-plus/install/copy-jwt-to-etc-nginx-dir.md" >}}
 
 1. {{< include "nginx-plus/install/check-nginx-binary-version.md" >}}
 
@@ -130,10 +126,6 @@ CentOS 7.4, RHEL 7.4, and Oracle Linux 7.4 are deprecated as of NGINX Plus Relea
 
 1. {{< include "licensing-and-reporting/download-jwt-crt-from-myf5.md" >}}
 
-1. {{< include "nginx-plus/install/create-dir-for-jwt.md" >}}
-
-1. {{< include "nginx-plus/install/copy-jwt-to-etc-nginx-dir.md" >}}
-
 1. {{< include "nginx-plus/install/install-ca-certificates-dependency-dnf.md" >}}
 
 1. {{< include "nginx-plus/install/create-dir-for-crt-key.md" >}}
@@ -153,6 +145,8 @@ CentOS 7.4, RHEL 7.4, and Oracle Linux 7.4 are deprecated as of NGINX Plus Relea
 
 1. {{< include "nginx-plus/install/install-nginx-plus-package-dnf.md" >}}
 
+1. {{< include "nginx-plus/install/copy-jwt-to-etc-nginx-dir.md" >}}
+
 1. {{< include "nginx-plus/install/enable-nginx-service-at-boot.md" >}}
 
 1. {{< include "nginx-plus/install/check-nginx-binary-version.md" >}}
@@ -168,10 +162,6 @@ CentOS 7.4, RHEL 7.4, and Oracle Linux 7.4 are deprecated as of NGINX Plus Relea
 1. {{< include "nginx-plus/install/back-up-config-and-logs.md" >}}
 
 1. {{< include "licensing-and-reporting/download-jwt-crt-from-myf5.md" >}}
-
-1. {{< include "nginx-plus/install/create-dir-for-jwt.md" >}}
-
-1. {{< include "nginx-plus/install/copy-jwt-to-etc-nginx-dir.md" >}}
 
 1. {{< include "nginx-plus/install/install-ca-certificates-dependency-dnf.md" >}}
 
@@ -192,6 +182,8 @@ CentOS 7.4, RHEL 7.4, and Oracle Linux 7.4 are deprecated as of NGINX Plus Relea
 
 1. {{< include "nginx-plus/install/install-nginx-plus-package-dnf.md" >}}
 
+1. {{< include "nginx-plus/install/copy-jwt-to-etc-nginx-dir.md" >}}
+
 1. {{< include "nginx-plus/install/enable-nginx-service-at-boot.md" >}}
 
 1. {{< include "nginx-plus/install/check-nginx-binary-version.md" >}}
@@ -209,10 +201,6 @@ NGINX Plus can be installed on the following versions of Debian or Ubuntu:
 1. {{< include "nginx-plus/install/back-up-config-and-logs.md" >}}
 
 1. {{< include "licensing-and-reporting/download-jwt-crt-from-myf5.md" >}}
-
-1. {{< include "nginx-plus/install/create-dir-for-jwt.md" >}}
-
-1. {{< include "nginx-plus/install/copy-jwt-to-etc-nginx-dir.md" >}}
 
 1. {{< include "nginx-plus/install/create-dir-for-crt-key.md" >}}
 
@@ -282,6 +270,8 @@ NGINX Plus can be installed on the following versions of Debian or Ubuntu:
     sudo apt install -y nginx-plus
     ```
 
+1. {{< include "nginx-plus/install/copy-jwt-to-etc-nginx-dir.md" >}}
+
 1. {{< include "nginx-plus/install/check-nginx-binary-version.md" >}}
 
 1. {{< include "nginx-plus/install/configure-usage-reporting.md" >}}
@@ -295,19 +285,6 @@ NGINX Plus can be installed on the following versions of Debian or Ubuntu:
 1. {{< include "nginx-plus/install/back-up-config-and-logs.md" >}}
 
 1. {{< include "licensing-and-reporting/download-jwt-crt-from-myf5.md" >}}
-
-1. Create the **/usr/local/etc/nginx/** directory for the JWT license file:
-
-    ```shell
-    sudo mkdir -p /usr/local/etc/nginx
-    cd /usr/local/etc/nginx
-    ```
-
-1. Rename the downloaded JWT file to **license.jwt** and copy it to the **/usr/local/etc/nginx** directory:
-
-    ```shell
-    sudo cp license.jwt /usr/local/etc/nginx
-    ```
 
 1. Install the prerequisite **ca_root_nss** package:
 
@@ -340,6 +317,12 @@ NGINX Plus can be installed on the following versions of Debian or Ubuntu:
     sudo pkg install nginx-plus
     ```
 
+1. Copy the downloaded JWT file to the **/usr/local/etc/nginx** directory and make sure it is named **license.jwt**:
+
+    ```shell
+    sudo cp license.jwt /usr/local/etc/nginx
+    ```
+
 1. {{< include "nginx-plus/install/check-nginx-binary-version.md" >}}
 
 1. {{< include "nginx-plus/install/configure-usage-reporting.md" >}}
@@ -353,10 +336,6 @@ NGINX Plus can be installed on the following versions of Debian or Ubuntu:
 1. {{< include "nginx-plus/install/back-up-config-and-logs.md" >}}
 
 1. {{< include "licensing-and-reporting/download-jwt-crt-from-myf5.md" >}}
-
-1. {{< include "nginx-plus/install/create-dir-for-jwt.md" >}}
-
-1. {{< include "nginx-plus/install/copy-jwt-to-etc-nginx-dir.md" >}}
 
 1. {{< include "nginx-plus/install/create-dir-for-crt-key.md" >}}
 
@@ -399,6 +378,8 @@ NGINX Plus can be installed on the following versions of Debian or Ubuntu:
     zypper install nginx-plus
     ```
 
+1. {{< include "nginx-plus/install/copy-jwt-to-etc-nginx-dir.md" >}}
+
 1. {{< include "nginx-plus/install/check-nginx-binary-version.md" >}}
 
 1. {{< include "nginx-plus/install/configure-usage-reporting.md" >}}
@@ -412,10 +393,6 @@ NGINX Plus can be installed on the following versions of Debian or Ubuntu:
 1. {{< include "nginx-plus/install/back-up-config-and-logs.md" >}}
 
 1. {{< include "licensing-and-reporting/download-jwt-crt-from-myf5.md" >}}
-
-1. {{< include "nginx-plus/install/create-dir-for-jwt.md" >}}
-
-1. {{< include "nginx-plus/install/copy-jwt-to-etc-nginx-dir.md" >}}
 
 1. Upload **nginx-repo.key** to **/etc/apk/cert.key** and **nginx-repo.crt** to **/etc/apk/cert.pem**. Ensure these files contain only the specific key and certificate — Alpine Linux doesn't support mixing client certificates for multiple repositories.
 
@@ -444,12 +421,13 @@ NGINX Plus can be installed on the following versions of Debian or Ubuntu:
     sudo apk add nginx-plus
     ```
 
+1. {{< include "nginx-plus/install/copy-jwt-to-etc-nginx-dir.md" >}}
+
 1. {{< include "nginx-plus/install/check-nginx-binary-version.md" >}}
 
 1. {{< include "nginx-plus/install/configure-usage-reporting.md" >}}
 
 1. {{< include "nginx-plus/install/install-nginx-agent-for-nim.md" >}}
-
 
 ## Install Dynamically Loadable Modules {#install_modules}
 
@@ -734,10 +712,6 @@ To install NGINX Plus offline, you will need a machine connected to the Internet
 
 1. Make sure you’ve downloaded the SSL certificate, private key, and the JWT file required for your NGINX Plus subscription. You can find these files in the MyF5 Customer Portal. For details on how to obtain these files, see [Step 1: Obtaining files on the machine connected to the Internet](#offline-obtain-files).
 
-1. {{< include "nginx-plus/install/create-dir-for-jwt.md" >}}
-
-1. {{< include "nginx-plus/install/copy-jwt-to-etc-nginx-dir.md" >}}
-
 1. {{< include "nginx-plus/install/create-dir-for-crt-key.md" >}}
 
 1. {{< include "nginx-plus/install/copy-crt-and-key.md" >}}
@@ -767,6 +741,8 @@ To install NGINX Plus offline, you will need a machine connected to the Internet
          ```shell
          rpm -ivh <rpm_package_name>
          ```
+
+1. {{< include "nginx-plus/install/copy-jwt-to-etc-nginx-dir.md" >}}
 
 1. {{< include "nginx-plus/install/check-nginx-binary-version.md" >}}
 
