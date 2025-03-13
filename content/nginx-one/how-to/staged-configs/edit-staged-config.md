@@ -9,8 +9,6 @@ toc: true
 type: tutorial
 # Intended for internal catalogue and search, case sensitive:
 product: NGINX One
-# Intended for internal catalogue
-docs: "DOCS-000"
 ---
 
 ## Overview
@@ -33,13 +31,8 @@ Once you've registered your NGINX Staged Configs with the F5 NGINX One Console, 
 To view and edit an NGINX configuration, follow these steps:
 
 1. On the left menu, select **Staged Configurations**.
-2. Select the staged configuration you want to view or modify.
-3. Select the **Configuration** tab to see the current configuration for the NGINX instance.
-4. Select **Edit Configuration** to make changes to the current configuration.
-5. Make your changes to the configuration files. The configuration analyzer will let you know if there are any errors.
-6. When you are satisfied with the changes, select **Next**.
-7. Compare and verify your changes before selecting **Save and Publish** to publish the edited configuration.
-
-## See also
-
-- [Manage Config Sync Groups]({{< relref "/nginx-one/how-to/config-sync-groups/manage-config-sync-groups.md" >}})
+1. Select the staged configuration you want to view or modify.
+1. Select **Edit** to make changes to the current configuration.
+1. Make your changes to the configuration files. The configuration analyzer will let you know if there are any errors.
+1. When you are satisfied with the changes, select **Next**.
+1. Compare and verify your changes before selecting **Save** to publish the edited Staged configuration.

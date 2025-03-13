@@ -10,8 +10,6 @@ type: tutorial
 # Intended for internal catalogue and search, case sensitive:
 # Agent, N4Azure, NIC, NIM, NGF, NAP-DOS, NAP-WAF, NGINX One, NGINX+, Solutions, Unit
 product:
-# Intended for internal catalogue
-docs: "DOCS-000"
 ---
 
 ## Overview
@@ -43,47 +41,48 @@ The following sections start from the **Add Staged Configuration** window that a
 
 To start a new Staged Configuration:
 
-1. Select New.
+1. Select **New Configuration**.
 1. Enter a name.
-1. Select Next.
+1. Select **Next**.
 
    You will see a new Staged Configuration with the default NGINX configuration file, `/etc/nginx/nginx.conf`, in edit mode.
 1. Type or paste content for `/etc/nginx/nginx.conf`.
-1. Select Add File to add the configuration, certificate, or other file(s) of your choice. 
+1. Select **Add File** to add the configuration, certificate, or other file(s) of your choice. 
+1. When you're done, select **Save**.
 
 ### Start from an existing Instance
 
 To start from an existing Instance:
 
-1. Select From.
+1. Select **Existing Source**.
 1. Enter a name for your new Staged Configuration.
-1. Select Instance.
+1. Select **Instance**.
 1. In the Choose Instance menu that appears, select an existing Instance.
-1. Select Next. 
+1. Select **Next**. 
 
-NGINX One Console imports the configuration from the existing Instance. You can now edit the configuration. When you're ready to stop, select Save.
+NGINX One Console imports the configuration from the existing Instance. You can now edit the configuration. When you're ready to stop and save your work, select Save.
 
 ### Start from an existing Config Sync Group
 
 To start from an existing Config Sync Group:
 
-1. Select From.
-1. Select Config Sync Group.
+1. Select **Existing Source**.
+1. Select **Config Sync Group**.
 1. In the Choose Config Sync Group menu that appears, select an existing Config Sync Group.
 1. Enter a name for your new Staged Configuration.
-1. Select Next. 
+1. Select **Next**. 
 
-NGINX One Console imports the configuration from the existing Config Sync Group. You can now edit the configuration. When you're ready to stop, select Save.
+NGINX One Console imports the configuration from the existing Config Sync Group. You can now edit the configuration. When you're ready to stop and save your work, select Save.
 
 ### Start from an existing Staged Config
 
 To start from an existing Staged Config:
 
-1. Select From.
-1. Select Staged Config.
-1. In the Choose Staged Config menu that appears, select an existing Staged Config.
+1. Select **Existing Source**.
+1. Select **Staged Configuration**.
+1. In the Choose Staged Configuratiog menu that appears, select an existing Staged Configuration.
 1. Enter a name for your new Staged Configuration.
-1. Select Next. 
+1. Select **Next**. 
 
-NGINX One Console imports the configuration from the existing Staged Config. You can now edit the configuration. When you're ready to stop, select Save.
+NGINX One Console imports the configuration from the existing Staged Configuration. You can now edit the configuration. When you're ready to stop and save your work, select Save.
 

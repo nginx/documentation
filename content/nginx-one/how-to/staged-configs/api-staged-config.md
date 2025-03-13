@@ -1,6 +1,6 @@
 ---
 # We use sentence case and present imperative tone
-title: Use an API to Add a Staged Configuration
+title: Use the API to manage your Staged Configurations
 # Weights are assigned in increments of 100: determines sorting order
 weight: 300
 # Creates a table of contents and sidebar, useful for large documents
@@ -9,17 +9,12 @@ toc: true
 type: tutorial
 # Intended for internal catalogue and search, case sensitive:
 product: NGINX One
-# Intended for internal catalogue
-docs: "DOCS-000"
 ---
 
-## Overview
+You can use F5 NGINX One Console API to manage your Staged Configurations. With our API, you can:
 
-You can use F5 NGINX One Console API to manage your Staged Configurations. With these endpoints, you can:
-
-- [Create an NGINX Staged Configuration]
-- [Get a list of existing Staged Configruations]  , by object ID.
-- [Get an analysis report for an existing Staged Configuration]()
-
-#<!-- need API docs to fix
-#Review our reference of available [Staged Configs] -->
+- [Create an NGINX Staged Configuration]({{< relref "/nginx-one/api/api-reference-guide/#operation/createStagedConfig" >}})
+  - The details allow you to add existing configuration files.
+- [Get a list of existing Staged Configruations]({{< relref "/nginx-one/api/api-reference-guide/#operation/listStagedConfigs" >}})
+  - Be sure to record the `object_id` of your target Staged Configuration for your analysis report.
+- [Get an analysis report for an existing Staged Configuration]({{< relref "/nginx-one/api/api-reference-guide/#operation/getStagedConfigReport" >}})
