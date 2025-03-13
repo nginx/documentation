@@ -47,9 +47,8 @@ NGINX, Inc. provides packages for the following CentOS, Oracle Linux, RHEL, Alm
 
 |Version | Supported Platforms |
 | ---| --- |
-|7.4+ | x86_64, aarch64/arm64 |
-|8x | x86_64, aarch64/arm64, s390x |
-|9x | x86_64, aarch64/arm64, s390x |
+|8x | x86_64, aarch64/arm64 |
+|9x | x86_64, aarch64/arm64 |
 
 {{</bootstrap-table>}}
 
@@ -155,7 +154,7 @@ The package can be installed from:
     ```shell
     curl -I 127.0.0.1
     HTTP/1.1 200 OK
-    Server: nginx/1.27.0
+    Server: nginx/1.27.4
     ```
 
 <span id="prebuilt_debian"></span>
@@ -284,7 +283,7 @@ The package can be installed from:
     ```shell
     curl -I 127.0.0.1
     HTTP/1.1 200 OK
-    Server: nginx/1.27.0
+    Server: nginx/1.27.4
     ```
 
 <span id="prebuilt_ubuntu"></span>
@@ -299,8 +298,8 @@ NGINX provides packages for the following Ubuntu operating systems:
 | ---| ---| --- |
 |20.04 | focal | x86_64, aarch64/arm64, s390x |
 |22.04 | jammy | x86_64, aarch64/arm64, s390x |
-|22.10 | kinetic | x86_64, aarch64/arm64 |
-|23.04 | lunar | x86_64, aarch64/arm64 |
+|24.04 | noble | x86_64, aarch64/arm64 |
+|24.10 | oracular | x86_64, aarch64/arm64 |
 
 {{</bootstrap-table>}}
 
@@ -412,7 +411,7 @@ The package can be installed from:
     ```shell
     curl -I 127.0.0.1
     HTTP/1.1 200 OK
-    Server: nginx/1.27.0
+    Server: nginx/1.27.4
     ```
 
 <span id="prebuilt_suse"></span>
@@ -425,7 +424,6 @@ NGINX provides packages for SUSE Linux Enterprise Server:
 
 |Version | Supported Platforms |
 | ---| --- |
-|SLES 12 SP5+ | x86_64 |
 |SLES 15 SP2+ | x86_64 |
 
 {{</bootstrap-table>}}
@@ -508,10 +506,10 @@ NGINX provides packages for the following Alpine Linux operating systems:
 
 |Version | Supported Platforms |
 | ---| --- |
-|3.15 | x86_64, aarch64/arm64 |
-|3.16 | x86_64, aarch64/arm64 |
-|3.17 | x86_64, aarch64/arm64 |
 |3.18 | x86_64, aarch64/arm64 |
+|3.19 | x86_64, aarch64/arm64 |
+|3.20 | x86_64, aarch64/arm64 |
+|3.21 | x86_64, aarch64/arm64 |
 
 {{</bootstrap-table>}}
 
@@ -689,9 +687,9 @@ Prior to compiling NGINX Open Source from source, you need to install librarie
 - [PCRE](http://pcre.org/) – Supports regular expressions. Required by the NGINX [Core](https://nginx.org/en/docs/ngx_core_module.html) and [Rewrite](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html) modules.
 
   ```shell
-  wget github.com/PCRE2Project/pcre2/releases/download/pcre2-10.42/pcre2-10.42.tar.gz
-  tar -zxf pcre2-10.42.tar.gz
-  cd pcre2-10.42
+  wget github.com/PCRE2Project/pcre2/releases/download/pcre2-10.43/pcre2-10.43.tar.gz
+  tar -zxf pcre2-10.43.tar.gz
+  cd pcre2-10.43
   ./configure
   make
   sudo make install
@@ -700,9 +698,9 @@ Prior to compiling NGINX Open Source from source, you need to install librarie
 - [zlib](http://www.zlib.net/) – Supports header compression. Required by the NGINX [Gzip](https://nginx.org/en/docs/http/ngx_http_gzip_module.html) module.
 
   ```shell
-  wget http://zlib.net/zlib-1.2.13.tar.gz
-  tar -zxf zlib-1.2.13.tar.gz
-  cd zlib-1.2.13
+  wget http://zlib.net/zlib-1.3.1.tar.gz
+  tar -zxf zlib-1.3.1.tar.gz
+  cd zlib-1.3.1
   ./configure
   make
   sudo make install
@@ -711,9 +709,9 @@ Prior to compiling NGINX Open Source from source, you need to install librarie
 - [OpenSSL](https://www.openssl.org/) – Supports the HTTPS protocol. Required by the NGINX [SSL](https://nginx.org/en/docs/http/ngx_http_ssl_module.html) module and others.
 
   ```shell
-  wget http://www.openssl.org/source/openssl-1.1.1v.tar.gz
-  tar -zxf openssl-1.1.1v.tar.gz
-  cd openssl-1.1.1v
+  wget http://www.openssl.org/source/openssl-3.0.13.tar.gz
+  tar -zxf openssl-3.0.13.tar.gz
+  cd openssl-3.0.13
   ./Configure darwin64-x86_64-cc --prefix=/usr
   make
   sudo make install
@@ -727,17 +725,17 @@ Download the source files for both the stable and mainline versions from [**ngin
 To download and unpack the source for the latest _mainline_ version, run:
 
 ```shell
-wget https://nginx.org/download/nginx-1.27.0.tar.gz
-tar zxf nginx-1.27.0.tar.gz
-cd nginx-1.27.0
+wget https://nginx.org/download/nginx-1.27.4.tar.gz
+tar zxf nginx-1.27.4.tar.gz
+cd nginx-1.27.4
 ```
 
 To download and unpack source files for the latest _stable_ version, run:
 
 ```shell
-wget https://nginx.org/download/nginx-1.26.1.tar.gz
-tar zxf nginx-1.26.1.tar.gz
-cd nginx-1.26.1
+wget https://nginx.org/download/nginx-1.26.3.tar.gz
+tar zxf nginx-1.26.3.tar.gz
+cd nginx-1.26.3
 ```
 
 <span id="configure"></span>
@@ -752,8 +750,8 @@ An example of options to the `configure` script (should be typed as a single lin
 --sbin-path=/usr/local/nginx/nginx
 --conf-path=/usr/local/nginx/nginx.conf
 --pid-path=/usr/local/nginx/nginx.pid
---with-pcre=../pcre2-10.42
---with-zlib=../zlib-1.2.13
+--with-pcre=../pcre2-10.43
+--with-zlib=../zlib-1.3.1
 --with-http_ssl_module
 --with-stream
 --with-mail=dynamic
@@ -841,8 +839,8 @@ If you do not need a module that is built by default, you can disable it by nami
 --pid-path=/usr/local/nginx/nginx.pid
 --with-http_ssl_module
 --with-stream
---with-pcre=../pcre2-10.42
---with-zlib=../zlib-1.2.13
+--with-pcre=../pcre2-10.43
+--with-zlib=../zlib-1.3.1
 --without-http_empty_gif_module
 ```
 
@@ -896,8 +894,8 @@ An example of the `configure` command that includes nondefault modules (should b
 --sbin-path=/usr/local/nginx/nginx
 --conf-path=/usr/local/nginx/nginx.conf
 --pid-path=/usr/local/nginx/nginx.pid
---with-pcre=../pcre2-10.42
---with-zlib=../zlib-1.2.13
+--with-pcre=../pcre2-10.43
+--with-zlib=../zlib-1.3.1
 --with-http_ssl_module
 --with-stream
 --with-mail
