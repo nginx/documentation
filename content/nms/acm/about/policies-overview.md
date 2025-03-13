@@ -5,7 +5,8 @@ docs: DOCS-932
 title: Available Policies
 toc: true
 weight: 500
-type: []
+type:
+- reference
 ---
 
 {{< shortversions "1.1.0" "latest" "acmvers" >}}

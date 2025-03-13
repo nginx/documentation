@@ -5,7 +5,8 @@ description: This topic provides a walkthrough of how to securely route egress t
 weight: 210
 toc: true
 docs: DOCS-722
-type: []
+type:
+- tutorial
 ---
 
 ## Overview

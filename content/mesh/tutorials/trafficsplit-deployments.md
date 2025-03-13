@@ -5,7 +5,8 @@ description: This topic provides a guide for using traffic splits with different
 weight: 110
 toc: true
 docs: DOCS-725
-type: []
+type:
+- tutorial
 ---
 
 ## Overview

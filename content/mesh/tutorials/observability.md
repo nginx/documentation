@@ -6,7 +6,8 @@ description: This topic provides a walkthrough of deploying F5 NGINX Service Mes
   with basic observability components.
 weight: 90
 docs: DOCS-886
-type: []
+type:
+- tutorial
 ---
 
 ## Overview

@@ -6,7 +6,8 @@ toc: true
 docs: DOCS-1472
 draft: true
 url: /nginxaas/azure/client-tools/terraform/
-type: []
+type:
+- task
 ---
 
 F5 NGINX as a Service for Azure (NGINXaaS) deployments can be managed using Terraform. This document outlines common Terraform workflows for NGINXaaS.

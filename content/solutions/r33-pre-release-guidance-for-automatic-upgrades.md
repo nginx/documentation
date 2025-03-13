@@ -3,7 +3,8 @@ title: R33 pre-release guidance for automatic upgrades
 weight: 1
 toc: true
 noindex: true
-type: []
+type:
+- reference
 draft: true
 type: concept
 product: Solutions

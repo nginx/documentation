@@ -5,7 +5,8 @@ description: This topic describes the steps to deploy F5 NGINX Ingress Controlle
 weight: 230
 toc: true
 docs: DOCS-841
-type: []
+type:
+- tutorial
 ---
 
 ## Overview

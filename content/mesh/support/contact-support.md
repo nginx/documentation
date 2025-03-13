@@ -5,7 +5,8 @@ description: Learn where to go for F5 NGINX Service Mesh support.
 toc: true
 draft: false
 docs: DOCS-718
-type: []
+type:
+- task
 ---
 
 Thank you for your interest in F5 NGINX Service Mesh. NGINX Service Mesh can be installed via helm charts, or by [downloading nginx-meshctl](https://github.com/nginxinc/nginx-service-mesh/releases/latest).

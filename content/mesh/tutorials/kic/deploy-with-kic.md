@@ -6,7 +6,8 @@ weight: 200
 draft: false
 toc: true
 docs: DOCS-721
-type: []
+type:
+- tutorial
 ---
 
 ## Overview

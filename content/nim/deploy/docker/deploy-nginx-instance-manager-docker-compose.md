@@ -4,7 +4,8 @@ title: Deploy using Docker Compose
 toc: true
 weight: 100
 docs: DOCS-1653
-type: []
+type:
+- task
 ---
 
 ## Overview

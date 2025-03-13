@@ -2,7 +2,8 @@
 title: About subscription licenses
 toc: true
 weight: 2
-type: []
+type:
+- reference
 product: Solutions
 docs: DOCS-000
 ---

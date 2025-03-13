@@ -6,7 +6,8 @@ description: This topic provides a walkthrough of deploying an App with F5 NGINX
   Mesh.
 weight: 100
 docs: DOCS-720
-type: []
+type:
+- tutorial
 ---
 
 ## Overview
