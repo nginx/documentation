@@ -14,7 +14,6 @@ type:
 - how-to
 ---
 
-
 ## Overview
 
 In environments where NGINX Instance Manager has internet access but NGINX Plus doesn’t, NGINX Plus sends usage data to NGINX Instance Manager. NGINX Instance Manager will automatically send the usage reports to F5 for verification, or you can choose to send them manually.

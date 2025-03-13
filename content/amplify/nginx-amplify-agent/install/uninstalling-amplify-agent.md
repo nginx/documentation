@@ -6,7 +6,6 @@ toc: true
 docs: DOCS-969
 ---
 
-
 To completely delete a previously monitored object, perform the following steps:
 
 

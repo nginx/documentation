@@ -8,7 +8,6 @@ type:
 - concept
 ---
 
-
 ## Overview
 
 The F5 NGINX Controller Agent is a compact application written in Golang. NGINX Controller uses the Controller Agent to manage and monitor each NGINX Plus instance that the Agent is installed on. Once installed, the NGINX Controller Agent collects metrics and metadata and sends them securely to NGINX Controller for storage and visualization.

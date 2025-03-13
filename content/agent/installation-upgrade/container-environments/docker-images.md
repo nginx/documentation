@@ -8,7 +8,6 @@ type:
 - how-to
 ---
 
-
 ## Overview
 
 NGINX Agent is a companion daemon for NGINX Open Source or NGINX Plus instances and must run in the same container to work. This document explains multiple ways in which NGINX Agent can be run alongside NGINX in a container.

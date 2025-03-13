@@ -8,7 +8,6 @@ type:
 - how-to
 ---
 
-
 ## ServiceNow Alert Integration
 
 {{< deprecated >}}

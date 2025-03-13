@@ -8,7 +8,6 @@ type:
 - how-to
 ---
 
-
 ## Overview
 
 This guide explains how to set up automatic cleanup for NGINX instances in NGINX One. The cleanup process removes instances that have been unavailable for a specified duration. By default, this period is 24 hours from the time the NGINX instance was last updated. Administrators can change or disable the cleanup duration in **Settings > Instance Settings**. Events will be generated for NGINX instances that have been automatically cleaned up; you can see these events on the **Overview > Events** page.

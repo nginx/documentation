@@ -7,7 +7,6 @@ type:
 - concept
 ---
 
-
 ## Overview
 
 The F5 NGINX Controller Application Delivery (AD) module lets you configure NGINX directives that aren't represented in the NGINX Controller API via "config snippets", or "Snippets". You can do so by using either the user interface (UI) or the [Application Delivery REST API](https://docs.nginx.com/nginx-controller/api/ctlr-adc-api/).

@@ -8,7 +8,6 @@ type:
 - concept
 ---
 
-
 ## Overview
 
 F5 NGINX Controller is designed to let you manage and monitor your NGINX Plus instances. With NGINX Controller, it's easy to proactively configure, analyze, and respond to problems related to running and scaling NGINX-based web applications.

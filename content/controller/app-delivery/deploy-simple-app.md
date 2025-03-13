@@ -8,7 +8,6 @@ type:
 - tutorial
 ---
 
-
 ## Overview
 
 This topic provides an overview of the steps required to create a simple application by using F5 NGINX Controller's user interface. Use the links provided to learn more about each step.

@@ -8,7 +8,6 @@ type:
 - tutorial
 ---
 
-
 ## Overview
 
 This document provides the instructions to run F5 NGINX Controller Agent as a non-root user, by making a few adjustments to the deployment process.

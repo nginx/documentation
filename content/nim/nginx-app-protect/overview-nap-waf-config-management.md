@@ -9,7 +9,6 @@ type:
 - reference
 ---
 
-
 ## Overview
 
 F5 NGINX Management Suite Instance Manager provides configuration management for [NGINX App Protect WAF](https://www.nginx.com/products/nginx-app-protect/web-application-firewall/).

@@ -8,7 +8,6 @@ type:
 - tutorial
 ---
 
-
 ## Overview
 
 Follow the steps in this topic to create and use Certs with an [Environment]({{< relref "/controller/services/manage-environments.md" >}}).

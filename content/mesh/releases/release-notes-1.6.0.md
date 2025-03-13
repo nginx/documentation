@@ -12,7 +12,6 @@ type:
 - reference
 ---
 
-
 ## NGINX Service Mesh Version 1.6.0
 
 01 November 2022

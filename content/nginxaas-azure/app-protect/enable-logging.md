@@ -7,7 +7,6 @@ type:
 - how-to
 ---
 
-
 ## Overview
 
 F5 NGINX as a Service for Azure (NGINXaaS) supports exporting NGINX App Protect logs to an Azure Storage account or to a Log Analytics workspace.

@@ -8,7 +8,6 @@ type:
 - how-to
 ---
 
-
 Rancher Kubernetes Engine (RKE) is a CNCF-certified Kubernetes distribution that runs entirely within Docker containers. It works on bare-metal and virtualized servers.
 
 {{< important >}}

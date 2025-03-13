@@ -6,7 +6,6 @@ toc: false
 docs: DOCS-982
 ---
 
-
  On the **Graphs** page, you can find a collection of predefined graphs. Here you can see an overview of the key metric stats, such as CPU, memory, and disk usage for all your systems.
 
 If you click on a system on the left, the graphs will change to reflect the metrics for the selected system. The graphs are further split into tabs such as "System", "NGINX" and so on.

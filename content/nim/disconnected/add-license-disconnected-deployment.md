@@ -14,7 +14,6 @@ type:
 - how-to
 ---
 
-
 ## Overview
 
 This guide shows you how to add a license to NGINX Instance Manager in a disconnected (offline) environment. In this setup, systems don’t have internet access. You’ll download and apply your subscription’s JSON Web Token (JWT) license, then verify your entitlements with F5.

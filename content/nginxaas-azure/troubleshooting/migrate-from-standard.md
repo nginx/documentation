@@ -7,7 +7,6 @@ type:
 - how-to
 ---
 
-
 ## Overview
 
 F5 NGINX as a Service for Azure (NGINXaaS) now supports in-place migration from Standard plan to the Standard V2 plan, we encourage you to upgrade your deployment to the Standard V2 plan as soon as possible. **The Standard plan is scheduled for retirement on May 1, 2025**. If you fail to migrate by May 1, 2025, your NGINXaaS deployment will stop receiving automatic updates that address critical security issues.

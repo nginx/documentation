@@ -9,7 +9,6 @@ url: /nginxaas/azure/client-tools/sdk/
 type: []
 ---
 
-
 F5 NGINX as a Service for Azure (NGINXaaS) deployments can be managed using the multi-language SDK. This document outlines common workflows using the Python SDK. You can find example code to manage NGINXaaS deployments and related objects in the NGINXaaS GitHub repository, [NGINXaaS Snippets](https://github.com/nginxinc/nginxaas-for-azure-snippets/tree/main/sdk/python/).
 
 ## Prerequisites

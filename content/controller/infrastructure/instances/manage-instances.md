@@ -8,7 +8,6 @@ type:
 - tutorial
 ---
 
-
 ## Overview
 
 The **Infrastructure > Instances > Overview** page allows you to check the status of all your F5 NGINX instances at a glance.

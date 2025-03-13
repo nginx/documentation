@@ -4,7 +4,6 @@ docs: DOCS-701
 description: v1alpha1 RateLimit documentation.
 ---
 
-
 ## RateLimit
 
 API Version: v1alpha1

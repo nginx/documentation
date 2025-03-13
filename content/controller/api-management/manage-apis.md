@@ -9,7 +9,6 @@ type:
 - tutorial
 ---
 
-
 ## Overview
 
 The F5 NGINX Controller API Management module provides full life cycle management for your APIs. This document provides a walkthrough of the steps needed to create, version, and publish your API using the NGINX Controller API Management module. When you have completed this guide, you should have the following resources:

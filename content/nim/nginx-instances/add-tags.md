@@ -8,7 +8,6 @@ type:
 - tutorial
 ---
 
-
 ## Overview
 
 Tags allow you to label and group NGINX instances in F5 NGINX Instance Manager.

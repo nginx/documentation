@@ -8,7 +8,6 @@ type:
 - tutorial
 ---
 
-
 ## Overview
 
 You can use F5 NGINX Controller Developer Portals (also called 'Dev Portals') to create and manage beautiful, easy-to-use API reference documentation to support your [Published APIs]({{< relref "/controller/api-management/manage-apis.md#publish-an-api" >}}).

@@ -8,5 +8,4 @@ type:
 - reference
 ---
 
-
 {{< include "nap-waf/policy.html" >}}

@@ -8,7 +8,6 @@ type:
 - reference
 ---
 
-
 The following document outlines the software versions and overhead F5 NGINX Service Mesh uses while running.
 
 ## Software Versions

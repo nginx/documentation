@@ -6,7 +6,6 @@ toc: false
 docs: DOCS-981
 ---
 
-
 You can create your own dashboards populated with highly customizable graphs of NGINX and system-level metrics.
 
 Some of the use cases for a custom set of graphs are the following:

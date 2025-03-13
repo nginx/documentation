@@ -6,4 +6,3 @@ weight: 1
 url: /nginx-service-mesh/get-started/platform-setup/
 ---
 
-

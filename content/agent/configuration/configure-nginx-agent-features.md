@@ -7,7 +7,6 @@ type:
 - how-to
 ---
 
-
 ## Overview
 
 This guide describes the F5 NGINX Agent features, and how to enable and disable features using the NGINX Agent configuration file.

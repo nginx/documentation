@@ -9,7 +9,6 @@ type:
 - tutorial
 ---
 
-
 ## Overview
 
 By completing the steps in this guide, you will learn how to add an Active Directory (AD) integration to F5 NGINX Controller. NGINX Controller supports the following AD types and protocols:

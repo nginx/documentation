@@ -12,7 +12,6 @@ type:
 - reference
 ---
 
-
 ## NGINX Service Mesh Version 0.9.0
 
 <!-- vale off -->

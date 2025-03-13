@@ -8,7 +8,6 @@ type:
 - tutorial
 ---
 
-
 ## Overview
 
 This page contains instructions for creating and managing Environments in the F5 NGINX Controller user interface.

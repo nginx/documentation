@@ -8,7 +8,6 @@ type:
 - how-to
 ---
 
-
 ## Overview
 
 Traffic Metrics are a mechanism through which you can view important information about your running workloads. Exposed by the [SMI spec](https://github.com/servicemeshinterface/smi-spec), this allows you to migrate functionality from your existing service mesh. The F5 NGINX Service Mesh creates an extension API Server and shim that queries Prometheus and returns the results in a traffic metrics format. You can access these metrics through a variety of methods ranging from the `nginx-meshctl` tool to querying the Kubernetes API manually.

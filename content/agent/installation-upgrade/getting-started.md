@@ -8,7 +8,6 @@ type:
 - how-to
 ---
 
-
 ## Overview
 
 Follow these steps to configure and run NGINX Agent and a mock interface ("control plane") to which NGINX Agent will report.

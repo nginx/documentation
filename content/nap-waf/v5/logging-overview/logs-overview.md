@@ -8,7 +8,6 @@ type:
 - concept
 ---
 
-
 ## Log Types
 
 Logs in F5 NGINX App Protect WAF v5 can be accessed and configured similarly to NGINX App Protect WAF, though there are some differences in the process.

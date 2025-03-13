@@ -14,7 +14,6 @@ type:
 - reference
 ---
 
-
 ## Overview
 
 The F5 NGINX Instance Manager’s web form builder uses JSON schemas to guide and validate user inputs when creating NGINX configurations from templates. This structured input method simplifies the configuration process and ensures adherence to NGINX configuration requirements.

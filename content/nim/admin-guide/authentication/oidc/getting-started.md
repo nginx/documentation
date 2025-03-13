@@ -8,7 +8,6 @@ type:
 - tutorial
 ---
 
-
 ## Overview
 
 We recommend using OpenID Connect (OIDC) as the preferred authentication method for NGINX Instance Manager. OIDC offers several advantages, including Single Sign-On (SSO) for users and simplified user management for administrators through user groups. OIDC also enables easy scalability and streamlined user access management.

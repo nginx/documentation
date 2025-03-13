@@ -8,7 +8,6 @@ type:
 - how-to
 ---
 
-
 {{< raw-html >}}
 <style>
     h2 {

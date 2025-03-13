@@ -9,7 +9,6 @@ type:
 - how-to
 ---
 
-
 ## Overview
 
 Follow the directions in this topic to deploy F5 NGINX App Protect and add the instance to NGINX Controller.

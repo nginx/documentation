@@ -8,7 +8,6 @@ type:
 - how-to
 ---
 
-
 ## Overview
 
 This Troubleshooting Guide is intended to provide guidance to customers in the detection and correction of programming issues in F5 NGINX App Protect DoS. It may also be useful to IT.

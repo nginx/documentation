@@ -9,7 +9,6 @@ type:
 - how-to
 ---
 
-
 ## Overview
 
 F5 NGINX Service Mesh can integrate with your Prometheus, Grafana, and tracing backends for exporting metrics and tracing data.

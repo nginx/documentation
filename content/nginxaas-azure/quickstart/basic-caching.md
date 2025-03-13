@@ -8,7 +8,6 @@ type:
 - how-to
 ---
 
-
 F5 NGINX as a Service for Azure (NGINXaaS) supports caching using the [ngx_http_proxy_module](https://nginx.org/en/docs/http/ngx_http_proxy_module.html) module, improving performance by allowing content to be served from cache without having to contact upstream servers. For more information on caching with NGINX, see [NGINX Content Caching](https://docs.nginx.com/nginx/admin-guide/content-cache/content-caching/).
 
 ## Configuring caching

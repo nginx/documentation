@@ -9,7 +9,6 @@ docs: DOCS-721
 type: []
 ---
 
-
 ## Overview
 
 You can deploy NGINX Ingress Controller for Kubernetes with NGINX Service Mesh to control both ingress and [egress](#enable-egress) traffic.

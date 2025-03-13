@@ -8,7 +8,6 @@ type:
 - how-to
 ---
 
-
 <span id="uninstall"></span>
 ## Instructions
 

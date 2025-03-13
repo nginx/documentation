@@ -11,7 +11,6 @@ type:
 - how-to
 ---
 
-
 This deployment guide explains how to configure global server load balancing (GSLB) of traffic for web domains hosted in Amazon [Elastic Compute Cloud](https://aws.amazon.com/ec2/) (EC2). For high availability and improved performance, you set up multiple backend servers (web servers, application servers, or both) for a domain in two or more AWS regions. Within each region, NGINX Plus load balances traffic across the backend servers.
 
 The AWS Domain Name System (DNS) service, [Amazon Route 53](https://aws.amazon.com/route53/), performs global server load balancing by responding to a DNS query from a client with the DNS record for the region that is closest to the client and hosts the domain. For best performance and predictable failover between regions, "closeness" is measured in terms of network latency rather than the actual geographic location of the client.

@@ -9,7 +9,6 @@ type:
 - tutorial
 ---
 
-
 ## Overview
 
 This topic explains how to use the [NGINX Controller REST API]({{< relref "/controller/api/_index.md" >}})

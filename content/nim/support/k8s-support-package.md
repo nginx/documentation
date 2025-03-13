@@ -8,7 +8,6 @@ type:
 - how-to
 ---
 
-
 {{< include "/nim/decoupling/note-legacy-nms-references.md" >}}
 
 ## Overview

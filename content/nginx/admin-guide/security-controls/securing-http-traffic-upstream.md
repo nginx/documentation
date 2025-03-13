@@ -9,7 +9,6 @@ type:
 - how-to
 ---
 
-
 This article explains how to encrypt HTTP traffic between NGINX and a upstream group or a proxied server.
 
 

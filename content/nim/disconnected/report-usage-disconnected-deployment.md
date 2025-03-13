@@ -13,7 +13,6 @@ type:
 - how-to
 ---
 
-
 ## Overview
 
 In a disconnected environment without internet access, NGINX Plus sends usage data to NGINX Instance Manager. You’ll need to download the usage report from NGINX Instance Manager and submit it to F5 from a location with internet access. After F5 verifies the report, you can download the acknowledgement, which you must upload back to NGINX Instance Manager.

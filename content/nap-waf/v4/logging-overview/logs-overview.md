@@ -8,7 +8,6 @@ type:
 - concept
 ---
 
-
 ## Overview
 
 There are 3 types of logs that F5 NGINX App Protect on NGINX generates:

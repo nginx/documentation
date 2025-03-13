@@ -8,7 +8,6 @@ type:
 - how-to
 ---
 
-
 ## Overview
 
 You can use the F5 NGINX Controller command-line interface, web interface, and API to look up the version information for NGINX Controller. The NGINX Controller API also returns version information for the NGINX Controller components.

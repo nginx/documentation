@@ -9,7 +9,6 @@ type:
 - how-to
 ---
 
-
 This article explains how to install NGINX Open Source.
 
 <span id="stable_vs_mainline"></span>

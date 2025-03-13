@@ -9,7 +9,6 @@ type:
 - how-to
 ---
 
-
 ## Overview
 
 The **Analytics Dashboards** provides an at-a-glance summary of the state of your F5 NGINX infrastructure and your application performance.

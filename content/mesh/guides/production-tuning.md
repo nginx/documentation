@@ -7,7 +7,6 @@ type:
 - how-to
 ---
 
-
 #### Overview
 
 While F5 NGINX Service Mesh provides a number of capabilities for finely controlling and authorizing traffic, it is up to the user to configure these options to best suit the needs of their application. This document will go over the various deployment options and tools compatible with NGINX Service Mesh that you can use to secure and orchestrate traffic throughout your application. For the best production experience possible, consider the options below.

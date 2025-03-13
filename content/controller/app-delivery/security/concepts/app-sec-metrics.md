@@ -9,7 +9,6 @@ type:
 - reference
 ---
 
-
 ## Overview
 
 This topic provides reference information for the metrics and events that F5 NGINX Controller reports for Application Security.

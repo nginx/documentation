@@ -8,7 +8,6 @@ type:
 - how-to
 ---
 
-
 ## Overview
 
 This guide explains how to back up and restore the F5 NGINX Controller analytics database. Backing up and restoring the analytics data lets you preserve the history of graphs. Backing up this information is optional.

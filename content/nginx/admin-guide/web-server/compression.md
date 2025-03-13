@@ -9,7 +9,6 @@ type:
 - how-to
 ---
 
-
 This section describes how to configure compression or decompression of responses, as well as sending compressed files.
 
 ## Introduction

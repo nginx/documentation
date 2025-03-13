@@ -9,7 +9,6 @@ type:
 - how-to
 ---
 
-
 ## Overview
 
 This topic explains how to use the Data Explorer to view the metrics that F5 NGINX Controller collects.

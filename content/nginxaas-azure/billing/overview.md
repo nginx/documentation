@@ -8,7 +8,6 @@ type:
 - concept
 ---
 
-
 ## Pricing plans
 
 F5 NGINX as a Service for Azure (NGINXaaS) provides two pricing plans.

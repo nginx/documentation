@@ -6,7 +6,6 @@ toc: true
 docs: DOCS-958
 ---
 
-
 ### What Operating Systems are Supported?
 
 The F5 NGINX Amplify Agent is currently officially packaged and supported for the following Linux flavors only:

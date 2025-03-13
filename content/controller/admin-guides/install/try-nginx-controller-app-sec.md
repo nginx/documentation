@@ -9,7 +9,6 @@ type:
 - tutorial
 ---
 
-
 ## Overview
 
 This quick-start tutorial shows you how to get started using F5 NGINX Controller with the Application Security Add-on ("App Security"). The App Security add-on to the NGINX Controller Application Delivery Module enables a web application firewall (WAF) that you can use to protect your apps.

@@ -8,7 +8,6 @@ type:
 - concept
 ---
 
-
 {{< shortversions "1.0.0" "latest" "acmvers" >}}
 
 ## Overview

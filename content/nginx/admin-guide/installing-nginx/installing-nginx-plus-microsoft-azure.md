@@ -9,7 +9,6 @@ type:
 - how-to
 ---
 
-
 [F5 NGINX Plus](https://www.f5.com/products/nginx/nginx-plus), the high-performance application delivery platform, load balancer, and web server, is available at the Microsoft Azure Marketplace as a virtual machine (VM) image.
 
 The VM image contains the latest version of NGINX Plus, optimized for use with Azure.

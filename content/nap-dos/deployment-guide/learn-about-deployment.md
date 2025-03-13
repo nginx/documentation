@@ -8,7 +8,6 @@ type:
 - how-to
 ---
 
-
 ## Overview
 
 F5 NGINX App Protect DoS provides behavioral protection against DoS for your web applications. <br><br>

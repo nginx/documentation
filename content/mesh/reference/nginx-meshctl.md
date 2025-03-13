@@ -9,7 +9,6 @@ type:
 - reference
 ---
 
-
 ## Usage
 
 `nginx-meshctl` is the CLI utility for the F5 NGINX Service Mesh control plane.

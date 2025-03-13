@@ -8,7 +8,6 @@ type:
 - tutorial
 ---
 
-
 ## Overview
 
 The **Identity Providers** page lets you create and manage Identity Providers to control access to your services (APIs for API Management module deployments, and Apps for App Delivery module deployments).

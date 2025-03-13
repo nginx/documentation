@@ -9,7 +9,6 @@ type:
 - tutorial
 ---
 
-
 ## Introduction
 
 As noted in the F5 NGINX Controller [API Overview]({{< relref "/controller/api/overview.md" >}}), NGINX Controller is organized into four top-level areas:

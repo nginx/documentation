@@ -9,7 +9,6 @@ type:
 - tutorial
 ---
 
-
 {{< dev-portal-dedicated-host >}}
 
 

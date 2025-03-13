@@ -9,7 +9,6 @@ type:
 - tutorial
 ---
 
-
 {{< shortversions "1.3.0" "latest" "acmvers" >}}
 
 ## Overview

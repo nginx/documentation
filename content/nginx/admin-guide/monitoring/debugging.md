@@ -9,7 +9,6 @@ type:
 - how-to
 ---
 
-
 ## Introduction
 
 Debugging helps to identify a bug in the program code if something goes wrong. It is generally used in developing or testing third-party or experimental modules.

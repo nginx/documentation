@@ -10,7 +10,6 @@ type:
 - how-to
 ---
 
-
 This deployment guide explains how to use NGINX Open Source and F5 NGINX Plus to load balance HTTP and HTTPS traffic across a pool of Node.js application servers. The detailed instructions in this guide apply to both cloud‑based and on‑premises deployments of Node.js.
 
 

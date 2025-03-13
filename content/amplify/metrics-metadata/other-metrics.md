@@ -6,7 +6,6 @@ toc: true
 docs: DOCS-975
 ---
 
-
 {{< note >}}Monitoring PHP-FPM and MySQL metrics is only supported by F5 NGINX Amplify Agent.{{< /note >}}
 
 ## PHP-FPM metrics

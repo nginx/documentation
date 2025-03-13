@@ -8,7 +8,6 @@ type:
 - how-to
 ---
 
-
 ## Overview
 
 F5 NGINX Instance Manager provides events and metrics data for your instances. You can access this information in the user interface, or by using the REST API.

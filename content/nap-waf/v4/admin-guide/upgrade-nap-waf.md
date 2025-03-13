@@ -6,7 +6,6 @@ toc: true
 docs: DOCS-1198
 ---
 
-
 ## Overview
 
 Learn how to upgrade F5 NGINX App Protect on your managed NGINX instances using NGINX Instance Manager. This guide covers the steps to update both the NGINX Management Suite server and NGINX App Protect on the data plane, ensuring your security policies and configurations are up-to-date.

@@ -8,7 +8,6 @@ type:
 - how-to
 ---
 
-
 ## Overview
 
 Learn how to upgrade NGINX Agent.

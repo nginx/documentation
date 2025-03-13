@@ -8,7 +8,6 @@ type:
 - reference
 ---
 
-
 ## Init Container
 The init container is a privileged container that runs as root. In addition to the container running with root privileges on the host system, it also has weaker sandboxing. The init container needs this level of access in order to manipulate `iptables` and `eBPF` on the host.
 

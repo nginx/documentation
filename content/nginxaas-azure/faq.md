@@ -8,7 +8,6 @@ type:
 - concept
 ---
 
-
 Common questions about F5 NGINX as a Service for Azure (NGINXaaS).
 
 ### Is NGINXaaS available in my subscription or in F5 subscription?

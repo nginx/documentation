@@ -9,7 +9,6 @@ type:
 - reference
 ---
 
-
 {{< metrics path="/static/ctlr/catalogs/metrics-catalog.json" >}}
 
 {{< versions "3.0" "latest" "ctrlvers" >}}

@@ -8,7 +8,6 @@ type:
 - how-to
 ---
 
-
 ## Overview
 
 TLS authentication is ubiquitous. Because of the baseline level of security TLS provides the client when connecting to an unknown host, and the low barrier to entry created by the advent of services like Let's Encrypt, TLS has become table stakes for any moderately reputable website. In a microservices, multi-tenant Kubernetes environment, it is no longer sufficient for a client to authenticate a server's signature. Clients may be compromised, and in a tightly controlled environment such as a service mesh, it is paramount that clients get vetted to ensure they should be making requests to any particular server. F5 NGINX Service Mesh does this authentication through mTLS, and provides the ability to define [Access Control policies]( {{< ref "/mesh/guides/smi-traffic-policies.md#access-control" >}}) for the additional authorization piece needed to properly grant access to an incoming request from a given client. This document details the steps required to enable mTLS in your cluster using NGINX Service Mesh.

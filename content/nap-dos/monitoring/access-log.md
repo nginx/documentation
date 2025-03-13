@@ -8,7 +8,6 @@ type:
 - how-to
 ---
 
-
 ## Access Logs
 Access Log is NGINX’s request log mechanism. It is controlled by the following two directives.<br>
 

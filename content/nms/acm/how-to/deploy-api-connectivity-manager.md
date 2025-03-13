@@ -9,7 +9,6 @@ type:
 - how-to
 ---
 
-
 ## Requirements
 
 Review the following requirements for API Connectivity Manager before continuing.

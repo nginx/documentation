@@ -9,7 +9,6 @@ docs: DOCS-886
 type: []
 ---
 
-
 ## Overview
 
 In this tutorial, we will install F5 NGINX Service Mesh with some basic observability components. These components include Prometheus for collecting metrics, Grafana for visualizing metrics, and the OpenTelemetry Collector and Jaeger for collecting traces. These deployments are meant for demo purposes only, and are not recommended for production environments.

@@ -14,7 +14,6 @@ type:
 - reference
 ---
 
-
 ## Overview
 
 The F5 Global Default Base template includes all the essential elements needed to build NGINX configurations using templates. It simplifies complex directives into user-friendly parameters, helping those new to NGINX generate configurations quickly. While **this default template alone will not create a deployable NGINX configuration**, it offers a clear example of how to use modular components and injectable templates for augmenting functionality and the simplified user interface that comes along with that. Using these patterns, you can copy and modify the base template to create custom templates tailored to your specific needs.

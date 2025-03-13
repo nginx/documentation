@@ -7,7 +7,6 @@ type:
 - tutorial
 ---
 
-
 {{< include "nim/decoupling/note-legacy-nms-references.md" >}}
 
 ## About certificates {#about-certificates}

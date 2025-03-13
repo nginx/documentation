@@ -7,7 +7,6 @@ docs: DOCS-909
 type: []
 ---
 
-
 ## Overview
 
 The NGINX Agent repository includes [Dockerfiles](https://github.com/nginx/agent/tree/main/scripts/docker) that can be used to [build custom container images]({{< relref "/agent/installation-upgrade/container-environments/docker-images.md" >}}). Images are created with an NGINX Open Source or NGINX Plus instance and are available for various operating systems.

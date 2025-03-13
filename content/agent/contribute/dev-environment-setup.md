@@ -8,7 +8,6 @@ type:
 - how-to
 ---
 
-
 ## Overview
 
 Learn how to setup a Development Environment for NGINX Agent.

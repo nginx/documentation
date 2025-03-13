@@ -9,7 +9,6 @@ type:
 - how-to
 ---
 
-
 F5 NGINX Plus provides a flexible replacement for traditional hardware‑based [application delivery controllers](https://www.nginx.com/resources/glossary/application-delivery-controller/) (ADCs). NGINX Plus is a small software package that can be installed just about anywhere – on bare metal, a virtual machine, or a container, and on‑premises or in public, private, and hybrid clouds – while providing the same level of application delivery, high availability, and security offered by legacy ADCs. This guide explains how to migrate an <span style="white-space: nowrap;">F5 BIG-IP</span> Local Traffic Manager (LTM) configuration to the NGINX Plus software application delivery platform, and covers the most commonly used features and configurations to get you started quickly on your migration.
 
 NGINX Plus and <span style="white-space: nowrap;">BIG-IP LTM</span> both act as a full reverse proxy and load balancer, so that the client sees the load balancer as the application and the backend servers see the load balancer as the client. This allows for great control and fine‑grained manipulation of the traffic. This guide focuses on basic load balancing. For information on extending the configuration with Layer 7 logic and scripting, see the post about [migrating Layer 7 logic](https://www.nginx.com/blog/migrating-layer7-logic-f5-irules-citrix-policies-nginx-plus/) on the NGINX blog. It covers features such as content switching and request routing, rewriting, and redirection.

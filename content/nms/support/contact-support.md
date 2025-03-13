@@ -8,7 +8,6 @@ type:
 - concept
 ---
 
-
 ## Support Policy
 
 F5 NGINX Management Suite adheres to the support policy detailed in the following knowledge base article: [K000140156](https://my.f5.com/manage/s/article/K000140156).

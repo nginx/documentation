@@ -9,7 +9,6 @@ type:
 - how-to
 ---
 
-
 This article explains how to configure high availability of NGINX Plus instances in on‑premises deployment with a solution based on [keepalived](https://www.keepalived.org/).
 
 > **Note:** This solution is designed to work in environments where IP addresses can be controlled through standard operating system calls, and often does not work in cloud environments where IP addresses are controlled through interfacing with the cloud infrastructure. For information about making NGINX Plus highly available in cloud environments, see the [Deployment Guides]({{< relref "/nginx/deployment-guides/_index.md" >}}).

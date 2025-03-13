@@ -10,7 +10,6 @@ product: Solutions
 docs: DOCS-000
 ---
 
-
 {{<call-out "caution" "NGINX R33: Immediate action required for automatic upgrades" "fa-solid fa-triangle-exclamation" >}}
 NGINX Plus R33 requires a valid JSON Web Token (JWT) to start and accept new connections. 
 <br>

@@ -7,8 +7,6 @@ docs: DOCS-1653
 type: []
 ---
 
-
-
 ## Overview
 
 This guide will show you how to deploy and use F5 NGINX Instance Manager in Docker using [Docker Compose](https://docs.docker.com/compose/). 

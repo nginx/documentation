@@ -9,7 +9,6 @@ type:
 - concept
 ---
 
-
 ## Overview
 
 The F5 NGINX Controller Application Delivery (AD) module lets you configure content caching by using either the user interface (UI) or the [Components REST API](https://docs.nginx.com/nginx-controller/api/ctlr-adc-api/#tag/Components).

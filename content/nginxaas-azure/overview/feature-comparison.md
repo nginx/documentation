@@ -9,7 +9,6 @@ type:
 - concept
 ---
 
-
 {{<bootstrap-table "table table-striped table-bordered">}}
 
 |**Load Balancer**<br>&nbsp;&nbsp;       |**NGINX Open<br>Source** |**NGINX Plus<br>&nbsp;** |**F5 NGINXaaS<br>for Azure**     |

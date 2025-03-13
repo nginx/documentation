@@ -9,7 +9,6 @@ type:
 - tutorial
 ---
 
-
 ## Overview
 
 Follow the steps in this guide to back up and restore an internal F5 NGINX Controller config database. Use this guide if you selected the option to use an embedded config database when you installed NGINX Controller. Embedded config means that NGINX Controller is using an internal database to store configuration data.

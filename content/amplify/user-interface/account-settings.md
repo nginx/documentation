@@ -6,7 +6,6 @@ toc: true
 docs: DOCS-978
 ---
 
-
 The **Account** option in the user menu at the top right corner of the user interface povides access to several user settings.
 
 ### Account Information

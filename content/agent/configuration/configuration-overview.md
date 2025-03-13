@@ -8,7 +8,6 @@ type:
 - how-to
 ---
 
-
 The following sections explain how to configure NGINX Agent using configuration files, CLI flags, and environment variables.
 
 {{<note>}}

@@ -9,7 +9,6 @@ type:
 - tutorial
 ---
 
-
 ## Overview
 
 This topic explains how to safely update the management IP of F5 NGINX Controller.

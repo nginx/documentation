@@ -7,8 +7,6 @@ type:
 - how-to
 ---
 
-
-
 ## Overview
 
 If you work with several instances of NGINX, it can help to organize these instances in Config Sync Groups. Each instance in a Config Sync Group has the same configuration.

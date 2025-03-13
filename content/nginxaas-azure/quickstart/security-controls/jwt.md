@@ -8,7 +8,6 @@ type:
 - how-to
 ---
 
-
 F5 NGINX as a Service for Azure (NGINXaaS) provides the option to control access to your resources using JWT authentication. With JWT authentication, a client provides a JSON Web Token, and the token will be validated against a local key file or a remote service. This document will explain how to validate tokens using Microsoft Entra as the remote service.
 
 For more information on JWT authentication with NGINX+, please refer to [ngx_http_auth_jwt_module](https://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html) and [NGINX Plus Setting up JWT Authentication](https://docs.nginx.com/nginx/admin-guide/security-controls/configuring-jwt-authentication/).

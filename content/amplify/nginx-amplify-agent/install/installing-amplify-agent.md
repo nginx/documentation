@@ -6,7 +6,6 @@ toc: true
 docs: DOCS-968
 ---
 
-
 To use F5 NGINX Amplify to monitor your infrastructure, you need to install NGINX Amplify Agent on each system you wish to monitor.
 
 {{< note >}} NGINX Amplify Agent will drop *root* privileges on startup. It will then use the user ID of the user `nginx` to set its effective user ID. The package install procedure will add the `nginx` user automatically unless it's already found in the system. If the [user](https://nginx.org/en/docs/ngx_core_module.html#user) directive appears in the NGINX configuration, NGINX Amplify Agent will pick up the user specified in the NGINX config for its effective user ID (e.g. `www-data`). {{< /note >}}

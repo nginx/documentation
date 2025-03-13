@@ -9,7 +9,6 @@ type:
 - how-to
 ---
 
-
 This chapter describes the design and limitations of the zone synchronization feature that allows synchronizing data in an nginx cluster.
 
 <span id="intro"></span>

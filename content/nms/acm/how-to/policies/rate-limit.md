@@ -11,7 +11,6 @@ type:
 - how-to
 ---
 
-
 ## Overview
 
 {{< include "acm/how-to/policies-proxy-intro" >}}

@@ -8,7 +8,6 @@ docs: DOCS-841
 type: []
 ---
 
-
 ## Overview
 
 Follow this tutorial to deploy the NGINX Ingress Controller with NGINX Service Mesh and an example UDP application.

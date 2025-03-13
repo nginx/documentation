@@ -8,7 +8,6 @@ type:
 - how-to
 ---
 
-
 ## Overview
 
 You can use the F5 NGINX Controller user interface to create your own Dashboards populated with customizable graphs of NGINX and system-level metrics.

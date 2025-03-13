@@ -7,7 +7,6 @@ type:
 - reference
 ---
 
-
 The NGINX Instance Manager dashboard gives you a high-level view of the health and performance of your NGINX instances. It provides a central place to identify, diagnose, and resolve issues in your data plane. You can also track how deployments affect the performance of individual instances and identify trends over time.
 
 This document walks you through the different panels in the dashboard and shows how to use them to monitor your data plane.

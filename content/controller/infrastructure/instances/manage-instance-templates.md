@@ -8,7 +8,6 @@ type:
 - tutorial
 ---
 
-
 ## Overview
 
 An Instance Template defines the parameters to use when creating a data plane instance.

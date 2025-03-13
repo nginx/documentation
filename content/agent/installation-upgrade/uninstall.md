@@ -8,7 +8,6 @@ type:
 - how-to
 ---
 
-
 ## Overview
 
 Learn how to uninstall NGINX Agent from your system.

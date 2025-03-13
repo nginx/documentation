@@ -8,7 +8,6 @@ type:
 - how-to
 ---
 
-
 ## Overview
 
 Learn how to install NGINX Agent from a GitHub Release.

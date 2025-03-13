@@ -9,7 +9,6 @@ type:
 - how-to
 ---
 
-
 This article explains how to set up SSL termination for F5 NGINX Plus and a load-balanced group of servers that accept TCP connections.
 
 

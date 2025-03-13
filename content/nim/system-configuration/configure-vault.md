@@ -7,7 +7,6 @@ type:
 - tutorial
 ---
 
-
 {{< include "/nim/decoupling/note-legacy-nms-references.md" >}}
 
 HashiCorp's Vault is a popular solution for storing secrets. While F5 NGINX Instance Manager provides encryption-at-rest for secrets stored on disk, you may prefer to store all secrets in one place if you have an existing Vault installation. NGINX Instance Manager provides a driver to connect to existing Vault installations and store secrets.

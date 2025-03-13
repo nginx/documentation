@@ -8,7 +8,6 @@ type:
 - how-to
 ---
 
-
 ## Overview
 
 This guide contains instructions for downloading and installing F5 NGINX Service Mesh using the `nginx-meshctl` command line tool.

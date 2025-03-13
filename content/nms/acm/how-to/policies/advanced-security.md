@@ -10,7 +10,6 @@ type:
 - concept
 ---
 
-
 ## Overview
 
 {{< include "acm/how-to/policies-proxy-intro" >}}

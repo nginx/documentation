@@ -9,7 +9,6 @@ url: /nginxaas/azure/client-tools/terraform/
 type: []
 ---
 
-
 F5 NGINX as a Service for Azure (NGINXaaS) deployments can be managed using Terraform. This document outlines common Terraform workflows for NGINXaaS.
 
 ## Prerequisites

@@ -9,7 +9,6 @@ type:
 - how-to
 ---
 
-
 <span id="intro"></span>
 ## Introduction
 F5 NGINX Plus can monitor the health of upstream servers by making active health checks. NGINX Plus R23 supports the [gRPC health checking protocol](https://github.com/grpc/grpc/blob/master/doc/health-checking.md#grpc-health-checking-protocol) so that upstream gRPC services can be tested for their ability to handle new requests. This is particularly important in dynamic and containerized environments. When adding a new instance of a gRPC service, it is important that requests are sent to the fully operating service.

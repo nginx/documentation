@@ -8,7 +8,6 @@ type:
 - how-to
 ---
 
-
 ## Overview
 
 This guide explains how to deploy F5 NGINX as a Service for Azure (NGINXaaS) using [Microsoft Azure portal](https://azure.microsoft.com/en-us/get-started/azure-portal). The deployment process involves creating a new deployment, configuring the deployment, and testing the deployment.

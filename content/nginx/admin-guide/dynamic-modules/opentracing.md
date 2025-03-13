@@ -12,7 +12,6 @@ type:
 - how-to
 ---
 
-
 {{< note >}} The module is deprecated since <a href="../../../releases/#r32">F5 NGINX Plus Release 32</a>. The [OpenTelemetry]({{< relref "opentelemetry.md" >}}) module is available since NGINX Plus <a href="../../../releases/#r29">Release 29</a> that incorporates the features of the OpenTracing module.{{< /note >}}
 
 

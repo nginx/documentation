@@ -8,7 +8,6 @@ type:
 - how-to
 ---
 
-
 ## Contact NGINX support
 
 To contact support about F5 NGINX as a Service for Azure (NGINXaaS):

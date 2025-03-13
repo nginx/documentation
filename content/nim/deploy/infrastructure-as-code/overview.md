@@ -7,7 +7,6 @@ type:
 - how-to
 ---
 
-
 {{< include "/nim/decoupling/note-legacy-nms-references.md" >}}
 
 Use our user-friendly Ansible role to easily install NGINX Instance Manager. The role also installs NGINX (OSS or Plus) and [ClickHouse](https://clickhouse.com), both of which are required for NGINX Instance Manager. Simplify your infrastructure management with our innovative Infrastructure as Code project, which enables you to set up the control plane and data plane as a unified solution.

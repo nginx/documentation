@@ -9,7 +9,6 @@ type:
 - tutorial
 ---
 
-
 ## Overview
 
 This tutorial walks through configuring an OAuth2 Introspection policy on an API Proxy in API Connectivity Manager with Keycloak as the authorization server.

@@ -7,7 +7,6 @@ type:
 - tutorial
 ---
 
-
 ## Overview
 
 This guide explains how to secure NGINX Instance Manager with OpenID Connect (OIDC) using the client credentials flow and Microsoft Entra as the identity provider. You can use this setup for automation services, such as in CI/CD pipelines.

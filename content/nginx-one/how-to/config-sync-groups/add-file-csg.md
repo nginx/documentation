@@ -7,8 +7,6 @@ type:
 - how-to
 ---
 
-
-
 ## Overview
 
 {{< include "nginx-one/add-file/overview.md" >}}

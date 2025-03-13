@@ -8,7 +8,6 @@ type:
 - how-to
 ---
 
-
 ## Overview
 
 Maintaining the latest version NGINX Plus, operating system (OS), and other software dependencies is a key feature offered by F5 NGINX as a Service for Azure (NGINXaaS). The **Upgrade Channel** is an upgrade path to which you can subscribe your NGINXaaS deployment to control the timing of software upgrades. The following channels are available:

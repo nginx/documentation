@@ -9,7 +9,6 @@ type:
 - how-to
 ---
 
-
 ## Overview
 
 F5 NGINX Service Mesh works by injecting a sidecar proxy into Kubernetes resources.

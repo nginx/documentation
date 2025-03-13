@@ -8,7 +8,6 @@ docs: DOCS-723
 type: []
 ---
 
-
 ## Overview
 
 Follow this tutorial to deploy the F5 NGINX Ingress Controller with NGINX Service Mesh and an example application.

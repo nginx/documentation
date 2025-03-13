@@ -8,7 +8,6 @@ type:
 - how-to
 ---
 
-
 ## Overview
 
 F5 NGINX Service Mesh integrates with Prometheus for metrics and Grafana for visualizations.

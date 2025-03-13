@@ -11,7 +11,6 @@ type:
 - reference
 ---
 
-
 ## Overview
 
 You can use the F5 NGINX Controller **Graphs** viewer to view key metrics for all of your monitored systems.

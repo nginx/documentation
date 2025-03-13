@@ -7,7 +7,6 @@ type:
 - how-to
 ---
 
-
 ## Overview
 
 F5 NGINX as a Service for Azure (NGINXaaS) configurations can be managed using the Azure CLI. This document outlines common Azure CLI workflows to validate, create, and update NGINX configurations.

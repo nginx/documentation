@@ -8,7 +8,6 @@ docs: DOCS-725
 type: []
 ---
 
-
 ## Overview
 
 You can use traffic splitting for most deployment scenarios, including canary, blue-green, A/B testing, and so on. The ability to control traffic flow to different versions of an application makes it easy to roll out a new application version with minimal effort and interruption to production traffic.

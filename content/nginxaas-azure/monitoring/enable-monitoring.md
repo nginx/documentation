@@ -8,7 +8,6 @@ type:
 - how-to
 ---
 
-
 Monitoring your application's performance is crucial for maintaining its reliability and efficiency. F5 NGINX as a Service for Azure (NGINXaaS) seamlessly integrates with Azure Monitor, allowing you to collect, correlate, and analyze metrics for a thorough understanding of your application's health and behavior. With Azure Monitor, you gain access to a wealth of information regarding your application's operations. You can:
 
 - Review Metrics: Examine the performance data collected from your application.

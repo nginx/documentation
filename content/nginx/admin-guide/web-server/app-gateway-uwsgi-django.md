@@ -9,7 +9,6 @@ type:
 - how-to
 ---
 
-
 This article explains how to use NGINX or F5 NGINX Plus as an application gateway with uWSGI and Django.
 
 <span id="intro"></span>

@@ -6,7 +6,6 @@ toc: true
 docs: DOCS-965
 ---
 
-
 F5 NGINX Amplify Agent is an open source application. It is licensed under the [2-clause BSD license](https://github.com/nginxinc/nginx-amplify-agent/blob/master/LICENSE), and is available here:
 
   * Sources: https://github.com/nginxinc/nginx-amplify-agent

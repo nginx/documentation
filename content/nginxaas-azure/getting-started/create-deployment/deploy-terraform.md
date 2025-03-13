@@ -7,7 +7,6 @@ type:
 - how-to
 ---
 
-
 ## Overview
 
 F5 NGINX as a Service for Azure (NGINXaaS) deployments can be managed using Terraform. This document outlines common Terraform workflows for NGINXaaS.

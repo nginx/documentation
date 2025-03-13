@@ -9,7 +9,6 @@ type:
 - how-to
 ---
 
-
 ## Overview
 
 {{<note>}}F5 NGINX as a Service for Azure (NGINXaaS) publishes custom metrics to Azure Monitor. To learn more about how to create and manage metrics-based alert rules, refer to the [Alerts section in Azure Monitor](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-create-new-alert-rule?tabs=metric) documentation from Microsoft. {{</note>}}

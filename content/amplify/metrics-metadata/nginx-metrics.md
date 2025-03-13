@@ -6,7 +6,6 @@ toc: true
 docs: DOCS-973
 ---
 
-
 ## HTTP Connections and Requests
 
 - ####  **nginx.http.conn.accepted**

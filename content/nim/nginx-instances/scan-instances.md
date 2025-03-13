@@ -8,7 +8,6 @@ type:
 - tutorial
 ---
 
-
 <style>
   h3 {font-weight: 400; padding-top: 20px;}
   hr {margin-top: 40px; margin-bottom: 40px;}

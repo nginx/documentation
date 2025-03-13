@@ -9,7 +9,6 @@ type:
 - how-to
 ---
 
-
 This deployment guide explains how to use F5 NGINX Plus to load balance traffic across a pool of Microsoft Exchange<sup>TM</sup> servers. You can deploy Exchange and NGINX Plus on premises, in a private cloud, or in public clouds including Amazon Web Services (AWS), the Google Cloud Platform, and Microsoft Azure. The guide covers the different installation types, and provides complete instructions for customizing both NGINX Plus and Exchange as required.
 
 <span id="about-nginx"></span>

@@ -9,7 +9,6 @@ type:
 - how-to
 ---
 
-
 This section describes how to create a denylist or allowlist of specific client IP addresses, which denies or allows them access to your site, and how to dynamically maintain the list of addresses.
 
 <span id="overview"></span>

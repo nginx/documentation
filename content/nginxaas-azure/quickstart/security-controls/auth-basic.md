@@ -8,7 +8,6 @@ type:
 - how-to
 ---
 
-
 You can restrict access to resources by implementing username/password authentication using the "HTTP Basic Authentication" protocol.
 
 For more information on configuring HTTP Basic Authentication please refer to the [NGINX Plus Restricting Access with HTTP Basic Authentication](https://docs.nginx.com/nginx/admin-guide/security-controls/configuring-http-basic-authentication/) documentation.

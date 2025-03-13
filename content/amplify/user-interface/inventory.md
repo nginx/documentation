@@ -6,7 +6,6 @@ toc: false
 docs: DOCS-983
 ---
 
-
 You can access the inventory by selecting the first icon on the top menu. The inventory gives an overview of the systems that are being monitored. When F5 NGINX Amplify Agent is running and reporting on a new system, it's listed in the system index on the left side of the user interface and in the **Inventory** section.
 
 {{< img src="amplify/amplify-inventory.png" alt="Inventory section of the User Interface" >}}

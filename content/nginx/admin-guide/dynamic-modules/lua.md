@@ -8,7 +8,6 @@ type:
 - how-to
 ---
 
-
 Integrate Lua co-routines into the NGINX event-processing model with the community-authored Lua dynamic module.
 
 <span id="prereq"></span>

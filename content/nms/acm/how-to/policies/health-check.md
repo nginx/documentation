@@ -10,7 +10,6 @@ type:
 - reference
 ---
 
-
 ## Overview
 
 {{< include "acm/how-to/policies-proxy-intro.md" >}}

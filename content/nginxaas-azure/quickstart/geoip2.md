@@ -7,7 +7,6 @@ type:
 - how-to
 ---
 
-
 ## Overview
 
 F5 NGINX as a Service for Azure (NGINXaaS) supports GeoIP2 using the [`ngx_http_geoip2_module` or `ngx_stream_geoip2_module`](https://github.com/leev/ngx_http_geoip2_module) dynamic modules, enabling NGINXaaS to implement various user differentiation strategies. For more information on GeoIP2 with NGINX, see [NGINX GeoIP2](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/geoip2/).

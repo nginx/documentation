@@ -8,7 +8,6 @@ type:
 - how-to
 ---
 
-
 <style>
 h2 {
   margin-top: 20px;

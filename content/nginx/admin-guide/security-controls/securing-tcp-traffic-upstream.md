@@ -9,7 +9,6 @@ type:
 - how-to
 ---
 
-
 This article explains how to secure TCP traffic between NGINX and a TCP upstream server or an upstream group of TCP servers.
 
 ## Prerequisites

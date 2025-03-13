@@ -9,7 +9,6 @@ type:
 - how-to
 ---
 
-
 This section describes how to configure an HTTPS server on NGINX and F5 NGINX Plus.
 
 <span id="setup"></span>

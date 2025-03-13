@@ -9,7 +9,6 @@ type:
 - concept
 ---
 
-
 ## Overview
 
 In order to receive email notifications for [Alerts]({{< relref "/controller/analytics/alerts/about-alerts.md" >}}), you need to provide a valid email address and complete the verification process.

@@ -8,7 +8,6 @@ docs: DOCS-724
 type: []
 ---
 
-
 ## Overview
 
 Rate limiting allows you to limit the number of HTTP requests a user can make in a given period to protect your application from being overwhelmed with traffic.

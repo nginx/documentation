@@ -9,7 +9,6 @@ type:
 - how-to
 ---
 
-
 ## Uninstalling the Chart
 
 {{< important >}}

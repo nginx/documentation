@@ -5,7 +5,6 @@ toc: true
 weight: 1
 ---
 
-
 ## Overview
 
 NGINX Instance Manager includes several scripts for backing up and restoring configuration files, secrets, and databases used by the platform.

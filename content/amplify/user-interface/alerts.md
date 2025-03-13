@@ -6,7 +6,6 @@ toc: false
 docs: DOCS-979
 ---
 
-
 The **Alerts** page describes the configuration of the alert rules used to notify you of any anomalies in the behavior of your systems.
 
 Alerts are based on setting a rule to monitor a particular metric. Alert rules allow the user to specify the metric, the trigger condition, the threshold, and the email for notifications.

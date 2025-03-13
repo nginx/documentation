@@ -7,7 +7,6 @@ type:
 - how-to
 ---
 
-
 ## Overview
 
 In NGINX Instance Manager, role-based access control (RBAC) lets you assign permissions to users or user groups based on their roles in the organization. This ensures that users only have access to the features they need. Before assigning roles, make sure you’ve created the necessary users or user groups. This guide covers how to assign roles to users using basic authentication and to user groups when using an OpenID Connect (OIDC) identity provider.

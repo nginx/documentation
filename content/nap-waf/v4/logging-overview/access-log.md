@@ -8,7 +8,6 @@ type:
 - concept
 ---
 
-
 ## Access Logs
 
 Access log is NGINX's request log mechanism. It is controlled by two directives.

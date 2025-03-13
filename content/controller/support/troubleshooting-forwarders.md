@@ -8,7 +8,6 @@ type:
 - tutorial
 ---
 
-
 ## Overview
 
 If your Data Forwarders aren't behaving how you expect them to, you can take the following steps to troubleshoot issues. If you need to [contact F5 NGINX Support]({{< relref "/controller/support/contact-support.md" >}}), make sure to [create a support package](#support/create-a-support-package) first.

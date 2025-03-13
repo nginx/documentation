@@ -8,7 +8,6 @@ type:
 - concept
 ---
 
-
 ## Overview
 
 [Alerts]({{< relref "/controller/analytics/alerts/about-alerts.md" >}}) are notifications about the F5 NGINX Controller system and your applications' performance.

@@ -9,7 +9,6 @@ type:
 - concept
 ---
 
-
 ## Introduction
 
 The F5 NGINX Controller API is a [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API that allows you to programmatically manage your NGINX Plus data planes.

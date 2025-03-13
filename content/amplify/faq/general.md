@@ -6,8 +6,6 @@ toc: true
 docs: DOCS-956
 ---
 
-
-
 ### What Is F5 NGINX Amplify?
 
 NGINX Amplify is a tool for comprehensive NGINX monitoring. With NGINX Amplify it's easy to proactively analyze and fix problems related to running and scaling NGINX-based web applications.

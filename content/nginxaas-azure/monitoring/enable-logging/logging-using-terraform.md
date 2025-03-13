@@ -8,7 +8,6 @@ type:
 - how-to
 ---
 
-
 ## Overview
 
 F5 NGINX as a Service for Azure (NGINXaaS) supports integrating Azure Diagnostic Settings to collect NGINX error and access logs.

@@ -8,7 +8,6 @@ type:
 - reference
 ---
 
-
 ## Overview
 
 This guide lists the technical recommendations for F5 NGINX Controller v3 and NGINX Controller Agent. Review this guide before installing or updating NGINX Controller or NGINX Controller Agent.

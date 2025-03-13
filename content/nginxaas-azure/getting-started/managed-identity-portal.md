@@ -8,7 +8,6 @@ type:
 - how-to
 ---
 
-
 ## Overview
 
 F5 NGINX as a Service for Azure (NGINXaaS) leverages a user assigned and a system assigned managed identity for some of its integrations with Azure, such as:

@@ -8,7 +8,6 @@ type:
 - reference
 ---
 
-
 <style>
 h2 {
   position: relative;

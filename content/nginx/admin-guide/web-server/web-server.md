@@ -9,7 +9,6 @@ type:
 - how-to
 ---
 
-
 This article explains how to configure NGINX Open Source and F5 NGINX Plus as a web server.
 
 **Note:** The information in this article applies to both NGINX Open Source and NGINX Plus. For ease of reading, the remainder of the article refers to NGINX Plus only.

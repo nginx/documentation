@@ -9,7 +9,6 @@ type:
 - reference
 ---
 
-
 ## Overview
 
 WAF Tuning helps remove false positives or exceptions from Security Events.

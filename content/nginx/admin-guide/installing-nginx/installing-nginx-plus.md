@@ -9,7 +9,6 @@ type:
 - how-to
 ---
 
-
 This article explains how to install NGINX Plus on different operating systems, upgrade existing NGINX Plus installation, install and enable dynamic modules, install in rootless mode or when offline.
 
 ## Prerequisites {#prereq}

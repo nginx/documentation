@@ -9,7 +9,6 @@ type:
 - tutorial
 ---
 
-
 ## Overview
 
 If NGINX isn't behaving how you expect, you can take the following steps to troubleshoot issues. If you need to [contact F5 NGINX Support]({{< relref "/controller/support/contact-support.md" >}}), make sure to [create a support package](#create-a-support-package) first.

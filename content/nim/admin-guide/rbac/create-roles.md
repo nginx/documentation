@@ -7,7 +7,6 @@ type:
 - how-to
 ---
 
-
 ## Overview
 
 NGINX Instance Manager emphasizes role-based access control (RBAC) to manage user permissions. A predefined `admin` role is available for initial setup and administration, but you can create custom roles to match specific responsibilities, such as for API Owners or Infrastructure Admins. This lets organizations fine-tune access and permissions to suit their needs.

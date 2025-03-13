@@ -7,7 +7,6 @@ type:
 - how-to
 ---
 
-
 ## Overview
 
 F5 NGINX Instance Manager lets you share telemetry and web analytics data with F5. This data provides insights into software usage, helping improve product development and customer support. This document explains the data that’s sent, how to enable or disable telemetry, and how to configure firewall settings.

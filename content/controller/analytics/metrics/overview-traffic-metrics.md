@@ -9,7 +9,6 @@ type:
 - reference
 ---
 
-
 ## Overview
 
 The data that F5 NGINX Controller collects can be divided into two categories:

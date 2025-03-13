@@ -7,8 +7,6 @@ type:
 - how-to
 ---
 
-
-
 ## Overview
 
 This guide explains how you can manage SSL/TLS certificates with the F5 NGINX One Console. Valid certificates support encrypted connections between NGINX and your users. 

@@ -9,7 +9,6 @@ type:
 - how-to
 ---
 
-
 The F5 NGINX ModSecurity web application firewall (WAF) is built on ModSecurity 3.0.
 
  {{< note >}} The ModSecurity WAF module was deprecated since <a href="../../../releases/#r29">NGINX Plus Release 29</a>, and is no longer available since <a href="../../../releases/#r32">NGINX Plus Release 32</a> {{< /note >}}

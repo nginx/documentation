@@ -8,7 +8,6 @@ type:
 - concept
 ---
 
-
 ## Security Logs
 
 ### Security Logs Overview

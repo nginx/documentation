@@ -7,7 +7,6 @@ type:
 - how-to
 ---
 
-
 This document provides details about using NGINX configuration files with your
 F5 NGINX as a Service for Azure deployment, restrictions, and available directives.
 

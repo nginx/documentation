@@ -8,7 +8,6 @@ type:
 - how-to
 ---
 
-
 F5 NGINX as a Service for Azure (NGINXaaS) supports rate limiting using the [ngx_http_limit_req_module](https://nginx.org/en/docs/http/ngx_http_limit_req_module.html) module to limit the processing rate of requests. For more information on rate limiting with NGINX, see [NGINX Limiting Access to Proxied HTTP Resources](https://docs.nginx.com/nginx/admin-guide/security-controls/controlling-access-proxied-http/) and [Rate Limiting with NGINX and NGINX Plus](https://www.nginx.com/blog/rate-limiting-nginx/).
 
 ## Configuring basic rate limiting

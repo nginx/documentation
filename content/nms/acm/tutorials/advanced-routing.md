@@ -9,7 +9,6 @@ type:
 - tutorial
 ---
 
-
 ## Overview
 
 This tutorial will show you how to create dynamic routes for your proxy deployments using the 'Advanced Routing' feature.

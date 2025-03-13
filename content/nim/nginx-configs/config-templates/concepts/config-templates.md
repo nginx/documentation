@@ -14,7 +14,6 @@ type:
 - concept
 ---
 
-
 ## Config templates
 
 F5 NGINX Instance Manager uses [Go templating](https://pkg.go.dev/text/template) to simplify creating and standardizing NGINX configurations. These config templates create an abstraction layer for NGINX configuration files, enabling users to provide parameters to generate a working configuration without needing a deep knowledge of NGINX syntax. These templates simplify configuring NGINX, enforce best practices for configurations, and enable self-service permissions for app development.

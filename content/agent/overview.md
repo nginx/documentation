@@ -8,7 +8,6 @@ type:
 - how-to
 ---
 
-
 ## Overview
 
 NGINX Agent is a companion daemon for your NGINX Open Source or NGINX Plus instance. It enables:

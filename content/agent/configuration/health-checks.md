@@ -7,7 +7,6 @@ type:
 - how-to
 ---
 
-
 ## Overview
 
 The REST API includes a health endpoint to verify the status of NGINX Agent.

@@ -7,7 +7,6 @@ type:
 - how-to
 ---
 
-
 [Kubespray](https://github.com/kubernetes-sigs/kubespray) is where Kubernetes meets [Ansible](https://www.ansible.com/). It's a composition of Ansible playbooks, provisioning tools, and domain knowledge for creating production-ready Kubernetes clusters. Kubespray builds on top of kubeadm. If you are using Kubespray v2.16.0 or later no changes are needed to deploy F5 NGINX Service Mesh. For older versions you need to enable some extra flags on the Kubernetes API Server to enable Service Account Token Volume Projection. See [Service Account Token Volume Projection]( {{< ref "kubeadm.md#service-account-token-volume-projection" >}} ) section to learn why this is needed.
 
 ## Configuration changes

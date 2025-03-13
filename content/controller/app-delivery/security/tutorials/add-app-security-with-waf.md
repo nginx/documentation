@@ -9,7 +9,6 @@ type:
 - reference
 ---
 
-
 ## Overview
 
 You can use the App Security add-on for F5 NGINX Controller ADC to enable Web Application Firewall (WAF) capabilities to protect your applications. WAF lets you flag or block suspicious requests or attacks. WAF can be added to individual app components.

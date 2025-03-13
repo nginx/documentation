@@ -8,7 +8,6 @@ type:
 - reference
 ---
 
-
 ## Overview
 
 The F5 NGINX Service Mesh API exists within a Kubernetes Custom Resource, and can be used to manage the global mesh configuration. This resource is created when the mesh is deployed, and can be updated at runtime using the Kubernetes API.

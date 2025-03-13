@@ -8,5 +8,4 @@ toc: false
 weight: null
 ---
 
-
 {{< openapi spec="./nginx-one/api/one.json" >}}

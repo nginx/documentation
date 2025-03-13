@@ -8,7 +8,6 @@ type:
 - how-to
 ---
 
-
 An NGINX configuration can be applied to the deployment using the Azure portal in two different ways:
 
 - Create a new NGINX configuration from scratch or by pasting it in the Azure portal editor.

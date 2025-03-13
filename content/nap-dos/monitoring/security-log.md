@@ -8,7 +8,6 @@ type:
 - how-to
 ---
 
-
 ## Overview
 
 Security logs contain information about the status of the protected objects. It gives a general picture about each protected object in terms of traffic intensity, health of the backend server, learning and mitigations.

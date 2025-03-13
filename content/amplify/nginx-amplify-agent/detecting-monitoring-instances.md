@@ -6,7 +6,6 @@ toc: true
 docs: DOCS-962
 ---
 
-
 F5 NGINX Amplify Agent is capable of detecting several types of NGINX instances:
 
   * Installed from a repository package

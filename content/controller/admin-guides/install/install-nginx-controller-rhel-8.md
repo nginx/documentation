@@ -9,7 +9,6 @@ type:
 - tutorial
 ---
 
-
 ## Preparing the F5 NGINX Controller Host
 
 To install NGINX Controller on RHEL 8, you must complete the following steps to allow iptables-based routing for Kubernetes. Failure to complete these steps may cause the installation to hang.

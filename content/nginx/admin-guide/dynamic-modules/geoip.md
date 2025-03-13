@@ -9,7 +9,6 @@ type:
 - how-to
 ---
 
-
 {{< note >}} MaxMind GeoLite Legacy databases are currently [discontinued](https://blog.maxmind.com/2018/01/discontinuation-of-the-geolite-legacy-databases), MaxMind GeoIP2 or Geolite2 databases and F5 NGINX Plus [GeoIP2 module]({{< relref "geoip2.md" >}}) should be used instead. {{< /note >}}
 
 

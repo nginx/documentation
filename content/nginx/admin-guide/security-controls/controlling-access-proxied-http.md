@@ -9,7 +9,6 @@ type:
 - how-to
 ---
 
-
 This article explains how to set the maximum number of requests for a connection, or the maximum rate of downloading content from the server.
 
 <span id="intro"></span>

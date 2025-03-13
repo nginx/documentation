@@ -7,7 +7,6 @@ type:
 - how-to
 ---
 
-
 ## Overview
 
 This guide explains how to add an F5 NGINX instance in F5 NGINX One Console. You can add an instance from the NGINX One Console individually, or as part of a [Config Sync Group]({{< relref "/nginx-one/glossary.md" >}}). In either case, you need

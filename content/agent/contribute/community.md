@@ -8,7 +8,6 @@ type:
 - how-to
 ---
 
-
 # Community
 
 - Our [Slack channel #nginx-agent](https://nginxcommunity.slack.com/), is the go-to place to start asking questions and sharing your thoughts.

@@ -9,7 +9,6 @@ type:
 - how-to
 ---
 
-
 ## Prerequisites
 
 Before installing F5 NGINX Service Mesh, make sure you've completed the following steps.

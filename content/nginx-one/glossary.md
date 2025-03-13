@@ -8,7 +8,6 @@ type:
 - reference
 ---
 
-
 This glossary defines terms used in the F5 NGINX One Console and F5 Distributed Cloud.
 
 

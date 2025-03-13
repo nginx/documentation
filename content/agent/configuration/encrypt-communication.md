@@ -5,7 +5,6 @@ weight: 200
 docs: DOCS-802
 ---
 
-
 ## Overview
 
 Follow the steps in this guide to encrypt communication between NGINX Agent and Instance Manager with TLS.

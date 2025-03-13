@@ -9,7 +9,6 @@ type:
 - tutorial
 ---
 
-
 ## Overview
 
 This quick-start tutorial shows you how to get started using F5 NGINX Controller with NGINX Plus.

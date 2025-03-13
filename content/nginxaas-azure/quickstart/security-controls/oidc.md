@@ -8,7 +8,6 @@ type:
 - how-to
 ---
 
-
 ## Overview
 
 Learn how to configure F5 NGINX as a Service (NGINXaaS) for Azure with OpenID Connect (OIDC) authentication.

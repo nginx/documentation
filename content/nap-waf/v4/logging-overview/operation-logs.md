@@ -8,7 +8,6 @@ type:
 - concept
 ---
 
-
 ### Overview
 
 The operation logs consists of system operational and health events. The events are sent to the NGINX error log and are distinguished by the **APP_PROTECT** prefix followed by JSON body. The log level depends on the event: success is usually **Notice** while failure is **Error**. The timestamp is inherent in the error log.

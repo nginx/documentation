@@ -8,7 +8,6 @@ type:
 - how-to
 ---
 
-
 ## Introduction
 
 OpenShift is a security-first platform, locking down privileges and capabilities to ensure that workloads are running securely. OpenShift creates additional security mechanisms in the form of [security context constraints](https://docs.openshift.com/container-platform/4.8/authentication/managing-security-context-constraints.html). These constraints restrict the default permissions a workload is able to operate with. It also needs a user or workload management tool (such as a service mesh) to iteratively build out the specific permissions.

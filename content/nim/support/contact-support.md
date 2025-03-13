@@ -7,7 +7,6 @@ type:
 - concept
 ---
 
-
 ## Support policy
 
 F5 NGINX Instance Manager follows the support policy detailed in the knowledge base article: [K000140156](https://my.f5.com/manage/s/article/K000140156).

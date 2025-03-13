@@ -8,7 +8,6 @@ type:
 - how-to
 ---
 
-
 The NGINX Developer Kit (NDK) module makes it easier for module developers to develop NGINX modules.
 
 The NDK module is also a prerequisite for [Encrypted Session]({{< relref "encrypted-session.md" >}}), [Lua]({{< relref "lua.md" >}}), and [Set-Misc]({{< relref "set-misc.md" >}}) modules.

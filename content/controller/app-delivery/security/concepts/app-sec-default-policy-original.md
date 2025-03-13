@@ -10,7 +10,6 @@ type:
 - reference
 ---
 
-
 ## Overview
 
 You can use the F5 NGINX Controller App Security module to configure and manage a web application firewall (WAF). The App Security WAF protects your applications from HTTP and web-based threats, including the [OWASP Top 10](https://owasp.org/www-project-top-ten/).

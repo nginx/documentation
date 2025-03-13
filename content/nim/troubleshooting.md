@@ -10,7 +10,6 @@ type:
 - reference
 ---
 
-
 ## New NGINX instances don't show up in Instance Manager
 
 ### Description

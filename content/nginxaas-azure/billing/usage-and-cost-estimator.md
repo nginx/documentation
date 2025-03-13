@@ -8,7 +8,6 @@ type:
 - concept
 ---
 
-
 {{< raw-html >}}
 
 <link rel="stylesheet" href="/nginxaas-azure/css/cost-calculator_v2.css">

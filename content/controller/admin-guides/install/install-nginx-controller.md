@@ -8,7 +8,6 @@ type:
 - tutorial
 ---
 
-
 ## Overview
 
 F5 NGINX Controller is NGINX's control-plane solution that manages the NGINX data plane. Built on a modular architecture, NGINX Controller enables you to manage the entire lifecycle of NGINX Plus, whether it's deployed as a load balancer, API gateway, or a proxy in a service mesh environment.

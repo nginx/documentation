@@ -7,7 +7,6 @@ type:
 - reference
 ---
 
-
 ## Overview
 
 NGINX Instance Manager provides centralized management for NGINX Open Source and NGINX Plus instances across various environments, including bare metal, containers, public clouds (AWS, Azure, Google Cloud), and virtual machines. It supports several Linux distributions, including Amazon Linux, CentOS, Debian, RHEL, and Ubuntu. This guide outlines the technical specifications, minimum requirements, and supported platforms for deploying NGINX Instance Manager, ensuring optimal performance in both small and large environments.

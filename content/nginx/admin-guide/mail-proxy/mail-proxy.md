@@ -9,7 +9,6 @@ type:
 - how-to
 ---
 
-
 This article will explain how to configure F5 NGINX Plus or NGINX Open Source as a proxy for a mail server or an external mail service.
 
 ## Introduction

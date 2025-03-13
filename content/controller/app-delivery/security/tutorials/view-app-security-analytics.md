@@ -9,7 +9,6 @@ type:
 - reference
 ---
 
-
 ## Overview
 
 When App Security flags or blocks a request made to an App Component as a security violation, it generates an App Security event.

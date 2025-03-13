@@ -8,7 +8,6 @@ type:
 - concept
 ---
 
-
 ## Overview
 
 This Troubleshooting Guide is intended to provide guidance to customers in the detection and correction of programming issues in F5 NGINX App Protect WAF. It may also be useful to IT in resolving any installation or configuration problems. <br>

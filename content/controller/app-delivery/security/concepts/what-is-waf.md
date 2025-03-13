@@ -9,7 +9,6 @@ type:
 - reference
 ---
 
-
 ## Overview
 
 The App Security Add-on for F5 NGINX Controller ADC lets you protect your applications with a web applications firewall (WAF). The WAF protects your apps from a variety of application layer attacks such as [cross-site scripting (XSS)](https://www.f5.com/services/resources/glossary/cross-site-scripting-xss-or-css), [SQL injection](https://www.f5.com/services/resources/glossary/sql-injection), and [cookie poisoning](https://www.f5.com/services/resources/glossary/cookie-poisoning), among others.

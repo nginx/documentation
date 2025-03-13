@@ -7,7 +7,6 @@ toc: true
 weight: 100
 ---
 
-
 ## Overview
 
 You can use F5 NGINX Management Suite Instance Manager to publish configurations to your NGINX App Protect WAF data plane instances.

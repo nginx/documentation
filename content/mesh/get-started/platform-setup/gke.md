@@ -8,7 +8,6 @@ type:
 - how-to
 ---
 
-
 Google Kubernetes Engine (GKE) is a hosted Kubernetes solution created by Google. To use GKE with F5 NGINX Service Mesh, your Kubernetes user account has to have the `ClusterAdmin` role.
 
 {{< warning >}}

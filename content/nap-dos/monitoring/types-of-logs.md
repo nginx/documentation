@@ -8,7 +8,6 @@ type:
 - how-to
 ---
 
-
 There are 4 types of logs corresponding to App Protect DoS:
 
 - [Security Log](#security-log): The general picture of the site and how App Protect DoS processed it, including anomalies and signatures found.

@@ -14,7 +14,6 @@ type:
 - reference
 ---
 
-
 ## Config Template, Schema, and README Files
 
 F5 NGINX Instance Manager uses [Go templating](https://pkg.go.dev/text/template) and JSON schemas to create flexible and robust NGINX configuration templates. This allows users to efficiently customize and validate configurations without needing expert knowledge of NGINX syntax.

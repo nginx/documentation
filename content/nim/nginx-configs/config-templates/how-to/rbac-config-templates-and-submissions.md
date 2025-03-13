@@ -14,7 +14,6 @@ type:
 - tutorial
 ---
 
-
 ## Overview
 
 With role-based access control (RBAC), administrators can determine who can create, read, update, and delete templates and template submissions. This access control helps you securely manage your NGINX configurations and deployments.

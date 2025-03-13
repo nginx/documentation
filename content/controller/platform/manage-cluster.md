@@ -10,7 +10,6 @@ type:
 - tutorial
 ---
 
-
 ## Overview
 
 This topic explains how to update your cluster settings and how to manage nodes for a multi-node cluster.

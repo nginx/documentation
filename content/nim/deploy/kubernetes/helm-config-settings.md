@@ -7,7 +7,6 @@ type:
 - reference
 ---
 
-
 {{< include "/nim/decoupling/note-legacy-nms-references.md" >}}
 
 This reference guide lists the configurable Helm chart parameters and default settings for NGINX Instance Manager.

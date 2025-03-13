@@ -7,7 +7,6 @@ type:
 - how-to
 ---
 
-
 ## Overview
 
 You can manage SSL/TSL certificates for F5 NGINX as a Service for Azure (NGINXaaS) using Terraform.

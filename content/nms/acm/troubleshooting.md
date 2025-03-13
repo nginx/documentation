@@ -9,7 +9,6 @@ type:
 - reference
 ---
 
-
 ## System returns `403 Forbidden` error for authorized resources
 
 ### Description

@@ -9,7 +9,6 @@ type:
 - how-to
 ---
 
-
 **Note:** Refer to the [F5 NGINX Controller Technical Specifications]({{< relref "/controller/admin-guides/install/nginx-controller-tech-specs.md" >}}) guide to find out which distributions are supported for use with NGINX Controller and NGINX Controller Agent.
 
 ## Setup

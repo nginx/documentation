@@ -9,7 +9,6 @@ type:
 - how-to
 ---
 
-
 This deployment guide explains how to use F5 NGINX Plus to load balance traffic across a pool of <span style="white-space: nowrap;">Oracle E-Business Suite (EBS) 12</span> servers. It provides complete instructions for configuring NGINX Plus as required.
 
 <span id="about-nginx"></span>

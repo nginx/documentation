@@ -6,7 +6,6 @@ toc: true
 docs: DOCS-959
 ---
 
-
 ### What Browsers are Supported?
 
 Currently, the following desktop browsers are officially supported:

@@ -7,7 +7,6 @@ type:
 - reference
 ---
 
-
 ## Security event log backup with Security Monitoring
 
 ### Description

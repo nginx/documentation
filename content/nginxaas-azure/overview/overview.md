@@ -8,7 +8,6 @@ type:
 - concept
 ---
 
-
 ## What Is F5 NGINX as a Service for Azure?
 
 NGINX as a Service for Azure is a service offering that is tightly integrated into Microsoft Azure public cloud and its ecosystem, making applications fast, efficient, and reliable with full lifecycle management of advanced NGINX traffic services.

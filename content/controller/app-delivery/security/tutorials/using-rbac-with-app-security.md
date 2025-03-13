@@ -8,7 +8,6 @@ type:
 - how-to
 ---
 
-
 Role Based Access Control (RBAC) allows you to define permissions for Apps Security resources. With RBAC, you can specify which role has the permissions to create, read (and reference), update, and delete a Security Strategy or a Security Policy. You can then assign roles to specific users so that the users inherit the permissions.
 
 For more information regarding roles, refer to [Manage Roles and Role Groups]({{< relref "/controller/platform/access-management/manage-roles.md" >}})

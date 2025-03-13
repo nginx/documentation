@@ -8,5 +8,4 @@ type:
 - reference
 ---
 
-
 {{< catalogs-metrics >}}

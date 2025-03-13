@@ -7,7 +7,6 @@ type:
 - how-to
 ---
 
-
 You can use Azure Key Vault (AKV) to store SSL/TLS certificates and keys to use in your F5 NGINX as a Service for Azure (NGINXaaS) configuration.
 
 ### Prerequisites

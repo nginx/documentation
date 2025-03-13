@@ -8,7 +8,6 @@ type:
 - how-to
 ---
 
-
 ## Overview
 
 Follow the steps in this topic to learn how to create and manage Apps and App Components.

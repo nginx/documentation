@@ -8,7 +8,6 @@ type:
 - concept
 ---
 
-
 ## What is a Service Mesh?
 
 A *service mesh* is an infrastructure layer that's designed to provide fast, reliable, and low-latency network connections for highly distributed applications requiring inter-process communications. A service mesh abstracts lower layer networking concerns away from application developers and business logic. Meshes are often optimized for container environments and seamlessly integrate into the orchestration system, providing consistent and reliable services for the ephemeral, scalable, and dynamic applications built honoring today's modern architectures. Common properties defined by service meshes include service discovery, identity, load balancing, encryption, traffic control, resiliency and availability, and observability.

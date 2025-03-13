@@ -9,7 +9,6 @@ type:
 - concept
 ---
 
-
 <span id="support"></span>
 ## Support for Current and Previous Releases
 

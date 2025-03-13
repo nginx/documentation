@@ -8,7 +8,6 @@ type:
 - reference
 ---
 
-
 ## Overview
 
 F5 NGINX Instance Manager collects two types of data:

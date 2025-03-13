@@ -6,7 +6,6 @@ toc: true
 docs: DOCS-957
 ---
 
-
 ### What Data Does F5 NGINX Amplify Agent Gather?
 
 [NGINX Amplify Agent Metrics and Metadata]({{< relref "/amplify/nginx-amplify-agent/metadata-metrics-collection" >}})

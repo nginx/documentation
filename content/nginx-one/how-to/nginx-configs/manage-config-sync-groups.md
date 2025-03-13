@@ -7,8 +7,6 @@ type:
 - how-to
 ---
 
-
-
 ## Overview
 
 This guide explains how to create and manage config sync groups in the F5 NGINX One Console. Config sync groups synchronize NGINX configurations across multiple NGINX instances, ensuring consistency and ease of management.

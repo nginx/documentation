@@ -7,7 +7,6 @@ type:
 - tutorial
 ---
 
-
 ## Overview
 
 This guide explains how to configure Keycloak as an identity provider (IdP) for F5 NGINX Instance Manager. By implementing OIDC for authentication, administrators can simplify user management in NGINX Instance Manager. Instead of creating and managing users individually, administrators can create user groups in NGINX Instance Manager that align with groups in their Identity Provider. Access and permissions for users are determined by the roles assigned to their respective user groups. Users from the Identity Provider who are not part of a group with an assigned role will not have access to NGINX Instance Manager.

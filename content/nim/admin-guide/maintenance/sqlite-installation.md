@@ -5,7 +5,6 @@ toc: true
 weight: 10
 ---
 
-
 ## Install SQLite for your Linux distribution
 
 If you're using **NGINX Instance Manager version 2.14.1 or earlier**, you'll need to install SQLite to run the [backup and recovery scripts]({{< relref "/nim/admin-guide/maintenance/backup-and-recovery.md" >}}).

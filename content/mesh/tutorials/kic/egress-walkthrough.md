@@ -8,7 +8,6 @@ docs: DOCS-722
 type: []
 ---
 
-
 ## Overview
 
 Learn how to create internal routes in F5 NGINX Ingress Controller to securely route egress traffic to non-meshed services.

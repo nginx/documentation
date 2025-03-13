@@ -9,7 +9,6 @@ type:
 - reference
 ---
 
-
 ## Overview
 
 F5 NGINX Management Suite includes several open-source packages that are subject to their respective licenses.

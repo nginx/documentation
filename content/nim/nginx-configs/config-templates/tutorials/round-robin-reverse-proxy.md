@@ -10,7 +10,6 @@ type:
 - tutorial
 ---
 
-
 ## Overview
 
 This tutorial guides you through setting up a round-robin reverse proxy using base and augment templates in NGINX Instance Manager. It's intended for network administrators and developers familiar with basic NGINX configurations.

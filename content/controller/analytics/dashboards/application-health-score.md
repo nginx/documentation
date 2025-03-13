@@ -8,7 +8,6 @@ type:
 - concept
 ---
 
-
 ## Overview
 
 When you log in to the F5 NGINX Controller user interface, you will see the **Analytics Dashboard Overview** page. This page contains an Application Health Score (AHS) that reflects your application's performance.

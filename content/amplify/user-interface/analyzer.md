@@ -6,7 +6,6 @@ toc: false
 docs: DOCS-980
 ---
 
-
 F5 NGINX Amplify Agent parses NGINX configuration files and transmits them to the backend component for further analysis. NGINX Amplify offers configuration recommendations to help improve the performance, reliability, and security of your applications. With well-thought-out and detailed recommendations, you’ll know exactly where the problem is, why it is a problem, and how to fix it.
 
 When you switch to the **Analyzer** page, select a particular system on the left to see the associated report. If there are no NGINX instances on a system, there will be no report.

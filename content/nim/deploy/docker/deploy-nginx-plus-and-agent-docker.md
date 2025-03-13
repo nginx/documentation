@@ -7,7 +7,6 @@ type:
 - how-to
 ---
 
-
 ## Overview
 
 This guide explains how to:

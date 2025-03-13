@@ -7,7 +7,6 @@ type:
 - how-to
 ---
 
-
 ## Overview
 
 F5 NGINXaaS for Azure simplifies advanced Layer 4 and Layer 7 load balancing for Kubernetes clusters. With the NGINX Load Balancer for Kubernetes (NLK) feature, you can enable multi-cluster load balancing, failover, disaster recovery, and blue-green or canary deployments.

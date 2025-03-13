@@ -9,7 +9,6 @@ type:
 - reference
 ---
 
-
 {{< dimensions path="/static/ctlr/catalogs/dimensions-catalog.json" >}}
 
 {{< versions "3.0" "latest" "ctrlvers" >}}

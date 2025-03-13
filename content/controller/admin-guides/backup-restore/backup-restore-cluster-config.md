@@ -9,7 +9,6 @@ type:
 - how-to
 ---
 
-
 ## Overview
 
 After installing F5 NGINX Controller, you should back up the cluster config and encryption keys. You'll need these if you ever need to restore the NGINX config database on top of a new NGINX Controller installation.

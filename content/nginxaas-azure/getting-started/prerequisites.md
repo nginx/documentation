@@ -8,7 +8,6 @@ type:
 - how-to
 ---
 
-
 Before you deploy F5 NGINX as a Service for Azure (NGINXaaS) you need to meet the following prerequisites:
 
 - An Azure account with an active subscription (if you don’t have one, [create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F)).

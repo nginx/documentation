@@ -8,7 +8,6 @@ type:
 - how-to
 ---
 
-
 ## Overview
 
 Brotli is a general‑purpose, lossless data compression algorithm that uses a variant of the LZ77 algorithm, Huffman coding, and second‑order context modeling. Its compression ratio is comparable to the best currently available general‑purpose compression methods. Its speed is similar to [DEFLATE](https://www.ietf.org/rfc/rfc1951.txt) but with denser compression.

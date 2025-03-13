@@ -8,7 +8,6 @@ type:
 - tutorial
 ---
 
-
 ## Overview
 
 This page shows how to install, update, and uninstall the F5 NGINX Controller Agent.

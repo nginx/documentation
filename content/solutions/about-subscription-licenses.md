@@ -7,7 +7,6 @@ product: Solutions
 docs: DOCS-000
 ---
 
-
 ## Overview
 
 We’re updating NGINX Plus to align with F5’s entitlement and visibility policy, bringing benefits like fair and compliant usage, better visibility into license management, and improved customer support.

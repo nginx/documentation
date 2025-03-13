@@ -8,7 +8,6 @@ type:
 - how-to
 ---
 
-
 ## Overview
 
 This guide explains how to set up an F5 NGINX Plus Docker container with NGINX Agent and connect it to the NGINX One Console.

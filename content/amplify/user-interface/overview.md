@@ -6,7 +6,6 @@ toc: true
 docs: DOCS-984
 ---
 
-
 The Overview page is designed to provide a quick summary of the state of your NGINX infrastructure. Here you can quickly check the total sum of HTTP 5xx errors over the past 24 hours and compare it to the previous 24 hours.
 
 Five key overlay graphs are displayed for the selected period. By switching over various periods, you can compare trends and see if anything abnormal shows up.

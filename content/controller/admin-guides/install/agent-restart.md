@@ -9,7 +9,6 @@ type:
 - how-to
 ---
 
-
 ## Starting and Stopping the Agent
 
 To start, stop, and restart the F5 NGINX Controller Agent, run the following commands on the NGINX Plus system where you installed the Agent.

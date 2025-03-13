@@ -9,7 +9,6 @@ type:
 - reference
 ---
 
-
 {{< include "controller/apim-rn-preamble.md" >}}
 
 &nbsp;

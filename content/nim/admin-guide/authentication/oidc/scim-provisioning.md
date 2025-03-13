@@ -7,7 +7,6 @@ type:
 - how-to
 ---
 
-
 ## Overview
 
 Starting with NGINX Instance Manager 2.3, you can use SCIM 2.0 (System for Cross-domain Identity Management) to provision, update, or deprovision users and user groups through an open API for managing identities.

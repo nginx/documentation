@@ -8,7 +8,6 @@ type:
 - how-to
 ---
 
-
 [F5 NGINX Plus](https://www.nginx.com/products/nginx/), the high‑performance application delivery platform, load balancer, and web server, is available as the Docker container.
 
 <span id="prereq"></span>

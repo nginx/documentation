@@ -8,7 +8,6 @@ type:
 - how-to
 ---
 
-
 ## Overview
 
 During installation, NGINX Agent detects the NGINX user (typically `nginx`) for the master and worker processes and adds this user to a group called `nginx-agent`.

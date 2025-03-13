@@ -8,7 +8,6 @@ type:
 - how-to
 ---
 
-
 {{< img src="/dashboard/dos-tab.png" alt="NGINX App Protect DoS Dashboard" >}}
 
 ## Overview

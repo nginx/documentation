@@ -10,7 +10,6 @@ type:
 - reference
 ---
 
-
 ## Overview
 
 F5 NGINX Controller [Snippets]({{< relref "/controller/app-delivery/about-snippets.md" >}}) let you customize your NGINX configuration by adding NGINX directives that aren't represented by the NGINX Controller API.

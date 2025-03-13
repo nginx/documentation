@@ -8,7 +8,6 @@ type:
 - tutorial
 ---
 
-
 ## Overview
 
 Follow the steps in this guide to customize the F5 NGINX Controller Agent configuration.

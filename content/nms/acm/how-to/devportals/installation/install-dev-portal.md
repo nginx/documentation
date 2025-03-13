@@ -9,7 +9,6 @@ type:
 - tutorial
 ---
 
-
 ---
 
 ## Platform Requirements {#acm-devportal-requirements}

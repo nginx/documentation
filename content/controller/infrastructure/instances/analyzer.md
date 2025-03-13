@@ -8,7 +8,6 @@ type:
 - how-to
 ---
 
-
 ## Overview
 
 Use the **Analyzer** page in the F5 NGINX Controller **Infrastructure** section to see reports for your NGINX Plus instances.

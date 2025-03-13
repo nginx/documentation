@@ -8,7 +8,6 @@ type:
 - reference
 ---
 
-
 ## Contact F5 NGINX Support
 
 For questions and/or assistance with installing, troubleshooting, or using NGINX Controller, contact Support via the [MyF5 Customer Portal](https://account.f5.com/myf5).

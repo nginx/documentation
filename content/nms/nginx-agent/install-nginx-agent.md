@@ -9,7 +9,6 @@ type:
 - tutorial
 ---
 
-
 ## Prerequisites
 
 This section lists the prerequisites for installing and configuring NGINX Agent. Follow the steps below to complete the requirements:

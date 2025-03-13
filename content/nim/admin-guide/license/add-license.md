@@ -7,7 +7,6 @@ type:
 - how-to
 ---
 
-
 ## Overview
 
 To unlock all of the features in NGINX Instance Manager, you’ll need to add a JSON Web Token (JWT) license from MyF5. This guide shows you how to set up your network for reporting, download the license file, and apply it to NGINX Instance Manager. If needed, you can also cancel the license at any time.

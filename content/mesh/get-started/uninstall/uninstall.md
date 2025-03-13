@@ -8,7 +8,6 @@ type:
 - how-to
 ---
 
-
 ## Overview
 
 This topic explains how to uninstall F5 NGINX Service Mesh using nginx-meshctl.

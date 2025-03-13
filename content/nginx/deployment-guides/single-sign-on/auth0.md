@@ -9,7 +9,6 @@ type:
 - tutorial
 ---
 
-
 <hr>
 
 This documentation applies to F5 NGINX Plus R15 and later.

@@ -8,7 +8,6 @@ type:
 - concept
 ---
 
-
 ## Debug Logs
 
 Debug log settings determine the minimum log level and the internal App Protect components included in the log.

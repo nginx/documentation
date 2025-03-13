@@ -8,7 +8,6 @@ type:
 - tutorial
 ---
 
-
 ## Overview
 
 You can use F5 NGINX Controller to configure a BIG-IP cluster to work with NGINX instances in your app delivery infrastructure. By using NGINX Controller, you can configure your NGINX instances as part of your BIG-IP device's virtual servers and server pools.

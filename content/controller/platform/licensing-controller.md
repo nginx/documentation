@@ -8,7 +8,6 @@ type:
 - how-to
 ---
 
-
 ## Overview
 
 This topic explains how to upload and manage licenses for F5 NGINX Controller.

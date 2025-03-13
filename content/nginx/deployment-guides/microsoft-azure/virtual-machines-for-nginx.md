@@ -10,7 +10,6 @@ type:
 - how-to
 ---
 
-
 These instructions explain how to create virtual machines (VMs) in the Microsoft Azure environment that are suitable for running NGINX Open Source and NGINX Plus.
 
 The names and other settings used in this guide are appropriate for the high‑availability deployment described in [Active-Active HA for NGINX Plus on Microsoft Azure Using the Azure Standard Load Balancer]({{< relref "high-availability-standard-load-balancer.md" >}}), but the VMs can be used for any purpose.

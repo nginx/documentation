@@ -8,7 +8,6 @@ type:
 - reference
 ---
 
-
 ## Before You Begin
 
 We support running the F5 NGINX Controller Agent in a Docker environment on the following distributions: CentOS, Debian, and Ubuntu.

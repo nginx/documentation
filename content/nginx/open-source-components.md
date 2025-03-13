@@ -9,7 +9,6 @@ type:
 - reference
 ---
 
-
 Open source components included in the F5 NGINX Plus (package name is `nginx-plus`) are:
 
 

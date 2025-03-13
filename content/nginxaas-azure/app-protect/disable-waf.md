@@ -7,7 +7,6 @@ type:
 - how-to
 ---
 
-
 ## Overview
 This guide explains how to disable F5 NGINX App Protect WAF on an NGINX as a Service for Azure (NGINXaaS) deployment.
 

@@ -9,7 +9,6 @@ type:
 - reference
 ---
 
-
 ## Overview
 
 F5 NGINX Service Mesh is an infrastructure layer designed to decouple application business logic from deep networking concerns. A mesh is designed to provide fast, reliable, and low-latency network connections for modern application architectures.

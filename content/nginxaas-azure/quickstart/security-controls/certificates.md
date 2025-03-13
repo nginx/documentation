@@ -7,7 +7,6 @@ type:
 - how-to
 ---
 
-
 ## Overview
 
 This tutorial walks through a complete example of using SSL/TLS certificates from Azure Key Vault in an F5 NGINX as a Service for Azure (NGINXaaS) deployment to secure traffic. In this guide, you will create all necessary resources to add a certificate to an NGINXaaS deployment using the [Azure portal](https://portal.azure.com/).

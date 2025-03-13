@@ -8,7 +8,6 @@ type:
 - how-to
 ---
 
-
 In this guide, we'll show you how to authenticate API requests with F5 Distributed Cloud and the F5 NGINX One Console. There are two options for authentication: API Token or API Certificate. Both methods ensure secure access to your data.
 
 ## Getting ready

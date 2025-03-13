@@ -9,7 +9,6 @@ docs: DOCS-720
 type: []
 ---
 
-
 ## Overview
 
 In this tutorial, we will use the `bookinfo` example app Deployment.

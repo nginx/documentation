@@ -9,7 +9,6 @@ type:
 - how-to
 ---
 
-
 ## Overview
 
 You can use the [F5 NGINX Controller REST API]({{< relref "/controller/api/_index.md" >}}) to enable or disable monitor-only mode for the App Security WAF policy.

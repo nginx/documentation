@@ -9,7 +9,6 @@ type:
 - how-to
 ---
 
-
 {{< shortversions "1.3.0" "latest" "acmvers" >}}
 
 ## Default Developer Portal Helm Settings {#default-devportal-helm-settings}

@@ -9,7 +9,6 @@ type:
 - how-to
 ---
 
-
 This chapter provides scenarios for restricting access to a database or media server that communicates over TCP. Access can be limited by IP address, the number of simultaneous connections, or bandwidth.
 
 <span id="restrict"></span>
