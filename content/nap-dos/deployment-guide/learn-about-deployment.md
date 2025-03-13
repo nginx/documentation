@@ -2443,6 +2443,8 @@ ${DIR}/appprotect-dos/install.sh
 ${DIR}/appprotect-dos-arb/install_appprotect-dos-arb.sh
 ```
 
+---
+
 ## App Protect DoS eBPF manager
 
 ### Overview
