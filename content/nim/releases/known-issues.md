@@ -59,7 +59,7 @@ In NGINX Instance Manager v2.19.0, publishing an NGINX App Protect WAF policy fr
 ## 2.18.0
 November 8, 2024
 
-### {{% icon-bug %}} Automatic downloading of NAP compiler versions 5.210.0 and 5.264.0 fails on Ubuntu 24 {#45846}
+### {{% icon-bug %}} Automatic downloading of NAP compiler versions 5.210.0 and 5.264.0 fails on Ubuntu 24.04 {#45846}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
@@ -69,7 +69,7 @@ November 8, 2024
 
 #### Description
 
-On Ubuntu 24, NGINX Instance Manager v2.18.0 and v2.19.0 fail to automatically download NGINX App Protect WAF compiler v5.210.0 (for NGINX App Protect WAF v4.12.0) and v5.264.0 (for NGINX App Protect WAF v4.13.0) from the NGINX repository.
+On Ubuntu 24.04, NGINX Instance Manager v2.18.0 and v2.19.0 fail to automatically download NGINX App Protect WAF compiler v5.210.0 (for NGINX App Protect WAF v4.12.0) and v5.264.0 (for NGINX App Protect WAF v4.13.0) from the NGINX repository.
 
 #### Workaround
 
