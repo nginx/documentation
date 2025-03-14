@@ -1,5 +1,5 @@
 ---
-description: null
+description: ''
 docs: null
 title: NGINX One subscription
 toc: true

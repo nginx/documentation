@@ -1,5 +1,5 @@
 ---
-description: null
+description: ''
 docs: DOCS-384
 title: Encrypted-Session
 toc: true

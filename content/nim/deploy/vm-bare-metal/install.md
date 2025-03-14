@@ -1,5 +1,5 @@
 ---
-description: null
+description: ''
 docs: DOCS-1211
 title: Install on a virtual machine or bare metal using a script
 toc: true

@@ -1,5 +1,5 @@
 ---
-description: null
+description: ''
 docs: DOCS-470
 title: NGINX Plus FIPS Compliance
 toc: true

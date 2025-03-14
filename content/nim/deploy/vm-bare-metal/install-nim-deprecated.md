@@ -1,5 +1,5 @@
 ---
-description: null
+description: ''
 docs: DOCS-1211
 title: Manually install on a virtual machine or bare metal (deprecated)
 toc: true

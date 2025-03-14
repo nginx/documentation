@@ -1,5 +1,5 @@
 ---
-description: null
+description: ''
 docs: DOCS-392
 title: NGINX Developer Kit
 toc: true

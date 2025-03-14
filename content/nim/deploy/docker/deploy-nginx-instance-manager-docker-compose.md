@@ -1,5 +1,5 @@
 ---
-description: null
+description: ''
 title: Deploy using Docker Compose
 toc: true
 weight: 100

@@ -1,5 +1,5 @@
 ---
-description: null
+description: ''
 docs: DOCS-422
 title: Accepting the PROXY Protocol
 toc: true
