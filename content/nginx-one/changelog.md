@@ -35,13 +35,11 @@ Stay up-to-date with what's new and improved in the F5 NGINX One Console.
 ## March 11, 2025
 
 ### Set up Staged Configurations
-<!-- Set up include, with Glossary -->
 It allows you to:
 
 - Save Your Progress: Staged Configurations allow you to work on configuration changes without the need for a fully functional setup. You can create these drafts from scratch, an existing Instance, another Staged Configuration, or a Config Sync Group.
 - No Immediate Validation Required: You don't have to immediately address syntax or configuration issues. Your Staged Configuration doesn't have to be valid until you publish it to an Instance or a Config Sync Group.
 - Manage through our API: You can easily manage your Staged Configurations programmatically through our [API]({{< ref "/nginx-one/api/api-reference-guide/#tag/StagedConfigs" >}}).
-
 
 ## January 20, 2025
 
