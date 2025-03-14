@@ -4,7 +4,7 @@ description: Configure NGINX Open Source as a web server and F5 NGINX Plus as a 
 docs: DOCS-462
 doctypes:
 - task
-title: Setting Up an NGINX Demo Environment
+title: Setting up an NGINX demo environment
 toc: true
 weight: 100
 ---
@@ -19,7 +19,7 @@ This guide assumes you have already provisioned a number of host systems (physic
 Some commands require `root` privilege. If appropriate for your environment, prefix commands with the `sudo` command.
 
 <span id="nginx-oss"></span>
-## Configuring NGINX Open Source for Web Serving
+## Configuring NGINX Open Source for web serving
 
 The steps in this section configure an NGINX Open Source instance as a web server to return a page like the following, which specifies the server name, address, and other information. The page is defined in the <span style="white-space: nowrap; font-weight:bold;">demo-index.html</span> configuration file you create in Step 4 below.
 
@@ -188,7 +188,7 @@ If you are using these instructions to satisfy the prerequisites for one of our 
    ```
 
 <span id="nginx-plus"></span>
-## Configuring NGINX Plus for Load Balancing
+## Configuring NGINX Plus for load balancing
 
 The steps in this section configure an NGINX Plus instance to load balance requests across the group of NGINX Open Source web servers you configured in the [previous section](#nginx-oss).
 
@@ -272,7 +272,7 @@ Repeat these instructions on each instance. Alternatively, you can configure one
 
    Directive documentation: [include](http://nginx.org/en/docs/ngx_core_module.html#include)
 
-### Revision History
+### Revision history
 
 - Version 2 (April 2019) – Generalized instructions for use with deployment guides
 - Version 1 (April 2018) – Initial version

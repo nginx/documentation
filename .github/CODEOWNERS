@@ -29,6 +29,10 @@ content/nap-dos/*           @nginx/dos-docs-approvers
 content/nap-waf/*           @nginx/nap-docs-approvers
 data/nap-waf/*              @nginx/nap-docs-approvers
 
+# NGINXaaS for Azure 
+content/nginxaas-azure/*          @nginx/n4a-docs
+content/includes/nginxaas-azure/* @nginx/n4a-docs
+
 # NGINX Gateway Fabric
 content/ngf/*               @nginx/nginx-gateway-fabric
 content/includes/ngf/*      @nginx/nginx-gateway-fabric
