@@ -9,8 +9,6 @@ toc: true
 type: tutorial
 # Intended for internal catalogue and search, case sensitive:
 product: NGINX One
-# Intended for internal catalogue
-docs: "DOCS-000"
 ---
 <!-- Possible future include, with similar files in config-sync-groups/ and staged-configs/ subdirectories -->
 
