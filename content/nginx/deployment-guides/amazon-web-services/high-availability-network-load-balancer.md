@@ -70,7 +70,7 @@ These instructions assume you have the following:
 - Six EC2 instances running a version of NGINX:
     - Four running NGINX Open Source 
     - Two running NGINX Plus 
-    - You need a subscription for each NGINX Plus instance, either paid or a [30‑day free trial](https://www.nginx.com/free-trial-request).
+    - You need a paid or trial subscription for each NGINX Plus instance.
 
   Refer to the [Appendix](#appendix) to create EC2 instances with names used in these instructions. There you can also find instructions to install and configure NGINX software on EC2.
 

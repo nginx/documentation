@@ -73,7 +73,7 @@ These instructions assume you have the following:
 - An Azure [subscription](https://docs.microsoft.com/en-us/azure/azure-glossary-cloud-terminology?toc=/azure/virtual-network/toc.json#subscription).
 - An Azure [resource group](https://docs.microsoft.com/en-us/azure/azure-resource-manager/management/overview#resource-groups), preferably dedicated to the HA solution. In this guide, it is called <span style="color:#666666; font-weight:bolder; white-space: nowrap;">NGINX-Plus-HA</span>.
 - An Azure [virtual network](https://docs.microsoft.com/en-us/azure/virtual-network/virtual-networks-overview).
-- Six Azure VMs, four running NGINX Open Source and two running NGINX Plus (in each region where you deploy the solution). You need a subscription for each NGINX Plus instance, either paid or a [30‑day free trial](https://www.nginx.com/free-trial-request).
+- Six Azure VMs, four running NGINX Open Source and two running NGINX Plus (in each region where you deploy the solution). You need a paid or trial subscription for each NGINX Plus instance.
 
    The [Appendix](#appendix) provides instructions for creating instances with the expected names, and installing and configuring the NGINX software.
 - Familiarity with NGINX and NGINX Plus configuration syntax. Complete configuration snippets are provided, but not described in detail.

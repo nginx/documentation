@@ -29,7 +29,7 @@ These instructions assume you have:
 
 In addition, to install NGINX software by following the linked instructions, you need:
 
-- An NGINX Plus subscription, either paid or a [30‑day free trial](https://www.nginx.com/free-trial-request), if you plan to install that product.
+- A paid or trial NGINX Plus subscription, if you plan to install that product.
 - `root` privilege on the hosts where NGINX Open Source and NGINX Plus are to be installed. If appropriate for your environment, prefix commands with the `sudo` command.
 
 <span id="create-vm"></span>
