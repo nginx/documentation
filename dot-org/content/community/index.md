@@ -2,7 +2,7 @@
 title: Community
 params:
     display_breadcrumb: false
-    hero_desc: lorem ipsum dolor sit amet consectetur adipiscing elit te nostrud labore anim voluptua laborum suscipit liber
+    hero_desc: Welcome to the NGINX Community!
 ---
 
 {{< page-section title="Welcome" >}}
