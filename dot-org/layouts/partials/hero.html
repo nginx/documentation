@@ -2,18 +2,20 @@
 
 <!-- If hero title param set, override page title for display -->
 {{ $pageTitle := default .Title .Params.hero_title }}
-
 {{ $heroDesc := default .Description .Params.hero_desc }}
 
-<section class="w-full hero-gradient flex">
+<!-- Non-home pages have a "minimal" hero height applied.  -->
+{{ $heroClasses := cond .IsHome "w-full hero-gradient flex md:h-[450px]" "w-full hero-gradient flex md:h-[200px]" }}
+
+<section class="{{ $heroClasses }}">
     <!--  Content Width Target -->
     <div class="container flex m-auto flex-col md:flex-row">
-        <div class="w-full flex justify-center md:w-1/2 text-white flex-col gap-4 ">
-            <div class="flex flex-col text-white gap-4 py-8 px-5 lg:p-0 ">
-                <h4 class="text-2xl uppercase text-white font-weight-bolder">{{ $pageTitle }}</h4>
+        <div class="w-full flex justify-center md:w-1/2 text-white flex-col gap-3">
+            <div class="flex flex-col text-gray-200 gap-4 py-8 px-5 lg:p-0 ">
+                <h3 class="text-3xl uppercase text-white font-weight-bolder">{{ $pageTitle }}</h3>
                 {{ if .IsHome }}
                     <div class="flex gap-x-2 items-center">
-                        {{ with resources.Get "images/icon-logo.png" }}
+                        {{ with resources.Get "images/icon-logo.webp" }}
                             <img src="{{ .RelPermalink }}" alt="icon-logo" class="w-[50px] h-[50px]"/>
                         {{ end }}
                         <h2 class="text-4xl">We power the web</h2>
@@ -27,20 +29,12 @@
                 {{ end }}
             </div>
         </div>
-<!--   Applies styling for a "minimal" hero for all non-home pages     -->
         {{ if .IsHome }}
-            <div class="hero-image-container lg:p-32">
-                {{ with resources.Get "images/hero-graphic.png" }}
-                    <img src="{{ .RelPermalink }}" class="" alt="hero-graphic"/>
-                {{ end }}
-            </div>
-        {{ else }}
-            <div class="hero-image-container lg:py-16 lg:px-32">
-                {{ with resources.Get "images/hero-graphic.png" }}
-                    <img src="{{ .RelPermalink }}" class="" alt="hero-graphic"/>
+            <div class="hero-image-container">
+                {{ with resources.Get "images/hero-graphic.webp" }}
+                    <img src="{{ .RelPermalink }}" class="h-[250px]" alt="hero-graphic"/>
                 {{ end }}
             </div>
         {{ end }}
-
     </div>
 </section>
