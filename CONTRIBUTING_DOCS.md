@@ -133,11 +133,13 @@ Supported callouts:
 - `caution`
 - `warning`
 
-You can also create custom callouts using the `call-out` shortcode `{{< call-out "type" "header" "font-awesome icon >}}`. For example:
+You can also create custom callouts using the `call-out` shortcode `{{< call-out "type position" "header" "font-awesome icon >}}`. For example:
 
 ```md
-{{<call-out "important" "JWT file required for upgrade" "fa fa-exclamation-triangle">}}
+{{<call-out "important side-callout" "JWT file required for upgrade" "fa fa-exclamation-triangle">}}
 ```
+
+By default, all custom callouts are included inline, unless you add `side-callout` which places the callout to the right of the content.
 
 Here are some other shortcodes:
 
