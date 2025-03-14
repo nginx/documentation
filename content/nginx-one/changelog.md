@@ -38,13 +38,15 @@ Stay up-to-date with what's new and improved in the F5 NGINX One Console.
 
 With the NGINX One Console, you can now:
 
-Manage certificates in Config Sync Groups. The certificate can be managed or unmanaged. You can:
+Manage certificate deployment in Config Sync Groups. You can:
 
 - Add a certificate to a Config Sync Group
 - Remove a deployed certificate from a Config Sync Group
-- Delete deployed certificates
 
-For more information, including warnings about risks, see our documentation on how you can [Add a file]({{< relref "/nginx-one/how-to/nginx-configs/add-file.md" >}}) [Manage certificates]({{< relref "/nginx-one/how-to/certificates/manage-certificates.md" >}})
+For more information, including warnings about risks, see our documentation on how you can:
+- [Add a file]({{< relref "/nginx-one/how-to/nginx-configs/add-file.md" >}}) 
+- [Manage certificates]({{< relref "/nginx-one/how-to/certificates/manage-certificates.md" >}})
+
 
 ### Revert a configuration
 
