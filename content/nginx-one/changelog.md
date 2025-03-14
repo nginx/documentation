@@ -47,7 +47,6 @@ For more information, including warnings about risks, see our documentation on h
 - [Add a file]({{< relref "/nginx-one/how-to/nginx-configs/add-file.md" >}}) 
 - [Manage certificates]({{< relref "/nginx-one/how-to/certificates/manage-certificates.md" >}})
 
-
 ### Revert a configuration
 
 Using the NGINX One Console you can now:
