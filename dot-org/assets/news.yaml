@@ -1,0 +1,13 @@
+  - title: NGINX Unit v1.34.2 has been released
+    desc: "[unit-1.34.2](https://unit.nginx.org/) bugfix version has been [released](https://unit.nginx.org/news/2025/unit-1.34.2-released/)."
+    date: 2025-02-26
+  - title: NGINX Stable 1.26.3 has been released
+    desc: "[nginx-1.26.3](http://nginx.org/en/download.html) stable version has been released, with a fix for the [SSL session reuse](http://nginx.org/en/security_advisories.html) vulnerability (CVE-2025-23419)."
+    date: 2025-02-05
+  - title: NJS 0.8.9 has been released
+    desc: "[njs-0.8.9](http://nginx.org/en/docs/njs/index.html) version has been [released](http://nginx.org/en/docs/njs/changes.html#njs0.8.9), featuring [fs module](http://nginx.org/en/docs/njs/reference.html#njs_api_fs) for the [QuickJS](http://nginx.org/en/docs/njs/engine.html) engine."
+    date: 2025-02-05
+  - title: NGINX Unit v1.34.2 has been released
+    desc: "[unit-1.34.2](https://unit.nginx.org/) bugfix version has been [released](https://unit.nginx.org/news/2025/unit-1.34.2-released/)."
+    date: 2025-01-14
+

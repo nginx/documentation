@@ -75,7 +75,11 @@ ol > li::marker {
 }
 
 .timeline-decimal-offset {
-    inset-inline-start: calc(var(--spacing) * -2);
+    inset-inline-start: calc(var(--spacing) * -1.5);
+}
+
+.newsitem-content > a {
+    @apply underline underline-offset-2;
 }
 
 .section-text-content > p > a {

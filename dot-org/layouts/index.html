@@ -52,9 +52,9 @@
                 </div>
             </div>
         </section>
-        <section>
-            <h2 class="ngx-section-header" id="news">NEWS</h2>
-        </section>
+
+        {{ partial "home/featured-news.html" . }}
+
         <section class="flex flex-col gap-8" id="featured-media">
             <h2 class="ngx-section-header">Featured Media</h2>
             <div class="w-full flex gap-8 flex-wrap md:flex-nowrap justify-between">
