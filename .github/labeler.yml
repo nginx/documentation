@@ -1,0 +1,122 @@
+# Label PRs based on modified file paths (v5 format)
+# https://github.com/actions/labeler
+
+# General documentation
+
+documentation:
+  - changed-files:
+    - any-glob-to-any-file:
+      - 'content/**'
+      - 'assets/**'
+      - 'static/**'
+      - 'data/**'
+
+# Product labels
+
+product/agent:
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'content/agent/**'
+          - 'content/includes/agent/**'
+
+product/amplify:
+  - changed-files:
+      - any-glob-to-any-file: 'content/amplify/**'
+
+product/controller:
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'content/controller/**'
+          - 'content/includes/controller/**'
+
+product/mesh:
+  - changed-files:
+      - any-glob-to-any-file: 'content/mesh/**'
+
+product/modsec-waf:
+  - changed-files:
+      - any-glob-to-any-file: 'content/modsec-waf/**'
+
+product/nap-dos:
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'content/nap-dos/**'
+          - 'content/includes/nap-dos/**'
+
+product/nap-waf:
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'content/nap-waf/**'
+          - 'content/includes/nap-waf/**'
+
+product/ngf:
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'content/ngf/**'
+          - 'content/includes/ngf/**'
+
+product/nginx-plus:
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'content/nginx/**'
+          - 'content/includes/nginx-plus/**'
+
+product/nginx-one:
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'content/nginx-one/**'
+          - 'content/includes/nginx-one/**'
+
+product/nginxaas:
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'content/nginxaas-azure/**'
+          - 'content/includes/nginxaas-azure/**'
+
+product/nim:
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'content/nim/**'
+          - 'content/includes/nim/**'
+
+product/nms:
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'content/nms/**'
+          - 'content/includes/nms/**'
+
+product/unit:
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'content/unit/**'
+          - 'content/includes/unit/**'
+
+# Other labels
+
+process documentation:
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'templates/**'
+          - '*.md'
+          - 'LICENSE'
+
+tooling:
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'layouts/**'
+          - '.github/**'
+          - '.cloudcannon/**'
+          - 'styles/**'
+          - 'layouts/**'
+          - 'config/**'
+          - 'archetypes/**'
+          - '*.yml'
+          - '*.yaml'
+          - '*.json'
+          - '*.ts'
+          - '*.sh'
+          - '*.js'
+          - 'Makefile'
+          - '.vale.ini'
+          - '.gitignore'
+          - '.gitattributes'

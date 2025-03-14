@@ -131,7 +131,7 @@ This is a list of the trusted bots that are currently part of the bot signatures
 |MojeekBot | [Mojeek search engine](https://www.mojeek.com/) |
 |Yahoo! Slurp | [Yahoo search engine](https://www.yahoo.com/) |
 |Yandex | [Yandex search engine](https://yandex.com/) |
-|YioopBot | [Yioop search engine](https://www.yioop.com/) |
+|YioopBot | Yioop search engine |
 {{</bootstrap-table>}}
 
 
