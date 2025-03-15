@@ -1,0 +1,6 @@
+extends: substitution
+message: Consider using '%s' instead of '%s'
+level: warning
+ignorecase: false
+swap:
+  hostname: host name
