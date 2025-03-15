@@ -1,11 +1,11 @@
 ---
 description: Learn about the NGINX App Protect WAF Debug Log.
 docs: DOCS-913
-doctypes:
-- concept
 title: NGINX App Protect WAF Debug Log
 toc: true
 weight: 540
+type:
+- concept
 ---
 
 ## Debug Logs

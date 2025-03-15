@@ -2,13 +2,11 @@
 description: Learn how to register an F5 NGINX App Protect instance with NGINX Controller
   for use with the ADC module.
 docs: DOCS-770
-doctypes:
-- task
-tags:
-- docs
 title: Add an NGINX App Protect Instance
 toc: true
 weight: 20
+type:
+- how-to
 ---
 
 ## Overview

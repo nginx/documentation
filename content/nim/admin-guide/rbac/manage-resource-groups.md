@@ -1,12 +1,10 @@
 ---
 docs: DOCS-1271
-doctypes:
-- tutorial
-tags:
-- docs
 title: Manage resource groups
 toc: true
 weight: 300
+type:
+- tutorial
 ---
 
 ## Overview

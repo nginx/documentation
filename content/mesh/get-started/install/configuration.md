@@ -1,10 +1,11 @@
 ---
-title: "Configuration Options"
+title: Configuration Options
 weight: 100
-description: "Learn about F5 NGINX Service Mesh features and deployment options."
-categories: ["concepts"]
+description: Learn about F5 NGINX Service Mesh features and deployment options.
 toc: true
-docs: "DOCS-679"
+docs: DOCS-679
+type:
+- concept
 ---
 
 ## Overview

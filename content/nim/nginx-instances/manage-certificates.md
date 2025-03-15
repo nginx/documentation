@@ -1,12 +1,10 @@
 ---
 docs: DOCS-821
-doctypes:
-- tutorial
-tags:
-- docs
 title: Manage SSL certificates
 toc: true
 weight: 650
+type:
+- tutorial
 ---
 
 {{< include "nim/decoupling/note-legacy-nms-references.md" >}}

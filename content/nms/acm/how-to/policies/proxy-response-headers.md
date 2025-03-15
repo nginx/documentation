@@ -1,14 +1,12 @@
 ---
-description: Learn how to use F5 NGINX Management Suite API Connectivity Manager to set
-  response headers to send to your clients.
+description: Learn how to use F5 NGINX Management Suite API Connectivity Manager to
+  set response headers to send to your clients.
 docs: DOCS-1135
-doctypes:
-- reference
-tags:
-- docs
 title: Proxy Response Headers
 toc: true
 weight: 1150
+type:
+- reference
 ---
 
 ## Overview

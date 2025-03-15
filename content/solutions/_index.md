@@ -1,8 +1,6 @@
 ---
-title: "Subscription Licensing & Solutions"
-docs: 
-tags:
-- docs
+title: Subscription Licensing & Solutions
+docs: null
 toc: true
 weight: 1
 ---

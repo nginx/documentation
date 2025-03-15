@@ -1,12 +1,10 @@
 ---
 docs: DOCS-1247
-doctypes:
-  - task
-tags:
-  - docs
 title: Build and deploy images
 toc: true
 weight: 300
+type:
+- how-to
 ---
 
 {{< include "/nim/decoupling/note-legacy-nms-references.md" >}}

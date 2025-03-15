@@ -1,12 +1,10 @@
 ---
 docs: DOCS-1112
-doctypes:
-- reference
-tags:
-- docs
 title: Configurable Helm settings
 toc: true
 weight: 300
+type:
+- reference
 ---
 
 {{< include "/nim/decoupling/note-legacy-nms-references.md" >}}

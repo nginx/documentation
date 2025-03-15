@@ -1,12 +1,10 @@
 ---
 docs: DOCS-1269
-doctypes:
-- task
-tags:
-- docs
 title: Configure telemetry and web analytics
 toc: true
 weight: 260
+type:
+- how-to
 ---
 
 ## Overview

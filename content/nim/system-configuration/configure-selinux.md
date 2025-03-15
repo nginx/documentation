@@ -1,12 +1,10 @@
 ---
 docs: DOCS-796
-doctypes:
-- task
-tags:
-- docs
 title: Configure SELinux
 toc: true
 weight: 250
+type:
+- how-to
 ---
 
 {{< include "/nim/decoupling/note-legacy-nms-references.md" >}}

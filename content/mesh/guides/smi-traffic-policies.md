@@ -1,11 +1,12 @@
 ---
-title: "SMI Traffic Policies"
+title: SMI Traffic Policies
 toc: true
-description: "Learn about the traffic policies supported by F5 NGINX Service Mesh and how to configure them."
+description: Learn about the traffic policies supported by F5 NGINX Service Mesh and
+  how to configure them.
 weight: 60
-categories: ["tasks"]
-toc: true
-docs: "DOCS-698"
+docs: DOCS-698
+type:
+- how-to
 ---
 
 ## Overview

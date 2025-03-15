@@ -1,14 +1,11 @@
 ---
 description: Contact information and knowledge resources for F5 NGINX Support.
 docs: DOCS-375
-doctypes:
-- reference
-- troubleshooting
-tags:
-- docs
 title: Where to Go for Support
 toc: true
 weight: 10
+type:
+- reference
 ---
 
 ## Contact F5 NGINX Support

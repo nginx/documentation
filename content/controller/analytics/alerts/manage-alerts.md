@@ -1,13 +1,11 @@
 ---
 description: Learn how to view, add, mute, and delete Alerts.
 docs: DOCS-521
-doctypes:
-- concept
-tags:
-- docs
 title: Manage Alerts
 toc: true
 weight: 200
+type:
+- concept
 ---
 
 ## Overview

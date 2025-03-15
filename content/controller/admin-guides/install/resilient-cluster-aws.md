@@ -1,14 +1,12 @@
 ---
-description: This guide explains how to deploy F5 NGINX Controller as a multi-node resilient.
-  cluster on AWS.
+description: This guide explains how to deploy F5 NGINX Controller as a multi-node
+  resilient cluster on AWS.
 docs: DOCS-257
-doctypes:
-- tutorial
-tags:
-- docs
 title: Deploy NGINX Controller as a Resilient Cluster on AWS
 toc: true
 weight: 310
+type:
+- tutorial
 ---
 
 ## Overview

@@ -3,15 +3,11 @@ description: Learn how to use the F5 NGINX Management Suite API Connectivity Man
   to configure the Error Response Format policy that customizes HTTP error codes and
   messages.
 docs: DOCS-1345
-doctypes:
-- API Connectivity Manager
-- api management
-- task
-tags:
-- docs
 title: Error Response Format
 toc: true
 weight: 550
+type:
+- how-to
 ---
 
 ## Overview

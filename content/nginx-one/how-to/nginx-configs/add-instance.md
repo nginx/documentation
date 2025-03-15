@@ -1,12 +1,10 @@
 ---
 description: ''
-doctypes:
-- task
-tags:
-- docs
 title: Add an NGINX instance
 toc: true
 weight: 100
+type:
+- how-to
 ---
 
 ## Overview

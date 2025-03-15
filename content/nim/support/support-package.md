@@ -1,13 +1,11 @@
 ---
 docs: DOCS-818
-doctypes:
-- reference
-- task
-tags:
-- docs
 title: Create a support package
 toc: true
 weight: 200
+type:
+- reference
+- how-to
 ---
 
 {{< include "/nim/decoupling/note-legacy-nms-references.md" >}}

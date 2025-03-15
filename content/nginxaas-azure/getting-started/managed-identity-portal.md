@@ -1,10 +1,11 @@
 ---
-title: "Assign Managed Identities"
+title: Assign Managed Identities
 weight: 300
-categories: ["tasks"]
 toc: true
-docs: "DOCS-872"
+docs: DOCS-872
 url: /nginxaas/azure/getting-started/managed-identity-portal/
+type:
+- how-to
 ---
 
 ## Overview

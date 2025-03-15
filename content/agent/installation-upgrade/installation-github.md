@@ -1,12 +1,11 @@
 ---
-title: "Installation from GitHub release"
+title: Installation from GitHub release
 draft: false
 weight: 200
 toc: true
-tags: [ "docs" ]
-docs: "DOCS-1090"
-categories: ["configuration"]
-doctypes: ["task"]
+docs: DOCS-1090
+type:
+- how-to
 ---
 
 ## Overview

@@ -2,8 +2,6 @@
 description: Learn how to get up and running with F5 NGINX Management Suite API Connectivity
   Manager.
 docs: DOCS-939
-tags:
-- docs
 title: Get Started
 toc: true
 weight: 10

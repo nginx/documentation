@@ -1,15 +1,15 @@
 ---
-description: "Instrument NGINX with OpenTracing-compliant requests for a range of\
-  \ distributed tracing services, such as Zipkin, Jaeger and Datadog. Note that the\
-  \ opentracing module provides the framework for recording traces; you will also\
-  \ need to install a service-specific tracing module.  This module (\u201Ctracer\u201D\
-  ) pushes traces to the collector and analyser provided by that service."
+description: Instrument NGINX with OpenTracing-compliant requests for a range of distributed
+  tracing services, such as Zipkin, Jaeger and Datadog. Note that the opentracing
+  module provides the framework for recording traces; you will also need to install
+  a service-specific tracing module.  This module (“tracer”) pushes traces to the
+  collector and analyser provided by that service.
 docs: DOCS-395
-doctypes:
-- task
 title: OpenTracing
 toc: true
 weight: 100
+type:
+- how-to
 ---
 
 {{< note >}} The module is deprecated since <a href="../../../releases/#r32">F5 NGINX Plus Release 32</a>. The [OpenTelemetry]({{< relref "opentelemetry.md" >}}) module is available since NGINX Plus <a href="../../../releases/#r29">Release 29</a> that incorporates the features of the OpenTracing module.{{< /note >}}

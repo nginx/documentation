@@ -1,13 +1,11 @@
 ---
 description: Learn how to enable Single Sign-On for Developer Portal.
 docs: DOCS-928
-doctypes:
-- task
-tags:
-- docs
 title: Enable Single Sign-On for Developer Portal
 toc: true
 weight: 400
+type:
+- how-to
 ---
 
 {{< raw-html >}}

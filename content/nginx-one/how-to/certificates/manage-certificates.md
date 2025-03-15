@@ -1,14 +1,11 @@
 ---
-docs: 
-doctypes:
-    - task
-tags:
-    - docs
+docs: null
 title: Manage certificates
 toc: true
 weight: 100
+type:
+- how-to
 ---
-
 
 ## Overview
 

@@ -1,12 +1,12 @@
 ---
-description: Create a highly available active-active deployment of F5 NGINX Plus on AWS
-  in combination with AWS Network Load Balancer (NLB).
+description: Create a highly available active-active deployment of F5 NGINX Plus on
+  AWS in combination with AWS Network Load Balancer (NLB).
 docs: DOCS-446
-doctypes:
-- task
 title: Active-Active HA for NGINX Plus on AWS Using AWS Network Load Balancer
 toc: true
 weight: 100
+type:
+- how-to
 ---
 
 These instructions explain how to deploy F5 NGINX Plus in the Amazon Web Services (AWS) cloud. Use these instructions to create a highly available, active-active deployment with load balancing.
@@ -70,7 +70,7 @@ These instructions assume you have the following:
 - Six EC2 instances running a version of NGINX:
     - Four running NGINX Open Source 
     - Two running NGINX Plus 
-    - You need a subscription for each NGINX Plus instance, either paid or a [30‑day free trial](https://www.nginx.com/free-trial-request).
+    - You need a paid or trial subscription for each NGINX Plus instance.
 
   Refer to the [Appendix](#appendix) to create EC2 instances with names used in these instructions. There you can also find instructions to install and configure NGINX software on EC2.
 

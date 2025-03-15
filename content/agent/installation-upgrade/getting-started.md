@@ -1,12 +1,11 @@
 ---
-title: "Getting started"
+title: Getting started
 draft: false
 weight: 100
 toc: true
-tags: [ "docs" ]
-docs: "DOCS-1089"
-categories: ["configuration"]
-doctypes: ["task"]
+docs: DOCS-1089
+type:
+- how-to
 ---
 
 ## Overview

@@ -1,13 +1,11 @@
 ---
 description: View and understand the Application Health Score for your application.
 docs: DOCS-526
-doctypes:
-- concept
-tags:
-- docs
 title: Understanding the Application Health Score
 toc: true
 weight: 20
+type:
+- concept
 ---
 
 ## Overview

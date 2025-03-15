@@ -1,14 +1,14 @@
 ---
-title: "R33 pre-release guidance for automatic upgrades"
-date: 2024-10-10T12:53:53-07:00
+title: R33 pre-release guidance for automatic upgrades
 weight: 1
 toc: true
 noindex: true
-type: "r33-pre-release"
+type:
+- reference
 draft: true
 type: concept
 product: Solutions
-docs: "DOCS-000"
+docs: DOCS-000
 ---
 
 {{<call-out "caution" "NGINX R33: Immediate action required for automatic upgrades" "fa-solid fa-triangle-exclamation" >}}

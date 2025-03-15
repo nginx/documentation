@@ -1,11 +1,11 @@
 ---
-title: "Prometheus Metrics"
-date: 2020-08-24T11:18:39-06:00
-description: "How to set up and view prometheus metrics for valuable workload insights"
-categories: ["tasks"]
+title: Prometheus Metrics
+description: How to set up and view prometheus metrics for valuable workload insights
 weight: 40
 toc: true
-docs: "DOCS-840"
+docs: DOCS-840
+type:
+- how-to
 ---
 
 ## Overview

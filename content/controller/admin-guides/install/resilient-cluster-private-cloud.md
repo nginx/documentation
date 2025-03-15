@@ -1,14 +1,12 @@
 ---
-description: This guide explains how to deploy F5 NGINX Controller as a multi-node resilient
-  cluster on a private cloud.
+description: This guide explains how to deploy F5 NGINX Controller as a multi-node
+  resilient cluster on a private cloud.
 docs: DOCS-258
-doctypes:
-- tutorial
-tags:
-- docs
 title: Deploy NGINX Controller as a Resilient Cluster on a Private Cloud
 toc: true
 weight: 300
+type:
+- tutorial
 ---
 
 ## Overview

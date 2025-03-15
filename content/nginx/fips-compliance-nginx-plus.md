@@ -1,11 +1,11 @@
 ---
-description: null
+description: ''
 docs: DOCS-470
-doctypes:
-- concept
 title: NGINX Plus FIPS Compliance
 toc: true
 weight: 600
+type:
+- concept
 ---
 
 When used with a FIPS 140-2 validated build of OpenSSL operating in FIPS mode, NGINX Plus is compliant with the requirements of FIPS 140-2 (Level 1) with respect to the decryption and encryption of SSL/TLS‑encrypted network traffic.

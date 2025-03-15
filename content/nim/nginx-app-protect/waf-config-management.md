@@ -2,8 +2,6 @@
 description: Learn how to use NGINX Management Suite Instance Manager to publish NGINX
   App Protect WAF configurations.
 docs: DOCS-1114
-tags:
-- docs
 title: WAF Configuration Management
 toc: true
 weight: 100

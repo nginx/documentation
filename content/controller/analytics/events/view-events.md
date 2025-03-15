@@ -1,13 +1,11 @@
 ---
 description: View the audit log of system and user actions.
 docs: DOCS-530
-doctypes:
-- task
-tags:
-- docs
 title: View Events
 toc: true
 weight: 20
+type:
+- how-to
 ---
 
 ## Overview

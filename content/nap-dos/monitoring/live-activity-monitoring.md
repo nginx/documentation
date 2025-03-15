@@ -1,11 +1,11 @@
 ---
 description: Learn about the F5 NGINX App Protect DoS Live Activity Monitoring.
 docs: DOCS-1389
-doctypes:
-- task
 title: NGINX App Protect DoS Live Activity Monitoring
 toc: true
 weight: 140
+type:
+- how-to
 ---
 
 {{< img src="/dashboard/dos-tab.png" alt="NGINX App Protect DoS Dashboard" >}}

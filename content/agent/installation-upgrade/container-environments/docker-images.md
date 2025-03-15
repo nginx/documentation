@@ -1,12 +1,11 @@
 ---
-title: "Build container images"
+title: Build container images
 draft: false
 weight: 100
 toc: true
-tags: [ "docs" ]
-categories: ["configuration"]
-doctypes: ["task"]
-docs: "DOCS-1410"
+docs: DOCS-1410
+type:
+- how-to
 ---
 
 ## Overview

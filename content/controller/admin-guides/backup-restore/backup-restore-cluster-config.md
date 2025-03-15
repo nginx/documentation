@@ -2,13 +2,11 @@
 description: Learn how to back up your F5 NGINX Controller cluster configuration and
   encryption keys.
 docs: DOCS-247
-doctypes:
-- task
-tags:
-- docs
 title: Back Up & Restore Cluster Config and Encryption Keys
 toc: true
 weight: 97
+type:
+- how-to
 ---
 
 ## Overview

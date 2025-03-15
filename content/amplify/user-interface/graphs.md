@@ -3,8 +3,7 @@ title: Graphs
 description: Learn about the Graphs page of the User Interface.
 weight: 20
 toc: false
-tags: ["docs"]
-docs: "DOCS-982"
+docs: DOCS-982
 ---
 
  On the **Graphs** page, you can find a collection of predefined graphs. Here you can see an overview of the key metric stats, such as CPU, memory, and disk usage for all your systems.

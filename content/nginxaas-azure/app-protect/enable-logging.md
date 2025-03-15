@@ -1,9 +1,10 @@
 ---
-title: "Enable App Protect WAF Logs"
+title: Enable App Protect WAF Logs
 weight: 300
-categories: ["tasks"]
 url: /nginxaas/azure/app-protect/enable-logging/
 toc: true
+type:
+- how-to
 ---
 
 ## Overview

@@ -1,14 +1,12 @@
 ---
-description: Learn how to use F5 NGINX Management Suite API Connectivity Manager to enable
-  and configure caching to improve the performance of your API gateway proxy.
+description: Learn how to use F5 NGINX Management Suite API Connectivity Manager to
+  enable and configure caching to improve the performance of your API gateway proxy.
 docs: DOCS-1190
-doctypes:
-- reference
-tags:
-- docs
 title: Proxy Cache
 toc: true
 weight: null
+type:
+- reference
 ---
 
 ## Overview

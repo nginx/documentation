@@ -1,13 +1,11 @@
 ---
 description: How to forward Analytics Events to Syslog.
 docs: DOCS-534
-doctypes:
-- tutorial
-tags:
-- docs
 title: Forward Analytics Events to Syslog
 toc: true
 weight: 201
+type:
+- tutorial
 ---
 
 ## Overview

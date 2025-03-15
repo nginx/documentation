@@ -1,10 +1,11 @@
 ---
-title: "Get help"
+title: Get help
 weight: 100
-categories: ["tasks"]
 toc: true
-docs: "DOCS-882"
+docs: DOCS-882
 url: /nginxaas/azure/troubleshooting/troubleshooting/
+type:
+- how-to
 ---
 
 ## Contact NGINX support

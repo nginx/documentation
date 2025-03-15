@@ -1,13 +1,11 @@
 ---
 description: ''
 docs: DOCS-1395
-doctypes:
-- task
-tags:
-- docs
 title: Create and manage data plane keys
 toc: true
 weight: 100
+type:
+- how-to
 ---
 
 <style>

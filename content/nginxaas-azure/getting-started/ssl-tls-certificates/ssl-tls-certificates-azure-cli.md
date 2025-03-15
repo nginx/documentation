@@ -1,9 +1,10 @@
 ---
-title: "Add certificates using the Azure CLI"
+title: Add certificates using the Azure CLI
 weight: 200
-categories: ["tasks"]
 toc: true
 url: /nginxaas/azure/getting-started/ssl-tls-certificates/ssl-tls-certificates-azure-cli/
+type:
+- how-to
 ---
 
 You can use Azure Key Vault (AKV) to store SSL/TLS certificates and keys to use in your F5 NGINX as a Service for Azure (NGINXaaS) configuration.

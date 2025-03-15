@@ -2,13 +2,11 @@
 description: F5 NGINX Management Suite relies on and benefits from open-source software
   projects. Credits are given to these projects.
 docs: DOCS-1201
-doctypes:
-- reference
-tags:
-- docs
 title: Open-Source Software Attributions
 toc: true
 weight: 5000
+type:
+- reference
 ---
 
 ## Overview

@@ -1,13 +1,13 @@
 ---
-description: Platforms supported by F5 NGINX Plus and dynamically loaded modules, supported
-  SSL/TLS versions, supported deployment environments, and list of modules built into
-  NGINX Plus.
+description: Platforms supported by F5 NGINX Plus and dynamically loaded modules,
+  supported SSL/TLS versions, supported deployment environments, and list of modules
+  built into NGINX Plus.
 docs: DOCS-473
-doctypes:
-- concept
 title: Technical Specs
 toc: true
 weight: 400
+type:
+- concept
 ---
 
 NGINX Plus is available only as a binary; it is not distributed as source code. For additional platforms and modules, [contact us](https://www.f5.com/products/get-f5).

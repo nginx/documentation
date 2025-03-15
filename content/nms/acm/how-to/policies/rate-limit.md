@@ -4,15 +4,11 @@ description: Learn how to use the F5 NGINX Management Suite API Connectivity Man
   limit connections and the rate of requests based on request URI, client IP address,
   or authenticated clients.
 docs: DOCS-1251
-doctypes:
-- API Connectivity Manager
-- api management
-- task
-tags:
-- docs
 title: Rate Limiting
 toc: true
 weight: 1300
+type:
+- how-to
 ---
 
 ## Overview

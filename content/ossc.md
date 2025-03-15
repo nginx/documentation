@@ -1,8 +1,4 @@
 ---
-_build:
-  list: never
-  render: always
-display_breadcrumb: false
 docs: DOCS-1343
 title: Open Source Components
 ---

@@ -2,13 +2,11 @@
 description: These release notes contain information about new features, improvements,
   known issues, and bug fixes in the NGINX Controller Application Delivery Module.
 docs: DOCS-363
-doctypes:
-- reference
-tags:
-- docs
 title: Release Notes 3.20.0
 toc: true
 weight: 100
+type:
+- reference
 ---
 
 {{< include "controller/adc-rn-preamble.md" >}}

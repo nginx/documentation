@@ -1,9 +1,7 @@
 ---
-title: "v1alpha1 RateLimit Documentation"
-docs: "DOCS-701"
-description: "v1alpha1 RateLimit documentation."
-_build:
-  list: never
+title: v1alpha1 RateLimit Documentation
+docs: DOCS-701
+description: v1alpha1 RateLimit documentation.
 ---
 
 ## RateLimit

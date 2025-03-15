@@ -1,17 +1,14 @@
 ---
 description: View key metrics for all of your monitored systems.
 docs: DOCS-773
-doctypes:
-- task
-- tutorial
-- concept
-- reference
-- troubleshooting
-tags:
-- docs
 title: View System Metrics Graphs
 toc: true
 weight: 70
+type:
+- how-to
+- tutorial
+- concept
+- reference
 ---
 
 ## Overview
