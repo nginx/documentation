@@ -35,6 +35,7 @@ Stay up-to-date with what's new and improved in the F5 NGINX One Console.
 ## March 11, 2025
 
 ### Set up Staged Configurations
+
 It allows you to:
 
 - Save Your Progress: Staged Configurations allow you to work on configuration changes without the need for a fully functional setup. You can create these drafts from scratch, an existing Instance, another Staged Configuration, or a Config Sync Group.
