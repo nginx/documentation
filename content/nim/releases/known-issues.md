@@ -16,34 +16,98 @@ weight: 200
 
 ---
 
+## 2.19.0
+February 6, 2025
+
+### {{% icon-bug %}} Publishing the NAP policy fails with the error "The attack signatures with the given version was not found" {#45845}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+
+| Issue ID | Status |
+|----------|--------|
+| 45845    | Open   |
+
+#### Description  
+
+In NGINX Instance Manager v2.19.0, publishing an NGINX App Protect WAF policy from the UI fails if the latest NGINX App Protect WAF compiler v5.264.0 (for NGINX App Protect WAF v4.13.0 or v5.5.0) is manually installed without adding the NGINX repository certificate and key.
+
+#### Workaround  
+
+1. Download the NGINX repository certificate and key:
+   - Log in to [MyF5](https://account.f5.com/myf5).  
+   - Go to **My Products and Plans > Subscriptions**.  
+   - Download the SSL certificate (*nginx-repo.crt*) and private key (*nginx-repo.key*) for your NGINX App Protect subscription.
+
+2. Upload the certificate and key using the NGINX Instance Manager web interface:  
+   - Go to **Settings > NGINX Repo Connect**.  
+   - Select **Add Certificate**.  
+   - Choose **Select PEM files** or **Manual entry**.  
+   - If using manual entry, copy and paste your *certificate* and *key* details.
+
+    For detailed steps, see [Upload NGINX App Protect WAF certificate and key](https://docs.nginx.com/nginx-instance-manager/nginx-app-protect/setup-waf-config-management/#upload-nginx-app-protect-waf-certificate-and-key).
+
+3. Restart the `nms-integrations` service:
+   
+    ```shell
+    sudo systemctl restart nms-integrations
+    ```
+
+{{</bootstrap-table>}}
+
+---
+
 ## 2.18.0
 November 8, 2024
+
+### {{% icon-bug %}} Automatic downloading of NAP compiler versions 5.210.0 and 5.264.0 fails on Ubuntu 24.04 {#45846}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+
+| Issue ID | Status |
+|----------|--------|
+| 45846    | Open   |
+
+#### Description
+
+On Ubuntu 24.04, NGINX Instance Manager v2.18.0 and v2.19.0 fail to automatically download NGINX App Protect WAF compiler v5.210.0 (for NGINX App Protect WAF v4.12.0) and v5.264.0 (for NGINX App Protect WAF v4.13.0) from the NGINX repository.
+
+#### Workaround
+
+Manually install the missing compiler by following the instructions in [Install the WAF compiler]({{< relref "nim/nginx-app-protect/setup-waf-config-management.md#install-the-waf-compiler" >}}).
+
+{{</bootstrap-table>}}
 
 ### {{% icon-resolved %}} Error messages persist after fix {#45024}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Issue ID       | Status |
-|----------------|--------|
-| 45024 | Fixed in Instance Manager 2.19.0   |
+| Issue ID | Status                           |
+|----------|----------------------------------|
+| 45024    | Fixed in Instance Manager 2.19.0 |
 
-### Description
+
+#### Description
 There is an issue that causes previous error messages to persist in the web interface, even after fixing the error causing the message.
 
 {{</bootstrap-table>}}
 
+---
+
 #### Description
+
 There is an issue that causes previous error messages to persist in the web interface, even after fixing the error.
 
 ### {{% icon-resolved %}} .tgz files are not accepted in templates {#45301}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Issue ID       | Status |
-|----------------|--------|
-| 45301 | Fixed in Instance Manager 2.19.0   |
+| Issue ID | Status                           |
+|----------|----------------------------------|
+| 45301    | Fixed in Instance Manager 2.19.0 |
 
 {{</bootstrap-table>}}
+
+---
 
 #### Description
 `.tgz` files are not accepted in templates while `.tar.gz` files are.
@@ -52,11 +116,13 @@ There is an issue that causes previous error messages to persist in the web inte
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Issue ID       | Status |
-|----------------|--------|
-| 45570 | Fixed in Instance Manager 2.19.0   |
+| Issue ID | Status                           |
+|----------|----------------------------------|
+| 45570    | Fixed in Instance Manager 2.19.0 |
 
 {{</bootstrap-table>}}
+
+---
 
 #### Description
 If there is an NGINX configuration error when pushing a template configuration, the text overlaps outside the error window.
@@ -65,9 +131,9 @@ If there is an NGINX configuration error when pushing a template configuration, 
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Issue ID       | Status |
-|----------------|--------|
-| 45573 | Fixed in Instance Manager 2.19.0   |
+| Issue ID | Status                           |
+|----------|----------------------------------|
+| 45573    | Fixed in Instance Manager 2.19.0 |
 
 {{</bootstrap-table>}}
 
@@ -83,9 +149,9 @@ September 13, 2024
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Issue ID       | Status |
-|----------------|--------|
-| 45565 | Fixed in Instance Manager 2.19.0   |
+| Issue ID | Status                           |
+|----------|----------------------------------|
+| 45565    | Fixed in Instance Manager 2.19.0 |
 
 {{</bootstrap-table>}}
 
@@ -101,9 +167,9 @@ July 10, 2024
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Issue ID       | Status |
-|----------------|--------|
-| 45512 | Fixed in Instance Manager 2.18.0   |
+| Issue ID | Status                           |
+|----------|----------------------------------|
+| 45512    | Fixed in Instance Manager 2.18.0 |
 
 {{</bootstrap-table>}}
 
@@ -116,9 +182,9 @@ The months in the custom date range were not displayed correctly because NGINX I
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Issue ID       | Status |
-|----------------|--------|
-| 44975 | Fixed in Instance Manager 2.18.0   |
+| Issue ID | Status                           |
+|----------|----------------------------------|
+| 44975    | Fixed in Instance Manager 2.18.0 |
 
 {{</bootstrap-table>}}
 
@@ -131,9 +197,9 @@ When publishing a configuration template fails, the system only displays "Accept
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Issue ID       | Status |
-|----------------|--------|
-| 45153 | Open   |
+| Issue ID | Status |
+|----------|--------|
+| 45153    | Open   |
 
 {{</bootstrap-table>}}
 #### Description
@@ -151,9 +217,9 @@ If you're installing NGINX Agent from package files, follow the steps in the [In
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Issue ID       | Status |
-|----------------|--------|
-| 45131 | Open   |
+| Issue ID | Status |
+|----------|--------|
+| 45131    | Open   |
 
 {{</bootstrap-table>}}
 #### Description
@@ -175,9 +241,9 @@ add_header Content-Security-Policy "default-src 'none'; block-all-mixed-content;
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Issue ID       | Status |
-|----------------|--------|
-| 45113 | Open   |
+| Issue ID | Status |
+|----------|--------|
+| 45113    | Open   |
 
 {{</bootstrap-table>}}
 #### Description
@@ -193,9 +259,9 @@ Edit the "/etc/nginx-agent/nginx-agent.conf" file and configure "precompiled_pub
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Issue ID       | Status |
-|----------------|--------|
-| 44971 | Fixed in Instance Manager 2.17.0   |
+| Issue ID | Status                           |
+|----------|----------------------------------|
+| 44971    | Fixed in Instance Manager 2.17.0 |
 
 {{</bootstrap-table>}}
 #### Description
@@ -211,9 +277,9 @@ April 18, 2024
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Issue ID       | Status |
-|----------------|--------|
-| 44961 | Fixed in Instance Manager 2.17.0   |
+| Issue ID | Status                           |
+|----------|----------------------------------|
+| 44961    | Fixed in Instance Manager 2.17.0 |
 
 {{</bootstrap-table>}}
 #### Description
@@ -242,9 +308,9 @@ If you need to modify a template that you have already submitted, create a copy 
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Issue ID       | Status |
-|----------------|--------|
-| 44877 | Fixed in Instance Manager 2.17.0   |
+| Issue ID | Status                           |
+|----------|----------------------------------|
+| 44877    | Fixed in Instance Manager 2.17.0 |
 
 {{</bootstrap-table>}}
 #### Description
@@ -260,9 +326,9 @@ December 12, 2023
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Issue ID       | Status |
-|----------------|--------|
-| 44759 | Fixed in Instance Manager 2.15.1   |
+| Issue ID | Status                           |
+|----------|----------------------------------|
+| 44759    | Fixed in Instance Manager 2.15.1 |
 
 {{</bootstrap-table>}}
 #### Description
@@ -287,9 +353,9 @@ To use the NGINX Management Suite predefined log profiles with NGINX App Protect
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Issue ID       | Status |
-|----------------|--------|
-| 44758 | Fixed in Instance Manager 2.15.1   |
+| Issue ID | Status                           |
+|----------|----------------------------------|
+| 44758    | Fixed in Instance Manager 2.15.1 |
 
 {{</bootstrap-table>}}
 #### Description
@@ -305,9 +371,9 @@ Upgrade to NGINX Instance Manager 2.15.1.
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Issue ID       | Status |
-|----------------|--------|
-| 44698 | Open   |
+| Issue ID | Status |
+|----------|--------|
+| 44698    | Open   |
 
 {{</bootstrap-table>}}
 #### Description
@@ -327,9 +393,9 @@ sudo systemctl restart nms
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Issue ID       | Status |
-|----------------|--------|
-| 44686 | Fixed in Instance Manager 2.17.0   |
+| Issue ID | Status                           |
+|----------|----------------------------------|
+| 44686    | Fixed in Instance Manager 2.17.0 |
 
 {{</bootstrap-table>}}
 #### Description
@@ -345,9 +411,9 @@ Refreshing the browser clears the error and allows the user to log on.
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Issue ID       | Status |
-|----------------|--------|
-| 44685 | Open   |
+| Issue ID | Status |
+|----------|--------|
+| 44685    | Open   |
 
 {{</bootstrap-table>}}
 #### Description
@@ -367,9 +433,9 @@ October 16, 2023
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Issue ID       | Status |
-|----------------|--------|
-| 44603 | Fixed in Instance Manager 2.15.0   |
+| Issue ID | Status                           |
+|----------|----------------------------------|
+| 44603    | Fixed in Instance Manager 2.15.0 |
 
 {{</bootstrap-table>}}
 #### Description
@@ -390,9 +456,9 @@ Download manually the latest [Attack Signatures package, Threat Campaign package
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Issue ID       | Status |
-|----------------|--------|
-| 44586 | Fixed in Instance Manager 2.15.0   |
+| Issue ID | Status                           |
+|----------|----------------------------------|
+| 44586    | Fixed in Instance Manager 2.15.0 |
 
 {{</bootstrap-table>}}
 #### Description
@@ -408,9 +474,9 @@ Restart the Clickhouse service.
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Issue ID       | Status |
-|----------------|--------|
-| 44554 | Open   |
+| Issue ID | Status |
+|----------|--------|
+| 44554    | Open   |
 
 {{</bootstrap-table>}}
 #### Description
@@ -422,9 +488,9 @@ When using the Scan feature, the CVE column may provide a value of '--' for inst
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Issue ID       | Status |
-|----------------|--------|
-| 44547 | Open   |
+| Issue ID | Status |
+|----------|--------|
+| 44547    | Open   |
 
 {{</bootstrap-table>}}
 #### Description
@@ -440,9 +506,9 @@ Configure NGINX Plus or NGINX Stub Status APIs to send correctly the NGINX metri
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Issue ID       | Status |
-|----------------|--------|
-| 44536 | Open   |
+| Issue ID | Status |
+|----------|--------|
+| 44536    | Open   |
 
 {{</bootstrap-table>}}
 #### Description
@@ -454,9 +520,9 @@ Sorting HTTP errors by “Request Count” sometimes shows the data in an incorr
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Issue ID       | Status |
-|----------------|--------|
-| 44531 | Open   |
+| Issue ID | Status |
+|----------|--------|
+| 44531    | Open   |
 
 {{</bootstrap-table>}}
 #### Description
@@ -472,9 +538,9 @@ NGINX Agent does not report NGINX App Protect as "Active" when the Attack Signat
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Issue ID       | Status |
-|----------------|--------|
-| 44520 | Open   |
+| Issue ID | Status |
+|----------|--------|
+| 44520    | Open   |
 
 {{</bootstrap-table>}}
 #### Description
@@ -493,9 +559,9 @@ or
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Issue ID       | Status |
-|----------------|--------|
-| 44504 | Fixed in Instance Manager 2.15.0   |
+| Issue ID | Status                           |
+|----------|----------------------------------|
+| 44504    | Fixed in Instance Manager 2.15.0 |
 
 {{</bootstrap-table>}}
 #### Description
@@ -507,9 +573,9 @@ Dashboard data may update unexpectedly when opening a drawer view. The updated d
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Issue ID       | Status |
-|----------------|--------|
-| 44351 | Fixed in Instance Manager 2.15.0   |
+| Issue ID | Status                           |
+|----------|----------------------------------|
+| 44351    | Fixed in Instance Manager 2.15.0 |
 
 {{</bootstrap-table>}}
 #### Description
@@ -529,9 +595,9 @@ September 05, 2023
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Issue ID       | Status |
-|----------------|--------|
-| 44323 | Open   |
+| Issue ID | Status |
+|----------|--------|
+| 44323    | Open   |
 
 {{</bootstrap-table>}}
 #### Description
@@ -563,9 +629,9 @@ August 28, 2023
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Issue ID       | Status |
-|----------------|--------|
-| 44277 | Fixed in Instance Manager 2.13.1   |
+| Issue ID | Status                           |
+|----------|----------------------------------|
+| 44277    | Fixed in Instance Manager 2.13.1 |
 
 {{</bootstrap-table>}}
 #### Description
@@ -577,9 +643,9 @@ When configuring role-based access control (RBAC), you can't assign access level
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Issue ID       | Status |
-|----------------|--------|
-| 44267 | Open   |
+| Issue ID | Status |
+|----------|--------|
+| 44267    | Open   |
 
 {{</bootstrap-table>}}
 #### Description
@@ -601,9 +667,9 @@ Retry pushing the new configuration. The deployment should work the second time 
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Issue ID       | Status |
-|----------------|--------|
-| 44254 | Fixed in Instance Manager 2.13.1   |
+| Issue ID | Status                           |
+|----------|----------------------------------|
+| 44254    | Fixed in Instance Manager 2.13.1 |
 
 {{</bootstrap-table>}}
 #### Description
@@ -624,9 +690,9 @@ To work around this issue, you have two options:
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Issue ID       | Status |
-|----------------|--------|
-| 44051 | Open   |
+| Issue ID | Status |
+|----------|--------|
+| 44051    | Open   |
 
 {{</bootstrap-table>}}
 #### Description
@@ -638,9 +704,9 @@ The reporting of severities has been disabled in NGINX App Protect 4.4. As a res
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Issue ID       | Status |
-|----------------|--------|
-| 43950 | Open   |
+| Issue ID | Status |
+|----------|--------|
+| 43950    | Open   |
 
 {{</bootstrap-table>}}
 #### Description
@@ -656,9 +722,9 @@ July 20, 2023
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Issue ID       | Status |
-|----------------|--------|
-| 43719 | Open   |
+| Issue ID | Status |
+|----------|--------|
+| 43719    | Open   |
 
 {{</bootstrap-table>}}
 #### Description
@@ -721,9 +787,9 @@ To fix this issue, follow the steps below for your environment type.
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Issue ID       | Status |
-|----------------|--------|
-| 43655 | Open   |
+| Issue ID | Status |
+|----------|--------|
+| 43655    | Open   |
 
 {{</bootstrap-table>}}
 #### Description
@@ -745,9 +811,9 @@ kubectl -n nms scale --replicas=0 deployment.apps/integrations; kubectl -n nms s
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Issue ID       | Status |
-|----------------|--------|
-| 43606 | Open   |
+| Issue ID | Status |
+|----------|--------|
+| 43606    | Open   |
 
 {{</bootstrap-table>}}
 #### Description
@@ -763,9 +829,9 @@ Toggle the telemetry setting off and on. You can do this by selecting **Settings
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Issue ID       | Status |
-|----------------|--------|
-| 43580 | Open   |
+| Issue ID | Status |
+|----------|--------|
+| 43580    | Open   |
 
 {{</bootstrap-table>}}
 #### Description
@@ -783,9 +849,9 @@ More information is available in the Platform API reference guide, under the Lic
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Issue ID       | Status |
-|----------------|--------|
-| 43438 | Fixed in Instance Manager 2.13.0   |
+| Issue ID | Status                           |
+|----------|----------------------------------|
+| 43438    | Fixed in Instance Manager 2.13.0 |
 
 {{</bootstrap-table>}}
 #### Description
@@ -805,9 +871,9 @@ June 12, 2023
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Issue ID       | Status |
-|----------------|--------|
-| 43034 | Open   |
+| Issue ID | Status |
+|----------|--------|
+| 43034    | Open   |
 
 {{</bootstrap-table>}}
 #### Description
@@ -830,9 +896,9 @@ To obtain the UID value for Attack-Signatures and Threat-Campaigns, you can quer
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Issue ID       | Status |
-|----------------|--------|
-| 43016 | Open   |
+| Issue ID | Status |
+|----------|--------|
+| 43016    | Open   |
 
 {{</bootstrap-table>}}
 #### Description
@@ -848,9 +914,9 @@ Redeploy a new version of the security policy or an updated `nginx.conf`.
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Issue ID       | Status |
-|----------------|--------|
-| 43012 | Open   |
+| Issue ID | Status |
+|----------|--------|
+| 43012    | Open   |
 
 {{</bootstrap-table>}}
 #### Description
@@ -866,9 +932,9 @@ Use the unique identifier to assign specific permissions to a particular certifi
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Issue ID       | Status |
-|----------------|--------|
-| 43010 | Open   |
+| Issue ID | Status |
+|----------|--------|
+| 43010    | Open   |
 
 {{</bootstrap-table>}}
 #### Description
@@ -884,9 +950,9 @@ Use an earlier version of the NGINX Agent. You can install the NGINX Agent from 
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Issue ID       | Status |
-|----------------|--------|
-| 42967 | Open   |
+| Issue ID | Status |
+|----------|--------|
+| 42967    | Open   |
 
 {{</bootstrap-table>}}
 #### Description
@@ -904,9 +970,9 @@ Delete or move the support package output files: `nms-hybrid/support-package/k8s
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Issue ID       | Status |
-|----------------|--------|
-| 42838 | Open   |
+| Issue ID | Status |
+|----------|--------|
+| 42838    | Open   |
 
 {{</bootstrap-table>}}
 #### Description
@@ -926,9 +992,9 @@ April 26, 2023
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Issue ID       | Status |
-|----------------|--------|
-| 42999 | Fixed in Instance Manager 2.12.0   |
+| Issue ID | Status                           |
+|----------|----------------------------------|
+| 42999    | Fixed in Instance Manager 2.12.0 |
 
 {{</bootstrap-table>}}
 #### Description
@@ -940,9 +1006,9 @@ The Disk Usage metric on the Metrics Summary page averages disk usage across all
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Issue ID       | Status |
-|----------------|--------|
-| 42932 | Fixed in Instance Manager 2.12.0   |
+| Issue ID | Status                           |
+|----------|----------------------------------|
+| 42932    | Fixed in Instance Manager 2.12.0 |
 
 {{</bootstrap-table>}}
 #### Description
@@ -966,9 +1032,9 @@ sudo systemctl restart nms
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Issue ID       | Status |
-|----------------|--------|
-| 42598 | Fixed in Instance Manager 2.10.1   |
+| Issue ID | Status                           |
+|----------|----------------------------------|
+| 42598    | Fixed in Instance Manager 2.10.1 |
 
 {{</bootstrap-table>}}
 #### Description
@@ -980,9 +1046,9 @@ Sometimes, valid licenses for NGINX Management Suite are incorrectly identified 
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Issue ID       | Status |
-|----------------|--------|
-| 42219 | Fixed in Instance Manager 2.11.0   |
+| Issue ID | Status                           |
+|----------|----------------------------------|
+| 42219    | Fixed in Instance Manager 2.11.0 |
 
 {{</bootstrap-table>}}
 #### Description
@@ -1011,9 +1077,9 @@ After installation, we recommend you return the default to a more secure algorit
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Issue ID       | Status |
-|----------------|--------|
-| 42217 | Open   |
+| Issue ID | Status |
+|----------|--------|
+| 42217    | Open   |
 
 {{</bootstrap-table>}}
 #### Description
@@ -1029,9 +1095,9 @@ Threat Campaign versions can be published with the API using the route: `api/pla
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Issue ID       | Status |
-|----------------|--------|
-| 42182 | Fixed in Instance Manager 2.11.0   |
+| Issue ID | Status                           |
+|----------|----------------------------------|
+| 42182    | Fixed in Instance Manager 2.11.0 |
 
 {{</bootstrap-table>}}
 #### Description
@@ -1047,9 +1113,9 @@ Manually delete the certificate and key from the /etc/nginx/ path.
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Issue ID       | Status |
-|----------------|--------|
-| 42133 | Open   |
+| Issue ID | Status |
+|----------|--------|
+| 42133    | Open   |
 
 {{</bootstrap-table>}}
 #### Description
@@ -1065,9 +1131,9 @@ When upgrading to 2.10 you may see a warning like the below message for the NGIN
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Issue ID       | Status |
-|----------------|--------|
-| 42119 | Open   |
+| Issue ID | Status |
+|----------|--------|
+| 42119    | Open   |
 
 {{</bootstrap-table>}}
 #### Description
@@ -1083,9 +1149,9 @@ Republish the configuration for the affected configuration blocks.
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Issue ID       | Status |
-|----------------|--------|
-| 42108 | Open   |
+| Issue ID | Status |
+|----------|--------|
+| 42108    | Open   |
 
 {{</bootstrap-table>}}
 #### Description
@@ -1097,9 +1163,9 @@ After upgrading to Instance Manager 2.10, the publish status on App Security pag
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Issue ID       | Status |
-|----------------|--------|
-| 42105 | Fixed in Instance Manager 2.12.0   |
+| Issue ID | Status                           |
+|----------|----------------------------------|
+| 42105    | Fixed in Instance Manager 2.12.0 |
 
 {{</bootstrap-table>}}
 #### Description
@@ -1111,9 +1177,9 @@ When you apply a filter with double backslashes (`\\`) on any of the Analytics e
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Issue ID       | Status |
-|----------------|--------|
-| 41257 | Open   |
+| Issue ID | Status |
+|----------|--------|
+| 41257    | Open   |
 
 {{</bootstrap-table>}}
 #### Description
@@ -1133,9 +1199,9 @@ April 06, 2023
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Issue ID       | Status |
-|----------------|--------|
-| 43031 | Open   |
+| Issue ID | Status |
+|----------|--------|
+| 43031    | Open   |
 
 {{</bootstrap-table>}}
 #### Description
@@ -1155,9 +1221,9 @@ March 21, 2023
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Issue ID       | Status |
-|----------------|--------|
-| 41557 | Fixed in Instance Manager 2.9.1   |
+| Issue ID | Status                          |
+|----------|---------------------------------|
+| 41557    | Fixed in Instance Manager 2.9.1 |
 
 {{</bootstrap-table>}}
 #### Description
@@ -1169,9 +1235,9 @@ After upgrading to Instance Manager 2.9.0, the system may display a "URI malform
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Issue ID       | Status |
-|----------------|--------|
-| 41157 | Fixed in Instance Manager 2.10.0   |
+| Issue ID | Status                           |
+|----------|----------------------------------|
+| 41157    | Fixed in Instance Manager 2.10.0 |
 
 {{</bootstrap-table>}}
 #### Description
@@ -1191,9 +1257,9 @@ January 30, 2023
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Issue ID       | Status |
-|----------------|--------|
-| 41328 | Fixed in Instance Manager 2.9.0   |
+| Issue ID | Status                          |
+|----------|---------------------------------|
+| 41328    | Fixed in Instance Manager 2.9.0 |
 
 {{</bootstrap-table>}}
 #### Description
@@ -1209,9 +1275,9 @@ Prior to upgrading, we recommend that you [back up your configuration files]({{<
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Issue ID       | Status |
-|----------------|--------|
-| 40484 | Open   |
+| Issue ID | Status |
+|----------|--------|
+| 40484    | Open   |
 
 {{</bootstrap-table>}}
 #### Description
@@ -1255,9 +1321,9 @@ The instance on the NGINX Management Suite's Instance Details page should show *
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Issue ID       | Status |
-|----------------|--------|
-| 40396 | Open   |
+| Issue ID | Status |
+|----------|--------|
+| 40396    | Open   |
 
 {{</bootstrap-table>}}
 #### Description
@@ -1284,9 +1350,9 @@ This issue is related to [bug 39563](#39563) and has the same workaround.
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Issue ID       | Status |
-|----------------|--------|
-| 40085 | Fixed in Instance Manager 2.9.0   |
+| Issue ID | Status                          |
+|----------|---------------------------------|
+| 40085    | Fixed in Instance Manager 2.9.0 |
 
 {{</bootstrap-table>}}
 #### Description
@@ -1302,9 +1368,9 @@ To fix this issue, return to the Policy Detail page and select **Assign Policy a
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Issue ID       | Status |
-|----------------|--------|
-| 40020 | Open   |
+| Issue ID | Status |
+|----------|--------|
+| 40020    | Open   |
 
 {{</bootstrap-table>}}
 #### Description
@@ -1320,9 +1386,9 @@ The default Attack Signature might be unavailable for publishing from Instance M
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Issue ID       | Status |
-|----------------|--------|
-| 39760 | Fixed in Instance Manager 2.9.0   |
+| Issue ID | Status                          |
+|----------|---------------------------------|
+| 39760    | Fixed in Instance Manager 2.9.0 |
 
 {{</bootstrap-table>}}
 #### Description
@@ -1342,9 +1408,9 @@ December 20, 2022
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Issue ID       | Status |
-|----------------|--------|
-| 41327 | Fixed in Instance Manager 2.10.0   |
+| Issue ID | Status                           |
+|----------|----------------------------------|
+| 41327    | Fixed in Instance Manager 2.10.0 |
 
 {{</bootstrap-table>}}
 #### Description
@@ -1403,9 +1469,9 @@ If you encounter any of the errors mentioned above, you can attempt to rebuild a
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Issue ID       | Status |
-|----------------|--------|
-| 39431 | Fixed in Instance Manager 2.9.0   |
+| Issue ID | Status                          |
+|----------|---------------------------------|
+| 39431    | Fixed in Instance Manager 2.9.0 |
 
 {{</bootstrap-table>}}
 #### Description
@@ -1445,9 +1511,9 @@ November 17, 2022
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Issue ID       | Status |
-|----------------|--------|
-| 39563 | Open   |
+| Issue ID | Status |
+|----------|--------|
+| 39563    | Open   |
 
 {{</bootstrap-table>}}
 #### Description
@@ -1510,9 +1576,9 @@ Once the `attack-signatures` and/or `threat-campaigns` packages have been added 
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Issue ID       | Status |
-|----------------|--------|
-| 38782 | Open   |
+| Issue ID | Status |
+|----------|--------|
+| 38782    | Open   |
 
 {{</bootstrap-table>}}
 #### Description
@@ -1524,9 +1590,9 @@ When installing NGINX Instance Manager on Kubernetes via Helm Chart, the App Pro
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Issue ID       | Status |
-|----------------|--------|
-| 38596 | Open   |
+| Issue ID | Status |
+|----------|--------|
+| 38596    | Open   |
 
 {{</bootstrap-table>}}
 #### Description
@@ -1546,9 +1612,9 @@ This can also be diagnosed with log entries in `/var/log/nginx-agent/agent.log`,
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Issue ID       | Status |
-|----------------|--------|
-| 38589 | Open   |
+| Issue ID | Status |
+|----------|--------|
+| 38589    | Open   |
 
 {{</bootstrap-table>}}
 #### Description
@@ -1568,9 +1634,9 @@ Post upgrade, do the following steps:
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Issue ID       | Status |
-|----------------|--------|
-| 38488 | Open   |
+| Issue ID | Status |
+|----------|--------|
+| 38488    | Open   |
 
 {{</bootstrap-table>}}
 #### Description
@@ -1586,9 +1652,9 @@ Unreferenced policy files may be removed manually from /etc/nms.
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Issue ID       | Status |
-|----------------|--------|
-| 38041 | Open   |
+| Issue ID | Status |
+|----------|--------|
+| 38041    | Open   |
 
 {{</bootstrap-table>}}
 #### Description
@@ -1600,9 +1666,9 @@ The values currently populated for http.version_schema are incorrect. The respon
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Issue ID       | Status |
-|----------------|--------|
-| 37705 | Fixed in Instance Manager 2.11.0   |
+| Issue ID | Status                           |
+|----------|----------------------------------|
+| 37705    | Fixed in Instance Manager 2.11.0 |
 
 {{</bootstrap-table>}}
 #### Description
@@ -1618,9 +1684,9 @@ The data presented in the graph can be retrieved from the API.
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Issue ID       | Status |
-|----------------|--------|
-| 36265 | Open   |
+| Issue ID | Status |
+|----------|--------|
+| 36265    | Open   |
 
 {{</bootstrap-table>}}
 #### Description
@@ -1641,9 +1707,9 @@ October 04, 2022
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Issue ID       | Status |
-|----------------|--------|
-| 37498 | Open   |
+| Issue ID | Status |
+|----------|--------|
+| 37498    | Open   |
 
 {{</bootstrap-table>}}
 #### Description
@@ -1657,9 +1723,9 @@ Request body has an error: doesn't match the schema: Error at "/auxFiles/files/3
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Issue ID       | Status |
-|----------------|--------|
-| 37479 | Open   |
+| Issue ID | Status |
+|----------|--------|
+| 37479    | Open   |
 
 {{</bootstrap-table>}}
 #### Description
@@ -1677,9 +1743,9 @@ Make a minor edit to a staged config, such as adding a space, then save the chan
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Issue ID       | Status |
-|----------------|--------|
-| 37437 | Open   |
+| Issue ID | Status |
+|----------|--------|
+| 37437    | Open   |
 
 {{</bootstrap-table>}}
 #### Description
@@ -1706,9 +1772,9 @@ June 30, 2022
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Issue ID       | Status |
-|----------------|--------|
-| 35172 | Open   |
+| Issue ID | Status |
+|----------|--------|
+| 35172    | Open   |
 
 {{</bootstrap-table>}}
 #### Description
@@ -1730,9 +1796,9 @@ sudo systemctl stop nginx-agent
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Issue ID       | Status |
-|----------------|--------|
-| 34255 | Open   |
+| Issue ID | Status |
+|----------|--------|
+| 34255    | Open   |
 
 {{</bootstrap-table>}}
 #### Description
@@ -1758,9 +1824,9 @@ May 25, 2022
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Issue ID       | Status |
-|----------------|--------|
-| 34185 | Open   |
+| Issue ID | Status |
+|----------|--------|
+| 34185    | Open   |
 
 {{</bootstrap-table>}}
 #### Description
@@ -1780,9 +1846,9 @@ April 05, 2022
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Issue ID       | Status |
-|----------------|--------|
-| 33307 | Open   |
+| Issue ID | Status |
+|----------|--------|
+| 33307    | Open   |
 
 {{</bootstrap-table>}}
 #### Description
@@ -1798,9 +1864,9 @@ You can safely delete the older entries or wait for them to expire.
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Issue ID       | Status |
-|----------------|--------|
-| 33160 | Open   |
+| Issue ID | Status |
+|----------|--------|
+| 33160    | Open   |
 
 {{</bootstrap-table>}}
 #### Description
@@ -1830,9 +1896,9 @@ December 21, 2021
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Issue ID       | Status |
-|----------------|--------|
-| 32718 | Open   |
+| Issue ID | Status |
+|----------|--------|
+| 32718    | Open   |
 
 {{</bootstrap-table>}}
 #### Description
@@ -1844,9 +1910,9 @@ NGINX Instance Manager does not currently support managing NGINX App Protect WAF
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Issue ID       | Status |
-|----------------|--------|
-| 31225 | Fixed in Instance Manager 2.7.0   |
+| Issue ID | Status                          |
+|----------|---------------------------------|
+| 31225    | Fixed in Instance Manager 2.7.0 |
 
 {{</bootstrap-table>}}
 #### Description
@@ -1866,9 +1932,9 @@ NGINX Instance Manager does not currently support managing NGINX App Protect WAF
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Issue ID       | Status |
-|----------------|--------|
-| 31081 | Open   |
+| Issue ID | Status |
+|----------|--------|
+| 31081    | Open   |
 
 {{</bootstrap-table>}}
 #### Description
@@ -1884,9 +1950,9 @@ Keep config files under 50 MB.
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Issue ID       | Status |
-|----------------|--------|
-| 28758 | Open   |
+| Issue ID | Status |
+|----------|--------|
+| 28758    | Open   |
 
 {{</bootstrap-table>}}
 #### Description
@@ -1902,9 +1968,9 @@ Install a supported version of NGINX (v1.18 or later) or NGINX Plus (R22 or late
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Issue ID       | Status |
-|----------------|--------|
-| 28683 | Open   |
+| Issue ID | Status |
+|----------|--------|
+| 28683    | Open   |
 
 {{</bootstrap-table>}}
 #### Description
