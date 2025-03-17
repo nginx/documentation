@@ -33,8 +33,9 @@ NGINX App Protect DoS supports the following operating systems:
 - [Ubuntu 22.04 (Jammy)](#debian--ubuntu-installation)
 - [Ubuntu 24.04 (Noble)](#debian--ubuntu-installation)
 - [Alpine 3.15](#alpine-315x--317x--319x-installation) - (Deprecated starting from NGINX Plus R30)
-- [Alpine 3.17](#alpine-315x--317x--319x-installation)
+- [Alpine 3.17](#alpine-315x--317x--319x-installation) - (Deprecated starting from NGINX Plus R34) 
 - [Alpine 3.19](#alpine-315x--317x--319x-installation)
+- [AmazonLinux 2023](#amazonlinux-2023-installation)
 
 The NGINX App Protect DoS package has the following dependencies:
 
@@ -1142,6 +1143,137 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     rc-service app-protect-dos-ebpf-manager start
     ```
 
+## AmazonLinux Linux 2023 Installation
+
+1. If you already have NGINX packages in your system, back up your configs and logs:
+
+    ```shell
+    sudo cp -a /etc/nginx /etc/nginx-plus-backup
+    sudo cp -a /var/log/nginx /var/log/nginx-plus-backup
+    ```
+
+2. Create the `/etc/ssl/nginx/` directory:
+
+    ```shell
+    sudo mkdir -p /etc/ssl/nginx
+    ```
+
+3. Log in to the NGINX [Customer Portal](https://my.f5.com) and download the following two files:
+
+    ```shell
+    nginx-repo.key
+    nginx-repo.crt
+    ```
+
+4. Copy the above two files to the CentOS server’s `/etc/ssl/nginx/` directory. Use an SCP client or another secure file transfer tool to perform this task.
+
+5. Install prerequisite packages:
+
+    ```shell
+    sudo dnf install ca-certificates wget
+
+6. Add NGINX Plus and NGINX App Protect DoS repository:
+
+    ```shell
+    sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/plus-amazonlinux2023.repo
+    sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-amazonlinux2023.repo
+    ```
+
+7. In case of fresh installation, update the repository and install the most recent version of the NGINX Plus App Protect DoS package (which includes NGINX Plus):
+
+    ```shell
+    sudo dnf install app-protect-dos
+    ```
+
+    For L4 accelerated mitigation feature:
+
+    ```shell
+    sudo dnf install app-protect-dos-ebpf-manager
+    ```
+
+    {{< note >}}
+   L4 accelerated mitigation feature:
+   - `app-protect-dos-ebpf-manager` run with root privileges.
+    {{< /note >}}
+
+    Alternatively, you can use the following command to list available versions:
+
+    ```shell
+    sudo dnf --showduplicates list app-protect-dos
+    ```
+
+    Then, install a specific version from the output of command above. For example:
+
+    ```shell
+    sudo dnf install app-protect-dos-34+4.6.0
+    ```
+
+8. In case of upgrading from previously installed NGINX Plus App Protect DoS package (which includes NGINX Plus):
+
+    ```shell
+    sudo dnf remove nginx-plus
+    sudo dnf install app-protect-dos
+    sudo systemctl start nginx
+    ```
+
+    {{< note >}} Make sure to restore configuration from `/etc/nginx-plus-backup` back to `/etc/nginx-plus`.{{< /note >}}
+
+9. Confirm the NGINX binary version to make sure that you have NGINX Plus installed correctly:
+
+    ```shell
+    sudo nginx -v
+    ```
+
+10. Check the App Protect DoS binary version to ensure that you have the right version installed correctly:
+
+    ```shell
+    sudo admd -v
+    ```
+
+11. Load the NGINX App Protect DoS module on the main context in the `nginx.conf` file:
+
+    ```nginx
+    load_module modules/ngx_http_app_protect_dos_module.so;
+    ```
+
+12. Enable NGINX App Protect DoS in an `http/server/location` context in the `nginx.conf` file:
+
+    ```nginx
+    app_protect_dos_enable on;
+    app_protect_dos_name "App1";
+    app_protect_dos_monitor uri=serv:80/; # Assuming server_name "serv" on port 80, with the root path "/"
+    ```
+
+13. Enable the L4 accelerated mitigation feature in an `http` context in the `nginx.conf` file:
+
+    ```nginx
+    app_protect_dos_accelerated_mitigation on;
+    ```
+
+14. To enable the NGINX/App-Protect-DoS service to start at boot, run the command:
+
+    ```shell
+    sudo systemctl enable nginx.service
+    ```
+
+15. Start the NGINX service:
+
+    ```shell
+    sudo systemctl start nginx
+    ```
+
+16. L4 mitigation
+
+    To enable the `app-protect-dos-ebpf-manager` service to start at boot, run the command:
+    ```shell
+    sudo systemctl enable nginx.service
+    ```
+    Start the `app-protect-dos-ebpf-manager` service:
+    ```
+    sudo systemctl start app-protect-dos-ebpf-manager
+    ```
+
+
 ## Docker Deployment
 
 ### Docker Deployment Instructions
@@ -1632,6 +1764,52 @@ COPY nginx.conf /etc/nginx/
 COPY entrypoint.sh /root/
 
 CMD ["sh", "/root/entrypoint.sh"]
+```
+
+### AmazonLinux 2023 Docker Deployment Example
+
+```Dockerfile
+# For AmazonLinux 2023:
+FROM registry.access.redhat.com/ubi9/ubi
+
+# Download certificate and key from the customer portal (https://my.f5.com)
+# and copy to the build context:
+COPY nginx-repo.crt nginx-repo.key /etc/ssl/nginx/
+
+# Setup the Redhat subscription
+RUN subscription-manager register --force --org=${RHEL_ORG} --activationkey=${RHEL_ACTIVATION_KEY}
+RUN subscription-manager refresh
+RUN subscription-manager attach --auto
+
+# Setup repos and Install dependencies
+RUN subscription-manager repos --enable=rhel-9-for-x86_64-baseos-rpms
+RUN subscription-manager repos --enable=rhel-9-for-x86_64-appstream-rpms
+RUN dnf -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
+
+# Install prerequisite packages:
+RUN dnf -y install wget ca-certificates
+
+# Add NGINX Plus repo to Yum:
+RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/plus-9.repo
+
+# Add NGINX App-protect & dependencies repo to Yum:
+RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-dos-9.repo
+RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.repo \
+    # You can use either of the dependencies or epel repo
+    # && rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm \
+    && dnf clean all
+
+# Install NGINX App Protect DoS:
+RUN dnf -y install app-protect-dos \
+    && dnf clean all \
+    && rm -rf /var/cache/yum \
+    && rm -rf /etc/ssl/nginx
+
+# Copy configuration files:
+COPY nginx.conf /etc/nginx/
+COPY entrypoint.sh  /root/
+
+CMD /root/entrypoint.sh && tail -f /dev/null
 ```
 
 
