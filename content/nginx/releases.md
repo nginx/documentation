@@ -18,6 +18,54 @@ We do not issue updates for releases that have reached EoSD. For this reason, we
 The initial release dates for NGINX Plus are noted in this document.
 New releases are announced on the [NGINX Product Support Announcements](https://interact.f5.com/Customer-Preference-Center.html) mailing list.
 
+<span id="r34"></span>
+## NGINX Plus Release 34 (R34)
+_01 April 2025_<br/>
+_Based on NGINX Open Source 1.27.4_
+
+NGINX Plus R34 is a feature release:
+
+- OIDC authentication support via native [ngx_http_oidc_module](https://nginx.org/en/docs/http/ngx_http_oidc_module.html) module.
+
+- NGINX usage reporting: [proxy](https://nginx.org/en/docs/ngx_mgmt_module.html#proxy) support.
+  
+- [Caching](https://blog.nginx.org/blog/optimizing-resource-usage-for-complex-ssl-configurations) of SSL certificates and secret keys with variables for [http](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_certificate_cache) and [stream](https://nginx.org/en/docs/stream/ngx_stream_ssl_module.html#ssl_certificate_cache).
+
+- The [`keepalive_min_timeout`](https://nginx.org/en/docs/http/ngx_http_core_module.html#keepalive_min_timeout) directive.
+
+- TLSv1.2 and TLSv1.3 are the default [SSL protocols](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_protocols) (if supported by the OpenSSL library). If OpenSSL 1.0.0 or older is used, the default SSL protocols are TLSv1 and TLSv1.1.
+
+- Bugfixes in QUIC and HTTP/3, mail proxy, the MP4 module, the `proxy_store` and `proxy_bind` directives.
+
+- Security: insufficient check in virtual servers handling with TLSv1.3 SNI allowed to reuse SSL sessions in a different virtual server, to bypass client SSL certificates verification ([CVE-2025-23419](http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-23419)).
+
+
+NGINX Plus R34 is supported on:
+
+- AlmaLinux 8, 9
+- Alpine Linux 3.18, 3.19, 3.20, 3.21
+- Amazon Linux 2 LTS, 2023
+- Debian 11, 12
+- FreeBSD 13, 14
+- Oracle Linux 8.1+, 9
+- RHEL 8.1+, 9.0+
+- Rocky Linux 8, 9
+- SUSE Linux Enterprise Server 15 SP5+
+- Ubuntu 20.04 LTS, 22.04 LTS, 24.04 LTS
+
+**Notes:**
+
+- Alpine Linux 3.17 is removed
+- Alpine Linux 3.18 is deprecated
+- Alpine Linux 3.21 is new in this release
+- Amazon Linux 2 LTS is deprecated
+- SUSE Linux Enterprise Server 12 is removed
+- Ubuntu 20.04 is deprecated
+- the [OpenTracing]({{< relref "nginx/admin-guide/dynamic-modules/opentracing.md" >}}) dynamic module is no longer available. It is recommended to use the [OpenTelemetry Distributed Tracing]({{< relref "nginx/admin-guide/dynamic-modules/opentelemetry.md" >}}) module, which incorporates all the features of the OpenTracing module.
+
+More information: [Announcing NGINX Plus R34](https://community.f5.com/kb/technicalarticles/f5-nginx-plus-r34-release-now-available/340300)
+
+
 <span id="r33"></span>
 ## NGINX Plus Release 33 (R33)
 _19 November 2024_<br/>
