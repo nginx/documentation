@@ -45,6 +45,13 @@ NGINX App Protect WAF is now generally available and is no longer a preview feat
 
 See the [Supported Regions]({{< ref "/nginxaas-azure/overview/overview.md#supported-regions" >}}) documentation for the full list of regions where NGINXaaS for Azure is available.
 
+## TODO: March XX, 2025
+
+- {{% icon-resolved %}} **Azure Monitor Platform Metrics**
+
+   NGINXaaS now publishes platform metrics directly to Azure Monitor. Legacy monitoring based on custom metrics is deprecated, and we strongly recommend migrating your alerts to use platform metrics for improved monitoring and management. For more details on enabling platform metrics, please refer to [Enable Monitoring]({{< relref "/nginxaas-azure/monitoring/enable-monitoring.md">}}).
+
+
 ## March 13, 2025
 
 - {{% icon-resolved %}} **Percentage capacity metric**
