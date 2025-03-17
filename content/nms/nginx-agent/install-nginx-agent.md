@@ -26,13 +26,13 @@ This section lists the prerequisites for installing and configuring NGINX Agent.
     ps aux | grep nginx
     ```
 
-3. If a previous version of NGINX Agent was installed, you must stop the current NGINX Agent process before running NGINX Agent install script. To check if any NGINX Agent processes are running, run the following command:
+3. If a previous version of NGINX Agent was installed, you must stop the current NGINX Agent process before running the NGINX Agent install script. To check if any NGINX Agent processes are running, run the following command:
 
     ```bash
     ps aux | grep nginx-agent
     ```
 
-4. If a previous version of NGINX Agent was installed, make sure to uninstall `nginx-agent-selinux` before running NGINX Agent install script.
+4. If a previous version of NGINX Agent was installed, make sure to uninstall `nginx-agent-selinux` before running the NGINX Agent install script.
 To see if `nginx_agent_selinux` is installed, run the following command:
 
     {{<tabs name="install_repo">}}
@@ -79,7 +79,7 @@ You can choose one of the following two methods to install NGINX Agent on your d
 
 ## Enable and Start NGINX Agent
 
-Run the following command to enable and start NGINX Agent service:
+Run the following command to enable and start the NGINX Agent service:
 
 ```bash
 sudo systemctl enable nginx-agent --now
@@ -89,7 +89,7 @@ sudo systemctl enable nginx-agent --now
 
 ## Verifying NGINX Agent is Running and Registered
 
-Run the following command on your data plane to verify that NGINX Agent process is running:
+Run the following command on your data plane to verify that the NGINX Agent process is running:
 
 ```bash
 ps aux | grep nginx-agent
@@ -128,10 +128,10 @@ In a web browser, go to the FQDN for your NGINX Management Suite host and log in
 
 <br>
 
-Once you've verified NGINX Agent instance is registered with NGINX Management Suite, no additional action is required for monitoring the instance.
+Once you've verified the NGINX Agent instance is registered with NGINX Management Suite, no additional action is required for monitoring the instance.
 
 {{<note>}}
-If you need to remove the instance, ensure that NGINX Agent service is stopped first. Then you can remove the instance from the inventory.
+If you need to remove the instance, ensure that the NGINX Agent service is stopped first. Then you can remove the instance from the inventory.
 {{</note>}}
 
 ---
@@ -168,7 +168,7 @@ Examples of the configuration files are provided below:
 {{<note>}}
 In the following example `nginx-agent.conf` file, you can change the `server.host` and `server.grpcPort` to connect to the NGINX Management Suite.
 
-If NGINX Agent was previously installed for data reporting purposes only, you may need to find and remove the following line from NGINX Agent configuration file:
+If NGINX Agent was previously installed for data reporting purposes only, you may need to find and remove the following line from the NGINX Agent configuration file:
 
 ```none
 features: registration,dataplane-status
@@ -323,7 +323,7 @@ If you are upgrading from an older version, update your configuration accordingl
 | `--nginx-exclude-logs`                      | `NGINX_AGENT_NGINX_EXCLUDE_LOGS`             | Specifies paths of NGINX access logs to exclude from metrics collection.    |
 | `--nginx-socket`                            | `NGINX_AGENT_NGINX_SOCKET`                   | Specifies the location of the NGINX Plus counting Unix socket. Default: *unix:/var/run/nginx-agent/nginx.sock* |
 | `--nginx-treat-warnings-as-errors`          | `NGINX_AGENT_NGINX_TREAT_WARNINGS_AS_ERRORS` | Treats warnings as failures on configuration application.                   |
-| `--queue-size`                              | `NGINX_AGENT_QUEUE_SIZE`                     | Specifies the size of NGINX Agent internal queue.                       |
+| `--queue-size`                              | `NGINX_AGENT_QUEUE_SIZE`                     | Specifies the size of the NGINX Agent internal queue.                       |
 | `--server-command`                          |                                      | Specifies the name of the command server sent in the TLS configuration.     |
 | `--server-grpcport`                         | `NGINX_AGENT_SERVER_GRPCPORT`                | Sets the desired GRPC port for NGINX Agent traffic.                         |
 | `--server-host`                             | `NGINX_AGENT_SERVER_HOST`                    | Specifies the IP address of the server host.                                |
@@ -412,7 +412,7 @@ The NGINX Agent package includes the following SELinux files:
 - `/usr/share/selinux/devel/include/contrib/nginx_agent.if`
 - `/usr/share/selinux/packages/nginx_agent.pp`
 
-To load NGINX Agent policy, run the following commands:
+To load the NGINX Agent policy, run the following commands:
 
 {{< include "installation/agent-selinux.md" >}}
 
