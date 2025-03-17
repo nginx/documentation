@@ -12,13 +12,13 @@ type:
 - how-to
 ---
 
-{{< note >}} The module is deprecated since <a href="../../../releases/#r32">F5 NGINX Plus Release 32</a>. The [OpenTelemetry]({{< ref "opentelemetry.md" >}}) module is available since NGINX Plus <a href="../../../releases/#r29">Release 29</a> that incorporates the features of the OpenTracing module.{{< /note >}}
+{{< note >}} The module no longer available since F5 NGINX Plus [Release 34]({{< ref "nginx/releases.md#r34" >}}). The [OpenTelemetry]({{< ref "nginx/admin-guide/dynamic-modules/opentelemetry.md" >}}) module is available since NGINX Plus [Release 29]({{< ref "nginx/releases.md#r29" >}}) that incorporates the features of the OpenTracing module.{{< /note >}}
 
 
 <span id="install"></span>
 ## Installation
 
-1. Check the [Technical Specifications]({{< relref "../../technical-specs.md" >}}) page to verify that the module is supported by your operating system.
+1. Check the [Technical Specifications]({{< ref "nginx/technical-specs.md" >}}) page to verify that the module is supported by your operating system.
 
 2. Install the OpenTracing module package `nginx-plus-module-opentracing`.
 
@@ -89,6 +89,6 @@ After installation you will need to enable and configure the module in NGINX Plu
 
 - [NGINX plugin for OpenTracing Reference](https://github.com/opentracing-contrib/nginx-opentracing)
 
-- [NGINX Dynamic Modules]({{< ref "dynamic-modules.md" >}})
+- [NGINX Dynamic Modules]({{< ref "nginx/admin-guide/dynamic-modules/dynamic-modules.md" >}})
 
-- [NGINX Plus Technical Specifications]({{< relref "../../technical-specs.md" >}})
+- [NGINX Plus Technical Specifications]({{< ref "nginx/technical-specs.md" >}})
