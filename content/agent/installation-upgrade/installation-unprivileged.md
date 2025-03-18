@@ -17,6 +17,7 @@ This also aligns with the principle of least privilege, which is a security conc
 
 Please note that **root access is required to install NGINX Agent**. The agent can be run under a non-root user after the installation.
 
+---
 
 ## Installation
 
