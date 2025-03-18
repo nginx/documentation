@@ -1,5 +1,5 @@
 ---
 title: Security Monitoring
-weight: 10000
+weight: 500
 url: /nginx-instance-manager/nginx-app-protect/security-monitoring/
 ---
