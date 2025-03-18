@@ -55,6 +55,6 @@ Run the command corresponding to your operating system to start NGINX Agent:
 
 You can confirm that NGINX Agent is running under the same user as NGINX Plus by running the following command:
 
-   ```bash
-   ps aux | grep nginx-agent
-   ```
+```bash
+ps aux | grep nginx-agent
+```
