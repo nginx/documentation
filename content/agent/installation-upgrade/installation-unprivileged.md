@@ -1,10 +1,9 @@
 ---
-title: "Run without root privileges"
+title: Run without root privileges
 weight: 450
 toc: true
-tags: [ "docs" ]
-categories: ["configuration"]
-doctypes: ["task"]
+type: how-to
+product: Agent
 ---
 
 ## Overview
