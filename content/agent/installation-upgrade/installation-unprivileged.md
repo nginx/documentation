@@ -35,6 +35,8 @@ NGINX Agent has its own user group (`nginx-agent`) which is created when NGINX A
 
 After installing NGINX Plus, you can install NGINX agent following the steps on the [NGINX Agent installation page]({{< ref "/agent/installation-upgrade/installation-oss.md" >}}).
 
+---
+
 ### Start NGINX Agent
 
 Run the command corresponding to your operating system to start NGINX Agent:
