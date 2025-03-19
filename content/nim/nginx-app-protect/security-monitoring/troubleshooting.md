@@ -1,10 +1,10 @@
 ---
-docs: DOCS-1226
 title: Troubleshooting
+weight: 500
 toc: true
-weight: 1000
-type:
-- reference
+type: how-to
+product: NIM
+docs: DOCS-1226
 ---
 
 ## Security event log backup with Security Monitoring

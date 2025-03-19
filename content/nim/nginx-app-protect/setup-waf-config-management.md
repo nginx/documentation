@@ -1,15 +1,13 @@
 ---
-description: Learn how to use F5 NGINX Instance Manager to secure your applications
-  with NGINX App Protect WAF security policies.
-docs: DOCS-996
 title: Manage Your App Protect WAF Configs
-toc: true
 weight: 100
-type:
-- how-to
+toc: true
+description: Learn how to use F5 NGINX Instance Manager to secure your
+  applications with NGINX App Protect WAF security policies.
+type: how-to
+product: NIM
+docs: DOCS-996
 ---
-
-{{< shortversions "2.6.0" "latest" "nimvers" >}}
 
 ## Overview
 
@@ -19,9 +17,9 @@ Instance Manager helps you manage your F5 NGINX App Protect WAF configurations, 
 
 Complete the following prerequisites before proceeding with this guide.
 
-- You have one or more instances of [NGINX App Protect WAF](https://docs.nginx.com/nginx-app-protect/admin-guide/install/) installed and running. See [Support for NGINX App Protect WAF]({{< relref "tech-specs#support-for-nginx-app-protect-waf" >}}) for a list of supported versions.
+- You have one or more instances of [NGINX App Protect WAF]({{< ref "/nap-waf/" >}}) installed and running. See [Support for NGINX App Protect WAF]({{< ref "tech-specs.md#support-for-nginx-app-protect-waf" >}}) for a list of supported versions.
 
-    {{<note>}}If you are using configuration management and the NGINX Instance Manager Security Monitoring, follow the instructions in the [setup guide]({{<relref "/nim/nginx-app-protect/security-monitoring/set-up-app-protect-instances" >}}) to set up your NGINX App Protect instances before proceeding with this guide.{{</note>}}
+    {{< note >}} If you are using configuration management and the NGINX Instance Manager Security Monitoring, follow the instructions in the [setup guide]({{< ref "/nim/nginx-app-protect/security-monitoring/set-up-app-protect-instances.md" >}}) to set up your NGINX App Protect instances before proceeding with this guide. {{</ note >}}
 
 - You have Instance Manager v2.6.0 or later [installed]({{< relref "/nim/deploy/vm-bare-metal/_index.md" >}}), licensed, and running.
   If you have a subscription to NGINX App Protect WAF, you can find your Instance Manager license in the subscription details section of [MyF5](https://my.f5.com).
@@ -396,7 +394,7 @@ curl -X POST 'https://{{NMS_FQDN}}/api/platform/v1/security/threat-campaigns' \
 
 The Security Monitoring module's analytics dashboards make use of a Signature Database to provide more information on Attack Signatures that have triggered Security Violations, such as the Signature's name, accuracy, and risk level.
 
-To ensure that the dashboards show the most up-to-date information, you need to [update the Security Monitoring Signature Database]({{< relref "/nim/nginx-app-protect/security-monitoring/update-signatures" >}})
+To ensure that the dashboards show the most up-to-date information, you need to [update the Security Monitoring Signature Database]({{< ref "/nim/nginx-app-protect/security-monitoring/update-signatures.md" >}})
 
 ---
 
@@ -920,7 +918,7 @@ server {
 app_protect_security_log "/etc/nms/secops_dashboard.tgz" syslog:server=127.0.0.1:514;
 ```
 
-Refer to the [Security Monitoring setup guide]({{< relref "/nim/nginx-app-protect/security-monitoring/set-up-app-protect-instances" >}}) to learn more. {{</note>}}
+Refer to the [Security Monitoring setup guide]({{< relref "/nim/nginx-app-protect/security-monitoring/set-up-app-protect-instances.md" >}}) to learn more. {{</note>}}
 
 {{<important>}}
 NGINX configuration for NGINX App Protect Version 5 requires the following changes:
