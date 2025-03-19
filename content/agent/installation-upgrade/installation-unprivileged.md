@@ -32,13 +32,9 @@ You can install NGINX Plus without root privileges following the steps on the [N
 NGINX Agent has its own user group (`nginx-agent`) which is created when NGINX Agent is installed. The user NGINX is running under is added to this user group during the installation of NGINX Agent. If you change the NGINX user after installing NGINX Agent, you will need to [manually add the new NGINX user]({{< ref "/agent/configuration/configure-nginx-agent-group.md" >}}) to the `nginx-agent` group.
 {{< /note >}}
 
----
-
 ### Install NGINX Agent
 
 After installing NGINX Plus, you can install NGINX agent following the steps on the [NGINX Agent installation page]({{< ref "/agent/installation-upgrade/installation-oss.md" >}}).
-
----
 
 ### Start NGINX Agent
 
