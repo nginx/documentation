@@ -8,7 +8,7 @@ product: Agent
 
 ## Overview
 
-If the policies of your organization do not allow to run processes as root, you can run NGINX Agent under a user without root privileges.
+If the policies of your organization do not allow running processes as root, you can run NGINX Agent under a user without root privileges.
 
 This also aligns with the principle of least privilege, which is a security concept that limits the access rights of users to the bare minimum permissions they need to perform their work.
 
