@@ -1,8 +1,11 @@
 ---
 description: ''
 docs: DOCS-1398
-type:
-- reference
+doctypes:
+  - reference
+type: redoc
+tags:
+  - api
 title: API reference guide
 toc: false
 weight: null
