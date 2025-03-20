@@ -1,11 +1,11 @@
 ---
 title: NGINX App Protect DoS 4.6
 toc: true
-weight: 70
+weight: 60
 docs: DOCS-000
 ---
 
-Here you can find the release information for F5 NGINX App Protect DoS v4.5  
+Here you can find the release information for F5 NGINX App Protect DoS v4.6  
 
 NGINX App Protect DoS provides behavioral protection against Denial of Service (DoS) for your web applications.
 
@@ -24,7 +24,7 @@ NGINX App Protect DoS 4.6 adds support for NGINX Plus R34.
 - Support for NGINX Plus R34
 - Add support for AmazonLinux 2023
 - Remove support for Alpine 3.17 
-- Telemetry Readiness
+- Telemetry Readiness - this feature enables periodic telemetry reporting for NGINX App Protect DoS, capturing key statistics and metrics. In the initial phase, telemetry data is temporarily logged to the NGINX error.log file every minute on DEBUG log level.
 - Bug fixes
 
 ---
