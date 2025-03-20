@@ -1734,7 +1734,7 @@ ARG OS_CODENAME
 # Where OS_CODENAME can be: 3.15 / 3.17 / 3.19
 FROM alpine:${OS_CODENAME}
 
-# Download certificate, key and jwt licenese from the customer portal (https://my.f5.com)
+# Download certificate, key, and JWT license from the customer portal (https://my.f5.com)
 # and copy to the build context:
 RUN mkdir -p /etc/ssl/nginx/
 RUN mkdir -p /etc/nginx/
