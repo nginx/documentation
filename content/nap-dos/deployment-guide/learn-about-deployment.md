@@ -35,8 +35,8 @@ NGINX App Protect DoS supports the following operating systems:
 - [Alpine 3.15](#alpine-315x--317x--319x-installation) - (Deprecated starting from NGINX Plus R30)
 - [Alpine 3.17](#alpine-315x--317x--319x-installation) - (Deprecated starting from NGINX Plus R34) 
 - [Alpine 3.19](#alpine-315x--317x--319x-installation)
-- [AmazonLinux 2023](amazonlinux-linux-2023-installation)
-
+- [AmazonLinux 2023](#amazonlinux-linux-2023-installation)
+ent-guide/learn-about-deployment/#amazonlinux-linux-2023-installation
 The NGINX App Protect DoS package has the following dependencies:
 
 1. **nginx-plus-module-appprotectdos** - NGINX Plus dynamic module for App Protect DoS
