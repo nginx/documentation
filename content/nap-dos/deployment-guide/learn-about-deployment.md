@@ -1693,7 +1693,7 @@ ARG OS_CODENAME
 
 FROM ubuntu:${OS_CODENAME}
 
-# Download certificate, key and jwt licenese from the customer portal (https://my.f5.com)
+# Download certificate, key, and JWT license from the customer portal (https://my.f5.com)
 # and copy to the build context:
 RUN mkdir -p /etc/ssl/nginx/
 RUN mkdir -p /etc/nginx/
