@@ -1266,10 +1266,11 @@ You need root permissions to execute the following steps.
 
    - `nginx-repo.crt`: Certificate for NGINX repository access
    - `nginx-repo.key`: Private key for NGINX repository access
+   - `license.jwt`: JWT license file for NGINX Plus license management
    - `nginx.conf`: User defined `nginx.conf` with `app-protect-dos` enabled
    - `entrypoint.sh`: Docker startup script which spins up all App Protect DoS processes, must have executable permissions
 
-2. Log in to NGINX Plus Customer Portal and download your `nginx-repo.crt` and `nginx-repo.key` files.
+2. Log in to NGINX Plus Customer Portal and download your `nginx-repo.crt`, `nginx-repo.key` and `license.jwt` files.
 
 3. Copy the files to the directory where the Dockerfile is located.
 
@@ -1552,9 +1553,12 @@ CMD /root/entrypoint.sh && tail -f /dev/null
 # For UBI 8
 FROM registry.access.redhat.com/ubi8:ubi
 
-# Download certificate and key from the customer portal (https://my.f5.com)
+# Download certificate, key and jwt licenese from the customer portal (https://my.f5.com)
 # and copy to the build context:
+RUN mkdir -p /etc/ssl/nginx/
+RUN mkdir -p /etc/nginx/
 COPY nginx-repo.crt nginx-repo.key /etc/ssl/nginx/
+COPY nginx-repo.crt license.jwt /etc/nginx/
 
 # Setup the Redhat subscription
 RUN subscription-manager register --force --org=${RHEL_ORG} --activationkey=${RHEL_ACTIVATION_KEY}
@@ -1592,9 +1596,12 @@ CMD /root/entrypoint.sh && tail -f /dev/null
 # For RHEL ubi9:
 FROM registry.access.redhat.com/ubi9/ubi
 
-# Download certificate and key from the customer portal (https://my.f5.com)
+# Download certificate, key and jwt licenese from the customer portal (https://my.f5.com)
 # and copy to the build context:
+RUN mkdir -p /etc/ssl/nginx/
+RUN mkdir -p /etc/nginx/
 COPY nginx-repo.crt nginx-repo.key /etc/ssl/nginx/
+COPY nginx-repo.crt license.jwt /etc/nginx/
 
 # Setup the Redhat subscription
 RUN subscription-manager register --force --org=${RHEL_ORG} --activationkey=${RHEL_ACTIVATION_KEY}
@@ -1642,9 +1649,12 @@ ARG OS_CODENAME
 
 FROM debian:${OS_CODENAME}
 
-# Download certificate and key from the customer portal (https://my.f5.com)
+# Download certificate, key and jwt licenese from the customer portal (https://my.f5.com)
 # and copy to the build context:
+RUN mkdir -p /etc/ssl/nginx/
+RUN mkdir -p /etc/nginx/
 COPY nginx-repo.crt nginx-repo.key /etc/ssl/nginx/
+COPY nginx-repo.crt license.jwt /etc/nginx/
 
 # Install prerequisite packages:
 RUN apt-get update && apt-get install -y apt-transport-https lsb-release ca-certificates wget gnupg2 debian-archive-keyring
@@ -1682,9 +1692,12 @@ ARG OS_CODENAME
 
 FROM ubuntu:${OS_CODENAME}
 
-# Download certificate and key from the customer portal (https://my.f5.com)
+# Download certificate, key and jwt licenese from the customer portal (https://my.f5.com)
 # and copy to the build context:
+RUN mkdir -p /etc/ssl/nginx/
+RUN mkdir -p /etc/nginx/
 COPY nginx-repo.crt nginx-repo.key /etc/ssl/nginx/
+COPY nginx-repo.crt license.jwt /etc/nginx/
 
 # Install prerequisite packages:
 RUN apt-get update && apt-get install -y apt-transport-https lsb-release ca-certificates wget gnupg2 ubuntu-keyring
@@ -1720,9 +1733,12 @@ ARG OS_CODENAME
 # Where OS_CODENAME can be: 3.15 / 3.17 / 3.19
 FROM alpine:${OS_CODENAME}
 
-# Download certificate and key from the customer portal (https://my.f5.com)
+# Download certificate, key and jwt licenese from the customer portal (https://my.f5.com)
 # and copy to the build context:
+RUN mkdir -p /etc/ssl/nginx/
+RUN mkdir -p /etc/nginx/
 COPY nginx-repo.crt nginx-repo.key /etc/ssl/nginx/
+COPY nginx-repo.crt license.jwt /etc/nginx/
 
 # Download and add the NGINX signing key:
 RUN wget -O /etc/apk/keys/nginx_signing.rsa.pub https://cs.nginx.com/static/keys/nginx_signing.rsa.pub
@@ -1754,32 +1770,21 @@ CMD ["sh", "/root/entrypoint.sh"]
 # For AmazonLinux 2023:
 FROM registry.access.redhat.com/ubi9/ubi
 
-# Download certificate and key from the customer portal (https://my.f5.com)
+# Download certificate, key and jwt licenese from the customer portal (https://my.f5.com)
 # and copy to the build context:
+RUN mkdir -p /etc/ssl/nginx/
+RUN mkdir -p /etc/nginx/
 COPY nginx-repo.crt nginx-repo.key /etc/ssl/nginx/
-
-# Setup the Redhat subscription
-RUN subscription-manager register --force --org=${RHEL_ORG} --activationkey=${RHEL_ACTIVATION_KEY}
-RUN subscription-manager refresh
-RUN subscription-manager attach --auto
-
-# Setup repos and Install dependencies
-RUN subscription-manager repos --enable=rhel-9-for-x86_64-baseos-rpms
-RUN subscription-manager repos --enable=rhel-9-for-x86_64-appstream-rpms
-RUN dnf -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
+COPY nginx-repo.crt license.jwt /etc/nginx/
 
 # Install prerequisite packages:
 RUN dnf -y install wget ca-certificates
 
 # Add NGINX Plus repo to Yum:
-RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/plus-9.repo
+RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/plus-amazonlinux2023.repo
 
 # Add NGINX App-protect & dependencies repo to Yum:
-RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-dos-9.repo
-RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.repo \
-    # You can use either of the dependencies or epel repo
-    # && rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm \
-    && dnf clean all
+RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-dos-amazonlinux2023.repo
 
 # Install NGINX App Protect DoS:
 RUN dnf -y install app-protect-dos \
@@ -1805,10 +1810,11 @@ You need root permissions to execute the following steps.
 
     - `nginx-repo.crt`: Certificate for NGINX repository access
     - `nginx-repo.key`: Private key for NGINX repository access
+    - `license.jwt`: JWT license file for NGINX Plus license management
     - `nginx.conf`: User defined `nginx.conf` with `app-protect-dos` enabled
     - `entrypoint.sh`: Docker startup script which spins up all App Protect DoS processes, must have executable permissions
 
-2. Log in to NGINX Plus Customer Portal and download your `nginx-repo.crt` and `nginx-repo.key` files.
+2. Log in to NGINX Plus Customer Portal and download your `nginx-repo.crt`, `nginx-repo.key` and `license.jwt` files.
 
 3. Copy the files to the directory where the Dockerfile is located.
 
@@ -2071,9 +2077,12 @@ ARG OS_CODENAME
 
 FROM debian:${OS_CODENAME}
 
-# Download certificate and key from the customer portal (https://my.f5.com)
+# Download certificate, key and jwt licenese from the customer portal (https://my.f5.com)
 # and copy to the build context:
+RUN mkdir -p /etc/ssl/nginx/
+RUN mkdir -p /etc/nginx/
 COPY nginx-repo.crt nginx-repo.key /etc/ssl/nginx/
+COPY nginx-repo.crt license.jwt /etc/nginx/
 
 # Install prerequisite packages:
 RUN apt-get update && apt-get install -y apt-transport-https lsb-release ca-certificates wget gnupg2 debian-archive-keyring
@@ -2113,9 +2122,12 @@ FROM ubuntu:${OS_CODENAME}
 
 ARG DEBIAN_FRONTEND=noninteractive
 
-# Download certificate and key from the customer portal (https://my.f5.com)
+# Download certificate, key and jwt licenese from the customer portal (https://my.f5.com)
 # and copy to the build context:
+RUN mkdir -p /etc/ssl/nginx/
+RUN mkdir -p /etc/nginx/
 COPY nginx-repo.crt nginx-repo.key /etc/ssl/nginx/
+COPY nginx-repo.crt license.jwt /etc/nginx/
 
 # Install prerequisite packages:
 RUN apt-get update && apt-get install -y apt-transport-https lsb-release ca-certificates wget gnupg2 ubuntu-keyring
