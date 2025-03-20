@@ -1597,7 +1597,7 @@ CMD /root/entrypoint.sh && tail -f /dev/null
 # For RHEL ubi9:
 FROM registry.access.redhat.com/ubi9/ubi
 
-# Download certificate, key and jwt licenese from the customer portal (https://my.f5.com)
+# Download certificate, key, and JWT license from the customer portal (https://my.f5.com)
 # and copy to the build context:
 RUN mkdir -p /etc/ssl/nginx/
 RUN mkdir -p /etc/nginx/
