@@ -65,6 +65,10 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
 
 ## CentOS 7.4+ Installation
 
+{{< note >}}
+
+CentOS 7.4 and RHEL 7.4 are deprecated as of NGINX Plus Release 32 (R32) and are not supported in Release 33 (R33) or later. For the list of supported distributions, refer to the [NGINX Plus Tech Specs]({{< relref "nginx/technical-specs.md" >}}).{{< note >}}
+
 1. If you already have NGINX packages in your system, back up your configs and logs:
 
     ```shell
@@ -210,6 +214,10 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     ```
 
 ## RHEL 7.4+ Installation
+
+{{< note >}}
+
+CentOS 7.4 and RHEL 7.4 are deprecated as of NGINX Plus Release 32 (R32) and are not supported in Release 33 (R33) or later. For the list of supported distributions, refer to the [NGINX Plus Tech Specs]({{< relref "nginx/technical-specs.md" >}}).{{< note >}}
 
 1. If you already have NGINX packages in your system, back up your configs and logs:
 
@@ -402,15 +410,9 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     ```shell
     sudo mkdir -p /etc/ssl/nginx
     ```
+3. {{< include "licensing-and-reporting/download-jwt-crt-from-myf5.md" >}}
 
-3. Log in to the NGINX [Customer Portal](https://my.f5.com) and download the following two files:
-
-    ```shell
-    nginx-repo.key
-    nginx-repo.crt
-    ```
-
-4. Copy the above two files to the CentOS server’s `/etc/ssl/nginx/` directory. Use an SCP client or another secure file transfer tool to perform this task.
+4. Copy the above two files to the RHEL server’s `/etc/ssl/nginx/` directory. Use an SCP client or another secure file transfer tool to perform this task.
 
 5. Install prerequisite packages:
 
