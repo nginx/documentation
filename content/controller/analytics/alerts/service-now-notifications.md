@@ -1,14 +1,11 @@
 ---
 description: Set up Alerts Integration with ServiceNow. Deprecated in v3.13.
 docs: DOCS-523
-doctypes:
-- task
-tags:
-- docs
-- deprecated
 title: ServiceNow Alerts Integration
 toc: true
 weight: 600
+type:
+- how-to
 ---
 
 ## ServiceNow Alert Integration

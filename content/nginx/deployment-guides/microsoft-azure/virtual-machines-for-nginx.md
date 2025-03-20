@@ -2,11 +2,12 @@
 description: Create Microsoft Azure virtual machines for running NGINX Open Source
   and F5 NGINX Plus.
 docs: DOCS-458
-doctypes:
-- task
-title: Creating Microsoft Azure Virtual Machines for NGINX Open Source and F5 NGINX Plus
+title: Creating Microsoft Azure Virtual Machines for NGINX Open Source and F5 NGINX
+  Plus
 toc: true
 weight: 100
+type:
+- how-to
 ---
 
 These instructions explain how to create virtual machines (VMs) in the Microsoft Azure environment that are suitable for running NGINX Open Source and NGINX Plus.
@@ -28,7 +29,7 @@ These instructions assume you have:
 
 In addition, to install NGINX software by following the linked instructions, you need:
 
-- An NGINX Plus subscription, either paid or a [30‑day free trial](https://www.nginx.com/free-trial-request), if you plan to install that product.
+- A paid or trial NGINX Plus subscription, if you plan to install that product.
 - `root` privilege on the hosts where NGINX Open Source and NGINX Plus are to be installed. If appropriate for your environment, prefix commands with the `sudo` command.
 
 <span id="create-vm"></span>

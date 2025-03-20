@@ -1,12 +1,12 @@
 ---
-description: Take the steps in this guide to deploy F5 NGINX App Protect WAF as a datapath
-  instance for use with NGINX Controller.
+description: Take the steps in this guide to deploy F5 NGINX App Protect WAF as a
+  datapath instance for use with NGINX Controller.
 docs: DOCS-645
-doctypes:
-- task
 title: Using NGINX App Protect WAF with NGINX Controller
 toc: true
 weight: 500
+type:
+- how-to
 ---
 
 **Note:** Refer to the [F5 NGINX Controller Technical Specifications]({{< relref "/controller/admin-guides/install/nginx-controller-tech-specs.md" >}}) guide to find out which distributions are supported for use with NGINX Controller and NGINX Controller Agent.

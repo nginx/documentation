@@ -1,11 +1,11 @@
 ---
-title: "Install with nginx-meshctl"
-date: 2020-02-20T19:43:59Z
+title: Install with nginx-meshctl
 draft: false
 toc: true
 weight: 200
-categories: ["tasks"]
-docs: "DOCS-681"
+docs: DOCS-681
+type:
+- how-to
 ---
 
 ## Overview

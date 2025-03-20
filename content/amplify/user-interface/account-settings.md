@@ -3,8 +3,7 @@ title: Account Settings
 description: Learn about the Account settings for the User Interface.
 weight: 70
 toc: true
-tags: ["docs"]
-docs: "DOCS-978"
+docs: DOCS-978
 ---
 
 The **Account** option in the user menu at the top right corner of the user interface povides access to several user settings.

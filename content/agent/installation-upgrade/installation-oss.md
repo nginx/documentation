@@ -1,12 +1,11 @@
 ---
-title: "Installation from NGINX repository"
+title: Installation from NGINX repository
 draft: false
 weight: 300
 toc: true
-tags: [ "docs" ]
-docs: "DOCS-1216"
-categories: ["configuration"]
-doctypes: ["task"]
+docs: DOCS-1216
+type:
+- how-to
 ---
 
 ## Overview

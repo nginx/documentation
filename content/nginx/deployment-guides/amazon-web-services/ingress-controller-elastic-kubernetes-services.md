@@ -2,12 +2,12 @@
 description: Use NGINX or F5 NGINX Plus as the Ingress Controller for Amazon Elastic
   Kubernetes Services.
 docs: DOCS-447
-doctypes:
-- task
 title: Using NGINX or NGINX Plus as the Ingress Controller for Amazon Elastic Kubernetes
   Services
 toc: true
 weight: 400
+type:
+- how-to
 ---
 
 This guide explains how to use NGINX Open Source or F5 NGINX Plus with NGINX Ingress Controller for Amazon Elastic Kubernetes Services (EKS).

@@ -1,13 +1,11 @@
 ---
 description: Learn about the NGINX Controller Agent.
 docs: DOCS-508
-doctypes:
-- concept
-tags:
-- docs
 title: Get to Know the F5 NGINX Controller Agent
 toc: true
 weight: 100
+type:
+- concept
 ---
 
 ## Overview

@@ -2,13 +2,11 @@
 description: The guide provides step-by-step instructions to deploy F5 NGINX API Connectivity
   Manager on Kubernetes using a Helm chart.
 docs: DOCS-1276
-doctypes:
-- task
-tags:
-- docs
 title: Deploy API Connectivity Manager on Kubernetes
 toc: true
 weight: 20
+type:
+- how-to
 ---
 
 ## Requirements

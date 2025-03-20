@@ -1,10 +1,11 @@
 ---
 title: Setting up JWT authentication
 weight: 200
-categories: [tasks]
 toc: true
-docs: "DOCS-1101"
+docs: DOCS-1101
 url: /nginxaas/azure/quickstart/security-controls/jwt/
+type:
+- how-to
 ---
 
 F5 NGINX as a Service for Azure (NGINXaaS) provides the option to control access to your resources using JWT authentication. With JWT authentication, a client provides a JSON Web Token, and the token will be validated against a local key file or a remote service. This document will explain how to validate tokens using Microsoft Entra as the remote service.

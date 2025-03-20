@@ -2,11 +2,11 @@
 description: Understand the NGINX processes that handle traffic, and how to control
   them at runtime.
 docs: DOCS-379
-doctypes:
-- task
 title: Controlling NGINX Processes at Runtime
 toc: true
 weight: 100
+type:
+- how-to
 ---
 
 This section describes the processes that NGINX starts at run time and how to control them.

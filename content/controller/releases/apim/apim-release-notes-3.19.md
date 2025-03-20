@@ -2,13 +2,11 @@
 description: These release notes contain information about new features, improvements,
   known issues, and bug fixes in the NGINX Controller API Management Module.
 docs: DOCS-369
-doctypes:
-- reference
-tags:
-- docs
 title: Release Notes 3.19.0
 toc: true
 weight: 97
+type:
+- reference
 ---
 
 {{< include "controller/apim-rn-preamble.md" >}}

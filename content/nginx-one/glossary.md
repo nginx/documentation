@@ -1,13 +1,11 @@
 ---
 description: ''
 docs: DOCS-1396
-doctypes:
-- reference
-tags:
-- docs
 title: Glossary
 toc: true
 weight: 1000
+type:
+- reference
 ---
 
 This glossary defines terms used in the F5 NGINX One Console and F5 Distributed Cloud.

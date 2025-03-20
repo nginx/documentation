@@ -2,13 +2,11 @@
 description: Learn how to back up and restore the external F5 NGINX Controller config
   database.
 docs: DOCS-249
-doctypes:
-- tutorial
-tags:
-- docs
 title: Back Up & Restore an External Config Database
 toc: true
 weight: 99
+type:
+- tutorial
 ---
 
 ## Overview

@@ -1,13 +1,11 @@
 ---
 title: Container support and troubleshooting
-categories:
-- installation
 draft: false
-tags:
-- docs
 toc: true
 weight: 200
-docs: "DOCS-909"
+docs: DOCS-909
+type:
+- task
 ---
 
 ## Overview

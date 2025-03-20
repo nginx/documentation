@@ -2,13 +2,11 @@
 description: Learn about the new features, enhancements, resolved issues, and known
   issues in F5 NGINX Controller.
 docs: DOCS-370
-doctypes:
-- reference
-tags:
-- docs
-title: "NGINX Controller v3.0.0\u20133.18.3"
+title: NGINX Controller v3.0.0–3.18.3
 toc: true
 weight: 10
+type:
+- reference
 ---
 
 ## Release Notes

@@ -1,14 +1,11 @@
 ---
 description: Learn how to deploy an Azure NGINX instance using F5 NGINX Controller.
 docs: DOCS-769
-doctypes:
-- beta
-- tutorial
-tags:
-- docs
 title: Add an Azure NGINX Instance
 toc: true
 weight: 35
+type:
+- tutorial
 ---
 
 ## Overview

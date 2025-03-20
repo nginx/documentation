@@ -1,14 +1,12 @@
 ---
 description: Learn how to safely change the management IP of F5 NGINX Controller.
 docs: DOCS-779
-doctypes:
-- task
-- tutorial
-tags:
-- docs
 title: Changing the IP address
 toc: true
 weight: 135
+type:
+- how-to
+- tutorial
 ---
 
 ## Overview
