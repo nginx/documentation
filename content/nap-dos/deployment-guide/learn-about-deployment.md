@@ -1271,7 +1271,7 @@ You need root permissions to execute the following steps.
    - `nginx.conf`: User defined `nginx.conf` with `app-protect-dos` enabled
    - `entrypoint.sh`: Docker startup script which spins up all App Protect DoS processes, must have executable permissions
 
-2. Log in to NGINX Plus Customer Portal and download your `nginx-repo.crt`, `nginx-repo.key` and `license.jwt` files.
+2. Log in to NGINX Plus Customer Portal and download your `nginx-repo.crt`, `nginx-repo.key`, and `license.jwt` files.
 
 3. Copy the files to the directory where the Dockerfile is located.
 
