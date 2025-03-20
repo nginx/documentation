@@ -1,12 +1,10 @@
 ---
 docs: DOCS-340
-doctypes:
-- concept
-tags:
-- docs
 title: About Snippets
 toc: true
 weight: 300
+type:
+- concept
 ---
 
 ## Overview

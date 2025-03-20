@@ -1,11 +1,15 @@
 ---
-title: "Release Notes 0.6.0"
+title: Release Notes 0.6.0
 draft: false
 toc: true
-description: Release information for F5 NGINX Service Mesh, a configurable, low‑latency infrastructure layer designed to handle a high volume of network‑based interprocess communication among application infrastructure services using application programming interfaces (APIs).  Lists of new features and known issues are provided.
+description: Release information for F5 NGINX Service Mesh, a configurable, low‑latency
+  infrastructure layer designed to handle a high volume of network‑based interprocess
+  communication among application infrastructure services using application programming
+  interfaces (APIs).  Lists of new features and known issues are provided.
 weight: -600
-categories: ["reference"]
-docs: "DOCS-706"
+docs: DOCS-706
+type:
+- reference
 ---
 
 ## NGINX Service Mesh Version 0.6.0

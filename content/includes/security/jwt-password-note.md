@@ -2,7 +2,6 @@
 docs: 
 ---
 
-
 {{<call-out "important" "Protect sensitive data" "fas fa-shield-alt" >}}
 To protect your system and data, follow these security practices:
  

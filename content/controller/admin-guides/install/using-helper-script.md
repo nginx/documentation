@@ -2,13 +2,11 @@
 description: Learn how to update F5 NGINX Controller installation settings and manage
   the NGINX Controller service using the helper.sh script.
 docs: DOCS-261
-doctypes:
-- task
-tags:
-- docs
 title: Update NGINX Controller Settings with helper.sh
 toc: true
 weight: 200
+type:
+- how-to
 ---
 
 ## Overview

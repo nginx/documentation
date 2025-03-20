@@ -1,10 +1,10 @@
 ---
 title: Supported Platforms
-description: Find out which platforms are supported for use with F5 NGINX Service Mesh.
-date: 2020-08-17
+description: Find out which platforms are supported for use with F5 NGINX Service
+  Mesh.
 weight: 100
 toc: true
-docs: "DOCS-688"
+docs: DOCS-688
 ---
 
 ## Kubernetes

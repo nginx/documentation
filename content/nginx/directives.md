@@ -1,6 +1,4 @@
 ---
-_build:
-  list: always
 docs: DOCS-469
 title: NGINX Directives Index
 url: /nginx/directives

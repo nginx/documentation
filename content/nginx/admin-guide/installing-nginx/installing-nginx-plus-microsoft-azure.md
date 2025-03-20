@@ -1,12 +1,12 @@
 ---
-description: Install F5 NGINX Plus as a virtual machine image on Microsoft Azure, to
-  provide sophisticated Layer 7 load balancing for your apps.
+description: Install F5 NGINX Plus as a virtual machine image on Microsoft Azure,
+  to provide sophisticated Layer 7 load balancing for your apps.
 docs: DOCS-413
-doctypes:
-- task
 title: Installing NGINX Plus on Microsoft Azure
 toc: true
 weight: 500
+type:
+- how-to
 ---
 
 [F5 NGINX Plus](https://www.f5.com/products/nginx/nginx-plus), the high-performance application delivery platform, load balancer, and web server, is available at the Microsoft Azure Marketplace as a virtual machine (VM) image.

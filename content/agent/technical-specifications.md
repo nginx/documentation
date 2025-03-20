@@ -1,12 +1,11 @@
 ---
-title: "Technical specifications"
+title: Technical specifications
 draft: false
 weight: 200
 toc: true
-tags: [ "docs" ]
-docs: "DOCS-1092"
-categories: ["development"]
-doctypes: ["task"]
+docs: DOCS-1092
+type:
+- how-to
 ---
 
 ## Overview

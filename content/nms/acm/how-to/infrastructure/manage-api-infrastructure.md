@@ -1,14 +1,12 @@
 ---
-description: Learn how to use F5 NGINX Management Suite API Connectivity Manager to manage
-  your API infrastructure.
+description: Learn how to use F5 NGINX Management Suite API Connectivity Manager to
+  manage your API infrastructure.
 docs: DOCS-924
-doctypes:
-- task
-tags:
-- docs
 title: Manage API Infrastructure
 toc: true
 weight: 100
+type:
+- how-to
 ---
 
 {{< shortversions "1.1.0" "latest" "acmvers" >}}

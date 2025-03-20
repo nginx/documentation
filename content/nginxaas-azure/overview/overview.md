@@ -1,10 +1,11 @@
 ---
-title: "Overview and architecture"
+title: Overview and architecture
 weight: 100
-categories: ["concepts"]
 toc: true
-docs: "DOCS-879"
+docs: DOCS-879
 url: /nginxaas/azure/overview/overview/
+type:
+- concept
 ---
 
 ## What Is F5 NGINX as a Service for Azure?

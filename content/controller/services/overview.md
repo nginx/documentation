@@ -2,13 +2,11 @@
 description: Learn about the common tasks and resources that are required to deploy
   and manage Services using F5 NGINX Controller.
 docs: DOCS-374
-doctypes:
-- tutorial
-tags:
-- docs
 title: Set Up NGINX Controller Services
 toc: true
 weight: 10
+type:
+- tutorial
 ---
 
 ## Introduction

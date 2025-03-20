@@ -1,11 +1,11 @@
 ---
-description: "Learn about the F5 NGINX App Protect WAF Troubleshooting Guide."
-doctypes:
-- concept
-title: "NGINX App Protect WAF Troubleshooting Guide"
+description: Learn about the F5 NGINX App Protect WAF Troubleshooting Guide.
+title: NGINX App Protect WAF Troubleshooting Guide
 toc: true
 weight: 400
-docs: "DOCS-1645"
+docs: DOCS-1645
+type:
+- concept
 ---
 
 ## Overview

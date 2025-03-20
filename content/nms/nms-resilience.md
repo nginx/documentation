@@ -2,13 +2,11 @@
 description: F5 NGINX Management Suite installed on Kubernetes provides control plane
   resilience through fault tolerance and automated recovery.
 docs: DOCS-1161
-doctypes:
-- concept
-tags:
-- docs
 title: NGINX Management Suite Resiliency
 toc: true
 weight: 30
+type:
+- concept
 ---
 
 ## Overview

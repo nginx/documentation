@@ -2,14 +2,12 @@
 description: This topic describes possible issues users might encounter when using
   Instance Manager. When possible, suggested workarounds are provided.
 docs: DOCS-1224
-doctypes:
-- reference
-tags:
-- docs
 title: Troubleshooting
 toc: true
 weight: 1000
 draft: true
+type:
+- reference
 ---
 
 ## New NGINX instances don't show up in Instance Manager

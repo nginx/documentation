@@ -1,13 +1,11 @@
 ---
 description: Learn about NGINX Controller Alerts and Notifications.
 docs: DOCS-520
-doctypes:
-- concept
-tags:
-- docs
 title: About Alerts
 toc: true
 weight: 100
+type:
+- concept
 ---
 
 ## Overview

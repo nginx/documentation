@@ -1,12 +1,11 @@
 ---
-title: "Basic configuration"
+title: Basic configuration
 draft: false
 weight: 100
 toc: true
-tags: [ "docs" ]
-docs: "DOCS-1229"
-categories: ["configuration"]
-doctypes: ["task"]
+docs: DOCS-1229
+type:
+- how-to
 ---
 
 The following sections explain how to configure NGINX Agent using configuration files, CLI flags, and environment variables.

@@ -1,13 +1,11 @@
 ---
 description: Create and Manage Identity Providers.
 docs: DOCS-571
-doctypes:
-- tutorial
-tags:
-- docs
 title: Manage Identity Providers
 toc: true
 weight: 140
+type:
+- tutorial
 ---
 
 ## Overview

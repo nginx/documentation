@@ -1,13 +1,11 @@
 ---
 description: ''
 docs: DOCS-1395
-doctypes:
-- task
-tags:
-- docs
 title: Create and manage data plane keys
 toc: true
 weight: 100
+type:
+- how-to
 ---
 
 <style>
@@ -62,7 +60,7 @@ If you need to deactivate a data plane key before its expiration date, follow th
 
 ## Delete a data plane key
 
-Before you can delete a key, it must be expired or revoked. You can revoke a key either through the NGINX One console, as explained above, or by using the REST API. Once deleted, all information about the data plane key is permanently removed.
+Before you can delete a key, it must be expired or revoked. You can revoke a key either through the NGINX One Console, as explained above, or by using the REST API. Once deleted, all information about the data plane key is permanently removed.
 
 1. On the left menu, select **Data Plane Keys**.
 2. Find the key you want to revoke in the list of expired or revoked keys.

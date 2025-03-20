@@ -1,11 +1,11 @@
 ---
 description: Learn about F5 NGINX App Protect DoS Deployment.
 docs: DOCS-666
-doctypes:
-- task
 title: NGINX App Protect DoS Deployment
 toc: true
 weight: 100
+type:
+- how-to
 ---
 
 ## Overview

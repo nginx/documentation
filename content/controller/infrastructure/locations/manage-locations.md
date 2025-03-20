@@ -1,13 +1,11 @@
 ---
 description: Create and manage Locations for your F5 NGINX Instances.
 docs: DOCS-778
-doctypes:
-- tutorial
-tags:
-- docs
 title: Manage Locations
 toc: true
 weight: 10
+type:
+- tutorial
 ---
 
 ## Overview

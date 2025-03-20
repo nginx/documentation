@@ -1,11 +1,13 @@
 ---
-title: "Deploy with NGINX Ingress Controller"
-description: "This topic describes how to install and use F5 NGINX Ingress Controller with NGINX Service Mesh"
+title: Deploy with NGINX Ingress Controller
+description: This topic describes how to install and use F5 NGINX Ingress Controller
+  with NGINX Service Mesh
 weight: 200
 draft: false
 toc: true
-categories: ["tutorials"]
-docs: "DOCS-721"
+docs: DOCS-721
+type:
+- tutorial
 ---
 
 ## Overview
