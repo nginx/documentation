@@ -65,9 +65,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
 
 ## CentOS 7.4+ Installation
 
-{{< note >}}
-
-CentOS 7.4 and RHEL 7.4 are deprecated as of NGINX Plus Release 32 (R32) and are not supported in Release 33 (R33) or later. For the list of supported distributions, refer to the [NGINX Plus Tech Specs]({{< relref "nginx/technical-specs.md" >}}).{{< note >}}
+{{< note >}}CentOS 7.4 and RHEL 7.4 are deprecated as of NGINX Plus Release 32 (R32) and are not supported in Release 33 (R33) or later. For the list of supported distributions, refer to the [NGINX Plus Tech Specs]({{< relref "nginx/technical-specs.md" >}}).{{< /note >}}
 
 1. If you already have NGINX packages in your system, back up your configs and logs:
 
@@ -215,10 +213,7 @@ CentOS 7.4 and RHEL 7.4 are deprecated as of NGINX Plus Release 32 (R32) and are
 
 ## RHEL 7.4+ Installation
 
-{{< note >}}
-
-CentOS 7.4 and RHEL 7.4 are deprecated as of NGINX Plus Release 32 (R32) and are not supported in Release 33 (R33) or later. For the list of supported distributions, refer to the [NGINX Plus Tech Specs]({{< relref "nginx/technical-specs.md" >}}).{{< note >}}
-
+{{< note >}}CentOS 7.4 and RHEL 7.4 are deprecated as of NGINX Plus Release 32 (R32) and are not supported in Release 33 (R33) or later. For the list of supported distributions, refer to the [NGINX Plus Tech Specs]({{< relref "nginx/technical-specs.md" >}}).{{< /note >}}
 1. If you already have NGINX packages in your system, back up your configs and logs:
 
     ```shell
