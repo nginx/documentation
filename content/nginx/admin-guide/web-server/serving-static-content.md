@@ -2,11 +2,11 @@
 description: Configure NGINX and F5 NGINX Plus to serve static content, with type-specific
   root directories, checks for file existence, and performance optimizations.
 docs: DOCS-442
-doctypes:
-- task
 title: Serving Static Content
 toc: true
 weight: 200
+type:
+- how-to
 ---
 
 This section describes how to configure NGINX and F5 NGINX Plus to serve static content, how to define which paths are searched to find requested files, how to set up index files, and how to tune NGINX and NGINX Plus, as well as the kernel, for optimal performance.

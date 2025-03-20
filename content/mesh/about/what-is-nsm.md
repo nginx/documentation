@@ -1,10 +1,11 @@
 ---
-title: "What is NGINX Service Mesh?"
+title: What is NGINX Service Mesh?
 weight: 100
-description: "Learn about F5 NGINX Service Mesh fundamentals."
-categories: ["concepts"]
+description: Learn about F5 NGINX Service Mesh fundamentals.
 toc: true
-docs: "DOCS-678"
+docs: DOCS-678
+type:
+- concept
 ---
 
 ## What is a Service Mesh?

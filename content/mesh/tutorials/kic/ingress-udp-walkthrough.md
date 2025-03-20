@@ -1,10 +1,12 @@
 ---
-title: "Expose a UDP Application with NGINX Ingress Controller"
-description: "This topic describes the steps to deploy F5 NGINX Ingress Controller for Kubernetes, to expose a UDP application within NGINX Service Mesh."
+title: Expose a UDP Application with NGINX Ingress Controller
+description: This topic describes the steps to deploy F5 NGINX Ingress Controller
+  for Kubernetes, to expose a UDP application within NGINX Service Mesh.
 weight: 230
-categories: ["tutorials"]
 toc: true
-docs: "DOCS-841"
+docs: DOCS-841
+type:
+- tutorial
 ---
 
 ## Overview

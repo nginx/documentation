@@ -2,14 +2,11 @@
 description: This guide explains how to prepare your RHEL 8 system to install F5 NGINX
   Controller and the NGINX Controller Agent.
 docs: DOCS-342
-doctypes:
-- beta
-- tutorial
-tags:
-- docs
 title: Install NGINX Controller on RHEL 8 (experimental)
 toc: true
 weight: 200
+type:
+- tutorial
 ---
 
 ## Preparing the F5 NGINX Controller Host

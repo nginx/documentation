@@ -1,13 +1,11 @@
 ---
 description: Create and manage User resources.
 docs: DOCS-784
-doctypes:
-- tutorial
-tags:
-- docs
 title: Manage Users
 toc: true
 weight: 20
+type:
+- tutorial
 ---
 
 ## Overview

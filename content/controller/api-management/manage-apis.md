@@ -2,13 +2,11 @@
 description: Use the F5 NGINX Controller API Manager to add APIs and control how your
   APIs are exposed and consumed.
 docs: DOCS-569
-doctypes:
-- tutorial
-tags:
-- docs
 title: Manage Your APIs
 toc: true
 weight: 110
+type:
+- tutorial
 ---
 
 ## Overview

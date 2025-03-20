@@ -2,14 +2,12 @@
 description: This guide explains how to generate a support package for troubleshooting
   error scenarios.
 docs: DOCS-818
-doctypes:
-- reference
-- task
-tags:
-- docs
 title: Create a Support Package
 toc: true
 weight: 200
+type:
+- reference
+- how-to
 ---
 
 {{< shortversions "2.0.0" "latest" "nimvers" >}}

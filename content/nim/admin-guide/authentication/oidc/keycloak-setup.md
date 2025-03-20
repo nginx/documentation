@@ -1,12 +1,10 @@
 ---
 docs: DOCS-1268
-doctypes:
-- tutorial
-tags:
-- docs
-title: "Keycloak: Set up OIDC authentication"
+title: 'Keycloak: Set up OIDC authentication'
 toc: true
 weight: 400
+type:
+- tutorial
 ---
 
 ## Overview

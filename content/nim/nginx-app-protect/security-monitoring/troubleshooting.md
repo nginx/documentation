@@ -5,7 +5,6 @@ toc: true
 type: how-to
 product: NIM
 docs: DOCS-1226
-
 ---
 
 ## Security event log backup with Security Monitoring

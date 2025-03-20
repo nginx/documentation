@@ -1,10 +1,11 @@
 ---
-title: "Upload using the Azure portal"
+title: Upload using the Azure portal
 weight: 100
-categories: ["tasks"]
 toc: true
-docs: "DOCS-873"
+docs: DOCS-873
 url: /nginxaas/azure/getting-started/nginx-configuration/nginx-configuration-portal/
+type:
+- how-to
 ---
 
 An NGINX configuration can be applied to the deployment using the Azure portal in two different ways:

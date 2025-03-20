@@ -2,13 +2,11 @@
 description: Learn how you can use F5 NGINX Management Suite Instance Manager to configure
   NGINX App Protect WAF security policies.
 docs: DOCS-992
-doctypes:
-- reference
-tags:
-- docs
 title: NGINX App Protect WAF configuration management
 toc: true
 weight: 500
+type:
+- reference
 ---
 
 ## Overview

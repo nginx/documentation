@@ -1,10 +1,12 @@
 ---
-title: "Expose an Application with NGINX Ingress Controller"
-description: "This topic provides a walkthrough of deploying F5 NGINX Ingress Controller for Kubernetes to expose an application within NGINX Service Mesh."
+title: Expose an Application with NGINX Ingress Controller
+description: This topic provides a walkthrough of deploying F5 NGINX Ingress Controller
+  for Kubernetes to expose an application within NGINX Service Mesh.
 weight: 220
-categories: ["tutorials"]
 toc: true
-docs: "DOCS-723"
+docs: DOCS-723
+type:
+- tutorial
 ---
 
 ## Overview

@@ -1,12 +1,10 @@
 ---
 docs: DOCS-1197
-doctypes:
-- tutorial
-tags:
-- docs
 title: Automate OIDC with Microsoft Entra
 toc: true
 weight: 300
+type:
+- tutorial
 ---
 
 ## Overview

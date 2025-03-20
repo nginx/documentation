@@ -2,13 +2,11 @@
 description: Learn how to manage the email addresses that receive automatic alert
   notifications.
 docs: DOCS-522
-doctypes:
-- concept
-tags:
-- docs
 title: Manage Registered Email Addresses
 toc: true
 weight: 310
+type:
+- concept
 ---
 
 ## Overview

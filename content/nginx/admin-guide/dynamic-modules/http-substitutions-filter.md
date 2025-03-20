@@ -2,11 +2,11 @@
 description: Replace text in response bodies, using regular expressions and fixed
   strings, with the HTTP Substitutions Filter dynamic module supported by NGINX, Inc.
 docs: DOCS-389
-doctypes:
-- task
 title: HTTP Substitutions Filter
 toc: true
 weight: 100
+type:
+- how-to
 ---
 
 <span id="install"></span>

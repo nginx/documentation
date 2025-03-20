@@ -1,14 +1,12 @@
 ---
-description: This quick-start tutorial shows you how to get started using F5 NGINX Controller
-  with NGINX Plus.
+description: This quick-start tutorial shows you how to get started using F5 NGINX
+  Controller with NGINX Plus.
 docs: DOCS-260
-doctypes:
-- tutorial
-tags:
-- docs
 title: Trial NGINX Controller with NGINX Plus
 toc: true
 weight: 110
+type:
+- tutorial
 ---
 
 ## Overview

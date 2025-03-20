@@ -1,12 +1,10 @@
 ---
 docs: DOCS-1273
-doctypes:
-- task
-tags:
-- docs
 title: Assign roles to users or user groups
 toc: true
 weight: 210
+type:
+- how-to
 ---
 
 ## Overview

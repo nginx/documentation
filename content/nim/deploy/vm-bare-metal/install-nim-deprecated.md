@@ -1,17 +1,13 @@
 ---
-description: 
+description: ''
 docs: DOCS-1211
-doctypes:
-- tutorial
-tags:
-- docs
 title: Manually install on a virtual machine or bare metal (deprecated)
 toc: true
 weight: 10
 noindex: true
+type:
+- tutorial
 ---
-
-
 
 ## Overview
 

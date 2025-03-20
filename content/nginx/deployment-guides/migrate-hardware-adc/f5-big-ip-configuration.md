@@ -2,11 +2,11 @@
 description: Migrate load-balancing configuration from F5 BIG-IP LTM to NGINX Plus,
   using our syntax conversion examples.
 docs: DOCS-460
-doctypes:
-- task
 title: Migrating Load Balancer Configuration from F5 BIG-IP LTM to F5 NGINX Plus
 toc: true
 weight: 100
+type:
+- how-to
 ---
 
 F5 NGINX Plus provides a flexible replacement for traditional hardware‑based [application delivery controllers](https://www.nginx.com/resources/glossary/application-delivery-controller/) (ADCs). NGINX Plus is a small software package that can be installed just about anywhere – on bare metal, a virtual machine, or a container, and on‑premises or in public, private, and hybrid clouds – while providing the same level of application delivery, high availability, and security offered by legacy ADCs. This guide explains how to migrate an <span style="white-space: nowrap;">F5 BIG-IP</span> Local Traffic Manager (LTM) configuration to the NGINX Plus software application delivery platform, and covers the most commonly used features and configurations to get you started quickly on your migration.

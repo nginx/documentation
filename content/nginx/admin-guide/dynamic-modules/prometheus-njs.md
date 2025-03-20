@@ -1,11 +1,11 @@
 ---
 description: Expose Prometheus metrics endpoint directly from F5 NGINX Plus.
 docs: DOCS-398
-doctypes:
-- task
 title: Prometheus-njs
 toc: true
 weight: 100
+type:
+- how-to
 ---
 
 <span id="info"></span>

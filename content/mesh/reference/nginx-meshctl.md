@@ -1,11 +1,12 @@
 ---
 title: CLI Reference
-description: "Man page and instructions for using the F5 NGINX Service Mesh CLI"
+description: Man page and instructions for using the F5 NGINX Service Mesh CLI
 draft: false
 weight: 300
 toc: true
-categories: ["reference"]
-docs: "DOCS-704"
+docs: DOCS-704
+type:
+- reference
 ---
 
 ## Usage
