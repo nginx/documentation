@@ -3,11 +3,11 @@ description: Deploy and administer applications written in Node.js, Python, and 
   with the Passenger Open Source dynamic module from Phusion, supported by NGINX,
   Inc.
 docs: DOCS-396
-doctypes:
-- task
 title: Phusion Passenger Open Source
 toc: true
 weight: 100
+type:
+- how-to
 ---
 
 <span id="install"></span>

@@ -1,12 +1,10 @@
 ---
 docs: DOCS-1277
-doctypes:
-- task
-tags:
-- docs
 title: Stage NGINX configs
 toc: true
 weight: 1
+type:
+- how-to
 ---
 
 ## Overview

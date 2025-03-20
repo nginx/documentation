@@ -1,16 +1,12 @@
 ---
-description: Learn how to use F5 NGINX Management Suite API Connectivity Manager to secure
-  API Gateways by applying an OAuth2 JSON Web Token (JWT) Assertion policy.
+description: Learn how to use F5 NGINX Management Suite API Connectivity Manager to
+  secure API Gateways by applying an OAuth2 JSON Web Token (JWT) Assertion policy.
 docs: DOCS-1119
-doctypes:
-- API Connectivity Manager
-- api management
-- concept
-tags:
-- docs
 toc: true
 weight: 900
 title: JWT Assertion
+type:
+- concept
 ---
 
 ## Overview

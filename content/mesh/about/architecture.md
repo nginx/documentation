@@ -1,10 +1,12 @@
 ---
-title: "Architecture"
+title: Architecture
 weight: 200
-description: "Learn about F5 NGINX Service Mesh Architecture."
-categories: ["concepts", "reference"]
+description: Learn about F5 NGINX Service Mesh Architecture.
 toc: true
-docs: "DOCS-676"
+docs: DOCS-676
+type:
+- concept
+- reference
 ---
 
 ## Overview

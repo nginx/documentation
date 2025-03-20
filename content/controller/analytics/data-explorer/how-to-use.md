@@ -1,13 +1,12 @@
 ---
-description: Use the Data Explorer to examine the metrics that F5 NGINX Controller collects.
+description: Use the Data Explorer to examine the metrics that F5 NGINX Controller
+  collects.
 docs: DOCS-529
-doctypes:
-- task
-tags:
-- docs
 title: How To Use the Data Explorer
 toc: true
 weight: 20
+type:
+- how-to
 ---
 
 ## Overview

@@ -1,13 +1,11 @@
 ---
 description: How to forward Analytics data to Splunk.
 docs: DOCS-533
-doctypes:
-- tutorial
-tags:
-- docs
 title: Forward Analytics Data to Splunk
 toc: true
 weight: 200
+type:
+- tutorial
 ---
 
 ## Overview

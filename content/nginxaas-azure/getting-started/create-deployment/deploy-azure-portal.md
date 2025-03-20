@@ -1,10 +1,11 @@
 ---
-title: "Deploy using the Azure portal"
+title: Deploy using the Azure portal
 weight: 100
-categories: ["tasks"]
 toc: true
-docs: "DOCS-878"
+docs: DOCS-878
 url: /nginxaas/azure/getting-started/create-deployment/deploy-azure-portal/
+type:
+- how-to
 ---
 
 ## Overview

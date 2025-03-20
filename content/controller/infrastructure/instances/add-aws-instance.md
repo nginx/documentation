@@ -1,13 +1,11 @@
 ---
 description: Learn how to deploy an AWS F5 NGINX instance using NGINX Controller.
 docs: DOCS-768
-doctypes:
-- tutorial
-tags:
-- docs
 title: Add an AWS NGINX Instance
 toc: true
 weight: 30
+type:
+- tutorial
 ---
 
 ## Overview

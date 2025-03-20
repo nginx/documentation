@@ -1,13 +1,11 @@
 ---
 description: ''
-docs:
-doctypes:
-- task
-tags:
-- docs
+docs: null
 title: Set up NGINX as a proxy for NGINX One
 toc: true
 weight: 300
+type:
+- how-to
 ---
 
 ## Overview

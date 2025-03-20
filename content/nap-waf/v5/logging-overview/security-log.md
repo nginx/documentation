@@ -1,11 +1,11 @@
 ---
-description: "Learn about the F5 NGINX App Protect WAF Security Log."
-doctypes:
-- concept
-title: "NGINX App Protect WAF Security Log"
+description: Learn about the F5 NGINX App Protect WAF Security Log.
+title: NGINX App Protect WAF Security Log
 toc: true
 weight: 520
-docs: "DOCS-1642"
+docs: DOCS-1642
+type:
+- concept
 ---
 
 ## Security Logs

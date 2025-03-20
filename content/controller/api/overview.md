@@ -1,14 +1,12 @@
 ---
 description: Provides information about the F5 NGINX Controller API.
 docs: DOCS-343
-doctypes:
-- concept
 layout: docs
-tags:
-- docs
 title: API Overview
 toc: true
 weight: 10
+type:
+- concept
 ---
 
 ## Introduction

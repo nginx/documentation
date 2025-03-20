@@ -1,12 +1,12 @@
 ---
-description: "This chapter describes how to configure different types of health checks\
-  \ for UDP servers in a load\u2011balanced upstream server group."
+description: This chapter describes how to configure different types of health checks
+  for UDP servers in a load‑balanced upstream server group.
 docs: DOCS-421
-doctypes:
-- task
 title: UDP Health Checks
 toc: true
 weight: 500
+type:
+- how-to
 ---
 
 <span id="prereq"></span>

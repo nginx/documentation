@@ -1,14 +1,11 @@
 ---
-docs: 
-doctypes:
-    - task
-tags:
-    - docs
+docs: null
 title: Add a file to a Config Sync Group
 toc: true
 weight: 400
+type:
+- how-to
 ---
-
 
 ## Overview
 

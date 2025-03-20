@@ -1,13 +1,11 @@
 ---
 description: Steps to take to investigate and fix issues with data forwarders.
 docs: DOCS-377
-doctypes:
-- tutorial
-tags:
-- docs
 title: Troubleshoot Data Forwarders
 toc: true
 weight: 200
+type:
+- tutorial
 ---
 
 ## Overview

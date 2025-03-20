@@ -1,13 +1,11 @@
 ---
 description: Overview of F5 NGINX Controller.
 docs: DOCS-781
-doctypes:
-- concept
-tags:
-- docs
 title: Get to Know NGINX Controller
 toc: true
 weight: 100
+type:
+- concept
 ---
 
 ## Overview

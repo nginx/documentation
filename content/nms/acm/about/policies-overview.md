@@ -2,13 +2,11 @@
 description: Learn about the policies available for use in F5 NGINX Management Suite
   API Connectivity Manager.
 docs: DOCS-932
-doctypes:
-- conceptual
-tags:
-- docs
 title: Available Policies
 toc: true
 weight: 500
+type:
+- reference
 ---
 
 {{< shortversions "1.1.0" "latest" "acmvers" >}}

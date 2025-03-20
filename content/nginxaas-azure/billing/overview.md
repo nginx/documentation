@@ -1,10 +1,11 @@
 ---
-title: "Billing overview"
+title: Billing overview
 weight: 100
-categories: ["concepts"]
 toc: true
-docs: "DOCS-885"
+docs: DOCS-885
 url: /nginxaas/azure/billing/overview/
+type:
+- concept
 ---
 
 ## Pricing plans

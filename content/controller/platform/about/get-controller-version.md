@@ -1,13 +1,11 @@
 ---
 description: How to look up the version details for F5 NGINX Controller and its components.
 docs: DOCS-780
-doctypes:
-- task
-tags:
-- docs
 title: Look Up Version Information
 toc: true
 weight: 130
+type:
+- how-to
 ---
 
 ## Overview

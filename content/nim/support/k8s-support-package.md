@@ -1,13 +1,11 @@
 ---
 docs: DOCS-1123
-doctypes:
-- reference
-- task
-tags:
-- docs
 title: Create a support package from a Helm installation
 toc: true
 weight: 200
+type:
+- reference
+- how-to
 ---
 
 {{< include "/nim/decoupling/note-legacy-nms-references.md" >}}

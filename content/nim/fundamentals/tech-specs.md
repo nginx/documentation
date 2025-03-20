@@ -1,9 +1,10 @@
 ---
 docs: DOCS-805
-doctypes: reference
 title: Technical Specifications
 toc: true
 weight: 20
+type:
+- reference
 ---
 
 ## Overview

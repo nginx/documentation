@@ -2,11 +2,11 @@
 description: Control access using HTTP Basic authentication, and optionally in combination
   with IP address-based access control.
 docs: DOCS-428
-doctypes:
-- task
 title: Restricting Access with HTTP Basic Authentication
 toc: true
 weight: 300
+type:
+- how-to
 ---
 
 <span id="intro"></span>

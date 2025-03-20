@@ -1,11 +1,12 @@
 ---
-title: "Configure alerts"
+title: Configure alerts
 weight: 300
-categories: ["tasks"]
 toc: true
 draft: false
-docs: "DOCS-985"
+docs: DOCS-985
 url: /nginxaas/azure/monitoring/configure-alerts/
+type:
+- how-to
 ---
 
 ## Overview
