@@ -400,14 +400,15 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     sudo cp -a /var/log/nginx /var/log/nginx-plus-backup
     ```
 
-2. Create the `/etc/ssl/nginx/` directory:
+1. {{< include "nginx-plus/install/create-dir-for-crt-key.md" >}}
+ 
+1. {{< include "nginx-plus/install/create-dir-for-jwt.md" >}}
 
-    ```shell
-    sudo mkdir -p /etc/ssl/nginx
-    ```
-3. {{< include "licensing-and-reporting/download-jwt-crt-from-myf5.md" >}}
+1. {{< include "licensing-and-reporting/download-jwt-crt-from-myf5.md" >}}
 
-4. Copy the above two files to the RHEL server’s `/etc/ssl/nginx/` directory. Use an SCP client or another secure file transfer tool to perform this task.
+1. {{< include "nginx-plus/install/copy-crt-and-key.md" >}}
+
+1. {{< include "nginx-plus/install/copy-jwt-to-etc-nginx-dir.md" >}}
 
 5. Install prerequisite packages:
 
@@ -470,11 +471,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
 
     {{< note >}} Make sure to restore configuration from `/etc/nginx-plus-backup` back to `/etc/nginx-plus`.{{< /note >}}
 
-10. Confirm the NGINX binary version to make sure that you have NGINX Plus installed correctly:
-
-    ```shell
-    sudo nginx -v
-    ```
+1. {{< include "nginx-plus/install/check-nginx-binary-version.md" >}}
 
 11. Check the App Protect DoS binary version to ensure that you have the right version installed correctly:
 
@@ -610,17 +607,15 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     sudo cp -a /var/log/nginx /var/log/nginx-plus-backup
     ```
 
-2. Create the `/etc/ssl/nginx/` directory:
+1. {{< include "nginx-plus/install/create-dir-for-crt-key.md" >}}
 
-    ```shell
-    sudo mkdir -p /etc/ssl/nginx
-    ```
+1. {{< include "nginx-plus/install/create-dir-for-jwt.md" >}}
 
-3. Log in to the NGINX [Customer Portal](https://my.f5.com) and download the following two files:
-   - nginx-repo.key
-   - nginx-repo.crt
+1. {{< include "licensing-and-reporting/download-jwt-crt-from-myf5.md" >}}
 
-4. Copy the downloaded files to the CentOS server’s `/etc/ssl/nginx/` directory. Use an SCP client or another secure file transfer tool to perform this task.
+1. {{< include "nginx-plus/install/copy-crt-and-key.md" >}}
+
+1. {{< include "nginx-plus/install/copy-jwt-to-etc-nginx-dir.md" >}}
 
 5. Install prerequisite packages:
 
@@ -823,20 +818,15 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     sudo cp -a /var/log/nginx /var/log/nginx-plus-backup
     ```
 
-2. Create the `/etc/ssl/nginx/` directory:
+1. {{< include "nginx-plus/install/create-dir-for-crt-key.md" >}}
 
-    ```shell
-    sudo mkdir -p /etc/ssl/nginx
-    ```
+1. {{< include "nginx-plus/install/create-dir-for-jwt.md" >}}
 
-3. Log in to the NGINX [Customer Portal](https://my.f5.com) and download the following two files:
+1. {{< include "licensing-and-reporting/download-jwt-crt-from-myf5.md" >}}
 
-    ```shell
-    nginx-repo.key
-    nginx-repo.crt
-    ```
+1. {{< include "nginx-plus/install/copy-crt-and-key.md" >}}
 
-4. Copy the above two files to the Debian server’s `/etc/ssl/nginx/` directory. Use an SCP client or another secure file transfer tool to perform this task.
+1. {{< include "nginx-plus/install/copy-jwt-to-etc-nginx-dir.md" >}}
 
 5. Install apt utils:
 
@@ -1015,15 +1005,15 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     sudo cp -a /var/log/nginx /var/log/nginx-plus-backup
     ```
 
-2. Log in to the NGINX [Customer Portal](https://my.f5.com) and download the following two files:
+1. {{< include "nginx-plus/install/create-dir-for-crt-key.md" >}}
 
-    ```shell
-    nginx-repo.key
-    nginx-repo.crt
-    ```
+1. {{< include "nginx-plus/install/create-dir-for-jwt.md" >}}
 
-3. Upload `nginx-repo.key` to `/etc/apk/cert.key` and `nginx-repo.crt` to `/etc/apk/cert.pem`.
-   Make sure that files do not contain other certificates and keys, as Alpine Linux does not support mixing client certificates for different repositories.
+1. {{< include "licensing-and-reporting/download-jwt-crt-from-myf5.md" >}}
+
+1. {{< include "nginx-plus/install/copy-crt-and-key.md" >}}
+
+1. {{< include "nginx-plus/install/copy-jwt-to-etc-nginx-dir.md" >}}
 
 4. Add the NGINX public signing key to the directory `/etc/apk/keys`:
 
@@ -1149,20 +1139,15 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     sudo cp -a /var/log/nginx /var/log/nginx-plus-backup
     ```
 
-2. Create the `/etc/ssl/nginx/` directory:
+1. {{< include "nginx-plus/install/create-dir-for-crt-key.md" >}}
 
-    ```shell
-    sudo mkdir -p /etc/ssl/nginx
-    ```
+1. {{< include "nginx-plus/install/create-dir-for-jwt.md" >}}
 
-3. Log in to the NGINX [Customer Portal](https://my.f5.com) and download the following two files:
+1. {{< include "licensing-and-reporting/download-jwt-crt-from-myf5.md" >}}
 
-    ```shell
-    nginx-repo.key
-    nginx-repo.crt
-    ```
+1. {{< include "nginx-plus/install/copy-crt-and-key.md" >}}
 
-4. Copy the above two files to the CentOS server’s `/etc/ssl/nginx/` directory. Use an SCP client or another secure file transfer tool to perform this task.
+1. {{< include "nginx-plus/install/copy-jwt-to-etc-nginx-dir.md" >}}
 
 5. Install prerequisite packages:
 
