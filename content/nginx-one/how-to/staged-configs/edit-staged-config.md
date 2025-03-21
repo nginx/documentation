@@ -21,7 +21,7 @@ This guide explains how to edit an existing Staged Configuration in your NGINX O
 
 Before you edit a Staged Configuration, ensure:
 
-- You have administrator access to NGINX One Console.
+- You have an NGINX One Console account with staged configuration permissions.```
 
 ## View and edit a Staged Configuration
 <!-- Possible future include, with similar files in config-sync-groups/, nginx-configs/, and staged-configs/ subdirectories -->

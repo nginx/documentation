@@ -22,7 +22,7 @@ This guide explains how to add a Staged Configuration to your NGINX One Console.
 
 Before you add a Staged Configuration to NGINX One Console, ensure:
 
-- You have administrator access to NGINX One Console.
+- You have an NGINX One Console account with staged configuration permissions.
 
 ## Add a Staged Configuration
 

@@ -20,7 +20,7 @@ This guide explains how to add a **Instances** to your NGINX One Console.
 
 Before you add **Instances** to NGINX One Console, ensure:
 
-- You have administrator access to NGINX One Console.
+- You have an NGINX One Console account with staged configuration permissions.```
 
 Once you've registered your NGINX Instances with the F5 NGINX One Console, you can view and edit their NGINX configurations on the **Instances** details page.
 
