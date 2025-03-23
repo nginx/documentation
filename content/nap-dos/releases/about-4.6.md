@@ -15,8 +15,6 @@ NGINX App Protect DoS provides behavioral protection against Denial of Service (
 
 Mar 24, 2025
 
-NGINX App Protect DoS 4.6 adds support for NGINX Plus R34.
-
 ---
 
 ### New features
