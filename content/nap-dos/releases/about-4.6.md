@@ -24,7 +24,6 @@ NGINX App Protect DoS 4.6 adds support for NGINX Plus R34.
 - Support for NGINX Plus R34
 - Add support for AmazonLinux 2023
 - Remove support for Alpine 3.17 
-- Telemetry Readiness - this feature enables periodic telemetry reporting for NGINX App Protect DoS, capturing key statistics and metrics. In the initial phase, telemetry data is temporarily logged to the NGINX error.log file every minute on DEBUG log level.
 - Bug fixes
 
 ---
