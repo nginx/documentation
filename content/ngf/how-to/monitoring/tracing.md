@@ -17,7 +17,7 @@ NGINX Gateway Fabric supports tracing using [OpenTelemetry](https://opentelemetr
 
 The official [NGINX OpenTelemetry Module](https://github.com/nginxinc/nginx-otel) instruments the NGINX data plane to export traces to a configured collector. Tracing data can be used with an OpenTelemetry Protocol (OTLP) exporter, such as the [OpenTelemetry Collector](https://github.com/open-telemetry/opentelemetry-collector).
 
-This collector can then export data to one or more upstream collectors like [Jaeger](https://www.jaegertracing.io/), [DataDog](https://docs.datadoghq.com/tracing/), and many others. This is called the [Agent model](https://opentelemetry.io/docs/collector/deployment/agent/).
+This collector can then export data to one or more upstream collectors like [Jaeger](https://www.jaegertracing.io/), [Dash0](https://www.dash0.com/hub/integrations/int_opentelemetry-collector/overview), [DataDog](https://docs.datadoghq.com/tracing/), and many others. This is called the [Agent model](https://opentelemetry.io/docs/collector/deployment/agent/).
 
 ---
 
