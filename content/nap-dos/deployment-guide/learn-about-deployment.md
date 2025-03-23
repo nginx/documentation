@@ -952,7 +952,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     sudo apt-get update
     sudo apt-get remove nginx-plus
     sudo apt-get install app-protect-dos
-    sudo service nginx start
+    sudo systemctl start nginx
     ```
 
 11. Check the NGINX binary version to ensure that you have NGINX Plus installed correctly:
@@ -990,11 +990,11 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
 16. Start the NGINX service:
 
     ```shell
-    sudo service nginx start
+     sudo systemctl start nginx
     ```
 17. Start the L4 service:
     ```shell
-     sudo service app-protect-dos-ebpf-manager start
+     sudo systemctl start app-protect-dos-ebpf-manager
     ```
     
 ## Alpine 3.15.x / 3.17.x / 3.19.x Installation
