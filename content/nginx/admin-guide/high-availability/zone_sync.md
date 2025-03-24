@@ -1,13 +1,13 @@
 ---
-description: This article describes how to use F5 NGINX Plus to synchronize shared memory
-  zones across NGINX cluster nodes including sticky learn session persistence, requests
-  limiting, and key-value store data.
+description: This article describes how to use F5 NGINX Plus to synchronize shared
+  memory zones across NGINX cluster nodes including sticky learn session persistence,
+  requests limiting, and key-value store data.
 docs: DOCS-407
-doctypes:
-- task
 title: Runtime State Sharing in a Cluster
 toc: true
 weight: 400
+type:
+- how-to
 ---
 
 <span id="intro"></span>

@@ -1,13 +1,11 @@
 ---
-description:
+description: ''
 docs: DOCS-1100
-doctypes:
-- task
-tags:
-- docs
 title: Configure NGINX Instance Manager with nms.conf
 toc: true
 weight: 1
+type:
+- how-to
 ---
 
 {{< include "/nim/decoupling/note-legacy-nms-references.md" >}}

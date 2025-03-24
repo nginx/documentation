@@ -2,11 +2,11 @@
 description: Protect your upstream TCP application servers by limiting connections
   or bandwidth, based on client IP address or other variables.
 docs: DOCS-433
-doctypes:
-- task
 title: Restricting Access to Proxied TCP Resources
 toc: true
 weight: 700
+type:
+- how-to
 ---
 
 This chapter provides scenarios for restricting access to a database or media server that communicates over TCP. Access can be limited by IP address, the number of simultaneous connections, or bandwidth.

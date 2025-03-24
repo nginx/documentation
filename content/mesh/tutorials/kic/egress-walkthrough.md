@@ -1,10 +1,12 @@
 ---
-title: "Configure a Secure Egress Route with NGINX Ingress Controller"
-description: "This topic provides a walkthrough of how to securely route egress traffic through F5 NGINX Ingress Controller for Kubernetes with NGINX Service Mesh."
+title: Configure a Secure Egress Route with NGINX Ingress Controller
+description: This topic provides a walkthrough of how to securely route egress traffic
+  through F5 NGINX Ingress Controller for Kubernetes with NGINX Service Mesh.
 weight: 210
-categories: ["tutorials"]
 toc: true
-docs: "DOCS-722"
+docs: DOCS-722
+type:
+- tutorial
 ---
 
 ## Overview

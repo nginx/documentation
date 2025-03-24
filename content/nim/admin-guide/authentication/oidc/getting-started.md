@@ -1,13 +1,11 @@
 ---
 description: ''
 docs: DOCS-1267
-doctypes:
-- tutorial
-tags:
-- docs
 title: Get started with OIDC
 toc: true
 weight: 1
+type:
+- tutorial
 ---
 
 ## Overview

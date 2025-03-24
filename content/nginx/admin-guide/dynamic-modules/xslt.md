@@ -2,11 +2,11 @@
 description: Modify XML code in response bodies using one or more XSLT stylesheets,
   with the XSLT dynamic module, supported by NGINX, Inc.
 docs: DOCS-403
-doctypes:
-- task
 title: XSLT
 toc: true
 weight: 100
+type:
+- how-to
 ---
 
 <span id="install"></span>

@@ -1,9 +1,10 @@
 ---
-title: "NGINXaaS Load Balancer for Kubernetes"
+title: NGINXaaS Load Balancer for Kubernetes
 weight: 250
-categories: ["tasks"]
 toc: true
 url: /nginxaas/azure/quickstart/loadbalancer-kubernetes/
+type:
+- how-to
 ---
 
 ## Overview

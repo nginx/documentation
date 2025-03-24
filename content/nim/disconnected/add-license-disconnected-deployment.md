@@ -1,28 +1,17 @@
 ---
-title: "Add a license in a disconnected environment"
-date: 2024-10-14T14:34:24-07:00
-# Change draft status to false to publish doc.
+title: Add a license in a disconnected environment
 draft: false
-# Description
-# Add a short description (150 chars) for the doc. Include keywords for SEO. 
-# The description text appears in search results and at the top of the doc.
-description: ""
-# Assign weights in increments of 100
+description: ''
 weight: 200
 toc: true
-tags: [ "docs" ]
-# Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
-docs: "DOCS-1657"
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-categories: ["installation", "platform management", "load balancing", "api management", "service mesh", "security", "analytics"]
-doctypes: ["task"]
-journeys: ["researching", "getting started", "using", "renewing", "self service"]
-personas: ["devops", "netops", "secops", "support"]
-versions: []
-authors: []
-
+docs: DOCS-1657
+personas:
+- devops
+- netops
+- secops
+- support
+type:
+- how-to
 ---
 
 ## Overview

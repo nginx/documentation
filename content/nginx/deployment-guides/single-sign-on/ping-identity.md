@@ -2,11 +2,11 @@
 description: Enable OpenID Connect-based single-sign for applications proxied by NGINX
   Plus, using Ping Identity as the identity provider (IdP).
 docs: DOCS-468
-doctypes:
-- task
 title: Single Sign-On with Ping Identity
 toc: true
 weight: 100
+type:
+- how-to
 ---
 
 This guide explains how to enable single sign-on (SSO) for applications being proxied by F5 NGINX Plus. The solution uses OpenID Connect as the authentication mechanism, with Ping Identity as the identity provider (IdP) and NGINX Plus as the relying party.

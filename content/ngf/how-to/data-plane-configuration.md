@@ -15,7 +15,7 @@ NGINX Gateway Fabric can dynamically update the global data plane configuration 
 
 The data plane configuration is stored in the NginxProxy custom resource, which is a cluster-scoped resource that is attached to the `nginx` GatewayClass.
 
-By default, the NginxProxy resource is not created when installing NGINX Gateway Fabric. However, you can set configuration options in the `nginx.config` Helm values, and the resource will be created and attached when NGINX Gateway Fabric is installed using Helm. You can also [manually create and attach](#manually-creating-the-configuration) the resource after NGINX Gateway Fabric is already installed.
+By default, the NginxProxy resource is not created when installing NGINX Gateway Fabric. However, you can set configuration options in the `nginx.config` Helm values, and the resource will be created and attached when NGINX Gateway Fabric is installed using Helm. You can also [manually create and attach](#manually-create-the-configuration) the resource after NGINX Gateway Fabric is already installed.
 
 When installed using the Helm chart, the NginxProxy resource is named `<release-name>-proxy-config`.
 

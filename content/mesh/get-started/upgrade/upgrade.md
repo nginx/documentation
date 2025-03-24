@@ -1,11 +1,12 @@
 ---
-title: "Upgrade with nginx-meshctl"
+title: Upgrade with nginx-meshctl
 draft: false
 toc: true
-description: "This guide explains how to upgrade F5 NGINX Service Mesh using nginx-meshctl."
+description: This guide explains how to upgrade F5 NGINX Service Mesh using nginx-meshctl.
 weight: 200
-categories: ["tasks"]
-docs: "DOCS-1482"
+docs: DOCS-1482
+type:
+- how-to
 ---
 
 You can upgrade to the latest mesh version from the version immediately before it (for example, from v1.6.0 to v1.7.0). F5 NGINX Service Mesh doesn't support skipping versions.

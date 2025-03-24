@@ -1,13 +1,11 @@
 ---
 description: Learn how to use the F5 NGINX Controller Agent in a Docker environment.
 docs: DOCS-511
-doctypes:
-- reference
-tags:
-- docs
 title: Use the NGINX Controller Agent with Docker
 toc: true
 weight: 200
+type:
+- reference
 ---
 
 ## Before You Begin

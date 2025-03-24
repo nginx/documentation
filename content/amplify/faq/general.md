@@ -3,10 +3,8 @@ title: General
 description: General questions about F5 NGINX Amplify
 weight: 10
 toc: true
-tags: ["docs"]
-docs: "DOCS-956"
+docs: DOCS-956
 ---
-
 
 ### What Is F5 NGINX Amplify?
 

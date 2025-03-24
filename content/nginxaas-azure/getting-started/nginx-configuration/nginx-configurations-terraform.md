@@ -1,9 +1,10 @@
 ---
-title: "Upload using Terraform"
+title: Upload using Terraform
 weight: 300
-categories: ["tasks"]
 toc: true
 url: /nginxaas/azure/getting-started/nginx-configuration/nginx-configurations-terraform/
+type:
+- how-to
 ---
 
 ## Overview

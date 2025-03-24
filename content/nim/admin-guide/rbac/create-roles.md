@@ -1,12 +1,10 @@
 ---
 docs: DOCS-1272
-doctypes:
-- task
-tags:
-- docs
 title: Create and manage roles
 toc: true
 weight: 200
+type:
+- how-to
 ---
 
 ## Overview

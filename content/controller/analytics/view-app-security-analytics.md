@@ -1,14 +1,12 @@
 ---
 description: How to view App Security Analytics.
 docs: DOCS-539
-doctypes:
-- concept
-- reference
-tags:
-- task
 title: View App Security Analytics
 toc: true
 weight: 500
+type:
+- concept
+- reference
 ---
 
 ## Overview

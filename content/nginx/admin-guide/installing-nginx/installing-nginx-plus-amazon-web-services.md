@@ -2,11 +2,11 @@
 description: Install F5 NGINX Plus on Amazon Web Services (AWS), to provide sophisticated
   Layer 7 load balancing for your apps running on Amazon Linux, RHEL, and Ubuntu.
 docs: DOCS-411
-doctypes:
-- task
 title: Installing NGINX Plus AMIs on Amazon EC2
 toc: true
 weight: 300
+type:
+- how-to
 ---
 
 NGINX, Inc. participates in the Amazon Web Services (AWS) Partner Network as a Standard Technology Partner. We offer Amazon Machine Images (AMIs) for use in the Amazon Elastic Compute Cloud (EC2), available at the AWS Marketplace for several operating systems, including Amazon Linux, Red Hat Enterprise Linux, and Ubuntu.

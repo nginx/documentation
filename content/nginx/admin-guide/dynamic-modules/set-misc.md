@@ -3,11 +3,11 @@ description: Implement numerous additional `set_*` directives to extend the NGIN
   core [Rewrite](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html) module,
   with the Set-Misc dynamic module supported by NGINX, Inc.
 docs: DOCS-400
-doctypes:
-- task
 title: Set-Misc
 toc: true
 weight: 100
+type:
+- how-to
 ---
 
 <span id="prereq"></span>

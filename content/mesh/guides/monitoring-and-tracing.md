@@ -1,11 +1,12 @@
 ---
-title: "Monitoring and Tracing"
-date: 2020-08-24T10:00:30-06:00
+title: Monitoring and Tracing
 toc: true
-description: "Learn about the monitoring and tracing features available in F5 NGINX Service Mesh."
+description: Learn about the monitoring and tracing features available in F5 NGINX
+  Service Mesh.
 weight: 20
-categories: ["tasks"]
-docs: "DOCS-693"
+docs: DOCS-693
+type:
+- how-to
 ---
 
 ## Overview

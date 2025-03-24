@@ -1,10 +1,12 @@
 ---
 title: Persistent Storage
-description: Learn how to set up persistent storage for use with F5 NGINX Service Mesh.
-categories: ["tasks"]
+description: Learn how to set up persistent storage for use with F5 NGINX Service
+  Mesh.
 weight: 101
 toc: true
-docs: "DOCS-686"
+docs: DOCS-686
+type:
+- how-to
 ---
 
 F5 NGINX Service Mesh generates data that needs to persist across restarts and failures to ensure uninterrupted operations. For example, if the SPIRE Server restarts, the new instance can pick up the the existing database of identities without having to rebuild everything. Depending on the environment, persistent storage may already be set up and ready for use by NGINX Service Mesh.

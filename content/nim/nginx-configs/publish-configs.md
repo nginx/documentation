@@ -1,12 +1,10 @@
 ---
 docs: DOCS-822
-doctypes:
-- tutorial
-tags:
-- docs
 title: Publish NGINX configs
 toc: true
 weight: 2
+type:
+- tutorial
 ---
 
 ## Overview

@@ -1,12 +1,10 @@
 ---
 docs: DOCS-1248
-doctypes:
-- task
-tags:
-- docs
 title: Install with Ansible
 toc: true
 weight: 200
+type:
+- how-to
 ---
 
 {{< include "/nim/decoupling/note-legacy-nms-references.md" >}}

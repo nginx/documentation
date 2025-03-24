@@ -1,11 +1,11 @@
 ---
 description: Learn about the F5 NGINX App Protect WAF Logs Overview.
 docs: DOCS-911
-doctypes:
-- concept
 title: NGINX App Protect WAF Logs Overview
 toc: true
 weight: 510
+type:
+- concept
 ---
 
 ## Overview

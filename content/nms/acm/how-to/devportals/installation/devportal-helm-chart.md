@@ -2,13 +2,11 @@
 description: Follow the steps in the guide to deploy the API Connectivity Manager
   Developer Portal to Kubernetes using a Helm chart.
 docs: DOCS-1110
-doctypes:
-- tutorial
-tags:
-- docs
 title: Deploy the Developer Portal from a Helm chart
 toc: true
 weight: 20
+type:
+- tutorial
 ---
 
 {{< shortversions "1.3.0" "latest" "acmvers" >}}

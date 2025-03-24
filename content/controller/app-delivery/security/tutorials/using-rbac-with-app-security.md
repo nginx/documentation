@@ -1,13 +1,11 @@
 ---
 description: How to use Role Based Access Control with App Security.
 docs: DOCS-845
-doctypes:
-- task
-tags:
-- docs
 title: Using RBAC with the App Security Add-On
 toc: true
 weight: 400
+type:
+- how-to
 ---
 
 Role Based Access Control (RBAC) allows you to define permissions for Apps Security resources. With RBAC, you can specify which role has the permissions to create, read (and reference), update, and delete a Security Strategy or a Security Policy. You can then assign roles to specific users so that the users inherit the permissions.

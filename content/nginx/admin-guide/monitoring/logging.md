@@ -2,11 +2,11 @@
 description: Capture detailed information about errors and request processing in log
   files, either locally or via syslog.
 docs: DOCS-426
-doctypes:
-- task
 title: Configuring Logging
 toc: true
 weight: 200
+type:
+- how-to
 ---
 
 This article describes how to configure logging of errors and processed requests in NGINX Open Source and NGINX Plus.

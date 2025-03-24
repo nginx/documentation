@@ -1,10 +1,11 @@
 ---
-title: "Technical Specifications"
+title: Technical Specifications
 weight: 110
-description: "Cluster requirements and F5 NGINX Service Mesh footprint"
-categories: ["reference"]
+description: Cluster requirements and F5 NGINX Service Mesh footprint.
 toc: true
-docs: "DOCS-677"
+docs: DOCS-677
+type:
+- reference
 ---
 
 The following document outlines the software versions and overhead F5 NGINX Service Mesh uses while running.

@@ -1,16 +1,12 @@
 ---
-description: Learn how to use F5 NGINX Management Suite API Connectivity Manager to secure
-  API Gateways by applying a basic authentication policy.
+description: Learn how to use F5 NGINX Management Suite API Connectivity Manager to
+  secure API Gateways by applying a basic authentication policy.
 docs: DOCS-1118
-doctypes:
-- API Connectivity Manager
-- api management
-- concept
-tags:
-- docs
 toc: true
 weight: 450
 title: Basic Authentication
+type:
+- concept
 ---
 
 ## Overview

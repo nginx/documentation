@@ -1,13 +1,11 @@
 ---
 description: Create and manage Roles and Role Groups.
 docs: DOCS-783
-doctypes:
-- tutorial
-tags:
-- docs
 title: Manage Roles and Role Groups
 toc: true
 weight: 30
+type:
+- tutorial
 ---
 
 ## Overview

@@ -1,11 +1,11 @@
 ---
-title: "Frequently Asked Questions"
+title: Frequently Asked Questions
 weight: 800
-categories: ["concepts"]
 toc: true
-docs: "DOCS-881"
+docs: DOCS-881
 url: /nginxaas/azure/faq/
-
+type:
+- concept
 ---
 
 Common questions about F5 NGINX as a Service for Azure (NGINXaaS).

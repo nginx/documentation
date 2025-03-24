@@ -1,7 +1,5 @@
 ---
 docs: DOCS-1270
-tags:
-- docs
 title: Install SQLite (for NGINX Instance Manager 2.14.1 and earlier)
 toc: true
 weight: 10

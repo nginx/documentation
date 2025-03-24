@@ -1,12 +1,12 @@
 ---
-description: This guide explains the F5 NGINX App Protect WAF security features and how
-  to use them.
+description: This guide explains the F5 NGINX App Protect WAF security features and
+  how to use them.
 docs: DOCS-1368
-doctypes:
-- task
 title: NGINX App Protect WAF Configuration Guide
 toc: true
 weight: 200
+type:
+- how-to
 ---
 
 ## Overview

@@ -1,9 +1,10 @@
 ---
-title: "Upload using the Azure CLI"
+title: Upload using the Azure CLI
 weight: 200
-categories: ["tasks"]
 toc: true
 url: /nginxaas/azure/getting-started/nginx-configuration/nginx-configuration-azure-cli/
+type:
+- how-to
 ---
 
 ## Overview

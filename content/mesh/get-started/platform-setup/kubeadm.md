@@ -1,9 +1,10 @@
 ---
 title: Kubeadm
 description: Learn how to set up Kubeadm for use with F5 NGINX Service Mesh.
-categories: ["tasks"]
 toc: true
-docs: "DOCS-684"
+docs: DOCS-684
+type:
+- how-to
 ---
 
 Kubeadm is a tool that creates Kubernetes clusters by following best practices. To use kubeadm with F5 NGINX Service Mesh, you need to enable some extra flags on the Kubernetes API Server to enable Service Account Token Volume Projection. See [Service Account Token Volume Projection](#service-account-token-volume-projection) section to learn why this is needed.

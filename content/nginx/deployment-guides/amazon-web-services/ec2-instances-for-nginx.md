@@ -19,7 +19,7 @@ To complete this guide, you need the following:
 
 - An [AWS account](http://docs.aws.amazon.com/AmazonSimpleDB/latest/DeveloperGuide/AboutAWSAccounts.html).
 - Basic Linux system administration skills, including installing software, managing files and folders, and using the command line, to follow the [Ansible instructions]({{< relref "#automate-ansible" >}}).
-- A paid subscription or a [30-day free trial](https://www.nginx.com/free-trial-request) for NGINX Plus.
+- A paid or trial subscription for NGINX Plus.
 - Root privileges on the hosts where NGINX Open Source or NGINX Plus will be installed, with `sudo` access as needed.
 
 ## Create an Amazon EC2 Instance {#create-ec2-instances}

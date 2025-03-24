@@ -1,10 +1,11 @@
 ---
-title: "Private Registry"
-description: "How to set up access to a private registry"
-categories: ["tasks"]
+title: Private Registry
+description: How to set up access to a private registry
 weight: 70
 toc: true
-docs: "DOCS-694"
+docs: DOCS-694
+type:
+- how-to
 ---
 
 ## Overview

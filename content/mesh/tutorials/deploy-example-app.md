@@ -1,12 +1,13 @@
 ---
-title: "Deploy an Example App with NGINX Service Mesh"
-date: 2020-02-20T19:43:59Z
+title: Deploy an Example App with NGINX Service Mesh
 draft: false
 toc: true
-description: "This topic provides a walkthrough of deploying an App with F5 NGINX Service Mesh."
+description: This topic provides a walkthrough of deploying an App with F5 NGINX Service
+  Mesh.
 weight: 100
-categories: ["tutorials"]
-docs: "DOCS-720"
+docs: DOCS-720
+type:
+- tutorial
 ---
 
 ## Overview

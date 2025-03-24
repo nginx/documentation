@@ -1,13 +1,11 @@
 ---
 description: View graphs and system reports for your Instances.
 docs: DOCS-772
-doctypes:
-- task
-tags:
-- docs
 title: View Performance Reports for Your Instances
 toc: true
 weight: 60
+type:
+- how-to
 ---
 
 ## Overview

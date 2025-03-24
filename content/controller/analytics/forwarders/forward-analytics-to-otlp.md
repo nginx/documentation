@@ -1,13 +1,11 @@
 ---
 description: How to forward Analytics Metrics to OpenTelemetry Collector.
 docs: DOCS-532
-doctypes:
-- tutorial
-tags:
-- docs
 title: Forward Analytics Metrics to OpenTelemetry Collector
 toc: true
 weight: 201
+type:
+- tutorial
 ---
 
 ## Overview

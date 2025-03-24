@@ -1,11 +1,11 @@
 ---
 description: Learn about the F5 NGINX App Protect DoS Operation Log.
 docs: DOCS-669
-doctypes:
-- task
 title: NGINX App Protect DoS Operation Log
 toc: true
 weight: 180
+type:
+- how-to
 ---
 
 ## Overview

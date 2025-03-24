@@ -2,13 +2,11 @@
 description: Learn how to restrict access to your application servers based on JWT
   claims or header values.
 docs: DOCS-1265
-doctypes:
-- task
-tags:
-- docs
 title: Access Control Routing
 toc: true
 weight: 300
+type:
+- how-to
 ---
 
 {{< shortversions "1.3.0" "latest" "acmvers" >}}

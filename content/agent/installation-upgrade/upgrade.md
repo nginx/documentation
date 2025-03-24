@@ -1,12 +1,11 @@
 ---
-title: "Upgrade NGINX Agent package"
+title: Upgrade NGINX Agent package
 draft: false
 weight: 600
 toc: true
-tags: [ "docs" ]
-docs: "DOCS-1227"
-categories: ["configuration"]
-doctypes: ["task"]
+docs: DOCS-1227
+type:
+- how-to
 ---
 
 ## Overview

@@ -1,9 +1,10 @@
 ---
-title: "Deploy using the Azure CLI"
+title: Deploy using the Azure CLI
 weight: 200
-categories: ["tasks"]
 toc: true
 url: /nginxaas/azure/getting-started/create-deployment/deploy-azure-cli/
+type:
+- how-to
 ---
 
 ## Overview

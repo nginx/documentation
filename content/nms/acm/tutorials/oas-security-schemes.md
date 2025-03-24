@@ -4,13 +4,11 @@ description: F5 NGINX Management Suite API Connectivity Manager lets you secure 
   for setting up basic authentication and API key authentication security schemes
   to secure your APIs and control access to authorized users or applications.
 docs: DOCS-1246
-doctypes:
-- tutorial
-tags:
-- docs
 title: OAS Security Schemes
 toc: true
 weight: 200
+type:
+- tutorial
 ---
 
 ## Overview

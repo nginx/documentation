@@ -1,10 +1,12 @@
 ---
-title: "Deployments using Traffic Splitting"
-description: "This topic provides a guide for using traffic splits with different deployment strategies."
+title: Deployments using Traffic Splitting
+description: This topic provides a guide for using traffic splits with different deployment
+  strategies.
 weight: 110
-categories: ["tutorials"]
 toc: true
-docs: "DOCS-725"
+docs: DOCS-725
+type:
+- tutorial
 ---
 
 ## Overview

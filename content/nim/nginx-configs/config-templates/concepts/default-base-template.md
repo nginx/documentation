@@ -1,18 +1,17 @@
 ---
-title: "F5 Global Default base template"
-date: 2024-03-28T14:22:17-07:00
+title: F5 Global Default base template
 draft: false
-description: ""
+description: ''
 weight: 110
 toc: true
-tags: [ "docs" ]
-docs: "DOCS-1503"
-categories: ["installation", "platform management", "load balancing", "api management", "service mesh", "security", "analytics"]
-doctypes: ["reference"]
-journeys: ["researching", "getting started", "using", "renewing", "self service"]
-personas: ["devops", "netops", "secops", "support"]
-versions: []
-authors: []
+docs: DOCS-1503
+personas:
+- devops
+- netops
+- secops
+- support
+type:
+- reference
 ---
 
 ## Overview

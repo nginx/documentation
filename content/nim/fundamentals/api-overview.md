@@ -1,13 +1,11 @@
 ---
-description: 
+description: ''
 docs: DOCS-798
-doctypes:
-- reference
-tags:
-- docs
-title: "Overview: NGINX Instance Manager REST API"
+title: 'Overview: NGINX Instance Manager REST API'
 toc: true
 weight: 400
+type:
+- reference
 ---
 
 {{< include "/nim/decoupling/note-legacy-nms-references.md" >}}

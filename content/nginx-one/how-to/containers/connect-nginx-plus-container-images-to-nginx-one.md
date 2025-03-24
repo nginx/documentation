@@ -1,13 +1,11 @@
 ---
 description: ''
-docs:
-doctypes:
-- task
-tags:
-- docs
+docs: null
 title: Connect NGINX Plus container images to NGINX One
 toc: true
 weight: 400
+type:
+- how-to
 ---
 
 ## Overview

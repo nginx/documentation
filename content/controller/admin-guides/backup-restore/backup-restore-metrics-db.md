@@ -1,13 +1,11 @@
 ---
 description: Learn how to back up and restore the F5 NGINX Controller analytics database.
 docs: DOCS-250
-doctypes:
-- task
-tags:
-- docs
 title: Back Up & Restore the Analytics Database
 toc: true
 weight: 100
+type:
+- how-to
 ---
 
 ## Overview

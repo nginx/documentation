@@ -2,11 +2,11 @@
 description: Load balance HTTP traffic across web or application server groups, with
   several algorithms and advanced features like slow-start and session persistence.
 docs: DOCS-418
-doctypes:
-- task
 title: HTTP Load Balancing
 toc: true
 weight: 100
+type:
+- how-to
 ---
 
 <span id="overview"></span>

@@ -1,14 +1,11 @@
 ---
-docs: 
-doctypes:
-    - task
-tags:
-    - docs
+docs: null
 title: Manage config sync groups
 toc: true
 weight: 300
+type:
+- how-to
 ---
-
 
 ## Overview
 

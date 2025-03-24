@@ -3,11 +3,11 @@ description: Implement location and variable handlers in Perl and insert Perl ca
   into Server Side Includes (SSI), with the Perl dynamic module, supported by NGINX,
   Inc.
 docs: DOCS-397
-doctypes:
-- task
 title: Perl
 toc: true
 weight: 100
+type:
+- how-to
 ---
 
 <span id="install"></span>

@@ -2,16 +2,12 @@
 description: As an Infrastructure Administrator, use this guide to implement a standard
   log format for all environments hosting APIs.
 docs: DOCS-1127
-doctypes:
-- API Connectivity Manager
-- api management
-- task
-- reference
-tags:
-- docs
 toc: true
 weight: 700
 title: Log Format
+type:
+- how-to
+- reference
 ---
 
 ## Overview

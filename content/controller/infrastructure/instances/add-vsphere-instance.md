@@ -1,14 +1,11 @@
 ---
 description: Learn how to deploy a vSphere NGINX instance using F5 NGINX Controller.
 docs: DOCS-771
-doctypes:
-- beta
-- tutorial
-tags:
-- docs
 title: Add a vSphere NGINX Instance
 toc: true
 weight: 35
+type:
+- tutorial
 ---
 
 ## Overview

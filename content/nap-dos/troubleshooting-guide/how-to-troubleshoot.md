@@ -1,11 +1,11 @@
 ---
 description: Learn about the F5 NGINX App Protect DoS Troubleshooting Guide.
 docs: DOCS-675
-doctypes:
-- task
 title: NGINX App Protect DoS Troubleshooting Guide
 toc: true
 weight: 200
+type:
+- how-to
 ---
 
 ## Overview

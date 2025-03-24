@@ -2,17 +2,12 @@
 description: As an Infrastructure Administrator, use this guide to configure OpenID
   Connect policy to enable Single Sign On for the gateways.
 docs: DOCS-1134
-doctypes:
-- API Connectivity Manager
-- API management
-- task
-- reference
-tags:
-- docs
-title: OpenID Connect Relying Party Policy
+title: OpenID Connect
 toc: true
 weight: 910
-title: OpenID Connect
+type:
+- how-to
+- reference
 ---
 
 ---

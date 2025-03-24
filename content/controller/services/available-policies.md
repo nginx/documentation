@@ -1,13 +1,11 @@
 ---
 description: Learn about the policies available for use in the F5 NGINX Controller.
 docs: DOCS-568
-doctypes:
-- concept
-tags:
-- docs
 title: Learn About Policies
 toc: true
 weight: 130
+type:
+- concept
 ---
 
 ## Overview

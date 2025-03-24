@@ -1,10 +1,11 @@
 ---
-title: "Recreating a deployment"
+title: Recreating a deployment
 weight: 500
-categories: ["tasks"]
 toc: true
-docs: "DOCS-1378"
+docs: DOCS-1378
 url: /nginxaas/azure/quickstart/recreate/
+type:
+- how-to
 ---
 
 Learn how to recreate an existing F5 NGINX as a Service for Azure (NGINXaaS) deployment using an Azure Resource Manager (ARM) template.

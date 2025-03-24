@@ -1,10 +1,11 @@
 ---
-title: "Metrics catalog"
+title: Metrics catalog
 weight: 400
-categories: ["concepts"]
 toc: false
-docs: "DOCS-877"
+docs: DOCS-877
 url: /nginxaas/azure/monitoring/metrics-catalog/
+type:
+- concept
 ---
 
 F5 NGINX as a Service for Azure (NGINXaaS) provides a rich set of metrics that you can use to monitor the health and performance of your NGINXaaS deployment. This document provides a catalog of the metrics that are available for monitoring NGINXaaS for Azure in Azure Monitor.

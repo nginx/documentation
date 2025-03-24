@@ -2,11 +2,11 @@
 description: License information for open source components included in the NGINX
   Plus software.
 docs: DOCS-471
-doctypes:
-- reference
 title: Open Source Components
 toc: true
 weight: 500
+type:
+- reference
 ---
 
 Open source components included in the F5 NGINX Plus (package name is `nginx-plus`) are:

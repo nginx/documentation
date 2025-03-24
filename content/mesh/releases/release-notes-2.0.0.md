@@ -1,12 +1,15 @@
 ---
-title: "Release Notes 2.0.0"
-date: 2023-04-25
+title: Release Notes 2.0.0
 draft: false
 toc: true
-description: "Release information for F5 NGINX Service Mesh, a configurable, low‑latency infrastructure layer designed to handle a high volume of network‑based interprocess communication among application infrastructure services using application programming interfaces (APIs).  Lists of new features and known issues are provided."
+description: Release information for F5 NGINX Service Mesh, a configurable, low‑latency
+  infrastructure layer designed to handle a high volume of network‑based interprocess
+  communication among application infrastructure services using application programming
+  interfaces (APIs).  Lists of new features and known issues are provided.
 weight: -1800
-categories: ["reference"]
-docs: "DOCS-1485"
+docs: DOCS-1485
+type:
+- reference
 ---
 
 ## NGINX Service Mesh Version 2.0.0

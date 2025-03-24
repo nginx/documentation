@@ -2,15 +2,11 @@
 description: Learn how to set up the Request Header Specification policy in API Connectivity
   Manager to process headers with invalid characters.
 docs: DOCS-1263
-doctypes:
-- API Connectivity Manager
-- api management
-- task
-tags:
-- docs
 title: Request Header Specification
 toc: true
 weight: 1300
+type:
+- how-to
 ---
 
 ## Overview

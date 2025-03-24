@@ -1,16 +1,12 @@
 ---
-description: Learn how to use F5 NGINX Management Suite API Connectivity Manager to handle
-  Cross-Origin Resource Sharing for your backend services.
+description: Learn how to use F5 NGINX Management Suite API Connectivity Manager to
+  handle Cross-Origin Resource Sharing for your backend services.
 docs: DOCS-1130
-doctypes:
-- API Connectivity Manager
-- api management
-- reference
-tags:
-- docs
 title: CORS
 toc: true
 weight: 500
+type:
+- reference
 ---
 
 ## Overview

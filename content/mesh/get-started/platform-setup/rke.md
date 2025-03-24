@@ -1,9 +1,11 @@
 ---
 title: Rancher Kubernetes Engine
-description: Learn how to set up Rancher Kubernetes Engine (RKE) for use with F5 NGINX Service Mesh.
-categories: ["tasks"]
+description: Learn how to set up Rancher Kubernetes Engine (RKE) for use with F5 NGINX
+  Service Mesh.
 toc: true
-docs: "DOCS-687"
+docs: DOCS-687
+type:
+- how-to
 ---
 
 Rancher Kubernetes Engine (RKE) is a CNCF-certified Kubernetes distribution that runs entirely within Docker containers. It works on bare-metal and virtualized servers.

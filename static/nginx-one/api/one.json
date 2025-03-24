@@ -38,7 +38,7 @@
     },
     {
       "name": "Certificates",
-      "description": "The `Certificates` object in NGINX One Console represents an SSL certificate, covering both managed and unmanaged types. \nYou can view essential details like issuer, expiration status, and the instances or config sync groups where each certificate is deployed.\n",
+      "description": "The `Certificates` object in the NGINX One console represents an SSL certificate, covering both managed and unmanaged types. \nYou can view essential details like issuer, expiration status, and the instances or config sync groups where each certificate is deployed.\n",
       "x-displayName": "Certificates"
     },
     {
@@ -48,12 +48,15 @@
     },
     {
       "name": "Events",
-      "description": "Get a list of system events in NGINX One Console.\n",
+      "description": "Get a list of system events in the NGINX One console.\n",
       "x-displayName": "Events"
     },
     {
+      "name": "Staged Configs",
+      "x-displayName": "Staged Configs"
+    },
+    {
       "name": "Metrics",
-      "description": "Get system metrics for your NGINX data plane instances. These metrics are collected by the NGINX Agent and reported to NGINX One.\n",
       "x-displayName": "Metrics"
     },
     {
@@ -616,8 +619,23 @@
         ],
         "summary": "Delete an SSL certificate",
         "operationId": "deleteCertificate",
-        "description": "Deletes a managed SSL certificate from NGINX One Console. This operation is disabled for unmanaged certificates, as they get cleaned up automatically when they are not used in any NGINX configuration.",
+        "description": "* Deletes a managed SSL certificate from the NGINX One console. This operation is disabled for unmanaged certificates, as they get cleaned up automatically when they are not used in any NGINX configuration. \n* An optional flag `deleteFromDataPlanes` when set to true, can be used to remove the certificate from data plane instances to where it was deployed.\n  * Deleting from data planes triggers publications on either instances or Config Sync Groups. After the managed cert object is deleted from NGINX One Console, a `PublicationBulkResponse` is returned along with status code 202, indicating whether an error occurred while issuing a publication to a data plane target.\n  * If this cert is not associated with any data plane, status code 204 is returned when `deleteFromDataPlanes` set to true.\n",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/DeleteFromDataPlanesParamFlag"
+          }
+        ],
         "responses": {
+          "202": {
+            "description": "Successfully deleted the SSL certificate. Handling deletion of certificate from data planes in the background.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PublicationBulkResponse"
+                }
+              }
+            }
+          },
           "204": {
             "description": "Successfully deleted the SSL certificate."
           },
@@ -1127,7 +1145,7 @@
           "Config Sync Groups"
         ],
         "summary": "Delete an NGINX config sync group",
-        "description": "Delete a NGINX config sync group from NGINX One Console. You can delete a config sync group, only if it contains no NGINX instances.\n",
+        "description": "Delete a NGINX config sync group from the NGINX One console. You can delete a config sync group, only if it contains no NGINX instances.\n",
         "operationId": "deleteConfigSyncGroup",
         "responses": {
           "204": {
@@ -1702,7 +1720,7 @@
           "Config Sync Groups"
         ],
         "summary": "Retrieves stored NGINX configurations for a NGINX config sync group",
-        "description": "Returns a list of all configurations for a NGINX config sync group. Only the last 5 are kept on NGINX One Console for a NGINX config sync group.",
+        "description": "Returns a list of all configurations for a NGINX config sync group. Only the last 5 are kept on the NGINX One Console for a NGINX config sync group.",
         "operationId": "listConfigSyncGroupConfigurations",
         "responses": {
           "200": {
@@ -2811,7 +2829,7 @@
           "Instances"
         ],
         "summary": "Retrieves the stored NGINX configurations for an instance",
-        "description": "Returns a list of all configurations for a NGINX instance. Only the last 5 are kept on NGINX One Console for a NGINX instance.",
+        "description": "Returns a list of all configurations for a NGINX instance. Only the last 5 are kept on the NGINX One Console for a NGINX instance.",
         "operationId": "listInstanceConfigurations",
         "responses": {
           "200": {
@@ -3137,47 +3155,101 @@
         }
       }
     },
-    "/monitor/metrics_query": {
-      "post": {
+    "/staged-configs": {
+      "get": {
+        "x-feature-flag": "staged-configs",
         "tags": [
-          "Metrics"
+          "Staged Configs"
         ],
-        "summary": "Retrieve system metrics for instances",
-        "operationId": "queryMetricsInput",
-        "description": "Returns (up to 10,000) system metrics for NGINX instances based on query parameters.\n\nYou can filter metrics by name and timestamp, aggregate metrics over a configurable period of time, and group metrics by dimension.\n",
+        "summary": "List all staged configs",
+        "operationId": "listStagedConfigs",
+        "description": "Returns a list of all NGINX staged configs, providing details such as:\n  * Name and object_id of staged config\n  * Created and modified timestamps\n",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Paginated"
+          },
+          {
+            "$ref": "#/components/parameters/Limit"
+          },
+          {
+            "$ref": "#/components/parameters/Offset"
+          },
+          {
+            "$ref": "#/components/parameters/FilterFieldStagedConfigs"
+          },
+          {
+            "$ref": "#/components/parameters/FilterOperands"
+          },
+          {
+            "$ref": "#/components/parameters/FilterValues"
+          },
+          {
+            "$ref": "#/components/parameters/SortDirection"
+          },
+          {
+            "$ref": "#/components/parameters/SortNameStagedConfigs"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the list of NGINX staged configs.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StagedConfigListResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "x-feature-flag": "staged-configs",
+        "x-nginx-one-action": "create",
+        "x-nginx-one-entity": "NGINX staged configs",
+        "tags": [
+          "Staged Configs"
+        ],
+        "summary": "Create an NGINX staged config",
+        "operationId": "createStagedConfig",
+        "description": "Create NGINX staged config with a unique ID to identify it within the tenant namespace.\n",
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/MetricQueryRequest"
-              },
-              "example": {
-                "start_time": "now-1h",
-                "end_time": "now",
-                "resolution": "5m",
-                "metrics": [
-                  {
-                    "name": "nginx.http.requests",
-                    "aggregate": "sum"
-                  }
-                ],
-                "order_by": [
-                  {
-                    "direction": "asc",
-                    "dimension": "instance_object_id"
-                  }
-                ]
+                "$ref": "#/components/schemas/StagedConfigCreateRequest"
               }
             }
           }
         },
         "responses": {
           "200": {
-            "description": "Successfully retrieved system metrics.",
+            "description": "Successfully created NGINX staged configs",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/MetricQueryResultEx"
+                  "$ref": "#/components/schemas/StagedConfigCreateResponse"
                 }
               }
             }
@@ -3192,8 +3264,450 @@
               }
             }
           },
+          "401": {
+            "description": "Access denied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/staged-configs/{stagedConfigObjectID}": {
+      "delete": {
+        "x-feature-flag": "staged-configs",
+        "x-nginx-one-action": "delete",
+        "x-nginx-one-entity": "NGINX staged config",
+        "tags": [
+          "Staged Configs"
+        ],
+        "summary": "Delete an NGINX staged config",
+        "description": "Delete a NGINX staged config from the NGINX One console.\n",
+        "operationId": "deleteStagedConfig",
+        "responses": {
+          "204": {
+            "description": "Successfully deleted the NGINX staged configs"
+          },
+          "401": {
+            "description": "Access denied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
           "404": {
-            "description": "The requested metric resource was not found. Check that the resource name provided is correct and corresponds to an existing resource.",
+            "description": "The NGINX staged config with the specified object_id was not found. Check that the object_id provided is correct and corresponds to an existing resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "x-feature-flag": "staged-configs",
+        "tags": [
+          "Staged Configs"
+        ],
+        "summary": "Retrieve an NGINX staged config meta",
+        "description": "Retrieve the meta details for an NGINX staged config.\n",
+        "operationId": "getStagedConfigMeta",
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the details of the NGINX staged config meta.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StagedConfigMeta"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The NGINX staged config with the specified object_id was not found. Check that the object_id provided is correct and corresponds to an existing resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/StagedConfigParamObjectID"
+        }
+      ]
+    },
+    "/staged-configs/{stagedConfigObjectID}/config": {
+      "get": {
+        "tags": [
+          "Staged Configs"
+        ],
+        "x-feature-flag": "staged-configs",
+        "summary": "Retrieve an NGINX staged config",
+        "description": "Retrieve the details for an NGINX staged config.\n",
+        "operationId": "getStagedConfig",
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the details of the NGINX staged config.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StagedConfigResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The NGINX staged config with the specified object_id was not found. Check that the object_id provided is correct and corresponds to an existing resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/StagedConfigParamObjectID"
+        }
+      ],
+      "patch": {
+        "tags": [
+          "Staged Configs"
+        ],
+        "x-feature-flag": "staged-configs",
+        "x-nginx-one-action": "update",
+        "x-nginx-one-entity": "NGINX staged config",
+        "summary": "Apply partial updates to staged config",
+        "description": "Applies the specified partial updates to an existing NGINX staged config Details:\n  * This endpoint accepts additive updates to `NginxConfig`. Base `nginx.conf` file must always be provided along with additives.\n  * To delete files, omit the `file.contents` field.\n  * `config_version` is used to ensure the requested patch is applied against the same version.\n",
+        "operationId": "patchStagedConfig",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StagedConfigChangeRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully stored the NGINX staged configuration.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StagedConfigMeta"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The NGINX staged config with the specified object_id was not found. Check that the object_id provided is correct and corresponds to an existing resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "NGINX config version mismatch. Provided config_version does not match recent config_version for the NGINX staged config, possible conflict.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Staged Configs"
+        ],
+        "x-feature-flag": "staged-configs",
+        "x-nginx-one-action": "create",
+        "x-nginx-one-entity": "NGINX staged config",
+        "summary": "Replace existing state",
+        "description": "Completely replaces existing staged config with payload of new request.\n",
+        "operationId": "replaceStagedConfig",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StagedConfigUpdateRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully updated the NGINX configuration.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StagedConfigMeta"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The NGINX staged config with the specified object_id was not found. Check that the object_id provided is correct and corresponds to an existing resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/staged-configs/{stagedConfigObjectID}/config-report": {
+      "get": {
+        "tags": [
+          "Staged Configs"
+        ],
+        "x-feature-flag": "staged-configs",
+        "summary": "Retrieve an analysis report for the NGINX staged config",
+        "description": "Analyzes the NGINX staged config and returns a detailed report.\nThe report includes insights, identified issues, and recommendations for optimizing and troubleshooting.\n",
+        "operationId": "getStagedConfigReport",
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the NGINX configuration analysis for the specified staged config.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NginxConfigReports"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "The requested staged config exists, but analysis of the NGINX configuration is not yet completed. Please retry the request at a later time to retrieve the report."
+          },
+          "404": {
+            "description": "The NGINX staged config with the specified object_id was not found. Check that the object_id provided is correct and corresponds to an existing resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/StagedConfigParamObjectID"
+        }
+      ],
+      "patch": {
+        "x-feature-flag": "staged-configs",
+        "x-nginx-one-action": "analyze",
+        "x-nginx-one-entity": "NGINX staged configuration",
+        "tags": [
+          "Staged Configs"
+        ],
+        "summary": "Generate an analysis report for the modified NGINX staged config",
+        "description": "Analyzes the provided partial updates merging with an existing configuration of an NGINX config sync group. Generates a report detailing potential issues along with optimization suggestions. \nThis analysis accounts for additive updates made to NGINX configuration. To delete files, omit the `file.contents` field. \nNote that this operation is for analysis purposes only and does not apply any changes to the configuration. \nThe report is not stored and is provided only in the API response.\nTo publish the configuration, use the `PATCH /staged-configs/{stagedConfigObjectID}/config` endpoint.\n",
+        "operationId": "analyzeStagedConfigPatch",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NginxConfigRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully analyzed the provided NGINX configuration",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NginxConfigReports"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The NGINX staged config with the specified object_id was not found. Check that the object_id provided is correct and corresponds to an existing resource.",
             "content": {
               "application/json": {
                 "schema": {
@@ -3485,6 +3999,14 @@
         "description": "A globally unique identifier for the certificate.\n",
         "required": true
       },
+      "DeleteFromDataPlanesParamFlag": {
+        "name": "deleteFromDataPlanes",
+        "in": "query",
+        "schema": {
+          "type": "boolean"
+        },
+        "description": "Flag indicating whether the certificate should be deleted from its associated data planes.\n"
+      },
       "FilterFieldCertificateDeployments": {
         "name": "filter_fields",
         "in": "query",
@@ -3689,6 +4211,43 @@
         },
         "description": "A globally unique identifier for the NGINX instance configuration.\n",
         "required": true
+      },
+      "FilterFieldStagedConfigs": {
+        "name": "filter_fields",
+        "in": "query",
+        "description": "An array of strings indicating which fields to filter by (for example, `name`). This parameter works in conjunction with `filter_values` and `filter_ops`.\n",
+        "schema": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/FilterStagedConfigs"
+          }
+        }
+      },
+      "SortNameStagedConfigs": {
+        "name": "sort_staged_configs",
+        "in": "query",
+        "description": "Sort staged configs by enumerate value(s). Ordinal position determines primary, secondary, etc.\n",
+        "schema": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "name"
+            ],
+            "x-enum-varnames": [
+              "sort_name_staged_config_name"
+            ]
+          }
+        }
+      },
+      "StagedConfigParamObjectID": {
+        "name": "stagedConfigObjectID",
+        "in": "path",
+        "schema": {
+          "$ref": "#/components/schemas/StagedConfigObjectID"
+        },
+        "description": "A globally unique identifier for the NGINX staged config.\n",
+        "required": true
       }
     },
     "schemas": {
@@ -3731,7 +4290,7 @@
         "properties": {
           "total": {
             "type": "integer",
-            "description": "The absolute total number of the resource in NGINX One Console.\n"
+            "description": "The absolute total number of the resource in the NGINX One Console.\n"
           },
           "count": {
             "type": "integer",
@@ -4078,7 +4637,7 @@
       },
       "CertificateType": {
         "type": "string",
-        "description": "Certificate type:\n  * `ca_bundle` - This certificate object is a CA bundle.\n  * `cert_key` - This certificate object is consisted of public certificates and key.\n  * `unmanaged` - This certificate is not managed by NGINX One Console and its type is unmanaged.\n",
+        "description": "Certificate type:\n  * `ca_bundle` - This certificate object is a CA bundle.\n  * `cert_key` - This certificate object is consisted of public certificates and key.\n  * `unmanaged` - This certificate is not managed by NGINX One console and its type is unmanaged.\n",
         "enum": [
           "ca_bundle",
           "cert_key",
@@ -4509,6 +5068,13 @@
           },
           "modified_at": "2023-11-01T00:00:00Z",
           "created_at": "2023-10-01T00:00:00Z"
+        }
+      },
+      "PublicationBulkResponse": {
+        "description": "The publication bulk operation outcome.\n",
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/BulkRequestObjectStatus"
         }
       },
       "CertificateUpdateContent": {
@@ -5535,7 +6101,7 @@
       },
       "NginxConfigPayloads": {
         "type": "array",
-        "description": "An array of payloads that track the file paths of each SSL certificates and key, indicating where to deploy\nthem onto the data plane instance.\n* If the `type` is `managed_certificate` or `managed_key`, you need to specify an `object_id`.\n  * The `object_id` must represent a managed certificate object, or a `400 Bad Request` is returned. \n  * The `contents` field is optional and is ignored if included.\n* NGINX One Console manages deployed file paths only for managed certificates and keys. If you don't want \nthem to be managed by NGINX One Console, `inline_content` and `inline_secret` can be used for certificates or \nkeys, respectively. When you retrieve certificate deployment details, only the file paths of managed \ncertificates and keys will be shown.\n* If you use `inline_content` and `inline_secret` in your NGINX configuration, NGINX One Console \nwill detect them. When they are used as SSL directives of the NGINX configuration \nfor certificates and keys, the certificates will be listed as `unmanaged_certificate` in the certificate \ndeployment details.\n",
+        "description": "An array of payloads that track the file paths of each SSL certificates and key, indicating where to deploy\nthem onto the data plane instance.\n* If the `type` is `managed_certificate` or `managed_key`, you need to specify an `object_id`.\n  * The `object_id` must represent a managed certificate object, or a `400 Bad Request` is returned. \n  * The `contents` field is optional and is ignored if included.\n* The NGINX One Console manages deployed file paths only for managed certificates and keys. If you don't want \nthem to be managed by NGINX One Console, `inline_content` and `inline_secret` can be used for certificates or \nkeys, respectively. When you retrieve certificate deployment details, only the file paths of managed \ncertificates and keys will be shown.\n* If you use `inline_content` and `inline_secret` in your NGINX configuration, the NGINX One Console \nwill detect them. When they are used as SSL directives of the NGINX configuration \nfor certificates and keys, the certificates will be listed as `unmanaged_certificate` in the certificate \ndeployment details.\n",
         "items": {
           "$ref": "#/components/schemas/NginxConfigPayload"
         },
@@ -6221,11 +6787,13 @@
             "description": "type of event, indication for affected object type.",
             "enum": [
               "instance_cleanup",
-              "certificates"
+              "certificates",
+              "publications"
             ],
             "x-enum-varnames": [
               "event_type_instance_cleanup",
-              "event_type_certificates"
+              "event_type_certificates",
+              "event_type_publications"
             ]
           },
           "object_id": {
@@ -6697,6 +7265,274 @@
             "items": {
               "$ref": "#/components/schemas/IssueSummary"
             }
+          }
+        }
+      },
+      "FilterStagedConfigs": {
+        "type": "string",
+        "description": "Keywords for staged configs filters.\n",
+        "enum": [
+          "name",
+          "object_id"
+        ],
+        "x-enum-varnames": [
+          "filter_name_staged_config_name",
+          "filter_name_staged_config_object_id"
+        ]
+      },
+      "StagedConfigObjectID": {
+        "description": "A globally unique identifier for the NGINX staged config.",
+        "type": "string",
+        "format": "object_id",
+        "pattern": "^sc_.*",
+        "x-go-type": "objects.ID",
+        "x-go-type-import": {
+          "name": "objects",
+          "path": "gitlab.com/f5/nginx/one/saas/control-plane/pkg/collections/objects"
+        }
+      },
+      "StagedConfigCertificateSummary": {
+        "type": "object",
+        "description": "Provides a summary of the current status of certificates used in NGINX configurations. It includes the total number of certificates, as well as the counts of expired certificates, those nearing expiration, valid certificates, certificates that are not found, and those that are not ready for use.",
+        "required": [
+          "total",
+          "expired",
+          "expiring",
+          "valid",
+          "not_found",
+          "not_ready"
+        ],
+        "properties": {
+          "total": {
+            "description": "Total count of certificates used as `payloads` in Nginx config.",
+            "type": "integer"
+          },
+          "expired": {
+            "description": "The number of certificates that have expired and are no longer valid.",
+            "type": "integer"
+          },
+          "expiring": {
+            "description": "The number of certificates due to expire in the next 30 days.",
+            "type": "integer"
+          },
+          "valid": {
+            "description": "The number of certificates that are valid and in good standing.",
+            "type": "integer"
+          },
+          "not_found": {
+            "description": "The number of certificates that are not found on NGINX One Console.",
+            "type": "integer"
+          },
+          "not_ready": {
+            "description": "The number of certificates that are not ready to be used.",
+            "type": "integer"
+          }
+        }
+      },
+      "StagedConfigMeta": {
+        "type": "object",
+        "description": "Summary information of the NGINX staged config.",
+        "required": [
+          "object_id",
+          "name",
+          "created_at",
+          "modified_at"
+        ],
+        "properties": {
+          "object_id": {
+            "$ref": "#/components/schemas/StagedConfigObjectID"
+          },
+          "name": {
+            "description": "Name of the NGINX staged config",
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the NGINX configuration object was created for the instance."
+          },
+          "modified_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the NGINX configuration object was last modified for the instance."
+          },
+          "cert_summary": {
+            "$ref": "#/components/schemas/StagedConfigCertificateSummary"
+          }
+        }
+      },
+      "StagedConfigListResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/PaginationResponse"
+          },
+          {
+            "type": "object",
+            "description": "List of NGINX staged configs.",
+            "required": [
+              "items"
+            ],
+            "properties": {
+              "items": {
+                "description": "An array of Staged Config objects.",
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/StagedConfigMeta"
+                }
+              }
+            }
+          }
+        ],
+        "example": {
+          "total": 10,
+          "count": 1,
+          "start_index": 1,
+          "items_per_page": 100,
+          "items": [
+            {
+              "object_id": "sc_Tet21AeYTHCj7taOwVfzyw",
+              "name": "my-nginx-staged-config",
+              "created_at": "2023-08-10T16:59:15Z",
+              "modified_at": "2023-08-10T16:59:15Z"
+            }
+          ]
+        }
+      },
+      "StagedConfigName": {
+        "type": "string",
+        "description": "A name to identify the NGINX staged config.",
+        "minLength": 1,
+        "maxLength": 256,
+        "pattern": "^[^\\s]+$"
+      },
+      "StagedConfigCreateRequest": {
+        "description": "Body to create a NGINX staged config. A staged config can be empty; config payload is optional.",
+        "required": [
+          "name"
+        ],
+        "properties": {
+          "name": {
+            "$ref": "#/components/schemas/StagedConfigName"
+          },
+          "config": {
+            "$ref": "#/components/schemas/NginxConfigRequest"
+          }
+        },
+        "example": {
+          "name": "my-nginx-staged-config",
+          "config": {
+            "aux": [],
+            "conf_path": "/etc/nginx/nginx.conf",
+            "config_version": "c039fbbd5d7f73d894390fb446bd3690da099ed8862b2527299bc2ba",
+            "configs": [
+              {
+                "files": [
+                  {
+                    "contents": "string",
+                    "name": "default.conf"
+                  }
+                ],
+                "name": "/etc/nginx/conf.d"
+              }
+            ]
+          }
+        }
+      },
+      "StagedConfigCreateResponse": {
+        "description": "Response to a create NGINX staged config request.",
+        "required": [
+          "object_id",
+          "name"
+        ],
+        "properties": {
+          "object_id": {
+            "$ref": "#/components/schemas/StagedConfigObjectID"
+          },
+          "name": {
+            "description": "Name of the NGINX staged config.",
+            "type": "string"
+          }
+        },
+        "example": {
+          "name": "my-nginx-staged-config",
+          "object_id": "sc_Tet21AeYTHCj7taOwVfzyw"
+        }
+      },
+      "StagedConfigResponse": {
+        "description": "Get an NGINX staged config.",
+        "required": [
+          "name"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the NGINX staged config."
+          },
+          "config": {
+            "$ref": "#/components/schemas/NginxConfig"
+          }
+        }
+      },
+      "StagedConfigUpdateRequest": {
+        "description": "Body to update a NGINX staged config name and config contents.",
+        "required": [
+          "name",
+          "config"
+        ],
+        "properties": {
+          "name": {
+            "$ref": "#/components/schemas/StagedConfigName"
+          },
+          "config": {
+            "$ref": "#/components/schemas/NginxConfigRequest"
+          }
+        },
+        "example": {
+          "name": "my-nginx-staged-config",
+          "config": {
+            "aux": [],
+            "conf_path": "/etc/nginx/nginx.conf",
+            "config_version": "c039fbbd5d7f73d894390fb446bd3690da099ed8862b2527299bc2ba",
+            "configs": [
+              {
+                "files": [
+                  {
+                    "contents": "string",
+                    "name": "default.conf"
+                  }
+                ],
+                "name": "/etc/nginx/conf.d"
+              }
+            ]
+          }
+        }
+      },
+      "StagedConfigChangeRequest": {
+        "description": "Update an NGINX staged config.",
+        "properties": {
+          "name": {
+            "$ref": "#/components/schemas/StagedConfigName"
+          },
+          "config": {
+            "$ref": "#/components/schemas/NginxConfigRequest"
+          }
+        },
+        "example": {
+          "config": {
+            "aux": [],
+            "conf_path": "/etc/nginx/nginx.conf",
+            "config_version": "c039fbbd5d7f73d894390fb446bd3690da099ed8862b2527299bc2ba",
+            "configs": [
+              {
+                "files": [
+                  {
+                    "contents": "string",
+                    "name": "default.conf"
+                  }
+                ],
+                "name": "/etc/nginx/conf.d"
+              }
+            ]
           }
         }
       },
@@ -7279,7 +8115,7 @@
       },
       "MetricNginxHttpRequests": {
         "type": "string",
-        "description": "Total number of client requests received from clients.\n\nReplacement for depreciated variant(s):\n  * nginx.http.request.count\n  * plus.http.request.count\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n",
+        "description": "Total number of client requests received from clients.\n\nReplacement for depreciated variant(s):\n  * nginx.http.request.count\n  * plus.http.request.count\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n  * server_zone\n  * location_zone\n",
         "enum": [
           "nginx.http.requests"
         ]
@@ -7484,6 +8320,584 @@
         "enum": [
           "k8s.cluster.nodes"
         ]
+      },
+      "NapPolicyEnforcementMode": {
+        "description": "The current enforcement mode of the NGINX App Protect policy, with the following possible values:\n* `blocking` - Any illegal or suspicious requests are logged and blocked.\n* `monitoring` - Any illegal or suspicious requests are logged but not blocked.\n",
+        "type": "string",
+        "enum": [
+          "blocking",
+          "monitoring"
+        ],
+        "x-enum-varnames": [
+          "nap_enforcement_mode_blocking",
+          "nap_enforcement_mode_monitoring"
+        ]
+      },
+      "NapDeploymentStatus": {
+        "description": "The current enforcement mode of the NGINX App Protect policy, with the following possible values:\n* `deployed` - The NGINX App Protect policy has been deployed.\n* `not_deployed` - The NGINX App Protect policy has not been deployed.\n* `deploying` - The NGINX App Protect policy is currently being deployed.\n* `failed` - The NGINX App Protect policy failed deploying.\n",
+        "type": "string",
+        "enum": [
+          "deployed",
+          "not_deployed",
+          "deploying",
+          "failed"
+        ],
+        "x-enum-varnames": [
+          "nap_deployment_status_deployed",
+          "nap_deployment_status_not_deployed",
+          "nap_deployment_status_deploying",
+          "nap_deployment_status_failed"
+        ]
+      },
+      "NapDeploymentType": {
+        "description": "The type of the deployment, with the following possible values:\n  * `instance` - The deployment is of type instance.\n  * `config_sync_group` - The deployment is of type config sync group.\n",
+        "type": "string",
+        "enum": [
+          "instance",
+          "config_sync_group"
+        ],
+        "x-enum-varnames": [
+          "nap_policy_deployment_type_instance",
+          "nap_policy_deployment_type_csg"
+        ]
+      },
+      "Version": {
+        "description": "The version of the NGINX App Protect resource.",
+        "type": "string",
+        "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$",
+        "example": "2023.12.06"
+      },
+      "VersionsList": {
+        "type": "object",
+        "required": [
+          "items"
+        ],
+        "properties": {
+          "items": {
+            "description": "An array of versions.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Version"
+            }
+          }
+        },
+        "example": {
+          "items": [
+            "2023.12.06"
+          ]
+        }
+      },
+      "ThreatCampaignVersionsListResponse": {
+        "description": "List of Threat Campaign versions.",
+        "$ref": "#/components/schemas/VersionsList"
+      },
+      "AttackSignatureVersionsListResponse": {
+        "description": "List of Attack Signature versions.",
+        "$ref": "#/components/schemas/VersionsList"
+      },
+      "BotSignatureVersionsListResponse": {
+        "description": "List of Bot Signature versions.",
+        "$ref": "#/components/schemas/VersionsList"
+      },
+      "NapPolicy": {
+        "description": "The JSON contents of the NGINX App Protect policy.",
+        "type": "object",
+        "required": [
+          "policy"
+        ],
+        "properties": {
+          "policy": {
+            "description": "The NGINX App Protect policy configuration.",
+            "type": "object",
+            "minProperties": 1
+          }
+        }
+      },
+      "NapPolicyMetadata": {
+        "description": "Summary information about NGINX App Protect policy.",
+        "type": "object",
+        "required": [
+          "object_id",
+          "name",
+          "deployment_count",
+          "last_updated_by",
+          "latest"
+        ],
+        "properties": {
+          "object_id": {
+            "$ref": "#/components/schemas/NapPolicyObjectID"
+          },
+          "name": {
+            "description": "The name of the NGINX App Protect policy.",
+            "type": "string"
+          },
+          "deployment_count": {
+            "description": "The number of NGINX One instances or config sync groups associated with the NGINX App Protect policy.",
+            "type": "integer"
+          },
+          "last_updated_by": {
+            "description": "The NGINX One user who last modified the NGINX App Protect policy.",
+            "type": "string"
+          },
+          "latest": {
+            "type": "object",
+            "required": [
+              "enforcement_mode",
+              "deployed_on",
+              "version",
+              "created_on",
+              "last_updated_by"
+            ],
+            "properties": {
+              "enforcement_mode": {
+                "$ref": "#/components/schemas/NapPolicyEnforcementMode"
+              },
+              "deployed_on": {
+                "description": "The date and time when the NGINX App Protect policy was last deployed.",
+                "type": "string",
+                "format": "date-time"
+              },
+              "version": {
+                "description": "The latest version of the NGINX App Protect policy.",
+                "type": "string"
+              },
+              "created_on": {
+                "description": "The date and time when the NGINX App Protect policy was created.",
+                "type": "string",
+                "format": "date-time"
+              }
+            }
+          },
+          "description": {
+            "type": "string",
+            "description": "Some detail on the NGINX App Protect policy."
+          }
+        },
+        "example": {
+          "object_id": "pol_-uvR3F2TQGm18jnl7bpaGw",
+          "name": "test-policy",
+          "last_updated_by": "john.doe@example.com",
+          "deployment_count": 5,
+          "decription": "test policy",
+          "latest": {
+            "enforcement_mode": "blocking",
+            "deployed_on": "2023-12-06T22:37:24.120114Z",
+            "version": "2023-12-06 22:37:24",
+            "created_on": "2023-12-06T22:37:24.120114Z"
+          }
+        }
+      },
+      "NapPolicyResponse": {
+        "description": "Summary information about NGINX App Protect policy.",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/NapPolicyMetadata"
+          },
+          {
+            "$ref": "#/components/schemas/NapPolicy"
+          }
+        ]
+      },
+      "NapPoliciesListResponse": {
+        "description": "List of all NGINX App Protect policies.",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/PaginationResponse"
+          },
+          {
+            "description": "List of NGINX App Protect policies.",
+            "type": "object",
+            "required": [
+              "items"
+            ],
+            "properties": {
+              "items": {
+                "description": "An array of NGINX App Protect policy objects.",
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/NapPolicyMetadata"
+                }
+              }
+            },
+            "example": {
+              "items": [
+                {
+                  "object_id": "pol_-uvR3F2TQGm18jnl7bpaGw",
+                  "name": "test-policy",
+                  "decription": "test policy",
+                  "created_on": "2023-12-06T22:37:24.120114Z",
+                  "latest_version": "2023.12.06",
+                  "last_updated_by": "john.doe@example.com",
+                  "enforcement_mode": "blocking",
+                  "last_deployed": "2023-12-06T22:37:24.120114Z"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "NapPolicyDeploymentMetadata": {
+        "type": "object",
+        "required": [
+          "object_id",
+          "enforcement_mode",
+          "name",
+          "type",
+          "status",
+          "policy_version",
+          "threat_campaign_version",
+          "attack_signature_version",
+          "bot_signature_version"
+        ],
+        "properties": {
+          "object_id": {
+            "$ref": "#/components/schemas/PublicationObjectID"
+          },
+          "enforcement_mode": {
+            "$ref": "#/components/schemas/NapPolicyEnforcementMode"
+          },
+          "name": {
+            "description": "The name of the NGINX One instance or config sync group.",
+            "type": "string"
+          },
+          "type": {
+            "$ref": "#/components/schemas/NapDeploymentType"
+          },
+          "status": {
+            "$ref": "#/components/schemas/NapDeploymentStatus"
+          },
+          "policy_version": {
+            "description": "The version associated with the NGINX App Protect policy.",
+            "type": "string"
+          },
+          "deployed_on": {
+            "description": "The date and time when the NGINX App Protect policy was deployed.",
+            "type": "string",
+            "format": "date-time"
+          },
+          "threat_campaign_version": {
+            "$ref": "#/components/schemas/Version"
+          },
+          "attack_signature_version": {
+            "$ref": "#/components/schemas/Version"
+          },
+          "bot_sigature_version": {
+            "$ref": "#/components/schemas/Version"
+          }
+        },
+        "example": {
+          "object_id": "pub_-uvR3F2TQGm18jnl7bpaGw",
+          "name": "test-instance",
+          "type": "instance",
+          "status": "deployed",
+          "policy_version": "2023-12-06 22:37:24",
+          "deployed_on": "2023-12-06T22:37:24.120114Z",
+          "enforcement_mode": "blocking",
+          "threat_campaign_version": "2023.12.06",
+          "attack_signature_version": "2023.12.06",
+          "bot_sigature_version": "2023.12.06"
+        }
+      },
+      "NapPolicyDeploymentsListResponse": {
+        "description": "List of all NGINX App Protect deployments.",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/PaginationResponse"
+          },
+          {
+            "type": "object",
+            "required": [
+              "items"
+            ],
+            "properties": {
+              "items": {
+                "description": "An array of NGINX App Protect deployments.",
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/NapPolicyDeploymentMetadata"
+                }
+              }
+            },
+            "example": {
+              "items": [
+                {
+                  "object_id": "pub_-uvR3F2TQGm18jnl7bpaGw",
+                  "name": "test-instance",
+                  "type": "instance",
+                  "status": "deployed",
+                  "policy_version": "2023-12-06 22:37:24",
+                  "deployed_on": "2023-12-06T22:37:24.120114Z",
+                  "enforcement_mode": "blocking",
+                  "threat_campaign_version": "2023.12.06",
+                  "attack_signature_version": "2023.12.06",
+                  "bot_sigature_version": "2023.12.06"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "NapPolicyVersionMetadata": {
+        "type": "object",
+        "required": [
+          "object_id",
+          "enforcement_mode",
+          "deployment_status",
+          "instance_count",
+          "config_sync_group_count",
+          "created_on",
+          "created_by",
+          "latest"
+        ],
+        "properties": {
+          "object_id": {
+            "$ref": "#/components/schemas/NapPolicyVersionObjectID"
+          },
+          "enforcement_mode": {
+            "$ref": "#/components/schemas/NapPolicyEnforcementMode"
+          },
+          "deployment_status": {
+            "$ref": "#/components/schemas/NapDeploymentStatus"
+          },
+          "instance_count": {
+            "description": "The number of NGINX One instances associated with the NGINX App Protect policy version",
+            "type": "integer"
+          },
+          "config_sync_group_count": {
+            "description": "The number of NGINX One config sync groups associated with the NGINX App Protect policy version",
+            "type": "integer"
+          },
+          "created_on": {
+            "description": "The date and time when the NGINX App Protect policy version was created.",
+            "type": "string",
+            "format": "date-time"
+          },
+          "created_by": {
+            "description": "The NGINX One user who created the NGINX App Protect policy.",
+            "type": "string"
+          },
+          "latest": {
+            "description": "Indicates whether the NGINX App Protect policy version is latest. Default (`false`) returns the current policy. \nWhen set to `true`, returns the latest policy.\n",
+            "type": "boolean",
+            "default": false
+          }
+        },
+        "example": {
+          "object_id": "pv_-uvR3F2TQGm18jnl7bpaGw",
+          "created_on": "2023-12-06T22:37:24.120114Z",
+          "created_by": "john.doe@example.com",
+          "deployment_status": "deployed",
+          "enforcement_mode": "blocking",
+          "instance_count": 10,
+          "config_sync_group_count": 15,
+          "latest": false
+        }
+      },
+      "NapPolicyVersionResponse": {
+        "description": "Summary information about NGINX App Protect policy version.",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/NapPolicyVersionMetadata"
+          },
+          {
+            "$ref": "#/components/schemas/NapPolicy"
+          }
+        ]
+      },
+      "NapPolicyVersionsListResponse": {
+        "description": "List of all NGINX App Protect versions.",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/PaginationResponse"
+          },
+          {
+            "type": "object",
+            "required": [
+              "items"
+            ],
+            "properties": {
+              "items": {
+                "description": "An array of NGINX App Protect version objects.",
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/NapPolicyVersionMetadata"
+                }
+              }
+            },
+            "example": {
+              "items": [
+                {
+                  "object_id": "appv_-uvR3F2TQGm18jnl7bpaGw",
+                  "created_on": "2023-12-06T22:37:24.120114Z",
+                  "created_by": "john.doe@example.com",
+                  "deployment_status": "deployed",
+                  "enforcement_mode": "blocking",
+                  "instance_count": 10,
+                  "config_sync_group_count": 15,
+                  "latest": false
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "NapLogProfileListResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/PaginationResponse"
+          },
+          {
+            "type": "object",
+            "required": [
+              "items"
+            ],
+            "properties": {
+              "items": {
+                "description": "An array of NGINX App Protect log profiles.",
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/NapLogProfileMetadata"
+                }
+              }
+            },
+            "example": {
+              "items": [
+                {
+                  "name": "test-log-profile"
+                },
+                {
+                  "object_id": "lp_-uvR3F2TQGm18jnl7bpaGw"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "NapLogProfileResponse": {
+        "$ref": "#/components/schemas/NapLogProfileMetadata"
+      },
+      "NapLogProfileMetadata": {
+        "type": "object",
+        "required": [
+          "name",
+          "object_id"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The name of the NGINX App Protect log profile."
+          },
+          "object_id": {
+            "$ref": "#/components/schemas/NapLogProfileObjectID"
+          },
+          "description": {
+            "description": "Optional field to describe the NGINX App Protect log profile.",
+            "type": "string",
+            "minLength": 5,
+            "maxLength": 256
+          }
+        }
+      },
+      "NapGlobalSettingsListResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/PaginationResponse"
+          },
+          {
+            "type": "object",
+            "required": [
+              "items"
+            ],
+            "properties": {
+              "items": {
+                "description": "An array of NGINX App Protect global settings.",
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/NapGlobalSettingsMetadata"
+                }
+              }
+            },
+            "example": {
+              "items": [
+                {
+                  "name": "test-global-settings"
+                },
+                {
+                  "object_id": "gs_-uvR3F2TQGm18jnl7bpaGw"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "NapGlobalSettingsResponse": {
+        "$ref": "#/components/schemas/NapGlobalSettingsMetadata"
+      },
+      "NapGlobalSettingsMetadata": {
+        "type": "object",
+        "required": [
+          "name",
+          "object_id"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The name of the NGINX App Protect global settings object."
+          },
+          "description": {
+            "description": "Optional field to describe the NGINX App Protect global setting object.",
+            "type": "string",
+            "minLength": 5,
+            "maxLength": 256
+          },
+          "object_id": {
+            "$ref": "#/components/schemas/NapGlobalSettingsObjectID"
+          }
+        }
+      },
+      "NapPolicyObjectID": {
+        "description": "A globally unique identifier for the App Protect policy.",
+        "type": "string",
+        "format": "object_id",
+        "pattern": "^pol_.*",
+        "x-go-type": "objects.ID",
+        "x-go-type-import": {
+          "name": "objects",
+          "path": "gitlab.com/f5/nginx/one/saas/control-plane/pkg/collections/objects"
+        }
+      },
+      "NapPolicyVersionObjectID": {
+        "description": "A globally unique identifier for the App Protect policy version.",
+        "type": "string",
+        "format": "object_id",
+        "pattern": "^pv_.*",
+        "x-go-type": "objects.ID",
+        "x-go-type-import": {
+          "name": "objects",
+          "path": "gitlab.com/f5/nginx/one/saas/control-plane/pkg/collections/objects"
+        }
+      },
+      "NapLogProfileObjectID": {
+        "description": "A globally unique identifier for the App Protect log profile.",
+        "type": "string",
+        "format": "object_id",
+        "pattern": "^lp_.*",
+        "x-go-type": "objects.ID",
+        "x-go-type-import": {
+          "name": "objects",
+          "path": "gitlab.com/f5/nginx/one/saas/control-plane/pkg/collections/objects"
+        }
+      },
+      "NapGlobalSettingsObjectID": {
+        "description": "A globally unique identifier for the App Protect global settings object.",
+        "type": "string",
+        "format": "object_id",
+        "pattern": "^gs_.*",
+        "x-go-type": "objects.ID",
+        "x-go-type-import": {
+          "name": "objects",
+          "path": "gitlab.com/f5/nginx/one/saas/control-plane/pkg/collections/objects"
+        }
       }
     },
     "examples": {
@@ -7585,7 +8999,8 @@
         "Config Sync Groups",
         "Certificates",
         "CVEs",
-        "Events"
+        "Events",
+        "Staged Configs"
       ]
     },
     {
