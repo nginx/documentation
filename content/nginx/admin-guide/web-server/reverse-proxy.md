@@ -43,7 +43,6 @@ location ~ \.php {
 
 Note that in the first example above, the address of the proxied server is followed by a URI, `/link/`. If the URI is specified along with the address, it replaces the part of the request URI that matches the location parameter. 
 
-
 For example, the request with the `/some/path/page.html` URI will be proxied to `http://www.example.com/link/page.html`. However, if a path is not specified or it is not possible to determine the part of URI to be replaced, the full request URI is passed (possibly, modified).
 
 To pass a request to a non-HTTP proxied server, the appropriate `**_pass` directive should be used:
