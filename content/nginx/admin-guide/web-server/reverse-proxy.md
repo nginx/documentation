@@ -91,7 +91,7 @@ The directive that is responsible for enabling and disabling buffering is [proxy
 
 The [proxy_buffers](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_buffers) and [proxy_buffer_size](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_buffer_size) directives control how NGINX stores and buffers data.
 
-[proxy_buffers](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_buffers) :
+[proxy_buffers](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_buffers):
 
 The [proxy_buffers](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_buffers) directive controls the size and the number of buffers allocated for a request.These buffers store the body of the response, which typically makes up the larger portion of the data.
 
