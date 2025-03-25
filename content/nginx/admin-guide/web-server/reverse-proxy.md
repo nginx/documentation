@@ -59,7 +59,7 @@ The [proxy_pass](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy
 <span id="headers"></span>
 ## Passing Request Headers
 
-By default, NGINX modifies two header fields in proxied requests, “Host” and “Connection”, and eliminates the header fields whose values are empty strings before passing the request. “Host” is set to the value of the `$proxy_host` variable, and “Connection” is set to `close`.
+By default, NGINX modifies two header fields in proxied requests, “Host” and “Connection”, and eliminates the header fields whose values are empty strings. “Host” is set to the value of the `$proxy_host` variable, and “Connection” is set to `close`.
 
 To change these settings, as well as modify other header fields, use the [proxy_set_header](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_set_header) directive. This directive can be specified in a [location](https://nginx.org/en/docs/http/ngx_http_core_module.html#location) or higher. It can also be specified in a particular [server](https://nginx.org/en/docs/http/ngx_http_core_module.html#server) context or in the [http](https://nginx.org/en/docs/http/ngx_http_core_module.html#http) block. For example:
 
