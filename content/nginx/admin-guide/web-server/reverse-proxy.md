@@ -19,11 +19,9 @@ Proxying is typically used to distribute the load among several servers, seamles
 
 When NGINX proxies a request, it:
 
-1. Sends the request to a specified proxied server
-
-2. Fetches the response
-
-3. Sends the response back to the client. 
+1. Sends the request to a specified proxy server
+1. Fetches the response
+1. Sends the response back to the client. 
 
 It is possible to proxy requests to an HTTP server (another NGINX server or any other server) or a non-HTTP server (which can run an application developed with a specific framework, such as PHP or Python) using a specified protocol. Supported protocols include [FastCGI](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html), [uwsgi](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html), [SCGI](https://nginx.org/en/docs/http/ngx_http_scgi_module.html), and [memcached](https://nginx.org/en/docs/http/ngx_http_memcached_module.html).
 
