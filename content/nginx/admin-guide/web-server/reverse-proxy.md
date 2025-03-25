@@ -54,7 +54,7 @@ To pass a request to a non-HTTP proxied server, the appropriate `**_pass` direct
 
 Note that in these cases, the rules for specifying addresses may be different. You may also need to pass additional parameters to the server (see the [reference documentation](https://nginx.org/en/docs/) for more detail).
 
-The [proxy_pass](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass) directive can also be used to forward requests to a [named group](https://nginx.org/en/docs/http/load_balancing.html#algorithms) of servers. In this case, requests are distributed among the servers in the group according to the [specified method](https://www.nginx.com/resources/admin-guide/load-balancer/).
+The [proxy_pass](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass) directive can also be used to pass requests to a [named group](https://nginx.org/en/docs/http/load_balancing.html#algorithms) of servers. In this case, requests are distributed among the servers in the group according to the [specified method](https://www.nginx.com/resources/admin-guide/load-balancer/).
 
 <span id="headers"></span>
 ## Passing Request Headers
