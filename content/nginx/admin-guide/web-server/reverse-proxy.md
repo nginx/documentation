@@ -95,7 +95,7 @@ The [proxy_buffers](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#pr
 
 The [proxy_buffers](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_buffers) directive controls the size and the number of buffers allocated for a request.These buffers store the body of the response, which typically makes up the larger portion of the data.
 
-[proxy_buffer_size](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_buffer_size) :
+[proxy_buffer_size](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_buffer_size):
 
 The
 [proxy_buffer_size](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_buffer_size) directive sets the size of a separate buffer which is used to store the first part of a response.It usually contains a comparatively small response header and can be made smaller than the buffers used for the rest of the response.
