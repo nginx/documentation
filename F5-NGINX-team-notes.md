@@ -15,6 +15,7 @@ PRs, issues, discussions, and more, follow these guidelines:
 
 - Follow the [Code of Conduct](./CODE_OF_CONDUCT.md).
 - Be helpful. We want to encourage people who contribute to continue.
+  - If you need to say "no," here's [an example](https://github.com/nginx/documentation/pull/307#issuecomment-2748521932) of how we interact with the community.
 - Avoid references and links to internal content. 
 - Do not include information about future releases, changes, or features, unless
   specifically authorized.

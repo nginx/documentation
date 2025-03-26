@@ -15,7 +15,7 @@ If you are an F5 employee, see the following additional guidance [For F5 Employe
   - Review our Documentation [style guide](./templates/style-guide.md)
   - Review our [Contributing guidelines for writers](./CONTRIBUTING_DOCS.md)
 - [Issue Lifecycle](#issue-lifecycle)
-- [Content edited elsewhere](#content-edited-elsewhere)
+- [Additional NGINX documentation](#additional-nginx-documentation)
 - [F5 Contributor License Agreement (CLA)](#f5-contributor-license-agreement)
 
 ## Report a bug
@@ -92,7 +92,6 @@ This repository does not include all of the source content for the NGINX documen
 - [nginx.org](https://github.com/nginx/nginx.org) - source for https://nginx.org
 - [NGINX Unit](https://github.com/nginx/unit) - source for https://unit.nginx.org
 - [NGINX Ingress Controller](https://github.com/nginxinc/kubernetes-ingress/) - source for https://docs.nginx.com/nginx-ingress-controller
-- [NGINX Agent](https://github.com/nginx/agent) - source for https://docs.nginx.com/nginx-agent
 
 In those repositories, you can find documentation source code in the `docs` or `site` subdirectories.
 
