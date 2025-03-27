@@ -19,7 +19,7 @@ The F5 NGINX Agent is a lightweight companion daemon designed to work with NGINX
 - Real-Time Observability into NGINX One Data Plane Instances 
     - Provides live monitoring and actionable insights into the performance, status, and health of NGINX One Data Plane instances, improving decision-making and operational efficiency.   
 
-    - [OpenTelemetry](https://opentelemetry.io/) support comes with F5 NGINX Agent, and the ability to [export the metrics data]({{< relref "/agent/how-to/how-to-configure-otel.md" >}}) for use in other applications.
+    - [OpenTelemetry](https://opentelemetry.io/) support comes with F5 NGINX Agent, and the ability to [export the metrics data]({{< relref "/agent/otel/configure-otel-metrics.md" >}}) for use in other applications.
 
 ---
 
