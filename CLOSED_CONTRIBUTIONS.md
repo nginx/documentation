@@ -15,10 +15,11 @@ This repository (https://github.com/nginx/documentation) is where we work by def
 
 The process is as follows:
 
-- Create a branch with the prefix `internal/` in the closed repository
+- Add the closed repository as a remote
+- Create a remote branch with the prefix `internal/` in the closed repository
 - Open a pull request in the closed repository to get previews and request feedback
 - Once all stakeholders are happy with changes, close the pull request in the closed repository
-- Push the changes to the open (public) repository by adding the closed repository as a remote
+- Merge the changes from the remote close repository branch with a new branch in the open repository
 - Open a new pull request in the open repository, where it can be merged
 
 You can get the URL through our internal communication channels: it will be represented in the following steps as `<closed-URL>`.
@@ -33,52 +34,32 @@ git remote add internal git@github.com:<closed-url>.git
 git fetch
 ```
 
-Check out the `documentation` branch, and use it to create a feature branch. **Ensuring that you prefix all branch names with `internal/`**
+Check out the `documentation` branch, and use it to create a feature branch. **Ensure that you prefix all branch names with `internal/`**
 
 ```shell
 git checkout internal/documentation
 git checkout -b internal/feature
 ```
 
-To create closed content, first clone the internal repository:
+Once you've finished with your work, commit it and push it to the internal repository:
 
-`git clone git@github.com:<closed-url>.git`
-
-Change into this new directory:
-
-`cd <closed-url>`
-
-Check out the `documentation` branch:
-
-`git checkout documentation`
-
-Create a feature branch, **ensuring that you prefix all branch names with `internal/`**:
-
-`git checkout -b internal/feature`
-
-You can then continue on as normal:
-
-```bash
-# Make documentation changes
+```shell
 git add .
 git commit
-git push
+git push internal
 ```
 
 Open a pull request when you are ready to receive feedback from stakeholders.
 
 After any iterative work, close the pull request. Since the closed repository is a mirror of the open one, we do not merge changes to it.
 
-You should instead open a pull request in the main repository by adding the closed repository as a remote.
+Change back to `main`, create a new branch, merge your internal branch and push to origin.
 
-```bash
-git clone git@github.com:nginx/documentation.git
-cd documentation
-git add remote internal git@github.com:<closed-url>.git
-git fetch internal internal/feature
+```shell
+git checkout main
 git checkout -b feature
 git merge internal/internal/feature
-git push origin feature
+git push origin
 ```
 
-After the content changes have been merged in the open repository, they will synchronize back to the closed repository.
+Once the content changes have been merged in the open repository, they will synchronize back to the closed repository.
