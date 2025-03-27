@@ -1,60 +1,73 @@
 ---
-title: "Technical specifications"
+title: "Technical Specifications"
 toc: true
-weight: 200
+weight: 700
 docs: DOCS-000
 ---
 
 ## Overview
 
-This document provides technical specifications for F5 NGINX Agent. It includes information on supported distributions, deployment environments, NGINX versions, sizing recommendations, and logging.
+This document outlines the technical specifications for the F5 NGINX Agent, including details on supported operating systems, deployment environments, compatible NGINX versions, minimum system sizing requirements, and logging considerations.
 
-## Supported distributions
+---
 
-NGINX Agent can run in most environments. We support the following distributions:
+## Supported Distributions
 
-{{< bootstrap-table "table table-striped table-bordered" >}}
-| | AlmaLinux | Alpine Linux | Amazon Linux | Amazon Linux 2 | CentOS | Debian |
-|-|-----------|--------------|--------------|----------------|--------|--------|
-|**Version**|8 <br><hr>9 |  3.16<br><hr>3.17<br><hr> 3.18<br><hr> 3.19|  2023|  LTS|  7.4+|  11<br><hr> 12|
-|**Architecture**| x86_84<br><hr>aarch64| x86_64<br><hr>aarch64 | x86_64<br><hr>aarch64 | x86_64<br><hr>aarch64 | x86_64<br><hr>aarch64 | x86_64<br><hr>aarch64 |
-{{< /bootstrap-table >}}
+The NGINX Agent is versatile and can operate across various environments. Currently, the following distributions are supported:
 
-{{< bootstrap-table "table table-striped table-bordered" >}}
-| |FreeBSD | Oracle Linux | Red Hat <br>Enterprise Linux <br>(RHEL) | Rocky Linux | SUSE Linux <br>Enterprise Server <br>(SLES) | Ubuntu |
-|-|--------|--------------|---------------------------------|-------------|-------------------------------------|--------|
-|**Version**|13<br><hr>14|7.4+<br><hr>8.1+<br><hr>9|7.4+<br><hr>8.1+<br><hr>9.0+|8<br><hr>9|12 SP5<br><hr>15 SP2|20.04 LTS<br><hr>22.04 LTS|
-|**Architecture**|amd64|x86_64|x86_64<br><hr>aarch64|x86_64<br><hr>aarch64|x86_64|x86_64<br><hr>aarch64|
-{{< /bootstrap-table >}}
+| Distribution                       | Supported Versions                    | Architectures       |
+|------------------------------------|---------------------------------------|---------------------|
+| **AlmaLinux**                      | 8, 9                                  | x86_64, aarch64     |
+| **Alpine Linux**                   | 3.16, 3.17, 3.18, 3.19                | x86_64, aarch64     |
+| **Amazon Linux**                   | 2023                                  | x86_64, aarch64     |
+| **Amazon Linux 2**                 | LTS                                   | x86_64, aarch64     |
+| **CentOS**                         | 7.4+                                  | x86_64, aarch64     |
+| **Debian**                         | 11, 12                                | x86_64, aarch64     |
+| **Oracle Linux**                   | 7.4+, 8.1+, 9                         | x86_64              |
+| **Red Hat Enterprise Linux (RHEL)**| 7.4+, 8.1+, 9.0+                      | x86_64, aarch64     |
+| **Rocky Linux**                    | 8, 9                                  | x86_64, aarch64     |
+| **SUSE Linux Enterprise Server (SLES)** | 12 SP5, 15 SP2                      | x86_64              |
+| **Ubuntu**                         | 20.04 LTS, 22.04 LTS                  | x86_64, aarch64     |
 
+---
 
-## Supported deployment environments
+## Supported Deployment Environments
 
-NGINX Agent can be deployed in the following environments:
+The NGINX Agent supports deployment in the following environments:
 
-- Bare Metal
-- Container
-- Public Cloud: AWS, Google Cloud Platform, and Microsoft Azure
-- Virtual Machine
+- **Bare Metal** machines
+- **Containers**
+- **Public Cloud** platforms, including AWS, Google Cloud Platform, and Microsoft Azure
+- **Virtual Machines**
 
-## Supported NGINX versions
+---
 
-NGINX Agent works with all supported versions of NGINX Open Source and NGINX Plus.
+## Supported NGINX Versions
 
+The NGINX Agent is compatible with all supported releases of NGINX Open Source and NGINX Plus.
 
-## Sizing recommendations
+---
 
-Minimum system sizing recommendations for NGINX Agent:
-{{< bootstrap-table "table table-striped table-bordered" >}}
-| CPU        | Memory   | Network   | Storage |
-|------------|----------|-----------|---------|
-| 1 CPU core | 1 GB RAM | 1 GbE NIC | 20 GB   |
-{{< /bootstrap-table >}}
+## Minimum System Requirements
+
+Below are the recommended minimum system specifications for running the NGINX Agent:
+
+| **Resource** | **Minimum Requirement** |
+|--------------|--------------------------|
+| **CPU**      | 1 CPU core              |
+| **Memory**   | 1 GB RAM                |
+| **Network**  | 1 GbE NIC               |
+| **Storage**  | 20 GB                   |
+
+---
 
 ## Logging
 
-NGINX Agent utilizes log files and formats to collect metrics. Increasing the log formats and instance counts will result in increased log file sizes.
+The NGINX Agent uses log files in standardized formats to collect metrics. As the number of log formats or instances grows, the size of these log files will increase correspondingly.
 
-To prevent system storage issues due to a growing log directory, it is recommended to add a separate partition for `/var/log/nginx-agent` and enable [log rotation](http://nginx.org/en/docs/control.html#logs).
+To avoid system storage constraints caused by expanding log directories, it is recommended to:
 
-More information is available in the [Configuration overview]({{< relref "/agent/how-to/configuration-overview.md#logs" >}})
+- Set up a **dedicated partition** for `/var/log/nginx-agent`.
+- Enable **[log rotation](https://linux.die.net/man/8/logrotate)** to manage log file growth effectively.
+
+For additional details on managing logs, refer to the [Configuration Overview]({{< relref "/agent/how-to/configuration-overview.md#logs" >}}).
