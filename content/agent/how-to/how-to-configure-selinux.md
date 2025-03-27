@@ -17,7 +17,7 @@ Take these preparatory steps before configuring SELinux:
 
 1. Enable SELinux on your system.
 2. Install the tools `load_policy`, `semodule`, and `restorecon`.
-3. [Install NGINX Agent]({{< relref "/agent/install-upgrade/install.md" >}}) with SELinux module files in place.
+3. [Install NGINX Agent]({{< rel "/agent/install-upgrade/install.md" >}}) with SELinux module files in place.
 
 {{< important >}}SELinux can use `permissive` mode, where policy violations are logged instead of enforced. Verify which mode your configuration uses.{{< /important >}}
 
