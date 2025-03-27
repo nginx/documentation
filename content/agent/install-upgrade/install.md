@@ -7,6 +7,7 @@ docs: DOCS-000
 
 This document describes the three main ways to install F5 NGINX agent:
 
+- Using NGINX One Console
 - Using the NGINX Open Source repository
 - Using the NGINX Plus repository
 - Using the GitHub package files
@@ -15,17 +16,34 @@ This document describes the three main ways to install F5 NGINX agent:
 
 There are a few prerequisites shared between all installation methods:
 
+- [NGINX One Console Getting Started]({{< relref "/nginx-one/getting-started" >}})
 - A [supported operating system and architecture](../technical-specifications/#supported-distributions)
 - `root` privilege
 
-## NGINX Open Source repository
+When F5 NGINX Agent is installed, it will remain idle in the background. For proper functionality, two actions are required: 
+- **Install NGINX:** Ensure the NGINX is installed on the system.
+- **Connect to the NGINX One Console:** Establish a connection between the installed NGINX instance and the NGINX One Console."
+     
 
-Before you install NGINX Agent, you must install and run NGINX.
+## Connect to NGINX One Console
+For a quick guide on how to connect to NGINX One Console see: [Connect to NGINX One Console]({{< relref "/nginx-one/how-to/nginx-configs/add-instance" >}})
 
-If you don't have it installed already, read the [Installing NGINX Open Source
-](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-open-source/) topic.
-
-
+### Manual Connect 
+1. Ensure the F5 NGINX Agent is installed 
+1. Locate the F5 NGINX Agent Configuration File:  
+    ```bash
+    /etc/nginx-agent/nginx-agent.conf
+    ```
+1. Open the NGINX Agent configuration file in a text editor like vim: 
+`sudo vim /etc/nginx-agent/nginx-agent.conf`
+1. Uncomment the command block, and set the token to your data plane key 
+1. Save the changes and close the editor 
+1. Restart the F5 NGINX Agent service:
+    ```bash
+    sudo systemctl stop nginx-agent
+    ```
+    
+## Manual Installations
 ### Configure NGINX OSS Repository for installing NGINX Agent
 
 Before you install NGINX Agent for the first time on your system, you need to set up the `nginx-agent` packages repository. Afterward, you can install and update NGINX Agent from the repository.
@@ -317,19 +335,6 @@ Before you install NGINX Agent for the first time on your system, you need to se
     ```shell
     sudo pkg install nginx-agent
     ```
-
-## NGINX Plus repository
-
-Before you install NGINX Agent, you must install and run NGINX Plus.
-
-If you don’t have it installed already, read the [Installing NGINX Plus
-](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/) topic.
-
-You will also need the following:
-
-- Your credentials to the MyF5 Customer Portal, provided by email from F5, Inc.
-- An NGINX Plus subscription (Full or trial)
-- Your NGINX Plus certificate and public key (`nginx-repo.crt` and `nginx-repo.key` files), provided by email from F5, Inc.
 
 ### Configure NGINX Plus Repository for installing NGINX Agent
 
@@ -755,7 +760,7 @@ Use your system's package manager to install the package. Some examples:
   sudo pkg add nginx-agent-<agent-version>.pkg
   ```
 
-## systemd environments
+## Starting, Stopping, and Enabling NGINX Agent
 
 To start NGINX Agent on `systemd` systems, run the following command:
 
@@ -769,16 +774,21 @@ To enable NGINX Agent to start on boot, run the following command:
 sudo systemctl enable nginx-agent
 ```
 
+To stop NGINX Agent, run the following command:
+
+```shell
+sudo systemctl stop nginx-agent
+```
+
 ## Verify that NGINX Agent is running
 
 Once you have installed NGINX Agent, you can verify that it is running with the following command:
 
 ```shell
-sudo nginx-agent -v
+sudo systemctl status nginx-agent
 ```
 
-## Enable interfaces
-
-Once NGINX Agent is successfully running, you can enable the required interfaces, which is described in the [Enable gRPC and REST interfaces]({{< relref "/agent/how-to/enable-interfaces.md" >}}) topic.
-
-You may also be interested in the [Start mock control plane interface]({{< relref "/agent/contribute/start-mock-interface.md" >}}) topic for development work.
+To check the version installed, run the following command:
+```shell
+sudo nginx-agent -v
+```
