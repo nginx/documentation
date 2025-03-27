@@ -34,7 +34,7 @@ wget https://github.com/nginx/agent/blob/v3/scripts/packages/upgrade-agent-confi
 ./upgrade-agent-config.sh --v2-config-file=./nginx-agent-v2.conf --v3-config-file=nginx-agent-v3.conf
 ```
 
-If your NGINX Agent container was apart of a config sync group, then your NGINX Agent config needs to be manually updated to add the config sync group label. 
+If your NGINX Agent container was previously a member of a config sync group, then your NGINX Agent config must be manually updated to add the config sync group label.
 See [Add Config Sync Group]({{< ref "/nginx-one/how-to/config-sync-groups/manage-config-sync-groups.md" >}}) for more information.
 
 ---
