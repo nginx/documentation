@@ -23,6 +23,23 @@ The process is as follows:
 
 You can get the URL through our internal communication channels: it will be represented in the following steps as `<closed-URL>`.
 
+## Steps
+
+To create closed content, add the closed repository as a remote to the main repository, then fetch.
+
+```shell
+cd documentation
+git remote add internal git@github.com:<closed-url>.git
+git fetch
+```
+
+Check out the `documentation` branch, and use it to create a feature branch. **Ensuring that you prefix all branch names with `internal/`**
+
+```shell
+git checkout internal/documentation
+git checkout -b internal/feature
+```
+
 To create closed content, first clone the internal repository:
 
 `git clone git@github.com:<closed-url>.git`
