@@ -9,7 +9,7 @@ This guide walks you through the steps to install NGINX Agent using a variety
 of methods:
 
 - [Install using NGINX One Console](#connect-to-nginx-one-console)
-- Install using an NGINX repository: [NGINX OSS repository](#manual-installation-using-the-nginx-open-source-repository) or [NGINX Plus repository](#manual-installation-using-the-nginx-plus-repository)
+- Install using the [NGINX Open Source repository](#manual-installation-using-the-nginx-open-source-repository) or [NGINX Plus repository](#manual-installation-using-the-nginx-plus-repository)
 - [Install using GitHub package files](#github-package-files)
 
 ## Before you begin
