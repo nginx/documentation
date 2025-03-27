@@ -19,7 +19,7 @@ The process is as follows:
 - Create a remote branch with the prefix `internal/` in the closed repository
 - Open a pull request in the closed repository to get previews and request feedback
 - Once all stakeholders are happy with changes, close the pull request in the closed repository
-- Merge the changes from the remote close repository branch with a new branch in the open repository
+- Merge the changes from the remote (Closed) repository branch with a new branch in the open repository
 - Open a new pull request in the open repository, where it can be merged
 
 You can get the URL through our internal communication channels: it will be represented in the following steps as `<closed-URL>`.
