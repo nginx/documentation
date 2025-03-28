@@ -18,6 +18,36 @@ The release notes for F5 NGINX Instance Manager highlight the latest features, i
 
 ---
 
+## 2.19.1
+
+March 27, 2025
+
+### Upgrade Paths {#2-19-1-upgrade-paths}
+
+NGINX Instance Manager supports upgrades from these previous versions:
+
+- 2.16.x - 2.19.0
+
+If your NGINX Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
+
+### What's New{#2-19-1-whats-new}
+This release includes the following updates:
+
+- {{% icon-feature %}} **Stability and performance improvements**<a name="2-19-1-whats-new-Stability-and-performance-improvements"></a>
+
+  This release includes stability and performance improvements for a more reliable experience.
+
+### Resolved Issues{#2-19-1-resolved-issues}
+
+This release fixes the following issues. Check the [Known Issues]({{< relref "/nim/releases/known-issues.md" >}})  topic for more information on the latest resolved issues. Use your browser's search function to find the issue ID in the page.
+
+
+- {{% icon-resolved %}} Automatic downloading of NAP compiler versions 5.210.0 and 5.264.0 fails on Ubuntu 24 (45846)
+
+- {{% icon-resolved %}} Publishing the NAP policy fails with the error "The attack signatures with the given version was not found" (45845)
+
+---
+
 ## 2.19.0
 
 February 6, 2025
@@ -34,7 +64,7 @@ If your NGINX Instance Manager version is older, you may need to upgrade to an i
 
 NGINX Instance Manager 2.19 is the first iteration of NGINX Instance Manager as a standalone product without modules such as API Connectivity Manager (which is [EoS](https://my.f5.com/manage/s/article/K000137989)). NGINX Instance Manager now includes Security Monitoring (previously a module) as a feature under App Protect in the web interface. The Instance Manager helm charts and docker compose options include Security Monitoring also.
 
-Instance Manager 2.19 will not be compatible or supported with EoS API Connectivity Manager. API Connectivity Manager users get support of Instance Manager up to 2.18 and upgrades to Instance Manager 2.19 will not succeed if API Connectivity Manager is installed. 
+Instance Manager 2.19 will not be compatible or supported with EoS API Connectivity Manager. API Connectivity Manager users get support of Instance Manager up to 2.18 and upgrades to Instance Manager 2.19 will not succeed if API Connectivity Manager is installed.
 
 ### What's New{#2-19-0-whats-new}
 This release includes the following updates:
@@ -88,17 +118,18 @@ This release has the following changes in default behavior:
    Starting in 2.19.0, remote certificates that are expired are removed from the web interface after 30 days.
 
 ### Resolved Issues{#2-19-0-resolved-issues}
-This release fixes the following issues. Select an issue's ID link to view its details.
+This release fixes the following issues. Check the [Known Issues]({{< relref "/nim/releases/known-issues.md" >}})  topic for more information on the latest resolved issues. Use your browser's search function to find the issue ID in the page.
 
-- {{% icon-resolved %}} .tgz files are not accepted in templates [(45301)]({{< relref "/nim/releases/known-issues.md#45301" >}})<a name="2-19-0-resolved-issues-tgz-files-are-not-accepted-in-templates"></a>
 
-- {{% icon-resolved %}} The web interface can't display more than 100 certificates [(45565)]({{< relref "/nim/releases/known-issues.md#45565" >}})<a name="2-19-0-resolved-issues-The-web-interface-can-t-display-more-than-100-certificates"></a>
+- {{% icon-resolved %}} .tgz files are not accepted in templates (45301)
 
-- {{% icon-resolved %}} Syntax errors while saving template configuration [(45573)]({{< relref "/nim/releases/known-issues.md#45573" >}})<a name="2-19-0-resolved-issues-Syntax-errors-while-saving-template-configuration"></a>
+- {{% icon-resolved %}} The web interface can't display more than 100 certificates (45565)
 
-- {{% icon-resolved %}} Error messages persist after fix [(45024)]({{< relref "/nim/releases/known-issues.md#45024" >}})<a name="2-19-0-resolved-issues-Error-messages-persist-after-fix"></a>
+- {{% icon-resolved %}} Syntax errors while saving template configuration (45573)
 
-- {{% icon-resolved %}} NGINX configuration error messages overlap outside the error window [(45570)]({{< relref "/nim/releases/known-issues.md#45570" >}})<a name="2-19-0-resolved-issues-NGINX-configuration-error-messages-overlap-outside-the-error-window"></a>
+- {{% icon-resolved %}} Error messages persist after fix (45024)
+
+- {{% icon-resolved %}} NGINX configuration error messages overlap outside the error window (45570)
 
 
 ### Known Issues{#2-19-0-known-issues}
@@ -159,10 +190,11 @@ This release has the following changes in default behavior:
   The “NGINX Usage” page previously displayed instances connected to NGINX Instance Manager through multiple methods, including the NGINX Agent, health checks, and the `mgmt` block in NGINX Plus R31-R32. With the introduction of native reporting in NGINX Plus R33, only instances using this feature appear on the page, preventing duplicates. For more information on R33 usage reporting, see [About subscription licenses]({{< relref "solutions/about-subscription-licenses.md" >}}).
 
 ### Resolved Issues{#2-18-0-resolved-issues}
-This release fixes the following issues. Select an issue's ID link to view its details.
+This release fixes the following issues. Check the [Known Issues]({{< relref "/nim/releases/known-issues.md" >}})  topic for more information on the latest resolved issues. Use your browser's search function to find the issue ID in the page.
 
-- {{% icon-resolved %}} Mismatch in date formats in custom date selection on NGINX usage graph [(45512)]({{< relref "/nim/releases/known-issues.md#45512" >}})<a name="2-17-0-resolved-issues-Users-receive-login-error-when-NGINX-Management-Suite-is-deployed-in-Kubernetes"></a>
-- {{% icon-resolved %}} Failure to notify user when template configuration publish fails [(44975)]({{< relref "/nim/releases/known-issues.md#44975" >}})<a name="2-17-0-resolved-issues-REST-API-does-not-work-until-you-log-into-the-web-interface-first"></a>
+
+- {{% icon-resolved %}} Mismatch in date formats in custom date selection on NGINX usage graph (45512)
+- {{% icon-resolved %}} Failure to notify user when template configuration publish fails (44975)
 
 
 ### Known Issues{#2-18-0-known-issues}
@@ -336,12 +368,13 @@ This release has the following changes in default behavior:
   Please upgrade your environment to one of the [supported distributions]({{< relref "/nim/fundamentals/tech-specs.md#supported-distributions" >}}) to continue using NGINX Instance Manager.
 
 ### Resolved Issues{#2-17-0-resolved-issues}
-This release fixes the following issues. Select an issue's ID link to view its details.
+This release fixes the following issues. Check the [Known Issues]({{< relref "/nim/releases/known-issues.md" >}})  topic for more information on the latest resolved issues. Use your browser's search function to find the issue ID in the page.
 
-- {{% icon-resolved %}} Users receive login error when NGINX Management Suite is deployed in Kubernetes [(44686)]({{< relref "/nim/releases/known-issues.md#44686" >}})<a name="2-17-0-resolved-issues-Users-receive-login-error-when-NGINX-Management-Suite-is-deployed-in-Kubernetes"></a>
-- {{% icon-resolved %}} REST API does not work until you log into the web interface first [(44877)]({{< relref "/nim/releases/known-issues.md#44877" >}})<a name="2-17-0-resolved-issues-REST-API-does-not-work-until-you-log-into-the-web-interface-first"></a>
-- {{% icon-resolved %}}  Editing template submissions uses the latest versions, may cause "malformed" errors [(44961)]({{< relref "/nim/releases/known-issues.md#44961" >}})<a name="2-17-0-resolved-issues--Editing-template-submissions-uses-the-latest-versions,-may-cause-&#34;malformed&#34;-errors"></a>
-- {{% icon-resolved %}} Editing template submissions now allows for using most recent template version [(44971)]({{< relref "/nim/releases/known-issues.md#44971" >}})<a name="2-17-0-resolved-issues-Editing-template-submissions-now-allows-for-using-most-recent-template-version"></a>
+
+- {{% icon-resolved %}} Users receive login error when NGINX Management Suite is deployed in Kubernetes (44686)
+- {{% icon-resolved %}} REST API does not work until you log into the web interface first (44877)
+- {{% icon-resolved %}}  Editing template submissions uses the latest versions, may cause "malformed" errors (44961)
+- {{% icon-resolved %}} Editing template submissions now allows for using most recent template version (44971)
 
 ### Known Issues{#2-17-0-known-issues}
 
@@ -410,10 +443,11 @@ This release includes the following updates:
 
 
 ### Resolved Issues{#2-15-1-resolved-issues}
-This release fixes the following issues. Select an issue's ID link to view its details.
+This release fixes the following issues. Check the [Known Issues]({{< relref "/nim/releases/known-issues.md" >}})  topic for more information on the latest resolved issues. Use your browser's search function to find the issue ID in the page.
 
-- {{% icon-resolved %}} Helm chart backup and restore is broken in NIM 2.15.0 [(44758)]({{< relref "/nim/releases/known-issues.md#44758" >}})<a name="2-15-1-resolved-issues-Helm-chart-backup-and-restore-is-broken-in-NIM-2-15-0"></a>
-- {{% icon-resolved %}} Unable to use NMS Predefined Log Profiles for NAP 4.7 [(44759)]({{< relref "/nim/releases/known-issues.md#44759" >}})<a name="2-15-1-resolved-issues-Unable-to-use-NMS-Predefined-Log-Profiles-for-NAP-4-7"></a>
+
+- {{% icon-resolved %}} Helm chart backup and restore is broken in NIM 2.15.0 (44758)
+- {{% icon-resolved %}} Unable to use NMS Predefined Log Profiles for NAP 4.7 (44759)
 
 ### Known Issues{#2-15-1-known-issues}
 
@@ -442,12 +476,13 @@ This release includes the following updates:
 
 
 ### Resolved Issues{#2-15-0-resolved-issues}
-This release fixes the following issues. Select an issue's ID link to view its details.
+This release fixes the following issues. Check the [Known Issues]({{< relref "/nim/releases/known-issues.md" >}})  topic for more information on the latest resolved issues. Use your browser's search function to find the issue ID in the page.
 
-- {{% icon-resolved %}} Instances reporting incorrect memory utilization [(44351)]({{< relref "/nim/releases/known-issues.md#44351" >}})<a name="2-15-0-resolved-issues-Instances-reporting-incorrect-memory-utilization"></a>
-- {{% icon-resolved %}} Data on the dashboard is updating unexpectedly [(44504)]({{< relref "/nim/releases/known-issues.md#44504" >}})<a name="2-15-0-resolved-issues-Data-on-the-dashboard-is-updating-unexpectedly"></a>
-- {{% icon-resolved %}} Missing Data when ClickHouse services are not running [(44586)]({{< relref "/nim/releases/known-issues.md#44586" >}})<a name="2-15-0-resolved-issues-Missing-Data-when-ClickHouse-services-are-not-running"></a>
-- {{% icon-resolved %}} NGINX App Protect Attack Signature, Threat Campaign and Compiler fail to download [(44603)]({{< relref "/nim/releases/known-issues.md#44603" >}})<a name="2-15-0-resolved-issues-NGINX-App-Protect-Attack-Signature,-Threat-Campaign-and-Compiler-fail-to-download"></a>
+
+- {{% icon-resolved %}} Instances reporting incorrect memory utilization (44351)
+- {{% icon-resolved %}} Data on the dashboard is updating unexpectedly (44504)
+- {{% icon-resolved %}} Missing Data when ClickHouse services are not running (44586)
+- {{% icon-resolved %}} NGINX App Protect Attack Signature, Threat Campaign and Compiler fail to download (44603)
 
 ### Known Issues{#2-15-0-known-issues}
 
@@ -537,10 +572,11 @@ Instance Manager  supports upgrades from these previous versions:
 If your Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
 ### Resolved Issues{#2-13-1-resolved-issues}
-This release fixes the following issues. Select an issue's ID link to view its details.
+This release fixes the following issues. Check the [Known Issues]({{< relref "/nim/releases/known-issues.md" >}})  topic for more information on the latest resolved issues. Use your browser's search function to find the issue ID in the page.
 
-- {{% icon-resolved %}} Validation errors in Resource Groups for certificates uploaded before 2.13 upgrade [(44254)]({{< relref "/nim/releases/known-issues.md#44254" >}})<a name="2-13-1-resolved-issues-Validation-errors-in-Resource-Groups-for-certificates-uploaded-before-2-13-upgrade"></a>
-- {{% icon-resolved %}} Access levels cannot be assigned to certain RBAC features [(44277)]({{< relref "/nim/releases/known-issues.md#44277" >}})<a name="2-13-1-resolved-issues-Access-levels-cannot-be-assigned-to-certain-RBAC-features"></a>
+
+- {{% icon-resolved %}} Validation errors in Resource Groups for certificates uploaded before 2.13 upgrade (44254)
+- {{% icon-resolved %}} Access levels cannot be assigned to certain RBAC features (44277)
 
 ### Known Issues{#2-13-1-known-issues}
 
@@ -599,9 +635,10 @@ This release includes the following updates:
 
 
 ### Resolved Issues{#2-13-0-resolved-issues}
-This release fixes the following issues. Select an issue's ID link to view its details.
+This release fixes the following issues. Check the [Known Issues]({{< relref "/nim/releases/known-issues.md" >}})  topic for more information on the latest resolved issues. Use your browser's search function to find the issue ID in the page.
 
-- {{% icon-resolved %}} An "unregistered clickhouse-adapter" failure is logged every few seconds if logging is set to debug. [(43438)]({{< relref "/nim/releases/known-issues.md#43438" >}})<a name="2-13-0-resolved-issues-An-&#34;unregistered-clickhouse-adapter&#34;-failure-is-logged-every-few-seconds-if-logging-is-set-to-debug-"></a>
+
+- {{% icon-resolved %}} An "unregistered clickhouse-adapter" failure is logged every few seconds if logging is set to debug. (43438)
 
 ### Known Issues{#2-13-0-known-issues}
 
@@ -630,11 +667,12 @@ This release includes the following updates:
 
 
 ### Resolved Issues{#2-12-0-resolved-issues}
-This release fixes the following issues. Select an issue's ID link to view its details.
+This release fixes the following issues. Check the [Known Issues]({{< relref "/nim/releases/known-issues.md" >}})  topic for more information on the latest resolved issues. Use your browser's search function to find the issue ID in the page.
 
-- {{% icon-resolved %}} Filtering Analytics data with values that have double backslashes (`\\`) causes failures [(42105)]({{< relref "/nim/releases/known-issues.md#42105" >}})<a name="2-12-0-resolved-issues-Filtering-Analytics-data-with-values-that-have-double-backslashes-(`\\`)-causes-failures"></a>
-- {{% icon-resolved %}} Unable to publish configurations referencing the log bundle for Security Monitor [(42932)]({{< relref "/nim/releases/known-issues.md#42932" >}})<a name="2-12-0-resolved-issues-Unable-to-publish-configurations-referencing-the-log-bundle-for-Security-Monitor"></a>
-- {{% icon-resolved %}} Disk Usage in Metrics Summary shows incorrect data when multiple partitions exist on a system [(42999)]({{< relref "/nim/releases/known-issues.md#42999" >}})<a name="2-12-0-resolved-issues-Disk-Usage-in-Metrics-Summary-shows-incorrect-data-when-multiple-partitions-exist-on-a-system"></a>
+
+- {{% icon-resolved %}} Filtering Analytics data with values that have double backslashes (`\\`) causes failures (42105)
+- {{% icon-resolved %}} Unable to publish configurations referencing the log bundle for Security Monitor (42932)
+- {{% icon-resolved %}} Disk Usage in Metrics Summary shows incorrect data when multiple partitions exist on a system (42999)
 
 ### Known Issues{#2-12-0-known-issues}
 
@@ -711,13 +749,14 @@ This release has the following changes in default behavior:
 
 
 ### Resolved Issues{#2-11-0-resolved-issues}
-This release fixes the following issues. Select an issue's ID link to view its details.
+This release fixes the following issues. Check the [Known Issues]({{< relref "/nim/releases/known-issues.md" >}})  topic for more information on the latest resolved issues. Use your browser's search function to find the issue ID in the page.
 
-- {{% icon-resolved %}} Count of NGINX Plus graph has a delay in being populated [(37705)]({{< relref "/nim/releases/known-issues.md#37705" >}})<a name="2-11-0-resolved-issues-Count-of-NGINX-Plus-graph-has-a-delay-in-being-populated"></a>
-- {{% icon-resolved %}} Duplicate Certificate and Key published for managed certificates [(42182)]({{< relref "/nim/releases/known-issues.md#42182" >}})<a name="2-11-0-resolved-issues-Duplicate-Certificate-and-Key-published-for-managed-certificates"></a>
-- {{% icon-resolved %}} The Metrics module is interrupted during installation on Red Hat 9 [(42219)]({{< relref "/nim/releases/known-issues.md#42219" >}})<a name="2-11-0-resolved-issues-The-Metrics-module-is-interrupted-during-installation-on-Red-Hat-9"></a>
-- {{% icon-resolved %}} Certificate file is not updated automatically under certain conditions [(42425)]({{< relref "/nim/releases/known-issues.md#42425" >}})<a name="2-11-0-resolved-issues-Certificate-file-is-not-updated-automatically-under-certain-conditions"></a>
-- {{% icon-resolved %}} Certificate updates allow for multiples certs to share the same serial number [(42429)]({{< relref "/nim/releases/known-issues.md#42429" >}})<a name="2-11-0-resolved-issues-Certificate-updates-allow-for-multiples-certs-to-share-the-same-serial-number"></a>
+
+- {{% icon-resolved %}} Count of NGINX Plus graph has a delay in being populated (37705)
+- {{% icon-resolved %}} Duplicate Certificate and Key published for managed certificates (42182)
+- {{% icon-resolved %}} The Metrics module is interrupted during installation on Red Hat 9 (42219)
+- {{% icon-resolved %}} Certificate file is not updated automatically under certain conditions (42425)
+- {{% icon-resolved %}} Certificate updates allow for multiples certs to share the same serial number (42429)
 
 ### Known Issues{#2-11-0-known-issues}
 
@@ -738,9 +777,10 @@ Instance Manager  supports upgrades from these previous versions:
 If your Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
 ### Resolved Issues{#2-10-1-resolved-issues}
-This release fixes the following issues. Select an issue's ID link to view its details.
+This release fixes the following issues. Check the [Known Issues]({{< relref "/nim/releases/known-issues.md" >}})  topic for more information on the latest resolved issues. Use your browser's search function to find the issue ID in the page.
 
-- {{% icon-resolved %}} Valid licenses incorrectly identified as invalid [(42598)]({{< relref "/nim/releases/known-issues.md#42598" >}})<a name="2-10-1-resolved-issues-Valid-licenses-incorrectly-identified-as-invalid"></a>
+
+- {{% icon-resolved %}} Valid licenses incorrectly identified as invalid (42598)
 
 ### Known Issues{#2-10-1-known-issues}
 
@@ -810,10 +850,11 @@ This release has the following changes in default behavior:
 
 
 ### Resolved Issues{#2-10-0-resolved-issues}
-This release fixes the following issues. Select an issue's ID link to view its details.
+This release fixes the following issues. Check the [Known Issues]({{< relref "/nim/releases/known-issues.md" >}})  topic for more information on the latest resolved issues. Use your browser's search function to find the issue ID in the page.
 
-- {{% icon-resolved %}} Installing NGINX Agent on FreeBSD fails with "error 2051: not implemented" [(41157)]({{< relref "/nim/releases/known-issues.md#41157" >}})<a name="2-10-0-resolved-issues-Installing-NGINX-Agent-on-FreeBSD-fails-with-&#34;error-2051:-not-implemented&#34;"></a>
-- {{% icon-resolved %}} SELinux errors encountered when starting NGINX Management Suite on RHEL9 with the SELinux policy installed [(41327)]({{< relref "/nim/releases/known-issues.md#41327" >}})<a name="2-10-0-resolved-issues-SELinux-errors-encountered-when-starting-NGINX-Management-Suite-on-RHEL9-with-the-SELinux-policy-installed"></a>
+
+- {{% icon-resolved %}} Installing NGINX Agent on FreeBSD fails with "error 2051: not implemented" (41157)
+- {{% icon-resolved %}} SELinux errors encountered when starting NGINX Management Suite on RHEL9 with the SELinux policy installed (41327)
 
 ### Known Issues{#2-10-0-known-issues}
 
@@ -834,9 +875,10 @@ Instance Manager  supports upgrades from these previous versions:
 If your Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
 ### Resolved Issues{#2-9-1-resolved-issues}
-This release fixes the following issues. Select an issue's ID link to view its details.
+This release fixes the following issues. Check the [Known Issues]({{< relref "/nim/releases/known-issues.md" >}})  topic for more information on the latest resolved issues. Use your browser's search function to find the issue ID in the page.
 
-- {{% icon-resolved %}} NGINX configurations with special characters may not be editable from the web interface after upgrading Instance Manager [(41557)]({{< relref "/nim/releases/known-issues.md#41557" >}})<a name="2-9-1-resolved-issues-NGINX-configurations-with-special-characters-may-not-be-editable-from-the-web-interface-after-upgrading-Instance-Manager"></a>
+
+- {{% icon-resolved %}} NGINX configurations with special characters may not be editable from the web interface after upgrading Instance Manager (41557)
 
 ### Known Issues{#2-9-1-known-issues}
 
@@ -984,14 +1026,15 @@ This release has the following changes in default behavior:
 
 
 ### Resolved Issues{#2-9-0-resolved-issues}
-This release fixes the following issues. Select an issue's ID link to view its details.
+This release fixes the following issues. Check the [Known Issues]({{< relref "/nim/releases/known-issues.md" >}})  topic for more information on the latest resolved issues. Use your browser's search function to find the issue ID in the page.
 
-- {{% icon-resolved %}} After upgrading to NGINX Instance Manager 2.1.0, the web interface reports timeouts when NGINX Agent configs are published [(32349)]({{< relref "/nim/releases/known-issues.md#32349" >}})<a name="2-9-0-resolved-issues-After-upgrading-to-NGINX-Instance-Manager-2-1-0,-the-web-interface-reports-timeouts-when-NGINX-Agent-configs-are-published"></a>
-- {{% icon-resolved %}} Scan does not update an unmanaged instance to managed [(37544)]({{< relref "/nim/releases/known-issues.md#37544" >}})<a name="2-9-0-resolved-issues-Scan-does-not-update-an-unmanaged-instance-to-managed"></a>
-- {{% icon-resolved %}} "Public Key Not Available" error when upgrading Instance Manager on a Debian-based system [(39431)]({{< relref "/nim/releases/known-issues.md#39431" >}})<a name="2-9-0-resolved-issues-&#34;Public-Key-Not-Available&#34;-error-when-upgrading-Instance-Manager-on-a-Debian-based-system"></a>
-- {{% icon-resolved %}} The Type text on the Instances overview page may be partially covered by the Hostname text [(39760)]({{< relref "/nim/releases/known-issues.md#39760" >}})<a name="2-9-0-resolved-issues-The-Type-text-on-the-Instances-overview-page-may-be-partially-covered-by-the-Hostname-text"></a>
-- {{% icon-resolved %}} App Protect: "Assign Policy and Signature Versions" webpage may not initially display newly added policies [(40085)]({{< relref "/nim/releases/known-issues.md#40085" >}})<a name="2-9-0-resolved-issues-App-Protect:-&#34;Assign-Policy-and-Signature-Versions&#34;-webpage-may-not-initially-display-newly-added-policies"></a>
-- {{% icon-resolved %}} Upgrading NGINX Management Suite may remove the OIDC configuration for the platform [(41328)]({{< relref "/nim/releases/known-issues.md#41328" >}})<a name="2-9-0-resolved-issues-Upgrading-NGINX-Management-Suite-may-remove-the-OIDC-configuration-for-the-platform"></a>
+
+- {{% icon-resolved %}} After upgrading to NGINX Instance Manager 2.1.0, the web interface reports timeouts when NGINX Agent configs are published (32349)
+- {{% icon-resolved %}} Scan does not update an unmanaged instance to managed (37544)
+- {{% icon-resolved %}} "Public Key Not Available" error when upgrading Instance Manager on a Debian-based system (39431)
+- {{% icon-resolved %}} The Type text on the Instances overview page may be partially covered by the Hostname text (39760)
+- {{% icon-resolved %}} App Protect: "Assign Policy and Signature Versions" webpage may not initially display newly added policies (40085)
+- {{% icon-resolved %}} Upgrading NGINX Management Suite may remove the OIDC configuration for the platform (41328)
 
 ### Known Issues{#2-9-0-known-issues}
 
@@ -1053,20 +1096,21 @@ This release has the following changes in default behavior:
 
 
 ### Resolved Issues{#2-8-0-resolved-issues}
-This release fixes the following issues. Select an issue's ID link to view its details.
+This release fixes the following issues. Check the [Known Issues]({{< relref "/nim/releases/known-issues.md" >}})  topic for more information on the latest resolved issues. Use your browser's search function to find the issue ID in the page.
 
-- {{% icon-resolved %}} Web interface reports no license found when a license is present [(30647)]({{< relref "/nim/releases/known-issues.md#30647" >}})<a name="2-8-0-resolved-issues-Web-interface-reports-no-license-found-when-a-license-is-present"></a>
-- {{% icon-resolved %}} Associating instances with expired certificates causes internal error [(34182)]({{< relref "/nim/releases/known-issues.md#34182" >}})<a name="2-8-0-resolved-issues-Associating-instances-with-expired-certificates-causes-internal-error"></a>
-- {{% icon-resolved %}} Publishing to an Instance/instance-group will fail when the configuration references a JSON policy or a JSON log profile  [(38357)]({{< relref "/nim/releases/known-issues.md#38357" >}})<a name="2-8-0-resolved-issues-Publishing-to-an-Instance/instance-group-will-fail-when-the-configuration-references-a-JSON-policy-or-a-JSON-log-profile-"></a>
-- {{% icon-resolved %}} Missing dimension data for Advanced Metrics with modules [(38634)]({{< relref "/nim/releases/known-issues.md#38634" >}})<a name="2-8-0-resolved-issues-Missing-dimension-data-for-Advanced-Metrics-with-modules"></a>
-- {{% icon-resolved %}} Large payloads can result in disk I/O error for database operations [(38827)]({{< relref "/nim/releases/known-issues.md#38827" >}})<a name="2-8-0-resolved-issues-Large-payloads-can-result-in-disk-I/O-error-for-database-operations"></a>
-- {{% icon-resolved %}} The Policy API endpoint only allows NGINX App Protect policy upsert with content length upto 3.14MB. [(38839)]({{< relref "/nim/releases/known-issues.md#38839" >}})<a name="2-8-0-resolved-issues-The-Policy-API-endpoint-only-allows-NGINX-App-Protect-policy-upsert-with-content-length-upto-3-14MB-"></a>
-- {{% icon-resolved %}} Deploy NGINX App Protect policy is listed as "Not Deployed" on the Policy Version detail page [(38876)]({{< relref "/nim/releases/known-issues.md#38876" >}})<a name="2-8-0-resolved-issues-Deploy-NGINX-App-Protect-policy-is-listed-as-&#34;Not-Deployed&#34;-on-the-Policy-Version-detail-page"></a>
-- {{% icon-resolved %}} NGINX Management Suite services may lose connection to ClickHouse in a Kubernetes deployment [(39285)]({{< relref "/nim/releases/known-issues.md#39285" >}})<a name="2-8-0-resolved-issues-NGINX-Management-Suite-services-may-lose-connection-to-ClickHouse-in-a-Kubernetes-deployment"></a>
-- {{% icon-resolved %}} NGINX App Protect status may not be displayed after publishing a configuration with a security policy and certificate reference [(39382)]({{< relref "/nim/releases/known-issues.md#39382" >}})<a name="2-8-0-resolved-issues-NGINX-App-Protect-status-may-not-be-displayed-after-publishing-a-configuration-with-a-security-policy-and-certificate-reference"></a>
-- {{% icon-resolved %}} Security Policy Snippet selector adds incorrect path reference for policy directive [(39492)]({{< relref "/nim/releases/known-issues.md#39492" >}})<a name="2-8-0-resolved-issues-Security-Policy-Snippet-selector-adds-incorrect-path-reference-for-policy-directive"></a>
-- {{% icon-resolved %}} The API Connectivity Manager module won't load if the Security Monitoring module is enabled [(39943)]({{< relref "/nim/releases/known-issues.md#39943" >}})<a name="2-8-0-resolved-issues-The-API-Connectivity-Manager-module-won&#39;t-load-if-the-Security-Monitoring-module-is-enabled"></a>
-- {{% icon-resolved %}} The API Connectivity Manager module won't load if the Security Monitoring module is enabled [(44433)]({{< relref "/nim/releases/known-issues.md#44433" >}})<a name="2-8-0-resolved-issues-The-API-Connectivity-Manager-module-won&#39;t-load-if-the-Security-Monitoring-module-is-enabled"></a>
+
+- {{% icon-resolved %}} Web interface reports no license found when a license is present (30647)
+- {{% icon-resolved %}} Associating instances with expired certificates causes internal error (34182)
+- {{% icon-resolved %}} Publishing to an Instance/instance-group will fail when the configuration references a JSON policy or a JSON log profile  (38357)
+- {{% icon-resolved %}} Missing dimension data for Advanced Metrics with modules (38634)
+- {{% icon-resolved %}} Large payloads can result in disk I/O error for database operations (38827)
+- {{% icon-resolved %}} The Policy API endpoint only allows NGINX App Protect policy upsert with content length upto 3.14MB. (38839)
+- {{% icon-resolved %}} Deploy NGINX App Protect policy is listed as "Not Deployed" on the Policy Version detail page (38876)
+- {{% icon-resolved %}} NGINX Management Suite services may lose connection to ClickHouse in a Kubernetes deployment (39285)
+- {{% icon-resolved %}} NGINX App Protect status may not be displayed after publishing a configuration with a security policy and certificate reference (39382)
+- {{% icon-resolved %}} Security Policy Snippet selector adds incorrect path reference for policy directive (39492)
+- {{% icon-resolved %}} The API Connectivity Manager module won't load if the Security Monitoring module is enabled (39943)
+- {{% icon-resolved %}} The API Connectivity Manager module won't load if the Security Monitoring module is enabled (44433)
 
 ### Known Issues{#2-8-0-known-issues}
 
@@ -1103,15 +1147,16 @@ This release has the following changes in default behavior:
 
 
 ### Resolved Issues{#2-7-0-resolved-issues}
-This release fixes the following issues. Select an issue's ID link to view its details.
+This release fixes the following issues. Check the [Known Issues]({{< relref "/nim/releases/known-issues.md" >}})  topic for more information on the latest resolved issues. Use your browser's search function to find the issue ID in the page.
 
-- {{% icon-resolved %}} Instance Manager reports old NGINX version after upgrade [(31225)]({{< relref "/nim/releases/known-issues.md#31225" >}})<a name="2-7-0-resolved-issues-Instance-Manager-reports-old-NGINX-version-after-upgrade"></a>
-- {{% icon-resolved %}} Instance Manager returns a "Download failed" error when editing an NGINX config for instances compiled and installed from source [(35851)]({{< relref "/nim/releases/known-issues.md#35851" >}})<a name="2-7-0-resolved-issues-Instance-Manager-returns-a-&#34;Download-failed&#34;-error-when-editing-an-NGINX-config-for-instances-compiled-and-installed-from-source"></a>
-- {{% icon-resolved %}} Null data count is not correctly represented in the NGINX Plus usage graph. [(38206)]({{< relref "/nim/releases/known-issues.md#38206" >}})<a name="2-7-0-resolved-issues-Null-data-count-is-not-correctly-represented-in-the-NGINX-Plus-usage-graph-"></a>
-- {{% icon-resolved %}} When upgrading Instance Manager from v2.4 to later versions of Instance Manager, certificate associations are no longer visible. [(38641)]({{< relref "/nim/releases/known-issues.md#38641" >}})<a name="2-7-0-resolved-issues-When-upgrading-Instance-Manager-from-v2-4-to-later-versions-of-Instance-Manager,-certificate-associations-are-no-longer-visible-"></a>
-- {{% icon-resolved %}} NGINX App Protect policy deployment status not reflecting removal of associated instance. [(38700)]({{< relref "/nim/releases/known-issues.md#38700" >}})<a name="2-7-0-resolved-issues-NGINX-App-Protect-policy-deployment-status-not-reflecting-removal-of-associated-instance-"></a>
-- {{% icon-resolved %}} When upgrading a multi-node NMS deployment with helm charts the ingestion pod may report a "Mismatched migration version" error [(38880)]({{< relref "/nim/releases/known-issues.md#38880" >}})<a name="2-7-0-resolved-issues-When-upgrading-a-multi-node-NMS-deployment-with-helm-charts-the-ingestion-pod-may-report-a-&#34;Mismatched-migration-version&#34;-error"></a>
-- {{% icon-resolved %}} After a version upgrade of NGINX Instance Manager, NMS Data Plane Manager crashes if you publish NGINX configuration with App Protect enablement directive (app_protect_enable) set to ON [(38904)]({{< relref "/nim/releases/known-issues.md#38904" >}})<a name="2-7-0-resolved-issues-After-a-version-upgrade-of-NGINX-Instance-Manager,-NMS-Data-Plane-Manager-crashes-if-you-publish-NGINX-configuration-with-App-Protect-enablement-directive-(app_protect_enable)-set-to-ON"></a>
+
+- {{% icon-resolved %}} Instance Manager reports old NGINX version after upgrade (31225)
+- {{% icon-resolved %}} Instance Manager returns a "Download failed" error when editing an NGINX config for instances compiled and installed from source (35851)
+- {{% icon-resolved %}} Null data count is not correctly represented in the NGINX Plus usage graph. (38206)
+- {{% icon-resolved %}} When upgrading Instance Manager from v2.4 to later versions of Instance Manager, certificate associations are no longer visible. (38641)
+- {{% icon-resolved %}} NGINX App Protect policy deployment status not reflecting removal of associated instance. (38700)
+- {{% icon-resolved %}} When upgrading a multi-node NMS deployment with helm charts the ingestion pod may report a "Mismatched migration version" error (38880)
+- {{% icon-resolved %}} After a version upgrade of NGINX Instance Manager, NMS Data Plane Manager crashes if you publish NGINX configuration with App Protect enablement directive (app_protect_enable) set to ON (38904)
 
 ### Known Issues{#2-7-0-known-issues}
 
@@ -1169,10 +1214,11 @@ This release has the following changes in default behavior:
 
 
 ### Resolved Issues{#2-6-0-resolved-issues}
-This release fixes the following issues. Select an issue's ID link to view its details.
+This release fixes the following issues. Check the [Known Issues]({{< relref "/nim/releases/known-issues.md" >}})  topic for more information on the latest resolved issues. Use your browser's search function to find the issue ID in the page.
 
-- {{% icon-resolved %}} Password error "option unknown" occurs when installing NGINX Instance Manager on Ubuntu with OpenSSL v1.1.0 [(33055)]({{< relref "/nim/releases/known-issues.md#33055" >}})<a name="2-6-0-resolved-issues-Password-error-&#34;option-unknown&#34;-occurs-when-installing-NGINX-Instance-Manager-on-Ubuntu-with-OpenSSL-v1-1-0"></a>
-- {{% icon-resolved %}} Instance Manager reports the NGINX App Protect WAF build number as the version [(37510)]({{< relref "/nim/releases/known-issues.md#37510" >}})<a name="2-6-0-resolved-issues-Instance-Manager-reports-the-NGINX-App-Protect-WAF-build-number-as-the-version"></a>
+
+- {{% icon-resolved %}} Password error "option unknown" occurs when installing NGINX Instance Manager on Ubuntu with OpenSSL v1.1.0 (33055)
+- {{% icon-resolved %}} Instance Manager reports the NGINX App Protect WAF build number as the version (37510)
 
 ### Known Issues{#2-6-0-known-issues}
 
@@ -1193,9 +1239,10 @@ Instance Manager  supports upgrades from these previous versions:
 If your Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
 ### Resolved Issues{#2-5-1-resolved-issues}
-This release fixes the following issues. Select an issue's ID link to view its details.
+This release fixes the following issues. Check the [Known Issues]({{< relref "/nim/releases/known-issues.md" >}})  topic for more information on the latest resolved issues. Use your browser's search function to find the issue ID in the page.
 
-- {{% icon-resolved %}} Extended NGINX metrics aren't reported for NGINX Plus R26 and earlier [(37738)]({{< relref "/nim/releases/known-issues.md#37738" >}})<a name="2-5-1-resolved-issues-Extended-NGINX-metrics-aren&#39;t-reported-for-NGINX-Plus-R26-and-earlier"></a>
+
+- {{% icon-resolved %}} Extended NGINX metrics aren't reported for NGINX Plus R26 and earlier (37738)
 
 ### Known Issues{#2-5-1-known-issues}
 
@@ -1228,11 +1275,12 @@ This release includes the following updates:
 
 
 ### Resolved Issues{#2-5-0-resolved-issues}
-This release fixes the following issues. Select an issue's ID link to view its details.
+This release fixes the following issues. Check the [Known Issues]({{< relref "/nim/releases/known-issues.md" >}})  topic for more information on the latest resolved issues. Use your browser's search function to find the issue ID in the page.
 
-- {{% icon-resolved %}} OIDC is not supported for helm chart deployments [(33248)]({{< relref "/nim/releases/known-issues.md#33248" >}})<a name="2-5-0-resolved-issues-OIDC-is-not-supported-for-helm-chart-deployments"></a>
-- {{% icon-resolved %}} Managed certificates may be overwritten if they have the same name on different datapath certificates [(36240)]({{< relref "/nim/releases/known-issues.md#36240" >}})<a name="2-5-0-resolved-issues-Managed-certificates-may-be-overwritten-if-they-have-the-same-name-on-different-datapath-certificates"></a>
-- {{% icon-resolved %}} Scan overview page doesn't scroll to show the full list of instances [(36514)]({{< relref "/nim/releases/known-issues.md#36514" >}})<a name="2-5-0-resolved-issues-Scan-overview-page-doesn&#39;t-scroll-to-show-the-full-list-of-instances"></a>
+
+- {{% icon-resolved %}} OIDC is not supported for helm chart deployments (33248)
+- {{% icon-resolved %}} Managed certificates may be overwritten if they have the same name on different datapath certificates (36240)
+- {{% icon-resolved %}} Scan overview page doesn't scroll to show the full list of instances (36514)
 
 ### Known Issues{#2-5-0-known-issues}
 
@@ -1277,9 +1325,10 @@ This release has the following changes in default behavior:
 
 
 ### Resolved Issues{#2-4-0-resolved-issues}
-This release fixes the following issues. Select an issue's ID link to view its details.
+This release fixes the following issues. Check the [Known Issues]({{< relref "/nim/releases/known-issues.md" >}})  topic for more information on the latest resolved issues. Use your browser's search function to find the issue ID in the page.
 
-- {{% icon-resolved %}} Unable to publish config changes to a custom nginx.conf location [(35276)]({{< relref "/nim/releases/known-issues.md#35276" >}})<a name="2-4-0-resolved-issues-Unable-to-publish-config-changes-to-a-custom-nginx-conf-location"></a>
+
+- {{% icon-resolved %}} Unable to publish config changes to a custom nginx.conf location (35276)
 
 ### Known Issues{#2-4-0-known-issues}
 
@@ -1378,9 +1427,10 @@ This release has the following changes in default behavior:
 
 
 ### Resolved Issues{#2-3-0-resolved-issues}
-This release fixes the following issues. Select an issue's ID link to view its details.
+This release fixes the following issues. Check the [Known Issues]({{< relref "/nim/releases/known-issues.md" >}})  topic for more information on the latest resolved issues. Use your browser's search function to find the issue ID in the page.
 
-- {{% icon-resolved %}} Post-install steps to load SELinux policy are in the wrong order [(34276)]({{< relref "/nim/releases/known-issues.md#34276" >}})<a name="2-3-0-resolved-issues-Post-install-steps-to-load-SELinux-policy-are-in-the-wrong-order"></a>
+
+- {{% icon-resolved %}} Post-install steps to load SELinux policy are in the wrong order (34276)
 
 ### Known Issues{#2-3-0-known-issues}
 
@@ -1430,9 +1480,10 @@ This release includes the following updates:
 
 
 ### Resolved Issues{#2-2-0-resolved-issues}
-This release fixes the following issues. Select an issue's ID link to view its details.
+This release fixes the following issues. Check the [Known Issues]({{< relref "/nim/releases/known-issues.md" >}})  topic for more information on the latest resolved issues. Use your browser's search function to find the issue ID in the page.
 
-- {{% icon-resolved %}} Running Agent install script with sh returns “not found” error  [(33385)]({{< relref "/nim/releases/known-issues.md#33385" >}})<a name="2-2-0-resolved-issues-Running-Agent-install-script-with-sh-returns-“not-found”-error-"></a>
+
+- {{% icon-resolved %}} Running Agent install script with sh returns “not found” error  (33385)
 
 ### Known Issues{#2-2-0-known-issues}
 
@@ -1530,13 +1581,14 @@ This release has the following changes in default behavior:
 
 
 ### Resolved Issues{#2-1-0-resolved-issues}
-This release fixes the following issues. Select an issue's ID link to view its details.
+This release fixes the following issues. Check the [Known Issues]({{< relref "/nim/releases/known-issues.md" >}})  topic for more information on the latest resolved issues. Use your browser's search function to find the issue ID in the page.
 
-- {{% icon-resolved %}} Unable to register multiple NGINX Agents in containers on the same host [(30780)]({{< relref "/nim/releases/known-issues.md#30780" >}})<a name="2-1-0-resolved-issues-Unable-to-register-multiple-NGINX-Agents-in-containers-on-the-same-host"></a>
-- {{% icon-resolved %}} Include cycles in the configuration cause analyzer to spin. [(31025)]({{< relref "/nim/releases/known-issues.md#31025" >}})<a name="2-1-0-resolved-issues-Include-cycles-in-the-configuration-cause-analyzer-to-spin-"></a>
-- {{% icon-resolved %}} System reports "error granting scope: forbidden" if user granting permissions belongs to more than one role [(31215)]({{< relref "/nim/releases/known-issues.md#31215" >}})<a name="2-1-0-resolved-issues-System-reports-&#34;error-granting-scope:-forbidden&#34;-if-user-granting-permissions-belongs-to-more-than-one-role"></a>
-- {{% icon-resolved %}} When using Instance Groups, tag-based access controls are not enforced [(31267)]({{< relref "/nim/releases/known-issues.md#31267" >}})<a name="2-1-0-resolved-issues-When-using-Instance-Groups,-tag-based-access-controls-are-not-enforced"></a>
-- {{% icon-resolved %}} Bad Gateway (502) errors with Red Hat 7 [(31277)]({{< relref "/nim/releases/known-issues.md#31277" >}})<a name="2-1-0-resolved-issues-Bad-Gateway-(502)-errors-with-Red-Hat-7"></a>
+
+- {{% icon-resolved %}} Unable to register multiple NGINX Agents in containers on the same host (30780)
+- {{% icon-resolved %}} Include cycles in the configuration cause analyzer to spin. (31025)
+- {{% icon-resolved %}} System reports "error granting scope: forbidden" if user granting permissions belongs to more than one role (31215)
+- {{% icon-resolved %}} When using Instance Groups, tag-based access controls are not enforced (31267)
+- {{% icon-resolved %}} Bad Gateway (502) errors with Red Hat 7 (31277)
 
 ### Known Issues{#2-1-0-known-issues}
 
@@ -1557,10 +1609,11 @@ Instance Manager  supports upgrades from these previous versions:
 If your Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
 ### Resolved Issues{#2-0-1-resolved-issues}
-This release fixes the following issues. Select an issue's ID link to view its details.
+This release fixes the following issues. Check the [Known Issues]({{< relref "/nim/releases/known-issues.md" >}})  topic for more information on the latest resolved issues. Use your browser's search function to find the issue ID in the page.
 
-- {{% icon-resolved %}} Unable to access the NGINX Instance Manager web interface after loading SELinux policy [(31583)]({{< relref "/nim/releases/known-issues.md#31583" >}})<a name="2-0-1-resolved-issues-Unable-to-access-the-NGINX-Instance-Manager-web-interface-after-loading-SELinux-policy"></a>
-- {{% icon-resolved %}} The `nms-dpm` service restarts when registering multiple NGINX Agents with the same identity [(31612)]({{< relref "/nim/releases/known-issues.md#31612" >}})<a name="2-0-1-resolved-issues-The-`nms-dpm`-service-restarts-when-registering-multiple-NGINX-Agents-with-the-same-identity"></a>
+
+- {{% icon-resolved %}} Unable to access the NGINX Instance Manager web interface after loading SELinux policy (31583)
+- {{% icon-resolved %}} The `nms-dpm` service restarts when registering multiple NGINX Agents with the same identity (31612)
 
 ### Known Issues{#2-0-1-known-issues}
 
