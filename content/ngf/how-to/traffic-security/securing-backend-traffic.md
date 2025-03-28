@@ -216,7 +216,9 @@ We can see we a status 400 Bad Request message from NGINX.
 
 ## Create the backend TLS configuration
 
-To configure the backend TLS terminationm, first we will create the ConfigMap that holds the `ca.crt` entry for verifying our self-signed certificates:
+{{< note >}} This example uses a `ConfigMap` to store the CA certificate, but you can also use a `Secret`. This could be a better option if integrating with [cert-manager](https://cert-manager.io/). The `Secret` should have a `ca.crt` key that holds the contents of the CA certificate. {{< /note >}}
+
+To configure the backend TLS termination, first we will create the ConfigMap that holds the `ca.crt` entry for verifying our self-signed certificates:
 
 ```yaml
 kubectl apply -f - <<EOF

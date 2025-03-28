@@ -355,10 +355,10 @@ Fields:
     - `kind`: Supports `Service`.
     - `name`: Supported.
   - `validation`
-    - `caCertificateRefs`: Supports single reference to a `ConfigMap`, with the CA certificate in a key named `ca.crt`.
+    - `caCertificateRefs`: Supports single reference to a `ConfigMap` or `Secret`, with the CA certificate in a key named `ca.crt`.
       - `name`: Supported.
       - `group`: Supported.
-      - `kind`: Supports `ConfigMap`.
+      - `kind`: Supports `ConfigMap` and `Secret`.
     - `hostname`: Supported.
     - `wellKnownCertificates`: Supports `System`. This will set the CA certificate to the Alpine system root CA path `/etc/ssl/cert.pem`. NB: This option will only work if the NGINX image used is Alpine based. The NGF NGINX images are Alpine based by default.
     - `subjectAltNames`: Not supported.
