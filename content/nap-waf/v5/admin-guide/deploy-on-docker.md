@@ -1,6 +1,6 @@
 ---
-title: Deploying NGINX App Protect WAF on Docker
-weight: 400
+title: Deploy NGINX App Protect WAF with Docker
+weight: 500
 toc: true
 type: how-to
 product: NAP-WAF
