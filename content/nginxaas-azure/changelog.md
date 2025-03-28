@@ -13,6 +13,19 @@ To see a list of currently active issues, visit the [Known issues]({{< relref "/
 
 To review older entries, visit the [Changelog archive]({{< relref "/nginxaas-azure/changelog-archive" >}}) section.
 
+## March 31, 2025
+
+### What's New
+
+- {{% icon-feature %}} **NGINXaaS for Azure is now generally available in more regions**
+
+  NGINXaaS for Azure is now available in the following additional regions:
+
+  - UK West
+  - UK South
+
+See the [Supported Regions]({{< relref "/nginxaas-azure/overview/overview.md#supported-regions" >}}) documentation for the full list of regions where NGINXaaS for Azure is available.
+
 ## March 13, 2025
 
 - {{% icon-resolved %}} **Percentage capacity metric**
