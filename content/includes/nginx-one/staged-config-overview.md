@@ -5,7 +5,7 @@ files:
   - content/nginx-one/how-to/staged-configs/edit-staged-config.md
 ---
 
-It takes time to set up NGINX configuration files can take time. Staged Configurations can help. They work like a draft that uses the features of NGINX One Console. The Staged Configuration does not have to be valid.
+Setting up NGINX configuration files can take time. Staged Configurations can help. They work like a draft that uses the features of NGINX One Console. The Staged Configuration does not have to be valid.
 You can save your work before you push a configuration to an instance of NGINX.
 
 With Staged Configurations, you can use these features of NGINX One Console:
