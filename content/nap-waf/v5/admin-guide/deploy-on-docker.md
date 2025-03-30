@@ -138,7 +138,7 @@ FROM amazonlinux:2023
 # Install NGINX Plus and NGINX App Protect WAF v5 module
 RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
-    && yum -y install wget ca-certificates shadow-utils \
+    yum -y install wget ca-certificates shadow-utils \
     && wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/plus-amazonlinux2023.repo \
     && echo "[app-protect-x-plus]" > /etc/yum.repos.d/app-protect-plus.repo \
     && echo "name=nginx-app-protect repo" >> /etc/yum.repos.d/app-protect-plus.repo \
