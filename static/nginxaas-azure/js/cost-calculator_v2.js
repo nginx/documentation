@@ -29,6 +29,8 @@
       brazilsouth: { label: "Brazil South", tier: 3 },
       japaneast: { label: "Japan East", tier: 3 },
       southindia: { label: "South India", tier: 3 },
+      ukwest: { label: "UK West", tier: 3 },
+      uksouth: { label: "UK South", tier: 3 },
     },
     // cost per NCU
     tiersCosts: {
