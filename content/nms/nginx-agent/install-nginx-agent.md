@@ -13,7 +13,7 @@ type:
 
 This section lists the prerequisites for installing and configuring NGINX Agent. Follow the steps below to complete the requirements:
 
-1. [F5 NGINX Management Suite is installed on a server]({{< relref "/nim/deploy/_index.md" >}}).
+1. [F5 NGINX Management Suite is installed on a server]({{< ref "/nim/deploy/_index.md" >}}).
 
     {{<note>}} When installing and configuring NGINX Management Suite, take note of the fully qualified domain name (FQDN) and gRPC port number. You'll need this information to properly configure NGINX Agent to communicate with NGINX Management Suite.
     {{</note>}}
@@ -50,7 +50,7 @@ To see if `nginx_agent_selinux` is installed, run the following command:
     {{%/tab%}}
     {{</tabs>}}
 
-5. Review the [Technical Specifications]({{< relref "/nim/fundamentals/tech-specs.md" >}}) guide for system requirements.
+5. Review the [Technical Specifications]({{< ref "/nim/fundamentals/tech-specs.md" >}}) guide for system requirements.
 
 ---
 
@@ -394,7 +394,7 @@ Additionally, you can use the agent installation script to add these fields:
 
 ### Enable NGINX Plus Advanced Metrics
 
-- To enable NGINX Plus advanced metrics, follow the steps in the [Install NGINX Plus Metrics Module]({{< relref "/nms/nginx-agent/install-nginx-plus-advanced-metrics.md" >}}) guide.
+- To enable NGINX Plus advanced metrics, follow the steps in the [Install NGINX Plus Metrics Module]({{< ref "/nms/nginx-agent/install-nginx-plus-advanced-metrics.md" >}}) guide.
 
 ---
 
@@ -438,7 +438,7 @@ For instructions on how configure mTLS to secure communication between NGINX Age
 
 ## NGINX Metrics
 
-After you register an NGINX instance with NGINX Management Suite, the NGINX Agent will collect and report metrics. For more information about the metrics that are reported, see [Overview: Instance Metrics]({{< relref "/nim/monitoring/overview-metrics.md" >}}).
+After you register an NGINX instance with NGINX Management Suite, the NGINX Agent will collect and report metrics. For more information about the metrics that are reported, see [Overview: Instance Metrics]({{< ref "/nim/monitoring/overview-metrics.md" >}}).
 
 ## Container Support
 NGINX Agent is a companion daemon for NGINX Open Source or NGINX Plus instances and must run in the same container to work.

@@ -6,4 +6,4 @@ In API Connectivity Manager, you can apply cluster policies to API Gateways and 
 
 If a proxy cluster is shared between environments, updating cluster policies will effect all the environments.
 
-See the [Learn about Policies]({{< relref "/nms/acm/about/policies-overview.md">}}) topic for an overview of the different policy types and available policies.
+See the [Learn about Policies]({{< ref "/nms/acm/about/policies-overview.md">}}) topic for an overview of the different policy types and available policies.

@@ -24,17 +24,17 @@ The settings in `UpstreamSettingsPolicy` correspond to the following NGINX direc
 `UpstreamSettingsPolicy` is a [Direct Policy Attachment](https://gateway-api.sigs.k8s.io/reference/policy-attachment/) that can be applied to one or more services in the same namespace as the policy.
 `UpstreamSettingsPolicies` can only be applied to HTTP or gRPC services, in other words, services that are referenced by an HTTPRoute or GRPCRoute.
 
-See the [custom policies]({{< relref "/ngf/overview/custom-policies.md" >}}) document for more information on policies.
+See the [custom policies]({{< ref "/ngf/overview/custom-policies.md" >}}) document for more information on policies.
 
 This guide will show you how to use the `UpstreamSettingsPolicy` API to configure the upstream zone size and keepalives for your applications.
 
-For all the possible configuration options for `UpstreamSettingsPolicy`, see the [API reference]({{< relref "/ngf/reference/api.md" >}}).
+For all the possible configuration options for `UpstreamSettingsPolicy`, see the [API reference]({{< ref "/ngf/reference/api.md" >}}).
 
 ---
 
 ## Before you begin
 
-- [Install]({{< relref "/ngf/installation/" >}}) NGINX Gateway Fabric.
+- [Install]({{< ref "/ngf/installation/" >}}) NGINX Gateway Fabric.
 - Save the public IP address and port of NGINX Gateway Fabric into shell variables:
 
    ```text
@@ -393,5 +393,5 @@ upstream default_tea_80 {
 
 ## Further reading
 
-- [Custom policies]({{< relref "/ngf/overview/custom-policies.md" >}}): learn about how NGINX Gateway Fabric custom policies work.
-- [API reference]({{< relref "/ngf/reference/api.md" >}}): all configuration fields for the `UpstreamSettingsPolicy` API.
+- [Custom policies]({{< ref "/ngf/overview/custom-policies.md" >}}): learn about how NGINX Gateway Fabric custom policies work.
+- [API reference]({{< ref "/ngf/reference/api.md" >}}): all configuration fields for the `UpstreamSettingsPolicy` API.

@@ -80,6 +80,6 @@ After installation you will need to enable and configure the module in F5 NGINX 
 
 - [NGINX Perl Module Reference](https://nginx.org/en/docs/http/ngx_http_perl_module.html)
 
-- [NGINX Dynamic Modules]({{< relref "dynamic-modules.md" >}})
+- [NGINX Dynamic Modules]({{< ref "dynamic-modules.md" >}})
 
 - [NGINX Plus Technical Specifications]({{< relref "../../technical-specs.md" >}})

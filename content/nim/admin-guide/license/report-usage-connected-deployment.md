@@ -22,7 +22,7 @@ In environments where NGINX Instance Manager has internet access but NGINX Plus 
 
 See the steps below to configure NGINX Plus to report usage data to NGINX Instance Manager and how to submit the report to F5 for verification.
 
-{{<call-out "tip" "For network-restricted environments:" "" >}}If your deployment of NGINX Instance Manager doesn’t allow internet access, follow the steps in [Report usage data in network-restricted environments]({{< relref "nim/disconnected/report-usage-disconnected-deployment.md" >}}) to report usage data to F5.{{</call-out>}}
+{{<call-out "tip" "For network-restricted environments:" "" >}}If your deployment of NGINX Instance Manager doesn’t allow internet access, follow the steps in [Report usage data in network-restricted environments]({{< ref "nim/disconnected/report-usage-disconnected-deployment.md" >}}) to report usage data to F5.{{</call-out>}}
 
 ---
 
@@ -49,13 +49,13 @@ To configure NGINX Plus (R33 and later) to report usage data to NGINX Instance M
 
 ### Automatic reporting
 
-When you [add your JSON Web Token (JWT)]({{< relref "nim/admin-guide/license/add-license.md" >}}) to NGINX Instance Manager, usage reporting is enabled by default.
+When you [add your JSON Web Token (JWT)]({{< ref "nim/admin-guide/license/add-license.md" >}}) to NGINX Instance Manager, usage reporting is enabled by default.
 
 NGINX Instance Manager will automatically report subscription entitlement and usage data to F5 if internet access is available.
 
 ### Manual reporting
 
-{{<call-out "important" "Usage reporting requirement:" "fa-solid fa-exclamation-triangle" >}}You need to report usage to F5 regularly. **If usage isn’t reported for 180 days, NGINX Plus will stop processing traffic**. For more details about the usage reporting process, see [About subscription licenses]({{< relref "solutions/about-subscription-licenses.md" >}}).{{</call-out>}}
+{{<call-out "important" "Usage reporting requirement:" "fa-solid fa-exclamation-triangle" >}}You need to report usage to F5 regularly. **If usage isn’t reported for 180 days, NGINX Plus will stop processing traffic**. For more details about the usage reporting process, see [About subscription licenses]({{< ref "solutions/about-subscription-licenses.md" >}}).{{</call-out>}}
 
 If you prefer submitting usage reports to F5 manually, follow these steps:
 

@@ -39,4 +39,4 @@ The "Agent settings section is where you enable or disable account-wide behavior
   * Periodic NGINX configuration syntax checking with "nginx -t"
   * Analyzing SSL certs
 
-Per-system settings are accessible via the "Settings" icon that can be found for a particular NGINX on the [**Analyzer**]({{< relref "/amplify/user-interface/analyzer.md" >}}) page. Per-system settings override the global settings. If you prefer to monitor your NGINX configurations on all but some specific systems, you can uncheck the corresponding settings.
+Per-system settings are accessible via the "Settings" icon that can be found for a particular NGINX on the [**Analyzer**]({{< ref "/amplify/user-interface/analyzer.md" >}}) page. Per-system settings override the global settings. If you prefer to monitor your NGINX configurations on all but some specific systems, you can uncheck the corresponding settings.

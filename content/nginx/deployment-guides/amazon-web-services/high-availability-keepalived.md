@@ -11,7 +11,7 @@ type:
 
 This guide explains how to create a highly available (HA) active‑passive deployment of F5 NGINX Plus in the [Amazon Web Services](https://aws.amazon.com/) (AWS) cloud. It combines the `keepalived`‑based solution for high availability (provided by NGINX for on‑premises HA deployments) with the AWS Elastic IP address feature.
 
-NGINX also provides a [solution for active‑active HA of NGINX Plus in AWS]({{< relref "high-availability-network-load-balancer.md" >}}), using AWS Network Load Balancer.
+NGINX also provides a [solution for active‑active HA of NGINX Plus in AWS]({{< ref "high-availability-network-load-balancer.md" >}}), using AWS Network Load Balancer.
 
 <span id="ha-aws_overview"></span>
 ## Overview
@@ -35,7 +35,7 @@ As an alternative to ELB, you can use Route 53 to distribute traffic among NGIN
 - We have successfully tested the instructions on <span style="white-space: nowrap;">Ubuntu 16.04 LTS</span> (Xenial Xerus) and CentOS 7, with `keepalived` installed from the respective OS vendor repositories.
 - Except as noted, perform all steps on both the primary and backup instance.
 - The solution is not covered by your NGINX Plus support contract.
-- In addition to the [active‑active HA solution]({{< relref "high-availability-network-load-balancer.md" >}}) mentioned above, NGINX offers a solution based on [AWS Lambda](https://aws.amazon.com/lambda/) which does not require installation of any additional software on the NGINX Plus instances. The [NGINX Professional Services](https://www.nginx.com/services/) team can deploy and configure the Lambda‑based solution for you and provide support.
+- In addition to the [active‑active HA solution]({{< ref "high-availability-network-load-balancer.md" >}}) mentioned above, NGINX offers a solution based on [AWS Lambda](https://aws.amazon.com/lambda/) which does not require installation of any additional software on the NGINX Plus instances. The [NGINX Professional Services](https://www.nginx.com/services/) team can deploy and configure the Lambda‑based solution for you and provide support.
 
 <span id="ha-aws_nginx-plus"></span><span id="ha-aws_step1"></span>
 ## Step 1 – Launch Two NGINX Plus Instances

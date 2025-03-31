@@ -11,7 +11,7 @@ January 29, 2021
 
 ### New Features
 
-- [Advanced gRPC Protection for Unary Traffic]({{< relref "/nap-waf/v4/configuration-guide/configuration.md#advanced-grpc-protection-for-unary-traffic" >}})
+- [Advanced gRPC Protection for Unary Traffic]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#advanced-grpc-protection-for-unary-traffic" >}})
 
 ### Supported Packages
 

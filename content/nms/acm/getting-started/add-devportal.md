@@ -18,11 +18,11 @@ These clusters are managed under **Infrastructure Workspaces** and are part of *
 
 You should complete the following Quick Start Guide(s) before proceeding with the steps in this guide:
 
-- [Configure an API Gateway]({{< relref "add-api-gateway" >}})
+- [Configure an API Gateway]({{< relref "./add-api-gateway" >}})
 
 ## Add a Developer Portal
 
-Complete the steps in this guide to add a Developer Portal to the Environment you created in the [previous guide]({{< relref "add-api-gateway" >}}).
+Complete the steps in this guide to add a Developer Portal to the Environment you created in the [previous guide]({{< relref "./add-api-gateway" >}}).
 
 When a Developer Portal environment is created, the API Connectivity Manager configures
 a virtual server through which the developer portal service and API Connectivity Manager communicate. By default, the hostname for this server is the
@@ -156,7 +156,7 @@ Next, open the Developer Portal in a browser window and make sure the portal loa
 In this step, you'll apply a set of customizations to the Developer Portal.
 Because these settings are applied at the Infrastructure level, they are considered "global", meaning they apply to each Dev Portal Proxy that you associate with the cluster.
 
-{{<see-also>}}Refer to [Customize the Developer Portal]({{< relref "/nms/acm/how-to/infrastructure/customize-devportal.md" >}}) to learn more about the available customization options and how to customize a Dev Portal via the API Connectivity Manager user interface.{{</see-also>}}
+{{<see-also>}}Refer to [Customize the Developer Portal]({{< ref "/nms/acm/how-to/infrastructure/customize-devportal.md" >}}) to learn more about the available customization options and how to customize a Dev Portal via the API Connectivity Manager user interface.{{</see-also>}}
 
 
 {{<bootstrap-table "table">}}

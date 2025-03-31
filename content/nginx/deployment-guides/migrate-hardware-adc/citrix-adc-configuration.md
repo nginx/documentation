@@ -342,7 +342,7 @@ Logging and monitoring are important supporting functionality for load balancing
 
 Citrix ADC logs errors in its _event log_ and NGINX Plus in its [_error log_](https://nginx.org/en/docs/ngx_core_module.html#error_log). By default, Citrix ADC does not log individual requests, but can be configured to do so, using a separate weblog client. NGINX Plus has an [_access log_](https://nginx.org/en/docs/http/ngx_http_log_module.html) for which you can define customized formats to log many metrics (as captured in [variables](https://nginx.org/en/docs/varindex.html)) from both requests and responses.
 
-The [NGINX Plus API](https://nginx.org/en/docs/http/ngx_http_api_module.html) module collects numerous statistics, which you can access via the API, display on the built‑in live activity monitoring dashboard, or pass to third‑party monitoring tools. For more detail on logging and monitoring see the [NGINX Plus Admin Guide]({{< relref "/nginx/admin-guide/monitoring/_index.md" >}}).
+The [NGINX Plus API](https://nginx.org/en/docs/http/ngx_http_api_module.html) module collects numerous statistics, which you can access via the API, display on the built‑in live activity monitoring dashboard, or pass to third‑party monitoring tools. For more detail on logging and monitoring see the [NGINX Plus Admin Guide]({{< ref "/nginx/admin-guide/monitoring/_index.md" >}}).
 
 ### Revision History
 

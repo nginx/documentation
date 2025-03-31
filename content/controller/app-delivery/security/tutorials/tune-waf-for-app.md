@@ -54,7 +54,7 @@ To configure the Monitor-Only Mode, take the steps below.
 {{< note >}}
 When **Monitor Only** mode is enabled, it will not block traffic. Event violations will be sent according to the policies associated with the referenced strategy.
 
-When **Monitor Only** mode is disabled, traffic is blocked based on the [Violation Rating]({{< relref "/controller/app-delivery/security/concepts/app-sec-default-policy-original.md#use-of-violation-ratings-in-default-policy" >}}) score for the default policy.
+When **Monitor Only** mode is disabled, traffic is blocked based on the [Violation Rating]({{< ref "/controller/app-delivery/security/concepts/app-sec-default-policy-original.md#use-of-violation-ratings-in-default-policy" >}}) score for the default policy.
 {{< /note >}}
 
 {{< versions "3.12" "latest" "ctrlvers" >}}

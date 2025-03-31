@@ -2,7 +2,7 @@
 docs: DOCS-1301
 ---
 
-{{< call-out "important" "User groups require an OIDC identity provider" >}}User groups require an external identity provider configured for OpenID Connect (OIDC) authentication, as described in [Getting started with OIDC]({{< relref "/nim/admin-guide/authentication/oidc/getting-started.md" >}}). Users from an external identity provider cannot be assigned roles directly in NGINX Instance Manager. Instead, they inherit roles based on their group membership.{{< /call-out >}}
+{{< call-out "important" "User groups require an OIDC identity provider" >}}User groups require an external identity provider configured for OpenID Connect (OIDC) authentication, as described in [Getting started with OIDC]({{< ref "/nim/admin-guide/authentication/oidc/getting-started.md" >}}). Users from an external identity provider cannot be assigned roles directly in NGINX Instance Manager. Instead, they inherit roles based on their group membership.{{< /call-out >}}
 
 To assign roles to a user group, follow these steps:
 

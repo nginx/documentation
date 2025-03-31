@@ -71,6 +71,6 @@ July 6, 2021
 
 - NGINX App Protect DoS does not protect `grpc` and `http2` services. The traffic is bypassed.
 
-- [TLS fingerprint]({{< relref "/nap-dos/directives-and-policy/learn-about-directives-and-policy.md#policy-directive-app_protect_dos_policy_file" >}}) feature is not used in CentOS 7.4 due to the old OpenSSL version. The required OpenSSL version is 1.1.1 or higher.
+- [TLS fingerprint]({{< ref "/nap-dos/directives-and-policy/learn-about-directives-and-policy.md#policy-directive-app_protect_dos_policy_file" >}}) feature is not used in CentOS 7.4 due to the old OpenSSL version. The required OpenSSL version is 1.1.1 or higher.
 
 - Slow POST attack always mitigates with block action while other types of attacks can also be mitigated with redirection or JS challenges.

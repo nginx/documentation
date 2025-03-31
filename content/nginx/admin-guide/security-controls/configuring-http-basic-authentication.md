@@ -14,7 +14,7 @@ type:
 
 You can restrict access to your website or some parts of it by implementing a username/password authentication. Usernames and passwords are taken from a file created and populated by a password file creation tool, for example, <span style="white-space: nowrap;">`apache2-utils`</span>.
 
-HTTP Basic authentication can also be combined with other access restriction methods, for example restricting access by [IP address]({{< relref "denylisting-ip-addresses.md" >}}) or [geographical location]({{< relref "controlling-access-by-geoip.md" >}}).
+HTTP Basic authentication can also be combined with other access restriction methods, for example restricting access by [IP address]({{< ref "denylisting-ip-addresses.md" >}}) or [geographical location]({{< ref "controlling-access-by-geoip.md" >}}).
 
 <span id="prereq"></span>
 ## Prerequisites

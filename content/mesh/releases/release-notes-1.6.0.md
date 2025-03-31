@@ -24,9 +24,9 @@ These release notes provide general information and describe known issues for NG
   - [Updates](#updates)
   - [Resolved Issues](#resolved-issues)
   - [Known Issues](#known-issues)
-  - [Supported Versions]({{< relref "mesh/about/mesh-tech-specs.md" >}})
+  - [Supported Versions]({{< ref "mesh/about/mesh-tech-specs.md" >}})
   - {{< link "nginx-service-mesh/licenses/license-servicemesh-1.6.0.html" "Open Source Licenses" >}}
-  - [Open Source Licenses Addendum]({{< relref "oss-dependencies/index.md" >}})
+  - [Open Source Licenses Addendum]({{< ref "oss-dependencies/index.md" >}})
 
 <br/>
 <br/>

@@ -153,7 +153,7 @@ Confirm the policy is being enforced:
 
 <!-- Add troubleshooting steps for issues users might encounter and can self-solve. The purpose of this section is to deflect customer calls to Support. -->
 
-For help resolving common issues when setting up and configuring the policy, follow the steps in this section. If you cannot find a solution to your specific issue, reach out to [NGINX Customer Support]({{< relref "support/contact-support.md" >}}) for assistance.
+For help resolving common issues when setting up and configuring the policy, follow the steps in this section. If you cannot find a solution to your specific issue, reach out to [NGINX Customer Support]({{< ref "support/contact-support.md" >}}) for assistance.
 
 ### Issue 1
 

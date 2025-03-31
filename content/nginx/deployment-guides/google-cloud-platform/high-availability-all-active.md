@@ -32,7 +32,7 @@ The deployment combines the following technologies:
 
 <img src="/nginx/images/gce-all-active-load-balancing-topology.png" alt="Topology of the all‑active deployment of NGINX Plus as the Google Cloud Platform load balancer." width="1024" height="1000" class="aligncenter size-full wp-image-47509" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
-[Session persistence](https://www.nginx.com/products/nginx/load-balancing/#session-persistence) is managed at the network layer by the GCE network load balancer (based on client IP address). The NGINX Plus LB instance also manages it at the application layer (with a session cookie).  
+[Session persistence](https://www.nginx.com/products/nginx/load-balancing/#session-persistence) is managed at the network layer by the GCE network load balancer (based on client IP address). The NGINX Plus LB instance also manages it at the application layer (with a session cookie).
 
 The GCE network LB assigns each new client to a specific NGINX Plus LB. This association persists as long as the LB instance is up and functional.
 
@@ -40,7 +40,7 @@ NGINX Plus LB uses the round-robin algorithm to forward requests to specific app
 
 This deployment guide uses two groups of app instances: – <span style="color:#666666; font-weight:bolder; white-space: nowrap;">app-1</span> and <span style="color:#666666; font-weight:bolder; white-space: nowrap;">app-2</span>. It demonstrates [load balancing](https://www.nginx.com/products/nginx/load-balancing/) between different app types. But both groups have the same app configurations.
 
-You can adapt the deployment to distribute unique connections to different groups of app instances. This can be done by creating discrete upstream blocks and routing content based on the URI. 
+You can adapt the deployment to distribute unique connections to different groups of app instances. This can be done by creating discrete upstream blocks and routing content based on the URI.
 
 Please see the reference docs for details on configuring multiple [upstream server groups](https://nginx.org/en/docs/http/ngx_http_upstream_module.html).
 

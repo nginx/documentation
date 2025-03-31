@@ -14,9 +14,9 @@ F5 NGINX as a Service for Azure deployment, restrictions, and available directiv
 
 NGINX configurations can be uploaded to your NGINXaaS for Azure deployment using the Azure portal, Azure CLI, or Terraform. The following documents provide detailed steps on how to upload NGINX configurations:
 
-- [Upload using the Azure portal]({{< relref "/nginxaas-azure/getting-started/nginx-configuration/nginx-configuration-portal.md" >}})
-- [Upload using the Azure CLI]({{< relref "/nginxaas-azure/getting-started/nginx-configuration/nginx-configuration-azure-cli" >}})
-- [Upload using Terraform]({{< relref "/nginxaas-azure/getting-started/nginx-configuration/nginx-configurations-terraform.md" >}})
+- [Upload using the Azure portal]({{< ref "/nginxaas-azure/getting-started/nginx-configuration/nginx-configuration-portal.md" >}})
+- [Upload using the Azure CLI]({{< ref "/nginxaas-azure/getting-started/nginx-configuration/nginx-configuration-azure-cli" >}})
+- [Upload using Terraform]({{< ref "/nginxaas-azure/getting-started/nginx-configuration/nginx-configurations-terraform.md" >}})
 
 The topics below provide information on NGINX configuration restrictions and directives that are supported by NGINXaaS for Azure when using any of the above workflows.
 

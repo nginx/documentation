@@ -17,7 +17,7 @@ API Connectivity Manager comes pre-configured with roles suitable for API Owners
 
 {{< include "acm/rbac/api-owner-role.md" >}}
 
-{{<see-also>}}The tutorial [Set Up RBAC for API Owners]({{< relref "/nms/acm/tutorials/rbac-api-owners.md">}}) provides an example of how to configure RBAC for API owners.{{</see-also>}}
+{{<see-also>}}The tutorial [Set Up RBAC for API Owners]({{< ref "/nms/acm/tutorials/rbac-api-owners.md">}}) provides an example of how to configure RBAC for API owners.{{</see-also>}}
 
 <br>
 
@@ -25,4 +25,4 @@ API Connectivity Manager comes pre-configured with roles suitable for API Owners
 
 {{< include "acm/rbac/infra-admin-role.md" >}}
 
-{{<see-also>}}The tutorial [Set Up RBAC for Infra Admins]({{< relref "/nms/acm/tutorials/rbac-infra-admins.md">}}) provides an example of how to configure RBAC for Infrastructure Administrators.{{</see-also>}}
+{{<see-also>}}The tutorial [Set Up RBAC for Infra Admins]({{< ref "/nms/acm/tutorials/rbac-infra-admins.md">}}) provides an example of how to configure RBAC for Infrastructure Administrators.{{</see-also>}}

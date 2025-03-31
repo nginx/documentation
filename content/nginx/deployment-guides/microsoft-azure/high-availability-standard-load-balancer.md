@@ -268,7 +268,7 @@ After completing the instructions, you have completed the prerequisites for this
 
 The deployment in this guide uses six VMs: two VMs running NGINX Plus that load balance traffic to four VMs running NGINX Open Source as a web server. The four NGINX Open Source VMs are deployed in two pairs, each pair running a different app.
 
-<span style="white-space: nowrap;">Step-by-step</span> instructions for creating VMs and installing NGINX Open Source and NGINX Plus are provided in our deployment guide, [Creating Microsoft Azure Virtual Machines for NGINX Open Source and NGINX Plus]({{< relref "virtual-machines-for-nginx.md" >}}).
+<span style="white-space: nowrap;">Step-by-step</span> instructions for creating VMs and installing NGINX Open Source and NGINX Plus are provided in our deployment guide, [Creating Microsoft Azure Virtual Machines for NGINX Open Source and NGINX Plus]({{< ref "virtual-machines-for-nginx.md" >}}).
 
 **Note:** When installing NGINX Open Source or NGINX Plus, you connect to each instance over SSH. To save time, leave the SSH connection to each instance open after installing the software, for reuse when you configure it using the instructions referenced in the sections below.
 
@@ -286,7 +286,7 @@ Assign the following names to the VMs, and then install the indicated NGINX soft
   - <span style="color:#666666; font-weight:bolder">ngx-plus-1</span>
   - <span style="color:#666666; font-weight:bolder">ngx-plus-2</span>
 
-**Note:** The two NGINX Plus VMs must have a public IP address with same SKU type as the Standard Load Balancer you are creating (in this guide, **Standard**).  Instructions are included in our deployment guide, [Creating Microsoft Azure Virtual Machines for NGINX Open Source and NGINX Plus]({{< relref "virtual-machines-for-nginx.md" >}}).
+**Note:** The two NGINX Plus VMs must have a public IP address with same SKU type as the Standard Load Balancer you are creating (in this guide, **Standard**).  Instructions are included in our deployment guide, [Creating Microsoft Azure Virtual Machines for NGINX Open Source and NGINX Plus]({{< ref "virtual-machines-for-nginx.md" >}}).
 
 <span id="configure-web-servers"></span>
 ### Configuring NGINX Open Source on the Web Servers
