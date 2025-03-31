@@ -18,6 +18,10 @@ of methods:
 - You need to have `root` privileges
 
 ## Install NGINX Agent using NGINX One Console<a name="connect-to-nginx-one-console"></a>
+
+If you are using NGINX One Console to manage your NGINX instances, NGINX Agent is
+installed automatically when you add an instance to NGINX One Console.
+
 For a quick guide on how to connect to NGINX One Console see: [Connect to NGINX One Console]({{< relref "/nginx-one/how-to/nginx-configs/add-instance" >}})
 
 ## Manual installation using the NGINX Open Source repository
@@ -26,13 +30,8 @@ Before you install NGINX Agent for the first time on your system, you need to se
 up the `nginx-agent` packages repository. Afterward, you can install and update
 NGINX Agent from the repository.
 
-- [Install NGINX Agent on RHEL, CentOS, Rocky Linux, AlmaLinux, and Oracle Linux](#install-nginx-agent-on-rhel-centos-rocky-linux-almalinux-and-oracle-linux)
-- [Install NGINX Agent on Ubuntu](#install-nginx-agent-on-ubuntu)
-- [Install NGINX Agent on Debian](#install-nginx-agent-on-debian)
-- [Install NGINX Agent on SLES](#install-nginx-agent-on-sles)
-- [Install NGINX Agent on Alpine Linux](#install-nginx-agent-on-alpine-linux)
-- [Install NGINX Agent on Amazon Linux](#install-nginx-agent-on-amazon-linux)
-- [Install NGINX Agent on FreeBSD](#install-nginx-agent-on-freebsd)
+<details>
+<summary><i class="fa-brands fa-centos"></i> Install NGINX Agent on RHEL, CentOS, Rocky Linux, AlmaLinux, and Oracle Linux</summary>
 
 ### Install NGINX Agent on RHEL, CentOS, Rocky Linux, AlmaLinux, and Oracle Linux
 
@@ -62,6 +61,11 @@ with the following contents:
    ```
 
    When prompted to accept the GPG key, verify that the fingerprint matches `573B FD6B 3D8F BC64 1079 A6AB ABF5 BD82 7BD9 BF62`, and if so, accept it.
+
+</details>
+
+<details>
+<summary><i class="fa-brands fa-ubuntu"></i> Install NGINX Agent on Ubuntu</summary>
 
 ### Install NGINX Agent on Ubuntu
 
@@ -108,6 +112,11 @@ with the following contents:
    sudo apt update
    sudo apt install nginx-agent
    ```
+
+</details>
+
+<details>
+<summary><i class="fa-brands fa-debian"></i> Install NGINX Agent on Debian</summary>
 
 ### Install NGINX Agent on Debian
 
@@ -157,6 +166,11 @@ with the following contents:
    sudo apt install nginx-agent
    ```
 
+</details>
+
+<details>
+<summary><i class="fa-brands fa-suse"></i> Install NGINX Agent on SLES</summary>
+
 ### Install NGINX Agent on SLES
 
 1. Install the prerequisites:
@@ -204,6 +218,11 @@ package's authenticity. Fetch the key:
    ```shell
    sudo zypper install nginx-agent
    ```
+
+</details>
+
+<details>
+<summary><i class="fa-solid fa-mountain-sun"></i> Install NGINX Agent on Alpine Linux</summary>
 
 ### Install NGINX Agent on Alpine Linux
 
@@ -273,6 +292,10 @@ authenticity. Fetch the key:
    ```shell
    sudo apk add nginx-agent
    ```
+</details>
+
+<details>
+<summary><i class="fa-brands fa-amazon"></i> Install NGINX Agent on Amazon Linux</summary>
 
 ### Install NGINX Agent on Amazon Linux
 
@@ -304,6 +327,10 @@ authenticity. Fetch the key:
 1. When prompted to accept the GPG key, verify that the fingerprint matches
 `573B FD6B 3D8F BC64 1079 A6AB ABF5 BD82 7BD9 BF62`, and if so, accept it.
 
+</details>
+<details>
+<summary><i class="fa-brands fa-freebsd"></i> Install NGINX Agent on FreeBSD</summary>
+
 ### Install NGINX Agent on FreeBSD
 
 1. To setup the pkg repository create a file with name `/etc/pkg/nginx-agent.conf`
@@ -322,6 +349,7 @@ with the following content:
    ```shell
    sudo pkg install nginx-agent
    ```
+</details>
 
 ### Manually connect NGINX Agent to NGINX One Console
 
@@ -333,13 +361,9 @@ Before you install NGINX Agent for the first time on your system, you need to
 set up the `nginx-agent` packages repository. Afterward, you can install and update
 NGINX Agent from the repository.
 
-- [Install NGINX Agent on RHEL, CentOS, Rocky Linux, AlmaLinux, and Oracle Linux](#install-nginx-agent-on-rhel-centos-rocky-linux-almalinux-and-oracle-linux-plus)
-- [Install NGINX Agent on Ubuntu](#install-nginx-agent-on-ubuntu-plus)
-- [Install NGINX Agent on Debian](#install-nginx-agent-on-debian-plus)
-- [Install NGINX Agent on SLES](#install-nginx-agent-on-sles-plus)
-- [Install NGINX Agent on Alpine Linux](#install-nginx-agent-on-alpine-linux-plus)
-- [Install NGINX Agent on Amazon Linux](#install-nginx-agent-on-amazon-linux-plus)
-- [Install NGINX Agent on FreeBSD](#install-nginx-agent-on-freebsd-plus)
+
+<details>
+<summary><i class="fa-brands fa-centos"></i> Install NGINX Agent on RHEL, CentOS, Rocky Linux, AlmaLinux, and Oracle Linux</summary>
 
 ### Install NGINX Agent on RHEL, CentOS, Rocky Linux, AlmaLinux, and Oracle Linux<a name="install-nginx-agent-on-rhel-centos-rocky-linux-almalinux-and-oracle-linux-plus"></a>
 
@@ -392,6 +416,11 @@ NGINX Agent from the repository.
    When prompted to accept the GPG key, verify that the fingerprint matches
    `573B FD6B 3D8F BC64 1079 A6AB ABF5 BD82 7BD9 BF62`, and if so, accept it.
 
+</details>
+
+<details>
+<summary><i class="fa-brands fa-ubuntu"></i> Install NGINX Agent on Ubuntu</summary>
+
 ### Install NGINX Agent on Ubuntu<a name="install-nginx-agent-on-ubuntu-plus"></a>
 
 1. Create the `/etc/ssl/nginx` directory:
@@ -443,6 +472,11 @@ NGINX Agent from the repository.
    sudo apt install nginx-agent
    ```
 
+</details>
+
+<details>
+<summary><i class="fa-brands fa-debian"></i> Install NGINX Agent on Debian</summary>
+
 ### Install NGINX Agent on Debian<a name="install-nginx-agent-on-debian-plus"></a>
 
 1. Create the `/etc/ssl/nginx` directory:
@@ -488,6 +522,11 @@ NGINX Agent from the repository.
    sudo apt update
    sudo apt install nginx-agent
    ```
+
+</details>
+
+<details>
+<summary><i class="fa-brands fa-suse"></i> Install NGINX Agent on SLES</summary>
 
 ### Install NGINX Agent on SLES<a name="install-nginx-agent-on-sles-plus"></a>
 
@@ -559,6 +598,11 @@ NGINX Agent from the repository.
    ```shell
    sudo zypper install nginx-agent
    ```
+
+</details>
+
+<details>
+<summary><i class="fa-solid fa-mountain-sun"></i> Install NGINX Agent on Alpine Linux</summary>
 
 ### Install NGINX Agent on Alpine Linux<a name="install-nginx-agent-on-alpine-linux-plus"></a>
 
@@ -639,6 +683,10 @@ NGINX Agent from the repository.
    sudo apk add nginx-agent
    ```
 
+</details>
+<details>
+<summary><i class="fa-brands fa-amazon"></i> Install NGINX Agent on Amazon Linux</summary>
+
 ### Install NGINX Agent on Amazon Linux<a name="install-nginx-agent-on-amazon-linux-plus"></a>
 
 1. Create the `/etc/ssl/nginx` directory:
@@ -684,6 +732,11 @@ NGINX Agent from the repository.
 
 1. When prompted to accept the GPG key, verify that the fingerprint matches
    `573B FD6B 3D8F BC64 1079 A6AB ABF5 BD82 7BD9 BF62`, and if so, accept it.
+
+</details>
+
+<details>
+<summary><i class="fa-brands fa-freebsd"></i> Install NGINX Agent on FreeBSD</summary>
 
 ### Install NGINX Agent on FreeBSD<a name="install-nginx-agent-on-freebsd-plus"></a>
 
@@ -732,6 +785,9 @@ with the following content:
    ```shell
    sudo pkg install nginx-agent
    ```
+
+</details>
+
 ### Manually connect NGINX Agent to NGINX One Console
 
 {{< include "agent/installation/manually-connect-to-console" >}}
@@ -779,7 +835,7 @@ Use your system's package manager to install the package. Some examples:
 
 {{< include "agent/installation/manually-connect-to-console" >}}
 
-## Starting, Stopping, and Enabling NGINX Agent
+## Start, stop, and enable NGINX Agent
 
 To start NGINX Agent on `systemd` systems, run the following command:
 
