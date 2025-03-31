@@ -214,7 +214,7 @@ To start the Docker container with NGINX Plus, you will need to pass your JWT li
 To start the Docker container with NGINX Plus only:
 ```sh
 sudo docker run \
---env=NGINX_LICENSE_JWT=license.jwt \
+--env=NGINX_LICENSE_JWT=$(cat license.jwt) \
 --restart=always \
 --runtime=runc \
 -d <YOUR_REGISTRY>/nginx-plus/base:<VERSION_TAG>
@@ -225,7 +225,7 @@ you will need to additionally pass the NGINX One data plane key as the `NGINX_AG
 
 ```sh
 sudo docker run \
---env=NGINX_LICENSE_JWT=license.jwt \
+--env=NGINX_LICENSE_JWT=$(cat license.jwt) \
 --env=NGINX_AGENT_SERVER_GRPCPORT=443 \
 --env=NGINX_AGENT_SERVER_HOST=agent.connect.nginx.com \
 --env=NGINX_AGENT_SERVER_TOKEN="YOUR_NGINX_ONE_DATA_PLANE_KEY" \
@@ -252,7 +252,7 @@ To start the Docker Container with NGINX Plus and NGINX Agent on Debian or Ubunt
 
 ```sh
 sudo docker run \
---env=NGINX_LICENSE_JWT="license.jwt" \
+--env=NGINX_LICENSE_JWT=$(cat license.jwt) \
 --env=NGINX_AGENT_SERVER_GRPCPORT=443 \
 --env=NGINX_AGENT_SERVER_HOST=agent.connect.nginx.com \
 --env=NGINX_AGENT_SERVER_TOKEN="YOUR_NGINX_ONE_DATA_PLANE_KEY" \
