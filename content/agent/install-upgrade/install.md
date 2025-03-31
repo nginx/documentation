@@ -295,7 +295,7 @@ authenticity. Fetch the key:
 </details>
 
 <details>
-<summary><i class="fa-brands fa-amazon"></i> Install NGINX Agent on Amazon Linux</summary>
+<summary><i class="fa-brands fa-aws"></i> Install NGINX Agent on Amazon Linux</summary>
 
 ### Install NGINX Agent on Amazon Linux
 
@@ -685,7 +685,7 @@ NGINX Agent from the repository.
 
 </details>
 <details>
-<summary><i class="fa-brands fa-amazon"></i> Install NGINX Agent on Amazon Linux</summary>
+<summary><i class="fa-brands fa-aws"></i> Install NGINX Agent on Amazon Linux</summary>
 
 ### Install NGINX Agent on Amazon Linux<a name="install-nginx-agent-on-amazon-linux-plus"></a>
 
