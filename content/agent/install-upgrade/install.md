@@ -14,41 +14,11 @@ of methods:
 
 ## Before you begin
 
-There are a few prerequisites shared between all installation methods:
-
-- You must enable the [NGINX One Console]({{< ref "/nginx-one/getting-started.md" >}}) and add your NGINX instances
 - You must use one of the [supported operating system and architectures]({{< ref "/agent/technical-specifications.md#supported-distributions" >}})
 - You need to have `root` privileges
 
-After F5 NGINX Agent is installed, it will remain runnng idle in the background. For proper functionality, two actions are required:
-
-- **Install NGINX:** Ensure the NGINX is installed on the system.
-- **Connect to the NGINX One Console:** Establish a connection between the installed NGINX instance and the NGINX One Console.
-
-## Connect to NGINX One Console
+## Install NGINX Agent using NGINX One Console<a name="connect-to-nginx-one-console"></a>
 For a quick guide on how to connect to NGINX One Console see: [Connect to NGINX One Console]({{< relref "/nginx-one/how-to/nginx-configs/add-instance" >}})
-
-### Manual connect
-1. Ensure the F5 NGINX Agent is installed
-1. Locate the F5 NGINX Agent Configuration File:
-
-   ```shell
-   /etc/nginx-agent/nginx-agent.conf
-   ```
-
-1. Open the NGINX Agent configuration file in a text editor like vim:
-
-   ```shell
-   sudo vim /etc/nginx-agent/nginx-agent.conf
-   ```
-
-1. Uncomment the command block, and set the token to your data plane key
-1. Save the changes and close the editor
-1. Restart the F5 NGINX Agent service:
-
-   ```shell
-   sudo systemctl stop nginx-agent
-   ```
 
 ## Manual installation using the NGINX Open Source repository
 
@@ -352,6 +322,10 @@ with the following content:
    ```shell
    sudo pkg install nginx-agent
    ```
+
+### Manually connect NGINX Agent to NGINX One Console
+
+{{< include "agent/installation/manually-connect-to-console" >}}
 
 ## Manual installation using the NGINX Plus repository
 
@@ -758,6 +732,9 @@ with the following content:
    ```shell
    sudo pkg install nginx-agent
    ```
+### Manually connect NGINX Agent to NGINX One Console
+
+{{< include "agent/installation/manually-connect-to-console" >}}
 
 ## GitHub package files
 
@@ -797,6 +774,10 @@ Use your system's package manager to install the package. Some examples:
   ```shell
   sudo pkg add nginx-agent-<agent-version>.pkg
   ```
+
+### Manually connect NGINX Agent to NGINX One Console
+
+{{< include "agent/installation/manually-connect-to-console" >}}
 
 ## Starting, Stopping, and Enabling NGINX Agent
 
