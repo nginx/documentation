@@ -40,28 +40,28 @@ April 1st, 2025
 
 | Distribution name        | Package file                                                      |
 |--------------------------|-------------------------------------------------------------------|
-| Alpine 3.19              | _app-protect-module-oss-1.27.4+5.332.0-r1.apk_                    |
-| Amazon Linux 2023        | _app-protect-module-oss-1.27.4+5.332.0-1.amzn2023.ngx.x86_64.rpm_ |
-| Debian 11                | _app-protect-module-oss_1.27.4+5.332.0-1\~bullseye_amd64.deb_     |
-| Debian 12                | _app-protect-module-oss_1.27.4+5.332.0-1\~bookworm_amd64.deb_     |
-| Oracle Linux 8.1         | _app-protect-module-oss-1.27.4+5.332.0-1.el8.ngx.x86_64.rpm_      |
-| Ubuntu 20.04             | _app-protect-module-oss_1.27.4+5.332.0-1\~focal_amd64.deb_        |
-| Ubuntu 22.04             | _app-protect-module-oss_1.27.4+5.332.0-1\~jammy_amd64.deb_        |
-| Ubuntu 24.04             | _app-protect-module-oss_1.27.4+5.332.0-1\~noble_amd64.deb_        |
-| RHEL 8 and Rocky Linux 8 | _app-protect-module-oss-1.27.4+5.332.0-1.el8.ngx.x86_64.rpm_      |
-| RHEL 9                   | _app-protect-module-oss-1.27.4+5.332.0-1.el9.ngx.x86_64.rpm_      |
+| Alpine 3.19              | _app-protect-module-oss-1.27.4+5.342.0-r1.apk_                    |
+| Amazon Linux 2023        | _app-protect-module-oss-1.27.4+5.342.0-1.amzn2023.ngx.x86_64.rpm_ |
+| Debian 11                | _app-protect-module-oss_1.27.4+5.342.0-1\~bullseye_amd64.deb_     |
+| Debian 12                | _app-protect-module-oss_1.27.4+5.342.0-1\~bookworm_amd64.deb_     |
+| Oracle Linux 8.1         | _app-protect-module-oss-1.27.4+5.342.0-1.el8.ngx.x86_64.rpm_      |
+| Ubuntu 20.04             | _app-protect-module-oss_1.27.4+5.342.0-1\~focal_amd64.deb_        |
+| Ubuntu 22.04             | _app-protect-module-oss_1.27.4+5.342.0-1\~jammy_amd64.deb_        |
+| Ubuntu 24.04             | _app-protect-module-oss_1.27.4+5.342.0-1\~noble_amd64.deb_        |
+| RHEL 8 and Rocky Linux 8 | _app-protect-module-oss-1.27.4+5.342.0-1.el8.ngx.x86_64.rpm_      |
+| RHEL 9                   | _app-protect-module-oss-1.27.4+5.342.0-1.el9.ngx.x86_64.rpm_      |
 
 ### NGINX Plus
 
 | Distribution name        | Package file                                                   |
 |--------------------------|----------------------------------------------------------------|
-| Alpine 3.19              | _app-protect-module-plus-34+5.332.0-r1.apk_                    |
-| Amazon Linux 2023        | _app-protect-module-plus-34+5.332.0-1.amzn2023.ngx.x86_64.rpm_ |
-| Debian 11                | _app-protect-module-plus_34+5.332.0-1\~bullseye_amd64.deb_     |
-| Debian 12                | _app-protect-module-plus_34+5.332.0-1\~bookworm_amd64.deb_     |
-| Oracle Linux 8.1         | _app-protect-module-plus-34+5.332.0-1.el8.ngx.x86_64.rpm_      |
-| Ubuntu 20.04             | _app-protect-module-plus_34+5.332.0-1\~focal_amd64.deb_        |
-| Ubuntu 22.04             | _app-protect-module-plus_34+5.332.0-1\~jammy_amd64.deb_        |
-| Ubuntu 24.04             | _app-protect-module-plus_34+5.332.0-1\~noble_amd64.deb_        |
-| RHEL 8 and Rocky Linux 8 | _app-protect-module-plus-34+5.332.0-1.el8.ngx.x86_64.rpm_      |
-| RHEL 9                   | _app-protect-module-plus-34+5.332.0-1.el9.ngx.x86_64.rpm_      |
+| Alpine 3.19              | _app-protect-module-plus-34+5.342.0-r1.apk_                    |
+| Amazon Linux 2023        | _app-protect-module-plus-34+5.342.0-1.amzn2023.ngx.x86_64.rpm_ |
+| Debian 11                | _app-protect-module-plus_34+5.342.0-1\~bullseye_amd64.deb_     |
+| Debian 12                | _app-protect-module-plus_34+5.342.0-1\~bookworm_amd64.deb_     |
+| Oracle Linux 8.1         | _app-protect-module-plus-34+5.342.0-1.el8.ngx.x86_64.rpm_      |
+| Ubuntu 20.04             | _app-protect-module-plus_34+5.342.0-1\~focal_amd64.deb_        |
+| Ubuntu 22.04             | _app-protect-module-plus_34+5.342.0-1\~jammy_amd64.deb_        |
+| Ubuntu 24.04             | _app-protect-module-plus_34+5.342.0-1\~noble_amd64.deb_        |
+| RHEL 8 and Rocky Linux 8 | _app-protect-module-plus-34+5.342.0-1.el8.ngx.x86_64.rpm_      |
+| RHEL 9                   | _app-protect-module-plus-34+5.342.0-1.el9.ngx.x86_64.rpm_      |
