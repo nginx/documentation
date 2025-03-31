@@ -15,6 +15,6 @@ You can use F5 NGINX One Console API to manage your Staged Configurations. With 
 
 - [Create an NGINX Staged Configuration]({{< relref "/nginx-one/api/api-reference-guide/#operation/createStagedConfig" >}})
   - The details allow you to add existing configuration files.
-- [Get a list of existing Staged Configruations]({{< relref "/nginx-one/api/api-reference-guide/#operation/listStagedConfigs" >}})
+- [Get a list of existing Staged Configurations]({{< relref "/nginx-one/api/api-reference-guide/#operation/listStagedConfigs" >}})
   - Be sure to record the `object_id` of your target Staged Configuration for your analysis report.
 - [Get an analysis report for an existing Staged Configuration]({{< relref "/nginx-one/api/api-reference-guide/#operation/getStagedConfigReport" >}})
