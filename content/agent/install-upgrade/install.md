@@ -31,7 +31,7 @@ up the `nginx-agent` packages repository. Afterward, you can install and update
 NGINX Agent from the repository.
 
 <details>
-<summary><i class="fa-brands fa-centos"></i> Install NGINX Agent on RHEL, CentOS, Rocky Linux, AlmaLinux, and Oracle Linux</summary>
+<summary>{{< fa "brands fa-centos" >}} Install NGINX Agent on RHEL, CentOS, Rocky Linux, AlmaLinux, and Oracle Linux</summary>
 
 ### Install NGINX Agent on RHEL, CentOS, Rocky Linux, AlmaLinux, and Oracle Linux
 
@@ -65,7 +65,7 @@ with the following contents:
 </details>
 
 <details>
-<summary><i class="fa-brands fa-ubuntu"></i> Install NGINX Agent on Ubuntu</summary>
+<summary>{{< fa "brands fa-ubuntu" >}} Install NGINX Agent on Ubuntu</summary>
 
 ### Install NGINX Agent on Ubuntu
 
@@ -116,7 +116,7 @@ with the following contents:
 </details>
 
 <details>
-<summary><i class="fa-brands fa-debian"></i> Install NGINX Agent on Debian</summary>
+<summary>{{< fa "brands fa-debian" >}} Install NGINX Agent on Debian</summary>
 
 ### Install NGINX Agent on Debian
 
@@ -169,7 +169,7 @@ with the following contents:
 </details>
 
 <details>
-<summary><i class="fa-brands fa-suse"></i> Install NGINX Agent on SLES</summary>
+<summary>{{< fa "brands fa-suse" >}} Install NGINX Agent on SLES</summary>
 
 ### Install NGINX Agent on SLES
 
@@ -222,7 +222,7 @@ package's authenticity. Fetch the key:
 </details>
 
 <details>
-<summary><i class="fa-solid fa-mountain-sun"></i> Install NGINX Agent on Alpine Linux</summary>
+<summary>{{< fa "solid fa-mountain-sun" >}} Install NGINX Agent on Alpine Linux</summary>
 
 ### Install NGINX Agent on Alpine Linux
 
@@ -295,7 +295,7 @@ authenticity. Fetch the key:
 </details>
 
 <details>
-<summary><i class="fa-brands fa-aws"></i> Install NGINX Agent on Amazon Linux</summary>
+<summary>{{< fa "brands fa-aws" >}} Install NGINX Agent on Amazon Linux</summary>
 
 ### Install NGINX Agent on Amazon Linux
 
@@ -329,7 +329,7 @@ authenticity. Fetch the key:
 
 </details>
 <details>
-<summary><i class="fa-brands fa-freebsd"></i> Install NGINX Agent on FreeBSD</summary>
+<summary>{{< fa "brands fa-freebsd" >}} Install NGINX Agent on FreeBSD</summary>
 
 ### Install NGINX Agent on FreeBSD
 
@@ -363,7 +363,7 @@ NGINX Agent from the repository.
 
 
 <details>
-<summary><i class="fa-brands fa-centos"></i> Install NGINX Agent on RHEL, CentOS, Rocky Linux, AlmaLinux, and Oracle Linux</summary>
+<summary>{{< fa "brands fa-centos" >}} Install NGINX Agent on RHEL, CentOS, Rocky Linux, AlmaLinux, and Oracle Linux</summary>
 
 ### Install NGINX Agent on RHEL, CentOS, Rocky Linux, AlmaLinux, and Oracle Linux<a name="install-nginx-agent-on-rhel-centos-rocky-linux-almalinux-and-oracle-linux-plus"></a>
 
@@ -419,7 +419,7 @@ NGINX Agent from the repository.
 </details>
 
 <details>
-<summary><i class="fa-brands fa-ubuntu"></i> Install NGINX Agent on Ubuntu</summary>
+<summary>{{< fa "brands fa-ubuntu" >}} Install NGINX Agent on Ubuntu</summary>
 
 ### Install NGINX Agent on Ubuntu<a name="install-nginx-agent-on-ubuntu-plus"></a>
 
@@ -475,7 +475,7 @@ NGINX Agent from the repository.
 </details>
 
 <details>
-<summary><i class="fa-brands fa-debian"></i> Install NGINX Agent on Debian</summary>
+<summary>{{< fa "brands fa-debian" >}} Install NGINX Agent on Debian</summary>
 
 ### Install NGINX Agent on Debian<a name="install-nginx-agent-on-debian-plus"></a>
 
@@ -526,7 +526,7 @@ NGINX Agent from the repository.
 </details>
 
 <details>
-<summary><i class="fa-brands fa-suse"></i> Install NGINX Agent on SLES</summary>
+<summary>{{< fa "brands fa-suse" >}} Install NGINX Agent on SLES</summary>
 
 ### Install NGINX Agent on SLES<a name="install-nginx-agent-on-sles-plus"></a>
 
@@ -602,7 +602,7 @@ NGINX Agent from the repository.
 </details>
 
 <details>
-<summary><i class="fa-solid fa-mountain-sun"></i> Install NGINX Agent on Alpine Linux</summary>
+<summary>{{< fa "solid fa-mountain-sun" >}} Install NGINX Agent on Alpine Linux</summary>
 
 ### Install NGINX Agent on Alpine Linux<a name="install-nginx-agent-on-alpine-linux-plus"></a>
 
@@ -685,7 +685,7 @@ NGINX Agent from the repository.
 
 </details>
 <details>
-<summary><i class="fa-brands fa-aws"></i> Install NGINX Agent on Amazon Linux</summary>
+<summary>{{< fa "brands fa-aws" >}} Install NGINX Agent on Amazon Linux</summary>
 
 ### Install NGINX Agent on Amazon Linux<a name="install-nginx-agent-on-amazon-linux-plus"></a>
 
@@ -736,7 +736,7 @@ NGINX Agent from the repository.
 </details>
 
 <details>
-<summary><i class="fa-brands fa-freebsd"></i> Install NGINX Agent on FreeBSD</summary>
+<summary>{{< fa "brands fa-freebsd" >}} Install NGINX Agent on FreeBSD</summary>
 
 ### Install NGINX Agent on FreeBSD<a name="install-nginx-agent-on-freebsd-plus"></a>
 
