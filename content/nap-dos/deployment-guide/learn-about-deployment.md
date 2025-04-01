@@ -990,7 +990,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
 16. Start the NGINX service:
 
     ```shell
-     sudo systemctl start nginx
+    sudo systemctl start nginx
     ```
 17. Start the L4 service:
     ```shell
