@@ -829,7 +829,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
 
 1. {{< include "nginx-plus/install/copy-jwt-to-etc-nginx-dir.md" >}}
 
-5. Install apt utils:
+5. Install appropriate packages with `apt`:
 
     For Debian:
 
