@@ -15,7 +15,8 @@ of methods:
 ## Before you begin
 
 - You must use one of the [supported operating system and architectures]({{< ref "/agent/technical-specifications.md#supported-distributions" >}})
-- You need to have `root` privileges
+- The user running the NGINX Agent installation must have the same privileges as
+the main NGINX process. We recommend **not** running NGINX or NGINX Agent as the root user.
 
 ## Install NGINX Agent using NGINX One Console<a name="connect-to-nginx-one-console"></a>
 
