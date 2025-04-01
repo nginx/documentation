@@ -42,5 +42,39 @@ The F5 NGINX Agent is a lightweight companion daemon designed to work with NGINX
 
 {{< img src="agent-flow.png" caption="How Agent works" alt="How NGINX Agent works" width="99%">}}
 
+```mermaid
+graph BT
+
+    %% Define colors for the subgraphs
+    style ManagementPlane fill:#d0eac4,stroke:#228B22,stroke-width:2px,color:#000000
+    style Compute fill:#cfe2f1,stroke:#1E90FF,stroke-width:2px,color:#000000
+    style NGINX fill:#b5e0b6,stroke:#008000,stroke-width:2px,color:#000000
+    style NGINXConfig fill:#b5e0b6,stroke:#008000,stroke-width:2px,color:#000000
+    style Logs fill:#b5e0b6,stroke:#008000,stroke-width:2px,color:#000000
+    style Agent fill:#b5e0b6,stroke:#008000,stroke-width:2px,color:#000000
+
+    subgraph ManagementPlane["Management Plane"]
+        CommandControl["Command Server"]
+        OTelManagementPlane["OTel Receiver"]
+    end
+
+    subgraph Compute["NGINX Instance"]
+        subgraph Agent["Agent Process"]
+            OTelDataPlane["OTel Collector"]
+        end
+
+        NGINX["NGINX Process"]
+        NGINXConfig["NGINX Config Files"]
+        Logs["NGINX Logs"]
+
+        Agent --> |Watch/Reload| NGINX
+        Agent <--> |Reads/Writes| Logs
+        Agent <--> |Reads/Writes| NGINXConfig
+        OTelDataPlane --> |Collects| Metrics["Host Metrics"]
+        OTelDataPlane --> |Reads| NGINXMetrics["NGINX Metrics"]
+    end
+
+    Compute <--> |gRPC| ManagementPlane
+```
 ---
 
