@@ -50,7 +50,7 @@ NGINX App Protect WAF v5 supports a range of deployment scenarios to meet variou
    - Deploys both NGINX and WAF components within containers.
    - Suitable for environments across development, testing, and production stages.
 
-2. [Kubernetes Deployment]({{< ref "/nap-waf/v5/admin-guide/deploy-on-kubernetes.md" >}})
+2. [Kubernetes Deployment]({{< ref "/nap-waf/v5/admin-guide/deploy-with-helm.md" >}})
    - Integrates both NGINX and WAF components in a single pod.
    - Ideal for scalable, cloud-native environments.
 
@@ -81,7 +81,7 @@ We recommend that you deploy the NGINX App Protect WAF v5 in a staging environme
 1. Install NGINX App Protect WAF 5 (using either nginx OSS or nginx-plus based on the need of customer's application).
    - [Installing NGINX App Protect WAF]({{<ref "/nap-waf/v5/admin-guide/install.md">}})
    - [Deploying NGINX App Protect WAF on Docker]({{<ref "/nap-waf/v5/admin-guide/deploy-on-docker.md">}})
-   - [Deploying NGINX App Protect WAF on Kubernetes]({{<ref "/nap-waf/v5/admin-guide/deploy-on-kubernetes.md">}})
+   - [Deploying NGINX App Protect WAF on Kubernetes]({{<ref "/nap-waf/v5/admin-guide/deploy-with-helm.md">}})
 
 1. Compile your `.json` policies and logging profiles to `.tgz` bundles using [compiler-image]({{<ref "/nap-waf/v5/admin-guide/compiler.md">}}) because NGINX App Protect WAF v5 supports policies and logging profiles in a compiled bundle format only.
 

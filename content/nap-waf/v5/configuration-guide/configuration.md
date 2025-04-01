@@ -787,7 +787,7 @@ To enable mTLS in NGINX, you need to perform the following steps:
     - ENFORCER_SERVER_KEY
     - ENFORCER_CA_FILE
 
-    Refer to the example for mTLS deployment in the admin guide, whether you're using [Docker]({{< ref "/nap-waf/v5/admin-guide/deploy-on-docker.md#docker-compose-file-with-mtls" >}}) or [Kubernetes]({{< ref "/nap-waf/v5/admin-guide/deploy-on-kubernetes.md#mtls-deployment" >}}).
+    Refer to the example for mTLS deployment in the admin guide, whether you're using [Docker]({{< ref "/nap-waf/v5/admin-guide/deploy-on-docker.md#docker-compose-file-with-mtls" >}}) or [Kubernetes]({{< ref "/nap-waf/v5/admin-guide/deploy-with-helm.md#mtls-deployment" >}}).
 
 ## Brute Force Attack Preventions
 
