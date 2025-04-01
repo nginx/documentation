@@ -196,36 +196,6 @@ cd nginx-app-protect
 
 ---
 
-## Configure read only file systems
-
-{{< include "/nap-waf/nap-k8s-readonly-introduction.md" >}}
-
----
- 
-### Enable `readOnlyRootFilesystem` and configure writable paths
-
-{{< include "/nap-waf/nap-k8s-readonly-context.md" >}}
-
----
-
-### Update NGINX configuration with writable paths
-
-{{< include "/nap-waf/nap-k8s-readonly-paths.md" >}}
-
---- 
- 
-### Possible issues
-
-{{< include "/nap-waf/nap-k8s-readonly-issues.md" >}}
-
----
-
-## Enable mTLS  
-
-{{< include "/nap-waf/nap-k8s-mtls-deployment.md" >}}
-
----
-
 ## Use compiled Policy and Logging Profile bundles in NGINX
 
 {{< include "/nap-waf/nap-k8s-use-compiled-bundles.md" >}}
