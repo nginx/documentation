@@ -9,7 +9,7 @@ weight: 550
 
 This guide explains how to enable single sign-on (SSO) for applications being proxied by F5 NGINX Plus using: 
 - OpenID Connect as the authentication mechanism
-- an external Identity Provider (IdP) such as AD FS, Auth0, Cognito, Entra ID, Keycloak, OneLogin, Okta, Ping Identity and others
+- An external Identity Provider (IdP) such as AD FS, Auth0, Cognito, Entra ID, Keycloak, OneLogin, Okta, Ping Identity and others
 - NGINX Plus as an OIDC client application that verifies user identity (Relying Party).
 
 OpenID Connect is an identity protocol that utilizes the authorization and authentication mechanisms of OAuth 2.0. With it, NGINX Plus can provide a layer of authentication for protected applications that do not natively support it.
@@ -29,7 +29,7 @@ For the target client application, OIDC authentication can be enabled with great
 
 4. The IdP redirects the user back to NGINX Plus with an authorization code.
 
-5. NGINX Plus retrieves an `id_token` and access the token using the authorization code from the IdP.
+5. NGINX Plus retrieves an `id_token` and access token using the authorization code from the IdP.
 
 6. NGINX Plus validates the `id_token` and retrieves profile data for the user using the `UserInfo` endpoint. The retrieved profile data is validated and the content of the `id_token` and the profile data is used for providing access control to the client application.
 
@@ -62,7 +62,7 @@ For the target client application, OIDC authentication can be enabled with great
 
 ## Prerequisites {#prerequisites}
 
-- an Identity Provider application instance, either on-premises or in the cloud, with administrator privileges.
+- An Identity Provider application instance, either on-premises or in the cloud, with administrator privileges.
 
 - An NGINX Plus [subscription](https://www.f5.com/products/nginx/nginx-plus) and NGINX Plus [Release 34](({{< ref "nginx/releases.md#r34" >}})) or later. For installation instructions, see [Installing NGINX Plus](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/).
 
@@ -73,7 +73,7 @@ For the target client application, OIDC authentication can be enabled with great
 
 The workflow for each IdP provider is similar, but some steps may vary:
 
-1. Log in to you IdP admin console. 
+1. Log in to your IdP admin console. 
 
 2. Create an OpenID Connect (OIDC) application.
 
@@ -158,15 +158,15 @@ With your IdP configured, you can enable OIDC on NGINX Plus. NGINX Plus serves a
     <span id="setup-oidc-provider2"></span>
 6.  In the [`oidc_provider {}`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#oidc_provider) context, specify:
 
-    - your actual **Client ID** obtained from your IdP with the [`client_id`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#client_id) directive
+    - Your actual **Client ID** obtained from your IdP with the [`client_id`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#client_id) directive
 
-    - your **Client Secret** obtained from your IdP with the [`client_secret`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#client_secret) directive
+    - Your **Client Secret** obtained from your IdP with the [`client_secret`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#client_secret) directive
 
-    - the **Issuer** URL obtained from your IdP with the [`issuer`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#client_secret) directive
+    - The **Issuer** URL obtained from your IdP with the [`issuer`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#client_secret) directive
 
      By default, NGINX Plus creates the metadata URL by appending the `/.well-known/openid-configuration` part to the Issuer URL. If your Issuer is different, you can explicitly specify the metadata document with the [`config_url`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#config_url) directive.
 
-    - a valid system CA bundle with the [`ssl_trusted_certificate`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#ssl_trusted_certificate) so that NGINX Plus could validate the IdP TLS certificates:
+    - A valid system CA bundle with the [`ssl_trusted_certificate`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#ssl_trusted_certificate) so that NGINX Plus could validate the IdP TLS certificates:
 
     ```nginx
     http {
@@ -230,7 +230,7 @@ With your IdP configured, you can enable OIDC on NGINX Plus. NGINX Plus serves a
 
     - [`$oidc_claim_name`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#var_oidc_claim_) - the full name of the user
 
-    - any other OIDC claim using the [`$oidc_claim_ `](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#var_oidc_claim_) variable
+    - Any other OIDC claim using the [`$oidc_claim_ `](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#var_oidc_claim_) variable
 
 
     ```nginx
