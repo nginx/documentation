@@ -129,7 +129,7 @@ Next, push it to your private image repository, ensuring it's accessible to your
 Login to the registry:
 
 ```shell
-helm registry login private-registry.nginx.com
+helm registry login --username=<JWT Token> --password=none private-registry.nginx.com
 ```
 
 Pull the chart:
