@@ -399,6 +399,8 @@
                                        "VIOL_JSON_MALFORMED",
                                        "VIOL_JSON_SCHEMA",
                                        "VIOL_LOGIN",
+                                       "VIOL_LOGIN_URL_BYPASSED",
+                                       "VIOL_LOGIN_URL_EXPIRED",
                                        "VIOL_MANDATORY_HEADER",
                                        "VIOL_MANDATORY_PARAMETER",
                                        "VIOL_MANDATORY_REQUEST_BODY",
@@ -727,154 +729,6 @@
                               "description" : "When enabled, enables Brute Force Protection for all configured login URLs.\nWhen disabled, only brute force configurations for specific login pages are applied in case they exist.",
                               "type" : "boolean"
                            },
-                           "captchaBypassCriteria" : {
-                              "description" : "Specifies configuration for CAPTCHA Bypass Mitigation.",
-                              "properties" : {
-                                 "action" : {
-                                    "default" : "alarm-and-drop",
-                                    "description" : "Specifies action that is applied when defined threshold is reached.\n\n- **alarm-and-blocking-page**: The system will log the login attempt, block the request and send the Blocking page.\n- **alarm-and-drop**: The system will log the login attempt and reset the TCP connection.\n- **alarm-and-honeypot-page**: The system will log the login attempt, block the request and send the Honeypot page. The Honeypot page is used for attacker deception. The page should look like an application failed login page. Unlike with the Blocking page, when the Honeypot page is sent an attacker is not able to distinguish a failed login response from a mitigation. As a result, the attacker will not change identity (Source IP or Device ID) and the brute force attack will be rendered ineffective. The Honeypot page is recommended when mitigation is request blocking.",
-                                    "enum" : [
-                                       "alarm-and-blocking-page",
-                                       "alarm-and-drop",
-                                       "alarm-and-honeypot-page"
-                                    ],
-                                    "type" : "string"
-                                 },
-                                 "enabled" : {
-                                    "default" : true,
-                                    "description" : "When enabled, the system counts successful CAPTCHA challenges with failed logins from IP Address / Device ID.",
-                                    "type" : "boolean"
-                                 },
-                                 "threshold" : {
-                                    "default" : 5,
-                                    "description" : "After configured threshold (number of successful CAPTCHA challenges with failed logins from IP Address / Device ID) defined action will be applied for the next login attempt",
-                                    "maximum" : 100,
-                                    "minimum" : 1,
-                                    "type" : "integer"
-                                 }
-                              },
-                              "type" : "object"
-                           },
-                           "clientSideIntegrityBypassCriteria" : {
-                              "description" : "Specifies configuration for Client Side Integrity Bypass Mitigation.",
-                              "properties" : {
-                                 "action" : {
-                                    "default" : "alarm-and-captcha",
-                                    "description" : "Specifies action that is applied when defined threshold is reached.\n\n- **alarm-and-captcha**: The system determines whether the client is a legal browser operated by a human user by sending a CAPTCHA challenge. A login attempt is logged if the client successfully passes the CAPTCHA challenge.",
-                                    "enum" : [
-                                       "alarm-and-captcha"
-                                    ],
-                                    "type" : "string"
-                                 },
-                                 "enabled" : {
-                                    "default" : false,
-                                    "description" : "When enabled, the system counts successful challenges with failed logins from IP Address / Device ID / Username.\nLegitimate users who have disabled JavaScripting on their browsers for security reasons will fail a client side integrity challenge.",
-                                    "type" : "boolean"
-                                 },
-                                 "threshold" : {
-                                    "default" : 3,
-                                    "description" : "After configured threshold (number of successful challenges with failed logins from IP Address / Device ID / Username) defined action will be applied for the next login attempt",
-                                    "maximum" : 100,
-                                    "minimum" : 1,
-                                    "type" : "integer"
-                                 }
-                              },
-                              "type" : "object"
-                           },
-                           "detectionCriteria" : {
-                              "description" : "Specifies configuration for detecting distributed brute force attacks.",
-                              "properties" : {
-                                 "action" : {
-                                    "default" : "alarm",
-                                    "description" : "Specifies action that is applied when one of the defined thresholds (credentialsStuffingMatchesReached, failedLoginAttemptsRateReached) is reached.\n\n- **alarm**: The system will log the login attempt.\n- **alarm-and-captcha**: The system determines whether the client is a legal browser operated by a human user by sending a CAPTCHA challenge. A login attempt is logged if the client successfully passes the CAPTCHA challenge.\n- **alarm-and-client-side-integrity**: The system determines whether the client is a legal browser or a bot by sending a page containing JavaScript code and waiting for a response. Legal browsers are able to execute JavaScript and produce a valid response, whereas bots cannot. A login attempt is logged if the client successfully passes the Client Side Integrity challenge.\n- **alarm-and-client-side-integrity-captcha**: The system sends a Client Side Integrity challenge upon the first failed login attempt from a source and a CAPTCHA challenge upon second and all subsequent failed login attempts. A login attempt is logged if client successfully passes the challenge. This enforcement action should be chosen if CAPTCHA is considered intrusive. Benign users who mistype their password will likely get only the Client Side Integrity challenge, while an attacker will eventually get the CAPTCHA challenge.",
-                                    "enum" : [
-                                       "alarm",
-                                       "alarm-and-captcha",
-                                       "alarm-and-client-side-integrity",
-                                       "alarm-and-client-side-integrity-captcha"
-                                    ],
-                                    "type" : "string"
-                                 },
-                                 "credentialsStuffingMatchesReached" : {
-                                    "default" : 100,
-                                    "description" : "After configured threshold (number of detected login attempts that match known leaked credentials library) defined action will be applied for the next login attempt.",
-                                    "maximum" : 10000,
-                                    "minimum" : 1,
-                                    "type" : "integer"
-                                 },
-                                 "detectCredentialsStuffingAttack" : {
-                                    "default" : true,
-                                    "description" : "When enabled, the system detects login attempts that match known leaked credentials library.",
-                                    "type" : "boolean"
-                                 },
-                                 "detectDistributedBruteForceAttack" : {
-                                    "default" : true,
-                                    "description" : "When enabled, the system detects distributed brute force attacks.",
-                                    "type" : "boolean"
-                                 },
-                                 "failedLoginAttemptsRateReached" : {
-                                    "default" : 100,
-                                    "description" : "After configured threshold (number of failed login attempts within measurementPeriod) defined action will be applied for the next login attempt.           ",
-                                    "maximum" : 10000,
-                                    "minimum" : 1,
-                                    "type" : "integer"
-                                 }
-                              },
-                              "type" : "object"
-                           },
-                           "leakedCredentialsCriteria" : {
-                              "description" : "Specifies configuration for Leaked Credentials Detection.",
-                              "properties" : {
-                                 "action" : {
-                                    "default" : "alarm-and-blocking-page",
-                                    "description" : "Specifies action when leaked credentials detected.\n\n- **alarm**: The system will log the login attempt.\n- **alarm-and-blocking-page**: The system will log the login attempt, block the request and send the Blocking page.\n- **alarm-and-honeypot-page**: The system will log the login attempt, block the request and send the Honeypot page. The Honeypot page is used for attacker deception. The page should look like an application failed login page. Unlike with the Blocking page, when the Honeypot page is sent an attacker is not able to distinguish a failed login response from a mitigation. As a result, the attacker will not change identity (Source IP or Device ID) and the brute force attack will be rendered ineffective. The Honeypot page is recommended when mitigation is request blocking.\n- **alarm-and-leaked-credentials-response-page**: The default response page warns the user that the username and password have been leaked and the password should be changed.",
-                                    "enum" : [
-                                       "alarm",
-                                       "alarm-and-blocking-page",
-                                       "alarm-and-honeypot-page",
-                                       "alarm-and-leaked-credentials-response-page"
-                                    ],
-                                    "type" : "string"
-                                 },
-                                 "enabled" : {
-                                    "default" : false,
-                                    "description" : "When enabled, the system can match presented credentials to those in the credentials dictionary to detect leaked credentials.",
-                                    "type" : "boolean"
-                                 }
-                              },
-                              "type" : "object"
-                           },
-                           "loginAttemptsFromTheSameDeviceId" : {
-                              "description" : "Specifies configuration for detecting brute force attacks for Device ID.",
-                              "properties" : {
-                                 "action" : {
-                                    "default" : "alarm",
-                                    "description" : "Specifies action that is applied when defined threshold is reached.\n\n- **alarm**: The system will log the login attempt.\n- **alarm-and-blocking-page**: The system will log the login attempt, block the request and send the Blocking page.\n- **alarm-and-captcha**: The system determines whether the client is a legal browser operated by a human user by sending a CAPTCHA challenge. A login attempt is logged if the client successfully passes the CAPTCHA challenge.\n- **alarm-and-client-side-integrity**: The system determines whether the client is a legal browser or a bot by sending a page containing JavaScript code and waiting for a response. Legal browsers are able to execute JavaScript and produce a valid response, whereas bots cannot. A login attempt is logged if the client successfully passes the Client Side Integrity challenge.\n- **alarm-and-drop**: The system will log the login attempt and reset the TCP connection.\n- **alarm-and-honeypot-page**: The system will log the login attempt, block the request and send the Honeypot page. The Honeypot page is used for attacker deception. The page should look like an application failed login page. Unlike with the Blocking page, when the Honeypot page is sent an attacker is not able to distinguish a failed login response from a mitigation. As a result, the attacker will not change identity (Source IP or Device ID) and the brute force attack will be rendered ineffective. The Honeypot page is recommended when mitigation is request blocking.",
-                                    "enum" : [
-                                       "alarm",
-                                       "alarm-and-blocking-page",
-                                       "alarm-and-captcha",
-                                       "alarm-and-client-side-integrity",
-                                       "alarm-and-drop",
-                                       "alarm-and-honeypot-page"
-                                    ],
-                                    "type" : "string"
-                                 },
-                                 "enabled" : {
-                                    "default" : false,
-                                    "description" : "When enabled, the system counts failed login attempts for Device ID.",
-                                    "type" : "boolean"
-                                 },
-                                 "threshold" : {
-                                    "default" : 3,
-                                    "description" : "After configured threshold (number of failed login attempts for Device ID) defined action will be applied for the next login attempt.",
-                                    "maximum" : 100,
-                                    "minimum" : 1,
-                                    "type" : "integer"
-                                 }
-                              },
-                              "type" : "object"
-                           },
                            "loginAttemptsFromTheSameIp" : {
                               "description" : "Specifies configuration for detecting brute force attacks from IP Address.",
                               "properties" : {
@@ -883,11 +737,7 @@
                                     "description" : "Specifies action that is applied when defined threshold is reached.\n\n- **alarm**: The system will log the login attempt.\n- **alarm-and-blocking-page**: The system will log the login attempt, block the request and send the Blocking page.\n- **alarm-and-captcha**: The system determines whether the client is a legal browser operated by a human user by sending a CAPTCHA challenge. A login attempt is logged if the client successfully passes the CAPTCHA challenge.\n- **alarm-and-client-side-integrity**: The system determines whether the client is a legal browser or a bot by sending a page containing JavaScript code and waiting for a response. Legal browsers are able to execute JavaScript and produce a valid response, whereas bots cannot. A login attempt is logged if the client successfully passes the Client Side Integrity challenge.\n- **alarm-and-drop**: The system will log the login attempt and reset the TCP connection.\n- **alarm-and-honeypot-page**: The system will log the login attempt, block the request and send the Honeypot page. The Honeypot page is used for attacker deception. The page should look like an application failed login page. Unlike with the Blocking page, when the Honeypot page is sent an attacker is not able to distinguish a failed login response from a mitigation. As a result, the attacker will not change identity (Source IP or Device ID) and the brute force attack will be rendered ineffective. The Honeypot page is recommended when mitigation is request blocking.",
                                     "enum" : [
                                        "alarm",
-                                       "alarm-and-blocking-page",
-                                       "alarm-and-captcha",
-                                       "alarm-and-client-side-integrity",
-                                       "alarm-and-drop",
-                                       "alarm-and-honeypot-page"
+                                       "alarm-and-blocking-page"
                                     ],
                                     "type" : "string"
                                  },
@@ -913,9 +763,7 @@
                                     "default" : "alarm",
                                     "description" : "Specifies action that is applied when defined threshold is reached.\n\n- **alarm**: The system will log the login attempt.\n- **alarm-and-captcha**: The system determines whether the client is a legal browser operated by a human user by sending a CAPTCHA challenge. A login attempt is logged if the client successfully passes the CAPTCHA challenge.\n- **alarm-and-client-side-integrity**: The system determines whether the client is a legal browser or a bot by sending a page containing JavaScript code and waiting for a response. Legal browsers are able to execute JavaScript and produce a valid response, whereas bots cannot. A login attempt is logged if the client successfully passes the Client Side Integrity challenge.",
                                     "enum" : [
-                                       "alarm",
-                                       "alarm-and-captcha",
-                                       "alarm-and-client-side-integrity"
+                                       "alarm"
                                     ],
                                     "type" : "string"
                                  },
@@ -933,34 +781,6 @@
                                  }
                               },
                               "type" : "object"
-                           },
-                           "measurementPeriod" : {
-                              "default" : 900,
-                              "description" : "Defines detection period (measured in seconds) for distributed brute force attacks.",
-                              "maximum" : 90000,
-                              "minimum" : 60,
-                              "type" : "integer"
-                           },
-                           "preventionDuration" : {
-                              "default" : "3600",
-                              "description" : "Defines prevention period (measured in seconds) for distributed brute force attacks.",
-                              "oneOf" : [
-                                 {
-                                    "maximum" : 90000,
-                                    "minimum" : 60,
-                                    "type" : "integer"
-                                 },
-                                 {
-                                    "enum" : [
-                                       "unlimited"
-                                    ],
-                                    "type" : "string"
-                                 },
-                                 {
-                                    "pattern" : "\\d+$",
-                                    "type" : "string"
-                                 }
-                              ]
                            },
                            "reEnableLoginAfter" : {
                               "default" : 3600,
@@ -2891,6 +2711,66 @@
                         "type" : "object"
                      },
                      "type" : "array"
+                  },
+                  {
+                     "$ref" : "#/definitions/reference"
+                  }
+               ]
+            },
+            "login-enforcement" : {
+               "oneOf" : [
+                  {
+                     "properties" : {
+                        "authenticatedUrls" : {
+                           "default" : [],
+                           "items" : {
+                              "type" : "string"
+                           },
+                           "type" : "array"
+                        },
+                        "expirationTimePeriod" : {
+                           "default" : "disabled",
+                           "oneOf" : [
+                              {
+                                 "maximum" : 99999,
+                                 "minimum" : 0,
+                                 "type" : "integer"
+                              },
+                              {
+                                 "enum" : [
+                                    "disabled"
+                                 ],
+                                 "type" : "string"
+                              },
+                              {
+                                 "pattern" : "\\d+$",
+                                 "type" : "string"
+                              }
+                           ]
+                        },
+                        "logoutUrls" : {
+                           "items" : {
+                              "properties" : {
+                                 "requestContains" : {
+                                    "type" : "string"
+                                 },
+                                 "requestOmits" : {
+                                    "type" : "string"
+                                 },
+                                 "url" : {
+                                    "$ref" : "#/properties/policy/properties/urls/oneOf/0/items",
+                                    "type" : "object"
+                                 }
+                              },
+                              "required" : [
+                                 "url"
+                              ],
+                              "type" : "object"
+                           },
+                           "type" : "array"
+                        }
+                     },
+                     "type" : "object"
                   },
                   {
                      "$ref" : "#/definitions/reference"

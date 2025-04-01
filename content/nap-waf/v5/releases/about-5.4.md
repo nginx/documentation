@@ -16,7 +16,7 @@ November 19th, 2024
 ## New features
 
 - Added support for Amazon Linux 2023
-- Added support for [readOnlyFileSystem in Kubernetes deployments]({{< ref "/nap-waf/v5/admin-guide/deploy-on-kubernetes.md#configure-read-only-file-systems" >}})
+- Added support for [readOnlyFileSystem in Kubernetes deployments]({{< ref "/nap-waf/v5/admin-guide/deploy-with-manifests.md#configure-read-only-file-systems" >}})
 - Added a [a policy converter to the compiler]({{< ref "/nap-waf/v5/configuration-guide/configuration.md#policy-converter">}})
 - NGINX App Protect WAF now supports NGINX Plus R33
 

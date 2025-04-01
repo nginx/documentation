@@ -1,6 +1,6 @@
 ---
-title: Deploying NGINX App Protect WAF on Docker
-weight: 400
+title: Deploy NGINX App Protect WAF with Docker
+weight: 500
 toc: true
 type: how-to
 product: NAP-WAF
@@ -52,7 +52,7 @@ FROM amazonlinux:2023
 # Install NGINX OSS and NGINX App Protect WAF v5 module
 RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
-    && yum -y install wget ca-certificates shadow-utils yum-utils \
+    yum -y install wget ca-certificates shadow-utils yum-utils \
     && echo "[nginx-mainline]" > /etc/yum.repos.d/nginx.repo \
     && echo "name=nginx mainline repo" >> /etc/yum.repos.d/nginx.repo \
     && echo "baseurl=http://nginx.org/packages/mainline/amzn/2023/\$basearch/" >> /etc/yum.repos.d/nginx.repo \
@@ -138,7 +138,7 @@ FROM amazonlinux:2023
 # Install NGINX Plus and NGINX App Protect WAF v5 module
 RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
-    && yum -y install wget ca-certificates shadow-utils \
+    yum -y install wget ca-certificates shadow-utils \
     && wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/plus-amazonlinux2023.repo \
     && echo "[app-protect-x-plus]" > /etc/yum.repos.d/app-protect-plus.repo \
     && echo "name=nginx-app-protect repo" >> /etc/yum.repos.d/app-protect-plus.repo \
