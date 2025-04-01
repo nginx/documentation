@@ -31,7 +31,7 @@ This guide explains how to enable single sign-on (SSO) for applications being pr
 
 4. On the **Create application** screen: 
 
-   - Enter the **Name** for the application, for example, **Nginx Demo App**.
+   - Enter the **Name** for the application, for example, **NGINX Demo App**.
 
    - In **Application Type**, select **Regular Web Applications**.
 
@@ -135,11 +135,11 @@ With Auth0 configured, you can enable OIDC on NGINX Plus. NGINX Plus serves as t
 
 6.  In the [`oidc_provider {}`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#oidc_provider) context, specify:
 
-    - your actual Auth0 **Client ID** obtained in [Auth0 Configuration](#auth0-create) with the [`client_id`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#client_id) directive
+    - Your actual Auth0 **Client ID** obtained in [Auth0 Configuration](#auth0-create) with the [`client_id`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#client_id) directive
 
-    - your **Client Secret** obtained in [Auth0 Configuration](#auth0-create) with the [`client_secret`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#client_secret) directive
+    - Your **Client Secret** obtained in [Auth0 Configuration](#auth0-create) with the [`client_secret`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#client_secret) directive
 
-    - the **Issuer** URL obtained in [Auth0 Configuration](#auth0-create) with the [`issuer`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#client_secret) directive
+    - The **Issuer** URL obtained in [Auth0 Configuration](#auth0-create) with the [`issuer`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#client_secret) directive
 
       The `issuer` is typically your Auth0 OIDC URL. For Auth0, a trailing slash is included, for example: `https://yourTenantId.us.auth0.com/`.
 

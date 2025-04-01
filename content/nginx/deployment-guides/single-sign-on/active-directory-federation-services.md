@@ -64,7 +64,7 @@ Check the OpenID Connect endpoint URL. By default, AD FS publishes the `.well-kn
 1. Run the following `curl` command in a terminal:
 
    ```shell
-   curl https://adfs-server-address/adfs/.well-known/openid-configuration | jq
+   curl https://adfs-server-address/adfs/.well-known/openid-configuration | jq .
    ```
    where:
 
@@ -144,11 +144,11 @@ With AF DS configured, you can enable OIDC on NGINX Plus. NGINX Plus serves as t
 
 6.  In the [`oidc_provider {}`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#oidc_provider) context, specify:
 
-    - your actual AD FS **Client ID** from [Step 5](#adfs-setup-id) of AD FS Configuration with the [`client_id`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#client_id) directive
+    - Your actual AD FS **Client ID** from [Step 5](#adfs-setup-id) of AD FS Configuration with the [`client_id`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#client_id) directive
 
-    - your **Client Secret** from [Step 6](#adfs-setup-secret) of AD FS Configuration with the [`client_secret`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#client_secret) directive
+    - Your **Client Secret** from [Step 6](#adfs-setup-secret) of AD FS Configuration with the [`client_secret`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#client_secret) directive
 
-    - the **Issuer** URL from [Step 2](#adfs-setup-issuer) of AD FS Configuration with the [`issuer`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#client_secret) directive
+    - The **Issuer** URL from [Step 2](#adfs-setup-issuer) of AD FS Configuration with the [`issuer`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#client_secret) directive
 
       The `issuer` is typically your AD FS OIDC URL. By default, NGINX forms the provider metadata endpoint by appending `.well-known/openid-configuration` to the issuer. For AD FS, this often resolves to `https://adfs-server-address/adfs/.well-known/openid-configuration`. If your AD FS issuer differs from `https://adfs-server-address/adfs` (for example, a custom path), you can explicitly specify the metadata document with the [`config_url`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#config_url) directive.
 

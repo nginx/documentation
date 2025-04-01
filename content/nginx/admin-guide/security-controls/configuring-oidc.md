@@ -1,15 +1,16 @@
 ---
 description: Enable OpenID Connect-based single sign-on (SSO) for applications proxied by NGINX Plus, using an Identity Provider (IdP).
-doctypes:
+type:
 - task
 title: Single Sign-On with OpenID Connect and Identity Providers
 toc: true
 weight: 550
+product: NGINX-PLUS
 ---
 
 This guide explains how to enable single sign-on (SSO) for applications being proxied by F5 NGINX Plus using: 
-- OpenID Connect as the authentication mechanism
-- An external Identity Provider (IdP) such as AD FS, Auth0, Cognito, Entra ID, Keycloak, OneLogin, Okta, Ping Identity and others
+- OpenID Connect as the authentication mechanism.
+- An external Identity Provider (IdP) such as AD FS, Auth0, Cognito, Entra ID, Keycloak, OneLogin, Okta, Ping Identity and others.
 - NGINX Plus as an OIDC client application that verifies user identity (Relying Party).
 
 OpenID Connect is an identity protocol that utilizes the authorization and authentication mechanisms of OAuth 2.0. With it, NGINX Plus can provide a layer of authentication for protected applications that do not natively support it.
