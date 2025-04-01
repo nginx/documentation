@@ -78,46 +78,6 @@ This article explains how to install NGINX Plus on different operating systems,
 
 1. {{< include "nginx-plus/install/install-nginx-agent-for-nim.md" >}}
 
-## Install NGINX Plus on RHEL 7.4+, CentOS 7.4+, and Oracle Linux 7.4+ {#install_rhel_centos}
-
-{{< call-out "important" "Deprecation notice" "" >}}
-CentOS 7.4, RHEL 7.4, and Oracle Linux 7.4 are deprecated as of NGINX Plus Release 32 (R32) and are not supported in Release 33 (R33) or later. For the list of supported distributions, refer to the [NGINX Plus Tech Specs]({{< ref "nginx/technical-specs.md" >}}).
-{{</ call-out >}}
-
-1. {{< include "nginx-plus/install/back-up-config-and-logs.md" >}}
-
-1. Download the SSL certificate and private key associated with your NGINX Plus subscription from the MyF5 Customer Portal:
-
-    - Log in to [MyF5](https://my.f5.com/manage/s/).
-    - Go to **My Products & Plans > Subscriptions** to see your active subscriptions.
-    - Find your NGINX products or services subscription, and select the **Subscription ID** for details.
-    - Download the **nginx-repo.crt** and **nginx-repo.key** from the subscription page.
-
-1. {{< include "nginx-plus/install/install-ca-certificates-dependency-yum.md" >}}
-
-1. {{< include "nginx-plus/install/create-dir-for-crt-key.md" >}}
-
-1. {{< include "nginx-plus/install/copy-crt-and-key.md" >}}
-
-1. Add the NGINX Plus repository by downloading the [nginx-plus-7.4.repo](https://cs.nginx.com/static/files/nginx-plus-7.4.repo) file to **/etc/yum.repos.d**:
-
-    ```shell
-    sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/nginx-plus-7.4.repo
-    ```
-
-    <details open>
-    <summary style="font-weight:bold;">Learn how to pin NGINX Plus to a specific version</summary>
-    {{<call-out "tip" "Tip: Pin NGINX Plus to a specific version" "fa-solid fa-thumbtack">}}{{< include "nginx-plus/install/pin-to-version/pin-rhel7-R32.md" >}}{{</call-out>}}
-    </details>
-
-1. {{< include "nginx-plus/install/install-nginx-plus-package-yum.md" >}}
-
-1. {{< include "nginx-plus/install/enable-nginx-service-at-boot.md" >}}
-
-1. {{< include "nginx-plus/install/check-nginx-binary-version.md" >}}
-
-1. {{< include "nginx-plus/install/install-nginx-agent-for-nim.md" >}}
-
 ## Install NGINX Plus on RHEL 8.1+, Oracle Linux 8.1+, AlmaLinux 8, Rocky Linux 8 {#install_rhel8}
 
 1. {{< include "nginx-plus/install/check-tech-specs.md" >}}
@@ -546,10 +506,10 @@ For a community dynamic module to work with NGINX Plus, it must be compiled alo
 
    - Identify the NGINX Open Source version that corresponds to your version of NGINX Plus. See [NGINX Plus Releases]({{< ref "nginx/releases.md" >}}).
 
-   - Download the sources for the appropriate NGINX Open Source mainline version, in this case 1.27.2:
+   - Download the sources for the appropriate NGINX Open Source mainline version, in this case 1.27.4:
 
      ```shell
-     wget -qO - https://nginx.org/download/nginx-1.27.2.tar.gz | tar zxfv -
+     wget -qO - https://nginx.org/download/nginx-1.27.4.tar.gz | tar zxfv -
      ```
 
 1. Obtain the source for the dynamic module.
@@ -565,7 +525,7 @@ For a community dynamic module to work with NGINX Plus, it must be compiled alo
    First establish binary compatibility by running the `configure` script with the `‑‑with‑compat` option. Then compile the module with `make modules`.
 
    ```shell
-   cd nginx-1.27.2/
+   cd nginx-1.27.4/
    ./configure --with-compat --add-dynamic-module=../<MODULE-SOURCES>
    make modules
    ```
@@ -580,7 +540,7 @@ For a community dynamic module to work with NGINX Plus, it must be compiled alo
 1. Make a copy of the module file and include the NGINX Open Source version in the filename. This makes it simpler to manage multiple versions of a dynamic module in the production environment.
 
    ```shell
-   cp objs/ngx_http_hello_world.so ./ngx_http_hello_world_1.27.2.so
+   cp objs/ngx_http_hello_world.so ./ngx_http_hello_world_1.27.4.so
    ```
 
 ### Enabling Dynamic Modules {#enable_dynamic}
@@ -886,7 +846,7 @@ To upgrade your NGINX Plus installation to the newest version:
    The output of the command:
 
    ```shell
-   nginx version: nginx/1.27.2 (nginx-plus-r33)
+   nginx version: nginx/1.27.4 (nginx-plus-r34)
    ```
 
 ## Upgrade NGINX Plus Modules {#upgrade_modules}
