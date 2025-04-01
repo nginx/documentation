@@ -25,7 +25,7 @@ _Based on NGINX Open Source 1.27.4_
 
 NGINX Plus R34 is a feature release:
 
-- OIDC authentication support via native [ngx_http_oidc_module](https://nginx.org/en/docs/http/ngx_http_oidc_module.html) module.
+- [OIDC authentication support]({{< ref "nginx/admin-guide/security-controls/configuring-oidc.md" >}}) via native [ngx_http_oidc_module](https://nginx.org/en/docs/http/ngx_http_oidc_module.html) module.
 
 - NGINX usage reporting: [proxy](https://nginx.org/en/docs/ngx_mgmt_module.html#proxy) support.
   
@@ -61,7 +61,7 @@ NGINX Plus R34 is supported on:
 - Amazon Linux 2 LTS is deprecated
 - SUSE Linux Enterprise Server 12 is removed
 - Ubuntu 20.04 is deprecated
-- the [OpenTracing]({{< relref "nginx/admin-guide/dynamic-modules/opentracing.md" >}}) dynamic module is no longer available. It is recommended to use the [OpenTelemetry Distributed Tracing]({{< relref "nginx/admin-guide/dynamic-modules/opentelemetry.md" >}}) module, which incorporates all the features of the OpenTracing module.
+- the [OpenTracing]({{< ref "nginx/admin-guide/dynamic-modules/opentracing.md" >}}) dynamic module is no longer available. It is recommended to use the [OpenTelemetry Distributed Tracing]({{< ref "nginx/admin-guide/dynamic-modules/opentelemetry.md" >}}) module, which incorporates all the features of the OpenTracing module.
 
 More information: [Announcing NGINX Plus R34](https://community.f5.com/kb/technicalarticles/f5-nginx-plus-r34-release-now-available/340300)
 
