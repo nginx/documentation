@@ -2,11 +2,12 @@
 description: Learn how to enable single sign-on (SSO) with Okta for applications proxied
   by F5 NGINX Plus.
 docs: DOCS-466
-doctypes:
-- task
+type:
+- how-to
 title: Single Sign-On with Okta and njs
 toc: false
 weight: 100
+product: NGINX-PLUS
 ---
 
 {{< note >}} This guide applies to NGINX Plus [Release 15]({{< ref "nginx/releases.md#r15" >}}) and later, based on the [`nginx-openid-connect`](https://github.com/nginxinc/nginx-openid-connect) GitHub repo. Starting with NGINX Plus [Release 34]({{< ref "nginx/releases.md#r34" >}}), use the simpler solution with the [native OpenID connect module](https://nginx.org/en/docs/http/ngx_http_oidc_module.html).

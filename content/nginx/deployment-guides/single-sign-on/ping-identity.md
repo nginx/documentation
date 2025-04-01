@@ -1,7 +1,8 @@
 ---
 description: Enable OpenID Connect-based single sign-on (SSO) for applications proxied by NGINX Plus, using Ping Identity as the identity provider (IdP).
-doctypes:
-- task
+type:
+- how-to
+product: NGINX-PLUS
 title: Single Sign-On with Ping Identity
 toc: true
 weight: 800

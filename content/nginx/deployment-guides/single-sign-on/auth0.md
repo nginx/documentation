@@ -1,7 +1,8 @@
 ---
 description: Enable OpenID Connect-based single sign-on (SSO) for applications proxied by NGINX Plus, using Auth0 as the identity provider (IdP).
-doctypes:
-- task
+type:
+- how-to
+product: NGINX-PLUS
 title: Single Sign-On With Auth0
 toc: true
 weight: 100
