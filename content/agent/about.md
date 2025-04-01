@@ -47,15 +47,17 @@ graph BT
 
     %% Define colors for the subgraphs
     style ManagementPlane fill:#d0eac4,stroke:#228B22,stroke-width:2px,color:#000000
+    style CommandControl fill:#cfe2f1,stroke:#1E90FF,stroke-width:2px,color:#000000
+    style OTelManagementPlane fill:#cfe2f1,stroke:#1E90FF,stroke-width:2px,color:#000000
     style Compute fill:#cfe2f1,stroke:#1E90FF,stroke-width:2px,color:#000000
     style NGINX fill:#b5e0b6,stroke:#008000,stroke-width:2px,color:#000000
     style NGINXConfig fill:#b5e0b6,stroke:#008000,stroke-width:2px,color:#000000
-    style Logs fill:#b5e0b6,stroke:#008000,stroke-width:2px,color:#000000
+    style ErrorLogs fill:#b5e0b6,stroke:#008000,stroke-width:2px,color:#000000
     style Agent fill:#b5e0b6,stroke:#008000,stroke-width:2px,color:#000000
 
     subgraph ManagementPlane["Management Plane"]
         CommandControl["Command Server"]
-        OTelManagementPlane["OTel Receiver"]
+        OTelManagementPlane["OTel Collector"]
     end
 
     subgraph Compute["NGINX Instance"]
@@ -63,15 +65,18 @@ graph BT
             OTelDataPlane["OTel Collector"]
         end
 
-        NGINX["NGINX Process"]
-        NGINXConfig["NGINX Config Files"]
-        Logs["NGINX Logs"]
+        subgraph NGINX["NGINX Process"]
+            NGINXMetrics["Metrics"]
+        end
+        NGINXConfig["NGINX Configuration Files"]
+        ErrorLogs["NGINX Error Logs"]
 
+        Metrics["Host Metrics"] --> |Collects| OTelDataPlane
+        NGINXMetrics --> |Reads| OTelDataPlane["OTel Collector"]
         Agent --> |Watch/Reload| NGINX
-        Agent <--> |Reads/Writes| Logs
+        Agent --> |Reads| ErrorLogs
+        OTelDataPlane --> |Reads| AccessLogs["NGINX Access Logs"]
         Agent <--> |Reads/Writes| NGINXConfig
-        OTelDataPlane --> |Collects| Metrics["Host Metrics"]
-        OTelDataPlane --> |Reads| NGINXMetrics["NGINX Metrics"]
     end
 
     Compute <--> |gRPC| ManagementPlane
