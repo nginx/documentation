@@ -37,8 +37,8 @@ April 1st, 2025
 
 | Distribution name        | Package file                                       |
 |--------------------------|----------------------------------------------------|
-| Amazon Linux 2023        | _app-protect-33+5.342.0-1.amzn2023.ngx.x86_64.rpm_ |
 | Alpine 3.19              | _app-protect-33.5.342.0-r1.apk_                    |
+| Amazon Linux 2023        | _app-protect-33+5.342.0-1.amzn2023.ngx.x86_64.rpm_ |
 | Debian 11                | _app-protect_33+5.342.0-1\~bullseye_amd64.deb_     |
 | Debian 12                | _app-protect_33+5.342.0-1\~bookworm_amd64.deb_     |
 | Oracle Linux 8.1         | _app-protect-33+5.342.0-1.el8.ngx.x86_64.rpm_      |
