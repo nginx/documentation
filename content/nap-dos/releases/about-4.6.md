@@ -13,7 +13,7 @@ NGINX App Protect DoS provides behavioral protection against Denial of Service (
 
 ## Release 4.6
 
-Mar 24, 2025
+April 1, 2025
 
 ---
 
