@@ -22,4 +22,4 @@ NGINXaaS for Azure only supports caching to `/var/cache/nginx`. This is because 
 
 ## Limitations
 
-Currently, `proxy_cache_purge` might not work as expected because NGINXaaS [deploys multiple instances of NGINX Plus]({{< relref "/nginxaas-azure/overview/overview.md#architecture" >}}) for high availability. The `PURGE` request will be routed to a single instance, and only the matched values on that instance will be purged.
+Currently, `proxy_cache_purge` might not work as expected because NGINXaaS [deploys multiple instances of NGINX Plus]({{< ref "/nginxaas-azure/overview/overview.md#architecture" >}}) for high availability. The `PURGE` request will be routed to a single instance, and only the matched values on that instance will be purged.

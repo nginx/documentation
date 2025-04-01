@@ -13,7 +13,7 @@ The Azure CLI has an extension to be used for management of F5 NGINX as a Servic
 
 ## Prerequisites
 
-- Install [Azure CLI with NGINXaaS extension]({{< relref "/nginxaas-azure/client-tools/cli.md" >}})
+- Install [Azure CLI with NGINXaaS extension]({{< ref "/nginxaas-azure/client-tools/cli.md" >}})
 
 ## Create a deployment
 

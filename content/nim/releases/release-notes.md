@@ -39,7 +39,7 @@ This release includes the following updates:
 
 ### Resolved Issues{#2-19-1-resolved-issues}
 
-This release fixes the following issues. Check the [Known Issues]({{< relref "/nim/releases/known-issues.md" >}})  topic for more information on the latest resolved issues. Use your browser's search function to find the issue ID in the page.
+This release fixes the following issues. Check the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}})  topic for more information on the latest resolved issues. Use your browser's search function to find the issue ID in the page.
 
 
 - {{% icon-resolved %}} Automatic downloading of NAP compiler versions 5.210.0 and 5.264.0 fails on Ubuntu 24 (45846)
@@ -81,19 +81,19 @@ This release includes the following updates:
 
    NGINX Instance Manager can now be configured to use the CONNECT HTTP method to request that a proxy establish a HTTP(S) tunnel to an outbound server. This covers all use-cases that require outbound access such as App Protect Signature updates, licensing and usage reporting.
 
-  - Documentation: [Configure NGINX Instance Manager to use a forward proxy]({{< relref "nim/system-configuration/configure-forward-proxy.md" >}})
+  - Documentation: [Configure NGINX Instance Manager to use a forward proxy]({{< ref "nim/system-configuration/configure-forward-proxy.md" >}})
 
 - {{% icon-feature %}} **Support for OpenShift Deployments using Helm**<a name="2-19-0-whats-new-Support-for-OpenShift-Deployments-using-Helm"></a>
 
    Added an `OpenShift` flag to the Helm charts that creates a security context constraint resource to support NGINX Instance Manager in OpenShift.
 
-  - Documentation: [Deploy NGINX Instance Manager using Helm]({{< relref "nim/deploy/kubernetes/deploy-using-helm.md" >}})
+  - Documentation: [Deploy NGINX Instance Manager using Helm]({{< ref "nim/deploy/kubernetes/deploy-using-helm.md" >}})
 
 - {{% icon-feature %}} **VM-based active-passive HA Support with keepalived**<a name="2-19-0-whats-new-VM-based-active-passive-HA-Support-with-keepalived"></a>
 
    This release includes documentation for a basic HA (High availability) setup with two nodes, for bare metal and VM based environments. This feature uses keepalived and a failover script if a primary NGINX Instance Manager node fails.
 
-  - Documentation: [Configure high availability (HA) for NGINX Instance Manager]({{< relref "nim/system-configuration/configure-high-availability.md" >}})
+  - Documentation: [Configure high availability (HA) for NGINX Instance Manager]({{< ref "nim/system-configuration/configure-high-availability.md" >}})
 
 - {{% icon-feature %}} **Added "Export" feature  for templates**<a name="2-19-0-whats-new-Added-Export-feature-for-templates"></a>
 
@@ -118,7 +118,7 @@ This release has the following changes in default behavior:
    Starting in 2.19.0, remote certificates that are expired are removed from the web interface after 30 days.
 
 ### Resolved Issues{#2-19-0-resolved-issues}
-This release fixes the following issues. Check the [Known Issues]({{< relref "/nim/releases/known-issues.md" >}})  topic for more information on the latest resolved issues. Use your browser's search function to find the issue ID in the page.
+This release fixes the following issues. Check the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}})  topic for more information on the latest resolved issues. Use your browser's search function to find the issue ID in the page.
 
 
 - {{% icon-resolved %}} .tgz files are not accepted in templates (45301)
@@ -134,7 +134,7 @@ This release fixes the following issues. Check the [Known Issues]({{< relref "/n
 
 ### Known Issues{#2-19-0-known-issues}
 
-You can find information about known issues in the [Known Issues]({{< relref "/nim/releases/known-issues.md" >}}) topic.
+You can find information about known issues in the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic.
 
 ---
 
@@ -155,23 +155,23 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **Adds support for NGINX App Protect WAF v5**<a name="2-18-0-whats-new-adds-support-for-nginx-app-protect-waf-v5"></a>
 
-  NGINX Instance Manager 2.18.0 adds support for [NGINX App Protect WAF v5.3 and v4.11]({{< relref "nap-waf/v5/admin-guide/overview.md" >}}).
+  NGINX Instance Manager 2.18.0 adds support for [NGINX App Protect WAF v5.3 and v4.11]({{< ref "nap-waf/v5/admin-guide/overview.md" >}}).
 
   NGINX App Protect WAF v5, designed for both NGINX Open Source and NGINX Plus environments, includes a dynamic NGINX module and containerized WAF services. It provides robust security and scalability.
 
 - {{% icon-feature %}} **Ridiculously easy NGINX Instance Manager installation script (Bash)**<a ame="2-18-0-whats-new-ridiculously-easy-nginx-instance-manager-installation-script-bash"></a>
 
-  Reduce the number of steps to deploy all NGINX Instance Manager components, including prerequisites, using a single [installation script]({{< relref "nim/deploy/vm-bare-metal/install.md" >}}). The script supports every OS that NGINX Instance Manager supports in the [technical specifications]({{< relref "nim/fundamentals/tech-specs.md" >}}).
+  Reduce the number of steps to deploy all NGINX Instance Manager components, including prerequisites, using a single [installation script]({{< ref "nim/deploy/vm-bare-metal/install.md" >}}). The script supports every OS that NGINX Instance Manager supports in the [technical specifications]({{< ref "nim/fundamentals/tech-specs.md" >}}).
 
   The script installs NGINX (Plus or Open Source), ClickHouse, and NGINX Instance Manager. Customers only need their NGINX Plus certificate, key, and, for NGINX Plus R33 or later, a JWT downloaded from MyF5. Support for offline installations will be added in a future update.
 
-  Support for [offline installations]({{< relref "nim/disconnected/offline-install-guide.md" >}}) is also available for air-gapped environments.
+  Support for [offline installations]({{< ref "nim/disconnected/offline-install-guide.md" >}}) is also available for air-gapped environments.
 
 - {{% icon-feature %}} **Entitlement and visibility for NGINX Plus R33 – Telemetry reporting for network-restricted environments**<a name="2-18-0-whats-new-entitlement-and-visibility-for-nginx-plus-r33-telemetry-reporting-for-network-restricted-environments"></a>
 
-  If NGINX Instance Manager has internet access, customers can [automatically or manually send the usage data to F5]({{< relref "nim/admin-guide/license/report-usage-connected-deployment.md" >}}) as part of the new NGINX Plus R33 changes.
+  If NGINX Instance Manager has internet access, customers can [automatically or manually send the usage data to F5]({{< ref "nim/admin-guide/license/report-usage-connected-deployment.md" >}}) as part of the new NGINX Plus R33 changes.
 
-  For customers who have NGINX Instance Manager deployed in [network-restricted environments]({{< relref "nim/disconnected" >}}), this release also includes support for manual usage reporting. Customers can now manually license NGINX Instance Manager and export usage telemetry for fully disconnected environments. For usage reporting, customers can:
+  For customers who have NGINX Instance Manager deployed in [network-restricted environments]({{< ref "nim/disconnected" >}}), this release also includes support for manual usage reporting. Customers can now manually license NGINX Instance Manager and export usage telemetry for fully disconnected environments. For usage reporting, customers can:
 
   - **Export the usage report**: Manually export the usage report from NGINX Instance Manager.
   - **Send the report to F5**: Submit the report to F5 for verification from a location with internet access.
@@ -179,7 +179,7 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **Resilient Docker Compose NGINX Instance Manager deployment**<a name="2-18-0-whats-new-resilient-docker-compose-nginx-instance-manager-deployment"></a>
 
-  This [Docker Compose option]({{< relref "nim/deploy/docker/deploy-nginx-instance-manager-docker-compose.md" >}}) unlocks another easy, production-ready installation method for customers using Docker. It will also make upgrades easier when new Docker images are released by F5 NGINX. This option includes health checking, NGINX App Protect compilation support, and security monitoring.
+  This [Docker Compose option]({{< ref "nim/deploy/docker/deploy-nginx-instance-manager-docker-compose.md" >}}) unlocks another easy, production-ready installation method for customers using Docker. It will also make upgrades easier when new Docker images are released by F5 NGINX. This option includes health checking, NGINX App Protect compilation support, and security monitoring.
 
 ### Changes in Default Behavior{#2-18-0-changes-in-behavior}
 
@@ -187,10 +187,10 @@ This release has the following changes in default behavior:
 
 - {{% icon-feature %}} **The NGINX Usage page now only shows instances configured with the NGINX Plus R33 mgmt block.**<a name="2-18-0-changesthe-NGINX-Usage-page-now-only-shows-instances-configured-with-the-NGINX-Plus-R33-mgmt-block"></a>
 
-  The “NGINX Usage” page previously displayed instances connected to NGINX Instance Manager through multiple methods, including the NGINX Agent, health checks, and the `mgmt` block in NGINX Plus R31-R32. With the introduction of native reporting in NGINX Plus R33, only instances using this feature appear on the page, preventing duplicates. For more information on R33 usage reporting, see [About subscription licenses]({{< relref "solutions/about-subscription-licenses.md" >}}).
+  The “NGINX Usage” page previously displayed instances connected to NGINX Instance Manager through multiple methods, including the NGINX Agent, health checks, and the `mgmt` block in NGINX Plus R31-R32. With the introduction of native reporting in NGINX Plus R33, only instances using this feature appear on the page, preventing duplicates. For more information on R33 usage reporting, see [About subscription licenses]({{< ref "solutions/about-subscription-licenses.md" >}}).
 
 ### Resolved Issues{#2-18-0-resolved-issues}
-This release fixes the following issues. Check the [Known Issues]({{< relref "/nim/releases/known-issues.md" >}})  topic for more information on the latest resolved issues. Use your browser's search function to find the issue ID in the page.
+This release fixes the following issues. Check the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}})  topic for more information on the latest resolved issues. Use your browser's search function to find the issue ID in the page.
 
 
 - {{% icon-resolved %}} Mismatch in date formats in custom date selection on NGINX usage graph (45512)
@@ -199,7 +199,7 @@ This release fixes the following issues. Check the [Known Issues]({{< relref "/n
 
 ### Known Issues{#2-18-0-known-issues}
 
-You can find information about known issues in the [Known Issues]({{< relref "/nim/releases/known-issues.md" >}}) topic.
+You can find information about known issues in the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic.
 
 ---
 
@@ -225,7 +225,7 @@ This release includes the following updates:
 
 ### Known Issues{#2-17-4-known-issues}
 
-You can find information about known issues in the [Known Issues]({{< relref "/nim/releases/known-issues.md" >}}) topic.
+You can find information about known issues in the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic.
 
 ---
 
@@ -251,7 +251,7 @@ This release includes the following updates:
 
 ### Known Issues{#2-17-3-known-issues}
 
-You can find information about known issues in the [Known Issues]({{< relref "/nim/releases/known-issues.md" >}}) topic.
+You can find information about known issues in the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic.
 
 ---
 
@@ -277,7 +277,7 @@ This release includes the following updates:
 
 ### Known Issues{#2-17-2-known-issues}
 
-You can find information about known issues in the [Known Issues]({{< relref "/nim/releases/known-issues.md" >}}) topic.
+You can find information about known issues in the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic.
 
 ---
 
@@ -303,7 +303,7 @@ This release includes the following updates:
 
 ### Known Issues{#2-17-1-known-issues}
 
-You can find information about known issues in the [Known Issues]({{< relref "/nim/releases/known-issues.md" >}}) topic.
+You can find information about known issues in the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic.
 
 ---
 
@@ -332,7 +332,7 @@ This release includes the following updates:
 
   Prior to this release, users had to download NGINX Instance Manager docker images and push them to their local container registry for use in the Kubernetes Helm charts. This was not very turnkey and required multiple steps before being able to use the Helm charts. Now all Instance Manager container images are available from F5's public docker repository, simplifying the installation in Kubernetes.
 
-  See the [Deploy Instance Manager on Kubernetes]({{< relref "/nim/deploy/kubernetes/deploy-using-helm.md" >}}) documentation for more information.
+  See the [Deploy Instance Manager on Kubernetes]({{< ref "/nim/deploy/kubernetes/deploy-using-helm.md" >}}) documentation for more information.
 
 - {{% icon-feature %}} **Ansible role to deploy NGINX Instance Manager**<a name="2-17-0-whats-new-Ansible-role-to-deploy-NGINX-Instance-Manager"></a>
 
@@ -340,7 +340,7 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **NGINX Instance Manager IaC using Packer and Terraform**<a name="2-17-0-whats-new-NGINX-Instance-Manager-IaC-using-Packer-and-Terraform"></a>
 
-  This release improves the [Infrastructure as Code (IaC) project]({{< relref "/nim/deploy/infrastructure-as-code/overview.md#nginx-management-suite-infrastructure-as-code" >}}) to help you quickly get started with NGINX Instance Manager using Packer and Terraform.
+  This release improves the [Infrastructure as Code (IaC) project]({{< ref "/nim/deploy/infrastructure-as-code/overview.md#nginx-management-suite-infrastructure-as-code" >}}) to help you quickly get started with NGINX Instance Manager using Packer and Terraform.
 
   The project uses Packer to create images and Terraform to deploy these images to your preferred cloud provider, including GCP, Azure, or vSphere.
 
@@ -353,7 +353,7 @@ This release has the following changes in default behavior:
 
   NGINX Instance Manager now collects and sends anonymized telemetry and interaction information for analysis by F5 NGINX. This information is used to improve our products and services.
 
-  Customers have the option to opt out of data collection by disabling the feature in the Instance Manager web interface, using the Account menu in the top-right corner of the screen. For more details, see [Configure Telemetry and Web Analytics]({{< relref "/nim/system-configuration/configure-telemetry.md" >}}).
+  Customers have the option to opt out of data collection by disabling the feature in the Instance Manager web interface, using the Account menu in the top-right corner of the screen. For more details, see [Configure Telemetry and Web Analytics]({{< ref "/nim/system-configuration/configure-telemetry.md" >}}).
 
 - {{% icon-feature %}} **Augment Template order now matches NGINX configuration structure**<a name="2-17-0-changes-in-behavior-Augment-Template-order-now-matches-NGINX-configuration-structure"></a>
 
@@ -365,10 +365,10 @@ This release has the following changes in default behavior:
 
   Since these operating systems won't get any more updates or security patches, NGINX Instance Manager no longer supports them.
 
-  Please upgrade your environment to one of the [supported distributions]({{< relref "/nim/fundamentals/tech-specs.md#supported-distributions" >}}) to continue using NGINX Instance Manager.
+  Please upgrade your environment to one of the [supported distributions]({{< ref "/nim/fundamentals/tech-specs.md#supported-distributions" >}}) to continue using NGINX Instance Manager.
 
 ### Resolved Issues{#2-17-0-resolved-issues}
-This release fixes the following issues. Check the [Known Issues]({{< relref "/nim/releases/known-issues.md" >}})  topic for more information on the latest resolved issues. Use your browser's search function to find the issue ID in the page.
+This release fixes the following issues. Check the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}})  topic for more information on the latest resolved issues. Use your browser's search function to find the issue ID in the page.
 
 
 - {{% icon-resolved %}} Users receive login error when NGINX Management Suite is deployed in Kubernetes (44686)
@@ -378,7 +378,7 @@ This release fixes the following issues. Check the [Known Issues]({{< relref "/n
 
 ### Known Issues{#2-17-0-known-issues}
 
-You can find information about known issues in the [Known Issues]({{< relref "/nim/releases/known-issues.md" >}}) topic.
+You can find information about known issues in the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic.
 
 ---
 
@@ -399,9 +399,9 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **Introducing configuration templates for simplifying NGINX configurations and self-service workflows**<a name="2-16-0-whats-new-Introducing-configuration-templates-for-simplifying-NGINX-configurations-and-self-service-workflows"></a>
 
-  This release of NGINX Instance Manager introduces [Config Templates]({{< relref "nim/nginx-configs/config-templates/concepts/config-templates.md" >}}). These templates use Go templating to make it easier to set up and standardize NGINX configurations. Now, you don't need to know all the details of NGINX syntax to create a working configuration. Just provide the required inputs for a template, and the system will do the rest. This makes setting up NGINX simpler and helps you follow best practices.
+  This release of NGINX Instance Manager introduces [Config Templates]({{< ref "nim/nginx-configs/config-templates/concepts/config-templates.md" >}}). These templates use Go templating to make it easier to set up and standardize NGINX configurations. Now, you don't need to know all the details of NGINX syntax to create a working configuration. Just provide the required inputs for a template, and the system will do the rest. This makes setting up NGINX simpler and helps you follow best practices.
 
-  To provide more control over your configurations, [augment templates]({{< relref "nim/nginx-configs/config-templates/concepts/default-base-template.md#augmenting-global-default-base-template" >}}) let you modify only specific segments of your NGINX configuration. This, when combined with [RBAC for template submissions]({{< relref "/nim/nginx-configs/config-templates/how-to/rbac-config-templates-and-submissions.md" >}}), enables self-service workflows. Look for pre-built templates for common scenarios in our GitHub repositories soon.
+  To provide more control over your configurations, [augment templates]({{< ref "nim/nginx-configs/config-templates/concepts/default-base-template.md#augmenting-global-default-base-template" >}}) let you modify only specific segments of your NGINX configuration. This, when combined with [RBAC for template submissions]({{< ref "/nim/nginx-configs/config-templates/how-to/rbac-config-templates-and-submissions.md" >}}), enables self-service workflows. Look for pre-built templates for common scenarios in our GitHub repositories soon.
 
 - {{% icon-feature %}} **Stability and performance improvements**<a name="2-16-0-whats-new-Stability-and-performance-improvements"></a>
 
@@ -418,7 +418,7 @@ This release has the following changes in default behavior:
 
 ### Known Issues{#2-16-0-known-issues}
 
-You can find information about known issues in the [Known Issues]({{< relref "/nim/releases/known-issues.md" >}}) topic.
+You can find information about known issues in the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic.
 
 ---
 
@@ -443,7 +443,7 @@ This release includes the following updates:
 
 
 ### Resolved Issues{#2-15-1-resolved-issues}
-This release fixes the following issues. Check the [Known Issues]({{< relref "/nim/releases/known-issues.md" >}})  topic for more information on the latest resolved issues. Use your browser's search function to find the issue ID in the page.
+This release fixes the following issues. Check the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}})  topic for more information on the latest resolved issues. Use your browser's search function to find the issue ID in the page.
 
 
 - {{% icon-resolved %}} Helm chart backup and restore is broken in NIM 2.15.0 (44758)
@@ -451,7 +451,7 @@ This release fixes the following issues. Check the [Known Issues]({{< relref "/n
 
 ### Known Issues{#2-15-1-known-issues}
 
-You can find information about known issues in the [Known Issues]({{< relref "/nim/releases/known-issues.md" >}}) topic.
+You can find information about known issues in the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic.
 
 ---
 
@@ -476,7 +476,7 @@ This release includes the following updates:
 
 
 ### Resolved Issues{#2-15-0-resolved-issues}
-This release fixes the following issues. Check the [Known Issues]({{< relref "/nim/releases/known-issues.md" >}})  topic for more information on the latest resolved issues. Use your browser's search function to find the issue ID in the page.
+This release fixes the following issues. Check the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}})  topic for more information on the latest resolved issues. Use your browser's search function to find the issue ID in the page.
 
 
 - {{% icon-resolved %}} Instances reporting incorrect memory utilization (44351)
@@ -486,7 +486,7 @@ This release fixes the following issues. Check the [Known Issues]({{< relref "/n
 
 ### Known Issues{#2-15-0-known-issues}
 
-You can find information about known issues in the [Known Issues]({{< relref "/nim/releases/known-issues.md" >}}) topic.
+You can find information about known issues in the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic.
 
 ---
 
@@ -512,7 +512,7 @@ This release includes the following updates:
 
 ### Known Issues{#2-14-1-known-issues}
 
-You can find information about known issues in the [Known Issues]({{< relref "/nim/releases/known-issues.md" >}}) topic.
+You can find information about known issues in the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic.
 
 ---
 
@@ -533,12 +533,12 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **Instance Manager Dashboard**<a name="2-14-0-whats-new-Instance-Manager-Dashboard"></a>
 
-  Monitor the health and performance of your NGINX instance fleet from a single page. Get insights and trends on CPU, memory, disk, and network traffic utilization. Quickly spot and mitigate common HTTP errors and TLS certificate issues. See the [Instance Manager Dashboard]({{< relref "nim/fundamentals/dashboard-overview.md" >}}) documentation to learn more.
+  Monitor the health and performance of your NGINX instance fleet from a single page. Get insights and trends on CPU, memory, disk, and network traffic utilization. Quickly spot and mitigate common HTTP errors and TLS certificate issues. See the [Instance Manager Dashboard]({{< ref "nim/fundamentals/dashboard-overview.md" >}}) documentation to learn more.
 
 - {{% icon-feature %}} **Work with NGINX App Protect Bundles from Instance Manager**<a name="2-14-0-whats-new-Work-with-NGINX-App-Protect-Bundles-from-Instance-Manager"></a>
 
   Starting with Instance Manager 2.14, you can now use the "/security/policies/bundles" endpoint to create, read, update, and delete NGINX App Protect bundles, which allow faster deployment through pre-compilation of security policies, attack signatures, and threat-campaign.  For additional information on how to use the API endpoint, refer to your product API documentation.
-  To learn more about this feature, see the [Manage WAF Security Policies]({{< relref "/nim/nginx-app-protect/manage-waf-security-policies.md" >}}) documentation.
+  To learn more about this feature, see the [Manage WAF Security Policies]({{< ref "/nim/nginx-app-protect/manage-waf-security-policies.md" >}}) documentation.
 
 - {{% icon-feature %}} **Clickhouse LTS 23.8 support**<a name="2-14-0-whats-new-Clickhouse-LTS-23-8-support"></a>
 
@@ -555,7 +555,7 @@ This release has the following changes in default behavior:
 
 ### Known Issues{#2-14-0-known-issues}
 
-You can find information about known issues in the [Known Issues]({{< relref "/nim/releases/known-issues.md" >}}) topic.
+You can find information about known issues in the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic.
 
 ---
 
@@ -572,7 +572,7 @@ Instance Manager  supports upgrades from these previous versions:
 If your Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
 ### Resolved Issues{#2-13-1-resolved-issues}
-This release fixes the following issues. Check the [Known Issues]({{< relref "/nim/releases/known-issues.md" >}})  topic for more information on the latest resolved issues. Use your browser's search function to find the issue ID in the page.
+This release fixes the following issues. Check the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}})  topic for more information on the latest resolved issues. Use your browser's search function to find the issue ID in the page.
 
 
 - {{% icon-resolved %}} Validation errors in Resource Groups for certificates uploaded before 2.13 upgrade (44254)
@@ -580,7 +580,7 @@ This release fixes the following issues. Check the [Known Issues]({{< relref "/n
 
 ### Known Issues{#2-13-1-known-issues}
 
-You can find information about known issues in the [Known Issues]({{< relref "/nim/releases/known-issues.md" >}}) topic.
+You can find information about known issues in the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic.
 
 ---
 
@@ -601,7 +601,7 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **Easily manage access to specific objects with Resource Groups**<a name="2-13-0-whats-new-Easily-manage-access-to-specific-objects-with-Resource-Groups"></a>
 
-  With NGINX Instance Manager, you can now combine Instances, Instance Groups, and Certificates into a Resource Group. This grouping can be used when defining roles to grant access to those specific objects. When objects are added to or removed from the Resource Group, the changes are automatically reflected in any roles that use the Resource Group. For more details, refer to [Working with Resource Groups]({{< relref "/nim/admin-guide/rbac/manage-resource-groups.md" >}}).
+  With NGINX Instance Manager, you can now combine Instances, Instance Groups, and Certificates into a Resource Group. This grouping can be used when defining roles to grant access to those specific objects. When objects are added to or removed from the Resource Group, the changes are automatically reflected in any roles that use the Resource Group. For more details, refer to [Working with Resource Groups]({{< ref "/nim/admin-guide/rbac/manage-resource-groups.md" >}}).
 
 - {{% icon-feature %}} **Get version controlled NGINX configurations with an external commit hash**<a name="2-13-0-whats-new-Get-version-controlled-NGINX-configurations-with-an-external-commit-hash"></a>
 
@@ -609,9 +609,9 @@ This release includes the following updates:
 
   To learn how to use a commit hash with NGINX configurations, refer to these topics:
 
-  - [Add Hash Versioning to Staged Configs]({{< relref "/nim/nginx-configs/stage-configs.md#hash-versioning-staged-configs" >}})
-  - [Publish Configs with Hash Versioning to Instances]({{< relref "/nim/nginx-configs/publish-configs.md#publish-configs-instances-hash-versioning" >}})
-  - [Publish Configs with Hash Versioning to Instance Groups]({{< relref "/nim/nginx-configs/publish-configs.md#publish-configs-instance-groups-hash-versioning" >}})
+  - [Add Hash Versioning to Staged Configs]({{< ref "/nim/nginx-configs/stage-configs.md#hash-versioning-staged-configs" >}})
+  - [Publish Configs with Hash Versioning to Instances]({{< ref "/nim/nginx-configs/publish-configs.md#publish-configs-instances-hash-versioning" >}})
+  - [Publish Configs with Hash Versioning to Instance Groups]({{< ref "/nim/nginx-configs/publish-configs.md#publish-configs-instance-groups-hash-versioning" >}})
 
 - {{% icon-feature %}} **Configure analytics data retention with the nms.conf file**<a name="2-13-0-whats-new-Configure-analytics-data-retention-with-the-nms-conf-file"></a>
 
@@ -619,15 +619,15 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **RBAC for security policies**<a name="2-13-0-whats-new-RBAC-for-security-policies"></a>
 
-  You can now use [Role-Based Access Control (RBAC)]({{< relref "/nim/admin-guide/rbac/overview-rbac.md" >}}) to allow or restrict the level of access to security policies according to your security governance model.
+  You can now use [Role-Based Access Control (RBAC)]({{< ref "/nim/admin-guide/rbac/overview-rbac.md" >}}) to allow or restrict the level of access to security policies according to your security governance model.
 
 - {{% icon-feature %}} **RBAC for log profiles**<a name="2-13-0-whats-new-RBAC-for-log-profiles"></a>
 
-  You can now use [Role-Based Access Control (RBAC)]({{< relref "/nim/admin-guide/rbac/overview-rbac.md" >}}) to allow or restrict access to log profiles according to your security governance model.
+  You can now use [Role-Based Access Control (RBAC)]({{< ref "/nim/admin-guide/rbac/overview-rbac.md" >}}) to allow or restrict access to log profiles according to your security governance model.
 
 - {{% icon-feature %}} **Use NGINX Plus Health Checks to easily track NGINX Plus Usage with NGINX Instance Manager**<a name="2-13-0-whats-new-Use-NGINX-Plus-Health-Checks-to-easily-track-NGINX-Plus-Usage-with-NGINX-Instance-Manager"></a>
 
-  The NGINX Plus Health Check feature now allows you to monitor the count of both NGINX Plus and NGINX App Protect instances that you've deployed. You can view this information in the "NGINX Plus" area of the "Instance Manager" web interface, or through the `/inventory` API. For guidance on how to set this up, refer to the following documentation: [View Count of NGINX Plus Instances]({{< relref "/nim/admin-guide/license/report-usage-connected-deployment.md" >}}).
+  The NGINX Plus Health Check feature now allows you to monitor the count of both NGINX Plus and NGINX App Protect instances that you've deployed. You can view this information in the "NGINX Plus" area of the "Instance Manager" web interface, or through the `/inventory` API. For guidance on how to set this up, refer to the following documentation: [View Count of NGINX Plus Instances]({{< ref "/nim/admin-guide/license/report-usage-connected-deployment.md" >}}).
 
 - {{% icon-feature %}} **Improved log output for better JSON parsing**<a name="2-13-0-whats-new-Improved-log-output-for-better-JSON-parsing"></a>
 
@@ -635,14 +635,14 @@ This release includes the following updates:
 
 
 ### Resolved Issues{#2-13-0-resolved-issues}
-This release fixes the following issues. Check the [Known Issues]({{< relref "/nim/releases/known-issues.md" >}})  topic for more information on the latest resolved issues. Use your browser's search function to find the issue ID in the page.
+This release fixes the following issues. Check the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}})  topic for more information on the latest resolved issues. Use your browser's search function to find the issue ID in the page.
 
 
 - {{% icon-resolved %}} An "unregistered clickhouse-adapter" failure is logged every few seconds if logging is set to debug. (43438)
 
 ### Known Issues{#2-13-0-known-issues}
 
-You can find information about known issues in the [Known Issues]({{< relref "/nim/releases/known-issues.md" >}}) topic.
+You can find information about known issues in the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic.
 
 ---
 
@@ -663,11 +663,11 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **New support for license tokens for automatic entitlement updates, renewals, and Flexible Consumption Reporting**<a name="2-12-0-whats-new-New-support-for-license-tokens-for-automatic-entitlement-updates,-renewals,-and-Flexible-Consumption-Reporting"></a>
 
-  NGINX Management Suite now supports license tokens formatted as a JSON Web Token (JWT). With JWT licensing, you can automatically update entitlements during subscription renewals or amendments, and you can automate reporting for the Flexible Consumption Program (FCP). For more information, see the [Add a License]({{< relref "/nim/admin-guide/license/add-license.md" >}}) topic.
+  NGINX Management Suite now supports license tokens formatted as a JSON Web Token (JWT). With JWT licensing, you can automatically update entitlements during subscription renewals or amendments, and you can automate reporting for the Flexible Consumption Program (FCP). For more information, see the [Add a License]({{< ref "/nim/admin-guide/license/add-license.md" >}}) topic.
 
 
 ### Resolved Issues{#2-12-0-resolved-issues}
-This release fixes the following issues. Check the [Known Issues]({{< relref "/nim/releases/known-issues.md" >}})  topic for more information on the latest resolved issues. Use your browser's search function to find the issue ID in the page.
+This release fixes the following issues. Check the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}})  topic for more information on the latest resolved issues. Use your browser's search function to find the issue ID in the page.
 
 
 - {{% icon-resolved %}} Filtering Analytics data with values that have double backslashes (`\\`) causes failures (42105)
@@ -676,7 +676,7 @@ This release fixes the following issues. Check the [Known Issues]({{< relref "/n
 
 ### Known Issues{#2-12-0-known-issues}
 
-You can find information about known issues in the [Known Issues]({{< relref "/nim/releases/known-issues.md" >}}) topic.
+You can find information about known issues in the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic.
 
 ---
 
@@ -749,7 +749,7 @@ This release has the following changes in default behavior:
 
 
 ### Resolved Issues{#2-11-0-resolved-issues}
-This release fixes the following issues. Check the [Known Issues]({{< relref "/nim/releases/known-issues.md" >}})  topic for more information on the latest resolved issues. Use your browser's search function to find the issue ID in the page.
+This release fixes the following issues. Check the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}})  topic for more information on the latest resolved issues. Use your browser's search function to find the issue ID in the page.
 
 
 - {{% icon-resolved %}} Count of NGINX Plus graph has a delay in being populated (37705)
@@ -760,7 +760,7 @@ This release fixes the following issues. Check the [Known Issues]({{< relref "/n
 
 ### Known Issues{#2-11-0-known-issues}
 
-You can find information about known issues in the [Known Issues]({{< relref "/nim/releases/known-issues.md" >}}) topic.
+You can find information about known issues in the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic.
 
 ---
 
@@ -777,14 +777,14 @@ Instance Manager  supports upgrades from these previous versions:
 If your Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
 ### Resolved Issues{#2-10-1-resolved-issues}
-This release fixes the following issues. Check the [Known Issues]({{< relref "/nim/releases/known-issues.md" >}})  topic for more information on the latest resolved issues. Use your browser's search function to find the issue ID in the page.
+This release fixes the following issues. Check the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}})  topic for more information on the latest resolved issues. Use your browser's search function to find the issue ID in the page.
 
 
 - {{% icon-resolved %}} Valid licenses incorrectly identified as invalid (42598)
 
 ### Known Issues{#2-10-1-known-issues}
 
-You can find information about known issues in the [Known Issues]({{< relref "/nim/releases/known-issues.md" >}}) topic.
+You can find information about known issues in the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic.
 
 ---
 
@@ -850,7 +850,7 @@ This release has the following changes in default behavior:
 
 
 ### Resolved Issues{#2-10-0-resolved-issues}
-This release fixes the following issues. Check the [Known Issues]({{< relref "/nim/releases/known-issues.md" >}})  topic for more information on the latest resolved issues. Use your browser's search function to find the issue ID in the page.
+This release fixes the following issues. Check the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}})  topic for more information on the latest resolved issues. Use your browser's search function to find the issue ID in the page.
 
 
 - {{% icon-resolved %}} Installing NGINX Agent on FreeBSD fails with "error 2051: not implemented" (41157)
@@ -858,7 +858,7 @@ This release fixes the following issues. Check the [Known Issues]({{< relref "/n
 
 ### Known Issues{#2-10-0-known-issues}
 
-You can find information about known issues in the [Known Issues]({{< relref "/nim/releases/known-issues.md" >}}) topic.
+You can find information about known issues in the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic.
 
 ---
 
@@ -875,14 +875,14 @@ Instance Manager  supports upgrades from these previous versions:
 If your Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
 ### Resolved Issues{#2-9-1-resolved-issues}
-This release fixes the following issues. Check the [Known Issues]({{< relref "/nim/releases/known-issues.md" >}})  topic for more information on the latest resolved issues. Use your browser's search function to find the issue ID in the page.
+This release fixes the following issues. Check the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}})  topic for more information on the latest resolved issues. Use your browser's search function to find the issue ID in the page.
 
 
 - {{% icon-resolved %}} NGINX configurations with special characters may not be editable from the web interface after upgrading Instance Manager (41557)
 
 ### Known Issues{#2-9-1-known-issues}
 
-You can find information about known issues in the [Known Issues]({{< relref "/nim/releases/known-issues.md" >}}) topic.
+You can find information about known issues in the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic.
 
 ---
 
@@ -923,9 +923,9 @@ This release includes the following updates:
 
   For more information, see the following topics:
 
-  - [Add Hash Versioning to Staged Configs]({{< relref "/nim/nginx-configs/stage-configs.md#hash-versioning-staged-configs" >}})
-  - [Publish Configs with Hash Versioning to Instances]({{< relref "/nim/nginx-configs/publish-configs.md#publish-configs-instances-hash-versioning" >}})
-  - [Publish Configs with Hash Versioning to Instance Groups]({{< relref "/nim/nginx-configs/publish-configs.md#publish-configs-instance-groups-hash-versioning" >}})
+  - [Add Hash Versioning to Staged Configs]({{< ref "/nim/nginx-configs/stage-configs.md#hash-versioning-staged-configs" >}})
+  - [Publish Configs with Hash Versioning to Instances]({{< ref "/nim/nginx-configs/publish-configs.md#publish-configs-instances-hash-versioning" >}})
+  - [Publish Configs with Hash Versioning to Instance Groups]({{< ref "/nim/nginx-configs/publish-configs.md#publish-configs-instance-groups-hash-versioning" >}})
 
 
 ### Security Updates{#2-9-0-security-updates}
@@ -946,7 +946,7 @@ This release includes the following security updates:
 
   #### Mitigation
 
-  - Avoid configuring trace-level logging in the NGINX Agent configuration file. For more information, refer to the [Configuring the NGINX Agent]({{< relref "/nms/nginx-agent/install-nginx-agent.md#configuring-the-nginx-agent ">}}) section of NGINX Management Suite documentation. If trace-level logging is required, ensure only trusted users have access to the log files.
+  - Avoid configuring trace-level logging in the NGINX Agent configuration file. For more information, refer to the [Configuring the NGINX Agent]({{< ref "/nms/nginx-agent/install-nginx-agent.md#configuring-the-nginx-agent ">}}) section of NGINX Management Suite documentation. If trace-level logging is required, ensure only trusted users have access to the log files.
 
   #### Fixed in
 
@@ -1026,7 +1026,7 @@ This release has the following changes in default behavior:
 
 
 ### Resolved Issues{#2-9-0-resolved-issues}
-This release fixes the following issues. Check the [Known Issues]({{< relref "/nim/releases/known-issues.md" >}})  topic for more information on the latest resolved issues. Use your browser's search function to find the issue ID in the page.
+This release fixes the following issues. Check the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}})  topic for more information on the latest resolved issues. Use your browser's search function to find the issue ID in the page.
 
 
 - {{% icon-resolved %}} After upgrading to NGINX Instance Manager 2.1.0, the web interface reports timeouts when NGINX Agent configs are published (32349)
@@ -1038,7 +1038,7 @@ This release fixes the following issues. Check the [Known Issues]({{< relref "/n
 
 ### Known Issues{#2-9-0-known-issues}
 
-You can find information about known issues in the [Known Issues]({{< relref "/nim/releases/known-issues.md" >}}) topic.
+You can find information about known issues in the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic.
 
 ---
 
@@ -1063,11 +1063,11 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **Automatic retrieval of Attack Signatures and Threat Campaign updates to Instance Manager**<a name="2-8-0-whats-new-Automatic-retrieval-of-Attack-Signatures-and-Threat-Campaign-updates-to-Instance-Manager"></a>
 
-  Instance Manager now allows you to [set up automatic downloads of the most recent Attack Signature and Threat Campaign packages]({{< relref "/nim/nginx-app-protect/setup-waf-config-management.md##automatically-download-latest-packages" >}}). By publishing these updates to your App Protect instances from Instance Manager, you can ensure your applications are shielded from all recognized attack types.
+  Instance Manager now allows you to [set up automatic downloads of the most recent Attack Signature and Threat Campaign packages]({{< ref "/nim/nginx-app-protect/setup-waf-config-management.md##automatically-download-latest-packages" >}}). By publishing these updates to your App Protect instances from Instance Manager, you can ensure your applications are shielded from all recognized attack types.
 
 - {{% icon-feature %}} **Improved WAF Compiler error messages**<a name="2-8-0-whats-new-Improved-WAF-Compiler-error-messages"></a>
 
-  The messaging around [security policy compilation errors]({{< relref "/nim/nginx-app-protect/manage-waf-security-policies.md#check-for-compilation-errors" >}}) has been improved by providing more detailed information and alerting users if the required compiler version is missing.
+  The messaging around [security policy compilation errors]({{< ref "/nim/nginx-app-protect/manage-waf-security-policies.md#check-for-compilation-errors" >}}) has been improved by providing more detailed information and alerting users if the required compiler version is missing.
 
 
 ### Changes in Default Behavior{#2-8-0-changes-in-behavior}
@@ -1075,7 +1075,7 @@ This release has the following changes in default behavior:
 
 - {{% icon-feature %}} **Switching between storing secrets on disk and using Vault migrates secrets**<a name="2-8-0-changes-in-behavior-Switching-between-storing-secrets-on-disk-and-using-Vault-migrates-secrets"></a>
 
-  When transitioning between storing secrets on disk or using HashiCorp Vault, any existing secrets can be easily migrated to the new storage method. For instructions, refer to the guide [Configure Vault for Storing Secrets]({{< relref "/nim/system-configuration/configure-vault.md" >}}).
+  When transitioning between storing secrets on disk or using HashiCorp Vault, any existing secrets can be easily migrated to the new storage method. For instructions, refer to the guide [Configure Vault for Storing Secrets]({{< ref "/nim/system-configuration/configure-vault.md" >}}).
 
 - {{% icon-feature %}} **Create roles using either an object name or UID**<a name="2-8-0-changes-in-behavior-Create-roles-using-either-an-object-name-or-UID"></a>
 
@@ -1096,7 +1096,7 @@ This release has the following changes in default behavior:
 
 
 ### Resolved Issues{#2-8-0-resolved-issues}
-This release fixes the following issues. Check the [Known Issues]({{< relref "/nim/releases/known-issues.md" >}})  topic for more information on the latest resolved issues. Use your browser's search function to find the issue ID in the page.
+This release fixes the following issues. Check the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}})  topic for more information on the latest resolved issues. Use your browser's search function to find the issue ID in the page.
 
 
 - {{% icon-resolved %}} Web interface reports no license found when a license is present (30647)
@@ -1114,7 +1114,7 @@ This release fixes the following issues. Check the [Known Issues]({{< relref "/n
 
 ### Known Issues{#2-8-0-known-issues}
 
-You can find information about known issues in the [Known Issues]({{< relref "/nim/releases/known-issues.md" >}}) topic.
+You can find information about known issues in the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic.
 
 ---
 
@@ -1147,7 +1147,7 @@ This release has the following changes in default behavior:
 
 
 ### Resolved Issues{#2-7-0-resolved-issues}
-This release fixes the following issues. Check the [Known Issues]({{< relref "/nim/releases/known-issues.md" >}})  topic for more information on the latest resolved issues. Use your browser's search function to find the issue ID in the page.
+This release fixes the following issues. Check the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}})  topic for more information on the latest resolved issues. Use your browser's search function to find the issue ID in the page.
 
 
 - {{% icon-resolved %}} Instance Manager reports old NGINX version after upgrade (31225)
@@ -1160,7 +1160,7 @@ This release fixes the following issues. Check the [Known Issues]({{< relref "/n
 
 ### Known Issues{#2-7-0-known-issues}
 
-You can find information about known issues in the [Known Issues]({{< relref "/nim/releases/known-issues.md" >}}) topic.
+You can find information about known issues in the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic.
 
 ---
 
@@ -1181,7 +1181,7 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **Manage and deploy configurations to NGINX App Protect WAF Instances**<a name="2-6-0-whats-new-Manage-and-deploy-configurations-to-NGINX-App-Protect-WAF-Instances"></a>
 
-  This release introduces the following features to [manage and deploy configurations to NGINX App Protect instances]({{< relref "/nim/nginx-app-protect/overview-nap-waf-config-management.md" >}}):
+  This release introduces the following features to [manage and deploy configurations to NGINX App Protect instances]({{< ref "/nim/nginx-app-protect/overview-nap-waf-config-management.md" >}}):
 
   - Create, upsert, and delete NGINX App Protect WAF security policies
   - Manage NGINX App Protect WAF security configurations by using the NGINX Management Suite user interface or REST API
@@ -1190,7 +1190,7 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **Adds support for RHEL 9**<a name="2-6-0-whats-new-Adds-support-for-RHEL-9"></a>
 
-  Instance Manager 2.6 supports RHEL 9. See the [Technical Specifications Guide]({{< relref "/nim/fundamentals/tech-specs#distributions" >}}) for details.
+  Instance Manager 2.6 supports RHEL 9. See the [Technical Specifications Guide]({{< ref "/nim/fundamentals/tech-specs#distributions" >}}) for details.
 
 - {{% icon-feature %}} **Support for using HashiCorp Vault for storing secrets**<a name="2-6-0-whats-new-Support-for-using-HashiCorp-Vault-for-storing-secrets"></a>
 
@@ -1202,7 +1202,7 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **Adds support for Oracle 8**<a name="2-6-0-whats-new-Adds-support-for-Oracle-8"></a>
 
-  Oracle 8 is now [a supported distribution]({{< relref "/nim/fundamentals/tech-specs#distributions" >}}) starting with Instance Manager 2.6. You can use the RedHat/CentOS distro to install the Oracle 8 package.
+  Oracle 8 is now [a supported distribution]({{< ref "/nim/fundamentals/tech-specs#distributions" >}}) starting with Instance Manager 2.6. You can use the RedHat/CentOS distro to install the Oracle 8 package.
 
 
 ### Changes in Default Behavior{#2-6-0-changes-in-behavior}
@@ -1214,7 +1214,7 @@ This release has the following changes in default behavior:
 
 
 ### Resolved Issues{#2-6-0-resolved-issues}
-This release fixes the following issues. Check the [Known Issues]({{< relref "/nim/releases/known-issues.md" >}})  topic for more information on the latest resolved issues. Use your browser's search function to find the issue ID in the page.
+This release fixes the following issues. Check the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}})  topic for more information on the latest resolved issues. Use your browser's search function to find the issue ID in the page.
 
 
 - {{% icon-resolved %}} Password error "option unknown" occurs when installing NGINX Instance Manager on Ubuntu with OpenSSL v1.1.0 (33055)
@@ -1222,7 +1222,7 @@ This release fixes the following issues. Check the [Known Issues]({{< relref "/n
 
 ### Known Issues{#2-6-0-known-issues}
 
-You can find information about known issues in the [Known Issues]({{< relref "/nim/releases/known-issues.md" >}}) topic.
+You can find information about known issues in the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic.
 
 ---
 
@@ -1239,14 +1239,14 @@ Instance Manager  supports upgrades from these previous versions:
 If your Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
 ### Resolved Issues{#2-5-1-resolved-issues}
-This release fixes the following issues. Check the [Known Issues]({{< relref "/nim/releases/known-issues.md" >}})  topic for more information on the latest resolved issues. Use your browser's search function to find the issue ID in the page.
+This release fixes the following issues. Check the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}})  topic for more information on the latest resolved issues. Use your browser's search function to find the issue ID in the page.
 
 
 - {{% icon-resolved %}} Extended NGINX metrics aren't reported for NGINX Plus R26 and earlier (37738)
 
 ### Known Issues{#2-5-1-known-issues}
 
-You can find information about known issues in the [Known Issues]({{< relref "/nim/releases/known-issues.md" >}}) topic.
+You can find information about known issues in the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic.
 
 ---
 
@@ -1267,15 +1267,15 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **Track NGINX Plus usage over time**<a name="2-5-0-whats-new-Track-NGINX-Plus-usage-over-time"></a>
 
-  When viewing your NGINX Plus instances in the Instnace Manager web interface, you can set a date and time filter to review the [NGINX Plus instance count]({{< relref "/nim/admin-guide/license/report-usage-connected-deployment.md" >}}) for a specific period. Also, you can use the Instance Manager REST API to view the lowest, highest, and average number of NGINX Plus instances over time.
+  When viewing your NGINX Plus instances in the Instnace Manager web interface, you can set a date and time filter to review the [NGINX Plus instance count]({{< ref "/nim/admin-guide/license/report-usage-connected-deployment.md" >}}) for a specific period. Also, you can use the Instance Manager REST API to view the lowest, highest, and average number of NGINX Plus instances over time.
 
 - {{% icon-feature %}} **New helm charts for each release of Instance Manager**<a name="2-5-0-whats-new-New-helm-charts-for-each-release-of-Instance-Manager"></a>
 
-  Each release of Instance Manager now includes a helm chart, which you can use to easily [install Instance Manager on Kubernetes]({{< relref "/nim/deploy/kubernetes/deploy-using-helm.md" >}}). You can download the helm charts from [MyF5](https://my.f5.com/manage/s/downloads).
+  Each release of Instance Manager now includes a helm chart, which you can use to easily [install Instance Manager on Kubernetes]({{< ref "/nim/deploy/kubernetes/deploy-using-helm.md" >}}). You can download the helm charts from [MyF5](https://my.f5.com/manage/s/downloads).
 
 
 ### Resolved Issues{#2-5-0-resolved-issues}
-This release fixes the following issues. Check the [Known Issues]({{< relref "/nim/releases/known-issues.md" >}})  topic for more information on the latest resolved issues. Use your browser's search function to find the issue ID in the page.
+This release fixes the following issues. Check the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}})  topic for more information on the latest resolved issues. Use your browser's search function to find the issue ID in the page.
 
 
 - {{% icon-resolved %}} OIDC is not supported for helm chart deployments (33248)
@@ -1284,7 +1284,7 @@ This release fixes the following issues. Check the [Known Issues]({{< relref "/n
 
 ### Known Issues{#2-5-0-known-issues}
 
-You can find information about known issues in the [Known Issues]({{< relref "/nim/releases/known-issues.md" >}}) topic.
+You can find information about known issues in the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic.
 
 ---
 
@@ -1309,7 +1309,7 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **See which of your NGINX Plus instances have NGINX App Protect installed**<a name="2-4-0-whats-new-See-which-of-your-NGINX-Plus-instances-have-NGINX-App-Protect-installed"></a>
 
-  Now, when you [view your NGINX Plus inventory]({{< relref "/nim/admin-guide/license/report-usage-connected-deployment.md" >}}), you can see which instances have [NGINX App Protect](https://www.nginx.com/products/nginx-app-protect/) installed. NGINX App Protect is a modern app‑security solution that works seamlessly in DevOps environments as a robust WAF or app‑level DoS defense, helping you deliver secure apps from code to customer
+  Now, when you [view your NGINX Plus inventory]({{< ref "/nim/admin-guide/license/report-usage-connected-deployment.md" >}}), you can see which instances have [NGINX App Protect](https://www.nginx.com/products/nginx-app-protect/) installed. NGINX App Protect is a modern app‑security solution that works seamlessly in DevOps environments as a robust WAF or app‑level DoS defense, helping you deliver secure apps from code to customer
 
 
 ### Changes in Default Behavior{#2-4-0-changes-in-behavior}
@@ -1325,14 +1325,14 @@ This release has the following changes in default behavior:
 
 
 ### Resolved Issues{#2-4-0-resolved-issues}
-This release fixes the following issues. Check the [Known Issues]({{< relref "/nim/releases/known-issues.md" >}})  topic for more information on the latest resolved issues. Use your browser's search function to find the issue ID in the page.
+This release fixes the following issues. Check the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}})  topic for more information on the latest resolved issues. Use your browser's search function to find the issue ID in the page.
 
 
 - {{% icon-resolved %}} Unable to publish config changes to a custom nginx.conf location (35276)
 
 ### Known Issues{#2-4-0-known-issues}
 
-You can find information about known issues in the [Known Issues]({{< relref "/nim/releases/known-issues.md" >}}) topic.
+You can find information about known issues in the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic.
 
 ---
 
@@ -1367,7 +1367,7 @@ This release includes the following security updates:
 
 ### Known Issues{#2-3-1-known-issues}
 
-You can find information about known issues in the [Known Issues]({{< relref "/nim/releases/known-issues.md" >}}) topic.
+You can find information about known issues in the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic.
 
 ---
 
@@ -1401,7 +1401,7 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **Track the details for your NGINX Plus instances**<a name="2-3-0-whats-new-Track-the-details-for-your-NGINX-Plus-instances"></a>
 
-  Easily track your NGINX Plus instances from the new NGINX Plus inventory list page. [View the current count for all your NGINX Plus instances]({{< relref "/nim/admin-guide/license/report-usage-connected-deployment.md" >}}), as well as each instance's hostname, UID, version, and the last time each instance was reported to Instance Manager. Select the `Export` button to export the list of NGINX Plus instances to a `.csv` file.
+  Easily track your NGINX Plus instances from the new NGINX Plus inventory list page. [View the current count for all your NGINX Plus instances]({{< ref "/nim/admin-guide/license/report-usage-connected-deployment.md" >}}), as well as each instance's hostname, UID, version, and the last time each instance was reported to Instance Manager. Select the `Export` button to export the list of NGINX Plus instances to a `.csv` file.
 
 - {{% icon-feature %}} **Explore events in NGINX Instance Manager with the Events Catalogs API**<a name="2-3-0-whats-new-Explore-events-in-NGINX-Instance-Manager-with-the-Events-Catalogs-API"></a>
 
@@ -1409,13 +1409,13 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **Support for provisioning users and user groups with SCIM**<a name="2-3-0-whats-new-Support-for-provisioning-users-and-user-groups-with-SCIM"></a>
 
-  Now, you can [use SCIM to provision, update, or deprovision users and user groups]({{< relref "/nim/admin-guide/authentication/oidc/scim-provisioning.md" >}}) for your Identity Provider to NGINX Instance Manager. SCIM, short for "[System for Cross-domain Identity Management](http://www.simplecloud.info)," is an open API for managing identities.
+  Now, you can [use SCIM to provision, update, or deprovision users and user groups]({{< ref "/nim/admin-guide/authentication/oidc/scim-provisioning.md" >}}) for your Identity Provider to NGINX Instance Manager. SCIM, short for "[System for Cross-domain Identity Management](http://www.simplecloud.info)," is an open API for managing identities.
 
 - {{% icon-feature %}} **Adds support for Ubuntu 22.04**<a name="2-3-0-whats-new-Adds-support-for-Ubuntu-22-04"></a>
 
   The NGINX Management Suite, which includes NGINX Instance Manager, now supports Ubuntu 22.04 (Jammy).
 
-  Refer to the [Technical Specifications Guide]({{< relref "/nim/fundamentals/tech-specs" >}}) for details.
+  Refer to the [Technical Specifications Guide]({{< ref "/nim/fundamentals/tech-specs" >}}) for details.
 
 
 ### Changes in Default Behavior{#2-3-0-changes-in-behavior}
@@ -1427,14 +1427,14 @@ This release has the following changes in default behavior:
 
 
 ### Resolved Issues{#2-3-0-resolved-issues}
-This release fixes the following issues. Check the [Known Issues]({{< relref "/nim/releases/known-issues.md" >}})  topic for more information on the latest resolved issues. Use your browser's search function to find the issue ID in the page.
+This release fixes the following issues. Check the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}})  topic for more information on the latest resolved issues. Use your browser's search function to find the issue ID in the page.
 
 
 - {{% icon-resolved %}} Post-install steps to load SELinux policy are in the wrong order (34276)
 
 ### Known Issues{#2-3-0-known-issues}
 
-You can find information about known issues in the [Known Issues]({{< relref "/nim/releases/known-issues.md" >}}) topic.
+You can find information about known issues in the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic.
 
 ---
 
@@ -1455,19 +1455,19 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **New events for NGINX processes and configuration rollbacks**<a name="2-2-0-whats-new-New-events-for-NGINX-processes-and-configuration-rollbacks"></a>
 
-  Now, you can use the [NGINX Instance Manager Events API]({{< relref "/nim/monitoring/view-events-metrics.md" >}}) or [web interface]({{< relref "/nim/monitoring/view-events-metrics.md" >}}) to view events when NGINX instances start and reload or when a configuration is rolled back.
+  Now, you can use the [NGINX Instance Manager Events API]({{< ref "/nim/monitoring/view-events-metrics.md" >}}) or [web interface]({{< ref "/nim/monitoring/view-events-metrics.md" >}}) to view events when NGINX instances start and reload or when a configuration is rolled back.
 
 - {{% icon-feature %}} **Filter events and metrics with custom date and time ranges**<a name="2-2-0-whats-new-Filter-events-and-metrics-with-custom-date-and-time-ranges"></a>
 
-  Now you can filter [events]({{< relref "/nim/monitoring/view-events-metrics" >}}) and [metrics]({{< relref "/nim/monitoring/view-events-metrics" >}}) using a custom date and time range. Select **Custom time range** in the filter list, then specify the date and time range you want to use.
+  Now you can filter [events]({{< ref "/nim/monitoring/view-events-metrics" >}}) and [metrics]({{< ref "/nim/monitoring/view-events-metrics" >}}) using a custom date and time range. Select **Custom time range** in the filter list, then specify the date and time range you want to use.
 
 - {{% icon-feature %}} **Role-based access control added to Events and Metrics pages**<a name="2-2-0-whats-new-Role-based-access-control-added-to-Events-and-Metrics-pages"></a>
 
-  A warning message is shown when users try to view the Events and Metrics pages in the web interface if they don't have permission to access the Analytics feature. For instructions on assigning access to features using role-based access control (RBAC), see [Set Up RBAC]({{< relref "/nim/admin-guide/rbac/overview-rbac.md" >}}).
+  A warning message is shown when users try to view the Events and Metrics pages in the web interface if they don't have permission to access the Analytics feature. For instructions on assigning access to features using role-based access control (RBAC), see [Set Up RBAC]({{< ref "/nim/admin-guide/rbac/overview-rbac.md" >}}).
 
 - {{% icon-feature %}} **Modules field added to Metrics and Dimensions catalogs**<a name="2-2-0-whats-new-Modules-field-added-to-Metrics-and-Dimensions-catalogs"></a>
 
-  A `modules` field was added to the [Metics]({{< relref "nms/reference/catalogs/metrics.md" >}}) and [Dimensions]({{< relref "nms/reference/catalogs/dimensions.md" >}}) catalogs. This field indicates which module or modules the metric or dimension belongs to.
+  A `modules` field was added to the [Metics]({{< ref "nms/reference/catalogs/metrics.md" >}}) and [Dimensions]({{< ref "nms/reference/catalogs/dimensions.md" >}}) catalogs. This field indicates which module or modules the metric or dimension belongs to.
 
 - {{% icon-feature %}} **Adds reporting for NGINX worker metrics (API only)**<a name="2-2-0-whats-new-Adds-reporting-for-NGINX-worker-metrics-(API-only)"></a>
 
@@ -1480,14 +1480,14 @@ This release includes the following updates:
 
 
 ### Resolved Issues{#2-2-0-resolved-issues}
-This release fixes the following issues. Check the [Known Issues]({{< relref "/nim/releases/known-issues.md" >}})  topic for more information on the latest resolved issues. Use your browser's search function to find the issue ID in the page.
+This release fixes the following issues. Check the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}})  topic for more information on the latest resolved issues. Use your browser's search function to find the issue ID in the page.
 
 
 - {{% icon-resolved %}} Running Agent install script with sh returns “not found” error  (33385)
 
 ### Known Issues{#2-2-0-known-issues}
 
-You can find information about known issues in the [Known Issues]({{< relref "/nim/releases/known-issues.md" >}}) topic.
+You can find information about known issues in the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic.
 
 ---
 
@@ -1520,13 +1520,13 @@ This release includes the following updates:
 
   The metrics pages in the web interface have been revised and improved.
 
-  See the [View Metrics]({{< relref "/nim/monitoring/view-events-metrics" >}}) topic to get started.
+  See the [View Metrics]({{< ref "/nim/monitoring/view-events-metrics" >}}) topic to get started.
 
 - {{% icon-feature %}} **New RBAC lets you limit access to NGINX Instance Manager features**<a name="2-1-0-whats-new-New-RBAC-lets-you-limit-access-to-NGINX-Instance-Manager-features"></a>
 
   RBAC has been updated and improved. Add users to roles -- or add users to user groups if you're using an external identity provider -- to limit access to Instance Manager features.
 
-  For more information, see the tutorial [Set Up RBAC]({{< relref "/nim/admin-guide/rbac/overview-rbac.md" >}}).
+  For more information, see the tutorial [Set Up RBAC]({{< ref "/nim/admin-guide/rbac/overview-rbac.md" >}}).
 
 - {{% icon-feature %}} **Improved certificate handling**<a name="2-1-0-whats-new-Improved-certificate-handling"></a>
 
@@ -1536,7 +1536,7 @@ This release includes the following updates:
 
   Now you can use the Instance Manager API or web interface to view events for your NGINX instances.
 
-  See the [View Events]({{< relref "/nim/monitoring/view-events-metrics" >}}) and [View Events (API)]({{< relref "/nim/monitoring/view-events-metrics" >}}) topics for instructions.
+  See the [View Events]({{< ref "/nim/monitoring/view-events-metrics" >}}) and [View Events (API)]({{< ref "/nim/monitoring/view-events-metrics" >}}) topics for instructions.
 
 - {{% icon-feature %}} **Deploy NGINX Instance Manager on Kubernetes using a helm chart**<a name="2-1-0-whats-new-Deploy-NGINX-Instance-Manager-on-Kubernetes-using-a-helm-chart"></a>
 
@@ -1544,7 +1544,7 @@ This release includes the following updates:
 
   Among the benefits of deploying from a helm chart, the chart includes the required services, which you can scale independently as needed; upgrades can be done with a single helm command; and there's no requirement for root privileges.
 
-  For instructions, see [Install from a Helm Chart]({{< relref "/nim/deploy/kubernetes/deploy-using-helm.md" >}}).
+  For instructions, see [Install from a Helm Chart]({{< ref "/nim/deploy/kubernetes/deploy-using-helm.md" >}}).
 
 
 ### Changes in Default Behavior{#2-1-0-changes-in-behavior}
@@ -1581,7 +1581,7 @@ This release has the following changes in default behavior:
 
 
 ### Resolved Issues{#2-1-0-resolved-issues}
-This release fixes the following issues. Check the [Known Issues]({{< relref "/nim/releases/known-issues.md" >}})  topic for more information on the latest resolved issues. Use your browser's search function to find the issue ID in the page.
+This release fixes the following issues. Check the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}})  topic for more information on the latest resolved issues. Use your browser's search function to find the issue ID in the page.
 
 
 - {{% icon-resolved %}} Unable to register multiple NGINX Agents in containers on the same host (30780)
@@ -1592,7 +1592,7 @@ This release fixes the following issues. Check the [Known Issues]({{< relref "/n
 
 ### Known Issues{#2-1-0-known-issues}
 
-You can find information about known issues in the [Known Issues]({{< relref "/nim/releases/known-issues.md" >}}) topic.
+You can find information about known issues in the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic.
 
 ---
 
@@ -1609,7 +1609,7 @@ Instance Manager  supports upgrades from these previous versions:
 If your Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
 ### Resolved Issues{#2-0-1-resolved-issues}
-This release fixes the following issues. Check the [Known Issues]({{< relref "/nim/releases/known-issues.md" >}})  topic for more information on the latest resolved issues. Use your browser's search function to find the issue ID in the page.
+This release fixes the following issues. Check the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}})  topic for more information on the latest resolved issues. Use your browser's search function to find the issue ID in the page.
 
 
 - {{% icon-resolved %}} Unable to access the NGINX Instance Manager web interface after loading SELinux policy (31583)
@@ -1617,7 +1617,7 @@ This release fixes the following issues. Check the [Known Issues]({{< relref "/n
 
 ### Known Issues{#2-0-1-known-issues}
 
-You can find information about known issues in the [Known Issues]({{< relref "/nim/releases/known-issues.md" >}}) topic.
+You can find information about known issues in the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic.
 
 ---
 
@@ -1633,7 +1633,7 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **More metrics and instance dashboards**<a name="2-0-0-whats-new-More-metrics-and-instance-dashboards"></a>
 
-  Instance Manager now collects additional metrics from the NGINX instances. We also added pre-configured dashboards to the web interface for each NGINX instance managed by Instance Manager. See the [Catalog Reference]({{< relref "/nms/reference/catalogs/_index.md" >}}) documentation for a complete list of metrics.
+  Instance Manager now collects additional metrics from the NGINX instances. We also added pre-configured dashboards to the web interface for each NGINX instance managed by Instance Manager. See the [Catalog Reference]({{< ref "/nms/reference/catalogs/_index.md" >}}) documentation for a complete list of metrics.
 
 - {{% icon-feature %}} **New architecture!**<a name="2-0-0-whats-new-New-architecture!"></a>
 
@@ -1641,10 +1641,10 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **Improved user access control**<a name="2-0-0-whats-new-Improved-user-access-control"></a>
 
-  Instance Manager 2.x. allows you to create user access controls with tags. Administrators can grant users read or write access to perform instance management tasks. And admins can grant or restrict access to the Settings options, such as managing licenses and creating users and roles. See the [Set up Authentication]({{< relref "/nim/admin-guide/authentication/basic-auth/set-up-basic-authentication.md#rbac" >}}) guide for more details.
+  Instance Manager 2.x. allows you to create user access controls with tags. Administrators can grant users read or write access to perform instance management tasks. And admins can grant or restrict access to the Settings options, such as managing licenses and creating users and roles. See the [Set up Authentication]({{< ref "/nim/admin-guide/authentication/basic-auth/set-up-basic-authentication.md#rbac" >}}) guide for more details.
 
 
 ### Known Issues{#2-0-0-known-issues}
 
-You can find information about known issues in the [Known Issues]({{< relref "/nim/releases/known-issues.md" >}}) topic.
+You can find information about known issues in the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic.
 

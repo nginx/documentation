@@ -196,7 +196,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     sudo semodule -i app-protect-dos.pp;
     ```
 
-    If you encounter any issues, refer to the [Troubleshooting Guide]({{< relref "/nap-dos/troubleshooting-guide/how-to-troubleshoot.md" >}}).
+    If you encounter any issues, refer to the [Troubleshooting Guide]({{< ref "/nap-dos/troubleshooting-guide/how-to-troubleshoot.md" >}}).
 
     {{< note >}}Additional SELinux configuration may be required to allow NGINX Plus to listen on specific network ports, connect to upstreams, and send syslog entries to remote systems. Refer to the practices outlined in the [Using NGINX and NGINX Plus with SELinux](https://www.nginx.com/blog/using-nginx-plus-with-selinux/) article for details.{{< /note >}}
 
@@ -376,7 +376,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     sudo semodule -i app-protect-dos.pp;
     ```
 
-    If you encounter any issues, refer to the [Troubleshooting Guide]({{< relref "/nap-dos/troubleshooting-guide/how-to-troubleshoot.md" >}}).
+    If you encounter any issues, refer to the [Troubleshooting Guide]({{< ref "/nap-dos/troubleshooting-guide/how-to-troubleshoot.md" >}}).
 
     {{< note >}}Additional SELinux configuration may be required to allow NGINX Plus to listen on specific network ports, connect to upstreams, and send syslog entries to remote systems. Refer to the practices outlined in the [Using NGINX and NGINX Plus with SELinux](https://www.nginx.com/blog/using-nginx-plus-with-selinux/) article for details.{{< /note >}}
 
@@ -572,7 +572,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     sudo semodule -i app-protect-dos-ebpf-manager.pp;
     ```
 
-    If you encounter any issues, refer to the [Troubleshooting Guide]({{< relref "/nap-dos/troubleshooting-guide/how-to-troubleshoot.md" >}}).
+    If you encounter any issues, refer to the [Troubleshooting Guide]({{< ref "/nap-dos/troubleshooting-guide/how-to-troubleshoot.md" >}}).
 
     {{< note >}}Additional SELinux configuration may be required to allow NGINX Plus to listen on specific network ports, connect to upstreams, and send syslog entries to remote systems. Refer to the practices outlined in the [Using NGINX and NGINX Plus with SELinux](https://www.nginx.com/blog/using-nginx-plus-with-selinux/) article for details.{{< /note >}}
 
@@ -598,7 +598,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     ```
     sudo systemctl start app-protect-dos-ebpf-manager
     ```
-    
+
 ## RHEL 9+ Installation
 
 1. If you already have NGINX packages on your system, back up your configs and logs:
@@ -782,7 +782,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     sudo semodule -i app-protect-dos-ebpf-manager.pp;
     ```
 
-    If you encounter any issues, refer to the [Troubleshooting Guide]({{< relref "/nap-dos/troubleshooting-guide/how-to-troubleshoot.md" >}}).
+    If you encounter any issues, refer to the [Troubleshooting Guide]({{< ref "/nap-dos/troubleshooting-guide/how-to-troubleshoot.md" >}}).
 
     {{< note >}}Additional SELinux configuration may be required to allow NGINX Plus to listen on specific network ports, connect to upstreams, and send syslog entries to remote systems. Refer to the practices outlined in the [Using NGINX and NGINX Plus with SELinux](https://www.nginx.com/blog/using-nginx-plus-with-selinux/) article for details.{{< /note >}}
 
@@ -996,7 +996,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     ```shell
      sudo systemctl start app-protect-dos-ebpf-manager
     ```
-    
+
 ## Alpine 3.15.x / 3.17.x / 3.19.x Installation
 
 1. If you already have NGINX packages in your system, back up your configs and logs:
@@ -1125,7 +1125,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     ```shell
     rc-service nginx-app-protect-dos start
     ```
-    
+
 17. Start the L4 service:
     ```shell
     rc-service app-protect-dos-ebpf-manager start
@@ -1354,7 +1354,7 @@ You need root permissions to execute the following steps.
         keepalive_timeout   65;
     }
     ```
-   
+
    {{< important >}}
    Make sure to replace upstream and proxy pass directives in this example with relevant application backend settings.
    {{< /important >}}
@@ -1427,7 +1427,7 @@ You need root permissions to execute the following steps.
     ```shell
     docker ps
     ```
-   
+
 10. L4 Accelerated Mitigation Deployment Options:<br>
     There are three different ways to deploy the L4 accelerated mitigation feature:<br>
     1. Deploy in a Dedicated Container. <br>

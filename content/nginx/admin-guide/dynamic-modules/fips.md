@@ -83,6 +83,6 @@ After installation you will need to enable and configure the module in NGINX Plu
 
 - [NGINX FIPS Status Check Module Reference](https://github.com/ogarrett/nginx-fips-check-module)
 
-- [NGINX Dynamic Modules]({{< relref "dynamic-modules.md" >}})
+- [NGINX Dynamic Modules]({{< ref "dynamic-modules.md" >}})
 
 - [NGINX Plus Technical Specifications]({{< relref "../../technical-specs.md" >}})

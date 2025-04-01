@@ -105,4 +105,4 @@ To view the contents of the available security policies, navigate to the azure p
 
 ## What's next
 
-[Enable App Protect WAF Logs]({{< relref "/nginxaas-azure/app-protect/enable-logging.md" >}})
+[Enable App Protect WAF Logs]({{< ref "/nginxaas-azure/app-protect/enable-logging.md" >}})

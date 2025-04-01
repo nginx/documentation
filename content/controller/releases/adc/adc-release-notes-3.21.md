@@ -203,4 +203,4 @@ The following issues are known to be present in this release. Look for updates t
 
 ## Supported NGINX Plus Versions
 
-Check the [NGINX Controller Tech Specs guide]({{< relref "/controller/admin-guides/install/nginx-controller-tech-specs.md#nginx-plus-instances" >}}) to learn about the NGINX Plus versions supported by this release.
+Check the [NGINX Controller Tech Specs guide]({{< ref "/controller/admin-guides/install/nginx-controller-tech-specs.md#nginx-plus-instances" >}}) to learn about the NGINX Plus versions supported by this release.

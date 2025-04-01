@@ -9,7 +9,7 @@ type:
 - how-to
 ---
 
-{{< note >}} MaxMind GeoLite Legacy databases are currently [discontinued](https://blog.maxmind.com/2018/01/discontinuation-of-the-geolite-legacy-databases), MaxMind GeoIP2 or Geolite2 databases and F5 NGINX Plus [GeoIP2 module]({{< relref "geoip2.md" >}}) should be used instead. {{< /note >}}
+{{< note >}} MaxMind GeoLite Legacy databases are currently [discontinued](https://blog.maxmind.com/2018/01/discontinuation-of-the-geolite-legacy-databases), MaxMind GeoIP2 or Geolite2 databases and F5 NGINX Plus [GeoIP2 module]({{< relref "./geoip2.md" >}}) should be used instead. {{< /note >}}
 
 
 <span id="install"></span>
@@ -74,7 +74,7 @@ After installation you will need to enable and configure the module in NGINX Plu
 <span id="info"></span>
 ## More Info
 
-- [GeoIP2 Dynamic Module Installation Instructions]({{< relref "geoip2.md" >}})
+- [GeoIP2 Dynamic Module Installation Instructions]({{< relref "./geoip2.md" >}})
 
 - [Restricting Access by Geographical Location]({{< relref "../security-controls/controlling-access-by-geoip.md" >}})
 
@@ -82,6 +82,6 @@ After installation you will need to enable and configure the module in NGINX Plu
 
 - [ngx_stream_geoip_module Module Reference](https://nginx.org/en/docs/stream/ngx_stream_geoip_module.html)
 
-- [NGINX Dynamic Modules]({{< relref "dynamic-modules.md" >}})
+- [NGINX Dynamic Modules]({{< ref "dynamic-modules.md" >}})
 
 - [NGINX Plus Technical Specifications]({{< relref "../../technical-specs.md" >}})

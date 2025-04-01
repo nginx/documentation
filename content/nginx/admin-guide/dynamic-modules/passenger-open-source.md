@@ -80,6 +80,6 @@ After installation you will need to enable and configure the module in F5 NGINX 
 
 - [Passenger Documentation](https://www.phusionpassenger.com/library/install/nginx/)
 
-- [NGINX Dynamic Modules]({{< relref "dynamic-modules.md" >}})
+- [NGINX Dynamic Modules]({{< ref "dynamic-modules.md" >}})
 
 - [NGINX Plus Technical Specifications]({{< relref "../../technical-specs.md" >}})

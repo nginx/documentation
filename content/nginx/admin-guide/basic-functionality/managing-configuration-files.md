@@ -91,6 +91,6 @@ In general, a _child_ context – one contained within another context (its _pa
 
 ## Reloading Configuration
 
-For changes to the configuration file to take effect, it must be reloaded. You can either restart the `nginx` process or send the `reload` signal to upgrade the configuration without interrupting the processing of current requests. For details, see [Controlling NGINX Processes at Runtime]({{< relref "runtime-control.md" >}}).
+For changes to the configuration file to take effect, it must be reloaded. You can either restart the `nginx` process or send the `reload` signal to upgrade the configuration without interrupting the processing of current requests. For details, see [Controlling NGINX Processes at Runtime]({{< ref "runtime-control.md" >}}).
 
-With NGINX Plus, you can dynamically reconfigure [load balancing]({{< relref "/nginx/admin-guide/load-balancer/dynamic-configuration-api.md" >}}) across the servers in an upstream group without reloading the configuration. You can also use the NGINX Plus API and key‑value store to dynamically control access, for example [based on client IP address]({{< relref "/nginx/admin-guide/security-controls/denylisting-ip-addresses.md" >}}).
+With NGINX Plus, you can dynamically reconfigure [load balancing]({{< ref "/nginx/admin-guide/load-balancer/dynamic-configuration-api.md" >}}) across the servers in an upstream group without reloading the configuration. You can also use the NGINX Plus API and key‑value store to dynamically control access, for example [based on client IP address]({{< ref "/nginx/admin-guide/security-controls/denylisting-ip-addresses.md" >}}).

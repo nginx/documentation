@@ -301,7 +301,7 @@ The instructions in this Appendix explain how to create EC2 instances with the n
 
 The deployment in this guide uses eight EC2 instances, four in each of two AWS regions. In each region, two instances run NGINX Plus to load balance traffic to the backend (NGINX Open Source) web servers running on the other two instances.
 
-Step‑by‑step instructions for creating EC2 instances and installing NGINX software are provided in our deployment guide, [Creating Amazon EC2 Instances for NGINX Open Source and NGINX Plus]({{< relref "ec2-instances-for-nginx.md" >}}).
+Step‑by‑step instructions for creating EC2 instances and installing NGINX software are provided in our deployment guide, [Creating Amazon EC2 Instances for NGINX Open Source and NGINX Plus]({{< ref "ec2-instances-for-nginx.md" >}}).
 
 **Note:** When installing NGINX Open Source or NGINX Plus, you connect to each instance over SSH. To save time, leave the SSH connection to each instance open after installing the software, for reuse when you configure it with the instructions in the sections below.
 

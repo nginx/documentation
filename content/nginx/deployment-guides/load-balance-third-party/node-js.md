@@ -44,7 +44,7 @@ The information in this deployment guide applies equally to open source Node.js 
 
 - A Node.js application server installed and configured on a physical or virtual system.
 - A Linux system to host NGINX Open Source or NGINX Plus. To avoid potential conflicts with other applications, we recommend you install NGINX Plus on a fresh physical or virtual system. For the list of Linux distributions supported by NGINX Plus, see [NGINX Plus Technical Specifications]({{< relref "../../technical-specs.md" >}}).
-- NGINX Open Source or NGINX Plus installed on the physical or virtual system. Some features are available only with [NGINX Plus](#enhanced), including sophisticated session persistence, application health checks, live activity monitoring, and dynamic reconfiguration of upstream groups. For installation instructions for both products, see the [NGINX Plus Admin Guide]({{< relref "/nginx/admin-guide/installing-nginx/_index.md" >}}).
+- NGINX Open Source or NGINX Plus installed on the physical or virtual system. Some features are available only with [NGINX Plus](#enhanced), including sophisticated session persistence, application health checks, live activity monitoring, and dynamic reconfiguration of upstream groups. For installation instructions for both products, see the [NGINX Plus Admin Guide]({{< ref "/nginx/admin-guide/installing-nginx/_index.md" >}}).
 
 The instructions assume you have basic Linux system administration skills, including the following. Full instructions are not provided for these tasks.
 
@@ -873,7 +873,7 @@ server {
 ## Resources
 
 - [NGINX Plus Overview](https://www.nginx.com/products/nginx)
-- [NGINX Plus Admin Guide]({{< relref "/nginx/admin-guide/_index.md" >}})
+- [NGINX Plus Admin Guide]({{< ref "/nginx/admin-guide/_index.md" >}})
 - [NGINX Wiki](https://www.nginx.com/resources/wiki/)
 
 _[NodeSource](https://nodesource.com/), developers of N|Solid, contributed to this deployment guide._

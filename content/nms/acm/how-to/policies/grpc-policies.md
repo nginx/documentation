@@ -15,7 +15,7 @@ type:
 
 {{< include "acm/how-to/policies-intro.md" >}}
 
-Refer to the [Set Up Policies]({{< relref "/nms/acm/how-to/policies/manage-policies.md" >}}) topic for instructions on how to configure policies for your API Gateway and Developer Portal clusters and API Proxies.
+Refer to the [Set Up Policies]({{< ref "/nms/acm/how-to/policies/manage-policies.md" >}}) topic for instructions on how to configure policies for your API Gateway and Developer Portal clusters and API Proxies.
 
 ---
 

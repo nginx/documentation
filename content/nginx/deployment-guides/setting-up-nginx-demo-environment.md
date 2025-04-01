@@ -14,7 +14,7 @@ The instructions in this guide explain how to set up a simple demo environment t
 <span id="prereqs"></span>
 ## Prerequisites
 
-This guide assumes you have already provisioned a number of host systems (physical servers, virtual machines, containers, or cloud instances) required for a deployment guide (if applicable) and installed NGINX Open Source or NGINX Plus on each instance as appropriate. For installation instructions, see the [NGINX Plus Admin Guide]({{< relref "/nginx/admin-guide/installing-nginx/_index.md" >}}).
+This guide assumes you have already provisioned a number of host systems (physical servers, virtual machines, containers, or cloud instances) required for a deployment guide (if applicable) and installed NGINX Open Source or NGINX Plus on each instance as appropriate. For installation instructions, see the [NGINX Plus Admin Guide]({{< ref "/nginx/admin-guide/installing-nginx/_index.md" >}}).
 
 Some commands require `root` privilege. If appropriate for your environment, prefix commands with the `sudo` command.
 

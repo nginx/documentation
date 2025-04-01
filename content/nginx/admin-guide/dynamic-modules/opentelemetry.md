@@ -308,6 +308,6 @@ http {
 
 - [NGINX OpenTelemetry module on GitHub](https://github.com/nginxinc/nginx-otel)
 
-- [NGINX Dynamic Modules]({{< relref "dynamic-modules.md" >}})
+- [NGINX Dynamic Modules]({{< ref "dynamic-modules.md" >}})
 
 - [NGINX Plus Technical Specifications]({{< relref "../../technical-specs.md" >}})

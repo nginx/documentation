@@ -12,7 +12,7 @@ type:
 
 ## Overview
 
-Use the Kubernetes support package script to collect system and service information for troubleshooting and debugging. The script packages the data into a tar archive that you can share with [NGINX Customer Support]({{< relref "nim/support/contact-support.md" >}}).
+Use the Kubernetes support package script to collect system and service information for troubleshooting and debugging. The script packages the data into a tar archive that you can share with [NGINX Customer Support]({{< ref "nim/support/contact-support.md" >}}).
 
 ---
 

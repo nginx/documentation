@@ -24,7 +24,7 @@ These release notes provide general information and describe known issues for NG
   - [Known Issues](#known-issues)
   - [Supported Versions](#supported-versions)
   - {{< link "nginx-service-mesh/licenses/license-servicemesh-0.7.0.html" "Open Source Licenses" >}}
-  - [Open Source Licenses Addendum]({{< relref "oss-dependencies/index.md" >}})
+  - [Open Source Licenses Addendum]({{< ref "oss-dependencies/index.md" >}})
 
 <span id="070-updates"></a>
 

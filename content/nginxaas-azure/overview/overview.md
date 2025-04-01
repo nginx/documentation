@@ -66,4 +66,4 @@ NGINX Plus instances are automatically upgraded to receive security patches and 
 
 ## What's next
 
-To get started, check the [NGINX as a Service for Azure prerequisites]({{< relref "/nginxaas-azure/getting-started/prerequisites.md" >}})
+To get started, check the [NGINX as a Service for Azure prerequisites]({{< ref "/nginxaas-azure/getting-started/prerequisites.md" >}})

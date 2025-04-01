@@ -76,7 +76,7 @@ There are several ways to obtain a server certificate, including the following. 
 - Generate a self‑signed certificate as outlined in [Generating a Self‑Signed Certificate](#certificate-self-signed) below. This is sufficient for testing scenarios, but clients of production deployments generally require a certificate signed by a certificate authority (CA).
 - Request a new certificate from a CA or your organization's security group, as described in [Generating a Certificate Request](#certificate-request) below.
 
-For more details on SSL/TLS termination, see the <span style="white-space: nowrap;">[NGINX Plus Admin Guide]({{< relref "/nginx/admin-guide/_index.md" >}})</span>.
+For more details on SSL/TLS termination, see the <span style="white-space: nowrap;">[NGINX Plus Admin Guide]({{< ref "/nginx/admin-guide/_index.md" >}})</span>.
 
 
 <span id="certificate-self-signed"></span>
@@ -273,7 +273,7 @@ These directives define virtual servers for HTTP and HTTPS traffic in separate `
 
    Directive documentation: [location](https://nginx.org/en/docs/http/ngx_http_core_module.html#location), [return](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html#return)
 
-For more information about configuring SSL/TLS, see the <span style="white-space: nowrap;">[NGINX Plus Admin Guide]({{< relref "/nginx/admin-guide/security-controls/terminating-ssl-http.md" >}})</span> and the reference documentation for the HTTP [SSL/TLS](https://nginx.org/en/docs/http/ngx_http_ssl_module.html)  module.
+For more information about configuring SSL/TLS, see the <span style="white-space: nowrap;">[NGINX Plus Admin Guide]({{< ref "/nginx/admin-guide/security-controls/terminating-ssl-http.md" >}})</span> and the reference documentation for the HTTP [SSL/TLS](https://nginx.org/en/docs/http/ngx_http_ssl_module.html)  module.
 
 <span id="load-balancing-basic"></span>
 ### Configuring Basic Load Balancing
@@ -963,7 +963,7 @@ server {
 ## Resources
 
 - [NGINX Plus Overview](https://www.nginx.com/products/nginx)
-- [NGINX Plus Admin Guide]({{< relref "/nginx/admin-guide/_index.md" >}})
+- [NGINX Plus Admin Guide]({{< ref "/nginx/admin-guide/_index.md" >}})
 - [NGINX Wiki](https://www.nginx.com/resources/wiki/)
 
 ### Revision History
