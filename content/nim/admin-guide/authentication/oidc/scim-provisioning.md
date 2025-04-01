@@ -134,7 +134,7 @@ In this request, `User` is assigned as a member.
 }
 ```
 
-{{< important >}}After creating a group with SCIM, you need to [assign roles to the group]({{< relref "/nim/admin-guide/rbac/assign-roles.md" >}}) in NGINX Instance Manager so the group has permissions associated with it.{{< /important >}}
+{{< important >}}After creating a group with SCIM, you need to [assign roles to the group]({{< ref "/nim/admin-guide/rbac/assign-roles.md" >}}) in NGINX Instance Manager so the group has permissions associated with it.{{< /important >}}
 
 ## Update users created with SCIM
 

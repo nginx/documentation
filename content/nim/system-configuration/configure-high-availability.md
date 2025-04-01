@@ -4,7 +4,7 @@ weight: 3
 toc: true
 type: how-to
 product: NGINX Instance Manager
-docs: 
+docs:
 ---
 
 ## Overview
@@ -37,11 +37,11 @@ Some cloud platforms don’t allow direct IP management with `keepalived`. If yo
 ### Limitations
 
 <i class="fa-solid fa-triangle-exclamation"></i> This HA setup has the following restrictions:
-	
+
 - This setup **supports only two nodes** — one active and one passive. Configurations with three or more nodes are not supported.
 - Active/active HA is not supported. This configuration works only in an active-passive setup.
 - Do not modify `keepalived`. Changes beyond what is documented may cause failures.
-- OpenID Connect (OIDC) authentication is not supported when NGINX Instance Manager is running in [forward-proxy mode]({{< relref "nim/system-configuration/configure-forward-proxy.md" >}}). OIDC is configured on the NGINX Plus layer and cannot pass authentication requests through a forward proxy.
+- OpenID Connect (OIDC) authentication is not supported when NGINX Instance Manager is running in [forward-proxy mode]({{< ref "nim/system-configuration/configure-forward-proxy.md" >}}). OIDC is configured on the NGINX Plus layer and cannot pass authentication requests through a forward proxy.
 
 ---
 
@@ -94,7 +94,7 @@ check_nms_services=(
 )
 ```
 
-{{<call-out "important" "Update nms.conf on both nodes when changing mode of operation" "fa-solid fa-triangle-exclamation" >}}If you switch between connected and disconnected modes, you must update **/etc/nms/nms.conf** on both the primary and secondary nodes if `nms-integrations` is included in `check_nms_services`. NGINX Instance Manager runs in connected mode by default. For instructions on changing the mode, see the [installation guide for disconnected environments]({{< relref "nim/disconnected/offline-install-guide.md#set-mode-disconnected" >}}).{{</call-out>}}
+{{<call-out "important" "Update nms.conf on both nodes when changing mode of operation" "fa-solid fa-triangle-exclamation" >}}If you switch between connected and disconnected modes, you must update **/etc/nms/nms.conf** on both the primary and secondary nodes if `nms-integrations` is included in `check_nms_services`. NGINX Instance Manager runs in connected mode by default. For instructions on changing the mode, see the [installation guide for disconnected environments]({{< ref "nim/disconnected/offline-install-guide.md#set-mode-disconnected" >}}).{{</call-out>}}
 
 
 ### Configure keepalived

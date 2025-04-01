@@ -10,7 +10,7 @@ docs: DOCS-646
 
 ## Overview
 
-F5 NGINX App Protect WAF provides web application firewall (WAF) security protection for your web applications, including OWASP Top 10; response inspection; Meta characters check; HTTP protocol compliance; evasion techniques; disallowed file types; JSON & XML well-formedness; sensitive parameters & Data Guard. Refer to [Supported Security Policy Features]({{< relref "/nap-waf/v4/configuration-guide/configuration.md#supported-security-policy-features" >}}) section for a more detailed description.
+F5 NGINX App Protect WAF provides web application firewall (WAF) security protection for your web applications, including OWASP Top 10; response inspection; Meta characters check; HTTP protocol compliance; evasion techniques; disallowed file types; JSON & XML well-formedness; sensitive parameters & Data Guard. Refer to [Supported Security Policy Features]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#supported-security-policy-features" >}}) section for a more detailed description.
 
 This guide explains how to deploy NGINX App Protect WAF as well as upgrade App Protect and the App Protect signature sets.<br>
 
@@ -314,7 +314,7 @@ If a user other than **nginx** is to be used, note the following:
     sudo dnf install app-protect-selinux
     ```
 
-    If you encounter any issues, check the [Troubleshooting Guide]({{< relref "/nap-waf/v4/troubleshooting-guide/troubleshooting#selinux" >}}).
+    If you encounter any issues, check the [Troubleshooting Guide]({{< ref "/nap-waf/v4/troubleshooting-guide/troubleshooting#selinux" >}}).
 
 1. To enable the NGINX/App Protect WAF service start at boot, run the command:
 
@@ -574,7 +574,7 @@ If a user other than **nginx** is to be used, note the following:
     sudo dnf install app-protect-selinux
     ```
 
-    If you encounter any issues, check the [Troubleshooting Guide]({{< relref "/nap-waf/v4/troubleshooting-guide/troubleshooting#selinux" >}}).
+    If you encounter any issues, check the [Troubleshooting Guide]({{< ref "/nap-waf/v4/troubleshooting-guide/troubleshooting#selinux" >}}).
 
 15. To enable the NGINX/App Protect WAF service start at boot, run the command:
 
@@ -694,7 +694,7 @@ If a user other than **nginx** is to be used, note the following:
     sudo dnf install app-protect-selinux
     ```
 
-    If you encounter any issues, check the [Troubleshooting Guide]({{< relref "/nap-waf/v4/troubleshooting-guide/troubleshooting#selinux" >}}).
+    If you encounter any issues, check the [Troubleshooting Guide]({{< ref "/nap-waf/v4/troubleshooting-guide/troubleshooting#selinux" >}}).
 
 15. To enable the NGINX/App Protect WAF service start at boot, run the command:
 
@@ -1270,7 +1270,7 @@ CMD ["sh", "/root/entrypoint.sh"]
 ## Converter Tool Docker Image
 
 This section explains how to build a Docker image for the purpose of converting policy files from other F5 WAF products to NGINX App Protect WAF JSON declarative format.
-For more details regarding this feature refer to [Converter Tools]({{< relref "/nap-waf/v4/configuration-guide/configuration.md#converter-tools" >}}).
+For more details regarding this feature refer to [Converter Tools]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#converter-tools" >}}).
 
 ### Converter Docker Deployment Instructions
 You need root permissions to execute the following steps.
@@ -1535,7 +1535,7 @@ RUN wget -qO - https://cs.nginx.com/static/keys/app-protect-security-updates.key
 # Add NGINX App Protect WAF repositories:
 RUN printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
     https://pkgs.nginx.com/app-protect/debian `lsb_release -cs` nginx-plus\n" | \
-    tee /etc/apt/sources.list.d/nginx-app-protect.list 
+    tee /etc/apt/sources.list.d/nginx-app-protect.list
 RUN printf "deb [signed-by=/usr/share/keyrings/app-protect-security-updates.gpg] \
     https://pkgs.nginx.com/app-protect-security-updates/debian `lsb_release -cs` nginx-plus\n" | \
     tee /etc/apt/sources.list.d/app-protect-security-updates.list
@@ -1570,8 +1570,8 @@ RUN wget -qO - https://cs.nginx.com/static/keys/app-protect-security-updates.key
 # Add NGINX App Protect WAF repositories:
 RUN printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
     https://pkgs.nginx.com/app-protect/ubuntu `lsb_release -cs` nginx-plus\n" | \
-    tee /etc/apt/sources.list.d/nginx-app-protect.list 
-RUN printf "deb [signed-by=/usr/share/keyrings/app-protect-security-updates.gpg] \ 
+    tee /etc/apt/sources.list.d/nginx-app-protect.list
+RUN printf "deb [signed-by=/usr/share/keyrings/app-protect-security-updates.gpg] \
     https://pkgs.nginx.com/app-protect-security-updates/ubuntu `lsb_release -cs` nginx-plus\n" | \
     tee /etc/apt/sources.list.d/app-protect-security-updates.list
 
@@ -1758,7 +1758,7 @@ You can run the following commands to ensure that NGINX App Protect WAF enforcem
 
     The number `471859200` should be enough for most use cases, you may need to use a bigger number if the number of profiles is large, or large json/xml schemas are used in the policy.
 
-5. If there are additional problems, refer to the [Troubleshooting Guide]({{< relref "/nap-waf/v4/troubleshooting-guide/troubleshooting#app-protect-troubleshooting-overview" >}}).
+5. If there are additional problems, refer to the [Troubleshooting Guide]({{< ref "/nap-waf/v4/troubleshooting-guide/troubleshooting#app-protect-troubleshooting-overview" >}}).
 
 
 ## Attack Signatures Dependency Change in NGINX App Protect WAF
@@ -2013,7 +2013,7 @@ After having updated the Threat Campaigns package you have to reload the configu
 
 ## Updating App Protect Threat Campaigns
 
-The Threat Campaigns feature is described [here]({{< relref "/nap-waf/v4/configuration-guide/configuration.md#threat-campaigns" >}}).
+The Threat Campaigns feature is described [here]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#threat-campaigns" >}}).
 
 The Threat Campaigns package is named: app-protect-threat-campaigns-2022.07.21. The version number for this package reflects the date the package was released. The format is: _YYYY.MM.DD_ where:
 
@@ -2209,7 +2209,7 @@ sudo apt-get install app-protect-attack-signatures=2024.06.26-1~noble
 
 ## Updating App Protect Bot Signatures
 
-The App Protect Bot Signatures feature is described [here]({{< relref "/nap-waf/v4/configuration-guide/configuration.md#bot-signatures" >}}).<br>
+The App Protect Bot Signatures feature is described [here]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#bot-signatures" >}}).<br>
 
 The App Protect Bot Signatures is named: app-protect-bot-signatures and it is a dependency similar to attack signatures and threat campaigns and can be updated more often. The version number for this package reflects the date the package was released. For example: app-protect-bot-signatures-2023.11.14, where the format for app protect bot signatures is: YYYY.MM.DD.
 
@@ -2569,4 +2569,4 @@ Review the syslog ports by entering the following command:
 semanage port -l | grep syslog
 ```
 
-If there are additional problems, refer to the [Troubleshooting Guide]({{< relref "/nap-waf/v4/troubleshooting-guide/troubleshooting#selinux" >}}).
+If there are additional problems, refer to the [Troubleshooting Guide]({{< ref "/nap-waf/v4/troubleshooting-guide/troubleshooting#selinux" >}}).

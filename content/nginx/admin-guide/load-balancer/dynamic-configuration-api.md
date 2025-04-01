@@ -30,8 +30,8 @@ These changes are made with the NGINX Plus REST API interface with API commands.
 Prior to using the dynamic configuration feature, make sure that you have the following environment:
 
 1. NGINX Plus <a href="../../../releases/#r13">R13</a> or later
-2. You have created upstream groups of application or web servers, as described in [HTTP Load Balancing]({{< relref "http-load-balancer.md" >}}) and [TCP/UDP Load Balancing]({{< relref "tcp-udp-load-balancer.md" >}})
-3. Upstream server groups reside in the shared memory zone, as described in [Sharing Data with Multiple Worker Processes]({{< relref "http-load-balancer.md" >}})
+2. You have created upstream groups of application or web servers, as described in [HTTP Load Balancing]({{< ref "http-load-balancer.md" >}}) and [TCP/UDP Load Balancing]({{< ref "tcp-udp-load-balancer.md" >}})
+3. Upstream server groups reside in the shared memory zone, as described in [Sharing Data with Multiple Worker Processes]({{< ref "http-load-balancer.md" >}})
 
 
 <span id="api_setup"></span>

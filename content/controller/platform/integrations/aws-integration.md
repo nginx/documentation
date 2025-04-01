@@ -43,7 +43,7 @@ To create an AWS Integration, take the following steps:
 
 ## What's Next
 
-- [Deploy an Instance on Amazon Web Services]({{< relref "/controller/infrastructure/instances/add-aws-instance.md" >}})
+- [Deploy an Instance on Amazon Web Services]({{< ref "/controller/infrastructure/instances/add-aws-instance.md" >}})
 
 {{< versions "3.0" "latest" "ctrlvers" >}}
 {{< versions "3.18" "latest" "apimvers" >}}

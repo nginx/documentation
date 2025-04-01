@@ -79,6 +79,6 @@ After installation you will need to enable and configure the module in F5 NGINX 
 
 - [NGINX RTMP Module Reference](https://github.com/arut/nginx-rtmp-module)
 
-- [NGINX Dynamic Modules]({{< relref "dynamic-modules.md" >}})
+- [NGINX Dynamic Modules]({{< ref "dynamic-modules.md" >}})
 
 - [NGINX Plus Technical Specifications]({{< relref "../../technical-specs.md" >}})

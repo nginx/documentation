@@ -54,13 +54,13 @@ Dynamic modules are supported on the [same distributions as NGINX Plus](#support
 
 ## Supported SSL/TLS versions
 
-NGINX Plus supports the following SSL/TLS protocols:  
-- SSLv2  
-- SSLv3  
-- TLSv1  
-- TLSv1.1  
-- TLSv1.2  
-- TLSv1.3  
+NGINX Plus supports the following SSL/TLS protocols:
+- SSLv2
+- SSLv3
+- TLSv1
+- TLSv1.1
+- TLSv1.2
+- TLSv1.3
 
 You can configure which protocols to enable or disable with the [ssl_protocols](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_protocols) directive.
 
@@ -182,7 +182,7 @@ See [Sizing Guide for Deploying NGINX Plus on Bare Metal Servers](https://www.ng
 
 - [NGINX Plus API](https://nginx.org/en/docs/http/ngx_http_api_module.html) – Provide REST API for accessing metrics, configuring upstream server groups dynamically, and managing key-value pairs, without the need to reload NGINX configuration
 - [Key-Value Store](https://nginx.org/en/docs/http/ngx_http_keyval_module.html) – Create variables with values taken from key-value pairs managed by the [NGINX Plus API](https://nginx.org/en/docs/http/ngx_http_api_module.html#http_keyvals_)
-- [Management](https://nginx.org/en/docs/ngx_mgmt_module.html) – Configure licensing and usage reporting of NGINX Plus installation to F5 licensing endpoint or [NGINX Instance Manager]({{< relref "nim/index.md" >}})
+- [Management](https://nginx.org/en/docs/ngx_mgmt_module.html) – Configure licensing and usage reporting of NGINX Plus installation to F5 licensing endpoint or [NGINX Instance Manager]({{< ref "nim/index.md" >}})
 
 ### TCP and UDP Proxying and Load Balancing
 

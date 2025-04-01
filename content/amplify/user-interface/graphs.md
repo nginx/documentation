@@ -24,4 +24,4 @@ Above the graphs, you will find the following:
 
 You can also copy a predefined graph to a custom dashboard by focusing on the graph and clicking on the arrow in the top right corner.
 
-Check the [Metrics and Metadata]({{< relref "/amplify/metrics-metadata" >}}) documentation to learn more about the displayed metrics.
+Check the [Metrics and Metadata]({{< ref "/amplify/metrics-metadata" >}}) documentation to learn more about the displayed metrics.

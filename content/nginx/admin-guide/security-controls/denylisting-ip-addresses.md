@@ -69,7 +69,7 @@ First, enable the database for storing the list of denylisted and allowlisted IP
     }
     ```
 
-   We strongly recommend [restricting access]({{< relref "/nginx/admin-guide/security-controls/controlling-access-proxied-http.md" >}}) to this location, for example by allowing access only from `localhost` (`127.0.0.1`), and by using HTTP basic authentication to restrict use of the `PATCH`, `POST`, and `DELETE` methods to a specified set of users:
+   We strongly recommend [restricting access]({{< ref "/nginx/admin-guide/security-controls/controlling-access-proxied-http.md" >}}) to this location, for example by allowing access only from `localhost` (`127.0.0.1`), and by using HTTP basic authentication to restrict use of the `PATCH`, `POST`, and `DELETE` methods to a specified set of users:
 
    ```nginx
    # ...

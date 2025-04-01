@@ -33,7 +33,7 @@ This release is focused on security and stability.
 
 - gRPC and HTTP/2 protection are available only on Debian 10, Ubuntu 18.04, and Ubuntu 20.04 platforms. For the rest of the platforms, NGINX App Protect DoS does not protect gRPC and HTTP/2 services. The traffic is bypassed.
 
-- [TLS fingerprint]({{< relref "/nap-dos/directives-and-policy/learn-about-directives-and-policy.md#policy-directive-app_protect_dos_policy_file" >}}) feature is not used in CentOS 7.4 due to the old OpenSSL version. The required OpenSSL version is 1.1.1 or higher.
+- [TLS fingerprint]({{< ref "/nap-dos/directives-and-policy/learn-about-directives-and-policy.md#policy-directive-app_protect_dos_policy_file" >}}) feature is not used in CentOS 7.4 due to the old OpenSSL version. The required OpenSSL version is 1.1.1 or higher.
 
 - Slow POST attack always mitigates with block action while other types of attacks can also be mitigated with redirection or JS challenges.
 
@@ -44,4 +44,4 @@ This release is focused on security and stability.
   - `successful_responses` instead of `successful_transactions` <br>
   - `unsuccessful_requests` instead of `unsuccessful_requests_count`.
 
-- In the case of an upgrade from the previous `app-protect-dos` version, it's necessary to remove the old `nginx-plus` and install the new `app-protect-dos` that will install a correspondent version of `nginx-plus` as described in the [NGINX App Protect DoS Deployment Guide]({{< relref "/nap-dos/deployment-guide/learn-about-deployment.md" >}}).
+- In the case of an upgrade from the previous `app-protect-dos` version, it's necessary to remove the old `nginx-plus` and install the new `app-protect-dos` that will install a correspondent version of `nginx-plus` as described in the [NGINX App Protect DoS Deployment Guide]({{< ref "/nap-dos/deployment-guide/learn-about-deployment.md" >}}).

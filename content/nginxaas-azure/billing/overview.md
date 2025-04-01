@@ -58,8 +58,8 @@ Each NCU provisioned (not consumed) is billed at the rate specified on the [Azur
 * Total:  `100 NCU·hours * 0.05$/NCU/hour = $5.00`.
 
 {{< note >}}Further guidance:
-* For how many NCUs should you provision and how to scale to match workload, see the [Scaling Guidance]({{< relref "/nginxaas-azure/quickstart/scaling.md" >}})
-* To learn more about metrics related to NCUs, see the [NGINXaaS Statistics namespace]({{< relref "/nginxaas-azure/monitoring/metrics-catalog.md#nginxaas-statistics" >}})
+* For how many NCUs should you provision and how to scale to match workload, see the [Scaling Guidance]({{< ref "/nginxaas-azure/quickstart/scaling.md" >}})
+* To learn more about metrics related to NCUs, see the [NGINXaaS Statistics namespace]({{< ref "/nginxaas-azure/monitoring/metrics-catalog.md#nginxaas-statistics" >}})
 {{< /note >}}
 
 

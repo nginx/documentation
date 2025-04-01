@@ -91,7 +91,7 @@ Here are two examples:
 
 ```md
 To install <software>, refer to the [installation instructions]({{< ref "install.md" >}}).
-To install <integation>, refer to the [integration instructions]({{< relref "/integration/thing.md#section" >}}).
+To install <integation>, refer to the [integration instructions]({{< ref "/integration/thing.md#section" >}}).
 ```
 
 ### How to add images

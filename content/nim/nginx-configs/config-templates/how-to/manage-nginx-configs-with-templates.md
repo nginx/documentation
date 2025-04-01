@@ -95,7 +95,7 @@ To create a new config template:
         - **Augment**: Choose this if the template will add to or enhance an existing configuration by introducing additional directives or settings.
 6. Click **Submit** to create the template.
 
-After creating a template, you'll need to add [resource files]({{< relref "/nim/nginx-configs/config-templates/concepts/template-resources.md" >}}) to define its structure and behavior:
+After creating a template, you'll need to add [resource files]({{< ref "/nim/nginx-configs/config-templates/concepts/template-resources.md" >}}) to define its structure and behavior:
 
 - **Config File (.tmpl)**: This is the core template file that defines the structure and parameters of your NGINX configuration. If you're creating a base template, you'll add a **base.tmpl** file. For augment templates, select the appropriate augment file that corresponds to the functionality you wish to include.
 - **JSON Schema File (.json)**: JSON schema files are necessary for creating the dynamic web forms in the UI that users will interact with. These schemas define the valid format and type of user inputs for the template.

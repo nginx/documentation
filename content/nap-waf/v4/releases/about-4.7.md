@@ -13,7 +13,7 @@ In this release, NGINX App Protect WAF supports NGINX Plus R31.
 
 ### New Features
 
-- [RHEL 9+ Support]({{< relref "/nap-waf/v4/admin-guide/install.md#rhel-9-installation" >}})
+- [RHEL 9+ Support]({{< ref "/nap-waf/v4/admin-guide/install.md#rhel-9-installation" >}})
 
 
 ### Supported Packages
@@ -74,6 +74,6 @@ In this release, NGINX App Protect WAF supports NGINX Plus R31.
 ### **Important Notes**
 
 - Starting with this release, the bot signatures list is generated automatically as a part of the **app-protect-bot-signatures** package, which is a dependency of the **app-protect-compiler** package. It resembles a format similar to the README-style text file found in the attack signature.
-Refer to the [Bot Signatures Update File]({{< relref "/nap-waf/v4/configuration-guide/configuration.md#bot-signatures-update-file" >}}) for more details.
+Refer to the [Bot Signatures Update File]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#bot-signatures-update-file" >}}) for more details.
 
 - Starting with the next release version of NGINX App Protect WAF, the existing bot signatures file `included_bot_signatures` which is located at the following path: `/opt/app-protect/var/update_files/included_bot_signatures` will be removed from the **app-protect-compile** package.

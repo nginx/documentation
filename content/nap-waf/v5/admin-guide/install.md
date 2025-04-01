@@ -11,7 +11,7 @@ docs: DOCS-1363
 
 - Active F5 NGINX App Protect WAF subscription in [MyF5](https://my.f5.com/) (purchased or trial).
 - Docker (with Docker Compose) is [installed and running](https://docs.docker.com/engine/install/).
-- A [supported operating system]({{< relref "/nap-waf/v5/admin-guide/overview.md#technical-specifications" >}}).
+- A [supported operating system]({{< ref "/nginx/technical-specs.md#appprotect" >}}) (OS).
 
 ## Install NGINX and NGINX App Protect WAF Module
 
@@ -318,7 +318,7 @@ In some operating systems, security mechanisms like **SELinux** or **AppArmor** 
 
 {{< include "nap-waf/bundles-volume-mount.md" >}}
 
-After deploying NGINX App Protect WAF, learn how to utilize the [NGINX App Protect WAF Compiler]({{< relref "/nap-waf/v5/admin-guide/compiler.md" >}}) for applying your custom policies and logging profiles.
+After deploying NGINX App Protect WAF, learn how to utilize the [NGINX App Protect WAF Compiler]({{< ref "/nap-waf/v5/admin-guide/compiler.md" >}}) for applying your custom policies and logging profiles.
 
 ## Air-Gap Install: Secure Offline Installation
 
@@ -341,7 +341,7 @@ Follow these steps before you install NGINX Open Source or NGINX Plus.
 {{<tabs name="offline_common_steps_for_nginx_oss_and_plus">}}
 
 {{%tab name="Alpine Linux 3.16/3.17/3.19"%}}
- 
+
 {{< include "nap-waf/config/v5/host-based-nginx-instructions/common-steps-with-alpine" >}}
 
 {{%/tab%}}
@@ -469,7 +469,7 @@ Follow these steps before you install NGINX Open Source or NGINX Plus.
 
     ```shell
     sudo yum install app-protect-module-oss
-    sudo apt-get install nginx=1.25.5-1~`lsb_release -cs` app-protect-module-oss 
+    sudo apt-get install nginx=1.25.5-1~`lsb_release -cs` app-protect-module-oss
     ```
 
     When prompted to accept the GPG key, verify that the fingerprint matches `573B FD6B 3D8F BC64 1079 A6AB ABF5 BD82 7BD9 BF62`, and if so, accept it.
@@ -480,13 +480,13 @@ Follow these steps before you install NGINX Open Source or NGINX Plus.
 {{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-oss-amazon.md" >}}
 
 3. Download all NGINX Open Source packages, including all dependencies: We used `repotrack` for example:
-    
+
     Install yum-utils
     ```script
     sudo dnf install yum-utils
     ```
 
-    For this test deployment we download the packages inside `/etc/packages/` 
+    For this test deployment we download the packages inside `/etc/packages/`
     ```script
     sudo mkdir /etc/packages/
     cd /etc/packages/
@@ -529,13 +529,13 @@ Follow these steps before you install NGINX Open Source or NGINX Plus.
 
 
 3. Download all NGINX Open Source packages, including all dependencies: We used `repotrack` for example:
-    
+
     Install yum-utils
     ```script
     sudo dnf install yum-utils
     ```
 
-    For this test deployment we download the packages inside `/etc/packages/` 
+    For this test deployment we download the packages inside `/etc/packages/`
     ```script
     sudo mkdir /etc/packages/
     cd /etc/packages/
@@ -549,13 +549,13 @@ Follow these steps before you install NGINX Open Source or NGINX Plus.
 {{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-oss-centos.md" >}}
 
 3. Download all NGINX Open Source packages, including all dependencies: We used `repotrack` for example:
-    
+
     Install yum-utils
     ```script
     sudo dnf install yum-utils
     ```
 
-    For this test deployment we download the packages inside `/etc/packages/` 
+    For this test deployment we download the packages inside `/etc/packages/`
     ```script
     sudo mkdir /etc/packages/
     cd /etc/packages/
@@ -568,19 +568,19 @@ Follow these steps before you install NGINX Open Source or NGINX Plus.
 {{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-oss-centos.md" >}}
 
 3. Download all NGINX Open Source packages, including all dependencies: We used `repotrack` for example:
-    
+
     Install yum-utils
     ```script
     sudo dnf install yum-utils
     ```
 
-    For this test deployment we download the packages inside `/etc/packages/` 
+    For this test deployment we download the packages inside `/etc/packages/`
     ```script
     sudo mkdir /etc/packages/
     cd /etc/packages/
     sudo repotrack --forcearch x86_64 app-protect-module-oss
     ```
-    
+
 {{%/tab%}}
 {{%tab name="Ubuntu 20.04"%}}
 
@@ -659,13 +659,13 @@ Then you can move onto the next step, depending on your chosen operating system.
 {{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-plus-amazon.md" >}}
 
 3. Download all NGINX Plus packages, including all dependencies: We used repotrack for example:
-    
+
     Install yum-utils
     ```script
     sudo dnf install yum-utils
     ```
 
-    For this test deployment we download the packages inside `/etc/packages/` 
+    For this test deployment we download the packages inside `/etc/packages/`
     ```script
     sudo mkdir /etc/packages/
     cd /etc/packages/
@@ -706,32 +706,32 @@ Then you can move onto the next step, depending on your chosen operating system.
 {{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-plus-centos.md" >}}
 
 3. Download all NGINX Plus packages, including all dependencies: We used repotrack for example:
-    
+
     Install yum-utils
     ```script
     sudo dnf install yum-utils
     ```
 
-    For this test deployment we download the packages inside `/etc/packages/` 
+    For this test deployment we download the packages inside `/etc/packages/`
     ```script
     sudo mkdir /etc/packages/
     cd /etc/packages/
     sudo repotrack --forcearch x86_64 app-protect-module-plus
     ```
 
-{{%/tab%}} 
+{{%/tab%}}
 {{%tab name="RHEL 8.1+"%}}
 
 {{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-plus-centos.md" >}}
 
 3. Download all NGINX Plus packages, including all dependencies: We used repotrack for example:
-    
+
     Install yum-utils
     ```script
     sudo dnf install yum-utils
     ```
 
-    For this test deployment we download the packages inside `/etc/packages/` 
+    For this test deployment we download the packages inside `/etc/packages/`
     ```script
     sudo mkdir /etc/packages/
     cd /etc/packages/
@@ -744,13 +744,13 @@ Then you can move onto the next step, depending on your chosen operating system.
 {{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-plus-centos.md" >}}
 
 3. Download all NGINX Plus packages, including all dependencies: We used repotrack for example:
-    
+
     Install yum-utils
     ```script
     sudo dnf install yum-utils
     ```
 
-    For this test deployment we download the packages inside `/etc/packages/` 
+    For this test deployment we download the packages inside `/etc/packages/`
     ```script
     sudo mkdir /etc/packages/
     cd /etc/packages/
@@ -784,7 +784,7 @@ Then you can move onto the next step, depending on your chosen operating system.
     sudo apt-get update
     sudo bash -c 'for i in $(apt-cache depends --recurse --no-recommends --no-suggests --no-conflicts --no-breaks --no-replaces --no-enhances app-protect-module-plus | grep "^\w" | sort -u); do apt-get download $i; done 2>>/etc/packages/errors.txt'
     ```
-    
+
 {{%/tab%}}
 {{%tab name="Ubuntu 24.04"%}}
 
@@ -886,7 +886,7 @@ sudo chown -R 101:101 /opt/app_protect/
 {{< include "nap-waf/setup-docker-registry.md" >}}
 
 #### Download waf-enforcer and waf-config-mgr Images
- Pull the `waf-enforcer` and `waf-config-mgr` images. Replace `5.2.0` with the actual release version you are deploying. 
+ Pull the `waf-enforcer` and `waf-config-mgr` images. Replace `5.2.0` with the actual release version you are deploying.
 
 ```shell
 docker pull private-registry.nginx.com/nap/waf-enforcer:5.2.0
@@ -996,14 +996,14 @@ sudo docker compose stop
 {{<tabs name="uninstall_nginx_and_nginx_nap">}}
 
 {{%tab name="Alpine Linux 3.16/3.17/3.19"%}}
- 
+
 For NGINX Open Source
 Uninstall the NGINX App Protect WAF v5 package:
 
 ```shell
 sudo apk del app-protect-module-oss
 ```
-  
+
 For NGINX Plus
 Uninstall the NGINX App Protect WAF v5 package:
 
@@ -1020,7 +1020,7 @@ Uninstall the NGINX App Protect WAF v5 package:
 
 ```shell
 sudo yum remove app-protect-module-oss
-sudo apt-get remove nginx=1.25.5-1~`lsb_release -cs` app-protect-module-oss 
+sudo apt-get remove nginx=1.25.5-1~`lsb_release -cs` app-protect-module-oss
 ```
 
 For NGINX Plus
@@ -1163,7 +1163,7 @@ Uninstall the NGINX App Protect WAF v5 package:
 
 ```shell
 sudo apt-get remove app-protect-module-plus
-```	
+```
 
 {{%/tab%}}
 {{%tab name="Ubuntu 22.04"%}}
@@ -1180,7 +1180,7 @@ Uninstall the NGINX App Protect WAF v5 package:
 
 ```shell
 sudo apt-get remove app-protect-module-plus
-```	
+```
 
 {{%/tab%}}
 {{%tab name="Ubuntu 24.04"%}}
@@ -1197,7 +1197,7 @@ Uninstall the NGINX App Protect WAF v5 package:
 
 ```shell
 sudo apt-get remove app-protect-module-plus
-```	
+```
 
 {{%/tab%}}
 {{</tabs>}}

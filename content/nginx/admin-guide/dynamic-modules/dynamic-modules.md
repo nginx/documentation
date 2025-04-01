@@ -12,7 +12,7 @@ type:
 <span id="overview"></span>
 ## Overview
 
-F5 NGINX Plus uses a modular architecture. New features and functionality can be added with software modules, which can be plugged into a running NGINX Plus instance on demand. Dynamic modules add functionality to NGINX Plus such as [geolocating users by IP address]({{< relref "geoip2.md" >}}), [resizing images]({{< relref "image-filter.md" >}}), and embedding [NGINX JavaScript njs]({{< relref "nginscript.md" >}}) or [Lua]({{< relref "lua.md" >}}) scripts into the NGINX Plus event‑processing model. Modules are created both by NGINX and third‑party developers.
+F5 NGINX Plus uses a modular architecture. New features and functionality can be added with software modules, which can be plugged into a running NGINX Plus instance on demand. Dynamic modules add functionality to NGINX Plus such as [geolocating users by IP address]({{< relref "./geoip2.md" >}}), [resizing images]({{< ref "image-filter.md" >}}), and embedding [NGINX JavaScript njs]({{< ref "nginscript.md" >}}) or [Lua]({{< relref "./lua.md" >}}) scripts into the NGINX Plus event‑processing model. Modules are created both by NGINX and third‑party developers.
 
 <img src="/nginx/images/nginx-plus-dynamic-module-plug-ins.png" alt="NGINX Plus allows features to be plugged in on demand" width="500" height="500" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
@@ -43,28 +43,28 @@ load_module modules/ngx_stream_js_module.so;
 
 For module‑specific instructions, see the list of modules in the same section of the NGINX Plus Admin Guide as this article:
 
-- [Brotli]({{< relref "brotli.md" >}})
-- [Cookie-Flag]({{< relref "cookie-flag.md" >}})
-- [Encrypted-Session]({{< relref "encrypted-session.md" >}})
-- [FIPS Status Check]({{< relref "fips.md" >}})
-- [GeoIP]({{< relref "geoip.md" >}})
-- [GeoIP2]({{< relref "geoip2.md" >}})
-- [Headers-More]({{< relref "headers-more.md" >}})
-- [HTTP Substitutions Filter]({{< relref "http-substitutions-filter.md" >}})
-- [Image-Filter]({{< relref "image-filter.md" >}})
-- [Lua]({{< relref "lua.md" >}})
-- [njs Scripting Language]({{< relref "nginscript.md" >}})
-- [NGINX ModSecurity WAF]({{< relref "nginx-waf.md" >}})
-- [NGINX Developer Kit]({{< relref "ndk.md" >}})
-- [OpenTelemetry]({{< relref "opentelemetry.md" >}})
-- [OpenTracing]({{< relref "opentracing.md" >}})
-- [Phusion Passenger Open Source]({{< relref "passenger-open-source.md" >}})
-- [Perl]({{< relref "perl.md" >}})
-- [Prometheus-njs]({{< relref "prometheus-njs.md" >}})
-- [RTMP]({{< relref "rtmp.md" >}})
-- [Set-Misc]({{< relref "set-misc.md" >}})
-- [SPNEGO]({{< relref "spnego.md" >}})
-- [XSLT]({{< relref "xslt.md" >}})
+- [Brotli]({{< ref "brotli.md" >}})
+- [Cookie-Flag]({{< relref "./cookie-flag.md" >}})
+- [Encrypted-Session]({{< ref "encrypted-session.md" >}})
+- [FIPS Status Check]({{< relref "./fips.md" >}})
+- [GeoIP]({{< relref "./geoip.md" >}})
+- [GeoIP2]({{< relref "./geoip2.md" >}})
+- [Headers-More]({{< ref "headers-more.md" >}})
+- [HTTP Substitutions Filter]({{< ref "http-substitutions-filter.md" >}})
+- [Image-Filter]({{< ref "image-filter.md" >}})
+- [Lua]({{< relref "./lua.md" >}})
+- [njs Scripting Language]({{< ref "nginscript.md" >}})
+- [NGINX ModSecurity WAF]({{< ref "nginx-waf.md" >}})
+- [NGINX Developer Kit]({{< ref "ndk.md" >}})
+- [OpenTelemetry]({{< ref "opentelemetry.md" >}})
+- [OpenTracing]({{< ref "opentracing.md" >}})
+- [Phusion Passenger Open Source]({{< ref "passenger-open-source.md" >}})
+- [Perl]({{< ref "perl.md" >}})
+- [Prometheus-njs]({{< ref "prometheus-njs.md" >}})
+- [RTMP]({{< ref "rtmp.md" >}})
+- [Set-Misc]({{< relref "./set-misc.md" >}})
+- [SPNEGO]({{< ref "spnego.md" >}})
+- [XSLT]({{< relref "./xslt.md" >}})
 
 
 <span id="prereq"></span>
@@ -121,7 +121,7 @@ To compile your own dynamic modules, please see our [blog](https://www.f5.com/co
 <span id="compile"></span>
 ## Uninstalling a Dynamic Module
 
-To uninstall a dynamic module, please follow the [Uninstalling a dynamic module]({{< relref "uninstall.md" >}}) article.
+To uninstall a dynamic module, please follow the [Uninstalling a dynamic module]({{< ref "uninstall.md" >}}) article.
 
 
 <span id="info"></span>

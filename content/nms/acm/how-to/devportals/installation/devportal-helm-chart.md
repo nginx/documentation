@@ -31,7 +31,7 @@ To complete the steps in this section, you need the following:
 
 - Take a few minutes to review the [Configurable Helm Settings](#configuration-options) at the end of this topic. You can change these settings to customize your installation to meet your needs.
 
-- Check out the [Deployment Patterns for Developer Portal]({{< relref "/nms/acm/how-to/infrastructure/configure-devportal-backend.md" >}}) topic if you're considering installing the Developer Portal on a single host or on a cluster for high availability.
+- Check out the [Deployment Patterns for Developer Portal]({{< ref "/nms/acm/how-to/infrastructure/configure-devportal-backend.md" >}}) topic if you're considering installing the Developer Portal on a single host or on a cluster for high availability.
 
 {{</see-also>}}
 

@@ -25,7 +25,7 @@ This deployment guide explains how to use F5 NGINX Plus to load balance traffic 
 - [Advanced activity monitoring available via a dashboard or API](https://www.nginx.com/products/nginx/live-activity-monitoring/)
 - [Management and real‑time configuration changes with DevOps‑friendly tools](https://www.nginx.com/products/nginx/load-balancing/#load-balancing-api)
 
-<span style="white-space: nowrap;">[NGINX Plus Release 6 R6](https://www.nginx.com/blog/nginx-plus-r6-released/#tcp-load-balancing)</span> introduced full‑featured load balancing of TCP traffic, with support extended to UDP in [<span style="white-space: nowrap;">NGINX Plus R9</span>](https://www.nginx.com/blog/nginx-plus-r9-released/#udp-lb) and continuing enhancements for both protocols included in subsequent releases (for details, see [NGINX Plus Releases]({{< relref "/nginx/releases.md" >}}). Because NGINX Plus load balances TCP, HTTP, and HTTPS traffic, it's ideal for Microsoft Exchange deployments, which use all three protocols.
+<span style="white-space: nowrap;">[NGINX Plus Release 6 R6](https://www.nginx.com/blog/nginx-plus-r6-released/#tcp-load-balancing)</span> introduced full‑featured load balancing of TCP traffic, with support extended to UDP in [<span style="white-space: nowrap;">NGINX Plus R9</span>](https://www.nginx.com/blog/nginx-plus-r9-released/#udp-lb) and continuing enhancements for both protocols included in subsequent releases (for details, see [NGINX Plus Releases]({{< ref "/nginx/releases.md" >}}). Because NGINX Plus load balances TCP, HTTP, and HTTPS traffic, it's ideal for Microsoft Exchange deployments, which use all three protocols.
 
 <span id="using-guide"></span>
 ## Using This Guide
@@ -1122,7 +1122,7 @@ The quickest way to configure the module and the built‑in dashboard is to down
 
 When you reload the NGINX Plus configuration file, for example by running the <span style="white-space: nowrap;">`nginx -s reload`</span> command, the NGINX Plus dashboard is available immediately at <span style="white-space: nowrap;">**http://_nginx-plus-server-address_:8080**</span>.
 
-For more information about live activity monitoring, see the <span style="white-space: nowrap;">[NGINX Plus Admin Guide]({{< relref "/nginx/admin-guide/monitoring/live-activity-monitoring.md" >}})</span>.
+For more information about live activity monitoring, see the <span style="white-space: nowrap;">[NGINX Plus Admin Guide]({{< ref "/nginx/admin-guide/monitoring/live-activity-monitoring.md" >}})</span>.
 
 <span id="full-configuration-enhanced"></span>
 ### Full Configuration for Enhanced Load Balancing

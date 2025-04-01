@@ -12,7 +12,7 @@ type:
 
 These instructions explain how to create virtual machines (VMs) in the Microsoft Azure environment that are suitable for running NGINX Open Source and NGINX Plus.
 
-The names and other settings used in this guide are appropriate for the high‑availability deployment described in [Active-Active HA for NGINX Plus on Microsoft Azure Using the Azure Standard Load Balancer]({{< relref "high-availability-standard-load-balancer.md" >}}), but the VMs can be used for any purpose.
+The names and other settings used in this guide are appropriate for the high‑availability deployment described in [Active-Active HA for NGINX Plus on Microsoft Azure Using the Azure Standard Load Balancer]({{< ref "high-availability-standard-load-balancer.md" >}}), but the VMs can be used for any purpose.
 
 For NGINX Plus, a faster alternative is to purchase a prebuilt VM in the [Microsoft Azure Marketplace](https://azuremarketplace.microsoft.com/en-us/marketplace/apps?search=NGINX%20Plus) (several current operating systems are available). For instructions, see [Installing NGINX Plus on Microsoft Azure]({{< relref "../../admin-guide/installing-nginx/installing-nginx-plus-microsoft-azure.md" >}}).
 
@@ -52,7 +52,7 @@ In addition, to install NGINX software by following the linked instructions, you
    - **Resource group** – <span style="color:#666666; font-weight:bolder; white-space: nowrap;">NGINX-Plus-HA</span>
    - **Virtual machine name** – <span style="color:#666666; font-weight:bolder; white-space: nowrap;">ngx-plus-1</span>
 
-     The value <span style="color:#666666; font-weight:bolder; white-space: nowrap;">ngx-plus-1</span> is one of the six used for VMs in [Active-Active HA for NGINX Plus on Microsoft Azure Using the Azure Standard Load Balancer]({{< relref "high-availability-standard-load-balancer.md" >}}). See <a href="#create-vm_list">Step 7</a> below for the other instance names.
+     The value <span style="color:#666666; font-weight:bolder; white-space: nowrap;">ngx-plus-1</span> is one of the six used for VMs in [Active-Active HA for NGINX Plus on Microsoft Azure Using the Azure Standard Load Balancer]({{< ref "high-availability-standard-load-balancer.md" >}}). See <a href="#create-vm_list">Step 7</a> below for the other instance names.
 
    - **Region** – <span style="color:#666666; font-weight:bolder; white-space: nowrap;">(US) West US 2</span>
    - **Availability options** – <span style="color:#666666; font-weight:bolder; white-space: nowrap;">No infrastructure redundancy required</span>
@@ -71,7 +71,7 @@ In addition, to install NGINX software by following the linked instructions, you
    <a href="/nginx/images/azure-create-vm-basics.png"><img src="/nginx/images/azure-create-vm-basics.png" alt="screenshot of 'Basics' tab on Azure 'Create a virtual machine' page" width="1024" height="1168" class="aligncenter size-full wp-image-64995" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
    <span id="create-vm_Networking"></span>
-5. If you are creating VMs to use in [Active-Active HA for NGINX Plus on Microsoft Azure Using the Azure Standard Load Balancer]({{< relref "high-availability-standard-load-balancer.md" >}}), the two NGINX Plus VMs in that deployment must have public IP addresses with SKU type **Standard** instead of the default **Basic**.
+5. If you are creating VMs to use in [Active-Active HA for NGINX Plus on Microsoft Azure Using the Azure Standard Load Balancer]({{< ref "high-availability-standard-load-balancer.md" >}}), the two NGINX Plus VMs in that deployment must have public IP addresses with SKU type **Standard** instead of the default **Basic**.
 
    For simplicity, we recommend allocating **Standard** public IP addresses for all six VMs used in the deployment. At the time of initial publication of this guide, the hourly cost for six such VMs was only $0.008 more than for six VMs with Basic addresses; for current pricing, see the [Microsoft documentation](https://azure.microsoft.com/en-us/pricing/details/ip-addresses/).
 
@@ -96,7 +96,7 @@ In addition, to install NGINX software by following the linked instructions, you
    <a href="/nginx/images/azure-create-vm-deployment-complete.png"><img src="/nginx/images/azure-create-vm-deployment-complete.png" alt="screenshot of Azure 'CreateVM-Canonical' page" width="1024" height="634" class="aligncenter size-full image-64992" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
    <span id="create-vm_list"></span>
-7. If you are following these instructions to create the six VMs used in [Active-Active HA for NGINX Plus on Microsoft Azure Using the Azure Standard Load Balancer]({{< relref "high-availability-standard-load-balancer.md" >}}), their names are as follows:
+7. If you are following these instructions to create the six VMs used in [Active-Active HA for NGINX Plus on Microsoft Azure Using the Azure Standard Load Balancer]({{< ref "high-availability-standard-load-balancer.md" >}}), their names are as follows:
 
    - <span style="color:#666666; font-weight:bolder;">ngx-plus-1</span>
    - <span style="color:#666666; font-weight:bolder;">ngx-plus-2</span>
@@ -137,7 +137,7 @@ To install and configure NGINX Open Source or NGINX Plus on a VM, you need to o
 <span id="install-nginx"></span>
 ## Installing NGINX Software
 
-Once you have established a connection with an instance, you can install the NGINX software on it. Follow the instructions in the NGINX Plus Admin Guide for <a href="../../../admin-guide/installing-nginx/installing-nginx-open-source/index.html#prebuilt">NGINX Open Source</a> and [NGINX Plus]({{< relref "../../admin-guide/installing-nginx/installing-nginx-plus.md" >}}). The [Admin Guide]({{< relref "/nginx/admin-guide/" >}}) also provides instructions for many maintenance tasks.
+Once you have established a connection with an instance, you can install the NGINX software on it. Follow the instructions in the NGINX Plus Admin Guide for <a href="../../../admin-guide/installing-nginx/installing-nginx-open-source/index.html#prebuilt">NGINX Open Source</a> and [NGINX Plus]({{< relref "../../admin-guide/installing-nginx/installing-nginx-plus.md" >}}). The [Admin Guide]({{< ref "/nginx/admin-guide/" >}}) also provides instructions for many maintenance tasks.
 
 <span id="automate"></span>
 ### Automating Installation with a Configuration Manager

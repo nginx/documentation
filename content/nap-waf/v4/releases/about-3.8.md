@@ -11,8 +11,8 @@ January 18, 2022
 
 ### New Features
 
-- [RHEL 8.1+ Support]({{< relref "/nap-waf/v4/admin-guide/install.md#rhel-81-installation" >}})
-- [Blocking Observability]({{< relref "/nap-waf/v4/configuration-guide/configuration.md#blocking-observability" >}})
+- [RHEL 8.1+ Support]({{< ref "/nap-waf/v4/admin-guide/install.md#rhel-81-installation" >}})
+- [Blocking Observability]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#blocking-observability" >}})
 - [Memory Consumption Improvement](#important-notes)
 
 ### Supported Packages

@@ -32,7 +32,7 @@ The Error Response Format policy is applied by default to any new environment.
 
 To apply the policy or make changes to it, follow these steps:
 
-- [Edit an existing environment or create a new one]({{< relref "/nms/acm/how-to/infrastructure/manage-api-infrastructure.md#add-environment" >}}).
+- [Edit an existing environment or create a new one]({{< ref "/nms/acm/how-to/infrastructure/manage-api-infrastructure.md#add-environment" >}}).
 - Review the advanced settings for the environment to confirm if the policy has been applied.
 - Edit the policy to make changes for each environment. Save and publish the changes.
 

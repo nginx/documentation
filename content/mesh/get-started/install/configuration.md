@@ -15,7 +15,7 @@ This document provides an overview of the various options you can configure when
 {{< tip >}}
 To manage your configuration after deployment, you can use the NGINX Service Mesh API.
 
-Refer to the [API Usage Guide]( {{< ref "api-usage.md" >}} ) for more information.
+Refer to the [API Usage Guide]( {{< ref "/mesh/reference/api-usage.md" >}} ) for more information.
 {{< /tip >}}
 
 {{< note >}}

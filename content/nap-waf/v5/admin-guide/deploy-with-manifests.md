@@ -31,7 +31,7 @@ Proceed, by creating a `Dockerfile` using one of the examples provided below.
 
 {{<tabs name="nap5_nginx_OSS_dockerfiles">}}
 {{%tab name="Alpine Linux"%}}
- 
+
 {{< include "nap-waf/config/v5/build-nginx-image-oss/build-alpine.md" >}}
 
 {{%/tab%}}
@@ -73,7 +73,7 @@ You are ready to [Build the image](#build-image).
 
 {{<tabs name="nap5_nginx_plus_dockerfiles">}}
 {{%tab name="Alpine Linux"%}}
- 
+
 {{< include "nap-waf/config/v5/build-nginx-image-plus/build-alpine.md" >}}
 
 {{%/tab%}}
@@ -360,7 +360,7 @@ spec:
 {{< include "/nap-waf/nap-k8s-readonly-introduction.md" >}}
 
 ---
- 
+
 ### Enable `readOnlyRootFilesystem` and configure writable paths
 
 {{< include "/nap-waf/nap-k8s-readonly-context.md" >}}
@@ -418,7 +418,7 @@ Proceed, by creating a `Dockerfile` using one of the examples provided below.
 
 {{<tabs name="offline_nap5_nginx_OSS_dockerfiles">}}
 {{%tab name="Alpine Linux"%}}
- 
+
 {{< include "nap-waf/config/v5/build-nginx-image-oss/build-alpine.md" >}}
 
 {{%/tab%}}
@@ -450,7 +450,7 @@ You are ready to [Build the image](#build-image-sub)
 
 {{<tabs name="offline_nap5_nginx_plus_dockerfiles">}}
 {{%tab name="Alpine Linux"%}}
- 
+
 {{< include "nap-waf/config/v5/build-nginx-image-plus/build-alpine.md" >}}
 
 {{%/tab%}}
@@ -481,7 +481,7 @@ You are ready to [Build the image](#build-image-sub)
 {{< include "nap-waf/build-nginx-image-cmd.md" >}}
 
 #### Download Waf-Enforcer and Waf-Config-mgr Images
- Pull the `waf-enforcer` and `waf-config-mgr` images. Replace `5.2.0` with the actual release version you are deploying. 
+ Pull the `waf-enforcer` and `waf-config-mgr` images. Replace `5.2.0` with the actual release version you are deploying.
 
 ```shell
 docker pull private-registry.nginx.com/nap/waf-enforcer:5.2.0
@@ -518,13 +518,13 @@ docker pull private-registry.nginx.com/nap/waf-config-mgr:5.2.0
     ```
 
 #### Local Registry Setup
-Set up a local registry for the images on the offline/air-gap machine. 
+Set up a local registry for the images on the offline/air-gap machine.
 For the example deployment we will use [Registry](https://www.docker.com/blog/how-to-use-your-own-registry-2/).
 
 1. Set up a local registry on the offline/air-gap machine
 
 2. Add nginx-app-protect-5, waf-enforcer, and waf-config-mgr to the local registry
-  
+
 ### NGINX Configuration
 
 In your nginx configuration:
@@ -709,7 +709,7 @@ Add `nginx.conf` and `default.conf` to a config map.
 kubectl create configmap nginx-config \
   --from-file=/nginx.conf \
   --from-file=/default.conf
-``` 
+```
 
 #### Start Deployment
 
@@ -799,10 +799,10 @@ kubectl create configmap nginx-config \
 - **Connectivity Issues**: Verify the service and deployment configurations, especially port mappings and selectors.
 - **Permissions Issues**: By default, the containers `waf-config-mgr` and `waf-enforcer` operate with the user and group IDs set to 101:101. Ensure that the bundle files are accessible to these IDs.
 
-If you encounter any issues, check the [Troubleshooting Guide]({{< relref "/nap-waf/v5/troubleshooting-guide/troubleshooting#nginx-app-protect-5" >}}).
+If you encounter any issues, check the [Troubleshooting Guide]({{< ref "/nap-waf/v5/troubleshooting-guide/troubleshooting#nginx-app-protect-5" >}}).
 
 ## Conclusion
 
 This guide provides the foundational steps for deploying NGINX App Protect WAF v5 on Kubernetes. You may need to adjust the deployment to fit your specific requirements.
 
-For more detailed configuration options and advanced deployment strategies, refer to the [NGINX App Protect WAF v5 configuration guide]({{< relref "/nap-waf/v5/configuration-guide/configuration.md" >}}).
+For more detailed configuration options and advanced deployment strategies, refer to the [NGINX App Protect WAF v5 configuration guide]({{< ref "/nap-waf/v5/configuration-guide/configuration.md" >}}).

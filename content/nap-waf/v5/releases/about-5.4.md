@@ -20,7 +20,7 @@ November 19th, 2024
 - Added a [a policy converter to the compiler]({{< relref "/nap-waf/v5/configuration-guide/configuration.md#policy-converter">}})
 - NGINX App Protect WAF now supports NGINX Plus R33
 
-Please read the [subscription licenses]({{< relref "/solutions/about-subscription-licenses.md" >}}) topic for information about R33.
+Please read the [subscription licenses]({{< ref "/solutions/about-subscription-licenses.md" >}}) topic for information about R33.
 
 ---
 
@@ -33,7 +33,7 @@ Please read the [subscription licenses]({{< relref "/solutions/about-subscriptio
 ## Resolved issues
 
 - 11973 Fixed - Updated the Go version to 1.23.1
-- 11469 Fixed _apt-get update_ warning for Ubuntu 22.04 
+- 11469 Fixed _apt-get update_ warning for Ubuntu 22.04
 
 ---
 
@@ -74,7 +74,7 @@ sudo service nginx restart
 | RHEL 9                   | _app-protect-module-oss-1.27.2+5.210.0-1.el9.ngx.x86_64.rpm_      |
 | Oracle Linux 8.1         | _app-protect-module-oss-1.27.2+5.210.0-1.el8.ngx.x86_64.rpm_      |
 
---- 
+---
 
 ### NGINX Plus
 

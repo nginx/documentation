@@ -40,12 +40,12 @@ The following information is provided when a report is generated from an NGINX c
     * Key security measures (e.g., *stub_status* is unprotected)
     * Typical errors in configuring locations, especially with *regex*
 
-To parse SSL certificate metadata, NGINX Amplify Agent uses standard OpenSSL(1) functions. SSL certificates are parsed and analyzed only when the corresponding [settings]({{< relref "/amplify/user-interface/account-settings" >}}) are turned on. SSL certificate analysis is *off* by default.
+To parse SSL certificate metadata, NGINX Amplify Agent uses standard OpenSSL(1) functions. SSL certificates are parsed and analyzed only when the corresponding [settings]({{< ref "/amplify/user-interface/account-settings" >}}) are turned on. SSL certificate analysis is *off* by default.
 
 Static analysis will only include information about specific issues with the NGINX configuration if those are found in your NGINX setup.
 
 In the future, the **Analyzer** page will also include *dynamic analysis*, effectively linking the observed NGINX behavior to its configuration — e.g., when it makes sense to increase or decrease certain parameters like [proxy_buffers](http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_buffers), etc.
 
-{{< note >}} Config analysis is *on* by default. If you don't want your NGINX configuration to be checked, unset the corresponding setting in either Global, or Local (per-system) settings. See [**Settings**]({{< relref "/amplify/user-interface/account-settings" >}}). {{< /note >}}
+{{< note >}} Config analysis is *on* by default. If you don't want your NGINX configuration to be checked, unset the corresponding setting in either Global, or Local (per-system) settings. See [**Settings**]({{< ref "/amplify/user-interface/account-settings" >}}). {{< /note >}}
 
 {{< img src="amplify/amplify-analyzer-settings.png" alt="Analyzer Settings" >}}

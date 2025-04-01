@@ -114,6 +114,6 @@ After installation you will need to enable and configure Brotli modules in NGINX
 
 - [NGINX Module for Brotli Compression Reference](https://github.com/google/ngx_brotli)
 
-- [NGINX Dynamic Modules]({{< relref "dynamic-modules.md" >}})
+- [NGINX Dynamic Modules]({{< ref "dynamic-modules.md" >}})
 
 - [NGINX Plus Technical Specifications]({{< relref "../../technical-specs.md" >}})
