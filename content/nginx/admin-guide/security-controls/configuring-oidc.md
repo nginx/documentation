@@ -63,29 +63,31 @@ For the target client application, OIDC authentication can be enabled with great
 
 ## Prerequisites {#prerequisites}
 
-- An Identity Provider application instance, either on-premises or in the cloud, with administrator privileges.
+- An identity provider (IdP) set up on your network or in the cloud. You need admin access to the IdP.
 
-- An NGINX Plus [subscription](https://www.f5.com/products/nginx/nginx-plus) and NGINX Plus [Release 34](({{< ref "nginx/releases.md#r34" >}})) or later. For installation instructions, see [Installing NGINX Plus](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/).
+- An [NGINX Plus subscription](https://www.f5.com/products/nginx/nginx-plus) and NGINX Plus [Release 34]({{< ref "nginx/releases.md#r34" >}}) or later.  
+  To install NGINX Plus, follow the steps in [Installing NGINX Plus](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/).
 
-- A domain name pointing to your NGINX Plus instance, for example, `demo.example.com`.
+- A domain name that points to your NGINX Plus instance (for example, `demo.example.com`).
 
 
-## Configure your IdP {#idp-setup}
+## Set up your identity provider (IdP) {#idp-setup}
 
-The workflow for each IdP provider is similar, but some steps may vary:
+The setup steps are similar for most identity providers, but some details may differ.
 
-1. Log in to your IdP admin console. 
+1. Log in to your IdP's admin console.
 
-2. Create an OpenID Connect (OIDC) application.
+2. Create a new OpenID Connect (OIDC) application.
 
-   - Provide a name for the application
-   - Assign relevant users and groups that will require access
+   - Give the app a name.
+   - Add the users or groups who need access.
 
-3.  Obtain the Client ID and Client Secret in your IdP application. You will need them later when [configuring NGINX Plus as the Relying Party](#setup-oidc-provider2).
+3. Find the **Client ID** and **Client Secret** for your app.  
+   You'll need these later when you [set up NGINX Plus as the relying party](#setup-oidc-provider2).
 
-4. Obtain the Issuer.
+4. Find the **issuer** value.
 
-   The `issuer` value can be obtained from your IdP application or from the OpenID Connect Discovery URL provided by every IdP. Usually, the discovery URL is:
+   You can find the issuer value in your IdP app settings or at the standard discovery URL:
 
    `https://your-idp-domain/.well-known/openid-configuration`
 
