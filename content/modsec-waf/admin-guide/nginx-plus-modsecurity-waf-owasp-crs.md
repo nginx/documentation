@@ -19,9 +19,9 @@ This chapter explains how to enable and test the Open Web Application Security P
 
 This chapter explains how to enable and test the [Open Web Application Security Project Core Rule Set](https://owasp.org/www-project-modsecurity-core-rule-set/) (OWASP CRS) for use with the NGINX ModSecurity WAF. The OWASP CRS includes signatures and patterns that detect many types of generic attacks. The latest version (CRS 3) includes significant improvements, including a reduction in false positives.
 
-This chapter builds on the basic configuration in [Installing the NGINX ModSecurity WAF]({{< relref "nginx-plus-modsecurity-waf-installation-logging.md" >}}), showing how the CRS protects the demo web application created in that chapter. Before enabling the CRS, we run a scanning tool that generates attack traffic and reports the vulnerabilities it finds. We then enable the CRS and observe how it blocks most malicious requests, protecting our application against common attacks.
+This chapter builds on the basic configuration in [Installing the NGINX ModSecurity WAF]({{< ref "nginx-plus-modsecurity-waf-installation-logging.md" >}}), showing how the CRS protects the demo web application created in that chapter. Before enabling the CRS, we run a scanning tool that generates attack traffic and reports the vulnerabilities it finds. We then enable the CRS and observe how it blocks most malicious requests, protecting our application against common attacks.
 
-For information about another supported ModSecurity rule set, see [Using the ModSecurity Rules from Trustwave SpiderLabs with the NGINX ModSecurity WAF]({{< relref "nginx-plus-modsecurity-waf-trustwave-spiderlabs-rules.md" >}}).
+For information about another supported ModSecurity rule set, see [Using the ModSecurity Rules from Trustwave SpiderLabs with the NGINX ModSecurity WAF]({{< ref "nginx-plus-modsecurity-waf-trustwave-spiderlabs-rules.md" >}}).
 
 <span id="waf-owasp_prerequisites"></span>
 
@@ -29,7 +29,7 @@ For information about another supported ModSecurity rule set, see [Using the Mod
 
 The NGINX ModSecurity WAF is available to NGINX Plus customers as a downloaded dynamic module at an additional cost. You can [try the NGINX ModSecurity WAF free for 30 days](https://www.nginx.com/free-trial-request/). To purchase or add the NGINX ModSecurity WAF to an existing NGINX Plus subscription, [contact the NGINX sales team](https://www.nginx.com/contact-sales).
 
-As noted above, this chapter builds on [Installing the NGINX ModSecurity WAF]({{< relref "nginx-plus-modsecurity-waf-installation-logging.md" >}}) and assumes you have followed the instructions there to configure the demo application and NGINX Plus as a reverse proxy.
+As noted above, this chapter builds on [Installing the NGINX ModSecurity WAF]({{< ref "nginx-plus-modsecurity-waf-installation-logging.md" >}}) and assumes you have followed the instructions there to configure the demo application and NGINX Plus as a reverse proxy.
 
 It is assumed that the [`git`](https://github.com/git/git) and [`perl`](https://www.perl.org/get.html) command binaries are installed.
 
@@ -37,7 +37,7 @@ It is assumed that the [`git`](https://github.com/git/git) and [`perl`](https://
 
 ## Running the Nikto Scanning Tool
 
-We begin by sending attack traffic to the demo web application created in [Installing the NGINX ModSecurity WAF]({{< relref "nginx-plus-modsecurity-waf-installation-logging.md#creating-the-demo-web-application" >}}). Many attackers run vulnerability scanners to identify security vulnerabilities in a target website or app. Once they learn what vulnerabilities are present, they can launch the appropriate attacks.
+We begin by sending attack traffic to the demo web application created in [Installing the NGINX ModSecurity WAF]({{< ref "nginx-plus-modsecurity-waf-installation-logging.md#creating-the-demo-web-application" >}}). Many attackers run vulnerability scanners to identify security vulnerabilities in a target website or app. Once they learn what vulnerabilities are present, they can launch the appropriate attacks.
 
 We’re using the [Nikto](https://github.com/sullo/nikto) scanning tool to generate malicious requests, including probes for the presence of files known to be vulnerable, XSS, and other types of attack. The tool also reports which requests passed through to the application, revealing potential vulnerabilities in the application.
 
@@ -76,7 +76,7 @@ To enable the OWASP CRS, perform the following steps:
     sudo cp crs-setup.conf.example crs-setup.conf
     ```
 
-3. Add `Include` directives in the main NGINX ModSecurity WAF configuration file (**/etc/nginx/modsec/main.conf**, created in Step 4 of [Installing the NGINX ModSecurity WAF]({{< relref "nginx-plus-modsecurity-waf-installation-logging.md#protecting-the-demo-web-application" >}}) in the installation chapter, to read in the CRS configuration and rules. Comment out any other rules that might already exist in the file, such as the sample `SecRule` directive created in that step.
+3. Add `Include` directives in the main NGINX ModSecurity WAF configuration file (**/etc/nginx/modsec/main.conf**, created in Step 4 of [Installing the NGINX ModSecurity WAF]({{< ref "nginx-plus-modsecurity-waf-installation-logging.md#protecting-the-demo-web-application" >}}) in the installation chapter, to read in the CRS configuration and rules. Comment out any other rules that might already exist in the file, such as the sample `SecRule` directive created in that step.
 
     ```nginx
     # Include the recommended configuration
@@ -170,7 +170,7 @@ $ perl program/nikto.pl -h localhost
 + 7531 requests: 0 error(s) and 116 item(s) reported on remote host
 ```
 
-Recall that in [Installing the NGINX ModSecurity WAF]({{< relref "nginx-plus-modsecurity-waf-installation-logging.md" >}}), we configured our demo application to return status code `200` for every request, without actually ever delivering a file. Nikto is interpreting these `200` status codes to mean that the file it is requesting actually exists, which in the context of our application is a false positive.
+Recall that in [Installing the NGINX ModSecurity WAF]({{< ref "nginx-plus-modsecurity-waf-installation-logging.md" >}}), we configured our demo application to return status code `200` for every request, without actually ever delivering a file. Nikto is interpreting these `200` status codes to mean that the file it is requesting actually exists, which in the context of our application is a false positive.
 
 Now we eliminate such requests so we can better see where actual vulnerabilities might exist. Disable the requests by adding `‑sitefiles` in **program/nikto.conf** as shown:
 
@@ -236,7 +236,7 @@ Inspecting the response body is not supported, so rules that do so have no effec
 
 We used the OWASP ModSecurity Core Rule Set to protect our web application against a wide range of generic attacks and saw how the CRS blocks malicious requests generated by the Nikto scanning tool.
 
-For imformation about another supported ModSecurity rule set, see [Using the ModSecurity Rules from Trustwave SpiderLabs with the NGINX ModSecurity WAF]({{< relref "nginx-plus-modsecurity-waf-trustwave-spiderlabs-rules.md" >}}).
+For imformation about another supported ModSecurity rule set, see [Using the ModSecurity Rules from Trustwave SpiderLabs with the NGINX ModSecurity WAF]({{< ref "nginx-plus-modsecurity-waf-trustwave-spiderlabs-rules.md" >}}).
 
 <span id="waf-owasp_resources"></span>
 

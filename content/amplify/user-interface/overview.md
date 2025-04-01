@@ -10,7 +10,7 @@ The Overview page is designed to provide a quick summary of the state of your NG
 
 Five key overlay graphs are displayed for the selected period. By switching over various periods, you can compare trends and see if anything abnormal shows up.
 
-The cumulative [metrics]({{< relref "/amplify/metrics-metadata" >}}) displayed on the **Overview** page are:
+The cumulative [metrics]({{< ref "/amplify/metrics-metadata" >}}) displayed on the **Overview** page are:
 
   * Total requests — sum of **nginx.http.request.count**
   * HTTP 5xx errors — sum of **nginx.http.status.5xx**

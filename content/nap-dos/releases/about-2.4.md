@@ -13,7 +13,7 @@ June 28, 2022
 
 ### New Features
 
-- [Support for Debian 11]({{< relref "learn-about-deployment.md#debian-10--debian-11-installation" >}})
+- [Support for Debian 11]({{< ref "learn-about-deployment.md#debian-10--debian-11-installation" >}})
 - Accelerated bad actors detection when the signatures mitigation is disabled.
 
 ### Supported Packages
@@ -85,7 +85,7 @@ Port configuration should correspond to the port the server listens to.
 
 - gRPC and HTTP/2 protection require active monitoring of the protected service. The directive `app_protect_dos_monitor` is mandatory for these use cases, otherwise, the attack will not be detected.
 
-- [TLS fingerprint]({{< relref "/nap-dos/directives-and-policy/learn-about-directives-and-policy.md#policy-directive-app_protect_dos_policy_file" >}}) feature is not used in CentOS 7.4 and RHEL 7 / UBI 7 due to the old OpenSSL version. The required OpenSSL version is 1.1.1 or higher.
+- [TLS fingerprint]({{< ref "/nap-dos/directives-and-policy/learn-about-directives-and-policy.md#policy-directive-app_protect_dos_policy_file" >}}) feature is not used in CentOS 7.4 and RHEL 7 / UBI 7 due to the old OpenSSL version. The required OpenSSL version is 1.1.1 or higher.
 
 - Slow POST attack always mitigates with block action while other types of attacks can also be mitigated with redirection or JS challenges.
 

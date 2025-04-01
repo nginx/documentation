@@ -47,7 +47,7 @@ To complete the instructions in this guide, you need the following:
 {{<comment>}}Confirm pre-reqs and add links to topics.{{</comment>}}
 
 - API Connectivity Manager is installed, licensed, and running
-- One or more [Infrastructure workspaces]({{< relref "/nms/acm/how-to/infrastructure/manage-api-infrastructure.md#create-workspace" >}})
+- One or more [Infrastructure workspaces]({{< ref "/nms/acm/how-to/infrastructure/manage-api-infrastructure.md#create-workspace" >}})
 
 ---
 

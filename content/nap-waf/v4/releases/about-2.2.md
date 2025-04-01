@@ -13,8 +13,8 @@ December 09, 2020
 
 In this release support for NGINX App Protect WAF is added to NGINX Plus R23.
 
-- [Detect Base64]({{< relref "/nap-waf/v4/configuration-guide/configuration.md#detect-base64" >}})
-- [Anti Automation Header Anomalies]({{< relref "/nap-waf/v4/configuration-guide/configuration.md#header-anomalies" >}})
+- [Detect Base64]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#detect-base64" >}})
+- [Anti Automation Header Anomalies]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#header-anomalies" >}})
 
 ### Supported Packages
 

@@ -22,7 +22,7 @@ This topic describes how to publish an API config to a cluster.
 Complete the following prerequisites before proceeding with this guide:
 
 - API Connectivity Manager is installed, licensed, and running.
-- You have one or more Environments with [API Gateway]({{<relref "/nms/acm/getting-started/add-api-gateway" >}}) or [Dev Portal]({{< relref "/nms/acm/getting-started/add-devportal" >}}) clusters.
+- You have one or more Environments with [API Gateway]({{<ref "/nms/acm/getting-started/add-api-gateway" >}}) or [Dev Portal]({{< ref "/nms/acm/getting-started/add-devportal" >}}) clusters.
 
 ### How to Access the User Interface
 
@@ -93,7 +93,7 @@ You can also set [DNS](https://en.wikipedia.org/wiki/Domain_Name_System) resolve
 
 This section ensures you can set policies at the individual API level.
 
-Check the [Manage Policies]({{< relref "/nms/acm/how-to/policies/manage-policies.md" >}}) documentation for more information.
+Check the [Manage Policies]({{< ref "/nms/acm/how-to/policies/manage-policies.md" >}}) documentation for more information.
 
 ## Publish an API Proxy using an OpenAPI Spec
 
@@ -121,5 +121,5 @@ Certain sections can't be modified for API Proxies created with OpenAPI Specs, f
 
 ## What's Next
 
-- [Manage Policies]({{< relref "/nms/acm/how-to/policies/manage-policies.md" >}})
-- [Publish a Developer Portal]({{< relref "/nms/acm/getting-started/add-devportal.md" >}})
+- [Manage Policies]({{< ref "/nms/acm/how-to/policies/manage-policies.md" >}})
+- [Publish a Developer Portal]({{< ref "/nms/acm/getting-started/add-devportal.md" >}})

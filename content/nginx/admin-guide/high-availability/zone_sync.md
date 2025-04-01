@@ -314,7 +314,7 @@ server {
 }
 ```
 
-See [Dynamic Denylisting of IP Addresses]({{< relref "/nginx/admin-guide/security-controls/denylisting-ip-addresses.md" >}}) for information how to configure and manage the key-value storage.
+See [Dynamic Denylisting of IP Addresses]({{< ref "/nginx/admin-guide/security-controls/denylisting-ip-addresses.md" >}}) for information how to configure and manage the key-value storage.
 
 
 <span id="monitor"></span>
@@ -347,7 +347,7 @@ In order to get access to API metrics, you will need to configure the API:
     }
     ```
 
-2. It is highly recommended to [restrict access]({{< relref "/nginx/admin-guide/security-controls/controlling-access-proxied-http.md" >}}) to this location, for example by allowing access only from localhost (`127.0.0.1`), and by restricting access to `PATCH`, `POST`, and `DELETE` methods to some users with HTTP basic authentication:
+2. It is highly recommended to [restrict access]({{< ref "/nginx/admin-guide/security-controls/controlling-access-proxied-http.md" >}}) to this location, for example by allowing access only from localhost (`127.0.0.1`), and by restricting access to `PATCH`, `POST`, and `DELETE` methods to some users with HTTP basic authentication:
 
    ```nginx
    # ...

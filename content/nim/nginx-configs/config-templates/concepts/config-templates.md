@@ -42,7 +42,7 @@ Configuration templates include the following components:
 
 - **Auxiliary files**: Additional files required for configuration, such as JavaScript for added functionality, security certificates, or documentation (README.md). These files support the main configuration and provide necessary context or capabilities.
 
-To learn more about the resources mentioned, refer to the [Template Resource Files]({{< relref "nim/nginx-configs/config-templates/concepts/template-resources.md" >}}) topic.
+To learn more about the resources mentioned, refer to the [Template Resource Files]({{< ref "nim/nginx-configs/config-templates/concepts/template-resources.md" >}}) topic.
 
 ## Target {#target}
 

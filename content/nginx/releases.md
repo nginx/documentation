@@ -30,9 +30,9 @@ NGINX Plus R33 is a feature release:
 
 - NGINX usage reporting: Usage report is sent to F5 licensing endpoint [every hour](https://nginx.org/en/docs/ngx_mgmt_module.html#usage_report) using the [secure](https://nginx.org/en/docs/ngx_mgmt_module.html#ssl_verify) connection. The initial usage report should be sent once NGINX Plus starts after installation or upgrade to R33. If the initial usage report is not received by the endpoint, NGINX Plus will stop processing traffic. A 180-day grace period can be [enabled](https://nginx.org/en/docs/ngx_mgmt_module.html#enforce_initial_report) to submit the initial usage report.
 
-  Optionally, for network-restricted environments, reporting can be [configured](https://nginx.org/en/docs/ngx_mgmt_module.html#usage_report) to [NGINX Instance Manager]({{< relref "nim/index.md" >}}) from which the report can be sent to F5 licensing endpoint.
+  Optionally, for network-restricted environments, reporting can be [configured](https://nginx.org/en/docs/ngx_mgmt_module.html#usage_report) to [NGINX Instance Manager]({{< ref "nim/index.md" >}}) from which the report can be sent to F5 licensing endpoint.
 
-  For more information about licensing and usage reporting, see [About subscription licenses]({{< relref "solutions/about-subscription-licenses.md" >}}) article and [`ngx_mgmt_module`](https://nginx.org/en/docs/ngx_mgmt_module.html) module documentation.
+  For more information about licensing and usage reporting, see [About subscription licenses]({{< ref "solutions/about-subscription-licenses.md" >}}) article and [`ngx_mgmt_module`](https://nginx.org/en/docs/ngx_mgmt_module.html) module documentation.
 
 - OCSP stapling support and client certificate validation with OCSP
 in the [stream](https://nginx.org/en/docs/stream/ngx_stream_ssl_module.html) module with the
@@ -49,7 +49,7 @@ The argument is a file name in the `SSLKEYLOGFILE` format compatible with Wiresh
 
 - Response trailers support in proxy with the [`proxy_pass_trailers`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass_trailers) directive that allows passing trailer fields from a proxied server to a client.
 
-- The [NGINX JavaScript]({{< relref "nginx/admin-guide/dynamic-modules/nginscript.md" >}}) module was updated to version [0.8.7](https://nginx.org/en/docs/njs/changes.html#njs0.8.7), featuring QuickJS [runtime support](https://nginx.org/en/docs/njs/engine.html).
+- The [NGINX JavaScript]({{< ref "nginx/admin-guide/dynamic-modules/nginscript.md" >}}) module was updated to version [0.8.7](https://nginx.org/en/docs/njs/changes.html#njs0.8.7), featuring QuickJS [runtime support](https://nginx.org/en/docs/njs/engine.html).
 
 - Added initial support for Post Quantum Cryptography.
 
@@ -76,7 +76,7 @@ NGINX Plus R33 is supported on:
 - Oracle Linux 7.4+ is removed
 - SUSE Linux Enterprise Server 12 is deprecated
 - support for s390x architecture removed
-- the [Lua]({{< relref "nginx/admin-guide/dynamic-modules/lua.md" >}}) module is no longer available for SUSE Linux Enterprise Server 12
+- the [Lua]({{< ref "nginx/admin-guide/dynamic-modules/lua.md" >}}) module is no longer available for SUSE Linux Enterprise Server 12
 
 More information: [Announcing NGINX Plus R33](https://community.f5.com/kb/technicalarticles/announcing-nginx-plus-r33-release/336403)
 

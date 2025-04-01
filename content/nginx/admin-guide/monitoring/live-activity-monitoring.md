@@ -74,7 +74,7 @@ In order to collect data from virtual servers, upstream server groups, or cache 
     }
     ```
 
-- To make health checks appear in statistics, make sure that health checks are enabled with the [`health_check`](https://nginx.org/en/docs/http/ngx_http_upstream_hc_module.html) directive and the server group resides in the [shared memory](https://nginx.org/en/docs/http/ngx_http_api_module.html#status_zone). See [HTTP Health Checks]({{< relref "../load-balancer/http-health-check.md" >}}) and [TCP Health Checks]({{< relref "/nginx/admin-guide/load-balancer/tcp-health-check.md" >}}) for more information.
+- To make health checks appear in statistics, make sure that health checks are enabled with the [`health_check`](https://nginx.org/en/docs/http/ngx_http_upstream_hc_module.html) directive and the server group resides in the [shared memory](https://nginx.org/en/docs/http/ngx_http_api_module.html#status_zone). See [HTTP Health Checks]({{< relref "../load-balancer/http-health-check.md" >}}) and [TCP Health Checks]({{< ref "/nginx/admin-guide/load-balancer/tcp-health-check.md" >}}) for more information.
 
     ```nginx
     server {
@@ -137,7 +137,7 @@ To enable the API:
     }
     ```
 
-- In order to make changes with the API, such as [resetting statistics counters](#json_delete), managing [upstream servers on-the-fly]({{< relref "../load-balancer/dynamic-configuration-api.md" >}}) or [key-value storage]({{< relref "/nginx/admin-guide/security-controls/denylisting-ip-addresses.md" >}}), managing upstream servers from the [Dashboard](#dashboard_upstream), enable the read-write mode for the API by specifying the `write=on` parameter for the [`api`](https://nginx.org/en/docs/http/ngx_http_api_module.html#api) directive:
+- In order to make changes with the API, such as [resetting statistics counters](#json_delete), managing [upstream servers on-the-fly]({{< relref "../load-balancer/dynamic-configuration-api.md" >}}) or [key-value storage]({{< ref "/nginx/admin-guide/security-controls/denylisting-ip-addresses.md" >}}), managing upstream servers from the [Dashboard](#dashboard_upstream), enable the read-write mode for the API by specifying the `write=on` parameter for the [`api`](https://nginx.org/en/docs/http/ngx_http_api_module.html#api) directive:
 
     ```nginx
     http {

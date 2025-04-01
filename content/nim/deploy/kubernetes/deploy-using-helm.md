@@ -246,7 +246,7 @@ The status should show `STATUS: deployed` if successful.
 
 A valid license is required to use all NGINX Instance Manager features.
 
-For instructions on downloading and applying a license, see [Add a License]({{< relref "/nim/admin-guide/license/add-license.md" >}}).
+For instructions on downloading and applying a license, see [Add a License]({{< ref "/nim/admin-guide/license/add-license.md" >}}).
 
 ---
 
@@ -269,7 +269,7 @@ To upgrade:
     --wait
    ```
 
-   - Replace `<path-to-your-values.yaml>` with the path to the `values.yaml` file you created]({{< relref "/nim/deploy/kubernetes/deploy-using-helm.md#configure-chart" >}}).
+   - Replace `<path-to-your-values.yaml>` with the path to the `values.yaml` file you created]({{< ref "/nim/deploy/kubernetes/deploy-using-helm.md#configure-chart" >}}).
    - Replace `YourPassword123#` with a secure password that includes uppercase and lowercase letters, numbers, and special characters.
 
       {{<call-out "important" "Save the password!" "" >}} Save this password for future use. Only the encrypted password is stored in Kubernetes, and you can’t recover or reset it later. {{</call-out>}}
@@ -424,7 +424,7 @@ To upgrade:
     --wait
    ```
 
-   - Replace `<path-to-your-values.yaml>` with the path to the `values.yaml` file you created]({{< relref "/nim/deploy/kubernetes/deploy-using-helm.md#configure-chart" >}}).
+   - Replace `<path-to-your-values.yaml>` with the path to the `values.yaml` file you created]({{< ref "/nim/deploy/kubernetes/deploy-using-helm.md#configure-chart" >}}).
    - Replace `YourPassword123#` with a secure password that includes uppercase and lowercase letters, numbers, and special characters.
 
       {{<call-out "important" "Save the password!" "" >}} Save this password for future use. Only the encrypted password is stored in Kubernetes, and you can’t recover or reset it later. {{</call-out>}}
@@ -433,5 +433,5 @@ To upgrade:
 
 ## Troubleshooting
 
-For instructions on creating a support package to share with NGINX Customer Support, see [Create a Support Package from a Helm Installation]({{< relref "/nms/support/k8s-support-package.md" >}}).
+For instructions on creating a support package to share with NGINX Customer Support, see [Create a Support Package from a Helm Installation]({{< ref "/nms/support/k8s-support-package.md" >}}).
 

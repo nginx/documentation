@@ -24,9 +24,9 @@ This document will guide you through the process of publishing API documentation
 
 To complete the steps in this guide, you need the following:
 
-- [API Connectivity Manager is installed]({{< relref "/nim/deploy/_index.md" >}}) and running
-- One or more environments with a [configured Developer Portal]({{< relref "/nms/acm/getting-started/add-devportal.md" >}})
-- (Optional) [Customize the Developer Portal]({{< relref "/nms/acm/how-to/infrastructure/customize-devportal.md" >}})
+- [API Connectivity Manager is installed]({{< ref "/nim/deploy/_index.md" >}}) and running
+- One or more environments with a [configured Developer Portal]({{< ref "/nms/acm/getting-started/add-devportal.md" >}})
+- (Optional) [Customize the Developer Portal]({{< ref "/nms/acm/how-to/infrastructure/customize-devportal.md" >}})
 
 ---
 

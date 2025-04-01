@@ -123,7 +123,7 @@ There are several ways to obtain a server certificate, including the following. 
 - Request a new certificate from a CA or your organization's security group, as described in [Generating a Certificate Request with the openssl Command](#certificate-request).
 - If you already have an SSL/TLS certificate on a Windows system, see [Exporting and Converting an SSL/TLS Certificate from an IIS Server](#certificate-iis).
 
-For more details on SSL/TLS termination, see the [NGINX Plus Admin Guide]({{< relref "/nginx/admin-guide/security-controls/terminating-ssl-http" >}}).
+For more details on SSL/TLS termination, see the [NGINX Plus Admin Guide]({{< ref "/nginx/admin-guide/security-controls/terminating-ssl-http" >}}).
 
 <span id="certificate-self-signed"></span>
 ### Generating a Self-Signed Certificate with the openssl Command
@@ -798,7 +798,7 @@ You can then use a DNS‑based global load‑balancing solution to secure agains
 
 To increase the reliability of your EBS deployment even more, configure a higly available (HA) deployment of NGINX Plus.
 
-For configuration instructions for on‑premises deployments of NGINX Plus, see the [NGINX Plus Admin Guide]({{< relref "/nginx/admin-guide/high-availability/" >}}).
+For configuration instructions for on‑premises deployments of NGINX Plus, see the [NGINX Plus Admin Guide]({{< ref "/nginx/admin-guide/high-availability/" >}}).
 
 For configuration instructions for cloud‑based deployments of NGINX Plus, see our deployment guides:
 
@@ -1171,7 +1171,7 @@ http {
 ## Resources
 
 - [NGINX Plus Overview](https://www.nginx.com/products/nginx)
-- [NGINX Plus Admin Guide]({{< relref "/nginx/admin-guide/_index.md" >}})
+- [NGINX Plus Admin Guide]({{< ref "/nginx/admin-guide/_index.md" >}})
 - [NGINX Wiki](https://www.nginx.com/resources/wiki/)
 
 ### Revision History

@@ -145,4 +145,4 @@ This section shows you how to effectively discover, gather and analyze NGINXaaS 
    }
    ```
 
-{{<note>}} Refer to the [Metrics Catalog]({{< relref "/nginxaas-azure/monitoring/metrics-catalog.md" >}}) for a listing of available namespaces and metrics.{{</note>}}
+{{<note>}} Refer to the [Metrics Catalog]({{< ref "/nginxaas-azure/monitoring/metrics-catalog.md" >}}) for a listing of available namespaces and metrics.{{</note>}}

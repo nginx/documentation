@@ -11,12 +11,12 @@ March 31, 2021
 
 ### New Features
 
-- [User-Defined Browser Control]({{< relref "/nap-waf/v4/configuration-guide/configuration.md#user-defined-browser-control" >}})
-- [CSRF Protection Using Origin Validation]({{< relref "/nap-waf/v4/configuration-guide/configuration.md#csrf-protection-using-origin-validation" >}})
-- [Clickjacking Protection]({{< relref "/nap-waf/v4/configuration-guide/configuration.md#clickjacking-protection" >}})
-- [Log Rotate]({{< relref "/nap-waf/v4/admin-guide/install.md#log-rotate" >}})
-- [Enforcer Cookie Settings]({{< relref "/nap-waf/v4/configuration-guide/configuration.md#enforcer-cookie-settings" >}})
-- [Ubuntu 20.04 Support]({{< relref "/nap-waf/v4/admin-guide/install.md#ubuntu-20-04-installation" >}})
+- [User-Defined Browser Control]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#user-defined-browser-control" >}})
+- [CSRF Protection Using Origin Validation]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#csrf-protection-using-origin-validation" >}})
+- [Clickjacking Protection]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#clickjacking-protection" >}})
+- [Log Rotate]({{< ref "/nap-waf/v4/admin-guide/install.md#log-rotate" >}})
+- [Enforcer Cookie Settings]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#enforcer-cookie-settings" >}})
+- [Ubuntu 20.04 Support]({{< ref "/nap-waf/v4/admin-guide/install.md#ubuntu-20-04-installation" >}})
 
 ### Supported Packages
 

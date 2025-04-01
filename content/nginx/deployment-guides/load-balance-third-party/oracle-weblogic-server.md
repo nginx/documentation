@@ -919,7 +919,7 @@ server {
 ## Resources
 
 - [NGINX Plus Overview](https://www.nginx.com/products/nginx)
-- [NGINX Plus Admin Guide]({{< relref "/nginx/admin-guide/_index.md" >}})
+- [NGINX Plus Admin Guide]({{< ref "/nginx/admin-guide/_index.md" >}})
 - [NGINX Wiki](https://www.nginx.com/resources/wiki/)
 
 ### Revision History

@@ -21,7 +21,7 @@ Before you add files in your configuration, ensure:
 ## Important considerations
 
 If your instance is a member of a Config Sync Group, changes that you make may be synchronized to other instances in that group.
-For more information, see how you can [Manage Config Sync Groups]({{< relref "/nginx-one/how-to/config-sync-groups/manage-config-sync-groups.md" >}}).
+For more information, see how you can [Manage Config Sync Groups]({{< ref "/nginx-one/how-to/config-sync-groups/manage-config-sync-groups.md" >}}).
 
 ## Add a file
 
@@ -62,6 +62,6 @@ Enter the name of the desired configuration file, such as `abc.conf` and select 
 
 ## See also
 
-- [Create and manage data plane keys]({{< relref "/nginx-one/how-to/data-plane-keys/create-manage-data-plane-keys.md" >}})
-- [View and edit NGINX configurations]({{< relref "/nginx-one/how-to/nginx-configs/view-edit-nginx-configurations.md" >}})
-- [Manage certificates]({{< relref "/nginx-one/how-to/certificates/manage-certificates.md" >}})
+- [Create and manage data plane keys]({{< ref "/nginx-one/how-to/data-plane-keys/create-manage-data-plane-keys.md" >}})
+- [View and edit NGINX configurations]({{< ref "/nginx-one/how-to/nginx-configs/view-edit-nginx-configurations.md" >}})
+- [Manage certificates]({{< ref "/nginx-one/how-to/certificates/manage-certificates.md" >}})

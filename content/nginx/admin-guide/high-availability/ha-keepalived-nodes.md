@@ -13,7 +13,7 @@ type:
 <span id="intro"></span>
 ## Introduction
 
-F5 NGINX Plus utilizes [keepalived](http://www.keepalived.org/) to provide high availability (HA) in a standard active‑passive fashion. This provides failover redundancy in the event of a problem on the primary NGINX Plus node. We can extend this functionality with additional nodes and changes to the `keepalived` configuration, providing additional redundancy and scalability options. This guide assumes that you have already configured NGINX Plus in an active‑passive implementation with [the NGINX HA solution]({{< relref "ha-keepalived.md" >}}).
+F5 NGINX Plus utilizes [keepalived](http://www.keepalived.org/) to provide high availability (HA) in a standard active‑passive fashion. This provides failover redundancy in the event of a problem on the primary NGINX Plus node. We can extend this functionality with additional nodes and changes to the `keepalived` configuration, providing additional redundancy and scalability options. This guide assumes that you have already configured NGINX Plus in an active‑passive implementation with [the NGINX HA solution]({{< relref "./ha-keepalived.md" >}}).
 
 **NOTE:** In a public cloud deployment we recommend using a Layer 4 or TCP load‑balancing service offered by the cloud provider to distribute traffic to NGINX Plus for active‑active functionality.
 
@@ -94,7 +94,7 @@ To configure an additional passive node for your existing NGINX Plus active‑p
 4. Restart `keepalived` on all nodes.
 5. Test by stopping NGINX Plus on the first two nodes.
 
-All NGINX Plus nodes must have the identical configuration and SSL certificates. For information about synchronizing NGINX Plus configuration, see [Synchronizing NGINX Configuration in a Cluster]({{< relref "configuration-sharing.md" >}}).
+All NGINX Plus nodes must have the identical configuration and SSL certificates. For information about synchronizing NGINX Plus configuration, see [Synchronizing NGINX Configuration in a Cluster]({{< ref "configuration-sharing.md" >}}).
 
 <span id="conf_active"></span>
 ## Configuring keepalived for Active-Active HA

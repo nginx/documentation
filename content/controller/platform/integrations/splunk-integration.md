@@ -44,5 +44,5 @@ Take the following steps to create an Integration for Splunk:
 9. In the **Integration Type** list, select `GENERIC_INTEGRATION`.
 10. In the **Endpoint URI** box, add the Splunk collector URL.
 11. In the **Credential Type** list, select `API_KEY`.
-12. In the **API Key** box, add the [Splunk token value]({{< relref "/controller/analytics/forwarders/forward-analytics-to-splunk.md#set-up-splunk-to-monitor-data" >}}).
+12. In the **API Key** box, add the [Splunk token value]({{< ref "/controller/analytics/forwarders/forward-analytics-to-splunk.md#set-up-splunk-to-monitor-data" >}}).
 13. Select **Submit**.

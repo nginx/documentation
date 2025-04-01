@@ -18,7 +18,7 @@ With runtime state sharing, NGINXaaS instances can share some state data between
 
 {{<note>}}`sync` parameter with a directive describing shared memory zones, cannot be added to an existing memory zone that was not configured to sync and cannot be removed from an existing memory zone that was configured to sync. To switch, consider removing the directive before reapplying it with the desired parameters.{{</note>}}
 
-For information on enabling synchronization for rate limiting with NGINXaaS for Azure, please visit the [Rate Limiting]({{< relref "/nginxaas-azure/quickstart/rate-limiting.md" >}}) documentation.
+For information on enabling synchronization for rate limiting with NGINXaaS for Azure, please visit the [Rate Limiting]({{< ref "/nginxaas-azure/quickstart/rate-limiting.md" >}}) documentation.
 
 ## Configuring runtime state sharing among NGINXaaS for Azure deployment cluster instances
 

@@ -32,6 +32,6 @@ To quickly set up an NGINX Plus environment on Microsoft Azure:
 
 ## What If I Need Help?
 
-If you encounter any problems with NGINX Plus configuration, documentation is available at [nginx.org](https://nginx.org/en/docs/) and in the [NGINX Plus Admin Guide]({{< relref "/nginx/admin-guide/installing-nginx/" >}}).
+If you encounter any problems with NGINX Plus configuration, documentation is available at [nginx.org](https://nginx.org/en/docs/) and in the [NGINX Plus Admin Guide]({{< ref "/nginx/admin-guide/installing-nginx/" >}}).
 
 Customers who purchase an NGINX Plus VM image at the Azure Marketplace are eligible for the Azure VM support provided by the NGINX, Inc. engineering team. To activate support, submit the [Azure support activation](https://www.nginx.com/azure-support-activation/) form (you need your Azure subscription ID). When you request support, we’ll ask you to provide the Azure subscription ID that you registered, along with the deployment IDs of your Azure virtual machines in some cases.

@@ -24,7 +24,7 @@ These release notes provide general information and describe known issues for NG
   - [Known Issues](#known-issues)
   - [Supported Versions](#supported-versions)
   - {{< link "nginx-service-mesh/licenses/license-servicemesh-0.9.0.html" "Open Source Licenses" >}}
-  - [Open Source Licenses Addendum]({{< relref "oss-dependencies/index.md" >}})
+  - [Open Source Licenses Addendum]({{< ref "oss-dependencies/index.md" >}})
 
 <span id="090-updates"></a>
 
@@ -241,8 +241,8 @@ There is no workaround at this time, but the configuration can be changed dynami
 
 To fix the issue, take one or more of the following actions:
 
-- All load balancing annotations (config.nsm.nginx.com/lb-method) should be removed or updated to another supported algorithm (see [Configuration Options for NGINX Service Mesh]({{< relref "/mesh/get-started/install/configuration.md" >}})).
-- The global load balancing algorithm should be set to another supported algorithm (see [Configuration Options for NGINX Service Mesh]({{< relref "/mesh/get-started/install/configuration.md" >}})) .
+- All load balancing annotations (config.nsm.nginx.com/lb-method) should be removed or updated to another supported algorithm (see [Configuration Options for NGINX Service Mesh]({{< ref "/mesh/get-started/install/configuration.md" >}})).
+- The global load balancing algorithm should be set to another supported algorithm (see [Configuration Options for NGINX Service Mesh]({{< ref "/mesh/get-started/install/configuration.md" >}})) .
  <br/><br/>
 
 **Kubernetes reports warnings on versions >=1.19 (22721)**
