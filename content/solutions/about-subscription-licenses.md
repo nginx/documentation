@@ -65,11 +65,22 @@ To ensure NGINX Plus R33 or later can send usage reports, follow these steps bas
 
 ### For internet-connected environments
 
-Allow outbound HTTPS traffic on TCP port `443` to communicate with F5's licensing endpoint (`product.connect.nginx.com`). Ensure that the following IP addresses are allowed:
+1. Allow outbound HTTPS traffic on TCP port `443` to communicate with F5's licensing endpoint (`product.connect.nginx.com`). Ensure that the following IP addresses are allowed:
 
-- `3.135.72.139`
-- `3.133.232.50`
-- `52.14.85.249`
+   - `3.135.72.139`
+   - `3.133.232.50`
+   - `52.14.85.249`
+
+2.  (Optional, R34 and later) If your company enforces a strict outbound traffic policy, you can use an outbound proxy for establishing an end-to-end tunnel to the F5 licensing endpoint. On each NGINX Plus instance, update the [`proxy`](https://nginx.org/en/docs/ngx_mgmt_module.html#proxy) directive in the [`mgmt`](https://nginx.org/en/docs/ngx_mgmt_module.html) block of the NGINX configuration (`/etc/nginx/nginx.conf`) to point to the company's outbound proxy server:
+
+
+    ```nginx
+    mgmt {
+        proxy          PROXY_ADDR:PORT; #can be http or https
+        proxy_username USER;            #optional
+        proxy_password PASS;            #optional
+    }
+    ```
 
 ### For network-restricted environments
 
