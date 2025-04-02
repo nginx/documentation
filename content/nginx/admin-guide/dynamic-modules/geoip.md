@@ -9,13 +9,13 @@ type:
 - how-to
 ---
 
-{{< note >}} MaxMind GeoLite Legacy databases are currently [discontinued](https://blog.maxmind.com/2018/01/discontinuation-of-the-geolite-legacy-databases), MaxMind GeoIP2 or Geolite2 databases and F5 NGINX Plus [GeoIP2 module]({{< relref "./geoip2.md" >}}) should be used instead. {{< /note >}}
+{{< note >}} MaxMind GeoLite Legacy databases are currently [discontinued](https://blog.maxmind.com/2018/01/discontinuation-of-the-geolite-legacy-databases), MaxMind GeoIP2 or Geolite2 databases and F5 NGINX Plus [GeoIP2 module]({{< ref "geoip2.md" >}}) should be used instead. {{< /note >}}
 
 
 <span id="install"></span>
 ## Installation
 
-1. Check the [Technical Specifications]({{< relref "../../technical-specs.md" >}}) page to verify that the module is supported by your operating system.
+1. Check the [Technical Specifications]({{< ref "nginx/technical-specs.md" >}}) page to verify that the module is supported by your operating system.
 
 2. Install the GeoIP module package `nginx-plus-module-geoip`.
 
@@ -74,9 +74,9 @@ After installation you will need to enable and configure the module in NGINX Plu
 <span id="info"></span>
 ## More Info
 
-- [GeoIP2 Dynamic Module Installation Instructions]({{< relref "./geoip2.md" >}})
+- [GeoIP2 Dynamic Module Installation Instructions]({{< ref "geoip2.md" >}})
 
-- [Restricting Access by Geographical Location]({{< relref "../security-controls/controlling-access-by-geoip.md" >}})
+- [Restricting Access by Geographical Location]({{< ref "nginx/admin-guide/security-controls/controlling-access-by-geoip.md" >}})
 
 - [ngx_http_geoip_module Module Reference](https://nginx.org/en/docs/http/ngx_http_geoip_module.html)
 
@@ -84,4 +84,4 @@ After installation you will need to enable and configure the module in NGINX Plu
 
 - [NGINX Dynamic Modules]({{< ref "dynamic-modules.md" >}})
 
-- [NGINX Plus Technical Specifications]({{< relref "../../technical-specs.md" >}})
+- [NGINX Plus Technical Specifications]({{< ref "nginx/technical-specs.md" >}})

@@ -31,7 +31,7 @@ Azure Traffic Manager is a DNS‑based traffic load balancer that optimally dist
 <span id="about-nginx"></span>
 ## About NGINX Plus
 
-NGINX Plus is complementary to Standard Load Balancer. Operating at Layer 7 (the application layer), it uses more advanced load‑balancing criteria, including schemes that rely on the content of requests and the results of NGINX Plus's [active health checks]({{< relref "../../admin-guide/load-balancer/http-health-check.md" >}}).
+NGINX Plus is complementary to Standard Load Balancer. Operating at Layer 7 (the application layer), it uses more advanced load‑balancing criteria, including schemes that rely on the content of requests and the results of NGINX Plus's [active health checks]({{< ref "nginx/admin-guide/load-balancer/http-health-check.md" >}}).
 
 [NGINX Plus](https://www.f5.com/products/nginx/nginx-plus) is the commercially supported version of [NGINX Open Source](https://nginx.org/en). NGINX Plus is a complete application delivery platform, extending the power of NGINX with a host of enterprise‑ready capabilities that enhance an AWS web application deployment and are instrumental to building web applications at scale.
 
@@ -39,8 +39,8 @@ NGINX Plus provides both reverse‑proxy features and load‑balancing features
 
 - [Full‑featured HTTP, TCP, and UDP load balancing](https://www.nginx.com/products/nginx/load-balancing/)
 - [Intelligent session persistence](https://www.nginx.com/products/nginx/load-balancing/#session-persistence)
-- [High‑performance reverse proxy]({{< relref "../../admin-guide/web-server/reverse-proxy.md" >}})
-- [Caching and offload of dynamic and static content]({{< relref "../../admin-guide/content-cache/content-caching.md" >}})
+- [High‑performance reverse proxy]({{< ref "nginx/admin-guide/web-server/reverse-proxy.md" >}})
+- [Caching and offload of dynamic and static content]({{< ref "nginx/admin-guide/content-cache/content-caching.md" >}})
 - [Adaptive streaming to deliver audio and video to any device](https://www.nginx.com/products/nginx/streaming-media/)
 - [Application-aware health checks](https://docs.nginx.com/nginx/admin-guide/load-balancer/http-health-check/) and [high availability](https://docs.nginx.com/nginx/admin-guide/high-availability/)
 - [Advanced activity monitoring available via a dashboard or API](https://www.nginx.com/products/nginx/live-activity-monitoring/)

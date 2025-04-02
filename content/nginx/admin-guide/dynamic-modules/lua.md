@@ -13,7 +13,7 @@ Integrate Lua co-routines into the NGINX event-processing model with the communi
 <span id="prereq"></span>
 ## Prerequisites
 
-1. Check the [Technical Specifications]({{< relref "../../technical-specs.md" >}}) page to verify that the module is supported by your operating system.
+1. Check the [Technical Specifications]({{< ref "nginx/technical-specs.md" >}}) page to verify that the module is supported by your operating system.
 
 2. Prior to installing the module, verify that the [NGINX Developer Kit (NDK)]({{< ref "nginx/admin-guide/dynamic-modules/ndk.md" >}}) module is already installed.
 
@@ -96,4 +96,4 @@ After installation, enable and configure the modules in NGINX Plus configuration
 
 - [NGINX Dynamic Modules]({{< ref "dynamic-modules.md" >}})
 
-- [NGINX Plus Technical Specifications]({{< relref "../../technical-specs.md" >}})
+- [NGINX Plus Technical Specifications]({{< ref "nginx/technical-specs.md" >}})

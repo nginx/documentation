@@ -21,8 +21,8 @@ This deployment guide explains how to use NGINX Open Source and F5 NGINX Plus to
 
 - [Full‑featured HTTP, TCP, and UDP load balancing](https://www.nginx.com/products/nginx/load-balancing/)
 - [Intelligent session persistence](https://www.nginx.com/products/nginx/load-balancing/#session-persistence)
-- [High‑performance reverse proxy]({{< relref "../../admin-guide/web-server/reverse-proxy.md" >}})
-- [Caching and offload of dynamic and static content]({{< relref "../../admin-guide/content-cache/content-caching.md" >}})
+- [High‑performance reverse proxy]({{< ref "nginx/admin-guide/web-server/reverse-proxy.md" >}})
+- [Caching and offload of dynamic and static content]({{< ref "nginx/admin-guide/content-cache/content-caching.md" >}})
 - [Adaptive streaming to deliver audio and video to any device](https://www.nginx.com/products/nginx/streaming-media/)
 - [Application-aware health checks](https://docs.nginx.com/nginx/admin-guide/load-balancer/http-health-check/) and [high availability](https://docs.nginx.com/nginx/admin-guide/high-availability/)
 - [Advanced activity monitoring available via a dashboard or API](https://www.nginx.com/products/nginx/live-activity-monitoring/)
@@ -39,7 +39,7 @@ Apache Tomcat 8.0 was used to prepare the documentation for this guide.
 ## Prerequisites and System Requirements
 
 - A Tomcat application server installed and configured on a physical or virtual system.
-- A Linux system to host <span style="white-space: nowrap;">NGINX Open Source</span> or NGINX Plus. To avoid potential conflicts with other applications, we recommend you install the software on a fresh physical or virtual system. For the list of operating systems supported by NGINX Plus, see [NGINX Plus Technical Specifications]({{< relref "../../technical-specs.md" >}}).
+- A Linux system to host <span style="white-space: nowrap;">NGINX Open Source</span> or NGINX Plus. To avoid potential conflicts with other applications, we recommend you install the software on a fresh physical or virtual system. For the list of operating systems supported by NGINX Plus, see [NGINX Plus Technical Specifications]({{< ref "nginx/technical-specs.md" >}}).
 - <span style="white-space: nowrap;">NGINX Open Source 1.9.5</span> and later, and <span style="white-space: nowrap;">NGINX Plus R7</span> and later.
 
 The instructions assume you have basic Linux system administration skills, including the following. Full instructions are not provided for these tasks.
@@ -318,7 +318,7 @@ By default, <span style="white-space: nowrap;">NGINX Open Source</span> and NGIN
 
 In NGINX Plus, you can also set up dynamic reconfiguration of an upstream group when the set of backend servers changes, using DNS or an API; see [Enabling Dynamic Reconfiguration of Upstream Groups](#reconfiguration).
 
-For more information about proxying and load balancing, see <span style="white-space: nowrap;">[NGINX Reverse Proxy]({{< relref "../../admin-guide/web-server/reverse-proxy.md" >}})</span> and <span style="white-space: nowrap;">[HTTP Load Balancing]({{< relref "../../admin-guide/load-balancer/http-load-balancer.md" >}})</span> in the NGINX Plus Admin Guide, and the reference documentation for the HTTP [Proxy](https://nginx.org/en/docs/http/ngx_http_proxy_module.html) and [Upstream](https://nginx.org/en/docs/http/ngx_http_upstream_module.html) modules.
+For more information about proxying and load balancing, see <span style="white-space: nowrap;">[NGINX Reverse Proxy]({{< ref "nginx/admin-guide/web-server/reverse-proxy.md" >}})</span> and <span style="white-space: nowrap;">[HTTP Load Balancing]({{< relref "../../admin-guide/load-balancer/http-load-balancer.md" >}})</span> in the NGINX Plus Admin Guide, and the reference documentation for the HTTP [Proxy](https://nginx.org/en/docs/http/ngx_http_proxy_module.html) and [Upstream](https://nginx.org/en/docs/http/ngx_http_upstream_module.html) modules.
 
 <span id="session-persistence-basic"></span>
 ### Configuring Basic Session Persistence
@@ -690,7 +690,7 @@ server 10.100.100.11:8080 slow_start=30s;
 server 10.100.100.12:8080 slow_start=30s;
 ```
 
-For information about customizing health checks, see the [NGINX Plus Admin Guide]({{< relref "../../admin-guide/load-balancer/http-health-check.md" >}}).
+For information about customizing health checks, see the [NGINX Plus Admin Guide]({{< ref "nginx/admin-guide/load-balancer/http-health-check.md" >}}).
 
 <span id="live-activity-monitoring"></span>
 ### Enabling Live Activity Monitoring
@@ -699,7 +699,7 @@ NGINX Plus includes a live activity monitoring interface that provides key load
 
 <img src="/nginx/images/nginx-plus-dashboard-r19-overview.png" alt="Dashboard tab in NGINX Plus live activity monitoring dashboard" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
-For more information about live activity monitoring, see the [NGINX Plus Admin Guide]({{< relref "../../admin-guide/monitoring/live-activity-monitoring.md" >}}).
+For more information about live activity monitoring, see the [NGINX Plus Admin Guide]({{< ref "nginx/admin-guide/monitoring/live-activity-monitoring.md" >}}).
 
 The quickest way to configure the module and the built‑in dashboard is to download the sample configuration file from the NGINX website, and modify it as necessary. For more complete instructions, see [Live Activity Monitoring of NGINX Plus in 3 Simple Steps](https://www.nginx.com/blog/live-activity-monitoring-nginx-plus-3-simple-steps/).
 
@@ -776,7 +776,7 @@ When you reload the NGINX Plus configuration file, for example by running the <
 <span id="reconfiguration"></span>
 ### Enabling Dynamic Reconfiguration of Upstream Groups
 
-With NGINX Plus, you can reconfigure load‑balanced server groups (both HTTP and TCP/UDP) dynamically using either the Domain Name System (DNS) or the NGINX Plus API introduced in <span style="white-space: nowrap;">NGINX Plus R13</span>. See the NGINX Plus Admin Guide for a more detailed discussion of the <a href="../../../admin-guide/load-balancer/http-load-balancer/#resolve">DNS</a> and [API]({{< relref "../../admin-guide/load-balancer/dynamic-configuration-api.md" >}}) methods.
+With NGINX Plus, you can reconfigure load‑balanced server groups (both HTTP and TCP/UDP) dynamically using either the Domain Name System (DNS) or the NGINX Plus API introduced in <span style="white-space: nowrap;">NGINX Plus R13</span>. See the NGINX Plus Admin Guide for a more detailed discussion of the <a href="../../../admin-guide/load-balancer/http-load-balancer/#resolve">DNS</a> and [API]({{< ref "nginx/admin-guide/load-balancer/dynamic-configuration-api.md" >}}) methods.
 
 #### Configuring the API Method
 

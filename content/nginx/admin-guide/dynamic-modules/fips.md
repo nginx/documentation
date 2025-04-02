@@ -15,7 +15,7 @@ For F5 NGINX Plus, the cryptographic boundary includes all functionality that is
 <span id="install"></span>
 ## Installation
 
-1. Check the [Technical Specifications]({{< relref "../../technical-specs.md" >}}) page to verify that the module is supported by your operating system.
+1. Check the [Technical Specifications]({{< ref "nginx/technical-specs.md" >}}) page to verify that the module is supported by your operating system.
 
 2. Install the FIPS module package `nginx-plus-module-fips-check`.
 
@@ -85,4 +85,4 @@ After installation you will need to enable and configure the module in NGINX Plu
 
 - [NGINX Dynamic Modules]({{< ref "dynamic-modules.md" >}})
 
-- [NGINX Plus Technical Specifications]({{< relref "../../technical-specs.md" >}})
+- [NGINX Plus Technical Specifications]({{< ref "nginx/technical-specs.md" >}})

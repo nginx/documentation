@@ -14,7 +14,7 @@ The instructions in this guide explain how to set up a simple demo environment t
 <span id="prereqs"></span>
 ## Prerequisites
 
-This guide assumes you have already provisioned a number of host systems (physical servers, virtual machines, containers, or cloud instances) required for a deployment guide (if applicable) and installed NGINX Open Source or NGINX Plus on each instance as appropriate. For installation instructions, see the [NGINX Plus Admin Guide]({{< ref "/nginx/admin-guide/installing-nginx/_index.md" >}}).
+This guide assumes you have already provisioned a number of host systems (physical servers, virtual machines, containers, or cloud instances) required for a deployment guide (if applicable) and installed NGINX Open Source or NGINX Plus on each instance as appropriate. For installation instructions, see the [NGINX Plus Admin Guide]({{< ref "nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}).
 
 Some commands require `root` privilege. If appropriate for your environment, prefix commands with the `sudo` command.
 
@@ -194,7 +194,7 @@ The steps in this section configure an NGINX Plus instance to load balance requ
 
 If you are using these instructions to satisfy the prerequisites for one of our deployment guides, the Appendix in the guide specifies the names of the NGINX Plus instances used in it.
 
-Repeat these instructions on each instance. Alternatively, you can configure one instance and share the configuration with its peers in a cluster. See the [NGINX Plus Admin Guide]({{< relref "../admin-guide/high-availability/configuration-sharing.md" >}}).
+Repeat these instructions on each instance. Alternatively, you can configure one instance and share the configuration with its peers in a cluster. See the [NGINX Plus Admin Guide]({{< ref "nginx/admin-guide/high-availability/configuration-sharing.md" >}}).
 
 1. Open a connection to the NGINX Plus instance and change the directory to **/**etc/nginx/conf.d**:
 
