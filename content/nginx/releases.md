@@ -44,7 +44,8 @@ NGINX Plus R34 is supported on:
 
 - AlmaLinux 8, 9
 - Alpine Linux 3.18, 3.19, 3.20, 3.21
-- Amazon Linux 2 LTS, 2023
+- Amazon Linux 2 LTS
+- Amazon Linux 2023
 - Debian 11, 12
 - FreeBSD 13, 14
 - Oracle Linux 8.1+, 9
