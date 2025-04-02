@@ -44,7 +44,8 @@ NGINX Plus R34 is supported on:
 
 - AlmaLinux 8, 9
 - Alpine Linux 3.18, 3.19, 3.20, 3.21
-- Amazon Linux 2 LTS, 2023
+- Amazon Linux 2 LTS
+- Amazon Linux 2023
 - Debian 11, 12
 - FreeBSD 13, 14
 - Oracle Linux 8.1+, 9
@@ -58,7 +59,6 @@ NGINX Plus R34 is supported on:
 - Alpine Linux 3.17 is removed
 - Alpine Linux 3.18 is deprecated
 - Alpine Linux 3.21 is new in this release
-- Amazon Linux 2 LTS is deprecated
 - SUSE Linux Enterprise Server 12 is removed
 - Ubuntu 20.04 is deprecated
 - the [OpenTracing]({{< ref "nginx/admin-guide/dynamic-modules/opentracing.md" >}}) dynamic module is no longer available. It is recommended to use the [OpenTelemetry Distributed Tracing]({{< ref "nginx/admin-guide/dynamic-modules/opentelemetry.md" >}}) module, which incorporates all the features of the OpenTracing module.
