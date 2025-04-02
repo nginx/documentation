@@ -27,6 +27,7 @@ tags:
   - name: HTTP Limit Reqs
   - name: HTTP Keyvals
   - name: HTTP Upstreams
+  - name: License
   - name: Stream
   - name: Stream Server Zones
   - name: Stream Limit Conns
@@ -2102,15 +2103,31 @@ paths:
           description: Method disabled (*MethodDisabled*)
           schema:
             $ref: '#/definitions/NginxError'
+  /license:
+    get:
+      tags:
+        - License
+        - Method GET
+      summary: Return license info
+      operationId: getLicense
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/NginxLicenseObject'
+        '404':
+          description: Unknown version (*UnknownVersion*)
+          schema:
+            $ref: '#/definitions/NginxError'
   /workers/:
     get:
       tags:
         - Workers
         - Method GET
       summary:  Return statistics for all worker processes
-      description: |
-        Returns statistics for all worker processes such as
-        accepted, dropped, active, idle connections, total and current requests.
+      description: Returns statistics for all worker processes such as accepted, dropped, active, idle connections, total and current requests.
       operationId: getWorkers
       produces:
         - application/json
@@ -2138,7 +2155,7 @@ paths:
       description: |
         Resets statistics for all worker processes such as
         accepted, dropped, active, idle connections, total and current requests.
-      operationId: deleteWorkerStat
+      operationId: deleteWorkersStat
       produces:
         - application/json
       responses:
@@ -2194,7 +2211,7 @@ paths:
       description: |
         Resets statistics of accepted, dropped, active, idle connections,
         as well as total and current requests.
-      operationId: deleteWorkerIdStat
+      operationId: deleteWorkerStat
       produces:
         - application/json
       responses:
@@ -4731,6 +4748,41 @@ definitions:
           refused: 0
           timedout: 243
           unknown: 478
+  NginxLicenseObject:
+    title: License
+    description: |
+      License and usage reporting status of NGINX Plus instance.
+    properties:
+      eval:
+        type: boolean
+        description: Indicates whether NGINX Plus license is trial.
+        readOnly: true
+      active_till:
+        type: integer
+        description: The Unix timestamp of license expiration.
+        readOnly: true
+      reporting:
+        type: object
+        properties:
+          healthy:
+            type: boolean
+            description: Indicates whether the reporting state is still considered healthy despite recent failed attempts.
+            readOnly: true
+          fails:
+            type: integer
+            description: The number of failed reporting attempts, reset each time the usage report is successfully sent.
+            readOnly: true
+          grace:
+            type: integer
+            description: The number of seconds before traffic processing is stopped after unsuccessful report attempt.
+            readOnly: true
+    example:
+      eval: false
+      active_till: 1749268757
+      reporting:
+        healthy: true
+        fails: 2
+        grace: 15551961
   NginxWorker:
     title: Worker process
     description: |

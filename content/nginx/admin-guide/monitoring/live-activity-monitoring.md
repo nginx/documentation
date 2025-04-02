@@ -27,7 +27,7 @@ NGINX Plus provides various monitoring tools for your server infrastructure:
 
 * * *
 
-[![live activity monitoring](/nginx/images/nginx-plus-dashboard-r30-overview-2.png)](https://demo.nginx.com/dashboard.html "Live status metrics from NGINX Plus")
+[![live activity monitoring](/nginx/images/nginx-plus-dashboard-r34-overview.png)](https://demo.nginx.com/dashboard.html "Live status metrics from NGINX Plus")
 
 * * *
 
@@ -264,7 +264,7 @@ In the address bar of your browser, type-in the address that corresponds to your
 
 There is also a live demo page from NGINX available at [demo.nginx.com/dashboard.html](https://demo.nginx.com/dashboard.html):
 
-[![live activity monitor](/nginx/images/nginx-plus-dashboard-r30-overview-2.png)](https://demo.nginx.com/dashboard.html "Live load-balancing status from NGINX Plus")
+[![live activity monitor](/nginx/images/nginx-plus-dashboard-r34-overview.png)](https://demo.nginx.com/dashboard.html "Live load-balancing status from NGINX Plus")
 
 <span id="dashboard_tabs"></span>
 ### Tabs Overview
@@ -313,11 +313,11 @@ You can add new or modify and remove upstream servers directly from the Dashboar
 
 In the **Upstreams** or **TCP/UDP Upstreams** tab, click the pencil icon next to the server name and choose between **Edit selected** and **Add server** buttons:
 
-![In editing mode on the 'Upstreams' tab in the NGINX Plus live activity monitoring dashboard, you can add, remove, or modify servers](https://cdn.wp.nginx.com/wp-content/uploads/2015/09/Screen-Shot-2015-09-08-at-10.31.14-AM.png)
+![In editing mode on the 'Upstreams' tab in the NGINX Plus live activity monitoring dashboard, you can add, remove, or modify servers](/nginx/images/dashboard-tab-upstreams-edit.png)
 
 To add an upstream server, click **Add server**:
 
-![The 'Add server' interface for adding servers to an upstream group in the NGINX Plus live activity monitoring dashboard](https://cdn.wp.nginx.com/wp-content/uploads/2015/09/Screen-Shot-2015-09-08-at-10.47.22-AM.png)
+![The 'Add server' interface for adding servers to an upstream group in the NGINX Plus live activity monitoring dashboard](/nginx/images/dashboard-add-server.png)
 
 To remove or modify an upstream server, click the box to the left of each server’s name, then click **Edit selected**:
 
@@ -398,12 +398,12 @@ The JSON data returned:
 
 ```json
 {
-   "version" : "1.25.1",
-   "build" : "nginx-plus-r30",
+   "version" : "1.27.4",
+   "build" : "nginx-plus-r34",
    "address" : "206.251.255.64",
    "generation" : 14,
-   "load_timestamp" : "2023-08-15T10:00:00.114Z",
-   "timestamp" : "2023-08-15T14:06:36.475Z",
+   "load_timestamp" : "2025-04-01T10:00:00.114Z",
+   "timestamp" : "2025-04-01T14:06:36.475Z",
    "pid" : 2201,
    "ppid" : 92033
 }
@@ -419,8 +419,8 @@ The JSON data returned:
 
 ```json
 {
-   "version" : "1.25.1",
-   "build" : "nginx-plus-r30"
+   "version" : "1.27.4",
+   "build" : "nginx-plus-r34"
 }
 ```
 
@@ -521,15 +521,16 @@ To enable the Swagger UI:
 
 |OpenAPI YAML File/API Version | NGINX Plus Version | Changes |
 | ---| --- | --- |
-|[{{<fa "download">}}OpenAPI v2](../../yaml/v9/nginx_api.yaml) for API version 9 | NGINX Plus Releases [30](https://docs.nginx.com/nginx/releases/#nginxplusrelease-30-r30) | The [`/workers/`](https://nginx.org/en/docs/http/ngx_http_api_module.html#workers_) data were added|
-|[{{<fa "download">}}OpenAPI v2](../../yaml/v8/nginx_api.yaml) for API version 8 | NGINX Plus Releases [27](https://docs.nginx.com/nginx/releases/#nginxplusrelease-27-r27), [28](https://docs.nginx.com/nginx/releases/#nginxplusrelease-28-r28), [29](https://docs.nginx.com/nginx/releases/#nginxplusrelease-29-r29) | SSL statistics for each HTTP [upstream](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_http_upstream) and stream [upstream](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_stream_upstream), SSL statistics for each HTTP [server zone](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_http_server_zone) and stream [server zone](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_stream_server_zone), extended statistics for [SSL](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_ssl_object) endpoint|
-|[{{<fa "download">}}OpenAPI v2](../../yaml/v7/nginx_api.yaml) for API version 7 | NGINX Plus Releases [25](https://docs.nginx.com/nginx/releases/#nginxplusrelease-25-r25), [26](https://docs.nginx.com/nginx/releases/#nginxplusrelease-26-r26)| The `codes` data in `responses` for each HTTP [upstream](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_http_upstream), [server zone](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_http_server_zone), and [location zone](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_http_location_zone) were added|
-|[{{<fa "download">}}OpenAPI v2](../../yaml/v6/nginx_api.yaml) for API version 6 | NGINX Plus Releases [20](https://docs.nginx.com/nginx/releases/#nginxplusrelease-20-r20), [21](https://docs.nginx.com/nginx/releases/#nginxplusrelease-21-r21), [22](https://docs.nginx.com/nginx/releases/#nginxplusrelease-22-r22), [23](https://docs.nginx.com/nginx/releases/#nginxplusrelease-23-r23), [24](https://docs.nginx.com/nginx/releases/#nginxplusrelease-24-r24) | The [`/stream/limit_conns/`](https://nginx.org/en/docs/http/ngx_http_api_module.html#stream_limit_conns_),  [`/http/limit_conns/`](https://nginx.org/en/docs/http/ngx_http_api_module.html#http_limit_conns_), and  [`/http/limit_reqs/`](https://nginx.org/en/docs/http/ngx_http_api_module.html#http_limit_reqs_) data were added |
-|[{{<fa "download">}}OpenAPI v2](../../yaml/v5/nginx_api.yaml) for API version 5 | [NGINX Plus Release 19](https://docs.nginx.com/nginx/releases/#nginxplusrelease-19-r19) | The `expire` parameter of a [key-value](https://nginx.org/en/docs/http/ngx_http_keyval_module.html) pair can be [set](https://nginx.org/en/docs/http/ngx_http_api_module.html#postHttpKeyvalZoneData) or [changed](https://nginx.org/en/docs/http/ngx_http_api_module.html#patchHttpKeyvalZoneKeyValue), the [`/resolvers/`](https://nginx.org/en/docs/http/ngx_http_api_module.html#resolvers_) and  [`/http/location_zones/`](https://nginx.org/en/docs/http/ngx_http_api_module.html#http_location_zones_) data were added |
-|[{{<fa "download">}}OpenAPI v2](../../yaml/v4/nginx_api.yaml) for API version 4 | [NGINX Plus Release 18](https://docs.nginx.com/nginx/releases/#nginxplusrelease-18-r18) | The `path` and `method` fields of [nginx error object](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_error) were removed. These fields continue to exist in earlier api versions, but show an empty value |
-|[{{<fa "download">}}OpenAPI v2](../../yaml/v3/nginx_api.yaml) for API version 3 | NGINX Plus Releases [15](https://docs.nginx.com/nginx/releases/#nginxplusrelease-15-r15), [16](https://docs.nginx.com/nginx/releases/#nginxplusrelease-16-r16), [17](https://docs.nginx.com/nginx/releases/#nginxplusrelease-17-r17) | The [`/stream/zone_sync/`](https://nginx.org/en/docs/http/ngx_http_api_module.html#stream_zone_sync_) data were added |
-|[{{<fa "download">}}OpenAPI v2](../../yaml/v2/nginx_api.yaml) for API version 2 | [NGINX Plus Release 14](https://docs.nginx.com/nginx/releases/#nginxplusrelease-14-r14) | The [`drain`](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_http_upstream_conf_server) parameter was added |
-|[{{<fa "download">}}OpenAPI v2](../../yaml/v1/nginx_api.yaml) for API version 1 | [NGINX Plus Release 13](https://docs.nginx.com/nginx/releases/#nginx-plus-release-13-r13) | The [`/stream/keyvals/`](https://nginx.org/en/docs/http/ngx_http_api_module.html#stream_keyvals_) data were added |
+|[{{<fa "download">}}OpenAPI v2](../../yaml/v9/nginx_api.yaml) for API version 9 | NGINX Plus Releases [33]({{< ref "nginx/releases.md#r33" >}}), [34]({{< ref "nginx/releases.md#r34" >}})| The [`/license`](https://nginx.org/en/docs/http/ngx_http_api_module.html#license) data were added|
+|[{{<fa "download">}}OpenAPI v2](../../yaml/v9/nginx_api.yaml) for API version 9 | NGINX Plus Releases [30]({{< ref "nginx/releases.md#r30" >}}), [31]({{< ref "nginx/releases.md#r31" >}}), [32]({{< ref "nginx/releases.md#r32" >}}) | The [`/workers/`](https://nginx.org/en/docs/http/ngx_http_api_module.html#workers_) data were added|
+|[{{<fa "download">}}OpenAPI v2](../../yaml/v8/nginx_api.yaml) for API version 8 | NGINX Plus Releases [27]({{< ref "nginx/releases.md#r27" >}}), [28]({{< ref "nginx/releases.md#r28" >}}), [29]({{< ref "nginx/releases.md#r29" >}}) | SSL statistics for each HTTP [upstream](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_http_upstream) and stream [upstream](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_stream_upstream), SSL statistics for each HTTP [server zone](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_http_server_zone) and stream [server zone](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_stream_server_zone), extended statistics for [SSL](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_ssl_object) endpoint|
+|[{{<fa "download">}}OpenAPI v2](../../yaml/v7/nginx_api.yaml) for API version 7 | NGINX Plus Releases [25]({{< ref "nginx/releases.md#r25" >}}), [26]({{< ref "nginx/releases.md#r26" >}}),| The `codes` data in `responses` for each HTTP [upstream](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_http_upstream), [server zone](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_http_server_zone), and [location zone](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_http_location_zone) were added|
+|[{{<fa "download">}}OpenAPI v2](../../yaml/v6/nginx_api.yaml) for API version 6 | NGINX Plus Releases [20]({{< ref "nginx/releases.md#r20" >}}), [21]({{< ref "nginx/releases.md#r21" >}}), [22]({{< ref "nginx/releases.md#r22" >}}), [23]({{< ref "nginx/releases.md#r23" >}}), [24]({{< ref "nginx/releases.md#r24" >}}) | The [`/stream/limit_conns/`](https://nginx.org/en/docs/http/ngx_http_api_module.html#stream_limit_conns_),  [`/http/limit_conns/`](https://nginx.org/en/docs/http/ngx_http_api_module.html#http_limit_conns_), and  [`/http/limit_reqs/`](https://nginx.org/en/docs/http/ngx_http_api_module.html#http_limit_reqs_) data were added |
+|[{{<fa "download">}}OpenAPI v2](../../yaml/v5/nginx_api.yaml) for API version 5 | NGINX Plus Release [19]({{< ref "nginx/releases.md#r19" >}}) | The `expire` parameter of a [key-value](https://nginx.org/en/docs/http/ngx_http_keyval_module.html) pair can be [set](https://nginx.org/en/docs/http/ngx_http_api_module.html#postHttpKeyvalZoneData) or [changed](https://nginx.org/en/docs/http/ngx_http_api_module.html#patchHttpKeyvalZoneKeyValue), the [`/resolvers/`](https://nginx.org/en/docs/http/ngx_http_api_module.html#resolvers_) and  [`/http/location_zones/`](https://nginx.org/en/docs/http/ngx_http_api_module.html#http_location_zones_) data were added |
+|[{{<fa "download">}}OpenAPI v2](../../yaml/v4/nginx_api.yaml) for API version 4 | NGINX Plus Release [18]({{< ref "nginx/releases.md#r18" >}}) | The `path` and `method` fields of [nginx error object](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_error) were removed. These fields continue to exist in earlier api versions, but show an empty value |
+|[{{<fa "download">}}OpenAPI v2](../../yaml/v3/nginx_api.yaml) for API version 3 | NGINX Plus Releases [15]({{< ref "nginx/releases.md#r15" >}}), [16]({{< ref "nginx/releases.md#r16" >}}), [17]({{< ref "nginx/releases.md#r17" >}}) | The [`/stream/zone_sync/`](https://nginx.org/en/docs/http/ngx_http_api_module.html#stream_zone_sync_) data were added |
+|[{{<fa "download">}}OpenAPI v2](../../yaml/v2/nginx_api.yaml) for API version 2 | NGINX Plus Release [14]({{< ref "nginx/releases.md#r14" >}}) | The [`drain`](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_http_upstream_conf_server) parameter was added |
+|[{{<fa "download">}}OpenAPI v2](../../yaml/v1/nginx_api.yaml) for API version 1 | NGINX Plus Release [13]({{< ref "nginx/releases.md#r13" >}})| The [`/stream/keyvals/`](https://nginx.org/en/docs/http/ngx_http_api_module.html#stream_keyvals_) data were added |
 
 {{</bootstrap-table>}}
 
@@ -611,7 +612,7 @@ To access the Swagger UI page:
 
 NGINX provides live examples of JSON data and Swagger UI on a demo website.
 
-Live example of JSON data is available at: <https://demo.nginx.com/api/8/>
+Live example of JSON data is available at: [`https://demo.nginx.com/api/9/`](https://demo.nginx.com/api/9/)
 
 You can send an API command with curl or with a browser:
 
