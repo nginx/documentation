@@ -14,7 +14,7 @@ The Encrypted Session dynamic module provides encryption and decryption support 
 <span id="prereq"></span>
 ## Prerequisites
 
-1. Check the [Technical Specifications]({{< relref "../../technical-specs.md" >}}) page to verify that the module is supported by your operating system.
+1. Check the [Technical Specifications]({{< ref "nginx/technical-specs.md" >}}) page to verify that the module is supported by your operating system.
 
 2. Prior to installing the module, verify that the [NDK]({{< ref "ndk.md" >}}) module is already installed.
 
@@ -90,4 +90,4 @@ After installation you will need to enable and configure the module in F5 NGINX 
 
 - [NGINX Dynamic Modules]({{< ref "dynamic-modules.md" >}})
 
-- [NGINX Plus Technical Specifications]({{< relref "../../technical-specs.md" >}})
+- [NGINX Plus Technical Specifications]({{< ref "nginx/technical-specs.md" >}})

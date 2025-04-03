@@ -21,7 +21,7 @@ The [ngx_brotli](https://github.com/google/ngx_brotli) module enables Brotli com
 
 ## Prerequisites
 
-1. Check the [Technical Specifications]({{< relref "../../technical-specs.md" >}}) page to verify that the module is supported by your operating system.
+1. Check the [Technical Specifications]({{< ref "nginx/technical-specs.md" >}}) page to verify that the module is supported by your operating system.
 
 2. If required, install the **epel-release** dependency
 
@@ -116,4 +116,4 @@ After installation you will need to enable and configure Brotli modules in NGINX
 
 - [NGINX Dynamic Modules]({{< ref "dynamic-modules.md" >}})
 
-- [NGINX Plus Technical Specifications]({{< relref "../../technical-specs.md" >}})
+- [NGINX Plus Technical Specifications]({{< ref "nginx/technical-specs.md" >}})

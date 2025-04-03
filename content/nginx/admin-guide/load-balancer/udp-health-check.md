@@ -42,7 +42,7 @@ type:
     }
     ```
 
-    See [TCP and UDP Load Balancing]({{< relref "../load-balancer/tcp-udp-load-balancer.md" >}}) for details.
+    See [TCP and UDP Load Balancing]({{< ref "nginx/admin-guide/load-balancer/tcp-udp-load-balancer.md" >}}) for details.
 
 <span id="hc_passive"></span>
 ## Passive UDP Health Checks

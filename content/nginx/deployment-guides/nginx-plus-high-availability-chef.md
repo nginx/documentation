@@ -23,7 +23,7 @@ _
 
 _
 
-To set up the highly available active/passive cluster, we’re using the [HA solution]({{< relref "../admin-guide/high-availability/ha-keepalived.md" >}}) provided by NGINX, Inc., which is based on [keepalived](http://www.keepalived.org) and the [Virtual Router Redundancy Protocol](https://tools.ietf.org/html/rfc2338) (VRRP). The solution comes with an interactive script for creating the `keepalived` configuration file, but here we’re using Chef to automate the complete setup process.
+To set up the highly available active/passive cluster, we’re using the [HA solution]({{< ref "nginx/admin-guide/high-availability/ha-keepalived.md" >}}) provided by NGINX, Inc., which is based on [keepalived](http://www.keepalived.org) and the [Virtual Router Redundancy Protocol](https://tools.ietf.org/html/rfc2338) (VRRP). The solution comes with an interactive script for creating the `keepalived` configuration file, but here we’re using Chef to automate the complete setup process.
 
 ## Modifying the NGINX Cookbook
 

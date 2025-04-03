@@ -26,7 +26,7 @@ type:
 <span id="nginx_plus_official_images"></span>
 ## Using official NGINX Plus Docker images
 
-Since NGINX Plus <a href="../../../releases/#r31">Release 31</a> you can get an NGINX Plus image from the official NGINX Plus Docker registry and upload it to your private registry.
+Since NGINX Plus NGINX Plus [Release 31]({{< ref "nginx/releases.md#r31" >}}) you can get an NGINX Plus image from the official NGINX Plus Docker registry and upload it to your private registry.
 
 The NGINX Plus Docker registry is available at `https://private-registry.nginx.com/v2/`. 
 

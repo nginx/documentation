@@ -262,7 +262,7 @@ NGINX Plus supports three session persistence methods. The methods are set with 
     }
     ```
 
-    See [Runtime State Sharing in a Cluster]({{< relref "../high-availability/zone_sync.md" >}}) for details.
+    See [Runtime State Sharing in a Cluster]({{< ref "nginx/admin-guide/high-availability/zone_sync.md" >}}) for details.
 
 
 <span id="maxconns"></span>
@@ -290,7 +290,7 @@ Note that the `max_conns` limit is ignored if there are idle [`keepalive`](https
 
 NGINX can continually test your HTTP upstream servers, avoid the servers that have failed, and gracefully add the recovered servers into the load‑balanced group.
 
-See [HTTP Health Checks]({{< relref "./http-health-check.md" >}}) for instructions how to configure health checks for HTTP.
+See [HTTP Health Checks]({{< ref "nginx/admin-guide/load-balancer/http-health-check.md" >}}) for instructions how to configure health checks for HTTP.
 
 
 <span id="zone"></span>
