@@ -16,7 +16,7 @@ NGINX also provides a [solution for active‑active HA of NGINX Plus in AWS]({{
 <span id="ha-aws_overview"></span>
 ## Overview
 
-The [supported solution for HA deployment]({{< relref "../../admin-guide/high-availability/ha-keepalived.md" >}}) of NGINX Plus that uses `keepalived` is designed for on‑premises deployments. It is typically not viable in cloud environments, such as AWS, because of the networking restrictions they impose.
+The [supported solution for HA deployment]({{< ref "nginx/admin-guide/high-availability/ha-keepalived.md" >}}) of NGINX Plus that uses `keepalived` is designed for on‑premises deployments. It is typically not viable in cloud environments, such as AWS, because of the networking restrictions they impose.
 
 One method for deploying NGINX Plus in a highly available manner on AWS is to use ELB in front of NGINX Plus instances. However, the method has several disadvantages:
 
@@ -64,7 +64,7 @@ The scripts in the HA solution use the AWS API to associate an Elastic IP addre
 
    Alternatively, you can use the `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` environment variables to provide credentials to the HA scripts, as shown in [Step 5](#ha-aws_keepalived-configure).
 
-2. Launch two instances and [install NGINX Plus]({{< relref "../../admin-guide/installing-nginx/installing-nginx-plus-amazon-web-services.md" >}}) on each. (As noted, we tested the instructions on <span style="white-space: nowrap;">Ubuntu 16.04 LTS</span> and CentOS 7.)
+2. Launch two instances and [install NGINX Plus]({{< ref "nginx/admin-guide/installing-nginx/installing-nginx-plus-amazon-web-services.md" >}}) on each. (As noted, we tested the instructions on <span style="white-space: nowrap;">Ubuntu 16.04 LTS</span> and CentOS 7.)
 
 3. Attach this IAM role to the instance.
 

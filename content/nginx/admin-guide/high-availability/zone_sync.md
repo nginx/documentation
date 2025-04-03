@@ -25,8 +25,8 @@ All NGINX Plus instances can exchange state data with all other members in a clu
 <span id="prerequisites"></span>
 ## Prerequisites
 
-- <a href="../../../releases/#r16">NGINX Plus R16</a> for sharing limits of requests processing and key-value data across the cluster
-- <a href="../../../releases/#r15">NGINX Plus R15</a> for sharing limits of sticky learn data across the cluster
+- NGINX Plus [R16]({{< ref "nginx/releases.md#r16" >}}) for sharing limits of requests processing and key-value data across the cluster
+- NGINX Plus [R15]({{< ref "nginx/releases.md#r15" >}}) for sharing limits of sticky learn data across the cluster
 
 State sharing across a cluster is eventually consistent by nature. It is strongly recommended using data-center grade networks for clustering traffic, as latency, low bandwidth, and packet loss will have a significant negative impact on state consistency. We do not recommend stretching clusters over the Internet, regions, or availability zones.
 

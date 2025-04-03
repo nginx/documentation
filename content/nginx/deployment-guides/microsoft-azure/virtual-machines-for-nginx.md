@@ -14,7 +14,7 @@ These instructions explain how to create virtual machines (VMs) in the Microsoft
 
 The names and other settings used in this guide are appropriate for the high‑availability deployment described in [Active-Active HA for NGINX Plus on Microsoft Azure Using the Azure Standard Load Balancer]({{< ref "high-availability-standard-load-balancer.md" >}}), but the VMs can be used for any purpose.
 
-For NGINX Plus, a faster alternative is to purchase a prebuilt VM in the [Microsoft Azure Marketplace](https://azuremarketplace.microsoft.com/en-us/marketplace/apps?search=NGINX%20Plus) (several current operating systems are available). For instructions, see [Installing NGINX Plus on Microsoft Azure]({{< relref "../../admin-guide/installing-nginx/installing-nginx-plus-microsoft-azure.md" >}}).
+For NGINX Plus, a faster alternative is to purchase a prebuilt VM in the [Microsoft Azure Marketplace](https://azuremarketplace.microsoft.com/en-us/marketplace/apps?search=NGINX%20Plus) (several current operating systems are available). For instructions, see [Installing NGINX Plus on Microsoft Azure]({{< ref "nginx/admin-guide/installing-nginx/installing-nginx-plus-microsoft-azure.md" >}}).
 
 <span id="prereqs"></span>
 ## Prerequisites
@@ -137,7 +137,7 @@ To install and configure NGINX Open Source or NGINX Plus on a VM, you need to o
 <span id="install-nginx"></span>
 ## Installing NGINX Software
 
-Once you have established a connection with an instance, you can install the NGINX software on it. Follow the instructions in the NGINX Plus Admin Guide for <a href="../../../admin-guide/installing-nginx/installing-nginx-open-source/index.html#prebuilt">NGINX Open Source</a> and [NGINX Plus]({{< relref "../../admin-guide/installing-nginx/installing-nginx-plus.md" >}}). The [Admin Guide]({{< ref "/nginx/admin-guide/" >}}) also provides instructions for many maintenance tasks.
+Once you have established a connection with an instance, you can install the NGINX software on it. Follow the instructions in the NGINX Plus Admin Guide for <a href="../../../admin-guide/installing-nginx/installing-nginx-open-source/index.html#prebuilt">NGINX Open Source</a> and [NGINX Plus]({{< ref "nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}). The [Admin Guide]({{< ref "/nginx/admin-guide/" >}}) also provides instructions for many maintenance tasks.
 
 <span id="automate"></span>
 ### Automating Installation with a Configuration Manager
