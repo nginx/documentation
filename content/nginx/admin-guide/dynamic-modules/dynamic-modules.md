@@ -12,7 +12,7 @@ type:
 <span id="overview"></span>
 ## Overview
 
-F5 NGINX Plus uses a modular architecture. New features and functionality can be added with software modules, which can be plugged into a running NGINX Plus instance on demand. Dynamic modules add functionality to NGINX Plus such as [geolocating users by IP address]({{< relref "./geoip2.md" >}}), [resizing images]({{< ref "image-filter.md" >}}), and embedding [NGINX JavaScript njs]({{< ref "nginscript.md" >}}) or [Lua]({{< relref "./lua.md" >}}) scripts into the NGINX Plus event‑processing model. Modules are created both by NGINX and third‑party developers.
+F5 NGINX Plus uses a modular architecture. New features and functionality can be added with software modules, which can be plugged into a running NGINX Plus instance on demand. Dynamic modules add functionality to NGINX Plus such as [geolocating users by IP address]({{< ref "geoip2.md" >}}), [resizing images]({{< ref "image-filter.md" >}}), and embedding [NGINX JavaScript njs]({{< ref "nginscript.md" >}}) or [Lua]({{< ref "nginx/admin-guide/dynamic-modules/lua.md" >}}) scripts into the NGINX Plus event‑processing model. Modules are created both by NGINX and third‑party developers.
 
 <img src="/nginx/images/nginx-plus-dynamic-module-plug-ins.png" alt="NGINX Plus allows features to be plugged in on demand" width="500" height="500" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
@@ -44,15 +44,15 @@ load_module modules/ngx_stream_js_module.so;
 For module‑specific instructions, see the list of modules in the same section of the NGINX Plus Admin Guide as this article:
 
 - [Brotli]({{< ref "brotli.md" >}})
-- [Cookie-Flag]({{< relref "./cookie-flag.md" >}})
+- [Cookie-Flag]({{< ref "cookie-flag.md" >}})
 - [Encrypted-Session]({{< ref "encrypted-session.md" >}})
-- [FIPS Status Check]({{< relref "./fips.md" >}})
-- [GeoIP]({{< relref "./geoip.md" >}})
-- [GeoIP2]({{< relref "./geoip2.md" >}})
+- [FIPS Status Check]({{< ref "fips.md" >}})
+- [GeoIP]({{< ref "geoip.md" >}})
+- [GeoIP2]({{< ref "geoip2.md" >}})
 - [Headers-More]({{< ref "headers-more.md" >}})
 - [HTTP Substitutions Filter]({{< ref "http-substitutions-filter.md" >}})
 - [Image-Filter]({{< ref "image-filter.md" >}})
-- [Lua]({{< relref "./lua.md" >}})
+- [Lua]({{< ref "lua.md" >}})
 - [njs Scripting Language]({{< ref "nginscript.md" >}})
 - [NGINX ModSecurity WAF]({{< ref "nginx-waf.md" >}})
 - [NGINX Developer Kit]({{< ref "ndk.md" >}})
@@ -62,15 +62,15 @@ For module‑specific instructions, see the list of modules in the same section 
 - [Perl]({{< ref "perl.md" >}})
 - [Prometheus-njs]({{< ref "prometheus-njs.md" >}})
 - [RTMP]({{< ref "rtmp.md" >}})
-- [Set-Misc]({{< relref "./set-misc.md" >}})
+- [Set-Misc]({{< ref "nginx/admin-guide/dynamic-modules/set-misc.md" >}})
 - [SPNEGO]({{< ref "spnego.md" >}})
-- [XSLT]({{< relref "./xslt.md" >}})
+- [XSLT]({{< ref "xslt.md" >}})
 
 
 <span id="prereq"></span>
 ### Prerequisites
 
-To get started using dynamic modules, first install the latest NGINX Plus release, following the [installation instructions]({{< relref "../installing-nginx/installing-nginx-plus.md" >}}). Dynamic modules are supported in [NGINX Plus Release 9 (R9)]({{< ref "/nginx/releases.md#r9" >}}) and later.
+To get started using dynamic modules, first install the latest NGINX Plus release, following the [installation instructions]({{< ref "nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}). Dynamic modules are supported in [NGINX Plus Release 9 (R9)]({{< ref "/nginx/releases.md#r9" >}}) and later.
 
 
 <span id="modules_all"></span>
@@ -109,7 +109,7 @@ NGINX Plus Certified Modules can be found on the [Dynamic Modules page](https://
 <span id="caveats"></span>
 ### Caveats
 
-Some modules are not available for certain OS versions because of OS limitations. For details, see the [NGINX Plus Technical Specifications]({{< relref "../../technical-specs.md" >}}).
+Some modules are not available for certain OS versions because of OS limitations. For details, see the [NGINX Plus Technical Specifications]({{< ref "nginx/technical-specs.md" >}}).
 
 
 <span id="compile"></span>
@@ -127,7 +127,7 @@ To uninstall a dynamic module, please follow the [Uninstalling a dynamic module]
 <span id="info"></span>
 ## See Also
 
-- [Installing NGINX Plus]({{< relref "../installing-nginx/installing-nginx-plus.md" >}})
+- [Installing NGINX Plus]({{< ref "nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}})
 
-- [NGINX Plus Technical Specifications]({{< relref "../../technical-specs.md" >}})
+- [NGINX Plus Technical Specifications]({{< ref "nginx/technical-specs.md" >}})
 

@@ -13,7 +13,7 @@ type:
 <span id="intro"></span>
 ## Introduction
 
-F5 NGINX Plus utilizes [keepalived](http://www.keepalived.org/) to provide high availability (HA) in a standard active‑passive fashion. This provides failover redundancy in the event of a problem on the primary NGINX Plus node. We can extend this functionality with additional nodes and changes to the `keepalived` configuration, providing additional redundancy and scalability options. This guide assumes that you have already configured NGINX Plus in an active‑passive implementation with [the NGINX HA solution]({{< relref "./ha-keepalived.md" >}}).
+F5 NGINX Plus utilizes [keepalived](http://www.keepalived.org/) to provide high availability (HA) in a standard active‑passive fashion. This provides failover redundancy in the event of a problem on the primary NGINX Plus node. We can extend this functionality with additional nodes and changes to the `keepalived` configuration, providing additional redundancy and scalability options. This guide assumes that you have already configured NGINX Plus in an active‑passive implementation with [the NGINX HA solution]({{< ref "nginx/admin-guide/high-availability/ha-keepalived.md" >}}).
 
 **NOTE:** In a public cloud deployment we recommend using a Layer 4 or TCP load‑balancing service offered by the cloud provider to distribute traffic to NGINX Plus for active‑active functionality.
 

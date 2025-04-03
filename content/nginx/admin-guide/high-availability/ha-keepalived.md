@@ -16,7 +16,7 @@ This article explains how to configure high availability of NGINX Plus instance
 <span id="ha_support"></span>
 ## High Availability Support Based on keepalived
 
-<a href="../../../releases/#r6">NGINX Plus R6</a> and later supports a solution for fast and easy configuration of NGINX Plus in an active‑passive high‑availability (HA) setup, based on [keepalived](https://www.keepalived.org/).
+NGINX Plus [Release 6]({{< ref "nginx/releases.md#r6" >}}) and later supports a solution for fast and easy configuration of NGINX Plus in an active‑passive high‑availability (HA) setup, based on [keepalived](https://www.keepalived.org/).
 
 The [keepalived open source project](http://www.keepalived.org/) includes three components:
 

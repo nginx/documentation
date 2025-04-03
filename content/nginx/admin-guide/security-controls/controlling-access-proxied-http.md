@@ -224,7 +224,7 @@ http {
 }
 ```
 
-See [Runtime State Sharing in a Cluster]({{< relref "../high-availability/zone_sync.md" >}}) for details.
+See [Runtime State Sharing in a Cluster]({{< ref "nginx/admin-guide/high-availability/zone_sync.md" >}}) for details.
 
 
 <span id="limit_rate"></span>
