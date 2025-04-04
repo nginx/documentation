@@ -31,16 +31,20 @@ h2 {
 Stay up-to-date with what's new and improved in the F5 NGINX One Console.
 
 ## April 3, 2025
+
 ### Create Custom Roles with more precise permissions
 
-We have added narrowly scoped API groups that align with all the features and functionality within the NGINX One Console. These API groups allow for precise control and can be tied to [custom roles](https://docs.cloud.f5.com/docs-v2/administration/how-tos/user-mgmt/roles#custom-roles), enabling you to tailor access policies to meet your specific requirements. 
+We have added API groups that align with the features and functionality in the NGINX One Console. You can now:
 
-#### Key Highlights:
-- <b>Custom Role Assignments</b>: Custom roles can be configured and assigned to individual users or service accounts, adapting to your team’s workflows.
-- <b>Namespace-Based Permissions</b>: By leveraging [namespaces](https://docs.cloud.f5.com/docs-v2/platform/concepts/core-concepts#namespaces), you can segregate API group permissions to enforce the <b>principle of least privilege</b>, ensuring a secure and compliant tenant environment.
+- Use our narrowly scoped API groups.
+- Tailor access policies with [custom roles](https://docs.cloud.f5.com/docs-v2/administration/how-tos/user-mgmt/roles#custom-roles).
 
-For in-depth details about this new feature, refer to the
-[RBAC Overview]({{< ref "/nginx-one/rbac/overview.md" >}}) documentation.
+#### Highlights:
+
+- Custom role assignments: You can set up custom roles for users or service accounts.
+- Namespace-based permissions: With [namespaces](https://docs.cloud.f5.com/docs-v2/platform/concepts/core-concepts#namespaces), you can configure API group permissions to support least privilege.
+
+For more information, read [Custom roles and API groups]({{< ref "/nginx-one/rbac/rbac-api.md" >}}).
 
 ## March 11, 2025
 
