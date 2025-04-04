@@ -81,12 +81,11 @@ The figure shows:
 
 - An NGINX Instance running on bare metal, virtual machine or container
 - The NGINX One Cloud Console includes:
-  - Command Server to manage NGINX configurations, push new/updated configuration files remotely, perform integrity tests, and automatically roll back to last good configuration if issues are detected.
+  - Command Server to manage NGINX configurations, push new/updated configuration files remotely, and perform integrity tests.
   - OpenTelemetry (OTel) Receiver that receives observability data from connected Agent instances.
-- An Agent Process running on the NGINX Instance. The Agent is responsible for:
-  - Watching, applying, validating, and managing rollback operations on NGINX configuration files.
-  - Embedding an OpenTelemetry Collector, collecting metrics from both NGINX processes and host system performance data, then securely passing metric data to the NGINX One Cloud Console.
-- Collection and monitoring of Host Metrics (CPU usage, Memory utilization, Disk I/O).
-- Management and troubleshooting features leveraging NGINX Configuration Files, NGINX Logs (both access and error), and process-level metrics.
+- An Agent process running on the NGINX Instance. The Agent is responsible for:
+  - Watching, applying, validating, automatically roll back to last good configuration if issues are detected.
+  - Embedding an OpenTelemetry Collector, collecting metrics from NGINX processes, host system performance data,  then securely passing metric data to the NGINX One Cloud Console.
+- Collection and monitoring of host metrics (CPU usage, Memory utilization, Disk I/O) by the Agent OTel collector.
 - Collected data is made available on the NGINX One Cloud Console for monitoring, alerting, troubleshooting, and capacity planning purposes.
 
