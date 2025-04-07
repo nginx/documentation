@@ -1,5 +1,5 @@
 ---
-title: "Running the NGINX Agent in a Container"
+title: "Run the NGINX Agent in a container"
 weight: 300
 toc: true
 type: how-to
