@@ -30,6 +30,22 @@ h2 {
 
 Stay up-to-date with what's new and improved in the F5 NGINX One Console.
 
+## April 3, 2025
+
+### Create Custom Roles with more precise permissions
+
+We have added API groups that align with the features and functionality in the NGINX One Console. You can now:
+
+- Use our narrowly scoped API groups.
+- Tailor access policies with [custom roles](https://docs.cloud.f5.com/docs-v2/administration/how-tos/user-mgmt/roles#custom-roles).
+
+#### Highlights:
+
+- Custom role assignments: You can set up custom roles for users or service accounts.
+- Namespace-based permissions: With [namespaces](https://docs.cloud.f5.com/docs-v2/platform/concepts/core-concepts#namespaces), you can configure API group permissions to support least privilege.
+
+For more information, read [Custom roles and API groups]({{< ref "/nginx-one/rbac/rbac-api.md" >}}).
+
 ## March 11, 2025
 
 ### Set up Staged Configurations
