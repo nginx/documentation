@@ -79,7 +79,7 @@ Key options explained:
 - `-v $(pwd)/nginx-agent.conf:/etc/nginx-agent/nginx-agent.conf`: Mounts the configuration file into the container.
 
 
-4. Verify the Container is Running
+4. Verify the container is running
 
 Check the running status of the container:
 
