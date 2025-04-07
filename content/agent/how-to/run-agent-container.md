@@ -23,7 +23,7 @@ This guide uses Docker but NGINX Agent will also work with other container appli
 - **NGINX Configuration File:** Prepare and validate your NGINX configuration files that the Agent will monitor.
 - **Credentials:** Acquire any necessary authentication tokens or credentials required for the NGINX Agent.
 
-1. Pull the NGINX Agent Container Image
+1. Pull the NGINX Agent container image
 
 The NGINX Agent container image must be downloaded from a trusted source such as Docker Hub or a private container registry.
 
