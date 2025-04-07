@@ -59,7 +59,7 @@ Replace the placeholder values:
 - `<your-data-plane-key-here>`: Your Data Plane access token.
 
 
-3. Run the Container
+3. Run the container
 
 Run the NGINX Agent container with the configuration file mounted.
 
