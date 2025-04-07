@@ -35,7 +35,7 @@ The F5 NGINX Agent is a lightweight companion daemon designed to work with NGINX
 - For example, it tracks key metrics such as active connections, requests per second, HTTP status codes, and response times. Additionally, it collects system-level data, including CPU usage, memory consumption, and disk I/O. These insights provide deep observability into NGINX's behavior, enabling teams to troubleshoot issues effectively, optimize performance, and maintain high availability.
 - Collected metrics can be seamlessly exported to the NGINX One Console or integrated with third-party data aggregators.
 
-## How Agent works
+## How NGINX Agent works
 
 ```mermaid
 graph BT
