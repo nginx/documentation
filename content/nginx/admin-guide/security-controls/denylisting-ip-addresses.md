@@ -2,11 +2,11 @@
 description: Control access to your site or apps from specific client IP addresses,
   using dynamic denylists built with the F5 NGINX Plus key-value store and API.
 docs: DOCS-434
-doctypes:
-- task
 title: Dynamic Denylisting of IP Addresses
 toc: true
 weight: 1100
+type:
+- how-to
 ---
 
 This section describes how to create a denylist or allowlist of specific client IP addresses, which denies or allows them access to your site, and how to dynamically maintain the list of addresses.
@@ -14,15 +14,15 @@ This section describes how to create a denylist or allowlist of specific client 
 <span id="overview"></span>
 ## Overview
 
-In F5 NGINX Plus <a href="../../../releases/#r13">Release 13</a> (R13) and later, you can denylist some IP addresses as well as create and maintain a database of denylisted IP addresses. You can also explicitly allowlist other IP addresses. The IP addresses database is managed with the NGINX Plus <a href="https://nginx.org/en/docs/http/ngx_http_api_module.html">API</a> and <a target="_blank" href="https://nginx.org/en/docs/http/ngx_http_keyval_module.html">keyval</a> modules.
+In F5 NGINX Plus [Release 13]({{< ref "nginx/releases.md#r13" >}}) (R13) and later, you can denylist some IP addresses as well as create and maintain a database of denylisted IP addresses. You can also explicitly allowlist other IP addresses. The IP addresses database is managed with the NGINX Plus <a href="https://nginx.org/en/docs/http/ngx_http_api_module.html">API</a> and <a target="_blank" href="https://nginx.org/en/docs/http/ngx_http_keyval_module.html">keyval</a> modules.
 
-NGINX Plus <a href="../../../releases/#r13">Release 19</a> (R19) extends this capability by matching an IP address to any address within a subnet or network range.
+NGINX Plus [Release 19]({{< ref "nginx/releases.md#r19" >}}) extends this capability by matching an IP address to any address within a subnet or network range.
 
 
 <span id="prereq"></span>
 ## Prerequisites
 
-NGINX Plus <a href="../../../releases/#r13">Release 13</a> and later, NGINX Plus <a href="../../../releases/#r19">Release 19</a> and later for network ranges support.
+NGINX Plus [Release 13]({{< ref "nginx/releases.md#r13" >}}) and later, NGINX Plus [Release 19]({{< ref "nginx/releases.md#r19" >}}) and later for network ranges support.
 
 <span id="setup"></span>
 ## Setup
@@ -69,7 +69,7 @@ First, enable the database for storing the list of denylisted and allowlisted IP
     }
     ```
 
-   We strongly recommend [restricting access]({{< relref "/nginx/admin-guide/security-controls/controlling-access-proxied-http.md" >}}) to this location, for example by allowing access only from `localhost` (`127.0.0.1`), and by using HTTP basic authentication to restrict use of the `PATCH`, `POST`, and `DELETE` methods to a specified set of users:
+   We strongly recommend [restricting access]({{< ref "/nginx/admin-guide/security-controls/controlling-access-proxied-http.md" >}}) to this location, for example by allowing access only from `localhost` (`127.0.0.1`), and by using HTTP basic authentication to restrict use of the `PATCH`, `POST`, and `DELETE` methods to a specified set of users:
 
    ```nginx
    # ...

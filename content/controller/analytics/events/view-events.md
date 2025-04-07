@@ -1,13 +1,11 @@
 ---
 description: View the audit log of system and user actions.
 docs: DOCS-530
-doctypes:
-- task
-tags:
-- docs
 title: View Events
 toc: true
 weight: 20
+type:
+- how-to
 ---
 
 ## Overview
@@ -32,7 +30,7 @@ You can select from the following Event Categories:
 - Agent Status Events;
 - Controller Events;
 - Audit Events -- a log of all actions performed by NGINX Controller users;
-- Forwarder Notifications -- events emitted by [Data Forwarders]({{< relref "/controller/analytics/forwarders/_index.md" >}})
+- Forwarder Notifications -- events emitted by [Data Forwarders]({{< ref "/controller/analytics/forwarders/_index.md" >}})
 - Workload Health Events -- events emitted by the Controller Agent when the health of an upstream server changes;
 
 To view the logs for a specific category, select the category name from the **Event Categories** list.

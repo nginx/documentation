@@ -2,18 +2,16 @@
 description: Learn about the common tasks and resources that are required to deploy
   and manage Services using F5 NGINX Controller.
 docs: DOCS-374
-doctypes:
-- tutorial
-tags:
-- docs
 title: Set Up NGINX Controller Services
 toc: true
 weight: 10
+type:
+- tutorial
 ---
 
 ## Introduction
 
-As noted in the F5 NGINX Controller [API Overview]({{< relref "/controller/api/overview.md" >}}), NGINX Controller is organized into four top-level areas:
+As noted in the F5 NGINX Controller [API Overview]({{< ref "/controller/api/overview.md" >}}), NGINX Controller is organized into four top-level areas:
 
 - **Analytics**: Enables data visualization for NGINX Controller.
 - **Infrastructure**: Lets you manage your NGINX Plus instances and certain aspects of the host machines on which NGINX Controller and NGINX Plus instances run.
@@ -38,15 +36,15 @@ But, before any teams can deploy an App or publish an API, an NGINX Controller A
 
 The following are the basic building blocks of any NGINX Controller Service:
 
-1. [Environments]({{< relref "/controller/services/manage-environments.md" >}}) logically group all other Service objects. You can use [Access Management]({{< relref "/controller/platform/access-management/" >}}) to grant Users or User Groups permission to access resources in a specific Environment.
-1. [Certs]({{< relref "/controller/services/manage-certs.md" >}}) can be used to secure traffic to and from APIs and Applications.
-1. [Gateways]({{< relref "/controller/services/manage-gateways.md" >}}) define how to process incoming (ingress) and outgoing (egress) traffic.
+1. [Environments]({{< ref "/controller/services/manage-environments.md" >}}) logically group all other Service objects. You can use [Access Management]({{< ref "/controller/platform/access-management/" >}}) to grant Users or User Groups permission to access resources in a specific Environment.
+1. [Certs]({{< ref "/controller/services/manage-certs.md" >}}) can be used to secure traffic to and from APIs and Applications.
+1. [Gateways]({{< ref "/controller/services/manage-gateways.md" >}}) define how to process incoming (ingress) and outgoing (egress) traffic.
 
 Once these shared resources are in place, the teams in your organization can create the resources they need to manage Apps or publish APIs.
 
-{{< tip >}}Refer to the [App Delivery]({{< relref "/controller/app-delivery/" >}}) section for more information about how to use each module.{{< /tip >}}
+{{< tip >}}Refer to the [App Delivery]({{< ref "/controller/app-delivery/" >}}) section for more information about how to use each module.{{< /tip >}}
 
-Finally, to support automation efforts, all of the above and more can be done by using the NGINX Controller REST API. Refer to the [API Reference guide]({{< relref "/controller/api/_index.md" >}}) for more information and examples.
+Finally, to support automation efforts, all of the above and more can be done by using the NGINX Controller REST API. Refer to the [API Reference guide]({{< ref "/controller/api/_index.md" >}}) for more information and examples.
 
 {{< versions "3.0" "latest" "ctrlvers" >}}
 {{< versions "3.18" "latest" "apimvers" >}}

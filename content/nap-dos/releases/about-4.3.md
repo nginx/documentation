@@ -16,7 +16,7 @@ In this release, NGINX App Protect DoS supports NGINX Plus R31.
 ### New Features
 
 - Support for Nginx Plus R31
-- [Support for Alpine 3.17]({{< relref "learn-about-deployment.md#alpine-315x--317x-installation" >}})
+- [Support for Alpine 3.17]({{< ref "learn-about-deployment.md#alpine-315x--317x-installation" >}})
 
 
 ### Supported Packages

@@ -9,7 +9,7 @@ docs: DOCS-943
 
 September 21, 2022
 
-This release includes new signatures for [Anti Automation]({{< relref "/nap-waf/v4/configuration-guide/configuration.md#anti-automation-bot-mitigation" >}}) (bot defense) feature as follows:
+This release includes new signatures for [Anti Automation]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#anti-automation-bot-mitigation" >}}) (bot defense) feature as follows:
 
 - Added the following Spam Bot bot signatures: RealStresser, Orbbot, xx032_bo9vs83_2a, Antoine
 - Added the following Exploit Tool bot signatures: RealityCheats, Mitel MiVoice Exploiter, joxypoxy, nvd0rz, CVE-2019-11043, Anan mal 123
@@ -59,7 +59,7 @@ This release includes new signatures for [Anti Automation]({{< relref "/nap-waf/
 
 ### **Important Notes**
 
-- This release introduces a change in dependency of [Attack Signatures]({{< relref "/nap-waf/v4/admin-guide/install.md#attack-signatures-dependency-change-in-nginx-app-protect-waf" >}}) and [Threat Campaigns]({{< relref "/nap-waf/v4/admin-guide/install.md#threat-campaigns-dependency-change-in-nginx-app-protect-waf" >}}) packages. From version 3.12, when the user performs the clean install (installing NGINX App Protect WAF for the first time), it will install the latest  Attack Signatures/Threat Campaigns package. This will keep the customers up to date with the latest Attack Signatures/Threat Campaigns and provide protection against the latest threats.<br><br>
+- This release introduces a change in dependency of [Attack Signatures]({{< ref "/nap-waf/v4/admin-guide/install.md#attack-signatures-dependency-change-in-nginx-app-protect-waf" >}}) and [Threat Campaigns]({{< ref "/nap-waf/v4/admin-guide/install.md#threat-campaigns-dependency-change-in-nginx-app-protect-waf" >}}) packages. From version 3.12, when the user performs the clean install (installing NGINX App Protect WAF for the first time), it will install the latest  Attack Signatures/Threat Campaigns package. This will keep the customers up to date with the latest Attack Signatures/Threat Campaigns and provide protection against the latest threats.<br><br>
 In case the user has an older version of NGINX App Protect WAF and never installed the Attack Signatures/Threat Campaigns package, upgrading NGINX App Protect will install the latest Attack Signatures/Threat Campaigns. However, if they have installed the Attack Signatures/Threat Campaigns package previously at any point in time, NGINX App Protect WAF will not install the latest Attack Signatures/Threat Campaigns.<br><br>
 The user can upgrade or downgrade the Attack Signature/Threat Campaigns regardless of the installed version of NGINX App Protect WAF.
 
@@ -68,7 +68,7 @@ In NGINX App Protect WAF versions prior to 3.12, the default value for `relax_un
 For more information, refer to article on [relax_unicode_in_json](https://support.f5.com/csp/article/K58055038).
 
 - When upgrading the NGINX App Protect WAF deployments on Virtual Machines (VM), where the upgrade includes a NGINX Plus release upgrade as well, customers might witness some error messages about the upgrade failure. <br>
-Customers are advised to ignore these messages and continue with the [upgrade procedure]({{< relref "/nap-waf/v4/admin-guide/install.md#upgrading-app-protect" >}}) as described in the NGINX App Protect WAF Admin guide.
+Customers are advised to ignore these messages and continue with the [upgrade procedure]({{< ref "/nap-waf/v4/admin-guide/install.md#upgrading-app-protect" >}}) as described in the NGINX App Protect WAF Admin guide.
 Additional NGINX restart might be required in order to complete the upgrade procedure. The issue is fixed as a part of release 3.12 and upgrades from this release onwards should not encounter this issue.
 
 - Adaptive Violation Rating (AdVR) capability is offered as Tech Preview for Ubuntu 20.04 (Focal Fossa) Operating System (OS). Customers who wish to evaluate this capability are encouraged to contact their local F5 App Protect WAF representative for more details.

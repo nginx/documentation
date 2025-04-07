@@ -1,7 +1,5 @@
 ---
 docs: DOCS-1098
-tags:
-- docs
 title: Back up and restore
 toc: true
 weight: 1
@@ -13,7 +11,7 @@ NGINX Instance Manager includes several scripts for backing up and restoring con
 
 The backup and restore scripts are provided for reference and may need to be adjusted to suit your specific deployment.
 
-{{< call-out "important" "NGINX Instance Manager 2.14.1 and earlier:" >}}If you're using **NGINX Instance Manager version 2.14.1 or earlier**, you'll need to [install SQLite]({{< relref "/nim/admin-guide/maintenance/sqlite-installation.md" >}}) to run the backup and recovery scripts.{{</call-out>}}
+{{< call-out "important" "NGINX Instance Manager 2.14.1 and earlier:" >}}If you're using **NGINX Instance Manager version 2.14.1 or earlier**, you'll need to [install SQLite]({{< ref "/nim/admin-guide/maintenance/sqlite-installation.md" >}}) to run the backup and recovery scripts.{{</call-out>}}
 
 {{<call-out "note" "About nms in commands">}} Some commands and directories still use `nms` in their paths or names because they were established when NGINX Instance Manager was part of the NGINX Management Suite. These names remain unchanged in this version for consistency with the existing file structure.{{</call-out>}}
 
@@ -87,7 +85,7 @@ To complete the steps in this guide, ensure the following:
 
 <a name="root-access"></a>
 
-- **Root Access**:  
+- **Root Access**:
   You’ll need superuser (sudo) access to run the backup and restore scripts, which use the `kubectl` command to interact with the Kubernetes API. Ensure that the root user has access to the Kubernetes cluster.
 
   To verify root access to the Kubernetes API, run this command:
@@ -106,17 +104,17 @@ To complete the steps in this guide, ensure the following:
 
   Replace `/etc/kubernetes/admin.conf` with the actual configuration path for your cluster if it differs.
 
-- **Utility Pod**:  
+- **Utility Pod**:
   Ensure the `utility` pod is installed in your Kubernetes cluster:
 
-  1. Update your [Helm Deployment values.yaml file]({{< relref "/nim/deploy/kubernetes/deploy-using-helm.md#configure-chart" >}}), adding the following line to enable the utility pod:
+  1. Update your [Helm Deployment values.yaml file]({{< ref "/nim/deploy/kubernetes/deploy-using-helm.md#configure-chart" >}}), adding the following line to enable the utility pod:
 
     ```yaml
     global:
         utility: true
     ```
 
-  2. [Upgrade your NGINX Instance Manager deployment]({{< relref "/nim/deploy/kubernetes/deploy-using-helm#helm-upgrade-nim" >}}).
+  2. [Upgrade your NGINX Instance Manager deployment]({{< ref "/nim/deploy/kubernetes/deploy-using-helm#helm-upgrade-nim" >}}).
 
   3. Download the Helm chart for the installed version of NGINX Instance Manager:
 
@@ -179,7 +177,7 @@ To restore NGINX Instance Manager to the same Kubernetes cluster:
 
     If the Kubernetes configuration is different, update the path accordingly.
 
-    {{< note >}}The restore script requires [root access]({{< relref "/nim/admin-guide/maintenance/backup-and-recovery.md#root-access" >}}).{{</note>}}
+    {{< note >}}The restore script requires [root access]({{< ref "/nim/admin-guide/maintenance/backup-and-recovery.md#root-access" >}}).{{</note>}}
 
 5. After specifying the NGINX Instance Manager namespace, the script will use the provided backup archive.
 
@@ -211,7 +209,7 @@ To restore NGINX Instance Manager to a different Kubernetes cluster:
 
     If the Kubernetes configuration differs, update the path accordingly.
 
-    {{< note >}}The restore script requires [root access]({{< relref "/nim/admin-guide/maintenance/backup-and-recovery.md#root-access" >}}).{{</note>}}
+    {{< note >}}The restore script requires [root access]({{< ref "/nim/admin-guide/maintenance/backup-and-recovery.md#root-access" >}}).{{</note>}}
 
 5. After specifying the NGINX Instance Manager namespace, the script will restore the databases and core secrets.
 

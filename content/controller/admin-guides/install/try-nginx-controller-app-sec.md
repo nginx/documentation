@@ -1,14 +1,12 @@
 ---
-description: This quick-start tutorial shows you how to get started using F5 NGINX Controller
-  with the Application Security Add-on.
+description: This quick-start tutorial shows you how to get started using F5 NGINX
+  Controller with the Application Security Add-on.
 docs: DOCS-259
-doctypes:
-- tutorial
-tags:
-- docs
 title: Trial NGINX Controller with App Security
 toc: true
 weight: 115
+type:
+- tutorial
 ---
 
 ## Overview
@@ -27,7 +25,7 @@ Take the steps in this guide to deploy NGINX Controller with App Security and de
 
 ## Technical Requirements
 
-Be sure to review the [NGINX Controller Technical Specifications Guide]({{< relref "/controller/admin-guides/install/nginx-controller-tech-specs.md" >}}) for additional requirements for your desired distribution and configuration.
+Be sure to review the [NGINX Controller Technical Specifications Guide]({{< ref "/controller/admin-guides/install/nginx-controller-tech-specs.md" >}}) for additional requirements for your desired distribution and configuration.
 
 ### Supported Distributions
 
@@ -44,14 +42,14 @@ The following minimum hardware specifications are required for each node running
 
 - RAM: 8 GB RAM
 - CPU: 8-Core CPU @ 2.40 GHz or similar
-- Disk space: 155–255 GB free disk space. 255 GB of free space is recommended if NGINX Controller App Security is enabled. See the [Storage Requirements]({{< relref "/controller/admin-guides/install/nginx-controller-tech-specs.md#storage-requirements" >}}) section for a categorized list of the storage requirements.
+- Disk space: 155–255 GB free disk space. 255 GB of free space is recommended if NGINX Controller App Security is enabled. See the [Storage Requirements]({{< ref "/controller/admin-guides/install/nginx-controller-tech-specs.md#storage-requirements" >}}) section for a categorized list of the storage requirements.
 
 ### Supported NGINX Versions
 
 The App Security add-on for the NGINX Controller Application Delivery module is compatible with the versions of NGINX Plus and NGINX App Protect shown in the table below. New releases of NGINX Controller ADC support the last four versions of NGINX Plus at release time.
 
 {{< see-also >}}
-Refer to [Using NGINX App Protect with NGINX Controller]({{< relref "controller/admin-guides/install/install-for-controller.md" >}}) for installation instructions and additional information.
+Refer to [Using NGINX App Protect with NGINX Controller]({{< ref "controller/admin-guides/install/install-for-controller.md" >}}) for installation instructions and additional information.
 {{< /see-also >}}
 
 {{< bootstrap-table "table table-striped table-bordered" >}}
@@ -96,7 +94,7 @@ First, you need to sign up for a trial license for NGINX Controller. The trial i
 1. On the MyF5 landing page, activate the NGINX Controller free trial.
 1. On the MyF5 **Trials** page, select Launch Your Trial.
 1. Download the NGINX Controller package.
-1. Make note of your Association Token. You will use this to [license your NGINX Controller instance]({{< relref "/controller/platform/licensing-controller.md#add-a-license-to-nginx-controller" >}}).
+1. Make note of your Association Token. You will use this to [license your NGINX Controller instance]({{< ref "/controller/platform/licensing-controller.md#add-a-license-to-nginx-controller" >}}).
 
 
 &nbsp;
@@ -121,7 +119,7 @@ Install NGINX Controller on a dedicated node that **does not** already have Kube
 
 {{< important >}}Before installing NGINX Controller, you must **disable swap on the host**; this is required by Kubernetes in order for the kubelet to work properly. Refer to your Linux distribution documentation for specific instructions for disabling swap for your system. For more information about this requirement, see the AskF5 knowledge base article [K82655201](https://support.f5.com/csp/article/K82655201) and the [kubeadm installation guide](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/#before-you-begin) in the Kubernetes documentation.{{< /important >}}
 
-{{< caution >}}**For RHEL 8 deployments**, complete the additional prerequisite steps in the [Installing NGINX on RHEL 8]({{< relref "/controller/admin-guides/install/install-nginx-controller-rhel-8.md" >}}) guide before installing NGINX Controller. RHEL 8 support is a **beta** feature.{{< /caution >}}
+{{< caution >}}**For RHEL 8 deployments**, complete the additional prerequisite steps in the [Installing NGINX on RHEL 8]({{< ref "/controller/admin-guides/install/install-nginx-controller-rhel-8.md" >}}) guide before installing NGINX Controller. RHEL 8 support is a **beta** feature.{{< /caution >}}
 
 To install NGINX Controller, take the following steps:
 
@@ -145,7 +143,7 @@ To install NGINX Controller, take the following steps:
 
     - **Config database volume type**: Specify the type of volume to use to store the config database: local, NFS, or AWS. We recommend choosing `local` for demo and trial purposes.
 
-      {{< see-also >}}Refer to the [NGINX Controller Technical Specifications Guide]({{< relref "/controller/admin-guides/install/nginx-controller-tech-specs.md#local-or-external-storage" >}}) for more information about the volume options and requirements.{{< /see-also >}}
+      {{< see-also >}}Refer to the [NGINX Controller Technical Specifications Guide]({{< ref "/controller/admin-guides/install/nginx-controller-tech-specs.md#local-or-external-storage" >}}) for more information about the volume options and requirements.{{< /see-also >}}
 
     - **Analytics database volume type**: Specify the type of volume to use to store the analytics database: local, NFS, or AWS. We recommend choosing `local` for demo and trial purposes.
     - **EULA**: Read the end-user license agreement. Type either `y` to accept or `n` to exit.
@@ -189,7 +187,7 @@ To add a license to NGINX Controller, take the following steps:
 1. Select **Save license**.
 
 {{< see-also >}}
-To add a license using the [NGINX Controller REST API]({{< relref "/controller/api/_index.md" >}}), send a PUT request to the `/platform/license` endpoint. Provide your CAT or NGINX Controller license as a base64-encoded string in the JSON request body.
+To add a license using the [NGINX Controller REST API]({{< ref "/controller/api/_index.md" >}}), send a PUT request to the `/platform/license` endpoint. Provide your CAT or NGINX Controller license as a base64-encoded string in the JSON request body.
 {{< /see-also >}}
 
 
@@ -210,13 +208,13 @@ NGINX Controller App Security is supported for use with a limited subset of the 
 ### Prerequisites
 
 - Be sure to review the [NGINX Plus Technical Specifications](https://docs.nginx.com/nginx/technical-specs/) for the requirements for your distribution and desired configuration.
-- You'll need the NGINX Plus certificate and public key files (`nginx-repo.crt` and `nginx-repo.key`) when installing NGINX App Protect. If you don't have these files, you can use the [NGINX Controller REST API]({{< relref "/controller/api/_index.md" >}}) to download them.
+- You'll need the NGINX Plus certificate and public key files (`nginx-repo.crt` and `nginx-repo.key`) when installing NGINX App Protect. If you don't have these files, you can use the [NGINX Controller REST API]({{< ref "/controller/api/_index.md" >}}) to download them.
 
 #### Download the NGINX App Protect Cert and Key
 
 Take the steps below to download the cert and key files by using the NGINX Controller REST API.
 
-The NGINX Controller API uses session cookies to authenticate requests. The session cookie is returned in response to a `GET /api/v1/platform/login` request. See the Login endpoint in the [NGINX Controller API Reference]({{< relref "/controller/api/_index.md" >}}) documentation for information about session cookie timeouts and invalidation.
+The NGINX Controller API uses session cookies to authenticate requests. The session cookie is returned in response to a `GET /api/v1/platform/login` request. See the Login endpoint in the [NGINX Controller API Reference]({{< ref "/controller/api/_index.md" >}}) documentation for information about session cookie timeouts and invalidation.
 
 {{< tip >}}
 You can send a GET request to the login endpoint to find the status of the session token.
@@ -239,7 +237,7 @@ For example:
 
 <br>
 
-To use the [NGINX Controller REST API]({{< relref "/controller/api/_index.md" >}}) to download your NGINX Plus certificate and key bundle as a gzip or JSON file, send a GET request to the `/platform/licenses/nginx-plus-licenses/controller-provided` endpoint.
+To use the [NGINX Controller REST API]({{< ref "/controller/api/_index.md" >}}) to download your NGINX Plus certificate and key bundle as a gzip or JSON file, send a GET request to the `/platform/licenses/nginx-plus-licenses/controller-provided` endpoint.
 
 For example:
 
@@ -272,7 +270,7 @@ gunzip nginx-plus-certs.gz
 
 <div data-proofer-ignore>
 
-Install NGINX App Protect on a host accessible by your NGINX Controller instance by following the appropriate steps for your operating system in the [Using NGINX App Protect with NGINX Controller]({{< relref "controller/admin-guides/install/install-for-controller.md" >}}) guide.
+Install NGINX App Protect on a host accessible by your NGINX Controller instance by following the appropriate steps for your operating system in the [Using NGINX App Protect with NGINX Controller]({{< ref "controller/admin-guides/install/install-for-controller.md" >}}) guide.
 
 {{< note >}}
 If you install NGINX App Protect by using any of the OS-specific install guides, **do not make changes to the `nginx.conf` file**.
@@ -297,10 +295,10 @@ The NGINX Controller Agent manages `nginx.conf` settings and will make the appro
 
 You should now be ready to start your NGINX Controller with App Security trial. Refer to the following topics to get started:
 
-- [Configure the NGINX Controller Agent]({{< relref "/controller/admin-guides/config-agent/configure-the-agent.md" >}})
-- [Set Up Metrics Collection]({{< relref "/controller/admin-guides/config-agent/configure-metrics-collection.md" >}})
-- [Forward Metrics Data to an External Service]({{< relref "/controller/analytics/forwarders/_index.md" >}})
-- [Set up NGINX Controller Services]({{< relref "/controller/services/overview.md" >}})
+- [Configure the NGINX Controller Agent]({{< ref "/controller/admin-guides/config-agent/configure-the-agent.md" >}})
+- [Set Up Metrics Collection]({{< ref "/controller/admin-guides/config-agent/configure-metrics-collection.md" >}})
+- [Forward Metrics Data to an External Service]({{< ref "/controller/analytics/forwarders/_index.md" >}})
+- [Set up NGINX Controller Services]({{< ref "/controller/services/overview.md" >}})
 
 {{< versions "3.0" "latest" "ctrlvers" >}}
 {{< versions "3.18" "latest" "apimvers" >}}

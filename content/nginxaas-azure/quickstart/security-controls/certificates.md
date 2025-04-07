@@ -1,9 +1,10 @@
 ---
-title: "Use a certificate from Azure Key Vault"
+title: Use a certificate from Azure Key Vault
 weight: 50
-categories: ["tasks"]
 toc: true
 url: /nginxaas/azure/quickstart/security-controls/certificates/
+type:
+- how-to
 ---
 
 ## Overview
@@ -33,7 +34,7 @@ NGINXaaS enables customers to securely store SSL/TLS certificates in Azure Key V
 
 ## Create an NGINXaaS deployment
 
-If you do not have an NGINXaaS deployment, follow the steps in [Deploy using the Azure portal]({{< relref "/nginxaas-azure/getting-started/create-deployment/deploy-azure-portal.md" >}}).
+If you do not have an NGINXaaS deployment, follow the steps in [Deploy using the Azure portal]({{< ref "/nginxaas-azure/getting-started/create-deployment/deploy-azure-portal.md" >}}).
 
 {{<note>}} Your NGINXaaS deployment and your key vault must be in the same subscription. {{</note>}}
 
@@ -60,7 +61,7 @@ Next, you can add an SSL/TLS certificate to your key vault by following [Azure's
 
 ## Assign a managed identity to your NGINXaaS deployment
 
-In order for your NGINXaaS deployment to access your key vault, it must have an assinged managed idenity with the `Key Vault Secrets User` role. For more information, see [Assign Managed Identities]({{< relref "/nginxaas-azure/getting-started/managed-identity-portal.md" >}}) and [Prerequisites for adding SSL/TLS certificates]({{< relref "/nginxaas-azure/getting-started/ssl-tls-certificates/ssl-tls-certificates-portal.md#prerequisites" >}}).
+In order for your NGINXaaS deployment to access your key vault, it must have an assinged managed idenity with the `Key Vault Secrets User` role. For more information, see [Assign Managed Identities]({{< ref "/nginxaas-azure/getting-started/managed-identity-portal.md" >}}) and [Prerequisites for adding SSL/TLS certificates]({{< ref "/nginxaas-azure/getting-started/ssl-tls-certificates/ssl-tls-certificates-portal.md#prerequisites" >}}).
 
 1. Go to your NGINXaaS deployment.
 1. Select **Identity** in the left menu.
@@ -82,7 +83,7 @@ In order for your NGINXaaS deployment to access your key vault, it must have an 
 
 ## Add your certificate to your NGINXaaS deployment
 
-Now, you can add your SSL/TLS certificate from your key vault to your NGINXaaS deployment. For more information, see [Add certificates using the Azure portal]({{< relref "/nginxaas-azure/getting-started/ssl-tls-certificates/ssl-tls-certificates-portal.md">}}).
+Now, you can add your SSL/TLS certificate from your key vault to your NGINXaaS deployment. For more information, see [Add certificates using the Azure portal]({{< ref "/nginxaas-azure/getting-started/ssl-tls-certificates/ssl-tls-certificates-portal.md">}}).
 
 1. Go to your NGINXaaS deployment.
 1. Select **NGINX certificates** in the left menu.
@@ -108,7 +109,7 @@ Now, you can add your SSL/TLS certificate from your key vault to your NGINXaaS d
 
 ## Reference your certificate in your NGINX configuration
 
-Once a certificate has been added to your NGINXaaS deployment, you can reference it in your NGINX configuration to secure traffic. Refer to [Upload an NGINX configuration]({{< relref "/nginxaas-azure/getting-started/nginx-configuration/overview.md">}}) to add and update NGINX configuration files to your NGINXaaS deployment. The following NGINX configurations show examples of different certificate use cases.
+Once a certificate has been added to your NGINXaaS deployment, you can reference it in your NGINX configuration to secure traffic. Refer to [Upload an NGINX configuration]({{< ref "/nginxaas-azure/getting-started/nginx-configuration/overview.md">}}) to add and update NGINX configuration files to your NGINXaaS deployment. The following NGINX configurations show examples of different certificate use cases.
 
 ### Use case 1: SSL/TLS termination
 

@@ -2,13 +2,11 @@
 description: Tips and tricks for using the Metrics API query parameters to refine
   your data.
 docs: DOCS-825
-doctypes:
-- tutorial
-tags:
-- docs
 title: Query the Metrics API
 toc: true
 weight: 200
+type:
+- tutorial
 ---
 
 ## Overview
@@ -33,7 +31,7 @@ You can use the Metrics API to query for desired metric names and fine-tune the 
 
 ## Authentication
 
-You can use basic authentication or JWT authentication to access the NGINX Instance Manager REST API, as described in the [NGINX Instance Manager API Overview]({{< relref "/nim/fundamentals/api-overview#authentication" >}}).
+You can use basic authentication or JWT authentication to access the NGINX Instance Manager REST API, as described in the [NGINX Instance Manager API Overview]({{< ref "/nim/fundamentals/api-overview#authentication" >}}).
 
 The examples in this guide demonstrate using a "bearer" token for authentication. The token is sent using the "Authorization" request header field and "Bearer" schema.
 
@@ -94,7 +92,7 @@ Likewise, you can get a full list of the available dimensions by querying the Ca
 curl -X GET --url "<NMS_FQDN>/api/platform/v1/analytics/catalogs/dimensions" -H "Authorization: Bearer <access token>"
 ```
 
-This information is also provided in the [Catalogs Reference]({{< relref "/nms/reference/catalogs//_index.md" >}})).
+This information is also provided in the [Catalogs Reference]({{< ref "/nms/reference/catalogs//_index.md" >}})).
 
 ### Querying the Metrics API
 
@@ -170,7 +168,7 @@ You must define a `startTime` when using aggregate functions.
 {{< /note >}}
 
 {{< see-also >}}
-The list of supported aggregate functions for any particular metric is available in the [Metrics Catalog]({{< relref "/nms/reference/catalogs//metrics.md" >}})).
+The list of supported aggregate functions for any particular metric is available in the [Metrics Catalog]({{< ref "/nms/reference/catalogs//metrics.md" >}})).
 {{< /see-also >}}
 
 For example, the following query returns a single value (per dimension set), which is the sum of the metric values for the last 12 hours. To get proper values, ensure that the `endTime` is greater than the `startTime`.

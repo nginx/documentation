@@ -1,12 +1,11 @@
 ---
-title: "Technical specifications"
+title: Technical specifications
 draft: false
 weight: 200
 toc: true
-tags: [ "docs" ]
-docs: "DOCS-1092"
-categories: ["development"]
-doctypes: ["task"]
+docs: DOCS-1092
+type:
+- how-to
 ---
 
 ## Overview
@@ -20,14 +19,14 @@ NGINX Agent can run in most environments. We support the following distributions
 {{< bootstrap-table "table table-striped table-bordered" >}}
 | | AlmaLinux | Alpine Linux | Amazon Linux | Amazon Linux 2 | Debian |
 |-|-----------|--------------|--------------|----------------|--------|
-|**Version**|8 <br><hr>9 | 3.17<br><hr> 3.18<br><hr> 3.19 <br><hr> 3.20|  2023|  LTS|  11<br><hr> 12|
+|**Version**|8 <br><hr>9 | 3.18<br><hr> 3.19<br><hr> 3.20 <br><hr> 3.21|  2023|  LTS|  11<br><hr> 12|
 |**Architecture**| x86_84<br><hr>aarch64| x86_64<br><hr>aarch64 | x86_64<br><hr>aarch64 | x86_64<br><hr>aarch64 | x86_64<br><hr>aarch64 |
 {{< /bootstrap-table >}}
 
 {{< bootstrap-table "table table-striped table-bordered" >}}
 | |FreeBSD | Oracle Linux | Red Hat <br>Enterprise Linux <br>(RHEL) | Rocky Linux | SUSE Linux <br>Enterprise Server <br>(SLES) | Ubuntu |
 |-|--------|--------------|---------------------------------|-------------|-------------------------------------|--------|
-|**Version**|13<br><hr>14|8.1+<br><hr>9|8.1+<br><hr>9.0+|8<br><hr>9|12 SP5<br><hr>15 SP2|20.04 LTS<br><hr>22.04 LTS<br><hr>24.04 LTS|
+|**Version**|13<br><hr>14|8.1+<br><hr>9|8.1+<br><hr>9.0+|8<br><hr>9|15 SP2|20.04 LTS<br><hr>22.04 LTS<br><hr>24.04 LTS|
 |**Architecture**|amd64|x86_64|x86_64<br><hr>aarch64|x86_64<br><hr>aarch64|x86_64|x86_64<br><hr>aarch64|
 {{< /bootstrap-table >}}
 

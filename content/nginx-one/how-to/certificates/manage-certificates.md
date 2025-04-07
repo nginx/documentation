@@ -1,20 +1,17 @@
 ---
-docs: 
-doctypes:
-    - task
-tags:
-    - docs
+docs: null
 title: Manage certificates
 toc: true
 weight: 100
+type:
+- how-to
 ---
-
 
 ## Overview
 
-This guide explains how you can manage SSL/TLS certificates with the F5 NGINX One Console. Valid certificates support encrypted connections between NGINX and your users. 
+This guide explains how you can manage SSL/TLS certificates with the F5 NGINX One Console. Valid certificates support encrypted connections between NGINX and your users.
 
-You may have separate sets of SSL/TLS certificates, as described in the following table: 
+You may have separate sets of SSL/TLS certificates, as described in the following table:
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 | Functionality     | Typical file names                                                 | Notes                                                                                  |
@@ -24,7 +21,7 @@ You may have separate sets of SSL/TLS certificates, as described in the followin
 | NGINX Licensing   | /etc/ssl/nginx/server.crt <br> /etc/ssl/nginx/server.key   | Supports access to repositories. Based on licenses downloaded from https://my.f5.com/ |
 {{</bootstrap-table>}}
 
-Allowed directories depend on the [NGINX Agent]({{< relref "/nginx-one/getting-started/#install-nginx-agent" >}}). Look for the `/etc/nginx-agent/nginx-agent.conf` file.
+Allowed directories depend on the [NGINX Agent]({{< ref "/nginx-one/getting-started/#install-nginx-agent" >}}). Look for the `/etc/nginx-agent/nginx-agent.conf` file.
 Find the `config_dirs` parameter in that file, as described in the NGINX Agent [Basic configuration](https://docs.nginx.com/nginx-agent/configuration/configuration-overview/#cli-flags--environment-variables).
 You may need to add a directory like `/etc/ssl` to that parameter.
 
@@ -36,8 +33,8 @@ From the NGINX One Console you can:
 
 You can manage the certificates for:
 
-- [Unique instances]({{< relref "/nginx-one/how-to/nginx-configs/add-file.md#new-ssl-certificate-or-ca-bundle" >}})
-- For all instances that are members of a [Config Sync Group]({{< relref "/nginx-one/how-to/config-sync-groups/manage-config-sync-groups/#configuration-management" >}})
+- [Unique instances]({{< ref "/nginx-one/how-to/nginx-configs/add-file.md#new-ssl-certificate-or-ca-bundle" >}})
+- For all instances that are members of a [Config Sync Group]({{< ref "/nginx-one/how-to/config-sync-groups/manage-config-sync-groups/#configuration-management" >}})
 
 
 {{< tip >}}
@@ -51,7 +48,7 @@ If you are managing the certificate from NGINX One Console, we recommend that yo
 Before you add and manage certificates with the NGINX One Console make sure:
 
 - You have access to the NGINX One Console
-- You have access through the F5 Distributed Cloud role, as described in the [Authentication]({{< relref "/nginx-one/api/authentication.md" >}}) guide, to manage SSL/TLS certificates
+- You have access through the F5 Distributed Cloud role, as described in the [Authentication]({{< ref "/nginx-one/api/authentication.md" >}}) guide, to manage SSL/TLS certificates
   - You have the `f5xc-nginx-one-user` role for your account
 - Your SSL/TLS certificates and keys match
 
@@ -109,7 +106,7 @@ In such cases, you may get websites that present "Your connection is not private
 
 ## Review existing certificates
 
-Follow these steps to review existing certificates for your instances. 
+Follow these steps to review existing certificates for your instances.
 
 On the left-hand pane, select **Certificates**. In the window that appears, you see:
 
@@ -121,7 +118,7 @@ On the left-hand pane, select **Certificates**. In the window that appears, you 
 | **Expires Soon (<31 days)** | Number of certificates that expire in less than 31 days |
 | **Expired** | Number of exprired certificates |
 | **Not Ready** | Certificates with a start date in the future |
-| **Managed** | Managed by and stored in the NGINX One Console | 
+| **Managed** | Managed by and stored in the NGINX One Console |
 | **Unmanaged** | Detected by, and not managed by NGINX One Console. To convert to managed, you may need to upload the certificate and key during the process. |
 {{</bootstrap-table>}}
 
@@ -136,7 +133,7 @@ The Export option supports exports of basic certification file information to a 
 
 ## Add a new certificate or bundle
 
-To add a new certificate, select **Add Certificate**. 
+To add a new certificate, select **Add Certificate**.
 
 <!-- Candidate for an "include". Common content with add-file.md -->
 In the screen that appears, you can add a certificate name. If you don't add a name, NGINX One will add a name for you, based on the expiration date for the certificate.
@@ -148,7 +145,7 @@ You can add certificates in the following formats:
 
 In each case, you can upload files directly, or enter the content of the certificates in a text box. Once you upload these certificates, you'll see:
 
-- **Certificate Details**, with the Subject Name, start and end dates. 
+- **Certificate Details**, with the Subject Name, start and end dates.
 - **Key Details**, with the encryption key size and algorithm, such as RSA
 <!-- end potential "include" -->
 
@@ -164,7 +161,7 @@ You can remove a deployed certificate from an independent instance or from a Con
 
 Every instance with a deployed certificate includes paths to certificates in their configuration files. If you remove the deployed file path to one certificate, that change is limited to that one instance.
 
-Every Config Sync Group also includes paths to certificates in its configuration files. If you remove the deployed path to one certificate, that change affects all instances which belong to that Config Sync Group. 
+Every Config Sync Group also includes paths to certificates in its configuration files. If you remove the deployed path to one certificate, that change affects all instances which belong to that Config Sync Group.
 
 ## Delete a deployed certificate
 
@@ -176,7 +173,7 @@ If that certificate is managed and is part of a Config Sync Group, that change a
 
 ## Managed and unmanaged certificates
 
-If you register an instance to NGINX One Console, as described in [Add your NGINX instances to NGINX One]({{< relref "/nginx-one/getting-started.md#add-your-nginx-instances-to-nginx-one" >}}), and the associated SSL/TLS certificates:
+If you register an instance to NGINX One Console, as described in [Add your NGINX instances to NGINX One]({{< ref "/nginx-one/getting-started.md#add-your-nginx-instances-to-nginx-one" >}}), and the associated SSL/TLS certificates:
 
 - Are used in their NGINX configuration
 - Do _not_ match an existing managed SSL certificate/CA bundle
@@ -195,6 +192,6 @@ To convert these cerificates to managed, start with the Certificates menu, and s
 
 ## See also
 
-- [Create and manage data plane keys]({{< relref "/nginx-one/how-to/data-plane-keys/create-manage-data-plane-keys.md" >}})
-- [View and edit NGINX configurations]({{< relref "/nginx-one/how-to/nginx-configs/view-edit-nginx-configurations.md" >}})
-- [Add a file in a configuration]({{< relref "/nginx-one/how-to/nginx-configs/add-file.md" >}})
+- [Create and manage data plane keys]({{< ref "/nginx-one/how-to/data-plane-keys/create-manage-data-plane-keys.md" >}})
+- [View and edit NGINX configurations]({{< ref "/nginx-one/how-to/nginx-configs/view-edit-nginx-configurations.md" >}})
+- [Add a file in a configuration]({{< ref "/nginx-one/how-to/nginx-configs/add-file.md" >}})

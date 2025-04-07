@@ -1,16 +1,12 @@
 ---
-description: Learn how to use F5 NGINX Management Suite API Connectivity Manager to set
-  request headers to send to your backend services.
+description: Learn how to use F5 NGINX Management Suite API Connectivity Manager to
+  set request headers to send to your backend services.
 docs: DOCS-1129
-doctypes:
-- API Connectivity Manager
-- api management
-- reference
-tags:
-- docs
 toc: true
 weight: 1100
 title: Proxy Request Headers
+type:
+- reference
 ---
 
 ## Overview
@@ -23,7 +19,7 @@ title: Proxy Request Headers
 
 The Proxy Request Headers policy allows users to pass default and custom request headers to backend services.
 
-This policy is enabled by default when you [publish an API Proxy]({{< relref "/nms/acm/getting-started/publish-api-proxy" >}}).
+This policy is enabled by default when you [publish an API Proxy]({{< ref "/nms/acm/getting-started/publish-api-proxy" >}}).
 
 ### Intended Audience
 
@@ -36,8 +32,8 @@ This policy is enabled by default when you [publish an API Proxy]({{< relref "/n
 To complete the steps in this guide, you need the following:
 
 - API Connectivity Manager is installed, licensed, and running.
-- An [API gateway environment]({{< relref "/nms/acm/getting-started/add-api-gateway" >}})
-- A [published API Gateway]({{< relref "/nms/acm/getting-started/publish-api-proxy" >}})
+- An [API gateway environment]({{< ref "/nms/acm/getting-started/add-api-gateway" >}})
+- A [published API Gateway]({{< ref "/nms/acm/getting-started/publish-api-proxy" >}})
 
 ---
 
@@ -50,9 +46,9 @@ The following table lists the configurable settings and their default values for
 
 | Field                                           | Type | Possible Values      | Description                                                                                                                                                                           | Required | Default |
 |-------------------------------------------------|----------|----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------|---------|
-| `proxyDefaultHeadersToBackend`                  | boolean  | `true`,<br>`false`   | <p>When set to `true`, the default headers are passed to backend services.</p><p>For more information, refer to the [Default Headers]({{< relref "#default-headers" >}}) section.</p> | No       | `True`  |
+| `proxyDefaultHeadersToBackend`                  | boolean  | `true`,<br>`false`   | <p>When set to `true`, the default headers are passed to backend services.</p><p>For more information, refer to the [Default Headers]({{< ref "#default-headers" >}}) section.</p> | No       | `True`  |
 | `proxyCustomHeadersToBackend.`<br>`key`         | string   | Example: `my-header` | The name of the HTTP header.                                                                                                                                                          | Yes      | N/A     |
-| `proxyCustomHeadersToBackend.`<br>`value`       | string   | Example: `var.test`  | <p>The value of the HTTP header.</p><p>For more information, refer to the [Header Value Prefixes]({{< relref "#value-prefixes" >}}) section.</p>                                      | Yes      | N/A     |
+| `proxyCustomHeadersToBackend.`<br>`value`       | string   | Example: `var.test`  | <p>The value of the HTTP header.</p><p>For more information, refer to the [Header Value Prefixes]({{< ref "#value-prefixes" >}}) section.</p>                                      | Yes      | N/A     |
 | `proxyCustomHeadersToBackend.`<br>`isSensitive` | boolean  | `true`,<br>`false`   | When set to `false`, the header will not appear in logs.                                                                                                                              | No       | `False` |
 
 {{< /bootstrap-table >}}
@@ -86,9 +82,9 @@ The following table lists the configurable settings and their default values for
 |---------------|----------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `var`         | var.content_length   | Pass a [valid NGINX variable](http://nginx.org/en/docs/varindex.html).                                                                                                                         |
 | `header`      | header.referrer      | Pass a header from the client request.                                                                                                                                                         |
-| `client`      | client.IP            | Pass a value from the client if a [Basic Auth]({{< relref "/nms/acm/how-to/policies/basic-authn" >}}) or [API Key]({{< relref "/nms/acm/how-to/policies/apikey-authn" >}}) policy has been configured. |
+| `client`      | client.IP            | Pass a value from the client if a [Basic Auth]({{< ref "/nms/acm/how-to/policies/basic-authn" >}}) or [API Key]({{< ref "/nms/acm/how-to/policies/apikey-authn" >}}) policy has been configured. |
 | `stringValue` | stringValue.MyString | Pass a static string.                                                                                                                                                                          |
-| `token`       | token.sub            | Pass a value from the JSON Web Token (JWT) if the [OAuth2 JWT Assertion]({{< relref "/nms/acm/how-to/policies/jwt-assertion" >}}) policy has been configured.                                      |
+| `token`       | token.sub            | Pass a value from the JSON Web Token (JWT) if the [OAuth2 JWT Assertion]({{< ref "/nms/acm/how-to/policies/jwt-assertion" >}}) policy has been configured.                                      |
 
 {{< /bootstrap-table >}}
 

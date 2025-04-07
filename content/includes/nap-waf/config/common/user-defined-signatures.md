@@ -8,8 +8,8 @@ The process of creating and implementing a user policy that contains user-define
 
 - Creating the user-defined signature definitions in separate JSON files.
 - Adding the relevant references (names, tags, signature sets) to the user-defined signatures in a policy JSON file.
-- Referencing user-defined JSON files in a [global settings]({{< relref "/nap-waf/v5/admin-guide/compiler.md#global-settings" >}}) file.
-- Compiling a policy bundle using [NGINX App Protect WAF Compiler]({{< relref "/nap-waf/v5/admin-guide/compiler.md" >}})
+- Referencing user-defined JSON files in a [global settings]({{< ref "/nap-waf/v5/admin-guide/compiler.md#global-settings" >}}) file.
+- Compiling a policy bundle using [NGINX App Protect WAF Compiler]({{< ref "/nap-waf/v5/admin-guide/compiler.md" >}})
 
 ##### User-Defined Signature Definitions
 

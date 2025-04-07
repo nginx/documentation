@@ -6,4 +6,4 @@ In API Connectivity Manager, you can apply policies to an API Gateway to further
 
 Policies added at the proxy level are applied to all routes within that proxy.
 
-For an overview of the different policy types and available policies, refer to the  consult the [Learn about Policies]({{< relref "/nms/acm/about/policies-overview.md">}}) topic.
+For an overview of the different policy types and available policies, refer to the  consult the [Learn about Policies]({{< ref "/nms/acm/about/policies-overview.md">}}) topic.

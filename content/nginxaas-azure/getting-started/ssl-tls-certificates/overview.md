@@ -1,9 +1,10 @@
 ---
-title: "Overview"
+title: Overview
 weight: 50
-categories: ["tasks"]
 toc: true
 url: /nginxaas/azure/getting-started/ssl-tls-certificates/overview/
+type:
+- how-to
 ---
 
 F5 NGINX as a Service for Azure (NGINXaaS) enables customers to secure traffic by adding SSL/TLS certificates to a deployment. NGINXaaS can fetch certificates directly from Azure Key Vault, rotate certificates, and provide observability on the status of your certificates.
@@ -14,13 +15,13 @@ This document provides details about using SSL/TLS certificates with your F5 NGI
 
 Add a certificate from an Azure Key Vault to your NGINXaaS deployment using your preferred client tool:
 
-* [Add certificates using the Azure portal]({{< relref "/nginxaas-azure/getting-started/ssl-tls-certificates/ssl-tls-certificates-portal.md">}})
-* [Add certificates using the Azure CLI]({{< relref "/nginxaas-azure/getting-started/ssl-tls-certificates/ssl-tls-certificates-azure-cli.md">}})
-* [Add certificates using Terraform]({{< relref "/nginxaas-azure/getting-started/ssl-tls-certificates/ssl-tls-certificates-terraform.md">}})
+* [Add certificates using the Azure portal]({{< ref "/nginxaas-azure/getting-started/ssl-tls-certificates/ssl-tls-certificates-portal.md">}})
+* [Add certificates using the Azure CLI]({{< ref "/nginxaas-azure/getting-started/ssl-tls-certificates/ssl-tls-certificates-azure-cli.md">}})
+* [Add certificates using Terraform]({{< ref "/nginxaas-azure/getting-started/ssl-tls-certificates/ssl-tls-certificates-terraform.md">}})
 
 ### Add SSL/TLS certificates bundled with NGINXaaS configuration
 
-You can also add your certificate as a file to your NGINX configuration filesystem; refer to [Upload an NGINX configuration]({{< relref "/nginxaas-azure/getting-started/nginx-configuration/overview.md">}}) to learn about the different options. Although this is a quick method for adding SSL/TLS certificates to your NGINXaaS deployment, we recommend adding certificates through Azure Key Vault (AKV) for enhanced security, certificate rotation, and monitoring.
+You can also add your certificate as a file to your NGINX configuration filesystem; refer to [Upload an NGINX configuration]({{< ref "/nginxaas-azure/getting-started/nginx-configuration/overview.md">}}) to learn about the different options. Although this is a quick method for adding SSL/TLS certificates to your NGINXaaS deployment, we recommend adding certificates through Azure Key Vault (AKV) for enhanced security, certificate rotation, and monitoring.
 
 Once a certificate has been added, update your NGINX configuration to reference your SSL/TLS certificate and key file paths.
 
@@ -45,14 +46,14 @@ For Azure client tools, such as the Azure CLI or Azure Resource Manager, the cer
 
 ## Monitor certificates
 
-To view the status of your SSL/TLS certificates, [enable monitoring]({{< relref "/nginxaas-azure/monitoring/enable-monitoring.md" >}}) for your NGINXaaS deployment and navigate to the **Metrics** tab in the Azure portal. View the `nginxaas.certificates` metric under the `nginxaas statistics` metric namespace. The `nginxaas.certificates` metric allows you to filter by certificate name and the status of the certificate. The status dimension reports the health of your certificates through the following values:
+To view the status of your SSL/TLS certificates, [enable monitoring]({{< ref "/nginxaas-azure/monitoring/enable-monitoring.md" >}}) for your NGINXaaS deployment and navigate to the **Metrics** tab in the Azure portal. View the `nginxaas.certificates` metric under the `nginxaas statistics` metric namespace. The `nginxaas.certificates` metric allows you to filter by certificate name and the status of the certificate. The status dimension reports the health of your certificates through the following values:
 
    {{<bootstrap-table "table table-striped table-bordered">}}
 
    | Status        | Description   |
    | ------------- | ------------- |
    | `active`      | The certificate was successfully fetched from AKV. |
-   | `unauthorized`| Azure returned a 401/403 error when fetching the certificate from AKV, which usually indicates an issue with the deployment's [Managed Identity]({{< relref "/nginxaas-azure/getting-started/managed-identity-portal.md" >}}). |
+   | `unauthorized`| Azure returned a 401/403 error when fetching the certificate from AKV, which usually indicates an issue with the deployment's [Managed Identity]({{< ref "/nginxaas-azure/getting-started/managed-identity-portal.md" >}}). |
    | `not found`   | Azure returned a 404 error when fetching the certificate from AKV. |
    | `incompatible`| An error occurred while fetching or processing the certificate from AKV. <br><br>The possible reasons include: <br> <br><ul><li>Error while downloading certificate and key</li><li>Missing content type in certificate</li><li>Missing content in certificate</li><li>Unrecognized content type, certificate not in PEM or PKCS12 format</li></ul> |
 
@@ -66,7 +67,7 @@ The following section describes common errors you might encounter while adding S
 
 #### Error code: `ForbiddenByRbac`
 
-**Description:** The [Managed Identity]({{< relref "/nginxaas-azure/getting-started/managed-identity-portal.md" >}}) associated with the NGINXaaS deployment does not have permissions to fetch certificates from key vault. This error is returned when the key vault's permission model is set to [Azure role-based access control](https://learn.microsoft.com/en-us/azure/role-based-access-control/overview?WT.mc_id=Portal-Microsoft_Azure_KeyVault).
+**Description:** The [Managed Identity]({{< ref "/nginxaas-azure/getting-started/managed-identity-portal.md" >}}) associated with the NGINXaaS deployment does not have permissions to fetch certificates from key vault. This error is returned when the key vault's permission model is set to [Azure role-based access control](https://learn.microsoft.com/en-us/azure/role-based-access-control/overview?WT.mc_id=Portal-Microsoft_Azure_KeyVault).
 
 **Resolution:** Assign the [Key Vault Secrets User](https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#key-vault-secrets-user) role to the managed identity associated with your NGINXaaS deployment.
 
@@ -116,7 +117,7 @@ The following section describes common errors you might encounter while adding S
 
 #### Error code: `AccessDenied`
 
-**Description:**  The [Managed Identity]({{< relref "/nginxaas-azure/getting-started/managed-identity-portal.md" >}}) associated with the NGINXaaS deployment has not been assigned to an access policy on the key vault. This error is returned when the key vault's permission model is set to [Vault access policy](https://learn.microsoft.com/en-us/azure/key-vault/general/assign-access-policy?WT.mc_id=Portal-Microsoft_Azure_KeyVault&tabs=azure-portal).
+**Description:**  The [Managed Identity]({{< ref "/nginxaas-azure/getting-started/managed-identity-portal.md" >}}) associated with the NGINXaaS deployment has not been assigned to an access policy on the key vault. This error is returned when the key vault's permission model is set to [Vault access policy](https://learn.microsoft.com/en-us/azure/key-vault/general/assign-access-policy?WT.mc_id=Portal-Microsoft_Azure_KeyVault&tabs=azure-portal).
 
 **Resolution:** Assign an access policy to the managed identity associated with your NGINXaaS deployment with *Get secrets* permissions or higher. If you are using the Azure portal, assign an additional access policy to your user with *List certificates* permissions or higher.
 
@@ -164,7 +165,7 @@ The following section describes common errors you might encounter while adding S
 
 **Description:** The key vault's firewall is enabled and NGINXaaS is not authorized to fetch certificates.
 
-**Resolution:** [Configure Network Security Perimeter]({{< relref "/nginxaas-azure/quickstart/security-controls/certificates.md#configure-network-security-perimeter-nsp" >}}) to allow the subscription of the NGINXaaS deployment to access the key vault.
+**Resolution:** [Configure Network Security Perimeter]({{< ref "/nginxaas-azure/quickstart/security-controls/certificates.md#configure-network-security-perimeter-nsp" >}}) to allow the subscription of the NGINXaaS deployment to access the key vault.
 
 <details>
 <summary>Create a network security perimeter - Azure CLI</summary>
@@ -244,7 +245,7 @@ The following section describes common errors you might encounter while adding S
 
 #### Error code: `ForbiddenByPolicy`
 
-**Description:** The [Managed Identity]({{< relref "/nginxaas-azure/getting-started/managed-identity-portal.md" >}}) associated with the NGINXaaS deployment does not have permissions to fetch certificates from key vault. This error is returned when the key vault's permission model is set to [Vault access policy](https://learn.microsoft.com/en-us/azure/key-vault/general/assign-access-policy?WT.mc_id=Portal-Microsoft_Azure_KeyVault&tabs=azure-portal).
+**Description:** The [Managed Identity]({{< ref "/nginxaas-azure/getting-started/managed-identity-portal.md" >}}) associated with the NGINXaaS deployment does not have permissions to fetch certificates from key vault. This error is returned when the key vault's permission model is set to [Vault access policy](https://learn.microsoft.com/en-us/azure/key-vault/general/assign-access-policy?WT.mc_id=Portal-Microsoft_Azure_KeyVault&tabs=azure-portal).
 
 **Resolution:** Assign an access policy to the managed identity associated with your NGINXaaS deployment with *Get secrets* permissions or higher. If you are using the Azure portal, assign an additional access policy to your user with *List certificates* permissions or higher.
 
@@ -330,7 +331,7 @@ The following section describes common errors you might encounter while adding S
 
 **Description:** The retrieved secret is missing the *contentType* field.
 
-**Resolution:** When creating an [Azure certificate](https://learn.microsoft.com/en-us/azure/key-vault/certificates/about-certificates) in key vault, the *contentType* field will be properly set to either *application/x-pem-file* or *application/x-pkcs12*. If a certificate is added as a generic [Azure secret](https://learn.microsoft.com/en-us/azure/key-vault/secrets/about-secrets) the *contentType* field must be manually set to help with interpreting the secret data when it is retrieved. We recommend creating a certificate object, instead of a secret object containing certificate data, to ensure proprer formatting and *contentType*. 
+**Resolution:** When creating an [Azure certificate](https://learn.microsoft.com/en-us/azure/key-vault/certificates/about-certificates) in key vault, the *contentType* field will be properly set to either *application/x-pem-file* or *application/x-pkcs12*. If a certificate is added as a generic [Azure secret](https://learn.microsoft.com/en-us/azure/key-vault/secrets/about-secrets) the *contentType* field must be manually set to help with interpreting the secret data when it is retrieved. We recommend creating a certificate object, instead of a secret object containing certificate data, to ensure proprer formatting and *contentType*.
 
 #### Error code: `UnrecognizedContentType`
 

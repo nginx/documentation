@@ -1,19 +1,19 @@
 ---
-description: Take the steps in this guide to deploy F5 NGINX App Protect WAF as a datapath
-  instance for use with NGINX Controller.
+description: Take the steps in this guide to deploy F5 NGINX App Protect WAF as a
+  datapath instance for use with NGINX Controller.
 docs: DOCS-645
-doctypes:
-- task
 title: Using NGINX App Protect WAF with NGINX Controller
 toc: true
 weight: 500
+type:
+- how-to
 ---
 
-**Note:** Refer to the [F5 NGINX Controller Technical Specifications]({{< relref "/controller/admin-guides/install/nginx-controller-tech-specs.md" >}}) guide to find out which distributions are supported for use with NGINX Controller and NGINX Controller Agent.
+**Note:** Refer to the [F5 NGINX Controller Technical Specifications]({{< ref "/controller/admin-guides/install/nginx-controller-tech-specs.md" >}}) guide to find out which distributions are supported for use with NGINX Controller and NGINX Controller Agent.
 
 ## Setup
 
-Before proceeding, you should review the [Prerequisites]({{< relref "/nap-waf/v4/admin-guide/install#prerequisites" >}}), [Platform Security Considerations]({{< relref "/nap-waf/v4/admin-guide/install#platform-security-considerations" >}}) and [User Permissions]({{< relref "/nap-waf/v4/admin-guide/install#user-permissions" >}}) sections of the NGINX App Protect WAF Admin Guide.
+Before proceeding, you should review the [Prerequisites]({{< ref "/nap-waf/v4/admin-guide/install#prerequisites" >}}), [Platform Security Considerations]({{< ref "/nap-waf/v4/admin-guide/install#platform-security-considerations" >}}) and [User Permissions]({{< ref "/nap-waf/v4/admin-guide/install#user-permissions" >}}) sections of the NGINX App Protect WAF Admin Guide.
 
 
 ## Install NGINX App Protect WAF
@@ -44,7 +44,7 @@ Before proceeding, you should review the [Prerequisites]({{< relref "/nap-waf/v4
    nginx-repo.crt
    ```
 
-   **See Also:** You can use the [NGINX Controller REST API to download the key and cert files]({{< relref "/controller/admin-guides/install/get-n-plus-cert-and-key" >}}).
+   **See Also:** You can use the [NGINX Controller REST API to download the key and cert files]({{< ref "/controller/admin-guides/install/get-n-plus-cert-and-key" >}}).
 
 4. Copy the above two files to the CentOS server's `/etc/ssl/nginx/` directory. Use an SCP client or another secure file transfer tool to perform this task.
 
@@ -80,7 +80,7 @@ Before proceeding, you should review the [Prerequisites]({{< relref "/nap-waf/v4
 
 10. Install the latest NGINX App Protect WAF package.
 
-      **See Also:** Please refer to [NGINX App Protect Compatibility Matrix]({{< relref "/controller/admin-guides/install/nginx-controller-tech-specs.md#nginx-app-protect-compatibility-matrix" >}}) for specific version compatibility.
+      **See Also:** Please refer to [NGINX App Protect Compatibility Matrix]({{< ref "/controller/admin-guides/install/nginx-controller-tech-specs.md#nginx-app-protect-compatibility-matrix" >}}) for specific version compatibility.
 
       If you wish to install a specific version, please replace `app-protect` with the target version, for example `app-protect-25+3.671.0`:
 
@@ -94,9 +94,9 @@ Before proceeding, you should review the [Prerequisites]({{< relref "/nap-waf/v4
       sudo nginx -v
       ```
 
-12. Configure SELinux as appropriate per your organization’s security policies. NGINX App Protect WAF applies the prebuilt SELinux policy module during the installation. If you encounter any issues, check the [Troubleshooting Guide]({{< relref "/nap-waf/v4/troubleshooting-guide/troubleshooting#selinux" >}}).
+12. Configure SELinux as appropriate per your organization’s security policies. NGINX App Protect WAF applies the prebuilt SELinux policy module during the installation. If you encounter any issues, check the [Troubleshooting Guide]({{< ref "/nap-waf/v4/troubleshooting-guide/troubleshooting#selinux" >}}).
 
-      **Note:** NGINX Controller has specific [requirements regarding SELinux configuration]({{< relref "/controller/admin-guides/install/nginx-controller-tech-specs.md#supported-distributions" >}}).
+      **Note:** NGINX Controller has specific [requirements regarding SELinux configuration]({{< ref "/controller/admin-guides/install/nginx-controller-tech-specs.md#supported-distributions" >}}).
 
 13. Start the NGINX service:
 
@@ -125,7 +125,7 @@ Before proceeding, you should review the [Prerequisites]({{< relref "/nap-waf/v4
       ps -ef | grep bd_agent
       ```
 
-16. To upgrade your signature package to the latest version and obtain the best protection, refer to [Updating App Protect Attack Signatures]({{< relref "/nap-waf/v4/admin-guide/install#centos--rhel-74--amazon-linux-2">}}).
+16. To upgrade your signature package to the latest version and obtain the best protection, refer to [Updating App Protect Attack Signatures]({{< ref "/nap-waf/v4/admin-guide/install#centos--rhel-74--amazon-linux-2">}}).
 
 {{%/tab%}}
 
@@ -212,7 +212,7 @@ Before proceeding, you should review the [Prerequisites]({{< relref "/nap-waf/v4
 
 11. Install the latest NGINX App Protect WAF package.
 
-      **See Also:** Please refer to [NGINX App Protect Compatibility Matrix]({{< relref "/controller/admin-guides/install/nginx-controller-tech-specs.md#nginx-app-protect-compatibility-matrix" >}}) for specific version compatibility.
+      **See Also:** Please refer to [NGINX App Protect Compatibility Matrix]({{< ref "/controller/admin-guides/install/nginx-controller-tech-specs.md#nginx-app-protect-compatibility-matrix" >}}) for specific version compatibility.
 
       If you wish to install a specific version, please replace `app-protect` with the target version, for example `app-protect-25+3.671.0`:
 
@@ -226,9 +226,9 @@ Before proceeding, you should review the [Prerequisites]({{< relref "/nap-waf/v4
       sudo nginx -v
       ```
 
-13. Configure SELinux as appropriate per your organization’s security policies. NGINX App Protect WAF applies the prebuilt SELinux policy module during the installation. If you encounter any issues, check the [Troubleshooting Guide]({{< relref "/nap-waf/v4/troubleshooting-guide/troubleshooting#selinux" >}}).
+13. Configure SELinux as appropriate per your organization’s security policies. NGINX App Protect WAF applies the prebuilt SELinux policy module during the installation. If you encounter any issues, check the [Troubleshooting Guide]({{< ref "/nap-waf/v4/troubleshooting-guide/troubleshooting#selinux" >}}).
 
-      **Note:** NGINX Controller has specific [requirements regarding SELinux configuration]({{< relref "/controller/admin-guides/install/nginx-controller-tech-specs.md#supported-distributions" >}}).
+      **Note:** NGINX Controller has specific [requirements regarding SELinux configuration]({{< ref "/controller/admin-guides/install/nginx-controller-tech-specs.md#supported-distributions" >}}).
 
 14. Start the NGINX service:
 
@@ -257,7 +257,7 @@ Before proceeding, you should review the [Prerequisites]({{< relref "/nap-waf/v4
       ps -ef | grep bd_agent
       ```
 
-17. To upgrade your signature package to the latest version and obtain the best protection, refer to [Updating App Protect Attack Signatures]({{< relref "/nap-waf/v4/admin-guide/install#centos--rhel-74--amazon-linux-2" >}}).
+17. To upgrade your signature package to the latest version and obtain the best protection, refer to [Updating App Protect Attack Signatures]({{< ref "/nap-waf/v4/admin-guide/install#centos--rhel-74--amazon-linux-2" >}}).
 
 {{%/tab%}}
 
@@ -326,7 +326,7 @@ Before proceeding, you should review the [Prerequisites]({{< relref "/nap-waf/v4
 
 11. Update the repository and install the lastest supported NGINX App Protect WAF packages.
 
-      **See Also:** Please refer to [NGINX App Protect Compatibility Matrix]({{< relref "/controller/admin-guides/install/nginx-controller-tech-specs.md#nginx-app-protect-compatibility-matrix" >}}) for specific version compatibility.
+      **See Also:** Please refer to [NGINX App Protect Compatibility Matrix]({{< ref "/controller/admin-guides/install/nginx-controller-tech-specs.md#nginx-app-protect-compatibility-matrix" >}}) for specific version compatibility.
 
       ```shell
       sudo apt-get update
@@ -377,7 +377,7 @@ Before proceeding, you should review the [Prerequisites]({{< relref "/nap-waf/v4
       ps -ef | grep bd_agent
       ```
 
-16. To upgrade your signature package to the latest version and obtain the best protection, refer to [Updating App Protect Attack Signatures]({{< relref "/nap-waf/v4/admin-guide/install#debian-10" >}}).
+16. To upgrade your signature package to the latest version and obtain the best protection, refer to [Updating App Protect Attack Signatures]({{< ref "/nap-waf/v4/admin-guide/install#debian-10" >}}).
 
 {{%/tab%}}
 
@@ -444,7 +444,7 @@ Before proceeding, you should review the [Prerequisites]({{< relref "/nap-waf/v4
 
 11. Update the repository and install the latest App Protect WAF package.
 
-      **See Also:** Please refer to [NGINX App Protect Compatibility Matrix]({{< relref "/controller/admin-guides/install/nginx-controller-tech-specs.md#nginx-app-protect-compatibility-matrix" >}}) for specific version compatibility.
+      **See Also:** Please refer to [NGINX App Protect Compatibility Matrix]({{< ref "/controller/admin-guides/install/nginx-controller-tech-specs.md#nginx-app-protect-compatibility-matrix" >}}) for specific version compatibility.
 
       ```shell
       sudo apt-get update
@@ -495,7 +495,7 @@ Before proceeding, you should review the [Prerequisites]({{< relref "/nap-waf/v4
       ps -ef | grep bd_agent
       ```
 
-16. To upgrade your signature package to the latest version and obtain the best protection, refer to [Updating App Protect Attack Signatures]({{< relref "/nap-waf/v4/admin-guide/install#ubuntu-1804" >}}).
+16. To upgrade your signature package to the latest version and obtain the best protection, refer to [Updating App Protect Attack Signatures]({{< ref "/nap-waf/v4/admin-guide/install#ubuntu-1804" >}}).
 
    **Note:** Ubuntu 20.04 activates **AppArmor** by default, but NGINX App Protect WAF will run in unconfined mode after being installed as it is shipped with no AppArmor profile. To benefit from AppArmor access control capabilities for NGINX App Protect WAF, you will have to write your own AppArmor profile for NGINX App Protect WAF executables found in `/opt/app_protect/bin` such that it best suits your environment.
 
@@ -518,9 +518,9 @@ Using NGINX App Protect WAF with NGINX Controller isn't supported on Alpine.
 
 ## Add NGINX App Protect WAF to NGINX Controller
 
-If this NGINX Plus instance is already managed by Controller, [restart the Agent]({{< relref "/controller/admin-guides/install/agent-restart" >}}) after NGINX App Protect WAF is installed.
+If this NGINX Plus instance is already managed by Controller, [restart the Agent]({{< ref "/controller/admin-guides/install/agent-restart" >}}) after NGINX App Protect WAF is installed.
 
-Otherwise, complete the tasks in the NGINX Controller [Add an NGINX App Protect WAF Instance]({{< relref "/controller/infrastructure/instances/add-nap-instance.md#add-the-nginx-app-protect-instance" >}}) guide.
+Otherwise, complete the tasks in the NGINX Controller [Add an NGINX App Protect WAF Instance]({{< ref "/controller/infrastructure/instances/add-nap-instance.md#add-the-nginx-app-protect-instance" >}}) guide.
 
 ## Use NGINX App Protect WAF with NGINX Controller
 
@@ -528,6 +528,6 @@ Otherwise, complete the tasks in the NGINX Controller [Add an NGINX App Protect 
 
 Refer to the following NGINX Controller user guides for further information about how to secure your apps and/or APIs with NGINX Controller:
 
-- [Learn about App Security for the NGINX Controller App Delivery module]({{< relref "/controller/app-delivery/security/concepts/what-is-waf" >}})
-- [Add Security to your Apps with the NGINX Controller App Delivery module]({{< relref "/controller/app-delivery/security/tutorials/add-app-security-with-waf" >}})
-- [Add Advanced Security (WAF) to your APIs with the NGINX Controller API Management module]({{< relref "/controller/api-management/manage-apis.md#define-the-routing-rules" >}}).
+- [Learn about App Security for the NGINX Controller App Delivery module]({{< ref "/controller/app-delivery/security/concepts/what-is-waf" >}})
+- [Add Security to your Apps with the NGINX Controller App Delivery module]({{< ref "/controller/app-delivery/security/tutorials/add-app-security-with-waf" >}})
+- [Add Advanced Security (WAF) to your APIs with the NGINX Controller API Management module]({{< ref "/controller/api-management/manage-apis.md#define-the-routing-rules" >}}).

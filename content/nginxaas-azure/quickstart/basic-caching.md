@@ -1,10 +1,11 @@
 ---
-title: "Enable content caching"
+title: Enable content caching
 weight: 200
-categories: ["tasks"]
 toc: true
-docs: "DOCS-897"
+docs: DOCS-897
 url: /nginxaas/azure/quickstart/basic-caching/
+type:
+- how-to
 ---
 
 F5 NGINX as a Service for Azure (NGINXaaS) supports caching using the [ngx_http_proxy_module](https://nginx.org/en/docs/http/ngx_http_proxy_module.html) module, improving performance by allowing content to be served from cache without having to contact upstream servers. For more information on caching with NGINX, see [NGINX Content Caching](https://docs.nginx.com/nginx/admin-guide/content-cache/content-caching/).
@@ -21,4 +22,4 @@ NGINXaaS for Azure only supports caching to `/var/cache/nginx`. This is because 
 
 ## Limitations
 
-Currently, `proxy_cache_purge` might not work as expected because NGINXaaS [deploys multiple instances of NGINX Plus]({{< relref "/nginxaas-azure/overview/overview.md#architecture" >}}) for high availability. The `PURGE` request will be routed to a single instance, and only the matched values on that instance will be purged.
+Currently, `proxy_cache_purge` might not work as expected because NGINXaaS [deploys multiple instances of NGINX Plus]({{< ref "/nginxaas-azure/overview/overview.md#architecture" >}}) for high availability. The `PURGE` request will be routed to a single instance, and only the matched values on that instance will be purged.

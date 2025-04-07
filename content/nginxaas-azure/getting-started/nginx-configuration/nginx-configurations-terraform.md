@@ -1,9 +1,10 @@
 ---
-title: "Upload using Terraform"
+title: Upload using Terraform
 weight: 300
-categories: ["tasks"]
 toc: true
 url: /nginxaas/azure/getting-started/nginx-configuration/nginx-configurations-terraform/
+type:
+- how-to
 ---
 
 ## Overview
@@ -71,13 +72,13 @@ Once the deployment is no longer needed, run the following to clean up the deplo
 
 {{< tip >}}
 
-See the [NGINX connfiguration overview]({{< relref "overview.md" >}}) topic
+See the [NGINX connfiguration overview]({{< ref "overview.md" >}}) topic
 to learn more about:
 
-- [NGINX configuration automation workflows]({{< relref "overview.md#nginx-configuration-automation-workflows" >}})
-- [NGINX filesystem restrictions]({{< relref "overview.md#nginx-filesystem-restrictions" >}})
-- [Disallowed configuration directives]({{< relref "overview.md#disallowed-configuration-directives" >}})
-- [Directives that cannot be overridden]({{< relref "overview.md#directives-that-cannot-be-overridden" >}})
-- [Configuration directives list]({{< relref "overview.md#configuration-directives-list" >}})
+- [NGINX configuration automation workflows]({{< ref "overview.md#nginx-configuration-automation-workflows" >}})
+- [NGINX filesystem restrictions]({{< ref "overview.md#nginx-filesystem-restrictions" >}})
+- [Disallowed configuration directives]({{< ref "overview.md#disallowed-configuration-directives" >}})
+- [Directives that cannot be overridden]({{< ref "overview.md#directives-that-cannot-be-overridden" >}})
+- [Configuration directives list]({{< ref "overview.md#configuration-directives-list" >}})
 
 {{< /tip >}}

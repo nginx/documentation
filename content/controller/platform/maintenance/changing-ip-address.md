@@ -1,14 +1,12 @@
 ---
 description: Learn how to safely change the management IP of F5 NGINX Controller.
 docs: DOCS-779
-doctypes:
-- task
-- tutorial
-tags:
-- docs
 title: Changing the IP address
 toc: true
 weight: 135
+type:
+- how-to
+- tutorial
 ---
 
 ## Overview
@@ -18,7 +16,7 @@ This topic explains how to safely update the management IP of F5 NGINX Controlle
 {{< see-also >}}
 For instructions on how to deploy NGINX Controller as a multi-node resilient cluster, refer to the following deployment guide:
 
-- [Deploy NGINX Controller as a Resilient Cluster on a Private Cloud]({{< relref "/controller/admin-guides/install/resilient-cluster-private-cloud.md" >}})
+- [Deploy NGINX Controller as a Resilient Cluster on a Private Cloud]({{< ref "/controller/admin-guides/install/resilient-cluster-private-cloud.md" >}})
 
 {{< /see-also >}}
 
@@ -26,11 +24,11 @@ For instructions on how to deploy NGINX Controller as a multi-node resilient clu
 
 To change the IP of a multi-node cluster, follow the steps below for each node in the cluster:
 
-- [Remove the node from the cluster]({{< relref "#remove-node">}})
-- [Change the IP address (public and private)]({{< relref "#change-ip">}})
-- [Reboot the node]({{< relref "#reboot-node">}})
-- [Add the node back to the cluster]({{< relref "#add-node">}})
-- [Change the FQDN]({{< relref "#fqdn">}})
+- [Remove the node from the cluster]({{< ref "#remove-node">}})
+- [Change the IP address (public and private)]({{< ref "#change-ip">}})
+- [Reboot the node]({{< ref "#reboot-node">}})
+- [Add the node back to the cluster]({{< ref "#add-node">}})
+- [Change the FQDN]({{< ref "#fqdn">}})
 
 ### 1. <a name="remove-node"></a>Remove node from the cluster
 
@@ -47,7 +45,7 @@ Deleting nodes makes NGINX Controller momentarily unavailable while the cluster 
    5. Select **Delete** to confirm.
 
    {{< see-also >}}
- To delete nodes from your cluster using the [NGINX Controller REST API]({{< relref "/controller/api/_index.md" >}}), send a DELETE request to the `/platform/nodes` endpoint.
+ To delete nodes from your cluster using the [NGINX Controller REST API]({{< ref "/controller/api/_index.md" >}}), send a DELETE request to the `/platform/nodes` endpoint.
    {{< /see-also >}}
 
 
@@ -80,7 +78,7 @@ Refer to your Linux distribution documentation for specific instructions.
        ```
 
    1. Upload and extract the `controller-installer-<version>.tar.gz` tarball.
-   1. Run the `install.sh` command with the join-key copied in the previous step. If the join-key has expired, you can get a new one by following the steps in this topic to add a node using the web interface or the [NGINX Controller REST API]({{< relref "/controller/api/_index.md" >}}).
+   1. Run the `install.sh` command with the join-key copied in the previous step. If the join-key has expired, you can get a new one by following the steps in this topic to add a node using the web interface or the [NGINX Controller REST API]({{< ref "/controller/api/_index.md" >}}).
 
        ```bash
        cd controller-installer
@@ -90,12 +88,12 @@ Refer to your Linux distribution documentation for specific instructions.
    1. After the installation is complete, the node status in the web interface changes to `Configured`.
 
    {{< see-also >}}
-To add nodes to your cluster using the [NGINX Controller REST API]({{< relref "/controller/api/_index.md" >}}), send a POST request to the `/platform/nodes` endpoint.
+To add nodes to your cluster using the [NGINX Controller REST API]({{< ref "/controller/api/_index.md" >}}), send a POST request to the `/platform/nodes` endpoint.
    {{< /see-also >}}
 
 ### 5. <a name="fqdn"></a>Change the FQDN
 
-[Change the FQDN]({{< relref "/controller/platform/manage-cluster.md#update-the-fqdn">}}) if it has been affected by the IP change.
+[Change the FQDN]({{< ref "/controller/platform/manage-cluster.md#update-the-fqdn">}}) if it has been affected by the IP change.
 
 {{< important >}}
 Repeat the steps for each node in the cluster.
@@ -115,7 +113,7 @@ To change the IP of a single node:
    opt/nginx-controller/helper.sh configsmtp <smtp_host> <smtp_port> false <do-not-reply-email>
    ```
 
-1. [Change the FQDN]({{< relref "/controller/platform/manage-cluster.md#update-the-fqdn">}}) if it has been affected by the IP change.
+1. [Change the FQDN]({{< ref "/controller/platform/manage-cluster.md#update-the-fqdn">}}) if it has been affected by the IP change.
 
 {{< versions "3.12" "latest" "ctrlvers" >}}
 {{< versions "3.18" "latest" "apimvers" >}}

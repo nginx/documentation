@@ -1,12 +1,12 @@
 ---
-description: Sychronize configuration across a cluster of F5 NGINX Plus instances. Though
-  designed for high-availability deployments, the solution works for any cluster.
+description: Sychronize configuration across a cluster of F5 NGINX Plus instances.
+  Though designed for high-availability deployments, the solution works for any cluster.
 docs: DOCS-404
-doctypes:
-- task
 title: Synchronizing NGINX Configuration in a Cluster
 toc: true
 weight: 300
+type:
+- how-to
 ---
 
 <span id="overview"></span>
@@ -46,7 +46,7 @@ To configure this feature:
 <span id="in_detail1"></span>
 ### Installing nginx-sync on the Primary Machine
 
-Install the NGINX Synchronization module package `nginx-sync` on the Primary machine. Check the [Technical Specifications]({{< relref "../../technical-specs.md" >}}) page to verify that the module is supported by your operating system.
+Install the NGINX Synchronization module package `nginx-sync` on the Primary machine. Check the [Technical Specifications]({{< ref "nginx/technical-specs.md" >}}) page to verify that the module is supported by your operating system.
 
 - For Amazon Linux 2, CentOS, Oracle Linux, and RHEL:
 

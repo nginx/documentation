@@ -1,13 +1,11 @@
 ---
 description: Create and manage templates for your F5 NGINX Plus instances.
 docs: DOCS-776
-doctypes:
-- tutorial
-tags:
-- docs
 title: Manage Your Instance Templates
 toc: true
 weight: 50
+type:
+- tutorial
 ---
 
 ## Overview
@@ -25,10 +23,10 @@ Take the following steps to create an Instance Template:
 1. (Optional) Add a display name.
 1. (Optional) Add a description.
 1. (Optional) Add tags.
-1. Select a Location in the list, or select **Create New** to [create a Location]({{< relref "/controller/infrastructure/locations/manage-locations.md" >}}).
+1. Select a Location in the list, or select **Create New** to [create a Location]({{< ref "/controller/infrastructure/locations/manage-locations.md" >}}).
 1. Select the Instance Template type.
 
-    - Select `AWS_INSTANCE_TEMPLATE` to create a template for NGINX instances on Amazon Web Services. For instructions on how to deploy NGINX instances on AWS, refer to the tutorial [Add an AWS NGINX Instance]({{< relref "/controller/infrastructure/instances/add-aws-instance.md" >}}).
+    - Select `AWS_INSTANCE_TEMPLATE` to create a template for NGINX instances on Amazon Web Services. For instructions on how to deploy NGINX instances on AWS, refer to the tutorial [Add an AWS NGINX Instance]({{< ref "/controller/infrastructure/instances/add-aws-instance.md" >}}).
 
 1. Specify whether a public IP address should be assigned to the instance.
 1. Select **Submit**.
@@ -52,9 +50,9 @@ Take the following steps to view or delete an Instance Template:
 
 ## What's Next
 
-- [Create an Instance on Amazon Web Services]({{< relref "add-aws-instance.md" >}})
-- [Configure the Controller Agent]({{< relref "/controller/admin-guides/config-agent/configure-the-agent.md" >}})
-- [Set up Metrics Collection]({{< relref "/controller/analytics/metrics/overview-metrics-metadata.md" >}})
+- [Create an Instance on Amazon Web Services]({{< ref "add-aws-instance.md" >}})
+- [Configure the Controller Agent]({{< ref "/controller/admin-guides/config-agent/configure-the-agent.md" >}})
+- [Set up Metrics Collection]({{< ref "/controller/analytics/metrics/overview-metrics-metadata.md" >}})
 
 {{< versions "3.6" "latest" "ctrlvers" >}}
 {{< versions "3.18" "latest" "apimvers" >}}

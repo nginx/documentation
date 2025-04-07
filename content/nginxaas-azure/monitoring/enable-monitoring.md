@@ -1,10 +1,11 @@
 ---
-title: "Enable monitoring"
+title: Enable monitoring
 weight: 200
-categories: ["tasks"]
 toc: true
-docs: "DOCS-876"
+docs: DOCS-876
 url: /nginxaas/azure/monitoring/enable-monitoring/
+type:
+- how-to
 ---
 
 Monitoring your application's performance is crucial for maintaining its reliability and efficiency. F5 NGINX as a Service for Azure (NGINXaaS) seamlessly integrates with Azure Monitor, allowing you to collect, correlate, and analyze metrics for a thorough understanding of your application's health and behavior. With Azure Monitor, you gain access to a wealth of information regarding your application's operations. You can:
@@ -144,4 +145,4 @@ This section shows you how to effectively discover, gather and analyze NGINXaaS 
    }
    ```
 
-{{<note>}} Refer to the [Metrics Catalog]({{< relref "/nginxaas-azure/monitoring/metrics-catalog.md" >}}) for a listing of available namespaces and metrics.{{</note>}}
+{{<note>}} Refer to the [Metrics Catalog]({{< ref "/nginxaas-azure/monitoring/metrics-catalog.md" >}}) for a listing of available namespaces and metrics.{{</note>}}

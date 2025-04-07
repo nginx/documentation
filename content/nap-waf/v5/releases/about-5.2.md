@@ -17,7 +17,7 @@ May 29, 2024
 
 In this release, F5 NGINX App Protect WAF supports NGINX Open Source 1.25.5 and NGINX Plus R32.
 
-- [Apreload support]({{<relref "nap-waf/v5/configuration-guide/configuration.md#apreload">}})
+- [Apreload support]({{<ref "nap-waf/v5/configuration-guide/configuration.md#apreload">}})
 
 ---
 

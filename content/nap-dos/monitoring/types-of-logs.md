@@ -1,11 +1,11 @@
 ---
 description: Learn about the F5 NGINX App Protect DoS Logs Overview.
 docs: DOCS-671
-doctypes:
-- task
 title: NGINX App Protect DoS Logs Overview
 toc: true
 weight: 130
+type:
+- how-to
 ---
 
 There are 4 types of logs corresponding to App Protect DoS:
@@ -25,16 +25,16 @@ NGINX does not have audit logs in the sense of *"**who** did **what**"*. This ca
 |----|-----------------|-----------------------|-----------------|--------------------|
 | Debug | Log file name is the redirection in the invocation of the `admd` command line in the start script | Global (not part of `nginx.conf`)|Yes. Log file is in /var/log/adm/admd.log directory. There is currently no file rotation capability available for this log.|  No |
 |  Operation  |  `error_log` directive, part of core NGINX | `nginx.conf` - global | Yes, NGINX error log | Yes, NGINX error log   |
-|Request |NGINX has two directives for the access log: <br> - **access_log** - to turn [on\|off] <br> - **log_format** - to specify the required information regarding each request <br><br> NGINX App Protect DoS has several variables that can be added to the log_format directive, such as $app_protect_dos_outcome. <br><br> For more information refer to [NGINX App Protect DoS Access Log]({{< relref "/nap-dos/monitoring/access-log.md" >}}) | `nginx.conf` - global| Yes, NGINX access log | Yes, NGINX access log |
-| Security  | NGINX App Protect DoS has two directives in `nginx.conf`: <br> - app_protect_dos_security_log_enable to turn logging [on\|off] <br> - app_protect_dos_security_log to set it's logging configuration and destination <br><br> For more information refer: <br> - **Configuration**: [App Protect DoS - Directives and Policy]({{< relref "/nap-dos/directives-and-policy/learn-about-directives-and-policy.md">}}) <br> - **Usage**: [NGINX App Protect DoS - Security Log]({{< relref "/nap-dos/monitoring/security-log.md" >}}) | `nginx.conf`: http, server, location  | Yes, either stderr, or an absolute path to a local file are supported | Yes |
+|Request |NGINX has two directives for the access log: <br> - **access_log** - to turn [on\|off] <br> - **log_format** - to specify the required information regarding each request <br><br> NGINX App Protect DoS has several variables that can be added to the log_format directive, such as $app_protect_dos_outcome. <br><br> For more information refer to [NGINX App Protect DoS Access Log]({{< ref "/nap-dos/monitoring/access-log.md" >}}) | `nginx.conf` - global| Yes, NGINX access log | Yes, NGINX access log |
+| Security  | NGINX App Protect DoS has two directives in `nginx.conf`: <br> - app_protect_dos_security_log_enable to turn logging [on\|off] <br> - app_protect_dos_security_log to set it's logging configuration and destination <br><br> For more information refer: <br> - **Configuration**: [App Protect DoS - Directives and Policy]({{< ref "/nap-dos/directives-and-policy/learn-about-directives-and-policy.md">}}) <br> - **Usage**: [NGINX App Protect DoS - Security Log]({{< ref "/nap-dos/monitoring/security-log.md" >}}) | `nginx.conf`: http, server, location  | Yes, either stderr, or an absolute path to a local file are supported | Yes |
 
  {{</bootstrap-table>}}
 
 ## Security Log
- The security logs contain information about the status of the protected objects. It gives a general picture about each protected object in terms of traffic intensity, health of the backend server, learning and mitigations. For more information refer to [NGINX App Protect DoS Security Log]({{< relref "/nap-dos/monitoring/security-log.md" >}}) documentation.
+ The security logs contain information about the status of the protected objects. It gives a general picture about each protected object in terms of traffic intensity, health of the backend server, learning and mitigations. For more information refer to [NGINX App Protect DoS Security Log]({{< ref "/nap-dos/monitoring/security-log.md" >}}) documentation.
 
 ## Operation Log
- The operation logs consists of system operational and health events. The events are sent to the NGINX error log and are distinguished by the `APP_PROTECT_DOS` prefix followed by JSON body. The log level depends on the event: success is usually indicated by `notice`, while failure is indicated by `error`. The timestamp is inherent in the error log. For more information refer to [App Protect DoS Operation Log]({{< relref "/nap-dos/monitoring/operation-log.md" >}}) documentation.
+ The operation logs consists of system operational and health events. The events are sent to the NGINX error log and are distinguished by the `APP_PROTECT_DOS` prefix followed by JSON body. The log level depends on the event: success is usually indicated by `notice`, while failure is indicated by `error`. The timestamp is inherent in the error log. For more information refer to [App Protect DoS Operation Log]({{< ref "/nap-dos/monitoring/operation-log.md" >}}) documentation.
 
 ## Request Log
  Access log is NGINX’s request log mechanism. It is controlled by two directives.
@@ -46,7 +46,7 @@ NGINX does not have audit logs in the sense of *"**who** did **what**"*. This ca
 This directive determines the destination of the `access_log` and the name of the format. The default is the file `/var/log/nginx/access.log` using the combined format. In order to use the custom format that includes the NGINX App Protect DoS variables, use this directive with the name of the desired format.
 
 ### App Protect DoS Variables
-These are the variables added to Access Log. They are a subset of the Security log attributes. The Security log names are prefixed with `$app_protect_dos`. <br> For more information refer to [NGINX App Protect DoS Access Log]({{< relref "/nap-dos/monitoring/access-log.md" >}})
+These are the variables added to Access Log. They are a subset of the Security log attributes. The Security log names are prefixed with `$app_protect_dos`. <br> For more information refer to [NGINX App Protect DoS Access Log]({{< ref "/nap-dos/monitoring/access-log.md" >}})
 
 ## Debug Log - NGINX App Protect DoS
 The NGINX App Protect DoS Debug log is used to troubleshoot the functionality of the product. <br>

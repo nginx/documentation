@@ -1,13 +1,11 @@
 ---
-description:
+description: ''
 docs: DOCS-1211
-doctypes:
-- tutorial
-tags:
-- docs
 title: Install on a virtual machine or bare metal using a script
 toc: true
 weight: 10
+type:
+- tutorial
 ---
 
 {{< include "/nim/decoupling/note-legacy-nms-references.md" >}}
@@ -16,7 +14,7 @@ weight: 10
 
 This guide explains how to install F5 NGINX Instance Manager on a virtual machine or bare metal system using the `install-nim-bundle.sh` script.
 
-The script simplifies the installation by automating tasks such as verifying system requirements, configuring services, and managing environment-specific options. For more control or an alternative approach, you can refer to the [manual installation guide]({{< relref "nim/deploy/vm-bare-metal/install-nim-deprecated.md" >}}), which provides detailed, step-by-step instructions.
+The script simplifies the installation by automating tasks such as verifying system requirements, configuring services, and managing environment-specific options. For more control or an alternative approach, you can refer to the [manual installation guide]({{< ref "nim/deploy/vm-bare-metal/install-nim-deprecated.md" >}}), which provides detailed, step-by-step instructions.
 
 ---
 
@@ -24,22 +22,22 @@ The script simplifies the installation by automating tasks such as verifying sys
 
 Follow these steps to prepare for installing NGINX Instance Manager:
 
-- **Download the certificate and private key** (see the steps [below](#download-cert-key)):  
-  Use the certificate and private key for NGINX Instance Manager (the same files used for NGINX Plus).  
-  - Ensure the files have `.crt` and `.key` extensions.  
-  - Save them to the target system. The default locations are:  
-    - `/etc/ssl/nginx/nginx-repo.crt`  
-    - `/etc/ssl/nginx/nginx-repo.key`  
+- **Download the certificate and private key** (see the steps [below](#download-cert-key)):
+  Use the certificate and private key for NGINX Instance Manager (the same files used for NGINX Plus).
+  - Ensure the files have `.crt` and `.key` extensions.
+  - Save them to the target system. The default locations are:
+    - `/etc/ssl/nginx/nginx-repo.crt`
+    - `/etc/ssl/nginx/nginx-repo.key`
 
-- **Check for previous deployments**:  
-  Ensure that NGINX Instance Manager and its components are not already installed.  
+- **Check for previous deployments**:
+  Ensure that NGINX Instance Manager and its components are not already installed.
   - If NGINX Instance Manager or its components (such as ClickHouse or NGINX) are detected, either follow the [upgrade instructions](#upgrade-nim) to update them or [manually remove the components](#uninstall-nim) before proceeding with the installation.
 
-- **Record the version details**:  
-  Note the current version of NGINX Instance Manager and confirm the supported version of NGINX OSS or NGINX Plus you intend to use.  
+- **Record the version details**:
+  Note the current version of NGINX Instance Manager and confirm the supported version of NGINX OSS or NGINX Plus you intend to use.
   - By default, the script installs the latest version.
 
-- **(Optional) Install and configure Vault**:  
+- **(Optional) Install and configure Vault**:
   If you plan to use Vault, set it up before proceeding.
 
 ### Security considerations
@@ -96,7 +94,7 @@ Download the certificate and private key required for NGINX Instance Manager. Th
 
 ## Download and run the installation script {#download-install}
 
-Download the `install-nim-bundle.sh` script: 
+Download the `install-nim-bundle.sh` script:
 
 {{<fa "download">}} {{<link "/scripts/install-nim-bundle.sh" "Download install-nim-bundle.sh script">}}
 
@@ -108,10 +106,10 @@ Follow these steps to get your system ready for a successful installation with t
 
 The script supports only new installations. If NGINX Instance Manager is already installed, take one of the following actions:
 
-- **Upgrade manually**  
+- **Upgrade manually**
   The script cannot perform upgrades. To update an existing installation, follow the [upgrade steps](#upgrade-nim) in this document.
 
-- **Uninstall first**  
+- **Uninstall first**
   Remove the current installation and its dependencies for a fresh start. Use the [uninstall steps](#uninstall-nim) to delete the primary components. Afterward, manually check for and remove leftover files such as repository configurations or custom settings to ensure a clean system.
 
 #### Verify SSL certificates and private keys
@@ -120,7 +118,7 @@ Ensure that the required `.crt` and `.key` files are available, preferably in th
 
 #### Use the manual installation steps if needed
 
-If the script fails or if you prefer more control over the process, consider using the [manual installation steps]({{< relref "nim/deploy/vm-bare-metal/install-nim-deprecated.md" >}}). These steps provide a reliable alternative for troubleshooting or handling complex setups.
+If the script fails or if you prefer more control over the process, consider using the [manual installation steps]({{< ref "nim/deploy/vm-bare-metal/install-nim-deprecated.md" >}}). These steps provide a reliable alternative for troubleshooting or handling complex setups.
 
 ### Run the installation script
 
@@ -135,7 +133,7 @@ The `install-nim-bundle.sh` script automates the installation of NGINX Instance 
 
 {{< warning >}}
 
-As noted in [About subscription licenses]({{< relref "solutions/about-subscription-licenses.md#apply-the-jwt" >}}), **custom paths won't work until you upgrade to NGINX Plus R33**.
+As noted in [About subscription licenses]({{< ref "solutions/about-subscription-licenses.md#apply-the-jwt" >}}), **custom paths won't work until you upgrade to NGINX Plus R33**.
 
 {{< /warning >}}
 
@@ -191,12 +189,12 @@ After installation, you can access the NGINX Instance Manager web interface to b
 2. Navigate to `https://<NIM_FQDN>`, replacing `<NIM_FQDN>` with the fully qualified domain name of your NGINX Instance Manager host.
 3. Log in using the default administrator username (`admin`) and the autogenerated password displayed during installation.
 
-Save the autogenerated password displayed at the end of the installation process. If you want to change the admin password, refer to the [Set user passwords]({{< relref "/nim/admin-guide/authentication/basic-auth/set-up-basic-authentication.md#set-basic-passwords" >}}) section in the Basic Authentication topic.
+Save the autogenerated password displayed at the end of the installation process. If you want to change the admin password, refer to the [Set user passwords]({{< ref "/nim/admin-guide/authentication/basic-auth/set-up-basic-authentication.md#set-basic-passwords" >}}) section in the Basic Authentication topic.
 
 
 ### Using the script to uninstall NGINX Instance Manager and its dependencies
 
-In some cases, the script may need to be re-run due to parameters not being set correctly, or wrong versions being specified. You can remove NGINX Instance Manager and all of its dependencies (including NGINX) so that the script can be re-run. 
+In some cases, the script may need to be re-run due to parameters not being set correctly, or wrong versions being specified. You can remove NGINX Instance Manager and all of its dependencies (including NGINX) so that the script can be re-run.
 
 {{<call-out "warning" "Potential for data loss" "">}}The `-r` option removes all NGINX configuration files, NGINX Instance Manager, and ClickHouse. Once you run this command, the data is gone and cannot be recovered unless you have backups. Use this option only if you need to remove NGINX Instance Manager to re-run the script in a fresh environment for a new installation. See "[Uninstall NGINX Instance Manager](#uninstall-nim)" below to perform these steps manually. If you do not want to lose your NGINX Configuration, you should take a backup of `/etc/nginx/`. {{</call-out>}}
 
@@ -213,13 +211,13 @@ bash install-nim-bundle.sh -r
 {{<call-out "note" "ClickHouse version requirement" "" >}}NGINX Instance Manager relies on [ClickHouse](https://clickhouse.com) **24.9.2.42** or later to store essential data, including metrics, events, alerts, and configuration settings.{{</call-out>}}
 
 <!-- Based on my understanding of the script, it is a blank password -->
-{{<call-out "important" "Setting a custom ClickHouse password" "fas fa-exclamation-triangle" >}}The NGINX Instance Manager installation script also installs ClickHouse with a blank password. Update the **/etc/nms/nms.conf** file with it after installing NGINX Instance Manager. Otherwise, NGINX Instance Manager won't start. For more information on customizing ClickHouse settings, refer to the [Configure ClickHouse]({{< relref "/nim/system-configuration/configure-clickhouse.md" >}}) topic. {{</call-out>}}
+{{<call-out "important" "Setting a custom ClickHouse password" "fas fa-exclamation-triangle" >}}The NGINX Instance Manager installation script also installs ClickHouse with a blank password. Update the **/etc/nms/nms.conf** file with it after installing NGINX Instance Manager. Otherwise, NGINX Instance Manager won't start. For more information on customizing ClickHouse settings, refer to the [Configure ClickHouse]({{< ref "/nim/system-configuration/configure-clickhouse.md" >}}) topic. {{</call-out>}}
 
 #### ClickHouse default settings
 
 NGINX Instance Manager uses the following default values for ClickHouse:
 
-{{<call-out "note" "Customizing ClickHouse" >}}You can customize these settings. However, if you use custom settings, make sure to follow the [Configure ClickHouse]({{< relref "/nim/system-configuration/configure-clickhouse.md" >}}) instructions to update the **nms.conf** file after you've installed NGINX Instance Manager. Otherwise, NGINX Instance Manager won't be able to connect to ClickHouse.{{</call-out>}}
+{{<call-out "note" "Customizing ClickHouse" >}}You can customize these settings. However, if you use custom settings, make sure to follow the [Configure ClickHouse]({{< ref "/nim/system-configuration/configure-clickhouse.md" >}}) instructions to update the **nms.conf** file after you've installed NGINX Instance Manager. Otherwise, NGINX Instance Manager won't be able to connect to ClickHouse.{{</call-out>}}
 
 {{< include "installation/clickhouse-defaults.md" >}}
 
@@ -231,13 +229,13 @@ To install and enable Vault, follow these steps:
 
 - Follow Vault's instructions to [install Vault 1.8.8 or later](https://www.vaultproject.io/docs/install) for your distribution.
 - Ensure you're running Vault in a [production-hardened environment](https://learn.hashicorp.com/tutorials/vault/production-hardening).
-- After installing NGINX Instance Manager, follow the steps to [configure Vault for storing secrets]({{< relref "/nim/system-configuration/configure-vault.md" >}}).
+- After installing NGINX Instance Manager, follow the steps to [configure Vault for storing secrets]({{< ref "/nim/system-configuration/configure-vault.md" >}}).
 
 ### (Optional) Configure SELinux
 
 SELinux helps secure your deployment by enforcing mandatory access control policies.
 
-If you use SELinux, follow the steps in the [Configure SELinux]({{< relref "/nim/system-configuration/configure-selinux.md" >}}) guide to restore SELinux contexts (`restorecon`) for the files and directories related to NGINX Instance Manager.
+If you use SELinux, follow the steps in the [Configure SELinux]({{< ref "/nim/system-configuration/configure-selinux.md" >}}) guide to restore SELinux contexts (`restorecon`) for the files and directories related to NGINX Instance Manager.
 
 ### License NGINX Instance Manager
 
@@ -303,7 +301,7 @@ If you use SELinux, follow the steps in the [Configure SELinux]({{< relref "/nim
    sudo systemctl restart clickhouse-server
    ```
 
-5. (Optional) If you use SELinux, follow the steps in the [Configure SELinux]({{< relref "nim/system-configuration/configure-selinux.md" >}}) guide to restore the default SELinux labels (`restorecon`) for the files and directories related to NGINX Instance Manager.
+5. (Optional) If you use SELinux, follow the steps in the [Configure SELinux]({{< ref "nim/system-configuration/configure-selinux.md" >}}) guide to restore the default SELinux labels (`restorecon`) for the files and directories related to NGINX Instance Manager.
 
 ---
 

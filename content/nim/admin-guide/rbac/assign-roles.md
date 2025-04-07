@@ -1,12 +1,10 @@
 ---
 docs: DOCS-1273
-doctypes:
-- task
-tags:
-- docs
 title: Assign roles to users or user groups
 toc: true
 weight: 210
+type:
+- how-to
 ---
 
 ## Overview
@@ -18,8 +16,8 @@ In NGINX Instance Manager, role-based access control (RBAC) lets you assign perm
 {{<call-out "important" "First steps: Create users or user groups" >}}
 Make sure you’ve already created users or user groups that can be assigned roles. If not, follow these guides:
 
-- To create users, follow the instructions in [Set up basic authentication]({{< relref "/nim/admin-guide/authentication/basic-auth/set-up-basic-authentication.md" >}}).
-- To create user groups, follow the steps in [Getting started with OIDC]({{< relref "/nim/admin-guide/authentication/oidc/getting-started.md" >}}).
+- To create users, follow the instructions in [Set up basic authentication]({{< ref "/nim/admin-guide/authentication/basic-auth/set-up-basic-authentication.md" >}}).
+- To create user groups, follow the steps in [Getting started with OIDC]({{< ref "/nim/admin-guide/authentication/oidc/getting-started.md" >}}).
 {{</call-out>}}
 
 

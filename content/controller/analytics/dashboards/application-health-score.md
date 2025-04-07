@@ -1,13 +1,11 @@
 ---
 description: View and understand the Application Health Score for your application.
 docs: DOCS-526
-doctypes:
-- concept
-tags:
-- docs
 title: Understanding the Application Health Score
 toc: true
 weight: 20
+type:
+- concept
 ---
 
 ## Overview
@@ -84,11 +82,11 @@ By default, the AHS and other metrics on the **Overview** page are calculated fo
 
 ## What's Next
 
-- [Overview of metrics and metadata]({{< relref "/controller/analytics/metrics/overview-metrics-metadata.md" >}})
-- [Set up Metrics Collection]({{< relref "/controller/admin-guides/config-agent/configure-metrics-collection.md" >}})
-- [Metrics Catalog Reference]({{< relref "/controller/analytics/catalogs/metrics.md" >}})
-- [Dimensions Catalog Reference]({{< relref "/controller/analytics/catalogs/dimensions.md" >}})
-- [Custom Dashboards]({{< relref "/controller/analytics/dashboards/custom-dashboards.md" >}})
+- [Overview of metrics and metadata]({{< ref "/controller/analytics/metrics/overview-metrics-metadata.md" >}})
+- [Set up Metrics Collection]({{< ref "/controller/admin-guides/config-agent/configure-metrics-collection.md" >}})
+- [Metrics Catalog Reference]({{< ref "/controller/analytics/catalogs/metrics.md" >}})
+- [Dimensions Catalog Reference]({{< ref "/controller/analytics/catalogs/dimensions.md" >}})
+- [Custom Dashboards]({{< ref "/controller/analytics/dashboards/custom-dashboards.md" >}})
 
 {{< versions "3.0" "latest" "ctrlvers" >}}
 {{< versions "3.18" "latest" "apimvers" >}}

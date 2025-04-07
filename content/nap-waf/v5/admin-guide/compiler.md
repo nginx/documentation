@@ -13,7 +13,7 @@ The F5 NGINX App Protect WAF v5 Compiler is a tool that compiles security polici
 
 ## Use Cases
 
-- Get latest security updates - [Attack Signatures]({{< relref "/nap-waf/v5/configuration-guide/configuration.md#attack-signatures-overview" >}}), [Threat Campaigns]({{< relref "/nap-waf/v5/configuration-guide/configuration.md#threat-campaigns" >}}), [Bot Signatures]({{< relref "/nap-waf/v5/configuration-guide/configuration.md#bot-signatures" >}}).
+- Get latest security updates - [Attack Signatures]({{< ref "/nap-waf/v5/configuration-guide/configuration.md#attack-signatures-overview" >}}), [Threat Campaigns]({{< ref "/nap-waf/v5/configuration-guide/configuration.md#threat-campaigns" >}}), [Bot Signatures]({{< ref "/nap-waf/v5/configuration-guide/configuration.md#bot-signatures" >}}).
 - Apply multiple policy bundle files within the same `nginx.conf`.
 - Configure global settings such as the cookie seed and user-defined signatures.
 

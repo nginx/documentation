@@ -30,8 +30,8 @@ The following capabilities are only available via the Instance Manager REST API:
 
 Complete the following prerequisites before proceeding with this guide:
 
-- [Set Up App Protect WAF Configuration Management]({{< relref "setup-waf-config-management" >}})
-- Verify that your user account has the [necessary permissions]({{< relref "/nim/admin-guide/rbac/overview-rbac.md" >}}) to access the Instance Manager REST API:
+- [Set Up App Protect WAF Configuration Management]({{< ref "setup-waf-config-management" >}})
+- Verify that your user account has the [necessary permissions]({{< ref "/nim/admin-guide/rbac/overview-rbac.md" >}}) to access the Instance Manager REST API:
 
   - **Module**: Instance Manager
   - **Feature**: Instance Management
@@ -42,8 +42,8 @@ Complete the following prerequisites before proceeding with this guide:
 The following are required to use support policy bundles:
 
 - You must have `UPDATE` permissions for the security policies specified in the request.
-- The correct `nms-nap-compiler` packages for the NGINX App Protect WAF version you're using are [installed on Instance Manager]({{< relref "/nim/nginx-app-protect/setup-waf-config-management.md#install-the-waf-compiler" >}}).
-- The attack signatures and threat campaigns that you want to use are [installed on Instance Manager]({{< relref "/nim/nginx-app-protect/setup-waf-config-management.md#set-up-attack-signatures-and-threat-campaigns" >}}).
+- The correct `nms-nap-compiler` packages for the NGINX App Protect WAF version you're using are [installed on Instance Manager]({{< ref "/nim/nginx-app-protect/setup-waf-config-management.md#install-the-waf-compiler" >}}).
+- The attack signatures and threat campaigns that you want to use are [installed on Instance Manager]({{< ref "/nim/nginx-app-protect/setup-waf-config-management.md#set-up-attack-signatures-and-threat-campaigns" >}}).
 
 ### How to Access the Web Interface
 

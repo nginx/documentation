@@ -1,20 +1,18 @@
 ---
 description: Create and manage Roles and Role Groups.
 docs: DOCS-783
-doctypes:
-- tutorial
-tags:
-- docs
 title: Manage Roles and Role Groups
 toc: true
 weight: 30
+type:
+- tutorial
 ---
 
 ## Overview
 
 This topic explains how to create and manage Roles and Role Groups.
 
-- **Roles** define a set of permissions that allow or prevent Users from performing operations in F5 NGINX Controller or in an [Environment]({{< relref "/controller/services/manage-environments.md" >}}).
+- **Roles** define a set of permissions that allow or prevent Users from performing operations in F5 NGINX Controller or in an [Environment]({{< ref "/controller/services/manage-environments.md" >}}).
 
 - **Role Groups** act as a collection of Roles that you can manage as a single resource. All members of a Role Group are assigned the same set of Roles. Role Groups can be mapped only to external auth provider groups; they can not be assigned to local users.
 
@@ -42,7 +40,7 @@ th {
 | `guest` | `guest_group` | Read-Only   | The predefined `guest` Role and `guest_group` Role Group have read-only access to Environments and cannot publish API Definitions. |
 
 {{< important >}}
-Beginning in NGINX Controller 3.12, users no longer need to have one of the predefined roles. Users are granted a basic set of `READ` permissions for Analytics, Users, Roles, and Licenses. Users without a built-in role no longer have the implicit `READ` permissions for all Environments, Identity Providers, API Definitions, Locations, Providers, and Integrations. You can use the `/platform/roles` endpoint in the [NGINX Controller REST API]({{< relref "/controller/api/_index.md" >}}) to extend or narrow a role's set of permissions.
+Beginning in NGINX Controller 3.12, users no longer need to have one of the predefined roles. Users are granted a basic set of `READ` permissions for Analytics, Users, Roles, and Licenses. Users without a built-in role no longer have the implicit `READ` permissions for all Environments, Identity Providers, API Definitions, Locations, Providers, and Integrations. You can use the `/platform/roles` endpoint in the [NGINX Controller REST API]({{< ref "/controller/api/_index.md" >}}) to extend or narrow a role's set of permissions.
 {{< /important >}}
 
 ## Permissions
@@ -59,12 +57,12 @@ The four permission levels are:
 By default, all users have `READ` permissions for Analytics, Users, Roles, and Licenses.
 
 {{< tip >}}
-You can use the `/platform/roles` endpoint in the [NGINX Controller REST API]({{< relref "/controller/api/_index.md" >}}) to extend this default set of permissions.
+You can use the `/platform/roles` endpoint in the [NGINX Controller REST API]({{< ref "/controller/api/_index.md" >}}) to extend this default set of permissions.
 {{< /tip >}}
 
 ### Example: Inheriting Permissions
 
-Whether for a collection or a specific resource instance, each permission contains a path to a resource and a permission level. Resources that are deeper in the path hierarchy inherit permissions from their parents unless explicitly overwritten. Refer to the [NGINX Controller API Reference Guide]({{< relref "/controller/api/_index.md" >}}) for the resource paths.
+Whether for a collection or a specific resource instance, each permission contains a path to a resource and a permission level. Resources that are deeper in the path hierarchy inherit permissions from their parents unless explicitly overwritten. Refer to the [NGINX Controller API Reference Guide]({{< ref "/controller/api/_index.md" >}}) for the resource paths.
 
 In this example, all resources under `/services/environments/` inherit `READ` access:
 
@@ -136,9 +134,9 @@ When assigning Roles or Role Groups for users, you should assign the least permi
 ## Create a Role
 
 {{< note >}}
-Roles must belong to [Environments]({{< relref "/controller/services/manage-environments.md#about-environments" >}}). If you don't already have an Environment, or you don't want to place your new Role(s) in your existing Environment, you should [create a new Environment]({{< relref "/controller/services/manage-environments.md#create-an-environment" >}}) before you continue.
+Roles must belong to [Environments]({{< ref "/controller/services/manage-environments.md#about-environments" >}}). If you don't already have an Environment, or you don't want to place your new Role(s) in your existing Environment, you should [create a new Environment]({{< ref "/controller/services/manage-environments.md#create-an-environment" >}}) before you continue.
 
-The `/platform/roles` endpoint in the [NGINX Controller REST API]({{< relref "/controller/api/_index.md" >}}) allows more freedom when creating roles. You can use the Roles API to grant permissions outside of environments, for example to `/reports/`.
+The `/platform/roles` endpoint in the [NGINX Controller REST API]({{< ref "/controller/api/_index.md" >}}) allows more freedom when creating roles. You can use the Roles API to grant permissions outside of environments, for example to `/reports/`.
 
 {{< /note >}}
 
@@ -207,8 +205,8 @@ The predefined Role Groups `admin_group`, `user_group`, and `guest_group` cannot
 
 ## What's Next
 
-- [Create a User]({{< relref "/controller/platform/access-management/manage-users.md" >}})
-- [Create an Authentication Provider]({{< relref "/controller/platform/access-management/manage-active-directory-auth-provider.md" >}})
+- [Create a User]({{< ref "/controller/platform/access-management/manage-users.md" >}})
+- [Create an Authentication Provider]({{< ref "/controller/platform/access-management/manage-active-directory-auth-provider.md" >}})
 
 {{< versions "3.0" "latest" "ctrlvers" >}}
 {{< versions "3.18" "latest" "apimvers" >}}

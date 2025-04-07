@@ -1,14 +1,12 @@
 ---
-description: Understanding how the F5 NGINX Controller Agent collects and reports metrics
-  and metadata.
+description: Understanding how the F5 NGINX Controller Agent collects and reports
+  metrics and metadata.
 docs: DOCS-536
-doctypes:
-- reference
-tags:
-- docs
 title: 'Overview: Metrics and Metadata'
 toc: true
 weight: 20
+type:
+- reference
 ---
 
 ## Overview
@@ -27,7 +25,7 @@ Metrics are published at a regular interval of 60 or 30 seconds for system and t
 This topic gives an overview of the traffic metrics. Also known as "app-centric" metrics, traffic metrics contain information that lets you easily identify the App to which the data applies.
 
 {{< see-also >}}
-Refer to [View traffic metrics]({{< relref "/controller/analytics/metrics/view-traffic-metrics.md" >}}) for instructions on how to view traffic metrics using the [NGINX Controller REST API]({{< relref "/controller/api/_index.md" >}}).
+Refer to [View traffic metrics]({{< ref "/controller/analytics/metrics/view-traffic-metrics.md" >}}) for instructions on how to view traffic metrics using the [NGINX Controller REST API]({{< ref "/controller/api/_index.md" >}}).
 {{< /see-also >}}
 ## Metadata and Metrics That Are Reported
 
@@ -40,7 +38,7 @@ The NGINX Controller Agent collects the following types of data:
 - **NGINX metadata.** These describe your NGINX instances, and include package data, build information, the path to the binary, build configuration options, and so on. NGINX metadata also includes the NGINX configuration elements.
 - **System metadata.** These are the basic information about the OS environment where the Agent runs. For example, the hostname, uptime, OS flavor, and other data.
 
-For the full list of metrics, see the [Metrics Catalog Reference]({{< relref "/controller/analytics/catalogs/metrics.md" >}})
+For the full list of metrics, see the [Metrics Catalog Reference]({{< ref "/controller/analytics/catalogs/metrics.md" >}})
 
 ## Metrics Collection and Reporting Process
 
@@ -65,16 +63,16 @@ If the Agent cannot reach the Controller server to send the accumulated metrics,
 
 The Agent is able to automatically find all relevant NGINX configuration files, parse them, extract their logical structure, and send the associated JSON data to the Controller Server for further analysis and reporting.
 
-To parse SSL certificate metadata, the NGINX Controller Agent uses standard `openssl`(1) functions. SSL certificates are parsed and analyzed only when the corresponding [Agent settings]({{< relref "/controller/admin-guides/config-agent/configure-the-agent.md#default-agent-settings" >}}) are turned on. SSL certificate analysis is `off` by default.
+To parse SSL certificate metadata, the NGINX Controller Agent uses standard `openssl`(1) functions. SSL certificates are parsed and analyzed only when the corresponding [Agent settings]({{< ref "/controller/admin-guides/config-agent/configure-the-agent.md#default-agent-settings" >}}) are turned on. SSL certificate analysis is `off` by default.
 
 ## Troubleshooting
 
-Most metrics are collected by the Agent without requiring the user to perform any additional setup. For troubleshooting instructions, see [Troubleshooting NGINX Controller Metrics]({{< relref "/controller/support/troubleshooting-controller.md" >}}).
+Most metrics are collected by the Agent without requiring the user to perform any additional setup. For troubleshooting instructions, see [Troubleshooting NGINX Controller Metrics]({{< ref "/controller/support/troubleshooting-controller.md" >}}).
 
 ## What's Next
 
-- [Set up Metrics Collection]({{< relref "/controller/admin-guides/config-agent/configure-metrics-collection.md" >}})
-- [Metrics Reference]({{< relref "/controller/analytics/catalogs/metrics.md" >}})
+- [Set up Metrics Collection]({{< ref "/controller/admin-guides/config-agent/configure-metrics-collection.md" >}})
+- [Metrics Reference]({{< ref "/controller/analytics/catalogs/metrics.md" >}})
 
 {{< versions "3.0" "latest" "ctrlvers" >}}
 {{< versions "3.18" "latest" "apimvers" >}}

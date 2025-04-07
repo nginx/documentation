@@ -23,4 +23,4 @@ You can access the NGINX Instance Manager web interface using the external IP ad
 
    For example, `https://10.108.57.167/ui`.
 
-   This IP address might not be reachable, depending on how the Kubernetes cluster networking was configured. If so, the `apigw` service type can be changed to a more suitable option, such as `LoadBalancer`, by changing the [Configurable Helm Setting]({{< relref "/nim/deploy/kubernetes/helm-config-settings.md" >}}) value for `apigw.service.type`.
+   This IP address might not be reachable, depending on how the Kubernetes cluster networking was configured. If so, the `apigw` service type can be changed to a more suitable option, such as `LoadBalancer`, by changing the [Configurable Helm Setting]({{< ref "/nim/deploy/kubernetes/helm-config-settings.md" >}}) value for `apigw.service.type`.

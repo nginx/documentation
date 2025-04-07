@@ -1,8 +1,6 @@
 ---
 description: Learn how to support various deployment patterns for Developer Portal.
 docs: DOCS-955
-tags:
-- docs
 title: Deployment Patterns for Developer Portal
 toc: true
 weight: 200
@@ -27,7 +25,7 @@ The following deployment patterns are supported:
 Complete the following prerequisites before proceeding with this guide:
 
 - API Connectivity Manager is installed, licensed, and running.
-- You have one or more Environments with a [Developer Portal]({{< relref "/nms/acm/getting-started/add-devportal" >}}) cluster.
+- You have one or more Environments with a [Developer Portal]({{< ref "/nms/acm/getting-started/add-devportal" >}}) cluster.
 - You have verified that you can access the Developer Portal using the configured hostname.
 
 ### How to Access the User Interface

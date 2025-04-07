@@ -2,11 +2,11 @@
 description: Monitor the health of HTTP servers in an upstream group by sending periodic
   health checks, including customizable active health checks in F5 NGINX Plus.
 docs: DOCS-417
-doctypes:
-- task
 title: HTTP Health Checks
 toc: true
 weight: 300
+type:
+- how-to
 ---
 
 <span id="intro"></span>
@@ -19,8 +19,8 @@ NGINX and F5 NGINX Plus can continually test your upstream servers, avoid the se
 ## Prerequisites
 
 - For passive health checks, [NGINX Open Source](https://nginx.org/en/) or [NGINX Plus](https://www.nginx.com/products/nginx)
-- For active health checks and the [live activity monitoring dashboard]({{< relref "../monitoring/live-activity-monitoring.md" >}}), NGINX Plus
-- A load‑balanced group of [HTTP upstream servers]({{< relref "http-load-balancer.md" >}})
+- For active health checks and the [live activity monitoring dashboard]({{< ref "nginx/admin-guide/monitoring/live-activity-monitoring.md" >}}), NGINX Plus
+- A load‑balanced group of [HTTP upstream servers]({{< ref "http-load-balancer.md" >}})
 
 
 <span id="hc_passive"></span>
@@ -106,7 +106,7 @@ To enable active health checks:
    }
    ```
 
-   The zone is shared among all worker processes and stores the configuration of the upstream group. This [enables]({{< relref "/nginx/admin-guide/load-balancer/http-load-balancer.md#sharing-data-with-multiple-worker-processes" >}}) the worker processes to use the same set of counters to keep track of responses from the servers in the group.
+   The zone is shared among all worker processes and stores the configuration of the upstream group. This [enables]({{< ref "/nginx/admin-guide/load-balancer/http-load-balancer.md#sharing-data-with-multiple-worker-processes" >}}) the worker processes to use the same set of counters to keep track of responses from the servers in the group.
 
    The defaults for active health checks can be overridden with parameters to the `health_check` directive:
 

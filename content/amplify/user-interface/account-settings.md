@@ -3,8 +3,7 @@ title: Account Settings
 description: Learn about the Account settings for the User Interface.
 weight: 70
 toc: true
-tags: ["docs"]
-docs: "DOCS-978"
+docs: DOCS-978
 ---
 
 The **Account** option in the user menu at the top right corner of the user interface povides access to several user settings.
@@ -40,4 +39,4 @@ The "Agent settings section is where you enable or disable account-wide behavior
   * Periodic NGINX configuration syntax checking with "nginx -t"
   * Analyzing SSL certs
 
-Per-system settings are accessible via the "Settings" icon that can be found for a particular NGINX on the [**Analyzer**]({{< relref "/amplify/user-interface/analyzer.md" >}}) page. Per-system settings override the global settings. If you prefer to monitor your NGINX configurations on all but some specific systems, you can uncheck the corresponding settings.
+Per-system settings are accessible via the "Settings" icon that can be found for a particular NGINX on the [**Analyzer**]({{< ref "/amplify/user-interface/analyzer.md" >}}) page. Per-system settings override the global settings. If you prefer to monitor your NGINX configurations on all but some specific systems, you can uncheck the corresponding settings.

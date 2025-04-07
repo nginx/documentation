@@ -1,8 +1,9 @@
 ---
-description:
-  Represents the state of the F5 NGINX Controller Application Delivery REST
-  API.
+description: Represents the state of the F5 NGINX Controller Application Delivery
+  REST API.
 docs: DOCS-1280
+type:
+- reference
 doctypes:
   - reference
 type: redoc
@@ -13,4 +14,4 @@ toc: false
 weight: 300
 ---
 
-{{< openapi spec="/controller/api/reference/ctlr-adc-openapi.json" >}}
+{{< openapi spec="./nginx-controller/api/reference/ctlr-adc-openapi.json" >}}

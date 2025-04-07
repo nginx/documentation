@@ -1,13 +1,11 @@
 ---
 description: Integrate F5 NGINX Controller with a BIG-IP cluster.
 docs: DOCS-786
-doctypes:
-- tutorial
-tags:
-- docs
 title: BIG-IP Integration
 toc: true
 weight: 20
+type:
+- tutorial
 ---
 
 ## Overview
@@ -81,7 +79,7 @@ To add an NGINX instance group to a BIG-IP cluster, take the following steps:
 1. In the **HA Type** list, select `BIG-IP`.
 1. In the **Integration Reference** list, select the name of your BIG-IP integration.
 
-   If you haven't created an integration already, refer to [Create a BIG-IP Integration]({{< relref "/controller/platform/integrations/big-ip-self-service.md#create-a-big-ip-integration" >}}) for instructions.
+   If you haven't created an integration already, refer to [Create a BIG-IP Integration]({{< ref "/controller/platform/integrations/big-ip-self-service.md#create-a-big-ip-integration" >}}) for instructions.
 
 1. In the **Server Pool IP** box, specify the IP address or CIDR of the NGINX instances to add to the BIG-IP server pool; for example, `198.51.100.0/24`. If using a CIDR, the NGINX instance IP addresses that match the mask will be the member addresses in the BIG-IP server pool. Otherwise, absolute IP addresses are used as pool member addresses.
 1. Select **Submit** to create the instance group.
@@ -101,10 +99,10 @@ Take the following steps to deploy a gateway with your BIG-IP instance group for
 1. Select **Create Gateway**.
 1. Complete each of the configuration sections:
 
-    - [General Configuration]({{< relref "#general-configuration" >}})
-    - [Add Placements]({{< relref "#add-placements" >}})
-    - [Set Hostnames]({{< relref "#set-hostnames" >}})
-    - [Additional Settings]({{< relref "#additional-settings" >}})
+    - [General Configuration]({{< ref "#general-configuration" >}})
+    - [Add Placements]({{< ref "#add-placements" >}})
+    - [Set Hostnames]({{< ref "#set-hostnames" >}})
+    - [Additional Settings]({{< ref "#additional-settings" >}})
 
 1. When ready, review the API Spec and then select **Submit** to create the Gateway.
 
@@ -122,7 +120,7 @@ On the **Gateways** > **Create Gateway** > **Configuration** page:
 
 ### Add Placements
 
-[Gateways]({{< relref "/controller/services/manage-gateways.md#overview" >}}) include placements that reference NGINX instances or instance groups. Gateway placements can be for multiple instances or instance groups, allowing a gateway to deliver services in multiple data centers and/or clouds. Placements define the physical machines that are used to manifest a particular path associated with an [application component]({{< relref "/controller/app-delivery/about-app-delivery.md#components" >}}).
+[Gateways]({{< ref "/controller/services/manage-gateways.md#overview" >}}) include placements that reference NGINX instances or instance groups. Gateway placements can be for multiple instances or instance groups, allowing a gateway to deliver services in multiple data centers and/or clouds. Placements define the physical machines that are used to manifest a particular path associated with an [application component]({{< ref "/controller/app-delivery/about-app-delivery.md#components" >}}).
 
 On the **Gateways > Create Gateway > Placements** page:
 
@@ -134,7 +132,7 @@ On the **Gateways > Create Gateway > Placements** page:
 1. In the **Instance Refs/Instance Groups Refs** box, select the NGINX instance(s) or instance group(s) on which you want to deploy the gateway.
 
    {{< note >}}
-   If you're enabling **High Availability Mode**, select the [high-availability instances that you prepared]({{< relref "/controller/infrastructure/instances/ha-data-plane.md#prepare-the-high-availability-instances" >}}). NGINX Controller supports up to two high-availability instances.
+   If you're enabling **High Availability Mode**, select the [high-availability instances that you prepared]({{< ref "/controller/infrastructure/instances/ha-data-plane.md#prepare-the-high-availability-instances" >}}). NGINX Controller supports up to two high-availability instances.
    {{< /note >}}
 
 1. In the **Listen IPs** box, add the IP address(es) on which the server listens for and accepts requests. If you're creating a placement for a BIG-IP Integration, add the virtual IP (VIP) address for the BIG-IP cluster.
@@ -181,7 +179,7 @@ On the **Gateways** > **Create Gateway** > **Additional** page:
    - `Explicitly Enable` - set specific values to use for the keep alive probes.
    - `Explicitly Disable` - disable keep alive.
 
-1. (Optional) Add [**Config Snippets**]({{< relref "/controller/app-delivery/about-snippets.md" >}}) to customize your NGINX configuration.
+1. (Optional) Add [**Config Snippets**]({{< ref "/controller/app-delivery/about-snippets.md" >}}) to customize your NGINX configuration.
 
    {{< caution >}}
    When you use Snippets to customize your NGINX configuration, your changes are applied to the `nginx.conf` file *as is*. NGINX Controller does not verify that your configuration is valid before applying the snippet.

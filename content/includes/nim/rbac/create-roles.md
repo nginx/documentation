@@ -2,7 +2,7 @@
 docs: DOCS-1028
 ---
 
-Roles in NGINX Instance Manager are a critical part of [role-based access control (RBAC)]({{< relref "/nim/admin-guide/rbac/overview-rbac.md" >}}). By creating roles, you define the access levels and permissions for different user groups that correspond to groups in your Identity Provider (IdP).
+Roles in NGINX Instance Manager are a critical part of [role-based access control (RBAC)]({{< ref "/nim/admin-guide/rbac/overview-rbac.md" >}}). By creating roles, you define the access levels and permissions for different user groups that correspond to groups in your Identity Provider (IdP).
 
 NGINX Instance Manager comes pre-configured with an administrator role called `admin`. Additional roles can be created as needed.
 
@@ -24,7 +24,7 @@ Follow these steps to create a role and set its permissions:
 
    1. Select **Add Permission**.
    2. Choose the NGINX Instance Manager module you're creating the permission for from the **Module** list.
-   3. Select the feature you're granting permission for from the **Feature** list. To learn more about features, refer to [Get started with RBAC]({{< relref "/nim/admin-guide/rbac/overview-rbac.md" >}}).
+   3. Select the feature you're granting permission for from the **Feature** list. To learn more about features, refer to [Get started with RBAC]({{< ref "/nim/admin-guide/rbac/overview-rbac.md" >}}).
    4. Select **Add Additional Access** to choose a CRUD (Create, Read, Update, Delete) access level.
       - Choose the access level(s) you want to grant from the **Access** list.
    5. Select **Save**.

@@ -1,10 +1,11 @@
 ---
-title: "Scaling guidance"
+title: Scaling guidance
 weight: 100
-categories: ["tasks"]
 toc: true
-docs: "DOCS-989"
+docs: DOCS-989
 url: /nginxaas/azure/quickstart/scaling/
+type:
+- how-to
 ---
 
 F5 NGINX as a Service for Azure (NGINXaaS) supports manual and automatic scaling of your deployment, allowing you to adapt to application traffic demands while controlling cost.
@@ -81,14 +82,14 @@ NGINXaaS provides metrics for visibility of the current and historical capacity 
 
 - NCUs Requested: `ncu.requested` -- how many NCUs have been requested using the API. This is the goal state of the system at that point in time.
 - NCUs Provisioned: `ncu.provisioned` -- how many NCUs have been successfully provisioned by the service.
-  - This is the basis for [billing]({{< relref "/nginxaas-azure/billing/overview.md" >}}).
+  - This is the basis for [billing]({{< ref "/nginxaas-azure/billing/overview.md" >}}).
   - This may differ from `ncu.requested` temporarily during scale-out/scale-in events or during automatic remediation for a hardware failure.
 - Capacity Percentage: `nginxaas.capacity.percentage` -- the percentage of the current workload's total capacity that is being used.
   - If this is over 70%, consider scaling out; otherwise, requests may fail or take longer than expected. Alternatively, enable autoscaling, so your deployment can automatically scale based on the amount of capacity consumed.
 
-See the [Metrics Catalog]({{< relref "/nginxaas-azure/monitoring/metrics-catalog.md" >}}) for a reference of all metrics.
+See the [Metrics Catalog]({{< ref "/nginxaas-azure/monitoring/metrics-catalog.md" >}}) for a reference of all metrics.
 
-{{< note >}}These metrics aren't visible unless enabled, see how to [Enable Monitoring]({{< relref "/nginxaas-azure/monitoring/enable-monitoring.md" >}}) for details.{{< /note >}}
+{{< note >}}These metrics aren't visible unless enabled, see how to [Enable Monitoring]({{< ref "/nginxaas-azure/monitoring/enable-monitoring.md" >}}) for details.{{< /note >}}
 {{< warning >}}The `ncu.consumed` metric is now deprecated and is on the path to retirement. Please change any alerting on this metric to use the new Capacity Percentage metric.{{< /warning >}}
 
 ## Estimating how many NCUs to provision
@@ -108,7 +109,7 @@ In addition to the maximum capacity needed, we recommend adding a 10% to 20% buf
 ### Iterative approach
 
 1. Make an estimate by either:
-    - using the [Usage and Cost Estimator]({{< relref "/nginxaas-azure/billing/usage-and-cost-estimator.md" >}})
+    - using the [Usage and Cost Estimator]({{< ref "/nginxaas-azure/billing/usage-and-cost-estimator.md" >}})
     - compare to a [reference workload](#reference-workloads)
 2. Observe the `nginxaas.capacity.percentage` [metric](#metrics) in Azure Monitor of your workload
 3. Decide what headroom factor you wish to have

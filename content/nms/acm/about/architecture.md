@@ -1,13 +1,11 @@
 ---
 description: Learn about the F5 NGINX Management Suite API Connectivity Manager architecture.
 docs: DOCS-892
-doctypes:
-- concept
-tags:
-- docs
 title: Architecture Overview
 toc: true
 weight: 400
+type:
+- concept
 ---
 
 {{< shortversions "1.0.0" "latest" "acmvers" >}}

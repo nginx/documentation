@@ -1,12 +1,12 @@
 ---
-description: Troubleshoot problems and track down bugs in an NGINX or F5 NGINX Plus deployment,
-  with the debugging binary, debug logging, and core dumps.
+description: Troubleshoot problems and track down bugs in an NGINX or F5 NGINX Plus
+  deployment, with the debugging binary, debug logging, and core dumps.
 docs: DOCS-424
-doctypes:
-- task
 title: Debugging NGINX
 toc: true
 weight: 300
+type:
+- how-to
 ---
 
 ## Introduction
@@ -22,7 +22,7 @@ First, you will need to enable debugging in NGINX binary. NGINX Plus already pr
 
 ### Configuring F5 NGINX Plus Binary
 
-Starting from [Release 8]({{< relref "../../releases.md" >}}), NGINX Plus ships the _nginx-debug_ binary together with the standard binary. To enable debugging in NGINX Plus, you will need to switch from _nginx_ to _nginx-debug_ binary. Open terminal and run the command:
+Starting from [Release 8]({{< ref "nginx/releases.md" >}}), NGINX Plus ships the _nginx-debug_ binary together with the standard binary. To enable debugging in NGINX Plus, you will need to switch from _nginx_ to _nginx-debug_ binary. Open terminal and run the command:
 
 ```shell
 service nginx stop && service nginx-debug start
@@ -37,7 +37,7 @@ To enable debugging in NGINX Open Source, you will need to recompile it with th
 
 To compile NGINX Open Source with the debug support:
 
-1. Download and unpack NGINX source files, go to the directory with the source files. See [Downloading the Sources]({{< relref "../installing-nginx/installing-nginx-open-source.md" >}}).
+1. Download and unpack NGINX source files, go to the directory with the source files. See [Downloading the Sources]({{< ref "nginx/admin-guide/installing-nginx/installing-nginx-open-source.md" >}}).
 2. Get the list of NGINX configure arguments. Run the command:
 
     ```shell

@@ -1,13 +1,11 @@
 ---
 description: ''
 docs: DOCS-998
-doctypes:
-- task
-tags:
-- docs
 title: Configure ClickHouse
 toc: true
 weight: 100
+type:
+- how-to
 ---
 
 {{< include "/nim/decoupling/note-legacy-nms-references.md" >}}

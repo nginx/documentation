@@ -1,5 +1,5 @@
 ---
-description: ""
+description: ''
 docs: DOCS-1398
 doctypes:
   - reference

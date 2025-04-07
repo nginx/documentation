@@ -1,12 +1,12 @@
 ---
-description: Migrate load-balancing configuration from Citrix ADC to F5 NGINX Plus for
-  equal performance at lower cost, using our syntax conversion examples.
+description: Migrate load-balancing configuration from Citrix ADC to F5 NGINX Plus
+  for equal performance at lower cost, using our syntax conversion examples.
 docs: DOCS-459
-doctypes:
-- task
 title: Migrating Load Balancer Configuration from Citrix ADC to NGINX Plus
 toc: true
 weight: 100
+type:
+- how-to
 ---
 
 F5 NGINX Plus provides a flexible replacement for traditional hardware‑based [application delivery controllers](https://www.nginx.com/resources/glossary/application-delivery-controller/) (ADCs). As a software load balancer with a small footprint, NGINX Plus can be deployed just about anywhere – on bare metal, on a virtual machine, or in a container, and on‑premises or in public, private, and hybrid clouds. This guide explains how to migrate the Citrix ADC configuration for several common load‑balancer features to the NGINX Plus application delivery platform. It covers the most commonly used features to get you started quickly.
@@ -24,8 +24,8 @@ NGINX Plus and Citrix ADC both act as a full reverse proxy and load balancer, s
 
 - [Full‑featured HTTP, TCP, and UDP load balancing](https://www.nginx.com/products/nginx/load-balancing/)
 - [Intelligent session persistence](https://www.nginx.com/products/nginx/load-balancing/#session-persistence)
-- [High‑performance reverse proxy]({{< relref "../../admin-guide/web-server/reverse-proxy.md" >}})
-- [Caching and offload of dynamic and static content]({{< relref "../../admin-guide/content-cache/content-caching.md" >}})
+- [High‑performance reverse proxy]({{< ref "nginx/admin-guide/web-server/reverse-proxy.md" >}})
+- [Caching and offload of dynamic and static content]({{< ref "nginx/admin-guide/content-cache/content-caching.md" >}})
 - [Adaptive streaming to deliver audio and video to any device](https://www.nginx.com/products/nginx/streaming-media/)
 - [Application-aware health checks](https://docs.nginx.com/nginx/admin-guide/load-balancer/http-health-check/) and [high availability](https://docs.nginx.com/nginx/admin-guide/high-availability/)
 - [Advanced activity monitoring available via a dashboard or API](https://www.nginx.com/products/nginx/live-activity-monitoring/)
@@ -269,7 +269,7 @@ server {
 
 Directive documentation: [health_check](https://nginx.org/en/docs/http/ngx_http_upstream_hc_module.html#health_check), [location](https://nginx.org/en/docs/http/ngx_http_core_module.html#location), [match](https://nginx.org/en/docs/http/ngx_http_upstream_hc_module.html#match), [proxy_pass](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass), [server](https://nginx.org/en/docs/http/ngx_http_core_module.html#server)
 
-For more information about NGINX Plus health checks, see the [NGINX Plus Admin Guide]({{< relref "../../admin-guide/load-balancer/http-health-check.md" >}}).
+For more information about NGINX Plus health checks, see the [NGINX Plus Admin Guide]({{< ref "nginx/admin-guide/load-balancer/http-health-check.md" >}}).
 
 <span id="configuration-summary"></span>
 
@@ -327,13 +327,13 @@ NGINX Plus and Citrix ADC handle high availability (HA) in similar but slightly
 
 Citrix ADC handles the monitoring and failover of the VIP in a proprietary way.
 
- For [on‑premises deployments]({{< relref "../../admin-guide/high-availability/ha-keepalived.md" >}}), NGINX Plus uses a separate software package called <span style="white-space: nowrap; font-weight:bold;">**nginx-ha-keepalived**</span> to handle the VIP and the failover process for an active‑passive pair of NGINX Plus servers. The package implements the VRRP protocol to handle the VIP. Limited [active‑active]({{< relref "../../admin-guide/high-availability/ha-keepalived-nodes.md" >}}) scenarios are also possible with the <span style="white-space: nowrap; font-weight:bold;">nginx-ha-keepalived</span> package.
+ For [on‑premises deployments]({{< ref "nginx/admin-guide/high-availability/ha-keepalived.md" >}}), NGINX Plus uses a separate software package called <span style="white-space: nowrap; font-weight:bold;">**nginx-ha-keepalived**</span> to handle the VIP and the failover process for an active‑passive pair of NGINX Plus servers. The package implements the VRRP protocol to handle the VIP. Limited [active‑active]({{< ref "nginx/admin-guide/high-availability/ha-keepalived-nodes.md" >}}) scenarios are also possible with the <span style="white-space: nowrap; font-weight:bold;">nginx-ha-keepalived</span> package.
 
 Solutions for high availability of NGINX Plus in cloud environments are also available, including these:
 
-- [Active‑Active HA for NGINX Plus on AWS Using AWS Network Load Balancer]({{< relref "../amazon-web-services/high-availability-network-load-balancer.md" >}})
-- [Active‑Passive HA for NGINX Plus on AWS Using Elastic IP Addresses]({{< relref "../amazon-web-services/high-availability-keepalived.md" >}})
-- [All‑Active HA for NGINX Plus on the Google Cloud Platform]({{< relref "../google-cloud-platform/high-availability-all-active.md" >}})
+- [Active‑Active HA for NGINX Plus on AWS Using AWS Network Load Balancer]({{< ref "nginx/deployment-guides/amazon-web-services/high-availability-network-load-balancer.md" >}})
+- [Active‑Passive HA for NGINX Plus on AWS Using Elastic IP Addresses]({{< ref "nginx/deployment-guides/amazon-web-services/high-availability-keepalived.md" >}})
+- [All‑Active HA for NGINX Plus on the Google Cloud Platform]({{< ref "nginx/deployment-guides/google-cloud-platform/high-availability-all-active.md" >}})
 
 <span id="logging"></span>
 ## Logging in Citrix ADC and NGINX Plus
@@ -342,7 +342,7 @@ Logging and monitoring are important supporting functionality for load balancing
 
 Citrix ADC logs errors in its _event log_ and NGINX Plus in its [_error log_](https://nginx.org/en/docs/ngx_core_module.html#error_log). By default, Citrix ADC does not log individual requests, but can be configured to do so, using a separate weblog client. NGINX Plus has an [_access log_](https://nginx.org/en/docs/http/ngx_http_log_module.html) for which you can define customized formats to log many metrics (as captured in [variables](https://nginx.org/en/docs/varindex.html)) from both requests and responses.
 
-The [NGINX Plus API](https://nginx.org/en/docs/http/ngx_http_api_module.html) module collects numerous statistics, which you can access via the API, display on the built‑in live activity monitoring dashboard, or pass to third‑party monitoring tools. For more detail on logging and monitoring see the [NGINX Plus Admin Guide]({{< relref "/nginx/admin-guide/monitoring/_index.md" >}}).
+The [NGINX Plus API](https://nginx.org/en/docs/http/ngx_http_api_module.html) module collects numerous statistics, which you can access via the API, display on the built‑in live activity monitoring dashboard, or pass to third‑party monitoring tools. For more detail on logging and monitoring see the [NGINX Plus Admin Guide]({{< ref "nginx/admin-guide/monitoring/live-activity-monitoring.md" >}}).
 
 ### Revision History
 

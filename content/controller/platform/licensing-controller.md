@@ -1,13 +1,11 @@
 ---
 description: Follow these steps to license your F5 NGINX Controller.
 docs: DOCS-787
-doctypes:
-- task
-tags:
-- docs
 title: License NGINX Controller
 toc: true
 weight: 120
+type:
+- how-to
 ---
 
 ## Overview
@@ -49,7 +47,7 @@ To add or update a license for NGINX Controller, take the following steps:
 
 1. Select **Save license**.
 
-{{< see-also >}}To add a license using the [NGINX Controller REST API]({{< relref "/controller/api/_index.md" >}}), send a PUT request to the `/platform/license` endpoint. Provide your CAT or NGINX Controller license as a base64-encoded string in the JSON request body.{{< /see-also >}}
+{{< see-also >}}To add a license using the [NGINX Controller REST API]({{< ref "/controller/api/_index.md" >}}), send a PUT request to the `/platform/license` endpoint. Provide your CAT or NGINX Controller license as a base64-encoded string in the JSON request body.{{< /see-also >}}
 
 
 &nbsp;
@@ -63,14 +61,14 @@ To view the details for your NGINX Controller license, take the following steps:
 1. On the NGINX Controller menu, select **Platform** > **License** > **Controller License**.
 2. On the **Licenses** page, you can view the details for the applied licenses, including license limitations, status, and the expiration date.
 
-{{< see-also >}}To view the details for your license(s) using the [NGINX Controller REST API]({{< relref "/controller/api/_index.md" >}}), send a GET request to the `/platform/license` endpoint.{{< /see-also >}}
+{{< see-also >}}To view the details for your license(s) using the [NGINX Controller REST API]({{< ref "/controller/api/_index.md" >}}), send a GET request to the `/platform/license` endpoint.{{< /see-also >}}
 &nbsp;
 
 ---
 
 ## Delete a License
 
-To delete a license using the [NGINX Controller REST API]({{< relref "/controller/api/_index.md" >}}), send a DELETE request to the `/platform/license` endpoint.
+To delete a license using the [NGINX Controller REST API]({{< ref "/controller/api/_index.md" >}}), send a DELETE request to the `/platform/license` endpoint.
 
 &nbsp;
 
@@ -80,7 +78,7 @@ To delete a license using the [NGINX Controller REST API]({{< relref "/controlle
 
 - When you license NGINX Controller, you have full access to all of the features included in the license.
 
-- If you haven't licensed NGINX Controller, or if your license has expired, you can still access the following restricted set of features using the [NGINX Controller REST API]({{< relref "/controller/api/_index.md" >}}):
+- If you haven't licensed NGINX Controller, or if your license has expired, you can still access the following restricted set of features using the [NGINX Controller REST API]({{< ref "/controller/api/_index.md" >}}):
 
   - Log in and out of NGINX Controller
   - Manage licenses
@@ -112,11 +110,11 @@ Aggregate data is represented by the total volume of bytes in/out per hour for a
 
 To verify your license is compliant, check for the following:
 
-- Make sure your usage is within the capacity that your license allows. Refer to the [View License Details]({{< relref "/controller/platform/licensing-controller.md#view-license-details" >}}) section for instructions.
+- Make sure your usage is within the capacity that your license allows. Refer to the [View License Details]({{< ref "/controller/platform/licensing-controller.md#view-license-details" >}}) section for instructions.
 
 - Ensure your license has not expired.
 
-- If you are using an Association Token, make sure to allow incoming and outgoing connections on port 443 TCP. If you're running NGINX Controller v3.15 or earlier, also enable incoming and outgoing connections on port 8883 TCP. These ports are used for validating the entitlements for your license. Refer to the [NGINX Controller Technical Specifications Guide]({{< relref "/controller/admin-guides/install/nginx-controller-tech-specs.md#firewallip-settings" >}}) for these and other firewall requirements.
+- If you are using an Association Token, make sure to allow incoming and outgoing connections on port 443 TCP. If you're running NGINX Controller v3.15 or earlier, also enable incoming and outgoing connections on port 8883 TCP. These ports are used for validating the entitlements for your license. Refer to the [NGINX Controller Technical Specifications Guide]({{< ref "/controller/admin-guides/install/nginx-controller-tech-specs.md#firewallip-settings" >}}) for these and other firewall requirements.
 
 &nbsp;
 
@@ -126,8 +124,8 @@ To verify your license is compliant, check for the following:
 
 If NGINX Controller appears to be unlicensed after a version upgrade, try the following options to resolve the issue.
 
-- [Re-upload your NGINX Controller license]({{< relref "/controller/platform/licensing-controller.md#add-or-update-a-license" >}}).
-- [Restore the NGINX Controller database from a backup]({{< relref "/controller/admin-guides/backup-restore/_index.md" >}}).
+- [Re-upload your NGINX Controller license]({{< ref "/controller/platform/licensing-controller.md#add-or-update-a-license" >}}).
+- [Restore the NGINX Controller database from a backup]({{< ref "/controller/admin-guides/backup-restore/_index.md" >}}).
 
 &nbsp;
 
@@ -135,7 +133,7 @@ If NGINX Controller appears to be unlicensed after a version upgrade, try the fo
 
 ## What's Next
 
-- [Download the NGINX Plus Cert and Key Bundle]({{< relref "/controller/admin-guides/install/get-n-plus-cert-and-key.md" >}})
+- [Download the NGINX Plus Cert and Key Bundle]({{< ref "/controller/admin-guides/install/get-n-plus-cert-and-key.md" >}})
 
 {{< versions "3.0" "latest" "ctrlvers" >}}
 {{< versions "3.18" "latest" "apimvers" >}}

@@ -1,12 +1,11 @@
 ---
-title: "Overview"
+title: Overview
 draft: false
 weight: 100
 toc: true
-tags: [ "docs" ]
-docs: "DOCS-1091"
-categories: ["configuration"]
-doctypes: ["task"]
+docs: DOCS-1091
+type:
+- how-to
 ---
 
 ## Overview

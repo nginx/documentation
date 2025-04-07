@@ -1,10 +1,11 @@
 ---
-title: "Overview and architecture"
+title: Overview and architecture
 weight: 100
-categories: ["concepts"]
 toc: true
-docs: "DOCS-879"
+docs: DOCS-879
 url: /nginxaas/azure/overview/overview/
+type:
+- concept
 ---
 
 ## What Is F5 NGINX as a Service for Azure?
@@ -33,7 +34,7 @@ NGINXaaS for Azure is supported in the following regions:
 {{< bootstrap-table "table table-striped table-bordered" >}}
 | **North America**                                              | **South America** | **Europe** | **Asia Pacific** |
 |----------------------------------------------------------|--------------------------------------------|--------------------------------------------|-------------------------|
-| West Central US <br> West US <br> East US 2 <br> West US 2 <br> West US 3 <br> East US <br> Central US <br> North Central US <br> Canada Central | Brazil South | West Europe <br> North Europe <br> Sweden Central <br> Germany West Central | Australia East <br> Japan East <br> Korea Central <br> Southeast Asia <br> Central India <br> South India |
+| West Central US <br> West US <br> East US 2 <br> West US 2 <br> West US 3 <br> East US <br> Central US <br> North Central US <br> Canada Central | Brazil South | West Europe <br> North Europe <br> Sweden Central <br> Germany West Central <br> UK West <br> UK South | Australia East <br> Japan East <br> Korea Central <br> Southeast Asia <br> Central India <br> South India |
 {{< /bootstrap-table >}}
 
 
@@ -65,4 +66,4 @@ NGINX Plus instances are automatically upgraded to receive security patches and 
 
 ## What's next
 
-To get started, check the [NGINX as a Service for Azure prerequisites]({{< relref "/nginxaas-azure/getting-started/prerequisites.md" >}})
+To get started, check the [NGINX as a Service for Azure prerequisites]({{< ref "/nginxaas-azure/getting-started/prerequisites.md" >}})

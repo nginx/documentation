@@ -1,7 +1,5 @@
 ---
 docs: DOCS-1270
-tags:
-- docs
 title: Install SQLite (for NGINX Instance Manager 2.14.1 and earlier)
 toc: true
 weight: 10
@@ -9,7 +7,7 @@ weight: 10
 
 ## Install SQLite for your Linux distribution
 
-If you're using **NGINX Instance Manager version 2.14.1 or earlier**, you'll need to install SQLite to run the [backup and recovery scripts]({{< relref "/nim/admin-guide/maintenance/backup-and-recovery.md" >}}).
+If you're using **NGINX Instance Manager version 2.14.1 or earlier**, you'll need to install SQLite to run the [backup and recovery scripts]({{< ref "/nim/admin-guide/maintenance/backup-and-recovery.md" >}}).
 Follow the steps to install SQLite for your operating system. Note that some older versions of Linux might require additional steps, explained below.
 
 ### CentOS, RHEL, and RPM-based distributions

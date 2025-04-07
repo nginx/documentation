@@ -2,13 +2,11 @@
 description: These release notes contain information about new features, improvements,
   known issues, and bug fixes in the NGINX Controller Application Delivery Module.
 docs: DOCS-903
-doctypes:
-- reference
-tags:
-- docs
 title: Release Notes 3.22.3
 toc: true
 weight: 94
+type:
+- reference
 ---
 
 {{< include "controller/adc-rn-preamble.md" >}}
@@ -23,7 +21,7 @@ May 12, 2022
 
 NGINX Controller App Delivery Module 3.22.3 supports upgrades from 3.6.0 and newer versions.
 
-We recommend you [upgrade the NGINX Controller Agent]({{< relref "/controller/admin-guides/install/install-nginx-controller-agent#update-the-nginx-controller-agent" >}}) whenever you upgrade NGINX Controller.
+We recommend you [upgrade the NGINX Controller Agent]({{< ref "/controller/admin-guides/install/install-nginx-controller-agent#update-the-nginx-controller-agent" >}}) whenever you upgrade NGINX Controller.
 
 If you're upgrading NGINX Controller on a multi-node cluster, run the `update.sh` script on each node individually -- the order in which you update the nodes doesn't matter.
 
@@ -143,4 +141,4 @@ The following issues are known to be present in this release. Look for updates t
 
 ### Supported NGINX Plus Versions
 
-Refer to the [NGINX Controller Technical Specifications Guide]({{< relref "/controller/admin-guides/install/nginx-controller-tech-specs#nginx-plus-instances" >}}) to learn about the NGINX Plus versions supported by this release.
+Refer to the [NGINX Controller Technical Specifications Guide]({{< ref "/controller/admin-guides/install/nginx-controller-tech-specs#nginx-plus-instances" >}}) to learn about the NGINX Plus versions supported by this release.

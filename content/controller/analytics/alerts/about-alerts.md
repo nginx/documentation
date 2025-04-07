@@ -1,13 +1,11 @@
 ---
 description: Learn about NGINX Controller Alerts and Notifications.
 docs: DOCS-520
-doctypes:
-- concept
-tags:
-- docs
 title: About Alerts
 toc: true
 weight: 100
+type:
+- concept
 ---
 
 ## Overview
@@ -15,7 +13,7 @@ weight: 100
 The F5 NGINX Controller Analytics module lets you configure alerts and notifications, so you can stay informed about your system and app performance. In this topic, you'll learn about [alerts](#alerts), [alert rules](#alert-rules), and [alert notifications](#alert-notifications).
 
 {{< see-also >}}
-Refer to [Manage Alerts]({{< relref "/controller/analytics/alerts/manage-alerts.md" >}}) to learn how to set up alerts.
+Refer to [Manage Alerts]({{< ref "/controller/analytics/alerts/manage-alerts.md" >}}) to learn how to set up alerts.
 {{< /see-also >}}
 
 ## Alerts
@@ -65,9 +63,9 @@ th {
 |---|---|
 | `name` | A unique identifier for the alert rule.|
 | `display name` | A human-friendly name that helps you identify what the alert rule does. |
-| `metric` | The [metric]({{< relref "/controller/analytics/catalogs/metrics.md" >}}) that you want to monitor. <br/>{{< note >}}An alert rule can monitor one metric.{{< /note >}}|
+| `metric` | The [metric]({{< ref "/controller/analytics/catalogs/metrics.md" >}}) that you want to monitor. <br/>{{< note >}}An alert rule can monitor one metric.{{< /note >}}|
 | `operator` | The operator that will be applied to the value of the metric to check if an alert should be triggered. There are two available operators: `le` - less or equal and `ge` - greater or equal.|
-| `threshold` | Defines the value that, when exceeded, will trigger an alert. <br/>{{< tip >}}You can find the allowed threshold value(s) for each metric in the **unit** field of the metric's entry in the [Metrics Catalogs Reference]({{< relref "/controller/analytics/catalogs/metrics.md" >}}). Select the "Index" button to access the list of all available metrics and jump directly to that item in the catalog.{{< /tip >}} |
+| `threshold` | Defines the value that, when exceeded, will trigger an alert. <br/>{{< tip >}}You can find the allowed threshold value(s) for each metric in the **unit** field of the metric's entry in the [Metrics Catalogs Reference]({{< ref "/controller/analytics/catalogs/metrics.md" >}}). Select the "Index" button to access the list of all available metrics and jump directly to that item in the catalog.{{< /tip >}} |
 | `period` | Defines the time window in which you want to calculate the aggregated metric value.<br />- The maximum possible time window is `24h`.<br/>- The minimum possible time window is `2m`.|
 | `filter` | Lets you refine the alert rule for a more specific set of metric values, based on dimensions.<br/>If no filter is provided, all collected data will be used when calculating the alert rule status.|
 | `group by` | Groups results according to the specified dimension(s). A separate alert will be triggered for each result group. You can provide multiple dimension names as a comma-separated list. <br/>{{<note>}}Using a dimension with a high cardinality of values might result in a high volume of alerts.{{</note>}}|
@@ -109,7 +107,7 @@ Alert rules work in the following manner:
 
 1. Incoming metric updates are continuously monitored against the set of alert rules.
 2. The most recent metric value is checked against the threshold defined in the alert rule.
-3. If the threshold is met, an alert notification is generated and the rule will continue to be monitored. In the [Alerts Status]({{< relref "/controller/analytics/alerts/manage-alerts.md#view-alert-rule-status" >}}) pane, the alert instance's status will be displayed as "ongoing".
+3. If the threshold is met, an alert notification is generated and the rule will continue to be monitored. In the [Alerts Status]({{< ref "/controller/analytics/alerts/manage-alerts.md#view-alert-rule-status" >}}) pane, the alert instance's status will be displayed as "ongoing".
 4. If subsequent metric updates show that the metric no longer violates the threshold for the configured period, the alert expires.
 
 ## Alert Notifications
@@ -120,15 +118,15 @@ An *Alert notification* is a message either displayed in the NGINX Controller us
 - A notification appears in the Notifications feed immediately when an alert is triggered or expires.
 - Alert instance emails notify you when a single alert instance starts or expires.
 
-If you want to stop receiving notifications for an alert rule, but you don't want to delete it, you can [mute the alert rule]({{< relref "/controller/analytics/alerts/manage-alerts.md#mute-or-unmute-an-alert-rule" >}}).
-Likewise, if you want to stop receiving emails for an alert rule, but you do want to continue receiving the user interface notifications, [edit the alert rule]({{< relref "/controller/analytics/alerts/manage-alerts.md#edit-an-alert-rule" >}}) and remove your email address.
+If you want to stop receiving notifications for an alert rule, but you don't want to delete it, you can [mute the alert rule]({{< ref "/controller/analytics/alerts/manage-alerts.md#mute-or-unmute-an-alert-rule" >}}).
+Likewise, if you want to stop receiving emails for an alert rule, but you do want to continue receiving the user interface notifications, [edit the alert rule]({{< ref "/controller/analytics/alerts/manage-alerts.md#edit-an-alert-rule" >}}) and remove your email address.
 
 {{< note >}}If you mute an alert rule while the alert rule status is "ongoing", you will not receive any further alert notifications, including when the alert rule status changes.{{< /note >}}
 
 ### Email notifications
 
 {{< important >}}
-You must [verify your email address]({{< relref "/controller/analytics/alerts/manage-registered-emails.md" >}}) in order to receive alert notification emails.
+You must [verify your email address]({{< ref "/controller/analytics/alerts/manage-registered-emails.md" >}}) in order to receive alert notification emails.
 {{< /important >}}
 
 When an alert rule's conditions are met, NGINX Controller sends an alert email with the subject "[controller-alert] Alert started: <alert_rule_name>" to all of the email addresses that are specified in the alert rule.
@@ -151,7 +149,7 @@ If the threshold is exceeded for one instance, then you will receive one alert e
 
 ## How Alerts Work
 
-NGINX Controller checks the list of configured alert rules every 30 seconds. Then, it queries the [Metrics API]({{< relref "/controller/analytics/metrics/metrics-api.md" >}}) for the data defined in each alert rule.
+NGINX Controller checks the list of configured alert rules every 30 seconds. Then, it queries the [Metrics API]({{< ref "/controller/analytics/metrics/metrics-api.md" >}}) for the data defined in each alert rule.
 
 The API query uses the following template:
 
@@ -159,7 +157,7 @@ The API query uses the following template:
 
 where
 
-- `<agg-function>` is the appropriate [aggregation function]({{< relref "/controller/analytics/metrics/metrics-api.md#aggregations" >}}) for the metric. You can find this information in the [Metrics Catalog Reference]({{< relref "/controller/analytics/catalogs/metrics.md" >}}).
+- `<agg-function>` is the appropriate [aggregation function]({{< ref "/controller/analytics/metrics/metrics-api.md#aggregations" >}}) for the metric. You can find this information in the [Metrics Catalog Reference]({{< ref "/controller/analytics/catalogs/metrics.md" >}}).
   - `AVG` applies to `gauge` metrics. Gauges are averaged over the time period configured in the alert rule.
   - `MAX` applies to `counter` metrics.
   - `SUM` applies to `incremental` metrics.
@@ -194,7 +192,7 @@ Next, the alert rule status is updated. Each alert rule will be updated with a n
 Finally, the alert notifications for newly-created or expired alerts will be sent for any rules that are not muted.
 
 {{< important >}}
-If the [Metrics API]({{< relref "/controller/analytics/metrics/metrics-api.md" >}}) query does not return any data  -- for example, if there was no traffic through the instance and therefore no metric value -- NGINX Controller assumes a value of `0`. In such cases, the threshold will be compared to `0`.
+If the [Metrics API]({{< ref "/controller/analytics/metrics/metrics-api.md" >}}) query does not return any data  -- for example, if there was no traffic through the instance and therefore no metric value -- NGINX Controller assumes a value of `0`. In such cases, the threshold will be compared to `0`.
 {{< /important >}}
 
 ## Alert special cases
@@ -217,9 +215,9 @@ To achieve that:
 
 ## What's Next
 
-- [Create and Manage Alert Rules]({{< relref "/controller/analytics/alerts/manage-alerts.md" >}})
-- [Manage Registered Emails]({{< relref "/controller/analytics/alerts/manage-registered-emails.md" >}})
-- [NGINX Controller REST API Reference]({{< relref "/controller/api/_index.md" >}})
+- [Create and Manage Alert Rules]({{< ref "/controller/analytics/alerts/manage-alerts.md" >}})
+- [Manage Registered Emails]({{< ref "/controller/analytics/alerts/manage-registered-emails.md" >}})
+- [NGINX Controller REST API Reference]({{< ref "/controller/api/_index.md" >}})
 
 {{< versions "3.13" "latest" "ctrlvers" >}}
 {{< versions "3.18" "latest" "apimvers" >}}

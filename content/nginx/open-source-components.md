@@ -2,23 +2,23 @@
 description: License information for open source components included in the NGINX
   Plus software.
 docs: DOCS-471
-doctypes:
-- reference
 title: Open Source Components
 toc: true
 weight: 500
+type:
+- reference
 ---
 
 Open source components included in the F5 NGINX Plus (package name is `nginx-plus`) are:
 
 
-- nginx/OSS 1.27.2, distributed under 2-clause BSD license.
+- nginx/OSS 1.27.4, distributed under 2-clause BSD license.
 
   Homepage: <https://nginx.org>
 
   Copyright © 2002-2021 Igor Sysoev
 
-  Copyright © 2011-2024 NGINX, Inc.
+  Copyright © 2011-2025 NGINX, Inc.
 
   All rights reserved.
 
@@ -51,7 +51,7 @@ modification, are permitted.
 
 - MurmurHash algorithm (version 2), distributed under MIT license.
 
-  Homepage: <https://sites.google.com/site/murmurhash/>
+  Homepage: <https://github.com/aappleby/smhasher>
 
   Copyright © Austin Appleby
 
@@ -226,7 +226,7 @@ like `import/require()` and will resolve them (6.8.1).
 
     Copyright © 2013-present, Facebook, Inc.
 
-  - `regenerator-runtime`, standalone runtime for Regenerator-compiled generator and async functions (0.13.9).
+  - `regenerator-runtime`, standalone runtime for Regenerator-compiled generator and async functions (0.14.1).
 
     Homepage: <https://github.com/facebook/regenerator>
 

@@ -1,28 +1,17 @@
 ---
-title: "Manage NGINX configs with templates"
-date: 2024-03-12T15:51:04-07:00
-# Change draft status to false to publish doc.
+title: Manage NGINX configs with templates
 draft: false
-# Description
-# Add a short description (150 chars) for the doc. Include keywords for SEO.
-# The description text appears in search results and at the top of the doc.
-description: ""
-# Assign weights in increments of 100
+description: ''
 weight: 200
 toc: true
-tags: [ "docs" ]
-# Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
-docs: "DOCS-1506"
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-categories: ["installation", "platform management", "load balancing", "api management", "service mesh", "security", "analytics"]
-doctypes: ["task"]
-journeys: ["researching", "getting started", "using", "renewing", "self service"]
-personas: ["devops", "netops", "secops", "support"]
-versions: []
-authors: []
-
+docs: DOCS-1506
+personas:
+- devops
+- netops
+- secops
+- support
+type:
+- how-to
 ---
 
 ## Create a Config Template
@@ -106,7 +95,7 @@ To create a new config template:
         - **Augment**: Choose this if the template will add to or enhance an existing configuration by introducing additional directives or settings.
 6. Click **Submit** to create the template.
 
-After creating a template, you'll need to add [resource files]({{< relref "/nim/nginx-configs/config-templates/concepts/template-resources.md" >}}) to define its structure and behavior:
+After creating a template, you'll need to add [resource files]({{< ref "/nim/nginx-configs/config-templates/concepts/template-resources.md" >}}) to define its structure and behavior:
 
 - **Config File (.tmpl)**: This is the core template file that defines the structure and parameters of your NGINX configuration. If you're creating a base template, you'll add a **base.tmpl** file. For augment templates, select the appropriate augment file that corresponds to the functionality you wish to include.
 - **JSON Schema File (.json)**: JSON schema files are necessary for creating the dynamic web forms in the UI that users will interact with. These schemas define the valid format and type of user inputs for the template.

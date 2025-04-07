@@ -1,11 +1,11 @@
 ---
-description: null
+description: ''
 docs: DOCS-422
-doctypes:
-- task
 title: Accepting the PROXY Protocol
 toc: true
 weight: 800
+type:
+- how-to
 ---
 
 This article explains how to configure NGINX and F5 NGINX Plus to accept the PROXY protocol, rewrite the IP address of a load balancer or proxy to the one received in the PROXY protocol header, configure simple logging of a client’s IP address, and enable the PROXY protocol between NGINX and a TCP upstream server.
@@ -28,15 +28,15 @@ Using this data, NGINX can get the originating IP address of the client in sever
 <span id="prereq"></span>
 ## Prerequisites
 
-- To accept the PROXY protocol v2, NGINX Plus <a href="../../../releases/#r16">R16</a> and later or NGINX Open Source [1.13.11](https://nginx.org/en/CHANGES) and later
+- To accept the PROXY protocol v2, NGINX Plus [R16]({{< ref "nginx/releases.md#r16" >}}) and later or NGINX Open Source [1.13.11](https://nginx.org/en/CHANGES) and later
 
-- To accept the PROXY protocol for HTTP, NGINX Plus <a href="../../../releases/#r3">R3</a> and later or NGINX Open Source [1.5.12](https://nginx.org/en/CHANGES) and later
+- To accept the PROXY protocol for HTTP, NGINX Plus [R3]({{< ref "nginx/releases.md#r3" >}}) and later or NGINX Open Source [1.5.12](https://nginx.org/en/CHANGES) and later
 
-- For TCP client‑side PROXY protocol support, NGINX Plus <a href="../../../releases/#r7">R7</a> and later or NGINX Open Source [1.9.3](https://nginx.org/en/CHANGES) and later
+- For TCP client‑side PROXY protocol support, NGINX Plus [R7]({{< ref "nginx/releases.md#r7" >}}) and later or NGINX Open Source [1.9.3](https://nginx.org/en/CHANGES) and later
 
-- To accept the PROXY protocol for TCP, NGINX Plus <a href="../../../releases/#r11">R11</a> and later or NGINX Open Source [1.11.4](https://nginx.org/en/CHANGES) and later
+- To accept the PROXY protocol for TCP, NGINX Plus [R11]({{< ref "nginx/releases.md#r11" >}}) and later or NGINX Open Source [1.11.4](https://nginx.org/en/CHANGES) and later
 
-- The Real‑IP modules for [HTTP](https://nginx.org/en/docs/http/ngx_http_realip_module.html) and [Stream TCP](https://nginx.org/en/docs/stream/ngx_stream_realip_module.html) are not included in NGINX Open Source by default; see [Installing NGINX Open Source]({{< relref "../installing-nginx/installing-nginx-open-source.md" >}}) for details. No extra steps are required for NGINX Plus.
+- The Real‑IP modules for [HTTP](https://nginx.org/en/docs/http/ngx_http_realip_module.html) and [Stream TCP](https://nginx.org/en/docs/stream/ngx_stream_realip_module.html) are not included in NGINX Open Source by default; see [Installing NGINX Open Source]({{< ref "nginx/admin-guide/installing-nginx/installing-nginx-open-source.md" >}}) for details. No extra steps are required for NGINX Plus.
 
 
 <span id="listen"></span>
@@ -81,7 +81,7 @@ To change the IP address from the load balancer's IP address to the client's IP 
    nginx -V 2>&1 | grep -- 'stream_realip_module'
    ```
 
-   If not, recompile NGINX with these modules. See [Installing NGINX Open Source]({{< relref "../installing-nginx/installing-nginx-open-source.md" >}}) for details. No extra steps are required for NGINX Plus.
+   If not, recompile NGINX with these modules. See [Installing NGINX Open Source]({{< ref "nginx/admin-guide/installing-nginx/installing-nginx-open-source.md" >}}) for details. No extra steps are required for NGINX Plus.
 
 3. In the `set_real_ip_from` directive for [HTTP](https://nginx.org/en/docs/http/ngx_http_realip_module.html#set_real_ip_from), [Stream](https://nginx.org/en/docs/stream/ngx_stream_realip_module.html#set_real_ip_from), or both, specify the IP address or the CIDR range of addresses of the TCP proxy or load balancer:
 

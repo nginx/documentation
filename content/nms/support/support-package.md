@@ -2,14 +2,12 @@
 description: This guide explains how to generate a support package for troubleshooting
   error scenarios.
 docs: DOCS-818
-doctypes:
-- reference
-- task
-tags:
-- docs
 title: Create a Support Package
 toc: true
 weight: 200
+type:
+- reference
+- how-to
 ---
 
 {{< shortversions "2.0.0" "latest" "nimvers" >}}
@@ -17,7 +15,7 @@ weight: 200
 
 The support package script can be used to collect information about your system for troubleshooting and debugging issues.
 
-The script collects system and service information and then packages the data into a tar archive, which you can share with [NGINX Customer Support]({{< relref "/nms/support/contact-support.md" >}}).
+The script collects system and service information and then packages the data into a tar archive, which you can share with [NGINX Customer Support]({{< ref "/nms/support/contact-support.md" >}}).
 
 ## Usage
 

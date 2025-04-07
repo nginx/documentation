@@ -1,14 +1,12 @@
 ---
-description: Learn how to use F5 NGINX Management Suite API Connectivity Manager to set
-  up policies.
+description: Learn how to use F5 NGINX Management Suite API Connectivity Manager to
+  set up policies.
 docs: DOCS-925
-doctypes:
-- task
-tags:
-- docs
 toc: true
 weight: 100
 title: How to Set Up Policies
+type:
+- how-to
 ---
 
 {{< shortversions "1.1.0" "latest" "acmvers" >}}
@@ -24,7 +22,7 @@ title: How to Set Up Policies
 Complete the following prerequisites before proceeding with this guide:
 
 - API Connectivity Manager is installed, licensed, and running.
-- You have one or more Environments with [API Gateways]({{< relref "/nms/acm/getting-started/add-api-gateway" >}}) or [Developer Portals]({{< relref "/nms/acm/getting-started/add-devportal" >}}).
+- You have one or more Environments with [API Gateways]({{< ref "/nms/acm/getting-started/add-api-gateway" >}}) or [Developer Portals]({{< ref "/nms/acm/getting-started/add-devportal" >}}).
 
 ### How to Access the User Interface
 
@@ -137,8 +135,8 @@ The following table shows the available Cluster Policies you can use when creati
 
 | Policy&nbsp;Name                                                  | HTTP Environment                                | gRPC Environment                                | Applied&nbsp;On | Description                                                                                                                                                                                                                                                                                                                                                                                        |
 |-------------------------------------------------------------------|-------------------------------------------------|-------------------------------------------------|-----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| [Cluster Wide Config Setting]({{< relref "/nms/acm/how-to/policies/cluster-wide-config.md" >}})                                             | <i class="fa-solid fa-circle-check center"></i> | <i class="fa-solid fa-circle-check center"></i> | inbound        | Fine tune the settings to speed up data processing and improve the performance of the API proxy for large number of connections. When applied, the settings are applicable to all the instances in a proxy cluster. If the proxy cluster is shared between environments, the changes made in any environment will be reflected in all the other environments.                                                                                                                                                                                                                                                                                               |
-| [Cluster Zone Sync]({{< relref "/nms/acm/how-to/policies/cluster-zone-sync.md" >}})  | <i class="fa-solid fa-check"></i> | <i class="fa-solid fa-check"></i> | inbound        | Enables runtime state sharing between the instances belonging to a proxy cluster. Options configured through this policy affect other policies such as rate limit and OIDC. This policy is applied to all the instances in a proxy cluster. If the proxy cluster is shared between environments, any changes made to this policy will affect all the other environments.                                                                                                          |
+| [Cluster Wide Config Setting]({{< ref "/nms/acm/how-to/policies/cluster-wide-config.md" >}})                                             | <i class="fa-solid fa-circle-check center"></i> | <i class="fa-solid fa-circle-check center"></i> | inbound        | Fine tune the settings to speed up data processing and improve the performance of the API proxy for large number of connections. When applied, the settings are applicable to all the instances in a proxy cluster. If the proxy cluster is shared between environments, the changes made in any environment will be reflected in all the other environments.                                                                                                                                                                                                                                                                                               |
+| [Cluster Zone Sync]({{< ref "/nms/acm/how-to/policies/cluster-zone-sync.md" >}})  | <i class="fa-solid fa-check"></i> | <i class="fa-solid fa-check"></i> | inbound        | Enables runtime state sharing between the instances belonging to a proxy cluster. Options configured through this policy affect other policies such as rate limit and OIDC. This policy is applied to all the instances in a proxy cluster. If the proxy cluster is shared between environments, any changes made to this policy will affect all the other environments.                                                                                                          |
 
 {{</bootstrap-table>}}
 

@@ -4,6 +4,7 @@
   .nginx-docs-api-container {
     z-index: 0 !important;
     max-width: calc(100% + 2.4rem);
+    margin-top: 2rem;
   }
 
   @media (min-width: 768px) {
@@ -83,6 +84,13 @@
     >
       {{ partial "sidebar.html" . }}
     </nav>
+    <section class="breadcrumb-layout" data-mf="true" style="display: none;">
+      {{ if not .IsHome }}
+        {{ if not (in .Params.display_breadcrumb "false" ) }}
+        {{ partial "breadcrumb" .}}  
+        {{ end }}
+      {{ end }}
+    </section>
     <div class="nginx-docs-api-container">
       <div id="api-component">{{ .Content}}</div>
     </div>

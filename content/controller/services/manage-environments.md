@@ -1,13 +1,11 @@
 ---
 description: Create and manage environments to use with your apps, gateways, and certs.
 docs: DOCS-372
-doctypes:
-- tutorial
-tags:
-- docs
 title: Manage Environments
 toc: true
 weight: 100
+type:
+- tutorial
 ---
 
 ## Overview
@@ -15,7 +13,7 @@ weight: 100
 This page contains instructions for creating and managing Environments in the F5 NGINX Controller user interface.
 
 {{< tip >}}
-If you prefer, you can use the NGINX Controller API to create and manage Environments. See the [NGINX Controller API reference guide]({{< relref "/controller/api/_index.md" >}}) (**Services > Environments**) for details.
+If you prefer, you can use the NGINX Controller API to create and manage Environments. See the [NGINX Controller API reference guide]({{< ref "/controller/api/_index.md" >}}) (**Services > Environments**) for details.
 {{< /tip >}}
 
 ## Objective
@@ -25,7 +23,7 @@ If you prefer, you can use the NGINX Controller API to create and manage Environ
 
 ## About Environments
 
-An **Environment** is a logical container used to group Applications, Gateways, and [Certificates]({{< relref "/controller/services/manage-certs.md" >}}) into a domain associated with common goals, resource needs, usage constraints, and access controls. Environments typically map closely to organizational boundaries. "Dev" and "prod" are a few common Environment examples.
+An **Environment** is a logical container used to group Applications, Gateways, and [Certificates]({{< ref "/controller/services/manage-certs.md" >}}) into a domain associated with common goals, resource needs, usage constraints, and access controls. Environments typically map closely to organizational boundaries. "Dev" and "prod" are a few common Environment examples.
 
 A **dev** Environment is where developers can build and test an application. Its primary purpose is to allow developers to quickly develop and test new application features. Access to a dev Environment is typically restricted to those who need it--developers and testers. The resources in a dev Environment support the development and debugging of the application and, as such, may not have the same capabilities or requirements as resources in a production, or "prod", Environment.
 
@@ -58,11 +56,11 @@ To view, edit, and delete environments:
 
 ## What's Next
 
-- [Give Users and Roles access to your Environment]({{< relref "/controller/platform/access-management/manage-users.md" >}})
-- [Create or Upload Certificates]({{< relref "/controller/services/manage-certs.md#create-a-cert" >}})
-- [Create a Gateway]({{< relref "/controller/services/manage-gateways.md#create-a-gateway" >}})
-- [Create an Application]({{< relref "/controller/app-delivery/manage-apps.md#create-an-app" >}})
-- [Create App Components]({{< relref "/controller/app-delivery/manage-apps.md#create-a-component" >}})
+- [Give Users and Roles access to your Environment]({{< ref "/controller/platform/access-management/manage-users.md" >}})
+- [Create or Upload Certificates]({{< ref "/controller/services/manage-certs.md#create-a-cert" >}})
+- [Create a Gateway]({{< ref "/controller/services/manage-gateways.md#create-a-gateway" >}})
+- [Create an Application]({{< ref "/controller/app-delivery/manage-apps.md#create-an-app" >}})
+- [Create App Components]({{< ref "/controller/app-delivery/manage-apps.md#create-a-component" >}})
 
 {{< versions "3.0" "latest" "ctrlvers" >}}
 {{< versions "3.18" "latest" "apimvers" >}}

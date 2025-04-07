@@ -1,13 +1,13 @@
 ---
-description: Platforms supported by F5 NGINX Plus and dynamically loaded modules, supported
-  SSL/TLS versions, supported deployment environments, and list of modules built into
-  NGINX Plus.
+description: Platforms supported by F5 NGINX Plus and dynamically loaded modules,
+  supported SSL/TLS versions, supported deployment environments, and list of modules
+  built into NGINX Plus.
 docs: DOCS-473
-doctypes:
-- concept
 title: Technical Specs
 toc: true
 weight: 400
+type:
+- concept
 ---
 
 NGINX Plus is available only as a binary; it is not distributed as source code. For additional platforms and modules, [contact us](https://www.f5.com/products/get-f5).
@@ -15,20 +15,19 @@ NGINX Plus is available only as a binary; it is not distributed as source code. 
 ## Supported Distributions {#supported-distributions}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
-| Distribution                        | Supported on R33                                   | Supported on R32                                   |
-|-------------------------------------|-----------------------------------------------|-----------------------------------------------|
-| AlmaLinux                           | 8 (x86_64, aarch64) <br> 9 (x86_64, aarch64)    | 8 (x86_64, aarch64) <br> 9 (x86_64, aarch64)    |
-| Alpine Linux                        | 3.17 (x86_64, aarch64) **(deprecated)** <br> 3.18 (x86_64, aarch64) <br> 3.19 (x86_64, aarch64) <br> 3.20 (x86_64, aarch64) **(new)** | 3.16 (x86_64, aarch64) **(deprecated)** <br> 3.17 (x86_64, aarch64) <br> 3.18 (x86_64, aarch64) <br> 3.19 (x86_64, aarch64) |
-| Amazon Linux                        | 2023 (x86_64, aarch64)                        | 2023 (x86_64, aarch64)                        |
-| Amazon Linux 2                      | LTS (x86_64, aarch64)                         | LTS (x86_64, aarch64)                         |
-| CentOS                              | **Not supported**                                 | 7.4+ (x86_64) **(deprecated)**                                 |
-| Debian                              | 11 (x86_64, aarch64) <br> 12 (x86_64, aarch64)  | 11 (x86_64, aarch64) <br> 12 (x86_64, aarch64)  |
-| FreeBSD                             | 13 (amd64) <br> 14 (amd64)                      | 13 (amd64) <br> 14 (amd64)                      |
-| Oracle Linux                        | 8.1+ (x86_64, aarch64) <br> 9 (x86_64)          | 7.4+ (x86_64) **(deprecated)** <br> 8.1+ (x86_64, aarch64) <br> 9 (x86_64) |
-| Red Hat Enterprise Linux (RHEL)     | 8.1+ (x86_64, aarch64) <br> 9.0+ (x86_64, aarch64) | 7.4+ (x86_64) **(deprecated)** <br> 8.1+ (x86_64, aarch64) <br> 9.0+ (x86_64, aarch64) |
-| Rocky Linux                         | 8 (x86_64, aarch64) <br> 9 (x86_64, aarch64)    | 8 (x86_64, aarch64) <br> 9 (x86_64, aarch64)    |
-| SUSE Linux Enterprise Server (SLES) | 12 SP5 (x86_64) **(deprecated)** <br> 15 SP2+ (x86_64) | 12 SP5 (x86_64) <br> 15 SP2+ (x86_64)           |
-| Ubuntu                              | 20.04 LTS (x86_64, aarch64) <br> 22.04 LTS (x86_64, aarch64) <br> 24.04 LTS (x86_64, aarch64) | 20.04 LTS (x86_64, aarch64) <br> 22.04 LTS (x86_64, aarch64) <br> 24.04 LTS (x86_64, aarch64 **(new)** |
+| Distribution                        | Supported on R34                                   | Supported on R33                                       |
+|-------------------------------------|----------------------------------------------------|--------------------------------------------------------|
+| AlmaLinux                           | 8 (x86_64, aarch64) <br> 9 (x86_64, aarch64)       | 8 (x86_64, aarch64) <br> 9 (x86_64, aarch64)           |
+| Alpine Linux                        | 3.18 (x86_64, aarch64) **(deprecated)** <br> 3.19 (x86_64, aarch64) <br> 3.20 (x86_64, aarch64) <br> 3.21 (x86_64, aarch64) **(new)** | 3.17 (x86_64, aarch64) **(deprecated)** <br> 3.18 (x86_64, aarch64) <br> 3.19 (x86_64, aarch64) <br> 3.20 (x86_64, aarch64) **(new)** |
+| Amazon Linux                        | 2023 (x86_64, aarch64)                             | 2023 (x86_64, aarch64)                                 |
+| Amazon Linux 2                      | LTS (x86_64, aarch64)                              | LTS (x86_64, aarch64)                                  |
+| Debian                              | 11 (x86_64, aarch64) <br> 12 (x86_64, aarch64)     | 11 (x86_64, aarch64) <br> 12 (x86_64, aarch64)         |
+| FreeBSD                             | 13 (amd64) <br> 14 (amd64)                         | 13 (amd64) <br> 14 (amd64)                             |
+| Oracle Linux                        | 8.1+ (x86_64, aarch64) <br> 9 (x86_64)             | 8.1+ (x86_64, aarch64) <br> 9 (x86_64)                 |
+| Red Hat Enterprise Linux (RHEL)     | 8.1+ (x86_64, aarch64) <br> 9.0+ (x86_64, aarch64) | 8.1+ (x86_64, aarch64) <br> 9.0+ (x86_64, aarch64)     |
+| Rocky Linux                         | 8 (x86_64, aarch64) <br> 9 (x86_64, aarch64)       | 8 (x86_64, aarch64) <br> 9 (x86_64, aarch64)           |
+| SUSE Linux Enterprise Server (SLES) | 15 SP2+ (x86_64)                                   | 12 SP5 (x86_64) **(deprecated)** <br> 15 SP2+ (x86_64) |
+| Ubuntu                              | 20.04 LTS (x86_64, aarch64) **(deprecated)** <br> 22.04 LTS (x86_64, aarch64) <br> 24.04 LTS (x86_64, aarch64) | 20.04 LTS (x86_64, aarch64) <br> 22.04 LTS (x86_64, aarch64) <br> 24.04 LTS (x86_64, aarch64) |
 {{</bootstrap-table>}}
 
 ---
@@ -41,32 +40,32 @@ Dynamic modules are supported on the [same distributions as NGINX Plus](#support
 | Module           | Distribution and details                                                                                   |
 |-------------------|-----------------------------------------------------------------------------------------------------------|
 | AppProtect        | AlmaLinux/Rocky Linux: **Not supported**<br>Alpine Linux: **Not supported**<br>Amazon Linux 2: **x86_64 only**<br>Amazon Linux 2023: **Not supported**<br>Debian 11: **x86_64 only**<br>FreeBSD: **Not supported**<br>Oracle Linux 8: **x86_64 only**<br>RHEL 8: **x86_64 only**<br>SLES: **Not supported**<br>Ubuntu 20.04: **x86_64 only** |
-| Brotli            | SLES 12: **Not supported**                                                                                 |
-| GeoIP             | RHEL/Oracle Linux/AlmaLinux/Rocky Linux 8.0+, 9: **Not supported**<br>FreeBSD: **Not supported**           |
-| GeoIP2            | SLES 12: **Not supported**<br>Amazon Linux 2: **Not supported**                                            |
+| GeoIP             | Amazon Linux 2023  **Not supported**<br>RHEL/Oracle Linux/AlmaLinux/Rocky Linux 8.0+, 9: **Not supported**<br>FreeBSD: **Not supported**           |
+| GeoIP2            | Amazon Linux 2: **Not supported**                                            |
 | HA-Keepalived     | FreeBSD: **Not supported**<br>Alpine Linux: **Not supported**<br>Amazon Linux 2: **Not supported**<br>Amazon Linux 2023: **Not supported** |
 | NGINX sync        | FreeBSD: **Not supported**<br>Alpine Linux: **Not supported**                                              |
-| OpenTelemetry     | Amazon Linux 2: **Not supported**<br>SLES: **Not supported**                                               |
-| OpenTracing       | SLES 12: **Not supported**                                                                                 |
+| OpenTelemetry     | Amazon Linux 2: **Not supported**<br>SLES: **Not supported**                                               |                                                                                |
 {{</bootstrap-table>}}
 
 ---
 
 ## Supported SSL/TLS versions
 
-NGINX Plus supports the following SSL/TLS protocols:  
-- SSLv2  
-- SSLv3  
-- TLSv1  
-- TLSv1.1  
-- TLSv1.2  
-- TLSv1.3  
+NGINX Plus supports the following SSL/TLS protocols:
+- SSLv2
+- SSLv3
+- TLSv1
+- TLSv1.1
+- TLSv1.2
+- TLSv1.3
 
 You can configure which protocols to enable or disable with the [ssl_protocols](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_protocols) directive.
 
 TLSv1.2 and earlier are supported on all operating systems listed in [Supported Distributions](#supported-distributions).
 
-TLSv1.3 is supported starting in NGINX Plus R17 and is enabled by default in NGINX Plus R29 and later. It requires OpenSSL 1.1.1 or higher. Note that not all operating systems supported by NGINX Plus include OpenSSL 1.1.1. Check your operating system's documentation to confirm TLSv1.3 compatibility.
+TLSv1.3 is supported starting from NGINX Plus R17 and is enabled by default in NGINX Plus R29 and later. It requires OpenSSL 1.1.1 or higher. Note that not all operating systems supported by NGINX Plus include OpenSSL 1.1.1. Check your operating system's documentation to confirm TLSv1.3 compatibility.
+
+TLSv1.2 and TLSv1.3 are the default SSL protocols starting from NGINX Plus R34 (if supported by the OpenSSL library). If OpenSSL 1.0.0 or older is used, the default SSL protocols are TLSv1 and TLSv1.1.
 
 ---
 
@@ -119,6 +118,7 @@ See [Sizing Guide for Deploying NGINX Plus on Bare Metal Servers](https://www.ng
 - [Auth Basic](https://nginx.org/en/docs/http/ngx_http_auth_basic_module.html) – Implement HTTP Basic Authentication scheme
 - [Auth JWT](https://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html) – Validate JSON Web Tokens
 - [Auth Request](https://nginx.org/en/docs/http/ngx_http_auth_request_module.html) – Determine client authorization using subrequests to external authentication server
+- [OIDC](https://nginx.org/en/docs/http/ngx_http_oidc_module.html) – Implement authentication as a Relying Party in OpenID Connect solution
 - [Referer](https://nginx.org/en/docs/http/ngx_http_referer_module.html) – Control access based on `Referer` field in HTTP request header
 - [Secure Link](https://nginx.org/en/docs/http/ngx_http_secure_link_module.html) – Process encrypted, time-limited links to content
 
@@ -182,7 +182,7 @@ See [Sizing Guide for Deploying NGINX Plus on Bare Metal Servers](https://www.ng
 
 - [NGINX Plus API](https://nginx.org/en/docs/http/ngx_http_api_module.html) – Provide REST API for accessing metrics, configuring upstream server groups dynamically, and managing key-value pairs, without the need to reload NGINX configuration
 - [Key-Value Store](https://nginx.org/en/docs/http/ngx_http_keyval_module.html) – Create variables with values taken from key-value pairs managed by the [NGINX Plus API](https://nginx.org/en/docs/http/ngx_http_api_module.html#http_keyvals_)
-- [Management](https://nginx.org/en/docs/ngx_mgmt_module.html) – Configure licensing and usage reporting of NGINX Plus installation to F5 licensing endpoint or [NGINX Instance Manager]({{< relref "nim/index.md" >}})
+- [Management](https://nginx.org/en/docs/ngx_mgmt_module.html) – [Configure licensing and usage reporting]({{< ref "solutions/about-subscription-licenses.md" >}}) of NGINX Plus installation to F5 licensing endpoint or [NGINX Instance Manager]({{< ref "nim/index.md" >}})
 
 ### TCP and UDP Proxying and Load Balancing
 

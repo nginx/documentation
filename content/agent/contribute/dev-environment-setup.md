@@ -1,12 +1,11 @@
 ---
-title: "Development environment setup"
+title: Development environment setup
 draft: false
 weight: 200
 toc: true
-tags: [ "docs" ]
-docs: "DOCS-1088"
-categories: ["development"]
-doctypes: ["task"]
+docs: DOCS-1088
+type:
+- how-to
 ---
 
 ## Overview
@@ -19,7 +18,7 @@ While most Linux or FreeBSD operating systems can be used to contribute to the N
 
 ## Install NGINX
 
-Follow the steps in the [Installation]({{< relref "/agent/installation-upgrade/" >}}) section to download, install, and run NGINX and NGINX Agent.
+Follow the steps in the [Installation]({{< ref "/agent/installation-upgrade/" >}}) section to download, install, and run NGINX and NGINX Agent.
 
 ## Clone the NGINX Agent Repository
 

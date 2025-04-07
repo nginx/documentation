@@ -1,12 +1,12 @@
 ---
-description: Create a highly available active-active deployment of F5 NGINX Plus on AWS
-  in combination with AWS Network Load Balancer (NLB).
+description: Create a highly available active-active deployment of F5 NGINX Plus on
+  AWS in combination with AWS Network Load Balancer (NLB).
 docs: DOCS-446
-doctypes:
-- task
 title: Active-Active HA for NGINX Plus on AWS Using AWS Network Load Balancer
 toc: true
 weight: 100
+type:
+- how-to
 ---
 
 These instructions explain how to deploy F5 NGINX Plus in the Amazon Web Services (AWS) cloud. Use these instructions to create a highly available, active-active deployment with load balancing.
@@ -33,8 +33,8 @@ NGINX Plus also provides reverse‑proxy and load balancing features, including
 
 - [Full‑featured HTTP, TCP, and UDP load balancing](https://www.nginx.com/products/nginx/load-balancing/)
 - [Intelligent session persistence](https://www.nginx.com/products/nginx/load-balancing/#session-persistence)
-- [High‑performance reverse proxy]({{< relref "../../admin-guide/web-server/reverse-proxy.md" >}})
-- [Caching and offload of dynamic and static content]({{< relref "../../admin-guide/content-cache/content-caching.md" >}})
+- [High‑performance reverse proxy]({{< ref "nginx/admin-guide/web-server/reverse-proxy.md" >}})
+- [Caching and offload of dynamic and static content]({{< ref "nginx/admin-guide/content-cache/content-caching.md" >}})
 - [Adaptive streaming to deliver audio and video to any device](https://www.nginx.com/products/nginx/streaming-media/)
 - [Application-aware health checks](https://docs.nginx.com/nginx/admin-guide/load-balancer/http-health-check/) and [high availability](https://docs.nginx.com/nginx/admin-guide/high-availability/)
 - [Advanced activity monitoring available via a dashboard or API](https://www.nginx.com/products/nginx/live-activity-monitoring/)
@@ -54,7 +54,7 @@ Together, these provide an HA, all-active NGINX and NGINX Plus solution.
 
 <img src="/nginx/images/nginx-plus-ha-aws-nlb.png" alt="" width="1024" height="577" class="aligncenter size-full wp-image-54857" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
-AWS NLB uses a flow hash routing algorithm to balance traffic and handle Layer 4 TCP connections. AWS NLB listens for incoming connections as defined by its listeners. Each listener forwards a new connection to one of the available instances in a target group. AWS NLB uses the flow hash routing algorithm to chose an available instance. 
+AWS NLB uses a flow hash routing algorithm to balance traffic and handle Layer 4 TCP connections. AWS NLB listens for incoming connections as defined by its listeners. Each listener forwards a new connection to one of the available instances in a target group. AWS NLB uses the flow hash routing algorithm to chose an available instance.
 
 {{< note >}} By default, an AWS NLB uses a DNS name with a dynamic IP address. As an option, you can attach an Elastic IP address to the AWS NLB. This ensures that the AWS NLB is always reachable at the same IP address.  {{< /note >}}
 
@@ -68,16 +68,16 @@ These instructions assume you have the following:
 - Familiarity with NGINX and NGINX Plus configuration syntax.
 - [An AWS account](http://docs.aws.amazon.com/AmazonSimpleDB/latest/DeveloperGuide/AboutAWSAccounts.html).
 - Six EC2 instances running a version of NGINX:
-    - Four running NGINX Open Source 
-    - Two running NGINX Plus 
-    - You need a subscription for each NGINX Plus instance, either paid or a [30‑day free trial](https://www.nginx.com/free-trial-request).
+    - Four running NGINX Open Source
+    - Two running NGINX Plus
+    - You need a paid or trial subscription for each NGINX Plus instance.
 
   Refer to the [Appendix](#appendix) to create EC2 instances with names used in these instructions. There you can also find instructions to install and configure NGINX software on EC2.
 
 <span id="nlb-configure"></span>
 ## Configure an AWS Network Load Balancer
 
-Once you install and configure NGINX Open Source and NGINX Plus on the EC2 instances you are ready to set up AWS NLB. Refer to the [Appendix](#appendix) for more installation and set up instructions. 
+Once you install and configure NGINX Open Source and NGINX Plus on the EC2 instances you are ready to set up AWS NLB. Refer to the [Appendix](#appendix) for more installation and set up instructions.
 
 The steps to set up an AWS NLB for an HA, all‑active NGINX Plus deployment include:
 
@@ -201,7 +201,7 @@ In this step you use the **Step 4: Review** window to verify settings and launch
    <a href="/nginx/images/aws-nlb-load-balancer-success.png"><img src="/nginx/images/aws-nlb-load-balancer-success.png" alt="" width="1024" height="345" class="aligncenter size-full wp-image-54842" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
 3. Observe the values in the **State** column of the table. When a value changes to *active*, you can display details about the provisioned AWS NLB. Select the button in an AWS NLB row to display its details.
-   
+
    <a href="/nginx/images/aws-nlb-load-balancer-active-state.png"><img src="/nginx/images/aws-nlb-load-balancer-active-state.png" alt="" width="1024" height="634" class="aligncenter size-full wp-image-54841" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
 4. Next, verify that the AWS NLB is working. Open a new browser window and navigate to the AWS NLB's public DNS name. You can find the **DNS name** field in the **Basic Configuration** section of the **Load Balancers** dashboard. **Note:** If you copy and paste the DNS name, be sure to exclude the parenthesized words at the end, for example, *(A Record)*.
@@ -248,7 +248,7 @@ The deployed solution in these instructions uses six EC2 instances. Two instance
 
 *Step‑by‑step* instructions for creating EC2 instances and installing NGINX Open Source and NGINX Plus are available. Refer to our deployment guide, [Creating Amazon EC2 Instances for NGINX Open Source and NGINX Plus]({{< ref "/nginx/deployment-guides/amazon-web-services/ec2-instances-for-nginx.md" >}}).
 
-{{< note >}} When installing NGINX Open Source or NGINX Plus, you connect to each instance over SSH. To save time, leave the SSH connection to each instance open after installing the software. This way, you can reuse the connection when configuring the instance. {{< /note >}} 
+{{< note >}} When installing NGINX Open Source or NGINX Plus, you connect to each instance over SSH. To save time, leave the SSH connection to each instance open after installing the software. This way, you can reuse the connection when configuring the instance. {{< /note >}}
 
 Assign the following names to the instances, then install the indicated NGINX software. The screenshot below shows the resulting **Instances** table.
 
@@ -298,7 +298,7 @@ Repeat the instructions on both <span style="color:#666666; font-weight:bolder; 
 
 You can automate set up of the six instances described in these instructions. Automation is an alternative to creating and configuring each instance one at a time. To automate the set up, use the Packer and Terraform scripts from our [GitHub repository](https://github.com/nginxinc/NGINX-Demos/tree/master/aws-nlb-ha-asg). These scripts will:
 
-- Configure two load balancer instances running NGINX Plus 
+- Configure two load balancer instances running NGINX Plus
 - Configure four web server instances running NGINX Open Source
 
 These scripts also create a new set of networking rules and security group settings. These rules and settings help avoid conflicts with any pre‑existing network settings. After you run the scripts, continue to the [instructions for creating an AWS NLB](#nlb-configure). No further setup is required.

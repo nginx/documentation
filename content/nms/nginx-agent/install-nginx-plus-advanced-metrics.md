@@ -18,7 +18,7 @@ See our End of Sale announcement for more details. {{< /eol-call-out >}}
 
 The F5 NGINX Plus metrics module is a dynamic module that you can install on your NGINX Plus data plane instances for use with API Connectivity Manager. The metrics module reports advanced, app-centric metrics and dimensions like “application name” or “gateway” to the NGINX Agent, which then aggregates and publishes the data to API Connectivity Manager. Advanced, app-centric metrics are used by particular API Connectivity Manager for features associated with HTTP requests.
 
-This module is not required or necessary for NGINX Instance Manager. 
+This module is not required or necessary for NGINX Instance Manager.
 
 ---
 
@@ -53,7 +53,7 @@ Complete the following prerequisites before proceeding with the steps in this gu
 
     </details>
 
-- Verify that [NGINX Agent]({{< relref "/nms/nginx-agent/install-nginx-agent.md" >}}) is installed on each NGINX Plus instance.
+- Verify that [NGINX Agent]({{< ref "/nms/nginx-agent/install-nginx-agent.md" >}}) is installed on each NGINX Plus instance.
 
 ---
 
@@ -142,7 +142,7 @@ advanced_metrics:
     priority_table_threshold: 1000
 ```
 
-{{< see-also >}} See the [NGINX Agent CLI Flags & Usage]({{< relref "/nms/nginx-agent/install-nginx-agent.md#nginx-agent-cli-flags--usage" >}}) topic for a description of each of these flags. {{< /see-also >}}
+{{< see-also >}} See the [NGINX Agent CLI Flags & Usage]({{< ref "/nms/nginx-agent/install-nginx-agent.md#nginx-agent-cli-flags--usage" >}}) topic for a description of each of these flags. {{< /see-also >}}
 
 <br>
 
@@ -154,4 +154,4 @@ After you install the NGINX Plus metrics module, run the command below to start 
 sudo systemctl start nginx-agent
 ```
 
-After completing the steps in this guide, you will start to see app-centric metrics displayed in the NGINX Management Suite user interface. You can also collect metrics by using the REST API. To learn more, refer to [Using the Metrics API]({{< relref "/nim/monitoring/metrics-api" >}}).
+After completing the steps in this guide, you will start to see app-centric metrics displayed in the NGINX Management Suite user interface. You can also collect metrics by using the REST API. To learn more, refer to [Using the Metrics API]({{< ref "/nim/monitoring/metrics-api" >}}).
