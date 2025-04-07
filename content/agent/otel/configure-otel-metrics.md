@@ -14,7 +14,7 @@ F5 NGINX Agent now includes an embedded [OpenTelemetry](https://opentelemetry.io
 The OpenTelemetry exporter is enabled by default. Once a valid connection to the management plane is established, the Agent will automatically begin exporting metrics.
 {{< /note >}}
 
-### Key Benefits
+### Key benefits
 
 * Seamless Integration: No need to deploy an external OpenTelemetry Collector. All components are embedded within the Agent for streamlined observability.
 * Standardized Protocol: Support for OpenTelemetry standards ensures interoperability with a wide range of observability backends, including Jaeger, Prometheus, Splunk, and more.
