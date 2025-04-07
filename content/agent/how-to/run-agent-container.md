@@ -89,7 +89,7 @@ docker ps
 
 You should see an entry for `nginx-agent`. The `STATUS` field should indicate that the container is running.
 
-5. Monitor Logs
+5. Monitor logs
 
 To ensure the container is functioning properly and communicating with NGINX One Console, monitor the container logs.
 
