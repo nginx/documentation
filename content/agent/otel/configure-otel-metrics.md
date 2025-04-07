@@ -27,7 +27,7 @@ You can validate that metrics are successfully exported by using the methods bel
 
 **Agent Logs**
 
-Check the OpenTelemetry Collector logs for confirmation of successful metric processing: 
+   Check the OpenTelemetry Collector logs for confirmation of successful metric processing: 
 
    1. Open the file: ```/var/log/nginx-agent/opentelemetry-collector-agent.log```
    2. Look for the following logs: 
