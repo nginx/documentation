@@ -8,7 +8,7 @@ product: Agent
 
 ## Overview
 
-This guide serves as a step-by-step guide to running the NGINX Agent in a container. It covers the basic setup needed to get the NGINX Agent up and running efficiently and securely.
+This guide serves as a step-by-step guide to run NGINX Agent in a container. It covers the basic setup needed to get the NGINX Agent up and running efficiently and securely.
 
 ## Before you begin
 
