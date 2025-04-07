@@ -29,8 +29,9 @@ You can validate that metrics are successfully exported by using the methods bel
 
 Check the OpenTelemetry Collector logs for confirmation of successful metric processing: 
 
-1. Open the file: ```/var/log/nginx-agent/opentelemetry-collector-agent.log```
-2. Look for the following logs: 
-    ```vim 
-    Everything is ready. Begin running and processing data.
-    ```
+   1. Open the file: ```/var/log/nginx-agent/opentelemetry-collector-agent.log```
+   2. Look for the following logs: 
+      
+      ```text
+      Everything is ready. Begin running and processing data.
+      ```
