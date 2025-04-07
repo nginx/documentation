@@ -23,7 +23,7 @@ The OpenTelemetry exporter is enabled by default. Once a valid connection to the
 
 You can validate that metrics are successfully exported by using the methods below: 
 
-**NGINX One Dashboard**
+- **NGINX One dashboard**
 
 - When an instance has connected to NGINX One Console [Connect to NGINX One Console]({{< ref "/nginx-one/how-to/nginx-configs/add-instance.md" >}}), you should be able to see metrics showing on the NGINX One Dashboard.
 
