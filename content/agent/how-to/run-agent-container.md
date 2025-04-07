@@ -19,7 +19,7 @@ This guide uses Docker but NGINX Agent will also work with other container appli
 {{< /note >}}
 
 - **Docker:** Ensure Docker is installed and configured on your system. [Download Docker from the official site](https://www.docker.com/products/docker-desktop/).
-- **NGINX Agent Image:** You need access to the Docker image for the NGINX Agent. Find the appropriate image in your organization's registry or on Docker Hub if publicly available.
+- **NGINX Agent Image:** You need access to the Docker image for NGINX Agent. Find the appropriate image in your organization's registry or on Docker Hub if publicly available.
 - **NGINX Configuration File:** Prepare and validate your NGINX configuration files that the Agent will monitor.
 - **Credentials:** Acquire any necessary authentication tokens or credentials required for the NGINX Agent.
 
