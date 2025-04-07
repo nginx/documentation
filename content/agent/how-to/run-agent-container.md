@@ -37,7 +37,7 @@ docker pull <Registry HERE>:latest
 Ensure you are using the correct image version. Replace `latest` with the desired version tag if necessary.
 
 
-2. Create a Configuration File
+2. Create a configuration file
 
 1. Create a configuration file named `nginx-agent.conf` in your current directory.
 2. Populate the file with the following structure:
