@@ -1,5 +1,5 @@
 ---
-title: Exporting Metrics with NGINX Agent
+title: Export metrics with NGINX Agent
 weight: 200
 ---
 
