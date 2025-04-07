@@ -36,7 +36,7 @@ The F5 NGINX Agent is a lightweight companion daemon designed to work with NGINX
 - Collected metrics can be seamlessly exported to the NGINX One Console or integrated with third-party data aggregators.
 
 ### How Agent works
----
+
 ```mermaid
 graph BT
 
