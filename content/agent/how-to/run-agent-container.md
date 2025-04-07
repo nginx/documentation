@@ -1,7 +1,9 @@
 ---
 title: "Running the NGINX Agent in a Container"
 weight: 300
-docs: DOCS-000
+toc: true
+type: how-to
+product: Agent
 ---
 
 ## Overview
