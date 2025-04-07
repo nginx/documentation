@@ -19,7 +19,7 @@ The OpenTelemetry exporter is enabled by default. Once a valid connection to the
 * Seamless Integration: No need to deploy an external OpenTelemetry Collector. All components are embedded within the Agent for streamlined observability.
 * Standardized Protocol: Support for OpenTelemetry standards ensures interoperability with a wide range of observability backends, including Jaeger, Prometheus, Splunk, and more.
 
-### Verify Metrics Exported
+### Verify that metrics are exported
 
 You can validate that metrics are successfully exported by using the methods below: 
 
