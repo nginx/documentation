@@ -9,242 +9,181 @@ type:
 - how-to
 ---
 
-<span id="overview"></span>
-## Module Overview
+## Overview {#overview}
 
-The module provides [OpenTelemetry](https://opentelemetry.io/) distributed tracing support. The module supports [W3C](https://w3c.github.io/trace-context/) context propagation and OTLP/gRPC export protocol.
+[OpenTelemetry](https://opentelemetry.io/) (OTel) is an observability framework for monitoring, tracing, troubleshooting, and optimizing applications. OTel enables the collection of telemetry data from a deployed application stack.
 
- {{< note >}} the code of NGINX OpenTelemetry module is open source since [NGINX Open Source](https://nginx.org) 1.25.2 and NGINX Plus [Release 30]({{< ref "nginx/releases.md#r30" >}}). The source code is available on [GitHub](https://github.com/nginxinc/nginx-otel).{{< /note >}}
+The `nginx-plus-module-otel` module is NGINX-authored dynamic module that enables NGINX Plus to send telemetry data to an OTel collector. The module supports [W3C](https://w3c.github.io/trace-context/) trace context propagation, OpenTelemetry Protocol (OTLP)/gRPC trace exports, and offers several advantages over existing OTel modules including:
+
+- Enhanced performance: other OTel implementations can reduce request processing by up to 50%, while `nginx-plus-module-otel` minimizes this impact to just 10-15%.
+
+- Simplified provisioning through NGINX configuration file.
+
+- Dynamic, variable-based control of trace parameters with cookies, tokens, and variables. See [Ratio-based Tracing](#example) example for details.
+
+- Dynamic control of sampling parameters via the [NGINX Plus API]({{< ref "/nginx/admin-guide/monitoring/live-activity-monitoring.md#using-the-rest-api" >}}) and [key-value storage]({{< ref "/nginx/admin-guide/security-controls/denylisting-ip-addresses.md" >}}).
+
+The repository can be found on [GitHub](https://github.com/nginxinc/nginx-otel). The documentation can be found on [nginx.org](https://nginx.org/en/docs/ngx_otel_module.html).
 
 
-<span id="install"></span>
-## Installation
+## Installation {#install}
+
+Similar to [NGINX Plus]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}), prebuilt packages of the `nginx-plus-module-otel` module can can be installed directly from the official repository for different distributions. Before installation you will need to add NGINX Plus package repositories for your distribution and update the repository metadata.
 
 1. Check the [Technical Specifications]({{< ref "nginx/technical-specs.md" >}}) page to verify that the module is supported by your operating system.
 
-2. Install the OpenTelemetry module package `nginx-plus-module-otel`.
+   {{< note >}} The OpenTelemetry module cannot be installed on Amazon Linux 2 LTS and SLES 15 SP5+. {{< /note >}}
 
-   For CentOS, Oracle Linux, and RHEL:
+2. Make sure you have the latest version of NGINX Plus or you have upgraded NGINX Plus to the latest version. In Terminal, run the command:
 
    ```shell
-   yum install nginx-plus-module-otel
+   nginx -v
    ```
 
-   For Amazon Linux 2023, AlmaLinux, Rocky Linux:
+   Expected output of the command:
 
    ```shell
-   dnf install nginx-plus-module-otel
+   nginx version: nginx/1.27.4 (nginx-plus-r34)
    ```
 
-   For Debian and Ubuntu:
+3. Make sure you have installed dependencies required for your operating system.
+
+   For Amazon Linux 2023, AlmaLinux, CentOS, Oracle Linux, RHEL, and Rocky Linux:
 
    ```shell
-   apt-get install nginx-plus-module-otel
+   sudo dnf update
+   sudo dnf install ca-certificates
+   sudo dnf update-ca-certificates #use if ca-certificates are installed
    ```
 
-   For SLES:
+   For Debian:
 
    ```shell
-   zypper install nginx-plus-module-otel
+   sudo apt update
+   sudo apt install apt-transport-https lsb-release ca-certificates wget gnupg2 debian-archive-keyring
+   ```
+
+   ```shell
+   wget -qO - https://cs.nginx.com/static/keys/nginx_signing.key \
+    | gpg --dearmor \
+    | sudo tee /usr/share/keyrings/nginx-archive-keyring.gpg >/dev/null
+   ```
+
+   For Ubuntu:
+
+   ```shell
+   sudo apt update
+   sudo apt install apt-transport-https lsb-release ca-certificates wget gnupg2 ubuntu-keyring
+   ```
+
+   ```shell
+   printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
+   https://pkgs.nginx.com/plus/ubuntu `lsb_release -cs` nginx-plus\n" \
+   | sudo tee /etc/apt/sources.list.d/nginx-plus.list
    ```
 
    For Alpine:
 
    ```shell
-   apk add nginx-plus-module-otel
+   sudo wget -O /etc/apk/keys/nginx_signing.rsa.pub https://cs.nginx.com/static/keys/nginx_signing.rsa.pub
    ```
 
    For FreeBSD:
 
    ```shell
-   pkg install nginx-plus-module-otel
+   sudo pkg update
+   sudo pkg install ca_root_nss
    ```
 
-   {{< note >}} the OpenTelemetry module cannot be installed on RHEL/Oracle Linux/AlmaLinux/Rocky Linux 7, Ubuntu 18.04, and Amazon Linux 2. {{< /note >}}
+3. Make sure you have obtained the **nginx-repo.crt** and **nginx-repo.key** files from MyF5 and put them to the **/etc/ssl/nginx/** directory. These files are required for accessing the NGINX Plus repository:
 
+   ```shell
+   sudo cp nginx-repo.crt /etc/ssl/nginx/
+   sudo cp nginx-repo.key /etc/ssl/nginx/
+   ```
 
-<span id="configure"></span>
+   For Alpine, upload **nginx-repo.crt** to **/etc/apk/cert.pem** and **nginx-repo.key** to **/etc/apk/cert.key**. Ensure these files contain only the specific key and certificate as Alpine Linux does not support mixing client certificates for multiple repositories.
 
-## Configuration
+4. Make sure your package management system is configured to pull from NGINX Plus repository. See [Installing NGINX Plus]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}) for details.
 
-After installation you will need to enable and configure the module in NGINX Plus configuration file `nginx.conf`.
+4. Update the repository information and install the package. In Terminal, run the appropriate command for your operating system.
 
-1. Enable dynamic loading of the module with the [`load_module`](https://nginx.org/en/docs/ngx_core_module.html#load_module) directive specified in the top-level (“`main`”) context:
+   For CentOS, Oracle Linux, and RHEL:
+
+   ```shell
+   sudo yum update
+   sudo yum install nginx-plus-module-otel
+   ```
+
+   For Amazon Linux 2023, AlmaLinux, Rocky Linux:
+
+   ```shell
+   sudo dnf update
+   sudo dnf install nginx-plus-module-otel
+   ```
+
+   For Debian and Ubuntu:
+
+   ```shell
+   sudo apt update
+   sudo apt install nginx-plus-module-otel
+   ```
+
+   For Alpine:
+
+   ```shell
+   sudo apk update
+   sudo apk add nginx-plus-module-otel
+   ```
+
+   For FreeBSD:
+
+   ```shell
+   sudo pkg update
+   sudo pkg install nginx-plus-module-otel
+   ```
+
+   The module will be installed into `/usr/local/nginx` directory.
+
+6. Copy the `ngx_otel_module.so` dynamic module binary to `/usr/local/nginx/modules`.
+
+7. Enable dynamic loading of the module. Open the NGINX Plus configuration file, `nginx.conf` in a text editor, and specify the [`load_module`](https://nginx.org/en/docs/ngx_core_module.html#load_module) directive on the top-level (“`main`”) context:
 
    ```nginx
    load_module modules/ngx_otel_module.so;
+
+   http {
+   #...
+   }
    ```
 
-2. Test the configuration and reload NGINX Plus to enable the module:
+3. Save the configuration file.
+
+4. Test and reload NGINX Plus configuration to enable the module.  In Terminal, type-in the command:
 
    ```shell
    nginx -t && nginx -s reload
    ```
 
 
-<span id="directives"></span>
-## Module directives
+## Configuration {#configure}
 
-<span id="otel_exporter"></span>
-### `otel_exporter`
+For a complete list of directives, embedded variables, default span attributes, refer to the `ngx_otel_module` official documentation.
 
-**Syntax:** `otel_exporter { ... }`;
+List of directives:
 
-**Default:** &mdash;
+[`https://nginx.org/en/docs/ngx_otel_module.html#directives`](https://nginx.org/en/docs/ngx_otel_module.html#directives)
 
-**Context:** [`http`](https://nginx.org/en/docs/http/ngx_http_core_module.html#http)
+List of variables:
 
-Specifies OTel data export parameters:
+[`https://nginx.org/en/docs/ngx_otel_module.html#variables`](https://nginx.org/en/docs/ngx_otel_module.html#variables)
 
-- `endpoint` &mdash; the address of OTLP/gRPC endpoint that will accept telemetry data.
-- `interval` &mdash; the maximum interval between two exports, by default is 5 seconds.
-- `batch_size` &mdash; the maximum number of spans to be sent in one batch per worker, by default is `512`.
-- `batch_count` &mdash; the number of pending batches per worker, spans exceeding the limit are dropped, by default is `4`.
+Default span attributes:
 
-**Example:**
-
-```nginx
-otel_exporter {
-    endpoint    localhost:4317;
-    interval    5s;
-    batch_size  512;
-    batch_count 4;
-}
-```
-
-<br>
-
-<span id="otel_service_name"></span>
-### `otel_service_name`
-
-**Syntax:**  `otel_service_name` <i>name</i>;
-
-**Default:** `otel_service_name` <i>unknown_service:nginx</i>;
-
-**Context:** [`http`](https://nginx.org/en/docs/http/ngx_http_core_module.html#http)
-
-Sets the [“service.name”](https://opentelemetry.io/docs/specs/otel/resource/semantic_conventions/#service) attribute of the OTel resource.
-<br>
-<br>
-
-<span id="otel_trace"></span>
-### `otel_trace`
-
-**Syntax:** `otel_trace` <i>on</i> | <i>off</i> | <i>$variable</i>;
-
-**Default:** `otel_trace` <i>off</i>;
-
-**Context:** [`http`](https://nginx.org/en/docs/http/ngx_http_core_module.html#http), [`server`](https://nginx.org/en/docs/http/ngx_http_core_module.html#server), [`location`](https://nginx.org/en/docs/http/ngx_http_core_module.html#location)
-
-Enables or disables OpenTelemetry tracing. The directive can also be enabled by specifying a variable.
-
-**Example:**
-
-```nginx
-split_clients "$otel_trace_id" $ratio_sampler {
-               10%              on;
-               *                off;
-}
-
-server {
-    location / {
-        otel_trace         $ratio_sampler;
-        otel_trace_context inject;
-        proxy_pass         http://backend;
-    }
-}
-```
-
-<br>
-
-<span id="otel_trace_context"></span>
-### `otel_trace_context`
-
-**Syntax:** `otel_trace_context` <i>extract</i> | <i>inject</i> | <i>propagate</i> | <i>ignore</i>;
-
-**Default:** `otel_trace_context` <i>ignore</i>;
-
-**Context:** [`http`](https://nginx.org/en/docs/http/ngx_http_core_module.html#http), [`server`](https://nginx.org/en/docs/http/ngx_http_core_module.html#server), [`location`](https://nginx.org/en/docs/http/ngx_http_core_module.html#location)
-
-Specifies how to propagate [traceparent/tracestate](https://www.w3.org/TR/trace-context/#design-overview) headers:
-
-- `extract` &mdash; uses an existing trace context from the request, so that the identifiers of a [trace](#var_otel_trace_id) and the [parent span](#var_otel_parent_id) are inherited from the incoming request.
-- `inject` &mdash; adds a new context to the request, overwriting existing headers, if any.
-- `propagate` &mdash; updates the existing context (combines `extract` and `inject`).
-- `ignore` &mdash; skips context headers processing.
-<br>
-
-<br>
-
-<span id="otel_span_name"></span>
-### `otel_span_name`
-
-**Syntax:** `otel_span_name` <i>name</i>;
-
-**Default:** &mdash;
-
-**Context:** [`http`](https://nginx.org/en/docs/http/ngx_http_core_module.html#http), [`server`](https://nginx.org/en/docs/http/ngx_http_core_module.html#server), [`location`](https://nginx.org/en/docs/http/ngx_http_core_module.html#location)
-
-Defines the name of the OTel [span](https://opentelemetry.io/docs/concepts/observability-primer/#spans). By default, it is a name of the location for a request. The name can contain variables.
-<br>
-<br>
-
-<span id="otel_span_attr"></span>
-### `otel_span_attr`
-
-**Syntax:** `otel_span_attr` <i>name</i> <i>value</i>;
-
-**Default:** &mdash;
-
-**Context:** [`http`](https://nginx.org/en/docs/http/ngx_http_core_module.html#http), [`server`](https://nginx.org/en/docs/http/ngx_http_core_module.html#server), [`location`](https://nginx.org/en/docs/http/ngx_http_core_module.html#location)
-
-Adds a custom OTel span attribute. The value can contain variables.
-<br>
+[`https://nginx.org/en/docs/ngx_otel_module.html#span`](https://nginx.org/en/docs/ngx_otel_module.html#span)
 
 
-<span id="span_attributes"></span>
-## Default span attributes
-
-The following [span attributes](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/trace/semantic_conventions/http.md) are added automatically:
-
-- `http.method`
-- `http.target`
-- `http.route`
-- `http.scheme`
-- `http.flavor`
-- `http.user_agent`
-- `http.request_content_length`
-- `http.response_content_length`
-- `http.status_code`
-- `net.host.name`
-- `net.host.port`
-- `net.sock.peer.addr`
-- `net.sock.peer.port`
-
-
-<span id="variables"></span>
-## Module variables
-
-<span id="var_otel_trace_id"></span>
-### `$otel_trace_id`
-the identifier of the trace the current span belongs to, for example, `56552bc4daa3bf39c08362527e1dd6c4`
-
-<span id="var_otel_span_id"></span>
-### `$otel_span_id`
-the identifier of the current span, for example, `4c0b8531ec38ca59`
-
-<span id="var_otel_parent_id"></span>
-### `$otel_parent_id`
-the identifier of the parent span, for example, `dc94d281b0f884ea`
-
-<span id="var_otel_parent_sampled"></span>
-### `$otel_parent_sampled`
-the `sampled` flag of the parent span, can be `1` or `0`
-<br>
-<br>
-
-<span id="example"></span>
-## Usage examples
+## Usage examples {#example}
 
 ### Simple Tracing
 
@@ -303,10 +242,11 @@ http {
 }
 ```
 
-<span id="info"></span>
-## More Info
+## More Info {#info}
 
-- [NGINX OpenTelemetry module on GitHub](https://github.com/nginxinc/nginx-otel)
+- [GitHub Repository for the NGINX Native OpenTelemetry Module](https://github.com/nginxinc/nginx-otel)
+
+- [Official Documentation for the NGINX Native OpenTelemetry Module](https://nginx.org/en/docs/ngx_otel_module.html)
 
 - [NGINX Dynamic Modules]({{< ref "dynamic-modules.md" >}})
 
