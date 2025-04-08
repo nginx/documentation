@@ -13,7 +13,7 @@ type:
 
 [OpenTelemetry](https://opentelemetry.io/) (OTel) is an observability framework for monitoring, tracing, troubleshooting, and optimizing applications. OTel enables the collection of telemetry data from a deployed application stack.
 
-The `nginx-plus-module-otel` module is NGINX-authored dynamic module that enables NGINX Plus to send telemetry data to an OTel collector. The module supports [W3C](https://w3c.github.io/trace-context/) trace context propagation, OpenTelemetry Protocol (OTLP)/gRPC trace exports, and offers several advantages over existing OTel modules including:
+The `nginx-plus-module-otel` module is an NGINX-authored dynamic module that enables NGINX Plus to send telemetry data to an OTel collector. The module supports [W3C](https://w3c.github.io/trace-context/) trace context propagation, OpenTelemetry Protocol (OTLP)/gRPC trace exports, and offers several advantages over existing OTel modules including:
 
 - Enhanced performance: other OTel implementations can reduce request processing by up to 50%, while `nginx-plus-module-otel` minimizes this impact to just 10-15%.
 
@@ -28,13 +28,13 @@ The repository can be found on [GitHub](https://github.com/nginxinc/nginx-otel).
 
 ## Installation {#install}
 
-Similar to [NGINX Plus]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}), prebuilt packages of the `nginx-plus-module-otel` module can can be installed directly from the official repository for different distributions. Before installation you will need to add NGINX Plus package repositories for your distribution and update the repository metadata.
+Similar to [NGINX Plus]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}), prebuilt packages of the `nginx-plus-module-otel` module can can be installed directly from the official repository for different distributions. Before installation you will need to add the NGINX Plus package repositories for your distribution and update the repository metadata.
 
 1. Check the [Technical Specifications]({{< ref "nginx/technical-specs.md" >}}) page to verify that the module is supported by your operating system.
 
    {{< note >}} The OpenTelemetry module cannot be installed on Amazon Linux 2 LTS and SLES 15 SP5+. {{< /note >}}
 
-2. Make sure you have the latest version of NGINX Plus or you have upgraded NGINX Plus to the latest version. In Terminal, run the command:
+2. Make sure you have the latest version of NGINX Plus. In Terminal, run the command:
 
    ```shell
    nginx -v
@@ -46,7 +46,7 @@ Similar to [NGINX Plus]({{< ref "/nginx/admin-guide/installing-nginx/installing-
    nginx version: nginx/1.27.4 (nginx-plus-r34)
    ```
 
-3. Make sure you have installed dependencies required for your operating system.
+3. Make sure you have installed the dependencies required for your operating system.
 
    For Amazon Linux 2023, AlmaLinux, CentOS, Oracle Linux, RHEL, and Rocky Linux:
 
@@ -104,9 +104,9 @@ Similar to [NGINX Plus]({{< ref "/nginx/admin-guide/installing-nginx/installing-
 
    For Alpine, upload **nginx-repo.crt** to **/etc/apk/cert.pem** and **nginx-repo.key** to **/etc/apk/cert.key**. Ensure these files contain only the specific key and certificate as Alpine Linux does not support mixing client certificates for multiple repositories.
 
-4. Make sure your package management system is configured to pull from NGINX Plus repository. See [Installing NGINX Plus]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}) for details.
+4. Make sure your package management system is configured to pull from the NGINX Plus repository. See [Installing NGINX Plus]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}) for details.
 
-4. Update the repository information and install the package. In Terminal, run the appropriate command for your operating system.
+4. Update the repository information and install the package. In a terminal, run the appropriate command for your operating system.
 
    For CentOS, Oracle Linux, and RHEL:
 
@@ -143,7 +143,7 @@ Similar to [NGINX Plus]({{< ref "/nginx/admin-guide/installing-nginx/installing-
    sudo pkg install nginx-plus-module-otel
    ```
 
-   The module will be installed into `/usr/local/nginx` directory.
+   The module will be installed in the `/usr/local/nginx` directory.
 
 6. Copy the `ngx_otel_module.so` dynamic module binary to `/usr/local/nginx/modules`.
 
@@ -242,7 +242,7 @@ http {
 }
 ```
 
-## More Info {#info}
+## More info {#info}
 
 - [GitHub Repository for the NGINX Native OpenTelemetry Module](https://github.com/nginxinc/nginx-otel)
 
