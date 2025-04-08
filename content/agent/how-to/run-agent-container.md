@@ -15,7 +15,7 @@ This guide serves as a step-by-step guide to run NGINX Agent in a container. It 
 Before you begin this guide ensure:
 
 {{< note >}}
-This guide uses Docker but NGINX Agent will also work with other container applications.
+This guide uses Docker but NGINX Agent also works with other container applications.
 {{< /note >}}
 
 - **Docker:** Ensure Docker is installed and configured on your system. [Download Docker from the official site](https://www.docker.com/products/docker-desktop/).
@@ -42,7 +42,7 @@ Ensure you are using the correct image version. Replace `latest` with the desire
 1. Create a configuration file named `nginx-agent.conf` in your current directory.
 2. Populate the file with the following structure:
 
-```vim
+```yaml
 command:
   server:
     host: "<NGINX-One-Console-URL>" # Command server host
@@ -87,7 +87,7 @@ Check the running status of the container:
 docker ps
 ```
 
-You should see an entry for `nginx-agent`. The `STATUS` field should indicate that the container is running.
+You should see an entry for `nginx-agent`. The `STATUS` field indicates that the container is running.
 
 5. Monitor logs
 
