@@ -7,7 +7,7 @@ weight: 200
 
 F5 NGINX Agent now includes an embedded [OpenTelemetry](https://opentelemetry.io/) collector, streamlining observability and metric collection for NGINX instances. With this feature, you can collect: 
 
-* Metrics from NGINX Plus and NGINX OSS 
+* Metrics from NGINX Plus and NGINX Open Source 
 * Host metrics  (CPU, memory, disk, and network activity) from VMs or Containers
 
 {{< note >}}
