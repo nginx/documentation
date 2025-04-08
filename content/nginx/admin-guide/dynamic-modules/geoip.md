@@ -20,7 +20,8 @@ type:
    For Amazon Linux 2, CentOS, Oracle Linux, and RHEL:
 
    ```shell
-   yum install nginx-plus-module-geoip
+   sudo yum update && \
+   sudo yum install nginx-plus-module-geoip
    ```
 
    {{< note >}} Only 7.x version of CentOS, Oracle Linux, and RHEL is supported. {{< /note >}}
@@ -29,13 +30,15 @@ type:
    For Debian and Ubuntu:
 
    ```shell
-   apt-get install nginx-plus-module-geoip
+   sudo apt update && \
+   sudo apt install nginx-plus-module-geoip
    ```
 
    For SLES:
 
    ```shell
-   zypper install nginx-plus-module-geoip
+   sudo zypper refresh && \
+   sudo zypper install nginx-plus-module-geoip
    ```
 
    For Alpine:
@@ -61,11 +64,24 @@ After installation you will need to enable and configure the module in NGINX Plu
 
 2. Perform additional configuration as required by the module ([HTTP](https://nginx.org/en/docs/http/ngx_http_geoip_module.html) or [TCP/UDP](https://nginx.org/en/docs/stream/ngx_stream_geoip_module.html)).
 
-3. Test the configuration and reload NGINX Plus to enable the module:
+3. Test the NGINX Plus configuration. In a terminal, type-in the command:
 
-   ```shell
-   nginx -t && nginx -s reload
-   ```
+    ```shell
+    nginx -t
+    ```
+
+    Expected output of the command:
+
+    ```shell
+    nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+    nginx: configuration file /etc/nginx/nginx.conf is successful
+    ```
+
+4. Reload the NGINX Plus configuration to enable the module:
+
+    ```shell
+    nginx -s reload
+    ```
 
 ## More Info
 

@@ -18,31 +18,36 @@ type:
    For Amazon Linux 2, CentOS, Oracle Linux, and RHEL:
 
    ```shell
-   yum install nginx-plus-module-subs-filter
+   sudo yum update && \
+   sudo yum install nginx-plus-module-subs-filter
    ```
 
    For Amazon Linux 2023, AlmaLinux, Rocky Linux:
 
    ```shell
-   dnf install nginx-plus-module-subs-filter
+   sudo dnf update && \
+   sudo dnf install nginx-plus-module-subs-filter
    ```
 
    For Debian and Ubuntu:
 
    ```shell
-   apt-get install nginx-plus-module-subs-filter
+   sudo apt update && \
+   sudo apt install nginx-plus-module-subs-filter
    ```
 
    For SLES:
 
    ```shell
-   zypper install nginx-plus-module-subs-filter
+   sudo zypper refresh && \
+   sudo zypper install nginx-plus-module-subs-filter
    ```
 
    For FreeBSD:
 
    ```shell
-   pkg install nginx-plus-module-subs-filter
+   sudo pkg update && \
+   sudo pkg install nginx-plus-module-subs-filter
    ```
 
 ## Configuration
@@ -53,15 +58,32 @@ After installation you will need to enable and configure the module in F5 NGINX 
 
    ```nginx
    load_module modules/ngx_http_subs_filter_module.so;
+
+   http {
+       # ...
+   }
    ```
 
 2. Perform additional configuration as required by the [module](https://github.com/yaoweibin/ngx_http_substitutions_filter_module).
 
-3. Test the configuration and reload NGINX Plus to enable the module:
+3. Test the NGINX Plus configuration. In a terminal, type-in the command:
 
-   ```shell
-   nginx -t && nginx -s reload
-   ```
+    ```shell
+    nginx -t
+    ```
+
+    Expected output of the command:
+
+    ```shell
+    nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+    nginx: configuration file /etc/nginx/nginx.conf is successful
+    ```
+
+4. Reload the NGINX Plus configuration to enable the module:
+
+    ```shell
+    nginx -s reload
+    ```
 
 ## More Info
 

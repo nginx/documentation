@@ -50,11 +50,24 @@ After uninstalling the package, you will need to disable the module in F5 NGINX 
 
 2. In NGINX Plus configuration file, remove all directives related to the dynamic module.
 
-3. Test the configuration and reload NGINX Plus to disable the module:
+3. Test the NGINX Plus configuration. In a terminal, type-in the command:
 
-   ```shell
-   nginx -t && nginx -s reload
-   ```
+    ```shell
+    nginx -t
+    ```
+
+    Expected output of the command:
+
+    ```shell
+    nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+    nginx: configuration file /etc/nginx/nginx.conf is successful
+    ```
+
+4. Reload the NGINX Plus configuration to enable the module:
+
+    ```shell
+    nginx -s reload
+    ```
 
 ## More Info
 

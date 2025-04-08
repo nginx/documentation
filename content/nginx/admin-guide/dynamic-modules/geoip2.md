@@ -26,7 +26,8 @@ type:
    For CentOS, Oracle Linux, and RHEL:
 
    ```shell
-   yum install nginx-plus-module-geoip2
+   sudo yum update && \
+   sudo yum install nginx-plus-module-geoip2
    ```
 
    {{< note >}} the GeoIP2 module cannot be installed on ppc64le version of CentOS, Oracle Linux, and RHEL. {{< /note >}}
@@ -34,13 +35,15 @@ type:
    For Amazon Linux 2023, AlmaLinux, Rocky Linux:
 
    ```shell
-   dnf install nginx-plus-module-geoip2
+   sudo dnf update && \
+   sudo dnf install nginx-plus-module-geoip2
    ```
 
    For Debian and Ubuntu:
 
    ```shell
-   apt-get install nginx-plus-module-geoip2
+   sudo apt update && \
+   sudo apt install nginx-plus-module-geoip2
    ```
 
    For Alpine:
@@ -52,7 +55,8 @@ type:
    For FreeBSD:
 
    ```shell
-   pkg install nginx-plus-module-geoip2
+   sudo pkg update && \
+   sudo pkg install nginx-plus-module-geoip2
    ```
 
 <span id="configure"></span>
@@ -74,11 +78,24 @@ After installation you will need to enable and configure the module in NGINX Plu
 
 2. Perform additional configuration as required by the [module](https://github.com/leev/ngx_http_geoip2_module#user-content-download-maxmind-geolite2-database-optional).
 
-3. Test the configuration and reload NGINX Plus to enable the module:
+3. Test the NGINX Plus configuration. In a terminal, type-in the command:
 
-   ```shell
-   nginx -t && nginx -s reload
-   ```
+    ```shell
+    nginx -t
+    ```
+
+    Expected output of the command:
+
+    ```shell
+    nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+    nginx: configuration file /etc/nginx/nginx.conf is successful
+    ```
+
+4. Reload the NGINX Plus configuration to enable the module:
+
+    ```shell
+    nginx -s reload
+    ```
 
 
 ## More Info

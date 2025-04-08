@@ -20,25 +20,29 @@ For F5 NGINX Plus, the cryptographic boundary includes all functionality that is
    For Amazon Linux 2, CentOS, Oracle Linux, and RHEL:
 
    ```shell
-   yum install nginx-plus-module-fips-check
+   sudo yum update && \
+   sudo yum install nginx-plus-module-fips-check
    ```
 
    for Amazon Linux 2023, AlmaLinux, Rocky Linux:
 
    ```shell
-   dnf install nginx-plus-module-fips-check
+   sudo dnf update && \
+   sudo dnf install nginx-plus-module-fips-check
    ```
 
    For Debian and Ubuntu:
 
    ```shell
-   apt-get install nginx-plus-module-fips-check
+   sudo apt update && \
+   sudo apt install nginx-plus-module-fips-check
    ```
 
    For SLES:
 
    ```shell
-   zypper install nginx-plus-module-fips-check
+   sudo zypper refresh && \
+   sudo zypper install nginx-plus-module-fips-check
    ```
 
    For Alpine:
@@ -50,7 +54,8 @@ For F5 NGINX Plus, the cryptographic boundary includes all functionality that is
    For FreeBSD:
 
    ```shell
-   pkg install nginx-plus-module-fips-check
+   sudo pkg update && \
+   sudo pkg install nginx-plus-module-fips-check
    ```
 
 ## Configuration
@@ -61,15 +66,32 @@ After installation you will need to enable and configure the module in NGINX Plu
 
    ```nginx
    load_module modules/ngx_fips_check_module.so;
+
+   http {
+       # ...
+   }
    ```
 
 2. Perform additional configuration as required by the [module](https://github.com/ogarrett/nginx-fips-check-module).
 
-3. Test the configuration and reload NGINX Plus to enable the module:
+3. Test the NGINX Plus configuration. In a terminal, type-in the command:
 
-   ```shell
-   nginx -t && nginx -s reload
-   ```
+    ```shell
+    nginx -t
+    ```
+
+    Expected output of the command:
+
+    ```shell
+    nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+    nginx: configuration file /etc/nginx/nginx.conf is successful
+    ```
+
+4. Reload the NGINX Plus configuration to enable the module:
+
+    ```shell
+    nginx -s reload
+    ```
 
 ## More Info
 

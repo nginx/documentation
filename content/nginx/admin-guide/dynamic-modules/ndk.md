@@ -21,25 +21,29 @@ The NDK module is also a prerequisite for [Encrypted Session]({{< ref "encrypted
    For Amazon Linux 2, CentOS, Oracle Linux, and RHEL:
 
    ```shell
-   yum install nginx-plus-module-ndk
+   sudo yum update && \
+   sudo yum install nginx-plus-module-ndk
    ```
 
    For Amazon Linux 2023, AlmaLinux, Rocky Linux:
 
    ```shell
-   dnf install nginx-plus-module-ndk
+   sudo dnf update && \
+   sudo dnf install nginx-plus-module-ndk
    ```
 
    For Debian and Ubuntu:
 
    ```shell
-   apt-get install nginx-plus-module-ndk
+   sudo apt update && \
+   sudo apt install nginx-plus-module-ndk
    ```
 
    For SLES:
 
    ```shell
-   zypper install nginx-plus-module-ndk
+   sudo zypper refresh && \
+   sudo zypper install nginx-plus-module-ndk
    ```
 
    For Alpine:
@@ -51,7 +55,8 @@ The NDK module is also a prerequisite for [Encrypted Session]({{< ref "encrypted
    For FreeBSD:
 
    ```shell
-   pkg install nginx-plus-module-ndk
+   sudo pkg update && \
+   sudo pkg install nginx-plus-module-ndk
    ```
 
 ## Configuration
@@ -62,15 +67,32 @@ After installation you will need to enable and configure the module in F5 NGINX 
 
    ```nginx
    load_module modules/ndk_http_module.so;
+
+   http {
+       # ...
+   }
    ```
 
 2. Perform additional configuration as required by the [module](https://github.com/vision5/ngx_devel_kit).
 
-3. Test the configuration and reload NGINX Plus to enable the module:
+3. Test the NGINX Plus configuration. In a terminal, type-in the command:
 
-   ```shell
-   nginx -t && nginx -s reload
-   ```
+    ```shell
+    nginx -t
+    ```
+
+    Expected output of the command:
+
+    ```shell
+    nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+    nginx: configuration file /etc/nginx/nginx.conf is successful
+    ```
+
+4. Reload the NGINX Plus configuration to enable the module:
+
+    ```shell
+    nginx -s reload
+    ```
 
 ## More Info
 

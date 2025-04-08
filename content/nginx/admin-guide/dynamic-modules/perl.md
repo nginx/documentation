@@ -20,25 +20,29 @@ type:
    For Amazon Linux 2, CentOS, Oracle Linux, and RHEL:
 
    ```shell
-   yum install nginx-plus-module-perl
+   sudo yum update && \
+   sudo yum install nginx-plus-module-perl
    ```
 
    For Amazon Linux 2023, AlmaLinux, Rocky Linux:
 
    ```shell
-   dnf install nginx-plus-module-perl
+   sudo dnf update && \
+   sudo dnf install nginx-plus-module-perl
    ```
 
    For Debian/Ubuntu:
 
    ```shell
-   apt-get install nginx-plus-module-perl
+   sudo apt update && \
+   sudo apt install nginx-plus-module-perl
    ```
 
    For SLES:
 
    ```shell
-   zypper install nginx-plus-module-perl
+   sudo zypper refresh && \
+   sudo zypper install nginx-plus-module-perl
    ```
 
    For Alpine:
@@ -50,7 +54,8 @@ type:
    For FreeBSD:
 
    ```shell
-   pkg install nginx-plus-module-perl
+   sudo pkg update && \
+   sudo pkg install nginx-plus-module-perl
    ```
 
 
@@ -64,15 +69,32 @@ After installation you will need to enable and configure the module in F5 NGINX 
 
    ```nginx
    load_module modules/ngx_http_perl_module.so;
+
+   http {
+       # ...
+   }
    ```
 
 2. Perform additional configuration as required by the [module](https://nginx.org/en/docs/http/ngx_http_perl_module.html).
 
-3. Test the configuration and reload NGINX Plus to enable the module:
+3. Test the NGINX Plus configuration. In a terminal, type-in the command:
 
-   ```shell
-   nginx -t && nginx -s reload
-   ```
+    ```shell
+    nginx -t
+    ```
+
+    Expected output of the command:
+
+    ```shell
+    nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+    nginx: configuration file /etc/nginx/nginx.conf is successful
+    ```
+
+4. Reload the NGINX Plus configuration to enable the module:
+
+    ```shell
+    nginx -s reload
+    ```
 
 
 <span id="info"></span>
