@@ -16,31 +16,31 @@ type:
    For Amazon Linux 2, CentOS, Oracle Linux, and RHEL:
 
    ```shell
-   yum remove <dynamic_module_name>
+   sudo yum remove <dynamic_module_name>
    ```
 
    For Amazon Linux 2023, AlmaLinux, Rocky Linux:
 
    ```shell
-   dnf remove <dynamic_module_name>
+   sudo dnf remove <dynamic_module_name>
    ```
 
    For Debian and Ubuntu:
 
    ```shell
-   apt-get remove <dynamic_module_name>
+   sudo apt remove <dynamic_module_name>
    ```
 
    For SLES:
 
    ```shell
-   zypper remove <dynamic_module_name>
+   sudo zypper remove <dynamic_module_name>
    ```
 
    For FreeBSD:
 
    ```shell
-   pkg delete <dynamic_module_name>
+   sudo pkg delete <dynamic_module_name>
    ```
 
 
@@ -67,6 +67,8 @@ After uninstalling the package, you will need to disable the module in F5 NGINX 
 - [NGINX Module Reference](https://nginx.org/en/docs/)
 
 - [NGINX Dynamic Modules]({{< ref "dynamic-modules.md" >}})
+
+- [NGINX Plus Technical Specifications]({{< ref "nginx/technical-specs.md" >}})
 
 - [NGINX Plus Technical Specifications]({{< ref "nginx/technical-specs.md" >}})
 

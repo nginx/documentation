@@ -131,3 +131,4 @@ To uninstall a dynamic module, please follow the [Uninstalling a dynamic module]
 
 - [NGINX Plus Technical Specifications]({{< ref "nginx/technical-specs.md" >}})
 
+- [Uninstalling a Dynamic Module]({{< ref "uninstall.md" >}})
