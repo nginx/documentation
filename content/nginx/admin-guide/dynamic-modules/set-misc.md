@@ -10,7 +10,7 @@ type:
 - how-to
 ---
 
-<span id="prereq"></span>
+
 ## Prerequisites
 
 1. Check the [Technical Specifications]({{< ref "nginx/technical-specs.md" >}}) page to verify that the module is supported by your operating system.
@@ -18,7 +18,7 @@ type:
 2. Prior to installing the module, verify that the [NDK]({{< ref "ndk.md" >}}) module is already installed.
 
 
-<span id="install"></span>
+
 ## Installation
 
 Install the Set-Misc module package `nginx-plus-module-set-misc`.
@@ -60,7 +60,7 @@ Install the Set-Misc module package `nginx-plus-module-set-misc`.
    ```
 
 
-<span id="configure"></span>
+
 
 ## Configuration
 
@@ -84,7 +84,7 @@ After installation you will need to enable and configure the module in F5 NGINX 
    ```
 
 
-<span id="info"></span>
+
 ## More Info
 
 - [NGINX `ngx_set_misc` Module Reference](https://github.com/openresty/set-misc-nginx-module)

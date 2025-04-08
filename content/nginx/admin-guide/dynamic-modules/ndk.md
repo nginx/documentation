@@ -12,8 +12,6 @@ The NGINX Developer Kit (NDK) module makes it easier for module developers to de
 
 The NDK module is also a prerequisite for [Encrypted Session]({{< ref "encrypted-session.md" >}}), [Lua]({{< ref "nginx/admin-guide/dynamic-modules/lua.md" >}}), and [Set-Misc]({{< ref "nginx/admin-guide/dynamic-modules/set-misc.md" >}}) modules.
 
-
-<span id="install"></span>
 ## Installation
 
 1. Check the [Technical Specifications]({{< ref "nginx/technical-specs.md" >}}) page to verify that the module is supported by your operating system.
@@ -56,8 +54,6 @@ The NDK module is also a prerequisite for [Encrypted Session]({{< ref "encrypted
    pkg install nginx-plus-module-ndk
    ```
 
-
-<span id="configure"></span>
 ## Configuration
 
 After installation you will need to enable and configure the module in F5 NGINX Plus configuration file `nginx.conf`.
@@ -76,8 +72,6 @@ After installation you will need to enable and configure the module in F5 NGINX 
    nginx -t && nginx -s reload
    ```
 
-
-<span id="info"></span>
 ## More Info
 
 - [NDK Module Reference](https://github.com/vision5/ngx_devel_kit)

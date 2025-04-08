@@ -10,15 +10,12 @@ type:
 
 Integrate Lua co-routines into the NGINX event-processing model with the community-authored Lua dynamic module.
 
-<span id="prereq"></span>
 ## Prerequisites
 
 1. Check the [Technical Specifications]({{< ref "nginx/technical-specs.md" >}}) page to verify that the module is supported by your operating system.
 
 2. Prior to installing the module, verify that the [NGINX Developer Kit (NDK)]({{< ref "nginx/admin-guide/dynamic-modules/ndk.md" >}}) module is already installed.
 
-
-<span id="install"></span>
 ## Installation
 
    Install the Lua module package `nginx-plus-module-lua`.
@@ -59,9 +56,6 @@ Integrate Lua co-routines into the NGINX event-processing model with the communi
    pkg install nginx-plus-module-lua
    ```
 
-
-<span id="configure"></span>
-
 ## Configuration
 
 After installation, enable and configure the modules in NGINX Plus configuration file `nginx.conf`.
@@ -84,8 +78,6 @@ After installation, enable and configure the modules in NGINX Plus configuration
    nginx -t && nginx -s reload
    ```
 
-
-<span id="info"></span>
 ## More Info
 
 - [The `lua-nginx-module` Module Reference](https://github.com/openresty/lua-nginx-module)

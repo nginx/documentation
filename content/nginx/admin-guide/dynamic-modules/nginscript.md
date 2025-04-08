@@ -10,7 +10,6 @@ type:
 - how-to
 ---
 
-<span id="install"></span>
 ## Installation
 
 1. Check the [Technical Specifications]({{< ref "nginx/technical-specs.md" >}}) page to verify that the module is supported by your operating system.
@@ -53,9 +52,6 @@ type:
    pkg install nginx-plus-module-njs
    ```
 
-
-<span id="configure"></span>
-
 ## Configuration
 
 After installation you will need to enable and configure the module in F5 NGINX Plus configuration file `nginx.conf`.
@@ -75,8 +71,6 @@ After installation you will need to enable and configure the module in F5 NGINX 
    nginx -t && nginx -s reload
    ```
 
-
-<span id="info"></span>
 ## More Info
 
 - [njs Scripting Language Reference and Examples](https://nginx.org/en/docs/njs/)

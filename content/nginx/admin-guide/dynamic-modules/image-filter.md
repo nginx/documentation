@@ -9,7 +9,6 @@ type:
 - how-to
 ---
 
-<span id="install"></span>
 ## Installation
 
 1. Check the [Technical Specifications]({{< ref "nginx/technical-specs.md" >}}) page to verify that the module is supported by your operating system.
@@ -52,8 +51,6 @@ type:
    pkg install nginx-plus-module-image-filter
    ```
 
-<span id="configure"></span>
-
 ## Configuration
 
 After installation you will need to enable and configure the module in F5 NGINX Plus configuration file `nginx.conf`.
@@ -72,8 +69,6 @@ After installation you will need to enable and configure the module in F5 NGINX 
    nginx -t && nginx -s reload
    ```
 
-
-<span id="info"></span>
 ## More Info
 
 - [NGINX Image Filter Module Reference](https://nginx.org/en/docs/http/ngx_http_image_filter_module.html)

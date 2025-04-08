@@ -9,7 +9,7 @@ type:
 - how-to
 ---
 
-<span id="install"></span>
+
 ## Installation
 
 1. Check the [Technical Specifications]({{< ref "nginx/technical-specs.md" >}}) page to verify that the module is supported by your operating system.
@@ -72,7 +72,7 @@ After installation you will need to enable and configure the module in F5 NGINX 
    nginx -t && nginx -s reload
    ```
 
-<span id="info"></span>
+
 ## More Info
 
 - [NGINX ngx_headers_more Module Reference](https://github.com/openresty/headers-more-nginx-module)

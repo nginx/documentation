@@ -10,13 +10,13 @@ type:
 - how-to
 ---
 
-<span id="info"></span>
+
 ## Module Info
 
 [MaxMind GeoIP2](https://www.maxmind.com/en/geoip2-databases) databases provide contextual data for a comprehensive profile of IP addresses, including geolocation data (region, state, city, postal code) and extra data (ISP, domain, connection type). Basing on these data, F5 NGINX Plus will be able to perform different user differentiation strategies, for example, provide different type of content depending on a country.
 
 
-<span id="install"></span>
+
 ## Installation
 
 1. Check the [Technical Specifications]({{< ref "nginx/technical-specs.md" >}}) page to verify that the module is supported by your operating system.
@@ -80,7 +80,7 @@ After installation you will need to enable and configure the module in NGINX Plu
    nginx -t && nginx -s reload
    ```
 
-<span id="info"></span>
+
 ## More Info
 
 - [Restricting Access by Geographical Location]({{< ref "nginx/admin-guide/security-controls/controlling-access-by-geoip.md" >}})

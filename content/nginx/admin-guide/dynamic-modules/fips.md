@@ -11,8 +11,6 @@ type:
 
 For F5 NGINX Plus, the cryptographic boundary includes all functionality that is implemented by the [`http_ssl`](https://nginx.org/en/docs/http/ngx_http_ssl_module.html), [`http_v2`](https://nginx.org/en/docs/http/ngx_http_v2_module.html), [`stream_ssl`](https://nginx.org/en/docs/stream/ngx_stream_ssl_module.html), and [`mail_ssl`](https://nginx.org/en/docs/mail/ngx_mail_ssl_module.html) modules. These modules implement SSL and TLS operations for inbound and outbound connections which use HTTP, HTTP/2, TCP, and mail protocols.
 
-
-<span id="install"></span>
 ## Installation
 
 1. Check the [Technical Specifications]({{< ref "nginx/technical-specs.md" >}}) page to verify that the module is supported by your operating system.
@@ -55,8 +53,6 @@ For F5 NGINX Plus, the cryptographic boundary includes all functionality that is
    pkg install nginx-plus-module-fips-check
    ```
 
-<span id="configure"></span>
-
 ## Configuration
 
 After installation you will need to enable and configure the module in NGINX Plus configuration file `nginx.conf`.
@@ -75,8 +71,6 @@ After installation you will need to enable and configure the module in NGINX Plu
    nginx -t && nginx -s reload
    ```
 
-
-<span id="info"></span>
 ## More Info
 
 - [FIPS Compliance for NGINX Plus](https://docs.nginx.com/nginx/fips-compliance-nginx-plus/)

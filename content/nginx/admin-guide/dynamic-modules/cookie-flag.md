@@ -12,9 +12,7 @@ type:
 
 > **Note**: The module was deprecated in [Release 23]({{< ref "nginx/releases.md#r23" >}}) and removed in [Release 26]({{< ref "nginx/releases.md#r26" >}}). The [`proxy_cookie_flags`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_cookie_flags) directive implements native support for setting cookie flags and replaces the module. See [Native Method for Setting Cookie Flags](https://www.nginx.com/blog/nginx-plus-r23-released#cookie-flags) for details.
 
-
-<span id="install"></span>
-## Installation Instructions
+## Installation
 
 1. Install the Cookie-Flag module.
 
@@ -56,8 +54,6 @@ type:
    nginx -t && nginx -s reload
    ```
 
-
-<span id="info"></span>
 ## More Info
 
 - [NGINX Module Reference for Adding Cookie Flag](https://github.com/AirisX/nginx_cookie_flag_module)

@@ -9,7 +9,6 @@ type:
 - how-to
 ---
 
-<span id="overview"></span>
 ## Overview
 
 F5 NGINX Plus uses a modular architecture. New features and functionality can be added with software modules, which can be plugged into a running NGINX Plus instance on demand. Dynamic modules add functionality to NGINX Plus such as [geolocating users by IP address]({{< ref "geoip2.md" >}}), [resizing images]({{< ref "image-filter.md" >}}), and embedding [NGINX JavaScript njs]({{< ref "nginscript.md" >}}) or [Lua]({{< ref "nginx/admin-guide/dynamic-modules/lua.md" >}}) scripts into the NGINX Plus event‑processing model. Modules are created both by NGINX and third‑party developers.
@@ -66,8 +65,6 @@ For module‑specific instructions, see the list of modules in the same section 
 - [SPNEGO]({{< ref "spnego.md" >}})
 - [XSLT]({{< ref "xslt.md" >}})
 
-
-<span id="prereq"></span>
 ### Prerequisites
 
 To get started using dynamic modules, first install the latest NGINX Plus release, following the [installation instructions]({{< ref "nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}). Dynamic modules are supported in [NGINX Plus Release 9 (R9)]({{< ref "/nginx/releases.md#r9" >}}) and later.
@@ -123,8 +120,6 @@ To compile your own dynamic modules, please see our [blog](https://www.f5.com/co
 
 To uninstall a dynamic module, please follow the [Uninstalling a dynamic module]({{< ref "uninstall.md" >}}) article.
 
-
-<span id="info"></span>
 ## See Also
 
 - [Installing NGINX Plus]({{< ref "nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}})

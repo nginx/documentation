@@ -8,7 +8,6 @@ type:
 - how-to
 ---
 
-<span id="uninstall"></span>
 ## Instructions
 
 1. To uninstall a dynamic module:
@@ -43,9 +42,6 @@ type:
    sudo pkg delete <dynamic_module_name>
    ```
 
-
-<span id="configure"></span>
-
 ## Configuration
 
 After uninstalling the package, you will need to disable the module in F5 NGINX Plus configuration file `nginx.conf`.
@@ -60,8 +56,6 @@ After uninstalling the package, you will need to disable the module in F5 NGINX 
    nginx -t && nginx -s reload
    ```
 
-
-<span id="info"></span>
 ## More Info
 
 - [NGINX Module Reference](https://nginx.org/en/docs/)

@@ -13,8 +13,6 @@ The F5 NGINX ModSecurity web application firewall (WAF) is built on ModSecurity 
 
  {{< note >}} The ModSecurity WAF module was deprecated since NGINX Plus [Release 29]({{< ref "nginx/releases.md#r29" >}}), and is no longer available since NGINX Plus [Release 32]({{< ref "nginx/releases.md#r32" >}}) {{< /note >}}
 
-
-<span id="install"></span>
 ## Installation
 
 1. Check the [Technical Specifications]({{< ref "nginx/technical-specs.md" >}}) page to verify that the module is supported by your operating system.
@@ -55,9 +53,6 @@ The F5 NGINX ModSecurity web application firewall (WAF) is built on ModSecurity 
    apk add nginx-plus-module-modsecurity
    ```
 
-
-<span id="configure"></span>
-
 ## Configuration
 
 After installation you will need to enable and configure the module in NGINX Plus configuration file `nginx.conf`.
@@ -78,8 +73,6 @@ After installation you will need to enable and configure the module in NGINX Plu
 
 4. [Configure](https://docs.nginx.com/nginx-waf/admin-guide/nginx-plus-modsecurity-waf-installation-logging/) the module.
 
-
-<span id="info"></span>
 ## More Info
 
 - [ModSecurity Documentation](https://github.com/SpiderLabs/ModSecurity/wiki)

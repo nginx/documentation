@@ -10,16 +10,12 @@ type:
 
 The Encrypted Session dynamic module provides encryption and decryption support for NGINX variables based on AES-256 with MAC. It is usually used with the [Set-Misc](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/set-misc/) dynamic module and the NGINX [`rewrite`](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html) module.
 
-
-<span id="prereq"></span>
 ## Prerequisites
 
 1. Check the [Technical Specifications]({{< ref "nginx/technical-specs.md" >}}) page to verify that the module is supported by your operating system.
 
 2. Prior to installing the module, verify that the [NDK]({{< ref "ndk.md" >}}) module is already installed.
 
-
-<span id="install"></span>
 ## Installation
 
 1. Install the Encrypted Session module package `nginx-plus-module-encrypted-session`.
@@ -60,8 +56,6 @@ The Encrypted Session dynamic module provides encryption and decryption support 
    pkg install nginx-plus-module-encrypted-session
    ```
 
-
-<span id="configure"></span>
 ## Configuration
 
 After installation you will need to enable and configure the module in F5 NGINX Plus configuration file `nginx.conf`.
@@ -83,7 +77,6 @@ After installation you will need to enable and configure the module in F5 NGINX 
    nginx -t && nginx -s reload
    ```
 
-<span id="info"></span>
 ## More Info
 
 - [NGINX encrypted-session-nginx-module Module Reference](https://github.com/openresty/encrypted-session-nginx-module)

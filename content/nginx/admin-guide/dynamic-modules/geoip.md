@@ -11,8 +11,6 @@ type:
 
 {{< note >}} MaxMind GeoLite Legacy databases are currently [discontinued](https://blog.maxmind.com/2018/01/discontinuation-of-the-geolite-legacy-databases), MaxMind GeoIP2 or Geolite2 databases and F5 NGINX Plus [GeoIP2 module]({{< ref "geoip2.md" >}}) should be used instead. {{< /note >}}
 
-
-<span id="install"></span>
 ## Installation
 
 1. Check the [Technical Specifications]({{< ref "nginx/technical-specs.md" >}}) page to verify that the module is supported by your operating system.
@@ -46,8 +44,6 @@ type:
    apk add nginx-plus-module-geoip
    ```
 
-<span id="configure"></span>
-
 ## Configuration
 
 After installation you will need to enable and configure the module in NGINX Plus configuration file `nginx.conf`.
@@ -71,7 +67,6 @@ After installation you will need to enable and configure the module in NGINX Plu
    nginx -t && nginx -s reload
    ```
 
-<span id="info"></span>
 ## More Info
 
 - [GeoIP2 Dynamic Module Installation Instructions]({{< ref "geoip2.md" >}})

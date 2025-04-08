@@ -17,8 +17,6 @@ The [ngx_brotli](https://github.com/google/ngx_brotli) module enables Brotli com
 - `ngx_brotli filter module` – for compressing responses on-the-fly
 - `ngx_brotli static module` - for serving pre-compressed files
 
-<span id="prerequisites"></span>
-
 ## Prerequisites
 
 1. Check the [Technical Specifications]({{< ref "nginx/technical-specs.md" >}}) page to verify that the module is supported by your operating system.
@@ -37,7 +35,7 @@ The [ngx_brotli](https://github.com/google/ngx_brotli) module enables Brotli com
    sudo yum install epel-release -y
    ```
 
-<span id="install"></span>
+
 
 ## Installation
 
@@ -73,7 +71,7 @@ Install the Brotli module package `nginx-plus-module-brotli`.
    pkg install nginx-plus-module-brotli
    ```
 
-<span id="configure"></span>
+
 
 ## Configuration
 
@@ -109,7 +107,7 @@ After installation you will need to enable and configure Brotli modules in NGINX
    ```
 
 
-<span id="info"></span>
+
 ## More Info
 
 - [NGINX Module for Brotli Compression Reference](https://github.com/google/ngx_brotli)
