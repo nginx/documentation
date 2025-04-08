@@ -9,7 +9,7 @@ type:
 - how-to
 ---
 
-## Overview {#overview}
+## Overview
 
 [OpenTelemetry](https://opentelemetry.io/) (OTel) is an observability framework for monitoring, tracing, troubleshooting, and optimizing applications. OTel enables the collection of telemetry data from a deployed application stack.
 
@@ -26,7 +26,7 @@ The `nginx-plus-module-otel` module is an NGINX-authored dynamic module that ena
 The repository can be found on [GitHub](https://github.com/nginxinc/nginx-otel). The documentation can be found on [nginx.org](https://nginx.org/en/docs/ngx_otel_module.html).
 
 
-## Installation {#install}
+## Installation
 
 Similar to [NGINX Plus]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}), prebuilt packages of the `nginx-plus-module-otel` module can can be installed directly from the official repository for different distributions. Before installation you will need to add the NGINX Plus package repositories for your distribution and update the repository metadata.
 
@@ -166,7 +166,7 @@ Similar to [NGINX Plus]({{< ref "/nginx/admin-guide/installing-nginx/installing-
    ```
 
 
-## Configuration {#configure}
+## Configuration
 
 For a complete list of directives, embedded variables, default span attributes, refer to the `ngx_otel_module` official documentation.
 
@@ -183,7 +183,7 @@ Default span attributes:
 [`https://nginx.org/en/docs/ngx_otel_module.html#span`](https://nginx.org/en/docs/ngx_otel_module.html#span)
 
 
-## Usage examples {#example}
+## Usage examples
 
 ### Simple Tracing
 
@@ -242,7 +242,7 @@ http {
 }
 ```
 
-## More info {#info}
+## More info
 
 - [GitHub Repository for the NGINX Native OpenTelemetry Module](https://github.com/nginxinc/nginx-otel)
 
