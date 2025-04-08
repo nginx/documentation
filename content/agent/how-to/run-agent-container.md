@@ -19,11 +19,14 @@ This guide uses Docker but NGINX Agent also works with other container applicati
 {{< /note >}}
 
 - **Docker:** Ensure Docker is installed and configured on your system. [Download Docker from the official site](https://www.docker.com/products/docker-desktop/).
-- **NGINX Agent Image:** You need access to the Docker image for NGINX Agent. Find the appropriate image in your organization's registry or on Docker Hub if publicly available.
-- **NGINX Configuration File:** Prepare and validate your NGINX configuration files that the Agent will monitor.
 - **Credentials:** Acquire any necessary authentication tokens or credentials required for the NGINX Agent.
 
-1. Pull the NGINX Agent container image
+## Prepare the environment
+
+To run NGINX Agent in a container you will need to download the NGINX Agent
+container image and create a configuration file.
+
+### Pull the NGINX Agent container image
 
 The NGINX Agent container image must be downloaded from a trusted source such as Docker Hub or a private container registry.
 
@@ -37,10 +40,10 @@ docker pull <Registry HERE>:latest
 Ensure you are using the correct image version. Replace `latest` with the desired version tag if necessary.
 
 
-2. Create a configuration file
+### Create a configuration file
 
-1. Create a configuration file named `nginx-agent.conf` in your current directory.
-2. Populate the file with the following structure:
+Create a configuration file named `nginx-agent.conf` in your current directory
+and populate the file with the following structure:
 
 ```yaml
 command:
@@ -59,7 +62,7 @@ Replace the placeholder values:
 - `<your-data-plane-key-here>`: Your Data Plane access token.
 
 
-3. Run the container
+## Run the container
 
 Run the NGINX Agent container with the configuration file mounted.
 
@@ -79,7 +82,7 @@ Key options explained:
 - `-v $(pwd)/nginx-agent.conf:/etc/nginx-agent/nginx-agent.conf`: Mounts the configuration file into the container.
 
 
-4. Verify the container is running
+### Verify the container is running
 
 Check the running status of the container:
 
@@ -89,7 +92,7 @@ docker ps
 
 You should see an entry for `nginx-agent`. The `STATUS` field indicates that the container is running.
 
-5. Monitor logs
+### Monitor logs
 
 To ensure the container is functioning properly and communicating with NGINX One Console, monitor the container logs.
 
