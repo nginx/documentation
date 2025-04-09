@@ -1,11 +1,11 @@
 ---
 description: Learn the types of logs available in F5 NGINX App Protect WAF v5.
 docs: DOCS-1374
-doctypes:
-- concept
 title: NGINX App Protect WAF Logs Overview
 toc: true
 weight: 1010
+type:
+- concept
 ---
 
 ## Log Types
@@ -14,11 +14,11 @@ Logs in F5 NGINX App Protect WAF v5 can be accessed and configured similarly to 
 
 ### NGINX Access Log
 
-NGINX App Protect WAF v5 can be configured to add additional data to NGINX [Access log]({{< relref "/nap-waf/v5/logging-overview/access-log" >}}).
+NGINX App Protect WAF v5 can be configured to add additional data to NGINX [Access log]({{< ref "/nap-waf/v5/logging-overview/access-log" >}}).
 
 ### Security Logs
 
-A key change in configuring [Security logs]({{< relref "/nap-waf/v5/logging-overview/security-log" >}}) is the requirement to [compile JSON logging profiles]({{< relref "/nap-waf/v5/configuration-guide/configuration.md#logging-profile-compilation" >}}) into a bundle file before applying them.
+A key change in configuring [Security logs]({{< ref "/nap-waf/v5/logging-overview/security-log" >}}) is the requirement to [compile JSON logging profiles]({{< ref "/nap-waf/v5/configuration-guide/configuration.md#logging-profile-compilation" >}}) into a bundle file before applying them.
 
 #### Default Logging Profile Bundles
 
@@ -51,7 +51,7 @@ For instance:
 
 #### Security Log Destination
 
-Please refer to [Security logs]({{< relref "/nap-waf/v5/logging-overview/security-log" >}}) page for details.
+Please refer to [Security logs]({{< ref "/nap-waf/v5/logging-overview/security-log" >}}) page for details.
 
 #### WAF Enforcer Container Logs
 

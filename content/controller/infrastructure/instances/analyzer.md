@@ -1,13 +1,11 @@
 ---
 description: View graphs and system reports for your Instances.
 docs: DOCS-772
-doctypes:
-- task
-tags:
-- docs
 title: View Performance Reports for Your Instances
 toc: true
 weight: 60
+type:
+- how-to
 ---
 
 ## Overview
@@ -26,14 +24,14 @@ To access the **Analyzer** page, take the following steps:
 
 When viewing the **Analyzer Overview** page, select a system from the **Systems** pane to see the associated report.
 
-{{< note >}} The Analyzer can only show reports for NGINX instances found by the NGINX Controller Agent. If an instance is missing, check that it is [configured correctly for discovery by the Agent]({{< relref "/controller/support/troubleshooting-controller.md" >}}).{{< /note >}}
+{{< note >}} The Analyzer can only show reports for NGINX instances found by the NGINX Controller Agent. If an instance is missing, check that it is [configured correctly for discovery by the Agent]({{< ref "/controller/support/troubleshooting-controller.md" >}}).{{< /note >}}
 
 The following information is provided when a report is run against an NGINX config structure:
 
 - Build
   - Path to NGINX config files(s)
   - Whether the parser failed or not, and the results of `nginx -t`
-      {{< note >}} Periodic NGINX configuration syntax checking with `nginx -t` is disabled by default. To enable this setting, select the **Enable periodic "nginx -t"** box on the [Default Agent Settings]({{< relref "/controller/admin-guides/config-agent/configure-the-agent.md#default-agent-settings" >}}) page.{{< /note >}}
+      {{< note >}} Periodic NGINX configuration syntax checking with `nginx -t` is disabled by default. To enable this setting, select the **Enable periodic "nginx -t"** box on the [Default Agent Settings]({{< ref "/controller/admin-guides/config-agent/configure-the-agent.md#default-agent-settings" >}}) page.{{< /note >}}
   - Last-modified info
   - 3rd party modules found
   - Breakdown of the key configuration elements (servers, locations, upstreams)
@@ -55,15 +53,15 @@ The following information is provided when a report is run against an NGINX conf
   - Key security measures (for example, -stub_status- is unprotected)
   - Typical errors in configuring locations, especially with -regex-
 
-To parse SSL certificate metadata, the NGINX Controller Agent uses standard `openssl(1)` functions. SSL certificates are parsed and analyzed by default. To change this setting, clear the **Analyze SSL certificates** box on the [**Agent Settings**]({{< relref "/controller/admin-guides/config-agent/configure-the-agent.md#default-agent-settings" >}}) page.
+To parse SSL certificate metadata, the NGINX Controller Agent uses standard `openssl(1)` functions. SSL certificates are parsed and analyzed by default. To change this setting, clear the **Analyze SSL certificates** box on the [**Agent Settings**]({{< ref "/controller/admin-guides/config-agent/configure-the-agent.md#default-agent-settings" >}}) page.
 
 Static analysis will only include information about specific issues with the NGINX configuration if those are found in your NGINX setup.
 
 ## Troubleshooting
 
-If the **Infrastructure** > **Analyzer** tab doesn't display information, it may be because the current user doesn't belong to one of the [built-in roles]({{< relref "/controller/platform/access-management/manage-roles.md" >}}) and the `/reports/` endpoint hasn't been enabled for a custom role.
+If the **Infrastructure** > **Analyzer** tab doesn't display information, it may be because the current user doesn't belong to one of the [built-in roles]({{< ref "/controller/platform/access-management/manage-roles.md" >}}) and the `/reports/` endpoint hasn't been enabled for a custom role.
 
-To enable the `/reports/` endpoint for a custom role, send a POST request to the Roles [API endpoint]({{< relref "/controller/api/_index.md" >}}) similar to the following:
+To enable the `/reports/` endpoint for a custom role, send a POST request to the Roles [API endpoint]({{< ref "/controller/api/_index.md" >}}) similar to the following:
 
 ```json
 {

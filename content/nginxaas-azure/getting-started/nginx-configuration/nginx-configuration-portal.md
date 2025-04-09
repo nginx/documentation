@@ -1,10 +1,11 @@
 ---
-title: "Upload using the Azure portal"
+title: Upload using the Azure portal
 weight: 100
-categories: ["tasks"]
 toc: true
-docs: "DOCS-873"
+docs: DOCS-873
 url: /nginxaas/azure/getting-started/nginx-configuration/nginx-configuration-portal/
+type:
+- how-to
 ---
 
 An NGINX configuration can be applied to the deployment using the Azure portal in two different ways:
@@ -12,7 +13,7 @@ An NGINX configuration can be applied to the deployment using the Azure portal i
 - Create a new NGINX configuration from scratch or by pasting it in the Azure portal editor.
 - Upload a gzip compressed tar archive containing your NGINX configuration.
 
-As part of applying your NGINX configuration, the service validates the configuration for syntax and compatibility with F5 NGINX as a Service for Azure (NGINXaaS). The use of certain directives and parameters is not allowed to ensure the NGINX configuration’s compatibility with IaaS deployment model in Azure. Validation errors are reported in the editor for you to correct. For more information, check the [NGINX Configuration Validation]({{< relref "nginx-configuration.md#nginx-configuration-validation" >}}) section.
+As part of applying your NGINX configuration, the service validates the configuration for syntax and compatibility with F5 NGINX as a Service for Azure (NGINXaaS). The use of certain directives and parameters is not allowed to ensure the NGINX configuration’s compatibility with IaaS deployment model in Azure. Validation errors are reported in the editor for you to correct. For more information, check the [NGINX Configuration Validation]({{< ref "nginx-configuration.md#nginx-configuration-validation" >}}) section.
 
 ## Prerequisites
 
@@ -38,15 +39,15 @@ As part of applying your NGINX configuration, the service validates the configur
    | Protected File | Indicates that the file may contain sensitive data such as passwords or represent an ssl/tls certificate.<ul><li>To protect a file, enable the **Protected** {{<fa "solid fa-toggle-on">}} toggle button.</li><li>You cannot access the file contents of a protected file saved to the NGINX configuration, but you can view its metadata, such as the SHA-256 hash of the file contents.</li><li>You can provide new contents for an existing protected file using the <u>**Overwrite**</u> link or resubmit it without having to provide the file contents again.</li><li>To modify the file path of a protected file or convert it to a regular file, delete the original file and create a new one.</li><li>A protected file is designated with a {{<fa "solid fa-lock">}} icon on the portal.</li></ul> |
    {{</bootstrap-table>}}
 
-   {{<note>}}If specifying an absolute file path, see the [NGINX Filesystem Restrictions table]({{< relref "/nginxaas-azure/getting-started/nginx-configuration/overview/#nginx-filesystem-restrictions" >}}) for the allowed directories the file can be written to.{{</note>}}
+   {{<note>}}If specifying an absolute file path, see the [NGINX Filesystem Restrictions table]({{< ref "/nginxaas-azure/getting-started/nginx-configuration/overview/#nginx-filesystem-restrictions" >}}) for the allowed directories the file can be written to.{{</note>}}
 
 1. Provide your NGINX configuration in the configuration file.
 
-1. Files like SSL/TLS certificates can be added as well. However, we reccommend using Azure Key Vault to store your certificates. See [Add SSL/TLS certificates]({{< relref "/nginxaas-azure/getting-started/ssl-tls-certificates/overview.md#add-ssltls-certificates">}}) for more information.
+1. Files like SSL/TLS certificates can be added as well. However, we reccommend using Azure Key Vault to store your certificates. See [Add SSL/TLS certificates]({{< ref "/nginxaas-azure/getting-started/ssl-tls-certificates/overview.md#add-ssltls-certificates">}}) for more information.
 
 1. Select **Submit** to apply the new configuration.
 
-{{<note>}}We currently only support more than 5 unique listen ports on the Standard V2 plan. NGINX configurations that specify more than 5 ports on other plans will be rejected. For more information on listen port limitations, see our [FAQ]({{< relref "/nginxaas-azure/faq" >}}).{{</note>}}
+{{<note>}}We currently only support more than 5 unique listen ports on the Standard V2 plan. NGINX configurations that specify more than 5 ports on other plans will be rejected. For more information on listen port limitations, see our [FAQ]({{< ref "/nginxaas-azure/faq" >}}).{{</note>}}
 
 ### NGINX configuration validation
 
@@ -152,13 +153,13 @@ http {
 
 {{< tip >}}
 
-See the [NGINX connfiguration overview]({{< relref "overview.md" >}}) topic
+See the [NGINX connfiguration overview]({{< ref "overview.md" >}}) topic
 to learn more about:
 
-- [NGINX configuration automation workflows]({{< relref "overview.md#nginx-configuration-automation-workflows" >}})
-- [NGINX filesystem restrictions]({{< relref "overview.md#nginx-filesystem-restrictions" >}})
-- [Disallowed configuration directives]({{< relref "overview.md#disallowed-configuration-directives" >}})
-- [Directives that cannot be overridden]({{< relref "overview.md#directives-that-cannot-be-overridden" >}})
-- [Configuration directives list]({{< relref "overview.md#configuration-directives-list" >}})
+- [NGINX configuration automation workflows]({{< ref "overview.md#nginx-configuration-automation-workflows" >}})
+- [NGINX filesystem restrictions]({{< ref "overview.md#nginx-filesystem-restrictions" >}})
+- [Disallowed configuration directives]({{< ref "overview.md#disallowed-configuration-directives" >}})
+- [Directives that cannot be overridden]({{< ref "overview.md#directives-that-cannot-be-overridden" >}})
+- [Configuration directives list]({{< ref "overview.md#configuration-directives-list" >}})
 
 {{< /tip >}}

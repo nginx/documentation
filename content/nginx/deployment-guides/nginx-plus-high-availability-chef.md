@@ -2,12 +2,12 @@
 description: Step-by-step instructions for using Chef to automate the setup and maintenance
   of an active-passive high availability cluster of F5 NGINX Plus instances.
 docs: DOCS-461
-doctypes:
-- task
 draft: true
 title: NGINX Plus High Availability Chef
 toc: true
 weight: 100
+type:
+- how-to
 ---
 
 In a [previous blog post](https://www.nginx.com/blog/installing-nginx-nginx-plus-chef/), we went over how to deploy F5 NGINX Plus using Chef. In this blog post we will build on the Chef configs from the last blog post and use Chef to deploy a highly available (HA) NGINX Plus active/passive cluster.
@@ -23,7 +23,7 @@ _
 
 _
 
-To set up the highly available active/passive cluster, we’re using the [HA solution]({{< relref "../admin-guide/high-availability/ha-keepalived.md" >}}) provided by NGINX, Inc., which is based on [keepalived](http://www.keepalived.org) and the [Virtual Router Redundancy Protocol](https://tools.ietf.org/html/rfc2338) (VRRP). The solution comes with an interactive script for creating the `keepalived` configuration file, but here we’re using Chef to automate the complete setup process.
+To set up the highly available active/passive cluster, we’re using the [HA solution]({{< ref "nginx/admin-guide/high-availability/ha-keepalived.md" >}}) provided by NGINX, Inc., which is based on [keepalived](http://www.keepalived.org) and the [Virtual Router Redundancy Protocol](https://tools.ietf.org/html/rfc2338) (VRRP). The solution comes with an interactive script for creating the `keepalived` configuration file, but here we’re using Chef to automate the complete setup process.
 
 ## Modifying the NGINX Cookbook
 

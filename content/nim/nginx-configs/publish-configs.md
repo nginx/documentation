@@ -1,12 +1,10 @@
 ---
 docs: DOCS-822
-doctypes:
-- tutorial
-tags:
-- docs
 title: Publish NGINX configs
 toc: true
 weight: 2
+type:
+- tutorial
 ---
 
 ## Overview
@@ -22,7 +20,7 @@ To complete the instructions in this guide, ensure:
 - NGINX Instance Manager is installed, licensed, and running.
 - You have one or more NGINX data plane instances.
 
-{{< call-out "tip" "Interacting with the API">}} You can use tools such as `curl` or [Postman](https://www.postman.com) to interact with the Instance Manager REST API. The API URL follows the format `https://<NIM_FQDN>/api/nim/<API_VERSION>` and must include authentication information with each call. For more information about authentication options, refer to the [API Overview]({{< relref "/nim/fundamentals/api-overview.md" >}}).{{</call-out>}}
+{{< call-out "tip" "Interacting with the API">}} You can use tools such as `curl` or [Postman](https://www.postman.com) to interact with the Instance Manager REST API. The API URL follows the format `https://<NIM_FQDN>/api/nim/<API_VERSION>` and must include authentication information with each call. For more information about authentication options, refer to the [API Overview]({{< ref "/nim/fundamentals/api-overview.md" >}}).{{</call-out>}}
 
 ---
 
@@ -219,4 +217,4 @@ To view an instance group's config with a version-controlled hash, send an HTTP 
 
 ## Publishing staged configs
 
-For complete instructions on publishing staged configurations, see the [Stage NGINX configs]({{< relref "/nim/nginx-configs/stage-configs.md#publish-staged-configs" >}}) guide.
+For complete instructions on publishing staged configurations, see the [Stage NGINX configs]({{< ref "/nim/nginx-configs/stage-configs.md#publish-staged-configs" >}}) guide.

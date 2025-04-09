@@ -1,14 +1,12 @@
 ---
-description: Learn how to use F5 NGINX Management Suite API Connectivity Manager to secure
-  communications by applying TLS policies.
+description: Learn how to use F5 NGINX Management Suite API Connectivity Manager to
+  secure communications by applying TLS policies.
 docs: DOCS-926
-doctypes:
-- task
-tags:
-- docs
 toc: true
 weight: 1400
 title: TLS
+type:
+- how-to
 ---
 
 {{< shortversions "1.1.0" "latest" "acmvers" >}}
@@ -30,7 +28,7 @@ The types of communication you can apply TLS policies to includes:
 Complete the following prerequisites before proceeding with this guide:
 
 - API Connectivity Manager is installed, licensed, and running.
-- You have one or more Environments with [API Gateway]({{< relref "/nms/acm/getting-started/add-api-gateway" >}}) or [Dev Portal]({{< relref "/nms/acm/getting-started/add-devportal" >}}) clusters.
+- You have one or more Environments with [API Gateway]({{< ref "/nms/acm/getting-started/add-api-gateway" >}}) or [Dev Portal]({{< ref "/nms/acm/getting-started/add-devportal" >}}) clusters.
 
 ### How to Access the User Interface
 

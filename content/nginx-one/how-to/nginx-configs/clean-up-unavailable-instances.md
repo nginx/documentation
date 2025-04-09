@@ -1,13 +1,11 @@
 ---
 description: ''
-docs:
-doctypes:
-- task
-tags:
-- docs
+docs: null
 title: Clean up unavailable NGINX instances
 toc: true
 weight: 200
+type:
+- how-to
 ---
 
 ## Overview

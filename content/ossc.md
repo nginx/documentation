@@ -1,8 +1,4 @@
 ---
-_build:
-  list: never
-  render: always
-display_breadcrumb: false
 docs: DOCS-1343
 title: Open Source Components
 ---
@@ -63,6 +59,6 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 ---
 
-License information for open source components included in the [NGINX Plus]({{< relref "/nginx/" >}}) software:
+License information for open source components included in the [NGINX Plus]({{< ref "/nginx/" >}}) software:
 
-- [NGINX Plus Open Source Components]({{< relref "/nginx/open-source-components.md" >}})
+- [NGINX Plus Open Source Components]({{< ref "/nginx/open-source-components.md" >}})

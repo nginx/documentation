@@ -1,14 +1,12 @@
 ---
-description: This quick-start tutorial shows you how to get started using F5 NGINX Controller
-  with NGINX Plus.
+description: This quick-start tutorial shows you how to get started using F5 NGINX
+  Controller with NGINX Plus.
 docs: DOCS-260
-doctypes:
-- tutorial
-tags:
-- docs
 title: Trial NGINX Controller with NGINX Plus
 toc: true
 weight: 110
+type:
+- tutorial
 ---
 
 ## Overview
@@ -17,7 +15,7 @@ This quick-start tutorial shows you how to get started using F5 NGINX Controller
 
 {{< caution >}}In this tutorial, NGINX Controller will install an embedded, self-hosted PostgreSQL database suitable for demo and trial purposes only. **These instructions are not meant for use in production environments**.{{< /caution >}}
 
-{{< see-also >}}If you want to try out NGINX Controller with the Application Security add-on, refer to [Trial NGINX Controller with App Security]({{< relref "/controller/admin-guides/install/try-nginx-controller-app-sec.md" >}}).{{< /see-also >}}
+{{< see-also >}}If you want to try out NGINX Controller with the Application Security add-on, refer to [Trial NGINX Controller with App Security]({{< ref "/controller/admin-guides/install/try-nginx-controller-app-sec.md" >}}).{{< /see-also >}}
 
 &nbsp;
 
@@ -25,7 +23,7 @@ This quick-start tutorial shows you how to get started using F5 NGINX Controller
 
 ## Technical Requirements
 
-Make sure to review the [NGINX Controller Technical Specifications Guide]({{< relref "/controller/admin-guides/install/nginx-controller-tech-specs.md" >}}) for the requirements for your distribution and desired configuration.
+Make sure to review the [NGINX Controller Technical Specifications Guide]({{< ref "/controller/admin-guides/install/nginx-controller-tech-specs.md" >}}) for the requirements for your distribution and desired configuration.
 
 ### Supported Distributions
 
@@ -56,7 +54,7 @@ NGINX Controller, the NGINX Controller Agent, and the NGINX Controller Applicati
 
 #### Analytics, Visibility, and Reporting Daemon (AVRD)
 
-NGINX Controller v3.1 and later use an Analytics, Visibility, and Reporting daemon (AVRD) to aggregate and report app-centric metrics, which you can use to track and check the health of your apps. To learn more about these metrics, see the [NGINX Metrics Catalog]({{< relref "/controller/analytics/catalogs/metrics.md" >}}) topic.
+NGINX Controller v3.1 and later use an Analytics, Visibility, and Reporting daemon (AVRD) to aggregate and report app-centric metrics, which you can use to track and check the health of your apps. To learn more about these metrics, see the [NGINX Metrics Catalog]({{< ref "/controller/analytics/catalogs/metrics.md" >}}) topic.
 
 ### Hardware Specs
 
@@ -64,7 +62,7 @@ The following minimum hardware specifications are required for each node running
 
 - RAM: 8 GB RAM
 - CPU: 8-Core CPU @ 2.40 GHz or similar
-- Disk space: 155–255 GB free disk space. 255 GB of free space is recommended if NGINX Controller App Security is enabled. See the [Storage Requirements]({{< relref "/controller/admin-guides/install/nginx-controller-tech-specs.md#storage-requirements" >}}) section for a categorized list of the storage requirements.
+- Disk space: 155–255 GB free disk space. 255 GB of free space is recommended if NGINX Controller App Security is enabled. See the [Storage Requirements]({{< ref "/controller/admin-guides/install/nginx-controller-tech-specs.md#storage-requirements" >}}) section for a categorized list of the storage requirements.
 
 ### Supported NGINX Plus Versions
 
@@ -100,7 +98,7 @@ First, you need to sign up for a trial license for NGINX Controller. The trial i
 1. On the MyF5 landing page, activate the NGINX Controller free trial.
 1. On the MyF5 **Trials** page, select Launch Your Trial.
 1. Download the NGINX Controller package.
-1. Make note of your Association Token. You will use this to [license your NGINX Controller instance]({{< relref "/controller/platform/licensing-controller.md#add-a-license-to-nginx-controller" >}}).
+1. Make note of your Association Token. You will use this to [license your NGINX Controller instance]({{< ref "/controller/platform/licensing-controller.md#add-a-license-to-nginx-controller" >}}).
 
 &nbsp;
 
@@ -120,7 +118,7 @@ Install NGINX Controller on a dedicated node that **does not** already have Kube
 
 {{< important >}}Before installing NGINX Controller, you must **disable swap on the host**; this is required by Kubernetes in order for the kubelet to work properly. Refer to your Linux distribution documentation for specific instructions for disabling swap for your system. For more information about this requirement, see the AskF5 knowledge base article [K82655201](https://support.f5.com/csp/article/K82655201) and the [kubeadm installation guide](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/#before-you-begin) in the Kubernetes documentation.{{< /important >}}
 
-{{< caution >}}**For RHEL 8 deployments**, complete the additional prerequisite steps in the [Installing NGINX on RHEL 8]({{< relref "/controller/admin-guides/install/install-nginx-controller-rhel-8.md" >}}) guide before installing NGINX Controller. RHEL 8 support is a **beta** feature.{{< /caution >}}
+{{< caution >}}**For RHEL 8 deployments**, complete the additional prerequisite steps in the [Installing NGINX on RHEL 8]({{< ref "/controller/admin-guides/install/install-nginx-controller-rhel-8.md" >}}) guide before installing NGINX Controller. RHEL 8 support is a **beta** feature.{{< /caution >}}
 
 To install NGINX Controller, take the following steps:
 
@@ -144,7 +142,7 @@ To install NGINX Controller, take the following steps:
 
     - **Config database volume type**: Specify the type of volume to use to store the config database: local, NFS, or AWS. We recommend choosing `local` for demo and trial purposes.
 
-      {{< see-also >}}Refer to the [NGINX Controller Technical Specifications Guide]({{< relref "/controller/admin-guides/install/nginx-controller-tech-specs.md#local-or-external-storage" >}}) for more information about the volume options and requirements.{{< /see-also >}}
+      {{< see-also >}}Refer to the [NGINX Controller Technical Specifications Guide]({{< ref "/controller/admin-guides/install/nginx-controller-tech-specs.md#local-or-external-storage" >}}) for more information about the volume options and requirements.{{< /see-also >}}
 
     - **Analytics database volume type**: Specify the type of volume to use to store the analytics database: local, NFS, or AWS. We recommend choosing `local` for demo and trial purposes.
     - **EULA**: Read the end-user license agreement. Type either `y` to accept or `n` to exit.
@@ -188,7 +186,7 @@ To add a license to NGINX Controller, take the following steps:
 1. Select **Save license**.
 
 {{< see-also >}}
-To add a license using the [NGINX Controller REST API]({{< relref "/controller/api/_index.md" >}}), send a PUT request to the `/platform/license` endpoint. Provide your CAT or NGINX Controller license as a base64-encoded string in the JSON request body.
+To add a license using the [NGINX Controller REST API]({{< ref "/controller/api/_index.md" >}}), send a PUT request to the `/platform/license` endpoint. Provide your CAT or NGINX Controller license as a base64-encoded string in the JSON request body.
 {{< /see-also >}}
 
 
@@ -201,11 +199,11 @@ To add a license using the [NGINX Controller REST API]({{< relref "/controller/a
 ### Prerequisites
 
 - Make sure to review the [NGINX Plus Technical Specifications Guide](https://docs.nginx.com/nginx/technical-specs/) for the requirements for your distribution and desired configuration.
-- You'll need the NGINX Plus certificate and public key files (`nginx-repo.crt` and `nginx-repo.key`) that were provided when you signed up for the trial license. If you don't have these files, you can use the [NGINX Controller REST API]({{< relref "/controller/api/_index.md" >}}) to download them.
+- You'll need the NGINX Plus certificate and public key files (`nginx-repo.crt` and `nginx-repo.key`) that were provided when you signed up for the trial license. If you don't have these files, you can use the [NGINX Controller REST API]({{< ref "/controller/api/_index.md" >}}) to download them.
 
 #### How to Download the NGINX Plus Cert and Key using the NGINX Controller API
 
-The NGINX Controller API uses session cookies to authenticate requests. The session cookie is returned in response to a `GET /api/v1/platform/login` request. See the Login endpoint in the [NGINX Controller API Reference]({{< relref "/controller/api/_index.md" >}}) documentation for information about session cookie timeouts and invalidation.
+The NGINX Controller API uses session cookies to authenticate requests. The session cookie is returned in response to a `GET /api/v1/platform/login` request. See the Login endpoint in the [NGINX Controller API Reference]({{< ref "/controller/api/_index.md" >}}) documentation for information about session cookie timeouts and invalidation.
 
 {{< tip >}}
 You can send a GET request to the login endpoint to find the status of the session token.
@@ -228,7 +226,7 @@ For example:
 
 <br>
 
-To use the [NGINX Controller REST API]({{< relref "/controller/api/_index.md" >}}) to download your NGINX Plus certificate and key bundle as a gzip or JSON file, send a GET request to the `/platform/licenses/nginx-plus-licenses/controller-provided` endpoint.
+To use the [NGINX Controller REST API]({{< ref "/controller/api/_index.md" >}}) to download your NGINX Plus certificate and key bundle as a gzip or JSON file, send a GET request to the `/platform/licenses/nginx-plus-licenses/controller-provided` endpoint.
 
 For example:
 

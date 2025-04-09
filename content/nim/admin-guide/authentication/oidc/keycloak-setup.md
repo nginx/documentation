@@ -1,12 +1,10 @@
 ---
 docs: DOCS-1268
-doctypes:
-- tutorial
-tags:
-- docs
-title: "Keycloak: Set up OIDC authentication"
+title: 'Keycloak: Set up OIDC authentication'
 toc: true
 weight: 400
+type:
+- tutorial
 ---
 
 ## Overview
@@ -27,8 +25,8 @@ To follow the instructions in this guide, ensure you have the following setup fo
 
 On the NGINX Instance Manager host, complete the following:
 
-- [Install NGINX Plus R25 or a later version]({{< relref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}). Ensure the server hosting NGINX Plus has a fully qualified domain name (FQDN).
-- [Install NGINX Instance Manager]({{< relref "/nim/deploy/vm-bare-metal/install.md" >}}).
+- [Install NGINX Plus R25 or a later version]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}). Ensure the server hosting NGINX Plus has a fully qualified domain name (FQDN).
+- [Install NGINX Instance Manager]({{< ref "/nim/deploy/vm-bare-metal/install.md" >}}).
 - [Install the NGINX JavaScript module (njs)](https://www.nginx.com/blog/introduction-nginscript/). This module is needed for managing communications between NGINX Plus and the identity provider.
 
 ## Configure Keycloak {#configure-keycloak}
@@ -171,7 +169,7 @@ To configure NGINX Instance Manager with the necessary OIDC settings, follow the
       "https://$KEYCLOAK_IP:8443/realms/<realm-name>/.well-known/openid-configuration" | \
       jq -r ".jwks_uri")
     ```
-    
+
 - Back up the original configuration files:
 
     ```bash

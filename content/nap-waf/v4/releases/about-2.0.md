@@ -11,13 +11,13 @@ September 08, 2020
 
 ### New Features
 
-- [Ubuntu 18.04 Support]({{< relref "/nap-waf/v4/admin-guide/install.md#ubuntu-18-04-installation" >}})
-- [OpenAPI Support]({{< relref "/nap-waf/v4/configuration-guide/configuration.md#openapi-specification-file-reference" >}})
-- [JSON Schema Validation]({{< relref "/nap-waf/v4/configuration-guide/configuration.md#applying-a-json-schema" >}})
-- [User-Defined Signatures]({{< relref "/nap-waf/v4/configuration-guide/configuration.md#user-defined-signatures" >}})
-- [User-Defined URLs]({{< relref "/nap-waf/v4/configuration-guide/configuration.md#user-defined-urls" >}})
-- [User-Defined Parameters]({{< relref "/nap-waf/v4/configuration-guide/configuration.md#user-defined-parameters" >}})
-- [Offline Installation]({{< relref "/nap-waf/v4/admin-guide/install.md#offline-installation" >}})
+- [Ubuntu 18.04 Support]({{< ref "/nap-waf/v4/admin-guide/install.md#ubuntu-18-04-installation" >}})
+- [OpenAPI Support]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#openapi-specification-file-reference" >}})
+- [JSON Schema Validation]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#applying-a-json-schema" >}})
+- [User-Defined Signatures]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#user-defined-signatures" >}})
+- [User-Defined URLs]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#user-defined-urls" >}})
+- [User-Defined Parameters]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#user-defined-parameters" >}})
+- [Offline Installation]({{< ref "/nap-waf/v4/admin-guide/install.md#offline-installation" >}})
 
 
 ### Supported Packages

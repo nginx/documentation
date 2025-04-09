@@ -1,11 +1,11 @@
 ---
-description: "Learn about the F5 NGINX App Protect WAF Security Log."
-doctypes:
-- concept
-title: "NGINX App Protect WAF Security Log"
+description: Learn about the F5 NGINX App Protect WAF Security Log.
+title: NGINX App Protect WAF Security Log
 toc: true
 weight: 520
-docs: "DOCS-1642"
+docs: DOCS-1642
+type:
+- concept
 ---
 
 ## Security Logs
@@ -77,7 +77,7 @@ app_protect_security_log /shared_volume/logging_profile_02.tgz syslog:server=my.
 
 ### Security Log Configuration File
 
-Before applying, the log configuration file (JSON) should be [compiled]({{< relref "/nap-waf/v5/admin-guide/compiler.md#logging-profile-compilation" >}}) into a logging profile bundle (tgz).
+Before applying, the log configuration file (JSON) should be [compiled]({{< ref "/nap-waf/v5/admin-guide/compiler.md#logging-profile-compilation" >}}) into a logging profile bundle (tgz).
 
 The file is in JSON format and consists of two parts:
 1.	**filter:** which requests are to be logged.
@@ -123,7 +123,7 @@ This is the content of `log_default.json`. It is pre-compield (built-in) and is 
     "filter": {
         "request_type": "illegal"
     },
- 
+
     "content": {
         "format": "default",
         "max_request_size": "2k",

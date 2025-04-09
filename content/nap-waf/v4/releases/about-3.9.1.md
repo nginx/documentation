@@ -12,7 +12,7 @@ March 9, 2022
 
 Support for NGINX App Protect WAF is added to NGINX Plus R26 starting with release 3.9.
 
-This release includes updated signatures for the [Anti Automation](https://docs.nginx.com{{< relref "/nap-waf/v4/configuration-guide/configuration.md#anti-automation-bot-mitigation" >}}) (bot defense) feature as follows:
+This release includes updated signatures for the [Anti Automation]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#anti-automation-bot-mitigation" >}}) (bot defense) feature as follows:
 
 - Added the following Spam Bot bot signatures: meow, ANETInspect, OnlyScans, HonoluluBot, Search engine under construction, browsergetproto1.2
 - Added the following Service Agent bot signatures: YandeG, FGX-Web, Detectify, AndroidDownloadManager

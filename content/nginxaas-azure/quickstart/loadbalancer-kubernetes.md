@@ -1,9 +1,10 @@
 ---
-title: "NGINXaaS Load Balancer for Kubernetes"
+title: NGINXaaS Load Balancer for Kubernetes
 weight: 250
-categories: ["tasks"]
 toc: true
 url: /nginxaas/azure/quickstart/loadbalancer-kubernetes/
+type:
+- how-to
 ---
 
 ## Overview
@@ -55,7 +56,7 @@ This guide explains how to integrate NGINXaaS with an Azure Kubernetes Service (
 Before following the steps in this guide, you must:
 
 - Create an AKS cluster.
-- Create an NGINXaaS deployment. See the [documentation]({{< relref "/nginxaas-azure/getting-started/create-deployment/deploy-azure-portal/" >}}) to deploy via the Azure portal.
+- Create an NGINXaaS deployment. See the [documentation]({{< ref "/nginxaas-azure/getting-started/create-deployment/deploy-azure-portal/" >}}) to deploy via the Azure portal.
 - Ensure network connectivity between the subnet delegated to the NGINXaaS deployment and the subnet where AKS is deployed. For example, the AKS cluster and NGINXaaS deployment can run on the same Azure VNET or on peered VNETs.
 
 ### Initial setup
@@ -236,7 +237,7 @@ http {
 }
 ```
 
-[Apply the NGINX configuration]({{< relref "/nginxaas-azure/getting-started/nginx-configuration/overview/" >}}) to your deployment after making the required changes.
+[Apply the NGINX configuration]({{< ref "/nginxaas-azure/getting-started/nginx-configuration/overview/" >}}) to your deployment after making the required changes.
 
 ### Create a Kubernetes Service
 
@@ -366,7 +367,7 @@ To setup logging:
 1. Enable the **NGINX Upstream Update Logs** category.
 1. Select a destination.
 
-For more information on logging, see [Enable NGINX Logs]({{< relref "/nginxaas-azure/monitoring/enable-logging/">}}).
+For more information on logging, see [Enable NGINX Logs]({{< ref "/nginxaas-azure/monitoring/enable-logging/">}}).
 
 ### Metrics
 

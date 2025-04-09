@@ -1,13 +1,11 @@
 ---
 description: Create and Manage Identity Providers.
 docs: DOCS-571
-doctypes:
-- tutorial
-tags:
-- docs
 title: Manage Identity Providers
 toc: true
 weight: 140
+type:
+- tutorial
 ---
 
 ## Overview
@@ -15,7 +13,7 @@ weight: 140
 The **Identity Providers** page lets you create and manage Identity Providers to control access to your services (APIs for API Management module deployments, and Apps for App Delivery module deployments).
 
 {{< tip >}}
-If you prefer, you can use the F5 NGINX Controller API to create and manage Identity Providers. See the [NGINX Controller API reference guide]({{< relref "/controller/api/_index.md" >}}) (**Security > Identity Providers**) for details.
+If you prefer, you can use the F5 NGINX Controller API to create and manage Identity Providers. See the [NGINX Controller API reference guide]({{< ref "/controller/api/_index.md" >}}) (**Security > Identity Providers**) for details.
 {{< /tip >}}
 
 ## Before You Begin
@@ -50,7 +48,7 @@ Take the following steps to create an Identity Provider:
 
 5. Provide a name.
 
-6. Select an Environment, or to [Create an Environment]({{< relref "/controller/services/manage-environments.md" >}}), select **Create New**.
+6. Select an Environment, or to [Create an Environment]({{< ref "/controller/services/manage-environments.md" >}}), select **Create New**.
 
 7. Select the option to use an **API key** or a **JWT** (JSON Web Token).
 

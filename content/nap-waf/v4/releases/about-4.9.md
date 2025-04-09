@@ -15,14 +15,14 @@ Release 4.8.1 cannot be upgraded to v4.9.  You must uninstall 4.8.1 and install 
 
 ### New Features
 
-- [Authorization Rules in URLs]({{<relref "nap-waf/v4/configuration-guide/configuration.md#authorization-rules-in-urls">}})
-- New [JSON Web Token]({{<relref "nap-waf/v4/configuration-guide/configuration.md#json-web-token-protection">}}) signature signing algorithm support for:
+- [Authorization Rules in URLs]({{<ref "nap-waf/v4/configuration-guide/configuration.md#authorization-rules-in-urls">}})
+- New [JSON Web Token]({{<ref "nap-waf/v4/configuration-guide/configuration.md#json-web-token-protection">}}) signature signing algorithm support for:
 
     - **RSA**: RS256, RS384, RS512
     - **PSS**: PS256, PS384, PS512
     - **ECDSA**: ES256, ES256K, ES384, ES512
     - **EdDSA**
-- [Time-Based Signature Staging]({{<relref "nap-waf/v4/configuration-guide/configuration.md#time-based-signature-staging">}}) 
+- [Time-Based Signature Staging]({{<ref "nap-waf/v4/configuration-guide/configuration.md#time-based-signature-staging">}})
 
 ### Supported Packages
 

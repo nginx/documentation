@@ -2,13 +2,11 @@
 description: The guide provides step-by-step instructions to deploy F5 NGINX API Connectivity
   Manager on Kubernetes using a Helm chart.
 docs: DOCS-1276
-doctypes:
-- task
-tags:
-- docs
 title: Deploy API Connectivity Manager on Kubernetes
 toc: true
 weight: 20
+type:
+- how-to
 ---
 
 ## Requirements
@@ -19,7 +17,7 @@ Review the following requirements for API Connectivity Manager before continuing
 
 {{< important >}}To install API Connectivity Manager, you must first install Instance Manager. This is because API Connectivity Manager relies on features that are included with Instance Manager.{{< /important >}}
 
-- [Deploy Instance Manager on Kubernetes]({{< relref "/nim/deploy/kubernetes/deploy-using-helm.md" >}})
+- [Deploy Instance Manager on Kubernetes]({{< ref "/nim/deploy/kubernetes/deploy-using-helm.md" >}})
 
 ### Dependencies with Instance Manager
 
@@ -163,7 +161,7 @@ To enable the API Connectivity Manager Module, take the following steps:
 
 Run the following command to upgrade the NGINX instance deployment:
 
-- Replace `<path-to-your-values.yaml>` with the path to the [values.yaml file you created]({{< relref "/nim/deploy/kubernetes/deploy-using-helm.md#configure-chart" >}}).
+- Replace `<path-to-your-values.yaml>` with the path to the [values.yaml file you created]({{< ref "/nim/deploy/kubernetes/deploy-using-helm.md#configure-chart" >}}).
 - Replace `YourPassword123#` with a secure password that contains a combination of uppercase and lowercase letters, numbers, and special characters.
 
     {{< important >}}Make sure to copy and save the password for future reference. Only the encrypted password is stored in Kubernetes. There's no way to recover or reset a lost password.{{< /important >}}
@@ -200,7 +198,7 @@ If you've already deployed API Connectivity Manager and would like to upgrade to
 
 A valid license is required to make full use of all the features in API Connectivity Manager.
 
-Refer to the [Add a License]({{< relref "/nim/admin-guide/license/add-license.md" >}}) topic for instructions on how to download and apply a trial license, subscription license, or Flexible Consumption Program license.
+Refer to the [Add a License]({{< ref "/nim/admin-guide/license/add-license.md" >}}) topic for instructions on how to download and apply a trial license, subscription license, or Flexible Consumption Program license.
 
 ---
 
@@ -226,8 +224,8 @@ To modify a configuration for an existing release, run the `helm upgrade` comman
 | `nms-acm.acm.resources.requests.memory`       | Memory resource limits to allow for the `api` pods. | `512Mi` |
 | `nms-acm.acm.persistence.enabled`             | Optionally disable persistent storage, used for database data. | `true` |
 | `nms-acm.acm.persistence.claims`              | An array of persistent volume claims, can be modified to use an existing PVC. | See the [Dqlite](#acm-dqlite-configuration) configuration section below. |
-| `nms-acm.acm.devportal.credentials.enabled`    | Enables the [Create Credentials Endpoint on the Developer Portal]({{< relref "/nms/acm/how-to/infrastructure/enable-create-credentials.md" >}}) | `false` |
-| `nms-acm.acm.devportal.credentials.ssl`    | This should be set to true if mTLS has been configured between API Connectivity Manager and the Developer Portal, for more information see [Create Credentials Endpoint on the Developer Portal]({{< relref "/nms/acm/how-to/infrastructure/enable-create-credentials.md" >}}) | `false` |
+| `nms-acm.acm.devportal.credentials.enabled`    | Enables the [Create Credentials Endpoint on the Developer Portal]({{< ref "/nms/acm/how-to/infrastructure/enable-create-credentials.md" >}}) | `false` |
+| `nms-acm.acm.devportal.credentials.ssl`    | This should be set to true if mTLS has been configured between API Connectivity Manager and the Developer Portal, for more information see [Create Credentials Endpoint on the Developer Portal]({{< ref "/nms/acm/how-to/infrastructure/enable-create-credentials.md" >}}) | `false` |
 | `nms-acm.acm.devportal.client.caSecret.name`   | This should be set if an unknown Certificate Authority is needed for communication with the Developer Portal in order to provide a CA certificate. This should be set to the name of the secret in the release namespace that contains the CA certificate. | Blank |
 | `nms-acm.acm.devportal.client.caSecret.key`    | This should be set if an unknown Certificate Authority is needed for communication with the Developer Portal in order to provide a CA certificate. This should be set to the key of the secret in the release namespace that contains the CA certificate.  | Blank |
 
@@ -249,6 +247,6 @@ To modify a configuration for an existing release, run the `helm upgrade` comman
 
 
 
-For guidance on how to create a support package containing system and service details to share with NGINX Customer Support, refer to the guide [Create a Support Package from a Helm Installation]({{< relref "/nms/support/k8s-support-package.md" >}}).
+For guidance on how to create a support package containing system and service details to share with NGINX Customer Support, refer to the guide [Create a Support Package from a Helm Installation]({{< ref "/nms/support/k8s-support-package.md" >}}).
 
 ---

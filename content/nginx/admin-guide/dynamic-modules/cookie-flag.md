@@ -3,14 +3,14 @@ description: Set `HttpOnly`, `SameSite`, and `secure` flags on cookies in `Set-C
   upstream response headers with the **Cookie-Flag** dynamic module, community-authored
   and supported by NGINX, Inc.
 docs: DOCS-382
-doctypes:
-- task
 title: Cookie-Flag
 toc: true
 weight: 100
+type:
+- how-to
 ---
 
-> **Note**: The module was deprecated in <a href="../../../releases/#r23">Release 23</a> and removed in <a href="../../../releases/#r26">Release 26</a>. The [`proxy_cookie_flags`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_cookie_flags) directive implements native support for setting cookie flags and replaces the module. See [Native Method for Setting Cookie Flags](https://www.nginx.com/blog/nginx-plus-r23-released#cookie-flags) for details.
+> **Note**: The module was deprecated in [Release 23]({{< ref "nginx/releases.md#r23" >}}) and removed in [Release 26]({{< ref "nginx/releases.md#r26" >}}). The [`proxy_cookie_flags`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_cookie_flags) directive implements native support for setting cookie flags and replaces the module. See [Native Method for Setting Cookie Flags](https://www.nginx.com/blog/nginx-plus-r23-released#cookie-flags) for details.
 
 
 <span id="install"></span>
@@ -62,6 +62,6 @@ weight: 100
 
 - [NGINX Module Reference for Adding Cookie Flag](https://github.com/AirisX/nginx_cookie_flag_module)
 
-- [NGINX Dynamic Modules]({{< relref "dynamic-modules.md" >}})
+- [NGINX Dynamic Modules]({{< ref "dynamic-modules.md" >}})
 
-- [NGINX Plus Technical Specifications]({{< relref "../../technical-specs.md" >}})
+- [NGINX Plus Technical Specifications]({{< ref "nginx/technical-specs.md" >}})

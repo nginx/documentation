@@ -2,15 +2,11 @@
 description: API Owners can restrict access to their APIs with OAuth2 tokens. The
   policy is configured to grant access to APIs after having tokens introspected.
 docs: DOCS-953
-doctypes:
-- API Connectivity Manager
-- api management
-- concept
-tags:
-- docs
 toc: true
 weight: 800
 Title: Introspection
+type:
+- concept
 ---
 
 ## Overview

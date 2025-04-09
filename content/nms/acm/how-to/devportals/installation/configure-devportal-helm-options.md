@@ -2,20 +2,18 @@
 description: 'This guide lists and describes the parameters you can set when deploying
   the Developer Portal from a Helm chart. '
 docs: DOCS-1171
-doctypes:
-- task
-tags:
-- docs
 title: Deployment Options for Developer Portal Helm
 toc: true
 weight: 25
+type:
+- how-to
 ---
 
 {{< shortversions "1.3.0" "latest" "acmvers" >}}
 
 ## Default Developer Portal Helm Settings {#default-devportal-helm-settings}
 
-This topic lists the default values that are used when [installing the Developer Portal from a Helm chart]({{< relref "/nim/deploy/kubernetes/deploy-using-helm.md" >}}). You can change these values to meet your specific needs.
+This topic lists the default values that are used when [installing the Developer Portal from a Helm chart]({{< ref "/nim/deploy/kubernetes/deploy-using-helm.md" >}}). You can change these values to meet your specific needs.
 
 {{< include "installation/helm/acm/dev-portal-helm-configurations/configuration-options.md" >}}
 

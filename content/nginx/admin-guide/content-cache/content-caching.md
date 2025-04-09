@@ -2,11 +2,11 @@
 description: Cache both static and dynamic content from your proxied web and application
   servers, to speed delivery to clients and reduce the load on the servers.
 docs: DOCS-380
-doctypes:
-- task
 title: NGINX Content Caching
 toc: true
 weight: 100
+type:
+- how-to
 ---
 
 <span id="intro"></span>

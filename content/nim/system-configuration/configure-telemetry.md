@@ -1,12 +1,10 @@
 ---
 docs: DOCS-1269
-doctypes:
-- task
-tags:
-- docs
 title: Configure telemetry and web analytics
 toc: true
 weight: 260
+type:
+- how-to
 ---
 
 ## Overview
@@ -39,20 +37,20 @@ The table below shows the captured telemetry data points, the trigger conditions
 | Login | When a user logs in to NGINX Instance Manager. No data about the user is sent, only the fact that a user successfully authenticated and the timestamp of the login event. | To understand how often users or systems access NGINX Instance Manager. |
 | Start/Stop processes | When any NGINX Instance Manager processes are started or stopped. | To gauge how often users upgrade NGINX Instance Manager or troubleshoot issues. This information helps F5 Support diagnose issues. |
 | Adding Data Plane(s)      | When NGINX Agent registers with NGINX Instance Manager for the first time. No data about the data plane is sent, just that an NGINX Agent registered with the platform. | To understand the frequency and quantity of data planes being added to NGINX Instance Manager. This information helps inform our scale and performance targets and helps F5 Support diagnose issues. |
-| Product Usage | Data is sent daily or when Send Usage is selected from the Licenses page in the web interface or initiated using the API. (Requires a [JWT license]({{< relref "/nim/admin-guide/license/add-license.md#jwt-license" >}}).) | To track and report commercial usage in accordance with entitlement and Flexible Consumption Program (FCP) requirements. |
+| Product Usage | Data is sent daily or when Send Usage is selected from the Licenses page in the web interface or initiated using the API. (Requires a [JWT license]({{< ref "/nim/admin-guide/license/add-license.md#jwt-license" >}}).) | To track and report commercial usage in accordance with entitlement and Flexible Consumption Program (FCP) requirements. |
 
 {{</bootstrap-table>}}
 
 ### Enable or disable telemetry
 
-Once you [apply a valid license]({{< relref "/nim/admin-guide/license/add-license.md" >}}), telemetry data starts transmitting. If the license is applied immediately after installation, the *Installation* data point is also sent.
+Once you [apply a valid license]({{< ref "/nim/admin-guide/license/add-license.md" >}}), telemetry data starts transmitting. If the license is applied immediately after installation, the *Installation* data point is also sent.
 
 #### Disable telemetry
 
 You can disable telemetry anytime by:
 
 - Going to **Settings > License** in the web interface.
-- Using the [`/license` API endpoint]({{< relref "/nim/fundamentals/api-overview.md" >}}).
+- Using the [`/license` API endpoint]({{< ref "/nim/fundamentals/api-overview.md" >}}).
 
 Re-enable telemetry in the same way.
 

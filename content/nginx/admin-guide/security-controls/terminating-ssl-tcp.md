@@ -2,11 +2,11 @@
 description: Terminate SSL/TLS-encrypted traffic from clients, relieving your upstream
   TCP servers of the computational load.
 docs: DOCS-438
-doctypes:
-- task
 title: SSL Termination for TCP Upstream Servers
 toc: true
 weight: 200
+type:
+- how-to
 ---
 
 This article explains how to set up SSL termination for F5 NGINX Plus and a load-balanced group of servers that accept TCP connections.
@@ -18,8 +18,8 @@ SSL termination means that NGINX Plus acts as the server-side SSL endpoint for 
 
 ## Prerequisites
 
-- [NGINX Plus R6]({{< relref "../../releases.md#r6 " >}}) or later
-- A load-balanced [upstream group]({{< relref "../load-balancer/tcp-udp-load-balancer.md" >}}) with several TCP servers
+- [NGINX Plus R6]({{< ref "nginx/releases.md#r6 " >}}) or later
+- A load-balanced [upstream group]({{< ref "nginx/admin-guide/load-balancer/tcp-udp-load-balancer.md" >}}) with several TCP servers
 - SSL certificates and a private key (obtained or self-generated)
 
 ## Obtaining SSL Certificates

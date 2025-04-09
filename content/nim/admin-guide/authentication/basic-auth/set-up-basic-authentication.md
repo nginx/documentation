@@ -19,7 +19,7 @@ h2 {
 
 NGINX Instance Manager uses NGINX as a front-end proxy and for managing user access. By default, NGINX Instance Manager uses basic authentication, requiring you to send your username and password with each request to confirm your identity. When logging in for the first time, use the default `admin` account and password. After that, you can create additional user accounts. Instructions for adding users and setting passwords are provided below.
 
-{{< call-out "warning" "Security consideration" >}} While convenient, basic authentication is less secure than other methods: credentials are sent as base64-encoded text, which is not a secure encryption method. If your data is intercepted, the encoding can be easily reversed. If you're using NGINX Plus for your front-end proxy, consider [switching to OpenID Connect (OIDC) for authentication]({{< relref "/nim/admin-guide/authentication/oidc/getting-started.md" >}}). For production environments, we strongly recommend OIDC.{{< /call-out >}}
+{{< call-out "warning" "Security consideration" >}} While convenient, basic authentication is less secure than other methods: credentials are sent as base64-encoded text, which is not a secure encryption method. If your data is intercepted, the encoding can be easily reversed. If you're using NGINX Plus for your front-end proxy, consider [switching to OpenID Connect (OIDC) for authentication]({{< ref "/nim/admin-guide/authentication/oidc/getting-started.md" >}}). For production environments, we strongly recommend OIDC.{{< /call-out >}}
 
 ## Default admin user
 
@@ -27,7 +27,7 @@ When you install NGINX Instance Manager, a default `admin` user is created with 
 
 You can change the default `admin` password by running the provided script or by manually editing the `/etc/nms/nginx/.htpasswd` file. For instructions, see the [Set user passwords](#set-basic-passwords) section below.
 
-The `admin` user is associated with an [admin role]({{< relref "/nim/admin-guide/rbac/overview-rbac.md" >}}) that grants full permissions for all modules and features. You can delete the `admin` user, but only after assigning the admin role to another user. The admin role cannot be deleted and must always be assigned to at least one user.
+The `admin` user is associated with an [admin role]({{< ref "/nim/admin-guide/rbac/overview-rbac.md" >}}) that grants full permissions for all modules and features. You can delete the `admin` user, but only after assigning the admin role to another user. The admin role cannot be deleted and must always be assigned to at least one user.
 
 ## Create new users {#create-users}
 
@@ -49,11 +49,11 @@ To add users, take the following steps:
 
 1. In the **Roles** list, select one or more roles to assign to the user.
 
-   Learn more about roles and how to create them in the [Getting started with RBAC]({{< relref "/nim/admin-guide/rbac/overview-rbac" >}}) topic.
+   Learn more about roles and how to create them in the [Getting started with RBAC]({{< ref "/nim/admin-guide/rbac/overview-rbac" >}}) topic.
 
-1. (Required for Basic Auth) Add each user's username and password to the `/etc/nms/nginx/.htpasswd` file on the NGINX Instance Manager server. You can choose to run a script or make the changes manually. Refer to the [Set user passwords]({{< relref "/nim/admin-guide/authentication/basic-auth/set-up-basic-authentication.md#set-basic-passwords" >}}) topic for instructions.
+1. (Required for Basic Auth) Add each user's username and password to the `/etc/nms/nginx/.htpasswd` file on the NGINX Instance Manager server. You can choose to run a script or make the changes manually. Refer to the [Set user passwords]({{< ref "/nim/admin-guide/authentication/basic-auth/set-up-basic-authentication.md#set-basic-passwords" >}}) topic for instructions.
 
-{{< see-also >}} Refer to the [Provision users and groups with SCIM]({{< relref "/nim/admin-guide/authentication/oidc/scim-provisioning.md" >}}) topic for instructions on automating user and group creation using the SCIM API. {{< /see-also >}}
+{{< see-also >}} Refer to the [Provision users and groups with SCIM]({{< ref "/nim/admin-guide/authentication/oidc/scim-provisioning.md" >}}) topic for instructions on automating user and group creation using the SCIM API. {{< /see-also >}}
 
 
 ## Set user passwords {#set-basic-passwords}
@@ -90,7 +90,7 @@ To manually set user passwords:
 1. Open the `/etc/nms/nginx/.htpasswd` file on the NGINX Instance Manager host and add the username and password for each user.
 2. Save the changes to the file.
 
-{{< see-also >}}Refer to the documentation [Restricting access with HTTP basic auth]({{< relref "/nginx/admin-guide/security-controls/configuring-http-basic-authentication.md" >}}) for detailed instructions on working with the password file.{{< /see-also >}}
+{{< see-also >}}Refer to the documentation [Restricting access with HTTP basic auth]({{< ref "/nginx/admin-guide/security-controls/configuring-http-basic-authentication.md" >}}) for detailed instructions on working with the password file.{{< /see-also >}}
 
 ## Making API requests with basic authentication
 

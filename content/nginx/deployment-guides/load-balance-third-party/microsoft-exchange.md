@@ -2,11 +2,11 @@
 description: Load balance Microsoft Exchange servers with the advanced features in
   F5 NGINX Plus, following our step-by-step setup instructions.
 docs: DOCS-452
-doctypes:
-- task
 title: Load Balancing Microsoft Exchange Servers with NGINX Plus
 toc: true
 weight: 100
+type:
+- how-to
 ---
 
 This deployment guide explains how to use F5 NGINX Plus to load balance traffic across a pool of Microsoft Exchange<sup>TM</sup> servers. You can deploy Exchange and NGINX Plus on premises, in a private cloud, or in public clouds including Amazon Web Services (AWS), the Google Cloud Platform, and Microsoft Azure. The guide covers the different installation types, and provides complete instructions for customizing both NGINX Plus and Exchange as required.
@@ -18,14 +18,14 @@ This deployment guide explains how to use F5 NGINX Plus to load balance traffic 
 
 - [Full‑featured HTTP, TCP, and UDP load balancing](https://www.nginx.com/products/nginx/load-balancing/)
 - [Intelligent session persistence](https://www.nginx.com/products/nginx/load-balancing/#session-persistence)
-- [High‑performance reverse proxy]({{< relref "../../admin-guide/web-server/reverse-proxy.md" >}})
-- [Caching and offload of dynamic and static content]({{< relref "../../admin-guide/content-cache/content-caching.md" >}})
+- [High‑performance reverse proxy]({{< ref "nginx/admin-guide/web-server/reverse-proxy.md" >}})
+- [Caching and offload of dynamic and static content]({{< ref "nginx/admin-guide/content-cache/content-caching.md" >}})
 - [Adaptive streaming to deliver audio and video to any device](https://www.nginx.com/products/nginx/streaming-media/)
 - [Application-aware health checks](https://docs.nginx.com/nginx/admin-guide/load-balancer/http-health-check/) and [high availability](https://docs.nginx.com/nginx/admin-guide/high-availability/)
 - [Advanced activity monitoring available via a dashboard or API](https://www.nginx.com/products/nginx/live-activity-monitoring/)
 - [Management and real‑time configuration changes with DevOps‑friendly tools](https://www.nginx.com/products/nginx/load-balancing/#load-balancing-api)
 
-<span style="white-space: nowrap;">[NGINX Plus Release 6 R6](https://www.nginx.com/blog/nginx-plus-r6-released/#tcp-load-balancing)</span> introduced full‑featured load balancing of TCP traffic, with support extended to UDP in [<span style="white-space: nowrap;">NGINX Plus R9</span>](https://www.nginx.com/blog/nginx-plus-r9-released/#udp-lb) and continuing enhancements for both protocols included in subsequent releases (for details, see [NGINX Plus Releases]({{< relref "/nginx/releases.md" >}}). Because NGINX Plus load balances TCP, HTTP, and HTTPS traffic, it's ideal for Microsoft Exchange deployments, which use all three protocols.
+<span style="white-space: nowrap;">[NGINX Plus Release 6 R6](https://www.nginx.com/blog/nginx-plus-r6-released/#tcp-load-balancing)</span> introduced full‑featured load balancing of TCP traffic, with support extended to UDP in [<span style="white-space: nowrap;">NGINX Plus R9</span>](https://www.nginx.com/blog/nginx-plus-r9-released/#udp-lb) and continuing enhancements for both protocols included in subsequent releases (for details, see [NGINX Plus Releases]({{< ref "/nginx/releases.md" >}}). Because NGINX Plus load balances TCP, HTTP, and HTTPS traffic, it's ideal for Microsoft Exchange deployments, which use all three protocols.
 
 <span id="using-guide"></span>
 ## Using This Guide
@@ -53,7 +53,7 @@ In the final section, you choose between basic Exchange load balancing and an en
 
   Exchange CASs can be configured for [HTTP Basic authentication](https://tools.ietf.org/html/rfc7617), as specified in this guide.
 
-- A Linux system to host NGINX Plus (in on‑premises and private‑cloud deployments). To avoid potential conflicts with other applications, we recommend that you install NGINX Plus on a fresh system. For the list of Linux distributions supported by NGINX Plus, see [NGINX Plus Technical Specifications]({{< relref "../../technical-specs.md" >}}).
+- A Linux system to host NGINX Plus (in on‑premises and private‑cloud deployments). To avoid potential conflicts with other applications, we recommend that you install NGINX Plus on a fresh system. For the list of Linux distributions supported by NGINX Plus, see [NGINX Plus Technical Specifications]({{< ref "nginx/technical-specs.md" >}}).
 
 - <span style="white-space: nowrap;">NGINX Plus R7</span> or later. TCP load balancing is available in <span style="white-space: nowrap;">NGINX Plus R6</span> and later. Support for the <span style="white-space: nowrap;">Microsoft NT LAN Manager</span> (NTLM) is available in <span style="white-space: nowrap;">NGINX Plus R7</span> and later.
 
@@ -325,10 +325,10 @@ Optionally, you can enable support for HTTP/2 in [Configuring HTTP/2 Support](#h
 
 You can install NGINX Plus on premises, in a private cloud, or in a public cloud such as the Amazon Elastic Compute Cloud (EC2), the Google Cloud Platform, or Microsoft Azure. See the instructions for your installation type:
 
-- On‑premises or private cloud – [Installing NGINX Plus]({{< relref "../../admin-guide/installing-nginx/installing-nginx-plus.md" >}})
-- Amazon EC2 – [Installing NGINX Plus AMIs on Amazon EC2]({{< relref "../../admin-guide/installing-nginx/installing-nginx-plus-amazon-web-services.md" >}})
+- On‑premises or private cloud – [Installing NGINX Plus]({{< ref "nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}})
+- Amazon EC2 – [Installing NGINX Plus AMIs on Amazon EC2]({{< ref "nginx/admin-guide/installing-nginx/installing-nginx-plus-amazon-web-services.md" >}})
 - Google Compute Cloud – [Installing NGINX Plus on the Google Cloud Platform]({{< relref "../../admin-guide/installing-nginx/installing-nginx-plus-google-cloud-platform.md" >}})
-- Microsoft Azure – [Installing NGINX Plus on Microsoft Azure]({{< relref "../../admin-guide/installing-nginx/installing-nginx-plus-microsoft-azure.md" >}})
+- Microsoft Azure – [Installing NGINX Plus on Microsoft Azure]({{< ref "nginx/admin-guide/installing-nginx/installing-nginx-plus-microsoft-azure.md" >}})
 
 <span id="config-files"></span>
 ### Creating and Modifying Configuration Files
@@ -1074,7 +1074,7 @@ NGINX Plus includes a live activity monitoring interface that provides key load
 
 <img src="/nginx/images/nginx-plus-dashboard-r19-overview.png" alt="Dashboard tab in NGINX Plus live activity monitoring dashboard" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
-For more information about live activity monitoring, see the [NGINX Plus Admin Guide]({{< relref "../../admin-guide/monitoring/live-activity-monitoring.md" >}}).
+For more information about live activity monitoring, see the [NGINX Plus Admin Guide]({{< ref "nginx/admin-guide/monitoring/live-activity-monitoring.md" >}}).
 
 The quickest way to configure the module and the built‑in dashboard is to download the sample configuration file from the NGINX website, and modify it as necessary. For more complete instructions, see [Live Activity Monitoring of NGINX Plus in 3 Simple Steps](https://www.nginx.com/blog/live-activity-monitoring-nginx-plus-3-simple-steps/).
 
@@ -1122,7 +1122,7 @@ The quickest way to configure the module and the built‑in dashboard is to down
 
 When you reload the NGINX Plus configuration file, for example by running the <span style="white-space: nowrap;">`nginx -s reload`</span> command, the NGINX Plus dashboard is available immediately at <span style="white-space: nowrap;">**http://_nginx-plus-server-address_:8080**</span>.
 
-For more information about live activity monitoring, see the <span style="white-space: nowrap;">[NGINX Plus Admin Guide]({{< relref "/nginx/admin-guide/monitoring/live-activity-monitoring.md" >}})</span>.
+For more information about live activity monitoring, see the <span style="white-space: nowrap;">[NGINX Plus Admin Guide]({{< ref "/nginx/admin-guide/monitoring/live-activity-monitoring.md" >}})</span>.
 
 <span id="full-configuration-enhanced"></span>
 ### Full Configuration for Enhanced Load Balancing

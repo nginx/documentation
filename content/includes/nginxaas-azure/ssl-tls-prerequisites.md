@@ -16,6 +16,6 @@ docs: "DOCS-000"
 
   - If using Access Policies for AKV, ensure that you have *LIST certificates* or higher permissions.
 
-  - If public access is disabled on your key vault, [configure Network Security Perimeter]({{< relref "/nginxaas-azure/quickstart/security-controls/certificates.md#configure-network-security-perimeter-nsp" >}}) and add an inbound access rule to allow your client IP address.
+  - If public access is disabled on your key vault, [configure Network Security Perimeter]({{< ref "/nginxaas-azure/quickstart/security-controls/certificates.md#configure-network-security-perimeter-nsp" >}}) and add an inbound access rule to allow your client IP address.
 
 - If you're unfamiliar with Azure Key Vault, check out the [Azure Key Vault concepts](https://docs.microsoft.com/en-us/azure/key-vault/general/basic-concepts) documentation from Microsoft.

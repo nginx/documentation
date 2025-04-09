@@ -1,11 +1,11 @@
 ---
 description: Learn how to use the Brotli module with F5 NGINX Plus
 docs: DOCS-381
-doctypes:
-- task
 title: Brotli
 toc: true
 weight: 100
+type:
+- how-to
 ---
 
 ## Overview
@@ -21,7 +21,7 @@ The [ngx_brotli](https://github.com/google/ngx_brotli) module enables Brotli com
 
 ## Prerequisites
 
-1. Check the [Technical Specifications]({{< relref "../../technical-specs.md" >}}) page to verify that the module is supported by your operating system.
+1. Check the [Technical Specifications]({{< ref "nginx/technical-specs.md" >}}) page to verify that the module is supported by your operating system.
 
 2. If required, install the **epel-release** dependency
 
@@ -114,6 +114,6 @@ After installation you will need to enable and configure Brotli modules in NGINX
 
 - [NGINX Module for Brotli Compression Reference](https://github.com/google/ngx_brotli)
 
-- [NGINX Dynamic Modules]({{< relref "dynamic-modules.md" >}})
+- [NGINX Dynamic Modules]({{< ref "dynamic-modules.md" >}})
 
-- [NGINX Plus Technical Specifications]({{< relref "../../technical-specs.md" >}})
+- [NGINX Plus Technical Specifications]({{< ref "nginx/technical-specs.md" >}})

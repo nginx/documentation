@@ -1,11 +1,13 @@
 ---
-title: "Install NGINX Service Mesh with Basic Observability"
+title: Install NGINX Service Mesh with Basic Observability
 draft: false
 toc: true
-description: "This topic provides a walkthrough of deploying F5 NGINX Service Mesh with basic observability components."
+description: This topic provides a walkthrough of deploying F5 NGINX Service Mesh
+  with basic observability components.
 weight: 90
-categories: ["tutorials"]
-docs: "DOCS-886"
+docs: DOCS-886
+type:
+- tutorial
 ---
 
 ## Overview

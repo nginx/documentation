@@ -3,8 +3,7 @@ title: Configuring NGINX Amplify Agent
 description: Learn how to configure F5 NGINX Amplify Agent.
 weight: 300
 toc: true
-tags: ["docs"]
-docs: "DOCS-967"
+docs: DOCS-967
 ---
 
 F5 NGINX Amplify Agent keeps its configuration in `/etc/amplify-agent/agent.conf`. The NGINX Amplify Agent configuration is a text-based file.
@@ -59,7 +58,7 @@ NGINX Amplify Agent won't start unless a valid hostname is defined. The followin
 
 {{< note >}} You can also use the above method to replace the system's hostname with an arbitrary alias. Remember that if you redefine the hostname for a live object, the existing object will be marked as failed in the web interface. Redefining the hostname in NGINX Amplify Agent's configuration creates a new UUID and a new system for monitoring. {{< /note >}}
 
-Alternatively, you can define an "alias" for the host in the UI (see the [Graphs]({{< relref "/amplify/user-interface/graphs" >}}) section).
+Alternatively, you can define an "alias" for the host in the UI (see the [Graphs]({{< ref "/amplify/user-interface/graphs" >}}) section).
 
 ## Configuring the URL for stub_status or Status API
 
@@ -98,14 +97,14 @@ configfile = /etc/nginx/nginx.conf
 
 ## Configuring Host Tags
 
-You can define arbitrary tags on a "per-host" basis. Tags can be configured in the UI (see the [Graphs]({{< relref "/amplify/user-interface/graphs" >}}) documentation), or set in the `/etc/amplify-agent.conf` file:
+You can define arbitrary tags on a "per-host" basis. Tags can be configured in the UI (see the [Graphs]({{< ref "/amplify/user-interface/graphs" >}}) documentation), or set in the `/etc/amplify-agent.conf` file:
 
 ```nginx
 [tags]
 tags = foo,bar,foo:bar
 ```
 
-You can use tags to build custom graphs, configure alerts, and filter the systems on the [Graphs]({{< relref "/amplify/user-interface/graphs" >}}) page.
+You can use tags to build custom graphs, configure alerts, and filter the systems on the [Graphs]({{< ref "/amplify/user-interface/graphs" >}}) page.
 
 ## Configuring Syslog
 
@@ -127,7 +126,7 @@ Restart NGINX Amplify Agent to have it reload the configuration and start listen
 service amplify-agent restart
 ```
 
-Make sure to [add the `syslog` settings]({{< relref "/amplify/nginx-amplify-agent/install/configuring-amplify-agent#configuring-syslog" >}}) to your NGINX configuration as well.
+Make sure to [add the `syslog` settings]({{< ref "/amplify/nginx-amplify-agent/install/configuring-amplify-agent#configuring-syslog" >}}) to your NGINX configuration as well.
 
 ## Excluding Certain NGINX Log Files
 
@@ -158,7 +157,7 @@ NGINX Amplify Agent maintains its log file in `/var/log/amplify-agent/agent.log`
 
 Upon installation, NGINX Amplify Agent's log rotation schedule is added to `/etc/logrotate.d/amplify-agent`.
 
-The default level of logging for NGINX Amplify Agent is `INFO`. If you ever need to debug NGINX Amplify Agent, change the level to `DEBUG` as described below. The log file size can grow fast when using the `DEBUG` level. After you change the log level, please [restart]({{< relref "/amplify/nginx-amplify-agent/install/installing-amplify-agent#starting-and-stopping-the-agent" >}}) NGINX Amplify Agent.
+The default level of logging for NGINX Amplify Agent is `INFO`. If you ever need to debug NGINX Amplify Agent, change the level to `DEBUG` as described below. The log file size can grow fast when using the `DEBUG` level. After you change the log level, please [restart]({{< ref "/amplify/nginx-amplify-agent/install/installing-amplify-agent#starting-and-stopping-the-agent" >}}) NGINX Amplify Agent.
 
 ```nginx
 [logger_agent-default]

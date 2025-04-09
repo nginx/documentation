@@ -1,12 +1,12 @@
 ---
-description: "This chapter describes how to configure different types of health checks\
-  \ for UDP servers in a load\u2011balanced upstream server group."
+description: This chapter describes how to configure different types of health checks
+  for UDP servers in a load‑balanced upstream server group.
 docs: DOCS-421
-doctypes:
-- task
 title: UDP Health Checks
 toc: true
 weight: 500
+type:
+- how-to
 ---
 
 <span id="prereq"></span>
@@ -42,7 +42,7 @@ weight: 500
     }
     ```
 
-    See [TCP and UDP Load Balancing]({{< relref "../load-balancer/tcp-udp-load-balancer.md" >}}) for details.
+    See [TCP and UDP Load Balancing]({{< ref "nginx/admin-guide/load-balancer/tcp-udp-load-balancer.md" >}}) for details.
 
 <span id="hc_passive"></span>
 ## Passive UDP Health Checks

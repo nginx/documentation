@@ -2,11 +2,11 @@
 description: Analyze your software performance by instrumenting, generating, collecting,
   and exporting telemetry data.
 docs: DOCS-1207
-doctypes:
-- task
 title: OpenTelemetry
 toc: true
 weight: 100
+type:
+- how-to
 ---
 
 <span id="overview"></span>
@@ -14,13 +14,13 @@ weight: 100
 
 The module provides [OpenTelemetry](https://opentelemetry.io/) distributed tracing support. The module supports [W3C](https://w3c.github.io/trace-context/) context propagation and OTLP/gRPC export protocol.
 
- {{< note >}} the code of NGINX OpenTelemetry module is open source since [NGINX Open Source](https://nginx.org) 1.25.2 and <a href="../../../releases/#r30">F5 NGINX Plus Release 30</a>. The source code is available on [GitHub](https://github.com/nginxinc/nginx-otel).{{< /note >}}
+ {{< note >}} the code of NGINX OpenTelemetry module is open source since [NGINX Open Source](https://nginx.org) 1.25.2 and NGINX Plus [Release 30]({{< ref "nginx/releases.md#r30" >}}). The source code is available on [GitHub](https://github.com/nginxinc/nginx-otel).{{< /note >}}
 
 
 <span id="install"></span>
 ## Installation
 
-1. Check the [Technical Specifications]({{< relref "../../technical-specs.md" >}}) page to verify that the module is supported by your operating system.
+1. Check the [Technical Specifications]({{< ref "nginx/technical-specs.md" >}}) page to verify that the module is supported by your operating system.
 
 2. Install the OpenTelemetry module package `nginx-plus-module-otel`.
 
@@ -308,6 +308,6 @@ http {
 
 - [NGINX OpenTelemetry module on GitHub](https://github.com/nginxinc/nginx-otel)
 
-- [NGINX Dynamic Modules]({{< relref "dynamic-modules.md" >}})
+- [NGINX Dynamic Modules]({{< ref "dynamic-modules.md" >}})
 
-- [NGINX Plus Technical Specifications]({{< relref "../../technical-specs.md" >}})
+- [NGINX Plus Technical Specifications]({{< ref "nginx/technical-specs.md" >}})

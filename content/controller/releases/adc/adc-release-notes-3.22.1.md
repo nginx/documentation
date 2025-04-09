@@ -2,13 +2,11 @@
 description: These release notes contain information about new features, improvements,
   known issues, and bug fixes in the NGINX Controller Application Delivery Module.
 docs: DOCS-834
-doctypes:
-- reference
-tags:
-- docs
 title: Release Notes 3.22.1
 toc: true
 weight: 96
+type:
+- reference
 ---
 
 {{< include "controller/adc-rn-preamble.md" >}}
@@ -83,4 +81,4 @@ The following issues are known to be present in this release. Look for updates t
 
 ## Supported NGINX Plus Versions
 
-Check the [NGINX Controller Tech Specs guide]({{< relref "/controller/admin-guides/install/nginx-controller-tech-specs.md#nginx-plus-instances" >}}) to learn about the NGINX Plus versions supported by this release.
+Check the [NGINX Controller Tech Specs guide]({{< ref "/controller/admin-guides/install/nginx-controller-tech-specs.md#nginx-plus-instances" >}}) to learn about the NGINX Plus versions supported by this release.

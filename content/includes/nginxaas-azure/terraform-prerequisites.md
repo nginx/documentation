@@ -2,7 +2,7 @@
 docs: "DOCS-000"
 ---
 
-- Confirm that you meet the [NGINXaaS Prerequisites]({{< relref "/nginxaas-azure/getting-started/prerequisites.md" >}}).
+- Confirm that you meet the [NGINXaaS Prerequisites]({{< ref "/nginxaas-azure/getting-started/prerequisites.md" >}}).
 - [Authenticate Terraform to Azure](https://learn.microsoft.com/en-us/azure/developer/terraform/authenticate-to-azure)
 - [Install Terraform](https://learn.hashicorp.com/tutorials/terraform/install)
 

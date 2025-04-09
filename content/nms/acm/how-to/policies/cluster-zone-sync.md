@@ -2,15 +2,11 @@
 description: Learn how to configure the Cluster Zone Sync policy to enable runtime
   state sharing between the instances belonging to a proxy cluster.
 docs: DOCS-1159
-doctypes:
-- API Connectivity Manager
-- api management
-- concept
-tags:
-- docs
 title: Cluster Zone Sync
 toc: true
 weight: 499
+type:
+- concept
 ---
 
 ## Overview
@@ -398,7 +394,7 @@ Confirm that the policy has been set up and configured correctly by taking these
 
 ## Troubleshooting
 
-For help resolving common issues when setting up and configuring the policy, follow the steps in this section. If you cannot find a solution to your specific issue, reach out to [NGINX Customer Support]({{< relref "/nms/support/contact-support.md" >}}) for assistance.
+For help resolving common issues when setting up and configuring the policy, follow the steps in this section. If you cannot find a solution to your specific issue, reach out to [NGINX Customer Support]({{< ref "/nms/support/contact-support.md" >}}) for assistance.
 
 ### Issue 1
 

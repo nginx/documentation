@@ -1,14 +1,12 @@
 ---
 description: How to add F5 NGINX Controller App Security to your applications.
 docs: DOCS-484
-doctypes:
-- concept
-- reference
-tags:
-- task
 title: Manage App Security
 toc: true
 weight: 100
+type:
+- concept
+- reference
 ---
 
 ## Overview
@@ -21,14 +19,14 @@ You can use the App Security add-on for F5 NGINX Controller ADC to enable Web Ap
 Before proceeding with this guide, complete the following tasks.
 {{<note>}}These steps may need to be completed by a user with admin permissions.{{</note>}}
 
-1. [Add an NGINX App Protect instance]({{< relref "/controller/infrastructure/instances/add-nap-instance.md" >}}) to NGINX Controller.
+1. [Add an NGINX App Protect instance]({{< ref "/controller/infrastructure/instances/add-nap-instance.md" >}}) to NGINX Controller.
 
 In addition, the following resources must exist in order to complete the steps in this topic:
 
-- [Environment]({{< relref "/controller/services/manage-environments.md" >}})
-- [Gateway]({{< relref "/controller/services/manage-gateways.md" >}})
-- [Certs]({{< relref "/controller/services/manage-gateways.md" >}}) (required if your Components use HTTPS)
-- [App and Component(s)]({{< relref "/controller/app-delivery/manage-apps.md" >}})
+- [Environment]({{< ref "/controller/services/manage-environments.md" >}})
+- [Gateway]({{< ref "/controller/services/manage-gateways.md" >}})
+- [Certs]({{< ref "/controller/services/manage-gateways.md" >}}) (required if your Components use HTTPS)
+- [App and Component(s)]({{< ref "/controller/app-delivery/manage-apps.md" >}})
 
 ## Enable WAF for a Component using the Default Security Strategy
 
@@ -133,7 +131,7 @@ This JSON object should be added to the Component endpoint similar to the follow
 
 ## Enable WAF for a Component Using Your Own NGINX App Protect WAF Policy
 
-Instead of using NGINX Controller's default policy for WAF, you can [bring your own NGINX App Protect Policy]({{< relref "/controller/app-delivery/security/concepts/bring-your-own-policy.md" >}}) for use in a Security Strategy to protect your app components.
+Instead of using NGINX Controller's default policy for WAF, you can [bring your own NGINX App Protect Policy]({{< ref "/controller/app-delivery/security/concepts/bring-your-own-policy.md" >}}) for use in a Security Strategy to protect your app components.
 
 To do so, you first need to upload your NGINX App Protect WAF declarative JSON policy to the Security Policy endpoint and reference it in a Security Strategy. Then, you can reference the Security Strategy in the Component where you are enabling WAF.
 
@@ -252,7 +250,7 @@ The WAF does not begin to emit security events immediately upon activation. We r
 
 {{< note >}}
 
-If NGINX Controller isn't logging any Security Violation Events for your app component, check [Security Events Not Available]({{< relref "/controller/support/troubleshooting-controller.md#Security-Events-Not-Available" >}}) for troubleshooting instructions.
+If NGINX Controller isn't logging any Security Violation Events for your app component, check [Security Events Not Available]({{< ref "/controller/support/troubleshooting-controller.md#Security-Events-Not-Available" >}}) for troubleshooting instructions.
 
 {{< /note >}}
 

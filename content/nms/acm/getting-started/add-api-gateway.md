@@ -1,9 +1,7 @@
 ---
-description: Learn how to use F5 NGINX Management Suite API Connectivity Manager to configure
-  an API Gateway.
+description: Learn how to use F5 NGINX Management Suite API Connectivity Manager to
+  configure an API Gateway.
 docs: DOCS-921
-tags:
-- docs
 title: Set Up an API Gateway Environment
 toc: true
 weight: 100
@@ -18,7 +16,7 @@ These clusters are managed under **Infrastructure Workspaces** and are part of *
 
 ### Before You Begin
 
-Before proceeding with this guide, you should familiarize yourself with the [API Overview]({{< relref "/nms/acm/about/api-overview" >}}) and the [Get Started]({{< relref "/nms/acm/getting-started/overview" >}}) section of this series.
+Before proceeding with this guide, you should familiarize yourself with the [API Overview]({{< ref "/nms/acm/about/api-overview" >}}) and the [Get Started]({{< ref "/nms/acm/getting-started/overview" >}}) section of this series.
 
 ## Add an Infrastructure Workspace
 

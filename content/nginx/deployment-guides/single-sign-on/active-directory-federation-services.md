@@ -1,153 +1,329 @@
 ---
-description: Enable OpenID Connect-based single-sign for applications proxied by NGINX
-  Plus, using Microsoft AD FS as the identity provider (IdP).
-docs: DOCS-463
-doctypes:
-- task
+description: Enable OpenID Connect-based single sign-on (SSO) for applications proxied by NGINX Plus, using Microsoft AD FS as the identity provider (IdP).
+type:
+- how-to
 title: Single Sign-On with Microsoft Active Directory FS
 toc: true
-weight: 100
+weight: 300
+product: NGINX-PLUS
 ---
 
-This guide explains how to enable single sign-on (SSO) for applications being proxied by F5 NGINX Plus. The solution uses OpenID Connect as the authentication mechanism, with [Microsoft Active Directory Federation Services](https://docs.microsoft.com/en-us/windows-server/identity/active-directory-federation-services) (AD FS) as the identity provider (IdP) and NGINX Plus as the relying party.
+This guide explains how to enable single sign-on (SSO) for applications being proxied by F5 NGINX Plus. The solution uses OpenID Connect as the authentication mechanism, with [Microsoft Active Directory Federation Services](https://docs.microsoft.com/en-us/windows-server/identity/active-directory-federation-services) (AD FS) as the Identity Provider (IdP) and NGINX Plus as the Relying Party (RP), or OIDC client application that verifies user identity.
 
-{{< see-also >}}{{< include "nginx-plus/nginx-openid-repo-note.txt" >}}{{< /see-also >}}
+{{< note >}} This guide applies to [NGINX Plus Release 34]({{< ref "nginx/releases.md#r34" >}}) and later. In earlier versions, NGINX Plus relied on an [njs-based solution](#legacy-njs-guide), which required NGINX JavaScript files, key-value stores, and advanced OpenID Connect logic. In the latest NGINX Plus version, the new [OpenID Connect module](https://nginx.org/en/docs/http/ngx_http_oidc_module.html) simplifies this process to just a few directives.{{< /note >}}
 
-<span id="prereqs"></span>
+
 ## Prerequisites
 
-The instructions assume you have the following:
+- A Microsoft AD FS instance, either on-premises or in [Azure](https://learn.microsoft.com/en-us/windows-server/identity/ad-fs/deployment/how-to-connect-fed-azure-adfs), with administrator privileges.
 
-- A running deployment of AD FS, either on‑premises or in Azure.
-- An NGINX Plus subscription and <span style="white-space: nowrap;">NGINX Plus R15</span> or later. For installation instructions, see the [NGINX Plus Admin Guide](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/).
-- The [NGINX JavaScript module](https://www.nginx.com/blog/introduction-nginscript/) (njs), required for handling the interaction between NGINX Plus and the IdP. After installing NGINX Plus, install the module with the command for your operating system.
+- An NGINX Plus [subscription](https://www.f5.com/products/nginx/nginx-plus) and NGINX Plus [Release 34](({{< ref "nginx/releases.md#r34" >}})) or later. For installation instructions, see [Installing NGINX Plus](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/).
 
-   For Debian and Ubuntu:
-
-   ```none
-   sudo apt install nginx-plus-module-njs
-   ```
-
-   For CentOS, RHEL, and Oracle Linux:
-
-   ```shell
-   sudo yum install nginx-plus-module-njs
-   ```
-
-- The following directive included in the top-level ("main") configuration context in **/etc/nginx/nginx.conf**, to load the NGINX JavaScript module:
-
-   ```nginx
-   load_module modules/ngx_http_js_module.so;
-   ```
-
-<span id="ad-fs"></span>
-## Configuring AD FS
-
-Create an AD FS application for NGINX Plus:
-
-1. Open the AD FS Management window. In the navigation column on the left, right‑click on the **Application Groups** folder and select <span style="white-space: nowrap; font-weight:bold;">Add Application Group</span> from the drop‑down menu.
-
-   The <span style="white-space: nowrap; font-weight:bold;">Add Application Group Wizard</span> window opens. The left navigation column shows the steps you will complete to add an application group.
-
-2. In the **Welcome** step, type the application group name in the **Name** field. Here we are using <span style="color:#666666; font-weight:bolder;">ADFSSSO</span>. In the **Template** field, select **Server application** under <span style="color:#293aa3; font-weight:bolder;">Standalone applications</span>. Click the <span style="background-color:#e1e1e1; white-space: nowrap; font-weight: bolder"> Next > </span> button.
-
-   <img src="/nginx/images/adfs-sso-welcome.png" alt="" width="734" height="597" class="aligncenter size-full wp-image-62013" />
-
-   <span id="ad-fs-server-application"></span>
-3. In the **Server application** step:
-
-   1. Make a note of the value in the **Client Identifier** field. You will add it to the NGINX Plus configuration in [Step 4 of _Configuring NGINX Plus_](#nginx-plus-variables).<br/>
-
-   2. In the **Redirect URI** field, type the URI of the NGINX Plus instance including the port number, and ending in **/\_codexch**. Here we’re using <span style="white-space: nowrap; color:#666666; font-weight:bolder;">https://my-nginx.example.com:443/\_codexch</span>. Click the <span style="background-color:#e1e1e1; white-space: nowrap; font-weight: bolder"> Add </span> button.
-
-      **Notes:**
-
-      - For production, we strongly recommend that you use SSL/TLS (port 443).
-      - The port number is mandatory even when you're using the default port for HTTP (80) or HTTPS (443).
-
-3. Click the <span style="background-color:#e1e1e1; white-space: nowrap; font-weight: bolder"> Next > </span> button.
-
-   <img src="/nginx/images/adfs-sso-server-application.png" alt="" width="860" height="523" class="aligncenter size-full wp-image-62012" />
-
-   <span id="ad-fs-configure-application-credentials"></span>
-4. In the <span style="white-space: nowrap; font-weight:bold;">Configure Application Credentials</span> step, click the <span style="white-space: nowrap; font-weight:bold;">Generate a shared secret</span> checkbox. Make a note of the secret that AD FS generates (perhaps by clicking the <span style="white-space: nowrap; font-weight:bold;">Copy to clipboard</span> button and pasting the clipboard content into a file). You will add the secret to the NGINX Plus configuration in [Step 4 of _Configuring NGINX Plus_](#nginx-plus-variables). Click the <span style="background-color:#e1e1e1; white-space: nowrap; font-weight: bolder"> Next > </span> button.
-
-   <img src="/nginx/images/adfs-sso-configure-application-credentials.png" alt="" width="750" height="432" class="aligncenter size-full wp-image-62011" />
-
-5. In the **Summary** step, verify that the information is correct, make any necessary corrections to previous steps, and click the <span style="background-color:#e1e1e1; white-space: nowrap; font-weight: bolder"> Next > </span> button.
+- A domain name pointing to your NGINX Plus instance, for example, `demo.example.com`.
 
 
-<span id="nginx-plus"></span>
-## Configuring NGINX Plus
+## Configure the AD FS Server {#adfs-setup}
 
-Configure NGINX Plus as the OpenID Connect relying party:
+[Microsoft Active Directory Federation Services](https://docs.microsoft.com/en-us/windows-server/identity/active-directory-federation-services) (AD FS) serves as the Identity Provider.
 
-1. Create a clone of the [<span style="white-space: nowrap; font-weight:bold;">nginx-openid-connect</span>](https://github.com/nginxinc/nginx-openid-connect) GitHub repository.
+### Create an AD FS Application
+
+1. In AD FS, open the Server Manager.
+
+2. In Server Manager, select **Tools**, and then select **AD FS Management**.
+
+3. In **AD FS Management**, right-click on **Application Groups** and select **Add Application Group**.
+
+4. On the Application Group Wizard **Welcome** screen:
+
+   - Enter the Name of your application, for example, `NGINX Demo App`.
+
+   - Under **Standalone applications**, select **Server application**.
+
+   <span id="adfs-setup-id"></span>
+5. On the Application Group Wizard **Server application** screen:
+
+    - Copy the **Client Identifier** value generated by AD FS. The client identifier is your AD FS Application ID, you will need it later when configuring NGINX Plus.
+
+    - In **Redirect URI**, enter the Redirect URI for your NGINX Plus instance, for example, `https://demo.example.com/oidc_callback`, and then click **Add**.
+
+   <span id="adfs-setup-secret"></span>
+6. On the Application Group Wizard **Configure Application Credentials** screen:
+
+   - Select **Generate a shared secret**.
+
+   - Copy and save the generated **Client Secret**, you will need it later when configuring NGINX Plus. You will not be able to view the secret after the application group is created.
+
+   - Select **Next** to complete the steps for adding the application group.
+
+### Get the OpenID Connect Discovery URL
+
+Check the OpenID Connect endpoint URL. By default, AD FS publishes the `.well-known/openid-configuration` document at the following address:
+
+`https://adfs-server-address/adfs/.well-known/openid-configuration`.
+
+1. Run the following `curl` command in a terminal:
 
    ```shell
-   git clone https://github.com/nginxinc/nginx-openid-connect
+   curl https://adfs-server-address/adfs/.well-known/openid-configuration | jq .
    ```
+   where:
 
-2. Copy these files from the clone to **/etc/nginx/conf.d**:
+   - the `adfs-server-address` is your AD FS server address
 
-   - **frontend.conf**
-   - **openid\_connect.js**
-   - **openid\_connect.server\_conf**
-   - **openid\_connect\_configuration.conf**
+   - the `/adfs/.well-known/openid-configuration` is the default address for AD FS for document location
 
-   <span id="nginx-plus-urls"></span>
-3. Get the URLs for the authorization endpoint, token endpoint, and JSON Web Key (JWK) file from the AD FS configuration. Run the following `curl` command in a terminal, piping the output to the indicated `python` command to output the entire configuration in an easily readable format. We've abridged the output to show only the relevant fields.
+   - the `jq` command (optional) is used to format the JSON output for easier reading and requires the [jq](https://jqlang.github.io/jq/) JSON processor to be installed.
 
-   ```shell
-   $ curl https://<ADFS-server-address>/oidc/adfs/.well-known/openid-configuration | python -m json.tool
+
+   The configuration metadata is returned in the JSON format:
+
+   ```json
    {
-    ...
-       "authorization_endpoint": "https://<ADFS-server-address>/oidc/adfs/auth",
        ...
-       "jwks_uri": "https://<ADFS-server-address>/oidc/adfs/certs",
+       "issuer": "https://adfs-server-address/adfs",
+       "authorization_endpoint": "https://adfs-server-address/adfs/oauth2/authorize/",
+       "token_endpoint": "https://adfs-server-address/adfs/oauth2/token/",
+       "jwks_uri": "https://adfs-server-address/adfs/discovery/keys",
        ...
-       "token_endpoint": "https://<ADFS-server-address>/oidc/adfs/token",
-    ...
    }
    ```
 
-   <span id="nginx-plus-variables"></span>
-4. In your preferred text editor, open **/etc/nginx/conf.d/frontend.conf**. Change the "default" parameter value of each of the following [map](https://nginx.org/en/docs/http/ngx_http_map_module.html#map) directives to the specified value:
+   <span id="adfs-setup-issuer"></span>
+2. Copy the **issuer** value, you will need it later when configuring NGINX Plus. Typically, the OpenID Connect Issuer for AD FS is:
 
-   - `map $host $oidc_authz_endpoint` – Value of `authorization_endpoint` from [Step 3](#nginx-plus-urls) (in this guide, <span style="white-space: nowrap;">`https://<ADFS-server-address>/oidc/adfs/auth`</span>)
-   - `map $host $oidc_token_endpoint` – Value of `token_endpoint` from [Step 3](#nginx-plus-urls) (in this guide, <span style="white-space: nowrap;">`https://<ADFS-server-address>/oidc/adfs/token`</span>)
-   - `map $host $oidc_client` – Value in the **Client ID** field from [Step 3 of _Configuring AD FS_](#ad-fs-server-application) (in this guide, <span style="white-space: nowrap;">`3e23f0eb-9329-46ff-9d37-6ad24afdfaeb`</span>)
-   - `map $host $oidc_client_secret` – Value in the **Client secret** field from [Step 4 of _Configuring AD FS_](#ad-fs-configure-application-credentials) (in this guide, <span style="white-space: nowrap;">`NUeuULtSCjgXTGSkq3ZwEeCOiig4-rB2XiW_W`</span>)
-   - `map $host $oidc_hmac_key` – A unique, long, and secure phrase
+   `https://adfs-server-address/adfs`.
 
-5. Configure the JWK file. The procedure depends on which version of NGINX Plus you are using.
 
-   - In <span style="white-space: nowrap;">NGINX Plus R17</span> and later, NGINX Plus can read the JWK file directly from the URL reported as `jwks_uri` in [Step 3](#nginx-plus-urls). Change **/etc/nginx/conf.d/frontend.conf** as follows:
+{{< note >}} You will need the values of **Client ID**, **Client Secret**, and **Issuer** in the next steps. {{< /note >}}
 
-      1. Comment out (or remove) the [auth_jwt_key_file](http://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html#auth_jwt_key_file) directive.
-      2. Uncomment the [auth_jwt_key_request](http://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html#auth_jwt_key_request) directive. (Its parameter, `/_jwks_uri`, refers to the value of the `$oidc_jwt_keyfile` variable, which you set in the next step.)
-      3. Change the second parameter of the `set $oidc_jwt_keyfile` directive to the value reported in the `jwks_uri` field in [Step 3](#nginx-plus-urls) (in this guide, <span style="white-space: nowrap;">`https://<ADFS-server-address>/oidc/adfs/certs`</span>).
 
-   - In <span style="white-space: nowrap;">NGINX Plus R16</span> and earlier, the JWK file must be on the local disk. (You can also use this method with <span style="white-space: nowrap;">NGINX Plus R17</span> and later if you wish.)
+## Set up NGINX Plus {#nginx-plus-setup}
 
-       1. Copy the JSON contents from the JWK file named in the `jwks_uri` field in [Step 3](#nginx-plus-urls) (in this guide, <span style="white-space: nowrap;">`https://<ADFS-server-address>/oidc/adfs/certs`</span>) to a local file (for example, `/etc/nginx/my_adfs_jwk.json`).
-       2. In **/etc/nginx/conf.d/frontend.conf**, change the second parameter of the <span style="white-space: nowrap;">`set $oidc_jwt_keyfile`</span> directive to the local file path.
+With AF DS configured, you can enable OIDC on NGINX Plus. NGINX Plus serves as the Rely Party (RP) application &mdash; a client service that verifies user identity.
 
-6. Confirm that the user named by the [user](http://nginx.org/en/docs/ngx_core_module.html#user) directive in the NGINX Plus configuration (in **/etc/nginx/nginx.conf** by convention) has read permission on the JWK file.
 
-<span id="testing"></span>
-## Testing
+1.  Ensure that you are using the latest version of NGINX Plus by running the `nginx -v` command in a terminal:
 
-In a browser, enter the address of your NGINX Plus instance and try to log in using the credentials of a user who has access to the application.
+    ```shell
+    nginx -v
+    ```
+    The output should match NGINX Plus Release 34 or later:
 
-<img src="/nginx/images/adfs-sso-login.png" alt="" width="750" height="414" class="aligncenter size-full wp-image-62002" style="border:2px solid #666666; padding:2px; margin:2px;" />
+    ```none
+    nginx version: nginx/1.27.4 (nginx-plus-r34)
+    ```
 
-<span id="troubleshooting"></span>
-## Troubleshooting
+2.  Ensure that you have the values of the **Client ID**, **Client Secret**, and **Issuer** obtained during [AD FS Configuration](#adfs-setup).
 
-See the [**Troubleshooting**](https://github.com/nginxinc/nginx-openid-connect#troubleshooting) section at the <span style="white-space: nowrap; font-weight:bold;">nginx-openid-connect</span> repository on GitHub.
+3.  In your preferred text editor, open the NGINX configuration file (`/etc/nginx/nginx.conf` for Linux or `/usr/local/etc/nginx/nginx.conf` for FreeBSD).
 
-### Revision History
+4.  In the [`http {}`](https://nginx.org/en/docs/http/ngx_http_core_module.html#http) context, make sure your public DNS resolver is specified with the [`resolver`](https://nginx.org/en/docs/http/ngx_http_core_module.html#resolver) directive. By default, NGINX Plus re‑resolves DNS records at the frequency specified by time‑to‑live (TTL) in the record, but you can override the TTL value with the `valid` parameter:
 
-- Version 2 (March 2020) – Updates to _Configuring NGINX Plus_ section
-- Version 1 (December 2019) – Initial version (NGINX Plus Release 20)
+    ```nginx
+    http {
+        resolver 10.0.0.1 ipv4=on valid=300s;
+
+        # ...
+    }
+    ```
+    <span id="adfs-setup-oidc-provider"></span>
+5.  In the [`http {}`](https://nginx.org/en/docs/http/ngx_http_core_module.html#http) context, define the AD FS OIDC provider named `adfs` by specifying the [`oidc_provider {}`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#oidc_provider) context:
+
+    ```nginx
+    http {
+        resolver 10.0.0.1 ipv4=on valid=300s;
+
+        oidc_provider adfs {
+
+            # ...
+
+        }
+        # ...
+    }
+    ```
+
+6.  In the [`oidc_provider {}`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#oidc_provider) context, specify:
+
+    - Your actual AD FS **Client ID** from [Step 5](#adfs-setup-id) of AD FS Configuration with the [`client_id`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#client_id) directive
+
+    - Your **Client Secret** from [Step 6](#adfs-setup-secret) of AD FS Configuration with the [`client_secret`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#client_secret) directive
+
+    - The **Issuer** URL from [Step 2](#adfs-setup-issuer) of AD FS Configuration with the [`issuer`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#client_secret) directive
+
+      The `issuer` is typically your AD FS OIDC URL. By default, NGINX forms the provider metadata endpoint by appending `.well-known/openid-configuration` to the issuer. For AD FS, this often resolves to `https://adfs-server-address/adfs/.well-known/openid-configuration`. If your AD FS issuer differs from `https://adfs-server-address/adfs` (for example, a custom path), you can explicitly specify the metadata document with the [`config_url`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#config_url) directive.
+
+    - **Important:** All interaction with the IdP is secured exclusively over SSL/TLS, so NGINX must trust the certificate presented by the IdP. By default, this trust is validated against your system’s CA bundle (the default CA store for your Linux or FreeBSD distribution). If the IdP’s certificate is not included in the system CA bundle, you can explicitly specify a trusted certificate or chain with the [`ssl_trusted_certificate`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#ssl_trusted_certificate) directive so that NGINX can validate and trust the IdP’s certificate.
+
+    ```nginx
+    http {
+        resolver 10.0.0.1 ipv4=on valid=300s;
+
+        oidc_provider adfs {
+            issuer        https://adfs.example.com/adfs;
+            client_id     <client_id>;
+            client_secret <client_secret>;
+        }
+
+        # ...
+    }
+    ```
+
+7.  Make sure you have configured a [server](https://nginx.org/en/docs/http/ngx_http_core_module.html#server) that corresponds to `demo.example.com`, and there is a [location](https://nginx.org/en/docs/http/ngx_http_core_module.html#location) that [points](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass) to your application (see [Step 10](#oidc_app)) at `http://127.0.0.1:8080` that is going to be OIDC-protected:
+
+    ```nginx
+    http {
+
+        # ...
+
+        server {
+            listen      443 ssl;
+            server_name demo.example.com;
+
+            ssl_certificate     /etc/ssl/certs/fullchain.pem;
+            ssl_certificate_key /etc/ssl/private/key.pem;
+
+            location / {
+
+                # ...
+
+                proxy_pass http://127.0.0.1:8080;
+            }
+        }
+        # ...
+    }
+    ```
+
+8.  Protect this [location](https://nginx.org/en/docs/http/ngx_http_core_module.html#location) with AD FS OIDC by specifying the [`auth_oidc`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#auth_oidc) directive that will point to the `afds` configuration specified in the [`oidc_provider {}`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#oidc_provider) context in [Step 5](#adfs-setup-oidc-provider):
+
+    ```nginx
+    # ...
+    location / {
+
+         auth_oidc adfs;
+
+         # ...
+
+         proxy_pass http://127.0.0.1:8080;
+
+    }
+    # ...
+    ```
+
+9.  Pass the OIDC claims as headers to the application ([Step 10](#oidc_app)) with the [`proxy_set_header`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_set_header) directive. These claims are extracted from the ID token returned by AD FS:
+
+    - [`$oidc_claim_sub`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#var_oidc_claim_) - a unique `Subject` identifier assigned for each user by AD FS
+
+    - [`$oidc_claim_email`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#var_oidc_claim_) the e-mail address of the user
+
+    - [`$oidc_claim_name`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#var_oidc_claim_) - the full name of the user
+
+    - any other OIDC claim using the [`$oidc_claim_ `](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#var_oidc_claim_) variable
+
+    ```nginx
+    # ...
+    location / {
+
+         auth_oidc adfs;
+
+         proxy_set_header sub   $oidc_claim_sub;
+         proxy_set_header email $oidc_claim_email;
+         proxy_set_header name  $oidc_claim_name;
+
+         proxy_pass http://127.0.0.1:8080;
+    }
+    # ...
+    ```
+
+    <span id="oidc_app"></span>
+10. Create a simple test application referenced by the `proxy_pass` directive which returns the authenticated user's full name and email upon successful authentication:
+
+    ```nginx
+    # ...
+    server {
+        listen 8080;
+
+        location / {
+            return 200 "Hello, $http_name!\nEmail: $http_email\nAD FS sub: $http_sub\n";
+            default_type text/plain;
+        }
+    }
+    ```
+11. Save the NGINX configuration file and reload the configuration:
+    ```nginx
+    nginx -s reload
+    ```
+
+### Complete Example
+
+This configuration example summarizes the steps outlined above. It includes only essential settings such as specifying the DNS resolver, defining the OIDC provider, configuring SSL, and proxying requests to an internal server.
+
+```nginx
+http {
+    # Use a public DNS resolver for Issuer discovery, etc.
+    resolver 10.0.0.1 ipv4=on valid=300s;
+
+    oidc_provider adfs {
+
+        # The 'issuer' is typically your AD FS OIDC URL
+        # e.g. https://adfs.example.com/adfs
+        issuer https://adfs.example.com/adfs;
+
+        # Replace with your actual AD FS Client ID and Secret
+        client_id     <client_id>;
+        client_secret <client_secret>;
+    }
+
+    server {
+        listen      443 ssl;
+        server_name demo.example.com;
+
+        ssl_certificate     /etc/ssl/certs/fullchain.pem;
+        ssl_certificate_key /etc/ssl/private/key.pem;
+
+        location / {
+            # Protect this location with AD FS OIDC
+            auth_oidc adfs;
+
+            # Forward OIDC claims as headers if desired
+            proxy_set_header sub   $oidc_claim_sub;
+            proxy_set_header email $oidc_claim_email;
+            proxy_set_header name  $oidc_claim_name;
+
+            proxy_pass http://127.0.0.1:8080;
+        }
+    }
+
+    server {
+        listen 8080;
+
+        location / {
+            return 200 "Hello, $http_name!\nEmail: $http_email\nAD FS sub: $http_sub\n";
+            default_type text/plain;
+        }
+    }
+}
+```
+
+### Testing
+
+1. Open `https://demo.example.com/` in a browser. You will be automatically redirected to the AD FS sign-in page.
+
+2. Enter valid AD FS credentials of a user who has access the application. Upon successful sign-in, AD FS redirects you back to NGINX Plus, and you will see the proxied application content (for example, “Hello, Jane Doe!”).
+
+
+## Legacy njs-based AD FS Solution {#legacy-njs-guide}
+
+If you are running NGINX Plus R33 and earlier or if you still need the njs-based solution, refer to the [Legacy njs-based Microsoft AD FS Guide]({{< ref "nginx/deployment-guides/single-sign-on/oidc-njs/active-directory-federation-services.md" >}}) for details. The solution uses the [`nginx-openid-connect`](https://github.com/nginxinc/nginx-openid-connect) GitHub repository and NGINX JavaScript files.
+
+
+## See Also
+
+- [NGINX Plus Native OIDC Module Reference documentation](https://nginx.org/en/docs/http/ngx_http_oidc_module.html)
+
+- [Release Notes for NGINX Plus R34]({{< ref "nginx/releases.md#r34" >}})
+
+
+## Revision History
+
+- Version 1 (March 2025) – Initial version (NGINX Plus Release 34)

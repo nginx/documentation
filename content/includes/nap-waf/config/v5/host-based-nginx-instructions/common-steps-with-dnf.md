@@ -1,26 +1,26 @@
-1. Create the `/etc/ssl/nginx` directory:
+Create the `/etc/ssl/nginx/` directory:
 
-    ```shell
-    sudo mkdir -p /etc/ssl/nginx
-    ```
+```shell
+sudo mkdir -p /etc/ssl/nginx
+```
 
-2. Upload **nginx-repo.crt** and **nginx-repo.key** files to the `/etc/ssl/nginx/` directory.
+Upload **nginx-repo.crt** and **nginx-repo.key** files to the `/etc/ssl/nginx/` directory.
 
-3. Remove any previously downloaded NGINX repository files from `/etc/yum.repos.d`:
+Remove any previously downloaded NGINX repository files from `/etc/yum.repos.d`:
 
-    ```shell
-    sudo rm /etc/yum.repos.d/nginx*.repo
-    sudo rm /etc/yum.repos.d/*app-protect*.repo
-    ```
+```shell
+sudo rm /etc/yum.repos.d/nginx*.repo
+sudo rm /etc/yum.repos.d/*app-protect*.repo
+```
 
-4. Install required dependencies:
+Install required dependencies:
 
-    ```shell
-    sudo dnf install ca-certificates wget
-    ```
+```shell
+sudo dnf install ca-certificates wget
+```
 
-5. Download the `dependencies.repo` file to `/etc/yum.repos.d`:
+Download the `dependencies.repo` file to `/etc/yum.repos.d`:
 
-    ```shell
-    sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.repo
-    ```
+```shell
+sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.repo
+```

@@ -3,8 +3,7 @@ title: Other Metrics
 description: Learn about other metrics used by F5 NGINX Amplify
 weight: 40
 toc: true
-tags: ["docs"]
-docs: "DOCS-975"
+docs: DOCS-975
 ---
 
 {{< note >}}Monitoring PHP-FPM and MySQL metrics is only supported by F5 NGINX Amplify Agent.{{< /note >}}
@@ -54,7 +53,7 @@ To start monitoring PHP-FPM, follow the steps below:
 
 6. If your PHP-FPM is configured to use a TCP socket instead of a Unix domain socket, make sure you can query the PHP-FPM metrics manually with *cgi-fcgi*. Double check that your TCP socket configuration is secure (ideally, PHP-FPM pool listening on 127.0.0.1, and *listen.allowed_clients* enabled as well).
 
-7. [Update]({{< relref "/amplify/nginx-amplify-agent/install/updating-amplify-agent.md" >}}) NGINX Amplify Agent to the most recent version.
+7. [Update]({{< ref "/amplify/nginx-amplify-agent/install/updating-amplify-agent.md" >}}) NGINX Amplify Agent to the most recent version.
 
 8. Make sure that the following options are set in **/etc/amplify-agent/agent.conf**
 
@@ -71,9 +70,9 @@ To start monitoring PHP-FPM, follow the steps below:
 
 NGINX Amplify Agent should be able to detect the PHP-FPM master and workers, obtain the access to status, and collect the necessary metrics.
 
-With all of the above successfully configured, the result should be an additional tab displayed on the [Graphs]({{< relref "/amplify/user-interface/graphs.md" >}}) page, with the pre-defined visualization of the PHP-FPM metrics.
+With all of the above successfully configured, the result should be an additional tab displayed on the [Graphs]({{< ref "/amplify/user-interface/graphs.md" >}}) page, with the pre-defined visualization of the PHP-FPM metrics.
 
-The PHP-FPM metrics on the [Graphs]({{< relref "/amplify/user-interface/graphs.md" >}})) page are cumulative, across all automatically detected pools. If you need per-pool graphs, go to [Dashboards]({{< relref "/amplify/user-interface/dashboards.md" >}}) and create custom graphs per pool.
+The PHP-FPM metrics on the [Graphs]({{< ref "/amplify/user-interface/graphs.md" >}})) page are cumulative, across all automatically detected pools. If you need per-pool graphs, go to [Dashboards]({{< ref "/amplify/user-interface/dashboards.md" >}}) and create custom graphs per pool.
 
 Here is the list of caveats to look for if the PHP-FPM metrics are not being collected:
 
@@ -83,7 +82,7 @@ Here is the list of caveats to look for if the PHP-FPM metrics are not being col
 - Agent can't connect to the TCP socket (when using PHP-FPM with a TCP socket).
 - Agent can't parse the PHP-FPM configuration. A possible workaround is to not have any ungrouped directives. Try to move any ungrouped directives under [global] and pool section headers.
 
-If checking the above issues didn't help, please enable NGINX Amplify Agent's [debug log]({{< relref "/amplify/nginx-amplify-agent/install/configuring-amplify-agent.md" >}}), restart NGINX Amplify Agent, wait a few minutes, and then please submit a support request through https://my.f5.com/, please attach the debug log to the support case.
+If checking the above issues didn't help, please enable NGINX Amplify Agent's [debug log]({{< ref "/amplify/nginx-amplify-agent/install/configuring-amplify-agent.md" >}}), restart NGINX Amplify Agent, wait a few minutes, and then please submit a support request through https://my.f5.com/, please attach the debug log to the support case.
 
 Below is the list of supported PHP-FPM metrics.
 
@@ -222,7 +221,7 @@ To start monitoring MySQL, follow the instructions below.
 
    {{< note >}} NGINX Amplify Agent doesn't use *mysql(1)* for metric collection, however it implements a similar query mechanism via a Python module.{{< /note >}}
 
-3. [Update]({{< relref "/amplify/nginx-amplify-agent/install/updating-amplify-agent.md" >}}) NGINX Amplify Agent to the most recent version.
+3. [Update]({{< ref "/amplify/nginx-amplify-agent/install/updating-amplify-agent.md" >}}) NGINX Amplify Agent to the most recent version.
 
 4. Add the following to **/etc/amplify-agent/agent.conf**
 
@@ -247,9 +246,9 @@ To start monitoring MySQL, follow the instructions below.
     # service amplify-agent restart
     ```
 
-With the above configuration steps NGINX Amplify Agent should be able to detect the MySQL master, obtain the access to status, and collect the necessary metrics. The end result should be an additional tab displayed on the [Graphs]({{< relref "/amplify/user-interface/graphs.md" >}})) page, with the pre-defined visualization of the key MySQL metrics.
+With the above configuration steps NGINX Amplify Agent should be able to detect the MySQL master, obtain the access to status, and collect the necessary metrics. The end result should be an additional tab displayed on the [Graphs]({{< ref "/amplify/user-interface/graphs.md" >}})) page, with the pre-defined visualization of the key MySQL metrics.
 
-If the above didn't work, please enable NGINX Amplify Agent's [debug log]({{< relref "/amplify/nginx-amplify-agent/install/configuring-amplify-agent.md#agent-logfile" >}}), restart NGINX Amplify Agent, wait a few minutes, and then create  a support request through https://my.f5.com/, please attach the debug log to the support case.
+If the above didn't work, please enable NGINX Amplify Agent's [debug log]({{< ref "/amplify/nginx-amplify-agent/install/configuring-amplify-agent.md#agent-logfile" >}}), restart NGINX Amplify Agent, wait a few minutes, and then create  a support request through https://my.f5.com/, please attach the debug log to the support case.
 
 NGINX Amplify Agent retrieves most of the metrics from the MySQL global [status variables](https://dev.mysql.com/doc/refman/5.7/en/server-status-variables.html).
 

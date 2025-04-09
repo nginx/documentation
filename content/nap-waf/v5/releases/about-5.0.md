@@ -21,8 +21,8 @@ These features are only available in F5 NGINX App Protect WAF version 5.0 and ab
 
 In this release, NGINX App Protect WAF supports NGINX Open Source 1.25.4 and NGINX Plus R31 P1.
 
-- [New deployment types]({{< relref "/nap-waf/v5/admin-guide/overview.md#deployment-types" >}})
-- [Security policy and logging profile bundles]({{< relref "/nap-waf/v5/admin-guide/compiler.md" >}})
+- [New deployment types]({{< ref "/nap-waf/v5/admin-guide/overview.md#deployment-types" >}})
+- [Security policy and logging profile bundles]({{< ref "/nap-waf/v5/admin-guide/compiler.md" >}})
 
 ---
 

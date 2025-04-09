@@ -1,13 +1,13 @@
 ---
-description: This article describes how to use F5 NGINX Plus to synchronize shared memory
-  zones across NGINX cluster nodes including sticky learn session persistence, requests
-  limiting, and key-value store data.
+description: This article describes how to use F5 NGINX Plus to synchronize shared
+  memory zones across NGINX cluster nodes including sticky learn session persistence,
+  requests limiting, and key-value store data.
 docs: DOCS-407
-doctypes:
-- task
 title: Runtime State Sharing in a Cluster
 toc: true
 weight: 400
+type:
+- how-to
 ---
 
 <span id="intro"></span>
@@ -25,8 +25,8 @@ All NGINX Plus instances can exchange state data with all other members in a clu
 <span id="prerequisites"></span>
 ## Prerequisites
 
-- <a href="../../../releases/#r16">NGINX Plus R16</a> for sharing limits of requests processing and key-value data across the cluster
-- <a href="../../../releases/#r15">NGINX Plus R15</a> for sharing limits of sticky learn data across the cluster
+- NGINX Plus [R16]({{< ref "nginx/releases.md#r16" >}}) for sharing limits of requests processing and key-value data across the cluster
+- NGINX Plus [R15]({{< ref "nginx/releases.md#r15" >}}) for sharing limits of sticky learn data across the cluster
 
 State sharing across a cluster is eventually consistent by nature. It is strongly recommended using data-center grade networks for clustering traffic, as latency, low bandwidth, and packet loss will have a significant negative impact on state consistency. We do not recommend stretching clusters over the Internet, regions, or availability zones.
 
@@ -314,7 +314,7 @@ server {
 }
 ```
 
-See [Dynamic Denylisting of IP Addresses]({{< relref "/nginx/admin-guide/security-controls/denylisting-ip-addresses.md" >}}) for information how to configure and manage the key-value storage.
+See [Dynamic Denylisting of IP Addresses]({{< ref "/nginx/admin-guide/security-controls/denylisting-ip-addresses.md" >}}) for information how to configure and manage the key-value storage.
 
 
 <span id="monitor"></span>
@@ -347,7 +347,7 @@ In order to get access to API metrics, you will need to configure the API:
     }
     ```
 
-2. It is highly recommended to [restrict access]({{< relref "/nginx/admin-guide/security-controls/controlling-access-proxied-http.md" >}}) to this location, for example by allowing access only from localhost (`127.0.0.1`), and by restricting access to `PATCH`, `POST`, and `DELETE` methods to some users with HTTP basic authentication:
+2. It is highly recommended to [restrict access]({{< ref "/nginx/admin-guide/security-controls/controlling-access-proxied-http.md" >}}) to this location, for example by allowing access only from localhost (`127.0.0.1`), and by restricting access to `PATCH`, `POST`, and `DELETE` methods to some users with HTTP basic authentication:
 
    ```nginx
    # ...

@@ -3,11 +3,10 @@ title: NGINX Configuration Analysis
 description: Learn about F5 NGINX Amplify Agent's configuration analysis feature.
 weight: 600
 toc: true
-tags: ["docs"]
-docs: "DOCS-961"
+docs: DOCS-961
 ---
 
-F5 NGINX Amplify Agent can automatically find all relevant NGINX configuration files, parse them, extract their logical structure, and send the associated JSON data to the Amplify backend for further analysis and reporting. For more information on configuration analysis, please see the [Analyzer]({{< relref "/amplify/user-interface/analyzer.md" >}})) documentation.
+F5 NGINX Amplify Agent can automatically find all relevant NGINX configuration files, parse them, extract their logical structure, and send the associated JSON data to the Amplify backend for further analysis and reporting. For more information on configuration analysis, please see the [Analyzer]({{< ref "/amplify/user-interface/analyzer.md" >}})) documentation.
 
 After NGINX Amplify Agent finds a particular NGINX configuration, it then automatically starts to keep track of its changes. When a change is detected with NGINX — e.g., a master process restarts, or the NGINX config is edited, an update is sent to the Amplify backend.
 

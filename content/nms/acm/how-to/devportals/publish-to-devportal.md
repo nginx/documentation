@@ -3,13 +3,11 @@ description: This document provides instructions on how to publish API documenta
   and API proxies to a Developer Portal in order to make them available at a designated
   hostname.
 docs: DOCS-1082
-doctypes:
-- task
-tags:
-- docs
 title: Publish Docs to a Developer Portal
 toc: true
 weight: 200
+type:
+- how-to
 ---
 
 {{< shortversions "1.1.0" "latest" "acmvers" >}}
@@ -26,9 +24,9 @@ This document will guide you through the process of publishing API documentation
 
 To complete the steps in this guide, you need the following:
 
-- [API Connectivity Manager is installed]({{< relref "/nim/deploy/_index.md" >}}) and running
-- One or more environments with a [configured Developer Portal]({{< relref "/nms/acm/getting-started/add-devportal.md" >}})
-- (Optional) [Customize the Developer Portal]({{< relref "/nms/acm/how-to/infrastructure/customize-devportal.md" >}})
+- [API Connectivity Manager is installed]({{< ref "/nim/deploy/_index.md" >}}) and running
+- One or more environments with a [configured Developer Portal]({{< ref "/nms/acm/getting-started/add-devportal.md" >}})
+- (Optional) [Customize the Developer Portal]({{< ref "/nms/acm/how-to/infrastructure/customize-devportal.md" >}})
 
 ---
 

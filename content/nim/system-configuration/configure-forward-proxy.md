@@ -4,7 +4,7 @@ weight: 2
 toc: true
 type: how-to
 product: NIM
-docs: 
+docs:
 ---
 
 ## Overview
@@ -13,14 +13,14 @@ This guide explains how to configure NGINX Instance Manager to use a third-party
 
 ---
 
-## Before you begin 
+## Before you begin
 
-Ensure you have:  
+Ensure you have:
 
-- NGINX Instance Manager **2.19 or later**  
-- Access to a configured HTTP or HTTPS forward proxy  
-- Permissions to modify `/etc/nms/nms.conf`  
-- Proxy authentication credentials, if required  
+- NGINX Instance Manager **2.19 or later**
+- Access to a configured HTTP or HTTPS forward proxy
+- Permissions to modify `/etc/nms/nms.conf`
+- Proxy authentication credentials, if required
 
 {{<call-out "note" "Important considerations:" "">}}
 #### Proxy SSL verification
@@ -75,7 +75,7 @@ To configure a forward proxy:
 
 1. Edit the `/etc/nms/nms.conf` file.
 
-2. Add or modify the `proxy_config` section to include the proxy configuration:  
+2. Add or modify the `proxy_config` section to include the proxy configuration:
 
     ```yaml
     proxy_config:
@@ -96,14 +96,14 @@ To configure a forward proxy:
 
    - Set `proxy_protocol` to either `http` or `https`, depending on your proxy type.
    - If not explicitly set, `proxy_ssl_verify` **defaults to `true`**, meaning the proxy must have a valid certificate from a trusted Certificate Authority (CA). Note: This setting applies only when `proxy_protocol` is `https`.
-          
+
      If the proxy uses a self-signed or untrusted certificate, you have two options:
        - **Recommended**: Follow the steps in the [Trust proxy certificates](#trust-proxy-certificates-if-required) section to add the proxy's CA certificate to the system's trusted store.
        - **Alternative (not recommended)**: Disable SSL verification by setting `proxy_ssl_verify=false`, which allows connections to proxies with untrusted or self-signed certificates.
 
 3. Save the configuration file.
 
-4. Restart NGINX Instance Manager to apply changes:  
+4. Restart NGINX Instance Manager to apply changes:
 
      ```shell
      sudo systemctl restart nms
@@ -126,7 +126,7 @@ kubectl edit cm nms-conf -n <namespace>
 
 If you’re deploying NGINX Instance Manager with Docker Compose, update the `docker-compose.yaml` file to configure a forward proxy.
 
-1. **Before you begin**: Follow the [Docker Compose deployment guide]({{< relref "nim/deploy/docker/deploy-nginx-instance-manager-docker-compose.md" >}}) to set up Docker for the NGINX container registry. The deployment guide also covers additional environment variables you may want to consider before deployment.
+1. **Before you begin**: Follow the [Docker Compose deployment guide]({{< ref "nim/deploy/docker/deploy-nginx-instance-manager-docker-compose.md" >}}) to set up Docker for the NGINX container registry. The deployment guide also covers additional environment variables you may want to consider before deployment.
 2. {{<fa "download">}} {{<link "/scripts/docker-compose/docker-compose.yaml" "Download the preconfigured docker-compose.yaml file">}}
 3. Update `docker-compose.yaml` with the proxy settings:
 
@@ -169,13 +169,13 @@ If you’re deploying NGINX Instance Manager with Docker Compose, update the `do
     - Replace `<proxy-ca-cert-file>` with the filename of the proxy CA certificate.
     - Set `PROXY_PROTOCOL` to either `http` or `https`, depending on your proxy type.
     - If not explicitly set, **`PROXY_SSL_VERIFY` defaults to `true`**, meaning the proxy must have a valid certificate issued by a trusted Certificate Authority (CA). Note: This setting applies only when `PROXY_PROTOCOL` is `https`.
-     
+
       If the proxy uses a self-signed or untrusted certificate, you have two options:
       - **Recommended**: Follow the steps in the [Trust proxy certificates](#trust-proxy-certificates-if-required) section to add the proxy's CA certificate to the system's trusted store.
       - **Alternative (not recommended)**: Disable SSL verification by setting `PROXY_SSL_VERIFY=false`, which allows connections to proxies with untrusted or self-signed certificates.
 
 
-4. Deploy NGINX Instance Manager:  
+4. Deploy NGINX Instance Manager:
 
     ```shell
     docker compose up -d
@@ -223,14 +223,14 @@ If your proxy uses HTTPS and `proxy_ssl_verify` is set to `true`, NGINX Instance
 
 After applying the configuration, verify that NGINX Instance Manager is using the proxy:
 
-- **Check system logs:** Review logs for messages confirming that traffic is being routed through the proxy. The exact log message may vary but should indicate the configured proxy details.  
+- **Check system logs:** Review logs for messages confirming that traffic is being routed through the proxy. The exact log message may vary but should indicate the configured proxy details.
 
 - **Test outbound connectivity:** Use a tool such as `curl` or `wget` to confirm that requests are routed through the proxy. The exact command depends on your proxy configuration.
 
 - **Monitor network traffic:** If needed, use network debugging tools like `tcpdump` or `netstat` to verify that outbound requests are sent through the proxy.
 
 If proxy traffic is not working as expected, review the [troubleshooting section](#troubleshoot-common-issues) for possible causes.
-  
+
 ---
 
 ## Troubleshoot common issues

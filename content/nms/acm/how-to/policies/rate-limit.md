@@ -4,15 +4,11 @@ description: Learn how to use the F5 NGINX Management Suite API Connectivity Man
   limit connections and the rate of requests based on request URI, client IP address,
   or authenticated clients.
 docs: DOCS-1251
-doctypes:
-- API Connectivity Manager
-- api management
-- task
-tags:
-- docs
 title: Rate Limiting
 toc: true
 weight: 1300
+type:
+- how-to
 ---
 
 ## Overview
@@ -38,8 +34,8 @@ This guide is meant for F5 NGINX Management Suite Administrators who can modify 
 Complete the following prerequisites before proceeding with this guide:
 
 - API Connectivity Manager is installed, licensed, and running.
-- You have one or more Environments with an [API Gateway]({{< relref "/nms/acm/getting-started/add-api-gateway" >}}).
-- You have published one or more [API Gateways]({{< relref "/nms/acm/getting-started/publish-api-proxy" >}}).
+- You have one or more Environments with an [API Gateway]({{< ref "/nms/acm/getting-started/add-api-gateway" >}}).
+- You have published one or more [API Gateways]({{< ref "/nms/acm/getting-started/publish-api-proxy" >}}).
 
 
 ## Policy Settings

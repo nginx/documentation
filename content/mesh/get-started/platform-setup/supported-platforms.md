@@ -1,10 +1,10 @@
 ---
 title: Supported Platforms
-description: Find out which platforms are supported for use with F5 NGINX Service Mesh.
-date: 2020-08-17
+description: Find out which platforms are supported for use with F5 NGINX Service
+  Mesh.
 weight: 100
 toc: true
-docs: "DOCS-688"
+docs: DOCS-688
 ---
 
 ## Kubernetes
@@ -13,9 +13,9 @@ The Kubernetes platforms listed below will work with F5 NGINX Service Mesh using
 
 - Azure Kubernetes Service (AKS)
 - Elastic Kubernetes Service (EKS) -- [Additional setup required]( {{< ref "persistent-storage.md" >}} )
-- Google Kubernetes Engine (GKE) -- [Additional setup required]( {{< ref "gke.md" >}} )
+- Google Kubernetes Engine (GKE) -- [Additional setup required]( {{< relref "./gke.md" >}} )
 - Rancher Kubernetes Engine (RKE) -- [Additional setup required]( {{< ref "rke.md" >}} )
-- Kubeadm -- [Additional setup required]( {{< ref "kubeadm.md" >}} )
+- Kubeadm -- [Additional setup required]( {{< relref "./kubeadm.md" >}} )
 - Kubespray -- [Additional setup required]( {{< ref "kubespray.md" >}} )
 
 ## OpenShift

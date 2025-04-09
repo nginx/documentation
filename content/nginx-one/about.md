@@ -1,15 +1,12 @@
 ---
 description: ''
 docs: DOCS-1392
-doctypes:
-- reference
-tags:
-- docs
 title: About
 toc: true
 weight: 10
+type:
+- reference
 ---
-
 
 The F5 NGINX One Console makes it easy to manage NGINX instances across locations and environments. The console lets you monitor and control your NGINX fleet from one place—you can check configurations, track performance metrics, identify security vulnerabilities, manage SSL certificates, and more.
 
@@ -25,4 +22,4 @@ NGINX One offers the following key benefits:
 
 ## Legal notice: Licensing agreements for NGINX products
 
-Using NGINX One is subject to our End User Service Agreement (EUSA). For [NGINX Plus]({{< relref "/nginx" >}}), usage is governed by the End User License Agreement (EULA). Open source projects, including [NGINX Agent](https://github.com/nginx/agent) and [NGINX OSS](https://github.com/nginx/nginx), are covered under their respective licenses. For more details on these licenses, follow the provided links.
+Using NGINX One is subject to our End User Service Agreement (EUSA). For [NGINX Plus]({{< ref "/nginx" >}}), usage is governed by the End User License Agreement (EULA). Open source projects, including [NGINX Agent](https://github.com/nginx/agent) and [NGINX OSS](https://github.com/nginx/nginx), are covered under their respective licenses. For more details on these licenses, follow the provided links.

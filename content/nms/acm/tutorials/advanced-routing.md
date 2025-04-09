@@ -1,14 +1,12 @@
 ---
-description: Learn how to create dynamic routes for your deployments using F5 NGINX Management
-  Suite API Connectivity Manager.
+description: Learn how to create dynamic routes for your deployments using F5 NGINX
+  Management Suite API Connectivity Manager.
 docs: DOCS-1218
-doctypes:
-- tutorial
-tags:
-- docs
 title: Set Up Advanced Routing
 toc: true
 weight: 110
+type:
+- tutorial
 ---
 
 ## Overview
@@ -22,7 +20,7 @@ This guide is meant for NGINX Management Suite users who can add/modify Proxy de
 
 ### How do I publish a Proxy with Advanced Routing?
 
-Follow the steps on the [Publish an HTTP API]({{< relref "/nms/acm/how-to/services/publish-api.md" >}}) section to publish a proxy.
+Follow the steps on the [Publish an HTTP API]({{< ref "/nms/acm/how-to/services/publish-api.md" >}}) section to publish a proxy.
 
 ---
 
@@ -45,15 +43,15 @@ In the steps that follow, we will:
 
 To complete the instructions in this guide, you need the following:
 
-- [API Connectivity Manager is installed]({{< relref "/nms/acm/how-to/install-acm.md" >}}), [licensed]({{< relref "/nim/admin-guide/license/add-license.md" >}}), and running
-- One or more [Service workspaces]({{< relref "/nms/acm/how-to/services/publish-api.md#create-a-service-workspace" >}})
-- One or more [Proxies]({{< relref "/nms/acm/how-to/services/publish-api.md" >}})
+- [API Connectivity Manager is installed]({{< ref "/nms/acm/how-to/install-acm.md" >}}), [licensed]({{< ref "/nim/admin-guide/license/add-license.md" >}}), and running
+- One or more [Service workspaces]({{< ref "/nms/acm/how-to/services/publish-api.md#create-a-service-workspace" >}})
+- One or more [Proxies]({{< ref "/nms/acm/how-to/services/publish-api.md" >}})
 
 ---
 
 ## Built-In Role
 
-API Connectivity Manager comes pre-configured with an [ACM API Owner]({{< relref "/nms/acm/tutorials/rbac-api-owners.md" >}}) role suitable for API Owners (The individuals or teams who are responsible for designing, creating, and maintaining APIs).
+API Connectivity Manager comes pre-configured with an [ACM API Owner]({{< ref "/nms/acm/tutorials/rbac-api-owners.md" >}}) role suitable for API Owners (The individuals or teams who are responsible for designing, creating, and maintaining APIs).
 
 ---
 

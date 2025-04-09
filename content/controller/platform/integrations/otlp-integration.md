@@ -85,7 +85,7 @@ Take the following steps to create an integration for OpenTelemetry Collector:
 7. (Optional) Add a description.
 8. (Optional) Add tags.
 9. In the **Integration Type** list, select `GENERIC_INTEGRATION`.
-10. In the **Endpoint URI** box, add the one of HTTP, HTTPS, gRPC or gRPC+TLS endpoint for your OpenTelemetry Collector. This is the same address that's configured in the OpenTelemetry Collector config in the receivers section. See the [example config]({{< relref "/controller/platform/integrations/otlp-integration.md#example-configuration-for-opentelemetry-collector" >}}):
+10. In the **Endpoint URI** box, add the one of HTTP, HTTPS, gRPC or gRPC+TLS endpoint for your OpenTelemetry Collector. This is the same address that's configured in the OpenTelemetry Collector config in the receivers section. See the [example config]({{< ref "/controller/platform/integrations/otlp-integration.md#example-configuration-for-opentelemetry-collector" >}}):
 
     - HTTP endpoint should be `http://collector_ip:4319`
     - HTTPS endpoint should be `https://collector_ip:4318`

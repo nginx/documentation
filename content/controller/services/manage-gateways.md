@@ -1,13 +1,11 @@
 ---
 description: Create, view, and edit Gateways.
 docs: DOCS-373
-doctypes:
-- tutorial
-tags:
-- docs
 title: Manage Gateways
 toc: true
 weight: 120
+type:
+- tutorial
 ---
 
 ## Overview
@@ -16,7 +14,7 @@ weight: 120
 
 A **Gateway** represents the initial network entry point of application and/or API traffic into an F5 NGINX instance in the traffic data path. You can share the same gateway for both application and API traffic.
 
-In a gateway, you define a group of **Ingress URIs** and **Certificates** that can then be used by [Application Components]({{< relref "/controller/app-delivery/about-app-delivery.md#components" >}}). Adding these definitions at the gateway level means you don't have to define the URIs and certificates for each component. Instead, you can inherit these settings from the gateway and only configure each component's relative path(s). Alternatively, you can fully define the URI in the component; doing so will override any settings defined for the gateway.
+In a gateway, you define a group of **Ingress URIs** and **Certificates** that can then be used by [Application Components]({{< ref "/controller/app-delivery/about-app-delivery.md#components" >}}). Adding these definitions at the gateway level means you don't have to define the URIs and certificates for each component. Instead, you can inherit these settings from the gateway and only configure each component's relative path(s). Alternatively, you can fully define the URI in the component; doing so will override any settings defined for the gateway.
 
 ### Supported Component Types
 
@@ -93,7 +91,7 @@ When multiple placements are defined within a gateway, each placement represents
 
 ## Before You Begin
 
-- [Create an Environment for your Gateway]({{< relref "/controller/services/manage-environments.md#create-an-environment" >}})
+- [Create an Environment for your Gateway]({{< ref "/controller/services/manage-environments.md#create-an-environment" >}})
 
 ## Create a Gateway
 
@@ -106,10 +104,10 @@ To create a gateway:
 1. Select **Create Gateway**.
 1. Complete each of the configuration sections:
 
-    - [General Configuration]({{< relref "#general-configuration" >}})
-    - [Add Placements]({{< relref "#add-placements" >}})
-    - [Set Hostnames]({{< relref "#set-hostnames" >}})
-    - [Additional Settings]({{< relref "#additional-settings" >}})
+    - [General Configuration]({{< ref "#general-configuration" >}})
+    - [Add Placements]({{< ref "#add-placements" >}})
+    - [Set Hostnames]({{< ref "#set-hostnames" >}})
+    - [Additional Settings]({{< ref "#additional-settings" >}})
 
 1. When ready, review the API Spec and then select **Submit** to create the Gateway.
 
@@ -127,7 +125,7 @@ On the **Gateways** > **Create Gateway** > **Configuration** page:
 
 ### Add Placements
 
-[Gateways]({{< relref "/controller/services/manage-gateways.md#overview" >}}) include placements that reference NGINX instances or instance groups. Gateway placements can be for multiple instances or instance groups, allowing a gateway to deliver services in multiple data centers and/or clouds. Placements define the physical machines that are used to manifest a particular path associated with an [application component]({{< relref "/controller/app-delivery/about-app-delivery.md#components" >}}).
+[Gateways]({{< ref "/controller/services/manage-gateways.md#overview" >}}) include placements that reference NGINX instances or instance groups. Gateway placements can be for multiple instances or instance groups, allowing a gateway to deliver services in multiple data centers and/or clouds. Placements define the physical machines that are used to manifest a particular path associated with an [application component]({{< ref "/controller/app-delivery/about-app-delivery.md#components" >}}).
 
 On the **Gateways > Create Gateway > Placements** page:
 
@@ -139,7 +137,7 @@ On the **Gateways > Create Gateway > Placements** page:
 1. In the **Instance Refs/Instance Groups Refs** box, select the NGINX instance(s) or instance group(s) on which you want to deploy the gateway.
 
    {{< note >}}
-   If you're enabling **High Availability Mode**, select the [high-availability instances that you prepared]({{< relref "/controller/infrastructure/instances/ha-data-plane.md#prepare-the-high-availability-instances" >}}). NGINX Controller supports up to two high-availability instances.
+   If you're enabling **High Availability Mode**, select the [high-availability instances that you prepared]({{< ref "/controller/infrastructure/instances/ha-data-plane.md#prepare-the-high-availability-instances" >}}). NGINX Controller supports up to two high-availability instances.
    {{< /note >}}
 
 1. In the **Listen IPs** box, add the IP address(es) on which the server listens for and accepts requests. If you're creating a placement for a BIG-IP Integration, add the virtual IP (VIP) address for the BIG-IP cluster.
@@ -184,7 +182,7 @@ On the **Gateways** > **Create Gateway** > **Additional** page:
    - `Explicitly Enable` - set specific values to use for the keep alive probes.
    - `Explicitly Disable` - disable keep alive.
 
-1. (Optional) Add [**Config Snippets**]({{< relref "/controller/app-delivery/about-snippets.md" >}}) to customize your NGINX configuration.
+1. (Optional) Add [**Config Snippets**]({{< ref "/controller/app-delivery/about-snippets.md" >}}) to customize your NGINX configuration.
 
    {{< caution >}}
    When you use Snippets to customize your NGINX configuration, your changes are applied to the `nginx.conf` file *as is*. NGINX Controller does not verify that your configuration is valid before applying the snippet.
@@ -205,7 +203,7 @@ To view, edit, and delete Gateways:
 6. To edit a Gateway, choose the Gateway from the list, then select **Edit** (pencil icon).
 7. To delete a Gateway, choose the Gateway from the list, then select **Delete** (trash icon).
 
-   {{< note >}}If your Gateway has external references, such as Components that reference the Gateway, you'll need to delete or reconfigure the external references before removing the Gateway. Refer to [Manage Apps & Components]({{< relref "/controller/app-delivery/manage-apps.md#edit-or-delete-apps-and-components" >}}) to learn how to edit and delete Components.{{< /note >}}
+   {{< note >}}If your Gateway has external references, such as Components that reference the Gateway, you'll need to delete or reconfigure the external references before removing the Gateway. Refer to [Manage Apps & Components]({{< ref "/controller/app-delivery/manage-apps.md#edit-or-delete-apps-and-components" >}}) to learn how to edit and delete Components.{{< /note >}}
 
 ## Troubleshooting
 
@@ -215,8 +213,8 @@ Timeouts are commonly reported when an instance doesn't report back to NGINX Con
 
 ## What's Next
 
-- [Set Up Data Plane High Availability]({{< relref "/controller/infrastructure/instances/ha-data-plane.md" >}})
-- [Create an App and App Component]({{< relref "/controller/app-delivery/manage-apps.md" >}})
+- [Set Up Data Plane High Availability]({{< ref "/controller/infrastructure/instances/ha-data-plane.md" >}})
+- [Create an App and App Component]({{< ref "/controller/app-delivery/manage-apps.md" >}})
 
 {{< versions "3.0" "latest" "ctrlvers" >}}
 {{< versions "3.18" "latest" "apimvers" >}}

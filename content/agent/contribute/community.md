@@ -1,12 +1,11 @@
 ---
-title: "Community and contribution"
+title: Community and contribution
 draft: false
 weight: 100
 toc: true
-tags: [ "docs" ]
-docs: "DOCS-1087"
-categories: ["configuration"]
-doctypes: ["task"]
+docs: DOCS-1087
+type:
+- how-to
 ---
 
 # Community

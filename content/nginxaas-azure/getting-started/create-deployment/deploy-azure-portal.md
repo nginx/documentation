@@ -1,10 +1,11 @@
 ---
-title: "Deploy using the Azure portal"
+title: Deploy using the Azure portal
 weight: 100
-categories: ["tasks"]
 toc: true
-docs: "DOCS-878"
+docs: DOCS-878
 url: /nginxaas/azure/getting-started/create-deployment/deploy-azure-portal/
+type:
+- how-to
 ---
 
 ## Overview
@@ -33,9 +34,9 @@ You can start the NGINXaaS deployment process by visiting the [Create NGINXaaS](
   | Name                        | Provide a unique name for your deployment. |
   | Region                      | Select the region you want to deploy to.   |
   | Pricing Plan                | Select the Standard V2 plan. For more information, see [Pricing Plans]({{< ref "/nginxaas-azure/billing/overview.md#pricing-plans">}})   |
-  | Scaling                     | Select Manual to set the capacity of your deployment in NCUs or select Autoscale to automatically adjust the capacity of your deployment. Learn more about NCUs in [Scaling Guidance]({{< relref "/nginxaas-azure/quickstart/scaling.md" >}}). |
+  | Scaling                     | Select Manual to set the capacity of your deployment in NCUs or select Autoscale to automatically adjust the capacity of your deployment. Learn more about NCUs in [Scaling Guidance]({{< ref "/nginxaas-azure/quickstart/scaling.md" >}}). |
   | Email                       | Provide an email address that can be notified about service alerts, maintenance data and activity reports. |
-  | Upgrade Channel             | Select the desired upgrade channel for your deployment. For more information, see [Upgrade Channels]({{< relref "/nginxaas-azure/quickstart/upgrade-channels.md" >}}). |
+  | Upgrade Channel             | Select the desired upgrade channel for your deployment. For more information, see [Upgrade Channels]({{< ref "/nginxaas-azure/quickstart/upgrade-channels.md" >}}). |
 
    {{</bootstrap-table>}}
 
@@ -79,11 +80,11 @@ You can start the NGINXaaS deployment process by visiting the [Create NGINXaaS](
 
 1. To test your deployment, you can go to the IP address noted on the overview page. The default NGINX welcome screen should load.
 
-   {{<note>}}You will not see the default NGINX welcome screen if you unchecked "Apply default NGINX configuration" in the [Networking Tab screen]({{< relref "create-deployment.md#networking-tab" >}}) above. You can proceed with providing your own NGINX configuration as outlined in the [NGINX configuration]({{< relref "nginx-configuration.md#networking-tab" >}}) section.{{</note>}}
+   {{<note>}}You will not see the default NGINX welcome screen if you unchecked "Apply default NGINX configuration" in the [Networking Tab screen]({{< ref "create-deployment.md#networking-tab" >}}) above. You can proceed with providing your own NGINX configuration as outlined in the [NGINX configuration]({{< ref "nginx-configuration.md#networking-tab" >}}) section.{{</note>}}
 
    {{< img src="nginxaas-azure/test-deployment.png" alt="NGINXaaS Overview page showing the IP address of the deployment in the Essentials section." >}}
 
 
 ## What's next
 
-[Assign Managed Identities]({{< relref "/nginxaas-azure/getting-started/managed-identity-portal.md" >}})
+[Assign Managed Identities]({{< ref "/nginxaas-azure/getting-started/managed-identity-portal.md" >}})

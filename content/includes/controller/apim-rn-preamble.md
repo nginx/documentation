@@ -9,8 +9,8 @@ Technical support is provided for earlier versions that were released within two
 {{< see-also >}}
 For related installation documentation, refer to the following publications:
 
-- [NGINX Controller Installation Guide]({{< relref "/controller/admin-guides/backup-restore/_index.md" >}})
-- [NGINX Controller Technical Specifications Guide]({{< relref "/controller/admin-guides/install/nginx-controller-tech-specs.md" >}})
+- [NGINX Controller Installation Guide]({{< ref "/controller/admin-guides/backup-restore/_index.md" >}})
+- [NGINX Controller Technical Specifications Guide]({{< ref "/controller/admin-guides/install/nginx-controller-tech-specs.md" >}})
 {{< /see-also >}}
 
 {{< important >}}

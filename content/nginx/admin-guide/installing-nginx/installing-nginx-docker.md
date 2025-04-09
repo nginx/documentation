@@ -1,11 +1,11 @@
 ---
 description: Deploy NGINX and F5 NGINX Plus as the Docker container.
 docs: DOCS-409
-doctypes:
-- task
 title: Deploying NGINX and NGINX Plus with Docker
 toc: true
 weight: 600
+type:
+- how-to
 ---
 
 [F5 NGINX Plus](https://www.nginx.com/products/nginx/), the high‑performance application delivery platform, load balancer, and web server, is available as the Docker container.
@@ -26,7 +26,7 @@ weight: 600
 <span id="nginx_plus_official_images"></span>
 ## Using official NGINX Plus Docker images
 
-Since NGINX Plus <a href="../../../releases/#r31">Release 31</a> you can get an NGINX Plus image from the official NGINX Plus Docker registry and upload it to your private registry.
+Since NGINX Plus NGINX Plus [Release 31]({{< ref "nginx/releases.md#r31" >}}) you can get an NGINX Plus image from the official NGINX Plus Docker registry and upload it to your private registry.
 
 The NGINX Plus Docker registry is available at `https://private-registry.nginx.com/v2/`. 
 
@@ -214,7 +214,7 @@ To start the Docker container with NGINX Plus, you will need to pass your JWT li
 To start the Docker container with NGINX Plus only:
 ```sh
 sudo docker run \
---env=NGINX_LICENSE_JWT=license.jwt \
+--env=NGINX_LICENSE_JWT=$(cat license.jwt) \
 --restart=always \
 --runtime=runc \
 -d <YOUR_REGISTRY>/nginx-plus/base:<VERSION_TAG>
@@ -225,7 +225,7 @@ you will need to additionally pass the NGINX One data plane key as the `NGINX_AG
 
 ```sh
 sudo docker run \
---env=NGINX_LICENSE_JWT=license.jwt \
+--env=NGINX_LICENSE_JWT=$(cat license.jwt) \
 --env=NGINX_AGENT_SERVER_GRPCPORT=443 \
 --env=NGINX_AGENT_SERVER_HOST=agent.connect.nginx.com \
 --env=NGINX_AGENT_SERVER_TOKEN="YOUR_NGINX_ONE_DATA_PLANE_KEY" \
@@ -252,7 +252,7 @@ To start the Docker Container with NGINX Plus and NGINX Agent on Debian or Ubunt
 
 ```sh
 sudo docker run \
---env=NGINX_LICENSE_JWT="license.jwt" \
+--env=NGINX_LICENSE_JWT=$(cat license.jwt) \
 --env=NGINX_AGENT_SERVER_GRPCPORT=443 \
 --env=NGINX_AGENT_SERVER_HOST=agent.connect.nginx.com \
 --env=NGINX_AGENT_SERVER_TOKEN="YOUR_NGINX_ONE_DATA_PLANE_KEY" \

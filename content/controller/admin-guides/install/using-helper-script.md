@@ -2,13 +2,11 @@
 description: Learn how to update F5 NGINX Controller installation settings and manage
   the NGINX Controller service using the helper.sh script.
 docs: DOCS-261
-doctypes:
-- task
-tags:
-- docs
 title: Update NGINX Controller Settings with helper.sh
 toc: true
 weight: 200
+type:
+- how-to
 ---
 
 ## Overview
@@ -106,7 +104,7 @@ After installing NGINX Controller, you should back up the cluster config and enc
 
 This section explains how to restore the embedded config database from the latest backup file or a specific, timestamped file.
 
-{{< important >}}If you restore the config database on top of a new installation of NGINX Controller, make sure to follow the steps to [restore your NGINX config and encryption keys]({{< relref "/controller/admin-guides/backup-restore/backup-restore-cluster-config.md" >}}) afterward. {{< /important >}}
+{{< important >}}If you restore the config database on top of a new installation of NGINX Controller, make sure to follow the steps to [restore your NGINX config and encryption keys]({{< ref "/controller/admin-guides/backup-restore/backup-restore-cluster-config.md" >}}) afterward. {{< /important >}}
 
 - To restore the embedded NGINX Controller config database **from the latest automated backup**, run the following command:
 
@@ -122,7 +120,7 @@ This section explains how to restore the embedded config database from the lates
 
   - If you installed the embedded config database on a **local volume**, the backup files are located in `/opt/nginx-controller/postgres_data/`.
 
-  - If you installed the embedded config database on an **NFS volume**, follow the steps in [(NFS) Copy Config Database Backup to Local Volume for Restoration]({{< relref "/controller/admin-guides/backup-restore/backup-restore-embedded-config-db.md#nfs-copy-config-database-backup-to-local-volume-for-restoration" >}}) to download the backup file to your local volume, and then use the `helper.sh` script to restore from it.
+  - If you installed the embedded config database on an **NFS volume**, follow the steps in [(NFS) Copy Config Database Backup to Local Volume for Restoration]({{< ref "/controller/admin-guides/backup-restore/backup-restore-embedded-config-db.md#nfs-copy-config-database-backup-to-local-volume-for-restoration" >}}) to download the backup file to your local volume, and then use the `helper.sh` script to restore from it.
 
 &nbsp;
 
@@ -136,7 +134,7 @@ To install NGINX Plus as a data plane for NGINX Controller, you need to have the
 
 {{< deprecated >}}Using the helper.sh script to download your NGINX Plus certificate and key bundle is deprecated in in NGINX Controller v3.9.{{< /deprecated >}}
 
-{{< see-also >}}If you're running NGINX Controller v3.10+, you can use the REST API to [Download the NGINX Plus Cert and Key Bundle]({{< relref "/controller/admin-guides/install/get-n-plus-cert-and-key.md" >}}). {{< /see-also >}}&nbsp;
+{{< see-also >}}If you're running NGINX Controller v3.10+, you can use the REST API to [Download the NGINX Plus Cert and Key Bundle]({{< ref "/controller/admin-guides/install/get-n-plus-cert-and-key.md" >}}). {{< /see-also >}}&nbsp;
 
 If you're running NGINX Controller 3.9 or earlier, use the `helper.sh` script to extract the NGINX repository key and certificate files:
 
@@ -146,7 +144,7 @@ If you're running NGINX Controller 3.9 or earlier, use the `helper.sh` script to
 
 {{< important >}}
 
-Make sure that you've [uploaded your license in NGINX Controller]({{< relref "licensing-controller.md" >}}) first before running the `helper.sh repository-cred` command to extract the repository files.
+Make sure that you've [uploaded your license in NGINX Controller]({{< ref "licensing-controller.md" >}}) first before running the `helper.sh repository-cred` command to extract the repository files.
 
 {{< /important >}}
 

@@ -1,12 +1,11 @@
 ---
-title: "Installation from NGINX repository"
+title: Installation from NGINX repository
 draft: false
 weight: 300
 toc: true
-tags: [ "docs" ]
-docs: "DOCS-1216"
-categories: ["configuration"]
-doctypes: ["task"]
+docs: DOCS-1216
+type:
+- how-to
 ---
 
 ## Overview
@@ -16,7 +15,7 @@ Learn how to install NGINX Agent from the NGINX Open Source repository.
 ## Prerequisites
 
 - NGINX installed. Once installed, ensure it is running. If you don't have it installed already, follow these steps to install [NGINX](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-open-source/)
-- A [supported operating system and architecture]({{< relref "/agent/technical-specifications.md#supported-distributions" >}})
+- A [supported operating system and architecture]({{< ref "/agent/technical-specifications.md#supported-distributions" >}})
 - `root` privilege
 
 ## Configure NGINX OSS Repository for installing NGINX Agent

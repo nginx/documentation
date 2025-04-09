@@ -349,5 +349,5 @@ The trace includes the attribute from the global NginxProxy resource as well as 
 
 ## See also
 
-- [Custom policies]({{< relref "/ngf/overview/custom-policies.md" >}}): learn about how NGINX Gateway Fabric custom policies work.
-- [API reference]({{< relref "/ngf/reference/api.md" >}}): all configuration fields for the policies mentioned in this guide
+- [Custom policies]({{< ref "/ngf/overview/custom-policies.md" >}}): learn about how NGINX Gateway Fabric custom policies work.
+- [API reference]({{< ref "/ngf/reference/api.md" >}}): all configuration fields for the policies mentioned in this guide

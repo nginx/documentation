@@ -7,9 +7,9 @@ url: /nginxaas/azure/changelog-archive/changelog-2022/
 
 Learn about the updates, new features, and resolved bugs in F5 NGINX as a Service for Azure during the year 2022.
 
-To see the latest changes, visit the [Changelog]({{< relref "/nginxaas-azure/changelog" >}}) page.
+To see the latest changes, visit the [Changelog]({{< ref "/nginxaas-azure/changelog" >}}) page.
 
-To see a list of currently active issues, visit the [Known issues]({{< relref "/nginxaas-azure/known-issues.md" >}}) page.
+To see a list of currently active issues, visit the [Known issues]({{< ref "/nginxaas-azure/known-issues.md" >}}) page.
 
 ## December 14, 2022
 
@@ -27,24 +27,24 @@ To see a list of currently active issues, visit the [Known issues]({{< relref "/
 
 - {{% icon-resolved %}} **Absolute paths may now be used with the `js_import` directive.**
 
-   NGINXaaS for Azure has new restrictions on file paths for certificate files, njs files, etc. See the [NGINX Filesystem Restrictions table]({{< relref "/nginxaas-azure/getting-started/nginx-configuration/overview/#nginx-filesystem-restrictions" >}}) for more information. Existing configurations will not be affected unless they need to be updated.
+   NGINXaaS for Azure has new restrictions on file paths for certificate files, njs files, etc. See the [NGINX Filesystem Restrictions table]({{< ref "/nginxaas-azure/getting-started/nginx-configuration/overview/#nginx-filesystem-restrictions" >}}) for more information. Existing configurations will not be affected unless they need to be updated.
 
 ## November 22, 2022
 
 - {{% icon-feature %}} **Logging support is now available**
 
-   Please visit the [Logging Support]({{< relref "/nginxaas-azure/monitoring/enable-logging/" >}}) documentation for more information on exporting NGINX logs with NGINXaaS for Azure.
+   Please visit the [Logging Support]({{< ref "/nginxaas-azure/monitoring/enable-logging/" >}}) documentation for more information on exporting NGINX logs with NGINXaaS for Azure.
 
 - {{% icon-resolved %}} **NGINXaaS for Azure ARM API schema supports previously unused fields `protectedFiles` and `logging`.**
 
 ## November 14, 2022
 
-- {{% icon-feature %}} NGINX deployment can be configured to send [metrics-based alerts]({{< relref "/nginxaas-azure/monitoring/configure-alerts.md" >}}).
+- {{% icon-feature %}} NGINX deployment can be configured to send [metrics-based alerts]({{< ref "/nginxaas-azure/monitoring/configure-alerts.md" >}}).
 
 ## November 7, 2022
 
 - {{% icon-feature %}} New deployments utilize [Availability Zones](https://learn.microsoft.com/en-us/azure/reliability/availability-zones-overview) to ensure data planes are highly available.
-- {{% icon-feature %}} Files containing sensitive data can be uploaded as a "Protected File", see: [NGINX Configuration]({{< relref "/nginxaas-azure/getting-started/managed-identity-portal.md" >}})
+- {{% icon-feature %}} Files containing sensitive data can be uploaded as a "Protected File", see: [NGINX Configuration]({{< ref "/nginxaas-azure/getting-started/managed-identity-portal.md" >}})
 
 ## October 24, 2022
 
@@ -57,7 +57,7 @@ To see a list of currently active issues, visit the [Known issues]({{< relref "/
   - Central US
   - North Central US
 
-  See the [Supported Regions]({{< relref "/nginxaas-azure/overview/overview.md#supported-regions" >}}) documentation for the full list of supported regions.
+  See the [Supported Regions]({{< ref "/nginxaas-azure/overview/overview.md#supported-regions" >}}) documentation for the full list of supported regions.
 
 ## October 11, 2022
 
@@ -90,17 +90,17 @@ To see a list of currently active issues, visit the [Known issues]({{< relref "/
 
 - {{% icon-feature %}} **Basic caching is now supported**
 
-  For more information on caching with NGINXaaS for Azure, please visit the [Basic Caching]({{< relref "/nginxaas-azure/quickstart/basic-caching.md" >}}) documentation.
+  For more information on caching with NGINXaaS for Azure, please visit the [Basic Caching]({{< ref "/nginxaas-azure/quickstart/basic-caching.md" >}}) documentation.
 
 - {{% icon-feature %}} **Rate Limiting is now supported**
 
-  For information on rate limiting with NGINXaaS for Azure, please visit the [Rate Limiting]({{< relref "/nginxaas-azure/quickstart/rate-limiting.md" >}}) documentation.
+  For information on rate limiting with NGINXaaS for Azure, please visit the [Rate Limiting]({{< ref "/nginxaas-azure/quickstart/rate-limiting.md" >}}) documentation.
 
 
 ## May 24, 2022
 
 ### Welcome to the NGINXaaS Public Preview
 
-NGINXaaS for Azure is now available for public preview. Give it a try! If you find any issues please let us know by [raising a support ticket]({{< relref "/nginxaas-azure/troubleshooting/troubleshooting.md" >}}).
+NGINXaaS for Azure is now available for public preview. Give it a try! If you find any issues please let us know by [raising a support ticket]({{< ref "/nginxaas-azure/troubleshooting/troubleshooting.md" >}}).
 
-Visit the [Known issues]({{< relref "/nginxaas-azure/known-issues.md" >}}) section to learn about the issues present in this release.
+Visit the [Known issues]({{< ref "/nginxaas-azure/known-issues.md" >}}) section to learn about the issues present in this release.
