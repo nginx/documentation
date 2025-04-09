@@ -14,7 +14,7 @@ and performance aligned with the NGINX core platform:
 {{< include "nginx-plus/supported-distributions.md" >}}
 
 To see the detailed technical specifications for NGINX Plus, refer to the official
-[NGINX documentation]({{< ref "/nginx/technical-specs.md" >}}).
+[NGINX Plus documentation]({{< ref "/nginx/technical-specs.md" >}}).
 
 
 ### Recommended hardware
