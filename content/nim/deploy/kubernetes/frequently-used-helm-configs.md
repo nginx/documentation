@@ -1,12 +1,10 @@
 ---
 docs: DOCS-1275
-doctypes:
-- task
-tags:
-- docs
 title: Frequently used Helm configurations
 toc: true
 weight: 400
+type:
+- how-to
 ---
 
 ## Overview
@@ -15,7 +13,7 @@ weight: 400
 
 This guide provides frequently used configurations for NGINX Instance Manager. To apply any of these configurations, modify the `values.yaml` file accordingly.
 
-Refer to the [configurable Helm settings]({{< relref "/nim/deploy/kubernetes/helm-config-settings.md" >}}) guide for a complete list of configurable parameters and default values used by NGINX Instance Manager and its modules when installing from a Helm chart.
+Refer to the [configurable Helm settings]({{< ref "/nim/deploy/kubernetes/helm-config-settings.md" >}}) guide for a complete list of configurable parameters and default values used by NGINX Instance Manager and its modules when installing from a Helm chart.
 
 ---
 
@@ -84,7 +82,7 @@ To use NGINX Plus for the API Gateway, follow these steps:
 
 1. Build your own Docker image for the NGINX Plus API Gateway by providing your `nginx-repo.crt` and `nginx-repo.key`. Download the certificate and key from the [MyF5 website](https://my.f5.com) and add them to your build context.
 
-   Use the following example Dockerfile to build the image. In this example, we use `apigw:<version>` as the base image, which you obtained when you [downloaded the Helm package]({{< relref "/nim/deploy/kubernetes/deploy-using-helm.md#download-helm-package" >}}).
+   Use the following example Dockerfile to build the image. In this example, we use `apigw:<version>` as the base image, which you obtained when you [downloaded the Helm package]({{< ref "/nim/deploy/kubernetes/deploy-using-helm.md#download-helm-package" >}}).
 
    **Example Dockerfile:**
 

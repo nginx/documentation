@@ -13,7 +13,7 @@ docs: DOCS-803
 
 This guide shows you how to install and upgrade NGINX Instance Manager in environments without internet access. It covers key steps, including downloading packages, managing dependencies, and configuring the system for offline use. Youâ€™ll also learn how to set up NGINX Instance Manager in disconnected mode and update the CVE list manually to keep your system secure.
 
-{{<call-out "note" "Access the deprecated manual steps" "">}}If you prefer to follow the original manual steps, you can access the [deprecated guide]({{< relref "nim/disconnected/offline-install-guide-deprecated.md" >}}). Please note that this guide is no longer actively maintained and may not reflect the latest updates or best practices.{{</call-out>}}
+{{<call-out "note" "Access the deprecated manual steps" "">}}If you prefer to follow the original manual steps, you can access the [deprecated guide]({{< ref "nim/disconnected/offline-install-guide-deprecated.md" >}}). Please note that this guide is no longer actively maintained and may not reflect the latest updates or best practices.{{</call-out>}}
 
 ---
 
@@ -29,10 +29,10 @@ Follow these steps to get your system ready for a successful installation with t
 
 The script supports only new installations. If NGINX Instance Manager is already installed, take one of the following actions:
 
-- **Upgrade manually**  
+- **Upgrade manually**
   The script cannot perform upgrades. To update an existing installation, follow the [upgrade steps](#upgrade-nim) in this document.
 
-- **Uninstall first**  
+- **Uninstall first**
   Remove the current installation and its dependencies for a fresh start. Use the [uninstall steps](#uninstall-nim) to delete the primary components. Afterward, manually check for and remove leftover files such as repository configurations or custom settings to ensure a clean system.
 
 #### Verify SSL certificates and private keys
@@ -41,7 +41,7 @@ Ensure that the required `.crt` and `.key` files are available, preferably in th
 
 #### Use the manual installation steps if needed
 
-If the script fails or if you prefer more control over the process, consider using the [manual installation steps]({{< relref "nim/disconnected/offline-install-guide-deprecated.md" >}}). These steps provide a reliable alternative for troubleshooting or handling complex setups.
+If the script fails or if you prefer more control over the process, consider using the [manual installation steps]({{< ref "nim/disconnected/offline-install-guide-deprecated.md" >}}). These steps provide a reliable alternative for troubleshooting or handling complex setups.
 
 ### Download the SSL Certificate and Private Key from MyF5
 
@@ -71,7 +71,7 @@ sudo bash install-nim-bundle.sh \
 
 <br>
 
-By default, this command installs the latest version of NGINX Open Source to run NGINX Instance Manager. NGINX Plus is currently not supported when using the script in Disconnected mode. Please see this guide to install NGINX Plus offline if you would like to use this in front of NGINX Instance Manager 
+By default, this command installs the latest version of NGINX Open Source to run NGINX Instance Manager. NGINX Plus is currently not supported when using the script in Disconnected mode. Please see this guide to install NGINX Plus offline if you would like to use this in front of NGINX Instance Manager
 
 <br>
 
@@ -108,7 +108,7 @@ The script downloads the required packages and adds them to a tarball file. Youâ
 
     ```shell
     sudo bash install-nim-bundle.sh \
-    -c <path/to/certificate.crt> 
+    -c <path/to/certificate.crt>
     -k <path/to/private.key> \
     -m offline \
     -d <distribution> \
@@ -120,7 +120,7 @@ The script downloads the required packages and adds them to a tarball file. Youâ
     ```shell
     Regenerated Admin password: <encrypted password>
     ```
-    
+
     Save that password. You'll need it when you sign in to NGINX Instance Manager.
 
 3. After installation, open a web browser, go to `https://<NIM-FQDN>` (the fully qualified domain name of the NGINX Instance Manager host), and log in.
@@ -163,7 +163,7 @@ To upgrade NGINX Instance Manager to a newer version:
 
     {{< include "installation/nms-user.md"  >}}
 
-3.	(Optional) If you use SELinux, follow the [Configure SELinux]({{< relref "/nim/system-configuration/configure-selinux.md"  >}}) guide to restore SELinux contexts using restorecon for files and directories related to NGINX Instance Manager.
+3.	(Optional) If you use SELinux, follow the [Configure SELinux]({{< ref "/nim/system-configuration/configure-selinux.md"  >}}) guide to restore SELinux contexts using restorecon for files and directories related to NGINX Instance Manager.
 
 ---
 

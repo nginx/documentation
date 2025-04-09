@@ -2,13 +2,11 @@
 description: These release notes contain information about new features, improvements,
   known issues, and bug fixes in the NGINX Controller API Management Module.
 docs: DOCS-369
-doctypes:
-- reference
-tags:
-- docs
 title: Release Notes 3.19.0
 toc: true
 weight: 97
+type:
+- reference
 ---
 
 {{< include "controller/apim-rn-preamble.md" >}}
@@ -33,7 +31,7 @@ Take note of the following considerations when upgrading to this version of the 
 
 - **NGINX Controller API Management Advanced Security**
 
-  You can use the [App Security add-on]({{< relref "/controller/app-delivery/security/concepts/_index.md" >}})for NGINX Controller APIM to enable Web Application Firewall (WAF) capabilities to protect your APIs. WAF lets you flag or block suspicious requests or attacks.
+  You can use the [App Security add-on]({{< ref "/controller/app-delivery/security/concepts/_index.md" >}})for NGINX Controller APIM to enable Web Application Firewall (WAF) capabilities to protect your APIs. WAF lets you flag or block suspicious requests or attacks.
 
 - **Support added for multiple `API key` identity providers on a component**
 

@@ -1,11 +1,12 @@
 ---
-title: "Uninstall with Helm"
+title: Uninstall with Helm
 draft: false
 toc: true
-description: "This topic explains how to uninstall F5 NGINX Service Mesh using Helm."
+description: This topic explains how to uninstall F5 NGINX Service Mesh using Helm.
 weight: 300
-categories: ["tasks"]
-docs: "DOCS-699"
+docs: DOCS-699
+type:
+- how-to
 ---
 
 ## Uninstalling the Chart

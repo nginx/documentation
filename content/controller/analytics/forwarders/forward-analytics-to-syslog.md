@@ -1,13 +1,11 @@
 ---
 description: How to forward Analytics Events to Syslog.
 docs: DOCS-534
-doctypes:
-- tutorial
-tags:
-- docs
 title: Forward Analytics Events to Syslog
 toc: true
 weight: 201
+type:
+- tutorial
 ---
 
 ## Overview
@@ -20,7 +18,7 @@ This guide assumes that you already have a working instance of any syslog server
 
 If you haven't already done so, you can use an open-source version of [Syslog-NG](https://www.syslog-ng.com/products/open-source-log-management/).
 
-You will also need to [Create an Integration]({{< relref "/controller/platform/integrations/syslog-integration.md" >}}) for your Syslog forwarder.
+You will also need to [Create an Integration]({{< ref "/controller/platform/integrations/syslog-integration.md" >}}) for your Syslog forwarder.
 
 ## Create a Forwarder
 
@@ -46,7 +44,7 @@ Take the following steps to create a Forwarder for Splunk:
 
 ## What's Next
 
-- Refer to [Troubleshooting Forwaders]({{< relref "/controller/support/troubleshooting-forwarders.md" >}}) for tips on resolving common issues.
+- Refer to [Troubleshooting Forwaders]({{< ref "/controller/support/troubleshooting-forwarders.md" >}}) for tips on resolving common issues.
 
 {{< versions "3.16" "latest" "ctrlvers" >}}
 {{< versions "3.18" "latest" "apimvers" >}}

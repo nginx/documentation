@@ -3,11 +3,10 @@ title: Configuring NGINX for Metric Collection
 description: Learn how to configure NGINX Instances to collect data.
 weight: 400
 toc: true
-tags: ["docs"]
-docs: "DOCS-963"
+docs: DOCS-963
 ---
 
-To monitor an NGINX instance, F5 NGINX Amplify Agent must [find the relevant NGINX master process]({{< relref "/amplify/nginx-amplify-agent/detecting-monitoring-instances" >}}) and determine its key characteristics.
+To monitor an NGINX instance, F5 NGINX Amplify Agent must [find the relevant NGINX master process]({{< ref "/amplify/nginx-amplify-agent/detecting-monitoring-instances" >}}) and determine its key characteristics.
 
 ## Metrics from stub_status
 
@@ -52,7 +51,7 @@ Test your nginx configuration after you've added the `stub_status` section above
 
 {{< note >}} If you use the `conf.d*`directory to keep common parts of your NGINX configuration that are then automatically included in the [server](http://nginx.org/en/docs/http/ngx_http_core_module.html#server) sections across your NGINX config, do not use the snippet above. Instead, you should configure [stub_status](http://nginx.org/en/docs/http/ngx_http_stub_status_module.html) manually within an appropriate location or server block. {{< /note >}}
 
-The above is an example `nginx_status` URI for [stub_status](http://nginx.org/en/docs/http/ngx_http_stub_status_module.html). NGINX Amplify Agent will determine the correct URI automatically upon parsing your NGINX configuration. Please make sure that the directory and the actual configuration file with `stub_status` are readable by NGINX Amplify Agent; otherwise, NGINX Amplify Agent won't be able to determine the `stub_status` URL correctly. If NGINX Amplify Agent fails to find `stub_status`, please refer to the workaround described [here]({{< relref "/amplify/nginx-amplify-agent/install/configuring-amplify-agent#configuring-the-url-for-stub_status-or-status-api" >}}).
+The above is an example `nginx_status` URI for [stub_status](http://nginx.org/en/docs/http/ngx_http_stub_status_module.html). NGINX Amplify Agent will determine the correct URI automatically upon parsing your NGINX configuration. Please make sure that the directory and the actual configuration file with `stub_status` are readable by NGINX Amplify Agent; otherwise, NGINX Amplify Agent won't be able to determine the `stub_status` URL correctly. If NGINX Amplify Agent fails to find `stub_status`, please refer to the workaround described [here]({{< ref "/amplify/nginx-amplify-agent/install/configuring-amplify-agent#configuring-the-url-for-stub_status-or-status-api" >}}).
 
 Please ensure the `stub_status` [ACL](http://nginx.org/en/docs/http/ngx_http_access_module.html) is correctly configured, especially if your system is IPv6-enabled. Test the reachability of `stub_status` metrics with `wget(1)` or `curl(1)`. When testing, use the exact URL matching your NGINX configuration.
 
@@ -86,7 +85,7 @@ nginx.http.request.writing = stub_status.writing
 
 For NGINX Plus, NGINX Amplify Agent will automatically use similar metrics available from the status API.
 
-For more information about the metric list, please refer to [Metrics and Metadata]({{< relref "/amplify/metrics-metadata" >}}).
+For more information about the metric list, please refer to [Metrics and Metadata]({{< ref "/amplify/metrics-metadata" >}}).
 
 ## Metrics from access.log and error.log
 
@@ -96,11 +95,11 @@ You don't have to specifically point NGINX Amplify Agent to either the NGINX con
 
 NGINX Amplify Agent will also try to detect the [log format](http://nginx.org/en/docs/http/ngx_http_log_module.html#log_format) for a particular log to parse it properly and try to extract even more useful metrics, e.g., [$upstream_response_time](http://nginx.org/en/docs/http/ngx_http_upstream_module.html#var_upstream_response_time).
 
-{{< note >}}Several metrics outlined in [Metrics and Metadata]({{< relref "metrics-metadata" >}}) will only be available if the corresponding variables are included in a custom [access.log](http://nginx.org/en/docs/http/ngx_http_log_module.html) format used for logging requests. You can find a complete list of NGINX log variables [here](http://nginx.org/en/docs/varindex.html).{{< /note >}}
+{{< note >}}Several metrics outlined in [Metrics and Metadata]({{< ref "metrics-metadata" >}}) will only be available if the corresponding variables are included in a custom [access.log](http://nginx.org/en/docs/http/ngx_http_log_module.html) format used for logging requests. You can find a complete list of NGINX log variables [here](http://nginx.org/en/docs/varindex.html).{{< /note >}}
 
 ## Using Syslog for Metric Collection
 
-If you configured NGINX Amplify Agent for syslog metric collection (see the [configuring syslog]({{< relref "/amplify/nginx-amplify-agent/install/configuring-amplify-agent#configuring-syslog" >}}) documentation), make sure to add the following settings to the NGINX configuration:
+If you configured NGINX Amplify Agent for syslog metric collection (see the [configuring syslog]({{< ref "/amplify/nginx-amplify-agent/install/configuring-amplify-agent#configuring-syslog" >}}) documentation), make sure to add the following settings to the NGINX configuration:
 
   1. Check that you are using NGINX version 1.9.5 or newer (or NGINX Plus Release 8 or newer).
   2. Edit the NGINX configuration file and specify the syslog listener address as the first parameter to the [access.log](http://nginx.org/en/docs/http/ngx_http_log_module.html) directive. Include the `amplify` tag, and your preferred log format:
@@ -109,7 +108,7 @@ If you configured NGINX Amplify Agent for syslog metric collection (see the [con
      access_log syslog:server=127.0.0.1:12000,tag=amplify,severity=info main_ext;
      ```
 
-     (see also how to extend the NGINX log format to collect [additional metrics]({{< relref "/amplify/metrics-metadata/nginx-metrics#additional-nginx-metrics" >}}))
+     (see also how to extend the NGINX log format to collect [additional metrics]({{< ref "/amplify/metrics-metadata/nginx-metrics#additional-nginx-metrics" >}}))
 
   3. Reload NGINX:
 

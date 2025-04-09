@@ -284,132 +284,139 @@
 <td></td>
 </tr>
 <tr class="even">
+<td><a href="#policy/login-enforcement">login-enforcement</a></td>
+<td>Yes</td>
+<td>object</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
 <td><a href="#policy/login-pages">login-pages</a></td>
 <td>Yes</td>
 <td>array of objects</td>
 <td>A login page is a URL in a web application that requests must pass through to get to the authenticated URLs. Use login pages, for example, to prevent forceful browsing of restricted parts of the web application, by defining access permissions for users. Login pages also allow session tracking of user sessions.</td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="#policy/methods">methods</a></td>
 <td>Yes</td>
 <td>array of objects</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>name</code></td>
 <td>No</td>
 <td>string</td>
 <td>The unique user-given name of the policy. Policy names cannot contain spaces or special characters. Allowed characters are a-z, A-Z, 0-9, dot, dash (-), colon (:) and underscore (_).</td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="#policy/open-api-files">open-api-files</a></td>
 <td>Yes</td>
 <td>array of objects</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="#policy/override-rules">override-rules</a></td>
 <td>Yes</td>
 <td>array of objects</td>
 <td>This section defines policy override rules.</td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="#policy/parameters">parameters</a></td>
 <td>Yes</td>
 <td>array of objects</td>
 <td>This section defines parameters that the security policy permits in requests.</td>
 <td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>performStaging</code></td>
 <td>No</td>
 <td>boolean</td>
 <td>Determines staging handling for all applicable entities in the policy, such as signatures, URLs, parameters, and cookies. If disabled, all entities will be enforced and any violations triggered will be considered illegal.</td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="#policy/response-pages">response-pages</a></td>
 <td>Yes</td>
 <td>array of objects</td>
 <td>The Security Policy has a default blocking response page that it returns to the client when the client request, or the web server response, is blocked by the security policy. You can change the way the system responds to blocked requests. All default response pages contain a variable, &lt;%TS.request.ID()%&gt;, that the system replaces with a support ID number when it issues the page.</td>
 <td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="#policy/sensitive-parameters">sensitive-parameters</a></td>
 <td>Yes</td>
 <td>array of objects</td>
 <td>This section defines sensitive parameters. The contents of these parameters are not visible in logs nor in the user interfaces. Instead of actual values a string of asterisks is shown for these parameters. Use these parameters to protect sensitive user input, such as a password or a credit card number, in a validated request. A parameter name of "password" is always defined as sensitive by default.</td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="#policy/server-technologies">server-technologies</a></td>
 <td>Yes</td>
 <td>array of objects</td>
 <td>The server technology is a server-side application, framework, web server or operating system type that is configured in the policy in order to adapt the policy to the checks needed for the respective technology.</td>
 <td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="#policy/signature-requirements">signature-requirements</a></td>
 <td>Yes</td>
 <td>array of objects</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="#policy/signature-sets">signature-sets</a></td>
 <td>Yes</td>
 <td>array of objects</td>
 <td>Defines behavior when signatures found within a signature-set are detected in a request. Settings are culmulative, so if a signature is found in any set with block enabled, that signature will have block enabled.</td>
 <td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="#policy/signature-settings">signature-settings</a></td>
 <td>Yes</td>
 <td>object</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="#policy/signatures">signatures</a></td>
 <td>Yes</td>
 <td>array of objects</td>
 <td>This section defines the properties of a signature on the policy.</td>
 <td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="#policy/template">template</a></td>
 <td>Yes</td>
 <td>object</td>
 <td>Specifies the template to populate the default attributes of a new policy.</td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="#policy/threat-campaigns">threat-campaigns</a></td>
 <td>Yes</td>
 <td>array of objects</td>
 <td>This section defines the enforcement state for the threat campaigns in the security policy.</td>
 <td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="#policy/urls">urls</a></td>
 <td>Yes</td>
 <td>array of objects</td>
 <td>In a security policy, you can manually specify the HTTP URLs that are allowed (or disallowed) in traffic to the web application being protected. When you create a security policy, wildcard URLs of * (representing all HTTP URLs) are added to the Allowed HTTP URLs lists.</td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>wafEngineVersion</code></td>
 <td>No</td>
 <td>string</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="#policy/xml-profiles">xml-profiles</a></td>
 <td>Yes</td>
 <td>array of objects</td>
@@ -859,6 +866,10 @@
 <ul>
 <li><strong>alarm</strong>: The system will log the login attempt.</li>
 <li><strong>alarm-and-blocking-page</strong>: The system will log the login attempt, block the request and send the Blocking page.</li>
+<li><strong>alarm-and-captcha</strong>: The system determines whether the client is a legal browser operated by a human user by sending a CAPTCHA challenge. A login attempt is logged if the client successfully passes the CAPTCHA challenge.</li>
+<li><strong>alarm-and-client-side-integrity</strong>: The system determines whether the client is a legal browser or a bot by sending a page containing JavaScript code and waiting for a response. Legal browsers are able to execute JavaScript and produce a valid response, whereas bots cannot. A login attempt is logged if the client successfully passes the Client Side Integrity challenge.</li>
+<li><strong>alarm-and-drop</strong>: The system will log the login attempt and reset the TCP connection.</li>
+<li><strong>alarm-and-honeypot-page</strong>: The system will log the login attempt, block the request and send the Honeypot page. The Honeypot page is used for attacker deception. The page should look like an application failed login page. Unlike with the Blocking page, when the Honeypot page is sent an attacker is not able to distinguish a failed login response from a mitigation. As a result, the attacker will not change identity (Source IP or Device ID) and the brute force attack will be rendered ineffective. The Honeypot page is recommended when mitigation is request blocking.</li>
 </ul>
 </blockquote></td>
 <td><ul>
@@ -904,6 +915,8 @@
 <blockquote>
 <ul>
 <li><strong>alarm</strong>: The system will log the login attempt.</li>
+<li><strong>alarm-and-captcha</strong>: The system determines whether the client is a legal browser operated by a human user by sending a CAPTCHA challenge. A login attempt is logged if the client successfully passes the CAPTCHA challenge.</li>
+<li><strong>alarm-and-client-side-integrity</strong>: The system determines whether the client is a legal browser or a bot by sending a page containing JavaScript code and waiting for a response. Legal browsers are able to execute JavaScript and produce a valid response, whereas bots cannot. A login attempt is logged if the client successfully passes the Client Side Integrity challenge.</li>
 </ul>
 </blockquote></td>
 <td><ul>
@@ -3226,6 +3239,86 @@
 <tr class="odd">
 <td><code>isBase64</code></td>
 <td>boolean</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="policy/login-enforcement">login-enforcement</h2>
+<table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 5%" />
+<col style="width: 47%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Allowed Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>authenticatedUrls</code></td>
+<td>array of strings</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>expirationTimePeriod</code></td>
+<td><ul>
+<li>integer minimum: 0 maximum: 99999</li>
+<li>string</li>
+</ul></td>
+<td></td>
+<td><ul>
+<li>Integer values</li>
+<li>"disabled"</li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td><a href="#policy/login-enforcement/logoutUrls">logoutUrls</a></td>
+<td>array of objects</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="policy/login-enforcement/logoutUrls">logoutUrls</h3>
+<table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 5%" />
+<col style="width: 47%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Allowed Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>requestContains</code></td>
+<td>string</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>requestOmits</code></td>
+<td>string</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><a href="#policy/urls">url</a></td>
+<td>object</td>
 <td></td>
 <td></td>
 </tr>
@@ -6286,6 +6379,8 @@
 <li>VIOL_JSON_MALFORMED</li>
 <li>VIOL_JSON_SCHEMA</li>
 <li>VIOL_LOGIN</li>
+<li>VIOL_LOGIN_URL_BYPASSED</li>
+<li>VIOL_LOGIN_URL_EXPIRED</li>
 <li>VIOL_MANDATORY_HEADER</li>
 <li>VIOL_MANDATORY_PARAMETER</li>
 <li>VIOL_MANDATORY_REQUEST_BODY</li>

@@ -2,11 +2,11 @@
 description: Control access or forward traffic to different upstream servers based
   on the client's geographical location, using the GeoIP2 dynamic module.
 docs: DOCS-431
-doctypes:
-- task
 title: Restricting Access by Geographical Location
 toc: true
 weight: 800
+type:
+- how-to
 ---
 
 <span id="intro"></span>
@@ -16,7 +16,7 @@ F5 NGINX Plus can differentiate users based on their geographical location. For 
 
 NGINX Plus uses third-party MaxMind databases to match the IP address of the user and its location. As soon as the geoposition is known, it is then possible to use geoip-based variables in the [map](https://nginx.org/en/docs/http/ngx_http_map_module.html) or the [split_clients](https://nginx.org/en/docs/http/ngx_http_split_clients_module.html) module.
 
-> **Note** MaxMind GeoLite Legacy databases are currently [discontinued](https://blog.maxmind.com/2018/01/discontinuation-of-the-geolite-legacy-databases), MaxMind GeoIP2 or GeoLite2 databases and NGINX Plus [GeoIP2 module]({{< relref "../dynamic-modules/geoip2.md" >}}) should be used instead.
+> **Note** MaxMind GeoLite Legacy databases are currently [discontinued](https://blog.maxmind.com/2018/01/discontinuation-of-the-geolite-legacy-databases), MaxMind GeoIP2 or GeoLite2 databases and NGINX Plus [GeoIP2 module]({{< ref "nginx/admin-guide/dynamic-modules/geoip2.md" >}}) should be used instead.
 
 Restricting by geographical location works both for HTTP and TCP/UDP protocols.
 
@@ -24,7 +24,7 @@ Restricting by geographical location works both for HTTP and TCP/UDP protocols.
 <span id="prereq"></span>
 ## Prerequisites
 
-- NGINX Plus [GeoIP2 dynamic module]({{< relref "../dynamic-modules/geoip2.md" >}})
+- NGINX Plus [GeoIP2 dynamic module]({{< ref "nginx/admin-guide/dynamic-modules/geoip2.md" >}})
 - [GeoIP2](https://www.maxmind.com/en/geoip2-databases) or [GeoLite2](https://dev.maxmind.com/geoip/geoip2/geolite2/) databases from MaxMind
 - (optional) [mmdblookup](http://maxmind.github.io/libmaxminddb/mmdblookup.html) utility that looks up an IP address in a MaxMind Database file
 
@@ -269,7 +269,7 @@ Using the geolocation data from the created variables, a client connection can b
 
 This can be achieved by using the continent code from the GeoIP2 database in a variable and the [map](https://nginx.org/en/docs/http/ngx_http_map_module.html) module that will create another variable whose value will be the closest server basing on a continent location. Basing on this value, NGINX will pass the request to the corresponding upstream server group.
 
-1. Make sure you have configured the servers or [upstream server groups]({{< relref "../load-balancer/http-load-balancer.md" >}}) for each continent, for example, `eu` for Europe, `na` for North America, `all` for cases when the IP address cannot be matched against the GeoIP database:
+1. Make sure you have configured the servers or [upstream server groups]({{< ref "nginx/admin-guide/load-balancer/http-load-balancer.md" >}}) for each continent, for example, `eu` for Europe, `na` for North America, `all` for cases when the IP address cannot be matched against the GeoIP database:
 
    ```nginx
    upstream all {
@@ -392,7 +392,7 @@ In this example, the IP address will be checked in the `GeoLite2-Country.mmdb` d
 <span id="info"></span>
 ## More Info
 
-- [GeoIP2 Dynamic Module Installation Instructions]({{< relref "/nginx/admin-guide/dynamic-modules/geoip2.md" >}})
+- [GeoIP2 Dynamic Module Installation Instructions]({{< ref "/nginx/admin-guide/dynamic-modules/geoip2.md" >}})
 
 - [MaxMind GeoIP2 Databases](https://www.maxmind.com/en/geoip2-databases)
 

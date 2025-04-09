@@ -1,24 +1,22 @@
 ---
 description: How to use Role Based Access Control with App Security.
 docs: DOCS-845
-doctypes:
-- task
-tags:
-- docs
 title: Using RBAC with the App Security Add-On
 toc: true
 weight: 400
+type:
+- how-to
 ---
 
 Role Based Access Control (RBAC) allows you to define permissions for Apps Security resources. With RBAC, you can specify which role has the permissions to create, read (and reference), update, and delete a Security Strategy or a Security Policy. You can then assign roles to specific users so that the users inherit the permissions.
 
-For more information regarding roles, refer to [Manage Roles and Role Groups]({{< relref "/controller/platform/access-management/manage-roles.md" >}})
+For more information regarding roles, refer to [Manage Roles and Role Groups]({{< ref "/controller/platform/access-management/manage-roles.md" >}})
 
 ## Permissions for App Security
 
 To enable security, the app component needs to reference a security strategy. The security strategy in turn references a security policy. When using RBAC with App Security, you need to configure permissions for the app component, the security strategy, and the security policy.
 
-Resources that are deeper in the path hierarchy inherit permissions from their parents unless explicitly overwritten. For more information, refer to [Manage Roles and Role Groups]({{< relref "/controller/platform/access-management/manage-roles.md" >}}).
+Resources that are deeper in the path hierarchy inherit permissions from their parents unless explicitly overwritten. For more information, refer to [Manage Roles and Role Groups]({{< ref "/controller/platform/access-management/manage-roles.md" >}}).
 
 ## Granting Permissions on App Components
 
@@ -41,7 +39,7 @@ The app component you want to enable WAF for must have `WRITE` permission. Addit
 
 ## Granting Permissions on Security Strategies and Security Policies
 
-A security strategy references a security policy. For more information regarding security strategies and security policies, refer to [About App Security]({{< relref "/controller/app-delivery/security/concepts/what-is-waf.md#security-strategy" >}}).
+A security strategy references a security policy. For more information regarding security strategies and security policies, refer to [About App Security]({{< ref "/controller/app-delivery/security/concepts/what-is-waf.md#security-strategy" >}}).
 
 ### Deny by Default
 

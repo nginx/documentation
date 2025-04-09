@@ -2,11 +2,11 @@
 description: Capture detailed information about errors and request processing in log
   files, either locally or via syslog.
 docs: DOCS-426
-doctypes:
-- task
 title: Configuring Logging
 toc: true
 weight: 200
+type:
+- how-to
 ---
 
 This article describes how to configure logging of errors and processed requests in NGINX Open Source and NGINX Plus.
@@ -205,6 +205,6 @@ The `severity=` parameter sets the severity level of syslog messages for access 
 <span id="monitoring"></span>
 ## Live Activity Monitoring
 
-NGINX Plus provides a real-time live activity monitoring interface that shows key load and performance metrics of your [HTTP]({{< relref "../load-balancer/http-load-balancer.md" >}}) and [TCP]({{< relref "../load-balancer/tcp-udp-load-balancer.md" >}}) upstream servers. See the [Live Activity Monitoring]({{< relref "live-activity-monitoring.md" >}}) article for more information.
+NGINX Plus provides a real-time live activity monitoring interface that shows key load and performance metrics of your [HTTP]({{< ref "nginx/admin-guide/load-balancer/http-load-balancer.md" >}}) and [TCP]({{< ref "nginx/admin-guide/load-balancer/tcp-udp-load-balancer.md" >}}) upstream servers. See the [Live Activity Monitoring]({{< ref "live-activity-monitoring.md" >}}) article for more information.
 
 To learn more about NGINX Plus, please visit the [Products](https://www.nginx.com/products/) page.

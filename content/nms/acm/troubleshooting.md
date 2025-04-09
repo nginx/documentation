@@ -2,13 +2,11 @@
 description: This topic describes possible issues users might encounter when using
   API Connectivity Manager. When possible, suggested workarounds are provided.
 docs: DOCS-1222
-doctypes:
-- reference
-tags:
-- docs
 title: Troubleshooting
 toc: true
 weight: 1000
+type:
+- reference
 ---
 
 ## System returns `403 Forbidden` error for authorized resources

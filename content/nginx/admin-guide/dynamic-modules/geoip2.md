@@ -3,11 +3,11 @@ description: Capture information from the client IP address in variables, using 
   [MaxMind GeoIP2](https://www.maxmind.com/en/geoip2-databases) databases, with the
   GeoIP2 dynamic module supported by NGINX, Inc.
 docs: DOCS-387
-doctypes:
-- task
 title: GeoIP2
 toc: true
 weight: 100
+type:
+- how-to
 ---
 
 <span id="info"></span>
@@ -19,7 +19,7 @@ weight: 100
 <span id="install"></span>
 ## Installation
 
-1. Check the [Technical Specifications]({{< relref "../../technical-specs.md" >}}) page to verify that the module is supported by your operating system.
+1. Check the [Technical Specifications]({{< ref "nginx/technical-specs.md" >}}) page to verify that the module is supported by your operating system.
 
 2. Install the GeoIP2 module package `nginx-plus-module-geoip2`.
 
@@ -83,12 +83,12 @@ After installation you will need to enable and configure the module in NGINX Plu
 <span id="info"></span>
 ## More Info
 
-- [Restricting Access by Geographical Location]({{< relref "../security-controls/controlling-access-by-geoip.md" >}})
+- [Restricting Access by Geographical Location]({{< ref "nginx/admin-guide/security-controls/controlling-access-by-geoip.md" >}})
 
 - [MaxMind GeoIP2 Databases](https://www.maxmind.com/en/geoip2-databases)
 
 - [MaxMind Geolite2 Free Downloadable Databases](https://dev.maxmind.com/geoip/geoip2/geolite2/)
 
-- [NGINX Dynamic Modules]({{< relref "dynamic-modules.md" >}})
+- [NGINX Dynamic Modules]({{< ref "dynamic-modules.md" >}})
 
-- [NGINX Plus Technical Specifications]({{< relref "../../technical-specs.md" >}})
+- [NGINX Plus Technical Specifications]({{< ref "nginx/technical-specs.md" >}})

@@ -9,7 +9,7 @@ docs: DOCS-846
 
 May 25, 2022
 
-This release includes updated signatures for the [Anti Automation]({{< relref "/nap-waf/v4/configuration-guide/configuration.md#anti-automation-bot-mitigation" >}}) (bot defense) feature as follows:
+This release includes updated signatures for the [Anti Automation]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#anti-automation-bot-mitigation" >}}) (bot defense) feature as follows:
 
 - Added the following Spam Bot bot signatures: MediaControl Rumble, Internet Fuzzer, NEKO
 - Added the following Service Agent bot signatures: ShadowByte, BackupLand, Virusdie, DropboxPreviewBot, GnowitNewsbot, SiteScoreBot, Hardenize
@@ -50,12 +50,12 @@ This release includes updated signatures for the [Anti Automation]({{< relref "/
 
 - 5800 Fixed - Fixed warning message on Attack Signatures or Threat Campaigns removal on debian-based operating systems.
 - 5946 Fixed - When using custom security policy in transparent mode with bot defense enabled - NGINX App Protect WAF blocks requests without User-Agent.
-- 5947 Fixed - When using default security policy - NGINX App Protect WAF reports wrong [outcome_reason]({{< relref "/nap-waf/v4/configuration-guide/configuration.md#available-security-log-attributes" >}})) when sending requests without User-Agent.
+- 5947 Fixed - When using default security policy - NGINX App Protect WAF reports wrong [outcome_reason]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#available-security-log-attributes" >}})) when sending requests without User-Agent.
 - 5780 Fixed - Vulnerability in NGINX App Protect WAF allows a user in some particular circumstances to compose a Security Policy with arbitrary code which will be executed where it is deployed.
 - 6008 Fixed - Using an external reference `botDefenseReference` for the bot-defense configuration did not correctly take effect on the policy.
-- 6196 Fixed - Updated information on changing the [total_xml_memory]({{< relref "/nap-waf/v4/admin-guide/install.md#post-installation-checks" >}}) value in NGINX App Protect WAF Admin guide.
+- 6196 Fixed - Updated information on changing the [total_xml_memory]({{< ref "/nap-waf/v4/admin-guide/install.md#post-installation-checks" >}}) value in NGINX App Protect WAF Admin guide.
 
 ### **Important Note**
 
 When upgrading the NGINX App Protect WAF deployments on Virtual Machines (VM), where the upgrade includes a NGINX Plus release upgrade as well, customers might witness an error message about the upgrade failure.<br>
-Customers are advised to ignore this message and continue with the [upgrade procedure]({{< relref "/nap-waf/v4/admin-guide/install.md#upgrading-app-protect" >}}) as described in the NGINX App Protect WAF Admin guide.
+Customers are advised to ignore this message and continue with the [upgrade procedure]({{< ref "/nap-waf/v4/admin-guide/install.md#upgrading-app-protect" >}}) as described in the NGINX App Protect WAF Admin guide.

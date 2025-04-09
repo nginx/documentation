@@ -1,12 +1,12 @@
 ---
-description: Configure highly available F5 NGINX Plus load balancing of application instances,
-  in an all-active deployment on the Google Cloud Platform.
+description: Configure highly available F5 NGINX Plus load balancing of application
+  instances, in an all-active deployment on the Google Cloud Platform.
 docs: DOCS-450
-doctypes:
-- task
 title: All-Active HA for NGINX Plus on the Google Cloud Platform
 toc: true
 weight: 100
+type:
+- how-to
 ---
 
 This guide explains how to deploy F5 NGINX Plus in a high-availability configuration on Google Compute Engine (GCE). GCE is the Google Cloud Platform (GCP) service for running workloads on virtual machines. In this setup, multiple NGINX Plus instances work together, in active pairs. They load balance incoming connections across your app environments.
@@ -32,7 +32,7 @@ The deployment combines the following technologies:
 
 <img src="/nginx/images/gce-all-active-load-balancing-topology.png" alt="Topology of the all‑active deployment of NGINX Plus as the Google Cloud Platform load balancer." width="1024" height="1000" class="aligncenter size-full wp-image-47509" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
-[Session persistence](https://www.nginx.com/products/nginx/load-balancing/#session-persistence) is managed at the network layer by the GCE network load balancer (based on client IP address). The NGINX Plus LB instance also manages it at the application layer (with a session cookie).  
+[Session persistence](https://www.nginx.com/products/nginx/load-balancing/#session-persistence) is managed at the network layer by the GCE network load balancer (based on client IP address). The NGINX Plus LB instance also manages it at the application layer (with a session cookie).
 
 The GCE network LB assigns each new client to a specific NGINX Plus LB. This association persists as long as the LB instance is up and functional.
 
@@ -40,7 +40,7 @@ NGINX Plus LB uses the round-robin algorithm to forward requests to specific app
 
 This deployment guide uses two groups of app instances: – <span style="color:#666666; font-weight:bolder; white-space: nowrap;">app-1</span> and <span style="color:#666666; font-weight:bolder; white-space: nowrap;">app-2</span>. It demonstrates [load balancing](https://www.nginx.com/products/nginx/load-balancing/) between different app types. But both groups have the same app configurations.
 
-You can adapt the deployment to distribute unique connections to different groups of app instances. This can be done by creating discrete upstream blocks and routing content based on the URI. 
+You can adapt the deployment to distribute unique connections to different groups of app instances. This can be done by creating discrete upstream blocks and routing content based on the URI.
 
 Please see the reference docs for details on configuring multiple [upstream server groups](https://nginx.org/en/docs/http/ngx_http_upstream_module.html).
 
@@ -113,7 +113,7 @@ Create three GCE source instances. Use them as templates for later instance grou
 
 You can create source instances in either of two ways:
 
-- [Based on a standard GCE VM image](#source-vm), you install NGINX Plus manually. This guide uses the latest Ubuntu LTS image at publication (<span style="white-space: nowrap;">Ubuntu 24.04 LTS</span>). You can use any Unix or Linux OS that [NGINX Plus supports]({{< relref "../../technical-specs.md" >}}).
+- [Based on a standard GCE VM image](#source-vm), you install NGINX Plus manually. This guide uses the latest Ubuntu LTS image at publication (<span style="white-space: nowrap;">Ubuntu 24.04 LTS</span>). You can use any Unix or Linux OS that [NGINX Plus supports]({{< ref "nginx/technical-specs.md" >}}).
 - [Based on the prebuilt NGINX Plus image](#source-prebuilt) in the Google Marketplace, which at the time of publication runs on <span style="white-space: nowrap;">Ubuntu 14.04 LTS</span>.
 
 The methods to create a source instance are different. Once you've created the source instances, all later instructions are the same.
@@ -257,7 +257,7 @@ Both the configuration and content files are available at the [NGINX GitHub repo
 
 **Note:** Some commands require `root` privilege. If appropriate for your environment, prefix commands with the `sudo` command.
 
-1. Install NGINX Plus. For instructions, see the [NGINX Plus Admin Guide]({{< relref "../../admin-guide/installing-nginx/installing-nginx-plus.md" >}}).
+1. Install NGINX Plus. For instructions, see the [NGINX Plus Admin Guide]({{< ref "nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}).
 
 2. Clone the GitHub repository for the [all‑active load balancing deployment](https://github.com/nginxinc/NGINX-Demos/tree/master/gce-nginx-plus-deployment-guide-files). (Instructions for downloading the files directly from the GitHub repository are provided below, in case you prefer not to clone it.)
 

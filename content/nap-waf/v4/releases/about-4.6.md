@@ -9,7 +9,7 @@ docs: DOCS-1347
 
 October 17, 2023
 
-This release includes new signatures for [Anti Automation]({{< relref "/nap-waf/v4/configuration-guide/configuration.md#anti-automation-bot-mitigation" >}}) (bot defense):
+This release includes new signatures for [Anti Automation]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#anti-automation-bot-mitigation" >}}) (bot defense):
 
 - Added the following Crawler bot signature: CheckMarkNetwork, FileHound, ReverseEngineeringBot, University Of Edinburgh, Audisto, crawler eb germany, FAST Enterprise, AASA-Bot, Neticle, newslookup-bot, MYIP.MS, Boomtrain Content Bot, Ads Standards Bot, Seamless Link Tester, CMS detector bot, Aesop, BullsEye, Drip, EyeNetIE Scanner, IIS bot, OWLer, RetrevoPageAnalyzer, criteo-crawler, trafilatura
 - Added the following HTTP Library bot signatures: libtorrent, Apache-HttpAsyncClient, RobotsTxtParser-VIPnytt, OpenAI Python Library, OpenAPI Generator, ServiceNow Http Client, CarrierWave
@@ -24,9 +24,9 @@ This release includes new signatures for [Anti Automation]({{< relref "/nap-waf/
 
 ### New Features
 
-- [Ubuntu 22.04 Support]({{< relref "/nap-waf/v4/admin-guide/install.md#ubuntu-1804--ubuntu-2004--ubuntu-2204--ubuntu-2404-installation" >}}) 
-- [JSON Web Token Protection]({{< relref "/nap-waf/v4/configuration-guide/configuration.md#json-web-token-protection" >}})
-- [Custom Dimensions Log Entries]({{< relref "/nap-waf/v4/configuration-guide/configuration.md#custom-dimensions-log-entries" >}})
+- [Ubuntu 22.04 Support]({{< ref "/nap-waf/v4/admin-guide/install.md#ubuntu-1804--ubuntu-2004--ubuntu-2204--ubuntu-2404-installation" >}})
+- [JSON Web Token Protection]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#json-web-token-protection" >}})
+- [Custom Dimensions Log Entries]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#custom-dimensions-log-entries" >}})
 
 
 ### Supported Packages
@@ -76,6 +76,6 @@ This release includes new signatures for [Anti Automation]({{< relref "/nap-waf/
 
 ### **Important Notes**
 
-- Starting with this release, the `app_protect_compressed_requests_action` directive has been deprecated from the nginx configuration. Now by default the enforcer will decompress all the HTTP compressed payload request and will apply the enforcment. See [Handling Compressed Requests]({{< relref "/nap-waf/v4/configuration-guide/configuration.md#handling-compressed-requests" >}}) for more details.
+- Starting with this release, the `app_protect_compressed_requests_action` directive has been deprecated from the nginx configuration. Now by default the enforcer will decompress all the HTTP compressed payload request and will apply the enforcment. See [Handling Compressed Requests]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#handling-compressed-requests" >}}) for more details.
 
-- The NGINX App Protect WAF has been enhanced to include response signature checks within the "filetypes" section. You have an option to enable the signature verification in the response by setting the `responseCheck` parameter to true. By default, this parameter is set to false. See [Restrict Response Signatures]({{< relref "/nap-waf/v4/configuration-guide/configuration.md#restrict-response-signatures" >}}) for more details.
+- The NGINX App Protect WAF has been enhanced to include response signature checks within the "filetypes" section. You have an option to enable the signature verification in the response by setting the `responseCheck` parameter to true. By default, this parameter is set to false. See [Restrict Response Signatures]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#restrict-response-signatures" >}}) for more details.

@@ -2,11 +2,11 @@
 description: Load balance HTTP traffic across web or application server groups, with
   several algorithms and advanced features like slow-start and session persistence.
 docs: DOCS-418
-doctypes:
-- task
 title: HTTP Load Balancing
 toc: true
 weight: 100
+type:
+- how-to
 ---
 
 <span id="overview"></span>
@@ -262,7 +262,7 @@ NGINX Plus supports three session persistence methods. The methods are set with 
     }
     ```
 
-    See [Runtime State Sharing in a Cluster]({{< relref "../high-availability/zone_sync.md" >}}) for details.
+    See [Runtime State Sharing in a Cluster]({{< ref "nginx/admin-guide/high-availability/zone_sync.md" >}}) for details.
 
 
 <span id="maxconns"></span>
@@ -290,7 +290,7 @@ Note that the `max_conns` limit is ignored if there are idle [`keepalive`](https
 
 NGINX can continually test your HTTP upstream servers, avoid the servers that have failed, and gracefully add the recovered servers into the load‑balanced group.
 
-See [HTTP Health Checks]({{< relref "http-health-check.md" >}}) for instructions how to configure health checks for HTTP.
+See [HTTP Health Checks]({{< ref "nginx/admin-guide/load-balancer/http-health-check.md" >}}) for instructions how to configure health checks for HTTP.
 
 
 <span id="zone"></span>
@@ -300,7 +300,7 @@ If an [`upstream`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#
 
 When the `zone` directive is included in an `upstream` block, the configuration of the upstream group is kept in a memory area shared among all worker processes. This scenario is dynamically configurable, because the worker processes access the same copy of the group configuration and utilize the same related counters.
 
-The `zone` directive is mandatory for [active health checks](#health_active) and [dynamic reconfiguration]({{< relref "dynamic-configuration-api.md" >}}) of the upstream group. However, other features of upstream groups can benefit from the use of this directive as well.
+The `zone` directive is mandatory for [active health checks](#health_active) and [dynamic reconfiguration]({{< ref "dynamic-configuration-api.md" >}}) of the upstream group. However, other features of upstream groups can benefit from the use of this directive as well.
 
 For example, if the configuration of a group is not shared, each worker process maintains its own counter for failed attempts to pass a request to a server (set by the [max_fails](#health_passive) parameter). In this case, each request gets to only one worker process. When the worker process that is selected to process a request fails to transmit the request to a server, other worker processes don’t know anything about it. While some worker process can consider a server unavailable, others might still send requests to this server. For a server to be definitively considered unavailable, the number of failed attempts during the timeframe set by the `fail_timeout` parameter must equal `max_fails` multiplied by the number of worker processes. On the other hand, the `zone` directive guarantees the expected behavior.
 
@@ -438,10 +438,10 @@ http {
 }
 ```
 
-For more information about configuring Microsoft Exchange and NGINX Plus, see the [Load Balancing Microsoft Exchange Servers with NGINX Plus]({{< relref "/nginx/deployment-guides/load-balance-third-party/microsoft-exchange.md" >}}) deployment guide.
+For more information about configuring Microsoft Exchange and NGINX Plus, see the [Load Balancing Microsoft Exchange Servers with NGINX Plus]({{< ref "/nginx/deployment-guides/load-balance-third-party/microsoft-exchange.md" >}}) deployment guide.
 
 
 <span id="dynamic"></span>
 ## Dynamic Configuration Using the NGINX Plus API
 
-With NGINX Plus, the configuration of an upstream server group can be modified dynamically using the NGINX Plus API. A configuration command can be used to view all servers or a particular server in a group, modify parameter for a particular server, and add or remove servers. For more information and instructions, see [Configuring Dynamic Load Balancing with the NGINX Plus API]({{< relref "dynamic-configuration-api.md" >}}).
+With NGINX Plus, the configuration of an upstream server group can be modified dynamically using the NGINX Plus API. A configuration command can be used to view all servers or a particular server in a group, modify parameter for a particular server, and add or remove servers. For more information and instructions, see [Configuring Dynamic Load Balancing with the NGINX Plus API]({{< ref "dynamic-configuration-api.md" >}}).

@@ -2,11 +2,11 @@
 description: Migrate load-balancing configuration from F5 BIG-IP LTM to NGINX Plus,
   using our syntax conversion examples.
 docs: DOCS-460
-doctypes:
-- task
 title: Migrating Load Balancer Configuration from F5 BIG-IP LTM to F5 NGINX Plus
 toc: true
 weight: 100
+type:
+- how-to
 ---
 
 F5 NGINX Plus provides a flexible replacement for traditional hardware‑based [application delivery controllers](https://www.nginx.com/resources/glossary/application-delivery-controller/) (ADCs). NGINX Plus is a small software package that can be installed just about anywhere – on bare metal, a virtual machine, or a container, and on‑premises or in public, private, and hybrid clouds – while providing the same level of application delivery, high availability, and security offered by legacy ADCs. This guide explains how to migrate an <span style="white-space: nowrap;">F5 BIG-IP</span> Local Traffic Manager (LTM) configuration to the NGINX Plus software application delivery platform, and covers the most commonly used features and configurations to get you started quickly on your migration.
@@ -22,8 +22,8 @@ NGINX Plus and <span style="white-space: nowrap;">BIG-IP LTM</span> both act as
 
 - [Full‑featured HTTP, TCP, and UDP load balancing](https://www.nginx.com/products/nginx/load-balancing/)
 - [Intelligent session persistence](https://www.nginx.com/products/nginx/load-balancing/#session-persistence)
-- [High‑performance reverse proxy]({{< relref "../../admin-guide/web-server/reverse-proxy.md" >}})
-- [Caching and offload of dynamic and static content]({{< relref "../../admin-guide/content-cache/content-caching.md" >}})
+- [High‑performance reverse proxy]({{< ref "nginx/admin-guide/web-server/reverse-proxy.md" >}})
+- [Caching and offload of dynamic and static content]({{< ref "nginx/admin-guide/content-cache/content-caching.md" >}})
 - [Adaptive streaming to deliver audio and video to any device](https://www.nginx.com/products/nginx/streaming-media/)
 - [Application-aware health checks](https://docs.nginx.com/nginx/admin-guide/load-balancer/http-health-check/) and [high availability](https://docs.nginx.com/nginx/admin-guide/high-availability/)
 - [Advanced activity monitoring available via a dashboard or API](https://www.nginx.com/products/nginx/live-activity-monitoring/)
@@ -93,19 +93,19 @@ In addition to these networking concepts, there are two other important technolo
 
 - **iRules** – iRules is a proprietary, event‑driven, content‑switching and traffic‑manipulation engine (based on TCL) used by <span style="white-space: nowrap;">BIG-IP LTM</span> to control all aspects of data‑plane traffic. iRules are attached to virtual servers and are required for any type of content switching, such as choosing a pool based on URI, inserting headers, establishing affinity with JSESSIONIDs, and so on. iRules are event‑driven and are configured to fire for each new connection when certain criteria are met, such as when a new HTTP request is made to a virtual server or when a server sends a response to a client.
 
-    NGINX Plus natively handles content switching and HTTP session manipulation, eliminating the need to explicitly migrate most context‑based iRules and those which deal with HTTP transactions such as header manipulation. Most context‑based iRules can be translated to `server` and `location` blocks, and more complex iRules that cannot be duplicated with NGINX Plus directives and configuration block can be implemented with the [Lua]({{< relref "../../admin-guide/dynamic-modules/lua.md" >}}) or [JavaScript]({{< relref "../../admin-guide/dynamic-modules/nginscript.md" >}}) modules. For more information on translating iRules to NGINX Plus content rules, see [Migrating Layer 7 Logic from F5 iRules and Citrix Policies to NGINX and NGINX Plus](https://www.nginx.com/blog/migrating-layer7-logic-f5-irules-citrix-policies-nginx-plus/) on the NGINX blog.
+    NGINX Plus natively handles content switching and HTTP session manipulation, eliminating the need to explicitly migrate most context‑based iRules and those which deal with HTTP transactions such as header manipulation. Most context‑based iRules can be translated to `server` and `location` blocks, and more complex iRules that cannot be duplicated with NGINX Plus directives and configuration block can be implemented with the [Lua]({{< ref "nginx/admin-guide/dynamic-modules/lua.md" >}}) or [JavaScript]({{< ref "nginx/admin-guide/dynamic-modules/nginscript.md" >}}) modules. For more information on translating iRules to NGINX Plus content rules, see [Migrating Layer 7 Logic from F5 iRules and Citrix Policies to NGINX and NGINX Plus](https://www.nginx.com/blog/migrating-layer7-logic-f5-irules-citrix-policies-nginx-plus/) on the NGINX blog.
 
 - **High availability** – Conceptually, <span style="white-space: nowrap;">BIG-IP LTM</span> and NGINX Plus handle high availability (HA) in the same way: each active‑passive pair of load balancers shares a floating "virtual" IP address (VIP) which maps to the currently active instance. If the active instance fails, the passive instance takes over and assumes the VIP.
 
   <span style="white-space: nowrap;">BIG-IP LTM</span> uses a built‑in HA mechanism to handle the failover.
 
-  For [on‑premises deployments]({{< relref "../../admin-guide/high-availability/ha-keepalived.md" >}}), NGINX Plus uses a separate software package called <span style="white-space: nowrap; font-weight:bold;">**nginx-ha-keepalived**</span> to handle the VIP and the failover process for an active‑passive pair of NGINX Plus servers. The package implements the VRRP protocol to handle the VIP. Limited [active‑active]({{< relref "../../admin-guide/high-availability/ha-keepalived-nodes.md" >}}) scenarios are also possible with the <span style="white-space: nowrap; font-weight:bold;">nginx-ha-keepalived</span> package.
+  For [on‑premises deployments]({{< ref "nginx/admin-guide/high-availability/ha-keepalived.md" >}}), NGINX Plus uses a separate software package called <span style="white-space: nowrap; font-weight:bold;">**nginx-ha-keepalived**</span> to handle the VIP and the failover process for an active‑passive pair of NGINX Plus servers. The package implements the VRRP protocol to handle the VIP. Limited [active‑active]({{< ref "nginx/admin-guide/high-availability/ha-keepalived-nodes.md" >}}) scenarios are also possible with the <span style="white-space: nowrap; font-weight:bold;">nginx-ha-keepalived</span> package.
 
   Solutions for high availability of NGINX Plus in cloud environments are also available, including these:
 
-  - [Active‑Active HA for NGINX Plus on AWS Using AWS Network Load Balancer]({{< relref "../amazon-web-services/high-availability-network-load-balancer.md" >}})
-  - [Active‑Passive HA for NGINX Plus on AWS Using Elastic IP Addresses]({{< relref "../amazon-web-services/high-availability-keepalived.md" >}})
-  - [All‑Active HA for NGINX Plus on the Google Cloud Platform]({{< relref "../google-cloud-platform/high-availability-all-active.md" >}})
+  - [Active‑Active HA for NGINX Plus on AWS Using AWS Network Load Balancer]({{< ref "nginx/deployment-guides/amazon-web-services/high-availability-network-load-balancer.md" >}})
+  - [Active‑Passive HA for NGINX Plus on AWS Using Elastic IP Addresses]({{< ref "nginx/deployment-guides/amazon-web-services/high-availability-keepalived.md" >}})
+  - [All‑Active HA for NGINX Plus on the Google Cloud Platform]({{< ref "nginx/deployment-guides/google-cloud-platform/high-availability-all-active.md" >}})
 
 <span id="converting"></span><span id="convert-configuration"></span>
 ## Converting F5 BIG-IP LTM Load-Balancer Configuration to NGINX Plus
@@ -164,7 +164,7 @@ http {
  }
 ```
 
-Directive documentation: [listen](https://nginx.org/en/docs/http/ngx_http_core_module.html#listen), [location](https://nginx.org/en/docs/http/ngx_http_core_module.html#location), [proxy_pass](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass), [server virtual](https://nginx.org/en/docs/http/ngx_http_core_module.html#server), [server upstream](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#server), [upstream](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#upstream)
+Directive documentation: [`listen`](https://nginx.org/en/docs/http/ngx_http_core_module.html#listen), [location](https://nginx.org/en/docs/http/ngx_http_core_module.html#location), [`proxy_pass`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass), [`virtual server`](https://nginx.org/en/docs/http/ngx_http_core_module.html#server), [`upstream server`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#server), [`upstream`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#upstream)
 
 <span id="ssl-offload"></span><span id="ssl"></span>
 ### SSL/TLS Offload (Termination and Proxy)
@@ -444,7 +444,7 @@ The following configuration includes three additional directives which weren't d
 - The [proxy_http_version](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_http_version) directive sets the HTTP version to 1.1 for the connection to the backend server.
 - The `proxy_set_header Connection ""` directive clears the `Connection` header sent by the client, enabling NGINX Plus to keep encrypted keepalive connections open to the upstream servers.
 
-We are also enabling [live activity monitoring](https://www.nginx.com/products/nginx/live-activity-monitoring) in the final `server` block. Live activity monitoring is implemented in the <span style="white-space: nowrap;">[NGINX Plus API](https://nginx.org/en/docs/http/ngx_http_api_module.html)</span> module and is exclusive to NGINX Plus. The wide range of statistics reported by the API is displayed on the built‑in dashboard and can also be exported to any application performance management (APM) or monitoring tool that can consume JSON‑formatted messages. For more detail on logging and monitoring see the [NGINX Plus Admin Guide]({{< relref "/nginx/admin-guide/monitoring/_index.md" >}}).
+We are also enabling [live activity monitoring](https://www.nginx.com/products/nginx/live-activity-monitoring) in the final `server` block. Live activity monitoring is implemented in the <span style="white-space: nowrap;">[NGINX Plus API](https://nginx.org/en/docs/http/ngx_http_api_module.html)</span> module and is exclusive to NGINX Plus. The wide range of statistics reported by the API is displayed on the built‑in dashboard and can also be exported to any application performance management (APM) or monitoring tool that can consume JSON‑formatted messages. For more detail on logging and monitoring see the [NGINX Plus Admin Guide]({{< ref "/nginx/admin-guide/monitoring/_index.md" >}}).
 
 ```nginx
 upstream test_pool {

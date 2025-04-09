@@ -1,10 +1,11 @@
 ---
-title: "Usage and cost estimator"
+title: Usage and cost estimator
 weight: 200
-categories: ["concepts"]
 toc: true
-docs: "DOCS-1474"
+docs: DOCS-1474
 url: /nginxaas/azure/billing/usage-and-cost-estimator/
+type:
+- concept
 ---
 
 {{< raw-html >}}

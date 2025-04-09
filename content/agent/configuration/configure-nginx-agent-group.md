@@ -1,19 +1,18 @@
 ---
-title: "Add NGINX users to nginx-agent Group"
+title: Add NGINX users to nginx-agent Group
 draft: false
 weight: 300
 toc: true
-tags: [ "docs" ]
-docs: "DOCS-933"
-categories: ["configuration"]
-doctypes: ["task"]
+docs: DOCS-933
+type:
+- how-to
 ---
 
 ## Overview
 
 During installation, NGINX Agent detects the NGINX user (typically `nginx`) for the master and worker processes and adds this user to a group called `nginx-agent`.
 
-If you change the NGINX username after installing the NGINX Agent, you'll need to add the new username to the `nginx-agent` group so that the NGINX socket has the proper permissions.
+If you change the NGINX username after installing NGINX Agent, you'll need to add the new username to the `nginx-agent` group so that the NGINX socket has the proper permissions.
 
 A failure to update the `nginx-agent` group when the NGINX username changes may result in non-compliance errors for NGINX Plus.
 

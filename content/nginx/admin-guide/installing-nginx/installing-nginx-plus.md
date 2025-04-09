@@ -1,12 +1,12 @@
 ---
-description: Install and upgrade F5 NGINX Plus with step-by-step instructions for the
-  base package and dynamic modules on all supported Linux distributions.
+description: Install and upgrade F5 NGINX Plus with step-by-step instructions for
+  the base package and dynamic modules on all supported Linux distributions.
 docs: DOCS-414
-doctypes:
-- task
 title: Installing NGINX Plus
 toc: true
 weight: 100
+type:
+- how-to
 ---
 
 This article explains how to install NGINX Plus on different operating systems, upgrade existing NGINX Plus installation, install and enable dynamic modules, install in rootless mode or when offline.
@@ -15,13 +15,13 @@ This article explains how to install NGINX Plus on different operating systems,
 
 - An NGINX Plus subscription (purchased or trial)
 - Credentials to the [MyF5 Customer Portal](https://account.f5.com/myf5), provided by email from F5, Inc.
-- A [supported operating system]({{< relref "nginx/technical-specs.md" >}})
+- A [supported operating system]({{< ref "nginx/technical-specs.md" >}})
 - `root` privilege
 
 ## Install NGINX Plus on Amazon Linux 2023 {#install_amazon2023}
 
 1. {{< include "nginx-plus/install/check-tech-specs.md" >}}
- 
+
 1. {{< include "nginx-plus/install/back-up-config-and-logs.md" >}}
 
 1. {{< include "licensing-and-reporting/download-jwt-crt-from-myf5.md" >}}
@@ -78,46 +78,6 @@ This article explains how to install NGINX Plus on different operating systems,
 
 1. {{< include "nginx-plus/install/install-nginx-agent-for-nim.md" >}}
 
-## Install NGINX Plus on RHEL 7.4+, CentOS 7.4+, and Oracle Linux 7.4+ {#install_rhel_centos}
-
-{{< call-out "important" "Deprecation notice" "" >}}
-CentOS 7.4, RHEL 7.4, and Oracle Linux 7.4 are deprecated as of NGINX Plus Release 32 (R32) and are not supported in Release 33 (R33) or later. For the list of supported distributions, refer to the [NGINX Plus Tech Specs]({{< relref "nginx/technical-specs.md" >}}).
-{{</ call-out >}}
-
-1. {{< include "nginx-plus/install/back-up-config-and-logs.md" >}}
-
-1. Download the SSL certificate and private key associated with your NGINX Plus subscription from the MyF5 Customer Portal:
-
-    - Log in to [MyF5](https://my.f5.com/manage/s/).
-    - Go to **My Products & Plans > Subscriptions** to see your active subscriptions.
-    - Find your NGINX products or services subscription, and select the **Subscription ID** for details.
-    - Download the **nginx-repo.crt** and **nginx-repo.key** from the subscription page.
-
-1. {{< include "nginx-plus/install/install-ca-certificates-dependency-yum.md" >}}
-
-1. {{< include "nginx-plus/install/create-dir-for-crt-key.md" >}}
-
-1. {{< include "nginx-plus/install/copy-crt-and-key.md" >}}
-
-1. Add the NGINX Plus repository by downloading the [nginx-plus-7.4.repo](https://cs.nginx.com/static/files/nginx-plus-7.4.repo) file to **/etc/yum.repos.d**:
-
-    ```shell
-    sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/nginx-plus-7.4.repo
-    ```
-
-    <details open>
-    <summary style="font-weight:bold;">Learn how to pin NGINX Plus to a specific version</summary>
-    {{<call-out "tip" "Tip: Pin NGINX Plus to a specific version" "fa-solid fa-thumbtack">}}{{< include "nginx-plus/install/pin-to-version/pin-rhel7-R32.md" >}}{{</call-out>}}
-    </details>
-
-1. {{< include "nginx-plus/install/install-nginx-plus-package-yum.md" >}}
-
-1. {{< include "nginx-plus/install/enable-nginx-service-at-boot.md" >}}
-
-1. {{< include "nginx-plus/install/check-nginx-binary-version.md" >}}
-
-1. {{< include "nginx-plus/install/install-nginx-agent-for-nim.md" >}}
-
 ## Install NGINX Plus on RHEL 8.1+, Oracle Linux 8.1+, AlmaLinux 8, Rocky Linux 8 {#install_rhel8}
 
 1. {{< include "nginx-plus/install/check-tech-specs.md" >}}
@@ -158,7 +118,7 @@ CentOS 7.4, RHEL 7.4, and Oracle Linux 7.4 are deprecated as of NGINX Plus Relea
 ## Install NGINX Plus on RHEL 9.0+, Oracle Linux 9, AlmaLinux 9, Rocky Linux 9 {#install_rhel}
 
 1. {{< include "nginx-plus/install/check-tech-specs.md" >}}
- 
+
 1. {{< include "nginx-plus/install/back-up-config-and-logs.md" >}}
 
 1. {{< include "licensing-and-reporting/download-jwt-crt-from-myf5.md" >}}
@@ -197,7 +157,7 @@ CentOS 7.4, RHEL 7.4, and Oracle Linux 7.4 are deprecated as of NGINX Plus Relea
 NGINX Plus can be installed on the following versions of Debian or Ubuntu:
 
 1. {{< include "nginx-plus/install/check-tech-specs.md" >}}
- 
+
 1. {{< include "nginx-plus/install/back-up-config-and-logs.md" >}}
 
 1. {{< include "licensing-and-reporting/download-jwt-crt-from-myf5.md" >}}
@@ -281,7 +241,7 @@ NGINX Plus can be installed on the following versions of Debian or Ubuntu:
 ## Install NGINX Plus on FreeBSD {#install_freebsd}
 
 1. {{< include "nginx-plus/install/check-tech-specs.md" >}}
- 
+
 1. {{< include "nginx-plus/install/back-up-config-and-logs.md" >}}
 
 1. {{< include "licensing-and-reporting/download-jwt-crt-from-myf5.md" >}}
@@ -332,7 +292,7 @@ NGINX Plus can be installed on the following versions of Debian or Ubuntu:
 ## Install NGINX Plus on SUSE Linux Enterprise Server {#install_suse}
 
 1. {{< include "nginx-plus/install/check-tech-specs.md" >}}
- 
+
 1. {{< include "nginx-plus/install/back-up-config-and-logs.md" >}}
 
 1. {{< include "licensing-and-reporting/download-jwt-crt-from-myf5.md" >}}
@@ -389,7 +349,7 @@ NGINX Plus can be installed on the following versions of Debian or Ubuntu:
 ## Install NGINX Plus on Alpine Linux {#install_alpine}
 
 1. {{< include "nginx-plus/install/check-tech-specs.md" >}}
- 
+
 1. {{< include "nginx-plus/install/back-up-config-and-logs.md" >}}
 
 1. {{< include "licensing-and-reporting/download-jwt-crt-from-myf5.md" >}}
@@ -434,29 +394,29 @@ NGINX Plus can be installed on the following versions of Debian or Ubuntu:
 NGINX Plus functionality can be extended with dynamically loadable modules that are not included in the prebuilt packages:
 
 - NGINX-authored dynamic modules – Modules developed and maintained by F5 NGINX. These modules can be installed directly from the official repository:
-  - [GeoIP]({{< relref "nginx/admin-guide/dynamic-modules/geoip.md" >}})
-  - [Image-Filter]({{< relref "nginx/admin-guide/dynamic-modules/image-filter.md" >}})
-  - [njs Scripting Language]({{< relref "nginx/admin-guide/dynamic-modules/nginscript.md" >}})
-  - [OTel]({{< relref "nginx/admin-guide/dynamic-modules/opentelemetry.md" >}})
-  - [Perl]({{< relref "nginx/admin-guide/dynamic-modules/perl.md" >}})
-  - [XSLT]({{< relref "nginx/admin-guide/dynamic-modules/xslt.md" >}})
+  - [GeoIP]({{< ref "nginx/admin-guide/dynamic-modules/geoip.md" >}})
+  - [Image-Filter]({{< ref "nginx/admin-guide/dynamic-modules/image-filter.md" >}})
+  - [njs Scripting Language]({{< ref "nginx/admin-guide/dynamic-modules/nginscript.md" >}})
+  - [OTel]({{< ref "nginx/admin-guide/dynamic-modules/opentelemetry.md" >}})
+  - [Perl]({{< ref "nginx/admin-guide/dynamic-modules/perl.md" >}})
+  - [XSLT]({{< ref "nginx/admin-guide/dynamic-modules/xslt.md" >}})
 
 - NGINX-certified community dynamic modules – Popular third‑party modules tested and distributed by F5 NGINX, with installation and basic configuration support provided. These modules are also available directly from the official repository:
-  - [Brotli]({{< relref "nginx/admin-guide/dynamic-modules/brotli.md" >}})
-  - [Encrypted-Session]({{< relref "nginx/admin-guide/dynamic-modules/encrypted-session.md" >}})
-  - [FIPS Status Check]({{< relref "nginx/admin-guide/dynamic-modules/fips.md" >}})
-  - [GeoIP2]({{< relref "nginx/admin-guide/dynamic-modules/geoip2.md" >}})
-  - [Headers-More]({{< relref "nginx/admin-guide/dynamic-modules/headers-more.md" >}})
-  - [HTTP Substitutions Filter]({{< relref "nginx/admin-guide/dynamic-modules/http-substitutions-filter.md" >}})
-  - [Lua]({{< relref "nginx/admin-guide/dynamic-modules/lua.md" >}})
-  - [NGINX Developer Kit]({{< relref "nginx/admin-guide/dynamic-modules/ndk.md" >}})
-  - [OpenTelemetry]({{< relref "nginx/admin-guide/dynamic-modules/opentelemetry.md" >}})
-  - [OpenTracing]({{< relref "nginx/admin-guide/dynamic-modules/opentracing.md" >}})
-  - [Phusion Passenger]({{< relref "nginx/admin-guide/dynamic-modules/passenger-open-source.md" >}})
-  - [Prometheus-njs]({{< relref "nginx/admin-guide/dynamic-modules/prometheus-njs.md" >}})
-  - [RTMP]({{< relref "nginx/admin-guide/dynamic-modules/rtmp.md" >}})
-  - [Set-Misc]({{< relref "nginx/admin-guide/dynamic-modules/set-misc.md" >}})
-  - [SPNEGO]({{< relref "nginx/admin-guide/dynamic-modules/spnego.md" >}})
+  - [Brotli]({{< ref "nginx/admin-guide/dynamic-modules/brotli.md" >}})
+  - [Encrypted-Session]({{< ref "nginx/admin-guide/dynamic-modules/encrypted-session.md" >}})
+  - [FIPS Status Check]({{< ref "nginx/admin-guide/dynamic-modules/fips.md" >}})
+  - [GeoIP2]({{< ref "nginx/admin-guide/dynamic-modules/geoip2.md" >}})
+  - [Headers-More]({{< ref "nginx/admin-guide/dynamic-modules/headers-more.md" >}})
+  - [HTTP Substitutions Filter]({{< ref "nginx/admin-guide/dynamic-modules/http-substitutions-filter.md" >}})
+  - [Lua]({{< ref "nginx/admin-guide/dynamic-modules/lua.md" >}})
+  - [NGINX Developer Kit]({{< ref "nginx/admin-guide/dynamic-modules/ndk.md" >}})
+  - [OpenTelemetry]({{< ref "nginx/admin-guide/dynamic-modules/opentelemetry.md" >}})
+  - [OpenTracing]({{< ref "nginx/admin-guide/dynamic-modules/opentracing.md" >}})
+  - [Phusion Passenger]({{< ref "nginx/admin-guide/dynamic-modules/passenger-open-source.md" >}})
+  - [Prometheus-njs]({{< ref "nginx/admin-guide/dynamic-modules/prometheus-njs.md" >}})
+  - [RTMP]({{< ref "nginx/admin-guide/dynamic-modules/rtmp.md" >}})
+  - [Set-Misc]({{< ref "nginx/admin-guide/dynamic-modules/set-misc.md" >}})
+  - [SPNEGO]({{< ref "nginx/admin-guide/dynamic-modules/spnego.md" >}})
 
 - Community dynamic modules – Modules written and distributed by third‑party members of the NGINX community. To use these modules, download the source code from the author's repository and [compile it against the NGINX Open Source version](#install_modules_oss) corresponding to your NGINX Plus version. These modules are not available in the official repository but can be found in different community resources such as [awesome-nginx GitHub project](https://github.com/agile6v/awesome-nginx#third-party-modules).
 
@@ -506,9 +466,9 @@ NGINX‑authored and NGINX‑certified dynamic modules can be installed directly
   sudo apk add <MODULE-NAME>
   ```
 
-See [NGINX Plus Dynamic Modules]({{< relref "nginx/admin-guide/dynamic-modules/dynamic-modules.md" >}}) for detailed installation instructions for each dynamic module.
+See [NGINX Plus Dynamic Modules]({{< ref "nginx/admin-guide/dynamic-modules/dynamic-modules.md" >}}) for detailed installation instructions for each dynamic module.
 
-Note that some modules may not be available for certain OS versions because of operating system limitations. For details and descriptions of the modules, see the [NGINX Plus Technical Specifications]({{< relref "nginx/technical-specs.md" >}}).
+Note that some modules may not be available for certain OS versions because of operating system limitations. For details and descriptions of the modules, see the [NGINX Plus Technical Specifications]({{< ref "nginx/technical-specs.md" >}}).
 
 After installing the module, you need to enable it in the NGINX Plus configuration file. For more information, see [Enabling Dynamic Modules](#enable_dynamic).
 
@@ -544,12 +504,12 @@ For a community dynamic module to work with NGINX Plus, it must be compiled alo
 
 1. Obtain NGINX Open Source.
 
-   - Identify the NGINX Open Source version that corresponds to your version of NGINX Plus. See [NGINX Plus Releases]({{< relref "nginx/releases.md" >}}).
+   - Identify the NGINX Open Source version that corresponds to your version of NGINX Plus. See [NGINX Plus Releases]({{< ref "nginx/releases.md" >}}).
 
-   - Download the sources for the appropriate NGINX Open Source mainline version, in this case 1.27.2:
+   - Download the sources for the appropriate NGINX Open Source mainline version, in this case 1.27.4:
 
      ```shell
-     wget -qO - https://nginx.org/download/nginx-1.27.2.tar.gz | tar zxfv -
+     wget -qO - https://nginx.org/download/nginx-1.27.4.tar.gz | tar zxfv -
      ```
 
 1. Obtain the source for the dynamic module.
@@ -565,7 +525,7 @@ For a community dynamic module to work with NGINX Plus, it must be compiled alo
    First establish binary compatibility by running the `configure` script with the `‑‑with‑compat` option. Then compile the module with `make modules`.
 
    ```shell
-   cd nginx-1.27.2/
+   cd nginx-1.27.4/
    ./configure --with-compat --add-dynamic-module=../<MODULE-SOURCES>
    make modules
    ```
@@ -580,7 +540,7 @@ For a community dynamic module to work with NGINX Plus, it must be compiled alo
 1. Make a copy of the module file and include the NGINX Open Source version in the filename. This makes it simpler to manage multiple versions of a dynamic module in the production environment.
 
    ```shell
-   cp objs/ngx_http_hello_world.so ./ngx_http_hello_world_1.27.2.so
+   cp objs/ngx_http_hello_world.so ./ngx_http_hello_world_1.27.4.so
    ```
 
 ### Enabling Dynamic Modules {#enable_dynamic}
@@ -696,7 +656,7 @@ With this script, you can also upgrade an existing unprivileged installation of 
 
 ## NGINX Plus Offline Installation {#offline_install}
 
-This section explains how to install NGINX Plus and its [dynamic modules]({{< relref "/nginx/admin-guide/dynamic-modules/dynamic-modules.md" >}}) on a server with limited or no Internet access.
+This section explains how to install NGINX Plus and its [dynamic modules]({{< ref "/nginx/admin-guide/dynamic-modules/dynamic-modules.md" >}}) on a server with limited or no Internet access.
 
 To install NGINX Plus offline, you will need a machine connected to the Internet to get the NGINX Plus package, JWT license, SSL certificate and key. Then your can transfer these files to the target server for offline installation.
 
@@ -800,13 +760,13 @@ To upgrade your NGINX Plus installation to the newest version:
 1. Create the **/etc/nginx/** directory for Linux or the **/usr/local/etc/nginx** directory for FreeBSD:
 
     - **For Linux**:
-    
+
         ```shell
         sudo mkdir -p /etc/nginx
         ```
 
     - **For FreeBSD**:
-    
+
         ```shell
         sudo mkdir -p /usr/local/etc/nginx
         ```
@@ -816,7 +776,7 @@ To upgrade your NGINX Plus installation to the newest version:
 1. After downloading the JWT file, copy it to the **/etc/nginx/** directory for Linux, or to the **/usr/local/etc/nginx** directory for FreeBSD, and make sure it's named **license.jwt**:
 
     - **For Linux**:
-    
+
         ```shell
         sudo cp <downloaded-file-name>.jwt /etc/nginx/license.jwt
         ```
@@ -886,7 +846,7 @@ To upgrade your NGINX Plus installation to the newest version:
    The output of the command:
 
    ```shell
-   nginx version: nginx/1.27.2 (nginx-plus-r33)
+   nginx version: nginx/1.27.4 (nginx-plus-r34)
    ```
 
 ## Upgrade NGINX Plus Modules {#upgrade_modules}
@@ -903,4 +863,4 @@ The upgrade procedure depends on how the module was supplied and installed.
 
 ### Install NGINX App Protect
 
-To install NGINX App Protect, follow the steps in the [NGINX App Protect installation guide]({{< relref "nap-waf/v5/admin-guide/install.md" >}}).
+To install NGINX App Protect, follow the steps in the [NGINX App Protect installation guide]({{< ref "nap-waf/v5/admin-guide/install.md" >}}).

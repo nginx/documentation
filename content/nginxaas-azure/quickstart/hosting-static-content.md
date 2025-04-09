@@ -1,10 +1,11 @@
 ---
-title: "Hosting static content"
+title: Hosting static content
 weight: 200
-categories: ["tasks"]
 toc: true
-docs: "DOCS-1344"
+docs: DOCS-1344
 url: /nginxaas/azure/quickstart/hosting-static-content/
+type:
+- how-to
 ---
 
 F5 NGINX as a Service for Azure (NGINXaaS) supports hosting static content which allows users to serve static websites from their deployment.
@@ -41,7 +42,7 @@ test-static-files $ tree .
 2 directories, 2 files
 ```
 
-{{<note>}}`index.html` is placed under the `srv` directory. When using `tar` to upload static content, the static content has to be placed under one of the allowed paths listed in the [NGINX Filesystem Restrictions table]({{< relref "/nginxaas-azure/getting-started/nginx-configuration/overview/#nginx-filesystem-restrictions" >}}).{{</note>}}
+{{<note>}}`index.html` is placed under the `srv` directory. When using `tar` to upload static content, the static content has to be placed under one of the allowed paths listed in the [NGINX Filesystem Restrictions table]({{< ref "/nginxaas-azure/getting-started/nginx-configuration/overview/#nginx-filesystem-restrictions" >}}).{{</note>}}
 
 3. Create the tarball.
 
@@ -49,7 +50,7 @@ test-static-files $ tree .
 test-static-files $ tar -cvzf <path to store tarball>/test.tar.gz *
 ```
 
-4. Upload the tarball following instructions listed in the [NGINX configuration]({{< relref "/nginxaas-azure/getting-started/nginx-configuration/nginx-configuration-portal.md#upload-gzip-nginx-configuration" >}}) documentation.
+4. Upload the tarball following instructions listed in the [NGINX configuration]({{< ref "/nginxaas-azure/getting-started/nginx-configuration/nginx-configuration-portal.md#upload-gzip-nginx-configuration" >}}) documentation.
 
 5. After uploading the configuration, you should see the following files in your deployment:
    - `nginx.conf`
@@ -59,7 +60,7 @@ test-static-files $ tar -cvzf <path to store tarball>/test.tar.gz *
 
 ## Uploading static files directly to the deployment
 
-You can also upload static files directly to the deployment. See [Adding NGINX Configuration]({{< relref "/nginxaas-azure/getting-started/nginx-configuration/nginx-configuration-portal.md#add-nginx-configuration" >}}) to upload individual files to your deployment. Refer to the [NGINX Filesystem Restrictions table]({{< relref "/nginxaas-azure/getting-started/nginx-configuration/overview/#nginx-filesystem-restrictions" >}}) to see where files can be written to and read from.
+You can also upload static files directly to the deployment. See [Adding NGINX Configuration]({{< ref "/nginxaas-azure/getting-started/nginx-configuration/nginx-configuration-portal.md#add-nginx-configuration" >}}) to upload individual files to your deployment. Refer to the [NGINX Filesystem Restrictions table]({{< ref "/nginxaas-azure/getting-started/nginx-configuration/overview/#nginx-filesystem-restrictions" >}}) to see where files can be written to and read from.
 
 ## Limitations
 

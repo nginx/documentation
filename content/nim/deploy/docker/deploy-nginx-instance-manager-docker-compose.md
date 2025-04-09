@@ -1,25 +1,18 @@
 ---
-categories:
-- 
-date: "2024-11-06T12:00:00-07:00"
-description: 
-doctypes:
-- deployment guide
-tags:
-- docs
-title: "Deploy using Docker Compose"
+description: ''
+title: Deploy using Docker Compose
 toc: true
-versions: []
 weight: 100
-docs: "DOCS-1653"
+docs: DOCS-1653
+type:
+- task
 ---
-
 
 ## Overview
 
-This guide will show you how to deploy and use F5 NGINX Instance Manager in Docker using [Docker Compose](https://docs.docker.com/compose/). 
+This guide will show you how to deploy and use F5 NGINX Instance Manager in Docker using [Docker Compose](https://docs.docker.com/compose/).
 
-This NGINX Instance Manager docker compose deployment is a single Docker image containing NGINX Instance Manager, Security Monitoring, and the latest App Protect compilers, which is orchestrated using a Docker Compose docker-compose.yaml definition. 
+This NGINX Instance Manager docker compose deployment is a single Docker image containing NGINX Instance Manager, Security Monitoring, and the latest App Protect compilers, which is orchestrated using a Docker Compose docker-compose.yaml definition.
 
 The ClickHouse database is deployed in a separate container to improve resilience and make this a fault tolerant solution. You can also configure persistent storage
 
@@ -31,7 +24,7 @@ The ClickHouse database is deployed in a separate container to improve resilienc
 - Your NGINX Instance Manager subscription's JSON Web Token from [MyF5](https://my.f5.com/manage/s/subscriptions) You can use the same JSON Web Token as NGINX Plus in your MyF5 portal.
 - This pre-configured `docker-compose.yaml` file:
   - {{<fa "download">}} {{<link "/scripts/docker-compose/docker-compose.yaml" "Download docker-compose.yaml file">}}.
-  
+
 ---
 
 ## Minimum requirements
@@ -54,7 +47,7 @@ To set up Docker to communicate with the NGINX container registry located at `pr
 
 {{<call-out "note" "Configuring a forward proxy:" "" >}}
 
-If you are configuring a **forward proxy**, follow the steps in the [Forward Proxy Configuration Guide]({{< relref "nim/system-configuration/configure-forward-proxy.md" >}}) to modify `docker-compose.yaml` with the correct proxy settings **before** deploying NGINX Instance Manager.
+If you are configuring a **forward proxy**, follow the steps in the [Forward Proxy Configuration Guide]({{< ref "nim/system-configuration/configure-forward-proxy.md" >}}) to modify `docker-compose.yaml` with the correct proxy settings **before** deploying NGINX Instance Manager.
 
 {{</call-out>}}
 
@@ -84,8 +77,8 @@ If the deployment succeeds, you’ll see output similar to this:
 
 <br>
 
-{{<call-out "tip" "See also:" "" >}} 
-For details on configuring a forward proxy, see the [Forward Proxy Configuration Guide]({{< relref "nim/system-configuration/configure-forward-proxy.md" >}}).
+{{<call-out "tip" "See also:" "" >}}
+For details on configuring a forward proxy, see the [Forward Proxy Configuration Guide]({{< ref "nim/system-configuration/configure-forward-proxy.md" >}}).
 {{</call-out>}}
 
 ### Compose stop or tear down
@@ -140,7 +133,7 @@ secrets:
 
 ---
 
-## Backup 
+## Backup
 
 Once you've set up your Docker containers, use the following command to back them up:
 
@@ -161,7 +154,7 @@ ubuntu@ip-<address>:~/compose$ sudo ls -l /var/lib/docker/volumes/nim_nim-data/_
 
 ---
 
-## Restore 
+## Restore
 
 Before you can restore a backup, set your containers to maintenance mode in the same `docker-compose.yaml` file:
 
@@ -192,8 +185,8 @@ For all storage volumes, make sure to mount them, before running `docker compose
 
 ```yaml
 volumes:
-  # By default docker compose will create a named volume 
-  # Refer to https://docs.docker.com/reference/compose-file/volumes/ for additional storage options such as NFS 
+  # By default docker compose will create a named volume
+  # Refer to https://docs.docker.com/reference/compose-file/volumes/ for additional storage options such as NFS
   nim-data:
     driver: local
     driver_opts:
@@ -210,7 +203,7 @@ volumes:
 
 ---
 
-## Support Data 
+## Support Data
 
 In case of problems, it's a good practice to:
 

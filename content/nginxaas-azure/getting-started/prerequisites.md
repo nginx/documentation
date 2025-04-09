@@ -1,10 +1,11 @@
 ---
-title: "Prerequisites"
+title: Prerequisites
 weight: 100
-categories: ["tasks"]
 toc: true
-docs: "DOCS-880"
+docs: DOCS-880
 url: /nginxaas/azure/getting-started/prerequisites/
+type:
+- how-to
 ---
 
 Before you deploy F5 NGINX as a Service for Azure (NGINXaaS) you need to meet the following prerequisites:
@@ -17,8 +18,8 @@ Before you deploy F5 NGINX as a Service for Azure (NGINXaaS) you need to meet th
 
   - It's possible to complete a limited setup with the built-in [Contributor](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#contributor) role.
 
-For specific permissions check the [NGINXaaS for Azure Frequently Asked Questions]({{< relref "/nginxaas-azure/faq" >}}).
+For specific permissions check the [NGINXaaS for Azure Frequently Asked Questions]({{< ref "/nginxaas-azure/faq" >}}).
 
 ## What's next
 
-[Create a Deployment]({{< relref "/nginxaas-azure/getting-started/create-deployment/" >}})
+[Create a Deployment]({{< ref "/nginxaas-azure/getting-started/create-deployment/" >}})

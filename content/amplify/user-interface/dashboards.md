@@ -3,8 +3,7 @@ title: Dashboards
 description: Learn about the Dashboards page of the User Interface.
 weight: 40
 toc: false
-tags: ["docs"]
-docs: "DOCS-981"
+docs: DOCS-981
 ---
 
 You can create your own dashboards populated with highly customizable graphs of NGINX and system-level metrics.
@@ -45,7 +44,7 @@ Because NGINX Amplify is **not** a SaaS log analyzer, the additional slicing for
 
 Essentially, NGINX Amplify Agent performs a combination of real-time log analytics and standard metrics collection (e.g., metrics from the *stub_status* module). NGINX Amplify Agent does only the **real-time log processing**, and always on the same host where it is running.
 
-Metric filters can be really powerful. By using the filters and creating additional "metric dimensions", it is possible to build highly granular and informative graphs. To enable NGINX Amplify Agent to slice the metrics you must add the corresponding log variables to the active NGINX log format. Please see the [Additional NGINX metrics]({{< relref "/amplify/metrics-metadata/nginx-metrics#additional-nginx-metrics" >}}) section below.
+Metric filters can be really powerful. By using the filters and creating additional "metric dimensions", it is possible to build highly granular and informative graphs. To enable NGINX Amplify Agent to slice the metrics you must add the corresponding log variables to the active NGINX log format. Please see the [Additional NGINX metrics]({{< ref "/amplify/metrics-metadata/nginx-metrics#additional-nginx-metrics" >}}) section below.
 
 Metric filters are available only for the metrics generated from the log files. For other metrics some additional modifiers can be set when editing a graph. E.g., for NGINX Plus it is possible to specify the status API zones to build more detailed visualizations.
 

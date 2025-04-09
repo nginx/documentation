@@ -1,12 +1,10 @@
 ---
 docs: DOCS-1112
-doctypes:
-- reference
-tags:
-- docs
 title: Configurable Helm settings
 toc: true
 weight: 300
+type:
+- reference
 ---
 
 {{< include "/nim/decoupling/note-legacy-nms-references.md" >}}
@@ -47,7 +45,7 @@ To modify a configuration for an existing release, run the `helm upgrade` comman
 | `nms-hybrid.externalClickhouse.password`              | Password of the external ClickHouse service. |  |
 | `nms-hybrid.serviceAccount.annotations`               | Set custom annotations for the service account used by NGINX Instance Manager. | `{}` |
 | `nms-hybrid.apigw.name`                               | Name used for API Gateway resources. | `apigw` |
-| `nms-hybrid.apigw.tlsSecret`                          | By default, this Helm chart creates its own Certificate Authority (CA) to self-sign HTTPS server cert key pairs. These are not managed by NGINX Instance Manager. You can bring your own NGINX API Gateway certificates for hosting the HTTPS server by setting `tlsSecret` to an existing Kubernetes secret name in the targeted namespace. The secret should include `tls.crt`, `tls.key`, and `ca.pem` in the data object. Using a self-provisioned "tlsSecret" is recommended for production.<br><br>Refer to the "Use your own certificates" section in [Frequently used Helm configurations]({{< relref "/nim/deploy/kubernetes/frequently-used-helm-configs.md#use-your-own-certificates" >}}) for an example. |  |
+| `nms-hybrid.apigw.tlsSecret`                          | By default, this Helm chart creates its own Certificate Authority (CA) to self-sign HTTPS server cert key pairs. These are not managed by NGINX Instance Manager. You can bring your own NGINX API Gateway certificates for hosting the HTTPS server by setting `tlsSecret` to an existing Kubernetes secret name in the targeted namespace. The secret should include `tls.crt`, `tls.key`, and `ca.pem` in the data object. Using a self-provisioned "tlsSecret" is recommended for production.<br><br>Refer to the "Use your own certificates" section in [Frequently used Helm configurations]({{< ref "/nim/deploy/kubernetes/frequently-used-helm-configs.md#use-your-own-certificates" >}}) for an example. |  |
 | `nms-hybrid.apigw.image.repository`                   | Repository name and path for the `apigw` image. | `apigw` |
 | `nms-hybrid.apigw.image.tag`                          | Tag used for pulling images from the registry. | `latest` |
 | `nms-hybrid.apigw.image.pullPolicy`                   | Image pull policy. | `IfNotPresent` |

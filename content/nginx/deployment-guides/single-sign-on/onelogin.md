@@ -1,160 +1,294 @@
 ---
-description: Learn how to enable single sign-on (SSO) with [OneLogin](https://www.onelogin.com/)
-  for applications proxied by F5 NGINX Plus.
-docs: DOCS-467
-doctypes:
-- tutorial
-tags:
-- docs
+description: Enable OpenID Connect-based single sign-on (SSO) for applications proxied by NGINX Plus, using OneLogin as the identity provider (IdP).
+type:
+- how-to
+product: NGINX-PLUS
 title: Single Sign-On with OneLogin
 toc: true
-weight: 100
+weight: 600
 ---
 
-<hr>
+This guide explains how to enable single sign-on (SSO) for applications being proxied by F5 NGINX Plus. The solution uses OpenID Connect as the authentication mechanism, with [OneLogin](https://www.onelogin.com/) as the Identity Provider (IdP) and NGINX Plus as the Relying Party (RP), or OIDC client application that verifies user identity.
 
-This documentation applies to F5 NGINX Plus R15 and later.
-<hr>
+{{< note >}} This guide applies to [NGINX Plus Release 34]({{< ref "nginx/releases.md#r34" >}}) and later. In earlier versions, NGINX Plus relied on an [njs-based solution](#legacy-njs-guide), which required NGINX JavaScript files, key-value stores, and advanced OpenID Connect logic. In the latest NGINX Plus version, the new [OpenID Connect module](https://nginx.org/en/docs/http/ngx_http_oidc_module.html) simplifies this process to just a few directives.{{< /note >}}
 
-You can use NGINX Plus with [OneLogin](https://www.onelogin.com/) and the OpenID Connect protocol to enable single sign-on (SSO) for your proxied applications. By following the steps in this guide, you will learn how to set up SSO using OpenID Connect as the authentication mechanism, with OneLogin as the identity provider (IdP) and NGINX Plus as the relying party.
-
-{{< see-also >}}{{< include "nginx-plus/nginx-openid-repo-note.txt" >}}{{< /see-also >}}
 
 ## Prerequisites
 
-To complete the steps in this guide, you need the following:
+- An [OneLogin](https://www.onelogin.com/) account with administrator privileges.
 
-- A OneLogin tenant with administrator privileges.
-- [NGINX Plus](https://www.f5.com/products/nginx/nginx-plus) with a valid subscription.
-- The [NGINX JavaScript module](https://www.nginx.com/products/nginx/modules/nginx-javascript/) (`njs`) -- the `njs` module handles the interaction between NGINX Plus and OneLogin identity provider (IdP).
+- An NGINX Plus [subscription](https://www.f5.com/products/nginx/nginx-plus) and NGINX Plus [Release 34](({{< ref "nginx/releases.md#r34" >}})) or later. For installation instructions, see [Installing NGINX Plus](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/).
 
-## Install NGINX Plus and the njs Module {#install-nginx-plus-njs}
+- A domain name pointing to your NGINX Plus instance, for example, `demo.example.com`.
 
-1. If you do not already have NGINX Plus installed, follow the [NGINX Plus Admin Guide](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/) steps to do so.
-2. Install the NGINX JavaScript module by following the steps in the [`njs` installation guide](https://nginx.org/en/docs/njs/install.html).
-3. Add the following directive to the top-level ("main") configuration context in the NGINX Plus configuration (`/etc/nginx/nginx.conf`) to load the `njs` module:
 
-   ```Nginx configuration file
-   load_module modules/ngx_http_js_module.so;
-   ```
+## Configure OneLogin {#onelogin-setup}
 
-## Configure OneLogin {#config-onelogin}
+### Create a OneLogin OIDC Application
 
-**Note:** The following procedure reflects the OneLogin GUI at the time of publication, but the GUI is subject to change. Use this guide as a reference and adapt to the current OneLogin GUI as necessary.
+1. Log in to your OneLogin admin console, for example, `https://<subdomain>.onelogin.com`.
 
-Create a new application for NGINX Plus in the OneLogin GUI:
+2. In the navigation bar, select **Applications**.
 
-1. Log in to your OneLogin account at **https://**_domain_**.onelogin.com**, where _domain_ is the domain you chose when you created your account.
+3. Click the **Add App** button.
 
-2. Click <span style="white-space: nowrap; background-color:#000000; color:white;"> Applications </span> in the title bar and then click the <span style="white-space: nowrap; background-color:#1694c1; color:white;"> Add App </span> button in the upper right corner of the window that opens.
+   - On the **Find Applications** page, search for **OpenID Connect (OIDC)** and then select it.
 
-   <img src="/nginx/images/onelogin-sso-add-app-button.png" alt="" width="1024" height="306" class="aligncenter size-full wp-image-62013" style="border:2px solid #666666; padding:2px; margin:2px;" />
+   - Enter a **Display Name**, for example, `NGINX Demo App`.
 
-3. On the **Find Applications** page that opens, type <span style="color:#666666; font-weight:bolder; white-space: nowrap;">OpenID Connect</span> in the search box. Click on the **OpenID Connect (OIDC)** row that appears.
+   - Select **Save**.
 
-   <img src="/nginx/images/onelogin-sso-find-applications-page.png" alt="" width="1024" height="344" class="aligncenter size-full wp-image-62012" style="border:2px solid #666666; padding:2px; margin:2px;" />
+4. In the app navigation, select **Configuration**.
 
-4. On the **Add OpenId Connect (OIDC)** page that opens, change the value in the **Display Name** field to <span style="color:#666666; font-weight:bolder; white-space: nowrap;">NGINX Plus</span> and click the <span style="white-space: nowrap; background-color:#1694c1; color:white;"> Save </span> button.
+   - In **Redirect URIs**, add the callback URI for your NGINX Plus instance, for example, `https://demo.example.com/oidc_callback`.
 
-   <img src="/nginx/images/onelogin-sso-add-oidc-page.png" alt="" width="1024" height="380" class="aligncenter size-full wp-image-62011" style="border:2px solid #666666; padding:2px; margin:2px;" />
+   - Select **Save**.
 
-5. When the save completes, a new set of choices appears in the left navigation bar. Click **Configuration**. In the **Redirect URI's** field, type the URI of the NGINX Plus instance including the port number, and ending in **/\_codexch** (in this guide it is <span style="color:#666666; font-weight:bolder; white-space: nowrap;">https://my-nginx.example.com:443/_codexch</span>). Then click the <span style="white-space: nowrap; background-color:#1694c1; color:white;"> Save </span> button.
+5. In the app navigation, select **SSO**.
 
-   **Notes:**
+   - Copy the **Client ID**. You will need it later when configuring NGINX Plus.
 
-   - For production, we strongly recommend that you use SSL/TLS (port 443).
-   - The port number is mandatory even when you're using the default port for HTTP (80) or HTTPS (443).
+   - Select **Show client secret** and copy the **Client Secret**. You will need it later when configuring NGINX Plus.
 
-   <img src="/nginx/images/onelogin-sso-configuration-tab.png" alt="" width="1024" height="576" class="aligncenter size-full wp-image-62010" style="border:2px solid #666666; padding:2px; margin:2px;" />
+   - Copy the **Issuer** URL, or OpenID Connect Discovery URL. You will need it later when configuring NGINX Plus. For OneLogin, the Issuer ID generally structured as:
 
-   <span id="onelogin-client-id-secret"></span>
-6. When the save completes, click **SSO** in the left navigation bar. Click <span style="color:#1694c1; font-weight:bolder; white-space: nowrap;">Show client secret</span> below the **Client Secret** field. Record the values in the **Client ID** and **Client Secret** fields. You will add them to the NGINX Plus configuration in [Step 4 of _Configuring NGINX Plus_](#nginx-plus-variables).
+        `https://<subdomain>.onelogin.com/oidc/2`
 
-   <img src="/nginx/images/onelogin-sso-sso-tab.png" alt="" width="1024" height="449" class="aligncenter size-full wp-image-62009" style="border:2px solid #666666; padding:2px; margin:2px;" />
+        See [Provider Configuration](https://developers.onelogin.com/openid-connect/api/provider-config) for details.
 
-   <span id="onelogin-roles"></span>
-7. Assign users to the application (in this guide, <span style="color:#666666; font-weight:bolder; white-space: nowrap;">NGINX Plus</span>) to enable them to access it for SSO. OneLogin recommends using [roles](https://onelogin.service-now.com/kb_view_customer.do?sysparm_article=KB0010606) for this purpose. You can access the **Roles** page under <span style="white-space: nowrap; background-color:#000000; color:white;"> Users </span> in the title bar.
+{{< note >}} You will need the values of **Client ID**, **Client Secret**, and **Issuer** in the next steps. {{< /note >}}
 
-   <img src="/nginx/images/onelogin-sso-roles-page.png" alt="" width="1024" height="275" class="aligncenter size-full wp-image-62006" style="border:2px solid #666666; padding:2px; margin:2px;" />
+### Assign Users and Groups
 
-<span id="nginx-plus"></span>
-## Set up NGINX Plus
+1. In the app navigation, select **Users** > **Roles**.
 
-Take the steps in this section to set up NGINX Plus as the OpenID Connect Client.
+2. Add users and groups who should have access to this application.
 
-### Configure NGINX OpenID Connect {#nginx-plus-oidc-config}
 
-1. Clone the [nginx-openid-connect](https://github.com/nginxinc/nginx-openid-connect) GitHub repository, or download the repository files.
+## Set up NGINX Plus {#nginx-plus-setup}
 
-   ```shell
-   git clone https://github.com/nginxinc/nginx-openid-connect.git
-   ```
+With Onelogin configured, you can enable OIDC on NGINX Plus. NGINX Plus serves as the Rely Party (RP) application &mdash; a client service that verifies user identity.
 
-1. Run the _configure.sh_ script to update the NGINX configuration files with the values for your OneLogin application.
+1.  Ensure that you are using the latest version of NGINX Plus by running the `nginx -v` command in a terminal:
 
-    For example:
+    ```shell
+    nginx -v
+    ```
+    The output should match NGINX Plus Release 34 or later:
 
-    ```bash
-    ./nginx-openid-connect/configure.sh \
-        --auth_jwt_key request \
-        --client_id 168d5600-9224-... \
-        --client_secret c9210a67d09e85... \
-        https://<domain>.onelogin.com/oidc/2/.well-known/openid-configuration
+    ```none
+    nginx version: nginx/1.27.4 (nginx-plus-r34)
     ```
 
-2. In the `frontend.conf` file, update the **my_backend** upstream with the address of the application that you want to add OIDC authorization to.
+2.  Ensure that you have the values of the **Client ID**, **Client Secret**, and **Issuer** obtained during [Onelogin Configuration](#onelogin-setup).
 
-    For example:
+3.  In your preferred text editor, open the NGINX configuration file (`/etc/nginx/nginx.conf` for Linux or `/usr/local/etc/nginx/nginx.conf` for FreeBSD).
 
-    ```Nginx configuration file
-    upstream my_backend {
-        zone my_backend 64k;
-        server my-backend-app.com:80;
+4.  In the [`http {}`](https://nginx.org/en/docs/http/ngx_http_core_module.html#http) context, make sure your public DNS resolver is specified with the [`resolver`](https://nginx.org/en/docs/http/ngx_http_core_module.html#resolver) directive: By default, NGINX Plus re‑resolves DNS records at the frequency specified by time‑to‑live (TTL) in the record, but you can override the TTL value with the `valid` parameter:
+
+    ```nginx
+    http {
+        resolver 10.0.0.1 ipv4=on valid=300s;
+
+        # ...
     }
     ```
 
-3. In the _openid_connect.server_conf_ file, add the [`proxy_set_header`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_set_header) directive to the `/_jwks_uri` and `/_token` locations to `Accept-Encoding "gzip"`, as shown below.
+    <span id="onelogin-setup-oidc-provider"></span>
+5.  In the [`http {}`](https://nginx.org/en/docs/http/ngx_http_core_module.html#http) context, define the OneLogin provider named `onelogin` by specifying the [`oidc_provider {}`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#oidc_provider) context:
 
-    ```Nginx configuration file
-    ...
-    location = /_jwks_uri {
-        ...
-        proxy_set_header    Accept-Encoding "gzip"
+    ```nginx
+    http {
+        resolver 10.0.0.1 ipv4=on valid=300s;
+
+        oidc_provider onelogin {
+
+            # ...
+
+        }
+        # ...
     }
-    ...
-    location = /_token {
-        ...
-        proxy_set_header    Accept-Encoding "gzip"
-    }
-    ...
     ```
 
-4. Copy the following files to the _/etc/nginx/conf.d_ directory on the host machine where NGINX Plus is installed:
+6.  In the [`oidc_provider {}`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#oidc_provider) context, specify:
 
-   - `frontend.conf`
-   - `openid_connect.js`
-   - `openid_connect.server_conf`
-   - `openid_connect_configuration.conf`
+    - your actual OneLogin **Client ID** obtained in [OneLogin Configuration](#onelogin-create) with the [`client_id`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#client_id) directive
 
-5. Reload the NGINX configuration:
+    - your **Client Secret** obtained in [OneLogin Configuration](#onelogin-create) with the [`client_secret`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#client_secret) directive
 
-    ```bash
-    sudo nginx -s reload
+    - the **Issuer** URL obtained in [OneLogin Configuration](#onelogin-create) with the [`issuer`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#client_secret) directive
+
+        The `issuer` is typically your OneLogin OIDC URL:
+
+        `https://<subdomain>.onelogin.com/oidc/2`.
+
+    - **Important:** All interaction with the IdP is secured exclusively over SSL/TLS, so NGINX must trust the certificate presented by the IdP. By default, this trust is validated against your system’s CA bundle (the default CA store for your Linux or FreeBSD distribution). If the IdP’s certificate is not included in the system CA bundle, you can explicitly specify a trusted certificate or chain with the [`ssl_trusted_certificate`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#ssl_trusted_certificate) directive so that NGINX can validate and trust the IdP’s certificate.
+
+    ```nginx
+    http {
+        resolver 10.0.0.1 ipv4=on valid=300s;
+
+        oidc_provider onelogin {
+            issuer        https://<subdomain>.onelogin.com/oidc/2;
+            client_id     <client_id>;
+            client_secret <client_secret>;
+        }
+
+        # ...
+    }
     ```
 
-## Test Your Setup
+7.  Make sure you have configured a [server](https://nginx.org/en/docs/http/ngx_http_core_module.html#server) that corresponds to `demo.example.com`, and there is a [location](https://nginx.org/en/docs/http/ngx_http_core_module.html#location) that [points](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass) to your application (see [Step 10](#oidc_app)) at `http://127.0.0.1:8080` that is going to be OIDC-protected:
 
-In a browser, enter the address of your NGINX Plus instance and try to log in using the credentials of a user assigned to the application (see [Step 7 of _Configuring OneLogin_](#onelogin-roles)).
+    ```nginx
+    http {
+        # ...
 
-<img src="/nginx/images/onelogin-login-window.png" alt="" width="612" height="654" class="aligncenter size-full wp-image-62002" style="border:2px solid #666666; padding:2px; margin:2px;" />
+        server {
+            listen      443 ssl;
+            server_name demo.example.com;
 
-<span id="troubleshooting"></span>
-## Troubleshooting
+            ssl_certificate     /etc/ssl/certs/fullchain.pem;
+            ssl_certificate_key /etc/ssl/private/key.pem;
 
-Refer to the [Troubleshooting](https://github.com/nginxinc/nginx-openid-connect#troubleshooting) section in the `nginx-openid-connect` repository on GitHub.
+            location / {
+                # ...
 
-### Revision History
+                proxy_pass http://127.0.0.1:8080;
+            }
+        }
+        # ...
+    }
+    ```
 
-- Version 3 (May 2022) - Updates OneLogin's OpenId Connect API endpoints from version 1 to version 2
-- Version 2 (March 2020) – Updates to _Configuring NGINX Plus_ section
-- Version 1 (July 2019) – Initial version (NGINX Plus Release 18)
+8.  Protect this [location](https://nginx.org/en/docs/http/ngx_http_core_module.html#location) with OneLogin OIDC by specifying the [`auth_oidc`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#auth_oidc) directive that will point to the `onelogin` configuration specified in the [`oidc_provider {}`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#oidc_provider) context in [Step 5](#onelogin-setup-oidc-provider):
+
+    ```nginx
+    # ...
+    location / {
+         auth_oidc onelogin;
+
+         # ...
+
+         proxy_pass http://127.0.0.1:8080;
+    }
+    # ...
+    ```
+
+9.  Pass the OIDC claims as headers to the application ([Step 10](#oidc_app)) with the [`proxy_set_header`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_set_header) directive. These claims are extracted from the ID token returned by OneLogin:
+
+    - [`$oidc_claim_sub`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#var_oidc_claim_) - a unique `Subject` identifier assigned for each user by OneLogin
+
+    - [`$oidc_claim_email`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#var_oidc_claim_) the e-mail address of the user
+
+    - [`$oidc_claim_name`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#var_oidc_claim_) - the full name of the user
+
+    - any other OIDC claim using the [`$oidc_claim_ `](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#var_oidc_claim_) variable
+
+
+    ```nginx
+    # ...
+    location / {
+         auth_oidc onelogin;
+
+         proxy_set_header sub   $oidc_claim_sub;
+         proxy_set_header email $oidc_claim_email;
+         proxy_set_header name  $oidc_claim_name;
+
+         proxy_pass http://127.0.0.1:8080;
+    }
+    # ...
+    ```
+
+    <span id="oidc_app"></span>
+10. Create a simple test application referenced by the `proxy_pass` directive which returns the authenticated user's full name and email upon successful authentication:
+
+    ```nginx
+    # ...
+    server {
+        listen 8080;
+
+        location / {
+            return 200 "Hello, $http_name!\nEmail: $http_email\nSub: $http_sub\n";
+            default_type text/plain;
+        }
+    }
+    ```
+11. Save the NGINX configuration file and reload the configuration:
+    ```nginx
+    nginx -s reload
+    ```
+
+### Complete Example
+
+This configuration example summarizes the steps outlined above. It includes only essential settings such as specifying the DNS resolver, defining the OIDC provider, configuring SSL, and proxying requests to an internal server.
+
+```nginx
+http {
+    # Use a public DNS resolver for Issuer discovery, etc.
+    resolver 10.0.0.1 ipv4=on valid=300s;
+
+    oidc_provider onelogin {
+        # The 'issuer' is typically your OneLogin OIDC base URL
+        # e.g. https://<subdomain>.onelogin.com/oidc/2
+        issuer https://<subdomain>.onelogin.com/oidc/2;
+
+        # Replace with your actual OneLogin Client ID and Secret
+        client_id <client_id>;
+        client_secret <client_secret>;
+    }
+
+    server {
+        listen 443 ssl;
+        server_name demo.example.com;
+
+        ssl_certificate /etc/ssl/certs/fullchain.pem;
+        ssl_certificate_key /etc/ssl/private/key.pem;
+
+        location / {
+            # Protect this path with OneLogin OIDC
+            auth_oidc onelogin;
+
+            # Forward OIDC claims to the upstream as headers if desired
+            proxy_set_header sub $oidc_claim_sub;
+            proxy_set_header email $oidc_claim_email;
+            proxy_set_header name $oidc_claim_name;
+            proxy_pass http://127.0.0.1:8080;
+        }
+    }
+
+    server {
+        listen 8080;
+
+        location / {
+            return 200 "Hello, $http_name!\nYour email is $http_email\nSub: $http_sub\n";
+            default_type text/plain;
+        }
+    }
+}
+```
+
+### Testing
+
+1. Open `https://demo.example.com/` in a browser. You will be automatically redirected to the OneLogin sign-in page.
+
+2. Enter valid OneLogin credentials of a user who has access the application. Upon successful sign-in, OneLogin redirects you back to NGINX Plus, and you will see the proxied application content (for example, “Hello, Jane Doe!”).
+
+{{<note>}}If you restricted access to a group of users, be sure to select a user who has access to the application.{{</note>}}
+
+
+## Legacy njs-based OneLogin Solution {#legacy-njs-guide}
+
+If you are running NGINX Plus R33 and earlier or if you still need the njs-based solution, refer to the [Legacy njs-based OneLogin Guide]({{< ref "nginx/deployment-guides/single-sign-on/oidc-njs/onelogin.md" >}}) for details. The solution uses the [`nginx-openid-connect`](https://github.com/nginxinc/nginx-openid-connect) GitHub repository and NGINX JavaScript files.
+
+
+## See Also
+
+- [NGINX Plus Native OIDC Module Reference documentation](https://nginx.org/en/docs/http/ngx_http_oidc_module.html)
+
+- [Release Notes for NGINX Plus R34]({{< ref "nginx/releases.md#r34" >}})
+
+
+## Revision History
+
+- Version 1 (March 2025) – Initial version (NGINX Plus Release 34)

@@ -1,13 +1,11 @@
 ---
 description: Guidelines and recommendations for configuring F5 NGINX Controller.
 docs: DOCS-256
-doctypes:
-- reference
-tags:
-- docs
 title: NGINX Controller Tech Specs
 toc: true
 weight: 100
+type:
+- reference
 ---
 
 ## Overview
@@ -44,7 +42,7 @@ NGINX Controller, the NGINX Controller Agent, and the NGINX Controller Applicati
 
 #### Analytics, Visibility, and Reporting Daemon (AVRD)
 
-NGINX Controller v3.1 and later use an Analytics, Visibility, and Reporting daemon (AVRD) to aggregate and report app-centric metrics, which you can use to track and check the health of your apps. To learn more about these metrics, see the [NGINX Metrics Catalog]({{< relref "/controller/analytics/catalogs/metrics.md" >}}) topic.
+NGINX Controller v3.1 and later use an Analytics, Visibility, and Reporting daemon (AVRD) to aggregate and report app-centric metrics, which you can use to track and check the health of your apps. To learn more about these metrics, see the [NGINX Metrics Catalog]({{< ref "/controller/analytics/catalogs/metrics.md" >}}) topic.
 
 
 &nbsp;
@@ -121,7 +119,7 @@ NGINX Controller supports the following [NGINX Plus](https://www.f5.com/products
 The App Security add-on for the NGINX Controller Application Delivery module is compatible with the versions of NGINX Plus and NGINX App Protect shown in the table below. New releases of NGINX Controller ADC support the last four versions of NGINX Plus at release time.
 
 {{< see-also >}}
-Refer to [Using NGINX App Protect with NGINX Controller]({{< relref "controller/admin-guides/install/install-for-controller.md" >}}) for installation instructions and additional information.
+Refer to [Using NGINX App Protect with NGINX Controller]({{< ref "controller/admin-guides/install/install-for-controller.md" >}}) for installation instructions and additional information.
 {{< /see-also >}}
 
 {{< bootstrap-table "table table-striped table-bordered" >}}
@@ -179,9 +177,9 @@ The following minimum hardware specifications are required for each node running
 
 - RAM: 8 GB RAM
 - CPU: 8-Core CPU @ 2.40 GHz or similar
-- Disk space: 155–255 GB free disk space. 255 GB of free space is recommended if NGINX Controller App Security is enabled. See the [Storage Requirements]({{< relref "/controller/admin-guides/install/nginx-controller-tech-specs.md#storage-requirements" >}}) section for a categorized list of the storage requirements.
+- Disk space: 155–255 GB free disk space. 255 GB of free space is recommended if NGINX Controller App Security is enabled. See the [Storage Requirements]({{< ref "/controller/admin-guides/install/nginx-controller-tech-specs.md#storage-requirements" >}}) section for a categorized list of the storage requirements.
 
-The NGINX Controller Agent consumes as little memory and CPU as possible. CPU usage should be under 10%, and RSS memory consumption should be just a few dozen MBs. If you notice the NGINX Controller Agent consuming resources at a higher rate, you should [contact NGINX Support]({{< relref "/controller/support/contact-support.md" >}}) for assistance.
+The NGINX Controller Agent consumes as little memory and CPU as possible. CPU usage should be under 10%, and RSS memory consumption should be just a few dozen MBs. If you notice the NGINX Controller Agent consuming resources at a higher rate, you should [contact NGINX Support]({{< ref "/controller/support/contact-support.md" >}}) for assistance.
 
 &nbsp;
 
@@ -204,7 +202,7 @@ We recommend using a local volume for the analytics and config databases for tri
 When using local storage for the analytics and/or config database, we recommend the following specs:
 
 - 100 IOPS
-- 155–255 GB free disk space. 255 GB of free space is recommended if NGINX Controller App Security is enabled. See the [Storage Requirements]({{< relref "/controller/admin-guides/install/nginx-controller-tech-specs.md#storage-requirements" >}}) section for a categorized list of the storage requirements.
+- 155–255 GB free disk space. 255 GB of free space is recommended if NGINX Controller App Security is enabled. See the [Storage Requirements]({{< ref "/controller/admin-guides/install/nginx-controller-tech-specs.md#storage-requirements" >}}) section for a categorized list of the storage requirements.
 
 {{< tip >}}
 To conserve IO and/or disk space, you can use a separate disk for the local storage directory `/opt/nginx-controller/clickhouse_data`.
@@ -234,7 +232,7 @@ If you are installing NGINX Controller on [AWS EC2 instances](https://aws.amazon
 
 You will need add an IAM role like that shown below.
 
-- IAM Role for [Single-Node Installation]({{< relref "/controller/admin-guides/install/install-nginx-controller.md" >}})
+- IAM Role for [Single-Node Installation]({{< ref "/controller/admin-guides/install/install-nginx-controller.md" >}})
 
   ```json
   {
@@ -277,7 +275,7 @@ You will need add an IAM role like that shown below.
   }
   ```
 
-- IAM Role for [Multi-Node Installation]({{< relref "/controller/admin-guides/install/resilient-cluster-aws.md" >}})
+- IAM Role for [Multi-Node Installation]({{< ref "/controller/admin-guides/install/resilient-cluster-aws.md" >}})
 
   ```json
   {

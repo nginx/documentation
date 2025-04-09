@@ -1,11 +1,11 @@
 ---
-title: "SMI Traffic Metrics"
-date: 2020-08-24T11:18:39-06:00
-description: "How to set up and view SMI traffic metrics"
-categories: ["tasks"]
+title: SMI Traffic Metrics
+description: How to set up and view SMI traffic metrics
 weight: 50
 toc: true
-docs: "DOCS-697"
+docs: DOCS-697
+type:
+- how-to
 ---
 
 ## Overview

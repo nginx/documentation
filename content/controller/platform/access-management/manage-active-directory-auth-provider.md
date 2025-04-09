@@ -1,14 +1,12 @@
 ---
-description: Set up Active Directory authentication for F5 NGINX Controller using OIDC
-  with Microsoft Entra or LDAP, LDAPs, and StartTLS with Windows Active Directory.
+description: Set up Active Directory authentication for F5 NGINX Controller using
+  OIDC with Microsoft Entra or LDAP, LDAPs, and StartTLS with Windows Active Directory.
 docs: DOCS-782
-doctypes:
-- tutorial
-tags:
-- docs
 title: Configure Active Directory Integration
 toc: true
 weight: 10
+type:
+- tutorial
 ---
 
 ## Overview
@@ -172,7 +170,7 @@ In order to use role-based access control (RBAC) with Microsoft Entra (AD), you 
 You should complete this step immediately after creating the Microsoft Entra authentication provider, before any other changes can be made.
 {{< /important >}}
 
-1. If you haven't already done so, [create the Role(s) and Role group]({{< relref "manage-roles" >}}) that you want to map the Microsoft Entra permissions to.
+1. If you haven't already done so, [create the Role(s) and Role group]({{< ref "manage-roles" >}}) that you want to map the Microsoft Entra permissions to.
 1. On the **Platform** menu in the NGINX Controller user interface, select **Auth Providers**, then select the Auth Provider that contains the Microsoft Entra configuration.
 1. Set up the Auth Provider *Group Mappings*:
 
@@ -358,7 +356,7 @@ While deletions in the AD are reflected in NGINX Controller immediately, changes
 
 In order to use role-based access control (RBAC) with Active Directory (AD), you need to map groups from the AD to NGINX Controller RBAC roles.
 
-1. If you haven't already done so, [create the Role(s) and Role group]({{< relref "manage-roles" >}}) that you want to map the AD permissions to.
+1. If you haven't already done so, [create the Role(s) and Role group]({{< ref "manage-roles" >}}) that you want to map the AD permissions to.
 1. On the **Platform** menu in the NGINX Controller user interface, select **Auth Providers**, then select the Auth Provider that contains the AD integration.
 1. Add the name of the external AD group that you want to map to.
 

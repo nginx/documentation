@@ -2,17 +2,17 @@
 description: Crop, resize, rotate, and perform other transformations on GIF, JPEG,
   and PNG images, with the Image-Filter dynamic module supported by NGINX, Inc.
 docs: DOCS-390
-doctypes:
-- task
 title: Image-Filter
 toc: true
 weight: 100
+type:
+- how-to
 ---
 
 <span id="install"></span>
 ## Installation
 
-1. Check the [Technical Specifications]({{< relref "../../technical-specs.md" >}}) page to verify that the module is supported by your operating system.
+1. Check the [Technical Specifications]({{< ref "nginx/technical-specs.md" >}}) page to verify that the module is supported by your operating system.
 
 2. Install the Image-Filter module package `nginx-plus-module-image-filter`.
 
@@ -78,6 +78,6 @@ After installation you will need to enable and configure the module in F5 NGINX 
 
 - [NGINX Image Filter Module Reference](https://nginx.org/en/docs/http/ngx_http_image_filter_module.html)
 
-- [NGINX Dynamic Modules]({{< relref "dynamic-modules.md" >}})
+- [NGINX Dynamic Modules]({{< ref "dynamic-modules.md" >}})
 
-- [NGINX Plus Technical Specifications]({{< relref "../../technical-specs.md" >}})
+- [NGINX Plus Technical Specifications]({{< ref "nginx/technical-specs.md" >}})

@@ -1,11 +1,15 @@
 ---
-title: "Release Notes 1.6.0"
+title: Release Notes 1.6.0
 draft: false
 toc: true
-description: "Release information for F5 NGINX Service Mesh, a configurable, low‑latency infrastructure layer designed to handle a high volume of network‑based interprocess communication among application infrastructure services using application programming interfaces (APIs).  Lists of new features and known issues are provided."
+description: Release information for F5 NGINX Service Mesh, a configurable, low‑latency
+  infrastructure layer designed to handle a high volume of network‑based interprocess
+  communication among application infrastructure services using application programming
+  interfaces (APIs).  Lists of new features and known issues are provided.
 weight: -1600
-categories: ["reference"]
-docs: "DOCS-1486"
+docs: DOCS-1486
+type:
+- reference
 ---
 
 ## NGINX Service Mesh Version 1.6.0
@@ -20,9 +24,9 @@ These release notes provide general information and describe known issues for NG
   - [Updates](#updates)
   - [Resolved Issues](#resolved-issues)
   - [Known Issues](#known-issues)
-  - [Supported Versions]({{< relref "mesh/about/mesh-tech-specs.md" >}})
+  - [Supported Versions]({{< ref "mesh/about/mesh-tech-specs.md" >}})
   - {{< link "nginx-service-mesh/licenses/license-servicemesh-1.6.0.html" "Open Source Licenses" >}}
-  - [Open Source Licenses Addendum]({{< relref "oss-dependencies/index.md" >}})
+  - [Open Source Licenses Addendum]({{< ref "oss-dependencies/index.md" >}})
 
 <br/>
 <br/>

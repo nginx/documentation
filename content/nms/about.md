@@ -16,7 +16,7 @@ Explore the topics below to find out what the F5 NGINX Management Suite modules 
 
 ## Instance Manager {#instance-manager}
 
-[NGINX Instance Manager]({{< relref "/nim/">}}) allows you to configure, scale, and manage NGINX Open Source and NGINX Plus instances at scale. Instance Manager provides a [REST API]({{< relref "/nim/fundamentals/api-overview">}}) and web-based graphical user interface (GUI) for managing NGINX instances across multiple servers, making it easier to configure, monitor, and troubleshoot NGINX deployments.
+[NGINX Instance Manager]({{< ref "/nim/">}}) allows you to configure, scale, and manage NGINX Open Source and NGINX Plus instances at scale. Instance Manager provides a [REST API]({{< ref "/nim/fundamentals/api-overview">}}) and web-based graphical user interface (GUI) for managing NGINX instances across multiple servers, making it easier to configure, monitor, and troubleshoot NGINX deployments.
 
 Instance Manager can be used to manage instances running on-premises, in the cloud, or in hybrid environments, and it supports the deployment of NGINX instances on a variety of operating systems and container platforms.
 
@@ -26,13 +26,13 @@ Instance Manager also includes advanced features like health checks, rolling upd
 
 Instance Manager provides the following features:
 
-- [View metrics and information]({{< relref "/nim/monitoring/view-events-metrics">}}) about data plane host systems and NGINX instances
-- [View, edit, and publish NGINX configurations]({{< relref "/nim/nginx-configs/publish-configs">}})
-- [Save NGINX configurations]({{< relref "/nim/nginx-configs/publish-configs#stage-config">}}) for future deployment
-- [Analyze NGINX configurations]({{< relref "/nim/nginx-configs/publish-configs">}}) for syntactic errors before publishing them
-- [Scan the network]({{< relref "/nim/nginx-instances/scan-instances#scan-ui">}}) to find unmanaged NGINX instances.
-- [Manage certificates]({{< relref "/nim/nginx-instances/manage-certificates">}})
-- [Create users, roles, and role permissions]({{< relref "/nim/admin-guide/rbac/overview-rbac">}}) for role-based access control
+- [View metrics and information]({{< ref "/nim/monitoring/view-events-metrics">}}) about data plane host systems and NGINX instances
+- [View, edit, and publish NGINX configurations]({{< ref "/nim/nginx-configs/publish-configs">}})
+- [Save NGINX configurations]({{< ref "/nim/nginx-configs/publish-configs#stage-config">}}) for future deployment
+- [Analyze NGINX configurations]({{< ref "/nim/nginx-configs/publish-configs">}}) for syntactic errors before publishing them
+- [Scan the network]({{< ref "/nim/nginx-instances/scan-instances#scan-ui">}}) to find unmanaged NGINX instances.
+- [Manage certificates]({{< ref "/nim/nginx-instances/manage-certificates">}})
+- [Create users, roles, and role permissions]({{< ref "/nim/admin-guide/rbac/overview-rbac">}}) for role-based access control
 
 ---
 
@@ -51,5 +51,5 @@ The Security Monitoring module provides the following features:
 
 ## What's Next?
 
-- [Review the Technical Specifications]({{< relref "/nim/fundamentals/tech-specs.md">}})
-- [Install NGINX Management Suite]({{< relref "/nim/deploy/_index.md">}})
+- [Review the Technical Specifications]({{< ref "/nim/fundamentals/tech-specs.md">}})
+- [Install NGINX Management Suite]({{< ref "/nim/deploy/_index.md">}})

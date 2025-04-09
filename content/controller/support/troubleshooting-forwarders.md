@@ -1,22 +1,20 @@
 ---
 description: Steps to take to investigate and fix issues with data forwarders.
 docs: DOCS-377
-doctypes:
-- tutorial
-tags:
-- docs
 title: Troubleshoot Data Forwarders
 toc: true
 weight: 200
+type:
+- tutorial
 ---
 
 ## Overview
 
-If your Data Forwarders aren't behaving how you expect them to, you can take the following steps to troubleshoot issues. If you need to [contact F5 NGINX Support]({{< relref "/controller/support/contact-support.md" >}}), make sure to [create a support package](#support/create-a-support-package) first.
+If your Data Forwarders aren't behaving how you expect them to, you can take the following steps to troubleshoot issues. If you need to [contact F5 NGINX Support]({{< ref "/controller/support/contact-support.md" >}}), make sure to [create a support package](#support/create-a-support-package) first.
 
 ## Fix NGINX Controller Issues by Upgrading
 
-We recommend you [upgrade NGINX Controller]({{< relref "/controller/admin-guides/install/install-nginx-controller.md#update-nginx-controller" >}}) as new versions become available. Upgrades include new features, feature improvements, or fixes for known issues.
+We recommend you [upgrade NGINX Controller]({{< ref "/controller/admin-guides/install/install-nginx-controller.md#update-nginx-controller" >}}) as new versions become available. Upgrades include new features, feature improvements, or fixes for known issues.
 
 To look up your version of NGINX Controller:
 
@@ -24,7 +22,7 @@ To look up your version of NGINX Controller:
 1. Select the NGINX Controller menu icon, then select **Platform**.
 1. On the Platform menu, select **Cluster** > **Overview**.
 
-{{< see-also >}}Refer to the [NGINX Controller release notes]({{< relref "/controller/releases/" >}}) to see what's new in the latest release of NGINX Controller.{{< /see-also >}}
+{{< see-also >}}Refer to the [NGINX Controller release notes]({{< ref "/controller/releases/" >}}) to see what's new in the latest release of NGINX Controller.{{< /see-also >}}
 
 &nbsp;
 
@@ -34,7 +32,7 @@ To look up your version of NGINX Controller:
 
 You can find error messages emitted by the forwarder by querying the the NGINX Controller REST API
 
-1. Send an HTTP GET request to the `/analytics/forwarders` endpoint in the [NGINX Controller REST API]({{< relref "/controller/api/_index.md" >}}).
+1. Send an HTTP GET request to the `/analytics/forwarders` endpoint in the [NGINX Controller REST API]({{< ref "/controller/api/_index.md" >}}).
 
     Replace the session cookie, Controller-FQDN, and forwarderName in the example curl command below with the correct values for your environment.
 
@@ -147,7 +145,7 @@ To resolve errors with an Integration:
 1. Remove the Forwarder.
 1. Re-add the Forwarder.
 
-{{< tip >}}Before you remove the Forwarder, perform an HTTP GET request to capture the Forwarder's settings. Then, you can delete the Forwarder. Use the JSON payload returned in the GET request to re-create the Forwarder by sending an HTTP PUT request to the `/analytics/forwarders` endpoint in the [NGINX Controller REST API]]({{< relref "/controller/api/_index.md" >}}).{{< /tip >}}
+{{< tip >}}Before you remove the Forwarder, perform an HTTP GET request to capture the Forwarder's settings. Then, you can delete the Forwarder. Use the JSON payload returned in the GET request to re-create the Forwarder by sending an HTTP PUT request to the `/analytics/forwarders` endpoint in the [NGINX Controller REST API]]({{< ref "/controller/api/_index.md" >}}).{{< /tip >}}
 
 ### Error code 440001 -- Integration cannot be found
 
@@ -155,7 +153,7 @@ The `Error 440001` message is returned when the Forwarders module can't find the
 
 - Make sure the Integration exists.
 
-  If it doesn't, follow the steps in [Forward Analytics Data to Splunk]({{< relref "/controller/analytics/forwarders/forward-analytics-to-splunk.md" >}}) or [Forward Analytics Data to Datadog]({{< relref "/controller/analytics/forwarders/forward-analytics-to-datadog.md" >}}) to create a new one.
+  If it doesn't, follow the steps in [Forward Analytics Data to Splunk]({{< ref "/controller/analytics/forwarders/forward-analytics-to-splunk.md" >}}) or [Forward Analytics Data to Datadog]({{< ref "/controller/analytics/forwarders/forward-analytics-to-datadog.md" >}}) to create a new one.
 
 - Make sure the Integration reference uses the correct path format. All references should use the following relative format:
 
@@ -176,9 +174,9 @@ In NGINX Controller version 3.13, the output format `SPLUNK_HEC` was changed `SP
 ],
 ```
 
-To resolve this error, update the Forwarder to use `SPLUNK` instead of `SPLUNK_HEC`, as described in [Forward Analytics Data to Splunk]({{< relref "/controller/analytics/forwarders/forward-analytics-to-splunk.md" >}}).
+To resolve this error, update the Forwarder to use `SPLUNK` instead of `SPLUNK_HEC`, as described in [Forward Analytics Data to Splunk]({{< ref "/controller/analytics/forwarders/forward-analytics-to-splunk.md" >}}).
 
-{{< tip >}}To update the Forwarder settings, you can send an HTTP PUT request that contains the updated `outputFormat` config to the `/analytics/forwarders` endpoint in the [NGINX Controller REST API]({{< relref "/controller/api/_index.md" >}}).{{< /tip >}}
+{{< tip >}}To update the Forwarder settings, you can send an HTTP PUT request that contains the updated `outputFormat` config to the `/analytics/forwarders` endpoint in the [NGINX Controller REST API]({{< ref "/controller/api/_index.md" >}}).{{< /tip >}}
 
 {{< versions "3.6" "latest" "ctrlvers" >}}
 {{< versions "3.18" "latest" "apimvers" >}}

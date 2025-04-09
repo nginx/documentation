@@ -17,7 +17,7 @@ Release 4.8.1 cannot be upgraded to v4.11. You must uninstall 4.8.1 and install 
 
 ### New features
 
-- [Ubuntu 24.04 support]({{< relref "/nap-waf/v4/admin-guide/install.md#ubuntu-1804--ubuntu-2004--ubuntu-2204--ubuntu-2404-installation" >}})
+- [Ubuntu 24.04 support]({{< ref "/nap-waf/v4/admin-guide/install.md#ubuntu-1804--ubuntu-2004--ubuntu-2204--ubuntu-2404-installation" >}})
 
 ---
 

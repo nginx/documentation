@@ -16,14 +16,13 @@ If you're an employee of F5/NGINX, also read [For F5/NGINX Employees](./F5-NGINX
 You will need to install Hugo _or_ Docker to build and preview docs in your local development environment.
 Refer to the [Hugo installation instructions](https://gohugo.io/getting-started/installing/) for more information.
 
-**NOTE**: We are currently running [Hugo v0.134.2](https://github.com/gohugoio/hugo/releases/tag/v0.134.2) in production.
-
 
 Although not a strict requirement, markdown-link-check is also used in documentation development.
 
 If you have [Docker](https://www.docker.com/get-started/) installed, there are fallbacks for all requirements in the [Makefile](Makefile), meaning you don't need to install them.
 
 - [Installing Hugo](https://gohugo.io/getting-started/installing/)
+  - **NOTE**: We are currently running [Hugo v0.134.2](https://github.com/gohugoio/hugo/releases/tag/v0.134.2) in production.
 - [Installing markdownlint-cli](https://github.com/igorshubovych/markdownlint-cli?tab=readme-ov-file#installation)
 - [Installing markdown-link-check](https://github.com/tcort/markdown-link-check?tab=readme-ov-file#installation).
 
@@ -35,7 +34,11 @@ The configuration files are as follows:
 
 ## Local Docs Development
 
-To build the documentation locally, use the `make` command in the documentation folder with these targets:
+To build the documentation locally, use the `make` command in the documentation folder. First make sure you have the latest version of our Hugo theme with:
+
+`make hugo-update`
+
+Once you've updated the theme, you can use these targets:
 
 ```text
 make watch        - Runs a local Hugo server, allowing for changes to be previewed in a  browser.
@@ -88,7 +91,7 @@ Here are two examples:
 
 ```md
 To install <software>, refer to the [installation instructions]({{< ref "install.md" >}}).
-To install <integation>, refer to the [integration instructions]({{< relref "/integration/thing.md#section" >}}).
+To install <integation>, refer to the [integration instructions]({{< ref "/integration/thing.md#section" >}}).
 ```
 
 ### How to add images

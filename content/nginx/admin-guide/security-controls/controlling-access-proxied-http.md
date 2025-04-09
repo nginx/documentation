@@ -2,11 +2,11 @@
 description: Protect your upstream web and application servers by limiting connections,
   rate of requests, or bandwidth, based on client IP address or other variables.
 docs: DOCS-432
-doctypes:
-- task
 title: Limiting Access to Proxied HTTP Resources
 toc: true
 weight: 600
+type:
+- how-to
 ---
 
 This article explains how to set the maximum number of requests for a connection, or the maximum rate of downloading content from the server.
@@ -224,7 +224,7 @@ http {
 }
 ```
 
-See [Runtime State Sharing in a Cluster]({{< relref "../high-availability/zone_sync.md" >}}) for details.
+See [Runtime State Sharing in a Cluster]({{< ref "nginx/admin-guide/high-availability/zone_sync.md" >}}) for details.
 
 
 <span id="limit_rate"></span>

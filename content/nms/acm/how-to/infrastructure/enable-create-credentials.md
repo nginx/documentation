@@ -2,13 +2,11 @@
 description: Follow the steps in this guide to allow users to create credentials as
   a self-service workflow on the Developer Portal.
 docs: DOCS-947
-doctypes:
-- task
-tags:
-- docs
 title: Enable Creating Credentials on the Developer Portal
 toc: true
 weight: 400
+type:
+- how-to
 ---
 
 {{< raw-html >}}
@@ -42,7 +40,7 @@ API Connectivity manager supports public API workflows. Public APIs are open for
 To complete the steps in this guide, you need to the following:
 
 - API Connectivity Manager is installed, licensed, and running.
-- You have one or more environments with [API Gateway]({{< relref "/nms/acm/getting-started/add-api-gateway" >}}) or [Dev Portal]({{< relref "/nms/acm/getting-started/add-devportal" >}}) clusters.
+- You have one or more environments with [API Gateway]({{< ref "/nms/acm/getting-started/add-api-gateway" >}}) or [Dev Portal]({{< ref "/nms/acm/getting-started/add-devportal" >}}) clusters.
 
 ### How to Access the User Interface
 
@@ -73,7 +71,7 @@ As mTLS is not enabled by default, the Credentials endpoint is disabled initiall
 
 To enable the Credentials endpoint on the API Connectivity Manager host, take the following steps:
 
-1. Make sure mTLS server and client certificates have been configured for Devportal to F5 NGINX Management Suite by following these [instructions]({{< relref "/nms/acm/how-to/devportals/installation/install-dev-portal.md#secure-communication-from-the-developer-portal-to-nginx-management-suite-host-with-mtls" >}}) to add your server certs, CA file and enforce mTLS.
+1. Make sure mTLS server and client certificates have been configured for Devportal to F5 NGINX Management Suite by following these [instructions]({{< ref "/nms/acm/how-to/devportals/installation/install-dev-portal.md#secure-communication-from-the-developer-portal-to-nginx-management-suite-host-with-mtls" >}}) to add your server certs, CA file and enforce mTLS.
 
 1. Open an SSH connection into the API Connectivity Manager host and log in.
 
@@ -108,7 +106,7 @@ To enable the Credentials endpoint on the API Connectivity Manager host, take th
 
 ### Enable SSO on the Developer Portal
 
-1. Follow the instructions to [enable single sign-on (SSO) for the Developer Portal]({{< relref "/nms/acm/how-to/infrastructure/enable-sso-devportal.md" >}}) with an OIDC policy.
+1. Follow the instructions to [enable single sign-on (SSO) for the Developer Portal]({{< ref "/nms/acm/how-to/infrastructure/enable-sso-devportal.md" >}}) with an OIDC policy.
 
 ### Publish and Secure the API Proxy
 

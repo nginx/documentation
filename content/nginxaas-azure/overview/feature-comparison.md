@@ -1,11 +1,12 @@
 ---
-title: "Feature comparison"
+title: Feature comparison
 weight: 300
-description: "Compare NGINXaaS for Azure with other NGINX offerings."
-categories: ["concepts"]
+description: Compare NGINXaaS for Azure with other NGINX offerings.
 toc: false
-docs: "DOCS-1473"
+docs: DOCS-1473
 url: /nginxaas/azure/overview/feature-comparison/
+type:
+- concept
 ---
 
 {{<bootstrap-table "table table-striped table-bordered">}}

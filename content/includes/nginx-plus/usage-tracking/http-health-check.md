@@ -2,9 +2,9 @@
 docs: DOCS-1351
 ---
 
-You can track NGINX Plus instances using an [HTTP Health Check]({{< relref "nginx/admin-guide/load-balancer/http-health-check" >}}) without installing NGINX Agent. This involves updating the NGINX Plus configuration file. Follow these steps:
+You can track NGINX Plus instances using an [HTTP Health Check]({{< ref "nginx/admin-guide/load-balancer/http-health-check" >}}) without installing NGINX Agent. This involves updating the NGINX Plus configuration file. Follow these steps:
 
-1. Open the NGINX Plus configuration file ([_/etc/nginx/conf.d_]({{< relref "nginx/admin-guide/basic-functionality/managing-configuration-files.md#feature-specific-configuration-files" >}})) and insert the following code within the `http {}` block:
+1. Open the NGINX Plus configuration file ([_/etc/nginx/conf.d_]({{< ref "nginx/admin-guide/basic-functionality/managing-configuration-files.md#feature-specific-configuration-files" >}})) and insert the following code within the `http {}` block:
 
     ```nginx
     ### F5 / NGINX Required Configuration Code ###
@@ -75,7 +75,7 @@ You can track NGINX Plus instances using an [HTTP Health Check]({{< relref "ngin
 2. Modify the configuration to suit your specific NGINX Instance Manager installation:
 
    - Update the `NMS_FQDN` variable in the `upstream receiver` block with your Instance Manager hostname or IP address. If using a private DNS, uncomment and update the resolver with your [DNS IP Address](http://nginx.org/en/docs/http/ngx_http_upstream_module.html#resolver).
-   - If your Instance Manager server requires client SSL certification, specify the locations of the SSL certificate and key in the `map CERT` and `map KEY` blocks. For more details, see [Securing HTTP Traffic to Upstream Servers]({{< relref "nginx/admin-guide/security-controls/securing-http-traffic-upstream" >}}).
+   - If your Instance Manager server requires client SSL certification, specify the locations of the SSL certificate and key in the `map CERT` and `map KEY` blocks. For more details, see [Securing HTTP Traffic to Upstream Servers]({{< ref "nginx/admin-guide/security-controls/securing-http-traffic-upstream" >}}).
    - If you're using NGINX App Protect, change `nap=inactive` to `nap=active` in the `location @ngx_usage_https` block.
    - Optionally, you can limit access to the `/api/nginx-usage` location on your NGINX Instance Manager server based on client network address. For guidance on how to do this, refer to [Module ngx_http_access_module](http://nginx.org/en/docs/http/ngx_http_access_module.html).
 3. Save the changes.

@@ -1,13 +1,11 @@
 ---
 description: Integrate F5 NGINX Controller with Amazon Web Services.
 docs: DOCS-785
-doctypes:
-- tutorial
-tags:
-- docs
 title: AWS Integration
 toc: true
 weight: 20
+type:
+- tutorial
 ---
 
 ## AWS Integration Requirements
@@ -45,7 +43,7 @@ To create an AWS Integration, take the following steps:
 
 ## What's Next
 
-- [Deploy an Instance on Amazon Web Services]({{< relref "/controller/infrastructure/instances/add-aws-instance.md" >}})
+- [Deploy an Instance on Amazon Web Services]({{< ref "/controller/infrastructure/instances/add-aws-instance.md" >}})
 
 {{< versions "3.0" "latest" "ctrlvers" >}}
 {{< versions "3.18" "latest" "apimvers" >}}

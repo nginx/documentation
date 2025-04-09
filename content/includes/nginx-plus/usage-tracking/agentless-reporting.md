@@ -2,7 +2,7 @@
 docs: DOCS-1408
 ---
 
-Since [Release 31]({{< relref "/nginx/releases.md#nginxplusrelease-31-r31" >}}), NGINX Plus provides a built-in support for reporting of your NGINX Plus instances to NGINX Instance Manager without the need of installing NGINX Agent or tuning HTTP Health checks. If you participate in the [F5 Flex Consumption Program](https://www.f5.com/products/get-f5/flex-consumption-program), you will no longer need to manually track your NGINX Plus instances.
+Since [Release 31]({{< ref "/nginx/releases.md#nginxplusrelease-31-r31" >}}), NGINX Plus provides a built-in support for reporting of your NGINX Plus instances to NGINX Instance Manager without the need of installing NGINX Agent or tuning HTTP Health checks. If you participate in the [F5 Flex Consumption Program](https://www.f5.com/products/get-f5/flex-consumption-program), you will no longer need to manually track your NGINX Plus instances.
 
 Usage reporting is enabled by default. At each startup, NGINX Plus attempts to discover NGINX Instance Manager via a DNS lookup of the `nginx-mgmt.local` hostname. Then NGINX Plus establishes a TLS connection to NGINX Instance Manager and every `30` minutes reports its version number, hostname, and identifier.
 
@@ -23,7 +23,7 @@ Parameters customization can be done with the [`ngx_mgmt_module`](https://nginx.
 
 It is highly recommended to secure and authorize NGINX Plus instance with NGINX Instance Manager by using client certificates unique to each endpoint.
 
-1. Obtain a certificate, a key, and a CA certificate on both the NGINX Instance Manager and NGINX Plus instance. See the [Secure Traffic with Certificates]({{< relref "/nim/system-configuration/secure-traffic.md" >}}) for instructions on how to generate keys.
+1. Obtain a certificate, a key, and a CA certificate on both the NGINX Instance Manager and NGINX Plus instance. See the [Secure Traffic with Certificates]({{< ref "/nim/system-configuration/secure-traffic.md" >}}) for instructions on how to generate keys.
 
 2. In the configuration file of NGINX Plus instance, on the `main` level, add the [`mgmt`](https://nginx.org/en/docs/ngx_mgmt_module.html#mgmt) block:
 

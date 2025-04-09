@@ -9,7 +9,7 @@ docs: DOCS-1252
 
 July 5, 2023
 
-This release includes new signatures for [Anti Automation]({{< relref "/nap-waf/v4/configuration-guide/configuration.md#anti-automation-bot-mitigation" >}}) (bot defense):
+This release includes new signatures for [Anti Automation]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#anti-automation-bot-mitigation" >}}) (bot defense):
 
 - Added the following Crawler bot signatures: IAS Crawler, Bing Crawler, DIS Group Crawler, WebBot Scrapper, AddSearch Bot, WPWS bot, iSec_Bot, Newstral Crawler, layoftheland.online Crawler, Quantcastbot, Spiceworks Crawlers, CYRATING Crawler, Jooblebot, YouBot, MetaJobBot, ScooperBot, WebwikiBot, JusProg - Domain Crawler, TinEye-Web, PEER39 Crawler, AMPPARIT Crawler, RuxitSynthetic
 - Added the following HTTP Library bot signatures: Atoka Logo Fetcher, Zend Http Client Class, Home Assistant API, Probe Image Size, Webpage.rs, Okta Open ID Connect Library, MetadataScraper, node-openid-client, Embed PHP Library, PHP-SOAP
@@ -22,7 +22,7 @@ This release includes new signatures for [Anti Automation]({{< relref "/nap-waf/
 
 ### New Feature
 
-- [Override Rules]({{< relref  "/nap-waf/v4/configuration-guide/configuration.md#override-rules" >}})
+- [Override Rules]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#override-rules" >}})
 
 ### Supported Packages
 
@@ -66,6 +66,6 @@ This release includes new signatures for [Anti Automation]({{< relref "/nap-waf/
 
 ### **Important Notes**
 
-- There is a limitation when using [Override Rules]({{< relref "/nap-waf/v4/configuration-guide/configuration.md#override-rules" >}}) with gRPC. The Override Rules do not provide support for gRPC traffic. If the Override Rules are configured to match gRPC traffic, it will result in the blocking of such traffic.
+- There is a limitation when using [Override Rules]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#override-rules" >}}) with gRPC. The Override Rules do not provide support for gRPC traffic. If the Override Rules are configured to match gRPC traffic, it will result in the blocking of such traffic.
 
 - Starting with the upcoming release version of NGINX Plus R30, Ubuntu 18.04 will no longer be supported and will be deprecated.

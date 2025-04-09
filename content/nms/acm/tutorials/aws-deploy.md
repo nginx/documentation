@@ -2,8 +2,6 @@
 description: Learn how to set up the base infrastructure required to deploy NGINX
   Management Suite API Connectivity Manager in Amazon Web Services (AWS).
 docs: DOCS-896
-tags:
-- docs
 title: Amazon Web Services Deployment Guide
 toc: true
 weight: 300
@@ -20,11 +18,11 @@ Keep in mind that production environments may require larger instance sizes and 
 
 - Make sure you have an AWS account.
 
-{{< important >}}Because the [minimum requirement for the F5 NGINX Management Suite host]({{< relref "/nim/fundamentals/tech-specs#system-sizing" >}}) requires 2 CPU and 4GB RAM (NOT a free tier size), completing this deployment guide will incur charges from AWS according to their price plan.{{< /important >}}
+{{< important >}}Because the [minimum requirement for the F5 NGINX Management Suite host]({{< ref "/nim/fundamentals/tech-specs#system-sizing" >}}) requires 2 CPU and 4GB RAM (NOT a free tier size), completing this deployment guide will incur charges from AWS according to their price plan.{{< /important >}}
 
 ### Hosts Specs
 
-The AWS instance types and storage capacity used in this guide are based on the [NGINX Management Suite Technical Specs]({{< relref "/nim/fundamentals/tech-specs#system-sizing" >}}).
+The AWS instance types and storage capacity used in this guide are based on the [NGINX Management Suite Technical Specs]({{< ref "/nim/fundamentals/tech-specs#system-sizing" >}}).
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
@@ -189,21 +187,21 @@ Take the steps below to create a security group for access. Repeat these steps t
 
 #### Create EC2 Instance
 
-Take the steps below to create an EC2 Instance. Repeat these steps three times, once for each host shown in [Table 1.1]({{< relref "#hosts-specs" >}}).
+Take the steps below to create an EC2 Instance. Repeat these steps three times, once for each host shown in [Table 1.1]({{< relref "./aws-deploy.md#hosts-specs" >}}).
 
 1. Go to the **EC2** Service.
 1. On the left menu, select **Instances > Instances**.
 1. Select **Launch Instances**.
 1. Provide the **Name** of your instance.
-1. In the **Application and OS Images** section, select your [supported OS of choice]({{< relref "/nim/fundamentals/tech-specs#distributions" >}}).
-1. Select your instance size in the **Instance Type** section. Refer to [Table 1.1]({{< relref "#hosts-specs" >}}) for the suggested size of your host. Refer to [Technical Specifications]({{< relref "/nim/fundamentals/tech-specs#system-sizing" >}}) for additional information.
+1. In the **Application and OS Images** section, select your [supported OS of choice]({{< ref "/nim/fundamentals/tech-specs#distributions" >}}).
+1. Select your instance size in the **Instance Type** section. Refer to [Table 1.1]({{< relref "./aws-deploy.md#hosts-specs" >}}) for the suggested size of your host. Refer to [Technical Specifications]({{< ref "/nim/fundamentals/tech-specs#system-sizing" >}}) for additional information.
 1. In the **Key pair (login)** section, select the key pair that was created above.
 1. In the **Network settings** section, select the **Edit** button.
     - Provide your **VPC** and **Subnet** information.
     - Select **Enable** for **Auto-assign public IP**.
     - Select **Select existing security group**.
     - Provide the security group created above shown in Table 1.4 that corresponds to your host for **Common security groups**.
-1. In the **Configure Storage** section, select the storage amount required by your host. Refer to [Table 1.1]({{< relref "#hosts-specs" >}}) for guidance to determine the suggested size. GP2 storage is suitable. Refer to [Technical Specifications]({{< relref "/nim/fundamentals/tech-specs#system-sizing" >}}) for additional information.
+1. In the **Configure Storage** section, select the storage amount required by your host. Refer to [Table 1.1]({{< relref "./aws-deploy.md#hosts-specs" >}}) for guidance to determine the suggested size. GP2 storage is suitable. Refer to [Technical Specifications]({{< ref "/nim/fundamentals/tech-specs#system-sizing" >}}) for additional information.
 
 #### Access EC2 Instance
 
@@ -217,15 +215,15 @@ Take the steps below to obtain the public IP so you can access the instance thro
 
 ## NGINX Management Suite Host Installation
 
-Follow the [NGINX Management Suite Installation Guide]({{< relref "/nim/deploy/_index.md" >}}) to install both the **Instance Manager Module** and the **API Connectivity Manager Module**. The **Security Module** is not required for this demo.
+Follow the [NGINX Management Suite Installation Guide]({{< ref "/nim/deploy/_index.md" >}}) to install both the **Instance Manager Module** and the **API Connectivity Manager Module**. The **Security Module** is not required for this demo.
 
 ## NGINX Data Plane host
 
-Follow the steps in the [Set Up an API Gateway Environment]({{< relref "/nms/acm/getting-started/add-api-gateway" >}}) guide to create an API Gateway and deploy it to your NGINX data plane host.
+Follow the steps in the [Set Up an API Gateway Environment]({{< ref "/nms/acm/getting-started/add-api-gateway" >}}) guide to create an API Gateway and deploy it to your NGINX data plane host.
 
 ## NGINX Developer Portal host
 
-Follow the steps in the [Set Up a Developer Portal Environment]({{< relref "/nms/acm/getting-started/add-devportal" >}}) guide to create a Developer Portal and deploy it to your NGINX Dev Portal host.
+Follow the steps in the [Set Up a Developer Portal Environment]({{< ref "/nms/acm/getting-started/add-devportal" >}}) guide to create a Developer Portal and deploy it to your NGINX Dev Portal host.
 
 ## Terminal Access Using Session Manager (Optional) {#session-manager}
 

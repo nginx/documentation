@@ -11,66 +11,92 @@ docs: DOCS-1107
 
 F5 NGINX Security Monitoring supports two main use cases:
 
-- **Security Monitoring only**: Monitor data from NGINX App Protect WAF instances. You can view security dashboards to identify threats and adjust policies. WAF configurations are managed outside NGINX Instance Manager.
-- **Security Monitoring and Instance Manager**: Monitor security data and manage WAF configurations and policies in one place. Push pre-compiled updates to individual instances or groups.
+- **Security Monitoring only**: Use only the Security Monitoring module to monitor data from NGINX App Protect WAF instances. You will be able to review the security dashboards to assess potential threats and identify opportunities to fine-tune your policies. Your NGINX App Protect WAF configurations are managed outside of the NGINX Instance Manager context.
+- **Security Monitoring and Instance Manager**: Use the Security Monitoring module with the NGINX Instance Manager. In addition to monitoring your application security, you will be able to manage your NGINX App Protect WAF  configurations and security policies in a single location and push pre-compiled updates to an instance or instance group.
 
 ---
 
 ## Before you begin
 
-Complete these steps before starting:
+Complete the following prerequisites before proceeding with the steps in this guide.
 
-1. If you’re new to NGINX App Protect WAF, follow these guides:
+1. If you are new to NGINX App Protect WAF, follow the instructions in the installation and configuration guides to get up and running:
 
-   - [Install NGINX App Protect WAF](https://docs.nginx.com/nginx-app-protect/admin-guide/install/) on each data plane instance. Ensure connectivity to the NGINX Instance Manager host.
-   - [Configure NGINX App Protect WAF](https://docs.nginx.com/nginx-app-protect/configuration-guide/configuration/#policy-configuration-overview) as needed for each instance.
+   - [Install NGINX App Protect WAF]({{< ref "/nap-waf/v4/admin-guide/install.md" >}}) on one or more data plane instances. Each data plane instance must have connectivity to the NGINX Instance Manager host.
+   - [Configure NGINX App Protect WAF]({{< ref "/nap-waf/v4//configuration-guide/configuration.md#policy-configuration-overview" >}}) according to your needs on each of the data plane instance.
 
-2. Review NGINX App Protect WAF dependencies:
+1. Review the dependencies with NGINX App Protect WAF and NGINX Plus.
 
    {{< include "nim/tech-specs/security-data-plane-dependencies.md" >}}
 
-3. Determine your use case: **Security Monitoring only** or **Security Monitoring and Configuration Management**.
+1. Determine your use case: **Security Monitoring only** or **Security Monitoring and Configuration Management**.
+1. [Upload your license]({{< ref "/nim/admin-guide/license/add-license.md" >}}).
 
 ---
 
 ## Install NGINX Agent
 
-NGINX Agent collects metrics, manages configurations, and sends events. Install and configure it on each WAF data plane host.
+NGINX Agent is a companion daemon for NGINX Open Source or NGINX Plus instance that provides:
 
-1. Connect to the host via SSH.
-2. Install the NGINX Agent package from the NGINX Instance Manager host:
+- Remote management of NGINX configurations
+- Collection and reporting of real-time NGINX performance and operating system metrics
+- Notifications of NGINX events
+
+Repeat the steps in this section on each NGINX App Protect WAF data plane host to install and configure NGINX Agent for use with  Security Monitoring. **These settings apply to both of the Security Monitoring use cases.**
+
+1. Use SSH to connect to the data plane host.
+1. Install the NGINX Agent package from the NGINX Instance Manager host.
 
    {{< include "agent/installation/install-agent-api.md" >}}
 
-3. Edit `/etc/nginx-agent/nginx-agent.conf` to enable `nap_monitoring`. Add this configuration:
+1. Edit the `/etc/nginx-agent/nginx-agent.conf` file to add the `nap_monitoring` configuration.
 
-   ```yaml
+      ```yaml
    dataplane:
       status:
+         # poll interval for data plane status - the frequency the NGINX Agent will query the data plane for changes
          poll_interval: 30s
+         # report interval for data plane status - the maximum duration to wait before syncing data plane information if no updates have been observed
          report_interval: 24h
    events:
+      # report data plane events back to the management plane
       enable: true
    metrics:
+      # specify the size of a buffer to build before sending metrics
       bulk_size: 20
+      # specify metrics poll interval
       report_interval: 1m
       collection_interval: 15s
       mode: aggregated
-   config_dirs: "/etc/nginx:/usr/local/etc/nginx:/usr/share/nginx/modules:/etc/nms:/etc/app_protect"
-   extensions:
-      - nginx-app-protect
-      - nap-monitoring
-   nginx_app_protect:
-      report_interval: 15s
-      precompiled_publication: true
-   nap_monitoring:
-      collector_buffer_size: 50000
-      processor_buffer_size: 50000
-      syslog_ip: "127.0.0.1"
-      syslog_port: 514
-   ```
 
-4. If `location /api` isn’t configured in `nginx.conf`, add this directive:
+   # OSS NGINX default config path
+   # path to aux file dirs can also be added
+   config_dirs: "/etc/nginx:/usr/local/etc/nginx:/usr/share/nginx/modules:/etc/nms:/etc/app_protect"
+
+   # Enable reporting NGINX App Protect details to the management plane.
+   extensions:
+     - nginx-app-protect
+     - nap-monitoring
+
+   # Enable reporting NGINX App Protect details to the control plane.
+   nginx_app_protect:
+      # Report interval for NGINX App Protect details - the frequency the NGINX Agent checks NGINX App Protect for changes.
+      report_interval: 15s
+      # Enable precompiled publication from the NGINX Instance Manager (true) or perform compilation on the data plane host (false).
+      precompiled_publication: true
+
+   # NGINX App Protect Monitoring config
+   nap_monitoring:
+      # Buffer size for collector. Will contain log lines and parsed log lines
+      collector_buffer_size: 50000
+      # Buffer size for processor. Will contain log lines and parsed log lines
+      processor_buffer_size: 50000
+      # Syslog server IP address the collector will be listening to
+      syslog_ip: "127.0.0.1"
+      # Syslog server port the collector will be listening to
+      syslog_port: 514
+
+1. If `location /api` isn’t configured in `nginx.conf`, add this directive:
 
    ```nginx
    server {
@@ -82,111 +108,137 @@ NGINX Agent collects metrics, manages configurations, and sends events. Install 
    }
    ```
 
-   Restart NGINX:
+   After adding the directive, restart NGINX to apply the changes:
 
-   ```bash
+   ```shell
    sudo systemctl restart nginx
    ```
 
-5. **Important:** The `syslog:server=<syslog_ip>:<syslog_port>` must match the `syslog_ip` and `syslog_port` values in the NGINX Agent configuration file. The dashboards won’t display data if these settings don’t match. 
+{{<important>}}You can change the values of `syslog_ip` and `syslog_port` to meet your needs.
+   You must use the same values when configuring logging for the Security Monitoring module. If the `syslog:<server><port>` configuration does not match these settings, the monitoring dashboards will not display any data. Also, the networking changes for NGINX App Protect Version 5 preclude the use of `127.0.0.1` as a syslog server address. For Version 5, the address of the `docker0` interface (typically `192.0.10.1`) or the IP address of the data plane host can be used for the syslog server address.{{</important>}}
 
-   - For NGINX App Protect Version 5, networking changes prevent using `127.0.0.1` as a syslog server address. Instead, use the `docker0` interface address (typically `192.0.10.1`) or the IP address of the data plane host.
+   {{<note>}}You can use the NGINX Agent installation script to add the fields for `nginx_app_protect` and `nap_monitoring`:
 
-6. Use the NGINX Agent installation script to add `nginx_app_protect` and `nap_monitoring` fields to the configuration. Follow these steps:
+```shell
+# Download install script via API
+curl https://<NMS_FQDN>/install/nginx-agent > install.sh
 
-   ```bash
-   # Download the installation script via API
-   curl https://<NMS_FQDN>/install/nginx-agent > install.sh
+# Use the flag --nap-monitoring to set the child fields for the field 'nap_monitoring', the
+# child field values will be set to the values in the example configuration from above. Specify
+# the -m | --nginx-app-protect-mode flag to set up management of NGINX App Protect on the instance.
+# In the example below we specify 'precompiled-publication' for the flag value which will make the
+# config field 'precompiled_publication' set to 'true', if you would like to set the config field
+# 'precompiled_publication' to 'false' you can specify 'none' as the flag value.
+sudo sh ./install.sh --nap-monitoring true --nginx-app-protect-mode precompiled-publication
+```
 
-   # Use the --nap-monitoring flag to set the child fields for nap_monitoring.
-   # The values will match the example configuration above.
-   # Use -m | --nginx-app-protect-mode to set up NGINX App Protect management.
-   # Example: Specify 'precompiled-publication' for precompiled policy publication,
-   # which sets 'precompiled_publication' to 'true'. To set it to 'false', use 'none'.
+Restart NGINX Agent:
 
-   sudo sh ./install.sh --nap-monitoring true --nginx-app-protect-mode precompiled-publication
-   ```
+```shell
+sudo systemctl restart nginx-agent
+```
 
-   {{<note>}}The `--nap-monitoring` flag adds fields under `nap_monitoring`. The `--nginx-app-protect-mode` flag sets up management of NGINX App Protect with the following options:
-   - Use `precompiled-publication` to enable precompiled policy publication (`precompiled_publication: true`).
-   - Use `none` if you don’t want to enable precompiled publication (`precompiled_publication: false`).{{</note>}}
+{{</ note >}}
 
-7. Restart the NGINX Agent:
-
-   ```bash
-   sudo systemctl restart nginx-agent
-   ```
 
 ---
 
 ## Create instances for Security Monitoring only
 
-Use these steps if you’re only monitoring security data without managing configurations in NGINX Instance Manager.
+Complete the steps in this section if you are only using the Security Monitoring module to monitor your application security. In this use case, you are **not using Instance Manager** to manage your WAF security policies.
 
-1. Connect to the data plane host via SSH.
-2. Create a log format file at `/etc/app_protect/conf/log_sm.json`:
+Repeat the steps below on each NGINX App Protect WAF data plane instance.
 
-   ```json
+1. Use SSH to connect to the data plane host.
+
+1. Create a new log format definition file with the name `/etc/app_protect/conf/log_sm.json` and the contents shown below.
+   This defines the log format for the Security Monitoring module.
+
+   This configuration sets the maximum accepted request payload to 2048 bytes and the maximum message size to 5k. The latter setting truncates messages larger than 5k.
+2. Add character escaping for the used separator `,` to be escaped with its standard URL encoding `%2C`.
+
+   ``` json
    {
-      "filter": {
-         "request_type": "illegal"
-      },
-      "content": {
-         "format": "user-defined",
-         "format_string": "%blocking_exception_reason%,%dest_port%,%ip_client%,%severity%,%uri%",
-         "escaping_characters": [
-            {
-               "from": ",",
-               "to": "%2C"
-            }
-         ],
-         "max_request_size": "2048",
-         "max_message_size": "5k"
-      }
+       "filter": {
+           "request_type": "illegal"
+       },
+       "content": {
+           "format": "user-defined",
+           "format_string": "%blocking_exception_reason%,%dest_port%,%ip_client%,%is_truncated_bool%,%method%,%policy_name%,%protocol%,%request_status%,%response_code%,%severity%,%sig_cves%,%sig_set_names%,%src_port%,%sub_violations%,%support_id%,%threat_campaign_names%,%violation_rating%,%vs_name%,%x_forwarded_for_header_value%,%outcome%,%outcome_reason%,%violations%,%violation_details%,%bot_signature_name%,%bot_category%,%bot_anomalies%,%enforced_bot_anomalies%,%client_class%,%client_application%,%client_application_version%,%transport_protocol%,%uri%,%request%",
+           "escaping_characters": [
+               {
+                   "from": ",",
+                   "to": "%2C"
+               }
+           ],
+           "max_request_size": "2048",
+           "max_message_size": "5k",
+           "list_delimiter": "::"
+       }
    }
    ```
 
-3. In the NGINX configuration, add:
+1. Find the context in your NGINX configuration where NGINX App Protect WAF logging is enabled.
+   In the same context, add the `app_protect_security_log` directive shown in the example below to configure attack data logging for use with the Security Monitoring dashboards.
 
    ```nginx
-   app_protect_security_log_enable on;
-   app_protect_security_log "/etc/app_protect/conf/log_sm.json" syslog:server=127.0.0.1:514;
+      app_protect_security_log_enable on;
+      app_protect_security_log "/etc/app_protect/conf/log_sm.json" syslog:server=127.0.0.1:514;
    ```
 
-4. Restart NGINX Agent and NGINX:
+   {{<important>}}The `syslog:server=<syslog_ip>:<syslog_port>` must match the `syslog_ip` and `syslog_port` values specified in the [NGINX Agent configuration file](#agent-config). The dashboards won't display any data if these settings don't match. Also, the networking changes for NGINX App Protect Version 5 preclude the use of `127.0.0.1` as a syslog server address. For Version 5, the address of the `docker0` interface (typically `192.0.10.1`) or the IP address of the data plane host can be used for the syslog server address.{{</important>}}
+
+1. Restart NGINX Agent and the NGINX web server.
 
    ```bash
    sudo systemctl restart nginx-agent
    sudo systemctl restart nginx
    ```
 
+You should now be able to view data from your NGINX App Protect instances in the NGINX Security Monitoring dashboards.
+
 ---
 
 ## Create instances for Security Monitoring with Instance Manager
 
-Follow these steps to use Security Monitoring and Instance Manager together.
+Complete the steps in this section if you want to use the Security Monitoring module **and** Instance Manager. In this use case, you will use NGINX Instance Manager to monitor threats and to manage your NGINX App Protect WAF configurations and security policies.
 
-1. Log in to the NGINX Instance Manager interface.
-2. Navigate to **Modules** > **Instance Manager**.
-3. Select **Edit Config** for the desired instance or group.
-4. Add the following to the configuration file:
+Take the steps below to update your NGINX App Protect WAF configurations by using Instance Manager.
+
+1. Log in to the NGINX Instance Manager user interface and go to **Modules** > **Instance Manager**.
+1. Select **Instances** or **Instance Groups**, as appropriate.
+1. Select **Edit Config** from the **Actions** menu for the desired instance or instance group.
+1. Next, edit the desired configuration file. You will add directives that reference the security policies bundle and enable the NGINX App Protect WAF logs required by the Security Monitoring dashboards. An example configuration is provided below.
 
    ```nginx
-   app_protect_enable on;
-   app_protect_policy_file "/etc/nms/NginxDefaultPolicy.tgz";
-   app_protect_security_log_enable on;
-   app_protect_security_log "/etc/nms/secops_dashboard.tgz" syslog:server=127.0.0.1:514;
+      app_protect_enable on;
+      app_protect_enable on;
+      app_protect_policy_file "/etc/nms/NginxDefaultPolicy.tgz";
+      app_protect_security_log_enable on;
+      app_protect_security_log "/etc/nms/secops_dashboard.tgz" syslog:server=127.0.0.1:514;
    ```
 
-5. **Important:** Add the `app_protect_policy_file` directive with a reference to a security policy. Use the `.tgz` file extension for precompiled publication or `.json` for non-precompiled configurations. Ensure the policy file exists at the specified location. If using custom policies, update them in NGINX Instance Manager.
+   - Add the `app_protect_policy_file` directive with a reference to a security policy.
 
-6. Add the `app_protect_security_log_enable` and `app_protect_security_log` directives to log attack data. Ensure the configuration references the correct `syslog:server` values.
+      The policy reference must use the `.tgz` file extension when using Instance Manager to perform precompiled publication of NGINX App Protect WAF policies and log profiles. The file path referenced must exist on the NGINX Instance Manager host, but it's ok if the policy file doesn't exist yet. If your Instance is not configured for precompiled publication, then use the `.json` file extension for polcies and log profiles. In this case, the file path referenced in the NGINX configuration must reside on the Instance.
 
-7. Select **Publish** to push updates to instances.
+      If you are using custom security policies, at this stage, it's fine to use the default security policy shown in the example above. After completing the steps in this guide, refer to the instructions in [Set Up App Protect WAF Configuration Management]({{< ref "/nim/nginx-app-protect/setup-waf-config-management#add-waf-config" >}}) to add your custom security policy files to NGINX Instance Manager and update your NGINX configuration.
+
+   - Add the `app_protect_security_log_enable on` and the `app_protect_security_log` directive to any NGINX context where NGINX App Protect WAF is enabled and you want to be able to review attack data.
+
+      The logging configuration must reference `"/etc/nms/secops_dashboard.tgz"`, as shown in the example.
+
+      If the `app_protect_security_log_enable` setting is already present, just add the `app_protect_security_log` beneath it in the same context.
+
+      {{<important>}}The `syslog:server=<syslog_ip>:<syslog_port>` must match the `syslog_ip` and `syslog_port` values specified in the [NGINX Agent configuration file](#agent-config). The Security Monitoring dashboards won't display any data if these settings don't match. Also, the networking changes for NGINX App Protect Version 5 preclude the use of `127.0.0.1` as a syslog server address. For Version 5, the address of the `docker0` interface (typically `192.0.10.1`) or the IP address of the data plane host can be used for the syslog server address.{{</important>}}
+
+1. Select **Publish** to immediately push the configuration file updates out to your NGINX instance or instance group.
+
+You should now be able to view data from your NGINX App Protect WAF instances in the Security Monitoring dashboard.
 
 ---
 
 ## See also
 
-- [Add user access to Security Monitoring dashboards]({{< relref "/nim/nginx-app-protect/security-monitoring/give-access-to-security-monitoring-dashboards.md" >}})
-- [Manage your app protect WAF configs]({{< relref "/nim/nginx-app-protect/setup-waf-config-management" >}})
+- [Add user access to Security Monitoring dashboards]({{< ref "/nim/nginx-app-protect/security-monitoring/give-access-to-security-monitoring-dashboards.md" >}})
+- [Manage your app protect WAF configs]({{< ref "/nim/nginx-app-protect/setup-waf-config-management.md" >}})

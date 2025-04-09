@@ -2,14 +2,12 @@
 description: Learn how to add and manage additional F5 NGINX Controller nodes to create
   a resilient cluster.
 docs: DOCS-788
-doctypes:
-- task
-- tutorial
-tags:
-- docs
 title: Manage Your Cluster
 toc: true
 weight: 140
+type:
+- how-to
+- tutorial
 ---
 
 ## Overview
@@ -19,7 +17,7 @@ This topic explains how to update your cluster settings and how to manage nodes 
 {{< see-also >}}
 For instructions on how to deploy NGINX Controller as a multi-node resilient cluster, refer to the following deployment guide:
 
-- [Deploy F5 NGINX Controller as a Resilient Cluster on a Private Cloud]({{< relref "/controller/admin-guides/install/resilient-cluster-private-cloud.md" >}})
+- [Deploy F5 NGINX Controller as a Resilient Cluster on a Private Cloud]({{< ref "/controller/admin-guides/install/resilient-cluster-private-cloud.md" >}})
 
 {{< /see-also >}}
 
@@ -47,7 +45,7 @@ Take the following steps to add a floating IP for your private cloud cluster:
 1. Complete the steps to [update the FQDN](#update-the-fqdn) to use the floating IP.
 
 {{< see-also >}}
-To set a floating IP using the [NGINX Controller REST API]({{< relref "/controller/api/_index.md" >}}), send a PATCH request to the `/platform/global` endpoint.
+To set a floating IP using the [NGINX Controller REST API]({{< ref "/controller/api/_index.md" >}}), send a PATCH request to the `/platform/global` endpoint.
 {{< /see-also >}}
 
 
@@ -79,7 +77,7 @@ To change the FQDN for NGINX Controller using the web interface, take the follow
 1. Follow the steps to [update the FQDN for Controller Agents](#update-the-fqdn-for-controller-agents).
 
 {{< see-also >}}
-To change the FQDN for NGINX Controller using the [NGINX Controller REST API]({{< relref "/controller/api/_index.md" >}}), send a PATCH request to the `/platform/global` endpoint.
+To change the FQDN for NGINX Controller using the [NGINX Controller REST API]({{< ref "/controller/api/_index.md" >}}), send a PATCH request to the `/platform/global` endpoint.
 {{< /see-also >}}
 
 ### Update the FQDN for Controller Agents
@@ -118,7 +116,7 @@ Take the following steps to update the API Gateway SSL certificate:
 1. Select **Save**.
 
 {{< see-also >}}
-To update the API Gateway SSL certificate and key using the [NGINX Controller REST API]({{< relref "/controller/api/_index.md" >}}), send a PATCH request to the `/platform/global` endpoint.
+To update the API Gateway SSL certificate and key using the [NGINX Controller REST API]({{< ref "/controller/api/_index.md" >}}), send a PATCH request to the `/platform/global` endpoint.
 {{< /see-also >}}
 
 
@@ -150,7 +148,7 @@ Take the following steps to add a node to the cluster:
     ```
 
 1. Upload and extract the `controller-installer-<version>.tar.gz` tarball.
-1. Run the `install.sh` command with the join-key that you copied in the previous step. If you get an error that the join-key has expired, you can get a new one by following the steps in this topic to add a node using the web interface or the [NGINX Controller REST API]({{< relref "/controller/api/_index.md" >}}).
+1. Run the `install.sh` command with the join-key that you copied in the previous step. If you get an error that the join-key has expired, you can get a new one by following the steps in this topic to add a node using the web interface or the [NGINX Controller REST API]({{< ref "/controller/api/_index.md" >}}).
 
     ```bash
     cd controller-installer
@@ -161,7 +159,7 @@ Take the following steps to add a node to the cluster:
 1. Repeat these steps for each node that you want to add to the cluster.
 
 {{< see-also >}}
-To add nodes to your cluster using the [NGINX Controller REST API]({{< relref "/controller/api/_index.md" >}}), send a POST request to the `/platform/nodes` endpoint.
+To add nodes to your cluster using the [NGINX Controller REST API]({{< ref "/controller/api/_index.md" >}}), send a POST request to the `/platform/nodes` endpoint.
 {{< /see-also >}}
 
 ## View Node Status
@@ -169,7 +167,7 @@ To add nodes to your cluster using the [NGINX Controller REST API]({{< relref "/
 Take the following steps to view the status for a node:
 
 {{< see-also >}}
-To view a node's status using the [NGINX Controller API Reference]({{< relref "/controller/api/_index.md" >}}), send a GET request to the Nodes endpoint.
+To view a node's status using the [NGINX Controller API Reference]({{< ref "/controller/api/_index.md" >}}), send a GET request to the Nodes endpoint.
 {{< /see-also >}}
 
 1. Open the NGINX Controller web interface and log in.
@@ -188,7 +186,7 @@ Deleting nodes can cause NGINX Controller to become momentarily unavailable whil
 {{< /important >}}
 
 {{< see-also >}}
-To delete nodes from your cluster using the [NGINX Controller API Reference]({{< relref "/controller/api/_index.md" >}}), send a DELETE request to the Nodes endpoint.
+To delete nodes from your cluster using the [NGINX Controller API Reference]({{< ref "/controller/api/_index.md" >}}), send a DELETE request to the Nodes endpoint.
 {{< /see-also >}}
 
 To delete a node from the cluster using the web interface:
@@ -208,7 +206,7 @@ To delete a node from the cluster using the web interface:
       ```
 
 {{< see-also >}}
-To delete nodes from your cluster using the [NGINX Controller REST API]({{< relref "/controller/api/_index.md" >}}), send a DELETE request to the `/platform/nodes` endpoint.
+To delete nodes from your cluster using the [NGINX Controller REST API]({{< ref "/controller/api/_index.md" >}}), send a DELETE request to the `/platform/nodes` endpoint.
 {{< /see-also >}}
 
 
@@ -236,7 +234,7 @@ Active users will be logged out from NGINX Controller during an update. We recom
 
 To update your cluster to a newer version of NGINX Controller, take the following steps:
 
-1. Before updating the cluster, [check each node's status]({{< relref "/controller/platform/manage-cluster.md#view-node-status" >}}) to confirm the nodes are healthy. Resolve any degradations before updating.
+1. Before updating the cluster, [check each node's status]({{< ref "/controller/platform/manage-cluster.md#view-node-status" >}}) to confirm the nodes are healthy. Resolve any degradations before updating.
 1. Download the new installer package from the [MyF5 Customer Portal](https://my.f5.com/manage/s/downloads).
 
 1. Extract the installer package and save the contents to each node:

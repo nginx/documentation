@@ -1,12 +1,12 @@
 ---
-description: "Find what's new in version 2 of the NGINX and F5 NGINX Plus plug\u2011\
-  in for New Relic \u2013 more convenience, more metrics, richer visualization."
+description: Find what's new in version 2 of the NGINX and F5 NGINX Plus plug‑in for
+  New Relic – more convenience, more metrics, richer visualization.
 docs: DOCS-427
-doctypes:
-- task
 title: Monitoring NGINX and NGINX Plus with the New Relic Plug-In
 toc: true
 weight: 500
+type:
+- how-to
 ---
 
 In March, 2013 we released the first version of the [“nginx web server” plug‑in](http://newrelic.com/plugins/nginx-inc/13) for New Relic monitoring of the NGINX Open Source  software and F5 NGINX Plus. Since then, we’ve received lots of interest from users – we greatly appreciate it! The plug‑in continues to be one of the most popular New Relic plug‑ins, in spite of the few things that (we believe!) could be improved. If you don’t already have a New Relic account, [sign up](http://newrelic.com/).

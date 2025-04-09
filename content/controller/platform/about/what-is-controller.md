@@ -1,13 +1,11 @@
 ---
 description: Overview of F5 NGINX Controller.
 docs: DOCS-781
-doctypes:
-- concept
-tags:
-- docs
 title: Get to Know NGINX Controller
 toc: true
 weight: 100
+type:
+- concept
 ---
 
 ## Overview
@@ -29,7 +27,7 @@ NGINX Controller includes the following key components:
 
 - **NGINX Controller Server**
 
-  The core server component, installed on your enterprise network. The NGINX Controller server encompasses scalable metrics collection infrastructure, a database, an analytics engine, and a [REST API]({{< relref "/controller/api/overview.md" >}}).
+  The core server component, installed on your enterprise network. The NGINX Controller server encompasses scalable metrics collection infrastructure, a database, an analytics engine, and a [REST API]({{< ref "/controller/api/overview.md" >}}).
 
 - **NGINX Controller User Interface**
 
@@ -37,7 +35,7 @@ NGINX Controller includes the following key components:
 
 - **NGINX Controller Agent**
 
- The [Controller Agent]({{< relref "/controller/admin-guides/config-agent/about-controller-agent.md" >}}) is a Golang application that runs on monitored systems. All communications between the NGINX Controller Agent and NGINX Controller are done securely over SSL/TLS. The NGINX Controller Agent always initiates all traffic.
+ The [Controller Agent]({{< ref "/controller/admin-guides/config-agent/about-controller-agent.md" >}}) is a Golang application that runs on monitored systems. All communications between the NGINX Controller Agent and NGINX Controller are done securely over SSL/TLS. The NGINX Controller Agent always initiates all traffic.
 
 {{< versions "3.0" "latest" "ctrlvers" >}}
 {{< versions "3.18" "latest" "apimvers" >}}

@@ -2,21 +2,19 @@
 description: Learn how to extend your App Security configurations using F5 NGINX Controller
   Snippets.
 docs: DOCS-338
-doctypes:
-- concept
-- reference
-tags:
-- task
 title: Extend App Security with Snippets
 toc: true
 weight: 400
+type:
+- concept
+- reference
 ---
 
 ## Overview
 
-F5 NGINX Controller [Snippets]({{< relref "/controller/app-delivery/about-snippets.md" >}}) let you customize your NGINX configuration by adding NGINX directives that aren't represented by the NGINX Controller API.
+F5 NGINX Controller [Snippets]({{< ref "/controller/app-delivery/about-snippets.md" >}}) let you customize your NGINX configuration by adding NGINX directives that aren't represented by the NGINX Controller API.
 
-Snippets also let you customize App Security for your Components by adding NGINX App Protect directives that aren't present in the NGINX Controller API. You can use Snippets when [tuning your NGINX App Protect WAF performance]({{< relref "/controller/app-delivery/security/tutorials/tune-waf-for-app" >}}) as well.
+Snippets also let you customize App Security for your Components by adding NGINX App Protect directives that aren't present in the NGINX Controller API. You can use Snippets when [tuning your NGINX App Protect WAF performance]({{< ref "/controller/app-delivery/security/tutorials/tune-waf-for-app" >}}) as well.
 
 {{< caution >}}
 When you use Snippets to customize your NGINX configuration, your changes are applied to the `nginx.conf` file *as is*. NGINX Controller does not verify that your configuration is valid before applying the Snippet.
@@ -33,7 +31,7 @@ We strongly recommend verifying Snippets in a lab environment before making any 
 
 ### Define a Backup Location for Security Event Logs
 
-When you [enable WAF on a Component]({{< relref "/controller/app-delivery/security/tutorials/add-app-security-with-waf" >}}), all Security Events are sent to NGINX Controller logs via syslog. The following example uses the `app_protect_security_log` directive in a URI Snippet to define a local backup location for Security Event logs. You can also send Security Events to another syslog server or to `stderr` by inserting an additional URI Snippet with the `app_protect_security_log` directive.
+When you [enable WAF on a Component]({{< ref "/controller/app-delivery/security/tutorials/add-app-security-with-waf" >}}), all Security Events are sent to NGINX Controller logs via syslog. The following example uses the `app_protect_security_log` directive in a URI Snippet to define a local backup location for Security Event logs. You can also send Security Events to another syslog server or to `stderr` by inserting an additional URI Snippet with the `app_protect_security_log` directive.
 
 {{< caution >}}
 Using local files as a backup for Security Events may use up disk space and affect your system performance. In production environments, setting up a remote file or a remote syslog server for backup purposes are good alternatives to using a local backup.
@@ -94,7 +92,7 @@ Using local files as a backup for Security Events may use up disk space and affe
 
 ### Add Location of User-Defined Signature Definition File
 
-When using [Bring Your Own WAF Policy]({{< relref "/controller/app-delivery/security/concepts/bring-your-own-policy" >}}) in NGINX Controller, you can define a URI Snippet for a Gateway API to define the location for your User-Defined Signature Definition file. The User-Defined Signature can then be referenced in the custom NGINX App Protect WAF policy that you use for your Components.
+When using [Bring Your Own WAF Policy]({{< ref "/controller/app-delivery/security/concepts/bring-your-own-policy" >}}) in NGINX Controller, you can define a URI Snippet for a Gateway API to define the location for your User-Defined Signature Definition file. The User-Defined Signature can then be referenced in the custom NGINX App Protect WAF policy that you use for your Components.
 
 {{< note >}}
 The file that contains the signature definition must already exist on your NGINX App Protect WAF instances. For more information regarding User-Defined Signatures, refer to the [NGINX App Protect WAF Configuration Guide](https://docs.nginx.com/nginx-app-protect/configuration-guide/configuration/#user-defined-signatures).

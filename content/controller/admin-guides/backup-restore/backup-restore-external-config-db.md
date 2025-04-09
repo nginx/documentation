@@ -2,13 +2,11 @@
 description: Learn how to back up and restore the external F5 NGINX Controller config
   database.
 docs: DOCS-249
-doctypes:
-- tutorial
-tags:
-- docs
 title: Back Up & Restore an External Config Database
 toc: true
 weight: 99
+type:
+- tutorial
 ---
 
 ## Overview
@@ -77,7 +75,7 @@ Take the following steps to back up the external NGINX Controller config databas
 
 ## Restore External Config Database
 
-{{< important >}}If you restore the config database on top of a new installation of NGINX Controller, make sure to follow the steps to [restore your NGINX config and encryption keys]({{< relref "/controller/admin-guides/backup-restore/backup-restore-cluster-config.md" >}}) afterward. {{< /important >}}
+{{< important >}}If you restore the config database on top of a new installation of NGINX Controller, make sure to follow the steps to [restore your NGINX config and encryption keys]({{< ref "/controller/admin-guides/backup-restore/backup-restore-cluster-config.md" >}}) afterward. {{< /important >}}
 
 To restore the external NGINX Controller config database:
 
@@ -115,7 +113,7 @@ To restore the external NGINX Controller config database:
 
 ## What's Next
 
-- [Backup & Restore the Metrics Database]({{< relref "/controller/admin-guides/backup-restore/backup-restore-metrics-db.md" >}})
+- [Backup & Restore the Metrics Database]({{< ref "/controller/admin-guides/backup-restore/backup-restore-metrics-db.md" >}})
 
 {{< versions "3.0" "latest" "ctrlvers" >}}
 {{< versions "3.18" "latest" "apimvers" >}}

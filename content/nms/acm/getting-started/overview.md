@@ -2,8 +2,6 @@
 description: Learn how to get up and running with F5 NGINX Management Suite API Connectivity
   Manager.
 docs: DOCS-939
-tags:
-- docs
 title: Get Started
 toc: true
 weight: 10
@@ -42,9 +40,9 @@ By completing the guides in this Quick Start series, you can easily get up and r
 
 This series covers the following topics:
 
-1. Setting up an environment with [API Gateway]({{< relref "add-api-gateway" >}}) & [Developer Portal]({{< relref "add-devportal" >}}) clusters.
+1. Setting up an environment with [API Gateway]({{< relref "./add-api-gateway" >}}) & [Developer Portal]({{< ref "add-devportal" >}}) clusters.
 2. Onboarding F5 NGINX Plus instances onto the clusters.
-3. [Publishing an API proxy]({{< relref "publish-api-proxy" >}}) with or without an OpenAPI spec.
+3. [Publishing an API proxy]({{< ref "publish-api-proxy" >}}) with or without an OpenAPI spec.
 
 ---
 
@@ -52,8 +50,8 @@ This series covers the following topics:
 
 To complete the instructions in this series, you must meet the following requirements:
 
-1. [Install API Connectivity Manager and Developer Portal]({{< relref "/nim/deploy/_index.md" >}}) on [separate hosts]({{< relref "tech-specs.md" >}}).
-2. [Install a supported version of NGINX Plus]({{< relref "tech-specs.md" >}}) on one or more hosts to serve as the API Gateway.
+1. [Install API Connectivity Manager and Developer Portal]({{< ref "/nim/deploy/_index.md" >}}) on [separate hosts]({{< ref "/nim/fundamentals/tech-specs.md" >}}).
+2. [Install a supported version of NGINX Plus]({{< ref "/nim/fundamentals/tech-specs.md" >}}) on one or more hosts to serve as the API Gateway.
 3. [Install the `njs` module](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/nginscript/) on your NGINX data plane and Dev Portal hosts.
 4. You have SSH access and `sudo` permissions for the NGINX data plane host(s).
 5. You have an API Connectivity Manager user account with permission to READ, CREATE, UPDATE, and DELETE on the following API Connectivity Manager features:

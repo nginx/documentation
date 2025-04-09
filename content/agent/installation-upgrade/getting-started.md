@@ -1,12 +1,11 @@
 ---
-title: "Getting started"
+title: Getting started
 draft: false
 weight: 100
 toc: true
-tags: [ "docs" ]
-docs: "DOCS-1089"
-categories: ["configuration"]
-doctypes: ["task"]
+docs: DOCS-1089
+type:
+- how-to
 ---
 
 ## Overview
@@ -177,5 +176,5 @@ NGINX Agent uses formatted log files to collect metrics. Expanding log formats a
 {{< important >}}
 Without log rotation or storage on a separate partition, log files could use up all the free drive space and cause your system to become unresponsive to certain services.
 
-For more information, see [NGINX Agent Log Rotation]({{< relref "/agent/configuration/configuration-overview.md#nginx-agent-log-rotation" >}}).
+For more information, see [NGINX Agent Log Rotation]({{< ref "/agent/configuration/configuration-overview.md#nginx-agent-log-rotation" >}}).
 {{< /important >}}

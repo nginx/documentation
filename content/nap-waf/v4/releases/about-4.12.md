@@ -14,9 +14,9 @@ November 19th, 2024
 ### New features
 
 - Added support for Amazon Linux 2023
-- NGINX App Protect WAF now supports NGINX Plus R33. 
+- NGINX App Protect WAF now supports NGINX Plus R33.
 
-Please read the [subscription licenses]({{< relref "/solutions/about-subscription-licenses.md" >}}) topic for information about R33.
+Please read the [subscription licenses]({{< ref "/solutions/about-subscription-licenses.md" >}}) topic for information about R33.
 
 ---
 
@@ -24,12 +24,12 @@ Please read the [subscription licenses]({{< relref "/solutions/about-subscriptio
 
 - Alpine 3.16 is no longer supported.
 
---- 
+---
 
 ### Resolved issues
 
 - 11973 Fixed - Updated the Go version to 1.23.1
-- 11469 Fixed _apt-get update_ warning for Ubuntu 22.04 
+- 11469 Fixed _apt-get update_ warning for Ubuntu 22.04
 
 ---
 

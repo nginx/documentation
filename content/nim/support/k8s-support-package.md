@@ -1,20 +1,18 @@
 ---
 docs: DOCS-1123
-doctypes:
-- reference
-- task
-tags:
-- docs
 title: Create a support package from a Helm installation
 toc: true
 weight: 200
+type:
+- reference
+- how-to
 ---
 
 {{< include "/nim/decoupling/note-legacy-nms-references.md" >}}
 
 ## Overview
 
-Use the Kubernetes support package script to collect system and service information for troubleshooting and debugging. The script packages the data into a tar archive that you can share with [NGINX Customer Support]({{< relref "nim/support/contact-support.md" >}}).
+Use the Kubernetes support package script to collect system and service information for troubleshooting and debugging. The script packages the data into a tar archive that you can share with [NGINX Customer Support]({{< ref "nim/support/contact-support.md" >}}).
 
 ---
 

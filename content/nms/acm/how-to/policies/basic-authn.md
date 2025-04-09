@@ -1,16 +1,12 @@
 ---
-description: Learn how to use F5 NGINX Management Suite API Connectivity Manager to secure
-  API Gateways by applying a basic authentication policy.
+description: Learn how to use F5 NGINX Management Suite API Connectivity Manager to
+  secure API Gateways by applying a basic authentication policy.
 docs: DOCS-1118
-doctypes:
-- API Connectivity Manager
-- api management
-- concept
-tags:
-- docs
 toc: true
 weight: 450
 title: Basic Authentication
+type:
+- concept
 ---
 
 ## Overview
@@ -36,8 +32,8 @@ API Connectivity Manager API owners can restrict access to their APIs with usern
 Complete the following prerequisites before proceeding with this guide:
 
 - API Connectivity Manager is installed, licensed, and running.
-- You have one or more Environments with an [API Gateway]({{< relref "/nms/acm/getting-started/add-api-gateway" >}}).
-- You have published one or more [API Gateways]({{< relref "/nms/acm/getting-started/publish-api-proxy" >}})
+- You have one or more Environments with an [API Gateway]({{< ref "/nms/acm/getting-started/add-api-gateway" >}}).
+- You have published one or more [API Gateways]({{< ref "/nms/acm/getting-started/publish-api-proxy" >}})
 
 ### How to Access the User Interface
 

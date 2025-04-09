@@ -2,14 +2,12 @@
 description: Follow the steps in this guide to install or upgrade F5 NGINX Management
   Suite API Connectivity Manager.
 docs: DOCS-1213
-doctypes:
-- tutorial
 layout: acm-eos
-tags:
-- docs
 title: Install or Upgrade API Connectivity Manager
 toc: true
 weight: 10
+type:
+- tutorial
 ---
 
 ---
@@ -83,13 +81,13 @@ weight: 10
 
 A valid license is required to make full use of all the features in API Connectivity Manager.
 
-Refer to the [Add a License]({{< relref "/nim/admin-guide/license/add-license.md" >}}) topic for instructions on how to download and apply a trial license, subscription license, or Flexible Consumption Program license.
+Refer to the [Add a License]({{< ref "/nim/admin-guide/license/add-license.md" >}}) topic for instructions on how to download and apply a trial license, subscription license, or Flexible Consumption Program license.
 
 ---
 
 ## Upgrade API Connectivity Manager {#upgrade-acm}
 
-{{<note>}}When you confirm the upgrade, the upgrade process will automatically upgrade dependent packages as needed, including Instance Manager. If you prefer to [back up NGINX Management Suite]({{< relref "/nim/admin-guide/maintenance/backup-and-recovery.md" >}}) before upgrading, you can cancel the upgrade when prompted.{{</note>}}
+{{<note>}}When you confirm the upgrade, the upgrade process will automatically upgrade dependent packages as needed, including Instance Manager. If you prefer to [back up NGINX Management Suite]({{< ref "/nim/admin-guide/maintenance/backup-and-recovery.md" >}}) before upgrading, you can cancel the upgrade when prompted.{{</note>}}
 
 <br>
 
@@ -136,7 +134,7 @@ Refer to the [Add a License]({{< relref "/nim/admin-guide/license/add-license.md
    sudo systemctl restart nginx
    ```
 
-5. (Optional) If you use SELinux, follow the steps in the [Configure SELinux]({{< relref "/nim/system-configuration/configure-selinux.md" >}}) guide to restore the default SELinux labels (`restorecon`) for the files and directories related to NGINX Management Suite.
+5. (Optional) If you use SELinux, follow the steps in the [Configure SELinux]({{< ref "/nim/system-configuration/configure-selinux.md" >}}) guide to restore the default SELinux labels (`restorecon`) for the files and directories related to NGINX Management Suite.
 
 ---
 ## What's Next
@@ -149,12 +147,12 @@ Complete the following steps for each data plane instance you want to use with A
 
 1. [Install NGINX Plus R24 or later](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/)
 2. [Install NGINX njs module](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/nginscript/)
-3. [Install the NGINX Agent]({{< relref "/nms/nginx-agent/install-nginx-agent.md" >}}) on your data plane instances to register them with NGINX Management Suite.
+3. [Install the NGINX Agent]({{< ref "/nms/nginx-agent/install-nginx-agent.md" >}}) on your data plane instances to register them with NGINX Management Suite.
 
 ### Install the Developer Portal
 
-- [Install the Developer Portal]({{< relref "/nms/acm/how-to/devportals/installation/install-dev-portal.md" >}})
+- [Install the Developer Portal]({{< ref "/nms/acm/how-to/devportals/installation/install-dev-portal.md" >}})
 
 ### Get Started with API Connectivity Manager
 
-- [Create Workspaces and Environments for your API Infrastructure]({{< relref "/nms/acm/how-to/infrastructure/manage-api-infrastructure.md" >}})
+- [Create Workspaces and Environments for your API Infrastructure]({{< ref "/nms/acm/how-to/infrastructure/manage-api-infrastructure.md" >}})

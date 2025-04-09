@@ -1,10 +1,11 @@
 ---
-title: "Add certificates using the Azure portal"
+title: Add certificates using the Azure portal
 weight: 100
-categories: ["tasks"]
 toc: true
-docs: "DOCS-875"
+docs: DOCS-875
 url: /nginxaas/azure/getting-started/ssl-tls-certificates/ssl-tls-certificates-portal/
+type:
+- how-to
 ---
 
 ## Overview
@@ -46,15 +47,15 @@ Before you begin, refer Azure documentation to [Import a certificate to your Key
 
       If you need to create a new key vault or certificate, you can do so by selecting **Create new key vault** or **Create new** under the **Key Vault** and **Certificate** fields, respectively.
 
-      {{<note>}}If specifying an absolute file path as the `Certificate path` or `Key path`, see the [NGINX Filesystem Restrictions table]({{< relref "/nginxaas-azure/getting-started/nginx-configuration/overview/#nginx-filesystem-restrictions" >}}) for the allowed directories the file can be written to.{{</note>}}
+      {{<note>}}If specifying an absolute file path as the `Certificate path` or `Key path`, see the [NGINX Filesystem Restrictions table]({{< ref "/nginxaas-azure/getting-started/nginx-configuration/overview/#nginx-filesystem-restrictions" >}}) for the allowed directories the file can be written to.{{</note>}}
 
-      {{<note>}}A certificate added to an NGINXaaS for Azure deployment using the Azure Portal refers to an unversioned Azure Key Vault (AKV) secret identifier. To add a certificate with a versioned AKV secret identifier, follow the documented steps with alternative [Client tools]({{< relref "/nginxaas-azure/client-tools/_index.md" >}}) for NGINXaaS for Azure.{{</note>}}
+      {{<note>}}A certificate added to an NGINXaaS for Azure deployment using the Azure Portal refers to an unversioned Azure Key Vault (AKV) secret identifier. To add a certificate with a versioned AKV secret identifier, follow the documented steps with alternative [Client tools]({{< ref "/nginxaas-azure/client-tools/_index.md" >}}) for NGINXaaS for Azure.{{</note>}}
 
 1. Select **Add certificate**.
 
 1. Repeat the same steps to add as many certificates as needed.
 
-1. Now you can [provide an NGINX configuration]({{< relref "/nginxaas-azure/getting-started/nginx-configuration/nginx-configuration-portal.md" >}}) that references the certificate you just added by the **path** value.
+1. Now you can [provide an NGINX configuration]({{< ref "/nginxaas-azure/getting-started/nginx-configuration/nginx-configuration-portal.md" >}}) that references the certificate you just added by the **path** value.
 
 ### View certificate details
 
@@ -93,4 +94,4 @@ Before you begin, refer Azure documentation to [Import a certificate to your Key
 
 ## What's next
 
-[Upload an NGINX Configuration]({{< relref "/nginxaas-azure/getting-started/nginx-configuration/nginx-configuration-portal.md" >}})
+[Upload an NGINX Configuration]({{< ref "/nginxaas-azure/getting-started/nginx-configuration/nginx-configuration-portal.md" >}})

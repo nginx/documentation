@@ -1,10 +1,11 @@
 ---
 title: Set up OIDC authentication
 weight: 300
-categories: ["tasks"]
 toc: true
-docs: "DOCS-1646"
+docs: DOCS-1646
 url: /nginxaas/azure/quickstart/security-controls/oidc/
+type:
+- how-to
 ---
 
 ## Overview
@@ -13,9 +14,9 @@ Learn how to configure F5 NGINX as a Service (NGINXaaS) for Azure with OpenID Co
 
 ## Prerequisites
 
-1. Configure an NGINXaaS deployment with [SSL/TLS certificates]({{< relref "/nginxaas-azure/getting-started/ssl-tls-certificates/" >}}).
+1. Configure an NGINXaaS deployment with [SSL/TLS certificates]({{< ref "/nginxaas-azure/getting-started/ssl-tls-certificates/" >}}).
 
-2. Enable [Runtime State Sharing]({{< relref "/nginxaas-azure/quickstart/runtime-state-sharing.md" >}}) on the NGINXaaS deployment.
+2. Enable [Runtime State Sharing]({{< ref "/nginxaas-azure/quickstart/runtime-state-sharing.md" >}}) on the NGINXaaS deployment.
 
 3. [Configure the IdP](https://github.com/nginxinc/nginx-openid-connect/blob/main/README.md#configuring-your-idp). For example, you can [register a Microsoft Entra Web application](https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-register-app) as the IdP.
 
@@ -43,13 +44,13 @@ Configuring NGINXaaS for Azure with OIDC is similar as [Configuring NGINX Plus](
         }
         ```
 
-        b. Set a proper path for `proxy_cache_path`, see [Enable content caching]({{< relref "basic-caching.md" >}}).
+        b. Set a proper path for `proxy_cache_path`, see [Enable content caching]({{< ref "basic-caching.md" >}}).
 
         ```nginx
         proxy_cache_path /var/cache/nginx/jwt levels=1 keys_zone=jwk:64k max_size=1m;
         ```
 
-        c. Enable `sync` for the keyval memory zones and specify the state files to persist the current state across NGINX restarts. The state file paths are subject to [NGINX Filesystem Restrictions table]({{< relref "/nginxaas-azure/getting-started/nginx-configuration/overview/#nginx-filesystem-restrictions" >}}) and must be placed in a directory accessible to the NGINX worker processes.
+        c. Enable `sync` for the keyval memory zones and specify the state files to persist the current state across NGINX restarts. The state file paths are subject to [NGINX Filesystem Restrictions table]({{< ref "/nginxaas-azure/getting-started/nginx-configuration/overview/#nginx-filesystem-restrictions" >}}) and must be placed in a directory accessible to the NGINX worker processes.
 
         ```nginx
         keyval_zone zone=oidc_id_tokens:1M     state=/opt/oidc_id_tokens.json     timeout=1h sync;
@@ -155,7 +156,7 @@ Configuring NGINXaaS for Azure with OIDC is similar as [Configuring NGINX Plus](
     ```
     </details>
 
-3. Upload the NGINX configurations. See [Upload an NGINX configuration]({{< relref "/nginxaas-azure/getting-started/nginx-configuration/" >}}) for more details.
+3. Upload the NGINX configurations. See [Upload an NGINX configuration]({{< ref "/nginxaas-azure/getting-started/nginx-configuration/" >}}) for more details.
 
 4. In a web browser, open `https://<nginxaas_deployment_fqdn>/<protected_uri>`. The browser will be redirected to the IdP server. After a successful login using the credentials of a user who has the authorization, the protected URI can be accessed. For example, using the `nginx.conf` in this guide, open `https://<nginxaas_deployment_fqdn>/` and complete the authentication. The browser will show:
 
@@ -165,8 +166,8 @@ Configuring NGINXaaS for Azure with OIDC is similar as [Configuring NGINX Plus](
 
 ## Troubleshooting
 
-[Enable NGINX logs]({{< relref "/nginxaas-azure/monitoring/enable-logging/" >}}) and [Troubleshooting](https://github.com/nginxinc/nginx-openid-connect/tree/main?tab=readme-ov-file#troubleshooting) the OIDC issues.
+[Enable NGINX logs]({{< ref "/nginxaas-azure/monitoring/enable-logging/" >}}) and [Troubleshooting](https://github.com/nginxinc/nginx-openid-connect/tree/main?tab=readme-ov-file#troubleshooting) the OIDC issues.
 
 ## Monitoring
 
-[Enable monitoring]({{< relref "/nginxaas-azure/monitoring/enable-monitoring.md" >}}), check [real time monitoring](https://github.com/nginxinc/nginx-openid-connect/blob/main/README.md#real-time-monitoring) to see how OIDC metrics are collected, and use "plus.http.*" metrics filtered with location_zone dimension in [NGINX requests and response statistics]({{< relref "/nginxaas-azure/monitoring/metrics-catalog.md#nginx-requests-and-response-statistics" >}}) to check the OIDC metrics.
+[Enable monitoring]({{< ref "/nginxaas-azure/monitoring/enable-monitoring.md" >}}), check [real time monitoring](https://github.com/nginxinc/nginx-openid-connect/blob/main/README.md#real-time-monitoring) to see how OIDC metrics are collected, and use "plus.http.*" metrics filtered with location_zone dimension in [NGINX requests and response statistics]({{< ref "/nginxaas-azure/monitoring/metrics-catalog.md#nginx-requests-and-response-statistics" >}}) to check the OIDC metrics.

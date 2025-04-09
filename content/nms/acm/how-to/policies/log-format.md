@@ -2,16 +2,12 @@
 description: As an Infrastructure Administrator, use this guide to implement a standard
   log format for all environments hosting APIs.
 docs: DOCS-1127
-doctypes:
-- API Connectivity Manager
-- api management
-- task
-- reference
-tags:
-- docs
 toc: true
 weight: 700
 title: Log Format
+type:
+- how-to
+- reference
 ---
 
 ## Overview
@@ -34,7 +30,7 @@ The Log Format policy enables Infrastructure Admins to set the format for access
 
 To apply the policy or make changes to it, here's what you need to do:
 
-- [Edit an existing environment or create a new one]({{< relref "/nms/acm/how-to/infrastructure/manage-api-infrastructure.md#add-environment" >}}).
+- [Edit an existing environment or create a new one]({{< ref "/nms/acm/how-to/infrastructure/manage-api-infrastructure.md#add-environment" >}}).
 - Check the advanced settings for the environment to see if the policy has been applied.
 - Edit the policy to make changes for each environment. Save and publish the changes.
 

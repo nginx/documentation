@@ -1,193 +1,300 @@
 ---
-description: Enable OpenID Connect-based single-sign for applications proxied by NGINX
-  Plus, using Ping Identity as the identity provider (IdP).
-docs: DOCS-468
-doctypes:
-- task
+description: Enable OpenID Connect-based single sign-on (SSO) for applications proxied by NGINX Plus, using Ping Identity as the identity provider (IdP).
+type:
+- how-to
+product: NGINX-PLUS
 title: Single Sign-On with Ping Identity
 toc: true
-weight: 100
+weight: 800
 ---
 
-This guide explains how to enable single sign-on (SSO) for applications being proxied by F5 NGINX Plus. The solution uses OpenID Connect as the authentication mechanism, with Ping Identity as the identity provider (IdP) and NGINX Plus as the relying party.
+This guide explains how to enable single sign-on (SSO) for applications being proxied by F5 NGINX Plus. The solution uses OpenID Connect as the authentication mechanism, with [Ping Identity](https://www.pingidentity.com/en.html) (PingFederate or PingOne) as the Identity Provider (IdP), and NGINX Plus as the Relying Party.
 
-The instructions in this document apply to both Ping Identity's on‑premises and cloud products, PingFederate and PingOne for Enterprise.
+{{< note >}} This guide applies to [NGINX Plus Release 34]({{< ref "nginx/releases.md#r34" >}}) and later. In earlier versions, NGINX Plus relied on an [njs-based solution](#legacy-njs-guide), which required NGINX JavaScript files, key-value stores, and advanced OpenID Connect logic. In the latest NGINX Plus version, the new [OpenID Connect module](https://nginx.org/en/docs/http/ngx_http_oidc_module.html) simplifies this process to just a few directives.{{< /note >}}
 
-{{< see-also >}}{{< include "nginx-plus/nginx-openid-repo-note.txt" >}}{{< /see-also >}}
 
-<span id="prereqs"></span>
 ## Prerequisites
 
-The instructions assume you have the following:
+- [PingFederate](https://docs.pingidentity.com/pingfederate/latest/pf_pf_landing_page.html) Enterprise Federation Server or [PingOne](https://docs.pingidentity.com/pingone/p1_cloud__platform_main_landing_page.html) Cloud deployment with a Ping Identity account.
 
-- A running deployment of PingFederate or PingOne for Enterprise, and a Ping Identity account. For installation and configuration instructions, see the documentation for [PingFederate](https://docs.pingidentity.com/bundle/pingfederate-93/page/tau1564002955783.html) or [PingOne for Enterprise](https://docs.pingidentity.com/bundle/pingone/page/fjn1564020491958-1.html).
-- An NGINX Plus subscription and <span style="white-space: nowrap;">NGINX Plus R15</span> or later. For installation instructions, see the [NGINX Plus Admin Guide](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/).
-- The NGINX JavaScript module (njs), required for handling the interaction between NGINX Plus and the IdP. After installing NGINX Plus, install the module with the command for your operating system.
+- An NGINX Plus [subscription](https://www.f5.com/products/nginx/nginx-plus) and NGINX Plus [Release 34](({{< ref "nginx/releases.md#r34" >}})) or later. For installation instructions, see [Installing NGINX Plus](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/).
 
-   For Debian and Ubuntu:
+- A domain name pointing to your NGINX Plus instance, for example, `demo.example.com`.
 
-   ```none
-   sudo apt install nginx-plus-module-njs
-   ```
 
-   For CentOS, RHEL, and Oracle Linux:
+## Configure PingFederate or PingOne for Enterprise {#ping-create}
 
-   ```shell
-   sudo yum install nginx-plus-module-njs
-   ```
+{{< note >}} These steps outline an example with the cloud offering of **PingOne**. If you are using the on‑premises PingFederate, the user interface might slightly differ. {{< /note >}}
 
-- The following directive included in the top-level ("main") configuration context in **/etc/nginx/nginx.conf**, to load the NGINX JavaScript module:
+Create a new application for NGINX Plus:
 
-   ```nginx
-   load_module modules/ngx_http_js_module.so;
-   ```
+1. Log in to your Ping Identity admin console.
+ 
+2. Go to **Applications** > **Applications**.
 
-<span id="ping"></span>
-## Configuring PingFederate or PingOne for Enterprise
+3. Click the **+** (plus) symbol to create a new OIDC Application.
 
-**Note:** This guide uses the GUI provided with PingOne for Enterprise. It reflects the GUI at the time of initial publication, but the GUI is subject to change. The PingFederate user interace might also differ. Use this guide as a reference and adapt as necessary for the UI you are using.
+4. On the New Application screen:
 
-Create a new application for NGINX Plus:
+   - Enter the Name of your application, for example, `nginx-demo-app`.
 
-1. Log in to your Ping Identity account. The administrative dashboard opens automatically. In this guide, we show the PingOne for Enterprise dashboard, and for brevity refer simply to ”PingOne”.
+   - Select the Application Type **OIDC Web App**.
 
-2. Click <span style="white-space: nowrap; background-color:#595f66; color:white"> APPLICATIONS </span> in the title bar, and on the **My Applications** page that opens, click **OIDC** and then the <span style="white-space: nowrap; font-weight:bold;">+ Add Application</span> button.
+   - Select **Save**.
 
-   <img src="/nginx/images/pingidentity-sso-my-applications-empty.png" alt="" width="1024" height="355" class="aligncenter size-full" />
+5. In your OIDC application, Select the **Overview** tab:
 
-3. The <span style="white-space: nowrap; font-weight:bold;">Add OIDC Application</span> window pops up. Click the <span style="white-space: nowrap; color:#4a95c7;">ADVANCED CONFIGURATION</span> box, and then the <span style="background-color:#4a95c7; color:white;"> Next </span> button.
+   - in the **General** section, copy your **Client ID** and **Client Secret** values. You will need then later when configuring NGINX Plus.
 
-   <img src="/nginx/images/pingidentity-sso-add-oidc-application.png" alt="" width="956" height="662" class="aligncenter size-full" />
+   - In the **Connection Details** section, copy your **Issuer ID**. You will need it later when configuring NGINX Plus.
 
-4. In section 1 (PROVIDE DETAILS ABOUT YOUR APPLICATION), type a name in the **APPLICATION NAME** field and a short description in the **SHORT DESCRIPTION** field. Here, we're using <span style="color:#666666; font-weight:bolder; white-space: nowrap;">nginx-plus-application</span> and <span style="color:#666666; font-weight:bolder; white-space: nowrap;">NGINX Plus</span>. Choose a value from the **CATEGORY** drop‑down menu; here we’re using <span style="color:#666666; font-weight:bolder; white-space: nowrap;">Information Technology</span>. You can also add an icon if you wish. Click the <span style="background-color:#4a95c7; color:white;"> Next </span> button.
+     For PingOne Cloud, the Issuer ID generally structured as `https://auth.pingone.com/<environment_id>/as`.
 
-   <img src="/nginx/images/pingidentity-sso-section1.png" alt="" width="954" height="665" class="aligncenter size-full" />
+     For PingFederate, the Issuer ID generally structured as `https://pingfederate.example.com:9031` appended with the realm path of your environment.
 
-5. In section 2 (AUTHORIZATION SETTINGS), perform these steps:
+6. On the **Configuration** tab of your OIDC application:
 
-   1. Under **GRANTS**, click both <span style="color:#666666; font-weight:bolder; white-space: nowrap;">Authorization Code</span> and <span style="color:#666666; font-weight:bolder;">Implicit</span>.<br/>
-   2. Under **CREDENTIALS**, click the <span style="white-space: nowrap; font-weight:bold;">+ Add Secret</span> button. PingOne creates a client secret and opens the **CLIENT SECRETS** field to display it, as shown in the screenshot. To see the actual value of the secret, click the eye icon.<br/>
-   3.	Click the <span style="background-color:#4a95c7; color:white;"> Next </span> button.
+   - In the **Redirect URIs** field, add the NGINX Plus callback URI, for example:
 
-   <img src="/nginx/images/pingidentity-sso-section2.png" alt="" width="959" height="1054" class="aligncenter size-full" />
+    `https://demo.example.com/oidc_callback`.
 
-6. In section 3 (SSO FLOW AND AUTHENTICATION SETTINGS):
+   - Select **Save**.
 
-   1. In the <span style="white-space: nowrap; font-weight:bold;">START SSO URL</span> field, type the URL where users access your application. Here we’re using <span style="color:#666666; font-weight:bolder; white-space: nowrap;">https://example.com</span>.
-   2. In the **REDIRECT URIS** field, type the URI of the NGINX Plus instance including the port number, and ending in **/\_codexch**. Here we’re using <span style="color:#666666; font-weight:bolder; white-space: nowrap;">https://my-nginx-plus.example.com:443/\_codexch</span> (the full value is not visible in the screenshot).
+7. Assign the application to the appropriate **Groups** or **Users** who will be allowed to log in.
 
-      **Notes:**
+{{< note >}} You will need the values of **Client ID**, **Client Secret**, and **Issuer** in the next steps. {{< /note >}}
 
-      - For production, we strongly recommend that you use SSL/TLS (port 443).
-      - The port number is mandatory even when you're using the default port for HTTP (80) or HTTPS (443).
 
-   <img src="/nginx/images/pingidentity-sso-section3.png" alt="" width="1024" height="781" class="aligncenter size-full" />
+## Set up NGINX Plus {#nginx-plus-setup}
 
-7. In section 4 (DEFAULT USER PROFILE ATTRIBUTE CONTRACT), optionally add attributes to the required <span style="color:#666666; font-weight:bolder;">sub</span> and <span style="color:#666666; font-weight:bolder;">idpid</span> attributes, by clicking the <span style="white-space: nowrap; font-weight:bold;">+ Add Attribute</span> button. We’re not adding any in this example. When finished, click the <span style="background-color:#4a95c7; color:white;"> Next </span> button.
+With PingOne or PingFederate configured, you can enable OIDC on NGINX Plus. NGINX Plus serves as the Rely Party (RP) application &mdash; a client service that verifies user identity.
 
-   <img src="/nginx/images/pingidentity-sso-section4.png" alt="" width="1024" height="532" class="aligncenter size-full" />
+1.  Ensure that you are using the latest version of NGINX Plus by running the `nginx -v` command in a terminal:
 
-8. In section 5 (CONNECT SCOPES), click the circled plus-sign on the <span style="white-space: nowrap; font-weight:bold;">OpenID Profile (profile)</span> and <span style="white-space: nowrap; font-weight:bold;">OpenID Profile Email (email)</span> scopes in the <span style="white-space: nowrap; font-weight:bold;">LIST OF SCOPES</span> column. They are moved to the **CONNECTED SCOPES** column, as shown in the screenshot. Click the <span style="background-color:#4a95c7; color:white;"> Next </span> button.
+    ```shell
+    nginx -v
+    ```
+    The output should match NGINX Plus Release 34 or later:
 
-   <img src="/nginx/images/pingidentity-sso-section5.png" alt="" width="960" height="451" class="aligncenter size-full" />
+    ```none
+    nginx version: nginx/1.27.4 (nginx-plus-r34)
+    ```
 
-9. In section 6 (ATTRIBUTE MAPPING), map attributes from your identity repository to the claims available to the application. The one attribute you must map is **sub**, and here we have selected the value <span style="color:#666666; font-weight:bolder;">Email</span> from the drop‑down menu (the screenshot is abridged for brevity).
+2.  Ensure that you have the values of the **Client ID**, **Client Secret**, and **Issuer** obtained during [PingOne or PingFederate Configuration](#ping-setup).
 
-   <img src="/nginx/images/pingidentity-sso-section6.png" alt="" width="959" height="863" class="aligncenter size-full" />
+3.  In your preferred text editor, open the NGINX configuration file (`/etc/nginx/nginx.conf` for Linux or `/usr/local/etc/nginx/nginx.conf` for FreeBSD).
 
-   <span id="ping-group-access"></span>
-10. In section 7 (GROUP ACCESS), select the groups that will have access to the application, by clicking the circled plus-sign on the corresponding boxes in the **AVAILABLE GROUPS** column. The boxes move to the **ADDED GROUPS** column. As shown in the screenshot we have selected the two default groups, <span style="color:#666666; font-weight:bolder;">Domain Administrators@directory</span> and <span style="color:#666666; font-weight:bolder;">Users@directory</span>.
+4.  In the [`http {}`](https://nginx.org/en/docs/http/ngx_http_core_module.html#http) context, make sure your public DNS resolver is specified with the [`resolver`](https://nginx.org/en/docs/http/ngx_http_core_module.html#resolver) directive: By default, NGINX Plus re‑resolves DNS records at the frequency specified by time‑to‑live (TTL) in the record, but you can override the TTL value with the `valid` parameter:
 
-    Click the <span style="background-color:#4fb97a; color:white;"> Done </span> button.
+    ```nginx
+    http {
+        resolver 10.0.0.1 ipv4=on valid=300s;
 
-    <img src="/nginx/images/pingidentity-sso-section7.png" alt="" width="959" height="516" class="aligncenter size-full" />
-
-11. You are returned to the **My Applications** window, which now includes a row for <span style="white-space: nowrap; font-weight:bold;">nginx-plus-application</span>. Click the toggle switch at the right end of the row to the “on” position, as shown in the screenshot. Then click the “expand” icon at the end of the row, to display the application’s details.
-
-    <img src="/nginx/images/pingidentity-sso-my-applications-new-app.png" alt="" width="1024" height="408" class="aligncenter size-full" />
-
-    <span id="ping-client-id-secrets"></span>
-12. On the page that opens, make note of the values in the following fields on the **Details** tab. You will add them to the NGINX Plus configuration in [Step 4 of _Configuring NGINX Plus_](#nginx-plus-variables).
-
-    - **CLIENT ID** (in the screenshot, <span style="white-space: nowrap; color:#666666; font-weight:bolder;">28823604-83c5-4608-88da-c73fff9c607a</span>)
-    - **CLIENT SECRETS** (in the screenshot, <span style="white-space: nowrap; color:#666666; font-weight:bolder;">7GMKILBofxb...</span>); click on the eye icon to view the actual value
-
-    <img src="/nginx/images/pingidentity-sso-my-applications-details.png" alt="" width="1024" height="963" class="aligncenter size-full" />
-
-<span id="nginx-plus"></span>
-## Configuring NGINX Plus
-
-Configure NGINX Plus as the OpenID Connect relying party:
-
-1. Create a clone of the [<span style="white-space: nowrap; font-weight:bold;">nginx-openid-connect</span>](https://github.com/nginxinc/nginx-openid-connect) GitHub repository.
-
-   ```shell
-   git clone https://github.com/nginxinc/nginx-openid-connect
-   ```
-
-2. Copy these files from the clone to **/etc/nginx/conf.d**:
-
-   - **frontend.conf**
-   - **openid\_connect.js**
-   - **openid\_connect.server\_conf**
-
-   <span id="nginx-plus-urls"></span>
-3. Get the URLs for the authorization endpoint, token endpoint, and JSON Web Key (JWK) file from the Ping Identity configuration. Run the following `curl` command in a terminal, piping the output to the indicated `python` command to output the entire configuration in an easily readable format. We've abridged the output to show only the relevant fields.
-
-   The <span style="white-space: nowrap;">`<Ping-Identity-Client-ID>`</span> variable is the value in the **CLIENT ID** field that you noted in [Step 12 of _Configuring PingFederate or PingOne for Enterprise_](#ping-client-id-secrets).
-
-   **Note:** This `curl` command is appropriate for Ping One for Enterprise. For PingFederate, you might need to replace `sso.connect.pingidentity.com` with the IP address of your local PingFederate server.
-
-   ```shell
-   $ curl sso.connect.pingidentity.com/<Ping-Identity-Client-ID>/.well-known/openid-configuration | python -m json.tool
-   ...
-   {
-       "authorization_endpoint": "https://sso.connect.pingidentity.com/sso/as/authorization.oauth2",
-       ...
-       "jwks_uri": "https://sso.connect.pingidentity.com/sso/as/jwks",
-       ...
-       "token_endpoint": "https://sso.connect.pingidentity.com/sso/as/token.oauth2",
-    ...
+        # ...
     }
     ```
 
-   <span id="nginx-plus-variables"></span>
-4. In your preferred text editor, open **/etc/nginx/conf.d/frontend.conf**. Change the second parameter of each of the following [set](http://nginx.org/en/docs/http/ngx_http_rewrite_module.html#set) directives to the specified value:
+    <span id="ping-setup-oidc-provider"></span>
+5.  In the [`http {}`](https://nginx.org/en/docs/http/ngx_http_core_module.html#http) context, define the PingOne or PingFederate provider named `ping` by specifying the [`oidc_provider {}`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#oidc_provider) context:
 
-   - `set $oidc_authz_endpoint` – Value of `authorization_endpoint` from [Step 3](#nginx-plus-urls) (in this guide, `https://sso.connect.pingidentity.com/sso/as/authorization.oauth2`)
-   - `set $oidc_token_endpoint` – Value of `token_endpoint` from [Step 3](#nginx-plus-urls) (in this guide, `https://sso.connect.pingidentity.com/sso/as/token.oauth2`)
-   - `set $oidc_client` – Value in the **CLIENT ID** field in [Step 12 of _Configuring PingFederate or PingOne for Enterprise_](#ping-client-id-secrets) (in this guide, <span style="white-space: nowrap;">`28823604-83c5-4608-88da-c73fff9c607a`</span>)
-   - `set $oidc_client_secret` – Value in the **CLIENT SECRETS** field in [Step 12 of _Configuring PingFederate or PingOne for Enterprise_](#ping-client-id-secrets) (in this guide, `7GMKILBofxb...`)
-   - `set $oidc_hmac_key` – A unique, long, and secure phrase
+    ```nginx
+    http {
+        resolver 10.0.0.1 ipv4=on valid=300s;
 
-5. Configure the JWK file. The procedure depends on which version of NGINX Plus you are using.
+        oidc_provider ping {
 
-   - In <span style="white-space: nowrap;">NGINX Plus R17</span> and later, NGINX Plus can read the JWK file directly from the URL reported as `jwks_uri` in [Step 3](#nginx-plus-urls). Change **/etc/nginx/conf.d/frontend.conf** as follows:
+            # ...
+        }
+        # ...
+    }
+    ```
 
-      1. Comment out (or remove) the [auth_jwt_key_file](http://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html#auth_jwt_key_file) directive.
-      2. Uncomment the [auth_jwt_key_request](http://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html#auth_jwt_key_request) directive. (Its parameter, `/_jwks_uri`, refers to the value of the `$oidc_jwt_keyfile` variable, which you set in the next step.)
-      3. Change the second parameter of the `set $oidc_jwt_keyfile` directive to the value reported in the `jwks_uri` field in [Step 3](#nginx-plus-urls) (in this guide, `https://sso.connect.pingidentity.com/sso/as/jwks`).
+6.  In the [`oidc_provider {}`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#oidc_provider) context, specify:
 
-   - In <span style="white-space: nowrap;">NGINX Plus R16</span> and earlier, the JWK file must be on the local disk. (You can also use this method with <span style="white-space: nowrap;">NGINX Plus R17</span> and later if you wish.)
+    - your actual Ping **Client ID** obtained in [Ping Configuration](#ping-create) with the [`client_id`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#client_id) directive
 
-      1. Copy the JSON contents from the JWK file named in the `jwks_uri` field in [Step 3](#nginx-plus-urls) (in this guide, `https://sso.connect.pingidentity.com/sso/as/jwks`) to a local file (for example, `/etc/nginx/my_ping_identity_jwk.json`).
-      2. In **/etc/nginx/conf.d/frontend.conf**, change the second parameter of the <span style="white-space: nowrap;">`set $oidc_jwt_keyfile`</span> directive to the local file path.
+    - your **Client Secret** obtained in [Ping Configuration](#ping-create) with the [`client_secret`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#client_secret) directive
 
-6. Confirm that the user named by the [user](http://nginx.org/en/docs/ngx_core_module.html#user) directive in the NGINX Plus configuration (in **/etc/nginx/nginx.conf** by convention) has read permission on the JWK file.
+    - the **Issuer** URL obtained in [Ping Configuration](#ping-create) with the [`issuer`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#client_secret) directive
 
-<span id="testing"></span>
-## Testing
+        The `issuer` is typically your Ping Identity OIDC URL.
 
-In a browser, enter the address of your NGINX Plus instance and try to log in using the credentials of a user assigned to the application (see [Step 10 of _PingFederate or PingOne for Enterprise_](#ping-group-access)).
+        For PingOne Cloud, the URL is `https://auth.pingone.com/<environment_id>/as`.
 
-<img src="/nginx/images/pingidentity-sso-login.png" alt="" width="864" height="952" class="aligncenter size-full" />
+        For PingFederate, the URL is `https://pingfederate.example.com:9031` followed by your environment’s realm path.
 
-<span id="troubleshooting"></span>
-## Troubleshooting
+        By default, NGINX Plus creates the OpenID metadata URL by appending the `/.well-known/openid-configuration` part to the Issuer URL. If your metadata URL is different, you can explicitly specify the metadata document with the [`config_url`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#config_url) directive.
 
-See the [**Troubleshooting**](https://github.com/nginxinc/nginx-openid-connect#troubleshooting) section at the <span style="white-space: nowrap; font-weight:bold;">nginx-openid-connect</span> repository on GitHub.
+    - **Important:** All interaction with the IdP is secured exclusively over SSL/TLS, so NGINX must trust the certificate presented by the IdP. By default, this trust is validated against your system’s CA bundle (the default CA store for your Linux or FreeBSD distribution). If the IdP’s certificate is not included in the system CA bundle, you can explicitly specify a trusted certificate or chain with the [`ssl_trusted_certificate`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#ssl_trusted_certificate) directive so that NGINX can validate and trust the IdP’s certificate.
 
-### Revision History
 
-- Version 2 (March 2020) – Updates to _Configuring NGINX Plus_ section
-- Version 1 (January 2020) – Initial version (NGINX Plus Release 20)
+    ```nginx
+    http {
+        resolver 10.0.0.1 ipv4=on valid=300s;
+
+        oidc_provider ping {
+            issuer        https://auth.pingone.com/<environment_id>/as;
+            client_id     <client_id>;
+            client_secret <client_secret>;
+        }
+
+        # ...
+    }
+    ```
+
+7.  Make sure you have configured a [server](https://nginx.org/en/docs/http/ngx_http_core_module.html#server) that corresponds to `demo.example.com`, and there is a [location](https://nginx.org/en/docs/http/ngx_http_core_module.html#location) that [points](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass) to your application (see [Step 10](#oidc_app)) at `http://127.0.0.1:8080` that is going to be OIDC-protected:
+
+    ```nginx
+    http {
+
+        # ...
+
+        server {
+            listen      443 ssl;
+            server_name demo.example.com;
+
+            ssl_certificate     /etc/ssl/certs/fullchain.pem;
+            ssl_certificate_key /etc/ssl/private/key.pem;
+
+            location / {
+                # ...
+
+                proxy_pass http://127.0.0.1:8080;
+            }
+        }
+        # ...
+    }
+    ```
+
+8.  Protect this [location](https://nginx.org/en/docs/http/ngx_http_core_module.html#location) with Ping Identity OIDC by specifying the [`auth_oidc`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#auth_oidc) directive that will point to the `ping` configuration specified in the [`oidc_provider {}`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#oidc_provider) context in [Step 5](#ping-setup-oidc-provider):
+
+    ```nginx
+    # ...
+    location / {
+         auth_oidc ping;
+
+         # ...
+
+         proxy_pass http://127.0.0.1:8080;
+    }
+    # ...
+    ```
+
+9.  Pass the OIDC claims as headers to the application ([Step 10](#oidc_app)) with the [`proxy_set_header`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_set_header) directive. These claims are extracted from the ID token returned by Ping:
+
+    - [`$oidc_claim_sub`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#var_oidc_claim_) - a unique `Subject` identifier assigned for each user by Ping Identity
+
+    - [`$oidc_claim_email`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#var_oidc_claim_) - the e-mail address of the user
+
+    - [`$oidc_claim_name`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#var_oidc_claim_) - the full name of the user
+
+    - any other OIDC claim using the [`$oidc_claim_ `](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#var_oidc_claim_) variable
+
+    {{< note >}} Ensure the `openid`, `profile`, `email` Scopes are enabled in Ping Identity.{{< /note >}}
+
+    ```nginx
+    # ...
+    location / {
+         auth_oidc ping;
+
+         proxy_set_header sub   $oidc_claim_sub;
+         proxy_set_header email $oidc_claim_email;
+         proxy_set_header name  $oidc_claim_name;
+
+         proxy_pass http://127.0.0.1:8080;
+    }
+    # ...
+    ```
+
+    <span id="oidc_app"></span>
+10. Create a simple test application referenced by the `proxy_pass` directive which returns the authenticated user's full name and email upon successful authentication:
+
+    ```nginx
+    # ...
+    server {
+        listen 8080;
+
+        location / {
+            return 200 "Hello, $http_name!\nEmail: $http_email\nSub: $http_sub\n";
+            default_type text/plain;
+        }
+    }
+    ```
+11. Save the NGINX configuration file and reload the configuration:
+    ```nginx
+    nginx -s reload
+    ```
+
+### Complete Example
+
+This configuration example summarizes the steps outlined above. It includes only essential settings such as specifying the DNS resolver, defining the OIDC provider, configuring SSL, and proxying requests to an internal server.
+
+```nginx
+http {
+    # Use a public DNS resolver for Issuer discovery, etc.
+    resolver 10.0.0.1 ipv4=on valid=300s;
+
+    oidc_provider ping {
+        # The issuer is typically something like:
+        # https://auth.pingone.com/<environment_id>/as
+        issuer https://auth.pingone.com/<environment_id>/as;
+
+        # Your Ping Identity Client ID and Secret
+        client_id <client_id>;
+        client_secret <client_secret>;
+    }
+
+    server {
+        listen 443 ssl;
+        server_name demo.example.com;
+
+        ssl_certificate /etc/ssl/certs/fullchain.pem;
+        ssl_certificate_key /etc/ssl/private/key.pem;
+
+        location / {
+            # Enforce OIDC with Ping Identity
+            auth_oidc ping;
+
+            # Forward OIDC claims as headers if desired
+            proxy_set_header sub $oidc_claim_sub;
+            proxy_set_header email $oidc_claim_email;
+            proxy_set_header name $oidc_claim_name;
+
+            proxy_pass http://127.0.0.1:8080;
+        }
+    }
+
+    server {
+        # Simple backend application for demonstration
+        listen 8080;
+
+        location / {
+            return 200 "Hello, $http_name!\nEmail: $http_email\nSub: $http_sub\n";
+            default_type text/plain;
+        }
+    }
+}
+```
+
+### Testing
+
+1. Open `https://demo.example.com/` in a browser. You will be automatically redirected to the PingOne sign-in page.
+
+2. Enter valid Ping Identity credentials of a user who has access the application. Upon successful sign-in, PingOne redirects you back to NGINX Plus, and you will see the proxied application content (for example, “Hello, Jane Doe!”).
+
+
+## Legacy njs-based Ping Identity Solution {#legacy-njs-guide}
+
+If you are running NGINX Plus R33 and earlier or if you still need the njs-based solution, refer to the [Legacy njs-based Ping Identity Guide]({{< ref "nginx/deployment-guides/single-sign-on/oidc-njs/ping-identity.md" >}}) for details. The solution uses the [`nginx-openid-connect`](https://github.com/nginxinc/nginx-openid-connect) GitHub repository and NGINX JavaScript files.
+
+
+## See Also
+
+- [NGINX Plus Native OIDC Module Reference documentation](https://nginx.org/en/docs/http/ngx_http_oidc_module.html)
+
+- [Release Notes for NGINX Plus R34]({{< ref "nginx/releases.md#r34" >}})
+
+
+## Revision History
+
+- Version 1 (March 2025) – Initial version for NGINX Plus Release 34

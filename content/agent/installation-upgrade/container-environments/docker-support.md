@@ -1,20 +1,18 @@
 ---
 title: Container support and troubleshooting
-categories:
-- installation
 draft: false
-tags:
-- docs
 toc: true
 weight: 200
-docs: "DOCS-909"
+docs: DOCS-909
+type:
+- task
 ---
 
 ## Overview
 
-The NGINX Agent repository includes [Dockerfiles](https://github.com/nginx/agent/tree/main/scripts/docker) that can be used to [build custom container images]({{< relref "/agent/installation-upgrade/container-environments/docker-images.md" >}}). Images are created with an NGINX Open Source or NGINX Plus instance and are available for various operating systems.
+The NGINX Agent repository includes [Dockerfiles](https://github.com/nginx/agent/tree/main/scripts/docker) that can be used to [build custom container images]({{< ref "/agent/installation-upgrade/container-environments/docker-images.md" >}}). Images are created with an NGINX Open Source or NGINX Plus instance and are available for various operating systems.
 
-See the [Technical Specifications]({{< relref "/agent/technical-specifications.md#container-support" >}}) for a list of supported operationg systems.
+See the [Technical Specifications]({{< ref "/agent/technical-specifications.md#container-support" >}}) for a list of supported operationg systems.
 
 NGINX Agent running in a container has some limitations that need to be considered, and are listed below.
 

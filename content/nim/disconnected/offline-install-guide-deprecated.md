@@ -9,7 +9,7 @@ docs: DOCS-000
 ---
 
 {{<call-out "caution" "Deprecated documentation notice" "fa fa-exclamation-triangle" >}}
-This document outlines manual steps that have been replaced by a simplified script-based process. For most users, we recommend using the updated process documented [here]({{< relref "nim/disconnected/offline-install-guide.md" >}}).{{</call-out>}}
+This document outlines manual steps that have been replaced by a simplified script-based process. For most users, we recommend using the updated process documented [here]({{< ref "nim/disconnected/offline-install-guide.md" >}}).{{</call-out>}}
 
 ## Overview
 
@@ -38,7 +38,7 @@ To complete the steps in this guide, you need to download the NGINX Instance Man
 
 Local dependencies are common Linux packages like `curl` or `openssl`, which most Linux distributions include by default. When installing NGINX Instance Manager, your package manager will automatically install these dependencies. Without internet access, ensure your package manager can use a local package repository, such as a distribution DVD/ISO image or internal network mirror. Check your Linux distribution's documentation for details.
 
-{{< call-out "note" "RedHat on AWS" "fa-brands fa-aws" >}}If you're using AWS and can't attach remote or local RedHat package repositories, download the necessary packages on another RedHat machine and copy them to your target machine. Use the `yumdownloader` utility for this task: 
+{{< call-out "note" "RedHat on AWS" "fa-brands fa-aws" >}}If you're using AWS and can't attach remote or local RedHat package repositories, download the necessary packages on another RedHat machine and copy them to your target machine. Use the `yumdownloader` utility for this task:
 <https://access.redhat.com/solutions/10154>.
 {{</ call-out >}}
 
@@ -97,9 +97,9 @@ To download external dependencies:
         ```
 
     {{< call-out "important" "Setting a custom ClickHouse password" "fas fa-exclamation-triangle" >}}
-    
-    When installing ClickHouse, you can set a password or leave it blank (default is an empty string). If you set a password, make sure to update the **/etc/nms/nms.conf** file with it after installing NGINX Instance Manager. Otherwise, NGINX Instance Manager won't start. For more information on customizing ClickHouse settings, refer to the [Configure ClickHouse]({{< relref "/nim/system-configuration/configure-clickhouse.md" >}}) topic. 
-    
+
+    When installing ClickHouse, you can set a password or leave it blank (default is an empty string). If you set a password, make sure to update the **/etc/nms/nms.conf** file with it after installing NGINX Instance Manager. Otherwise, NGINX Instance Manager won't start. For more information on customizing ClickHouse settings, refer to the [Configure ClickHouse]({{< ref "/nim/system-configuration/configure-clickhouse.md" >}}) topic.
+
     {{</ call-out >}}
 
 
@@ -177,7 +177,7 @@ To upgrade NGINX Instance Manager to a newer version:
 
     {{< include "installation/nms-user.md"  >}}
 
-3.	(Optional) If you use SELinux, follow the [Configure SELinux]({{< relref "/nim/system-configuration/configure-selinux.md"  >}}) guide to restore SELinux contexts using restorecon for files and directories related to NGINX Instance Manager.
+3.	(Optional) If you use SELinux, follow the [Configure SELinux]({{< ref "/nim/system-configuration/configure-selinux.md"  >}}) guide to restore SELinux contexts using restorecon for files and directories related to NGINX Instance Manager.
 
 ---
 
