@@ -88,7 +88,7 @@ In environments where NGINX Plus instances cannot access the internet, you'll ne
 
 #### Configure NGINX Plus to report usage to NGINX Instance Manager
 
-To configure NGINX Plus R33 or later to report usage data to NGINX Instance Manger:
+To configure NGINX Plus R33 or later to report usage data to NGINX Instance Manager:
 
 {{< include "licensing-and-reporting/configure-nginx-plus-report-to-nim.md" >}}
 
