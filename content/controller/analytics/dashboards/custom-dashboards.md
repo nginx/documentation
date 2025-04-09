@@ -1,13 +1,11 @@
 ---
 description: Create custom dashboards to view custom graphs.
 docs: DOCS-527
-doctypes:
-- task
-tags:
-- docs
 title: Create Custom Dashboards
 toc: true
 weight: 20
+type:
+- how-to
 ---
 
 ## Overview
@@ -23,8 +21,8 @@ You can use the F5 NGINX Controller user interface to create your own Dashboards
 
 ## Before You Begin
 
-- [Install the NGINX Controller Agent on instances that you want to monitor]({{< relref "/controller/admin-guides/install/install-nginx-controller-agent.md" >}})
-- [Configure Metrics collection on your NGINX instances]({{< relref "/controller/admin-guides/config-agent/configure-metrics-collection.md" >}})
+- [Install the NGINX Controller Agent on instances that you want to monitor]({{< ref "/controller/admin-guides/install/install-nginx-controller-agent.md" >}})
+- [Configure Metrics collection on your NGINX instances]({{< ref "/controller/admin-guides/config-agent/configure-metrics-collection.md" >}})
 
 ## Dashboards
 
@@ -69,7 +67,7 @@ To add an Element to a Dashboard:
 6. Select a metric from the drop-down menu.
 7. Select the aggregation method for the selected metric.
    {{< see-also >}}
-For more information about metrics and supported aggregation methods, see the [Metrics Catalog Reference]({{< relref "/controller/analytics/catalogs/metrics.md" >}}).
+For more information about metrics and supported aggregation methods, see the [Metrics Catalog Reference]({{< ref "/controller/analytics/catalogs/metrics.md" >}}).
    {{< /see-also >}}
 8. (Optional) Add a filter to refine the data. For example, you can limit the data to a specific App or Environment.
 9. (Optional) Select **Add metrics** to add more metrics.
@@ -130,11 +128,11 @@ Predefined dashboards cannot be deleted or modified.
 
 ## What's Next
 
-- [Overview Dashboard]({{< relref "/controller/analytics/dashboards/overview-dashboard.md" >}})
-- [Overview of Metrics and Metadata]({{< relref "/controller/analytics/metrics/overview-metrics-metadata.md" >}})
-- [Set up Metrics Collection]({{< relref "/controller/admin-guides/config-agent/configure-metrics-collection.md" >}})
-- [Metrics Catalog Reference]({{< relref "/controller/analytics/catalogs/metrics.md" >}})
-- [Dimensions Catalog Reference]({{< relref "/controller/analytics/catalogs/dimensions.md" >}})
+- [Overview Dashboard]({{< ref "/controller/analytics/dashboards/overview-dashboard.md" >}})
+- [Overview of Metrics and Metadata]({{< ref "/controller/analytics/metrics/overview-metrics-metadata.md" >}})
+- [Set up Metrics Collection]({{< ref "/controller/admin-guides/config-agent/configure-metrics-collection.md" >}})
+- [Metrics Catalog Reference]({{< ref "/controller/analytics/catalogs/metrics.md" >}})
+- [Dimensions Catalog Reference]({{< ref "/controller/analytics/catalogs/dimensions.md" >}})
 
 {{< versions "3.0" "latest" "ctrlvers" >}}
 {{< versions "3.18" "latest" "apimvers" >}}

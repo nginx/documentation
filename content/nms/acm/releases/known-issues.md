@@ -1,16 +1,14 @@
 ---
-description: This document is a summary of the known issues in F5 NGINX Management Suite
-  API Connectivity Manager. Fixed issues are removed after **45 days**. <p>We recommend
-  upgrading to the latest version of API Connectivity Manager to take advantage of
-  new features, improvements, and bug fixes.</p>
+description: This document is a summary of the known issues in F5 NGINX Management
+  Suite API Connectivity Manager. Fixed issues are removed after **45 days**. <p>We
+  recommend upgrading to the latest version of API Connectivity Manager to take advantage
+  of new features, improvements, and bug fixes.</p>
 docs: DOCS-930
-doctypes:
-- reference
-tags:
-- docs
 title: Known Issues
 toc: true
 weight: 200
+type:
+- reference
 ---
 
 {{<rn-styles>}}
@@ -153,7 +151,7 @@ If you add a Developer Portal cluster to an environment that has WAF enabled, th
 On the Developer Portal:
 
 1. Open an SSH connection to the Developer Portal and log in.
-2. [Install F5 NGINX App Protect]({{< relref "/nap-waf/v4/admin-guide/install.md" >}}).
+2. [Install F5 NGINX App Protect]({{< ref "/nap-waf/v4/admin-guide/install.md" >}}).
 3. Stop the NGINX Agent:
 
     ```bash

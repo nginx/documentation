@@ -1,11 +1,12 @@
 ---
-title: "Sidecar Proxy Injection"
-date: 2020-08-24T11:46:19-06:00
+title: Sidecar Proxy Injection
 toc: true
-description: "Learn about the configuration options for F5 NGINX Service Mesh sidecar proxy injection."
+description: Learn about the configuration options for F5 NGINX Service Mesh sidecar
+  proxy injection.
 weight: 10
-categories: ["tasks"]
-docs: "DOCS-692"
+docs: DOCS-692
+type:
+- how-to
 ---
 
 ## Overview

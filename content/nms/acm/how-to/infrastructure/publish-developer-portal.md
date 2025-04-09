@@ -2,20 +2,18 @@
 description: Learn how to use the F5 NGINX Management Suite API Connectivity Manager
   web interface to create, update, or delete a Developer Portal.
 docs: DOCS-901
-doctypes:
-- task
-tags:
-- docs
 title: Publish a Developer Portal
 toc: true
 weight: 300
+type:
+- how-to
 ---
 
 {{< shortversions "1.1.0" "latest" "acmvers" >}}
 
 ## Overview
 
-You can use API Connectivity Manager to create and publish Developer Portals (or, "Dev Portals") to host your APIs and documentation. API Connectivity Manager Dev Portals provide a [framework for customization]({{< relref "/nms/acm/how-to/infrastructure/customize-devportal.md" >}})  that lets you match your Dev Portal to your brand's or business' requirements.
+You can use API Connectivity Manager to create and publish Developer Portals (or, "Dev Portals") to host your APIs and documentation. API Connectivity Manager Dev Portals provide a [framework for customization]({{< ref "/nms/acm/how-to/infrastructure/customize-devportal.md" >}})  that lets you match your Dev Portal to your brand's or business' requirements.
 
 You can also modify and delete your Developer Portals using API Connectivity Manager.
 
@@ -24,7 +22,7 @@ You can also modify and delete your Developer Portals using API Connectivity Man
 Complete the following prerequisites before proceeding with this guide:
 
 - API Connectivity Manager is installed, licensed, and running.
-- Your [Infrastructure]({{< relref "/nms/acm/how-to/infrastructure/manage-api-infrastructure.md" >}}) has one or more Environments with a [Developer Portal]({{< relref "/nms/acm/getting-started/add-devportal" >}}) cluster.
+- Your [Infrastructure]({{< ref "/nms/acm/how-to/infrastructure/manage-api-infrastructure.md" >}}) has one or more Environments with a [Developer Portal]({{< ref "/nms/acm/getting-started/add-devportal" >}}) cluster.
 - You have verified that you can access the Developer Portal using the configured hostname.
 
 

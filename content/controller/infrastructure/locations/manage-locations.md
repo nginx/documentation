@@ -1,13 +1,11 @@
 ---
 description: Create and manage Locations for your F5 NGINX Instances.
 docs: DOCS-778
-doctypes:
-- tutorial
-tags:
-- docs
 title: Manage Locations
 toc: true
 weight: 10
+type:
+- tutorial
 ---
 
 ## Overview
@@ -31,7 +29,7 @@ To create a Location, take the following steps:
 1. Select the Location type:
 
     - Select `OTHER_LOCATION` to create a Location that's not an orchestrated cloud environment.
-    - Select `AWS_LOCATION` to create a location for NGINX instances on Amazon Web Services. For instructions on how to deploy NGINX instances on AWS, refer to the tutorial [Add an AWS NGINX Instance]({{< relref "/controller/infrastructure/instances/add-aws-instance.md" >}}).
+    - Select `AWS_LOCATION` to create a location for NGINX instances on Amazon Web Services. For instructions on how to deploy NGINX instances on AWS, refer to the tutorial [Add an AWS NGINX Instance]({{< ref "/controller/infrastructure/instances/add-aws-instance.md" >}}).
 
 1. (Optional) Add a description.
 1. (Optional) Add tags.
@@ -52,12 +50,12 @@ Take the following steps to view, edit, or delete a Location:
 
 ## What's Next
 
-- [Add an Instance to a Location]({{< relref "/controller/infrastructure/instances/manage-instances.md" >}})
-- [Add an AWS NGINX Instance]({{< relref "/controller/infrastructure/instances/add-aws-instance.md" >}})
-- [Add an Azure NGINX Instance]({{< relref "/controller/infrastructure/instances/add-azure-instance.md" >}})
-- [Add a VSphere NGINX Instance]({{< relref "/controller/infrastructure/instances/add-vsphere-instance.md" >}})
-- [Manage your NGINX Instances]({{< relref "/controller/infrastructure/instances/manage-instances.md" >}})
-- [Manage your NGINX Instance Groups]({{< relref "/controller/infrastructure/instances/manage-instances.md#instance-groups" >}})
+- [Add an Instance to a Location]({{< ref "/controller/infrastructure/instances/manage-instances.md" >}})
+- [Add an AWS NGINX Instance]({{< ref "/controller/infrastructure/instances/add-aws-instance.md" >}})
+- [Add an Azure NGINX Instance]({{< ref "/controller/infrastructure/instances/add-azure-instance.md" >}})
+- [Add a VSphere NGINX Instance]({{< ref "/controller/infrastructure/instances/add-vsphere-instance.md" >}})
+- [Manage your NGINX Instances]({{< ref "/controller/infrastructure/instances/manage-instances.md" >}})
+- [Manage your NGINX Instance Groups]({{< ref "/controller/infrastructure/instances/manage-instances.md#instance-groups" >}})
 
 {{< versions "3.5" "latest" "ctrlvers" >}}
 {{< versions "3.18" "latest" "apimvers" >}}

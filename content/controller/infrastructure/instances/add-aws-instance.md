@@ -1,13 +1,11 @@
 ---
 description: Learn how to deploy an AWS F5 NGINX instance using NGINX Controller.
 docs: DOCS-768
-doctypes:
-- tutorial
-tags:
-- docs
 title: Add an AWS NGINX Instance
 toc: true
 weight: 30
+type:
+- tutorial
 ---
 
 ## Overview
@@ -102,7 +100,7 @@ To create a Location, take the following steps:
 
 ## Create an Instance Template for AWS NGINX Instances
 
-An [Instance Template]({{< relref "/controller/infrastructure/instances/manage-instance-templates.md" >}}) defines the parameters to use when creating an NGINX instance. Instance templates are ideal for cloud orchestration and make managing your cloud resources easy and quick.
+An [Instance Template]({{< ref "/controller/infrastructure/instances/manage-instance-templates.md" >}}) defines the parameters to use when creating an NGINX instance. Instance templates are ideal for cloud orchestration and make managing your cloud resources easy and quick.
 
 ### Prerequisites
 
@@ -115,7 +113,7 @@ To create an Instance Template for AWS NGINX instances, take the following steps
 1. (Optional) Add a display name.
 1. (Optional) Add a description.
 1. (Optional) Add tags.
-1. Select a Location in the list, or select **Create New** to [create a Location]({{< relref "/controller/infrastructure/locations/manage-locations.md" >}}).
+1. Select a Location in the list, or select **Create New** to [create a Location]({{< ref "/controller/infrastructure/locations/manage-locations.md" >}}).
 1. In the Type list, select `AWS_INSTANCE_TEMPLATE`.
 1. Add the [Amazon Machine Image ID](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html).
 1. Add the [EC2 Instance Type](https://aws.amazon.com/ec2/instance-types/).
@@ -140,7 +138,7 @@ To create an Instance Template for AWS NGINX instances, take the following steps
 1. (Optional) Add a display name.
 1. (Optional) Add a description.
 1. (Optional) Add tags.
-1. Select a Location in the list, or select **Create New** to [create a Location]({{< relref "/controller/infrastructure/locations/manage-locations.md" >}}).
+1. Select a Location in the list, or select **Create New** to [create a Location]({{< ref "/controller/infrastructure/locations/manage-locations.md" >}}).
 1. In the Type list, select `AWS_INSTANCE_TEMPLATE`.
 1. Add the [Amazon Machine Image ID](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html).
 1. Add the [EC2 Instance Type](https://aws.amazon.com/ec2/instance-types/).
@@ -190,7 +188,7 @@ Take the following steps to troubleshoot the issue:
 
 - Ensure that ports 443 and 8443 are open between NGINX Controller and the network where the NGINX Plus instance is being deployed.
 - Verify that you can communicate with NGINX Controller from the NGINX Plus instance using the NGINX Controller FQDN that you provided when you installed NGINX Controller.
-- If you're [deploying an NGINX Plus instance on Amazon Web Services]({{< relref "/controller/infrastructure/instances/add-aws-instance.md" >}}) using a template, ensure that the Amazon Machine Image (AMI) referenced in the `instance_template` has a cURL version of 7.32 or newer.
+- If you're [deploying an NGINX Plus instance on Amazon Web Services]({{< ref "/controller/infrastructure/instances/add-aws-instance.md" >}}) using a template, ensure that the Amazon Machine Image (AMI) referenced in the `instance_template` has a cURL version of 7.32 or newer.
 
 &nbsp;
 
@@ -199,10 +197,10 @@ Take the following steps to troubleshoot the issue:
 
 ## What's Next
 
-- [Manage Your NGINX Instances]({{< relref "/controller/infrastructure/instances/manage-instances.md#add-an-existing-instance" >}})
-- [Add, Edit, and Update Locations]({{< relref "/controller/infrastructure/locations/manage-locations.md" >}})
-- [View Performance Reports for Your Instances]({{< relref "/controller/infrastructure/instances/analyzer.md" >}})
-- [Deploy an App]({{< relref "/controller/app-delivery/deploy-simple-app.md" >}})
+- [Manage Your NGINX Instances]({{< ref "/controller/infrastructure/instances/manage-instances.md#add-an-existing-instance" >}})
+- [Add, Edit, and Update Locations]({{< ref "/controller/infrastructure/locations/manage-locations.md" >}})
+- [View Performance Reports for Your Instances]({{< ref "/controller/infrastructure/instances/analyzer.md" >}})
+- [Deploy an App]({{< ref "/controller/app-delivery/deploy-simple-app.md" >}})
 
 {{< versions "3.6" "latest" "ctrlvers" >}}
 {{< versions "3.18" "latest" "apimvers" >}}

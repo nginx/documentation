@@ -1,27 +1,17 @@
 ---
-title: "RBAC for config templates and submissions"
-date: 2024-03-29T09:35:06-07:00
-# Change draft status to false to publish doc
+title: RBAC for config templates and submissions
 draft: false
-# Description
-# Add a short description (150 chars) for the doc. Include keywords for SEO.
-# The description text appears in search results and at the top of the doc.
-description: ""
-# Assign weights in increments of 100
+description: ''
 weight: 300
 toc: true
-tags: [ "docs" ]
-# Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
-docs: "DOCS-1505"
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-categories: ["installation", "platform management", "load balancing", "api management", "service mesh", "security", "analytics"]
-doctypes: ["tutorial"]
-journeys: ["researching", "getting started", "using", "renewing", "self service"]
-personas: ["devops", "netops", "secops", "support"]
-versions: []
-authors: []
+docs: DOCS-1505
+personas:
+- devops
+- netops
+- secops
+- support
+type:
+- tutorial
 ---
 
 ## Overview
@@ -30,8 +20,8 @@ With role-based access control (RBAC), administrators can determine who can crea
 
 ## Before You Begin
 
-- Ensure the user is added as a [basic authentication]({{< relref "/nim/admin-guide/authentication/basic-auth/set-up-basic-authentication.md" >}}) or [OpenID Connect (OIDC)]({{< relref "/nim/admin-guide/authentication/oidc/getting-started.md" >}}) user in F5 NGINX Instance Manager.
-- Familiarize yourself with the concepts of [Roles]({{< relref "/nim/admin-guide/rbac/assign-roles.md" >}}) and [Permissions]({{< relref "/nim/admin-guide/rbac/create-roles.md" >}}) within Instance Manager as they are crucial for managing access.
+- Ensure the user is added as a [basic authentication]({{< ref "/nim/admin-guide/authentication/basic-auth/set-up-basic-authentication.md" >}}) or [OpenID Connect (OIDC)]({{< ref "/nim/admin-guide/authentication/oidc/getting-started.md" >}}) user in F5 NGINX Instance Manager.
+- Familiarize yourself with the concepts of [Roles]({{< ref "/nim/admin-guide/rbac/assign-roles.md" >}}) and [Permissions]({{< ref "/nim/admin-guide/rbac/create-roles.md" >}}) within Instance Manager as they are crucial for managing access.
 
 ## Assign Roles for Templates and Template Submissions
 
@@ -44,7 +34,7 @@ To complete these steps, you need administrator access.
 3. Select **Users** from the left menu to manage individual users or **User Groups** for managing access at a group level.
 
 4. Define access to templates and template submissions:
-   - To ensure proper management of NGINX configurations, [create or edit roles]({{< relref "/nim/admin-guide/rbac/create-roles.md" >}}) to specify access to templates and template submissions. This may involve defining CRUD permissions specific to managing NGINX configurations.
+   - To ensure proper management of NGINX configurations, [create or edit roles]({{< ref "/nim/admin-guide/rbac/create-roles.md" >}}) to specify access to templates and template submissions. This may involve defining CRUD permissions specific to managing NGINX configurations.
 
    - **Restricting access to templates** is essential for controlling who can create and modify templates. This responsibility generally falls to administrators with a comprehensive understanding of NGINX configurations.
 

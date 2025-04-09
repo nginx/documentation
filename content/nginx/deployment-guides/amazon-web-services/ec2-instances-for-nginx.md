@@ -11,15 +11,15 @@ docs: DOCS-444
 
 This guide explains how to create instances in the Amazon Elastic Compute Cloud (EC2) that can run NGINX Open Source and F5 NGINX Plus.
 
-For NGINX Plus, you can buy a prebuilt Amazon Machine Image (AMI) from the AWS Marketplace for a faster option. You can find AMIs for various operating systems, such as Amazon Linux, Red Hat Enterprise Linux, and Ubuntu. For instructions, see [Installing NGINX Plus AMIs on Amazon EC2]({{< relref "/nginx/admin-guide/installing-nginx/installing-nginx-plus-amazon-web-services.md" >}}).
+For NGINX Plus, you can buy a prebuilt Amazon Machine Image (AMI) from the AWS Marketplace for a faster option. You can find AMIs for various operating systems, such as Amazon Linux, Red Hat Enterprise Linux, and Ubuntu. For instructions, see [Installing NGINX Plus AMIs on Amazon EC2]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus-amazon-web-services.md" >}}).
 
 ## Before you begin
 
 To complete this guide, you need the following:
 
 - An [AWS account](http://docs.aws.amazon.com/AmazonSimpleDB/latest/DeveloperGuide/AboutAWSAccounts.html).
-- Basic Linux system administration skills, including installing software, managing files and folders, and using the command line, to follow the [Ansible instructions]({{< relref "#automate-ansible" >}}).
-- A paid subscription or a [30-day free trial](https://www.nginx.com/free-trial-request) for NGINX Plus.
+- Basic Linux system administration skills, including installing software, managing files and folders, and using the command line, to follow the [Ansible instructions]({{< ref "#automate-ansible" >}}).
+- A paid or trial subscription for NGINX Plus.
 - Root privileges on the hosts where NGINX Open Source or NGINX Plus will be installed, with `sudo` access as needed.
 
 ## Create an Amazon EC2 Instance {#create-ec2-instances}
@@ -43,19 +43,19 @@ To complete this guide, you need the following:
 1. In the **Key pair (login)** section, select an existing key pair or create a new one. If you choose **Create new key pair**, a window appears, allowing you to download the key pair.
    {{<note>}} It's best practice — and necessary in production — to create a separate key for each EC2 instance. This way, if a key is compromised, only that one instance is at risk.{{</note>}}
 
-1. Scroll to the **Network settings** section. You can keep the default **VPC** and **Subnet** settings. Under **Firewall (Security Groups),** either create a new security group or use an existing one.  
-   - If this is your first setup, keep **Create security group** selected.  
-   - Select **Allow HTTP traffic from the internet.**  
+1. Scroll to the **Network settings** section. You can keep the default **VPC** and **Subnet** settings. Under **Firewall (Security Groups),** either create a new security group or use an existing one.
+   - If this is your first setup, keep **Create security group** selected.
+   - Select **Allow HTTP traffic from the internet.**
    - (Optional) Select **Allow HTTPS traffic from the internet** if needed.
 
    This creates the following inbound security group rules:
 
-   1. Accept SSH connections from all sources 
+   1. Accept SSH connections from all sources
       - **Type** – SSH
       - **Protocol** – TCP
       - **Port Range** – 22
       - **Source** – Custom `0.0.0.0/0`
-   1. Accept unencrypted HTTP connections from all sources    
+   1. Accept unencrypted HTTP connections from all sources
       - **Type** – HTTP
       - **Protocol** – TCP
       - **Port Range** – 80
@@ -94,14 +94,14 @@ To complete this guide, you need the following:
     - Open the **Outbound** tab and select **Edit outbound rules** to create a rule for outbound traffic. The rules depend on the ports used for traffic handled by NGINX Open Source or NGINX Plus instances:
 
         - By default, AWS adds an outbound rule that allows all traffic to all destinations. You can remove this rule by selecting **Delete**.
-        - If you use port 80 for client traffic and health checks from a load balancer, like [AWS Network Load Balancer]({{< relref "high-availability-network-load-balancer.md" >}}), you only need one rule.
+        - If you use port 80 for client traffic and health checks from a load balancer, like [AWS Network Load Balancer]({{< ref "high-availability-network-load-balancer.md" >}}), you only need one rule.
         - If you set up different ports for various tasks, or if you use ports like 443 for HTTPS, adjust them accordingly.
 
       In the **Destination** field, start typing your security group's name or ID. It should appear under **Security Groups**. The example below shows **sg-0dd4d3c5284052f99**.
 
          {{< img src="/img/aws/aws-generic-instance-security-outbound.png" alt="Screenshot of the EC2 Security Group outbound rules page">}}
 
-1. To install NGINX software on the instance, first [connect]({{< relref "#connect-to-an-ec2-instance" >}}) to it. Then follow the instructions in the NGINX Plus Admin Guide for [NGINX Open Source]({{< relref "/nginx/admin-guide/installing-nginx/installing-nginx-open-source#prebuilt" >}}) and [NGINX Plus]({{< relref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}).
+1. To install NGINX software on the instance, first [connect]({{< ref "#connect-to-an-ec2-instance" >}}) to it. Then follow the instructions in the NGINX Plus Admin Guide for [NGINX Open Source]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-open-source#prebuilt" >}}) and [NGINX Plus]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}).
 
 ---
 
@@ -109,27 +109,27 @@ To complete this guide, you need the following:
 To install and configure NGINX Open Source or NGINX Plus on an instance, open a terminal window and connect to the instance over SSH.
 
 1. Navigate to the **Instances** tab on the EC2 Dashboard if you are not there already.
-1. Select the row for an instance to highlight it.  
-1. Select **Connect** above the list of instances. You are redirected to the **Connect to Instance** page, with the **SSH client** tab selected by default.  
+1. Select the row for an instance to highlight it.
+1. Select **Connect** above the list of instances. You are redirected to the **Connect to Instance** page, with the **SSH client** tab selected by default.
 1. Follow the instructions on the page, which are customized for the selected instance. A sample `ssh` command includes the key file name and the instance hostname.
-   
+
    {{< img src="/img/aws/aws-nlb-instance-connect.png" alt="Screenshot of the EC2 Instance Connect with SSH page">}}
 
 ---
 
 ## Install NGINX software
 
-Once you have established a connection with an instance, you can install the NGINX software on it. Follow the instructions in the NGINX Plus Admin Guide for [NGINX Open Source]({{< relref "/nginx/admin-guide/installing-nginx/installing-nginx-open-source#prebuilt" >}}) and [NGINX Plus]({{< relref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}). The [Admin Guide]({{< relref "/nginx/admin-guide/_index.md" >}}) also provides instructions for many maintenance tasks.
+Once you have established a connection with an instance, you can install the NGINX software on it. Follow the instructions in the NGINX Plus Admin Guide for [NGINX Open Source]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-open-source#prebuilt" >}}) and [NGINX Plus]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}). The [Admin Guide]({{< ref "/nginx/admin-guide/_index.md" >}}) also provides instructions for many maintenance tasks.
 
 ### Automate installation with a configuration manager
 
-You can automate the installation of NGINX Open Source and NGINX Plus. Instructions for Ansible are provided below. 
+You can automate the installation of NGINX Open Source and NGINX Plus. Instructions for Ansible are provided below.
 
 #### Automate installation with Ansible {#automate-ansible}
 
 NGINX, Inc. releases a combined Ansible role for NGINX Open Source and NGINX Plus on [Ansible Galaxy](https://galaxy.ansible.com/nginxinc/nginx/) and [GitHub](https://github.com/nginxinc/ansible-role-nginx). Perform these steps to install and run it.
 
-1. [Connect to the EC2 instance]({{< relref "#connect-instance" >}}).
+1. [Connect to the EC2 instance]({{< ref "#connect-instance" >}}).
 
 1. Install Ansible following the [instructions](https://docs.ansible.com/ansible/latest/installation_guide/installation_distros.html) for the operating system on your EC2 instance.
 
@@ -164,7 +164,7 @@ NGINX, Inc. releases a combined Ansible role for NGINX Open Source and NGINX P
 
 To simplify installing NGINX Open Source on several instances, create an AMI from an existing NGINX instance. You can then create additional virtual instances based on the AMI.
 
-1. Follow the instructions in [Create Amazon EC2 Instance]({{< relref "#create-ec2-instances" >}}) and [Install NGINX software]({{< relref "#install-nginx-software" >}}).
+1. Follow the instructions in [Create Amazon EC2 Instance]({{< ref "#create-ec2-instances" >}}) and [Install NGINX software]({{< ref "#install-nginx-software" >}}).
 
 1. Go to the **Instances** tab on the Amazon EC2 Dashboard.
 
@@ -180,6 +180,6 @@ To simplify installing NGINX Open Source on several instances, create an AMI fro
 
 ### Revision History
 
-- Version 3 (February 2025) - Update guide to match new AWS instance creation flow, update screenshots, and links. 
+- Version 3 (February 2025) - Update guide to match new AWS instance creation flow, update screenshots, and links.
 - Version 2 (July 2018) – Substitute links to NGINX Plus Admin Guide for sample installation instructions.
 - Version 1 (April 2018) – Initial version (NGINX Plus Release 14)

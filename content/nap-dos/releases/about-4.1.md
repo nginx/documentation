@@ -83,7 +83,7 @@ In this release, NGINX App Protect DoS supports NGINX Plus R29.
 
 - gRPC and HTTP/2 protection require active monitoring of the protected service. The directive `app_protect_dos_monitor` is mandatory for the attack to be detected.
 
-- [TLS fingerprint]({{< relref "/nap-dos/directives-and-policy/learn-about-directives-and-policy.md#policy-directive-app_protect_dos_policy_file" >}}) feature is not used in CentOS 7.4 and RHEL 7 / UBI 7 due to the old OpenSSL version. The required OpenSSL version is 1.1.1 or higher.
+- [TLS fingerprint]({{< ref "/nap-dos/directives-and-policy/learn-about-directives-and-policy.md#policy-directive-app_protect_dos_policy_file" >}}) feature is not used in CentOS 7.4 and RHEL 7 / UBI 7 due to the old OpenSSL version. The required OpenSSL version is 1.1.1 or higher.
 
 - Monitor directive `app_protect_dos_monitor` with `proxy_protocol` parameter can not be configured on Ubuntu 18.04. As a result, gRPC and HTTP/2 DoS protection for `proxy_protocol` configuration is not supported.
 
@@ -91,4 +91,4 @@ In this release, NGINX App Protect DoS supports NGINX Plus R29.
 
 - The recommended option of running NGINX Plus in a Docker Container is with the `daemon off` flag. It's mandatory for UBI 8.
 
-- The package dependencies for NGINX App Protect DoS have changed in this release, replacing the `curl` dependencies with `libcurl` only. For more information, see the [NGINX App Protect DoS Deployment Guide]({{< relref "/nap-dos/deployment-guide/learn-about-deployment.md#prerequisites" >}}).
+- The package dependencies for NGINX App Protect DoS have changed in this release, replacing the `curl` dependencies with `libcurl` only. For more information, see the [NGINX App Protect DoS Deployment Guide]({{< ref "/nap-dos/deployment-guide/learn-about-deployment.md#prerequisites" >}}).

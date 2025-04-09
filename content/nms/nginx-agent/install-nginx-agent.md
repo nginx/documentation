@@ -2,22 +2,20 @@
 description: Follow the instructions in this guide to install and configure the NGINX
   Agent on your data plane systems.
 docs: DOCS-800
-doctypes:
-- tutorial
-tags:
-- docs
 title: Install and Configure NGINX Agent
 toc: true
 weight: 100
+type:
+- tutorial
 ---
 
 ## Prerequisites
 
 This section lists the prerequisites for installing and configuring NGINX Agent. Follow the steps below to complete the requirements:
 
-1. [F5 NGINX Management Suite is installed on a server]({{< relref "/nim/deploy/_index.md" >}}).
+1. [F5 NGINX Management Suite is installed on a server]({{< ref "/nim/deploy/_index.md" >}}).
 
-    {{<note>}} When installing and configuring NGINX Management Suite, take note of the fully qualified domain name (FQDN) and gRPC port number. You'll need this information to properly configure the NGINX Agent to communicate with NGINX Management Suite.
+    {{<note>}} When installing and configuring NGINX Management Suite, take note of the fully qualified domain name (FQDN) and gRPC port number. You'll need this information to properly configure NGINX Agent to communicate with NGINX Management Suite.
     {{</note>}}
 
 2. Make sure NGINX is running on your instance:
@@ -52,13 +50,13 @@ To see if `nginx_agent_selinux` is installed, run the following command:
     {{%/tab%}}
     {{</tabs>}}
 
-5. Review the [Technical Specifications]({{< relref "/nim/fundamentals/tech-specs.md" >}}) guide for system requirements.
+5. Review the [Technical Specifications]({{< ref "/nim/fundamentals/tech-specs.md" >}}) guide for system requirements.
 
 ---
 
 ## Install NGINX Agent
 
-You can choose one of the following two methods to install the NGINX Agent on your data plane host:
+You can choose one of the following two methods to install NGINX Agent on your data plane host:
 
 - Install via the NGINX Management Suite API Gateway
 - Install from packages downloaded from [MyF5 Customer Portal](https://account.f5.com/myf5) or from your NGINX/F5 sales team.
@@ -102,7 +100,7 @@ root      293850  109  1.1 1240056 23536 ?       Ssl  22:00   0:07 /usr/local/bi
 vagrant   293866  0.0  0.0   8160   736 pts/0    S+   22:00   0:00 grep --color=auto nginx-agent
 ```
 
-Once you've verified the NGINX Agent is running on your data plane, you should confirm it's registered with NGINX Management Suite. You can do this two ways:
+Once you've verified NGINX Agent is running on your data plane, you should confirm it's registered with NGINX Management Suite. You can do this two ways:
 
 {{<tabs name="verify-nginx">}}
 
@@ -138,17 +136,17 @@ If you need to remove the instance, ensure that the NGINX Agent service is stopp
 
 ## Configuring the NGINX Agent
 
-The following sections explain how to configure the NGINX Agent using configuration files, CLI flags, and environment variables.
+The following sections explain how to configure NGINX Agent using configuration files, CLI flags, and environment variables.
 
 {{<note>}}
 
-- The NGINX Agent interprets configuration values set by configuration files, CLI flags, and environment variables in the following priorities:
+- NGINX Agent interprets configuration values set by configuration files, CLI flags, and environment variables in the following priorities:
 
   1. CLI flags overwrite configuration files and environment variable values.
   2. Environment variables overwrite configuration file values.
   3. Config files are the lowest priority and config settings are superseded if either of the other options is used.
 
-- The NGINX Agent is configured by default to connect to the NGINX Management Suite on port 443 based on the address used to download the install script. If this setting doesn't work, you can change the `server` fields in the `nginx-agent.conf` file. Instructions are provided in the following sections.
+- NGINX Agent is configured by default to connect to the NGINX Management Suite on port 443 based on the address used to download the install script. If this setting doesn't work, you can change the `server` fields in the `nginx-agent.conf` file. Instructions are provided in the following sections.
 
 - Open any required firewall ports or SELinux/AppArmor rules for the ports and IPs you want to use.
 
@@ -156,7 +154,7 @@ The following sections explain how to configure the NGINX Agent using configurat
 
 ### Configure with Config Files
 
-The configuration files for the NGINX Agent are `/etc/nginx-agent/nginx-agent.conf` and `/var/lib/nginx-agent/agent-dynamic.conf`. These files have comments at the top indicating their purpose.
+The configuration files for NGINX Agent are `/etc/nginx-agent/nginx-agent.conf` and `/var/lib/nginx-agent/agent-dynamic.conf`. These files have comments at the top indicating their purpose.
 
 {{<note>}}If you're running Instance Manager 2.10.1 or earlier or NGINX Agent 2.25.1 or earlier, the `agent-dynamic.conf` file is located in `/etc/nginx-agent/`.{{</note>}}
 
@@ -231,7 +229,7 @@ extensions:
 
 # Enable reporting NGINX App Protect details to the control plane.
 nginx_app_protect:
-  # Report interval for NGINX App Protect details - the frequency the NGINX Agent checks NGINX App Protect for changes.
+  # Report interval for NGINX App Protect details - the frequency NGINX Agent checks NGINX App Protect for changes.
   report_interval: 15s
   # Enable precompiled publication from the NGINX Management Suite (true) or perform compilation on the data plane host (false).
   precompiled_publication: true
@@ -271,7 +269,7 @@ tags:
 
 ## CLI Flags & Environment Variables
 
-This section details the CLI flags and corresponding environment variables used to configure the NGINX Agent.
+This section details the CLI flags and corresponding environment variables used to configure NGINX Agent.
 
 ### Usage
 
@@ -396,13 +394,13 @@ Additionally, you can use the agent installation script to add these fields:
 
 ### Enable NGINX Plus Advanced Metrics
 
-- To enable NGINX Plus advanced metrics, follow the steps in the [Install NGINX Plus Metrics Module]({{< relref "/nms/nginx-agent/install-nginx-plus-advanced-metrics.md" >}}) guide.
+- To enable NGINX Plus advanced metrics, follow the steps in the [Install NGINX Plus Metrics Module]({{< ref "/nms/nginx-agent/install-nginx-plus-advanced-metrics.md" >}}) guide.
 
 ---
 
 ## SELinux for NGINX Agent
 
-This section explains how to install and configure the SELinux policy for the NGINX Agent.
+This section explains how to install and configure the SELinux policy for NGINX Agent.
 
 ### Installing NGINX Agent SELinux Policy Module
 
@@ -418,7 +416,7 @@ To load the NGINX Agent policy, run the following commands:
 
 ### Adding Ports for NGINX Agent SELinux Context
 
-You can configure the NGINX Agent to work with SELinux. Make sure you add external ports to the firewall exception list.
+You can configure NGINX Agent to work with SELinux. Make sure you add external ports to the firewall exception list.
 
 The following example shows how to allow external ports outside the HTTPD context. You may need to enable NGINX to connect to these ports.
 
@@ -430,17 +428,17 @@ For additional information on using NGINX with SELinux, refer to the guide [Usin
 
 ---
 
-## Secure the NGINX Agent with mTLS
+## Secure NGINX Agent with mTLS
 
-{{< important >}}By default, communication between the NGINX Agent and NGINX Management Suite is unsecured.{{< /important >}}
+{{< important >}}By default, communication between NGINX Agent and NGINX Management Suite is unsecured.{{< /important >}}
 
-For instructions on how configure mTLS to secure communication between the NGINX Agent and NGINX Management Suite, see [NGINX Agent TLS Settings](https://docs.nginx.com/nginx-agent/configuration/encrypt-communication/).
+For instructions on how configure mTLS to secure communication between NGINX Agent and NGINX Management Suite, see [NGINX Agent TLS Settings](https://docs.nginx.com/nginx-agent/configuration/encrypt-communication/).
 
 ---
 
 ## NGINX Metrics
 
-After you register an NGINX instance with NGINX Management Suite, the NGINX Agent will collect and report metrics. For more information about the metrics that are reported, see [Overview: Instance Metrics]({{< relref "/nim/monitoring/overview-metrics.md" >}}).
+After you register an NGINX instance with NGINX Management Suite, the NGINX Agent will collect and report metrics. For more information about the metrics that are reported, see [Overview: Instance Metrics]({{< ref "/nim/monitoring/overview-metrics.md" >}}).
 
 ## Container Support
 NGINX Agent is a companion daemon for NGINX Open Source or NGINX Plus instances and must run in the same container to work.

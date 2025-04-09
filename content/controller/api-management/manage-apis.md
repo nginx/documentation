@@ -2,13 +2,11 @@
 description: Use the F5 NGINX Controller API Manager to add APIs and control how your
   APIs are exposed and consumed.
 docs: DOCS-569
-doctypes:
-- tutorial
-tags:
-- docs
 title: Manage Your APIs
 toc: true
 weight: 110
+type:
+- tutorial
 ---
 
 ## Overview
@@ -23,7 +21,7 @@ The F5 NGINX Controller API Management module provides full life cycle managemen
 {{< note >}}
 
 - You must have an API Management module license installed to complete the steps in this guide.
-- The API Management module is available to users with the predefined [Admin or User Roles]({{< relref "/controller/platform/access-management/manage-roles.md#predefined-roles-and-role-groups" >}}).
+- The API Management module is available to users with the predefined [Admin or User Roles]({{< ref "/controller/platform/access-management/manage-roles.md#predefined-roles-and-role-groups" >}}).
 
 {{< /note >}}
 
@@ -250,18 +248,18 @@ Take the following steps to **Edit** add your API Version:
 
 You need at least one of each of the resources listed below to complete this section. If you haven't already created the required resources, you can do so while configuring the Published API.
 
-- [Environment]({{< relref "/controller/services/manage-environments.md" >}})
+- [Environment]({{< ref "/controller/services/manage-environments.md" >}})
 
-- [Gateway]({{< relref "/controller/services/manage-gateways.md" >}})
+- [Gateway]({{< ref "/controller/services/manage-gateways.md" >}})
 
-- [App]({{< relref "/controller/app-delivery/manage-apps.md" >}})
+- [App]({{< ref "/controller/app-delivery/manage-apps.md" >}})
 
-- [Identity Provider]({{< relref "/controller/services/manage-identity-providers.md" >}})
+- [Identity Provider]({{< ref "/controller/services/manage-identity-providers.md" >}})
 
  (required to add Authentication to the Published API Component).
 
 {{< tip >}}
-You can connect one or more [Developer Portals]({{< relref "/controller/api-management/manage-dev-portals.md" >}}) to your Published API to host your API documentation. This can be done either when creating or editing your Published API, or independently via the API Quick Actions menu.
+You can connect one or more [Developer Portals]({{< ref "/controller/api-management/manage-dev-portals.md" >}}) to your Published API to host your API documentation. This can be done either when creating or editing your Published API, or independently via the API Quick Actions menu.
 {{< /tip >}}
 
 ### Add a Published API
@@ -355,7 +353,7 @@ On the **Create Published API** *Routing* page:
     8. Select **Next**.
    {{< see-also >}}
 
-   - Refer to the [Manage Locations]({{< relref "/controller/infrastructure/locations/manage-locations.md" >}}) topic for more information.
+   - Refer to the [Manage Locations]({{< ref "/controller/infrastructure/locations/manage-locations.md" >}}) topic for more information.
 
    - Refer to the [NGINX Plus Admin Guide](https://docs.nginx.com/nginx/admin-guide/load-balancer/http-load-balancer/) for more information about the available options.
 
@@ -381,11 +379,11 @@ On the **Create Published API** *Routing* page:
 
     1. Select **Add Authentication**.
 
-    2. Select an [**Identity Provider**]({{< relref "/controller/services/manage-identity-providers.md" >}}).
+    2. Select an [**Identity Provider**]({{< ref "/controller/services/manage-identity-providers.md" >}}).
 
     3. Select a **Credential Location**.
 
-        1. (Optional) Enable [**Conditional Access**]({{< relref "/controller/services/available-policies.md#conditional-access" >}}).
+        1. (Optional) Enable [**Conditional Access**]({{< ref "/controller/services/available-policies.md#conditional-access" >}}).
 
     4. Select **Next**.
 
@@ -399,13 +397,13 @@ The **Advanced Security** features require an *NGINX Controller API Management A
 
     1. (Optional) Select **Enable Web Application Firewall (WAF)** to monitor and block suspicious requests or attacks.
 
-    2. (Optional) Select **Monitor Only** to allow traffic to pass without being rejected. Security events are still generated and metrics are still collected. Refer to [About App Security Analytics]({{< relref "/controller/analytics/view-app-security-analytics.md" >}}) for more information.
+    2. (Optional) Select **Monitor Only** to allow traffic to pass without being rejected. Security events are still generated and metrics are still collected. Refer to [About App Security Analytics]({{< ref "/controller/analytics/view-app-security-analytics.md" >}}) for more information.
 
     3. (Optional) Add the signature(s) that you want WAF to ignore. You can specify multiple signatures as a comma-separated list.
 
     4. Select **Next**
 
-    {{< see-also >}} Refer to the [Default WAF Policy]({{< relref "/controller/app-delivery/security/concepts/app-sec-default-policy-original.md" >}}) topics to learn more about the default protection provided by NGINX App Protect. {{< /see-also >}}
+    {{< see-also >}} Refer to the [Default WAF Policy]({{< ref "/controller/app-delivery/security/concepts/app-sec-default-policy-original.md" >}}) topics to learn more about the default protection provided by NGINX App Protect. {{< /see-also >}}
 
 
 7. On the **Create App Component** *Ingress* page:
@@ -501,7 +499,7 @@ The **Advanced Security** features require an *NGINX Controller API Management A
 
 Once you have created an API Definition and a Published API, you can host your API in a Developer Portal.
 
-From the **API Definitions** page, select **Create Dev Portal** from the Quick Actions menu. Then, follow the steps in [Create a Developer Portal]({{< relref "/controller/api-management/manage-dev-portals.md" >}}) to create, customize, and publish your Dev Portal.
+From the **API Definitions** page, select **Create Dev Portal** from the Quick Actions menu. Then, follow the steps in [Create a Developer Portal]({{< ref "/controller/api-management/manage-dev-portals.md" >}}) to create, customize, and publish your Dev Portal.
 
 {{< versions "3.0" "3.18" "ctrlvers" >}}
 {{< versions "3.18" "latest" "apimvers" >}}

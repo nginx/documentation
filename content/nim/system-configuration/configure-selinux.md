@@ -1,12 +1,10 @@
 ---
 docs: DOCS-796
-doctypes:
-- task
-tags:
-- docs
 title: Configure SELinux
 toc: true
 weight: 250
+type:
+- how-to
 ---
 
 {{< include "/nim/decoupling/note-legacy-nms-references.md" >}}
@@ -27,7 +25,7 @@ Take these preparatory steps before configuring SELinux:
 
 1. Enable SELinux on your system.
 2. Install the tools `load_policy`, `semodule`, and `restorecon`.
-3. [Install NGINX Instance Manager]({{< relref "/nim/deploy/_index.md" >}}) with SELinux module files in place.
+3. [Install NGINX Instance Manager]({{< ref "/nim/deploy/_index.md" >}}) with SELinux module files in place.
 
 {{< important >}}SELinux can use `permissive` mode, where policy violations are logged instead of enforced. Verify which mode your configuration uses.{{< /important >}}
 

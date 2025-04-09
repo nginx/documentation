@@ -2,15 +2,11 @@
 description: Learn how to use the F5 NGINX Management Suite API Connectivity Manager
   to manage HTTP API Gateways by applying a backend configuration policy.
 docs: DOCS-1141
-doctypes:
-- API Connectivity Manager
-- api management
-- concept
-tags:
-- docs
 toc: true
 weight: 650
 title: HTTP Backend Configuration
+type:
+- concept
 ---
 
 ## Overview
@@ -46,8 +42,8 @@ Later sections of this guide will cover each of these areas in turn.
 Complete the following prerequisites before proceeding with this guide:
 
 - API Connectivity Manager is installed, licensed, and running.
-- You have one or more Environments with an [API Gateway]({{< relref "/nms/acm/getting-started/add-api-gateway" >}}).
-- You have published one or more [API Gateways]({{< relref "/nms/acm/getting-started/publish-api-proxy" >}})
+- You have one or more Environments with an [API Gateway]({{< ref "/nms/acm/getting-started/add-api-gateway" >}}).
+- You have published one or more [API Gateways]({{< ref "/nms/acm/getting-started/publish-api-proxy" >}})
 
 ---
 
@@ -55,7 +51,7 @@ Complete the following prerequisites before proceeding with this guide:
 
 To apply the policy or make changes to it, here's what you need to do:
 
-- [Edit an existing environment or create a new one]({{< relref "/nms/acm/how-to/infrastructure/manage-api-infrastructure.md#add-environment" >}}).
+- [Edit an existing environment or create a new one]({{< ref "/nms/acm/how-to/infrastructure/manage-api-infrastructure.md#add-environment" >}}).
 - Check the advanced settings for the environment to see if the policy has been applied.
 - Edit the policy to make changes for each environment. Save and publish the changes.
 

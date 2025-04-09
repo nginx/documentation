@@ -1,13 +1,11 @@
 ---
 description: ''
-docs:
-doctypes:
-- task
-tags:
-- docs
+docs: null
 title: Connect NGINX Plus container images to NGINX One
 toc: true
 weight: 400
+type:
+- how-to
 ---
 
 ## Overview
@@ -21,7 +19,7 @@ This guide explains how to set up an F5 NGINX Plus Docker container with NGINX A
 Before you start, make sure you have:
 
 - A valid JSON Web Token (JWT) for your NGINX subscription.
-- [A data plane key from NGINX One]({{< relref "/nginx-one/how-to/data-plane-keys/create-manage-data-plane-keys.md" >}}).
+- [A data plane key from NGINX One]({{< ref "/nginx-one/how-to/data-plane-keys/create-manage-data-plane-keys.md" >}}).
 - Docker installed and running on your system.
 
 #### Download your JWT license from MyF5
@@ -50,7 +48,7 @@ Pull the NGINX Plus image from the private registry. Replace `VERSION_TAG` with 
 sudo docker pull private-registry.nginx.com/nginx-plus/agent:VERSION_TAG
 ```
 
-You must specify a version tag. The `latest` tag is not supported. Learn more in the [Deploying NGINX and NGINX Plus on Docker]({{< relref "/nginx/admin-guide/installing-nginx/installing-nginx-docker.md#pulling-the-image" >}}) guide.
+You must specify a version tag. The `latest` tag is not supported. Learn more in the [Deploying NGINX and NGINX Plus on Docker]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-docker.md#pulling-the-image" >}}) guide.
 
 <br>
 
@@ -70,7 +68,7 @@ Start the Docker container to connect it to NGINX One. Replace `YOUR_NGINX_ONE_D
 
 - Use the `NGINX_LICENSE_JWT` variable to pass your JWT license. Replace `YOUR_JWT_HERE` with your JWT.
 
-For more details, see [About subscription licenses]({{< relref "solutions/about-subscription-licenses.md" >}}).
+For more details, see [About subscription licenses]({{< ref "solutions/about-subscription-licenses.md" >}}).
 
 ```sh
 sudo docker run \

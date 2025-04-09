@@ -1,10 +1,11 @@
 ---
-title: "Metrics catalog"
+title: Metrics catalog
 weight: 400
-categories: ["concepts"]
 toc: false
-docs: "DOCS-877"
+docs: DOCS-877
 url: /nginxaas/azure/monitoring/metrics-catalog/
+type:
+- concept
 ---
 
 F5 NGINX as a Service for Azure (NGINXaaS) provides a rich set of metrics that you can use to monitor the health and performance of your NGINXaaS deployment. This document provides a catalog of the metrics that are available for monitoring NGINXaaS for Azure in Azure Monitor.
@@ -37,12 +38,14 @@ The metrics are categorized by the namespace used in Azure Monitor. The dimensio
 | --------------------- | -------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
 | ncu.provisioned       |                | count    | The number of successfully provisioned NCUs during the aggregation interval. During scaling events, this may lag behind `ncu.requested` as the system works to achieve the request. Available for Standard plan(s) only.                                                                                              | deployment      |
 | ncu.requested         |                | count    | The requested number of NCUs during the aggregation interval. Describes the goal state of the system. Available for Standard plans(s) only.                                                                                                                                                                            | deployment      |
-| ncu.consumed          |                | count    | The estimated number of NCUs used to handle the current traffic. This may burst above the `ncu.provisioned`. This can be used to guide scaling out or in to match your workload. See [Scaling Guidance]({{< relref "/nginxaas-azure/quickstart/scaling.md#iterative-approach" >}}) for details. Available for Standard plan(s) only. | deployment      |
+| nginxaas.capacity.percentage          |                | count    | The percentage of the deployment's total capacity being used. This can be used to guide scaling your workload. See [Scaling Guidance]({{< ref "/nginxaas-azure/quickstart/scaling.md#iterative-approach" >}}) for details. Available for Standard plan(s) only. | deployment      |
 | system.worker_connections | pid process_name | count | The number of nginx worker connections used on the dataplane. This metric is one of the factors which determines the deployment's consumed NCU value.  | deployment |
-| nginxaas.certificates | name status    | count    | The number of certificates added to the NGINXaaS deployment dimensioned by the name of the certificate and its status. Refer to [Certificate Health]({{< relref "/nginxaas-azure/getting-started/ssl-tls-certificates/overview.md#monitor-certificates" >}}) to learn more about the status dimension.             | deployment      |
-| nginxaas.maxmind      | status         | count    | The status of any MaxMind license in use for downloading geoip2 databases. Refer to [License Health]({{< relref "/nginxaas-azure/quickstart/geoip2.md#monitoring" >}}) to learn more about the status dimension.                                                                                                                 | deployment      |
+| nginxaas.certificates | name status    | count    | The number of certificates added to the NGINXaaS deployment dimensioned by the name of the certificate and its status. Refer to [Certificate Health]({{< ref "/nginxaas-azure/getting-started/ssl-tls-certificates/overview.md#monitor-certificates" >}}) to learn more about the status dimension.             | deployment      |
+| nginxaas.maxmind      | status         | count    | The status of any MaxMind license in use for downloading geoip2 databases. Refer to [License Health]({{< ref "/nginxaas-azure/quickstart/geoip2.md#monitoring" >}}) to learn more about the status dimension.                                                                                                                 | deployment      |
 
 {{</bootstrap-table>}}
+
+{{< warning >}}The `ncu.consumed` metric is now deprecated and is on the path to retirement. Please change any alerting on this metric to use the new Capacity Percentage metric.{{< /warning >}}
 
 ### NGINX connections statistics
 
@@ -225,6 +228,9 @@ The metrics are categorized by the namespace used in Azure Monitor. The dimensio
 | system.interface.packets_sent| interface | count | System Interface Packets Sent. | deployment |
 | system.interface.total_bytes| interface | count | System Interface Total Bytes,  sum of bytes_sent and bytes_rcvd. | deployment |
 | system.interface.egress_throughput| interface | count | System Interface Egress Throughput, i.e. bytes sent per second| deployment |
+| system.listener_backlog.max| listen_addr, file_desc | count | The fullness (expressed as a fraction) of the fullest backlog queue. | deployment |
+| system.listener_backlog.length| listen_address, file_desc | count | The number of items in a specific backlog queue, labelled by listen address. | deployment |
+| system.listener_backlog.queue_limit| listen_address, file_desc | count | The capacity of a specific backlog queue, labelled by listen address. | deployment |
 
 {{</bootstrap-table>}}
 

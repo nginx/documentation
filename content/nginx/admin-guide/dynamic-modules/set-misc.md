@@ -3,19 +3,19 @@ description: Implement numerous additional `set_*` directives to extend the NGIN
   core [Rewrite](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html) module,
   with the Set-Misc dynamic module supported by NGINX, Inc.
 docs: DOCS-400
-doctypes:
-- task
 title: Set-Misc
 toc: true
 weight: 100
+type:
+- how-to
 ---
 
 <span id="prereq"></span>
 ## Prerequisites
 
-1. Check the [Technical Specifications]({{< relref "../../technical-specs.md" >}}) page to verify that the module is supported by your operating system.
+1. Check the [Technical Specifications]({{< ref "nginx/technical-specs.md" >}}) page to verify that the module is supported by your operating system.
 
-2. Prior to installing the module, verify that the [NDK]({{< relref "ndk.md" >}}) module is already installed.
+2. Prior to installing the module, verify that the [NDK]({{< ref "ndk.md" >}}) module is already installed.
 
 
 <span id="install"></span>
@@ -89,6 +89,6 @@ After installation you will need to enable and configure the module in F5 NGINX 
 
 - [NGINX `ngx_set_misc` Module Reference](https://github.com/openresty/set-misc-nginx-module)
 
-- [NGINX Dynamic Modules]({{< relref "dynamic-modules.md" >}})
+- [NGINX Dynamic Modules]({{< ref "dynamic-modules.md" >}})
 
-- [NGINX Plus Technical Specifications]({{< relref "../../technical-specs.md" >}})
+- [NGINX Plus Technical Specifications]({{< ref "nginx/technical-specs.md" >}})

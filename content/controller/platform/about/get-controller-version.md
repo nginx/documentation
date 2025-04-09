@@ -1,13 +1,11 @@
 ---
 description: How to look up the version details for F5 NGINX Controller and its components.
 docs: DOCS-780
-doctypes:
-- task
-tags:
-- docs
 title: Look Up Version Information
 toc: true
 weight: 130
+type:
+- how-to
 ---
 
 ## Overview
@@ -39,7 +37,7 @@ Running version: 3.14.0
 
 ## Use the NGINX Controller API to Look Up Version Info
 
-To use the [NGINX Controller REST API]({{< relref "/controller/api/_index.md" >}}) to look up version information, send a GET request to the `/platform/global` endpoint.
+To use the [NGINX Controller REST API]({{< ref "/controller/api/_index.md" >}}) to look up version information, send a GET request to the `/platform/global` endpoint.
 
 {{< versions "3.0" "latest" "ctrlvers" >}}
 {{< versions "3.18" "latest" "apimvers" >}}

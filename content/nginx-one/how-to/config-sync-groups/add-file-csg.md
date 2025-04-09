@@ -1,14 +1,11 @@
 ---
-docs: 
-doctypes:
-    - task
-tags:
-    - docs
+docs: null
 title: Add a file to a Config Sync Group
 toc: true
 weight: 400
+type:
+- how-to
 ---
-
 
 ## Overview
 
@@ -23,7 +20,7 @@ Before you add files in your configuration, ensure:
 
 ## Important considerations
 
-This page applies when you want to add a file to a Config Sync Group. Any changes you make here apply to all [Instances]({{< relref "/nginx-one/glossary.md" >}}) of that Config Sync Group.
+This page applies when you want to add a file to a Config Sync Group. Any changes you make here apply to all [Instances]({{< ref "/nginx-one/glossary.md" >}}) of that Config Sync Group.
 
 ## Add a file
 
@@ -61,10 +58,10 @@ Enter the name of the desired configuration file, such as `abc.conf` and select 
 ### Existing SSL Certificate or CA Bundle
 
 {{< include "nginx-one/add-file/existing-ssl-bundle.md" >}}
-With this option, You can incorporate [Managed certificates]({{< relref "/nginx-one/how-to/certificates/manage-certificates.md#managed-and-unmanaged-certificates" >}}).
+With this option, You can incorporate [Managed certificates]({{< ref "/nginx-one/how-to/certificates/manage-certificates.md#managed-and-unmanaged-certificates" >}}).
 
 ## See also
 
-- [Create and manage data plane keys]({{< relref "/nginx-one/how-to/data-plane-keys/create-manage-data-plane-keys.md" >}})
-- [View and edit NGINX configurations]({{< relref "/nginx-one/how-to/nginx-configs/view-edit-nginx-configurations.md" >}})
-- [Manage certificates]({{< relref "/nginx-one/how-to/certificates/manage-certificates.md" >}})
+- [Create and manage data plane keys]({{< ref "/nginx-one/how-to/data-plane-keys/create-manage-data-plane-keys.md" >}})
+- [View and edit NGINX configurations]({{< ref "/nginx-one/how-to/nginx-configs/view-edit-nginx-configurations.md" >}})
+- [Manage certificates]({{< ref "/nginx-one/how-to/certificates/manage-certificates.md" >}})

@@ -1,14 +1,12 @@
 ---
-description: This guide explains how to deploy F5 NGINX Controller as a multi-node resilient.
-  cluster on AWS.
+description: This guide explains how to deploy F5 NGINX Controller as a multi-node
+  resilient cluster on AWS.
 docs: DOCS-257
-doctypes:
-- tutorial
-tags:
-- docs
 title: Deploy NGINX Controller as a Resilient Cluster on AWS
 toc: true
 weight: 310
+type:
+- tutorial
 ---
 
 ## Overview
@@ -60,7 +58,7 @@ Larger clusters aren't supported.
 
 Before installing or configuring NGINX Controller as a multi-node cluster, review the following list of considerations to assist with planning:
 
-- Configuring NGINX Controller as a multi-node cluster on AWS requires **NGINX Controller 3.14 or later**. To upgrade from an earlier version, refer to the [Update NGINX Controller]({{< relref "/controller/admin-guides/install/install-nginx-controller.md#update-nginx-controller" >}}) steps for instructions.
+- Configuring NGINX Controller as a multi-node cluster on AWS requires **NGINX Controller 3.14 or later**. To upgrade from an earlier version, refer to the [Update NGINX Controller]({{< ref "/controller/admin-guides/install/install-nginx-controller.md#update-nginx-controller" >}}) steps for instructions.
 - Data migration is not supported, so it's not possible to implement a multi-node cluster with local volumes without reinstalling NGINX Controller.
 - If you plan to run NGINX Controller on AWS EC2 instances, we recommend using NFS shares for the external volumes. Using EBS shares for multi-node clusters is not recommended because of the [EBS Availability Zone limitations](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volumes-multi.html#considerations); for example, the requirement to have EC2 instances and EBS volumes in the same Availability Zone.
 - Cluster config changes are orchestrated by a primary control plane node that writes to the external config database. Each NGINX Controller control plane node hosts a set of services (pods) that read and write data. Only the node that hosts the pod that manages the config data writes to the external config database.
@@ -84,7 +82,7 @@ Things you'll need before installing NGINX Controller as a resilient cluster:
 - A tool to send API requests, such as Postman or curl
 - An external volume for the config database
 
-  When installing NGINX Controller, you can choose to have NGINX Controller install and manage a self-hosted -- also known as "embedded" -- [PostgreSQL](https://www.postgresql.org/) database for you; this is the recommended implementation. Alternatively, you can [install your own PostgreSQL database for the config database]({{< relref "/controller/admin-guides/install/install-nginx-controller.md#postgresql-optional" >}}), which you manage; this is sometimes referred to as an "external config database" because it is externally managed by you. Regardless of whether you use an embedded or an externally managed config database, the config database must be on an external volume for resilient clusters.
+  When installing NGINX Controller, you can choose to have NGINX Controller install and manage a self-hosted -- also known as "embedded" -- [PostgreSQL](https://www.postgresql.org/) database for you; this is the recommended implementation. Alternatively, you can [install your own PostgreSQL database for the config database]({{< ref "/controller/admin-guides/install/install-nginx-controller.md#postgresql-optional" >}}), which you manage; this is sometimes referred to as an "external config database" because it is externally managed by you. Regardless of whether you use an embedded or an externally managed config database, the config database must be on an external volume for resilient clusters.
 
 - An external volume for the analytics database
 
@@ -176,7 +174,7 @@ If you are installing NGINX Controller on [AWS EC2 instances](https://aws.amazon
 
 ## Install NGINX Controller
 
-- Complete the steps in the [NGINX Controller Installation Guide]({{< relref "/controller/admin-guides/install/install-nginx-controller.md" >}}) to install NGINX Controller on the first node.
+- Complete the steps in the [NGINX Controller Installation Guide]({{< ref "/controller/admin-guides/install/install-nginx-controller.md" >}}) to install NGINX Controller on the first node.
 
 &nbsp;
 
@@ -184,7 +182,7 @@ If you are installing NGINX Controller on [AWS EC2 instances](https://aws.amazon
 
 ## License NGINX Controller
 
-- Follow the steps to [license NGINX Controller]({{< relref "/controller/platform/licensing-controller.md" >}}).
+- Follow the steps to [license NGINX Controller]({{< ref "/controller/platform/licensing-controller.md" >}}).
 
 &nbsp;
 
@@ -218,7 +216,7 @@ Take the following steps to add a node to the cluster:
     ```
 
 1. Upload and extract the `controller-installer-<version>.tar.gz` tarball.
-1. Run the `install.sh` command with the join-key that you copied in the previous step. If you get an error that the join-key has expired, you can get a new one by following the steps in this topic to add a node using the web interface or the [NGINX Controller REST API]({{< relref "/controller/api/_index.md" >}}).
+1. Run the `install.sh` command with the join-key that you copied in the previous step. If you get an error that the join-key has expired, you can get a new one by following the steps in this topic to add a node using the web interface or the [NGINX Controller REST API]({{< ref "/controller/api/_index.md" >}}).
 
     ```bash
     cd controller-installer
@@ -229,7 +227,7 @@ Take the following steps to add a node to the cluster:
 1. Repeat these steps for each node that you want to add to the cluster.
 
 {{< see-also >}}
-To add nodes to your cluster using the [NGINX Controller REST API]({{< relref "/controller/api/_index.md" >}}), send a POST request to the `/platform/nodes` endpoint.
+To add nodes to your cluster using the [NGINX Controller REST API]({{< ref "/controller/api/_index.md" >}}), send a POST request to the `/platform/nodes` endpoint.
 {{< /see-also >}}
 
 &nbsp;
@@ -240,7 +238,7 @@ To add nodes to your cluster using the [NGINX Controller REST API]({{< relref "/
 
 You must add the hostname or IP address for the load balancer as a CNAME or A record for the domain that's used as the Fully Qualified Domain Name (FQDN) for NGINX Controller.
 
-To get the hostname or IP address for the load balancer using the [NGINX Controller REST API]({{< relref "/controller/api/_index.md" >}}), send a GET request to the `/platform/global` endpoint.
+To get the hostname or IP address for the load balancer using the [NGINX Controller REST API]({{< ref "/controller/api/_index.md" >}}), send a GET request to the `/platform/global` endpoint.
 
 &nbsp;
 
@@ -257,7 +255,7 @@ Deleting nodes can cause NGINX Controller to become momentarily unavailable whil
 {{< /important >}}
 
 {{< see-also >}}
-To delete nodes from your cluster using the [NGINX Controller API Reference]({{< relref "/controller/api/_index.md" >}}), send a DELETE request to the Nodes endpoint.
+To delete nodes from your cluster using the [NGINX Controller API Reference]({{< ref "/controller/api/_index.md" >}}), send a DELETE request to the Nodes endpoint.
 {{< /see-also >}}
 
 To delete a node from the cluster using the web interface:
@@ -277,7 +275,7 @@ To delete a node from the cluster using the web interface:
       ```
 
 {{< see-also >}}
-To delete nodes from your cluster using the [NGINX Controller REST API]({{< relref "/controller/api/_index.md" >}}), send a DELETE request to the `/platform/nodes` endpoint.
+To delete nodes from your cluster using the [NGINX Controller REST API]({{< ref "/controller/api/_index.md" >}}), send a DELETE request to the `/platform/nodes` endpoint.
 {{< /see-also >}}
 
 &nbsp;
@@ -311,7 +309,7 @@ Active users will be logged out from NGINX Controller during an update. We recom
 
 To update your cluster to a newer version of NGINX Controller, take the following steps:
 
-1. Before updating the cluster, [check each node's status]({{< relref "/controller/platform/manage-cluster.md#view-node-status" >}}) to confirm the nodes are healthy. Resolve any degradations before updating.
+1. Before updating the cluster, [check each node's status]({{< ref "/controller/platform/manage-cluster.md#view-node-status" >}}) to confirm the nodes are healthy. Resolve any degradations before updating.
 1. Download the new installer package from the [MyF5 Customer Portal](https://my.f5.com/manage/s/downloads).
 
 1. Extract the installer package and save the contents to each node:

@@ -1,27 +1,17 @@
 ---
-title: "Template resource files"
-date: 2024-03-19T12:23:28-07:00
-# Change draft status to false to publish doc
+title: Template resource files
 draft: false
-# Description
-# Add a short description (150 chars) for the doc. Include keywords for SEO.
-# The description text appears in search results and at the top of the doc.
-description: ""
-# Assign weights in increments of 100
+description: ''
 weight: 200
 toc: true
-tags: [ "docs" ]
-# Create a new entry in the Jira DOCS Catalog and add the ticket ID (DOCS-<number>) below
-docs: "DOCS-1501"
-# Taxonomies
-# These are pre-populated with all available terms for your convenience.
-# Remove all terms that do not apply.
-categories: ["installation", "platform management", "load balancing", "api management", "service mesh", "security", "analytics"]
-doctypes: ["reference"]
-journeys: ["researching", "getting started", "using", "renewing", "self service"]
-personas: ["devops", "netops", "secops", "support"]
-versions: []
-authors: []
+docs: DOCS-1501
+personas:
+- devops
+- netops
+- secops
+- support
+type:
+- reference
 ---
 
 ## Config Template, Schema, and README Files

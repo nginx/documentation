@@ -27,7 +27,7 @@ In this guide, we will show how to configure TLS passthrough for your applicatio
 
 ## Before you begin
 
-- [Install]({{< relref "/ngf/installation/" >}}) NGINX Gateway Fabric with experimental features enabled.
+- [Install]({{< ref "/ngf/installation/" >}}) NGINX Gateway Fabric with experimental features enabled.
 - Save the public IP address and port of NGINX Gateway Fabric into shell variables:
 
    ```text

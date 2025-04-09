@@ -1,25 +1,23 @@
 ---
 description: Create, view, and edit Apps and Components.
 docs: DOCS-478
-doctypes:
-- task
-tags:
-- docs
 title: Manage Apps & Components
 toc: true
 weight: 300
+type:
+- how-to
 ---
 
 ## Overview
 
 Follow the steps in this topic to learn how to create and manage Apps and App Components.
 
-{{< tip >}}You can also use the F5 NGINX Controller API to create Apps and Components. See the [NGINX Controller API Reference]({{< relref "/controller/api/_index.md" >}}) for details.{{< /tip >}}
+{{< tip >}}You can also use the F5 NGINX Controller API to create Apps and Components. See the [NGINX Controller API Reference]({{< ref "/controller/api/_index.md" >}}) for details.{{< /tip >}}
 &nbsp;
 
 ## Before You Begin
 
-You will need to select an [Environment]({{< relref "/controller/services/manage-environments.md#create-an-environment" >}}) and [Gateway]({{< relref "/controller/services/manage-gateways.md#create-a-gateway" >}}) -- or create new Environment and Gateway resources -- when adding a new App.
+You will need to select an [Environment]({{< ref "/controller/services/manage-environments.md#create-an-environment" >}}) and [Gateway]({{< ref "/controller/services/manage-gateways.md#create-a-gateway" >}}) -- or create new Environment and Gateway resources -- when adding a new App.
 
 {{< note >}}If you do not have permission to create these resources and none are available to select, contact your system administrator.{{< /note >}}
 &nbsp;
@@ -146,7 +144,7 @@ On the **Create App Component** *Workload Groups* page:
 
    The location determines which instances or instance groups the workload group is applied to. If any workload group specifies a location, they all must specify a location. Note: If the associated gateway uses instance groups, the location should refer to the instance group location, not the location(s) of the individual instances that make up that group.
 
-   {{< see-also >}}Refer to the [Manage Locations]({{< relref "/controller/infrastructure/locations/manage-locations.md" >}}) topic for more information.{{< /see-also >}}
+   {{< see-also >}}Refer to the [Manage Locations]({{< ref "/controller/infrastructure/locations/manage-locations.md" >}}) topic for more information.{{< /see-also >}}
 1. Define the backend workload URIs.
 1. (Optional) Define the DNS Server.
 1. (Optional) Select the Load Balancing Method. The default value is "Round Robin".
@@ -290,7 +288,7 @@ On the **Create App Component** *Caching* page:
 Introduced in NGINX Controller App Delivery module v3.22.
 {{< /note >}}
 
-Refer to the [About Snippets]({{< relref "/controller/app-delivery/about-snippets.md" >}}) topic to learn more about Snippets and how they impact the NGINX Controller-generated `nginx.conf` file.
+Refer to the [About Snippets]({{< ref "/controller/app-delivery/about-snippets.md" >}}) topic to learn more about Snippets and how they impact the NGINX Controller-generated `nginx.conf` file.
 
 On the **Create App Component** *Snippets* page:
 
@@ -329,9 +327,9 @@ On the **Create App Component** *Rate Limiting* page:
 On the **Create App Component** *Authentication* page:
 
 1. Select **Add Authentication**.
-1. Select an [**Identity Provider**]({{< relref "/controller/services/manage-identity-providers.md" >}}).
+1. Select an [**Identity Provider**]({{< ref "/controller/services/manage-identity-providers.md" >}}).
 1. Select a **Credential Location**.
-1. (Optional) Enable [**Conditional Access**]({{< relref "/controller/services/available-policies.md#conditional-access" >}}).
+1. (Optional) Enable [**Conditional Access**]({{< ref "/controller/services/available-policies.md#conditional-access" >}}).
 1. Select **Next**.
 
 ### Security
@@ -341,12 +339,12 @@ On the **Create App Component** *Security* page:
 {{< note >}} The following Security settings are applicable only to Web components. {{< /note >}}
 
 1. (Optional) Select **Enable Web Application Firewall (WAF)** to watch for or block suspicious requests or attacks.
-1. (Optional) Select **Monitor Only** to allow traffic to pass without being rejected. Security events are still generated and metrics are still collected. Refer to [About App Security Analytics]({{< relref "/controller/analytics/view-app-security-analytics.md#overview" >}}) for more information.
+1. (Optional) Select **Monitor Only** to allow traffic to pass without being rejected. Security events are still generated and metrics are still collected. Refer to [About App Security Analytics]({{< ref "/controller/analytics/view-app-security-analytics.md#overview" >}}) for more information.
 1. (Optional) the signature(s) that you want the WAF to ignore. You can specify multiple signatures as a comma-separated list.
 1. Select **Next**.
 
 {{< see-also >}}
-Refer to the [Secure Your Apps]({{< relref "/controller/app-delivery/security/_index.md" >}}) topics to learn more about WAF and the default protections provided by NGINX App Protect.
+Refer to the [Secure Your Apps]({{< ref "/controller/app-delivery/security/_index.md" >}}) topics to learn more about WAF and the default protections provided by NGINX App Protect.
 {{< /see-also >}}
 
 ## Edit or Delete Apps and Components

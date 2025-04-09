@@ -11,11 +11,11 @@ December 30, 2020
 
 ### New Features
 
-- [Debian 10 Support]({{< relref "/nap-waf/v4/admin-guide/install.md#debian-10-installation" >}})
-- [Alpine 3.10 Support]({{< relref "/nap-waf/v4/admin-guide/install.md#alpine-3-10-installation" >}})
-- [User-defined HTTP Headers]({{< relref "/nap-waf/v4/configuration-guide/configuration.md#user-defined-http-headers" >}})
-- [Converter Tools]({{< relref "/nap-waf/v4/configuration-guide/configuration.md#converter-tools" >}})
-- [Attack Signature Report Tool]({{< relref "/nap-waf/v4/configuration-guide/configuration.md#attack-signature-report-tool" >}})
+- [Debian 10 Support]({{< ref "/nap-waf/v4/admin-guide/install.md#debian-10-installation" >}})
+- [Alpine 3.10 Support]({{< ref "/nap-waf/v4/admin-guide/install.md#alpine-3-10-installation" >}})
+- [User-defined HTTP Headers]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#user-defined-http-headers" >}})
+- [Converter Tools]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#converter-tools" >}})
+- [Attack Signature Report Tool]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#attack-signature-report-tool" >}})
 
 ### Supported Packages
 

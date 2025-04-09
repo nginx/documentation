@@ -2,13 +2,11 @@
 description: Learn about the Dashboards that displays cumulative metrics for your
   NGINX Instances.
 docs: DOCS-528
-doctypes:
-- task
-tags:
-- docs
 title: Analytics Overview
 toc: true
 weight: 10
+type:
+- how-to
 ---
 
 ## Overview
@@ -17,17 +15,17 @@ The **Analytics Dashboards** provides an at-a-glance summary of the state of you
 
 ## Before You Begin
 
-- [Install the NGINX Controller Agent on Instances that you want to monitor]({{< relref "/controller/admin-guides/install/install-nginx-controller-agent.md" >}})
+- [Install the NGINX Controller Agent on Instances that you want to monitor]({{< ref "/controller/admin-guides/install/install-nginx-controller-agent.md" >}})
 
 ## Overview Dashboard
 
-When you log in to the NGINX Controller user interface, the **Analytics Overview** page displays first by default. Select the Dashboards tab to see the **My Dashboards** list page. On the **Dashboard Overview** page, you can view the key indicators noted below. By default, the graphs display metrics for the last hour. You can select any of the default time periods -- one hour, four hours, one day, two days, or one week -- to get a better idea of your apps' overall health and performance. To view metrics over longer time periods, you can create a [custom dashboard]({{< relref "/controller/analytics/dashboards/custom-dashboards.md" >}}).
+When you log in to the NGINX Controller user interface, the **Analytics Overview** page displays first by default. Select the Dashboards tab to see the **My Dashboards** list page. On the **Dashboard Overview** page, you can view the key indicators noted below. By default, the graphs display metrics for the last hour. You can select any of the default time periods -- one hour, four hours, one day, two days, or one week -- to get a better idea of your apps' overall health and performance. To view metrics over longer time periods, you can create a [custom dashboard]({{< ref "/controller/analytics/dashboards/custom-dashboards.md" >}}).
 
-The cumulative [metrics]({{< relref "/controller/analytics/metrics/overview-metrics-metadata.md" >}}) displayed on the **Analytics Overview** page are:
+The cumulative [metrics]({{< ref "/controller/analytics/metrics/overview-metrics-metadata.md" >}}) displayed on the **Analytics Overview** page are:
 
 ### System Metrics
 
-- [Application Health Score]({{< relref "/controller/analytics/dashboards/application-health-score.md" >}}): the health score for your application.
+- [Application Health Score]({{< ref "/controller/analytics/dashboards/application-health-score.md" >}}): the health score for your application.
 - Average CPU: 100 - AVG of the system.cpu.idle (CPU spent in an idle state)
 - Average Memory: AVG of the `system.mem.used` metric
 
@@ -56,11 +54,11 @@ To display metrics for a specific set of hosts (for example, only for "productio
 
 ## What's Next
 
-- [Overview of metrics and metadata]({{< relref "/controller/analytics/metrics/overview-metrics-metadata.md" >}})
-- [Metrics Catalog Reference]({{< relref "/controller/analytics/catalogs/metrics.md" >}})
-- [Dimensions Catalog Reference]({{< relref "/controller/analytics/catalogs/dimensions.md" >}})
-- [Application Health Score]({{< relref "/controller/analytics/dashboards/application-health-score.md" >}})
-- [Custom Dashboards]({{< relref "/controller/analytics/dashboards/custom-dashboards.md" >}})
+- [Overview of metrics and metadata]({{< ref "/controller/analytics/metrics/overview-metrics-metadata.md" >}})
+- [Metrics Catalog Reference]({{< ref "/controller/analytics/catalogs/metrics.md" >}})
+- [Dimensions Catalog Reference]({{< ref "/controller/analytics/catalogs/dimensions.md" >}})
+- [Application Health Score]({{< ref "/controller/analytics/dashboards/application-health-score.md" >}})
+- [Custom Dashboards]({{< ref "/controller/analytics/dashboards/custom-dashboards.md" >}})
 
 {{< versions "3.0" "latest" "ctrlvers" >}}
 {{< versions "3.18" "latest" "apimvers" >}}

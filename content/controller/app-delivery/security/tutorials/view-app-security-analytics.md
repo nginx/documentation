@@ -1,14 +1,12 @@
 ---
 description: How to view App Security Analytics.
 docs: DOCS-487
-doctypes:
-- concept
-- reference
-tags:
-- task
 title: View App Security Analytics
 toc: true
 weight: 500
+type:
+- concept
+- reference
 ---
 
 ## Overview
@@ -16,7 +14,7 @@ weight: 500
 When App Security flags or blocks a request made to an App Component as a security violation, it generates an App Security event.
 You can use the F5 F5 NGINX Controller web interface or the REST API to view these events or their related statistics (measures). Metrics reflect the number of requests and bytes flagged or blocked. You can use the Security Violation Dimensions to help understand and interpret the analytics data.
 
-For descriptions of Security Metrics and Events Dimensions, refer to [About App Security]({{< relref "/controller/app-delivery/security/concepts/what-is-waf.md" >}}) page.
+For descriptions of Security Metrics and Events Dimensions, refer to [About App Security]({{< ref "/controller/app-delivery/security/concepts/what-is-waf.md" >}}) page.
 
 ## View App Security Analytics
 
@@ -267,6 +265,6 @@ This is important if you are using App Security WAF monitoring only mode. You ca
 
 ## Related Pages
 
-- [About App Security]({{< relref "/controller/app-delivery/security/concepts/what-is-waf.md" >}})
+- [About App Security]({{< ref "/controller/app-delivery/security/concepts/what-is-waf.md" >}})
 
 {{< versions "3.12" "latest" "ctrlvers" >}}

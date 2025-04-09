@@ -2,21 +2,21 @@
 description: Enable high availability of F5 NGINX Plus instances in on-premises deployments,
   configuring an active-passive pair in a solution based on keepalived and VRRP.
 docs: DOCS-406
-doctypes:
-- task
 title: High Availability Support for NGINX Plus in On-Premises Deployments
 toc: true
 weight: 100
+type:
+- how-to
 ---
 
 This article explains how to configure high availability of NGINX Plus instances in on‑premises deployment with a solution based on [keepalived](https://www.keepalived.org/).
 
-> **Note:** This solution is designed to work in environments where IP addresses can be controlled through standard operating system calls, and often does not work in cloud environments where IP addresses are controlled through interfacing with the cloud infrastructure. For information about making NGINX Plus highly available in cloud environments, see the [Deployment Guides]({{< relref "/nginx/deployment-guides/_index.md" >}}).
+> **Note:** This solution is designed to work in environments where IP addresses can be controlled through standard operating system calls, and often does not work in cloud environments where IP addresses are controlled through interfacing with the cloud infrastructure. For information about making NGINX Plus highly available in cloud environments, see the [Deployment Guides]({{< ref "/nginx/deployment-guides/_index.md" >}}).
 
 <span id="ha_support"></span>
 ## High Availability Support Based on keepalived
 
-<a href="../../../releases/#r6">NGINX Plus R6</a> and later supports a solution for fast and easy configuration of NGINX Plus in an active‑passive high‑availability (HA) setup, based on [keepalived](https://www.keepalived.org/).
+NGINX Plus [Release 6]({{< ref "nginx/releases.md#r6" >}}) and later supports a solution for fast and easy configuration of NGINX Plus in an active‑passive high‑availability (HA) setup, based on [keepalived](https://www.keepalived.org/).
 
 The [keepalived open source project](http://www.keepalived.org/) includes three components:
 
@@ -335,7 +335,7 @@ Several fields in the output are useful for debugging:
 <span id="ha_misc"></span>
 ## Keeping F5 NGINX Plus Configuration Files in Sync
 
-The NGINX Plus configuration files on the nodes must both define the services that are being made highly available. For information about synchronizing NGINX Plus configuration, see [Synchronizing NGINX Configuration in a Cluster]({{< relref "configuration-sharing.md" >}}).
+The NGINX Plus configuration files on the nodes must both define the services that are being made highly available. For information about synchronizing NGINX Plus configuration, see [Synchronizing NGINX Configuration in a Cluster]({{< ref "configuration-sharing.md" >}}).
 
 
 <span id="ha_examples"></span>

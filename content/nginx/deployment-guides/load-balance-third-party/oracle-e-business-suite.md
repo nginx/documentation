@@ -2,11 +2,11 @@
 description: Load balance Oracle E-Business Suite applications with the advanced features
   in F5 NGINX Plus, following our step-by-step setup instructions.
 docs: DOCS-454
-doctypes:
-- task
 title: Load Balancing Oracle E-Business Suite with NGINX Plus
 toc: true
 weight: 100
+type:
+- how-to
 ---
 
 This deployment guide explains how to use F5 NGINX Plus to load balance traffic across a pool of <span style="white-space: nowrap;">Oracle E-Business Suite (EBS) 12</span> servers. It provides complete instructions for configuring NGINX Plus as required.
@@ -18,8 +18,8 @@ This deployment guide explains how to use F5 NGINX Plus to load balance traffic 
 
 - [Full‑featured HTTP, TCP, and UDP load balancing](https://www.nginx.com/products/nginx/load-balancing/)
 - [Intelligent session persistence](https://www.nginx.com/products/nginx/load-balancing/#session-persistence)
-- [High‑performance reverse proxy]({{< relref "../../admin-guide/web-server/reverse-proxy.md" >}})
-- [Caching and offload of dynamic and static content]({{< relref "../../admin-guide/content-cache/content-caching.md" >}})
+- [High‑performance reverse proxy]({{< ref "nginx/admin-guide/web-server/reverse-proxy.md" >}})
+- [Caching and offload of dynamic and static content]({{< ref "nginx/admin-guide/content-cache/content-caching.md" >}})
 - [Adaptive streaming to deliver audio and video to any device](https://www.nginx.com/products/nginx/streaming-media/)
 - [Application-aware health checks](https://docs.nginx.com/nginx/admin-guide/load-balancer/http-health-check/) and [high availability](https://docs.nginx.com/nginx/admin-guide/high-availability/)
 - [Advanced activity monitoring available via a dashboard or API](https://www.nginx.com/products/nginx/live-activity-monitoring/)
@@ -33,15 +33,15 @@ This deployment guide explains how to use F5 NGINX Plus to load balance traffic 
 The following systems and software are required:
 
 - Oracle EBS 12.2, installed and configured according to Oracle best practices.
-- Linux system to host NGINX Plus. To avoid potential conflicts with other applications, we recommend you install NGINX Plus on a fresh physical or virtual system. For the list of operating sytsems supported by NGINX Plus, see [NGINX Plus Technical Specifications]({{< relref "../../technical-specs.md" >}}).
+- Linux system to host NGINX Plus. To avoid potential conflicts with other applications, we recommend you install NGINX Plus on a fresh physical or virtual system. For the list of operating sytsems supported by NGINX Plus, see [NGINX Plus Technical Specifications]({{< ref "nginx/technical-specs.md" >}}).
 - NGINX Plus R6 or later.
 
 You can install NGINX Plus on premises, in a private cloud, or in a public cloud such as the Amazon Elastic Compute Cloud (EC2), the Google Cloud Platform, or Microsoft Azure. See the instructions for your installation type:
 
-- On premises or private cloud – [Installing NGINX Plus]({{< relref "../../admin-guide/installing-nginx/installing-nginx-plus.md" >}})
-- Amazon Elastic Compute Cloud (EC2) – [Installing NGINX Plus AMIs on Amazon EC2]({{< relref "../../admin-guide/installing-nginx/installing-nginx-plus-amazon-web-services.md" >}})
+- On premises or private cloud – [Installing NGINX Plus]({{< ref "nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}})
+- Amazon Elastic Compute Cloud (EC2) – [Installing NGINX Plus AMIs on Amazon EC2]({{< ref "nginx/admin-guide/installing-nginx/installing-nginx-plus-amazon-web-services.md" >}})
 - Google Compute Cloud – [Installing NGINX Plus on the Google Cloud Platform]({{< relref "../../admin-guide/installing-nginx/installing-nginx-plus-google-cloud-platform.md" >}})
-- Microsoft Azure – [Installing NGINX Plus on Microsoft Azure]({{< relref "../../admin-guide/installing-nginx/installing-nginx-plus-microsoft-azure.md" >}})
+- Microsoft Azure – [Installing NGINX Plus on Microsoft Azure]({{< ref "nginx/admin-guide/installing-nginx/installing-nginx-plus-microsoft-azure.md" >}})
 
 The instructions assume you have basic Linux system administration skills, including the following. Full instructions are not provided for these tasks.
 
@@ -123,7 +123,7 @@ There are several ways to obtain a server certificate, including the following. 
 - Request a new certificate from a CA or your organization's security group, as described in [Generating a Certificate Request with the openssl Command](#certificate-request).
 - If you already have an SSL/TLS certificate on a Windows system, see [Exporting and Converting an SSL/TLS Certificate from an IIS Server](#certificate-iis).
 
-For more details on SSL/TLS termination, see the [NGINX Plus Admin Guide]({{< relref "/nginx/admin-guide/security-controls/terminating-ssl-http" >}}).
+For more details on SSL/TLS termination, see the [NGINX Plus Admin Guide]({{< ref "/nginx/admin-guide/security-controls/terminating-ssl-http" >}}).
 
 <span id="certificate-self-signed"></span>
 ### Generating a Self-Signed Certificate with the openssl Command
@@ -475,7 +475,7 @@ To configure load balancing, you first create a named _upstream group_, which li
 
 By default, NGINX and NGINX Plus use the Round Robin algorithm for load balancing among servers. The load balancer runs through the list of servers in the upstream group in order, forwarding each new request to the next server. In our example, the first request goes to 172.31.11.210, the second to 192.168.0.146, the third to 172.31.11.210, and so on. For information about the other available load‑balancing algorithms, see the <a href="../../../admin-guide/load-balancer/http-load-balancer/#choosing-a-load-balancing-method">NGINX Plus Admin Guide</a>.
 
-For more information on proxying and load balancing, see <span style="white-space: nowrap;">[NGINX Reverse Proxy]({{< relref "../../admin-guide/web-server/reverse-proxy.md" >}})</span> and <span style="white-space: nowrap;">[HTTP Load Balancing]({{< relref "../../admin-guide/load-balancer/http-load-balancer.md" >}})</span> in the NGINX Plus Admin Guide, and the documentation for the HTTP [Proxy](https://nginx.org/en/docs/http/ngx_http_proxy_module.html) and [Upstream](https://nginx.org/en/docs/http/ngx_http_upstream_module.html) modules.
+For more information on proxying and load balancing, see <span style="white-space: nowrap;">[NGINX Reverse Proxy]({{< ref "nginx/admin-guide/web-server/reverse-proxy.md" >}})</span> and <span style="white-space: nowrap;">[HTTP Load Balancing]({{< relref "../../admin-guide/load-balancer/http-load-balancer.md" >}})</span> in the NGINX Plus Admin Guide, and the documentation for the HTTP [Proxy](https://nginx.org/en/docs/http/ngx_http_proxy_module.html) and [Upstream](https://nginx.org/en/docs/http/ngx_http_upstream_module.html) modules.
 
 <span id="session-persistence"></span>
 ### Configuring Session Persistence
@@ -577,7 +577,7 @@ server 172.31.0.146:8000 slow_start=30s;
 
 Parameter documentation: [slow_start](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#slow_start)
 
-For information about customizing health checks, see the [NGINX Plus Admin Guide]({{< relref "../../admin-guide/load-balancer/http-health-check.md" >}}).
+For information about customizing health checks, see the [NGINX Plus Admin Guide]({{< ref "nginx/admin-guide/load-balancer/http-health-check.md" >}}).
 
 <span id="caching"></span>
 ### Configuring Caching for Application Acceleration
@@ -623,7 +623,7 @@ Before configuring caching, make sure that the NGINX Plus host has adequate fre
 
    Directive documentation: [proxy_cache](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_cache), [proxy_cache_valid](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_cache_valid), [proxy_pass](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass), [proxy_set_header](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_set_header)
 
-For more complete information on caching, see the [NGINX Plus Admin Guide]({{< relref "../../admin-guide/content-cache/content-caching.md" >}}) and the reference documentation for the HTTP [Proxy](https://nginx.org/en/docs/http/ngx_http_proxy_module.html) module.
+For more complete information on caching, see the [NGINX Plus Admin Guide]({{< ref "nginx/admin-guide/content-cache/content-caching.md" >}}) and the reference documentation for the HTTP [Proxy](https://nginx.org/en/docs/http/ngx_http_proxy_module.html) module.
 
 You can track cache usage using the following methods:
 
@@ -767,7 +767,7 @@ The quickest way to configure live activity monitoring and the built‑in dashbo
 
 When you reload the NGINX Plus configuration file, for example by running the <span style="white-space: nowrap;">`nginx -s reload`</span> command, the NGINX Plus dashboard is available immediately at <span style="white-space: nowrap; font-weight: bold;">http://_nginx-server-address_:8080</span>.
 
-For more information about live activity monitoring, see the [NGINX Plus Admin Guide]({{< relref "../../admin-guide/monitoring/live-activity-monitoring.md" >}}).
+For more information about live activity monitoring, see the [NGINX Plus Admin Guide]({{< ref "nginx/admin-guide/monitoring/live-activity-monitoring.md" >}}).
 
 <span id="monitoring-third-party"></span>
 #### Monitoring with Third-Party Tools
@@ -798,7 +798,7 @@ You can then use a DNS‑based global load‑balancing solution to secure agains
 
 To increase the reliability of your EBS deployment even more, configure a higly available (HA) deployment of NGINX Plus.
 
-For configuration instructions for on‑premises deployments of NGINX Plus, see the [NGINX Plus Admin Guide]({{< relref "/nginx/admin-guide/high-availability/" >}}).
+For configuration instructions for on‑premises deployments of NGINX Plus, see the [NGINX Plus Admin Guide]({{< ref "/nginx/admin-guide/high-availability/" >}}).
 
 For configuration instructions for cloud‑based deployments of NGINX Plus, see our deployment guides:
 
@@ -1171,7 +1171,7 @@ http {
 ## Resources
 
 - [NGINX Plus Overview](https://www.nginx.com/products/nginx)
-- [NGINX Plus Admin Guide]({{< relref "/nginx/admin-guide/_index.md" >}})
+- [NGINX Plus Admin Guide]({{< ref "/nginx/admin-guide/_index.md" >}})
 - [NGINX Wiki](https://www.nginx.com/resources/wiki/)
 
 ### Revision History

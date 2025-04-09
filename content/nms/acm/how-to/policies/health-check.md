@@ -1,14 +1,13 @@
 ---
 description: Learn how to create, configure, and implement health check policies for
-  your HTTP and gRPC API Proxies using F5 NGINX Management Suite API Connectivity Manager.
+  your HTTP and gRPC API Proxies using F5 NGINX Management Suite API Connectivity
+  Manager.
 docs: DOCS-1125
-doctypes:
-- reference
-tags:
-- docs
 title: Health Check
 toc: true
 weight: 610
+type:
+- reference
 ---
 
 ## Overview
@@ -37,8 +36,8 @@ More information on NGINX health checks can be found at:
 To complete the steps in this guide, you need the following:
 
 - API Connectivity Manager is installed, licensed, and running
-- You have [one or more Environments with an API Gateway]({{< relref "/nms/acm/getting-started/add-api-gateway.md" >}})
-- You have [published one or more API Gateways]({{< relref "/nms/acm/getting-started/publish-api-proxy.md" >}})
+- You have [one or more Environments with an API Gateway]({{< ref "/nms/acm/getting-started/add-api-gateway.md" >}})
+- You have [published one or more API Gateways]({{< ref "/nms/acm/getting-started/publish-api-proxy.md" >}})
 - Your backend service(s) has an HTTP health check endpoint and/or can return status codes in the range from 200 through 399 for health check requests.
 
 ### Policy Settings
@@ -197,8 +196,8 @@ Confirm that the policy has been set up and configured correctly by taking these
 To complete the steps in this guide, you need the following:
 
 - API Connectivity Manager is installed, licensed, and running
-- You have [one or more Environments with a gRPC API Gateway]({{< relref "/nms/acm/getting-started/add-api-gateway.md" >}})
-- You have [published one or more gRPC API Gateways]({{< relref "/nms/acm/how-to/services/publish-grpc-proxy.md" >}})
+- You have [one or more Environments with a gRPC API Gateway]({{< ref "/nms/acm/getting-started/add-api-gateway.md" >}})
+- You have [published one or more gRPC API Gateways]({{< ref "/nms/acm/how-to/services/publish-grpc-proxy.md" >}})
 - Your backend service(s) implements the [gRPC health checking protocol](https://github.com/grpc/grpc/blob/master/doc/health-checking.md#grpc-health-checking-protocol) and/or returns a status code (normally `12` for `unimplemented`) for health check requests.
 
 ### Policy Settings

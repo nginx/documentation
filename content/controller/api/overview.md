@@ -1,14 +1,12 @@
 ---
 description: Provides information about the F5 NGINX Controller API.
 docs: DOCS-343
-doctypes:
-- concept
 layout: docs
-tags:
-- docs
 title: API Overview
 toc: true
 weight: 10
+type:
+- concept
 ---
 
 ## Introduction
@@ -59,13 +57,13 @@ The diagram below shows a sample deployment workflow. In this workflow, the user
 
 {{< see-also >}}
 
-- [Managing Roles & Users]({{< relref "/controller/platform/access-management/manage-users.md" >}})
+- [Managing Roles & Users]({{< ref "/controller/platform/access-management/manage-users.md" >}})
 
 {{< /see-also >}}
 
 ## Authentication
 
-The NGINX Controller API uses session cookies to authenticate requests. The session cookie is returned in response to a `GET /api/v1/platform/login` request. See the Login endpoint in the [NGINX Controller API Reference]({{< relref "/controller/api/_index.md" >}}) documentation for information about session cookie timeouts and invalidation.
+The NGINX Controller API uses session cookies to authenticate requests. The session cookie is returned in response to a `GET /api/v1/platform/login` request. See the Login endpoint in the [NGINX Controller API Reference]({{< ref "/controller/api/_index.md" >}}) documentation for information about session cookie timeouts and invalidation.
 
 {{< tip >}}
 You can send a GET request to the login endpoint to find the status of the session token.

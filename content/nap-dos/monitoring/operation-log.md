@@ -1,11 +1,11 @@
 ---
 description: Learn about the F5 NGINX App Protect DoS Operation Log.
 docs: DOCS-669
-doctypes:
-- task
 title: NGINX App Protect DoS Operation Log
 toc: true
 weight: 180
+type:
+- how-to
 ---
 
 ## Overview
@@ -18,7 +18,7 @@ The operation logs consists of system operational and health events. The events 
 
 |Event Type|Level|Meaning|
 |--------- |-----|------ |
-|Configuration Error |error |There were errors in the [directives]({{< relref "/nap-dos/directives-and-policy/learn-about-directives-and-policy.md" >}}) in the `nginx.conf` file. <br> Configuration error event is produced when one of F5 NGINX App Protect DoS directives is supplied with an incorrect data. An additional information will be added to the message, describing what was incorrect. NGINX will run with default values for this directive. <br> Please note that if the directive supplied with an incorrect number of arguments then NGINX will issue an error and NGINX will not run. It is a generic NGINX behavior.|
+|Configuration Error |error |There were errors in the [directives]({{< ref "/nap-dos/directives-and-policy/learn-about-directives-and-policy.md" >}}) in the `nginx.conf` file. <br> Configuration error event is produced when one of F5 NGINX App Protect DoS directives is supplied with an incorrect data. An additional information will be added to the message, describing what was incorrect. NGINX will run with default values for this directive. <br> Please note that if the directive supplied with an incorrect number of arguments then NGINX will issue an error and NGINX will not run. It is a generic NGINX behavior.|
 
 {{</bootstrap-table>}}
 

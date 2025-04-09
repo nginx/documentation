@@ -13,7 +13,7 @@ In this release support for NGINX App Protect WAF is added to NGINX Plus R25.
 
 ### New Features
 
-[New configuration setting added for never logging requests from a specified IP address range]({{< relref "/nap-waf/v4/configuration-guide/configuration.md#deny-allow-and-never-log-lists" >}})
+[New configuration setting added for never logging requests from a specified IP address range]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#deny-allow-and-never-log-lists" >}})
 
 ### Supported Packages
 

@@ -1,14 +1,11 @@
 ---
 description: Learn how to deploy a vSphere NGINX instance using F5 NGINX Controller.
 docs: DOCS-771
-doctypes:
-- beta
-- tutorial
-tags:
-- docs
 title: Add a vSphere NGINX Instance
 toc: true
 weight: 35
+type:
+- tutorial
 ---
 
 ## Overview
@@ -76,7 +73,7 @@ You are responsible for securing the connection between the vSphere cloud and an
 
 Integrations allow NGINX Controller to deploy and manage NGINX instances on external systems (cloud providers like vSphere).
 
-To create an Integration for vSphere using the [NGINX Controller API]({{< relref "/controller/api/_index.md" >}}), send a POST request similar to the following example to the Integrations API endpoint.
+To create an Integration for vSphere using the [NGINX Controller API]({{< ref "/controller/api/_index.md" >}}), send a POST request similar to the following example to the Integrations API endpoint.
 
 In the JSON request, provide the `hostname or IP`, `username`, and `password` for the vSphere instance as mentioned in [this section](#before-you-begin).
 
@@ -114,7 +111,7 @@ To create a Location, you'll need your vSphere datacenter name and a vSphere VM 
 
 ### Create a Location by using the REST API
 
-To create a Location using the [NGINX Controller API]({{< relref "/controller/api/_index.md" >}}), send a POST request similar to the following example to the Locations API endpoint.
+To create a Location using the [NGINX Controller API]({{< ref "/controller/api/_index.md" >}}), send a POST request similar to the following example to the Locations API endpoint.
 
 In the JSON request, provide the `datacenter` name, and `folder` name.
 
@@ -143,11 +140,11 @@ In the JSON request, provide the `datacenter` name, and `folder` name.
 
 
 
-An [Instance Template]({{< relref "/controller/infrastructure/instances/manage-instance-templates.md" >}}) defines the parameters to use when creating an NGINX instance. Instance Templates are ideal for cloud orchestration and make managing your cloud resources easy and quick.
+An [Instance Template]({{< ref "/controller/infrastructure/instances/manage-instance-templates.md" >}}) defines the parameters to use when creating an NGINX instance. Instance Templates are ideal for cloud orchestration and make managing your cloud resources easy and quick.
 
-For the Instance Template, you need to provide a VM template with NGINX Plus, [cloud-init](https://cloudinit.readthedocs.io/en/latest/) and [cloud-init-vmware-guestinfo](https://github.com/vmware/cloud-init-vmware-guestinfo) installed. Refer to [this](#create-a-nginxplus-vm-template) to create a NGINX Plus VM template. Use this [NGINX Controller Technical Specifications]({{< relref "/controller/admin-guides/install/nginx-controller-tech-specs.md" >}}) guide for the NGINX Plus requirements.
+For the Instance Template, you need to provide a VM template with NGINX Plus, [cloud-init](https://cloudinit.readthedocs.io/en/latest/) and [cloud-init-vmware-guestinfo](https://github.com/vmware/cloud-init-vmware-guestinfo) installed. Refer to [this](#create-a-nginxplus-vm-template) to create a NGINX Plus VM template. Use this [NGINX Controller Technical Specifications]({{< ref "/controller/admin-guides/install/nginx-controller-tech-specs.md" >}}) guide for the NGINX Plus requirements.
 
-- To create an Instance Template using the [NGINX Controller REST API]({{< relref "/controller/api/_index.md" >}}), send a POST request similar to the following example to the Instance Templates API endpoint. You can find descriptions of the instance parameters in the API Reference documentation.
+- To create an Instance Template using the [NGINX Controller REST API]({{< ref "/controller/api/_index.md" >}}), send a POST request similar to the following example to the Instance Templates API endpoint. You can find descriptions of the instance parameters in the API Reference documentation.
 
 
 &nbsp;
@@ -180,7 +177,7 @@ For the Instance Template, you need to provide a VM template with NGINX Plus, [c
 
 Now that you've [defined a Location](#create-a-location) and [created an Instance Template](#create-an-instance-template-for-vsphere-nginx-instances) for an  NGINX instance on vSphere, you are ready to add the instance to  NGINX Controller.
 
-To add a vSphere NGINX instance to NGINX Controller using the [NGINX Controller REST API]({{< relref "/controller/api/_index.md" >}}), send a POST request as shown below to the Instances API endpoint. For the `templateRef` parameter, use the Instance Template that you created in the previous procedure.
+To add a vSphere NGINX instance to NGINX Controller using the [NGINX Controller REST API]({{< ref "/controller/api/_index.md" >}}), send a POST request as shown below to the Instances API endpoint. For the `templateRef` parameter, use the Instance Template that you created in the previous procedure.
 
 ```json
 {
@@ -203,10 +200,10 @@ To add a vSphere NGINX instance to NGINX Controller using the [NGINX Controller 
 
 ## What's Next
 
-- [Manage Your NGINX Instances]({{< relref "/controller/infrastructure/instances/manage-instances.md#add-an-existing-instance" >}})
-- [Add, Edit, and Update Locations]({{< relref "/controller/infrastructure/locations/manage-locations.md" >}})
-- [View Performance Reports for Your Instances]({{< relref "/controller/infrastructure/instances/analyzer.md" >}})
-- [Deploy an App]({{< relref "/controller/app-delivery/deploy-simple-app.md" >}})
+- [Manage Your NGINX Instances]({{< ref "/controller/infrastructure/instances/manage-instances.md#add-an-existing-instance" >}})
+- [Add, Edit, and Update Locations]({{< ref "/controller/infrastructure/locations/manage-locations.md" >}})
+- [View Performance Reports for Your Instances]({{< ref "/controller/infrastructure/instances/analyzer.md" >}})
+- [Deploy an App]({{< ref "/controller/app-delivery/deploy-simple-app.md" >}})
 
 {{< versions "3.12" "latest" "ctrlvers" >}}
 {{< versions "3.18" "latest" "apimvers" >}}

@@ -2,14 +2,12 @@
 description: This topic describes possible issues users might encounter when using
   Instance Manager. When possible, suggested workarounds are provided.
 docs: DOCS-1224
-doctypes:
-- reference
-tags:
-- docs
 title: Troubleshooting
 toc: true
 weight: 1000
 draft: true
+type:
+- reference
 ---
 
 ## New NGINX instances don't show up in Instance Manager
@@ -70,7 +68,7 @@ Ensure there isn't a process bound to port `80` or `443`.
 
 ### Description
 
-When [scanning for NGINX instances]({{< relref "/nim/nginx-instances/scan-instances" >}}), the NGINX version is reported as `undefined` when NGINX App protect is installed.
+When [scanning for NGINX instances]({{< ref "/nim/nginx-instances/scan-instances" >}}), the NGINX version is reported as `undefined` when NGINX App protect is installed.
 
 ### Resolution
 
@@ -90,7 +88,7 @@ When Instance Manager is restarted, its internal API gateway may be assigned a n
 
 To update the NGINX Agent's configuration with the new Instance Manager IP address, run the NGINX Agent with the `--server-host` CLI parameter or edit the `nginx-agent.conf` file. Using the `--server-host` CLI parameter will ensure that the setting persists across restarts.
 
-To learn more, refer to the [NGINX Agent documentation]({{< relref "/nms/nginx-agent/install-nginx-agent.md#nginx-agent-cli-flags-usage" >}}).
+To learn more, refer to the [NGINX Agent documentation]({{< ref "/nms/nginx-agent/install-nginx-agent.md#nginx-agent-cli-flags-usage" >}}).
 
 ---
 

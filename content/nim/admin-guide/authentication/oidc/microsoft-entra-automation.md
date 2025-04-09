@@ -1,12 +1,10 @@
 ---
 docs: DOCS-1197
-doctypes:
-- tutorial
-tags:
-- docs
 title: Automate OIDC with Microsoft Entra
 toc: true
 weight: 300
+type:
+- tutorial
 ---
 
 ## Overview
@@ -16,7 +14,7 @@ This guide explains how to secure NGINX Instance Manager with OpenID Connect (OI
 ## Before you begin
 
 {{<call-out "important" "Required steps">}}
-Before proceeding, first secure NGINX Instance Manager with OpenID Connect (OIDC) using Microsoft Entra as the identity provider. Complete the steps in the [Set up OIDC authentication with Microsoft Entra]({{< relref "/nim/admin-guide/authentication/oidc/microsoft-entra-setup.md" >}}) guide. Afterward, you'll have a registered application (e.g., "NGINX Instance Manager") in Microsoft Entra, as well as a client ID and secret to configure automation.
+Before proceeding, first secure NGINX Instance Manager with OpenID Connect (OIDC) using Microsoft Entra as the identity provider. Complete the steps in the [Set up OIDC authentication with Microsoft Entra]({{< ref "/nim/admin-guide/authentication/oidc/microsoft-entra-setup.md" >}}) guide. Afterward, you'll have a registered application (e.g., "NGINX Instance Manager") in Microsoft Entra, as well as a client ID and secret to configure automation.
 {{</call-out>}}
 
 ## Configure Azure
@@ -47,7 +45,7 @@ Before proceeding, first secure NGINX Instance Manager with OpenID Connect (OIDC
 
 1. In the left navigation menu, under **Manage**, select **App roles**.
 2. Select **Create app role**.
-3. Fill in the role details. Use the information from an existing user group in NGINX Instance Manager, such as from the [Create user groups in Instance Manager]({{< relref "/nim/admin-guide/authentication/oidc/microsoft-entra-setup.md#create-user-groups-in-nginx-instance-manager" >}}) step:
+3. Fill in the role details. Use the information from an existing user group in NGINX Instance Manager, such as from the [Create user groups in Instance Manager]({{< ref "/nim/admin-guide/authentication/oidc/microsoft-entra-setup.md#create-user-groups-in-nginx-instance-manager" >}}) step:
    - In the **Display name** field, enter a role name (e.g., "Admin").
    - In **Allowed member types**, select **Applications**.
    - In the **Value** field, enter the value for the role. This must match the user group in NGINX Management Suite.
@@ -68,7 +66,7 @@ Before proceeding, first secure NGINX Instance Manager with OpenID Connect (OIDC
 
 ## Configure NGINX OIDC to use Microsoft Entra as the IdP
 
-Complete the steps in the [Configure NGINX Plus with Microsoft Entra as Identity Provider]({{< relref "/nim/admin-guide/authentication/oidc/microsoft-entra-setup.md#configure-nginx-plus" >}}) topic. Note that you may have already completed some of these steps in the [Before you begin](#before-you-begin) section of this guide.
+Complete the steps in the [Configure NGINX Plus with Microsoft Entra as Identity Provider]({{< ref "/nim/admin-guide/authentication/oidc/microsoft-entra-setup.md#configure-nginx-plus" >}}) topic. Note that you may have already completed some of these steps in the [Before you begin](#before-you-begin) section of this guide.
 
 Additionally, complete the following steps:
 

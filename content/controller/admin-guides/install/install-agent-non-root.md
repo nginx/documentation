@@ -1,13 +1,11 @@
 ---
 description: How to install the F5 NGINX Controller Agent to run as a non-root user.
 docs: DOCS-253
-doctypes:
-- beta
-- tutorial
-- troubleshooting
 title: Install NGINX Controller Agent for Non-root Users
 toc: true
 weight: 205
+type:
+- tutorial
 ---
 
 ## Overview
@@ -20,7 +18,7 @@ This document provides the instructions to run F5 NGINX Controller Agent as a no
 
 ## Before You Begin
 
-Before you follow the steps to deploy and run the Controller Agent as a non-root user, [install NGINX Controller]({{< relref "/controller/admin-guides/install/install-nginx-controller" >}}) following the normal installation process. Once you reach the step **Install NGINX Controller Agent** follow the steps in this guide instead.
+Before you follow the steps to deploy and run the Controller Agent as a non-root user, [install NGINX Controller]({{< ref "/controller/admin-guides/install/install-nginx-controller" >}}) following the normal installation process. Once you reach the step **Install NGINX Controller Agent** follow the steps in this guide instead.
 
 &nbsp;
 
@@ -39,7 +37,7 @@ Take the following steps to add an instance to NGINX Controller:
 1. To add the instance to an existing Location, select a Location from the list. Or to create a Location, select **Create New**.
 
     {{< important >}}
-Once set, the Location for an instance cannot be changed. If you need to change or remove the Location for an instance, you must [remove the instance from NGINX Controller]({{< relref "/controller/infrastructure/instances/manage-instances.md#delete-an-instance" >}}), and then add it back.
+Once set, the Location for an instance cannot be changed. If you need to change or remove the Location for an instance, you must [remove the instance from NGINX Controller]({{< ref "/controller/infrastructure/instances/manage-instances.md#delete-an-instance" >}}), and then add it back.
     {{< /important >}}
 
 1. (Optional) By default, registration of NGINX Plus instances is performed over a secure connection. To use self-signed certificates with the Controller Agent, select **Allow insecure server connections to NGINX Controller using TLS**. For security purposes, we recommend that you secure the Controller Agent with signed certificates when possible.

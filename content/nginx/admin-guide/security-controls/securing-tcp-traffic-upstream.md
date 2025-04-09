@@ -2,19 +2,19 @@
 description: Secure TCP traffic between NGINX or F5 F5 NGINX Plus and upstream servers,
   using SSL/TLS encryption.
 docs: DOCS-436
-doctypes:
-- task
 title: Securing TCP Traffic to Upstream Servers
 toc: true
 weight: 1000
+type:
+- how-to
 ---
 
 This article explains how to secure TCP traffic between NGINX and a TCP upstream server or an upstream group of TCP servers.
 
 ## Prerequisites
 
-- F5 NGINX Plus [R6]({{< relref "../../releases.md" >}}) and later or the latest NGINX Open Source compiled with the `--with-stream` and `with-stream_ssl_module` configuration parameters
-- A proxied TCP server or an [upstream group of TCP servers]({{< relref "../load-balancer/tcp-udp-load-balancer.md" >}})
+- F5 NGINX Plus [R6]({{< ref "nginx/releases.md" >}}) and later or the latest NGINX Open Source compiled with the `--with-stream` and `with-stream_ssl_module` configuration parameters
+- A proxied TCP server or an [upstream group of TCP servers]({{< ref "nginx/admin-guide/load-balancer/tcp-udp-load-balancer.md" >}})
 - SSL certificates and a private key
 
 ## Obtaining SSL Server Certificates

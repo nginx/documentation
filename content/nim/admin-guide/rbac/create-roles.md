@@ -1,12 +1,10 @@
 ---
 docs: DOCS-1272
-doctypes:
-- task
-tags:
-- docs
 title: Create and manage roles
 toc: true
 weight: 200
+type:
+- how-to
 ---
 
 ## Overview
@@ -33,7 +31,7 @@ To modify an existing role in NGINX Instance Manager, follow these steps:
 
    1. Select **Add Permission**.
    2. In the **Module** list, select the relevant module.
-   3. In the **Feature** list, select the feature you're assigning permissions for. 
+   3. In the **Feature** list, select the feature you're assigning permissions for.
 
    4. Select **Add Additional Access** to grant a CRUD (Create, Read, Update, Delete) access level.
 
@@ -53,4 +51,4 @@ To modify an existing role in NGINX Instance Manager, follow these steps:
 
 Once you’ve created roles, assign them to users or user groups to ensure that permissions align with responsibilities. This helps maintain clear and organized access control.
 
-- [Assign roles to users or user groups]({{< relref "/nim/admin-guide/rbac/assign-roles.md" >}})
+- [Assign roles to users or user groups]({{< ref "/nim/admin-guide/rbac/assign-roles.md" >}})

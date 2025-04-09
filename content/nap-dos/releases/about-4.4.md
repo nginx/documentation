@@ -18,7 +18,7 @@ In this release, NGINX App Protect DoS supports NGINX Plus R32.
 - Support for NGINX Plus R32
 - Support for Debian 12
 - Support for RHEL 9
-- [Allowlisted IPs]({{< relref "/nap-dos/directives-and-policy/learn-about-directives-and-policy.md#access-file-directive-app_protect_dos_access_file" >}})
+- [Allowlisted IPs]({{< ref "/nap-dos/directives-and-policy/learn-about-directives-and-policy.md#access-file-directive-app_protect_dos_access_file" >}})
 - Support for up to 1000 protected objects, ensuring high scalability and efficient resource utilization.
 
 ### Supported Packages

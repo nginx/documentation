@@ -1,9 +1,9 @@
 ---
-title: "About subscription licenses"
-date: 2024-10-10T12:52:14-07:00
+title: About subscription licenses
 toc: true
 weight: 2
-type: concept
+type:
+- reference
 product: Solutions
 docs: DOCS-000
 ---
@@ -12,7 +12,7 @@ docs: DOCS-000
 
 We’re updating NGINX Plus to align with F5’s entitlement and visibility policy, bringing benefits like fair and compliant usage, better visibility into license management, and improved customer support.
 
-Starting with NGINX Plus R33, all **NGINX Plus instances require a valid JSON Web Token (JWT) license**. This license is tied to your subscription (not individual instances) and is used to validate your subscription and automatically send usage reports to F5's licensing endpoint (`product.connect.nginx.com`), as required by your subscription agreement. In offline environments, usage reporting is [routed through NGINX Instance Manager]({{< relref "nim/disconnected/report-usage-disconnected-deployment.md" >}}).
+Starting with NGINX Plus R33, all **NGINX Plus instances require a valid JSON Web Token (JWT) license**. This license is tied to your subscription (not individual instances) and is used to validate your subscription and automatically send usage reports to F5's licensing endpoint (`product.connect.nginx.com`), as required by your subscription agreement. In offline environments, usage reporting is [routed through NGINX Instance Manager]({{< ref "nim/disconnected/report-usage-disconnected-deployment.md" >}}).
 
 ### Important changes
 
@@ -23,7 +23,7 @@ Starting with NGINX Plus R33, all **NGINX Plus instances require a valid JSON We
 
 ##### NGINX Plus will **stop processing traffic** if:
 
-- It can't submit an initial usage report to F5's licensing endpoint or NGINX Instance Manager. 
+- It can't submit an initial usage report to F5's licensing endpoint or NGINX Instance Manager.
 
   If the first report fails, NGINX Plus immediately stops processing traffic and logs an `EMERG` message. NGINX Plus will attempt to report every minute, and traffic processing will resume once the initial report succeeds. If you need time to prepare for usage reporting, see [Postpone reporting enforcement](#postpone-reporting-enforcement).
 
@@ -37,7 +37,7 @@ Starting with NGINX Plus R33, all **NGINX Plus instances require a valid JSON We
 When installing or upgrading to NGINX Plus R33 or later, take the following steps:
 
 - **[Download and add a valid JWT license](#download-jwt)** to each NGINX Plus instance.
-- **[Set up your environment](#set-up-environment)** to allow NGINX Plus to send usage reports.  
+- **[Set up your environment](#set-up-environment)** to allow NGINX Plus to send usage reports.
 
 ---
 
@@ -46,7 +46,7 @@ When installing or upgrading to NGINX Plus R33 or later, take the following step
 Before you install or upgrade to NGINX Plus R33 or later, make sure to:
 
 ### Download the license from MyF5 {#download-jwt}
-    
+
 {{< include "licensing-and-reporting/download-jwt-from-myf5.md" >}}
 
 ### Copy the license to each NGINX Plus instance
@@ -65,11 +65,22 @@ To ensure NGINX Plus R33 or later can send usage reports, follow these steps bas
 
 ### For internet-connected environments
 
-Allow outbound HTTPS traffic on TCP port `443` to communicate with F5's licensing endpoint (`product.connect.nginx.com`). Ensure that the following IP addresses are allowed:
+1. Allow outbound HTTPS traffic on TCP port `443` to communicate with F5's licensing endpoint (`product.connect.nginx.com`). Ensure that the following IP addresses are allowed:
 
-- `3.135.72.139`
-- `3.133.232.50`
-- `52.14.85.249`
+   - `3.135.72.139`
+   - `3.133.232.50`
+   - `52.14.85.249`
+
+2.  (Optional, R34 and later) If your company enforces a strict outbound traffic policy, you can use an outbound proxy for establishing an end-to-end tunnel to the F5 licensing endpoint. On each NGINX Plus instance, update the [`proxy`](https://nginx.org/en/docs/ngx_mgmt_module.html#proxy) directive in the [`mgmt`](https://nginx.org/en/docs/ngx_mgmt_module.html) block of the NGINX configuration (`/etc/nginx/nginx.conf`) to point to the company's outbound proxy server:
+
+
+    ```nginx
+    mgmt {
+        proxy          PROXY_ADDR:PORT; #can be http or https
+        proxy_username USER;            #optional
+        proxy_password PASS;            #optional
+    }
+    ```
 
 ### For network-restricted environments
 
@@ -117,7 +128,7 @@ mgmt {
 
 #### NGINX Plus installation guide
 
-For detailed instructions on installing or upgrading NGINX Plus, visit the [NGINX Plus installation guide]({{< relref "nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}).
+For detailed instructions on installing or upgrading NGINX Plus, visit the [NGINX Plus installation guide]({{< ref "nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}).
 
 #### `mgmt` module and directives
 
@@ -129,13 +140,13 @@ The instructions below use the terms "internet-connected" and "network-restricte
 
 #### License NGINX Instance Manager
 
-- **Internet-connected**: Follow the steps in [Add license]({{< relref "nim/admin-guide/license/add-license.md" >}}).
-- **Network-restricted**: Follow the steps in [Add a license in a disconnected environment]({{< relref "nim/disconnected/add-license-disconnected-deployment.md" >}}).
+- **Internet-connected**: Follow the steps in [Add license]({{< ref "nim/admin-guide/license/add-license.md" >}}).
+- **Network-restricted**: Follow the steps in [Add a license in a disconnected environment]({{< ref "nim/disconnected/add-license-disconnected-deployment.md" >}}).
 
 #### Submit usage reports to F5 from NGINX Instance Manager {#submit-usage-reports-from-nim}
 
-- **Internet-connected**: Follow the steps in [Report usage to F5]({{< relref "nim/admin-guide/license/report-usage-connected-deployment.md" >}}).
-- **Network-restricted**: Follow the steps in [Report usage to F5 in a disconnected environment]({{< relref "nim/disconnected/report-usage-disconnected-deployment.md" >}}).
+- **Internet-connected**: Follow the steps in [Report usage to F5]({{< ref "nim/admin-guide/license/report-usage-connected-deployment.md" >}}).
+- **Network-restricted**: Follow the steps in [Report usage to F5 in a disconnected environment]({{< ref "nim/disconnected/report-usage-disconnected-deployment.md" >}}).
 
 ### NGINX App Protect WAF
 

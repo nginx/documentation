@@ -2,8 +2,6 @@
 description: Learn how to customize a Developer Portal and publish documentation using
   F5 NGINX Management Suite API Connectivity Manager.
 docs: DOCS-900
-tags:
-- docs
 title: Customize a Developer Portal
 toc: true
 weight: 300
@@ -21,7 +19,7 @@ You can customize the Dev Portal website's landing page, All APIs page, and Docs
 Complete the following prerequisites before proceeding with this guide:
 
 - API Connectivity Manager is installed, licensed, and running.
-- You have one or more Environments with a [Developer Portal]({{< relref "/nms/acm/getting-started/add-devportal" >}}) cluster.
+- You have one or more Environments with a [Developer Portal]({{< ref "/nms/acm/getting-started/add-devportal" >}}) cluster.
 - You have verified that you can access the Developer Portal using the configured hostname.
 
 ### How to Access the User Interface

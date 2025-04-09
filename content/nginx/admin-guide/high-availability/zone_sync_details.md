@@ -2,11 +2,11 @@
 description: Design and limitations of the zone synchronization feature that allows
   synchronizing data in an nginx cluster.
 docs: DOCS-408
-doctypes:
-- task
 title: How NGINX Plus Performs Zone Synchronization
 toc: true
 weight: 500
+type:
+- how-to
 ---
 
 This chapter describes the design and limitations of the zone synchronization feature that allows synchronizing data in an nginx cluster.
@@ -214,9 +214,9 @@ With many workers and nodes, this can become a bottleneck. If the number of even
 <span id="history"></span>
 ## History
 
-In <a href="../../../releases/#r15">NGINX Plus R15</a>, the ability to synchronize memory zones between instances was introduced; only sticky sessions with [learn](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#sticky_learn_sync) method were supported at the moment.
+In NGINX Plus [R15]({{< ref "nginx/releases.md#r15" >}}), the ability to synchronize memory zones between instances was introduced; only sticky sessions with [learn](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#sticky_learn_sync) method were supported at the moment.
 
-In <a href="../../../releases/#r16">NGINX Plus R16</a>, shared zones synchronization was extended to support [keyval](https://nginx.org/en/docs/http/ngx_http_keyval_module.html) and [limit_req](https://nginx.org/en/docs/http/ngx_http_limit_req_module.html#limit_req) modules.
+In NGINX Plus [R16]({{< ref "nginx/releases.md#r16" >}}), shared zones synchronization was extended to support [keyval](https://nginx.org/en/docs/http/ngx_http_keyval_module.html) and [limit_req](https://nginx.org/en/docs/http/ngx_http_limit_req_module.html#limit_req) modules.
 
-In <a href="../../../releases/#r18">NGINX Plus R18</a>, a single zone_sync configuration can be applied between all instances in a cluster using wildcards in the [listen](https://nginx.org/en/docs/stream/ngx_stream_core_module.html#listen) directive.
+In NGINX Plus [R18]({{< ref "nginx/releases.md#r18" >}}), a single zone_sync configuration can be applied between all instances in a cluster using wildcards in the [listen](https://nginx.org/en/docs/stream/ngx_stream_core_module.html#listen) directive.
 

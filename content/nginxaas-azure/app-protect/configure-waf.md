@@ -1,9 +1,10 @@
 ---
-title: "Configure App Protect WAF"
+title: Configure App Protect WAF
 weight: 300
-categories: ["tasks"]
 toc: true
 url: /nginxaas/azure/app-protect/configure-waf/
+type:
+- how-to
 ---
 
 ## Overview
@@ -104,4 +105,4 @@ To view the contents of the available security policies, navigate to the azure p
 
 ## What's next
 
-[Enable App Protect WAF Logs]({{< relref "/nginxaas-azure/app-protect/enable-logging.md" >}})
+[Enable App Protect WAF Logs]({{< ref "/nginxaas-azure/app-protect/enable-logging.md" >}})

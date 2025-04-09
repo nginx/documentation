@@ -1,11 +1,11 @@
 ---
 description: Learn about F5 NGINX App Protect DoS Deployment.
 docs: DOCS-666
-doctypes:
-- task
 title: NGINX App Protect DoS Deployment
 toc: true
 weight: 100
+type:
+- how-to
 ---
 
 ## Overview
@@ -33,8 +33,9 @@ NGINX App Protect DoS supports the following operating systems:
 - [Ubuntu 22.04 (Jammy)](#debian--ubuntu-installation)
 - [Ubuntu 24.04 (Noble)](#debian--ubuntu-installation)
 - [Alpine 3.15](#alpine-315x--317x--319x-installation) - (Deprecated starting from NGINX Plus R30)
-- [Alpine 3.17](#alpine-315x--317x--319x-installation)
+- [Alpine 3.17](#alpine-315x--317x--319x-installation) - (Deprecated starting from NGINX Plus R34) 
 - [Alpine 3.19](#alpine-315x--317x--319x-installation)
+- [AmazonLinux 2023](#amazonlinux-linux-2023-installation)
 
 The NGINX App Protect DoS package has the following dependencies:
 
@@ -52,6 +53,7 @@ See the NGINX Plus full list of prerequisites for more details. NGINX App Protec
 - gRPC, HTTP/2 and WebSocket protection require active monitoring of the protected service. The directive `app_protect_dos_monitor` is mandatory for the attack to be detected.
 - TLS fingerprint feature is not used in CentOS 7.4 and RHEL 7 / UBI 7 due to the old OpenSSL version. The required OpenSSL version is 1.1.1 or higher.
 - Monitor directive `app_protect_dos_monitor` with proxy_protocol parameter can not be configured on Ubuntu 18.04. As a result, gRPC and HTTP/2 DoS protection for proxy_protocol configuration is not supported.
+- Regularly update the Operating System (OS) to avoid known OS vulnerabilities which may impact the service.
 {{< /note >}}
 
 ## Platform Security Considerations
@@ -63,6 +65,8 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
 - Configure a Syslog destination on the same machine as App Protect DoS and proxy to an external destination. This avoids eavesdropping and [man-in-the-middle](https://en.wikipedia.org/wiki/Man-in-the-middle_attack) attacks on the Syslog channel.
 
 ## CentOS 7.4+ Installation
+
+{{< note >}}CentOS 7.4 and RHEL 7.4 are deprecated as of NGINX Plus Release 32 (R32) and are not supported in Release 33 (R33) or later. For the list of supported distributions, refer to the [NGINX Plus Tech Specs]({{< relref "nginx/technical-specs.md" >}}).{{< /note >}}
 
 1. If you already have NGINX packages in your system, back up your configs and logs:
 
@@ -192,7 +196,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     sudo semodule -i app-protect-dos.pp;
     ```
 
-    If you encounter any issues, refer to the [Troubleshooting Guide]({{< relref "/nap-dos/troubleshooting-guide/how-to-troubleshoot.md" >}}).
+    If you encounter any issues, refer to the [Troubleshooting Guide]({{< ref "/nap-dos/troubleshooting-guide/how-to-troubleshoot.md" >}}).
 
     {{< note >}}Additional SELinux configuration may be required to allow NGINX Plus to listen on specific network ports, connect to upstreams, and send syslog entries to remote systems. Refer to the practices outlined in the [Using NGINX and NGINX Plus with SELinux](https://www.nginx.com/blog/using-nginx-plus-with-selinux/) article for details.{{< /note >}}
 
@@ -210,6 +214,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
 
 ## RHEL 7.4+ Installation
 
+{{< note >}}CentOS 7.4 and RHEL 7.4 are deprecated as of NGINX Plus Release 32 (R32) and are not supported in Release 33 (R33) or later. For the list of supported distributions, refer to the [NGINX Plus Tech Specs]({{< relref "nginx/technical-specs.md" >}}).{{< /note >}}
 1. If you already have NGINX packages in your system, back up your configs and logs:
 
     ```shell
@@ -371,7 +376,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     sudo semodule -i app-protect-dos.pp;
     ```
 
-    If you encounter any issues, refer to the [Troubleshooting Guide]({{< relref "/nap-dos/troubleshooting-guide/how-to-troubleshoot.md" >}}).
+    If you encounter any issues, refer to the [Troubleshooting Guide]({{< ref "/nap-dos/troubleshooting-guide/how-to-troubleshoot.md" >}}).
 
     {{< note >}}Additional SELinux configuration may be required to allow NGINX Plus to listen on specific network ports, connect to upstreams, and send syslog entries to remote systems. Refer to the practices outlined in the [Using NGINX and NGINX Plus with SELinux](https://www.nginx.com/blog/using-nginx-plus-with-selinux/) article for details.{{< /note >}}
 
@@ -396,20 +401,15 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     sudo cp -a /var/log/nginx /var/log/nginx-plus-backup
     ```
 
-2. Create the `/etc/ssl/nginx/` directory:
+1. {{< include "nginx-plus/install/create-dir-for-crt-key.md" >}}
+ 
+1. {{< include "nginx-plus/install/create-dir-for-jwt.md" >}}
 
-    ```shell
-    sudo mkdir -p /etc/ssl/nginx
-    ```
+1. {{< include "licensing-and-reporting/download-jwt-crt-from-myf5.md" >}}
 
-3. Log in to the NGINX [Customer Portal](https://my.f5.com) and download the following two files:
+1. {{< include "nginx-plus/install/copy-crt-and-key.md" >}}
 
-    ```shell
-    nginx-repo.key
-    nginx-repo.crt
-    ```
-
-4. Copy the above two files to the CentOS server’s `/etc/ssl/nginx/` directory. Use an SCP client or another secure file transfer tool to perform this task.
+1. {{< include "nginx-plus/install/copy-jwt-to-etc-nginx-dir.md" >}}
 
 5. Install prerequisite packages:
 
@@ -472,11 +472,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
 
     {{< note >}} Make sure to restore configuration from `/etc/nginx-plus-backup` back to `/etc/nginx-plus`.{{< /note >}}
 
-10. Confirm the NGINX binary version to make sure that you have NGINX Plus installed correctly:
-
-    ```shell
-    sudo nginx -v
-    ```
+1. {{< include "nginx-plus/install/check-nginx-binary-version.md" >}}
 
 11. Check the App Protect DoS binary version to ensure that you have the right version installed correctly:
 
@@ -576,7 +572,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     sudo semodule -i app-protect-dos-ebpf-manager.pp;
     ```
 
-    If you encounter any issues, refer to the [Troubleshooting Guide]({{< relref "/nap-dos/troubleshooting-guide/how-to-troubleshoot.md" >}}).
+    If you encounter any issues, refer to the [Troubleshooting Guide]({{< ref "/nap-dos/troubleshooting-guide/how-to-troubleshoot.md" >}}).
 
     {{< note >}}Additional SELinux configuration may be required to allow NGINX Plus to listen on specific network ports, connect to upstreams, and send syslog entries to remote systems. Refer to the practices outlined in the [Using NGINX and NGINX Plus with SELinux](https://www.nginx.com/blog/using-nginx-plus-with-selinux/) article for details.{{< /note >}}
 
@@ -602,7 +598,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     ```
     sudo systemctl start app-protect-dos-ebpf-manager
     ```
-    
+
 ## RHEL 9+ Installation
 
 1. If you already have NGINX packages on your system, back up your configs and logs:
@@ -612,17 +608,15 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     sudo cp -a /var/log/nginx /var/log/nginx-plus-backup
     ```
 
-2. Create the `/etc/ssl/nginx/` directory:
+1. {{< include "nginx-plus/install/create-dir-for-crt-key.md" >}}
 
-    ```shell
-    sudo mkdir -p /etc/ssl/nginx
-    ```
+1. {{< include "nginx-plus/install/create-dir-for-jwt.md" >}}
 
-3. Log in to the NGINX [Customer Portal](https://my.f5.com) and download the following two files:
-   - nginx-repo.key
-   - nginx-repo.crt
+1. {{< include "licensing-and-reporting/download-jwt-crt-from-myf5.md" >}}
 
-4. Copy the downloaded files to the CentOS server’s `/etc/ssl/nginx/` directory. Use an SCP client or another secure file transfer tool to perform this task.
+1. {{< include "nginx-plus/install/copy-crt-and-key.md" >}}
+
+1. {{< include "nginx-plus/install/copy-jwt-to-etc-nginx-dir.md" >}}
 
 5. Install prerequisite packages:
 
@@ -788,7 +782,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     sudo semodule -i app-protect-dos-ebpf-manager.pp;
     ```
 
-    If you encounter any issues, refer to the [Troubleshooting Guide]({{< relref "/nap-dos/troubleshooting-guide/how-to-troubleshoot.md" >}}).
+    If you encounter any issues, refer to the [Troubleshooting Guide]({{< ref "/nap-dos/troubleshooting-guide/how-to-troubleshoot.md" >}}).
 
     {{< note >}}Additional SELinux configuration may be required to allow NGINX Plus to listen on specific network ports, connect to upstreams, and send syslog entries to remote systems. Refer to the practices outlined in the [Using NGINX and NGINX Plus with SELinux](https://www.nginx.com/blog/using-nginx-plus-with-selinux/) article for details.{{< /note >}}
 
@@ -825,22 +819,17 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     sudo cp -a /var/log/nginx /var/log/nginx-plus-backup
     ```
 
-2. Create the `/etc/ssl/nginx/` directory:
+1. {{< include "nginx-plus/install/create-dir-for-crt-key.md" >}}
 
-    ```shell
-    sudo mkdir -p /etc/ssl/nginx
-    ```
+1. {{< include "nginx-plus/install/create-dir-for-jwt.md" >}}
 
-3. Log in to the NGINX [Customer Portal](https://my.f5.com) and download the following two files:
+1. {{< include "licensing-and-reporting/download-jwt-crt-from-myf5.md" >}}
 
-    ```shell
-    nginx-repo.key
-    nginx-repo.crt
-    ```
+1. {{< include "nginx-plus/install/copy-crt-and-key.md" >}}
 
-4. Copy the above two files to the Debian server’s `/etc/ssl/nginx/` directory. Use an SCP client or another secure file transfer tool to perform this task.
+1. {{< include "nginx-plus/install/copy-jwt-to-etc-nginx-dir.md" >}}
 
-5. Install apt utils:
+5. Install appropriate packages with `apt`:
 
     For Debian:
 
@@ -963,7 +952,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     sudo apt-get update
     sudo apt-get remove nginx-plus
     sudo apt-get install app-protect-dos
-    sudo service nginx start
+    sudo systemctl start nginx
     ```
 
 11. Check the NGINX binary version to ensure that you have NGINX Plus installed correctly:
@@ -1001,13 +990,13 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
 16. Start the NGINX service:
 
     ```shell
-    sudo service nginx start
+    sudo systemctl start nginx
     ```
 17. Start the L4 service:
     ```shell
-     sudo service app-protect-dos-ebpf-manager start
+     sudo systemctl start app-protect-dos-ebpf-manager
     ```
-    
+
 ## Alpine 3.15.x / 3.17.x / 3.19.x Installation
 
 1. If you already have NGINX packages in your system, back up your configs and logs:
@@ -1017,15 +1006,15 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     sudo cp -a /var/log/nginx /var/log/nginx-plus-backup
     ```
 
-2. Log in to the NGINX [Customer Portal](https://my.f5.com) and download the following two files:
+1. {{< include "nginx-plus/install/create-dir-for-crt-key.md" >}}
 
-    ```shell
-    nginx-repo.key
-    nginx-repo.crt
-    ```
+1. {{< include "nginx-plus/install/create-dir-for-jwt.md" >}}
 
-3. Upload `nginx-repo.key` to `/etc/apk/cert.key` and `nginx-repo.crt` to `/etc/apk/cert.pem`.
-   Make sure that files do not contain other certificates and keys, as Alpine Linux does not support mixing client certificates for different repositories.
+1. {{< include "licensing-and-reporting/download-jwt-crt-from-myf5.md" >}}
+
+1. {{< include "nginx-plus/install/copy-crt-and-key.md" >}}
+
+1. {{< include "nginx-plus/install/copy-jwt-to-etc-nginx-dir.md" >}}
 
 4. Add the NGINX public signing key to the directory `/etc/apk/keys`:
 
@@ -1136,11 +1125,137 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     ```shell
     rc-service nginx-app-protect-dos start
     ```
-    
+
 17. Start the L4 service:
     ```shell
     rc-service app-protect-dos-ebpf-manager start
     ```
+
+## Amazon Linux 2023 Installation
+
+1. If you already have NGINX packages in your system, back up your configs and logs:
+
+    ```shell
+    sudo cp -a /etc/nginx /etc/nginx-plus-backup
+    sudo cp -a /var/log/nginx /var/log/nginx-plus-backup
+    ```
+
+1. {{< include "nginx-plus/install/create-dir-for-crt-key.md" >}}
+
+1. {{< include "nginx-plus/install/create-dir-for-jwt.md" >}}
+
+1. {{< include "licensing-and-reporting/download-jwt-crt-from-myf5.md" >}}
+
+1. {{< include "nginx-plus/install/copy-crt-and-key.md" >}}
+
+1. {{< include "nginx-plus/install/copy-jwt-to-etc-nginx-dir.md" >}}
+
+5. Install prerequisite packages:
+
+    ```shell
+    sudo dnf install ca-certificates wget
+
+6. Add NGINX Plus and NGINX App Protect DoS repository:
+
+    ```shell
+    sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/plus-amazonlinux2023.repo
+    sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-amazonlinux2023.repo
+    ```
+
+7. In case of fresh installation, update the repository and install the most recent version of the NGINX Plus App Protect DoS package (which includes NGINX Plus):
+
+    ```shell
+    sudo dnf install app-protect-dos
+    ```
+
+    For L4 accelerated mitigation feature:
+
+    ```shell
+    sudo dnf install app-protect-dos-ebpf-manager
+    ```
+
+    {{< note >}}
+   L4 accelerated mitigation feature:
+   - `app-protect-dos-ebpf-manager` run with root privileges.
+    {{< /note >}}
+
+    Alternatively, you can use the following command to list available versions:
+
+    ```shell
+    sudo dnf --showduplicates list app-protect-dos
+    ```
+
+    Then, install a specific version from the output of command above. For example:
+
+    ```shell
+    sudo dnf install app-protect-dos-34+4.6.0
+    ```
+
+8. In case of upgrading from previously installed NGINX Plus App Protect DoS package (which includes NGINX Plus):
+
+    ```shell
+    sudo dnf remove nginx-plus
+    sudo dnf install app-protect-dos
+    sudo systemctl start nginx
+    ```
+
+    {{< note >}} Make sure to restore configuration from `/etc/nginx-plus-backup` back to `/etc/nginx-plus`.{{< /note >}}
+
+9. Confirm the NGINX binary version to make sure that you have NGINX Plus installed correctly:
+
+    ```shell
+    sudo nginx -v
+    ```
+
+10. Check the App Protect DoS binary version to ensure that you have the right version installed correctly:
+
+    ```shell
+    sudo admd -v
+    ```
+
+11. Load the NGINX App Protect DoS module on the main context in the `nginx.conf` file:
+
+    ```nginx
+    load_module modules/ngx_http_app_protect_dos_module.so;
+    ```
+
+12. Enable NGINX App Protect DoS in an `http/server/location` context in the `nginx.conf` file:
+
+    ```nginx
+    app_protect_dos_enable on;
+    app_protect_dos_name "App1";
+    app_protect_dos_monitor uri=serv:80/; # Assuming server_name "serv" on port 80, with the root path "/"
+    ```
+
+13. Enable the L4 accelerated mitigation feature in an `http` context in the `nginx.conf` file:
+
+    ```nginx
+    app_protect_dos_accelerated_mitigation on;
+    ```
+
+14. To enable the NGINX/App-Protect-DoS service to start at boot, run the command:
+
+    ```shell
+    sudo systemctl enable nginx.service
+    ```
+
+15. Start the NGINX service:
+
+    ```shell
+    sudo systemctl start nginx
+    ```
+
+16. L4 mitigation
+
+    To enable the `app-protect-dos-ebpf-manager` service to start at boot, run the command:
+    ```shell
+    sudo systemctl enable nginx.service
+    ```
+    Start the `app-protect-dos-ebpf-manager` service:
+    ```
+    sudo systemctl start app-protect-dos-ebpf-manager
+    ```
+
 
 ## Docker Deployment
 
@@ -1152,10 +1267,11 @@ You need root permissions to execute the following steps.
 
    - `nginx-repo.crt`: Certificate for NGINX repository access
    - `nginx-repo.key`: Private key for NGINX repository access
+   - `license.jwt`: JWT license file for NGINX Plus license management
    - `nginx.conf`: User defined `nginx.conf` with `app-protect-dos` enabled
    - `entrypoint.sh`: Docker startup script which spins up all App Protect DoS processes, must have executable permissions
 
-2. Log in to NGINX Plus Customer Portal and download your `nginx-repo.crt` and `nginx-repo.key` files.
+2. Log in to NGINX Plus Customer Portal and download your `nginx-repo.crt`, `nginx-repo.key`, and `license.jwt` files.
 
 3. Copy the files to the directory where the Dockerfile is located.
 
@@ -1238,7 +1354,7 @@ You need root permissions to execute the following steps.
         keepalive_timeout   65;
     }
     ```
-   
+
    {{< important >}}
    Make sure to replace upstream and proxy pass directives in this example with relevant application backend settings.
    {{< /important >}}
@@ -1311,7 +1427,7 @@ You need root permissions to execute the following steps.
     ```shell
     docker ps
     ```
-   
+
 10. L4 Accelerated Mitigation Deployment Options:<br>
     There are three different ways to deploy the L4 accelerated mitigation feature:<br>
     1. Deploy in a Dedicated Container. <br>
@@ -1438,9 +1554,12 @@ CMD /root/entrypoint.sh && tail -f /dev/null
 # For UBI 8
 FROM registry.access.redhat.com/ubi8:ubi
 
-# Download certificate and key from the customer portal (https://my.f5.com)
+# Download certificate, key, and JWT license from the customer portal (https://my.f5.com)
 # and copy to the build context:
+RUN mkdir -p /etc/ssl/nginx/
+RUN mkdir -p /etc/nginx/
 COPY nginx-repo.crt nginx-repo.key /etc/ssl/nginx/
+COPY nginx-repo.crt license.jwt /etc/nginx/
 
 # Setup the Redhat subscription
 RUN subscription-manager register --force --org=${RHEL_ORG} --activationkey=${RHEL_ACTIVATION_KEY}
@@ -1478,9 +1597,12 @@ CMD /root/entrypoint.sh && tail -f /dev/null
 # For RHEL ubi9:
 FROM registry.access.redhat.com/ubi9/ubi
 
-# Download certificate and key from the customer portal (https://my.f5.com)
+# Download certificate, key, and JWT license from the customer portal (https://my.f5.com)
 # and copy to the build context:
+RUN mkdir -p /etc/ssl/nginx/
+RUN mkdir -p /etc/nginx/
 COPY nginx-repo.crt nginx-repo.key /etc/ssl/nginx/
+COPY nginx-repo.crt license.jwt /etc/nginx/
 
 # Setup the Redhat subscription
 RUN subscription-manager register --force --org=${RHEL_ORG} --activationkey=${RHEL_ACTIVATION_KEY}
@@ -1528,9 +1650,12 @@ ARG OS_CODENAME
 
 FROM debian:${OS_CODENAME}
 
-# Download certificate and key from the customer portal (https://my.f5.com)
+# Download certificate, key, and JWT license from the customer portal (https://my.f5.com)
 # and copy to the build context:
+RUN mkdir -p /etc/ssl/nginx/
+RUN mkdir -p /etc/nginx/
 COPY nginx-repo.crt nginx-repo.key /etc/ssl/nginx/
+COPY nginx-repo.crt license.jwt /etc/nginx/
 
 # Install prerequisite packages:
 RUN apt-get update && apt-get install -y apt-transport-https lsb-release ca-certificates wget gnupg2 debian-archive-keyring
@@ -1568,9 +1693,12 @@ ARG OS_CODENAME
 
 FROM ubuntu:${OS_CODENAME}
 
-# Download certificate and key from the customer portal (https://my.f5.com)
+# Download certificate, key, and JWT license from the customer portal (https://my.f5.com)
 # and copy to the build context:
+RUN mkdir -p /etc/ssl/nginx/
+RUN mkdir -p /etc/nginx/
 COPY nginx-repo.crt nginx-repo.key /etc/ssl/nginx/
+COPY nginx-repo.crt license.jwt /etc/nginx/
 
 # Install prerequisite packages:
 RUN apt-get update && apt-get install -y apt-transport-https lsb-release ca-certificates wget gnupg2 ubuntu-keyring
@@ -1606,9 +1734,12 @@ ARG OS_CODENAME
 # Where OS_CODENAME can be: 3.15 / 3.17 / 3.19
 FROM alpine:${OS_CODENAME}
 
-# Download certificate and key from the customer portal (https://my.f5.com)
+# Download certificate, key, and JWT license from the customer portal (https://my.f5.com)
 # and copy to the build context:
+RUN mkdir -p /etc/ssl/nginx/
+RUN mkdir -p /etc/nginx/
 COPY nginx-repo.crt nginx-repo.key /etc/ssl/nginx/
+COPY nginx-repo.crt license.jwt /etc/nginx/
 
 # Download and add the NGINX signing key:
 RUN wget -O /etc/apk/keys/nginx_signing.rsa.pub https://cs.nginx.com/static/keys/nginx_signing.rsa.pub
@@ -1634,6 +1765,41 @@ COPY entrypoint.sh /root/
 CMD ["sh", "/root/entrypoint.sh"]
 ```
 
+### AmazonLinux 2023 Docker Deployment Example
+
+```Dockerfile
+# For AmazonLinux 2023:
+FROM registry.access.redhat.com/ubi9/ubi
+
+# Download certificate, key, and JWT license from the customer portal (https://my.f5.com)
+# and copy to the build context:
+RUN mkdir -p /etc/ssl/nginx/
+RUN mkdir -p /etc/nginx/
+COPY nginx-repo.crt nginx-repo.key /etc/ssl/nginx/
+COPY nginx-repo.crt license.jwt /etc/nginx/
+
+# Install prerequisite packages:
+RUN dnf -y install wget ca-certificates
+
+# Add NGINX Plus repo to Yum:
+RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/plus-amazonlinux2023.repo
+
+# Add NGINX App-protect & dependencies repo to Yum:
+RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-dos-amazonlinux2023.repo
+
+# Install NGINX App Protect DoS:
+RUN dnf -y install app-protect-dos \
+    && dnf clean all \
+    && rm -rf /var/cache/yum \
+    && rm -rf /etc/ssl/nginx
+
+# Copy configuration files:
+COPY nginx.conf /etc/nginx/
+COPY entrypoint.sh  /root/
+
+CMD /root/entrypoint.sh && tail -f /dev/null
+```
+
 
 ## Docker Deployment with NGINX App Protect
 
@@ -1645,10 +1811,11 @@ You need root permissions to execute the following steps.
 
     - `nginx-repo.crt`: Certificate for NGINX repository access
     - `nginx-repo.key`: Private key for NGINX repository access
+    - `license.jwt`: JWT license file for NGINX Plus license management
     - `nginx.conf`: User defined `nginx.conf` with `app-protect-dos` enabled
     - `entrypoint.sh`: Docker startup script which spins up all App Protect DoS processes, must have executable permissions
 
-2. Log in to NGINX Plus Customer Portal and download your `nginx-repo.crt` and `nginx-repo.key` files.
+2. Log in to NGINX Plus Customer Portal and download your `nginx-repo.crt`, `nginx-repo.key` and `license.jwt` files.
 
 3. Copy the files to the directory where the Dockerfile is located.
 
@@ -1911,9 +2078,12 @@ ARG OS_CODENAME
 
 FROM debian:${OS_CODENAME}
 
-# Download certificate and key from the customer portal (https://my.f5.com)
+# Download certificate, key, and JWT license from the customer portal (https://my.f5.com)
 # and copy to the build context:
+RUN mkdir -p /etc/ssl/nginx/
+RUN mkdir -p /etc/nginx/
 COPY nginx-repo.crt nginx-repo.key /etc/ssl/nginx/
+COPY nginx-repo.crt license.jwt /etc/nginx/
 
 # Install prerequisite packages:
 RUN apt-get update && apt-get install -y apt-transport-https lsb-release ca-certificates wget gnupg2 debian-archive-keyring
@@ -1953,9 +2123,12 @@ FROM ubuntu:${OS_CODENAME}
 
 ARG DEBIAN_FRONTEND=noninteractive
 
-# Download certificate and key from the customer portal (https://my.f5.com)
+# Download certificate, key, and JWT license from the customer portal (https://my.f5.com)
 # and copy to the build context:
+RUN mkdir -p /etc/ssl/nginx/
+RUN mkdir -p /etc/nginx/
 COPY nginx-repo.crt nginx-repo.key /etc/ssl/nginx/
+COPY nginx-repo.crt license.jwt /etc/nginx/
 
 # Install prerequisite packages:
 RUN apt-get update && apt-get install -y apt-transport-https lsb-release ca-certificates wget gnupg2 ubuntu-keyring
@@ -2442,3 +2615,21 @@ kubectl create ns appprotect-dos-wp-diff
 ${DIR}/appprotect-dos/install.sh
 ${DIR}/appprotect-dos-arb/install_appprotect-dos-arb.sh
 ```
+
+---
+
+## App Protect DoS eBPF manager
+
+### Overview
+The eBPF Manager is a powerful and efficient tool designed to simplify and secure the deployment of eBPF (Extended Berkeley Packet Filter) programs for advanced networking use cases. 
+Its primary responsibilities include program installation and managing client interactions to enable real-time packet processing and mitigation solutions.
+
+### CLI Options for Flexible Configuration
+The eBPF Manager comes with configurable command-line flags for ease of use and deployment customization. Key options include:
+
+* Interface Selection:
+    * -i, --interface [interfaces...]: Specify one or more network interfaces for eBPF XDP program deployment. If omitted, it defaults to all non-virtual, active network devices.
+* gRPC UDS Ownership:
+  * -u, --user <user_name>: Set the user ownership for the gRPC Unix Domain Socket (UDS). Defaults to nginx.
+  * -g, --group <group_name>: Set the group ownership for the gRPC Unix Domain Socket (UDS). Defaults to nginx.
+    

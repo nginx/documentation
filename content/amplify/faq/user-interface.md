@@ -3,8 +3,7 @@ title: NGINX Amplify User Interface
 description: Questions about F5 NGINX Amplify's User Interface
 weight: 30
 toc: true
-tags: ["docs"]
-docs: "DOCS-959"
+docs: DOCS-959
 ---
 
 ### What Browsers are Supported?
@@ -28,6 +27,6 @@ To completely delete a previously monitored object follow these steps:
   2. Delete objects from the web interface
   3. Delete alarms
 
-To delete a system using the web interface — find it in the [Inventory]({{< relref "/amplify/user-interface/inventory" >}}), and select the [i] icon. You can delete objects from the popup window that appears next.
+To delete a system using the web interface — find it in the [Inventory]({{< ref "/amplify/user-interface/inventory" >}}), and select the [i] icon. You can delete objects from the popup window that appears next.
 
 {{< important >}}Deleting objects in the User Interface will not stop NGINX Amplify Agent. To completely remove a system from monitoring, please stop or uninstall NGINX Amplify Agent, clean it up in the web interface, and clean up any alerts.{{< /important >}}

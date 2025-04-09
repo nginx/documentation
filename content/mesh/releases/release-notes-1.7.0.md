@@ -1,11 +1,15 @@
 ---
-title: "Release Notes 1.7.0"
+title: Release Notes 1.7.0
 draft: false
 toc: true
-description: "Release information for F5 NGINX Service Mesh, a configurable, low‑latency infrastructure layer designed to handle a high volume of network‑based interprocess communication among application infrastructure services using application programming interfaces (APIs).  Lists of new features and known issues are provided."
+description: Release information for F5 NGINX Service Mesh, a configurable, low‑latency
+  infrastructure layer designed to handle a high volume of network‑based interprocess
+  communication among application infrastructure services using application programming
+  interfaces (APIs).  Lists of new features and known issues are provided.
 weight: -1700
-categories: ["reference"]
-docs: "DOCS-1483"
+docs: DOCS-1483
+type:
+- reference
 ---
 
 ## NGINX Service Mesh Version 1.7.0
@@ -19,7 +23,7 @@ These release notes provide general information and describe known issues for NG
 - [NGINX Service Mesh Version 1.7.0](#nginx-service-mesh-version-170)
   - [Updates](#updates)
   - [Known Issues](#known-issues)
-  - [Supported Versions]({{< relref "mesh/about/mesh-tech-specs.md" >}})
+  - [Supported Versions]({{< ref "mesh/about/mesh-tech-specs.md" >}})
 
 <br/>
 <br/>

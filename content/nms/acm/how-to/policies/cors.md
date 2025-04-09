@@ -1,16 +1,12 @@
 ---
-description: Learn how to use F5 NGINX Management Suite API Connectivity Manager to handle
-  Cross-Origin Resource Sharing for your backend services.
+description: Learn how to use F5 NGINX Management Suite API Connectivity Manager to
+  handle Cross-Origin Resource Sharing for your backend services.
 docs: DOCS-1130
-doctypes:
-- API Connectivity Manager
-- api management
-- reference
-tags:
-- docs
 title: CORS
 toc: true
 weight: 500
+type:
+- reference
 ---
 
 ## Overview
@@ -34,8 +30,8 @@ The CORS policy allows users to configure API Gateways to set the required heade
 To complete the steps in this guide, you need the following:
 
 - API Connectivity Manager is installed, licensed, and running.
-- An [API gateway environment]({{< relref "/nms/acm/getting-started/add-api-gateway" >}})
-- A [published API Gateway]({{< relref "/nms/acm/getting-started/publish-api-proxy" >}})
+- An [API gateway environment]({{< ref "/nms/acm/getting-started/add-api-gateway" >}})
+- A [published API Gateway]({{< ref "/nms/acm/getting-started/publish-api-proxy" >}})
 
 ---
 

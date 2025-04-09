@@ -1,17 +1,14 @@
 ---
 description: View key metrics for all of your monitored systems.
 docs: DOCS-773
-doctypes:
-- task
-- tutorial
-- concept
-- reference
-- troubleshooting
-tags:
-- docs
 title: View System Metrics Graphs
 toc: true
 weight: 70
+type:
+- how-to
+- tutorial
+- concept
+- reference
 ---
 
 ## Overview
@@ -20,8 +17,8 @@ You can use the F5 NGINX Controller **Graphs** viewer to view key metrics for al
 
 ## Before You Begin
 
-- [Install the NGINX Controller Agent on instances that you want to monitor]({{< relref "/controller/admin-guides/install/install-nginx-controller-agent.md" >}})
-- [Configure Metrics collection on your NGINX instances]({{< relref "/controller/admin-guides/config-agent/configure-metrics-collection.md" >}})
+- [Install the NGINX Controller Agent on instances that you want to monitor]({{< ref "/controller/admin-guides/install/install-nginx-controller-agent.md" >}})
+- [Configure Metrics collection on your NGINX instances]({{< ref "/controller/admin-guides/config-agent/configure-metrics-collection.md" >}})
 
 ## How to View Systems Graphs
 
@@ -64,12 +61,12 @@ Above the graphs, you will find the following:
 
 You can also copy a predefined graph to a custom dashboard by selecting the graph and clicking the up arrow that appears in the top-right corner of the graph.
 
-See the [Metrics and Metadata]({{< relref "/controller/analytics/metrics/overview-metrics-metadata.md" >}}) topic to learn more about the displayed metrics.
+See the [Metrics and Metadata]({{< ref "/controller/analytics/metrics/overview-metrics-metadata.md" >}}) topic to learn more about the displayed metrics.
 
 ## What's Next
 
-- [Overview of Metrics and Metadata]({{< relref "/controller/analytics/metrics/overview-metrics-metadata.md" >}})
-- [Metrics Reference]({{< relref "/controller/analytics/catalogs/metrics.md" >}})
+- [Overview of Metrics and Metadata]({{< ref "/controller/analytics/metrics/overview-metrics-metadata.md" >}})
+- [Metrics Reference]({{< ref "/controller/analytics/catalogs/metrics.md" >}})
 
 {{< versions "3.0" "latest" "ctrlvers" >}}
 {{< versions "3.18" "latest" "apimvers" >}}

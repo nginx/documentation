@@ -1,19 +1,17 @@
 ---
-description: Contains instructions for setting up the F5 NGINX Controller Agent to collect
-  metrics for NGINX Plus instances.
+description: Contains instructions for setting up the F5 NGINX Controller Agent to
+  collect metrics for NGINX Plus instances.
 docs: DOCS-509
-doctypes:
-- task
-tags:
-- docs
 title: Set up Metrics Collection
 toc: true
 weight: 120
+type:
+- how-to
 ---
 
 ## Before You Begin
 
-- Before you can set up metrics collection, you first need to [install and start the F5 NGINX Controller Agent]({{< relref "/controller/admin-guides/install/install-nginx-controller-agent.md" >}}), so that the Agent can start pushing aggregated data to NGINX Controller.
+- Before you can set up metrics collection, you first need to [install and start the F5 NGINX Controller Agent]({{< ref "/controller/admin-guides/install/install-nginx-controller-agent.md" >}}), so that the Agent can start pushing aggregated data to NGINX Controller.
 
 ## Objectives
 
@@ -27,7 +25,7 @@ The Agent is able to automatically find all relevant NGINX configuration files, 
 
 ### SSL Certificate Parsing and Analysis
 
-To parse SSL certificate metadata, the NGINX Controller Agent uses standard `openssl(1)` functions. SSL certificates are parsed and analyzed only when the corresponding [settings]({{< relref "/controller/admin-guides/config-agent/configure-the-agent.md#default-agent-settings" >}}) are turned on. SSL certificate analysis is *on* by default.
+To parse SSL certificate metadata, the NGINX Controller Agent uses standard `openssl(1)` functions. SSL certificates are parsed and analyzed only when the corresponding [settings]({{< ref "/controller/admin-guides/config-agent/configure-the-agent.md#default-agent-settings" >}}) are turned on. SSL certificate analysis is *on* by default.
 
 To enable or disable analyzing SSL certs:
 
@@ -49,7 +47,7 @@ The `/api` location settings that NGINX Controller creates will override any set
 If you use NGINX Controller solely to monitor your NGINX Plus instances, you may need to enable the `/api` location on your instances manually.
 Refer to the [Configuring the API](https://docs.nginx.com/nginx/admin-guide/monitoring/live-activity-monitoring/#configuring-the-api) section of the NGINX Plus Admin Guide for instructions.
 
-For more information about the metrics list, refer to [Overview: Metrics and Metadata]({{< relref "/controller/analytics/metrics/overview-metrics-metadata.md" >}}).
+For more information about the metrics list, refer to [Overview: Metrics and Metadata]({{< ref "/controller/analytics/metrics/overview-metrics-metadata.md" >}}).
 
 ### Metrics from `access.log` and `error.log`
 
@@ -63,7 +61,7 @@ The Agent will try to detect the [log format](https://nginx.org/en/docs/http/ngx
 
 #### Enable Custom `access.log` Metrics
 
-Some metrics included in the [NGINX Metrics reference]({{< relref "/controller/analytics/catalogs/metrics.md" >}}) are not available unless the corresponding variables are included in a custom [access.log](https://nginx.org/en/docs/http/ngx_http_log_module.html) format in the NGINX config.
+Some metrics included in the [NGINX Metrics reference]({{< ref "/controller/analytics/catalogs/metrics.md" >}}) are not available unless the corresponding variables are included in a custom [access.log](https://nginx.org/en/docs/http/ngx_http_log_module.html) format in the NGINX config.
 
 {{< see-also >}}
 
@@ -96,7 +94,7 @@ Take the steps in this section to enable the NGINX Controller Agent to collect m
    ```
 
    {{< note >}}
-By default, the Controller Agent processes all access logs that it finds in your log directory. If you define a new log file with the extended log format that contains entries that are already being logged to another access log, your metrics might be counted twice. Refer to the [Agent configuration]({{< relref "/controller/admin-guides/config-agent/configure-the-agent.md" >}}) guide to learn how to exclude specific log files from processing.
+By default, the Controller Agent processes all access logs that it finds in your log directory. If you define a new log file with the extended log format that contains entries that are already being logged to another access log, your metrics might be counted twice. Refer to the [Agent configuration]({{< ref "/controller/admin-guides/config-agent/configure-the-agent.md" >}}) guide to learn how to exclude specific log files from processing.
    {{< /note >}}
 
 4. Set the [error.log](https://nginx.org/en/docs/ngx_core_module.html#error_log) log level to `warn`.
@@ -112,11 +110,11 @@ By default, the Controller Agent processes all access logs that it finds in your
    ```
 
 When the Controller Agent discovers these metrics, the NGINX Controller **Analytics Dashboards Overview** will automatically update with a predefined set of graphs.
-You can also use these metrics to build more specific set of [custom Dashboards]({{< relref "/controller/analytics/dashboards/custom-dashboards.md" >}}).
+You can also use these metrics to build more specific set of [custom Dashboards]({{< ref "/controller/analytics/dashboards/custom-dashboards.md" >}}).
 
 ### Collect Metrics from Syslog
 
-If you set up the Controller Agent to [use Syslog]({{< relref "/controller/admin-guides/config-agent/configure-the-agent.md#logging-to-syslog" >}}), you need to set up the Controller Agent to collect metrics from Syslog.
+If you set up the Controller Agent to [use Syslog]({{< ref "/controller/admin-guides/config-agent/configure-the-agent.md#logging-to-syslog" >}}), you need to set up the Controller Agent to collect metrics from Syslog.
 
 Take the steps below to enable metrics collection from Syslog:
 
@@ -144,8 +142,8 @@ To send the NGINX logs to both the existing logging facility and the NGINX Contr
 
 ## What's Next
 
-- [Overview: NGINX Metrics and Metadata]({{< relref "/controller/analytics/metrics/overview-metrics-metadata.md" >}})
-- [What to check if the Controller Agent isn't reporting metrics]({{< relref "/controller/support/troubleshooting-controller.md#troubleshooting-metrics" >}})
+- [Overview: NGINX Metrics and Metadata]({{< ref "/controller/analytics/metrics/overview-metrics-metadata.md" >}})
+- [What to check if the Controller Agent isn't reporting metrics]({{< ref "/controller/support/troubleshooting-controller.md#troubleshooting-metrics" >}})
 
 {{< versions "3.0" "latest" "ctrlvers" >}}
 {{< versions "3.18" "latest" "apimvers" >}}

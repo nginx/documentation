@@ -1,14 +1,13 @@
 ---
-description: Learn how to use F5 NGINX Management Suite Instance Manager to create instance
-  groups, which you can use to manage multiple NGINX instances as a single entity.
+description: Learn how to use F5 NGINX Management Suite Instance Manager to create
+  instance groups, which you can use to manage multiple NGINX instances as a single
+  entity.
 docs: DOCS-935
-doctypes:
-- tutorial
-tags:
-- docs
 title: Create and manage instance groups
 toc: true
 weight: 600
+type:
+- tutorial
 ---
 
 ## Overview
@@ -21,7 +20,7 @@ You can easily manage multiple NGINX instances as a single entity by creating an
 
 To complete the instructions in this guide, you need the following:
 
-- An installed version of [Instance Manager]({{< relref "/nim/deploy/vm-bare-metal/_index.md" >}})
+- An installed version of [Instance Manager]({{< ref "/nim/deploy/vm-bare-metal/_index.md" >}})
 - One or more NGINX data plane instances
 
 ---
@@ -63,7 +62,7 @@ You can assign NGINX instances to instance groups in the following ways:
 
 ### Specify Instance Group in Agent-Dynamic.Conf
 
-You can easily add instances to a default instance group that you specify. To do so, [install the NGINX Agent on an instance]({{< relref "/nms/nginx-agent/install-nginx-agent.md" >}}), then edit the `/var/lib/nginx-agent/agent-dynamic.conf` file as described below.
+You can easily add instances to a default instance group that you specify. To do so, [install the NGINX Agent on an instance]({{< ref "/nms/nginx-agent/install-nginx-agent.md" >}}), then edit the `/var/lib/nginx-agent/agent-dynamic.conf` file as described below.
 
 {{<note>}}If you're running Instance Manager 2.10.1 or earlier or NGINX Agent 2.25.1 or earlier, the `agent-dynamic.conf` file is located in `/etc/nginx-agent/`.{{</note>}}
 
@@ -202,7 +201,7 @@ If the instance group you deleted was specified in the `agent-dynamic.conf` file
 
 ## Permission for Instance Groups
 
-See [Set Up RBAC]({{< relref "/nim/admin-guide/rbac/overview-rbac.md" >}}), for detail information on setting up role-based access control (RBAC) for Instance Groups.
+See [Set Up RBAC]({{< ref "/nim/admin-guide/rbac/overview-rbac.md" >}}), for detail information on setting up role-based access control (RBAC) for Instance Groups.
 
 {{<note>}}
 Members of Instance Group automatically inherit role-based access control (RBAC) permissions from their parent.
@@ -210,7 +209,7 @@ Members of Instance Group automatically inherit role-based access control (RBAC)
 
 ## Publishing to Instance Groups
 
-- For instructions on publishing to instance groups, see the topic [Publish NGINX configs]({{< relref "/nim/nginx-configs/publish-configs.md" >}}).
+- For instructions on publishing to instance groups, see the topic [Publish NGINX configs]({{< ref "/nim/nginx-configs/publish-configs.md" >}}).
 
 ## Additional Information Regarding Instance Groups
 

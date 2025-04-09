@@ -2,17 +2,17 @@
 description: Stream video in multiple formats, including  Real-Time Messaging Protocol
   (RTMP), HLS, and DASH, with the RTMP dynamic module, supported by NGINX, Inc.
 docs: DOCS-399
-doctypes:
-- task
 title: RTMP
 toc: true
 weight: 100
+type:
+- how-to
 ---
 
 <span id="install"></span>
 ## Installation
 
-1. Check the [Technical Specifications]({{< relref "../../technical-specs.md" >}}) page to verify that the module is supported by your operating system.
+1. Check the [Technical Specifications]({{< ref "nginx/technical-specs.md" >}}) page to verify that the module is supported by your operating system.
 
 2. Install the RTMP Media Streaming module package `nginx-plus-module-rtmp`.
 
@@ -79,6 +79,6 @@ After installation you will need to enable and configure the module in F5 NGINX 
 
 - [NGINX RTMP Module Reference](https://github.com/arut/nginx-rtmp-module)
 
-- [NGINX Dynamic Modules]({{< relref "dynamic-modules.md" >}})
+- [NGINX Dynamic Modules]({{< ref "dynamic-modules.md" >}})
 
-- [NGINX Plus Technical Specifications]({{< relref "../../technical-specs.md" >}})
+- [NGINX Plus Technical Specifications]({{< ref "nginx/technical-specs.md" >}})

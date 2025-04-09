@@ -1,9 +1,10 @@
 ---
-title: "Enable App Protect WAF Logs"
+title: Enable App Protect WAF Logs
 weight: 300
-categories: ["tasks"]
 url: /nginxaas/azure/app-protect/enable-logging/
 toc: true
+type:
+- how-to
 ---
 
 ## Overview
@@ -12,11 +13,11 @@ F5 NGINX as a Service for Azure (NGINXaaS) supports exporting NGINX App Protect 
 
 ## Setting up operational logs
 
-NGINX App Protect operational logs are sent to the NGINX error logs. See [Enable NGINX Logs]({{< relref "/nginxaas-azure/monitoring/enable-logging/">}}) to configure error logs.
+NGINX App Protect operational logs are sent to the NGINX error logs. See [Enable NGINX Logs]({{< ref "/nginxaas-azure/monitoring/enable-logging/">}}) to configure error logs.
 
 ## Setting up security logs
 
-1. Enable the NGINX Security Logs category in **Diagnostic Settings**. For more information on logging, see [Enable NGINX Logs]({{< relref "/nginxaas-azure/monitoring/enable-logging/">}}).
+1. Enable the NGINX Security Logs category in **Diagnostic Settings**. For more information on logging, see [Enable NGINX Logs]({{< ref "/nginxaas-azure/monitoring/enable-logging/">}}).
 
 {{< img src="nginxaas-azure/security-diagnostic-setting.png" alt="Screenshot of the NGINXaaS WAF security logs diagnostic settings" >}}
 

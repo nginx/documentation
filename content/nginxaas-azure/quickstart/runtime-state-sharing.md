@@ -1,10 +1,11 @@
 ---
-title: "Runtime State Sharing"
+title: Runtime State Sharing
 weight: 100
-categories: ["tasks"]
 toc: true
-docs: "DOCS-1499"
+docs: DOCS-1499
 url: /nginxaas/azure/quickstart/runtime-state-sharing/
+type:
+- how-to
 ---
 
 F5 NGINX as a Service for Azure (NGINXaaS) supports runtime state sharing using the [Zone Synchronization module](https://nginx.org/en/docs/stream/ngx_stream_zone_sync_module.html) to synchronize shared memory zones across NGINXaaS instances.
@@ -17,7 +18,7 @@ With runtime state sharing, NGINXaaS instances can share some state data between
 
 {{<note>}}`sync` parameter with a directive describing shared memory zones, cannot be added to an existing memory zone that was not configured to sync and cannot be removed from an existing memory zone that was configured to sync. To switch, consider removing the directive before reapplying it with the desired parameters.{{</note>}}
 
-For information on enabling synchronization for rate limiting with NGINXaaS for Azure, please visit the [Rate Limiting]({{< relref "/nginxaas-azure/quickstart/rate-limiting.md" >}}) documentation.
+For information on enabling synchronization for rate limiting with NGINXaaS for Azure, please visit the [Rate Limiting]({{< ref "/nginxaas-azure/quickstart/rate-limiting.md" >}}) documentation.
 
 ## Configuring runtime state sharing among NGINXaaS for Azure deployment cluster instances
 

@@ -1,12 +1,12 @@
 ---
-description: Dynamically reconfigure the servers in an F5 NGINX Plus upstream group using
-  the NGINX Plus API, without reloading configuration or restarting processes.
+description: Dynamically reconfigure the servers in an F5 NGINX Plus upstream group
+  using the NGINX Plus API, without reloading configuration or restarting processes.
 docs: DOCS-415
-doctypes:
-- task
 title: Dynamic Configuration of Upstreams with the NGINX Plus API
 toc: true
 weight: 700
+type:
+- how-to
 ---
 
 <span id="overview"></span>
@@ -21,7 +21,7 @@ With F5 NGINX Plus, configuration of upstream servers in a server group can be m
 
 These changes are made with the NGINX Plus REST API interface with API commands.
 
-> **Note:** In NGINX Plus Release 12 (<a href="../../../releases/#r12">R12</a>) and earlier, dynamic configuration was performed with the `upstream_conf` handler. That API (and the extended `status` API) are now deprecated in favor of the NGINX Plus API.
+> **Note:** In NGINX Plus [Release 12]({{< ref "nginx/releases.md#r12" >}}) and earlier, dynamic configuration was performed with the `upstream_conf` handler. That API (and the extended `status` API) are now deprecated in favor of the NGINX Plus API.
 
 
 <span id="prereq"></span>
@@ -29,9 +29,9 @@ These changes are made with the NGINX Plus REST API interface with API commands.
 
 Prior to using the dynamic configuration feature, make sure that you have the following environment:
 
-1. NGINX Plus <a href="../../../releases/#r13">R13</a> or later
-2. You have created upstream groups of application or web servers, as described in [HTTP Load Balancing]({{< relref "http-load-balancer.md" >}}) and [TCP/UDP Load Balancing]({{< relref "tcp-udp-load-balancer.md" >}})
-3. Upstream server groups reside in the shared memory zone, as described in [Sharing Data with Multiple Worker Processes]({{< relref "http-load-balancer.md" >}})
+1. NGINX Plus [R13]({{< ref "nginx/releases.md#r13" >}}) or later
+2. You have created upstream groups of application or web servers, as described in [HTTP Load Balancing]({{< ref "http-load-balancer.md" >}}) and [TCP/UDP Load Balancing]({{< ref "tcp-udp-load-balancer.md" >}})
+3. Upstream server groups reside in the shared memory zone, as described in [Sharing Data with Multiple Worker Processes]({{< ref "http-load-balancer.md" >}})
 
 
 <span id="api_setup"></span>

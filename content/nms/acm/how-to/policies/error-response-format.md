@@ -3,15 +3,11 @@ description: Learn how to use the F5 NGINX Management Suite API Connectivity Man
   to configure the Error Response Format policy that customizes HTTP error codes and
   messages.
 docs: DOCS-1345
-doctypes:
-- API Connectivity Manager
-- api management
-- task
-tags:
-- docs
 title: Error Response Format
 toc: true
 weight: 550
+type:
+- how-to
 ---
 
 ## Overview
@@ -36,7 +32,7 @@ The Error Response Format policy is applied by default to any new environment.
 
 To apply the policy or make changes to it, follow these steps:
 
-- [Edit an existing environment or create a new one]({{< relref "/nms/acm/how-to/infrastructure/manage-api-infrastructure.md#add-environment" >}}).
+- [Edit an existing environment or create a new one]({{< ref "/nms/acm/how-to/infrastructure/manage-api-infrastructure.md#add-environment" >}}).
 - Review the advanced settings for the environment to confirm if the policy has been applied.
 - Edit the policy to make changes for each environment. Save and publish the changes.
 

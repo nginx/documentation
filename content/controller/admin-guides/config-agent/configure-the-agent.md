@@ -1,13 +1,11 @@
 ---
 description: Customize the F5 NGINX Controller Agent configuration.
 docs: DOCS-510
-doctypes:
-- tutorial
-tags:
-- docs
 title: Configure the NGINX Controller Agent
 toc: true
 weight: 110
+type:
+- tutorial
 ---
 
 ## Overview
@@ -47,7 +45,7 @@ The configuration file for the NGINX Controller Agent is located at `/etc/contro
 
 ## Change the API Key
 
-When you first [install the NGINX Controller Agent]({{< relref "/controller/admin-guides/install/install-nginx-controller-agent.md" >}}), your API key is written to the `agent.conf` file automatically. If you ever need to change the API key, you can edit the following section in `agent.conf` accordingly:
+When you first [install the NGINX Controller Agent]({{< ref "/controller/admin-guides/install/install-nginx-controller-agent.md" >}}), your API key is written to the `agent.conf` file automatically. If you ever need to change the API key, you can edit the following section in `agent.conf` accordingly:
 
 ``` nginx
 [credentials]
@@ -108,7 +106,7 @@ If, for some reason, the NGINX Controller Agent cannot find the NGINX configurat
 configfile = /etc/nginx/nginx.conf
 ```
 
-{{< note >}} We recommend using this option only as a workaround if needed. If you do need to add the path to the NGINX config file, we ask that you [contact NGINX Support]({{< relref "/controller/support/contact-support.md" >}}) so they can help troubleshoot the issue.{{< /note >}}
+{{< note >}} We recommend using this option only as a workaround if needed. If you do need to add the path to the NGINX config file, we ask that you [contact NGINX Support]({{< ref "/controller/support/contact-support.md" >}}) so they can help troubleshoot the issue.{{< /note >}}
 
 ## Set Host Tags
 
@@ -150,7 +148,7 @@ To configure the NGINX Controller Agent to send logs to `syslog`:
     ```
 
     {{< important >}}
-Make sure you [add the `syslog` settings to your NGINX configuration file]({{< relref "/controller/admin-guides/config-agent/configure-metrics-collection.md#collect-metrics-from-syslog" >}}) as well.
+Make sure you [add the `syslog` settings to your NGINX configuration file]({{< ref "/controller/admin-guides/config-agent/configure-metrics-collection.md#collect-metrics-from-syslog" >}}) as well.
     {{< /important >}}
 
 ## Exclude Certain NGINX Log Files
@@ -206,11 +204,11 @@ To change the log level for the NGINX Controller Agent:
     ...
     ```
 
-1. [Restart the NGINX Controller Agent]({{< relref "/controller/admin-guides/install/agent-restart.md#Starting-and-Stopping-the-Agent" >}}) to make the changes take effect.
+1. [Restart the NGINX Controller Agent]({{< ref "/controller/admin-guides/install/agent-restart.md#Starting-and-Stopping-the-Agent" >}}) to make the changes take effect.
 
 ## What's Next
 
-- [Set up Metrics Collection]({{< relref "/controller/admin-guides/config-agent/configure-metrics-collection.md" >}})
+- [Set up Metrics Collection]({{< ref "/controller/admin-guides/config-agent/configure-metrics-collection.md" >}})
 
 {{< versions "3.0" "latest" "ctrlvers" >}}
 {{< versions "3.18" "latest" "apimvers" >}}

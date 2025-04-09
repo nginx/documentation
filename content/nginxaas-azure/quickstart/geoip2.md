@@ -1,9 +1,10 @@
 ---
-title: "GeoIP2"
+title: GeoIP2
 weight: 700
-categories: ["tasks"]
 toc: true
 url: /nginxaas/azure/quickstart/geoip2/
+type:
+- how-to
 ---
 
 ## Overview
@@ -14,7 +15,7 @@ NGINXaaS uses your MaxMind license to download GeoIP2 databases, puts them in th
 
 ## Configure
 
-To enable GeoIP2 you [update your NGINX configuration]({{< relref "/nginxaas-azure/getting-started/nginx-configuration/overview.md">}}) to include your MaxMind license and the relevant NGINX directives.
+To enable GeoIP2 you [update your NGINX configuration]({{< ref "/nginxaas-azure/getting-started/nginx-configuration/overview.md">}}) to include your MaxMind license and the relevant NGINX directives.
 
 1. Log into MaxMind and [generate a `GeoIP.conf`](https://dev.maxmind.com/geoip/updating-databases/#2-obtain-geoipconf-with-account-information) file.
 2. Add the `GeoIP.conf` file to your NGINX configuration, using the exact path `/etc/nginx/GeoIP.conf`. The `GeoIP.conf` will be validated, and must include `AccountID`, `LicenseKey`, and `EditionIDs`. Other configuration options in `GeoIP.conf` are ignored.  We recommend you enable the **Protected** {{<fa "solid fa-toggle-on">}} toggle button to mark `GeoIP.conf` as a protected file, which will prevent the contents from being read via any Azure client tools.
@@ -48,7 +49,7 @@ http {
 
 All licenses are [validated with MaxMind](https://dev.maxmind.com/license-key-validation-api/) when initially added to your deployment, but MaxMind licenses can expire or be manually revoked.
 
-To view the status of your MaxMind license, [enable monitoring]({{< relref "/nginxaas-azure/monitoring/enable-monitoring.md" >}}) for your NGINXaaS deployment and navigate to the Metrics tab. View the `nginxaas.maxmind` metric under the `nginxaas statistics` metric namespace. The `nginxaas.maxmind` metric reports the health of your license through the `status` dimension:
+To view the status of your MaxMind license, [enable monitoring]({{< ref "/nginxaas-azure/monitoring/enable-monitoring.md" >}}) for your NGINXaaS deployment and navigate to the Metrics tab. View the `nginxaas.maxmind` metric under the `nginxaas statistics` metric namespace. The `nginxaas.maxmind` metric reports the health of your license through the `status` dimension:
 
    {{<bootstrap-table "table table-striped table-bordered">}}
 

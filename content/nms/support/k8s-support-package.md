@@ -2,14 +2,12 @@
 description: This guide outlines the steps for creating a support package from a Helm
   installation to aid in troubleshooting error scenarios.
 docs: DOCS-1123
-doctypes:
-- reference
-- task
-tags:
-- docs
 title: Create a Support Package from a Helm Installation
 toc: true
 weight: 200
+type:
+- reference
+- how-to
 ---
 
 {{< shortversions "2.5.0" "latest" "nimvers" >}}
@@ -18,7 +16,7 @@ weight: 200
 
 Use the Kubernetes support package script to collect information about your system for troubleshooting and debugging issues.
 
-The script collects system and service information and then packages the data into a tar archive, which you can share with [NGINX Customer Support]({{< relref "/nms/support/contact-support.md" >}}).
+The script collects system and service information and then packages the data into a tar archive, which you can share with [NGINX Customer Support]({{< ref "/nms/support/contact-support.md" >}}).
 
 ---
 

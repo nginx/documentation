@@ -3,17 +3,17 @@ description: Deploy and administer applications written in Node.js, Python, and 
   with the Passenger Open Source dynamic module from Phusion, supported by NGINX,
   Inc.
 docs: DOCS-396
-doctypes:
-- task
 title: Phusion Passenger Open Source
 toc: true
 weight: 100
+type:
+- how-to
 ---
 
 <span id="install"></span>
 ## Installation
 
-1. Check the [Technical Specifications]({{< relref "../../technical-specs.md" >}}) page to verify that the module is supported by your operating system.
+1. Check the [Technical Specifications]({{< ref "nginx/technical-specs.md" >}}) page to verify that the module is supported by your operating system.
 
 2. Install the Phusion Passenger Open Source module package `nginx-plus-module-passenger`.
 
@@ -80,6 +80,6 @@ After installation you will need to enable and configure the module in F5 NGINX 
 
 - [Passenger Documentation](https://www.phusionpassenger.com/library/install/nginx/)
 
-- [NGINX Dynamic Modules]({{< relref "dynamic-modules.md" >}})
+- [NGINX Dynamic Modules]({{< ref "dynamic-modules.md" >}})
 
-- [NGINX Plus Technical Specifications]({{< relref "../../technical-specs.md" >}})
+- [NGINX Plus Technical Specifications]({{< ref "nginx/technical-specs.md" >}})

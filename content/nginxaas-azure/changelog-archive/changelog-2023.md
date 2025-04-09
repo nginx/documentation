@@ -7,9 +7,9 @@ url: /nginxaas/azure/changelog-archive/changelog-2023/
 
 Learn about the updates, new features, and resolved bugs in F5 NGINX as a Service for Azure during the year 2023.
 
-To see the latest changes, visit the [Changelog]({{< relref "/nginxaas-azure/changelog" >}}) page.
+To see the latest changes, visit the [Changelog]({{< ref "/nginxaas-azure/changelog" >}}) page.
 
-To see a list of currently active issues, visit the [Known issues]({{< relref "/nginxaas-azure/known-issues.md" >}}) page.
+To see a list of currently active issues, visit the [Known issues]({{< ref "/nginxaas-azure/known-issues.md" >}}) page.
 
 ## December 19, 2023
 
@@ -25,26 +25,26 @@ To see a list of currently active issues, visit the [Known issues]({{< relref "/
    API version 9:
    - Per-worker connection statistics including accepted, dropped, active and idle connections, total and current requests
 
-   For a complete catalog of metrics, see the [Metrics Catalog]({{< relref "/nginxaas-azure/monitoring/metrics-catalog.md">}}).
+   For a complete catalog of metrics, see the [Metrics Catalog]({{< ref "/nginxaas-azure/monitoring/metrics-catalog.md">}}).
 
 ## December 6, 2023
 
 - {{% icon-feature %}} **NGINXaaS for Azure now supports NGINX config dry-run**
 
-   NGINXaaS now supports the NGINX config dry-run. See the [Config Validation]({{< relref "/nginxaas-azure/getting-started/nginx-configuration#nginx-configuration-validation" >}}) documentation for instructions on how to use it.
+   NGINXaaS now supports the NGINX config dry-run. See the [Config Validation]({{< ref "/nginxaas-azure/getting-started/nginx-configuration#nginx-configuration-validation" >}}) documentation for instructions on how to use it.
 
 
 ## November 2, 2023
 
 - {{% icon-feature %}} **NGINXaaS for Azure now supports the Image-Filter dynamic module**
 
-   NGINXaaS now supports the [Image-Filter](http://nginx.org/en/docs/http/ngx_http_image_filter_module.html) dynamic module. For a complete list of allowed directives, see the [Configuration Directives List]({{< relref "/nginxaas-azure/getting-started/nginx-configuration/nginx-configuration-portal.md#configuration-directives-list" >}}).
+   NGINXaaS now supports the [Image-Filter](http://nginx.org/en/docs/http/ngx_http_image_filter_module.html) dynamic module. For a complete list of allowed directives, see the [Configuration Directives List]({{< ref "/nginxaas-azure/getting-started/nginx-configuration/nginx-configuration-portal.md#configuration-directives-list" >}}).
 
 - {{% icon-feature %}} **NGINXaaS for Azure is now generally available in more regions**
 
    NGINXaaS for Azure is now available in Japan East.
 
-   See the [Supported Regions]({{< relref "/nginxaas-azure/overview/overview.md#supported-regions" >}}) documentation for the full list of regions where NGINXaaS for Azure is available.
+   See the [Supported Regions]({{< ref "/nginxaas-azure/overview/overview.md#supported-regions" >}}) documentation for the full list of regions where NGINXaaS for Azure is available.
 
 ## October 31, 2023
 
@@ -70,9 +70,9 @@ To see a list of currently active issues, visit the [Known issues]({{< relref "/
    To get started using HTTP/3 and NGINXaaS:
 
    - Update the [network security group](https://docs.microsoft.com/en-us/azure/virtual-network/tutorial-filter-network-traffic#create-security-rules) associated with the NGINXaaS deployment’s subnet to allow inbound traffic for HTTP/3 UDP ports in the NGINX configuration.
-   See our [FAQ]({{< relref "/nginxaas-azure/faq" >}}), for limits on how many unique ports may be specified in a configuration and a list of restricted ports.
+   See our [FAQ]({{< ref "/nginxaas-azure/faq" >}}), for limits on how many unique ports may be specified in a configuration and a list of restricted ports.
 
-   - Additionally, add a [Managed Identity]({{< relref "/nginxaas-azure/getting-started/managed-identity-portal.md" >}}) to your deployment and create [SSL/TLS Certificates]({{< relref "/nginxaas-azure/getting-started/ssl-tls-certificates/" >}}). For more information on using NGINX with HTTP/3, see the [HTTP/3 module](https://nginx.org/en/docs/http/ngx_http_v3_module.html).
+   - Additionally, add a [Managed Identity]({{< ref "/nginxaas-azure/getting-started/managed-identity-portal.md" >}}) to your deployment and create [SSL/TLS Certificates]({{< ref "/nginxaas-azure/getting-started/ssl-tls-certificates/" >}}). For more information on using NGINX with HTTP/3, see the [HTTP/3 module](https://nginx.org/en/docs/http/ngx_http_v3_module.html).
 
 ## October 25, 2023
 
@@ -80,7 +80,7 @@ To see a list of currently active issues, visit the [Known issues]({{< relref "/
 
    NGINXaaS for Azure is now available in North Europe.
 
-   See the [Supported Regions]({{< relref "/nginxaas-azure/overview/overview.md#supported-regions" >}}) documentation for the full list of regions where NGINXaaS for Azure is available.
+   See the [Supported Regions]({{< ref "/nginxaas-azure/overview/overview.md#supported-regions" >}}) documentation for the full list of regions where NGINXaaS for Azure is available.
 
 ## October 15, 2023
 
@@ -100,15 +100,15 @@ To see a list of currently active issues, visit the [Known issues]({{< relref "/
 
    The maximum capacity of NGINXaaS for Azure has been increased from 160 NCUs to **500 NCUs** under the **Standard** plan. Existing deployments can also benefit from this new limit if users choose to scale up.
 
-   To adjust capacity, refer to [Adjusting Capacity]({{< relref "/nginxaas-azure/quickstart/scaling.md#adjusting-capacity" >}}).
+   To adjust capacity, refer to [Adjusting Capacity]({{< ref "/nginxaas-azure/quickstart/scaling.md#adjusting-capacity" >}}).
 
-   To learn more about capacity restrictions, refer to [Capacity Restrictions]({{< relref "/nginxaas-azure/quickstart/scaling.md#capacity-restrictions" >}}).
+   To learn more about capacity restrictions, refer to [Capacity Restrictions]({{< ref "/nginxaas-azure/quickstart/scaling.md#capacity-restrictions" >}}).
 
 ## September 13, 2023
 
 - {{% icon-feature %}} **NGINXaaS for Azure now supports serving static content**
 
-   An NGINXaaS deployment can now serve static content. See [Hosting Static Content]({{< relref "/nginxaas-azure/quickstart/hosting-static-content.md" >}}) for details.
+   An NGINXaaS deployment can now serve static content. See [Hosting Static Content]({{< ref "/nginxaas-azure/quickstart/hosting-static-content.md" >}}) for details.
 
 ## August 23, 2023
 
@@ -122,11 +122,11 @@ To see a list of currently active issues, visit the [Known issues]({{< relref "/
 
    NGINXaaS new deployments will now include a default configuration, providing a smoother setup experience compared to the previous empty configuration.
 
-   To learn more about configuration, refer to [Upload an NGINX Configuration]({{< relref "/nginxaas-azure/getting-started/nginx-configuration/nginx-configuration-portal.md" >}}).
+   To learn more about configuration, refer to [Upload an NGINX Configuration]({{< ref "/nginxaas-azure/getting-started/nginx-configuration/nginx-configuration-portal.md" >}}).
 
    - {{% icon-feature %}} **NGINXaaS for Azure now supports more directives**
 
-   NGINXaaS now supports new directives. For a complete list of allowed directives, see the [Configuration Directives List]({{< relref "/nginxaas-azure/getting-started/nginx-configuration/nginx-configuration-portal.md#configuration-directives-list" >}}).
+   NGINXaaS now supports new directives. For a complete list of allowed directives, see the [Configuration Directives List]({{< ref "/nginxaas-azure/getting-started/nginx-configuration/nginx-configuration-portal.md#configuration-directives-list" >}}).
 
 ## July 27, 2023
 
@@ -134,15 +134,15 @@ To see a list of currently active issues, visit the [Known issues]({{< relref "/
 
    NGINXaaS for Azure allowed users to create deployments with a maximum capacity of 80 NCUs under the **Standard** plan. A recent change now allows users to deploy up to **160 NCUs**. Existing NGINXaaS deployments should also scale up to 160 NCUs.
 
-   To adjust capacity, refer [Adjusting Capacity]({{< relref "/nginxaas-azure/quickstart/scaling.md#adjusting-capacity" >}}).
+   To adjust capacity, refer [Adjusting Capacity]({{< ref "/nginxaas-azure/quickstart/scaling.md#adjusting-capacity" >}}).
 
-   To learn more about capacity restrictions, refer to [Capacity Restrictions]({{< relref "/nginxaas-azure/quickstart/scaling.md#capacity-restrictions" >}}).
+   To learn more about capacity restrictions, refer to [Capacity Restrictions]({{< ref "/nginxaas-azure/quickstart/scaling.md#capacity-restrictions" >}}).
 
 ## July 13, 2023
 
 - {{% icon-feature %}} **NGINXaaS for Azure automatically rotates SSL/TLS certificates**
 
-   NGINXaaS for Azure now automatically retrieves renewed certificates from Azure Key Vault and applies them to your NGINX deployment. To learn more about this new feature, refer to [Certificate Rotation]({{< relref "/nginxaas-azure/getting-started/ssl-tls-certificates/overview.md#certificate-rotation" >}}).
+   NGINXaaS for Azure now automatically retrieves renewed certificates from Azure Key Vault and applies them to your NGINX deployment. To learn more about this new feature, refer to [Certificate Rotation]({{< ref "/nginxaas-azure/getting-started/ssl-tls-certificates/overview.md#certificate-rotation" >}}).
 
 ## July 7, 2023
 
@@ -180,7 +180,7 @@ To see a list of currently active issues, visit the [Known issues]({{< relref "/
 
 - {{% icon-feature %}} **NGINXaaS for Azure supports new directives**
 
-   NGINXaaS now allows the `ssl_preread` directive and most directives from the `ngx_http_fastcgi_module` module. For a complete list of allowed directives, see the [Configuration Directives List]({{< relref "/nginxaas-azure/getting-started/nginx-configuration/nginx-configuration-portal.md#configuration-directives-list" >}}).
+   NGINXaaS now allows the `ssl_preread` directive and most directives from the `ngx_http_fastcgi_module` module. For a complete list of allowed directives, see the [Configuration Directives List]({{< ref "/nginxaas-azure/getting-started/nginx-configuration/nginx-configuration-portal.md#configuration-directives-list" >}}).
 
 ## May 31, 2023
 
@@ -190,7 +190,7 @@ To see a list of currently active issues, visit the [Known issues]({{< relref "/
 
    - West US 3
 
-   See the [Supported Regions]({{< relref "/nginxaas-azure/overview/overview.md#supported-regions" >}}) documentation for the full list of supported regions.
+   See the [Supported Regions]({{< ref "/nginxaas-azure/overview/overview.md#supported-regions" >}}) documentation for the full list of supported regions.
 
 ## May 17, 2023
 
@@ -234,7 +234,7 @@ To see a list of currently active issues, visit the [Known issues]({{< relref "/
    }
    ```
 
-   To get started using HTTP/2 and NGINXaaS, add a [Managed Identity]({{< relref "/nginxaas-azure/getting-started/managed-identity-portal.md" >}}) to your deployment and create [SSL/TLS Certificates]({{< relref "/nginxaas-azure/getting-started/ssl-tls-certificates/" >}}). For more information on using NGINX with HTTP/2, see the [HTTP/2 module](https://nginx.org/en/docs/http/ngx_http_v2_module.html).
+   To get started using HTTP/2 and NGINXaaS, add a [Managed Identity]({{< ref "/nginxaas-azure/getting-started/managed-identity-portal.md" >}}) to your deployment and create [SSL/TLS Certificates]({{< ref "/nginxaas-azure/getting-started/ssl-tls-certificates/" >}}). For more information on using NGINX with HTTP/2, see the [HTTP/2 module](https://nginx.org/en/docs/http/ngx_http_v2_module.html).
 
 - {{% icon-resolved %}} NGINXaaS can now serve static files with the `error_page` directive.
 
@@ -244,7 +244,7 @@ To see a list of currently active issues, visit the [Known issues]({{< relref "/
 
    NGINXaaS now accepts NGINX directives to secure traffic between NGINX and upstream using SSL/TLS certificates.
 
-   Refer to [Securing Upstream Traffic]({{< relref "/nginxaas-azure/quickstart/security-controls/securing-upstream-traffic.md">}}) for more details on how to configure NGINXaaS with these directives.
+   Refer to [Securing Upstream Traffic]({{< ref "/nginxaas-azure/quickstart/security-controls/securing-upstream-traffic.md">}}) for more details on how to configure NGINXaaS with these directives.
 
 ## April 7, 2023
 
@@ -265,7 +265,7 @@ To see a list of currently active issues, visit the [Known issues]({{< relref "/
 
    Update the [network security group's inbound security rules](https://docs.microsoft.com/en-us/azure/virtual-network/tutorial-filter-network-traffic#create-security-rules) associated with the NGINXaaS deployment's subnet to allow inbound traffic for all listen ports in the NGINX configuration.
 
-   See our [FAQ]({{< relref "/nginxaas-azure/faq" >}}), for limits on how many unique ports may be specified in a configuration and a list of restricted ports.
+   See our [FAQ]({{< ref "/nginxaas-azure/faq" >}}), for limits on how many unique ports may be specified in a configuration and a list of restricted ports.
 
 
 ## March 16, 2023
@@ -298,16 +298,16 @@ To see a list of currently active issues, visit the [Known issues]({{< relref "/
 
    NGINXaaS, powered by [NGINX Plus](https://www.nginx.com/products/nginx/), is a fully managed service that removes the burden of deploying your own NGINX Plus cluster, installing libraries, upgrading, and managing it.
 
-   NGINXaaS simplifies the process of moving your [existing NGINX configuration]({{< relref "/nginxaas-azure/getting-started/nginx-configuration#add-nginx-configuration" >}}) to the Azure cloud. Once your configurations are moved to Azure, [securely manage SSL/TLS certificates and keys stored in Azure Key Vault and reference them within your NGINX configurations]({{< relref "/nginxaas-azure/getting-started/ssl-tls-certificates/ssl-tls-certificates-portal.md" >}}). You can [watch your application's traffic in real time]({{< relref "/nginxaas-azure/monitoring/enable-monitoring" >}}) with Azure monitoring and alerts, and scale your deployment to fit your needs, maximizing cost efficiency.
-   You can create, update, and delete your NGINXaaS deployment using the [Azure Resource Manager]({{< relref "/nginxaas-azure/client-tools/templates.md" >}}), the [Azure SDK]({{< relref "/nginxaas-azure/client-tools/sdk" >}}), [CLI]({{< relref "/nginxaas-azure/getting-started/create-deployment/deploy-azure-cli.md" >}}), and [Terraform]({{< relref "/nginxaas-azure/getting-started/create-deployment/deploy-terraform.md" >}}) in addition to the [Azure portal]({{< relref "/nginxaas-azure/getting-started/create-deployment/" >}}).
+   NGINXaaS simplifies the process of moving your [existing NGINX configuration]({{< ref "/nginxaas-azure/getting-started/nginx-configuration#add-nginx-configuration" >}}) to the Azure cloud. Once your configurations are moved to Azure, [securely manage SSL/TLS certificates and keys stored in Azure Key Vault and reference them within your NGINX configurations]({{< ref "/nginxaas-azure/getting-started/ssl-tls-certificates/ssl-tls-certificates-portal.md" >}}). You can [watch your application's traffic in real time]({{< ref "/nginxaas-azure/monitoring/enable-monitoring" >}}) with Azure monitoring and alerts, and scale your deployment to fit your needs, maximizing cost efficiency.
+   You can create, update, and delete your NGINXaaS deployment using the [Azure Resource Manager]({{< ref "/nginxaas-azure/client-tools/templates.md" >}}), the [Azure SDK]({{< ref "/nginxaas-azure/client-tools/sdk" >}}), [CLI]({{< ref "/nginxaas-azure/getting-started/create-deployment/deploy-azure-cli.md" >}}), and [Terraform]({{< ref "/nginxaas-azure/getting-started/create-deployment/deploy-terraform.md" >}}) in addition to the [Azure portal]({{< ref "/nginxaas-azure/getting-started/create-deployment/" >}}).
 
    Our new "Standard" plan is ready for production workloads.
 
    To learn more, refer to the following NGINXaaS documentation:
 
-   - [NGINXaaS for Azure overview]({{< relref "/nginxaas-azure/overview/overview.md" >}})
-   - [NGINXaaS, NGINX Plus, and NGINX Open Source feature comparison]({{< relref "/nginxaas-azure/overview/feature-comparison.md" >}})
-   - [NGINXaaS billing details]({{< relref "/nginxaas-azure/billing/overview.md" >}})
+   - [NGINXaaS for Azure overview]({{< ref "/nginxaas-azure/overview/overview.md" >}})
+   - [NGINXaaS, NGINX Plus, and NGINX Open Source feature comparison]({{< ref "/nginxaas-azure/overview/feature-comparison.md" >}})
+   - [NGINXaaS billing details]({{< ref "/nginxaas-azure/billing/overview.md" >}})
 
 ## January 10, 2023
 

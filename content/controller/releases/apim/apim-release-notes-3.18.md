@@ -2,13 +2,11 @@
 description: These release notes contain information about new features, improvements,
   known issues, and bug fixes in the NGINX Controller API Management Module.
 docs: DOCS-366
-doctypes:
-- reference
-tags:
-- docs
 title: Release Notes 3.18.0
 toc: true
 weight: 100
+type:
+- reference
 ---
 
 {{< include "controller/apim-rn-preamble.md" >}}
@@ -51,7 +49,7 @@ Take note of the following considerations when upgrading to this version of the 
 
 This release includes the following fixes. To locate the details for an issue when it was first reported, search the NGINX Docs for the issue ID.
 
-- Specifying a URI to a JWK Set file is not supported on instances with multiple gateways ([17124]({{< relref "/controller/releases/release-notes.md#apim-17124" >}}))
+- Specifying a URI to a JWK Set file is not supported on instances with multiple gateways ([17124]({{< ref "/controller/releases/release-notes.md#apim-17124" >}}))
 
 ## Known Issues
 
@@ -79,11 +77,11 @@ The following issues are known to be present in this release. Look for updates t
 
 - **Instructions for restoring external config database may not restore published APIs (26280)**
 
-  The commands in the [Back Up & Restore External Config Database]({{< relref "/controller/admin-guides/backup-restore/backup-restore-external-config-db.md" >}}) guide may not restore published APIs from the backup archive.
+  The commands in the [Back Up & Restore External Config Database]({{< ref "/controller/admin-guides/backup-restore/backup-restore-external-config-db.md" >}}) guide may not restore published APIs from the backup archive.
 
   **Workaround:**
 
-  Follow the steps in the "Before You Begin" section in the ({{< relref "/controller/admin-guides/backup-restore/backup-restore-external-config-db.md" >}}) guide.
+  Follow the steps in the "Before You Begin" section in the ({{< ref "/controller/admin-guides/backup-restore/backup-restore-external-config-db.md" >}}) guide.
 
   In the section titled "Back Up External Config Database," replace step 2 with the following step, then proceed as per the documentation.
 

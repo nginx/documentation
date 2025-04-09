@@ -1,12 +1,12 @@
 ---
-description: This guide explains the F5 NGINX App Protect WAF security features and how
-  to use them.
+description: This guide explains the F5 NGINX App Protect WAF security features and
+  how to use them.
 docs: DOCS-1368
-doctypes:
-- task
 title: NGINX App Protect WAF Configuration Guide
 toc: true
 weight: 200
+type:
+- how-to
 ---
 
 ## Overview
@@ -71,9 +71,9 @@ See [signature sets](#signature-sets) for configuring the signature sets include
 
 ### Policy Configuration Overview
 
-The NGINX App Protect WAF security policy configuration uses the declarative format based on a pre-defined base template. The policy is represented in a JSON file which you can edit to add, modify and remove security capabilities with respect to the base template. The JSON file then should be compiled to a bundle file (`.tgz`) using the [NGINX App Protect WAF Compiler]({{< relref "/nap-waf/v5/admin-guide/compiler.md" >}}). The way the policy is integrated into the NGINX configuration is via referencing the bundle file (using the full path) in the `nginx.conf` file.
+The NGINX App Protect WAF security policy configuration uses the declarative format based on a pre-defined base template. The policy is represented in a JSON file which you can edit to add, modify and remove security capabilities with respect to the base template. The JSON file then should be compiled to a bundle file (`.tgz`) using the [NGINX App Protect WAF Compiler]({{< ref "/nap-waf/v5/admin-guide/compiler.md" >}}). The way the policy is integrated into the NGINX configuration is via referencing the bundle file (using the full path) in the `nginx.conf` file.
 
-Refer to the [admin guide]({{< relref "/nap-waf/v5/admin-guide/install.md#using-policy-and-logging-profile-bundles" >}}) for instructions on how to mount bundle files to your deployment.
+Refer to the [admin guide]({{< ref "/nap-waf/v5/admin-guide/install.md#using-policy-and-logging-profile-bundles" >}}) for instructions on how to mount bundle files to your deployment.
 
 NGINX App Protect WAF provides a [JSON Schema](https://json-schema.org/) which can be used to validate a JSON policy file to ensure file format compliance. The schema file can be generated using a script inside the NGINX App Protect WAF Compiler image:
 
@@ -166,7 +166,7 @@ Example:
 ### Updating Default Policy Bundles
 
 {{< note >}}
-This section assumes that you have built a [compiler image]({{< relref "/nap-waf/v5/admin-guide/compiler.md" >}}) named `waf-compiler-1.0.0:custom`.
+This section assumes that you have built a [compiler image]({{< ref "/nap-waf/v5/admin-guide/compiler.md" >}}) named `waf-compiler-1.0.0:custom`.
 {{< /note >}}
 
 To generate versions of the default policies that include the latest security updates, use the `-factory-policy` option instead of a source policy file.
@@ -275,7 +275,7 @@ app_protect_policy_file /policies_mount/new_default_policy.tgz;
 
 ### apreload Events
 
-apreload events use the same format as the current operation log events written in the NGINX error log, namely: `configuration_load_success` or `configuration_load_failure` with the details in JSON format. Refer to the [Operation logs]({{< relref "/nap-waf/v4/logging-overview/operation-logs.md" >}}) for more details.
+apreload events use the same format as the current operation log events written in the NGINX error log, namely: `configuration_load_success` or `configuration_load_failure` with the details in JSON format. Refer to the [Operation logs]({{< ref "/nap-waf/v4/logging-overview/operation-logs.md" >}}) for more details.
 
 {{< note >}}
 Note that if any of the configuration files are invalid, apreload will discover that and return the proper error message in the `configuration_load_failure` event. The Enforcer continues to run with the previous configuration.{{< /note >}}
@@ -421,7 +421,7 @@ It contains violations related to OpenAPI set to blocking (enforced).
 
 {{< include "/nap-waf/concept/graphql-profile.md" >}}
 
-{{< note >}} For GraphQL profile default values and GraphQL violations reference, see NGINX App Protect WAF [Declarative Policy guide.]({{< relref "/nap-waf/v5/declarative-policy/policy.md" >}}) {{< /note >}}
+{{< note >}} For GraphQL profile default values and GraphQL violations reference, see NGINX App Protect WAF [Declarative Policy guide.]({{< ref "/nap-waf/v5/declarative-policy/policy.md" >}}) {{< /note >}}
 
 ### Define URL settings
 
@@ -443,7 +443,7 @@ It contains violations related to OpenAPI set to blocking (enforced).
 
 ### Condition Syntax Usage
 
-For the full reference of Override Rules condition syntax and usage see the NGINX App Protect WAF [Declarative Policy guide]({{< relref "/nap-waf/v5/declarative-policy/policy.md" >}}/#policy/override-rules).
+For the full reference of Override Rules condition syntax and usage see the NGINX App Protect WAF [Declarative Policy guide]({{< ref "/nap-waf/v5/declarative-policy/policy.md" >}}/#policy/override-rules).
 
 ### First Match Principle
 
@@ -551,7 +551,7 @@ Refer to the following example where all access profile properties are configure
 }
 ```
 
-{{< note >}} For access profile default values and their related field names, see NGINX App Protect WAF [Declarative Policy guide]({{< relref "/nap-waf/v5/declarative-policy/policy.md" >}}). {{< /note >}}
+{{< note >}} For access profile default values and their related field names, see NGINX App Protect WAF [Declarative Policy guide]({{< ref "/nap-waf/v5/declarative-policy/policy.md" >}}). {{< /note >}}
 
 #### Access Profile in URL Settings
 
@@ -593,18 +593,18 @@ Here is an example of declarative policy using an `authorizationRules` entity un
         }
     ]
 }
-``` 
+```
 
 #### AuthorizationRules Condition Syntax Usage
 The `authorizationRules` use a Boolean expression to articulate the conditions for granting access to the URL. The conditions use the same syntax as in [Policy Override Rules](#override-rules) with one additional attribute **"claims"**.
 #### Claims Attribute
-The newly introduced attribute "claims" is a mapping of JSON paths for claims from the JWT to their respective values. Only structure nesting is supported using the "." notation. 
+The newly introduced attribute "claims" is a mapping of JSON paths for claims from the JWT to their respective values. Only structure nesting is supported using the "." notation.
 A few points to remember regarding JWT claims:
 - Please note that at the moment, accessing individual cells within JSON arrays isn't possible. Instead, the entire array gets serialized as a string, and its elements can be evaluated using string operators like "contains".
 - While it's technically feasible to consolidate all conditions into one with "and" between them, it's not recommended. Dividing them into multiple conditions enhances the readability and clarity of the policy, particularly when explaining the reasons for authorization failure.
-For the full reference of authorizationRules condition syntax and usage see the NGINX App Protect WAF [Declarative Policy guide]({{< relref "nap-waf/v5/declarative-policy/policy.md" >}}/#policy/override-rules).
+For the full reference of authorizationRules condition syntax and usage see the NGINX App Protect WAF [Declarative Policy guide]({{< ref "nap-waf/v5/declarative-policy/policy.md" >}}/#policy/override-rules).
 See below example for JWT claims:
- 
+
 ```json
 {
     "scope": "top-level:read",
@@ -618,15 +618,15 @@ See below example for JWT claims:
         "state": "NY",
         "city": "New York",
         "street": "888 38th W"
-    }      
+    }
 }
 ```
 then the claims can be:
 ```
-claims['scope'] = "top-level:read" 
+claims['scope'] = "top-level:read"
 claims['roles'] = "["inventory-manager", "price-editor]" # the whole array is presented as a string
-claims['address.country'] = "US" 
-claims['company'] = null # does not exist 
+claims['address.country'] = "US"
+claims['company'] = null # does not exist
 claims['address'] = "{ \"address\": { .... } }" # JSON structs can be accessed using the dot "." notation
 ```
 
@@ -656,7 +656,7 @@ NGINX App Protect WAF can be secured with mutual TLS (mTLS) connection to provid
 
 To enable mTLS in NGINX, you need to perform the following steps:
 
-1. Generate certificates and keys for both components - NGINX (client) and the App Protect Enforcer (server). 
+1. Generate certificates and keys for both components - NGINX (client) and the App Protect Enforcer (server).
 
     Below are the steps for using self-signed certificates:
 
@@ -672,7 +672,7 @@ To enable mTLS in NGINX, you need to perform the following steps:
 	```
 
     Generate a certificate and key for the App Protect Enforcer (server):
-	
+
     ```shell
     openssl genpkey -algorithm RSA -out /etc/ssl/certs/app_protect_server.key
 	openssl req -new -key /etc/ssl/certs/app_protect_server.key -out /etc/ssl/certs/app_protect_server_csr.crt -subj "/O=F5/OU=app-protect/CN=mTLS"
@@ -688,16 +688,16 @@ To enable mTLS in NGINX, you need to perform the following steps:
 	```
 
 2. Open the NGINX configuration file `nginx.conf` and perform the following steps:
-	
+
 	Create a top‑level [`stream {}`](https://nginx.org/en/docs/stream/ngx_stream_core_module.html#stream) block or modify the existing one and add the following configuration:
-	
+
 	```nginx
 	stream {
 	    upstream enforcer {
 	        # Replace with the actual App Protect Enforcer address and port if different
 	        server 127.0.0.1:4431;
 	    }
-	        
+
 	    server {
 	        listen 5000;
 	        proxy_pass enforcer;
@@ -709,21 +709,21 @@ To enable mTLS in NGINX, you need to perform the following steps:
 		    proxy_ssl_trusted_certificate /etc/ssl/certs/app_protect_server_ca.crt;
 	    }
 	```
-	
+
 	In the above configuration:
-	
+
 	- The `upstream enforcer` block specifies the App Protect Enforcer server listening on port `4431`
 	- The `proxy_pass` is used to proxy requests to the enforcer upstream
 	- `ssl_certificate` and `ssl_certificate_key` specify the NGINX (client) certificate and key
 	- The `proxy_ssl_trusted_certificate` enables the enforcer (server) certificate verification.
 
-	Use this stream server as the `app_protect_enforcer_address` value: 
-	    
+	Use this stream server as the `app_protect_enforcer_address` value:
+
 	```nginx
-	app_protect_enforcer_address 127.0.0.1:5000; 
+	app_protect_enforcer_address 127.0.0.1:5000;
 	```
 
-    Configuration Example: 
+    Configuration Example:
 
     ```nginx
     user nginx;
@@ -740,7 +740,7 @@ To enable mTLS in NGINX, you need to perform the following steps:
     upstream enforcer {
         server 127.0.0.1:4431;
     }
-    
+
     server {
         listen 5000;
         proxy_pass enforcer;
@@ -751,15 +751,15 @@ To enable mTLS in NGINX, you need to perform the following steps:
 	    proxy_ssl_certificate_key /etc/ssl/certs/app_protect_client.key;
 	    proxy_ssl_trusted_certificate /etc/ssl/certs/app_protect_server_ca.crt;
     }
-    
+
     http {
         include /etc/nginx/mime.types;
         default_type application/octet-stream;
         sendfile on;
         keepalive_timeout 65;
 
-        app_protect_enforcer_address 127.0.0.1:5000; 
-    
+        app_protect_enforcer_address 127.0.0.1:5000;
+
         server {
             listen 80;
             server_name localhost;
@@ -769,7 +769,7 @@ To enable mTLS in NGINX, you need to perform the following steps:
             app_protect_policy_file app_protect_default_policy;
             app_protect_security_log_enable on;
             app_protect_security_log log_all syslog:server=127.0.0.1:514;
-    
+
             location / {
                 client_max_body_size 0;
                 default_type text/html;
@@ -787,18 +787,18 @@ To enable mTLS in NGINX, you need to perform the following steps:
     - ENFORCER_SERVER_KEY
     - ENFORCER_CA_FILE
 
-    Refer to the example for mTLS deployment in the admin guide, whether you're using [Docker]({{< relref "/nap-waf/v5/admin-guide/deploy-on-docker.md#docker-compose-file-with-mtls" >}}) or [Kubernetes]({{< relref "/nap-waf/v5/admin-guide/deploy-on-kubernetes.md#mtls-deployment" >}}).
-    
+    Refer to the example for mTLS deployment in the admin guide, whether you're using [Docker]({{< ref "/nap-waf/v5/admin-guide/deploy-on-docker.md#docker-compose-file-with-mtls" >}}) or [Kubernetes]({{< ref "/nap-waf/v5/admin-guide/deploy-with-helm.md#mtls-deployment" >}}).
+
 ## Brute Force Attack Preventions
 
 ### Overview
 
 Brute force attacks are attempts to break in to secured areas of a web application by trying exhaustive,
-systematic, username/password combinations to discover legitimate authentication credentials. 
-To prevent brute force attacks, NGINX App Protect WAF monitors IP addresses, usernames, and the number of failed login attempts beyond a maximum threshold. 
-When brute force patterns are detected, the NGINX App Protect WAF policy either trigger an alarm or block the attack if the failed 
+systematic, username/password combinations to discover legitimate authentication credentials.
+To prevent brute force attacks, NGINX App Protect WAF monitors IP addresses, usernames, and the number of failed login attempts beyond a maximum threshold.
+When brute force patterns are detected, the NGINX App Protect WAF policy either trigger an alarm or block the attack if the failed
 login attempts reached a maximum threshold for a specific username or coming from a specific IP address.
-To enable brute force protection, at least one login page must be created. 
+To enable brute force protection, at least one login page must be created.
 The login page entity is created separately and is not included in the brute force configuration block
 
 ---
@@ -823,9 +823,9 @@ A login page specifies the login URL that users must pass through to get authent
                "passwordParameterName": "password"
             }
         ]
-``` 
-             
-{{< note >}} For further configuration details, see NGINX App Protect WAF Declarative Policy Guide [Declarative Policy guide]({{< relref "/nap-waf/v5/declarative-policy/policy/#policy/login-pages" >}}). {{< /note >}}
+```
+
+{{< note >}} For further configuration details, see NGINX App Protect WAF Declarative Policy Guide [Declarative Policy guide]({{< ref "/nap-waf/v5/declarative-policy/policy/#policy/login-pages" >}}). {{< /note >}}
 
 ---
 
@@ -862,7 +862,7 @@ Example1: A single brute force configuration is applied universally to all login
 }
 ```
 
-Example2: Different brute force configurations can be defined for individual login pages, 
+Example2: Different brute force configurations can be defined for individual login pages,
           with each configuration referencing a specific login page.
 ```json
 {
@@ -899,7 +899,7 @@ Example2: Different brute force configurations can be defined for individual log
     }
 }
 ```
-{{< note >}} For further configuration details, see NGINX App Protect WAF Declarative Policy Guide [Declarative Policy guide]({{< relref "/nap-waf/v5/declarative-policy/policy/#policy/brute-force-attack-preventions" >}}). {{< /note >}}
+{{< note >}} For further configuration details, see NGINX App Protect WAF Declarative Policy Guide [Declarative Policy guide]({{< ref "/nap-waf/v5/declarative-policy/policy/#policy/brute-force-attack-preventions" >}}). {{< /note >}}
 
 ## Custom Dimensions Log Entries
 
@@ -1055,7 +1055,7 @@ The XML policy file can be obtained by exporting the policy from the BIG-IP syst
 Using the tool:
 
 ```shell
-/opt/app_protect/bin/convert-policy 
+/opt/app_protect/bin/convert-policy
 ```
 
 #### Convert Policy using Command Line Interface (CLI Usage)
@@ -1075,8 +1075,8 @@ docker run -it --rm \
 #### Command Line Options
 
 {{<bootstrap-table "table table-striped table-bordered table-sm table-responsive">}}
-|Field Name   | Notes | 
-| ------------| ------| 
+|Field Name   | Notes |
+| ------------| ------|
 | -i | Filename of input WAF or ASM binary policy |
 | -o | Filename of output declarative policy |
 | --bot-profile  | Filename of JSON Bot Profile (pre-converted to JSON from tmsh syntax) |
@@ -1255,7 +1255,7 @@ Note that if the script is run without the required switches and their correspon
 
 ## Security Logs
 
-Refer to [Logging Overview]({{< relref "/nap-waf/v5/logging-overview/security-log.md" >}}) section for more details on Security Logs.
+Refer to [Logging Overview]({{< ref "/nap-waf/v5/logging-overview/security-log.md" >}}) section for more details on Security Logs.
 
 ## NGINX App Protect WAF Terminology
 
