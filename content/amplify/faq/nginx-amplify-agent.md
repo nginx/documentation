@@ -3,8 +3,7 @@ title: NGINX Amplify Agent
 description: Questions about F5 NGINX Amplify Agent
 weight: 20
 toc: true
-tags: ["docs"]
-docs: "DOCS-958"
+docs: DOCS-958
 ---
 
 ### What Operating Systems are Supported?
@@ -69,7 +68,7 @@ Previous versions were powered by Python 2.6 and 2.7, depending on the target pl
    2552 ?        S      0:00 amplify-agent
    ```
 
-For manual installation, please check the [user guide]({{< relref "/amplify/nginx-amplify-agent/install/installing-amplify-agent#installing-the-agent-manually" >}}).
+For manual installation, please check the [user guide]({{< ref "/amplify/nginx-amplify-agent/install/installing-amplify-agent#installing-the-agent-manually" >}}).
 
 ### What Do I Need to Configure NGINX Amplify Agent to Report Metrics Correctly?
 
@@ -77,29 +76,29 @@ Once you install NGINX Amplify Agent, it will automatically begin sending metric
 
 If you don't see the new system or NGINX in the web interface, or (some) metrics aren't being collected, please check the following:
 
-1. The NGINX Amplify Agent package has been successfully [installed]({{< relref "/amplify/nginx-amplify-agent/install/installing-amplify-agent.md" >}}), and no warnings were shown during the installation.
+1. The NGINX Amplify Agent package has been successfully [installed]({{< ref "/amplify/nginx-amplify-agent/install/installing-amplify-agent.md" >}}), and no warnings were shown during the installation.
 
-2. The `amplify-agent` process is running and updating its [log file]({{< relref "/amplify/nginx-amplify-agent/install/configuring-amplify-agent#agent-logfile" >}}).
+2. The `amplify-agent` process is running and updating its [log file]({{< ref "/amplify/nginx-amplify-agent/install/configuring-amplify-agent#agent-logfile" >}}).
 
 3. NGINX Amplify Agent is running under the same user as your NGINX worker processes.
 
 4. The NGINX instance is started with an absolute path. Currently, NGINX Amplify Agent **can't** detect NGINX instances launched with a relative path (e.g., "./nginx").
 
-5. The [user ID that is used by NGINX Amplify Agent and NGINX ]({{< relref "/amplify/nginx-amplify-agent/install/configuring-amplify-agent#overriding-the-effective-user-id" >}}), can run *ps(1)* to see all system processes. If *ps(1)* is restricted for non-privileged users, NGINX Amplify Agent won't be able to find and properly detect the NGINX master process.
+5. The [user ID that is used by NGINX Amplify Agent and NGINX ]({{< ref "/amplify/nginx-amplify-agent/install/configuring-amplify-agent#overriding-the-effective-user-id" >}}), can run *ps(1)* to see all system processes. If *ps(1)* is restricted for non-privileged users, NGINX Amplify Agent won't be able to find and properly detect the NGINX master process.
 
 6. The time is set correctly. If the time on the system where NGINX Amplify Agent runs is ahead or behind the world's clock, you won't be able to see the graphs.
 
-7. *stub_status* is [properly configured]({{< relref "/amplify/nginx-amplify-agent/configuring-metric-collection" >}}), and the *stub_status module* is included in the NGINX build (this can be checked with `nginx -V`).
+7. *stub_status* is [properly configured]({{< ref "/amplify/nginx-amplify-agent/configuring-metric-collection" >}}), and the *stub_status module* is included in the NGINX build (this can be checked with `nginx -V`).
 
 8. NGINX [access.log](http://nginx.org/en/docs/http/ngx_http_log_module.html) and [error.log](http://nginx.org/en/docs/ngx_core_module.html#error_log) files are readable by the user `nginx` (or by the [user](http://nginx.org/en/docs/ngx_core_module.html#user) set in NGINX config).
 
 9. All NGINX configuration files are readable by the NGINX Amplify Agent user ID (check owner, group, and permissions).
 
-10. Extra [configuration steps have been performed as required]({{< relref "/amplify/metrics-metadata/nginx-metrics#additional-nginx-metrics" >}}) for the additional metrics to be collected.
+10. Extra [configuration steps have been performed as required]({{< ref "/amplify/metrics-metadata/nginx-metrics#additional-nginx-metrics" >}}) for the additional metrics to be collected.
 
 11. The system DNS resolver is correctly configured, and *receiver.amplify.nginx.com* can be successfully resolved.
 
-12. Outbound TLS/SSL from the system to *receiver.amplify.nginx.com* is not restricted. This can be checked with *curl(1)*. [Configure a proxy server]({{< relref "/amplify/nginx-amplify-agent/install/configuring-amplify-agent#setting-up-a-proxy" >}}) for NGINX Amplify Agent if required.
+12. Outbound TLS/SSL from the system to *receiver.amplify.nginx.com* is not restricted. This can be checked with *curl(1)*. [Configure a proxy server]({{< ref "/amplify/nginx-amplify-agent/install/configuring-amplify-agent#setting-up-a-proxy" >}}) for NGINX Amplify Agent if required.
 
 13. *selinux(8)*, *apparmor(7)* or [grsecurity](https://grsecurity.net) are not interfering with the metric collection. E.g. for *selinux(8)* check **/etc/selinux/config**, try `setenforce 0` temporarily and see if it improves the situation for certain metrics.
 
@@ -147,7 +146,7 @@ Under 10% of the CPU and a few dozen MBs of RSS memory will be consumed. If you 
 
 ### How Can I Uninstall NGINX Amplify Agent?
 
-Guide to [uninstall NGINX Amplify Agent]({{< relref "/amplify/nginx-amplify-agent/install/uninstalling-amplify-agent" >}})
+Guide to [uninstall NGINX Amplify Agent]({{< ref "/amplify/nginx-amplify-agent/install/uninstalling-amplify-agent" >}})
 
 ### How Can I Override System Hostname?
 
@@ -170,7 +169,7 @@ The hostname should be valid — the following aren't valid hostnames:
 
 ### How Can I Override the User ID for NGINX Amplify Agent to Use?
 
-Refer to the [Configuring NGINX Amplify Agent]({{< relref "/amplify/nginx-amplify-agent/install/configuring-amplify-agent#overriding-the-effective-user-id" >}}) section in the documentation.
+Refer to the [Configuring NGINX Amplify Agent]({{< ref "/amplify/nginx-amplify-agent/install/configuring-amplify-agent#overriding-the-effective-user-id" >}}) section in the documentation.
 
 ### Can I Use NGINX Amplify Agent with Docker?
 

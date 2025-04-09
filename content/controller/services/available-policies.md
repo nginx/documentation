@@ -1,13 +1,11 @@
 ---
 description: Learn about the policies available for use in the F5 NGINX Controller.
 docs: DOCS-568
-doctypes:
-- concept
-tags:
-- docs
 title: Learn About Policies
 toc: true
 weight: 130
+type:
+- concept
 ---
 
 ## Overview
@@ -70,7 +68,7 @@ API keys are convenient for testing and small-scale deployments, while JWTs are 
 
 {{< see-also >}}
 
-To create an Identity Provider by using a JWK set, see [Add an Identity Provider]({{< relref "/controller/services/manage-identity-providers.md#add-an-identity-provider" >}}).
+To create an Identity Provider by using a JWK set, see [Add an Identity Provider]({{< ref "/controller/services/manage-identity-providers.md#add-an-identity-provider" >}}).
 
 {{< /see-also >}}
 

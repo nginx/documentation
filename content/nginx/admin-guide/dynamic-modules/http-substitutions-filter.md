@@ -2,17 +2,17 @@
 description: Replace text in response bodies, using regular expressions and fixed
   strings, with the HTTP Substitutions Filter dynamic module supported by NGINX, Inc.
 docs: DOCS-389
-doctypes:
-- task
 title: HTTP Substitutions Filter
 toc: true
 weight: 100
+type:
+- how-to
 ---
 
 <span id="install"></span>
 ## Installation
 
-1. Check the [Technical Specifications]({{< relref "../../technical-specs.md" >}}) page to verify that the module is supported by your operating system.
+1. Check the [Technical Specifications]({{< ref "nginx/technical-specs.md" >}}) page to verify that the module is supported by your operating system.
 
 2. Install the HTTP Substitutions Filter module package `nginx-plus-module-subs-filter`.
 
@@ -71,6 +71,6 @@ After installation you will need to enable and configure the module in F5 NGINX 
 
 - [NGINX Substitution Filter Module Reference](https://github.com/yaoweibin/ngx_http_substitutions_filter_module)
 
-- [NGINX Dynamic Modules]({{< relref "dynamic-modules.md" >}})
+- [NGINX Dynamic Modules]({{< ref "dynamic-modules.md" >}})
 
-- [NGINX Plus Technical Specifications]({{< relref "../../technical-specs.md" >}})
+- [NGINX Plus Technical Specifications]({{< ref "nginx/technical-specs.md" >}})

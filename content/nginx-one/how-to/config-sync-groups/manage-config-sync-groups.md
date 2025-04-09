@@ -1,14 +1,11 @@
 ---
-docs: 
-doctypes:
-    - task
-tags:
-    - docs
+docs: null
 title: Manage Config Sync Groups
 toc: true
 weight: 300
+type:
+- how-to
 ---
-
 
 ## Overview
 
@@ -16,11 +13,11 @@ If you work with several instances of NGINX, it can help to organize these insta
 
 This guide explains how to create and manage Config Sync Groups in the F5 NGINX One Console. Config Sync Groups synchronize NGINX configurations across multiple NGINX instances, ensuring consistency and ease of management.
 
-If you’ve used [instance groups in NGINX Instance Manager]({{< relref "/nim/nginx-instances/manage-instance-groups.md" >}}), you’ll find Config Sync Groups in NGINX One similar, though the steps and terminology differ slightly.
+If you’ve used [instance groups in NGINX Instance Manager]({{< ref "/nim/nginx-instances/manage-instance-groups.md" >}}), you’ll find Config Sync Groups in NGINX One similar, though the steps and terminology differ slightly.
 
 Config Sync Groups are functionally different from syncing instances in a cluster. They let you to manage and synchronize configurations across multiple NGINX instances, all at once.
 
-This is particularly useful when your NGINX instances are load-balanced by an external load balancer, as it ensures consistency across all instances. In contrast, cluster syncing, like [zone syncing]({{< relref "nginx/admin-guide/high-availability/zone_sync_details.md" >}}), ensures data consistency and high availability across NGINX instances in a cluster. While Config Sync Groups focus on configuration management, cluster syncing supports failover and data consistency.
+This is particularly useful when your NGINX instances are load-balanced by an external load balancer, as it ensures consistency across all instances. In contrast, cluster syncing, like [zone syncing]({{< ref "nginx/admin-guide/high-availability/zone_sync_details.md" >}}), ensures data consistency and high availability across NGINX instances in a cluster. While Config Sync Groups focus on configuration management, cluster syncing supports failover and data consistency.
 
 ## Before you start
 
@@ -38,7 +35,7 @@ Config Sync Groups support configuration inheritance and persistance. If you've 
 - When you add the first instance to a group, that instance defines the configuration for that Config Sync Group.
 - Afterwards, you can modify the configuration of the Config Sync Group. That modifies the configuration of all member instances. Future members of that group inherit that modified configuration.
 
-On the other hand, if you remove all instances from a Config Sync Group, the original configuration persists. In other words, the group retains the configuration from that first instance (or the original configuration). Any new instance that you add later still inherits that configuration. 
+On the other hand, if you remove all instances from a Config Sync Group, the original configuration persists. In other words, the group retains the configuration from that first instance (or the original configuration). Any new instance that you add later still inherits that configuration.
 
 {{< tip >}}You can use _unmanaged_ certificates. Your actions can affect the [Config Sync Group status](#config-sync-group-status). For future instances on the data plane, if it:
 
@@ -50,12 +47,12 @@ On the other hand, if you remove all instances from a Config Sync Group, the ori
 
 ### Risk when adding multiple instances to a Config Sync Group
 
-If you add multiple instances to a single Config Sync Group, simultaneously (with automation), there's a risk that the instance selects a random configuration. To prevent this problem, you should:                                                        
-  
+If you add multiple instances to a single Config Sync Group, simultaneously (with automation), there's a risk that the instance selects a random configuration. To prevent this problem, you should:
+
 1. Create a Config Sync Group.
 1. Add a configuration to the Config Sync Group, so all instances inherit it.
 1. Add the instances in a separate operation.
-  
+
 Your instances should synchronize with your desired configuration within 30 seconds.
 
 ### Use an instance to define the Config Sync Group configuration
@@ -119,7 +116,7 @@ You can add existing NGINX instances that are already registered with NGINX One 
 
    ``` shell
    sudo systemctl restart nginx-agent
-   ```  
+   ```
 
 ### Add a new instance to a Config Sync Group {#add-a-new-instance-to-a-config-sync-group}
 
@@ -165,13 +162,13 @@ When adding a new NGINX instance that is not yet registered with NGINX One, you 
    - From the **OS Type** list, choose the appropriate operating system for your Docker image.
    - After selecting the OS, run the provided command to pull the Docker image.
 
-   **Note**: Subject to availability, you can modify the `agent: <VERSION_TAG>` to match the specific NGINX Plus version, OS type, and OS version you need. For example, you might use `agent: r32-ubi-9`. For more details on version tags and how to pull an image, see [Deploying NGINX and NGINX Plus on Docker]({{< relref "nginx/admin-guide/installing-nginx/installing-nginx-docker.md#pulling-the-image" >}}).
+   **Note**: Subject to availability, you can modify the `agent: <VERSION_TAG>` to match the specific NGINX Plus version, OS type, and OS version you need. For example, you might use `agent: r32-ubi-9`. For more details on version tags and how to pull an image, see [Deploying NGINX and NGINX Plus on Docker]({{< ref "nginx/admin-guide/installing-nginx/installing-nginx-docker.md#pulling-the-image" >}}).
 
 
    - From the **OS Type** list, choose the appropriate operating system for your Docker image.
    - After selecting the OS, run the provided command to pull the Docker image.
 
-   **Note**: Subject to availability, you can modify the `agent: <VERSION_TAG>` to match the specific NGINX Plus version, OS type, and OS version you need. For example, you might use `agent: r32-ubi-9`. For more details on version tags and how to pull an image, see [Deploying NGINX and NGINX Plus on Docker]({{< relref "nginx/admin-guide/installing-nginx/installing-nginx-docker.md#pulling-the-image" >}}).
+   **Note**: Subject to availability, you can modify the `agent: <VERSION_TAG>` to match the specific NGINX Plus version, OS type, and OS version you need. For example, you might use `agent: r32-ubi-9`. For more details on version tags and how to pull an image, see [Deploying NGINX and NGINX Plus on Docker]({{< ref "nginx/admin-guide/installing-nginx/installing-nginx-docker.md#pulling-the-image" >}}).
 
 10. Run the provided command, which includes the data plane key, in your NGINX instance terminal to start the Docker container.
 
@@ -183,9 +180,9 @@ When adding a new NGINX instance that is not yet registered with NGINX One, you 
 
 {{<call-out "note" "About data plane keys" "fas fa-key" >}}
 
-Data plane keys are required for registering NGINX instances with the NGINX One Console. These keys serve as secure tokens, ensuring that only authorized instances can connect and communicate with NGINX One. 
+Data plane keys are required for registering NGINX instances with the NGINX One Console. These keys serve as secure tokens, ensuring that only authorized instances can connect and communicate with NGINX One.
 
-For more details on creating and managing data plane keys, see [Create and manage data plane keys]({{<relref "/nginx-one/how-to/data-plane-keys/create-manage-data-plane-keys.md" >}}).
+For more details on creating and managing data plane keys, see [Create and manage data plane keys]({{<ref "/nginx-one/how-to/data-plane-keys/create-manage-data-plane-keys.md" >}}).
 
 {{</call-out>}}
 
@@ -207,7 +204,7 @@ If you need to move an NGINX instance to a different Config Sync Group, follow t
    sudo systemctl restart nginx-agent
    ```
 
-If you move an instance with certificates from one Config Sync Group to another, NGINX One adds or removes those certificates from the data plane, to synchronize with the deployed certificates of the group. 
+If you move an instance with certificates from one Config Sync Group to another, NGINX One adds or removes those certificates from the data plane, to synchronize with the deployed certificates of the group.
 
 ### Remove an instance from a Config Sync Group
 
@@ -237,7 +234,7 @@ After the Config Sync Group is created, you can modify and publish the group's c
 2. Select the Config Sync Group in the list.
 3. Select the **Configuration** tab to view the group's NGINX configuration.
 4. To modify the group's configuration, select **Edit Configuration**.
-5. Make the necessary changes to the configuration. 
+5. Make the necessary changes to the configuration.
 6. When you're finished, select **Next**. A split view displays the changes.
 7. If you're satisfied with the changes, select **Save and Publish**.
 
@@ -260,5 +257,5 @@ Monitor the **Config Sync Status** column. It can help you ensure that your conf
 
 ## See also
 
-- [Create and manage data plane keys]({{< relref "/nginx-one/how-to/data-plane-keys/create-manage-data-plane-keys.md" >}})
-- [View and edit NGINX configurations]({{< relref "/nginx-one/how-to/nginx-configs/view-edit-nginx-configurations.md" >}})
+- [Create and manage data plane keys]({{< ref "/nginx-one/how-to/data-plane-keys/create-manage-data-plane-keys.md" >}})
+- [View and edit NGINX configurations]({{< ref "/nginx-one/how-to/nginx-configs/view-edit-nginx-configurations.md" >}})

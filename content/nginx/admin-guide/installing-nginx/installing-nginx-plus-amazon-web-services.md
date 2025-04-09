@@ -2,11 +2,11 @@
 description: Install F5 NGINX Plus on Amazon Web Services (AWS), to provide sophisticated
   Layer 7 load balancing for your apps running on Amazon Linux, RHEL, and Ubuntu.
 docs: DOCS-411
-doctypes:
-- task
 title: Installing NGINX Plus AMIs on Amazon EC2
 toc: true
 weight: 300
+type:
+- how-to
 ---
 
 NGINX, Inc. participates in the Amazon Web Services (AWS) Partner Network as a Standard Technology Partner. We offer Amazon Machine Images (AMIs) for use in the Amazon Elastic Compute Cloud (EC2), available at the AWS Marketplace for several operating systems, including Amazon Linux, Red Hat Enterprise Linux, and Ubuntu.
@@ -42,6 +42,6 @@ See [NGINX Plus on the AWS Cloud Quick Start](https://aws.amazon.com/quickstart
 
 ## What If I Need Help?
 
-If you encounter any problems with NGINX Plus configuration, documentation is available at [nginx.org](https://nginx.org/en/docs/) and in the [NGINX Plus Admin Guide]({{< relref "/nginx/admin-guide/installing-nginx/" >}}).
+If you encounter any problems with NGINX Plus configuration, documentation is available at [nginx.org](https://nginx.org/en/docs/) and in the [NGINX Plus Admin Guide]({{< ref "/nginx/admin-guide/installing-nginx/" >}}).
 
 Customers who purchase an NGINX Plus AMI at the AWS Marketplace are eligible for the AWS support provided by the NGINX, Inc. engineering team. To activate support, submit the [AMI Support Activation](https://www.nginx.com/ami-support-activation/) form (you need your AWS account number). When you request support, we’ll ask you to provide the AWS account number that you registered, along with the IDs of your EC2 instances in some cases.

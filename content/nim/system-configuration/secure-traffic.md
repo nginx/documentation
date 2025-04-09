@@ -1,12 +1,10 @@
 ---
 docs: DOCS-794
-doctypes:
-- tutorial
-tags:
-- docs
 title: Secure Client Access and Network Traffic
 toc: true
 weight: 600
+type:
+- tutorial
 ---
 
 {{< include "nim/decoupling/note-legacy-nms-references.md" >}}
@@ -21,7 +19,7 @@ With NGINX Plus R33, telemetry data must be reported to a usage reporting endpoi
 
 {{< call-out "tip" "See also:" "fa-solid fa-book" >}}
 - To learn how to secure traffic for NGINX Agent, see [NGINX Agent TLS Settings](https://docs.nginx.com/nginx-agent/configuration/encrypt-communication/).
-- For details on NGINX Plus entitlement and usage reporting, see [About subscription licenses]({{< relref "solutions/about-subscription-licenses.md" >}}).{{< /call-out >}}
+- For details on NGINX Plus entitlement and usage reporting, see [About subscription licenses]({{< ref "solutions/about-subscription-licenses.md" >}}).{{< /call-out >}}
 
 ---
 
@@ -65,7 +63,7 @@ server {
 
 ## Mutual Client Certificate Authentication Setup (mTLS)
 
-Mutual TLS (mTLS) is a security method that uses client certificates to verify both the server and the client during communication. This ensures that both NGINX Instance Manager and NGINX Plus instances are securely authenticated, protecting your network from unauthorized access. 
+Mutual TLS (mTLS) is a security method that uses client certificates to verify both the server and the client during communication. This ensures that both NGINX Instance Manager and NGINX Plus instances are securely authenticated, protecting your network from unauthorized access.
 
 With mTLS, each NGINX instance has a unique client certificate that NGINX Instance Manager verifies before allowing communication. You can configure NGINX as a proxy to handle client certificates for this secure exchange.
 
@@ -73,13 +71,13 @@ Follow these steps to set up mTLS using a Public Key Infrastructure (PKI) system
 
 ### Certificate Authority (CA) Setup
 
-1. **Create a private Certificate Authority (CA)**: 
-   - If you're testing, you can generate the CA on the same machine as NGINX Instance Manager. 
+1. **Create a private Certificate Authority (CA)**:
+   - If you're testing, you can generate the CA on the same machine as NGINX Instance Manager.
    - For production environments, follow your organization's security standards (these often require generating CAs on secure, offline machines).
 
 2. **Set up root and intermediate CAs**:
    - The root CA issues certificates to an intermediate CA. The intermediate CA, in turn, issues certificates for clients and servers. This layered setup adds extra security by ensuring that the root CA is only used for top-level tasks.
-   
+
 3. **Issue Client and Server Certificates**:
    - The intermediate CA signs the certificate signing requests (CSRs) and issues certificates to NGINX clients and NGINX Instance Manager.
 
@@ -473,7 +471,7 @@ To generate the necessary certificates, follow these steps. You can modify these
 Usage reporting for NGINX Plus R33 or later in network-restricted environments requires **NGINX Instance Manager version 2.18 or later**.
 {{</call-out>}}
 
-Starting with NGINX Plus R33, NGINX Plus must report usage data to a reporting endpoint, such as NGINX Instance Manager. For more information, see [About subscription licenses]({{< relref "solutions/about-subscription-licenses.md" >}}).
+Starting with NGINX Plus R33, NGINX Plus must report usage data to a reporting endpoint, such as NGINX Instance Manager. For more information, see [About subscription licenses]({{< ref "solutions/about-subscription-licenses.md" >}}).
 
 The [`ssl_verify`](https://nginx.org/en/docs/ngx_mgmt_module.html#ssl_verify) directive in the [`mgmt`](https://nginx.org/en/docs/ngx_mgmt_module.html) block ensures that NGINX Plus connects only to trusted reporting endpoints by validating the server's SSL certificate. The `ssl_verify` directive is set to `on` by default.
 

@@ -1,9 +1,7 @@
 ---
-description: Learn how to use F5 NGINX Management Suite API Connectivity Manager to publish
-  an API Proxy.
+description: Learn how to use F5 NGINX Management Suite API Connectivity Manager to
+  publish an API Proxy.
 docs: DOCS-923
-tags:
-- docs
 title: Publish an API Proxy
 toc: true
 weight: 300
@@ -21,8 +19,8 @@ This guide provides instructions and examples for publishing an API and a Develo
 
 You should complete the following Quick Start Guides before proceeding with the steps in this guide:
 
-1. [Set Up an API Gateway Environment]({{< relref "add-api-gateway" >}})
-1. [Set Up a Developer Portal Environment]({{< relref "add-devportal" >}})
+1. [Set Up an API Gateway Environment]({{< relref "./add-api-gateway" >}})
+1. [Set Up a Developer Portal Environment]({{< ref "add-devportal" >}})
 
 ## Create a service workspace
 Services workspaces is a logical grouping of APIs. A user can created multiple workspaces that match an organizational structure.
@@ -435,7 +433,7 @@ Take the steps below to add an API Proxy with an OpenAPI spec using either versi
 Next, you can publish API Docs to your Developer Portal.
 
 API Connectivity Manager uses the `portalConfig.hostname` setting to connect your Dev Portal Proxy to the Developer Portal.
-You should define this field using the hostname that you assigned to the Developer Portal in the [Set Up a Developer Portal]({{< relref "add-devportal" >}}) guide.
+You should define this field using the hostname that you assigned to the Developer Portal in the [Set Up a Developer Portal]({{< ref "add-devportal" >}}) guide.
 
 {{<tabs name="Add a Developer Portal Proxy">}}
 

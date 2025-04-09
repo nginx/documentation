@@ -2,8 +2,6 @@
 description: This topic gives an overview of the F5 NGINX Management Suite API Connectivity
   Manager API.
 docs: DOCS-929
-tags:
-- docs
 title: API Overview
 toc: true
 weight: 300
@@ -45,7 +43,7 @@ To access the API Docs, take the steps below:
 
 API Connectivity Manager supports authentication by using basic authentication or a JSON Web Token (JWT). You can get a JWT by logging in with an OpenID Connect (OIDC) Identity Provider.
 
-For more information about the available authentication options for NGINX Management Suite, refer to [Set Up Authentication]({{< relref "/nim/admin-guide/authentication/basic-auth/set-up-basic-authentication.md" >}}).
+For more information about the available authentication options for NGINX Management Suite, refer to [Set Up Authentication]({{< ref "/nim/admin-guide/authentication/basic-auth/set-up-basic-authentication.md" >}}).
 
 ### Basic Authentication
 

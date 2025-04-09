@@ -277,7 +277,7 @@ Second argument is the destination (the location which the events will be sent t
 - `stderr` (**default**)
 - `{absolute_file_path}`, i.e. `/shared/dos_sec_logger.log`
 
-Implemented according to: [NGINX App Protect DoS Security Log]({{< relref "/nap-dos/monitoring/security-log.md" >}})
+Implemented according to: [NGINX App Protect DoS Security Log]({{< ref "/nap-dos/monitoring/security-log.md" >}})
 
    {{< note >}}
 
@@ -402,7 +402,7 @@ This directive is used to enable the App Protect DoS monitoring capability via R
 The REST API interface provides extended metrics information of the Protected Objects.
 It can be used by sending REST API requests manually or by using the App Protect DoS dashboard page.
 
-For more information refer to [NGINX App Protect DoS Live Activity Monitoring]({{< relref "/nap-dos/monitoring/live-activity-monitoring.md" >}})
+For more information refer to [NGINX App Protect DoS Live Activity Monitoring]({{< ref "/nap-dos/monitoring/live-activity-monitoring.md" >}})
 
 **Example:**
 

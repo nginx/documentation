@@ -2,15 +2,11 @@
 description: Learn how to block unwelcome requests to an endpoint by using the Allowed
   HTTP Methods policy in F5 NGINX Management Suite API Connectivity Manager.
 docs: DOCS-1121
-doctypes:
-- API Connectivity Manager
-- api management
-- concept
-tags:
-- docs
 title: Allowed HTTP Methods
 toc: true
 weight: 350
+type:
+- concept
 ---
 
 ## Overview
@@ -34,8 +30,8 @@ Use the *Allowed HTTP Methods* policy to specify which methods you want to allow
 To complete the steps in this guide, you need the following:
 
 - API Connectivity Manager is installed, licensed, and running.
-- You have one or more [Environments with an API Gateway]({{< relref "/nms/acm/getting-started/add-api-gateway" >}}).
-- You have [published one or more API Gateways]({{< relref "/nms/acm/getting-started/publish-api-proxy" >}}).
+- You have one or more [Environments with an API Gateway]({{< ref "/nms/acm/getting-started/add-api-gateway" >}}).
+- You have [published one or more API Gateways]({{< ref "/nms/acm/getting-started/publish-api-proxy" >}}).
 
 ---
 

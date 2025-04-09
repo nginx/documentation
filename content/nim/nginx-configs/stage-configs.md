@@ -1,12 +1,10 @@
 ---
 docs: DOCS-1277
-doctypes:
-- task
-tags:
-- docs
 title: Stage NGINX configs
 toc: true
 weight: 1
+type:
+- how-to
 ---
 
 ## Overview
@@ -19,7 +17,7 @@ To complete the instructions in this guide, ensure:
 
 - NGINX Instance Manager is installed, licensed, and running.
 
-{{<call-out "tip" "Interacting with the API" >}} You can use tools such as `curl` or [Postman](https://www.postman.com) to interact with the Instance Manager REST API. The API URL follows the format `https://<NIM_FQDN>/api/nim/<API_VERSION>` and must include authentication information with each call. For more information about authentication options, refer to the [API Overview]({{< relref "/nim/fundamentals/api-overview.md" >}}). {{</call-out>}}
+{{<call-out "tip" "Interacting with the API" >}} You can use tools such as `curl` or [Postman](https://www.postman.com) to interact with the Instance Manager REST API. The API URL follows the format `https://<NIM_FQDN>/api/nim/<API_VERSION>` and must include authentication information with each call. For more information about authentication options, refer to the [API Overview]({{< ref "/nim/fundamentals/api-overview.md" >}}). {{</call-out>}}
 
 ---
 

@@ -1,17 +1,15 @@
 ---
 description: ''
-doctypes:
-- task
-tags:
-- docs
 title: Add an NGINX instance
 toc: true
 weight: 100
+type:
+- how-to
 ---
 
 ## Overview
 
-This guide explains how to add an F5 NGINX instance in F5 NGINX One Console. You can add an instance from the NGINX One Console individually, or as part of a [Config Sync Group]({{< relref "/nginx-one/glossary.md" >}}). In either case, you need
+This guide explains how to add an F5 NGINX instance in F5 NGINX One Console. You can add an instance from the NGINX One Console individually, or as part of a [Config Sync Group]({{< ref "/nginx-one/glossary.md" >}}). In either case, you need
 to set up a data plane key to connect your instances to NGINX One.
 
 ## Before you start
@@ -23,7 +21,7 @@ Before you add an instance to NGINX One Console, ensure:
 - You have or are ready to configure a data plane key.
 - You have or are ready to set up managed certificates.
 
-{{< note >}}If this is the first time an instance is being added to a Config Sync Group, and you have not yet defined the configuration for that Config Sync Group, that instance provides the template for that group. For more information, see [Configuration management]({{< relref "nginx-one/how-to/config-sync-groups/manage-config-sync-groups#configuration-management" >}}).{{< /note >}}
+{{< note >}}If this is the first time an instance is being added to a Config Sync Group, and you have not yet defined the configuration for that Config Sync Group, that instance provides the template for that group. For more information, see [Configuration management]({{< ref "nginx-one/how-to/config-sync-groups/manage-config-sync-groups#configuration-management" >}}).{{< /note >}}
 
 ## Add an instance
 
@@ -39,7 +37,7 @@ In either case, NGINX One Console gives you a choice for data plane keys:
 
 NGINX One Console takes the option you use, and adds the data plane key to a command that you'd use to register your target instance. You should see the command in the **Add Instance** screen in the console.
 
-Connect to the host where your NGINX instance is running. Run the provided command to [install NGINX Agent]({{< relref "/nginx-one/getting-started#install-nginx-agent" >}}) dependencies and packages on that host.
+Connect to the host where your NGINX instance is running. Run the provided command to [install NGINX Agent]({{< ref "/nginx-one/getting-started#install-nginx-agent" >}}) dependencies and packages on that host.
 
 ```bash
 curl https://agent.connect.nginx.com/nginx-agent/install | DATA_PLANE_KEY="<data_plane_key>" sh -s -- -y
@@ -53,7 +51,7 @@ If you add an instance with SSL/TLS certificates, those certificates can match a
 
 ### If the certificate is already managed
 
-If you add an instance with a managed certificate, as described in [Add your NGINX instances to NGINX One], these certificates are added to your list of **Managed Certificates**. 
+If you add an instance with a managed certificate, as described in [Add your NGINX instances to NGINX One], these certificates are added to your list of **Managed Certificates**.
 
 NGINX One Console can manage your instances along with those certificates.
 
@@ -73,5 +71,5 @@ Once you've completed the process, NGINX One reassigns this as a managed certifi
 
 ## Add an instance to a Config Sync Group
 
-When you [Manage Config Sync Group membership]({{< relref "nginx-one/how-to/config-sync-groups/manage-config-sync-groups#manage-config-sync-group-membership" >}}), you can add an existing or new instance to the group of your choice.
+When you [Manage Config Sync Group membership]({{< ref "nginx-one/how-to/config-sync-groups/manage-config-sync-groups#manage-config-sync-group-membership" >}}), you can add an existing or new instance to the group of your choice.
 That instance inherits the setup of that Config Sync Group.

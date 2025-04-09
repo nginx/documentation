@@ -1,13 +1,12 @@
 ---
-description: Learn how to use your own F5 NGINX App Protect WAF policies with NGINX Controller.
+description: Learn how to use your own F5 NGINX App Protect WAF policies with NGINX
+  Controller.
 docs: DOCS-481
-doctypes:
-- concept
-tags:
-- docs
 title: Bring Your Own WAF Policy
 toc: true
 weight: 300
+type:
+- concept
 ---
 
 ## Overview
@@ -29,7 +28,7 @@ With a BYO NGINX App Protect policy, you can also provide customized security by
 
 ## Security Strategy for BYO NGINX App Protect Policy
 
-The BYO NGINX App Protect policy uses the concept of a [Security Strategy]({{< relref "/controller/app-delivery/security/concepts/what-is-waf.md#security-policy-and-security-strategy" >}})
+The BYO NGINX App Protect policy uses the concept of a [Security Strategy]({{< ref "/controller/app-delivery/security/concepts/what-is-waf.md#security-policy-and-security-strategy" >}})
 
 With the BYO NGINX App Protect policy feature, you can specify the exact NGINX App Protect policy for the Security Strategy. Then, the Security Strategy can be shared across -- and referenced by -- multiple app components.
 A Security Strategy can be comprised of various app-security-related Security Policies. NGINX Controller includes a custom NGINX App Protect WAF policy, which can be assigned to a Security Strategy.
@@ -39,7 +38,7 @@ You can also add a BYO NGINX App Protect WAF policy in JSON format to NGINX Cont
 
 An **App Component** contains a reference to a **Security Strategy**, which, in turn, references a Security Policy. This Security Policy contains the **NGINX App Protect WAF policy**.
 
-Refer to the topic [Enable WAF for a Component Using Your Own NGINX App Protect Policy]({{< relref "/controller/app-delivery/security/tutorials/add-app-security-with-waf.md#enable-waf-for-a-component-using-your-own-nap-policy-beta" >}}) to get started.
+Refer to the topic [Enable WAF for a Component Using Your Own NGINX App Protect Policy]({{< ref "/controller/app-delivery/security/tutorials/add-app-security-with-waf.md#enable-waf-for-a-component-using-your-own-nap-policy-beta" >}}) to get started.
 
 ## Limitations
 

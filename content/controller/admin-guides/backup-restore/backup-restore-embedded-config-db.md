@@ -2,13 +2,11 @@
 description: Learn how to back up and restore the embedded F5 NGINX Controller config
   database.
 docs: DOCS-248
-doctypes:
-- tutorial
-tags:
-- docs
 title: Back Up & Restore an Embedded Config Database
 toc: true
 weight: 98
+type:
+- tutorial
 ---
 
 ## Overview
@@ -23,7 +21,7 @@ NGINX Controller automatically takes a snapshot of the embedded config database 
 
 - **NFS**: The backup files are located in the path on the NFS server host that was specified during installation and have the following naming scheme: `backup_<timestamp>.tar`.
 
-These automated config backups do not include backups of metrics data, which must be backed up separately; refer to [Backup & Restore the Metrics Database]({{< relref "/controller/admin-guides/backup-restore/backup-restore-metrics-db.md" >}}) for those instructions.
+These automated config backups do not include backups of metrics data, which must be backed up separately; refer to [Backup & Restore the Metrics Database]({{< ref "/controller/admin-guides/backup-restore/backup-restore-metrics-db.md" >}}) for those instructions.
 
 {{< tip >}}
 As a best practice, we recommend that you make scheduled backups of the entire config DB volume and keep the backups off-site for safekeeping.
@@ -37,7 +35,7 @@ As a best practice, we recommend that you make scheduled backups of the entire c
 
 This section explains how to restore the embedded config database from the latest backup file or a specific, timestamped file.
 
-{{< important >}}If you restore the config database on top of a new installation of NGINX Controller, make sure to follow the steps to [restore your NGINX config and encryption keys]({{< relref "/controller/admin-guides/backup-restore/backup-restore-cluster-config.md" >}}) afterward. {{< /important >}}
+{{< important >}}If you restore the config database on top of a new installation of NGINX Controller, make sure to follow the steps to [restore your NGINX config and encryption keys]({{< ref "/controller/admin-guides/backup-restore/backup-restore-cluster-config.md" >}}) afterward. {{< /important >}}
 
 - To restore the embedded NGINX Controller config database **from the latest automated backup**, run the following command:
 
@@ -53,7 +51,7 @@ This section explains how to restore the embedded config database from the lates
 
   - If you installed the embedded config database on a **local volume**, the backup files are located in `/opt/nginx-controller/postgres_data/`.
 
-  - If you installed the embedded config database on an **NFS volume**, follow the steps in [(NFS) Copy Config Database Backup to Local Volume for Restoration]({{< relref "/controller/admin-guides/backup-restore/backup-restore-embedded-config-db.md#nfs-copy-config-database-backup-to-local-volume-for-restoration" >}}) to download the backup file to your local volume, and then use the `helper.sh` script to restore from it.
+  - If you installed the embedded config database on an **NFS volume**, follow the steps in [(NFS) Copy Config Database Backup to Local Volume for Restoration]({{< ref "/controller/admin-guides/backup-restore/backup-restore-embedded-config-db.md#nfs-copy-config-database-backup-to-local-volume-for-restoration" >}}) to download the backup file to your local volume, and then use the `helper.sh` script to restore from it.
 
 &nbsp;
 
@@ -157,7 +155,7 @@ Take the following steps to copy an embedded config database backup file from an
 
 ## What's Next
 
-- [Backup & Restore the Metrics Database]({{< relref "/controller/admin-guides/backup-restore/backup-restore-metrics-db.md" >}})
+- [Backup & Restore the Metrics Database]({{< ref "/controller/admin-guides/backup-restore/backup-restore-metrics-db.md" >}})
 
 {{< versions "3.12" "latest" "ctrlvers" >}}
 {{< versions "3.18" "latest" "apimvers" >}}

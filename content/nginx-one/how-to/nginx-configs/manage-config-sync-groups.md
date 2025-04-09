@@ -1,20 +1,17 @@
 ---
-docs: 
-doctypes:
-    - task
-tags:
-    - docs
+docs: null
 title: Manage config sync groups
 toc: true
 weight: 300
+type:
+- how-to
 ---
-
 
 ## Overview
 
 This guide explains how to create and manage config sync groups in the F5 NGINX One Console. Config sync groups synchronize NGINX configurations across multiple NGINX instances, ensuring consistency and ease of management.
 
-If you’ve used [instance groups in NGINX Instance Manager]({{< relref "/nim/nginx-instances/manage-instance-groups.md" >}}), you’ll find config sync groups in NGINX One similar, though the steps and terminology differ slightly.
+If you’ve used [instance groups in NGINX Instance Manager]({{< ref "/nim/nginx-instances/manage-instance-groups.md" >}}), you’ll find config sync groups in NGINX One similar, though the steps and terminology differ slightly.
 
 ## Before you start
 
@@ -34,19 +31,19 @@ Before you create and manage config sync groups, ensure:
 
 - **Configuration inheritance**: If the config sync group already has a configuration defined, that configuration will be pushed to instances when they join.
 
-- **Using an instance's configuration for the group configuration**: If an instance is the first to join a config sync group and the group's configuration hasn't been defined, the instance’s configuration will become the group’s configuration. Any instances added later will automatically inherit this configuration. 
+- **Using an instance's configuration for the group configuration**: If an instance is the first to join a config sync group and the group's configuration hasn't been defined, the instance’s configuration will become the group’s configuration. Any instances added later will automatically inherit this configuration.
 
   {{< note >}} If you add multiple instances to a single config sync group, simultaneously (with automation), follow these steps. Your instances will inherit your desired configuration:
-  
+
   1. Create a config sync group.
   1. Add a configuration to the config sync group, so all instances inherit it.
   1. Add the instances in a separate operation.
-  
+
   Your instances should synchronize with your desired configuration within 30 seconds. {{< /note >}}
 
 - **Persistence of a config sync group's configuration**: The configuration for a config sync group persists until you delete the group. Even if you remove all instances, the group's configuration stays intact. Any new instances that join later will automatically inherit this configuration.
 
-- **Config sync groups vs. cluster syncing**: Config sync groups are not the same as cluster syncing. Config sync groups let you to manage and synchronize configurations across multiple NGINX instances as a single entity. This is particularly useful when your NGINX instances are load-balanced by an external load balancer, as it ensures consistency across all instances. In contrast, cluster syncing, like [zone syncing]({{< relref "nginx/admin-guide/high-availability/zone_sync_details.md" >}}), ensures data consistency and high availability across NGINX instances in a cluster. While config sync groups focus on configuration management, cluster syncing supports failover and data consistency.
+- **Config sync groups vs. cluster syncing**: Config sync groups are not the same as cluster syncing. Config sync groups let you to manage and synchronize configurations across multiple NGINX instances as a single entity. This is particularly useful when your NGINX instances are load-balanced by an external load balancer, as it ensures consistency across all instances. In contrast, cluster syncing, like [zone syncing]({{< ref "nginx/admin-guide/high-availability/zone_sync_details.md" >}}), ensures data consistency and high availability across NGINX instances in a cluster. While config sync groups focus on configuration management, cluster syncing supports failover and data consistency.
 
 ## Create a config sync group
 
@@ -75,7 +72,7 @@ You can add existing NGINX instances that are already registered with NGINX One 
 
    ``` shell
    sudo systemctl restart nginx-agent
-   ```  
+   ```
 
 ### Add a new instance to a config sync group {#add-a-new-instance-to-a-config-sync-group}
 
@@ -121,7 +118,7 @@ When adding a new NGINX instance that is not yet registered with NGINX One, you 
    - From the **OS Type** list, choose the appropriate operating system for your Docker image.
    - After selecting the OS, run the provided command to pull the Docker image.
 
-   **Note**: Subject to availability, you can modify the `agent: <VERSION_TAG>` to match the specific NGINX Plus version, OS type, and OS version you need. For example, you might use `agent: r32-ubi-9`. For more details on version tags and how to pull an image, see [Deploying NGINX and NGINX Plus on Docker]({{< relref "nginx/admin-guide/installing-nginx/installing-nginx-docker.md#pulling-the-image" >}}).
+   **Note**: Subject to availability, you can modify the `agent: <VERSION_TAG>` to match the specific NGINX Plus version, OS type, and OS version you need. For example, you might use `agent: r32-ubi-9`. For more details on version tags and how to pull an image, see [Deploying NGINX and NGINX Plus on Docker]({{< ref "nginx/admin-guide/installing-nginx/installing-nginx-docker.md#pulling-the-image" >}}).
 
 10. Run the provided command, which includes the data plane key, in your NGINX instance terminal to start the Docker container.
 
@@ -133,9 +130,9 @@ When adding a new NGINX instance that is not yet registered with NGINX One, you 
 
 {{<call-out "note" "About data plane keys" "fas fa-key" >}}
 
-Data plane keys are required for registering NGINX instances with the NGINX One Console. These keys serve as secure tokens, ensuring that only authorized instances can connect and communicate with NGINX One. 
+Data plane keys are required for registering NGINX instances with the NGINX One Console. These keys serve as secure tokens, ensuring that only authorized instances can connect and communicate with NGINX One.
 
-For more details on creating and managing data plane keys, see [Create and manage data plane keys]({{<relref "/nginx-one/how-to/data-plane-keys/create-manage-data-plane-keys.md" >}}).
+For more details on creating and managing data plane keys, see [Create and manage data plane keys]({{<ref "/nginx-one/how-to/data-plane-keys/create-manage-data-plane-keys.md" >}}).
 
 {{</call-out>}}
 
@@ -215,7 +212,7 @@ After the config sync group is created, you can modify and publish the group's c
 2. Select the config sync group in the list.
 3. Select the **Configuration** tab to view the group's NGINX configuration.
 4. To modify the group's configuration, select **Edit Configuration**.
-5. Make the necessary changes to the configuration. 
+5. Make the necessary changes to the configuration.
 6. When you're finished, select **Next**. A split view displays the changes.
 7. If you're satisfied with the changes, select **Save and Publish**.
 
@@ -238,5 +235,5 @@ Monitoring the **Config Sync Status** helps ensure that your configurations are 
 
 ## See also
 
-- [Create and manage data plane keys]({{< relref "/nginx-one/how-to/data-plane-keys/create-manage-data-plane-keys.md" >}})
-- [View and edit NGINX configurations]({{< relref "/nginx-one/how-to/nginx-configs/view-edit-nginx-configurations.md" >}})
+- [Create and manage data plane keys]({{< ref "/nginx-one/how-to/data-plane-keys/create-manage-data-plane-keys.md" >}})
+- [View and edit NGINX configurations]({{< ref "/nginx-one/how-to/nginx-configs/view-edit-nginx-configurations.md" >}})

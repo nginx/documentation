@@ -2,13 +2,11 @@
 description: These release notes contain information about new features, improvements,
   known issues, and bug fixes in the NGINX Controller Application Delivery Module.
 docs: DOCS-363
-doctypes:
-- reference
-tags:
-- docs
 title: Release Notes 3.20.0
 toc: true
 weight: 100
+type:
+- reference
 ---
 
 {{< include "controller/adc-rn-preamble.md" >}}
@@ -55,7 +53,7 @@ Take note of the following considerations when upgrading to this version of the 
 
 - **Bring your own custom NGINX App Protect WAF Policy to configure app security**
 
-  Now, you can [use your own custom NGINX App Protect WAF JSON declarative policy]({{< relref "/controller/app-delivery/security/concepts/bring-your-own-policy.md" >}}) as your WAF policy with NGINX Controller, in addition to using the default policy. F5 Advanced WAF and BIG-IP Application Security Module (ASM) customers can convert their standardized WAF policy to an App Protect policy to use with NGINX Controller.
+  Now, you can [use your own custom NGINX App Protect WAF JSON declarative policy]({{< ref "/controller/app-delivery/security/concepts/bring-your-own-policy.md" >}}) as your WAF policy with NGINX Controller, in addition to using the default policy. F5 Advanced WAF and BIG-IP Application Security Module (ASM) customers can convert their standardized WAF policy to an App Protect policy to use with NGINX Controller.
 
 ## NAP Vulnerability Fixes
 
@@ -225,4 +223,4 @@ The following issues are known to be present in this release. Look for updates t
 
 ## Supported NGINX Plus Versions
 
-Check the [NGINX Controller Tech Specs guide]({{< relref "/controller/admin-guides/install/nginx-controller-tech-specs.md#nginx-plus-instances" >}}) to learn about the NGINX Plus versions supported by this release.
+Check the [NGINX Controller Tech Specs guide]({{< ref "/controller/admin-guides/install/nginx-controller-tech-specs.md#nginx-plus-instances" >}}) to learn about the NGINX Plus versions supported by this release.

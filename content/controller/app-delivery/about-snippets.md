@@ -1,12 +1,10 @@
 ---
 docs: DOCS-340
-doctypes:
-- concept
-tags:
-- docs
 title: About Snippets
 toc: true
 weight: 300
+type:
+- concept
 ---
 
 ## Overview
@@ -387,7 +385,7 @@ For example, if you enable remote logging for errors at the `main` level, and yo
 You can use Snippets to manage IPv6 addresses for HTTP and TCP/UDP use cases. IPv6 address management is supported in both Gateway and Component Snippets.
 
 - Be sure to set the `reuseport` option for all IPv6 listen directives. Failure to do so can cause bind errors.
-- NGINX Controller's post-processing logic removes the `reuseport` option in certain cases. This is a [known issue]({{< relref "/controller/releases/adc/adc-release-notes-3.22.md" >}}) when the IPv6 port matches an IPv4 port and the IPv4 listen directive does not specify an IP address (in other words, a wildcard IP). To change the IPv6 listen directive's IP address, remove the Snippet, then re-add the Snippet with a new IPv6 address.
+- NGINX Controller's post-processing logic removes the `reuseport` option in certain cases. This is a [known issue]({{< ref "/controller/releases/adc/adc-release-notes-3.22.md" >}}) when the IPv6 port matches an IPv4 port and the IPv4 listen directive does not specify an IP address (in other words, a wildcard IP). To change the IPv6 listen directive's IP address, remove the Snippet, then re-add the Snippet with a new IPv6 address.
 
 If you need to support IPv6 addresses for the NGINX listen directive, you can use a snippet similar to the ones shown below to achieve it.
 
@@ -559,8 +557,8 @@ The `reuseport` parameter creates an individual listening socket for each worker
 
 ## Extend App Security with Snippets
 
-When adding [NGINX Controller App Security]({{< relref "add-app-security-with-waf" >}}) to your components, you can use Snippets to add NGINX App Protect directives that aren't represented in the NGINX Controller API. You can also use Snippets to [tune your NGINX App Protect WAF performance]({{< relref "/controller/app-delivery/security/tutorials/tune-waf-for-app" >}}).
+When adding [NGINX Controller App Security]({{< ref "add-app-security-with-waf" >}}) to your components, you can use Snippets to add NGINX App Protect directives that aren't represented in the NGINX Controller API. You can also use Snippets to [tune your NGINX App Protect WAF performance]({{< ref "/controller/app-delivery/security/tutorials/tune-waf-for-app" >}}).
 
-Refer to [Extend App Security with Snippets]({{< relref "extend-app-security-snippets" >}}) for more information and examples.
+Refer to [Extend App Security with Snippets]({{< ref "extend-app-security-snippets" >}}) for more information and examples.
 
 {{< versions "3.22" "latest" "adcvers" >}}

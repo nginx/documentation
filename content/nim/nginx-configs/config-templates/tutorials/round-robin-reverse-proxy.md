@@ -1,24 +1,20 @@
 ---
-title: "Round-robin reverse proxy with an augment template"
-date: 2024-03-12T16:01:58-07:00
+title: Round-robin reverse proxy with an augment template
 draft: false
-description: "Learn how to set up a round-robin reverse proxy using NGINX Instance Manager with base and augment templates."
+description: Learn how to set up a round-robin reverse proxy using NGINX Instance
+  Manager with base and augment templates.
 weight: 100
 toc: true
-tags: [ "docs" ]
-docs: "DOCS-1655"
-categories: ["installation", "platform management", "load balancing", "api management", "service mesh", "security", "analytics"]
-doctypes: ["tutorial"]
-journeys: ["getting started", "using"]
-versions: []
-authors: []
+docs: DOCS-1655
+type:
+- tutorial
 ---
 
 ## Overview
 
 This tutorial guides you through setting up a round-robin reverse proxy using base and augment templates in NGINX Instance Manager. It's intended for network administrators and developers familiar with basic NGINX configurations.
 
-Using templates, especially augment templates, provides significant advantages. Augment templates allow you to modify and extend configurations without altering the base template, making it easier to manage and update settings. This approach enhances modularity, enabling specific teams to control parts of the configuration while maintaining overall system integrity. For instance, using an augment template for round-robin reverse proxy settings allows you to efficiently distribute incoming traffic across multiple servers, enhancing load balancing and reliability. [Role-Based Access Control (RBAC) for templates and template submissions]({{< relref "/nim/nginx-configs/config-templates/how-to/rbac-config-templates-and-submissions.md" >}}) ensures that only authorized users can make changes, promoting security and efficiency. This means that while administrators can manage the base configuration, development teams can independently manage specific proxy settings, improving collaboration and streamlining operations.
+Using templates, especially augment templates, provides significant advantages. Augment templates allow you to modify and extend configurations without altering the base template, making it easier to manage and update settings. This approach enhances modularity, enabling specific teams to control parts of the configuration while maintaining overall system integrity. For instance, using an augment template for round-robin reverse proxy settings allows you to efficiently distribute incoming traffic across multiple servers, enhancing load balancing and reliability. [Role-Based Access Control (RBAC) for templates and template submissions]({{< ref "/nim/nginx-configs/config-templates/how-to/rbac-config-templates-and-submissions.md" >}}) ensures that only authorized users can make changes, promoting security and efficiency. This means that while administrators can manage the base configuration, development teams can independently manage specific proxy settings, improving collaboration and streamlining operations.
 
 By the end, you'll be able to:
 
@@ -38,7 +34,7 @@ F5 NGINX Instance Manager simplifies the management of NGINX configurations acro
 
 Before you start the tutorial, you should:
 
-- [Install NGINX Instance Manager 2.16 or later]({{< relref "/nim/deploy/" >}}). If you're using an earlier version, you'll need to upgrade to access the features needed for this tutorial.
+- [Install NGINX Instance Manager 2.16 or later]({{< ref "/nim/deploy/" >}}). If you're using an earlier version, you'll need to upgrade to access the features needed for this tutorial.
 - Have administrative access to NGINX Instance Manager.
 - Understand basic concepts of web servers and reverse proxies.
 - Have basic knowledge of [Go templates](https://pkg.go.dev/text/template), [JSON schema](https://json-schema.org), and the [NGINX configuration syntax](https://nginx.org/en/docs/beginners_guide.html).
@@ -47,7 +43,7 @@ Before you start the tutorial, you should:
 
 ## Create the base template
 
-In this section, you'll learn how to create a [base config template]({{< relref "nim/nginx-configs/config-templates/concepts/config-templates.md" >}}).
+In this section, you'll learn how to create a [base config template]({{< ref "nim/nginx-configs/config-templates/concepts/config-templates.md" >}}).
 
 1. Open your web browser, go to the Fully Qualified Domain Name (FQDN) of your NGINX Management Suite host, and log in.
 2. From the Launchpad menu, choose **Instance Manager**.
@@ -557,7 +553,7 @@ If you targeted a staged config:
 
 ## References
 
-- [Understanding Config Templates]({{< relref "/nim/nginx-configs/config-templates/concepts/config-templates.md" >}})
-- [About Augment Templates]({{< relref "/nim/nginx-configs/config-templates/concepts/augment-templates.md" >}})
-- [Manage NGINX Configs with Config Templates]({{< relref "/nim/nginx-configs/config-templates/how-to/manage-nginx-configs-with-templates.md" >}})
-- [RBAC for Templates and Template Submissions]({{< relref "/nim/nginx-configs/config-templates/how-to/rbac-config-templates-and-submissions.md" >}})
+- [Understanding Config Templates]({{< ref "/nim/nginx-configs/config-templates/concepts/config-templates.md" >}})
+- [About Augment Templates]({{< ref "/nim/nginx-configs/config-templates/concepts/augment-templates.md" >}})
+- [Manage NGINX Configs with Config Templates]({{< ref "/nim/nginx-configs/config-templates/how-to/manage-nginx-configs-with-templates.md" >}})
+- [RBAC for Templates and Template Submissions]({{< ref "/nim/nginx-configs/config-templates/how-to/rbac-config-templates-and-submissions.md" >}})

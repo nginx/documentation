@@ -2,13 +2,11 @@
 description: Follow the steps in the guide to deploy the API Connectivity Manager
   Developer Portal to Kubernetes using a Helm chart.
 docs: DOCS-1110
-doctypes:
-- tutorial
-tags:
-- docs
 title: Deploy the Developer Portal from a Helm chart
 toc: true
 weight: 20
+type:
+- tutorial
 ---
 
 {{< shortversions "1.3.0" "latest" "acmvers" >}}
@@ -33,7 +31,7 @@ To complete the steps in this section, you need the following:
 
 - Take a few minutes to review the [Configurable Helm Settings](#configuration-options) at the end of this topic. You can change these settings to customize your installation to meet your needs.
 
-- Check out the [Deployment Patterns for Developer Portal]({{< relref "/nms/acm/how-to/infrastructure/configure-devportal-backend.md" >}}) topic if you're considering installing the Developer Portal on a single host or on a cluster for high availability.
+- Check out the [Deployment Patterns for Developer Portal]({{< ref "/nms/acm/how-to/infrastructure/configure-devportal-backend.md" >}}) topic if you're considering installing the Developer Portal on a single host or on a cluster for high availability.
 
 {{</see-also>}}
 

@@ -1,12 +1,15 @@
 ---
-title: "Release Notes 2.0.0"
-date: 2023-04-25
+title: Release Notes 2.0.0
 draft: false
 toc: true
-description: "Release information for F5 NGINX Service Mesh, a configurable, low‑latency infrastructure layer designed to handle a high volume of network‑based interprocess communication among application infrastructure services using application programming interfaces (APIs).  Lists of new features and known issues are provided."
+description: Release information for F5 NGINX Service Mesh, a configurable, low‑latency
+  infrastructure layer designed to handle a high volume of network‑based interprocess
+  communication among application infrastructure services using application programming
+  interfaces (APIs).  Lists of new features and known issues are provided.
 weight: -1800
-categories: ["reference"]
-docs: "DOCS-1485"
+docs: DOCS-1485
+type:
+- reference
 ---
 
 ## NGINX Service Mesh Version 2.0.0
@@ -21,7 +24,7 @@ These release notes provide general information and describe known issues for NG
   - [Updates](#updates)
   - [Resolved Issues](#resolved-issues)
   - [Known Issues](#known-issues)
-  - [Supported Versions]({{< relref "mesh/about/mesh-tech-specs.md" >}})
+  - [Supported Versions]({{< ref "mesh/about/mesh-tech-specs.md" >}})
 
 <br/>
 <br/>
@@ -32,7 +35,7 @@ These release notes provide general information and describe known issues for NG
 NGINX Service Mesh 2.0.0 includes the following updates:
 <br/><br/>
 
-- NGINX Service Mesh global configuration API has been moved to a Kubernetes Custom Resource Definition. The NGINX Service Mesh API server has been removed. See the [API Usage guide]( {{< ref "api-usage.md" >}} ) for details on how to use the new CRD.
+- NGINX Service Mesh global configuration API has been moved to a Kubernetes Custom Resource Definition. The NGINX Service Mesh API server has been removed. See the [API Usage guide]( {{< ref "/mesh/reference/api-usage.md" >}} ) for details on how to use the new CRD.
 - Removed deprecated auto-injection annotations for Pods in favor of labels.
 - Removed deprecated NGINX Ingress Controller annotations for integrating with NGINX Service Mesh in favor of labels.
 - Automatic injection is now disabled globally by default, and requires users to opt-in via Namespace or Pod labels. See the [Automatic Injection guide]( {{< ref "/mesh/guides/inject-sidecar-proxy.md#automatic-proxy-injection" >}} ) for more details.

@@ -1,24 +1,21 @@
 ---
-description: Steps to take to investigate and fix issues with F5 NGINX Controller and
-  the Controller Agent.
+description: Steps to take to investigate and fix issues with F5 NGINX Controller
+  and the Controller Agent.
 docs: DOCS-376
-doctypes:
-- tutorial
-- troubleshooting
-tags:
-- docs
 title: Troubleshoot NGINX Controller and the Controller Agent
 toc: true
 weight: 100
+type:
+- tutorial
 ---
 
 ## Overview
 
-If NGINX isn't behaving how you expect, you can take the following steps to troubleshoot issues. If you need to [contact F5 NGINX Support]({{< relref "/controller/support/contact-support.md" >}}), make sure to [create a support package](#create-a-support-package) first.
+If NGINX isn't behaving how you expect, you can take the following steps to troubleshoot issues. If you need to [contact F5 NGINX Support]({{< ref "/controller/support/contact-support.md" >}}), make sure to [create a support package](#create-a-support-package) first.
 
 ## Fix NGINX Controller Issues by Upgrading
 
-We recommend you [upgrade NGINX Controller]({{< relref "/controller/admin-guides/install/install-nginx-controller.md#update-nginx-controller" >}}) as new versions become available. Upgrades include new features, feature improvements, or fixes for known issues.
+We recommend you [upgrade NGINX Controller]({{< ref "/controller/admin-guides/install/install-nginx-controller.md#update-nginx-controller" >}}) as new versions become available. Upgrades include new features, feature improvements, or fixes for known issues.
 
 To look up your version of NGINX Controller:
 
@@ -26,7 +23,7 @@ To look up your version of NGINX Controller:
 1. Select the NGINX Controller menu icon, then select **Platform**.
 1. On the Platform menu, select **Cluster** > **Overview**.
 
-{{< see-also >}}Refer to the [NGINX Controller release notes]({{< relref "/controller/releases/" >}}) to see what's new in the latest release of NGINX Controller.{{< /see-also >}}
+{{< see-also >}}Refer to the [NGINX Controller release notes]({{< ref "/controller/releases/" >}}) to see what's new in the latest release of NGINX Controller.{{< /see-also >}}
 
 &nbsp;
 
@@ -156,7 +153,7 @@ Take the following steps to troubleshoot the issue:
 
 - Ensure that ports 443 and 8443 are open between NGINX Controller and the network where the NGINX Plus instance is being deployed.
 - Verify that you can communicate with NGINX Controller from the NGINX Plus instance using the NGINX Controller FQDN that you provided when you installed NGINX Controller.
-- If you're [deploying an NGINX Plus instance on Amazon Web Services]({{< relref "/controller/infrastructure/instances/add-aws-instance.md" >}}) using a template, ensure that the Amazon Machine Image (AMI) referenced in the `instance_template` has a cURL version of 7.32 or newer.
+- If you're [deploying an NGINX Plus instance on Amazon Web Services]({{< ref "/controller/infrastructure/instances/add-aws-instance.md" >}}) using a template, ensure that the Amazon Machine Image (AMI) referenced in the `instance_template` has a cURL version of 7.32 or newer.
 
 &nbsp;
 
@@ -190,7 +187,7 @@ For troubleshooting purposes, you can turn on Controller Agent debug logging by 
     {{< /see-also >}}
 
 1. The system DNS resolver is correctly configured, and the NGINX Controller server's fully qualified domain name (FQDN) can be resolved.
-1. The controller-agent service can be running as `root` or a different user, chosen during the installation if the Controller Agent was [installed to run as a non-root user]({{< relref "/controller/admin-guides/install/install-agent-non-root.md" >}}). To view the user ID for the controller-agent service, run the following command:
+1. The controller-agent service can be running as `root` or a different user, chosen during the installation if the Controller Agent was [installed to run as a non-root user]({{< ref "/controller/admin-guides/install/install-agent-non-root.md" >}}). To view the user ID for the controller-agent service, run the following command:
 
     ```bash
     ps -ef | egrep 'agent'
@@ -215,10 +212,10 @@ For troubleshooting purposes, you can turn on Controller Agent debug logging by 
 
 For more information on installing and configuring the Controller Agent, see the following topics:
 
-- [Installing the NGINX Controller Agent]({{< relref "/controller/admin-guides/install/install-nginx-controller-agent.md" >}})
-- [Installing the NGINX Controller Agent for non-root users]({{< relref "/controller/admin-guides/install/install-agent-non-root.md" >}})
-- [Configuring the NGINX Controller Agent]({{< relref "/controller/admin-guides/config-agent/configure-the-agent.md" >}})
-- [Configuring metrics collection for NGINX Controller]({{< relref "/controller/admin-guides/config-agent/configure-metrics-collection.md" >}})
+- [Installing the NGINX Controller Agent]({{< ref "/controller/admin-guides/install/install-nginx-controller-agent.md" >}})
+- [Installing the NGINX Controller Agent for non-root users]({{< ref "/controller/admin-guides/install/install-agent-non-root.md" >}})
+- [Configuring the NGINX Controller Agent]({{< ref "/controller/admin-guides/config-agent/configure-the-agent.md" >}})
+- [Configuring metrics collection for NGINX Controller]({{< ref "/controller/admin-guides/config-agent/configure-metrics-collection.md" >}})
 
 {{< /see-also >}}
 
@@ -230,8 +227,8 @@ For more information on installing and configuring the Controller Agent, see the
 
 If NGINX Controller appears to be unlicensed after a version upgrade, try the following options to resolve the issue.
 
-- [Re-upload your NGINX Controller license]({{< relref "/controller/platform/licensing-controller.md#add-or-update-a-license" >}}).
-- [Restore the NGINX Controller database from a backup]({{< relref "/controller/admin-guides/backup-restore/_index.md" >}}).
+- [Re-upload your NGINX Controller license]({{< ref "/controller/platform/licensing-controller.md#add-or-update-a-license" >}}).
+- [Restore the NGINX Controller database from a backup]({{< ref "/controller/admin-guides/backup-restore/_index.md" >}}).
 
 &nbsp;
 

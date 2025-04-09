@@ -1,6 +1,6 @@
 ---
-title: Deploying NGINX App Protect WAF on Kubernetes
-weight: 300
+title: Deploy NGINX App Protect WAF with Manifests
+weight: 400
 toc: true
 type: how-to
 product: NAP-WAF
@@ -31,7 +31,7 @@ Proceed, by creating a `Dockerfile` using one of the examples provided below.
 
 {{<tabs name="nap5_nginx_OSS_dockerfiles">}}
 {{%tab name="Alpine Linux"%}}
- 
+
 {{< include "nap-waf/config/v5/build-nginx-image-oss/build-alpine.md" >}}
 
 {{%/tab%}}
@@ -73,7 +73,7 @@ You are ready to [Build the image](#build-image).
 
 {{<tabs name="nap5_nginx_plus_dockerfiles">}}
 {{%tab name="Alpine Linux"%}}
- 
+
 {{< include "nap-waf/config/v5/build-nginx-image-plus/build-alpine.md" >}}
 
 {{%/tab%}}
@@ -356,334 +356,40 @@ spec:
     ```
 
 ## Configure read only file systems
-NGINX App Protect WAF v5 allows you to enable the `readOnlyRootFilesystem` option in your [Kubernetes Configuration](
-https://kubernetes.io/docs/tasks/configure-pod-container/security-context/). This option restricts the root filesystem to read-only mode, which improves security by limiting potential write access in case of compromise.
 
-To enable this feature, you will need a Kubernetes cluster that supports read-only root file systems, and you access to the NGINX and NGINX App Protect WAF configurations. 
-
-You may need to identify any extra paths that need to be writable by App Protect during runtime: the following steps assume you are using the defaults path.
+{{< include "/nap-waf/nap-k8s-readonly-introduction.md" >}}
 
 ---
- 
+
 ### Enable `readOnlyRootFilesystem` and configure writable paths
 
-The first step is to add the `readOnlyRootFilesystem` value (as *true*) to your Kubernetes pod security context as follows:
-
-```yaml
-containers:
-    - name: nginx
-      ...
-      securityContext:
-          readOnlyRootFilesystem: true
-    - name: waf-enforcer
-      ...
-      securityContext:
-          readOnlyRootFilesystem: true
-    - name: waf-config-mgr
-      ...
-      securityContext:
-          readOnlyRootFilesystem: true
-```
-
-With a read-only root file system, you will likely still require write access for certain directories, such as logs and temporary files. You can add these directories by mounting them as writable volumes in your Kubernetes deployment. 
-
-In this example, `/tmp` and `/var/log/nginx` are writable directories, essential for NGINX and App Protect operations.
-
-```yaml
-containers:
-    - name: nginx
-      ...
-      volumeMounts:
-           - name: app-protect-bd-config
-             mountPath: /opt/app_protect/bd_config
-           - name: app-protect-config
-             mountPath: /opt/app_protect/config
-           - name: tmp-volume
-             mountPath: /tmp
-           - name: nginx-log
-             mountPath: /var/log/nginx
-           - name: app-protect-bundles
-             mountPath: /etc/app_protect/bundles
-...
-
-volumes:
-        - name: app-protect-bd-config
-          emptyDir: {}
-        - name: app-protect-config
-          emptyDir: {}
-        - name: nginx-log
-          emptyDir: {}
-        - name: tmp-volume
-          emptyDir: {}
-        - name: app-protect-bundles
-          persistentVolumeClaim:
-            claimName: nap5-bundles-pvc 
-```
-
-A full example might look like the following:
-
-```yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: nap5-deployment
-spec:
-  selector:
-    matchLabels:
-      app: nap5
-  replicas: 2
-  template:
-    metadata:
-      labels:
-        app: nap5
-    spec:
-      imagePullSecrets:
-        - name: regcred
-      containers:
-        - name: nginx
-          image: <your-private-registry>/nginx-app-protect-5:<your-tag>
-          imagePullPolicy: IfNotPresent
-          securityContext:
-            readOnlyRootFilesystem: true
-          volumeMounts:
-            - name: app-protect-bd-config
-              mountPath: /opt/app_protect/bd_config
-            - name: app-protect-config
-              mountPath: /opt/app_protect/config
-            - name: tmp-volume
-              mountPath: /tmp
-            - name: nginx-log
-              mountPath: /var/log/nginx
-            - name: app-protect-bundles
-              mountPath: /etc/app_protect/bundles
-        - name: waf-enforcer
-          image: private-registry.nginx.com/nap/waf-enforcer:<version-tag>
-          imagePullPolicy: IfNotPresent
-          securityContext:
-            readOnlyRootFilesystem: true
-          env:
-            - name: ENFORCER_PORT
-              value: "50000"
-          volumeMounts:
-            - name: app-protect-bd-config
-              mountPath: /opt/app_protect/bd_config
-        - name: waf-config-mgr
-          image: private-registry.nginx.com/nap/waf-config-mgr:<version-tag>
-          imagePullPolicy: IfNotPresent
-          securityContext:
-            allowPrivilegeEscalation: false
-            readOnlyRootFilesystem: true
-            capabilities:
-              drop:
-                - all
-          volumeMounts:
-            - name: app-protect-bd-config
-              mountPath: /opt/app_protect/bd_config
-            - name: app-protect-config
-              mountPath: /opt/app_protect/config
-            - name: app-protect-bundles
-              mountPath: /etc/app_protect/bundles
-      volumes:
-        - name: app-protect-bd-config
-          emptyDir: {}
-        - name: app-protect-config
-          emptyDir: {}
-        - name: nginx-log
-          emptyDir: {}
-        - name: tmp-volume
-          emptyDir: {}
-        - name: app-protect-bundles
-          persistentVolumeClaim:
-            claimName: nap5-bundles-pvc 
-```
+{{< include "/nap-waf/nap-k8s-readonly-context.md" >}}
 
 ---
 
 ### Update NGINX configuration with writable paths
 
-Once you have created writable paths in your Kubernetes cluster, you should update your NGINX configuration to use these paths.
-
-The following are fields in `nginx.conf` you should update, which correspond to writable volumes configured during the last step:
-
-```nginx
-pid        /tmp/nginx.pid;
-...
-http {
-...
-    # Temporary directories for kubernetes "readonlyfilesystem"
-    client_body_temp_path /tmp/nginx-client-body;
-    proxy_temp_path       /tmp/nginx-proxy;    
-    fastcgi_temp_path     /tmp/nginx-fastcgi;    
-    uwsgi_temp_path       /tmp/nginx-uwsgi;    
-    scgi_temp_path        /tmp/nginx-scgi;
-...
-}
-```
-
-A full example might look like the following:
-
-```nginx
-user  nginx;
-worker_processes  auto;
-
-# NGINX App Protect WAF
-load_module modules/ngx_http_app_protect_module.so;
-
-error_log  /var/log/nginx/error.log debug;
-pid        /tmp/nginx.pid; 
-
-events {
-    worker_connections  1024;
-}
-
-http {
-    include       /etc/nginx/mime.types;
-    default_type  application/octet-stream;
-
-    log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
-                    '$status $body_bytes_sent "$http_referer" '
-                    '"$http_user_agent" "$http_x_forwarded_for"';
-
-    access_log  /var/log/nginx/access.log;
-
-    # Temporary directories for kubernetes "readonlyfilesystem"
-    client_body_temp_path /tmp/nginx-client-body;
-    proxy_temp_path       /tmp/nginx-proxy;
-    fastcgi_temp_path     /tmp/nginx-fastcgi;
-    uwsgi_temp_path       /tmp/nginx-uwsgi;
-    scgi_temp_path        /tmp/nginx-scgi;
-
-    sendfile        on;
-    #tcp_nopush     on;
-
-    keepalive_timeout  65;
-
-    #gzip  on;
-
-    # NGINX App Protect WAF
-    app_protect_enforcer_address 127.0.0.1:50000;
-
-    include /etc/nginx/conf.d/*.conf;
-}
-```
+{{< include "/nap-waf/nap-k8s-readonly-paths.md" >}}
 
 --- 
  
-### Remediate possible issues
+### Possible issues
 
-- **Permission denied errors**:
-  If you encounter file permission issues, verify that the paths requiring write access are correctly configured as writable volumes in the pod manifest.
-- **NGINX App Protect WAF initialization errors**:  
-  Check the NGINX and NGINX App Protect Logs to ensure that App Protect can write to necessary files like logs and temporary directories.
-
-For general issues, read the [Troubleshooting]({{< ref "/nap-waf/v5/troubleshooting-guide/troubleshooting.md" >}}) topic.
+{{< include "/nap-waf/nap-k8s-readonly-issues.md" >}}
 
 ---
 
-## mTLS Deployment 
+## Enable mTLS
 
-To secure traffic between NGINX and App Protect Enforcer using mTLS, follow the steps below:
+{{< include "/nap-waf/nap-k8s-mtls-deployment.md" >}}
 
-{{< note >}} Refer to the [Configuration Guide]({{< relref "/nap-waf/v5/configuration-guide/configuration.md#secure-traffic-between-nginx-and-app-protect-enforcer-using-mtls" >}}) to generate certificates and modify the `nginx.conf` for mTLS.
-{{< /note >}}
+---
 
-First, create a Kubernetes Secret that contains the certificate and key files:
-	
-```shell
-	kubectl create secret generic enforcer-certificates \
-	--from-file=app_protect_server.crt=/path/to/app_protect_server.crt \
-	--from-file=app_protect_server.key=/path/to/app_protect_server.key \
-	--from-file=app_protect_client_ca.crt=/path/to/app_protect_client_ca.crt
-```
+## Use compiled Policy and Logging Profile bundles in NGINX
 
-Next, update or create the `nap5-deployment.yaml` to mount the Secret as a volume and set the environment variables to point to the mounted files: 
+{{< include "/nap-waf/nap-k8s-use-compiled-bundles.md" >}}
 
-```yaml
-	apiVersion: apps/v1
-	kind: Deployment
-	metadata:
-	  name: nap5-deployment
-	spec:
-	  selector:
-	    matchLabels:
-	      app: nap5
-	  replicas: 2
-	  template:
-	    metadata:
-	      labels:
-	        app: nap5
-	    spec:
-	      imagePullSecrets:
-	          - name: regcred
-	      containers:
-	        - name: nginx
-	          image: <your-private-registry>/nginx-app-protect-5:<your-tag>
-	          imagePullPolicy: IfNotPresent
-	          volumeMounts:
-	            - name: app-protect-bd-config
-	              mountPath: /opt/app_protect/bd_config
-	            - name: app-protect-config
-	              mountPath: /opt/app_protect/config
-	            - name: certs
-	              mountPath: /etc/ssl/certs
-	              readOnly: true
-	            - name: waf-enforcer
-	              image: private-registry.nginx.com/nap/waf-enforcer:<version-tag>
-	              imagePullPolicy: IfNotPresent
-	              env:
-	                - name: ENFORCER_PORT
-	                  value: "4431"
-	                - name: ENFORCER_SERVER_CERT
-	                  value: "/etc/ssl/certs/app_protect_server.crt"
-	                - name: ENFORCER_SERVER_KEY
-	                  value: "/etc/ssl/certs/app_protect_server.key"
-	                - name: ENFORCER_CA_FILE
-	                  value: "/etc/ssl/certs/app_protect_client_ca.crt"
-	              volumeMounts:
-	                - name: app-protect-bd-config
-	                  mountPath: /opt/app_protect/bd_config
-	                - name: certs
-	                  mountPath: /etc/ssl/certs
-	                  readOnly: true
-	            - name: waf-config-mgr
-	              image: private-registry.nginx.com/nap/waf-config-mgr:<version-tag>
-	              imagePullPolicy: IfNotPresent
-	              securityContext:
-	                allowPrivilegeEscalation: false
-	                capabilities:
-	                  drop:
-	                    - all
-	              volumeMounts:
-	                - name: app-protect-bd-config
-	                  mountPath: /opt/app_protect/bd_config
-	                - name: app-protect-config
-	                  mountPath: /opt/app_protect/config
-	                - name: app-protect-bundles
-	                  mountPath: /etc/app_protect/bundles
-	          volumes:
-	            - name: app-protect-bd-config
-	              emptyDir: {}
-	            - name: app-protect-config
-	              emptyDir: {}
-	            - name: app-protect-bundles
-	              persistentVolumeClaim:
-	                claimName: nap5-bundles-pvc
-	            - name: certs
-	              secret:
-	                secretName: enforcer-certificates
-```
-
-## Using Compiled Policy and Logging Profile Bundles in NGINX
-
-In this setup, copy your compiled policy and logging profile bundles to `/mnt/nap5_bundles_pv_data` on a cluster node. Then, in your NGINX configuration, refer to these files from `/etc/app_protect/bundles`.
-
-For example, to apply `custom_policy.tgz` that you've placed in `/mnt/nap5_bundles_pv_data/`, use:
-
-   ```nginx
-   app_protect_policy_file "/etc/app_protect/bundles/custom_policy.tgz";
-   ```
-
-The NGINX configuration can be integrated using a configmap mount.
+The NGINX configuration can be integrated using a ConfigMap mount.
 
 ## Air-Gap Install: Secure Offline Deployment
 
@@ -712,7 +418,7 @@ Proceed, by creating a `Dockerfile` using one of the examples provided below.
 
 {{<tabs name="offline_nap5_nginx_OSS_dockerfiles">}}
 {{%tab name="Alpine Linux"%}}
- 
+
 {{< include "nap-waf/config/v5/build-nginx-image-oss/build-alpine.md" >}}
 
 {{%/tab%}}
@@ -744,7 +450,7 @@ You are ready to [Build the image](#build-image-sub)
 
 {{<tabs name="offline_nap5_nginx_plus_dockerfiles">}}
 {{%tab name="Alpine Linux"%}}
- 
+
 {{< include "nap-waf/config/v5/build-nginx-image-plus/build-alpine.md" >}}
 
 {{%/tab%}}
@@ -775,7 +481,7 @@ You are ready to [Build the image](#build-image-sub)
 {{< include "nap-waf/build-nginx-image-cmd.md" >}}
 
 #### Download Waf-Enforcer and Waf-Config-mgr Images
- Pull the `waf-enforcer` and `waf-config-mgr` images. Replace `5.2.0` with the actual release version you are deploying. 
+ Pull the `waf-enforcer` and `waf-config-mgr` images. Replace `5.2.0` with the actual release version you are deploying.
 
 ```shell
 docker pull private-registry.nginx.com/nap/waf-enforcer:5.2.0
@@ -812,13 +518,13 @@ docker pull private-registry.nginx.com/nap/waf-config-mgr:5.2.0
     ```
 
 #### Local Registry Setup
-Set up a local registry for the images on the offline/air-gap machine. 
+Set up a local registry for the images on the offline/air-gap machine.
 For the example deployment we will use [Registry](https://www.docker.com/blog/how-to-use-your-own-registry-2/).
 
 1. Set up a local registry on the offline/air-gap machine
 
 2. Add nginx-app-protect-5, waf-enforcer, and waf-config-mgr to the local registry
-  
+
 ### NGINX Configuration
 
 In your nginx configuration:
@@ -1003,7 +709,7 @@ Add `nginx.conf` and `default.conf` to a config map.
 kubectl create configmap nginx-config \
   --from-file=/nginx.conf \
   --from-file=/default.conf
-``` 
+```
 
 #### Start Deployment
 
@@ -1093,10 +799,10 @@ kubectl create configmap nginx-config \
 - **Connectivity Issues**: Verify the service and deployment configurations, especially port mappings and selectors.
 - **Permissions Issues**: By default, the containers `waf-config-mgr` and `waf-enforcer` operate with the user and group IDs set to 101:101. Ensure that the bundle files are accessible to these IDs.
 
-If you encounter any issues, check the [Troubleshooting Guide]({{< relref "/nap-waf/v5/troubleshooting-guide/troubleshooting#nginx-app-protect-5" >}}).
+If you encounter any issues, check the [Troubleshooting Guide]({{< ref "/nap-waf/v5/troubleshooting-guide/troubleshooting#nginx-app-protect-5" >}}).
 
 ## Conclusion
 
 This guide provides the foundational steps for deploying NGINX App Protect WAF v5 on Kubernetes. You may need to adjust the deployment to fit your specific requirements.
 
-For more detailed configuration options and advanced deployment strategies, refer to the [NGINX App Protect WAF v5 configuration guide]({{< relref "/nap-waf/v5/configuration-guide/configuration.md" >}}).
+For more detailed configuration options and advanced deployment strategies, refer to the [NGINX App Protect WAF v5 configuration guide]({{< ref "/nap-waf/v5/configuration-guide/configuration.md" >}}).

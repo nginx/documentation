@@ -2,11 +2,11 @@
 description: Load balance Apache Tomcat application servers with NGINX Open Source
   or the advanced features in F5 NGINX Plus, following our step-by-step setup instructions.
 docs: DOCS-451
-doctypes:
-- task
 title: Load Balancing Apache Tomcat Servers with NGINX Open Source and NGINX Plus
 toc: true
 weight: 100
+type:
+- how-to
 ---
 
 This deployment guide explains how to use NGINX Open Source and F5 NGINX Plus to load balance HTTP and HTTPS traffic across a pool of Apache Tomcat<sup>TM</sup> application servers. The detailed instructions in this guide apply to both cloud‑based and on‑premises deployments of Tomcat.
@@ -15,14 +15,14 @@ This deployment guide explains how to use NGINX Open Source and F5 NGINX Plus to
 <span id="about-nginx"></span>
 ## About NGINX Open Source and NGINX Plus
 
-[NGINX Open Source](https://nginx.org/en) is an open source web server and reverse proxy that has grown in popularity in recent years because of its scalability, outstanding performance, and small footprint. <span style="white-space: nowrap;">NGINX Open Source</span> was first created to solve the C10K problem (serving 10,000 simultaneous connections on a single web server). <span style="white-space: nowrap;">NGINX Open Source's</span> features and performance have made it a staple of high‑performance sites – it's [the #1 web server at the 100,000 busiest websites in the world](https://w3techs.com/technologies/cross/web_server/ranking).
+[NGINX Open Source](https://nginx.org/en) is an open source web server and reverse proxy that is known for its scalability, outstanding performance, and small footprint. <span style="white-space: nowrap;">NGINX Open Source</span> was first created to solve the C10K problem (serving 10,000 simultaneous connections on a single web server). <span style="white-space: nowrap;">NGINX Open Source's</span> features and high-speed performance has made it a staple, NGINX is used by 33.8% of all the websites whose server we know – it's [the #1 web server at the 100,000 busiest websites in the world](https://w3techs.com/technologies/cross/web_server/ranking).
 
-[NGINX Plus](https://www.f5.com/products/nginx/nginx-plus) is the commercially supported version of <span style="white-space: nowrap;">NGINX Open Source</span>. NGINX Plus is a complete application delivery platform, extending the power of <span style="white-space: nowrap;">NGINX Open Source</span> with a host of enterprise‑ready capabilities that enhance a Tomcat deployment and are instrumental to building web applications at scale:
+[NGINX Plus](https://www.f5.com/products/nginx/nginx-plus) is the commercially supported version of <span style="white-space: nowrap;">NGINX Open Source</span>. NGINX Plus is a complete application delivery platform, that extends the power of <span style="white-space: nowrap;">NGINX Open Source</span> with a host of enterprise‑ready capabilities, improving Tomcat deployments and supporting the development of web applications at scale:
 
 - [Full‑featured HTTP, TCP, and UDP load balancing](https://www.nginx.com/products/nginx/load-balancing/)
 - [Intelligent session persistence](https://www.nginx.com/products/nginx/load-balancing/#session-persistence)
-- [High‑performance reverse proxy]({{< relref "../../admin-guide/web-server/reverse-proxy.md" >}})
-- [Caching and offload of dynamic and static content]({{< relref "../../admin-guide/content-cache/content-caching.md" >}})
+- [High‑performance reverse proxy]({{< ref "nginx/admin-guide/web-server/reverse-proxy.md" >}})
+- [Caching and offload of dynamic and static content]({{< ref "nginx/admin-guide/content-cache/content-caching.md" >}})
 - [Adaptive streaming to deliver audio and video to any device](https://www.nginx.com/products/nginx/streaming-media/)
 - [Application-aware health checks](https://docs.nginx.com/nginx/admin-guide/load-balancer/http-health-check/) and [high availability](https://docs.nginx.com/nginx/admin-guide/high-availability/)
 - [Advanced activity monitoring available via a dashboard or API](https://www.nginx.com/products/nginx/live-activity-monitoring/)
@@ -33,13 +33,13 @@ This deployment guide explains how to use NGINX Open Source and F5 NGINX Plus to
 
 Apache Tomcat is an open source software implementation of the Java Servlet, JavaServer Pages, Java Expression Language, and Java WebSocket technologies.
 
-We tested the procedures in this guide against Apache Tomcat 8.0.
+Apache Tomcat 8.0 was used to prepare the documentation for this guide.
 
 <span id="prereqs"></span>
 ## Prerequisites and System Requirements
 
 - A Tomcat application server installed and configured on a physical or virtual system.
-- A Linux system to host <span style="white-space: nowrap;">NGINX Open Source</span> or NGINX Plus. To avoid potential conflicts with other applications, we recommend you install the software on a fresh physical or virtual system. For the list of operating systems supported by NGINX Plus, see [NGINX Plus Technical Specifications]({{< relref "../../technical-specs.md" >}}).
+- A Linux system to host <span style="white-space: nowrap;">NGINX Open Source</span> or NGINX Plus. To avoid potential conflicts with other applications, we recommend you install the software on a fresh physical or virtual system. For the list of operating systems supported by NGINX Plus, see [NGINX Plus Technical Specifications]({{< ref "nginx/technical-specs.md" >}}).
 - <span style="white-space: nowrap;">NGINX Open Source 1.9.5</span> and later, and <span style="white-space: nowrap;">NGINX Plus R7</span> and later.
 
 The instructions assume you have basic Linux system administration skills, including the following. Full instructions are not provided for these tasks.
@@ -57,14 +57,14 @@ The instructions assume you have basic Linux system administration skills, inclu
 
 - `example.com` is used as a sample domain name (in key names and configuration blocks). Replace it with your organization's name.
 - Many <span style="white-space: nowrap;">NGINX Open Source</span> and NGINX Plus configuration blocks in this guide list two sample Tomcat application servers with IP addresses 10.100.100.11 and 10.100.100.12. Replace these addresses with the IP addresses of your Tomcat servers. Include a line in the configuration block for each server if you have more or fewer than two.
-- For readability reasons, some commands appear on multiple lines. If you want to copy and paste them into a terminal window, we recommend that you first copy them into a text editor, where you can substitute the object names that are appropriate for your deployment and remove any extraneous formatting characters that your browser might insert.
+- For better readability, some commands are split across multiple lines.Recommendation: When copying commands, first place the text in a text-editor that way it makes it easier to subsititute the object names with those that are relevent to your project, make sure to also remove any extra special characters that may be added by your browser.
 - Some of the examples in this guide are partial and require additional directives or parameters to be complete. You can download complete configuration files for basic and enhanced load balancing from the NGINX website, as instructed in [Creating and Modifying Configuration Files](#config-files). For details about a specific directive or parameter, see the [NGINX reference documentation](https://nginx.org/en/docs/).
 - We recommend that you do not copy text from the configuration snippets in this guide into your configuration files. For the recommended way to create configuration files, see [Creating and Modifying Configuration Files](#config-files).
 
 <span id="tls-certificate"></span>
 ## Configuring an SSL/TLS Certificate for Client Traffic
 
-If you plan to enable SSL/TLS encryption of traffic between <span style="white-space: nowrap;">NGINX Open Source</span> or NGINX Plus and clients of your Tomcat application, you need to configure a server certificate for <span style="white-space: nowrap;">NGINX Open Source</span> or NGINX Plus.
+If you plan to enable SSL/TLS encryption of traffic between <span style="white-space: nowrap;">NGINX Open Source</span> or NGINX Plus and clients of your Tomcat application, you will need to configure a server certificate for <span style="white-space: nowrap;">NGINX Open Source</span> or NGINX Plus.
 
 - SSL/TLS support is enabled by default in all <span style="white-space: nowrap;">[NGINX Plus packages](https://cs.nginx.com/)</span> and [<span style="white-space: nowrap;">NGINX Open Source</span> binaries](https://nginx.org/en/linux_packages.html) provided by NGINX.
 - If you are compiling <span style="white-space: nowrap;">NGINX Open Source</span> from source, include the <span style="white-space: nowrap;">`--with-http_ssl_module`</span> parameter to enable SSL/TLS support for HTTP traffic (the corresponding parameter for TCP is <span style="white-space: nowrap;">`--with-stream_ssl_module`</span>, and for email is <span style="white-space: nowrap;">`--with-mail_ssl_module`</span>, but this guide does not cover either of those protocol types).
@@ -73,10 +73,10 @@ If you plan to enable SSL/TLS encryption of traffic between <span style="white-s
 There are several ways to obtain a server certificate, including the following. For your convenience, <span style="white-space: nowrap;">step-by-step</span> instructions are provided for the second and third options.
 
 - If you already have an SSL/TLS certificate for <span style="white-space: nowrap;">NGINX Open Source</span> or NGINX Plus installed on another UNIX or Linux system (including systems running Apache HTTP Server), copy it to the **/etc/nginx/ssl** directory on the <span style="white-space: nowrap;">NGINX Open Source</span> or NGINX Plus server.
-- Generate a self‑signed certificate as described in [Generating a Self‑Signed Certificate](#certificate-self-signed) below. This is sufficient for testing scenarios, but clients of production deployments generally require a certificate signed by a certificate authority (CA).
+- Generate a self‑signed certificate as outlined in [Generating a Self‑Signed Certificate](#certificate-self-signed) below. This is sufficient for testing scenarios, but clients of production deployments generally require a certificate signed by a certificate authority (CA).
 - Request a new certificate from a CA or your organization's security group, as described in [Generating a Certificate Request](#certificate-request) below.
 
-For more details on SSL/TLS termination, see the <span style="white-space: nowrap;">[NGINX Plus Admin Guide]({{< relref "/nginx/admin-guide/_index.md" >}})</span>.
+For more details on SSL/TLS termination, see the <span style="white-space: nowrap;">[NGINX Plus Admin Guide]({{< ref "/nginx/admin-guide/_index.md" >}})</span>.
 
 
 <span id="certificate-self-signed"></span>
@@ -86,7 +86,7 @@ Generate a public‑private key pair and a self‑signed server certificate in P
 
 1. Log in as the root user on a machine that has the `openssl` software installed.
 
-2. Generate the key pair in PEM format (the default). To encrypt the private key, include the <span style="white-space: nowrap;">`-des3`</span> parameter. (Other encryption algorithms are available, listed on the man page for the [genrsa](https://www.openssl.org/docs/manmaster/man1/openssl-genrsa.html) command.) You are prompted for the passphrase used as the basis for encryption.
+2. Generate the key pair in PEM format (the default). To encrypt the private key, include the <span style="white-space: nowrap;">`-des3`</span> parameter (Other encryption algorithms are available and can be found on the man page for the [genrsa](https://www.openssl.org/docs/manmaster/man1/openssl-genrsa.html) command). You will be prompted for a passphrase to use for encryption.
 
    ```shell
    root# openssl genrsa -des3 -out ~/private-key.pem 2048
@@ -100,7 +100,7 @@ Generate a public‑private key pair and a self‑signed server certificate in P
    root# cp ~/private-key.pem <SECURE-DIR>/private-key.pem.backup
    ```
 
-4. Generate the certificate. Include the <span style="white-space: nowrap;">`-new`</span> and <span style="white-space: nowrap;">`-x509`</span> parameters to make a new self‑signed certificate. Optionally include the <span style="white-space: nowrap;">`-days`</span> parameter to change the key's validity lifetime from the default of 30 days (10950 days is about 30 years). Respond to the prompts with values appropriate for your testing deployment.
+4. Generate the certificate. Include the <span style="white-space: nowrap;">`-new`</span> and <span style="white-space: nowrap;">`-x509`</span> parameters to make a new self‑signed certificate. Optionally include the <span style="white-space: nowrap;">`-days`</span> parameter to change the key's validity lifetime from the default of 30 days (10950 days is about 30 years). Follow the prompts and enter values appropriate for your testing deployment.
 
     ```none
     root# openssl req -new -x509 -key ~/private-key.pem -out ~/self-cert.pem -days 10950
@@ -141,11 +141,11 @@ Generate a public‑private key pair and a self‑signed server certificate in P
 <span id="config-files"></span>
 ## Creating and Modifying Configuration Files
 
-To reduce errors, this guide has you copy directives from files provided by NGINX into your configuration files, instead of using a text editor to type in the directives yourself. Then you go through the sections in this guide (starting with [Configuring Virtual Servers for HTTP and HTTPS Traffic](#virtual-servers)) to learn how to modify the directives as required for your deployment.
+To simplify the process, this guide has you copy directives from files provided by NGINX into your configuration files, rather than typing it manually. After that, follow the sections in this guide (starting with [Configuring Virtual Servers for HTTP and HTTPS Traffic](#virtual-servers)) to learn how to modify the directives as required for your deployment.
 
 As provided, there is one file for basic load balancing (with <span style="white-space: nowrap;">NGINX Open Source</span> or NGINX Plus) and one file for enhanced load balancing (with NGINX Plus). If you are installing and configuring <span style="white-space: nowrap;">NGINX Open Source</span> or NGINX Plus on a fresh Linux system and using it only to load balance Tomcat traffic, you can use the provided file as your main configuration file, which by convention is called **/etc/nginx/nginx.conf**.
 
-We recommend, however, that instead of a single configuration file you use the scheme that is set up automatically when you install an NGINX Plus package, especially if you already have an existing <span style="white-space: nowrap;">NGINX Open Source</span> or NGINX Plus deployment or plan to expand your use of <span style="white-space: nowrap;">NGINX Open Source</span> or NGINX Plus to other purposes in future. In the conventional scheme, the main configuration file is still called **/etc/nginx/nginx.conf**, but instead of including all directives in it, you create separate configuration files for different HTTP‑related functions and store the files in the **/etc/nginx/conf.d** directory. You then use the `include` directive in the `http` context of the main file to read in the contents of the function‑specific files.
+We recommend, however, that instead of a single configuration file you use the scheme that is set up automatically when you install an NGINX Plus package, especially if you already have an existing <span style="white-space: nowrap;">NGINX Open Source</span> or NGINX Plus deployment or plan to expand its use in the future. In the conventional scheme, the main configuration file is still called **/etc/nginx/nginx.conf**, but instead of including all directives in it, you create separate configuration files for different HTTP‑related functions and store the files in the **/etc/nginx/conf.d** directory. You then use the `include` directive in the `http` context of the main file to read in the contents of the function‑specific files.
 
 To download the complete configuration file for basic load balancing:
 
@@ -179,12 +179,12 @@ http {
 }
 ```
 
-For reference purposes, the text of the full configuration files is included in this document:
+For reference, the text of the full configuration files is included in this document:
 
 - [Full Configuration for Basic Load Balancing](#full-configuration-basic)
 - [Full Configuration for Enhanced Load Balancing](#full-configuration-enhanced)
 
-We recommend, however, that you do not copy text directly from this document. It does not necessarily use the same mechanisms for positioning text (such as line breaks and white space) as text editors do. In text copied into an editor, lines might run together and indenting of child statements in configuration blocks might be missing or inconsistent. The absence of formatting does not present a problem for <span style="white-space: nowrap;">NGINX Open Source</span> or NGINX Plus, because (like many compilers) they ignore white space during parsing, relying solely on semicolons and curly braces as delimiters. The absence of white space does, however, make it more difficult for humans to interpret the configuration and modify it without making mistakes.
+We recommend, however, that you do not copy text directly from this document. It does not necessarily use the same mechanisms for positioning text (such as line breaks and white space) as text editors do. When text is copied into an editor, lines may run together and the indentation in configuration blocks might be inconsistent or missing. While the lack of formatting does not cause issues for <span style="white-space: nowrap;">NGINX Open Source</span> or NGINX Plus, (because like many compilers they ignore white space during parsing, relying solely on semicolons and curly braces as delimiters), it can make the configuration harder for humans to read and modify without encountering errors.
 
 <span id="reloading"></span>
 ### About Reloading Updated Configuration
@@ -273,12 +273,12 @@ These directives define virtual servers for HTTP and HTTPS traffic in separate `
 
    Directive documentation: [location](https://nginx.org/en/docs/http/ngx_http_core_module.html#location), [return](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html#return)
 
-For more information about configuring SSL/TLS, see the <span style="white-space: nowrap;">[NGINX Plus Admin Guide]({{< relref "/nginx/admin-guide/security-controls/terminating-ssl-http.md" >}})</span> and the reference documentation for the HTTP [SSL/TLS](https://nginx.org/en/docs/http/ngx_http_ssl_module.html)  module.
+For more information about configuring SSL/TLS, see the <span style="white-space: nowrap;">[NGINX Plus Admin Guide]({{< ref "/nginx/admin-guide/security-controls/terminating-ssl-http.md" >}})</span> and the reference documentation for the HTTP [SSL/TLS](https://nginx.org/en/docs/http/ngx_http_ssl_module.html)  module.
 
 <span id="load-balancing-basic"></span>
 ### Configuring Basic Load Balancing
 
-To configure load balancing, you first create a named _upstream group_, which lists the backend servers among which client requests are distributed. You then set up <span style="white-space: nowrap;">NGINX Open Source</span> or NGINX Plus as a reverse proxy and load balancer by referring to the upstream group in one or more `proxy_pass` directives.
+To configure load balancing, first create a named _upstream group_, which lists the backend servers among which client requests are distributed. Then set up <span style="white-space: nowrap;">NGINX Open Source</span> or NGINX Plus as a reverse proxy and load balancer by referring to the upstream group in one or more `proxy_pass` directives.
 
 1. Configure an upstream group called **tomcat** with two Tomcat application servers listening on port 8080, one on IP address 10.100.100.11 and the other on 10.100.100.12.
 
@@ -314,11 +314,11 @@ To configure load balancing, you first create a named _upstream group_, which li
 
 Note that these blocks handle only standard HTTPS traffic. If you want to load balance WebSocket traffic, you need to add another `location` block as described in [Configuring Proxy of WebSocket Traffic](#websocket).
 
-By default, <span style="white-space: nowrap;">NGINX Open Source</span> and NGINX Plus use the Round Robin algorithm for load balancing among servers. The load balancer runs through the list of servers in the upstream group in order, forwarding each new request to the next server. In our example, the first request goes to 10.100.100.11, the second to 10.100.100.12, the third to 10.100.100.11, and so on. For information about the other available load-balancing algorithms, see the <a href="../../../admin-guide/load-balancer/http-load-balancer/#choosing-a-load-balancing-method">NGINX Plus Admin Guide</a>.
+By default, <span style="white-space: nowrap;">NGINX Open Source</span> and NGINX Plus use the Round Robin algorithm for load balancing among servers, forwarding each new request to the next server in the upstream group. In our example, the first request goes to 10.100.100.11, the second to 10.100.100.12, the third to 10.100.100.11, and so on. For information about the other available load-balancing algorithms, see the <a href="../../../admin-guide/load-balancer/http-load-balancer/#choosing-a-load-balancing-method">NGINX Plus Admin Guide</a>.
 
 In NGINX Plus, you can also set up dynamic reconfiguration of an upstream group when the set of backend servers changes, using DNS or an API; see [Enabling Dynamic Reconfiguration of Upstream Groups](#reconfiguration).
 
-For more information about proxying and load balancing, see <span style="white-space: nowrap;">[NGINX Reverse Proxy]({{< relref "../../admin-guide/web-server/reverse-proxy.md" >}})</span> and <span style="white-space: nowrap;">[HTTP Load Balancing]({{< relref "../../admin-guide/load-balancer/http-load-balancer.md" >}})</span> in the NGINX Plus Admin Guide, and the reference documentation for the HTTP [Proxy](https://nginx.org/en/docs/http/ngx_http_proxy_module.html) and [Upstream](https://nginx.org/en/docs/http/ngx_http_upstream_module.html) modules.
+For more information about proxying and load balancing, see <span style="white-space: nowrap;">[NGINX Reverse Proxy]({{< ref "nginx/admin-guide/web-server/reverse-proxy.md" >}})</span> and <span style="white-space: nowrap;">[HTTP Load Balancing]({{< relref "../../admin-guide/load-balancer/http-load-balancer.md" >}})</span> in the NGINX Plus Admin Guide, and the reference documentation for the HTTP [Proxy](https://nginx.org/en/docs/http/ngx_http_proxy_module.html) and [Upstream](https://nginx.org/en/docs/http/ngx_http_upstream_module.html) modules.
 
 <span id="session-persistence-basic"></span>
 ### Configuring Basic Session Persistence
@@ -327,7 +327,7 @@ If your application requires basic session persistence (also known as _sticky se
 
 With the IP Hash algorithm, for each request a hash based on the client's IP address is calculated and associated with one of the upstream servers. All requests with that hash are sent to that server, thus establishing session persistence.
 
-If the client has an IPv6 address, the hash is based on the entire address. If it has an IPv4 address, the hash is based on just the first three octets of the address. This is designed to optimize for ISP clients that are assigned IP addresses dynamically from a subnetwork (/24) range. However, it is not effective in these cases:
+If the client has an IPv6 address, the hash is based on the entire address. For IPv4, the hash is based on the first three octets. This approach is optimized for ISP clients with dynamically assigned IP addresses from a subnetwork (/24) range. However, it is not effective in these cases:
 
 - The majority of the traffic to your site is coming from one forward proxy or from clients on the same /24 network, because in that case IP Hash maps all clients to the same server.
 
@@ -362,7 +362,7 @@ upstream tomcat {
 <span id="websocket"></span>
 ### Configuring Proxy of WebSocket Traffic
 
-The WebSocket protocol (defined in [RFC 6455](https://tools.ietf.org/html/rfc6455)) enables simultaneous two‑way communication over a single TCP connection between clients and servers, where each side can send data independently from the other. To initiate the WebSocket connection, the client sends a handshake request to the server, upgrading the request from standard HTTP to WebSocket. The connection is established if the handshake request passes validation, and the server accepts the request. When a WebSocket connection is created, a browser client can send data to a server while simultaneously receiving data from that server.
+The WebSocket protocol (defined in [RFC 6455](https://tools.ietf.org/html/rfc6455)) enables simultaneous two‑way communication over a single TCP connection between clients and servers, where each side can send data independently from the other. To initiate the WebSocket connection, the client sends a handshake request to the server, upgrading the request from standard HTTP to WebSocket. The connection is established if the handshake request is validated and accepted by the server. When a WebSocket connection is created, a browser client can send and receive data simultaneously from that server.
 
 Tomcat 8 does not enable WebSocket by default, but instructions for enabling it are available in the [Tomcat documentation](https://tomcat.apache.org/tomcat-8.0-doc/web-socket-howto.html). If you want to use <span style="white-space: nowrap;">NGINX Open Source</span> or NGINX Plus to proxy WebSocket traffic to your Tomcat application servers, add the directives discussed in this section.
 
@@ -690,16 +690,16 @@ server 10.100.100.11:8080 slow_start=30s;
 server 10.100.100.12:8080 slow_start=30s;
 ```
 
-For information about customizing health checks, see the [NGINX Plus Admin Guide]({{< relref "../../admin-guide/load-balancer/http-health-check.md" >}}).
+For information about customizing health checks, see the [NGINX Plus Admin Guide]({{< ref "nginx/admin-guide/load-balancer/http-health-check.md" >}}).
 
 <span id="live-activity-monitoring"></span>
 ### Enabling Live Activity Monitoring
 
-NGINX Plus includes a live activity monitoring interface that provides key load and performance metrics in real time, including TCP metrics in <span style="white-space: nowrap;">NGINX Plus R6</span> and later. Statistics are reported through a RESTful JSON interface, making it very easy to feed the data to a custom or third‑party monitoring tool. There is also a built‑in dashboard. Follow these instructions to deploy it.
+NGINX Plus includes a live activity monitoring interface that provides key load and real-time performance metrics, including TCP metrics in <span style="white-space: nowrap;">NGINX Plus R6</span> and later. Statistics are reported through a RESTful JSON interface, making it easy to integrate with custom or third‑party monitoring tools. There is also a built‑in dashboard. Follow these instructions to deploy it.
 
 <img src="/nginx/images/nginx-plus-dashboard-r19-overview.png" alt="Dashboard tab in NGINX Plus live activity monitoring dashboard" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
-For more information about live activity monitoring, see the [NGINX Plus Admin Guide]({{< relref "../../admin-guide/monitoring/live-activity-monitoring.md" >}}).
+For more information about live activity monitoring, see the [NGINX Plus Admin Guide]({{< ref "nginx/admin-guide/monitoring/live-activity-monitoring.md" >}}).
 
 The quickest way to configure the module and the built‑in dashboard is to download the sample configuration file from the NGINX website, and modify it as necessary. For more complete instructions, see [Live Activity Monitoring of NGINX Plus in 3 Simple Steps](https://www.nginx.com/blog/live-activity-monitoring-nginx-plus-3-simple-steps/).
 
@@ -776,7 +776,7 @@ When you reload the NGINX Plus configuration file, for example by running the <
 <span id="reconfiguration"></span>
 ### Enabling Dynamic Reconfiguration of Upstream Groups
 
-With NGINX Plus, you can reconfigure load‑balanced server groups (both HTTP and TCP/UDP) dynamically using either the Domain Name System (DNS) or the NGINX Plus API introduced in <span style="white-space: nowrap;">NGINX Plus R13</span>. See the NGINX Plus Admin Guide for a more detailed discussion of the <a href="../../../admin-guide/load-balancer/http-load-balancer/#resolve">DNS</a> and [API]({{< relref "../../admin-guide/load-balancer/dynamic-configuration-api.md" >}}) methods.
+With NGINX Plus, you can reconfigure load‑balanced server groups (both HTTP and TCP/UDP) dynamically using either the Domain Name System (DNS) or the NGINX Plus API introduced in <span style="white-space: nowrap;">NGINX Plus R13</span>. See the NGINX Plus Admin Guide for a more detailed discussion of the <a href="../../../admin-guide/load-balancer/http-load-balancer/#resolve">DNS</a> and [API]({{< ref "nginx/admin-guide/load-balancer/dynamic-configuration-api.md" >}}) methods.
 
 #### Configuring the API Method
 
@@ -963,7 +963,7 @@ server {
 ## Resources
 
 - [NGINX Plus Overview](https://www.nginx.com/products/nginx)
-- [NGINX Plus Admin Guide]({{< relref "/nginx/admin-guide/_index.md" >}})
+- [NGINX Plus Admin Guide]({{< ref "/nginx/admin-guide/_index.md" >}})
 - [NGINX Wiki](https://www.nginx.com/resources/wiki/)
 
 ### Revision History

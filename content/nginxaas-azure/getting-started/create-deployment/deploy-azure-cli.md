@@ -1,9 +1,10 @@
 ---
-title: "Deploy using the Azure CLI"
+title: Deploy using the Azure CLI
 weight: 200
-categories: ["tasks"]
 toc: true
 url: /nginxaas/azure/getting-started/create-deployment/deploy-azure-cli/
+type:
+- how-to
 ---
 
 ## Overview
@@ -12,7 +13,7 @@ The Azure CLI has an extension to be used for management of F5 NGINX as a Servic
 
 ## Prerequisites
 
-- Install [Azure CLI with NGINXaaS extension]({{< relref "/nginxaas-azure/client-tools/cli.md" >}})
+- Install [Azure CLI with NGINXaaS extension]({{< ref "/nginxaas-azure/client-tools/cli.md" >}})
 
 ## Create a deployment
 

@@ -1,0 +1,23 @@
+{
+   "ssg": "hugo",
+   "mode": "hosted",
+   "build": {
+     "install_command": "[ -f package.json ] && npm i",
+     "build_command": "hugo --destination public --baseURL / --noTimes",
+     "output_path": "public",
+     "environment_variables": [
+       {
+         "key": "HUGO_CACHEDIR",
+         "value": "/usr/local/__site/src/.hugo_cache/"
+       }
+     ],
+     "preserved_paths": "node_modules/,.hugo_cache/,resources/",
+     "preserve_output": false,
+     "include_git": true,
+     "manually_configure_urls": false,
+     "hugo_version": "0.134.3",
+     "ruby_version": "2.7.3",
+     "node_version": "18",
+     "deno_version": "1.40.2"
+   }
+}

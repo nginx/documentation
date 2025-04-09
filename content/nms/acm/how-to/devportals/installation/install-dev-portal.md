@@ -2,13 +2,11 @@
 description: Follow the steps in this guide to install or upgrade the Developer Portal
   for F5 NGINX Management Suite API Connectivity Manager.
 docs: DOCS-1214
-doctypes:
-- tutorial
-tags:
-- docs
 title: Install or Upgrade the Developer Portal
 toc: true
 weight: 10
+type:
+- tutorial
 ---
 
 ---
@@ -213,7 +211,7 @@ echo 'DB_PATH="/var/lib/nginx-devportal"' | sudo tee -a /etc/nginx-devportal/dev
 
 ## Secure Developer Portal API communication
 
-Depending on your [deployment pattern for the Developer Portal]({{< relref "/nms/acm/how-to/infrastructure/configure-devportal-backend.md" >}}), you may have either a single host installation(default) or a multi-host installation for high availability. We recommend using mTLS for the communication between the NGINX reverse proxy and the Developer Portal APIs to provide maximum security.
+Depending on your [deployment pattern for the Developer Portal]({{< ref "/nms/acm/how-to/infrastructure/configure-devportal-backend.md" >}}), you may have either a single host installation(default) or a multi-host installation for high availability. We recommend using mTLS for the communication between the NGINX reverse proxy and the Developer Portal APIs to provide maximum security.
 
 1. On the Developer Portal Service host or hosts, edit the Dev Portal configuration file located at `/etc/nginx-devportal/devportal.conf`
 1. Add the location of the server certificate and certificate key, as shown in the example below.
@@ -237,7 +235,7 @@ Depending on your [deployment pattern for the Developer Portal]({{< relref "/nms
    - The Developer Portal Cluster (Used for communication from users to the Developer Portal API)
    - The Developer Portal Internal Cluster (For communication from the API Connectivity Manager to your Devportal Portal API to publish and maintain information)
 {{< note >}}
-To add a TLS Backend Policy to both clusters. Follow the [TLS Policies]({{< relref "/nms/acm/how-to/policies/tls-policies.md#add-tls-listener" >}}) documentation.
+To add a TLS Backend Policy to both clusters. Follow the [TLS Policies]({{< ref "/nms/acm/how-to/policies/tls-policies.md#add-tls-listener" >}}) documentation.
 {{< /note >}}
 
 ---
@@ -263,4 +261,4 @@ Follow the steps below to make sure NGINX Management Suite host can verify the c
    sudo nginx -s reload
    ```
 
-1. Follow the steps in the [TLS Policies]({{< relref "/nms/acm/how-to/policies/tls-policies.md#/#tls-internal-cluster" >}}) documentation to add TLS policies that will enforce mTLS using these the correct client keys to connect to the NGINX Management Suite host.
+1. Follow the steps in the [TLS Policies]({{< ref "/nms/acm/how-to/policies/tls-policies.md#/#tls-internal-cluster" >}}) documentation to add TLS policies that will enforce mTLS using these the correct client keys to connect to the NGINX Management Suite host.

@@ -65,7 +65,7 @@ In this release, support for NGINX App Protect DoS is added to NGINX Plus R26.
             listen 8080;
             server_name myservice.com;
             location / {
-                app_protect_dos_monitor "myservice.com:8080/";  
+                app_protect_dos_monitor "myservice.com:8080/";
             }
         }
     ```
@@ -73,7 +73,7 @@ In this release, support for NGINX App Protect DoS is added to NGINX Plus R26.
 
 - gRPC and HTTP/2 protection require active monitoring of the protected service. The directive `app_protect_dos_monitor` is mandatory for these use cases, otherwise, the attack will not be detected.
 
-- [TLS fingerprint]({{< relref "/nap-dos/directives-and-policy/learn-about-directives-and-policy.md#policy-directive-app_protect_dos_policy_file" >}}) feature is not used in CentOS 7.4 and RHEL 7 / UBI 7 due to the old OpenSSL version. The required OpenSSL version is 1.1.1 or higher.
+- [TLS fingerprint]({{< ref "/nap-dos/directives-and-policy/learn-about-directives-and-policy.md#policy-directive-app_protect_dos_policy_file" >}}) feature is not used in CentOS 7.4 and RHEL 7 / UBI 7 due to the old OpenSSL version. The required OpenSSL version is 1.1.1 or higher.
 
 - Slow POST attack always mitigates with block action while other types of attacks can also be mitigated with redirection or JS challenges.
 

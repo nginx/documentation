@@ -2,18 +2,18 @@
 description: Understand the NGINX processes that handle traffic, and how to control
   them at runtime.
 docs: DOCS-379
-doctypes:
-- task
 title: Controlling NGINX Processes at Runtime
 toc: true
 weight: 100
+type:
+- how-to
 ---
 
 This section describes the processes that NGINX starts at run time and how to control them.
 
 ## Master and Worker Processes
 
-NGINX has one master process and one or more worker processes. If [caching]({{< relref "../content-cache/content-caching.md" >}}) is enabled, the cache loader and cache manager processes also run at startup.
+NGINX has one master process and one or more worker processes. If [caching]({{< ref "nginx/admin-guide/content-cache/content-caching.md" >}}) is enabled, the cache loader and cache manager processes also run at startup.
 
 The main purpose of the master process is to read and evaluate configuration files, as well as maintain the worker processes.
 

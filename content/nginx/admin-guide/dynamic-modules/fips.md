@@ -2,11 +2,11 @@
 description: Verify compliance with [FIPS 140-2](https://csrc.nist.gov/publications/detail/fips/140/2/final)
   security requirements for cryptographic modules.
 docs: DOCS-385
-doctypes:
-- task
 title: FIPS Status Check
 toc: true
 weight: 100
+type:
+- how-to
 ---
 
 For F5 NGINX Plus, the cryptographic boundary includes all functionality that is implemented by the [`http_ssl`](https://nginx.org/en/docs/http/ngx_http_ssl_module.html), [`http_v2`](https://nginx.org/en/docs/http/ngx_http_v2_module.html), [`stream_ssl`](https://nginx.org/en/docs/stream/ngx_stream_ssl_module.html), and [`mail_ssl`](https://nginx.org/en/docs/mail/ngx_mail_ssl_module.html) modules. These modules implement SSL and TLS operations for inbound and outbound connections which use HTTP, HTTP/2, TCP, and mail protocols.
@@ -15,7 +15,7 @@ For F5 NGINX Plus, the cryptographic boundary includes all functionality that is
 <span id="install"></span>
 ## Installation
 
-1. Check the [Technical Specifications]({{< relref "../../technical-specs.md" >}}) page to verify that the module is supported by your operating system.
+1. Check the [Technical Specifications]({{< ref "nginx/technical-specs.md" >}}) page to verify that the module is supported by your operating system.
 
 2. Install the FIPS module package `nginx-plus-module-fips-check`.
 
@@ -83,6 +83,6 @@ After installation you will need to enable and configure the module in NGINX Plu
 
 - [NGINX FIPS Status Check Module Reference](https://github.com/ogarrett/nginx-fips-check-module)
 
-- [NGINX Dynamic Modules]({{< relref "dynamic-modules.md" >}})
+- [NGINX Dynamic Modules]({{< ref "dynamic-modules.md" >}})
 
-- [NGINX Plus Technical Specifications]({{< relref "../../technical-specs.md" >}})
+- [NGINX Plus Technical Specifications]({{< ref "nginx/technical-specs.md" >}})

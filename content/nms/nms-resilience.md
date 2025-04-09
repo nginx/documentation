@@ -2,18 +2,16 @@
 description: F5 NGINX Management Suite installed on Kubernetes provides control plane
   resilience through fault tolerance and automated recovery.
 docs: DOCS-1161
-doctypes:
-- concept
-tags:
-- docs
 title: NGINX Management Suite Resiliency
 toc: true
 weight: 30
+type:
+- concept
 ---
 
 ## Overview
 
-The F5 NGINX Management Suite platform includes four services (described below) that work together to monitor NGINX data plane instances. These platform services feature self-monitoring capabilities, allowing them to detect unresolvable issues and shut down automatically. When you [install NGINX Management Suite on Kubernetes]({{< relref "/nim/deploy/kubernetes/deploy-using-helm.md">}}), you get the benefits of fault tolerance and automated recovery: when a platform service fails, Kubernetes will create new pods and restart the affected services without disruption to the data plane.
+The F5 NGINX Management Suite platform includes four services (described below) that work together to monitor NGINX data plane instances. These platform services feature self-monitoring capabilities, allowing them to detect unresolvable issues and shut down automatically. When you [install NGINX Management Suite on Kubernetes]({{< ref "/nim/deploy/kubernetes/deploy-using-helm.md">}}), you get the benefits of fault tolerance and automated recovery: when a platform service fails, Kubernetes will create new pods and restart the affected services without disruption to the data plane.
 
 ---
 
@@ -29,7 +27,7 @@ As the control plane for NGINX Open Source and NGINX Plus instances, the NGINX M
 
 ### Platform Services
 
-NGINX Management Suite includes the following four platform services that work together to monitor and manage NGINX data plane instances through APIs and web dashboards. When you [install NGINX Management Suite on Kubernetes]({{< relref "/nim/deploy/kubernetes/deploy-using-helm.md" >}}), these platform services are deployed as [Kubernetes Deployments](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/) and are monitored by the [Kubernetes control plane](https://kubernetes.io/docs/concepts/overview/components/#control-plane-components) to ensure consistent and reliable operation.
+NGINX Management Suite includes the following four platform services that work together to monitor and manage NGINX data plane instances through APIs and web dashboards. When you [install NGINX Management Suite on Kubernetes]({{< ref "/nim/deploy/kubernetes/deploy-using-helm.md" >}}), these platform services are deployed as [Kubernetes Deployments](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/) and are monitored by the [Kubernetes control plane](https://kubernetes.io/docs/concepts/overview/components/#control-plane-components) to ensure consistent and reliable operation.
 
 {{< include "nms/services/platform-services.md" >}}
 
@@ -75,7 +73,7 @@ In an environment with the following specifications, we observed the following r
 
 - NGINX Management Suite 2.9.0
 
-- ClickHouse pod as defined in the [NGINX Management Suite helm chart]({{< relref "/nim/deploy/kubernetes/deploy-using-helm.md">}})
+- ClickHouse pod as defined in the [NGINX Management Suite helm chart]({{< ref "/nim/deploy/kubernetes/deploy-using-helm.md">}})
 
 ### Recovery Times
 
@@ -130,4 +128,4 @@ When integrating NGINX Management Suite into your existing Business Continuity a
 
 ### Install NGINX Management Suite on Kubernetes
 
-For resilient deployments, we recommend [installing NGINX Management Suite on Kubernetes]({{< relref "/nim/deploy/kubernetes/deploy-using-helm.md" >}}). With Kubernetes, you'll get the benefits of persistent volumes and automated recovery for a reliable control plane.
+For resilient deployments, we recommend [installing NGINX Management Suite on Kubernetes]({{< ref "/nim/deploy/kubernetes/deploy-using-helm.md" >}}). With Kubernetes, you'll get the benefits of persistent volumes and automated recovery for a reliable control plane.

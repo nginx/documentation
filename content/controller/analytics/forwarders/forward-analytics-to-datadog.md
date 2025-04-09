@@ -1,13 +1,11 @@
 ---
 description: How to forward Analytics data to Datadog.
 docs: DOCS-531
-doctypes:
-- tutorial
-tags:
-- docs
 title: Forward Analytics Data to Datadog
 toc: true
 weight: 100
+type:
+- tutorial
 ---
 
 ## Overview
@@ -18,7 +16,7 @@ Follow the steps in this guide to set up an F5 NGINX Controller Integration that
 
 This guide assumes that you are already an active Datadog user. If you haven't already done so, you will need to [install and configure Datadog](https://docs.datadoghq.com/) before you proceed.
 
-You will also need to [Create an Integration]({{< relref "/controller/platform/integrations/datadog-integration.md" >}}) for your Datadog forwarder.
+You will also need to [Create an Integration]({{< ref "/controller/platform/integrations/datadog-integration.md" >}}) for your Datadog forwarder.
 
 ## Create a Forwarder
 
@@ -47,7 +45,7 @@ Take the following steps to create a Forwarder for Datadog:
 
 {{< important >}}
 
-Each metric will be prefixed with a common namespace -- such as "nginx-controller" -- before it is sent to Datadog. This prefix is used by Datadog only and is not applied to any of the internal NGINX Controller metrics. Refer to the [metrics catalog]({{< relref "/controller/analytics/catalogs/metrics.md" >}}) for the full list of valid metric names.
+Each metric will be prefixed with a common namespace -- such as "nginx-controller" -- before it is sent to Datadog. This prefix is used by Datadog only and is not applied to any of the internal NGINX Controller metrics. Refer to the [metrics catalog]({{< ref "/controller/analytics/catalogs/metrics.md" >}}) for the full list of valid metric names.
 
 For events, the "nginx-controller" namespace is added to the ["ddsource" key](https://docs.datadoghq.com/api/v1/logs/#send-logs).
 
@@ -57,7 +55,7 @@ NGINX Controller events are sent to Datadog as logs and NGINX Controller dimensi
 
 {{< see-also >}}
 
-See the [NGINX Controller Metrics]({{< relref "/controller/analytics/metrics/_index.md" >}}) docs for more information.
+See the [NGINX Controller Metrics]({{< ref "/controller/analytics/metrics/_index.md" >}}) docs for more information.
 
 {{< /see-also >}}
 
@@ -70,7 +68,7 @@ Soon after you create the Datadog forwarder, you can view the selected metrics i
 
 ## What's Next
 
-- Refer to [Troubleshooting Forwaders]({{< relref "/controller/support/troubleshooting-forwarders.md" >}}) for tips on resolving common issues.
+- Refer to [Troubleshooting Forwaders]({{< ref "/controller/support/troubleshooting-forwarders.md" >}}) for tips on resolving common issues.
 
 {{< versions "3.8" "latest" "ctrlvers" >}}
 {{< versions "3.18" "latest" "apimvers" >}}

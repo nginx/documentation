@@ -11,7 +11,7 @@ June 28, 2022
 
 In this release, support for NGINX App Protect WAF is added to NGINX Plus R27.
 
-This release includes updated signatures for the [Anti Automation]({{< relref "/nap-waf/v4/configuration-guide/configuration.md#anti-automation-bot-mitigation" >}}) (bot defense) feature as follows:
+This release includes updated signatures for the [Anti Automation]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#anti-automation-bot-mitigation" >}}) (bot defense) feature as follows:
 
 - Added the following HTTP Library bot signatures: req
 - Added the following Exploit Tool bot signatures: spring4shell-scan, DIVD Vulnerability Scanner, JNDI Exploit Bot, D-Link DNS Change Exploiter
@@ -21,7 +21,7 @@ This release includes updated signatures for the [Anti Automation]({{< relref "/
 
 ### New Features
 
-- [Oracle Linux 8.1+ Support]({{< relref "/nap-waf/v4/admin-guide/install.md#oracle-linux-81-installation" >}})
+- [Oracle Linux 8.1+ Support]({{< ref "/nap-waf/v4/admin-guide/install.md#oracle-linux-81-installation" >}})
 
 ### Supported Packages
 
@@ -64,5 +64,5 @@ This release includes updated signatures for the [Anti Automation]({{< relref "/
 ### **Important Note**
 
 When upgrading the NGINX App Protect WAF deployments on Virtual Machines (VM), where the upgrade includes a NGINX Plus release upgrade as well, customers might witness some error messages about the upgrade failure.
-Customers are advised to ignore these messages and continue with the [upgrade procedure]({{< relref "/nap-waf/v4/admin-guide/install.md#upgrading-app-protect" >}}) as described in the NGINX App Protect WAF Admin guide.
+Customers are advised to ignore these messages and continue with the [upgrade procedure]({{< ref "/nap-waf/v4/admin-guide/install.md#upgrading-app-protect" >}}) as described in the NGINX App Protect WAF Admin guide.
 Additional NGINX restart might be required in order to complete the upgrade procedure.

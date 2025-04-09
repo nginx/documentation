@@ -1,11 +1,11 @@
 ---
 description: F5 NGINX App Protect WAF security features.
 docs: DOCS-647
-doctypes:
-- task
 title: NGINX App Protect WAF Configuration Guide
 toc: true
 weight: 200
+type:
+- how-to
 ---
 
 ## Overview
@@ -258,7 +258,7 @@ http {
 
 ### apreload Events
 
-apreload events use the same format as the current operation log events written in the NGINX error log, namely: `configuration_load_success` or `configuration_load_failure` with the details in JSON format. Refer to the [Operation logs]({{< relref "/nap-waf/v4/logging-overview/operation-logs.md" >}}) for more details.
+apreload events use the same format as the current operation log events written in the NGINX error log, namely: `configuration_load_success` or `configuration_load_failure` with the details in JSON format. Refer to the [Operation logs]({{< ref "/nap-waf/v4/logging-overview/operation-logs.md" >}}) for more details.
 
 {{< note >}}
 Note that if any of the configuration files are invalid, apreload will discover that and return the proper error message in the `configuration_load_failure` event. The Enforcer continues to run with the previous configuration.{{< /note >}}
@@ -425,7 +425,7 @@ It contains violations related to OpenAPI set to blocking (enforced).
 
 {{< include "/nap-waf/concept/graphql-profile.md" >}}
 
-{{< note >}} For GraphQL profile default values and GraphQL violations reference, see NGINX App Protect WAF [Declarative Policy guide.]({{< relref "/nap-waf/v4/declarative-policy/policy.md" >}})  {{< /note >}}
+{{< note >}} For GraphQL profile default values and GraphQL violations reference, see NGINX App Protect WAF [Declarative Policy guide.]({{< ref "/nap-waf/v4/declarative-policy/policy.md" >}})  {{< /note >}}
 
 ### Define URL settings
 {{< include "nap-waf/config/common/graphql-define-url-settings.md" >}}
@@ -445,7 +445,7 @@ It contains violations related to OpenAPI set to blocking (enforced).
 
 ### Condition Syntax Usage
 
-For the full reference of Override Rules condition syntax and usage see the NGINX App Protect WAF [Declarative Policy guide]({{< relref "/nap-waf/v4/declarative-policy/policy.md" >}}/#policy/override-rules).
+For the full reference of Override Rules condition syntax and usage see the NGINX App Protect WAF [Declarative Policy guide]({{< ref "/nap-waf/v4/declarative-policy/policy.md" >}}/#policy/override-rules).
 
 ### First Match Principle
 
@@ -555,7 +555,7 @@ Refer to the following example where all access profile properties are configure
 }
 ```
 
-{{< note >}} For access profile default values and their related field names, see NGINX App Protect WAF [Declarative Policy guide]({{< relref "/nap-waf/v4/declarative-policy/policy.md" >}}). {{< /note >}}
+{{< note >}} For access profile default values and their related field names, see NGINX App Protect WAF [Declarative Policy guide]({{< ref "/nap-waf/v4/declarative-policy/policy.md" >}}). {{< /note >}}
 
 #### Access Profile in URL Settings
 
@@ -603,13 +603,13 @@ Here is an example of declarative policy using an `authorizationRules` entity un
 
 The `authorizationRules` use a Boolean expression to articulate the conditions for granting access to the URL. The conditions use the same syntax as in [Policy Override Rules](#override-rules) with one additional attribute **"claims"**.
 #### Claims Attribute
-The newly introduced attribute "claims" is a mapping of JSON paths for claims from the JWT to their respective values. Only structure nesting is supported using the "." notation. 
+The newly introduced attribute "claims" is a mapping of JSON paths for claims from the JWT to their respective values. Only structure nesting is supported using the "." notation.
 A few points to remember regarding JWT claims:
 - Please note that at the moment, accessing individual cells within JSON arrays isn't possible. Instead, the entire array gets serialized as a string, and its elements can be evaluated using string operators like "contains".
 - While it's technically feasible to consolidate all conditions into one with "and" between them, it's not recommended. Dividing them into multiple conditions enhances the readability and clarity of the policy, particularly when explaining the reasons for authorization failure.
-For the full reference of authorizationRules condition syntax and usage see the NGINX App Protect WAF [Declarative Policy guide]({{< relref "nap-waf/v4/declarative-policy/policy.md" >}}/#policy/override-rules).
+For the full reference of authorizationRules condition syntax and usage see the NGINX App Protect WAF [Declarative Policy guide]({{< ref "nap-waf/v4/declarative-policy/policy.md" >}}/#policy/override-rules).
 See below example for JWT claims:
- 
+
 ```json
 {
     "scope": "top-level:read",
@@ -623,15 +623,15 @@ See below example for JWT claims:
         "state": "NY",
         "city": "New York",
         "street": "888 38th W"
-    }      
+    }
 }
 ```
 then the claims can be:
 ```
-claims['scope'] = "top-level:read" 
+claims['scope'] = "top-level:read"
 claims['roles'] = "["inventory-manager", "price-editor]" # the whole array is presented as a string
-claims['address.country'] = "US" 
-claims['company'] = null # does not exist 
+claims['address.country'] = "US"
+claims['company'] = null # does not exist
 claims['address'] = "{ \"address\": { .... } }" # JSON structs can be accessed using the dot "." notation
 ```
 
@@ -656,11 +656,11 @@ claims['address'] = "{ \"address\": { .... } }" # JSON structs can be accessed u
 ### Overview
 
 Brute force attacks are attempts to break in to secured areas of a web application by trying exhaustive,
-systematic, username/password combinations to discover legitimate authentication credentials. 
-To prevent brute force attacks, NGINX App Protect WAF monitors IP addresses, usernames, and the number of failed login attempts beyond a maximum threshold. 
-When brute force patterns are detected, the NGINX App Protect WAF policy either trigger an alarm or block the attack if the failed 
+systematic, username/password combinations to discover legitimate authentication credentials.
+To prevent brute force attacks, NGINX App Protect WAF monitors IP addresses, usernames, and the number of failed login attempts beyond a maximum threshold.
+When brute force patterns are detected, the NGINX App Protect WAF policy either trigger an alarm or block the attack if the failed
 login attempts reached a maximum threshold for a specific username or coming from a specific IP address.
-To enable brute force protection, at least one login page must be created. 
+To enable brute force protection, at least one login page must be created.
 The login page entity is created separately and is not included in the brute force configuration block.
 
 ---
@@ -685,9 +685,9 @@ A login page specifies the login URL that users must pass through to get authent
                "passwordParameterName": "password"
             }
         ]
-``` 
-             
-{{< note >}} For further configuration details, see NGINX App Protect WAF Declarative Policy Guide [Declarative Policy guide]({{< relref "/nap-waf/v4/declarative-policy/policy/#policy/login-pages" >}}). {{< /note >}}
+```
+
+{{< note >}} For further configuration details, see NGINX App Protect WAF Declarative Policy Guide [Declarative Policy guide]({{< ref "/nap-waf/v4/declarative-policy/policy/#policy/login-pages" >}}). {{< /note >}}
 
 ---
 ### Brute force policy example
@@ -723,7 +723,7 @@ Example1: A single brute force configuration is applied universally to all login
 }
 ```
 
-Example2: Different brute force configurations can be defined for individual login pages, 
+Example2: Different brute force configurations can be defined for individual login pages,
           with each configuration referencing a specific login page.
 ```json
 {
@@ -760,7 +760,7 @@ Example2: Different brute force configurations can be defined for individual log
     }
 }
 ```
-{{< note >}} For further configuration details, see NGINX App Protect WAF Declarative Policy Guide [Declarative Policy guide]({{< relref "/nap-waf/v4/declarative-policy/policy/#policy/brute-force-attack-preventions" >}}). {{< /note >}}
+{{< note >}} For further configuration details, see NGINX App Protect WAF Declarative Policy Guide [Declarative Policy guide]({{< ref "/nap-waf/v4/declarative-policy/policy/#policy/brute-force-attack-preventions" >}}). {{< /note >}}
 
 ## Custom Dimensions Log Entries
 
@@ -1170,7 +1170,7 @@ Note that if the script is run without the required switches and their correspon
 
 The Attack Signature Report tool `/opt/app_protect/bin/get-signatures` scans the system for attack signatures and generates a JSON report file that includes information about these signatures.
 
-This tool can be deployed and used independently of the NGINX App Protect WAF deployment, by [installing the compiler package as a standalone]({{< relref "/nap-waf/v4/admin-guide/install#converter-tool-docker-image" >}}), in order to generate a report about either the default signatures included in the package, or signatures included in a signature update package. The latter can be obtained by running the tool on a standalone compiler deployment, after installing a new signature update package on top of the compiler package. These reports can then be compared for greater clarity regarding signature updates.
+This tool can be deployed and used independently of the NGINX App Protect WAF deployment, by [installing the compiler package as a standalone]({{< ref "/nap-waf/v4/admin-guide/install#converter-tool-docker-image" >}}), in order to generate a report about either the default signatures included in the package, or signatures included in a signature update package. The latter can be obtained by running the tool on a standalone compiler deployment, after installing a new signature update package on top of the compiler package. These reports can then be compared for greater clarity regarding signature updates.
 
 In addition, this report can be used for reporting or troubleshooting purposes or for auditing/tracking changes for signature updates on the NGINX App Protect WAF deployment itself.
 
@@ -1311,7 +1311,7 @@ Note that if the script is run without the required switches and their correspon
 
 ## Security Logs
 
-Refer to [Logging Overview]({{< relref "/nap-waf/v4/logging-overview/security-log.md" >}}) section for more details on Security Logs.
+Refer to [Logging Overview]({{< ref "/nap-waf/v4/logging-overview/security-log.md" >}}) section for more details on Security Logs.
 
 ## NGINX App Protect WAF Terminology
 

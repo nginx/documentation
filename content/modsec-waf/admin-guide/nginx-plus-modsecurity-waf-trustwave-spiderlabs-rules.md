@@ -20,9 +20,9 @@ This chapter explains how to configure the Commercial ModSecurity Rules from Tru
 
 The Commercial ModSecurity Rules from Trustwave SpiderLabs (which we refer to as the Trustwave Rules in this chapter) complement the [Open Web Application Security Project Core Rule Set](https://www.owasp.org/index.php/Category:OWASP_ModSecurity_Core_Rule_Set_Project) (OWASP CRS) with protection against specific attacks for many common applications including ASP.NET, Joomla, and WordPress. Additionally, the Trustwave SpiderLabs Rules provide IP reputation along with other capabilities, and are updated daily.
 
-This chapter builds on the basic configuration created in the [Installing the NGINX ModSecurity WAF]({{< relref "nginx-plus-modsecurity-waf-installation-logging.md" >}}) chapter, showing how to configure the Trustwave Rules to protect the demo web application configured in that chapter.
+This chapter builds on the basic configuration created in the [Installing the NGINX ModSecurity WAF]({{< ref "nginx-plus-modsecurity-waf-installation-logging.md" >}}) chapter, showing how to configure the Trustwave Rules to protect the demo web application configured in that chapter.
 
-The NGINX ModSecurity WAF also supports the OWASP CRS as described in [Using the OWASP CRS with the NGINX ModSecurity WAF]({{< relref "nginx-plus-modsecurity-waf-owasp-crs.md" >}}).
+The NGINX ModSecurity WAF also supports the OWASP CRS as described in [Using the OWASP CRS with the NGINX ModSecurity WAF]({{< ref "nginx-plus-modsecurity-waf-owasp-crs.md" >}}).
 
 <span id="waf-trustwave_prerequisites"></span>
 
@@ -32,7 +32,7 @@ The NGINX ModSecurity WAF is available to NGINX Plus customers as a downloaded d
 
 You must purchase the Trustwave Rules directly from Trustwave SpiderLabs.
 
-As noted above, this chapter builds on [Installing the NGINX ModSecurity WAF]({{< relref "nginx-plus-modsecurity-waf-installation-logging.md" >}}) and assumes you have followed the instructions there to configure both the demo application and NGINX Plus as a reverse proxy.
+As noted above, this chapter builds on [Installing the NGINX ModSecurity WAF]({{< ref "nginx-plus-modsecurity-waf-installation-logging.md" >}}) and assumes you have followed the instructions there to configure both the demo application and NGINX Plus as a reverse proxy.
 
 <span id="waf-trustwave_configure"></span>
 
@@ -66,7 +66,7 @@ To configure the Trustwave Rules for the demo application, perform the followin
 
     Here, the `SecRemoteRules` directive configures the NGINX ModSecurity WAF to download rules from the remote server, represented by the `<url>`, using the provided `<license‑key>`.
 
-    The Wizard does not provide an interface for adding the directive, so you need to edit **/etc/nginx/modsec/main.conf** manually and add the `SecRemoteRules` directive presented by the Wizard (we created the **main.conf** file in Step 4 of [Protecting the Demo Web Application]({{< relref "nginx-plus-modsecurity-waf-installation-logging.md#protecting-the-demo-web-application" >}}) in the installation chapter). Comment out any other rules that might already exist in the file, such as the `SecRule` directive defined in that step.
+    The Wizard does not provide an interface for adding the directive, so you need to edit **/etc/nginx/modsec/main.conf** manually and add the `SecRemoteRules` directive presented by the Wizard (we created the **main.conf** file in Step 4 of [Protecting the Demo Web Application]({{< ref "nginx-plus-modsecurity-waf-installation-logging.md#protecting-the-demo-web-application" >}}) in the installation chapter). Comment out any other rules that might already exist in the file, such as the `SecRule` directive defined in that step.
 
     ```nginx
     # Include the recommended configuration
@@ -97,7 +97,7 @@ To configure the Trustwave Rules for the demo application, perform the followin
 
 ### Testing the Rules
 
-In the [Using the OWASP CRS with the NGINX ModSecurity WAF]({{< relref "nginx-plus-modsecurity-waf-owasp-crs.md" >}}) chapter, we use the Nikto scanning tool to test how the CRS blocks malicious requests. You cannot use a similar approach to test the Trustwave Rules, because they are specific rules that do not detect the generic attacks sent by Nikto.
+In the [Using the OWASP CRS with the NGINX ModSecurity WAF]({{< ref "nginx-plus-modsecurity-waf-owasp-crs.md" >}}) chapter, we use the Nikto scanning tool to test how the CRS blocks malicious requests. You cannot use a similar approach to test the Trustwave Rules, because they are specific rules that do not detect the generic attacks sent by Nikto.
 
 The Dashboard describes each Trustwave ModSecurity Rule. You can use that information to test how the rule behaves, by constructing and sending NGINX Plus malicious requests that trigger the rules.
 
@@ -116,7 +116,7 @@ Currently, the only way to download the Trustwave Rules is with the `SecRemoteRu
 
 - Downloading the rules takes some time, which delays the reload or restart operation.
 
-- Each `SecRemoteRules` definition leads to a separate download, further increasing the reload/restart time. To avoid that, try to minimize the number of `SecRemoteRules` definitions. Note that even if you define `SecRemoteRules` only in one file (such as the **/etc/nginx/modsec/main.conf** file modified in [Step 3](#waf-trustwave_configure-your-server) above), each time you read this file into NGINX Plus configuration using the [`modsecurity_rules_file`](https://github.com/SpiderLabs/ModSecurity-nginx#modsecurity_rules_file) directive (as in the **/etc/nginx/conf.d/proxy.conf** file created in [Configuring NGINX Plus as a Reverse Proxy]({{< relref "nginx-plus-modsecurity-waf-installation-logging/#configuring-nginx-plus-as-a-reverse-proxy" >}}) in the installation chapter), the NGINX ModSecurity WAF treats it as a separate definition.
+- Each `SecRemoteRules` definition leads to a separate download, further increasing the reload/restart time. To avoid that, try to minimize the number of `SecRemoteRules` definitions. Note that even if you define `SecRemoteRules` only in one file (such as the **/etc/nginx/modsec/main.conf** file modified in [Step 3](#waf-trustwave_configure-your-server) above), each time you read this file into NGINX Plus configuration using the [`modsecurity_rules_file`](https://github.com/SpiderLabs/ModSecurity-nginx#modsecurity_rules_file) directive (as in the **/etc/nginx/conf.d/proxy.conf** file created in [Configuring NGINX Plus as a Reverse Proxy]({{< ref "nginx-plus-modsecurity-waf-installation-logging/#configuring-nginx-plus-as-a-reverse-proxy" >}}) in the installation chapter), the NGINX ModSecurity WAF treats it as a separate definition.
 
 - Merging rules from different NGINX Plus configuration contexts ([`http {}`](https://nginx.org/en/docs/http/ngx_http_core_module.html#http), [`server {}`](https://nginx.org/en/docs/http/ngx_http_core_module.html#server), [`location {}`](http://nginx.org/en/docs/http/ngx_http_core_module.html#location)) also adds time to the reload/restart operation and consumes a lot of CPU, especially for a huge rule set such as the Trustwave Rules. In addition to minimizing the number of `SecRemoteRules` definitions, try to include all rule definitions in a single context.
 
@@ -134,7 +134,7 @@ Inspecting the response body is not supported, so rules that do so have no effec
 
 We configured Commercial ModSecurity Rules from Trustwave SpiderLabs to protect our application against WordPress‑related attacks. We also reviewed caveats for the `SecRemoteRules` directive.
 
-For information about using the OWASP CRS with the NGINX ModSecurity WAF, see [Using the OWASP CRS with the NGINX ModSecurity WAF]({{< relref "nginx-plus-modsecurity-waf-owasp-crs.md" >}}).
+For information about using the OWASP CRS with the NGINX ModSecurity WAF, see [Using the OWASP CRS with the NGINX ModSecurity WAF]({{< ref "nginx-plus-modsecurity-waf-owasp-crs.md" >}}).
 
 <span id="waf-trustwave_resources"></span>
 

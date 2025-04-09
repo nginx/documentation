@@ -3,17 +3,17 @@ description: Integrate [JavaScript-like](https://nginx.org/en/docs/njs/) code in
   the NGINX event-processing model for HTTP or TDP/UDP, with the NGINX njs module,
   supported by NGINX, Inc.
 docs: DOCS-393
-doctypes:
-- task
 title: njs Scripting Language
 toc: true
 weight: 100
+type:
+- how-to
 ---
 
 <span id="install"></span>
 ## Installation
 
-1. Check the [Technical Specifications]({{< relref "../../technical-specs.md" >}}) page to verify that the module is supported by your operating system.
+1. Check the [Technical Specifications]({{< ref "nginx/technical-specs.md" >}}) page to verify that the module is supported by your operating system.
 
 2. Install the njs module package `nginx-plus-module-njs`.
 
@@ -81,6 +81,6 @@ After installation you will need to enable and configure the module in F5 NGINX 
 
 - [njs Scripting Language Reference and Examples](https://nginx.org/en/docs/njs/)
 
-- [NGINX Dynamic Modules]({{< relref "dynamic-modules.md" >}})
+- [NGINX Dynamic Modules]({{< ref "dynamic-modules.md" >}})
 
-- [NGINX Plus Technical Specifications]({{< relref "../../technical-specs.md" >}})
+- [NGINX Plus Technical Specifications]({{< ref "nginx/technical-specs.md" >}})

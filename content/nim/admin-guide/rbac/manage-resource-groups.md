@@ -1,23 +1,21 @@
 ---
 docs: DOCS-1271
-doctypes:
-- tutorial
-tags:
-- docs
 title: Manage resource groups
 toc: true
 weight: 300
+type:
+- tutorial
 ---
 
 ## Overview
 
-Resource groups are containers that help you manage multiple resources collectively, such as instances, instance groups, and certificates. By using resource groups, you can assign RBAC (Role-Based Access Control) permissions to multiple resources as a single entity. This provides a more flexible way of managing resources compared to [Instance Groups]({{< relref "/nim/nginx-instances/manage-instance-groups.md" >}}), where all instances share the same configuration. Resource groups don’t have this limitation and allow you to manage various resources under one group for better control.
+Resource groups are containers that help you manage multiple resources collectively, such as instances, instance groups, and certificates. By using resource groups, you can assign RBAC (Role-Based Access Control) permissions to multiple resources as a single entity. This provides a more flexible way of managing resources compared to [Instance Groups]({{< ref "/nim/nginx-instances/manage-instance-groups.md" >}}), where all instances share the same configuration. Resource groups don’t have this limitation and allow you to manage various resources under one group for better control.
 
 ## Before you begin
 
 To complete the steps in this guide, ensure you have:
 
-- A running version of [NGINX Instance Manager]({{< relref "/nim/deploy/_index.md" >}}).
+- A running version of [NGINX Instance Manager]({{< ref "/nim/deploy/_index.md" >}}).
 - One or more registered NGINX data plane instances.
 
 {{< include "/nim/how-to-access-api-docs.md" >}}

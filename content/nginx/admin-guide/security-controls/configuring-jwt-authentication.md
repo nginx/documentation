@@ -2,11 +2,11 @@
 description: This article explains how to control authentication of your web resources
   using JWT authentication.
 docs: DOCS-429
-doctypes:
-- task
 title: Setting up JWT Authentication
 toc: true
 weight: 500
+type:
+- how-to
 ---
 
 <span id="intro"></span>
@@ -17,12 +17,12 @@ With F5 NGINX Plus it is possible to control access to your resources using JWT 
 <span id="prereq"></span>
 ## Prerequisites
 
-- NGINX Plus <a href="../../../releases/#r10">Release 10</a> (R10) for native [JWT support](https://www.nginx.com/blog/nginx-plus-r10-released/#r10-jwt)
-- NGINX Plus <a href="../../../releases/#r14">Release 14</a> (R14) for access to [nested JWT claims and longer signing keys](https://www.nginx.com/blog/nginx-plus-r14-released/#jwt)
-- NGINX Plus <a href="../../../releases/#r17">Release 17</a> (R17) for [getting JSON Web keys from a remote location](https://www.nginx.com/blog/nginx-plus-r17-released/#r17-openid)
-- NGINX Plus <a href="../../../releases/#r24">Release 24</a> (R24) for support of encrypted tokens (JWE)
-- NGINX Plus <a href="../../../releases/#r25">Release 25</a> (R25) for support of Nested JWT, multiple sources of JSON Web keys, condition-based JWT authentication
-- NGINX Plus <a href="../../../releases/#r26">Release 26</a> (R26) for support of [JWT key caching](https://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html#auth_jwt_key_cache)
+- NGINX Plus [Release 10]({{< ref "nginx/releases.md#r10" >}}) (R10) for native [JWT support](https://www.nginx.com/blog/nginx-plus-r10-released/#r10-jwt)
+- NGINX Plus [Release 14]({{< ref "nginx/releases.md#r14" >}}) for access to [nested JWT claims and longer signing keys](https://www.nginx.com/blog/nginx-plus-r14-released/#jwt)
+- NGINX Plus [Release 17]({{< ref "nginx/releases.md#r17" >}}) for [getting JSON Web keys from a remote location](https://www.nginx.com/blog/nginx-plus-r17-released/#r17-openid)
+- NGINX Plus [Release 24]({{< ref "nginx/releases.md#r24" >}}) (R24) for support of encrypted tokens (JWE)
+- NGINX Plus [Release 25]({{< ref "nginx/releases.md#r25" >}}) (R25) for support of Nested JWT, multiple sources of JSON Web keys, condition-based JWT authentication
+- NGINX Plus [Release 26]({{< ref "nginx/releases.md#r26" >}}) (R26) for support of [JWT key caching](https://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html#auth_jwt_key_cache)
 - An identity provider (IdP) or service that creates JWT. For manual JWT generation, see "Issuing a JWT to API Clients" section of the [Authenticating API Clients with JWT and NGINX Plus](https://www.nginx.com/blog/authenticating-api-clients-jwt-nginx-plus/) blog post.
 
 <span id="auth_jwt_type"></span>

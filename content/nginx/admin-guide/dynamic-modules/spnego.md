@@ -2,17 +2,17 @@
 description: This module adds [SPNEGO](https://tools.ietf.org/html/rfc4178) support
   to F5 NGINX Plus. Currently, only Kerberos authentication via GSSAPI is supported.
 docs: DOCS-401
-doctypes:
-- task
 title: SPNEGO
 toc: true
 weight: 100
+type:
+- how-to
 ---
 
 <span id="install"></span>
 ## Installation
 
-1. Check the [Technical Specifications]({{< relref "../../technical-specs.md" >}}) page to verify that the module is supported by your operating system.
+1. Check the [Technical Specifications]({{< ref "nginx/technical-specs.md" >}}) page to verify that the module is supported by your operating system.
 
 2. Install the SPNEGO Auth module package `nginx-plus-module-auth-spnego`.
 
@@ -79,7 +79,7 @@ After installation you will need to enable and configure the module in F5 NGINX 
 
 - [NGINX Module for HTTP SPNEGO Auth Reference](https://github.com/stnoonan/spnego-http-auth-nginx-module)
 
-- [NGINX Dynamic Modules]({{< relref "dynamic-modules.md" >}})
+- [NGINX Dynamic Modules]({{< ref "dynamic-modules.md" >}})
 
-- [NGINX Plus Technical Specifications]({{< relref "../../technical-specs.md" >}})
+- [NGINX Plus Technical Specifications]({{< ref "nginx/technical-specs.md" >}})
 

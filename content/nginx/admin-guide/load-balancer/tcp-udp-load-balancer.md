@@ -1,12 +1,12 @@
 ---
-description: This chapter describes how to use F5 NGINX Plus and NGINX Open Source to
-  proxy and load balance TCP and UDP traffic.
+description: This chapter describes how to use F5 NGINX Plus and NGINX Open Source
+  to proxy and load balance TCP and UDP traffic.
 docs: DOCS-420
-doctypes:
-- task
 title: TCP and UDP Load Balancing
 toc: true
 weight: 200
+type:
+- how-to
 ---
 
 <span id="intro"></span>
@@ -14,11 +14,11 @@ weight: 200
 
 [Load balancing](https://www.nginx.com/solutions/load-balancing/) refers to efficiently distributing network traffic across multiple backend servers.
 
-In F5 NGINX Plus <a href="../../../releases/#r5">Release 5</a> and later, NGINX Plus can proxy and load balance Transmission Control Protocol) (TCP) traffic. TCP is the protocol for many popular applications and services, such as LDAP, MySQL, and RTMP.
+In F5 NGINX Plus [R5]({{< ref "nginx/releases.md#r5" >}}) and later, NGINX Plus can proxy and load balance Transmission Control Protocol) (TCP) traffic. TCP is the protocol for many popular applications and services, such as LDAP, MySQL, and RTMP.
 
-In NGINX Plus <a href="../../../releases/#r9">Release 9</a> and later, NGINX Plus can proxy and load balance UDP traffic. UDP (User Datagram Protocol) is the protocol for many popular non-transactional applications, such as DNS, syslog, and RADIUS.
+In NGINX Plus [R9]({{< ref "nginx/releases.md#r9" >}}) and later, NGINX Plus can proxy and load balance UDP traffic. UDP (User Datagram Protocol) is the protocol for many popular non-transactional applications, such as DNS, syslog, and RADIUS.
 
-To load balance HTTP traffic, refer to the [HTTP Load Balancing]({{< relref "http-load-balancer.md" >}}) article.
+To load balance HTTP traffic, refer to the [HTTP Load Balancing]({{< ref "http-load-balancer.md" >}}) article.
 
 <span id="prerequisites"></span>
 ## Prerequisites
@@ -255,9 +255,9 @@ stream {
 
 NGINX can continually test your TCP or UDP upstream servers, avoid the servers that have failed, and gracefully add the recovered servers into the load‑balanced group.
 
-See [TCP Health Checks]({{< relref "tcp-health-check.md" >}}) for instructions how to configure health checks for TCP.
+See [TCP Health Checks]({{< ref "nginx/admin-guide/load-balancer/tcp-health-check.md" >}}) for instructions how to configure health checks for TCP.
 
-See [UDP Health Checks]({{< relref "udp-health-check.md" >}}) for instructions how to configure health checks for UDP.
+See [UDP Health Checks]({{< ref "nginx/admin-guide/load-balancer/udp-health-check.md" >}}) for instructions how to configure health checks for UDP.
 
 <span id="on-the-fly-configuration"></span>
 ## On-the-Fly Configuration

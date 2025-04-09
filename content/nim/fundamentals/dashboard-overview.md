@@ -1,12 +1,10 @@
 ---
 docs: DOCS-1387
-doctypes:
-- reference
-tags:
-- docs
 title: NGINX Instance Manager dashboard
 toc: true
 weight: 300
+type:
+- reference
 ---
 
 The NGINX Instance Manager dashboard gives you a high-level view of the health and performance of your NGINX instances. It provides a central place to identify, diagnose, and resolve issues in your data plane. You can also track how deployments affect the performance of individual instances and identify trends over time.
@@ -19,14 +17,14 @@ You’ll need a user with access to these RBAC features to use the dashboard:
 - Certificates
 - Analytics
 
-To learn more about Role-based Access Control and the available features, see the [Getting Started with RBAC]({{< relref "/nim/admin-guide/rbac/overview-rbac.md" >}}) documentation.
+To learn more about Role-based Access Control and the available features, see the [Getting Started with RBAC]({{< ref "/nim/admin-guide/rbac/overview-rbac.md" >}}) documentation.
 
 ## Prerequisites
 
 Follow these steps to stream and display all relevant metrics in the dashboard:
 
 1. Install NGINX Agent v2.30 or later on your NGINX data plane instances. See the [Upgrade NGINX Agent Package](https://docs.nginx.com/nginx-agent/installation-upgrade/upgrade/) for more information.
-2. Ensure that NGINX Plus or NGINX Open Source Stub Status APIs are configured to send NGINX metrics using NGINX Agent. See the [Instance Metrics Overview]({{< relref "/nim/monitoring/overview-metrics.md" >}}) for more details.
+2. Ensure that NGINX Plus or NGINX Open Source Stub Status APIs are configured to send NGINX metrics using NGINX Agent. See the [Instance Metrics Overview]({{< ref "/nim/monitoring/overview-metrics.md" >}}) for more details.
 
 ## Certificates
 

@@ -1,14 +1,11 @@
 ---
 description: Learn how to deploy an Azure NGINX instance using F5 NGINX Controller.
 docs: DOCS-769
-doctypes:
-- beta
-- tutorial
-tags:
-- docs
 title: Add an Azure NGINX Instance
 toc: true
 weight: 35
+type:
+- tutorial
 ---
 
 ## Overview
@@ -77,7 +74,7 @@ To add a client secret to your app registration:
 
 Integrations give NGINX Controller permission to deploy and manage NGINX instances on external systems, such as cloud providers like Azure.
 
-To create an Integration for Azure using the [NGINX Controller API]({{< relref "/controller/api/_index.md" >}}), send a POST request similar to the following example to the Integrations API endpoint.
+To create an Integration for Azure using the [NGINX Controller API]({{< ref "/controller/api/_index.md" >}}), send a POST request similar to the following example to the Integrations API endpoint.
 
 In the JSON request, provide the `clientID`, `tenantID`, and `clientSecret` that you copied and saved when you [registered an app with Azure](#before-you-begin).
 
@@ -123,7 +120,7 @@ To create a Location, you'll need your Azure resource group name, region, and su
 
 ### Create a Location by using the REST API
 
-To create a Location using the [NGINX Controller API]({{< relref "/controller/api/_index.md" >}}), send a POST request similar to the following example to the Locations API endpoint.
+To create a Location using the [NGINX Controller API]({{< ref "/controller/api/_index.md" >}}), send a POST request similar to the following example to the Locations API endpoint.
 
 In the JSON request, provide the `resourceGroup` name, `region`, and `subscriptionID` that you copied and saved in the previous steps.
 
@@ -154,11 +151,11 @@ In the JSON request, provide the `resourceGroup` name, `region`, and `subscripti
 
 
 
-An [Instance Template]({{< relref "/controller/infrastructure/instances/manage-instance-templates.md" >}}) defines the parameters to use when creating an NGINX instance. Instance Templates are ideal for cloud orchestration and make managing your cloud resources easy and quick.
+An [Instance Template]({{< ref "/controller/infrastructure/instances/manage-instance-templates.md" >}}) defines the parameters to use when creating an NGINX instance. Instance Templates are ideal for cloud orchestration and make managing your cloud resources easy and quick.
 
-For the Instance Template, you can provide the details for an NGINX image on the Azure Marketplace, or you can provide the image and network details for your own instance. Refer to the [NGINX Controller Technical Specifications]({{< relref "/controller/admin-guides/install/nginx-controller-tech-specs.md" >}}) guide for the NGINX Plus requirements.
+For the Instance Template, you can provide the details for an NGINX image on the Azure Marketplace, or you can provide the image and network details for your own instance. Refer to the [NGINX Controller Technical Specifications]({{< ref "/controller/admin-guides/install/nginx-controller-tech-specs.md" >}}) guide for the NGINX Plus requirements.
 
-- To create an Instance Template for an Azure Marketplace image using the [NGINX Controller REST API]({{< relref "/controller/api/_index.md" >}}), send a POST request similar to the following example to the Instance Templates API endpoint. You can find descriptions of the instance parameters in the API Reference documentation.
+- To create an Instance Template for an Azure Marketplace image using the [NGINX Controller REST API]({{< ref "/controller/api/_index.md" >}}), send a POST request similar to the following example to the Instance Templates API endpoint. You can find descriptions of the instance parameters in the API Reference documentation.
 
   {{< tip >}}To look up the image details — `publisher`, `offer`, `sku`, and `version` — that you'll need to define the Instance Template, you can attempt to deploy an NGINX instance from the [Azure Marketplace](https://azure.microsoft.com/en-us/marketplace/) and look at the template that Azure creates to get the image details.
   {{</ tip >}}
@@ -194,7 +191,7 @@ For the Instance Template, you can provide the details for an NGINX image on the
   }
   ```
 
-- To create an Azure Instance Template for your own instance using the [NGINX Controller REST API]({{< relref "/controller/api/_index.md" >}}, send a POST request similar to the following example to the Instance Templates API endpoint.
+- To create an Azure Instance Template for your own instance using the [NGINX Controller REST API]({{< ref "/controller/api/_index.md" >}}, send a POST request similar to the following example to the Instance Templates API endpoint.
 
     ```json
     {
@@ -229,7 +226,7 @@ For the Instance Template, you can provide the details for an NGINX image on the
 
 Now that you've [defined a Location](#create-a-location) and [made an Instance Template](#create-an-instance-template-for-azure-nginx-instances) for an  NGINX instance on Azure, you're ready to add the instance to  NGINX Controller.
 
-To add an Azure NGINX instance to NGINX Controller using the [NGINX Controller REST API]({{< relref "/controller/api/_index.md" >}}), send a POST request similar to the following example to the Instances API endpoint. For the `templateRef` parameter, use the Instance Template that you created in the previous procedure.
+To add an Azure NGINX instance to NGINX Controller using the [NGINX Controller REST API]({{< ref "/controller/api/_index.md" >}}), send a POST request similar to the following example to the Instances API endpoint. For the `templateRef` parameter, use the Instance Template that you created in the previous procedure.
 
 ```json
 {
@@ -252,10 +249,10 @@ To add an Azure NGINX instance to NGINX Controller using the [NGINX Controller R
 
 ## What's Next
 
-- [Manage Your NGINX Instances]({{< relref "/controller/infrastructure/instances/manage-instances.md#add-an-existing-instance" >}})
-- [Add, Edit, and Update Locations]({{< relref "/controller/infrastructure/locations/manage-locations.md" >}})
-- [View Performance Reports for Your Instances]({{< relref "/controller/infrastructure/instances/analyzer.md" >}})
-- [Deploy an App]({{< relref "/controller/app-delivery/deploy-simple-app.md" >}})
+- [Manage Your NGINX Instances]({{< ref "/controller/infrastructure/instances/manage-instances.md#add-an-existing-instance" >}})
+- [Add, Edit, and Update Locations]({{< ref "/controller/infrastructure/locations/manage-locations.md" >}})
+- [View Performance Reports for Your Instances]({{< ref "/controller/infrastructure/instances/analyzer.md" >}})
+- [Deploy an App]({{< ref "/controller/app-delivery/deploy-simple-app.md" >}})
 
 {{< versions "3.12" "latest" "ctrlvers" >}}
 {{< versions "3.18" "latest" "apimvers" >}}

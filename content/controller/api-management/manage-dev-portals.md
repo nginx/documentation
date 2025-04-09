@@ -1,18 +1,16 @@
 ---
 description: Learn how to create and manage Developer Portals for your API documentation.
 docs: DOCS-570
-doctypes:
-- tutorial
-tags:
-- docs
 title: Manage Developer Portals
 toc: true
 weight: 120
+type:
+- tutorial
 ---
 
 ## Overview
 
-You can use F5 NGINX Controller Developer Portals (also called 'Dev Portals') to create and manage beautiful, easy-to-use API reference documentation to support your [Published APIs]({{< relref "/controller/api-management/manage-apis.md#publish-an-api" >}}).
+You can use F5 NGINX Controller Developer Portals (also called 'Dev Portals') to create and manage beautiful, easy-to-use API reference documentation to support your [Published APIs]({{< ref "/controller/api-management/manage-apis.md#publish-an-api" >}}).
 
 ## About Developer Portals
 
@@ -24,8 +22,8 @@ Each Dev Portal is associated with a Gateway, which defines the URI at which use
 
 You must complete the steps below before you can create a Developer Portal.
 
-1. [Create an Environment]({{< relref "/controller/services/manage-environments.md" >}}).
-1. [Create a Gateway]({{< relref "/controller/services/manage-gateways.md" >}}) for the Dev Portal.
+1. [Create an Environment]({{< ref "/controller/services/manage-environments.md" >}}).
+1. [Create a Gateway]({{< ref "/controller/services/manage-gateways.md" >}}) for the Dev Portal.
 
     {{< tip >}}
 You can create multiple Dev Portal Gateways on the same Instance. If you do so, be sure to use a unique hostname and port for each. For example:
@@ -37,22 +35,22 @@ You can create multiple Dev Portal Gateways on the same Instance. If you do so, 
 If you create multiple Dev Portal Gateways on the same Instance using the same hostname and port, the Dev Portal configuration will fail.
     {{< /tip >}}
 
-1. [Create an API Definition]({{< relref "/controller/api-management/manage-apis.md#create-an-api-definition" >}}).
+1. [Create an API Definition]({{< ref "/controller/api-management/manage-apis.md#create-an-api-definition" >}}).
 
     {{< tip >}}
-If you choose to [define your API manually]({{< relref "/controller/api-management/manage-apis.md#define-resources-manually" >}}), be sure to [document your API]({{< relref "/controller/api-management/manage-apis.md#document-your-api" >}}).
+If you choose to [define your API manually]({{< ref "/controller/api-management/manage-apis.md#define-resources-manually" >}}), be sure to [document your API]({{< ref "/controller/api-management/manage-apis.md#document-your-api" >}}).
     {{< /tip >}}
 
-1. [Create a Published API]({{< relref "/controller/api-management/manage-apis.md#publish-an-api" >}}).
+1. [Create a Published API]({{< ref "/controller/api-management/manage-apis.md#publish-an-api" >}}).
 
     {{< important >}}
-You must create an App Component when creating a Published API. You'll [assign routes]({{< relref "/controller/api-management/manage-apis.md#define-the-routing-rules" >}}) from the API Definition to this Component.
+You must create an App Component when creating a Published API. You'll [assign routes]({{< ref "/controller/api-management/manage-apis.md#define-the-routing-rules" >}}) from the API Definition to this Component.
 
 Both the Published API and the associated App Component must be successfully created before you can create a Dev Portal.
 
-See [Manage Your APIs]({{< relref "/controller/api-management/manage-apis.md" >}}) and the [troubleshooting](#troubleshoot-dev-portal-publication) section below for more information.
+See [Manage Your APIs]({{< ref "/controller/api-management/manage-apis.md" >}}) and the [troubleshooting](#troubleshoot-dev-portal-publication) section below for more information.
 
-You also have the option to associate Dev Portal(s) in the *Deployment* page when you [Add a Published API]({{< relref "/controller/api-management/manage-apis.md#add-a-published-api" >}}). If you already have a Published API and you want to create a new Dev Portal to host it, complete the tasks described in this guide.
+You also have the option to associate Dev Portal(s) in the *Deployment* page when you [Add a Published API]({{< ref "/controller/api-management/manage-apis.md#add-a-published-api" >}}). If you already have a Published API and you want to create a new Dev Portal to host it, complete the tasks described in this guide.
 
     {{< /important >}}
 
@@ -66,7 +64,7 @@ To create a Dev Portal, take the steps below:
 4. On the APIs page, select **Create Dev Portal** from the Quick Actions menu.
 
     {{< tip >}}
-If you want to connect one or more Dev Portals to an existing Published API, you should select the **Edit Published API** option. The API Documentation will be published to the selected Dev Portal(s). Refer to the [Define the Published API Deployment]({{< relref "/controller/api-management/manage-apis.md#define-the-published-api-deployment" >}}) section for more information and instructions.
+If you want to connect one or more Dev Portals to an existing Published API, you should select the **Edit Published API** option. The API Documentation will be published to the selected Dev Portal(s). Refer to the [Define the Published API Deployment]({{< ref "/controller/api-management/manage-apis.md#define-the-published-api-deployment" >}}) section for more information and instructions.
     {{< /tip >}}
 
 ### Configure the Developer Portal
@@ -133,8 +131,8 @@ If the issue persists, check the other resources for configuration errors.
 
 ## What's Next
 
-- [Learn about Policies]({{< relref "available-policies.md" >}})
-- [Manage Your APIs]({{< relref "manage-apis.md" >}})
+- [Learn about Policies]({{< ref "/controller/services/available-policies.md" >}})
+- [Manage Your APIs]({{< relref "./manage-apis.md" >}})
 
 {{< versions "3.7" "3.18" "ctrlvers" >}}
 {{< versions "3.18" "latest" "apimvers" >}}

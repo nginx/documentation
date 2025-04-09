@@ -2,13 +2,11 @@
 description: Learn how to restrict access to your application servers based on JWT
   claims or header values.
 docs: DOCS-1265
-doctypes:
-- task
-tags:
-- docs
 title: Access Control Routing
 toc: true
 weight: 300
+type:
+- how-to
 ---
 
 {{< shortversions "1.3.0" "latest" "acmvers" >}}
@@ -22,8 +20,8 @@ weight: 300
 Complete the following prerequisites before proceeding with this guide:
 
 - API Connectivity Manager is installed, licensed, and running.
-- You have one or more Environments with [API Gateway]({{< relref "/nms/acm/getting-started/add-api-gateway" >}}) or [Dev Portal]({{< relref "/nms/acm/getting-started/add-devportal" >}}) clusters.
-- You have published one or more [API Gateways or Developer Portals]({{< relref "/nms/acm/getting-started/publish-api-proxy" >}}) with either JSON Web Token Assertion or OAuth2 Introspection enabled.
+- You have one or more Environments with [API Gateway]({{< ref "/nms/acm/getting-started/add-api-gateway" >}}) or [Dev Portal]({{< ref "/nms/acm/getting-started/add-devportal" >}}) clusters.
+- You have published one or more [API Gateways or Developer Portals]({{< ref "/nms/acm/getting-started/publish-api-proxy" >}}) with either JSON Web Token Assertion or OAuth2 Introspection enabled.
 
 ### How to Access the User Interface
 

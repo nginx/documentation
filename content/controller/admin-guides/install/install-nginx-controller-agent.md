@@ -1,14 +1,11 @@
 ---
 description: How to install, upgrade, and uninstall the F5 Controller Agent.
 docs: DOCS-254
-doctypes:
-- tutorial
-- troubleshooting
-tags:
-- docs
 title: Install NGINX Controller Agent
 toc: true
 weight: 150
+type:
+- tutorial
 ---
 
 ## Overview
@@ -25,7 +22,7 @@ You can use the NGINX Controller Agent to monitor your systems with the NGINX Co
 
 ## Install the NGINX Controller Agent
 
-{{< see-also >}} If you want to run the NGINX Controller Agent as a non-root user, follow the alternative instructions in the [Install NGINX Controller Agent for Non-root User]({{< relref "/controller/admin-guides/install/install-agent-non-root.md" >}}) guide instead of the steps provided in this section. {{< /see-also >}}
+{{< see-also >}} If you want to run the NGINX Controller Agent as a non-root user, follow the alternative instructions in the [Install NGINX Controller Agent for Non-root User]({{< ref "/controller/admin-guides/install/install-agent-non-root.md" >}}) guide instead of the steps provided in this section. {{< /see-also >}}
 
 Take the following steps to add an instance to NGINX Controller:
 
@@ -35,15 +32,15 @@ Take the following steps to add an instance to NGINX Controller:
 4. On the **Instances** overview page, select **Create**.
 5. On the **Create Instance** page, select **Add an existing instance**.
 6. Add a name for the instance. If you don't provide a name, the hostname of the instance is used by default.
-7. To add the instance to an existing [Instance Group]({{< relref "/controller/infrastructure/instances/manage-instances.md#instance-groups" >}}), select an Instance Group from the list. Or to create an Instance Group, select **Create New**.
+7. To add the instance to an existing [Instance Group]({{< ref "/controller/infrastructure/instances/manage-instances.md#instance-groups" >}}), select an Instance Group from the list. Or to create an Instance Group, select **Create New**.
 8. To add the instance to an existing Location, select a Location from the list. Or to create a Location, select **Create New**.
 
     {{< important >}}
-Once set, the Location for an instance cannot be changed. If you need to change or remove the Location for an instance, you must [remove the instance from NGINX Controller]({{< relref "/controller/infrastructure/instances/manage-instances.md#delete-an-instance" >}}), and then add it back.
+Once set, the Location for an instance cannot be changed. If you need to change or remove the Location for an instance, you must [remove the instance from NGINX Controller]({{< ref "/controller/infrastructure/instances/manage-instances.md#delete-an-instance" >}}), and then add it back.
     {{< /important >}}
 
     {{< important >}}
-Instances and the instance groups they belong to should specify the same location; however, this requirement is not currently enforced. If different locations are specified, the instance group's location takes precedence. This is important to remember when [assigning locations to workload groups]({{< relref "/controller/app-delivery/manage-apps.md#workload-groups">}}).
+Instances and the instance groups they belong to should specify the same location; however, this requirement is not currently enforced. If different locations are specified, the instance group's location takes precedence. This is important to remember when [assigning locations to workload groups]({{< ref "/controller/app-delivery/manage-apps.md#workload-groups">}}).
     {{< /important >}}
 
 9. (Optional) By default, registration of NGINX Plus instances is performed over a secure connection. To use self-signed certificates with the Controller Agent, select **Allow insecure server connections to NGINX Controller using TLS**. For security purposes, we recommend that you secure the Controller Agent with signed certificates when possible.
@@ -63,7 +60,7 @@ After a few minutes, the NGINX instance will appear on the **Instances** overvie
 
 ## Update the NGINX Controller Agent
 
-When you [update NGINX Controller]({{< relref "/controller/admin-guides/install/install-nginx-controller.md#update-nginx-controller" >}}), you also need to update the NGINX Controller Agent software on each monitored NGINX Plus instance.
+When you [update NGINX Controller]({{< ref "/controller/admin-guides/install/install-nginx-controller.md#update-nginx-controller" >}}), you also need to update the NGINX Controller Agent software on each monitored NGINX Plus instance.
 
 To update the NGINX Controller Agent, take the following steps:
 
@@ -82,7 +79,7 @@ NGINX Controller 3.6 and earlier require Python 2.6 or 2.7. You'll be prompted t
 
 ## Uninstall the Analytics, Visibility, and Reporting Daemon (AVRD)
 
-NGINX Controller uses an [Analytics, Visibility, and Reporting daemon (AVRD)]({{< relref "/controller/analytics/metrics/overview-metrics-metadata.md" >}}) to aggregate and report app-centric metrics. You can use these metrics to monitor your apps' performance and health.
+NGINX Controller uses an [Analytics, Visibility, and Reporting daemon (AVRD)]({{< ref "/controller/analytics/metrics/overview-metrics-metadata.md" >}}) to aggregate and report app-centric metrics. You can use these metrics to monitor your apps' performance and health.
 
 To uninstall AVRD and the supporting modules, run the following command on each dataplane instance:
 
@@ -174,10 +171,10 @@ Take the following steps to uninstall the Controller Agent and delete an instanc
 
 ## What's Next
 
-- [Customize how the NGINX Controller Agent collects metrics]({{< relref "/controller/admin-guides/config-agent/configure-the-agent.md" >}})
-- [Start or Stop the Agent Service]({{< relref "/controller/admin-guides/install/agent-restart.md" >}})
-- [Manage your NGINX Instances]({{< relref "/controller/infrastructure/instances/manage-instances.md" >}})
-- [Manage Locations for your Instances]({{< relref "/controller/infrastructure/locations/manage-locations.md" >}})
+- [Customize how the NGINX Controller Agent collects metrics]({{< ref "/controller/admin-guides/config-agent/configure-the-agent.md" >}})
+- [Start or Stop the Agent Service]({{< ref "/controller/admin-guides/install/agent-restart.md" >}})
+- [Manage your NGINX Instances]({{< ref "/controller/infrastructure/instances/manage-instances.md" >}})
+- [Manage Locations for your Instances]({{< ref "/controller/infrastructure/locations/manage-locations.md" >}})
 
 {{< versions "3.0" "latest" "ctrlvers" >}}
 {{< versions "3.18" "latest" "apimvers" >}}

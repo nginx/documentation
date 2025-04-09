@@ -1,17 +1,16 @@
 ---
-title: "Upgrade NGINX App Protect WAF on Managed Instances"
-description: "How to Upgrade F5 NGINX App Protect WAF on managed NGINX instances"
+title: Upgrade NGINX App Protect WAF on Managed Instances
+description: How to Upgrade F5 NGINX App Protect WAF on managed NGINX instances
 weight: 300
 toc: true
-tags: [ "NGINX Management Suite" ]
-docs: "DOCS-1198"
+docs: DOCS-1198
 ---
 
 ## Overview
 
 Learn how to upgrade F5 NGINX App Protect on your managed NGINX instances using NGINX Instance Manager. This guide covers the steps to update both the NGINX Management Suite server and NGINX App Protect on the data plane, ensuring your security policies and configurations are up-to-date.
 
-Before starting, confirm that your data plane has the latest NGINX Agent compatible with NGINX App Protect. Also, verify that your NGINX Management Suite server has the [WAF compiler installed]({{< relref "/nim/nginx-app-protect/setup-waf-config-management.md#install-the-waf-compiler" >}}). If you're updating the WAF compiler, simply upload the NGINX App Protect WAF certificate and key to NGINX Management Suite following the instructions to [Automatically Download and Install New WAF Compiler]({{< relref "/nim/nginx-app-protect/setup-waf-config-management.md#automatically-download-and-install-new-waf-compiler" >}}).
+Before starting, confirm that your data plane has the latest NGINX Agent compatible with NGINX App Protect. Also, verify that your NGINX Management Suite server has the [WAF compiler installed]({{< ref "/nim/nginx-app-protect/setup-waf-config-management.md#install-the-waf-compiler" >}}). If you're updating the WAF compiler, simply upload the NGINX App Protect WAF certificate and key to NGINX Management Suite following the instructions to [Automatically Download and Install New WAF Compiler]({{< ref "/nim/nginx-app-protect/setup-waf-config-management.md#automatically-download-and-install-new-waf-compiler" >}}).
 
 ## Upgrade WAF Compiler on NGINX Management Suite
 
@@ -35,7 +34,7 @@ To update NGINX App Protect on an NGINX data plane instance, follow these steps:
 
 4. **Restart NGINX Agent**: Concluding the upgrade, restart the NGINX Agent.
 
-Refer to the [NGINX App Protect WAF Release Notes]({{< relref "/nap-waf/v4/releases" >}}) to determine the correct package version for installation. It's important to adjust the version string in the provided commands to match your specific operating system version.
+Refer to the [NGINX App Protect WAF Release Notes]({{< ref "/nap-waf/v4/releases" >}}) to determine the correct package version for installation. It's important to adjust the version string in the provided commands to match your specific operating system version.
 
 ### Debian, Ubuntu
 
@@ -75,7 +74,7 @@ For CentOS, RHEL, and Other Systems:
    sudo systemctl stop nginx-agent
    ```
 
-2. Next, upgrade NGINX App Protect. Refer to the [NGINX App Protect WAF Administration Guide]({{< relref "/nap-waf/v4/admin-guide/install.md" >}}) for detailed information on how to deploy and upgrade NGINX App Protect WAF.
+2. Next, upgrade NGINX App Protect. Refer to the [NGINX App Protect WAF Administration Guide]({{< ref "/nap-waf/v4/admin-guide/install.md" >}}) for detailed information on how to deploy and upgrade NGINX App Protect WAF.
 
 3. After the upgrade, restart NGINX App Protect:
 

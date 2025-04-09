@@ -1,10 +1,11 @@
 ---
-title: "Configuration Options"
+title: Configuration Options
 weight: 100
-description: "Learn about F5 NGINX Service Mesh features and deployment options."
-categories: ["concepts"]
+description: Learn about F5 NGINX Service Mesh features and deployment options.
 toc: true
-docs: "DOCS-679"
+docs: DOCS-679
+type:
+- concept
 ---
 
 ## Overview
@@ -14,7 +15,7 @@ This document provides an overview of the various options you can configure when
 {{< tip >}}
 To manage your configuration after deployment, you can use the NGINX Service Mesh API.
 
-Refer to the [API Usage Guide]( {{< ref "api-usage.md" >}} ) for more information.
+Refer to the [API Usage Guide]( {{< ref "/mesh/reference/api-usage.md" >}} ) for more information.
 {{< /tip >}}
 
 {{< note >}}

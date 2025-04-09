@@ -10,7 +10,7 @@ weight: 100
 
 In F5 NGINX Controller, an App serves as a container for one or more Components. Components represent the backend services that comprise your application. Together, an App and its Components represent the logical partitioning of your application into its composite parts. For example, a Component might correspond to a particular microservice within your application. Each Component you add to an App represents one or more paths via which traffic can reach that microservice.
 
-All Apps and Components live within an [Environment]({{< relref "/controller/services/manage-environments.md" >}}). This means that in order to have access to a particular App, a User needs to have permission to access its Environment. If you need access to an Environment or App, contact your administrator.
+All Apps and Components live within an [Environment]({{< ref "/controller/services/manage-environments.md" >}}). This means that in order to have access to a particular App, a User needs to have permission to access its Environment. If you need access to an Environment or App, contact your administrator.
 
 ## Components
 
@@ -18,7 +18,7 @@ A Component is a child object of an App. Components let you partition an App int
 
 Each Component contains an ingress definition that includes the fully-qualified domain names (FQDNs) and URIs from clients. These ingress definitions associate incoming requests with a particular path; the certificates that are used for decryption/encryption of HTTPS requests and responses that traverse that path; the backend servers that host the App to which the path delivers the requests; and the rewrites, redirects, and modifications on the requests/responses that occur along the path.
 
-Components can be instantiated on multiple paths corresponding to the placements associated with the Component; these placements are defined within the [Gateway(s)]({{< relref "/controller/services/manage-gateways.md" >}}) referenced in the Component.
+Components can be instantiated on multiple paths corresponding to the placements associated with the Component; these placements are defined within the [Gateway(s)]({{< ref "/controller/services/manage-gateways.md" >}}) referenced in the Component.
 
 ## Inherited or Independent Resources
 
@@ -28,7 +28,7 @@ When you configure a Component, you can choose to:
 - create and define new resources and configurations specific to the Component; or
 - use a combination of inherited and Component-specific configurations.
 
-For example, a Gateway's ingress definition might include the URIs for a Service's FQDN(s) and the associated TLS [certificates]({{< relref "/controller/services/manage-certs.md" >}}), while the Component's ingress definition would contain relative URIs for the FQDN defined in the Gateway:
+For example, a Gateway's ingress definition might include the URIs for a Service's FQDN(s) and the associated TLS [certificates]({{< ref "/controller/services/manage-certs.md" >}}), while the Component's ingress definition would contain relative URIs for the FQDN defined in the Gateway:
 
 - Gateway Ingress URIs: `www.example.com`
 - Component Ingress URIs: `/about/`, `/docs/`, `/contact/`

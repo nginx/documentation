@@ -1,12 +1,10 @@
 ---
 docs: DOCS-1249
-doctypes:
-- task
-tags:
-- docs
 title: Overview
 toc: true
 weight: 100
+type:
+- how-to
 ---
 
 {{< include "/nim/decoupling/note-legacy-nms-references.md" >}}
@@ -21,7 +19,7 @@ The steps in this guide refer to the <a href="https://github.com/nginxinc/ansibl
 
 To get started, you’ll need:
 
-- An NGINX repository certificate and key. For instructions on how to download them, click [here]({{< relref "/nim/deploy/vm-bare-metal/install.md#download-cert-key" >}}).
+- An NGINX repository certificate and key. For instructions on how to download them, click [here]({{< ref "/nim/deploy/vm-bare-metal/install.md#download-cert-key" >}}).
 - A host capable of running Ansible.
 
 <br>
@@ -40,7 +38,7 @@ The Infrastructure as Code (IaC) project makes it easy to set up the control pla
 
 The IaC project requires the following:
 
-- An NGINX repository certificate and key. For instructions on how to download them, click [here]({{< relref "/nim/deploy/vm-bare-metal/install.md#download-cert-key" >}}).
+- An NGINX repository certificate and key. For instructions on how to download them, click [here]({{< ref "/nim/deploy/vm-bare-metal/install.md#download-cert-key" >}}).
 - A trial or paid subscription for NGINX Instance Manager. You can [sign up for NGINX Instance Manager at MyF5](https://account.f5.com/myf5).
 - A host capable of running Packer, Ansible, and Terraform.
 

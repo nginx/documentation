@@ -1,20 +1,18 @@
 ---
 description: Use the Instance Overview page to view and manage your F5 NGINX Instances.
 docs: DOCS-777
-doctypes:
-- tutorial
-tags:
-- docs
 title: Manage Your NGINX Instances
 toc: true
 weight: 10
+type:
+- tutorial
 ---
 
 ## Overview
 
 The **Infrastructure > Instances > Overview** page allows you to check the status of all your F5 NGINX instances at a glance.
 
-When the [Controller Agent is installed]({{< relref "/controller/admin-guides/install/install-nginx-controller-agent.md" >}}) on a new system and the system registers with NGINX Controller, the instance is visible on the **Instances** overview page.
+When the [Controller Agent is installed]({{< ref "/controller/admin-guides/install/install-nginx-controller-agent.md" >}}) on a new system and the system registers with NGINX Controller, the instance is visible on the **Instances** overview page.
 
 ## Objective
 
@@ -30,13 +28,13 @@ When the [Controller Agent is installed]({{< relref "/controller/admin-guides/in
 
 ## Create an Instance Using a Template
 
-An [Instance Template]({{< relref "/controller/infrastructure/instances/manage-instance-templates.md" >}}) defines the parameters to use when creating a data plane instance. Instance Templates are ideal for cloud orchestration and make managing your cloud resources easy and quick.
+An [Instance Template]({{< ref "/controller/infrastructure/instances/manage-instance-templates.md" >}}) defines the parameters to use when creating a data plane instance. Instance Templates are ideal for cloud orchestration and make managing your cloud resources easy and quick.
 
 {{< see-also >}}
 For steps on how to deploy NGINX instances on Amazon Web Services or Microsoft Azure, see the following tutorials:
 
-- [Add an AWS NGINX Instance]({{< relref "/controller/infrastructure/instances/add-aws-instance.md" >}})
-- [Add an Azure NGINX Instance]({{< relref "/controller/infrastructure/instances/add-azure-instance.md" >}})
+- [Add an AWS NGINX Instance]({{< ref "/controller/infrastructure/instances/add-aws-instance.md" >}})
+- [Add an Azure NGINX Instance]({{< ref "/controller/infrastructure/instances/add-azure-instance.md" >}})
 
 {{< /see-also >}}
 
@@ -48,8 +46,8 @@ Take the following steps to create an instance using an Instance Template:
 1. On the **Instances** overview page, select **Create**.
 1. Select **Create a new instance using a template**.
 1. Add a name.
-1. Select a **Location** in the list, or select **Create New** to [create a location]({{< relref "/controller/infrastructure/locations/manage-locations.md" >}}).
-1. Select an **Instance Template** in the list, or select **Create New** to [create an instance template]({{< relref "/controller/infrastructure/instances/manage-instance-templates.md" >}}).
+1. Select a **Location** in the list, or select **Create New** to [create a location]({{< ref "/controller/infrastructure/locations/manage-locations.md" >}}).
+1. Select an **Instance Template** in the list, or select **Create New** to [create an instance template]({{< ref "/controller/infrastructure/instances/manage-instance-templates.md" >}}).
 1. Select **Submit**.
 
 ## View or Edit an Instance
@@ -182,13 +180,13 @@ To edit or delete an instance group, take the following steps:
 
 To add an existing instance to an instance group, take the following steps:
 
-1. Make sure that no [gateways]({{< relref "/controller/services/manage-gateways.md" >}}) are using the instance as a placement. Instances that are referenced by a gateway cannot be added to an instance group.
-1. [Delete the instance]({{< relref "/controller/infrastructure/instances/manage-instances.md#delete-an-instance" >}}).
-1. [Add the instance]({{< relref "/controller/admin-guides/install/install-nginx-controller-agent.md#install-the-nginx-controller-agent" >}}) back to NGINX Controller. Run the agent install script ([Step 11]({{< relref "/controller/admin-guides/install/install-nginx-controller-agent.md#install-the-nginx-controller-agent" >}})).
+1. Make sure that no [gateways]({{< ref "/controller/services/manage-gateways.md" >}}) are using the instance as a placement. Instances that are referenced by a gateway cannot be added to an instance group.
+1. [Delete the instance]({{< ref "/controller/infrastructure/instances/manage-instances.md#delete-an-instance" >}}).
+1. [Add the instance]({{< ref "/controller/admin-guides/install/install-nginx-controller-agent.md#install-the-nginx-controller-agent" >}}) back to NGINX Controller. Run the agent install script ([Step 11]({{< ref "/controller/admin-guides/install/install-nginx-controller-agent.md#install-the-nginx-controller-agent" >}})).
 
 ## Update the NGINX Controller Agent
 
-When you [update NGINX Controller]({{< relref "/controller/admin-guides/install/install-nginx-controller.md#update-nginx-controller" >}}), you also need to update the NGINX Controller Agent software on each monitored NGINX Plus instance.
+When you [update NGINX Controller]({{< ref "/controller/admin-guides/install/install-nginx-controller.md#update-nginx-controller" >}}), you also need to update the NGINX Controller Agent software on each monitored NGINX Plus instance.
 
 To update the NGINX Controller Agent, take the following steps:
 
@@ -243,13 +241,13 @@ Take the following steps to troubleshoot the issue:
 
 ## What's Next
 
-- [Configure the NGINX Controller Agent]({{< relref "/controller/admin-guides/config-agent/configure-the-agent.md" >}})
-- [Set up Metrics Collection]({{< relref "/controller/analytics/metrics/overview-metrics-metadata.md" >}})
-- [Create and Manage Locations for your Instances]({{< relref "/controller/infrastructure/locations/manage-locations.md" >}})
-- [Create and Manage Instance Templates]({{< relref "/controller/infrastructure/instances/manage-instance-templates.md" >}})
-- [Add an AWS NGINX Instance]({{< relref "/controller/infrastructure/instances/add-aws-instance.md" >}})
-- [Add an Azure NGINX Instance]({{< relref "/controller/infrastructure/instances/add-azure-instance.md" >}})
-- [Add a VSphere NGINX Instance]({{< relref "/controller/infrastructure/instances/add-vsphere-instance.md" >}})
+- [Configure the NGINX Controller Agent]({{< ref "/controller/admin-guides/config-agent/configure-the-agent.md" >}})
+- [Set up Metrics Collection]({{< ref "/controller/analytics/metrics/overview-metrics-metadata.md" >}})
+- [Create and Manage Locations for your Instances]({{< ref "/controller/infrastructure/locations/manage-locations.md" >}})
+- [Create and Manage Instance Templates]({{< ref "/controller/infrastructure/instances/manage-instance-templates.md" >}})
+- [Add an AWS NGINX Instance]({{< ref "/controller/infrastructure/instances/add-aws-instance.md" >}})
+- [Add an Azure NGINX Instance]({{< ref "/controller/infrastructure/instances/add-azure-instance.md" >}})
+- [Add a VSphere NGINX Instance]({{< ref "/controller/infrastructure/instances/add-vsphere-instance.md" >}})
 
 {{< versions "3.0" "latest" "ctrlvers" >}}
 {{< versions "3.18" "latest" "apimvers" >}}

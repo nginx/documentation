@@ -13,9 +13,9 @@ May 9, 2022
 
 ### New Features
 
-- [Support for Alpine 3.15 deployment]({{< relref "learn-about-deployment.md#alpine-315-installation" >}})
-- [DoS Live Activity Monitoring]({{< relref "/nap-dos/monitoring/live-activity-monitoring.md" >}})
-- [New Arbitrator FQDN/IP directive]({{< relref "learn-about-directives-and-policy.md#arbitrator-fqdn-directive-app_protect_dos_arb_fqdn" >}})
+- [Support for Alpine 3.15 deployment]({{< ref "learn-about-deployment.md#alpine-315-installation" >}})
+- [DoS Live Activity Monitoring]({{< ref "/nap-dos/monitoring/live-activity-monitoring.md" >}})
+- [New Arbitrator FQDN/IP directive]({{< ref "learn-about-directives-and-policy.md#arbitrator-fqdn-directive-app_protect_dos_arb_fqdn" >}})
 
 ### Supported Packages
 
@@ -65,7 +65,7 @@ Port configuration should correspond to the port the server listens to.
             listen 8080;
             server_name myservice.com;
             location / {
-                app_protect_dos_monitor "myservice.com:8080/";  
+                app_protect_dos_monitor "myservice.com:8080/";
             }
         }
     ```
@@ -83,7 +83,7 @@ For example:
 
 - gRPC and HTTP/2 protection require active monitoring of the protected service. The directive `app_protect_dos_monitor` is mandatory for these use cases, otherwise, the attack will not be detected.
 
-- [TLS fingerprint]({{< relref "/nap-dos/directives-and-policy/learn-about-directives-and-policy.md#policy-directive-app_protect_dos_policy_file" >}}) feature is not used in CentOS 7.4 and RHEL 7/UBI 7 due to the old OpenSSL version. The required OpenSSL version is 1.1.1 or higher.
+- [TLS fingerprint]({{< ref "/nap-dos/directives-and-policy/learn-about-directives-and-policy.md#policy-directive-app_protect_dos_policy_file" >}}) feature is not used in CentOS 7.4 and RHEL 7/UBI 7 due to the old OpenSSL version. The required OpenSSL version is 1.1.1 or higher.
 
 - Slow POST attack always mitigates with block action while other types of attacks can also be mitigated with redirection or JS challenges.
 

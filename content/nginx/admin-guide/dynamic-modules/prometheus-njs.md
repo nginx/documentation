@@ -1,11 +1,11 @@
 ---
 description: Expose Prometheus metrics endpoint directly from F5 NGINX Plus.
 docs: DOCS-398
-doctypes:
-- task
 title: Prometheus-njs
 toc: true
 weight: 100
+type:
+- how-to
 ---
 
 <span id="info"></span>
@@ -98,7 +98,7 @@ Install the `nginx-plus-module-prometheus` module.
   pkg install nginx-plus-module-prometheus
   ```
 
-{{< note >}} The [`nginx-plus-module-njs`]({{< relref "nginscript.md" >}}) module will also be installed together with the module. {{< /note >}}
+{{< note >}} The [`nginx-plus-module-njs`]({{< ref "nginscript.md" >}}) module will also be installed together with the module. {{< /note >}}
 
 
 <span id="conf"></span>
@@ -106,7 +106,7 @@ Install the `nginx-plus-module-prometheus` module.
 
 After module installation, perform the following steps in NGINX Plus configuration file (**nginx.conf**):
 
-1. Enable the [`nginx-plus-module-njs`]({{< relref "nginscript.md" >}}) module in the top‑level context:
+1. Enable the [`nginx-plus-module-njs`]({{< ref "nginscript.md" >}}) module in the top‑level context:
 
    ```nginx
    load_module modules/ngx_http_js_module.so;
@@ -370,6 +370,6 @@ stream {
 <span id="info"></span>
 ## More Info
 
-- [NGINX Dynamic Modules]({{< relref "dynamic-modules.md" >}})
+- [NGINX Dynamic Modules]({{< ref "dynamic-modules.md" >}})
 
-- [NGINX Plus Technical Specifications]({{< relref "../../technical-specs.md" >}})
+- [NGINX Plus Technical Specifications]({{< ref "nginx/technical-specs.md" >}})

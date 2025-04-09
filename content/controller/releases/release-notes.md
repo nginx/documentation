@@ -2,13 +2,11 @@
 description: Learn about the new features, enhancements, resolved issues, and known
   issues in F5 NGINX Controller.
 docs: DOCS-370
-doctypes:
-- reference
-tags:
-- docs
-title: "NGINX Controller v3.0.0\u20133.18.3"
+title: NGINX Controller v3.0.0–3.18.3
 toc: true
 weight: 10
+type:
+- reference
 ---
 
 ## Release Notes
@@ -22,8 +20,8 @@ Technical support is provided for earlier versions of NGINX Controller that were
 {{< see-also >}}
 For related installation documentation, refer to the following publications:
 
-- [NGINX Controller Installation Guide]({{< relref "/controller/admin-guides/backup-restore/_index.md" >}})
-- [NGINX Controller Technical Specifications Guide]({{< relref "/controller/admin-guides/install/nginx-controller-tech-specs.md" >}})
+- [NGINX Controller Installation Guide]({{< ref "/controller/admin-guides/backup-restore/_index.md" >}})
+- [NGINX Controller Technical Specifications Guide]({{< ref "/controller/admin-guides/install/nginx-controller-tech-specs.md" >}})
 {{< /see-also >}}
 
 &nbsp;
@@ -126,7 +124,7 @@ NGINX Controller v3.18.0 includes the following new features, improvements, know
 ### Updates
 
 - Bug fixes and improvements.
-- Improvements to the [Data Explorer]({{< relref "/controller/analytics/data-explorer/how-to-use.md" >}}) make it easier to see your data's dimensions and preview the discrete values.
+- Improvements to the [Data Explorer]({{< ref "/controller/analytics/data-explorer/how-to-use.md" >}}) make it easier to see your data's dimensions and preview the discrete values.
 - Adds support for NGINX Plus R23 p1 and R24 p1.
 
 <span id="3180-vulnerability-fixes"></a>
@@ -340,11 +338,11 @@ These release notes provide general information and describe known issues for NG
 
 - **(Beta) Bring your own custom NGINX App Protect Policy to configure WAF**
 
-  Now, you can [bring your own custom NGINX App Protect JSON declarative policy]({{< relref "/controller/app-delivery/security/concepts/bring-your-own-policy.md" >}}) to use as your WAF policy with NGINX Controller, in addition to using the default policy. F5 Advanced WAF and BIG-IP Application Security Module (ASM) customers can convert their standardized WAF policy to an App Protect policy to use with NGINX Controller. **Note**: This feature is available only through the NGINX Controller API for this beta release.
+  Now, you can [bring your own custom NGINX App Protect JSON declarative policy]({{< ref "/controller/app-delivery/security/concepts/bring-your-own-policy.md" >}}) to use as your WAF policy with NGINX Controller, in addition to using the default policy. F5 Advanced WAF and BIG-IP Application Security Module (ASM) customers can convert their standardized WAF policy to an App Protect policy to use with NGINX Controller. **Note**: This feature is available only through the NGINX Controller API for this beta release.
 
 - **The new Data Explorer view unlocks an easier way to view metrics**
 
-  The new [Data Explorer]({{< relref "/controller/analytics/data-explorer/how-to-use.md" >}}) view gets you to your data faster, so you can understand what's happening in your environment with ease. Effortlessly switch between contexts, metrics, and dimensions; specify a time range; set the aggregation mode; and more.
+  The new [Data Explorer]({{< ref "/controller/analytics/data-explorer/how-to-use.md" >}}) view gets you to your data faster, so you can understand what's happening in your environment with ease. Effortlessly switch between contexts, metrics, and dimensions; specify a time range; set the aggregation mode; and more.
 
 - **Improved user experience working with APIs**
 
@@ -352,7 +350,7 @@ These release notes provide general information and describe known issues for NG
 
 - **Easily enable or disable High Availability mode by updating gateways**
 
-  Prior to NGINX Controller v3.17, you had to delete and recreate gateways to [enable or disable HA (high availability) mode]({{< relref "/controller/infrastructure/instances/ha-data-plane.md" >}}) . Now, you can enable or disable HA mode on the fly by simply updating the existing gateway.
+  Prior to NGINX Controller v3.17, you had to delete and recreate gateways to [enable or disable HA (high availability) mode]({{< ref "/controller/infrastructure/instances/ha-data-plane.md" >}}) . Now, you can enable or disable HA mode on the fly by simply updating the existing gateway.
 
 - **Adds capability to view the total number of Security Events matching dimensional filters**
 
@@ -444,11 +442,11 @@ These release notes provide general information and describe known issues for NG
 
   You no longer need to open port 8883 to license NGINX Controller with an Association Token. You still need to open port 443, however.
 
-  See [Licensing NGINX Controller]({{< relref "/controller/platform/licensing-controller.md" >}}) for instructions.
+  See [Licensing NGINX Controller]({{< ref "/controller/platform/licensing-controller.md" >}}) for instructions.
 
 - **Adds support for SSL settings in health checks when multiple virtual hosts are defined per workload group member**
 
-  Auto-generated health check location blocks now include any `proxy_ssl` settings that have been defined in the TLS object in the web backend object. For example, using the [NGINX Controller REST API]({{< relref "/controller/api/_index.md" >}}) to set
+  Auto-generated health check location blocks now include any `proxy_ssl` settings that have been defined in the TLS object in the web backend object. For example, using the [NGINX Controller REST API]({{< ref "/controller/api/_index.md" >}}) to set
 
   ```json
   "tls":{"isServerNameEnabled": true, "name": "$host"}
@@ -460,11 +458,11 @@ These release notes provide general information and describe known issues for NG
 
   Active Directory integration with NGINX Controller now supports LDAPS and unencrypted LDAP, in addition to StartTLS.
 
-  Refer to [Configure Active Directory Integration]({{< relref "/controller/platform/access-management/manage-active-directory-auth-provider.md" >}}) for instructions on how to add an Active Directory provider to NGINX Controller for external authentication.
+  Refer to [Configure Active Directory Integration]({{< ref "/controller/platform/access-management/manage-active-directory-auth-provider.md" >}}) for instructions on how to add an Active Directory provider to NGINX Controller for external authentication.
 
 - **Data Forwarders are no longer restricted**
 
-  While in beta, [Data Forwarders]({{< relref "/controller/analytics/forwarders" >}}) had restrictions to limit the number of stream sources that could be defined. These restrictions have been lifted.
+  While in beta, [Data Forwarders]({{< ref "/controller/analytics/forwarders" >}}) had restrictions to limit the number of stream sources that could be defined. These restrictions have been lifted.
 
 <span id="3161-resolved"></a>
 
@@ -516,7 +514,7 @@ The following issues are known to be present in this release. Look for updates t
 
   **Workaround:**
 
-  To resolve this error, you'll need to uninstall and then re-install the Controller Agent. Refer to the [NGINX Controller Agent Installation Guide]({{< relref "/controller/admin-guides/install/install-nginx-controller-agent.md" >}}) for instructions.
+  To resolve this error, you'll need to uninstall and then re-install the Controller Agent. Refer to the [NGINX Controller Agent Installation Guide]({{< ref "/controller/admin-guides/install/install-nginx-controller-agent.md" >}}) for instructions.
 
 <span id="3161-supported"></a>
 
@@ -578,9 +576,9 @@ These release notes provide general information and describe known issues for NG
 
   The NGINX Controller docs are now using our own Dev Portal user interface to display the NGINX Controller API documentation. Check it out at:
 
-  [https://docs.nginx.com/nginx-controller/api/reference/ctlr-v1/]({{< relref "/controller/api/_index.md" >}})
+  [https://docs.nginx.com/nginx-controller/api/reference/ctlr-v1/]({{< ref "/controller/api/_index.md" >}})
 
-  Refer to the [API Management documentation]({{< relref "/controller/api-management" >}}) to learn more about using Dev Portals for your APIs.
+  Refer to the [API Management documentation]({{< ref "/controller/api-management" >}}) to learn more about using Dev Portals for your APIs.
 
 <span id="3150-resolved"></a>
 
@@ -603,11 +601,11 @@ The following issues are known to be present in this release. Look for updates t
 
 - **Installing NGINX Controller on a misconfigured NFS server fails with the error "Bundled DB did not start successfully" (22751)**
 
-  When installing NGINX Controller on an NFSv3 server, if the [NFS requirements]({{< relref "/controller/admin-guides/install/nginx-controller-tech-specs.md#nginx-controller-database-requirements" >}}) are not met, the installation may fail with an error similar to the following: "Bundled DB did not start successfully."
+  When installing NGINX Controller on an NFSv3 server, if the [NFS requirements]({{< ref "/controller/admin-guides/install/nginx-controller-tech-specs.md#nginx-controller-database-requirements" >}}) are not met, the installation may fail with an error similar to the following: "Bundled DB did not start successfully."
 
   **Workaround:**
 
-  See the [NGINX Controller Technical Specifications Guide]({{< relref "/controller/admin-guides/install/nginx-controller-tech-specs.md" >}}) for the NFS requirements. The `no_root_squash` option must be set for the mount point on the NFS server. If this is not allowed, the owner of the path used for the analytics database must be set to `101:101`, and the owner of the path for the config database must be set to `70:70`.
+  See the [NGINX Controller Technical Specifications Guide]({{< ref "/controller/admin-guides/install/nginx-controller-tech-specs.md" >}}) for the NFS requirements. The `no_root_squash` option must be set for the mount point on the NFS server. If this is not allowed, the owner of the path used for the analytics database must be set to `101:101`, and the owner of the path for the config database must be set to `70:70`.
 
   After editing the exports file, the directories need to be removed to ensure no files are leftover from the previous installation. Then, enable the `rpc-statd` service and restart the NFS server.
 
@@ -687,7 +685,7 @@ The following issues are known to be present in this release. Look for updates t
 
   **Workaround:**
 
-  You can access the Catalogs and Dev Portals API overview pages in the NGINX Controller docs online. To do so, go to [https://docs.nginx.com/nginx-controller/api/reference/ctlr-v1]({{< relref "/controller/api/_index.md" >}}) and navigate to the overview page for the desired endpoint.
+  You can access the Catalogs and Dev Portals API overview pages in the NGINX Controller docs online. To do so, go to [https://docs.nginx.com/nginx-controller/api/reference/ctlr-v1]({{< ref "/controller/api/_index.md" >}}) and navigate to the overview page for the desired endpoint.
 
 <span id="3150-supported"></a>
 
@@ -722,9 +720,9 @@ These release notes provide general information and describe known issues for NG
 
 - **Monitor your apps' metrics with Alert Rules**
 
-  Now you can create [Alert Rules]({{< relref "/controller/analytics/alerts/about-alerts#alert-rules" >}}) for app-centric metrics using the NGINX Controller web interface or [REST API]({{< relref "/controller/api/_index.md" >}}). Also, the web interface for Alerts has a new and improved design.
+  Now you can create [Alert Rules]({{< ref "/controller/analytics/alerts/about-alerts#alert-rules" >}}) for app-centric metrics using the NGINX Controller web interface or [REST API]({{< ref "/controller/api/_index.md" >}}). Also, the web interface for Alerts has a new and improved design.
 
-  To create Alert Rules, refer to the [Manage Alerts]({{< relref "/controller/analytics/alerts/manage-alerts" >}}) topic. For information about the metrics that you can monitor, see the [NGINX Controller Metrics Catalog]({{< relref "/controller/analytics/catalogs/metrics" >}}).
+  To create Alert Rules, refer to the [Manage Alerts]({{< ref "/controller/analytics/alerts/manage-alerts" >}}) topic. For information about the metrics that you can monitor, see the [NGINX Controller Metrics Catalog]({{< ref "/controller/analytics/catalogs/metrics" >}}).
 
 - **NGINX Controller with App Security Add-on supports NGINX App Protect 3.0**
 
@@ -733,7 +731,7 @@ These release notes provide general information and describe known issues for NG
 - **View the percentage of requests that WAF has blocked or flagged**
   Now, the Security Analytics graphs show the percentage of requests that have been blocked or flagged by the Web Application Firewall (WAF). This allows you to identify spikes or abnormalities based on the proportion of traffic rejected or flagged traffic by the WAF even as traffic increases.
 
-  Go to [View App Security Analytics]({{< relref "/controller/app-delivery/security/tutorials/view-app-security-analytics" >}}) to get started.
+  Go to [View App Security Analytics]({{< ref "/controller/app-delivery/security/tutorials/view-app-security-analytics" >}}) to get started.
 
 - **Upgrades to health checking for web apps**
 
@@ -766,7 +764,7 @@ The following issues are known to be present in this release. Look for updates t
 
 - **Restoring NGINX Controller from a backup without restoring the config and encryption keys causes the system to become unresponsive (22066)**
 
-  When restoring NGINX Controller from a backup, you also need to restore the NGINX config and encryption keys; otherwise, the system may become unresponsive. For instructions, refer to [Back Up & Restore Cluster Config and Encryption Keys]({{< relref "/controller/admin-guides/backup-restore/backup-restore-cluster-config" >}}).
+  When restoring NGINX Controller from a backup, you also need to restore the NGINX config and encryption keys; otherwise, the system may become unresponsive. For instructions, refer to [Back Up & Restore Cluster Config and Encryption Keys]({{< ref "/controller/admin-guides/backup-restore/backup-restore-cluster-config" >}}).
 
 #### Analytics
 
@@ -812,7 +810,7 @@ The following issues are known to be present in this release. Look for updates t
 
   **Workaround:**
 
-  To restore the embedded config database, follow the instructions in the [Backup & Restore Embedded Config Database]({{< relref "/controller/admin-guides/backup-restore/backup-restore-embedded-config-db#restore-embedded-config-database" >}}) guide that's online.
+  To restore the embedded config database, follow the instructions in the [Backup & Restore Embedded Config Database]({{< ref "/controller/admin-guides/backup-restore/backup-restore-embedded-config-db#restore-embedded-config-database" >}}) guide that's online.
 
 <span id="3140-supported"></a>
 
@@ -849,13 +847,13 @@ These release notes provide general information and describe known issues for NG
 
   NGINX Controller now supports TCP/UDP load balancing and routing along with the coincident support for data path HA for these protocols. TCP/UDP does not support metrics at this time -- look for metrics support coming soon.
 
-  To learn more, check out the [Manage Gateways]({{< relref "/controller/services/manage-gateways.md" >}}) and [About Application Delivery]({{< relref "/controller/app-delivery/about-app-delivery.md" >}}) topics.
+  To learn more, check out the [Manage Gateways]({{< ref "/controller/services/manage-gateways.md" >}}) and [About Application Delivery]({{< ref "/controller/app-delivery/about-app-delivery.md" >}}) topics.
 
 - **Improved experience deploying the NGINX Controller with App Security Add-on**
 
   You no longer need to add `security = True` in the *agent.conf* file to get Security Events (WAF violation events) after installing the NGINX App Protect module on the data planes -- NGINX Controller takes care of the configuration for you.  **An Agent restart is still needed**.
 
-  To begin using NGINX Controller with the Application Security Add-on, follow the steps in the [Trial NGINX Controller with App Security]({{< relref "/controller/admin-guides/install/try-nginx-controller-app-sec.md" >}}) quick start guide.
+  To begin using NGINX Controller with the Application Security Add-on, follow the steps in the [Trial NGINX Controller with App Security]({{< ref "/controller/admin-guides/install/try-nginx-controller-app-sec.md" >}}) quick start guide.
 
 - **NGINX Controller with App Security Add-on supports Ubuntu 18.04 LTS on the data plane**
 
@@ -869,7 +867,7 @@ These release notes provide general information and describe known issues for NG
 
   You can now forward all NGINX Controller events -- including system and security events -- to your Splunk HTTP Event Collector(s), similar to log forwarding.
 
-  To get started, refer to [Forward Analytics Data to Splunk]({{< relref "/controller/analytics/forwarders/forward-analytics-to-splunk.md" >}}).
+  To get started, refer to [Forward Analytics Data to Splunk]({{< ref "/controller/analytics/forwarders/forward-analytics-to-splunk.md" >}}).
 
 - **The data forwarder output format `SPLUNK_HEC` was renamed to `SPLUNK`**
 
@@ -879,7 +877,7 @@ These release notes provide general information and describe known issues for NG
 
   Now when you use the NGINX Controller web interface or the REST API to view licensing information, you'll also be able to view usage details to ensure compliance with your license.
 
-  For instructions on how to view and manage your licenses, see [License NGINX Controller]({{< relref "/controller/platform/licensing-controller.md" >}}).
+  For instructions on how to view and manage your licenses, see [License NGINX Controller]({{< ref "/controller/platform/licensing-controller.md" >}}).
 
 <span id="3-13-0-resolved"></a>
 
@@ -926,7 +924,7 @@ The following issues are known to be present in this release. Look for updates t
   {{< deprecated >}}
   As of NGINX Controller v3.13, the following Alerts functionality is deprecated:
 
-  - The [ServiceNow Alerts integration]({{< relref "/controller/analytics/alerts/service-now-notifications.md" >}}) is no longer supported. Subscribers of any type other than `email` will be ignored. Alert rules which do not have at least one email subscriber will not be migrated.
+  - The [ServiceNow Alerts integration]({{< ref "/controller/analytics/alerts/service-now-notifications.md" >}}) is no longer supported. Subscribers of any type other than `email` will be ignored. Alert rules which do not have at least one email subscriber will not be migrated.
   - The alert rule operator `=` is no longer available. Any existing alert rules with `operator: =` will be ignored.
   - Alert rules created in versions prior to 3.13 that use the `RATE` aggregation will be removed on upgrade. These rules must be re-created manually. Alert rules that use the following metrics are affected:
 
@@ -1016,7 +1014,7 @@ The following issues are known to be present in this release. Look for updates t
 
   **Workaround:**
 
-  Use the `/platform/roles` endpoint in the [NGINX Controller REST API]({{< relref "/controller/api/_index.md" >}}) to add the following permissions to the custom role:
+  Use the `/platform/roles` endpoint in the [NGINX Controller REST API]({{< ref "/controller/api/_index.md" >}}) to add the following permissions to the custom role:
 
   ``` json
   {
@@ -1055,13 +1053,13 @@ This hotfix release resolves the known issue affecting version 3.12 described be
 
 *Upgrading to NGINX Controller v3.12 fails on systems that don't meet the minimum CPU requirements (20509)*:
 <br/><br/>
-NGINX Controller requires an [8-core CPU @ 2.4 GHz or higher]({{< relref "/controller/admin-guides/install/nginx-controller-tech-specs.md#hardware-specifications" >}}).
+NGINX Controller requires an [8-core CPU @ 2.4 GHz or higher]({{< ref "/controller/admin-guides/install/nginx-controller-tech-specs.md#hardware-specifications" >}}).
 
 If you've installed NGINX Controller on a system that does not have an 8-core CPU @ 2.4 GHz or higher, the upgrade to 3.12 may fail.
 
 {{< caution >}}Installing or upgrading NGINX Controller on systems that do not meet the minimum hardware requirements may cause NGINX Controller to become unresponsive.
 
-Refer to the [NGINX Controller Tech Specs]({{< relref "/controller/admin-guides/install/nginx-controller-tech-specs" >}}) guide for hardware requirements and system recommendations.
+Refer to the [NGINX Controller Tech Specs]({{< ref "/controller/admin-guides/install/nginx-controller-tech-specs" >}}) guide for hardware requirements and system recommendations.
 
 Following the workaround below will restore functionality. However, **running on a system that does not meet the documented minimum requirements is not supported or recommended**.
 
@@ -1124,7 +1122,7 @@ NGINX Controller 3.12.0 includes the following updates:
 
   <div data-proofer-ignore>
 
-  Now you can [deploy NGINX Controller as a multi-node cluster on a private cloud]({{< relref "/controller/admin-guides/install/resilient-cluster-private-cloud" >}}) to provide uptime resiliency. A multi-node cluster ensures that NGINX Controller stays up even if one of the control-plane hosts becomes unavailable.
+  Now you can [deploy NGINX Controller as a multi-node cluster on a private cloud]({{< ref "/controller/admin-guides/install/resilient-cluster-private-cloud" >}}) to provide uptime resiliency. A multi-node cluster ensures that NGINX Controller stays up even if one of the control-plane hosts becomes unavailable.
 
   </div>
 
@@ -1132,7 +1130,7 @@ NGINX Controller 3.12.0 includes the following updates:
 
   <div data-proofer-ignore>
 
-  [Configure a high-availability data plane for your apps]({{< relref "/controller/infrastructure/instances/ha-data-plane" >}}) in on-premises deployments using NGINX Controller, NGINX Plus, and keepalived. High-availability data planes help to ensure your apps operate continuously without service interruptions.
+  [Configure a high-availability data plane for your apps]({{< ref "/controller/infrastructure/instances/ha-data-plane" >}}) in on-premises deployments using NGINX Controller, NGINX Plus, and keepalived. High-availability data planes help to ensure your apps operate continuously without service interruptions.
 
   Support for High Availability (HA) mode is limited to two NGINX Plus instances.
 
@@ -1144,19 +1142,19 @@ NGINX Controller 3.12.0 includes the following updates:
 
   Now you can use the App Security add-on for the Application Delivery module to protect your apps with a web application firewall (WAF). The WAF protects your apps from various application-layer attacks such as cross-site scripting and SQL injection, among others. Organizations can start out-of-the-box with [OWASP Top 10 protection](https://owasp.org/www-project-top-ten/) with a default protection policy and minimal tuning required.
 
-  To get started, check out the [Trial NGINX Controller with App Security]({{< relref "/controller/admin-guides/install/try-nginx-controller-app-sec" >}}) guide.
+  To get started, check out the [Trial NGINX Controller with App Security]({{< ref "/controller/admin-guides/install/try-nginx-controller-app-sec" >}}) guide.
 
   </div>
 
 - **Install NGINX Controller with an embedded config database**
 
-  When [installing NGINX Controller]({{< relref "/controller/admin-guides/install" >}}), you can choose to use an embedded, self-hosted config database by default, or you can provide your own external PostgreSQL database. If you use the embedded config database, NGINX Controller will install and configure the database for you, significantly streamlining the installation process.
+  When [installing NGINX Controller]({{< ref "/controller/admin-guides/install" >}}), you can choose to use an embedded, self-hosted config database by default, or you can provide your own external PostgreSQL database. If you use the embedded config database, NGINX Controller will install and configure the database for you, significantly streamlining the installation process.
 
 - **Automated backups for the embedded config database**
 
   <div data-proofer-ignore>
 
-  If you install NGINX Controller using the embedded, self-hosted config database, NGINX Controller will back up the database at hourly intervals for you automatically. For more information about these automated backups and how to restore from them, see the [Backup & Restore Guide]({{< relref "/controller/admin-guides/backup-restore/backup-restore-embedded-config-db" >}}).
+  If you install NGINX Controller using the embedded, self-hosted config database, NGINX Controller will back up the database at hourly intervals for you automatically. For more information about these automated backups and how to restore from them, see the [Backup & Restore Guide]({{< ref "/controller/admin-guides/backup-restore/backup-restore-embedded-config-db" >}}).
 
   </div>
 
@@ -1198,14 +1196,14 @@ The following issues are known to be present in this release. Look for updates t
 
 - **Upgrading to NGINX Controller v3.12 fails on systems with less than an 8-core CPU (20509)**
 
-  NGINX Controller requires an [8-core CPU @ 2.4 GHz or higher]({{< relref "/controller/admin-guides/install/nginx-controller-tech-specs.md#hardware-specifications" >}}).
+  NGINX Controller requires an [8-core CPU @ 2.4 GHz or higher]({{< ref "/controller/admin-guides/install/nginx-controller-tech-specs.md#hardware-specifications" >}}).
 
   If you've installed NGINX Controller on a system that does not have an 8-core CPU @ 2.4 GHz or higher, **you should not upgrade to v3.12**.
 
   {{< caution >}}
 Installing or upgrading NGINX Controller on systems that do not meet the minimum hardware requirements may cause NGINX Controller to become unresponsive.
 
-Refer to the [NGINX Controller Tech Specs]({{< relref "/controller/admin-guides/install/nginx-controller-tech-specs.md" >}}) guide for hardware requirements and system recommendations.
+Refer to the [NGINX Controller Tech Specs]({{< ref "/controller/admin-guides/install/nginx-controller-tech-specs.md" >}}) guide for hardware requirements and system recommendations.
   {{< /caution >}}
 
   **Workaround:**
@@ -1270,7 +1268,7 @@ Refer to the [NGINX Controller Tech Specs]({{< relref "/controller/admin-guides/
 
   **Workaround:**
 
-  When creating a new user, you must assign the `guest` role (or higher) for the user to view Identity Providers and API Definitions. Alternatively, if you're using a custom role, you can use the API to grant explicit permissions for the `/security/identity-providers` and `/services/api-definitions` endpoints. See the [Manage Roles and Role Groups]({{< relref "/controller/platform/access-management/manage-roles" >}}) topic details.
+  When creating a new user, you must assign the `guest` role (or higher) for the user to view Identity Providers and API Definitions. Alternatively, if you're using a custom role, you can use the API to grant explicit permissions for the `/security/identity-providers` and `/services/api-definitions` endpoints. See the [Manage Roles and Role Groups]({{< ref "/controller/platform/access-management/manage-roles" >}}) topic details.
 
 #### App Security
 
@@ -1344,7 +1342,7 @@ Refer to the [NGINX Controller Tech Specs]({{< relref "/controller/admin-guides/
 
   To change the floating IP, take the following steps:
 
-  1. To remove the existing floating IP using the [NGINX Controller REST API]({{< relref "/controller/api/_index.md" >}}), send a PATCH request to the `/platform/global` endpoint. Submit an empty string for the `clusterFloatingIP` value.
+  1. To remove the existing floating IP using the [NGINX Controller REST API]({{< ref "/controller/api/_index.md" >}}), send a PATCH request to the `/platform/global` endpoint. Submit an empty string for the `clusterFloatingIP` value.
   1. To remove the existing floating IP using the web interface:
 
       1. Open the NGINX Controller web interface and log in.
@@ -1378,7 +1376,7 @@ Refer to the [NGINX Controller Tech Specs]({{< relref "/controller/admin-guides/
 
 - **API Reference does not specify that TCP/UDP App Components are experimental (20285)**
 
-  In the [NGINX Controller API Reference]({{< relref "/controller/api/_index.md" >}}), the schema for App Components includes two objects related to TCP/UDP support that are missing the **x-f5-experimental** extension: `ComponentTcpUdpDesiredState` and `ComponentTcpUdpCurrentState`. TCP/UDP App Components are not supported in NGINX Controller v3.12.
+  In the [NGINX Controller API Reference]({{< ref "/controller/api/_index.md" >}}), the schema for App Components includes two objects related to TCP/UDP support that are missing the **x-f5-experimental** extension: `ComponentTcpUdpDesiredState` and `ComponentTcpUdpCurrentState`. TCP/UDP App Components are not supported in NGINX Controller v3.12.
 
 <span id="3-12-0-supported"></a>
 
@@ -1521,7 +1519,7 @@ This release includes the following fixes. Search by the issue ID -- the number 
 
   **Workaround:**
 
-  When you upgrade NGINX Controller, you must upgrade the Controller Agent as well to keep the versions in sync, following the instructions here:  [Controller Agent Installation Guide]({{< relref "/controller/admin-guides/install/install-nginx-controller-agent.md" >}}).
+  When you upgrade NGINX Controller, you must upgrade the Controller Agent as well to keep the versions in sync, following the instructions here:  [Controller Agent Installation Guide]({{< ref "/controller/admin-guides/install/install-nginx-controller-agent.md" >}}).
 
   To determine the Agent version that's running on an instance, log into the instance and run the following command for your distribution type:
 
