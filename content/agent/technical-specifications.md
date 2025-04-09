@@ -6,7 +6,7 @@ docs: DOCS-000
 ---
 
 NGINX Agent is designed to operate efficiently on any system that meets the standard
-hardware requirements for running NGINX itself. This ensures compatibility, stability,
+hardware requirements for running NGINX Plus itself. This ensures compatibility, stability,
 and performance aligned with the NGINX core platform:
 
 ### Supported distributions
