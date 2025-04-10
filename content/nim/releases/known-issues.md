@@ -10,7 +10,7 @@ weight: 200
 {{<rn-styles>}}
 This document lists and describes the known issues and possible workarounds in F5 NGINX Instance Manager. We also list the issues resolved in the latest releases.
 
-{{< tip >}}We recommend you upgrade to the latest version of Instance Managerto take advantage of new features, improvements, and bug fixes.{{< /tip >}}
+{{< tip >}}We recommend you upgrade to the latest version of NIGNX Instance Manager to take advantage of new features, improvements, and bug fixes.{{< /tip >}}
 
 ---
 
