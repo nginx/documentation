@@ -15,7 +15,7 @@ type:
 
 The `nginx-plus-module-otel` module is an NGINX-authored dynamic module that enables NGINX Plus to send telemetry data to an OTel collector. The module supports [W3C](https://w3c.github.io/trace-context/) trace context propagation, OpenTelemetry Protocol (OTLP)/gRPC trace exports, and offers several advantages over existing OTel modules including:
 
-- Enhanced performance: other OTel implementations can reduce request processing by up to 50%, while the native module minimizes this impact to just 10-15%.
+- Enhanced performance: with the module enabled, request processing overhead is limited to 10-15%, compared to other OpenTelemetry implementations, which can introduce performance degradation of up to 50%.
 
 - Simplified provisioning through NGINX configuration file.
 
