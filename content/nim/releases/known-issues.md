@@ -27,6 +27,7 @@ February 06, 2025
 {{</bootstrap-table>}}
 
 #### Description
+
 In NGINX Instance Manager v2.19.0, publishing an NGINX App Protect WAF policy from the UI fails if the latest NGINX App Protect WAF compiler v5.264 (for NGINX App Protect WAF v4.13.0 or v5.5.0) is manually installed without adding the NGINX repository certificate and key.
 
 #### Workaround
@@ -67,6 +68,7 @@ November 08, 2024
 {{</bootstrap-table>}}
 
 #### Description
+
 On Ubuntu 24.04, NGINX Instance Manager v2.18.0 and v2.19.0 fail to automatically download NGINX App Protect WAF compiler v5.210.0 (for NGINX App Protect WAF v4.12.0) and v5.264.0 (for NGINX App Protect WAF v4.13.0) from the NGINX repository.
 
 #### Workaround
@@ -84,6 +86,7 @@ Manually install the missing compiler by following the instructions in [Install 
 {{</bootstrap-table>}}
 
 #### Description
+
 Saving templates as “staged configs” causes syntax errors due to Augment templates being multiple directories down the tree.
 
 ---
@@ -97,6 +100,7 @@ Saving templates as “staged configs” causes syntax errors due to Augment tem
 {{</bootstrap-table>}}
 
 #### Description
+
 If there is an NGINX configuration error when pushing a template configuration, the text overlaps outside the error window.
 
 
@@ -111,6 +115,7 @@ If there is an NGINX configuration error when pushing a template configuration, 
 {{</bootstrap-table>}}
 
 #### Description
+
 `.tgz` files are not accepted in templates while `.tar.gz` files are.
 
 ---
@@ -124,6 +129,7 @@ If there is an NGINX configuration error when pushing a template configuration, 
 {{</bootstrap-table>}}
 
 #### Description
+
 There is an issue that causes previous error messages to persist in the web interface, even after fixing the error causing the message.
 
 ---
@@ -142,6 +148,7 @@ September 13, 2024
 {{</bootstrap-table>}}
 
 #### Description
+
 The Certificate Management screen can only show up to 100 certificates.
 
 ---
@@ -160,6 +167,7 @@ July 10, 2024
 {{</bootstrap-table>}}
 
 #### Description
+
 The months in the custom date range were not displayed correctly because NGINX Instance Manager assumed the data format was in the US timezone.
 
 ---
@@ -173,6 +181,7 @@ The months in the custom date range were not displayed correctly because NGINX I
 {{</bootstrap-table>}}
 
 #### Description
+
 In NGINX Instance Manager 2.17.0, an "invalid number of arguments" error appears in the web interface when using specific configuration parameters in NGINX Agent 2.36.0.
 
 #### Workaround
@@ -192,6 +201,7 @@ If you're installing NGINX Agent from package files, follow the steps in the [In
 {{</bootstrap-table>}}
 
 #### Description
+
 When using NGINX Instance Manager, you configure OIDC by manually editing the /etc/nginx/conf.d/nms-http.conf and /etc/nms/nms.conf files.
 
 During the upgrade to 2.17.0, the user is asked if they would like to keep their own nms-http.conf, or replace it with the new default. As Web Analytics are enabled via the /etc/nginx/conf.d/nms-http.conf file, if a user decides to keep their own config when prompted during upgrade, these will not get enabled.
@@ -215,6 +225,7 @@ add_header Content-Security-Policy "default-src 'none'; block-all-mixed-content;
 {{</bootstrap-table>}}
 
 #### Description
+
 If NGINX Agent is configured to monitor NGINX App Protect before App Protect is installed, NGINX Agent will send an empty App Protect metadata structure to NGINX Instance Manager. This causes Instance Manager to fail to register the NGINX instance properly.
 
 #### Workaround
@@ -232,6 +243,7 @@ Edit the "/etc/nginx-agent/nginx-agent.conf" file and configure "precompiled_pub
 {{</bootstrap-table>}}
 
 #### Description
+
 When publishing a configuration template fails, the system only displays "Accepted" without providing the final result, such as "Success" or "Failure."
 
 ---
@@ -245,6 +257,7 @@ When publishing a configuration template fails, the system only displays "Accept
 {{</bootstrap-table>}}
 
 #### Description
+
 When editing a template submission, you can now choose between using a snapshot of the template from when it was first deployed or the latest version of the template. **Important:** Note that if you use the latest version, changes to the templates might make an augment template incompatible with a base template, causing the publication to the data plane to fail.
 
 ---
@@ -264,6 +277,7 @@ December 12, 2023
 
 {{</bootstrap-table>}}
 #### Description
+
 After adding a license, some NGINX Management Suite features might be disabled, even if they are included in the license.
 
 #### Workaround
@@ -286,6 +300,7 @@ sudo systemctl restart nms
 
 {{</bootstrap-table>}}
 #### Description
+
 With the introduction of Instance Manager 2.15, we are expanding the features available for some licenses, such as those with only NGINX Plus entitlement. If such a license was applied before upgrading to 2.15, the expanded set of features will not be available as intended.
 
 #### Workaround
@@ -309,6 +324,7 @@ October 16, 2023
 
 {{</bootstrap-table>}}
 #### Description
+
 When using the Scan feature, the CVE column may provide a value of '--' for instances running specific versions of NGINX App Protect, including App Protect 4.4 and potentially others.
 
 ---
@@ -323,6 +339,7 @@ When using the Scan feature, the CVE column may provide a value of '--' for inst
 
 {{</bootstrap-table>}}
 #### Description
+
 Under certain conditions, instances that are not reporting request totals may not show in the Network Utilization panel or drawer when data is sorted by Request count. This typically happens when NGINX is not configured to stream metrics data to NGINX Agent.
 
 #### Workaround
@@ -341,6 +358,7 @@ Configure NGINX Plus or NGINX Stub Status APIs to send correctly the NGINX metri
 
 {{</bootstrap-table>}}
 #### Description
+
 Users might not have permission to access the built-in policies (NginxDefaultPolicy and NginxStrictPolicy) while using NGINX Management Suite.
 
 #### Workaround
@@ -367,6 +385,7 @@ August 28, 2023
 
 {{</bootstrap-table>}}
 #### Description
+
 In Instance Manager 2.13, a new configuration is published before the compile stage of a WAF policy is complete. This happens only when the policy is first referenced. This leads to a deployment failure, and the configuration rolls back. Typically, by the time you try to submit the configuration again, the policy has finished compiling, and the request goes through.
 
 The initial failure message looks like this:
@@ -391,6 +410,7 @@ Retry pushing the new configuration. The deployment should work the second time 
 
 {{</bootstrap-table>}}
 #### Description
+
 If `precompiled_publication` is set to `true`, NGINX Management Suite may incorrectly report the version of Attack Signatures (AS) and Threat Campaigns (TC) that you previously installed on the NAP WAF instance.
 
 ---
@@ -410,6 +430,7 @@ June 12, 2023
 
 {{</bootstrap-table>}}
 #### Description
+
 When updating Attack Signatures or Threat Campaign packages on multiple instances simultaneously, only one instance may be successfully updated. An error similar to the following is logged: `security policy bundle object with given ID was not found.`
 
 #### Workaround
@@ -433,6 +454,7 @@ April 26, 2023
 
 {{</bootstrap-table>}}
 #### Description
+
 The list of Threat Campaigns will disappear when scrolling down, preventing the selection of the oldest versions.
 
 #### Workaround
@@ -451,6 +473,7 @@ Threat Campaign versions can be published with the API using the route: `api/pla
 
 {{</bootstrap-table>}}
 #### Description
+
 When upgrading to 2.10 you may see a warning like the below message for the NGINX Management Suite Ingestion service. It can be safely ignored.
 
 ```none
@@ -469,6 +492,7 @@ When upgrading to 2.10 you may see a warning like the below message for the NGIN
 
 {{</bootstrap-table>}}
 #### Description
+
 After upgrading to Instance Manager 2.10, the API does not return lastDeploymentDetails for existing configuration blocks. This is then reflected as "Invalid Date" in the UI (See #42108).
 
 #### Workaround
@@ -492,6 +516,7 @@ November 17, 2022
 
 {{</bootstrap-table>}}
 #### Description
+
 When installing NGINX Instance Manager on Kubernetes via Helm Chart, the App Protect page shows an error banner, and no default policies are displayed.
 
 ---
@@ -506,6 +531,7 @@ When installing NGINX Instance Manager on Kubernetes via Helm Chart, the App Pro
 
 {{</bootstrap-table>}}
 #### Description
+
 Deploying NGINX config with references to remote cert that resides in allowed directories could fail, with the following error:
 `BIO_new_file() failed (SSL: error:02001002:system library:fopen:No such file or directory`.
 
@@ -528,6 +554,7 @@ This can also be diagnosed with log entries in `/var/log/nginx-agent/agent.log`,
 
 {{</bootstrap-table>}}
 #### Description
+
 When using NGINX Instance Manager with App Protect policies, previously referenced policies in the NGINX configuration may not be removed after they are no longer referenced in the NGINX config.
 
 #### Workaround
@@ -546,6 +573,7 @@ Unreferenced policy files may be removed manually from /etc/nms.
 
 {{</bootstrap-table>}}
 #### Description
+
 The values currently populated for http.version_schema are incorrect. The response is "4" for HTTP traffic and "6" for HTTPS traffic.
 
 ---
@@ -560,6 +588,7 @@ The values currently populated for http.version_schema are incorrect. The respon
 
 {{</bootstrap-table>}}
 #### Description
+
 References to external files in a policy are not supported.
 
 For example, in the NGINX App Protect WAF JSON declarative policy, these references are not supported:
@@ -584,6 +613,7 @@ October 04, 2022
 
 {{</bootstrap-table>}}
 #### Description
+
 Updating a config with an aux data file exceeding 3145728 characters fails with a validation error similar to the following example:
 
 Request body has an error: doesn't match the schema: Error at "/auxFiles/files/3/contents": maximum string length is 3145728
@@ -600,6 +630,7 @@ Request body has an error: doesn't match the schema: Error at "/auxFiles/files/3
 
 {{</bootstrap-table>}}
 #### Description
+
 Occasionally, when publishing an NGINX config to a NATS server, the system returns a `Deployment Not Found` error, and the `nms.log` file includes the error `http failure with code '131043': <nil>`.
 
 #### Workaround
@@ -630,6 +661,7 @@ June 30, 2022
 
 {{</bootstrap-table>}}
 #### Description
+
 NGINX Instance Manager reports metrics at a per-minute interval and includes dimensions for describing the metric data's characteristics.
 
 An issue has been identified in which metric data is aggregated across all dimensions, not just for existing metrics data. When querying the Metrics API with aggregations like `SUM(metric-name)`, the aggregated data causes the API to over count the metric. This overcounting skews some of the metrics dashboards.
@@ -659,6 +691,7 @@ May 25, 2022
 
 {{</bootstrap-table>}}
 #### Description
+
 When adding certificates, an internal error (error code: 134018) is returned if the name given for the certificate exceeds 255 characters.
 
 #### Workaround
@@ -682,6 +715,7 @@ April 05, 2022
 
 {{</bootstrap-table>}}
 #### Description
+
 After upgrading to NGINX Instance Manager 2.1.0, and updating nginx-agent from platform packaging, duplicate instances may appear on the Instance overview page. This issue is caused by a change in how the NGINX Agent generates the `system_uid`.
 
 #### Workaround
@@ -700,6 +734,7 @@ You can safely delete the older entries or wait for them to expire.
 
 {{</bootstrap-table>}}
 #### Description
+
 When publishing a configuration, you might encounter an error similar to the following example:
 
 ``` text
@@ -733,6 +768,7 @@ December 21, 2021
 
 {{</bootstrap-table>}}
 #### Description
+
 NGINX Instance Manager does not currently support managing NGINX App Protect WAF instances. NGINX App Protect WAF may block attempts to publish configurations to NGINX App Protect WAF instances.
 
 ---
@@ -747,6 +783,7 @@ NGINX Instance Manager does not currently support managing NGINX App Protect WAF
 
 {{</bootstrap-table>}}
 #### Description
+
 In the web interface, when uploading a config file that's larger than 50 MB (max size), the system incorrectly reports the state as `Analyzing` (Status code `403`), although the upload failed.
 
 #### Workaround
@@ -765,6 +802,7 @@ Keep config files under 50 MB.
 
 {{</bootstrap-table>}}
 #### Description
+
 When installing on CentOS 7, RHEL 7, and Amazon Linux 2, the package manager doesn't prevent installing NGINX Instance Manager with unsupported versions of NGINX or NGINX Plus. As a consequence, it is possible that `nms-instance-manager` is installed without an NGINX gateway. Resulting in a less than optimal experience.
 
 #### Workaround
@@ -783,6 +821,7 @@ Install a supported version of NGINX (v1.18 or later) or NGINX Plus (R22 or late
 
 {{</bootstrap-table>}}
 #### Description
+
   When starting NGINX Instance Manager, you may see errors similar to the following in `/etc/nginx/conf.d/nms-http.conf:227`:
 
   ```text
