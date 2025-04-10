@@ -15,7 +15,7 @@ type:
 
 The `nginx-plus-module-otel` module is an NGINX-authored dynamic module that enables NGINX Plus to send telemetry data to an OTel collector. The module supports [W3C](https://w3c.github.io/trace-context/) trace context propagation, OpenTelemetry Protocol (OTLP)/gRPC trace exports, and offers several advantages over existing OTel modules including:
 
-- Enhanced performance: other OTel implementations can reduce request processing by up to 50%, while `nginx-plus-module-otel` minimizes this impact to just 10-15%.
+- Enhanced performance: other OTel implementations can reduce request processing by up to 50%, while the native module minimizes this impact to just 10-15%.
 
 - Simplified provisioning through NGINX configuration file.
 
@@ -23,150 +23,195 @@ The `nginx-plus-module-otel` module is an NGINX-authored dynamic module that ena
 
 - Dynamic control of sampling parameters via the [NGINX Plus API]({{< ref "/nginx/admin-guide/monitoring/live-activity-monitoring.md#using-the-rest-api" >}}) and [key-value storage]({{< ref "/nginx/admin-guide/security-controls/denylisting-ip-addresses.md" >}}).
 
-The repository can be found on [GitHub](https://github.com/nginxinc/nginx-otel). The documentation can be found on [nginx.org](https://nginx.org/en/docs/ngx_otel_module.html).
+The source code for the module is available in the official [GitHub repository](https://github.com/nginxinc/nginx-otel). The official documentation, including module reference and usage examples, is available on the [nginx.org](https://nginx.org/en/docs/ngx_otel_module.html) website.
+
+The OpenTelemetry module supersedes the deprecated [OpenTracing]({{< ref "opentracing.md" >}}) module which was available until NGINX Plus [Release 34]({{< ref "nginx/releases.md#r34" >}}).
 
 
 ## Installation
 
-Similar to [NGINX Plus]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}), prebuilt packages of the `nginx-plus-module-otel` module can can be installed directly from the official repository for different distributions. Before installation you will need to add the NGINX Plus package repositories for your distribution and update the repository metadata.
+The installation process closely follows the [NGINX Plus installation procedure]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}). Prebuilt packages of the module for various Linux distributions can can be installed directly from the official repository. Prior to installation, you need to add the NGINX Plus package repository for your distribution and update the repository metadata.
 
-1. Check the [Technical Specifications]({{< ref "nginx/technical-specs.md" >}}) page to verify that the module is supported by your operating system.
+1.  Check the [Technical Specifications]({{< ref "nginx/technical-specs.md" >}}) page to verify that the module is supported by your operating system.
 
-   {{< note >}} The OpenTelemetry module cannot be installed on Amazon Linux 2 LTS and SLES 15 SP5+. {{< /note >}}
+    {{< note >}} The OpenTelemetry module cannot be installed on Amazon Linux 2 LTS and SLES 15 SP5+. {{< /note >}}
 
-2. Make sure you have the latest version of NGINX Plus. In Terminal, run the command:
+2.  Make sure you have the latest version of NGINX Plus. In Terminal, run the command:
 
-   ```shell
-   nginx -v
-   ```
+    ```shell
+    nginx -v
+    ```
 
-   Expected output of the command:
+    Expected output of the command:
 
-   ```shell
-   nginx version: nginx/1.27.4 (nginx-plus-r34)
-   ```
+    ```shell
+    nginx version: nginx/1.27.4 (nginx-plus-r34)
+    ```
 
-3. Make sure you have installed the dependencies required for your operating system.
+3.  Ensure you have the **nginx-repo.crt** and **nginx-repo.key** files from [MyF5 Customer Portal](https://account.f5.com/myf5) in the **/etc/ssl/nginx/** directory. These files are required for accessing the NGINX Plus repository.
 
-   For Amazon Linux 2023, AlmaLinux, CentOS, Oracle Linux, RHEL, and Rocky Linux:
+    ```shell
+    sudo cp <downloaded-file-name>.crt /etc/ssl/nginx/nginx-repo.crt && \
+    sudo cp <downloaded-file-name>.key /etc/ssl/nginx/nginx-repo.key
+    ```
 
-   ```shell
-   sudo dnf update
-   sudo dnf install ca-certificates
-   sudo dnf update-ca-certificates #use if ca-certificates are installed
-   ```
+    For Alpine, the **nginx-repo.crt** to **/etc/apk/cert.pem** and **nginx-repo.key** files should be added to **/etc/apk/cert.key**. Ensure these files contain only the specific key and certificate as Alpine Linux does not support mixing client certificates for multiple repositories.
 
-   For Debian:
+    For FreeBSD, the path to these files should also be added to the `/usr/local/etc/pkg.conf` file:
 
-   ```shell
-   sudo apt update
-   sudo apt install apt-transport-https lsb-release ca-certificates wget gnupg2 debian-archive-keyring
-   ```
+    ```shell
+    PKG_ENV: { SSL_NO_VERIFY_PEER: "1",
+    SSL_CLIENT_CERT_FILE: "/etc/ssl/nginx/nginx-repo.crt",
+    SSL_CLIENT_KEY_FILE: "/etc/ssl/nginx/nginx-repo.key" }
+    ```
 
-   ```shell
-   wget -qO - https://cs.nginx.com/static/keys/nginx_signing.key \
+4.  Ensure that all required dependencies for your operating system are installed.
+
+    For Amazon Linux 2023, AlmaLinux, CentOS, Oracle Linux, RHEL, and Rocky Linux:
+
+    ```shell
+    sudo dnf update && \
+    sudo dnf install ca-certificates
+    ```
+
+    For Debian:
+
+    ```shell
+    sudo apt update && \
+    sudo apt install apt-transport-https \
+                     lsb-release \
+                     ca-certificates \
+                     wget \
+                     gnupg2 \
+                     debian-archive-keyring
+    ```
+
+    For Ubuntu:
+
+    ```shell
+    sudo apt update  && \
+    sudo apt install apt-transport-https \
+                     lsb-release \
+                     ca-certificates \
+                     wget \
+                     gnupg2 \
+                     ubuntu-keyring
+    ```
+
+    For FreeBSD:
+
+    ```shell
+    sudo pkg update  && \
+    sudo pkg install ca_root_nss
+    ```
+
+5.  Ensure that the NGINX signing key has been added, if required by your operating system.
+
+    For Debian:
+
+    ```shell
+    wget -qO - https://cs.nginx.com/static/keys/nginx_signing.key \
     | gpg --dearmor \
     | sudo tee /usr/share/keyrings/nginx-archive-keyring.gpg >/dev/null
-   ```
+    ```
 
-   For Ubuntu:
+    For Ubuntu:
 
-   ```shell
-   sudo apt update
-   sudo apt install apt-transport-https lsb-release ca-certificates wget gnupg2 ubuntu-keyring
-   ```
+    ```shell
+    printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
+    https://pkgs.nginx.com/plus/ubuntu `lsb_release -cs` nginx-plus\n" \
+    | sudo tee /etc/apt/sources.list.d/nginx-plus.list
+    ```
 
-   ```shell
-   printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
-   https://pkgs.nginx.com/plus/ubuntu `lsb_release -cs` nginx-plus\n" \
-   | sudo tee /etc/apt/sources.list.d/nginx-plus.list
-   ```
+    For Alpine:
 
-   For Alpine:
+    ```shell
+    sudo wget -O /etc/apk/keys/nginx_signing.rsa.pub https://cs.nginx.com/static/keys/nginx_signing.rsa.pub
+    ```
 
-   ```shell
-   sudo wget -O /etc/apk/keys/nginx_signing.rsa.pub https://cs.nginx.com/static/keys/nginx_signing.rsa.pub
-   ```
+6.  Ensure that your package management system is configured to pull packages from the NGINX Plus repository. See [Installing NGINX Plus]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}) for details.
 
-   For FreeBSD:
+7.  Update the repository information and install the package. In a terminal, run the appropriate command for your operating system.
 
-   ```shell
-   sudo pkg update
-   sudo pkg install ca_root_nss
-   ```
+    For CentOS, Oracle Linux, and RHEL:
 
-3. Make sure you have obtained the **nginx-repo.crt** and **nginx-repo.key** files from MyF5 and put them to the **/etc/ssl/nginx/** directory. These files are required for accessing the NGINX Plus repository:
+    ```shell
+    sudo yum update  && \
+    sudo yum install nginx-plus-module-otel
+    ```
 
-   ```shell
-   sudo cp nginx-repo.crt /etc/ssl/nginx/
-   sudo cp nginx-repo.key /etc/ssl/nginx/
-   ```
+    For Amazon Linux 2023, AlmaLinux, Rocky Linux:
 
-   For Alpine, upload **nginx-repo.crt** to **/etc/apk/cert.pem** and **nginx-repo.key** to **/etc/apk/cert.key**. Ensure these files contain only the specific key and certificate as Alpine Linux does not support mixing client certificates for multiple repositories.
+    ```shell
+    sudo dnf update  && \
+    sudo dnf install nginx-plus-module-otel
+    ```
 
-4. Make sure your package management system is configured to pull from the NGINX Plus repository. See [Installing NGINX Plus]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}) for details.
+    For Debian and Ubuntu:
 
-4. Update the repository information and install the package. In a terminal, run the appropriate command for your operating system.
+    ```shell
+    sudo apt update  && \
+    sudo apt install nginx-plus-module-otel
+    ```
 
-   For CentOS, Oracle Linux, and RHEL:
+    For Alpine:
 
-   ```shell
-   sudo yum update
-   sudo yum install nginx-plus-module-otel
-   ```
+    ```shell
+    sudo apk update  && \
+    sudo apk add nginx-plus-module-otel
+    ```
 
-   For Amazon Linux 2023, AlmaLinux, Rocky Linux:
+    For FreeBSD:
 
-   ```shell
-   sudo dnf update
-   sudo dnf install nginx-plus-module-otel
-   ```
+    ```shell
+    sudo pkg update  && \
+    sudo pkg install nginx-plus-module-otel
+    ```
 
-   For Debian and Ubuntu:
+    The resulting `ngx_otel_module.so`  dynamic module will be written to the following directory, depending on your operating system:
 
-   ```shell
-   sudo apt update
-   sudo apt install nginx-plus-module-otel
-   ```
+    - `/usr/local/nginx/modules` for most Linux Distributions
+    - `/usr/lib/nginx/modules` for Ubuntu
+    - `/usr/local/etc/nginx/modules` for FreeBSD
 
-   For Alpine:
+8.  Enable dynamic loading of the module.
 
-   ```shell
-   sudo apk update
-   sudo apk add nginx-plus-module-otel
-   ```
+    - In a text editor, open the NGINX Plus configuration file (`/etc/nginx/nginx.conf` for Linux or `/usr/local/etc/nginx/nginx.conf` for FreeBSD).
 
-   For FreeBSD:
+    -  On the top-level (or “`main`”) context, specify the path to the dynamic module with the [`load_module`](https://nginx.org/en/docs/ngx_core_module.html#load_module) directive:
 
-   ```shell
-   sudo pkg update
-   sudo pkg install nginx-plus-module-otel
-   ```
+    ```nginx
+    load_module modules/ngx_otel_module.so;
 
-   The module will be installed in the `/usr/local/nginx` directory.
+    http {
+    #...
+    }
+    ```
+    - Save the configuration file.
 
-6. Copy the `ngx_otel_module.so` dynamic module binary to `/usr/local/nginx/modules`.
+9.  Test the NGINX Plus configuration. In a terminal, type-in the command:
 
-7. Enable dynamic loading of the module. Open the NGINX Plus configuration file, `nginx.conf` in a text editor, and specify the [`load_module`](https://nginx.org/en/docs/ngx_core_module.html#load_module) directive on the top-level (“`main`”) context:
+    ```shell
+    nginx -t
+    ```
 
-   ```nginx
-   load_module modules/ngx_otel_module.so;
+    Expected output of the command:
 
-   http {
-   #...
-   }
-   ```
+    ```shell
+    nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+    nginx: configuration file /etc/nginx/nginx.conf is successful
+    ```
 
-3. Save the configuration file.
+10. Reload the NGINX Plus configuration to enable the module:
 
-4. Test and reload NGINX Plus configuration to enable the module.  In Terminal, type-in the command:
-
-   ```shell
-   nginx -t && nginx -s reload
-   ```
+    ```shell
+    nginx -s reload
+    ```
 
 
 ## Configuration
+
+ In a text editor, open the NGINX Plus configuration file (`/etc/nginx/nginx.conf` for Linux or `/usr/local/etc/nginx/nginx.conf` for FreeBSD).
 
 For a complete list of directives, embedded variables, default span attributes, refer to the `ngx_otel_module` official documentation.
 
@@ -187,7 +232,7 @@ Default span attributes:
 
 ### Simple Tracing
 
-Dumping all the requests could be useful even in non-distributed environment.
+This configuration enables basic request tracing, capturing tracing information for every incoming request, even in non-distributed environments.
 
 ```nginx
 http {
@@ -201,6 +246,8 @@ http {
 ```
 
 ### Parent-based Tracing
+
+This configuration enables parent-based tracing, where NGINX Plus captures and propagates trace information from incoming requests, allowing tracing contexts to be inherited from the parent request. It is useful in scenarios where NGINX Plus is used as a reverse proxy within a distributed tracing system.
 
 ```nginx
 http {
@@ -216,6 +263,8 @@ http {
 ```
 
 ### Ratio-based Tracing
+
+This configuration enables sampling of a specified percentage of requests or user sessions for tracing, based on configurable ratios.
 
 ```nginx
 http {
@@ -248,6 +297,8 @@ http {
 
 - [Official Documentation for the NGINX Native OpenTelemetry Module](https://nginx.org/en/docs/ngx_otel_module.html)
 
+- [NGINX Plus Technical Specifications]({{< ref "nginx/technical-specs.md" >}})
+
 - [NGINX Dynamic Modules]({{< ref "dynamic-modules.md" >}})
 
-- [NGINX Plus Technical Specifications]({{< ref "nginx/technical-specs.md" >}})
+- [Uninstalling a Dynamic Module]({{< ref "uninstall.md" >}})
