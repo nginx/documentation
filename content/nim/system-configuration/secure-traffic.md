@@ -136,7 +136,7 @@ To generate the necessary certificates, follow these steps. You can modify these
     }
 
     make_server() {
-        echo "Creating nginx-manger certificate and key"
+        echo "Creating nginx-manager certificate and key"
         openssl req \
             -new \
             -nodes \
