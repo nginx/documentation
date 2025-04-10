@@ -18,6 +18,17 @@
           "default": "tenant-example"
         }
       }
+    },
+    {
+      "url": "/api/v1/marketplace"
+    },
+    {
+      "url": "/api/v1/namespaces/{namespace}",
+      "variables": {
+        "namespace": {
+          "default": "default"
+        }
+      }
     }
   ],
   "tags": [
@@ -63,6 +74,26 @@
       "name": "Settings",
       "description": "Configuration option for different aspect of NGINX One service.\nYou can set NGINX Instance cleanup preferences.\n",
       "x-displayName": "Settings"
+    },
+    {
+      "name": "Authorization",
+      "description": "TODO\n",
+      "x-displayName": "Authorization"
+    },
+    {
+      "name": "Signup",
+      "description": "TODO\n",
+      "x-displayName": "Signup"
+    },
+    {
+      "name": "User",
+      "description": "TODO\n",
+      "x-displayName": "User"
+    },
+    {
+      "name": "Deployments",
+      "description": "Manage NAAS deployments.",
+      "x-displayName": "Deployments"
     }
   ],
   "paths": {
@@ -2563,7 +2594,7 @@
         "x-nginx-one-action": "create",
         "x-nginx-one-entity": "NGINX instance configuration",
         "summary": "Publish a configuration to an instance",
-        "description": "Publishes a new or updated NGINX configuration to the specified instance. \nIf no existing configuration is found, a new one is created; otherwise, the current configuration is overwritten. \nBefore publishing, use the `PUT /instances/{instanceObjectID}/config-report` endpoint to generate an analysis report for the provided configuration.\nYou can specify `payloads` in the request to deploy managed certificates and keys to the dataplane. Include file paths\nfor each payload component.\n",
+        "description": "Publishes a new or updated NGINX configuration to the specified instance.\nIn the specified `configs`, empty files are not allowed in the directory.\nIf no existing configuration is found, a new one is created; otherwise, the current configuration is overwritten. \nBefore publishing, use the `PUT /instances/{instanceObjectID}/config-report` endpoint to generate an analysis report for the provided configuration.\nYou can specify `payloads` in the request to deploy managed certificates and keys to the dataplane. Include file paths\nfor each payload component.\n",
         "operationId": "publishInstanceConfig",
         "requestBody": {
           "required": true,
@@ -3729,6 +3760,148 @@
         }
       }
     },
+    "/staged-configs/{stagedConfigObjectID}/export": {
+      "get": {
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/StagedConfigParamObjectID"
+          }
+        ],
+        "tags": [
+          "Staged Configs"
+        ],
+        "x-feature-flag": "staged-configs-phase-2",
+        "x-nginx-one-action": "export",
+        "x-nginx-one-entity": "NGINX staged config",
+        "summary": "export target staged configuration",
+        "description": "Exports staged configuration as a gzipped tar archive. Does not include sensitive data such as SSL certificates. [Learn more](https://docs.nginx.com/nginx-one/how-to/staged-configs/import-export-staged-config/).\n",
+        "operationId": "exportStagedConfig",
+        "responses": {
+          "200": {
+            "description": "Successfully exported the staged configuration.",
+            "content": {
+              "application/gzip": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary",
+                  "example": "my-staged-config-2025-01-01T20_25_03.tar.gz"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The NGINX staged config with the specified object_id was not found. Check that the object_id provided is correct and corresponds to an existing resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/staged-configs/import": {
+      "post": {
+        "tags": [
+          "Staged Configs"
+        ],
+        "x-feature-flag": "staged-configs-phase-2",
+        "x-nginx-one-action": "import",
+        "x-nginx-one-entity": "NGINX staged config",
+        "summary": "Import staged configuration\n",
+        "description": "Imports staged configuration as a gzipped tar archive into NGINX One. Enabling `parse_only` means your import will only be validated. \nLeaving it unenabled (by default) validates the import and automatically creates a staged config upon successful validation. The imported staged config\nwill not include the payloads which support `inline_content` and `inline_secret`.\n[Learn more](https://docs.nginx.com/nginx-one/how-to/staged-configs/import-export-staged-config/).\n",
+        "operationId": "importStagedConfig",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/StagedConfigImportRequest"
+              },
+              "encoding": {
+                "file": {
+                  "contentType": "application/gzip"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Return if `parse_only` is `true`: Returns data matching `StagedConfigCreateRequest` that can be used to create the staged config later.  \n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StagedConfigCreateRequest"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Return if `parse_only` is `false` or omitted: Confirms the import parsed successfully and the staged config was created.\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StagedConfigCreateResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/monitor/metrics_query_topx": {
       "post": {
         "tags": [
@@ -3750,7 +3923,7 @@
                 "metrics": [
                   {
                     "aggregate": "sum",
-                    "name": "nginx.http.requests"
+                    "name": "nginx.http.request.count"
                   }
                 ],
                 "series_limit": 1,
@@ -3859,6 +4032,434 @@
                 }
               }
             }
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerErr"
+          }
+        }
+      }
+    },
+    "/auth/google/authorize": {
+      "get": {
+        "tags": [
+          "Authorization"
+        ],
+        "summary": "Returns a redirect to authenticate with Google.",
+        "operationId": "googleAuthorize",
+        "responses": {
+          "302": {
+            "description": "Redirect to authenticate with Google."
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/google/callback": {
+      "get": {
+        "tags": [
+          "Authorization"
+        ],
+        "summary": "Callback after the Google login page.",
+        "description": "The Google callback endpoint is where the user will be redirected after logging in and authorizing our service. This callback carries the Google code we exchange for an authorization token.\n",
+        "operationId": "googleCallback",
+        "parameters": [
+          {
+            "name": "code",
+            "in": "query",
+            "required": true,
+            "description": "The authorization code returned by the Google authorization server.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "state",
+            "in": "query",
+            "required": true,
+            "description": "A signed state parameter used to mitigate CSRF attacks. In some cases, this may additionally be used to carry needed state from the redirect back to the callback.\n",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Authorization has been granted and an access token is generated. Use the returned access token to\nauthenticate future API requests.\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthGoogleCallbackResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "The request is either missing or provided invalid input.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The request contains valid input, but authorization cannot be granted."
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/google/signup": {
+      "post": {
+        "tags": [
+          "Signup"
+        ],
+        "summary": "Creates an account and first user.",
+        "operationId": "googleSignup",
+        "requestBody": {
+          "description": "Completed sign up form with Google account and user identity from the\nmarketplace token.\n",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SignupWithGoogleRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The new account has been activated and first user created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SignupWithGoogleResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "x-nginx-one-action": "create",
+        "x-nginx-one-entity": "user",
+        "summary": "Create a user",
+        "description": "TODO\n",
+        "operationId": "createUser",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CloudUserCreateRequest"
+              },
+              "examples": {
+                "CloudUserCreateRequest": {
+                  "$ref": "#/components/examples/CloudUserResponse"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully created the cloud user.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CloudUser"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/deployments": {
+      "get": {
+        "tags": [
+          "Deployments"
+        ],
+        "summary": "List deployments",
+        "description": "Returns a list of deployments.",
+        "operationId": "listDeployments",
+        "responses": {
+          "200": {
+            "description": "Successfully returned the list of deployments.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeploymentListResponse"
+                },
+                "examples": {
+                  "DeploymentListResponse": {
+                    "$ref": "#/components/examples/DeploymentListResponse"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/InvalidRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerErr"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Deployments"
+        ],
+        "summary": "Create deployment",
+        "description": "Creates a new deployment.",
+        "operationId": "createDeployment",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeploymentCreateRequest"
+              },
+              "examples": {
+                "DeploymentCreateRequest": {
+                  "$ref": "#/components/examples/DeploymentCreateRequest"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Successfully created the deployment.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Deployment"
+                },
+                "examples": {
+                  "DeploymentCreateResponse": {
+                    "$ref": "#/components/examples/DeploymentCreateResponse"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/InvalidRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerErr"
+          }
+        }
+      }
+    },
+    "/deployments/{deployment_id}": {
+      "delete": {
+        "tags": [
+          "Deployments"
+        ],
+        "summary": "Delete deployment",
+        "description": "Deletes the specified deployment.",
+        "operationId": "deleteDeployment",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/DeploymentObjectID"
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Successfully deleted the deployment.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Deployment"
+                },
+                "examples": {
+                  "DeploymentDeleteResponse": {
+                    "$ref": "#/components/examples/DeploymentDeleteResponse"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerErr"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Deployments"
+        ],
+        "summary": "Get deployment",
+        "description": "Returns deployment details.",
+        "operationId": "getDeployment",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/DeploymentObjectID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully returned the deployment details.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Deployment"
+                },
+                "examples": {
+                  "DeploymentGetResponse": {
+                    "$ref": "#/components/examples/DeploymentGetResponse"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/InvalidRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerErr"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Deployments"
+        ],
+        "summary": "Update deployment",
+        "description": "Updates the specified deployment.",
+        "operationId": "updateDeployment",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/DeploymentObjectID"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeploymentUpdateRequest"
+              },
+              "examples": {
+                "DeploymentUpdateRequest": {
+                  "$ref": "#/components/examples/DeploymentUpdateRequest"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully updated the deployment.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Deployment"
+                },
+                "examples": {
+                  "DeploymentUpdateResponse": {
+                    "$ref": "#/components/examples/DeploymentUpdateResponse"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/InvalidRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
           },
           "500": {
             "$ref": "#/components/responses/InternalServerErr"
@@ -4248,6 +4849,15 @@
         },
         "description": "A globally unique identifier for the NGINX staged config.\n",
         "required": true
+      },
+      "DeploymentObjectID": {
+        "name": "deployment_id",
+        "in": "path",
+        "schema": {
+          "$ref": "#/components/schemas/DeploymentObjectID"
+        },
+        "description": "A globally unique identifier for the deployment.",
+        "required": true
       }
     },
     "schemas": {
@@ -4290,11 +4900,11 @@
         "properties": {
           "total": {
             "type": "integer",
-            "description": "The absolute total number of the resource in the NGINX One Console.\n"
+            "description": "The absolute total number of the resource in the NGINX One Console, ignoring any filter(s).\n"
           },
           "count": {
             "type": "integer",
-            "description": "The total number of results generated by the list or query operation. \nThis number might be greater than the number of displayed resources, such as when pagination is in effect.\n"
+            "description": "The total number of results generated by the list or query operation, accounting for any filter(s).\nThis number can be greater than the number of returned resources when pagination is in effect and a page size limit (or maximum allowed) is reached.\n"
           },
           "start_index": {
             "type": "integer",
@@ -5893,6 +6503,13 @@
           }
         ]
       },
+      "ConfigPath": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 4096,
+        "description": "The full path to the main NGINX configuration file. This corresponds to the `--conf-path` parameter used in the NGINX binary.\n",
+        "example": "/etc/nginx/nginx.conf."
+      },
       "FileData": {
         "type": "object",
         "description": "Details about a file, including its path, content, size, and last modified time.",
@@ -5969,11 +6586,7 @@
             "description": "A hash that uniquely identifies the contents of the config object. Can be used to detect change when updating the NginxConfig.\n"
           },
           "conf_path": {
-            "type": "string",
-            "minLength": 1,
-            "maxLength": 4096,
-            "description": "The full path to the main NGINX configuration file. This corresponds to the `--conf-path` parameter used in the NGINX binary.\n",
-            "example": "/etc/nginx/nginx.conf."
+            "$ref": "#/components/schemas/ConfigPath"
           },
           "configs": {
             "type": "array",
@@ -6207,11 +6820,7 @@
             "description": "A hash that uniquely identifies the contents of the config object. Can be used to detect change when updating the NginxConfig.\n"
           },
           "conf_path": {
-            "type": "string",
-            "minLength": 1,
-            "maxLength": 4096,
-            "description": "The full path to the main NGINX configuration file. This corresponds to the `--conf-path` parameter used in the NGINX binary.\n",
-            "example": "/etc/nginx/nginx.conf."
+            "$ref": "#/components/schemas/ConfigPath"
           },
           "configs": {
             "type": "array",
@@ -7536,6 +8145,40 @@
           }
         }
       },
+      "StagedConfigImportRequest": {
+        "type": "object",
+        "description": "Body to import a NGINX staged config",
+        "required": [
+          "name",
+          "file",
+          "conf_path"
+        ],
+        "properties": {
+          "name": {
+            "$ref": "#/components/schemas/StagedConfigName"
+          },
+          "file": {
+            "type": "string",
+            "format": "binary",
+            "example": "my-staged-config.tar.gz",
+            "maxLength": 10485760
+          },
+          "conf_path": {
+            "$ref": "#/components/schemas/ConfigPath"
+          },
+          "parse_only": {
+            "type": "boolean",
+            "description": "Optional flag to control how the request is processed.\n  - When `false` or omitted (by default), the request creates a Staged Config directly. (`StagedConfigCreateResponse`)\n  - When `true`, the request parses the import and returns metadata you can use to create a Staged Config through a POST. ( `StagedConfigCreateRequest`) \n",
+            "example": false
+          }
+        },
+        "example": {
+          "name": "my-nginx-config",
+          "file": "my-staged-config.tar.gz",
+          "conf_path": "/etc/nginx/nginx.conf",
+          "parse_only": true
+        }
+      },
       "MetricQueryResultEx": {
         "type": "object",
         "required": [
@@ -7734,7 +8377,7 @@
       "MetricDimension": {
         "type": "string",
         "default": "display_name",
-        "description": "Static list of all metric dimensions.\n  * `display_name` - The display name of the NGINX instance.\n  * `file_path` - Path to a desired file.\n  * `parent_hostname` - The hostname of the NGINX Plus instance.\n  * `instance_object_id` - Instance Object ID is the unique identifier for an Instance registered with NGINX One Console.\n  * `location_zone` - The name of an HTTP location zone.\n  * `mount_point` - A filesystem mount point.\n  * `namespace` - The Namespace associated with the metric data.\n  * `network_interface` - A server network interface.\n  * `nginx_id` - The unique identifier of an nginx instance running on the data plane.\n  * `server_zone` - The name of an HTTP or Stream server zone.\n  * `system_id` - The unique identifier of the the operating system where nginx-agent is running.\n  * `tenant` - The Tenant associated with the metric data.\n  * `csg_object_id` - Config Sync Group Object ID is the unique identifier for a Config Sync Group registered with NGINX One Console.\n  * `mode` - Variant value associated with metric `system.cpu.time`.\n  * `state` - Variant value associated with metrics `system.filesystem.usage`, `system.memory.usage`.\n  * `io_direction` - Variant value associated with metric `system.network.io`.\n  * `status_range` - Variant value associated with metric `nginx.http.response.status`.\n",
+        "description": "Static list of all metric dimensions.\n  * `display_name` - The display name of the NGINX instance.\n  * `file_path` - Path to a desired file.\n  * `parent_hostname` - The hostname of the NGINX Plus instance.\n  * `instance_object_id` - Instance Object ID is the unique identifier for an Instance registered with NGINX One Console.\n  * `location_zone` - The name of an HTTP location zone.\n  * `mount_point` - A filesystem mount point.\n  * `namespace` - The Namespace associated with the metric data.\n  * `network_interface` - A server network interface.\n  * `nginx_id` - The unique identifier of an nginx instance running on the data plane.\n  * `server_zone` - The name of an HTTP or Stream server zone.\n  * `system_id` - The unique identifier of the the operating system where nginx-agent is running.\n  * `tenant` - The Tenant associated with the metric data.\n  * `csg_object_id` - Config Sync Group Object ID is the unique identifier for a Config Sync Group registered with NGINX One Console.\n  * `mode` - Variant value associated with metric `system.cpu.utilization`.\n  * `state` - Variant value associated with metrics `system.filesystem.usage`, `system.memory.usage`.\n  * `io_direction` - Variant value associated with metric `system.network.io`.\n  * `status_range` - Variant value associated with metric `nginx.http.response.count`.\n",
         "enum": [
           "display_name",
           "file_path",
@@ -7864,7 +8507,7 @@
         },
         "example": [
           {
-            "name": "system.cpu.time",
+            "name": "system.cpu.utilization",
             "aggregate": "avg",
             "filter": [
               {
@@ -8053,10 +8696,10 @@
       "MetricName": {
         "type": "string",
         "description": "Metric names available for querying.\n",
-        "example": "nginx.http.requests",
+        "example": "nginx.http.request.count",
         "oneOf": [
           {
-            "$ref": "#/components/schemas/MetricSystemCpuTime"
+            "$ref": "#/components/schemas/MetricSystemCpuUtilization"
           },
           {
             "$ref": "#/components/schemas/MetricSystemFilesystemUsage"
@@ -8071,18 +8714,18 @@
             "$ref": "#/components/schemas/MetricSystemNetworkIo"
           },
           {
-            "$ref": "#/components/schemas/MetricNginxHttpRequests"
+            "$ref": "#/components/schemas/MetricNginxHttpRequestCount"
           },
           {
-            "$ref": "#/components/schemas/MetricNginxHttpResponseStatus"
+            "$ref": "#/components/schemas/MetricNginxHttpResponseCount"
           }
         ]
       },
-      "MetricSystemCpuTime": {
+      "MetricSystemCpuUtilization": {
         "type": "string",
         "description": "Total system CPU utilization for 'system' or 'user', percentage. A filter differentiator is needed for specific mode(s).\n\nReplacement for depreciated variant(s):\n  * system.cpu.system\n  * system.cpu.user\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension filter differentiator:\n  * mode (applicable filter values: 'system', 'user')\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n",
         "enum": [
-          "system.cpu.time"
+          "system.cpu.utilization"
         ]
       },
       "MetricSystemFilesystemUsage": {
@@ -8113,18 +8756,18 @@
           "system.network.io"
         ]
       },
-      "MetricNginxHttpRequests": {
+      "MetricNginxHttpRequestCount": {
         "type": "string",
-        "description": "Total number of client requests received from clients.\n\nReplacement for depreciated variant(s):\n  * nginx.http.request.count\n  * plus.http.request.count\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n  * server_zone\n  * location_zone\n",
+        "description": "The current number of client requests received from clients.\n\nReplacement for depreciated variant(s):\n  * nginx.http.request.count\n  * plus.http.request.count\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n  * server_zone\n  * location_zone\n",
         "enum": [
-          "nginx.http.requests"
+          "nginx.http.request.count"
         ]
       },
-      "MetricNginxHttpResponseStatus": {
+      "MetricNginxHttpResponseCount": {
         "type": "string",
-        "description": "Number of responses for by status code range. A filter differentiator is needed for specific status range(s).\n\nReplacement for depreciated variant(s):\n  * nginx.http.status.4xx\n  * plus.http.status.4xx\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension filter differentiator:\n  * status_range (applicable filter values: '4xx', '5xx')\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id          \n  * server_zone\n  * location_zone\n",
+        "description": "The current number of responses, grouped by status code range. A filter differentiator is needed for specific status range(s).\n\nReplacement for depreciated variant(s):\n  * nginx.http.status.4xx\n  * plus.http.status.4xx\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension filter differentiator:\n  * status_range (applicable filter values: '4xx', '5xx')\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id          \n  * server_zone\n  * location_zone\n",
         "enum": [
-          "nginx.http.response.status"
+          "nginx.http.response.count"
         ]
       },
       "SettingsInstanceCleanup": {
@@ -8322,15 +8965,15 @@
         ]
       },
       "NapPolicyEnforcementMode": {
-        "description": "The current enforcement mode of the NGINX App Protect policy, with the following possible values:\n* `blocking` - Any illegal or suspicious requests are logged and blocked.\n* `monitoring` - Any illegal or suspicious requests are logged but not blocked.\n",
+        "description": "The current enforcement mode of the NGINX App Protect policy, with the following possible values:\n* `blocking` - Any illegal or suspicious requests are logged and blocked.\n* `transparent` - Any illegal or suspicious requests are logged but not blocked.\n",
         "type": "string",
         "enum": [
           "blocking",
-          "monitoring"
+          "transparent"
         ],
         "x-enum-varnames": [
           "nap_enforcement_mode_blocking",
-          "nap_enforcement_mode_monitoring"
+          "nap_enforcement_mode_transparent"
         ]
       },
       "NapDeploymentStatus": {
@@ -8364,7 +9007,6 @@
       "Version": {
         "description": "The version of the NGINX App Protect resource.",
         "type": "string",
-        "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$",
         "example": "2023.12.06"
       },
       "VersionsList": {
@@ -8380,11 +9022,6 @@
               "$ref": "#/components/schemas/Version"
             }
           }
-        },
-        "example": {
-          "items": [
-            "2023.12.06"
-          ]
         }
       },
       "ThreatCampaignVersionsListResponse": {
@@ -8400,16 +9037,16 @@
         "$ref": "#/components/schemas/VersionsList"
       },
       "NapPolicy": {
-        "description": "The JSON contents of the NGINX App Protect policy.",
+        "description": "The base64-encoded contents of the NGINX App Protect policy.",
         "type": "object",
         "required": [
           "policy"
         ],
         "properties": {
           "policy": {
-            "description": "The NGINX App Protect policy configuration.",
-            "type": "object",
-            "minProperties": 1
+            "type": "string",
+            "format": "base64",
+            "maxLength": 3145728
           }
         }
       },
@@ -8420,7 +9057,6 @@
           "object_id",
           "name",
           "deployment_count",
-          "last_updated_by",
           "latest"
         ],
         "properties": {
@@ -8435,70 +9071,17 @@
             "description": "The number of NGINX One instances or config sync groups associated with the NGINX App Protect policy.",
             "type": "integer"
           },
-          "last_updated_by": {
-            "description": "The NGINX One user who last modified the NGINX App Protect policy.",
-            "type": "string"
-          },
           "latest": {
-            "type": "object",
-            "required": [
-              "enforcement_mode",
-              "deployed_on",
-              "version",
-              "created_on",
-              "last_updated_by"
-            ],
-            "properties": {
-              "enforcement_mode": {
-                "$ref": "#/components/schemas/NapPolicyEnforcementMode"
-              },
-              "deployed_on": {
-                "description": "The date and time when the NGINX App Protect policy was last deployed.",
-                "type": "string",
-                "format": "date-time"
-              },
-              "version": {
-                "description": "The latest version of the NGINX App Protect policy.",
-                "type": "string"
-              },
-              "created_on": {
-                "description": "The date and time when the NGINX App Protect policy was created.",
-                "type": "string",
-                "format": "date-time"
-              }
-            }
+            "description": "Summary information about the latest NGINX App Protect policy version.",
+            "$ref": "#/components/schemas/NapPolicyVersionMetadata"
           },
           "description": {
             "type": "string",
             "description": "Some detail on the NGINX App Protect policy."
           }
-        },
-        "example": {
-          "object_id": "pol_-uvR3F2TQGm18jnl7bpaGw",
-          "name": "test-policy",
-          "last_updated_by": "john.doe@example.com",
-          "deployment_count": 5,
-          "decription": "test policy",
-          "latest": {
-            "enforcement_mode": "blocking",
-            "deployed_on": "2023-12-06T22:37:24.120114Z",
-            "version": "2023-12-06 22:37:24",
-            "created_on": "2023-12-06T22:37:24.120114Z"
-          }
         }
       },
-      "NapPolicyResponse": {
-        "description": "Summary information about NGINX App Protect policy.",
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/NapPolicyMetadata"
-          },
-          {
-            "$ref": "#/components/schemas/NapPolicy"
-          }
-        ]
-      },
-      "NapPoliciesListResponse": {
+      "NapPolicyListResponse": {
         "description": "List of all NGINX App Protect policies.",
         "allOf": [
           {
@@ -8525,11 +9108,16 @@
                   "object_id": "pol_-uvR3F2TQGm18jnl7bpaGw",
                   "name": "test-policy",
                   "decription": "test policy",
-                  "created_on": "2023-12-06T22:37:24.120114Z",
-                  "latest_version": "2023.12.06",
-                  "last_updated_by": "john.doe@example.com",
-                  "enforcement_mode": "blocking",
-                  "last_deployed": "2023-12-06T22:37:24.120114Z"
+                  "deployment_count": 25,
+                  "latest": {
+                    "object_id": "pv_-uvR3F2TQGm18jnl7bpaGw",
+                    "created_on": "2023-12-06T22:37:24.120114Z",
+                    "created_by": "john.doe@example.com",
+                    "deployment_status": "deployed",
+                    "enforcement_mode": "blocking",
+                    "instance_count": 10,
+                    "config_sync_group_count": 15
+                  }
                 }
               ]
             }
@@ -8584,18 +9172,6 @@
           "bot_sigature_version": {
             "$ref": "#/components/schemas/Version"
           }
-        },
-        "example": {
-          "object_id": "pub_-uvR3F2TQGm18jnl7bpaGw",
-          "name": "test-instance",
-          "type": "instance",
-          "status": "deployed",
-          "policy_version": "2023-12-06 22:37:24",
-          "deployed_on": "2023-12-06T22:37:24.120114Z",
-          "enforcement_mode": "blocking",
-          "threat_campaign_version": "2023.12.06",
-          "attack_signature_version": "2023.12.06",
-          "bot_sigature_version": "2023.12.06"
         }
       },
       "NapPolicyDeploymentsListResponse": {
@@ -8626,11 +9202,10 @@
                   "type": "instance",
                   "status": "deployed",
                   "policy_version": "2023-12-06 22:37:24",
-                  "deployed_on": "2023-12-06T22:37:24.120114Z",
                   "enforcement_mode": "blocking",
                   "threat_campaign_version": "2023.12.06",
                   "attack_signature_version": "2023.12.06",
-                  "bot_sigature_version": "2023.12.06"
+                  "bot_signature_version": "2023.12.06"
                 }
               ]
             }
@@ -8646,8 +9221,7 @@
           "instance_count",
           "config_sync_group_count",
           "created_on",
-          "created_by",
-          "latest"
+          "created_by"
         ],
         "properties": {
           "object_id": {
@@ -8669,28 +9243,17 @@
           },
           "created_on": {
             "description": "The date and time when the NGINX App Protect policy version was created.",
-            "type": "string",
-            "format": "date-time"
+            "type": "string"
           },
           "created_by": {
             "description": "The NGINX One user who created the NGINX App Protect policy.",
             "type": "string"
           },
-          "latest": {
-            "description": "Indicates whether the NGINX App Protect policy version is latest. Default (`false`) returns the current policy. \nWhen set to `true`, returns the latest policy.\n",
-            "type": "boolean",
-            "default": false
+          "deployed_on": {
+            "description": "The date and time when the NGINX App Protect policy was last deployed.",
+            "type": "string",
+            "format": "date-time"
           }
-        },
-        "example": {
-          "object_id": "pv_-uvR3F2TQGm18jnl7bpaGw",
-          "created_on": "2023-12-06T22:37:24.120114Z",
-          "created_by": "john.doe@example.com",
-          "deployment_status": "deployed",
-          "enforcement_mode": "blocking",
-          "instance_count": 10,
-          "config_sync_group_count": 15,
-          "latest": false
         }
       },
       "NapPolicyVersionResponse": {
@@ -8701,6 +9264,27 @@
           },
           {
             "$ref": "#/components/schemas/NapPolicy"
+          }
+        ]
+      },
+      "NapPolicyVersionListMetadata": {
+        "description": "Summary information about NGINX App Protect policy version.",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/NapPolicyVersionMetadata"
+          },
+          {
+            "type": "object",
+            "required": [
+              "latest"
+            ],
+            "properties": {
+              "latest": {
+                "description": "Indicates whether the NGINX App Protect policy version is latest. Default (`false`) returns the current policy. \nWhen set to `true`, returns the latest policy.\n",
+                "type": "boolean",
+                "default": false
+              }
+            }
           }
         ]
       },
@@ -8720,14 +9304,14 @@
                 "description": "An array of NGINX App Protect version objects.",
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/NapPolicyVersionMetadata"
+                  "$ref": "#/components/schemas/NapPolicyVersionListMetadata"
                 }
               }
             },
             "example": {
               "items": [
                 {
-                  "object_id": "appv_-uvR3F2TQGm18jnl7bpaGw",
+                  "object_id": "pv_-uvR3F2TQGm18jnl7bpaGw",
                   "created_on": "2023-12-06T22:37:24.120114Z",
                   "created_by": "john.doe@example.com",
                   "deployment_status": "deployed",
@@ -8759,16 +9343,6 @@
                   "$ref": "#/components/schemas/NapLogProfileMetadata"
                 }
               }
-            },
-            "example": {
-              "items": [
-                {
-                  "name": "test-log-profile"
-                },
-                {
-                  "object_id": "lp_-uvR3F2TQGm18jnl7bpaGw"
-                }
-              ]
             }
           }
         ]
@@ -8816,16 +9390,6 @@
                   "$ref": "#/components/schemas/NapGlobalSettingsMetadata"
                 }
               }
-            },
-            "example": {
-              "items": [
-                {
-                  "name": "test-global-settings"
-                },
-                {
-                  "object_id": "gs_-uvR3F2TQGm18jnl7bpaGw"
-                }
-              ]
             }
           }
         ]
@@ -8898,6 +9462,353 @@
           "name": "objects",
           "path": "gitlab.com/f5/nginx/one/saas/control-plane/pkg/collections/objects"
         }
+      },
+      "CloudIdentity": {
+        "type": "object",
+        "minProperties": 1,
+        "maxProperties": 1,
+        "properties": {
+          "google_identity": {
+            "$ref": "#/components/schemas/GoogleIdentity"
+          }
+        }
+      },
+      "GoogleIdentity": {
+        "type": "object",
+        "required": [
+          "id"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256,
+            "example": "253092013665251357076"
+          }
+        }
+      },
+      "CloudUserCreateRequest": {
+        "type": "object",
+        "description": "Request structure for creating a new cloud user.",
+        "required": [
+          "cloud_identity"
+        ],
+        "properties": {
+          "cloud_identity": {
+            "$ref": "#/components/schemas/CloudIdentity"
+          }
+        }
+      },
+      "CloudAccountObjectID": {
+        "description": "A globally unique identifier for the cloud account.",
+        "type": "string",
+        "format": "object_id",
+        "pattern": "^acc_.*",
+        "x-go-type": "objects.ID",
+        "x-go-type-import": {
+          "name": "objects",
+          "path": "gitlab.com/f5/nginx/one/saas/control-plane/pkg/collections/objects"
+        }
+      },
+      "CloudUserObjectID": {
+        "description": "A globally unique identifier for the cloud user.",
+        "type": "string",
+        "format": "object_id",
+        "pattern": "^usr_.*",
+        "x-go-type": "objects.ID",
+        "x-go-type-import": {
+          "name": "objects",
+          "path": "gitlab.com/f5/nginx/one/saas/control-plane/pkg/collections/objects"
+        }
+      },
+      "CloudUser": {
+        "type": "object",
+        "required": [
+          "object_id",
+          "cloud_identity"
+        ],
+        "properties": {
+          "object_id": {
+            "$ref": "#/components/schemas/CloudUserObjectID"
+          },
+          "cloud_identity": {
+            "$ref": "#/components/schemas/CloudIdentity"
+          }
+        }
+      },
+      "AuthGoogleCallbackResponse": {
+        "type": "object",
+        "required": [
+          "access_token"
+        ],
+        "properties": {
+          "access_token": {
+            "type": "string",
+            "description": "The signed access token to be used to authenticate API requests. This token should be treated as a \"secret\".\n"
+          }
+        }
+      },
+      "SignupWithGoogleRequest": {
+        "required": [
+          "account_id",
+          "google_user_id"
+        ],
+        "properties": {
+          "account_id": {
+            "type": "string",
+            "description": "Google marketplace account id"
+          },
+          "google_user_id": {
+            "type": "string",
+            "description": "Google user identity of the user completing signup."
+          }
+        }
+      },
+      "SignupWithGoogleResponse": {
+        "type": "object",
+        "required": [
+          "account_id",
+          "user_id"
+        ],
+        "properties": {
+          "account_id": {
+            "$ref": "#/components/schemas/CloudAccountObjectID"
+          },
+          "user_id": {
+            "$ref": "#/components/schemas/CloudUserObjectID"
+          }
+        }
+      },
+      "DeploymentObjectID": {
+        "type": "string",
+        "description": "A globally unique identifier for the deployment.",
+        "format": "object_id",
+        "pattern": "^depl_.*",
+        "x-go-type": "objects.ID",
+        "x-go-type-import": {
+          "name": "objects",
+          "path": "gitlab.com/f5/nginx/one/saas/control-plane/pkg/collections/objects"
+        }
+      },
+      "DeploymentAccountID": {
+        "type": "string",
+        "description": "Account ID of deployment.",
+        "format": "object_id",
+        "pattern": "^acc_.*",
+        "x-go-type": "objects.ID",
+        "x-go-type-import": {
+          "name": "objects",
+          "path": "gitlab.com/f5/nginx/one/saas/control-plane/pkg/collections/objects"
+        }
+      },
+      "DeploymentName": {
+        "type": "string",
+        "description": "Name of deployment.",
+        "minLength": 3,
+        "maxLength": 30,
+        "pattern": "^[a-z][a-z0-9-]*[a-z0-9]$"
+      },
+      "DeploymentDescription": {
+        "type": "string",
+        "description": "Description of deployment.",
+        "maxLength": 256
+      },
+      "DeploymentCloudName": {
+        "type": "string",
+        "description": "Name of the cloud where deployment resources are provisioned.",
+        "enum": [
+          "google"
+        ]
+      },
+      "DeploymentCloudInfo": {
+        "type": "object",
+        "description": "Cloud-specific deployment info.",
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/GoogleDeploymentInfo"
+          }
+        ]
+      },
+      "GoogleDeploymentInfo": {
+        "type": "object",
+        "description": "Google deployment info.",
+        "required": [
+          "region",
+          "network_attachment"
+        ],
+        "properties": {
+          "region": {
+            "$ref": "#/components/schemas/GoogleRegion"
+          },
+          "network_attachment": {
+            "$ref": "#/components/schemas/GoogleNetworkAttachment"
+          },
+          "service_attachment": {
+            "$ref": "#/components/schemas/GoogleServiceAttachment"
+          }
+        }
+      },
+      "GoogleResourceName": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 63,
+        "pattern": "^[a-z]([-a-z0-9]*[a-z0-9])?"
+      },
+      "GoogleRegion": {
+        "description": "Google region.",
+        "$ref": "#/components/schemas/GoogleResourceName"
+      },
+      "GoogleNetworkAttachment": {
+        "type": "string",
+        "description": "Google network attachment.",
+        "pattern": "projects/[a-z]([-a-z0-9]*[a-z0-9])?/regions/[a-z]([-a-z0-9]*[a-z0-9])?/networkAttachments/[a-z]([-a-z0-9]*[a-z0-9])?"
+      },
+      "GoogleServiceAttachment": {
+        "type": "string",
+        "description": "Google service attachment.",
+        "pattern": "projects/[a-z]([-a-z0-9]*[a-z0-9])?/regions/[a-z]([-a-z0-9]*[a-z0-9])?/serviceAttachments/[a-z]([-a-z0-9]*[a-z0-9])?"
+      },
+      "Deployment": {
+        "type": "object",
+        "description": "Deployment specification.",
+        "required": [
+          "id",
+          "account_id",
+          "name",
+          "description",
+          "cloud",
+          "cloud_info",
+          "status",
+          "created_at",
+          "modified_at"
+        ],
+        "properties": {
+          "id": {
+            "$ref": "#/components/schemas/DeploymentObjectID"
+          },
+          "account_id": {
+            "$ref": "#/components/schemas/DeploymentAccountID"
+          },
+          "name": {
+            "$ref": "#/components/schemas/DeploymentName"
+          },
+          "description": {
+            "$ref": "#/components/schemas/DeploymentDescription"
+          },
+          "cloud": {
+            "$ref": "#/components/schemas/DeploymentCloudName"
+          },
+          "cloud_info": {
+            "$ref": "#/components/schemas/DeploymentCloudInfo"
+          },
+          "status": {
+            "$ref": "#/components/schemas/DeploymentStatus"
+          },
+          "created_at": {
+            "type": "string",
+            "description": "Datetime when request to create deployment was received.",
+            "format": "date-time"
+          },
+          "modified_at": {
+            "type": "string",
+            "description": "Datetime when deployment was last modified.",
+            "format": "date-time"
+          },
+          "deleted_at": {
+            "type": "string",
+            "description": "Datetime when request to delete deployment was received.",
+            "format": "date-time"
+          }
+        }
+      },
+      "DeploymentStatus": {
+        "type": "object",
+        "description": "Deployment status info.",
+        "required": [
+          "provisioning_state"
+        ],
+        "properties": {
+          "provisioning_state": {
+            "$ref": "#/components/schemas/DeploymentProvisioningState"
+          }
+        }
+      },
+      "DeploymentProvisioningState": {
+        "type": "object",
+        "description": "Deployment provisioning state info.",
+        "required": [
+          "state",
+          "modified_at"
+        ],
+        "properties": {
+          "state": {
+            "type": "string",
+            "description": "Provisioning state name/value.",
+            "enum": [
+              "deleting",
+              "failed",
+              "pending",
+              "ready"
+            ]
+          },
+          "details": {
+            "type": "string",
+            "description": "Provisioning state details.",
+            "maxLength": 256
+          },
+          "modified_at": {
+            "type": "string",
+            "description": "Datetime of last state change.",
+            "format": "date-time"
+          }
+        }
+      },
+      "DeploymentListResponse": {
+        "type": "object",
+        "description": "List of deployments.",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Deployment"
+            }
+          }
+        }
+      },
+      "DeploymentCreateRequest": {
+        "type": "object",
+        "description": "Request spec for creating a deployment.",
+        "required": [
+          "name",
+          "cloud",
+          "cloud_info"
+        ],
+        "properties": {
+          "name": {
+            "$ref": "#/components/schemas/DeploymentName"
+          },
+          "description": {
+            "$ref": "#/components/schemas/DeploymentDescription"
+          },
+          "cloud": {
+            "$ref": "#/components/schemas/DeploymentCloudName"
+          },
+          "cloud_info": {
+            "$ref": "#/components/schemas/DeploymentCloudInfo"
+          }
+        }
+      },
+      "DeploymentUpdateRequest": {
+        "type": "object",
+        "description": "Request spec for updating a deployment.",
+        "properties": {
+          "name": {
+            "$ref": "#/components/schemas/DeploymentName"
+          },
+          "description": {
+            "$ref": "#/components/schemas/DeploymentDescription"
+          }
+        }
       }
     },
     "examples": {
@@ -8953,6 +9864,172 @@
           "object_id": "key_wN3IhLCmR3qmwybG_6ptEg",
           "instances_count": 3
         }
+      },
+      "CloudUserResponse": {
+        "value": {
+          "cloud_identity": {
+            "google_identity": {
+              "id": "253092013665251357076"
+            }
+          }
+        }
+      },
+      "DeploymentListResponse": {
+        "value": {
+          "items": [
+            {
+              "id": "depl_6zYc64JKR0uxnoEcLH1gGA",
+              "account_id": "acc_FsFgfeDtScOjGbQJDaVNiQ",
+              "name": "tst-foo",
+              "description": "",
+              "cloud": "google",
+              "cloud_info": {
+                "region": "us-east-1",
+                "network_attachment": "projects/foo/regions/us-east-1/networkAttachments/foo",
+                "service_attachment": "projects/foo/regions/us-east-1/serviceAttachments/foo"
+              },
+              "status": {
+                "provisioning_state": {
+                  "state": "ready",
+                  "details": "",
+                  "modified_at": "2025-03-31T10:05:00Z"
+                }
+              },
+              "created_at": "2025-03-31T10:00:00Z",
+              "modified_at": "2025-03-31T10:05:00Z"
+            },
+            {
+              "id": "depl_DrRnpntTRpGOxaroQ6aOFg",
+              "account_id": "acc_FsFgfeDtScOjGbQJDaVNiQ",
+              "name": "tst-bar",
+              "description": "test w/ network attachment from project bar",
+              "cloud": "google",
+              "cloud_info": {
+                "region": "eu-west-1",
+                "network_attachment": "projects/bar/regions/us-east-1/networkAttachments/bar"
+              },
+              "status": {
+                "provisioning_state": {
+                  "state": "failed",
+                  "details": "network attachment 'bar' not found",
+                  "modified_at": "2025-03-31T11:03:00Z"
+                }
+              },
+              "created_at": "2025-03-31T11:00:00Z",
+              "modified_at": "2025-03-31T11:03:00Z"
+            }
+          ]
+        }
+      },
+      "DeploymentCreateRequest": {
+        "value": {
+          "name": "tst-foo",
+          "description": "",
+          "cloud": "google",
+          "cloud_info": {
+            "region": "us-east-1",
+            "network_attachment": "projects/foo/regions/us-east-1/networkAttachments/foo"
+          }
+        }
+      },
+      "DeploymentCreateResponse": {
+        "value": {
+          "id": "depl_6zYc64JKR0uxnoEcLH1gGA",
+          "account_id": "acc_FsFgfeDtScOjGbQJDaVNiQ",
+          "name": "tst-foo",
+          "description": "",
+          "cloud": "google",
+          "cloud_info": {
+            "region": "us-east-1",
+            "network_attachment": "projects/foo/regions/us-east-1/networkAttachments/foo",
+            "service_attachment": "projects/foo/regions/us-east-1/serviceAttachments/foo"
+          },
+          "status": {
+            "provisioning_state": {
+              "state": "pending",
+              "details": "",
+              "modified_at": "2025-03-31T10:05:00Z"
+            }
+          },
+          "created_at": "2025-03-31T10:00:00Z",
+          "modified_at": "2025-03-31T10:05:00Z"
+        }
+      },
+      "DeploymentGetResponse": {
+        "value": {
+          "id": "depl_6zYc64JKR0uxnoEcLH1gGA",
+          "account_id": "acc_FsFgfeDtScOjGbQJDaVNiQ",
+          "name": "tst-foo",
+          "description": "",
+          "cloud": "google",
+          "cloud_info": {
+            "region": "us-east-1",
+            "network_attachment": "projects/foo/regions/us-east-1/networkAttachments/foo",
+            "service_attachment": "projects/foo/regions/us-east-1/serviceAttachments/foo"
+          },
+          "status": {
+            "provisioning_state": {
+              "state": "ready",
+              "details": "",
+              "modified_at": "2025-03-31T10:05:00Z"
+            }
+          },
+          "created_at": "2025-03-31T10:00:00Z",
+          "modified_at": "2025-03-31T10:05:00Z"
+        }
+      },
+      "DeploymentUpdateRequest": {
+        "value": {
+          "name": "poc-foo",
+          "description": "test deployment for project foo"
+        }
+      },
+      "DeploymentUpdateResponse": {
+        "value": {
+          "id": "depl_6zYc64JKR0uxnoEcLH1gGA",
+          "account_id": "acc_FsFgfeDtScOjGbQJDaVNiQ",
+          "name": "poc-foo",
+          "description": "test deployment for project foo",
+          "cloud": "google",
+          "cloud_info": {
+            "region": "us-east-1",
+            "network_attachment": "projects/foo/regions/us-east-1/networkAttachments/foo",
+            "service_attachment": "projects/foo/regions/us-east-1/serviceAttachments/foo"
+          },
+          "status": {
+            "provisioning_state": {
+              "state": "ready",
+              "details": "",
+              "modified_at": "2025-03-31T10:05:00Z"
+            }
+          },
+          "created_at": "2025-03-31T10:00:00Z",
+          "modified_at": "2025-03-31T10:05:00Z"
+        }
+      },
+      "DeploymentDeleteResponse": {
+        "value": {
+          "id": "depl_6zYc64JKR0uxnoEcLH1gGA",
+          "account_id": "acc_FsFgfeDtScOjGbQJDaVNiQ",
+          "name": "poc-foo",
+          "description": "test deployment for project foo",
+          "cloud": "google",
+          "cloud_info": {
+            "region": "us-east-1",
+            "network_attachment": "projects/foo/regions/us-east-1/networkAttachments/foo",
+            "service_attachment": "projects/foo/regions/us-east-1/serviceAttachments/foo"
+          },
+          "status": {
+            "provisioning_state": {
+              "state": "deleting",
+              "details": "",
+              "modified_at": "2025-03-31T10:15:00Z"
+            }
+          },
+          "created_at": "2025-03-31T10:00:00Z",
+          "modified_at": "2025-03-31T10:05:00Z",
+          "deleted_at": "2025-03-31T10:15:00Z"
+        }
       }
     },
     "responses": {
@@ -8968,6 +10045,36 @@
       },
       "InternalServerErr": {
         "description": "An unexpected error occurred on the server. Please try the request again later.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "Unauthorized": {
+        "description": "Client is not authorized to perform the requested operation.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "NotFound": {
+        "description": "Requested resource was not found.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "Conflict": {
+        "description": "Requested operation cannot be performed at this time.",
         "content": {
           "application/json": {
             "schema": {
@@ -9013,6 +10120,20 @@
       "name": "Manage NGINX One Settings",
       "tags": [
         "Settings"
+      ]
+    },
+    {
+      "name": "TODO",
+      "tags": [
+        "Authorization",
+        "Signup",
+        "User"
+      ]
+    },
+    {
+      "name": "Manage NAAS deployments",
+      "tags": [
+        "Deployments"
       ]
     }
   ]
