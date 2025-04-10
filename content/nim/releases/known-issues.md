@@ -10,7 +10,7 @@ weight: 200
 {{<rn-styles>}}
 This document lists and describes the known issues and possible workarounds in F5 NGINX Instance Manager. We also list the issues resolved in the latest releases.
 
-{{< tip >}}We recommend you upgrade to the latest version of NIGNX Instance Manager to take advantage of new features, improvements, and bug fixes.{{< /tip >}}
+{{< tip >}}We recommend you upgrade to the latest version of NGINX Instance Manager to take advantage of new features, improvements, and bug fixes.{{< /tip >}}
 
 ---
 
@@ -23,7 +23,7 @@ February 06, 2025
 {{<bootstrap-table "table table-striped table-bordered">}}
 | Issue ID       | Status |
 |----------------|--------|
-| 45845 | Fixed in Instance Manager 2.19.1   |
+| 45845 | Fixed in Instance Manager 2.19.1  |
 {{</bootstrap-table>}}
 
 #### Description
@@ -64,7 +64,7 @@ November 08, 2024
 {{<bootstrap-table "table table-striped table-bordered">}}
 | Issue ID       | Status |
 |----------------|--------|
-| 45846 | Fixed in Instance Manager 2.19.1   |
+| 45846 | Fixed in Instance Manager 2.19.1  |
 {{</bootstrap-table>}}
 
 #### Description
@@ -82,7 +82,7 @@ Manually install the missing compiler by following the instructions in [Install 
 {{<bootstrap-table "table table-striped table-bordered">}}
 | Issue ID       | Status |
 |----------------|--------|
-| 45573 | Fixed in Instance Manager 2.19.0   |
+| 45573 | Fixed in Instance Manager 2.19.0  |
 {{</bootstrap-table>}}
 
 #### Description
@@ -96,7 +96,7 @@ Saving templates as “staged configs” causes syntax errors due to Augment tem
 {{<bootstrap-table "table table-striped table-bordered">}}
 | Issue ID       | Status |
 |----------------|--------|
-| 45570 | Fixed in Instance Manager 2.19.0   |
+| 45570 | Fixed in Instance Manager 2.19.0  |
 {{</bootstrap-table>}}
 
 #### Description
@@ -111,7 +111,7 @@ If there is an NGINX configuration error when pushing a template configuration, 
 {{<bootstrap-table "table table-striped table-bordered">}}
 | Issue ID       | Status |
 |----------------|--------|
-| 45301 | Fixed in Instance Manager 2.19.0   |
+| 45301 | Fixed in Instance Manager 2.19.0  |
 {{</bootstrap-table>}}
 
 #### Description
@@ -125,7 +125,7 @@ If there is an NGINX configuration error when pushing a template configuration, 
 {{<bootstrap-table "table table-striped table-bordered">}}
 | Issue ID       | Status |
 |----------------|--------|
-| 45024 | Fixed in Instance Manager 2.19.0   |
+| 45024 | Fixed in Instance Manager 2.19.0  |
 {{</bootstrap-table>}}
 
 #### Description
@@ -144,7 +144,7 @@ September 13, 2024
 {{<bootstrap-table "table table-striped table-bordered">}}
 | Issue ID       | Status |
 |----------------|--------|
-| 45565 | Fixed in Instance Manager 2.19.0   |
+| 45565 | Fixed in Instance Manager 2.19.0  |
 {{</bootstrap-table>}}
 
 #### Description
@@ -163,7 +163,7 @@ July 10, 2024
 {{<bootstrap-table "table table-striped table-bordered">}}
 | Issue ID       | Status |
 |----------------|--------|
-| 45512 | Fixed in Instance Manager 2.18.0   |
+| 45512 | Fixed in Instance Manager 2.18.0  |
 {{</bootstrap-table>}}
 
 #### Description
@@ -177,7 +177,7 @@ The months in the custom date range were not displayed correctly because NGINX I
 {{<bootstrap-table "table table-striped table-bordered">}}
 | Issue ID       | Status |
 |----------------|--------|
-| 45153 | Fixed in nginxagent-2.36.0   |
+| 45153 | Fixed in nginxagent-2.36.0  |
 {{</bootstrap-table>}}
 
 #### Description
@@ -197,7 +197,7 @@ If you're installing NGINX Agent from package files, follow the steps in the [In
 {{<bootstrap-table "table table-striped table-bordered">}}
 | Issue ID       | Status |
 |----------------|--------|
-| 45131 | Open   |
+| 45131 | Open  |
 {{</bootstrap-table>}}
 
 #### Description
@@ -221,7 +221,7 @@ add_header Content-Security-Policy "default-src 'none'; block-all-mixed-content;
 {{<bootstrap-table "table table-striped table-bordered">}}
 | Issue ID       | Status |
 |----------------|--------|
-| 45113 | Open   |
+| 45113 | Open  |
 {{</bootstrap-table>}}
 
 #### Description
@@ -239,7 +239,7 @@ Edit the "/etc/nginx-agent/nginx-agent.conf" file and configure "precompiled_pub
 {{<bootstrap-table "table table-striped table-bordered">}}
 | Issue ID       | Status |
 |----------------|--------|
-| 44975 | Fixed in Instance Manager 2.18.0   |
+| 44975 | Fixed in Instance Manager 2.18.0  |
 {{</bootstrap-table>}}
 
 #### Description
@@ -253,7 +253,7 @@ When publishing a configuration template fails, the system only displays "Accept
 {{<bootstrap-table "table table-striped table-bordered">}}
 | Issue ID       | Status |
 |----------------|--------|
-| 44971 | Fixed in Instance Manager 2.17.0   |
+| 44971 | Fixed in Instance Manager 2.17.0  |
 {{</bootstrap-table>}}
 
 #### Description
@@ -469,7 +469,7 @@ Threat Campaign versions can be published with the API using the route: `api/pla
 
 | Issue ID       | Status |
 |----------------|--------|
-| 42133 | Open  |
+| 42133 | Won't be resolved  |
 
 {{</bootstrap-table>}}
 #### Description
@@ -488,7 +488,7 @@ When upgrading to 2.10 you may see a warning like the below message for the NGIN
 
 | Issue ID       | Status |
 |----------------|--------|
-| 42119 | Open  |
+| 42119 | Won't be resolved  |
 
 {{</bootstrap-table>}}
 #### Description
@@ -512,7 +512,7 @@ November 17, 2022
 
 | Issue ID       | Status |
 |----------------|--------|
-| 38782 | Open  |
+| 38782 | Won't be resolved  |
 
 {{</bootstrap-table>}}
 #### Description
@@ -527,7 +527,7 @@ When installing NGINX Instance Manager on Kubernetes via Helm Chart, the App Pro
 
 | Issue ID       | Status |
 |----------------|--------|
-| 38596 | Open  |
+| 38596 | Won't be resolved  |
 
 {{</bootstrap-table>}}
 #### Description
@@ -550,7 +550,7 @@ This can also be diagnosed with log entries in `/var/log/nginx-agent/agent.log`,
 
 | Issue ID       | Status |
 |----------------|--------|
-| 38488 | Open  |
+| 38488 | Won't be resolved  |
 
 {{</bootstrap-table>}}
 #### Description
@@ -569,7 +569,7 @@ Unreferenced policy files may be removed manually from /etc/nms.
 
 | Issue ID       | Status |
 |----------------|--------|
-| 38041 | Open  |
+| 38041 | Won't be resolved  |
 
 {{</bootstrap-table>}}
 #### Description
@@ -609,7 +609,7 @@ October 04, 2022
 
 | Issue ID       | Status |
 |----------------|--------|
-| 37498 | Open  |
+| 37498 | Won't be resolved  |
 
 {{</bootstrap-table>}}
 #### Description
@@ -626,7 +626,7 @@ Request body has an error: doesn't match the schema: Error at "/auxFiles/files/3
 
 | Issue ID       | Status |
 |----------------|--------|
-| 37437 | Open  |
+| 37437 | Won't be resolved  |
 
 {{</bootstrap-table>}}
 #### Description
@@ -687,7 +687,7 @@ May 25, 2022
 
 | Issue ID       | Status |
 |----------------|--------|
-| 34185 | Open  |
+| 34185 | Won't be resolved  |
 
 {{</bootstrap-table>}}
 #### Description
@@ -711,7 +711,7 @@ April 05, 2022
 
 | Issue ID       | Status |
 |----------------|--------|
-| 33307 | Open  |
+| 33307 | Won't be resolved  |
 
 {{</bootstrap-table>}}
 #### Description
@@ -730,7 +730,7 @@ You can safely delete the older entries or wait for them to expire.
 
 | Issue ID       | Status |
 |----------------|--------|
-| 33160 | Open  |
+| 33160 | Won't be resolved  |
 
 {{</bootstrap-table>}}
 #### Description
@@ -764,7 +764,7 @@ December 21, 2021
 
 | Issue ID       | Status |
 |----------------|--------|
-| 32718 | Open  |
+| 32718 | Won't be resolved  |
 
 {{</bootstrap-table>}}
 #### Description
@@ -798,7 +798,7 @@ Keep config files under 50 MB.
 
 | Issue ID       | Status |
 |----------------|--------|
-| 28758 | Open  |
+| 28758 | Won't be resolved  |
 
 {{</bootstrap-table>}}
 #### Description
@@ -817,7 +817,7 @@ Install a supported version of NGINX (v1.18 or later) or NGINX Plus (R22 or late
 
 | Issue ID       | Status |
 |----------------|--------|
-| 28683 | Open  |
+| 28683 | Won't be resolved  |
 
 {{</bootstrap-table>}}
 #### Description
