@@ -162,7 +162,7 @@ For detailed instructions on installing or upgrading NGINX App Protect DoS, visi
 ## Watch instructional videos
 
 ### Submit usage reports in a connected environment
-{{< youtube id="mnTJ1oYnZpk" >}}
+{{< youtube id="PDnacyh2RUw" >}}
 
 ### Submit usage reports in a disconnected environment
 {{< youtube id="4wIM21bR9-g" >}}
