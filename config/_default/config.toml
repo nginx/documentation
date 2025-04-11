@@ -47,7 +47,8 @@ enableGitInfo = true
     "taxonomyTerm"
   ]
   taxonomiesExcludedFromSitemap = ["tags", "categories", "doctypes"]
-
+  unitversion= "1.34.1"
+  unitversionv= "v1.34.1"
   #logo = ""
 
   # Version lists; used by the versions shortcode
