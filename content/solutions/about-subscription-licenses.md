@@ -88,7 +88,7 @@ In environments where NGINX Plus instances cannot access the internet, you'll ne
 
 #### Configure NGINX Plus to report usage to NGINX Instance Manager
 
-To configure NGINX Plus R33 or later to report usage data to NGINX Instance Manger:
+To configure NGINX Plus R33 or later to report usage data to NGINX Instance Manager:
 
 {{< include "licensing-and-reporting/configure-nginx-plus-report-to-nim.md" >}}
 
@@ -162,7 +162,7 @@ For detailed instructions on installing or upgrading NGINX App Protect DoS, visi
 ## Watch instructional videos
 
 ### Submit usage reports in a connected environment
-{{< youtube id="mnTJ1oYnZpk" >}}
+{{< youtube id="PDnacyh2RUw" >}}
 
 ### Submit usage reports in a disconnected environment
 {{< youtube id="4wIM21bR9-g" >}}

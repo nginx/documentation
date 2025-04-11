@@ -139,6 +139,7 @@ enableGitInfo = true
     "3.22.7",
     "3.22.8"
   ]
+  github_repo = "https://github.com/nginx/documentation/"
 
 sectionPagesMenu = "docs"
 
