@@ -2,7 +2,7 @@
 description: Capture detailed information about errors and request processing in log
   files, either locally or via syslog.
 docs: DOCS-426
-title: Configure Logging
+title: Configuring Logging
 toc: true
 weight: 200
 type:
@@ -12,7 +12,7 @@ type:
 This article describes how to configure logging of errors and processed requests in NGINX Open Source and NGINX Plus.
 
 <span id="error_log"></span>
-## Set Up the Error Log
+## Setting Up the Error Log
 
 NGINX writes information about encountered issues of different severity levels to the error log. The [error_log](https://nginx.org/en/docs/ngx_core_module.html#error_log) directive sets up logging to a particular file, `stderr`, or `syslog` and specifies the minimal severity level of messages to log. By default, the error log is located at **logs/error.log** (the absolute path depends on the operating system and installation), and messages from all severity levels above the one specified are logged.
 
@@ -30,7 +30,7 @@ The default setting of the error log works globally. To override it, place the [
 
 
 <span id="access_log"></span>
-## Set Up the Access Log
+## Setting Up the Access Log
 
 NGINX writes information about client requests in the access log right after the request is processed. By default, the access log is located at **logs/access.log**, and the information is written to the log in the predefined **combined** format. To override the default setting, use the [log_format](https://nginx.org/en/docs/http/ngx_http_log_module.html#log_format) directive to change the format of logged messages, as well as the [access_log](https://nginx.org/en/docs/http/ngx_http_log_module.html#access_log) directive to specify the location of the log and its format. The log format is defined using variables.
 
