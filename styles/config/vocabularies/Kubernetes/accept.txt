@@ -1,0 +1,7 @@
+(?i)containerPort
+Gateway API
+Helm
+HTTPRoute
+kubectl
+namespace
+(?i)nodePort
