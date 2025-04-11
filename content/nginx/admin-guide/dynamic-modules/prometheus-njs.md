@@ -65,25 +65,25 @@ Install the `nginx-plus-module-prometheus` module.
 - For Amazon Linux 2, CentOS, Oracle Linux, and RHEL:
 
   ```shell
-  yum install nginx-plus-module-prometheus
+  sudo yum install nginx-plus-module-prometheus
   ```
 
 - For Amazon Linux 2023, AlmaLinux, Rocky Linux:
 
   ```shell
-  dnf install nginx-plus-module-prometheus
+  sudo dnf install nginx-plus-module-prometheus
   ```
 
 - For Debian and Ubuntu:
 
   ```shell
-  apt-get install nginx-plus-module-prometheus
+  sudo apt install nginx-plus-module-prometheus
   ```
 
 - For SLES:
 
   ```shell
-  zypper install nginx-plus-module-prometheus
+  sudo zypper install nginx-plus-module-prometheus
   ```
 
 - For Alpine:
@@ -95,7 +95,7 @@ Install the `nginx-plus-module-prometheus` module.
   For FreeBSD:
 
   ```shell
-  pkg install nginx-plus-module-prometheus
+  sudo pkg install nginx-plus-module-prometheus
   ```
 
 {{< note >}} The [`nginx-plus-module-njs`]({{< ref "nginscript.md" >}}) module will also be installed together with the module. {{< /note >}}
@@ -373,3 +373,5 @@ stream {
 - [NGINX Dynamic Modules]({{< ref "dynamic-modules.md" >}})
 
 - [NGINX Plus Technical Specifications]({{< ref "nginx/technical-specs.md" >}})
+
+- [Uninstalling a Dynamic Module]({{< ref "uninstall.md" >}})

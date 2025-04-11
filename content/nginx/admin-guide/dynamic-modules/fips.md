@@ -11,8 +11,6 @@ type:
 
 For F5 NGINX Plus, the cryptographic boundary includes all functionality that is implemented by the [`http_ssl`](https://nginx.org/en/docs/http/ngx_http_ssl_module.html), [`http_v2`](https://nginx.org/en/docs/http/ngx_http_v2_module.html), [`stream_ssl`](https://nginx.org/en/docs/stream/ngx_stream_ssl_module.html), and [`mail_ssl`](https://nginx.org/en/docs/mail/ngx_mail_ssl_module.html) modules. These modules implement SSL and TLS operations for inbound and outbound connections which use HTTP, HTTP/2, TCP, and mail protocols.
 
-
-<span id="install"></span>
 ## Installation
 
 1. Check the [Technical Specifications]({{< ref "nginx/technical-specs.md" >}}) page to verify that the module is supported by your operating system.
@@ -22,25 +20,29 @@ For F5 NGINX Plus, the cryptographic boundary includes all functionality that is
    For Amazon Linux 2, CentOS, Oracle Linux, and RHEL:
 
    ```shell
-   yum install nginx-plus-module-fips-check
+   sudo yum update && \
+   sudo yum install nginx-plus-module-fips-check
    ```
 
    for Amazon Linux 2023, AlmaLinux, Rocky Linux:
 
    ```shell
-   dnf install nginx-plus-module-fips-check
+   sudo dnf update && \
+   sudo dnf install nginx-plus-module-fips-check
    ```
 
    For Debian and Ubuntu:
 
    ```shell
-   apt-get install nginx-plus-module-fips-check
+   sudo apt update && \
+   sudo apt install nginx-plus-module-fips-check
    ```
 
    For SLES:
 
    ```shell
-   zypper install nginx-plus-module-fips-check
+   sudo zypper refresh && \
+   sudo zypper install nginx-plus-module-fips-check
    ```
 
    For Alpine:
@@ -52,10 +54,9 @@ For F5 NGINX Plus, the cryptographic boundary includes all functionality that is
    For FreeBSD:
 
    ```shell
-   pkg install nginx-plus-module-fips-check
+   sudo pkg update && \
+   sudo pkg install nginx-plus-module-fips-check
    ```
-
-<span id="configure"></span>
 
 ## Configuration
 
@@ -65,18 +66,33 @@ After installation you will need to enable and configure the module in NGINX Plu
 
    ```nginx
    load_module modules/ngx_fips_check_module.so;
+
+   http {
+       # ...
+   }
    ```
 
 2. Perform additional configuration as required by the [module](https://github.com/ogarrett/nginx-fips-check-module).
 
-3. Test the configuration and reload NGINX Plus to enable the module:
+3. Test the NGINX Plus configuration. In a terminal, type-in the command:
 
-   ```shell
-   nginx -t && nginx -s reload
-   ```
+    ```shell
+    nginx -t
+    ```
 
+    Expected output of the command:
 
-<span id="info"></span>
+    ```shell
+    nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+    nginx: configuration file /etc/nginx/nginx.conf is successful
+    ```
+
+4. Reload the NGINX Plus configuration to enable the module:
+
+    ```shell
+    nginx -s reload
+    ```
+
 ## More Info
 
 - [FIPS Compliance for NGINX Plus](https://docs.nginx.com/nginx/fips-compliance-nginx-plus/)
@@ -86,3 +102,5 @@ After installation you will need to enable and configure the module in NGINX Plu
 - [NGINX Dynamic Modules]({{< ref "dynamic-modules.md" >}})
 
 - [NGINX Plus Technical Specifications]({{< ref "nginx/technical-specs.md" >}})
+
+- [Uninstalling a Dynamic Module]({{< ref "uninstall.md" >}})
