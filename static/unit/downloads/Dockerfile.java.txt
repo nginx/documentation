@@ -1,0 +1,26 @@
+FROM unit:1.31.1-jsc11
+# Alternatively, you can download the base image from AWS ECR:
+# FROM public.ecr.aws/nginx/unit:1.31.1-jsc11
+
+# port used by the listener in config.json
+EXPOSE 8080
+
+# application setup
+RUN mkdir /www/ && echo                                                    \
+    '<%@page language="java" contentType="text/plain"%>                    \
+    <%="Hello, JSP on Unit!"%>'                                            \
+    > /www/index.jsp                                                       \
+# prepare the app config for Unit
+    && echo '{                                                             \
+    "listeners": {                                                         \
+        "*:8080": {                                                        \
+            "pass": "applications/java_app"                                \
+        }                                                                  \
+    },                                                                     \
+    "applications": {                                                      \
+        "java_app": {                                                      \
+            "type": "java",                                                \
+            "webapp": "/www/"                                              \
+        }                                                                  \
+    }                                                                      \
+    }' > /docker-entrypoint.d/config.json
