@@ -41,6 +41,8 @@ You can use the NGINX One Console to add a file to a specific instance. To do so
 
 You now have multiple options, described in the sections which follow.
 
+{{< img src="nginx-one/images/add-file-to-config.png" alt="A modal window to edit configuration, with a 'New Configuration File' option selected." >}}
+
 ### New Configuration File
 
 Enter the name of the desired configuration file, such as `abc.conf` and select **Add**. The configuration file appears in the **Edit Configuration** window.
