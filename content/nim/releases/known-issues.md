@@ -1,8 +1,6 @@
 ---
 docs: DOCS-937
-tags:
-- docs
-title: Known Issues
+type: reference
 toc: true
 weight: 200
 ---
@@ -73,7 +71,7 @@ On Ubuntu 24.04, NGINX Instance Manager v2.18.0 and v2.19.0 fail to automaticall
 
 #### Workaround
 
-Manually install the missing compiler by following the instructions in [Install the WAF compiler]({{< relref "nim/nginx-app-protect/setup-waf-config-management.md#install-the-waf-compiler" >}}).
+Manually install the missing compiler by following the instructions in [Install the WAF compiler]({{< ref "nim/nginx-app-protect/setup-waf-config-management.md#install-the-waf-compiler" >}}).
 
 ---
 
@@ -344,7 +342,7 @@ Under certain conditions, instances that are not reporting request totals may no
 
 #### Workaround
 
-Configure NGINX Plus or NGINX Stub Status APIs to send correctly the NGINX metrics using NGINX Agent. See the [Metrics]({{< relref "nim/monitoring/overview-metrics.md" >}}) documentation to learn more.
+Configure NGINX Plus or NGINX Stub Status APIs to send correctly the NGINX metrics using NGINX Agent. See the [Metrics]({{< ref "nim/monitoring/overview-metrics.md" >}}) documentation to learn more.
 
 ---
 
@@ -807,7 +805,7 @@ When installing on CentOS 7, RHEL 7, and Amazon Linux 2, the package manager doe
 
 #### Workaround
 
-Install a supported version of NGINX (v1.18 or later) or NGINX Plus (R22 or later). See the [Technical Specifications]({{< relref "nim/fundamentals/tech-specs.md" >}}) guide for details.
+Install a supported version of NGINX (v1.18 or later) or NGINX Plus (R22 or later). See the [Technical Specifications]({{< ref "nim/fundamentals/tech-specs.md" >}}) guide for details.
 
 ---
 
