@@ -469,7 +469,7 @@ Follow these steps before you install NGINX Open Source or NGINX Plus.
 
     ```shell
     sudo yum install app-protect-module-oss
-    sudo apt-get install nginx=1.25.5-1~`lsb_release -cs` app-protect-module-oss
+    sudo apt-get install app-protect-module-oss
     ```
 
     When prompted to accept the GPG key, verify that the fingerprint matches `573B FD6B 3D8F BC64 1079 A6AB ABF5 BD82 7BD9 BF62`, and if so, accept it.
@@ -504,7 +504,7 @@ Follow these steps before you install NGINX Open Source or NGINX Plus.
     sudo mkdir -p /etc/packages/
     cd /etc/packages/
     sudo apt-get update
-    sudo bash -c 'for i in $(apt-cache depends --recurse --no-recommends --no-suggests --no-conflicts --no-breaks --no-replaces --no-enhances nginx=1.25.5-1~`lsb_release -cs` app-protect-module-oss | grep "^\w" | sort -u); do apt-get download $i; done 2>>/etc/packages/errors.txt'
+    sudo bash -c 'for i in $(apt-cache depends --recurse --no-recommends --no-suggests --no-conflicts --no-breaks --no-replaces --no-enhances app-protect-module-oss | grep "^\w" | sort -u); do apt-get download $i; done 2>>/etc/packages/errors.txt'
     ```
 
 {{%/tab%}}
@@ -518,7 +518,7 @@ Follow these steps before you install NGINX Open Source or NGINX Plus.
     sudo mkdir -p /etc/packages/
     cd /etc/packages/
     sudo apt-get update
-    sudo bash -c 'for i in $(apt-cache depends --recurse --no-recommends --no-suggests --no-conflicts --no-breaks --no-replaces --no-enhances nginx=1.25.5-1~`lsb_release -cs` app-protect-module-oss | grep "^\w" | sort -u); do apt-get download $i; done 2>>/etc/packages/errors.txt'
+    sudo bash -c 'for i in $(apt-cache depends --recurse --no-recommends --no-suggests --no-conflicts --no-breaks --no-replaces --no-enhances app-protect-module-oss | grep "^\w" | sort -u); do apt-get download $i; done 2>>/etc/packages/errors.txt'
     ```
 
 {{%/tab%}}
@@ -592,7 +592,7 @@ Follow these steps before you install NGINX Open Source or NGINX Plus.
     sudo mkdir -p /etc/packages/
     cd /etc/packages/
     sudo apt-get update
-    sudo bash -c 'for i in $(apt-cache depends --recurse --no-recommends --no-suggests --no-conflicts --no-breaks --no-replaces --no-enhances nginx=1.25.5-1~`lsb_release -cs` app-protect-module-oss | grep "^\w" | sort -u); do apt-get download $i; done 2>>/etc/packages/errors.txt'
+    sudo bash -c 'for i in $(apt-cache depends --recurse --no-recommends --no-suggests --no-conflicts --no-breaks --no-replaces --no-enhances app-protect-module-oss | grep "^\w" | sort -u); do apt-get download $i; done 2>>/etc/packages/errors.txt'
     ```
 
 {{%/tab%}}
@@ -606,7 +606,7 @@ Follow these steps before you install NGINX Open Source or NGINX Plus.
     sudo mkdir -p /etc/packages/
     cd /etc/packages/
     sudo apt-get update
-    sudo bash -c 'for i in $(apt-cache depends --recurse --no-recommends --no-suggests --no-conflicts --no-breaks --no-replaces --no-enhances nginx=1.25.5-1~`lsb_release -cs` app-protect-module-oss | grep "^\w" | sort -u); do apt-get download $i; done 2>>/etc/packages/errors.txt'
+    sudo bash -c 'for i in $(apt-cache depends --recurse --no-recommends --no-suggests --no-conflicts --no-breaks --no-replaces --no-enhances app-protect-module-oss | grep "^\w" | sort -u); do apt-get download $i; done 2>>/etc/packages/errors.txt'
     ```
 
 {{%/tab%}}
@@ -620,7 +620,7 @@ Follow these steps before you install NGINX Open Source or NGINX Plus.
     sudo mkdir -p /etc/packages/
     cd /etc/packages/
     sudo apt-get update
-    sudo bash -c 'for i in $(apt-cache depends --recurse --no-recommends --no-suggests --no-conflicts --no-breaks --no-replaces --no-enhances nginx=1.25.5-1~`lsb_release -cs` app-protect-module-oss | grep "^\w" | sort -u); do apt-get download $i; done 2>>/etc/packages/errors.txt'
+    sudo bash -c 'for i in $(apt-cache depends --recurse --no-recommends --no-suggests --no-conflicts --no-breaks --no-replaces --no-enhances app-protect-module-oss | grep "^\w" | sort -u); do apt-get download $i; done 2>>/etc/packages/errors.txt'
     ```
 
 {{%/tab%}}
@@ -1020,7 +1020,7 @@ Uninstall the NGINX App Protect WAF v5 package:
 
 ```shell
 sudo yum remove app-protect-module-oss
-sudo apt-get remove nginx=1.25.5-1~`lsb_release -cs` app-protect-module-oss
+sudo apt-get remove app-protect-module-oss
 ```
 
 For NGINX Plus
