@@ -13,8 +13,6 @@ The F5 NGINX ModSecurity web application firewall (WAF) is built on ModSecurity 
 
  {{< note >}} The ModSecurity WAF module was deprecated since NGINX Plus [Release 29]({{< ref "nginx/releases.md#r29" >}}), and is no longer available since NGINX Plus [Release 32]({{< ref "nginx/releases.md#r32" >}}) {{< /note >}}
 
-
-<span id="install"></span>
 ## Installation
 
 1. Check the [Technical Specifications]({{< ref "nginx/technical-specs.md" >}}) page to verify that the module is supported by your operating system.
@@ -24,7 +22,8 @@ The F5 NGINX ModSecurity web application firewall (WAF) is built on ModSecurity 
    For Amazon Linux 2, CentOS, Oracle Linux, and RHEL:
 
    ```shell
-   yum install nginx-plus-module-modsecurity
+   sudo yum update && \
+   sudo yum install nginx-plus-module-modsecurity
    ```
 
    {{< note >}} ppc64le is currently not supported for Amazon Linux, CentOS, Oracle Linux, and RHEL. {{< /note >}}
@@ -32,13 +31,15 @@ The F5 NGINX ModSecurity web application firewall (WAF) is built on ModSecurity 
    For Amazon Linux 2023:
 
    ```shell
-   dnf install nginx-plus-module-modsecurity
+   sudo dnf update && \
+   sudo dnf install nginx-plus-module-modsecurity
    ```
 
    For Debian and Ubuntu:
 
    ```shell
-   apt-get install nginx-plus-module-modsecurity
+   sudo apt update && \
+   sudo apt install nginx-plus-module-modsecurity
    ```
 
    {{< note >}} aarch64 and ppc64le is currently not supported for Ubuntu.{{< /note >}}
@@ -46,7 +47,8 @@ The F5 NGINX ModSecurity web application firewall (WAF) is built on ModSecurity 
    For SLES:
 
    ```shell
-   zypper install nginx-plus-module-modsecurity
+   sudo zypper refresh && \
+   sudo zypper install nginx-plus-module-modsecurity
    ```
 
    For Alpine:
@@ -54,9 +56,6 @@ The F5 NGINX ModSecurity web application firewall (WAF) is built on ModSecurity 
    ```shell
    apk add nginx-plus-module-modsecurity
    ```
-
-
-<span id="configure"></span>
 
 ## Configuration
 
@@ -66,20 +65,35 @@ After installation you will need to enable and configure the module in NGINX Plu
 
    ```nginx
    load_module modules/ngx_http_modsecurity_module.so;
+
+   http {
+       # ...
+   }
    ```
 
 2. Perform additional configuration as required by the [module](https://github.com/SpiderLabs/ModSecurity/wiki/Reference-Manual).
 
-3. Test the configuration and reload NGINX Plus to enable the module:
+3. Test the NGINX Plus configuration. In a terminal, type-in the command:
 
-   ```shell
-   nginx -t && nginx -s reload
-   ```
+    ```shell
+    nginx -t
+    ```
 
-4. [Configure](https://docs.nginx.com/nginx-waf/admin-guide/nginx-plus-modsecurity-waf-installation-logging/) the module.
+    Expected output of the command:
 
+    ```shell
+    nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+    nginx: configuration file /etc/nginx/nginx.conf is successful
+    ```
 
-<span id="info"></span>
+4. Reload the NGINX Plus configuration to enable the module:
+
+    ```shell
+    nginx -s reload
+    ```
+
+5. [Configure](https://docs.nginx.com/nginx-waf/admin-guide/nginx-plus-modsecurity-waf-installation-logging/) the module.
+
 ## More Info
 
 - [ModSecurity Documentation](https://github.com/SpiderLabs/ModSecurity/wiki)
