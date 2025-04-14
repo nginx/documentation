@@ -1,6 +1,7 @@
 ---
 docs: DOCS-937
 type: reference
+title: Known issues
 toc: true
 weight: 200
 ---

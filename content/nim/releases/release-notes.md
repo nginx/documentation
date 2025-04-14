@@ -1,5 +1,5 @@
 ---
-title: Release Notes
+title: Release notes
 weight: 100
 toc: true
 type: reference
