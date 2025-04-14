@@ -30,7 +30,7 @@ RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644
        tee /etc/apt/sources.list.d/nginx-app-protect.list \
     && wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx \
     && apt-get update \
-    && apt-get install --no-install-recommends --no-install-suggests -y nginx=1.25.5-1~bookworm app-protect-module-oss  \
+    && apt-get install --no-install-recommends --no-install-suggests -y app-protect-module-oss  \
     && apt-get remove --purge --auto-remove -y apt-transport-https lsb-release gnupg wget \
     && rm -rf /var/lib/apt/lists/* /etc/apt/sources.list.d/nginx-app-protect.list
 ```
