@@ -278,7 +278,7 @@ http {
 
 {{< include "nap-waf/setup-docker-registry.md" >}}
 
-### Listing all tags
+### List all tags
 
 For a complete tag list for NGINX App Protect WAF enforcer and NGINX App Protect WAF configuration manager, use the following commands:
 
