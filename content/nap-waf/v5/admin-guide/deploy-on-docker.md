@@ -280,7 +280,7 @@ http {
 
 ### Listing all tags
 
-For a complete tag list for NGINX App Protect WAF enforcer and NGINX App Protect WAF configuration manager, use the command:
+For a complete tag list for NGINX App Protect WAF enforcer and NGINX App Protect WAF configuration manager, use the following commands:
 
 ```shell
 curl https://private-registry.nginx.com/v2/nap/waf-enforcer/tags/list --key <nginx-repo.key> --cert <nginx-repo.crt> | jq
