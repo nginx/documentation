@@ -278,6 +278,19 @@ http {
 
 {{< include "nap-waf/setup-docker-registry.md" >}}
 
+### Listing all tags
+
+For a complete tag list for NGINX App Protect WAF enforcer and NGINX App Protect WAF configuration manager, use the command:
+
+```shell
+curl https://private-registry.nginx.com/v2/nap/waf-enforcer/tags/list --key <nginx-repo.key> --cert <nginx-repo.crt> | jq
+```
+
+```shell
+curl https://private-registry.nginx.com/v2/nap/waf-config-mgr/tags/list --key <nginx-repo.key> --cert <nginx-repo.crt> | jq
+```
+
+
 ### Docker Compose File
 
 Create a `docker-compose.yml` with the following configuration: Replace `<version-tag>` with the actual release version you are deploying.

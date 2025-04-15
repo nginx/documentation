@@ -23,5 +23,5 @@ For instance:
 
    ```nginx
    app_protect_policy_file /bundles/custom_policy.tgz;
-   app_protect_security_log /bundles/custom_logging_profile.tgz syslog:server=localhost:5514;
+   app_protect_security_log /bundles/custom_logging_profile.tgz syslog:server=localhost:514;
    ```
