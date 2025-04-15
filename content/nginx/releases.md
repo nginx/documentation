@@ -10,13 +10,29 @@ type:
 ---
 
 <span id="support"></span>
-## Support for Current and Previous Releases
+### Software Development Policy
 
-NGINX provides technical support for F5 NGINX Plus releases for 24 months from the initial date of each release.
-With each new NGINX Plus release, the previously released version enters End of Software Development (EoSD).
-We do not issue updates for releases that have reached EoSD. For this reason, we advise customers to run the most recent release.
-The initial release dates for NGINX Plus are noted in this document.
-New releases are announced on the [NGINX Product Support Announcements](https://interact.f5.com/Customer-Preference-Center.html) mailing list.
+Each F5 NGINX Plus release reaches End of Software Development (EoSD) on the release date of the next version. For NGINX Plus, EoSD means no additional features or routine bug fixes will be applied to that version.
+Critical bug patches and security updates are applied to the two (2) most recent releases of NGINX Plus.
+
+{{<bootstrap-table "table table-striped table-bordered table-sm table-responsive">}}
+| NGINX Plus Release | Release Date | End of Software Development | End of Security Updates | End of Technical Support |
+|---------------------|--------------|-----------------------------|-------------------------|--------------------------|
+| R34                | 1st April 2025 | R35 release date           | R36 release date       | 31st March 2027         |
+| R33                | 19th Nov 2024  | 1st April 2025             | R35 release date       | 18th Nov 2026           |
+| R32                | 29th May 2024  | 19th Nov 2024              | 1st April 2025         | 28th May 2026           |
+| R31                | 19th Dec 2023  | 29th May 2024              | 18th Nov 2024          | 18th Dec 2025           |
+| R30                | 15th Aug 2023  | 19th Dec 2023              | 28th May 2024          | 14th Aug 2025           |
+| R29                | 2nd May 2023   | 15th Aug 2023              | 18th Dec 2023          | 1st May 2025            |
+
+{{< /bootstrap-table >}}
+
+We strongly recommend running the latest version of NGINX Plus in production to ensure you have the latest features, security updates, and critical patches.
+
+### Technical Support Services
+
+F5 offers 24 months of technical support for each F5 NGINX Plus release. The 24-month support period begins on the initial release date for each version of NGINX Plus, as noted in the table. The release of a patch (for example, `NGINX Plus R33p2`) does not reset the 24-month technical support period for the impacted release.
+
 
 <span id="r34"></span>
 ## NGINX Plus Release 34 (R34)

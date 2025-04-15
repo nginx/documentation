@@ -19,25 +19,29 @@ type:
    For Amazon Linux 2, CentOS, Oracle Linux, and RHEL:
 
    ```shell
-   yum install nginx-plus-module-rtmp
+   sudo yum update && \
+   sudo yum install nginx-plus-module-rtmp
    ```
 
    For Amazon Linux 2023, AlmaLinux, Rocky Linux:
 
    ```shell
-   dnf install nginx-plus-module-rtmp
+   sudo dnf update && \
+   sudo dnf install nginx-plus-module-rtmp
    ```
 
    For Debian and Ubuntu:
 
    ```shell
-   apt-get install nginx-plus-module-rtmp
+   sudo apt update && \
+   sudo apt install nginx-plus-module-rtmp
    ```
 
    For SLES:
 
    ```shell
-   zypper install nginx-plus-module-rtmp
+   sudo zypper refresh && \
+   sudo zypper install nginx-plus-module-rtmp
    ```
 
    For Alpine:
@@ -49,7 +53,8 @@ type:
    For FreeBSD:
 
    ```shell
-   pkg install nginx-plus-module-rtmp
+   sudo pkg update && \
+   sudo pkg install nginx-plus-module-rtmp
    ```
 
 
@@ -63,15 +68,32 @@ After installation you will need to enable and configure the module in F5 NGINX 
 
    ```nginx
    load_module modules/ngx_rtmp_module.so;
+
+   http {
+       # ...
+   }
    ```
 
 2. Perform additional configuration as required by the [module](https://github.com/arut/nginx-rtmp-module).
 
-3. Test the configuration and reload NGINX Plus to enable the module:
+3. Test the NGINX Plus configuration. In a terminal, type-in the command:
 
-   ```shell
-   nginx -t && nginx -s reload
-   ```
+    ```shell
+    nginx -t
+    ```
+
+    Expected output of the command:
+
+    ```shell
+    nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+    nginx: configuration file /etc/nginx/nginx.conf is successful
+    ```
+
+4. Reload the NGINX Plus configuration to enable the module:
+
+    ```shell
+    nginx -s reload
+    ```
 
 
 <span id="info"></span>
@@ -82,3 +104,7 @@ After installation you will need to enable and configure the module in F5 NGINX 
 - [NGINX Dynamic Modules]({{< ref "dynamic-modules.md" >}})
 
 - [NGINX Plus Technical Specifications]({{< ref "nginx/technical-specs.md" >}})
+
+- [NGINX Plus Technical Specifications]({{< ref "nginx/technical-specs.md" >}})
+
+- [Uninstalling a Dynamic Module]({{< ref "uninstall.md" >}})

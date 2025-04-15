@@ -199,7 +199,7 @@ spec:
       mode: ProxyProtocol
       trustedAddresses:
       - type: CIDR
-        value "76.89.90.11/24"
+        value: "76.89.90.11/24"
 EOF
 ```
 

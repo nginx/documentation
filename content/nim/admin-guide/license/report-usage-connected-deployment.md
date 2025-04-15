@@ -39,7 +39,7 @@ To allow NGINX Instance Manager to report usage data to F5, make sure port `443`
 
 ### Configure NGINX Plus to report usage to NGINX Instance Manager
 
-To configure NGINX Plus (R33 and later) to report usage data to NGINX Instance Manger:
+To configure NGINX Plus (R33 and later) to report usage data to NGINX Instance Manager:
 
 {{< include "licensing-and-reporting/configure-nginx-plus-report-to-nim.md" >}}
 
