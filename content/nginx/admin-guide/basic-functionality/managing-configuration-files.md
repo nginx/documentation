@@ -2,7 +2,7 @@
 description: Understand the basic elements in an NGINX or F5 NGINX Plus configuration
   file, including directives and contexts.
 docs: DOCS-378
-title: Creating NGINX Plus and NGINX Configuration Files
+title: Create NGINX Plus and NGINX Configuration Files
 toc: true
 weight: 200
 type:
