@@ -142,7 +142,7 @@ In order for NGINX One Console to show specific traffic and system metrics, you 
 
 ### Enable NGINX Plus API
 
-<!-- {{< include "/use-cases/monitoring/enable-nginx-plus-api.md" >}} -->
+<!-- possible future include: "/use-cases/monitoring/enable-nginx-plus-api.md" -->
 To collect metrics for NGINX Plus, add the following to your NGINX Plus configuration file:
 
 ```nginx
