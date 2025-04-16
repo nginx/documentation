@@ -1,6 +1,6 @@
 ---
 title: NGINX Agent
 description:
-weight: 500
+weight: 1100
 url: /nginx-one/nginx-agent
 ---
