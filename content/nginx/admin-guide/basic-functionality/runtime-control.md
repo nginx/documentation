@@ -2,7 +2,7 @@
 description: Understand the NGINX processes that handle traffic, and how to control
   them at runtime.
 docs: DOCS-379
-title: Controlling NGINX Processes at Runtime
+title: Control NGINX Processes at Runtime
 toc: true
 weight: 100
 type:
@@ -36,4 +36,4 @@ where `<SIGNAL>` can be one of the following:
 
 The `kill` utility can also be used to send a signal directly to the master process. The process ID of the master process is written, by default, to the **nginx.pid** file, which is located in the **/usr/local/nginx/logs** or **/var/run** directory.
 
-For more information about advanced signals (for performing live binary upgrades, for example), see [Controlling nginx](https://nginx.org/en/docs/control.html) at **nginx.org**.
+For more information about advanced signals (for performing live binary upgrades, for example), see [Control nginx](https://nginx.org/en/docs/control.html) at **nginx.org**.
