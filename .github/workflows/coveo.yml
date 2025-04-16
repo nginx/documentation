@@ -49,6 +49,7 @@ jobs:
 
           if [ $STATUS_CODE -ne 200 ]; then
             echo "Error: HTTP request failed with status $STATUS_CODE"
+            echo "$RESPONSE"
             exit 1
           fi
           if [ "$SEARCH_TOKEN" == "null" ]; then
