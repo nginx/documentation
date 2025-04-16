@@ -59,7 +59,9 @@ The following issues are known to be present in this release. Look for updates t
   **Workaround:**
 
   Manually start the bd_agent process on the NAP module using this command: 
-  {{< highlight bash >}}/bin/su -s /bin/bash -c '/opt/app_protect/bin/bd_agent &' nginx.{{< /highlight >}}
+ ```bash {linenos=false,hl_lines=[1]}
+ /bin/su -s /bin/bash -c '/opt/app_protect/bin/bd_agent &' nginx.
+ ```
 
   Then restart the NGINX service.
 

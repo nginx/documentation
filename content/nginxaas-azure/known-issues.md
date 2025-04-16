@@ -111,7 +111,7 @@ Attaching multiple certificates to a deployment quickly will result in a deploym
 
 Use [depends_on](https://developer.hashicorp.com/terraform/language/meta-arguments/depends_on) to add a dependency between certificate resources:
 
-{{< highlight hcl "linenos=false,hl_lines=16" >}}
+```hcl {linenos=false,hl_lines=[16]}
 resource "azurerm_nginx_certificate" "cert1" {
   name                     = "examplecert"
   nginx_deployment_id      = azurerm_nginx_deployment.test.id
@@ -129,13 +129,13 @@ resource "azurerm_nginx_certificate" "cert2" {
 
   depends_on               = [azurerm_nginx_certificate.cert1]
 }
-{{< / highlight >}}
+```
 
 **ARM Template**
 
 Use [dependsOn](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/resource-dependency) to add a dependency between certificate resources:
 
-{{< highlight json "linenos=false,hl_lines=21" >}}
+```json {linenos=false,hl_lines=[21]}
 {
     "type": "NGINX.NGINXPLUS/nginxDeployments/certificates",
     "apiVersion": "2021-05-01-preview",
@@ -158,13 +158,13 @@ Use [dependsOn](https://learn.microsoft.com/en-us/azure/azure-resource-manager/t
      }
     "dependsOn": ["cert1"]
 }
-{{< / highlight >}}
+```
 
 **Bicep Template**
 
 Use [dependsOn](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/resource-dependencies) to add a dependency between certificate resources:
 
-{{< highlight bicep "linenos=false,hl_lines=17" >}}
+```bicep {linenos=false,hl_lines=[17]}
 resource cert1 'NGINX.NGINXPLUS/nginxDeployments/certificates@2021-05-01-preview' = {
   name: '${nginxDeploymentName}/cert1'
   properties: {
@@ -183,7 +183,7 @@ resource cert2 'NGINX.NGINXPLUS/nginxDeployments/certificates@2021-05-01-preview
   }
   dependsOn: [cert1]
 }
-{{< / highlight >}}
+```
 
 ### {{% icon-bug %}} Terraform errors around capacity for Basic plan deployments (ID-4880)
 
