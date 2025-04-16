@@ -278,7 +278,7 @@ To install NGINX Instance Manager, you need to add the official repository to pu
 {{<tabs name="upgrade_nim">}}
 {{%tab name="CentOS, RHEL, RPM-Based"%}}
 
-1. To upgrade to the latest version of the Instance Manger, run the following command:
+1. To upgrade to the latest version of the Instance Manager, run the following command:
 
    ```bash
    sudo yum update -y nms-instance-manager

@@ -10,15 +10,12 @@ type:
 
 Integrate Lua co-routines into the NGINX event-processing model with the community-authored Lua dynamic module.
 
-<span id="prereq"></span>
 ## Prerequisites
 
 1. Check the [Technical Specifications]({{< ref "nginx/technical-specs.md" >}}) page to verify that the module is supported by your operating system.
 
 2. Prior to installing the module, verify that the [NGINX Developer Kit (NDK)]({{< ref "nginx/admin-guide/dynamic-modules/ndk.md" >}}) module is already installed.
 
-
-<span id="install"></span>
 ## Installation
 
    Install the Lua module package `nginx-plus-module-lua`.
@@ -26,25 +23,29 @@ Integrate Lua co-routines into the NGINX event-processing model with the communi
    For Amazon Linux 2, CentOS, Oracle Linux, and RHEL:
 
    ```shell
-   yum install nginx-plus-module-lua
+   sudo yum update && \
+   sudo yum install nginx-plus-module-lua
    ```
 
    For Amazon Linux 2023, AlmaLinux, Rocky Linux:
 
    ```shell
-   dnf install nginx-plus-module-lua
+   sudo dnf update && \
+   sudo dnf install nginx-plus-module-lua
    ```
 
    For Debian and Ubuntu:
 
    ```shell
-   apt-get install nginx-plus-module-lua
+   sudo apt update && \
+   sudo apt install nginx-plus-module-lua
    ```
 
    For SLES:
 
    ```shell
-   zypper install nginx-plus-module-lua
+   sudo zypper refresh && \
+   sudo zypper install nginx-plus-module-lua
    ```
 
    For Alpine:
@@ -56,11 +57,9 @@ Integrate Lua co-routines into the NGINX event-processing model with the communi
    For FreeBSD:
 
    ```shell
-   pkg install nginx-plus-module-lua
+   sudo pkg update && \
+   sudo pkg install nginx-plus-module-lua
    ```
-
-
-<span id="configure"></span>
 
 ## Configuration
 
@@ -72,20 +71,35 @@ After installation, enable and configure the modules in NGINX Plus configuration
    load_module modules/ndk_http_module.so;
    load_module modules/ngx_http_lua_module.so;
    load_module modules/ngx_stream_lua_module.so;
+
+   http {
+       # ...
+   }
    ```
 
    {{< note >}} The `ndk_http_module.so` module must be placed first. {{< /note >}}
 
 2. Configure additional settings as needed for the modules. For details, see the [`lua-nginx-module`](https://github.com/openresty/lua-nginx-module) and [`stream-lua-nginx-module`](https://github.com/openresty/stream-lua-nginx-module) documentation.
 
-3. Test the configuration and reload NGINX Plus to enable the module:
+3. Test the NGINX Plus configuration. In a terminal, type-in the command:
 
-   ```shell
-   nginx -t && nginx -s reload
-   ```
+    ```shell
+    nginx -t
+    ```
 
+    Expected output of the command:
 
-<span id="info"></span>
+    ```shell
+    nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+    nginx: configuration file /etc/nginx/nginx.conf is successful
+    ```
+
+4. Reload the NGINX Plus configuration to enable the module:
+
+    ```shell
+    nginx -s reload
+    ```
+
 ## More Info
 
 - [The `lua-nginx-module` Module Reference](https://github.com/openresty/lua-nginx-module)
@@ -97,3 +111,5 @@ After installation, enable and configure the modules in NGINX Plus configuration
 - [NGINX Dynamic Modules]({{< ref "dynamic-modules.md" >}})
 
 - [NGINX Plus Technical Specifications]({{< ref "nginx/technical-specs.md" >}})
+
+- [Uninstalling a Dynamic Module]({{< ref "uninstall.md" >}})
