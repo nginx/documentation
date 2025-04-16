@@ -1,8 +1,7 @@
 ---
 docs: DOCS-937
-tags:
-- docs
-title: Known Issues
+type: reference
+title: Known issues
 toc: true
 weight: 200
 ---
@@ -344,7 +343,7 @@ Under certain conditions, instances that are not reporting request totals may no
 
 #### Workaround
 
-Configure NGINX Plus or NGINX Stub Status APIs to send correctly the NGINX metrics using NGINX Agent. See the [Metrics]({{< relref "nim/monitoring/overview-metrics.md" >}}) documentation to learn more.
+Configure NGINX Plus or NGINX Stub Status APIs to send correctly the NGINX metrics using NGINX Agent. See the [Metrics]({{< ref "nim/monitoring/overview-metrics.md" >}}) documentation to learn more.
 
 ---
 
@@ -807,7 +806,7 @@ When installing on CentOS 7, RHEL 7, and Amazon Linux 2, the package manager doe
 
 #### Workaround
 
-Install a supported version of NGINX (v1.18 or later) or NGINX Plus (R22 or later). See the [Technical Specifications]({{< relref "nim/fundamentals/tech-specs.md" >}}) guide for details.
+Install a supported version of NGINX (v1.18 or later) or NGINX Plus (R22 or later). See the [Technical Specifications]({{< ref "nim/fundamentals/tech-specs.md" >}}) guide for details.
 
 ---
 

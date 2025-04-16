@@ -81,10 +81,11 @@ Close every section with a horizontal line by using three dashes: `---`.
 
 ### How to format internal links
 
-Internal links should use Hugo [ref and relref shortcodes](https://gohugo.io/content-management/cross-references/).
+Internal links should use Hugo shortcodes [ref](https://gohugo.io/methods/shortcode/ref/#article) (for absolute paths) and [relref](https://gohugo.io/methods/shortcode/relref/#article) (for relative paths).
+Please note that we favor absolute paths, as these are easier to maintain.
 
-- Although file extensions are optional for Hugo, we include them as best practice for page anchors.
-- Relative paths are preferred, but just the filename is permissible.
+- Although file extensions (such as `.md`) are optional for Hugo, we include them as best practice for page anchors.
+- We prefer relative paths.
 - Paths without a leading forward slash (`/`) are first resolved relative to the current page, then the remainder of the website.
 
 Here are two examples:

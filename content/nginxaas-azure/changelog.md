@@ -13,6 +13,18 @@ To see a list of currently active issues, visit the [Known issues]({{< ref "/ngi
 
 To review older entries, visit the [Changelog archive]({{< ref "/nginxaas-azure/changelog-archive" >}}) section.
 
+## April 16, 2025
+
+- {{% icon-feature %}} **Notification on update to deployments using the Stable Upgrade Channel**
+
+   NGINXaaS for Azure deployments using the **Stable** [Upgrade Channel]({{< ref "/nginxaas-azure/quickstart/upgrade-channels.md" >}}) will be updated to [NGINX Plus Release 33 (R33)]({{< ref "/nginx/releases.md#nginxplusrelease-33-r33" >}}) during the week of May 05-09, 2025. This will also include updates to the following NGINX Plus modules:
+  - nginx-plus-module-njs
+
+   Please review the [NGINX Plus Release 33 (R33)]({{< ref "/nginx/releases.md#nginxplusrelease-33-r33" >}}) Release Notes carefully. If you have any concerns, it's recommended to validate your configuration against NGINX Plus R33 by setting up a test deployment using the **Preview** [Upgrade Channel]({{< ref "/nginxaas-azure/quickstart/upgrade-channels.md" >}}). See [these instructions]({{< ref "/nginxaas-azure/quickstart/recreate.md" >}}) on how to set up a deployment similar to your current one. For entitlement and visibility policy, check [the FAQs]({{< ref "/nginxaas-azure/faq.md" >}}) to address any additional questions you might have.
+
+   If you have any questions or concerns, please [contact us]({{< ref "/nginxaas-azure/troubleshooting/troubleshooting.md" >}}).
+
+
 ## March 31, 2025
 
 ### What's New

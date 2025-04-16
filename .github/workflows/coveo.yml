@@ -29,7 +29,7 @@ jobs:
           COVEO_API_KEY: ${{secrets[matrix.env_api_key]}}
           COVEO_SEARCH_HUB: "HUB_ES_Nginx_Docs_And_Org"
         run: |
-          RESPONSE=$(curl -w "\nHTTP_CODE: %{http_code}" -s -X POST "https://${{matrix.env_coveo_org_id}}.org.coveo.com/rest/search/v2/token" \
+          RESPONSE=$(curl -w "\nHTTP_CODE: %{http_code}" -s -X POST "https://platform.cloud.coveo.com/rest/search/v2/token?organizationId=${{matrix.env_coveo_org_id}}" \
           -H "Accept: application/json" \
           -H "Content-Type: application/json" \
           -H "Authorization: Bearer ${COVEO_API_KEY}" \
@@ -49,6 +49,7 @@ jobs:
 
           if [ $STATUS_CODE -ne 200 ]; then
             echo "Error: HTTP request failed with status $STATUS_CODE"
+            echo "$RESPONSE"
             exit 1
           fi
           if [ "$SEARCH_TOKEN" == "null" ]; then
