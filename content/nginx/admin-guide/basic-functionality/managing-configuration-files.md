@@ -9,10 +9,10 @@ type:
 - how-to
 ---
 
-NGINX and NGINX Plus are similar to other services in that they use a text‑based configuration file written in a particular format. By default the file is named **nginx.conf** and for NGINX Plus is placed in the <span style="white-space: nowrap;">**/etc/nginx**</span> directory. (For NGINX Open Source , the location depends on the package system used to install NGINX and the operating system. It is typically one of <span style="white-space: nowrap;">**/usr/local/nginx/conf**</span>, <span style="white-space: nowrap;">**/etc/nginx**</span>, or <span style="white-space: nowrap;">**/usr/local/etc/nginx**</span>.)
+NGINX and NGINX Plus are similar to other services in that they use a text‑based configuration file written in a particular format. By default the file is named **nginx.conf** and for NGINX Plus is placed in the <span style="white-space: nowrap;">**/etc/nginx**</span> directory. (For NGINX Open Source, the location depends on the package system used to install NGINX and the operating system. It is typically one of <span style="white-space: nowrap;">**/usr/local/nginx/conf**</span>, <span style="white-space: nowrap;">**/etc/nginx**</span>, or <span style="white-space: nowrap;">**/usr/local/etc/nginx**</span>.)
 
 ## Directives
-The configuration file consists of _directives_ and their parameters. Simple (single‑line) directives each end with a semicolon. Other directives act as “containers” that group together related directives, enclosing them in curly braces ( `{}` ); these are often referred to as _blocks_. Here are some examples of simple directives.
+The configuration file consists of _directives_ and their parameters. Simple (single‑line) directives end with a semicolon ( `;` ). Other directives act as “containers” which group together related directives. Containers are enclosed in curly braces ( `{}` ) and are often referred to as _blocks_. Here are some examples of simple directives.
 
 ```nginx
 user             nobody;
@@ -44,7 +44,7 @@ Directives placed outside of these contexts are said to be in the _main_ context
 ### Virtual Servers
 In each of the traffic‑handling contexts, you include one or more `server` blocks to define _virtual servers_ that control the processing of requests. The directives you can include within a `server` context vary depending on the traffic type.
 
-For HTTP traffic (the `http` context), each [server](https://nginx.org/en/docs/http/ngx_http_core_module.html#server) directive controls the processing of requests for resources at particular domains or IP addresses. One or more [location](https://nginx.org/en/docs/http/ngx_http_core_module.html#location) contexts in a `server` context define how to process specific sets of URIs.
+For HTTP traffic (the `http` context), each [server](https://nginx.org/en/docs/http/ngx_http_core_module.html#server) directive controls the processing of requests for resources at particular domains or IP addresses. One or more [location](https://nginx.org/en/docs/http/ngx_http_core_module.html#location) contexts within a `server` context define how to process specific sets of URIs.
 
 For mail and TCP/UDP traffic (the [mail](https://nginx.org/en/docs/mail/ngx_mail_core_module.html) and [stream](https://nginx.org/en/docs/stream/ngx_stream_core_module.html) contexts) the `server` directives each control the processing of traffic arriving at a particular TCP port or UNIX socket.
 
@@ -87,10 +87,10 @@ stream {
 
 ### Inheritance
 
-In general, a _child_ context – one contained within another context (its _parent_) – inherits the settings of directives included at the parent level. Some directives can appear in multiple contexts, in which case you can override the setting inherited from the parent by including the directive in the child context. For an example, see the [proxy_set_header](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_set_header) directive.
+In general, a _child_ context – a context contained within another context (its _parent_) – inherits the settings of directives included at the parent level. Some directives can appear in multiple contexts, in which case you can override the setting inherited from the parent by including the directive in the child context. For an example, see the [proxy_set_header](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_set_header) directive.
 
 ## Reloading Configuration
 
-For changes to the configuration file to take effect, it must be reloaded. You can either restart the `nginx` process or send the `reload` signal to upgrade the configuration without interrupting the processing of current requests. For details, see [Controlling NGINX Processes at Runtime]({{< ref "runtime-control.md" >}}).
+For changes to the configuration file to take effect, it must be reloaded. You can either restart the `nginx` process or send the `reload` signal to upgrade the configuration without interrupting the processing of current requests. For details, see [Control NGINX Processes at Runtime]({{< ref "runtime-control.md" >}}).
 
 With NGINX Plus, you can dynamically reconfigure [load balancing]({{< ref "/nginx/admin-guide/load-balancer/dynamic-configuration-api.md" >}}) across the servers in an upstream group without reloading the configuration. You can also use the NGINX Plus API and key‑value store to dynamically control access, for example [based on client IP address]({{< ref "/nginx/admin-guide/security-controls/denylisting-ip-addresses.md" >}}).
