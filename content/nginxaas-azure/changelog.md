@@ -13,6 +13,14 @@ To see a list of currently active issues, visit the [Known issues]({{< ref "/ngi
 
 To review older entries, visit the [Changelog archive]({{< ref "/nginxaas-azure/changelog-archive" >}}) section.
 
+## April 17, 2025
+
+### What's New
+
+- {{% icon-feature %}} **NGINX App Protect WAF is now generally available**
+
+NGINX App Protect WAF is now generally available and is no longer a preview feature and will therefore be billed as specified in the [Azure Marketplace](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/f5-networks.f5-nginx-for-azure?tab=PlansAndPrice)
+
 ## March 31, 2025
 
 ### What's New

@@ -9,6 +9,12 @@ url: /nginxaas/azure/known-issues/
 
 List of known issues in the latest release of F5 NGINX as a Service for Azure (NGINXaaS).
 
+### {{% icon-bug %}} Custom and precompiled security policies cannot both be referenced in an NGINX configuration 
+
+When using NGINX App Protect WAF, you can only reference default or custom security policies in your NGINX configuration, not both.
+
+**Workaround**: Make a copy of the default policy you want to use, then add it as a custom policy with a different name.  
+
 ### {{% icon-bug %}} Terraform fails to apply due to validation errors, but creates "Failed" resources in Azure (ID-4424)
 
 Some validation errors are caught later in the creation process, and can leave behind "Failed" resources in Azure. An example initial failure might look like:
