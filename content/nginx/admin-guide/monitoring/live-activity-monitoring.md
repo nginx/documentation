@@ -597,7 +597,7 @@ To access the Swagger UI page:
 
 - If you have configured the HTTPS protocol for the Swagger UI page, you will need to choose the "HTTPS" scheme in the "Schemes" menu.
 
-- Click on the operation you want to fulfil.
+- Click on the operation you want to fulfill.
 
 - Click **Try it out**.
 
