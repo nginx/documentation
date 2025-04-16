@@ -17,7 +17,7 @@ Ubuntu is the recommended operating system for development, as it comes with mos
 
 To begin this task, you will require the following:
 
-- A [working NGINX Agent instance]({{< relref "/agent/install-upgrade/install.md" >}}).
+- A [working NGINX Agent instance]({{< relref "/agent/install-upgrade/" >}}).
 - A [Go installation](https://go.dev/dl/) of version 1.22.2 or newer.
 - A [Protocol Buffer Compiler](https://grpc.io/docs/protoc-installation/) installation.
 
@@ -29,7 +29,7 @@ git clone git@github.com:nginx/agent.git
 
 Read [Cloning a repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) for more information
 
-Follow the steps in the [Installation]({{< relref "/agent/install-upgrade/install.md" >}}) topic to install NGINX Agent.
+Follow the steps in the [Installation]({{< relref "/agent/install-upgrade/" >}}) topic to install NGINX Agent.
 
 ## Install prerequisite packages
 Depending on the operating system distribution, it may be necessary to install the following packages in order to build NGINX Agent.

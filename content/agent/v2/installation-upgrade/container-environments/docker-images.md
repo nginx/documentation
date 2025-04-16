@@ -14,7 +14,7 @@ NGINX Agent is a companion daemon for NGINX Open Source or NGINX Plus instances 
 
 If you want to use NGINX Agent with NGINX Plus, you need to purchase an NGINX Plus license. Contact your F5 Sales representative for assistance.
 
-See the requirements and supported operating systems in the [NGINX Agent Technical Specifications]({{< ref "/agent/technical-specifications.md" >}}) topic.
+See the requirements and supported operating systems in the [NGINX Agent Technical Specifications]({{< ref "/agent/tech-specs.md" >}}) topic.
 
 ## Deploy Offical NGINX and NGINX Plus Containers
 
