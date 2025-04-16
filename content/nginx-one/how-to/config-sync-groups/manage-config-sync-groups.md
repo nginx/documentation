@@ -100,6 +100,9 @@ Now that you created a Config Sync Group, you can add instances to that group. A
 
 Any instance that joins the group afterwards inherits that configuration.
 
+If there are conflicts between an Instance and the Config Sync Group, you'll see the following [Config Sync Group Status](#config-sync-group-status): "Out of Sync".
+In that case, review and resolve discrepencies between the Instance and the rest of the Config Sync Group.
+
 ### Add an existing instance to a Config Sync Group {#add-an-existing-instance-to-a-config-sync-group}
 
 You can add existing NGINX instances that are already registered with NGINX One to a Config Sync Group.
