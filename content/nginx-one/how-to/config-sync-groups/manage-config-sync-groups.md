@@ -100,7 +100,7 @@ Now that you created a Config Sync Group, you can add instances to that group. A
 
 Any instance that joins the group afterwards inherits that configuration.
 
-{{< note >}} If there are conflicts between an Instance and the Config Sync Group, you'll see the following [Config Sync Group Status](#config-sync-group-status) message: **Out of Sync**.
+{{< note >}} If there are conflicts between an instance and the Config Sync Group, you'll see the following [Config Sync Group Status](#config-sync-group-status) message: **Out of Sync**.
 In that case, review and resolve discrepencies between the Instance and the rest of the Config Sync Group. {{< /note >}}
 
 ### Add an existing instance to a Config Sync Group {#add-an-existing-instance-to-a-config-sync-group}
