@@ -136,17 +136,43 @@ If you followed the [Installation and upgrade](https://docs.nginx.com/nginx-agen
 
 ## Enable NGINX metrics reporting
 
-In order for NGINX One Console to show specific traffic and system metrics, you need to enable the appropriate API on your NGINX data plane instances. The sections below provide step-by-step instructions for both NGINX Plus and NGINX Open Source (OSS).
+NGINX One Console dashboard relies on the NGINX Plus and NGINX Open Source Stub Status APIs to report traffic and system metrics. The following sections include instructions on how to enable those metrics.
+<!--
+In order for NGINX One Console to show specific traffic and system metrics, you need to enable the appropriate API on your NGINX data plane instances. The sections below provide step-by-step instructions for both NGINX Plus and NGINX Open Source (OSS). -->
 
 ### Enable NGINX Plus API
 
-{{< include "/use-cases/monitoring/enable-nginx-plus-api.md" >}}
+<!-- {{< include "/use-cases/monitoring/enable-nginx-plus-api.md" >}} -->
+To collect metrics for NGINX Plus, add the following to your NGINX Plus configuration file:
+
+```nginx
+# Enable the /api/ location with appropriate access control
+# to use the NGINX Plus API.
+#
+location /api/ {
+    api write=on;
+    allow 127.0.0.1;
+    deny all;
+}
+```
+
+This configuration:
+
+- Enables the NGINX Plus API.
+- Allows requests only from `127.0.0.1` (localhost).
+- Blocks all other requests for security.
+
+After saving the changes, reload NGINX to apply the new configuration:
+
+```shell
+nginx -s reload
+```
 
 ### Enable NGINX Open Source Stub Status API
 
 {{< include "/use-cases/monitoring/enable-nginx-oss-stub-status.md" >}}
 
----
+--- 
 
 ## View instance metrics with the NGINX One dashboard
 
