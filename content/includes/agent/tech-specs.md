@@ -1,8 +1,8 @@
 ---
-title: "Technical Specifications"
-toc: true
-weight: 700
-docs: DOCS-000
+docs:
+files:
+   - content/agent/tech-specs.md
+   - content/nginx-one/agent/tech-specs.md
 ---
 
 NGINX Agent is designed to operate efficiently on any system that meets the standard

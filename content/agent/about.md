@@ -14,7 +14,7 @@ The F5 NGINX Agent is a lightweight companion daemon designed to work with NGINX
 
 - Enable Access to Key NGINX One Use Cases
     - Seamlessly integrates with essential NGINX One functionality, simplifying access to its core use cases and enhancing operational workflows.
-    - [Connect to NGINX One Console]({{< relref "/agent/install-upgrade/install/#connect-an-instance-to-nginx-one-console" >}})
+    - [Connect to NGINX One Console]({{< relref "/agent/install-upgrade/install-from-oss-repo.md#connect-an-instance-to-nginx-one-console" >}})
 
 - Real-Time Observability into NGINX One Data Plane Instances
     - Provides live monitoring and actionable insights into the performance, status, and health of NGINX One Data Plane instances, improving decision-making and operational efficiency.
