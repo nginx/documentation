@@ -9,7 +9,9 @@ type:
 - how-to
 ---
 
-NGINX and NGINX Plus are similar to other services in that they use a text‑based configuration file written in a particular format. By default the file is named **nginx.conf** and for NGINX Plus is placed in the <span style="white-space: nowrap;">**/etc/nginx**</span> directory. (For NGINX Open Source, the location depends on the package system used to install NGINX and the operating system. It is typically one of <span style="white-space: nowrap;">**/usr/local/nginx/conf**</span>, <span style="white-space: nowrap;">**/etc/nginx**</span>, or <span style="white-space: nowrap;">**/usr/local/etc/nginx**</span>.)
+NGINX and NGINX Plus are similar to other services in using a text‑based configuration file with a precise format. By default the file is named **nginx.conf** and for NGINX Plus is placed in the `**/etc/nginx**` directory. 
+
+For NGINX Open Source, the location depends on the package system used to install NGINX and the operating system. It is typically one of `**/usr/local/nginx/conf**`, `**/etc/nginx**`, or `**/usr/local/etc/nginx**`.
 
 ## Directives
 The configuration file consists of _directives_ and their parameters. Simple (single‑line) directives end with a semicolon ( `;` ). Other directives act as “containers” which group together related directives. Containers are enclosed in curly braces ( `{}` ) and are often referred to as _blocks_. Here are some examples of simple directives.
@@ -91,6 +93,6 @@ In general, a _child_ context – a context contained within another context (i
 
 ## Reloading Configuration
 
-For changes to the configuration file to take effect, it must be reloaded. You can either restart the `nginx` process or send the `reload` signal to upgrade the configuration without interrupting the processing of current requests. For details, see [Control NGINX Processes at Runtime]({{< ref "runtime-control.md" >}}).
+For changes to the configuration file to take effect, it must be reloaded. You can either restart the `nginx` process or send the `reload` signal to upgrade the configuration without interrupting the processing of current requests. For details, see [Control NGINX Processes at Runtime]({{< ref "/nginx/admin-guide/basic-functionality/runtime-control.md" >}}).
 
 With NGINX Plus, you can dynamically reconfigure [load balancing]({{< ref "/nginx/admin-guide/load-balancer/dynamic-configuration-api.md" >}}) across the servers in an upstream group without reloading the configuration. You can also use the NGINX Plus API and key‑value store to dynamically control access, for example [based on client IP address]({{< ref "/nginx/admin-guide/security-controls/denylisting-ip-addresses.md" >}}).
