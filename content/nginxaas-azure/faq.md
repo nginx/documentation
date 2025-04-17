@@ -10,6 +10,12 @@ type:
 
 Common questions about F5 NGINX as a Service for Azure (NGINXaaS).
 
+### Do I need to manually supply a JWT license for my instances?
+- No, the license management process is handled automatically by NGINXaaS.
+
+### Where is the usage data reported?
+- The usage data is reported to NGINXaaS. 
+
 ### Is NGINXaaS available in my subscription or in F5 subscription?
 - Your NGINXaaS deployment resource is visible to you under your subscription. The underlying compute resources of your deployment, which are managed by NGINX on your behalf, are not visible in your subscription.
 

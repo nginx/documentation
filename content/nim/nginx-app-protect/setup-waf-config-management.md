@@ -17,7 +17,7 @@ Instance Manager helps you manage your F5 NGINX App Protect WAF configurations, 
 
 Complete the following prerequisites before proceeding with this guide.
 
-- You have one or more instances of [NGINX App Protect WAF]({{< ref "/nap-waf/" >}}) installed and running. See [Support for NGINX App Protect WAF]({{< ref "tech-specs.md#support-for-nginx-app-protect-waf" >}}) for a list of supported versions.
+- You have one or more instances of [NGINX App Protect WAF]({{< ref "/nap-waf/" >}}) installed and running. See [Support for NGINX App Protect WAF]({{< ref "/nim/fundamentals/tech-specs.md#support-for-nginx-app-protect-waf" >}}) for a list of supported versions.
 
     {{< note >}} If you are using configuration management and the NGINX Instance Manager Security Monitoring, follow the instructions in the [setup guide]({{< ref "/nim/nginx-app-protect/security-monitoring/set-up-app-protect-instances.md" >}}) to set up your NGINX App Protect instances before proceeding with this guide. {{</ note >}}
 
