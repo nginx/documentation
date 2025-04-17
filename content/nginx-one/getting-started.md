@@ -136,9 +136,7 @@ If you followed the [Installation and upgrade](https://docs.nginx.com/nginx-agen
 
 ## Enable NGINX metrics reporting
 
-The NGINX One Console dashboard relies on APIs for NGINX Plus and NGINX Open Source Stub Status to report traffic and system metrics. The following sections include instructions on how to enable those metrics.
-<!--
-In order for NGINX One Console to show specific traffic and system metrics, you need to enable the appropriate API on your NGINX data plane instances. The sections below provide step-by-step instructions for both NGINX Plus and NGINX Open Source (OSS). -->
+The NGINX One Console dashboard relies on APIs for NGINX Plus and NGINX Open Source Stub Status to report traffic and system metrics. The following sections show you how to enable those metrics.
 
 ### Enable NGINX Plus API
 
