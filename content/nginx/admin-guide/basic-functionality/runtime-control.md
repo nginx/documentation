@@ -19,7 +19,7 @@ The main purpose of the master process is to read and evaluate configuration fil
 
 The worker processes do the actual processing of requests. NGINX relies on <span style="white-space: nowrap;">OS-dependent</span> mechanisms to efficiently distribute requests among worker processes. The number of worker processes is defined by the [worker_processes](https://nginx.org/en/docs/ngx_core_module.html#worker_processes) directive in the **nginx.conf** configuration file and can either be set to a fixed number or configured to adjust automatically to the number of available CPU cores.
 
-## Controlling NGINX
+## Control NGINX
 
 To reload your configuration, you can stop or restart NGINX, or send signals to the master process. A signal can be sent by running the `nginx` command (invoking the NGINX executable) with the `-s` argument.
 
