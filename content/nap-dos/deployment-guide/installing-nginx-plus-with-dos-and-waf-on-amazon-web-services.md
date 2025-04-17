@@ -21,7 +21,7 @@ The AMIs contain combination of the following components:
 - Latest version of [NGINX App Protect WAF](https://docs.nginx.com/nginx-app-protect-waf/), optimized for use on Amazon EC2
 - Pre-packaged software for building highly available (HA) NGINX Plus configurations
 
-## Installing the NGINX Plus NGINX App Protect WAF + DoS
+## Install NGINX Plus NGINX App Protect WAF + DoS
 
 To quickly set up an environment with NGINX Plus, NGINX App Protect WAF and NGINX App Protect DoS on AWS:
 

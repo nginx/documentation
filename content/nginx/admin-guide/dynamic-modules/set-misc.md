@@ -10,15 +10,15 @@ type:
 - how-to
 ---
 
-<span id="prereq"></span>
+
 ## Prerequisites
 
-1. Check the [Technical Specifications]({{< relref "../../technical-specs.md" >}}) page to verify that the module is supported by your operating system.
+1. Check the [Technical Specifications]({{< ref "nginx/technical-specs.md" >}}) page to verify that the module is supported by your operating system.
 
-2. Prior to installing the module, verify that the [NDK]({{< relref "ndk.md" >}}) module is already installed.
+2. Prior to installing the module, verify that the [NDK]({{< ref "ndk.md" >}}) module is already installed.
 
 
-<span id="install"></span>
+
 ## Installation
 
 Install the Set-Misc module package `nginx-plus-module-set-misc`.
@@ -26,25 +26,29 @@ Install the Set-Misc module package `nginx-plus-module-set-misc`.
    For Amazon Linux 2, CentOS, Oracle Linux, and RHEL:
 
    ```shell
-   yum install nginx-plus-module-set-misc
+   sudo yum update && \
+   sudo yum install nginx-plus-module-set-misc
    ```
 
    For Amazon Linux 2023, AlmaLinux, Rocky Linux:
 
    ```shell
-   dnf install nginx-plus-module-set-misc
+   sudo dnf update && \
+   sudo dnf install nginx-plus-module-set-misc
    ```
 
    For Debian and Ubuntu:
 
    ```shell
-   apt-get install nginx-plus-module-set-misc
+   sudo apt update && \
+   sudo apt install nginx-plus-module-set-misc
    ```
 
    For SLES:
 
    ```shell
-   zypper install nginx-plus-module-set-misc
+   sudo zypper refresh && \
+   sudo zypper install nginx-plus-module-set-misc
    ```
 
    For Alpine:
@@ -56,11 +60,12 @@ Install the Set-Misc module package `nginx-plus-module-set-misc`.
    For FreeBSD:
 
    ```shell
-   pkg install nginx-plus-module-set-misc
+   sudo pkg update && \
+   sudo pkg install nginx-plus-module-set-misc
    ```
 
 
-<span id="configure"></span>
+
 
 ## Configuration
 
@@ -71,24 +76,43 @@ After installation you will need to enable and configure the module in F5 NGINX 
    ```nginx
    load_module modules/ndk_http_module.so;
    load_module modules/ngx_http_set_misc_module.so;
+
+   http {
+       # ...
+   }
    ```
 
    {{< note >}} The directives must be in this order. {{< /note >}}
 
 2. Perform additional configuration as required by the [module](https://github.com/openresty/set-misc-nginx-module).
 
-3. Test the configuration and reload NGINX Plus to enable the module:
+3. Test the NGINX Plus configuration. In a terminal, type-in the command:
 
-   ```shell
-   nginx -t && nginx -s reload
-   ```
+    ```shell
+    nginx -t
+    ```
+
+    Expected output of the command:
+
+    ```shell
+    nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+    nginx: configuration file /etc/nginx/nginx.conf is successful
+    ```
+
+4. Reload the NGINX Plus configuration to enable the module:
+
+    ```shell
+    nginx -s reload
+    ```
 
 
-<span id="info"></span>
+
 ## More Info
 
 - [NGINX `ngx_set_misc` Module Reference](https://github.com/openresty/set-misc-nginx-module)
 
-- [NGINX Dynamic Modules]({{< relref "dynamic-modules.md" >}})
+- [NGINX Dynamic Modules]({{< ref "dynamic-modules.md" >}})
 
-- [NGINX Plus Technical Specifications]({{< relref "../../technical-specs.md" >}})
+- [NGINX Plus Technical Specifications]({{< ref "nginx/technical-specs.md" >}})
+
+- [Uninstalling a Dynamic Module]({{< ref "uninstall.md" >}})

@@ -13,7 +13,7 @@ type:
 
 ## Default Developer Portal Helm Settings {#default-devportal-helm-settings}
 
-This topic lists the default values that are used when [installing the Developer Portal from a Helm chart]({{< relref "/nim/deploy/kubernetes/deploy-using-helm.md" >}}). You can change these values to meet your specific needs.
+This topic lists the default values that are used when [installing the Developer Portal from a Helm chart]({{< ref "/nim/deploy/kubernetes/deploy-using-helm.md" >}}). You can change these values to meet your specific needs.
 
 {{< include "installation/helm/acm/dev-portal-helm-configurations/configuration-options.md" >}}
 

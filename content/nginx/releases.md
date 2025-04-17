@@ -10,13 +10,79 @@ type:
 ---
 
 <span id="support"></span>
-## Support for Current and Previous Releases
+### Software Development Policy
 
-NGINX provides technical support for F5 NGINX Plus releases for 24 months from the initial date of each release.
-With each new NGINX Plus release, the previously released version enters End of Software Development (EoSD).
-We do not issue updates for releases that have reached EoSD. For this reason, we advise customers to run the most recent release.
-The initial release dates for NGINX Plus are noted in this document.
-New releases are announced on the [NGINX Product Support Announcements](https://interact.f5.com/Customer-Preference-Center.html) mailing list.
+Each F5 NGINX Plus release reaches End of Software Development (EoSD) on the release date of the next version. For NGINX Plus, EoSD means no additional features or routine bug fixes will be applied to that version.
+Critical bug patches and security updates are applied to the two (2) most recent releases of NGINX Plus.
+
+{{<bootstrap-table "table table-striped table-bordered table-sm table-responsive">}}
+| NGINX Plus Release | Release Date | End of Software Development | End of Security Updates | End of Technical Support |
+|---------------------|--------------|-----------------------------|-------------------------|--------------------------|
+| R34                | 1st April 2025 | R35 release date           | R36 release date       | 31st March 2027         |
+| R33                | 19th Nov 2024  | 1st April 2025             | R35 release date       | 18th Nov 2026           |
+| R32                | 29th May 2024  | 19th Nov 2024              | 1st April 2025         | 28th May 2026           |
+| R31                | 19th Dec 2023  | 29th May 2024              | 18th Nov 2024          | 18th Dec 2025           |
+| R30                | 15th Aug 2023  | 19th Dec 2023              | 28th May 2024          | 14th Aug 2025           |
+| R29                | 2nd May 2023   | 15th Aug 2023              | 18th Dec 2023          | 1st May 2025            |
+
+{{< /bootstrap-table >}}
+
+We strongly recommend running the latest version of NGINX Plus in production to ensure you have the latest features, security updates, and critical patches.
+
+### Technical Support Services
+
+F5 offers 24 months of technical support for each F5 NGINX Plus release. The 24-month support period begins on the initial release date for each version of NGINX Plus, as noted in the table. The release of a patch (for example, `NGINX Plus R33p2`) does not reset the 24-month technical support period for the impacted release.
+
+
+<span id="r34"></span>
+## NGINX Plus Release 34 (R34)
+_01 April 2025_<br/>
+_Based on NGINX Open Source 1.27.4_
+
+NGINX Plus R34 is a feature release:
+
+- [OIDC authentication support]({{< ref "nginx/admin-guide/security-controls/configuring-oidc.md" >}}) via native [ngx_http_oidc_module](https://nginx.org/en/docs/http/ngx_http_oidc_module.html) module.
+
+- NGINX usage reporting: [proxy](https://nginx.org/en/docs/ngx_mgmt_module.html#proxy) support.
+- [Caching](https://blog.nginx.org/blog/optimizing-resource-usage-for-complex-ssl-configurations) of SSL certificates and secret keys with variables for [http](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_certificate_cache) and [stream](https://nginx.org/en/docs/stream/ngx_stream_ssl_module.html#ssl_certificate_cache).
+
+- The [`keepalive_min_timeout`](https://nginx.org/en/docs/http/ngx_http_core_module.html#keepalive_min_timeout) directive.
+
+- TLSv1.2 and TLSv1.3 are the default [SSL protocols](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_protocols) (if supported by the OpenSSL library). If OpenSSL 1.0.0 or older is used, the default SSL protocols are TLSv1 and TLSv1.1.
+
+- Bugfixes in QUIC and HTTP/3, mail proxy, the MP4 module, the `proxy_store` and `proxy_bind` directives.
+
+- Security: insufficient check in virtual servers handling with TLSv1.3 SNI allowed to reuse SSL sessions in a different virtual server, to bypass client SSL certificates verification ([CVE-2025-23419](http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-23419)).
+
+
+NGINX Plus R34 is supported on:
+
+{{< bootstrap-table "table table-striped table-bordered" >}}
+| Distribution                     | Versions                          |
+|----------------------------------|-----------------------------------|
+| AlmaLinux                        | 8, 9                              |
+| Alpine Linux                     | 3.18, 3.19, 3.20, 3.21            |
+| Amazon Linux                    | 2 LTS, 2023                       |
+| Debian                           | 11, 12                            |
+| FreeBSD                          | 13, 14                            |
+| Oracle Linux                     | 8.1+, 9                           |
+| RHEL                              | 8.1+, 9.0+                        |
+| Rocky Linux                      | 8, 9                              |
+| SUSE Linux Enterprise Server     | 15 SP5+                           |
+| Ubuntu                           | 20.04 LTS, 22.04 LTS, 24.04 LTS   |
+{{< /bootstrap-table >}}
+
+**Notes:**
+
+- Alpine Linux 3.17 is removed
+- Alpine Linux 3.18 is deprecated
+- Alpine Linux 3.21 is new in this release
+- SUSE Linux Enterprise Server 12 is removed
+- Ubuntu 20.04 is deprecated
+- the [OpenTracing]({{< ref "nginx/admin-guide/dynamic-modules/opentracing.md" >}}) dynamic module is no longer available. It is recommended to use the [OpenTelemetry Distributed Tracing]({{< ref "nginx/admin-guide/dynamic-modules/opentelemetry.md" >}}) module, which incorporates all the features of the OpenTracing module.
+
+More information: [Announcing NGINX Plus R34](https://community.f5.com/kb/technicalarticles/f5-nginx-plus-r34-release-now-available/340300)
+
 
 <span id="r33"></span>
 ## NGINX Plus Release 33 (R33)
@@ -30,9 +96,9 @@ NGINX Plus R33 is a feature release:
 
 - NGINX usage reporting: Usage report is sent to F5 licensing endpoint [every hour](https://nginx.org/en/docs/ngx_mgmt_module.html#usage_report) using the [secure](https://nginx.org/en/docs/ngx_mgmt_module.html#ssl_verify) connection. The initial usage report should be sent once NGINX Plus starts after installation or upgrade to R33. If the initial usage report is not received by the endpoint, NGINX Plus will stop processing traffic. A 180-day grace period can be [enabled](https://nginx.org/en/docs/ngx_mgmt_module.html#enforce_initial_report) to submit the initial usage report.
 
-  Optionally, for network-restricted environments, reporting can be [configured](https://nginx.org/en/docs/ngx_mgmt_module.html#usage_report) to [NGINX Instance Manager]({{< relref "nim/index.md" >}}) from which the report can be sent to F5 licensing endpoint.
+  Optionally, for network-restricted environments, reporting can be [configured](https://nginx.org/en/docs/ngx_mgmt_module.html#usage_report) to [NGINX Instance Manager]({{< ref "nim/index.md" >}}) from which the report can be sent to F5 licensing endpoint.
 
-  For more information about licensing and usage reporting, see [About subscription licenses]({{< relref "solutions/about-subscription-licenses.md" >}}) article and [`ngx_mgmt_module`](https://nginx.org/en/docs/ngx_mgmt_module.html) module documentation.
+  For more information about licensing and usage reporting, see [About subscription licenses]({{< ref "solutions/about-subscription-licenses.md" >}}) article and [`ngx_mgmt_module`](https://nginx.org/en/docs/ngx_mgmt_module.html) module documentation.
 
 - OCSP stapling support and client certificate validation with OCSP
 in the [stream](https://nginx.org/en/docs/stream/ngx_stream_ssl_module.html) module with the
@@ -49,22 +115,25 @@ The argument is a file name in the `SSLKEYLOGFILE` format compatible with Wiresh
 
 - Response trailers support in proxy with the [`proxy_pass_trailers`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass_trailers) directive that allows passing trailer fields from a proxied server to a client.
 
-- The [NGINX JavaScript]({{< relref "nginx/admin-guide/dynamic-modules/nginscript.md" >}}) module was updated to version [0.8.7](https://nginx.org/en/docs/njs/changes.html#njs0.8.7), featuring QuickJS [runtime support](https://nginx.org/en/docs/njs/engine.html).
+- The [NGINX JavaScript]({{< ref "nginx/admin-guide/dynamic-modules/nginscript.md" >}}) module was updated to version [0.8.7](https://nginx.org/en/docs/njs/changes.html#njs0.8.7), featuring QuickJS [runtime support](https://nginx.org/en/docs/njs/engine.html).
 
 - Added initial support for Post Quantum Cryptography.
 
-NGINX Plus R33 is supported on:
+{{< bootstrap-table "table table-striped table-bordered" >}}
+| Distribution                     | Versions                          |
+|----------------------------------|-----------------------------------|
+| AlmaLinux                        | 8, 9                              |
+| Alpine Linux                     | 3.17, 3.18, 3.19, 3.20            |
+| Amazon Linux                    | 2 LTS, 2023                       |
+| Debian                           | 11, 12                            |
+| FreeBSD                          | 13, 14                            |
+| Oracle Linux                     | 8.1+, 9                           |
+| RHEL                              | 8.1+, 9.0+                        |
+| Rocky Linux                      | 8, 9                              |
+| SUSE Linux Enterprise Server     | 12, 15 SP5+                       |
+| Ubuntu                           | 20.04 LTS, 22.04 LTS, 24.04 LTS   |
+{{< /bootstrap-table >}}
 
-- AlmaLinux 8, 9
-- Alpine Linux 3.17, 3.18, 3.19, 3.20
-- Amazon Linux 2 LTS, 2023
-- Debian 11, 12
-- FreeBSD 13, 14
-- Oracle Linux 8.1+, 9
-- RHEL 8.1+, 9.0+
-- Rocky Linux 8, 9
-- SUSE Linux Enterprise Server 12, 15 SP5+
-- Ubuntu 20.04 LTS, 22.04 LTS, 24.04 LTS
 
 **Notes:**
 
@@ -76,7 +145,7 @@ NGINX Plus R33 is supported on:
 - Oracle Linux 7.4+ is removed
 - SUSE Linux Enterprise Server 12 is deprecated
 - support for s390x architecture removed
-- the [Lua]({{< relref "nginx/admin-guide/dynamic-modules/lua.md" >}}) module is no longer available for SUSE Linux Enterprise Server 12
+- the [Lua]({{< ref "nginx/admin-guide/dynamic-modules/lua.md" >}}) module is no longer available for SUSE Linux Enterprise Server 12
 
 More information: [Announcing NGINX Plus R33](https://community.f5.com/kb/technicalarticles/announcing-nginx-plus-r33-release/336403)
 
@@ -154,17 +223,21 @@ NGINX Plus R32 is a feature release:
 
 NGINX Plus R32 is supported on:
 
-- AlmaLinux 8, 9
-- Alpine Linux 3.16, 3.17, 3.18, 3.19
-- Amazon Linux 2 LTS, 2023
-- CentOS 7.4+
-- Debian 11, 12
-- FreeBSD 13, 14
-- Oracle Linux 7.4+, 8.1+, 9
-- RHEL 7.4+, 8.1+, 9.0+
-- Rocky Linux 8, 9
-- SUSE Linux Enterprise Server 12 SP5, 15 SP2
-- Ubuntu 20.04 LTS, 22.04 LTS, 24.04 LTS
+{{< bootstrap-table "table table-striped table-bordered" >}}
+| Distribution                     | Versions                          |
+|----------------------------------|-----------------------------------|
+| AlmaLinux                        | 8, 9                              |
+| Alpine Linux                     | 3.16, 3.17, 3.18, 3.19            |
+| Amazon Linux                     | 2 LTS, 2023                       |
+| CentOS                           | 7.4+                              |
+| Debian                           | 11, 12                            |
+| FreeBSD                          | 13, 14                            |
+| Oracle Linux                     | 7.4+, 8.1+, 9                     |
+| RHEL                             | 7.4+, 8.1+, 9.0+                  |
+| Rocky Linux                      | 8, 9                              |
+| SUSE Linux Enterprise Server     | 12 SP5, 15 SP2                    |
+| Ubuntu                           | 20.04 LTS, 22.04 LTS, 24.04 LTS   |
+{{< /bootstrap-table >}}
 
 **Notes:**
 
@@ -263,17 +336,22 @@ of NGINX Plus installations to [NGINX Instance Manager](https://docs.nginx.com/n
 
 NGINX Plus R31 is supported on:
 
-- AlmaLinux 8, 9
-- Alpine Linux 3.16, 3.17, 3.18, 3.19
-- Amazon Linux 2 LTS, 2023
-- CentOS 7.4+
-- Debian 11, 12
-- FreeBSD 12.1+, 13, 14
-- Oracle Linux 7.4+, 8.1+, 9
-- RHEL 7.4+, 8.1+, 9.0+
-- Rocky Linux 8, 9
-- SUSE Linux Enterprise Server 12 SP5, 15 SP2
-- Ubuntu 20.04 LTS, 22.04 LTS
+{{< bootstrap-table "table table-striped table-bordered" >}}
+| Distribution                     | Versions                          |
+|----------------------------------|-----------------------------------|
+| AlmaLinux                        | 8, 9                              |
+| Alpine Linux                     | 3.16, 3.17, 3.18, 3.19            |
+| Amazon Linux                     | 2 LTS, 2023                       |
+| CentOS                           | 7.4+                              |
+| Debian                           | 11, 12                            |
+| FreeBSD                          | 12.1+, 13, 14                     |
+| Oracle Linux                     | 7.4+, 8.1+, 9                     |
+| RHEL                             | 7.4+, 8.1+, 9.0+                  |
+| Rocky Linux                      | 8, 9                              |
+| SUSE Linux Enterprise Server     | 12 SP5, 15 SP2                    |
+| Ubuntu                           | 20.04 LTS, 22.04 LTS              |
+{{< /bootstrap-table >}}
+
 
 **Notes:**
 
@@ -368,17 +446,22 @@ required for troubleshooting are available as a separate download package
 
 NGINX Plus R30 is supported on:
 
-- AlmaLinux 8, 9
-- Alpine Linux 3.16, 3.17, 3.18
-- Amazon Linux 2 LTS, 2023
-- CentOS 7.4+
-- Debian 11, 12
-- FreeBSD 12.1+, 13
-- Oracle Linux 7.4+, 8.1+, 9
-- RHEL 7.4+, 8.1+, 9.0+
-- Rocky Linux 8, 9
-- SUSE Linux Enterprise Server 12 SP5, 15 SP2
-- Ubuntu 20.04 LTS, 22.04 LTS
+{{<bootstrap-table "table table-striped table-bordered">}}
+| OS Distribution                    | Versions                      |
+|-----------------------------------|-------------------------------|
+| AlmaLinux                         | 8, 9                          |
+| Alpine Linux                      | 3.16, 3.17, 3.18              |
+| Amazon Linux                     | 2 LTS, 2023                   |
+| CentOS                            | 7.4+                          |
+| Debian                            | 11, 12                        |
+| FreeBSD                           | 12.1+, 13                     |
+| Oracle Linux                      | 7.4+, 8.1+, 9                 |
+| RHEL                              | 7.4+, 8.1+, 9.0+              |
+| Rocky Linux                       | 8, 9                          |
+| SUSE Linux Enterprise Server      | 12 SP5, 15 SP2                |
+| Ubuntu                            | 20.04 LTS, 22.04 LTS          |
+{{</bootstrap-table>}}
+
 
 **Notes:**
 
@@ -441,17 +524,21 @@ NGINX Plus R29 is a feature release:
 
 NGINX Plus R29 is supported on:
 
-- AlmaLinux 8, 9
-- Alpine Linux 3.15, 3.16, 3.17
-- Amazon Linux 2 LTS, 2023
-- CentOS 7.4+
-- Debian 11
-- FreeBSD 12.1+, 13
-- Oracle Linux 7.4+, 8.1+, 9
-- RHEL 7.4+, 8.1+, 9.0+
-- Rocky Linux 8, 9
-- SUSE Linux Enterprise Server 12 SP5, 15 SP2
-- Ubuntu 20.04 LTS, 22.04 LTS
+{{<bootstrap-table "table table-striped table-bordered">}}
+| OS Distribution                    | Versions                      |
+|-----------------------------------|-------------------------------|
+| AlmaLinux                         | 8, 9                          |
+| Alpine Linux                      | 3.15, 3.16, 3.17              |
+| Amazon Linux                      | 2 LTS, 2023                   |
+| CentOS                            | 7.4+                          |
+| Debian                            | 11                            |
+| FreeBSD                           | 12.1+, 13                     |
+| Oracle Linux                      | 7.4+, 8.1+, 9                 |
+| RHEL                              | 7.4+, 8.1+, 9.0+              |
+| Rocky Linux                       | 8, 9                          |
+| SUSE Linux Enterprise Server      | 12 SP5, 15 SP2                |
+| Ubuntu                            | 20.04 LTS, 22.04 LTS          |
+{{</bootstrap-table>}}
 
 **Notes:**
 
@@ -512,17 +599,21 @@ NGINX Plus R28 is a feature release:
 
 NGINX Plus R28 is supported on:
 
-- AlmaLinux 8, 9
-- Alpine Linux 3.13, 3.14, 3.15, 3.16, 3.17
-- Amazon Linux 2 LTS
-- CentOS 7.4+
-- Debian 11
-- FreeBSD 12.1+, 13
-- Oracle Linux 7.4+, 8.1+, 9
-- RHEL 7.4+, 8.1+, 9.0+
-- Rocky Linux 8, 9
-- SUSE Linux Enterprise Server 12 SP5, 15 SP2
-- Ubuntu 18.04 LTS, 20.04 LTS, 22.04 LTS
+{{<bootstrap-table "table table-striped table-bordered">}}
+| OS Distribution                    | Versions                            |
+|-----------------------------------|-------------------------------------|
+| AlmaLinux                         | 8, 9                                |
+| Alpine Linux                      | 3.13, 3.14, 3.15, 3.16, 3.17        |
+| Amazon Linux                      | 2 LTS                               |
+| CentOS                            | 7.4+                                |
+| Debian                            | 11                                  |
+| FreeBSD                           | 12.1+, 13                           |
+| Oracle Linux                      | 7.4+, 8.1+, 9                       |
+| RHEL                              | 7.4+, 8.1+, 9.0+                    |
+| Rocky Linux                       | 8, 9                                |
+| SUSE Linux Enterprise Server      | 12 SP5, 15 SP2                      |
+| Ubuntu                            | 18.04 LTS, 20.04 LTS, 22.04 LTS     |
+{{</bootstrap-table>}}
 
 **Notes:**
 
@@ -562,15 +653,19 @@ during which requests can be processed through one keepalive connection
 
 NGINX Plus R27 is supported on:
 
-- Alpine Linux 3.13, 3.14, 3.15, 3.16
-- Amazon Linux 2 LTS
-- CentOS 7.4+
-- Debian 10, 11
-- FreeBSD 12.1+, 13
-- Oracle Linux 7.4+, 8.1+
-- RHEL 7.4+, 8.1+, 9.0+
-- SUSE Linux Enterprise Server 12 SP5, 15 SP2
-- Ubuntu 18.04 LTS, 20.04 LTS, 22.04 LTS
+{{<bootstrap-table "table table-striped table-bordered">}}
+| OS Distribution                    | Versions                            |
+|-----------------------------------|-------------------------------------|
+| Alpine Linux                      | 3.13, 3.14, 3.15, 3.16              |
+| Amazon Linux                      | 2 LTS                               |
+| CentOS                            | 7.4+                                |
+| Debian                            | 10, 11                              |
+| FreeBSD                           | 12.1+, 13                           |
+| Oracle Linux                      | 7.4+, 8.1+                          |
+| RHEL                              | 7.4+, 8.1+, 9.0+                    |
+| SUSE Linux Enterprise Server      | 12 SP5, 15 SP2                      |
+| Ubuntu                            | 18.04 LTS, 20.04 LTS, 22.04 LTS     |
+{{</bootstrap-table>}}
 
 **Notes:**
 
@@ -615,15 +710,19 @@ NGINX Plus R26 is a feature release:
 
 NGINX Plus R26 is supported on:
 
-- Alpine Linux 3.12, 3.13, 3.14, 3.15
-- Amazon Linux 2 LTS
-- CentOS 7.4+, 8.1+
-- Debian 10, 11
-- FreeBSD 12.1+, 13
-- Oracle Linux 7.4+, 8.1+
-- RHEL 7.4+, 8.1+, 9.0+
-- SUSE Linux Enterprise Server 12 SP5, 15 SP2
-- Ubuntu 18.04 LTS, 20.04 LTS, 22.04 LTS
+{{<bootstrap-table "table table-striped table-bordered">}}
+| OS Distribution                    | Versions                            |
+|-----------------------------------|-------------------------------------|
+| Alpine Linux                      | 3.12, 3.13, 3.14, 3.15              |
+| Amazon Linux                      | 2 LTS                               |
+| CentOS                            | 7.4+, 8.1+                          |
+| Debian                            | 10, 11                              |
+| FreeBSD                           | 12.1+, 13                           |
+| Oracle Linux                      | 7.4+, 8.1+                          |
+| RHEL                              | 7.4+, 8.1+, 9.0+                    |
+| SUSE Linux Enterprise Server      | 12 SP5, 15 SP2                      |
+| Ubuntu                            | 18.04 LTS, 20.04 LTS, 22.04 LTS     |
+{{</bootstrap-table>}}
 
 **Notes:**
 
@@ -701,15 +800,19 @@ NGINX Plus R25 is a feature release:
 
 NGINX Plus R25 is supported on:
 
-- Alpine Linux 3.11, 3.12, 3.13, 3.14
-- Amazon Linux 2 LTS
-- CentOS 7.4+, 8.0+
-- Debian 10, 11
-- FreeBSD 12.1+, 13
-- Oracle Linux 7.4+
-- RHEL 7.4+, 8.0+
-- SUSE Linux Enterprise Server 12 SP5, 15 SP2
-- Ubuntu 18.04 LTS, 20.04 LTS
+{{<bootstrap-table "table table-striped table-bordered">}}
+| OS Distribution                    | Versions                            |
+|-----------------------------------|-------------------------------------|
+| Alpine Linux                      | 3.11, 3.12, 3.13, 3.14              |
+| Amazon Linux                      | 2 LTS                               |
+| CentOS                            | 7.4+, 8.0+                          |
+| Debian                            | 10, 11                              |
+| FreeBSD                           | 12.1+, 13                           |
+| Oracle Linux                      | 7.4+                                |
+| RHEL                              | 7.4+, 8.0+                          |
+| SUSE Linux Enterprise Server      | 12 SP5, 15 SP2                      |
+| Ubuntu                            | 18.04 LTS, 20.04 LTS                |
+{{</bootstrap-table>}}
 
 **Notes:**
 
@@ -757,15 +860,19 @@ NGINX Plus R24 is a feature release:
 
 NGINX Plus R24 is supported on:
 
-- Alpine Linux 3.10, 3.11, 3.12, 3.13
-- Amazon Linux (2018.03+), Amazon Linux 2 LTS
-- CentOS 7.4+, 8.0+
-- Debian 10
-- FreeBSD 11.4+, 12.1+, 13
-- Oracle Linux 7.4+
-- RHEL 7.4+, 8.0+
-- SUSE Linux Enterprise Server 12 SP5, 15 SP2
-- Ubuntu 16.04 LTS, 18.04 LTS, 20.04 LTS
+{{<bootstrap-table "table table-striped table-bordered">}}
+| OS Distribution                    | Versions                                 |
+|-----------------------------------|------------------------------------------|
+| Alpine Linux                      | 3.10, 3.11, 3.12, 3.13                   |
+| Amazon Linux                      | 2018.03+, 2 LTS                          |
+| CentOS                            | 7.4+, 8.0+                               |
+| Debian                            | 10                                       |
+| FreeBSD                           | 11.4+, 12.1+, 13                         |
+| Oracle Linux                      | 7.4+                                     |
+| RHEL                              | 7.4+, 8.0+                               |
+| SUSE Linux Enterprise Server      | 12 SP5, 15 SP2                           |
+| Ubuntu                            | 16.04 LTS, 18.04 LTS, 20.04 LTS         |
+{{</bootstrap-table>}}
 
 **Notes:**
 
@@ -828,15 +935,19 @@ NGINX Plus R23 is a feature release:
 
 NGINX Plus R23 is supported on:
 
-- Alpine Linux 3.10, 3.11, 3.12
-- Amazon Linux (2018.03+), Amazon Linux 2 LTS
-- CentOS 7.4+, 8.0+
-- Debian 9, 10
-- FreeBSD 11.4+, 12.1+
-- Oracle Linux 7.4+
-- RHEL 7.4+, 8.0+
-- SUSE Linux Enterprise Server 12, 15
-- Ubuntu 16.04 LTS, 18.04 LTS, 20.04 LTS
+{{<bootstrap-table "table table-striped table-bordered">}}
+| OS Distribution                    | Versions                                 |
+|-----------------------------------|------------------------------------------|
+| Alpine Linux                      | 3.10, 3.11, 3.12                         |
+| Amazon Linux                      | 2018.03+, 2 LTS                          |
+| CentOS                            | 7.4+, 8.0+                               |
+| Debian                            | 9, 10                                    |
+| FreeBSD                           | 11.4+, 12.1+                             |
+| Oracle Linux                      | 7.4+                                     |
+| RHEL                              | 7.4+, 8.0+                               |
+| SUSE Linux Enterprise Server      | 12, 15                                   |
+| Ubuntu                            | 16.04 LTS, 18.04 LTS, 20.04 LTS         |
+{{</bootstrap-table>}}
 
 **Notes:**
 
@@ -871,15 +982,19 @@ NGINX Plus R22 is a feature release:
 
 NGINX Plus R22 is supported on:
 
-- Alpine Linux 3.9, 3.10, 3.11
-- Amazon Linux (2018.03+), Amazon Linux 2 LTS
-- CentOS 6.5+, 7.4+, 8.0+
-- Debian 9, 10
-- FreeBSD 11.3+, 12.1+
-- Oracle Linux 6.5+, 7.4+
-- RHEL 6.5+, 7.4+, 8.0+
-- SUSE Linux Enterprise Server 12, 15
-- Ubuntu 16.04 LTS, 18.04 LTS, 19.10, 20.04 LTS
+{{<bootstrap-table "table table-striped table-bordered">}}
+| OS Distribution                    | Versions                                        |
+|-----------------------------------|-------------------------------------------------|
+| Alpine Linux                      | 3.9, 3.10, 3.11                                 |
+| Amazon Linux                      | 2018.03+, 2 LTS                                 |
+| CentOS                            | 6.5+, 7.4+, 8.0+                                |
+| Debian                            | 9, 10                                           |
+| FreeBSD                           | 11.3+, 12.1+                                    |
+| Oracle Linux                      | 6.5+, 7.4+                                      |
+| RHEL                              | 6.5+, 7.4+, 8.0+                                |
+| SUSE Linux Enterprise Server      | 12, 15                                          |
+| Ubuntu                            | 16.04 LTS, 18.04 LTS, 19.10, 20.04 LTS          |
+{{</bootstrap-table>}}
 
 **Notes:**
 
@@ -898,15 +1013,19 @@ NGINX Plus R21 is a feature release:
 
 NGINX Plus R21 is supported on:
 
-- Alpine Linux 3.8, 3.9, 3.10, 3.11
-- Amazon Linux (2018.03+), Amazon Linux 2 LTS
-- CentOS 6.5+, 7.4+, 8.0+
-- Debian 9, 10
-- FreeBSD 11.2+, 12.0+
-- Oracle Linux 6.5+, 7.4+
-- RHEL 6.5+, 7.4+, 8.0+
-- SUSE Linux Enterprise Server 12, 15
-- Ubuntu 16.04 LTS, 18.04 LTS, 19.10, 20.04 LTS
+{{<bootstrap-table "table table-striped table-bordered">}}
+| OS Distribution                    | Versions                                        |
+|-----------------------------------|-------------------------------------------------|
+| Alpine Linux                      | 3.8, 3.9, 3.10, 3.11                            |
+| Amazon Linux                      | 2018.03+, 2 LTS                                 |
+| CentOS                            | 6.5+, 7.4+, 8.0+                                |
+| Debian                            | 9, 10                                           |
+| FreeBSD                           | 11.2+, 12.0+                                    |
+| Oracle Linux                      | 6.5+, 7.4+                                      |
+| RHEL                              | 6.5+, 7.4+, 8.0+                                |
+| SUSE Linux Enterprise Server      | 12, 15                                          |
+| Ubuntu                            | 16.04 LTS, 18.04 LTS, 19.10, 20.04 LTS          |
+{{</bootstrap-table>}}
 
 **Notes:**
 
@@ -936,15 +1055,19 @@ NGINX Plus R20 is a feature release:
 
 NGINX Plus R20 R20 is supported on:
 
-- Alpine Linux 3.8, 3.9, 3.10
-- Amazon Linux (2018.03+), Amazon Linux 2 LTS
-- CentOS 6.5+, 7.4+, 8.0+
-- Debian 9, 10
-- FreeBSD 11.2+, 12.0+
-- Oracle Linux 6.5+, 7.4+
-- RHEL 6.5+, 7.4+, 8.0+
-- SUSE Linux Enterprise Server 12, 15
-- Ubuntu 16.04 LTS, 18.04 LTS, 19.04, 19.10
+{{<bootstrap-table "table table-striped table-bordered">}}
+| OS Distribution                    | Versions                                        |
+|-----------------------------------|-------------------------------------------------|
+| Alpine Linux                      | 3.8, 3.9, 3.10                                  |
+| Amazon Linux                      | 2018.03+, 2 LTS                                 |
+| CentOS                            | 6.5+, 7.4+, 8.0+                                |
+| Debian                            | 9, 10                                           |
+| FreeBSD                           | 11.2+, 12.0+                                    |
+| Oracle Linux                      | 6.5+, 7.4+                                      |
+| RHEL                              | 6.5+, 7.4+, 8.0+                                |
+| SUSE Linux Enterprise Server      | 12, 15                                          |
+| Ubuntu                            | 16.04 LTS, 18.04 LTS, 19.04, 19.10              |
+{{</bootstrap-table>}}
 
 **Notes:**
 
@@ -972,15 +1095,19 @@ NGINX Plus R19 is a feature release:
 
 NGINX Plus R19 is supported on:
 
-- Alpine Linux 3.8, 3.9, 3.10
-- Amazon Linux (2018.03+), Amazon Linux 2 LTS
-- CentOS 6.5+, 7.4+
-- Debian 9, 10
-- FreeBSD 11.2+, 12.0
-- Oracle Linux 6.5+, 7.4+
-- RHEL 6.5+, 7.4+, 8
-- SUSE Linux Enterprise Server 12, 15
-- Ubuntu 16.04 LTS, 18.04 LTS, 19.04
+{{<bootstrap-table "table table-striped table-bordered">}}
+| OS Distribution                    | Versions                                        |
+|-----------------------------------|-------------------------------------------------|
+| Alpine Linux                      | 3.8, 3.9, 3.10                                  |
+| Amazon Linux                      | 2018.03+, 2 LTS                                 |
+| CentOS                            | 6.5+, 7.4+                                      |
+| Debian                            | 9, 10                                           |
+| FreeBSD                           | 11.2+, 12.0                                     |
+| Oracle Linux                      | 6.5+, 7.4+                                      |
+| RHEL                              | 6.5+, 7.4+, 8                                   |
+| SUSE Linux Enterprise Server      | 12, 15                                          |
+| Ubuntu                            | 16.04 LTS, 18.04 LTS, 19.04                     |
+{{</bootstrap-table>}}
 
 **Notes:**
 
@@ -1014,15 +1141,19 @@ NGINX Plus R18 is a feature release:
 
 NGINX Plus R18 is supported on:
 
-- Alpine Linux 3.8, 3.9
-- Amazon Linux (2018.03+), Amazon Linux 2 LTS
-- CentOS 6.5+, 7.4+
-- Debian 8.0, 9.0
-- FreeBSD 11.2+, 12.0
-- Oracle Linux 6.5+, 7.4+
-- RHEL 6.5+, 7.4+, 8
-- SUSE Linux Enterprise Server 12, 15
-- Ubuntu 14.04 LTS, 16.04 LTS, 18.04, 18.10
+{{<bootstrap-table "table table-striped table-bordered">}}
+| OS Distribution                    | Versions                                        |
+|-----------------------------------|-------------------------------------------------|
+| Alpine Linux                      | 3.8, 3.9                                        |
+| Amazon Linux                      | 2018.03+, 2 LTS                                 |
+| CentOS                            | 6.5+, 7.4+                                      |
+| Debian                            | 8.0, 9.0                                        |
+| FreeBSD                           | 11.2+, 12.0                                     |
+| Oracle Linux                      | 6.5+, 7.4+                                      |
+| RHEL                              | 6.5+, 7.4+, 8                                   |
+| SUSE Linux Enterprise Server      | 12, 15                                          |
+| Ubuntu                            | 14.04 LTS, 16.04 LTS, 18.04, 18.10              |
+{{</bootstrap-table>}}
 
 **Notes:**
 
@@ -1066,15 +1197,19 @@ NGINX Plus R17 is a feature release:
 
 NGINX Plus R17 is supported on:
 
-- Alpine Linux 3.8, 3.9
-- Amazon Linux (2017.09), Amazon Linux 2 LTS
-- CentOS 6.5+, 7.0+
-- Debian 8.0, 9.0
-- FreeBSD 11.2+, 12.0
-- Oracle Linux 6.5+, 7.0+
-- RHEL 6.5+, 7.0+
-- SUSE Linux Enterprise Server 12, 15
-- Ubuntu 14.04 LTS, 16.04 LTS, 18.04, 18.10
+{{<bootstrap-table "table table-striped table-bordered">}}
+| OS Distribution                    | Versions                                        |
+|-----------------------------------|-------------------------------------------------|
+| Alpine Linux                      | 3.8, 3.9                                        |
+| Amazon Linux                      | 2017.09, 2 LTS                                  |
+| CentOS                            | 6.5+, 7.0+                                      |
+| Debian                            | 8.0, 9.0                                        |
+| FreeBSD                           | 11.2+, 12.0                                     |
+| Oracle Linux                      | 6.5+, 7.0+                                      |
+| RHEL                              | 6.5+, 7.0+                                      |
+| SUSE Linux Enterprise Server      | 12, 15                                          |
+| Ubuntu                            | 14.04 LTS, 16.04 LTS, 18.04, 18.10              |
+{{</bootstrap-table>}}
 
 **Notes:**
 
@@ -1109,14 +1244,18 @@ NGINX Plus R16 is a feature release:
 
 NGINX Plus R16 is supported on:
 
-- Amazon Linux (2017.09), Amazon Linux 2 LTS
-- CentOS 6.5+, 7.0+
-- Debian 8.0, 9.0
-- FreeBSD 10.4+, 11.1+
-- Oracle Linux 6.5+, 7.0+
-- RHEL 6.5+, 7.0+
-- SUSE Linux Enterprise Server 12
-- Ubuntu 14.04 LTS, 16.04 LTS, 18.04
+{{<bootstrap-table "table table-striped table-bordered">}}
+| OS Distribution                    | Versions                                       |
+|-----------------------------------|------------------------------------------------|
+| Amazon Linux                      | 2017.09, 2 LTS                                 |
+| CentOS                            | 6.5+, 7.0+                                     |
+| Debian                            | 8.0, 9.0                                       |
+| FreeBSD                           | 10.4+, 11.1+                                   |
+| Oracle Linux                      | 6.5+, 7.0+                                     |
+| RHEL                              | 6.5+, 7.0+                                     |
+| SUSE Linux Enterprise Server      | 12                                             |
+| Ubuntu                            | 14.04 LTS, 16.04 LTS, 18.04                    |
+{{</bootstrap-table>}}
 
 **Notes:**
 
@@ -1161,14 +1300,18 @@ NGINX Plus R15 is a feature release:
 
 NGINX Plus R15 is supported on:
 
-- Amazon Linux (2017.09), Amazon Linux 2 LTS
-- CentOS 6.5+, 7.0+
-- Debian 8.0, 9.0
-- FreeBSD 10.3, 11.0
-- Oracle Linux 6.5+, 7.0+
-- RHEL 6.5+, 7.0+
-- SUSE Linux Enterprise Server 12
-- Ubuntu 14.04 LTS, 16.04 LTS, 17.10, 18.04
+{{<bootstrap-table "table table-striped table-bordered">}}
+| OS Distribution                    | Versions                                       |
+|-----------------------------------|------------------------------------------------|
+| Amazon Linux                      | 2017.09, 2 LTS                                 |
+| CentOS                            | 6.5+, 7.0+                                     |
+| Debian                            | 8.0, 9.0                                       |
+| FreeBSD                           | 10.3, 11.0                                     |
+| Oracle Linux                      | 6.5+, 7.0+                                     |
+| RHEL                              | 6.5+, 7.0+                                     |
+| SUSE Linux Enterprise Server      | 12                                             |
+| Ubuntu                            | 14.04 LTS, 16.04 LTS, 17.10, 18.04             |
+{{</bootstrap-table>}}
 
 **Notes:**
 
@@ -1214,14 +1357,18 @@ NGINX Plus R14 is a feature release:
 
 NGINX Plus R14 is supported on:
 
-- Amazon Linux (2016.09), Amazon Linux 2 (2017.12)
-- CentOS 6.5+, 7.0+
-- Debian 8.0, 9.0
-- FreeBSD 10.3, 11.0
-- Oracle Linux 6.5+, 7.0+
-- RHEL 6.5+, 7.0+
-- SUSE Linux Enterprise Server 12
-- Ubuntu 14.04 LTS, 16.04 LTS, 17.04, 17.10
+{{<bootstrap-table "table table-striped table-bordered">}}
+| OS Distribution                    | Versions                                       |
+|-----------------------------------|------------------------------------------------|
+| Amazon Linux                      | 2016.09, 2 (2017.12)                           |
+| CentOS                            | 6.5+, 7.0+                                     |
+| Debian                            | 8.0, 9.0                                       |
+| FreeBSD                           | 10.3, 11.0                                     |
+| Oracle Linux                      | 6.5+, 7.0+                                     |
+| RHEL                              | 6.5+, 7.0+                                     |
+| SUSE Linux Enterprise Server      | 12                                             |
+| Ubuntu                            | 14.04 LTS, 16.04 LTS, 17.04, 17.10             |
+{{</bootstrap-table>}}
 
 **Notes:**
 
@@ -1259,13 +1406,17 @@ NGINX Plus R13 is a feature release:
 
 NGINX Plus R13 is supported on:
 
-- Amazon Linux 2016.09+
-- CentOS 6.5+, 7.0+
-- Debian 7.0, 8.0, 9.0
-- FreeBSD 10.3, 11.0
-- Oracle Linux 6.5+, 7.0+
-- RHEL 6.5+, 7.0+
-- Ubuntu 14.04 LTS, 16.04 LTS, 17.04
+{{<bootstrap-table "table table-striped table-bordered">}}
+| OS Distribution       | Versions                                |
+|------------------------|------------------------------------------|
+| Amazon Linux           | 2016.09+                                 |
+| CentOS                 | 6.5+, 7.0+                               |
+| Debian                 | 7.0, 8.0, 9.0                            |
+| FreeBSD                | 10.3, 11.0                               |
+| Oracle Linux           | 6.5+, 7.0+                               |
+| RHEL                   | 6.5+, 7.0+                               |
+| Ubuntu                 | 14.04 LTS, 16.04 LTS, 17.04              |
+{{</bootstrap-table>}}
 
 **Notes:**
 
@@ -1304,14 +1455,18 @@ NGINX Plus R12 is a feature release:
 
 NGINX Plus R12 is supported on:
 
-- Amazon Linux 2016.09+
-- CentOS 5.10+, 6.5+, 7.0+
-- Debian 7.0, 8.0, 9.0
-- FreeBSD 10.3, 11.0
-- Oracle Linux 5.10+, 6.5+, 7.0+
-- RHEL 5.10+, 6.5+, 7.0+
-- SLES 12, 12 SP1
-- Ubuntu 12.04 LTS, 14.04 LTS, 16.04 LTS, 16.10
+{{<bootstrap-table "table table-striped table-bordered">}}
+| OS Distribution       | Versions                                             |
+|------------------------|------------------------------------------------------|
+| Amazon Linux           | 2016.09+                                             |
+| CentOS                 | 5.10+, 6.5+, 7.0+                                    |
+| Debian                 | 7.0, 8.0, 9.0                                        |
+| FreeBSD                | 10.3, 11.0                                           |
+| Oracle Linux           | 5.10+, 6.5+, 7.0+                                    |
+| RHEL                   | 5.10+, 6.5+, 7.0+                                    |
+| SLES                   | 12, 12 SP1                                           |
+| Ubuntu                 | 12.04 LTS, 14.04 LTS, 16.04 LTS, 16.10               |
+{{</bootstrap-table>}}
 
 **Notes:**
 
@@ -1357,14 +1512,18 @@ NGINX Plus R11 is a feature release:
 
 NGINX Plus R11 is supported on:
 
-- Amazon Linux 2016.03+
-- CentOS 5.10+, 6.5+, 7.0+
-- Debian 7.0, 8.0
-- FreeBSD 9.3, 10.1+, 11.0
-- Oracle Linux 5.10+, 6.5+, 7.0+
-- RHEL 5.10+, 6.5+, 7.0+
-- SLES 12, 12 SP1
-- Ubuntu 12.04 LTS, 14.04 LTS, 16.04 LTS, 16.10
+{{<bootstrap-table "table table-striped table-bordered">}}
+| OS Distribution       | Versions                                             |
+|------------------------|------------------------------------------------------|
+| Amazon Linux           | 2016.03+                                             |
+| CentOS                 | 5.10+, 6.5+, 7.0+                                    |
+| Debian                 | 7.0, 8.0                                             |
+| FreeBSD                | 9.3, 10.1+, 11.0                                     |
+| Oracle Linux           | 5.10+, 6.5+, 7.0+                                    |
+| RHEL                   | 5.10+, 6.5+, 7.0+                                    |
+| SLES                   | 12, 12 SP1                                           |
+| Ubuntu                 | 12.04 LTS, 14.04 LTS, 16.04 LTS, 16.10               |
+{{</bootstrap-table>}}
 
 **Notes:**
 
@@ -1399,14 +1558,18 @@ NGINX Plus R10 is a feature release:
 
 NGINX Plus R10 is supported on:
 
-- Amazon Linux 2016.03+
-- CentOS 5.10+, 6.5+, 7.0+
-- Debian 7.0, 8.0
-- FreeBSD 9.3, 10.1+
-- Oracle Linux 5.10+, 6.5+, 7.0+
-- RHEL 5.10+, 6.5+, 7.0+
-- SLES 12, 12 SP1
-- Ubuntu 12.04 LTS, 14.04 LTS, 16.04 LTS
+{{<bootstrap-table "table table-striped table-bordered">}}
+| OS Distribution       | Versions                                             |
+|------------------------|------------------------------------------------------|
+| Amazon Linux           | 2016.03+                                             |
+| CentOS                 | 5.10+, 6.5+, 7.0+                                    |
+| Debian                 | 7.0, 8.0                                             |
+| FreeBSD                | 9.3, 10.1+                                           |
+| Oracle Linux           | 5.10+, 6.5+, 7.0+                                    |
+| RHEL                   | 5.10+, 6.5+, 7.0+                                    |
+| SLES                   | 12, 12 SP1                                           |
+| Ubuntu                 | 12.04 LTS, 14.04 LTS, 16.04 LTS                      |
+{{</bootstrap-table>}}
 
 **Notes:**
 
@@ -1452,14 +1615,18 @@ NGINX Plus R9 is a feature release:
 
 NGINX Plus R9 is supported on:
 
-- Amazon Linux 2016.03+
-- CentOS 5.10+, 6.5+, 7.0+
-- Debian 7.0, 8.0
-- FreeBSD 9.3, 10.1+
-- Oracle Linux 5.10+, 6.5+, 7.0+
-- RHEL 5.10+, 6.5+, 7.0+
-- SLES 12, 12 SP1
-- Ubuntu 12.04 LTS, 14.04 LTS, 15.10, 16.04 LTS
+{{<bootstrap-table "table table-striped table-bordered">}}
+| OS Distribution       | Versions                                             |
+|------------------------|------------------------------------------------------|
+| Amazon Linux           | 2016.03+                                             |
+| CentOS                 | 5.10+, 6.5+, 7.0+                                    |
+| Debian                 | 7.0, 8.0                                             |
+| FreeBSD                | 9.3, 10.1+                                           |
+| Oracle Linux           | 5.10+, 6.5+, 7.0+                                    |
+| RHEL                   | 5.10+, 6.5+, 7.0+                                    |
+| SLES                   | 12, 12 SP1                                           |
+| Ubuntu                 | 12.04 LTS, 14.04 LTS, 15.10, 16.04 LTS               |
+{{</bootstrap-table>}}
 
 **Note:**
 
@@ -1500,14 +1667,18 @@ NGINX Plus R8 is a feature release:
 
 NGINX Plus R8 is supported on:
 
-- Amazon Linux
-- CentOS 5.10+, 6.5+, 7.0
-- Debian 7.0, 8.0
-- FreeBSD 9.3, 10.1+
-- Oracle Linux 5.10+, 6.5+, 7.0
-- RHEL 5.10+, 6.5+, 7.0
-- SLES 12, 12 SP1
-- Ubuntu 12.04 LTS, 14.04 LTS, 15.04, 15.10
+{{<bootstrap-table "table table-striped table-bordered">}}
+| OS Distribution       | Versions                                             |
+|------------------------|------------------------------------------------------|
+| Amazon Linux           |                                                     |
+| CentOS                 | 5.10+, 6.5+, 7.0                                     |
+| Debian                 | 7.0, 8.0                                             |
+| FreeBSD                | 9.3, 10.1+                                           |
+| Oracle Linux           | 5.10+, 6.5+, 7.0                                     |
+| RHEL                   | 5.10+, 6.5+, 7.0                                     |
+| SLES                   | 12, 12 SP1                                           |
+| Ubuntu                 | 12.04 LTS, 14.04 LTS, 15.04, 15.10                   |
+{{</bootstrap-table>}}
 
 NGINX Plus R8 does not include the `nginx-plus-lua` package; if you previously used this package, migrate to the `nginx-plus-extras` package
 
@@ -1570,13 +1741,17 @@ NGINX Plus R7 is a feature release:
 
 NGINX Plus R7 is supported on:
 
-- CentOS 5.10+, 6.5+, 7.0+
-- Debian 7.0, 8.0
-- FreeBSD 9.3, 10.1+
-- Oracle Linux 5.10+, 6.5+, 7.0+
-- RHEL 5.10+, 6.5+, 7.0+
-- SLES 12
-- Ubuntu 12.04 LTS, 14.04 LTS, 15.04
+{{<bootstrap-table "table table-striped table-bordered">}}
+| OS Distribution       | Versions                                  |
+|------------------------|-------------------------------------------|
+| CentOS                 | 5.10+, 6.5+, 7.0+                         |
+| Debian                 | 7.0, 8.0                                 |
+| FreeBSD                | 9.3, 10.1+                               |
+| Oracle Linux           | 5.10+, 6.5+, 7.0+                         |
+| RHEL                   | 5.10+, 6.5+, 7.0+                         |
+| SLES                   | 12                                       |
+| Ubuntu                 | 12.04 LTS, 14.04 LTS, 15.04               |
+{{</bootstrap-table>}}
 
 **Notes:**
 
@@ -1610,13 +1785,17 @@ NGINX Plus R6 is a feature release:
 
 NGINX Plus R6 is supported on:
 
-- CentOS 5.10+, 6.5+, 7.0
-- Debian 6.0, 7.0, 8.0
-- FreeBSD 9.3, 10.1
-- Oracle Linux 5.10+, 6.5+, 7.0
-- RHEL 5.10+, 6.5+, 7.0
-- SLES 11 SP3, 12
-- Ubuntu 10.04 LTS, 12.04 LTS, 14.04 LTS, 14.10
+{{<bootstrap-table "table table-striped table-bordered">}}
+| OS Distribution       | Versions                                             |
+|------------------------|------------------------------------------------------|
+| CentOS                 | 5.10+, 6.5+, 7.0                                     |
+| Debian                 | 6.0, 7.0, 8.0                                        |
+| FreeBSD                | 9.3, 10.1                                            |
+| Oracle Linux           | 5.10+, 6.5+, 7.0                                     |
+| RHEL                   | 5.10+, 6.5+, 7.0                                     |
+| SLES                   | 11 SP3, 12                                           |
+| Ubuntu                 | 10.04 LTS, 12.04 LTS, 14.04 LTS, 14.10               |
+{{</bootstrap-table>}}
 
 The `nginx-plus-extras` package has additional dependencies.
 
@@ -1644,13 +1823,17 @@ NGINX Plus R5 is a feature release:
 
 NGINX Plus R5 is supported on:
 
-- CentOS 5.9, 6.5, 7.0
-- Debian 6.0, 7.0
-- FreeBSD 9.3, 10.0
-- Oracle Linux 5.10+, 6.5+, 7.0
-- RHEL 5.9, 6.5, 7.0
-- SLES 11 SP3, 12
-- Ubuntu 10.04 LTS, 12.04 LTS, 14.04 LTS, 14.10
+{{<bootstrap-table "table table-striped table-bordered">}}
+| OS Distribution       | Versions                                             |
+|------------------------|------------------------------------------------------|
+| CentOS                 | 5.9, 6.5, 7.0                                        |
+| Debian                 | 6.0, 7.0                                             |
+| FreeBSD                | 9.3, 10.0                                            |
+| Oracle Linux           | 5.10+, 6.5+, 7.0                                     |
+| RHEL                   | 5.9, 6.5, 7.0                                        |
+| SLES                   | 11 SP3, 12                                           |
+| Ubuntu                 | 10.04 LTS, 12.04 LTS, 14.04 LTS, 14.10               |
+{{</bootstrap-table>}}
 
 The `nginx-plus-extras` and `nginx-plus-lua` packages have additional dependencies.
 
@@ -1680,13 +1863,17 @@ NGINX Plus R4 is a feature release:
 
 NGINX Plus R4 is supported on:
 
-- CentOS 5.9, 6.5, 7.0
-- Debian 6.0, 7.0
-- FreeBSD 9.2, 10.0
-- Oracle Linux 5.10+, 6.5+, 7.0
-- RHEL 5.9, 6.5, 7.0
-- SLES 11 SP3
-- Ubuntu 10.04 LTS, 12.04 LTS, 14.04 LTS
+{{<bootstrap-table "table table-striped table-bordered">}}
+| OS Distribution       | Versions                                       |
+|------------------------|------------------------------------------------|
+| CentOS                 | 5.9, 6.5, 7.0                                  |
+| Debian                 | 6.0, 7.0                                       |
+| FreeBSD                | 9.2, 10.0                                      |
+| Oracle Linux           | 5.10+, 6.5+, 7.0                               |
+| RHEL                   | 5.9, 6.5, 7.0                                  |
+| SLES                   | 11 SP3                                         |
+| Ubuntu                 | 10.04 LTS, 12.04 LTS, 14.04 LTS                |
+{{</bootstrap-table>}}
 
 The `nginx-plus-extras` and  `nginx-plus-lua` packages have additional dependencies.
 
@@ -1708,13 +1895,17 @@ NGINX Plus R3 is a feature release:
 
 NGINX Plus R3 is supported on:
 
-- CentOS 5.9, 6.5
-- Debian 6.0, 7.0
-- FreeBSD 9.2, 10.0
-- Oracle Linux 5.10+, 6.5+, 7.0
-- RHEL 5.9, 6.5
-- SLES 11 SP3
-- Ubuntu 10.04 LTS, 12.04 LTS, 12.10, 13.10, 14.04 LTS
+{{<bootstrap-table "table table-striped table-bordered">}}
+| OS Distribution       | Versions                                       |
+|------------------------|------------------------------------------------|
+| CentOS                 | 5.9, 6.5                                       |
+| Debian                 | 6.0, 7.0                                       |
+| FreeBSD                | 9.2, 10.0                                      |
+| Oracle Linux           | 5.10+, 6.5+, 7.0                               |
+| RHEL                   | 5.9, 6.5                                       |
+| SLES                   | 11 SP3                                         |
+| Ubuntu                 | 10.04 LTS, 12.04 LTS, 12.10, 13.10, 14.04 LTS  |
+{{</bootstrap-table>}}
 
 The `nginx-plus-extras` and `nginx-plus-lua` packages have additional dependencies.
 

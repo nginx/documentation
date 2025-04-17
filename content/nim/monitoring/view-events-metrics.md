@@ -25,7 +25,7 @@ To view events in the NGINX Instance Manager user interface, take the following 
 
 ## Access Events data by using the REST API
 
-You can use the Events API to view NGINX Instance Manager events data. You can use basic authentication or JWT authentication to access the NGINX Instance Manager REST API, as described in the [NGINX Instance Manager API Overview]({{< relref "/nim/fundamentals/api-overview#authentication" >}}).
+You can use the Events API to view NGINX Instance Manager events data. You can use basic authentication or JWT authentication to access the NGINX Instance Manager REST API, as described in the [NGINX Instance Manager API Overview]({{< ref "/nim/fundamentals/api-overview#authentication" >}}).
 
 The examples in this guide demonstrate using a "bearer" token for authentication. The token is sent using the "Authorization" request header field and "Bearer" schema.
 

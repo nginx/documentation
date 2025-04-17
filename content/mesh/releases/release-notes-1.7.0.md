@@ -23,7 +23,7 @@ These release notes provide general information and describe known issues for NG
 - [NGINX Service Mesh Version 1.7.0](#nginx-service-mesh-version-170)
   - [Updates](#updates)
   - [Known Issues](#known-issues)
-  - [Supported Versions]({{< relref "mesh/about/mesh-tech-specs.md" >}})
+  - [Supported Versions]({{< ref "mesh/about/mesh-tech-specs.md" >}})
 
 <br/>
 <br/>

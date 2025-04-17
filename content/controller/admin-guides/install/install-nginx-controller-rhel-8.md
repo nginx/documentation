@@ -129,7 +129,7 @@ Take the following steps to finish preparing the RHEL 8 control plane host for N
     sudo swapoff -a
     ```
 
-1. Complete the steps in the NGINX Controller Installation guide to [install NGINX Controller]({{< relref "/controller/admin-guides/install/install-nginx-controller.md#install-nginx-controller" >}}).
+1. Complete the steps in the NGINX Controller Installation guide to [install NGINX Controller]({{< ref "/controller/admin-guides/install/install-nginx-controller.md#install-nginx-controller" >}}).
 
 ## Preparing the Data Plane Host
 
@@ -140,7 +140,7 @@ Take the following steps to finish preparing the RHEL 8 control plane host for N
     sudo dnf install -y xerces-c
     ```
 
-2. Complete the steps in the NGINX Controller Agent Installation guide to [install the NGINX Controller Agent]({{< relref "/controller/admin-guides/install/install-nginx-controller-agent" >}}).
+2. Complete the steps in the NGINX Controller Agent Installation guide to [install the NGINX Controller Agent]({{< ref "/controller/admin-guides/install/install-nginx-controller-agent" >}}).
 
 ## Troubleshooting
 

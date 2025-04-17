@@ -30,7 +30,7 @@ Complete the following prerequisites before proceeding with the steps in this gu
    {{< include "nim/tech-specs/security-data-plane-dependencies.md" >}}
 
 1. Determine your use case: **Security Monitoring only** or **Security Monitoring and Configuration Management**.
-1. [Upload your license]({{< relref "/nim/admin-guide/license/add-license.md" >}}).
+1. [Upload your license]({{< ref "/nim/admin-guide/license/add-license.md" >}}).
 
 ---
 
@@ -222,7 +222,7 @@ Take the steps below to update your NGINX App Protect WAF configurations by usin
 
       The policy reference must use the `.tgz` file extension when using Instance Manager to perform precompiled publication of NGINX App Protect WAF policies and log profiles. The file path referenced must exist on the NGINX Instance Manager host, but it's ok if the policy file doesn't exist yet. If your Instance is not configured for precompiled publication, then use the `.json` file extension for polcies and log profiles. In this case, the file path referenced in the NGINX configuration must reside on the Instance.
 
-      If you are using custom security policies, at this stage, it's fine to use the default security policy shown in the example above. After completing the steps in this guide, refer to the instructions in [Set Up App Protect WAF Configuration Management]({{< relref "/nim/nginx-app-protect/setup-waf-config-management#add-waf-config" >}}) to add your custom security policy files to NGINX Instance Manager and update your NGINX configuration.
+      If you are using custom security policies, at this stage, it's fine to use the default security policy shown in the example above. After completing the steps in this guide, refer to the instructions in [Set Up App Protect WAF Configuration Management]({{< ref "/nim/nginx-app-protect/setup-waf-config-management#add-waf-config" >}}) to add your custom security policy files to NGINX Instance Manager and update your NGINX configuration.
 
    - Add the `app_protect_security_log_enable on` and the `app_protect_security_log` directive to any NGINX context where NGINX App Protect WAF is enabled and you want to be able to review attack data.
 
@@ -241,4 +241,4 @@ You should now be able to view data from your NGINX App Protect WAF instances in
 ## See also
 
 - [Add user access to Security Monitoring dashboards]({{< ref "/nim/nginx-app-protect/security-monitoring/give-access-to-security-monitoring-dashboards.md" >}})
-- [Manage your app protect WAF configs]({{< relref "/nim/nginx-app-protect/setup-waf-config-management.md" >}})
+- [Manage your app protect WAF configs]({{< ref "/nim/nginx-app-protect/setup-waf-config-management.md" >}})

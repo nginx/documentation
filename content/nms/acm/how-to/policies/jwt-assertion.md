@@ -68,8 +68,8 @@ A JWT is considered to be valid when the following conditions are met:
 Complete the following prerequisites before proceeding with this guide:
 
 - API Connectivity Manager is installed, licensed, and running.
-- You have one or more Environments with an [API Gateway]({{< relref "/nms/acm/getting-started/add-api-gateway" >}}).
-- You have published one or more [API Gateways]({{< relref "/nms/acm/getting-started/publish-api-proxy" >}})
+- You have one or more Environments with an [API Gateway]({{< ref "/nms/acm/getting-started/add-api-gateway" >}}).
+- You have published one or more [API Gateways]({{< ref "/nms/acm/getting-started/publish-api-proxy" >}})
 
 ### How to Access the User Interface
 

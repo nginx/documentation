@@ -2,7 +2,7 @@
 description: Install F5 NGINX Plus on the Google Cloud Platform, to provide sophisticated
   Layer 7 load balancing for your apps running on Google Compute Engine.
 docs: DOCS-412
-title: Installing NGINX Plus on the Google Cloud Platform
+title: Install NGINX Plus on the Google Cloud Platform
 toc: true
 weight: 400
 type:
@@ -47,7 +47,7 @@ You can also check the status of the NGINX Plus server by logging into the VM a
 
 ## What If I Need Help?
 
-If you encounter any problems with NGINX Plus configuration, documentation is available at [nginx.org](https://nginx.org/en/docs/) and in the [NGINX Plus Admin Guide]({{< relref "/nginx/admin-guide/installing-nginx/" >}}).
+If you encounter any problems with NGINX Plus configuration, documentation is available at [nginx.org](https://nginx.org/en/docs/) and in the [NGINX Plus Admin Guide]({{< ref "/nginx/admin-guide/installing-nginx/" >}}).
 
 Customers who purchase an NGINX Plus VM image on the Google Cloud Platform are eligible for the Google Cloud Platform VM support provided by the NGINX, Inc. engineering team. To activate support, submit the [Google Cloud Platform Support Activation](https://www.nginx.com/gcp-support-activation/) form.
 

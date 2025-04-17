@@ -12,10 +12,10 @@ February 6, 2024
 
 ### New Features
 
-- [Debian 12 Support]({{< relref "/nap-waf/v4/admin-guide/install.md#debian-10--debian-11--debian-12-installation" >}})
-- [Actionable Rules in Override Rules Policy]({{< relref "/nap-waf/v4/configuration-guide/configuration.md#override-rules" >}})
-- [Geolocation Enforcement]({{< relref "/nap-waf/v4/configuration-guide/configuration.md#geolocation-support-in-app-protect" >}})
-- [Partial Masking of Data using Data Guard]({{< relref "/nap-waf/v4/configuration-guide/configuration.md#partial-masking-of-data-using-data-guard" >}})
+- [Debian 12 Support]({{< ref "/nap-waf/v4/admin-guide/install.md#debian-10--debian-11--debian-12-installation" >}})
+- [Actionable Rules in Override Rules Policy]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#override-rules" >}})
+- [Geolocation Enforcement]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#geolocation-support-in-app-protect" >}})
+- [Partial Masking of Data using Data Guard]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#partial-masking-of-data-using-data-guard" >}})
 
 
 ### Supported Packages
@@ -71,4 +71,4 @@ February 6, 2024
 
 ### **Important Note**
 
-- Actionable Rules and Geolocation are now supported in [Policy Override Rules]({{< relref "/nap-waf/v4/configuration-guide/configuration.md#override-rules" >}}).
+- Actionable Rules and Geolocation are now supported in [Policy Override Rules]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#override-rules" >}}).

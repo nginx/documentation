@@ -44,7 +44,7 @@ To complete the instructions in this guide, you need the following:
 {{<comment>}}Confirm pre-reqs and add links to topics.{{</comment>}}
 
 - API Connectivity Manager is installed, licensed, and running
-- One or more [Service workspaces]({{< relref "/nms/acm/how-to/services/publish-api.md#create-a-service-workspace" >}})
+- One or more [Service workspaces]({{< ref "/nms/acm/how-to/services/publish-api.md#create-a-service-workspace" >}})
 
 ---
 

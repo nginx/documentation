@@ -39,4 +39,4 @@ This release includes the following updates:
 
 ### Known Issues
 
-- You can find information about known issues with NGINX Amplify in the [Known Issues]({{< relref "/amplify/known-issues.md" >}}) topic.
+- You can find information about known issues with NGINX Amplify in the [Known Issues]({{< ref "/amplify/known-issues.md" >}}) topic.

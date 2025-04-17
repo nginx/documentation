@@ -31,7 +31,7 @@ Azure Traffic Manager is a DNS‑based traffic load balancer that optimally dist
 <span id="about-nginx"></span>
 ## About NGINX Plus
 
-NGINX Plus is complementary to Standard Load Balancer. Operating at Layer 7 (the application layer), it uses more advanced load‑balancing criteria, including schemes that rely on the content of requests and the results of NGINX Plus's [active health checks]({{< relref "../../admin-guide/load-balancer/http-health-check.md" >}}).
+NGINX Plus is complementary to Standard Load Balancer. Operating at Layer 7 (the application layer), it uses more advanced load‑balancing criteria, including schemes that rely on the content of requests and the results of NGINX Plus's [active health checks]({{< ref "nginx/admin-guide/load-balancer/http-health-check.md" >}}).
 
 [NGINX Plus](https://www.f5.com/products/nginx/nginx-plus) is the commercially supported version of [NGINX Open Source](https://nginx.org/en). NGINX Plus is a complete application delivery platform, extending the power of NGINX with a host of enterprise‑ready capabilities that enhance an AWS web application deployment and are instrumental to building web applications at scale.
 
@@ -39,8 +39,8 @@ NGINX Plus provides both reverse‑proxy features and load‑balancing features
 
 - [Full‑featured HTTP, TCP, and UDP load balancing](https://www.nginx.com/products/nginx/load-balancing/)
 - [Intelligent session persistence](https://www.nginx.com/products/nginx/load-balancing/#session-persistence)
-- [High‑performance reverse proxy]({{< relref "../../admin-guide/web-server/reverse-proxy.md" >}})
-- [Caching and offload of dynamic and static content]({{< relref "../../admin-guide/content-cache/content-caching.md" >}})
+- [High‑performance reverse proxy]({{< ref "nginx/admin-guide/web-server/reverse-proxy.md" >}})
+- [Caching and offload of dynamic and static content]({{< ref "nginx/admin-guide/content-cache/content-caching.md" >}})
 - [Adaptive streaming to deliver audio and video to any device](https://www.nginx.com/products/nginx/streaming-media/)
 - [Application-aware health checks](https://docs.nginx.com/nginx/admin-guide/load-balancer/http-health-check/) and [high availability](https://docs.nginx.com/nginx/admin-guide/high-availability/)
 - [Advanced activity monitoring available via a dashboard or API](https://www.nginx.com/products/nginx/live-activity-monitoring/)
@@ -268,7 +268,7 @@ After completing the instructions, you have completed the prerequisites for this
 
 The deployment in this guide uses six VMs: two VMs running NGINX Plus that load balance traffic to four VMs running NGINX Open Source as a web server. The four NGINX Open Source VMs are deployed in two pairs, each pair running a different app.
 
-<span style="white-space: nowrap;">Step-by-step</span> instructions for creating VMs and installing NGINX Open Source and NGINX Plus are provided in our deployment guide, [Creating Microsoft Azure Virtual Machines for NGINX Open Source and NGINX Plus]({{< relref "virtual-machines-for-nginx.md" >}}).
+<span style="white-space: nowrap;">Step-by-step</span> instructions for creating VMs and installing NGINX Open Source and NGINX Plus are provided in our deployment guide, [Creating Microsoft Azure Virtual Machines for NGINX Open Source and NGINX Plus]({{< ref "virtual-machines-for-nginx.md" >}}).
 
 **Note:** When installing NGINX Open Source or NGINX Plus, you connect to each instance over SSH. To save time, leave the SSH connection to each instance open after installing the software, for reuse when you configure it using the instructions referenced in the sections below.
 
@@ -286,7 +286,7 @@ Assign the following names to the VMs, and then install the indicated NGINX soft
   - <span style="color:#666666; font-weight:bolder">ngx-plus-1</span>
   - <span style="color:#666666; font-weight:bolder">ngx-plus-2</span>
 
-**Note:** The two NGINX Plus VMs must have a public IP address with same SKU type as the Standard Load Balancer you are creating (in this guide, **Standard**).  Instructions are included in our deployment guide, [Creating Microsoft Azure Virtual Machines for NGINX Open Source and NGINX Plus]({{< relref "virtual-machines-for-nginx.md" >}}).
+**Note:** The two NGINX Plus VMs must have a public IP address with same SKU type as the Standard Load Balancer you are creating (in this guide, **Standard**).  Instructions are included in our deployment guide, [Creating Microsoft Azure Virtual Machines for NGINX Open Source and NGINX Plus]({{< ref "virtual-machines-for-nginx.md" >}}).
 
 <span id="configure-web-servers"></span>
 ### Configuring NGINX Open Source on the Web Servers

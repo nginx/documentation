@@ -7,7 +7,7 @@ product: NGINX One
 docs: DOCS-000
 ---
 
-Beyond the [Default roles]({{< relref "/nginx-one/rbac/roles.md" >}}) for NGINX One Console access, you can create [custom roles](https://docs.cloud.f5.com/docs-v2/administration/how-tos/user-mgmt/roles#custom-roles) with more precisely defined access permissions.
+Beyond the [Default roles]({{< ref "/nginx-one/rbac/roles.md" >}}) for NGINX One Console access, you can create [custom roles](https://docs.cloud.f5.com/docs-v2/administration/how-tos/user-mgmt/roles#custom-roles) with more precisely defined access permissions.
 You can assign custom roles to users or service accounts. You can associate these roles with specific namespaces, to help facilitate the principle of least privilege across your tenant.
 For this use-case, we include a list of API groups that you can use to specify permissions for custom roles with more granular access controls to NGINX One Console APIs.
 

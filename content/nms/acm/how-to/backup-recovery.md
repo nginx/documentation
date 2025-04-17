@@ -20,7 +20,7 @@ To complete the instructions in this guide, you need the following:
 
 - An installed version of Instance Manager
 - An installed version of API Connectivity Manager
-- Instance Manager versions older than 2.15.0 will require an installed version of SQLite. Refer to the [Install SQLite]({{< relref "/nim/admin-guide/maintenance/sqlite-installation.md" >}}) guide for installation instructions.
+- Instance Manager versions older than 2.15.0 will require an installed version of SQLite. Refer to the [Install SQLite]({{< ref "/nim/admin-guide/maintenance/sqlite-installation.md" >}}) guide for installation instructions.
 - The NGINX Management Suite services must be running:
 
     ```shell
@@ -139,7 +139,7 @@ To complete the instructions in this guide, you need the following:
 
 - An installed version of NGINX Management Suite and Instance Manager
 - An installed version of API Connectivity Manager
-- Instance Manager versions older than 2.15.0 will require an installed version of SQLite. Refer to the [Install SQLite]({{< relref "/nim/admin-guide/maintenance/sqlite-installation.md" >}}) guide for installation instructions.
+- Instance Manager versions older than 2.15.0 will require an installed version of SQLite. Refer to the [Install SQLite]({{< ref "/nim/admin-guide/maintenance/sqlite-installation.md" >}}) guide for installation instructions.
 
 
 <a name="root-access"></a>
@@ -168,7 +168,7 @@ To complete the instructions in this guide, you need the following:
 
     To back up and restore NGINX Management Suite in a Kubernetes cluster, you need to install the `utility` pod in your Kubernetes cluster. For each module you want to back up and restore, you need to configure the `utility` pod accordingly:
 
-    1. Update your [Helm Deployment values.yaml file]({{< relref "/nim/deploy/kubernetes/deploy-using-helm.md#configure-chart" >}}), add the `utility: true` line under `global` to enable the utility pod, and the required sections under `nmsModules` to  back up and restore API Connectivity Manager. Example below:
+    1. Update your [Helm Deployment values.yaml file]({{< ref "/nim/deploy/kubernetes/deploy-using-helm.md#configure-chart" >}}), add the `utility: true` line under `global` to enable the utility pod, and the required sections under `nmsModules` to  back up and restore API Connectivity Manager. Example below:
 
         ```yaml
         global:
@@ -179,7 +179,7 @@ To complete the instructions in this guide, you need the following:
                     addClaimsToUtility: true
         ```
 
-    1. [Upgrade your NGINX Management Suite deployment]({{< relref "/nim/deploy/kubernetes/deploy-using-helm#helm-upgrade-nim" >}}) to apply the changes.
+    1. [Upgrade your NGINX Management Suite deployment]({{< ref "/nim/deploy/kubernetes/deploy-using-helm#helm-upgrade-nim" >}}) to apply the changes.
 
     1. Download the NGINX Management Suite Helm chart for your currently installed version of NGINX Management Suite:
 
@@ -245,7 +245,7 @@ To restore NGINX Management Suite and the installed modules deployed in the same
     In the command above, `/etc/kubernetes/admin.conf` is the default configuration location of a Kubernetes cluster. If the configuration location is different for the target Kubernetes cluster, update the command accordingly.
 
 
-    {{< note >}}The restore script [needs root access]({{< relref "/nms/acm/how-to/backup-recovery.md#root-access" >}}) to Kubernetes for the restore operation.{{< /note >}}
+    {{< note >}}The restore script [needs root access]({{< ref "/nms/acm/how-to/backup-recovery.md#root-access" >}}) to Kubernetes for the restore operation.{{< /note >}}
 
 1. The script will ask for the NGINX Management Suite namespace. Once the namespace has been provided, the script will use the specified backup archive.
 
@@ -281,7 +281,7 @@ To restore NGINX Management Suite and the installed modules into a different Kub
     In the command above, `/etc/kubernetes/admin.conf` is the default configuration location of a Kubernetes cluster. If the configuration location is different for the target Kubernetes cluster, update the command accordingly.
 
 
-    {{< note >}}The restore script [needs root access]({{< relref "/nms/acm/how-to/backup-recovery.md#root-access" >}}) to Kubernetes for the restore operation.{{< /note >}}
+    {{< note >}}The restore script [needs root access]({{< ref "/nms/acm/how-to/backup-recovery.md#root-access" >}}) to Kubernetes for the restore operation.{{< /note >}}
 
 1. The script will ask for the NGINX Management Suite namespace. Once the namespace has been provided, the script will use the specified backup archive.
 

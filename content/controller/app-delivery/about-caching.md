@@ -30,7 +30,7 @@ When you use the UI or the REST API to create a single disk store, NGINX Control
 - [`proxy_cache_path`](http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_cache_path), in the top-level `http` context;
 - [`proxy_cache`](http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_cache), added to the component's `location` block.
 
-You can include NGINX Controller Caching data when creating [custom dashboards]({{< relref "/controller/analytics/dashboards/custom-dashboards" >}}) and [alerts]({{< relref "/controller/analytics/alerts/manage-alerts" >}}) for your applications.
+You can include NGINX Controller Caching data when creating [custom dashboards]({{< ref "/controller/analytics/dashboards/custom-dashboards" >}}) and [alerts]({{< ref "/controller/analytics/alerts/manage-alerts" >}}) for your applications.
 
 ## Cache Splitting
 

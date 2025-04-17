@@ -12,20 +12,21 @@ type:
 - how-to
 ---
 
-{{< note >}} The module is deprecated since <a href="../../../releases/#r32">F5 NGINX Plus Release 32</a>. The [OpenTelemetry]({{< relref "opentelemetry.md" >}}) module is available since NGINX Plus <a href="../../../releases/#r29">Release 29</a> that incorporates the features of the OpenTracing module.{{< /note >}}
+{{< note >}} The module no longer available since F5 NGINX Plus [Release 34]({{< ref "nginx/releases.md#r34" >}}). The [OpenTelemetry]({{< ref "nginx/admin-guide/dynamic-modules/opentelemetry.md" >}}) module is available since NGINX Plus [Release 29]({{< ref "nginx/releases.md#r29" >}}) that incorporates the features of the OpenTracing module.{{< /note >}}
 
 
 <span id="install"></span>
 ## Installation
 
-1. Check the [Technical Specifications]({{< relref "../../technical-specs.md" >}}) page to verify that the module is supported by your operating system.
+1. Check the [Technical Specifications]({{< ref "nginx/technical-specs.md" >}}) page to verify that the module is supported by your operating system.
 
 2. Install the OpenTracing module package `nginx-plus-module-opentracing`.
 
    For Amazon Linux 2, CentOS, Oracle Linux, and RHEL:
 
    ```shell
-   yum install nginx-plus-module-opentracing
+   sudo yum update && \
+   sudo yum install nginx-plus-module-opentracing
    ```
 
    {{< note >}}the OpenTracing module cannot be installed on CentOS 6, Oracle Linux 6, and RHEL 6. {{< /note >}}
@@ -33,19 +34,22 @@ type:
    For Amazon Linux 2023, AlmaLinux, Rocky Linux:
 
    ```shell
-   dnf install nginx-plus-module-opentracing
+   sudo dnf update && \
+   sudo dnf install nginx-plus-module-opentracing
    ```
 
    For Debian and Ubuntu:
 
    ```shell
-   apt-get install nginx-plus-module-opentracing
+   sudo apt update && \
+   sudo apt install nginx-plus-module-opentracing
    ```
 
    For SLES:
 
    ```shell
-   zypper install nginx-plus-module-opentracing
+   sudo zypper refresh && \
+   sudo zypper install nginx-plus-module-opentracing
    ```
 
    {{< note >}} the OpenTracing module cannot be installed on SLES 12. {{< /note >}}
@@ -59,7 +63,8 @@ type:
    For FreeBSD:
 
    ```shell
-   pkg install nginx-plus-module-opentracing
+   sudo pkg update && \
+   sudo pkg install nginx-plus-module-opentracing
    ```
 
 
@@ -73,15 +78,32 @@ After installation you will need to enable and configure the module in NGINX Plu
 
    ```nginx
    load_module modules/ngx_http_opentracing_module.so;
+
+   http {
+       # ...
+   }
    ```
 
 2. Perform additional configuration as required by the [module](https://github.com/opentracing-contrib/nginx-opentracing). You will also need to [install a tracer](https://github.com/opentracing-contrib/nginx-opentracing#building-from-source) (“portable binary plugin”) for your selected service.
 
-3. Test the configuration and reload NGINX Plus to enable the module:
+3. Test the NGINX Plus configuration. In a terminal, type-in the command:
 
-   ```shell
-   nginx -t && nginx -s reload
-   ```
+    ```shell
+    nginx -t
+    ```
+
+    Expected output of the command:
+
+    ```shell
+    nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+    nginx: configuration file /etc/nginx/nginx.conf is successful
+    ```
+
+4. Reload the NGINX Plus configuration to enable the module:
+
+    ```shell
+    nginx -s reload
+    ```
 
 
 <span id="info"></span>
@@ -89,6 +111,8 @@ After installation you will need to enable and configure the module in NGINX Plu
 
 - [NGINX plugin for OpenTracing Reference](https://github.com/opentracing-contrib/nginx-opentracing)
 
-- [NGINX Dynamic Modules]({{< relref "dynamic-modules.md" >}})
+- [NGINX Dynamic Modules]({{< ref "nginx/admin-guide/dynamic-modules/dynamic-modules.md" >}})
 
-- [NGINX Plus Technical Specifications]({{< relref "../../technical-specs.md" >}})
+- [NGINX Plus Technical Specifications]({{< ref "nginx/technical-specs.md" >}})
+
+- [Uninstalling a Dynamic Module]({{< ref "uninstall.md" >}})

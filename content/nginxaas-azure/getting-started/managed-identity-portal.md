@@ -82,4 +82,4 @@ F5 NGINX as a Service for Azure (NGINXaaS) leverages a user assigned and a syste
 
 ## What's next
 
-[Add SSL/TLS Certificates]({{< relref "/nginxaas-azure/getting-started/ssl-tls-certificates/ssl-tls-certificates-portal.md" >}})
+[Add SSL/TLS Certificates]({{< ref "/nginxaas-azure/getting-started/ssl-tls-certificates/ssl-tls-certificates-portal.md" >}})

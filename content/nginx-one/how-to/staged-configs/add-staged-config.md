@@ -80,7 +80,7 @@ To start from an existing Staged Config:
 
 1. Select **Existing Source**.
 1. Select **Staged Configuration**.
-1. In the Choose Staged Configuratiog menu that appears, select an existing Staged Configuration.
+1. In the Choose Staged Configuration menu that appears, select an existing Staged Configuration.
 1. Enter a name for your new Staged Configuration.
 1. Select **Next**. 
 

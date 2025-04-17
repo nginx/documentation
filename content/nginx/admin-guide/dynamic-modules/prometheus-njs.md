@@ -65,25 +65,25 @@ Install the `nginx-plus-module-prometheus` module.
 - For Amazon Linux 2, CentOS, Oracle Linux, and RHEL:
 
   ```shell
-  yum install nginx-plus-module-prometheus
+  sudo yum install nginx-plus-module-prometheus
   ```
 
 - For Amazon Linux 2023, AlmaLinux, Rocky Linux:
 
   ```shell
-  dnf install nginx-plus-module-prometheus
+  sudo dnf install nginx-plus-module-prometheus
   ```
 
 - For Debian and Ubuntu:
 
   ```shell
-  apt-get install nginx-plus-module-prometheus
+  sudo apt install nginx-plus-module-prometheus
   ```
 
 - For SLES:
 
   ```shell
-  zypper install nginx-plus-module-prometheus
+  sudo zypper install nginx-plus-module-prometheus
   ```
 
 - For Alpine:
@@ -95,10 +95,10 @@ Install the `nginx-plus-module-prometheus` module.
   For FreeBSD:
 
   ```shell
-  pkg install nginx-plus-module-prometheus
+  sudo pkg install nginx-plus-module-prometheus
   ```
 
-{{< note >}} The [`nginx-plus-module-njs`]({{< relref "nginscript.md" >}}) module will also be installed together with the module. {{< /note >}}
+{{< note >}} The [`nginx-plus-module-njs`]({{< ref "nginscript.md" >}}) module will also be installed together with the module. {{< /note >}}
 
 
 <span id="conf"></span>
@@ -106,7 +106,7 @@ Install the `nginx-plus-module-prometheus` module.
 
 After module installation, perform the following steps in NGINX Plus configuration file (**nginx.conf**):
 
-1. Enable the [`nginx-plus-module-njs`]({{< relref "nginscript.md" >}}) module in the top‑level context:
+1. Enable the [`nginx-plus-module-njs`]({{< ref "nginscript.md" >}}) module in the top‑level context:
 
    ```nginx
    load_module modules/ngx_http_js_module.so;
@@ -370,6 +370,8 @@ stream {
 <span id="info"></span>
 ## More Info
 
-- [NGINX Dynamic Modules]({{< relref "dynamic-modules.md" >}})
+- [NGINX Dynamic Modules]({{< ref "dynamic-modules.md" >}})
 
-- [NGINX Plus Technical Specifications]({{< relref "../../technical-specs.md" >}})
+- [NGINX Plus Technical Specifications]({{< ref "nginx/technical-specs.md" >}})
+
+- [Uninstalling a Dynamic Module]({{< ref "uninstall.md" >}})
