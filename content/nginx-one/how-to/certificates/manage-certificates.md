@@ -131,6 +131,10 @@ You can **Add Filter** to filter certificates by:
 
 The Export option supports exports of basic certification file information to a CSV file. It does _not_ include the content of the public certificate or the private key.
 
+## Deployed certificates
+
+A deployed certificate is associated with a specific Instance or Config Sync Group. That certificate may be Managed or Unmanaged.
+
 ## Add a new certificate or bundle
 
 To add a new certificate, select **Add Certificate**.
@@ -147,6 +151,8 @@ In each case, you can upload files directly, or enter the content of the certifi
 
 - **Certificate Details**, with the Subject Name, start and end dates.
 - **Key Details**, with the encryption key size and algorithm, such as RSA
+
+If you add a certificate with NGINX One Console, you've set it up as a managed certificate.
 <!-- end potential "include" -->
 
 ## Edit an existing certificate or bundle
@@ -155,21 +161,35 @@ You can modify existing certificates from the **Certificates** screen. Select th
 
 If that certificate is already managed as part of a Config Sync Group, the changes you make affect all instances in that group.
 
-## Remove a deployed certificate
-
-You can remove a deployed certificate from an independent instance or from a Config Sync Group. This will remove the certificate's association with the instance or group, but it does not delete the certificate files from the instance(s).
-
-Every instance with a deployed certificate includes paths to certificates in their configuration files. If you remove the deployed file path to one certificate, that change is limited to that one instance.
-
-Every Config Sync Group also includes paths to certificates in its configuration files. If you remove the deployed path to one certificate, that change affects all instances which belong to that Config Sync Group.
-
 ## Delete a deployed certificate
+
+You can remove a deployed certificate from an independent instance or from a Config Sync Group. This action also deletes the certificate files or certificate-key pairs from the data plane Instance(s).
+<!-- possible common content -->
+To do so, navigate to the **Manage** > **Instances** or **Config Sync Groups** menu. Then:
+
+- Select the instance or Config Sync Group where you want to make the change.
+- Select the **Configuration** tab.
+- Select **Edit Configuration**.
+- Find the file that you want to change.
+- Select the three-dot "ellipsis" (...), to open a menu. Your options are to
+  - **Move/Rename**
+  - **Copy**
+  - **Delete from Configuration** 
+<!-- end possible common content -->
+
+In this case, you can delete a deployed certificate from the configuration.
+
+Every Config Sync Group also includes paths to managed certificates in its configuration files. If you remove a managed certificate to a Config Sync Group, that change affects all instances which belong to that Config Sync Group. 
+
+## Delete a managed certificate
 
 To delete a certificate, find the name in the **Certificates** screen. Find the **Actions** column associated with the certificate. Select the ellipsis (`...`) and then select **Delete**. Before deleting that certificate, you should see a warning.
 
 If that certificate is managed and is part of a Config Sync Group, that change affects all instances in that group.
 
 {{< warning >}} Be cautious if you want to delete certificates that are being used by an instance or a Config Sync Group. Deleting such certificates leads to failure in affected NGINX deployments. {{< /warning >}}
+
+Alternatively, if you want to keep the managed certificate, you can delete its deployment from individual Instances or Config Sync Groups.
 
 ## Managed and unmanaged certificates
 
