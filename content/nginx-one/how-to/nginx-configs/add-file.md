@@ -39,6 +39,10 @@ You can use the NGINX One Console to add a file to a specific instance. To do so
 1. Select **Edit Configuration**.
 1. In the **Edit Configuration** window that appears, select **Add File**.
 
+{{< note >}}Configuration file size limits are as follows:
+* Maximum limit of **2.1 MB** per configuration file.
+* Total maximum limit of **55 MB** for all configuration files.{{< /note >}}
+
 You now have multiple options, described in the sections which follow.
 
 ### New Configuration File
