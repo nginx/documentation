@@ -71,6 +71,7 @@ The steps in this section must be completed once for each new setup. We will ins
 
 {{<note>}}
 The data plane API key has the following requirements:
+
 - The key should have an expiration date. The default expiration date is six months from the date of creation. The expiration date cannot be longer than two years from the date of creation.
 - The key should be at least 12 characters long.
 - The key requires three out of four of the following types of characters:
@@ -184,6 +185,7 @@ You can also install the NLK controller AKS extension by navigating to [F5 NGINX
 - On the **Basics** tab, provide the following information:
 
   {{<bootstrap-table "table table-striped table-bordered">}}
+
   | Field                       | Description                |
   |---------------------------- | ---------------------------- |
   | Subscription                | Select the appropriate Azure subscription. |
@@ -194,6 +196,7 @@ You can also install the NLK controller AKS extension by navigating to [F5 NGINX
 - Select **Application Details**, and provide the following information:
 
   {{<bootstrap-table "table table-striped table-bordered">}}
+
   | Field                       | Description                |
   |---------------------------- | ---------------------------- |
   | Cluster extension resource name             | Provide a name for the NLK controller.             |
@@ -247,9 +250,17 @@ Expose a Kubernetes `Service` to route traffic to your workload.  The `Service` 
 - Choose one of the following `Service` types:
   - `NodePort`: To route external traffic into the cluster using a well defined port exposed on each AKS worker node.
   - `ClusterIP`: To route traffic to pods directly if you are running an Azure Container Networking Interface (CNI) that lets you expose the pods on the Azure VNET.
+  - `LoadBalancer`: To route traffic to the cluster's external load balancer. The load balancer routes traffic into the cluster as normal.   
 - The port name must be formatted as `{{NGINX Context}}-{{NGINX upstream name}}`. For example:
   - If the upstream is in the `http` context and named `my-service` then the name is `http-my-service`
   - If the upstream is in the `stream` context and named `jet` then the port name is `stream-jet`
+
+{{< note >}}
+**NGINX Ingress Controller users**: with v5.0.0 and upwards, if you wish to route traffic from your NGINXaaS deployment to your NGINX Ingress Controller service, please make the following changes to your helm chart values:
+
+- Add `"nginx.com/nginxaas": "nginxaas"` to the NGINX Ingress Controller service annotations.
+- Modify the `service.httpPort.name` or `service.httpsPort.name` values to provide the expected port name format, as above.  
+{{</ note >}}
 
 The following example uses a service of type `NodePort`:
 
@@ -331,6 +342,7 @@ flowchart TB
 ```
 
 {{<note>}}
+
 - Configuring multiple NLK controllers to update the same upstream isn't supported and will result in unpredictable behavior.
 {{</note>}}
 
@@ -341,6 +353,7 @@ Multiple NLK controllers can be installed in the same AKS cluster to update sepa
 Each NLK needs a unique helm release name and needs a unique helm value for `nlk.config.serviceAnnotationMatch`.  Each NLK will only watch services that have the matching annotation.
 
 {{<note>}}
+
 - Consider using `helm` to install multiple NLK controllers on an AKS cluster. Installing multiple copies of the controller on the same AKS cluster is not supported via the [AKS Extension](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/f5-networks.f5-nginx-for-azure-aks-extension?tab=overview).
 {{</note>}}
 
@@ -361,6 +374,7 @@ The logs can be made more verbose by setting the Helm value `nlk.config.logLevel
 NGINXaaS supports exporting dynamic upstream update logs to an Azure Storage account or to a Log Analytics workspace.
 
 To setup logging:
+
 1. Select **Diagnostic settings** under **Monitoring**.
 1. Select **Add diagnostic setting**.
 1. On the following panel, provide a **Diagnostic setting name**.
