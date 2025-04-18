@@ -39,11 +39,11 @@ You can use the NGINX One Console to add a file to a specific instance. To do so
 1. Select **Edit Configuration**.
 1. In the **Edit Configuration** window that appears, select **Add File**.
 
-    {{< note >}}
+   {{< note >}}
 
    {{< include "nginx-one/add-file/config-file-size-limit-note.md" >}}
 
-    {{< /note >}}
+   {{< /note >}}
 
 You now have multiple options, described in the sections which follow.
 
