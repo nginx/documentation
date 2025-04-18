@@ -92,7 +92,7 @@ Sections can be separated with horizontal lines by using three dashes: `---`.
 
 ### How to format internal links
 
-Internal links should use the [ref](https://gohugo.io/methods/shortcode/ref/#article) shortcode with absolute paths that start with a forward slash (For clarity).
+Internal links should use the [ref](https://gohugo.io/methods/shortcode/ref/#article) shortcode with absolute paths that start with a forward slash (for clarity).
 
 Although file extensions (such as `.md`) are optional for Hugo, we include them as best practice for page anchors.
 
@@ -110,7 +110,7 @@ To install <integation>, refer to the [integration instructions]({{< ref "/integ
 For example, to use the `note` callout:
 
 ```md
-{{< note >}} Provide the text of the note here.{{< /note >}}
+{{< note >}} Provide the text of the note here .{{< /note >}}
 ```
 
 The callout shortcodes support multi-line blocks:
