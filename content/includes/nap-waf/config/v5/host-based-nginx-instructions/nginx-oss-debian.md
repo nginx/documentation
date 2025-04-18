@@ -25,5 +25,5 @@ Install the NGINX App Protect WAF v5 package:
 
 ```shell
 sudo apt-get update
-sudo apt-get install nginx=1.25.5-1~`lsb_release -cs` app-protect-module-oss
+sudo apt-get install app-protect-module-oss
 ```
