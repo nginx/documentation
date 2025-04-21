@@ -30,6 +30,15 @@ h2 {
 
 Stay up-to-date with what's new and improved in the F5 NGINX One Console.
 
+## May 7, 2025
+
+### Manage Rbac access with namespaces
+
+We have added support for namespaces in N1C. You can now:
+
+- Manage resources in isolation in different namespaces.
+- Configure granular user permission controls base on namespace.
+
 ## April 3, 2025
 
 ### Create Custom Roles with more precise permissions
