@@ -32,7 +32,7 @@ Stay up-to-date with what's new and improved in the F5 NGINX One Console.
 
 ## May 7, 2025
 
-### Manage Rbac access with namespaces
+### Manage RBAC access with namespaces
 
 We have added support for namespaces in N1C. You can now:
 
