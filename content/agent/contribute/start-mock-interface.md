@@ -13,7 +13,7 @@ The mock interface is useful when developing NGINX Agent, as it allows you to vi
 
 To begin this task, you will require the following:
 
-- A [working NGINX Agent instance]({{< relref "/agent/install-upgrade/install.md" >}}).
+- A [working NGINX Agent instance]({{< ref "/agent/install-upgrade/" >}}).
 - A [Go installation](https://go.dev/dl/) of version 1.22.2 or newer.
 - A [go-swagger](https://goswagger.io/go-swagger/install/) installation.
 
@@ -39,7 +39,7 @@ INFO[0000] grpc listening at 54789 # grpc control plane port which NGINX Agent w
 
 The mock control plane can use either gRPC or REST protocols to communicate with NGINX Agent.
 
-To enable them, view the [Enable gRPC and REST interfaces]({{< relref "/agent/how-to/enable-interfaces.md" >}}) topic.
+To enable them, view the [Enable gRPC and REST interfaces]({{< ref "/agent/how-to/enable-interfaces.md" >}}) topic.
 
 ## Launch Swagger UI
 

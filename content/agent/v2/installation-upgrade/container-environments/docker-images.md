@@ -14,7 +14,7 @@ NGINX Agent is a companion daemon for NGINX Open Source or NGINX Plus instances 
 
 If you want to use NGINX Agent with NGINX Plus, you need to purchase an NGINX Plus license. Contact your F5 Sales representative for assistance.
 
-See the requirements and supported operating systems in the [NGINX Agent Technical Specifications]({{< ref "/agent/technical-specifications.md" >}}) topic.
+See the requirements and supported operating systems in the [NGINX Agent Technical Specifications]({{< ref "/agent/tech-specs.md" >}}) topic.
 
 ## Deploy Offical NGINX and NGINX Plus Containers
 
@@ -113,7 +113,7 @@ docker tag docker-registry.nginx.com/nginx/agent:mainline nginx-agent
 docker run --name nginx-agent -d nginx-agent
 ```
 
-{{<note>}}To learn more about the configuration options, refer to the NGINX Agent [Configuration Overview]({{< relref "/agent/v2/configuration/configuration-overview" >}}).{{</note>}}
+{{<note>}}To learn more about the configuration options, refer to the NGINX Agent [Configuration Overview]({{< ref "/agent/v2/configuration/configuration-overview" >}}).{{</note>}}
 
 ### Enable the gRPC interface
 

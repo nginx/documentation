@@ -70,4 +70,4 @@ api:
 
 To apply the new configuration, NGINX Agent must be started or restarted.
 
-You may want to view the [Start mock control plane interface]({{< relref "/agent/contribute/start-mock-interface.md" >}}) topic to test NGINX Agent, or view the [Configuration overview]({{< relref "/agent/how-to/configuration-overview.md" >}}) for more options.
+You may want to view the [Start mock control plane interface]({{< ref "/agent/contribute/start-mock-interface.md" >}}) topic to test NGINX Agent, or view the [Configuration overview]({{< ref "/agent/how-to/configuration-overview.md" >}}) for more options.
