@@ -153,7 +153,7 @@ Here are some other shortcodes:
 
 ### Add code to documentation pages
 
-For command, binary and process names, you can use a pair of backticks (\`\<some-name\>\`): `<some-name>`.
+For command, binary, and process names, you can use a pair of backticks (\`\<some-name\>\`): `<some-name>`.
 
 Larger blocks of multi-line code text such as configuration files can be wrapped in triple backticks, with a language as a parameter for highlighted formatting.
 
