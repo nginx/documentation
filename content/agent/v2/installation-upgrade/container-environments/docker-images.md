@@ -113,7 +113,7 @@ docker tag docker-registry.nginx.com/nginx/agent:mainline nginx-agent
 docker run --name nginx-agent -d nginx-agent
 ```
 
-{{<note>}}To learn more about the configuration options, refer to the NGINX Agent [Configuration Overview]({{< relref "/agent/v2/configuration/configuration-overview" >}}).{{</note>}}
+{{<note>}}To learn more about the configuration options, refer to the NGINX Agent [Configuration Overview]({{< ref "/agent/v2/configuration/configuration-overview" >}}).{{</note>}}
 
 ### Enable the gRPC interface
 

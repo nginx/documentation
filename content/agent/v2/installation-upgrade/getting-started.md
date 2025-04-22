@@ -176,5 +176,5 @@ NGINX Agent uses formatted log files to collect metrics. Expanding log formats a
 {{< important >}}
 Without log rotation or storage on a separate partition, log files could use up all the free drive space and cause your system to become unresponsive to certain services.
 
-For more information, see [NGINX Agent Log Rotation]({{< relref "/agent/v2/configuration/configuration-overview.md#nginx-agent-log-rotation" >}}).
+For more information, see [NGINX Agent Log Rotation]({{< ref "/agent/v2/configuration/configuration-overview.md#nginx-agent-log-rotation" >}}).
 {{< /important >}}

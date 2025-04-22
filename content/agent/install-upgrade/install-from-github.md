@@ -10,7 +10,7 @@ If you are using [NGINX One Console]({{< ref "/nginx-one/getting-started.md" >}}
 to manage your NGINX instances, NGINX Agent is installed automatically when you
 add an NGINX instance to NGINX One Console.
 
-For a quick guide on how to connect your instance to NGINX One Console see: [Connect to NGINX One Console]({{< relref "/nginx-one/how-to/nginx-configs/add-instance" >}})
+For a quick guide on how to connect your instance to NGINX One Console see: [Connect to NGINX One Console]({{< ref "/nginx-one/how-to/nginx-configs/add-instance" >}})
 {{< /note >}}
 
 Follow the steps in this guide to install NGINX Agent in your NGINX instance using
