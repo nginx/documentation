@@ -178,7 +178,8 @@ See the [static-mode]({{< ref "/ngf/reference/cli-help.md#static-mode">}}) comma
       - `requestHeaderModifier`: Supported. If multiple filters are configured, NGINX Gateway Fabric will choose the first and ignore the rest.
       - `urlRewrite`: Supported. If multiple filters are configured, NGINX Gateway Fabric will choose the first and ignore the rest. Incompatible with `requestRedirect`.
       - `responseHeaderModifier`: Supported. If multiple filters are configured, NGINX Gateway Fabric will choose the first and ignore the rest.
-      - `requestMirror`, `extensionRef`: Not supported.
+      - `requestMirror`: Supported. Multiple mirrors can be specified.
+      - `extensionRef`: Supported for SnippetsFilters.
     - `backendRefs`: Partially supported. Backend ref `filters` are not supported.
 - `status`
   - `parents`
@@ -226,7 +227,8 @@ See the [static-mode]({{< ref "/ngf/reference/cli-help.md#static-mode">}}) comma
       - `type`: Supported.
       - `requestHeaderModifier`: Supported. If multiple filters are configured, NGINX Gateway Fabric will choose the first and ignore the rest.
       - `responseHeaderModifier`: Supported. If multiple filters are configured, NGINX Gateway Fabric will choose the first and ignore the rest.
-      - `requestMirror`, `extensionRef`: Not supported.
+      - `requestMirror`: Supported. Multiple mirrors can be specified.
+      - `extensionRef`: Supported for SnippetsFilters.
     - `backendRefs`: Partially supported. Backend ref `filters` are not supported.
 - `status`
   - `parents`
