@@ -289,7 +289,7 @@ You can either:
 
 #### Upload the NGINX App Protect WAF certificate and key
 
-To enable automatic downloads, NGINX Instance Manager must authenticate with the NGINX repository. You do this by uploading the NGINX repository certificate and private key that come with your NGINX App Protect WAF subscription. Once uploaded, Instance Manager can securely retrieve the latest attack signature and threat campaign packages on your behalf.
+To enable automatic downloads, NGINX Instance Manager must authenticate with the NGINX repository. You do this by uploading the NGINX repository certificate and private key that come with your NGINX App Protect WAF subscription. Once uploaded, NGINX Instance Manager can securely retrieve the latest attack signature and threat campaign packages on your behalf.
 
 Follow these steps to get and upload the certificate and key:
 

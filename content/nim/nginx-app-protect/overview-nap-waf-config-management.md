@@ -62,10 +62,10 @@ NGINX Instance Manager and Security Monitoring both use log profiles, but their 
 
 Use the NGINX Instance Manager REST API to automate updates across your NGINX App Protect WAF instances. You can use the API to manage:
 
-- security policies  
-- log profiles  
-- attack signatures  
-- threat campaigns  
+- Security policies  
+- Log profiles  
+- Attack signatures  
+- Threat campaigns  
 
 Just like with the web interface, the compiler creates a binary bundle with your updates that you can push to your WAF instances.
 

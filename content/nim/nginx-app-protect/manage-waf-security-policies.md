@@ -748,7 +748,7 @@ curl -X POST https://{{NIM_FQDN}}/api/platform/v1/security/publish \
 
 ## Check security policy and security log profile publication status {#check-publication-status}
 
-After publishing updates, you can check deployment status using the Instance Manager REST API.
+After publishing updates, you can check deployment status using the NGINX Instance Manager REST API.
 
 Use the following endpoints to verify whether the configuration updates were successfully deployed to instances or instance groups.
 
@@ -816,7 +816,7 @@ In the response, look for the `lastDeploymentDetails` field, which shows the dep
 
 ### Check deployment result by deployment ID
 
-When you use the Publish API to [publish security content](#publish-policy), Instance Manager creates a deployment ID for the request. You can use this ID to check the result of the publication.
+When you use the Publish API to [publish security content](#publish-policy), NGINX Instance Manager creates a deployment ID for the request. You can use this ID to check the result of the publication.
 
 {{<bootstrap-table "table">}}
 
