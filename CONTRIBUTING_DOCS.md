@@ -1,29 +1,25 @@
 # Contributing guidelines for writers
 
-If you want to contribute to our content, know Git, and can work from the command line, this page can help you. As noted in the [README](./README.md), we create source content for our documentation in Markdown.
+This page describes our guidelines on using [Hugo](https://gohugo.io/) to write documentation.
 
-Once you add and/or edit our Markdown source files, you can build the content locally as described on this page.
-Before you [Submit a Pull Request](#submit-a-pull-request), we recommend that you first:
+You will need [git](https://git-scm.com/) to interact with the repository and files: the content itself is written in Markdown.
 
-- Set up our [Static site generator](#setup)
-  - This will help you [build docs on your local system](#local-docs-development)
-- Learn about [Local docs development](#local-docs-development)
+Our workflow is to develop content locally, then submit a pull request once we've done our initial draft and editing passes.
 
 If you're an employee of F5/NGINX, also read [For F5/NGINX Employees](./F5-NGINX-team-notes.md).
 
 ## Setup
 
 You will need to install Hugo _or_ Docker to build and preview docs in your local development environment.
-Refer to the [Hugo installation instructions](https://gohugo.io/getting-started/installing/) for more information.
 
-Although not a strict requirement, markdown-link-check is also used in documentation development.
+Read the [Hugo installation instructions](https://gohugo.io/getting-started/installing/) for more information.
 
 If you have [Docker](https://www.docker.com/get-started/) installed, there are fallbacks for all requirements in the [Makefile](Makefile), meaning you don't need to install them.
 
 - [Installing Hugo](https://gohugo.io/getting-started/installing/)
   - **NOTE**: We are currently running [Hugo v0.134.2](https://github.com/gohugoio/hugo/releases/tag/v0.134.2) in production.
 - [Installing markdownlint-cli](https://github.com/igorshubovych/markdownlint-cli?tab=readme-ov-file#installation)
-- [Installing markdown-link-check](https://github.com/tcort/markdown-link-check?tab=readme-ov-file#installation).
+- [Installing markdown-link-check](https://github.com/tcort/markdown-link-check?tab=readme-ov-file#installation)
 
 The configuration files are as follows:
 
@@ -33,27 +29,31 @@ The configuration files are as follows:
 
 ## Develop documentation locally
 
-To build the documentation locally, use the `make` command in the documentation folder. First make sure you have the latest version of our Hugo theme with:
+To build the documentation website locally, use the `make` command in the documentation folder. 
+
+First ensure you have the latest version of the Hugo theme with:
 
 `make hugo-update`
 
 Once you've updated the theme, you can use these targets:
 
-```text
-make watch        - Runs a local Hugo server, allowing for changes to be previewed in a  browser.
-make drafts        - Runs a local Hugo server similar to the `watch` target, but displays documents marked with `draft: true` in their metadata.
-make docs          - Builds the documentation in the local `public/` directory.
-make hugo-get      - Updates the go module file with the latest version of the theme.
-make hugo-tidy     - Removes unnecessary dependencies from the go module file.
-make hugo-update   - Runs the hugo-get and hugo-tidy targets in sequence.
-make lint-markdown - Runs [markdownlint](https://github.com/DavidAnson/markdownlint) on the content folder.
-make link-check    - Runs [markdown-link-check](https://github.com/tcort/markdown-link-check) on all Markdown files. Requires a running instance of Docker.
-make clean         - Removes the local `public` directory, which is the default output path used by Hugo.
-```
+| Target              | Description                                                                 |
+| ------------------- | --------------------------------------------------------------------------- |
+| _make watch_        | Runs a local Hugo server, allowing for changes to be previewed in a browser. |
+| _make drafts_       | Runs a local Hugo server, rendering documents marked with `draft: true` in their metadata.|
+| _make docs_          | Builds the documentation in the local `public/` directory. |
+| _make clean_         | Removes the local `public` directory |
+| _make hugo-get_      | Updates the go module file with the latest version of the theme. |
+| _make hugo-tidy_     | Removes unnecessary dependencies from the go module file. |
+| _make hugo-update_   | Runs the hugo-get and hugo-tidy targets in sequence. |
+| _make lint-markdown_ | Runs [markdownlint](https://github.com/DavidAnson/markdownlint) on the content folder. |
+| _make link-check_    | Runs [markdown-link-check](https://github.com/tcort/markdown-link-check) on all Markdown files. |
 
 ## Add new documentation
 
 We use [Hugo archetypes](https://gohugo.io/content-management/archetypes/) to provide structure for new documentation pages.
+
+Archetypes are how Hugo represents templates for content.
 
 These archetypes include inline advice on Markdown formatting and our most common style guide conventions.
 
@@ -86,15 +86,11 @@ There are multiple ways to format text: for consistency and clarity, these are o
 
 > **Note**: The ordered notation automatically enumerates lists when built by Hugo.
 
-We use backticks sparingly (\`\<some-text\>\`) for `monospace text`, typically for process names or commands. More information is available in the [Add code to documentation pages](#add-code-to-documentation-pages) guidance.
-
-Sections can be separated with horizontal lines by using three dashes: `---`.
-
 ### How to format internal links
 
 Internal links should use the [ref](https://gohugo.io/methods/shortcode/ref/#article) shortcode with absolute paths that start with a forward slash (for clarity).
 
-Although file extensions (such as `.md`) are optional for Hugo, we include them as best practice for page anchors.
+Although file extensions (such as `.md`) are optional for Hugo, we include them for clarity and ease when targeting page anchors.
 
 Here are two examples:
 
@@ -153,7 +149,7 @@ Here are some other shortcodes:
 
 ### Add code to documentation pages
 
-For command, binary, and process names, you can use a pair of backticks (\`\<some-name\>\`): `<some-name>`.
+For command, binary, and process names, we sparingly use pairs of backticks (\`\<some-name\>\`): `<some-name>`.
 
 Larger blocks of multi-line code text such as configuration files can be wrapped in triple backticks, with a language as a parameter for highlighted formatting.
 
@@ -161,7 +157,8 @@ You can also use the `ghcode` shortcode to embed a single file directly from Git
 
 `{{< ghcode "<https://raw.githubusercontent.com/some-repository-file-link>" >}}`
 
-An example of this can be seen in [content/ngf/get-started.md](https://github.com/nginx/documentation/blob/af8a62b15f86a7b7be7944b7a79f44fd5e526c15/content/ngf/get-started.md?plain=1#L233C1-L233C128), which embeds a YAML file.
+An example of this can be seen in [/content/ngf/get-started.md](https://github.com/nginx/documentation/blob/af8a62b15f86a7b7be7944b7a79f44fd5e526c15/content/ngf/get-started.md?plain=1#L233C1-L233C128), which embeds a YAML file.
+
 
 ### Add images to documentation pages
 
@@ -199,10 +196,10 @@ View the [Guidelines for includes](/templates/style-guide.md#guidelines-for-incl
 
 ## Linting
 
-To run the markdownlint check, run the following command, which uses the .markdownlint.yaml file to specify rules. For `<content>`, specify the path to your Markdown files:
+To use markdownlint to check content, run the following command:
 
-```bash
-markdownlint -c .markdownlint.yaml <content>
+```shell
+markdownlint -c .markdownlint.yaml </content/path>
 ```
 
-> Note: You can run this tool on an entire directory or on an individual file.
+The content path can be an individual file or a folder.
