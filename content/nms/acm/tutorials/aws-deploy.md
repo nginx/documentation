@@ -227,7 +227,7 @@ Follow the steps in the [Set Up a Developer Portal Environment]({{< ref "/nms/ac
 
 ## Terminal Access Using Session Manager (Optional) {#session-manager}
 
-AWS allows you to enable SSH traffic to a specific Source IP Address which is much safer than exposing it to everyone on the internet. Even though exposing it to one IP may be good enough, it might not be sufficient for your company policy. It is possible to completely disable SSH traffic yet still have terminal access to your EC2 Instances. There are different ways of doing this, and one way covered here is using [AWS System Manager Session Manger](https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager.html).
+AWS allows you to enable SSH traffic to a specific Source IP Address which is much safer than exposing it to everyone on the internet. Even though exposing it to one IP may be good enough, it might not be sufficient for your company policy. It is possible to completely disable SSH traffic yet still have terminal access to your EC2 Instances. There are different ways of doing this, and one way covered here is using [AWS System Manager Session Manager](https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager.html).
 
 There are two methods of gaining terminal access via Session Manager:
 
