@@ -45,7 +45,7 @@ NGINX Plus can continually test your upstream servers that handle UDP network tr
 
     See [TCP and UDP Load Balancing]({{< ref "nginx/admin-guide/load-balancer/tcp-udp-load-balancer.md" >}}) for details.
 
-## Passive UDP Health Checks {#hc_passive}
+## Passive UDP health checks {#hc_passive}
 
 NGINX Open Source or F5 NGINX Plus can mark the server as unavailable and stop sending UDP datagrams to it for some time if the server replies with an error or times out.
 
@@ -62,7 +62,7 @@ upstream dns_upstream {
 }
 ```
 
-## Active UDP Health Checks {#hc_active}
+## Active UDP health checks {#hc_active}
 
 Active Health Checks allow testing a wider range of failure types and are available only for NGINX Plus. For example, instead of waiting for an actual TCP request from a DNS client to fail before marking the DNS server as down (as in passive health checks), NGINX Plus will send special health check requests to each upstream server and check for a response that satisfies certain conditions. If a connection to the server cannot be established, the health check fails, and the server is considered unhealthy. NGINX Plus does not proxy client connections to unhealthy servers. If more than one health check is defined, the failure of any check is enough to consider the corresponding upstream server unhealthy.
 
@@ -117,7 +117,7 @@ server {
 
 In the example, the time between UDP health checks is increased to 20 seconds, the server is considered unhealthy after 2 consecutive failed health checks, and the server needs to pass 2 consecutive checks to be considered healthy again.
 
-### The “match {}” Configuration Block {#hc_active_match}
+### The “match {}” configuration block {#hc_active_match}
 
 A basic UDP health check assumes that NGINX Plus sends the “nginx health check” string to an upstream server and expects the absence of ICMP “Destination Unreachable” message in response. You can configure your own health check tests that will verify server responses. These tests are defined within the [`match {}`](https://nginx.org/en/docs/stream/ngx_stream_upstream_hc_module.html#match) configuration block.
 
@@ -154,7 +154,7 @@ A basic UDP health check assumes that NGINX Plus sends the “nginx health check
 
 ## Usage scenarios
 
-### NTP Health checks {#example_ntp}
+### NTP health checks {#example_ntp}
 
 To fine‑tune health checks for NTP, you should specify both `send` and `expect` parameters with the following text strings:
 
@@ -165,7 +165,7 @@ match ntp {
 }
 ```
 
-#### Complete NTP Health Check configuration example
+#### Complete NTP health check configuration example
 
 ```nginx
 
@@ -267,7 +267,7 @@ match dns {
 }
 ```
 
-#### Complete DNS Health Check configuration example
+#### Complete DNS health check configuration example
 
 ```nginx
 

@@ -25,7 +25,7 @@ To load balance HTTP traffic, refer to the [HTTP Load Balancing]({{< ref "http-l
 - An application, database, or service that communicates over TCP or UDP
 - Upstream servers, each running the same instance of the application, database, or service
 
-## Configuring Reverse Proxy {#proxy_pass}
+## Configuring reverse proxy {#proxy_pass}
 
 First, you will need to configure _reverse proxy_ so that NGINX Plus or NGINX Open Source can forward TCP connections or UDP datagrams from clients to an upstream group or a proxied server.
 
@@ -115,7 +115,7 @@ Open the NGINX configuration file and perform the following steps:
    }
    ```
 
-## Configuring TCP or UDP Load Balancing {#upstream}
+## Configuring TCP or UDP load balancing {#upstream}
 
 To configure load balancing:
 
@@ -246,7 +246,7 @@ stream {
 }
 ```
 
-## Configuring Health Checks {#health}
+## Configuring health checks {#health}
 
 NGINX can continually test your TCP or UDP upstream servers, avoid the servers that have failed, and gracefully add the recovered servers into the load‑balanced group.
 
@@ -254,7 +254,7 @@ See [TCP Health Checks]({{< ref "nginx/admin-guide/load-balancer/tcp-health-chec
 
 See [UDP Health Checks]({{< ref "nginx/admin-guide/load-balancer/udp-health-check.md" >}}) for instructions how to configure health checks for UDP.
 
-## On-the-Fly Configuration
+## On-the-fly configuration
 
 Upstream server groups can be easily reconfigured on-the-fly using NGINX Plus REST API. Using this interface, you can view all servers in an upstream group or a particular server, modify server parameters, and add or remove upstream servers.
 
@@ -349,7 +349,7 @@ To enable on-the-fly configuration:
    }
    ```
 
-### On-the-Fly Configuration Example
+### On-the-fly configuration example
 
 ```nginx
 stream {
@@ -411,7 +411,7 @@ To modify a parameter for a specific server, send a  `PATCH` request:
 curl -X PATCH -d '{ "down": true }' -s 'http://127.0.0.1/api/9/http/upstreams/appservers/servers/0'
 ```
 
-## Example of TCP and UDP Load-Balancing Configuration {#example}
+## Example of TCP and UDP load-balancing configuration {#example}
 
 This is a configuration example of TCP and UDP load balancing with NGINX:
 
