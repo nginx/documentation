@@ -87,9 +87,34 @@ This split architecture ensures operational boundaries between the control plane
 This figure depicts an example of NGINX Gateway Fabric exposing three web applications within a Kubernetes cluster to clients on the internet:
 
 ```mermaid
-graph TD
+graph LR
     %% Nodes and Relationships
     subgraph KubernetesCluster[Kubernetes Cluster]
+
+        subgraph applications2[Namespace: applications2]
+
+                subgraph DataplaneComponentsC[Dataplane Components]
+                    GatewayC[Gateway C<br>Listener: *.other-example.com]
+
+                    subgraph NGINXPodC[NGINX Pod]
+                        subgraph NGINXContainerC[NGINX Container]
+                            NGINXProcessC(NGINX)
+                            NGINXAgentC(NGINX Agent)
+                        end
+                    end
+                end
+
+                subgraph HTTPRouteCAndApplicationC[HTTPRoute C and Application C]
+                    HTTPRouteC[HTTPRoute C<br>Host: c.other-example.com]
+                    ApplicationC[Application C<br>Pods: 1]
+                end
+
+        end
+
+        subgraph nginx-gateway[Namespace: nginx-gateway]
+            NGFPod[NGF Pod]
+        end
+
         subgraph applications1[Namespace: applications]
 
             subgraph DataplaneComponentsAB[Dataplane Components]
@@ -103,42 +128,15 @@ graph TD
                 end
             end
 
-            subgraph HTTPRouteAAndApplicationA[HTTPRoute A and Application A]
-                HTTPRouteA[HTTPRoute A<br>Host: a.example.com]
-                subgraph ApplicationA[Application A]
-                    Pod1[Pod]
-                    Pod2[Pod]
-                end
-            end
-
             subgraph HTTPRouteBAndApplicationB[HTTPRoute B and Application B]
                 HTTPRouteB[HTTPRoute B<br>Host: b.example.com]
                 ApplicationB[Application B<br>Pods: 1]
             end
-        end
 
-        subgraph applications2[Namespace: applications2]
-
-            subgraph DataplaneComponentsC[Dataplane Components]
-                GatewayC[Gateway C<br>Listener: *.other-example.com]
-
-                subgraph NGINXPodC[NGINX Pod]
-                    subgraph NGINXContainerC[NGINX Container]
-                        NGINXProcessC(NGINX)
-                        NGINXAgentC(NGINX Agent)
-                    end
-                end
+            subgraph HTTPRouteAAndApplicationA[HTTPRoute A and Application A]
+                HTTPRouteA[HTTPRoute A<br>Host: a.example.com]
+                ApplicationA[Application AB<br>Pods: 2]
             end
-
-            subgraph HTTPRouteCAndApplicationC[HTTPRoute C and Application C]
-                HTTPRouteC[HTTPRoute C<br>Host: c.other-example.com]
-                ApplicationC[Application C<br>Pods: 1]
-            end
-
-        end
-
-        subgraph nginx-gateway[Namespace: nginx-gateway]
-            NGFPod[NGF Pod]
         end
 
         KubernetesAPI[Kubernetes API]
@@ -253,12 +251,13 @@ For example, the Cluster Operator is denoted by the color green, indicating they
 ## NGINX Gateway Fabric: Component Communication Workflow
 
 ```mermaid
-graph TD
+graph LR
     %% Main Components
-    NGFPod[NGF Pod]
     KubernetesAPI[Kubernetes API]
     PrometheusMonitor[Prometheus]
     F5Telemetry[F5 Telemetry Service]
+    NGFPod[NGF Pod]
+    NGINXPod[NGINX Pod]
     Client[Client]
     Backend[Backend]
 
@@ -274,6 +273,13 @@ graph TD
     subgraph NGFPod[NGF Pod]
         NGFProcess[NGF Process]
         ContainerRuntimeNGF[stdout/stderr]
+    end
+
+    %% External Components Grouping
+    subgraph ExternalComponents[.]
+        KubernetesAPI[Kubernetes API]
+        PrometheusMonitor[Prometheus]
+        F5Telemetry[F5 Telemetry Service]
     end
 
     %% HTTPS: Communication with Kubernetes API
@@ -294,7 +300,7 @@ graph TD
 
     %% gRPC: Configuration Updates
     NGFProcess -- "(6) Sends Config to Agent" --> NGINXAgent
-    NGINXAgent -- "(7) Validates Config & Writes TLS Certs" --> ConfigFiles
+    NGINXAgent -- "(7) Validates & Writes Config & TLS Certs" --> ConfigFiles
     NGINXAgent -- "(8) Reloads NGINX" --> NGINXMaster
     NGINXAgent -- "(9) Sends DataPlaneResponse" --> NGFProcess
 
@@ -314,6 +320,7 @@ graph TD
     classDef metrics fill:#FFC0CB,stroke:#333,stroke-width:2px;
     classDef io fill:#FFD700,stroke:#333,stroke-width:2px;
     classDef signal fill:#87CEEB,stroke:#333,stroke-width:2px;
+    style ExternalComponents fill:transparent,stroke-width:0px
 
     %% Class Assignments for Node Colors
     class NGFPod,KubernetesAPI important;
