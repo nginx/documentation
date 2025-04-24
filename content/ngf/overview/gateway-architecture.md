@@ -36,7 +36,7 @@ The NGINX Gateway Fabric architecture separates the control plane and data plane
 
 ### Control Plane: Centralized Management
 
-The control plane operates as the `nginx-gateway` Deployment, serving as a [Kubernetes controller](https://kubernetes.io/docs/concepts/architecture/controller/) built with the [controller-runtime](https://github.com/kubernetes-sigs/controller-runtime) library. It manages all aspects of resource provisioning and configuration for the NGINX data planes by watching Gateway API resources and other Kubernetes objects such as Services, Endpoints, and Secrets.
+The control plane operates as a Deployment, serving as a [Kubernetes controller](https://kubernetes.io/docs/concepts/architecture/controller/) built with the [controller-runtime](https://github.com/kubernetes-sigs/controller-runtime) library. It manages all aspects of resource provisioning and configuration for the NGINX data planes by watching Gateway API resources and other Kubernetes objects such as Services, Endpoints, and Secrets.
 
 Key functionalities include:
 
@@ -49,7 +49,7 @@ Key functionalities include:
 Each NGINX data plane pod is provisioned as an independent Deployment containing an `nginx` container. This container runs both the `nginx` process and the [NGINX agent](https://github.com/nginx/agent), which is responsible for:
 
 - Applying configurations: The agent receives updates from the control plane and applies them to the NGINX instance.
-- Handling reloads: Configuration reconciliation and reloads are executed remotely through the gRPC interface, eliminating the need for shared volumes or Unix signals between the control plane and data plane pods.
+- Handling reloads: NGINX Agent handles configuration reconciliation and reloading NGINX, eliminating the need for shared volumes or Unix signals between the control plane and data plane pods.
 
 With this design, multiple NGINX data planes can be managed by a single control plane, enabling fine-grained, Gateway-specific control and isolation.
 
@@ -58,7 +58,6 @@ With this design, multiple NGINX data planes can be managed by a single control 
 The architecture supports flexible operation and isolation across multiple Gateways:
 
 - Concurrent Gateways: Multiple Gateway objects can run simultaneously within a single installation.
-- Flexible Gateway management: Gateways can be managed via distinct GatewayClasses, allowing configuration isolation where needed.
 - 1:1 resource mapping: Each Gateway resource corresponds uniquely to a dedicated data plane deployment, ensuring clear delineation of ownership and operational segregation.
 
 ### Resilience and Fault Isolation
@@ -296,18 +295,19 @@ graph TD
     %% gRPC: Configuration Updates
     NGFProcess -- "(6) Sends Config to Agent" --> NGINXAgent
     NGINXAgent -- "(7) Validates Config & Writes TLS Certs" --> ConfigFiles
-    NGINXAgent -- "(8) Sends DataPlaneResponse" --> NGFProcess
+    NGINXAgent -- "(8) Reloads NGINX" --> NGINXMaster
+    NGINXAgent -- "(9) Sends DataPlaneResponse" --> NGFProcess
 
     %% File I/O: Configuration and Secrets
-    NGINXMaster -- "(9) Reads TLS Secrets" --> ConfigFiles
-    NGINXMaster -- "(10) Reads nginx.conf & NJS Modules" --> ConfigFiles
+    NGINXMaster -- "(10) Reads TLS Secrets" --> ConfigFiles
+    NGINXMaster -- "(11) Reads nginx.conf & NJS Modules" --> ConfigFiles
 
     %% Signals: Worker Lifecycle Management
-    NGINXMaster -- "(13) Manages Workers (Update/Shutdown)" --> NGINXWorker
+    NGINXMaster -- "(14) Manages Workers (Update/Shutdown)" --> NGINXWorker
 
     %% Traffic Flow
-    Client -- "(14) Sends Traffic" --> NGINXWorker
-    NGINXWorker -- "(15) Routes Traffic" --> Backend
+    Client -- "(15) Sends Traffic" --> NGINXWorker
+    NGINXWorker -- "(16) Routes Traffic" --> Backend
 
     %% Styling
     classDef important fill:#66CDAA,stroke:#333,stroke-width:2px;
@@ -338,7 +338,8 @@ Prometheus is **not** required by NGINX Gateway Fabric, and its endpoint can be 
     - Agent calls GetFile for each file in the list, which NGF sends back to the agent.
 1. (File I/O)
    - Write: __NGINX Agent_ validates the received configuration, and then writes and applies the config if valid. It also writes _TLS certificates_ and _keys_ from [TLS secrets](https://kubernetes.io/docs/concepts/configuration/secret/#tls-secrets) referenced in the accepted Gateway resource.
-1. (gRPC) Agent updates nginx, and responds with a DataPlaneResponse.
+1. (Signal)  To reload NGINX, Agent sends the reload signal to the NGINX master.
+1. (gRPC) Agent responds to NGF with a DataPlaneResponse.
 1. (File I/O)
    - Read: The _NGINX master_ reads _configuration files_ and the _TLS cert and keys_ referenced in the configuration when it starts or during a reload.
 1. (File I/O)
