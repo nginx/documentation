@@ -24,7 +24,7 @@ NGINX Gateway Fabric is an open source project that provides an implementation o
 
 For a list of supported Gateway API resources and features, see the [Gateway API Compatibility]({{< ref "/ngf/overview/gateway-api-compatibility.md" >}}) documentation.
 
-NGINX Gateway Fabric separates the control plane and data plane into distinct deployments. The NGF control plane interacts with the Kubernetes API to watch for Gateway API resources. When a new Gateway resource is provisioned, the control plane dynamically creates and manages a corresponding NGINX data plane Deployment and Service. Each NGINX data plane pod consists of an NGINX container with the integrated [NGINX agent](https://github.com/nginx/agent), which securely communicates with the control plane over gRPC. The agent receives configuration updates from the control plane, translating Gateway API resources into the appropriate NGINX configuration. This enables multiple Gateways to be managed centrally while ensuring that each NGINX instance remains aligned with the current cluster state. Labels, annotations, and infrastructure settings such as service type or replica count can be specified globally via the Helm chart or customized per Gateway using the enhanced NginxProxy CRD and the Gateway’s infrastructure section.
+NGINX Gateway Fabric separates the control plane and data plane into distinct deployments. The control plane interacts with the Kubernetes API to watch for Gateway API resources. When a new Gateway resource is provisioned, the control plane dynamically creates and manages a corresponding NGINX data plane Deployment and Service. Each NGINX data plane pod consists of an NGINX container with the integrated [NGINX agent](https://github.com/nginx/agent), which securely communicates with the control plane over gRPC. The control plane translates Gateway API resources into NGINX configuration, and sends the configuration to the agent. This enables multiple Gateways to be managed centrally while ensuring that each NGINX instance remains aligned with the current cluster state. Labels, annotations, and infrastructure settings such as service type or replica count can be specified globally via the Helm chart or customized per Gateway using the enhanced NginxProxy CRD and the Gateway’s `infrastructure` section.
 
 We have more information regarding our [design principles](https://github.com/nginx/nginx-gateway-fabric/blob/v1.6.1/docs/developer/design-principles.md) in the project's GitHub repository.
 
@@ -59,7 +59,7 @@ The architecture supports flexible operation and isolation across multiple Gatew
 
 - Concurrent Gateways: Multiple Gateway objects can run simultaneously within a single installation.
 - Flexible Gateway management: Gateways can be managed via distinct GatewayClasses, allowing configuration isolation where needed.
-- 1:1 resource mapping: Each Gateway resource corresponds uniquely to a dedicated data plane pod, ensuring clear delineation of ownership and operational segregation.
+- 1:1 resource mapping: Each Gateway resource corresponds uniquely to a dedicated data plane deployment, ensuring clear delineation of ownership and operational segregation.
 
 ### Resilience and Fault Isolation
 
@@ -76,7 +76,7 @@ In the event of a control plane failure or downtime:
 
 If a data plane pod encounters an outage or restarts:
 - Only routes tied to the specific linked Gateway object experience brief disruptions.
-- Configurations automatically resynchronize with the control plane upon pod restart, minimizing the scope of impact.
+- Configurations automatically resynchronize with the data plane upon pod restart, minimizing the scope of impact.
 - Other data plane pods remain unaffected and continue serving traffic normally.
 
 This split architecture ensures operational boundaries between the control plane and data plane, delivering improved scalability, security, and robustness while minimizing risks associated with failures in either component.
@@ -238,7 +238,7 @@ The figure shows:
 - Users _Cluster Operator_, _Application Developer A_, _B_ and _C_. These users interact with the cluster through the Kubernetes API by creating Kubernetes objects.
 - _Clients A_, _B_, and _C_ connect to _Applications A_, _B_, and _C_ respectively, which the developers have deployed.
 - The _NGF Pod_, [deployed by _Cluster Operator_]({{< ref "/ngf/installation">}}) in the namespace _nginx-gateway_. For scalability and availability, you can have multiple replicas. The _NGF_ container interacts with the Kubernetes API to retrieve the most up-to-date Gateway API resources created within the cluster. When a new Gateway resource is provisioned, the control plane dynamically creates and manages a corresponding NGINX data plane Deployment and Service. It watches the Kubernetes API and dynamically configures these _NGINX_ deployments based on the Gateway API resources, ensuring proper alignment between the cluster state and the NGINX configuration.
-- The _NGINX Pod_ consists of an NGINX container and the integrated NGINX agent, which securely communicates with the control plane over gRPC. The agent receives configuration updates from the control plane, translating Gateway API resources into the appropriate NGINX configuration.
+- The _NGINX Pod_ consists of an NGINX container and the integrated NGINX agent, which securely communicates with the control plane over gRPC. The control plane translates Gateway API resources into NGINX configuration, and sends the configuration to the agent.
 - Gateways _Gateway AB_ and _Gateway C_, created by _Cluster Operator_, request points where traffic can be translated to Services within the cluster. _Gateway AB_, includes a listener with a hostname `*.example.com`. _Gateway C_, includes a listener with a hostname `*.other-example.com`. Application Developers have the ability to attach their application's routes to the _Gateway AB_ if their application's hostname matches `*.example.com`, or to _Gateway C_ if their application's hostname matches `*.other-example.com`
 - _Application A_ with two pods deployed in the _applications_ namespace by _Application Developer A_. To expose the application to its clients (_Clients A_) via the host `a.example.com`, _Application Developer A_ creates _HTTPRoute A_ and attaches it to `Gateway AB`.
 - _Application B_ with one pod deployed in the _applications_ namespace by _Application Developer B_. To expose the application to its clients (_Clients B_) via the host `b.example.com`, _Application Developer B_ creates _HTTPRoute B_ and attaches it to `Gateway AB`.
