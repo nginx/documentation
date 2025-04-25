@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Events on DEV -- docs-nginx-com</title>
+    <link>http://localhost:1313/nginx-controller/analytics/events/</link>
+    <description>Recent content in Events on DEV -- docs-nginx-com</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/nginx-controller/analytics/events/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>View Events</title>
+      <link>http://localhost:1313/nginx-controller/analytics/events/view-events/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-controller/analytics/events/view-events/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;The Events page shows a log of the system and user actions for F5 NGINX Controller. The logs are organized by event categories and levels, making it easy to identify and review issues.&lt;/p&gt;&#xA;&lt;h2 &#xA;id=&#34;view-events&#34;&gt;View Events  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#view-events&#34; title=&#34;View Events&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;Take the steps below to view NGINX Controller events:&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Open the NGINX Controller user interface and log in.&lt;/li&gt;&#xA;&lt;li&gt;On the Analytics menu, select &lt;strong&gt;Events&lt;/strong&gt;.&lt;/li&gt;&#xA;&lt;li&gt;To view additional information about a particular event, select the event from the list to open the details pane.&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;You can filter the events by typing a keyword in the search box and/or by selecting a time period. You can filter the results further by &lt;a href=&#34;#event-categories&#34;&gt;Event Categories&lt;/a&gt; or &lt;a href=&#34;#event-levels&#34;&gt;Event Levels&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

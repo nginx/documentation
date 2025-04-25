@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>RBAC on DEV -- docs-nginx-com</title>
+    <link>http://localhost:1313/nginx-management-suite/admin-guide/rbac/</link>
+    <description>Recent content in RBAC on DEV -- docs-nginx-com</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/nginx-management-suite/admin-guide/rbac/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Overview: RBAC</title>
+      <link>http://localhost:1313/nginx-instance-manager/admin-guide/rbac/overview-rbac/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-instance-manager/admin-guide/rbac/overview-rbac/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;Role-based access control (RBAC) is a security system that governs access to resources within a software application. By assigning specific roles to users or groups, RBAC ensures that only authorized individuals have the ability to perform certain actions or access particular areas.&lt;/p&gt;&#xA;&lt;p&gt;The value of RBAC lies in its ability to provide clear and structured control over what users can see and do. This makes it easier to maintain security, streamline user management, and ensure compliance with internal policies or regulations. By giving users only the permissions they need to fulfill their roles, RBAC reduces the risk of unauthorized access and fosters a more efficient and secure operating environment.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Create and manage roles</title>
+      <link>http://localhost:1313/nginx-instance-manager/admin-guide/rbac/create-roles/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-instance-manager/admin-guide/rbac/create-roles/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;NGINX Instance Manager emphasizes role-based access control (RBAC) to manage user permissions. A predefined &lt;code&gt;admin&lt;/code&gt; role is available for initial setup and administration, but you can create custom roles to match specific responsibilities, such as for API Owners or Infrastructure Admins. This lets organizations fine-tune access and permissions to suit their needs.&lt;/p&gt;&#xA;&lt;h2 &#xA;id=&#34;create-roles&#34;&gt;Create roles  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#create-roles&#34; title=&#34;Create roles&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;Roles in NGINX Instance Manager are a critical part of &lt;a href=&#34;http://localhost:1313/nginx-instance-manager/admin-guide/rbac/overview-rbac/&#34;&gt;role-based access control (RBAC)&lt;/a&gt;. By creating roles, you define the access levels and permissions for different user groups that correspond to groups in your Identity Provider (IdP).&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Assign roles to users or user groups</title>
+      <link>http://localhost:1313/nginx-instance-manager/admin-guide/rbac/assign-roles/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-instance-manager/admin-guide/rbac/assign-roles/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;In NGINX Instance Manager, role-based access control (RBAC) lets you assign permissions to users or user groups based on their roles in the organization. This ensures that users only have access to the features they need. Before assigning roles, make sure you’ve created the necessary users or user groups. This guide covers how to assign roles to users using basic authentication and to user groups when using an OpenID Connect (OIDC) identity provider.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Manage resource groups</title>
+      <link>http://localhost:1313/nginx-instance-manager/admin-guide/rbac/manage-resource-groups/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-instance-manager/admin-guide/rbac/manage-resource-groups/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;Resource groups are containers that help you manage multiple resources collectively, such as instances, instance groups, and certificates. By using resource groups, you can assign RBAC (Role-Based Access Control) permissions to multiple resources as a single entity. This provides a more flexible way of managing resources compared to &lt;a href=&#34;http://localhost:1313/nginx-instance-manager/nginx-instances/manage-instance-groups/&#34;&gt;Instance Groups&lt;/a&gt;, where all instances share the same configuration. Resource groups don’t have this limitation and allow you to manage various resources under one group for better control.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

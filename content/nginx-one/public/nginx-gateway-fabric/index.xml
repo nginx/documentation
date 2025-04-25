@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>NGINX Gateway Fabric on DEV -- docs-nginx-com</title>
+    <link>http://localhost:1313/nginx-gateway-fabric/</link>
+    <description>Recent content in NGINX Gateway Fabric on DEV -- docs-nginx-com</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/nginx-gateway-fabric/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Get started</title>
+      <link>http://localhost:1313/nginx-gateway-fabric/get-started/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-gateway-fabric/get-started/</guid>
+      <description>&lt;blockquote class=&#34;important call-out&#34;&gt;&#xA;  &lt;div&gt;&lt;strong class=&#34;call-out-type&#34;&gt;Important&lt;/strong&gt;&lt;br/&gt; &lt;p&gt;This document is for trying out NGINX Gateway Fabric, and not intended for a production environment.&lt;/p&gt;&#xA;&lt;p&gt;For standard deployments, you should read the &lt;a href=&#34;http://localhost:1313/nginx-gateway-fabric/installation/installing-ngf/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Install NGINX Gateway Fabric&lt;/a&gt; section.&lt;/p&gt;&#xA;&lt;/div&gt;&#xA;&lt;/blockquote&gt;&#xA;&#xA;&lt;p&gt;This is a guide for getting started with NGINX Gateway Fabric. It explains how to:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Set up a &lt;a href=&#34;https://kind.sigs.k8s.io/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;kind (Kubernetes in Docker)&lt;/a&gt; cluster&lt;/li&gt;&#xA;&lt;li&gt;Install &lt;a href=&#34;https://github.com/nginx/nginx-gateway-fabric&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;NGINX Gateway Fabric&lt;/a&gt; with &lt;a href=&#34;https://nginx.org/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;NGINX&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;Test NGINX Gateway Fabric with an example application&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;By following the steps in order, you will finish with a functional NGINX Gateway Fabric cluster.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Support</title>
+      <link>http://localhost:1313/nginx-gateway-fabric/support/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-gateway-fabric/support/</guid>
+      <description>&lt;p&gt;F5 NGINX Gateway Fabric adheres to the support policy detailed in the following knowledge base article: &lt;a href=&#34;https://my.f5.com/manage/s/article/K000140156&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;K000140156&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;p&gt;After opening a support ticket, F5 staff will request additional information to better understand the problem.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 &#xA;id=&#34;kubernetes-support-plugin&#34;&gt;Kubernetes support plugin  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#kubernetes-support-plugin&#34; title=&#34;Kubernetes support plugin&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;The &lt;a href=&#34;https://github.com/nginx/nginx-supportpkg-for-k8s&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;nginx-supportpkg-for-k8s&lt;/a&gt; plugin collects the information needed by F5 Technical Support to assist with troubleshooting your issue.&lt;/p&gt;&#xA;&lt;p&gt;The plugin uses &lt;a href=&#34;https://krew.sigs.k8s.io&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;krew&lt;/a&gt;, the plugin manager for the Kubernetes &lt;a href=&#34;https://kubernetes.io/docs/reference/kubectl/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;kubectl&lt;/a&gt; command-line tool.&lt;/p&gt;&#xA;&lt;p&gt;The plugin may collect some or all of the following global and namespace-specific information:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Releases</title>
+      <link>http://localhost:1313/nginx-gateway-fabric/releases/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-gateway-fabric/releases/</guid>
+      <description>&lt;p&gt;See the NGINX Gateway Fabric changelog page:&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://github.com/nginx/nginx-gateway-fabric/blob/main/CHANGELOG.md&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://github.com/nginx/nginx-gateway-fabric/blob/main/CHANGELOG.md&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

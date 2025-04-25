@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Proxy setup on DEV -- docs-nginx-com</title>
+    <link>http://localhost:1313/nginx-one/connect-instances/proxy-setup/</link>
+    <description>Recent content in Proxy setup on DEV -- docs-nginx-com</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/nginx-one/connect-instances/proxy-setup/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Set up NGINX as a proxy for NGINX One</title>
+      <link>http://localhost:1313/nginx-one/connect-instances/proxy-setup/set-up-nginx-proxy-for-nginx-one/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-one/connect-instances/proxy-setup/set-up-nginx-proxy-for-nginx-one/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;This guide explains how to set up NGINX as a proxy for other NGINX instances to connect to the F5 NGINX One Console. By routing these connections through one proxy, you can minimize the number of external connections to NGINX One from your network.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 &#xA;id=&#34;before-you-start&#34;&gt;Before you start  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#before-you-start&#34; title=&#34;Before you start&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;http://localhost:1313/nginx/admin-guide/installing-nginx/&#34;&gt;Install NGINX Open Source or NGINX Plus&lt;/a&gt;.&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;http://localhost:1313/nginx-one/connect-instances/create-manage-data-plane-keys/&#34;&gt;Get a Data Plane Key from NGINX One&lt;/a&gt;.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 &#xA;id=&#34;configure-an-nginx-instance-to-act-as-a-proxy&#34;&gt;Configure an NGINX instance to act as a proxy  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#configure-an-nginx-instance-to-act-as-a-proxy&#34; title=&#34;Configure an NGINX instance to act as a proxy&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;In this step, we&amp;rsquo;ll configure an NGINX instance to act as a proxy server for NGINX One.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

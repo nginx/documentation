@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>NGINX App Protect WAF on DEV -- docs-nginx-com</title>
+    <link>http://localhost:1313/nginx-instance-manager/nginx-app-protect/</link>
+    <description>Recent content in NGINX App Protect WAF on DEV -- docs-nginx-com</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/nginx-instance-manager/nginx-app-protect/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How WAF policy management works</title>
+      <link>http://localhost:1313/nginx-instance-manager/nginx-app-protect/overview-nap-waf-config-management/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-instance-manager/nginx-app-protect/overview-nap-waf-config-management/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;F5 NGINX Instance Manager helps you manage &lt;a href=&#34;https://www.nginx.com/products/nginx-app-protect/web-application-firewall/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;NGINX App Protect WAF&lt;/a&gt; security configurations.&lt;/p&gt;&#xA;&lt;p&gt;Use NGINX Instance Manager with NGINX App Protect WAF to inspect incoming traffic, detect threats, and block malicious requests. You can define policies in one place and push them to some or all of your NGINX App Protect WAF instances.&lt;/p&gt;&#xA;&lt;h3 &#xA;id=&#34;key-features&#34;&gt;Key features  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#key-features&#34; title=&#34;Key features&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h3&gt;&lt;ul&gt;&#xA;&lt;li&gt;Manage WAF policies using the NGINX Instance Manager web interface or REST API&lt;/li&gt;&#xA;&lt;li&gt;Update attack signature and threat campaign packages&lt;/li&gt;&#xA;&lt;li&gt;Compile WAF configurations into a binary bundle for deployment&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 &#xA;id=&#34;architecture&#34;&gt;Architecture  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#architecture&#34; title=&#34;Architecture&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;NGINX Instance Manager lets you define and manage security policies, upload signature packages, and push configurations to your NGINX App Protect WAF instances. It can also compile your security configuration into a bundle before publishing it to the data plane.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Set up WAF configuration management</title>
+      <link>http://localhost:1313/nginx-instance-manager/nginx-app-protect/setup-waf-config-management/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-instance-manager/nginx-app-protect/setup-waf-config-management/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;F5 NGINX Instance Manager helps you manage your NGINX App Protect WAF configurations, making it easier to stay secure. This guide walks you through how to set up NGINX Instance Manager to configure and manage NGINX App Protect WAF.&lt;/p&gt;&#xA;&lt;h3 &#xA;id=&#34;before-you-begin&#34;&gt;Before you begin  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#before-you-begin&#34; title=&#34;Before you begin&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h3&gt;&lt;p&gt;Make sure you&amp;rsquo;ve completed the following prerequisites before you get started:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;You have one or more &lt;a href=&#34;http://localhost:1313/nginx-app-protect-waf/&#34;&gt;NGINX App Protect WAF&lt;/a&gt; instances running. For supported versions, see &lt;a href=&#34;http://localhost:1313/nginx-instance-manager/fundamentals/tech-specs/#support-for-nginx-app-protect-waf&#34;&gt;Support for NGINX App Protect WAF&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Manage and deploy WAF policies and log profiles</title>
+      <link>http://localhost:1313/nginx-instance-manager/nginx-app-protect/manage-waf-security-policies/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-instance-manager/nginx-app-protect/manage-waf-security-policies/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;F5 NGINX Instance Manager lets you manage NGINX App Protect WAF configurations using either the web interface or REST API. You can edit, update, and deploy security policies, log profiles, attack signatures, and threat campaigns to individual instances or instance groups.&lt;/p&gt;&#xA;&lt;p&gt;You can compile a security policy, attack signatures, and threat campaigns into a security policy bundle. The bundle includes all necessary components for a specific NGINX App Protect WAF version. Precompiling the bundle improves performance by avoiding separate compilation of each component during deployment.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

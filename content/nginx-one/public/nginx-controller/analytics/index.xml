@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Analytics on DEV -- docs-nginx-com</title>
+    <link>http://localhost:1313/nginx-controller/analytics/</link>
+    <description>Recent content in Analytics on DEV -- docs-nginx-com</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/nginx-controller/analytics/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>View App Security Analytics</title>
+      <link>http://localhost:1313/nginx-controller/analytics/view-app-security-analytics/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-controller/analytics/view-app-security-analytics/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;When App Security flags or blocks a request made to an App Component as a security violation, it generates an App Security event.&#xA;You can use the F5 NGINX Controller web interface or the REST API to view these events or their related statistics (measures). Metrics reflect the number of requests and bytes flagged or blocked. You can use the Security Violation Dimensions to help understand and interpret the analytics data.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

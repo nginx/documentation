@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>API Connectivity Manager on DEV -- docs-nginx-com</title>
+    <link>http://localhost:1313/nginx-management-suite/acm/</link>
+    <description>Recent content in API Connectivity Manager on DEV -- docs-nginx-com</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/nginx-management-suite/acm/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Troubleshooting</title>
+      <link>http://localhost:1313/nginx-management-suite/acm/troubleshooting/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-management-suite/acm/troubleshooting/</guid>
+      <description>&lt;h2 &#xA;id=&#34;system-returns-403-forbidden-error-for-authorized-resources&#34;&gt;System returns &lt;code&gt;403 Forbidden&lt;/code&gt; error for authorized resources  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#system-returns-403-forbidden-error-for-authorized-resources&#34; title=&#34;System returns 403 Forbidden error for authorized resources&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;h3 &#xA;id=&#34;description&#34;&gt;Description  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#description&#34; title=&#34;Description&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h3&gt;&lt;p&gt;Users are unable to access API Connectivity Manager features that they&amp;rsquo;ve been granted permission for.&lt;/p&gt;&#xA;&lt;p&gt;The system returns errors similar to the following examples:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Web interface error: &amp;ldquo;ACM license not found.&amp;rdquo;&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;API error: &amp;ldquo;Error accessing resource: forbidden. Please contact the system administrator. User has not been granted &lt;code&gt;READ&lt;/code&gt; permission.&amp;rdquo;&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

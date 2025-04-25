@@ -1,0 +1,9 @@
+User-agent: *
+Disallow: /*/categories/*
+Disallow: /*/doctypes/*
+Disallow: /*/journeys/*
+Disallow: /*/personas/*
+Disallow: /*/tags/*
+Disallow: /search.html
+
+Sitemap: https://docs.nginx.com/sitemap_index.xml

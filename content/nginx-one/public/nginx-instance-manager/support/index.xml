@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Support on DEV -- docs-nginx-com</title>
+    <link>http://localhost:1313/nginx-instance-manager/support/</link>
+    <description>Recent content in Support on DEV -- docs-nginx-com</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/nginx-instance-manager/support/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Create a support package</title>
+      <link>http://localhost:1313/nginx-instance-manager/support/support-package/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-instance-manager/support/support-package/</guid>
+      <description>&lt;blockquote class=&#34;tip side-callout&#34;&gt;&#xA;   &lt;div&gt;&#xA;     &#xA;     &#xA;       &#xA;       &lt;i class=&#34;fa-solid fa-sync&#34;&gt;&lt;/i&gt;&#xA;     &#xA;     &#xA;     &lt;strong&gt;Legacy &amp;#39;nms&amp;#39; references&lt;/strong&gt;&lt;br/&gt;&#xA;     &#xA;     Some commands, file paths, and configuration references still use &lt;code&gt;nms&lt;/code&gt; due to the ongoing transition from NGINX Management Suite (NMS) to NGINX Instance Manager (NIM). These will be updated in future releases.&#xA;   &lt;/div&gt;&#xA; &lt;/blockquote&gt;&#xA;&#xA;&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;The support package script can be used to collect information about your system for troubleshooting and debugging issues.&lt;/p&gt;&#xA;&lt;p&gt;The script collects system and service information and then packages the data into a tar archive, which you can share with &lt;a href=&#34;http://localhost:1313/nginx-management-suite/support/contact-support/&#34;&gt;NGINX Customer Support&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Create a support package from a Helm installation</title>
+      <link>http://localhost:1313/nginx-instance-manager/support/k8s-support-package/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-instance-manager/support/k8s-support-package/</guid>
+      <description>&lt;blockquote class=&#34;tip side-callout&#34;&gt;&#xA;   &lt;div&gt;&#xA;     &#xA;     &#xA;       &#xA;       &lt;i class=&#34;fa-solid fa-sync&#34;&gt;&lt;/i&gt;&#xA;     &#xA;     &#xA;     &lt;strong&gt;Legacy &amp;#39;nms&amp;#39; references&lt;/strong&gt;&lt;br/&gt;&#xA;     &#xA;     Some commands, file paths, and configuration references still use &lt;code&gt;nms&lt;/code&gt; due to the ongoing transition from NGINX Management Suite (NMS) to NGINX Instance Manager (NIM). These will be updated in future releases.&#xA;   &lt;/div&gt;&#xA; &lt;/blockquote&gt;&#xA;&#xA;&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;Use the Kubernetes support package script to collect system and service information for troubleshooting and debugging. The script packages the data into a tar archive that you can share with &lt;a href=&#34;http://localhost:1313/nginx-instance-manager/support/contact-support/&#34;&gt;NGINX Customer Support&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Where to go for support</title>
+      <link>http://localhost:1313/nginx-instance-manager/support/contact-support/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-instance-manager/support/contact-support/</guid>
+      <description>&lt;h2 &#xA;id=&#34;support-policy&#34;&gt;Support policy  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#support-policy&#34; title=&#34;Support policy&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;F5 NGINX Instance Manager follows the support policy detailed in the knowledge base article: &lt;a href=&#34;https://my.f5.com/manage/s/article/K000140156&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;K000140156&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;blockquote class=&#34;important call-out&#34;&gt;&#xA;  &lt;div&gt;&lt;strong class=&#34;call-out-type&#34;&gt;Important&lt;/strong&gt;&lt;br/&gt; &lt;p&gt;Support licenses for NGINX Instance Manager &lt;strong&gt;do not include&lt;/strong&gt; support for the NGINX instances being managed.&lt;/p&gt;&#xA;&lt;p&gt;Community support is available for NGINX Open Source instances on the &lt;a href=&#34;http://mailman.nginx.org/mailman/listinfo&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;NGINX mailing list&lt;/a&gt;. If you need support for NGINX Plus or &lt;a href=&#34;https://nginx.org/en/linux_packages.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;prebuilt NGINX Open Source packages&lt;/a&gt;, you must &lt;a href=&#34;https://www.nginx.com/purchase-nginx/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;purchase an NGINX license&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;/div&gt;&#xA;&lt;/blockquote&gt;&#xA;&#xA;&lt;hr&gt;&#xA;&lt;h2 &#xA;id=&#34;contact-nginx-support&#34;&gt;Contact NGINX support  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#contact-nginx-support&#34; title=&#34;Contact NGINX support&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;For help with installing, troubleshooting, or using the NGINX Instance Manager, contact support through the &lt;a href=&#34;https://account.f5.com/myf5&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;MyF5 Customer Portal&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

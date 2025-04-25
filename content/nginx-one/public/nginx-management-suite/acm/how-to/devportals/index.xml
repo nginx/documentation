@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Developer Portals on DEV -- docs-nginx-com</title>
+    <link>http://localhost:1313/nginx-management-suite/acm/how-to/devportals/</link>
+    <description>Recent content in Developer Portals on DEV -- docs-nginx-com</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/nginx-management-suite/acm/how-to/devportals/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Publish Docs to a Developer Portal</title>
+      <link>http://localhost:1313/nginx-management-suite/acm/how-to/devportals/publish-to-devportal/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-management-suite/acm/how-to/devportals/publish-to-devportal/</guid>
+      <description>&lt;hr&gt;&#xA;&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;This document will guide you through the process of publishing API documentation and API proxies to a Developer Portal. You will find instructions on how to add an API spec file, publish API documentation and the associated API proxy, or publish API documentation only. After completing these steps, you should be able to access your API and documentation at the designated hostname.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 &#xA;id=&#34;before-you-begin&#34;&gt;Before You Begin  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#before-you-begin&#34; title=&#34;Before You Begin&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;To complete the steps in this guide, you need the following:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Create an NGINX Developer Portal Support Package</title>
+      <link>http://localhost:1313/nginx-management-suite/acm/how-to/devportals/devportal-support-package/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-management-suite/acm/how-to/devportals/devportal-support-package/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;The support package script can be used to collect information about your system for troubleshooting and debugging issues.&lt;/p&gt;&#xA;&lt;p&gt;The script collects system and service information and then packages the data into a tar archive, which you can share with &lt;a href=&#34;http://localhost:1313/nginx-management-suite/support/contact-support/&#34;&gt;NGINX Customer Support&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;h2 &#xA;id=&#34;usage&#34;&gt;Usage  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#usage&#34; title=&#34;Usage&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;The NGINX Developer Portal installer copies the &lt;code&gt;support-package.sh&lt;/code&gt; script to the following location: &lt;code&gt;/etc/nginx-devportal/scripts/support-package.sh&lt;/code&gt;.&lt;/p&gt;&#xA;&lt;p&gt;To create a support package:&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Run the support package script. The script requires root privileges to run.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

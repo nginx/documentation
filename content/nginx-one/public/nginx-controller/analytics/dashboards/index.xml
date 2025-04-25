@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Dashboards on DEV -- docs-nginx-com</title>
+    <link>http://localhost:1313/nginx-controller/analytics/dashboards/</link>
+    <description>Recent content in Dashboards on DEV -- docs-nginx-com</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/nginx-controller/analytics/dashboards/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Analytics Overview</title>
+      <link>http://localhost:1313/nginx-controller/analytics/dashboards/overview-dashboard/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-controller/analytics/dashboards/overview-dashboard/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;The &lt;strong&gt;Analytics Dashboards&lt;/strong&gt; provides an at-a-glance summary of the state of your F5 NGINX infrastructure and your application performance.&lt;/p&gt;&#xA;&lt;h2 &#xA;id=&#34;before-you-begin&#34;&gt;Before You Begin  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#before-you-begin&#34; title=&#34;Before You Begin&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;http://localhost:1313/nginx-controller/admin-guides/install/install-nginx-controller-agent/&#34;&gt;Install the NGINX Controller Agent on Instances that you want to monitor&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 &#xA;id=&#34;overview-dashboard&#34;&gt;Overview Dashboard  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview-dashboard&#34; title=&#34;Overview Dashboard&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;When you log in to the NGINX Controller user interface, the &lt;strong&gt;Analytics Overview&lt;/strong&gt; page displays first by default. Select the Dashboards tab to see the &lt;strong&gt;My Dashboards&lt;/strong&gt; list page. On the &lt;strong&gt;Dashboard Overview&lt;/strong&gt; page, you can view the key indicators noted below. By default, the graphs display metrics for the last hour. You can select any of the default time periods &amp;ndash; one hour, four hours, one day, two days, or one week &amp;ndash; to get a better idea of your apps&amp;rsquo; overall health and performance. To view metrics over longer time periods, you can create a &lt;a href=&#34;http://localhost:1313/nginx-controller/analytics/dashboards/custom-dashboards/&#34;&gt;custom dashboard&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Create Custom Dashboards</title>
+      <link>http://localhost:1313/nginx-controller/analytics/dashboards/custom-dashboards/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-controller/analytics/dashboards/custom-dashboards/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;You can use the F5 NGINX Controller user interface to create your own Dashboards populated with customizable graphs of NGINX and system-level metrics.&lt;/p&gt;&#xA;&lt;blockquote class=&#34;note&#34;&gt;&#xA;  &lt;div&gt;&lt;strong&gt;Note:&lt;/strong&gt;&lt;br/&gt; &lt;ul&gt;&#xA;&lt;li&gt;You can add up to 30 Elements to Dashboard.&lt;/li&gt;&#xA;&lt;li&gt;Dashboards are accessible by all Users.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/div&gt;&#xA;&lt;/blockquote&gt;&#xA;&#xA;&lt;h2 &#xA;id=&#34;before-you-begin&#34;&gt;Before You Begin  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#before-you-begin&#34; title=&#34;Before You Begin&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;http://localhost:1313/nginx-controller/admin-guides/install/install-nginx-controller-agent/&#34;&gt;Install the NGINX Controller Agent on instances that you want to monitor&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;http://localhost:1313/nginx-controller/admin-guides/config-agent/configure-metrics-collection/&#34;&gt;Configure Metrics collection on your NGINX instances&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 &#xA;id=&#34;dashboards&#34;&gt;Dashboards  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#dashboards&#34; title=&#34;Dashboards&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;In NGINX Controller, you can create dashboards to display custom graphs. Some use cases for custom graphs include the following:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Understanding the Application Health Score</title>
+      <link>http://localhost:1313/nginx-controller/analytics/dashboards/application-health-score/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-controller/analytics/dashboards/application-health-score/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;When you log in to the F5 NGINX Controller user interface, you will see the &lt;strong&gt;Analytics Dashboard Overview&lt;/strong&gt; page. This page contains an Application Health Score (AHS) that reflects your application&amp;rsquo;s performance.&lt;/p&gt;&#xA;&lt;p&gt;The AHS is a customizable &lt;a href=&#34;https://www.apdex.org/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Apdex-like numerical measure&lt;/a&gt; that can be used to estimate the quality of experience for your web application. It lets you configure service-level monitoring for your applications.&lt;/p&gt;&#xA;&lt;p&gt;You can select any combination of the following three service-level indicators (SLI) to create your AHS:&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

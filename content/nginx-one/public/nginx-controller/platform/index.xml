@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Platform on DEV -- docs-nginx-com</title>
+    <link>http://localhost:1313/nginx-controller/platform/</link>
+    <description>Recent content in Platform on DEV -- docs-nginx-com</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/nginx-controller/platform/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Get to Know NGINX Controller</title>
+      <link>http://localhost:1313/nginx-controller/platform/what-is-controller/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-controller/platform/what-is-controller/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;F5 NGINX Controller is designed to let you manage and monitor your NGINX Plus instances. With NGINX Controller, it&amp;rsquo;s easy to proactively configure, analyze, and respond to problems related to running and scaling NGINX-based web applications.&lt;/p&gt;&#xA;&lt;p&gt;You can use NGINX Controller to do the following:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Visualize and identify NGINX performance bottlenecks, overloaded servers, or potential DDoS attacks&lt;/li&gt;&#xA;&lt;li&gt;Configure NGINX using a graphical user interface&lt;/li&gt;&#xA;&lt;li&gt;Improve and optimize NGINX performance with intelligent advice and recommendations&lt;/li&gt;&#xA;&lt;li&gt;Get notified when something is wrong with the application infrastructure&lt;/li&gt;&#xA;&lt;li&gt;Plan web application capacity and performance&lt;/li&gt;&#xA;&lt;li&gt;Keep track of the systems running NGINX&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 &#xA;id=&#34;nginx-controller-components&#34;&gt;NGINX Controller Components  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#nginx-controller-components&#34; title=&#34;NGINX Controller Components&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;NGINX Controller includes the following key components:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>License NGINX Controller</title>
+      <link>http://localhost:1313/nginx-controller/platform/licensing-controller/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-controller/platform/licensing-controller/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;This topic explains how to upload and manage licenses for F5 NGINX Controller.&lt;/p&gt;&#xA;&lt;p&gt; &lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 &#xA;id=&#34;license-types&#34;&gt;License Types  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#license-types&#34; title=&#34;License Types&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;NGINX Controller licenses can be either connected or disconnected licenses:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;A &lt;strong&gt;connected license&lt;/strong&gt; sends telemetry data to F5, which enables pricing based on usage. When adding a connected license, you must provide a customer Association Token, which you can get from the &lt;a href=&#34;https://account.f5.com/myf5&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;MyF5 Customer Portal&lt;/a&gt;.&lt;/li&gt;&#xA;&lt;li&gt;A &lt;strong&gt;disconnected license&lt;/strong&gt; doesn&amp;rsquo;t send telemetry data to F5. To add a disconnected license, you can upload the license file using the NGINX Controller web interface or the NGINX Controller API.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt; &lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Look Up Version Information</title>
+      <link>http://localhost:1313/nginx-controller/platform/get-controller-version/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-controller/platform/get-controller-version/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;You can use the F5 NGINX Controller command-line interface, web interface, and API to look up the version information for NGINX Controller. The NGINX Controller API also returns version information for the NGINX Controller components.&lt;/p&gt;&#xA;&lt;h2 &#xA;id=&#34;use-helpersh-to-look-up-version-info&#34;&gt;Use helper.sh to Look Up Version Info  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#use-helpersh-to-look-up-version-info&#34; title=&#34;Use helper.sh to Look Up Version Info&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;To look up the current version of NGINX Controller using the &lt;code&gt;helper.sh&lt;/code&gt; script, run the following command:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Manage Your Cluster</title>
+      <link>http://localhost:1313/nginx-controller/platform/manage-cluster/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-controller/platform/manage-cluster/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;This topic explains how to update your cluster settings and how to manage nodes for a multi-node cluster.&lt;/p&gt;&#xA;&lt;blockquote class=&#34;tip&#34;&gt;&#xA;  &lt;div&gt;&lt;strong&gt;See Also:&lt;/strong&gt;&lt;br/&gt; &lt;p&gt;For instructions on how to deploy NGINX Controller as a multi-node resilient cluster, refer to the following deployment guide:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;http://localhost:1313/nginx-controller/admin-guides/install/resilient-cluster-private-cloud/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Deploy F5 NGINX Controller as a Resilient Cluster on a Private Cloud&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&lt;/div&gt;&#xA;&lt;/blockquote&gt;&#xA;&#xA;&lt;h2 &#xA;id=&#34;set-the-floating-ip&#34;&gt;Set the Floating IP  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#set-the-floating-ip&#34; title=&#34;Set the Floating IP&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;For private cloud deployments&lt;/strong&gt;, you must set a floating IP to complete setting up your multi-node resilient cluster.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

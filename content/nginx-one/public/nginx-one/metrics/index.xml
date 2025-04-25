@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Set up metrics on DEV -- docs-nginx-com</title>
+    <link>http://localhost:1313/nginx-one/metrics/</link>
+    <description>Recent content in Set up metrics on DEV -- docs-nginx-com</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/nginx-one/metrics/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Enable metrics</title>
+      <link>http://localhost:1313/nginx-one/metrics/enable-metrics/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-one/metrics/enable-metrics/</guid>
+      <description>&lt;p&gt;The NGINX One Console dashboard relies on APIs for NGINX Plus and NGINX Open Source Stub Status to report traffic and system metrics. The following sections show you how to enable those metrics.&lt;/p&gt;&#xA;&lt;h3 &#xA;id=&#34;enable-nginx-plus-api&#34;&gt;Enable NGINX Plus API  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#enable-nginx-plus-api&#34; title=&#34;Enable NGINX Plus API&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h3&gt;&lt;!-- include in content/nginx-one/getting-started.md disabled, hopefully temporarily --&gt;&#xA;&lt;p&gt;To collect comprehensive metrics for NGINX Plus&amp;ndash;including bytes streamed, information about upstream systems and caches, and counts of all HTTP status codes&amp;ndash;add the following to your NGINX Plus configuration file (for example, &lt;code&gt;/etc/nginx/nginx.conf&lt;/code&gt; or an included file):&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Review metrics on the NGINX One dashboard</title>
+      <link>http://localhost:1313/nginx-one/metrics/review-metrics/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-one/metrics/review-metrics/</guid>
+      <description>&lt;p&gt;After connecting your NGINX instances to NGINX One, you can monitor their performance and health. The NGINX One dashboard is designed for this purpose, offering an easy-to-use interface.&lt;/p&gt;&#xA;&lt;h3 &#xA;id=&#34;log-in-to-nginx-one&#34;&gt;Log in to NGINX One  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#log-in-to-nginx-one&#34; title=&#34;Log in to NGINX One&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h3&gt;&lt;ol&gt;&#xA;&lt;li&gt;Log in to &lt;a href=&#34;https://www.f5.com/cloud/products/distributed-cloud-console&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;F5 Distributed Console&lt;/a&gt;.&lt;/li&gt;&#xA;&lt;li&gt;Select &lt;strong&gt;NGINX One &amp;gt; Visit Service&lt;/strong&gt;.&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;Navigating the dashboard:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Drill down into specifics&lt;/strong&gt;: For in-depth information on a specific metric, like expiring certificates, click on the relevant link in the metric&amp;rsquo;s card to go to a detailed overview page.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Refine metric timeframe&lt;/strong&gt;: Metrics show the last hour&amp;rsquo;s data by default. To view data from a different period, select the time interval you want from the drop-down menu.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;span style=&#34;display: inline-block; margin-top: 20px; margin-bottom: 50px;&#34;&gt;&#xA;&lt;figure&gt;&lt;img class=&#34;figure-bitmap&#34; src=&#34;http://localhost:1313/nginx-one/images/nginx-one-dashboard.png&#34;&gt;&#xA;&lt;/figure&gt;&#xA;&lt;/span&gt;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&lt;p&gt;&lt;strong&gt;NGINX One dashboard metrics&lt;/strong&gt;&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,69 @@
+{
+    "overrideDefaultTheme": true,
+    "customConfig": {
+        "primary": {
+            "color": {
+                "primary": "#e8ab3b",
+                "accent": "#07963d",
+                "gray": "#0f0",
+                "link": "#00f",
+                "fill": "#f7f8f9",
+                "ink": "#343434",
+                "status": {
+                    "info": "#075996",
+                    "success": "#07963d",
+                    "error": "#f47171",
+                    "warning": "#f3a875"
+                }
+            }
+        },
+        "secondary": {
+            "color": {
+                "primary": "#e8ab3b",
+                "accent": "#ffffff",
+                "gray": "#222222",
+                "link": "#f00",
+                "fill": "#ebebed",
+                "ink": "#3a3a3c"
+            },
+            "status": {
+                "info": "#075996",
+                "success": "#07963d",
+                "error": "#f47171",
+                "warning": "#f3a875"
+            }
+        },
+        "fonts": {
+            "assignments": {
+                "headings": {
+                    "kind": "google-web-font",
+                    "value": "Lato"
+                },
+                "body": {
+                    "kind": "google-web-font",
+                    "value": "IBM+Plex+Sans"
+                },
+                "cta": {
+                    "kind": "google-web-font",
+                    "value": "IBM+Plex+Sans"
+                },
+                "code": {
+                    "kind": "google-web-font",
+                    "value": "IBM+Plex+Mono"
+                },
+                "special": {
+                    "kind": "google-web-font",
+                    "value": "Lato"
+                },
+                "baseFontSize": 14,
+                "embeddedLink": ""
+            }
+        }
+    },
+    "brandName": "API Reference | NGINX Controller Docs",
+    "logo": "",
+    "defaultLogo": "",
+    "favicon": "",
+    "basePath": "/nginx-controller/api/reference/ctlr-v1",
+    "useShadowDOM": true
+}

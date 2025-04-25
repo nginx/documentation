@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Administration Guide on DEV -- docs-nginx-com</title>
+    <link>http://localhost:1313/nginx-waf/admin-guide/</link>
+    <description>Recent content in Administration Guide on DEV -- docs-nginx-com</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/nginx-waf/admin-guide/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Installing the NGINX ModSecurity WAF</title>
+      <link>http://localhost:1313/nginx-waf/admin-guide/nginx-plus-modsecurity-waf-installation-logging/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-waf/admin-guide/nginx-plus-modsecurity-waf-installation-logging/</guid>
+      <description>&lt;blockquote class=&#34;important call-out&#34;&gt;&#xA;  &lt;div&gt;&lt;strong class=&#34;call-out-type&#34;&gt;Important&lt;/strong&gt;&lt;br/&gt; &lt;blockquote class=&#34;caution&#34;&gt;&#xA;&lt;div&gt;&lt;strong&gt;&lt;i class=&#34;fa-solid fa-triangle-exclamation&#34;&gt;&lt;/i&gt;&lt;/strong&gt;&#xA;&lt;p&gt;F5 NGINX ModSecurity WAF reached End of Sale (EoS) effective April 1, 2022.&#xA;No further renewals will be accepted as of April 1, 2023.&#xA;&lt;p&gt;NGINX ModSecurity WAF reaches End of Life (EoL) effective March 31, 2024.&lt;/p&gt;&#xA;&lt;p&gt;For additional information, refer to the &lt;a href=&#34;https://www.nginx.com/blog/f5-nginx-modsecurity-waf-transitioning-to-eol/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;End of Life Announcement&lt;/a&gt; on the NGINX Blog.&#xA;If you would like to contact your account manager at any time, please &lt;a href=&#34;https://www.nginx.com/contact-sales/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;reach out to us&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;/p&gt;&#xA;&lt;/div&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;/div&gt;&#xA;&lt;/blockquote&gt;&#xA;&#xA;&lt;p&gt;This chapter explains how to install the F5 NGINX ModSecurity web application firewall (WAF), configure a simple rule, and set up logging. The NGINX ModSecurity WAF is the NGINX Plus build of ModSecurity. The NGINX ModSecurity WAF was previously called the NGINX WAF, and the NGINX Plus with ModSecurity WAF before that.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Using the OWASP CRS with the NGINX ModSecurity WAF</title>
+      <link>http://localhost:1313/nginx-waf/admin-guide/nginx-plus-modsecurity-waf-owasp-crs/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-waf/admin-guide/nginx-plus-modsecurity-waf-owasp-crs/</guid>
+      <description>&lt;blockquote class=&#34;important call-out&#34;&gt;&#xA;  &lt;div&gt;&lt;strong class=&#34;call-out-type&#34;&gt;Important&lt;/strong&gt;&lt;br/&gt; &lt;blockquote class=&#34;caution&#34;&gt;&#xA;&lt;div&gt;&lt;strong&gt;&lt;i class=&#34;fa-solid fa-triangle-exclamation&#34;&gt;&lt;/i&gt;&lt;/strong&gt;&#xA;&lt;p&gt;F5 NGINX ModSecurity WAF reached End of Sale (EoS) effective April 1, 2022.&#xA;No further renewals will be accepted as of April 1, 2023.&#xA;&lt;p&gt;NGINX ModSecurity WAF reaches End of Life (EoL) effective March 31, 2024.&lt;/p&gt;&#xA;&lt;p&gt;For additional information, refer to the &lt;a href=&#34;https://www.nginx.com/blog/f5-nginx-modsecurity-waf-transitioning-to-eol/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;End of Life Announcement&lt;/a&gt; on the NGINX Blog.&#xA;If you would like to contact your account manager at any time, please &lt;a href=&#34;https://www.nginx.com/contact-sales/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;reach out to us&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;/p&gt;&#xA;&lt;/div&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;/div&gt;&#xA;&lt;/blockquote&gt;&#xA;&#xA;&lt;p&gt;This chapter explains how to enable and test the Open Web Application Security Project Core Rule Set (OWASP CRS) for use with the NGINX ModSecurity web application firewall (WAF).&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Using the ModSecurity Rules from Trustwave SpiderLabs with the NGINX ModSecurity WAF</title>
+      <link>http://localhost:1313/nginx-waf/admin-guide/nginx-plus-modsecurity-waf-trustwave-spiderlabs-rules/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-waf/admin-guide/nginx-plus-modsecurity-waf-trustwave-spiderlabs-rules/</guid>
+      <description>&lt;blockquote class=&#34;important call-out&#34;&gt;&#xA;  &lt;div&gt;&lt;strong class=&#34;call-out-type&#34;&gt;Important&lt;/strong&gt;&lt;br/&gt; &lt;blockquote class=&#34;caution&#34;&gt;&#xA;&lt;div&gt;&lt;strong&gt;&lt;i class=&#34;fa-solid fa-triangle-exclamation&#34;&gt;&lt;/i&gt;&lt;/strong&gt;&#xA;&lt;p&gt;F5 NGINX ModSecurity WAF reached End of Sale (EoS) effective April 1, 2022.&#xA;No further renewals will be accepted as of April 1, 2023.&#xA;&lt;p&gt;NGINX ModSecurity WAF reaches End of Life (EoL) effective March 31, 2024.&lt;/p&gt;&#xA;&lt;p&gt;For additional information, refer to the &lt;a href=&#34;https://www.nginx.com/blog/f5-nginx-modsecurity-waf-transitioning-to-eol/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;End of Life Announcement&lt;/a&gt; on the NGINX Blog.&#xA;If you would like to contact your account manager at any time, please &lt;a href=&#34;https://www.nginx.com/contact-sales/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;reach out to us&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;/p&gt;&#xA;&lt;/div&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;/div&gt;&#xA;&lt;/blockquote&gt;&#xA;&#xA;&lt;p&gt;This chapter explains how to configure the Commercial ModSecurity Rules from Trustwave SpiderLabs for use with the F5 NGINX ModSecurity web application firewall (WAF)).&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

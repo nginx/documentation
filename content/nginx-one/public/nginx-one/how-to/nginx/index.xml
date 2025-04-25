@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Instances and Configurations on DEV -- docs-nginx-com</title>
+    <link>http://localhost:1313/nginx-one/how-to/nginx/</link>
+    <description>Recent content in Instances and Configurations on DEV -- docs-nginx-com</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/nginx-one/how-to/nginx/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Add an NGINX instance</title>
+      <link>http://localhost:1313/nginx-one/how-to/nginx-configs/add-instance/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-one/how-to/nginx-configs/add-instance/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;This guide explains how to add an F5 NGINX instance in F5 NGINX One Console. You can add an instance from the NGINX One Console individually, or as part of a &lt;a href=&#34;http://localhost:1313/nginx-one/glossary/&#34;&gt;Config Sync Group&lt;/a&gt;. In either case, you need&#xA;to set up a data plane key to connect your instances to NGINX One.&lt;/p&gt;&#xA;&lt;h2 &#xA;id=&#34;before-you-start&#34;&gt;Before you start  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#before-you-start&#34; title=&#34;Before you start&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;Before you add an instance to NGINX One Console, ensure:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Clean up unavailable NGINX instances</title>
+      <link>http://localhost:1313/nginx-one/how-to/nginx-configs/clean-up-unavailable-instances/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-one/how-to/nginx-configs/clean-up-unavailable-instances/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;This guide explains how to set up automatic cleanup for NGINX instances in NGINX One. The cleanup process removes instances that have been unavailable for a specified duration. By default, this period is 24 hours from the time the NGINX instance was last updated. Administrators can change or disable the cleanup duration in &lt;strong&gt;Settings &amp;gt; Instance Settings&lt;/strong&gt;. Events will be generated for NGINX instances that have been automatically cleaned up; you can see these events on the &lt;strong&gt;Overview &amp;gt; Events&lt;/strong&gt; page.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Manage config sync groups</title>
+      <link>http://localhost:1313/nginx-one/how-to/nginx-configs/manage-config-sync-groups/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-one/how-to/nginx-configs/manage-config-sync-groups/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;This guide explains how to create and manage config sync groups in the F5 NGINX One Console. Config sync groups synchronize NGINX configurations across multiple NGINX instances, ensuring consistency and ease of management.&lt;/p&gt;&#xA;&lt;p&gt;If you’ve used &lt;a href=&#34;http://localhost:1313/nginx-instance-manager/nginx-instances/manage-instance-groups/&#34;&gt;instance groups in NGINX Instance Manager&lt;/a&gt;, you’ll find config sync groups in NGINX One similar, though the steps and terminology differ slightly.&lt;/p&gt;&#xA;&lt;h2 &#xA;id=&#34;before-you-start&#34;&gt;Before you start  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#before-you-start&#34; title=&#34;Before you start&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;Before you create and manage config sync groups, ensure:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>View and edit NGINX configurations</title>
+      <link>http://localhost:1313/nginx-one/how-to/nginx-configs/view-edit-nginx-configurations/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-one/how-to/nginx-configs/view-edit-nginx-configurations/</guid>
+      <description>&lt;!-- Possible future include, with similar files in config-sync-groups/ and staged-configs/ subdirectories --&gt;&#xA;&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;This guide explains how to add a &lt;strong&gt;Instances&lt;/strong&gt; to your NGINX One Console.&lt;/p&gt;&#xA;&lt;h2 &#xA;id=&#34;before-you-start&#34;&gt;Before you start  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#before-you-start&#34; title=&#34;Before you start&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;Before you add &lt;strong&gt;Instances&lt;/strong&gt; to NGINX One Console, ensure:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;You have an NGINX One Console account with staged configuration permissions.```&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Once you&amp;rsquo;ve registered your NGINX Instances with the F5 NGINX One Console, you can view and edit their NGINX configurations on the &lt;strong&gt;Instances&lt;/strong&gt; details page.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Add a file to an instance</title>
+      <link>http://localhost:1313/nginx-one/how-to/nginx-configs/add-file/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-one/how-to/nginx-configs/add-file/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;This guide explains how to add files in the F5 NGINX One Console. While you can manage files in the CLI, the NGINX One Console supports editing in a UI that resembles an Integrated Development Environment (IDE), with recommendations.&lt;/p&gt;&#xA;&#xA;&lt;h2 &#xA;id=&#34;before-you-start&#34;&gt;Before you start  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#before-you-start&#34; title=&#34;Before you start&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;Before you add files in your configuration, ensure:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;You have access to the NGINX One Console.&lt;/li&gt;&#xA;&lt;li&gt;NGINX instances are properly registered with NGINX One Console&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 &#xA;id=&#34;important-considerations&#34;&gt;Important considerations  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#important-considerations&#34; title=&#34;Important considerations&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;If your instance is a member of a Config Sync Group, changes that you make may be synchronized to other instances in that group.&#xA;For more information, see how you can &lt;a href=&#34;http://localhost:1313/nginx-one/how-to/config-sync-groups/manage-config-sync-groups/&#34;&gt;Manage Config Sync Groups&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

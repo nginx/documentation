@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Monitoring on DEV -- docs-nginx-com</title>
+    <link>http://localhost:1313/nginx-instance-manager/monitoring/</link>
+    <description>Recent content in Monitoring on DEV -- docs-nginx-com</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/nginx-instance-manager/monitoring/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Overview: NGINX instance metrics</title>
+      <link>http://localhost:1313/nginx-instance-manager/monitoring/overview-metrics/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-instance-manager/monitoring/overview-metrics/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;F5 NGINX Instance Manager collects two types of data:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;System metrics&lt;/strong&gt;: Data about the data plane system, such as CPU and memory usage.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Traffic metrics&lt;/strong&gt;: Data from processed traffic, including NGINX OSS, NGINX Plus, and NGINX logs.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;The NGINX Agent collects metrics every 15 seconds and publishes them every 60 seconds.&lt;/p&gt;&#xA;&lt;p&gt;For a full list of available metrics, see the &lt;a href=&#34;http://localhost:1313/nginx-management-suite/reference/catalogs/metrics/&#34;&gt;Metrics Catalog Reference&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;h2 &#xA;id=&#34;how-metrics-are-collected-and-reported&#34;&gt;How metrics are collected and reported  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#how-metrics-are-collected-and-reported&#34; title=&#34;How metrics are collected and reported&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;The NGINX Agent collects metrics every 15 seconds while running on the host. Metrics are then downsampled and sent to the Manager server once per minute.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Query the Metrics API</title>
+      <link>http://localhost:1313/nginx-instance-manager/monitoring/metrics-api/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-instance-manager/monitoring/metrics-api/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;You can use the Analytics module to monitor your NGINX instances and evaluate your applications&amp;rsquo; performance. The Metrics API query parameters let you fine-tune your system data based on parameters such as time window, aggregation, time resolution, and filter.&lt;/p&gt;&#xA;&lt;p&gt;By using different combinations of these query parameters, you can gather information that lets you:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Identify system health &amp;ndash; query for various system metrics such as CPU, Memory to get the current state of your system&lt;/li&gt;&#xA;&lt;li&gt;Identify traffic behavior &amp;ndash; query for the HTTP / Stream Requests handled by an instance.&lt;/li&gt;&#xA;&lt;li&gt;Monitor your application performance &amp;ndash; filter on HTTP response codes to track the number of successful or failed requests&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 &#xA;id=&#34;usage&#34;&gt;Usage  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#usage&#34; title=&#34;Usage&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;You can use the Metrics API to query for desired metric names and fine-tune the data returned based on the following parameters:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>View events and metrics</title>
+      <link>http://localhost:1313/nginx-instance-manager/monitoring/view-events-metrics/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-instance-manager/monitoring/view-events-metrics/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;F5 NGINX Instance Manager provides events and metrics data for your instances. You can access this information in the user interface, or by using the REST API.&lt;/p&gt;&#xA;&lt;blockquote class=&#34;note&#34;&gt;&#xA;  &lt;div&gt;&lt;strong&gt;Note:&lt;/strong&gt;&lt;br/&gt; This topic provides examples for using the REST API to view, sort, and filter Events data that can be applied across the NGINX Instance Manager REST API.&lt;/div&gt;&#xA;&lt;/blockquote&gt;&#xA;&#xA;&lt;h2 &#xA;id=&#34;view-events-in-the-user-interface&#34;&gt;View Events in the User Interface  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#view-events-in-the-user-interface&#34; title=&#34;View Events in the User Interface&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;To view events in the NGINX Instance Manager user interface, take the following steps:&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

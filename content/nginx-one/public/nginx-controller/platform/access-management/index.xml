@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Access Management on DEV -- docs-nginx-com</title>
+    <link>http://localhost:1313/nginx-controller/platform/access-management/</link>
+    <description>Recent content in Access Management on DEV -- docs-nginx-com</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/nginx-controller/platform/access-management/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Configure Active Directory Integration</title>
+      <link>http://localhost:1313/nginx-controller/platform/access-management/manage-active-directory-auth-provider/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-controller/platform/access-management/manage-active-directory-auth-provider/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;By completing the steps in this guide, you will learn how to add an Active Directory (AD) integration to F5 NGINX Controller. NGINX Controller supports the following AD types and protocols:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Microsoft Entra: OpenID Connect (OIDC) over HTTPS;&lt;/li&gt;&#xA;&lt;li&gt;Windows Active Directory: unencrypted LDAP, LDAPS, and StartTLS.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 &#xA;id=&#34;before-you-begin&#34;&gt;Before You Begin  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#before-you-begin&#34; title=&#34;Before You Begin&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;Before proceeding with this guide, complete the steps in the appropriate prerequisites section for the type of Active Directory integration that you want to create.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Manage Users</title>
+      <link>http://localhost:1313/nginx-controller/platform/access-management/manage-users/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-controller/platform/access-management/manage-users/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;This topic explains how to create and manage User resources.&lt;/p&gt;&#xA;&lt;p&gt;A User resource represents an F5 NGINX Controller User account. &lt;a href=&#34;http://localhost:1313/nginx-controller/platform/access-management/manage-roles/&#34;&gt;Assign Roles to Users&lt;/a&gt; to define what actions Users can perform in NGINX Controller and what &lt;a href=&#34;http://localhost:1313/nginx-controller/services/manage-environments/&#34;&gt;Environment(s)&lt;/a&gt; Users can access.&lt;/p&gt;&#xA;&lt;p&gt;By default, all users have &lt;code&gt;READ&lt;/code&gt; permissions for Analytics, Users, Roles, and Licenses. You can use the &lt;code&gt;/platform/roles&lt;/code&gt; endpoint in the &lt;a href=&#34;http://localhost:1313/nginx-controller/api/reference/&#34;&gt;NGINX Controller REST API&lt;/a&gt; to extend or narrow this default set of permissions.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Manage Roles and Role Groups</title>
+      <link>http://localhost:1313/nginx-controller/platform/access-management/manage-roles/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-controller/platform/access-management/manage-roles/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;This topic explains how to create and manage Roles and Role Groups.&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;strong&gt;Roles&lt;/strong&gt; define a set of permissions that allow or prevent Users from performing operations in F5 NGINX Controller or in an &lt;a href=&#34;http://localhost:1313/nginx-controller/services/manage-environments/&#34;&gt;Environment&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;strong&gt;Role Groups&lt;/strong&gt; act as a collection of Roles that you can manage as a single resource. All members of a Role Group are assigned the same set of Roles. Role Groups can be mapped only to external auth provider groups; they can not be assigned to local users.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

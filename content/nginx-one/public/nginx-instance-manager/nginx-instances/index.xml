@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>NGINX instances on DEV -- docs-nginx-com</title>
+    <link>http://localhost:1313/nginx-instance-manager/nginx-instances/</link>
+    <description>Recent content in NGINX instances on DEV -- docs-nginx-com</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/nginx-instance-manager/nginx-instances/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Scan and discover NGINX instances</title>
+      <link>http://localhost:1313/nginx-instance-manager/nginx-instances/scan-instances/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-instance-manager/nginx-instances/scan-instances/</guid>
+      <description>&lt;style&gt;&#xA;  h3 {font-weight: 400; padding-top: 20px;}&#xA;  hr {margin-top: 40px; margin-bottom: 40px;}&#xA;&lt;/style&gt;&#xA;&#xA;&lt;h2 &#xA;id=&#34;prerequisites&#34;&gt;Prerequisites  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#prerequisites&#34; title=&#34;Prerequisites&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;ol&gt;&#xA;&lt;li&gt;&lt;a href=&#34;http://localhost:1313/nginx-instance-manager/deploy/vm-bare-metal/&#34;&gt;Install Instance Manager&lt;/a&gt;.&lt;/li&gt;&#xA;&lt;li&gt;Start and enable Instance Manager.&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;blockquote class=&#34;note&#34;&gt;&#xA;  &lt;div&gt;&lt;strong&gt;Note:&lt;/strong&gt;&lt;br/&gt; To update the CVE list manually or offline, refer to the &lt;a href=&#34;http://localhost:1313/nginx-instance-manager/disconnected/offline-install-guide/#cve-check&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Offline Installation&lt;/a&gt; guide.&lt;/div&gt;&#xA;&lt;/blockquote&gt;&#xA;&#xA;&lt;p&gt;Host discovery, the first stage in instance discovery, is used to enumerate live hosts on a given network. However, in certain environments, Internet Control Message Protocol (ICMP) echo requests are disabled. The Instance Manager API provides a method for disabling host discovery in scanning.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Create and manage instance groups</title>
+      <link>http://localhost:1313/nginx-instance-manager/nginx-instances/manage-instance-groups/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-instance-manager/nginx-instances/manage-instance-groups/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;You can easily manage multiple NGINX instances as a single entity by creating an instance group in Instance Manager and adding NGINX instances to it.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 &#xA;id=&#34;before-you-begin&#34;&gt;Before You Begin  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#before-you-begin&#34; title=&#34;Before You Begin&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;To complete the instructions in this guide, you need the following:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;An installed version of &lt;a href=&#34;http://localhost:1313/nginx-instance-manager/deploy/vm-bare-metal/&#34;&gt;Instance Manager&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;One or more NGINX data plane instances&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 &#xA;id=&#34;add-instance-groups&#34;&gt;Create Instance Groups  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#add-instance-groups&#34; title=&#34;Create Instance Groups&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;To create an instance group:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Manage SSL certificates</title>
+      <link>http://localhost:1313/nginx-instance-manager/nginx-instances/manage-certificates/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-instance-manager/nginx-instances/manage-certificates/</guid>
+      <description>&lt;blockquote class=&#34;tip side-callout&#34;&gt;&#xA;   &lt;div&gt;&#xA;     &#xA;     &#xA;       &#xA;       &lt;i class=&#34;fa-solid fa-sync&#34;&gt;&lt;/i&gt;&#xA;     &#xA;     &#xA;     &lt;strong&gt;Legacy &amp;#39;nms&amp;#39; references&lt;/strong&gt;&lt;br/&gt;&#xA;     &#xA;     Some commands, file paths, and configuration references still use &lt;code&gt;nms&lt;/code&gt; due to the ongoing transition from NGINX Management Suite (NMS) to NGINX Instance Manager (NIM). These will be updated in future releases.&#xA;   &lt;/div&gt;&#xA; &lt;/blockquote&gt;&#xA;&#xA;&lt;h2 &#xA;id=&#34;about-certificates&#34;&gt;About certificates  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#about-certificates&#34; title=&#34;About certificates&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;You can add certificates to &lt;strong&gt;F5 NGINX Instance Manager&lt;/strong&gt; using the web interface or the REST API. Certificates in NGINX Instance Manager are stored in PEM format in an internal secret store. They can be published to NGINX instances, which use certificates to encrypt and decrypt requests and responses.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Organize instances with tags</title>
+      <link>http://localhost:1313/nginx-instance-manager/nginx-instances/add-tags/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-instance-manager/nginx-instances/add-tags/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;Tags allow you to label and group NGINX instances in F5 NGINX Instance Manager.&lt;/p&gt;&#xA;&lt;h2 &#xA;id=&#34;add-tag&#34;&gt;Adding a Tag  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#add-tag&#34; title=&#34;Adding a Tag&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;There are two ways you can add tags:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Add tags to the &lt;code&gt;agent-dynamic.conf&lt;/code&gt; file.&lt;/li&gt;&#xA;&lt;li&gt;Add tags using the Instance Manager web interface.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 &#xA;id=&#34;add-tag-config&#34;&gt;Add Tags with a Configuration File  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#add-tag-config&#34; title=&#34;Add Tags with a Configuration File&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h3&gt;&lt;p&gt;You can edit the &lt;code&gt;agent-dynamic.conf&lt;/code&gt; file to add a tag to an instance.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

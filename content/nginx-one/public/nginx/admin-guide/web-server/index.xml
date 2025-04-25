@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Web Server on DEV -- docs-nginx-com</title>
+    <link>http://localhost:1313/nginx/admin-guide/web-server/</link>
+    <description>Recent content in Web Server on DEV -- docs-nginx-com</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/nginx/admin-guide/web-server/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Configuring NGINX and NGINX Plus as a Web Server</title>
+      <link>http://localhost:1313/nginx/admin-guide/web-server/web-server/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx/admin-guide/web-server/web-server/</guid>
+      <description>&lt;p&gt;This article explains how to configure NGINX Open Source and F5 NGINX Plus as a web server.&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; The information in this article applies to both NGINX Open Source and NGINX Plus. For ease of reading, the remainder of the article refers to NGINX Plus only.&lt;/p&gt;&#xA;&lt;p&gt;At a high level, configuring NGINX Plus as a web server is a matter of defining which URLs it handles and how it processes HTTP requests for resources at those URLs. At a lower level, the configuration defines a set of &lt;em&gt;virtual servers&lt;/em&gt; that control the processing of requests for particular domains or IP addresses. For more information about configuration files, refer to &lt;a href=&#34;http://localhost:1313/nginx/admin-guide/basic-functionality/managing-configuration-files/&#34;&gt;Creating NGINX and NGINX Plus Configuration Files&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Serve Static Content</title>
+      <link>http://localhost:1313/nginx/admin-guide/web-server/serving-static-content/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx/admin-guide/web-server/serving-static-content/</guid>
+      <description>&lt;p&gt;This section describes how to configure NGINX and F5 NGINX Plus to serve static content, how to define which paths are searched to find requested files, how to set up index files, and how to tune NGINX and NGINX Plus, as well as the kernel, for optimal performance.&lt;/p&gt;&#xA;&lt;p&gt;&lt;span id=&#34;root&#34;&gt;&lt;/span&gt;&lt;/p&gt;&#xA;&lt;h2 &#xA;id=&#34;root-directory-and-index-files&#34;&gt;Root Directory and Index Files  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#root-directory-and-index-files&#34; title=&#34;Root Directory and Index Files&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;The &lt;a href=&#34;https://nginx.org/en/docs/http/ngx_http_core_module.html#root&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;root&lt;/a&gt; directive specifies the root directory that will be used to search for a file. To obtain the path of a requested file, NGINX appends the request URI to the path specified by the &lt;code&gt;root&lt;/code&gt; directive. The directive can be placed on any level within the &lt;code&gt;http {}&lt;/code&gt;, &lt;code&gt;server {}&lt;/code&gt;, or &lt;code&gt;location {}&lt;/code&gt; contexts. In the example below, the &lt;code&gt;root&lt;/code&gt; directive is defined for a virtual server. It applies to all &lt;code&gt;location {}&lt;/code&gt; blocks where the &lt;code&gt;root&lt;/code&gt; directive is not included to explicitly redefine the root:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>NGINX Reverse Proxy</title>
+      <link>http://localhost:1313/nginx/admin-guide/web-server/reverse-proxy/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx/admin-guide/web-server/reverse-proxy/</guid>
+      <description>&lt;p&gt;This article describes the basic configuration of a proxy server. You will learn how to pass a request from NGINX to proxied servers over different protocols, modify client request headers that are sent to the proxied server, and configure buffering of responses coming from the proxied servers.&lt;/p&gt;&#xA;&lt;h2 &#xA;id=&#34;introduction&#34;&gt;Introduction  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#introduction&#34; title=&#34;Introduction&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;Proxying is typically used to distribute the load among several servers, seamlessly show content from different websites, or pass requests for processing to application servers over protocols other than HTTP.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Compression and Decompression</title>
+      <link>http://localhost:1313/nginx/admin-guide/web-server/compression/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx/admin-guide/web-server/compression/</guid>
+      <description>&lt;p&gt;This section describes how to configure compression or decompression of responses, as well as sending compressed files.&lt;/p&gt;&#xA;&lt;h2 &#xA;id=&#34;introduction&#34;&gt;Introduction  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#introduction&#34; title=&#34;Introduction&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;Compressing responses often significantly reduces the size of transmitted data. However, since compression happens at runtime it can also add considerable processing overhead which can negatively affect performance. NGINX performs compression before sending responses to clients, but does not “double compress” responses that are already compressed (for example, by a proxied server).&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Using NGINX and NGINX Plus as an Application Gateway with uWSGI and Django</title>
+      <link>http://localhost:1313/nginx/admin-guide/web-server/app-gateway-uwsgi-django/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx/admin-guide/web-server/app-gateway-uwsgi-django/</guid>
+      <description>&lt;p&gt;This article explains how to use NGINX or F5 NGINX Plus as an application gateway with uWSGI and Django.&lt;/p&gt;&#xA;&lt;p&gt;&lt;span id=&#34;intro&#34;&gt;&lt;/span&gt;&lt;/p&gt;&#xA;&lt;h2 &#xA;id=&#34;introduction&#34;&gt;Introduction  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#introduction&#34; title=&#34;Introduction&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;NGINX is a high‑performance, scalable, secure, and reliable web server and a reverse proxy. NGINX uses web acceleration techniques to manage HTTP connections and traffic. Features like &lt;a href=&#34;http://localhost:1313/nginx/admin-guide/load-balancer/http-load-balancer/&#34;&gt;load balancing&lt;/a&gt;, &lt;a href=&#34;http://localhost:1313/nginx/admin-guide/security-controls/terminating-ssl-http/&#34;&gt;SSL termination&lt;/a&gt;, connection and request &lt;a href=&#34;http://localhost:1313/nginx/admin-guide/security-controls/controlling-access-proxied-http/&#34;&gt;policing&lt;/a&gt;, static &lt;a href=&#34;http://localhost:1313/nginx/admin-guide/web-server/serving-static-content/&#34;&gt;content offload&lt;/a&gt;, and &lt;a href=&#34;http://localhost:1313/nginx/admin-guide/content-cache/content-caching/&#34;&gt;content caching&lt;/a&gt; help users build reliable websites.&lt;/p&gt;&#xA;&lt;p&gt;NGINX acts as a secure application gateway, passing traffic from users to applications. In this regard, not only can NGINX proxy HTTP and HTTPS traffic to an HTTP‑enabled application container, it can also connect to most of the popular application servers and web frameworks via optimized app‑gateway interfaces implemented in modules like &lt;a href=&#34;https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;FastCGI&lt;/a&gt;, &lt;a href=&#34;https://nginx.org/en/docs/http/ngx_http_memcached_module.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Memcached&lt;/a&gt;, &lt;a href=&#34;https://nginx.org/en/docs/http/ngx_http_scgi_module.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;scgi&lt;/a&gt;, and &lt;a href=&#34;https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;uwsgi&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,122 @@
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: source-allowed-sa
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: driver-allowed
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: driver-allowed
+  template:
+    metadata:
+      labels:
+        app: driver-allowed
+    spec:
+      serviceAccountName: source-allowed-sa
+      containers:
+      - name: driver
+        image: curlimages/curl:7.72.0
+        imagePullPolicy: IfNotPresent
+        command: [ "/scripts/driver-allowed.sh" ]
+        ports:
+        - containerPort: 8080
+          name: http
+        env:
+        - name: HOST
+          valueFrom:
+            configMapKeyRef:
+              name: driver-allowed
+              key: host
+        - name: REQUEST_PATH
+          valueFrom:
+            configMapKeyRef:
+              name: driver-allowed
+              key: request_path
+        - name: METHOD
+          valueFrom:
+            configMapKeyRef:
+              name: driver-allowed
+              key: method
+        - name: HEADERS
+          valueFrom:
+            configMapKeyRef:
+              name: driver-allowed
+              key: headers
+        volumeMounts:
+          - name: driver-allowed
+            mountPath: /scripts
+      volumes:
+      - name: driver-allowed
+        configMap:
+          name: driver-allowed
+          defaultMode: 0755
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: driver-allowed
+data:
+  host: http://dest-svc:8080
+  request_path: /echo
+  method: GET
+  headers: x-demo-1:demo-1,x-demo-2:demo-2,x-demo-3:demo-3
+  driver-allowed.sh: |
+    #!/bin/sh
+
+    host="${HOST:-http://localhost:8080}"
+    request_path="${REQUEST_PATH:-/echo}"
+    method="${METHOD:-GET}"
+    headers=${HEADERS}
+
+    echo "Configuration:"
+    echo "  HOST:         ${host}"
+    echo "  REQUEST_PATH: ${request_path}"
+    echo "  METHOD:       ${method}"
+    echo "  HEADERS:      ${headers}"
+
+    header_array=`echo $headers | sed -e 's/,/ /g'`
+
+    start_delay=10
+    echo -n "Starting in "
+    echo -n "$start_delay "
+    echo -n "seconds"
+
+    i=0
+    while [[ $i -lt $start_delay ]]
+    do
+      echo -n "."
+      i=`expr $i + 1`
+      sleep 1
+    done
+    echo
+
+    cmd="curl -s -v "
+    for h in $header_array
+    do
+      cmd=$cmd" -H \"$h\""
+    done
+    cmd=$cmd" -X ${method} ${host}${request_path}"
+
+    while true
+    do
+      eval $cmd
+      sleep 2
+    done
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: driver-allowed
+spec:
+  ports:
+  - port: 8080
+    protocol: TCP
+    name: http
+  selector:
+    app: driver-allowed

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Getting started on DEV -- docs-nginx-com</title>
+    <link>http://localhost:1313/nginxaas/azure/getting-started/</link>
+    <description>Recent content in Getting started on DEV -- docs-nginx-com</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/nginxaas/azure/getting-started/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Overview and prerequisites</title>
+      <link>http://localhost:1313/nginxaas/azure/getting-started/prerequisites/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginxaas/azure/getting-started/prerequisites/</guid>
+      <description>&lt;h2 &#xA;id=&#34;before-you-begin&#34;&gt;Before you begin  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#before-you-begin&#34; title=&#34;Before you begin&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;Before you deploy NGINXaaS you need to meet the following prerequisites:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;An Azure account with an active subscription (if you don’t have one, &lt;a href=&#34;https://azure.microsoft.com/free/?WT.mc_id=A261C142F&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;create an account for free&lt;/a&gt;).&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://docs.microsoft.com/en-us/azure/role-based-access-control/check-access&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Confirm that you have the appropriate access&lt;/a&gt; before starting the setup:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;The simplest approach is to use Azure’s built-in &lt;a href=&#34;https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#owner&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Owner&lt;/a&gt; role on either a specific resource group or the subscription.&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;It&amp;rsquo;s possible to complete a limited setup with the built-in &lt;a href=&#34;https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#contributor&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Contributor&lt;/a&gt; role.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Assign Managed Identities</title>
+      <link>http://localhost:1313/nginxaas/azure/getting-started/managed-identity-portal/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginxaas/azure/getting-started/managed-identity-portal/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;F5 NGINX as a Service for Azure (NGINXaaS) leverages a user assigned and a system assigned managed identity for some of its integrations with Azure, such as:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Azure Key Vault (AKV): fetch SSL/TLS certificates from AKV to your NGINXaaS deployment, so that they can be referenced by your NGINX configuration.&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Azure Monitor: publish metrics from your NGINX deployment to Azure Monitor.&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Azure Storage: export logs from your NGINX deployment to Azure Blob Storage Container.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Migrate from Standard to Standard V2</title>
+      <link>http://localhost:1313/nginxaas/azure/getting-started/migrate-from-standard/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginxaas/azure/getting-started/migrate-from-standard/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;F5 NGINX as a Service for Azure (NGINXaaS) now supports in-place migration from Standard plan to the Standard V2 plan, we encourage you to upgrade your deployment to the Standard V2 plan as soon as possible. &lt;strong&gt;The Standard plan is scheduled for retirement on May 1, 2025&lt;/strong&gt;. If you fail to migrate by May 1, 2025, your NGINXaaS deployment will stop receiving automatic updates that address critical security issues.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

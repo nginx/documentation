@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Infrastructure on DEV -- docs-nginx-com</title>
+    <link>http://localhost:1313/nginx-management-suite/acm/how-to/infrastructure/</link>
+    <description>Recent content in Infrastructure on DEV -- docs-nginx-com</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/nginx-management-suite/acm/how-to/infrastructure/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Manage API Infrastructure</title>
+      <link>http://localhost:1313/nginx-management-suite/acm/how-to/infrastructure/manage-api-infrastructure/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-management-suite/acm/how-to/infrastructure/manage-api-infrastructure/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;API Connectivity Manager lets you manage your API infrastructure by using a set of hierarchical resources. The top-level resource, called a &lt;strong&gt;Workspace&lt;/strong&gt;, provides a logical grouping for resources called &lt;strong&gt;Environments&lt;/strong&gt;. Environments contain &lt;strong&gt;Clusters&lt;/strong&gt; that allocate NGINX instances for use as API Gateways and Developer Portals.&lt;/p&gt;&#xA;&lt;p&gt;You can use Workspaces to create isolated work areas for business units or teams. You can use Environments to allocate infrastructure resources for use within a team&amp;rsquo;s Workspace.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Deployment Patterns for Developer Portal</title>
+      <link>http://localhost:1313/nginx-management-suite/acm/how-to/infrastructure/configure-devportal-backend/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-management-suite/acm/how-to/infrastructure/configure-devportal-backend/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;The Developer Portal application is a combination of a portal application (Developer Portal UI) and a backend API service (Developer Portal API service) to support the application.&lt;/p&gt;&#xA;&lt;p&gt;The following deployment patterns are supported:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Developer Portal UI and API service deployed on a single host (default).&lt;/li&gt;&#xA;&lt;li&gt;Load-balanced backend API using multiple IP addresses. Developer Portal UI and API service deployed on different hosts.&lt;/li&gt;&#xA;&lt;li&gt;Load-balanced backend API using a single hostname. Developer Portal UI and API service deployed on different hosts using a single hostname and frontend by a load balancer.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 &#xA;id=&#34;before-you-begin&#34;&gt;Before You Begin  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#before-you-begin&#34; title=&#34;Before You Begin&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;Complete the following prerequisites before proceeding with this guide:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Customize a Developer Portal</title>
+      <link>http://localhost:1313/nginx-management-suite/acm/how-to/infrastructure/customize-devportal/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-management-suite/acm/how-to/infrastructure/customize-devportal/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;You can use API Connectivity Manager to create and manage Developer Portals (or, &amp;ldquo;Dev Portals&amp;rdquo;) to host your APIs and documentation. API Connectivity Manager Dev Portals provide a framework for customization that lets you match your Dev Portal to your brand&amp;rsquo;s or business&amp;rsquo; requirements.&#xA;You can customize the Dev Portal website&amp;rsquo;s landing page, All APIs page, and Docs page(s), as well as the site&amp;rsquo;s header and footer.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Publish a Developer Portal</title>
+      <link>http://localhost:1313/nginx-management-suite/acm/how-to/infrastructure/publish-developer-portal/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-management-suite/acm/how-to/infrastructure/publish-developer-portal/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;You can use API Connectivity Manager to create and publish Developer Portals (or, &amp;ldquo;Dev Portals&amp;rdquo;) to host your APIs and documentation. API Connectivity Manager Dev Portals provide a &lt;a href=&#34;http://localhost:1313/nginx-management-suite/acm/how-to/infrastructure/customize-devportal/&#34;&gt;framework for customization&lt;/a&gt;  that lets you match your Dev Portal to your brand&amp;rsquo;s or business&amp;rsquo; requirements.&lt;/p&gt;&#xA;&lt;p&gt;You can also modify and delete your Developer Portals using API Connectivity Manager.&lt;/p&gt;&#xA;&lt;h3 &#xA;id=&#34;before-you-begin&#34;&gt;Before You Begin  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#before-you-begin&#34; title=&#34;Before You Begin&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h3&gt;&lt;p&gt;Complete the following prerequisites before proceeding with this guide:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Enable Creating Credentials on the Developer Portal</title>
+      <link>http://localhost:1313/nginx-management-suite/acm/how-to/infrastructure/enable-create-credentials/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-management-suite/acm/how-to/infrastructure/enable-create-credentials/</guid>
+      <description>&lt;style&gt;&#xA;    h2 {&#xA;        margin-top: 30px;&#xA;        margin-bottom: 10px;&#xA;    }&#xA;    h3 {&#xA;        margin-top: 30px;&#xA;        margin-bottom: 10px;&#xA;        font-weight: 300;&#xA;        font-size: 1.75em;&#xA;    }&#xA;    h4 {&#xA;        margin-top: 30px;&#xA;        font-size: 20px;&#xA;    }&#xA;    hr {&#xA;        margin-top: 40px;&#xA;        margin-bottom: 20px;&#xA;    }&#xA;&lt;/style&gt;&#xA;&#xA;&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;API Connectivity manager supports public API workflows. Public APIs are open for anyone to consume by requesting resource credentials. Resource credentials can be managed on the Developer Portal for public APIs secured with APIKey or Basic Authentication. Consumers have to log in to the Developer Portal to create credentials. Once created, credentials can be used to access APIs. Users can also use the credentials to test APIs on the Developer Portal with the &lt;strong&gt;Try It Out&lt;/strong&gt; feature.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Enable Single Sign-On for Developer Portal</title>
+      <link>http://localhost:1313/nginx-management-suite/acm/how-to/infrastructure/enable-sso-devportal/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-management-suite/acm/how-to/infrastructure/enable-sso-devportal/</guid>
+      <description>&lt;style&gt;&#xA;    h2 {&#xA;        margin-top: 30px;&#xA;    }&#xA;    h3 {&#xA;        margin-top: 30px;&#xA;    }&#xA;    h4 {&#xA;        font-weight: bold;&#xA;        margin-top: 30px;&#xA;    }&#xA;    hr {&#xA;        margin-top: 40px; margin-bottom: 40px;&#xA;    }&#xA;&#xA;&lt;/style&gt;&#xA;&#xA;&#xA;&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;Single sign-on (SSO) can be enabled on the Developer Portal to secure access to the portal and to allow authenticated API consumers to manage resource credentials. Logged-in consumers can then self-manage resource credentials for the APIs.&lt;/p&gt;&#xA;&lt;p&gt;Single sign-on is enabled by applying an OpenID Connect (OIDC) policy on the Developer Portal. The OIDC policy sets up the portal proxy to act as a relying party to authenticate users with the OIDC provider.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

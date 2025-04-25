@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Monitoring on DEV -- docs-nginx-com</title>
+    <link>http://localhost:1313/nginx/admin-guide/monitoring/</link>
+    <description>Recent content in Monitoring on DEV -- docs-nginx-com</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/nginx/admin-guide/monitoring/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Live Activity Monitoring</title>
+      <link>http://localhost:1313/nginx/admin-guide/monitoring/live-activity-monitoring/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx/admin-guide/monitoring/live-activity-monitoring/</guid>
+      <description>&lt;p&gt;&lt;span id=&#34;live-activity-monitoring&#34;&gt;&lt;/span&gt;&lt;/p&gt;&#xA;&lt;p&gt;This article describes how to configure and use runtime monitoring services in NGINX Plus: the interactive Dashboard and NGINX Plus REST API.&lt;/p&gt;&#xA;&lt;p&gt;&lt;span id=&#34;overview&#34;&gt;&lt;/span&gt;&lt;/p&gt;&#xA;&lt;h2 &#xA;id=&#34;about-live-activity-monitoring&#34;&gt;About Live Activity Monitoring  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#about-live-activity-monitoring&#34; title=&#34;About Live Activity Monitoring&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;NGINX Plus provides various monitoring tools for your server infrastructure:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;the interactive Dashboard page available since NGINX Plus &lt;a href=&#34;http://localhost:1313/nginx/releases/#r9&#34;&gt;Release 9&lt;/a&gt; - a real-time live activity monitoring interface that shows key load and performance metrics of your server infrastructure.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Configuring Logging</title>
+      <link>http://localhost:1313/nginx/admin-guide/monitoring/logging/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx/admin-guide/monitoring/logging/</guid>
+      <description>&lt;p&gt;This article describes how to log errors and requests in NGINX Open Source and NGINX Plus.&lt;/p&gt;&#xA;&lt;p&gt;&lt;span id=&#34;error_log&#34;&gt;&lt;/span&gt;&lt;/p&gt;&#xA;&lt;h2 &#xA;id=&#34;set-up-the-error-log&#34;&gt;Set Up the Error Log  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#set-up-the-error-log&#34; title=&#34;Set Up the Error Log&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;NGINX writes an error log that records encountered issues of different severity levels. The &lt;a href=&#34;https://nginx.org/en/docs/ngx_core_module.html#error_log&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;error_log&lt;/a&gt; directive sets up the log location and severity level. The log location can be a particular file, &lt;code&gt;stderr&lt;/code&gt;, or &lt;code&gt;syslog&lt;/code&gt;. By default, the error log is located at &lt;strong&gt;logs/error.log&lt;/strong&gt;, but the absolute path depends on the operating system and installation. The error severity level follows the &lt;code&gt;syslog&lt;/code&gt; classification system. The log includes messages from all severity levels above the specified level.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Debugging NGINX</title>
+      <link>http://localhost:1313/nginx/admin-guide/monitoring/debugging/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx/admin-guide/monitoring/debugging/</guid>
+      <description>&lt;h2 &#xA;id=&#34;introduction&#34;&gt;Introduction  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#introduction&#34; title=&#34;Introduction&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;Debugging helps to identify a bug in the program code if something goes wrong. It is generally used in developing or testing third-party or experimental modules.&lt;/p&gt;&#xA;&lt;p&gt;NGINX debugging features include the debugging log and creation of a core dump file with its further backtrace.&lt;/p&gt;&#xA;&lt;p&gt;&lt;span id=&#34;enable&#34;&gt;&lt;/span&gt;&lt;/p&gt;&#xA;&lt;h3 &#xA;id=&#34;configuring-nginx-binary-for-debugging&#34;&gt;Configuring NGINX Binary For Debugging  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#configuring-nginx-binary-for-debugging&#34; title=&#34;Configuring NGINX Binary For Debugging&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h3&gt;&lt;p&gt;First, you will need to enable debugging in NGINX binary. NGINX Plus already provides you with &lt;em&gt;nginx-debug&lt;/em&gt; binary while NGINX Open Source requires recompilation.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>NGINX Diagnostic Package</title>
+      <link>http://localhost:1313/nginx/admin-guide/monitoring/diagnostic-package/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx/admin-guide/monitoring/diagnostic-package/</guid>
+      <description>&lt;p&gt;&lt;span id=&#34;intro&#34;&gt;&lt;/span&gt;&lt;/p&gt;&#xA;&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;NGINX Diagnostic Package is used to obtain additional information needed by &lt;a href=&#34;https://account.f5.com/myf5&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;F5 Technical Support&lt;/a&gt; when troubleshooting your issue.&lt;/p&gt;&#xA;&lt;p&gt;The package is created by a script that can be &lt;a href=&#34;https://nginx.org/download/nginx-supportpkg.sh&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;downloaded&lt;/a&gt; from the &lt;a href=&#34;https://nginx.org/download/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;nginx.org&lt;/a&gt; website.&lt;/p&gt;&#xA;&lt;p&gt;The script collects the following information:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;host commands such as &lt;code&gt;ps&lt;/code&gt;, &lt;code&gt;lsof&lt;/code&gt;, &lt;code&gt;vmstat&lt;/code&gt;&lt;/li&gt;&#xA;&lt;li&gt;NGINX configuration files&lt;/li&gt;&#xA;&lt;li&gt;NGINX log files&lt;/li&gt;&#xA;&lt;li&gt;NGINX service information&lt;/li&gt;&#xA;&lt;li&gt;NGINX process information&lt;/li&gt;&#xA;&lt;li&gt;NGINX versions, dynamically linked libraries&lt;/li&gt;&#xA;&lt;li&gt;NGINX Plus API endpoints&lt;/li&gt;&#xA;&lt;li&gt;NGINX Agent logs and configs if NGINX Agent is present&lt;/li&gt;&#xA;&lt;li&gt;NGINX App Protect logs and configs if F5 NGINX App Protect is present&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;The script does not collect or create:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Monitoring NGINX and NGINX Plus with the New Relic Plug-In</title>
+      <link>http://localhost:1313/nginx/admin-guide/monitoring/new-relic-plugin/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx/admin-guide/monitoring/new-relic-plugin/</guid>
+      <description>&lt;p&gt;In March, 2013 we released the first version of the &lt;a href=&#34;https://newrelic.com/instant-observability/nginx&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;“nginx web server” plug‑in&lt;/a&gt; for New Relic monitoring of the NGINX Open Source  software and F5 NGINX Plus. Since then, we’ve received lots of interest from users – we greatly appreciate it! The plug‑in continues to be one of the most popular New Relic plug‑ins, in spite of the few things that (we believe!) could be improved. If you don’t already have a New Relic account, &lt;a href=&#34;http://newrelic.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;sign up&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

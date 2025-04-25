@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Maintenance on DEV -- docs-nginx-com</title>
+    <link>http://localhost:1313/nginx-controller/platform/maintenance/</link>
+    <description>Recent content in Maintenance on DEV -- docs-nginx-com</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/nginx-controller/platform/maintenance/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Changing the IP address</title>
+      <link>http://localhost:1313/nginx-controller/platform/maintenance/changing-ip-address/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-controller/platform/maintenance/changing-ip-address/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;This topic explains how to safely update the management IP of F5 NGINX Controller.&lt;/p&gt;&#xA;&lt;blockquote class=&#34;tip&#34;&gt;&#xA;  &lt;div&gt;&lt;strong&gt;See Also:&lt;/strong&gt;&lt;br/&gt; &lt;p&gt;For instructions on how to deploy NGINX Controller as a multi-node resilient cluster, refer to the following deployment guide:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;http://localhost:1313/nginx-controller/admin-guides/install/resilient-cluster-private-cloud/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Deploy NGINX Controller as a Resilient Cluster on a Private Cloud&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&lt;/div&gt;&#xA;&lt;/blockquote&gt;&#xA;&#xA;&lt;h2 &#xA;id=&#34;changing-the-ip-of-a-multi-node-cluster&#34;&gt;Changing the IP of a multi-node cluster  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#changing-the-ip-of-a-multi-node-cluster&#34; title=&#34;Changing the IP of a multi-node cluster&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;To change the IP of a multi-node cluster, follow the steps below for each node in the cluster:&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

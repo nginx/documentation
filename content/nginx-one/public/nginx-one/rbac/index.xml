@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Organize users with RBAC on DEV -- docs-nginx-com</title>
+    <link>http://localhost:1313/nginx-one/rbac/</link>
+    <description>Recent content in Organize users with RBAC on DEV -- docs-nginx-com</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/nginx-one/rbac/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Learn about Role-based access control</title>
+      <link>http://localhost:1313/nginx-one/rbac/overview/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-one/rbac/overview/</guid>
+      <description>&lt;p&gt;Role-based access control (RBAC) is a security system that governs access to resources within a software application. By assigning specific roles to users or groups, RBAC ensures that only authorized individuals have the ability to perform certain actions or access particular areas.&lt;/p&gt;&#xA;&lt;p&gt;The value of RBAC lies in its ability to provide clear and structured control over what users can see and do. This makes it easier to maintain security, streamline user management, and ensure compliance with internal policies or regulations. By giving users only the permissions they need to fulfill their roles, RBAC reduces the risk of unauthorized access and fosters a more efficient and secure operating environment.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Review default roles</title>
+      <link>http://localhost:1313/nginx-one/rbac/roles/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-one/rbac/roles/</guid>
+      <description>&lt;h2 &#xA;id=&#34;default-roles&#34;&gt;Default roles  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#default-roles&#34; title=&#34;Default roles&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;We provide three default &lt;strong&gt;&lt;a href=&#34;https://docs.cloud.f5.com/docs-v2/administration/how-tos/user-mgmt/roles&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;roles&lt;/a&gt;&lt;/strong&gt; that can be used for providing various access levels to the NGINX One Console. These roles will be automatically updated as new features are added to the NGINX One Console. Default roles can be scoped to specific namespaces.&lt;/p&gt;&#xA;&lt;h3 &#xA;id=&#34;admin&#34;&gt;Admin  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#admin&#34; title=&#34;Admin&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h3&gt;&lt;p&gt;The Admin role, identified as &lt;code&gt;f5xc-nginx-one-standard-admin&lt;/code&gt;, provides full read and write access to all endpoints and features within the NGINX One Console.&#xA;It also supports Role-based access control for related XC services.&lt;!--, as described in [Role-based Access Control Concepts](https://docs.cloud.f5.com/docs-v2/administration/how-tos/user-mgmt/rbac).--&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Set up custom roles with API groups</title>
+      <link>http://localhost:1313/nginx-one/rbac/rbac-api/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-one/rbac/rbac-api/</guid>
+      <description>&lt;p&gt;Beyond the &lt;a href=&#34;http://localhost:1313/nginx-one/rbac/roles/&#34;&gt;Default roles&lt;/a&gt; for NGINX One Console access, you can create &lt;a href=&#34;https://docs.cloud.f5.com/docs-v2/administration/how-tos/user-mgmt/roles#custom-roles&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;custom roles&lt;/a&gt; with more precisely defined access permissions.&#xA;You can assign custom roles to users or service accounts.&lt;/p&gt;&#xA;&lt;p&gt;You can associate these roles with specific &lt;a href=&#34;https://docs.cloud.f5.com/docs-v2/multi-cloud-app-connect/how-to/app-security/service-policy&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;namespaces&lt;/a&gt;, to help facilitate the principle of least privilege across your tenant.&#xA;For this use-case, we include a list of API groups that you can use to specify permissions for custom roles with more granular access controls to NGINX One Console APIs.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

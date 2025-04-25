@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Migrate Hardware ADCs on DEV -- docs-nginx-com</title>
+    <link>http://localhost:1313/nginx/deployment-guides/migrate-hardware-adc/</link>
+    <description>Recent content in Migrate Hardware ADCs on DEV -- docs-nginx-com</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/nginx/deployment-guides/migrate-hardware-adc/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Migrating Load Balancer Configuration from Citrix ADC to NGINX Plus</title>
+      <link>http://localhost:1313/nginx/deployment-guides/migrate-hardware-adc/citrix-adc-configuration/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx/deployment-guides/migrate-hardware-adc/citrix-adc-configuration/</guid>
+      <description>&lt;p&gt;F5 NGINX Plus provides a flexible replacement for traditional hardware‑based &lt;a href=&#34;https://www.nginx.com/resources/glossary/application-delivery-controller/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;application delivery controllers&lt;/a&gt; (ADCs). As a software load balancer with a small footprint, NGINX Plus can be deployed just about anywhere – on bare metal, on a virtual machine, or in a container, and on‑premises or in public, private, and hybrid clouds. This guide explains how to migrate the Citrix ADC configuration for several common load‑balancer features to the NGINX Plus application delivery platform. It covers the most commonly used features to get you started quickly.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Migrating Load Balancer Configuration from F5 BIG-IP LTM to F5 NGINX Plus</title>
+      <link>http://localhost:1313/nginx/deployment-guides/migrate-hardware-adc/f5-big-ip-configuration/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx/deployment-guides/migrate-hardware-adc/f5-big-ip-configuration/</guid>
+      <description>&lt;p&gt;F5 NGINX Plus provides a flexible replacement for traditional hardware‑based &lt;a href=&#34;https://www.nginx.com/resources/glossary/application-delivery-controller/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;application delivery controllers&lt;/a&gt; (ADCs). NGINX Plus is a small software package that can be installed just about anywhere – on bare metal, a virtual machine, or a container, and on‑premises or in public, private, and hybrid clouds – while providing the same level of application delivery, high availability, and security offered by legacy ADCs. This guide explains how to migrate an &lt;span style=&#34;white-space: nowrap;&#34;&gt;F5 BIG-IP&lt;/span&gt; Local Traffic Manager (LTM) configuration to the NGINX Plus software application delivery platform, and covers the most commonly used features and configurations to get you started quickly on your migration.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

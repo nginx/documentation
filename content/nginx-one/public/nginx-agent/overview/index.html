@@ -1,0 +1,2049 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>  
+  <style>
+    body {
+       
+      visibility: hidden;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+  </style>
+  
+  <noscript>
+    <style>
+       
+      body {
+        visibility: visible;
+      }
+    </style>
+  </noscript>
+  
+
+
+  <script>
+
+    const setTheme = (isNewTheme) => {
+      localStorage.setItem("useNewTheme", `${isNewTheme}`);
+      
+      const v1cssIds = [
+        "cssFA1",
+        "cssFA2",
+        "cssFA3",
+        "cssBootstrap",
+        "css1",
+        "css2",
+        "css3",
+        "css4",
+        "css5",
+        "css6",
+      ];
+
+      v1cssIds.forEach((cssId) => {
+        const element = document.getElementById(cssId);
+        if (element !== null) {
+          element.disabled = isNewTheme;
+        }
+      });
+
+      const v2cssIds = ["css7", "css9"];
+      v2cssIds.forEach((cssId) => {
+        const element = document.getElementById(cssId);
+        if (element !== null) {
+          element.disabled = !isNewTheme;
+        }
+      });
+
+      
+      const v1ElementIds = ["sidebar", "footer", "toc", "api", "search-v1", "breadcrumb-v1", "list-v1"]
+
+      v1ElementIds.forEach((elementId) => {
+        const element = document.getElementById(elementId);
+        if (element !== null) {
+          element.style.display = isNewTheme ? "none" : "";
+        }
+
+        const trustarc = document.getElementById("teconsent-v1");
+        if (trustarc) {
+          trustarc.id = isNewTheme ? "teconsent-v1" : "teconsent";
+        }
+      });
+
+      document.querySelectorAll(".table-v1").forEach((table) => {
+        table.style.display = isNewTheme ? "none" : "";
+      });
+
+      const notMfElements = ['[data-mf="false"]'];
+      notMfElements.forEach((elementId) => {
+        document.querySelectorAll(elementId).forEach((element) => {
+          element.style.display = isNewTheme ? "none" : "";
+        });
+      })
+
+      const mfElements = ['[data-mf="true"]'];
+      mfElements.forEach((elementId) => {
+        document.querySelectorAll(elementId).forEach((element) => {
+          element.style.display = isNewTheme ? "" : "none";
+
+          const trustarc = document.getElementById("teconsent-v2");
+          if (trustarc) {
+            trustarc.id = isNewTheme ? "teconsent" : "teconsent-v2";
+          }
+        });
+      });
+
+      document.getElementById("body").style.visibility = "visible";
+    };
+
+    const toggleTheme = () => {
+      setTheme(!(localStorage.getItem("useNewTheme") === "true"));
+    };
+
+    
+    const mf = toggleTheme;
+    const useNewTheme = toggleTheme;
+
+    document.addEventListener("DOMContentLoaded", () => {
+      setTheme(localStorage.getItem("useNewTheme") === "true");
+    });
+
+    function gameCode(callback) {
+      let kkeys = [];
+      
+      const code = "38,38,40,40,37,39,37,39,66,65";
+      return (event) => {
+        kkeys.push(event.keyCode);
+        if (kkeys.toString().indexOf(code) >= 0) {
+          callback(event);
+          kkeys = [];
+        }
+      };
+    }
+    const handler = gameCode(() => {
+      mf();
+    });
+    window.addEventListener("keydown", handler);
+
+  </script>
+
+  
+
+  <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Overview | DEV -- docs-nginx-com</title>
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:1313/nginx-agent/overview/">
+
+
+
+
+
+
+
+<meta property="article:publisher" content="https://www.facebook.com/nginxinc" />
+<meta property="og:image" content="http://localhost:1313/images/icons/NGINX-Docs-new-docs-dark-1200x630.png" />
+<meta property="og:image:width" content="500" />
+<meta property="og:image:height" content="300" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:description" content="" />
+<meta name="twitter:title" content="Overview" />
+<meta name="twitter:site" content="@nginx" />
+<meta name="twitter:image" content="http://localhost:1313/images/icons/NGINX-Docs-new-docs-dark-1200x630.png" />
+<meta name="twitter:creator" content="@nginx" />
+
+<meta http-equiv="last-modified" content="19/03/2025" />
+
+
+
+
+<meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline'
+    https://consent.trustarc.com/ https://mktg.tags.f5.com/basic/prod/utag.sync.js https://static.cloud.coveo.com/ https://*.f5.com/
+    https://*.netlify.app https://gist.github.com
+    https://tag.demandbase.com/pscSDsz4.min.js
+    https://munchkin.brightfunnel.com/js/build/bf-munchkin.min.js
+    https://www.googletagmanager.com/gtm.js
+    https://www.google-analytics.com/
+    https://www.google-analytics.com/analytics.js
+    https://www.google-analytics.com/plugins/ua/linkid.js
+    https://cdn.bizible.com/scripts/bizible.js
+    https://cdn.bizible.com/xdc.js
+    https://f5networksglobalprod.122.2o7.net/
+    https://f5networksnginxdocs.122.2o7.net/
+    https://*.siteintercept.qualtrics.com/SIE/?Q_ZID=*
+    https://siteintercept.qualtrics.com/
+    ;
+    worker-src 'self' blob:">
+
+
+
+<meta property="environment" type="development" />
+<meta property="buildtype" type="webdocs" />
+<meta property="isServer" type="true" />
+
+
+<meta name="product" content="DEV -- docs-nginx-com">
+<meta name="version" content="">
+<meta name="doc_type" content="Manual">
+  
+  <link rel="shortcut icon" type="image/x-icon" href="http://localhost:1313/images/favicon-48x48.ico">
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+<link href="/css/v2/style.css" integrity="" rel="stylesheet" type="text/css" id="css7"
+  disabled>
+
+
+<link href="/css/inter/inter.987d1be34797653eabce3627efb116c263d4045fd5badfe003ff283c5a5da435d83a3fad6bfe524e3ce3cf8a41168a30e7aa42507961257eeb275024def0f9b9.css" integrity="sha512-mH0b40eXZT6rzjYn77EWwmPUBF/Vut/gA/8oPFpdpDXYOj&#43;ta/5STjzjz4pBFoow56pCUHlhJX7rJ1Ak3vD5uQ==" rel="stylesheet" type="text/css"
+  id="cssInter">
+
+
+<link href="/css/v2/highlight.min.9ef7c7ad221175216abc8a5827f967bcd7c0e035bfa91180acd26a2c36d54242ae5f485986c260d70b1bbdf225ad76cdbba3179afa7e4335282cc3080a17e337.css" rel="stylesheet" type="text/css" id="css9">
+
+
+
+
+
+<link href="/fontawesome/css/all.min.4a71f958af9b67180f1ece38b96217f8b2c9009f7fd8f90f299e508808fa4daf3ac3e7ec6f64e47267d1c955f7a419cc15c57ba103c9925f507af4825abdd6e8.css" integrity="sha512-SnH5WK&#43;bZxgPHs44uWIX&#43;LLJAJ9/2PkPKZ5QiAj6Ta86w&#43;fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" rel="stylesheet" type="text/css"
+  id="cssFA1">
+
+
+<link href="/fontawesome/css/v4-font-face.min.5870089ba06cf03e9721f87919eaf15c961a65e071845949ed2da58c5bfbd18a714c5dab2c155f0455ebcd2f45bfd598a5e47ae19976e7aa3a51e22914eac1b6.css" integrity="sha512-WHAIm6Bs8D6XIfh5GerxXJYaZeBxhFlJ7S2ljFv70YpxTF2rLBVfBFXrzS9Fv9WYpeR64Zl256o6UeIpFOrBtg==" rel="stylesheet" type="text/css"
+  id="cssFA2">
+
+
+<link href="/fontawesome/css/v5-font-face.min.81bdf1c9f8ff16b1eda613d52d868a059f16c8c6045c3d7e0a0b771622a11666cdd94b8ea62b5edb0d4b826c3a3737ec3663065fe05b56b6b871e57de73f556b.css" integrity="sha512-gb3xyfj/FrHtphPVLYaKBZ8WyMYEXD1&#43;Cgt3FiKhFmbN2UuOpite2w1Lgmw6NzfsNmMGX&#43;BbVra4ceV95z9Vaw==" rel="stylesheet" type="text/css"
+  id="cssFA3">
+
+
+
+<link href="/css/bootstrap.min.3f9320327d6304dd356ac060534cfad10938431897a3cebec2515a84aaec41fdfb73d72ba39d7b5b35523cf575b432b3864bb6889d855602faef01b4dd21a734.css" integrity="sha512-P5MgMn1jBN01asBgU0z60Qk4QxiXo86&#43;wlFahKrsQf37c9cro517WzVSPPV1tDKzhku2iJ2FVgL67wG03SGnNA==" rel="stylesheet"
+  type="text/css" id="cssBootstrap">
+
+
+
+<link rel="stylesheet" href="https://static.cloud.coveo.com/searchui/v2.10104/0/css/CoveoFullSearch.min.css"
+  integrity="sha512-9/A9yVCU4GS6/iIwTRJKnan4Hf8gDKj3anwItN9QCsU8SixaT5xkjjWsZ/iq0TWaizhtqOLacadXJfxHlwYCcA=="
+  crossorigin="anonymous" />
+
+
+<link
+  rel="stylesheet"
+  href="https://static.cloud.coveo.com/atomic/v3.19.0/themes/coveo.css"
+  integrity="sha512-m2BufPi8Tc6H2jcQfDj/PIl5H57C9jeqhbDFgFXKTtOhoC4S7ULXmx74FseZ8WXpfdT9uyccMHDBJDrIZlrUUQ=="
+  crossorigin="anonymous"/>
+
+
+<link href="/css/docs-nginx-com/nginx-site-header.min.80b10ed49ecfad93607ee771acca88d13dc958e6eecc642af3aa2b170c86b8dcce442e7b86c3e5298c95b0ab2b053a71074c2f15c28266c3a2c502275415b3a7.css" rel="stylesheet" type="text/css" id="css1">
+
+
+<link href="/css/docs-nginx-com/style.min.2cd4748c438c49d012a5fdc6b98770223c4875fe0f89517b17423b6a5328af4d93d9d772207bfc51d9449781281e1eb8707dcc2f7467e6e24330c9b8c7c5f734.css" rel="stylesheet" type="text/css" id="css2">
+
+
+<link href="/css/bootstrap-docs.min.8a70c94c72e3783cecd631bc1705c7843b2fdef99f1549f0bf7f774a4083173ee25974413a8206c2340c0fee9bb7a07acd41d41c78ae2280c96a2ce0faca2847.css" rel="stylesheet" type="text/css" id="css3">
+
+
+
+<link href="/css/coveo.min.fce7d4df31de99e4f86510a90915820f236b8dcd02be030b27529af7ff10189f807c78cedacb91afa9d07f310a172c6046b1921832f199b9158898a7f74fa117.css" rel="stylesheet" type="text/css" id="css6">
+
+
+
+<link href="/css/f5-hugo.min.42feae8b135e9380a66db9c3cb2803221888524a29f41cbc55790b5cb5a309ac7e6dd80e70ed0260370fd93c04b7aa8a5c3d6aca0964804341fad51cfcec963f.css" rel="stylesheet" type="text/css" id="css4">
+
+
+<link href="/css/inline-overrides.min.495e6889d9955581580c654bad961bb33af6344b283af7e9a34648c5e8d5f1fe90efb8aac33359c4178efd36cd7cb92c7c6458d4175caff9c284b14bd9d2b97a.css" rel="stylesheet" type="text/css" id="css8">
+
+
+
+
+
+<link href="/css/highlight.min.fe5647c4b67f4b3fcf0ea60b483479d567ba1b05ee6e816439207edfa3d310dbee79536278c67d89c1db5da275bde962a10163da375f05bd19743e2a80e1ad02.css" rel="stylesheet" type="text/css" id="css5">
+  
+  
+  
+  
+  
+  
+        
+  <script async="async" src="https://consent.trustarc.com/notice?domain=f5.com&c=teconsent&js=nj&noticeType=bb&text=true&gtm=1" crossorigin=""></script>
+  
+  
+
+<script src="https://mktg.tags.f5.com/basic/prod/utag.sync.js"></script> 
+
+
+  
+  
+  
+  
+  
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-K5HG9JT');</script>
+  
+  </head>
+  
+  <body id="body">
+    
+   
+<script type="text/javascript"> 
+    (function(a,b,c,d) { 
+        a='//mktg.tags.f5.com/basic/prod/utag.js'; 
+        b=document;c='script';d=b.createElement(c);d.src=a; 
+        d.type='text/java'+c;d.async=true; 
+        a=b.getElementsByTagName(c)[0];a.parentNode.insertBefore(d,a)})(); 
+</script> 
+    
+  
+    <header>
+      
+<div class="navbar navbar-expand navbar-dark flex-column flex-md-row bd-navbar navbar-fixed-top">
+  <div class="container-fluid flex-md-row flex-column header-container">
+    <a class="navbar-brand mr-0 mr-md-2" href="/" aria-label="NGINX Docs">
+      <img class="navbar-img" src="http://localhost:1313/images/icons/NGINX-Docs-horiz-white-type.svg" alt="NGINX Docs">
+    </a>
+    
+      <div class="navbar navbar-nav">
+        
+        <div id="searchbox">
+          
+          <div class="CoveoSearchbox" data-placeholder='Search NGINX Docs...'></div>
+        </div>
+        <atomic-search-interface id="search-standalone-header" data-mf="true" style="display:none;">
+          <atomic-search-box redirection-url="/search.html">
+          </atomic-search-box>
+        </atomic-search-interface>
+      </div>
+    
+    
+    
+    
+    <ul class="navbar navbar-nav">
+        <li class="nav-item-explore active">
+          <button id="navbar-sites-button" class="button navbar-button">
+              F5 Sites
+              <i id="navbar-sites-button-icon" class="link-chevron-icon fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="dropdown-content" id="dropdown-content">
+            <ul>
+              
+                <li>
+                  <a href="https://community.f5.com/" target="_blank" >DevCentral</a>
+                  <p>Connect &amp; learn in our hosted community</p>
+                </li>
+              
+                <li>
+                  <a href="https://my.f5.com/" target="_blank" >MyF5</a>
+                  <p>Your key to everything F5, including support, registration keys, and subscriptions</p>
+                </li>
+              
+                <li>
+                  <a href="https://nginx.org/" target="_blank" >NGINX</a>
+                  <p>Learn more about NGINX Open Source and read the community blog</p>
+                </li>
+              
+            </ul>
+          </div>
+        </li>
+    </ul>
+  </div>
+</div>
+
+
+    </header>
+  
+    <section class="base-layout" data-testid="base-layout">
+      <section id="breadcrumb-v1">
+        
+          
+          <nav aria-label="breadcrumb" class="breadcrumb navbar">
+    <div class="nav flex-md-row">
+        <ol class="breadcrumb">
+            
+            
+            
+            
+                
+            
+            
+                
+            
+            
+                
+            
+            
+            
+                <li><a href="/">Home</a><i class="fas fa-chevron-right"></i></li>
+                
+            
+                <li><a href="/nginx-agent/">NGINX Agent</a><i class="fas fa-chevron-right"></i></li>
+                
+            
+                Overview
+        </ol>
+    </div>
+</nav>
+  
+          
+        
+      </section>
+  
+      <div class="main container-fluid min-page-height" data-menu-id="/nginx-agent/overview/">
+        
+<div class="docs-container row override-sidebar-collapse">
+<div class="docs-container row override-sidebar-collapse">
+  <nav id="sidebar" class="sidenav overflow-auto col-md-3 d-none d-xl-block d-print-none align-top">
+    
+
+<div id="sidebar-wrapper">
+     <div id="sidebar" class="sidebar" aria-label="Sidebar navigation">
+        <button id="sidebar-toggle-button" title="Toggle sidebar navigation" role="button" aria-controls="sidebar-content">
+           <i class="fa fa-chevron-right sidebar-visible-collapsed"></i>
+           <i class="fa fa-chevron-left sidebar-visible-expanded"></i>
+        </button>
+        <div id="sidebar-content">
+            <h3>
+                <a class="sidebar-title" href="http://localhost:1313/nginx-agent/" alt="NGINX Agent"><img
+                        class="card-img-top" src="http://localhost:1313//images/icons/NGINX-product-icon.png"
+                        alt="NGINX Agent">
+                    NGINX Agent</a>
+            </h3>
+            <ul>
+            
+            
+                
+                
+                <li class="nginx-toc-link l1">
+                    <a data-menu-id="/nginx-agent/overview/" href="http://localhost:1313/nginx-agent/overview/">Overview</a>
+                </li>
+                
+                
+
+            
+                
+                
+                <li class="nginx-toc-link l1">
+                    <a data-menu-id="/nginx-agent/technical-specifications/" href="http://localhost:1313/nginx-agent/technical-specifications/">Technical specifications</a>
+                </li>
+                
+                
+
+            
+                
+                
+                <div class="accordion" id="accordion1">
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <li class="nginx-toc-link l1">
+                                    <a data-menu-id="/nginx-agent/installation-upgrade/" class="accordion-toggle" aria-expanded="false"
+                                    data-toggle="collapse" href="#" data-target="#agent--installation-and-upgrade" aria-controls="agent--installation-and-upgrade">
+                                    <i class="fa fa-2xs fa-fw fa-chevron-right"></i><i
+                                        class="fa fa-2xs fa-fw fa-chevron-down"></i>Installation and upgrade</a>
+                            </li>
+                        </div>
+                        <div id="agent--installation-and-upgrade" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-agent/installation-upgrade/getting-started/"
+                                                                href="http://localhost:1313/nginx-agent/installation-upgrade/getting-started/">Getting started</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-agent/installation-upgrade/installation-github/"
+                                                                href="http://localhost:1313/nginx-agent/installation-upgrade/installation-github/">Installation from GitHub release</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-agent/installation-upgrade/installation-oss/"
+                                                                href="http://localhost:1313/nginx-agent/installation-upgrade/installation-oss/">Installation from NGINX repository</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-agent/installation-upgrade/installation-plus/"
+                                                                href="http://localhost:1313/nginx-agent/installation-upgrade/installation-plus/">Installation from NGINX Plus repository</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-agent/installation-upgrade/installation-unprivileged/"
+                                                                href="http://localhost:1313/nginx-agent/installation-upgrade/installation-unprivileged/">Run without root privileges</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-agent/installation-upgrade/upgrade/"
+                                                                href="http://localhost:1313/nginx-agent/installation-upgrade/upgrade/">Upgrade NGINX Agent package</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-agent/installation-upgrade/uninstall/"
+                                                                href="http://localhost:1313/nginx-agent/installation-upgrade/uninstall/">Uninstall NGINX Agent package</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                                
+                                    
+                                    <div class="accordion" id="Accordion2">
+                                        <div class="sidebar-l1-padding">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/agent/installation-upgrade/container-environments/" class="accordion-toggle"
+                                                                aria-expanded="false" data-toggle="collapse"
+                                                                href="#agent--installation-upgrade--container-environments">
+                                                                <i class="fa fa-2xs fa-fw fa-chevron-right"></i><i
+                                                                    class="fa fa-2xs fa-fw fa-chevron-down"></i>Container environments</a>
+                                                        </li>
+                                                    <ul>
+                                                </div>
+                                                <div id="agent--installation-upgrade--container-environments" class="accordion-body collapse leaf">
+                                                    <div class="accordion-inner">
+
+                                                    
+                                                        
+                                                        
+                                                        <ul class="sidebar-l2-padding">
+                                                            <li class="nginx-toc-link l3 sidebar-il-border">
+                                                                <a data-menu-id="/nginx-agent/installation-upgrade/container-environments/docker-images/" href="http://localhost:1313/nginx-agent/installation-upgrade/container-environments/docker-images/">Build container images</a>
+                                                            </li>
+                                                        </ul>
+                                                        
+                                                        
+                                                    
+                                                        
+                                                        
+                                                        <ul class="sidebar-l2-padding">
+                                                            <li class="nginx-toc-link l3 sidebar-il-border">
+                                                                <a data-menu-id="/nginx-agent/installation-upgrade/container-environments/docker-support/" href="http://localhost:1313/nginx-agent/installation-upgrade/container-environments/docker-support/">Container support and troubleshooting</a>
+                                                            </li>
+                                                        </ul>
+                                                        
+                                                        
+                                                    
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+
+            
+                
+                
+                <div class="accordion" id="accordion1">
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <li class="nginx-toc-link l1">
+                                    <a data-menu-id="/nginx-agent/configuration/" class="accordion-toggle" aria-expanded="false"
+                                    data-toggle="collapse" href="#" data-target="#agent--configuration" aria-controls="agent--configuration">
+                                    <i class="fa fa-2xs fa-fw fa-chevron-right"></i><i
+                                        class="fa fa-2xs fa-fw fa-chevron-down"></i>Configuration</a>
+                            </li>
+                        </div>
+                        <div id="agent--configuration" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-agent/configuration/configuration-overview/"
+                                                                href="http://localhost:1313/nginx-agent/configuration/configuration-overview/">Basic configuration</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-agent/configuration/configure-nginx-agent-features/"
+                                                                href="http://localhost:1313/nginx-agent/configuration/configure-nginx-agent-features/">Features configuration</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-agent/configuration/encrypt-communication/"
+                                                                href="http://localhost:1313/nginx-agent/configuration/encrypt-communication/">Encrypt communication</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-agent/configuration/configure-nginx-agent-group/"
+                                                                href="http://localhost:1313/nginx-agent/configuration/configure-nginx-agent-group/">Add NGINX users to nginx-agent Group</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-agent/configuration/health-checks/"
+                                                                href="http://localhost:1313/nginx-agent/configuration/health-checks/">Health checks</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+
+            
+                
+                
+                <div class="accordion" id="accordion1">
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <li class="nginx-toc-link l1">
+                                    <a data-menu-id="/nginx-agent/contribute/" class="accordion-toggle" aria-expanded="false"
+                                    data-toggle="collapse" href="#" data-target="#agent--contribute" aria-controls="agent--contribute">
+                                    <i class="fa fa-2xs fa-fw fa-chevron-right"></i><i
+                                        class="fa fa-2xs fa-fw fa-chevron-down"></i>Contribute</a>
+                            </li>
+                        </div>
+                        <div id="agent--contribute" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-agent/contribute/community/"
+                                                                href="http://localhost:1313/nginx-agent/contribute/community/">Community and contribution</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-agent/contribute/dev-environment-setup/"
+                                                                href="http://localhost:1313/nginx-agent/contribute/dev-environment-setup/">Development environment setup</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+
+            
+                
+                
+                <li class="nginx-toc-link l1">
+                    <a data-menu-id="/nginx-agent/changelog/" href="http://localhost:1313/nginx-agent/changelog/">Changelog</a>
+                </li>
+                
+                
+
+            
+
+            </ul>
+        
+        </div>
+    </div>
+</div>
+
+  </nav>
+
+  
+  
+  <main class="content col d-block align-top content-has-toc" role="main">
+  
+    
+  <section class="main-layout">
+    <div class="sidebar-layout" id="sidebar-layout">
+      <nav data-mf="true" id="sidebar-v2" class="sidebar" style="display:none;">
+        
+
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+
+
+
+
+<atomic-search-interface id="search-standalone-sidebar" data-mf="true" style="display:none;">
+    <atomic-search-box redirection-url="/search.html">
+    </atomic-search-box>
+</atomic-search-interface>
+<button class="product-selector-button" id="product-selector-button">
+    
+    <div class="product-selector-name" id="product-selector-name">NGINX Agent</div>
+    <div class="product-selector-button-icon" id="product-selector-button-icon">
+        <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg" id="product-selector-chevron-icon">
+            <path d="M1 13L7 7L0.999999 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="product-selector-chevron-icon"/>
+        </svg>     
+    </div>
+</button>
+<div class="product-selector" id="product-selector">
+    
+    
+    
+    
+    
+        <div class="product-selector-content" id="product-selector-content">
+            <p id="product-selector-content-product-group-name">NGINX ONE</p>
+            <ul id="product-selector-content-product-container">
+            
+                <li id="product-selector-content-product-name">
+                    <a id="product-selector-content-product-link" href="/nginx-one">NGINX One Console</a>
+                </li>
+            
+                <li id="product-selector-content-product-name">
+                    <a id="product-selector-content-product-link" href="/nginx">NGINX Plus</a>
+                </li>
+            
+                <li id="product-selector-content-product-name">
+                    <a id="product-selector-content-product-link" href="/nginx-instance-manager">NGINX Instance Manager</a>
+                </li>
+            
+                <li id="product-selector-content-product-name">
+                    <a id="product-selector-content-product-link" href="/nginx-ingress-controller">NGINX Ingress Controller</a>
+                </li>
+            
+                <li id="product-selector-content-product-name">
+                    <a id="product-selector-content-product-link" href="/nginx-gateway-fabric">NGINX Gateway Fabric</a>
+                </li>
+            
+                <li id="product-selector-content-product-name">
+                    <a id="product-selector-content-product-link" href="https://nginx.org/en/docs/">NGINX Open Source</a>
+                </li>
+            
+                <li id="product-selector-content-product-name">
+                    <a id="product-selector-content-product-link" href="/solutions/">Subscription Licensing &amp; Solutions</a>
+                </li>
+            
+                <li id="product-selector-content-product-name">
+                    <a id="product-selector-content-product-link" href="/nginx-agent">NGINX Agent</a>
+                </li>
+            
+            </ul>
+        </div>
+    
+    
+    
+        <div class="product-selector-content" id="product-selector-content">
+            <p id="product-selector-content-product-group-name">NGINX APP PROTECT</p>
+            <ul id="product-selector-content-product-container">
+            
+                <li id="product-selector-content-product-name">
+                    <a id="product-selector-content-product-link" href="/nginx-app-protect-waf">NGINX App Protect WAF</a>
+                </li>
+            
+                <li id="product-selector-content-product-name">
+                    <a id="product-selector-content-product-link" href="/nginx-app-protect-dos">NGINX App Protect DoS</a>
+                </li>
+            
+            </ul>
+        </div>
+    
+    
+    
+        <div class="product-selector-content" id="product-selector-content">
+            <p id="product-selector-content-product-group-name">NGINX AS A SERVICE</p>
+            <ul id="product-selector-content-product-container">
+            
+                <li id="product-selector-content-product-name">
+                    <a id="product-selector-content-product-link" href="/nginxaas/azure/">NGINX as a Service for Azure</a>
+                </li>
+            
+            </ul>
+        </div>
+    
+    
+    
+        <div class="product-selector-content" id="product-selector-content">
+            <p id="product-selector-content-product-group-name">NGINX OTHER</p>
+            <ul id="product-selector-content-product-container">
+            
+                <li id="product-selector-content-product-name">
+                    <a id="product-selector-content-product-link" href="https://unit.nginx.org/">NGINX Unit</a>
+                </li>
+            
+            </ul>
+        </div>
+    
+</div>
+<div class="scrollbar-container">
+    <div class="sidebar-navigation">
+        <ul class="parent-collapsible-content">
+        
+            <li class="parent-collapsible-content-item">
+                
+                                          
+                        <span class="parent-box current"></span>                 
+                    
+                    <a href="http://localhost:1313/nginx-agent/overview/" style="font-weight: bold;">Overview </a> 
+                
+            </li>
+        
+            <li class="parent-collapsible-content-item">
+                
+                                         
+                        <span class="parent-box-link"></span>              
+                    
+                    <a href="http://localhost:1313/nginx-agent/technical-specifications/" style="">Technical specifications </a> 
+                
+            </li>
+        
+            <li class="parent-collapsible-content-item">
+                
+                    <input type="checkbox" id="toggle-9ee9ed600e6759d7679278e52922cd6d" class="toggle-checkbox" style="display: none;">
+                    <label for="toggle-9ee9ed600e6759d7679278e52922cd6d" class="collapsible-header">
+                        
+                            <span class="parent-box expand"></span>
+                            <span class="parent-box opened"></span>
+                        
+                        Installation and upgrade 
+                    </label>
+                    
+
+<ul class="collapsible-content">
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-agent/installation-upgrade/getting-started/" style="">Getting started </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-agent/installation-upgrade/installation-github/" style="">Installation from GitHub release </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-agent/installation-upgrade/installation-oss/" style="">Installation from NGINX repository </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-agent/installation-upgrade/installation-plus/" style="">Installation from NGINX Plus repository </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-agent/installation-upgrade/installation-unprivileged/" style="">Run without root privileges </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-agent/installation-upgrade/upgrade/" style="">Upgrade NGINX Agent package </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-agent/installation-upgrade/uninstall/" style="">Uninstall NGINX Agent package </a>
+            
+        
+    </li>
+    
+    <li>
+        
+            <input type="checkbox" id="toggle-f9a3904d591af390e325455e0934af62" class="toggle-checkbox" style="display: none;">
+            <label for="toggle-f9a3904d591af390e325455e0934af62" class="collapsible-header">
+                
+                    <span class="box expand partial-box"></span>
+                    <span class="box opened partial-box"></span>
+                
+                Container environments 
+            </label>
+            
+
+<ul class="collapsible-content">
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-agent/installation-upgrade/container-environments/docker-images/" style="">Build container images </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-agent/installation-upgrade/container-environments/docker-support/" style="">Container support and troubleshooting </a>
+            
+        
+    </li>
+    
+</ul>
+        
+    </li>
+    
+</ul>
+                
+            </li>
+        
+            <li class="parent-collapsible-content-item">
+                
+                    <input type="checkbox" id="toggle-d4392e74d679627d654c7c3ddffe99b9" class="toggle-checkbox" style="display: none;">
+                    <label for="toggle-d4392e74d679627d654c7c3ddffe99b9" class="collapsible-header">
+                        
+                            <span class="parent-box expand"></span>
+                            <span class="parent-box opened"></span>
+                        
+                        Configuration 
+                    </label>
+                    
+
+<ul class="collapsible-content">
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-agent/configuration/configuration-overview/" style="">Basic configuration </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-agent/configuration/configure-nginx-agent-features/" style="">Features configuration </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-agent/configuration/encrypt-communication/" style="">Encrypt communication </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-agent/configuration/configure-nginx-agent-group/" style="">Add NGINX users to nginx-agent Group </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-agent/configuration/health-checks/" style="">Health checks </a>
+            
+        
+    </li>
+    
+</ul>
+                
+            </li>
+        
+            <li class="parent-collapsible-content-item">
+                
+                    <input type="checkbox" id="toggle-8acaab5d003bf79d8fba1529038f5b9e" class="toggle-checkbox" style="display: none;">
+                    <label for="toggle-8acaab5d003bf79d8fba1529038f5b9e" class="collapsible-header">
+                        
+                            <span class="parent-box expand"></span>
+                            <span class="parent-box opened"></span>
+                        
+                        Contribute 
+                    </label>
+                    
+
+<ul class="collapsible-content">
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-agent/contribute/community/" style="">Community and contribution </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-agent/contribute/dev-environment-setup/" style="">Development environment setup </a>
+            
+        
+    </li>
+    
+</ul>
+                
+            </li>
+        
+            <li class="parent-collapsible-content-item">
+                
+                                         
+                        <span class="parent-box-link"></span>              
+                    
+                    <a href="http://localhost:1313/nginx-agent/changelog/" style="">Changelog </a> 
+                
+            </li>
+        
+        </ul>
+    </div>
+</div>
+      </nav>
+    </div>
+
+    <section class="content-layout">
+      <div data-cms-edit="content" class="text-content">
+        <section class="breadcrumb-layout" data-mf="true" style="display: none;">
+          
+            
+            <nav aria-label="breadcrumb" class="breadcrumb navbar">
+    <div class="nav flex-md-row">
+        <ol class="breadcrumb">
+            
+            
+            
+            
+                
+            
+            
+                
+            
+            
+                
+            
+            
+            
+                <li><a href="/">Home</a><i class="fas fa-chevron-right"></i></li>
+                
+            
+                <li><a href="/nginx-agent/">NGINX Agent</a><i class="fas fa-chevron-right"></i></li>
+                
+            
+                Overview
+        </ol>
+    </div>
+</nav>
+  
+            
+          
+        </section>
+        <h1>Overview</h1>
+        <h2 
+id="overview">Overview  <a class="headerlink float-right" href="#overview" title="Overview"><i class="fas fa-link fa-xs"></i></a>
+</h2><p>NGINX Agent is a companion daemon for your NGINX Open Source or NGINX Plus instance. It enables:</p>
+<ul>
+<li>Remote management of NGINX configurations</li>
+<li>Collection and reporting of real-time NGINX performance and operating system metrics</li>
+<li>Notifications of NGINX events</li>
+</ul>
+<figure><img class="figure-bitmap" src="/agent/grafana-dashboard-example.png"
+    alt="Grafana dashboard showing metrics reported by NGINX Agent" width="99%"><figcaption>
+            <p>Grafana  dashboard showing metrics reported by NGINX Agent</p>
+        </figcaption>
+</figure>
+<h2 
+id="how-it-works">How it Works  <a class="headerlink float-right" href="#how-it-works" title="How it Works"><i class="fas fa-link fa-xs"></i></a>
+</h2><p>NGINX Agent runs as a companion process on a system running NGINX. It provides gRPC and REST interfaces for configuration management and metrics collection from the NGINX process and operating system. NGINX Agent enables remote interaction with NGINX using common Linux tools and unlocks the ability to build sophisticated monitoring and control systems that can manage large collections of NGINX instances.</p>
+<figure><img class="figure-bitmap" src="/agent/agent-flow.png"
+    alt="How NGINX Agent works" width="99%"><figcaption>
+            <p>How Agent works</p>
+        </figcaption>
+</figure>
+<h2 
+id="configuration-management">Configuration Management  <a class="headerlink float-right" href="#configuration-management" title="Configuration Management"><i class="fas fa-link fa-xs"></i></a>
+</h2><p>NGINX Agent provides an API interface for submission of updated configuration files. Upon receipt of a new file, it checks the output of <code>nginx -V</code> to determine the location of existing configurations. It then validates the new configuration with <code>nginx -t</code> before applying it via a signal HUP to the NGINX master process.</p>
+<h2 
+id="collecting-metrics">Collecting Metrics  <a class="headerlink float-right" href="#collecting-metrics" title="Collecting Metrics"><i class="fas fa-link fa-xs"></i></a>
+</h2><p>NGINX Agent interfaces with NGINX process information and parses NGINX logs to calculate and report metrics. When interfacing with NGINX Plus, NGINX Agent pulls relevant information from the NGINX Plus API. Reported metrics may be aggregated by <a href="https://prometheus.io/" target="_blank" rel="noopener">Prometheus</a> and visualized with tools like <a href="https://grafana.com/" target="_blank" rel="noopener">Grafana</a>.</p>
+<h3 
+id="nginx-open-source">NGINX Open Source  <a class="headerlink float-right" href="#nginx-open-source" title="NGINX Open Source"><i class="fas fa-link fa-xs"></i></a>
+</h3><p>When running alongside an open source instance of NGINX, NGINX Agent requires that NGINX Access and Error logs are turned on and contain all default variables.</p>
+<h3 
+id="nginx-plus">NGINX Plus  <a class="headerlink float-right" href="#nginx-plus" title="NGINX Plus"><i class="fas fa-link fa-xs"></i></a>
+</h3><p>For NGINX Agent to work properly with an NGINX Plus instance, the API needs to be configured in that instance&rsquo;s nginx.conf. See <a href="https://docs.nginx.com/nginx-instance-manager/monitoring/overview-metrics/" target="_blank" rel="noopener">Instance Metrics Overview</a> for more details. Once NGINX Plus is configured with the <code>/api/</code> endpoint, the Agent will automatically use it on startup.</p>
+<h2 
+id="event-notifications">Event Notifications  <a class="headerlink float-right" href="#event-notifications" title="Event Notifications"><i class="fas fa-link fa-xs"></i></a>
+</h2><p>NGINX Agent allows a gRPC connected control system to register a listener for a specific event. The control mechanism is then invoked when NGINX Agent sends an associated system signal. The source of a notification can be either the NGINX instance or NGINX Agent itself. Here&rsquo;s a list of currently supported events:</p>
+<p>
+<div class="table-responsive">
+
+
+
+
+
+<table class="table table-striped table-bordered table-v1">
+  <thead>
+      <tr>
+          <th style="text-align: left">Event</th>
+          <th style="text-align: left">Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">AGENT_START_MESSAGE</td>
+          <td style="text-align: left">Agent process started</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">AGENT_STOP_MESSAGE</td>
+          <td style="text-align: left">Agent process stopped</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">NGINX_FOUND_MESSAGE</td>
+          <td style="text-align: left">NGINX master process detected on system</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">NGINX_STOP_MESSAGE</td>
+          <td style="text-align: left">NGINX master process stopped</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">NGINX_RELOAD_SUCCESS_MESSAGE</td>
+          <td style="text-align: left">NGINX master process reloaded successfully</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">NGINX_RELOAD_FAILED_MESSAGE</td>
+          <td style="text-align: left">NGINX master process failed to reload</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">NGINX_WORKER_START_MESSAGE</td>
+          <td style="text-align: left">New NGINX worker process started</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">NGINX_WORKER_STOP_MESSAGE</td>
+          <td style="text-align: left">NGINX worker process stopped</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">CONFIG_APPLY_SUCCESS_MESSAGE</td>
+          <td style="text-align: left">Successfully applied new NGINX configuration</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">CONFIG_APPLY_FAILURE_MESSAGE</td>
+          <td style="text-align: left">Failed to apply new NGINX configuration</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">CONFIG_ROLLBACK_SUCCESS_MESSAGE</td>
+          <td style="text-align: left">Successfully rolled back NGINX configuration</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">CONFIG_ROLLBACK_FAILURE_MESSAGE</td>
+          <td style="text-align: left">Failed to roll back NGINX configuration</td>
+      </tr>
+  </tbody>
+</table>
+
+
+
+
+
+
+  
+
+
+<div data-mf="true" style="display: none;" class="table-v2 table table-striped table-bordered narrow">
+    <table>
+  <thead>
+      <tr>
+          <th style="text-align: left">Event</th>
+          <th style="text-align: left">Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">AGENT_START_MESSAGE</td>
+          <td style="text-align: left">Agent process started</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">AGENT_STOP_MESSAGE</td>
+          <td style="text-align: left">Agent process stopped</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">NGINX_FOUND_MESSAGE</td>
+          <td style="text-align: left">NGINX master process detected on system</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">NGINX_STOP_MESSAGE</td>
+          <td style="text-align: left">NGINX master process stopped</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">NGINX_RELOAD_SUCCESS_MESSAGE</td>
+          <td style="text-align: left">NGINX master process reloaded successfully</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">NGINX_RELOAD_FAILED_MESSAGE</td>
+          <td style="text-align: left">NGINX master process failed to reload</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">NGINX_WORKER_START_MESSAGE</td>
+          <td style="text-align: left">New NGINX worker process started</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">NGINX_WORKER_STOP_MESSAGE</td>
+          <td style="text-align: left">NGINX worker process stopped</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">CONFIG_APPLY_SUCCESS_MESSAGE</td>
+          <td style="text-align: left">Successfully applied new NGINX configuration</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">CONFIG_APPLY_FAILURE_MESSAGE</td>
+          <td style="text-align: left">Failed to apply new NGINX configuration</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">CONFIG_ROLLBACK_SUCCESS_MESSAGE</td>
+          <td style="text-align: left">Successfully rolled back NGINX configuration</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">CONFIG_ROLLBACK_FAILURE_MESSAGE</td>
+          <td style="text-align: left">Failed to roll back NGINX configuration</td>
+      </tr>
+  </tbody>
+</table>
+
+</div>
+
+</div></p>
+
+        
+        
+
+        <hr>
+  
+        
+        <div class="last-modified">
+          
+<div>
+    <a href="https://github.com/nginx/documentation//tree/main/content/agent/overview.md" class="" target="_blank" rel="noopener"><i class="fa-solid fa-file-lines fa-fw"></i> View source</a>
+  </div>
+  <div>
+    <a href="https://github.com/nginx/documentation//edit/main/content/agent/overview.md" class="" target="_blank" rel="noopener"><i class="fa-solid fa-pen-to-square fa-fw"></i> Edit this page</a>
+  </div>
+  <div>
+    <a href="https://github.com/nginx/documentation//issues/new?title=Overview&amp;template=2-bug_report.md" class="" target="_blank" rel="noopener"><i class="fa-solid fa-list-check fa-fw"></i> Create a new issue</a>
+  </div>
+
+
+
+        </div>
+        
+
+        
+         
+<script type='text/javascript'> 
+    (function(){var g=function(e,h,f,g){ 
+        this.get=function(a){
+            for(var a=a+"=",c=document.cookie.split(";"),b=0,e=c.length;b<e;b++){
+                for(var d=c[b];" "==d.charAt(0);)
+                    d=d.substring(1,d.length);
+                    if(0==d.indexOf(a))
+                        return d.substring(a.length,d.length)
+            }
+            return null
+        }; 
+        
+        this.set=function(a,c){
+            var b="",b=new Date;
+            b.setTime(b.getTime()+6048E5);
+            b="; expires="+b.toGMTString();
+            document.cookie=a+"="+c+b+"; path=/; "
+        }; 
+        
+        this.check=function(){
+            var a=this.get(f);
+            if(a)
+                a=a.split(":");
+            else if(100!=e)
+                "v"==h&&(e=Math.random()>=e/100?0:100),
+                a=[h,e,0],
+                this.set(f,a.join(":"));
+            else 
+                return!0;
+            var c=a[1];
+            if(100==c)
+                return!0;
+            switch(a[0]){
+                case "v":
+                    return!1;
+                case "r":
+                    return c=a[2]%Math.floor(100/c),a[2]++,this.set(f,a.join(":")),!c
+            }
+            return!0
+        }; 
+
+        this.go=function(){
+            if(this.check()){
+                var a=document.createElement("script");
+                a.type="text/javascript";
+                a.src=g;
+                document.body&&document.body.appendChild(a)
+            }
+        };
+
+        this.start=function(){
+            var t=this;
+            "complete"!==document.readyState?window.addEventListener ?
+                window.addEventListener("load",function(){t.go()},!1) : 
+                window.attachEvent&&window.attachEvent("onload",function(){t.go()}):t.go()};
+    }; 
+
+    try{
+        const project_id = window.location.hostname.includes("staging") ? "QSI_S_ZN_2YG73ads2zp5bN0" : "QSI_S_ZN_2QSTn2r41YlXrYk";
+        const endpoint = window.location.hostname.includes("staging") ? "https://zn2yg73ads2zp5bn0-f5.siteintercept.qualtrics.com/SIE/?Q_ZID=ZN_2YG73ads2zp5bN0" : "https://zn2qstn2r41ylxryk-f5.siteintercept.qualtrics.com/SIE/?Q_ZID=ZN_2QSTn2r41YlXrYk";
+        (new g(100,"r", project_id, endpoint)).start()
+    }
+    catch(i){}})();
+
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelector(".qualtrics-feedback").id = window.location.hostname.includes("staging") ? "ZN_2YG73ads2zp5bN0" : "ZN_2QSTn2r41YlXrYk"
+    });
+</script>
+<hr>
+<div style="height: 60px;"></div>
+<div class="qualtrics-feedback" id='ZN_2QSTn2r41YlXrYk'></div>
+
+
+        
+
+	
+<div class="container flex">
+	<ul class="next-prev-icon">
+
+		
+
+		
+			<li style="flex:1; text-align: right; white-space: nowrap;"><a href="http://localhost:1313/nginx-agent/technical-specifications/" class="" title="Next -- Technical specifications"><svg width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M24.622 1.5L46.06 22.94C46.1993 23.0791 46.3099 23.2444 46.3853 23.4262C46.4607 23.6081 46.4995 23.8031 46.4995 24C46.4995 24.1969 46.4607 24.3919 46.3853 24.5738C46.3099 24.7556 46.1993 24.9209 46.06 25.06L24.622 46.5" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M2.122 1.5L23.56 22.94C23.6993 23.0791 23.8099 23.2444 23.8853 23.4262C23.9607 23.6081 23.9995 23.8031 23.9995 24C23.9995 24.1969 23.9607 24.3919 23.8853 24.5738C23.8099 24.7556 23.6993 24.9209 23.56 25.06L2.122 46.5" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+</a></li>
+		
+		</ul>
+	</div>
+
+        </main>
+        
+          
+            <div id="toc" class="col-md-3 d-none d-xl-block d-print-none nginx-toc align-top">
+            <nav class="bd-links" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <h3 class="bd-toc-link">What's on This Page</h3><nav id="TableOfContents">
+  <ul>
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#how-it-works">How it Works</a></li>
+    <li><a href="#configuration-management">Configuration Management</a></li>
+    <li><a href="#collecting-metrics">Collecting Metrics</a>
+      <ul>
+        <li><a href="#nginx-open-source">NGINX Open Source</a></li>
+        <li><a href="#nginx-plus">NGINX Plus</a></li>
+      </ul>
+    </li>
+    <li><a href="#event-notifications">Event Notifications</a></li>
+  </ul>
+</nav>
+  </div>
+</nav>
+            </div>
+          
+        
+        
+      </div>
+    </section>
+  </section>
+</div>
+
+
+
+
+      </div>
+  </section>
+
+    <footer id="footer">
+      
+      <footer id="footer">
+  <div class="container-fluid">
+    <div class="row align-items-center">
+      <div class="col-md-6 d-md-flex">
+        <img class="nginx-logo-footer" src="http://localhost:1313/images/icons/NGINX-Part-of-F5-horiz-all-white-525x208@2x.png"/>
+      </div>
+    </div>
+
+    
+    <div class="row d-print-none d-none d-md-flex">
+      <div class="col-md-3 d-none d-md-block">
+        <span class="footer-head">Company</span>
+        <ul class="footer-text">
+          <li>
+            <a
+              href="https://www.f5.com/go/product/welcome-to-nginx"
+              target="_blank"
+              alt="Select to learn about F5 NGINX"
+              >About F5 NGINX</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://www.f5.com/company/events"
+              target="_blank"
+              alt="Select to learn about F5 events"
+              >Events</a
+            >
+          </li>
+        </ul>
+        <br />
+        <span class="footer-head">Resources</span>
+        <ul class="footer-text">
+          <li>
+            <a
+              href="https://www.f5.com/company/blog/nginx"
+              target="_blank"
+              alt="Select to visit the F5 NGINX blog"
+              >Blog</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://www.f5.com/go/faq/nginx-faq"
+              target="_blank"
+              alt="Select to visit the F5 NGINX frequently asked questions page"
+              >FAQ</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://www.f5.com/services"
+              target="_blank"
+              alt="Select to learn about F5 NGINX Support"
+              >Professional Services</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://www.f5.com/learn/training"
+              target="_blank"
+              alt="Select to learn about F5 training offerings"
+              >Training</a
+            >
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-md-3 d-none d-md-block">
+        <span class="footer-head">Products</span>
+        <ul class="footer-text">
+          <li>
+            <a
+              title="F5 NGINX One"
+              aria-label="F5 NGINX One"
+              href="https://www.f5.com/products/nginx/one"
+              >F5 NGINX One</a
+            >
+          </li>
+          <li>
+            <a
+              title="F5 NGINX Plus"
+              aria-label="F5 NGINX Plus"
+              href="https://www.f5.com/products/nginx/nginx-plus"
+              >F5 NGINX Plus</a
+            >
+          </li>
+          <li>
+            <a
+              title="F5 NGINX App Protect"
+              aria-label="F5 NGINX App Protect"
+              href="https://www.f5.com/products/nginx/nginx-app-protect"
+              >F5 NGINX App Protect</a
+            >
+          </li>
+          <li>
+            <a
+              title="F5 NGINX Instance Manager"
+              aria-label="F5 NGINX Instance Manager"
+              href="https://www.f5.com/products/nginx/instance-manager"
+              >F5 NGINX Instance Manager</a
+            >
+          </li>
+          <li>
+            <a
+              title="F5 NGINX Ingress Controller"
+              aria-label="F5 NGINX Ingress Controller"
+              href="https://www.f5.com/products/nginx/nginx-ingress-controller"
+              >F5 NGINX Ingress Controller</a
+            >
+          </li>
+          <li>
+            <a
+              title="F5 NGINX Gateway Fabric"
+              aria-label="F5 NGINX Gateway Fabric"
+              href="https://www.f5.com/products/nginx/nginx-gateway-fabric"
+              >F5 NGINX Gateway Fabric</a
+            >
+          </li>
+          <li>
+            <a
+              title="F5 NGINXaaS for Azure"
+              aria-label="F5 NGINXaaS for Azure"
+              href="https://www.f5.com/products/nginx/f5-nginxaas-for-azure"
+              >F5 NGINXaaS for Azure</a
+            >
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-md-3 d-none d-md-block">
+        <span class="footer-head">NGINX on GitHub</span>
+        <ul class="footer-text">
+          <li>
+            <a
+              title="NGINX Open Source"
+              aria-label="NGINX Open Source"
+              href="https://github.com/nginx/nginx"
+              ><span class="inner">NGINX Open Source</span></a
+            >
+          </li>
+          <li>
+            <a
+              title="NGINX Unit"
+              aria-label="NGINX Unit"
+              href="https://github.com/nginx/unit"
+              ><span class="inner">NGINX Unit</span></a
+            >
+          </li>
+          <li>
+            <a
+              title="NGINX Amplify"
+              aria-label="NGINX Amplify"
+              href="https://github.com/nginxinc/nginx-amplify-agent"
+              ><span class="inner">NGINX Amplify</span></a
+            >
+          </li>
+          <li>
+            <a
+              title="NGINX Agent"
+              aria-label="NGINX Agent"
+              href="https://github.com/nginx/Agent"
+              ><span class="inner">NGINX Agent</span></a
+            >
+          </li>
+          <li>
+            <a
+              title="NGINX Kubernetes Ingress Controller"
+              aria-label="NGINX Kubernetes Ingress Controller"
+              href="https://github.com/nginxinc/kubernetes-ingress"
+              ><span class="inner">NGINX Kubernetes Ingress Controller</span></a
+            >
+          </li>
+          <li>
+            <a
+              title="NGINX Gateway Fabric"
+              aria-label="NGINX Gateway Fabric"
+              href="https://github.com/nginxinc/nginx-gateway-fabric"
+              ><span class="inner">NGINX Gateway Fabric</span></a
+            >
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-md-2 d-none d-md-block">
+        <span class="footer-head">Social</span>
+        <ul class="footer-social">
+          <li>
+            <a
+              href="https://www.facebook.com/nginxinc"
+              title="facebook"
+              aria-label="facebook"
+              target="_blank"
+              rel="noreferrer"
+              ><i class="fa-brands fa-facebook" aria-hidden="true"></i>
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://twitter.com/nginx"
+              title="X"
+              aria-label="x"
+              target="_blank"
+              rel="noreferrer"
+              ><i class="fa-brands fa-x-twitter" aria-hidden="true"></i
+            ></a>
+          </li>
+          <li>
+            <a
+              href="https://www.linkedin.com/company/nginx"
+              title="linkedin"
+              aria-label="linkedin"
+              target="_blank"
+              rel="noreferrer"
+              ><i class="fa-brands fa-linkedin" aria-hidden="true"></i>
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://www.youtube.com/user/NginxInc"
+              title="youtube"
+              aria-label="youtube"
+              target="_blank"
+              rel="noreferrer"
+              alt="NGINX Youtube Channel"
+              ><i class="fa-brands fa-square-youtube" aria-hidden="true"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="site-info footer-text">
+      <div class="text-center">
+        <p>
+          <a href="https://www.f5.com/"
+            ><img class="f5-logo-footer" src="http://localhost:1313/images/icons/Logo_F5.svg" alt="F5 logo"></a
+          >
+          ©2025 F5, Inc. All rights reserved.
+        </p>
+        <p>
+          <a
+            href="https://www.f5.com/company/policies/trademarks"
+            rel="noopener"
+            target="_blank"
+            >Trademarks</a
+          >
+          <a
+            href="https://www.f5.com/company/policies"
+            rel="noopener"
+            target="_blank"
+            >Policies</a
+          >
+          <a href="https://docs.nginx.com/ossc">Open Source Components</a>
+          <a
+            href="https://www.f5.com/company/policies/privacy-notice"
+            rel="noopener"
+            target="_blank"
+            >Privacy</a
+          >
+          <a
+            href="https://www.f5.com/company/policies/F5-California-privacy-summary"
+            rel="noopener"
+            target="_blank"
+            >California Privacy</a
+          >
+          <a
+            href="https://www.f5.com/company/policies/privacy-notice#no-sell"
+            rel="noopener"
+            target="_blank"
+            >Do Not Sell My Personal Information</a
+          >
+          <span id="teconsent-v1"></span>
+        </p>
+      </div>
+    </div>
+    
+  </div>
+  
+</footer>
+
+      
+    </footer>
+
+    <footer data-mf="true" id="footer-v2" style="display:none;">
+      
+      <div class="footer-layout">
+    <div class="footer-f5-trademark">
+        <img class="f5-logo-footer" src="http://localhost:1313/images/icons/Logo_F5.svg" alt="F5 logo">
+        <p>©2025 F5, Inc. All rights reserved. NGINX is a registered trademark of F5, Inc.</p>
+    </div>
+    <div class="footer-useful-links">
+        <a
+            href="https://www.f5.com/company/policies/trademarks"
+            rel="noopener"
+            target="_blank"
+            >Trademarks
+        </a>
+        <a
+            href="https://www.f5.com/company/policies"
+            rel="noopener"
+            target="_blank"
+            >Policies
+        </a>
+        <a
+            href="https://www.f5.com/company/policies/privacy-notice"
+            rel="noopener"
+            target="_blank"
+            >Privacy
+        </a>
+        <a
+            href="https://www.f5.com/company/policies/F5-California-privacy-summary"
+            rel="noopener"
+            target="_blank"
+            >California Privacy
+        </a>
+        <a
+            href="https://www.f5.com/company/policies/privacy-notice#no-sell"
+            rel="noopener"
+            target="_blank"
+            >Do Not Sell My Personal Information
+        </a>
+        <span id="teconsent-v2"></span>
+    </div>
+</div>
+
+      
+    </footer>
+  
+<script src="/js/jquery-3-6-4.min.js" type="text/javascript" integrity=""></script>
+
+
+<script src="/js/kube.min.a3a07cceb64989e2f0bf41653ab4d8346ba4312270eb5cc80d6afad3bf30a0ca9768aaa2559cb582e663332c541edab6a4068ef2e88b739fa425e2e870eb0aff.js" type="text/javascript" integrity="sha512-o6B8zrZJieLwv0FlOrTYNGukMSJw61zIDWr6078woMqXaKqiVZy1guZjMyxUHtq2pAaO8uiLc5&#43;kJeLocOsK/w=="></script>
+
+
+
+<script src="/js/bootstrap.bundle.min.c15ed88f56a52190ea645094409cbce5537eaaf108972f777c840037b8aa0c508f12e70b09e345cf8af7e450a8f6ce96ae974340f8bcd316e58d707c063b6f72.js" type="text/javascript"
+  integrity="sha512-wV7Yj1alIZDqZFCUQJy85VN&#43;qvEIly93fIQAN7iqDFCPEucLCeNFz4r35FCo9s6WrpdDQPi80xbljXB8Bjtvcg=="></script>
+
+
+
+<script src="/js/code-copy.bb21b72280613039f1fabb11acc6a901c07caaee454933031066fbda6b5406fd31077a80ec913ba32261224d138bcbb4a34d27c51efae571c68d59282943b9a4.js" type="text/javascript"></script>
+
+
+
+<script src="/js/code-copy-v2.71bcaee23ab00cb45dc944f321264e21d25bc1ec1ae76f9596286cb408ea5654b4ee016e7914cc2554b237114eeb467d39df18735311f2d28480b3ccd2feb4ad.js" type="text/javascript"></script>
+
+
+
+
+
+<script
+  type="module"
+  src="https://static.cloud.coveo.com/atomic/v3.19.0/atomic.esm.js"
+  integrity="sha512-VA9k6iDWhwxl8bwKUYPD63l93lGX7daV60k3yFxEt9EuEq4iWvsu5COq1mZ8OXKl0KCOFlUSDXS32Cy+YwbufQ=="
+  crossorigin="anonymous">
+</script>
+
+
+<script class="coveo-script" src="https://static.cloud.coveo.com/searchui/v2.10104/0/js/CoveoJsSearch.Lazy.min.js"
+  integrity="sha512-HxdDBIp5snbqtu1TPkBnXLKEvN9IPz3PeZW8zT9KfsflV9Ck822XDroDlpVbfCfXeiu8C0RDVn0fdu7aGy/H1g=="
+  crossorigin="anonymous"></script>
+
+<script src="https://static.cloud.coveo.com/searchui/v2.10104/0/js/templates/templates.js"
+  integrity="sha512-CR0Yk/LIwgh1MsKqjecDp/r6F9ipKc6gA+4+E1pplT3N3r1pk+la/HaqyDiKtjOFwrwIIbIYBFrUJgPql93QHw=="
+  crossorigin="anonymous"></script>
+
+
+
+
+
+
+<script src="/js/coveo.min.4acfd205930e2d31230100f345e0463332eb3e3af1b4aa9a6e3131b0b2bac53566ae4d18b390066fce94c0c75d39b5e121d1291f81e5accc1a82d93da9f11b7f.js" integrity="sha512-Ss/SBZMOLTEjAQDzReBGMzLrPjrxtKqabjExsLK6xTVmrk0Ys5AGb86UwMddObXhIdEpH4HlrMwagtk9qfEbfw=="
+  type="text/javascript"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="/js/sidebar.min.6fed0180a23d01103c68ffb054a183fba5e7ba673de8c56d85857af964dcc0c11623ee09f6185207a373127cb2547ff9247ae3516ed47c67e1b58dbe71e9d576.js" type="text/javascript" integrity="sha512-b&#43;0BgKI9ARA8aP&#43;wVKGD&#43;6Xnumc96MVthYV6&#43;WTcwMEWI&#43;4J9hhSB6NzEnyyVH/5JHrjUW7UfGfhtY2&#43;cenVdg=="></script>
+  
+
+
+<script src="/js/site-dropdown.min.3bb49b6f7d25bcd4a2b008525bb8538d84237348bf618b40970ff6eca87119d68c326ca7ba04854ad102be36495fe1d70f1cb239916555b67dd17683dc283333.js" type="text/javascript" integrity="sha512-O7Sbb30lvNSisAhSW7hTjYQjc0i/YYtAlw/27KhxGdaMMmynugSFStECvjZJX&#43;HXDxyyOZFlVbZ90XaD3CgzMw=="></script>
+
+
+
+<script src="/js/product-selector.min.b588249327fb12c7602fa08eb618560171f54e7348d6c1bacfdbf541f5e13023493f64f78fb6d4b9014892e5e4f0aaaee95b859bb37aa53bbe8c0e27e65167d1.js" type="text/javascript" integrity="sha512-tYgkkyf7EsdgL6COthhWAXH1TnNI1sG6z9v1QfXhMCNJP2T3j7bUuQFIkuXk8Kqu6VuFm7N6pTu&#43;jA4n5lFn0Q=="></script>
+
+
+
+<script src="/js/sidebar-v2.min.3f906631e696b2c88883bfcfc62371165359130cfd118ceb49893ae0d8760dc38177ee3bb94a61dee45023115de8445f0b9fe48f933618ef7ba7b3180a05adbd.js" type="text/javascript" integrity="sha512-P5BmMeaWssiIg7/PxiNxFlNZEwz9EYzrSYk64Nh2DcOBd&#43;47uUph3uRQIxFd6ERfC5/kj5M2GO97p7MYCgWtvQ=="></script> 
+  <div id="consent_blackbar"></div>
+</body>
+</html>
+
+

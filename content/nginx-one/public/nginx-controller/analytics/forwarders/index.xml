@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Data Forwarders on DEV -- docs-nginx-com</title>
+    <link>http://localhost:1313/nginx-controller/analytics/forwarders/</link>
+    <description>Recent content in Data Forwarders on DEV -- docs-nginx-com</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/nginx-controller/analytics/forwarders/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Forward Analytics Data to Datadog</title>
+      <link>http://localhost:1313/nginx-controller/analytics/forwarders/forward-analytics-to-datadog/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-controller/analytics/forwarders/forward-analytics-to-datadog/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;Follow the steps in this guide to set up an F5 NGINX Controller Integration that forwards data to &lt;a href=&#34;https://www.datadoghq.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Datadog&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;h2 &#xA;id=&#34;before-you-begin&#34;&gt;Before You Begin  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#before-you-begin&#34; title=&#34;Before You Begin&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;This guide assumes that you are already an active Datadog user. If you haven&amp;rsquo;t already done so, you will need to &lt;a href=&#34;https://docs.datadoghq.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;install and configure Datadog&lt;/a&gt; before you proceed.&lt;/p&gt;&#xA;&lt;p&gt;You will also need to &lt;a href=&#34;http://localhost:1313/nginx-controller/platform/integrations/datadog-integration/&#34;&gt;Create an Integration&lt;/a&gt; for your Datadog forwarder.&lt;/p&gt;&#xA;&lt;h2 &#xA;id=&#34;create-a-forwarder&#34;&gt;Create a Forwarder  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#create-a-forwarder&#34; title=&#34;Create a Forwarder&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;Take the following steps to create a Forwarder for Datadog:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Forward Analytics Data to Splunk</title>
+      <link>http://localhost:1313/nginx-controller/analytics/forwarders/forward-analytics-to-splunk/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-controller/analytics/forwarders/forward-analytics-to-splunk/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;Follow the steps in this guide to set up an F5 NGINX Controller Integration that forwards data to &lt;a href=&#34;https://www.splunk.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Splunk&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;h2 &#xA;id=&#34;before-you-begin&#34;&gt;Before You Begin  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#before-you-begin&#34; title=&#34;Before You Begin&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;This guide assumes that you are already an active Splunk user. If you haven&amp;rsquo;t already done so, you will need to &lt;a href=&#34;https://docs.splunk.com/Documentation&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;install and configure Splunk&lt;/a&gt; before you proceed.&lt;/p&gt;&#xA;&lt;p&gt;You will also need to &lt;a href=&#34;http://localhost:1313/nginx-controller/platform/integrations/splunk-integration/&#34;&gt;Create an Integration&lt;/a&gt; for your Splunk forwarder.&lt;/p&gt;&#xA;&lt;h2 &#xA;id=&#34;create-a-forwarder&#34;&gt;Create a Forwarder  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#create-a-forwarder&#34; title=&#34;Create a Forwarder&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;Take the following steps to create a Forwarder for Splunk:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Forward Analytics Events to Syslog</title>
+      <link>http://localhost:1313/nginx-controller/analytics/forwarders/forward-analytics-to-syslog/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-controller/analytics/forwarders/forward-analytics-to-syslog/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;Follow the steps in this guide to set up a F5 NGINX Controller Integration that forwards events to a syslog server.&lt;/p&gt;&#xA;&lt;h2 &#xA;id=&#34;before-you-begin&#34;&gt;Before You Begin  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#before-you-begin&#34; title=&#34;Before You Begin&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;This guide assumes that you already have a working instance of any syslog server.&lt;/p&gt;&#xA;&lt;p&gt;If you haven&amp;rsquo;t already done so, you can use an open-source version of &lt;a href=&#34;https://www.syslog-ng.com/products/open-source-log-management/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Syslog-NG&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;p&gt;You will also need to &lt;a href=&#34;http://localhost:1313/nginx-controller/platform/integrations/syslog-integration/&#34;&gt;Create an Integration&lt;/a&gt; for your Syslog forwarder.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Forward Analytics Metrics to OpenTelemetry Collector</title>
+      <link>http://localhost:1313/nginx-controller/analytics/forwarders/forward-analytics-to-otlp/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-controller/analytics/forwarders/forward-analytics-to-otlp/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;Follow the steps in this guide to set up an F5 NGINX Controller integration that forwards metrics to OpenTelemetry Collector.&lt;/p&gt;&#xA;&lt;h2 &#xA;id=&#34;before-you-begin&#34;&gt;Before You Begin  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#before-you-begin&#34; title=&#34;Before You Begin&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;This guide assumes that you already have a working instance of any OpenTelemetry Collector.&lt;/p&gt;&#xA;&lt;p&gt;You will also need to &lt;a href=&#34;http://localhost:1313/nginx-controller/platform/integrations/otlp-integration/&#34;&gt;Create an Integration&lt;/a&gt; for your OpenTelemetry Collector forwarder.&lt;/p&gt;&#xA;&lt;h2 &#xA;id=&#34;create-a-forwarder&#34;&gt;Create a Forwarder  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#create-a-forwarder&#34; title=&#34;Create a Forwarder&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;Take the following steps to create a forwarder for OpenTelemetry Collector:&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

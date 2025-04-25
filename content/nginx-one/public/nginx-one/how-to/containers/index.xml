@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Containers on DEV -- docs-nginx-com</title>
+    <link>http://localhost:1313/nginx-one/how-to/containers/</link>
+    <description>Recent content in Containers on DEV -- docs-nginx-com</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/nginx-one/how-to/containers/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Connect NGINX Plus container images to NGINX One</title>
+      <link>http://localhost:1313/nginx-one/how-to/containers/connect-nginx-plus-container-images-to-nginx-one/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-one/how-to/containers/connect-nginx-plus-container-images-to-nginx-one/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;This guide explains how to set up an F5 NGINX Plus Docker container with NGINX Agent and connect it to the NGINX One Console.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 &#xA;id=&#34;before-you-start&#34;&gt;Before you start  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#before-you-start&#34; title=&#34;Before you start&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;Before you start, make sure you have:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;A valid JSON Web Token (JWT) for your NGINX subscription.&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;http://localhost:1313/nginx-one/how-to/data-plane-keys/create-manage-data-plane-keys/&#34;&gt;A data plane key from NGINX One&lt;/a&gt;.&lt;/li&gt;&#xA;&lt;li&gt;Docker installed and running on your system.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h4 &#xA;id=&#34;download-your-jwt-license-from-myf5&#34;&gt;Download your JWT license from MyF5  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#download-your-jwt-license-from-myf5&#34; title=&#34;Download your JWT license from MyF5&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h4&gt;&lt;ol&gt;&#xA;&lt;li&gt;Log in to &lt;a href=&#34;https://my.f5.com/manage/s/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;MyF5&lt;/a&gt;.&lt;/li&gt;&#xA;&lt;li&gt;Go to &lt;strong&gt;My Products &amp;amp; Plans &amp;gt; Subscriptions&lt;/strong&gt; to see your active subscriptions.&lt;/li&gt;&#xA;&lt;li&gt;Find your NGINX products or services subscription, and select the &lt;strong&gt;Subscription ID&lt;/strong&gt; for details.&lt;/li&gt;&#xA;&lt;li&gt;Download the &lt;strong&gt;JSON Web Token&lt;/strong&gt; from the subscription page.&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&#xA;&lt;hr&gt;&#xA;&lt;h2 &#xA;id=&#34;process-for-private-registry&#34;&gt;Process for private registry  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#process-for-private-registry&#34; title=&#34;Process for private registry&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;h3 &#xA;id=&#34;log-in-to-the-nginx-private-registry&#34;&gt;Log in to the NGINX private registry  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#log-in-to-the-nginx-private-registry&#34; title=&#34;Log in to the NGINX private registry&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h3&gt;&lt;p&gt;Use your JWT to log in to the NGINX private registry. Replace &lt;code&gt;YOUR_JWT_HERE&lt;/code&gt; with your JWT.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

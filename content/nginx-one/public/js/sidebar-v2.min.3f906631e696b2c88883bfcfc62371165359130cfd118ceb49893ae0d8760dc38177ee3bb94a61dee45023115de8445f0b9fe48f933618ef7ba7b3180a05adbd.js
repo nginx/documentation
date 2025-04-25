@@ -1,0 +1,1 @@
+document.addEventListener("DOMContentLoaded",()=>{function e(){const e=document.getElementById("current-page");if(e){let t=e.closest("li");for(;t;){const e=t.querySelector(".toggle-checkbox");e&&(e.checked=!0),t=t.closest("ul").closest("li")}}}e()})

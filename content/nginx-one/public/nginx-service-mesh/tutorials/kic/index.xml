@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>NGINX Ingress Controller on DEV -- docs-nginx-com</title>
+    <link>http://localhost:1313/nginx-service-mesh/tutorials/kic/</link>
+    <description>Recent content in NGINX Ingress Controller on DEV -- docs-nginx-com</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/nginx-service-mesh/tutorials/kic/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Deploy with NGINX Ingress Controller</title>
+      <link>http://localhost:1313/nginx-service-mesh/tutorials/kic/deploy-with-kic/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-service-mesh/tutorials/kic/deploy-with-kic/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;You can deploy NGINX Ingress Controller for Kubernetes with NGINX Service Mesh to control both ingress and &lt;a href=&#34;#enable-egress&#34;&gt;egress&lt;/a&gt; traffic.&lt;/p&gt;&#xA;&lt;blockquote class=&#34;important call-out&#34;&gt;&#xA;  &lt;div&gt;&lt;strong class=&#34;call-out-type&#34;&gt;Important&lt;/strong&gt;&lt;br/&gt; &lt;p&gt;NGINX Ingress Controller can be used for free with NGINX Open Source. Paying customers have access to NGINX Ingress Controller with NGINX Plus.&#xA;To deploy NGINX Ingress Controller with NGINX Service Mesh, you must use either:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Open Source NGINX Ingress Controller version 3.0+&lt;/li&gt;&#xA;&lt;li&gt;NGINX Plus version of NGINX Ingress Controller&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Visit the &lt;a href=&#34;https://www.nginx.com/products/nginx-ingress-controller/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;NGINX Ingress Controller&lt;/a&gt; product page for more information.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Configure a Secure Egress Route with NGINX Ingress Controller</title>
+      <link>http://localhost:1313/nginx-service-mesh/tutorials/kic/egress-walkthrough/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-service-mesh/tutorials/kic/egress-walkthrough/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;Learn how to create internal routes in F5 NGINX Ingress Controller to securely route egress traffic to non-meshed services.&#xA;&lt;blockquote class=&#34;note&#34;&gt;&#xA;  &lt;div&gt;&lt;strong&gt;Note:&lt;/strong&gt;&lt;br/&gt; &lt;p&gt;NGINX Ingress Controller can be used for free with NGINX Open Source. Paying customers have access to NGINX Ingress Controller with NGINX Plus.&#xA;To complete this tutorial, you must use either:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Open Source NGINX Ingress Controller version 3.0+&lt;/li&gt;&#xA;&lt;li&gt;NGINX Plus version of NGINX Ingress Controller&lt;/li&gt;&#xA;&lt;/ul&gt;&lt;/div&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Expose an Application with NGINX Ingress Controller</title>
+      <link>http://localhost:1313/nginx-service-mesh/tutorials/kic/ingress-walkthrough/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-service-mesh/tutorials/kic/ingress-walkthrough/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;Follow this tutorial to deploy the F5 NGINX Ingress Controller with NGINX Service Mesh and an example application.&#xA;All communication between the NGINX Ingress Controller and the example application will occur over mTLS.&lt;/p&gt;&#xA;&lt;p&gt;Objectives:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Deploy the NGINX Service Mesh.&lt;/li&gt;&#xA;&lt;li&gt;Install NGINX Ingress Controller.&lt;/li&gt;&#xA;&lt;li&gt;Deploy the example &lt;code&gt;bookinfo&lt;/code&gt; app.&lt;/li&gt;&#xA;&lt;li&gt;Create a Kubernetes Ingress resource for the Bookinfo application.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;blockquote class=&#34;note&#34;&gt;&#xA;  &lt;div&gt;&lt;strong&gt;Note:&lt;/strong&gt;&lt;br/&gt; &lt;p&gt;NGINX Ingress Controller can be used for free with NGINX Open Source. Paying customers have access to NGINX Ingress Controller with NGINX Plus.&#xA;To complete this tutorial, you must use either:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Expose a UDP Application with NGINX Ingress Controller</title>
+      <link>http://localhost:1313/nginx-service-mesh/tutorials/kic/ingress-udp-walkthrough/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-service-mesh/tutorials/kic/ingress-udp-walkthrough/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;Follow this tutorial to deploy the NGINX Ingress Controller with NGINX Service Mesh and an example UDP application.&lt;/p&gt;&#xA;&lt;p&gt;Objectives:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Deploy NGINX Service Mesh.&lt;/li&gt;&#xA;&lt;li&gt;Install NGINX Ingress Controller.&lt;/li&gt;&#xA;&lt;li&gt;Deploy the example &lt;code&gt;udp-listener&lt;/code&gt; app.&lt;/li&gt;&#xA;&lt;li&gt;Create a Kubernetes GlobalConfiguration resource to establish a NGINX Ingress Controller UDP listener.&lt;/li&gt;&#xA;&lt;li&gt;Create a Kubernetes TransportServer resource for the udp-listener application.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;blockquote class=&#34;note&#34;&gt;&#xA;  &lt;div&gt;&lt;strong&gt;Note:&lt;/strong&gt;&lt;br/&gt; &lt;p&gt;NGINX Ingress Controller can be used for free with NGINX Open Source. Paying customers have access to NGINX Ingress Controller with NGINX Plus.&#xA;To complete this tutorial, you must use either:&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

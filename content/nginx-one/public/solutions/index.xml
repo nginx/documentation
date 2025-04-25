@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Subscription Licensing &amp; Solutions on DEV -- docs-nginx-com</title>
+    <link>http://localhost:1313/solutions/</link>
+    <description>Recent content in Subscription Licensing &amp; Solutions on DEV -- docs-nginx-com</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/solutions/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>About subscription licenses</title>
+      <link>http://localhost:1313/solutions/about-subscription-licenses/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/solutions/about-subscription-licenses/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;We’re updating NGINX Plus to align with F5’s entitlement and visibility policy, bringing benefits like fair and compliant usage, better visibility into license management, and improved customer support.&lt;/p&gt;&#xA;&lt;p&gt;Starting with NGINX Plus R33, all &lt;strong&gt;NGINX Plus instances require a valid JSON Web Token (JWT) license&lt;/strong&gt;. This license is tied to your subscription (not individual instances) and is used to validate your subscription and automatically send usage reports to F5&amp;rsquo;s licensing endpoint (&lt;code&gt;product.connect.nginx.com&lt;/code&gt;), as required by your subscription agreement. In offline environments, usage reporting is &lt;a href=&#34;http://localhost:1313/nginx-instance-manager/disconnected/report-usage-disconnected-deployment/&#34;&gt;routed through NGINX Instance Manager&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

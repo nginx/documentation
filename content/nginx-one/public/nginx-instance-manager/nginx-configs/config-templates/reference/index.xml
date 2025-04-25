@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Reference on DEV -- docs-nginx-com</title>
+    <link>http://localhost:1313/nginx-instance-manager/nginx-configs/config-templates/reference/</link>
+    <description>Recent content in Reference on DEV -- docs-nginx-com</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/nginx-instance-manager/nginx-configs/config-templates/reference/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>JSON Schemas for Dynamic Web Forms</title>
+      <link>http://localhost:1313/nginx-instance-manager/nginx-configs/config-templates/reference/json-schema-reference/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-instance-manager/nginx-configs/config-templates/reference/json-schema-reference/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;The F5 NGINX Instance Manager’s web form builder uses JSON schemas to guide and validate user inputs when creating NGINX configurations from templates. This structured input method simplifies the configuration process and ensures adherence to NGINX configuration requirements.&lt;/p&gt;&#xA;&lt;h2 &#xA;id=&#34;json-schema&#34;&gt;JSON Schema  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#json-schema&#34; title=&#34;JSON Schema&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;JSON Schema is a standard explained in detail at &lt;a href=&#34;https://json-schema.org/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;json-schema.org&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;p&gt;In NGINX Instance Manager, we support a specific set of common features from the JSON Schema:&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

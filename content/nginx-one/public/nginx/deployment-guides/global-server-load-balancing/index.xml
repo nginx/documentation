@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Global Server Load Balancing on DEV -- docs-nginx-com</title>
+    <link>http://localhost:1313/nginx/deployment-guides/global-server-load-balancing/</link>
+    <description>Recent content in Global Server Load Balancing on DEV -- docs-nginx-com</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/nginx/deployment-guides/global-server-load-balancing/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Global Server Load Balancing with NS1 and NGINX Plus</title>
+      <link>http://localhost:1313/nginx/deployment-guides/global-server-load-balancing/ns1-global-server-load-balancing/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx/deployment-guides/global-server-load-balancing/ns1-global-server-load-balancing/</guid>
+      <description>&lt;p&gt;Global server load balancing (GSLB) refers to the intelligent distribution of traffic across server resources located in multiple points of presence (PoPs). GSLB is most commonly implemented by controlling the responses to DNS requests, directing each user to the most appropriate destination IP address based on the availability, performance, and proximity of each PoP.&lt;/p&gt;&#xA;&lt;p&gt;Many DNS providers offer some form of GSLB. &lt;a href=&#34;https://www.ns1.com&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;NS1&lt;/a&gt; has one of the most advanced solutions available as a service, with a rich API that PoPs can use to dynamically inform the NS1 servers about their availability and current loads.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

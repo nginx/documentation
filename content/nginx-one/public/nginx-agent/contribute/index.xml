@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Contribute on DEV -- docs-nginx-com</title>
+    <link>http://localhost:1313/nginx-agent/contribute/</link>
+    <description>Recent content in Contribute on DEV -- docs-nginx-com</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/nginx-agent/contribute/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Community and contribution</title>
+      <link>http://localhost:1313/nginx-agent/contribute/community/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-agent/contribute/community/</guid>
+      <description>&lt;h1 &#xA;id=&#34;community&#34;&gt;Community  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#community&#34; title=&#34;Community&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h1&gt;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Our &lt;a href=&#34;https://nginxcommunity.slack.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Slack channel #nginx-agent&lt;/a&gt;, is the go-to place to start asking questions and sharing your thoughts.&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Our &lt;a href=&#34;https://github.com/nginx/agent/issues&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;GitHub issues page&lt;/a&gt; offers space for a more technical discussion at your own pace.&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h1 &#xA;id=&#34;contribute&#34;&gt;Contribute  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#contribute&#34; title=&#34;Contribute&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h1&gt;&lt;p&gt;Get involved with the project by contributing! Please see our &lt;a href=&#34;https://github.com/nginx/agent/blob/main/CONTRIBUTING.md&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;contributing guide&lt;/a&gt; for details.&lt;/p&gt;&#xA;&lt;h1 &#xA;id=&#34;license&#34;&gt;License  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#license&#34; title=&#34;License&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h1&gt;&lt;p&gt;&lt;a href=&#34;https://github.com/nginx/agent/blob/main/LICENSE&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Apache License, Version 2.0&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Development environment setup</title>
+      <link>http://localhost:1313/nginx-agent/contribute/dev-environment-setup/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-agent/contribute/dev-environment-setup/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;Learn how to setup a Development Environment for NGINX Agent.&lt;/p&gt;&#xA;&lt;h2 &#xA;id=&#34;select-an-operating-system&#34;&gt;Select an Operating System  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#select-an-operating-system&#34; title=&#34;Select an Operating System&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;While most Linux or FreeBSD operating systems can be used to contribute to the NGINX Agent project, the following steps have been designed for Ubuntu. Ubuntu is packaged with most libraries required to build and run NGINX Agent, and is the recommended platform for NGINX Agent development.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

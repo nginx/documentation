@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tutorials on DEV -- docs-nginx-com</title>
+    <link>http://localhost:1313/nginx-service-mesh/tutorials/</link>
+    <description>Recent content in Tutorials on DEV -- docs-nginx-com</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/nginx-service-mesh/tutorials/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Install NGINX Service Mesh with Basic Observability</title>
+      <link>http://localhost:1313/nginx-service-mesh/tutorials/observability/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-service-mesh/tutorials/observability/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;In this tutorial, we will install F5 NGINX Service Mesh with some basic observability components. These components include Prometheus for collecting metrics, Grafana for visualizing metrics, and the OpenTelemetry Collector and Jaeger for collecting traces. These deployments are meant for demo purposes only, and are not recommended for production environments.&lt;/p&gt;&#xA;&lt;h2 &#xA;id=&#34;deploy-the-observability-components&#34;&gt;Deploy the Observability Components  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#deploy-the-observability-components&#34; title=&#34;Deploy the Observability Components&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;Download the following files containing the configurations for the observability components:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Deploy an Example App with NGINX Service Mesh</title>
+      <link>http://localhost:1313/nginx-service-mesh/tutorials/deploy-example-app/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-service-mesh/tutorials/deploy-example-app/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;In this tutorial, we will use the &lt;code&gt;bookinfo&lt;/code&gt; example app Deployment.&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;i class=&#34;fas fa-download &#34;&gt;&lt;/i&gt; &#xA; &#xA; &#xA;      &#xA;     &lt;a href=&#34;http://localhost:1313/examples/bookinfo.yaml&#34;&gt;examples/bookinfo.yaml&lt;/a&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;blockquote class=&#34;note&#34;&gt;&#xA;  &lt;div&gt;&lt;strong&gt;Note:&lt;/strong&gt;&lt;br/&gt; &lt;p&gt;Notice in the above yaml:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;All of the service spec port names are populated with the name of the protocol&lt;/li&gt;&#xA;&lt;li&gt;All deployment &lt;code&gt;containerPort&lt;/code&gt; fields are specified.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;This is used in the mesh to identify the kind of traffic being sent and where it is allowed to be received. For more information on deployment and service identification rules, see &lt;a href=&#34;http://localhost:1313/nginx-service-mesh/get-started/install/configuration/#identification-rules&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;identification-rules&lt;/a&gt; in the Getting Started section.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Deployments using Traffic Splitting</title>
+      <link>http://localhost:1313/nginx-service-mesh/tutorials/trafficsplit-deployments/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-service-mesh/tutorials/trafficsplit-deployments/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;You can use traffic splitting for most deployment scenarios, including canary, blue-green, A/B testing, and so on. The ability to control traffic flow to different versions of an application makes it easy to roll out a new application version with minimal effort and interruption to production traffic.&lt;/p&gt;&#xA;&lt;h2 &#xA;id=&#34;before-you-begin&#34;&gt;Before You Begin  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#before-you-begin&#34; title=&#34;Before You Begin&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;ol&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Install &lt;a href=&#34;https://kubernetes.io/docs/tasks/tools/install-kubectl/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;kubectl&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;(Optional) If you want to view metrics, ensure that you have deployed Prometheus and Grafana.&#xA;Refer to the &lt;a href=&#34;http://localhost:1313/nginx-service-mesh/guides/monitoring-and-tracing/&#34;&gt;Monitoring and Tracing&lt;/a&gt; guide for instructions.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Services using Access Control</title>
+      <link>http://localhost:1313/nginx-service-mesh/tutorials/accesscontrol-walkthrough/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-service-mesh/tutorials/accesscontrol-walkthrough/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;You can use access control to shape traffic within your cluster and mesh. By default all services within the mesh can freely communicate, which might not be appropriate for larger production grade microservices. If traffic shaping is necessary, you can use access control resources to allow traffic to and from specific source and destination endpoints. You can apply basic rules at the L4 layer, and apply more complex, granular rules at the L7 HTTP layer.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Configure Rate Limiting</title>
+      <link>http://localhost:1313/nginx-service-mesh/tutorials/ratelimit-walkthrough/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-service-mesh/tutorials/ratelimit-walkthrough/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;Rate limiting allows you to limit the number of HTTP requests a user can make in a given period to protect your application from being overwhelmed with traffic.&lt;/p&gt;&#xA;&lt;p&gt;In a Kubernetes environment, rate limiting is traditionally applied at the ingress layer, restricting the number of requests that an external user can make into the cluster.&lt;/p&gt;&#xA;&lt;p&gt;However, applications with a microservices architecture might also want to apply rate limits between their workloads running inside the cluster. For example, a rate limit applied to a particular microservice can prevent mission-critical components from being overwhelmed at times of peak traffic and attack, leading to extended periods of downtime for your users.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

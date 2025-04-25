@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Change multiple instances with one push on DEV -- docs-nginx-com</title>
+    <link>http://localhost:1313/nginx-one/config-sync-groups/</link>
+    <description>Recent content in Change multiple instances with one push on DEV -- docs-nginx-com</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/nginx-one/config-sync-groups/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Manage Config Sync Groups</title>
+      <link>http://localhost:1313/nginx-one/nginx-configs/config-sync-groups/manage-config-sync-groups/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-one/nginx-configs/config-sync-groups/manage-config-sync-groups/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;If you work with several instances of NGINX, it can help to organize these instances in Config Sync Groups. Each instance in a Config Sync Group has the same configuration.&lt;/p&gt;&#xA;&lt;p&gt;This guide explains how to create and manage Config Sync Groups in the F5 NGINX One Console. Config Sync Groups synchronize NGINX configurations across multiple NGINX instances, ensuring consistency and ease of management.&lt;/p&gt;&#xA;&lt;p&gt;If you’ve used &lt;a href=&#34;http://localhost:1313/nginx-instance-manager/nginx-instances/manage-instance-groups/&#34;&gt;instance groups in NGINX Instance Manager&lt;/a&gt;, you’ll find Config Sync Groups in NGINX One similar, though the steps and terminology differ slightly.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Add a file to a Config Sync Group</title>
+      <link>http://localhost:1313/nginx-one/nginx-configs/config-sync-groups/add-file-csg/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-one/nginx-configs/config-sync-groups/add-file-csg/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;This guide explains how to add files in the F5 NGINX One Console. While you can manage files in the CLI, the NGINX One Console supports editing in a UI that resembles an Integrated Development Environment (IDE), with recommendations.&lt;/p&gt;&#xA;&#xA;&lt;h2 &#xA;id=&#34;before-you-start&#34;&gt;Before you start  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#before-you-start&#34; title=&#34;Before you start&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;Before you add files in your configuration, ensure:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;You have access to the NGINX One Console.&lt;/li&gt;&#xA;&lt;li&gt;Config Sync Groups are properly registered with NGINX One Console&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 &#xA;id=&#34;important-considerations&#34;&gt;Important considerations  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#important-considerations&#34; title=&#34;Important considerations&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;This page applies when you want to add a file to a Config Sync Group. Any changes you make here apply to all &lt;a href=&#34;http://localhost:1313/nginx-one/glossary/&#34;&gt;Instances&lt;/a&gt; of that Config Sync Group.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

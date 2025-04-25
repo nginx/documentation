@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Monitoring and troubleshooting on DEV -- docs-nginx-com</title>
+    <link>http://localhost:1313/nginx-gateway-fabric/how-to/monitoring/</link>
+    <description>Recent content in Monitoring and troubleshooting on DEV -- docs-nginx-com</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/nginx-gateway-fabric/how-to/monitoring/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Configure tracing</title>
+      <link>http://localhost:1313/nginx-gateway-fabric/how-to/monitoring/tracing/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-gateway-fabric/how-to/monitoring/tracing/</guid>
+      <description>&lt;p&gt;This guide explains how to enable tracing on HTTPRoutes in NGINX Gateway Fabric using the OpenTelemetry Collector. Jaeger is used to process and collect the traces.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;NGINX Gateway Fabric supports tracing using &lt;a href=&#34;https://opentelemetry.io/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;OpenTelemetry&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;p&gt;The official &lt;a href=&#34;https://github.com/nginxinc/nginx-otel&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;NGINX OpenTelemetry Module&lt;/a&gt; instruments the NGINX data plane to export traces to a configured collector. Tracing data can be used with an OpenTelemetry Protocol (OTLP) exporter, such as the &lt;a href=&#34;https://github.com/open-telemetry/opentelemetry-collector&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;OpenTelemetry Collector&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;p&gt;This collector can then export data to one or more upstream collectors like &lt;a href=&#34;https://www.jaegertracing.io/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Jaeger&lt;/a&gt;, &lt;a href=&#34;https://docs.datadoghq.com/tracing/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;DataDog&lt;/a&gt;, and many others. This is called the &lt;a href=&#34;https://opentelemetry.io/docs/collector/deployment/agent/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Agent model&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Monitoring with Prometheus and Grafana</title>
+      <link>http://localhost:1313/nginx-gateway-fabric/how-to/monitoring/prometheus/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-gateway-fabric/how-to/monitoring/prometheus/</guid>
+      <description>&lt;p&gt;This document describes how to monitor NGINX Gateway Fabric using Prometheus and Grafana. It explains installation and configuration, as well as what metrics are available.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;NGINX Gateway Fabric metrics are displayed in &lt;a href=&#34;https://prometheus.io/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Prometheus&lt;/a&gt; format. These metrics are served through a metrics server orchestrated by the controller-runtime package on HTTP port &lt;code&gt;9113&lt;/code&gt;. When installed, Prometheus automatically scrapes this port and collects metrics. &lt;a href=&#34;https://grafana.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Grafana&lt;/a&gt; can be used for rich visualization of these metrics.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>NGINX Plus dashboard</title>
+      <link>http://localhost:1313/nginx-gateway-fabric/how-to/monitoring/dashboard/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-gateway-fabric/how-to/monitoring/dashboard/</guid>
+      <description>&lt;p&gt;Learn how to view the NGINX Plus dashboard to see real-time metrics.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;The NGINX Plus dashboard offers a real-time live activity monitoring interface that shows key load and performance metrics of your server infrastructure. The dashboard is enabled by default for NGINX Gateway Fabric deployments that use NGINX Plus as the data plane. The dashboard is available on port 8765.&lt;/p&gt;&#xA;&lt;p&gt;To access the dashboard:&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Use port-forwarding to forward connections to port 8765 on your local machine to port 8765 on the NGINX Gateway Fabric pod (replace &lt;code&gt;&amp;lt;nginx-gateway-fabric-pod&amp;gt;&lt;/code&gt; with the actual name of the pod).&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Troubleshooting</title>
+      <link>http://localhost:1313/nginx-gateway-fabric/how-to/monitoring/troubleshooting/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-gateway-fabric/how-to/monitoring/troubleshooting/</guid>
+      <description>&lt;p&gt;This topic describes possible issues when using NGINX Gateway Fabric and general troubleshooting techniques. When possible, suggested workarounds are provided.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h3 &#xA;id=&#34;general-troubleshooting&#34;&gt;General troubleshooting  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#general-troubleshooting&#34; title=&#34;General troubleshooting&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h3&gt;&lt;p&gt;When investigating a problem or requesting help, there are important data points that can be collected to help understand what issues may exist.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h4 &#xA;id=&#34;resource-status&#34;&gt;Resource status  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#resource-status&#34; title=&#34;Resource status&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h4&gt;&lt;p&gt;To check the status of a resource, use &lt;code&gt;kubectl describe&lt;/code&gt;. This example checks the status of the &lt;code&gt;coffee&lt;/code&gt; HTTPRoute, which has an error:&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

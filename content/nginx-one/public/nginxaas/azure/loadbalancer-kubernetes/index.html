@@ -1,0 +1,3743 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>  
+  <style>
+    body {
+       
+      visibility: hidden;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+  </style>
+  
+  <noscript>
+    <style>
+       
+      body {
+        visibility: visible;
+      }
+    </style>
+  </noscript>
+  
+
+
+  <script>
+
+    const setTheme = (isNewTheme) => {
+      localStorage.setItem("useNewTheme", `${isNewTheme}`);
+      
+      const v1cssIds = [
+        "cssFA1",
+        "cssFA2",
+        "cssFA3",
+        "cssBootstrap",
+        "css1",
+        "css2",
+        "css3",
+        "css4",
+        "css5",
+        "css6",
+      ];
+
+      v1cssIds.forEach((cssId) => {
+        const element = document.getElementById(cssId);
+        if (element !== null) {
+          element.disabled = isNewTheme;
+        }
+      });
+
+      const v2cssIds = ["css7", "css9"];
+      v2cssIds.forEach((cssId) => {
+        const element = document.getElementById(cssId);
+        if (element !== null) {
+          element.disabled = !isNewTheme;
+        }
+      });
+
+      
+      const v1ElementIds = ["sidebar", "footer", "toc", "api", "search-v1", "breadcrumb-v1", "list-v1"]
+
+      v1ElementIds.forEach((elementId) => {
+        const element = document.getElementById(elementId);
+        if (element !== null) {
+          element.style.display = isNewTheme ? "none" : "";
+        }
+
+        const trustarc = document.getElementById("teconsent-v1");
+        if (trustarc) {
+          trustarc.id = isNewTheme ? "teconsent-v1" : "teconsent";
+        }
+      });
+
+      document.querySelectorAll(".table-v1").forEach((table) => {
+        table.style.display = isNewTheme ? "none" : "";
+      });
+
+      const notMfElements = ['[data-mf="false"]'];
+      notMfElements.forEach((elementId) => {
+        document.querySelectorAll(elementId).forEach((element) => {
+          element.style.display = isNewTheme ? "none" : "";
+        });
+      })
+
+      const mfElements = ['[data-mf="true"]'];
+      mfElements.forEach((elementId) => {
+        document.querySelectorAll(elementId).forEach((element) => {
+          element.style.display = isNewTheme ? "" : "none";
+
+          const trustarc = document.getElementById("teconsent-v2");
+          if (trustarc) {
+            trustarc.id = isNewTheme ? "teconsent" : "teconsent-v2";
+          }
+        });
+      });
+
+      document.getElementById("body").style.visibility = "visible";
+    };
+
+    const toggleTheme = () => {
+      setTheme(!(localStorage.getItem("useNewTheme") === "true"));
+    };
+
+    
+    const mf = toggleTheme;
+    const useNewTheme = toggleTheme;
+
+    document.addEventListener("DOMContentLoaded", () => {
+      setTheme(localStorage.getItem("useNewTheme") === "true");
+    });
+
+    function gameCode(callback) {
+      let kkeys = [];
+      
+      const code = "38,38,40,40,37,39,37,39,66,65";
+      return (event) => {
+        kkeys.push(event.keyCode);
+        if (kkeys.toString().indexOf(code) >= 0) {
+          callback(event);
+          kkeys = [];
+        }
+      };
+    }
+    const handler = gameCode(() => {
+      mf();
+    });
+    window.addEventListener("keydown", handler);
+
+  </script>
+
+  
+
+  <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>NGINXaaS Load Balancer for Kubernetes | DEV -- docs-nginx-com</title>
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:1313/nginxaas/azure/loadbalancer-kubernetes/">
+
+
+
+
+
+
+
+<meta property="article:publisher" content="https://www.facebook.com/nginxinc" />
+<meta property="og:image" content="http://localhost:1313/images/icons/NGINX-Docs-new-docs-dark-1200x630.png" />
+<meta property="og:image:width" content="500" />
+<meta property="og:image:height" content="300" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:description" content="" />
+<meta name="twitter:title" content="NGINXaaS Load Balancer for Kubernetes" />
+<meta name="twitter:site" content="@nginx" />
+<meta name="twitter:image" content="http://localhost:1313/images/icons/NGINX-Docs-new-docs-dark-1200x630.png" />
+<meta name="twitter:creator" content="@nginx" />
+
+<meta http-equiv="last-modified" content="13/05/2025" />
+
+
+
+
+<meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline'
+    https://consent.trustarc.com/ https://mktg.tags.f5.com/basic/prod/utag.sync.js https://static.cloud.coveo.com/ https://*.f5.com/
+    https://*.netlify.app https://gist.github.com
+    https://tag.demandbase.com/pscSDsz4.min.js
+    https://munchkin.brightfunnel.com/js/build/bf-munchkin.min.js
+    https://www.googletagmanager.com/gtm.js
+    https://www.google-analytics.com/
+    https://www.google-analytics.com/analytics.js
+    https://www.google-analytics.com/plugins/ua/linkid.js
+    https://cdn.bizible.com/scripts/bizible.js
+    https://cdn.bizible.com/xdc.js
+    https://f5networksglobalprod.122.2o7.net/
+    https://f5networksnginxdocs.122.2o7.net/
+    https://*.siteintercept.qualtrics.com/SIE/?Q_ZID=*
+    https://siteintercept.qualtrics.com/
+    ;
+    worker-src 'self' blob:">
+
+
+
+<meta property="environment" type="development" />
+<meta property="buildtype" type="webdocs" />
+<meta property="isServer" type="true" />
+
+
+<meta name="product" content="DEV -- docs-nginx-com">
+<meta name="version" content="">
+<meta name="doc_type" content="Manual">
+  
+  <link rel="shortcut icon" type="image/x-icon" href="http://localhost:1313/images/favicon-48x48.ico">
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+<link href="/css/v2/style.css" integrity="" rel="stylesheet" type="text/css" id="css7"
+  disabled>
+
+
+<link href="/css/inter/inter.987d1be34797653eabce3627efb116c263d4045fd5badfe003ff283c5a5da435d83a3fad6bfe524e3ce3cf8a41168a30e7aa42507961257eeb275024def0f9b9.css" integrity="sha512-mH0b40eXZT6rzjYn77EWwmPUBF/Vut/gA/8oPFpdpDXYOj&#43;ta/5STjzjz4pBFoow56pCUHlhJX7rJ1Ak3vD5uQ==" rel="stylesheet" type="text/css"
+  id="cssInter">
+
+
+<link href="/css/v2/highlight.min.9ef7c7ad221175216abc8a5827f967bcd7c0e035bfa91180acd26a2c36d54242ae5f485986c260d70b1bbdf225ad76cdbba3179afa7e4335282cc3080a17e337.css" rel="stylesheet" type="text/css" id="css9">
+
+
+
+
+
+<link href="/fontawesome/css/all.min.4a71f958af9b67180f1ece38b96217f8b2c9009f7fd8f90f299e508808fa4daf3ac3e7ec6f64e47267d1c955f7a419cc15c57ba103c9925f507af4825abdd6e8.css" integrity="sha512-SnH5WK&#43;bZxgPHs44uWIX&#43;LLJAJ9/2PkPKZ5QiAj6Ta86w&#43;fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" rel="stylesheet" type="text/css"
+  id="cssFA1">
+
+
+<link href="/fontawesome/css/v4-font-face.min.5870089ba06cf03e9721f87919eaf15c961a65e071845949ed2da58c5bfbd18a714c5dab2c155f0455ebcd2f45bfd598a5e47ae19976e7aa3a51e22914eac1b6.css" integrity="sha512-WHAIm6Bs8D6XIfh5GerxXJYaZeBxhFlJ7S2ljFv70YpxTF2rLBVfBFXrzS9Fv9WYpeR64Zl256o6UeIpFOrBtg==" rel="stylesheet" type="text/css"
+  id="cssFA2">
+
+
+<link href="/fontawesome/css/v5-font-face.min.81bdf1c9f8ff16b1eda613d52d868a059f16c8c6045c3d7e0a0b771622a11666cdd94b8ea62b5edb0d4b826c3a3737ec3663065fe05b56b6b871e57de73f556b.css" integrity="sha512-gb3xyfj/FrHtphPVLYaKBZ8WyMYEXD1&#43;Cgt3FiKhFmbN2UuOpite2w1Lgmw6NzfsNmMGX&#43;BbVra4ceV95z9Vaw==" rel="stylesheet" type="text/css"
+  id="cssFA3">
+
+
+
+<link href="/css/bootstrap.min.3f9320327d6304dd356ac060534cfad10938431897a3cebec2515a84aaec41fdfb73d72ba39d7b5b35523cf575b432b3864bb6889d855602faef01b4dd21a734.css" integrity="sha512-P5MgMn1jBN01asBgU0z60Qk4QxiXo86&#43;wlFahKrsQf37c9cro517WzVSPPV1tDKzhku2iJ2FVgL67wG03SGnNA==" rel="stylesheet"
+  type="text/css" id="cssBootstrap">
+
+
+
+<link rel="stylesheet" href="https://static.cloud.coveo.com/searchui/v2.10104/0/css/CoveoFullSearch.min.css"
+  integrity="sha512-9/A9yVCU4GS6/iIwTRJKnan4Hf8gDKj3anwItN9QCsU8SixaT5xkjjWsZ/iq0TWaizhtqOLacadXJfxHlwYCcA=="
+  crossorigin="anonymous" />
+
+
+<link
+  rel="stylesheet"
+  href="https://static.cloud.coveo.com/atomic/v3.19.0/themes/coveo.css"
+  integrity="sha512-m2BufPi8Tc6H2jcQfDj/PIl5H57C9jeqhbDFgFXKTtOhoC4S7ULXmx74FseZ8WXpfdT9uyccMHDBJDrIZlrUUQ=="
+  crossorigin="anonymous"/>
+
+
+<link href="/css/docs-nginx-com/nginx-site-header.min.80b10ed49ecfad93607ee771acca88d13dc958e6eecc642af3aa2b170c86b8dcce442e7b86c3e5298c95b0ab2b053a71074c2f15c28266c3a2c502275415b3a7.css" rel="stylesheet" type="text/css" id="css1">
+
+
+<link href="/css/docs-nginx-com/style.min.2cd4748c438c49d012a5fdc6b98770223c4875fe0f89517b17423b6a5328af4d93d9d772207bfc51d9449781281e1eb8707dcc2f7467e6e24330c9b8c7c5f734.css" rel="stylesheet" type="text/css" id="css2">
+
+
+<link href="/css/bootstrap-docs.min.8a70c94c72e3783cecd631bc1705c7843b2fdef99f1549f0bf7f774a4083173ee25974413a8206c2340c0fee9bb7a07acd41d41c78ae2280c96a2ce0faca2847.css" rel="stylesheet" type="text/css" id="css3">
+
+
+
+<link href="/css/coveo.min.fce7d4df31de99e4f86510a90915820f236b8dcd02be030b27529af7ff10189f807c78cedacb91afa9d07f310a172c6046b1921832f199b9158898a7f74fa117.css" rel="stylesheet" type="text/css" id="css6">
+
+
+
+<link href="/css/f5-hugo.min.42feae8b135e9380a66db9c3cb2803221888524a29f41cbc55790b5cb5a309ac7e6dd80e70ed0260370fd93c04b7aa8a5c3d6aca0964804341fad51cfcec963f.css" rel="stylesheet" type="text/css" id="css4">
+
+
+<link href="/css/inline-overrides.min.495e6889d9955581580c654bad961bb33af6344b283af7e9a34648c5e8d5f1fe90efb8aac33359c4178efd36cd7cb92c7c6458d4175caff9c284b14bd9d2b97a.css" rel="stylesheet" type="text/css" id="css8">
+
+
+
+
+
+<link href="/css/highlight.min.fe5647c4b67f4b3fcf0ea60b483479d567ba1b05ee6e816439207edfa3d310dbee79536278c67d89c1db5da275bde962a10163da375f05bd19743e2a80e1ad02.css" rel="stylesheet" type="text/css" id="css5">
+  
+  
+  
+  
+  
+  
+        
+  <script async="async" src="https://consent.trustarc.com/notice?domain=f5.com&c=teconsent&js=nj&noticeType=bb&text=true&gtm=1" crossorigin=""></script>
+  
+  
+
+<script src="https://mktg.tags.f5.com/basic/prod/utag.sync.js"></script> 
+
+
+  
+  
+  
+  
+  
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-K5HG9JT');</script>
+  
+  </head>
+  
+  <body id="body">
+    
+   
+<script type="text/javascript"> 
+    (function(a,b,c,d) { 
+        a='//mktg.tags.f5.com/basic/prod/utag.js'; 
+        b=document;c='script';d=b.createElement(c);d.src=a; 
+        d.type='text/java'+c;d.async=true; 
+        a=b.getElementsByTagName(c)[0];a.parentNode.insertBefore(d,a)})(); 
+</script> 
+    
+  
+    <header>
+      
+<div class="navbar navbar-expand navbar-dark flex-column flex-md-row bd-navbar navbar-fixed-top">
+  <div class="container-fluid flex-md-row flex-column header-container">
+    <a class="navbar-brand mr-0 mr-md-2" href="/" aria-label="NGINX Docs">
+      <img class="navbar-img" src="http://localhost:1313/images/icons/NGINX-Docs-horiz-white-type.svg" alt="NGINX Docs">
+    </a>
+    
+      <div class="navbar navbar-nav">
+        
+        <div id="searchbox">
+          
+          <div class="CoveoSearchbox" data-placeholder='Search NGINX Docs...'></div>
+        </div>
+        <atomic-search-interface id="search-standalone-header" data-mf="true" style="display:none;">
+          <atomic-search-box redirection-url="/search.html">
+          </atomic-search-box>
+        </atomic-search-interface>
+      </div>
+    
+    
+    
+    
+    <ul class="navbar navbar-nav">
+        <li class="nav-item-explore active">
+          <button id="navbar-sites-button" class="button navbar-button">
+              F5 Sites
+              <i id="navbar-sites-button-icon" class="link-chevron-icon fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="dropdown-content" id="dropdown-content">
+            <ul>
+              
+                <li>
+                  <a href="https://community.f5.com/" target="_blank" >DevCentral</a>
+                  <p>Connect &amp; learn in our hosted community</p>
+                </li>
+              
+                <li>
+                  <a href="https://my.f5.com/" target="_blank" >MyF5</a>
+                  <p>Your key to everything F5, including support, registration keys, and subscriptions</p>
+                </li>
+              
+                <li>
+                  <a href="https://nginx.org/" target="_blank" >NGINX</a>
+                  <p>Learn more about NGINX Open Source and read the community blog</p>
+                </li>
+              
+            </ul>
+          </div>
+        </li>
+    </ul>
+  </div>
+</div>
+
+
+    </header>
+  
+    <section class="base-layout" data-testid="base-layout">
+      <section id="breadcrumb-v1">
+        
+          
+          <nav aria-label="breadcrumb" class="breadcrumb navbar">
+    <div class="nav flex-md-row">
+        <ol class="breadcrumb">
+            
+            
+            
+            
+                
+            
+            
+                
+            
+            
+                
+            
+            
+            
+                <li><a href="/">Home</a><i class="fas fa-chevron-right"></i></li>
+                
+            
+                <li><a href="/nginxaas/azure/">NGINXaaS for Azure</a><i class="fas fa-chevron-right"></i></li>
+                
+            
+                NGINXaaS Load Balancer for Kubernetes
+        </ol>
+    </div>
+</nav>
+  
+          
+        
+      </section>
+  
+      <div class="main container-fluid min-page-height" data-menu-id="/nginxaas/azure/loadbalancer-kubernetes/">
+        
+<div class="docs-container row override-sidebar-collapse">
+<div class="docs-container row override-sidebar-collapse">
+  <nav id="sidebar" class="sidenav overflow-auto col-md-3 d-none d-xl-block d-print-none align-top">
+    
+
+<div id="sidebar-wrapper">
+     <div id="sidebar" class="sidebar" aria-label="Sidebar navigation">
+        <button id="sidebar-toggle-button" title="Toggle sidebar navigation" role="button" aria-controls="sidebar-content">
+           <i class="fa fa-chevron-right sidebar-visible-collapsed"></i>
+           <i class="fa fa-chevron-left sidebar-visible-expanded"></i>
+        </button>
+        <div id="sidebar-content">
+            <h3>
+                <a class="sidebar-title" href="http://localhost:1313/nginxaas/azure/" alt="NGINXaaS for Azure"><img
+                        class="card-img-top" src="http://localhost:1313//images/icons/NGINX-for-Azure-icon.svg"
+                        alt="NGINXaaS for Azure">
+                    NGINXaaS for Azure</a>
+            </h3>
+            <ul>
+            
+            
+                
+                
+                <div class="accordion" id="accordion1">
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <li class="nginx-toc-link l1">
+                                    <a data-menu-id="/nginxaas/azure/overview/" class="accordion-toggle" aria-expanded="false"
+                                    data-toggle="collapse" href="#" data-target="#nginxaas-azure--overview" aria-controls="nginxaas-azure--overview">
+                                    <i class="fa fa-2xs fa-fw fa-chevron-right"></i><i
+                                        class="fa fa-2xs fa-fw fa-chevron-down"></i>Overview</a>
+                            </li>
+                        </div>
+                        <div id="nginxaas-azure--overview" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginxaas/azure/overview/overview/"
+                                                                href="http://localhost:1313/nginxaas/azure/overview/overview/">Overview and architecture</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginxaas/azure/overview/feature-comparison/"
+                                                                href="http://localhost:1313/nginxaas/azure/overview/feature-comparison/">Feature comparison</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+
+            
+                
+                
+                <div class="accordion" id="accordion1">
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <li class="nginx-toc-link l1">
+                                    <a data-menu-id="/nginxaas/azure/getting-started/" class="accordion-toggle" aria-expanded="false"
+                                    data-toggle="collapse" href="#" data-target="#nginxaas-azure--getting-started" aria-controls="nginxaas-azure--getting-started">
+                                    <i class="fa fa-2xs fa-fw fa-chevron-right"></i><i
+                                        class="fa fa-2xs fa-fw fa-chevron-down"></i>Getting started</a>
+                            </li>
+                        </div>
+                        <div id="nginxaas-azure--getting-started" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginxaas/azure/getting-started/prerequisites/"
+                                                                href="http://localhost:1313/nginxaas/azure/getting-started/prerequisites/">Overview and prerequisites</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                                
+                                    
+                                    <div class="accordion" id="Accordion2">
+                                        <div class="sidebar-l1-padding">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginxaas/azure/getting-started/create-deployment/" class="accordion-toggle"
+                                                                aria-expanded="false" data-toggle="collapse"
+                                                                href="#nginxaas-azure--getting-started--create-a-deployment">
+                                                                <i class="fa fa-2xs fa-fw fa-chevron-right"></i><i
+                                                                    class="fa fa-2xs fa-fw fa-chevron-down"></i>Create a deployment</a>
+                                                        </li>
+                                                    <ul>
+                                                </div>
+                                                <div id="nginxaas-azure--getting-started--create-a-deployment" class="accordion-body collapse leaf">
+                                                    <div class="accordion-inner">
+
+                                                    
+                                                        
+                                                        
+                                                        <ul class="sidebar-l2-padding">
+                                                            <li class="nginx-toc-link l3 sidebar-il-border">
+                                                                <a data-menu-id="/nginxaas/azure/getting-started/create-deployment/deploy-azure-portal/" href="http://localhost:1313/nginxaas/azure/getting-started/create-deployment/deploy-azure-portal/">Deploy using the Azure portal</a>
+                                                            </li>
+                                                        </ul>
+                                                        
+                                                        
+                                                    
+                                                        
+                                                        
+                                                        <ul class="sidebar-l2-padding">
+                                                            <li class="nginx-toc-link l3 sidebar-il-border">
+                                                                <a data-menu-id="/nginxaas/azure/getting-started/create-deployment/deploy-azure-cli/" href="http://localhost:1313/nginxaas/azure/getting-started/create-deployment/deploy-azure-cli/">Deploy using the Azure CLI</a>
+                                                            </li>
+                                                        </ul>
+                                                        
+                                                        
+                                                    
+                                                        
+                                                        
+                                                        <ul class="sidebar-l2-padding">
+                                                            <li class="nginx-toc-link l3 sidebar-il-border">
+                                                                <a data-menu-id="/nginxaas/azure/getting-started/create-deployment/deploy-terraform/" href="http://localhost:1313/nginxaas/azure/getting-started/create-deployment/deploy-terraform/">Deploy using Terraform</a>
+                                                            </li>
+                                                        </ul>
+                                                        
+                                                        
+                                                    
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginxaas/azure/getting-started/managed-identity-portal/"
+                                                                href="http://localhost:1313/nginxaas/azure/getting-started/managed-identity-portal/">Assign Managed Identities</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                                
+                                    
+                                    <div class="accordion" id="Accordion2">
+                                        <div class="sidebar-l1-padding">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginxaas/azure/getting-started/ssl-tls-certificates/" class="accordion-toggle"
+                                                                aria-expanded="false" data-toggle="collapse"
+                                                                href="#nginxaas-azure--getting-started--add-ssl-tls-certificates">
+                                                                <i class="fa fa-2xs fa-fw fa-chevron-right"></i><i
+                                                                    class="fa fa-2xs fa-fw fa-chevron-down"></i>Add SSL-TLS certificates</a>
+                                                        </li>
+                                                    <ul>
+                                                </div>
+                                                <div id="nginxaas-azure--getting-started--add-ssl-tls-certificates" class="accordion-body collapse leaf">
+                                                    <div class="accordion-inner">
+
+                                                    
+                                                        
+                                                        
+                                                        <ul class="sidebar-l2-padding">
+                                                            <li class="nginx-toc-link l3 sidebar-il-border">
+                                                                <a data-menu-id="/nginxaas/azure/getting-started/ssl-tls-certificates/overview/" href="http://localhost:1313/nginxaas/azure/getting-started/ssl-tls-certificates/overview/">Overview</a>
+                                                            </li>
+                                                        </ul>
+                                                        
+                                                        
+                                                    
+                                                        
+                                                        
+                                                        <ul class="sidebar-l2-padding">
+                                                            <li class="nginx-toc-link l3 sidebar-il-border">
+                                                                <a data-menu-id="/nginxaas/azure/getting-started/ssl-tls-certificates/ssl-tls-certificates-portal/" href="http://localhost:1313/nginxaas/azure/getting-started/ssl-tls-certificates/ssl-tls-certificates-portal/">Add certificates using the Azure portal</a>
+                                                            </li>
+                                                        </ul>
+                                                        
+                                                        
+                                                    
+                                                        
+                                                        
+                                                        <ul class="sidebar-l2-padding">
+                                                            <li class="nginx-toc-link l3 sidebar-il-border">
+                                                                <a data-menu-id="/nginxaas/azure/getting-started/ssl-tls-certificates/ssl-tls-certificates-azure-cli/" href="http://localhost:1313/nginxaas/azure/getting-started/ssl-tls-certificates/ssl-tls-certificates-azure-cli/">Add certificates using the Azure CLI</a>
+                                                            </li>
+                                                        </ul>
+                                                        
+                                                        
+                                                    
+                                                        
+                                                        
+                                                        <ul class="sidebar-l2-padding">
+                                                            <li class="nginx-toc-link l3 sidebar-il-border">
+                                                                <a data-menu-id="/nginxaas/azure/getting-started/ssl-tls-certificates/ssl-tls-certificates-terraform/" href="http://localhost:1313/nginxaas/azure/getting-started/ssl-tls-certificates/ssl-tls-certificates-terraform/">Add certificates using Terraform</a>
+                                                            </li>
+                                                        </ul>
+                                                        
+                                                        
+                                                    
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                
+                                
+                                    
+                                    <div class="accordion" id="Accordion2">
+                                        <div class="sidebar-l1-padding">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginxaas/azure/getting-started/nginx-configuration/" class="accordion-toggle"
+                                                                aria-expanded="false" data-toggle="collapse"
+                                                                href="#nginxaas-azure--getting-started--upload-an-nginx-configuration">
+                                                                <i class="fa fa-2xs fa-fw fa-chevron-right"></i><i
+                                                                    class="fa fa-2xs fa-fw fa-chevron-down"></i>Upload an NGINX configuration</a>
+                                                        </li>
+                                                    <ul>
+                                                </div>
+                                                <div id="nginxaas-azure--getting-started--upload-an-nginx-configuration" class="accordion-body collapse leaf">
+                                                    <div class="accordion-inner">
+
+                                                    
+                                                        
+                                                        
+                                                        <ul class="sidebar-l2-padding">
+                                                            <li class="nginx-toc-link l3 sidebar-il-border">
+                                                                <a data-menu-id="/nginxaas/azure/getting-started/nginx-configuration/overview/" href="http://localhost:1313/nginxaas/azure/getting-started/nginx-configuration/overview/">Overview</a>
+                                                            </li>
+                                                        </ul>
+                                                        
+                                                        
+                                                    
+                                                        
+                                                        
+                                                        <ul class="sidebar-l2-padding">
+                                                            <li class="nginx-toc-link l3 sidebar-il-border">
+                                                                <a data-menu-id="/nginxaas/azure/getting-started/nginx-configuration/nginx-configuration-portal/" href="http://localhost:1313/nginxaas/azure/getting-started/nginx-configuration/nginx-configuration-portal/">Upload using the Azure portal</a>
+                                                            </li>
+                                                        </ul>
+                                                        
+                                                        
+                                                    
+                                                        
+                                                        
+                                                        <ul class="sidebar-l2-padding">
+                                                            <li class="nginx-toc-link l3 sidebar-il-border">
+                                                                <a data-menu-id="/nginxaas/azure/getting-started/nginx-configuration/nginx-configuration-azure-cli/" href="http://localhost:1313/nginxaas/azure/getting-started/nginx-configuration/nginx-configuration-azure-cli/">Upload using the Azure CLI</a>
+                                                            </li>
+                                                        </ul>
+                                                        
+                                                        
+                                                    
+                                                        
+                                                        
+                                                        <ul class="sidebar-l2-padding">
+                                                            <li class="nginx-toc-link l3 sidebar-il-border">
+                                                                <a data-menu-id="/nginxaas/azure/getting-started/nginx-configuration/nginx-configurations-terraform/" href="http://localhost:1313/nginxaas/azure/getting-started/nginx-configuration/nginx-configurations-terraform/">Upload using Terraform</a>
+                                                            </li>
+                                                        </ul>
+                                                        
+                                                        
+                                                    
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginxaas/azure/getting-started/migrate-from-standard/"
+                                                                href="http://localhost:1313/nginxaas/azure/getting-started/migrate-from-standard/">Migrate from Standard to Standard V2</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+
+            
+                
+                
+                <div class="accordion" id="accordion1">
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <li class="nginx-toc-link l1">
+                                    <a data-menu-id="/nginxaas/azure/app-protect/" class="accordion-toggle" aria-expanded="false"
+                                    data-toggle="collapse" href="#" data-target="#nginxaas-azure--nginx-app-protect-waf" aria-controls="nginxaas-azure--nginx-app-protect-waf">
+                                    <i class="fa fa-2xs fa-fw fa-chevron-right"></i><i
+                                        class="fa fa-2xs fa-fw fa-chevron-down"></i>NGINX App Protect WAF</a>
+                            </li>
+                        </div>
+                        <div id="nginxaas-azure--nginx-app-protect-waf" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginxaas/azure/app-protect/enable-waf/"
+                                                                href="http://localhost:1313/nginxaas/azure/app-protect/enable-waf/">Enable App Protect WAF</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginxaas/azure/app-protect/configure-waf/"
+                                                                href="http://localhost:1313/nginxaas/azure/app-protect/configure-waf/">Configure App Protect WAF</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginxaas/azure/app-protect/enable-logging/"
+                                                                href="http://localhost:1313/nginxaas/azure/app-protect/enable-logging/">Enable App Protect WAF Logs</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginxaas/azure/app-protect/disable-waf/"
+                                                                href="http://localhost:1313/nginxaas/azure/app-protect/disable-waf/">Disable App Protect WAF</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+
+            
+                
+                
+                <li class="nginx-toc-link l1">
+                    <a data-menu-id="/nginxaas/azure/loadbalancer-kubernetes/" href="http://localhost:1313/nginxaas/azure/loadbalancer-kubernetes/">NGINXaaS Load Balancer for Kubernetes</a>
+                </li>
+                
+                
+
+            
+                
+                
+                <div class="accordion" id="accordion1">
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <li class="nginx-toc-link l1">
+                                    <a data-menu-id="/nginxaas/azure/monitoring/" class="accordion-toggle" aria-expanded="false"
+                                    data-toggle="collapse" href="#" data-target="#nginxaas-azure--logging-and-monitoring" aria-controls="nginxaas-azure--logging-and-monitoring">
+                                    <i class="fa fa-2xs fa-fw fa-chevron-right"></i><i
+                                        class="fa fa-2xs fa-fw fa-chevron-down"></i>Logging and monitoring</a>
+                            </li>
+                        </div>
+                        <div id="nginxaas-azure--logging-and-monitoring" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginxaas/azure/monitoring/enable-monitoring/"
+                                                                href="http://localhost:1313/nginxaas/azure/monitoring/enable-monitoring/">Enable monitoring</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginxaas/azure/monitoring/configure-alerts/"
+                                                                href="http://localhost:1313/nginxaas/azure/monitoring/configure-alerts/">Configure alerts</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                                
+                                    
+                                    <div class="accordion" id="Accordion2">
+                                        <div class="sidebar-l1-padding">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginxaas/azure/monitoring/enable-logging/" class="accordion-toggle"
+                                                                aria-expanded="false" data-toggle="collapse"
+                                                                href="#nginxaas-azure--monitoring--enable-nginx-logs">
+                                                                <i class="fa fa-2xs fa-fw fa-chevron-right"></i><i
+                                                                    class="fa fa-2xs fa-fw fa-chevron-down"></i>Enable NGINX logs</a>
+                                                        </li>
+                                                    <ul>
+                                                </div>
+                                                <div id="nginxaas-azure--monitoring--enable-nginx-logs" class="accordion-body collapse leaf">
+                                                    <div class="accordion-inner">
+
+                                                    
+                                                        
+                                                        
+                                                        <ul class="sidebar-l2-padding">
+                                                            <li class="nginx-toc-link l3 sidebar-il-border">
+                                                                <a data-menu-id="/nginxaas/azure/monitoring/enable-logging/logging-using-portal/" href="http://localhost:1313/nginxaas/azure/monitoring/enable-logging/logging-using-portal/">Enable NGINX logs using Azure Portal</a>
+                                                            </li>
+                                                        </ul>
+                                                        
+                                                        
+                                                    
+                                                        
+                                                        
+                                                        <ul class="sidebar-l2-padding">
+                                                            <li class="nginx-toc-link l3 sidebar-il-border">
+                                                                <a data-menu-id="/nginxaas/azure/monitoring/enable-logging/logging-using-cli/" href="http://localhost:1313/nginxaas/azure/monitoring/enable-logging/logging-using-cli/">Enable NGINX logs using CLI</a>
+                                                            </li>
+                                                        </ul>
+                                                        
+                                                        
+                                                    
+                                                        
+                                                        
+                                                        <ul class="sidebar-l2-padding">
+                                                            <li class="nginx-toc-link l3 sidebar-il-border">
+                                                                <a data-menu-id="/nginxaas/azure/monitoring/enable-logging/logging-using-terraform/" href="http://localhost:1313/nginxaas/azure/monitoring/enable-logging/logging-using-terraform/">Enable NGINX logs using Terraform</a>
+                                                            </li>
+                                                        </ul>
+                                                        
+                                                        
+                                                    
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginxaas/azure/monitoring/metrics-catalog/"
+                                                                href="http://localhost:1313/nginxaas/azure/monitoring/metrics-catalog/">Metrics catalog</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+
+            
+                
+                
+                <div class="accordion" id="accordion1">
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <li class="nginx-toc-link l1">
+                                    <a data-menu-id="/nginxaas/azure/billing/" class="accordion-toggle" aria-expanded="false"
+                                    data-toggle="collapse" href="#" data-target="#nginxaas-azure--marketplace-billing" aria-controls="nginxaas-azure--marketplace-billing">
+                                    <i class="fa fa-2xs fa-fw fa-chevron-right"></i><i
+                                        class="fa fa-2xs fa-fw fa-chevron-down"></i>Marketplace billing</a>
+                            </li>
+                        </div>
+                        <div id="nginxaas-azure--marketplace-billing" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginxaas/azure/billing/overview/"
+                                                                href="http://localhost:1313/nginxaas/azure/billing/overview/">Billing overview</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginxaas/azure/billing/usage-and-cost-estimator/"
+                                                                href="http://localhost:1313/nginxaas/azure/billing/usage-and-cost-estimator/">Usage and cost estimator</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+
+            
+                
+                
+                <div class="accordion" id="accordion1">
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <li class="nginx-toc-link l1">
+                                    <a data-menu-id="/nginxaas/azure/client-tools/" class="accordion-toggle" aria-expanded="false"
+                                    data-toggle="collapse" href="#" data-target="#nginxaas-azure--client-tools" aria-controls="nginxaas-azure--client-tools">
+                                    <i class="fa fa-2xs fa-fw fa-chevron-right"></i><i
+                                        class="fa fa-2xs fa-fw fa-chevron-down"></i>Client tools</a>
+                            </li>
+                        </div>
+                        <div id="nginxaas-azure--client-tools" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginxaas/azure/client-tools/templates/"
+                                                                href="http://localhost:1313/nginxaas/azure/client-tools/templates/">Azure Resource Manager templates</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginxaas/azure/client-tools/sdk/"
+                                                                href="http://localhost:1313/nginxaas/azure/client-tools/sdk/">Azure SDK</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginxaas/azure/client-tools/cli/"
+                                                                href="http://localhost:1313/nginxaas/azure/client-tools/cli/">Azure CLI</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+
+            
+                
+                
+                <div class="accordion" id="accordion1">
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <li class="nginx-toc-link l1">
+                                    <a data-menu-id="/nginxaas/azure/quickstart/" class="accordion-toggle" aria-expanded="false"
+                                    data-toggle="collapse" href="#" data-target="#nginxaas-azure--quickstart-guides" aria-controls="nginxaas-azure--quickstart-guides">
+                                    <i class="fa fa-2xs fa-fw fa-chevron-right"></i><i
+                                        class="fa fa-2xs fa-fw fa-chevron-down"></i>Quickstart guides</a>
+                            </li>
+                        </div>
+                        <div id="nginxaas-azure--quickstart-guides" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginxaas/azure/quickstart/runtime-state-sharing/"
+                                                                href="http://localhost:1313/nginxaas/azure/quickstart/runtime-state-sharing/">Runtime State Sharing</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginxaas/azure/quickstart/scaling/"
+                                                                href="http://localhost:1313/nginxaas/azure/quickstart/scaling/">Scaling guidance</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginxaas/azure/quickstart/upgrade-channels/"
+                                                                href="http://localhost:1313/nginxaas/azure/quickstart/upgrade-channels/">Upgrade channels</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginxaas/azure/quickstart/basic-caching/"
+                                                                href="http://localhost:1313/nginxaas/azure/quickstart/basic-caching/">Enable content caching</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginxaas/azure/quickstart/hosting-static-content/"
+                                                                href="http://localhost:1313/nginxaas/azure/quickstart/hosting-static-content/">Hosting static content</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginxaas/azure/quickstart/rate-limiting/"
+                                                                href="http://localhost:1313/nginxaas/azure/quickstart/rate-limiting/">Enable rate limiting</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginxaas/azure/quickstart/njs-support/"
+                                                                href="http://localhost:1313/nginxaas/azure/quickstart/njs-support/">Use the njs Scripting language</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginxaas/azure/quickstart/recreate/"
+                                                                href="http://localhost:1313/nginxaas/azure/quickstart/recreate/">Recreating a deployment</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                                
+                                    
+                                    <div class="accordion" id="Accordion2">
+                                        <div class="sidebar-l1-padding">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginxaas/azure/quicksart/security-controls/" class="accordion-toggle"
+                                                                aria-expanded="false" data-toggle="collapse"
+                                                                href="#nginxaas-azure--quickstart--security-controls">
+                                                                <i class="fa fa-2xs fa-fw fa-chevron-right"></i><i
+                                                                    class="fa fa-2xs fa-fw fa-chevron-down"></i>Security controls</a>
+                                                        </li>
+                                                    <ul>
+                                                </div>
+                                                <div id="nginxaas-azure--quickstart--security-controls" class="accordion-body collapse leaf">
+                                                    <div class="accordion-inner">
+
+                                                    
+                                                        
+                                                        
+                                                        <ul class="sidebar-l2-padding">
+                                                            <li class="nginx-toc-link l3 sidebar-il-border">
+                                                                <a data-menu-id="/nginxaas/azure/quickstart/security-controls/certificates/" href="http://localhost:1313/nginxaas/azure/quickstart/security-controls/certificates/">Use a certificate from Azure Key Vault</a>
+                                                            </li>
+                                                        </ul>
+                                                        
+                                                        
+                                                    
+                                                        
+                                                        
+                                                        <ul class="sidebar-l2-padding">
+                                                            <li class="nginx-toc-link l3 sidebar-il-border">
+                                                                <a data-menu-id="/nginxaas/azure/security-controls/auth-basic/" href="http://localhost:1313/nginxaas/azure/security-controls/auth-basic/">Restricting access with HTTP basic authentication</a>
+                                                            </li>
+                                                        </ul>
+                                                        
+                                                        
+                                                    
+                                                        
+                                                        
+                                                        <ul class="sidebar-l2-padding">
+                                                            <li class="nginx-toc-link l3 sidebar-il-border">
+                                                                <a data-menu-id="/nginxaas/azure/quickstart/security-controls/jwt/" href="http://localhost:1313/nginxaas/azure/quickstart/security-controls/jwt/">Setting up JWT authentication</a>
+                                                            </li>
+                                                        </ul>
+                                                        
+                                                        
+                                                    
+                                                        
+                                                        
+                                                        <ul class="sidebar-l2-padding">
+                                                            <li class="nginx-toc-link l3 sidebar-il-border">
+                                                                <a data-menu-id="/nginxaas/azure/quickstart/security-controls/securing-upstream-traffic/" href="http://localhost:1313/nginxaas/azure/quickstart/security-controls/securing-upstream-traffic/">Securing upstream traffic</a>
+                                                            </li>
+                                                        </ul>
+                                                        
+                                                        
+                                                    
+                                                        
+                                                        
+                                                        <ul class="sidebar-l2-padding">
+                                                            <li class="nginx-toc-link l3 sidebar-il-border">
+                                                                <a data-menu-id="/nginxaas/azure/quickstart/security-controls/oidc/" href="http://localhost:1313/nginxaas/azure/quickstart/security-controls/oidc/">Set up OIDC authentication</a>
+                                                            </li>
+                                                        </ul>
+                                                        
+                                                        
+                                                    
+                                                        
+                                                        
+                                                        <ul class="sidebar-l2-padding">
+                                                            <li class="nginx-toc-link l3 sidebar-il-border">
+                                                                <a data-menu-id="/nginxaas/azure/quickstart/security-controls/private-link-to-upstreams/" href="http://localhost:1313/nginxaas/azure/quickstart/security-controls/private-link-to-upstreams/">Connect to upstreams with Azure Private Link</a>
+                                                            </li>
+                                                        </ul>
+                                                        
+                                                        
+                                                    
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginxaas/azure/quickstart/geoip2/"
+                                                                href="http://localhost:1313/nginxaas/azure/quickstart/geoip2/">GeoIP2</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+
+            
+                
+                
+                <li class="nginx-toc-link l1">
+                    <a data-menu-id="/nginxaas/azure/disaster-recovery/" href="http://localhost:1313/nginxaas/azure/disaster-recovery/">Disaster recovery</a>
+                </li>
+                
+                
+
+            
+                
+                
+                <li class="nginx-toc-link l1">
+                    <a data-menu-id="/nginxaas/azure/get-help/" href="http://localhost:1313/nginxaas/azure/get-help/">Get help</a>
+                </li>
+                
+                
+
+            
+                
+                
+                <li class="nginx-toc-link l1">
+                    <a data-menu-id="/nginxaas/azure/changelog/" href="http://localhost:1313/nginxaas/azure/changelog/">Changelog</a>
+                </li>
+                
+                
+
+            
+                
+                
+                <div class="accordion" id="accordion1">
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <li class="nginx-toc-link l1">
+                                    <a data-menu-id="/nginxaas/azure/changelog-archive/" class="accordion-toggle" aria-expanded="false"
+                                    data-toggle="collapse" href="#" data-target="#nginxaas-azure--changelog-archive" aria-controls="nginxaas-azure--changelog-archive">
+                                    <i class="fa fa-2xs fa-fw fa-chevron-right"></i><i
+                                        class="fa fa-2xs fa-fw fa-chevron-down"></i>Changelog archive</a>
+                            </li>
+                        </div>
+                        <div id="nginxaas-azure--changelog-archive" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginxaas/azure/changelog-archive/changelog-2024/"
+                                                                href="http://localhost:1313/nginxaas/azure/changelog-archive/changelog-2024/">2024</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginxaas/azure/changelog-archive/changelog-2023/"
+                                                                href="http://localhost:1313/nginxaas/azure/changelog-archive/changelog-2023/">2023</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginxaas/azure/changelog-archive/changelog-2022/"
+                                                                href="http://localhost:1313/nginxaas/azure/changelog-archive/changelog-2022/">2022</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+
+            
+                
+                
+                <li class="nginx-toc-link l1">
+                    <a data-menu-id="/nginxaas/azure/known-issues/" href="http://localhost:1313/nginxaas/azure/known-issues/">Known issues</a>
+                </li>
+                
+                
+
+            
+
+            </ul>
+        
+        </div>
+    </div>
+</div>
+
+  </nav>
+
+  
+  
+  <main class="content col d-block align-top content-has-toc" role="main">
+  
+    
+  <section class="main-layout">
+    <div class="sidebar-layout" id="sidebar-layout">
+      <nav data-mf="true" id="sidebar-v2" class="sidebar" style="display:none;">
+        
+
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+
+
+
+
+<atomic-search-interface id="search-standalone-sidebar" data-mf="true" style="display:none;">
+    <atomic-search-box redirection-url="/search.html">
+    </atomic-search-box>
+</atomic-search-interface>
+<button class="product-selector-button" id="product-selector-button">
+    
+    <div class="product-selector-name" id="product-selector-name">NGINX as a Service for Azure</div>
+    <div class="product-selector-button-icon" id="product-selector-button-icon">
+        <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg" id="product-selector-chevron-icon">
+            <path d="M1 13L7 7L0.999999 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="product-selector-chevron-icon"/>
+        </svg>     
+    </div>
+</button>
+<div class="product-selector" id="product-selector">
+    
+    
+    
+    
+    
+        <div class="product-selector-content" id="product-selector-content">
+            <p id="product-selector-content-product-group-name">NGINX ONE</p>
+            <ul id="product-selector-content-product-container">
+            
+                <li id="product-selector-content-product-name">
+                    <a id="product-selector-content-product-link" href="/nginx-one">NGINX One Console</a>
+                </li>
+            
+                <li id="product-selector-content-product-name">
+                    <a id="product-selector-content-product-link" href="/nginx">NGINX Plus</a>
+                </li>
+            
+                <li id="product-selector-content-product-name">
+                    <a id="product-selector-content-product-link" href="/nginx-instance-manager">NGINX Instance Manager</a>
+                </li>
+            
+                <li id="product-selector-content-product-name">
+                    <a id="product-selector-content-product-link" href="/nginx-ingress-controller">NGINX Ingress Controller</a>
+                </li>
+            
+                <li id="product-selector-content-product-name">
+                    <a id="product-selector-content-product-link" href="/nginx-gateway-fabric">NGINX Gateway Fabric</a>
+                </li>
+            
+                <li id="product-selector-content-product-name">
+                    <a id="product-selector-content-product-link" href="https://nginx.org/en/docs/">NGINX Open Source</a>
+                </li>
+            
+                <li id="product-selector-content-product-name">
+                    <a id="product-selector-content-product-link" href="/solutions/">Subscription Licensing &amp; Solutions</a>
+                </li>
+            
+                <li id="product-selector-content-product-name">
+                    <a id="product-selector-content-product-link" href="/nginx-agent">NGINX Agent</a>
+                </li>
+            
+            </ul>
+        </div>
+    
+    
+    
+        <div class="product-selector-content" id="product-selector-content">
+            <p id="product-selector-content-product-group-name">NGINX APP PROTECT</p>
+            <ul id="product-selector-content-product-container">
+            
+                <li id="product-selector-content-product-name">
+                    <a id="product-selector-content-product-link" href="/nginx-app-protect-waf">NGINX App Protect WAF</a>
+                </li>
+            
+                <li id="product-selector-content-product-name">
+                    <a id="product-selector-content-product-link" href="/nginx-app-protect-dos">NGINX App Protect DoS</a>
+                </li>
+            
+            </ul>
+        </div>
+    
+    
+    
+        <div class="product-selector-content" id="product-selector-content">
+            <p id="product-selector-content-product-group-name">NGINX AS A SERVICE</p>
+            <ul id="product-selector-content-product-container">
+            
+                <li id="product-selector-content-product-name">
+                    <a id="product-selector-content-product-link" href="/nginxaas/azure/">NGINX as a Service for Azure</a>
+                </li>
+            
+            </ul>
+        </div>
+    
+    
+    
+        <div class="product-selector-content" id="product-selector-content">
+            <p id="product-selector-content-product-group-name">NGINX OTHER</p>
+            <ul id="product-selector-content-product-container">
+            
+                <li id="product-selector-content-product-name">
+                    <a id="product-selector-content-product-link" href="https://unit.nginx.org/">NGINX Unit</a>
+                </li>
+            
+            </ul>
+        </div>
+    
+</div>
+<div class="scrollbar-container">
+    <div class="sidebar-navigation">
+        <ul class="parent-collapsible-content">
+        
+            <li class="parent-collapsible-content-item">
+                
+                    <input type="checkbox" id="toggle-b1e3e074d58fcbbdd10c50a65ab40dd8" class="toggle-checkbox" style="display: none;">
+                    <label for="toggle-b1e3e074d58fcbbdd10c50a65ab40dd8" class="collapsible-header">
+                        
+                            <span class="parent-box expand"></span>
+                            <span class="parent-box opened"></span>
+                        
+                        Overview 
+                    </label>
+                    
+
+<ul class="collapsible-content">
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginxaas/azure/overview/overview/" style="">Overview and architecture </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginxaas/azure/overview/feature-comparison/" style="">Feature comparison </a>
+            
+        
+    </li>
+    
+</ul>
+                
+            </li>
+        
+            <li class="parent-collapsible-content-item">
+                
+                    <input type="checkbox" id="toggle-24a8fc5618e7ed45d84bfc2edaff214b" class="toggle-checkbox" style="display: none;">
+                    <label for="toggle-24a8fc5618e7ed45d84bfc2edaff214b" class="collapsible-header">
+                        
+                            <span class="parent-box expand"></span>
+                            <span class="parent-box opened"></span>
+                        
+                        Getting started 
+                    </label>
+                    
+
+<ul class="collapsible-content">
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginxaas/azure/getting-started/prerequisites/" style="">Overview and prerequisites </a>
+            
+        
+    </li>
+    
+    <li>
+        
+            <input type="checkbox" id="toggle-04d1d4bfaff48e09dee8d38659107858" class="toggle-checkbox" style="display: none;">
+            <label for="toggle-04d1d4bfaff48e09dee8d38659107858" class="collapsible-header">
+                
+                    <span class="box expand partial-box"></span>
+                    <span class="box opened partial-box"></span>
+                
+                Create a deployment 
+            </label>
+            
+
+<ul class="collapsible-content">
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginxaas/azure/getting-started/create-deployment/deploy-azure-portal/" style="">Deploy using the Azure portal </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginxaas/azure/getting-started/create-deployment/deploy-azure-cli/" style="">Deploy using the Azure CLI </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginxaas/azure/getting-started/create-deployment/deploy-terraform/" style="">Deploy using Terraform </a>
+            
+        
+    </li>
+    
+</ul>
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginxaas/azure/getting-started/managed-identity-portal/" style="">Assign Managed Identities </a>
+            
+        
+    </li>
+    
+    <li>
+        
+            <input type="checkbox" id="toggle-239bf8bc73b4f270d8f94e7a0c5b37af" class="toggle-checkbox" style="display: none;">
+            <label for="toggle-239bf8bc73b4f270d8f94e7a0c5b37af" class="collapsible-header">
+                
+                    <span class="box expand partial-box"></span>
+                    <span class="box opened partial-box"></span>
+                
+                Add SSL-TLS certificates 
+            </label>
+            
+
+<ul class="collapsible-content">
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginxaas/azure/getting-started/ssl-tls-certificates/overview/" style="">Overview </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginxaas/azure/getting-started/ssl-tls-certificates/ssl-tls-certificates-portal/" style="">Add certificates using the Azure portal </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginxaas/azure/getting-started/ssl-tls-certificates/ssl-tls-certificates-azure-cli/" style="">Add certificates using the Azure CLI </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginxaas/azure/getting-started/ssl-tls-certificates/ssl-tls-certificates-terraform/" style="">Add certificates using Terraform </a>
+            
+        
+    </li>
+    
+</ul>
+        
+    </li>
+    
+    <li>
+        
+            <input type="checkbox" id="toggle-0d1b956b964a1429129d3ad26bd2cb58" class="toggle-checkbox" style="display: none;">
+            <label for="toggle-0d1b956b964a1429129d3ad26bd2cb58" class="collapsible-header">
+                
+                    <span class="box expand partial-box"></span>
+                    <span class="box opened partial-box"></span>
+                
+                Upload an NGINX configuration 
+            </label>
+            
+
+<ul class="collapsible-content">
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginxaas/azure/getting-started/nginx-configuration/overview/" style="">Overview </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginxaas/azure/getting-started/nginx-configuration/nginx-configuration-portal/" style="">Upload using the Azure portal </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginxaas/azure/getting-started/nginx-configuration/nginx-configuration-azure-cli/" style="">Upload using the Azure CLI </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginxaas/azure/getting-started/nginx-configuration/nginx-configurations-terraform/" style="">Upload using Terraform </a>
+            
+        
+    </li>
+    
+</ul>
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginxaas/azure/getting-started/migrate-from-standard/" style="">Migrate from Standard to Standard V2 </a>
+            
+        
+    </li>
+    
+</ul>
+                
+            </li>
+        
+            <li class="parent-collapsible-content-item">
+                
+                    <input type="checkbox" id="toggle-33a5cf470d62434a11af8bef0f5f5294" class="toggle-checkbox" style="display: none;">
+                    <label for="toggle-33a5cf470d62434a11af8bef0f5f5294" class="collapsible-header">
+                        
+                            <span class="parent-box expand"></span>
+                            <span class="parent-box opened"></span>
+                        
+                        NGINX App Protect WAF 
+                    </label>
+                    
+
+<ul class="collapsible-content">
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginxaas/azure/app-protect/enable-waf/" style="">Enable App Protect WAF </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginxaas/azure/app-protect/configure-waf/" style="">Configure App Protect WAF </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginxaas/azure/app-protect/enable-logging/" style="">Enable App Protect WAF Logs </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginxaas/azure/app-protect/disable-waf/" style="">Disable App Protect WAF </a>
+            
+        
+    </li>
+    
+</ul>
+                
+            </li>
+        
+            <li class="parent-collapsible-content-item">
+                
+                                          
+                        <span class="parent-box current"></span>                 
+                    
+                    <a href="http://localhost:1313/nginxaas/azure/loadbalancer-kubernetes/" style="font-weight: bold;">NGINXaaS Load Balancer for Kubernetes </a> 
+                
+            </li>
+        
+            <li class="parent-collapsible-content-item">
+                
+                    <input type="checkbox" id="toggle-7bf932b51f83e6871bfe46af8d131d95" class="toggle-checkbox" style="display: none;">
+                    <label for="toggle-7bf932b51f83e6871bfe46af8d131d95" class="collapsible-header">
+                        
+                            <span class="parent-box expand"></span>
+                            <span class="parent-box opened"></span>
+                        
+                        Logging and monitoring 
+                    </label>
+                    
+
+<ul class="collapsible-content">
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginxaas/azure/monitoring/enable-monitoring/" style="">Enable monitoring </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginxaas/azure/monitoring/configure-alerts/" style="">Configure alerts </a>
+            
+        
+    </li>
+    
+    <li>
+        
+            <input type="checkbox" id="toggle-26757c8aaa8fd20af9231ebfc678066a" class="toggle-checkbox" style="display: none;">
+            <label for="toggle-26757c8aaa8fd20af9231ebfc678066a" class="collapsible-header">
+                
+                    <span class="box expand partial-box"></span>
+                    <span class="box opened partial-box"></span>
+                
+                Enable NGINX logs 
+            </label>
+            
+
+<ul class="collapsible-content">
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginxaas/azure/monitoring/enable-logging/logging-using-portal/" style="">Enable NGINX logs using Azure Portal </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginxaas/azure/monitoring/enable-logging/logging-using-cli/" style="">Enable NGINX logs using CLI </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginxaas/azure/monitoring/enable-logging/logging-using-terraform/" style="">Enable NGINX logs using Terraform </a>
+            
+        
+    </li>
+    
+</ul>
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginxaas/azure/monitoring/metrics-catalog/" style="">Metrics catalog </a>
+            
+        
+    </li>
+    
+</ul>
+                
+            </li>
+        
+            <li class="parent-collapsible-content-item">
+                
+                    <input type="checkbox" id="toggle-5a8d9766fbb65e8678bc133d88584ff8" class="toggle-checkbox" style="display: none;">
+                    <label for="toggle-5a8d9766fbb65e8678bc133d88584ff8" class="collapsible-header">
+                        
+                            <span class="parent-box expand"></span>
+                            <span class="parent-box opened"></span>
+                        
+                        Marketplace billing 
+                    </label>
+                    
+
+<ul class="collapsible-content">
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginxaas/azure/billing/overview/" style="">Billing overview </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginxaas/azure/billing/usage-and-cost-estimator/" style="">Usage and cost estimator </a>
+            
+        
+    </li>
+    
+</ul>
+                
+            </li>
+        
+            <li class="parent-collapsible-content-item">
+                
+                    <input type="checkbox" id="toggle-36f5fc9e9cbbf3dfecaac80efb09db9a" class="toggle-checkbox" style="display: none;">
+                    <label for="toggle-36f5fc9e9cbbf3dfecaac80efb09db9a" class="collapsible-header">
+                        
+                            <span class="parent-box expand"></span>
+                            <span class="parent-box opened"></span>
+                        
+                        Client tools 
+                    </label>
+                    
+
+<ul class="collapsible-content">
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginxaas/azure/client-tools/templates/" style="">Azure Resource Manager templates </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginxaas/azure/client-tools/sdk/" style="">Azure SDK </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginxaas/azure/client-tools/cli/" style="">Azure CLI </a>
+            
+        
+    </li>
+    
+</ul>
+                
+            </li>
+        
+            <li class="parent-collapsible-content-item">
+                
+                    <input type="checkbox" id="toggle-4cee14fd5f479447cf99a9be803e0589" class="toggle-checkbox" style="display: none;">
+                    <label for="toggle-4cee14fd5f479447cf99a9be803e0589" class="collapsible-header">
+                        
+                            <span class="parent-box expand"></span>
+                            <span class="parent-box opened"></span>
+                        
+                        Quickstart guides 
+                    </label>
+                    
+
+<ul class="collapsible-content">
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginxaas/azure/quickstart/runtime-state-sharing/" style="">Runtime State Sharing </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginxaas/azure/quickstart/scaling/" style="">Scaling guidance </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginxaas/azure/quickstart/upgrade-channels/" style="">Upgrade channels </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginxaas/azure/quickstart/basic-caching/" style="">Enable content caching </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginxaas/azure/quickstart/hosting-static-content/" style="">Hosting static content </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginxaas/azure/quickstart/rate-limiting/" style="">Enable rate limiting </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginxaas/azure/quickstart/njs-support/" style="">Use the njs Scripting language </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginxaas/azure/quickstart/recreate/" style="">Recreating a deployment </a>
+            
+        
+    </li>
+    
+    <li>
+        
+            <input type="checkbox" id="toggle-a11b6eed6d79756be9583ebae901417d" class="toggle-checkbox" style="display: none;">
+            <label for="toggle-a11b6eed6d79756be9583ebae901417d" class="collapsible-header">
+                
+                    <span class="box expand partial-box"></span>
+                    <span class="box opened partial-box"></span>
+                
+                Security controls 
+            </label>
+            
+
+<ul class="collapsible-content">
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginxaas/azure/quickstart/security-controls/certificates/" style="">Use a certificate from Azure Key Vault </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginxaas/azure/security-controls/auth-basic/" style="">Restricting access with HTTP basic authentication </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginxaas/azure/quickstart/security-controls/jwt/" style="">Setting up JWT authentication </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginxaas/azure/quickstart/security-controls/securing-upstream-traffic/" style="">Securing upstream traffic </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginxaas/azure/quickstart/security-controls/oidc/" style="">Set up OIDC authentication </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginxaas/azure/quickstart/security-controls/private-link-to-upstreams/" style="">Connect to upstreams with Azure Private Link </a>
+            
+        
+    </li>
+    
+</ul>
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginxaas/azure/quickstart/geoip2/" style="">GeoIP2 </a>
+            
+        
+    </li>
+    
+</ul>
+                
+            </li>
+        
+            <li class="parent-collapsible-content-item">
+                
+                                         
+                        <span class="parent-box-link"></span>              
+                    
+                    <a href="http://localhost:1313/nginxaas/azure/disaster-recovery/" style="">Disaster recovery </a> 
+                
+            </li>
+        
+            <li class="parent-collapsible-content-item">
+                
+                                         
+                        <span class="parent-box-link"></span>              
+                    
+                    <a href="http://localhost:1313/nginxaas/azure/get-help/" style="">Get help </a> 
+                
+            </li>
+        
+            <li class="parent-collapsible-content-item">
+                
+                                         
+                        <span class="parent-box-link"></span>              
+                    
+                    <a href="http://localhost:1313/nginxaas/azure/changelog/" style="">Changelog </a> 
+                
+            </li>
+        
+            <li class="parent-collapsible-content-item">
+                
+                    <input type="checkbox" id="toggle-859d338d0f258b9da7d78a0ebc3a15b3" class="toggle-checkbox" style="display: none;">
+                    <label for="toggle-859d338d0f258b9da7d78a0ebc3a15b3" class="collapsible-header">
+                        
+                            <span class="parent-box expand"></span>
+                            <span class="parent-box opened"></span>
+                        
+                        Changelog archive 
+                    </label>
+                    
+
+<ul class="collapsible-content">
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginxaas/azure/changelog-archive/changelog-2024/" style="">2024 </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginxaas/azure/changelog-archive/changelog-2023/" style="">2023 </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginxaas/azure/changelog-archive/changelog-2022/" style="">2022 </a>
+            
+        
+    </li>
+    
+</ul>
+                
+            </li>
+        
+            <li class="parent-collapsible-content-item">
+                
+                                         
+                        <span class="parent-box-link"></span>              
+                    
+                    <a href="http://localhost:1313/nginxaas/azure/known-issues/" style="">Known issues </a> 
+                
+            </li>
+        
+        </ul>
+    </div>
+</div>
+      </nav>
+    </div>
+
+    <section class="content-layout">
+      <div data-cms-edit="content" class="text-content">
+        <section class="breadcrumb-layout" data-mf="true" style="display: none;">
+          
+            
+            <nav aria-label="breadcrumb" class="breadcrumb navbar">
+    <div class="nav flex-md-row">
+        <ol class="breadcrumb">
+            
+            
+            
+            
+                
+            
+            
+                
+            
+            
+                
+            
+            
+            
+                <li><a href="/">Home</a><i class="fas fa-chevron-right"></i></li>
+                
+            
+                <li><a href="/nginxaas/azure/">NGINXaaS for Azure</a><i class="fas fa-chevron-right"></i></li>
+                
+            
+                NGINXaaS Load Balancer for Kubernetes
+        </ol>
+    </div>
+</nav>
+  
+            
+          
+        </section>
+        <h1>NGINXaaS Load Balancer for Kubernetes</h1>
+        <h2 
+id="overview">Overview  <a class="headerlink float-right" href="#overview" title="Overview"><i class="fas fa-link fa-xs"></i></a>
+</h2><p>F5 NGINXaaS for Azure simplifies advanced Layer 4 and Layer 7 load balancing for Kubernetes clusters. With the NGINX Load Balancer for Kubernetes (NLK) feature, you can enable multi-cluster load balancing, failover, disaster recovery, and blue-green or canary deployments.</p>
+<style type="text/css">
+   .markdown-node-label {
+      text-align: left;
+   }
+</style>
+<pre class="mermaid">flowchart TB
+
+   Users[웃 Users] -.-> |GET '/tea' | NGINXaaS{NGINXaaS}
+   NGINXaaS -.-> P1
+   NLK --> |Update upstream 'tea'| NGINXaaS
+
+   subgraph AK[Azure Kubernetes Cluster]
+      TeaSvc{Tea svc} -.-> P2(Pod)
+      TeaSvc -.-> P1(Pod)
+      k8sapi[K8s API] --> |watch| NLK(NLK controller)
+   end
+
+   style Users color:orange,stroke:orange,fill:#faefd9
+   linkStyle 0,1 color:orange,stroke:orange
+   style NLK color:green,stroke:green,stroke-width:4px,fill:#d9fade
+   style NGINXaaS color:green,stroke:green,stroke-width:4px,fill:#d9fade
+   linkStyle 2 color:green,stroke:green
+   style AK fill:#9bb1de,color:#
+   style k8sapi color:#3075ff,stroke:#3075ff,stroke-width:4px
+   linkStyle 5 color:#3075ff,stroke:#3075ff
+
+   accDescr: A diagram showing users sending GET requests to NGINXaaS, which proxies traffic to a Kubernetes-based service named "TeaSvc" running multiple pods in an Azure Kubernetes Cluster, with upstream configurations dynamically managed via an NLK controller watching the Kubernetes API.
+ </pre>
+ <p>The NLK controller monitors <a href="https://kubernetes.io/docs/concepts/services-networking/service/" target="_blank" rel="noopener">Kubernetes Services</a> and updates an <a href="https://nginx.org/en/docs/http/ngx_http_upstream_module.html" target="_blank" rel="noopener">NGINX Upstream</a> dynamically. NGINXaaS applies these updates immediately and keeps them in sync during scaling or upgrades.</p>
+<h3 
+id="example-use-cases">Example use cases  <a class="headerlink float-right" href="#example-use-cases" title="Example use cases"><i class="fas fa-link fa-xs"></i></a>
+</h3><ul>
+<li>You can use NGINXaaS for Azure to enforce rate limiting and application security with NGINX App Protect, then forward all accepted traffic to your Kubernetes applications.</li>
+<li>You can use NGINXaaS for Azure to receive traffic on <code>api.example.com</code> and route requests by URL path - for example, forwarding <code>/login</code> to a Kubernetes-based login service, <code>/graph</code> to a Kubernetes-hosted graph service, and <code>/process</code> to an application server on a standalone VM.</li>
+</ul>
+<h2 
+id="getting-started">Getting Started  <a class="headerlink float-right" href="#getting-started" title="Getting Started"><i class="fas fa-link fa-xs"></i></a>
+</h2><p>This guide explains how to integrate NGINXaaS with an Azure Kubernetes Service (AKS) cluster. See <a href="#advanced-configuration">Advanced Configuration</a> for options to customize the installation..</p>
+<p>Before following the steps in this guide, you must:</p>
+<ul>
+<li>Create an AKS cluster.</li>
+<li>Create an NGINXaaS deployment. See the <a href="http://localhost:1313/nginxaas/azure/getting-started/create-deployment/deploy-azure-portal/">documentation</a> to deploy via the Azure portal.</li>
+<li>Ensure network connectivity between the subnet delegated to the NGINXaaS deployment and the subnet where AKS is deployed. For example, the AKS cluster and NGINXaaS deployment can run on the same Azure VNET or on peered VNETs.</li>
+</ul>
+<h3 
+id="initial-setup">Initial setup  <a class="headerlink float-right" href="#initial-setup" title="Initial setup"><i class="fas fa-link fa-xs"></i></a>
+</h3><p>The steps in this section must be completed once for each new setup. We will install the NLK controller in the Kubernetes cluster and authorize that to send updates to the NGINXaaS deployment.</p>
+<ol>
+<li>Create an NGINXaaS data plane API key.</li>
+<li>Look up the NGINXaaS data plane API endpoint.</li>
+<li>Install the NLK controller.</li>
+</ol>
+<h4 
+id="create-an-nginxaas-data-plane-api-key">Create an NGINXaaS data plane API key  <a class="headerlink float-right" href="#create-an-nginxaas-data-plane-api-key" title="Create an NGINXaaS data plane API key"><i class="fas fa-link fa-xs"></i></a>
+</h4><blockquote class="note">
+  <div><strong>Note:</strong><br/> <p>The data plane API key has the following requirements:</p>
+<ul>
+<li>The key should have an expiration date. The default expiration date is six months from the date of creation. The expiration date cannot be longer than two years from the date of creation.</li>
+<li>The key should be at least 12 characters long.</li>
+<li>The key requires three out of four of the following types of characters:
+<ul>
+<li>lowercase characters.</li>
+<li>uppercase characters.</li>
+<li>symbols.</li>
+<li>numbers.</li>
+</ul>
+</li>
+</ul>
+<p>A good example of an API key that will satisfy the requirements is UUIDv4.</p>
+</div>
+</blockquote>
+
+<p>The data plane API key can be created using the Azure CLI or portal.</p>
+<h5 
+id="create-an-nginxaas-data-plane-api-key-using-the-azure-portal">Create an NGINXaaS data plane API key using the Azure portal  <a class="headerlink float-right" href="#create-an-nginxaas-data-plane-api-key-using-the-azure-portal" title="Create an NGINXaaS data plane API key using the Azure portal"><i class="fas fa-link fa-xs"></i></a>
+</h5><ol>
+<li>Go to your NGINXaaS for Azure deployment.</li>
+<li>Select <strong>NGINXaaS Loadbalancer for Kubernetes</strong> on the left blade.</li>
+<li>Select <strong>New API Key</strong>.</li>
+<li>Provide a name for the new API key in the right panel, and select an expiration date.</li>
+<li>Select the <strong>Add API Key</strong> button.</li>
+<li>Copy the value of the new API key.</li>
+</ol>
+<blockquote class="note">
+  <div><strong>Note:</strong><br/> Make sure to write down the key value in a safe location after creation, as you cannot retrieve it again. If you lose the generated value, delete the existing key and create a new one.</div>
+</blockquote>
+
+<h5 
+id="create-an-nginxaas-data-plane-api-key-using-the-azure-cli">Create an NGINXaaS data plane API key using the Azure CLI  <a class="headerlink float-right" href="#create-an-nginxaas-data-plane-api-key-using-the-azure-cli" title="Create an NGINXaaS data plane API key using the Azure CLI"><i class="fas fa-link fa-xs"></i></a>
+</h5><p>Set shell variables about the name of the NGINXaaS you&rsquo;ve already created:</p>
+
+
+
+<div class="code-block" data-mf="true" style="display: none;"><span class="code-type chroma">bash</span><div class="code-container chroma">
+        <button onclick="copyToClipBoard(this, &#34;id-18440f1fbf2a4b90&#34;)" class="code-copy-button multi-line" type="button">Copy</button>
+        <div class="highlight-v2" id="id-18440f1fbf2a4b90">
+            <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">## Customize this to provide the details about my already created NGINXaaS deployment</span>
+</span></span><span class="line"><span class="cl"><span class="nv">nginxName</span><span class="o">=</span>myNginx
+</span></span><span class="line"><span class="cl"><span class="nv">nginxGroup</span><span class="o">=</span>myNginxGroup</span></span></code></pre></div>
+        </div>
+    </div>
+</div><div id="code-block-v1" data-mf="false">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">## Customize this to provide the details about my already created NGINXaaS deployment</span>
+</span></span><span class="line"><span class="cl"><span class="nv">nginxName</span><span class="o">=</span>myNginx
+</span></span><span class="line"><span class="cl"><span class="nv">nginxGroup</span><span class="o">=</span>myNginxGroup</span></span></code></pre></div>
+</div><p>Generate a new random data plane API key:</p>
+
+
+
+<div class="code-block" data-mf="true" style="display: none;"><span class="code-type chroma">bash</span><div class="code-container chroma">
+        <button onclick="copyToClipBoard(this, &#34;id-18440f1fbf2c5700&#34;)" class="code-copy-button multi-line" type="button">Copy</button>
+        <div class="highlight-v2" id="id-18440f1fbf2c5700">
+            <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Generate a new random key or specify a value for it.</span>
+</span></span><span class="line"><span class="cl"><span class="nv">keyName</span><span class="o">=</span>myKey
+</span></span><span class="line"><span class="cl"><span class="nv">keyValue</span><span class="o">=</span><span class="k">$(</span>uuidgen --random<span class="k">)</span></span></span></code></pre></div>
+        </div>
+    </div>
+</div><div id="code-block-v1" data-mf="false">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Generate a new random key or specify a value for it.</span>
+</span></span><span class="line"><span class="cl"><span class="nv">keyName</span><span class="o">=</span>myKey
+</span></span><span class="line"><span class="cl"><span class="nv">keyValue</span><span class="o">=</span><span class="k">$(</span>uuidgen --random<span class="k">)</span></span></span></code></pre></div>
+</div><p>Create the key for your NGINXaaS deployment:</p>
+
+
+
+<div class="code-block" data-mf="true" style="display: none;">
+    <div class="code-container chroma">
+        <button onclick="copyToClipBoard(this, &#34;id-18440f1fbf2f1a08&#34;)" class="code-copy-button" type="button">Copy</button>
+        <div class="highlight-v2 single-line" id="id-18440f1fbf2f1a08">
+            <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">az nginx deployment api-key create --name <span class="nv">$keyName</span> --secret-text <span class="nv">$keyValue</span> --deployment-name <span class="nv">$nginxName</span> --resource-group  <span class="nv">$nginxGroup</span></span></span></code></pre></div>
+        </div>
+    </div>
+</div><div id="code-block-v1" data-mf="false">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">az nginx deployment api-key create --name <span class="nv">$keyName</span> --secret-text <span class="nv">$keyValue</span> --deployment-name <span class="nv">$nginxName</span> --resource-group  <span class="nv">$nginxGroup</span></span></span></code></pre></div>
+</div><h4 
+id="nginxaas-data-plane-api-endpoint">NGINXaaS data plane API endpoint  <a class="headerlink float-right" href="#nginxaas-data-plane-api-endpoint" title="NGINXaaS data plane API endpoint"><i class="fas fa-link fa-xs"></i></a>
+</h4><p>The data plane API endpoint can be retrieved using the Azure CLI or portal.</p>
+<h5 
+id="view-nginxaas-data-plane-api-endpoint-using-the-azure-portal">View NGINXaaS data plane API endpoint using the Azure portal  <a class="headerlink float-right" href="#view-nginxaas-data-plane-api-endpoint-using-the-azure-portal" title="View NGINXaaS data plane API endpoint using the Azure portal"><i class="fas fa-link fa-xs"></i></a>
+</h5><ol>
+<li>Go to your NGINXaaS for Azure deployment.</li>
+<li>Select <strong>NGINXaaS Loadbalancer for Kubernetes</strong> on the left blade.</li>
+<li>The data plane API endpoint associated with the deployment is available at the top of the screen.</li>
+</ol>
+<h5 
+id="view-nginxaas-data-plane-api-endpoint-using-the-azure-cli">View NGINXaaS data plane API endpoint using the Azure CLI  <a class="headerlink float-right" href="#view-nginxaas-data-plane-api-endpoint-using-the-azure-cli" title="View NGINXaaS data plane API endpoint using the Azure CLI"><i class="fas fa-link fa-xs"></i></a>
+</h5>
+
+
+<div class="code-block" data-mf="true" style="display: none;">
+    <div class="code-container chroma">
+        <button onclick="copyToClipBoard(this, &#34;id-18440f1fbf328508&#34;)" class="code-copy-button" type="button">Copy</button>
+        <div class="highlight-v2 single-line" id="id-18440f1fbf328508">
+            <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nv">dataplaneAPIEndpoint</span><span class="o">=</span><span class="k">$(</span>az nginx deployment show -g <span class="s2">&#34;</span><span class="nv">$nginxGroup</span><span class="s2">&#34;</span> -n <span class="s2">&#34;</span><span class="nv">$nginxName</span><span class="s2">&#34;</span> --query properties.dataplaneApiEndpoint -o tsv<span class="k">)</span></span></span></code></pre></div>
+        </div>
+    </div>
+</div><div id="code-block-v1" data-mf="false">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nv">dataplaneAPIEndpoint</span><span class="o">=</span><span class="k">$(</span>az nginx deployment show -g <span class="s2">&#34;</span><span class="nv">$nginxGroup</span><span class="s2">&#34;</span> -n <span class="s2">&#34;</span><span class="nv">$nginxName</span><span class="s2">&#34;</span> --query properties.dataplaneApiEndpoint -o tsv<span class="k">)</span></span></span></code></pre></div>
+</div><h4 
+id="install-the-nlk-controller">Install the NLK controller  <a class="headerlink float-right" href="#install-the-nlk-controller" title="Install the NLK controller"><i class="fas fa-link fa-xs"></i></a>
+</h4><p>The NLK controller can be installed in your Kubernetes cluster using either Helm or the official <a href="https://azuremarketplace.microsoft.com/en-us/marketplace/apps/f5-networks.f5-nginx-for-azure-aks-extension?tab=overview" target="_blank" rel="noopener">AKS Extension</a> available on the Azure Marketplace.</p>
+<h5 
+id="install-the-nlk-controller-using-helm">Install the NLK controller using Helm  <a class="headerlink float-right" href="#install-the-nlk-controller-using-helm" title="Install the NLK controller using Helm"><i class="fas fa-link fa-xs"></i></a>
+</h5><p>Install the NLK controller using <code>helm install</code>. Be sure your kubectl context is pointed at the desired cluster.</p>
+
+
+
+<div class="code-block" data-mf="true" style="display: none;"><span class="code-type chroma">bash</span><div class="code-container chroma">
+        <button onclick="copyToClipBoard(this, &#34;id-18440f1fbf3626b8&#34;)" class="code-copy-button multi-line" type="button">Copy</button>
+        <div class="highlight-v2" id="id-18440f1fbf3626b8">
+            <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">helm install nlk oci://registry-1.docker.io/nginxcharts/nginxaas-loadbalancer-kubernetes --version 1.0.0 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --set <span class="s2">&#34;nlk.dataplaneApiKey=</span><span class="si">${</span><span class="nv">keyValue</span><span class="si">}</span><span class="s2">&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --set <span class="s2">&#34;nlk.config.nginxHosts=</span><span class="si">${</span><span class="nv">dataplaneAPIEndpoint</span><span class="si">}</span><span class="s2">nplus&#34;</span></span></span></code></pre></div>
+        </div>
+    </div>
+</div><div id="code-block-v1" data-mf="false">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">helm install nlk oci://registry-1.docker.io/nginxcharts/nginxaas-loadbalancer-kubernetes --version 1.0.0 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --set <span class="s2">&#34;nlk.dataplaneApiKey=</span><span class="si">${</span><span class="nv">keyValue</span><span class="si">}</span><span class="s2">&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --set <span class="s2">&#34;nlk.config.nginxHosts=</span><span class="si">${</span><span class="nv">dataplaneAPIEndpoint</span><span class="si">}</span><span class="s2">nplus&#34;</span></span></span></code></pre></div>
+</div><h5 
+id="install-the-aks-extension-using-the-azure-cli">Install the AKS Extension using the Azure CLI  <a class="headerlink float-right" href="#install-the-aks-extension-using-the-azure-cli" title="Install the AKS Extension using the Azure CLI"><i class="fas fa-link fa-xs"></i></a>
+</h5><p>Install the NLK controller using <code>az k8s-extension</code>.</p>
+
+
+
+<div class="code-block" data-mf="true" style="display: none;"><span class="code-type chroma">bash</span><div class="code-container chroma">
+        <button onclick="copyToClipBoard(this, &#34;id-18440f1fbf3cae98&#34;)" class="code-copy-button multi-line" type="button">Copy</button>
+        <div class="highlight-v2" id="id-18440f1fbf3cae98">
+            <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">## Customize this to provide the details about my already created AKS cluster</span>
+</span></span><span class="line"><span class="cl"><span class="nv">aksName</span><span class="o">=</span>myCluster
+</span></span><span class="line"><span class="cl"><span class="nv">aksGroup</span><span class="o">=</span>myClusterGroup
+</span></span><span class="line"><span class="cl">az k8s-extension create <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --name nlk <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --extension-type <span class="s2">&#34;nginxinc.nginxaas-aks-extension&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --scope cluster <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --cluster-name <span class="si">${</span><span class="nv">aksName</span><span class="si">}</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --resource-group <span class="si">${</span><span class="nv">aksGroup</span><span class="si">}</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --cluster-type managedClusters <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --plan-name f5-nginx-for-azure-aks-extension <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --plan-product f5-nginx-for-azure-aks-extension <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --plan-publisher f5-networks <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --release-namespace nlk <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --config nlk.dataplaneApiKey<span class="o">=</span><span class="si">${</span><span class="nv">keyValue</span><span class="si">}</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --config nlk.config.nginxHosts<span class="o">=</span><span class="si">${</span><span class="nv">dataplaneAPIEndpoint</span><span class="si">}</span>nplus</span></span></code></pre></div>
+        </div>
+    </div>
+</div><div id="code-block-v1" data-mf="false">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">## Customize this to provide the details about my already created AKS cluster</span>
+</span></span><span class="line"><span class="cl"><span class="nv">aksName</span><span class="o">=</span>myCluster
+</span></span><span class="line"><span class="cl"><span class="nv">aksGroup</span><span class="o">=</span>myClusterGroup
+</span></span><span class="line"><span class="cl">az k8s-extension create <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --name nlk <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --extension-type <span class="s2">&#34;nginxinc.nginxaas-aks-extension&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --scope cluster <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --cluster-name <span class="si">${</span><span class="nv">aksName</span><span class="si">}</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --resource-group <span class="si">${</span><span class="nv">aksGroup</span><span class="si">}</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --cluster-type managedClusters <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --plan-name f5-nginx-for-azure-aks-extension <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --plan-product f5-nginx-for-azure-aks-extension <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --plan-publisher f5-networks <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --release-namespace nlk <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --config nlk.dataplaneApiKey<span class="o">=</span><span class="si">${</span><span class="nv">keyValue</span><span class="si">}</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --config nlk.config.nginxHosts<span class="o">=</span><span class="si">${</span><span class="nv">dataplaneAPIEndpoint</span><span class="si">}</span>nplus</span></span></code></pre></div>
+</div><h5 
+id="install-the-aks-extension-using-the-azure-portal">Install the AKS Extension using the Azure portal  <a class="headerlink float-right" href="#install-the-aks-extension-using-the-azure-portal" title="Install the AKS Extension using the Azure portal"><i class="fas fa-link fa-xs"></i></a>
+</h5><p>You can also install the NLK controller AKS extension by navigating to <a href="https://azuremarketplace.microsoft.com/en-us/marketplace/apps/f5-networks.f5-nginx-for-azure-aks-extension" target="_blank" rel="noopener">F5 NGINXaaS Loadbalancer for Kubernetes</a> in the Azure Marketplace and following the installation steps.</p>
+<ul>
+<li>
+<p>Select <strong>Get it now</strong>.</p>
+</li>
+<li>
+<p>Select <strong>Continue</strong> to proceed with the installation.</p>
+</li>
+<li>
+<p>On the <strong>Basics</strong> tab, provide the following information:</p>
+
+
+
+
+
+<table class="table table-striped table-bordered table-v1">
+  <thead>
+      <tr>
+          <th style="text-align: left">Field</th>
+          <th style="text-align: left">Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">Subscription</td>
+          <td style="text-align: left">Select the appropriate Azure subscription.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Resource group</td>
+          <td style="text-align: left">Select the AKS cluster&rsquo;s resource group.</td>
+      </tr>
+  </tbody>
+</table>
+
+
+
+
+
+
+  
+
+
+<div data-mf="true" style="display: none;" class="table-v2 table table-striped table-bordered narrow">
+    <table>
+  <thead>
+      <tr>
+          <th style="text-align: left">Field</th>
+          <th style="text-align: left">Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">Subscription</td>
+          <td style="text-align: left">Select the appropriate Azure subscription.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Resource group</td>
+          <td style="text-align: left">Select the AKS cluster&rsquo;s resource group.</td>
+      </tr>
+  </tbody>
+</table>
+
+</div>
+</li>
+<li>
+<p>Select <strong>Cluster Details</strong>, and provide the AKS cluster name. You can select an existing AKS cluster or create a new one.</p>
+</li>
+<li>
+<p>Select <strong>Application Details</strong>, and provide the following information:</p>
+
+
+
+
+
+<table class="table table-striped table-bordered table-v1">
+  <thead>
+      <tr>
+          <th style="text-align: left">Field</th>
+          <th style="text-align: left">Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">Cluster extension resource name</td>
+          <td style="text-align: left">Provide a name for the NLK controller.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Installation namespace</td>
+          <td style="text-align: left">Provide the AKS namespace for the NLK controller.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Allow minor version upgrades of extension</td>
+          <td style="text-align: left">Select whether to allow the extension to be upgraded automatically to the latest minor version.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">NGINXaaS Dataplane API Key</td>
+          <td style="text-align: left">Provide the previously generated data plane API key value: <code>{keyValue}</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: left">NGINXaaS Dataplane API Endpoint</td>
+          <td style="text-align: left">Provide the previously retrieved data plane API endpoint value:  <code>{dataplaneAPIEndpoint}nplus</code></td>
+      </tr>
+  </tbody>
+</table>
+
+
+
+
+
+
+  
+
+
+<div data-mf="true" style="display: none;" class="table-v2 table table-striped table-bordered narrow">
+    <table>
+  <thead>
+      <tr>
+          <th style="text-align: left">Field</th>
+          <th style="text-align: left">Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">Cluster extension resource name</td>
+          <td style="text-align: left">Provide a name for the NLK controller.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Installation namespace</td>
+          <td style="text-align: left">Provide the AKS namespace for the NLK controller.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Allow minor version upgrades of extension</td>
+          <td style="text-align: left">Select whether to allow the extension to be upgraded automatically to the latest minor version.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">NGINXaaS Dataplane API Key</td>
+          <td style="text-align: left">Provide the previously generated data plane API key value: <code>{keyValue}</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: left">NGINXaaS Dataplane API Endpoint</td>
+          <td style="text-align: left">Provide the previously retrieved data plane API endpoint value:  <code>{dataplaneAPIEndpoint}nplus</code></td>
+      </tr>
+  </tbody>
+</table>
+
+</div>
+</li>
+<li>
+<p>Select <strong>Review + Create</strong> to continue.</p>
+</li>
+<li>
+<p>Azure will validate the extension settings. This page will provide a summary of the provided information. Select <strong>Create</strong>.</p>
+</li>
+</ul>
+<blockquote class="note">
+  <div><strong>Note:</strong><br/> The NGINXaaS data plane API that NLK uses is mounted at <code>${dataplaneAPIEndpoint}nplus</code>. For example, if the data plane API endpoint is <code>https://mynginx-75b3bf22a555.eastus2.nginxaas.net/</code> then the value for <code>nlk.config.nginxHosts</code> should be <code>https://mynginx-75b3bf22a555.eastus2.nginxaas.net/nplus</code>.</div>
+</blockquote>
+
+<h3 
+id="create-an-nginx-configuration-with-dynamic-upstream">Create an NGINX configuration with dynamic upstream  <a class="headerlink float-right" href="#create-an-nginx-configuration-with-dynamic-upstream" title="Create an NGINX configuration with dynamic upstream"><i class="fas fa-link fa-xs"></i></a>
+</h3><p>You must define an <a href="https://nginx.org/en/docs/http/ngx_http_upstream_module.html#upstream" target="_blank" rel="noopener">NGINX upstream</a> that satisfies the following requirements for it to be managed by the NLK controller:</p>
+<ul>
+<li>The upstream cannot have any servers listed in it specified via the <code>server</code> directive. The controller will manage the servers dynamically.</li>
+<li>The upstream must have a shared memory <a href="https://nginx.org/en/docs/http/ngx_http_upstream_module.html#zone" target="_blank" rel="noopener">zone</a> defined.</li>
+<li>The upstream must have a <a href="https://nginx.org/en/docs/http/ngx_http_upstream_module.html#state" target="_blank" rel="noopener">state</a> file declared.</li>
+</ul>
+<p>The following is an example NGINX Configuration that can be used:</p>
+
+
+
+<div class="code-block" data-mf="true" style="display: none;"><span class="code-type chroma">nginx</span><div class="code-container chroma">
+        <button onclick="copyToClipBoard(this, &#34;id-18440f1fbf40f840&#34;)" class="code-copy-button multi-line" type="button">Copy</button>
+        <div class="highlight-v2" id="id-18440f1fbf40f840">
+            <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="line"><span class="cl"><span class="k">http</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kn">upstream</span> <span class="s">my-service</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># NOTE: There are no servers defined here as they will be managed dynamically by the controller.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kn">zone</span> <span class="s">my-service</span> <span class="s">64K</span><span class="p">;</span>          <span class="c1"># required
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kn">state</span> <span class="s">/tmp/my-service.state</span><span class="p">;</span>  <span class="c1"># required
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kn">server</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">listen</span> <span class="mi">80</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">location</span> <span class="s">/</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kn">proxy_pass</span> <span class="s">http://my-service</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div>
+        </div>
+    </div>
+</div><div id="code-block-v1" data-mf="false">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="line"><span class="cl"><span class="k">http</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kn">upstream</span> <span class="s">my-service</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># NOTE: There are no servers defined here as they will be managed dynamically by the controller.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kn">zone</span> <span class="s">my-service</span> <span class="s">64K</span><span class="p">;</span>          <span class="c1"># required
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kn">state</span> <span class="s">/tmp/my-service.state</span><span class="p">;</span>  <span class="c1"># required
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kn">server</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">listen</span> <span class="mi">80</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">location</span> <span class="s">/</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kn">proxy_pass</span> <span class="s">http://my-service</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div>
+</div><p><a href="http://localhost:1313/nginxaas/azure/getting-started/nginx-configuration/overview/">Apply the NGINX configuration</a> to your deployment after making the required changes.</p>
+<h3 
+id="create-a-kubernetes-service">Create a Kubernetes Service  <a class="headerlink float-right" href="#create-a-kubernetes-service" title="Create a Kubernetes Service"><i class="fas fa-link fa-xs"></i></a>
+</h3><p>Expose a Kubernetes <code>Service</code> to route traffic to your workload.  The <code>Service</code> has the following requirements:</p>
+<ul>
+<li>Add the annotation: <code>nginx.com/nginxaas: nginxaas</code> to mark the service to be monitored by NLK.</li>
+<li>Choose one of the following <code>Service</code> types:
+<ul>
+<li><code>NodePort</code>: To route external traffic into the cluster using a well defined port exposed on each AKS worker node.</li>
+<li><code>ClusterIP</code>: To route traffic to pods directly if you are running an Azure Container Networking Interface (CNI) that lets you expose the pods on the Azure VNET.</li>
+<li><code>LoadBalancer</code>: To route traffic to the cluster&rsquo;s external load balancer. The load balancer routes traffic into the cluster as normal.</li>
+</ul>
+</li>
+<li>The port name must be formatted as <code>{{NGINX Context}}-{{NGINX upstream name}}</code>. For example:
+<ul>
+<li>If the upstream is in the <code>http</code> context and named <code>my-service</code> then the name is <code>http-my-service</code></li>
+<li>If the upstream is in the <code>stream</code> context and named <code>jet</code> then the port name is <code>stream-jet</code></li>
+</ul>
+</li>
+</ul>
+<blockquote class="note">
+  <div><strong>Note:</strong><br/> <p><strong>NGINX Ingress Controller users</strong>: with v5.0.0 and upwards, if you wish to route traffic from your NGINXaaS deployment to your NGINX Ingress Controller service, please make the following changes to your helm chart values:</p>
+<ul>
+<li>Add <code>&quot;nginx.com/nginxaas&quot;: &quot;nginxaas&quot;</code> to the NGINX Ingress Controller service annotations.</li>
+<li>Modify the <code>service.httpPort.name</code> or <code>service.httpsPort.name</code> values to provide the expected port name format, as above.</li>
+</ul></div>
+</blockquote>
+
+<p>The following example uses a service of type <code>NodePort</code>:</p>
+
+
+
+<div class="code-block" data-mf="true" style="display: none;"><span class="code-type chroma">yaml</span><div class="code-container chroma">
+        <button onclick="copyToClipBoard(this, &#34;id-18440f1fbf4643b8&#34;)" class="code-copy-button multi-line" type="button">Copy</button>
+        <div class="highlight-v2" id="id-18440f1fbf4643b8">
+            <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Service</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">my-service</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">annotations</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># Let the controller know to pay attention to this service.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># If you are connecting multiple controller the value can be used to distinguish them</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">nginx.com/nginxaas</span><span class="p">:</span><span class="w"> </span><span class="l">nginxaas</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c"># expose a port on the nodes</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">NodePort</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">targetPort</span><span class="p">:</span><span class="w"> </span><span class="l">http</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">80</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l">TCP</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="c"># The port name helps connect to NGINXaaS. It must be prefixed with either `http-` or `stream-`</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="c"># and the rest of the name must match the name of an upstream in that context.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">http-my-service</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">selector</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l">awesome</span></span></span></code></pre></div>
+        </div>
+    </div>
+</div><div id="code-block-v1" data-mf="false">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Service</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">my-service</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">annotations</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># Let the controller know to pay attention to this service.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># If you are connecting multiple controller the value can be used to distinguish them</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">nginx.com/nginxaas</span><span class="p">:</span><span class="w"> </span><span class="l">nginxaas</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c"># expose a port on the nodes</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">NodePort</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">targetPort</span><span class="p">:</span><span class="w"> </span><span class="l">http</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">80</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l">TCP</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="c"># The port name helps connect to NGINXaaS. It must be prefixed with either `http-` or `stream-`</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="c"># and the rest of the name must match the name of an upstream in that context.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">http-my-service</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">selector</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l">awesome</span></span></span></code></pre></div>
+</div><h2 
+id="advanced-configuration">Advanced Configuration  <a class="headerlink float-right" href="#advanced-configuration" title="Advanced Configuration"><i class="fas fa-link fa-xs"></i></a>
+</h2><h3 
+id="controller-configuration">Controller Configuration  <a class="headerlink float-right" href="#controller-configuration" title="Controller Configuration"><i class="fas fa-link fa-xs"></i></a>
+</h3><table>
+  <thead>
+      <tr>
+          <th style="text-align: left">Helm Value</th>
+          <th style="text-align: left">Description</th>
+          <th style="text-align: left">Value</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><code>nlk.config.logLevel</code></td>
+          <td style="text-align: left">How verbose should the NLK controller logs be.</td>
+          <td style="text-align: left">Possible values are <code>debug</code>, <code>info</code>, <code>warn</code>, <code>error</code>. Default: <code>info</code>.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>nlk.config.nginxHosts</code></td>
+          <td style="text-align: left">The NGINX Plus APIs to send upstream updates to.</td>
+          <td style="text-align: left">Should be set to <code>{{dataplaneApiEndpoint}}nplus</code>.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>nlk.config.serviceAnnotationMatch</code></td>
+          <td style="text-align: left">The value to match on a Service&rsquo;s <code>nginx.com/nginxaas</code> annotation. Useful when configuring multiple NLK controllers to update separate NGINXaaS deployemnts.</td>
+          <td style="text-align: left">Default: <code>nginxaas</code>.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>nlk.dataplaneApiKey</code></td>
+          <td style="text-align: left">The NGINXaaS data plane API key that will authorize the controller to talk to your NGINXaaS deployment.</td>
+          <td style="text-align: left"></td>
+      </tr>
+  </tbody>
+</table>
+<h3 
+id="multiple-aks-clusters">Multiple AKS clusters  <a class="headerlink float-right" href="#multiple-aks-clusters" title="Multiple AKS clusters"><i class="fas fa-link fa-xs"></i></a>
+</h3><p>A single NGINXaaS deployment can direct traffic to multiple AKS clusters. Each AKS cluster needs its own copy of NLK installed and connected to NGINXaaS.</p>
+<pre class="mermaid">flowchart TB
+
+   TeaUsers[웃 Users] -.-> |GET /tea | NGINXaaS{NGINXaaS}
+   CoffeeUsers[웃 Users] -.-> |GET /coffee | NGINXaaS
+   NGINXaaS -.-> |GET /tea| E
+   H --> |Update upstream 'tea'| NGINXaaS
+   NGINXaaS -.-> |GET /coffee| K
+   M --> |Update upstream 'coffee'| NGINXaaS
+
+   subgraph SG2[Azure Kubernetes Cluster 2]
+      k8sapi2[K8s API] --> |watch| M(NLK controller)
+      I{Coffee svc} -.-> J(Pod)
+      I -.-> K(Pod)
+   end
+
+   subgraph SG1[Azure Kubernetes Cluster 1]
+      k8sapi1[K8s API] --> |watch| H(NLK controller)
+      D{Tea svc} -.-> E(Pod)
+      D -.-> F(Pod)
+   end
+
+
+   style TeaUsers color:red,stroke:red,fill:#faefd9
+   linkStyle 0,2 color:red,stroke:red
+   style CoffeeUsers color:orange,stroke:orange,fill:#faefd9
+   linkStyle 1,4 color:orange,stroke:orange
+   style NGINXaaS color:green,stroke:green,stroke-width:4px,fill:#d9fade
+   linkStyle 3,5 color:green,stroke:green
+   style SG1 fill:#9bb1de,color:#
+   style SG2 fill:#9bb1de,color:#
+   style k8sapi1 color:#3075ff,stroke:#3075ff,stroke-width:4px
+   style k8sapi2 color:#3075ff,stroke:#3075ff,stroke-width:4px
+   linkStyle 6,9 color:#3075ff,stroke:#3075ff
+   style H color:green,stroke:green,stroke-width:4px,fill:#d9fade
+   style M color:green,stroke:green,stroke-width:4px,fill:#d9fade
+
+   accDescr:A diagram showing NGINXaaS directing separate user GET requests for `/tea` and `/coffee` to respective Kubernetes-based services "TeaSvc" and "CoffeeSvc" that are running in separate Azure Kubernetes Clusters. An NLK controller in each cluster is independently updating the NGINXaaS with dynamic upstream configuration.
+ </pre>
+ <blockquote class="note">
+  <div><strong>Note:</strong><br/> <ul>
+<li>Configuring multiple NLK controllers to update the same upstream isn&rsquo;t supported and will result in unpredictable behavior.</li>
+</ul>
+</div>
+</blockquote>
+
+<h3 
+id="multiple-nginxaas-deployments">Multiple NGINXaaS deployments  <a class="headerlink float-right" href="#multiple-nginxaas-deployments" title="Multiple NGINXaaS deployments"><i class="fas fa-link fa-xs"></i></a>
+</h3><p>Multiple NLK controllers can be installed in the same AKS cluster to update separate NGINXaaS deployments.</p>
+<p>Each NLK needs a unique helm release name and needs a unique helm value for <code>nlk.config.serviceAnnotationMatch</code>. Each NLK will only watch services that have the matching annotation.</p>
+<blockquote class="note">
+  <div><strong>Note:</strong><br/> <ul>
+<li>Consider using <code>helm</code> to install multiple NLK controllers on an AKS cluster. Installing multiple copies of the controller on the same AKS cluster is not supported via the <a href="https://azuremarketplace.microsoft.com/en-us/marketplace/apps/f5-networks.f5-nginx-for-azure-aks-extension?tab=overview" target="_blank" rel="noopener">AKS Extension</a>.</li>
+</ul>
+</div>
+</blockquote>
+
+<h2 
+id="troubleshooting">Troubleshooting  <a class="headerlink float-right" href="#troubleshooting" title="Troubleshooting"><i class="fas fa-link fa-xs"></i></a>
+</h2><p>NGINXaaS Loadbalancer for Kubernetes and NGINXaaS continually monitor and attempt to repair in case of error. However, if upstreams are not populated as expected, here are a few things you can look for.</p>
+<h3 
+id="nlk-controller-logs">NLK controller logs  <a class="headerlink float-right" href="#nlk-controller-logs" title="NLK controller logs"><i class="fas fa-link fa-xs"></i></a>
+</h3><p>The controller reports status information about the requests it is making to NGINXaaS. This is a good place to look to ensure that the controller has picked up your service and that it is communicating with NGINXaaS correctly.</p>
+<p>Run the following command to view the controller logs: <code>kubectl logs deployment/nlk-nginxaas-loadbalancer-kubernetes</code>.</p>
+<p>The logs can be made more verbose by setting the Helm value <code>nlk.config.logLevel</code> (see <a href="#controller-configuration">Controller Configuration</a>).</p>
+<h3 
+id="enable-nginx-upstream-update-logs">Enable NGINX Upstream Update Logs  <a class="headerlink float-right" href="#enable-nginx-upstream-update-logs" title="Enable NGINX Upstream Update Logs"><i class="fas fa-link fa-xs"></i></a>
+</h3><p>NGINXaaS supports exporting dynamic upstream update logs to an Azure Storage account or to a Log Analytics workspace.</p>
+<p>To set up logging:</p>
+<ol>
+<li>Select <strong>Diagnostic settings</strong> under <strong>Monitoring</strong>.</li>
+<li>Select <strong>Add diagnostic setting</strong>.</li>
+<li>On the following panel, provide a <strong>Diagnostic setting name</strong>.</li>
+<li>Enable the <strong>NGINX Upstream Update Logs</strong> category.</li>
+<li>Select a destination.</li>
+</ol>
+<p>For more information on logging, see <a href="http://localhost:1313/nginxaas/azure/monitoring/enable-logging/">Enable NGINX Logs</a>.</p>
+<h3 
+id="metrics">Metrics  <a class="headerlink float-right" href="#metrics" title="Metrics"><i class="fas fa-link fa-xs"></i></a>
+</h3><p>NGINXaaS has the following metrics that are useful to monitor upstream health:</p>
+<ul>
+<li><code>plus.http.upstream.peers.state.up</code> &ndash; does the peer report being healthy.</li>
+<li><code>plus.http.upstream.peers.request.count</code> &ndash; which peers are handling requests.</li>
+</ul>
+<p>See the <a href="http://localhost:1313/nginxaas/azure/monitoring/metrics-catalog/">metrics catalog</a> for the entire list of NGINXaaS metrics.</p>
+
+        
+        
+
+        <hr>
+  
+        
+        <div class="last-modified">
+          
+<div>
+    <a href="https://github.com/nginx/documentation//tree/main/content/nginxaas-azure/loadbalancer-kubernetes.md" class="" target="_blank" rel="noopener"><i class="fa-solid fa-file-lines fa-fw"></i> View source</a>
+  </div>
+  <div>
+    <a href="https://github.com/nginx/documentation//edit/main/content/nginxaas-azure/loadbalancer-kubernetes.md" class="" target="_blank" rel="noopener"><i class="fa-solid fa-pen-to-square fa-fw"></i> Edit this page</a>
+  </div>
+  <div>
+    <a href="https://github.com/nginx/documentation//issues/new?title=NGINXaaS%20Load%20Balancer%20for%20Kubernetes&amp;template=2-bug_report.md" class="" target="_blank" rel="noopener"><i class="fa-solid fa-list-check fa-fw"></i> Create a new issue</a>
+  </div>
+
+
+
+        </div>
+        
+
+        
+         
+<script type='text/javascript'> 
+    (function(){var g=function(e,h,f,g){ 
+        this.get=function(a){
+            for(var a=a+"=",c=document.cookie.split(";"),b=0,e=c.length;b<e;b++){
+                for(var d=c[b];" "==d.charAt(0);)
+                    d=d.substring(1,d.length);
+                    if(0==d.indexOf(a))
+                        return d.substring(a.length,d.length)
+            }
+            return null
+        }; 
+        
+        this.set=function(a,c){
+            var b="",b=new Date;
+            b.setTime(b.getTime()+6048E5);
+            b="; expires="+b.toGMTString();
+            document.cookie=a+"="+c+b+"; path=/; "
+        }; 
+        
+        this.check=function(){
+            var a=this.get(f);
+            if(a)
+                a=a.split(":");
+            else if(100!=e)
+                "v"==h&&(e=Math.random()>=e/100?0:100),
+                a=[h,e,0],
+                this.set(f,a.join(":"));
+            else 
+                return!0;
+            var c=a[1];
+            if(100==c)
+                return!0;
+            switch(a[0]){
+                case "v":
+                    return!1;
+                case "r":
+                    return c=a[2]%Math.floor(100/c),a[2]++,this.set(f,a.join(":")),!c
+            }
+            return!0
+        }; 
+
+        this.go=function(){
+            if(this.check()){
+                var a=document.createElement("script");
+                a.type="text/javascript";
+                a.src=g;
+                document.body&&document.body.appendChild(a)
+            }
+        };
+
+        this.start=function(){
+            var t=this;
+            "complete"!==document.readyState?window.addEventListener ?
+                window.addEventListener("load",function(){t.go()},!1) : 
+                window.attachEvent&&window.attachEvent("onload",function(){t.go()}):t.go()};
+    }; 
+
+    try{
+        const project_id = window.location.hostname.includes("staging") ? "QSI_S_ZN_2YG73ads2zp5bN0" : "QSI_S_ZN_2QSTn2r41YlXrYk";
+        const endpoint = window.location.hostname.includes("staging") ? "https://zn2yg73ads2zp5bn0-f5.siteintercept.qualtrics.com/SIE/?Q_ZID=ZN_2YG73ads2zp5bN0" : "https://zn2qstn2r41ylxryk-f5.siteintercept.qualtrics.com/SIE/?Q_ZID=ZN_2QSTn2r41YlXrYk";
+        (new g(100,"r", project_id, endpoint)).start()
+    }
+    catch(i){}})();
+
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelector(".qualtrics-feedback").id = window.location.hostname.includes("staging") ? "ZN_2YG73ads2zp5bN0" : "ZN_2QSTn2r41YlXrYk"
+    });
+</script>
+<hr>
+<div style="height: 60px;"></div>
+<div class="qualtrics-feedback" id='ZN_2QSTn2r41YlXrYk'></div>
+
+
+        
+
+	
+<div class="container flex">
+	<ul class="next-prev-icon">
+
+		
+
+		
+			<li style="flex:1; text-align: right; white-space: nowrap;"><a href="http://localhost:1313/nginxaas/azure/disaster-recovery/" class="" title="Next -- Disaster recovery"><svg width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M24.622 1.5L46.06 22.94C46.1993 23.0791 46.3099 23.2444 46.3853 23.4262C46.4607 23.6081 46.4995 23.8031 46.4995 24C46.4995 24.1969 46.4607 24.3919 46.3853 24.5738C46.3099 24.7556 46.1993 24.9209 46.06 25.06L24.622 46.5" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M2.122 1.5L23.56 22.94C23.6993 23.0791 23.8099 23.2444 23.8853 23.4262C23.9607 23.6081 23.9995 23.8031 23.9995 24C23.9995 24.1969 23.9607 24.3919 23.8853 24.5738C23.8099 24.7556 23.6993 24.9209 23.56 25.06L2.122 46.5" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+</a></li>
+		
+		</ul>
+	</div>
+
+        </main>
+        
+          
+            <div id="toc" class="col-md-3 d-none d-xl-block d-print-none nginx-toc align-top">
+            <nav class="bd-links" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <h3 class="bd-toc-link">What's on This Page</h3><nav id="TableOfContents">
+  <ul>
+    <li><a href="#overview">Overview</a>
+      <ul>
+        <li><a href="#example-use-cases">Example use cases</a></li>
+      </ul>
+    </li>
+    <li><a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#initial-setup">Initial setup</a></li>
+        <li><a href="#create-an-nginx-configuration-with-dynamic-upstream">Create an NGINX configuration with dynamic upstream</a></li>
+        <li><a href="#create-a-kubernetes-service">Create a Kubernetes Service</a></li>
+      </ul>
+    </li>
+    <li><a href="#advanced-configuration">Advanced Configuration</a>
+      <ul>
+        <li><a href="#controller-configuration">Controller Configuration</a></li>
+        <li><a href="#multiple-aks-clusters">Multiple AKS clusters</a></li>
+        <li><a href="#multiple-nginxaas-deployments">Multiple NGINXaaS deployments</a></li>
+      </ul>
+    </li>
+    <li><a href="#troubleshooting">Troubleshooting</a>
+      <ul>
+        <li><a href="#nlk-controller-logs">NLK controller logs</a></li>
+        <li><a href="#enable-nginx-upstream-update-logs">Enable NGINX Upstream Update Logs</a></li>
+        <li><a href="#metrics">Metrics</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</nav>
+            </div>
+          
+        
+        
+      </div>
+    </section>
+  </section>
+</div>
+
+
+
+
+      </div>
+  </section>
+
+    <footer id="footer">
+      
+      <footer id="footer">
+  <div class="container-fluid">
+    <div class="row align-items-center">
+      <div class="col-md-6 d-md-flex">
+        <img class="nginx-logo-footer" src="http://localhost:1313/images/icons/NGINX-Part-of-F5-horiz-all-white-525x208@2x.png"/>
+      </div>
+    </div>
+
+    
+    <div class="row d-print-none d-none d-md-flex">
+      <div class="col-md-3 d-none d-md-block">
+        <span class="footer-head">Company</span>
+        <ul class="footer-text">
+          <li>
+            <a
+              href="https://www.f5.com/go/product/welcome-to-nginx"
+              target="_blank"
+              alt="Select to learn about F5 NGINX"
+              >About F5 NGINX</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://www.f5.com/company/events"
+              target="_blank"
+              alt="Select to learn about F5 events"
+              >Events</a
+            >
+          </li>
+        </ul>
+        <br />
+        <span class="footer-head">Resources</span>
+        <ul class="footer-text">
+          <li>
+            <a
+              href="https://www.f5.com/company/blog/nginx"
+              target="_blank"
+              alt="Select to visit the F5 NGINX blog"
+              >Blog</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://www.f5.com/go/faq/nginx-faq"
+              target="_blank"
+              alt="Select to visit the F5 NGINX frequently asked questions page"
+              >FAQ</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://www.f5.com/services"
+              target="_blank"
+              alt="Select to learn about F5 NGINX Support"
+              >Professional Services</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://www.f5.com/learn/training"
+              target="_blank"
+              alt="Select to learn about F5 training offerings"
+              >Training</a
+            >
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-md-3 d-none d-md-block">
+        <span class="footer-head">Products</span>
+        <ul class="footer-text">
+          <li>
+            <a
+              title="F5 NGINX One"
+              aria-label="F5 NGINX One"
+              href="https://www.f5.com/products/nginx/one"
+              >F5 NGINX One</a
+            >
+          </li>
+          <li>
+            <a
+              title="F5 NGINX Plus"
+              aria-label="F5 NGINX Plus"
+              href="https://www.f5.com/products/nginx/nginx-plus"
+              >F5 NGINX Plus</a
+            >
+          </li>
+          <li>
+            <a
+              title="F5 NGINX App Protect"
+              aria-label="F5 NGINX App Protect"
+              href="https://www.f5.com/products/nginx/nginx-app-protect"
+              >F5 NGINX App Protect</a
+            >
+          </li>
+          <li>
+            <a
+              title="F5 NGINX Instance Manager"
+              aria-label="F5 NGINX Instance Manager"
+              href="https://www.f5.com/products/nginx/instance-manager"
+              >F5 NGINX Instance Manager</a
+            >
+          </li>
+          <li>
+            <a
+              title="F5 NGINX Ingress Controller"
+              aria-label="F5 NGINX Ingress Controller"
+              href="https://www.f5.com/products/nginx/nginx-ingress-controller"
+              >F5 NGINX Ingress Controller</a
+            >
+          </li>
+          <li>
+            <a
+              title="F5 NGINX Gateway Fabric"
+              aria-label="F5 NGINX Gateway Fabric"
+              href="https://www.f5.com/products/nginx/nginx-gateway-fabric"
+              >F5 NGINX Gateway Fabric</a
+            >
+          </li>
+          <li>
+            <a
+              title="F5 NGINXaaS for Azure"
+              aria-label="F5 NGINXaaS for Azure"
+              href="https://www.f5.com/products/nginx/f5-nginxaas-for-azure"
+              >F5 NGINXaaS for Azure</a
+            >
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-md-3 d-none d-md-block">
+        <span class="footer-head">NGINX on GitHub</span>
+        <ul class="footer-text">
+          <li>
+            <a
+              title="NGINX Open Source"
+              aria-label="NGINX Open Source"
+              href="https://github.com/nginx/nginx"
+              ><span class="inner">NGINX Open Source</span></a
+            >
+          </li>
+          <li>
+            <a
+              title="NGINX Unit"
+              aria-label="NGINX Unit"
+              href="https://github.com/nginx/unit"
+              ><span class="inner">NGINX Unit</span></a
+            >
+          </li>
+          <li>
+            <a
+              title="NGINX Amplify"
+              aria-label="NGINX Amplify"
+              href="https://github.com/nginxinc/nginx-amplify-agent"
+              ><span class="inner">NGINX Amplify</span></a
+            >
+          </li>
+          <li>
+            <a
+              title="NGINX Agent"
+              aria-label="NGINX Agent"
+              href="https://github.com/nginx/Agent"
+              ><span class="inner">NGINX Agent</span></a
+            >
+          </li>
+          <li>
+            <a
+              title="NGINX Kubernetes Ingress Controller"
+              aria-label="NGINX Kubernetes Ingress Controller"
+              href="https://github.com/nginxinc/kubernetes-ingress"
+              ><span class="inner">NGINX Kubernetes Ingress Controller</span></a
+            >
+          </li>
+          <li>
+            <a
+              title="NGINX Gateway Fabric"
+              aria-label="NGINX Gateway Fabric"
+              href="https://github.com/nginxinc/nginx-gateway-fabric"
+              ><span class="inner">NGINX Gateway Fabric</span></a
+            >
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-md-2 d-none d-md-block">
+        <span class="footer-head">Social</span>
+        <ul class="footer-social">
+          <li>
+            <a
+              href="https://www.facebook.com/nginxinc"
+              title="facebook"
+              aria-label="facebook"
+              target="_blank"
+              rel="noreferrer"
+              ><i class="fa-brands fa-facebook" aria-hidden="true"></i>
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://twitter.com/nginx"
+              title="X"
+              aria-label="x"
+              target="_blank"
+              rel="noreferrer"
+              ><i class="fa-brands fa-x-twitter" aria-hidden="true"></i
+            ></a>
+          </li>
+          <li>
+            <a
+              href="https://www.linkedin.com/company/nginx"
+              title="linkedin"
+              aria-label="linkedin"
+              target="_blank"
+              rel="noreferrer"
+              ><i class="fa-brands fa-linkedin" aria-hidden="true"></i>
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://www.youtube.com/user/NginxInc"
+              title="youtube"
+              aria-label="youtube"
+              target="_blank"
+              rel="noreferrer"
+              alt="NGINX Youtube Channel"
+              ><i class="fa-brands fa-square-youtube" aria-hidden="true"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="site-info footer-text">
+      <div class="text-center">
+        <p>
+          <a href="https://www.f5.com/"
+            ><img class="f5-logo-footer" src="http://localhost:1313/images/icons/Logo_F5.svg" alt="F5 logo"></a
+          >
+          ©2025 F5, Inc. All rights reserved.
+        </p>
+        <p>
+          <a
+            href="https://www.f5.com/company/policies/trademarks"
+            rel="noopener"
+            target="_blank"
+            >Trademarks</a
+          >
+          <a
+            href="https://www.f5.com/company/policies"
+            rel="noopener"
+            target="_blank"
+            >Policies</a
+          >
+          <a href="https://docs.nginx.com/ossc">Open Source Components</a>
+          <a
+            href="https://www.f5.com/company/policies/privacy-notice"
+            rel="noopener"
+            target="_blank"
+            >Privacy</a
+          >
+          <a
+            href="https://www.f5.com/company/policies/F5-California-privacy-summary"
+            rel="noopener"
+            target="_blank"
+            >California Privacy</a
+          >
+          <a
+            href="https://www.f5.com/company/policies/privacy-notice#no-sell"
+            rel="noopener"
+            target="_blank"
+            >Do Not Sell My Personal Information</a
+          >
+          <span id="teconsent-v1"></span>
+        </p>
+      </div>
+    </div>
+    
+  </div>
+  
+</footer>
+
+      
+    </footer>
+
+    <footer data-mf="true" id="footer-v2" style="display:none;">
+      
+      <div class="footer-layout">
+    <div class="footer-f5-trademark">
+        <img class="f5-logo-footer" src="http://localhost:1313/images/icons/Logo_F5.svg" alt="F5 logo">
+        <p>©2025 F5, Inc. All rights reserved. NGINX is a registered trademark of F5, Inc.</p>
+    </div>
+    <div class="footer-useful-links">
+        <a
+            href="https://www.f5.com/company/policies/trademarks"
+            rel="noopener"
+            target="_blank"
+            >Trademarks
+        </a>
+        <a
+            href="https://www.f5.com/company/policies"
+            rel="noopener"
+            target="_blank"
+            >Policies
+        </a>
+        <a
+            href="https://www.f5.com/company/policies/privacy-notice"
+            rel="noopener"
+            target="_blank"
+            >Privacy
+        </a>
+        <a
+            href="https://www.f5.com/company/policies/F5-California-privacy-summary"
+            rel="noopener"
+            target="_blank"
+            >California Privacy
+        </a>
+        <a
+            href="https://www.f5.com/company/policies/privacy-notice#no-sell"
+            rel="noopener"
+            target="_blank"
+            >Do Not Sell My Personal Information
+        </a>
+        <span id="teconsent-v2"></span>
+    </div>
+</div>
+
+      
+    </footer>
+  
+<script src="/js/jquery-3-6-4.min.js" type="text/javascript" integrity=""></script>
+
+
+<script src="/js/kube.min.a3a07cceb64989e2f0bf41653ab4d8346ba4312270eb5cc80d6afad3bf30a0ca9768aaa2559cb582e663332c541edab6a4068ef2e88b739fa425e2e870eb0aff.js" type="text/javascript" integrity="sha512-o6B8zrZJieLwv0FlOrTYNGukMSJw61zIDWr6078woMqXaKqiVZy1guZjMyxUHtq2pAaO8uiLc5&#43;kJeLocOsK/w=="></script>
+
+
+
+<script src="/js/bootstrap.bundle.min.c15ed88f56a52190ea645094409cbce5537eaaf108972f777c840037b8aa0c508f12e70b09e345cf8af7e450a8f6ce96ae974340f8bcd316e58d707c063b6f72.js" type="text/javascript"
+  integrity="sha512-wV7Yj1alIZDqZFCUQJy85VN&#43;qvEIly93fIQAN7iqDFCPEucLCeNFz4r35FCo9s6WrpdDQPi80xbljXB8Bjtvcg=="></script>
+
+
+
+<script src="/js/code-copy.bb21b72280613039f1fabb11acc6a901c07caaee454933031066fbda6b5406fd31077a80ec913ba32261224d138bcbb4a34d27c51efae571c68d59282943b9a4.js" type="text/javascript"></script>
+
+
+
+<script src="/js/code-copy-v2.71bcaee23ab00cb45dc944f321264e21d25bc1ec1ae76f9596286cb408ea5654b4ee016e7914cc2554b237114eeb467d39df18735311f2d28480b3ccd2feb4ad.js" type="text/javascript"></script>
+
+
+
+
+<script src="/js/mermaid.min.f17824970d3ddd70acc0ad6416ad1faa95f8d683e4c77700e79ec7facb839a8a90c8b030e59e82271ecbddb0d5005d5a5a023c6434b29d16ea27ca7baa42eda7.js" type="text/javascript" integrity="sha512-8Xgklw093XCswK1kFq0fqpX41oPkx3cA557H&#43;suDmoqQyLAw5Z6CJx7L3bDVAF1aWgI8ZDSynRbqJ8p7qkLtpw=="></script>
+
+
+
+<script
+  type="module"
+  src="https://static.cloud.coveo.com/atomic/v3.19.0/atomic.esm.js"
+  integrity="sha512-VA9k6iDWhwxl8bwKUYPD63l93lGX7daV60k3yFxEt9EuEq4iWvsu5COq1mZ8OXKl0KCOFlUSDXS32Cy+YwbufQ=="
+  crossorigin="anonymous">
+</script>
+
+
+<script class="coveo-script" src="https://static.cloud.coveo.com/searchui/v2.10104/0/js/CoveoJsSearch.Lazy.min.js"
+  integrity="sha512-HxdDBIp5snbqtu1TPkBnXLKEvN9IPz3PeZW8zT9KfsflV9Ck822XDroDlpVbfCfXeiu8C0RDVn0fdu7aGy/H1g=="
+  crossorigin="anonymous"></script>
+
+<script src="https://static.cloud.coveo.com/searchui/v2.10104/0/js/templates/templates.js"
+  integrity="sha512-CR0Yk/LIwgh1MsKqjecDp/r6F9ipKc6gA+4+E1pplT3N3r1pk+la/HaqyDiKtjOFwrwIIbIYBFrUJgPql93QHw=="
+  crossorigin="anonymous"></script>
+
+
+
+
+
+
+<script src="/js/coveo.min.4acfd205930e2d31230100f345e0463332eb3e3af1b4aa9a6e3131b0b2bac53566ae4d18b390066fce94c0c75d39b5e121d1291f81e5accc1a82d93da9f11b7f.js" integrity="sha512-Ss/SBZMOLTEjAQDzReBGMzLrPjrxtKqabjExsLK6xTVmrk0Ys5AGb86UwMddObXhIdEpH4HlrMwagtk9qfEbfw=="
+  type="text/javascript"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="/js/sidebar.min.6fed0180a23d01103c68ffb054a183fba5e7ba673de8c56d85857af964dcc0c11623ee09f6185207a373127cb2547ff9247ae3516ed47c67e1b58dbe71e9d576.js" type="text/javascript" integrity="sha512-b&#43;0BgKI9ARA8aP&#43;wVKGD&#43;6Xnumc96MVthYV6&#43;WTcwMEWI&#43;4J9hhSB6NzEnyyVH/5JHrjUW7UfGfhtY2&#43;cenVdg=="></script>
+  
+
+
+<script src="/js/site-dropdown.min.3bb49b6f7d25bcd4a2b008525bb8538d84237348bf618b40970ff6eca87119d68c326ca7ba04854ad102be36495fe1d70f1cb239916555b67dd17683dc283333.js" type="text/javascript" integrity="sha512-O7Sbb30lvNSisAhSW7hTjYQjc0i/YYtAlw/27KhxGdaMMmynugSFStECvjZJX&#43;HXDxyyOZFlVbZ90XaD3CgzMw=="></script>
+
+
+
+<script src="/js/product-selector.min.b588249327fb12c7602fa08eb618560171f54e7348d6c1bacfdbf541f5e13023493f64f78fb6d4b9014892e5e4f0aaaee95b859bb37aa53bbe8c0e27e65167d1.js" type="text/javascript" integrity="sha512-tYgkkyf7EsdgL6COthhWAXH1TnNI1sG6z9v1QfXhMCNJP2T3j7bUuQFIkuXk8Kqu6VuFm7N6pTu&#43;jA4n5lFn0Q=="></script>
+
+
+
+<script src="/js/sidebar-v2.min.3f906631e696b2c88883bfcfc62371165359130cfd118ceb49893ae0d8760dc38177ee3bb94a61dee45023115de8445f0b9fe48f933618ef7ba7b3180a05adbd.js" type="text/javascript" integrity="sha512-P5BmMeaWssiIg7/PxiNxFlNZEwz9EYzrSYk64Nh2DcOBd&#43;47uUph3uRQIxFd6ERfC5/kj5M2GO97p7MYCgWtvQ=="></script> 
+  <div id="consent_blackbar"></div>
+</body>
+</html>
+
+

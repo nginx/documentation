@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>How To on DEV -- docs-nginx-com</title>
+    <link>http://localhost:1313/nginx-instance-manager/nginx-configs/config-templates/how-to/</link>
+    <description>Recent content in How To on DEV -- docs-nginx-com</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/nginx-instance-manager/nginx-configs/config-templates/how-to/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Manage NGINX configs with templates</title>
+      <link>http://localhost:1313/nginx-instance-manager/nginx-configs/config-templates/how-to/manage-nginx-configs-with-templates/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-instance-manager/nginx-configs/config-templates/how-to/manage-nginx-configs-with-templates/</guid>
+      <description>&lt;h2 &#xA;id=&#34;create-a-config-template&#34;&gt;Create a Config Template  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#create-a-config-template&#34; title=&#34;Create a Config Template&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;Config templates in F5 NGINX Instance Manager allow you to predefine and standardize configurations for your NGINX instances. By creating a template, you can streamline the deployment process and ensure consistency across your environments. This guide walks you through creating a new template from scratch or importing an existing template from an archive, generating and deploying a configuration to a designated target, and modifying an existing template submission.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>RBAC for config templates and submissions</title>
+      <link>http://localhost:1313/nginx-instance-manager/nginx-configs/config-templates/how-to/rbac-config-templates-and-submissions/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-instance-manager/nginx-configs/config-templates/how-to/rbac-config-templates-and-submissions/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;With role-based access control (RBAC), administrators can determine who can create, read, update, and delete templates and template submissions. This access control helps you securely manage your NGINX configurations and deployments.&lt;/p&gt;&#xA;&lt;h2 &#xA;id=&#34;before-you-begin&#34;&gt;Before You Begin  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#before-you-begin&#34; title=&#34;Before You Begin&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;ul&gt;&#xA;&lt;li&gt;Ensure the user is added as a &lt;a href=&#34;http://localhost:1313/nginx-instance-manager/admin-guide/authentication/basic-auth/set-up-basic-authentication/&#34;&gt;basic authentication&lt;/a&gt; or &lt;a href=&#34;http://localhost:1313/nginx-instance-manager/admin-guide/authentication/oidc/getting-started/&#34;&gt;OpenID Connect (OIDC)&lt;/a&gt; user in F5 NGINX Instance Manager.&lt;/li&gt;&#xA;&lt;li&gt;Familiarize yourself with the concepts of &lt;a href=&#34;http://localhost:1313/nginx-instance-manager/admin-guide/rbac/assign-roles/&#34;&gt;Roles&lt;/a&gt; and &lt;a href=&#34;http://localhost:1313/nginx-instance-manager/admin-guide/rbac/create-roles/&#34;&gt;Permissions&lt;/a&gt; within Instance Manager as they are crucial for managing access.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 &#xA;id=&#34;assign-roles-for-templates-and-template-submissions&#34;&gt;Assign Roles for Templates and Template Submissions  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#assign-roles-for-templates-and-template-submissions&#34; title=&#34;Assign Roles for Templates and Template Submissions&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;To complete these steps, you need administrator access.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

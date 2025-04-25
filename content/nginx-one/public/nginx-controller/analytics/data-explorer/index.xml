@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Data Explorer on DEV -- docs-nginx-com</title>
+    <link>http://localhost:1313/nginx-controller/analytics/data-explorer/</link>
+    <description>Recent content in Data Explorer on DEV -- docs-nginx-com</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/nginx-controller/analytics/data-explorer/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How To Use the Data Explorer</title>
+      <link>http://localhost:1313/nginx-controller/analytics/data-explorer/how-to-use/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-controller/analytics/data-explorer/how-to-use/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;This topic explains how to use the Data Explorer to view the metrics that F5 NGINX Controller collects.&lt;/p&gt;&#xA;&lt;p&gt;The Data Explorer lets you perform these following tasks:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Easily switch between contexts, metrics, and dimensions&lt;/li&gt;&#xA;&lt;li&gt;Specify a time range of interest&lt;/li&gt;&#xA;&lt;li&gt;Set the aggregation mode&lt;/li&gt;&#xA;&lt;li&gt;Compare results to previous periods&lt;/li&gt;&#xA;&lt;li&gt;Export the query that&amp;rsquo;s used to generate the charts as a URL, which you can use outside of NGINX Controller&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt; &lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

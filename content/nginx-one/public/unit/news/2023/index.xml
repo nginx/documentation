@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>2023 on DEV -- docs-nginx-com</title>
+    <link>http://localhost:1313/unit/news/2023/</link>
+    <description>Recent content in 2023 on DEV -- docs-nginx-com</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/unit/news/2023/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Unit 1.31.1 Released</title>
+      <link>http://localhost:1313/nginx-unit/news/2023/unit-1.31.1-released/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-unit/news/2023/unit-1.31.1-released/</guid>
+      <description>&lt;p&gt;We are delighted to announce Unit 1.31.1, a maintenance release that fixes&#xA;several bugs, enhances the WebAssembly technology preview, and updates tools&#xA;and packaging.&lt;/p&gt;&#xA;&lt;h2 &#xA;id=&#34;webassembly-technology-preview-enhancements&#34;&gt;WebAssembly Technology Preview Enhancements  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#webassembly-technology-preview-enhancements&#34; title=&#34;WebAssembly Technology Preview Enhancements&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;After a very successful launch of our WebAssembly integration in&#xA;{doc}&lt;code&gt;1.31.0 &amp;lt;unit-1.31.0-released&amp;gt;&lt;/code&gt;&#xA;&lt;a href=&#34;http://localhost:1313/nginx-unit/news/2023/unit-1.31.0-released/&#34;&gt;1.31.0&lt;/a&gt;,&#xA;,&#xA;we have made some minor improvements.With the &lt;code&gt;unit-wasm&lt;/code&gt; SDK,&#xA;you can now explicitly set the HTTP return code of a given request.&#xA;Also, requests with payloads larger than 4 GB are now handled properly.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Unit 1.31.0 Released</title>
+      <link>http://localhost:1313/nginx-unit/news/2023/unit-1.31.0-released/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-unit/news/2023/unit-1.31.0-released/</guid>
+      <description>&lt;p&gt;We are delighted to announce Unit 1.31.0, which marks a significant milestone&#xA;following the release of 1.30 in May. Over the past 15 weeks, our dedicated&#xA;team has been hard at work developing an innovative language module for NGINX&#xA;Unit. We are excited to introduce the Unit WebAssembly (WASM) feature as part&#xA;of this release, which represents a significant leap forward in Unit&amp;rsquo;s&#xA;capabilities.&lt;/p&gt;&#xA;&lt;p&gt;This is a technology preview of WebAssembly support in Unit, and we look&#xA;forward to learning more about the use cases and ideas that the community will&#xA;share with us.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Unit 1.30.0 Released</title>
+      <link>http://localhost:1313/nginx-unit/news/2023/unit-1.30.0-released/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-unit/news/2023/unit-1.30.0-released/</guid>
+      <description>&lt;p&gt;We are happy to announce Unit 1.30.0! This release brings a new level of&#xA;sophistication to Unit’s configuration and enhances logging controls.&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Incoming URIs can now be rewritten as part of the routing process&lt;/li&gt;&#xA;&lt;li&gt;Configuration values can now be evaluated by referencing JavaScript modules&#xA;and functions&lt;/li&gt;&#xA;&lt;li&gt;Each application can now write its diagnostic output to log files (or not at&#xA;all)&lt;/li&gt;&#xA;&lt;li&gt;The steps taken by the router can now be logged for diagnostic purposes&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Alongside 1.30.0, we are pleased to present &lt;a href=&#34;https://hub.docker.com/_/unit&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Docker official Images for NGINX&#xA;Unit&lt;/a&gt; and the new &lt;a href=&#34;https://github.com/nginx/unit/blob/master/docs/unit-openapi.yaml&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;OpenAPI specification&lt;/a&gt; for&#xA;Unit’s control API.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

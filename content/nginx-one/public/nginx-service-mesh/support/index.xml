@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Support on DEV -- docs-nginx-com</title>
+    <link>http://localhost:1313/nginx-service-mesh/support/</link>
+    <description>Recent content in Support on DEV -- docs-nginx-com</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/nginx-service-mesh/support/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Where to Go for Support</title>
+      <link>http://localhost:1313/nginx-service-mesh/support/contact-support/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-service-mesh/support/contact-support/</guid>
+      <description>&lt;p&gt;Thank you for your interest in F5 NGINX Service Mesh. NGINX Service Mesh can be installed via helm charts, or by &lt;a href=&#34;https://github.com/nginxinc/nginx-service-mesh/releases/latest&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;downloading nginx-meshctl&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;!-- markdown-link-check-disable --&gt;&#xA;&lt;h3 &#xA;id=&#34;resources&#34;&gt;Resources  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#resources&#34; title=&#34;Resources&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h3&gt;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://www.nginx.com/products/nginx-service-mesh/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Product Details&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;http://localhost:1313/nginx-service-mesh/get-started/install/install/&#34;&gt;Install NGINX Service Mesh using nginx-meshctl&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;http://localhost:1313/nginx-service-mesh/get-started/install/install-with-helm/&#34;&gt;Install NGINX Service Mesh using Helm&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://www.nginx.com/products/nginx-ingress-controller/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;NGINX Plus Kubernetes Ingress Controller&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://www.nginx.com/products/nginx/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;NGINX Plus Product Details&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 &#xA;id=&#34;commercial-support&#34;&gt;Commercial Support  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#commercial-support&#34; title=&#34;Commercial Support&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h3&gt;&lt;p&gt;For paid customers of NGINX Service Mesh, follow the procedures described in the following knowledge base article: &lt;a href=&#34;https://my.f5.com/manage/s/article/K000140156/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;K000140156&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

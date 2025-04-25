@@ -1,0 +1,3310 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>  
+  <style>
+    body {
+       
+      visibility: hidden;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+  </style>
+  
+  <noscript>
+    <style>
+       
+      body {
+        visibility: visible;
+      }
+    </style>
+  </noscript>
+  
+
+
+  <script>
+
+    const setTheme = (isNewTheme) => {
+      localStorage.setItem("useNewTheme", `${isNewTheme}`);
+      
+      const v1cssIds = [
+        "cssFA1",
+        "cssFA2",
+        "cssFA3",
+        "cssBootstrap",
+        "css1",
+        "css2",
+        "css3",
+        "css4",
+        "css5",
+        "css6",
+      ];
+
+      v1cssIds.forEach((cssId) => {
+        const element = document.getElementById(cssId);
+        if (element !== null) {
+          element.disabled = isNewTheme;
+        }
+      });
+
+      const v2cssIds = ["css7", "css9"];
+      v2cssIds.forEach((cssId) => {
+        const element = document.getElementById(cssId);
+        if (element !== null) {
+          element.disabled = !isNewTheme;
+        }
+      });
+
+      
+      const v1ElementIds = ["sidebar", "footer", "toc", "api", "search-v1", "breadcrumb-v1", "list-v1"]
+
+      v1ElementIds.forEach((elementId) => {
+        const element = document.getElementById(elementId);
+        if (element !== null) {
+          element.style.display = isNewTheme ? "none" : "";
+        }
+
+        const trustarc = document.getElementById("teconsent-v1");
+        if (trustarc) {
+          trustarc.id = isNewTheme ? "teconsent-v1" : "teconsent";
+        }
+      });
+
+      document.querySelectorAll(".table-v1").forEach((table) => {
+        table.style.display = isNewTheme ? "none" : "";
+      });
+
+      const notMfElements = ['[data-mf="false"]'];
+      notMfElements.forEach((elementId) => {
+        document.querySelectorAll(elementId).forEach((element) => {
+          element.style.display = isNewTheme ? "none" : "";
+        });
+      })
+
+      const mfElements = ['[data-mf="true"]'];
+      mfElements.forEach((elementId) => {
+        document.querySelectorAll(elementId).forEach((element) => {
+          element.style.display = isNewTheme ? "" : "none";
+
+          const trustarc = document.getElementById("teconsent-v2");
+          if (trustarc) {
+            trustarc.id = isNewTheme ? "teconsent" : "teconsent-v2";
+          }
+        });
+      });
+
+      document.getElementById("body").style.visibility = "visible";
+    };
+
+    const toggleTheme = () => {
+      setTheme(!(localStorage.getItem("useNewTheme") === "true"));
+    };
+
+    
+    const mf = toggleTheme;
+    const useNewTheme = toggleTheme;
+
+    document.addEventListener("DOMContentLoaded", () => {
+      setTheme(localStorage.getItem("useNewTheme") === "true");
+    });
+
+    function gameCode(callback) {
+      let kkeys = [];
+      
+      const code = "38,38,40,40,37,39,37,39,66,65";
+      return (event) => {
+        kkeys.push(event.keyCode);
+        if (kkeys.toString().indexOf(code) >= 0) {
+          callback(event);
+          kkeys = [];
+        }
+      };
+    }
+    const handler = gameCode(() => {
+      mf();
+    });
+    window.addEventListener("keydown", handler);
+
+  </script>
+
+  
+
+  <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Production Tuning | DEV -- docs-nginx-com</title>
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:1313/nginx-service-mesh/guides/production-tuning/">
+
+
+
+
+
+
+<meta name="robots" content="noindex,nofollow" />
+
+
+<meta property="article:publisher" content="https://www.facebook.com/nginxinc" />
+<meta property="og:image" content="http://localhost:1313/images/icons/NGINX-Docs-new-docs-dark-1200x630.png" />
+<meta property="og:image:width" content="500" />
+<meta property="og:image:height" content="300" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:description" content="" />
+<meta name="twitter:title" content="Production Tuning" />
+<meta name="twitter:site" content="@nginx" />
+<meta name="twitter:image" content="http://localhost:1313/images/icons/NGINX-Docs-new-docs-dark-1200x630.png" />
+<meta name="twitter:creator" content="@nginx" />
+
+<meta http-equiv="last-modified" content="19/03/2025" />
+
+
+
+
+<meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline'
+    https://consent.trustarc.com/ https://mktg.tags.f5.com/basic/prod/utag.sync.js https://static.cloud.coveo.com/ https://*.f5.com/
+    https://*.netlify.app https://gist.github.com
+    https://tag.demandbase.com/pscSDsz4.min.js
+    https://munchkin.brightfunnel.com/js/build/bf-munchkin.min.js
+    https://www.googletagmanager.com/gtm.js
+    https://www.google-analytics.com/
+    https://www.google-analytics.com/analytics.js
+    https://www.google-analytics.com/plugins/ua/linkid.js
+    https://cdn.bizible.com/scripts/bizible.js
+    https://cdn.bizible.com/xdc.js
+    https://f5networksglobalprod.122.2o7.net/
+    https://f5networksnginxdocs.122.2o7.net/
+    https://*.siteintercept.qualtrics.com/SIE/?Q_ZID=*
+    https://siteintercept.qualtrics.com/
+    ;
+    worker-src 'self' blob:">
+
+
+
+<meta property="environment" type="development" />
+<meta property="buildtype" type="webdocs" />
+<meta property="isServer" type="true" />
+
+
+<meta name="product" content="DEV -- docs-nginx-com">
+<meta name="version" content="">
+<meta name="doc_type" content="Manual">
+  
+  <link rel="shortcut icon" type="image/x-icon" href="http://localhost:1313/images/favicon-48x48.ico">
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+<link href="/css/v2/style.css" integrity="" rel="stylesheet" type="text/css" id="css7"
+  disabled>
+
+
+<link href="/css/inter/inter.987d1be34797653eabce3627efb116c263d4045fd5badfe003ff283c5a5da435d83a3fad6bfe524e3ce3cf8a41168a30e7aa42507961257eeb275024def0f9b9.css" integrity="sha512-mH0b40eXZT6rzjYn77EWwmPUBF/Vut/gA/8oPFpdpDXYOj&#43;ta/5STjzjz4pBFoow56pCUHlhJX7rJ1Ak3vD5uQ==" rel="stylesheet" type="text/css"
+  id="cssInter">
+
+
+<link href="/css/v2/highlight.min.9ef7c7ad221175216abc8a5827f967bcd7c0e035bfa91180acd26a2c36d54242ae5f485986c260d70b1bbdf225ad76cdbba3179afa7e4335282cc3080a17e337.css" rel="stylesheet" type="text/css" id="css9">
+
+
+
+
+
+<link href="/fontawesome/css/all.min.4a71f958af9b67180f1ece38b96217f8b2c9009f7fd8f90f299e508808fa4daf3ac3e7ec6f64e47267d1c955f7a419cc15c57ba103c9925f507af4825abdd6e8.css" integrity="sha512-SnH5WK&#43;bZxgPHs44uWIX&#43;LLJAJ9/2PkPKZ5QiAj6Ta86w&#43;fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" rel="stylesheet" type="text/css"
+  id="cssFA1">
+
+
+<link href="/fontawesome/css/v4-font-face.min.5870089ba06cf03e9721f87919eaf15c961a65e071845949ed2da58c5bfbd18a714c5dab2c155f0455ebcd2f45bfd598a5e47ae19976e7aa3a51e22914eac1b6.css" integrity="sha512-WHAIm6Bs8D6XIfh5GerxXJYaZeBxhFlJ7S2ljFv70YpxTF2rLBVfBFXrzS9Fv9WYpeR64Zl256o6UeIpFOrBtg==" rel="stylesheet" type="text/css"
+  id="cssFA2">
+
+
+<link href="/fontawesome/css/v5-font-face.min.81bdf1c9f8ff16b1eda613d52d868a059f16c8c6045c3d7e0a0b771622a11666cdd94b8ea62b5edb0d4b826c3a3737ec3663065fe05b56b6b871e57de73f556b.css" integrity="sha512-gb3xyfj/FrHtphPVLYaKBZ8WyMYEXD1&#43;Cgt3FiKhFmbN2UuOpite2w1Lgmw6NzfsNmMGX&#43;BbVra4ceV95z9Vaw==" rel="stylesheet" type="text/css"
+  id="cssFA3">
+
+
+
+<link href="/css/bootstrap.min.3f9320327d6304dd356ac060534cfad10938431897a3cebec2515a84aaec41fdfb73d72ba39d7b5b35523cf575b432b3864bb6889d855602faef01b4dd21a734.css" integrity="sha512-P5MgMn1jBN01asBgU0z60Qk4QxiXo86&#43;wlFahKrsQf37c9cro517WzVSPPV1tDKzhku2iJ2FVgL67wG03SGnNA==" rel="stylesheet"
+  type="text/css" id="cssBootstrap">
+
+
+
+<link rel="stylesheet" href="https://static.cloud.coveo.com/searchui/v2.10104/0/css/CoveoFullSearch.min.css"
+  integrity="sha512-9/A9yVCU4GS6/iIwTRJKnan4Hf8gDKj3anwItN9QCsU8SixaT5xkjjWsZ/iq0TWaizhtqOLacadXJfxHlwYCcA=="
+  crossorigin="anonymous" />
+
+
+<link
+  rel="stylesheet"
+  href="https://static.cloud.coveo.com/atomic/v3.19.0/themes/coveo.css"
+  integrity="sha512-m2BufPi8Tc6H2jcQfDj/PIl5H57C9jeqhbDFgFXKTtOhoC4S7ULXmx74FseZ8WXpfdT9uyccMHDBJDrIZlrUUQ=="
+  crossorigin="anonymous"/>
+
+
+<link href="/css/docs-nginx-com/nginx-site-header.min.80b10ed49ecfad93607ee771acca88d13dc958e6eecc642af3aa2b170c86b8dcce442e7b86c3e5298c95b0ab2b053a71074c2f15c28266c3a2c502275415b3a7.css" rel="stylesheet" type="text/css" id="css1">
+
+
+<link href="/css/docs-nginx-com/style.min.2cd4748c438c49d012a5fdc6b98770223c4875fe0f89517b17423b6a5328af4d93d9d772207bfc51d9449781281e1eb8707dcc2f7467e6e24330c9b8c7c5f734.css" rel="stylesheet" type="text/css" id="css2">
+
+
+<link href="/css/bootstrap-docs.min.8a70c94c72e3783cecd631bc1705c7843b2fdef99f1549f0bf7f774a4083173ee25974413a8206c2340c0fee9bb7a07acd41d41c78ae2280c96a2ce0faca2847.css" rel="stylesheet" type="text/css" id="css3">
+
+
+
+<link href="/css/coveo.min.fce7d4df31de99e4f86510a90915820f236b8dcd02be030b27529af7ff10189f807c78cedacb91afa9d07f310a172c6046b1921832f199b9158898a7f74fa117.css" rel="stylesheet" type="text/css" id="css6">
+
+
+
+<link href="/css/f5-hugo.min.42feae8b135e9380a66db9c3cb2803221888524a29f41cbc55790b5cb5a309ac7e6dd80e70ed0260370fd93c04b7aa8a5c3d6aca0964804341fad51cfcec963f.css" rel="stylesheet" type="text/css" id="css4">
+
+
+<link href="/css/inline-overrides.min.495e6889d9955581580c654bad961bb33af6344b283af7e9a34648c5e8d5f1fe90efb8aac33359c4178efd36cd7cb92c7c6458d4175caff9c284b14bd9d2b97a.css" rel="stylesheet" type="text/css" id="css8">
+
+
+
+
+
+<link href="/css/highlight.min.fe5647c4b67f4b3fcf0ea60b483479d567ba1b05ee6e816439207edfa3d310dbee79536278c67d89c1db5da275bde962a10163da375f05bd19743e2a80e1ad02.css" rel="stylesheet" type="text/css" id="css5">
+  
+  
+  
+  
+  
+  
+        
+  <script async="async" src="https://consent.trustarc.com/notice?domain=f5.com&c=teconsent&js=nj&noticeType=bb&text=true&gtm=1" crossorigin=""></script>
+  
+  
+
+<script src="https://mktg.tags.f5.com/basic/prod/utag.sync.js"></script> 
+
+
+  
+  
+  
+  
+  
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-K5HG9JT');</script>
+  
+  </head>
+  
+  <body id="body">
+    
+   
+<script type="text/javascript"> 
+    (function(a,b,c,d) { 
+        a='//mktg.tags.f5.com/basic/prod/utag.js'; 
+        b=document;c='script';d=b.createElement(c);d.src=a; 
+        d.type='text/java'+c;d.async=true; 
+        a=b.getElementsByTagName(c)[0];a.parentNode.insertBefore(d,a)})(); 
+</script> 
+    
+  
+    <header>
+      
+<div class="navbar navbar-expand navbar-dark flex-column flex-md-row bd-navbar navbar-fixed-top">
+  <div class="container-fluid flex-md-row flex-column header-container">
+    <a class="navbar-brand mr-0 mr-md-2" href="/" aria-label="NGINX Docs">
+      <img class="navbar-img" src="http://localhost:1313/images/icons/NGINX-Docs-horiz-white-type.svg" alt="NGINX Docs">
+    </a>
+    
+      <div class="navbar navbar-nav">
+        
+        <div id="searchbox">
+          
+          <div class="CoveoSearchbox" data-placeholder='Search NGINX Docs...'></div>
+        </div>
+        <atomic-search-interface id="search-standalone-header" data-mf="true" style="display:none;">
+          <atomic-search-box redirection-url="/search.html">
+          </atomic-search-box>
+        </atomic-search-interface>
+      </div>
+    
+    
+    
+    
+    <ul class="navbar navbar-nav">
+        <li class="nav-item-explore active">
+          <button id="navbar-sites-button" class="button navbar-button">
+              F5 Sites
+              <i id="navbar-sites-button-icon" class="link-chevron-icon fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="dropdown-content" id="dropdown-content">
+            <ul>
+              
+                <li>
+                  <a href="https://community.f5.com/" target="_blank" >DevCentral</a>
+                  <p>Connect &amp; learn in our hosted community</p>
+                </li>
+              
+                <li>
+                  <a href="https://my.f5.com/" target="_blank" >MyF5</a>
+                  <p>Your key to everything F5, including support, registration keys, and subscriptions</p>
+                </li>
+              
+                <li>
+                  <a href="https://nginx.org/" target="_blank" >NGINX</a>
+                  <p>Learn more about NGINX Open Source and read the community blog</p>
+                </li>
+              
+            </ul>
+          </div>
+        </li>
+    </ul>
+  </div>
+</div>
+
+
+    </header>
+  
+    <section class="base-layout" data-testid="base-layout">
+      <section id="breadcrumb-v1">
+        
+          
+          <nav aria-label="breadcrumb" class="breadcrumb navbar">
+    <div class="nav flex-md-row">
+        <ol class="breadcrumb">
+            
+            
+            
+            
+                
+            
+            
+                
+            
+            
+                
+            
+            
+                
+            
+            
+            
+                <li><a href="/">Home</a><i class="fas fa-chevron-right"></i></li>
+                
+            
+                <li><a href="/nginx-service-mesh/">F5 NGINX Service Mesh</a><i class="fas fa-chevron-right"></i></li>
+                
+            
+                <li><a href="/nginx-service-mesh/guides/">Guides</a><i class="fas fa-chevron-right"></i></li>
+                
+            
+                Production Tuning
+        </ol>
+    </div>
+</nav>
+  
+          
+        
+      </section>
+  
+      <div class="main container-fluid min-page-height" data-menu-id="/nginx-service-mesh/guides/production-tuning/">
+        
+<div class="docs-container row override-sidebar-collapse">
+<div class="docs-container row override-sidebar-collapse">
+  <nav id="sidebar" class="sidenav overflow-auto col-md-3 d-none d-xl-block d-print-none align-top">
+    
+
+<div id="sidebar-wrapper">
+     <div id="sidebar" class="sidebar" aria-label="Sidebar navigation">
+        <button id="sidebar-toggle-button" title="Toggle sidebar navigation" role="button" aria-controls="sidebar-content">
+           <i class="fa fa-chevron-right sidebar-visible-collapsed"></i>
+           <i class="fa fa-chevron-left sidebar-visible-expanded"></i>
+        </button>
+        <div id="sidebar-content">
+            <h3>
+                <a class="sidebar-title" href="http://localhost:1313/nginx-service-mesh/" alt="F5 NGINX Service Mesh">
+                    F5 NGINX Service Mesh</a>
+            </h3>
+            <ul>
+            
+            
+                
+                
+                <div class="accordion" id="accordion1">
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <li class="nginx-toc-link l1">
+                                    <a data-menu-id="/nginx-service-mesh/about/" class="accordion-toggle" aria-expanded="false"
+                                    data-toggle="collapse" href="#" data-target="#mesh--about-nginx-service-mesh" aria-controls="mesh--about-nginx-service-mesh">
+                                    <i class="fa fa-2xs fa-fw fa-chevron-right"></i><i
+                                        class="fa fa-2xs fa-fw fa-chevron-down"></i>About NGINX Service Mesh</a>
+                            </li>
+                        </div>
+                        <div id="mesh--about-nginx-service-mesh" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-service-mesh/about/what-is-nsm/"
+                                                                href="http://localhost:1313/nginx-service-mesh/about/what-is-nsm/">What is NGINX Service Mesh?</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-service-mesh/about/mesh-tech-specs/"
+                                                                href="http://localhost:1313/nginx-service-mesh/about/mesh-tech-specs/">Technical Specifications</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-service-mesh/about/architecture/"
+                                                                href="http://localhost:1313/nginx-service-mesh/about/architecture/">Architecture</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+
+            
+                
+                
+                <div class="accordion" id="accordion1">
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <li class="nginx-toc-link l1">
+                                    <a data-menu-id="/nginx-service-mesh/get-started/" class="accordion-toggle" aria-expanded="false"
+                                    data-toggle="collapse" href="#" data-target="#mesh--getting-started" aria-controls="mesh--getting-started">
+                                    <i class="fa fa-2xs fa-fw fa-chevron-right"></i><i
+                                        class="fa fa-2xs fa-fw fa-chevron-down"></i>Getting Started</a>
+                            </li>
+                        </div>
+                        <div id="mesh--getting-started" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                
+                                
+                                    
+                                    <div class="accordion" id="Accordion2">
+                                        <div class="sidebar-l1-padding">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-service-mesh/get-started/platform-setup/" class="accordion-toggle"
+                                                                aria-expanded="false" data-toggle="collapse"
+                                                                href="#mesh--get-started--prepare-your-cluster">
+                                                                <i class="fa fa-2xs fa-fw fa-chevron-right"></i><i
+                                                                    class="fa fa-2xs fa-fw fa-chevron-down"></i>Prepare Your Cluster</a>
+                                                        </li>
+                                                    <ul>
+                                                </div>
+                                                <div id="mesh--get-started--prepare-your-cluster" class="accordion-body collapse leaf">
+                                                    <div class="accordion-inner">
+
+                                                    
+                                                        
+                                                        
+                                                        <ul class="sidebar-l2-padding">
+                                                            <li class="nginx-toc-link l3 sidebar-il-border">
+                                                                <a data-menu-id="/nginx-service-mesh/get-started/platform-setup/supported-platforms/" href="http://localhost:1313/nginx-service-mesh/get-started/platform-setup/supported-platforms/">Supported Platforms</a>
+                                                            </li>
+                                                        </ul>
+                                                        
+                                                        
+                                                    
+                                                        
+                                                        
+                                                        <ul class="sidebar-l2-padding">
+                                                            <li class="nginx-toc-link l3 sidebar-il-border">
+                                                                <a data-menu-id="/nginx-service-mesh/get-started/platform-setup/persistent-storage/" href="http://localhost:1313/nginx-service-mesh/get-started/platform-setup/persistent-storage/">Persistent Storage</a>
+                                                            </li>
+                                                        </ul>
+                                                        
+                                                        
+                                                    
+                                                        
+                                                        
+                                                        <ul class="sidebar-l2-padding">
+                                                            <li class="nginx-toc-link l3 sidebar-il-border">
+                                                                <a data-menu-id="/nginx-service-mesh/get-started/platform-setup/gke/" href="http://localhost:1313/nginx-service-mesh/get-started/platform-setup/gke/">Google Kubernetes Engine</a>
+                                                            </li>
+                                                        </ul>
+                                                        
+                                                        
+                                                    
+                                                        
+                                                        
+                                                        <ul class="sidebar-l2-padding">
+                                                            <li class="nginx-toc-link l3 sidebar-il-border">
+                                                                <a data-menu-id="/nginx-service-mesh/get-started/platform-setup/kubeadm/" href="http://localhost:1313/nginx-service-mesh/get-started/platform-setup/kubeadm/">Kubeadm</a>
+                                                            </li>
+                                                        </ul>
+                                                        
+                                                        
+                                                    
+                                                        
+                                                        
+                                                        <ul class="sidebar-l2-padding">
+                                                            <li class="nginx-toc-link l3 sidebar-il-border">
+                                                                <a data-menu-id="/nginx-service-mesh/get-started/platform-setup/kubespray/" href="http://localhost:1313/nginx-service-mesh/get-started/platform-setup/kubespray/">Kubespray</a>
+                                                            </li>
+                                                        </ul>
+                                                        
+                                                        
+                                                    
+                                                        
+                                                        
+                                                        <ul class="sidebar-l2-padding">
+                                                            <li class="nginx-toc-link l3 sidebar-il-border">
+                                                                <a data-menu-id="/nginx-service-mesh/get-started/platform-setup/openshift/" href="http://localhost:1313/nginx-service-mesh/get-started/platform-setup/openshift/">OpenShift</a>
+                                                            </li>
+                                                        </ul>
+                                                        
+                                                        
+                                                    
+                                                        
+                                                        
+                                                        <ul class="sidebar-l2-padding">
+                                                            <li class="nginx-toc-link l3 sidebar-il-border">
+                                                                <a data-menu-id="/nginx-service-mesh/get-started/platform-setup/rke/" href="http://localhost:1313/nginx-service-mesh/get-started/platform-setup/rke/">Rancher Kubernetes Engine</a>
+                                                            </li>
+                                                        </ul>
+                                                        
+                                                        
+                                                    
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                
+                                
+                                    
+                                    <div class="accordion" id="Accordion2">
+                                        <div class="sidebar-l1-padding">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-service-mesh/get-started/install/" class="accordion-toggle"
+                                                                aria-expanded="false" data-toggle="collapse"
+                                                                href="#mesh--get-started--install-nginx-service-mesh">
+                                                                <i class="fa fa-2xs fa-fw fa-chevron-right"></i><i
+                                                                    class="fa fa-2xs fa-fw fa-chevron-down"></i>Install NGINX Service Mesh</a>
+                                                        </li>
+                                                    <ul>
+                                                </div>
+                                                <div id="mesh--get-started--install-nginx-service-mesh" class="accordion-body collapse leaf">
+                                                    <div class="accordion-inner">
+
+                                                    
+                                                        
+                                                        
+                                                        <ul class="sidebar-l2-padding">
+                                                            <li class="nginx-toc-link l3 sidebar-il-border">
+                                                                <a data-menu-id="/nginx-service-mesh/get-started/install/configuration/" href="http://localhost:1313/nginx-service-mesh/get-started/install/configuration/">Configuration Options</a>
+                                                            </li>
+                                                        </ul>
+                                                        
+                                                        
+                                                    
+                                                        
+                                                        
+                                                        <ul class="sidebar-l2-padding">
+                                                            <li class="nginx-toc-link l3 sidebar-il-border">
+                                                                <a data-menu-id="/nginx-service-mesh/get-started/install/install/" href="http://localhost:1313/nginx-service-mesh/get-started/install/install/">Install with nginx-meshctl</a>
+                                                            </li>
+                                                        </ul>
+                                                        
+                                                        
+                                                    
+                                                        
+                                                        
+                                                        <ul class="sidebar-l2-padding">
+                                                            <li class="nginx-toc-link l3 sidebar-il-border">
+                                                                <a data-menu-id="/nginx-service-mesh/get-started/install/install-with-helm/" href="http://localhost:1313/nginx-service-mesh/get-started/install/install-with-helm/">Install with Helm</a>
+                                                            </li>
+                                                        </ul>
+                                                        
+                                                        
+                                                    
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                
+                                
+                                    
+                                    <div class="accordion" id="Accordion2">
+                                        <div class="sidebar-l1-padding">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-service-mesh/get-started/upgrade/" class="accordion-toggle"
+                                                                aria-expanded="false" data-toggle="collapse"
+                                                                href="#mesh--get-started--upgrade-nginx-service-mesh">
+                                                                <i class="fa fa-2xs fa-fw fa-chevron-right"></i><i
+                                                                    class="fa fa-2xs fa-fw fa-chevron-down"></i>Upgrade NGINX Service Mesh</a>
+                                                        </li>
+                                                    <ul>
+                                                </div>
+                                                <div id="mesh--get-started--upgrade-nginx-service-mesh" class="accordion-body collapse leaf">
+                                                    <div class="accordion-inner">
+
+                                                    
+                                                        
+                                                        
+                                                        <ul class="sidebar-l2-padding">
+                                                            <li class="nginx-toc-link l3 sidebar-il-border">
+                                                                <a data-menu-id="/nginx-service-mesh/get-started/upgrade/upgrade/" href="http://localhost:1313/nginx-service-mesh/get-started/upgrade/upgrade/">Upgrade with nginx-meshctl</a>
+                                                            </li>
+                                                        </ul>
+                                                        
+                                                        
+                                                    
+                                                        
+                                                        
+                                                        <ul class="sidebar-l2-padding">
+                                                            <li class="nginx-toc-link l3 sidebar-il-border">
+                                                                <a data-menu-id="/nginx-service-mesh/get-started/upgrade/upgrade-with-helm/" href="http://localhost:1313/nginx-service-mesh/get-started/upgrade/upgrade-with-helm/">Upgrade with Helm</a>
+                                                            </li>
+                                                        </ul>
+                                                        
+                                                        
+                                                    
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                
+                                
+                                    
+                                    <div class="accordion" id="Accordion2">
+                                        <div class="sidebar-l1-padding">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-service-mesh/get-started/uninstall/" class="accordion-toggle"
+                                                                aria-expanded="false" data-toggle="collapse"
+                                                                href="#mesh--get-started--uninstall-nginx-service-mesh">
+                                                                <i class="fa fa-2xs fa-fw fa-chevron-right"></i><i
+                                                                    class="fa fa-2xs fa-fw fa-chevron-down"></i>Uninstall NGINX Service Mesh</a>
+                                                        </li>
+                                                    <ul>
+                                                </div>
+                                                <div id="mesh--get-started--uninstall-nginx-service-mesh" class="accordion-body collapse leaf">
+                                                    <div class="accordion-inner">
+
+                                                    
+                                                        
+                                                        
+                                                        <ul class="sidebar-l2-padding">
+                                                            <li class="nginx-toc-link l3 sidebar-il-border">
+                                                                <a data-menu-id="/nginx-service-mesh/get-started/uninstall/uninstall/" href="http://localhost:1313/nginx-service-mesh/get-started/uninstall/uninstall/">Uninstall with nginx-meshctl</a>
+                                                            </li>
+                                                        </ul>
+                                                        
+                                                        
+                                                    
+                                                        
+                                                        
+                                                        <ul class="sidebar-l2-padding">
+                                                            <li class="nginx-toc-link l3 sidebar-il-border">
+                                                                <a data-menu-id="/nginx-service-mesh/get-started/uninstall/uninstall-with-helm/" href="http://localhost:1313/nginx-service-mesh/get-started/uninstall/uninstall-with-helm/">Uninstall with Helm</a>
+                                                            </li>
+                                                        </ul>
+                                                        
+                                                        
+                                                    
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+
+            
+                
+                
+                <div class="accordion" id="accordion1">
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <li class="nginx-toc-link l1">
+                                    <a data-menu-id="/nginx-service-mesh/guides/" class="accordion-toggle" aria-expanded="false"
+                                    data-toggle="collapse" href="#" data-target="#mesh--guides" aria-controls="mesh--guides">
+                                    <i class="fa fa-2xs fa-fw fa-chevron-right"></i><i
+                                        class="fa fa-2xs fa-fw fa-chevron-down"></i>Guides</a>
+                            </li>
+                        </div>
+                        <div id="mesh--guides" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-service-mesh/guides/inject-sidecar-proxy/"
+                                                                href="http://localhost:1313/nginx-service-mesh/guides/inject-sidecar-proxy/">Sidecar Proxy Injection</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-service-mesh/guides/monitoring-and-tracing/"
+                                                                href="http://localhost:1313/nginx-service-mesh/guides/monitoring-and-tracing/">Monitoring and Tracing</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-service-mesh/guides/secure-traffic-mtls/"
+                                                                href="http://localhost:1313/nginx-service-mesh/guides/secure-traffic-mtls/">Secure Mesh Traffic using mTLS</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-service-mesh/guides/prometheus-metrics/"
+                                                                href="http://localhost:1313/nginx-service-mesh/guides/prometheus-metrics/">Prometheus Metrics</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-service-mesh/guides/smi-traffic-metrics/"
+                                                                href="http://localhost:1313/nginx-service-mesh/guides/smi-traffic-metrics/">SMI Traffic Metrics</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-service-mesh/guides/smi-traffic-policies/"
+                                                                href="http://localhost:1313/nginx-service-mesh/guides/smi-traffic-policies/">SMI Traffic Policies</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-service-mesh/guides/private-registry/"
+                                                                href="http://localhost:1313/nginx-service-mesh/guides/private-registry/">Private Registry</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-service-mesh/guides/production-tuning/"
+                                                                href="http://localhost:1313/nginx-service-mesh/guides/production-tuning/">Production Tuning</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-service-mesh/guides/v1alpha1-ratelimit/"
+                                                                href="http://localhost:1313/nginx-service-mesh/guides/v1alpha1-ratelimit/">v1alpha1 RateLimit Documentation</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+
+            
+                
+                
+                <div class="accordion" id="accordion1">
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <li class="nginx-toc-link l1">
+                                    <a data-menu-id="/nginx-service-mesh/tutorials/" class="accordion-toggle" aria-expanded="false"
+                                    data-toggle="collapse" href="#" data-target="#mesh--tutorials" aria-controls="mesh--tutorials">
+                                    <i class="fa fa-2xs fa-fw fa-chevron-right"></i><i
+                                        class="fa fa-2xs fa-fw fa-chevron-down"></i>Tutorials</a>
+                            </li>
+                        </div>
+                        <div id="mesh--tutorials" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                
+                                
+                                    
+                                    <div class="accordion" id="Accordion2">
+                                        <div class="sidebar-l1-padding">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-service-mesh/tutorials/kic/" class="accordion-toggle"
+                                                                aria-expanded="false" data-toggle="collapse"
+                                                                href="#mesh--tutorials--nginx-ingress-controller">
+                                                                <i class="fa fa-2xs fa-fw fa-chevron-right"></i><i
+                                                                    class="fa fa-2xs fa-fw fa-chevron-down"></i>NGINX Ingress Controller</a>
+                                                        </li>
+                                                    <ul>
+                                                </div>
+                                                <div id="mesh--tutorials--nginx-ingress-controller" class="accordion-body collapse leaf">
+                                                    <div class="accordion-inner">
+
+                                                    
+                                                        
+                                                        
+                                                        <ul class="sidebar-l2-padding">
+                                                            <li class="nginx-toc-link l3 sidebar-il-border">
+                                                                <a data-menu-id="/nginx-service-mesh/tutorials/kic/deploy-with-kic/" href="http://localhost:1313/nginx-service-mesh/tutorials/kic/deploy-with-kic/">Deploy with NGINX Ingress Controller</a>
+                                                            </li>
+                                                        </ul>
+                                                        
+                                                        
+                                                    
+                                                        
+                                                        
+                                                        <ul class="sidebar-l2-padding">
+                                                            <li class="nginx-toc-link l3 sidebar-il-border">
+                                                                <a data-menu-id="/nginx-service-mesh/tutorials/kic/egress-walkthrough/" href="http://localhost:1313/nginx-service-mesh/tutorials/kic/egress-walkthrough/">Configure a Secure Egress Route with NGINX Ingress Controller</a>
+                                                            </li>
+                                                        </ul>
+                                                        
+                                                        
+                                                    
+                                                        
+                                                        
+                                                        <ul class="sidebar-l2-padding">
+                                                            <li class="nginx-toc-link l3 sidebar-il-border">
+                                                                <a data-menu-id="/nginx-service-mesh/tutorials/kic/ingress-walkthrough/" href="http://localhost:1313/nginx-service-mesh/tutorials/kic/ingress-walkthrough/">Expose an Application with NGINX Ingress Controller</a>
+                                                            </li>
+                                                        </ul>
+                                                        
+                                                        
+                                                    
+                                                        
+                                                        
+                                                        <ul class="sidebar-l2-padding">
+                                                            <li class="nginx-toc-link l3 sidebar-il-border">
+                                                                <a data-menu-id="/nginx-service-mesh/tutorials/kic/ingress-udp-walkthrough/" href="http://localhost:1313/nginx-service-mesh/tutorials/kic/ingress-udp-walkthrough/">Expose a UDP Application with NGINX Ingress Controller</a>
+                                                            </li>
+                                                        </ul>
+                                                        
+                                                        
+                                                    
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-service-mesh/tutorials/observability/"
+                                                                href="http://localhost:1313/nginx-service-mesh/tutorials/observability/">Install NGINX Service Mesh with Basic Observability</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-service-mesh/tutorials/deploy-example-app/"
+                                                                href="http://localhost:1313/nginx-service-mesh/tutorials/deploy-example-app/">Deploy an Example App with NGINX Service Mesh</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-service-mesh/tutorials/trafficsplit-deployments/"
+                                                                href="http://localhost:1313/nginx-service-mesh/tutorials/trafficsplit-deployments/">Deployments using Traffic Splitting</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-service-mesh/tutorials/accesscontrol-walkthrough/"
+                                                                href="http://localhost:1313/nginx-service-mesh/tutorials/accesscontrol-walkthrough/">Services using Access Control</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-service-mesh/tutorials/ratelimit-walkthrough/"
+                                                                href="http://localhost:1313/nginx-service-mesh/tutorials/ratelimit-walkthrough/">Configure Rate Limiting</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+
+            
+                
+                
+                <div class="accordion" id="accordion1">
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <li class="nginx-toc-link l1">
+                                    <a data-menu-id="/nginx-service-mesh/reference/" class="accordion-toggle" aria-expanded="false"
+                                    data-toggle="collapse" href="#" data-target="#mesh--reference" aria-controls="mesh--reference">
+                                    <i class="fa fa-2xs fa-fw fa-chevron-right"></i><i
+                                        class="fa fa-2xs fa-fw fa-chevron-down"></i>Reference</a>
+                            </li>
+                        </div>
+                        <div id="mesh--reference" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-service-mesh/reference/permissions/"
+                                                                href="http://localhost:1313/nginx-service-mesh/reference/permissions/">NGINX Service Mesh Permissions</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-service-mesh/reference/api-usage/"
+                                                                href="http://localhost:1313/nginx-service-mesh/reference/api-usage/">NGINX Service Mesh API</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-service-mesh/reference/nginx-meshctl/"
+                                                                href="http://localhost:1313/nginx-service-mesh/reference/nginx-meshctl/">CLI Reference</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+
+            
+                
+                
+                <div class="accordion" id="accordion1">
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <li class="nginx-toc-link l1">
+                                    <a data-menu-id="/nginx-service-mesh/support/" class="accordion-toggle" aria-expanded="false"
+                                    data-toggle="collapse" href="#" data-target="#mesh--support" aria-controls="mesh--support">
+                                    <i class="fa fa-2xs fa-fw fa-chevron-right"></i><i
+                                        class="fa fa-2xs fa-fw fa-chevron-down"></i>Support</a>
+                            </li>
+                        </div>
+                        <div id="mesh--support" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-service-mesh/support/contact-support/"
+                                                                href="http://localhost:1313/nginx-service-mesh/support/contact-support/">Where to Go for Support</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+
+            
+                
+                
+                <div class="accordion" id="accordion1">
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <li class="nginx-toc-link l1">
+                                    <a data-menu-id="/nginx-service-mesh/releases/" class="accordion-toggle" aria-expanded="false"
+                                    data-toggle="collapse" href="#" data-target="#mesh--releases" aria-controls="mesh--releases">
+                                    <i class="fa fa-2xs fa-fw fa-chevron-right"></i><i
+                                        class="fa fa-2xs fa-fw fa-chevron-down"></i>Releases</a>
+                            </li>
+                        </div>
+                        <div id="mesh--releases" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-service-mesh/releases/release-notes-2.0.0/"
+                                                                href="http://localhost:1313/nginx-service-mesh/releases/release-notes-2.0.0/">Release Notes 2.0.0</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-service-mesh/releases/release-notes-1.7.0/"
+                                                                href="http://localhost:1313/nginx-service-mesh/releases/release-notes-1.7.0/">Release Notes 1.7.0</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-service-mesh/releases/release-notes-1.6.0/"
+                                                                href="http://localhost:1313/nginx-service-mesh/releases/release-notes-1.6.0/">Release Notes 1.6.0</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-service-mesh/releases/release-notes-1.5.0/"
+                                                                href="http://localhost:1313/nginx-service-mesh/releases/release-notes-1.5.0/">Release Notes 1.5.0</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-service-mesh/releases/release-notes-1.4.1/"
+                                                                href="http://localhost:1313/nginx-service-mesh/releases/release-notes-1.4.1/">Release Notes 1.4.1</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-service-mesh/releases/release-notes-1.4.0/"
+                                                                href="http://localhost:1313/nginx-service-mesh/releases/release-notes-1.4.0/">Release Notes 1.4.0</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-service-mesh/releases/release-notes-1.3.1/"
+                                                                href="http://localhost:1313/nginx-service-mesh/releases/release-notes-1.3.1/">Release Notes 1.3.1</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-service-mesh/releases/release-notes-1.3.0/"
+                                                                href="http://localhost:1313/nginx-service-mesh/releases/release-notes-1.3.0/">Release Notes 1.3.0</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-service-mesh/releases/release-notes-1.2.1/"
+                                                                href="http://localhost:1313/nginx-service-mesh/releases/release-notes-1.2.1/">Release Notes 1.2.1</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-service-mesh/releases/release-notes-1.2.0/"
+                                                                href="http://localhost:1313/nginx-service-mesh/releases/release-notes-1.2.0/">Release Notes 1.2.0</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-service-mesh/releases/release-notes-1.1.0/"
+                                                                href="http://localhost:1313/nginx-service-mesh/releases/release-notes-1.1.0/">Release Notes 1.1.0</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-service-mesh/releases/release-notes-1.0.1/"
+                                                                href="http://localhost:1313/nginx-service-mesh/releases/release-notes-1.0.1/">Release Notes 1.0.1</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-service-mesh/releases/release-notes-1.0.0/"
+                                                                href="http://localhost:1313/nginx-service-mesh/releases/release-notes-1.0.0/">Release Notes 1.0.0</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-service-mesh/releases/release-notes-0.9.1/"
+                                                                href="http://localhost:1313/nginx-service-mesh/releases/release-notes-0.9.1/">Release Notes 0.9.1</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-service-mesh/releases/release-notes-0.9.0/"
+                                                                href="http://localhost:1313/nginx-service-mesh/releases/release-notes-0.9.0/">Release Notes 0.9.0</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-service-mesh/releases/release-notes-0.8.0/"
+                                                                href="http://localhost:1313/nginx-service-mesh/releases/release-notes-0.8.0/">Release Notes 0.8.0</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-service-mesh/releases/release-notes-0.7.0/"
+                                                                href="http://localhost:1313/nginx-service-mesh/releases/release-notes-0.7.0/">Release Notes 0.7.0</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-service-mesh/releases/release-notes-0.6.0/"
+                                                                href="http://localhost:1313/nginx-service-mesh/releases/release-notes-0.6.0/">Release Notes 0.6.0</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-service-mesh/releases/release-notes-0.5.0/"
+                                                                href="http://localhost:1313/nginx-service-mesh/releases/release-notes-0.5.0/">Release Notes 0.5.0</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-service-mesh/releases/oss-dependencies/"
+                                                                href="http://localhost:1313/nginx-service-mesh/releases/oss-dependencies/">Open Source Licenses Addendum</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+
+            
+
+            </ul>
+        
+        </div>
+    </div>
+</div>
+
+  </nav>
+
+  
+  
+  <main class="content col d-block align-top content-has-toc" role="main">
+  
+    
+  <section class="main-layout">
+    <div class="sidebar-layout" id="sidebar-layout">
+      <nav data-mf="true" id="sidebar-v2" class="sidebar" style="display:none;">
+        
+
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+
+
+
+
+<atomic-search-interface id="search-standalone-sidebar" data-mf="true" style="display:none;">
+    <atomic-search-box redirection-url="/search.html">
+    </atomic-search-box>
+</atomic-search-interface>
+<button class="product-selector-button" id="product-selector-button">
+    
+    <div class="product-selector-name" id="product-selector-name"></div>
+    <div class="product-selector-button-icon" id="product-selector-button-icon">
+        <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg" id="product-selector-chevron-icon">
+            <path d="M1 13L7 7L0.999999 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="product-selector-chevron-icon"/>
+        </svg>     
+    </div>
+</button>
+<div class="product-selector" id="product-selector">
+    
+    
+    
+    
+    
+        <div class="product-selector-content" id="product-selector-content">
+            <p id="product-selector-content-product-group-name">NGINX ONE</p>
+            <ul id="product-selector-content-product-container">
+            
+                <li id="product-selector-content-product-name">
+                    <a id="product-selector-content-product-link" href="/nginx-one">NGINX One Console</a>
+                </li>
+            
+                <li id="product-selector-content-product-name">
+                    <a id="product-selector-content-product-link" href="/nginx">NGINX Plus</a>
+                </li>
+            
+                <li id="product-selector-content-product-name">
+                    <a id="product-selector-content-product-link" href="/nginx-instance-manager">NGINX Instance Manager</a>
+                </li>
+            
+                <li id="product-selector-content-product-name">
+                    <a id="product-selector-content-product-link" href="/nginx-ingress-controller">NGINX Ingress Controller</a>
+                </li>
+            
+                <li id="product-selector-content-product-name">
+                    <a id="product-selector-content-product-link" href="/nginx-gateway-fabric">NGINX Gateway Fabric</a>
+                </li>
+            
+                <li id="product-selector-content-product-name">
+                    <a id="product-selector-content-product-link" href="https://nginx.org/en/docs/">NGINX Open Source</a>
+                </li>
+            
+                <li id="product-selector-content-product-name">
+                    <a id="product-selector-content-product-link" href="/solutions/">Subscription Licensing &amp; Solutions</a>
+                </li>
+            
+                <li id="product-selector-content-product-name">
+                    <a id="product-selector-content-product-link" href="/nginx-agent">NGINX Agent</a>
+                </li>
+            
+            </ul>
+        </div>
+    
+    
+    
+        <div class="product-selector-content" id="product-selector-content">
+            <p id="product-selector-content-product-group-name">NGINX APP PROTECT</p>
+            <ul id="product-selector-content-product-container">
+            
+                <li id="product-selector-content-product-name">
+                    <a id="product-selector-content-product-link" href="/nginx-app-protect-waf">NGINX App Protect WAF</a>
+                </li>
+            
+                <li id="product-selector-content-product-name">
+                    <a id="product-selector-content-product-link" href="/nginx-app-protect-dos">NGINX App Protect DoS</a>
+                </li>
+            
+            </ul>
+        </div>
+    
+    
+    
+        <div class="product-selector-content" id="product-selector-content">
+            <p id="product-selector-content-product-group-name">NGINX AS A SERVICE</p>
+            <ul id="product-selector-content-product-container">
+            
+                <li id="product-selector-content-product-name">
+                    <a id="product-selector-content-product-link" href="/nginxaas/azure/">NGINX as a Service for Azure</a>
+                </li>
+            
+            </ul>
+        </div>
+    
+    
+    
+        <div class="product-selector-content" id="product-selector-content">
+            <p id="product-selector-content-product-group-name">NGINX OTHER</p>
+            <ul id="product-selector-content-product-container">
+            
+                <li id="product-selector-content-product-name">
+                    <a id="product-selector-content-product-link" href="https://unit.nginx.org/">NGINX Unit</a>
+                </li>
+            
+            </ul>
+        </div>
+    
+</div>
+<div class="scrollbar-container">
+    <div class="sidebar-navigation">
+        <ul class="parent-collapsible-content">
+        
+            <li class="parent-collapsible-content-item">
+                
+                    <input type="checkbox" id="toggle-bf41ae5def3c15f356cd6af4e2a8b323" class="toggle-checkbox" style="display: none;">
+                    <label for="toggle-bf41ae5def3c15f356cd6af4e2a8b323" class="collapsible-header">
+                        
+                            <span class="parent-box expand"></span>
+                            <span class="parent-box opened"></span>
+                        
+                        About NGINX Service Mesh 
+                    </label>
+                    
+
+<ul class="collapsible-content">
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-service-mesh/about/what-is-nsm/" style="">What is NGINX Service Mesh? </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-service-mesh/about/mesh-tech-specs/" style="">Technical Specifications </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-service-mesh/about/architecture/" style="">Architecture </a>
+            
+        
+    </li>
+    
+</ul>
+                
+            </li>
+        
+            <li class="parent-collapsible-content-item">
+                
+                    <input type="checkbox" id="toggle-449b73c88c4de3bea33ac3029e6b5583" class="toggle-checkbox" style="display: none;">
+                    <label for="toggle-449b73c88c4de3bea33ac3029e6b5583" class="collapsible-header">
+                        
+                            <span class="parent-box expand"></span>
+                            <span class="parent-box opened"></span>
+                        
+                        Getting Started 
+                    </label>
+                    
+
+<ul class="collapsible-content">
+    
+    <li>
+        
+            <input type="checkbox" id="toggle-deb82227940a2d5e07e44c8439038b55" class="toggle-checkbox" style="display: none;">
+            <label for="toggle-deb82227940a2d5e07e44c8439038b55" class="collapsible-header">
+                
+                    <span class="box expand partial-box"></span>
+                    <span class="box opened partial-box"></span>
+                
+                Prepare Your Cluster 
+            </label>
+            
+
+<ul class="collapsible-content">
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-service-mesh/get-started/platform-setup/supported-platforms/" style="">Supported Platforms </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-service-mesh/get-started/platform-setup/persistent-storage/" style="">Persistent Storage </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-service-mesh/get-started/platform-setup/gke/" style="">Google Kubernetes Engine </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-service-mesh/get-started/platform-setup/kubeadm/" style="">Kubeadm </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-service-mesh/get-started/platform-setup/kubespray/" style="">Kubespray </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-service-mesh/get-started/platform-setup/openshift/" style="">OpenShift </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-service-mesh/get-started/platform-setup/rke/" style="">Rancher Kubernetes Engine </a>
+            
+        
+    </li>
+    
+</ul>
+        
+    </li>
+    
+    <li>
+        
+            <input type="checkbox" id="toggle-aba00bf13287d0813d38081f7ee261d3" class="toggle-checkbox" style="display: none;">
+            <label for="toggle-aba00bf13287d0813d38081f7ee261d3" class="collapsible-header">
+                
+                    <span class="box expand partial-box"></span>
+                    <span class="box opened partial-box"></span>
+                
+                Install NGINX Service Mesh 
+            </label>
+            
+
+<ul class="collapsible-content">
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-service-mesh/get-started/install/configuration/" style="">Configuration Options </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-service-mesh/get-started/install/install/" style="">Install with nginx-meshctl </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-service-mesh/get-started/install/install-with-helm/" style="">Install with Helm </a>
+            
+        
+    </li>
+    
+</ul>
+        
+    </li>
+    
+    <li>
+        
+            <input type="checkbox" id="toggle-d65d072a88d70fd28ec8f36342526df5" class="toggle-checkbox" style="display: none;">
+            <label for="toggle-d65d072a88d70fd28ec8f36342526df5" class="collapsible-header">
+                
+                    <span class="box expand partial-box"></span>
+                    <span class="box opened partial-box"></span>
+                
+                Upgrade NGINX Service Mesh 
+            </label>
+            
+
+<ul class="collapsible-content">
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-service-mesh/get-started/upgrade/upgrade/" style="">Upgrade with nginx-meshctl </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-service-mesh/get-started/upgrade/upgrade-with-helm/" style="">Upgrade with Helm </a>
+            
+        
+    </li>
+    
+</ul>
+        
+    </li>
+    
+    <li>
+        
+            <input type="checkbox" id="toggle-6ec43d96b6ef5498baecab381ece941c" class="toggle-checkbox" style="display: none;">
+            <label for="toggle-6ec43d96b6ef5498baecab381ece941c" class="collapsible-header">
+                
+                    <span class="box expand partial-box"></span>
+                    <span class="box opened partial-box"></span>
+                
+                Uninstall NGINX Service Mesh 
+            </label>
+            
+
+<ul class="collapsible-content">
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-service-mesh/get-started/uninstall/uninstall/" style="">Uninstall with nginx-meshctl </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-service-mesh/get-started/uninstall/uninstall-with-helm/" style="">Uninstall with Helm </a>
+            
+        
+    </li>
+    
+</ul>
+        
+    </li>
+    
+</ul>
+                
+            </li>
+        
+            <li class="parent-collapsible-content-item">
+                
+                    <input type="checkbox" id="toggle-bbb6da7727e4fb623f0175cabaeefe2d" class="toggle-checkbox" style="display: none;">
+                    <label for="toggle-bbb6da7727e4fb623f0175cabaeefe2d" class="collapsible-header">
+                        
+                            <span class="parent-box expand"></span>
+                            <span class="parent-box opened"></span>
+                        
+                        Guides 
+                    </label>
+                    
+
+<ul class="collapsible-content">
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-service-mesh/guides/inject-sidecar-proxy/" style="">Sidecar Proxy Injection </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-service-mesh/guides/monitoring-and-tracing/" style="">Monitoring and Tracing </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-service-mesh/guides/secure-traffic-mtls/" style="">Secure Mesh Traffic using mTLS </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-service-mesh/guides/prometheus-metrics/" style="">Prometheus Metrics </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-service-mesh/guides/smi-traffic-metrics/" style="">SMI Traffic Metrics </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-service-mesh/guides/smi-traffic-policies/" style="">SMI Traffic Policies </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-service-mesh/guides/private-registry/" style="">Private Registry </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                  
+                <span class="box current partial" id="current-page"></span>                 
+            
+            <a href="http://localhost:1313/nginx-service-mesh/guides/production-tuning/" style="font-weight: bold;">Production Tuning </a>
+            <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-service-mesh/guides/v1alpha1-ratelimit/" style="">v1alpha1 RateLimit Documentation </a>
+            
+        
+    </li>
+    
+</ul>
+                
+            </li>
+        
+            <li class="parent-collapsible-content-item">
+                
+                    <input type="checkbox" id="toggle-a40e89f82d592b9864b87549dd72cf74" class="toggle-checkbox" style="display: none;">
+                    <label for="toggle-a40e89f82d592b9864b87549dd72cf74" class="collapsible-header">
+                        
+                            <span class="parent-box expand"></span>
+                            <span class="parent-box opened"></span>
+                        
+                        Tutorials 
+                    </label>
+                    
+
+<ul class="collapsible-content">
+    
+    <li>
+        
+            <input type="checkbox" id="toggle-b0d171c6ef19de294cb136496519d1e3" class="toggle-checkbox" style="display: none;">
+            <label for="toggle-b0d171c6ef19de294cb136496519d1e3" class="collapsible-header">
+                
+                    <span class="box expand partial-box"></span>
+                    <span class="box opened partial-box"></span>
+                
+                NGINX Ingress Controller 
+            </label>
+            
+
+<ul class="collapsible-content">
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-service-mesh/tutorials/kic/deploy-with-kic/" style="">Deploy with NGINX Ingress Controller </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-service-mesh/tutorials/kic/egress-walkthrough/" style="">Configure a Secure Egress Route with NGINX Ingress Controller </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-service-mesh/tutorials/kic/ingress-walkthrough/" style="">Expose an Application with NGINX Ingress Controller </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-service-mesh/tutorials/kic/ingress-udp-walkthrough/" style="">Expose a UDP Application with NGINX Ingress Controller </a>
+            
+        
+    </li>
+    
+</ul>
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-service-mesh/tutorials/observability/" style="">Install NGINX Service Mesh with Basic Observability </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-service-mesh/tutorials/deploy-example-app/" style="">Deploy an Example App with NGINX Service Mesh </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-service-mesh/tutorials/trafficsplit-deployments/" style="">Deployments using Traffic Splitting </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-service-mesh/tutorials/accesscontrol-walkthrough/" style="">Services using Access Control </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-service-mesh/tutorials/ratelimit-walkthrough/" style="">Configure Rate Limiting </a>
+            
+        
+    </li>
+    
+</ul>
+                
+            </li>
+        
+            <li class="parent-collapsible-content-item">
+                
+                    <input type="checkbox" id="toggle-802e371d8a0a73b77a378a9d9a8e870b" class="toggle-checkbox" style="display: none;">
+                    <label for="toggle-802e371d8a0a73b77a378a9d9a8e870b" class="collapsible-header">
+                        
+                            <span class="parent-box expand"></span>
+                            <span class="parent-box opened"></span>
+                        
+                        Reference 
+                    </label>
+                    
+
+<ul class="collapsible-content">
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-service-mesh/reference/permissions/" style="">NGINX Service Mesh Permissions </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-service-mesh/reference/api-usage/" style="">NGINX Service Mesh API </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-service-mesh/reference/nginx-meshctl/" style="">CLI Reference </a>
+            
+        
+    </li>
+    
+</ul>
+                
+            </li>
+        
+            <li class="parent-collapsible-content-item">
+                
+                    <input type="checkbox" id="toggle-e6039fce1c694f861615e8c943cda621" class="toggle-checkbox" style="display: none;">
+                    <label for="toggle-e6039fce1c694f861615e8c943cda621" class="collapsible-header">
+                        
+                            <span class="parent-box expand"></span>
+                            <span class="parent-box opened"></span>
+                        
+                        Support 
+                    </label>
+                    
+
+<ul class="collapsible-content">
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-service-mesh/support/contact-support/" style="">Where to Go for Support </a>
+            
+        
+    </li>
+    
+</ul>
+                
+            </li>
+        
+            <li class="parent-collapsible-content-item">
+                
+                    <input type="checkbox" id="toggle-19d2271b8bef4f1a5be0b066d0de7e2f" class="toggle-checkbox" style="display: none;">
+                    <label for="toggle-19d2271b8bef4f1a5be0b066d0de7e2f" class="collapsible-header">
+                        
+                            <span class="parent-box expand"></span>
+                            <span class="parent-box opened"></span>
+                        
+                        Releases 
+                    </label>
+                    
+
+<ul class="collapsible-content">
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-service-mesh/releases/release-notes-2.0.0/" style="">Release Notes 2.0.0 </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-service-mesh/releases/release-notes-1.7.0/" style="">Release Notes 1.7.0 </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-service-mesh/releases/release-notes-1.6.0/" style="">Release Notes 1.6.0 </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-service-mesh/releases/release-notes-1.5.0/" style="">Release Notes 1.5.0 </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-service-mesh/releases/release-notes-1.4.1/" style="">Release Notes 1.4.1 </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-service-mesh/releases/release-notes-1.4.0/" style="">Release Notes 1.4.0 </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-service-mesh/releases/release-notes-1.3.1/" style="">Release Notes 1.3.1 </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-service-mesh/releases/release-notes-1.3.0/" style="">Release Notes 1.3.0 </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-service-mesh/releases/release-notes-1.2.1/" style="">Release Notes 1.2.1 </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-service-mesh/releases/release-notes-1.2.0/" style="">Release Notes 1.2.0 </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-service-mesh/releases/release-notes-1.1.0/" style="">Release Notes 1.1.0 </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-service-mesh/releases/release-notes-1.0.1/" style="">Release Notes 1.0.1 </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-service-mesh/releases/release-notes-1.0.0/" style="">Release Notes 1.0.0 </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-service-mesh/releases/release-notes-0.9.1/" style="">Release Notes 0.9.1 </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-service-mesh/releases/release-notes-0.9.0/" style="">Release Notes 0.9.0 </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-service-mesh/releases/release-notes-0.8.0/" style="">Release Notes 0.8.0 </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-service-mesh/releases/release-notes-0.7.0/" style="">Release Notes 0.7.0 </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-service-mesh/releases/release-notes-0.6.0/" style="">Release Notes 0.6.0 </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-service-mesh/releases/release-notes-0.5.0/" style="">Release Notes 0.5.0 </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-service-mesh/releases/oss-dependencies/" style="">Open Source Licenses Addendum </a>
+            
+        
+    </li>
+    
+</ul>
+                
+            </li>
+        
+        </ul>
+    </div>
+</div>
+      </nav>
+    </div>
+
+    <section class="content-layout">
+      <div data-cms-edit="content" class="text-content">
+        <section class="breadcrumb-layout" data-mf="true" style="display: none;">
+          
+            
+            <nav aria-label="breadcrumb" class="breadcrumb navbar">
+    <div class="nav flex-md-row">
+        <ol class="breadcrumb">
+            
+            
+            
+            
+                
+            
+            
+                
+            
+            
+                
+            
+            
+                
+            
+            
+            
+                <li><a href="/">Home</a><i class="fas fa-chevron-right"></i></li>
+                
+            
+                <li><a href="/nginx-service-mesh/">F5 NGINX Service Mesh</a><i class="fas fa-chevron-right"></i></li>
+                
+            
+                <li><a href="/nginx-service-mesh/guides/">Guides</a><i class="fas fa-chevron-right"></i></li>
+                
+            
+                Production Tuning
+        </ol>
+    </div>
+</nav>
+  
+            
+          
+        </section>
+        <h1>Production Tuning</h1>
+        <h4 
+id="overview">Overview  <a class="headerlink float-right" href="#overview" title="Overview"><i class="fas fa-link fa-xs"></i></a>
+</h4><p>While F5 NGINX Service Mesh provides a number of capabilities for finely controlling and authorizing traffic, it is up to the user to configure these options to best suit the needs of their application. This document will go over the various deployment options and tools compatible with NGINX Service Mesh that you can use to secure and orchestrate traffic throughout your application. For the best production experience possible, consider the options below.</p>
+<h4 
+id="mtls-strict">mTLS Strict  <a class="headerlink float-right" href="#mtls-strict" title="mTLS Strict"><i class="fas fa-link fa-xs"></i></a>
+</h4><p>By default, NGINX Service Mesh ships with mTLS <code>permissive</code> mode. Because of the security implications of allowing plaintext, unauthenticated traffic to and from your application, we strongly recommend switching to mTLS <code>strict</code> mode. This will ensure that all traffic stays within the confines of the mesh. For more information on this setting, see the <a href="http://localhost:1313/nginx-service-mesh/guides/secure-traffic-mtls/#overview">Secure Mesh Traffic using mTLS</a> guide.</p>
+<p>You can also secure ingress traffic to your cluster using the NGINX Plus Ingress Controller for Kubernetes. View our tutorial to <a href="http://localhost:1313/nginx-service-mesh/tutorials/kic/deploy-with-kic/">Deploy with NGINX Plus Ingress Controller</a> to secure traffic at the ingress point of your cluster. If you&rsquo;d like to support non-meshed services, see our <a href="http://localhost:1313/nginx-service-mesh/tutorials/kic/egress-walkthrough/">Configure a Secure Egress Route with NGINX Plus Ingress Controller</a> tutorial for sending traffic to non-meshed or external services. Note that we do not secure traffic past the egress point, so when routing traffic to an external service, you will be required to secure that traffic yourself.</p>
+<h4 
+id="access-control">Access Control  <a class="headerlink float-right" href="#access-control" title="Access Control"><i class="fas fa-link fa-xs"></i></a>
+</h4><p>Alongside the authentication piece provided by mTLS sits authorization. NGINX Service Mesh uses access control policies from the SMI Spec to support authorization. Together, mTLS and Access Control provide a holistic approach to application security. We highly recommend that you deploy the mesh using <code>--access-control-mode=deny</code> to automatically deny all incoming connections and enact a zero trust network from which to build upon. Then, piece by piece, explicitly allow connections solely from clients that you expect to be making requests to your destinations. For more information on how you can properly set up access control for your application, see the <a href="http://localhost:1313/nginx-service-mesh/guides/smi-traffic-policies/#access-control">Access Control</a> section of our Traffic Policies guide.</p>
+<h4 
+id="spire-settings">SPIRE Settings  <a class="headerlink float-right" href="#spire-settings" title="SPIRE Settings"><i class="fas fa-link fa-xs"></i></a>
+</h4><p>NGINX Service Mesh uses SPIRE as the backbone for mTLS. It is responsible for minting certificates used in the mTLS handshake between application pods, as well as specifying the certificate authority used in the mesh webhooks and Traffic Metrics extension api-server. SPIRE ships with a variety of defaults which make development and testing easy, but they should be evaluated when considering production.</p>
+<h5 
+id="using-an-upstream-authority">Using an Upstream Authority  <a class="headerlink float-right" href="#using-an-upstream-authority" title="Using an Upstream Authority"><i class="fas fa-link fa-xs"></i></a>
+</h5><p>If left unspecified, NGINX Service Mesh will generate a self signed root certificate with which to sign certificates. While this works for testing and development, it is recommended that you use a proper public key infrastructure (PKI). See <a href="http://localhost:1313/nginx-service-mesh/guides/secure-traffic-mtls/#deploy-using-an-upstream-root-ca">Deploy Using an Upstream Root CA</a> for more information on the options available to you for deploying using your own PKI. It is recommended that you specify an intermediate certificate to NGINX Service Mesh rather than a root certificate to ensure that, even if the intermediate gets compromised, the entirety of your PKI remains secure and intact.</p>
+<h5 
+id="in-memory-spire-key-manager">In-memory SPIRE key manager  <a class="headerlink float-right" href="#in-memory-spire-key-manager" title="In-memory SPIRE key manager"><i class="fas fa-link fa-xs"></i></a>
+</h5><p>The <code>memory</code> key manager plugin should be used when deploying NGINX Service Mesh in a production environment. By using the <code>memory</code> key manager plugin, SPIRE signing keys are kept in memory - less vulnerable to the prying eyes of bad actors should they gain access to the SPIRE server. For more information on the various key managers that NGINX Service Mesh provides, as well as the differences between the two, see the <a href="http://localhost:1313/nginx-service-mesh/guides/secure-traffic-mtls/#choose-a-spire-key-manager-plugin">SPIRE Key Manager Plugin</a> section of our mTLS guide.</p>
+<p>We <strong>highly</strong> recommend pairing the <code>memory</code> key manager plugin with an upstream authority. Without one, if the SPIRE server fails, agents must be restarted manually and all workloads must receive newly signed certificates. This can have a significant impact on the cluster&rsquo;s resources.</p>
+<h5 
+id="persistent-storage">Persistent Storage  <a class="headerlink float-right" href="#persistent-storage" title="Persistent Storage"><i class="fas fa-link fa-xs"></i></a>
+</h5><p>Persistent storage allows for optimized handling of Spire server restarts in case of a failure as data such as registration entities and selectors do not need to be rebuilt. This saves on resource utilization and removes traffic disruptions for workloads. For most environments, we deploy persistent storage by default and recommend using it. See our <a href="http://localhost:1313/nginx-service-mesh/get-started/platform-setup/persistent-storage/">Persistent Storage</a> setup page for more information on configuring persistent storage in your environment.</p>
+<h5 
+id="certificate-ttl">Certificate TTL  <a class="headerlink float-right" href="#certificate-ttl" title="Certificate TTL"><i class="fas fa-link fa-xs"></i></a>
+</h5><p>It is important to specify a relatively low TTL to minimize damage should a certificate be compromised. For this reason, we recommend that you keep the default mTLS TTL values provided by NGINX Service Mesh.</p>
+<h4 
+id="traffic-policies">Traffic Policies  <a class="headerlink float-right" href="#traffic-policies" title="Traffic Policies"><i class="fas fa-link fa-xs"></i></a>
+</h4><p>While not purely necessary for production scenarios, NGINX Service Mesh provides rate limiting and circuit breaking utilities for better stability during times of peak traffic, as well as a better customer experience in the event of service failure.</p>
+<h5 
+id="rate-limit">Rate Limit  <a class="headerlink float-right" href="#rate-limit" title="Rate Limit"><i class="fas fa-link fa-xs"></i></a>
+</h5><p>Using the rate limiting SMI extension, you are able to place a limit on the number of requests allowed for a particular service. In your preliminary testing, you may have gotten an idea of the upper threshold of requests your service is able to handle. Short of setting up autoscaling for your services, which can add cost and complexity to your system, you can simply add a rate limiting policy which will deny traffic as soon as it hits a specified threshold. This can be useful for services which have high resource requirements, or are running on relatively lightweight equipment. A rate limit, set up properly, can be the difference between intermittent error codes and complete loss of function which, in extreme circumstances, can lead to cascading failures across your application. See our <a href="http://localhost:1313/nginx-service-mesh/guides/smi-traffic-policies/#rate-limiting">Rate Limiting</a> section of the Traffic Policies guide for information on setting up a rate limit.</p>
+<h5 
+id="circuit-breaker">Circuit Breaker  <a class="headerlink float-right" href="#circuit-breaker" title="Circuit Breaker"><i class="fas fa-link fa-xs"></i></a>
+</h5><p>If the upper limit of the backend service is unknown, or you want an added layer of security for your services, you can specify a circuit breaker. When the level of errors begin to hint at a failure in the backend service itself, a circuit breaker can trip and allow that service to recover. Paired with a fallback service, your users can experience near zero downtime. For more information on setting up a circuit breaker, see our <a href="http://localhost:1313/nginx-service-mesh/guides/smi-traffic-policies/#circuit-breaking">Circuit Breaker</a> section of the Traffic Policies guide.</p>
+
+        
+        
+
+        <hr>
+  
+        
+        <div class="last-modified">
+          
+<div>
+    <a href="https://github.com/nginx/documentation//tree/main/content/mesh/guides/production-tuning.md" class="" target="_blank" rel="noopener"><i class="fa-solid fa-file-lines fa-fw"></i> View source</a>
+  </div>
+  <div>
+    <a href="https://github.com/nginx/documentation//edit/main/content/mesh/guides/production-tuning.md" class="" target="_blank" rel="noopener"><i class="fa-solid fa-pen-to-square fa-fw"></i> Edit this page</a>
+  </div>
+  <div>
+    <a href="https://github.com/nginx/documentation//issues/new?title=Production%20Tuning&amp;template=2-bug_report.md" class="" target="_blank" rel="noopener"><i class="fa-solid fa-list-check fa-fw"></i> Create a new issue</a>
+  </div>
+
+
+
+        </div>
+        
+
+        
+         
+<script type='text/javascript'> 
+    (function(){var g=function(e,h,f,g){ 
+        this.get=function(a){
+            for(var a=a+"=",c=document.cookie.split(";"),b=0,e=c.length;b<e;b++){
+                for(var d=c[b];" "==d.charAt(0);)
+                    d=d.substring(1,d.length);
+                    if(0==d.indexOf(a))
+                        return d.substring(a.length,d.length)
+            }
+            return null
+        }; 
+        
+        this.set=function(a,c){
+            var b="",b=new Date;
+            b.setTime(b.getTime()+6048E5);
+            b="; expires="+b.toGMTString();
+            document.cookie=a+"="+c+b+"; path=/; "
+        }; 
+        
+        this.check=function(){
+            var a=this.get(f);
+            if(a)
+                a=a.split(":");
+            else if(100!=e)
+                "v"==h&&(e=Math.random()>=e/100?0:100),
+                a=[h,e,0],
+                this.set(f,a.join(":"));
+            else 
+                return!0;
+            var c=a[1];
+            if(100==c)
+                return!0;
+            switch(a[0]){
+                case "v":
+                    return!1;
+                case "r":
+                    return c=a[2]%Math.floor(100/c),a[2]++,this.set(f,a.join(":")),!c
+            }
+            return!0
+        }; 
+
+        this.go=function(){
+            if(this.check()){
+                var a=document.createElement("script");
+                a.type="text/javascript";
+                a.src=g;
+                document.body&&document.body.appendChild(a)
+            }
+        };
+
+        this.start=function(){
+            var t=this;
+            "complete"!==document.readyState?window.addEventListener ?
+                window.addEventListener("load",function(){t.go()},!1) : 
+                window.attachEvent&&window.attachEvent("onload",function(){t.go()}):t.go()};
+    }; 
+
+    try{
+        const project_id = window.location.hostname.includes("staging") ? "QSI_S_ZN_2YG73ads2zp5bN0" : "QSI_S_ZN_2QSTn2r41YlXrYk";
+        const endpoint = window.location.hostname.includes("staging") ? "https://zn2yg73ads2zp5bn0-f5.siteintercept.qualtrics.com/SIE/?Q_ZID=ZN_2YG73ads2zp5bN0" : "https://zn2qstn2r41ylxryk-f5.siteintercept.qualtrics.com/SIE/?Q_ZID=ZN_2QSTn2r41YlXrYk";
+        (new g(100,"r", project_id, endpoint)).start()
+    }
+    catch(i){}})();
+
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelector(".qualtrics-feedback").id = window.location.hostname.includes("staging") ? "ZN_2YG73ads2zp5bN0" : "ZN_2QSTn2r41YlXrYk"
+    });
+</script>
+<hr>
+<div style="height: 60px;"></div>
+<div class="qualtrics-feedback" id='ZN_2QSTn2r41YlXrYk'></div>
+
+
+        
+
+	
+<div class="container flex">
+	<ul class="next-prev-icon">
+
+		
+		
+		<li style="flex:1; text-align: left; white-space: nowrap;"><a href="http://localhost:1313/nginx-service-mesh/guides/private-registry/" class="" title="Previous -- Private Registry "><svg width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M23.378 46.5L1.94 25.06C1.80067 24.9209 1.69014 24.7556 1.61472 24.5738C1.53931 24.3919 1.50049 24.1969 1.50049 24C1.50049 23.8031 1.53931 23.6081 1.61472 23.4262C1.69014 23.2444 1.80067 23.0791 1.94 22.94L23.378 1.5" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M45.878 46.5L24.44 25.06C24.3007 24.9209 24.1901 24.7556 24.1147 24.5738C24.0393 24.3919 24.0005 24.1969 24.0005 24C24.0005 23.8031 24.0393 23.6081 24.1147 23.4262C24.1901 23.2444 24.3007 23.0791 24.44 22.94L45.878 1.5" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+</a></li>
+		
+
+		
+			<li style="flex:1; text-align: right; white-space: nowrap;"><a href="http://localhost:1313/nginx-service-mesh/guides/v1alpha1-ratelimit/" class="" title="Next -- v1alpha1 RateLimit Documentation"><svg width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M24.622 1.5L46.06 22.94C46.1993 23.0791 46.3099 23.2444 46.3853 23.4262C46.4607 23.6081 46.4995 23.8031 46.4995 24C46.4995 24.1969 46.4607 24.3919 46.3853 24.5738C46.3099 24.7556 46.1993 24.9209 46.06 25.06L24.622 46.5" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M2.122 1.5L23.56 22.94C23.6993 23.0791 23.8099 23.2444 23.8853 23.4262C23.9607 23.6081 23.9995 23.8031 23.9995 24C23.9995 24.1969 23.9607 24.3919 23.8853 24.5738C23.8099 24.7556 23.6993 24.9209 23.56 25.06L2.122 46.5" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+</a></li>
+		
+		</ul>
+	</div>
+
+        </main>
+        
+          
+        
+        
+      </div>
+    </section>
+  </section>
+</div>
+
+
+
+
+      </div>
+  </section>
+
+    <footer id="footer">
+      
+      <footer id="footer">
+  <div class="container-fluid">
+    <div class="row align-items-center">
+      <div class="col-md-6 d-md-flex">
+        <img class="nginx-logo-footer" src="http://localhost:1313/images/icons/NGINX-Part-of-F5-horiz-all-white-525x208@2x.png"/>
+      </div>
+    </div>
+
+    
+    <div class="row d-print-none d-none d-md-flex">
+      <div class="col-md-3 d-none d-md-block">
+        <span class="footer-head">Company</span>
+        <ul class="footer-text">
+          <li>
+            <a
+              href="https://www.f5.com/go/product/welcome-to-nginx"
+              target="_blank"
+              alt="Select to learn about F5 NGINX"
+              >About F5 NGINX</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://www.f5.com/company/events"
+              target="_blank"
+              alt="Select to learn about F5 events"
+              >Events</a
+            >
+          </li>
+        </ul>
+        <br />
+        <span class="footer-head">Resources</span>
+        <ul class="footer-text">
+          <li>
+            <a
+              href="https://www.f5.com/company/blog/nginx"
+              target="_blank"
+              alt="Select to visit the F5 NGINX blog"
+              >Blog</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://www.f5.com/go/faq/nginx-faq"
+              target="_blank"
+              alt="Select to visit the F5 NGINX frequently asked questions page"
+              >FAQ</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://www.f5.com/services"
+              target="_blank"
+              alt="Select to learn about F5 NGINX Support"
+              >Professional Services</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://www.f5.com/learn/training"
+              target="_blank"
+              alt="Select to learn about F5 training offerings"
+              >Training</a
+            >
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-md-3 d-none d-md-block">
+        <span class="footer-head">Products</span>
+        <ul class="footer-text">
+          <li>
+            <a
+              title="F5 NGINX One"
+              aria-label="F5 NGINX One"
+              href="https://www.f5.com/products/nginx/one"
+              >F5 NGINX One</a
+            >
+          </li>
+          <li>
+            <a
+              title="F5 NGINX Plus"
+              aria-label="F5 NGINX Plus"
+              href="https://www.f5.com/products/nginx/nginx-plus"
+              >F5 NGINX Plus</a
+            >
+          </li>
+          <li>
+            <a
+              title="F5 NGINX App Protect"
+              aria-label="F5 NGINX App Protect"
+              href="https://www.f5.com/products/nginx/nginx-app-protect"
+              >F5 NGINX App Protect</a
+            >
+          </li>
+          <li>
+            <a
+              title="F5 NGINX Instance Manager"
+              aria-label="F5 NGINX Instance Manager"
+              href="https://www.f5.com/products/nginx/instance-manager"
+              >F5 NGINX Instance Manager</a
+            >
+          </li>
+          <li>
+            <a
+              title="F5 NGINX Ingress Controller"
+              aria-label="F5 NGINX Ingress Controller"
+              href="https://www.f5.com/products/nginx/nginx-ingress-controller"
+              >F5 NGINX Ingress Controller</a
+            >
+          </li>
+          <li>
+            <a
+              title="F5 NGINX Gateway Fabric"
+              aria-label="F5 NGINX Gateway Fabric"
+              href="https://www.f5.com/products/nginx/nginx-gateway-fabric"
+              >F5 NGINX Gateway Fabric</a
+            >
+          </li>
+          <li>
+            <a
+              title="F5 NGINXaaS for Azure"
+              aria-label="F5 NGINXaaS for Azure"
+              href="https://www.f5.com/products/nginx/f5-nginxaas-for-azure"
+              >F5 NGINXaaS for Azure</a
+            >
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-md-3 d-none d-md-block">
+        <span class="footer-head">NGINX on GitHub</span>
+        <ul class="footer-text">
+          <li>
+            <a
+              title="NGINX Open Source"
+              aria-label="NGINX Open Source"
+              href="https://github.com/nginx/nginx"
+              ><span class="inner">NGINX Open Source</span></a
+            >
+          </li>
+          <li>
+            <a
+              title="NGINX Unit"
+              aria-label="NGINX Unit"
+              href="https://github.com/nginx/unit"
+              ><span class="inner">NGINX Unit</span></a
+            >
+          </li>
+          <li>
+            <a
+              title="NGINX Amplify"
+              aria-label="NGINX Amplify"
+              href="https://github.com/nginxinc/nginx-amplify-agent"
+              ><span class="inner">NGINX Amplify</span></a
+            >
+          </li>
+          <li>
+            <a
+              title="NGINX Agent"
+              aria-label="NGINX Agent"
+              href="https://github.com/nginx/Agent"
+              ><span class="inner">NGINX Agent</span></a
+            >
+          </li>
+          <li>
+            <a
+              title="NGINX Kubernetes Ingress Controller"
+              aria-label="NGINX Kubernetes Ingress Controller"
+              href="https://github.com/nginxinc/kubernetes-ingress"
+              ><span class="inner">NGINX Kubernetes Ingress Controller</span></a
+            >
+          </li>
+          <li>
+            <a
+              title="NGINX Gateway Fabric"
+              aria-label="NGINX Gateway Fabric"
+              href="https://github.com/nginxinc/nginx-gateway-fabric"
+              ><span class="inner">NGINX Gateway Fabric</span></a
+            >
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-md-2 d-none d-md-block">
+        <span class="footer-head">Social</span>
+        <ul class="footer-social">
+          <li>
+            <a
+              href="https://www.facebook.com/nginxinc"
+              title="facebook"
+              aria-label="facebook"
+              target="_blank"
+              rel="noreferrer"
+              ><i class="fa-brands fa-facebook" aria-hidden="true"></i>
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://twitter.com/nginx"
+              title="X"
+              aria-label="x"
+              target="_blank"
+              rel="noreferrer"
+              ><i class="fa-brands fa-x-twitter" aria-hidden="true"></i
+            ></a>
+          </li>
+          <li>
+            <a
+              href="https://www.linkedin.com/company/nginx"
+              title="linkedin"
+              aria-label="linkedin"
+              target="_blank"
+              rel="noreferrer"
+              ><i class="fa-brands fa-linkedin" aria-hidden="true"></i>
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://www.youtube.com/user/NginxInc"
+              title="youtube"
+              aria-label="youtube"
+              target="_blank"
+              rel="noreferrer"
+              alt="NGINX Youtube Channel"
+              ><i class="fa-brands fa-square-youtube" aria-hidden="true"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="site-info footer-text">
+      <div class="text-center">
+        <p>
+          <a href="https://www.f5.com/"
+            ><img class="f5-logo-footer" src="http://localhost:1313/images/icons/Logo_F5.svg" alt="F5 logo"></a
+          >
+          ©2025 F5, Inc. All rights reserved.
+        </p>
+        <p>
+          <a
+            href="https://www.f5.com/company/policies/trademarks"
+            rel="noopener"
+            target="_blank"
+            >Trademarks</a
+          >
+          <a
+            href="https://www.f5.com/company/policies"
+            rel="noopener"
+            target="_blank"
+            >Policies</a
+          >
+          <a href="https://docs.nginx.com/ossc">Open Source Components</a>
+          <a
+            href="https://www.f5.com/company/policies/privacy-notice"
+            rel="noopener"
+            target="_blank"
+            >Privacy</a
+          >
+          <a
+            href="https://www.f5.com/company/policies/F5-California-privacy-summary"
+            rel="noopener"
+            target="_blank"
+            >California Privacy</a
+          >
+          <a
+            href="https://www.f5.com/company/policies/privacy-notice#no-sell"
+            rel="noopener"
+            target="_blank"
+            >Do Not Sell My Personal Information</a
+          >
+          <span id="teconsent-v1"></span>
+        </p>
+      </div>
+    </div>
+    
+  </div>
+  
+</footer>
+
+      
+    </footer>
+
+    <footer data-mf="true" id="footer-v2" style="display:none;">
+      
+      <div class="footer-layout">
+    <div class="footer-f5-trademark">
+        <img class="f5-logo-footer" src="http://localhost:1313/images/icons/Logo_F5.svg" alt="F5 logo">
+        <p>©2025 F5, Inc. All rights reserved. NGINX is a registered trademark of F5, Inc.</p>
+    </div>
+    <div class="footer-useful-links">
+        <a
+            href="https://www.f5.com/company/policies/trademarks"
+            rel="noopener"
+            target="_blank"
+            >Trademarks
+        </a>
+        <a
+            href="https://www.f5.com/company/policies"
+            rel="noopener"
+            target="_blank"
+            >Policies
+        </a>
+        <a
+            href="https://www.f5.com/company/policies/privacy-notice"
+            rel="noopener"
+            target="_blank"
+            >Privacy
+        </a>
+        <a
+            href="https://www.f5.com/company/policies/F5-California-privacy-summary"
+            rel="noopener"
+            target="_blank"
+            >California Privacy
+        </a>
+        <a
+            href="https://www.f5.com/company/policies/privacy-notice#no-sell"
+            rel="noopener"
+            target="_blank"
+            >Do Not Sell My Personal Information
+        </a>
+        <span id="teconsent-v2"></span>
+    </div>
+</div>
+
+      
+    </footer>
+  
+<script src="/js/jquery-3-6-4.min.js" type="text/javascript" integrity=""></script>
+
+
+<script src="/js/kube.min.a3a07cceb64989e2f0bf41653ab4d8346ba4312270eb5cc80d6afad3bf30a0ca9768aaa2559cb582e663332c541edab6a4068ef2e88b739fa425e2e870eb0aff.js" type="text/javascript" integrity="sha512-o6B8zrZJieLwv0FlOrTYNGukMSJw61zIDWr6078woMqXaKqiVZy1guZjMyxUHtq2pAaO8uiLc5&#43;kJeLocOsK/w=="></script>
+
+
+
+<script src="/js/bootstrap.bundle.min.c15ed88f56a52190ea645094409cbce5537eaaf108972f777c840037b8aa0c508f12e70b09e345cf8af7e450a8f6ce96ae974340f8bcd316e58d707c063b6f72.js" type="text/javascript"
+  integrity="sha512-wV7Yj1alIZDqZFCUQJy85VN&#43;qvEIly93fIQAN7iqDFCPEucLCeNFz4r35FCo9s6WrpdDQPi80xbljXB8Bjtvcg=="></script>
+
+
+
+<script src="/js/code-copy.bb21b72280613039f1fabb11acc6a901c07caaee454933031066fbda6b5406fd31077a80ec913ba32261224d138bcbb4a34d27c51efae571c68d59282943b9a4.js" type="text/javascript"></script>
+
+
+
+<script src="/js/code-copy-v2.71bcaee23ab00cb45dc944f321264e21d25bc1ec1ae76f9596286cb408ea5654b4ee016e7914cc2554b237114eeb467d39df18735311f2d28480b3ccd2feb4ad.js" type="text/javascript"></script>
+
+
+
+
+
+<script
+  type="module"
+  src="https://static.cloud.coveo.com/atomic/v3.19.0/atomic.esm.js"
+  integrity="sha512-VA9k6iDWhwxl8bwKUYPD63l93lGX7daV60k3yFxEt9EuEq4iWvsu5COq1mZ8OXKl0KCOFlUSDXS32Cy+YwbufQ=="
+  crossorigin="anonymous">
+</script>
+
+
+<script class="coveo-script" src="https://static.cloud.coveo.com/searchui/v2.10104/0/js/CoveoJsSearch.Lazy.min.js"
+  integrity="sha512-HxdDBIp5snbqtu1TPkBnXLKEvN9IPz3PeZW8zT9KfsflV9Ck822XDroDlpVbfCfXeiu8C0RDVn0fdu7aGy/H1g=="
+  crossorigin="anonymous"></script>
+
+<script src="https://static.cloud.coveo.com/searchui/v2.10104/0/js/templates/templates.js"
+  integrity="sha512-CR0Yk/LIwgh1MsKqjecDp/r6F9ipKc6gA+4+E1pplT3N3r1pk+la/HaqyDiKtjOFwrwIIbIYBFrUJgPql93QHw=="
+  crossorigin="anonymous"></script>
+
+
+
+
+
+
+<script src="/js/coveo.min.4acfd205930e2d31230100f345e0463332eb3e3af1b4aa9a6e3131b0b2bac53566ae4d18b390066fce94c0c75d39b5e121d1291f81e5accc1a82d93da9f11b7f.js" integrity="sha512-Ss/SBZMOLTEjAQDzReBGMzLrPjrxtKqabjExsLK6xTVmrk0Ys5AGb86UwMddObXhIdEpH4HlrMwagtk9qfEbfw=="
+  type="text/javascript"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="/js/sidebar.min.6fed0180a23d01103c68ffb054a183fba5e7ba673de8c56d85857af964dcc0c11623ee09f6185207a373127cb2547ff9247ae3516ed47c67e1b58dbe71e9d576.js" type="text/javascript" integrity="sha512-b&#43;0BgKI9ARA8aP&#43;wVKGD&#43;6Xnumc96MVthYV6&#43;WTcwMEWI&#43;4J9hhSB6NzEnyyVH/5JHrjUW7UfGfhtY2&#43;cenVdg=="></script>
+  
+
+
+<script src="/js/site-dropdown.min.3bb49b6f7d25bcd4a2b008525bb8538d84237348bf618b40970ff6eca87119d68c326ca7ba04854ad102be36495fe1d70f1cb239916555b67dd17683dc283333.js" type="text/javascript" integrity="sha512-O7Sbb30lvNSisAhSW7hTjYQjc0i/YYtAlw/27KhxGdaMMmynugSFStECvjZJX&#43;HXDxyyOZFlVbZ90XaD3CgzMw=="></script>
+
+
+
+<script src="/js/product-selector.min.b588249327fb12c7602fa08eb618560171f54e7348d6c1bacfdbf541f5e13023493f64f78fb6d4b9014892e5e4f0aaaee95b859bb37aa53bbe8c0e27e65167d1.js" type="text/javascript" integrity="sha512-tYgkkyf7EsdgL6COthhWAXH1TnNI1sG6z9v1QfXhMCNJP2T3j7bUuQFIkuXk8Kqu6VuFm7N6pTu&#43;jA4n5lFn0Q=="></script>
+
+
+
+<script src="/js/sidebar-v2.min.3f906631e696b2c88883bfcfc62371165359130cfd118ceb49893ae0d8760dc38177ee3bb94a61dee45023115de8445f0b9fe48f933618ef7ba7b3180a05adbd.js" type="text/javascript" integrity="sha512-P5BmMeaWssiIg7/PxiNxFlNZEwz9EYzrSYk64Nh2DcOBd&#43;47uUph3uRQIxFd6ERfC5/kj5M2GO97p7MYCgWtvQ=="></script> 
+  <div id="consent_blackbar"></div>
+</body>
+</html>
+
+

@@ -1,0 +1,143 @@
+name: nim
+secrets:
+  nim_admin_password:
+    file: admin_password.txt
+  # Optional - set admin and user credential from .htpasswd file
+  #nim_credential_file:
+  #  file: nim_creds.txt
+  # Optional - set the external SSL cert, key and ca in PEM format for the nim ingress proxy
+  #nim_proxy_cert_file:
+  #  file: ./certs/nim_cert.pem
+  #nim_proxy_cert_key:
+  #  file: ./certs/nim_key.pem
+  #nim_proxy_ca_cert:
+  #  file: ./certs/nim_ca.pem
+services:
+  nim:
+    image: private-registry.nginx.com/nms/nim-standalone-compose:2.19.0
+    depends_on:
+      clickhouse:
+        condition: service_healthy
+    hostname: nim
+    ports:
+      - 443:443
+    networks:
+      - external_network
+      - clickhouse
+    volumes:
+      - nim-data:/data
+      - proxy-certs:/usr/local/share/ca-certificates
+    # Uncomment to set custom service limits
+    #deploy:
+    #  resources:
+    #    limits:
+    #      cpus: '0.5'
+    #      memory: '512M'
+    restart: no
+    healthcheck:
+      test: ["CMD", "sh", "/etc/nms/scripts/health.sh"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    stop_grace_period: 30s
+    secrets:
+      - nim_admin_password
+      # Uncomment the line below if using a .htpasswd credential file. The credential file takes priority over the nim_admin_password file
+      #- nim_credential_file
+      # Uncomment the lines below if using user provided cert, key and CA for the nim ingress proxy
+      #- nim_proxy_cert_file
+      #- nim_proxy_cert_key
+      #- nim_proxy_ca_cert
+    environment:
+      # set the NIM logging level
+      NIM_LOG_LEVEL: "INFO"
+      # set a custom time-to-live in days value for metrics retention
+      NIM_METRICS_TTL: "1"
+      # set a custom time-to-live in days value for events retention
+      NIM_EVENTS_TTL: "1"
+      # set a custom time-to-live in days value for security violation retention
+      NIM_SECURITY_TTL: "1"
+      # enable maintenance mode to preform backup,restore and troubleshooting
+      #NIM_MAINTENANCE: "true"
+      # set a custom watchdog timeout in seconds.
+      NIM_WATCHDOG_TIMEOUT: "60"
+      # set the NIM license mode of operation to either connected or disconnected. Default is connected.
+      NIM_LICENSE_MODE_OF_OPERATION: "connected"
+      # Enable this setting to use proxy
+      PROXY_ENABLE: false
+      # Configure this setting to set the host of the proxy server to be used
+      PROXY_HOST: ""
+      # Configure this setting to set the protocol of the proxy server to be used - http/https (default - http)
+      PROXY_PROTOCOL: "http"
+      # Configure this setting to set the port of the proxy server to be used
+      PROXY_PORT: 3128
+      # Enable this setting to use basic auth for proxy
+      PROXY_AUTH_REQUIRED: false
+      # Configure this setting to set the user name in basic auth (proxy_auth_required: true)
+      PROXY_AUTH_USERNAME: ""
+      # Configure this setting to set the password in basic auth (proxy_auth_required: true)
+      # Recommended to use .env file for the password
+      # PROXY_PASSWORD: ""
+      # Configure this setting to set the proxy connection verification (is the proxy trusted by the host)
+      PROXY_SSL_VERIFY: true
+  clickhouse:
+    image: clickhouse/clickhouse-server:23-alpine
+    hostname: clickhouse
+    depends_on:
+      - precheck
+    ports:
+      - "8123:8123"
+      - "9000:9000"
+    networks:
+      - clickhouse
+    volumes:
+      - clickhouse-data:/var/lib/clickhouse
+      # add a custom clickhouse logging config file to redirect logs to the console
+      - ./clickhouse.xml:/etc/clickhouse-server/config.d/custom-logging.xml
+    environment:
+      - CLICKHOUSE_DB_PATH=/var/lib/clickhouse
+    # Uncomment to set custom service limits
+    deploy:
+    #  resources:
+    #    limits:
+    #      cpus: '0.5'
+    #      memory: '512M'
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "clickhouse-client --query 'SELECT 1'"]
+      interval: 10s
+      timeout: 10s
+      retries: 3
+      start_period: 5s
+    stop_grace_period: 60s
+    cap_add:
+      # SYS_NICE is Required for running clickhouse in a container on some NUMA supported OSs
+      - SYS_NICE
+  precheck:
+    image: alpine
+    entrypoint: /bin/sh -c 'if [ -f "/var/lib/clickhouse/status" ]; then echo "Removing clickhouse status file..."; rm -f "/var/lib/clickhouse/status"; fi'
+    volumes:
+      - clickhouse-data:/var/lib/clickhouse
+networks:
+  external_network:
+    driver: bridge
+  clickhouse:
+    driver: bridge
+    internal: true
+volumes:
+  # By default docker compose will create a named volume
+  # Refer to https://docs.docker.com/reference/compose-file/volumes/ for additional storage options such as nfs
+  proxy-certs:
+    driver: local
+  nim-data:
+    driver: local
+    #driver_opts:
+    #  type: "nfs"
+    #  o: "addr=172.16.0.92,rw"
+    #  device: ":/mnt/nfs_share/data"
+  clickhouse-data:
+    driver: local
+    #driver_opts:
+    #  type: "nfs"
+    #  o: "addr=172.16.0.92,rw"
+    #  device: ":/mnt/nfs_share/clickhouse"

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Configure NGINX Controller Agent on DEV -- docs-nginx-com</title>
+    <link>http://localhost:1313/nginx-controller/admin-guides/config-agent/</link>
+    <description>Recent content in Configure NGINX Controller Agent on DEV -- docs-nginx-com</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/nginx-controller/admin-guides/config-agent/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Get to Know the F5 NGINX Controller Agent</title>
+      <link>http://localhost:1313/nginx-controller/admin-guides/config-agent/about-controller-agent/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-controller/admin-guides/config-agent/about-controller-agent/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;The F5 NGINX Controller Agent is a compact application written in Golang. NGINX Controller uses the Controller Agent to manage and monitor each NGINX Plus instance that the Agent is installed on. Once installed, the NGINX Controller Agent collects metrics and metadata and sends them securely to NGINX Controller for storage and visualization.&lt;/p&gt;&#xA;&lt;h2 &#xA;id=&#34;how-nginx-controller-agent-works&#34;&gt;How NGINX Controller Agent Works  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#how-nginx-controller-agent-works&#34; title=&#34;How NGINX Controller Agent Works&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;You need to &lt;a href=&#34;http://localhost:1313/nginx-controller/admin-guides/install/install-nginx-controller-agent/&#34;&gt;install the NGINX Controller Agent&lt;/a&gt; on all of the hosts you&amp;rsquo;d like to monitor.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Configure the NGINX Controller Agent</title>
+      <link>http://localhost:1313/nginx-controller/admin-guides/config-agent/configure-the-agent/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-controller/admin-guides/config-agent/configure-the-agent/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;Follow the steps in this guide to customize the F5 NGINX Controller Agent configuration.&lt;/p&gt;&#xA;&lt;h2 &#xA;id=&#34;default-agent-settings&#34;&gt;Default Agent Settings  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#default-agent-settings&#34; title=&#34;Default Agent Settings&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;To access the &lt;strong&gt;Default Agent Settings&lt;/strong&gt; page:&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Open the NGINX Controller user interface and log in.&lt;/li&gt;&#xA;&lt;li&gt;Select the NGINX Controller menu icon, then select &lt;strong&gt;Platform&lt;/strong&gt;.&lt;/li&gt;&#xA;&lt;li&gt;On the &lt;strong&gt;Platform&lt;/strong&gt; menu, select &lt;strong&gt;Agent&lt;/strong&gt;.&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;On the &lt;strong&gt;Default Agent Settings&lt;/strong&gt; page, you can set the following default settings for the NGINX Controller Agent:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Set up Metrics Collection</title>
+      <link>http://localhost:1313/nginx-controller/admin-guides/config-agent/configure-metrics-collection/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-controller/admin-guides/config-agent/configure-metrics-collection/</guid>
+      <description>&lt;h2 &#xA;id=&#34;before-you-begin&#34;&gt;Before You Begin  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#before-you-begin&#34; title=&#34;Before You Begin&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;ul&gt;&#xA;&lt;li&gt;Before you can set up metrics collection, you first need to &lt;a href=&#34;http://localhost:1313/nginx-controller/admin-guides/install/install-nginx-controller-agent/&#34;&gt;install and start the F5 NGINX Controller Agent&lt;/a&gt;, so that the Agent can start pushing aggregated data to NGINX Controller.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 &#xA;id=&#34;objectives&#34;&gt;Objectives  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#objectives&#34; title=&#34;Objectives&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;Follow the steps in this guide to configure how metrics are collected and monitored.&lt;/p&gt;&#xA;&lt;h2 &#xA;id=&#34;configuring-nginx-for-metrics-collection&#34;&gt;Configuring NGINX for Metrics Collection  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#configuring-nginx-for-metrics-collection&#34; title=&#34;Configuring NGINX for Metrics Collection&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;In order to monitor an NGINX Plus instance, the NGINX Controller Agent needs to find the relevant NGINX control process and determine its key characteristics.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Use the NGINX Controller Agent with Docker</title>
+      <link>http://localhost:1313/nginx-controller/admin-guides/config-agent/use-agent-with-docker/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-controller/admin-guides/config-agent/use-agent-with-docker/</guid>
+      <description>&lt;h2 &#xA;id=&#34;before-you-begin&#34;&gt;Before You Begin  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#before-you-begin&#34; title=&#34;Before You Begin&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;We support running the F5 NGINX Controller Agent in a Docker environment on the following distributions: CentOS, Debian, and Ubuntu.&lt;/p&gt;&#xA;&lt;p&gt;We &lt;strong&gt;don&amp;rsquo;t support&lt;/strong&gt; containerized instances on RHEL 7 and RHEL 8.&lt;/p&gt;&#xA;&lt;p&gt;For optimal performance when using the Controller Agent in a Docker environment, the number of containers shouldn&amp;rsquo;t exceed the number of processors on the container host.&lt;/p&gt;&#xA;&lt;h2 &#xA;id=&#34;running-nginx-controller-agent-in-docker&#34;&gt;Running NGINX Controller Agent in Docker  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#running-nginx-controller-agent-in-docker&#34; title=&#34;Running NGINX Controller Agent in Docker&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;When running a containerized instance on an Ubuntu or Debian docker host, you need to enable cgroup swap limit capabilities in order for the NGINX Controller Agent to be able to report swap metrics for instances. See &lt;a href=&#34;https://docs.docker.com/engine/install/linux-postinstall/#your-kernel-does-not-support-cgroup-swap-limit-capabilities&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Docker - Linux post-installation steps&lt;/a&gt; for details.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>User Interface on DEV -- docs-nginx-com</title>
+    <link>http://localhost:1313/nginx-amplify/user-interface/</link>
+    <description>Recent content in User Interface on DEV -- docs-nginx-com</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/nginx-amplify/user-interface/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Overview</title>
+      <link>http://localhost:1313/nginx-amplify/user-interface/overview/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-amplify/user-interface/overview/</guid>
+      <description>&lt;p&gt;The Overview page is designed to provide a quick summary of the state of your NGINX infrastructure. Here you can quickly check the total sum of HTTP 5xx errors over the past 24 hours and compare it to the previous 24 hours.&lt;/p&gt;&#xA;&lt;p&gt;Five key overlay graphs are displayed for the selected period. By switching over various periods, you can compare trends and see if anything abnormal shows up.&lt;/p&gt;&#xA;&lt;p&gt;The cumulative &lt;a href=&#34;http://localhost:1313/nginx-amplify/metrics-metadata/&#34;&gt;metrics&lt;/a&gt; displayed on the &lt;strong&gt;Overview&lt;/strong&gt; page are:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Graphs</title>
+      <link>http://localhost:1313/nginx-amplify/user-interface/graphs/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-amplify/user-interface/graphs/</guid>
+      <description>&lt;p&gt;On the &lt;strong&gt;Graphs&lt;/strong&gt; page, you can find a collection of predefined graphs. Here you can see an overview of the key metric stats, such as CPU, memory, and disk usage for all your systems.&lt;/p&gt;&#xA;&lt;p&gt;If you click on a system on the left, the graphs will change to reflect the metrics for the selected system. The graphs are further split into tabs such as &amp;ldquo;System&amp;rdquo;, &amp;ldquo;NGINX&amp;rdquo; and so on.&lt;/p&gt;&#xA;&lt;figure&gt;&lt;img class=&#34;figure-bitmap&#34; src=&#34;http://localhost:1313/amplify/amplify-graphs.png&#34;&#xA;    alt=&#34;Graphs section of the User Interface&#34;&gt;&#xA;&lt;/figure&gt;&#xA;&lt;p&gt;Some graphs have an additional selector. E.g., with &amp;ldquo;Disk Latency&amp;rdquo; or &amp;ldquo;Network Traffic&amp;rdquo; you can select what device or interface you&amp;rsquo;re analyzing.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Inventory</title>
+      <link>http://localhost:1313/nginx-amplify/user-interface/inventory/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-amplify/user-interface/inventory/</guid>
+      <description>&lt;p&gt;You can access the inventory by selecting the first icon on the top menu. The inventory gives an overview of the systems that are being monitored. When F5 NGINX Amplify Agent is running and reporting on a new system, it&amp;rsquo;s listed in the system index on the left side of the user interface and in the &lt;strong&gt;Inventory&lt;/strong&gt; section.&lt;/p&gt;&#xA;&lt;figure&gt;&lt;img class=&#34;figure-bitmap&#34; src=&#34;http://localhost:1313/amplify/amplify-inventory.png&#34;&#xA;    alt=&#34;Inventory section of the User Interface&#34;&gt;&#xA;&lt;/figure&gt;&#xA;&lt;p&gt;The &lt;strong&gt;Inventory&lt;/strong&gt; allows you to check the status of all systems at a glance. It also provides a quick overview of the key metrics.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Dashboards</title>
+      <link>http://localhost:1313/nginx-amplify/user-interface/dashboards/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-amplify/user-interface/dashboards/</guid>
+      <description>&lt;p&gt;You can create your own dashboards populated with highly customizable graphs of NGINX and system-level metrics.&lt;/p&gt;&#xA;&lt;p&gt;Some of the use cases for a custom set of graphs are the following:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Checking NGINX performance for a particular application or microservice, e.g. based on the URI path&lt;/li&gt;&#xA;&lt;li&gt;Displaying metrics per virtual server&lt;/li&gt;&#xA;&lt;li&gt;Visualizing the performance of a group of NGINX servers — for example, front-end load balancers, or an NGINX edge caching layer&lt;/li&gt;&#xA;&lt;li&gt;Analyzing a detailed breakdown of HTTP status codes per application&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;When building a custom graph, metrics can be summed or averaged across several NGINX servers. Using metric filters, it is also possible to create additional “metric dimensions” — for example, reporting the number of POST requests for a specific URI.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Analyzer</title>
+      <link>http://localhost:1313/nginx-amplify/user-interface/analyzer/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-amplify/user-interface/analyzer/</guid>
+      <description>&lt;p&gt;F5 NGINX Amplify Agent parses NGINX configuration files and transmits them to the backend component for further analysis. NGINX Amplify offers configuration recommendations to help improve the performance, reliability, and security of your applications. With well-thought-out and detailed recommendations, you’ll know exactly where the problem is, why it is a problem, and how to fix it.&lt;/p&gt;&#xA;&lt;p&gt;When you switch to the &lt;strong&gt;Analyzer&lt;/strong&gt; page, select a particular system on the left to see the associated report. If there are no NGINX instances on a system, there will be no report.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Alerts</title>
+      <link>http://localhost:1313/nginx-amplify/user-interface/alerts/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-amplify/user-interface/alerts/</guid>
+      <description>&lt;p&gt;The &lt;strong&gt;Alerts&lt;/strong&gt; page describes the configuration of the alert rules used to notify you of any anomalies in the behavior of your systems.&lt;/p&gt;&#xA;&lt;p&gt;Alerts are based on setting a rule to monitor a particular metric. Alert rules allow the user to specify the metric, the trigger condition, the threshold, and the email for notifications.&lt;/p&gt;&#xA;&lt;p&gt;The way alert rules work is the following:&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Incoming metric updates are being continuously monitored against the set of rules.&lt;/li&gt;&#xA;&lt;li&gt;If there&amp;rsquo;s a rule for a metric, the new metric update is checked against the threshold.&lt;/li&gt;&#xA;&lt;li&gt;If the threshold is met, an alert notification is generated, and the rule will continue to be monitored.&lt;/li&gt;&#xA;&lt;li&gt;If subsequent metric updates show that the metric no longer violates the threshold for the configured period, the alert is cleared.&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;By default, there&amp;rsquo;s no filtering by host. If a specific alert should only be raised for a particular system, you should specify the hostname(s) or tags when configuring the alert. Currently, metrics can&amp;rsquo;t be aggregated across all systems; instead, any system will match a particular rule unless a host is specified.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Account Settings</title>
+      <link>http://localhost:1313/nginx-amplify/user-interface/account-settings/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-amplify/user-interface/account-settings/</guid>
+      <description>&lt;p&gt;The &lt;strong&gt;Account&lt;/strong&gt; option in the user menu at the top right corner of the user interface povides access to several user settings.&lt;/p&gt;&#xA;&lt;h3 &#xA;id=&#34;account-information&#34;&gt;Account Information  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#account-information&#34; title=&#34;Account Information&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h3&gt;&lt;p&gt;In the Account section, you can check the information you provided upon signing up and edit specific fields.&lt;/p&gt;&#xA;&lt;h3 &#xA;id=&#34;limits&#34;&gt;Limits  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#limits&#34; title=&#34;Limits&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h3&gt;&lt;p&gt;You can also see the current limits such as &amp;ldquo;maximum number of agents&amp;rdquo;, &amp;ldquo;maximum number of custom dashboards&amp;rdquo;, etc.&lt;/p&gt;&#xA;&lt;h3 &#xA;id=&#34;user-roles&#34;&gt;User Roles  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#user-roles&#34; title=&#34;User Roles&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h3&gt;&lt;p&gt;In the &lt;strong&gt;Users&lt;/strong&gt; section, you can review the list of the user logins that are associated with this particular account. If you are the admin user, you can also invite your team members to the account.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

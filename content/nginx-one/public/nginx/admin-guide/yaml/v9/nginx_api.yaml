@@ -1,0 +1,4902 @@
+swagger: '2.0'
+info:
+  version: '9.0'
+  title: NGINX Plus REST API
+  description: NGINX Plus REST
+    [API](https://nginx.org/en/docs/http/ngx_http_api_module.html)
+    provides access to NGINX Plus status information,
+    on-the-fly configuration of upstream servers and
+    key-value pairs management for
+    [http](https://nginx.org/en/docs/http/ngx_http_keyval_module.html) and
+    [stream](https://nginx.org/en/docs/stream/ngx_stream_keyval_module.html).
+basePath: /api/9
+tags:
+  - name: General Info
+  - name: Processes
+  - name: Connections
+  - name: Workers
+  - name: Slabs
+  - name: Resolvers
+  - name: SSL
+  - name: HTTP
+  - name: HTTP Requests
+  - name: HTTP Server Zones
+  - name: HTTP Location Zones
+  - name: HTTP Caches
+  - name: HTTP Limit Conns
+  - name: HTTP Limit Reqs
+  - name: HTTP Keyvals
+  - name: HTTP Upstreams
+  - name: License
+  - name: Stream
+  - name: Stream Server Zones
+  - name: Stream Limit Conns
+  - name: Stream Keyvals
+  - name: Stream Upstreams
+  - name: Stream Zone Sync
+  - name: Method GET
+  - name: Method POST
+  - name: Method PATCH
+  - name: Method DELETE
+schemes:
+  - http
+  - https
+paths:
+  /:
+    get:
+      tags:
+        - General Info
+        - Method GET
+      summary: Return list of root endpoints
+      description: Returns a list of root endpoints.
+      operationId: getAPIEndpoints
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/ArrayOfStrings'
+        '404':
+          description: Unknown version (*UnknownVersion*)
+          schema:
+            $ref: '#/definitions/NginxError'
+  /nginx:
+    get:
+      tags:
+        - General Info
+        - Method GET
+      summary: Return status of nginx running instance
+      description: Returns nginx version, build name, address,
+        number of configuration reloads, IDs of master and worker processes.
+      operationId: getNginx
+      produces:
+        - application/json
+      parameters:
+        - in: query
+          name: fields
+          type: string
+          description: Limits which fields of nginx running instance will be output.
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/NginxObject'
+        '404':
+          description: Unknown version (*UnknownVersion*)
+          schema:
+            $ref: '#/definitions/NginxError'
+  /processes:
+    get:
+      tags:
+        - Processes
+        - Method GET
+      summary: Return nginx processes status
+      description: Returns the number of abnormally terminated
+        and respawned child processes.
+      operationId: getProcesses
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/NginxProcesses'
+        '404':
+          description: Unknown version (*UnknownVersion*)
+          schema:
+            $ref: '#/definitions/NginxError'
+    delete:
+      tags:
+        - Processes
+        - Method DELETE
+      summary: Reset nginx processes statistics
+      description: Resets counters of abnormally terminated and respawned
+        child processes.
+      operationId: deleteProcesses
+      responses:
+        '204':
+          description: Success
+        '404':
+          description: Unknown version (*UnknownVersion*)
+          schema:
+            $ref: '#/definitions/NginxError'
+        '405':
+          description: Method disabled (*MethodDisabled*)
+          schema:
+            $ref: '#/definitions/NginxError'
+  /connections:
+    get:
+      tags:
+        - Connections
+        - Method GET
+      summary: Return client connections statistics
+      description: Returns statistics of client connections.
+      operationId: getConnections
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/NginxConnections'
+        '404':
+          description: Unknown version (*UnknownVersion*)
+          schema:
+            $ref: '#/definitions/NginxError'
+      parameters:
+        - in: query
+          name: fields
+          type: string
+          description:  Limits which fields of the connections statistics will be output.
+    delete:
+      tags:
+        - Connections
+        - Method DELETE
+      summary: Reset client connections statistics
+      description: Resets statistics of accepted and dropped
+        client connections.
+      operationId: deleteConnections
+      responses:
+        '204':
+          description: Success
+        '404':
+          description: Unknown version (*UnknownVersion*)
+          schema:
+            $ref: '#/definitions/NginxError'
+        '405':
+          description: Method disabled (*MethodDisabled*)
+          schema:
+            $ref: '#/definitions/NginxError'
+  /slabs/:
+    get:
+      tags:
+        - Slabs
+        - Method GET
+      summary:  Return status of all slabs
+      description: Returns status of slabs
+        for each shared memory zone with slab allocator.
+      operationId: getSlabs
+      produces:
+        - application/json
+      parameters:
+        - in: query
+          name: fields
+          type: string
+          description: Limits which fields of slab zones will be output.
+            If the “<literal>fields</literal>” value is empty,
+            then only zone names will be output.
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/NginxSlabZoneMap'
+        '404':
+          description: Unknown version (*UnknownVersion*)
+          schema:
+            $ref: '#/definitions/NginxError'
+  '/slabs/{slabZoneName}':
+    parameters:
+      - name: slabZoneName
+        in: path
+        description: The name of the shared memory zone with slab allocator.
+        required: true
+        type: string
+    get:
+      tags:
+        - Slabs
+        - Method GET
+      summary: Return status of a slab
+      description: Returns status of slabs for a particular shared memory zone
+        with slab allocator.
+      operationId: getSlabZone
+      produces:
+        - application/json
+      parameters:
+        - in: query
+          name: fields
+          type: string
+          description: Limits which fields of the slab zone will be output.
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/NginxSlabZone'
+        '404':
+          description: |
+            Slab not found (*SlabNotFound*),
+            unknown version (*UnknownVersion*)
+          schema:
+            $ref: '#/definitions/NginxError'
+    delete:
+      tags:
+        - Slabs
+        - Method DELETE
+      summary: Reset slab statistics
+      description: Resets the “<literal>reqs</literal>” and “<literal>fails</literal>”
+        metrics for each memory slot.
+      operationId: deleteSlabZoneStats
+      responses:
+        '204':
+          description: Success
+        '404':
+          description: |
+            Slab not found (*SlabNotFound*),
+            unknown version (*UnknownVersion*)
+          schema:
+            $ref: '#/definitions/NginxError'
+        '405':
+          description: Method disabled (*MethodDisabled*)
+          schema:
+            $ref: '#/definitions/NginxError'
+  /http/:
+    get:
+      tags:
+        - HTTP
+        - Method GET
+      summary: Return list of HTTP-related endpoints
+      description: Returns a list of first level HTTP endpoints.
+      operationId: getHttp
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/ArrayOfStrings'
+        '404':
+          description: Unknown version (*UnknownVersion*)
+          schema:
+            $ref: '#/definitions/NginxError'
+  /http/requests:
+    get:
+      tags:
+        - HTTP Requests
+        - Method GET
+      summary: Return HTTP requests statistics
+      description: Returns status of client HTTP requests.
+      operationId: getHttpRequests
+      produces:
+        - application/json
+      parameters:
+        - in: query
+          name: fields
+          type: string
+          description: Limits which fields of client HTTP requests statistics
+            will be output.
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/NginxHTTPRequests'
+        '404':
+          description: Unknown version (*UnknownVersion*)
+          schema:
+            $ref: '#/definitions/NginxError'
+    delete:
+      tags:
+        - HTTP Requests
+        - Method DELETE
+      summary: Reset HTTP requests statistics
+      description: Resets the number of total client HTTP requests.
+      operationId: deleteHttpRequests
+      responses:
+        '204':
+          description: Success
+        '404':
+          description: Unknown version (*UnknownVersion*)
+          schema:
+            $ref: '#/definitions/NginxError'
+        '405':
+          description: Method disabled (*MethodDisabled*)
+          schema:
+            $ref: '#/definitions/NginxError'
+  /http/server_zones/:
+    get:
+      tags:
+        - HTTP Server Zones
+        - Method GET
+      summary: Return status of all HTTP server zones
+      description: Returns status information for each HTTP
+        [server zone](https://nginx.org/en/docs/http/ngx_http_api_module.html#status_zone).
+      operationId: getHttpServerZones
+      produces:
+        - application/json
+      parameters:
+        - in: query
+          name: fields
+          type: string
+          description: Limits which fields of server zones will be output.
+            If the “<literal>fields</literal>” value is empty,
+            then only server zone names will be output.
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/NginxHTTPServerZonesMap'
+        '404':
+          description: Unknown version (*UnknownVersion*)
+          schema:
+            $ref: '#/definitions/NginxError'
+  '/http/server_zones/{httpServerZoneName}':
+    parameters:
+      - name: httpServerZoneName
+        in: path
+        description: The name of an HTTP server zone.
+        type: string
+        required: true
+    get:
+      tags:
+        - HTTP Server Zones
+        - Method GET
+      summary: Return status of an HTTP server zone
+      description: Returns status of a particular HTTP server zone.
+      operationId: getHttpServerZone
+      produces:
+        - application/json
+      parameters:
+        - name: fields
+          in: query
+          type: string
+          description: Limits which fields of the server zone will be output.
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/NginxHTTPServerZone'
+        '404':
+          description: |
+            Server zone not found (*ServerZoneNotFound*),
+            unknown version (*UnknownVersion*)
+          schema:
+            $ref: '#/definitions/NginxError'
+    delete:
+      tags:
+        - HTTP Server Zones
+        - Method DELETE
+      summary: Reset statistics for an HTTP server zone
+      description: Resets statistics of accepted and discarded requests, responses,
+        received and sent bytes, counters of SSL handshakes and session reuses
+        in a particular HTTP server zone.
+      operationId: deleteHttpServerZoneStat
+      responses:
+        '204':
+          description: Success
+        '404':
+          description: |
+            Server zone not found (*ServerZoneNotFound*),
+            unknown version (*UnknownVersion*)
+          schema:
+            $ref: '#/definitions/NginxError'
+        '405':
+          description: Method disabled (*MethodDisabled*)
+          schema:
+            $ref: '#/definitions/NginxError'
+  /http/location_zones/:
+    get:
+      tags:
+        - HTTP Location Zones
+        - Method GET
+      summary: Return status of all HTTP location zones
+      description: Returns status information for each HTTP
+        [location zone](https://nginx.org/en/docs/http/ngx_http_api_module.html#status_zone_location).
+      operationId: getHttpLocationZones
+      produces:
+        - application/json
+      parameters:
+        - in: query
+          name: fields
+          type: string
+          description: Limits which fields of location zones will be output.
+            If the “<literal>fields</literal>” value is empty,
+            then only zone names will be output.
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/NginxHTTPLocationZonesMap'
+        '404':
+          description: Unknown version (*UnknownVersion*)
+          schema:
+            $ref: '#/definitions/NginxError'
+  '/http/location_zones/{httpLocationZoneName}':
+    parameters:
+      - name: httpLocationZoneName
+        in: path
+        description: The name of an HTTP [location zone](https://nginx.org/en/docs/http/ngx_http_api_module.html#status_zone_location).
+        type: string
+        required: true
+    get:
+      tags:
+        - HTTP Location Zones
+        - Method GET
+      summary: Return status of an HTTP location zone
+      description: Returns status of a particular
+        HTTP [location zone](https://nginx.org/en/docs/http/ngx_http_api_module.html#status_zone_location).
+      operationId: getHttpLocationZone
+      produces:
+        - application/json
+      parameters:
+        - name: fields
+          in: query
+          type: string
+          description: Limits which fields of the location zone will be output.
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/NginxHTTPLocationZone'
+        '404':
+          description: |
+            Location zone not found (*LocationZoneNotFound*),
+            unknown version (*UnknownVersion*)
+          schema:
+            $ref: '#/definitions/NginxError'
+    delete:
+      tags:
+        - HTTP Location Zones
+        - Method DELETE
+      summary: Reset statistics for a location zone.
+      description: Resets statistics of accepted and discarded requests, responses,
+        received and sent bytes in a particular location zone.
+      operationId: deleteHttpLocationZoneStat
+      responses:
+        '204':
+          description: Success
+        '404':
+          description: |
+            Location zone not found (*LocationZoneNotFound*),
+            unknown version (*UnknownVersion*)
+          schema:
+            $ref: '#/definitions/NginxError'
+        '405':
+          description: Method disabled (*MethodDisabled*)
+          schema:
+            $ref: '#/definitions/NginxError'
+  /http/caches/:
+    get:
+      tags:
+        - HTTP Caches
+        - Method GET
+      summary: Return status of all caches
+      description: Returns status of each cache configured by
+        [proxy_cache_path](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_cache_path)
+        and other “<literal>*_cache_path</literal>” directives.
+      operationId: getHttpCaches
+      produces:
+        - application/json
+      parameters:
+        - name: fields
+          in: query
+          type: string
+          description: Limits which fields of cache zones will be output.
+            If the “<literal>fields</literal>” value is empty,
+            then only names of cache zones will be output.
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/NginxHTTPCachesMap'
+        '404':
+          description: Unknown version (*UnknownVersion*)
+          schema:
+            $ref: '#/definitions/NginxError'
+  '/http/caches/{httpCacheZoneName}':
+    parameters:
+      - name: httpCacheZoneName
+        in: path
+        description: The name of the cache zone.
+        type: string
+        required: true
+    get:
+      tags:
+        - HTTP Caches
+        - Method GET
+      summary: Return status of a cache
+      description: Returns status of a particular cache.
+      operationId: getHttpCacheZone
+      produces:
+        - application/json
+      parameters:
+        - name: fields
+          in: query
+          type: string
+          description: Limits which fields of the cache zone will be output.
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/NginxHTTPCache'
+        '404':
+          description: |
+            Cache not found (*CacheNotFound*),
+            unknown version (*UnknownVersion*)
+          schema:
+            $ref: '#/definitions/NginxError'
+    delete:
+      tags:
+        - HTTP Caches
+        - Method DELETE
+      summary: Reset cache statistics
+      description: Resets statistics of cache hits/misses in a particular cache zone.
+      operationId: deleteHttpCacheZoneStat
+      responses:
+        '204':
+          description: Success
+        '404':
+          description: |
+            Cache not found (*CacheNotFound*),
+            unknown version (*UnknownVersion*)
+          schema:
+            $ref: '#/definitions/NginxError'
+        '405':
+          description: Method disabled (*MethodDisabled*)
+          schema:
+            $ref: '#/definitions/NginxError'
+  /http/limit_conns/:
+    get:
+      tags:
+        - HTTP Limit Conns
+        - Method GET
+      summary: Return status of all HTTP limit_conn zones
+      description: Returns status information for each HTTP
+        [limit_conn zone](https://nginx.org/en/docs/http/ngx_http_limit_conn_module.html#limit_conn_zone).
+      operationId: getHttpLimitConnZones
+      produces:
+        - application/json
+      parameters:
+        - in: query
+          name: fields
+          type: string
+          description: Limits which fields of limit_conn zones will be output.
+            If the “<literal>fields</literal>” value is empty,
+            then only zone names will be output.
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/NginxHTTPLimitConnZonesMap'
+        '404':
+          description: Unknown version (*UnknownVersion*)
+          schema:
+            $ref: '#/definitions/NginxError'
+  '/http/limit_conns/{httpLimitConnZoneName}':
+    parameters:
+      - name: httpLimitConnZoneName
+        in: path
+        description: The name of a
+          [limit_conn zone](https://nginx.org/en/docs/http/ngx_http_limit_conn_module.html#limit_conn_zone).
+        type: string
+        required: true
+    get:
+      tags:
+        - HTTP Limit Conns
+        - Method GET
+      summary: Return status of an HTTP limit_conn zone
+      description: Returns status of a particular HTTP
+        [limit_conn zone](https://nginx.org/en/docs/http/ngx_http_limit_conn_module.html#limit_conn_zone).
+      operationId: getHttpLimitConnZone
+      produces:
+        - application/json
+      parameters:
+        - name: fields
+          in: query
+          type: string
+          description: Limits which fields of the
+            [limit_conn zone](https://nginx.org/en/docs/http/ngx_http_limit_conn_module.html#limit_conn_zone)
+            will be output.
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/NginxHTTPLimitConnZone'
+        '404':
+          description: |
+            limit_conn not found (*LimitConnNotFound*),
+            unknown version (*UnknownVersion*)
+          schema:
+            $ref: '#/definitions/NginxError'
+    delete:
+      tags:
+        - HTTP Limit Conns
+        - Method DELETE
+      summary: Reset statistics for an HTTP limit_conn zone
+      description: Resets the connection limiting statistics.
+      operationId: deleteHttpLimitConnZoneStat
+      responses:
+        '204':
+          description: Success
+        '404':
+          description: |
+            limit_conn not found (*LimitConnNotFound*),
+            unknown version (*UnknownVersion*)
+          schema:
+            $ref: '#/definitions/NginxError'
+        '405':
+          description: Method disabled (*MethodDisabled*)
+          schema:
+            $ref: '#/definitions/NginxError'
+  /http/limit_reqs/:
+    get:
+      tags:
+        - HTTP Limit Reqs
+        - Method GET
+      summary: Return status of all HTTP limit_req zones
+      description: Returns status information for each HTTP
+        [limit_req zone](https://nginx.org/en/docs/http/ngx_http_limit_req_module.html#limit_req_zone).
+      operationId: getHttpLimitReqZones
+      produces:
+        - application/json
+      parameters:
+        - in: query
+          name: fields
+          type: string
+          description: Limits which fields of limit_req zones will be output.
+            If the “<literal>fields</literal>” value is empty,
+            then only zone names will be output.
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/NginxHTTPLimitReqZonesMap'
+        '404':
+          description: Unknown version (*UnknownVersion*)
+          schema:
+            $ref: '#/definitions/NginxError'
+  '/http/limit_reqs/{httpLimitReqZoneName}':
+    parameters:
+      - name: httpLimitReqZoneName
+        in: path
+        description: The name of a
+          [limit_req zone](https://nginx.org/en/docs/http/ngx_http_limit_req_module.html#limit_req_zone).
+        type: string
+        required: true
+    get:
+      tags:
+        - HTTP Limit Reqs
+        - Method GET
+      summary: Return status of an HTTP limit_req zone
+      description: Returns status of a particular HTTP
+        [limit_req zone](https://nginx.org/en/docs/http/ngx_http_limit_req_module.html#limit_req_zone).
+      operationId: getHttpLimitReqZone
+      produces:
+        - application/json
+      parameters:
+        - name: fields
+          in: query
+          type: string
+          description: Limits which fields of the
+            [limit_req zone](https://nginx.org/en/docs/http/ngx_http_limit_req_module.html#limit_req_zone)
+            will be output.
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/NginxHTTPLimitReqZone'
+        '404':
+          description: |
+            limit_req not found (*LimitReqNotFound*),
+            unknown version (*UnknownVersion*)
+          schema:
+            $ref: '#/definitions/NginxError'
+    delete:
+      tags:
+        - HTTP Limit Reqs
+        - Method DELETE
+      summary: Reset statistics for an HTTP limit_req zone
+      description: Resets the requests limiting statistics.
+      operationId: deleteHttpLimitReqZoneStat
+      responses:
+        '204':
+          description: Success
+        '404':
+          description: |
+            limit_req not found (*LimitReqNotFound*),
+            unknown version (*UnknownVersion*)
+          schema:
+            $ref: '#/definitions/NginxError'
+        '405':
+          description: Method disabled (*MethodDisabled*)
+          schema:
+            $ref: '#/definitions/NginxError'
+  /http/upstreams/:
+    get:
+      tags:
+        - HTTP Upstreams
+        - Method GET
+      summary: Return status of all HTTP upstream server groups
+      description: Returns status of each HTTP upstream server group
+        and its servers.
+      operationId: getHttpUpstreams
+      produces:
+        - application/json
+      parameters:
+        - name: fields
+          in: query
+          type: string
+          description: Limits which fields of upstream server groups will be output.
+            If the “<literal>fields</literal>” value is empty,
+            only names of upstreams will be output.
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/NginxHTTPUpstreamMap'
+        '404':
+          description: Unknown version (*UnknownVersion*)
+          schema:
+            $ref: '#/definitions/NginxError'
+  '/http/upstreams/{httpUpstreamName}/':
+    parameters:
+    - name: httpUpstreamName
+      in: path
+      description: The name of an HTTP upstream server group.
+      required: true
+      type: string
+    get:
+      tags:
+        - HTTP Upstreams
+        - Method GET
+      summary: Return status of an HTTP upstream server group
+      description: Returns status of a particular HTTP upstream server group
+        and its servers.
+      operationId: getHttpUpstreamName
+      produces:
+        - application/json
+      parameters:
+        - name: fields
+          in: query
+          type: string
+          description: Limits which fields of the upstream server group will be output.
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/NginxHTTPUpstream'
+        '400':
+          description: Upstream is static (*UpstreamStatic*)
+          schema:
+            $ref: '#/definitions/NginxError'
+        '404':
+          description: |
+            Unknown version (*UnknownVersion*),
+            upstream not found (*UpstreamNotFound*)
+          schema:
+            $ref: '#/definitions/NginxError'
+    delete:
+      tags:
+        - HTTP Upstreams
+        - Method DELETE
+      summary: Reset statistics of an HTTP upstream server group
+      description: Resets the statistics for each upstream server
+        in an upstream server group and queue statistics.
+      operationId: deleteHttpUpstreamStat
+      produces:
+        - application/json
+      responses:
+        '204':
+          description: Success
+        '400':
+          description: Upstream is static (*UpstreamStatic*)
+          schema:
+            $ref: '#/definitions/NginxError'
+        '404':
+          description: |
+            Unknown version (*UnknownVersion*),
+            upstream not found (*UpstreamNotFound*)
+          schema:
+            $ref: '#/definitions/NginxError'
+        '405':
+          description: Method disabled (*MethodDisabled*)
+          schema:
+            $ref: '#/definitions/NginxError'
+  '/http/upstreams/{httpUpstreamName}/servers/':
+    parameters:
+      - name: httpUpstreamName
+        in: path
+        description: The name of an upstream server group.
+        required: true
+        type: string
+    get:
+      tags:
+        - HTTP Upstreams
+        - Method GET
+      summary: Return configuration of all servers in an HTTP upstream server group
+      description: Returns configuration of each server
+        in a particular HTTP upstream server group.
+      operationId: getHttpUpstreamServers
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/NginxHTTPUpstreamConfServerMap'
+        '400':
+          description: Upstream is static (*UpstreamStatic*)
+          schema:
+            $ref: '#/definitions/NginxError'
+        '404':
+          description: |
+            Unknown version (*UnknownVersion*),
+            upstream not found (*UpstreamNotFound*)
+          schema:
+            $ref: '#/definitions/NginxError'
+    post:
+      tags:
+        - HTTP Upstreams
+        - Method POST
+      summary: Add a server to an HTTP upstream server group
+      description: Adds a new server to an HTTP upstream server group.
+        Server parameters are specified in the JSON format.
+      operationId: postHttpUpstreamServer
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: postHttpUpstreamServer
+          description: Address of a new server and other optional parameters
+            in the JSON format.
+            The “*ID*”, “*backup*”, and “*service*” parameters
+            cannot be changed.
+          required: true
+          schema:
+            $ref: '#/definitions/NginxHTTPUpstreamConfServer'
+      responses:
+        '201':
+          description: Created
+          schema:
+            $ref: '#/definitions/NginxHTTPUpstreamConfServer'
+        '400':
+          description: |
+            Upstream is static (*UpstreamStatic*),
+            invalid “**parameter**” value (*UpstreamConfFormatError*),
+            missing “*server*” argument (*UpstreamConfFormatError*),
+            unknown parameter “**name**” (*UpstreamConfFormatError*),
+            nested object or list (*UpstreamConfFormatError*),
+            “*error*” while parsing (*UpstreamBadAddress*),
+            service upstream “*host*” may not have port (*UpstreamBadAddress*),
+            service upstream “*host*” requires domain name (*UpstreamBadAddress*),
+            invalid “*weight*” (*UpstreamBadWeight*),
+            invalid “*max_conns*” (*UpstreamBadMaxConns*),
+            invalid “*max_fails*” (*UpstreamBadMaxFails*),
+            invalid “*fail_timeout*” (*UpstreamBadFailTimeout*),
+            invalid “*slow_start*” (*UpstreamBadSlowStart*),
+            reading request body failed *BodyReadError*),
+            route is too long (*UpstreamBadRoute*),
+            “*service*” is empty (*UpstreamBadService*),
+            no resolver defined to resolve (*UpstreamConfNoResolver*),
+            upstream “**name**” has no backup (*UpstreamNoBackup*),
+            upstream “**name**” memory exhausted (*UpstreamOutOfMemory*)
+          schema:
+            $ref: '#/definitions/NginxError'
+        '404':
+          description: |
+            Unknown version (*UnknownVersion*),
+            upstream not found (*UpstreamNotFound*)
+          schema:
+            $ref: '#/definitions/NginxError'
+        '405':
+          description: Method disabled (*MethodDisabled*)
+          schema:
+            $ref: '#/definitions/NginxError'
+        '409':
+          description: Entry exists (*EntryExists*)
+          schema:
+            $ref: '#/definitions/NginxError'
+        '415':
+          description: JSON error (*JsonError*)
+          schema:
+            $ref: '#/definitions/NginxError'
+  '/http/upstreams/{httpUpstreamName}/servers/{httpUpstreamServerId}':
+    parameters:
+      - name: httpUpstreamName
+        in: path
+        description: The name of the upstream server group.
+        required: true
+        type: string
+      - name: httpUpstreamServerId
+        in: path
+        description: The ID of the server.
+        required: true
+        type: string
+    get:
+      tags:
+        - HTTP Upstreams
+        - Method GET
+      summary: Return configuration of a server in an HTTP upstream server group
+      description: Returns configuration of a particular server
+        in the HTTP upstream server group.
+      operationId: getHttpUpstreamPeer
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/NginxHTTPUpstreamConfServer'
+        '400':
+          description: |
+            Upstream is static (*UpstreamStatic*),
+            invalid server ID (*UpstreamBadServerId*)
+          schema:
+            $ref: '#/definitions/NginxError'
+        '404':
+          description: |
+            Server with ID “**id**” does not exist (*UpstreamServerNotFound*),
+            unknown version (*UnknownVersion*),
+            upstream not found (*UpstreamNotFound*)
+          schema:
+            $ref: '#/definitions/NginxError'
+    patch:
+      tags:
+        - HTTP Upstreams
+        - Method PATCH
+      summary: Modify a server in an HTTP upstream server group
+      description: Modifies settings of a particular server
+        in an HTTP upstream server group.
+        Server parameters are specified in the JSON format.
+      operationId: patchHttpUpstreamPeer
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: patchHttpUpstreamServer
+          description: Server parameters, specified in the JSON format.
+            The “*ID*”, “*backup*”, and “*service*” parameters
+            cannot be changed.
+          required: true
+          schema:
+            $ref: '#/definitions/NginxHTTPUpstreamConfServer'
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/NginxHTTPUpstreamConfServer'
+        '400':
+          description: |
+            Upstream is static (*UpstreamStatic*),
+            invalid “**parameter**” value (*UpstreamConfFormatError*),
+            unknown parameter “**name**” (*UpstreamConfFormatError*),
+            nested object or list (*UpstreamConfFormatError*),
+            “*error*” while parsing (*UpstreamBadAddress*),
+            invalid “*server*” argument (*UpstreamBadAddress*),
+            invalid server ID (*UpstreamBadServerId*),
+            invalid “*weight*” (*UpstreamBadWeight*),
+            invalid “*max_conns*” (*UpstreamBadMaxConns*),
+            invalid “*max_fails*” (*UpstreamBadMaxFails*),
+            invalid “*fail_timeout*” (*UpstreamBadFailTimeout*),
+            invalid “*slow_start*” (*UpstreamBadSlowStart*),
+            reading request body failed *BodyReadError*),
+            route is too long (*UpstreamBadRoute*),
+            “*service*” is empty (*UpstreamBadService*),
+            server “**ID**” address is immutable (*UpstreamServerImmutable*),
+            server “*ID*” weight is immutable (*UpstreamServerWeightImmutable*),
+            upstream “*name*” memory exhausted (*UpstreamOutOfMemory*)
+          schema:
+            $ref: '#/definitions/NginxError'
+        '404':
+          description: |
+            Server with ID “**id**” does not exist (*UpstreamServerNotFound*),
+            unknown version (*UnknownVersion*),
+            upstream not found (*UpstreamNotFound*)
+          schema:
+            $ref: '#/definitions/NginxError'
+        '405':
+          description: Method disabled (*MethodDisabled*)
+          schema:
+            $ref: '#/definitions/NginxError'
+        '415':
+          description: JSON error (*JsonError*)
+          schema:
+            $ref: '#/definitions/NginxError'
+    delete:
+      tags:
+        - HTTP Upstreams
+        - Method DELETE
+      summary: Remove a server from an HTTP upstream server group
+      description: Removes a server from an HTTP upstream server group.
+      operationId: deleteHttpUpstreamServer
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/NginxHTTPUpstreamConfServerMap'
+        '400':
+          description: |
+            Upstream is static (*UpstreamStatic*),
+            invalid server ID (*UpstreamBadServerId*),
+            server “**id**” not removable (*UpstreamServerImmutable*)
+          schema:
+            $ref: '#/definitions/NginxError'
+        '404':
+          description: |
+            Server with ID “**id**” does not exist (*UpstreamServerNotFound*),
+            unknown version (*UnknownVersion*),
+            upstream not found (*UpstreamNotFound*)
+          schema:
+            $ref: '#/definitions/NginxError'
+        '405':
+          description: Method disabled (*MethodDisabled*)
+          schema:
+            $ref: '#/definitions/NginxError'
+  /http/keyvals/:
+    get:
+      tags:
+        - HTTP Keyvals
+        - Method GET
+      summary: Return key-value pairs from all HTTP keyval zones
+      description: Returns key-value pairs for each HTTP keyval shared memory
+        [zone](https://nginx.org/en/docs/http/ngx_http_keyval_module.html#keyval_zone).
+      operationId: getHttpKeyvalZones
+      produces:
+        - application/json
+      parameters:
+        - name: fields
+          in: query
+          type: string
+          description: If the “<literal>fields</literal>” value is empty,
+            then only HTTP keyval zone names will be output.
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/NginxHTTPKeyvalZonesMap'
+        '404':
+          description: Unknown version (*UnknownVersion*)
+          schema:
+            $ref: '#/definitions/NginxError'
+  '/http/keyvals/{httpKeyvalZoneName}':
+    parameters:
+      - name: httpKeyvalZoneName
+        in: path
+        description: The name of an HTTP keyval shared memory zone.
+        required: true
+        type: string
+    get:
+      tags:
+        - HTTP Keyvals
+        - Method GET
+      summary: Return key-value pairs from an HTTP keyval zone
+      description: Returns key-value pairs stored in a particular HTTP keyval shared memory
+        [zone](https://nginx.org/en/docs/http/ngx_http_keyval_module.html#keyval_zone).
+      operationId: getHttpKeyvalZoneKeysValues
+      produces:
+        - application/json
+      parameters:
+        - name: key
+          in: query
+          type: string
+          description: Get a particular key-value pair from the HTTP keyval zone.
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/NginxHTTPKeyvalZone'
+        '404':
+          description: |
+            Keyval not found (*KeyvalNotFound*),
+            keyval key not found (*KeyvalKeyNotFound*),
+            unknown version (*UnknownVersion*)
+          schema:
+            $ref: '#/definitions/NginxError'
+    post:
+      tags:
+        - HTTP Keyvals
+        - Method POST
+      summary: Add a key-value pair to the HTTP keyval zone
+      description: Adds a new key-value pair to the HTTP keyval shared memory
+        [zone](https://nginx.org/en/docs/http/ngx_http_keyval_module.html#keyval_zone).
+        Several key-value pairs can be entered
+        if the HTTP keyval shared memory zone is empty.
+      operationId: postHttpKeyvalZoneData
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: Key-value
+          description: A key-value pair is specified in the JSON format.
+            Several key-value pairs can be entered
+            if the HTTP keyval shared memory zone is empty.
+            Expiration time in milliseconds can be specified for a key-value pair
+            with the *expire* parameter
+            which overrides the [*timeout*](https://nginx.org/en/docs/http/ngx_http_keyval_module.html#keyval_timeout)
+            parameter of the
+            <a href="https://nginx.org/en/docs/http/ngx_http_keyval_module.html#keyval_zone">keyval_zone</a>
+            directive.
+          required: true
+          schema:
+            $ref: '#/definitions/NginxHTTPKeyvalZonePostPatch'
+      responses:
+        '201':
+          description: Created
+        '400':
+          description: |
+            Invalid JSON (*KeyvalFormatError*),
+            invalid key format (*KeyvalFormatError*),
+            key required (*KeyvalFormatError*),
+            keyval timeout is not enabled (*KeyvalFormatError*),
+            only one key can be added (*KeyvalFormatError*),
+            reading request body failed *BodyReadError*)
+          schema:
+            $ref: '#/definitions/NginxError'
+        '404':
+          description: |
+            Keyval not found (*KeyvalNotFound*),
+            unknown version (*UnknownVersion*)
+          schema:
+            $ref: '#/definitions/NginxError'
+        '405':
+          description: Method disabled (*MethodDisabled*)
+          schema:
+            $ref: '#/definitions/NginxError'
+        '409':
+          description: |
+            Entry exists (*EntryExists*),
+            key already exists (*KeyvalKeyExists*)
+          schema:
+            $ref: '#/definitions/NginxError'
+        '413':
+          description: Request Entity Too Large
+          schema:
+            $ref: '#/definitions/NginxError'
+        '415':
+          description: JSON error (*JsonError*)
+          schema:
+            $ref: '#/definitions/NginxError'
+    patch:
+      tags:
+        - HTTP Keyvals
+        - Method PATCH
+      summary: Modify a key-value or delete a key
+      description: Changes the value of the selected key in the key-value pair,
+        deletes a key by setting the key value to <literal>null</literal>,
+        changes expiration time of a key-value pair.
+        If
+        <a href="https://nginx.org/en/docs/stream/ngx_stream_zone_sync_module.html#zone_sync">synchronization</a>
+        of keyval zones in a cluster is enabled,
+        deletes a key only on a target cluster node.
+        Expiration time in milliseconds can be specified for a key-value pair
+        with the *expire* parameter
+        which overrides the [*timeout*](https://nginx.org/en/docs/http/ngx_http_keyval_module.html#keyval_timeout)
+        parameter of the
+        <a href="https://nginx.org/en/docs/http/ngx_http_keyval_module.html#keyval_zone">keyval_zone</a>
+        directive.
+      operationId: patchHttpKeyvalZoneKeyValue
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: httpKeyvalZoneKeyValue
+          description: A new value for the key is specified in the JSON format.
+          required: true
+          schema:
+            $ref: '#/definitions/NginxHTTPKeyvalZonePostPatch'
+      responses:
+        '204':
+          description: Success
+        '400':
+          description: |
+            Invalid JSON (*KeyvalFormatError*),
+            key required (*KeyvalFormatError*),
+            keyval timeout is not enabled (*KeyvalFormatError*),
+            only one key can be updated (*KeyvalFormatError*),
+            reading request body failed *BodyReadError*)
+          schema:
+            $ref: '#/definitions/NginxError'
+        '404':
+          description: |
+            Keyval not found (*KeyvalNotFound*),
+            keyval key not found (*KeyvalKeyNotFound*),
+            unknown version (*UnknownVersion*)
+          schema:
+            $ref: '#/definitions/NginxError'
+        '405':
+          description: Method disabled (*MethodDisabled*)
+          schema:
+            $ref: '#/definitions/NginxError'
+        '413':
+          description: Request Entity Too Large
+          schema:
+            $ref: '#/definitions/NginxError'
+        '415':
+          description: JSON error (*JsonError*)
+          schema:
+            $ref: '#/definitions/NginxError'
+    delete:
+      tags:
+        - HTTP Keyvals
+        - Method DELETE
+      summary: Empty the HTTP keyval zone
+      description: Deletes all key-value pairs from the HTTP keyval shared memory
+        [zone](https://nginx.org/en/docs/http/ngx_http_keyval_module.html#keyval_zone).
+        If
+        <a href="https://nginx.org/en/docs/stream/ngx_stream_zone_sync_module.html#zone_sync">synchronization</a>
+        of keyval zones in a cluster is enabled,
+        empties the keyval zone only on a target cluster node.
+      operationId: deleteHttpKeyvalZoneData
+      responses:
+        '204':
+          description: Success
+        '404':
+          description: |
+            Keyval not found (*KeyvalNotFound*),
+            unknown version (*UnknownVersion*)
+          schema:
+            $ref: '#/definitions/NginxError'
+        '405':
+          description: Method disabled (*MethodDisabled*)
+          schema:
+            $ref: '#/definitions/NginxError'
+  /stream/:
+    get:
+      tags:
+        - Stream
+      summary: Return list of stream-related endpoints
+      description: Returns a list of first level stream endpoints.
+      operationId: getStream
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/ArrayOfStrings'
+        '404':
+          description: Unknown version (*UnknownVersion*)
+          schema:
+            $ref: '#/definitions/NginxError'
+  /stream/server_zones/:
+    get:
+      tags:
+        - Stream Server Zones
+        - Method GET
+      summary: Return status of all stream server zones
+      description: Returns status information for each stream
+        [server zone](https://nginx.org/en/docs/http/ngx_http_api_module.html#status_zone).
+      operationId: getStreamServerZones
+      produces:
+        - application/json
+      parameters:
+        - name: fields
+          in: query
+          type: string
+          description: Limits which fields of server zones will be output.
+            If the “<literal>fields</literal>” value is empty,
+            then only server zone names will be output.
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/NginxStreamServerZonesMap'
+        '404':
+          description: Unknown version (*UnknownVersion*)
+          schema:
+            $ref: '#/definitions/NginxError'
+  '/stream/server_zones/{streamServerZoneName}':
+    parameters:
+      - name: streamServerZoneName
+        in: path
+        description: The name of a stream server zone.
+        type: string
+        required: true
+    get:
+      tags:
+        - Stream Server Zones
+        - Method GET
+      summary: Return status of a stream server zone
+      description: Returns status of a particular stream server zone.
+      operationId: getStreamServerZone
+      produces:
+        - application/json
+      parameters:
+        - name: fields
+          in: query
+          type: string
+          description: Limits which fields of the server zone will be output.
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/NginxStreamServerZone'
+        '404':
+          description: |
+            Server zone not found (*ServerZoneNotFound*),
+            unknown version (*UnknownVersion*)
+          schema:
+            $ref: '#/definitions/NginxError'
+    delete:
+      tags:
+        - Stream Server Zones
+        - Method DELETE
+      summary: Reset statistics for a stream server zone
+      description: Resets statistics of accepted and discarded connections, sessions,
+        received and sent bytes, counters of SSL handshakes and session reuses
+        in a particular stream server zone.
+      operationId: deleteStreamServerZoneStat
+      responses:
+        '204':
+          description: Success
+        '404':
+          description: |
+            Server zone not found (*ServerZoneNotFound*),
+            unknown version (*UnknownVersion*)
+          schema:
+            $ref: '#/definitions/NginxError'
+        '405':
+          description: Method disabled (*MethodDisabled*)
+          schema:
+            $ref: '#/definitions/NginxError'
+  /stream/limit_conns/:
+    get:
+      tags:
+        - Stream Limit Conns
+        - Method GET
+      summary: Return status of all stream limit_conn zones
+      description: Returns status information for each stream
+        [limit_conn zone](https://nginx.org/en/docs/stream/ngx_stream_limit_conn_module.html#limit_conn_zone).
+      operationId: getStreamLimitConnZones
+      produces:
+        - application/json
+      parameters:
+        - in: query
+          name: fields
+          type: string
+          description: Limits which fields of limit_conn zones will be output.
+            If the “<literal>fields</literal>” value is empty,
+            then only zone names will be output.
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/NginxStreamLimitConnZonesMap'
+        '404':
+          description: Unknown version (*UnknownVersion*)
+          schema:
+            $ref: '#/definitions/NginxError'
+  '/stream/limit_conns/{streamLimitConnZoneName}':
+    parameters:
+      - name: streamLimitConnZoneName
+        in: path
+        description: The name of a
+          [limit_conn zone](https://nginx.org/en/docs/stream/ngx_stream_limit_conn_module.html#limit_conn_zone).
+        type: string
+        required: true
+    get:
+      tags:
+        - Stream Limit Conns
+        - Method GET
+      summary: Return status of an stream limit_conn zone
+      description: Returns status of a particular stream
+        [limit_conn zone](https://nginx.org/en/docs/stream/ngx_stream_limit_conn_module.html#limit_conn_zone).
+      operationId: getStreamLimitConnZone
+      produces:
+        - application/json
+      parameters:
+        - name: fields
+          in: query
+          type: string
+          description: Limits which fields of the
+            [limit_conn zone](https://nginx.org/en/docs/stream/ngx_stream_limit_conn_module.html#limit_conn_zone)
+            will be output.
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/NginxStreamLimitConnZone'
+        '404':
+          description: |
+            limit_conn not found (*LimitConnNotFound*),
+            unknown version (*UnknownVersion*)
+          schema:
+            $ref: '#/definitions/NginxError'
+    delete:
+      tags:
+        - Stream Limit Conns
+        - Method DELETE
+      summary: Reset statistics for a stream limit_conn zone
+      description: Resets the connection limiting statistics.
+      operationId: deleteStreamLimitConnZoneStat
+      responses:
+        '204':
+          description: Success
+        '404':
+          description: |
+            limit_conn not found (*LimitConnNotFound*),
+            unknown version (*UnknownVersion*)
+          schema:
+            $ref: '#/definitions/NginxError'
+        '405':
+          description: Method disabled (*MethodDisabled*)
+          schema:
+            $ref: '#/definitions/NginxError'
+  /stream/upstreams/:
+    get:
+      tags:
+        - Stream Upstreams
+        - Method GET
+      summary: Return status of all stream upstream server groups
+      description: Returns status of each stream upstream server group
+        and its servers.
+      operationId: getStreamUpstreams
+      produces:
+        - application/json
+      parameters:
+        - name: fields
+          in: query
+          type: string
+          description: Limits which fields of upstream server groups will be output.
+            If the “<literal>fields</literal>” value is empty,
+            only names of upstreams will be output.
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/NginxStreamUpstreamMap'
+        '404':
+          description: Unknown version (*UnknownVersion*)
+          schema:
+            $ref: '#/definitions/NginxError'
+  '/stream/upstreams/{streamUpstreamName}/':
+    parameters:
+    - name: streamUpstreamName
+      in: path
+      description: The name of a stream upstream server group.
+      required: true
+      type: string
+    get:
+      tags:
+        - Stream Upstreams
+        - Method GET
+      summary: Return status of a stream upstream server group
+      description: Returns status of a particular stream upstream server group
+        and its servers.
+      operationId: getStreamUpstream
+      produces:
+        - application/json
+      parameters:
+        - name: fields
+          in: query
+          type: string
+          description: Limits which fields of the upstream server group will be output.
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/NginxStreamUpstream'
+        '400':
+          description: Upstream is static (*UpstreamStatic*)
+          schema:
+            $ref: '#/definitions/NginxError'
+        '404':
+          description: |
+            Unknown version (*UnknownVersion*),
+            upstream not found (*UpstreamNotFound*)
+          schema:
+            $ref: '#/definitions/NginxError'
+    delete:
+      tags:
+        - Stream Upstreams
+        - Method DELETE
+      summary: Reset statistics of a stream upstream server group
+      description: Resets the statistics for each upstream server
+        in an upstream server group.
+      operationId: deleteStreamUpstreamStat
+      produces:
+        - application/json
+      responses:
+        '204':
+          description: Success
+        '400':
+          description: Upstream is static (*UpstreamStatic*)
+          schema:
+            $ref: '#/definitions/NginxError'
+        '404':
+          description: |
+            Unknown version (*UnknownVersion*),
+            upstream not found (*UpstreamNotFound*)
+          schema:
+            $ref: '#/definitions/NginxError'
+        '405':
+          description: Method disabled (*MethodDisabled*)
+          schema:
+            $ref: '#/definitions/NginxError'
+  '/stream/upstreams/{streamUpstreamName}/servers/':
+    parameters:
+      - name: streamUpstreamName
+        in: path
+        description: The name of an upstream server group.
+        required: true
+        type: string
+    get:
+      tags:
+        - Stream Upstreams
+        - Method GET
+      summary: Return configuration of all servers in a stream upstream server group
+      description: Returns configuration of each server
+        in a particular stream upstream server group.
+      operationId: getStreamUpstreamServers
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/NginxStreamUpstreamConfServerMap'
+        '400':
+          description: Upstream is static (*UpstreamStatic*)
+          schema:
+            $ref: '#/definitions/NginxError'
+        '404':
+          description: |
+            Unknown version (*UnknownVersion*),
+            upstream not found (*UpstreamNotFound*)
+          schema:
+            $ref: '#/definitions/NginxError'
+    post:
+      tags:
+        - Stream Upstreams
+        - Method POST
+      summary: Add a server to a stream upstream server group
+      description: Adds a new server to a stream upstream server group.
+        Server parameters are specified in the JSON format.
+      operationId: postStreamUpstreamServer
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: postStreamUpstreamServer
+          description: Address of a new server and other optional parameters
+            in the JSON format.
+            The “*ID*”, “*backup*”, and “*service*” parameters
+            cannot be changed.
+          required: true
+          schema:
+            $ref: '#/definitions/NginxStreamUpstreamConfServer'
+      responses:
+        '201':
+          description: Created
+          schema:
+            $ref: '#/definitions/NginxStreamUpstreamConfServer'
+        '400':
+          description: |
+            Upstream is static (*UpstreamStatic*),
+            invalid “**parameter**” value (*UpstreamConfFormatError*),
+            missing “*server*” argument (*UpstreamConfFormatError*),
+            unknown parameter “**name**” (*UpstreamConfFormatError*),
+            nested object or list (*UpstreamConfFormatError*),
+            “*error*” while parsing (*UpstreamBadAddress*),
+            no port in server “*host*” (*UpstreamBadAddress*),
+            service upstream “*host*” may not have port (*UpstreamBadAddress*),
+            service upstream “*host*” requires domain name (*UpstreamBadAddress*),
+            invalid “*weight*” (*UpstreamBadWeight*),
+            invalid “*max_conns*” (*UpstreamBadMaxConns*),
+            invalid “*max_fails*” (*UpstreamBadMaxFails*),
+            invalid “*fail_timeout*” (*UpstreamBadFailTimeout*),
+            invalid “*slow_start*” (*UpstreamBadSlowStart*),
+            “*service*” is empty (*UpstreamBadService*),
+            no resolver defined to resolve (*UpstreamConfNoResolver*),
+            upstream “**name**” has no backup (*UpstreamNoBackup*),
+            upstream “**name**” memory exhausted (*UpstreamOutOfMemory*),
+            reading request body failed *BodyReadError*)
+          schema:
+            $ref: '#/definitions/NginxError'
+        '404':
+          description: |
+            Unknown version (*UnknownVersion*),
+            upstream not found (*UpstreamNotFound*)
+          schema:
+            $ref: '#/definitions/NginxError'
+        '405':
+          description: Method disabled (*MethodDisabled*)
+          schema:
+            $ref: '#/definitions/NginxError'
+        '409':
+          description: Entry exists (*EntryExists*)
+          schema:
+            $ref: '#/definitions/NginxError'
+        '415':
+          description: JSON error (*JsonError*)
+          schema:
+            $ref: '#/definitions/NginxError'
+  '/stream/upstreams/{streamUpstreamName}/servers/{streamUpstreamServerId}':
+    parameters:
+      - name: streamUpstreamName
+        in: path
+        description: The name of the upstream server group.
+        required: true
+        type: string
+      - name: streamUpstreamServerId
+        in: path
+        description: The ID of the server.
+        required: true
+        type: string
+    get:
+      tags:
+        - Stream Upstreams
+        - Method GET
+      summary: Return configuration of a server in a stream upstream server group
+      description: Returns configuration of a particular server
+        in the stream upstream server group.
+      operationId: getStreamUpstreamServer
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/NginxStreamUpstreamConfServer'
+        '400':
+          description: |
+            Upstream is static (*UpstreamStatic*),
+            invalid server ID (*UpstreamBadServerId*)
+          schema:
+            $ref: '#/definitions/NginxError'
+        '404':
+          description: |
+            Unknown version (*UnknownVersion*),
+            upstream not found (*UpstreamNotFound*),
+            server with ID “**id**” does not exist (*UpstreamServerNotFound*)
+          schema:
+            $ref: '#/definitions/NginxError'
+    patch:
+      tags:
+        - Stream Upstreams
+        - Method PATCH
+      summary: Modify a server in a stream upstream server group
+      description: Modifies settings of a particular server
+        in a stream upstream server group.
+        Server parameters are specified in the JSON format.
+      operationId: patchStreamUpstreamServer
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: patchStreamUpstreamServer
+          description: Server parameters, specified in the JSON format.
+            The “*ID*”, “*backup*”, and “*service*” parameters
+            cannot be changed.
+          required: true
+          schema:
+            $ref: '#/definitions/NginxStreamUpstreamConfServer'
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/NginxStreamUpstreamConfServer'
+        '400':
+          description: |
+            Upstream is static (*UpstreamStatic*),
+            invalid “**parameter**” value (*UpstreamConfFormatError*),
+            unknown parameter “**name**” (*UpstreamConfFormatError*),
+            nested object or list (*UpstreamConfFormatError*),
+            “*error*” while parsing (*UpstreamBadAddress*),
+            invalid “*server*” argument (*UpstreamBadAddress*),
+            no port in server “*host*” (*UpstreamBadAddress*),
+            invalid server ID (*UpstreamBadServerId*),
+            invalid “*weight*” (*UpstreamBadWeight*),
+            invalid “*max_conns*” (*UpstreamBadMaxConns*),
+            invalid “*max_fails*” (*UpstreamBadMaxFails*),
+            invalid “*fail_timeout*” (*UpstreamBadFailTimeout*),
+            invalid “*slow_start*” (*UpstreamBadSlowStart*),
+            reading request body failed *BodyReadError*),
+            “*service*” is empty (*UpstreamBadService*),
+            server “**ID**” address is immutable (*UpstreamServerImmutable*),
+            server “**ID**” weight is immutable (*UpstreamServerWeightImmutable*),
+            upstream “*name*” memory exhausted (*UpstreamOutOfMemory*)
+          schema:
+            $ref: '#/definitions/NginxError'
+        '404':
+          description: |
+            Server with ID “**id**” does not exist (*UpstreamServerNotFound*),
+            unknown version (*UnknownVersion*),
+            upstream not found (*UpstreamNotFound*)
+          schema:
+            $ref: '#/definitions/NginxError'
+        '405':
+          description: Method disabled (*MethodDisabled*)
+          schema:
+            $ref: '#/definitions/NginxError'
+        '415':
+          description: JSON error (*JsonError*)
+          schema:
+            $ref: '#/definitions/NginxError'
+    delete:
+      tags:
+        - Stream Upstreams
+        - Method DELETE
+      summary: Remove a server from a stream upstream server group
+      description: Removes a server from a stream server group.
+      operationId: deleteStreamUpstreamServer
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/NginxStreamUpstreamConfServerMap'
+        '400':
+          description: |
+            Upstream is static (*UpstreamStatic*),
+            invalid server ID (*UpstreamBadServerId*),
+            server “**id**” not removable (*UpstreamServerImmutable*)
+          schema:
+            $ref: '#/definitions/NginxError'
+        '404':
+          description: |
+            Server with ID “**id**” does not exist (*UpstreamServerNotFound*),
+            unknown version (*UnknownVersion*),
+            upstream not found (*UpstreamNotFound*)
+          schema:
+            $ref: '#/definitions/NginxError'
+        '405':
+          description: Method disabled (*MethodDisabled*)
+          schema:
+            $ref: '#/definitions/NginxError'
+  /stream/keyvals/:
+    get:
+      tags:
+        - Stream Keyvals
+        - Method GET
+      summary: Return key-value pairs from all stream keyval zones
+      description: Returns key-value pairs for each stream keyval shared memory
+        [zone](https://nginx.org/en/docs/stream/ngx_stream_keyval_module.html#keyval_zone).
+      operationId: getStreamKeyvalZones
+      produces:
+        - application/json
+      parameters:
+        - name: fields
+          in: query
+          type: string
+          description: If the “<literal>fields</literal>” value is empty,
+            then only stream keyval zone names will be output.
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/NginxStreamKeyvalZonesMap'
+        '404':
+          description: Unknown version (*UnknownVersion*)
+          schema:
+            $ref: '#/definitions/NginxError'
+  '/stream/keyvals/{streamKeyvalZoneName}':
+    parameters:
+      - name: streamKeyvalZoneName
+        in: path
+        description: The name of a stream keyval shared memory zone.
+        required: true
+        type: string
+    get:
+      tags:
+        - Stream Keyvals
+        - Method GET
+      summary: Return key-value pairs from a stream keyval zone
+      description: Returns key-value pairs stored in a particular stream keyval shared memory
+        [zone](https://nginx.org/en/docs/stream/ngx_stream_keyval_module.html#keyval_zone).
+      operationId: getStreamKeyvalZoneKeysValues
+      produces:
+        - application/json
+      parameters:
+        - name: key
+          in: query
+          type: string
+          description: Get a particular key-value pair from the stream keyval zone.
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/NginxStreamKeyvalZone'
+        '404':
+          description: |
+            Keyval not found (*KeyvalNotFound*),
+            keyval key not found (*KeyvalKeyNotFound*),
+            unknown version (*UnknownVersion*)
+          schema:
+            $ref: '#/definitions/NginxError'
+    post:
+      tags:
+        - Stream Keyvals
+        - Method POST
+      summary: Add a key-value pair to the stream keyval zone
+      description: Adds a new key-value pair to the stream keyval shared memory
+        [zone](https://nginx.org/en/docs/stream/ngx_stream_keyval_module.html#keyval_zone).
+        Several key-value pairs can be entered
+        if the stream keyval shared memory zone is empty.
+      operationId: postStreamKeyvalZoneData
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: Key-value
+          description: A key-value pair is specified in the JSON format.
+            Several key-value pairs can be entered
+            if the stream keyval shared memory zone is empty.
+            Expiration time in milliseconds can be specified for a key-value pair
+            with the *expire* parameter
+            which overrides the [*timeout*](https://nginx.org/en/docs/stream/ngx_stream_keyval_module.html#keyval_timeout)
+            parameter of the
+            <a href="https://nginx.org/en/docs/stream/ngx_stream_keyval_module.html#keyval_zone">keyval_zone</a>
+            directive.
+          required: true
+          schema:
+            $ref: '#/definitions/NginxStreamKeyvalZonePostPatch'
+      responses:
+        '201':
+          description: Created
+        '400':
+          description: |
+            Invalid JSON (*KeyvalFormatError*),
+            invalid key format (*KeyvalFormatError*),
+            key required (*KeyvalFormatError*),
+            keyval timeout is not enabled (*KeyvalFormatError*),
+            only one key can be added (*KeyvalFormatError*),
+            reading request body failed *BodyReadError*)
+          schema:
+            $ref: '#/definitions/NginxError'
+        '404':
+          description: |
+            Keyval not found (*KeyvalNotFound*),
+            unknown version (*UnknownVersion*)
+          schema:
+            $ref: '#/definitions/NginxError'
+        '405':
+          description: Method disabled (*MethodDisabled*)
+          schema:
+            $ref: '#/definitions/NginxError'
+        '409':
+          description: |
+            Entry exists (*EntryExists*),
+            key already exists (*KeyvalKeyExists*)
+          schema:
+            $ref: '#/definitions/NginxError'
+        '413':
+          description: Request Entity Too Large
+          schema:
+            $ref: '#/definitions/NginxError'
+        '415':
+          description: JSON error (*JsonError*)
+          schema:
+            $ref: '#/definitions/NginxError'
+    patch:
+      tags:
+        - Stream Keyvals
+        - Method PATCH
+      summary: Modify a key-value or delete a key
+      description: Changes the value of the selected key in the key-value pair,
+        deletes a key by setting the key value to <literal>null</literal>,
+        changes expiration time of a key-value pair.
+        If
+        <a href="https://nginx.org/en/docs/stream/ngx_stream_zone_sync_module.html#zone_sync">synchronization</a>
+        of keyval zones in a cluster is enabled,
+        deletes a key only on a target cluster node.
+        Expiration time is specified in milliseconds
+        with the *expire* parameter
+        which overrides the [*timeout*](https://nginx.org/en/docs/stream/ngx_stream_keyval_module.html#keyval_timeout)
+        parameter of the
+        <a href="https://nginx.org/en/docs/stream/ngx_stream_keyval_module.html#keyval_zone">keyval_zone</a>
+        directive.
+      operationId: patchStreamKeyvalZoneKeyValue
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: streamKeyvalZoneKeyValue
+          description: A new value for the key is specified in the JSON format.
+          required: true
+          schema:
+            $ref: '#/definitions/NginxStreamKeyvalZonePostPatch'
+      responses:
+        '204':
+          description: Success
+        '400':
+          description: |
+            Invalid JSON (*KeyvalFormatError*),
+            key required (*KeyvalFormatError*),
+            keyval timeout is not enabled (*KeyvalFormatError*),
+            only one key can be updated (*KeyvalFormatError*),
+            reading request body failed *BodyReadError*)
+          schema:
+            $ref: '#/definitions/NginxError'
+        '404':
+          description: |
+            Keyval not found (*KeyvalNotFound*),
+            keyval key not found (*KeyvalKeyNotFound*),
+            unknown version (*UnknownVersion*)
+          schema:
+            $ref: '#/definitions/NginxError'
+        '405':
+          description: Method disabled (*MethodDisabled*)
+          schema:
+            $ref: '#/definitions/NginxError'
+        '413':
+          description: Request Entity Too Large
+          schema:
+            $ref: '#/definitions/NginxError'
+        '415':
+          description: JSON error (*JsonError*)
+          schema:
+            $ref: '#/definitions/NginxError'
+    delete:
+      tags:
+        - Stream Keyvals
+        - Method DELETE
+      summary: Empty the stream keyval zone
+      description: Deletes all key-value pairs from the stream keyval shared memory
+        [zone](https://nginx.org/en/docs/stream/ngx_stream_keyval_module.html#keyval_zone).
+        If
+        <a href="https://nginx.org/en/docs/stream/ngx_stream_zone_sync_module.html#zone_sync">synchronization</a>
+        of keyval zones in a cluster is enabled,
+        empties the keyval zone only on a target cluster node.
+      operationId: deleteStreamKeyvalZoneData
+      responses:
+        '204':
+          description: Success
+        '404':
+          description: |
+            Keyval not found (*KeyvalNotFound*),
+            unknown version (*UnknownVersion*)
+          schema:
+            $ref: '#/definitions/NginxError'
+        '405':
+          description: Method disabled (*MethodDisabled*)
+          schema:
+            $ref: '#/definitions/NginxError'
+  /stream/zone_sync/:
+    get:
+      tags:
+        - Stream Zone Sync
+        - Method GET
+      summary: Return sync status of a node
+      description: Returns synchronization status of a cluster node.
+      operationId: getStreamZoneSync
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/NginxStreamZoneSync'
+        '404':
+          description: Unknown version (*UnknownVersion*)
+          schema:
+            $ref: '#/definitions/NginxError'
+  /resolvers/:
+    get:
+      tags:
+        - Resolvers
+        - Method GET
+      summary: Return status for all resolver zones
+      description: Returns status information for each
+        [resolver zone](https://nginx.org/en/docs/http/ngx_http_core_module.html#resolver_status_zone).
+      operationId: getResolverZones
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/NginxResolverZonesMap'
+        '404':
+          description: Unknown version (*UnknownVersion*)
+          schema:
+            $ref: '#/definitions/NginxError'
+      parameters:
+        - in: query
+          name: fields
+          type: string
+          description: Limits which fields of resolvers statistics will be output.
+  '/resolvers/{resolverZoneName}':
+    parameters:
+      - name: resolverZoneName
+        in: path
+        description: The name of a resolver zone.
+        required: true
+        type: string
+    get:
+      tags:
+        - Resolvers
+        - Method GET
+      summary: Return statistics of a resolver zone
+      description: Returns statistics stored in a particular resolver
+        [zone](https://nginx.org/en/docs/http/ngx_http_core_module.html#resolver_status_zone).
+      operationId: getResolverZone
+      produces:
+        - application/json
+      parameters:
+        - name: fields
+          in: query
+          type: string
+          description: Limits which fields of the resolver zone will be output
+            (requests, responses, or both).
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/NginxResolverZone'
+        '404':
+          description: |
+            Resolver zone not found (*ResolverZoneNotFound*),
+            unknown version (*UnknownVersion*)
+          schema:
+            $ref: '#/definitions/NginxError'
+    delete:
+      tags:
+        - Resolvers
+        - Method DELETE
+      summary: Reset statistics for a resolver zone.
+      description: Resets statistics in a particular resolver zone.
+      operationId: deleteResolverZoneStat
+      responses:
+        '204':
+          description: Success
+        '404':
+          description: |
+            Resolver zone not found (*ResolverZoneNotFound*),
+            unknown version (*UnknownVersion*)
+          schema:
+            $ref: '#/definitions/NginxError'
+        '405':
+          description: Method disabled (*MethodDisabled*)
+          schema:
+            $ref: '#/definitions/NginxError'
+  /ssl:
+    get:
+      tags:
+        - SSL
+        - Method GET
+      summary: Return SSL statistics
+      description: Returns SSL statistics.
+      operationId: getSsl
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/NginxSSLObject'
+        '404':
+          description: Unknown version (*UnknownVersion*)
+          schema:
+            $ref: '#/definitions/NginxError'
+      parameters:
+        - in: query
+          name: fields
+          type: string
+          description: Limits which fields of SSL statistics will be output.
+    delete:
+      tags:
+        - SSL
+        - Method DELETE
+      summary: Reset SSL statistics
+      description: Resets counters of SSL handshakes and session reuses.
+      operationId: deleteSslStat
+      responses:
+        '204':
+          description: Success
+        '404':
+          description: Unknown version (*UnknownVersion*)
+          schema:
+            $ref: '#/definitions/NginxError'
+        '405':
+          description: Method disabled (*MethodDisabled*)
+          schema:
+            $ref: '#/definitions/NginxError'
+  /license:
+    get:
+      tags:
+        - License
+        - Method GET
+      summary: Return license info
+      operationId: getLicense
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/NginxLicenseObject'
+        '404':
+          description: Unknown version (*UnknownVersion*)
+          schema:
+            $ref: '#/definitions/NginxError'
+  /workers/:
+    get:
+      tags:
+        - Workers
+        - Method GET
+      summary:  Return statistics for all worker processes
+      description: Returns statistics for all worker processes such as accepted, dropped, active, idle connections, total and current requests.
+      operationId: getWorkers
+      produces:
+        - application/json
+      parameters:
+        - in: query
+          name: fields
+          type: string
+          description: Limits which fields of worker process statistics will be output.
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/NginxWorkersMap'
+        '404':
+          description: |
+            Worker not found (*WorkerNotFound*),
+            unknown version (*UnknownVersion*)
+          schema:
+            $ref: '#/definitions/NginxError'
+    delete:
+      tags:
+        - Workers
+        - Method DELETE
+      summary: Reset statistics for all worker processes.
+      description: |
+        Resets statistics for all worker processes such as
+        accepted, dropped, active, idle connections, total and current requests.
+      operationId: deleteWorkersStat
+      produces:
+        - application/json
+      responses:
+        '204':
+          description: Success
+        '404':
+          description: |
+            Worker not found (*WorkerNotFound*),
+            unknown version (*UnknownVersion*)
+          schema:
+            $ref: '#/definitions/NginxError'
+        '405':
+          description: Method disabled (*MethodDisabled*)
+          schema:
+            $ref: '#/definitions/NginxError'
+  '/workers/{workerId}':
+    parameters:
+      - name: workerId
+        in: path
+        description: The ID of the worker process.
+        required: true
+        type: string
+    get:
+      tags:
+        - Workers
+        - Method GET
+      summary: Return status of a worker process
+      description: Returns status of a particular worker process.
+      operationId: getWorker
+      produces:
+        - application/json
+      parameters:
+        - in: query
+          name: fields
+          type: string
+          description: Limits which fields of worker process statistics will be output.
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/NginxWorker'
+        '404':
+          description: |
+            Worker not found (*WorkerNotFound*),
+            unknown version (*UnknownVersion*)
+          schema:
+            $ref: '#/definitions/NginxError'
+    delete:
+      tags:
+        - Workers
+        - Method DELETE
+      summary: Reset statistics for a worker process.
+      description: |
+        Resets statistics of accepted, dropped, active, idle connections,
+        as well as total and current requests.
+      operationId: deleteWorkerStat
+      produces:
+        - application/json
+      responses:
+        '204':
+          description: Success
+        '404':
+          description: |
+            Worker not found (*WorkerNotFound*),
+            unknown version (*UnknownVersion*)
+          schema:
+            $ref: '#/definitions/NginxError'
+        '405':
+          description: Method disabled (*MethodDisabled*)
+          schema:
+            $ref: '#/definitions/NginxError'
+###
+###DEFINITIONS
+###
+definitions:
+  ArrayOfStrings:
+    title: Array
+    description: |
+      An array of strings.
+    type: array
+    items:
+      type: string
+  NginxObject:
+    title: nginx
+    description: |
+      General information about nginx:
+    type: object
+    properties:
+      version:
+        type: string
+        description: Version of nginx.
+      build:
+        type: string
+        description: Name of nginx build.
+      address:
+        type: string
+        description: The address of the server that accepted status request.
+      generation:
+        type: integer
+        description: The total number of configuration
+          <a href="https://nginx.org/en/docs/control.html#reconfiguration">reloads</a>.
+      load_timestamp:
+        type: string
+        format: date-time
+        description: Time of the last reload of configuration,
+          in the ISO 8601 format with millisecond resolution.
+      timestamp:
+        type: string
+        format: date-time
+        description: Current time
+          in the ISO 8601 format with millisecond resolution.
+      pid:
+        type: integer
+        description: The ID of the worker process that handled status request.
+      ppid:
+        type: integer
+        description: The ID of the master process that started the
+          <a href="https://nginx.org/en/docs/http/ngx_http_status_module.html#pid">worker process</a>.
+    example:
+      nginx:
+        version: 1.21.6
+        build: nginx-plus-r27
+        address: 206.251.255.64
+        generation: 6
+        load_timestamp: 2022-06-28T11:15:44.467Z
+        timestamp: 2022-06-28T09:26:07.305Z
+        pid: 32212
+        ppid: 32210
+  NginxProcesses:
+    title: Processes
+    type: object
+    properties:
+      respawned:
+        type: integer
+        description: The total number of abnormally terminated
+          and respawned child processes.
+    example:
+      respawned: 0
+  NginxConnections:
+    title: Connections
+    description: |
+      The number of accepted, dropped, active, and idle connections.
+    type: object
+    properties:
+      accepted:
+        type: integer
+        description: The total number of accepted client connections.
+      dropped:
+        type: integer
+        description: The total number of dropped client connections.
+      active:
+        type: integer
+        description: The current number of active client connections.
+      idle:
+        type: integer
+        description: The current number of idle client connections.
+    example:
+      accepted: 4968119
+      dropped: 0
+      active: 5
+      idle: 117
+  NginxSSLObject:
+    title: SSL
+    type: object
+    properties:
+      handshakes:
+        type: integer
+        description: The total number of successful SSL handshakes.
+      handshakes_failed:
+        type: integer
+        description: The total number of failed SSL handshakes.
+      session_reuses:
+        type: integer
+        description: The total number of session reuses during SSL handshake.
+      no_common_protocol:
+        type: integer
+        description: The number of SSL handshakes failed
+          because of no common protocol.
+      no_common_cipher:
+        type: integer
+        description: The number of SSL handshakes failed
+          because of no shared cipher.
+      handshake_timeout:
+        type: integer
+        description: The number of SSL handshakes failed
+          because of a timeout.
+      peer_rejected_cert:
+        type: integer
+        description: The number of failed SSL handshakes
+          when nginx presented the certificate to the client
+          but it was rejected with a corresponding alert message.
+      verify_failures:
+        type: object
+        description: SSL certificate verification errors
+        properties:
+          no_cert:
+            type: integer
+            description: A client did not provide the required certificate.
+          expired_cert:
+            type: integer
+            description: An expired or not yet valid certificate
+              was presented by a client.
+          revoked_cert:
+            type: integer
+            description: A revoked certificate was presented by a client.
+          hostname_mismatch:
+            type: integer
+            description: Server's certificate doesn't match the hostname.
+          other:
+            type: integer
+            description: Other SSL certificate verification errors.
+    example:
+      handshakes: 79572
+      handshakes_failed: 21025
+      session_reuses: 15762
+      no_common_protocol: 4
+      no_common_cipher: 2
+      handshake_timeout: 0
+      peer_rejected_cert: 0
+      verify_failures:
+        no_cert: 0
+        expired_cert: 2
+        revoked_cert: 1
+        hostname_mismatch: 2
+        other: 1
+  NginxSlabZoneMap:
+    title: Slab Zones
+    description: |
+      Status zones that use slab allocator.
+    type: object
+    additionalProperties:
+      $ref: '#/definitions/NginxSlabZone'
+    example:
+      http_cache:
+        pages:
+          used: 2
+          free: 2452
+        slots:
+          8:
+            used: 0
+            free: 0
+            reqs: 0
+            fails: 0
+          16:
+            used: 0
+            free: 0
+            reqs: 0
+            fails: 0
+          32:
+            used: 1
+            free: 126
+            reqs: 1
+            fails: 0
+          64:
+            used: 2
+            free: 62
+            reqs: 2
+            fails: 0
+          128:
+            used: 0
+            free: 0
+            reqs: 0
+            fails: 0
+      dns-backends:
+        pages:
+          used: 1143
+          free: 2928
+        slots:
+          8:
+            used: 0
+            free: 0
+            reqs: 0
+            fails: 0
+          16:
+            used: 0
+            free: 0
+            reqs: 0
+            fails: 0
+          32:
+            used: 0
+            free: 0
+            reqs: 0
+            fails: 0
+          64:
+            used: 1
+            free: 63
+            reqs: 1
+            fails: 0
+          128:
+            used: 0
+            free: 0
+            reqs: 0
+            fails: 0
+          256:
+            used: 18078
+            free: 178
+            reqs: 1635736
+            fails: 0
+  NginxSlabZone:
+    title: Shared memory zone with slab allocator
+    description: |
+      Shared memory zone with slab allocator
+    type: object
+    properties:
+      pages:
+        type: object
+        description: The number of free and used memory pages.
+        properties:
+          used:
+            type: integer
+            description: The current number of used memory pages.
+          free:
+            type: integer
+            description: The current number of free memory pages.
+      slots:
+        type: object
+        title: Memory Slots
+        description: Status data for memory slots (8, 16, 32, 64, 128, etc.)
+        additionalProperties:
+          $ref: '#/definitions/NginxSlabZoneSlot'
+    example:
+      pages:
+        used: 1143
+        free: 2928
+      slots:
+        8:
+          used: 0
+          free: 0
+          reqs: 0
+          fails: 0
+        16:
+          used: 0
+          free: 0
+          reqs: 0
+          fails: 0
+        32:
+          used: 0
+          free: 0
+          reqs: 0
+          fails: 0
+        64:
+          used: 1
+          free: 63
+          reqs: 1
+          fails: 0
+        128:
+          used: 0
+          free: 0
+          reqs: 0
+          fails: 0
+        256:
+          used: 18078
+          free: 178
+          reqs: 1635736
+          fails: 0
+  NginxSlabZoneSlot:
+    title: Memory Slot
+    type: object
+    properties:
+      used:
+        type: integer
+        description: The current number of used memory slots.
+      free:
+        type: integer
+        description: The current number of free memory slots.
+      reqs:
+        type: integer
+        description: The total number of attempts
+          to allocate memory of specified size.
+      fails:
+        type: integer
+        description: The number of unsuccessful attempts
+          to allocate memory of specified size.
+  NginxHTTPRequests:
+    title: HTTP Requests
+    type: object
+    properties:
+      total:
+        type: integer
+        description: The total number of client requests.
+      current:
+        type: integer
+        description: The current number of client requests.
+    example:
+      total: 10624511
+      current: 4
+  NginxHTTPServerZonesMap:
+    title: HTTP Server Zones
+    description: |
+      Status data for all HTTP
+      <a href="https://nginx.org/en/docs/http/ngx_http_api_module.html#status_zone">status zones</a>.
+    type: object
+    additionalProperties:
+      $ref: '#/definitions/NginxHTTPServerZone'
+    example:
+      site1:
+        processing: 2
+        requests: 736395
+        responses:
+          1xx: 0
+          2xx: 727290
+          3xx: 4614
+          4xx: 934
+          5xx: 1535
+          codes:
+            200: 727270
+            301: 4614
+            404: 930
+            503: 1535
+          total: 734373
+        discarded: 2020
+        received: 180157219
+        sent: 20183175459
+        ssl:
+          handshakes: 65432
+          handshakes_failed: 421
+          session_reuses: 4645
+          no_common_protocol: 4
+          no_common_cipher: 2
+          handshake_timeout: 0
+          peer_rejected_cert: 0
+          verify_failures:
+            no_cert: 0
+            expired_cert: 2
+            revoked_cert: 1
+            hostname_mismatch: 2
+            other: 1
+      site2:
+        processing: 1
+        requests: 185307
+        responses:
+          1xx: 0
+          2xx: 112674
+          3xx: 45383
+          4xx: 2504
+          5xx: 4419
+          codes:
+            200: 112674
+            301: 45383
+            404: 2504
+            503: 4419
+          total: 164980
+        discarded: 20326
+        received: 51575327
+        sent: 2983241510
+        ssl:
+          handshakes: 104303
+          handshakes_failed: 1421
+          session_reuses: 54645
+          no_common_protocol: 4
+          no_common_cipher: 2
+          handshake_timeout: 0
+          peer_rejected_cert: 0
+          verify_failures:
+            no_cert: 0
+            expired_cert: 2
+            revoked_cert: 1
+            hostname_mismatch: 2
+            other: 1
+  NginxHTTPServerZone:
+    title: HTTP Server Zone
+    type: object
+    properties:
+      processing:
+        type: integer
+        description: The number of client requests
+          that are currently being processed.
+      requests:
+        type: integer
+        description: The total number of client requests received from clients.
+      responses:
+        description: The total number of responses sent to clients, the
+          number of responses with status codes
+          “<code>1xx</code>”, “<code>2xx</code>”, “<code>3xx</code>”,
+          “<code>4xx</code>”, and “<code>5xx</code>”, and
+          the number of responses per each status code.
+        type: object
+        readOnly: true
+        properties:
+          1xx:
+            type: integer
+            description: The number of responses with “<code>1xx</code>” status codes.
+            readOnly: true
+          2xx:
+            type: integer
+            description: The number of responses with “<code>2xx</code>” status codes.
+            readOnly: true
+          3xx:
+           type: integer
+           description: The number of responses with “<code>3xx</code>” status codes.
+           readOnly: true
+          4xx:
+            type: integer
+            description: The number of responses with “<code>4xx</code>” status codes.
+            readOnly: true
+          5xx:
+            type: integer
+            description: The number of responses with “<code>5xx</code>” status codes.
+            readOnly: true
+          codes:
+            type: object
+            description: The number of responses per each status code.
+            readOnly: true
+            properties:
+              codeNumber:
+                type: integer
+                description: The number of responses with this particular status code.
+                readOnly: true
+          total:
+            type: integer
+            description: The total number of responses sent to clients.
+            readOnly: true
+      discarded:
+        type: integer
+        description: The total number of
+          requests completed without sending a response.
+      received:
+        type: integer
+        description: The total number of bytes received from clients.
+      sent:
+        type: integer
+        description: The total number of bytes sent to clients.
+      ssl:
+        type: object
+        readOnly: true
+        properties:
+          handshakes:
+            type: integer
+            description: The total number of successful SSL handshakes.
+            readOnly: true
+          handshakes_failed:
+            type: integer
+            description: The total number of failed SSL handshakes.
+            readOnly: true
+          session_reuses:
+            type: integer
+            description: The total number of session reuses during SSL handshake.
+            readOnly: true
+          no_common_protocol:
+            type: integer
+            description: The number of SSL handshakes failed
+              because of no common protocol.
+          no_common_cipher:
+            type: integer
+            description: The number of SSL handshakes failed
+              because of no shared cipher.
+          handshake_timeout:
+            type: integer
+            description: The number of SSL handshakes failed
+              because of a timeout.
+          peer_rejected_cert:
+            type: integer
+            description: The number of failed SSL handshakes
+              when nginx presented the certificate to the client
+              but it was rejected with a corresponding alert message.
+          verify_failures:
+            type: object
+            description: SSL certificate verification errors
+            properties:
+              no_cert:
+                type: integer
+                description: A client did not provide the required certificate.
+              expired_cert:
+                type: integer
+                description: An expired or not yet valid certificate
+                  was presented by a client.
+              revoked_cert:
+                type: integer
+                description: A revoked certificate was presented by a client.
+              other:
+                type: integer
+                description: Other SSL certificate verification errors.
+    example:
+      processing: 1
+      requests: 706690
+      responses:
+        1xx: 0
+        2xx: 699482
+        3xx: 4522
+        4xx: 907
+        5xx: 266
+        codes:
+          200: 699482
+          301: 4522
+          404: 907
+          503: 266
+        total: 705177
+      discarded: 1513
+      received: 172711587
+      sent: 19415530115
+      ssl:
+        handshakes: 104303
+        handshakes_failed: 1421
+        session_reuses: 54645
+        no_common_protocol: 4
+        no_common_cipher: 2
+        handshake_timeout: 0
+        peer_rejected_cert: 0
+        verify_failures:
+          no_cert: 0
+          expired_cert: 2
+          revoked_cert: 1
+          other: 1
+  NginxHTTPLocationZonesMap:
+    title: HTTP Location Zones
+    description: |
+      Status data for all HTTP
+      <a href="https://nginx.org/en/docs/http/ngx_http_api_module.html#status_zone">location zones</a>.
+    type: object
+    additionalProperties:
+      $ref: '#/definitions/NginxHTTPLocationZone'
+    example:
+      site1:
+        requests: 736395
+        responses:
+          1xx: 0
+          2xx: 727290
+          3xx: 4614
+          4xx: 934
+          5xx: 1535
+          codes:
+            200: 727290
+            301: 4614
+            404: 934
+            503: 1535
+          total: 734373
+        discarded: 2020
+        received: 180157219
+        sent: 20183175459
+      site2:
+        requests: 185307
+        responses:
+          1xx: 0
+          2xx: 112674
+          3xx: 45383
+          4xx: 2504
+          5xx: 4419
+          codes:
+            200: 112674
+            301: 45383
+            404: 2504
+            503: 4419
+          total: 164980
+        discarded: 20326
+        received: 51575327
+        sent: 2983241510
+  NginxHTTPLocationZone:
+    title: HTTP Location Zone
+    type: object
+    properties:
+      requests:
+        type: integer
+        description: The total number of client requests received from clients.
+      responses:
+        description: The total number of responses sent to clients, the
+          number of responses with status codes
+          “<code>1xx</code>”, “<code>2xx</code>”, “<code>3xx</code>”,
+          “<code>4xx</code>”, and “<code>5xx</code>”, and
+          the number of responses per each status code.
+        type: object
+        readOnly: true
+        properties:
+          1xx:
+            type: integer
+            description: The number of responses with “<code>1xx</code>” status codes.
+            readOnly: true
+          2xx:
+            type: integer
+            description: The number of responses with “<code>2xx</code>” status codes.
+            readOnly: true
+          3xx:
+           type: integer
+           description: The number of responses with “<code>3xx</code>” status codes.
+           readOnly: true
+          4xx:
+            type: integer
+            description: The number of responses with “<code>4xx</code>” status codes.
+            readOnly: true
+          5xx:
+            type: integer
+            description: The number of responses with “<code>5xx</code>” status codes.
+            readOnly: true
+          codes:
+            type: object
+            description: The number of responses per each status code.
+            readOnly: true
+            properties:
+              codeNumber:
+                type: integer
+                description: The number of responses with this particular status code.
+                readOnly: true
+          total:
+            type: integer
+            description: The total number of responses sent to clients.
+            readOnly: true
+      discarded:
+        type: integer
+        description: The total number of
+          requests completed without sending a response.
+      received:
+        type: integer
+        description: The total number of bytes received from clients.
+      sent:
+        type: integer
+        description: The total number of bytes sent to clients.
+    example:
+      requests: 706690
+      responses: 
+        1xx: 0
+        2xx: 699482
+        3xx: 4522
+        4xx: 907
+        5xx: 266
+        codes:
+          200: 112674
+          301: 4522
+          404: 2504
+          503: 266
+        total: 705177
+      discarded: 1513
+      received: 172711587
+      sent: 19415530115
+  NginxHTTPCachesMap:
+    title: HTTP Caches
+    description: |
+      Status information of all HTTP caches configured by 
+      <a href="https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_cache_path">proxy_cache_path</a>
+      and other “<code>*_cache_path</code>” directives.
+    type: object
+    additionalProperties:
+      $ref: '#/definitions/NginxHTTPCache'
+    example:
+      http-cache:
+        size: 530915328
+        max_size: 536870912
+        cold: false
+        hit:
+          responses: 254032
+          bytes: 6685627875
+        stale:
+          responses: 0
+          bytes: 0
+        updating:
+          responses: 0
+          bytes: 0
+        revalidated:
+          responses: 0
+          bytes: 0
+        miss:
+          responses: 1619201
+          bytes: 53841943822
+        expired:
+          responses: 45859
+          bytes: 1656847080
+          responses_written: 44992
+          bytes_written: 1641825173
+        bypass:
+          responses: 200187
+          bytes: 5510647548
+          responses_written: 200173
+          bytes_written: 44992
+      frontend-cache:
+        size: 530915328
+        max_size: 536870912
+        cold: false
+        hit:
+          responses: 254032
+          bytes: 6685627875
+        stale:
+          responses: 0
+          bytes: 0
+        updating:
+          responses: 0
+          bytes: 0
+        revalidated:
+          responses: 0
+          bytes: 0
+        miss:
+          responses: 1619201
+          bytes: 53841943822
+        expired:
+          responses: 45859
+          bytes: 1656847080
+          responses_written: 44992
+          bytes_written: 1641825173
+        bypass:
+          responses: 200187
+          bytes: 5510647548
+          responses_written: 200173
+          bytes_written: 44992
+  NginxHTTPCache:
+    title: HTTP Cache
+    type: object
+    properties:
+      size:
+        type: integer
+        description: The current size of the cache.
+      max_size:
+        type: integer
+        description: The limit on the maximum size of the cache
+          specified in the configuration.
+      cold:
+        type: boolean
+        description: A boolean value indicating whether the “cache loader” process
+          is still loading data from disk into the cache.
+      hit:
+        type: object
+        properties:
+          responses:
+            type: integer
+            description: The total number of
+              <a href="https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_cache_valid">valid</a>
+               responses read from the cache.
+          bytes:
+            type: integer
+            description: The total number of bytes read from the cache.
+      stale:
+        type: object
+        properties:
+          responses:
+            type: integer
+            description: The total number of expired responses read from the cache (see
+              <a href="https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_cache_use_stale">proxy_cache_use_stale</a>
+              and other “<code>*_cache_use_stale</code>” directives).
+          bytes:
+            type: integer
+            description: The total number of bytes read from the cache.
+      updating:
+        type: object
+        properties:
+          responses:
+            type: integer
+            description: The total number of expired responses read from the cache
+              while responses were being updated (see
+              <a href="https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_cache_use_stale_updating">proxy_cache_use_stale</a>
+              and other “<code>*_cache_use_stale</code>” directives).
+          bytes:
+            type: integer
+            description: The total number of bytes read from the cache.
+      revalidated:
+        type: object
+        properties:
+          responses:
+            type: integer
+            description: The total number of expired and revalidated responses
+              read from the cache (see
+              <a href="https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_cache_revalidate">proxy_cache_revalidate</a>
+              and other “<code>*_cache_revalidate</code>” directives.
+          bytes:
+            type: integer
+            description: The total number of bytes read from the cache.
+      miss:
+        type: object
+        properties:
+          responses:
+            type: integer
+            description: The total number of responses not found in the cache.
+          bytes:
+            type: integer
+            description: The total number of bytes read from the proxied server.
+          responses_written:
+            type: integer
+            description: The total number of responses written to the cache.
+          bytes_written:
+            type: integer
+            description: The total number of bytes written to the cache.
+      expired:
+        type: object
+        properties:
+          responses:
+            type: integer
+            description: The total number of expired responses not taken from the cache.
+          bytes:
+            type: integer
+            description: The total number of bytes read from the proxied server.
+          responses_written:
+            type: integer
+            description: The total number of responses written to the cache.
+          bytes_written:
+            type: integer
+            description: The total number of bytes written to the cache.
+      bypass:
+        type: object
+        properties:
+          responses:
+            type: integer
+            description: The total number of responses not looked up in the cache due to the
+              <a href="https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_cache_bypass">proxy_cache_bypass</a>
+              and other “<code>*_cache_bypass</code>” directives.
+          bytes:
+            type: integer
+            description: The total number of bytes read from the proxied server.
+          responses_written:
+            type: integer
+            description: The total number of responses written to the cache.
+          bytes_written:
+            type: integer
+            description: The total number of bytes written to the cache.
+    example:
+      size: 530915328
+      max_size: 536870912
+      cold: false
+      hit:
+        responses: 254032
+        bytes: 6685627875
+      stale:
+        responses: 0
+        bytes: 0
+      updating:
+        responses: 0
+        bytes: 0
+      revalidated:
+        responses: 0
+        bytes: 0
+      miss:
+        responses: 1619201
+        bytes: 53841943822
+      expired:
+        responses: 45859
+        bytes: 1656847080
+        responses_written: 44992
+        bytes_written: 1641825173
+      bypass:
+        responses: 200187
+        bytes: 5510647548
+        responses_written: 200173
+        bytes_written: 44992
+  NginxHTTPLimitConnZonesMap:
+    title: HTTP limit_conns
+    description: |
+      Status data for all HTTP
+      <a href="https://nginx.org/en/docs/http/ngx_http_limit_conn_module.html#limit_conn_zone">limit_conn zones</a>.
+    type: object
+    additionalProperties:
+      $ref: '#/definitions/NginxHTTPLimitConnZone'
+  NginxHTTPLimitConnZone:
+    title: HTTP Connections Limiting
+    type: object
+    properties:
+      passed:
+        type: integer
+        description: The total number of connections that were neither limited
+          nor accounted as limited.
+      rejected:
+        type: integer
+        description: The total number of connections that were rejected.
+      rejected_dry_run:
+        type: integer
+        description: The total number of connections accounted as rejected in the
+          <a href="https://nginx.org/en/docs/http/ngx_http_limit_conn_module.html#limit_conn_dry_run">dry run</a>
+          mode.
+    example:
+      passed: 15
+      rejected: 0
+      rejected_dry_run: 2
+  NginxHTTPLimitReqZonesMap:
+    title: HTTP limit_reqs
+    description: |
+      Status data for all HTTP
+      <a href="https://nginx.org/en/docs/http/ngx_http_limit_req_module.html#limit_req_zone">limit_req zones</a>.
+    type: object
+    additionalProperties:
+      $ref: '#/definitions/NginxHTTPLimitReqZone'
+  NginxHTTPLimitReqZone:
+    title: HTTP Requests Rate Limiting
+    type: object
+    properties:
+      passed:
+        type: integer
+        description: The total number of requests that were neither limited
+          nor accounted as limited.
+      delayed:
+        type: integer
+        description: The total number of requests that were delayed.
+      rejected:
+        type: integer
+        description: The total number of requests that were rejected.
+      delayed_dry_run:
+        type: integer
+        description: The total number of requests accounted as delayed in the
+          <a href="https://nginx.org/en/docs/http/ngx_http_limit_req_module.html#limit_req_dry_run">dry run</a>
+          mode.
+      rejected_dry_run:
+        type: integer
+        description: The total number of requests accounted as rejected in the
+          <a href="https://nginx.org/en/docs/http/ngx_http_limit_req_module.html#limit_req_dry_run">dry run</a>
+          mode.
+    example:
+      passed: 15
+      delayed: 4
+      rejected: 0
+      delayed_dry_run: 1
+      rejected_dry_run: 2
+  NginxHTTPUpstreamMap:
+    title: HTTP Upstreams
+    description: |
+      Status information of all HTTP
+      <a href="https://nginx.org/en/docs/http/ngx_http_upstream_module.html#zone">dynamically configurable</a>
+      <a href="https://nginx.org/en/docs/http/ngx_http_upstream_module.html#upstream">groups</a>.
+    type: object
+    additionalProperties:
+      $ref: '#/definitions/NginxHTTPUpstream'
+    example:
+      trac-backend:
+        peers:
+          - id: 0
+            server: 10.0.0.1:8088
+            name: 10.0.0.1:8088
+            backup: false
+            weight: 5
+            state: up
+            active: 0
+            ssl:
+              handshakes: 620311
+              handshakes_failed: 3432
+              session_reuses: 36442
+              no_common_protocol: 4
+              handshake_timeout: 0
+              peer_rejected_cert: 0
+              verify_failures:
+                expired_cert: 2
+                revoked_cert: 1
+                hostname_mismatch: 2
+                other: 1
+            requests: 667231
+            header_time: 20
+            response_time: 36
+            responses:
+              1xx: 0
+              2xx: 666310
+              3xx: 0
+              4xx: 915
+              5xx: 6
+              codes:
+                200: 666310
+                404: 915
+                503: 6
+              total: 667231
+            sent: 251946292
+            received: 19222475454
+            fails: 0
+            unavail: 0
+            health_checks:
+              checks: 26214
+              fails: 0
+              unhealthy: 0
+              last_passed: true
+            downtime: 0
+            downstart: 2022-06-28T11:09:21.602Z
+            selected: 2022-06-28T15:01:25Z
+          - id: 1
+            server: 10.0.0.1:8089
+            name: 10.0.0.1:8089
+            backup: true
+            weight: 1
+            state: unhealthy
+            active: 0
+            requests: 0
+            responses:
+              1xx: 0
+              2xx: 0
+              3xx: 0
+              4xx: 0
+              5xx: 0
+              codes: {}
+              total: 0
+            sent: 0
+            received: 0
+            fails: 0
+            unavail: 0
+            health_checks:
+              checks: 26284
+              fails: 26284
+              unhealthy: 1
+              last_passed: false
+            downtime: 262925617
+            downstart: 2022-06-28T11:09:21.602Z
+            selected: 2022-06-28T15:01:25Z
+        keepalive: 0
+        zombies: 0
+        zone: trac-backend
+      hg-backend:
+        peers:
+          - id: 0
+            server: 10.0.0.1:8088
+            name: 10.0.0.1:8088
+            backup: false
+            weight: 5
+            state: up
+            active: 0
+            ssl:
+              handshakes: 620311
+              handshakes_failed: 3432
+              session_reuses: 36442
+              no_common_protocol: 4
+              handshake_timeout: 0
+              peer_rejected_cert: 0
+              verify_failures:
+                expired_cert: 2
+                revoked_cert: 1
+                hostname_mismatch: 2
+                other: 1
+            requests: 667231
+            header_time: 20
+            response_time: 36
+            responses:
+              1xx: 0
+              2xx: 666310
+              3xx: 0
+              4xx: 915
+              5xx: 6
+              codes:
+                200: 666310
+                404: 915
+                503: 6
+              total: 667231
+            sent: 251946292
+            received: 19222475454
+            fails: 0
+            unavail: 0
+            health_checks:
+              checks: 26214
+              fails: 0
+              unhealthy: 0
+              last_passed: true
+            downtime: 0
+            downstart: 2022-06-28T11:09:21.602Z
+            selected: 2022-06-28T15:01:25Z
+          - id: 1
+            server: 10.0.0.1:8089
+            name: 10.0.0.1:8089
+            backup: true
+            weight: 1
+            state: unhealthy
+            active: 0
+            requests: 0
+            responses:
+              1xx: 0
+              2xx: 0
+              3xx: 0
+              4xx: 0
+              5xx: 0
+              codes: {}
+              total: 0
+            sent: 0
+            received: 0
+            fails: 0
+            unavail: 0
+            health_checks:
+              checks: 26284
+              fails: 26284
+              unhealthy: 1
+              last_passed: false
+            downtime: 262925617
+            downstart: 2022-06-28T11:09:21.602Z
+            selected: 2022-06-28T15:01:25Z
+        keepalive: 0
+        zombies: 0
+        zone: hg-backend
+  NginxHTTPUpstream:
+    title: HTTP Upstream
+    type: object
+    properties:
+      peers:
+        $ref: '#/definitions/NginxHTTPUpstreamPeerMap'
+      keepalive:
+        type: integer
+        description: The current number of idle
+          <a href="https://nginx.org/en/docs/http/ngx_http_upstream_module.html#keepalive">keepalive</a>
+          connections.
+      zombies:
+        type: integer
+        description: The current number of servers removed
+          from the group but still processing active client requests.
+      zone:
+        type: string
+        description: The name of the shared memory
+          <a href="https://nginx.org/en/docs/http/ngx_http_upstream_module.html#zone">zone</a>
+          that keeps the group’s configuration and run-time state.
+      queue:
+        type: object
+        description: >
+          For the requests
+          <a href="https://nginx.org/en/docs/http/ngx_http_upstream_module.html#queue">queue</a>,
+          the following data are provided:
+        properties:
+          size:
+            type: integer
+            description: The current number of requests in the queue.
+          max_size:
+            type: integer
+            description: The maximum number of requests that can be in the queue
+              at the same time.
+          overflows:
+            type: integer
+            description: The total number of requests rejected due to the queue overflow.
+    example:
+      upstream_backend:
+        peers:
+          - id: 0
+            server: 10.0.0.1:8088
+            name: 10.0.0.1:8088
+            backup: false
+            weight: 5
+            state: up
+            active: 0
+            ssl:
+              handshakes: 620311
+              handshakes_failed: 3432
+              session_reuses: 36442
+              no_common_protocol: 4
+              handshake_timeout: 0
+              peer_rejected_cert: 0
+              verify_failures:
+                expired_cert: 2
+                revoked_cert: 1
+                hostname_mismatch: 2
+                other: 1
+            max_conns: 20
+            requests: 667231
+            header_time: 20
+            response_time: 36
+            responses:
+              1xx: 0
+              2xx: 666310
+              3xx: 0
+              4xx: 915
+              5xx: 6
+              codes:
+                200: 666310
+                404: 915
+                503: 6
+              total: 667231
+            sent: 251946292
+            received: 19222475454
+            fails: 0
+            unavail: 0
+            health_checks:
+              checks: 26214
+              fails: 0
+              unhealthy: 0
+              last_passed: true
+            downtime: 0
+            downstart: 2022-06-28T11:09:21.602Z
+            selected: 2022-06-28T15:01:25Z
+          - id: 1
+            server: 10.0.0.1:8089
+            name: 10.0.0.1:8089
+            backup: true
+            weight: 1
+            state: unhealthy
+            active: 0
+            max_conns: 20
+            requests: 0
+            responses:
+              1xx: 0
+              2xx: 0
+              3xx: 0
+              4xx: 0
+              5xx: 0
+              codes: {}
+              total: 0
+            sent: 0
+            received: 0
+            fails: 0
+            unavail: 0
+            health_checks:
+              checks: 26284
+              fails: 26284
+              unhealthy: 1
+              last_passed: false
+            downtime: 262925617
+            downstart: 2022-06-28T11:09:21.602Z
+            selected: 2022-06-28T15:01:25Z
+        keepalive: 0
+        zombies: 0
+        zone: upstream_backend
+  NginxHTTPUpstreamPeerMap:
+    title: HTTP Upstream Servers
+    description: |
+      An array of HTTP
+      <a href="https://nginx.org/en/docs/http/ngx_http_upstream_module.html#upstream">upstream servers</a>.
+    type: array
+    items:
+      $ref: '#/definitions/NginxHTTPUpstreamPeer'
+  NginxHTTPUpstreamPeer:
+    title: HTTP Upstream Server
+    type: object
+    properties:
+      id:
+        type: integer
+        description: The ID of the server.
+        readOnly: true
+      server:
+        type: string
+        description: An  <a href="https://nginx.org/en/docs/http/ngx_http_upstream_module.html#server">address</a>
+          of the server.
+      service:
+        type: string
+        description: The
+          <a href="https://nginx.org/en/docs/http/ngx_http_upstream_module.html#service">service</a>
+          parameter value of the
+          <a href="https://nginx.org/en/docs/http/ngx_http_upstream_module.html#server">server</a>
+          directive.
+      name:
+        type: string
+        description: The name of the server specified in the
+          <a href="https://nginx.org/en/docs/http/ngx_http_upstream_module.html#server">server</a>
+          directive.
+        readOnly: true
+      backup:
+        type: boolean
+        description: A boolean value indicating whether the server is a
+          <a href="https://nginx.org/en/docs/http/ngx_http_upstream_module.html#backup">backup</a>
+          server.
+      weight:
+        type: integer
+        description: <a href="https://nginx.org/en/docs/http/ngx_http_upstream_module.html#weight">Weight</a>
+          of the server.
+      state:
+        type: string
+        enum:
+          - up
+          - draining
+          - down
+          - unavail
+          - checking
+          - unhealthy
+        description: Current state, which may be one of
+          “<code>up</code>”, “<code>draining</code>”, “<code>down</code>”,
+          “<code>unavail</code>”, “<code>checking</code>”,
+          and “<code>unhealthy</code>”.
+      active:
+        type: integer
+        description: The current number of active connections.
+        readOnly: true
+      ssl:
+        type: object
+        readOnly: true
+        properties:
+          handshakes:
+            type: integer
+            description: The total number of successful SSL handshakes.
+            readOnly: true
+          handshakes_failed:
+            type: integer
+            description: The total number of failed SSL handshakes.
+            readOnly: true
+          session_reuses:
+            type: integer
+            description: The total number of session reuses during SSL handshake.
+            readOnly: true
+          no_common_protocol:
+            type: integer
+            description: The number of SSL handshakes failed
+              because of no common protocol.
+          handshake_timeout:
+            type: integer
+            description: The number of SSL handshakes failed
+              because of a timeout.
+          peer_rejected_cert:
+            type: integer
+            description: The number of failed SSL handshakes
+              when nginx presented the certificate to the upstream server
+              but it was rejected with a corresponding alert message.
+          verify_failures:
+            type: object
+            description: SSL certificate verification errors
+            properties:
+              expired_cert:
+                type: integer
+                description: An expired or not yet valid certificate
+                  was presented by an upstream server.
+              revoked_cert:
+                type: integer
+                description: A revoked certificate was presented by an upstream server.
+              hostname_mismatch:
+                type: integer
+                description: Server's certificate doesn't match the hostname.
+              other:
+                type: integer
+                description: Other SSL certificate verification errors.
+      max_conns:
+        type: integer
+        description: The
+          <a href="https://nginx.org/en/docs/http/ngx_http_upstream_module.html#max_conns">max_conns</a>
+          limit for the server.
+      requests:
+        type: integer
+        description: The total number of client requests forwarded to this server.
+        readOnly: true
+      responses:
+        type: object
+        readOnly: true
+        properties:
+          1xx:
+            type: integer
+            description: The number of responses with “<code>1xx</code>” status codes.
+            readOnly: true
+          2xx:
+            type: integer
+            description: The number of responses with “<code>2xx</code>” status codes.
+            readOnly: true
+          3xx:
+           type: integer
+           description: The number of responses with “<code>3xx</code>” status codes.
+           readOnly: true
+          4xx:
+            type: integer
+            description: The number of responses with “<code>4xx</code>” status codes.
+            readOnly: true
+          5xx:
+            type: integer
+            description: The number of responses with “<code>5xx</code>” status codes.
+            readOnly: true
+          codes:
+            type: object
+            description: The number of responses per each status code.
+            readOnly: true
+            properties:
+              codeNumber:
+                type: integer
+                description: The number of responses with this particular status code.
+                readOnly: true
+          total:
+            type: integer
+            description: The total number of responses obtained from this server.
+            readOnly: true
+      sent:
+        type: integer
+        description: The total number of bytes sent to this server.
+        readOnly: true
+      received:
+        type: integer
+        description: The total number of bytes received from this server.
+        readOnly: true
+      fails:
+        type: integer
+        description: The total number of unsuccessful attempts
+          to communicate with the server.
+        readOnly: true
+      unavail:
+        type: integer
+        description: How many times the server became unavailable for client requests
+          (state “<code>unavail</code>”) due to the number of unsuccessful
+          attempts reaching the
+          <a href="https://nginx.org/en/docs/http/ngx_http_upstream_module.html#max_fails">max_fails</a>
+          threshold.
+        readOnly: true
+      health_checks:
+        type: object
+        readOnly: true
+        properties:
+          checks:
+            type: integer
+            description: The total number of
+              <a href="https://nginx.org/en/docs/http/ngx_http_upstream_hc_module.html#health_check">health check</a>
+              requests made.
+          fails:
+            type: integer
+            description: The number of failed health checks.
+          unhealthy:
+            type: integer
+            description: How many times the server became unhealthy
+              (state “<code>unhealthy</code>”).
+          last_passed:
+            type: boolean
+            description: Boolean indicating if the last health check request was successful
+              and passed
+              <a href="https://nginx.org/en/docs/http/ngx_http_upstream_hc_module.html#match">tests</a>.
+      downtime:
+        type: integer
+        readOnly: true
+        description: Total time the server was in the “<code>unavail</code>”,
+          “<code>checking</code>”, and “<code>unhealthy</code>” states.
+      downstart:
+        type: string
+        format: date-time
+        readOnly: true
+        description: The time when the server became
+          “<code>unavail</code>”, “<code>checking</code>”,
+          or “<code>unhealthy</code>”,
+          in the ISO 8601 format with millisecond resolution.
+      selected:
+        type: string
+        format: date-time
+        readOnly: true
+        description: The time when the server was last selected to process a request,
+          in the ISO 8601 format with millisecond resolution.
+      header_time:
+        type: integer
+        readOnly: true
+        description: The average time to get the
+          <a href="https://nginx.org/en/docs/http/ngx_http_upstream_module.html#var_upstream_header_time">response header</a>
+          from the server.
+      response_time:
+        type: integer
+        readOnly: true
+        description: The average time to get the
+          <a href="https://nginx.org/en/docs/http/ngx_http_upstream_module.html#var_upstream_response_time">full response</a>
+          from the server.
+  NginxHTTPUpstreamConfServerMap:
+    title: HTTP Upstream Servers
+    description: An array of HTTP upstream servers for dynamic configuration.
+    type: array
+    items:
+      $ref: '#/definitions/NginxHTTPUpstreamConfServer'
+    example:
+      - id: 0
+        server: 10.0.0.1:8088
+        weight: 1
+        max_conns: 0
+        max_fails: 0
+        fail_timeout: 10s
+        slow_start: 10s
+        route: ''
+        backup: false
+        down: false
+      - id: 1
+        server: 10.0.0.1:8089
+        weight: 4
+        max_conns: 0
+        max_fails: 0
+        fail_timeout: 10s
+        slow_start: 10s
+        route: ''
+        backup: true
+        down: true
+  NginxHTTPUpstreamConfServer:
+    title: HTTP Upstream Server
+    description: |
+      Dynamically configurable parameters of an HTTP upstream
+      <a href="https://nginx.org/en/docs/http/ngx_http_upstream_module.html#server">server</a>:
+    type: object
+    properties:
+      id:
+        type: integer
+        description: The ID of the HTTP upstream server.
+          The ID is assigned automatically and cannot be changed.
+        readOnly: true
+      server:
+        type: string
+        description: Same as the
+          <a href="https://nginx.org/en/docs/http/ngx_http_upstream_module.html#server">address</a>
+          parameter of the HTTP upstream server.
+          When adding a server, it is possible to specify it as a domain name.
+          In this case, changes of the IP addresses
+          that correspond to a domain name will be monitored and automatically
+          applied to the upstream configuration
+          without the need of restarting nginx.
+          This requires the
+          <a href="https://nginx.org/en/docs/http/ngx_http_core_module.html#resolver">resolver</a>
+          directive in the “<code>http</code>” block.
+          See also the
+          <a href="https://nginx.org/en/docs/http/ngx_http_upstream_module.html#resolve">resolve</a>
+          parameter of the HTTP upstream server.
+      service:
+        type: string
+        description: Same as the
+          <a href="https://nginx.org/en/docs/http/ngx_http_upstream_module.html#service">service</a>
+          parameter of the HTTP upstream server.
+          This parameter cannot be changed.
+        readOnly: true
+      weight:
+        type: integer
+        description: Same as the
+          <a href="https://nginx.org/en/docs/http/ngx_http_upstream_module.html#weight">weight</a>
+          parameter of the HTTP upstream server.
+      max_conns:
+        type: integer
+        description: Same as the
+          <a href="https://nginx.org/en/docs/http/ngx_http_upstream_module.html#max_conns">max_conns</a>
+          parameter of the HTTP upstream server.
+      max_fails:
+        type: integer
+        description: Same as the
+          <a href="https://nginx.org/en/docs/http/ngx_http_upstream_module.html#max_fails">max_fails</a>
+          parameter of the HTTP upstream server.
+      fail_timeout:
+        type: string
+        description: Same as the
+          <a href="https://nginx.org/en/docs/http/ngx_http_upstream_module.html#fail_timeout">fail_timeout</a>
+          parameter of the HTTP upstream server.
+      slow_start:
+        type: string
+        description: Same as the
+          <a href="https://nginx.org/en/docs/http/ngx_http_upstream_module.html#slow_start">slow_start</a>
+          parameter of the HTTP upstream server.
+      route:
+        type: string
+        description: Same as the
+          <a href="https://nginx.org/en/docs/http/ngx_http_upstream_module.html#route">route</a>
+          parameter of the HTTP upstream server.
+      backup:
+        type: boolean
+        description: When <code>true</code>, adds a
+          <a href="https://nginx.org/en/docs/http/ngx_http_upstream_module.html#backup">backup</a>
+          server.
+          This parameter cannot be changed.
+        readOnly: true
+      down:
+        type: boolean
+        description: Same as the
+          <a href="https://nginx.org/en/docs/http/ngx_http_upstream_module.html#down">down</a>
+          parameter of the HTTP upstream server.
+      drain:
+        type: boolean
+        description: Same as the
+          <a href="https://nginx.org/en/docs/http/ngx_http_upstream_module.html#drain">drain</a>
+          parameter of the HTTP upstream server.
+      parent:
+        type: string
+        description: Parent server ID of the resolved server.
+          The ID is assigned automatically and cannot be changed.
+        readOnly: true
+      host:
+        type: string
+        description: Hostname of the resolved server.
+          The hostname is assigned automatically and cannot be changed.
+        readOnly: true
+    example:
+      id: 1
+      server: 10.0.0.1:8089
+      weight: 4
+      max_conns: 0
+      max_fails: 0
+      fail_timeout: 10s
+      slow_start: 10s
+      route: ''
+      backup: true
+      down: true
+  NginxHTTPKeyvalZonesMap:
+    title: HTTP Keyval Shared Memory Zones
+    description: |
+      Contents of all HTTP keyval shared memory zones.
+    type: object
+    additionalProperties:
+      $ref: '#/definitions/NginxHTTPKeyvalZone'
+    example:
+      keyval_zone:
+        key1: value1
+        key2: value2
+        key3: value3
+      one:
+        arg1: value1
+        arg2: value2
+        arg3: value3
+  NginxHTTPKeyvalZone:
+    title: HTTP Keyval Shared Memory Zone
+    description: |
+      Contents of an HTTP keyval shared memory zone
+      when using the GET method.
+    type: object
+    example:
+      key1: value1
+      key2: value2
+      key3: value3
+  NginxHTTPKeyvalZonePostPatch:
+    title: HTTP Keyval Shared Memory Zone
+    description: |
+      Contents of an HTTP keyval shared memory zone
+      when using the POST or PATCH methods.
+    type: object
+    example:
+      key1: value1
+      key2: value2
+      key3:
+        value: value3
+        expire: 30000
+  NginxStreamServerZonesMap:
+    title: Stream Server Zones
+    description: |
+      Status information for all stream
+      <a href="https://nginx.org/en/docs/http/ngx_http_api_module.html#status_zone">status zones</a>.
+    type: object
+    additionalProperties:
+      $ref: '#/definitions/NginxStreamServerZone'
+    example:
+      mysql-frontend:
+        processing: 2
+        connections: 270925
+        sessions:
+          2xx: 155564
+          4xx: 0
+          5xx: 0
+          total: 270925
+        discarded: 0
+        received: 28988975
+        sent: 3879346317
+        ssl:
+          handshakes: 76455
+          handshakes_failed: 432
+          session_reuses: 28770
+          no_common_protocol: 4
+          no_common_cipher: 2
+          handshake_timeout: 0
+          peer_rejected_cert: 0
+          verify_failures:
+            no_cert: 0
+            expired_cert: 2
+            revoked_cert: 1
+            other: 1
+      dns:
+        processing: 1
+        connections: 155569
+        sessions:
+          2xx: 155564
+          4xx: 0
+          5xx: 0
+          total: 155569
+        discarded: 0
+        received: 4200363
+        sent: 20489184
+        ssl:
+          handshakes: 2040
+          handshakes_failed: 23
+          session_reuses: 65
+          no_common_protocol: 4
+          no_common_cipher: 2
+          handshake_timeout: 0
+          peer_rejected_cert: 0
+          verify_failures:
+            no_cert: 0
+            expired_cert: 2
+            revoked_cert: 1
+            other: 1
+  NginxStreamServerZone:
+    title: Stream Server Zone
+    type: object
+    properties:
+      processing:
+        type: integer
+        description: The number of client connections
+          that are currently being processed.
+      connections:
+        type: integer
+        description: The total number of connections accepted from clients.
+      sessions:
+        type: object
+        description: The total number of completed sessions,
+          and the number of sessions completed with status codes
+          “<code>2xx</code>”, “<code>4xx</code>”, or “<code>5xx</code>”.
+        properties:
+          2xx:
+            type: integer
+            description: The total number of sessions completed with
+              <a href="https://nginx.org/en/docs/stream/ngx_stream_core_module.html#var_status">status codes</a>
+              “<code>2xx</code>”.
+          4xx:
+            type: integer
+            description: The total number of sessions completed with
+              <a href="https://nginx.org/en/docs/stream/ngx_stream_core_module.html#var_status">status codes</a>
+              “<code>4xx</code>”.
+          5xx:
+            type: integer
+            description: The total number of sessions completed with
+              <a href="https://nginx.org/en/docs/stream/ngx_stream_core_module.html#var_status">status codes</a>
+              “<code>5xx</code>”.
+          total:
+            type: integer
+            description: The total number of completed client sessions.
+      discarded:
+        type: integer
+        description: The total number of
+          connections completed without creating a session.
+      received:
+        type: integer
+        description: The total number of bytes received from clients.
+      sent:
+        type: integer
+        description: The total number of bytes sent to clients.
+      ssl:
+        type: object
+        readOnly: true
+        properties:
+          handshakes:
+            type: integer
+            description: The total number of successful SSL handshakes.
+            readOnly: true
+          handshakes_failed:
+            type: integer
+            description: The total number of failed SSL handshakes.
+            readOnly: true
+          session_reuses:
+            type: integer
+            description: The total number of session reuses during SSL handshake.
+            readOnly: true
+          no_common_protocol:
+            type: integer
+            description: The number of SSL handshakes failed
+              because of no common protocol.
+          no_common_cipher:
+            type: integer
+            description: The number of SSL handshakes failed
+              because of no shared cipher.
+          handshake_timeout:
+            type: integer
+            description: The number of SSL handshakes failed
+              because of a timeout.
+          peer_rejected_cert:
+            type: integer
+            description: The number of failed SSL handshakes
+              when nginx presented the certificate to the client
+              but it was rejected with a corresponding alert message.
+          verify_failures:
+            type: object
+            description: SSL certificate verification errors
+            properties:
+              no_cert:
+                type: integer
+                description: A client did not provide the required certificate.
+              expired_cert:
+                type: integer
+                description: An expired or not yet valid certificate
+                  was presented by a client.
+              revoked_cert:
+                type: integer
+                description: A revoked certificate was presented by a client.
+              other:
+                type: integer
+                description: Other SSL certificate verification errors.
+    example:
+      dns:
+        processing: 1
+        connections: 155569
+        sessions:
+          2xx: 155564
+          4xx: 0
+          5xx: 0
+          total: 155569
+        discarded: 0
+        received: 4200363
+        sent: 20489184
+        ssl:
+          handshakes: 76455
+          handshakes_failed: 432
+          session_reuses: 28770
+          no_common_protocol: 4
+          no_common_cipher: 2
+          handshake_timeout: 0
+          peer_rejected_cert: 0
+          verify_failures:
+            no_cert: 0
+            expired_cert: 2
+            revoked_cert: 1
+            other: 1
+  NginxStreamLimitConnZonesMap:
+    title: Stream limit_conns
+    description: |
+      Status data for all stream
+      <a href="https://nginx.org/en/docs/stream/ngx_stream_limit_conn_module.html#limit_conn_zone">limit_conn zones</a>.
+    type: object
+    additionalProperties:
+      $ref: '#/definitions/NginxStreamLimitConnZone'
+  NginxStreamLimitConnZone:
+    title: Stream Connections Limiting
+    type: object
+    properties:
+      passed:
+        type: integer
+        description: The total number of connections that were neither limited
+          nor accounted as limited.
+      rejected:
+        type: integer
+        description: The total number of connections that were rejected.
+      rejected_dry_run:
+        type: integer
+        description: The total number of connections accounted as rejected in the
+          <a href="https://nginx.org/en/docs/stream/ngx_stream_limit_conn_module.html#limit_conn_dry_run">dry run</a>
+          mode.
+    example:
+      passed: 15
+      rejected: 0
+      rejected_dry_run: 2
+  NginxStreamUpstreamMap:
+    title: Stream Upstreams
+    description: Status information of stream upstream server groups.
+    type: object
+    additionalProperties:
+      $ref: '#/definitions/NginxStreamUpstream'
+    example:
+      mysql_backends:
+        peers:
+          - id: 0
+            server: 10.0.0.1:12345
+            name: 10.0.0.1:12345
+            backup: false
+            weight: 5
+            state: up
+            active: 0
+            ssl:
+              handshakes: 1045
+              handshakes_failed: 89
+              session_reuses: 321
+              no_common_protocol: 4
+              handshake_timeout: 0
+              peer_rejected_cert: 0
+              verify_failures:
+                expired_cert: 2
+                revoked_cert: 1
+                hostname_mismatch: 2
+                other: 1
+            max_conns: 30
+            connecions: 1231
+            sent: 251946292
+            received: 19222475454
+            fails: 0
+            unavail: 0
+            health_checks:
+              checks: 26214
+              fails: 0
+              unhealthy: 0
+              last_passed: true
+            downtime: 0
+            downstart: 2022-06-28T11:09:21.602Z
+            selected: 2022-06-28T15:01:25Z
+          - id: 1
+            server: 10.0.0.1:12346
+            name: 10.0.0.1:12346
+            backup: true
+            weight: 1
+            state: unhealthy
+            active: 0
+            max_conns: 30
+            connections: 0
+            sent: 0
+            received: 0
+            fails: 0
+            unavail: 0
+            health_checks:
+              checks: 26284
+              fails: 26284
+              unhealthy: 1
+              last_passed: false
+            downtime: 262925617
+            downstart: 2022-06-28T11:09:21.602Z
+            selected: 2022-06-28T15:01:25Z
+        zombies: 0
+        zone: mysql_backends
+      dns:
+        peers:
+          - id: 0
+            server: 10.0.0.1:12347
+            name: 10.0.0.1:12347
+            backup: false
+            weight: 5
+            state: up
+            active: 0
+            ssl:
+              handshakes: 5268
+              handshakes_failed: 121
+              session_reuses: 854
+              no_common_protocol: 4
+              handshake_timeout: 0
+              peer_rejected_cert: 0
+              verify_failures:
+                expired_cert: 2
+                revoked_cert: 1
+                hostname_mismatch: 2
+                other: 1
+            max_conns: 30
+            connections: 667231
+            sent: 251946292
+            received: 19222475454
+            fails: 0
+            unavail: 0
+            health_checks:
+              checks: 26214
+              fails: 0
+              unhealthy: 0
+              last_passed: true
+            downtime: 0
+            downstart: 2022-06-28T11:09:21.602Z
+            selected: 2022-06-28T15:01:25Z
+          - id: 1
+            server: 10.0.0.1:12348
+            name: 10.0.0.1:12348
+            backup: true
+            weight: 1
+            state: unhealthy
+            active: 0
+            connections: 0
+            max_conns: 30
+            sent: 0
+            received: 0
+            fails: 0
+            unavail: 0
+            health_checks:
+              checks: 26284
+              fails: 26284
+              unhealthy: 1
+              last_passed: false
+            downtime: 262925617
+            downstart: 2022-06-28T11:09:21.602Z
+            selected: 2022-06-28T15:01:25Z
+        zombies: 0
+        zone: dns
+  NginxStreamUpstream:
+    title: Stream Upstream
+    type: object
+    properties:
+      peers:
+        $ref: '#/definitions/NginxStreamUpstreamPeerMap'
+      zombies:
+        type: integer
+        description: The current number of servers removed from the group
+          but still processing active client connections.
+      zone:
+        type: string
+        description: The name of the shared memory
+          <a href="https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#zone">zone</a>
+          that keeps the group’s configuration and run-time state.
+    example:
+      dns:
+        peers:
+          - id: 0
+            server: 10.0.0.1:12347
+            name: 10.0.0.1:12347
+            backup: false
+            weight: 5
+            state: up
+            active: 0
+            ssl:
+              handshakes: 200
+              handshakes_failed: 4
+              session_reuses: 189
+              no_common_protocol: 4
+              handshake_timeout: 0
+              peer_rejected_cert: 0
+              verify_failures:
+                expired_cert: 2
+                revoked_cert: 1
+                hostname_mismatch: 2
+                other: 1
+            max_conns: 50
+            connections: 667231
+            sent: 251946292
+            received: 19222475454
+            fails: 0
+            unavail: 0
+            health_checks:
+              checks: 26214
+              fails: 0
+              unhealthy: 0
+              last_passed: true
+            downtime: 0
+            downstart: 2022-06-28T11:09:21.602Z
+            selected: 2022-06-28T15:01:25Z
+          - id: 1
+            server: 10.0.0.1:12348
+            name: 10.0.0.1:12348
+            backup: true
+            weight: 1
+            state: unhealthy
+            active: 0
+            max_conns: 50
+            connections: 0
+            sent: 0
+            received: 0
+            fails: 0
+            unavail: 0
+            health_checks:
+              checks: 26284
+              fails: 26284
+              unhealthy: 1
+              last_passed: false
+            downtime: 262925617
+            downstart: 2022-06-28T11:09:21.602Z
+            selected: 2022-06-28T15:01:25Z
+        zombies: 0
+        zone: dns
+  NginxStreamUpstreamPeerMap:
+    title: Stream Upstream Servers
+    description: Array of stream upstream servers.
+    type: array
+    items:
+      $ref: '#/definitions/NginxStreamUpstreamPeer'
+  NginxStreamUpstreamPeer:
+    title: Stream Upstream Server
+    type: object
+    properties:
+      id:
+        type: integer
+        description: The ID of the server.
+        readOnly: true
+      server:
+        type: string
+        description: An
+          <a href="https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#server">address</a>
+          of the server.
+      service:
+        type: string
+        description: The
+          <a href="https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#service">service</a>
+          parameter value of the
+          <a href="https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#server">server</a>
+          directive.
+      name:
+        type: string
+        format: hostname
+        description: The name of the server specified in the
+          <a href="https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#server">server</a>
+          directive.
+        readOnly: true
+      backup:
+        type: boolean
+        description: A boolean value indicating whether the server is a
+          <a href="https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#backup">backup</a>
+          server.
+      weight:
+        type: integer
+        description: <a href="https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#weight">Weight</a>
+          of the server.
+      state:
+        type: string
+        readOnly: true
+        enum:
+          - up
+          - down
+          - unavail
+          - checking
+          - unhealthy
+        description: Current state, which may be one of
+          “<code>up</code>”, “<code>down</code>”, “<code>unavail</code>”,
+          “<code>checking</code>”, or “<code>unhealthy</code>”.
+      active:
+        type: integer
+        description: The current number of connections.
+        readOnly: true
+      ssl:
+        type: object
+        readOnly: true
+        properties:
+          handshakes:
+            type: integer
+            description: The total number of successful SSL handshakes.
+            readOnly: true
+          handshakes_failed:
+            type: integer
+            description: The total number of failed SSL handshakes.
+            readOnly: true
+          session_reuses:
+            type: integer
+            description: The total number of session reuses during SSL handshake.
+            readOnly: true
+          no_common_protocol:
+            type: integer
+            description: The number of SSL handshakes failed
+              because of no common protocol.
+          handshake_timeout:
+            type: integer
+            description: The number of SSL handshakes failed
+              because of a timeout.
+          peer_rejected_cert:
+            type: integer
+            description: The number of failed SSL handshakes
+              when nginx presented the certificate to the upstream server
+              but it was rejected with a corresponding alert message.
+          verify_failures:
+            type: object
+            description: SSL certificate verification errors
+            properties:
+              expired_cert:
+                type: integer
+                description: An expired or not yet valid certificate
+                  was presented by an upstream server.
+              revoked_cert:
+                type: integer
+                description: A revoked certificate was presented by an upstream server.
+              hostname_mismatch:
+                type: integer
+                description: Server's certificate doesn't match the hostname.
+              other:
+                type: integer
+                description: Other SSL certificate verification errors.
+      max_conns:
+        type: integer
+        description: The
+          <a href="https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#max_conns">max_conns</a>
+          limit for the server.
+      connections:
+        type: integer
+        description: The total number of client connections forwarded to this server.
+        readOnly: true
+      connect_time:
+        type: integer
+        description: The average time to connect to the upstream server.
+        readOnly: true
+      first_byte_time:
+        type: integer
+        description: The average time to receive the first byte of data.
+        readOnly: true
+      response_time:
+        type: integer
+        description: The average time to receive the last byte of data.
+        readOnly: true
+      sent:
+        type: integer
+        description: The total number of bytes sent to this server.
+        readOnly: true
+      received:
+        type: integer
+        description: The total number of bytes received from this server.
+        readOnly: true
+      fails:
+        type: integer
+        description: The total number of unsuccessful attempts
+          to communicate with the server.
+        readOnly: true
+      unavail:
+        type: integer
+        description: How many times the server became unavailable for client connections
+          (state “<code>unavail</code>”) due to the number of unsuccessful
+          attempts reaching the
+          <a href="https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#max_fails">max_fails</a>
+          threshold.
+        readOnly: true
+      health_checks:
+        type: object
+        readOnly: true
+        properties:
+          checks:
+            type: integer
+            description: The total number of
+              <a href="https://nginx.org/en/docs/stream/ngx_stream_upstream_hc_module.html#health_check">health check</a>
+              requests made.
+            readOnly: true
+          fails:
+            type: integer
+            description: The number of failed health checks.
+            readOnly: true
+          unhealthy:
+            type: integer
+            description: How many times the server became unhealthy
+              (state “<code>unhealthy</code>”).
+            readOnly: true
+          last_passed:
+            type: boolean
+            description: Boolean indicating whether the last health check request
+              was successful and passed
+              <a href="https://nginx.org/en/docs/stream/ngx_stream_upstream_hc_module.html#match">tests</a>.
+            readOnly: true
+      downtime:
+        type: integer
+        description: Total time the server was in the
+          “<code>unavail</code>”, “<code>checking</code>”,
+          and “<code>unhealthy</code>” states.
+        readOnly: true
+      downstart:
+        type: string
+        format: date-time
+        description: The time when the server became
+          “<code>unavail</code>”, “<code>checking</code>”,
+          or “<code>unhealthy</code>”,
+          in the ISO 8601 format with millisecond resolution.
+        readOnly: true
+      selected:
+        type: string
+        format: date-time
+        description: The time when the server was last selected
+          to process a connection,
+          in the ISO 8601 format with millisecond resolution.
+        readOnly: true
+  NginxStreamUpstreamConfServerMap:
+    title: Stream Upstream Servers
+    description: |
+      An array of stream upstream servers for dynamic configuration.
+    type: array
+    items:
+      $ref: '#/definitions/NginxStreamUpstreamConfServer'
+    example:
+      - id: 0
+        server: 10.0.0.1:12348
+        weight: 1
+        max_conns: 0
+        max_fails: 1
+        fail_timeout: 10s
+        slow_start: 0
+        backup: false
+        down: false
+      - id: 1
+        server: 10.0.0.1:12349
+        weight: 1
+        max_conns: 0
+        max_fails: 1
+        fail_timeout: 10s
+        slow_start: 0
+        backup: false
+        down: false
+  NginxStreamUpstreamConfServer:
+    title: Stream Upstream Server
+    description: |
+      Dynamically configurable parameters of a stream upstream
+      <a href="https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#server">server</a>:
+    type: object
+    properties:
+      id:
+        type: integer
+        description: The ID of the stream upstream server.
+          The ID is assigned automatically and cannot be changed.
+        readOnly: true
+      server:
+        type: string
+        description: Same as the
+          <a href="https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#server">address</a>
+          parameter of the stream upstream server.
+          When adding a server, it is possible to specify it as a domain name.
+          In this case, changes of the IP addresses
+          that correspond to a domain name will be monitored and automatically
+          applied to the upstream configuration
+          without the need of restarting nginx.
+          This requires the
+          <a href="https://nginx.org/en/docs/stream/ngx_stream_core_module.html#resolver">resolver</a>
+          directive in the “<code>stream</code>” block.
+          See also the
+          <a href="https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#resolve">resolve</a>
+          parameter of the stream upstream server.
+      service:
+        type: string
+        description: Same as the
+          <a href="https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#service">service</a>
+          parameter of the stream upstream server.
+          This parameter cannot be changed.
+        readOnly: true
+      weight:
+        type: integer
+        description: Same as the
+          <a href="https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#weight">weight</a>
+          parameter of the stream upstream server.
+      max_conns:
+        type: integer
+        description: Same as the
+          <a href="https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#max_conns">max_conns</a>
+          parameter of the stream upstream server.
+      max_fails:
+        type: integer
+        description: Same as the
+          <a href="https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#max_fails">max_fails</a>
+          parameter of the stream upstream server.
+      fail_timeout:
+        type: string
+        description: Same as the
+          <a href="https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#fail_timeout">fail_timeout</a>
+          parameter of the stream upstream server.
+      slow_start:
+        type: string
+        description: Same as the
+          <a href="https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#slow_start">slow_start</a>
+          parameter of the stream upstream server.
+      backup:
+        type: boolean
+        description: When <code>true</code>, adds a
+          <a href="https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#backup">backup</a>
+          server.
+          This parameter cannot be changed.
+        readOnly: true
+      down:
+        type: boolean
+        description: Same as the
+          <a href="https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#down">down</a>
+          parameter of the stream upstream server.
+      parent:
+        type: string
+        description: Parent server ID of the resolved server.
+          The ID is assigned automatically and cannot be changed.
+        readOnly: true
+      host:
+        type: string
+        description: Hostname of the resolved server.
+          The hostname is assigned automatically and cannot be changed.
+        readOnly: true
+    example:
+      id: 0
+      server: 10.0.0.1:12348
+      weight: 1
+      max_conns: 0
+      max_fails: 1
+      fail_timeout: 10s
+      slow_start: 0
+      backup: false
+      down: false
+  NginxStreamKeyvalZonesMap:
+    title: Stream Keyval Shared Memory Zones
+    description: |
+      Contents of all stream keyval shared memory zones.
+    type: object
+    additionalProperties:
+      $ref: '#/definitions/NginxStreamKeyvalZone'
+    example:
+      keyval_zone:
+        key1: value1
+        key2: value2
+        key3: value3
+      one:
+        arg1: value1
+        arg2: value2
+        arg3: value3
+  NginxStreamKeyvalZone:
+    title: Stream Keyval Shared Memory Zone
+    description: |
+      Contents of a stream keyval shared memory zone when using the GET method.
+    type: object
+    example:
+      key1: value1
+      key2: value2
+      key3: value3
+  NginxStreamKeyvalZonePostPatch:
+    title: Stream Keyval Shared Memory Zone
+    description: |
+      Contents of a stream keyval shared memory zone
+      when using the POST or PATCH methods.
+    type: object
+    example:
+      key1: value1
+      key2: value2
+      key3:
+        value: value3
+        expire: 30000
+  NginxStreamZoneSync:
+    title: Stream Zone Sync Node
+    type: object
+    properties:
+      zones:
+        type: object
+        title: Zone Sync Zones
+        description: Synchronization information per each shared memory zone.
+        additionalProperties:
+          $ref: '#/definitions/NginxStreamZoneSyncZone'
+      status:
+        type: object
+        description: Synchronization information per node in a cluster.
+        properties:
+          bytes_in:
+            type: integer
+            description: The number of bytes received by this node.
+          msgs_in:
+            type: integer
+            description: The number of messages received by this node.
+          msgs_out:
+            type: integer
+            description: The number of messages sent by this node.
+          bytes_out:
+            type: integer
+            description: The number of bytes sent by this node.
+          nodes_online:
+            type: integer
+            description: The number of peers this node is connected to.
+    example:
+      zones:
+        zone1:
+          records_pending: 2061
+          records_total: 260575
+        zone2:
+          records_pending: 0
+          records_total: 14749
+      status:
+        bytes_in: 1364923761
+        msgs_in: 337236
+        msgs_out: 346717
+        bytes_out: 1402765472
+        nodes_online: 15
+  NginxStreamZoneSyncZone:
+    title: Sync Zone
+    description: Synchronization status of a shared memory zone.
+    type: object
+    properties:
+      records_pending:
+        type: integer
+        description: The number of records that need to be sent to the cluster.
+      records_total:
+        type: integer
+        description: The total number of records stored in the shared memory zone.
+  NginxResolverZonesMap:
+    title: Resolver Zones
+    description: |
+      Status data for all
+      <a href="https://nginx.org/en/docs/http/ngx_http_core_module.html#resolver_status_zone">resolver zones</a>.
+    type: object
+    additionalProperties:
+      $ref: '#/definitions/NginxResolverZone'
+    example:
+      resolver_zone1:
+        requests:
+          name: 25460
+          srv: 130
+          addr: 2580
+        responses:
+          noerror: 26499
+          formerr: 0
+          servfail: 3
+          nxdomain: 0
+          notimp: 0
+          refused: 0
+          timedout: 243
+          unknown: 478
+      resolver_zone2:
+        requests:
+          name: 325460
+          srv: 1130
+          addr: 12580
+        responses:
+          noerror: 226499
+          formerr: 0
+          servfail: 283
+          nxdomain: 0
+          notimp: 0
+          refused: 0
+          timedout: 743
+          unknown: 1478
+  NginxResolverZone:
+    title: Resolver Zone
+    description: |
+      Statistics of DNS requests and responses per particular
+      <a href="https://nginx.org/en/docs/http/ngx_http_core_module.html#resolver_status_zone">resolver zone</a>.
+    type: object
+    properties:
+      requests:
+        type: object
+        readOnly: true
+        properties:
+          name:
+            type: integer
+            description: The total number of requests
+              to resolve names to addresses.
+            readOnly: true
+          srv:
+            type: integer
+            description: The total number of requests
+             to resolve SRV records.
+            readOnly: true
+          addr:
+           type: integer
+           description: The total number of requests
+             to resolve addresses to names.
+           readOnly: true
+      responses:
+        type: object
+        readOnly: true
+        properties:
+          noerror:
+            type: integer
+            description: The total number of successful responses.
+            readOnly: true
+          formerr:
+            type: integer
+            description: The total number of
+              FORMERR (<literal>Format error</literal>) responses.
+            readOnly: true
+          servfail:
+           type: integer
+           description: The total number of
+             SERVFAIL (<literal>Server failure</literal>) responses.
+           readOnly: true
+          nxdomain:
+           type: integer
+           description: The total number of
+             NXDOMAIN (<literal>Host not found</literal>) responses.
+           readOnly: true
+          notimp:
+           type: integer
+           description: The total number of
+             NOTIMP (<literal>Unimplemented</literal>) responses.
+           readOnly: true
+          refused:
+           type: integer
+           description: The total number of
+             REFUSED (<literal>Operation refused</literal>) responses.
+           readOnly: true
+          timedout:
+           type: integer
+           description: The total number of timed out requests.
+           readOnly: true
+          unknown:
+           type: integer
+           description: The total number of requests
+             completed with an unknown error.
+           readOnly: true
+    example:
+      resolver_zone1:
+        requests:
+          name: 25460
+          srv: 130
+          addr: 2580
+        responses:
+          noerror: 26499
+          formerr: 0
+          servfail: 3
+          nxdomain: 0
+          notimp: 0
+          refused: 0
+          timedout: 243
+          unknown: 478
+  NginxLicenseObject:
+    title: License
+    description: |
+      License and usage reporting status of NGINX Plus instance.
+    properties:
+      eval:
+        type: boolean
+        description: Indicates whether NGINX Plus license is trial.
+        readOnly: true
+      active_till:
+        type: integer
+        description: The Unix timestamp of license expiration.
+        readOnly: true
+      reporting:
+        type: object
+        properties:
+          healthy:
+            type: boolean
+            description: Indicates whether the reporting state is still considered healthy despite recent failed attempts.
+            readOnly: true
+          fails:
+            type: integer
+            description: The number of failed reporting attempts, reset each time the usage report is successfully sent.
+            readOnly: true
+          grace:
+            type: integer
+            description: The number of seconds before traffic processing is stopped after unsuccessful report attempt.
+            readOnly: true
+    example:
+      eval: false
+      active_till: 1749268757
+      reporting:
+        healthy: true
+        fails: 2
+        grace: 15551961
+  NginxWorker:
+    title: Worker process
+    description: |
+      Statistics per each worker process.
+    properties:
+      id:
+        type: integer
+        description: The ID of the worker process.
+      pid:
+        type: integer
+        description: The PID identifier of the worker process used by the operating system.
+      connections:
+        type: object
+        description: |
+          The number of accepted, dropped, active, and idle connections
+          per worker process.
+        properties:
+          accepted:
+            type: integer
+            description: |
+              The total number of client connections
+              accepted by the worker process.
+          dropped:
+            type: integer
+            description: |
+              The total number of client connections
+              dropped by the worker process.
+          active:
+            type: integer
+            description: |
+              The current number of active client connections
+              that are currently being handled by the worker process.
+          idle:
+            type: integer
+            description: |
+              The number of idle client connections
+              that are currently being handled by the worker process.
+      http:
+        type: object
+        properties:
+          requests:
+            type: object
+            description: The total number of client requests handled by the worker process.
+            properties:
+              total:
+                type: integer
+                description: The total number of client requests received by the worker process.
+              current:
+                type: integer
+                description: The current number of client requests that are currently being processed by the worker process.
+    example:
+      id: 0
+      pid: 32212
+      connections:
+        accepted: 1
+        dropped: 0
+        active: 1
+        idle: 0
+      http:
+        requests:
+          total: 15
+          current: 1
+  NginxWorkersMap:
+    title: Worker processes
+    description: nginx worker processes object.
+    type: object
+    additionalProperties:
+      $ref: '#/definitions/NginxWorker'
+    example:
+      - id: 0
+        pid: 32212
+        connections:
+          accepted: 1
+          dropped: 0
+          active: 1
+          idle: 0
+        http:
+          requests:
+            total: 19
+            current: 1
+      - id: 1
+        pid: 32214
+        connections:
+          accepted: 1
+          dropped: 0
+          active: 1
+          idle: 0
+        http:
+          requests:
+            total: 15
+            current: 0
+  NginxError:
+    title: Error
+    description: |
+      nginx error object.
+    type: object
+    properties:
+      error:
+        type: object
+        properties:
+          status:
+            type: integer
+            description: HTTP error code.
+          text:
+            type: string
+            description: Error description.
+          code:
+            type: string
+            description: Internal nginx error code.
+      request_id:
+        type: string
+        description: The ID of the request, equals the value of the
+          <a href="https://nginx.org/en/docs/http/ngx_http_core_module.html#var_request_id">$request_id</a>
+          variable.
+      href:
+        type: string
+        description: Link to reference documentation.

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Introduction on DEV -- docs-nginx-com</title>
+    <link>http://localhost:1313/nginx-amplify/overview/</link>
+    <description>Recent content in Introduction on DEV -- docs-nginx-com</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/nginx-amplify/overview/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Overview and Main Components</title>
+      <link>http://localhost:1313/nginx-amplify/overview/overview-main-components/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-amplify/overview/overview-main-components/</guid>
+      <description>&lt;h2 &#xA;id=&#34;what-is-f5-nginx-amplify&#34;&gt;What Is F5 NGINX Amplify?  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#what-is-f5-nginx-amplify&#34; title=&#34;What Is F5 NGINX Amplify?&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://amplify.nginx.com/signup/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;NGINX Amplify&lt;/a&gt; offers in-depth monitoring for NGINX-based web applications. It simplifies the process of analyzing and resolving issues related to performance and scalability.&lt;/p&gt;&#xA;&lt;p&gt;With NGINX Amplify, you can:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Spot performance issues, server overloads, and possible DDoS attacks easily.&lt;/li&gt;&#xA;&lt;li&gt;Receive intelligent advice to boost NGINX performance.&lt;/li&gt;&#xA;&lt;li&gt;Get alerts about issues in your application infrastructure.&lt;/li&gt;&#xA;&lt;li&gt;Plan for your web application&amp;rsquo;s performance and capacity needs.&lt;/li&gt;&#xA;&lt;li&gt;Monitor all systems that run NGINX.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 &#xA;id=&#34;main-components&#34;&gt;Main Components  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#main-components&#34; title=&#34;Main Components&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;Hosted on the AWS public cloud, NGINX Amplify consists of several key components:&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

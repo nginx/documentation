@@ -17,11 +17,10 @@ The following table summarizes NGINX Gateway Fabric custom policies:
 
 {{< bootstrap-table "table table-striped table-bordered" >}}
 
-| Policy                                                                                      | Description                                             | Attachment Type | Supported Target Object(s)    | Supports Multiple Target Refs | Mergeable | API Version |
-|---------------------------------------------------------------------------------------------|---------------------------------------------------------|-----------------|-------------------------------|-------------------------------|-----------|-------------|
-| [ClientSettingsPolicy]({{< ref "/ngf/how-to/traffic-management/client-settings.md" >}})     | Configure connection behavior between client and NGINX  | Inherited       | Gateway, HTTPRoute, GRPCRoute | No                            | Yes       | v1alpha1    |
-| [ObservabilityPolicy]({{< ref "/ngf/how-to/monitoring/tracing.md" >}})                      | Define settings related to tracing, metrics, or logging | Direct          | HTTPRoute, GRPCRoute          | Yes                           | No        | v1alpha2    |
-| [UpstreamSettingsPolicy]({{< ref "/ngf/how-to/traffic-management/upstream-settings.md" >}}) | Configure connection behavior between NGINX and backend | Direct          | Service                       | Yes                           | Yes       | v1alpha1    |
+| Policy                                                                                | Description                                             | Attachment Type | Supported Target Object(s)    | Supports Multiple Target Refs | Mergeable | API Version |
+|---------------------------------------------------------------------------------------|---------------------------------------------------------|-----------------|-------------------------------|-------------------------------|-----------|-------------|
+| [ClientSettingsPolicy]({{< ref "/ngf/how-to/traffic-management/client-settings.md" >}}) | Configure connection behavior between client and NGINX  | Inherited       | Gateway, HTTPRoute, GRPCRoute | No                            | Yes       | v1alpha1    |
+| [ObservabilityPolicy]({{< ref "/ngf/how-to/monitoring/tracing.md" >}})                  | Define settings related to tracing, metrics, or logging | Direct          | HTTPRoute, GRPCRoute          | Yes                           | No        | v1alpha1    |
 
 {{< /bootstrap-table >}}
 

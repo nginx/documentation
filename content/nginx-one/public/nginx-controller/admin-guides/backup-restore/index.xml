@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Back Up &amp; Restore on DEV -- docs-nginx-com</title>
+    <link>http://localhost:1313/nginx-controller/admin-guides/backup-restore/</link>
+    <description>Recent content in Back Up &amp; Restore on DEV -- docs-nginx-com</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/nginx-controller/admin-guides/backup-restore/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Back Up &amp; Restore Cluster Config and Encryption Keys</title>
+      <link>http://localhost:1313/nginx-controller/admin-guides/backup-restore/backup-restore-cluster-config/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-controller/admin-guides/backup-restore/backup-restore-cluster-config/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;After installing F5 NGINX Controller, you should back up the cluster config and encryption keys. You&amp;rsquo;ll need these if you ever need to restore the NGINX config database on top of a new NGINX Controller installation.&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;To back up the NGINX Controller cluster configuration and encryption keys:&lt;/p&gt;&#xA;&#xA;&#xA;&#xA;&lt;div class=&#34;code-block&#34; data-mf=&#34;true&#34; style=&#34;display: none;&#34;&gt;&#xA;    &lt;div class=&#34;code-container chroma&#34;&gt;&#xA;        &lt;button onclick=&#34;copyToClipBoard(this, &amp;#34;id-18440f1ecb3c76c0&amp;#34;)&#34; class=&#34;code-copy-button&#34; type=&#34;button&#34;&gt;Copy&lt;/button&gt;&#xA;        &lt;div class=&#34;highlight-v2 single-line&#34; id=&#34;id-18440f1ecb3c76c0&#34;&gt;&#xA;            &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/opt/nginx-controller/helper.sh cluster-config save&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&#xA;        &lt;/div&gt;&#xA;    &lt;/div&gt;&#xA;&lt;/div&gt;&lt;div id=&#34;code-block-v1&#34; data-mf=&#34;false&#34;&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/opt/nginx-controller/helper.sh cluster-config save&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&#xA;&lt;/div&gt;&lt;p&gt;The file is saved to &lt;code&gt;/opt/nginx-controller/cluster-config.tgz&lt;/code&gt;.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Back Up &amp; Restore an Embedded Config Database</title>
+      <link>http://localhost:1313/nginx-controller/admin-guides/backup-restore/backup-restore-embedded-config-db/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-controller/admin-guides/backup-restore/backup-restore-embedded-config-db/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;Follow the steps in this guide to back up and restore an internal F5 NGINX Controller config database. Use this guide if you selected the option to use an embedded config database when you installed NGINX Controller. Embedded config means that NGINX Controller is using an internal database to store configuration data.&lt;/p&gt;&#xA;&lt;h2 &#xA;id=&#34;automated-backups-of-embedded-config-database&#34;&gt;Automated Backups of Embedded Config Database  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#automated-backups-of-embedded-config-database&#34; title=&#34;Automated Backups of Embedded Config Database&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;NGINX Controller automatically takes a snapshot of the embedded config database every 60 minutes and saves the backups on the config DB volume. The backup file location varies depending on the volume chosen at setup:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Back Up &amp; Restore an External Config Database</title>
+      <link>http://localhost:1313/nginx-controller/admin-guides/backup-restore/backup-restore-external-config-db/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-controller/admin-guides/backup-restore/backup-restore-external-config-db/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;Follow the steps in this guide to back up and restore an external F5 NGINX Controller config database. Use this guide if you selected the option to use an external PostgreSQL config database when you installed NGINX Controller. External config means that you set up NGINX Controller to store configuration data in your own Postgres database.&lt;/p&gt;&#xA;&lt;h2 &#xA;id=&#34;before-you-begin&#34;&gt;Before You Begin  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#before-you-begin&#34; title=&#34;Before You Begin&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;To backup and restore the external config database, you&amp;rsquo;ll need the following:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Back Up &amp; Restore the Analytics Database</title>
+      <link>http://localhost:1313/nginx-controller/admin-guides/backup-restore/backup-restore-metrics-db/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-controller/admin-guides/backup-restore/backup-restore-metrics-db/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;This guide explains how to back up and restore the F5 NGINX Controller analytics database. Backing up and restoring the analytics data lets you preserve the history of graphs. Backing up this information is optional.&lt;/p&gt;&#xA;&lt;h2 &#xA;id=&#34;back-up-the-analytics-database&#34;&gt;Back Up the Analytics Database  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#back-up-the-analytics-database&#34; title=&#34;Back Up the Analytics Database&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;Make a backup copy of the metrics database following the steps for your volume type:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;strong&gt;Local&lt;/strong&gt;: Make a back up copy of the metrics data that&amp;rsquo;s located in &lt;code&gt;/opt/nginx-controller/clickhouse_data&lt;/code&gt; by default, or on the volume that you specified when installing NGINX Controller.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

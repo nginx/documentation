@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Disconnected environments on DEV -- docs-nginx-com</title>
+    <link>http://localhost:1313/nginx-instance-manager/disconnected/</link>
+    <description>Recent content in Disconnected environments on DEV -- docs-nginx-com</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/nginx-instance-manager/disconnected/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Install in a disconnected environment using a script</title>
+      <link>http://localhost:1313/nginx-instance-manager/disconnected/offline-install-guide/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-instance-manager/disconnected/offline-install-guide/</guid>
+      <description>&lt;blockquote class=&#34;tip side-callout&#34;&gt;&#xA;   &lt;div&gt;&#xA;     &#xA;     &#xA;       &#xA;       &lt;i class=&#34;fa-solid fa-sync&#34;&gt;&lt;/i&gt;&#xA;     &#xA;     &#xA;     &lt;strong&gt;Legacy &amp;#39;nms&amp;#39; references&lt;/strong&gt;&lt;br/&gt;&#xA;     &#xA;     Some commands, file paths, and configuration references still use &lt;code&gt;nms&lt;/code&gt; due to the ongoing transition from NGINX Management Suite (NMS) to NGINX Instance Manager (NIM). These will be updated in future releases.&#xA;   &lt;/div&gt;&#xA; &lt;/blockquote&gt;&#xA;&#xA;&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;This guide shows you how to install and upgrade NGINX Instance Manager in environments without internet access. It covers key steps, including downloading packages, managing dependencies, and configuring the system for offline use. You’ll also learn how to set up NGINX Instance Manager in disconnected mode and update the CVE list manually to keep your system secure.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Manually install in a disconnected environment (deprecated)</title>
+      <link>http://localhost:1313/nginx-instance-manager/disconnected/offline-install-guide-deprecated/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-instance-manager/disconnected/offline-install-guide-deprecated/</guid>
+      <description>&lt;blockquote class=&#34;caution side-callout&#34;&gt;&#xA;   &lt;div&gt;&#xA;     &#xA;     &#xA;       &#xA;       &lt;i class=&#34;fa fa-exclamation-triangle&#34;&gt;&lt;/i&gt;&#xA;     &#xA;     &#xA;     &lt;strong&gt;Deprecated documentation notice&lt;/strong&gt;&lt;br/&gt;&#xA;     &#xA;     This document outlines manual steps that have been replaced by a simplified script-based process. For most users, we recommend using the updated process documented &lt;a href=&#34;http://localhost:1313/nginx-instance-manager/disconnected/offline-install-guide/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;.&#xA;   &lt;/div&gt;&#xA; &lt;/blockquote&gt;&#xA;&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;This guide explains how to install and upgrade NGINX Instance Manager in environments without Internet access. It covers key steps, including downloading packages, managing dependencies, and configuring the system for offline use. You’ll also learn how to set up NGINX Instance Manager in disconnected mode and manually update the CVE list to keep your system secure.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Add a license in a disconnected environment</title>
+      <link>http://localhost:1313/nginx-instance-manager/disconnected/add-license-disconnected-deployment/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-instance-manager/disconnected/add-license-disconnected-deployment/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;This guide shows you how to add a license to NGINX Instance Manager in a disconnected (offline) environment. In this setup, systems don’t have internet access. You’ll download and apply your subscription’s JSON Web Token (JWT) license, then verify your entitlements with F5.&lt;/p&gt;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&lt;blockquote class=&#34;tip side-callout&#34;&gt;&#xA;   &lt;div&gt;&#xA;     &#xA;     &#xA;     &#xA;     &lt;strong&gt;Using the REST API&lt;/strong&gt;&lt;br/&gt;&#xA;     &#xA;     You can use tools like &lt;code&gt;curl&lt;/code&gt; or &lt;a href=&#34;https://www.postman.com&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Postman&lt;/a&gt; to interact with the NGINX Instance Manager REST API. The API URL is &lt;code&gt;https://&amp;lt;NIM-FQDN&amp;gt;/api/[nim|platform]/&amp;lt;API_VERSION&amp;gt;&lt;/code&gt;, and each request requires authentication. For more details on authentication options, see the &lt;a href=&#34;http://localhost:1313/nginx-instance-manager/fundamentals/api-overview/&#34;&gt;API Overview&lt;/a&gt;.&#xA;   &lt;/div&gt;&#xA; &lt;/blockquote&gt;&#xA;&lt;h2 &#xA;id=&#34;before-you-begin&#34;&gt;Before you begin  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#before-you-begin&#34; title=&#34;Before you begin&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;h3 &#xA;id=&#34;set-the-operation-mode-to-disconnected&#34;&gt;Set the operation mode to disconnected  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#set-the-operation-mode-to-disconnected&#34; title=&#34;Set the operation mode to disconnected&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h3&gt;&lt;p&gt;To configure NGINX Instance Manager for a network-restricted environment, you need to set the &lt;code&gt;mode_of_operation&lt;/code&gt; to &lt;code&gt;disconnected&lt;/code&gt; in the configuration file.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Report usage to F5 in a disconnected environment</title>
+      <link>http://localhost:1313/nginx-instance-manager/disconnected/report-usage-disconnected-deployment/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-instance-manager/disconnected/report-usage-disconnected-deployment/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;In a disconnected environment without internet access, NGINX Plus sends usage data to NGINX Instance Manager. You’ll need to download the usage report from NGINX Instance Manager and submit it to F5 from a location with internet access. After F5 verifies the report, you can download the acknowledgement, which you must upload back to NGINX Instance Manager.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 &#xA;id=&#34;before-you-begin&#34;&gt;Before you begin  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#before-you-begin&#34; title=&#34;Before you begin&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;Before submitting usage data to F5, first configure NGINX Plus to report telemetry data to NGINX Instance Manager.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

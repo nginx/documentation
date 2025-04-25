@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Overview on DEV -- docs-nginx-com</title>
+    <link>http://localhost:1313/nginx-instance-manager/nginx-configs/config-templates/concepts/</link>
+    <description>Recent content in Overview on DEV -- docs-nginx-com</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/nginx-instance-manager/nginx-configs/config-templates/concepts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>About NGINX config templates</title>
+      <link>http://localhost:1313/nginx-instance-manager/nginx-configs/config-templates/concepts/config-templates/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-instance-manager/nginx-configs/config-templates/concepts/config-templates/</guid>
+      <description>&lt;h2 &#xA;id=&#34;config-templates&#34;&gt;Config templates  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#config-templates&#34; title=&#34;Config templates&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;F5 NGINX Instance Manager uses &lt;a href=&#34;https://pkg.go.dev/text/template&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Go templating&lt;/a&gt; to simplify creating and standardizing NGINX configurations. These config templates create an abstraction layer for NGINX configuration files, enabling users to provide parameters to generate a working configuration without needing a deep knowledge of NGINX syntax. These templates simplify configuring NGINX, enforce best practices for configurations, and enable self-service permissions for app development.&lt;/p&gt;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&lt;blockquote class=&#34;tip side-callout&#34;&gt;&#xA;   &lt;div&gt;&#xA;     &#xA;     &#xA;     &#xA;     &lt;strong&gt;Enhanced templating with Sprig&lt;/strong&gt;&lt;br/&gt;&#xA;     &#xA;     &lt;i class=&#34;fas fa-code-branch&#34;&gt;&lt;/i&gt;&#xA;Go templating in Instance Manager includes support for the &lt;a href=&#34;https://masterminds.github.io/sprig/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Sprig function library&lt;/a&gt;, offering a wide range of additional functions that can be used in templates for advanced operations like string manipulation, data conversion, mathematics, and more.&#xA;   &lt;/div&gt;&#xA; &lt;/blockquote&gt;&#xA;&lt;h3 &#xA;id=&#34;template-types&#34;&gt;Types of templates  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#template-types&#34; title=&#34;Types of templates&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h3&gt;&lt;p&gt;Configuration templates come in two types:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>F5 Global Default base template</title>
+      <link>http://localhost:1313/nginx-instance-manager/nginx-configs/config-templates/concepts/default-base-template/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-instance-manager/nginx-configs/config-templates/concepts/default-base-template/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;The F5 Global Default Base template includes all the essential elements needed to build NGINX configurations using templates. It simplifies complex directives into user-friendly parameters, helping those new to NGINX generate configurations quickly. While &lt;strong&gt;this default template alone will not create a deployable NGINX configuration&lt;/strong&gt;, it offers a clear example of how to use modular components and injectable templates for augmenting functionality and the simplified user interface that comes along with that. Using these patterns, you can copy and modify the base template to create custom templates tailored to your specific needs.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Augment templates</title>
+      <link>http://localhost:1313/nginx-instance-manager/nginx-configs/config-templates/concepts/augment-templates/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-instance-manager/nginx-configs/config-templates/concepts/augment-templates/</guid>
+      <description>&lt;h2 &#xA;id=&#34;augmenting-global-default-base-template&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#augmenting-global-default-base-template&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;Using augment templates in F5 NGINX Instance Manager, administrators and developers can customize NGINX configurations beyond the foundational settings of the F5 Global Default Base template. You can use the augment template to add specific features like OIDC authentication, or segment (compartmentalize) configuration elements like location and server blocks. Augment templates can be combined with a base template to build upon it or applied directly to an existing NGINX configuration.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Template resource files</title>
+      <link>http://localhost:1313/nginx-instance-manager/nginx-configs/config-templates/concepts/template-resources/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-instance-manager/nginx-configs/config-templates/concepts/template-resources/</guid>
+      <description>&lt;h2 &#xA;id=&#34;config-template-schema-and-readme-files&#34;&gt;Config Template, Schema, and README Files  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#config-template-schema-and-readme-files&#34; title=&#34;Config Template, Schema, and README Files&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;F5 NGINX Instance Manager uses &lt;a href=&#34;https://pkg.go.dev/text/template&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Go templating&lt;/a&gt; and JSON schemas to create flexible and robust NGINX configuration templates. This allows users to efficiently customize and validate configurations without needing expert knowledge of NGINX syntax.&lt;/p&gt;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&lt;blockquote class=&#34;tip side-callout&#34;&gt;&#xA;   &lt;div&gt;&#xA;     &#xA;     &#xA;     &#xA;     &lt;strong&gt;Enhanced templating with Sprig&lt;/strong&gt;&lt;br/&gt;&#xA;     &#xA;     &lt;i class=&#34;fas fa-code-branch&#34;&gt;&lt;/i&gt;&#xA;Go templating in Instance Manager includes support for the &lt;a href=&#34;https://masterminds.github.io/sprig/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Sprig function library&lt;/a&gt;, offering a wide range of additional functions that can be used in templates for advanced operations like string manipulation, data conversion, mathematics, and more.&#xA;   &lt;/div&gt;&#xA; &lt;/blockquote&gt;&#xA;&lt;p&gt;This guide covers the following resource files for creating templates:&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

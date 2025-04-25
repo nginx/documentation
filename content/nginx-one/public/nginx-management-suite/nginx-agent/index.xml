@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>NGINX Agent on DEV -- docs-nginx-com</title>
+    <link>http://localhost:1313/nginx-management-suite/nginx-agent/</link>
+    <description>Recent content in NGINX Agent on DEV -- docs-nginx-com</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/nginx-management-suite/nginx-agent/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Install and Configure NGINX Agent</title>
+      <link>http://localhost:1313/nginx-management-suite/nginx-agent/install-nginx-agent/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-management-suite/nginx-agent/install-nginx-agent/</guid>
+      <description>&lt;h2 &#xA;id=&#34;prerequisites&#34;&gt;Prerequisites  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#prerequisites&#34; title=&#34;Prerequisites&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;This section lists the prerequisites for installing and configuring NGINX Agent. Follow the steps below to complete the requirements:&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;a href=&#34;http://localhost:1313/nginx-instance-manager/deploy/&#34;&gt;F5 NGINX Management Suite is installed on a server&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;blockquote class=&#34;note&#34;&gt;&#xA;  &lt;div&gt;&lt;strong&gt;Note:&lt;/strong&gt;&lt;br/&gt; When installing and configuring NGINX Management Suite, take note of the fully qualified domain name (FQDN) and gRPC port number. You&amp;rsquo;ll need this information to properly configure NGINX Agent to communicate with NGINX Management Suite.&lt;/div&gt;&#xA;&lt;/blockquote&gt;&#xA;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Make sure NGINX is running on your instance:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Install NGINX Plus Metrics Module for API Connectivity Manager</title>
+      <link>http://localhost:1313/nginx-management-suite/nginx-agent/install-nginx-plus-advanced-metrics/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-management-suite/nginx-agent/install-nginx-plus-advanced-metrics/</guid>
+      <description>&lt;blockquote class=&#34;warning&#34;&gt;&#xA;    &lt;div&gt;&lt;i class=&#34;fa-solid fa-triangle-exclamation&#34;&gt;&lt;/i&gt;&lt;strong&gt; End of Sale Notice:&lt;/strong&gt;&lt;br/&gt;&lt;p&gt;F5 NGINX is announcing the End of Sale (EoS) for NGINX Instance Manager API Connectivity Manager Module, effective January 1, 2024.&lt;/p&gt;&#xA;&lt;p&gt;F5 maintains generous lifecycle policies that allow customers to continue support and receive product updates. Existing API Connectivity Manager Module customers can continue to use the product past the EoS date. License renewals are not available after September 30, 2024.&lt;/p&gt;&#xA;&lt;p&gt;See our End of Sale announcement for more details.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

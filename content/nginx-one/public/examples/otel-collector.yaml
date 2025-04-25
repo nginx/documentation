@@ -1,0 +1,83 @@
+# Warning: this deployment is for demo purposes only and is not recommended for production environments
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: nsm-monitoring
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: otel-collector-config
+  namespace: nsm-monitoring
+data:
+  otel-collector-config: |
+    receivers:
+      otlp:
+        protocols:
+          grpc:
+          http:
+    processors:
+    extensions:
+    exporters:
+      jaeger:
+        endpoint: "jaeger.nsm-monitoring.svc:14250"
+        tls:
+          insecure: true
+    service:
+      pipelines:
+        traces:
+          receivers: [otlp]
+          processors: []
+          exporters: [jaeger]
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: otel-collector
+  namespace: nsm-monitoring
+  labels:
+    app.kubernetes.io/name: otel-collector
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: otel-collector
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: otel-collector
+        injector.nsm.nginx.com/auto-inject: disabled
+    spec:
+      containers:
+      - name: otel-collector
+        image: otel/opentelemetry-collector:latest
+        command:
+          - /otelcol
+          - --config=/conf/otel-collector-config.yaml
+        ports:
+        - containerPort: 4317
+        volumeMounts:
+        - name: otel-collector-config
+          mountPath: /conf
+      volumes:
+      - name: otel-collector-config
+        configMap:
+          name: otel-collector-config
+          items:
+          - key: otel-collector-config
+            path: otel-collector-config.yaml
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: otel-collector
+  namespace: nsm-monitoring
+  labels:
+    app.kubernetes.io/name: otel-collector
+spec:
+  selector:
+    app.kubernetes.io/name: otel-collector
+  ports:
+  - name: otlp-grpc
+    port: 4317

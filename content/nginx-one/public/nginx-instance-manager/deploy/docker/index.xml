@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Docker on DEV -- docs-nginx-com</title>
+    <link>http://localhost:1313/nginx-instance-manager/deploy/docker/</link>
+    <description>Recent content in Docker on DEV -- docs-nginx-com</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/nginx-instance-manager/deploy/docker/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Deploy using Docker Compose</title>
+      <link>http://localhost:1313/nginx-instance-manager/deploy/docker/deploy-nginx-instance-manager-docker-compose/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-instance-manager/deploy/docker/deploy-nginx-instance-manager-docker-compose/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;This guide will show you how to deploy and use F5 NGINX Instance Manager in Docker using &lt;a href=&#34;https://docs.docker.com/compose/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Docker Compose&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;p&gt;This NGINX Instance Manager docker compose deployment is a single Docker image containing NGINX Instance Manager, Security Monitoring, and the latest App Protect compilers, which is orchestrated using a Docker Compose docker-compose.yaml definition.&lt;/p&gt;&#xA;&lt;p&gt;The ClickHouse database is deployed in a separate container to improve resilience and make this a fault tolerant solution. You can also configure persistent storage&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Deploy NGINX Plus in a container (data plane)</title>
+      <link>http://localhost:1313/nginx-instance-manager/deploy/docker/deploy-nginx-plus-and-agent-docker/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-instance-manager/deploy/docker/deploy-nginx-plus-and-agent-docker/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;This guide explains how to:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;get official NGINX Plus Docker container images and add them to your private registry&lt;/li&gt;&#xA;&lt;li&gt;start the container using NGINX Agent-specific parameters&lt;/li&gt;&#xA;&lt;li&gt;add container instances to F5 NGINX Instance Manager&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 &#xA;id=&#34;before-you-begin&#34;&gt;Before you begin  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#before-you-begin&#34; title=&#34;Before you begin&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;Before you start, make sure that:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;NGINX Instance Manager is &lt;a href=&#34;http://localhost:1313/nginx-instance-manager/deploy/vm-bare-metal/install/&#34;&gt;installed&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;blockquote class=&#34;note&#34;&gt;&#xA;  &lt;div&gt;&lt;strong&gt;Note:&lt;/strong&gt;&lt;br/&gt; When installing and configuring NGINX Instance Manager, remember the domain name/IP address and the gRPC port number. You will need them to configure the NGINX Agent to communicate with NGINX Instance Manager.&lt;/div&gt;&#xA;&lt;/blockquote&gt;&#xA;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;You have the JSON Web Token (JWT) from MyF5 Customer Portal. The &lt;a href=&#34;#download-jwt&#34;&gt;download instructions&lt;/a&gt; are below.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

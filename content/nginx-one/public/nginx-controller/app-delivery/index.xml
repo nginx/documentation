@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Application Delivery on DEV -- docs-nginx-com</title>
+    <link>http://localhost:1313/nginx-controller/app-delivery/</link>
+    <description>Recent content in Application Delivery on DEV -- docs-nginx-com</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/nginx-controller/app-delivery/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>About Application Delivery</title>
+      <link>http://localhost:1313/nginx-controller/app-delivery/about-app-delivery/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-controller/app-delivery/about-app-delivery/</guid>
+      <description>&lt;h2 &#xA;id=&#34;apps&#34;&gt;Apps  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#apps&#34; title=&#34;Apps&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;In F5 NGINX Controller, an App serves as a container for one or more Components. Components represent the backend services that comprise your application. Together, an App and its Components represent the logical partitioning of your application into its composite parts. For example, a Component might correspond to a particular microservice within your application. Each Component you add to an App represents one or more paths via which traffic can reach that microservice.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>About Caching</title>
+      <link>http://localhost:1313/nginx-controller/app-delivery/about-caching/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-controller/app-delivery/about-caching/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;The F5 NGINX Controller Application Delivery (AD) module lets you configure content caching by using either the user interface (UI) or the &lt;a href=&#34;https://docs.nginx.com/nginx-controller/api/ctlr-adc-api/#tag/Components&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Components REST API&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;h2 &#xA;id=&#34;basic-caching&#34;&gt;Basic Caching  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#basic-caching&#34; title=&#34;Basic Caching&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;NGINX Controller Caching supports &lt;a href=&#34;https://www.nginx.com/blog/nginx-caching-guide/#How-to-Set-Up-and-Configure-Basic-Caching&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;basic caching&lt;/a&gt; via the &lt;em&gt;disk store&lt;/em&gt; resource.&lt;/p&gt;&#xA;&lt;p&gt;When you add a disk store to a component, you define the location of the cache on the hard disk. The path you specify for the disk store is the base path under which you want to store the cache files for the component.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>About Snippets</title>
+      <link>http://localhost:1313/nginx-controller/app-delivery/about-snippets/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-controller/app-delivery/about-snippets/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;The F5 NGINX Controller Application Delivery (AD) module lets you configure NGINX directives that aren&amp;rsquo;t represented in the NGINX Controller API via &amp;ldquo;config snippets&amp;rdquo;, or &amp;ldquo;Snippets&amp;rdquo;. You can do so by using either the user interface (UI) or the &lt;a href=&#34;https://docs.nginx.com/nginx-controller/api/ctlr-adc-api/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Application Delivery REST API&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;blockquote class=&#34;caution call-out&#34;&gt;&#xA;  &lt;div&gt;&lt;strong class=&#34;call-out-type&#34;&gt;Caution&lt;/strong&gt;&lt;br/&gt; &lt;p&gt;When you use Snippets to customize your NGINX configuration, your changes are applied to the &lt;code&gt;nginx.conf&lt;/code&gt; file &lt;em&gt;as is&lt;/em&gt;. NGINX Controller does not verify that your configuration is valid before applying the snippet.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Manage Apps &amp; Components</title>
+      <link>http://localhost:1313/nginx-controller/app-delivery/manage-apps/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-controller/app-delivery/manage-apps/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;Follow the steps in this topic to learn how to create and manage Apps and App Components.&lt;/p&gt;&#xA;&lt;p&gt;&lt;blockquote class=&#34;tip&#34;&gt;&#xA;  &lt;div&gt;&lt;strong&gt;Tip:&lt;/strong&gt;&lt;br/&gt; You can also use the F5 NGINX Controller API to create Apps and Components. See the &lt;a href=&#34;http://localhost:1313/nginx-controller/api/reference/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;NGINX Controller API Reference&lt;/a&gt; for details.&lt;/div&gt;&#xA;&lt;/blockquote&gt;&#xA;&#xA; &lt;/p&gt;&#xA;&lt;h2 &#xA;id=&#34;before-you-begin&#34;&gt;Before You Begin  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#before-you-begin&#34; title=&#34;Before You Begin&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;You will need to select an &lt;a href=&#34;http://localhost:1313/nginx-controller/services/manage-environments/#create-an-environment&#34;&gt;Environment&lt;/a&gt; and &lt;a href=&#34;http://localhost:1313/nginx-controller/services/manage-gateways/#create-a-gateway&#34;&gt;Gateway&lt;/a&gt; &amp;ndash; or create new Environment and Gateway resources &amp;ndash; when adding a new App.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Deploy a Simple Application</title>
+      <link>http://localhost:1313/nginx-controller/app-delivery/deploy-simple-app/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-controller/app-delivery/deploy-simple-app/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;This topic provides an overview of the steps required to create a simple application by using F5 NGINX Controller&amp;rsquo;s user interface. Use the links provided to learn more about each step.&lt;/p&gt;&#xA;&lt;h2 &#xA;id=&#34;create-an-environment&#34;&gt;Create an Environment  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#create-an-environment&#34; title=&#34;Create an Environment&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;First, you&amp;rsquo;ll need to create an Environment.&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;http://localhost:1313/nginx-controller/services/manage-environments/#about-environments&#34;&gt;About Environments&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;http://localhost:1313/nginx-controller/services/manage-environments/#create-an-environment&#34;&gt;Create an Environment&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 &#xA;id=&#34;create-a-certificate&#34;&gt;Create a Certificate  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#create-a-certificate&#34; title=&#34;Create a Certificate&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;If you want to secure your application traffic, you&amp;rsquo;ll need to add Certificates.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

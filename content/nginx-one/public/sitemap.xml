@@ -1,0 +1,6848 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-service-mesh/releases/release-notes-2.0.0/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-service-mesh/releases/release-notes-1.7.0/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-service-mesh/releases/release-notes-1.6.0/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-service-mesh/releases/release-notes-1.5.0/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-service-mesh/releases/release-notes-1.4.1/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-service-mesh/releases/release-notes-1.4.0/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-service-mesh/releases/release-notes-1.3.1/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-service-mesh/releases/release-notes-1.3.0/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-service-mesh/releases/release-notes-1.2.1/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-service-mesh/releases/release-notes-1.2.0/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-service-mesh/releases/release-notes-1.1.0/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-service-mesh/releases/release-notes-1.0.1/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-service-mesh/releases/release-notes-1.0.0/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-service-mesh/releases/release-notes-0.9.1/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-service-mesh/releases/release-notes-0.9.0/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-service-mesh/releases/release-notes-0.8.0/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-service-mesh/releases/release-notes-0.7.0/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-service-mesh/releases/release-notes-0.6.0/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-service-mesh/releases/release-notes-0.5.0/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/admin-guide/license/add-license/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/admin-guide/maintenance/backup-and-recovery/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/system-configuration/configure-with-config/</loc>
+      <lastmod>2025-05-19T13:24:38-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/fundamentals/</loc>
+      <lastmod>2024-11-13T14:14:45+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/admin-guide/authentication/oidc/getting-started/</loc>
+      <lastmod>2025-05-19T13:24:38-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/admin-guide/license/</loc>
+      <lastmod>2024-11-19T08:52:46-08:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-amplify/nginx-amplify-agent/amplify-agent-overview/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/admin-guide/rbac/overview-rbac/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-service-mesh/get-started/platform-setup/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/nginx-configs/stage-configs/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/solutions/</loc>
+      <lastmod>2025-04-07T15:38:36+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/solutions/about-subscription-licenses/</loc>
+      <lastmod>2025-05-01T08:21:59-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/system-configuration/configure-forward-proxy/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-service-mesh/get-started/install/</loc>
+      <lastmod>2024-08-19T14:38:29+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/nginx-configs/publish-configs/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/system-configuration/configure-high-availability/</loc>
+      <lastmod>2025-05-19T13:24:38-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/nginx-configs/publish-configs-version-control/</loc>
+      <lastmod>2024-11-08T09:35:37-08:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-service-mesh/get-started/upgrade/</loc>
+      <lastmod>2024-08-19T14:38:29+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-service-mesh/get-started/uninstall/</loc>
+      <lastmod>2024-08-19T14:38:29+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-service-mesh/tutorials/kic/</loc>
+      <lastmod>2024-08-19T14:38:29+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/about/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-service-mesh/about/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/analytics/dashboards/overview-dashboard/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/api/overview/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-one/api/authentication/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/platform/access-management/manage-active-directory-auth-provider/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/deploy/docker/</loc>
+      <lastmod>2024-11-19T08:52:46-08:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/admin-guide/dynamic-modules/dynamic-modules/</loc>
+      <lastmod>2025-04-29T20:11:10+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-amplify/faq/general/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/acm/getting-started/overview/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-amplify/install/</loc>
+      <lastmod>2024-08-19T14:38:29+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/deploy/vm-bare-metal/install/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/acm/how-to/install-acm/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/acm/how-to/devportals/installation/install-dev-portal/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/admin-guide/maintenance/sqlite-installation/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/infrastructure/instances/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/infrastructure/manage-locations/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-one/about/</loc>
+      <lastmod>2025-04-25T10:28:57-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/infrastructure/instances/manage-instances/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/deploy/vm-bare-metal/install-nim-deprecated/</loc>
+      <lastmod>2025-04-10T16:47:09+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-amplify/metrics-metadata/metrics-overview/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/releases/release-notes/</loc>
+      <lastmod>2025-05-19T13:24:38-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-amplify/user-interface/overview/</loc>
+      <lastmod>2025-05-19T13:24:38-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/nginx-configs/config-templates/concepts/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-amplify/overview/overview-main-components/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/admin-guide/license/report-usage-connected-deployment/</loc>
+      <lastmod>2025-04-10T16:47:09+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/admin-guide/authentication/basic-auth/set-up-basic-authentication/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/services/overview/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-service-mesh/guides/inject-sidecar-proxy/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/support/contact-support/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/infrastructure/instances/manage-containerized-instances/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/infrastructure/instances/add-nap-instance/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/platform/integrations/aws-integration/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/platform/integrations/big-ip-self-service/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/analytics/dashboards/custom-dashboards/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/deploy/</loc>
+      <lastmod>2024-11-14T18:57:09+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/acm/how-to/deploy-api-connectivity-manager/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/acm/how-to/devportals/installation/devportal-helm-chart/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/monitoring/catalogs/dimensions/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/reference/catalogs/dimensions/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/monitoring/catalogs/events/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/reference/catalogs/events/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-amplify/user-interface/graphs/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/nginx-configs/config-templates/how-to/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/analytics/data-explorer/how-to-use/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/platform/access-management/manage-users/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/monitoring/catalogs/metrics/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/reference/catalogs/metrics/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-service-mesh/guides/monitoring-and-tracing/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-amplify/faq/nginx-amplify-agent/</loc>
+      <lastmod>2025-05-19T13:24:38-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/nginx-configs/config-templates/</loc>
+      <lastmod>2024-11-19T08:52:46-08:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/analytics/catalogs/dimensions/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/analytics/catalogs/metrics/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-amplify/metrics-metadata/os-metrics/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/analytics/metrics/overview-metrics-metadata/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/fundamentals/tech-specs/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/analytics/dashboards/application-health-score/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/analytics/events/view-events/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/acm/how-to/devportals/installation/configure-devportal-helm-options/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/infrastructure/instances/add-aws-instance/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/platform/integrations/datadog-integration/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/disconnected/</loc>
+      <lastmod>2024-11-14T18:57:09+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/acm/how-to/devportals/installation/install-devportal-offline/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-amplify/user-interface/inventory/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/platform/access-management/manage-roles/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-amplify/faq/user-interface/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/nms-resilience/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-amplify/metrics-metadata/nginx-metrics/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/platform/integrations/otlp-integration/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-service-mesh/guides/secure-traffic-mtls/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/platform/integrations/syslog-integration/</loc>
+      <lastmod>2024-08-22T17:57:00+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/nginx-configs/config-templates/tutorials/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/infrastructure/instances/add-vsphere-instance/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/infrastructure/instances/add-azure-instance/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-amplify/user-interface/dashboards/</loc>
+      <lastmod>2025-05-19T13:24:38-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-amplify/faq/metrics-and-metadata/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-amplify/metrics-metadata/other-metrics/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/admin-guide/</loc>
+      <lastmod>2024-11-19T08:52:46-08:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-service-mesh/guides/prometheus-metrics/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/nginx-configs/config-templates/reference/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/infrastructure/instances/ha-data-plane/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/platform/integrations/splunk-integration/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-amplify/user-interface/analyzer/</loc>
+      <lastmod>2025-05-19T13:24:38-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/infrastructure/instances/manage-instance-templates/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/releases/adc/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginxaas/azure/getting-started/nginx-configuration/overview/</loc>
+      <lastmod>2025-05-28T20:38:24+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginxaas/azure/getting-started/ssl-tls-certificates/overview/</loc>
+      <lastmod>2025-05-28T20:38:24+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-service-mesh/guides/smi-traffic-metrics/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/system-configuration/</loc>
+      <lastmod>2024-11-19T08:52:46-08:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginxaas/azure/quickstart/security-controls/certificates/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/analytics/metrics/metrics-api/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-amplify/user-interface/alerts/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/monitoring/</loc>
+      <lastmod>2024-11-19T08:52:46-08:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-dos/releases/about-4.6/</loc>
+      <lastmod>2025-04-02T04:09:08-06:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-service-mesh/guides/smi-traffic-policies/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/infrastructure/instances/analyzer/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-dos/releases/about-1.2.0/</loc>
+      <lastmod>2025-04-01T18:30:57+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-amplify/user-interface/account-settings/</loc>
+      <lastmod>2025-05-19T13:24:38-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-dos/releases/about-4.5/</loc>
+      <lastmod>2024-11-19T17:13:03+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/nginx-configs/</loc>
+      <lastmod>2024-11-19T08:52:46-08:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-service-mesh/guides/private-registry/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/infrastructure/instances/graphs/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-dos/releases/about-4.4/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/nginx-instances/</loc>
+      <lastmod>2024-11-19T08:52:46-08:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-service-mesh/guides/production-tuning/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/releases/adc/adc-release-notes-3.22.9/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/releases/adc/adc-release-notes-3.22.8/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-service-mesh/tutorials/observability/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-dos/releases/about-4.3/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/nginx-app-protect/</loc>
+      <lastmod>2024-11-19T08:52:46-08:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-waf/v4/releases/about-4.14/</loc>
+      <lastmod>2025-04-02T23:14:00+03:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/releases/adc/adc-release-notes-3.22.7/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/releases/apim/apim-release-notes-3.19.6/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/releases/adc/adc-release-notes-3.22.6/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/releases/apim/apim-release-notes-3.19.5/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/releases/adc/adc-release-notes-3.22.5/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/releases/apim/apim-release-notes-3.19.4/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/releases/adc/adc-release-notes-3.22.4/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/releases/apim/apim-release-notes-3.19.3/</loc>
+      <lastmod>2024-03-26T14:21:11+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/releases/adc/adc-release-notes-3.22.3/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/releases/apim/apim-release-notes-3.19.2/</loc>
+      <lastmod>2025-04-16T13:41:48-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/releases/adc/adc-release-notes-3.22.2/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/releases/apim/apim-release-notes-3.19.1/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/releases/adc/adc-release-notes-3.22.1/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/admin-guides/backup-restore/backup-restore-cluster-config/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/releases/apim/apim-release-notes-3.19/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/releases/adc/adc-release-notes-3.22/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/admin-guides/backup-restore/backup-restore-embedded-config-db/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/releases/adc/adc-release-notes-3.21/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/admin-guides/backup-restore/backup-restore-external-config-db/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/releases/apim/apim-release-notes-3.18.1/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/releases/adc/adc-release-notes-3.20.1/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-unit/news/archived-news/2022/</loc>
+      <lastmod>2025-05-26T10:52:40+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginxaas/azure/changelog-archive/changelog-2024/</loc>
+      <lastmod>2025-05-28T20:38:24+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/unit/news/2025/</loc>
+      <lastmod>2025-05-26T10:52:40+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/acm/about/</loc>
+      <lastmod>2024-02-26T22:28:23+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/analytics/alerts/about-alerts/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/app-delivery/security/concepts/what-is-waf/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/app-delivery/about-app-delivery/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/nginx-configs/config-templates/concepts/config-templates/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-unit/about/</loc>
+      <lastmod>2025-05-27T17:47:57+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/deployment-guides/amazon-web-services/high-availability-network-load-balancer/</loc>
+      <lastmod>2025-05-27T12:54:20-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/deployment-guides/microsoft-azure/high-availability-standard-load-balancer/</loc>
+      <lastmod>2025-05-27T12:54:20-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-one/staged-configs/add-staged-config/</loc>
+      <lastmod>2025-04-25T10:28:57-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-one/connect-instances/add-instance/</loc>
+      <lastmod>2025-05-29T09:43:54-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginxaas/azure/getting-started/ssl-tls-certificates/ssl-tls-certificates-portal/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/admin-guide/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/admin-guides/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-waf/v4/admin-guide/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-waf/v5/admin-guide/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/analytics/alerts/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/deployment-guides/google-cloud-platform/high-availability-all-active/</loc>
+      <lastmod>2025-05-27T12:54:20-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/deployment-guides/amazon-web-services/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-gateway-fabric/reference/api/</loc>
+      <lastmod>2025-02-07T03:05:39-08:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-unit/howto/apps/apollo/</loc>
+      <lastmod>2025-05-26T10:52:40+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/app-delivery/security/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/admin-guide/authentication/</loc>
+      <lastmod>2024-11-19T08:52:46-08:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginxaas/azure/client-tools/templates/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/admin-guides/backup-restore/backup-restore-metrics-db/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-agent/configuration/configuration-overview/</loc>
+      <lastmod>2025-05-19T13:24:38-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginxaas/azure/billing/overview/</loc>
+      <lastmod>2025-05-28T20:38:24+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-unit/howto/frameworks/bottle/</loc>
+      <lastmod>2025-05-26T10:52:40+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/admin-guide/dynamic-modules/brotli/</loc>
+      <lastmod>2025-04-11T21:55:36+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-agent/installation-upgrade/container-environments/docker-images/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-gateway-fabric/reference/cli-help/</loc>
+      <lastmod>2025-01-23T17:25:49+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-agent/contribute/community/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-service-mesh/get-started/install/configuration/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/system-configuration/configure-clickhouse/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/admin-guide/mail-proxy/mail-proxy/</loc>
+      <lastmod>2025-05-02T13:17:47-05:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-gateway-fabric/how-to/monitoring/tracing/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/admin-guide/web-server/web-server/</loc>
+      <lastmod>2025-05-05T10:01:45-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/admin-guide/basic-functionality/runtime-control/</loc>
+      <lastmod>2025-05-27T15:49:33+02:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/admin-guide/dynamic-modules/cookie-flag/</loc>
+      <lastmod>2025-04-29T20:11:10+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/deployment-guides/microsoft-azure/virtual-machines-for-nginx/</loc>
+      <lastmod>2025-05-27T12:54:20-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-service-mesh/tutorials/deploy-example-app/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/deploy/docker/deploy-nginx-instance-manager-docker-compose/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/deploy/kubernetes/deploy-using-helm/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginxaas/azure/getting-started/create-deployment/deploy-azure-portal/</loc>
+      <lastmod>2025-05-28T20:38:24+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-dos/deployment-guide/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/acm/tutorials/enable-metrics/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginxaas/azure/monitoring/enable-logging/logging-using-portal/</loc>
+      <lastmod>2025-05-28T20:38:24+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginxaas/azure/monitoring/enable-logging/logging-using-cli/</loc>
+      <lastmod>2025-05-28T20:38:24+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginxaas/azure/monitoring/enable-logging/logging-using-terraform/</loc>
+      <lastmod>2025-05-28T20:38:24+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/admin-guide/dynamic-modules/encrypted-session/</loc>
+      <lastmod>2025-04-11T21:55:36+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-waf/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/admin-guide/dynamic-modules/fips/</loc>
+      <lastmod>2025-04-11T21:55:36+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/analytics/forwarders/forward-analytics-to-datadog/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-gateway-fabric/overview/gateway-architecture/</loc>
+      <lastmod>2025-02-19T17:19:30+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/admin-guide/dynamic-modules/geoip/</loc>
+      <lastmod>2025-04-11T21:55:36+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/admin-guide/dynamic-modules/geoip2/</loc>
+      <lastmod>2025-04-11T21:55:36+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-one/getting-started/</loc>
+      <lastmod>2025-05-29T09:47:13-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/platform/what-is-controller/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/admin-guides/config-agent/about-controller-agent/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-agent/installation-upgrade/getting-started/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-service-mesh/get-started/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/deployment-guides/global-server-load-balancing/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/deployment-guides/global-server-load-balancing/ns1-global-server-load-balancing/</loc>
+      <lastmod>2025-05-27T12:54:20-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/deployment-guides/google-cloud-platform/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/admin-guide/dynamic-modules/headers-more/</loc>
+      <lastmod>2025-04-11T21:55:36+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/admin-guide/high-availability/ha-keepalived/</loc>
+      <lastmod>2025-04-03T09:57:34+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/acm/how-to/policies/manage-policies/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/nginx-app-protect/overview-nap-waf-config-management/</loc>
+      <lastmod>2025-04-25T11:11:59-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/admin-guide/load-balancer/http-load-balancer/</loc>
+      <lastmod>2025-04-03T09:57:34+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/admin-guide/dynamic-modules/http-substitutions-filter/</loc>
+      <lastmod>2025-04-11T21:55:36+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/admin-guide/dynamic-modules/image-filter/</loc>
+      <lastmod>2025-04-11T21:55:36+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/acm/how-to/infrastructure/</loc>
+      <lastmod>2024-02-26T22:28:23+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/nginx-agent/install-nginx-agent/</loc>
+      <lastmod>2025-05-19T13:24:38-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/disconnected/offline-install-guide/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-amplify/nginx-amplify-agent/install/installing-amplify-agent/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-gateway-fabric/installation/installing-ngf/</loc>
+      <lastmod>2025-01-27T10:34:10+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nms/acm/how-to/devportals/installation/</loc>
+      <lastmod>2024-02-26T22:28:23+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/admin-guides/install/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-gateway-fabric/installation/installing-ngf/helm/</loc>
+      <lastmod>2025-02-25T13:16:57+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/admin-guide/installing-nginx/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/admin-guide/installing-nginx/installing-nginx-plus/</loc>
+      <lastmod>2025-04-29T20:11:10+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-waf/admin-guide/nginx-plus-modsecurity-waf-installation-logging/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-amplify/overview/</loc>
+      <lastmod>2024-08-19T14:38:29+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/acm/about/introduction/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/app-delivery/security/concepts/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/admin-guide/monitoring/live-activity-monitoring/</loc>
+      <lastmod>2025-04-16T10:50:31-04:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/deployment-guides/load-balance-third-party/apache-tomcat/</loc>
+      <lastmod>2025-05-27T12:54:20-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/deployment-guides/load-balance-third-party/microsoft-exchange/</loc>
+      <lastmod>2025-05-27T12:54:20-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/deployment-guides/load-balance-third-party/node-js/</loc>
+      <lastmod>2025-05-27T12:54:20-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/deployment-guides/load-balance-third-party/oracle-e-business-suite/</loc>
+      <lastmod>2025-05-27T12:54:20-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/deployment-guides/load-balance-third-party/oracle-weblogic-server/</loc>
+      <lastmod>2025-05-27T12:54:20-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/deployment-guides/load-balance-third-party/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/deployment-guides/load-balance-third-party/wildfly/</loc>
+      <lastmod>2025-05-27T12:54:20-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/admin-guide/dynamic-modules/lua/</loc>
+      <lastmod>2025-04-11T21:55:36+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/acm/how-to/infrastructure/manage-api-infrastructure/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/app-delivery/security/tutorials/add-app-security-with-waf/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-one/nginx-configs/certificates/manage-certificates/</loc>
+      <lastmod>2025-05-29T09:47:13-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/services/manage-environments/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/disconnected/offline-install-guide-deprecated/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/deployment-guides/microsoft-azure/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/admin-guide/authentication/oidc/microsoft-entra-setup/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/deployment-guides/migrate-hardware-adc/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/deployment-guides/migrate-hardware-adc/citrix-adc-configuration/</loc>
+      <lastmod>2025-05-27T12:54:20-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/deployment-guides/migrate-hardware-adc/f5-big-ip-configuration/</loc>
+      <lastmod>2025-05-27T12:54:20-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-dos/releases/about-4.2/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-dos/deployment-guide/learn-about-deployment/</loc>
+      <lastmod>2025-04-25T11:11:59-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-waf/v4/releases/about-4.13/</loc>
+      <lastmod>2025-01-30T19:06:38+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-waf/v4/admin-guide/install/</loc>
+      <lastmod>2025-04-25T11:11:59-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-waf/v5/admin-guide/overview/</loc>
+      <lastmod>2025-05-05T10:00:40-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/admin-guide/content-cache/content-caching/</loc>
+      <lastmod>2025-05-05T09:58:47-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/releases/apim/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/admin-guides/install/nginx-controller-tech-specs/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/admin-guide/dynamic-modules/ndk/</loc>
+      <lastmod>2025-04-11T21:55:36+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/admin-guide/dynamic-modules/nginx-waf/</loc>
+      <lastmod>2025-04-29T20:11:10+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-service-mesh/reference/permissions/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/admin-guide/security-controls/terminating-ssl-http/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/admin-guide/dynamic-modules/nginscript/</loc>
+      <lastmod>2025-04-11T21:55:36+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/admin-guide/dynamic-modules/opentelemetry/</loc>
+      <lastmod>2025-04-29T20:11:10+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/admin-guide/dynamic-modules/opentracing/</loc>
+      <lastmod>2025-04-29T20:11:10+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-agent/overview/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-gateway-fabric/overview/</loc>
+      <lastmod>2025-01-27T10:34:10+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginxaas/azure/overview/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/deploy/infrastructure-as-code/overview/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-unit/howto/overview/</loc>
+      <lastmod>2025-05-26T10:52:40+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginxaas/azure/overview/overview/</loc>
+      <lastmod>2025-05-28T20:38:24+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginxaas/azure/getting-started/prerequisites/</loc>
+      <lastmod>2025-05-28T20:38:24+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/monitoring/overview-metrics/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/analytics/metrics/overview-traffic-metrics/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/admin-guide/dynamic-modules/perl/</loc>
+      <lastmod>2025-04-11T21:55:36+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/admin-guide/dynamic-modules/passenger-open-source/</loc>
+      <lastmod>2025-04-11T21:55:36+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-one/connect-instances/create-manage-data-plane-keys/</loc>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/admin-guide/dynamic-modules/prometheus-njs/</loc>
+      <lastmod>2025-04-11T21:55:36+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/acm/how-to/services/publish-api/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/releases/release-notes/</loc>
+      <lastmod>2025-05-08T20:11:25+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/acm/releases/release-notes/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/releases/apim/apim-release-notes-3.18/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/releases/adc/adc-release-notes-3.20/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginxaas/azure/security-controls/auth-basic/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/nginx-configs/config-templates/tutorials/round-robin-reverse-proxy/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-gateway-fabric/how-to/traffic-management/routing-traffic-to-your-app/</loc>
+      <lastmod>2025-01-28T10:39:38+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/admin-guide/dynamic-modules/rtmp/</loc>
+      <lastmod>2025-04-11T21:55:36+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginxaas/azure/quickstart/runtime-state-sharing/</loc>
+      <lastmod>2025-05-05T18:40:28-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginxaas/azure/quickstart/scaling/</loc>
+      <lastmod>2025-05-28T20:38:24+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-gateway-fabric/how-to/traffic-security/integrating-cert-manager/</loc>
+      <lastmod>2025-03-14T09:03:32-06:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/acm/getting-started/add-api-gateway/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/nginx-app-protect/security-monitoring/set-up-app-protect-instances/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/deployment-guides/single-sign-on/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/admin-guide/dynamic-modules/set-misc/</loc>
+      <lastmod>2025-04-11T21:55:36+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/deployment-guides/setting-up-nginx-demo-environment/</loc>
+      <lastmod>2025-05-27T12:54:20-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/deployment-guides/single-sign-on/oidc-njs/cognito/</loc>
+      <lastmod>2025-05-27T12:54:20-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/deployment-guides/single-sign-on/auth0/</loc>
+      <lastmod>2025-04-01T17:31:51+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/deployment-guides/single-sign-on/oidc-njs/auth0/</loc>
+      <lastmod>2025-04-01T17:31:51+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/deployment-guides/single-sign-on/oidc-njs/keycloak/</loc>
+      <lastmod>2025-05-28T12:08:43+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/deployment-guides/single-sign-on/oidc-njs/active-directory-federation-services/</loc>
+      <lastmod>2025-05-27T12:54:20-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/deployment-guides/single-sign-on/oidc-njs/okta/</loc>
+      <lastmod>2025-04-01T17:31:51+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/deployment-guides/single-sign-on/oidc-njs/onelogin/</loc>
+      <lastmod>2025-05-27T12:54:20-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/deployment-guides/single-sign-on/oidc-njs/ping-identity/</loc>
+      <lastmod>2025-05-27T12:54:20-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/admin-guide/dynamic-modules/spnego/</loc>
+      <lastmod>2025-04-11T21:55:36+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-service-mesh/get-started/platform-setup/supported-platforms/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-gateway-fabric/how-to/traffic-management/</loc>
+      <lastmod>2025-01-27T10:34:10+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/support/troubleshooting-controller/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/admin-guide/dynamic-modules/uninstall/</loc>
+      <lastmod>2025-04-29T20:11:10+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-unit/news/2023/unit-1.31.1-released/</loc>
+      <lastmod>2025-05-26T10:52:40+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-unit/news/2024/unit-1.34.0-released/</loc>
+      <lastmod>2025-05-26T10:52:40+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginxaas/azure/getting-started/nginx-configuration/nginx-configuration-portal/</loc>
+      <lastmod>2025-05-28T20:38:24+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-waf/v4/admin-guide/install-nms/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-waf/v4/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/nim/getting-started/waf-config-management/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-service-mesh/about/what-is-nsm/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-service-mesh/support/contact-support/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/admin-guide/dynamic-modules/xslt/</loc>
+      <lastmod>2025-04-11T21:55:36+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-service-mesh/get-started/platform-setup/persistent-storage/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/admin-guides/install/get-n-plus-cert-and-key/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/admin-guides/config-agent/configure-the-agent/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-service-mesh/tutorials/trafficsplit-deployments/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/nginx-configs/config-templates/concepts/default-base-template/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/nginx-agent/install-nginx-plus-advanced-metrics/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/api-management/manage-apis/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-dos/releases/about-4.1/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-dos/deployment-guide/installing-nginx-plus-with-dos-and-waf-on-amazon-web-services/</loc>
+      <lastmod>2025-04-17T04:09:45-05:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-waf/v4/releases/about-4.12/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/nginx-instances/scan-instances/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/acm/tutorials/advanced-routing/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/acm/tutorials/rbac-api-owners/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-service-mesh/about/mesh-tech-specs/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/admin-guides/install/try-nginx-controller/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-dos/releases/about-1.1.1/</loc>
+      <lastmod>2024-11-19T17:13:03+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/acm/tutorials/rbac-infra-admins/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/admin-guides/install/try-nginx-controller-app-sec/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/analytics/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/nginx-configs/config-templates/concepts/augment-templates/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/analytics/dashboards/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/analytics/data-explorer/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-dos/directives-and-policy/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/admin-guides/install/install-nginx-controller/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/platform/licensing-controller/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/services/manage-certs/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/api-management/manage-dev-portals/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/services/manage-gateways/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-dos/releases/about-4.0/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-dos/directives-and-policy/learn-about-directives-and-policy/</loc>
+      <lastmod>2025-05-19T13:24:38-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-waf/v4/releases/about-4.11/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/admin-guides/config-agent/configure-metrics-collection/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/analytics/forwarders/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/infrastructure/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/services/available-policies/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/platform/get-controller-version/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-dos/monitoring/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-dos/monitoring/types-of-logs/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-waf/v4/releases/about-4.10/</loc>
+      <lastmod>2025-01-30T19:06:38+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-service-mesh/tutorials/accesscontrol-walkthrough/</loc>
+      <lastmod>2024-06-06T13:09:53+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/platform/maintenance/changing-ip-address/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/platform/access-management/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-service-mesh/tutorials/ratelimit-walkthrough/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/analytics/events/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/services/manage-identity-providers/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/platform/manage-cluster/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-dos/releases/about-3.1/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-dos/monitoring/live-activity-monitoring/</loc>
+      <lastmod>2025-04-17T04:09:45-05:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-dos/monitoring/security-log/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-waf/v4/releases/about-4.9/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/platform/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-agent/configuration/configure-nginx-agent-features/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-service-mesh/guides/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/admin-guides/install/install-nginx-controller-agent/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/analytics/metrics/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-dos/releases/about-3.0/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-waf/v4/releases/about-4.8.1/</loc>
+      <lastmod>2025-01-30T19:06:38+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/services/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginxaas/azure/quickstart/upgrade-channels/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/analytics/metrics/view-traffic-metrics/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/app-delivery/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/api-management/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-dos/releases/about-2.4/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-dos/monitoring/access-log/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-waf/v4/releases/about-4.8/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-dos/releases/about-2.3/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-waf/v4/releases/about-4.7/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-dos/releases/about-2.2/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-dos/monitoring/operation-log/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-waf/v4/releases/about-4.6/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-waf/v4/releases/about-4.5/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-unit/news/archived-news/2021/</loc>
+      <lastmod>2025-05-26T10:52:40+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginxaas/azure/changelog-archive/changelog-2023/</loc>
+      <lastmod>2025-05-28T20:38:24+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/unit/news/2024/</loc>
+      <lastmod>2025-05-26T10:52:40+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/app-delivery/about-caching/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/deployment-guides/amazon-web-services/high-availability-keepalived/</loc>
+      <lastmod>2025-05-27T12:54:20-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/disconnected/add-license-disconnected-deployment/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginxaas/azure/getting-started/ssl-tls-certificates/ssl-tls-certificates-azure-cli/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/nginx-app-protect/security-monitoring/give-access-to-security-monitoring-dashboards/</loc>
+      <lastmod>2025-02-06T11:26:37-08:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/api/ctlr-analytics-api/</loc>
+      <lastmod>2025-04-07T13:43:55+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/acm/how-to/policies/api-access-control-lists/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-gateway-fabric/how-to/traffic-management/advanced-routing/</loc>
+      <lastmod>2025-02-19T17:19:30+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-service-mesh/about/architecture/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/admin-guide/basic-functionality/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-unit/howto/apps/bugzilla/</loc>
+      <lastmod>2025-05-26T10:52:40+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-unit/howto/frameworks/cakephp/</loc>
+      <lastmod>2025-05-26T10:52:40+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/admin-guides/config-agent/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/system-configuration/configure-vault/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/admin-guide/high-availability/ha-keepalived-nodes/</loc>
+      <lastmod>2025-04-03T09:57:34+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/admin-guide/monitoring/logging/</loc>
+      <lastmod>2025-05-04T11:10:12-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-one/connect-instances/</loc>
+      <lastmod>2025-05-29T09:22:27-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-agent/installation-upgrade/container-environments/docker-support/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginxaas/azure/getting-started/create-deployment/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/support/support-package/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/support/support-package/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/support/k8s-support-package/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/support/k8s-support-package/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/admin-guide/rbac/create-roles/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/admin-guide/basic-functionality/managing-configuration-files/</loc>
+      <lastmod>2025-05-04T10:53:00-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/app-delivery/security/concepts/app-sec-default-policy-original/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/deploy/docker/deploy-nginx-plus-and-agent-docker/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginxaas/azure/getting-started/create-deployment/deploy-azure-cli/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-service-mesh/tutorials/kic/deploy-with-kic/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/deployment-guides/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/acm/how-to/infrastructure/configure-devportal-backend/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-agent/contribute/dev-environment-setup/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginxaas/azure/app-protect/enable-waf/</loc>
+      <lastmod>2025-04-27T21:43:51-06:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginxaas/azure/quickstart/basic-caching/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginxaas/azure/monitoring/enable-monitoring/</loc>
+      <lastmod>2025-05-28T20:38:24+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-agent/configuration/encrypt-communication/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/analytics/forwarders/forward-analytics-to-splunk/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-gateway-fabric/overview/gateway-api-compatibility/</loc>
+      <lastmod>2025-02-21T07:08:57-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-gateway-fabric/get-started/</loc>
+      <lastmod>2025-02-25T13:16:57+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginxaas/azure/getting-started/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginxaas/azure/quickstart/hosting-static-content/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/admin-guides/install/install-nginx-controller-rhel-8/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/deploy/infrastructure-as-code/configuration/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-service-mesh/get-started/install/install/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-agent/installation-upgrade/installation-github/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-gateway-fabric/installation/installing-ngf/manifests/</loc>
+      <lastmod>2025-02-25T13:16:57+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-waf/v5/admin-guide/install/</loc>
+      <lastmod>2025-04-01T18:28:25+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/admin-guide/installing-nginx/installing-nginx-open-source/</loc>
+      <lastmod>2025-05-26T18:53:23+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/platform/integrations/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-unit/keyfeatures/</loc>
+      <lastmod>2025-05-26T10:52:40+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/releases/known-issues/</loc>
+      <lastmod>2025-05-08T19:52:57+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/acm/releases/known-issues/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/deploy/kubernetes/</loc>
+      <lastmod>2024-11-19T08:52:46-08:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/analytics/alerts/manage-alerts/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/app-delivery/security/tutorials/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/nginx-configs/config-templates/how-to/manage-nginx-configs-with-templates/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-amplify/nginx-amplify-agent/metadata-metrics-collection/</loc>
+      <lastmod>2025-05-19T13:24:38-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-gateway-fabric/how-to/monitoring/prometheus/</loc>
+      <lastmod>2025-02-19T17:19:30+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-dos/releases/about-2.1/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-dos/troubleshooting-guide/how-to-troubleshoot/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginxaas/azure/app-protect/</loc>
+      <lastmod>2025-04-27T21:43:51-06:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-waf/v4/releases/about-4.4/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-waf/v4/configuration-guide/configuration/</loc>
+      <lastmod>2025-05-20T11:43:18+03:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-waf/v5/configuration-guide/configuration/</loc>
+      <lastmod>2025-05-20T11:43:18+03:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-service-mesh/reference/api-usage/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/acm/tutorials/oas-security-schemes/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/acm/how-to/devportals/publish-to-devportal/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/monitoring/metrics-api/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/admin-guide/rbac/</loc>
+      <lastmod>2024-11-19T08:52:46-08:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-gateway-fabric/how-to/traffic-security/securing-backend-traffic/</loc>
+      <lastmod>2025-01-23T17:25:49+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/admin-guide/web-server/serving-static-content/</loc>
+      <lastmod>2025-05-04T17:41:54-05:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/acm/how-to/services/</loc>
+      <lastmod>2024-02-26T22:28:23+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/acm/getting-started/add-devportal/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/app-delivery/security/tutorials/set-waf-monitor-mode/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/nginx-app-protect/setup-waf-config-management/</loc>
+      <lastmod>2025-04-30T10:03:00+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginxaas/azure/quickstart/security-controls/jwt/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/deployment-guides/single-sign-on/cognito/</loc>
+      <lastmod>2025-04-01T17:31:51+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/admin-guide/security-controls/terminating-ssl-tcp/</loc>
+      <lastmod>2025-04-03T09:57:34+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/admin-guide/load-balancer/tcp-udp-load-balancer/</loc>
+      <lastmod>2025-04-25T11:11:59-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-agent/technical-specifications/</loc>
+      <lastmod>2025-03-28T15:10:40+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-gateway-fabric/reference/technical-specifications/</loc>
+      <lastmod>2025-01-23T17:25:49+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/acm/about/technical-specifications/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/nginx-configs/config-templates/concepts/template-resources/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-gateway-fabric/how-to/traffic-security/</loc>
+      <lastmod>2025-01-27T10:34:10+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/support/troubleshooting-forwarders/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-dos/troubleshooting-guide/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-service-mesh/tutorials/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-service-mesh/get-started/uninstall/uninstall/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-unit/news/2023/unit-1.31.0-released/</loc>
+      <lastmod>2025-05-26T10:52:40+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-unit/news/2024/unit-1.33.0-released/</loc>
+      <lastmod>2025-05-26T10:52:40+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-unit/howto/docker/</loc>
+      <lastmod>2025-05-26T10:52:40+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-amplify/nginx-amplify-agent/install/updating-amplify-agent/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/admin-guides/install/using-helper-script/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-service-mesh/get-started/upgrade/upgrade/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginxaas/azure/getting-started/nginx-configuration/nginx-configuration-azure-cli/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginxaas/azure/billing/usage-and-cost-estimator/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/admin-guides/config-agent/use-agent-with-docker/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-waf/admin-guide/nginx-plus-modsecurity-waf-owasp-crs/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-waf/v5/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-one/staged-configs/edit-staged-config/</loc>
+      <lastmod>2025-04-25T10:28:57-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-one/nginx-configs/view-edit-nginx-configurations/</loc>
+      <lastmod>2025-05-29T09:22:27-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/analytics/forwarders/forward-analytics-to-syslog/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/analytics/forwarders/forward-analytics-to-otlp/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/admin-guides/install/install-agent-non-root/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/api/reference/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/admin-guide/rbac/assign-roles/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/reference/catalogs/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/analytics/catalogs/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-service-mesh/tutorials/kic/egress-walkthrough/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/admin-guides/install/agent-restart/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-waf/v4/releases/about-4.3/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-service-mesh/tutorials/kic/ingress-walkthrough/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-dos/releases/about-2.0/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-dos/releases/about-1.1.0/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-dos/releases/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-service-mesh/tutorials/kic/ingress-udp-walkthrough/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/system-configuration/configure-selinux/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/platform/maintenance/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginxaas/azure/loadbalancer-kubernetes/</loc>
+      <lastmod>2025-05-13T11:08:05+02:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/system-configuration/configure-telemetry/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-dos/releases/about-1.0/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-unit/news/archived-news/2020/</loc>
+      <lastmod>2025-05-26T10:52:40+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginxaas/azure/changelog-archive/changelog-2022/</loc>
+      <lastmod>2025-05-28T20:38:24+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/unit/news/2023/</loc>
+      <lastmod>2025-05-26T10:52:40+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/app-delivery/about-snippets/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/acm/how-to/policies/access-control-routing/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/api/ctlr-adc-api/</loc>
+      <lastmod>2025-04-07T13:43:55+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-one/nginx-configs/add-file/</loc>
+      <lastmod>2025-05-29T09:47:13-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginxaas/azure/getting-started/ssl-tls-certificates/ssl-tls-certificates-terraform/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-agent/configuration/configure-nginx-agent-group/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-gateway-fabric/overview/nginx-plus/</loc>
+      <lastmod>2025-02-07T03:05:39-08:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/acm/tutorials/aws-deploy/</loc>
+      <lastmod>2025-04-10T16:47:09+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/acm/about/api-overview/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginxaas/azure/getting-started/managed-identity-portal/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/admin-guide/authentication/oidc/microsoft-entra-automation/</loc>
+      <lastmod>2025-05-19T13:24:38-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginxaas/azure/client-tools/sdk/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/admin-guides/backup-restore/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/app-delivery/security/concepts/bring-your-own-policy/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/deploy/infrastructure-as-code/build-and-deploy/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-unit/howto/source/</loc>
+      <lastmod>2025-05-26T10:52:40+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-unit/howto/frameworks/catalyst/</loc>
+      <lastmod>2025-05-26T10:52:40+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-service-mesh/reference/nginx-meshctl/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/deploy/kubernetes/helm-config-settings/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginxaas/azure/monitoring/configure-alerts/</loc>
+      <lastmod>2025-05-20T15:58:37-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginxaas/azure/app-protect/configure-waf/</loc>
+      <lastmod>2025-04-27T21:43:51-06:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-amplify/nginx-amplify-agent/install/configuring-amplify-agent/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/acm/how-to/devportals/devportal-support-package/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/acm/how-to/infrastructure/customize-devportal/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-unit/howto/apps/datasette/</loc>
+      <lastmod>2025-05-26T10:52:40+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/admin-guide/monitoring/debugging/</loc>
+      <lastmod>2025-04-03T09:57:34+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-waf/v5/admin-guide/deploy-with-helm/</loc>
+      <lastmod>2025-04-01T18:28:25+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/admin-guides/install/resilient-cluster-private-cloud/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginxaas/azure/getting-started/create-deployment/deploy-terraform/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-amplify/nginx-amplify-agent/detecting-monitoring-instances/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/acm/how-to/devportals/</loc>
+      <lastmod>2024-02-26T22:28:23+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginxaas/azure/app-protect/enable-logging/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginxaas/azure/monitoring/enable-logging/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginxaas/azure/quickstart/rate-limiting/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginxaas/azure/overview/feature-comparison/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/admin-guide/load-balancer/http-health-check/</loc>
+      <lastmod>2025-04-03T09:57:34+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-one/staged-configs/import-export-staged-config/</loc>
+      <lastmod>2025-05-21T07:28:25-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/deploy/infrastructure-as-code/</loc>
+      <lastmod>2024-11-19T08:52:46-08:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-service-mesh/get-started/install/install-with-helm/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-gateway-fabric/installation/</loc>
+      <lastmod>2025-01-27T10:34:10+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-agent/installation-upgrade/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-agent/installation-upgrade/installation-oss/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/admin-guide/installing-nginx/installing-nginx-plus-amazon-web-services/</loc>
+      <lastmod>2025-05-27T12:54:20-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/nginx-configs/config-templates/reference/json-schema-reference/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/admin-guide/load-balancer/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginxaas/azure/monitoring/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/nginx-app-protect/manage-waf-security-policies/</loc>
+      <lastmod>2025-04-25T11:11:59-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/app-delivery/manage-apps/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-one/nginx-configs/config-sync-groups/manage-config-sync-groups/</loc>
+      <lastmod>2025-05-29T09:43:54-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/admin-guide/rbac/manage-resource-groups/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/app-delivery/security/tutorials/tune-waf-for-app/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-one/nginx-configs/</loc>
+      <lastmod>2025-05-22T12:34:50-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-one/connect-instances/set-up-nginx-proxy-for-nginx-one/</loc>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-gateway-fabric/how-to/monitoring/</loc>
+      <lastmod>2025-01-27T10:34:10+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/nginx-agent/</loc>
+      <lastmod>2024-03-26T14:21:11+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-waf/v4/declarative-policy/policy/</loc>
+      <lastmod>2024-11-19T17:14:30+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-waf/v5/declarative-policy/policy/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/fundamentals/dashboard-overview/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-gateway-fabric/installation/nginx-plus-jwt/</loc>
+      <lastmod>2025-02-19T17:19:30+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-gateway-fabric/how-to/monitoring/dashboard/</loc>
+      <lastmod>2025-01-23T17:25:49+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/admin-guide/web-server/reverse-proxy/</loc>
+      <lastmod>2025-03-26T09:42:25-04:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/acm/how-to/infrastructure/publish-developer-portal/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/acm/how-to/services/publish-grpc-proxy/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/acm/getting-started/publish-api-proxy/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/nginx-configs/config-templates/how-to/rbac-config-templates-and-submissions/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/releases/</loc>
+      <lastmod>2025-05-28T15:33:09+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/disconnected/report-usage-disconnected-deployment/</loc>
+      <lastmod>2025-04-10T16:47:09+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/admin-guide/security-controls/configuring-http-basic-authentication/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginxaas/azure/quickstart/security-controls/securing-upstream-traffic/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginxaas/azure/quickstart/security-controls/oidc/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/deployment-guides/single-sign-on/active-directory-federation-services/</loc>
+      <lastmod>2025-04-01T17:31:51+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/admin-guide/high-availability/configuration-sharing/</loc>
+      <lastmod>2025-04-03T09:57:34+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-waf/technical-specs/</loc>
+      <lastmod>2024-09-26T11:42:22+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-service-mesh/get-started/uninstall/uninstall-with-helm/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-unit/news/2023/unit-1.30.0-released/</loc>
+      <lastmod>2025-05-26T10:52:40+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-unit/news/2024/unit-1.32.1-released/</loc>
+      <lastmod>2025-05-26T10:52:40+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/nginx-app-protect/security-monitoring/update-signatures/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-waf/v4/admin-guide/upgrade-nap-waf/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-service-mesh/get-started/upgrade/upgrade-with-helm/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginxaas/azure/getting-started/nginx-configuration/nginx-configurations-terraform/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-one/staged-configs/api-staged-config/</loc>
+      <lastmod>2025-04-25T10:28:57-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-amplify/nginx-amplify-agent/</loc>
+      <lastmod>2024-08-19T14:38:29+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-waf/admin-guide/nginx-plus-modsecurity-waf-trustwave-spiderlabs-rules/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/monitoring/view-events-metrics/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/support/contact-support/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/support/contact-support/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/admin-guides/install/resilient-cluster-aws/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/analytics/alerts/manage-registered-emails/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-waf/v4/releases/about-4.2/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/acm/how-to/policies/advanced-security/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/acm/how-to/policies/allowed-http-methods/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-unit/news/archived-news/2019/</loc>
+      <lastmod>2025-05-26T10:52:40+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-one/nginx-configs/config-sync-groups/add-file-csg/</loc>
+      <lastmod>2025-05-29T09:47:13-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginxaas/azure/getting-started/ssl-tls-certificates/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/acm/how-to/policies/apikey-authn/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/api/ctlr-apim-api/</loc>
+      <lastmod>2025-04-07T13:43:55+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/app-delivery/security/concepts/app-sec-metrics/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/acm/about/architecture/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/unit/news/archived-news/</loc>
+      <lastmod>2025-05-26T10:52:40+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/admin-guide/security-controls/configuring-subrequest-authentication/</loc>
+      <lastmod>2025-05-05T17:45:25-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/monitoring/catalogs/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-one/config-sync-groups/</loc>
+      <lastmod>2025-05-29T06:32:39-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-unit/howto/frameworks/codeigniter/</loc>
+      <lastmod>2025-05-26T10:52:40+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/admin-guide/web-server/compression/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-agent/configuration/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-waf/v4/configuration-guide/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-waf/v5/configuration-guide/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-amplify/nginx-amplify-agent/configuring-metric-collection/</loc>
+      <lastmod>2025-05-19T13:24:38-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-one/connect-instances/connect-nginx-plus-container-images-to-nginx-one/</loc>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginxaas/azure/quickstart/security-controls/private-link-to-upstreams/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/admin-guide/content-cache/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-gateway-fabric/how-to/control-plane-configuration/</loc>
+      <lastmod>2025-01-23T17:25:49+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/app-delivery/deploy-simple-app/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-waf/v5/admin-guide/deploy-with-manifests/</loc>
+      <lastmod>2025-04-01T18:28:25+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginxaas/azure/app-protect/disable-waf/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-unit/howto/apps/dokuwiki/</loc>
+      <lastmod>2025-05-26T10:52:40+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-one/staged-configs/</loc>
+      <lastmod>2025-05-29T09:22:27-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/acm/how-to/infrastructure/enable-create-credentials/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/acm/how-to/infrastructure/enable-sso-devportal/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/app-delivery/security/concepts/extend-app-security-snippets/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/deploy/kubernetes/frequently-used-helm-configs/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/acm/getting-started/</loc>
+      <lastmod>2024-08-22T17:57:00+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-agent/configuration/health-checks/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-gateway-fabric/how-to/</loc>
+      <lastmod>2025-01-27T10:34:10+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-gateway-fabric/how-to/traffic-management/redirects-and-rewrites/</loc>
+      <lastmod>2025-01-23T17:25:49+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/admin-guide/installing-nginx/installing-nginx-plus-google-cloud-platform/</loc>
+      <lastmod>2025-05-04T14:00:00-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-unit/installation/</loc>
+      <lastmod>2025-05-26T15:18:04+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-agent/installation-upgrade/installation-plus/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/admin-guide/authentication/oidc/keycloak-setup/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-one/rbac/overview/</loc>
+      <lastmod>2025-05-22T12:54:03-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/admin-guide/maintenance/</loc>
+      <lastmod>2024-11-19T08:52:46-08:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginxaas/azure/billing/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginxaas/azure/monitoring/metrics-catalog/</loc>
+      <lastmod>2025-05-20T15:58:37-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-waf/v4/releases/about-4.1/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-waf/v4/troubleshooting-guide/troubleshooting/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-waf/v5/troubleshooting-guide/troubleshooting/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/admin-guide/monitoring/diagnostic-package/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/acm/tutorials/introspection-keycloak/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/system-configuration/configure-gateway/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/fundamentals/api-overview/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/nim/getting-started/</loc>
+      <lastmod>2024-08-22T17:57:00+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-gateway-fabric/overview/resource-validation/</loc>
+      <lastmod>2025-05-04T15:43:03-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/admin-guide/high-availability/zone_sync/</loc>
+      <lastmod>2025-04-03T09:57:34+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/deployment-guides/single-sign-on/entra-id/</loc>
+      <lastmod>2025-04-01T17:31:51+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/admin-guide/load-balancer/tcp-health-check/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/technical-specs/</loc>
+      <lastmod>2025-04-02T12:33:54+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-gateway-fabric/how-to/monitoring/troubleshooting/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-amplify/nginx-amplify-agent/install/uninstalling-amplify-agent/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-unit/howto/ansible/</loc>
+      <lastmod>2025-05-26T10:52:40+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/nginx-app-protect/security-monitoring/update-geo-db/</loc>
+      <lastmod>2025-03-18T17:43:10+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginxaas/azure/quickstart/njs-support/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/deployment-guides/amazon-web-services/ingress-controller-elastic-kubernetes-services/</loc>
+      <lastmod>2025-05-27T12:54:20-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/app-delivery/security/tutorials/using-rbac-with-app-security/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/deploy/vm-bare-metal/</loc>
+      <lastmod>2024-11-19T08:52:46-08:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-waf/v4/releases/about-4.0/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/acm/how-to/policies/basic-authn/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-agent/installation-upgrade/installation-unprivileged/</loc>
+      <lastmod>2025-03-19T11:07:11+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/acm/how-to/policies/cluster-wide-config/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/acm/how-to/policies/cluster-zone-sync/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-unit/news/archived-news/2018/</loc>
+      <lastmod>2025-05-26T10:52:40+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/acm/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/acm/about/policies-overview/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-gateway-fabric/installation/building-the-images/</loc>
+      <lastmod>2025-02-19T17:19:30+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginxaas/azure/client-tools/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-agent/contribute/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-unit/controlapi/</loc>
+      <lastmod>2025-05-26T10:52:40+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/acm/how-to/policies/cors/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-gateway-fabric/how-to/data-plane-configuration/</loc>
+      <lastmod>2025-05-19T13:24:38-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-waf/v5/admin-guide/deploy-on-docker/</loc>
+      <lastmod>2025-04-15T17:25:54+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-unit/howto/frameworks/django/</loc>
+      <lastmod>2025-05-26T10:52:40+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-unit/howto/apps/drupal/</loc>
+      <lastmod>2025-05-26T10:52:40+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/admin-guide/high-availability/zone_sync_details/</loc>
+      <lastmod>2025-04-03T09:57:34+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/acm/how-to/</loc>
+      <lastmod>2024-08-22T17:57:00+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-gateway-fabric/how-to/traffic-management/https-termination/</loc>
+      <lastmod>2025-01-23T17:25:49+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/admin-guide/installing-nginx/installing-nginx-plus-microsoft-azure/</loc>
+      <lastmod>2025-05-04T14:43:23-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-one/nginx-configs/certificates/</loc>
+      <lastmod>2025-05-29T09:22:27-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/admin-guide/monitoring/new-relic-plugin/</loc>
+      <lastmod>2025-05-27T12:54:20-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-waf/v5/admin-guide/compiler/</loc>
+      <lastmod>2025-04-25T11:11:59-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-unit/howto/integration/</loc>
+      <lastmod>2025-05-26T10:52:40+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/open-source-components/</loc>
+      <lastmod>2025-04-01T17:31:51+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-gateway-fabric/overview/product-telemetry/</loc>
+      <lastmod>2025-04-25T11:11:59-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/admin-guide/authentication/oidc/scim-provisioning/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginxaas/azure/quickstart/recreate/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-service-mesh/reference/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-gateway-fabric/reference/</loc>
+      <lastmod>2025-01-27T10:34:10+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-one/rbac/roles/</loc>
+      <lastmod>2025-05-22T12:54:03-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginxaas/azure/quicksart/security-controls/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/nginx-app-protect/security-monitoring/</loc>
+      <lastmod>2025-03-18T17:43:10+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-one/rbac/rbac-api/</loc>
+      <lastmod>2025-05-22T12:54:03-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-one/metrics/</loc>
+      <lastmod>2025-05-29T09:22:27-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/admin-guide/security-controls/configuring-jwt-authentication/</loc>
+      <lastmod>2025-04-03T09:57:34+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/deployment-guides/single-sign-on/keycloak/</loc>
+      <lastmod>2025-05-27T13:08:01+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/support/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-unit/news/2024/wasm-component-model-part-1/</loc>
+      <lastmod>2025-05-26T10:52:40+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/nginx-app-protect/security-monitoring/troubleshooting/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-amplify/nginx-amplify-agent/troubleshooting-metrics-collection/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/admin-guide/load-balancer/udp-health-check/</loc>
+      <lastmod>2025-04-25T11:11:59-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-gateway-fabric/how-to/upgrade-apps-without-downtime/</loc>
+      <lastmod>2025-02-19T17:19:30+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginxaas/azure/getting-started/nginx-configuration/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-amplify/nginx-amplify-agent/install/using-amplify-agent-docker/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/admin-guide/web-server/app-gateway-uwsgi-django/</loc>
+      <lastmod>2025-05-14T15:38:57+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/admin-guides/install/install-for-controller/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/analytics/view-app-security-analytics/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/app-delivery/security/tutorials/view-app-security-analytics/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-unit/news/2024/fermyon-spin-rust-sdk/</loc>
+      <lastmod>2025-05-26T10:52:40+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/admin-guide/web-server/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-waf/v4/logging-overview/logs-overview/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-waf/v4/logging-overview/security-log/</loc>
+      <lastmod>2025-05-19T13:24:38-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-waf/v5/logging-overview/security-log/</loc>
+      <lastmod>2025-05-19T13:24:38-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-waf/v4/logging-overview/operation-logs/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-waf/v4/logging-overview/debug-logs/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/acm/how-to/policies/error-response-format/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-waf/v4/logging-overview/access-log/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-waf/v5/logging-overview/access-log/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/admin-guide/security-controls/configuring-oidc/</loc>
+      <lastmod>2025-04-01T17:31:51+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-unit/configuration/</loc>
+      <lastmod>2025-05-26T15:18:04+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/deployment-guides/amazon-web-services/ec2-instances-for-nginx/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/nginx-instances/manage-instance-groups/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-gateway-fabric/overview/custom-policies/</loc>
+      <lastmod>2025-04-25T11:11:59-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/admin-guide/installing-nginx/installing-nginx-docker/</loc>
+      <lastmod>2025-05-05T09:42:55-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-unit/howto/frameworks/djangochannels/</loc>
+      <lastmod>2025-05-26T10:52:40+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-unit/howto/apps/grafana/</loc>
+      <lastmod>2025-05-26T10:52:40+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/acm/how-to/policies/grpc-policies/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/admin-guide/load-balancer/grpc-health-check/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/admin-guide/security-controls/controlling-access-proxied-http/</loc>
+      <lastmod>2025-04-03T09:57:34+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-gateway-fabric/how-to/traffic-management/request-response-headers/</loc>
+      <lastmod>2025-02-19T17:19:30+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-amplify/nginx-amplify-agent/configuration-analysis/</loc>
+      <lastmod>2025-05-19T13:24:38-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/fips-compliance-nginx-plus/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-one/rbac/</loc>
+      <lastmod>2025-05-29T09:22:27-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginxaas/azure/quickstart/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/acm/about/rbac-roles/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/system-configuration/secure-traffic/</loc>
+      <lastmod>2025-04-10T16:47:09+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/admin-guide/security-controls/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/analytics/alerts/service-now-notifications/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/deployment-guides/single-sign-on/onelogin/</loc>
+      <lastmod>2025-04-01T17:31:51+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-service-mesh/support/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-gateway-fabric/support/</loc>
+      <lastmod>2025-05-22T14:03:16-06:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-unit/news/2024/wasm-component-model-part-2/</loc>
+      <lastmod>2025-05-26T10:52:40+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-unit/howto/certbot/</loc>
+      <lastmod>2025-05-26T10:52:40+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/acm/tutorials/</loc>
+      <lastmod>2024-08-22T17:57:00+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-agent/installation-upgrade/upgrade/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-waf/v5/admin-guide/upgrade-nap-waf/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-amplify/user-interface/</loc>
+      <lastmod>2024-08-19T14:38:29+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/acm/how-to/policies/health-check/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-waf/v4/releases/about-3.12.2/</loc>
+      <lastmod>2025-01-30T19:06:38+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-waf/v4/releases/about-3.12/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/acm/how-to/policies/http-backend-configuration/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/nginx-instances/manage-certificates/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/nginx-instances/add-tags/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-waf/v4/releases/about-3.11/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-waf/v4/releases/about-3.10/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-one/api/</loc>
+      <lastmod>2025-05-29T09:22:27-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/admin-guide/load-balancer/dynamic-configuration-api/</loc>
+      <lastmod>2025-04-03T09:57:34+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-unit/howto/frameworks/express/</loc>
+      <lastmod>2025-05-26T10:52:40+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginxaas/azure/quickstart/geoip2/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-unit/howto/apps/jira/</loc>
+      <lastmod>2025-05-26T10:52:40+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/acm/how-to/policies/log-format/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-amplify/metrics-metadata/</loc>
+      <lastmod>2024-08-19T14:38:29+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/admin-guide/monitoring/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-amplify/nginx-amplify-agent/source-code/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-waf/v4/releases/about-3.9.1/</loc>
+      <lastmod>2025-04-02T11:45:01+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/directives/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-gateway-fabric/releases/</loc>
+      <lastmod>2025-01-23T17:25:49+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/admin-guide/security-controls/controlling-access-proxied-tcp/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-unit/scripting/</loc>
+      <lastmod>2025-05-26T10:52:40+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/deployment-guides/single-sign-on/okta/</loc>
+      <lastmod>2025-04-01T17:31:51+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-agent/installation-upgrade/uninstall/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-unit/news/2024/unit-1.32.0-released/</loc>
+      <lastmod>2025-05-26T10:52:40+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-unit/howto/modules/</loc>
+      <lastmod>2025-05-26T10:52:40+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-waf/v4/releases/about-3.9/</loc>
+      <lastmod>2025-01-30T19:06:38+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-waf/v4/declarative-policy/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-waf/v5/declarative-policy/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-waf/v4/releases/about-3.8/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-waf/v4/releases/about-3.7/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-waf/v4/releases/about-3.6/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginxaas/azure/disaster-recovery/</loc>
+      <lastmod>2025-05-06T05:07:50-06:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginxaas/azure/get-help/</loc>
+      <lastmod>2025-05-28T20:38:24+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-waf/v4/releases/about-3.5/</loc>
+      <lastmod>2025-01-30T19:06:38+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/reference/</loc>
+      <lastmod>2023-05-05T14:10:19-06:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-waf/v4/releases/about-3.4/</loc>
+      <lastmod>2025-01-30T19:06:38+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-waf/v4/releases/about-3.3/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-waf/v4/releases/about-3.2/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-waf/v4/releases/about-3.1/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/admin-guide/load-balancer/using-proxy-protocol/</loc>
+      <lastmod>2025-05-05T09:49:25-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-unit/howto/samples/</loc>
+      <lastmod>2025-05-26T10:52:40+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-gateway-fabric/how-to/traffic-management/client-settings/</loc>
+      <lastmod>2025-02-19T17:19:30+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-gateway-fabric/how-to/traffic-management/tls-passthrough/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/agent/installation-upgrade/container-environments/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-unit/howto/frameworks/falcon/</loc>
+      <lastmod>2025-05-26T10:52:40+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-amplify/faq/</loc>
+      <lastmod>2024-08-19T14:38:29+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-one/glossary/</loc>
+      <lastmod>2025-05-29T09:22:27-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/admin-guide/high-availability/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/acm/how-to/policies/introspection/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-unit/howto/apps/joomla/</loc>
+      <lastmod>2025-05-26T10:52:40+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-waf/v4/logging-overview/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-waf/v5/logging-overview/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-unit/howto/apps/mailman/</loc>
+      <lastmod>2025-05-26T10:52:40+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-waf/v4/releases/about-3.0/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/acm/releases/</loc>
+      <lastmod>2024-08-22T17:57:00+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/admin-guide/security-controls/controlling-access-by-geoip/</loc>
+      <lastmod>2025-04-03T09:57:34+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-unit/howto/security/</loc>
+      <lastmod>2025-05-26T10:52:40+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/deployment-guides/single-sign-on/ping-identity/</loc>
+      <lastmod>2025-04-01T17:31:51+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-unit/certificates/</loc>
+      <lastmod>2025-05-26T10:52:40+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-gateway-fabric/how-to/traffic-management/snippets/</loc>
+      <lastmod>2025-02-19T17:19:30+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-waf/v5/releases/about-5.6/</loc>
+      <lastmod>2025-04-01T18:28:25+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-waf/v5/releases/about-5.5/</loc>
+      <lastmod>2025-01-30T19:06:38+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-waf/v5/releases/about-5.4/</loc>
+      <lastmod>2025-04-01T18:28:25+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-waf/v5/releases/about-5.3/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-waf/v5/releases/about-5.2/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-amplify/additional-resources/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginxaas/azure/client-tools/cli/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-amplify/changelog/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginxaas/azure/changelog/</loc>
+      <lastmod>2025-05-28T20:38:24+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/admin-guide/dynamic-modules/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-unit/howto/frameworks/fastapi/</loc>
+      <lastmod>2025-05-26T10:52:40+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/acm/how-to/policies/jwt-assertion/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-unit/howto/apps/matomo/</loc>
+      <lastmod>2025-05-26T10:52:40+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-waf/v5/releases/about-5.1/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/admin-guide/security-controls/securing-http-traffic-upstream/</loc>
+      <lastmod>2025-05-21T09:52:34+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-unit/statusapi/</loc>
+      <lastmod>2025-05-26T10:52:40+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-unit/news/2025/unit-1.34.2-released/</loc>
+      <lastmod>2025-05-27T17:47:57+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-gateway-fabric/how-to/traffic-management/upstream-settings/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-unit/howto/walkthrough/</loc>
+      <lastmod>2025-05-26T10:52:40+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/acm/how-to/policies/openid-connect/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-waf/v4/releases/about-2.3/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-waf/v4/releases/about-2.2/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginxaas/azure/changelog-archive/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-waf/v4/releases/about-2.1/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-waf/v4/releases/about-2.0/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/deployment-guides/single-signon/oidc-njs/</loc>
+      <lastmod>2025-04-01T17:31:51+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/support/</loc>
+      <lastmod>2025-01-02T11:37:20-08:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-one/nginx-configs/clean-up-unavailable-instances/</loc>
+      <lastmod>2025-05-29T09:22:27-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-unit/unitctl/</loc>
+      <lastmod>2025-05-26T10:52:40+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-unit/howto/frameworks/flask/</loc>
+      <lastmod>2025-05-26T10:52:40+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/unit/howto/frameworks/</loc>
+      <lastmod>2025-05-26T10:52:40+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-unit/howto/frameworks/guillotina/</loc>
+      <lastmod>2025-05-26T10:52:40+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginxaas/azure/known-issues/</loc>
+      <lastmod>2025-04-27T21:43:51-06:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-amplify/known-issues/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/admin-guide/mail-proxy/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-unit/howto/apps/mediawiki/</loc>
+      <lastmod>2025-05-26T10:52:40+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginxaas/azure/getting-started/migrate-from-standard/</loc>
+      <lastmod>2025-05-28T20:38:24+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-waf/v4/releases/about-1.3/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-waf/v5/releases/about-5.0/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/acm/how-to/policies/</loc>
+      <lastmod>2024-02-26T22:28:23+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/releases/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/releases/</loc>
+      <lastmod>2024-11-14T18:57:09+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/admin-guide/security-controls/securing-tcp-traffic-upstream/</loc>
+      <lastmod>2025-05-05T17:11:39-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/support/</loc>
+      <lastmod>2024-08-22T17:57:00+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/acm/troubleshooting/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-unit/news/2025/unit-1.34.1-released/</loc>
+      <lastmod>2025-05-27T17:47:57+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-waf/v5/logging-overview/logs-overview/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-waf/v4/releases/about-1.2/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-waf/v4/releases/about-1.1/</loc>
+      <lastmod>2025-01-30T19:06:38+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-waf/v4/releases/about-1.0/</loc>
+      <lastmod>2025-01-30T19:06:38+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/unit/howto/apps/</loc>
+      <lastmod>2025-05-26T10:52:40+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx/admin-guide/security-controls/denylisting-ip-addresses/</loc>
+      <lastmod>2025-04-03T09:57:34+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/unit/howto/</loc>
+      <lastmod>2025-05-26T10:52:40+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-unit/howto/frameworks/koa/</loc>
+      <lastmod>2025-05-26T10:52:40+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-unit/howto/apps/mercurial/</loc>
+      <lastmod>2025-05-26T10:52:40+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/acm/how-to/policies/proxy-request-headers/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-waf/v5/troubleshooting-guide/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-unit/troubleshooting/</loc>
+      <lastmod>2025-05-26T10:52:40+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-waf/v5/troubleshooting-guide/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/acm/how-to/policies/proxy-response-headers/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-agent/changelog/</loc>
+      <lastmod>2025-02-20T17:40:00+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-unit/community/</loc>
+      <lastmod>2025-05-26T15:18:04+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-unit/howto/frameworks/laravel/</loc>
+      <lastmod>2025-05-26T10:52:40+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-unit/howto/apps/modx/</loc>
+      <lastmod>2025-05-26T10:52:40+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/acm/how-to/policies/request-body-size-limit/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-unit/howto/frameworks/lumen/</loc>
+      <lastmod>2025-05-26T10:52:40+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-unit/howto/apps/moin/</loc>
+      <lastmod>2025-05-26T10:52:40+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-unit/howto/frameworks/pyramid/</loc>
+      <lastmod>2025-05-26T10:52:40+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/acm/how-to/policies/rate-limit/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/acm/how-to/policies/request-correlation-id/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/acm/how-to/policies/request-header-specification/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-unit/howto/apps/nextcloud/</loc>
+      <lastmod>2025-05-26T10:52:40+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-unit/howto/frameworks/quart/</loc>
+      <lastmod>2025-05-26T10:52:40+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/acm/how-to/policies/tls-policies/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-unit/howto/apps/opengrok/</loc>
+      <lastmod>2025-05-26T10:52:40+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-unit/howto/frameworks/responder/</loc>
+      <lastmod>2025-05-26T10:52:40+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-unit/howto/apps/phpbb/</loc>
+      <lastmod>2025-05-26T10:52:40+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-unit/howto/frameworks/rails/</loc>
+      <lastmod>2025-05-26T10:52:40+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-unit/howto/apps/phpmyadmin/</loc>
+      <lastmod>2025-05-26T10:52:40+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-unit/howto/frameworks/sanic/</loc>
+      <lastmod>2025-05-26T10:52:40+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-unit/howto/apps/plone/</loc>
+      <lastmod>2025-05-26T10:52:40+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-unit/howto/frameworks/springboot/</loc>
+      <lastmod>2025-05-26T10:52:40+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-unit/howto/apps/redmine/</loc>
+      <lastmod>2025-05-26T10:52:40+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-unit/howto/frameworks/starlette/</loc>
+      <lastmod>2025-05-26T10:52:40+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-unit/howto/frameworks/symfony/</loc>
+      <lastmod>2025-05-26T10:52:40+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-waf/v4/releases/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-waf/v5/releases/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-unit/howto/apps/reviewboard/</loc>
+      <lastmod>2025-05-26T10:52:40+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-unit/howto/frameworks/yii/</loc>
+      <lastmod>2025-05-26T10:52:40+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/</loc>
+      <lastmod>2025-02-11T08:44:31-08:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-unit/howto/apps/roundcube/</loc>
+      <lastmod>2025-05-26T10:52:40+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-unit/howto/frameworks/zope/</loc>
+      <lastmod>2025-05-26T10:52:40+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-unit/howto/apps/trac/</loc>
+      <lastmod>2025-05-26T10:52:40+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-unit/howto/apps/wordpress/</loc>
+      <lastmod>2025-05-26T10:52:40+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/admin-guide/authentication/basic-auth/</loc>
+      <lastmod>2024-11-19T08:52:46-08:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-waf/</loc>
+      <lastmod>2025-02-11T08:44:31-08:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/admin-guide/authentication/oidc/</loc>
+      <lastmod>2024-11-19T08:52:46-08:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/oss-attribution-notice/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/unit/news/</loc>
+      <lastmod>2025-05-26T10:52:40+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-unit/changes/</loc>
+      <lastmod>2025-05-27T17:47:57+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-one/changelog/</loc>
+      <lastmod>2025-05-29T06:32:39-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-waf/admin-guide/</loc>
+      <lastmod>2023-05-05T14:10:19-06:00</lastmod>
+    </url>
+    
+  
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-one/api/api-reference-guide/</loc>
+      <lastmod>2025-03-19T15:18:54-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/acm/how-to/backup-recovery/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-one/metrics/enable-metrics/</loc>
+      <lastmod>2025-05-29T06:32:39-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-app-protect-dos/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/</loc>
+      <lastmod>2025-02-11T08:48:25-08:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-one/</loc>
+      <lastmod>2024-09-05T10:45:19-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-service-mesh/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-service-mesh/get-started/platform-setup/gke/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-service-mesh/get-started/platform-setup/kubeadm/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-service-mesh/get-started/platform-setup/kubespray/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-agent/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-amplify/</loc>
+      <lastmod>2024-08-22T17:57:00+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-gateway-fabric/</loc>
+      <lastmod>2025-04-07T15:38:36+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-instance-manager/</loc>
+      <lastmod>2024-11-08T09:35:37-08:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/</loc>
+      <lastmod>2024-08-22T17:57:00+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-unit/</loc>
+      <lastmod>2025-05-26T10:52:40+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginxaas/azure/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/acm/how-to/install-acm-offline/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/ossc/</loc>
+      <lastmod>2025-04-01T12:05:47+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-service-mesh/releases/oss-dependencies/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-service-mesh/get-started/platform-setup/openshift/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-controller/api/ctlr-platform-api/</loc>
+      <lastmod>2025-04-07T13:43:55+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-management-suite/acm/how-to/policies/proxy-cache/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-service-mesh/get-started/platform-setup/rke/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-service-mesh/releases/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-one/metrics/review-metrics/</loc>
+      <lastmod>2025-05-29T06:32:39-07:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/search.html</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+    
+  
+    
+    <url>
+      <loc>http://localhost:1313/nginx-service-mesh/guides/v1alpha1-ratelimit/</loc>
+      <lastmod>2025-03-19T11:48:33-07:00</lastmod>
+    </url>
+    
+  
+</urlset>
+

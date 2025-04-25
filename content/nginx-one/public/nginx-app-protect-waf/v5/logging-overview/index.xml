@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Logging Overview on DEV -- docs-nginx-com</title>
+    <link>http://localhost:1313/nginx-app-protect-waf/v5/logging-overview/</link>
+    <description>Recent content in Logging Overview on DEV -- docs-nginx-com</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/nginx-app-protect-waf/v5/logging-overview/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>NGINX App Protect WAF Security Log</title>
+      <link>http://localhost:1313/nginx-app-protect-waf/v5/logging-overview/security-log/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-app-protect-waf/v5/logging-overview/security-log/</guid>
+      <description>&lt;h2 &#xA;id=&#34;security-logs&#34;&gt;Security Logs  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#security-logs&#34; title=&#34;Security Logs&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;h3 &#xA;id=&#34;security-logs-overview&#34;&gt;Security Logs Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#security-logs-overview&#34; title=&#34;Security Logs Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;Security logs&lt;/strong&gt; (also known as &lt;strong&gt;Request logs&lt;/strong&gt; or &lt;strong&gt;Traffic logs&lt;/strong&gt;) contain information on HTTP requests and responses, how F5 NGINX App Protect WAF processes them, and the final decision made based on the configured policy parameters. The policy configuration defines the information contained in the Security log, such as whether requests are passed, blocked or alerted, due to violations, attack signatures, and other criteria.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>NGINX App Protect WAF Access Log</title>
+      <link>http://localhost:1313/nginx-app-protect-waf/v5/logging-overview/access-log/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-app-protect-waf/v5/logging-overview/access-log/</guid>
+      <description>&lt;h2 &#xA;id=&#34;access-logs&#34;&gt;Access Logs  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#access-logs&#34; title=&#34;Access Logs&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;Access log is NGINX&amp;rsquo;s request log mechanism. It is controlled by two directives.&lt;/p&gt;&#xA;&lt;h3 &#xA;id=&#34;log_format&#34;&gt;log_format  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#log_format&#34; title=&#34;log_format&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h3&gt;&lt;p&gt;This directive determines the format of the log messages using predefined variables. App Protect will enrich this set of variables with several security log attributes that are available to be included in the &lt;strong&gt;log_format&lt;/strong&gt;.  If &lt;strong&gt;log_format&lt;/strong&gt; is not specified then the built-in format &lt;strong&gt;combined&lt;/strong&gt; is used but, because that format does not include the extended App Protect variables, this directive must be used when the user wants to add App Protect information to the log.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>NGINX App Protect WAF Logs Overview</title>
+      <link>http://localhost:1313/nginx-app-protect-waf/v5/logging-overview/logs-overview/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-app-protect-waf/v5/logging-overview/logs-overview/</guid>
+      <description>&lt;h2 &#xA;id=&#34;log-types&#34;&gt;Log Types  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#log-types&#34; title=&#34;Log Types&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;Logs in F5 NGINX App Protect WAF v5 can be accessed and configured similarly to NGINX App Protect WAF, though there are some differences in the process.&lt;/p&gt;&#xA;&lt;h3 &#xA;id=&#34;nginx-access-log&#34;&gt;NGINX Access Log  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#nginx-access-log&#34; title=&#34;NGINX Access Log&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h3&gt;&lt;p&gt;NGINX App Protect WAF v5 can be configured to add additional data to NGINX &lt;a href=&#34;http://localhost:1313/nginx-app-protect-waf/v5/logging-overview/access-log/&#34;&gt;Access log&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;h3 &#xA;id=&#34;security-logs&#34;&gt;Security Logs  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#security-logs&#34; title=&#34;Security Logs&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h3&gt;&lt;p&gt;A key change in configuring &lt;a href=&#34;http://localhost:1313/nginx-app-protect-waf/v5/logging-overview/security-log/&#34;&gt;Security logs&lt;/a&gt; is the requirement to &lt;a href=&#34;http://localhost:1313/nginx-app-protect-waf/v5/configuration-guide/configuration/#logging-profile-compilation&#34;&gt;compile JSON logging profiles&lt;/a&gt; into a bundle file before applying them.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

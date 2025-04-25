@@ -1,6 +1,6 @@
 ---
 description:
 title: How-to guides
-weight: 200
+weight: 700
 url: /nginx-one/how-to/
 ---

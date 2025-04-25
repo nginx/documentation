@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Deployment Guides on DEV -- docs-nginx-com</title>
+    <link>http://localhost:1313/nginx/deployment-guides/</link>
+    <description>Recent content in Deployment Guides on DEV -- docs-nginx-com</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/nginx/deployment-guides/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Setting up an NGINX demo environment</title>
+      <link>http://localhost:1313/nginx/deployment-guides/setting-up-nginx-demo-environment/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx/deployment-guides/setting-up-nginx-demo-environment/</guid>
+      <description>&lt;p&gt;The instructions in this guide explain how to set up a simple demo environment that uses F5 NGINX Plus to load balance web servers that run NGINX Open Source and serve two distinct web applications. It is referenced by some of our deployment guides for implementing highly availability of NGINX Plus and NGINX Open Source in cloud environments.&lt;/p&gt;&#xA;&lt;p&gt;&lt;span id=&#34;prereqs&#34;&gt;&lt;/span&gt;&lt;/p&gt;&#xA;&lt;h2 &#xA;id=&#34;prerequisites&#34;&gt;Prerequisites  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#prerequisites&#34; title=&#34;Prerequisites&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;This guide assumes you have already provisioned a number of host systems (physical servers, virtual machines, containers, or cloud instances) required for a deployment guide (if applicable) and installed NGINX Open Source or NGINX Plus on each instance as appropriate. For installation instructions, see the &lt;a href=&#34;http://localhost:1313/nginx/admin-guide/installing-nginx/installing-nginx-plus/&#34;&gt;NGINX Plus Admin Guide&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

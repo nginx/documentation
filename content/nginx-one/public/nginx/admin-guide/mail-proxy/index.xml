@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Mail Proxy on DEV -- docs-nginx-com</title>
+    <link>http://localhost:1313/nginx/admin-guide/mail-proxy/</link>
+    <description>Recent content in Mail Proxy on DEV -- docs-nginx-com</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/nginx/admin-guide/mail-proxy/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Configure NGINX as a Mail Proxy Server</title>
+      <link>http://localhost:1313/nginx/admin-guide/mail-proxy/mail-proxy/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx/admin-guide/mail-proxy/mail-proxy/</guid>
+      <description>&lt;p&gt;This article will explain how to configure F5 NGINX Plus or NGINX Open Source as a proxy for a mail server or an external mail service.&lt;/p&gt;&#xA;&lt;h2 &#xA;id=&#34;introduction&#34;&gt;Introduction  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#introduction&#34; title=&#34;Introduction&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;NGINX can proxy IMAP, POP3 and SMTP protocols to one of the upstream mail servers that host mail accounts and thus can be used as a single endpoint for email clients. This may bring in a number of benefits, such as:&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

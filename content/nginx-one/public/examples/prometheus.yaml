@@ -1,0 +1,177 @@
+# Warning: this deployment is for demo purposes only and is not recommended for production environments
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: nsm-monitoring
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: prometheus.nsm.nginx
+  namespace: nsm-monitoring
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: prometheus.nsm.nginx
+rules:
+- apiGroups:
+  - ''
+  resources:
+  - services
+  - endpoints
+  - pods
+  verbs:
+  - get
+  - list
+  - watch
+- nonResourceURLs:
+  - "/metrics"
+  verbs:
+  - get
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: prometheus.nsm.nginx
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: prometheus.nsm.nginx
+subjects:
+- kind: ServiceAccount
+  name: prometheus.nsm.nginx
+  namespace: nsm-monitoring
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prometheus-configuration
+  namespace: nsm-monitoring
+data:
+  prometheus.yaml: |
+    global:
+      scrape_interval: 10s
+    scrape_configs:
+    - job_name: 'nginx-mesh-sidecars'
+      kubernetes_sd_configs:
+      - role: pod
+      relabel_configs:
+      - source_labels: [__meta_kubernetes_pod_container_name]
+        action: keep
+        regex: nginx-mesh-sidecar
+      - action: labelmap
+        regex: __meta_kubernetes_pod_label_nsm_nginx_com_(.+)
+      - action: labeldrop
+        regex: __meta_kubernetes_pod_label_nsm_nginx_com_(.+)
+      - action: labelmap
+        regex: __meta_kubernetes_pod_label_(.+)
+      - source_labels: [__meta_kubernetes_namespace]
+        action: replace
+        target_label: namespace
+      - source_labels: [__meta_kubernetes_pod_name]
+        action: replace
+        target_label: pod
+    - job_name: 'nginx-plus-ingress'
+      kubernetes_sd_configs:
+      - role: pod
+      relabel_configs:
+      - source_labels: [__meta_kubernetes_pod_label_nsm_nginx_com_enable_ingress, __meta_kubernetes_pod_label_nsm_nginx_com_enable_egress]
+        action: keep
+        regex: .*true.*
+      - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_scrape]
+        action: keep
+        regex: true
+      - source_labels: [__address__, __meta_kubernetes_pod_annotation_prometheus_io_port]
+        action: replace
+        target_label: __address__
+        regex: (.+)(?::\d+);(\d+)
+        replacement: $1:$2
+      - source_labels: [__meta_kubernetes_namespace]
+        action: replace
+        target_label: namespace
+      - source_labels: [__meta_kubernetes_pod_name]
+        action: replace
+        target_label: pod
+      - action: labelmap
+        regex: __meta_kubernetes_pod_label_nsm_nginx_com_(.+)
+      - action: labeldrop
+        regex: __meta_kubernetes_pod_label_nsm_nginx_com_(.+)
+      - action: labelmap
+        regex: __meta_kubernetes_pod_label_(.+)
+      - action: labelmap
+        regex: __meta_kubernetes_pod_annotation_nsm_nginx_com_enable_(.+)
+      metric_relabel_configs:
+      - source_labels: [__name__]
+        regex: 'nginx_ingress_controller_upstream_server_response_latency_ms(.+)'
+        target_label: __name__
+        replacement: 'nginxplus_upstream_server_response_latency_ms$1'
+      - source_labels: [__name__]
+        regex: 'nginx_ingress_nginxplus(.+)'
+        target_label: __name__
+        replacement: 'nginxplus$1'
+      - source_labels: [service]
+        target_label: dst_service
+      - source_labels: [resource_namespace]
+        target_label: dst_namespace
+      - source_labels: [pod_owner]
+        regex: '(.+)\/(.+)'
+        target_label: dst_$1
+        replacement: $2
+      - action: labeldrop
+        regex: pod_owner
+      - source_labels: [pod_name]
+        target_label: dst_pod
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prometheus
+  namespace: nsm-monitoring
+  labels:
+    app.kubernetes.io/name: prometheus
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: prometheus
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: prometheus
+        injector.nsm.nginx.com/auto-inject: disabled
+    spec:
+      serviceAccountName: prometheus.nsm.nginx
+      containers:
+      - name: prometheus
+        image: prom/prometheus:latest
+        args:
+        - --config.file=/etc/prometheus/prometheus.yaml
+        - --storage.tsdb.path=/prometheus
+        ports:
+        - containerPort: 9090
+        volumeMounts:
+        - name: prometheus-config-volume
+          mountPath: /etc/prometheus
+        - name: prometheus-storage-volume
+          mountPath: /prometheus
+      volumes:
+      - name: prometheus-config-volume
+        configMap:
+          name: prometheus-configuration
+      - name: prometheus-storage-volume
+        emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: prometheus
+  namespace: nsm-monitoring
+  labels:
+    app.kubernetes.io/name: prometheus
+spec:
+  selector:
+    app.kubernetes.io/name: prometheus
+  ports:
+  - port: 9090

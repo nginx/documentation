@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Install NGINX Gateway Fabric on DEV -- docs-nginx-com</title>
+    <link>http://localhost:1313/nginx-gateway-fabric/installation/installing-ngf/</link>
+    <description>Recent content in Install NGINX Gateway Fabric on DEV -- docs-nginx-com</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/nginx-gateway-fabric/installation/installing-ngf/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Installation with Helm</title>
+      <link>http://localhost:1313/nginx-gateway-fabric/installation/installing-ngf/helm/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-gateway-fabric/installation/installing-ngf/helm/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;Learn how to install, upgrade, and uninstall NGINX Gateway Fabric in a Kubernetes cluster using Helm.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 &#xA;id=&#34;before-you-begin&#34;&gt;Before you begin  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#before-you-begin&#34; title=&#34;Before you begin&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;To complete this guide, you&amp;rsquo;ll need to install:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://kubernetes.io/docs/tasks/tools/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;kubectl&lt;/a&gt;, a command-line tool for managing Kubernetes clusters.&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://helm.sh/docs/intro/install/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Helm 3.0 or later&lt;/a&gt;, for deploying and managing applications on Kubernetes.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;blockquote class=&#34;important call-out&#34;&gt;&#xA;  &lt;div&gt;&lt;strong class=&#34;call-out-type&#34;&gt;Important&lt;/strong&gt;&lt;br/&gt; If you’d like to use NGINX Plus, some additional setup is also required:&lt;/div&gt;&#xA;&lt;/blockquote&gt;&#xA;&#xA;&lt;details closed&gt;&#xA;&lt;summary&gt;NGINX Plus JWT setup&lt;/summary&gt;&#xA;&lt;blockquote class=&#34;note&#34;&gt;&#xA;  &lt;div&gt;&lt;strong&gt;Note:&lt;/strong&gt;&lt;br/&gt; &lt;p&gt;For security, follow these practices with JSON Web Tokens (JWTs), passwords, and shell history:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Installation with Manifests</title>
+      <link>http://localhost:1313/nginx-gateway-fabric/installation/installing-ngf/manifests/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-gateway-fabric/installation/installing-ngf/manifests/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;Learn how to install, upgrade, and uninstall NGINX Gateway Fabric using Kubernetes manifests.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 &#xA;id=&#34;before-you-begin&#34;&gt;Before you begin  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#before-you-begin&#34; title=&#34;Before you begin&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;To complete this guide, you&amp;rsquo;ll need to install:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://kubernetes.io/docs/tasks/tools/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;kubectl&lt;/a&gt;, a command-line interface for managing Kubernetes clusters.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;blockquote class=&#34;important call-out&#34;&gt;&#xA;  &lt;div&gt;&lt;strong class=&#34;call-out-type&#34;&gt;Important&lt;/strong&gt;&lt;br/&gt; If you’d like to use NGINX Plus, some additional setup is also required:&lt;/div&gt;&#xA;&lt;/blockquote&gt;&#xA;&#xA;&lt;details closed&gt;&#xA;&lt;summary&gt;NGINX Plus JWT setup&lt;/summary&gt;&#xA;&lt;blockquote class=&#34;note&#34;&gt;&#xA;  &lt;div&gt;&lt;strong&gt;Note:&lt;/strong&gt;&lt;br/&gt; &lt;p&gt;For security, follow these practices with JSON Web Tokens (JWTs), passwords, and shell history:&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

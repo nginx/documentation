@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>How-to guides on DEV -- docs-nginx-com</title>
+    <link>http://localhost:1313/nginx-gateway-fabric/how-to/</link>
+    <description>Recent content in How-to guides on DEV -- docs-nginx-com</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/nginx-gateway-fabric/how-to/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Control plane configuration</title>
+      <link>http://localhost:1313/nginx-gateway-fabric/how-to/control-plane-configuration/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-gateway-fabric/how-to/control-plane-configuration/</guid>
+      <description>&lt;p&gt;Learn how to dynamically update the NGINX Gateway Fabric control plane configuration.&lt;/p&gt;&#xA;&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;NGINX Gateway Fabric can dynamically update the control plane configuration without restarting. The control plane configuration is stored in the NginxGateway custom resource, created during the installation of NGINX Gateway Fabric.&lt;/p&gt;&#xA;&lt;p&gt;NginxGateway is deployed in the same namespace as the controller (Default: &lt;code&gt;nginx-gateway&lt;/code&gt;). The resource&amp;rsquo;s default name is based on your &lt;a href=&#34;http://localhost:1313/nginx-gateway-fabric/installation/installing-ngf/&#34;&gt;installation method&lt;/a&gt;:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Helm: &lt;code&gt;&amp;lt;release-name&amp;gt;-config&lt;/code&gt;&lt;/li&gt;&#xA;&lt;li&gt;Manifests: &lt;code&gt;nginx-gateway-config&lt;/code&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;The control plane only watches this single instance of the custom resource.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Data plane configuration</title>
+      <link>http://localhost:1313/nginx-gateway-fabric/how-to/data-plane-configuration/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-gateway-fabric/how-to/data-plane-configuration/</guid>
+      <description>&lt;p&gt;Learn how to dynamically update the NGINX Gateway Fabric global data plane configuration.&lt;/p&gt;&#xA;&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;NGINX Gateway Fabric can dynamically update the global data plane configuration without restarting. The data plane configuration is a global configuration for NGINX that has options that are not available using the standard Gateway API resources. This includes such things as setting an OpenTelemetry collector config, disabling http2, changing the IP family, or setting the NGINX error log level.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Upgrade applications without downtime</title>
+      <link>http://localhost:1313/nginx-gateway-fabric/how-to/upgrade-apps-without-downtime/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-gateway-fabric/how-to/upgrade-apps-without-downtime/</guid>
+      <description>&lt;p&gt;Learn how to use NGINX Gateway Fabric to upgrade applications without downtime.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;blockquote class=&#34;note&#34;&gt;&#xA;  &lt;div&gt;&lt;strong&gt;Note:&lt;/strong&gt;&lt;br/&gt; See the &lt;a href=&#34;http://localhost:1313/nginx-gateway-fabric/overview/gateway-architecture/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Architecture document&lt;/a&gt; to learn more about NGINX Gateway Fabric architecture.&lt;/div&gt;&#xA;&lt;/blockquote&gt;&#xA;&#xA;&lt;p&gt;NGINX Gateway Fabric allows upgrading applications without downtime. To understand the upgrade methods, you need to be familiar with the NGINX features that help prevent application downtime: Graceful configuration reloads and upstream server updates.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h3 &#xA;id=&#34;graceful-configuration-reloads&#34;&gt;Graceful configuration reloads  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#graceful-configuration-reloads&#34; title=&#34;Graceful configuration reloads&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h3&gt;&lt;p&gt;If a relevant gateway API or built-in Kubernetes resource is changed, NGINX Gateway Fabric will update NGINX by regenerating the NGINX configuration. NGINX Gateway Fabric then sends a reload signal to the master NGINX process to apply the new configuration.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Manage your NGINX instances on DEV -- docs-nginx-com</title>
+    <link>http://localhost:1313/nginx-one/nginx-configs/</link>
+    <description>Recent content in Manage your NGINX instances on DEV -- docs-nginx-com</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/nginx-one/nginx-configs/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>View and edit an NGINX instance</title>
+      <link>http://localhost:1313/nginx-one/nginx-configs/view-edit-nginx-configurations/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-one/nginx-configs/view-edit-nginx-configurations/</guid>
+      <description>&lt;!-- Possible future include, with similar files in config-sync-groups/ and staged-configs/ subdirectories --&gt;&#xA;&lt;p&gt;This guide explains how to edit the configuration of an existing &lt;strong&gt;Instance&lt;/strong&gt; in your NGINX One Console.&lt;/p&gt;&#xA;&lt;p&gt;To view and edit an NGINX configuration, follow these steps:&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;On the left menu, select &lt;strong&gt;Instances&lt;/strong&gt;.&lt;/li&gt;&#xA;&lt;li&gt;Select the instance you want to view the configuration for.&lt;/li&gt;&#xA;&lt;li&gt;Select the &lt;strong&gt;Configuration&lt;/strong&gt; tab to see the current configuration for the NGINX instance.&lt;/li&gt;&#xA;&lt;li&gt;Select &lt;strong&gt;Edit Configuration&lt;/strong&gt; to make changes to the current configuration.&lt;/li&gt;&#xA;&lt;li&gt;Make your changes to the configuration files. The config analyzer will let you know if there are any errors.&lt;/li&gt;&#xA;&lt;li&gt;When you are satisfied with the changes, select &lt;strong&gt;Next&lt;/strong&gt;.&lt;/li&gt;&#xA;&lt;li&gt;Compare and verify your changes before selecting &lt;strong&gt;Save and Publish&lt;/strong&gt; to publish the edited configuration.&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;Alternatively, you can select &lt;strong&gt;Save Changes As&lt;/strong&gt;. In the window that appears, you can set up this instance as a &lt;a href=&#34;http://localhost:1313/nginx-one/staged-configs/&#34;&gt;&lt;strong&gt;Staged Configuration&lt;/strong&gt;&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Add a file to an instance</title>
+      <link>http://localhost:1313/nginx-one/nginx-configs/add-file/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-one/nginx-configs/add-file/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;This guide explains how to add files in the F5 NGINX One Console. While you can manage files in the CLI, the NGINX One Console supports editing in a UI that resembles an Integrated Development Environment (IDE), with recommendations.&lt;/p&gt;&#xA;&#xA;&lt;h2 &#xA;id=&#34;before-you-start&#34;&gt;Before you start  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#before-you-start&#34; title=&#34;Before you start&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;Before you add files in your configuration, ensure:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;You have access to the NGINX One Console.&lt;/li&gt;&#xA;&lt;li&gt;NGINX instances are properly registered with NGINX One Console&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 &#xA;id=&#34;important-considerations&#34;&gt;Important considerations  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#important-considerations&#34; title=&#34;Important considerations&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;If your instance is a member of a Config Sync Group, changes that you make may be synchronized to other instances in that group.&#xA;For more information, see how you can &lt;a href=&#34;http://localhost:1313/nginx-one/nginx-configs/config-sync-groups/manage-config-sync-groups/&#34;&gt;Manage Config Sync Groups&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Clean up unavailable NGINX instances</title>
+      <link>http://localhost:1313/nginx-one/nginx-configs/clean-up-unavailable-instances/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-one/nginx-configs/clean-up-unavailable-instances/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;This guide explains how to set up automatic cleanup for NGINX instances in NGINX One. The cleanup process removes instances that have been unavailable for a specified duration. By default, this period is 24 hours from the time the NGINX instance was last updated. Administrators can change or disable the cleanup duration in &lt;strong&gt;Settings &amp;gt; Instance Settings&lt;/strong&gt;. Events will be generated for NGINX instances that have been automatically cleaned up; you can see these events on the &lt;strong&gt;Overview &amp;gt; Events&lt;/strong&gt; page.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

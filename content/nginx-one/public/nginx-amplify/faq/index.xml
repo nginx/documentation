@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Frequently Asked Questions on DEV -- docs-nginx-com</title>
+    <link>http://localhost:1313/nginx-amplify/faq/</link>
+    <description>Recent content in Frequently Asked Questions on DEV -- docs-nginx-com</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/nginx-amplify/faq/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>General</title>
+      <link>http://localhost:1313/nginx-amplify/faq/general/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-amplify/faq/general/</guid>
+      <description>&lt;h3 &#xA;id=&#34;what-is-f5-nginx-amplify&#34;&gt;What Is F5 NGINX Amplify?  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#what-is-f5-nginx-amplify&#34; title=&#34;What Is F5 NGINX Amplify?&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h3&gt;&lt;p&gt;NGINX Amplify is a tool for comprehensive NGINX monitoring. With NGINX Amplify it&amp;rsquo;s easy to proactively analyze and fix problems related to running and scaling NGINX-based web applications.&lt;/p&gt;&#xA;&lt;p&gt;You can use NGINX Amplify to do the following:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Visualize and identify NGINX performance bottlenecks, overloaded servers, or potential DDoS attacks&lt;/li&gt;&#xA;&lt;li&gt;Improve and optimize NGINX performance with intelligent advice and recommendations&lt;/li&gt;&#xA;&lt;li&gt;Get notified when something is wrong with the application infrastructure&lt;/li&gt;&#xA;&lt;li&gt;Plan web application capacity and performance&lt;/li&gt;&#xA;&lt;li&gt;Keep track of the systems running NGINX&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 &#xA;id=&#34;where-is-nginx-amplify-hosted&#34;&gt;Where Is NGINX Amplify Hosted?  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#where-is-nginx-amplify-hosted&#34; title=&#34;Where Is NGINX Amplify Hosted?&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h3&gt;&lt;p&gt;NGINX Amplify is a SaaS and it is currently hosted in &lt;a href=&#34;http://docs.aws.amazon.com/general/latest/gr/rande.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;AWS us-west-1&lt;/a&gt; (US West, N. California).&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>NGINX Amplify Agent</title>
+      <link>http://localhost:1313/nginx-amplify/faq/nginx-amplify-agent/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-amplify/faq/nginx-amplify-agent/</guid>
+      <description>&lt;h3 &#xA;id=&#34;what-operating-systems-are-supported&#34;&gt;What Operating Systems are Supported?  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#what-operating-systems-are-supported&#34; title=&#34;What Operating Systems are Supported?&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h3&gt;&lt;p&gt;The F5 NGINX Amplify Agent is currently officially packaged and supported for the following Linux flavors only:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Ubuntu 24.04 &amp;ldquo;noble&amp;rdquo; (amd64/arm64)&lt;/li&gt;&#xA;&lt;li&gt;Ubuntu 22.04 &amp;ldquo;jammy&amp;rdquo; (amd64/arm64)&lt;/li&gt;&#xA;&lt;li&gt;Ubuntu 20.04 &amp;ldquo;focal&amp;rdquo; (amd64/arm64)&lt;/li&gt;&#xA;&lt;li&gt;Debian 12 &amp;ldquo;bookworm&amp;rdquo; (amd64/arm64)&lt;/li&gt;&#xA;&lt;li&gt;Debian 11 &amp;ldquo;bullseye&amp;rdquo; (amd64/arm64)&lt;/li&gt;&#xA;&lt;li&gt;RHEL/CentOS/OEL 9 (amd64/arm64)&lt;/li&gt;&#xA;&lt;li&gt;Amazon Linux 2 LTS (amd64/arm64)&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;The following platforms are no longer supported but still can be used with older agent packages powered by Python 3:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>NGINX Amplify User Interface</title>
+      <link>http://localhost:1313/nginx-amplify/faq/user-interface/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-amplify/faq/user-interface/</guid>
+      <description>&lt;h3 &#xA;id=&#34;what-browsers-are-supported&#34;&gt;What Browsers are Supported?  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#what-browsers-are-supported&#34; title=&#34;What Browsers are Supported?&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h3&gt;&lt;p&gt;Currently, the following desktop browsers are officially supported:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Chrome&lt;/li&gt;&#xA;&lt;li&gt;Firefox&lt;/li&gt;&#xA;&lt;li&gt;Safari&lt;/li&gt;&#xA;&lt;li&gt;Opera&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 &#xA;id=&#34;is-the-traffic-to-the-web-interface-secure&#34;&gt;Is the Traffic to the Web Interface Secure?  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#is-the-traffic-to-the-web-interface-secure&#34; title=&#34;Is the Traffic to the Web Interface Secure?&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h3&gt;&lt;p&gt;We only support SSL/TLS connections to the F5 NGINX Amplify web interface.&lt;/p&gt;&#xA;&lt;h3 &#xA;id=&#34;how-can-i-delete-a-system-or-an-nginx-instance-from-nginx-amplify&#34;&gt;How Can I Delete a System or an NGINX Instance from NGINX Amplify?  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#how-can-i-delete-a-system-or-an-nginx-instance-from-nginx-amplify&#34; title=&#34;How Can I Delete a System or an NGINX Instance from NGINX Amplify?&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h3&gt;&lt;p&gt;To completely delete a previously monitored object follow these steps:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>NGINX Amplify Metrics and Metadata</title>
+      <link>http://localhost:1313/nginx-amplify/faq/metrics-and-metadata/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-amplify/faq/metrics-and-metadata/</guid>
+      <description>&lt;h3 &#xA;id=&#34;what-data-does-f5-nginx-amplify-agent-gather&#34;&gt;What Data Does F5 NGINX Amplify Agent Gather?  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#what-data-does-f5-nginx-amplify-agent-gather&#34; title=&#34;What Data Does F5 NGINX Amplify Agent Gather?&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h3&gt;&lt;p&gt;&lt;a href=&#34;http://localhost:1313/nginx-amplify/nginx-amplify-agent/metadata-metrics-collection/&#34;&gt;NGINX Amplify Agent Metrics and Metadata&lt;/a&gt;&lt;/p&gt;&#xA;&lt;blockquote class=&#34;note&#34;&gt;&#xA;  &lt;div&gt;&lt;strong&gt;Note:&lt;/strong&gt;&lt;br/&gt; For a complete list of metrics, refer to the &lt;a href=&#34;http://localhost:1313/nginx-amplify/metrics-metadata/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Metrics and Metadata documentation&lt;/a&gt;.&lt;/div&gt;&#xA;&lt;/blockquote&gt;</description>
+    </item>
+  </channel>
+</rss>

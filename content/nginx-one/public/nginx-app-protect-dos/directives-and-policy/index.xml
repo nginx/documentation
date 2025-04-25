@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Directives and Policy on DEV -- docs-nginx-com</title>
+    <link>http://localhost:1313/nginx-app-protect-dos/directives-and-policy/</link>
+    <description>Recent content in Directives and Policy on DEV -- docs-nginx-com</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/nginx-app-protect-dos/directives-and-policy/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>NGINX App Protect DoS Directives and Policy</title>
+      <link>http://localhost:1313/nginx-app-protect-dos/directives-and-policy/learn-about-directives-and-policy/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-app-protect-dos/directives-and-policy/learn-about-directives-and-policy/</guid>
+      <description>&lt;h2 &#xA;id=&#34;introduction&#34;&gt;Introduction  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#introduction&#34; title=&#34;Introduction&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;NGINX directives are specified in the &lt;code&gt;nginx.conf&lt;/code&gt; file and are used to configure various modules of NGINX.&lt;br&gt;&#xA;F5 NGINX App Protect DoS has its own set of directives, which follow the same rules as other NGINX directives, and are used to enable and configure its features.&lt;br&gt;&lt;/p&gt;&#xA;&lt;p&gt;The table below provides a summary of all the F5 NGINX App Protect DoS directives.&lt;br&gt;&lt;/p&gt;&#xA;&lt;p&gt;While only the first directive is mandatory for enabling NGINX App Protect DoS, it is recommended to use as many directives as possible to leverage the product’s full range of monitoring and application health detection capabilities. After adding these directives, ensure you reload NGINX and check the error log for any errors or warnings.&lt;br&gt;&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

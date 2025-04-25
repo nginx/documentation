@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>API Management on DEV -- docs-nginx-com</title>
+    <link>http://localhost:1313/nginx-controller/api-management/</link>
+    <description>Recent content in API Management on DEV -- docs-nginx-com</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/nginx-controller/api-management/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Manage Your APIs</title>
+      <link>http://localhost:1313/nginx-controller/api-management/manage-apis/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-controller/api-management/manage-apis/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;The F5 NGINX Controller API Management module provides full life cycle management for your APIs. This document provides a walkthrough of the steps needed to create, version, and publish your API using the NGINX Controller API Management module. When you have completed this guide, you should have the following resources:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;An &lt;strong&gt;API Definition&lt;/strong&gt;, which stores a collection of related API resources. It can be thought of as a folder.&lt;/li&gt;&#xA;&lt;li&gt;An &lt;strong&gt;API Version&lt;/strong&gt;, which describes a particular API and serves as the data contract. It describes available endpoints and operations on each endpoint and can also include API documentation.&lt;/li&gt;&#xA;&lt;li&gt;A &lt;strong&gt;Published API&lt;/strong&gt;, which represents an API Version that has been deployed to an NGINX Plus instance serving as an API Gateway.&lt;/li&gt;&#xA;&lt;li&gt;(Optional) API documentation available via the Developer Portal.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;blockquote class=&#34;note&#34;&gt;&#xA;  &lt;div&gt;&lt;strong&gt;Note:&lt;/strong&gt;&lt;br/&gt; &lt;ul&gt;&#xA;&lt;li&gt;You must have an API Management module license installed to complete the steps in this guide.&lt;/li&gt;&#xA;&lt;li&gt;The API Management module is available to users with the predefined &lt;a href=&#34;http://localhost:1313/nginx-controller/platform/access-management/manage-roles/#predefined-roles-and-role-groups&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Admin or User Roles&lt;/a&gt;.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/div&gt;&#xA;&lt;/blockquote&gt;&#xA;&#xA;&lt;h2 &#xA;id=&#34;create-an-api-definition&#34;&gt;Create an API Definition  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#create-an-api-definition&#34; title=&#34;Create an API Definition&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;An API Definition functions as a collection of related API resources.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Manage Developer Portals</title>
+      <link>http://localhost:1313/nginx-controller/api-management/manage-dev-portals/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-controller/api-management/manage-dev-portals/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;You can use F5 NGINX Controller Developer Portals (also called &amp;lsquo;Dev Portals&amp;rsquo;) to create and manage beautiful, easy-to-use API reference documentation to support your &lt;a href=&#34;http://localhost:1313/nginx-controller/api-management/manage-apis/#publish-an-api&#34;&gt;Published APIs&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;h2 &#xA;id=&#34;about-developer-portals&#34;&gt;About Developer Portals  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#about-developer-portals&#34; title=&#34;About Developer Portals&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;In NGINX Controller, each Dev Portal sits within an Environment. An Environment can contain multiple Dev Portals. You can use the same Dev Portal names across different Environments, which means you can create &amp;ldquo;test&amp;rdquo;, &amp;ldquo;dev&amp;rdquo;, and &amp;ldquo;production&amp;rdquo; versions of your Dev Portal across the corresponding Environments.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

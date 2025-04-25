@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>NGINX Amplify on DEV -- docs-nginx-com</title>
+    <link>http://localhost:1313/nginx-amplify/</link>
+    <description>Recent content in NGINX Amplify on DEV -- docs-nginx-com</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/nginx-amplify/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Other NGINX Amplify Resources</title>
+      <link>http://localhost:1313/nginx-amplify/additional-resources/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-amplify/additional-resources/</guid>
+      <description>&lt;p&gt;If you are interested in learning more about F5 NGINX Amplify, visit the &lt;a href=&#34;https://amplify.nginx.com/docs/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;NGINX Amplify Resources Page&lt;/a&gt;, where you will find links to:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;The Amplify Blog&lt;/li&gt;&#xA;&lt;li&gt;Amplify Videos&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
+    </item>
+    <item>
+      <title>Changelog</title>
+      <link>http://localhost:1313/nginx-amplify/changelog/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-amplify/changelog/</guid>
+      <description>&lt;h2 &#xA;id=&#34;sept-21-2023&#34;&gt;Sept 21, 2023  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#sept-21-2023&#34; title=&#34;Sept 21, 2023&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;h3 &#xA;id=&#34;whats-new&#34;&gt;What&amp;rsquo;s New  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#whats-new&#34; title=&#34;What&amp;rsquo;s New&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h3&gt;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;i class=&#34;fa-solid fa-file-circle-plus&#34; style=&#34;color:#009639&#34;&gt;&lt;/i&gt; &lt;strong&gt;Removal of F5 NGINX Amplify Beta User Interface&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;The NGINX Amplify Beta User Interface is no longer available. We&amp;rsquo;re shifting our focus to concentrate on core initiatives. A big thank you to all who tested the interface or shared their thoughts.&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 &#xA;id=&#34;july-26-2023&#34;&gt;July 26, 2023  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#july-26-2023&#34; title=&#34;July 26, 2023&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;h3 &#xA;id=&#34;whats-new-1&#34;&gt;What&amp;rsquo;s New  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#whats-new-1&#34; title=&#34;What&amp;rsquo;s New&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h3&gt;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;i class=&#34;fa-solid fa-file-circle-plus&#34; style=&#34;color:#009639&#34;&gt;&lt;/i&gt; &lt;strong&gt;Configure Slack Notifications in Beta UI and other bug fixes&lt;/strong&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Known Issues</title>
+      <link>http://localhost:1313/nginx-amplify/known-issues/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-amplify/known-issues/</guid>
+      <description>&lt;style&gt;&#xA;   hr {&#xA;     margin-top: 40px; &#xA;     margin-bottom: 40px;&#xA;     }&#xA;   main h2 {&#xA;        margin-top: 30px;&#xA;        margin-bottom: 10px;&#xA;    }&#xA;    main h3 {&#xA;        margin-top: 25px;&#xA;        margin-bottom: 10px;&#xA;        font-weight: 300;&#xA;        font-size: 1.5em;&#xA;    }&#xA;    main h4 {&#xA;      margin-top: 30px;&#xA;      font-weight: bold; &#xA;    }&#xA;    td hr {&#xA;        margin-top: 10px;&#xA;        margin-bottom: 10px;&#xA;    }&#xA;    summary {&#xA;        margin-bottom: 20px;&#xA;        font-weight: 300;&#xA;        font-size: 15px;&#xA;        color: green;&#xA;    }&#xA;    ol &gt; li {&#xA;        padding-bottom: 0px!important;&#xA;    }&#xA;    ol &gt; li &gt; ul {&#xA;        padding-bottom: 0px!important;&#xA;    }&#xA; &lt;/style&gt;&#xA;&lt;hr&gt;&#xA;&lt;h3 &#xA;id=&#34;631&#34;&gt;&lt;i class=&#34;fa-solid fa-bug&#34; style=&#34;color:#E4002B&#34;&gt;&lt;/i&gt; Unable to add some NGINX HTTP requests metrics to custom graph  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#631&#34; title=&#34; Unable to add some NGINX HTTP requests metrics to custom graph&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h3&gt;&#xA;&#xA;&#xA;&#xA;&#xA;&lt;table class=&#34;table table-striped table-bordered table-v1&#34;&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th style=&#34;text-align: left&#34;&gt;Issue ID&lt;/th&gt;&#xA;          &lt;th style=&#34;text-align: left&#34;&gt;Status&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;631&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;Open&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;  &#xA;&#xA;&#xA;&lt;div data-mf=&#34;true&#34; style=&#34;display: none;&#34; class=&#34;table-v2 table table-striped table-bordered narrow&#34;&gt;&#xA;    &lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th style=&#34;text-align: left&#34;&gt;Issue ID&lt;/th&gt;&#xA;          &lt;th style=&#34;text-align: left&#34;&gt;Status&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;631&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;Open&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&#xA;&lt;/div&gt;&#xA;&lt;h4 &#xA;id=&#34;description&#34;&gt;Description  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#description&#34; title=&#34;Description&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h4&gt;&lt;p&gt;When trying to create a custom dashboard for the metrics nginx.http.request.reading and nginx.http.request.writing, the option to add them to the dashboard is disabled.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

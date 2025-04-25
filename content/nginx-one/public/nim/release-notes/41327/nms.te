@@ -1,0 +1,117 @@
+policy_module(nms, 1.0.0)
+
+########################################
+#
+# Declarations
+#
+
+attribute_role nms_roles;
+roleattribute system_r nms_roles;
+
+type nms_t;
+type nms_exec_t;
+application_domain(nms_t, nms_exec_t)
+role nms_roles types nms_t;
+
+type nms_log_t;
+logging_log_file(nms_log_t)
+
+type nms_var_lib_t;
+files_type(nms_var_lib_t)
+
+type nms_var_run_t;
+files_pid_file(nms_var_run_t)
+
+type nms_unit_file_t;
+systemd_unit_file(nms_unit_file_t)
+
+type nms_port_t;
+corenet_port(nms_port_t)
+
+########################################
+#
+# nms local policy
+#
+allow nms_t self:capability { chown setgid setuid };
+allow nms_t self:process { fork signal_perms };
+
+allow nms_t self:fifo_file manage_fifo_file_perms;
+allow nms_t self:unix_stream_socket create_stream_socket_perms;
+
+manage_dirs_pattern(nms_t, nms_log_t, nms_log_t)
+manage_files_pattern(nms_t, nms_log_t, nms_log_t)
+manage_lnk_files_pattern(nms_t, nms_log_t, nms_log_t)
+logging_log_filetrans(nms_t, nms_log_t, { dir file lnk_file })
+
+manage_dirs_pattern(nms_t, nms_var_lib_t, nms_var_lib_t)
+manage_files_pattern(nms_t, nms_var_lib_t, nms_var_lib_t)
+manage_lnk_files_pattern(nms_t, nms_var_lib_t, nms_var_lib_t)
+files_var_lib_filetrans(nms_t, nms_var_lib_t, { dir file lnk_file })
+
+manage_dirs_pattern(nms_t, nms_var_run_t, nms_var_run_t)
+manage_files_pattern(nms_t, nms_var_run_t, nms_var_run_t)
+manage_lnk_files_pattern(nms_t, nms_var_run_t, nms_var_run_t)
+files_pid_filetrans(nms_t, nms_var_run_t, { dir file lnk_file })
+
+domain_use_interactive_fds(nms_t)
+
+files_read_etc_files(nms_t)
+
+auth_use_nsswitch(nms_t)
+
+miscfiles_read_localization(nms_t)
+
+sysnet_dns_name_resolve(nms_t)
+init_daemon_domain(nms_t, nms_exec_t)
+allow nms_t self:fifo_file rw_fifo_file_perms;
+
+require {
+	type var_run_t;
+	type hplip_port_t;
+	type nms_t;
+	type sysfs_t;
+	type httpd_t;
+	type nms_var_run_t;
+	type conman_port_t;
+	type speech_port_t;
+	type nms_port_t;
+	class sock_file { create setattr unlink };
+	class unix_stream_socket connectto;
+	class tcp_socket { accept listen name_bind name_connect };
+}
+
+#============= httpd_t ==============
+allow httpd_t nms_t:unix_stream_socket connectto;
+allow httpd_t speech_port_t:tcp_socket name_connect;
+allow httpd_t nms_port_t:tcp_socket name_connect;
+
+# Required by rhel8
+allow httpd_t nms_var_run_t:sock_file write;
+allow httpd_t var_run_t:sock_file write;
+
+#============= nms_t ==============
+allow nms_t conman_port_t:tcp_socket { name_bind name_connect };
+allow nms_t hplip_port_t:tcp_socket { name_bind name_connect };
+allow nms_t nms_port_t:tcp_socket { name_bind name_connect };
+allow nms_t nms_var_run_t:sock_file { create setattr write unlink };
+allow nms_t self:tcp_socket { accept listen };
+allow nms_t self:unix_stream_socket connectto;
+allow nms_t var_run_t:sock_file { create setattr unlink };
+allow nms_t self:rawip_socket create;
+allow nms_t proc_t:file { open read getattr };
+allow nms_t speech_port_t:tcp_socket { name_bind name_connect };
+
+#required by rhel8
+allow nms_t sysfs_t:file { open read };
+allow nms_t var_lib_t:file { getattr open read unlink write };
+allow nms_t nms_var_lib_t:dir watch;
+
+corenet_tcp_connect_unreserved_ports(httpd_t)
+corenet_tcp_connect_websm_port(httpd_t)
+corenet_tcp_connect_http_port(nms_t)
+corenet_tcp_connect_http_port(httpd_t)
+files_manage_generic_tmp_dirs(nms_t)
+files_manage_generic_tmp_files(nms_t)
+kernel_read_net_sysctls(nms_t)
+kernel_search_network_sysctl(nms_t)
+nis_use_ypbind_uncond(nms_t)

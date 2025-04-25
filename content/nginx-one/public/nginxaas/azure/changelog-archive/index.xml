@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Changelog archive on DEV -- docs-nginx-com</title>
+    <link>http://localhost:1313/nginxaas/azure/changelog-archive/</link>
+    <description>Recent content in Changelog archive on DEV -- docs-nginx-com</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/nginxaas/azure/changelog-archive/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2024</title>
+      <link>http://localhost:1313/nginxaas/azure/changelog-archive/changelog-2024/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginxaas/azure/changelog-archive/changelog-2024/</guid>
+      <description>&lt;p&gt;Learn about the updates, new features, and resolved bugs in F5 NGINX as a Service for Azure during the year 2024.&lt;/p&gt;&#xA;&lt;p&gt;To see the latest changes, visit the &lt;a href=&#34;http://localhost:1313/nginxaas/azure/changelog/&#34;&gt;Changelog&lt;/a&gt; page.&lt;/p&gt;&#xA;&lt;p&gt;To see a list of currently active issues, visit the &lt;a href=&#34;http://localhost:1313/nginxaas/azure/known-issues/&#34;&gt;Known issues&lt;/a&gt; page.&lt;/p&gt;&#xA;&lt;h2 &#xA;id=&#34;december-17-2024&#34;&gt;December 17, 2024  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#december-17-2024&#34; title=&#34;December 17, 2024&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;i class=&#34;fa-solid fa-file-circle-plus&#34; style=&#34;color:#009639&#34;&gt;&lt;/i&gt; &lt;strong&gt;NGINXaaS for Azure can integrate with Azure Network Security Perimeter&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;NGINXaaS can now integrate with &lt;a href=&#34;https://learn.microsoft.com/en-us/azure/private-link/network-security-perimeter-concepts&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Azure Network Security Perimeter&lt;/a&gt;. This integration allows users to set up access rules, so their NGINXaaS deployment can retrieve certificates from Azure Key Vault, while blocking all other public access to the key vault. For more information, please refer to the &lt;a href=&#34;http://localhost:1313/nginxaas/azure/quickstart/security-controls/certificates/#configure-network-security-perimeter-nsp&#34;&gt;Configure Network Security Perimeter&lt;/a&gt; documentation.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>2023</title>
+      <link>http://localhost:1313/nginxaas/azure/changelog-archive/changelog-2023/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginxaas/azure/changelog-archive/changelog-2023/</guid>
+      <description>&lt;p&gt;Learn about the updates, new features, and resolved bugs in F5 NGINX as a Service for Azure during the year 2023.&lt;/p&gt;&#xA;&lt;p&gt;To see the latest changes, visit the &lt;a href=&#34;http://localhost:1313/nginxaas/azure/changelog/&#34;&gt;Changelog&lt;/a&gt; page.&lt;/p&gt;&#xA;&lt;p&gt;To see a list of currently active issues, visit the &lt;a href=&#34;http://localhost:1313/nginxaas/azure/known-issues/&#34;&gt;Known issues&lt;/a&gt; page.&lt;/p&gt;&#xA;&lt;h2 &#xA;id=&#34;december-19-2023&#34;&gt;December 19, 2023  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#december-19-2023&#34; title=&#34;December 19, 2023&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;i class=&#34;fa-solid fa-file-circle-plus&#34; style=&#34;color:#009639&#34;&gt;&lt;/i&gt; &lt;strong&gt;NGINXaaS for Azure now supports new metrics&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;NGINXaaS now supports the following metrics derived from NGINX Plus statistics introduced in&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>2022</title>
+      <link>http://localhost:1313/nginxaas/azure/changelog-archive/changelog-2022/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginxaas/azure/changelog-archive/changelog-2022/</guid>
+      <description>&lt;p&gt;Learn about the updates, new features, and resolved bugs in F5 NGINX as a Service for Azure during the year 2022.&lt;/p&gt;&#xA;&lt;p&gt;To see the latest changes, visit the &lt;a href=&#34;http://localhost:1313/nginxaas/azure/changelog/&#34;&gt;Changelog&lt;/a&gt; page.&lt;/p&gt;&#xA;&lt;p&gt;To see a list of currently active issues, visit the &lt;a href=&#34;http://localhost:1313/nginxaas/azure/known-issues/&#34;&gt;Known issues&lt;/a&gt; page.&lt;/p&gt;&#xA;&lt;h2 &#xA;id=&#34;december-14-2022&#34;&gt;December 14, 2022  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#december-14-2022&#34; title=&#34;December 14, 2022&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;i class=&#34;fa-solid fa-bug-slash&#34; style=&#34;color:#666666&#34;&gt;&lt;/i&gt; &lt;strong&gt;New customer deployments are now functional.&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;We have rolled out a fix that addresses the issue, and new customers or existing customers in a new region can create deployments.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

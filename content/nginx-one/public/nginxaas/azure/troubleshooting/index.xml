@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Troubleshooting on DEV -- docs-nginx-com</title>
+    <link>http://localhost:1313/nginxaas/azure/troubleshooting/</link>
+    <description>Recent content in Troubleshooting on DEV -- docs-nginx-com</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/nginxaas/azure/troubleshooting/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Get help</title>
+      <link>http://localhost:1313/nginxaas/azure/troubleshooting/troubleshooting/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginxaas/azure/troubleshooting/troubleshooting/</guid>
+      <description>&lt;h2 &#xA;id=&#34;contact-nginx-support&#34;&gt;Contact NGINX support  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#contact-nginx-support&#34; title=&#34;Contact NGINX support&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;To contact support about F5 NGINX as a Service for Azure (NGINXaaS):&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Go to your NGINXaaS deployment.&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Select &lt;strong&gt;New Support request&lt;/strong&gt; in the left menu.&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Select &lt;strong&gt;Raise a Support ticket&lt;/strong&gt;.&lt;/p&gt;&#xA;&lt;figure&gt;&lt;img class=&#34;figure-bitmap&#34; src=&#34;http://localhost:1313/nginxaas-azure/raise-ticket.png&#34;&#xA;       alt=&#34;Screenshot of the Azure portal showing the Raise support ticket button&#34;&gt;&#xA;   &lt;/figure&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;You will be redirected to &lt;strong&gt;MyF5&lt;/strong&gt; to create a new case. Log in to MyF5 with your F5 account.&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;blockquote class=&#34;note&#34;&gt;&#xA;  &lt;div&gt;&lt;strong&gt;Note:&lt;/strong&gt;&lt;br/&gt; If you can&amp;rsquo;t complete a deployment successfully, the &amp;ldquo;New support request&amp;rdquo; option won&amp;rsquo;t be available on the left-hand navigation menu. To raise a support ticket, go to the &lt;a href=&#34;https://my.f5.com&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;MyF5 portal&lt;/a&gt;.&lt;/div&gt;&#xA;&lt;/blockquote&gt;&#xA;&#xA;&lt;ol start=&#34;5&#34;&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Go to the &lt;strong&gt;Case Management&lt;/strong&gt; section and select &lt;strong&gt;Create new case&lt;/strong&gt;.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Migrating from Standard to Standard V2</title>
+      <link>http://localhost:1313/nginxaas/azure/troubleshooting/migrate-from-standard/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginxaas/azure/troubleshooting/migrate-from-standard/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;F5 NGINX as a Service for Azure (NGINXaaS) now supports in-place migration from Standard plan to the Standard V2 plan, we encourage you to upgrade your deployment to the Standard V2 plan as soon as possible. &lt;strong&gt;The Standard plan is scheduled for retirement on May 1, 2025&lt;/strong&gt;. If you fail to migrate by May 1, 2025, your NGINXaaS deployment will stop receiving automatic updates that address critical security issues.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

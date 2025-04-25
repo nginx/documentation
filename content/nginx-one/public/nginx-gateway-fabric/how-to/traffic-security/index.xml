@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Traffic security on DEV -- docs-nginx-com</title>
+    <link>http://localhost:1313/nginx-gateway-fabric/how-to/traffic-security/</link>
+    <description>Recent content in Traffic security on DEV -- docs-nginx-com</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/nginx-gateway-fabric/how-to/traffic-security/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Secure traffic using Let&#39;s Encrypt and cert-manager</title>
+      <link>http://localhost:1313/nginx-gateway-fabric/how-to/traffic-security/integrating-cert-manager/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-gateway-fabric/how-to/traffic-security/integrating-cert-manager/</guid>
+      <description>&lt;p&gt;Learn how to issue and manage certificates using Let&amp;rsquo;s Encrypt and cert-manager.&lt;/p&gt;&#xA;&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;Securing client server communication is a crucial part of modern application architectures. One of the most important steps in this process is implementing HTTPS (HTTP over TLS/SSL) for all communications. This encrypts the data transmitted between the client and server, preventing eavesdropping and tampering. To do this, you need an SSL/TLS certificate from a trusted Certificate Authority (CA). However, issuing and managing certificates can be a complicated manual process. Luckily, there are many services and tools available to simplify and automate certificate issuance and management.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Securing backend traffic</title>
+      <link>http://localhost:1313/nginx-gateway-fabric/how-to/traffic-security/securing-backend-traffic/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-gateway-fabric/how-to/traffic-security/securing-backend-traffic/</guid>
+      <description>&lt;p&gt;Learn how to encrypt HTTP traffic between NGINX Gateway Fabric and your backend pods.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;In this guide, we will show how to specify the TLS configuration of the connection from the Gateway to a backend pod/s via the Service API object using a &lt;a href=&#34;https://gateway-api.sigs.k8s.io/api-types/backendtlspolicy/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;BackendTLSPolicy&lt;/a&gt;. This covers the use-case where the service or backend owner is doing their own TLS and NGINX Gateway Fabric needs to know how to connect to this backend pod that has its own certificate over HTTPS.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

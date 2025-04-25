@@ -1,0 +1,3183 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>  
+  <style>
+    body {
+       
+      visibility: hidden;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+  </style>
+  
+  <noscript>
+    <style>
+       
+      body {
+        visibility: visible;
+      }
+    </style>
+  </noscript>
+  
+
+
+  <script>
+
+    const setTheme = (isNewTheme) => {
+      localStorage.setItem("useNewTheme", `${isNewTheme}`);
+      
+      const v1cssIds = [
+        "cssFA1",
+        "cssFA2",
+        "cssFA3",
+        "cssBootstrap",
+        "css1",
+        "css2",
+        "css3",
+        "css4",
+        "css5",
+        "css6",
+      ];
+
+      v1cssIds.forEach((cssId) => {
+        const element = document.getElementById(cssId);
+        if (element !== null) {
+          element.disabled = isNewTheme;
+        }
+      });
+
+      const v2cssIds = ["css7", "css9"];
+      v2cssIds.forEach((cssId) => {
+        const element = document.getElementById(cssId);
+        if (element !== null) {
+          element.disabled = !isNewTheme;
+        }
+      });
+
+      
+      const v1ElementIds = ["sidebar", "footer", "toc", "api", "search-v1", "breadcrumb-v1", "list-v1"]
+
+      v1ElementIds.forEach((elementId) => {
+        const element = document.getElementById(elementId);
+        if (element !== null) {
+          element.style.display = isNewTheme ? "none" : "";
+        }
+
+        const trustarc = document.getElementById("teconsent-v1");
+        if (trustarc) {
+          trustarc.id = isNewTheme ? "teconsent-v1" : "teconsent";
+        }
+      });
+
+      document.querySelectorAll(".table-v1").forEach((table) => {
+        table.style.display = isNewTheme ? "none" : "";
+      });
+
+      const notMfElements = ['[data-mf="false"]'];
+      notMfElements.forEach((elementId) => {
+        document.querySelectorAll(elementId).forEach((element) => {
+          element.style.display = isNewTheme ? "none" : "";
+        });
+      })
+
+      const mfElements = ['[data-mf="true"]'];
+      mfElements.forEach((elementId) => {
+        document.querySelectorAll(elementId).forEach((element) => {
+          element.style.display = isNewTheme ? "" : "none";
+
+          const trustarc = document.getElementById("teconsent-v2");
+          if (trustarc) {
+            trustarc.id = isNewTheme ? "teconsent" : "teconsent-v2";
+          }
+        });
+      });
+
+      document.getElementById("body").style.visibility = "visible";
+    };
+
+    const toggleTheme = () => {
+      setTheme(!(localStorage.getItem("useNewTheme") === "true"));
+    };
+
+    
+    const mf = toggleTheme;
+    const useNewTheme = toggleTheme;
+
+    document.addEventListener("DOMContentLoaded", () => {
+      setTheme(localStorage.getItem("useNewTheme") === "true");
+    });
+
+    function gameCode(callback) {
+      let kkeys = [];
+      
+      const code = "38,38,40,40,37,39,37,39,66,65";
+      return (event) => {
+        kkeys.push(event.keyCode);
+        if (kkeys.toString().indexOf(code) >= 0) {
+          callback(event);
+          kkeys = [];
+        }
+      };
+    }
+    const handler = gameCode(() => {
+      mf();
+    });
+    window.addEventListener("keydown", handler);
+
+  </script>
+
+  
+
+  <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Manage Config Sync Groups | DEV -- docs-nginx-com</title>
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:1313/nginx-one/config-sync-groups/manage-config-sync-groups/">
+
+
+
+
+
+
+
+<meta property="article:publisher" content="https://www.facebook.com/nginxinc" />
+<meta property="og:image" content="http://localhost:1313/images/icons/NGINX-Docs-new-docs-dark-1200x630.png" />
+<meta property="og:image:width" content="500" />
+<meta property="og:image:height" content="300" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:description" content="" />
+<meta name="twitter:title" content="Manage Config Sync Groups" />
+<meta name="twitter:site" content="@nginx" />
+<meta name="twitter:image" content="http://localhost:1313/images/icons/NGINX-Docs-new-docs-dark-1200x630.png" />
+<meta name="twitter:creator" content="@nginx" />
+
+<meta http-equiv="last-modified" content="22/05/2025" />
+
+
+
+
+<meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline'
+    https://consent.trustarc.com/ https://mktg.tags.f5.com/basic/prod/utag.sync.js https://static.cloud.coveo.com/ https://*.f5.com/
+    https://*.netlify.app https://gist.github.com
+    https://tag.demandbase.com/pscSDsz4.min.js
+    https://munchkin.brightfunnel.com/js/build/bf-munchkin.min.js
+    https://www.googletagmanager.com/gtm.js
+    https://www.google-analytics.com/
+    https://www.google-analytics.com/analytics.js
+    https://www.google-analytics.com/plugins/ua/linkid.js
+    https://cdn.bizible.com/scripts/bizible.js
+    https://cdn.bizible.com/xdc.js
+    https://f5networksglobalprod.122.2o7.net/
+    https://f5networksnginxdocs.122.2o7.net/
+    https://*.siteintercept.qualtrics.com/SIE/?Q_ZID=*
+    https://siteintercept.qualtrics.com/
+    ;
+    worker-src 'self' blob:">
+
+
+
+<meta property="environment" type="development" />
+<meta property="buildtype" type="webdocs" />
+<meta property="isServer" type="true" />
+
+
+<meta name="product" content="DEV -- docs-nginx-com">
+<meta name="version" content="">
+<meta name="doc_type" content="Manual">
+  
+  <link rel="shortcut icon" type="image/x-icon" href="http://localhost:1313/images/favicon-48x48.ico">
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+<link href="/css/v2/style.css" integrity="" rel="stylesheet" type="text/css" id="css7"
+  disabled>
+
+
+<link href="/css/inter/inter.987d1be34797653eabce3627efb116c263d4045fd5badfe003ff283c5a5da435d83a3fad6bfe524e3ce3cf8a41168a30e7aa42507961257eeb275024def0f9b9.css" integrity="sha512-mH0b40eXZT6rzjYn77EWwmPUBF/Vut/gA/8oPFpdpDXYOj&#43;ta/5STjzjz4pBFoow56pCUHlhJX7rJ1Ak3vD5uQ==" rel="stylesheet" type="text/css"
+  id="cssInter">
+
+
+<link href="/css/v2/highlight.min.9ef7c7ad221175216abc8a5827f967bcd7c0e035bfa91180acd26a2c36d54242ae5f485986c260d70b1bbdf225ad76cdbba3179afa7e4335282cc3080a17e337.css" rel="stylesheet" type="text/css" id="css9">
+
+
+
+
+
+<link href="/fontawesome/css/all.min.4a71f958af9b67180f1ece38b96217f8b2c9009f7fd8f90f299e508808fa4daf3ac3e7ec6f64e47267d1c955f7a419cc15c57ba103c9925f507af4825abdd6e8.css" integrity="sha512-SnH5WK&#43;bZxgPHs44uWIX&#43;LLJAJ9/2PkPKZ5QiAj6Ta86w&#43;fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" rel="stylesheet" type="text/css"
+  id="cssFA1">
+
+
+<link href="/fontawesome/css/v4-font-face.min.5870089ba06cf03e9721f87919eaf15c961a65e071845949ed2da58c5bfbd18a714c5dab2c155f0455ebcd2f45bfd598a5e47ae19976e7aa3a51e22914eac1b6.css" integrity="sha512-WHAIm6Bs8D6XIfh5GerxXJYaZeBxhFlJ7S2ljFv70YpxTF2rLBVfBFXrzS9Fv9WYpeR64Zl256o6UeIpFOrBtg==" rel="stylesheet" type="text/css"
+  id="cssFA2">
+
+
+<link href="/fontawesome/css/v5-font-face.min.81bdf1c9f8ff16b1eda613d52d868a059f16c8c6045c3d7e0a0b771622a11666cdd94b8ea62b5edb0d4b826c3a3737ec3663065fe05b56b6b871e57de73f556b.css" integrity="sha512-gb3xyfj/FrHtphPVLYaKBZ8WyMYEXD1&#43;Cgt3FiKhFmbN2UuOpite2w1Lgmw6NzfsNmMGX&#43;BbVra4ceV95z9Vaw==" rel="stylesheet" type="text/css"
+  id="cssFA3">
+
+
+
+<link href="/css/bootstrap.min.3f9320327d6304dd356ac060534cfad10938431897a3cebec2515a84aaec41fdfb73d72ba39d7b5b35523cf575b432b3864bb6889d855602faef01b4dd21a734.css" integrity="sha512-P5MgMn1jBN01asBgU0z60Qk4QxiXo86&#43;wlFahKrsQf37c9cro517WzVSPPV1tDKzhku2iJ2FVgL67wG03SGnNA==" rel="stylesheet"
+  type="text/css" id="cssBootstrap">
+
+
+
+<link rel="stylesheet" href="https://static.cloud.coveo.com/searchui/v2.10104/0/css/CoveoFullSearch.min.css"
+  integrity="sha512-9/A9yVCU4GS6/iIwTRJKnan4Hf8gDKj3anwItN9QCsU8SixaT5xkjjWsZ/iq0TWaizhtqOLacadXJfxHlwYCcA=="
+  crossorigin="anonymous" />
+
+
+<link
+  rel="stylesheet"
+  href="https://static.cloud.coveo.com/atomic/v3.19.0/themes/coveo.css"
+  integrity="sha512-m2BufPi8Tc6H2jcQfDj/PIl5H57C9jeqhbDFgFXKTtOhoC4S7ULXmx74FseZ8WXpfdT9uyccMHDBJDrIZlrUUQ=="
+  crossorigin="anonymous"/>
+
+
+<link href="/css/docs-nginx-com/nginx-site-header.min.80b10ed49ecfad93607ee771acca88d13dc958e6eecc642af3aa2b170c86b8dcce442e7b86c3e5298c95b0ab2b053a71074c2f15c28266c3a2c502275415b3a7.css" rel="stylesheet" type="text/css" id="css1">
+
+
+<link href="/css/docs-nginx-com/style.min.2cd4748c438c49d012a5fdc6b98770223c4875fe0f89517b17423b6a5328af4d93d9d772207bfc51d9449781281e1eb8707dcc2f7467e6e24330c9b8c7c5f734.css" rel="stylesheet" type="text/css" id="css2">
+
+
+<link href="/css/bootstrap-docs.min.8a70c94c72e3783cecd631bc1705c7843b2fdef99f1549f0bf7f774a4083173ee25974413a8206c2340c0fee9bb7a07acd41d41c78ae2280c96a2ce0faca2847.css" rel="stylesheet" type="text/css" id="css3">
+
+
+
+<link href="/css/coveo.min.fce7d4df31de99e4f86510a90915820f236b8dcd02be030b27529af7ff10189f807c78cedacb91afa9d07f310a172c6046b1921832f199b9158898a7f74fa117.css" rel="stylesheet" type="text/css" id="css6">
+
+
+
+<link href="/css/f5-hugo.min.42feae8b135e9380a66db9c3cb2803221888524a29f41cbc55790b5cb5a309ac7e6dd80e70ed0260370fd93c04b7aa8a5c3d6aca0964804341fad51cfcec963f.css" rel="stylesheet" type="text/css" id="css4">
+
+
+<link href="/css/inline-overrides.min.495e6889d9955581580c654bad961bb33af6344b283af7e9a34648c5e8d5f1fe90efb8aac33359c4178efd36cd7cb92c7c6458d4175caff9c284b14bd9d2b97a.css" rel="stylesheet" type="text/css" id="css8">
+
+
+
+
+
+<link href="/css/highlight.min.fe5647c4b67f4b3fcf0ea60b483479d567ba1b05ee6e816439207edfa3d310dbee79536278c67d89c1db5da275bde962a10163da375f05bd19743e2a80e1ad02.css" rel="stylesheet" type="text/css" id="css5">
+  
+  
+  
+  
+  
+  
+        
+  <script async="async" src="https://consent.trustarc.com/notice?domain=f5.com&c=teconsent&js=nj&noticeType=bb&text=true&gtm=1" crossorigin=""></script>
+  
+  
+
+<script src="https://mktg.tags.f5.com/basic/prod/utag.sync.js"></script> 
+
+
+  
+  
+  
+  
+  
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-K5HG9JT');</script>
+  
+  </head>
+  
+  <body id="body">
+    
+   
+<script type="text/javascript"> 
+    (function(a,b,c,d) { 
+        a='//mktg.tags.f5.com/basic/prod/utag.js'; 
+        b=document;c='script';d=b.createElement(c);d.src=a; 
+        d.type='text/java'+c;d.async=true; 
+        a=b.getElementsByTagName(c)[0];a.parentNode.insertBefore(d,a)})(); 
+</script> 
+    
+  
+    <header>
+      
+<div class="navbar navbar-expand navbar-dark flex-column flex-md-row bd-navbar navbar-fixed-top">
+  <div class="container-fluid flex-md-row flex-column header-container">
+    <a class="navbar-brand mr-0 mr-md-2" href="/" aria-label="NGINX Docs">
+      <img class="navbar-img" src="http://localhost:1313/images/icons/NGINX-Docs-horiz-white-type.svg" alt="NGINX Docs">
+    </a>
+    
+      <div class="navbar navbar-nav">
+        
+        <div id="searchbox">
+          
+          <div class="CoveoSearchbox" data-placeholder='Search NGINX Docs...'></div>
+        </div>
+        <atomic-search-interface id="search-standalone-header" data-mf="true" style="display:none;">
+          <atomic-search-box redirection-url="/search.html">
+          </atomic-search-box>
+        </atomic-search-interface>
+      </div>
+    
+    
+    
+    
+    <ul class="navbar navbar-nav">
+        <li class="nav-item-explore active">
+          <button id="navbar-sites-button" class="button navbar-button">
+              F5 Sites
+              <i id="navbar-sites-button-icon" class="link-chevron-icon fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="dropdown-content" id="dropdown-content">
+            <ul>
+              
+                <li>
+                  <a href="https://community.f5.com/" target="_blank" >DevCentral</a>
+                  <p>Connect &amp; learn in our hosted community</p>
+                </li>
+              
+                <li>
+                  <a href="https://my.f5.com/" target="_blank" >MyF5</a>
+                  <p>Your key to everything F5, including support, registration keys, and subscriptions</p>
+                </li>
+              
+                <li>
+                  <a href="https://nginx.org/" target="_blank" >NGINX</a>
+                  <p>Learn more about NGINX Open Source and read the community blog</p>
+                </li>
+              
+            </ul>
+          </div>
+        </li>
+    </ul>
+  </div>
+</div>
+
+
+    </header>
+  
+    <section class="base-layout" data-testid="base-layout">
+      <section id="breadcrumb-v1">
+        
+          
+          <nav aria-label="breadcrumb" class="breadcrumb navbar">
+    <div class="nav flex-md-row">
+        <ol class="breadcrumb">
+            
+            
+            
+            
+                
+            
+            
+                
+            
+            
+                
+            
+            
+                
+            
+            
+            
+                <li><a href="/">Home</a><i class="fas fa-chevron-right"></i></li>
+                
+            
+                <li><a href="/nginx-one/">F5 NGINX One Console</a><i class="fas fa-chevron-right"></i></li>
+                
+            
+                <li><a href="/nginx-one/config-sync-groups/">Change multiple instances with one push</a><i class="fas fa-chevron-right"></i></li>
+                
+            
+                Manage Config Sync Groups
+        </ol>
+    </div>
+</nav>
+  
+          
+        
+      </section>
+  
+      <div class="main container-fluid min-page-height" data-menu-id="/nginx-one/config-sync-groups/manage-config-sync-groups/">
+        
+<div class="docs-container row override-sidebar-collapse">
+<div class="docs-container row override-sidebar-collapse">
+  <nav id="sidebar" class="sidenav overflow-auto col-md-3 d-none d-xl-block d-print-none align-top">
+    
+
+<div id="sidebar-wrapper">
+     <div id="sidebar" class="sidebar" aria-label="Sidebar navigation">
+        <button id="sidebar-toggle-button" title="Toggle sidebar navigation" role="button" aria-controls="sidebar-content">
+           <i class="fa fa-chevron-right sidebar-visible-collapsed"></i>
+           <i class="fa fa-chevron-left sidebar-visible-expanded"></i>
+        </button>
+        <div id="sidebar-content">
+            <h3>
+                <a class="sidebar-title" href="http://localhost:1313/nginx-one/" alt="F5 NGINX One Console"><img
+                        class="card-img-top" src="http://localhost:1313//images/icons/NGINX-One-product-icon.svg"
+                        alt="F5 NGINX One Console">
+                    F5 NGINX One Console</a>
+            </h3>
+            <ul>
+            
+            
+                
+                
+                <li class="nginx-toc-link l1">
+                    <a data-menu-id="/nginx-one/about/" href="http://localhost:1313/nginx-one/about/">Manage your NGINX fleet</a>
+                </li>
+                
+                
+
+            
+                
+                
+                <li class="nginx-toc-link l1">
+                    <a data-menu-id="/nginx-one/getting-started/" href="http://localhost:1313/nginx-one/getting-started/">Get started</a>
+                </li>
+                
+                
+
+            
+                
+                
+                <div class="accordion" id="accordion1">
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <li class="nginx-toc-link l1">
+                                    <a data-menu-id="/nginx-one/staged-configs/" class="accordion-toggle" aria-expanded="false"
+                                    data-toggle="collapse" href="#" data-target="#nginx-one--draft-new-configurations" aria-controls="nginx-one--draft-new-configurations">
+                                    <i class="fa fa-2xs fa-fw fa-chevron-right"></i><i
+                                        class="fa fa-2xs fa-fw fa-chevron-down"></i>Draft new configurations</a>
+                            </li>
+                        </div>
+                        <div id="nginx-one--draft-new-configurations" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-one/staged-configs/add-staged-config/"
+                                                                href="http://localhost:1313/nginx-one/staged-configs/add-staged-config/">Add a Staged Configuration</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-one/staged-configs/edit-staged-config/"
+                                                                href="http://localhost:1313/nginx-one/staged-configs/edit-staged-config/">View and edit a Staged Configuration</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-one/staged-configs/import-export-staged-config/"
+                                                                href="http://localhost:1313/nginx-one/staged-configs/import-export-staged-config/">Import and export a Staged Configuration</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-one/staged-configs/api-staged-config/"
+                                                                href="http://localhost:1313/nginx-one/staged-configs/api-staged-config/">Use the API to manage your Staged Configurations</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+
+            
+                
+                
+                <div class="accordion" id="accordion1">
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <li class="nginx-toc-link l1">
+                                    <a data-menu-id="/nginx-one/nginx-configs/" class="accordion-toggle" aria-expanded="false"
+                                    data-toggle="collapse" href="#" data-target="#nginx-one--manage-your-nginx-instances" aria-controls="nginx-one--manage-your-nginx-instances">
+                                    <i class="fa fa-2xs fa-fw fa-chevron-right"></i><i
+                                        class="fa fa-2xs fa-fw fa-chevron-down"></i>Manage your NGINX instances</a>
+                            </li>
+                        </div>
+                        <div id="nginx-one--manage-your-nginx-instances" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-one/nginx-configs/add-instance/"
+                                                                href="http://localhost:1313/nginx-one/nginx-configs/add-instance/">Add an NGINX instance</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-one/nginx-configs/clean-up-unavailable-instances/"
+                                                                href="http://localhost:1313/nginx-one/nginx-configs/clean-up-unavailable-instances/">Clean up unavailable NGINX instances</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-one/nginx-configs/view-edit-nginx-configurations/"
+                                                                href="http://localhost:1313/nginx-one/nginx-configs/view-edit-nginx-configurations/">View and edit an NGINX instance</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-one/nginx-configs/add-file/"
+                                                                href="http://localhost:1313/nginx-one/nginx-configs/add-file/">Add a file to an instance</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                                
+                                    
+                                    <div class="accordion" id="Accordion2">
+                                        <div class="sidebar-l1-padding">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-one/config-sync-groups/" class="accordion-toggle"
+                                                                aria-expanded="false" data-toggle="collapse"
+                                                                href="#nginx-one--nginx-configs--change-multiple-instances-with-one-push">
+                                                                <i class="fa fa-2xs fa-fw fa-chevron-right"></i><i
+                                                                    class="fa fa-2xs fa-fw fa-chevron-down"></i>Change multiple instances with one push</a>
+                                                        </li>
+                                                    <ul>
+                                                </div>
+                                                <div id="nginx-one--nginx-configs--change-multiple-instances-with-one-push" class="accordion-body collapse leaf">
+                                                    <div class="accordion-inner">
+
+                                                    
+                                                        
+                                                        
+                                                        <ul class="sidebar-l2-padding">
+                                                            <li class="nginx-toc-link l3 sidebar-il-border">
+                                                                <a data-menu-id="/nginx-one/nginx-configs/config-sync-groups/manage-config-sync-groups/" href="http://localhost:1313/nginx-one/nginx-configs/config-sync-groups/manage-config-sync-groups/">Manage Config Sync Groups</a>
+                                                            </li>
+                                                        </ul>
+                                                        
+                                                        
+                                                    
+                                                        
+                                                        
+                                                        <ul class="sidebar-l2-padding">
+                                                            <li class="nginx-toc-link l3 sidebar-il-border">
+                                                                <a data-menu-id="/nginx-one/nginx-configs/config-sync-groups/add-file-csg/" href="http://localhost:1313/nginx-one/nginx-configs/config-sync-groups/add-file-csg/">Add a file to a Config Sync Group</a>
+                                                            </li>
+                                                        </ul>
+                                                        
+                                                        
+                                                    
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                
+                                
+                                    
+                                    <div class="accordion" id="Accordion2">
+                                        <div class="sidebar-l1-padding">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-one/nginx-configs/certificates/" class="accordion-toggle"
+                                                                aria-expanded="false" data-toggle="collapse"
+                                                                href="#nginx-one--nginx-configs--monitor-your-certificates">
+                                                                <i class="fa fa-2xs fa-fw fa-chevron-right"></i><i
+                                                                    class="fa fa-2xs fa-fw fa-chevron-down"></i>Monitor your certificates</a>
+                                                        </li>
+                                                    <ul>
+                                                </div>
+                                                <div id="nginx-one--nginx-configs--monitor-your-certificates" class="accordion-body collapse leaf">
+                                                    <div class="accordion-inner">
+
+                                                    
+                                                        
+                                                        
+                                                        <ul class="sidebar-l2-padding">
+                                                            <li class="nginx-toc-link l3 sidebar-il-border">
+                                                                <a data-menu-id="/nginx-one/nginx-configs/certificates/manage-certificates/" href="http://localhost:1313/nginx-one/nginx-configs/certificates/manage-certificates/">Manage certificates</a>
+                                                            </li>
+                                                        </ul>
+                                                        
+                                                        
+                                                    
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+
+            
+                
+                
+                <div class="accordion" id="accordion1">
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <li class="nginx-toc-link l1">
+                                    <a data-menu-id="/nginx-one/metrics/" class="accordion-toggle" aria-expanded="false"
+                                    data-toggle="collapse" href="#" data-target="#nginx-one--set-up-metrics" aria-controls="nginx-one--set-up-metrics">
+                                    <i class="fa fa-2xs fa-fw fa-chevron-right"></i><i
+                                        class="fa fa-2xs fa-fw fa-chevron-down"></i>Set up metrics</a>
+                            </li>
+                        </div>
+                        <div id="nginx-one--set-up-metrics" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-one/metrics/enable-metrics/"
+                                                                href="http://localhost:1313/nginx-one/metrics/enable-metrics/">Enable metrics</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-one/metrics/review-metrics/"
+                                                                href="http://localhost:1313/nginx-one/metrics/review-metrics/">Review metrics on the NGINX One dashboard</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+
+            
+                
+                
+                <div class="accordion" id="accordion1">
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <li class="nginx-toc-link l1">
+                                    <a data-menu-id="/nginx-one/config-sync-groups/" class="accordion-toggle" aria-expanded="false"
+                                    data-toggle="collapse" href="#" data-target="#nginx-one--change-multiple-instances-with-one-push" aria-controls="nginx-one--change-multiple-instances-with-one-push">
+                                    <i class="fa fa-2xs fa-fw fa-chevron-right"></i><i
+                                        class="fa fa-2xs fa-fw fa-chevron-down"></i>Change multiple instances with one push</a>
+                            </li>
+                        </div>
+                        <div id="nginx-one--change-multiple-instances-with-one-push" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-one/config-sync-groups/manage-config-sync-groups/"
+                                                                href="http://localhost:1313/nginx-one/config-sync-groups/manage-config-sync-groups/">Manage Config Sync Groups</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-one/config-sync-groups/add-file-csg/"
+                                                                href="http://localhost:1313/nginx-one/config-sync-groups/add-file-csg/">Add a file to a Config Sync Group</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+
+            
+                
+                
+                <div class="accordion" id="accordion1">
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <li class="nginx-toc-link l1">
+                                    <a data-menu-id="/nginx-one/certificates/" class="accordion-toggle" aria-expanded="false"
+                                    data-toggle="collapse" href="#" data-target="#nginx-one--monitor-your-certificates" aria-controls="nginx-one--monitor-your-certificates">
+                                    <i class="fa fa-2xs fa-fw fa-chevron-right"></i><i
+                                        class="fa fa-2xs fa-fw fa-chevron-down"></i>Monitor your certificates</a>
+                            </li>
+                        </div>
+                        <div id="nginx-one--monitor-your-certificates" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-one/certificates/manage-certificates/"
+                                                                href="http://localhost:1313/nginx-one/certificates/manage-certificates/">Manage certificates</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+
+            
+                
+                
+                <div class="accordion" id="accordion1">
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <li class="nginx-toc-link l1">
+                                    <a data-menu-id="/nginx-one/rbac/" class="accordion-toggle" aria-expanded="false"
+                                    data-toggle="collapse" href="#" data-target="#nginx-one--organize-users-with-rbac" aria-controls="nginx-one--organize-users-with-rbac">
+                                    <i class="fa fa-2xs fa-fw fa-chevron-right"></i><i
+                                        class="fa fa-2xs fa-fw fa-chevron-down"></i>Organize users with RBAC</a>
+                            </li>
+                        </div>
+                        <div id="nginx-one--organize-users-with-rbac" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-one/rbac/overview/"
+                                                                href="http://localhost:1313/nginx-one/rbac/overview/">Learn about Role-based access control</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-one/rbac/roles/"
+                                                                href="http://localhost:1313/nginx-one/rbac/roles/">Review default roles</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-one/rbac/rbac-api/"
+                                                                href="http://localhost:1313/nginx-one/rbac/rbac-api/">Set up custom roles with API groups</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+
+            
+                
+                
+                <div class="accordion" id="accordion1">
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <li class="nginx-toc-link l1">
+                                    <a data-menu-id="/nginx-one/connect-instances/" class="accordion-toggle" aria-expanded="false"
+                                    data-toggle="collapse" href="#" data-target="#nginx-one--connect-your-instances-to-the-console" aria-controls="nginx-one--connect-your-instances-to-the-console">
+                                    <i class="fa fa-2xs fa-fw fa-chevron-right"></i><i
+                                        class="fa fa-2xs fa-fw fa-chevron-down"></i>Connect your instances to the console</a>
+                            </li>
+                        </div>
+                        <div id="nginx-one--connect-your-instances-to-the-console" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                
+                                
+                                    
+                                    <div class="accordion" id="Accordion2">
+                                        <div class="sidebar-l1-padding">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-one/connect-instances/data-plane-keys/" class="accordion-toggle"
+                                                                aria-expanded="false" data-toggle="collapse"
+                                                                href="#nginx-one--connect-instances--set-up-data-plane-keys">
+                                                                <i class="fa fa-2xs fa-fw fa-chevron-right"></i><i
+                                                                    class="fa fa-2xs fa-fw fa-chevron-down"></i>Set up data plane keys</a>
+                                                        </li>
+                                                    <ul>
+                                                </div>
+                                                <div id="nginx-one--connect-instances--set-up-data-plane-keys" class="accordion-body collapse leaf">
+                                                    <div class="accordion-inner">
+
+                                                    
+                                                        
+                                                        
+                                                        <ul class="sidebar-l2-padding">
+                                                            <li class="nginx-toc-link l3 sidebar-il-border">
+                                                                <a data-menu-id="/nginx-one/connect-instances/data-plane-keys/create-manage-data-plane-keys/" href="http://localhost:1313/nginx-one/connect-instances/data-plane-keys/create-manage-data-plane-keys/">Create and manage data plane keys</a>
+                                                            </li>
+                                                        </ul>
+                                                        
+                                                        
+                                                    
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                
+                                
+                                    
+                                    <div class="accordion" id="Accordion2">
+                                        <div class="sidebar-l1-padding">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-one/connect-instances/containers/" class="accordion-toggle"
+                                                                aria-expanded="false" data-toggle="collapse"
+                                                                href="#nginx-one--connect-instances--connect-your-containers">
+                                                                <i class="fa fa-2xs fa-fw fa-chevron-right"></i><i
+                                                                    class="fa fa-2xs fa-fw fa-chevron-down"></i>Connect your containers</a>
+                                                        </li>
+                                                    <ul>
+                                                </div>
+                                                <div id="nginx-one--connect-instances--connect-your-containers" class="accordion-body collapse leaf">
+                                                    <div class="accordion-inner">
+
+                                                    
+                                                        
+                                                        
+                                                        <ul class="sidebar-l2-padding">
+                                                            <li class="nginx-toc-link l3 sidebar-il-border">
+                                                                <a data-menu-id="/nginx-one/connect-instances/containers/connect-nginx-plus-container-images-to-nginx-one/" href="http://localhost:1313/nginx-one/connect-instances/containers/connect-nginx-plus-container-images-to-nginx-one/">Connect NGINX Plus container images to NGINX One</a>
+                                                            </li>
+                                                        </ul>
+                                                        
+                                                        
+                                                    
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                
+                                
+                                    
+                                    <div class="accordion" id="Accordion2">
+                                        <div class="sidebar-l1-padding">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-one/connect-instances/proxy-setup/" class="accordion-toggle"
+                                                                aria-expanded="false" data-toggle="collapse"
+                                                                href="#nginx-one--connect-instances--proxy-setup">
+                                                                <i class="fa fa-2xs fa-fw fa-chevron-right"></i><i
+                                                                    class="fa fa-2xs fa-fw fa-chevron-down"></i>Proxy setup</a>
+                                                        </li>
+                                                    <ul>
+                                                </div>
+                                                <div id="nginx-one--connect-instances--proxy-setup" class="accordion-body collapse leaf">
+                                                    <div class="accordion-inner">
+
+                                                    
+                                                        
+                                                        
+                                                        <ul class="sidebar-l2-padding">
+                                                            <li class="nginx-toc-link l3 sidebar-il-border">
+                                                                <a data-menu-id="/nginx-one/connect-instances/proxy-setup/set-up-nginx-proxy-for-nginx-one/" href="http://localhost:1313/nginx-one/connect-instances/proxy-setup/set-up-nginx-proxy-for-nginx-one/">Set up NGINX as a proxy for NGINX One</a>
+                                                            </li>
+                                                        </ul>
+                                                        
+                                                        
+                                                    
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+
+            
+                
+                
+                <div class="accordion" id="accordion1">
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <li class="nginx-toc-link l1">
+                                    <a data-menu-id="/nginx-one/how-to/" class="accordion-toggle" aria-expanded="false"
+                                    data-toggle="collapse" href="#" data-target="#nginx-one--how-to-guides" aria-controls="nginx-one--how-to-guides">
+                                    <i class="fa fa-2xs fa-fw fa-chevron-right"></i><i
+                                        class="fa fa-2xs fa-fw fa-chevron-down"></i>How-to guides</a>
+                            </li>
+                        </div>
+                        <div id="nginx-one--how-to-guides" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                
+                                
+                                    
+                                    <div class="accordion" id="Accordion2">
+                                        <div class="sidebar-l1-padding">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-one/how-to/data-plane-keys/" class="accordion-toggle"
+                                                                aria-expanded="false" data-toggle="collapse"
+                                                                href="#nginx-one--how-to--data-plane-keys">
+                                                                <i class="fa fa-2xs fa-fw fa-chevron-right"></i><i
+                                                                    class="fa fa-2xs fa-fw fa-chevron-down"></i>Data plane keys</a>
+                                                        </li>
+                                                    <ul>
+                                                </div>
+                                                <div id="nginx-one--how-to--data-plane-keys" class="accordion-body collapse leaf">
+                                                    <div class="accordion-inner">
+
+                                                    
+                                                        
+                                                        
+                                                        <ul class="sidebar-l2-padding">
+                                                            <li class="nginx-toc-link l3 sidebar-il-border">
+                                                                <a data-menu-id="/nginx-one/how-to/data-plane-keys/create-manage-data-plane-keys/" href="http://localhost:1313/nginx-one/how-to/data-plane-keys/create-manage-data-plane-keys/">Create and manage data plane keys</a>
+                                                            </li>
+                                                        </ul>
+                                                        
+                                                        
+                                                    
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                
+                                
+                                    
+                                    <div class="accordion" id="Accordion2">
+                                        <div class="sidebar-l1-padding">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-one/how-to/containers/" class="accordion-toggle"
+                                                                aria-expanded="false" data-toggle="collapse"
+                                                                href="#nginx-one--how-to--containers">
+                                                                <i class="fa fa-2xs fa-fw fa-chevron-right"></i><i
+                                                                    class="fa fa-2xs fa-fw fa-chevron-down"></i>Containers</a>
+                                                        </li>
+                                                    <ul>
+                                                </div>
+                                                <div id="nginx-one--how-to--containers" class="accordion-body collapse leaf">
+                                                    <div class="accordion-inner">
+
+                                                    
+                                                        
+                                                        
+                                                        <ul class="sidebar-l2-padding">
+                                                            <li class="nginx-toc-link l3 sidebar-il-border">
+                                                                <a data-menu-id="/nginx-one/how-to/containers/connect-nginx-plus-container-images-to-nginx-one/" href="http://localhost:1313/nginx-one/how-to/containers/connect-nginx-plus-container-images-to-nginx-one/">Connect NGINX Plus container images to NGINX One</a>
+                                                            </li>
+                                                        </ul>
+                                                        
+                                                        
+                                                    
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                
+                                
+                                    
+                                    <div class="accordion" id="Accordion2">
+                                        <div class="sidebar-l1-padding">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-one/how-to/settings/nginx-as-proxy/" class="accordion-toggle"
+                                                                aria-expanded="false" data-toggle="collapse"
+                                                                href="#nginx-one--how-to--proxy-setup">
+                                                                <i class="fa fa-2xs fa-fw fa-chevron-right"></i><i
+                                                                    class="fa fa-2xs fa-fw fa-chevron-down"></i>Proxy setup</a>
+                                                        </li>
+                                                    <ul>
+                                                </div>
+                                                <div id="nginx-one--how-to--proxy-setup" class="accordion-body collapse leaf">
+                                                    <div class="accordion-inner">
+
+                                                    
+                                                        
+                                                        
+                                                        <ul class="sidebar-l2-padding">
+                                                            <li class="nginx-toc-link l3 sidebar-il-border">
+                                                                <a data-menu-id="/nginx-one/how-to/proxy-setup/set-up-nginx-proxy-for-nginx-one/" href="http://localhost:1313/nginx-one/how-to/proxy-setup/set-up-nginx-proxy-for-nginx-one/">Set up NGINX as a proxy for NGINX One</a>
+                                                            </li>
+                                                        </ul>
+                                                        
+                                                        
+                                                    
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+
+            
+                
+                
+                <div class="accordion" id="accordion1">
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <li class="nginx-toc-link l1">
+                                    <a data-menu-id="/nginx-one/api/" class="accordion-toggle" aria-expanded="false"
+                                    data-toggle="collapse" href="#" data-target="#nginx-one--automate-with-the-nginx-one-api" aria-controls="nginx-one--automate-with-the-nginx-one-api">
+                                    <i class="fa fa-2xs fa-fw fa-chevron-right"></i><i
+                                        class="fa fa-2xs fa-fw fa-chevron-down"></i>Automate with the NGINX One API</a>
+                            </li>
+                        </div>
+                        <div id="nginx-one--automate-with-the-nginx-one-api" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-one/api/authentication/"
+                                                                href="http://localhost:1313/nginx-one/api/authentication/">Authentication</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-one/api/api-reference-guide/"
+                                                                href="http://localhost:1313/nginx-one/api/api-reference-guide/">API reference guide</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+
+            
+                
+                
+                <li class="nginx-toc-link l1">
+                    <a data-menu-id="/nginx-one/glossary/" href="http://localhost:1313/nginx-one/glossary/">Glossary</a>
+                </li>
+                
+                
+
+            
+                
+                
+                <li class="nginx-toc-link l1">
+                    <a data-menu-id="/nginx-one/changelog/" href="http://localhost:1313/nginx-one/changelog/">Changelog</a>
+                </li>
+                
+                
+
+            
+
+            </ul>
+        
+        </div>
+    </div>
+</div>
+
+  </nav>
+
+  
+  
+  <main class="content col d-block align-top content-has-toc" role="main">
+  
+    
+  <section class="main-layout">
+    <div class="sidebar-layout" id="sidebar-layout">
+      <nav data-mf="true" id="sidebar-v2" class="sidebar" style="display:none;">
+        
+
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+
+
+
+
+<atomic-search-interface id="search-standalone-sidebar" data-mf="true" style="display:none;">
+    <atomic-search-box redirection-url="/search.html">
+    </atomic-search-box>
+</atomic-search-interface>
+<button class="product-selector-button" id="product-selector-button">
+    
+    <div class="product-selector-name" id="product-selector-name">NGINX One Console</div>
+    <div class="product-selector-button-icon" id="product-selector-button-icon">
+        <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg" id="product-selector-chevron-icon">
+            <path d="M1 13L7 7L0.999999 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="product-selector-chevron-icon"/>
+        </svg>     
+    </div>
+</button>
+<div class="product-selector" id="product-selector">
+    
+    
+    
+    
+    
+        <div class="product-selector-content" id="product-selector-content">
+            <p id="product-selector-content-product-group-name">NGINX ONE</p>
+            <ul id="product-selector-content-product-container">
+            
+                <li id="product-selector-content-product-name">
+                    <a id="product-selector-content-product-link" href="/nginx-one">NGINX One Console</a>
+                </li>
+            
+                <li id="product-selector-content-product-name">
+                    <a id="product-selector-content-product-link" href="/nginx">NGINX Plus</a>
+                </li>
+            
+                <li id="product-selector-content-product-name">
+                    <a id="product-selector-content-product-link" href="/nginx-instance-manager">NGINX Instance Manager</a>
+                </li>
+            
+                <li id="product-selector-content-product-name">
+                    <a id="product-selector-content-product-link" href="/nginx-ingress-controller">NGINX Ingress Controller</a>
+                </li>
+            
+                <li id="product-selector-content-product-name">
+                    <a id="product-selector-content-product-link" href="/nginx-gateway-fabric">NGINX Gateway Fabric</a>
+                </li>
+            
+                <li id="product-selector-content-product-name">
+                    <a id="product-selector-content-product-link" href="https://nginx.org/en/docs/">NGINX Open Source</a>
+                </li>
+            
+                <li id="product-selector-content-product-name">
+                    <a id="product-selector-content-product-link" href="/solutions/">Subscription Licensing &amp; Solutions</a>
+                </li>
+            
+                <li id="product-selector-content-product-name">
+                    <a id="product-selector-content-product-link" href="/nginx-agent">NGINX Agent</a>
+                </li>
+            
+            </ul>
+        </div>
+    
+    
+    
+        <div class="product-selector-content" id="product-selector-content">
+            <p id="product-selector-content-product-group-name">NGINX APP PROTECT</p>
+            <ul id="product-selector-content-product-container">
+            
+                <li id="product-selector-content-product-name">
+                    <a id="product-selector-content-product-link" href="/nginx-app-protect-waf">NGINX App Protect WAF</a>
+                </li>
+            
+                <li id="product-selector-content-product-name">
+                    <a id="product-selector-content-product-link" href="/nginx-app-protect-dos">NGINX App Protect DoS</a>
+                </li>
+            
+            </ul>
+        </div>
+    
+    
+    
+        <div class="product-selector-content" id="product-selector-content">
+            <p id="product-selector-content-product-group-name">NGINX AS A SERVICE</p>
+            <ul id="product-selector-content-product-container">
+            
+                <li id="product-selector-content-product-name">
+                    <a id="product-selector-content-product-link" href="/nginxaas/azure/">NGINX as a Service for Azure</a>
+                </li>
+            
+            </ul>
+        </div>
+    
+    
+    
+        <div class="product-selector-content" id="product-selector-content">
+            <p id="product-selector-content-product-group-name">NGINX OTHER</p>
+            <ul id="product-selector-content-product-container">
+            
+                <li id="product-selector-content-product-name">
+                    <a id="product-selector-content-product-link" href="https://unit.nginx.org/">NGINX Unit</a>
+                </li>
+            
+            </ul>
+        </div>
+    
+</div>
+<div class="scrollbar-container">
+    <div class="sidebar-navigation">
+        <ul class="parent-collapsible-content">
+        
+            <li class="parent-collapsible-content-item">
+                
+                                         
+                        <span class="parent-box-link"></span>              
+                    
+                    <a href="http://localhost:1313/nginx-one/about/" style="">Manage your NGINX fleet </a> 
+                
+            </li>
+        
+            <li class="parent-collapsible-content-item">
+                
+                                         
+                        <span class="parent-box-link"></span>              
+                    
+                    <a href="http://localhost:1313/nginx-one/getting-started/" style="">Get started </a> 
+                
+            </li>
+        
+            <li class="parent-collapsible-content-item">
+                
+                    <input type="checkbox" id="toggle-998fae068cfcdd6a6a9cc6e7e1c83e9a" class="toggle-checkbox" style="display: none;">
+                    <label for="toggle-998fae068cfcdd6a6a9cc6e7e1c83e9a" class="collapsible-header">
+                        
+                            <span class="parent-box expand"></span>
+                            <span class="parent-box opened"></span>
+                        
+                        Draft new configurations 
+                    </label>
+                    
+
+<ul class="collapsible-content">
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-one/staged-configs/add-staged-config/" style="">Add a Staged Configuration </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-one/staged-configs/edit-staged-config/" style="">View and edit a Staged Configuration </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-one/staged-configs/import-export-staged-config/" style="">Import and export a Staged Configuration </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-one/staged-configs/api-staged-config/" style="">Use the API to manage your Staged Configurations </a>
+            
+        
+    </li>
+    
+</ul>
+                
+            </li>
+        
+            <li class="parent-collapsible-content-item">
+                
+                    <input type="checkbox" id="toggle-4ec3d4026afa934497036d381f9dc4b6" class="toggle-checkbox" style="display: none;">
+                    <label for="toggle-4ec3d4026afa934497036d381f9dc4b6" class="collapsible-header">
+                        
+                            <span class="parent-box expand"></span>
+                            <span class="parent-box opened"></span>
+                        
+                        Manage your NGINX instances 
+                    </label>
+                    
+
+<ul class="collapsible-content">
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-one/nginx-configs/add-instance/" style="">Add an NGINX instance </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-one/nginx-configs/clean-up-unavailable-instances/" style="">Clean up unavailable NGINX instances </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-one/nginx-configs/view-edit-nginx-configurations/" style="">View and edit an NGINX instance </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-one/nginx-configs/add-file/" style="">Add a file to an instance </a>
+            
+        
+    </li>
+    
+    <li>
+        
+            <input type="checkbox" id="toggle-35dfbcbcea94468cd3916e1555494712" class="toggle-checkbox" style="display: none;">
+            <label for="toggle-35dfbcbcea94468cd3916e1555494712" class="collapsible-header">
+                
+                    <span class="box expand partial-box"></span>
+                    <span class="box opened partial-box"></span>
+                
+                Change multiple instances with one push 
+            </label>
+            
+
+<ul class="collapsible-content">
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-one/nginx-configs/config-sync-groups/manage-config-sync-groups/" style="">Manage Config Sync Groups </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-one/nginx-configs/config-sync-groups/add-file-csg/" style="">Add a file to a Config Sync Group </a>
+            
+        
+    </li>
+    
+</ul>
+        
+    </li>
+    
+    <li>
+        
+            <input type="checkbox" id="toggle-5e0b7f7cf5f5bcad02aa85953d68ecad" class="toggle-checkbox" style="display: none;">
+            <label for="toggle-5e0b7f7cf5f5bcad02aa85953d68ecad" class="collapsible-header">
+                
+                    <span class="box expand partial-box"></span>
+                    <span class="box opened partial-box"></span>
+                
+                Monitor your certificates 
+            </label>
+            
+
+<ul class="collapsible-content">
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-one/nginx-configs/certificates/manage-certificates/" style="">Manage certificates </a>
+            
+        
+    </li>
+    
+</ul>
+        
+    </li>
+    
+</ul>
+                
+            </li>
+        
+            <li class="parent-collapsible-content-item">
+                
+                    <input type="checkbox" id="toggle-4ac22b9f3a5983ad16cfaec44fa7cddc" class="toggle-checkbox" style="display: none;">
+                    <label for="toggle-4ac22b9f3a5983ad16cfaec44fa7cddc" class="collapsible-header">
+                        
+                            <span class="parent-box expand"></span>
+                            <span class="parent-box opened"></span>
+                        
+                        Set up metrics 
+                    </label>
+                    
+
+<ul class="collapsible-content">
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-one/metrics/enable-metrics/" style="">Enable metrics </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-one/metrics/review-metrics/" style="">Review metrics on the NGINX One dashboard </a>
+            
+        
+    </li>
+    
+</ul>
+                
+            </li>
+        
+            <li class="parent-collapsible-content-item">
+                
+                    <input type="checkbox" id="toggle-5301366dfb13096cf3dfeb774260f798" class="toggle-checkbox" style="display: none;">
+                    <label for="toggle-5301366dfb13096cf3dfeb774260f798" class="collapsible-header">
+                        
+                            <span class="parent-box expand"></span>
+                            <span class="parent-box opened"></span>
+                        
+                        Change multiple instances with one push 
+                    </label>
+                    
+
+<ul class="collapsible-content">
+    
+    <li>
+        
+                                  
+                <span class="box current partial" id="current-page"></span>                 
+            
+            <a href="http://localhost:1313/nginx-one/config-sync-groups/manage-config-sync-groups/" style="font-weight: bold;">Manage Config Sync Groups </a>
+            <nav id="TableOfContents">
+  <ul>
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#before-you-start">Before you start</a></li>
+    <li><a href="#configuration-management">Configuration management</a>
+      <ul>
+        <li><a href="#risk-when-adding-multiple-instances-to-a-config-sync-group">Risk when adding multiple instances to a Config Sync Group</a></li>
+        <li><a href="#use-an-instance-to-define-the-config-sync-group-configuration">Use an instance to define the Config Sync Group configuration</a></li>
+        <li><a href="#define-the-config-sync-group-configuration-manually">Define the Config Sync Group configuration manually</a></li>
+      </ul>
+    </li>
+    <li><a href="#important-considerations">Important considerations</a></li>
+    <li><a href="#create-a-config-sync-group">Create a Config Sync Group</a></li>
+    <li><a href="#manage-config-sync-group-membership">Manage Config Sync Group membership</a>
+      <ul>
+        <li><a href="#add-an-existing-instance-to-a-config-sync-group">Add an existing instance to a Config Sync Group</a></li>
+        <li><a href="#add-a-new-instance-to-a-config-sync-group">Add a new instance to a Config Sync Group</a></li>
+        <li><a href="#move-an-instance-to-a-different-config-sync-group">Move an instance to a different Config Sync Group</a></li>
+        <li><a href="#remove-an-instance-from-a-config-sync-group">Remove an instance from a Config Sync Group</a></li>
+      </ul>
+    </li>
+    <li><a href="#publish-the-config-sync-group-configuration">Publish the Config Sync Group configuration</a></li>
+    <li><a href="#config-sync-group-status">Config Sync Group status</a></li>
+    <li><a href="#see-also">See also</a></li>
+  </ul>
+</nav>
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-one/config-sync-groups/add-file-csg/" style="">Add a file to a Config Sync Group </a>
+            
+        
+    </li>
+    
+</ul>
+                
+            </li>
+        
+            <li class="parent-collapsible-content-item">
+                
+                    <input type="checkbox" id="toggle-622482411ae0d78cd018605903ad7a87" class="toggle-checkbox" style="display: none;">
+                    <label for="toggle-622482411ae0d78cd018605903ad7a87" class="collapsible-header">
+                        
+                            <span class="parent-box expand"></span>
+                            <span class="parent-box opened"></span>
+                        
+                        Monitor your certificates 
+                    </label>
+                    
+
+<ul class="collapsible-content">
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-one/certificates/manage-certificates/" style="">Manage certificates </a>
+            
+        
+    </li>
+    
+</ul>
+                
+            </li>
+        
+            <li class="parent-collapsible-content-item">
+                
+                    <input type="checkbox" id="toggle-a98fa717ccbc72187cd475f474d00f5f" class="toggle-checkbox" style="display: none;">
+                    <label for="toggle-a98fa717ccbc72187cd475f474d00f5f" class="collapsible-header">
+                        
+                            <span class="parent-box expand"></span>
+                            <span class="parent-box opened"></span>
+                        
+                        Organize users with RBAC 
+                    </label>
+                    
+
+<ul class="collapsible-content">
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-one/rbac/overview/" style="">Learn about Role-based access control </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-one/rbac/roles/" style="">Review default roles </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-one/rbac/rbac-api/" style="">Set up custom roles with API groups </a>
+            
+        
+    </li>
+    
+</ul>
+                
+            </li>
+        
+            <li class="parent-collapsible-content-item">
+                
+                    <input type="checkbox" id="toggle-4d0d78347ddcf0c76600f64bfc8598e4" class="toggle-checkbox" style="display: none;">
+                    <label for="toggle-4d0d78347ddcf0c76600f64bfc8598e4" class="collapsible-header">
+                        
+                            <span class="parent-box expand"></span>
+                            <span class="parent-box opened"></span>
+                        
+                        Connect your instances to the console 
+                    </label>
+                    
+
+<ul class="collapsible-content">
+    
+    <li>
+        
+            <input type="checkbox" id="toggle-93e8fee14b69d16155fc85aad2a7e621" class="toggle-checkbox" style="display: none;">
+            <label for="toggle-93e8fee14b69d16155fc85aad2a7e621" class="collapsible-header">
+                
+                    <span class="box expand partial-box"></span>
+                    <span class="box opened partial-box"></span>
+                
+                Set up data plane keys 
+            </label>
+            
+
+<ul class="collapsible-content">
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-one/connect-instances/data-plane-keys/create-manage-data-plane-keys/" style="">Create and manage data plane keys </a>
+            
+        
+    </li>
+    
+</ul>
+        
+    </li>
+    
+    <li>
+        
+            <input type="checkbox" id="toggle-3e9cf4144ead251edb882c8a2db553ce" class="toggle-checkbox" style="display: none;">
+            <label for="toggle-3e9cf4144ead251edb882c8a2db553ce" class="collapsible-header">
+                
+                    <span class="box expand partial-box"></span>
+                    <span class="box opened partial-box"></span>
+                
+                Connect your containers 
+            </label>
+            
+
+<ul class="collapsible-content">
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-one/connect-instances/containers/connect-nginx-plus-container-images-to-nginx-one/" style="">Connect NGINX Plus container images to NGINX One </a>
+            
+        
+    </li>
+    
+</ul>
+        
+    </li>
+    
+    <li>
+        
+            <input type="checkbox" id="toggle-f68f875b9c9db5a3fa46e4f18d27b6b7" class="toggle-checkbox" style="display: none;">
+            <label for="toggle-f68f875b9c9db5a3fa46e4f18d27b6b7" class="collapsible-header">
+                
+                    <span class="box expand partial-box"></span>
+                    <span class="box opened partial-box"></span>
+                
+                Proxy setup 
+            </label>
+            
+
+<ul class="collapsible-content">
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-one/connect-instances/proxy-setup/set-up-nginx-proxy-for-nginx-one/" style="">Set up NGINX as a proxy for NGINX One </a>
+            
+        
+    </li>
+    
+</ul>
+        
+    </li>
+    
+</ul>
+                
+            </li>
+        
+            <li class="parent-collapsible-content-item">
+                
+                    <input type="checkbox" id="toggle-ed53cf0da264df76db54274acc1fec98" class="toggle-checkbox" style="display: none;">
+                    <label for="toggle-ed53cf0da264df76db54274acc1fec98" class="collapsible-header">
+                        
+                            <span class="parent-box expand"></span>
+                            <span class="parent-box opened"></span>
+                        
+                        How-to guides 
+                    </label>
+                    
+
+<ul class="collapsible-content">
+    
+    <li>
+        
+            <input type="checkbox" id="toggle-aa6168380c8620c1dc51f6c45af6b94a" class="toggle-checkbox" style="display: none;">
+            <label for="toggle-aa6168380c8620c1dc51f6c45af6b94a" class="collapsible-header">
+                
+                    <span class="box expand partial-box"></span>
+                    <span class="box opened partial-box"></span>
+                
+                Data plane keys 
+            </label>
+            
+
+<ul class="collapsible-content">
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-one/how-to/data-plane-keys/create-manage-data-plane-keys/" style="">Create and manage data plane keys </a>
+            
+        
+    </li>
+    
+</ul>
+        
+    </li>
+    
+    <li>
+        
+            <input type="checkbox" id="toggle-58170197f4ecdd4c53a38843188a6e34" class="toggle-checkbox" style="display: none;">
+            <label for="toggle-58170197f4ecdd4c53a38843188a6e34" class="collapsible-header">
+                
+                    <span class="box expand partial-box"></span>
+                    <span class="box opened partial-box"></span>
+                
+                Containers 
+            </label>
+            
+
+<ul class="collapsible-content">
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-one/how-to/containers/connect-nginx-plus-container-images-to-nginx-one/" style="">Connect NGINX Plus container images to NGINX One </a>
+            
+        
+    </li>
+    
+</ul>
+        
+    </li>
+    
+    <li>
+        
+            <input type="checkbox" id="toggle-c98431e93c74039075a03d6a147601ee" class="toggle-checkbox" style="display: none;">
+            <label for="toggle-c98431e93c74039075a03d6a147601ee" class="collapsible-header">
+                
+                    <span class="box expand partial-box"></span>
+                    <span class="box opened partial-box"></span>
+                
+                Proxy setup 
+            </label>
+            
+
+<ul class="collapsible-content">
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-one/how-to/proxy-setup/set-up-nginx-proxy-for-nginx-one/" style="">Set up NGINX as a proxy for NGINX One </a>
+            
+        
+    </li>
+    
+</ul>
+        
+    </li>
+    
+</ul>
+                
+            </li>
+        
+            <li class="parent-collapsible-content-item">
+                
+                    <input type="checkbox" id="toggle-b5cb1663f0d621cd43242f775464bd41" class="toggle-checkbox" style="display: none;">
+                    <label for="toggle-b5cb1663f0d621cd43242f775464bd41" class="collapsible-header">
+                        
+                            <span class="parent-box expand"></span>
+                            <span class="parent-box opened"></span>
+                        
+                        Automate with the NGINX One API 
+                    </label>
+                    
+
+<ul class="collapsible-content">
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-one/api/authentication/" style="">Authentication </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-one/api/api-reference-guide/" style="">API reference guide </a>
+            
+        
+    </li>
+    
+</ul>
+                
+            </li>
+        
+            <li class="parent-collapsible-content-item">
+                
+                                         
+                        <span class="parent-box-link"></span>              
+                    
+                    <a href="http://localhost:1313/nginx-one/glossary/" style="">Glossary </a> 
+                
+            </li>
+        
+            <li class="parent-collapsible-content-item">
+                
+                                         
+                        <span class="parent-box-link"></span>              
+                    
+                    <a href="http://localhost:1313/nginx-one/changelog/" style="">Changelog </a> 
+                
+            </li>
+        
+        </ul>
+    </div>
+</div>
+      </nav>
+    </div>
+
+    <section class="content-layout">
+      <div data-cms-edit="content" class="text-content">
+        <section class="breadcrumb-layout" data-mf="true" style="display: none;">
+          
+            
+            <nav aria-label="breadcrumb" class="breadcrumb navbar">
+    <div class="nav flex-md-row">
+        <ol class="breadcrumb">
+            
+            
+            
+            
+                
+            
+            
+                
+            
+            
+                
+            
+            
+                
+            
+            
+            
+                <li><a href="/">Home</a><i class="fas fa-chevron-right"></i></li>
+                
+            
+                <li><a href="/nginx-one/">F5 NGINX One Console</a><i class="fas fa-chevron-right"></i></li>
+                
+            
+                <li><a href="/nginx-one/config-sync-groups/">Change multiple instances with one push</a><i class="fas fa-chevron-right"></i></li>
+                
+            
+                Manage Config Sync Groups
+        </ol>
+    </div>
+</nav>
+  
+            
+          
+        </section>
+        <h1>Manage Config Sync Groups</h1>
+        <h2 
+id="overview">Overview  <a class="headerlink float-right" href="#overview" title="Overview"><i class="fas fa-link fa-xs"></i></a>
+</h2><p>If you work with several instances of NGINX, it can help to organize these instances in Config Sync Groups. Each instance in a Config Sync Group has the same configuration.</p>
+<p>This guide explains how to create and manage Config Sync Groups in the F5 NGINX One Console. Config Sync Groups synchronize NGINX configurations across multiple NGINX instances, ensuring consistency and ease of management.</p>
+<p>If you’ve used <a href="http://localhost:1313/nginx-instance-manager/nginx-instances/manage-instance-groups/">instance groups in NGINX Instance Manager</a>, you’ll find Config Sync Groups in NGINX One similar, though the steps and terminology differ slightly.</p>
+<p>Config Sync Groups are functionally different from syncing instances in a cluster. They let you to manage and synchronize configurations across multiple NGINX instances, all at once.</p>
+<p>This is particularly useful when your NGINX instances are load-balanced by an external load balancer, as it ensures consistency across all instances. In contrast, cluster syncing, like <a href="http://localhost:1313/nginx/admin-guide/high-availability/zone_sync_details/">zone syncing</a>, ensures data consistency and high availability across NGINX instances in a cluster. While Config Sync Groups focus on configuration management, cluster syncing supports failover and data consistency.</p>
+<h2 
+id="before-you-start">Before you start  <a class="headerlink float-right" href="#before-you-start" title="Before you start"><i class="fas fa-link fa-xs"></i></a>
+</h2><p>Before you create and manage Config Sync Groups, ensure:</p>
+<ul>
+<li>You have access to the NGINX One Console.</li>
+<li>You have the necessary permissions to create and manage Config Sync Groups.</li>
+<li>If you plan to add existing instances to a Config Sync Group, make sure those NGINX instances are properly registered with NGINX One.</li>
+</ul>
+<h2 
+id="configuration-management">Configuration management  <a class="headerlink float-right" href="#configuration-management" title="Configuration management"><i class="fas fa-link fa-xs"></i></a>
+</h2><p>Config Sync Groups support configuration inheritance and persistance. If you&rsquo;ve just created a Config Sync Group, you can define the configuration for that group in the following ways:</p>
+<ul>
+<li>Before adding an instance to a group, you can <a href="#define-the-config-sync-group-configuration-manually">Define the Config Sync Group configuration manually</a>.</li>
+<li>When you add the first instance to a group, that instance defines the configuration for that Config Sync Group.</li>
+<li>Afterwards, you can modify the configuration of the Config Sync Group. That modifies the configuration of all member instances. Future members of that group inherit that modified configuration.</li>
+</ul>
+<p>On the other hand, if you remove all instances from a Config Sync Group, the original configuration persists. In other words, the group retains the configuration from that first instance (or the original configuration). Any new instance that you add later still inherits that configuration.</p>
+<blockquote class="tip">
+  <div><strong>Tip:</strong><br/> <p>You can use <em>unmanaged</em> certificates. Your actions can affect the <a href="#config-sync-group-status">Config Sync Group status</a>. For future instances on the data plane, if it:</p>
+<ul>
+<li>Has unmanaged certificates in the same file paths as defined by the NGINX configuration as the Config Sync Group, that instance will be <a href="#config-sync-group-status"><strong>In Sync</strong></a>.</li>
+<li>Will be <a href="#config-sync-group-status"><strong>Out of Sync</strong></a> if the instance:
+<ul>
+<li>Does not have unmanaged certificates in the same file paths</li>
+<li>Has unmanaged certificates in a different directory from the Config Sync Group</li>
+</ul>
+</li>
+</ul></div>
+</blockquote>
+
+<h3 
+id="risk-when-adding-multiple-instances-to-a-config-sync-group">Risk when adding multiple instances to a Config Sync Group  <a class="headerlink float-right" href="#risk-when-adding-multiple-instances-to-a-config-sync-group" title="Risk when adding multiple instances to a Config Sync Group"><i class="fas fa-link fa-xs"></i></a>
+</h3><p>If you add multiple instances to a single Config Sync Group, simultaneously (with automation), there&rsquo;s a risk that the instance selects a random configuration. To prevent this problem, you should:</p>
+<ol>
+<li>Create a Config Sync Group.</li>
+<li>Add a configuration to the Config Sync Group, so all instances inherit it.</li>
+<li>Add the instances in a separate operation.</li>
+</ol>
+<p>Your instances should synchronize with your desired configuration within 30 seconds.</p>
+<h3 
+id="use-an-instance-to-define-the-config-sync-group-configuration">Use an instance to define the Config Sync Group configuration  <a class="headerlink float-right" href="#use-an-instance-to-define-the-config-sync-group-configuration" title="Use an instance to define the Config Sync Group configuration"><i class="fas fa-link fa-xs"></i></a>
+</h3><ol>
+<li>Follow the steps in the <a href="#add-an-existing-instance-to-a-config-sync-group"><strong>Add an existing instance to a Config Sync Group</strong></a> or <a href="#add-a-new-instance-to-a-config-sync-group"><strong>Add a new instance to a Config Sync Group</strong></a> sections to add your first instance to the group.</li>
+<li>The NGINX configuration from this instance will automatically become the group&rsquo;s configuration.</li>
+<li>You can further edit and publish this configuration by following the steps in the <a href="#publish-the-config-sync-group-configuration"><strong>Publish the Config Sync Group configuration</strong></a> section.</li>
+</ol>
+<h3 
+id="define-the-config-sync-group-configuration-manually">Define the Config Sync Group configuration manually  <a class="headerlink float-right" href="#define-the-config-sync-group-configuration-manually" title="Define the Config Sync Group configuration manually"><i class="fas fa-link fa-xs"></i></a>
+</h3><p>You can manually define the group&rsquo;s configuration before adding any instances. When you add instances to the group later, they automatically inherit this configuration.</p>
+<p>To manually set the group configuration:</p>
+<ol>
+<li>Follow steps 1–4 in the <a href="#create-a-config-sync-group"><strong>Create a Config Sync Group</strong></a> section to create your Config Sync Group.</li>
+<li>After creating the group, select the <strong>Configuration</strong> tab.</li>
+<li>Since no instances have been added, the <strong>Configuration</strong> tab will show an empty configuration with a message indicating that no config files exist yet.</li>
+<li>To add a configuration, select <strong>Edit Configuration</strong>.</li>
+<li>In the editor, define your NGINX configuration as needed. This might include adding or modifying <code>nginx.conf</code> or other related files.</li>
+<li>After making your changes, select <strong>Next</strong> to view a split screen showing your changes.</li>
+<li>If you&rsquo;re satisfied with the configuration, select <strong>Save and Publish</strong>.</li>
+</ol>
+<h2 
+id="important-considerations">Important considerations  <a class="headerlink float-right" href="#important-considerations" title="Important considerations"><i class="fas fa-link fa-xs"></i></a>
+</h2><p>When you plan Config Sync Groups, consider the following factors:</p>
+<ul>
+<li>
+<p><strong>Single Config Sync Group membership</strong>: You can add an instance to only one Config Sync Group.</p>
+</li>
+<li>
+<p><strong>NGINX Agent configuration file location</strong>: When you run the NGINX Agent installation script to register an instance with NGINX One, the script creates the <code>agent-dynamic.conf</code> file, which contains settings for the NGINX Agent, including the specified Config Sync Group. This file is typically located in <code>/var/lib/nginx-agent/</code> on most systems; however, on FreeBSD, it&rsquo;s located at <code>/var/db/nginx-agent/</code>.</p>
+</li>
+<li>
+<p><strong>Mixing NGINX Open Source and NGINX Plus instances</strong>: You can add both NGINX Open Source and NGINX Plus instances to the same Config Sync Group, but there are limitations. If your configuration includes features exclusive to NGINX Plus, synchronization will fail on NGINX Open Source instances because they don&rsquo;t support these features. NGINX One allows you to mix NGINX instance types for flexibility, but it’s important to ensure that the configurations you&rsquo;re applying are compatible with all instances in the group.</p>
+</li>
+</ul>
+<h2 
+id="create-a-config-sync-group">Create a Config Sync Group  <a class="headerlink float-right" href="#create-a-config-sync-group" title="Create a Config Sync Group"><i class="fas fa-link fa-xs"></i></a>
+</h2><p>When you create a Config Sync Group, you can manage the configurations of multiple NGINX instances as a single entity.</p>
+<ol>
+<li>On the left menu, select <strong>Config Sync Groups</strong>.</li>
+<li>Select <strong>Add Config Sync Group</strong>.</li>
+<li>In the <strong>Name</strong> field, type a name for your Config Sync Group.</li>
+<li>Select <strong>Create</strong> to add the Config Sync Group.</li>
+</ol>
+<h2 
+id="manage-config-sync-group-membership">Manage Config Sync Group membership  <a class="headerlink float-right" href="#manage-config-sync-group-membership" title="Manage Config Sync Group membership"><i class="fas fa-link fa-xs"></i></a>
+</h2><p>Now that you created a Config Sync Group, you can add instances to that group. As described in <a href="#configuration-management">Configuration management</a>, the first instance you add to a group, when you add it, defines the initial configuration for the group. You can update the configuration for the entire Config Sync Group.</p>
+<p>Any instance that joins the group afterwards inherits that configuration.</p>
+<h3 
+id="add-an-existing-instance-to-a-config-sync-group">Add an existing instance to a Config Sync Group  <a class="headerlink float-right" href="#add-an-existing-instance-to-a-config-sync-group" title="Add an existing instance to a Config Sync Group"><i class="fas fa-link fa-xs"></i></a>
+</h3><p>You can add existing NGINX instances that are already registered with NGINX One to a Config Sync Group.</p>
+<ol>
+<li>
+<p>Open a command-line terminal on the NGINX instance.</p>
+</li>
+<li>
+<p>Open the <code>/var/lib/nginx-agent/agent-dynamic.conf</code> file in a text editor.</p>
+</li>
+<li>
+<p>At the end of the file, add a new line beginning with <code>instance_group:</code>, followed by the Config Sync Group name.</p>
+
+
+
+<div class="code-block" data-mf="true" style="display: none;">
+    <div class="code-container chroma">
+        <button onclick="copyToClipBoard(this, &#34;id-184401ed95906fd8&#34;)" class="code-copy-button" type="button">Copy</button>
+        <div class="highlight-v2 single-line" id="id-184401ed95906fd8">
+            <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">instance_group: &lt;config_sync_group&gt;</span></span></code></pre></div>
+        </div>
+    </div>
+</div><div id="code-block-v1" data-mf="false">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">instance_group: &lt;config_sync_group&gt;</span></span></code></pre></div>
+</div></li>
+<li>
+<p>Restart NGINX Agent:</p>
+
+
+
+<div class="code-block" data-mf="true" style="display: none;">
+    <div class="code-container chroma">
+        <button onclick="copyToClipBoard(this, &#34;id-184401ed95920618&#34;)" class="code-copy-button" type="button">Copy</button>
+        <div class="highlight-v2 single-line" id="id-184401ed95920618">
+            <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo systemctl restart nginx-agent</span></span></code></pre></div>
+        </div>
+    </div>
+</div><div id="code-block-v1" data-mf="false">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo systemctl restart nginx-agent</span></span></code></pre></div>
+</div></li>
+</ol>
+<h3 
+id="add-a-new-instance-to-a-config-sync-group">Add a new instance to a Config Sync Group  <a class="headerlink float-right" href="#add-a-new-instance-to-a-config-sync-group" title="Add a new instance to a Config Sync Group"><i class="fas fa-link fa-xs"></i></a>
+</h3><p>When adding a new NGINX instance that is not yet registered with NGINX One, you need a data plane key to securely connect the instance. You can generate a new data plane key during the process or use an existing one if you already have it.</p>
+<ol>
+<li>
+<p>On the left menu, select <strong>Config Sync Groups</strong>.</p>
+</li>
+<li>
+<p>Select the Config Sync Group in the list.</p>
+</li>
+<li>
+<p>In the <strong>Instances</strong> pane, select <strong>Add Instance to Config Sync Group</strong>.</p>
+</li>
+<li>
+<p>In the <strong>Add Instance to Config Sync Group</strong> dialog, select <strong>Register a new instance with NGINX One then add to Config Sync Group</strong>.</p>
+</li>
+<li>
+<p>Select <strong>Next</strong>.</p>
+</li>
+<li>
+<p><strong>Generate a new data plane key</strong> (choose this option if you don&rsquo;t have an existing key):</p>
+<ul>
+<li>Select <strong>Generate new key</strong> to create a new data plane key for the instance.</li>
+<li>Select <strong>Generate Data Plane Key</strong>.</li>
+<li>Copy and securely store the generated key, as it is displayed only once.</li>
+</ul>
+</li>
+<li>
+<p><strong>Use an existing data plane key</strong> (choose this option if you already have a key):</p>
+<ul>
+<li>Select <strong>Use existing key</strong>.</li>
+<li>In the <strong>Data Plane Key</strong> field, enter the existing data plane key.</li>
+</ul>
+</li>
+</ol>
+<div class="tabs-container">
+	<ul class="nav nav-tabs" id="add-new-instance-to-config-sync-group" role="tablist"><li class="nav-item"><a data-toggle="tab" class="nav-link active" href="#add-new-instance-to-config-sync-group-0" role="tab" aria-controls="add-new-instance-to-config-sync-group-0" aria-selected="true">Virtual Machine or Bare Metal</a></li>
+		
+			<li class="nav-item"><a data-toggle="tab" class="nav-link" href="#add-new-instance-to-config-sync-group-1" role="tab" aria-controls="add-new-instance-to-config-sync-group-1">Docker Container</a></li></ul>
+</div>
+<div class="tab-content" id="add-new-instance-to-config-sync-group"><div id="add-new-instance-to-config-sync-group-0" class="tab-pane show active" role="tabpanel" aria-labelledby="add-new-instance-to-config-sync-group-0">
+<ol start="8">
+<li>Run the provided command, which includes the data plane key, in your NGINX instance terminal to register the instance with NGINX One.</li>
+<li>Select <strong>Done</strong> to complete the process.</li>
+</ol>
+</div>
+  <div id="add-new-instance-to-config-sync-group-1" class="tab-pane" role="tabpanel" aria-labelledby="add-new-instance-to-config-sync-group-1">
+<ol start="8">
+<li>
+<p><strong>Log in to the NGINX private registry</strong>:</p>
+<ul>
+<li>Replace <code>YOUR_JWT_HERE</code> with your JSON Web Token (JWT) license from <a href="https://my.f5.com/manage/s/" target="_blank" rel="noopener">MyF5</a>.</li>
+</ul>
+
+
+
+<div class="code-block" data-mf="true" style="display: none;">
+    <div class="code-container chroma">
+        <button onclick="copyToClipBoard(this, &#34;id-184401ed959f15d8&#34;)" class="code-copy-button" type="button">Copy</button>
+        <div class="highlight-v2 single-line" id="id-184401ed959f15d8">
+            <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo docker login private-registry.nginx.com --username<span class="o">=</span>YOUR_JWT_HERE --password<span class="o">=</span>none</span></span></code></pre></div>
+        </div>
+    </div>
+</div><div id="code-block-v1" data-mf="false">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo docker login private-registry.nginx.com --username<span class="o">=</span>YOUR_JWT_HERE --password<span class="o">=</span>none</span></span></code></pre></div>
+</div></li>
+<li>
+<p><strong>Pull the Docker image</strong>:</p>
+<ul>
+<li>From the <strong>OS Type</strong> list, choose the appropriate operating system for your Docker image.</li>
+<li>After selecting the OS, run the provided command to pull the Docker image.</li>
+</ul>
+<p><strong>Note</strong>: Subject to availability, you can modify the <code>agent: &lt;VERSION_TAG&gt;</code> to match the specific NGINX Plus version, OS type, and OS version you need. For example, you might use <code>agent: r32-ubi-9</code>. For more details on version tags and how to pull an image, see <a href="http://localhost:1313/nginx/admin-guide/installing-nginx/installing-nginx-docker/#pulling-the-image" target="_blank" rel="noopener">Deploying NGINX and NGINX Plus on Docker</a>.</p>
+<ul>
+<li>From the <strong>OS Type</strong> list, choose the appropriate operating system for your Docker image.</li>
+<li>After selecting the OS, run the provided command to pull the Docker image.</li>
+</ul>
+<p><strong>Note</strong>: Subject to availability, you can modify the <code>agent: &lt;VERSION_TAG&gt;</code> to match the specific NGINX Plus version, OS type, and OS version you need. For example, you might use <code>agent: r32-ubi-9</code>. For more details on version tags and how to pull an image, see <a href="http://localhost:1313/nginx/admin-guide/installing-nginx/installing-nginx-docker/#pulling-the-image" target="_blank" rel="noopener">Deploying NGINX and NGINX Plus on Docker</a>.</p>
+</li>
+<li>
+<p>Run the provided command, which includes the data plane key, in your NGINX instance terminal to start the Docker container.</p>
+</li>
+<li>
+<p>Select <strong>Done</strong> to complete the process.</p>
+</li>
+</ol>
+</div></div>
+
+
+
+
+
+
+
+
+
+
+
+<blockquote class="note side-callout">
+   <div>
+     
+     
+       
+       <i class="fas fa-key"></i>
+     
+     
+     <strong>About data plane keys</strong><br/>
+     
+     <p>Data plane keys are required for registering NGINX instances with the NGINX One Console. These keys serve as secure tokens, ensuring that only authorized instances can connect and communicate with NGINX One.</p>
+<p>For more details on creating and managing data plane keys, see <a href="http://localhost:1313/nginx-one/how-to/data-plane-keys/create-manage-data-plane-keys/" target="_blank" rel="noopener">Create and manage data plane keys</a>.</p>
+
+   </div>
+ </blockquote>
+<h3 
+id="move-an-instance-to-a-different-config-sync-group">Move an instance to a different Config Sync Group  <a class="headerlink float-right" href="#move-an-instance-to-a-different-config-sync-group" title="Move an instance to a different Config Sync Group"><i class="fas fa-link fa-xs"></i></a>
+</h3><p>If you need to move an NGINX instance to a different Config Sync Group, follow these steps:</p>
+<ol>
+<li>
+<p>Open a command-line terminal on the NGINX instance.</p>
+</li>
+<li>
+<p>Open the <code>/var/lib/nginx-agent/agent-dynamic.conf</code> file in a text editor.</p>
+</li>
+<li>
+<p>Locate the line that begins with <code>instance_group:</code> and change it to the name of the new Config Sync Group.</p>
+
+
+
+<div class="code-block" data-mf="true" style="display: none;">
+    <div class="code-container chroma">
+        <button onclick="copyToClipBoard(this, &#34;id-184401ed959361c0&#34;)" class="code-copy-button" type="button">Copy</button>
+        <div class="highlight-v2 single-line" id="id-184401ed959361c0">
+            <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">instance_group: &lt;new_config_sync_group&gt;</span></span></code></pre></div>
+        </div>
+    </div>
+</div><div id="code-block-v1" data-mf="false">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">instance_group: &lt;new_config_sync_group&gt;</span></span></code></pre></div>
+</div></li>
+<li>
+<p>Restart NGINX Agent by running the following command:</p>
+
+
+
+<div class="code-block" data-mf="true" style="display: none;">
+    <div class="code-container chroma">
+        <button onclick="copyToClipBoard(this, &#34;id-184401ed9594adc8&#34;)" class="code-copy-button" type="button">Copy</button>
+        <div class="highlight-v2 single-line" id="id-184401ed9594adc8">
+            <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo systemctl restart nginx-agent</span></span></code></pre></div>
+        </div>
+    </div>
+</div><div id="code-block-v1" data-mf="false">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo systemctl restart nginx-agent</span></span></code></pre></div>
+</div></li>
+</ol>
+<p>If you move an instance with certificates from one Config Sync Group to another, NGINX One adds or removes those certificates from the data plane, to synchronize with the deployed certificates of the group.</p>
+<h3 
+id="remove-an-instance-from-a-config-sync-group">Remove an instance from a Config Sync Group  <a class="headerlink float-right" href="#remove-an-instance-from-a-config-sync-group" title="Remove an instance from a Config Sync Group"><i class="fas fa-link fa-xs"></i></a>
+</h3><p>If you need to remove an NGINX instance from a Config Sync Group without adding it to another group, follow these steps:</p>
+<ol>
+<li>
+<p>Open a command-line terminal on the NGINX instance.</p>
+</li>
+<li>
+<p>Open the <code>/var/lib/nginx-agent/agent-dynamic.conf</code> file in a text editor.</p>
+</li>
+<li>
+<p>Locate the line that begins with <code>instance_group:</code> and either remove it or comment it out by adding a <code>#</code> at the beginning of the line.</p>
+
+
+
+<div class="code-block" data-mf="true" style="display: none;">
+    <div class="code-container chroma">
+        <button onclick="copyToClipBoard(this, &#34;id-184401ed959620e0&#34;)" class="code-copy-button" type="button">Copy</button>
+        <div class="highlight-v2 single-line" id="id-184401ed959620e0">
+            <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl"># instance_group: &lt;config_sync_group&gt;</span></span></code></pre></div>
+        </div>
+    </div>
+</div><div id="code-block-v1" data-mf="false">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl"># instance_group: &lt;config_sync_group&gt;</span></span></code></pre></div>
+</div></li>
+<li>
+<p>Restart NGINX Agent:</p>
+
+
+
+<div class="code-block" data-mf="true" style="display: none;">
+    <div class="code-container chroma">
+        <button onclick="copyToClipBoard(this, &#34;id-184401ed9597bb08&#34;)" class="code-copy-button" type="button">Copy</button>
+        <div class="highlight-v2 single-line" id="id-184401ed9597bb08">
+            <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo systemctl restart nginx-agent</span></span></code></pre></div>
+        </div>
+    </div>
+</div><div id="code-block-v1" data-mf="false">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo systemctl restart nginx-agent</span></span></code></pre></div>
+</div></li>
+</ol>
+<p>By removing or commenting out this line, the instance will no longer be associated with any Config Sync Group.</p>
+<h2 
+id="publish-the-config-sync-group-configuration">Publish the Config Sync Group configuration  <a class="headerlink float-right" href="#publish-the-config-sync-group-configuration" title="Publish the Config Sync Group configuration"><i class="fas fa-link fa-xs"></i></a>
+</h2><p>After the Config Sync Group is created, you can modify and publish the group&rsquo;s configuration as needed. Any changes made to the group configuration will be applied to all instances within the group.</p>
+<ol>
+<li>On the left menu, select <strong>Config Sync Groups</strong>.</li>
+<li>Select the Config Sync Group in the list.</li>
+<li>Select the <strong>Configuration</strong> tab to view the group&rsquo;s NGINX configuration.</li>
+<li>To modify the group&rsquo;s configuration, select <strong>Edit Configuration</strong>.</li>
+<li>Make the necessary changes to the configuration.</li>
+<li>When you&rsquo;re finished, select <strong>Next</strong>. A split view displays the changes.</li>
+<li>If you&rsquo;re satisfied with the changes, select <strong>Save and Publish</strong>.</li>
+</ol>
+<p>Publishing the group configuration ensures that all instances within the Config Sync Group are synchronized with the latest group configuration. This helps maintain consistency across all instances in the group, preventing configuration drift.</p>
+<h2 
+id="config-sync-group-status">Config Sync Group status  <a class="headerlink float-right" href="#config-sync-group-status" title="Config Sync Group status"><i class="fas fa-link fa-xs"></i></a>
+</h2><p>The <strong>Config Sync Status</strong> column on the <strong>Config Sync Groups</strong> page provides insight into the synchronization state of your NGINX instances within each group.</p>
+
+
+
+
+
+<table class="table table-striped table-bordered table-v1">
+  <thead>
+      <tr>
+          <th style="text-align: left"><strong>Status</strong></th>
+          <th style="text-align: left"><strong>Description</strong></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><strong>In Sync</strong></td>
+          <td style="text-align: left">All instances within the Config Sync Group have configurations that match the group configuration. No action is required.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>Out of Sync</strong></td>
+          <td style="text-align: left">At least one instance in the group has a configuration that differs from the group&rsquo;s configuration. You may need to review and resolve discrepancies to ensure consistency.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>Sync in Progress</strong></td>
+          <td style="text-align: left">An instance is currently being synchronized with the group&rsquo;s configuration. This status appears when an instance is moved to a new group or when a configuration is being applied.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>Unknown</strong></td>
+          <td style="text-align: left">The synchronization status of the instances in this group cannot be determined. This could be due to connectivity issues, instances being offline, or other factors. Investigating the cause of this status is recommended.</td>
+      </tr>
+  </tbody>
+</table>
+
+
+
+
+
+
+  
+
+
+<div data-mf="true" style="display: none;" class="table-v2 table table-striped table-bordered narrow">
+    <table>
+  <thead>
+      <tr>
+          <th style="text-align: left"><strong>Status</strong></th>
+          <th style="text-align: left"><strong>Description</strong></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><strong>In Sync</strong></td>
+          <td style="text-align: left">All instances within the Config Sync Group have configurations that match the group configuration. No action is required.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>Out of Sync</strong></td>
+          <td style="text-align: left">At least one instance in the group has a configuration that differs from the group&rsquo;s configuration. You may need to review and resolve discrepancies to ensure consistency.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>Sync in Progress</strong></td>
+          <td style="text-align: left">An instance is currently being synchronized with the group&rsquo;s configuration. This status appears when an instance is moved to a new group or when a configuration is being applied.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>Unknown</strong></td>
+          <td style="text-align: left">The synchronization status of the instances in this group cannot be determined. This could be due to connectivity issues, instances being offline, or other factors. Investigating the cause of this status is recommended.</td>
+      </tr>
+  </tbody>
+</table>
+
+</div>
+<p>Monitor the <strong>Config Sync Status</strong> column. It can help you ensure that your configurations are consistently applied across all instances in a group.</p>
+<h2 
+id="see-also">See also  <a class="headerlink float-right" href="#see-also" title="See also"><i class="fas fa-link fa-xs"></i></a>
+</h2><ul>
+<li><a href="http://localhost:1313/nginx-one/how-to/data-plane-keys/create-manage-data-plane-keys/">Create and manage data plane keys</a></li>
+<li><a href="http://localhost:1313/nginx-one/nginx-configs/add-instance/">Add an NGINX instance</a></li>
+</ul>
+
+        
+        
+
+        <hr>
+  
+        
+        <div class="last-modified">
+          
+<div>
+    <a href="https://github.com/nginx/documentation//tree/main/content/nginx-one/config-sync-groups/manage-config-sync-groups.md" class="" target="_blank" rel="noopener"><i class="fa-solid fa-file-lines fa-fw"></i> View source</a>
+  </div>
+  <div>
+    <a href="https://github.com/nginx/documentation//edit/main/content/nginx-one/config-sync-groups/manage-config-sync-groups.md" class="" target="_blank" rel="noopener"><i class="fa-solid fa-pen-to-square fa-fw"></i> Edit this page</a>
+  </div>
+  <div>
+    <a href="https://github.com/nginx/documentation//issues/new?title=Manage%20Config%20Sync%20Groups&amp;template=2-bug_report.md" class="" target="_blank" rel="noopener"><i class="fa-solid fa-list-check fa-fw"></i> Create a new issue</a>
+  </div>
+
+
+
+        </div>
+        
+
+        
+         
+<script type='text/javascript'> 
+    (function(){var g=function(e,h,f,g){ 
+        this.get=function(a){
+            for(var a=a+"=",c=document.cookie.split(";"),b=0,e=c.length;b<e;b++){
+                for(var d=c[b];" "==d.charAt(0);)
+                    d=d.substring(1,d.length);
+                    if(0==d.indexOf(a))
+                        return d.substring(a.length,d.length)
+            }
+            return null
+        }; 
+        
+        this.set=function(a,c){
+            var b="",b=new Date;
+            b.setTime(b.getTime()+6048E5);
+            b="; expires="+b.toGMTString();
+            document.cookie=a+"="+c+b+"; path=/; "
+        }; 
+        
+        this.check=function(){
+            var a=this.get(f);
+            if(a)
+                a=a.split(":");
+            else if(100!=e)
+                "v"==h&&(e=Math.random()>=e/100?0:100),
+                a=[h,e,0],
+                this.set(f,a.join(":"));
+            else 
+                return!0;
+            var c=a[1];
+            if(100==c)
+                return!0;
+            switch(a[0]){
+                case "v":
+                    return!1;
+                case "r":
+                    return c=a[2]%Math.floor(100/c),a[2]++,this.set(f,a.join(":")),!c
+            }
+            return!0
+        }; 
+
+        this.go=function(){
+            if(this.check()){
+                var a=document.createElement("script");
+                a.type="text/javascript";
+                a.src=g;
+                document.body&&document.body.appendChild(a)
+            }
+        };
+
+        this.start=function(){
+            var t=this;
+            "complete"!==document.readyState?window.addEventListener ?
+                window.addEventListener("load",function(){t.go()},!1) : 
+                window.attachEvent&&window.attachEvent("onload",function(){t.go()}):t.go()};
+    }; 
+
+    try{
+        const project_id = window.location.hostname.includes("staging") ? "QSI_S_ZN_2YG73ads2zp5bN0" : "QSI_S_ZN_2QSTn2r41YlXrYk";
+        const endpoint = window.location.hostname.includes("staging") ? "https://zn2yg73ads2zp5bn0-f5.siteintercept.qualtrics.com/SIE/?Q_ZID=ZN_2YG73ads2zp5bN0" : "https://zn2qstn2r41ylxryk-f5.siteintercept.qualtrics.com/SIE/?Q_ZID=ZN_2QSTn2r41YlXrYk";
+        (new g(100,"r", project_id, endpoint)).start()
+    }
+    catch(i){}})();
+
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelector(".qualtrics-feedback").id = window.location.hostname.includes("staging") ? "ZN_2YG73ads2zp5bN0" : "ZN_2QSTn2r41YlXrYk"
+    });
+</script>
+<hr>
+<div style="height: 60px;"></div>
+<div class="qualtrics-feedback" id='ZN_2QSTn2r41YlXrYk'></div>
+
+
+        
+
+	
+<div class="container flex">
+	<ul class="next-prev-icon">
+
+		
+
+		
+			<li style="flex:1; text-align: right; white-space: nowrap;"><a href="http://localhost:1313/nginx-one/config-sync-groups/add-file-csg/" class="" title="Next -- Add a file to a Config Sync Group"><svg width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M24.622 1.5L46.06 22.94C46.1993 23.0791 46.3099 23.2444 46.3853 23.4262C46.4607 23.6081 46.4995 23.8031 46.4995 24C46.4995 24.1969 46.4607 24.3919 46.3853 24.5738C46.3099 24.7556 46.1993 24.9209 46.06 25.06L24.622 46.5" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M2.122 1.5L23.56 22.94C23.6993 23.0791 23.8099 23.2444 23.8853 23.4262C23.9607 23.6081 23.9995 23.8031 23.9995 24C23.9995 24.1969 23.9607 24.3919 23.8853 24.5738C23.8099 24.7556 23.6993 24.9209 23.56 25.06L2.122 46.5" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+</a></li>
+		
+		</ul>
+	</div>
+
+        </main>
+        
+          
+            <div id="toc" class="col-md-3 d-none d-xl-block d-print-none nginx-toc align-top">
+            <nav class="bd-links" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <h3 class="bd-toc-link">What's on This Page</h3><nav id="TableOfContents">
+  <ul>
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#before-you-start">Before you start</a></li>
+    <li><a href="#configuration-management">Configuration management</a>
+      <ul>
+        <li><a href="#risk-when-adding-multiple-instances-to-a-config-sync-group">Risk when adding multiple instances to a Config Sync Group</a></li>
+        <li><a href="#use-an-instance-to-define-the-config-sync-group-configuration">Use an instance to define the Config Sync Group configuration</a></li>
+        <li><a href="#define-the-config-sync-group-configuration-manually">Define the Config Sync Group configuration manually</a></li>
+      </ul>
+    </li>
+    <li><a href="#important-considerations">Important considerations</a></li>
+    <li><a href="#create-a-config-sync-group">Create a Config Sync Group</a></li>
+    <li><a href="#manage-config-sync-group-membership">Manage Config Sync Group membership</a>
+      <ul>
+        <li><a href="#add-an-existing-instance-to-a-config-sync-group">Add an existing instance to a Config Sync Group</a></li>
+        <li><a href="#add-a-new-instance-to-a-config-sync-group">Add a new instance to a Config Sync Group</a></li>
+        <li><a href="#move-an-instance-to-a-different-config-sync-group">Move an instance to a different Config Sync Group</a></li>
+        <li><a href="#remove-an-instance-from-a-config-sync-group">Remove an instance from a Config Sync Group</a></li>
+      </ul>
+    </li>
+    <li><a href="#publish-the-config-sync-group-configuration">Publish the Config Sync Group configuration</a></li>
+    <li><a href="#config-sync-group-status">Config Sync Group status</a></li>
+    <li><a href="#see-also">See also</a></li>
+  </ul>
+</nav>
+  </div>
+</nav>
+            </div>
+          
+        
+        
+      </div>
+    </section>
+  </section>
+</div>
+
+
+
+
+      </div>
+  </section>
+
+    <footer id="footer">
+      
+      <footer id="footer">
+  <div class="container-fluid">
+    <div class="row align-items-center">
+      <div class="col-md-6 d-md-flex">
+        <img class="nginx-logo-footer" src="http://localhost:1313/images/icons/NGINX-Part-of-F5-horiz-all-white-525x208@2x.png"/>
+      </div>
+    </div>
+
+    
+    <div class="row d-print-none d-none d-md-flex">
+      <div class="col-md-3 d-none d-md-block">
+        <span class="footer-head">Company</span>
+        <ul class="footer-text">
+          <li>
+            <a
+              href="https://www.f5.com/go/product/welcome-to-nginx"
+              target="_blank"
+              alt="Select to learn about F5 NGINX"
+              >About F5 NGINX</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://www.f5.com/company/events"
+              target="_blank"
+              alt="Select to learn about F5 events"
+              >Events</a
+            >
+          </li>
+        </ul>
+        <br />
+        <span class="footer-head">Resources</span>
+        <ul class="footer-text">
+          <li>
+            <a
+              href="https://www.f5.com/company/blog/nginx"
+              target="_blank"
+              alt="Select to visit the F5 NGINX blog"
+              >Blog</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://www.f5.com/go/faq/nginx-faq"
+              target="_blank"
+              alt="Select to visit the F5 NGINX frequently asked questions page"
+              >FAQ</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://www.f5.com/services"
+              target="_blank"
+              alt="Select to learn about F5 NGINX Support"
+              >Professional Services</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://www.f5.com/learn/training"
+              target="_blank"
+              alt="Select to learn about F5 training offerings"
+              >Training</a
+            >
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-md-3 d-none d-md-block">
+        <span class="footer-head">Products</span>
+        <ul class="footer-text">
+          <li>
+            <a
+              title="F5 NGINX One"
+              aria-label="F5 NGINX One"
+              href="https://www.f5.com/products/nginx/one"
+              >F5 NGINX One</a
+            >
+          </li>
+          <li>
+            <a
+              title="F5 NGINX Plus"
+              aria-label="F5 NGINX Plus"
+              href="https://www.f5.com/products/nginx/nginx-plus"
+              >F5 NGINX Plus</a
+            >
+          </li>
+          <li>
+            <a
+              title="F5 NGINX App Protect"
+              aria-label="F5 NGINX App Protect"
+              href="https://www.f5.com/products/nginx/nginx-app-protect"
+              >F5 NGINX App Protect</a
+            >
+          </li>
+          <li>
+            <a
+              title="F5 NGINX Instance Manager"
+              aria-label="F5 NGINX Instance Manager"
+              href="https://www.f5.com/products/nginx/instance-manager"
+              >F5 NGINX Instance Manager</a
+            >
+          </li>
+          <li>
+            <a
+              title="F5 NGINX Ingress Controller"
+              aria-label="F5 NGINX Ingress Controller"
+              href="https://www.f5.com/products/nginx/nginx-ingress-controller"
+              >F5 NGINX Ingress Controller</a
+            >
+          </li>
+          <li>
+            <a
+              title="F5 NGINX Gateway Fabric"
+              aria-label="F5 NGINX Gateway Fabric"
+              href="https://www.f5.com/products/nginx/nginx-gateway-fabric"
+              >F5 NGINX Gateway Fabric</a
+            >
+          </li>
+          <li>
+            <a
+              title="F5 NGINXaaS for Azure"
+              aria-label="F5 NGINXaaS for Azure"
+              href="https://www.f5.com/products/nginx/f5-nginxaas-for-azure"
+              >F5 NGINXaaS for Azure</a
+            >
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-md-3 d-none d-md-block">
+        <span class="footer-head">NGINX on GitHub</span>
+        <ul class="footer-text">
+          <li>
+            <a
+              title="NGINX Open Source"
+              aria-label="NGINX Open Source"
+              href="https://github.com/nginx/nginx"
+              ><span class="inner">NGINX Open Source</span></a
+            >
+          </li>
+          <li>
+            <a
+              title="NGINX Unit"
+              aria-label="NGINX Unit"
+              href="https://github.com/nginx/unit"
+              ><span class="inner">NGINX Unit</span></a
+            >
+          </li>
+          <li>
+            <a
+              title="NGINX Amplify"
+              aria-label="NGINX Amplify"
+              href="https://github.com/nginxinc/nginx-amplify-agent"
+              ><span class="inner">NGINX Amplify</span></a
+            >
+          </li>
+          <li>
+            <a
+              title="NGINX Agent"
+              aria-label="NGINX Agent"
+              href="https://github.com/nginx/Agent"
+              ><span class="inner">NGINX Agent</span></a
+            >
+          </li>
+          <li>
+            <a
+              title="NGINX Kubernetes Ingress Controller"
+              aria-label="NGINX Kubernetes Ingress Controller"
+              href="https://github.com/nginxinc/kubernetes-ingress"
+              ><span class="inner">NGINX Kubernetes Ingress Controller</span></a
+            >
+          </li>
+          <li>
+            <a
+              title="NGINX Gateway Fabric"
+              aria-label="NGINX Gateway Fabric"
+              href="https://github.com/nginxinc/nginx-gateway-fabric"
+              ><span class="inner">NGINX Gateway Fabric</span></a
+            >
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-md-2 d-none d-md-block">
+        <span class="footer-head">Social</span>
+        <ul class="footer-social">
+          <li>
+            <a
+              href="https://www.facebook.com/nginxinc"
+              title="facebook"
+              aria-label="facebook"
+              target="_blank"
+              rel="noreferrer"
+              ><i class="fa-brands fa-facebook" aria-hidden="true"></i>
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://twitter.com/nginx"
+              title="X"
+              aria-label="x"
+              target="_blank"
+              rel="noreferrer"
+              ><i class="fa-brands fa-x-twitter" aria-hidden="true"></i
+            ></a>
+          </li>
+          <li>
+            <a
+              href="https://www.linkedin.com/company/nginx"
+              title="linkedin"
+              aria-label="linkedin"
+              target="_blank"
+              rel="noreferrer"
+              ><i class="fa-brands fa-linkedin" aria-hidden="true"></i>
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://www.youtube.com/user/NginxInc"
+              title="youtube"
+              aria-label="youtube"
+              target="_blank"
+              rel="noreferrer"
+              alt="NGINX Youtube Channel"
+              ><i class="fa-brands fa-square-youtube" aria-hidden="true"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="site-info footer-text">
+      <div class="text-center">
+        <p>
+          <a href="https://www.f5.com/"
+            ><img class="f5-logo-footer" src="http://localhost:1313/images/icons/Logo_F5.svg" alt="F5 logo"></a
+          >
+          ©2025 F5, Inc. All rights reserved.
+        </p>
+        <p>
+          <a
+            href="https://www.f5.com/company/policies/trademarks"
+            rel="noopener"
+            target="_blank"
+            >Trademarks</a
+          >
+          <a
+            href="https://www.f5.com/company/policies"
+            rel="noopener"
+            target="_blank"
+            >Policies</a
+          >
+          <a href="https://docs.nginx.com/ossc">Open Source Components</a>
+          <a
+            href="https://www.f5.com/company/policies/privacy-notice"
+            rel="noopener"
+            target="_blank"
+            >Privacy</a
+          >
+          <a
+            href="https://www.f5.com/company/policies/F5-California-privacy-summary"
+            rel="noopener"
+            target="_blank"
+            >California Privacy</a
+          >
+          <a
+            href="https://www.f5.com/company/policies/privacy-notice#no-sell"
+            rel="noopener"
+            target="_blank"
+            >Do Not Sell My Personal Information</a
+          >
+          <span id="teconsent-v1"></span>
+        </p>
+      </div>
+    </div>
+    
+  </div>
+  
+</footer>
+
+      
+    </footer>
+
+    <footer data-mf="true" id="footer-v2" style="display:none;">
+      
+      <div class="footer-layout">
+    <div class="footer-f5-trademark">
+        <img class="f5-logo-footer" src="http://localhost:1313/images/icons/Logo_F5.svg" alt="F5 logo">
+        <p>©2025 F5, Inc. All rights reserved. NGINX is a registered trademark of F5, Inc.</p>
+    </div>
+    <div class="footer-useful-links">
+        <a
+            href="https://www.f5.com/company/policies/trademarks"
+            rel="noopener"
+            target="_blank"
+            >Trademarks
+        </a>
+        <a
+            href="https://www.f5.com/company/policies"
+            rel="noopener"
+            target="_blank"
+            >Policies
+        </a>
+        <a
+            href="https://www.f5.com/company/policies/privacy-notice"
+            rel="noopener"
+            target="_blank"
+            >Privacy
+        </a>
+        <a
+            href="https://www.f5.com/company/policies/F5-California-privacy-summary"
+            rel="noopener"
+            target="_blank"
+            >California Privacy
+        </a>
+        <a
+            href="https://www.f5.com/company/policies/privacy-notice#no-sell"
+            rel="noopener"
+            target="_blank"
+            >Do Not Sell My Personal Information
+        </a>
+        <span id="teconsent-v2"></span>
+    </div>
+</div>
+
+      
+    </footer>
+  
+<script src="/js/jquery-3-6-4.min.js" type="text/javascript" integrity=""></script>
+
+
+<script src="/js/kube.min.a3a07cceb64989e2f0bf41653ab4d8346ba4312270eb5cc80d6afad3bf30a0ca9768aaa2559cb582e663332c541edab6a4068ef2e88b739fa425e2e870eb0aff.js" type="text/javascript" integrity="sha512-o6B8zrZJieLwv0FlOrTYNGukMSJw61zIDWr6078woMqXaKqiVZy1guZjMyxUHtq2pAaO8uiLc5&#43;kJeLocOsK/w=="></script>
+
+
+
+<script src="/js/bootstrap.bundle.min.c15ed88f56a52190ea645094409cbce5537eaaf108972f777c840037b8aa0c508f12e70b09e345cf8af7e450a8f6ce96ae974340f8bcd316e58d707c063b6f72.js" type="text/javascript"
+  integrity="sha512-wV7Yj1alIZDqZFCUQJy85VN&#43;qvEIly93fIQAN7iqDFCPEucLCeNFz4r35FCo9s6WrpdDQPi80xbljXB8Bjtvcg=="></script>
+
+
+
+<script src="/js/code-copy.bb21b72280613039f1fabb11acc6a901c07caaee454933031066fbda6b5406fd31077a80ec913ba32261224d138bcbb4a34d27c51efae571c68d59282943b9a4.js" type="text/javascript"></script>
+
+
+
+<script src="/js/code-copy-v2.71bcaee23ab00cb45dc944f321264e21d25bc1ec1ae76f9596286cb408ea5654b4ee016e7914cc2554b237114eeb467d39df18735311f2d28480b3ccd2feb4ad.js" type="text/javascript"></script>
+
+
+
+
+
+<script
+  type="module"
+  src="https://static.cloud.coveo.com/atomic/v3.19.0/atomic.esm.js"
+  integrity="sha512-VA9k6iDWhwxl8bwKUYPD63l93lGX7daV60k3yFxEt9EuEq4iWvsu5COq1mZ8OXKl0KCOFlUSDXS32Cy+YwbufQ=="
+  crossorigin="anonymous">
+</script>
+
+
+<script class="coveo-script" src="https://static.cloud.coveo.com/searchui/v2.10104/0/js/CoveoJsSearch.Lazy.min.js"
+  integrity="sha512-HxdDBIp5snbqtu1TPkBnXLKEvN9IPz3PeZW8zT9KfsflV9Ck822XDroDlpVbfCfXeiu8C0RDVn0fdu7aGy/H1g=="
+  crossorigin="anonymous"></script>
+
+<script src="https://static.cloud.coveo.com/searchui/v2.10104/0/js/templates/templates.js"
+  integrity="sha512-CR0Yk/LIwgh1MsKqjecDp/r6F9ipKc6gA+4+E1pplT3N3r1pk+la/HaqyDiKtjOFwrwIIbIYBFrUJgPql93QHw=="
+  crossorigin="anonymous"></script>
+
+
+
+
+
+
+<script src="/js/coveo.min.4acfd205930e2d31230100f345e0463332eb3e3af1b4aa9a6e3131b0b2bac53566ae4d18b390066fce94c0c75d39b5e121d1291f81e5accc1a82d93da9f11b7f.js" integrity="sha512-Ss/SBZMOLTEjAQDzReBGMzLrPjrxtKqabjExsLK6xTVmrk0Ys5AGb86UwMddObXhIdEpH4HlrMwagtk9qfEbfw=="
+  type="text/javascript"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="/js/sidebar.min.6fed0180a23d01103c68ffb054a183fba5e7ba673de8c56d85857af964dcc0c11623ee09f6185207a373127cb2547ff9247ae3516ed47c67e1b58dbe71e9d576.js" type="text/javascript" integrity="sha512-b&#43;0BgKI9ARA8aP&#43;wVKGD&#43;6Xnumc96MVthYV6&#43;WTcwMEWI&#43;4J9hhSB6NzEnyyVH/5JHrjUW7UfGfhtY2&#43;cenVdg=="></script>
+  
+
+
+<script src="/js/site-dropdown.min.3bb49b6f7d25bcd4a2b008525bb8538d84237348bf618b40970ff6eca87119d68c326ca7ba04854ad102be36495fe1d70f1cb239916555b67dd17683dc283333.js" type="text/javascript" integrity="sha512-O7Sbb30lvNSisAhSW7hTjYQjc0i/YYtAlw/27KhxGdaMMmynugSFStECvjZJX&#43;HXDxyyOZFlVbZ90XaD3CgzMw=="></script>
+
+
+
+<script src="/js/product-selector.min.b588249327fb12c7602fa08eb618560171f54e7348d6c1bacfdbf541f5e13023493f64f78fb6d4b9014892e5e4f0aaaee95b859bb37aa53bbe8c0e27e65167d1.js" type="text/javascript" integrity="sha512-tYgkkyf7EsdgL6COthhWAXH1TnNI1sG6z9v1QfXhMCNJP2T3j7bUuQFIkuXk8Kqu6VuFm7N6pTu&#43;jA4n5lFn0Q=="></script>
+
+
+
+<script src="/js/sidebar-v2.min.3f906631e696b2c88883bfcfc62371165359130cfd118ceb49893ae0d8760dc38177ee3bb94a61dee45023115de8445f0b9fe48f933618ef7ba7b3180a05adbd.js" type="text/javascript" integrity="sha512-P5BmMeaWssiIg7/PxiNxFlNZEwz9EYzrSYk64Nh2DcOBd&#43;47uUph3uRQIxFd6ERfC5/kj5M2GO97p7MYCgWtvQ=="></script> 
+  <div id="consent_blackbar"></div>
+</body>
+</html>
+
+

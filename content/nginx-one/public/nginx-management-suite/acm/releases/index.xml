@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Releases on DEV -- docs-nginx-com</title>
+    <link>http://localhost:1313/nginx-management-suite/acm/releases/</link>
+    <description>Recent content in Releases on DEV -- docs-nginx-com</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/nginx-management-suite/acm/releases/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Release Notes</title>
+      <link>http://localhost:1313/nginx-management-suite/acm/releases/release-notes/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-management-suite/acm/releases/release-notes/</guid>
+      <description>&lt;style&gt;&#xA;   hr {&#xA;     margin-top: 40px; &#xA;     margin-bottom: 40px;&#xA;     }&#xA;   main h2 {&#xA;        margin-top: 30px;&#xA;        margin-bottom: 10px;&#xA;    }&#xA;    main h3 {&#xA;        margin-top: 25px;&#xA;        margin-bottom: 10px;&#xA;        font-weight: 300;&#xA;        font-size: 1.5em;&#xA;    }&#xA;    main h4 {&#xA;      margin-top: 30px;&#xA;      font-weight: bold; &#xA;    }&#xA;    td hr {&#xA;        margin-top: 10px;&#xA;        margin-bottom: 10px;&#xA;    }&#xA;    summary {&#xA;        margin-bottom: 20px;&#xA;        font-weight: 300;&#xA;        font-size: 15px;&#xA;        color: green;&#xA;    }&#xA;    ol &gt; li {&#xA;        padding-bottom: 0px!important;&#xA;    }&#xA;    ol &gt; li &gt; ul {&#xA;        padding-bottom: 0px!important;&#xA;    }&#xA; &lt;/style&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 &#xA;id=&#34;193&#34;&gt;1.9.3  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#193&#34; title=&#34;1.9.3&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;November 06, 2024&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Known Issues</title>
+      <link>http://localhost:1313/nginx-management-suite/acm/releases/known-issues/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-management-suite/acm/releases/known-issues/</guid>
+      <description>&lt;style&gt;&#xA;   hr {&#xA;     margin-top: 40px; &#xA;     margin-bottom: 40px;&#xA;     }&#xA;   main h2 {&#xA;        margin-top: 30px;&#xA;        margin-bottom: 10px;&#xA;    }&#xA;    main h3 {&#xA;        margin-top: 25px;&#xA;        margin-bottom: 10px;&#xA;        font-weight: 300;&#xA;        font-size: 1.5em;&#xA;    }&#xA;    main h4 {&#xA;      margin-top: 30px;&#xA;      font-weight: bold; &#xA;    }&#xA;    td hr {&#xA;        margin-top: 10px;&#xA;        margin-bottom: 10px;&#xA;    }&#xA;    summary {&#xA;        margin-bottom: 20px;&#xA;        font-weight: 300;&#xA;        font-size: 15px;&#xA;        color: green;&#xA;    }&#xA;    ol &gt; li {&#xA;        padding-bottom: 0px!important;&#xA;    }&#xA;    ol &gt; li &gt; ul {&#xA;        padding-bottom: 0px!important;&#xA;    }&#xA; &lt;/style&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 &#xA;id=&#34;192&#34;&gt;1.9.2  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#192&#34; title=&#34;1.9.2&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;March 14, 2024&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

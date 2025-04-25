@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>NGINX Controller Application Delivery Module on DEV -- docs-nginx-com</title>
+    <link>http://localhost:1313/nginx-controller/releases/adc/</link>
+    <description>Recent content in NGINX Controller Application Delivery Module on DEV -- docs-nginx-com</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/nginx-controller/releases/adc/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Release Notes 3.22.9</title>
+      <link>http://localhost:1313/nginx-controller/releases/adc/adc-release-notes-3.22.9/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-controller/releases/adc/adc-release-notes-3.22.9/</guid>
+      <description>&lt;p&gt;We encourage you to install the latest version of the NGINX Controller Application Delivery module to take advantage of the newest features and updates.&lt;/p&gt;&#xA;&lt;p&gt;Technical support is provided for earlier versions that were released within two years of the current release.&lt;/p&gt;&#xA;&lt;blockquote class=&#34;tip&#34;&gt;&#xA;  &lt;div&gt;&lt;strong&gt;See Also:&lt;/strong&gt;&lt;br/&gt; &lt;p&gt;For related installation documentation, refer to the following publications:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;http://localhost:1313/nginx-controller/admin-guides/backup-restore/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;NGINX Controller Installation Guide&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;http://localhost:1313/nginx-controller/admin-guides/install/nginx-controller-tech-specs/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;NGINX Controller Technical Specifications Guide&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&lt;/div&gt;&#xA;&lt;/blockquote&gt;&#xA;&#xA;&lt;!-- Do not remove. Keep this code at the bottom of the include --&gt;&#xA;&lt;!-- DOCS-354 --&gt;&#xA;&lt;p&gt; &lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Release Notes 3.22.8</title>
+      <link>http://localhost:1313/nginx-controller/releases/adc/adc-release-notes-3.22.8/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-controller/releases/adc/adc-release-notes-3.22.8/</guid>
+      <description>&lt;p&gt;We encourage you to install the latest version of the NGINX Controller Application Delivery module to take advantage of the newest features and updates.&lt;/p&gt;&#xA;&lt;p&gt;Technical support is provided for earlier versions that were released within two years of the current release.&lt;/p&gt;&#xA;&lt;blockquote class=&#34;tip&#34;&gt;&#xA;  &lt;div&gt;&lt;strong&gt;See Also:&lt;/strong&gt;&lt;br/&gt; &lt;p&gt;For related installation documentation, refer to the following publications:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;http://localhost:1313/nginx-controller/admin-guides/backup-restore/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;NGINX Controller Installation Guide&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;http://localhost:1313/nginx-controller/admin-guides/install/nginx-controller-tech-specs/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;NGINX Controller Technical Specifications Guide&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&lt;/div&gt;&#xA;&lt;/blockquote&gt;&#xA;&#xA;&lt;!-- Do not remove. Keep this code at the bottom of the include --&gt;&#xA;&lt;!-- DOCS-354 --&gt;&#xA;&lt;p&gt; &lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Release Notes 3.22.7</title>
+      <link>http://localhost:1313/nginx-controller/releases/adc/adc-release-notes-3.22.7/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-controller/releases/adc/adc-release-notes-3.22.7/</guid>
+      <description>&lt;p&gt;We encourage you to install the latest version of the NGINX Controller Application Delivery module to take advantage of the newest features and updates.&lt;/p&gt;&#xA;&lt;p&gt;Technical support is provided for earlier versions that were released within two years of the current release.&lt;/p&gt;&#xA;&lt;blockquote class=&#34;tip&#34;&gt;&#xA;  &lt;div&gt;&lt;strong&gt;See Also:&lt;/strong&gt;&lt;br/&gt; &lt;p&gt;For related installation documentation, refer to the following publications:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;http://localhost:1313/nginx-controller/admin-guides/backup-restore/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;NGINX Controller Installation Guide&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;http://localhost:1313/nginx-controller/admin-guides/install/nginx-controller-tech-specs/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;NGINX Controller Technical Specifications Guide&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&lt;/div&gt;&#xA;&lt;/blockquote&gt;&#xA;&#xA;&lt;!-- Do not remove. Keep this code at the bottom of the include --&gt;&#xA;&lt;!-- DOCS-354 --&gt;&#xA;&lt;p&gt; &lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Release Notes 3.22.6</title>
+      <link>http://localhost:1313/nginx-controller/releases/adc/adc-release-notes-3.22.6/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-controller/releases/adc/adc-release-notes-3.22.6/</guid>
+      <description>&lt;p&gt;We encourage you to install the latest version of the NGINX Controller Application Delivery module to take advantage of the newest features and updates.&lt;/p&gt;&#xA;&lt;p&gt;Technical support is provided for earlier versions that were released within two years of the current release.&lt;/p&gt;&#xA;&lt;blockquote class=&#34;tip&#34;&gt;&#xA;  &lt;div&gt;&lt;strong&gt;See Also:&lt;/strong&gt;&lt;br/&gt; &lt;p&gt;For related installation documentation, refer to the following publications:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;http://localhost:1313/nginx-controller/admin-guides/backup-restore/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;NGINX Controller Installation Guide&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;http://localhost:1313/nginx-controller/admin-guides/install/nginx-controller-tech-specs/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;NGINX Controller Technical Specifications Guide&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&lt;/div&gt;&#xA;&lt;/blockquote&gt;&#xA;&#xA;&lt;!-- Do not remove. Keep this code at the bottom of the include --&gt;&#xA;&lt;!-- DOCS-354 --&gt;&#xA;&lt;p&gt; &lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Release Notes 3.22.5</title>
+      <link>http://localhost:1313/nginx-controller/releases/adc/adc-release-notes-3.22.5/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-controller/releases/adc/adc-release-notes-3.22.5/</guid>
+      <description>&lt;p&gt;We encourage you to install the latest version of the NGINX Controller Application Delivery module to take advantage of the newest features and updates.&lt;/p&gt;&#xA;&lt;p&gt;Technical support is provided for earlier versions that were released within two years of the current release.&lt;/p&gt;&#xA;&lt;blockquote class=&#34;tip&#34;&gt;&#xA;  &lt;div&gt;&lt;strong&gt;See Also:&lt;/strong&gt;&lt;br/&gt; &lt;p&gt;For related installation documentation, refer to the following publications:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;http://localhost:1313/nginx-controller/admin-guides/backup-restore/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;NGINX Controller Installation Guide&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;http://localhost:1313/nginx-controller/admin-guides/install/nginx-controller-tech-specs/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;NGINX Controller Technical Specifications Guide&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&lt;/div&gt;&#xA;&lt;/blockquote&gt;&#xA;&#xA;&lt;!-- Do not remove. Keep this code at the bottom of the include --&gt;&#xA;&lt;!-- DOCS-354 --&gt;&#xA;&lt;p&gt; &lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Release Notes 3.22.4</title>
+      <link>http://localhost:1313/nginx-controller/releases/adc/adc-release-notes-3.22.4/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-controller/releases/adc/adc-release-notes-3.22.4/</guid>
+      <description>&lt;p&gt;We encourage you to install the latest version of the NGINX Controller Application Delivery module to take advantage of the newest features and updates.&lt;/p&gt;&#xA;&lt;p&gt;Technical support is provided for earlier versions that were released within two years of the current release.&lt;/p&gt;&#xA;&lt;blockquote class=&#34;tip&#34;&gt;&#xA;  &lt;div&gt;&lt;strong&gt;See Also:&lt;/strong&gt;&lt;br/&gt; &lt;p&gt;For related installation documentation, refer to the following publications:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;http://localhost:1313/nginx-controller/admin-guides/backup-restore/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;NGINX Controller Installation Guide&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;http://localhost:1313/nginx-controller/admin-guides/install/nginx-controller-tech-specs/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;NGINX Controller Technical Specifications Guide&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&lt;/div&gt;&#xA;&lt;/blockquote&gt;&#xA;&#xA;&lt;!-- Do not remove. Keep this code at the bottom of the include --&gt;&#xA;&lt;!-- DOCS-354 --&gt;&#xA;&lt;p&gt; &lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Release Notes 3.22.3</title>
+      <link>http://localhost:1313/nginx-controller/releases/adc/adc-release-notes-3.22.3/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-controller/releases/adc/adc-release-notes-3.22.3/</guid>
+      <description>&lt;p&gt;We encourage you to install the latest version of the NGINX Controller Application Delivery module to take advantage of the newest features and updates.&lt;/p&gt;&#xA;&lt;p&gt;Technical support is provided for earlier versions that were released within two years of the current release.&lt;/p&gt;&#xA;&lt;blockquote class=&#34;tip&#34;&gt;&#xA;  &lt;div&gt;&lt;strong&gt;See Also:&lt;/strong&gt;&lt;br/&gt; &lt;p&gt;For related installation documentation, refer to the following publications:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;http://localhost:1313/nginx-controller/admin-guides/backup-restore/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;NGINX Controller Installation Guide&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;http://localhost:1313/nginx-controller/admin-guides/install/nginx-controller-tech-specs/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;NGINX Controller Technical Specifications Guide&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&lt;/div&gt;&#xA;&lt;/blockquote&gt;&#xA;&#xA;&lt;!-- Do not remove. Keep this code at the bottom of the include --&gt;&#xA;&lt;!-- DOCS-354 --&gt;&#xA;&lt;p&gt; &lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Release Notes 3.22.2</title>
+      <link>http://localhost:1313/nginx-controller/releases/adc/adc-release-notes-3.22.2/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-controller/releases/adc/adc-release-notes-3.22.2/</guid>
+      <description>&lt;p&gt;We encourage you to install the latest version of the NGINX Controller Application Delivery module to take advantage of the newest features and updates.&lt;/p&gt;&#xA;&lt;p&gt;Technical support is provided for earlier versions that were released within two years of the current release.&lt;/p&gt;&#xA;&lt;blockquote class=&#34;tip&#34;&gt;&#xA;  &lt;div&gt;&lt;strong&gt;See Also:&lt;/strong&gt;&lt;br/&gt; &lt;p&gt;For related installation documentation, refer to the following publications:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;http://localhost:1313/nginx-controller/admin-guides/backup-restore/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;NGINX Controller Installation Guide&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;http://localhost:1313/nginx-controller/admin-guides/install/nginx-controller-tech-specs/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;NGINX Controller Technical Specifications Guide&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&lt;/div&gt;&#xA;&lt;/blockquote&gt;&#xA;&#xA;&lt;!-- Do not remove. Keep this code at the bottom of the include --&gt;&#xA;&lt;!-- DOCS-354 --&gt;&#xA;&lt;p&gt; &lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Release Notes 3.22.1</title>
+      <link>http://localhost:1313/nginx-controller/releases/adc/adc-release-notes-3.22.1/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-controller/releases/adc/adc-release-notes-3.22.1/</guid>
+      <description>&lt;p&gt;We encourage you to install the latest version of the NGINX Controller Application Delivery module to take advantage of the newest features and updates.&lt;/p&gt;&#xA;&lt;p&gt;Technical support is provided for earlier versions that were released within two years of the current release.&lt;/p&gt;&#xA;&lt;blockquote class=&#34;tip&#34;&gt;&#xA;  &lt;div&gt;&lt;strong&gt;See Also:&lt;/strong&gt;&lt;br/&gt; &lt;p&gt;For related installation documentation, refer to the following publications:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;http://localhost:1313/nginx-controller/admin-guides/backup-restore/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;NGINX Controller Installation Guide&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;http://localhost:1313/nginx-controller/admin-guides/install/nginx-controller-tech-specs/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;NGINX Controller Technical Specifications Guide&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&lt;/div&gt;&#xA;&lt;/blockquote&gt;&#xA;&#xA;&lt;!-- Do not remove. Keep this code at the bottom of the include --&gt;&#xA;&lt;!-- DOCS-354 --&gt;&#xA;&lt;p&gt; &lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Release Notes 3.22.0</title>
+      <link>http://localhost:1313/nginx-controller/releases/adc/adc-release-notes-3.22/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-controller/releases/adc/adc-release-notes-3.22/</guid>
+      <description>&lt;p&gt;We encourage you to install the latest version of the NGINX Controller Application Delivery module to take advantage of the newest features and updates.&lt;/p&gt;&#xA;&lt;p&gt;Technical support is provided for earlier versions that were released within two years of the current release.&lt;/p&gt;&#xA;&lt;blockquote class=&#34;tip&#34;&gt;&#xA;  &lt;div&gt;&lt;strong&gt;See Also:&lt;/strong&gt;&lt;br/&gt; &lt;p&gt;For related installation documentation, refer to the following publications:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;http://localhost:1313/nginx-controller/admin-guides/backup-restore/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;NGINX Controller Installation Guide&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;http://localhost:1313/nginx-controller/admin-guides/install/nginx-controller-tech-specs/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;NGINX Controller Technical Specifications Guide&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&lt;/div&gt;&#xA;&lt;/blockquote&gt;&#xA;&#xA;&lt;!-- Do not remove. Keep this code at the bottom of the include --&gt;&#xA;&lt;!-- DOCS-354 --&gt;&#xA;&lt;p&gt; &lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Release Notes 3.21.0</title>
+      <link>http://localhost:1313/nginx-controller/releases/adc/adc-release-notes-3.21/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-controller/releases/adc/adc-release-notes-3.21/</guid>
+      <description>&lt;p&gt;We encourage you to install the latest version of the NGINX Controller Application Delivery module to take advantage of the newest features and updates.&lt;/p&gt;&#xA;&lt;p&gt;Technical support is provided for earlier versions that were released within two years of the current release.&lt;/p&gt;&#xA;&lt;blockquote class=&#34;tip&#34;&gt;&#xA;  &lt;div&gt;&lt;strong&gt;See Also:&lt;/strong&gt;&lt;br/&gt; &lt;p&gt;For related installation documentation, refer to the following publications:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;http://localhost:1313/nginx-controller/admin-guides/backup-restore/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;NGINX Controller Installation Guide&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;http://localhost:1313/nginx-controller/admin-guides/install/nginx-controller-tech-specs/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;NGINX Controller Technical Specifications Guide&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&lt;/div&gt;&#xA;&lt;/blockquote&gt;&#xA;&#xA;&lt;!-- Do not remove. Keep this code at the bottom of the include --&gt;&#xA;&lt;!-- DOCS-354 --&gt;&#xA;&lt;p&gt; &lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Release Notes 3.20.1</title>
+      <link>http://localhost:1313/nginx-controller/releases/adc/adc-release-notes-3.20.1/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-controller/releases/adc/adc-release-notes-3.20.1/</guid>
+      <description>&lt;p&gt;We encourage you to install the latest version of the NGINX Controller Application Delivery module to take advantage of the newest features and updates.&lt;/p&gt;&#xA;&lt;p&gt;Technical support is provided for earlier versions that were released within two years of the current release.&lt;/p&gt;&#xA;&lt;blockquote class=&#34;tip&#34;&gt;&#xA;  &lt;div&gt;&lt;strong&gt;See Also:&lt;/strong&gt;&lt;br/&gt; &lt;p&gt;For related installation documentation, refer to the following publications:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;http://localhost:1313/nginx-controller/admin-guides/backup-restore/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;NGINX Controller Installation Guide&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;http://localhost:1313/nginx-controller/admin-guides/install/nginx-controller-tech-specs/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;NGINX Controller Technical Specifications Guide&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&lt;/div&gt;&#xA;&lt;/blockquote&gt;&#xA;&#xA;&lt;!-- Do not remove. Keep this code at the bottom of the include --&gt;&#xA;&lt;!-- DOCS-354 --&gt;&#xA;&lt;p&gt; &lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Release Notes 3.20.0</title>
+      <link>http://localhost:1313/nginx-controller/releases/adc/adc-release-notes-3.20/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-controller/releases/adc/adc-release-notes-3.20/</guid>
+      <description>&lt;p&gt;We encourage you to install the latest version of the NGINX Controller Application Delivery module to take advantage of the newest features and updates.&lt;/p&gt;&#xA;&lt;p&gt;Technical support is provided for earlier versions that were released within two years of the current release.&lt;/p&gt;&#xA;&lt;blockquote class=&#34;tip&#34;&gt;&#xA;  &lt;div&gt;&lt;strong&gt;See Also:&lt;/strong&gt;&lt;br/&gt; &lt;p&gt;For related installation documentation, refer to the following publications:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;http://localhost:1313/nginx-controller/admin-guides/backup-restore/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;NGINX Controller Installation Guide&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;http://localhost:1313/nginx-controller/admin-guides/install/nginx-controller-tech-specs/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;NGINX Controller Technical Specifications Guide&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&lt;/div&gt;&#xA;&lt;/blockquote&gt;&#xA;&#xA;&lt;!-- Do not remove. Keep this code at the bottom of the include --&gt;&#xA;&lt;!-- DOCS-354 --&gt;&#xA;&lt;p&gt; &lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,3301 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>  
+  <style>
+    body {
+       
+      visibility: hidden;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+  </style>
+  
+  <noscript>
+    <style>
+       
+      body {
+        visibility: visible;
+      }
+    </style>
+  </noscript>
+  
+
+
+  <script>
+
+    const setTheme = (isNewTheme) => {
+      localStorage.setItem("useNewTheme", `${isNewTheme}`);
+      
+      const v1cssIds = [
+        "cssFA1",
+        "cssFA2",
+        "cssFA3",
+        "cssBootstrap",
+        "css1",
+        "css2",
+        "css3",
+        "css4",
+        "css5",
+        "css6",
+      ];
+
+      v1cssIds.forEach((cssId) => {
+        const element = document.getElementById(cssId);
+        if (element !== null) {
+          element.disabled = isNewTheme;
+        }
+      });
+
+      const v2cssIds = ["css7", "css9"];
+      v2cssIds.forEach((cssId) => {
+        const element = document.getElementById(cssId);
+        if (element !== null) {
+          element.disabled = !isNewTheme;
+        }
+      });
+
+      
+      const v1ElementIds = ["sidebar", "footer", "toc", "api", "search-v1", "breadcrumb-v1", "list-v1"]
+
+      v1ElementIds.forEach((elementId) => {
+        const element = document.getElementById(elementId);
+        if (element !== null) {
+          element.style.display = isNewTheme ? "none" : "";
+        }
+
+        const trustarc = document.getElementById("teconsent-v1");
+        if (trustarc) {
+          trustarc.id = isNewTheme ? "teconsent-v1" : "teconsent";
+        }
+      });
+
+      document.querySelectorAll(".table-v1").forEach((table) => {
+        table.style.display = isNewTheme ? "none" : "";
+      });
+
+      const notMfElements = ['[data-mf="false"]'];
+      notMfElements.forEach((elementId) => {
+        document.querySelectorAll(elementId).forEach((element) => {
+          element.style.display = isNewTheme ? "none" : "";
+        });
+      })
+
+      const mfElements = ['[data-mf="true"]'];
+      mfElements.forEach((elementId) => {
+        document.querySelectorAll(elementId).forEach((element) => {
+          element.style.display = isNewTheme ? "" : "none";
+
+          const trustarc = document.getElementById("teconsent-v2");
+          if (trustarc) {
+            trustarc.id = isNewTheme ? "teconsent" : "teconsent-v2";
+          }
+        });
+      });
+
+      document.getElementById("body").style.visibility = "visible";
+    };
+
+    const toggleTheme = () => {
+      setTheme(!(localStorage.getItem("useNewTheme") === "true"));
+    };
+
+    
+    const mf = toggleTheme;
+    const useNewTheme = toggleTheme;
+
+    document.addEventListener("DOMContentLoaded", () => {
+      setTheme(localStorage.getItem("useNewTheme") === "true");
+    });
+
+    function gameCode(callback) {
+      let kkeys = [];
+      
+      const code = "38,38,40,40,37,39,37,39,66,65";
+      return (event) => {
+        kkeys.push(event.keyCode);
+        if (kkeys.toString().indexOf(code) >= 0) {
+          callback(event);
+          kkeys = [];
+        }
+      };
+    }
+    const handler = gameCode(() => {
+      mf();
+    });
+    window.addEventListener("keydown", handler);
+
+  </script>
+
+  
+
+  <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Troubleshooting | DEV -- docs-nginx-com</title>
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:1313/nginx-gateway-fabric/how-to/monitoring/troubleshooting/">
+
+
+
+
+
+
+
+<meta property="article:publisher" content="https://www.facebook.com/nginxinc" />
+<meta property="og:image" content="http://localhost:1313/images/icons/NGINX-Docs-new-docs-dark-1200x630.png" />
+<meta property="og:image:width" content="500" />
+<meta property="og:image:height" content="300" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:description" content="" />
+<meta name="twitter:title" content="Troubleshooting" />
+<meta name="twitter:site" content="@nginx" />
+<meta name="twitter:image" content="http://localhost:1313/images/icons/NGINX-Docs-new-docs-dark-1200x630.png" />
+<meta name="twitter:creator" content="@nginx" />
+
+<meta http-equiv="last-modified" content="01/04/2025" />
+
+
+
+
+<meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline'
+    https://consent.trustarc.com/ https://mktg.tags.f5.com/basic/prod/utag.sync.js https://static.cloud.coveo.com/ https://*.f5.com/
+    https://*.netlify.app https://gist.github.com
+    https://tag.demandbase.com/pscSDsz4.min.js
+    https://munchkin.brightfunnel.com/js/build/bf-munchkin.min.js
+    https://www.googletagmanager.com/gtm.js
+    https://www.google-analytics.com/
+    https://www.google-analytics.com/analytics.js
+    https://www.google-analytics.com/plugins/ua/linkid.js
+    https://cdn.bizible.com/scripts/bizible.js
+    https://cdn.bizible.com/xdc.js
+    https://f5networksglobalprod.122.2o7.net/
+    https://f5networksnginxdocs.122.2o7.net/
+    https://*.siteintercept.qualtrics.com/SIE/?Q_ZID=*
+    https://siteintercept.qualtrics.com/
+    ;
+    worker-src 'self' blob:">
+
+
+
+<meta property="environment" type="development" />
+<meta property="buildtype" type="webdocs" />
+<meta property="isServer" type="true" />
+
+
+<meta name="product" content="DEV -- docs-nginx-com">
+<meta name="version" content="">
+<meta name="doc_type" content="Manual">
+  
+  <link rel="shortcut icon" type="image/x-icon" href="http://localhost:1313/images/favicon-48x48.ico">
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+<link href="/css/v2/style.css" integrity="" rel="stylesheet" type="text/css" id="css7"
+  disabled>
+
+
+<link href="/css/inter/inter.987d1be34797653eabce3627efb116c263d4045fd5badfe003ff283c5a5da435d83a3fad6bfe524e3ce3cf8a41168a30e7aa42507961257eeb275024def0f9b9.css" integrity="sha512-mH0b40eXZT6rzjYn77EWwmPUBF/Vut/gA/8oPFpdpDXYOj&#43;ta/5STjzjz4pBFoow56pCUHlhJX7rJ1Ak3vD5uQ==" rel="stylesheet" type="text/css"
+  id="cssInter">
+
+
+<link href="/css/v2/highlight.min.9ef7c7ad221175216abc8a5827f967bcd7c0e035bfa91180acd26a2c36d54242ae5f485986c260d70b1bbdf225ad76cdbba3179afa7e4335282cc3080a17e337.css" rel="stylesheet" type="text/css" id="css9">
+
+
+
+
+
+<link href="/fontawesome/css/all.min.4a71f958af9b67180f1ece38b96217f8b2c9009f7fd8f90f299e508808fa4daf3ac3e7ec6f64e47267d1c955f7a419cc15c57ba103c9925f507af4825abdd6e8.css" integrity="sha512-SnH5WK&#43;bZxgPHs44uWIX&#43;LLJAJ9/2PkPKZ5QiAj6Ta86w&#43;fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" rel="stylesheet" type="text/css"
+  id="cssFA1">
+
+
+<link href="/fontawesome/css/v4-font-face.min.5870089ba06cf03e9721f87919eaf15c961a65e071845949ed2da58c5bfbd18a714c5dab2c155f0455ebcd2f45bfd598a5e47ae19976e7aa3a51e22914eac1b6.css" integrity="sha512-WHAIm6Bs8D6XIfh5GerxXJYaZeBxhFlJ7S2ljFv70YpxTF2rLBVfBFXrzS9Fv9WYpeR64Zl256o6UeIpFOrBtg==" rel="stylesheet" type="text/css"
+  id="cssFA2">
+
+
+<link href="/fontawesome/css/v5-font-face.min.81bdf1c9f8ff16b1eda613d52d868a059f16c8c6045c3d7e0a0b771622a11666cdd94b8ea62b5edb0d4b826c3a3737ec3663065fe05b56b6b871e57de73f556b.css" integrity="sha512-gb3xyfj/FrHtphPVLYaKBZ8WyMYEXD1&#43;Cgt3FiKhFmbN2UuOpite2w1Lgmw6NzfsNmMGX&#43;BbVra4ceV95z9Vaw==" rel="stylesheet" type="text/css"
+  id="cssFA3">
+
+
+
+<link href="/css/bootstrap.min.3f9320327d6304dd356ac060534cfad10938431897a3cebec2515a84aaec41fdfb73d72ba39d7b5b35523cf575b432b3864bb6889d855602faef01b4dd21a734.css" integrity="sha512-P5MgMn1jBN01asBgU0z60Qk4QxiXo86&#43;wlFahKrsQf37c9cro517WzVSPPV1tDKzhku2iJ2FVgL67wG03SGnNA==" rel="stylesheet"
+  type="text/css" id="cssBootstrap">
+
+
+
+<link rel="stylesheet" href="https://static.cloud.coveo.com/searchui/v2.10104/0/css/CoveoFullSearch.min.css"
+  integrity="sha512-9/A9yVCU4GS6/iIwTRJKnan4Hf8gDKj3anwItN9QCsU8SixaT5xkjjWsZ/iq0TWaizhtqOLacadXJfxHlwYCcA=="
+  crossorigin="anonymous" />
+
+
+<link
+  rel="stylesheet"
+  href="https://static.cloud.coveo.com/atomic/v3.19.0/themes/coveo.css"
+  integrity="sha512-m2BufPi8Tc6H2jcQfDj/PIl5H57C9jeqhbDFgFXKTtOhoC4S7ULXmx74FseZ8WXpfdT9uyccMHDBJDrIZlrUUQ=="
+  crossorigin="anonymous"/>
+
+
+<link href="/css/docs-nginx-com/nginx-site-header.min.80b10ed49ecfad93607ee771acca88d13dc958e6eecc642af3aa2b170c86b8dcce442e7b86c3e5298c95b0ab2b053a71074c2f15c28266c3a2c502275415b3a7.css" rel="stylesheet" type="text/css" id="css1">
+
+
+<link href="/css/docs-nginx-com/style.min.2cd4748c438c49d012a5fdc6b98770223c4875fe0f89517b17423b6a5328af4d93d9d772207bfc51d9449781281e1eb8707dcc2f7467e6e24330c9b8c7c5f734.css" rel="stylesheet" type="text/css" id="css2">
+
+
+<link href="/css/bootstrap-docs.min.8a70c94c72e3783cecd631bc1705c7843b2fdef99f1549f0bf7f774a4083173ee25974413a8206c2340c0fee9bb7a07acd41d41c78ae2280c96a2ce0faca2847.css" rel="stylesheet" type="text/css" id="css3">
+
+
+
+<link href="/css/coveo.min.fce7d4df31de99e4f86510a90915820f236b8dcd02be030b27529af7ff10189f807c78cedacb91afa9d07f310a172c6046b1921832f199b9158898a7f74fa117.css" rel="stylesheet" type="text/css" id="css6">
+
+
+
+<link href="/css/f5-hugo.min.42feae8b135e9380a66db9c3cb2803221888524a29f41cbc55790b5cb5a309ac7e6dd80e70ed0260370fd93c04b7aa8a5c3d6aca0964804341fad51cfcec963f.css" rel="stylesheet" type="text/css" id="css4">
+
+
+<link href="/css/inline-overrides.min.495e6889d9955581580c654bad961bb33af6344b283af7e9a34648c5e8d5f1fe90efb8aac33359c4178efd36cd7cb92c7c6458d4175caff9c284b14bd9d2b97a.css" rel="stylesheet" type="text/css" id="css8">
+
+
+
+
+
+<link href="/css/highlight.min.fe5647c4b67f4b3fcf0ea60b483479d567ba1b05ee6e816439207edfa3d310dbee79536278c67d89c1db5da275bde962a10163da375f05bd19743e2a80e1ad02.css" rel="stylesheet" type="text/css" id="css5">
+  
+  
+  
+  
+  
+  
+        
+  <script async="async" src="https://consent.trustarc.com/notice?domain=f5.com&c=teconsent&js=nj&noticeType=bb&text=true&gtm=1" crossorigin=""></script>
+  
+  
+
+<script src="https://mktg.tags.f5.com/basic/prod/utag.sync.js"></script> 
+
+
+  
+  
+  
+  
+  
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-K5HG9JT');</script>
+  
+  </head>
+  
+  <body id="body">
+    
+   
+<script type="text/javascript"> 
+    (function(a,b,c,d) { 
+        a='//mktg.tags.f5.com/basic/prod/utag.js'; 
+        b=document;c='script';d=b.createElement(c);d.src=a; 
+        d.type='text/java'+c;d.async=true; 
+        a=b.getElementsByTagName(c)[0];a.parentNode.insertBefore(d,a)})(); 
+</script> 
+    
+  
+    <header>
+      
+<div class="navbar navbar-expand navbar-dark flex-column flex-md-row bd-navbar navbar-fixed-top">
+  <div class="container-fluid flex-md-row flex-column header-container">
+    <a class="navbar-brand mr-0 mr-md-2" href="/" aria-label="NGINX Docs">
+      <img class="navbar-img" src="http://localhost:1313/images/icons/NGINX-Docs-horiz-white-type.svg" alt="NGINX Docs">
+    </a>
+    
+      <div class="navbar navbar-nav">
+        
+        <div id="searchbox">
+          
+          <div class="CoveoSearchbox" data-placeholder='Search NGINX Docs...'></div>
+        </div>
+        <atomic-search-interface id="search-standalone-header" data-mf="true" style="display:none;">
+          <atomic-search-box redirection-url="/search.html">
+          </atomic-search-box>
+        </atomic-search-interface>
+      </div>
+    
+    
+    
+    
+    <ul class="navbar navbar-nav">
+        <li class="nav-item-explore active">
+          <button id="navbar-sites-button" class="button navbar-button">
+              F5 Sites
+              <i id="navbar-sites-button-icon" class="link-chevron-icon fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="dropdown-content" id="dropdown-content">
+            <ul>
+              
+                <li>
+                  <a href="https://community.f5.com/" target="_blank" >DevCentral</a>
+                  <p>Connect &amp; learn in our hosted community</p>
+                </li>
+              
+                <li>
+                  <a href="https://my.f5.com/" target="_blank" >MyF5</a>
+                  <p>Your key to everything F5, including support, registration keys, and subscriptions</p>
+                </li>
+              
+                <li>
+                  <a href="https://nginx.org/" target="_blank" >NGINX</a>
+                  <p>Learn more about NGINX Open Source and read the community blog</p>
+                </li>
+              
+            </ul>
+          </div>
+        </li>
+    </ul>
+  </div>
+</div>
+
+
+    </header>
+  
+    <section class="base-layout" data-testid="base-layout">
+      <section id="breadcrumb-v1">
+        
+          
+          <nav aria-label="breadcrumb" class="breadcrumb navbar">
+    <div class="nav flex-md-row">
+        <ol class="breadcrumb">
+            
+            
+            
+            
+                
+            
+            
+                
+            
+            
+                
+            
+            
+                
+            
+            
+                
+            
+            
+            
+                <li><a href="/">Home</a><i class="fas fa-chevron-right"></i></li>
+                
+            
+                <li><a href="/nginx-gateway-fabric/">NGINX Gateway Fabric</a><i class="fas fa-chevron-right"></i></li>
+                
+            
+                <li><a href="/nginx-gateway-fabric/how-to/">How-to guides</a><i class="fas fa-chevron-right"></i></li>
+                
+            
+                <li><a href="/nginx-gateway-fabric/how-to/monitoring/">Monitoring and troubleshooting</a><i class="fas fa-chevron-right"></i></li>
+                
+            
+                Troubleshooting
+        </ol>
+    </div>
+</nav>
+  
+          
+        
+      </section>
+  
+      <div class="main container-fluid min-page-height" data-menu-id="/nginx-gateway-fabric/how-to/monitoring/troubleshooting/">
+        
+<div class="docs-container row override-sidebar-collapse">
+<div class="docs-container row override-sidebar-collapse">
+  <nav id="sidebar" class="sidenav overflow-auto col-md-3 d-none d-xl-block d-print-none align-top">
+    
+
+<div id="sidebar-wrapper">
+     <div id="sidebar" class="sidebar" aria-label="Sidebar navigation">
+        <button id="sidebar-toggle-button" title="Toggle sidebar navigation" role="button" aria-controls="sidebar-content">
+           <i class="fa fa-chevron-right sidebar-visible-collapsed"></i>
+           <i class="fa fa-chevron-left sidebar-visible-expanded"></i>
+        </button>
+        <div id="sidebar-content">
+            <h3>
+                <a class="sidebar-title" href="http://localhost:1313/nginx-gateway-fabric/" alt="NGINX Gateway Fabric">
+                    NGINX Gateway Fabric</a>
+            </h3>
+            <ul>
+            
+            
+                
+                
+                <div class="accordion" id="accordion1">
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <li class="nginx-toc-link l1">
+                                    <a data-menu-id="/nginx-gateway-fabric/overview/" class="accordion-toggle" aria-expanded="false"
+                                    data-toggle="collapse" href="#" data-target="#ngf--overview" aria-controls="ngf--overview">
+                                    <i class="fa fa-2xs fa-fw fa-chevron-right"></i><i
+                                        class="fa fa-2xs fa-fw fa-chevron-down"></i>Overview</a>
+                            </li>
+                        </div>
+                        <div id="ngf--overview" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-gateway-fabric/overview/gateway-architecture/"
+                                                                href="http://localhost:1313/nginx-gateway-fabric/overview/gateway-architecture/">Gateway architecture</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-gateway-fabric/overview/gateway-api-compatibility/"
+                                                                href="http://localhost:1313/nginx-gateway-fabric/overview/gateway-api-compatibility/">Gateway API Compatibility</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-gateway-fabric/overview/nginx-plus/"
+                                                                href="http://localhost:1313/nginx-gateway-fabric/overview/nginx-plus/">Advanced features with NGINX Plus</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-gateway-fabric/overview/resource-validation/"
+                                                                href="http://localhost:1313/nginx-gateway-fabric/overview/resource-validation/">Resource validation</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-gateway-fabric/overview/product-telemetry/"
+                                                                href="http://localhost:1313/nginx-gateway-fabric/overview/product-telemetry/">Product telemetry</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-gateway-fabric/overview/custom-policies/"
+                                                                href="http://localhost:1313/nginx-gateway-fabric/overview/custom-policies/">Custom policies</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+
+            
+                
+                
+                <li class="nginx-toc-link l1">
+                    <a data-menu-id="/nginx-gateway-fabric/get-started/" href="http://localhost:1313/nginx-gateway-fabric/get-started/">Get started</a>
+                </li>
+                
+                
+
+            
+                
+                
+                <div class="accordion" id="accordion1">
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <li class="nginx-toc-link l1">
+                                    <a data-menu-id="/nginx-gateway-fabric/installation/" class="accordion-toggle" aria-expanded="false"
+                                    data-toggle="collapse" href="#" data-target="#ngf--installation" aria-controls="ngf--installation">
+                                    <i class="fa fa-2xs fa-fw fa-chevron-right"></i><i
+                                        class="fa fa-2xs fa-fw fa-chevron-down"></i>Installation</a>
+                            </li>
+                        </div>
+                        <div id="ngf--installation" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                
+                                
+                                    
+                                    <div class="accordion" id="Accordion2">
+                                        <div class="sidebar-l1-padding">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-gateway-fabric/installation/installing-ngf/" class="accordion-toggle"
+                                                                aria-expanded="false" data-toggle="collapse"
+                                                                href="#ngf--installation--install-nginx-gateway-fabric">
+                                                                <i class="fa fa-2xs fa-fw fa-chevron-right"></i><i
+                                                                    class="fa fa-2xs fa-fw fa-chevron-down"></i>Install NGINX Gateway Fabric</a>
+                                                        </li>
+                                                    <ul>
+                                                </div>
+                                                <div id="ngf--installation--install-nginx-gateway-fabric" class="accordion-body collapse leaf">
+                                                    <div class="accordion-inner">
+
+                                                    
+                                                        
+                                                        
+                                                        <ul class="sidebar-l2-padding">
+                                                            <li class="nginx-toc-link l3 sidebar-il-border">
+                                                                <a data-menu-id="/nginx-gateway-fabric/installation/installing-ngf/helm/" href="http://localhost:1313/nginx-gateway-fabric/installation/installing-ngf/helm/">Installation with Helm</a>
+                                                            </li>
+                                                        </ul>
+                                                        
+                                                        
+                                                    
+                                                        
+                                                        
+                                                        <ul class="sidebar-l2-padding">
+                                                            <li class="nginx-toc-link l3 sidebar-il-border">
+                                                                <a data-menu-id="/nginx-gateway-fabric/installation/installing-ngf/manifests/" href="http://localhost:1313/nginx-gateway-fabric/installation/installing-ngf/manifests/">Installation with Manifests</a>
+                                                            </li>
+                                                        </ul>
+                                                        
+                                                        
+                                                    
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-gateway-fabric/installation/nginx-plus-jwt/"
+                                                                href="http://localhost:1313/nginx-gateway-fabric/installation/nginx-plus-jwt/">NGINX Plus and JWT</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-gateway-fabric/installation/building-the-images/"
+                                                                href="http://localhost:1313/nginx-gateway-fabric/installation/building-the-images/">Build NGINX Gateway Fabric</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+
+            
+                
+                
+                <div class="accordion" id="accordion1">
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <li class="nginx-toc-link l1">
+                                    <a data-menu-id="/nginx-gateway-fabric/how-to/" class="accordion-toggle" aria-expanded="false"
+                                    data-toggle="collapse" href="#" data-target="#ngf--how-to-guides" aria-controls="ngf--how-to-guides">
+                                    <i class="fa fa-2xs fa-fw fa-chevron-right"></i><i
+                                        class="fa fa-2xs fa-fw fa-chevron-down"></i>How-to guides</a>
+                            </li>
+                        </div>
+                        <div id="ngf--how-to-guides" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                
+                                
+                                    
+                                    <div class="accordion" id="Accordion2">
+                                        <div class="sidebar-l1-padding">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-gateway-fabric/how-to/traffic-management/" class="accordion-toggle"
+                                                                aria-expanded="false" data-toggle="collapse"
+                                                                href="#ngf--how-to--traffic-management">
+                                                                <i class="fa fa-2xs fa-fw fa-chevron-right"></i><i
+                                                                    class="fa fa-2xs fa-fw fa-chevron-down"></i>Traffic management</a>
+                                                        </li>
+                                                    <ul>
+                                                </div>
+                                                <div id="ngf--how-to--traffic-management" class="accordion-body collapse leaf">
+                                                    <div class="accordion-inner">
+
+                                                    
+                                                        
+                                                        
+                                                        <ul class="sidebar-l2-padding">
+                                                            <li class="nginx-toc-link l3 sidebar-il-border">
+                                                                <a data-menu-id="/nginx-gateway-fabric/how-to/traffic-management/routing-traffic-to-your-app/" href="http://localhost:1313/nginx-gateway-fabric/how-to/traffic-management/routing-traffic-to-your-app/">Routing traffic to applications</a>
+                                                            </li>
+                                                        </ul>
+                                                        
+                                                        
+                                                    
+                                                        
+                                                        
+                                                        <ul class="sidebar-l2-padding">
+                                                            <li class="nginx-toc-link l3 sidebar-il-border">
+                                                                <a data-menu-id="/nginx-gateway-fabric/how-to/traffic-management/advanced-routing/" href="http://localhost:1313/nginx-gateway-fabric/how-to/traffic-management/advanced-routing/">Application routes using HTTP matching conditions</a>
+                                                            </li>
+                                                        </ul>
+                                                        
+                                                        
+                                                    
+                                                        
+                                                        
+                                                        <ul class="sidebar-l2-padding">
+                                                            <li class="nginx-toc-link l3 sidebar-il-border">
+                                                                <a data-menu-id="/nginx-gateway-fabric/how-to/traffic-management/redirects-and-rewrites/" href="http://localhost:1313/nginx-gateway-fabric/how-to/traffic-management/redirects-and-rewrites/">HTTP redirects and rewrites</a>
+                                                            </li>
+                                                        </ul>
+                                                        
+                                                        
+                                                    
+                                                        
+                                                        
+                                                        <ul class="sidebar-l2-padding">
+                                                            <li class="nginx-toc-link l3 sidebar-il-border">
+                                                                <a data-menu-id="/nginx-gateway-fabric/how-to/traffic-management/https-termination/" href="http://localhost:1313/nginx-gateway-fabric/how-to/traffic-management/https-termination/">HTTPS termination</a>
+                                                            </li>
+                                                        </ul>
+                                                        
+                                                        
+                                                    
+                                                        
+                                                        
+                                                        <ul class="sidebar-l2-padding">
+                                                            <li class="nginx-toc-link l3 sidebar-il-border">
+                                                                <a data-menu-id="/nginx-gateway-fabric/how-to/traffic-management/request-response-headers/" href="http://localhost:1313/nginx-gateway-fabric/how-to/traffic-management/request-response-headers/">Modify HTTP request and response headers</a>
+                                                            </li>
+                                                        </ul>
+                                                        
+                                                        
+                                                    
+                                                        
+                                                        
+                                                        <ul class="sidebar-l2-padding">
+                                                            <li class="nginx-toc-link l3 sidebar-il-border">
+                                                                <a data-menu-id="/nginx-gateway-fabric/how-to/traffic-management/client-settings/" href="http://localhost:1313/nginx-gateway-fabric/how-to/traffic-management/client-settings/">Client Settings Policy API</a>
+                                                            </li>
+                                                        </ul>
+                                                        
+                                                        
+                                                    
+                                                        
+                                                        
+                                                        <ul class="sidebar-l2-padding">
+                                                            <li class="nginx-toc-link l3 sidebar-il-border">
+                                                                <a data-menu-id="/nginx-gateway-fabric/how-to/traffic-management/tls-passthrough/" href="http://localhost:1313/nginx-gateway-fabric/how-to/traffic-management/tls-passthrough/">Configure TLS passthrough</a>
+                                                            </li>
+                                                        </ul>
+                                                        
+                                                        
+                                                    
+                                                        
+                                                        
+                                                        <ul class="sidebar-l2-padding">
+                                                            <li class="nginx-toc-link l3 sidebar-il-border">
+                                                                <a data-menu-id="/nginx-gateway-fabric/how-to/traffic-management/snippets/" href="http://localhost:1313/nginx-gateway-fabric/how-to/traffic-management/snippets/">Use the SnippetsFilter API</a>
+                                                            </li>
+                                                        </ul>
+                                                        
+                                                        
+                                                    
+                                                        
+                                                        
+                                                        <ul class="sidebar-l2-padding">
+                                                            <li class="nginx-toc-link l3 sidebar-il-border">
+                                                                <a data-menu-id="/nginx-gateway-fabric/how-to/traffic-management/upstream-settings/" href="http://localhost:1313/nginx-gateway-fabric/how-to/traffic-management/upstream-settings/">Upstream Settings Policy API</a>
+                                                            </li>
+                                                        </ul>
+                                                        
+                                                        
+                                                    
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                
+                                
+                                    
+                                    <div class="accordion" id="Accordion2">
+                                        <div class="sidebar-l1-padding">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-gateway-fabric/how-to/traffic-security/" class="accordion-toggle"
+                                                                aria-expanded="false" data-toggle="collapse"
+                                                                href="#ngf--how-to--traffic-security">
+                                                                <i class="fa fa-2xs fa-fw fa-chevron-right"></i><i
+                                                                    class="fa fa-2xs fa-fw fa-chevron-down"></i>Traffic security</a>
+                                                        </li>
+                                                    <ul>
+                                                </div>
+                                                <div id="ngf--how-to--traffic-security" class="accordion-body collapse leaf">
+                                                    <div class="accordion-inner">
+
+                                                    
+                                                        
+                                                        
+                                                        <ul class="sidebar-l2-padding">
+                                                            <li class="nginx-toc-link l3 sidebar-il-border">
+                                                                <a data-menu-id="/nginx-gateway-fabric/how-to/traffic-security/integrating-cert-manager/" href="http://localhost:1313/nginx-gateway-fabric/how-to/traffic-security/integrating-cert-manager/">Secure traffic using Let&#39;s Encrypt and cert-manager</a>
+                                                            </li>
+                                                        </ul>
+                                                        
+                                                        
+                                                    
+                                                        
+                                                        
+                                                        <ul class="sidebar-l2-padding">
+                                                            <li class="nginx-toc-link l3 sidebar-il-border">
+                                                                <a data-menu-id="/nginx-gateway-fabric/how-to/traffic-security/securing-backend-traffic/" href="http://localhost:1313/nginx-gateway-fabric/how-to/traffic-security/securing-backend-traffic/">Securing backend traffic</a>
+                                                            </li>
+                                                        </ul>
+                                                        
+                                                        
+                                                    
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                
+                                
+                                    
+                                    <div class="accordion" id="Accordion2">
+                                        <div class="sidebar-l1-padding">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-gateway-fabric/how-to/monitoring/" class="accordion-toggle"
+                                                                aria-expanded="false" data-toggle="collapse"
+                                                                href="#ngf--how-to--monitoring-and-troubleshooting">
+                                                                <i class="fa fa-2xs fa-fw fa-chevron-right"></i><i
+                                                                    class="fa fa-2xs fa-fw fa-chevron-down"></i>Monitoring and troubleshooting</a>
+                                                        </li>
+                                                    <ul>
+                                                </div>
+                                                <div id="ngf--how-to--monitoring-and-troubleshooting" class="accordion-body collapse leaf">
+                                                    <div class="accordion-inner">
+
+                                                    
+                                                        
+                                                        
+                                                        <ul class="sidebar-l2-padding">
+                                                            <li class="nginx-toc-link l3 sidebar-il-border">
+                                                                <a data-menu-id="/nginx-gateway-fabric/how-to/monitoring/tracing/" href="http://localhost:1313/nginx-gateway-fabric/how-to/monitoring/tracing/">Configure tracing</a>
+                                                            </li>
+                                                        </ul>
+                                                        
+                                                        
+                                                    
+                                                        
+                                                        
+                                                        <ul class="sidebar-l2-padding">
+                                                            <li class="nginx-toc-link l3 sidebar-il-border">
+                                                                <a data-menu-id="/nginx-gateway-fabric/how-to/monitoring/prometheus/" href="http://localhost:1313/nginx-gateway-fabric/how-to/monitoring/prometheus/">Monitoring with Prometheus and Grafana</a>
+                                                            </li>
+                                                        </ul>
+                                                        
+                                                        
+                                                    
+                                                        
+                                                        
+                                                        <ul class="sidebar-l2-padding">
+                                                            <li class="nginx-toc-link l3 sidebar-il-border">
+                                                                <a data-menu-id="/nginx-gateway-fabric/how-to/monitoring/dashboard/" href="http://localhost:1313/nginx-gateway-fabric/how-to/monitoring/dashboard/">NGINX Plus dashboard</a>
+                                                            </li>
+                                                        </ul>
+                                                        
+                                                        
+                                                    
+                                                        
+                                                        
+                                                        <ul class="sidebar-l2-padding">
+                                                            <li class="nginx-toc-link l3 sidebar-il-border">
+                                                                <a data-menu-id="/nginx-gateway-fabric/how-to/monitoring/troubleshooting/" href="http://localhost:1313/nginx-gateway-fabric/how-to/monitoring/troubleshooting/">Troubleshooting</a>
+                                                            </li>
+                                                        </ul>
+                                                        
+                                                        
+                                                    
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-gateway-fabric/how-to/control-plane-configuration/"
+                                                                href="http://localhost:1313/nginx-gateway-fabric/how-to/control-plane-configuration/">Control plane configuration</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-gateway-fabric/how-to/data-plane-configuration/"
+                                                                href="http://localhost:1313/nginx-gateway-fabric/how-to/data-plane-configuration/">Data plane configuration</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-gateway-fabric/how-to/upgrade-apps-without-downtime/"
+                                                                href="http://localhost:1313/nginx-gateway-fabric/how-to/upgrade-apps-without-downtime/">Upgrade applications without downtime</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+
+            
+                
+                
+                <div class="accordion" id="accordion1">
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <li class="nginx-toc-link l1">
+                                    <a data-menu-id="/nginx-gateway-fabric/reference/" class="accordion-toggle" aria-expanded="false"
+                                    data-toggle="collapse" href="#" data-target="#ngf--reference" aria-controls="ngf--reference">
+                                    <i class="fa fa-2xs fa-fw fa-chevron-right"></i><i
+                                        class="fa fa-2xs fa-fw fa-chevron-down"></i>Reference</a>
+                            </li>
+                        </div>
+                        <div id="ngf--reference" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-gateway-fabric/reference/api/"
+                                                                href="http://localhost:1313/nginx-gateway-fabric/reference/api/">API reference</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-gateway-fabric/reference/cli-help/"
+                                                                href="http://localhost:1313/nginx-gateway-fabric/reference/cli-help/">Command-line reference guide</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                                
+                                    
+                                    <ul class="sidebar-reg-padding">
+                                        <div class="accordion" id="accordion2">
+                                            <div class="accordion-group sidebar-il-border">
+                                                <div class="accordion-heading">
+                                                    <ul>
+                                                        <li class="nginx-toc-link l2">
+                                                            <a data-menu-id="/nginx-gateway-fabric/reference/technical-specifications/"
+                                                                href="http://localhost:1313/nginx-gateway-fabric/reference/technical-specifications/">Technical specifications</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    
+                                    
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+
+            
+                
+                
+                <li class="nginx-toc-link l1">
+                    <a data-menu-id="/nginx-gateway-fabric/support/" href="http://localhost:1313/nginx-gateway-fabric/support/">Support</a>
+                </li>
+                
+                
+
+            
+                
+                
+                <li class="nginx-toc-link l1">
+                    <a data-menu-id="/nginx-gateway-fabric/releases/" href="http://localhost:1313/nginx-gateway-fabric/releases/">Releases</a>
+                </li>
+                
+                
+
+            
+
+            </ul>
+        
+        </div>
+    </div>
+</div>
+
+  </nav>
+
+  
+  
+  <main class="content col d-block align-top content-has-toc" role="main">
+  
+    
+  <section class="main-layout">
+    <div class="sidebar-layout" id="sidebar-layout">
+      <nav data-mf="true" id="sidebar-v2" class="sidebar" style="display:none;">
+        
+
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+
+
+
+
+<atomic-search-interface id="search-standalone-sidebar" data-mf="true" style="display:none;">
+    <atomic-search-box redirection-url="/search.html">
+    </atomic-search-box>
+</atomic-search-interface>
+<button class="product-selector-button" id="product-selector-button">
+    
+    <div class="product-selector-name" id="product-selector-name">NGINX Gateway Fabric</div>
+    <div class="product-selector-button-icon" id="product-selector-button-icon">
+        <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg" id="product-selector-chevron-icon">
+            <path d="M1 13L7 7L0.999999 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="product-selector-chevron-icon"/>
+        </svg>     
+    </div>
+</button>
+<div class="product-selector" id="product-selector">
+    
+    
+    
+    
+    
+        <div class="product-selector-content" id="product-selector-content">
+            <p id="product-selector-content-product-group-name">NGINX ONE</p>
+            <ul id="product-selector-content-product-container">
+            
+                <li id="product-selector-content-product-name">
+                    <a id="product-selector-content-product-link" href="/nginx-one">NGINX One Console</a>
+                </li>
+            
+                <li id="product-selector-content-product-name">
+                    <a id="product-selector-content-product-link" href="/nginx">NGINX Plus</a>
+                </li>
+            
+                <li id="product-selector-content-product-name">
+                    <a id="product-selector-content-product-link" href="/nginx-instance-manager">NGINX Instance Manager</a>
+                </li>
+            
+                <li id="product-selector-content-product-name">
+                    <a id="product-selector-content-product-link" href="/nginx-ingress-controller">NGINX Ingress Controller</a>
+                </li>
+            
+                <li id="product-selector-content-product-name">
+                    <a id="product-selector-content-product-link" href="/nginx-gateway-fabric">NGINX Gateway Fabric</a>
+                </li>
+            
+                <li id="product-selector-content-product-name">
+                    <a id="product-selector-content-product-link" href="https://nginx.org/en/docs/">NGINX Open Source</a>
+                </li>
+            
+                <li id="product-selector-content-product-name">
+                    <a id="product-selector-content-product-link" href="/solutions/">Subscription Licensing &amp; Solutions</a>
+                </li>
+            
+                <li id="product-selector-content-product-name">
+                    <a id="product-selector-content-product-link" href="/nginx-agent">NGINX Agent</a>
+                </li>
+            
+            </ul>
+        </div>
+    
+    
+    
+        <div class="product-selector-content" id="product-selector-content">
+            <p id="product-selector-content-product-group-name">NGINX APP PROTECT</p>
+            <ul id="product-selector-content-product-container">
+            
+                <li id="product-selector-content-product-name">
+                    <a id="product-selector-content-product-link" href="/nginx-app-protect-waf">NGINX App Protect WAF</a>
+                </li>
+            
+                <li id="product-selector-content-product-name">
+                    <a id="product-selector-content-product-link" href="/nginx-app-protect-dos">NGINX App Protect DoS</a>
+                </li>
+            
+            </ul>
+        </div>
+    
+    
+    
+        <div class="product-selector-content" id="product-selector-content">
+            <p id="product-selector-content-product-group-name">NGINX AS A SERVICE</p>
+            <ul id="product-selector-content-product-container">
+            
+                <li id="product-selector-content-product-name">
+                    <a id="product-selector-content-product-link" href="/nginxaas/azure/">NGINX as a Service for Azure</a>
+                </li>
+            
+            </ul>
+        </div>
+    
+    
+    
+        <div class="product-selector-content" id="product-selector-content">
+            <p id="product-selector-content-product-group-name">NGINX OTHER</p>
+            <ul id="product-selector-content-product-container">
+            
+                <li id="product-selector-content-product-name">
+                    <a id="product-selector-content-product-link" href="https://unit.nginx.org/">NGINX Unit</a>
+                </li>
+            
+            </ul>
+        </div>
+    
+</div>
+<div class="scrollbar-container">
+    <div class="sidebar-navigation">
+        <ul class="parent-collapsible-content">
+        
+            <li class="parent-collapsible-content-item">
+                
+                    <input type="checkbox" id="toggle-d61bc6b911d5eb7aac96954ed52596b4" class="toggle-checkbox" style="display: none;">
+                    <label for="toggle-d61bc6b911d5eb7aac96954ed52596b4" class="collapsible-header">
+                        
+                            <span class="parent-box expand"></span>
+                            <span class="parent-box opened"></span>
+                        
+                        Overview 
+                    </label>
+                    
+
+<ul class="collapsible-content">
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-gateway-fabric/overview/gateway-architecture/" style="">Gateway architecture </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-gateway-fabric/overview/gateway-api-compatibility/" style="">Gateway API Compatibility </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-gateway-fabric/overview/nginx-plus/" style="">Advanced features with NGINX Plus </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-gateway-fabric/overview/resource-validation/" style="">Resource validation </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-gateway-fabric/overview/product-telemetry/" style="">Product telemetry </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-gateway-fabric/overview/custom-policies/" style="">Custom policies </a>
+            
+        
+    </li>
+    
+</ul>
+                
+            </li>
+        
+            <li class="parent-collapsible-content-item">
+                
+                                         
+                        <span class="parent-box-link"></span>              
+                    
+                    <a href="http://localhost:1313/nginx-gateway-fabric/get-started/" style="">Get started </a> 
+                
+            </li>
+        
+            <li class="parent-collapsible-content-item">
+                
+                    <input type="checkbox" id="toggle-b06f5543866cfa12a452f30110e3558c" class="toggle-checkbox" style="display: none;">
+                    <label for="toggle-b06f5543866cfa12a452f30110e3558c" class="collapsible-header">
+                        
+                            <span class="parent-box expand"></span>
+                            <span class="parent-box opened"></span>
+                        
+                        Installation 
+                    </label>
+                    
+
+<ul class="collapsible-content">
+    
+    <li>
+        
+            <input type="checkbox" id="toggle-73a4f5acb56ce1e36883b464e5007153" class="toggle-checkbox" style="display: none;">
+            <label for="toggle-73a4f5acb56ce1e36883b464e5007153" class="collapsible-header">
+                
+                    <span class="box expand partial-box"></span>
+                    <span class="box opened partial-box"></span>
+                
+                Install NGINX Gateway Fabric 
+            </label>
+            
+
+<ul class="collapsible-content">
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-gateway-fabric/installation/installing-ngf/helm/" style="">Installation with Helm </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-gateway-fabric/installation/installing-ngf/manifests/" style="">Installation with Manifests </a>
+            
+        
+    </li>
+    
+</ul>
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-gateway-fabric/installation/nginx-plus-jwt/" style="">NGINX Plus and JWT </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-gateway-fabric/installation/building-the-images/" style="">Build NGINX Gateway Fabric </a>
+            
+        
+    </li>
+    
+</ul>
+                
+            </li>
+        
+            <li class="parent-collapsible-content-item">
+                
+                    <input type="checkbox" id="toggle-18c8230315dfc79b3fb5dae0b13da70a" class="toggle-checkbox" style="display: none;">
+                    <label for="toggle-18c8230315dfc79b3fb5dae0b13da70a" class="collapsible-header">
+                        
+                            <span class="parent-box expand"></span>
+                            <span class="parent-box opened"></span>
+                        
+                        How-to guides 
+                    </label>
+                    
+
+<ul class="collapsible-content">
+    
+    <li>
+        
+            <input type="checkbox" id="toggle-64c6634e5bb77d79affc0a29d733f4d2" class="toggle-checkbox" style="display: none;">
+            <label for="toggle-64c6634e5bb77d79affc0a29d733f4d2" class="collapsible-header">
+                
+                    <span class="box expand partial-box"></span>
+                    <span class="box opened partial-box"></span>
+                
+                Traffic management 
+            </label>
+            
+
+<ul class="collapsible-content">
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-gateway-fabric/how-to/traffic-management/routing-traffic-to-your-app/" style="">Routing traffic to applications </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-gateway-fabric/how-to/traffic-management/advanced-routing/" style="">Application routes using HTTP matching conditions </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-gateway-fabric/how-to/traffic-management/redirects-and-rewrites/" style="">HTTP redirects and rewrites </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-gateway-fabric/how-to/traffic-management/https-termination/" style="">HTTPS termination </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-gateway-fabric/how-to/traffic-management/request-response-headers/" style="">Modify HTTP request and response headers </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-gateway-fabric/how-to/traffic-management/client-settings/" style="">Client Settings Policy API </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-gateway-fabric/how-to/traffic-management/tls-passthrough/" style="">Configure TLS passthrough </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-gateway-fabric/how-to/traffic-management/snippets/" style="">Use the SnippetsFilter API </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-gateway-fabric/how-to/traffic-management/upstream-settings/" style="">Upstream Settings Policy API </a>
+            
+        
+    </li>
+    
+</ul>
+        
+    </li>
+    
+    <li>
+        
+            <input type="checkbox" id="toggle-3ada587e6c51b2ff87fd2c8b6c971210" class="toggle-checkbox" style="display: none;">
+            <label for="toggle-3ada587e6c51b2ff87fd2c8b6c971210" class="collapsible-header">
+                
+                    <span class="box expand partial-box"></span>
+                    <span class="box opened partial-box"></span>
+                
+                Traffic security 
+            </label>
+            
+
+<ul class="collapsible-content">
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-gateway-fabric/how-to/traffic-security/integrating-cert-manager/" style="">Secure traffic using Let&#39;s Encrypt and cert-manager </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-gateway-fabric/how-to/traffic-security/securing-backend-traffic/" style="">Securing backend traffic </a>
+            
+        
+    </li>
+    
+</ul>
+        
+    </li>
+    
+    <li>
+        
+            <input type="checkbox" id="toggle-8fc5ae4db309743db3b32720d84a10a6" class="toggle-checkbox" style="display: none;">
+            <label for="toggle-8fc5ae4db309743db3b32720d84a10a6" class="collapsible-header">
+                
+                    <span class="box expand partial-box"></span>
+                    <span class="box opened partial-box"></span>
+                
+                Monitoring and troubleshooting 
+            </label>
+            
+
+<ul class="collapsible-content">
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-gateway-fabric/how-to/monitoring/tracing/" style="">Configure tracing </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-gateway-fabric/how-to/monitoring/prometheus/" style="">Monitoring with Prometheus and Grafana </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-gateway-fabric/how-to/monitoring/dashboard/" style="">NGINX Plus dashboard </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                  
+                <span class="box current partial" id="current-page"></span>                 
+            
+            <a href="http://localhost:1313/nginx-gateway-fabric/how-to/monitoring/troubleshooting/" style="font-weight: bold;">Troubleshooting </a>
+            <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#general-troubleshooting">General troubleshooting</a></li>
+        <li><a href="#common-errors">Common errors</a></li>
+        <li><a href="#see-also">See also</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+        
+    </li>
+    
+</ul>
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-gateway-fabric/how-to/control-plane-configuration/" style="">Control plane configuration </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-gateway-fabric/how-to/data-plane-configuration/" style="">Data plane configuration </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-gateway-fabric/how-to/upgrade-apps-without-downtime/" style="">Upgrade applications without downtime </a>
+            
+        
+    </li>
+    
+</ul>
+                
+            </li>
+        
+            <li class="parent-collapsible-content-item">
+                
+                    <input type="checkbox" id="toggle-47c111496396eddc44db857e5c399f6f" class="toggle-checkbox" style="display: none;">
+                    <label for="toggle-47c111496396eddc44db857e5c399f6f" class="collapsible-header">
+                        
+                            <span class="parent-box expand"></span>
+                            <span class="parent-box opened"></span>
+                        
+                        Reference 
+                    </label>
+                    
+
+<ul class="collapsible-content">
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-gateway-fabric/reference/api/" style="">API reference </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-gateway-fabric/reference/cli-help/" style="">Command-line reference guide </a>
+            
+        
+    </li>
+    
+    <li>
+        
+                                 
+                <span class="box-link partial"></span>              
+            
+            <a href="http://localhost:1313/nginx-gateway-fabric/reference/technical-specifications/" style="">Technical specifications </a>
+            
+        
+    </li>
+    
+</ul>
+                
+            </li>
+        
+            <li class="parent-collapsible-content-item">
+                
+                                         
+                        <span class="parent-box-link"></span>              
+                    
+                    <a href="http://localhost:1313/nginx-gateway-fabric/support/" style="">Support </a> 
+                
+            </li>
+        
+            <li class="parent-collapsible-content-item">
+                
+                                         
+                        <span class="parent-box-link"></span>              
+                    
+                    <a href="http://localhost:1313/nginx-gateway-fabric/releases/" style="">Releases </a> 
+                
+            </li>
+        
+        </ul>
+    </div>
+</div>
+      </nav>
+    </div>
+
+    <section class="content-layout">
+      <div data-cms-edit="content" class="text-content">
+        <section class="breadcrumb-layout" data-mf="true" style="display: none;">
+          
+            
+            <nav aria-label="breadcrumb" class="breadcrumb navbar">
+    <div class="nav flex-md-row">
+        <ol class="breadcrumb">
+            
+            
+            
+            
+                
+            
+            
+                
+            
+            
+                
+            
+            
+                
+            
+            
+                
+            
+            
+            
+                <li><a href="/">Home</a><i class="fas fa-chevron-right"></i></li>
+                
+            
+                <li><a href="/nginx-gateway-fabric/">NGINX Gateway Fabric</a><i class="fas fa-chevron-right"></i></li>
+                
+            
+                <li><a href="/nginx-gateway-fabric/how-to/">How-to guides</a><i class="fas fa-chevron-right"></i></li>
+                
+            
+                <li><a href="/nginx-gateway-fabric/how-to/monitoring/">Monitoring and troubleshooting</a><i class="fas fa-chevron-right"></i></li>
+                
+            
+                Troubleshooting
+        </ol>
+    </div>
+</nav>
+  
+            
+          
+        </section>
+        <h1>Troubleshooting</h1>
+        <p>This topic describes possible issues when using NGINX Gateway Fabric and general troubleshooting techniques. When possible, suggested workarounds are provided.</p>
+<hr>
+<h3 
+id="general-troubleshooting">General troubleshooting  <a class="headerlink float-right" href="#general-troubleshooting" title="General troubleshooting"><i class="fas fa-link fa-xs"></i></a>
+</h3><p>When investigating a problem or requesting help, there are important data points that can be collected to help understand what issues may exist.</p>
+<hr>
+<h4 
+id="resource-status">Resource status  <a class="headerlink float-right" href="#resource-status" title="Resource status"><i class="fas fa-link fa-xs"></i></a>
+</h4><p>To check the status of a resource, use <code>kubectl describe</code>. This example checks the status of the <code>coffee</code> HTTPRoute, which has an error:</p>
+
+
+
+<div class="code-block" data-mf="true" style="display: none;">
+    <div class="code-container chroma">
+        <button onclick="copyToClipBoard(this, &#34;id-18440f1f7e0d5990&#34;)" class="code-copy-button" type="button">Copy</button>
+        <div class="highlight-v2 single-line" id="id-18440f1f7e0d5990">
+            <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">kubectl describe httproutes.gateway.networking.k8s.io coffee -n nginx-gateway</span></span></code></pre></div>
+        </div>
+    </div>
+</div><div id="code-block-v1" data-mf="false">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">kubectl describe httproutes.gateway.networking.k8s.io coffee -n nginx-gateway</span></span></code></pre></div>
+</div>
+
+
+<div class="code-block" data-mf="true" style="display: none;"><span class="code-type chroma">text</span><div class="code-container chroma">
+        <button onclick="copyToClipBoard(this, &#34;id-18440f1f7e0f2298&#34;)" class="code-copy-button multi-line" type="button">Copy</button>
+        <div class="highlight-v2" id="id-18440f1f7e0f2298">
+            <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">...
+</span></span><span class="line"><span class="cl">Status:
+</span></span><span class="line"><span class="cl">  Parents:
+</span></span><span class="line"><span class="cl">    Conditions:
+</span></span><span class="line"><span class="cl">      Last Transition Time:  2024-05-31T17:20:51Z
+</span></span><span class="line"><span class="cl">      Message:               The route is accepted
+</span></span><span class="line"><span class="cl">      Observed Generation:   4
+</span></span><span class="line"><span class="cl">      Reason:                Accepted
+</span></span><span class="line"><span class="cl">      Status:                True
+</span></span><span class="line"><span class="cl">      Type:                  Accepted
+</span></span><span class="line"><span class="cl">      Last Transition Time:  2024-05-31T17:20:51Z
+</span></span><span class="line"><span class="cl">      Message:               spec.rules[0].backendRefs[0].name: Not found: &#34;bad-backend&#34;
+</span></span><span class="line"><span class="cl">      Observed Generation:   4
+</span></span><span class="line"><span class="cl">      Reason:                BackendNotFound
+</span></span><span class="line"><span class="cl">      Status:                False
+</span></span><span class="line"><span class="cl">      Type:                  ResolvedRefs
+</span></span><span class="line"><span class="cl">    Controller Name:         gateway.nginx.org/nginx-gateway-controller
+</span></span><span class="line"><span class="cl">    Parent Ref:
+</span></span><span class="line"><span class="cl">      Group:         gateway.networking.k8s.io
+</span></span><span class="line"><span class="cl">      Kind:          Gateway
+</span></span><span class="line"><span class="cl">      Name:          gateway
+</span></span><span class="line"><span class="cl">      Namespace:     default
+</span></span><span class="line"><span class="cl">      Section Name:  http</span></span></code></pre></div>
+        </div>
+    </div>
+</div><div id="code-block-v1" data-mf="false">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">...
+</span></span><span class="line"><span class="cl">Status:
+</span></span><span class="line"><span class="cl">  Parents:
+</span></span><span class="line"><span class="cl">    Conditions:
+</span></span><span class="line"><span class="cl">      Last Transition Time:  2024-05-31T17:20:51Z
+</span></span><span class="line"><span class="cl">      Message:               The route is accepted
+</span></span><span class="line"><span class="cl">      Observed Generation:   4
+</span></span><span class="line"><span class="cl">      Reason:                Accepted
+</span></span><span class="line"><span class="cl">      Status:                True
+</span></span><span class="line"><span class="cl">      Type:                  Accepted
+</span></span><span class="line"><span class="cl">      Last Transition Time:  2024-05-31T17:20:51Z
+</span></span><span class="line"><span class="cl">      Message:               spec.rules[0].backendRefs[0].name: Not found: &#34;bad-backend&#34;
+</span></span><span class="line"><span class="cl">      Observed Generation:   4
+</span></span><span class="line"><span class="cl">      Reason:                BackendNotFound
+</span></span><span class="line"><span class="cl">      Status:                False
+</span></span><span class="line"><span class="cl">      Type:                  ResolvedRefs
+</span></span><span class="line"><span class="cl">    Controller Name:         gateway.nginx.org/nginx-gateway-controller
+</span></span><span class="line"><span class="cl">    Parent Ref:
+</span></span><span class="line"><span class="cl">      Group:         gateway.networking.k8s.io
+</span></span><span class="line"><span class="cl">      Kind:          Gateway
+</span></span><span class="line"><span class="cl">      Name:          gateway
+</span></span><span class="line"><span class="cl">      Namespace:     default
+</span></span><span class="line"><span class="cl">      Section Name:  http</span></span></code></pre></div>
+</div><p>If a resource has errors relating to its configuration or relationship to other resources, they can likely be read in the status. The <code>ObservedGeneration</code> in the status should match the <code>ObservedGeneration</code> of the resource. Otherwise, this could mean that the resource hasn&rsquo;t been processed yet or that the status failed to update.</p>
+<p>If no <code>Status</code> is written on the resource, further debug by checking if the referenced resources exist and belong to NGINX Gateway Fabric.</p>
+<hr>
+<h4 
+id="events">Events  <a class="headerlink float-right" href="#events" title="Events"><i class="fas fa-link fa-xs"></i></a>
+</h4><p>Events created by NGINX Gateway Fabric or other Kubernetes components could indicate system or configuration issues. To see events:</p>
+
+
+
+<div class="code-block" data-mf="true" style="display: none;">
+    <div class="code-container chroma">
+        <button onclick="copyToClipBoard(this, &#34;id-18440f1f7e10c0a8&#34;)" class="code-copy-button" type="button">Copy</button>
+        <div class="highlight-v2 single-line" id="id-18440f1f7e10c0a8">
+            <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">kubectl get events -n nginx-gateway</span></span></code></pre></div>
+        </div>
+    </div>
+</div><div id="code-block-v1" data-mf="false">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">kubectl get events -n nginx-gateway</span></span></code></pre></div>
+</div><p>For example, a warning event when the NginxGateway configuration CRD is deleted:</p>
+
+
+
+<div class="code-block" data-mf="true" style="display: none;"><span class="code-type chroma">text</span><div class="code-container chroma">
+        <button onclick="copyToClipBoard(this, &#34;id-18440f1f7e11c278&#34;)" class="code-copy-button multi-line" type="button">Copy</button>
+        <div class="highlight-v2" id="id-18440f1f7e11c278">
+            <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">kubectl -n nginx-gateway get event
+</span></span><span class="line"><span class="cl">LAST SEEN   TYPE      REASON              OBJECT                                           MESSAGE
+</span></span><span class="line"><span class="cl">5s          Warning   ResourceDeleted     nginxgateway/ngf-config                          NginxGateway configuration was deleted; using defaults</span></span></code></pre></div>
+        </div>
+    </div>
+</div><div id="code-block-v1" data-mf="false">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">kubectl -n nginx-gateway get event
+</span></span><span class="line"><span class="cl">LAST SEEN   TYPE      REASON              OBJECT                                           MESSAGE
+</span></span><span class="line"><span class="cl">5s          Warning   ResourceDeleted     nginxgateway/ngf-config                          NginxGateway configuration was deleted; using defaults</span></span></code></pre></div>
+</div><hr>
+<h4 
+id="get-shell-access-to-nginx-container">Get shell access to NGINX container  <a class="headerlink float-right" href="#get-shell-access-to-nginx-container" title="Get shell access to NGINX container"><i class="fas fa-link fa-xs"></i></a>
+</h4><p>Getting shell access to containers allows developers and operators to view the environment of a running container, see its logs or diagnose any problems. To get shell access to the NGINX container, use <code>kubectl exec</code>:</p>
+
+
+
+<div class="code-block" data-mf="true" style="display: none;">
+    <div class="code-container chroma">
+        <button onclick="copyToClipBoard(this, &#34;id-18440f1f7e140880&#34;)" class="code-copy-button" type="button">Copy</button>
+        <div class="highlight-v2 single-line" id="id-18440f1f7e140880">
+            <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">kubectl <span class="nb">exec</span> -it -n nginx-gateway  &lt;ngf-pod-name&gt; -c nginx -- /bin/sh</span></span></code></pre></div>
+        </div>
+    </div>
+</div><div id="code-block-v1" data-mf="false">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">kubectl <span class="nb">exec</span> -it -n nginx-gateway  &lt;ngf-pod-name&gt; -c nginx -- /bin/sh</span></span></code></pre></div>
+</div><hr>
+<h4 
+id="logs">Logs  <a class="headerlink float-right" href="#logs" title="Logs"><i class="fas fa-link fa-xs"></i></a>
+</h4><p>Logs from the NGINX Gateway Fabric control plane and data plane can contain information that isn&rsquo;t available to status or events. These can include errors in processing or passing traffic.</p>
+<blockquote class="note">
+  <div><strong>Note:</strong><br/> You can see logs for a crashed or killed container by adding the <code>-p</code> flag to the <code>kubectl logs</code> commands below.</div>
+</blockquote>
+
+<ol>
+<li>
+<p>Container Logs</p>
+<p>To see logs for the control plane container:</p>
+
+
+
+<div class="code-block" data-mf="true" style="display: none;">
+    <div class="code-container chroma">
+        <button onclick="copyToClipBoard(this, &#34;id-18440f1f7e173cd0&#34;)" class="code-copy-button" type="button">Copy</button>
+        <div class="highlight-v2 single-line" id="id-18440f1f7e173cd0">
+            <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">kubectl -n nginx-gateway logs &lt;ngf-pod-name&gt; -c nginx-gateway</span></span></code></pre></div>
+        </div>
+    </div>
+</div><div id="code-block-v1" data-mf="false">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">kubectl -n nginx-gateway logs &lt;ngf-pod-name&gt; -c nginx-gateway</span></span></code></pre></div>
+</div><p>To see logs for the data plane container:</p>
+
+
+
+<div class="code-block" data-mf="true" style="display: none;">
+    <div class="code-container chroma">
+        <button onclick="copyToClipBoard(this, &#34;id-18440f1f7e191d48&#34;)" class="code-copy-button" type="button">Copy</button>
+        <div class="highlight-v2 single-line" id="id-18440f1f7e191d48">
+            <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">kubectl -n nginx-gateway logs &lt;ngf-pod-name&gt; -c nginx</span></span></code></pre></div>
+        </div>
+    </div>
+</div><div id="code-block-v1" data-mf="false">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">kubectl -n nginx-gateway logs &lt;ngf-pod-name&gt; -c nginx</span></span></code></pre></div>
+</div></li>
+<li>
+<p>Error Logs</p>
+<p>For the <em>nginx-gateway</em> container, you can <code>grep</code> the logs for the word <code>error</code>:</p>
+
+
+
+<div class="code-block" data-mf="true" style="display: none;">
+    <div class="code-container chroma">
+        <button onclick="copyToClipBoard(this, &#34;id-18440f1f7e1b9de8&#34;)" class="code-copy-button" type="button">Copy</button>
+        <div class="highlight-v2 single-line" id="id-18440f1f7e1b9de8">
+            <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">kubectl -n nginx-gateway logs &lt;ngf-pod-name&gt; -c nginx-gateway <span class="p">|</span> grep error</span></span></code></pre></div>
+        </div>
+    </div>
+</div><div id="code-block-v1" data-mf="false">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">kubectl -n nginx-gateway logs &lt;ngf-pod-name&gt; -c nginx-gateway <span class="p">|</span> grep error</span></span></code></pre></div>
+</div><p>For the <em>nginx</em> container you can <code>grep</code> for various <a href="https://nginx.org/en/docs/ngx_core_module.html#error_log" target="_blank" rel="noopener">error</a> logs. For example, to search for all logs logged at the <code>emerg</code> level:</p>
+
+
+
+<div class="code-block" data-mf="true" style="display: none;">
+    <div class="code-container chroma">
+        <button onclick="copyToClipBoard(this, &#34;id-18440f1f7e1e1e88&#34;)" class="code-copy-button" type="button">Copy</button>
+        <div class="highlight-v2 single-line" id="id-18440f1f7e1e1e88">
+            <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">kubectl -n nginx-gateway logs &lt;ngf-pod-name&gt; -c nginx <span class="p">|</span> grep emerg</span></span></code></pre></div>
+        </div>
+    </div>
+</div><div id="code-block-v1" data-mf="false">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">kubectl -n nginx-gateway logs &lt;ngf-pod-name&gt; -c nginx <span class="p">|</span> grep emerg</span></span></code></pre></div>
+</div><p>For example, if a variable is too long, NGINX may display such an error message:</p>
+
+
+
+<div class="code-block" data-mf="true" style="display: none;"><span class="code-type chroma">text</span><div class="code-container chroma">
+        <button onclick="copyToClipBoard(this, &#34;id-18440f1f7e1fa528&#34;)" class="code-copy-button multi-line" type="button">Copy</button>
+        <div class="highlight-v2" id="id-18440f1f7e1fa528">
+            <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">kubectl logs -n nginx-gateway ngf-nginx-gateway-fabric-bb8598998-jwk2m -c nginx | grep emerg
+</span></span><span class="line"><span class="cl">2024/06/13 20:04:17 [emerg] 27#27: too long parameter, probably missing terminating &#34;&#34;&#34; character in /etc/nginx/conf.d/http.conf:78</span></span></code></pre></div>
+        </div>
+    </div>
+</div><div id="code-block-v1" data-mf="false">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">kubectl logs -n nginx-gateway ngf-nginx-gateway-fabric-bb8598998-jwk2m -c nginx | grep emerg
+</span></span><span class="line"><span class="cl">2024/06/13 20:04:17 [emerg] 27#27: too long parameter, probably missing terminating &#34;&#34;&#34; character in /etc/nginx/conf.d/http.conf:78</span></span></code></pre></div>
+</div></li>
+<li>
+<p>Access Logs</p>
+<p>NGINX access logs record all requests processed by the NGINX server. These logs provide detailed information about each request, which can be useful for troubleshooting and analyzing web traffic.
+Access logs can be viewed with the above method of using <code>kubectl logs</code>, or by viewing the access log file directly. To do that, get shell access to your NGINX container using these <a href="#get-shell-access-to-nginx-container">steps</a>. The access logs are located in the file <code>/var/log/nginx/access.log</code> in the NGINX container.</p>
+</li>
+<li>
+<p>Modify Log Levels</p>
+<p>To modify log levels for the control plane in NGINX Gateway Fabric, edit the <code>NginxGateway</code> configuration. This can be done either before or after deploying NGINX Gateway Fabric. Refer to this <a href="https://docs.nginx.com/nginx-gateway-fabric/how-to/control-plane-configuration/" target="_blank" rel="noopener">guide</a> to do so.
+To check error logs, modify the log level to <code>error</code> to view error logs. Similarly, change the log level to <code>debug</code> and <code>grep</code> for the word <code>debug</code> to view debug logs.</p>
+</li>
+</ol>
+<hr>
+<h4 
+id="understanding-the-generated-nginx-configuration">Understanding the generated NGINX configuration  <a class="headerlink float-right" href="#understanding-the-generated-nginx-configuration" title="Understanding the generated NGINX configuration"><i class="fas fa-link fa-xs"></i></a>
+</h4><p>Understanding the NGINX configuration is key for fixing issues because it shows how NGINX handles requests. This helps tweak settings to make sure NGINX behaves the way you want it to for your application. To see your current configuration, you can open a shell in the <em>nginx</em> container by following these <a href="#get-shell-access-to-nginx-container">steps</a> and run <code>nginx -T</code>. To understand the usage of NGINX directives in the configuration file, consult this list of <a href="https://nginx.org/en/docs/dirindex.html" target="_blank" rel="noopener">NGINX directives</a>.</p>
+<p>In this section, we will see how the configuration gets updated as we configure different Services, Deployments and HTTPRoutes with NGINX Gateway Fabric. In the configuration file, you&rsquo;ll often find several server blocks, each assigned to specific ports and server names. NGINX selects the appropriate server for a request and evaluates the URI against the location directives within that block.
+When only a Gateway resource is defined, but no Services or HTTPRoutes are configured, NGINX generates a basic configuration. This includes a default server listening on the ports specified in the Gateway listeners, handling all incoming requests. Additionally, there are blocks to manage errors with status codes 500 or 503.</p>
+<p>This is a default <code>server</code> block listening on port 80:</p>
+
+
+
+<div class="code-block" data-mf="true" style="display: none;"><span class="code-type chroma">text</span><div class="code-container chroma">
+        <button onclick="copyToClipBoard(this, &#34;id-18440f1f7e21feb8&#34;)" class="code-copy-button multi-line" type="button">Copy</button>
+        <div class="highlight-v2" id="id-18440f1f7e21feb8">
+            <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">server {
+</span></span><span class="line"><span class="cl">    listen 80 default_server;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    default_type text/html;
+</span></span><span class="line"><span class="cl">    return 404;
+</span></span><span class="line"><span class="cl">}</span></span></code></pre></div>
+        </div>
+    </div>
+</div><div id="code-block-v1" data-mf="false">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">server {
+</span></span><span class="line"><span class="cl">    listen 80 default_server;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    default_type text/html;
+</span></span><span class="line"><span class="cl">    return 404;
+</span></span><span class="line"><span class="cl">}</span></span></code></pre></div>
+</div><p>Once a HTTPRoute with path matches and rules are defined, nginx.conf is updated accordingly to determine which location block will manage incoming requests. To demonstrate how <code>nginx.conf</code> is changed, create some resources:</p>
+<ol>
+<li>A Gateway with single listener with the hostname <code>*.example.com</code> on port 80.</li>
+<li>A simple <code>coffee</code> application.</li>
+<li>An HTTPRoute that exposes the <code>coffee</code> application outside the cluster using the listener created in step 1. The path and rule matches create different location blocks in <code>nginx.conf</code> to route requests as needed.</li>
+</ol>
+<p>For example, this <code>coffee</code> route matches requests with path <code>/coffee</code> and type <code>prefix</code>. Examine how the <code>nginx.conf</code> is modified:</p>
+
+
+
+<div class="code-block" data-mf="true" style="display: none;"><span class="code-type chroma">yaml</span><div class="code-container chroma">
+        <button onclick="copyToClipBoard(this, &#34;id-18440f1f7e264478&#34;)" class="code-copy-button multi-line" type="button">Copy</button>
+        <div class="highlight-v2" id="id-18440f1f7e264478">
+            <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">gateway.networking.k8s.io/v1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">HTTPRoute</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">coffee</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">parentRefs</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">gateway</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">sectionName</span><span class="p">:</span><span class="w"> </span><span class="l">http</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">hostnames</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="s2">&#34;cafe.example.com&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">rules</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">matches</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="nt">path</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">PathPrefix</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l">/coffee</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">backendRefs</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">coffee</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">80</span></span></span></code></pre></div>
+        </div>
+    </div>
+</div><div id="code-block-v1" data-mf="false">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">gateway.networking.k8s.io/v1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">HTTPRoute</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">coffee</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">parentRefs</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">gateway</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">sectionName</span><span class="p">:</span><span class="w"> </span><span class="l">http</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">hostnames</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="s2">&#34;cafe.example.com&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">rules</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">matches</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="nt">path</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">PathPrefix</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l">/coffee</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">backendRefs</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">coffee</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">80</span></span></span></code></pre></div>
+</div><p>The modified <code>nginx.conf</code>:</p>
+
+
+
+<div class="code-block" data-mf="true" style="display: none;"><span class="code-type chroma">shell</span><div class="code-container chroma">
+        <button onclick="copyToClipBoard(this, &#34;id-18440f1f7e311218&#34;)" class="code-copy-button multi-line" type="button">Copy</button>
+        <div class="highlight-v2" id="id-18440f1f7e311218">
+            <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">server <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    listen <span class="m">80</span> default_server<span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    default_type text/html<span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> 404<span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">server <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    listen 80<span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    server_name cafe.example.com<span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    location /coffee/ <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        proxy_set_header Host <span class="s2">&#34;</span><span class="nv">$gw_api_compliant_host</span><span class="s2">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        proxy_set_header X-Forwarded-For <span class="s2">&#34;</span><span class="nv">$proxy_add_x_forwarded_for</span><span class="s2">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        proxy_set_header Upgrade <span class="s2">&#34;</span><span class="nv">$http_upgrade</span><span class="s2">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        proxy_set_header Connection <span class="s2">&#34;</span><span class="nv">$connection_upgrade</span><span class="s2">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        proxy_http_version 1.1<span class="p">;</span>
+</span></span><span class="line"><span class="cl">        proxy_pass http://default_coffee_80<span class="nv">$request_uri</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nv">location</span> <span class="o">=</span> /coffee <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        proxy_set_header Host <span class="s2">&#34;</span><span class="nv">$gw_api_compliant_host</span><span class="s2">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        proxy_set_header X-Forwarded-For <span class="s2">&#34;</span><span class="nv">$proxy_add_x_forwarded_for</span><span class="s2">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        proxy_set_header Upgrade <span class="s2">&#34;</span><span class="nv">$http_upgrade</span><span class="s2">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        proxy_set_header Connection <span class="s2">&#34;</span><span class="nv">$connection_upgrade</span><span class="s2">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        proxy_http_version 1.1<span class="p">;</span>
+</span></span><span class="line"><span class="cl">        proxy_pass http://default_coffee_80<span class="nv">$request_uri</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    location / <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="m">404</span> <span class="s2">&#34;&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">upstream default_coffee_80 <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    random two least_conn<span class="p">;</span>
+</span></span><span class="line"><span class="cl">    zone default_coffee_80 512k<span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    server 10.244.0.13:8080<span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span></span></span></code></pre></div>
+        </div>
+    </div>
+</div><div id="code-block-v1" data-mf="false">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">server <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    listen <span class="m">80</span> default_server<span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    default_type text/html<span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> 404<span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">server <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    listen 80<span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    server_name cafe.example.com<span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    location /coffee/ <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        proxy_set_header Host <span class="s2">&#34;</span><span class="nv">$gw_api_compliant_host</span><span class="s2">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        proxy_set_header X-Forwarded-For <span class="s2">&#34;</span><span class="nv">$proxy_add_x_forwarded_for</span><span class="s2">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        proxy_set_header Upgrade <span class="s2">&#34;</span><span class="nv">$http_upgrade</span><span class="s2">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        proxy_set_header Connection <span class="s2">&#34;</span><span class="nv">$connection_upgrade</span><span class="s2">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        proxy_http_version 1.1<span class="p">;</span>
+</span></span><span class="line"><span class="cl">        proxy_pass http://default_coffee_80<span class="nv">$request_uri</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nv">location</span> <span class="o">=</span> /coffee <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        proxy_set_header Host <span class="s2">&#34;</span><span class="nv">$gw_api_compliant_host</span><span class="s2">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        proxy_set_header X-Forwarded-For <span class="s2">&#34;</span><span class="nv">$proxy_add_x_forwarded_for</span><span class="s2">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        proxy_set_header Upgrade <span class="s2">&#34;</span><span class="nv">$http_upgrade</span><span class="s2">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        proxy_set_header Connection <span class="s2">&#34;</span><span class="nv">$connection_upgrade</span><span class="s2">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        proxy_http_version 1.1<span class="p">;</span>
+</span></span><span class="line"><span class="cl">        proxy_pass http://default_coffee_80<span class="nv">$request_uri</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    location / <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="m">404</span> <span class="s2">&#34;&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">upstream default_coffee_80 <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    random two least_conn<span class="p">;</span>
+</span></span><span class="line"><span class="cl">    zone default_coffee_80 512k<span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    server 10.244.0.13:8080<span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span></span></span></code></pre></div>
+</div><p>Key information to note is:</p>
+<ol>
+<li>A new <code>server</code> block is created with the hostname of the HTTPRoute. When a request is sent to this hostname, it will be handled by this <code>server</code> block.</li>
+<li>Within the <code>server</code> block, three new <code>location</code> blocks are added for <em>coffee</em>, each with distinct prefix and exact paths. Requests directed to the <em>coffee</em> application with a path prefix <code>/coffee/hello</code> will be managed by the first location block, while those with an exact path <code>/coffee</code> will be handled by the second location block. Any other requests not recognized by the server block for this hostname will default to the third location block, returning a 404 Not Found status.</li>
+<li>Each <code>location</code> block has headers and directives that configure the NGINX proxy to forward requests to the <code>/coffee</code> path correctly, preserving important client information and ensuring compatibility with the upstream server.</li>
+<li>The <code>upstream</code> block in the given NGINX configuration defines a group of backend servers and configures how NGINX should load balance requests among them.</li>
+</ol>
+<p>Review the behaviour when a curl request is sent to the <code>coffee</code> application:</p>
+<p>Matches location /coffee/ block</p>
+
+
+
+<div class="code-block" data-mf="true" style="display: none;"><span class="code-type chroma">shell</span><div class="code-container chroma">
+        <button onclick="copyToClipBoard(this, &#34;id-18440f1f7e354c20&#34;)" class="code-copy-button multi-line" type="button">Copy</button>
+        <div class="highlight-v2" id="id-18440f1f7e354c20">
+            <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">curl --resolve cafe.example.com:<span class="nv">$GW_PORT</span>:<span class="nv">$GW_IP</span> http://cafe.example.com:<span class="nv">$GW_PORT</span>/coffee/hello
+</span></span><span class="line"><span class="cl">Handling connection <span class="k">for</span> <span class="m">8080</span>
+</span></span><span class="line"><span class="cl">Server address: 10.244.0.13:8080
+</span></span><span class="line"><span class="cl">Server name: coffee-56b44d4c55-hwpkp
+</span></span><span class="line"><span class="cl">Date: 13/Jun/2024:22:51:52 +0000
+</span></span><span class="line"><span class="cl">URI: /coffee/hello
+</span></span><span class="line"><span class="cl">Request ID: 21fc2baad77337065e7cf2cd57e04383</span></span></code></pre></div>
+        </div>
+    </div>
+</div><div id="code-block-v1" data-mf="false">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">curl --resolve cafe.example.com:<span class="nv">$GW_PORT</span>:<span class="nv">$GW_IP</span> http://cafe.example.com:<span class="nv">$GW_PORT</span>/coffee/hello
+</span></span><span class="line"><span class="cl">Handling connection <span class="k">for</span> <span class="m">8080</span>
+</span></span><span class="line"><span class="cl">Server address: 10.244.0.13:8080
+</span></span><span class="line"><span class="cl">Server name: coffee-56b44d4c55-hwpkp
+</span></span><span class="line"><span class="cl">Date: 13/Jun/2024:22:51:52 +0000
+</span></span><span class="line"><span class="cl">URI: /coffee/hello
+</span></span><span class="line"><span class="cl">Request ID: 21fc2baad77337065e7cf2cd57e04383</span></span></code></pre></div>
+</div><p>Matches location = /coffee block</p>
+
+
+
+<div class="code-block" data-mf="true" style="display: none;"><span class="code-type chroma">shell</span><div class="code-container chroma">
+        <button onclick="copyToClipBoard(this, &#34;id-18440f1f7e396300&#34;)" class="code-copy-button multi-line" type="button">Copy</button>
+        <div class="highlight-v2" id="id-18440f1f7e396300">
+            <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">curl --resolve cafe.example.com:<span class="nv">$GW_PORT</span>:<span class="nv">$GW_IP</span> http://cafe.example.com:<span class="nv">$GW_PORT</span>/coffee
+</span></span><span class="line"><span class="cl">Handling connection <span class="k">for</span> <span class="m">8080</span>
+</span></span><span class="line"><span class="cl">Server address: 10.244.0.13:8080
+</span></span><span class="line"><span class="cl">Server name: coffee-56b44d4c55-hwpkp
+</span></span><span class="line"><span class="cl">Date: 13/Jun/2024:22:51:40 +0000
+</span></span><span class="line"><span class="cl">URI: /coffee
+</span></span><span class="line"><span class="cl">Request ID: 4d8d719e95063303e290ad74ecd7339f</span></span></code></pre></div>
+        </div>
+    </div>
+</div><div id="code-block-v1" data-mf="false">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">curl --resolve cafe.example.com:<span class="nv">$GW_PORT</span>:<span class="nv">$GW_IP</span> http://cafe.example.com:<span class="nv">$GW_PORT</span>/coffee
+</span></span><span class="line"><span class="cl">Handling connection <span class="k">for</span> <span class="m">8080</span>
+</span></span><span class="line"><span class="cl">Server address: 10.244.0.13:8080
+</span></span><span class="line"><span class="cl">Server name: coffee-56b44d4c55-hwpkp
+</span></span><span class="line"><span class="cl">Date: 13/Jun/2024:22:51:40 +0000
+</span></span><span class="line"><span class="cl">URI: /coffee
+</span></span><span class="line"><span class="cl">Request ID: 4d8d719e95063303e290ad74ecd7339f</span></span></code></pre></div>
+</div><p>Matches location / block</p>
+
+
+
+<div class="code-block" data-mf="true" style="display: none;"><span class="code-type chroma">shell</span><div class="code-container chroma">
+        <button onclick="copyToClipBoard(this, &#34;id-18440f1f7e3e9320&#34;)" class="code-copy-button multi-line" type="button">Copy</button>
+        <div class="highlight-v2" id="id-18440f1f7e3e9320">
+            <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">curl --resolve cafe.example.com:<span class="nv">$GW_PORT</span>:<span class="nv">$GW_IP</span> http://cafe.example.com:<span class="nv">$GW_PORT</span>/
+</span></span><span class="line"><span class="cl">Handling connection <span class="k">for</span> <span class="m">8080</span>
+</span></span><span class="line"><span class="cl">&lt;html&gt;
+</span></span><span class="line"><span class="cl">&lt;head&gt;&lt;title&gt;404 Not Found&lt;/title&gt;&lt;/head&gt;
+</span></span><span class="line"><span class="cl">&lt;body&gt;
+</span></span><span class="line"><span class="cl">&lt;center&gt;&lt;h1&gt;404 Not Found&lt;/h1&gt;&lt;/center&gt;
+</span></span><span class="line"><span class="cl">&lt;hr&gt;&lt;center&gt;nginx/1.25.4&lt;/center&gt;
+</span></span><span class="line"><span class="cl">&lt;/body&gt;</span></span></code></pre></div>
+        </div>
+    </div>
+</div><div id="code-block-v1" data-mf="false">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">curl --resolve cafe.example.com:<span class="nv">$GW_PORT</span>:<span class="nv">$GW_IP</span> http://cafe.example.com:<span class="nv">$GW_PORT</span>/
+</span></span><span class="line"><span class="cl">Handling connection <span class="k">for</span> <span class="m">8080</span>
+</span></span><span class="line"><span class="cl">&lt;html&gt;
+</span></span><span class="line"><span class="cl">&lt;head&gt;&lt;title&gt;404 Not Found&lt;/title&gt;&lt;/head&gt;
+</span></span><span class="line"><span class="cl">&lt;body&gt;
+</span></span><span class="line"><span class="cl">&lt;center&gt;&lt;h1&gt;404 Not Found&lt;/h1&gt;&lt;/center&gt;
+</span></span><span class="line"><span class="cl">&lt;hr&gt;&lt;center&gt;nginx/1.25.4&lt;/center&gt;
+</span></span><span class="line"><span class="cl">&lt;/body&gt;</span></span></code></pre></div>
+</div><blockquote class="warning call-out">
+  <div><strong class="call-out-type">Warning</strong><br/> The configuration may change in future releases. This configuration is valid for version 1.3.</div>
+</blockquote>
+
+<hr>
+<h4 
+id="metrics-for-troubleshooting">Metrics for troubleshooting  <a class="headerlink float-right" href="#metrics-for-troubleshooting" title="Metrics for troubleshooting"><i class="fas fa-link fa-xs"></i></a>
+</h4><p>Metrics can be useful to identify performance bottlenecks and pinpoint areas of high resource consumption within NGINX Gateway Fabric. To set up metrics collection, refer to the <a href="http://localhost:1313/nginx-gateway-fabric/how-to/monitoring/prometheus/">Prometheus Metrics guide</a>. The metrics dashboard will help you understand problems with the way NGINX Gateway Fabric is set up or potential issues that could show up with time.</p>
+<p>For example, metrics <code>nginx_reloads_total</code> and <code>nginx_reload_errors_total</code> offer valuable insights into the system&rsquo;s stability and reliability. A high <code>nginx_reloads_total</code> value indicates frequent updates or configuration changes, while a high <code>nginx_reload_errors_total</code> value suggests issues with the configuration or other problems preventing successful reloads. Monitoring these metrics helps identify and resolve configuration errors, ensuring consistent service reliability.</p>
+<p>In such situations, it&rsquo;s advisable to review the logs of both NGINX and NGINX Gateway containers for any potential error messages. Additionally, verify the configured resources to ensure they are in a valid state.</p>
+<hr>
+<h4 
+id="access-the-nginx-plus-dashboard">Access the NGINX Plus Dashboard  <a class="headerlink float-right" href="#access-the-nginx-plus-dashboard" title="Access the NGINX Plus Dashboard"><i class="fas fa-link fa-xs"></i></a>
+</h4><p>If you have NGINX Gateway Fabric installed with NGINX Plus, you can access the NGINX Plus dashboard at <code>http://localhost:8080/dashboard.html</code>.
+Verify that the port number (for example, <code>8080</code>) matches the port number you have port-forwarded to your NGINX Gateway Fabric Pod. For further details, see the <a href="http://localhost:1313/nginx-gateway-fabric/how-to/monitoring/dashboard/">dashboard guide</a></p>
+<hr>
+<h3 
+id="common-errors">Common errors  <a class="headerlink float-right" href="#common-errors" title="Common errors"><i class="fas fa-link fa-xs"></i></a>
+</h3>
+
+
+
+
+<table class="table table-striped table-bordered table-v1">
+  <thead>
+      <tr>
+          <th style="text-align: left">Problem Area</th>
+          <th style="text-align: left">Symptom</th>
+          <th style="text-align: left">Troubleshooting Method</th>
+          <th style="text-align: left">Common Cause</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">Startup</td>
+          <td style="text-align: left">NGINX Gateway Fabric fails to start.</td>
+          <td style="text-align: left">Check logs for <em>nginx</em> and <em>nginx-gateway</em> containers.</td>
+          <td style="text-align: left">Readiness probe failed.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Resources not configured</td>
+          <td style="text-align: left">Status missing on resources.</td>
+          <td style="text-align: left">Check referenced resources.</td>
+          <td style="text-align: left">Referenced resources do not belong to NGINX Gateway Fabric.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">NGINX errors</td>
+          <td style="text-align: left">Reload failures on NGINX</td>
+          <td style="text-align: left">Fix permissions for control plane.</td>
+          <td style="text-align: left">Security context not configured.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">NGINX Plus errors</td>
+          <td style="text-align: left">Failure to start; traffic interruptions</td>
+          <td style="text-align: left">Set up the <a href="http://localhost:1313/nginx-gateway-fabric/installation/nginx-plus-jwt/" target="_blank" rel="noopener">NGINX Plus JWT</a></td>
+          <td style="text-align: left">License is not configured or has expired.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Client Settings</td>
+          <td style="text-align: left">Request entity too large error</td>
+          <td style="text-align: left">Adjust client settings. Refer to <a href="/nginx-gateway-fabric/how-to/traffic-management/client-settings/">Client Settings Policy</a></td>
+          <td style="text-align: left">Payload is greater than the <a href="https://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size" target="_blank" rel="noopener"><code>client_max_body_size</code></a> value.</td>
+      </tr>
+  </tbody>
+</table>
+
+
+
+
+
+
+  
+
+
+<div data-mf="true" style="display: none;" class="table-v2 table table-striped table-bordered narrow">
+    <table>
+  <thead>
+      <tr>
+          <th style="text-align: left">Problem Area</th>
+          <th style="text-align: left">Symptom</th>
+          <th style="text-align: left">Troubleshooting Method</th>
+          <th style="text-align: left">Common Cause</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">Startup</td>
+          <td style="text-align: left">NGINX Gateway Fabric fails to start.</td>
+          <td style="text-align: left">Check logs for <em>nginx</em> and <em>nginx-gateway</em> containers.</td>
+          <td style="text-align: left">Readiness probe failed.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Resources not configured</td>
+          <td style="text-align: left">Status missing on resources.</td>
+          <td style="text-align: left">Check referenced resources.</td>
+          <td style="text-align: left">Referenced resources do not belong to NGINX Gateway Fabric.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">NGINX errors</td>
+          <td style="text-align: left">Reload failures on NGINX</td>
+          <td style="text-align: left">Fix permissions for control plane.</td>
+          <td style="text-align: left">Security context not configured.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">NGINX Plus errors</td>
+          <td style="text-align: left">Failure to start; traffic interruptions</td>
+          <td style="text-align: left">Set up the <a href="http://localhost:1313/nginx-gateway-fabric/installation/nginx-plus-jwt/" target="_blank" rel="noopener">NGINX Plus JWT</a></td>
+          <td style="text-align: left">License is not configured or has expired.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Client Settings</td>
+          <td style="text-align: left">Request entity too large error</td>
+          <td style="text-align: left">Adjust client settings. Refer to <a href="/nginx-gateway-fabric/how-to/traffic-management/client-settings/">Client Settings Policy</a></td>
+          <td style="text-align: left">Payload is greater than the <a href="https://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size" target="_blank" rel="noopener"><code>client_max_body_size</code></a> value.</td>
+      </tr>
+  </tbody>
+</table>
+
+</div>
+<hr>
+<h5 
+id="nginx-fails-to-reload">NGINX fails to reload  <a class="headerlink float-right" href="#nginx-fails-to-reload" title="NGINX fails to reload"><i class="fas fa-link fa-xs"></i></a>
+</h5><p>NGINX reload errors can occur for various reasons, including syntax errors in configuration files, permission issues, and more. To determine if NGINX has failed to reload, check logs for your <em>nginx-gateway</em> and <em>nginx</em> containers.
+You will see the following error in the <em>nginx-gateway</em> logs: <code>failed to reload NGINX:</code>, followed by the reason for the failure. Similarly, error logs in <em>nginx</em> container start with <code>emerg</code>. For example, <code>2024/06/12 14:25:11 [emerg] 12345#0: open() &quot;/var/run/nginx.pid&quot; failed (13: Permission denied)</code> shows a critical error, such as a permission problem preventing NGINX from accessing necessary files.</p>
+<p>To debug why your reload has failed, start with verifying the syntax of your configuration files by opening a shell in the NGINX container following these <a href="#get-shell-access-to-nginx-container">steps</a> and running <code>nginx -T</code>. If there are errors in your configuration file, the reload will fail and specify the reason for it.</p>
+<hr>
+<h5 
+id="nginx-gateway-fabric-pod-is-not-running-or-ready">NGINX Gateway Fabric Pod is not running or ready  <a class="headerlink float-right" href="#nginx-gateway-fabric-pod-is-not-running-or-ready" title="NGINX Gateway Fabric Pod is not running or ready"><i class="fas fa-link fa-xs"></i></a>
+</h5><p>To understand why the NGINX Gateway Fabric Pod has not started running or is not ready, check the state of the Pod to get detailed information about the current status and events happening in the Pod. To do this, use <code>kubectl describe</code>:</p>
+
+
+
+<div class="code-block" data-mf="true" style="display: none;">
+    <div class="code-container chroma">
+        <button onclick="copyToClipBoard(this, &#34;id-18440f1f7e4165c8&#34;)" class="code-copy-button" type="button">Copy</button>
+        <div class="highlight-v2 single-line" id="id-18440f1f7e4165c8">
+            <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">kubectl describe pod &lt;ngf-pod-name&gt; -n nginx-gateway</span></span></code></pre></div>
+        </div>
+    </div>
+</div><div id="code-block-v1" data-mf="false">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">kubectl describe pod &lt;ngf-pod-name&gt; -n nginx-gateway</span></span></code></pre></div>
+</div><p>The Pod description includes details about the image name, tags, current status, and environment variables. Verify that these details match your setup and cross-check with the events to ensure everything is functioning as expected. For example, the Pod below has two containers that are running and the events reflect the same.</p>
+
+
+
+<div class="code-block" data-mf="true" style="display: none;"><span class="code-type chroma">text</span><div class="code-container chroma">
+        <button onclick="copyToClipBoard(this, &#34;id-18440f1f7e43de98&#34;)" class="code-copy-button multi-line" type="button">Copy</button>
+        <div class="highlight-v2" id="id-18440f1f7e43de98">
+            <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Containers:
+</span></span><span class="line"><span class="cl">  nginx-gateway:
+</span></span><span class="line"><span class="cl">    Container ID:  containerd://06c97a9de938b35049b7c63e251418395aef65dd1ff996119362212708b79cab
+</span></span><span class="line"><span class="cl">    Image:         nginx-gateway-fabric
+</span></span><span class="line"><span class="cl">    Image ID:      docker.io/library/import-2024-06-13@sha256:1460d63bd8a352a6e455884d7ebf51ce9c92c512cb43b13e44a1c3e3e6a08918
+</span></span><span class="line"><span class="cl">    Ports:         9113/TCP, 8081/TCP
+</span></span><span class="line"><span class="cl">    Host Ports:    0/TCP, 0/TCP
+</span></span><span class="line"><span class="cl">    State:          Running
+</span></span><span class="line"><span class="cl">      Started:      Thu, 13 Jun 2024 11:47:46 -0600
+</span></span><span class="line"><span class="cl">    Ready:          True
+</span></span><span class="line"><span class="cl">    Restart Count:  0
+</span></span><span class="line"><span class="cl">    Readiness:      http-get http://:health/readyz delay=3s timeout=1s period=1s #success=1 #failure=3
+</span></span><span class="line"><span class="cl">    Environment:
+</span></span><span class="line"><span class="cl">      POD_IP:          (v1:status.podIP)
+</span></span><span class="line"><span class="cl">      POD_NAMESPACE:  nginx-gateway (v1:metadata.namespace)
+</span></span><span class="line"><span class="cl">      POD_NAME:       ngf-nginx-gateway-fabric-66dd665756-zh7d7 (v1:metadata.name)
+</span></span><span class="line"><span class="cl">  nginx:
+</span></span><span class="line"><span class="cl">    Container ID:   containerd://c2f3684fd8922e4fac7d5707ab4eb5f49b1f76a48893852c9a812cd6dbaa2f55
+</span></span><span class="line"><span class="cl">    Image:          nginx-gateway-fabric/nginx
+</span></span><span class="line"><span class="cl">    Image ID:       docker.io/library/import-2024-06-13@sha256:c9a02cb5665c6218373f8f65fc2c730f018d0ca652ae827cc913a7c6e9db6f45
+</span></span><span class="line"><span class="cl">    Ports:          80/TCP, 443/TCP
+</span></span><span class="line"><span class="cl">    Host Ports:     0/TCP, 0/TCP
+</span></span><span class="line"><span class="cl">    State:          Running
+</span></span><span class="line"><span class="cl">      Started:      Thu, 13 Jun 2024 11:47:46 -0600
+</span></span><span class="line"><span class="cl">    Ready:          True
+</span></span><span class="line"><span class="cl">    Restart Count:  0
+</span></span><span class="line"><span class="cl">    Environment:    &lt;none&gt;
+</span></span><span class="line"><span class="cl">Events:
+</span></span><span class="line"><span class="cl">  Type    Reason     Age   From               Message
+</span></span><span class="line"><span class="cl">  ----    ------     ----  ----               -------
+</span></span><span class="line"><span class="cl">  Normal  Scheduled  40s   default-scheduler  Successfully assigned nginx-gateway/ngf-nginx-gateway-fabric-66dd665756-zh7d7 to kind-control-plane
+</span></span><span class="line"><span class="cl">  Normal  Pulled     40s   kubelet            Container image &#34;nginx-gateway-fabric&#34; already present on machine
+</span></span><span class="line"><span class="cl">  Normal  Created    40s   kubelet            Created container nginx-gateway
+</span></span><span class="line"><span class="cl">  Normal  Started    39s   kubelet            Started container nginx-gateway
+</span></span><span class="line"><span class="cl">  Normal  Pulled     39s   kubelet            Container image &#34;nginx-gateway-fabric/nginx&#34; already present on machine
+</span></span><span class="line"><span class="cl">  Normal  Created    39s   kubelet            Created container nginx
+</span></span><span class="line"><span class="cl">  Normal  Started    39s   kubelet            Started container nginx</span></span></code></pre></div>
+        </div>
+    </div>
+</div><div id="code-block-v1" data-mf="false">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Containers:
+</span></span><span class="line"><span class="cl">  nginx-gateway:
+</span></span><span class="line"><span class="cl">    Container ID:  containerd://06c97a9de938b35049b7c63e251418395aef65dd1ff996119362212708b79cab
+</span></span><span class="line"><span class="cl">    Image:         nginx-gateway-fabric
+</span></span><span class="line"><span class="cl">    Image ID:      docker.io/library/import-2024-06-13@sha256:1460d63bd8a352a6e455884d7ebf51ce9c92c512cb43b13e44a1c3e3e6a08918
+</span></span><span class="line"><span class="cl">    Ports:         9113/TCP, 8081/TCP
+</span></span><span class="line"><span class="cl">    Host Ports:    0/TCP, 0/TCP
+</span></span><span class="line"><span class="cl">    State:          Running
+</span></span><span class="line"><span class="cl">      Started:      Thu, 13 Jun 2024 11:47:46 -0600
+</span></span><span class="line"><span class="cl">    Ready:          True
+</span></span><span class="line"><span class="cl">    Restart Count:  0
+</span></span><span class="line"><span class="cl">    Readiness:      http-get http://:health/readyz delay=3s timeout=1s period=1s #success=1 #failure=3
+</span></span><span class="line"><span class="cl">    Environment:
+</span></span><span class="line"><span class="cl">      POD_IP:          (v1:status.podIP)
+</span></span><span class="line"><span class="cl">      POD_NAMESPACE:  nginx-gateway (v1:metadata.namespace)
+</span></span><span class="line"><span class="cl">      POD_NAME:       ngf-nginx-gateway-fabric-66dd665756-zh7d7 (v1:metadata.name)
+</span></span><span class="line"><span class="cl">  nginx:
+</span></span><span class="line"><span class="cl">    Container ID:   containerd://c2f3684fd8922e4fac7d5707ab4eb5f49b1f76a48893852c9a812cd6dbaa2f55
+</span></span><span class="line"><span class="cl">    Image:          nginx-gateway-fabric/nginx
+</span></span><span class="line"><span class="cl">    Image ID:       docker.io/library/import-2024-06-13@sha256:c9a02cb5665c6218373f8f65fc2c730f018d0ca652ae827cc913a7c6e9db6f45
+</span></span><span class="line"><span class="cl">    Ports:          80/TCP, 443/TCP
+</span></span><span class="line"><span class="cl">    Host Ports:     0/TCP, 0/TCP
+</span></span><span class="line"><span class="cl">    State:          Running
+</span></span><span class="line"><span class="cl">      Started:      Thu, 13 Jun 2024 11:47:46 -0600
+</span></span><span class="line"><span class="cl">    Ready:          True
+</span></span><span class="line"><span class="cl">    Restart Count:  0
+</span></span><span class="line"><span class="cl">    Environment:    &lt;none&gt;
+</span></span><span class="line"><span class="cl">Events:
+</span></span><span class="line"><span class="cl">  Type    Reason     Age   From               Message
+</span></span><span class="line"><span class="cl">  ----    ------     ----  ----               -------
+</span></span><span class="line"><span class="cl">  Normal  Scheduled  40s   default-scheduler  Successfully assigned nginx-gateway/ngf-nginx-gateway-fabric-66dd665756-zh7d7 to kind-control-plane
+</span></span><span class="line"><span class="cl">  Normal  Pulled     40s   kubelet            Container image &#34;nginx-gateway-fabric&#34; already present on machine
+</span></span><span class="line"><span class="cl">  Normal  Created    40s   kubelet            Created container nginx-gateway
+</span></span><span class="line"><span class="cl">  Normal  Started    39s   kubelet            Started container nginx-gateway
+</span></span><span class="line"><span class="cl">  Normal  Pulled     39s   kubelet            Container image &#34;nginx-gateway-fabric/nginx&#34; already present on machine
+</span></span><span class="line"><span class="cl">  Normal  Created    39s   kubelet            Created container nginx
+</span></span><span class="line"><span class="cl">  Normal  Started    39s   kubelet            Started container nginx</span></span></code></pre></div>
+</div><hr>
+<h5 
+id="insufficient-privileges-errors">Insufficient Privileges errors  <a class="headerlink float-right" href="#insufficient-privileges-errors" title="Insufficient Privileges errors"><i class="fas fa-link fa-xs"></i></a>
+</h5><p>Depending on your environment&rsquo;s configuration, the control plane may not have the proper permissions to reload NGINX. The NGINX configuration will not be applied and you will see the following error in the <em>nginx-gateway</em> logs:</p>
+<p><code>failed to reload NGINX: failed to send the HUP signal to NGINX main: operation not permitted</code></p>
+<p>To <strong>resolve</strong> this issue you will need to set <code>allowPrivilegeEscalation</code> to <code>true</code>.</p>
+<ul>
+<li>If using Helm, you can set the <code>nginxGateway.securityContext.allowPrivilegeEscalation</code> value.</li>
+<li>If using the manifests directly, you can update this field under the <code>nginx-gateway</code> container&rsquo;s <code>securityContext</code>.</li>
+</ul>
+<hr>
+<h5 
+id="nginx-plus-failure-to-start-or-traffic-interruptions">NGINX Plus failure to start or traffic interruptions  <a class="headerlink float-right" href="#nginx-plus-failure-to-start-or-traffic-interruptions" title="NGINX Plus failure to start or traffic interruptions"><i class="fas fa-link fa-xs"></i></a>
+</h5><p>Beginning with NGINX Gateway Fabric 1.5.0, NGINX Plus requires a valid JSON Web Token (JWT) to run. If this is not set up properly, or your JWT token has expired, you may see errors in the NGINX logs that look like the following:</p>
+
+
+
+<div class="code-block" data-mf="true" style="display: none;">
+    <div class="code-container chroma">
+        <button onclick="copyToClipBoard(this, &#34;id-18440f1f7e452e88&#34;)" class="code-copy-button" type="button">Copy</button>
+        <div class="highlight-v2 single-line" id="id-18440f1f7e452e88">
+            <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">nginx: [error] invalid license token</span></span></code></pre></div>
+        </div>
+    </div>
+</div><div id="code-block-v1" data-mf="false">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">nginx: [error] invalid license token</span></span></code></pre></div>
+</div>
+
+
+<div class="code-block" data-mf="true" style="display: none;">
+    <div class="code-container chroma">
+        <button onclick="copyToClipBoard(this, &#34;id-18440f1f7e461cd0&#34;)" class="code-copy-button" type="button">Copy</button>
+        <div class="highlight-v2 single-line" id="id-18440f1f7e461cd0">
+            <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">nginx: [emerg] License file is required. Download JWT license from MyF5 and configure its location...</span></span></code></pre></div>
+        </div>
+    </div>
+</div><div id="code-block-v1" data-mf="false">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">nginx: [emerg] License file is required. Download JWT license from MyF5 and configure its location...</span></span></code></pre></div>
+</div>
+
+
+<div class="code-block" data-mf="true" style="display: none;">
+    <div class="code-container chroma">
+        <button onclick="copyToClipBoard(this, &#34;id-18440f1f7e470730&#34;)" class="code-copy-button" type="button">Copy</button>
+        <div class="highlight-v2 single-line" id="id-18440f1f7e470730">
+            <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">nginx: [emerg] license expired</span></span></code></pre></div>
+        </div>
+    </div>
+</div><div id="code-block-v1" data-mf="false">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">nginx: [emerg] license expired</span></span></code></pre></div>
+</div><p>These errors could prevent NGINX Plus from starting or prevent traffic from flowing. To fix these issues, see the <a href="http://localhost:1313/nginx-gateway-fabric/installation/nginx-plus-jwt/">NGINX Plus JWT</a> guide.</p>
+<hr>
+<h5 
+id="413-request-entity-too-large">413 Request Entity Too Large  <a class="headerlink float-right" href="#413-request-entity-too-large" title="413 Request Entity Too Large"><i class="fas fa-link fa-xs"></i></a>
+</h5><p>If you receive the following error:</p>
+
+
+
+<div class="code-block" data-mf="true" style="display: none;"><span class="code-type chroma">text</span><div class="code-container chroma">
+        <button onclick="copyToClipBoard(this, &#34;id-18440f1f7e486aa8&#34;)" class="code-copy-button multi-line" type="button">Copy</button>
+        <div class="highlight-v2" id="id-18440f1f7e486aa8">
+            <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">&lt;html&gt;
+</span></span><span class="line"><span class="cl">&lt;head&gt;&lt;title&gt;413 Request Entity Too Large&lt;/title&gt;&lt;/head&gt;
+</span></span><span class="line"><span class="cl">&lt;body&gt;
+</span></span><span class="line"><span class="cl">&lt;center&gt;&lt;h1&gt;413 Request Entity Too Large&lt;/h1&gt;&lt;/center&gt;
+</span></span><span class="line"><span class="cl">&lt;hr&gt;&lt;center&gt;nginx/1.25.5&lt;/center&gt;
+</span></span><span class="line"><span class="cl">&lt;/body&gt;
+</span></span><span class="line"><span class="cl">&lt;/html&gt;</span></span></code></pre></div>
+        </div>
+    </div>
+</div><div id="code-block-v1" data-mf="false">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">&lt;html&gt;
+</span></span><span class="line"><span class="cl">&lt;head&gt;&lt;title&gt;413 Request Entity Too Large&lt;/title&gt;&lt;/head&gt;
+</span></span><span class="line"><span class="cl">&lt;body&gt;
+</span></span><span class="line"><span class="cl">&lt;center&gt;&lt;h1&gt;413 Request Entity Too Large&lt;/h1&gt;&lt;/center&gt;
+</span></span><span class="line"><span class="cl">&lt;hr&gt;&lt;center&gt;nginx/1.25.5&lt;/center&gt;
+</span></span><span class="line"><span class="cl">&lt;/body&gt;
+</span></span><span class="line"><span class="cl">&lt;/html&gt;</span></span></code></pre></div>
+</div><p>Or view the following error message in the NGINX logs:</p>
+
+
+
+<div class="code-block" data-mf="true" style="display: none;">
+    <div class="code-container chroma">
+        <button onclick="copyToClipBoard(this, &#34;id-18440f1f7e4a27f8&#34;)" class="code-copy-button" type="button">Copy</button>
+        <div class="highlight-v2 single-line" id="id-18440f1f7e4a27f8">
+            <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">2024/05/30 21:48:22 [error] 138#138: *43 client intended to send too large body: 112 bytes, client: 127.0.0.1, server: cafe.example.com, request: &#34;POST /coffee HTTP/1.1&#34;, host: &#34;cafe.example.com:8080&#34;</span></span></code></pre></div>
+        </div>
+    </div>
+</div><div id="code-block-v1" data-mf="false">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">2024/05/30 21:48:22 [error] 138#138: *43 client intended to send too large body: 112 bytes, client: 127.0.0.1, server: cafe.example.com, request: &#34;POST /coffee HTTP/1.1&#34;, host: &#34;cafe.example.com:8080&#34;</span></span></code></pre></div>
+</div><p>The request body exceeds the <a href="https://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size" target="_blank" rel="noopener">client_max_body_size</a>.
+To <strong>resolve</strong> this, you can configure the <code>client_max_body_size</code> using the <code>ClientSettingsPolicy</code> API. Read the <a href="http://localhost:1313/nginx-gateway-fabric/how-to/traffic-management/client-settings/">Client Settings Policy</a> documentation for more information.</p>
+<hr>
+<h5 
+id="ip-family-mismatch-errors">IP Family Mismatch Errors  <a class="headerlink float-right" href="#ip-family-mismatch-errors" title="IP Family Mismatch Errors"><i class="fas fa-link fa-xs"></i></a>
+</h5><p>If you <code>describe</code> your HTTPRoute and see the following error:</p>
+
+
+
+<div class="code-block" data-mf="true" style="display: none;"><span class="code-type chroma">text</span><div class="code-container chroma">
+        <button onclick="copyToClipBoard(this, &#34;id-18440f1f7e4d21b0&#34;)" class="code-copy-button multi-line" type="button">Copy</button>
+        <div class="highlight-v2" id="id-18440f1f7e4d21b0">
+            <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">    Conditions:
+</span></span><span class="line"><span class="cl">      Last Transition Time:  2024-07-14T23:36:37Z
+</span></span><span class="line"><span class="cl">      Message:               The route is accepted
+</span></span><span class="line"><span class="cl">      Observed Generation:   1
+</span></span><span class="line"><span class="cl">      Reason:                Accepted
+</span></span><span class="line"><span class="cl">      Status:                True
+</span></span><span class="line"><span class="cl">      Type:                  Accepted
+</span></span><span class="line"><span class="cl">      Last Transition Time:  2024-07-14T23:36:37Z
+</span></span><span class="line"><span class="cl">      Message:               Service configured with IPv4 family but NginxProxy is configured with IPv6
+</span></span><span class="line"><span class="cl">      Observed Generation:   1
+</span></span><span class="line"><span class="cl">      Reason:                InvalidServiceIPFamily
+</span></span><span class="line"><span class="cl">      Status:                False
+</span></span><span class="line"><span class="cl">      Type:                  ResolvedRefs
+</span></span><span class="line"><span class="cl">    Controller Name:         gateway.nginx.org/nginx-gateway-controller</span></span></code></pre></div>
+        </div>
+    </div>
+</div><div id="code-block-v1" data-mf="false">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">    Conditions:
+</span></span><span class="line"><span class="cl">      Last Transition Time:  2024-07-14T23:36:37Z
+</span></span><span class="line"><span class="cl">      Message:               The route is accepted
+</span></span><span class="line"><span class="cl">      Observed Generation:   1
+</span></span><span class="line"><span class="cl">      Reason:                Accepted
+</span></span><span class="line"><span class="cl">      Status:                True
+</span></span><span class="line"><span class="cl">      Type:                  Accepted
+</span></span><span class="line"><span class="cl">      Last Transition Time:  2024-07-14T23:36:37Z
+</span></span><span class="line"><span class="cl">      Message:               Service configured with IPv4 family but NginxProxy is configured with IPv6
+</span></span><span class="line"><span class="cl">      Observed Generation:   1
+</span></span><span class="line"><span class="cl">      Reason:                InvalidServiceIPFamily
+</span></span><span class="line"><span class="cl">      Status:                False
+</span></span><span class="line"><span class="cl">      Type:                  ResolvedRefs
+</span></span><span class="line"><span class="cl">    Controller Name:         gateway.nginx.org/nginx-gateway-controller</span></span></code></pre></div>
+</div><p>The Service associated with your HTTPRoute is configured with a IP Family different than the one specified in the NginxProxy configuration.
+To <strong>resolve</strong> this, you can do one of the following:</p>
+<ul>
+<li>
+<p>Update the NginxProxy configuration with the proper <a href="http://localhost:1313/nginx-gateway-fabric/reference/api/"><code>ipFamily</code></a> field. You can edit the NginxProxy configuration using <code>kubectl edit</code>. For example:</p>
+
+
+
+<div class="code-block" data-mf="true" style="display: none;">
+    <div class="code-container chroma">
+        <button onclick="copyToClipBoard(this, &#34;id-18440f1f7e515000&#34;)" class="code-copy-button" type="button">Copy</button>
+        <div class="highlight-v2 single-line" id="id-18440f1f7e515000">
+            <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">kubectl edit -n nginx-gateway nginxproxies.gateway.nginx.org ngf-proxy-config</span></span></code></pre></div>
+        </div>
+    </div>
+</div><div id="code-block-v1" data-mf="false">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">kubectl edit -n nginx-gateway nginxproxies.gateway.nginx.org ngf-proxy-config</span></span></code></pre></div>
+</div></li>
+<li>
+<p>When installing NGINX Gateway Fabric, change the IPFamily by modifying the field <code>nginx.config.ipFamily</code> in the <code>values.yaml</code> or add the <code>--set nginx.config.ipFamily=</code> flag to the <code>helm install</code> command. The supported IPFamilies are <code>ipv4</code>, <code>ipv6</code> and <code>dual</code> (default).</p>
+</li>
+<li>
+<p>Adjust the IPFamily of your Service to match that of the NginxProxy configuration.</p>
+</li>
+</ul>
+<hr>
+<h5 
+id="policy-cannot-be-applied-to-target">Policy cannot be applied to target  <a class="headerlink float-right" href="#policy-cannot-be-applied-to-target" title="Policy cannot be applied to target"><i class="fas fa-link fa-xs"></i></a>
+</h5><p>If you <code>describe</code> your Policy and see the following error:</p>
+
+
+
+<div class="code-block" data-mf="true" style="display: none;"><span class="code-type chroma">text</span><div class="code-container chroma">
+        <button onclick="copyToClipBoard(this, &#34;id-18440f1f7e550d08&#34;)" class="code-copy-button multi-line" type="button">Copy</button>
+        <div class="highlight-v2" id="id-18440f1f7e550d08">
+            <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">    Conditions:
+</span></span><span class="line"><span class="cl">      Last Transition Time:  2024-08-20T14:48:53Z
+</span></span><span class="line"><span class="cl">      Message:               Policy cannot be applied to target &#34;default/route1&#34; since another Route &#34;default/route2&#34; shares a hostname:port/path combination with this target
+</span></span><span class="line"><span class="cl">      Observed Generation:   3
+</span></span><span class="line"><span class="cl">      Reason:                TargetConflict
+</span></span><span class="line"><span class="cl">      Status:                False
+</span></span><span class="line"><span class="cl">      Type:                  Accepted</span></span></code></pre></div>
+        </div>
+    </div>
+</div><div id="code-block-v1" data-mf="false">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">    Conditions:
+</span></span><span class="line"><span class="cl">      Last Transition Time:  2024-08-20T14:48:53Z
+</span></span><span class="line"><span class="cl">      Message:               Policy cannot be applied to target &#34;default/route1&#34; since another Route &#34;default/route2&#34; shares a hostname:port/path combination with this target
+</span></span><span class="line"><span class="cl">      Observed Generation:   3
+</span></span><span class="line"><span class="cl">      Reason:                TargetConflict
+</span></span><span class="line"><span class="cl">      Status:                False
+</span></span><span class="line"><span class="cl">      Type:                  Accepted</span></span></code></pre></div>
+</div><p>This means you are attempting to attach a Policy to a Route that has an overlapping hostname:port/path combination with another Route. To work around this, you can do one of the following:</p>
+<ul>
+<li>Combine the Route rules for the overlapping path into a single Route.</li>
+<li>If the Policy allows it, specify both Routes in the <code>targetRefs</code> list.</li>
+</ul>
+<hr>
+<h5 
+id="broken-header-error">Broken Header error  <a class="headerlink float-right" href="#broken-header-error" title="Broken Header error"><i class="fas fa-link fa-xs"></i></a>
+</h5><p>If you check your <em>nginx</em> container logs and see the following error:</p>
+
+
+
+<div class="code-block" data-mf="true" style="display: none;">
+    <div class="code-container chroma">
+        <button onclick="copyToClipBoard(this, &#34;id-18440f1f7e5850f8&#34;)" class="code-copy-button" type="button">Copy</button>
+        <div class="highlight-v2 single-line" id="id-18440f1f7e5850f8">
+            <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">  2024/07/25 00:50:45 [error] 211#211: *22 broken header: &#34;GET /coffee HTTP/1.1&#34; while reading PROXY protocol, client: 127.0.0.1, server: 0.0.0.0:80</span></span></code></pre></div>
+        </div>
+    </div>
+</div><div id="code-block-v1" data-mf="false">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">  2024/07/25 00:50:45 [error] 211#211: *22 broken header: &#34;GET /coffee HTTP/1.1&#34; while reading PROXY protocol, client: 127.0.0.1, server: 0.0.0.0:80</span></span></code></pre></div>
+</div><p>It indicates that <code>proxy_protocol</code> is enabled for the gateway listeners, but the request sent to the application endpoint does not contain proxy information. To <strong>resolve</strong> this, you can do one of the following:</p>
+<ul>
+<li>
+<p>Unassign the field <a href="http://localhost:1313/nginx-gateway-fabric/reference/api/"><code>rewriteClientIP.mode</code></a> in the NginxProxy configuration.</p>
+</li>
+<li>
+<p>Send valid proxy information with requests being handled by your application.</p>
+</li>
+</ul>
+<hr>
+<h3 
+id="see-also">See also  <a class="headerlink float-right" href="#see-also" title="See also"><i class="fas fa-link fa-xs"></i></a>
+</h3><p>You can view the <a href="https://kubernetes.io/docs/tasks/debug/debug-application/" target="_blank" rel="noopener">Kubernetes Troubleshooting Guide</a> for more debugging guidance.</p>
+
+        
+        
+
+        <hr>
+  
+        
+        <div class="last-modified">
+          
+<div>
+    <a href="https://github.com/nginx/documentation//tree/main/content/ngf/how-to/monitoring/troubleshooting.md" class="" target="_blank" rel="noopener"><i class="fa-solid fa-file-lines fa-fw"></i> View source</a>
+  </div>
+  <div>
+    <a href="https://github.com/nginx/documentation//edit/main/content/ngf/how-to/monitoring/troubleshooting.md" class="" target="_blank" rel="noopener"><i class="fa-solid fa-pen-to-square fa-fw"></i> Edit this page</a>
+  </div>
+  <div>
+    <a href="https://github.com/nginx/documentation//issues/new?title=Troubleshooting&amp;template=2-bug_report.md" class="" target="_blank" rel="noopener"><i class="fa-solid fa-list-check fa-fw"></i> Create a new issue</a>
+  </div>
+
+
+
+        </div>
+        
+
+        
+         
+<script type='text/javascript'> 
+    (function(){var g=function(e,h,f,g){ 
+        this.get=function(a){
+            for(var a=a+"=",c=document.cookie.split(";"),b=0,e=c.length;b<e;b++){
+                for(var d=c[b];" "==d.charAt(0);)
+                    d=d.substring(1,d.length);
+                    if(0==d.indexOf(a))
+                        return d.substring(a.length,d.length)
+            }
+            return null
+        }; 
+        
+        this.set=function(a,c){
+            var b="",b=new Date;
+            b.setTime(b.getTime()+6048E5);
+            b="; expires="+b.toGMTString();
+            document.cookie=a+"="+c+b+"; path=/; "
+        }; 
+        
+        this.check=function(){
+            var a=this.get(f);
+            if(a)
+                a=a.split(":");
+            else if(100!=e)
+                "v"==h&&(e=Math.random()>=e/100?0:100),
+                a=[h,e,0],
+                this.set(f,a.join(":"));
+            else 
+                return!0;
+            var c=a[1];
+            if(100==c)
+                return!0;
+            switch(a[0]){
+                case "v":
+                    return!1;
+                case "r":
+                    return c=a[2]%Math.floor(100/c),a[2]++,this.set(f,a.join(":")),!c
+            }
+            return!0
+        }; 
+
+        this.go=function(){
+            if(this.check()){
+                var a=document.createElement("script");
+                a.type="text/javascript";
+                a.src=g;
+                document.body&&document.body.appendChild(a)
+            }
+        };
+
+        this.start=function(){
+            var t=this;
+            "complete"!==document.readyState?window.addEventListener ?
+                window.addEventListener("load",function(){t.go()},!1) : 
+                window.attachEvent&&window.attachEvent("onload",function(){t.go()}):t.go()};
+    }; 
+
+    try{
+        const project_id = window.location.hostname.includes("staging") ? "QSI_S_ZN_2YG73ads2zp5bN0" : "QSI_S_ZN_2QSTn2r41YlXrYk";
+        const endpoint = window.location.hostname.includes("staging") ? "https://zn2yg73ads2zp5bn0-f5.siteintercept.qualtrics.com/SIE/?Q_ZID=ZN_2YG73ads2zp5bN0" : "https://zn2qstn2r41ylxryk-f5.siteintercept.qualtrics.com/SIE/?Q_ZID=ZN_2QSTn2r41YlXrYk";
+        (new g(100,"r", project_id, endpoint)).start()
+    }
+    catch(i){}})();
+
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelector(".qualtrics-feedback").id = window.location.hostname.includes("staging") ? "ZN_2YG73ads2zp5bN0" : "ZN_2QSTn2r41YlXrYk"
+    });
+</script>
+<hr>
+<div style="height: 60px;"></div>
+<div class="qualtrics-feedback" id='ZN_2QSTn2r41YlXrYk'></div>
+
+
+        
+
+	
+<div class="container flex">
+	<ul class="next-prev-icon">
+
+		
+		
+		<li style="flex:1; text-align: left; white-space: nowrap;"><a href="http://localhost:1313/nginx-gateway-fabric/how-to/monitoring/dashboard/" class="" title="Previous -- NGINX Plus dashboard "><svg width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M23.378 46.5L1.94 25.06C1.80067 24.9209 1.69014 24.7556 1.61472 24.5738C1.53931 24.3919 1.50049 24.1969 1.50049 24C1.50049 23.8031 1.53931 23.6081 1.61472 23.4262C1.69014 23.2444 1.80067 23.0791 1.94 22.94L23.378 1.5" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M45.878 46.5L24.44 25.06C24.3007 24.9209 24.1901 24.7556 24.1147 24.5738C24.0393 24.3919 24.0005 24.1969 24.0005 24C24.0005 23.8031 24.0393 23.6081 24.1147 23.4262C24.1901 23.2444 24.3007 23.0791 24.44 22.94L45.878 1.5" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+</a></li>
+		
+
+		
+		</ul>
+	</div>
+
+        </main>
+        
+          
+            <div id="toc" class="col-md-3 d-none d-xl-block d-print-none nginx-toc align-top">
+            <nav class="bd-links" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <h3 class="bd-toc-link">What's on This Page</h3><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#general-troubleshooting">General troubleshooting</a></li>
+        <li><a href="#common-errors">Common errors</a></li>
+        <li><a href="#see-also">See also</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</nav>
+            </div>
+          
+        
+        
+      </div>
+    </section>
+  </section>
+</div>
+
+
+
+
+      </div>
+  </section>
+
+    <footer id="footer">
+      
+      <footer id="footer">
+  <div class="container-fluid">
+    <div class="row align-items-center">
+      <div class="col-md-6 d-md-flex">
+        <img class="nginx-logo-footer" src="http://localhost:1313/images/icons/NGINX-Part-of-F5-horiz-all-white-525x208@2x.png"/>
+      </div>
+    </div>
+
+    
+    <div class="row d-print-none d-none d-md-flex">
+      <div class="col-md-3 d-none d-md-block">
+        <span class="footer-head">Company</span>
+        <ul class="footer-text">
+          <li>
+            <a
+              href="https://www.f5.com/go/product/welcome-to-nginx"
+              target="_blank"
+              alt="Select to learn about F5 NGINX"
+              >About F5 NGINX</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://www.f5.com/company/events"
+              target="_blank"
+              alt="Select to learn about F5 events"
+              >Events</a
+            >
+          </li>
+        </ul>
+        <br />
+        <span class="footer-head">Resources</span>
+        <ul class="footer-text">
+          <li>
+            <a
+              href="https://www.f5.com/company/blog/nginx"
+              target="_blank"
+              alt="Select to visit the F5 NGINX blog"
+              >Blog</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://www.f5.com/go/faq/nginx-faq"
+              target="_blank"
+              alt="Select to visit the F5 NGINX frequently asked questions page"
+              >FAQ</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://www.f5.com/services"
+              target="_blank"
+              alt="Select to learn about F5 NGINX Support"
+              >Professional Services</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://www.f5.com/learn/training"
+              target="_blank"
+              alt="Select to learn about F5 training offerings"
+              >Training</a
+            >
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-md-3 d-none d-md-block">
+        <span class="footer-head">Products</span>
+        <ul class="footer-text">
+          <li>
+            <a
+              title="F5 NGINX One"
+              aria-label="F5 NGINX One"
+              href="https://www.f5.com/products/nginx/one"
+              >F5 NGINX One</a
+            >
+          </li>
+          <li>
+            <a
+              title="F5 NGINX Plus"
+              aria-label="F5 NGINX Plus"
+              href="https://www.f5.com/products/nginx/nginx-plus"
+              >F5 NGINX Plus</a
+            >
+          </li>
+          <li>
+            <a
+              title="F5 NGINX App Protect"
+              aria-label="F5 NGINX App Protect"
+              href="https://www.f5.com/products/nginx/nginx-app-protect"
+              >F5 NGINX App Protect</a
+            >
+          </li>
+          <li>
+            <a
+              title="F5 NGINX Instance Manager"
+              aria-label="F5 NGINX Instance Manager"
+              href="https://www.f5.com/products/nginx/instance-manager"
+              >F5 NGINX Instance Manager</a
+            >
+          </li>
+          <li>
+            <a
+              title="F5 NGINX Ingress Controller"
+              aria-label="F5 NGINX Ingress Controller"
+              href="https://www.f5.com/products/nginx/nginx-ingress-controller"
+              >F5 NGINX Ingress Controller</a
+            >
+          </li>
+          <li>
+            <a
+              title="F5 NGINX Gateway Fabric"
+              aria-label="F5 NGINX Gateway Fabric"
+              href="https://www.f5.com/products/nginx/nginx-gateway-fabric"
+              >F5 NGINX Gateway Fabric</a
+            >
+          </li>
+          <li>
+            <a
+              title="F5 NGINXaaS for Azure"
+              aria-label="F5 NGINXaaS for Azure"
+              href="https://www.f5.com/products/nginx/f5-nginxaas-for-azure"
+              >F5 NGINXaaS for Azure</a
+            >
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-md-3 d-none d-md-block">
+        <span class="footer-head">NGINX on GitHub</span>
+        <ul class="footer-text">
+          <li>
+            <a
+              title="NGINX Open Source"
+              aria-label="NGINX Open Source"
+              href="https://github.com/nginx/nginx"
+              ><span class="inner">NGINX Open Source</span></a
+            >
+          </li>
+          <li>
+            <a
+              title="NGINX Unit"
+              aria-label="NGINX Unit"
+              href="https://github.com/nginx/unit"
+              ><span class="inner">NGINX Unit</span></a
+            >
+          </li>
+          <li>
+            <a
+              title="NGINX Amplify"
+              aria-label="NGINX Amplify"
+              href="https://github.com/nginxinc/nginx-amplify-agent"
+              ><span class="inner">NGINX Amplify</span></a
+            >
+          </li>
+          <li>
+            <a
+              title="NGINX Agent"
+              aria-label="NGINX Agent"
+              href="https://github.com/nginx/Agent"
+              ><span class="inner">NGINX Agent</span></a
+            >
+          </li>
+          <li>
+            <a
+              title="NGINX Kubernetes Ingress Controller"
+              aria-label="NGINX Kubernetes Ingress Controller"
+              href="https://github.com/nginxinc/kubernetes-ingress"
+              ><span class="inner">NGINX Kubernetes Ingress Controller</span></a
+            >
+          </li>
+          <li>
+            <a
+              title="NGINX Gateway Fabric"
+              aria-label="NGINX Gateway Fabric"
+              href="https://github.com/nginxinc/nginx-gateway-fabric"
+              ><span class="inner">NGINX Gateway Fabric</span></a
+            >
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-md-2 d-none d-md-block">
+        <span class="footer-head">Social</span>
+        <ul class="footer-social">
+          <li>
+            <a
+              href="https://www.facebook.com/nginxinc"
+              title="facebook"
+              aria-label="facebook"
+              target="_blank"
+              rel="noreferrer"
+              ><i class="fa-brands fa-facebook" aria-hidden="true"></i>
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://twitter.com/nginx"
+              title="X"
+              aria-label="x"
+              target="_blank"
+              rel="noreferrer"
+              ><i class="fa-brands fa-x-twitter" aria-hidden="true"></i
+            ></a>
+          </li>
+          <li>
+            <a
+              href="https://www.linkedin.com/company/nginx"
+              title="linkedin"
+              aria-label="linkedin"
+              target="_blank"
+              rel="noreferrer"
+              ><i class="fa-brands fa-linkedin" aria-hidden="true"></i>
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://www.youtube.com/user/NginxInc"
+              title="youtube"
+              aria-label="youtube"
+              target="_blank"
+              rel="noreferrer"
+              alt="NGINX Youtube Channel"
+              ><i class="fa-brands fa-square-youtube" aria-hidden="true"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="site-info footer-text">
+      <div class="text-center">
+        <p>
+          <a href="https://www.f5.com/"
+            ><img class="f5-logo-footer" src="http://localhost:1313/images/icons/Logo_F5.svg" alt="F5 logo"></a
+          >
+          ©2025 F5, Inc. All rights reserved.
+        </p>
+        <p>
+          <a
+            href="https://www.f5.com/company/policies/trademarks"
+            rel="noopener"
+            target="_blank"
+            >Trademarks</a
+          >
+          <a
+            href="https://www.f5.com/company/policies"
+            rel="noopener"
+            target="_blank"
+            >Policies</a
+          >
+          <a href="https://docs.nginx.com/ossc">Open Source Components</a>
+          <a
+            href="https://www.f5.com/company/policies/privacy-notice"
+            rel="noopener"
+            target="_blank"
+            >Privacy</a
+          >
+          <a
+            href="https://www.f5.com/company/policies/F5-California-privacy-summary"
+            rel="noopener"
+            target="_blank"
+            >California Privacy</a
+          >
+          <a
+            href="https://www.f5.com/company/policies/privacy-notice#no-sell"
+            rel="noopener"
+            target="_blank"
+            >Do Not Sell My Personal Information</a
+          >
+          <span id="teconsent-v1"></span>
+        </p>
+      </div>
+    </div>
+    
+  </div>
+  
+</footer>
+
+      
+    </footer>
+
+    <footer data-mf="true" id="footer-v2" style="display:none;">
+      
+      <div class="footer-layout">
+    <div class="footer-f5-trademark">
+        <img class="f5-logo-footer" src="http://localhost:1313/images/icons/Logo_F5.svg" alt="F5 logo">
+        <p>©2025 F5, Inc. All rights reserved. NGINX is a registered trademark of F5, Inc.</p>
+    </div>
+    <div class="footer-useful-links">
+        <a
+            href="https://www.f5.com/company/policies/trademarks"
+            rel="noopener"
+            target="_blank"
+            >Trademarks
+        </a>
+        <a
+            href="https://www.f5.com/company/policies"
+            rel="noopener"
+            target="_blank"
+            >Policies
+        </a>
+        <a
+            href="https://www.f5.com/company/policies/privacy-notice"
+            rel="noopener"
+            target="_blank"
+            >Privacy
+        </a>
+        <a
+            href="https://www.f5.com/company/policies/F5-California-privacy-summary"
+            rel="noopener"
+            target="_blank"
+            >California Privacy
+        </a>
+        <a
+            href="https://www.f5.com/company/policies/privacy-notice#no-sell"
+            rel="noopener"
+            target="_blank"
+            >Do Not Sell My Personal Information
+        </a>
+        <span id="teconsent-v2"></span>
+    </div>
+</div>
+
+      
+    </footer>
+  
+<script src="/js/jquery-3-6-4.min.js" type="text/javascript" integrity=""></script>
+
+
+<script src="/js/kube.min.a3a07cceb64989e2f0bf41653ab4d8346ba4312270eb5cc80d6afad3bf30a0ca9768aaa2559cb582e663332c541edab6a4068ef2e88b739fa425e2e870eb0aff.js" type="text/javascript" integrity="sha512-o6B8zrZJieLwv0FlOrTYNGukMSJw61zIDWr6078woMqXaKqiVZy1guZjMyxUHtq2pAaO8uiLc5&#43;kJeLocOsK/w=="></script>
+
+
+
+<script src="/js/bootstrap.bundle.min.c15ed88f56a52190ea645094409cbce5537eaaf108972f777c840037b8aa0c508f12e70b09e345cf8af7e450a8f6ce96ae974340f8bcd316e58d707c063b6f72.js" type="text/javascript"
+  integrity="sha512-wV7Yj1alIZDqZFCUQJy85VN&#43;qvEIly93fIQAN7iqDFCPEucLCeNFz4r35FCo9s6WrpdDQPi80xbljXB8Bjtvcg=="></script>
+
+
+
+<script src="/js/code-copy.bb21b72280613039f1fabb11acc6a901c07caaee454933031066fbda6b5406fd31077a80ec913ba32261224d138bcbb4a34d27c51efae571c68d59282943b9a4.js" type="text/javascript"></script>
+
+
+
+<script src="/js/code-copy-v2.71bcaee23ab00cb45dc944f321264e21d25bc1ec1ae76f9596286cb408ea5654b4ee016e7914cc2554b237114eeb467d39df18735311f2d28480b3ccd2feb4ad.js" type="text/javascript"></script>
+
+
+
+
+
+<script
+  type="module"
+  src="https://static.cloud.coveo.com/atomic/v3.19.0/atomic.esm.js"
+  integrity="sha512-VA9k6iDWhwxl8bwKUYPD63l93lGX7daV60k3yFxEt9EuEq4iWvsu5COq1mZ8OXKl0KCOFlUSDXS32Cy+YwbufQ=="
+  crossorigin="anonymous">
+</script>
+
+
+<script class="coveo-script" src="https://static.cloud.coveo.com/searchui/v2.10104/0/js/CoveoJsSearch.Lazy.min.js"
+  integrity="sha512-HxdDBIp5snbqtu1TPkBnXLKEvN9IPz3PeZW8zT9KfsflV9Ck822XDroDlpVbfCfXeiu8C0RDVn0fdu7aGy/H1g=="
+  crossorigin="anonymous"></script>
+
+<script src="https://static.cloud.coveo.com/searchui/v2.10104/0/js/templates/templates.js"
+  integrity="sha512-CR0Yk/LIwgh1MsKqjecDp/r6F9ipKc6gA+4+E1pplT3N3r1pk+la/HaqyDiKtjOFwrwIIbIYBFrUJgPql93QHw=="
+  crossorigin="anonymous"></script>
+
+
+
+
+
+
+<script src="/js/coveo.min.4acfd205930e2d31230100f345e0463332eb3e3af1b4aa9a6e3131b0b2bac53566ae4d18b390066fce94c0c75d39b5e121d1291f81e5accc1a82d93da9f11b7f.js" integrity="sha512-Ss/SBZMOLTEjAQDzReBGMzLrPjrxtKqabjExsLK6xTVmrk0Ys5AGb86UwMddObXhIdEpH4HlrMwagtk9qfEbfw=="
+  type="text/javascript"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="/js/sidebar.min.6fed0180a23d01103c68ffb054a183fba5e7ba673de8c56d85857af964dcc0c11623ee09f6185207a373127cb2547ff9247ae3516ed47c67e1b58dbe71e9d576.js" type="text/javascript" integrity="sha512-b&#43;0BgKI9ARA8aP&#43;wVKGD&#43;6Xnumc96MVthYV6&#43;WTcwMEWI&#43;4J9hhSB6NzEnyyVH/5JHrjUW7UfGfhtY2&#43;cenVdg=="></script>
+  
+
+
+<script src="/js/site-dropdown.min.3bb49b6f7d25bcd4a2b008525bb8538d84237348bf618b40970ff6eca87119d68c326ca7ba04854ad102be36495fe1d70f1cb239916555b67dd17683dc283333.js" type="text/javascript" integrity="sha512-O7Sbb30lvNSisAhSW7hTjYQjc0i/YYtAlw/27KhxGdaMMmynugSFStECvjZJX&#43;HXDxyyOZFlVbZ90XaD3CgzMw=="></script>
+
+
+
+<script src="/js/product-selector.min.b588249327fb12c7602fa08eb618560171f54e7348d6c1bacfdbf541f5e13023493f64f78fb6d4b9014892e5e4f0aaaee95b859bb37aa53bbe8c0e27e65167d1.js" type="text/javascript" integrity="sha512-tYgkkyf7EsdgL6COthhWAXH1TnNI1sG6z9v1QfXhMCNJP2T3j7bUuQFIkuXk8Kqu6VuFm7N6pTu&#43;jA4n5lFn0Q=="></script>
+
+
+
+<script src="/js/sidebar-v2.min.3f906631e696b2c88883bfcfc62371165359130cfd118ceb49893ae0d8760dc38177ee3bb94a61dee45023115de8445f0b9fe48f933618ef7ba7b3180a05adbd.js" type="text/javascript" integrity="sha512-P5BmMeaWssiIg7/PxiNxFlNZEwz9EYzrSYk64Nh2DcOBd&#43;47uUph3uRQIxFd6ERfC5/kj5M2GO97p7MYCgWtvQ=="></script> 
+  <div id="consent_blackbar"></div>
+</body>
+</html>
+
+

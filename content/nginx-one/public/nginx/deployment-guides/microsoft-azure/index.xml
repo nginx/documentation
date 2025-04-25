@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Microsoft Azure on DEV -- docs-nginx-com</title>
+    <link>http://localhost:1313/nginx/deployment-guides/microsoft-azure/</link>
+    <description>Recent content in Microsoft Azure on DEV -- docs-nginx-com</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/nginx/deployment-guides/microsoft-azure/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Active-Active HA for NGINX Plus on Microsoft Azure Using the Azure Standard Load Balancer</title>
+      <link>http://localhost:1313/nginx/deployment-guides/microsoft-azure/high-availability-standard-load-balancer/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx/deployment-guides/microsoft-azure/high-availability-standard-load-balancer/</guid>
+      <description>&lt;p&gt;This guide explains how to use F5 NGINX Plus to complement the native load‑balancing options in the Microsoft Azure cloud. We show how to implement our recommended solution, which combines Azure&amp;rsquo;s Standard Load Balancer for fast and efficient handling of Layer 4 traffic and NGINX Plus for advanced, Layer 7 features such as load balancing, caching, and content‑based routing. The combined Standard Load Balancer and NGINX Plus solution is fast, powerful, reliable, and likely to be relatively low‑cost.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Creating Microsoft Azure Virtual Machines for NGINX Open Source and F5 NGINX Plus</title>
+      <link>http://localhost:1313/nginx/deployment-guides/microsoft-azure/virtual-machines-for-nginx/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx/deployment-guides/microsoft-azure/virtual-machines-for-nginx/</guid>
+      <description>&lt;p&gt;These instructions explain how to create virtual machines (VMs) in the Microsoft Azure environment that are suitable for running NGINX Open Source and NGINX Plus.&lt;/p&gt;&#xA;&lt;p&gt;The names and other settings used in this guide are appropriate for the high‑availability deployment described in &lt;a href=&#34;http://localhost:1313/nginx/deployment-guides/microsoft-azure/high-availability-standard-load-balancer/&#34;&gt;Active-Active HA for NGINX Plus on Microsoft Azure Using the Azure Standard Load Balancer&lt;/a&gt;, but the VMs can be used for any purpose.&lt;/p&gt;&#xA;&lt;p&gt;For NGINX Plus, a faster alternative is to purchase a prebuilt VM in the &lt;a href=&#34;https://azuremarketplace.microsoft.com/en-us/marketplace/apps?search=NGINX%20Plus&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Microsoft Azure Marketplace&lt;/a&gt; (several current operating systems are available). For instructions, see &lt;a href=&#34;http://localhost:1313/nginx/admin-guide/installing-nginx/installing-nginx-plus-microsoft-azure/&#34;&gt;Installing NGINX Plus on Microsoft Azure&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

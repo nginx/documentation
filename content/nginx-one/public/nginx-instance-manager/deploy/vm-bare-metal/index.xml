@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Virtual Machine or Bare Metal on DEV -- docs-nginx-com</title>
+    <link>http://localhost:1313/nginx-instance-manager/deploy/vm-bare-metal/</link>
+    <description>Recent content in Virtual Machine or Bare Metal on DEV -- docs-nginx-com</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/nginx-instance-manager/deploy/vm-bare-metal/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Install on a virtual machine or bare metal using a script</title>
+      <link>http://localhost:1313/nginx-instance-manager/deploy/vm-bare-metal/install/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-instance-manager/deploy/vm-bare-metal/install/</guid>
+      <description>&lt;blockquote class=&#34;tip side-callout&#34;&gt;&#xA;   &lt;div&gt;&#xA;     &#xA;     &#xA;       &#xA;       &lt;i class=&#34;fa-solid fa-sync&#34;&gt;&lt;/i&gt;&#xA;     &#xA;     &#xA;     &lt;strong&gt;Legacy &amp;#39;nms&amp;#39; references&lt;/strong&gt;&lt;br/&gt;&#xA;     &#xA;     Some commands, file paths, and configuration references still use &lt;code&gt;nms&lt;/code&gt; due to the ongoing transition from NGINX Management Suite (NMS) to NGINX Instance Manager (NIM). These will be updated in future releases.&#xA;   &lt;/div&gt;&#xA; &lt;/blockquote&gt;&#xA;&#xA;&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;This guide explains how to install F5 NGINX Instance Manager on a virtual machine or bare metal system using the &lt;code&gt;install-nim-bundle.sh&lt;/code&gt; script.&lt;/p&gt;&#xA;&lt;p&gt;The script simplifies the installation by automating tasks such as verifying system requirements, configuring services, and managing environment-specific options. For more control or an alternative approach, you can refer to the &lt;a href=&#34;http://localhost:1313/nginx-instance-manager/deploy/vm-bare-metal/install-nim-deprecated/&#34;&gt;manual installation guide&lt;/a&gt;, which provides detailed, step-by-step instructions.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Manually install on a virtual machine or bare metal (deprecated)</title>
+      <link>http://localhost:1313/nginx-instance-manager/deploy/vm-bare-metal/install-nim-deprecated/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-instance-manager/deploy/vm-bare-metal/install-nim-deprecated/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;Follow the steps in this guide to install or upgrade NGINX Instance Manager.&lt;/p&gt;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&lt;blockquote class=&#34;caution side-callout&#34;&gt;&#xA;   &lt;div&gt;&#xA;     &#xA;     &#xA;       &#xA;       &lt;i class=&#34;fa fa-exclamation-triangle&#34;&gt;&lt;/i&gt;&#xA;     &#xA;     &#xA;     &lt;strong&gt;Deprecated documentation notice&lt;/strong&gt;&lt;br/&gt;&#xA;     &#xA;     This document outlines manual steps that have been replaced by a simplified script-based process. For most users, we recommend using the updated process documented &lt;a href=&#34;http://localhost:1313/nginx-instance-manager/deploy/vm-bare-metal/install/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;.&#xA;   &lt;/div&gt;&#xA; &lt;/blockquote&gt;&#xA;&lt;h2 &#xA;id=&#34;before-you-begin&#34;&gt;Before You Begin  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#before-you-begin&#34; title=&#34;Before You Begin&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;h3 &#xA;id=&#34;security-considerations&#34;&gt;Security Considerations  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#security-considerations&#34; title=&#34;Security Considerations&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h3&gt;&lt;p&gt;To ensure that your NGINX Instance Manager deployment remains secure, follow the recommendations in this section:&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

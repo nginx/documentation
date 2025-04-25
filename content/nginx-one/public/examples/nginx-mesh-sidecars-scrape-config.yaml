@@ -1,0 +1,19 @@
+- job_name: 'nginx-mesh-sidecars'
+  kubernetes_sd_configs:
+    - role: pod
+  relabel_configs:
+    - source_labels: [__meta_kubernetes_pod_container_name]
+      action: keep
+      regex: nginx-mesh-sidecar
+    - action: labelmap
+      regex: __meta_kubernetes_pod_label_nsm_nginx_com_(.+)
+    - action: labeldrop
+      regex: __meta_kubernetes_pod_label_nsm_nginx_com_(.+)
+    - action: labelmap
+      regex: __meta_kubernetes_pod_label_(.+)
+    - source_labels: [__meta_kubernetes_namespace]
+      action: replace
+      target_label: namespace
+    - source_labels: [__meta_kubernetes_pod_name]
+      action: replace
+      target_label: pod

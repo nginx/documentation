@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Draft new configurations on DEV -- docs-nginx-com</title>
+    <link>http://localhost:1313/nginx-one/staged-configs/</link>
+    <description>Recent content in Draft new configurations on DEV -- docs-nginx-com</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/nginx-one/staged-configs/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Add a Staged Configuration</title>
+      <link>http://localhost:1313/nginx-one/staged-configs/add-staged-config/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-one/staged-configs/add-staged-config/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;This guide explains how to add a Staged Configuration to your NGINX One Console.&lt;/p&gt;&#xA;&lt;p&gt;It takes time to set up NGINX configuration files. Staged Configurations can help. They work like a draft that uses the features of NGINX One Console. The Staged Configuration does not have to be valid.&#xA;You can save your work before you push a configuration to an instance of NGINX.&lt;/p&gt;&#xA;&lt;p&gt;With Staged Configurations, you can use these features of NGINX One Console:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>View and edit a Staged Configuration</title>
+      <link>http://localhost:1313/nginx-one/staged-configs/edit-staged-config/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-one/staged-configs/edit-staged-config/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;This guide explains how to edit an existing Staged Configuration in your NGINX One Console.&lt;/p&gt;&#xA;&lt;p&gt;It takes time to set up NGINX configuration files. Staged Configurations can help. They work like a draft that uses the features of NGINX One Console. The Staged Configuration does not have to be valid.&#xA;You can save your work before you push a configuration to an instance of NGINX.&lt;/p&gt;&#xA;&lt;p&gt;With Staged Configurations, you can use these features of NGINX One Console:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Import and export a Staged Configuration</title>
+      <link>http://localhost:1313/nginx-one/staged-configs/import-export-staged-config/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-one/staged-configs/import-export-staged-config/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;Many administrators do their work on local systems, virtual machines, Docker containers, and more. F5 NGINX One Console&#xA;supports import and export of such configurations.&#xA;This guide explains how to import or export a Staged Configuration to your NGINX One Console.&lt;/p&gt;&#xA;&lt;p&gt;It takes time to set up NGINX configuration files. Staged Configurations can help. They work like a draft that uses the features of NGINX One Console. The Staged Configuration does not have to be valid.&#xA;You can save your work before you push a configuration to an instance of NGINX.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Use the API to manage your Staged Configurations</title>
+      <link>http://localhost:1313/nginx-one/staged-configs/api-staged-config/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-one/staged-configs/api-staged-config/</guid>
+      <description>&lt;p&gt;You can use F5 NGINX One Console API to manage your Staged Configurations. With our API, you can:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;http://localhost:1313/nginx-one/api/api-reference-guide/#operation/createStagedConfig&#34;&gt;Create an NGINX Staged Configuration&lt;/a&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;The details allow you to add existing configuration files.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;http://localhost:1313/nginx-one/api/api-reference-guide/#operation/listStagedConfigs&#34;&gt;Get a list of existing Staged Configurations&lt;/a&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Be sure to record the &lt;code&gt;object_id&lt;/code&gt; of your target Staged Configuration for your analysis report.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;http://localhost:1313/nginx-one/api/api-reference-guide/#operation/getStagedConfigReport&#34;&gt;Get an analysis report for an existing Staged Configuration&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
+    </item>
+  </channel>
+</rss>

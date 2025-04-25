@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Installation on DEV -- docs-nginx-com</title>
+    <link>http://localhost:1313/nginx-gateway-fabric/installation/</link>
+    <description>Recent content in Installation on DEV -- docs-nginx-com</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/nginx-gateway-fabric/installation/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>NGINX Plus and JWT</title>
+      <link>http://localhost:1313/nginx-gateway-fabric/installation/nginx-plus-jwt/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-gateway-fabric/installation/nginx-plus-jwt/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;NGINX Gateway Fabric with NGINX Plus requires a valid JSON Web Token (JWT) to download the container image from the F5 registry. From version 1.5.0, this JWT token is also required to run NGINX Plus.&lt;/p&gt;&#xA;&lt;p&gt;This requirement is part of F5’s broader licensing program and aligns with industry best practices. The JWT will streamline subscription renewals and usage reporting, helping you manage your NGINX Plus subscription more efficiently. The &lt;a href=&#34;#telemetry&#34;&gt;telemetry&lt;/a&gt; data we collect helps us improve our products and services to better meet your needs.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Build NGINX Gateway Fabric</title>
+      <link>http://localhost:1313/nginx-gateway-fabric/installation/building-the-images/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-gateway-fabric/installation/building-the-images/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;While most users will install NGINX Gateway Fabric &lt;a href=&#34;http://localhost:1313/nginx-gateway-fabric/installation/installing-ngf/helm/&#34;&gt;with Helm&lt;/a&gt; or &lt;a href=&#34;http://localhost:1313/nginx-gateway-fabric/installation/installing-ngf/manifests/&#34;&gt;Kubernetes manifests&lt;/a&gt;, manually building the &lt;a href=&#34;http://localhost:1313/nginx-gateway-fabric/overview/gateway-architecture/#the-nginx-gateway-fabric-pod&#34;&gt;NGINX Gateway Fabric and NGINX images&lt;/a&gt; can be helpful for testing and development purposes. Follow the steps in this document to build the NGINX Gateway Fabric and NGINX images.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 &#xA;id=&#34;before-you-begin&#34;&gt;Before you begin  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#before-you-begin&#34; title=&#34;Before you begin&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;Before you can build the NGINX Gateway Fabric and NGINX images, make sure you have the following software&#xA;installed on your machine:&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

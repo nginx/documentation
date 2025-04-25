@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Support on DEV -- docs-nginx-com</title>
+    <link>http://localhost:1313/nginx-controller/support/</link>
+    <description>Recent content in Support on DEV -- docs-nginx-com</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/nginx-controller/support/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Where to Go for Support</title>
+      <link>http://localhost:1313/nginx-controller/support/contact-support/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-controller/support/contact-support/</guid>
+      <description>&lt;h2 &#xA;id=&#34;contact-f5-nginx-support&#34;&gt;Contact F5 NGINX Support  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#contact-f5-nginx-support&#34; title=&#34;Contact F5 NGINX Support&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;For questions and/or assistance with installing, troubleshooting, or using NGINX Controller, contact Support via the &lt;a href=&#34;https://account.f5.com/myf5&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;MyF5 Customer Portal&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;h2 &#xA;id=&#34;askf5-knowledge-base&#34;&gt;AskF5 Knowledge Base  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#askf5-knowledge-base&#34; title=&#34;AskF5 Knowledge Base&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;You can find articles about commonly reported issues and corner cases on &lt;a href=&#34;https://support.f5.com/csp/knowledge-center/software/NGINX?module=NGINX%20Controller&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;AskF5&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;h2 &#xA;id=&#34;nginx-training-and-professional-services&#34;&gt;NGINX Training and Professional Services  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#nginx-training-and-professional-services&#34; title=&#34;NGINX Training and Professional Services&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;ul&gt;&#xA;&lt;li&gt;Get strategic guidance and hands‑on assistance from &lt;a href=&#34;https://www.nginx.com/services/#package_detail_section&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;NGINX Professional Services&lt;/a&gt;.&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
+    </item>
+    <item>
+      <title>Troubleshoot NGINX Controller and the Controller Agent</title>
+      <link>http://localhost:1313/nginx-controller/support/troubleshooting-controller/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-controller/support/troubleshooting-controller/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;If NGINX isn&amp;rsquo;t behaving how you expect, you can take the following steps to troubleshoot issues. If you need to &lt;a href=&#34;http://localhost:1313/nginx-controller/support/contact-support/&#34;&gt;contact F5 NGINX Support&lt;/a&gt;, make sure to &lt;a href=&#34;#create-a-support-package&#34;&gt;create a support package&lt;/a&gt; first.&lt;/p&gt;&#xA;&lt;h2 &#xA;id=&#34;fix-nginx-controller-issues-by-upgrading&#34;&gt;Fix NGINX Controller Issues by Upgrading  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#fix-nginx-controller-issues-by-upgrading&#34; title=&#34;Fix NGINX Controller Issues by Upgrading&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;We recommend you &lt;a href=&#34;http://localhost:1313/nginx-controller/admin-guides/install/install-nginx-controller/#update-nginx-controller&#34;&gt;upgrade NGINX Controller&lt;/a&gt; as new versions become available. Upgrades include new features, feature improvements, or fixes for known issues.&lt;/p&gt;&#xA;&lt;p&gt;To look up your version of NGINX Controller:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Troubleshoot Data Forwarders</title>
+      <link>http://localhost:1313/nginx-controller/support/troubleshooting-forwarders/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-controller/support/troubleshooting-forwarders/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;If your Data Forwarders aren&amp;rsquo;t behaving how you expect them to, you can take the following steps to troubleshoot issues. If you need to &lt;a href=&#34;http://localhost:1313/nginx-controller/support/contact-support/&#34;&gt;contact F5 NGINX Support&lt;/a&gt;, make sure to &lt;a href=&#34;#support/create-a-support-package&#34;&gt;create a support package&lt;/a&gt; first.&lt;/p&gt;&#xA;&lt;h2 &#xA;id=&#34;fix-nginx-controller-issues-by-upgrading&#34;&gt;Fix NGINX Controller Issues by Upgrading  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#fix-nginx-controller-issues-by-upgrading&#34; title=&#34;Fix NGINX Controller Issues by Upgrading&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;We recommend you &lt;a href=&#34;http://localhost:1313/nginx-controller/admin-guides/install/install-nginx-controller/#update-nginx-controller&#34;&gt;upgrade NGINX Controller&lt;/a&gt; as new versions become available. Upgrades include new features, feature improvements, or fixes for known issues.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

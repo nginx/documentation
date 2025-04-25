@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>System configuration on DEV -- docs-nginx-com</title>
+    <link>http://localhost:1313/nginx-instance-manager/system-configuration/</link>
+    <description>Recent content in System configuration on DEV -- docs-nginx-com</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/nginx-instance-manager/system-configuration/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Configure NGINX Instance Manager with nms.conf</title>
+      <link>http://localhost:1313/nginx-instance-manager/system-configuration/configure-with-config/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-instance-manager/system-configuration/configure-with-config/</guid>
+      <description>&lt;blockquote class=&#34;tip side-callout&#34;&gt;&#xA;   &lt;div&gt;&#xA;     &#xA;     &#xA;       &#xA;       &lt;i class=&#34;fa-solid fa-sync&#34;&gt;&lt;/i&gt;&#xA;     &#xA;     &#xA;     &lt;strong&gt;Legacy &amp;#39;nms&amp;#39; references&lt;/strong&gt;&lt;br/&gt;&#xA;     &#xA;     Some commands, file paths, and configuration references still use &lt;code&gt;nms&lt;/code&gt; due to the ongoing transition from NGINX Management Suite (NMS) to NGINX Instance Manager (NIM). These will be updated in future releases.&#xA;   &lt;/div&gt;&#xA; &lt;/blockquote&gt;&#xA;&#xA;&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;This guide explains how to configure F5 NGINX Instance Manager by editing the &lt;strong&gt;/etc/nms/nms.conf&lt;/strong&gt; file.&lt;/p&gt;&#xA;&lt;h2 &#xA;id=&#34;before-you-start&#34;&gt;Before you start  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#before-you-start&#34; title=&#34;Before you start&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;Before you set up NGINX Instance Manager, ensure:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Configure NGINX Instance Manager to use a forward proxy</title>
+      <link>http://localhost:1313/nginx-instance-manager/system-configuration/configure-forward-proxy/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-instance-manager/system-configuration/configure-forward-proxy/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;This guide explains how to configure NGINX Instance Manager to use a third-party forward proxy for outbound internet access. Many organizations require a proxy for security and compliance, restricting direct internet connections. This feature allows NGINX Instance Manager to send outbound traffic, such as license verification, telemetry, and updates, through a configured HTTP or HTTPS proxy.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 &#xA;id=&#34;before-you-begin&#34;&gt;Before you begin  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#before-you-begin&#34; title=&#34;Before you begin&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;Ensure you have:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Configure high availability (HA) for NGINX Instance Manager</title>
+      <link>http://localhost:1313/nginx-instance-manager/system-configuration/configure-high-availability/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-instance-manager/system-configuration/configure-high-availability/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;High availability (HA) keeps a system running even if some components fail. In an &lt;strong&gt;active-passive&lt;/strong&gt; HA setup, two servers work together:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;The active server handles all requests.&lt;/li&gt;&#xA;&lt;li&gt;The passive server stays on standby and takes over if the active server fails.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;This guide shows how to configure HA for NGINX Instance Manager using &lt;code&gt;keepalived&lt;/code&gt;. This setup includes:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;A virtual IP address (VIP)&lt;/li&gt;&#xA;&lt;li&gt;A shared Network File System (NFS)&lt;/li&gt;&#xA;&lt;li&gt;Automated health checks to detect failures and trigger failover&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 &#xA;id=&#34;before-you-begin&#34;&gt;Before you begin  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#before-you-begin&#34; title=&#34;Before you begin&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;Before setting up high availability (HA) for NGINX Instance Manager, make sure you have:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Configure ClickHouse</title>
+      <link>http://localhost:1313/nginx-instance-manager/system-configuration/configure-clickhouse/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-instance-manager/system-configuration/configure-clickhouse/</guid>
+      <description>&lt;blockquote class=&#34;tip side-callout&#34;&gt;&#xA;   &lt;div&gt;&#xA;     &#xA;     &#xA;       &#xA;       &lt;i class=&#34;fa-solid fa-sync&#34;&gt;&lt;/i&gt;&#xA;     &#xA;     &#xA;     &lt;strong&gt;Legacy &amp;#39;nms&amp;#39; references&lt;/strong&gt;&lt;br/&gt;&#xA;     &#xA;     Some commands, file paths, and configuration references still use &lt;code&gt;nms&lt;/code&gt; due to the ongoing transition from NGINX Management Suite (NMS) to NGINX Instance Manager (NIM). These will be updated in future releases.&#xA;   &lt;/div&gt;&#xA; &lt;/blockquote&gt;&#xA;&#xA;&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;Follow this guide to update the &lt;code&gt;/etc/nms/nms.conf&lt;/code&gt; file if you used a custom address, username, or password, or enabled TLS during ClickHouse installation. NGINX Instance Manager requires this information to connect to ClickHouse.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Configure Vault for storing secrets</title>
+      <link>http://localhost:1313/nginx-instance-manager/system-configuration/configure-vault/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-instance-manager/system-configuration/configure-vault/</guid>
+      <description>&lt;blockquote class=&#34;tip side-callout&#34;&gt;&#xA;   &lt;div&gt;&#xA;     &#xA;     &#xA;       &#xA;       &lt;i class=&#34;fa-solid fa-sync&#34;&gt;&lt;/i&gt;&#xA;     &#xA;     &#xA;     &lt;strong&gt;Legacy &amp;#39;nms&amp;#39; references&lt;/strong&gt;&lt;br/&gt;&#xA;     &#xA;     Some commands, file paths, and configuration references still use &lt;code&gt;nms&lt;/code&gt; due to the ongoing transition from NGINX Management Suite (NMS) to NGINX Instance Manager (NIM). These will be updated in future releases.&#xA;   &lt;/div&gt;&#xA; &lt;/blockquote&gt;&#xA;&#xA;&lt;p&gt;HashiCorp&amp;rsquo;s Vault is a popular solution for storing secrets. While F5 NGINX Instance Manager provides encryption-at-rest for secrets stored on disk, you may prefer to store all secrets in one place if you have an existing Vault installation. NGINX Instance Manager provides a driver to connect to existing Vault installations and store secrets.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Configure SELinux</title>
+      <link>http://localhost:1313/nginx-instance-manager/system-configuration/configure-selinux/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-instance-manager/system-configuration/configure-selinux/</guid>
+      <description>&lt;blockquote class=&#34;tip side-callout&#34;&gt;&#xA;   &lt;div&gt;&#xA;     &#xA;     &#xA;       &#xA;       &lt;i class=&#34;fa-solid fa-sync&#34;&gt;&lt;/i&gt;&#xA;     &#xA;     &#xA;     &lt;strong&gt;Legacy &amp;#39;nms&amp;#39; references&lt;/strong&gt;&lt;br/&gt;&#xA;     &#xA;     Some commands, file paths, and configuration references still use &lt;code&gt;nms&lt;/code&gt; due to the ongoing transition from NGINX Management Suite (NMS) to NGINX Instance Manager (NIM). These will be updated in future releases.&#xA;   &lt;/div&gt;&#xA; &lt;/blockquote&gt;&#xA;&#xA;&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;You can use the optional SELinux policy module included in the package to secure F5 NGINX Instance Manager operations with flexible, mandatory access control that follows the principle of least privilege.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Configure telemetry and web analytics</title>
+      <link>http://localhost:1313/nginx-instance-manager/system-configuration/configure-telemetry/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-instance-manager/system-configuration/configure-telemetry/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;F5 NGINX Instance Manager lets you share telemetry and web analytics data with F5. This data provides insights into software usage, helping improve product development and customer support. This document explains the data that’s sent, how to enable or disable telemetry, and how to configure firewall settings.&lt;/p&gt;&#xA;&lt;h2 &#xA;id=&#34;telemetry&#34;&gt;Telemetry  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#telemetry&#34; title=&#34;Telemetry&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;NGINX Instance Manager sends limited telemetry data linked to the subscription ID in your license. The data doesn’t include personal details or specifics about the management or data planes.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Optimize NGINX proxy gateway for large data planes</title>
+      <link>http://localhost:1313/nginx-instance-manager/system-configuration/configure-gateway/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-instance-manager/system-configuration/configure-gateway/</guid>
+      <description>&lt;blockquote class=&#34;tip side-callout&#34;&gt;&#xA;   &lt;div&gt;&#xA;     &#xA;     &#xA;       &#xA;       &lt;i class=&#34;fa-solid fa-sync&#34;&gt;&lt;/i&gt;&#xA;     &#xA;     &#xA;     &lt;strong&gt;Legacy &amp;#39;nms&amp;#39; references&lt;/strong&gt;&lt;br/&gt;&#xA;     &#xA;     Some commands, file paths, and configuration references still use &lt;code&gt;nms&lt;/code&gt; due to the ongoing transition from NGINX Management Suite (NMS) to NGINX Instance Manager (NIM). These will be updated in future releases.&#xA;   &lt;/div&gt;&#xA; &lt;/blockquote&gt;&#xA;&#xA;&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;If the NGINX proxy gateway for F5 NGINX Instance Manager alerts you that there are not enough worker connections, you may need to update the NGINX configuration (&lt;code&gt;/etc/nginx/nginx.conf&lt;/code&gt;) on the NGINX Instance Manager host. These updates include increasing the number of worker connections and file descriptors for worker processes to support larger data planes effectively.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Secure Client Access and Network Traffic</title>
+      <link>http://localhost:1313/nginx-instance-manager/system-configuration/secure-traffic/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-instance-manager/system-configuration/secure-traffic/</guid>
+      <description>&lt;blockquote class=&#34;tip side-callout&#34;&gt;&#xA;   &lt;div&gt;&#xA;     &#xA;     &#xA;       &#xA;       &lt;i class=&#34;fa-solid fa-sync&#34;&gt;&lt;/i&gt;&#xA;     &#xA;     &#xA;     &lt;strong&gt;Legacy &amp;#39;nms&amp;#39; references&lt;/strong&gt;&lt;br/&gt;&#xA;     &#xA;     Some commands, file paths, and configuration references still use &lt;code&gt;nms&lt;/code&gt; due to the ongoing transition from NGINX Management Suite (NMS) to NGINX Instance Manager (NIM). These will be updated in future releases.&#xA;   &lt;/div&gt;&#xA; &lt;/blockquote&gt;&#xA;&#xA;&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;This guide explains how to secure client connections to NGINX Instance Manager and protect traffic between NGINX Instance Manager and NGINX instances.&lt;/p&gt;&#xA;&lt;p&gt;With NGINX Plus R33, telemetry data must be reported to a usage reporting endpoint, such as NGINX Instance Manager. This data validates subscription entitlements and tracks usage metrics. This guide also covers how to use the &lt;a href=&#34;#ssl_verify-and-usage-reporting-in-nginx-plus-r33&#34;&gt;&lt;code&gt;ssl_verify&lt;/code&gt;&lt;/a&gt; directive to secure telemetry reporting through certificate verification.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

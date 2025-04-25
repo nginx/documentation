@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Fundamentals on DEV -- docs-nginx-com</title>
+    <link>http://localhost:1313/nginx-instance-manager/fundamentals/</link>
+    <description>Recent content in Fundamentals on DEV -- docs-nginx-com</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/nginx-instance-manager/fundamentals/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Technical Specifications</title>
+      <link>http://localhost:1313/nginx-instance-manager/fundamentals/tech-specs/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-instance-manager/fundamentals/tech-specs/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;NGINX Instance Manager provides centralized management for NGINX Open Source and NGINX Plus instances across various environments, including bare metal, containers, public clouds (AWS, Azure, Google Cloud), and virtual machines. It supports several Linux distributions, including Amazon Linux, CentOS, Debian, RHEL, and Ubuntu. This guide outlines the technical specifications, minimum requirements, and supported platforms for deploying NGINX Instance Manager, ensuring optimal performance in both small and large environments.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>NGINX Instance Manager dashboard</title>
+      <link>http://localhost:1313/nginx-instance-manager/fundamentals/dashboard-overview/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-instance-manager/fundamentals/dashboard-overview/</guid>
+      <description>&lt;p&gt;The NGINX Instance Manager dashboard gives you a high-level view of the health and performance of your NGINX instances. It provides a central place to identify, diagnose, and resolve issues in your data plane. You can also track how deployments affect the performance of individual instances and identify trends over time.&lt;/p&gt;&#xA;&lt;p&gt;This document walks you through the different panels in the dashboard and shows how to use them to monitor your data plane.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Overview: NGINX Instance Manager REST API</title>
+      <link>http://localhost:1313/nginx-instance-manager/fundamentals/api-overview/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-instance-manager/fundamentals/api-overview/</guid>
+      <description>&lt;blockquote class=&#34;tip side-callout&#34;&gt;&#xA;   &lt;div&gt;&#xA;     &#xA;     &#xA;       &#xA;       &lt;i class=&#34;fa-solid fa-sync&#34;&gt;&lt;/i&gt;&#xA;     &#xA;     &#xA;     &lt;strong&gt;Legacy &amp;#39;nms&amp;#39; references&lt;/strong&gt;&lt;br/&gt;&#xA;     &#xA;     Some commands, file paths, and configuration references still use &lt;code&gt;nms&lt;/code&gt; due to the ongoing transition from NGINX Management Suite (NMS) to NGINX Instance Manager (NIM). These will be updated in future releases.&#xA;   &lt;/div&gt;&#xA; &lt;/blockquote&gt;&#xA;&#xA;&lt;h2 &#xA;id=&#34;introduction&#34;&gt;Introduction  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#introduction&#34; title=&#34;Introduction&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;NGINX Instance Manager provides a &lt;a href=&#34;https://en.wikipedia.org/wiki/Representational_state_transfer&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;REST&lt;/a&gt; API that uses standard authentication methods, HTTP response codes, and verbs. You can use the API to manage both NGINX Instance Manager and the NGINX instances running on your systems.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

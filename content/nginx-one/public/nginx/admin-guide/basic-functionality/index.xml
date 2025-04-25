@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Basic Functionality on DEV -- docs-nginx-com</title>
+    <link>http://localhost:1313/nginx/admin-guide/basic-functionality/</link>
+    <description>Recent content in Basic Functionality on DEV -- docs-nginx-com</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/nginx/admin-guide/basic-functionality/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Control NGINX Processes at Runtime</title>
+      <link>http://localhost:1313/nginx/admin-guide/basic-functionality/runtime-control/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx/admin-guide/basic-functionality/runtime-control/</guid>
+      <description>&lt;p&gt;This section describes the processes that NGINX starts at run time and how to control them.&lt;/p&gt;&#xA;&lt;h2 &#xA;id=&#34;master-and-worker-processes&#34;&gt;Master and Worker Processes  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#master-and-worker-processes&#34; title=&#34;Master and Worker Processes&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;NGINX has one master process and one or more worker processes. If &lt;a href=&#34;http://localhost:1313/nginx/admin-guide/content-cache/content-caching/&#34;&gt;caching&lt;/a&gt; is enabled, the cache loader and cache manager processes also run at startup.&lt;/p&gt;&#xA;&lt;p&gt;The main purpose of the master process is to read and evaluate configuration files, as well as maintain the worker processes.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Create NGINX Plus and NGINX Configuration Files</title>
+      <link>http://localhost:1313/nginx/admin-guide/basic-functionality/managing-configuration-files/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx/admin-guide/basic-functionality/managing-configuration-files/</guid>
+      <description>&lt;p&gt;NGINX and NGINX Plus are similar to other services in using a text‑based configuration file with a precise format. By default the file is named &lt;strong&gt;nginx.conf&lt;/strong&gt; and for NGINX Plus is placed in the &lt;code&gt;**/etc/nginx**&lt;/code&gt; directory.&lt;/p&gt;&#xA;&lt;p&gt;For NGINX Open Source, the location depends on the package system used to install NGINX and the operating system. It is typically one of &lt;code&gt;**/usr/local/nginx/conf**&lt;/code&gt;, &lt;code&gt;**/etc/nginx**&lt;/code&gt;, or &lt;code&gt;**/usr/local/etc/nginx**&lt;/code&gt;.&lt;/p&gt;&#xA;&lt;h2 &#xA;id=&#34;directives&#34;&gt;Directives  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#directives&#34; title=&#34;Directives&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;The configuration file consists of &lt;em&gt;directives&lt;/em&gt; and their parameters. Simple (single‑line) directives end with a semicolon ( &lt;code&gt;;&lt;/code&gt; ). Other directives act as “containers” which group together related directives. Containers are enclosed in curly braces ( &lt;code&gt;{}&lt;/code&gt; ) and are often referred to as &lt;em&gt;blocks&lt;/em&gt;. Here are some examples of simple directives.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

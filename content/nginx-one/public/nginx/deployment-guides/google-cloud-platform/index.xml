@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Google Cloud Platform on DEV -- docs-nginx-com</title>
+    <link>http://localhost:1313/nginx/deployment-guides/google-cloud-platform/</link>
+    <description>Recent content in Google Cloud Platform on DEV -- docs-nginx-com</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/nginx/deployment-guides/google-cloud-platform/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>All-Active HA for NGINX Plus on the Google Cloud Platform</title>
+      <link>http://localhost:1313/nginx/deployment-guides/google-cloud-platform/high-availability-all-active/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx/deployment-guides/google-cloud-platform/high-availability-all-active/</guid>
+      <description>&lt;p&gt;This guide explains how to deploy F5 NGINX Plus in a high-availability configuration on Google Compute Engine (GCE). GCE is the Google Cloud Platform (GCP) service for running workloads on virtual machines. In this setup, multiple NGINX Plus instances work together, in active pairs. They load balance incoming connections across your app environments.&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;Notes:&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;The GCE environment changes constantly. This could include names and arrangements of GUI elements. This guide was accurate when published. But, some GCE GUI elements might have changed over time. Use this guide as a reference and adapt to the current GCE working environment.&lt;/li&gt;&#xA;&lt;li&gt;The configuration described in this guide allows anyone from a public IP address to access the NGINX Plus instances. While this works in common scenarios in a test environment, we do not recommend it in production. Block external HTTP/HTTPS access to &lt;strong&gt;app‑1&lt;/strong&gt; and &lt;strong&gt;app‑2&lt;/strong&gt; instances to external IP address before production deployment. Alternatively, remove the external IP addresses for all application instances, so they&amp;rsquo;re accessible only on the internal GCE network.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;&lt;span id=&#34;design&#34;&gt;&lt;/span&gt;&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

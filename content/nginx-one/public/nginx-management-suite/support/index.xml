@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Support on DEV -- docs-nginx-com</title>
+    <link>http://localhost:1313/nginx-management-suite/support/</link>
+    <description>Recent content in Support on DEV -- docs-nginx-com</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/nginx-management-suite/support/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Create a Support Package</title>
+      <link>http://localhost:1313/nginx-management-suite/support/support-package/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-management-suite/support/support-package/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;The support package script can be used to collect information about your system for troubleshooting and debugging issues.&lt;/p&gt;&#xA;&lt;p&gt;The script collects system and service information and then packages the data into a tar archive, which you can share with &lt;a href=&#34;http://localhost:1313/nginx-management-suite/support/contact-support/&#34;&gt;NGINX Customer Support&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;h2 &#xA;id=&#34;usage&#34;&gt;Usage  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#usage&#34; title=&#34;Usage&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;The F5 NGINX Instance Manager installer copies the &lt;code&gt;support-package.sh&lt;/code&gt; script to the following location: &lt;code&gt;/etc/nms/scripts/support-package.sh&lt;/code&gt;.&lt;/p&gt;&#xA;&lt;p&gt;To create a support package:&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Run the support package script. The script requires root privileges to run.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Create a Support Package from a Helm Installation</title>
+      <link>http://localhost:1313/nginx-management-suite/support/k8s-support-package/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-management-suite/support/k8s-support-package/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;Use the Kubernetes support package script to collect information about your system for troubleshooting and debugging issues.&lt;/p&gt;&#xA;&lt;p&gt;The script collects system and service information and then packages the data into a tar archive, which you can share with &lt;a href=&#34;http://localhost:1313/nginx-management-suite/support/contact-support/&#34;&gt;NGINX Customer Support&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 &#xA;id=&#34;before-you-begin&#34;&gt;Before You Begin  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#before-you-begin&#34; title=&#34;Before You Begin&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;To complete the steps in this guide, you need the following:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;code&gt;bash&lt;/code&gt; 4.0 or higher&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 &#xA;id=&#34;usage&#34;&gt;Usage  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#usage&#34; title=&#34;Usage&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;The F5 NGINX Management Suite Helm chart includes the &lt;code&gt;k8s-support-package.sh&lt;/code&gt; script in the following location:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Where to Go for Support</title>
+      <link>http://localhost:1313/nginx-management-suite/support/contact-support/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-management-suite/support/contact-support/</guid>
+      <description>&lt;h2 &#xA;id=&#34;support-policy&#34;&gt;Support Policy  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#support-policy&#34; title=&#34;Support Policy&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;F5 NGINX Management Suite adheres to the support policy detailed in the following knowledge base article: &lt;a href=&#34;https://my.f5.com/manage/s/article/K000140156&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;K000140156&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;blockquote class=&#34;important call-out&#34;&gt;&#xA;  &lt;div&gt;&lt;strong class=&#34;call-out-type&#34;&gt;Important&lt;/strong&gt;&lt;br/&gt; &lt;p&gt;Support licenses for Instance Manager &lt;strong&gt;do not include&lt;/strong&gt; support for the NGINX instances that are being managed.&lt;/p&gt;&#xA;&lt;p&gt;Community support is available for NGINX Open Source instances at the &lt;a href=&#34;http://mailman.nginx.org/mailman/listinfo&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;NGINX mailing list&lt;/a&gt;.&#xA;If you need support for NGINX Plus or any of the &lt;a href=&#34;https://nginx.org/en/linux_packages.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;prebuilt NGINX Open Source packages&lt;/a&gt;, you will need to &lt;a href=&#34;https://www.nginx.com/purchase-nginx/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;purchase an NGINX license&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

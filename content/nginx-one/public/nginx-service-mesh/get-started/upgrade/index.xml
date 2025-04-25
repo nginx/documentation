@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Upgrade NGINX Service Mesh on DEV -- docs-nginx-com</title>
+    <link>http://localhost:1313/nginx-service-mesh/get-started/upgrade/</link>
+    <description>Recent content in Upgrade NGINX Service Mesh on DEV -- docs-nginx-com</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/nginx-service-mesh/get-started/upgrade/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Upgrade with nginx-meshctl</title>
+      <link>http://localhost:1313/nginx-service-mesh/get-started/upgrade/upgrade/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-service-mesh/get-started/upgrade/upgrade/</guid>
+      <description>&lt;p&gt;You can upgrade to the latest mesh version from the version immediately before it (for example, from v1.6.0 to v1.7.0). F5 NGINX Service Mesh doesn&amp;rsquo;t support skipping versions.&lt;/p&gt;&#xA;&lt;blockquote class=&#34;important call-out&#34;&gt;&#xA;  &lt;div&gt;&lt;strong class=&#34;call-out-type&#34;&gt;Important&lt;/strong&gt;&lt;br/&gt; Check out the &lt;a href=&#34;#version-specific-notes&#34;&gt;Version-specific Notes&lt;/a&gt; section prior to upgrading to see if there are any extra details required for the version you are using.&lt;/div&gt;&#xA;&lt;/blockquote&gt;&#xA;&#xA;&lt;h2 &#xA;id=&#34;in-place-upgrade&#34;&gt;In-Place Upgrade  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#in-place-upgrade&#34; title=&#34;In-Place Upgrade&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;If you wish to change the &lt;a href=&#34;http://localhost:1313/nginx-service-mesh/reference/nginx-meshctl/#deploy&#34;&gt;deployment configuration&lt;/a&gt; (for example, setting a new flag or changing the value of an existing flag), then you will need to follow the &lt;a href=&#34;#manual-upgrade&#34;&gt;Manual Upgrade&lt;/a&gt; steps.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Upgrade with Helm</title>
+      <link>http://localhost:1313/nginx-service-mesh/get-started/upgrade/upgrade-with-helm/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-service-mesh/get-started/upgrade/upgrade-with-helm/</guid>
+      <description>&lt;p&gt;You can upgrade to the latest mesh version from the version immediately before it (for example, from v1.6.0 to v1.7.0). F5 NGINX Service Mesh doesn&amp;rsquo;t support skipping versions.&lt;/p&gt;&#xA;&lt;blockquote class=&#34;important call-out&#34;&gt;&#xA;  &lt;div&gt;&lt;strong class=&#34;call-out-type&#34;&gt;Important&lt;/strong&gt;&lt;br/&gt; Check out the &lt;a href=&#34;#version-specific-notes&#34;&gt;Version-specific Notes&lt;/a&gt; section prior to upgrading to see if there are any extra details required for the version you are using.&lt;/div&gt;&#xA;&lt;/blockquote&gt;&#xA;&#xA;&lt;h2 &#xA;id=&#34;upgrade-via-helm&#34;&gt;Upgrade via Helm  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#upgrade-via-helm&#34; title=&#34;Upgrade via Helm&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;h3 &#xA;id=&#34;1-upgrade-the-crds&#34;&gt;1. Upgrade the CRDs  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#1-upgrade-the-crds&#34; title=&#34;1. Upgrade the CRDs&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h3&gt;&lt;p&gt;Helm does not upgrade the CRDs during a release upgrade. Before you upgrade a release you must download the chart from GitHub and run the following command to upgrade the CRDs:&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

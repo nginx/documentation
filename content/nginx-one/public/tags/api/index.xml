@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Api on DEV -- docs-nginx-com</title>
+    <link>http://localhost:1313/tags/api/</link>
+    <description>Recent content in Api on DEV -- docs-nginx-com</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/tags/api/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Analytics API</title>
+      <link>http://localhost:1313/nginx-controller/api/ctlr-analytics-api/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-controller/api/ctlr-analytics-api/</guid>
+      <description>&lt;api-container&gt;&#xA;  &lt;redoc spec-url=&#34;http://localhost:1313/nginx-controller/api/reference/ctlr-analytics-openapi.json&#34; menu-toggle required-props-first show-extensions=&#34;x-f5-experimental&#34; disable-search hide-loading sort-operations-alphabetically&gt;&lt;/redoc&gt;&#xA;&lt;/api-container&gt;</description>
+    </item>
+    <item>
+      <title>ADC API</title>
+      <link>http://localhost:1313/nginx-controller/api/ctlr-adc-api/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-controller/api/ctlr-adc-api/</guid>
+      <description>&lt;api-container&gt;&#xA;  &lt;redoc spec-url=&#34;http://localhost:1313/nginx-controller/api/reference/ctlr-adc-openapi.json&#34; menu-toggle required-props-first show-extensions=&#34;x-f5-experimental&#34; disable-search hide-loading sort-operations-alphabetically&gt;&lt;/redoc&gt;&#xA;&lt;/api-container&gt;</description>
+    </item>
+    <item>
+      <title>APIM API</title>
+      <link>http://localhost:1313/nginx-controller/api/ctlr-apim-api/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-controller/api/ctlr-apim-api/</guid>
+      <description>&lt;api-container&gt;&#xA;  &lt;redoc spec-url=&#34;http://localhost:1313/nginx-controller/api/reference/ctlr-apim-openapi.json&#34; menu-toggle required-props-first show-extensions=&#34;x-f5-experimental&#34; disable-search hide-loading sort-operations-alphabetically&gt;&lt;/redoc&gt;&#xA;&lt;/api-container&gt;</description>
+    </item>
+    <item>
+      <title>API reference guide</title>
+      <link>http://localhost:1313/nginx-one/api/api-reference-guide/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-one/api/api-reference-guide/</guid>
+      <description>&lt;api-container&gt;&#xA;  &lt;redoc spec-url=&#34;http://localhost:1313/nginx-one/api/one.json&#34; menu-toggle required-props-first show-extensions=&#34;x-f5-experimental&#34; disable-search hide-loading sort-operations-alphabetically&gt;&lt;/redoc&gt;&#xA;&lt;/api-container&gt;</description>
+    </item>
+    <item>
+      <title>Platform API</title>
+      <link>http://localhost:1313/nginx-controller/api/ctlr-platform-api/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-controller/api/ctlr-platform-api/</guid>
+      <description>&lt;api-container&gt;&#xA;  &lt;redoc spec-url=&#34;http://localhost:1313/nginx-controller/api/reference/ctlr-platform-openapi.json&#34; menu-toggle required-props-first show-extensions=&#34;x-f5-experimental&#34; disable-search hide-loading sort-operations-alphabetically&gt;&lt;/redoc&gt;&#xA;&lt;/api-container&gt;</description>
+    </item>
+  </channel>
+</rss>

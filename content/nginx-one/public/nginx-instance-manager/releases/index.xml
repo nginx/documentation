@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Releases on DEV -- docs-nginx-com</title>
+    <link>http://localhost:1313/nginx-instance-manager/releases/</link>
+    <description>Recent content in Releases on DEV -- docs-nginx-com</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/nginx-instance-manager/releases/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Release notes</title>
+      <link>http://localhost:1313/nginx-instance-manager/releases/release-notes/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-instance-manager/releases/release-notes/</guid>
+      <description>&lt;p&gt;The release notes for F5 NGINX Instance Manager highlight the latest features, improvements, and bug fixes in each release. This document helps you stay up to date with the changes and enhancements introduced to improve stability, performance, and usability. For each version, you’ll find details about new features, known issues, and resolved problems, ensuring you get the most out of your NGINX instance management experience.&lt;/p&gt;&#xA;&lt;details open&gt;&#xA;&lt;summary&gt;&lt;i class=&#34;fa-solid fa-info-circle&#34;&gt;&lt;/i&gt; Support for NGINX App Protect WAF&lt;/summary&gt;&#xA;&lt;p&gt;NGINX Instance Manager supports the following versions of &lt;a href=&#34;https://docs.nginx.com/nginx-app-protect/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;NGINX App Protect WAF&lt;/a&gt;:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Known issues</title>
+      <link>http://localhost:1313/nginx-instance-manager/releases/known-issues/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-instance-manager/releases/known-issues/</guid>
+      <description>&lt;p&gt;&lt;style&gt;&#xA;   hr {&#xA;     margin-top: 40px; &#xA;     margin-bottom: 40px;&#xA;     }&#xA;   main h2 {&#xA;        margin-top: 30px;&#xA;        margin-bottom: 10px;&#xA;    }&#xA;    main h3 {&#xA;        margin-top: 25px;&#xA;        margin-bottom: 10px;&#xA;        font-weight: 300;&#xA;        font-size: 1.5em;&#xA;    }&#xA;    main h4 {&#xA;      margin-top: 30px;&#xA;      font-weight: bold; &#xA;    }&#xA;    td hr {&#xA;        margin-top: 10px;&#xA;        margin-bottom: 10px;&#xA;    }&#xA;    summary {&#xA;        margin-bottom: 20px;&#xA;        font-weight: 300;&#xA;        font-size: 15px;&#xA;        color: green;&#xA;    }&#xA;    ol &gt; li {&#xA;        padding-bottom: 0px!important;&#xA;    }&#xA;    ol &gt; li &gt; ul {&#xA;        padding-bottom: 0px!important;&#xA;    }&#xA; &lt;/style&gt;&#xA;This document lists and describes the known issues and possible workarounds in F5 NGINX Instance Manager. We also list the issues resolved in the latest releases.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

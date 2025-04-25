@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Manage App Security on DEV -- docs-nginx-com</title>
+    <link>http://localhost:1313/nginx-controller/app-delivery/security/tutorials/</link>
+    <description>Recent content in Manage App Security on DEV -- docs-nginx-com</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/nginx-controller/app-delivery/security/tutorials/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Manage App Security</title>
+      <link>http://localhost:1313/nginx-controller/app-delivery/security/tutorials/add-app-security-with-waf/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-controller/app-delivery/security/tutorials/add-app-security-with-waf/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;You can use the App Security add-on for F5 NGINX Controller ADC to enable Web Application Firewall (WAF) capabilities to protect your applications. WAF lets you flag or block suspicious requests or attacks. WAF can be added to individual app components.&lt;/p&gt;&#xA;&lt;h2 &#xA;id=&#34;before-you-begin&#34;&gt;Before You Begin  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#before-you-begin&#34; title=&#34;Before You Begin&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;Before proceeding with this guide, complete the following tasks.&#xA;&lt;blockquote class=&#34;note&#34;&gt;&#xA;  &lt;div&gt;&lt;strong&gt;Note:&lt;/strong&gt;&lt;br/&gt; These steps may need to be completed by a user with admin permissions.&lt;/div&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Set Up App Security Monitor Mode</title>
+      <link>http://localhost:1313/nginx-controller/app-delivery/security/tutorials/set-waf-monitor-mode/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-controller/app-delivery/security/tutorials/set-waf-monitor-mode/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;You can use the &lt;a href=&#34;http://localhost:1313/nginx-controller/api/reference/&#34;&gt;F5 NGINX Controller REST API&lt;/a&gt; to enable or disable monitor-only mode for the App Security WAF policy.&lt;/p&gt;&#xA;&lt;h2 &#xA;id=&#34;enable-monitor-only-mode-for-app-security-waf&#34;&gt;Enable Monitor-Only Mode for App Security WAF  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#enable-monitor-only-mode-for-app-security-waf&#34; title=&#34;Enable Monitor-Only Mode for App Security WAF&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;When monitor-only mode is enabled, traffic is allowed to pass without being rejected. However, security events are still generated and metrics are still collected. See &lt;a href=&#34;http://localhost:1313/nginx-controller/app-delivery/security/tutorials/view-app-security-analytics/#overview&#34;&gt;About App Security Analytics&lt;/a&gt; for more information.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Manage WAF Tuning for App Components</title>
+      <link>http://localhost:1313/nginx-controller/app-delivery/security/tutorials/tune-waf-for-app/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-controller/app-delivery/security/tutorials/tune-waf-for-app/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;WAF Tuning helps remove false positives or exceptions from Security Events.&lt;/p&gt;&#xA;&lt;h2 &#xA;id=&#34;disable-attack-signatures&#34;&gt;Disable Attack Signatures  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#disable-attack-signatures&#34; title=&#34;Disable Attack Signatures&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;To help determine which signatures may be causing false positives, go to the Security Analytics page of the app component. Go to the WAF Tuning tab, where F5 NGINX Controller provides this information.&lt;/p&gt;&#xA;&lt;p&gt;To disable signatures, take the steps below.&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Open the NGINX Controller user interface and log in.&lt;/li&gt;&#xA;&lt;li&gt;On the Navigation Bar, select &lt;strong&gt;Services&lt;/strong&gt;.&lt;/li&gt;&#xA;&lt;li&gt;On the Services Menu, select &lt;strong&gt;Apps&lt;/strong&gt;.&lt;/li&gt;&#xA;&lt;li&gt;On the Apps Overview page, select the App name link.&lt;/li&gt;&#xA;&lt;li&gt;Select &lt;strong&gt;Components&lt;/strong&gt; under the All Apps sub-menu.&lt;/li&gt;&#xA;&lt;li&gt;On the Components page, select the Component name link.&lt;/li&gt;&#xA;&lt;li&gt;Select &lt;strong&gt;Edit Component&lt;/strong&gt;.&lt;/li&gt;&#xA;&lt;li&gt;On the Edit App Component page, select &lt;strong&gt;Security&lt;/strong&gt; menu.&lt;/li&gt;&#xA;&lt;li&gt;On the &lt;strong&gt;Disable Signatures&lt;/strong&gt; text box, add the signatures that need to be disabled.&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;The top signatures list consists of the top-50 signatures that triggered security events to block requests during the selected time interval. They are investigated first to ensure false positives are not blocking requests for your app component.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Using RBAC with the App Security Add-On</title>
+      <link>http://localhost:1313/nginx-controller/app-delivery/security/tutorials/using-rbac-with-app-security/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-controller/app-delivery/security/tutorials/using-rbac-with-app-security/</guid>
+      <description>&lt;p&gt;Role Based Access Control (RBAC) allows you to define permissions for Apps Security resources. With RBAC, you can specify which role has the permissions to create, read (and reference), update, and delete a Security Strategy or a Security Policy. You can then assign roles to specific users so that the users inherit the permissions.&lt;/p&gt;&#xA;&lt;p&gt;For more information regarding roles, refer to &lt;a href=&#34;http://localhost:1313/nginx-controller/platform/access-management/manage-roles/&#34;&gt;Manage Roles and Role Groups&lt;/a&gt;&lt;/p&gt;&#xA;&lt;h2 &#xA;id=&#34;permissions-for-app-security&#34;&gt;Permissions for App Security  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#permissions-for-app-security&#34; title=&#34;Permissions for App Security&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;To enable security, the app component needs to reference a security strategy. The security strategy in turn references a security policy. When using RBAC with App Security, you need to configure permissions for the app component, the security strategy, and the security policy.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>View App Security Analytics</title>
+      <link>http://localhost:1313/nginx-controller/app-delivery/security/tutorials/view-app-security-analytics/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-controller/app-delivery/security/tutorials/view-app-security-analytics/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;When App Security flags or blocks a request made to an App Component as a security violation, it generates an App Security event.&#xA;You can use the F5 F5 NGINX Controller web interface or the REST API to view these events or their related statistics (measures). Metrics reflect the number of requests and bytes flagged or blocked. You can use the Security Violation Dimensions to help understand and interpret the analytics data.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

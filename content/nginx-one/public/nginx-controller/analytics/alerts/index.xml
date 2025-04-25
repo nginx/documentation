@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Alerts on DEV -- docs-nginx-com</title>
+    <link>http://localhost:1313/nginx-controller/analytics/alerts/</link>
+    <description>Recent content in Alerts on DEV -- docs-nginx-com</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/nginx-controller/analytics/alerts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>About Alerts</title>
+      <link>http://localhost:1313/nginx-controller/analytics/alerts/about-alerts/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-controller/analytics/alerts/about-alerts/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;The F5 NGINX Controller Analytics module lets you configure alerts and notifications, so you can stay informed about your system and app performance. In this topic, you&amp;rsquo;ll learn about &lt;a href=&#34;#alerts&#34;&gt;alerts&lt;/a&gt;, &lt;a href=&#34;#alert-rules&#34;&gt;alert rules&lt;/a&gt;, and &lt;a href=&#34;#alert-notifications&#34;&gt;alert notifications&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;blockquote class=&#34;tip&#34;&gt;&#xA;  &lt;div&gt;&lt;strong&gt;See Also:&lt;/strong&gt;&lt;br/&gt; Refer to &lt;a href=&#34;http://localhost:1313/nginx-controller/analytics/alerts/manage-alerts/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Manage Alerts&lt;/a&gt; to learn how to set up alerts.&lt;/div&gt;&#xA;&lt;/blockquote&gt;&#xA;&#xA;&lt;h2 &#xA;id=&#34;alerts&#34;&gt;Alerts  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#alerts&#34; title=&#34;Alerts&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;An &lt;em&gt;alert&lt;/em&gt; is generated when the criteria for an alert rule are met.&#xA;All alerts contain the following information:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Manage Alerts</title>
+      <link>http://localhost:1313/nginx-controller/analytics/alerts/manage-alerts/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-controller/analytics/alerts/manage-alerts/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;http://localhost:1313/nginx-controller/analytics/alerts/about-alerts/&#34;&gt;Alerts&lt;/a&gt; are notifications about the F5 NGINX Controller system and your applications&amp;rsquo; performance.&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;http://localhost:1313/nginx-controller/analytics/alerts/about-alerts/#alert-rules&#34;&gt;Alert rules&lt;/a&gt; let you specify what you want to be alerted about. This includes which metrics you want to monitor; the trigger conditions and threshold to meet; the instance(s) to monitor; and the email address(es) to use for notifications.&lt;/p&gt;&#xA;&lt;h2 &#xA;id=&#34;add-an-alert-rule&#34;&gt;Add an Alert Rule  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#add-an-alert-rule&#34; title=&#34;Add an Alert Rule&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;To add an alert rule:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Manage Registered Email Addresses</title>
+      <link>http://localhost:1313/nginx-controller/analytics/alerts/manage-registered-emails/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-controller/analytics/alerts/manage-registered-emails/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;In order to receive email notifications for &lt;a href=&#34;http://localhost:1313/nginx-controller/analytics/alerts/about-alerts/&#34;&gt;Alerts&lt;/a&gt;, you need to provide a valid email address and complete the verification process.&lt;/p&gt;&#xA;&lt;blockquote class=&#34;important call-out&#34;&gt;&#xA;  &lt;div&gt;&lt;strong class=&#34;call-out-type&#34;&gt;Important&lt;/strong&gt;&lt;br/&gt; You will not receive any alert notifications via email until you verify your email address. Any alert notification emails that were triggered by alert rules prior to the email address being verified will not be re-sent.&lt;/div&gt;&#xA;&lt;/blockquote&gt;&#xA;&#xA;&lt;h2 &#xA;id=&#34;list-registered-email-addresses&#34;&gt;List Registered Email Addresses  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#list-registered-email-addresses&#34; title=&#34;List Registered Email Addresses&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;To find the list of registered email addresses:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>ServiceNow Alerts Integration</title>
+      <link>http://localhost:1313/nginx-controller/analytics/alerts/service-now-notifications/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-controller/analytics/alerts/service-now-notifications/</guid>
+      <description>&lt;h2 &#xA;id=&#34;servicenow-alert-integration&#34;&gt;ServiceNow Alert Integration  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#servicenow-alert-integration&#34; title=&#34;ServiceNow Alert Integration&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;blockquote class=&#34;warning call-out&#34;&gt;&#xA;  &lt;div&gt;&lt;strong class=&#34;call-out-type&#34;&gt;Deprecated&lt;/strong&gt;&lt;br/&gt; &lt;strong&gt;The ServiceNow Alert Integration is deprecated in F5 NGINX Controller v3.13.&lt;/strong&gt;&lt;/div&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;The ServiceNow integration sends all notifications from NGINX Controller to the Incidents table in your ServiceNow account. Follow the steps below to set up the integration.&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Install Python3 on your machine.&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;In your ServiceNow instance, go to &lt;strong&gt;System OAuth &amp;gt; Application Registry&lt;/strong&gt; and create a new OAuth API endpoint for external clients.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

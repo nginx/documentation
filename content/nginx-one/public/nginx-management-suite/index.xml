@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>F5 NGINX Management Suite on DEV -- docs-nginx-com</title>
+    <link>http://localhost:1313/nginx-management-suite/</link>
+    <description>Recent content in F5 NGINX Management Suite on DEV -- docs-nginx-com</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/nginx-management-suite/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>About</title>
+      <link>http://localhost:1313/nginx-management-suite/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-management-suite/about/</guid>
+      <description>&lt;p&gt;Explore the topics below to find out what the F5 NGINX Management Suite modules have to offer.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 &#xA;id=&#34;instance-manager&#34;&gt;Instance Manager  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#instance-manager&#34; title=&#34;Instance Manager&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;http://localhost:1313/nginx-instance-manager/&#34;&gt;NGINX Instance Manager&lt;/a&gt; allows you to configure, scale, and manage NGINX Open Source and NGINX Plus instances at scale. Instance Manager provides a &lt;a href=&#34;http://localhost:1313/nginx-instance-manager/fundamentals/api-overview/&#34;&gt;REST API&lt;/a&gt; and web-based graphical user interface (GUI) for managing NGINX instances across multiple servers, making it easier to configure, monitor, and troubleshoot NGINX deployments.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>NGINX Management Suite Resiliency</title>
+      <link>http://localhost:1313/nginx-management-suite/nms-resilience/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-management-suite/nms-resilience/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;The F5 NGINX Management Suite platform includes four services (described below) that work together to monitor NGINX data plane instances. These platform services feature self-monitoring capabilities, allowing them to detect unresolvable issues and shut down automatically. When you &lt;a href=&#34;http://localhost:1313/nginx-instance-manager/deploy/kubernetes/deploy-using-helm/&#34;&gt;install NGINX Management Suite on Kubernetes&lt;/a&gt;, you get the benefits of fault tolerance and automated recovery: when a platform service fails, Kubernetes will create new pods and restart the affected services without disruption to the data plane.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Open-Source Software Attributions</title>
+      <link>http://localhost:1313/nginx-management-suite/oss-attribution-notice/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-management-suite/oss-attribution-notice/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;F5 NGINX Management Suite includes several open-source packages that are subject to their respective licenses.&lt;/p&gt;&#xA;&lt;p&gt;You can find a comprehensive list of these packages and their corresponding licenses in the &lt;code&gt;/etc/nms&lt;/code&gt; directory after installing NGINX Management Suite.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

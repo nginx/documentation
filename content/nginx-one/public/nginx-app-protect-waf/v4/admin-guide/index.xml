@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Administration Guides on DEV -- docs-nginx-com</title>
+    <link>http://localhost:1313/nginx-app-protect-waf/v4/admin-guide/</link>
+    <description>Recent content in Administration Guides on DEV -- docs-nginx-com</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/nginx-app-protect-waf/v4/admin-guide/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>NGINX App Protect WAF Administration Guide</title>
+      <link>http://localhost:1313/nginx-app-protect-waf/v4/admin-guide/install/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-app-protect-waf/v4/admin-guide/install/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;F5 NGINX App Protect WAF provides web application firewall (WAF) security protection for your web applications, including OWASP Top 10; response inspection; Meta characters check; HTTP protocol compliance; evasion techniques; disallowed file types; JSON &amp;amp; XML well-formedness; sensitive parameters &amp;amp; Data Guard. Refer to &lt;a href=&#34;http://localhost:1313/nginx-app-protect-waf/v4/configuration-guide/configuration/#supported-security-policy-features&#34;&gt;Supported Security Policy Features&lt;/a&gt; section for a more detailed description.&lt;/p&gt;&#xA;&lt;p&gt;This guide explains how to deploy NGINX App Protect WAF as well as upgrade App Protect and the App Protect signature sets.&lt;br&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Using NGINX App Protect WAF with NGINX Management Suite</title>
+      <link>http://localhost:1313/nginx-app-protect-waf/v4/admin-guide/install-nms/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-app-protect-waf/v4/admin-guide/install-nms/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;http://localhost:1313/nginx-management-suite/about/#instance-manager&#34;&gt;F5 NGINX Management Suite Instance Manager&lt;/a&gt; provides a centralized interface where you can create, modify, and publish policies, attack signatures, and threat campaigns for NGINX App Protect WAF. You can use Instance Manager to deploy configuration updates to one, some, or all your NGINX App Protect WAF data plane instances simultaneously.&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Refer to &lt;a href=&#34;http://localhost:1313/nginx-instance-manager/nginx-app-protect/setup-waf-config-management/&#34;&gt;Manage Your App Protect WAF Configs&lt;/a&gt; for installation instructions.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 &#xA;id=&#34;using-security-monitoring-with-nginx-management-suite&#34;&gt;Using Security Monitoring with NGINX Management Suite  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#using-security-monitoring-with-nginx-management-suite&#34; title=&#34;Using Security Monitoring with NGINX Management Suite&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;http://localhost:1313/nginx-management-suite/about/#security-monitoring&#34;&gt;NGINX Management Suite Security Monitoring&lt;/a&gt; provides a centralized visualization tool that lets you analyze threats, view protection insights, and identify areas for policy tuning.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Upgrade NGINX App Protect WAF on Managed Instances</title>
+      <link>http://localhost:1313/nginx-app-protect-waf/v4/admin-guide/upgrade-nap-waf/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-app-protect-waf/v4/admin-guide/upgrade-nap-waf/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;Learn how to upgrade F5 NGINX App Protect on your managed NGINX instances using NGINX Instance Manager. This guide covers the steps to update both the NGINX Management Suite server and NGINX App Protect on the data plane, ensuring your security policies and configurations are up-to-date.&lt;/p&gt;&#xA;&lt;p&gt;Before starting, confirm that your data plane has the latest NGINX Agent compatible with NGINX App Protect. Also, verify that your NGINX Management Suite server has the &lt;a href=&#34;http://localhost:1313/nginx-instance-manager/nginx-app-protect/setup-waf-config-management/#install-the-waf-compiler&#34;&gt;WAF compiler installed&lt;/a&gt;. If you&amp;rsquo;re updating the WAF compiler, simply upload the NGINX App Protect WAF certificate and key to NGINX Management Suite following the instructions to &lt;a href=&#34;http://localhost:1313/nginx-instance-manager/nginx-app-protect/setup-waf-config-management/#automatically-download-and-install-new-waf-compiler&#34;&gt;Automatically Download and Install New WAF Compiler&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

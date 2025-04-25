@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Getting Started Guides on DEV -- docs-nginx-com</title>
+    <link>http://localhost:1313/nginx-management-suite/acm/getting-started/</link>
+    <description>Recent content in Getting Started Guides on DEV -- docs-nginx-com</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/nginx-management-suite/acm/getting-started/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Get Started</title>
+      <link>http://localhost:1313/nginx-management-suite/acm/getting-started/overview/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-management-suite/acm/getting-started/overview/</guid>
+      <description>&lt;style&gt;&#xA;    h2 {&#xA;        margin-top: 30px;&#xA;        margin-bottom: 10px;&#xA;    }&#xA;    h3 {&#xA;        margin-top: 30px;&#xA;        margin-bottom: 10px;&#xA;        font-weight: 300;&#xA;        font-size: 1.75em;&#xA;    }&#xA;    h4 {&#xA;        margin-top: 30px;&#xA;        font-size: 20px;&#xA;    }&#xA;    hr {&#xA;        margin-top: 40px;&#xA;        margin-bottom: 20px;&#xA;    }&#xA;    td hr {&#xA;        margin-top: 10px;&#xA;        margin-bottom: 10px;&#xA;    }&#xA;&lt;/style&gt;&#xA;&#xA;&lt;h2 &#xA;id=&#34;objectives&#34;&gt;Objectives  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#objectives&#34; title=&#34;Objectives&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;By completing the guides in this Quick Start series, you can easily get up and running with API Connectivity Manager.&lt;/p&gt;&#xA;&lt;p&gt;This series covers the following topics:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Set Up an API Gateway Environment</title>
+      <link>http://localhost:1313/nginx-management-suite/acm/getting-started/add-api-gateway/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-management-suite/acm/getting-started/add-api-gateway/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;In API Connectivity Manager, an API Gateway is a proxy cluster that contains one or more NGINX data plane instances.&#xA;These clusters are managed under &lt;strong&gt;Infrastructure Workspaces&lt;/strong&gt; and are part of &lt;strong&gt;Environments&lt;/strong&gt;.&lt;/p&gt;&#xA;&lt;h3 &#xA;id=&#34;before-you-begin&#34;&gt;Before You Begin  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#before-you-begin&#34; title=&#34;Before You Begin&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h3&gt;&lt;p&gt;Before proceeding with this guide, you should familiarize yourself with the &lt;a href=&#34;http://localhost:1313/nginx-management-suite/acm/about/api-overview/&#34;&gt;API Overview&lt;/a&gt; and the &lt;a href=&#34;http://localhost:1313/nginx-management-suite/acm/getting-started/overview/&#34;&gt;Get Started&lt;/a&gt; section of this series.&lt;/p&gt;&#xA;&lt;h2 &#xA;id=&#34;add-an-infrastructure-workspace&#34;&gt;Add an Infrastructure Workspace  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#add-an-infrastructure-workspace&#34; title=&#34;Add an Infrastructure Workspace&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;First, you&amp;rsquo;ll need to create an Infrastructure Workspace.&#xA;This is a logical grouping that allows for separation between business units or teams.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Set Up a Developer Portal Environment</title>
+      <link>http://localhost:1313/nginx-management-suite/acm/getting-started/add-devportal/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-management-suite/acm/getting-started/add-devportal/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;In API Connectivity Manager, a Developer Portal (or, &amp;ldquo;Dev Portal&amp;rdquo;) is a cluster of F5 NGINX Plus data plane instances.&#xA;These clusters are managed under &lt;strong&gt;Infrastructure Workspaces&lt;/strong&gt; and are part of &lt;strong&gt;Environments&lt;/strong&gt;.&lt;/p&gt;&#xA;&lt;h3 &#xA;id=&#34;before-you-begin&#34;&gt;Before You Begin  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#before-you-begin&#34; title=&#34;Before You Begin&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h3&gt;&lt;p&gt;You should complete the following Quick Start Guide(s) before proceeding with the steps in this guide:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;http://localhost:1313/nginx-management-suite/acm/getting-started/add-api-gateway/&#34;&gt;Configure an API Gateway&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 &#xA;id=&#34;add-a-developer-portal&#34;&gt;Add a Developer Portal  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#add-a-developer-portal&#34; title=&#34;Add a Developer Portal&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;Complete the steps in this guide to add a Developer Portal to the Environment you created in the &lt;a href=&#34;http://localhost:1313/nginx-management-suite/acm/getting-started/add-api-gateway/&#34;&gt;previous guide&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Publish an API Proxy</title>
+      <link>http://localhost:1313/nginx-management-suite/acm/getting-started/publish-api-proxy/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-management-suite/acm/getting-started/publish-api-proxy/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;In API Connectivity Manager, &lt;strong&gt;Services&lt;/strong&gt; represent your Backend APIs.&#xA;&lt;strong&gt;Proxies&lt;/strong&gt; represent the NGINX reverse proxy that routes traffic to your backend service and to the Developer Portal.&#xA;This guide provides instructions and examples for publishing an API and a Developer Portal by using the REST API.&lt;/p&gt;&#xA;&lt;h3 &#xA;id=&#34;before-you-begin&#34;&gt;Before You Begin  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#before-you-begin&#34; title=&#34;Before You Begin&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h3&gt;&lt;p&gt;You should complete the following Quick Start Guides before proceeding with the steps in this guide:&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

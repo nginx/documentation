@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Deployment Guide on DEV -- docs-nginx-com</title>
+    <link>http://localhost:1313/nginx-app-protect-dos/deployment-guide/</link>
+    <description>Recent content in Deployment Guide on DEV -- docs-nginx-com</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/nginx-app-protect-dos/deployment-guide/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>NGINX App Protect DoS Deployment</title>
+      <link>http://localhost:1313/nginx-app-protect-dos/deployment-guide/learn-about-deployment/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-app-protect-dos/deployment-guide/learn-about-deployment/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;F5 NGINX App Protect DoS provides behavioral protection against DoS for your web applications. &lt;br&gt;&lt;br&gt;&#xA;This guide explains how to deploy NGINX App Protect DoS as well as upgrade App Protect DoS.&lt;/p&gt;&#xA;&lt;h2 &#xA;id=&#34;prerequisites&#34;&gt;Prerequisites  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#prerequisites&#34; title=&#34;Prerequisites&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;NGINX App Protect DoS is available to the customers as a downloadable dynamic module at an additional cost. To purchase or add NGINX App Protect DoS to an existing NGINX Plus subscription, contact the NGINX sales team.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>NGINX App Protect WAF &#43; DoS AMIs on Amazon EC2</title>
+      <link>http://localhost:1313/nginx-app-protect-dos/deployment-guide/installing-nginx-plus-with-dos-and-waf-on-amazon-web-services/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-app-protect-dos/deployment-guide/installing-nginx-plus-with-dos-and-waf-on-amazon-web-services/</guid>
+      <description>&lt;p&gt;NGINX, Inc. participates in the Amazon Web Services (AWS) Partner Network as a Standard Technology Partner. We offer Amazon Machine Images (AMIs) for use in the Amazon Elastic Compute Cloud (EC2), available at the AWS Marketplace for several operating systems, including Amazon Linux, Red Hat Enterprise Linux, and Ubuntu.&lt;/p&gt;&#xA;&lt;p&gt;The AMIs contain combination of the following components:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Latest version of &lt;a href=&#34;https://www.f5.com/products/nginx/nginx-plus&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;F5 NGINX Plus&lt;/a&gt;, optimized for use on Amazon EC2&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Latest version of &lt;a href=&#34;https://docs.nginx.com/nginx-app-protect-dos/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;NGINX App Protect DoS&lt;/a&gt;, optimized for use on Amazon EC2&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

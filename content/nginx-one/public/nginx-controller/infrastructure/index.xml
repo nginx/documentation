@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Infrastructure on DEV -- docs-nginx-com</title>
+    <link>http://localhost:1313/nginx-controller/infrastructure/</link>
+    <description>Recent content in Infrastructure on DEV -- docs-nginx-com</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/nginx-controller/infrastructure/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Manage Locations</title>
+      <link>http://localhost:1313/nginx-controller/infrastructure/manage-locations/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-controller/infrastructure/manage-locations/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;You can logically group your NGINX instances and instance groups by their physical locations using the &lt;strong&gt;Locations&lt;/strong&gt; settings page in the F5 NGINX Controller web interface.&lt;/p&gt;&#xA;&lt;blockquote class=&#34;note&#34;&gt;&#xA;  &lt;div&gt;&lt;strong&gt;Note:&lt;/strong&gt;&lt;br/&gt; By default, NGINX Instances are added to the &lt;code&gt;unspecified&lt;/code&gt; Location. The unspecified Location is a system-owned resource that can’t be updated or deleted.&lt;/div&gt;&#xA;&lt;/blockquote&gt;&#xA;&#xA;&lt;h2 &#xA;id=&#34;create-a-location&#34;&gt;Create a Location  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#create-a-location&#34; title=&#34;Create a Location&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;To create a Location, take the following steps:&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tutorials on DEV -- docs-nginx-com</title>
+    <link>http://localhost:1313/nginx-management-suite/acm/tutorials/</link>
+    <description>Recent content in Tutorials on DEV -- docs-nginx-com</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/nginx-management-suite/acm/tutorials/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Enable Metrics</title>
+      <link>http://localhost:1313/nginx-management-suite/acm/tutorials/enable-metrics/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-management-suite/acm/tutorials/enable-metrics/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;This guide walks through setting up and using metrics in API Connectivity Manager.&lt;/p&gt;&#xA;&lt;blockquote class=&#34;important call-out&#34;&gt;&#xA;  &lt;div&gt;&lt;strong class=&#34;call-out-type&#34;&gt;Important&lt;/strong&gt;&lt;br/&gt; The configuration presented in this guide is for demonstration purposes only. Securely configuring environments and proxies in API Connectivity Manager is not in scope for this tutorial but should be given full attention when planning for production use.&lt;/div&gt;&#xA;&lt;/blockquote&gt;&#xA;&#xA;&lt;p&gt;Currently, only the following metric is available:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#count-proxies-in-env&#34;&gt;Count of proxies in an environment&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;As we add new metrics, we&amp;rsquo;ll let you know in the &lt;a href=&#34;http://localhost:1313/nginx-management-suite/acm/releases/release-notes/&#34;&gt;API Connectivity Manager release notes&lt;/a&gt; and update this topic accordingly.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Set Up Advanced Routing</title>
+      <link>http://localhost:1313/nginx-management-suite/acm/tutorials/advanced-routing/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-management-suite/acm/tutorials/advanced-routing/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;This tutorial will show you how to create dynamic routes for your proxy deployments using the &amp;lsquo;Advanced Routing&amp;rsquo; feature.&#xA;This allows routing to different backend services based on URI, HTTP method, etc.&lt;/p&gt;&#xA;&lt;h3 &#xA;id=&#34;intended-audience&#34;&gt;Intended Audience  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#intended-audience&#34; title=&#34;Intended Audience&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h3&gt;&lt;p&gt;This guide is meant for NGINX Management Suite users who can add/modify Proxy deployments and want to create dynamic route matching configurations.&lt;/p&gt;&#xA;&lt;h3 &#xA;id=&#34;how-do-i-publish-a-proxy-with-advanced-routing&#34;&gt;How do I publish a Proxy with Advanced Routing?  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#how-do-i-publish-a-proxy-with-advanced-routing&#34; title=&#34;How do I publish a Proxy with Advanced Routing?&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h3&gt;&lt;p&gt;Follow the steps on the &lt;a href=&#34;http://localhost:1313/nginx-management-suite/acm/how-to/services/publish-api/&#34;&gt;Publish an HTTP API&lt;/a&gt; section to publish a proxy.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Set Up RBAC for API Owners</title>
+      <link>http://localhost:1313/nginx-management-suite/acm/tutorials/rbac-api-owners/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-management-suite/acm/tutorials/rbac-api-owners/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;This tutorial will show you how to use the Role-Based Access Control (RBAC) features of API Connectivity Manager to give API Owners tailored levels of access to features in F5 NGINX Management Suite. You will learn how to create roles to grant users access to workspaces and features, as well as how to add and assign users to those roles.&lt;/p&gt;&#xA;&lt;h3 &#xA;id=&#34;intended-audience&#34;&gt;Intended Audience  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#intended-audience&#34; title=&#34;Intended Audience&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h3&gt;&lt;p&gt;This guide is meant for NGINX Management Suite Administrators who can add users and create and assign roles.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Set Up RBAC for Infra Admins</title>
+      <link>http://localhost:1313/nginx-management-suite/acm/tutorials/rbac-infra-admins/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-management-suite/acm/tutorials/rbac-infra-admins/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;This tutorial will show you how to use the Role-Based Access Control (RBAC) features of API Connectivity Manager to give Infra Admins tailored levels of access to features in F5 NGINX Management Suite. You will learn how to create roles to grant users access to workspaces and features, as well as how to add and assign users to those roles.&lt;/p&gt;&#xA;&lt;h3 &#xA;id=&#34;intended-audience&#34;&gt;Intended Audience  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#intended-audience&#34; title=&#34;Intended Audience&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h3&gt;&lt;p&gt;This guide is meant for NGINX Management Suite Administrators who can add users and create and assign roles.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>OAS Security Schemes</title>
+      <link>http://localhost:1313/nginx-management-suite/acm/tutorials/oas-security-schemes/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-management-suite/acm/tutorials/oas-security-schemes/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;The OpenAPI Specification (OAS) allows you to specify authentication and authorization requirements, or security schemes, for your APIs, ensuring that only authorized users or applications can access them. These security schemes are applied globally, meaning they are enforced for all APIs within the OAS.&lt;/p&gt;&#xA;&lt;blockquote class=&#34;note&#34;&gt;&#xA;  &lt;div&gt;&lt;strong&gt;Note:&lt;/strong&gt;&lt;br/&gt; When configuring security schemes, keep in mind that path-level security requirements will not be applied and are ignored.&lt;/div&gt;&#xA;&lt;/blockquote&gt;&#xA;&#xA;&lt;p&gt;Listed below are the OAS security schemes that API Connectivity Manager supports.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Amazon Web Services Deployment Guide</title>
+      <link>http://localhost:1313/nginx-management-suite/acm/tutorials/aws-deploy/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-management-suite/acm/tutorials/aws-deploy/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;This guide walks you through the steps needed to set up the necessary infrastructure in Amazon Web Services (AWS) for a proof of concept environment for API Connectivity Manager. The options presented in this guide for creating AWS Instances keep cost in mind and prefer the minimum requirements for running a fully functional API Connectivity Manager environment.&#xA;Keep in mind that production environments may require larger instance sizes and incur greater costs.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>OAuth2 Introspection with Keycloak</title>
+      <link>http://localhost:1313/nginx-management-suite/acm/tutorials/introspection-keycloak/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nginx-management-suite/acm/tutorials/introspection-keycloak/</guid>
+      <description>&lt;h2 &#xA;id=&#34;overview&#34;&gt;Overview  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#overview&#34; title=&#34;Overview&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;This tutorial walks through configuring an OAuth2 Introspection policy on an API Proxy in API Connectivity Manager with Keycloak as the authorization server.&lt;/p&gt;&#xA;&lt;blockquote class=&#34;important call-out&#34;&gt;&#xA;  &lt;div&gt;&lt;strong class=&#34;call-out-type&#34;&gt;Important&lt;/strong&gt;&lt;br/&gt; The configuration presented in this guide is for demonstration purposes only. The secure configuration of Environments and Proxies in API Connectivity Manager, or the secure configuration of Keycloak as the authorization server, is not in scope for this tutorial and should be given full attention when planning for production use.&lt;/div&gt;&#xA;&lt;/blockquote&gt;&#xA;&#xA;&lt;blockquote class=&#34;tip&#34;&gt;&#xA;  &lt;div&gt;&lt;strong&gt;See Also:&lt;/strong&gt;&lt;br/&gt; See the &lt;a href=&#34;http://localhost:1313/nginx-management-suite/acm/how-to/policies/introspection/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;OAuth2 Introspection Policy&lt;/a&gt; reference guide for a detailed overview of the policy.&lt;/div&gt;&#xA;&lt;/blockquote&gt;&#xA;&#xA;&lt;hr&gt;&#xA;&lt;h2 &#xA;id=&#34;what-is-oauth2&#34;&gt;What is OAuth2?  &lt;a class=&#34;headerlink float-right&#34; href=&#34;#what-is-oauth2&#34; title=&#34;What is OAuth2?&#34;&gt;&lt;i class=&#34;fas fa-link fa-xs&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;The &lt;em&gt;OAuth2 Authorization Framework&lt;/em&gt; &lt;a href=&#34;https://www.rfc-editor.org/rfc/rfc6749&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;[RFC-6749]&lt;/a&gt; grants third-party applications limited access to an HTTP service either by orchestrating an approval interaction between the resource owner and the HTTP service or granting the third-party application access on its own behalf.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
