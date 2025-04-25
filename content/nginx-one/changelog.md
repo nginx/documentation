@@ -30,6 +30,14 @@ h2 {
 
 Stay up-to-date with what's new and improved in the F5 NGINX One Console.
 
+## April 30, 2025
+
+### Alert on CVE impacting new/registered instance in the F5 NGINX One Console.
+We have added ability to alert user of F5 distributed cloud if CVE in N1 impacts instance in the F5 NGINX One Console.
+
+### Alert on new registered instance in the F5 NGINX One Console.
+We have added ability to alert user of F5 distributed cloud on when new instance is registered in the F5 NGINX One Console.
+
 ## April 3, 2025
 
 ### Create Custom Roles with more precise permissions
