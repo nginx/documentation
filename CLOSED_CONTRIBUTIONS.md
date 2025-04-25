@@ -36,6 +36,9 @@ git remote add internal git@github.com:<closed-url>.git
 git fetch --all
 ```
 
+<details>
+<summary>Click to review the process in detail</summary>
+
 You should now see the following messages:
 
 ```text
@@ -61,7 +64,9 @@ documentation git:(16340b12)
 ```
 
 It's a good sign. With that hash, you're now working from the `main` branch of the `<closed-url>` repository.
-At this prompt, you can now create a feature branch. To comply with NGINX conventions, **Ensure that you prefix all branch names with `internal/`**
+</details>
+
+You can now create a feature branch. To comply with NGINX conventions, **Ensure that you prefix all branch names with `internal/`**
 
 ```shell
 git checkout -b internal/feature
