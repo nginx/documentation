@@ -1,68 +1,76 @@
 ---
-description: Learn how you can use F5 NGINX Management Suite Instance Manager to configure
-  NGINX App Protect WAF security policies.
+description: Learn how to use F5 NGINX Instance Manager to set up and manage NGINX App Protect WAF security policies.
 docs: DOCS-992
-title: NGINX App Protect WAF configuration management
+title: "How WAF policy management works"
 toc: true
-weight: 500
+weight: 100
 type:
 - reference
 ---
 
 ## Overview
 
-F5 NGINX Management Suite Instance Manager provides configuration management for [NGINX App Protect WAF](https://www.nginx.com/products/nginx-app-protect/web-application-firewall/).
+F5 NGINX Instance Manager helps you manage [NGINX App Protect WAF](https://www.nginx.com/products/nginx-app-protect/web-application-firewall/) security configurations.
 
-You can use NGINX App Protect WAF with Instance Manager to inspect incoming traffic, identify potential threats, and block malicious traffic. With Configuration Management for App Protect WAF, you can configure WAF security policies in a single location and push your configurations out to one, some, or all of your NGINX App Protect WAF instances.
+Use NGINX Instance Manager with NGINX App Protect WAF to inspect incoming traffic, detect threats, and block malicious requests. You can define policies in one place and push them to some or all of your NGINX App Protect WAF instances.
 
-### Features
+### Key features
 
-- Manage NGINX App Protect WAF security configurations by using the NGINX Management Suite user interface or REST API
-- Update Attack Signatures and Threat Campaign packages
-- Compile security configurations into a binary bundle for consumption by NGINX App Protect WAF instances
+- Manage WAF policies using the NGINX Instance Manager web interface or REST API  
+- Update attack signature and threat campaign packages  
+- Compile WAF configurations into a binary bundle for deployment  
 
 ## Architecture
 
-As demonstrated in Figure 1, Instance Manager lets you manage security configurations for NGINX App Protect WAF. You can define security policies, upload attack signatures and threat campaign packages, and publish common configurations out to your NGINX App Protect WAF instances. Instance Manager can compile the security configuration into a bundle before pushing the configuration to the NGINX App Protect WAF data plane instances. The NGINX Management Suite Security Monitoring module provides data visualization for NGINX App Protect, so you can monitor, analyze, and refine your policies.
+NGINX Instance Manager lets you define and manage security policies, upload signature packages, and push configurations to your NGINX App Protect WAF instances. It can also compile your security configuration into a bundle before publishing it to the data plane.
 
-{{< img src="nim/app-sec-overview.png" caption="Figure 1. NGINX Management Suite with NGINX App Protect Architecture Overview" alt="A diagram showing the architecture of the NGINX Management Suite with NGINX App Protect solution" width="75%">}}
+The **Security Monitoring** module shows real-time data from NGINX App Protect WAF so you can track traffic, spot anomalies, and fine-tune policies.
 
-### Security Bundle Compilation {#security-bundle}
+{{< img src="nim/app-sec-overview.png" caption="Figure 1. NGINX Instance Manager with NGINX App Protect architecture overview" alt="Architecture diagram showing NGINX Instance Manager and Security Monitoring in the control plane pushing security bundles to NGINX App Protect WAF instances in the data plane" >}}
 
-Instance Manager provides a compiler that can be configured to bundle the complete security configuration -- including JSON security policies, attack signatures, threat campaigns, and log profiles -- into a single binary in `.tgz` format. This bundle is then pushed out to each selected NGINX App Protect WAF instance.
+### Security bundle compilation {#security-bundle}
 
-Performing the security bundle compilation on Instance Manager (precompiled publication) instead of on the NGINX App Protect WAF instances provides the following benefits:
+NGINX Instance Manager includes a compiler that packages your complete WAF configuration — security policies, attack signatures, threat campaigns, and log profiles — into a single `.tgz` file. It then pushes this bundle to the selected NGINX App Protect WAF instances.
 
-- Eliminates the need to provision system resources on NGINX App Protect WAF instances to perform compilation.
-- The bundles produced by Instance Manager can be reused by multiple NGINX App Protect WAF instances, instead of each instance having to perform the compilation separately.
+**Why precompile with NGINX Instance Manager?**
 
-However, if you prefer to maintain policy compilation on the NGINX App Protect WAF instance, that is supported with the following limitation:
+- Saves system resources on WAF instances  
+- Lets you reuse the same bundle across multiple instances  
 
-- Instance Manager does not publish JSON policies to the NGINX App Protect WAF instance. JSON policies referenced in an NGINX configuration must already exist on the NGINX App Protect WAF instance.
+If you choose to compile policies on the WAF instance instead, that works too—but with this limitation:
 
-The example [`location`](https://nginx.org/en/docs/http/ngx_http_core_module.html#location) context below enables NGINX App Protect WAF and tells NGINX where to find the compiled security bundle:
+- NGINX Instance Manager won’t publish `.json` policies to the WAF instance. These policies must already exist on the instance and be referenced in the NGINX config.
 
-## Log Profile Compilation
+Example [`location`](https://nginx.org/en/docs/http/ngx_http_core_module.html#location) block to enable WAF and point to the bundle:
 
-Instance Manager can also be configured to compile log profiles when you install a new version of the WAF compiler. When you publish an NGINX configuration with the NGINX App Protect [`app_protect_security_log`](https://docs.nginx.com/nginx-app-protect/logging-overview/security-log/#app_protect_security_log) directive, Instance Manager publishes the compiled log profiles to the NGINX App Protect WAF instances when precompiled publication is enabled.
+```nginx
+location / {
+    app_protect_enable on;
+    app_protect_policy_file /etc/app_protect/policies/policy_bundle.tgz;
+}
+```
+
+## Log profile compilation
+
+You can also configure NGINX Instance Manager to compile log profiles when you install a new version of the compiler. When publishing NGINX configs that include the [`app_protect_security_log`](https://docs.nginx.com/nginx-app-protect/logging-overview/security-log/#app_protect_security_log) directive, NGINX Instance Manager pushes the compiled log profile to your WAF instances (when precompiled publication is turned on).
 
 {{<important>}}
-Instance Manager and Security Monitoring both use NGINX App Protect log profiles. The configuration requirements for each are different. When using Instance Manager configuration management, you must reference the log profile in your NGINX configuration using the `.tgz` file extension instead of `.json`.
+NGINX Instance Manager and Security Monitoring both use log profiles, but their configurations are different. If you're using configuration management in NGINX Instance Manager, you must reference the log profile with the `.tgz` file extension, not `.json`.
 {{</important>}}
 
-## Security Management APIs
+## Security management APIs
 
-By using the Instance Manager REST API, you can automate configuration updates to be pushed out to all of your NGINX App Protect WAF instances. You can use the Instance Manager API to manage and deploy the following security configurations:
+Use the NGINX Instance Manager REST API to automate updates across your NGINX App Protect WAF instances. You can use the API to manage:
 
-- security policies,
-- log profiles,
-- attack signatures, and
-- threat campaigns.
+- Security policies  
+- Log profiles  
+- Attack signatures  
+- Threat campaigns  
 
-Just as with changes made via the user interface, the Instance Manager compiler bundles all of the config updates into a single binary package that you can push out to your instances. Figure 2 shows an overview of the API endpoints available to support security policy configuration and publishing.
+Just like with the web interface, the compiler creates a binary bundle with your updates that you can push to your WAF instances.
 
-{{< img src="nim/app-sec-api-overview.png" caption="Figure 2. NGINX Management Suite with NGINX App Protect WAF Architecture Overview" alt="A diagram showing the architecture of the NGINX Management Suite with NGINX App Protect solution">}}
+{{< img src="nim/app-sec-api-overview.png" caption="Figure 2. NGINX Instance Manager with NGINX App Protect WAF architecture overview" alt="Diagram showing how the NGINX Instance Manager REST API is used to create policies, upload signatures and campaigns, and publish compiled security bundles to NGINX App Protect WAF instances">}}
 
-More information is available in the Instance Manager API documentation.
+For full details, see the API documentation:
 
 {{< include "nim/how-to-access-api-docs.md" >}}

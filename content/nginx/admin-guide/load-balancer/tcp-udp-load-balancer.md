@@ -9,10 +9,9 @@ type:
 - how-to
 ---
 
-<span id="intro"></span>
-## Introduction
+## Introduction {#intro}
 
-[Load balancing](https://www.nginx.com/solutions/load-balancing/) refers to efficiently distributing network traffic across multiple backend servers.
+[Load balancing](https://www.f5.com/glossary/load-balancer) refers to efficiently distributing network traffic across multiple backend servers.
 
 In F5 NGINX Plus [R5]({{< ref "nginx/releases.md#r5" >}}) and later, NGINX Plus can proxy and load balance Transmission Control Protocol) (TCP) traffic. TCP is the protocol for many popular applications and services, such as LDAP, MySQL, and RTMP.
 
@@ -20,15 +19,13 @@ In NGINX Plus [R9]({{< ref "nginx/releases.md#r9" >}}) and later, NGINX Plus can
 
 To load balance HTTP traffic, refer to the [HTTP Load Balancing]({{< ref "http-load-balancer.md" >}}) article.
 
-<span id="prerequisites"></span>
 ## Prerequisites
 
 - Latest NGINX Plus (no extra build steps required) or latest [NGINX Open Source](https://nginx.org/en/download.html) built with the `--with-stream` configuration flag
 - An application, database, or service that communicates over TCP or UDP
 - Upstream servers, each running the same instance of the application, database, or service
 
-<span id="proxy_pass"></span>
-## Configuring Reverse Proxy
+## Configuring reverse proxy {#proxy_pass}
 
 First, you will need to configure _reverse proxy_ so that NGINX Plus or NGINX Open Source can forward TCP connections or UDP datagrams from clients to an upstream group or a proxied server.
 
@@ -118,8 +115,7 @@ Open the NGINX configuration file and perform the following steps:
    }
    ```
 
-<span id="upstream"></span>
-## Configuring TCP or UDP Load Balancing
+## Configuring TCP or UDP load balancing {#upstream}
 
 To configure load balancing:
 
@@ -250,8 +246,7 @@ stream {
 }
 ```
 
-<span id="health"></span>
-## Configuring Health Checks
+## Configuring health checks {#health}
 
 NGINX can continually test your TCP or UDP upstream servers, avoid the servers that have failed, and gracefully add the recovered servers into the load‑balanced group.
 
@@ -259,8 +254,7 @@ See [TCP Health Checks]({{< ref "nginx/admin-guide/load-balancer/tcp-health-chec
 
 See [UDP Health Checks]({{< ref "nginx/admin-guide/load-balancer/udp-health-check.md" >}}) for instructions how to configure health checks for UDP.
 
-<span id="on-the-fly-configuration"></span>
-## On-the-Fly Configuration
+## On-the-fly configuration
 
 Upstream server groups can be easily reconfigured on-the-fly using NGINX Plus REST API. Using this interface, you can view all servers in an upstream group or a particular server, modify server parameters, and add or remove upstream servers.
 
@@ -355,8 +349,7 @@ To enable on-the-fly configuration:
    }
    ```
 
-<span id="on-the-fly-configuration-example"></span>
-### On-the-Fly Configuration Example
+### On-the-fly configuration example
 
 ```nginx
 stream {
@@ -403,23 +396,22 @@ For example, to add a new server to the server group, send a `POST` request:
 curl -X POST -d '{ \
    "server": "appserv3.example.com:12345", \
    "weight": 4 \
- }' -s 'http://127.0.0.1/api/6/stream/upstreams/appservers/servers'
+ }' -s 'http://127.0.0.1/api/9/stream/upstreams/appservers/servers'
 ```
 
 To remove a server from the server group, send a `DELETE` request:
 
 ```shell
-curl -X DELETE -s 'http://127.0.0.1/api/6/stream/upstreams/appservers/servers/0'
+curl -X DELETE -s 'http://127.0.0.1/api/9/stream/upstreams/appservers/servers/0'
 ```
 
 To modify a parameter for a specific server, send a  `PATCH` request:
 
 ```shell
-curl -X PATCH -d '{ "down": true }' -s 'http://127.0.0.1/api/6/http/upstreams/appservers/servers/0'
+curl -X PATCH -d '{ "down": true }' -s 'http://127.0.0.1/api/9/http/upstreams/appservers/servers/0'
 ```
 
-<span id="example"></span>
-## Example of TCP and UDP Load-Balancing Configuration
+## Example of TCP and UDP load-balancing configuration {#example}
 
 This is a configuration example of TCP and UDP load balancing with NGINX:
 
@@ -471,3 +463,13 @@ The three [`server`](https://nginx.org/en/docs/stream/ngx_stream_upstream_module
 - The second server listens on port 53 and proxies all UDP datagrams (the `udp` parameter to the `listen` directive) to an upstream group called **dns_servers**. If the `udp` parameter is not specified, the socket listens for TCP connections.
 
 - The third virtual server listens on port 12346 and proxies TCP connections to **backend4.example.com**, which can resolve to several IP addresses that are load balanced with the Round Robin method.
+
+## See also
+
+- [TCP Health Checks]({{< relref "tcp-health-check.md" >}})
+
+- [UDP Health Checks]({{< relref "udp-health-check.md" >}})
+
+- [Load Balancing DNS Traffic with NGINX and NGINX Plus](https://www.f5.com/company/blog/nginx/load-balancing-dns-traffic-nginx-plus)
+
+- [TCP/UDP Load Balancing with NGINX: Overview, Tips, and Tricks](https://blog.nginx.org/blog/tcp-load-balancing-udp-load-balancing-nginx-tips-tricks)
