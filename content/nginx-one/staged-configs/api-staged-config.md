@@ -8,7 +8,11 @@ toc: true
 # Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
 type: tutorial
 # Intended for internal catalogue and search, case sensitive:
+<<<<<<< HEAD
 product: NGINX-One
+=======
+product: NGINX One
+>>>>>>> c7ce27ce (Draft: new N1C doc homepage)
 ---
 
 You can use F5 NGINX One Console API to manage your Staged Configurations. With our API, you can:

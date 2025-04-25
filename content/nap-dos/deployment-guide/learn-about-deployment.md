@@ -1405,7 +1405,7 @@ You need root permissions to execute the following steps.
 6. Create a Docker image:
 
     ```shell
-    docker build --no-cache --platform linux/amd64 -t app-protect-dos .
+    docker build --no-cache -t app-protect-dos .
     ```
 
     The `--no-cache` option tells Docker to build the image from scratch and ensures the installation of the latest version of NGINX Plus and NGINX App Protect DoS. If the Dockerfile was previously used to build an image without the `--no-cache` option, the new image uses versions from the previously built image from the Docker cache.
@@ -1966,13 +1966,13 @@ Make sure to replace upstream and proxy pass directives in this example with rel
     For CentOS:
 
     ```shell
-    docker build --no-cache --platform linux/amd64 -t app-protect-dos .
+    docker build --no-cache -t app-protect-dos .
     ```
 
     For RHEL:
 
     ```shell
-    docker build --platform linux/amd64 --build-arg RHEL_ORGANIZATION=${RHEL_ORGANIZATION} --build-arg RHEL_ACTIVATION_KEY=${RHEL_ACTIVATION_KEY} --no-cache -t app-protect-dos .
+    docker build --build-arg RHEL_ORGANIZATION=${RHEL_ORGANIZATION} --build-arg RHEL_ACTIVATION_KEY=${RHEL_ACTIVATION_KEY} --no-cache -t app-protect-dos .
     ```
 
     The `--no-cache` option tells Docker to build the image from scratch and ensures the installation of the latest version of NGINX Plus and NGINX App Protect DoS. If the Dockerfile was previously used to build an image without the `--no-cache` option, the new image uses versions from the previously built image from the Docker cache.

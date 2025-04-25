@@ -1,12 +1,8 @@
 ---
 docs: null
-title: Add a file to an instance
+title: Add a file to a Config Sync Group
 toc: true
-<<<<<<< HEAD
-weight: 300
-=======
 weight: 400
->>>>>>> c7ce27ce (Draft: new N1C doc homepage)
 type:
 - how-to
 ---
@@ -20,22 +16,17 @@ type:
 Before you add files in your configuration, ensure:
 
 - You have access to the NGINX One Console.
-- NGINX instances are properly registered with NGINX One Console
+- Config Sync Groups are properly registered with NGINX One Console
 
 ## Important considerations
 
-If your instance is a member of a Config Sync Group, changes that you make may be synchronized to other instances in that group.
-<<<<<<< HEAD
-For more information, see how you can [Manage Config Sync Groups]({{< ref "/nginx-one/nginx-configs/config-sync-groups/manage-config-sync-groups.md" >}}).
-=======
-For more information, see how you can [Manage Config Sync Groups]({{< ref "/nginx-one/config-sync-groups/manage-config-sync-groups.md" >}}).
->>>>>>> c7ce27ce (Draft: new N1C doc homepage)
+This page applies when you want to add a file to a Config Sync Group. Any changes you make here apply to all [Instances]({{< ref "/nginx-one/glossary.md" >}}) of that Config Sync Group.
 
 ## Add a file
 
-You can use the NGINX One Console to add a file to a specific instance. To do so:
+You can use the NGINX One Console to add a file to a specific Config Sync Group. To do so:
 
-1. Select the instance to manage.
+1. Select the Config Sync Group to manage.
 1. Select the **Configuration** tab.
 
    {{< tip >}}
@@ -67,15 +58,10 @@ Enter the name of the desired configuration file, such as `abc.conf` and select 
 ### Existing SSL Certificate or CA Bundle
 
 {{< include "nginx-one/add-file/existing-ssl-bundle.md" >}}
+With this option, You can incorporate [Managed certificates]({{< ref "/nginx-one/certificates/manage-certificates.md#managed-and-unmanaged-certificates" >}}).
 
 ## See also
 
-<<<<<<< HEAD
-- [Create and manage data plane keys]({{< ref "/nginx-one/connect-instances/create-manage-data-plane-keys.md" >}})
-- [Add an NGINX instance]({{< ref "/nginx-one/connect-instances/add-instance.md" >}})
-- [Manage certificates]({{< ref "/nginx-one/nginx-configs/certificates/manage-certificates.md" >}})
-=======
 - [Create and manage data plane keys]({{< ref "/nginx-one/how-to/data-plane-keys/create-manage-data-plane-keys.md" >}})
 - [View and edit NGINX configurations]({{< ref "/nginx-one/nginx-configs/view-edit-nginx-configurations.md" >}})
 - [Manage certificates]({{< ref "/nginx-one/certificates/manage-certificates.md" >}})
->>>>>>> c7ce27ce (Draft: new N1C doc homepage)

@@ -3,7 +3,11 @@ description: ''
 docs: null
 title: Clean up unavailable NGINX instances
 toc: true
+<<<<<<< HEAD
 weight: 1000
+=======
+weight: 200
+>>>>>>> c7ce27ce (Draft: new N1C doc homepage)
 type:
 - how-to
 ---

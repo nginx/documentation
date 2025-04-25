@@ -84,7 +84,11 @@ You can:
 
 For more information, including warnings about risks, see our documentation on how you can:
 - [Add a file]({{< ref "/nginx-one/nginx-configs/add-file.md" >}})
+<<<<<<< HEAD
 - [Manage certificates]({{< ref "/nginx-one/nginx-configs/certificates/manage-certificates.md" >}})
+=======
+- [Manage certificates]({{< ref "/nginx-one/certificates/manage-certificates.md" >}})
+>>>>>>> c7ce27ce (Draft: new N1C doc homepage)
 
 ### Revert a configuration
 
@@ -108,7 +112,11 @@ From the NGINX One Console you can now:
 - Ensure that your certificates are current and correct.
 - Manage your certificates from a central location. This can help you simplify operations and remotely update, rotate, and deploy those certificates.
 
+<<<<<<< HEAD
 For more information, see the full documentation on how you can [Manage Certificates]({{< ref "/nginx-one/nginx-configs/certificates/manage-certificates.md" >}}).
+=======
+For more information, see the full documentation on how you can [Manage Certificates]({{< ref "/nginx-one/certificates/manage-certificates.md" >}}).
+>>>>>>> c7ce27ce (Draft: new N1C doc homepage)
 
 ## August 22, 2024
 
@@ -116,7 +124,11 @@ For more information, see the full documentation on how you can [Manage Certific
 
 Config Sync Groups are now available in the F5 NGINX One Console. This feature allows you to manage and synchronize NGINX configurations across multiple instances as a single entity, ensuring consistency and simplifying the management of your NGINX environment.
 
+<<<<<<< HEAD
 For more information, see the full documentation on [Managing Config Sync Groups]({{< ref "/nginx-one/nginx-configs/config-sync-groups/manage-config-sync-groups.md" >}}).
+=======
+For more information, see the full documentation on [Managing Config Sync Groups]({{< ref "/nginx-one/config-sync-groups/manage-config-sync-groups.md" >}}).
+>>>>>>> c7ce27ce (Draft: new N1C doc homepage)
 
 ## August 8, 2024
 

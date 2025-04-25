@@ -9,7 +9,11 @@ toc: true
 type: tutorial
 # Intended for internal catalogue and search, case sensitive:
 # Agent, N4Azure, NIC, NIM, NGF, NAP-DOS, NAP-WAF, NGINX One, NGINX+, Solutions, Unit
+<<<<<<< HEAD
 product: NGINX-One
+=======
+product:
+>>>>>>> c7ce27ce (Draft: new N1C doc homepage)
 ---
 
 ## Overview
