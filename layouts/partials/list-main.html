@@ -31,6 +31,33 @@
                                 <i class="fas fa-{{if eq .Kind "page"}}file-alt{{else}}book{{end}} fa-lg card-img-top"></i>
                                 <a href="{{ if .Params.url}}{{ .Params.url}}{{else}}{{ .Permalink }}{{end}}">{{ .Title }}</a>
                             </h3>
+                            {{ if and (eq $PageTitle "F5 NGINX One Console") (eq .Title "Manage your NGINX fleet")}}
+                                <p style="padding-bottom: 10px;">Use the F5 NGINX One Console to deploy, scale, or migrate your apps </p> 
+                            {{ end }}
+                            {{ if and (eq $PageTitle "F5 NGINX One Console") (eq .Title "Get started")}}
+                                <p style="padding-bottom: 10px;">See benefits from the NGINX One Console </p> 
+                            {{ end }}
+                            {{ if and (eq $PageTitle "F5 NGINX One Console") (eq .Title "Set up new instances")}}
+                                <p style="padding-bottom: 10px;">Manage your work-in-progress </p> 
+                            {{ end }}
+                            {{ if and (eq $PageTitle "F5 NGINX One Console") (eq .Title "Organize your NGINX instances")}}
+                                <p style="padding-bottom: 10px;">Keep an inventory of your deployments </p> 
+                            {{ end }}
+                            {{ if and (eq $PageTitle "F5 NGINX One Console") (eq .Title "Monitor your certificates")}}
+                                <p style="padding-bottom: 10px;">Update them before they expire </p> 
+                            {{ end }}
+                            {{ if and (eq $PageTitle "F5 NGINX One Console") (eq .Title "Organize your administrators with RBAC")}}
+                                <p style="padding-bottom: 10px;">Secure your systems with role-based access control </p> 
+                            {{ end }}
+                            {{ if and (eq $PageTitle "F5 NGINX One Console") (eq .Title "Organize in groups")}}
+                                <p style="padding-bottom: 10px;">Configure and synchronize groups of NGINX instances simultaneously </p> 
+                            {{ end }}
+                            {{ if and (eq $PageTitle "F5 NGINX One Console") (eq .Title "NGINX One API")}}
+                                <p style="padding-bottom: 10px;">Automate NGINX fleet management </p> 
+                            {{ end }}
+                            {{ if and (eq $PageTitle "F5 NGINX One Console") (eq .Title "Glossary")}}
+                                <p style="padding-bottom: 10px;">Terms unique to NGINX One Console </p> 
+                            {{ end }}
                             {{ if and (eq $PageTitle "F5 NGINX One Console") (eq .Title "How-to guides") }}
                                 <ul style="padding-top: 10px;">
                                     {{ range .Pages }}
@@ -43,6 +70,7 @@
                                 </ul>
                             {{ end }}
                             {{ if and (eq $PageTitle "F5 NGINX One Console") (eq .Title "API")}}
+                                <p style="padding-bottom: 10px;">These are API docs</p> <!-- Added text here -->
                                 <ul style="padding-top: 10px;">
                                     {{ range .Pages }}
                                         <li><a href="{{ .Permalink }}"> {{ .Title }}</a></li>

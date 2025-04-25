@@ -939,7 +939,7 @@ If a user other than **nginx** is to be used, note the following:
     - For Oracle Linux/Debian/Ubuntu/Alpine/Amazon Linux:
 
         ```shell
-        DOCKER_BUILDKIT=1 docker build --no-cache --platform linux/amd64 --secret id=nginx-crt,src=nginx-repo.crt --secret id=nginx-key,src=nginx-repo.key -t app-protect .
+        DOCKER_BUILDKIT=1 docker build --no-cache --secret id=nginx-crt,src=nginx-repo.crt --secret id=nginx-key,src=nginx-repo.key -t app-protect .
         ```
 
         The `DOCKER_BUILDKIT=1` enables `docker build` to recognize the `--secret` flag which allows the user to pass secret information to be used in the Dockerfile for building docker images in a safe way that will not end up stored in the final image. This is a recommended practice for the handling of the certificate and private key for NGINX repository access (`nginx-repo.crt` and `nginx-repo.key` files). More information [here](https://docs.docker.com/engine/reference/commandline/buildx_build/#secret).
@@ -1289,7 +1289,7 @@ You need root permissions to execute the following steps.
     - For Oracle Linux/Debian/Ubuntu/Alpine/Amazon Linux:
 
         ```shell
-        DOCKER_BUILDKIT=1 docker build --no-cache --platform linux/amd64 --secret id=nginx-crt,src=nginx-repo.crt --secret id=nginx-key,src=nginx-repo.key -t app-protect-converter .
+        DOCKER_BUILDKIT=1 docker build --no-cache --secret id=nginx-crt,src=nginx-repo.crt --secret id=nginx-key,src=nginx-repo.key -t app-protect-converter .
         ```
 
         The `DOCKER_BUILDKIT=1` enables `docker build` to recognize the `--secret` flag which allows the user to pass secret information to be used in the Dockerfile for building docker images in a safe way that will not end up stored in the final image. This is a recommended practice for the handling of the certificate and private key for NGINX repository access (`nginx-repo.crt` and `nginx-repo.key` files). More information [here](https://docs.docker.com/engine/reference/commandline/buildx_build/#secret).

@@ -1,7 +1,7 @@
 ---
 description: ''
 docs: DOCS-1392
-title: About
+title: Manage your NGINX fleet
 toc: true
 weight: 10
 type:

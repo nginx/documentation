@@ -1,7 +1,8 @@
 ---
-title: Manage and deploy WAF policies and log profiles
-description: Learn how to use F5 NGINX Instance Manager to manage NGINX App Protect WAF security policies and security log profiles.
-weight: 300
+title: Manage WAF Security Policies and Security Log Profiles
+description: Learn how to use F5 NGINX Management Suite Instance Manager to manage NGINX
+  App Protect WAF security policies and security log profiles.
+weight: 200
 toc: true
 type: how-to
 product: NIM
@@ -10,76 +11,83 @@ docs: DOCS-1105
 
 ## Overview
 
-F5 NGINX Instance Manager lets you manage NGINX App Protect WAF configurations using either the web interface or REST API. You can edit, update, and deploy security policies, log profiles, attack signatures, and threat campaigns to individual instances or instance groups.
+F5 NGINX Management Suite Instance Manager provides the ability to manage the configuration of NGINX App Protect WAF instances either by the user interface or the REST API. This includes editing, updating, and deploying security policies, log profiles, attack signatures, and threat campaigns to individual instances and/or instance groups.
 
-You can compile a security policy, attack signatures, and threat campaigns into a security policy bundle. The bundle includes all necessary components for a specific NGINX App Protect WAF version. Precompiling the bundle improves performance by avoiding separate compilation of each component during deployment.
+In Instance Manager v2.14.0 and later, you can compile a security policy, attack signatures, and threat campaigns into a security policy bundle. A security policy bundle consists of the security policy, the attack signatures, and threat campaigns for a particular version of NGINX App Protect WAF, and additional supporting files that make it possible for NGINX App Protect WAF to use the bundle. Because the security policy bundle is pre-compiled, the configuration gets applied faster than when you individually reference the security policy, attack signature, and threat campaign files.
 
 {{<note>}}
-The following capabilities are available only through the Instance Manager REST API:
+The following capabilities are only available via the Instance Manager REST API:
 
 - Update security policies
 - Create, read, and update security policy bundles
-- Create, read, update, and delete security log profiles
-- Publish security policies, log profiles, attack signatures, and threat campaigns to instances and instance groups
+- Create, read, update, and delete Security Log Profiles
+- Publish security policies, security log profiles, attack signatures, and/or threat campaigns to instances and instance groups
 {{</note>}}
 
 ---
 
-## Before you begin
+## Before You Begin
 
-Before continuing, complete the following steps:
+Complete the following prerequisites before proceeding with this guide:
 
-- [Set up App Protect WAF configuration management]({{< ref "setup-waf-config-management" >}})
-- Make sure your user account has the [required permissions]({{< ref "/nim/admin-guide/rbac/overview-rbac.md" >}}) to access the REST API:
+- [Set Up App Protect WAF Configuration Management]({{< ref "setup-waf-config-management" >}})
+- Verify that your user account has the [necessary permissions]({{< ref "/nim/admin-guide/rbac/overview-rbac.md" >}}) to access the Instance Manager REST API:
 
-  - **Module**: Instance Manager  
-  - **Feature**: Instance Management → `READ`  
-  - **Feature**: Security Policies → `READ`, `CREATE`, `UPDATE`, `DELETE`
+  - **Module**: Instance Manager
+  - **Feature**: Instance Management
+  - **Access**: `READ`
+  - **Feature**: Security Policies
+  - **Access**: `READ`, `CREATE`, `UPDATE`, `DELETE`
 
-To use policy bundles, you also need to:
+The following are required to use support policy bundles:
 
-- Have `UPDATE` permissions for each referenced security policy  
-- [Install the correct `nms-nap-compiler` package]({{< ref "/nim/nginx-app-protect/setup-waf-config-management.md#install-the-waf-compiler" >}}) for your App Protect WAF version  
-- [Install the required attack signatures and threat campaigns]({{< ref "/nim/nginx-app-protect/setup-waf-config-management.md#set-up-attack-signatures-and-threat-campaigns" >}})
+- You must have `UPDATE` permissions for the security policies specified in the request.
+- The correct `nms-nap-compiler` packages for the NGINX App Protect WAF version you're using are [installed on Instance Manager]({{< ref "/nim/nginx-app-protect/setup-waf-config-management.md#install-the-waf-compiler" >}}).
+- The attack signatures and threat campaigns that you want to use are [installed on Instance Manager]({{< ref "/nim/nginx-app-protect/setup-waf-config-management.md#set-up-attack-signatures-and-threat-campaigns" >}}).
 
-### Access the web interface
+### How to Access the Web Interface
 
-To access the web interface, open a browser and go to the fully qualified domain name (FQDN) of your NGINX Instance Manager. Log in, then select **Instance Manager** from the Launchpad.
+To access the web interface, go to the FQDN for your NGINX Instance Manager host in a web browser and log in. Once you're logged in, select "Instance Manager" from the Launchpad menu.
 
-### Access the REST API
+### How to Access the REST API
 
 {{< include "nim/how-to-access-nim-api.md" >}}
 
 ---
 
-## Create a security policy {#create-security-policy}
+## Create a Security Policy {#create-security-policy}
 
 {{<tabs name="create-security-policy">}}
 
 {{%tab name="web interface"%}}
 
-To create a security policy using the NGINX Instance Manager web interface:
+<br>
 
-1. In your browser, go to the FQDN for your NGINX Instance Manager host and log in.  
-2. From the Launchpad menu, select **Instance Manager**.  
-3. In the left menu, select **App Protect**.  
-4. On the *Security Policies* page, select **Create**.  
-5. On the *Create Policy* page, enter the required information:
-   - **Name**: Enter a name for the policy.  
-   - **Description**: (Optional) Add a brief description.  
-   - **Enter Policy**: Paste or type the JSON-formatted policy into the editor. The interface automatically validates the JSON.
+To create a security policy using the Instance Manager web interface:
 
-    For help writing custom policies, see the [NGINX App Protect WAF Declarative Policy guide](https://docs.nginx.com/nginx-app-protect/declarative-policy/policy/) and the [Policy Authoring and Tuning section](https://docs.nginx.com/nginx-app-protect/configuration-guide/configuration/#policy-authoring-and-tuning) in the configuration guide.
+1. In a web browser, go to the FQDN for your NGINX Management Suite host and log in. Then, from the Launchpad menu, select **Instance Manager**.
+2. On the left menu, select **App Protect**.
+3. On the *Security Policies* page, select **Create**.
+4. On the *Create Policy* page, fill out the necessary fields:
 
-6. Select **Save**.
+   - **Name**: Provide a name for the policy.
+   - **Description**: (Optional) Add a short description for the policy.
+   - **Enter Policy**: Type or paste the policy in JSON format into the form provided. The editor will validate the JSON for accuracy.
+
+      For more information about creating custom policies, refer to the [NGINX App Protect WAF Declarative Policy](https://docs.nginx.com/nginx-app-protect/declarative-policy/policy/) guide and the [Policy Authoring and Tuning](https://docs.nginx.com/nginx-app-protect/configuration-guide/configuration/#policy-authoring-and-tuning) section of the config guide.
+
+5. Select **Save**.
 
 {{%/tab%}}
 
 {{%tab name="API"%}}
 
-To upload a new security policy using the REST API, send a `POST` request to the Security Policies API endpoint.
+To upload a new security policy, send an HTTP `POST` request to the Security Policies API endpoint.
 
-You must encode the JSON policy using `base64`. If you send the policy in plain JSON, the request will fail.
+{{<important>}}Before sending a security policy to Instance Manager, you need to encode it using `base64`. Submitting a policy in its original JSON format will result in an error.{{</important>}}
+
+<br>
+
 
 {{<bootstrap-table "table">}}
 
@@ -93,7 +101,7 @@ You must encode the JSON policy using `base64`. If you send the policy in plain 
 For example:
 
 ```shell
-curl -X POST https://{{NIM_FQDN}}/api/platform/v1/security/policies \
+curl -X POST https://{{NMS_FQDN}}/api/platform/v1/security/policies \
     -H "Authorization: Bearer <access token>" \
     -d @ignore-xss-example.json
 ```
@@ -126,7 +134,7 @@ curl -X POST https://{{NIM_FQDN}}/api/platform/v1/security/policies \
     "modified": "2022-04-12T23:19:58.502Z",
     "name": "ignore-cross-site-scripting",
     "revisionTimestamp": "2022-04-12T23:19:58.502Z",
-    "uid": "<policy-uid>"
+    "uid": "21daa130-4ba4-442b-bc4e-ab294af123e5"
   },
   "selfLink": {
     "rel": "/api/platform/v1/services/environments/prod"
@@ -140,13 +148,11 @@ curl -X POST https://{{NIM_FQDN}}/api/platform/v1/security/policies \
 
 ---
 
-## Update a security policy
+## Update a Security Policy
 
+To update a security policy, send an HTTP `POST` request to the Security Policies API endpoint, `/api/platform/v1/security/policies`.
 
-To update a security policy, send a `POST` or `PUT` request to the Security Policies API.
-
-- Use `POST` with the `isNewRevision=true` parameter to add a new version of an existing policy.
-- Use `PUT` with the policy UID to overwrite the existing version.
+You can use the optional `isNewRevision` parameter to indicate whether the updated policy is a new version of an existing policy.
 
 
 {{<bootstrap-table "table">}}
@@ -159,35 +165,33 @@ To update a security policy, send a `POST` or `PUT` request to the Security Poli
 {{</bootstrap-table>}}
 
 
-To use `POST`, include the policy metadata and content in your request:
+For example:
 
 ```shell
-curl -X POST https://{{NIM_FQDN}}/api/platform/v1/security/policies?isNewRevision=true \
+curl -X POST https://{{NMS_FQDN}}/api/platform/v1/security/policies?isNewRevision=true \
     -H "Authorization: Bearer <access token>" \
     -d @update-xss-policy.json
 ```
 
-To use PUT, first retrieve the policy’s unique identifier (UID). You can do this by sending a GET request to the policies endpoint:
+You can update a specific policy by sending an HTTP `PUT` request to the Security Policies API endpoint that includes the policy's unique identifier (UID).
+
+To find the UID, send an HTTP `GET` request to the Security Policies API endpoint. This returns a list of all Security Policies that contains the unique identifier for each policy.
+
+Include the UID for the security policy in your `PUT` request to update the policy. Once the policy update is accepted, the WAF compiler will create a new, updated bundle.
+
+For example:
 
 ```shell
-curl -X GET https://{{NIM_FQDN}}/api/platform/v1/security/policies \
-    -H "Authorization: Bearer <access token>"
-```
-
-Then include the UID in your PUT request:
-
-```shell
-curl -X PUT https://{{NIM_FQDN}}/api/platform/v1/security/policies/<policy-uid> \
+curl -X PUT https://{{NMS_FQDN}}/api/platform/v1/security/policies/23139e0a-4ac8-49f9-b7a0-0577b42c70c7 \
     -H "Authorization: Bearer <access token>" \
-    --Content-Type application/json \
-    -d @update-xss-policy.json
+    --Content-Type application/json -d @update-xss-policy.json
 ```
 
-After updating the policy, you can [publish it](#publish-policy) to selected instances or instance groups.
+After you have pushed an updated security policy, you can [publish it](#publish-policy) to selected instances or instance groups.
 
 ---
 
-## Delete a security policy
+## Delete a Security Policy
 
 {{<tabs name="delete-security-policy">}}
 
@@ -195,29 +199,17 @@ After updating the policy, you can [publish it](#publish-policy) to selected ins
 
 <br>
 
-To delete a security policy using the NGINX Instance Manager web interface:
+To delete a security policy using the Instance Manager web interface:
 
-1. In your browser, go to the FQDN for your NGINX Instance Manager host and log in.  
-2. From the Launchpad menu, select **Instance Manager**.  
-3. In the left menu, select **App Protect**.  
-4. On the *Security Policies* page, find the policy you want to delete.
-5. Select the **Actions** menu (**...**) and choose **Delete**.
-
+1. In a web browser, go to the FQDN for your NGINX Management Suite host and log in. Then, from the Launchpad menu, select **Instance Manager**.
+2. On the left menu, select **App Protect**.
+3. On the *Security Policies* page, select the **Actions** menu (represented by an ellipsis, **...**) for the policy you want to delete. Select **Delete** to remove the policy.
 
 {{%/tab%}}
 
 {{%tab name="API"%}}
 
-To delete a security policy using the REST API:
-
-1. Retrieve the UID for the policy by sending a `GET` request to the policies endpoint:
-
-    ```shell
-    curl -X GET https://{{NIM_FQDN}}/api/platform/v1/security/policies \
-        -H "Authorization: Bearer <access token>"
-    ```
-
-2. Send a `DELETE` request using the policy UID:
+To delete a security policy, send an HTTP `DELETE` request to the Security Policies API endpoint that includes the unique identifier for the policy that you want to delete.
 
 
 {{<bootstrap-table "table">}}
@@ -229,10 +221,10 @@ To delete a security policy using the REST API:
 {{</bootstrap-table>}}
 
 
-Example:
+For example:
 
 ```shell
-curl -X DELETE https://{{NIM_FQDN}}/api/platform/v1/security/policies/<policy-uid> \
+curl -X DELETE https://{{NMS_FQDN}}/api/platform/v1/security/policies/23139e0a-4ac8-49f9-b7a0-0577b42c70c7 \
     -H "Authorization: Bearer <access token>"
 ```
 
@@ -240,42 +232,36 @@ curl -X DELETE https://{{NIM_FQDN}}/api/platform/v1/security/policies/<policy-ui
 
 {{</tabs>}}
 
+{{%comment%}}TO DO: Add sections for managing attack signatures and threat campaigns{{%/comment%}}
+
 ---
 
-## Create security policy bundles {#create-security-policy-bundles}
+## Create Security Policy Bundles {#create-security-policy-bundles}
 
+To create security policy bundles, send an HTTP `POST` request to the Security Policies Bundles API endpoint. The specified security policies you'd like to compile into security policy bundles must already exist in Instance Manager.
 
-To create a security policy bundle, send a `POST` request to the Security Policy Bundles API. The policies you want to include in the bundle must already exist in NGINX Instance Manager.
+### Required Fields
 
-Each bundle includes:
+- `appProtectWAFVersion`: The version of NGINX App Protect WAF being used.
+- `policyName`: The name of security policy to include in the bundle. This must reference an existing security policy; refer to the [Create a Security Policy](#create-security-policy) section above for instructions.
 
-- A security policy
-- Attack signatures
-- Threat campaigns
-- A version of NGINX App Protect WAF
-- Supporting files required to compile and deploy the bundle
+### Notes
 
-### Required fields
-
-- `appProtectWAFVersion`: The version of NGINX App Protect WAF to target.
-- `policyName`: The name of the policy to include. Must reference an existing policy.
-- `policyUID`: Optional. If omitted, the latest revision of the specified policy is used. This field does **not** accept the keyword `latest`.
-
-If you don’t include `attackSignatureVersionDateTime` or `threatCampaignVersionDateTime`, the latest versions are used by default. You can also set them explicitly by using `"latest"` as the value.
-
+- If you do not specify a value for the `attackSignatureVersionDateTime` and/or `threatCampaignVersionDateTime` fields, the latest version of each will be used by default. You can also explicitly state that you want to use the most recent version by specifying the keyword `latest` as the value.
+- If the `policyUID` field is not defined, the latest version of the specified security policy will be used. This field **does not allow** use of the keyword `latest`.
 
 {{<bootstrap-table "table">}}
 
-| Method | Endpoint                                     |
-|--------|----------------------------------------------|
+| Method | Endpoint                             |
+|--------|--------------------------------------|
 | POST   | `/api/platform/v1/security/policies/bundles` |
 
 {{</bootstrap-table>}}
 
-Example:
+For example:
 
 ```shell
-curl -X POST https://{{NIM_FQDN}}/api/platform/v1/security/policies/bundles \
+curl -X POST https://{{NMS_FQDN}}/api/platform/v1/security/policies/bundles \
     -H "Authorization: Bearer <access token>" \
     -d @security-policy-bundles.json
 ```
@@ -288,7 +274,7 @@ curl -X POST https://{{NIM_FQDN}}/api/platform/v1/security/policies/bundles \
   "bundles": [{
       "appProtectWAFVersion": "4.457.0",
       "policyName": "default-enforcement",
-      "policyUID": "<policy-uid>",
+      "policyUID": "29d86fe8-612a-5c69-895a-04fc5b9849a6",
       "attackSignatureVersionDateTime": "2023.06.20",
       "threatCampaignVersionDateTime": "2023.07.18"
     },
@@ -319,10 +305,10 @@ curl -X POST https://{{NIM_FQDN}}/api/platform/v1/security/policies/bundles \
         "modified": "2023-10-04T23:19:58.502Z",
         "appProtectWAFVersion": "4.457.0",
         "policyName": "default-enforcement",
-        "policyUID": "<policy-uid>",
+        "policyUID": "29d86fe8-612a-5c69-895a-04fc5b9849a6",
         "attackSignatureVersionDateTime": "2023.06.20",
         "threatCampaignVersionDateTime": "2023.07.18",
-        "uid": "<bundle-uid>"
+        "uid": "dceb8254-9a90-4e77-87ac-73070f821412"
       },
       "content": "",
       "compilationStatus": {
@@ -335,11 +321,11 @@ curl -X POST https://{{NIM_FQDN}}/api/platform/v1/security/policies/bundles \
         "created": "2023-10-04T23:19:58.502Z",
         "modified": "2023-10-04T23:19:58.502Z",
         "appProtectWAFVersion": "4.279.0",
-        "policyName": "default-enforcement",
-        "policyUID": "<policy-uid>",
+        "policyName": "defautl-enforcement",
+        "policyUID": "04fc5b9849a6-612a-5c69-895a-29d86fe8",
         "attackSignatureVersionDateTime": "2023.08.10",
         "threatCampaignVersionDateTime": "2023.08.09",
-        "uid": "<bundle-uid>"
+        "uid": "trs35lv2-9a90-4e77-87ac-ythn4967"
       },
       "content": "",
       "compilationStatus": {
@@ -353,10 +339,10 @@ curl -X POST https://{{NIM_FQDN}}/api/platform/v1/security/policies/bundles \
         "modified": "2023-10-04T23:19:58.502Z",
         "appProtectWAFVersion": "4.457.0",
         "policyName": "ignore-xss",
-        "policyUID": "<policy-uid>",
+        "policyUID": "849a604fc5b9-612a-5c69-895a-86f29de8",
         "attackSignatureVersionDateTime": "2023.08.10",
         "threatCampaignVersionDateTime": "2023.08.09",
-        "uid": "<bundle-uid>"
+        "uid": "nbu844lz-9a90-4e77-87ac-zze8861d"
       },
       "content": "",
       "compilationStatus": {
@@ -368,38 +354,39 @@ curl -X POST https://{{NIM_FQDN}}/api/platform/v1/security/policies/bundles \
 }
 ```
 
+
 ---
 
-## List security policy bundles {#list-security-policy-bundles}
+## List Security Policy Bundles {#list-security-policy-bundles}
 
-To list all security policy bundles, send a `GET` request to the Security Policy Bundles API.
+To list security policy bundles, send an HTTP `GET` request to the Security Policies Bundles API endpoint.
 
-You’ll only see bundles you have `"READ"` permissions for.
+{{<note>}}The list will only contain the security policy bundles that you have "READ" permissions for in Instance Manager.{{</note>}}
 
-You can use the following query parameters to filter results:
+You can filter the results by using the following query parameters:
 
-- `includeBundleContent`: Whether to include base64-encoded content in the response. Defaults to `false`.
-- `policyName`: Return only bundles that match this policy name.
-- `policyUID`: Return only bundles that match this policy UID.
-- `startTime`: Return only bundles modified at or after this time.
-- `endTime`: Return only bundles modified before this time.
+- `includeBundleContent`: Boolean indicating whether to include the security policy bundle content for each bundle when getting a list of bundles or not. If not provided, defaults to `false`. Please note that the content returned is `base64 encoded`.
+- `policyName`: String used to filter the list of security policy bundles; only security policy bundles that have the specified security policy name will be returned. If not provided, it will not filter based on `policyName`.
+- `policyUID`: String used to filter the list of security policy bundles; only security policy bundles that have the specified security policy UID will be returned. If not provided, it will not filter based on `policyUID`.
+- `startTime`: The security policy bundle's "modified time" has to be equal to or greater than this time value. If no value is supplied, it defaults to 24 hours from the current time. `startTime` has to be less than `endTime`.
+- `endTime`: Indicates the time that the security policy bundles modified time has to be less than. If no value is supplied, it defaults to current time. `endTime` has to be greater than `startTime`.
 
-If no time range is provided, the API defaults to showing bundles modified in the past 24 hours.
+<br>
 
 
 {{<bootstrap-table "table">}}
 
-| Method | Endpoint                                     |
-|--------|----------------------------------------------|
+| Method | Endpoint                             |
+|--------|--------------------------------------|
 | GET    | `/api/platform/v1/security/policies/bundles` |
 
 {{</bootstrap-table>}}
 
 
-Example:
+For example:
 
 ```shell
-curl -X GET https://{{NIM_FQDN}}/api/platform/v1/security/policies/bundles \
+curl -X GET https://{{NMS_FQDN}}/api/platform/v1/security/policies/bundles \
     -H "Authorization: Bearer <access token>"
 ```
 
@@ -414,10 +401,10 @@ curl -X GET https://{{NIM_FQDN}}/api/platform/v1/security/policies/bundles \
         "modified": "2023-10-04T23:19:58.502Z",
         "appProtectWAFVersion": "4.457.0",
         "policyName": "default-enforcement",
-        "policyUID": "<policy-uid>",
+        "policyUID": "29d86fe8-612a-5c69-895a-04fc5b9849a6",
         "attackSignatureVersionDateTime": "2023.06.20",
         "threatCampaignVersionDateTime": "2023.07.18",
-        "uid": "<bundle-uid>"
+        "uid": "dceb8254-9a90-4e77-87ac-73070f821412"
       },
       "content": "",
       "compilationStatus": {
@@ -431,10 +418,10 @@ curl -X GET https://{{NIM_FQDN}}/api/platform/v1/security/policies/bundles \
         "modified": "2023-10-04T23:19:58.502Z",
         "appProtectWAFVersion": "4.279.0",
         "policyName": "defautl-enforcement",
-        "policyUID": "<policy-uid>",
+        "policyUID": "04fc5b9849a6-612a-5c69-895a-29d86fe8",
         "attackSignatureVersionDateTime": "2023.08.10",
         "threatCampaignVersionDateTime": "2023.08.09",
-        "uid": "<bundle-uid>"
+        "uid": "trs35lv2-9a90-4e77-87ac-ythn4967"
       },
       "content": "",
       "compilationStatus": {
@@ -448,10 +435,10 @@ curl -X GET https://{{NIM_FQDN}}/api/platform/v1/security/policies/bundles \
         "modified": "2023-10-04T23:19:58.502Z",
         "appProtectWAFVersion": "4.457.0",
         "policyName": "ignore-xss",
-        "policyUID": "<policy-uid>",
+        "policyUID": "849a604fc5b9-612a-5c69-895a-86f29de8",
         "attackSignatureVersionDateTime": "2023.08.10",
         "threatCampaignVersionDateTime": "2023.08.09",
-        "uid": "<bundle-uid>"
+        "uid": "nbu844lz-9a90-4e77-87ac-zze8861d"
       },
       "content": "",
       "compilationStatus": {
@@ -465,35 +452,35 @@ curl -X GET https://{{NIM_FQDN}}/api/platform/v1/security/policies/bundles \
 
 ---
 
-## Get a security policy bundle {#get-security-policy-bundle}
+## Get a Security Policy Bundle {#get-security-policy-bundle}
 
-To retrieve a specific security policy bundle, send a `GET` request to the Security Policy Bundles API using the policy UID and bundle UID in the URL path.
+To get a specific security policy bundle, send an HTTP `GET` request to the Security Policies Bundles API endpoint that contains the security policy UID and security policy bundle UID in the path.
 
-You must have `"READ"` permission for the bundle to retrieve it.
+{{<note>}}You must have "READ" permission for the security policy bundle to be able to retrieve information about a bundle by using the REST API.{{</note>}}
+
+<br>
 
 
 {{<bootstrap-table "table">}}
 
-| Method | Endpoint                                                                                        |
-|--------|-------------------------------------------------------------------------------------------------|
+| Method | Endpoint                             |
+|--------|--------------------------------------|
 | GET    | `/api/platform/v1/security/policies/{security-policy-uid}/bundles/{security-policy-bundle-uid}` |
 
 {{</bootstrap-table>}}
 
-Example:
+
+For example:
 
 ```shell
-curl -X GET https://{{NIM_FQDN}}/api/platform/v1/security/policies/<policy-uid>/bundles/<bundle-uid> \
+curl -X GET https://{{NMS_FQDN}}/api/platform/v1/security/policies/29d86fe8-612a-5c69-895a-04fc5b9849a6/bundles/trs35lv2-9a90-4e77-87ac-ythn4967 \
     -H "Authorization: Bearer <access token>"
 ```
 
-The response includes a content field that contains the bundle in base64 format. To use it, you’ll need to decode the content and save it as a `.tgz` file.
-
-Example:
+The JSON response, shown in the example below, includes a `content` field that is base64 encoded. After you retrieve the information from the API, you will need to base64 decode the content field. You can include this in your API call, as shown in the following example cURL request:
 
 ```bash
-curl -X GET "https://{{NIM_FQDN}}/api/platform/v1/security/policies/<policy-uid>/bundles/<bundle-uid>" \
-    -H "Authorization: Bearer <access token>" | jq -r '.content' | base64 -d > security-policy-bundle.tgz
+curl -X GET "https://{NMS_FQDN}/api/platform/v1/security/policies/{security-policy-uid}/bundles/{security-policy-bundle-uid}" -H "Authorization: Bearer xxxxx.yyyyy.zzzzz" | jq -r '.content' | base64 -d > security-policy-bundle.tgz
 ```
 
 <details open>
@@ -505,10 +492,10 @@ curl -X GET "https://{{NIM_FQDN}}/api/platform/v1/security/policies/<policy-uid>
     "created": "2023-10-04T23:19:58.502Z",
     "modified": "2023-10-04T23:19:58.502Z",
     "appProtectWAFVersion": "4.457.0",
-    "policyUID": "<policy-uid>",
+    "policyUID": "29d86fe8-612a-5c69-895a-04fc5b9849a6",
     "attackSignatureVersionDateTime": "2023.08.10",
     "threatCampaignVersionDateTime": "2023.08.09",
-    "uid": "<bundle-uid>"
+    "uid": "trs35lv2-9a90-4e77-87ac-ythn4967"
   },
   "content": "ZXZlbnRzIHt9Cmh0dHAgeyAgCiAgICBzZXJ2ZXIgeyAgCiAgICAgICAgbGlzdGVuIDgwOyAgCiAgICAgICAgc2VydmVyX25hbWUgXzsKCiAgICAgICAgcmV0dXJuIDIwMCAiSGVsbG8iOyAgCiAgICB9ICAKfQ==",
   "compilationStatus": {
@@ -520,25 +507,28 @@ curl -X GET "https://{{NIM_FQDN}}/api/platform/v1/security/policies/<policy-uid>
 
 ---
 
-## Create a security log profile {#create-security-log-profile}
+## Create a Security Log Profile {#create-security-log-profile}
 
-To upload a new security log profile, send a `POST` request to the Security Log Profiles API endpoint.
+Send an HTTP `POST` request to the Security Log Profiles API endpoint to upload a new security log profile.
 
-You must encode the log profile in `base64` before sending it. If you send plain JSON, the request will fail.
+{{<important>}}Before sending a security log profile to Instance Manager, you need to encode it using `base64`. Submitting a log profile in its original JSON format will result in an error.{{</important>}}
+
+<br>
+
 
 {{<bootstrap-table "table">}}
 
-| Method | Endpoint                                |
-|--------|-----------------------------------------|
+| Method | Endpoint                             |
+|--------|--------------------------------------|
 | POST   | `/api/platform/v1/security/logprofiles` |
 
 {{</bootstrap-table>}}
 
 
-Example:
+For example:
 
 ```shell
-curl -X POST https://{{NIM_FQDN}}/api/platform/v1/security/logprofiles \
+curl -X POST https://{{NMS_FQDN}}/api/platform/v1/security/logprofiles \
     -H "Authorization: Bearer <access token>" \
     -d @default-log-example.json
 ```
@@ -568,100 +558,87 @@ curl -X POST https://{{NIM_FQDN}}/api/platform/v1/security/logprofiles \
     "modified": "2023-07-05T22:09:19.634358096Z",
     "name": "default-log-example",
     "revisionTimestamp": "2023-07-05T22:09:19.634358096Z",
-    "uid": "<log-profile-uid>"
+    "uid": "54c35ad7-e082-4dc5-bb5d-2640a17d5620"
   },
   "selfLink": {
-    "rel": "/api/platform/v1/security/logprofiles/<log-profile-uid>"
+    "rel": "/api/platform/v1/security/logprofiles/54c35ad7-e082-4dc5-bb5d-2640a17d5620"
   }
 }
 ```
 
 ---
 
-## Update a security log profile {#update-security-log-profile}
+## Update a Security Log Profile
 
-To update a security log profile, you can either:
+To update a security log profile, send an HTTP `POST` request to the Security Log Profiles API endpoint, `/api/platform/v1/security/logprofiles`.
 
-- Use `POST` with the `isNewRevision=true` parameter to add a new version.
-- Use `PUT` with the log profile UID to overwrite the existing version.
+You can use the optional `isNewRevision` parameter to indicate whether the updated log profile is a new version of an existing log profile.
+
 
 {{<bootstrap-table "table">}}
 
-| Method | Endpoint                                                           |
-|--------|--------------------------------------------------------------------|
-| POST   | `/api/platform/v1/security/logprofiles?isNewRevision=true`         |
+| Method | Endpoint                                                |
+|--------|---------------------------------------------------------|
+| POST   | `/api/platform/v1/security/logprofiles?isNewRevision=true` |
 | PUT    | `/api/platform/v1/security/logprofiles/{security-log-profile-uid}` |
 
 {{</bootstrap-table>}}
 
 
-To create a new revision:
+For example:
 
 ```shell
-curl -X POST https://{{NIM_FQDN}}/api/platform/v1/security/logprofiles?isNewRevision=true \
+curl -X POST https://{{NMS_FQDN}}/api/platform/v1/security/logprofiles?isNewRevision=true \
     -H "Authorization: Bearer <access token>" \
     -d @update-default-log.json
 ```
 
-To overwrite an existing security log profile:
+You can update a specific log profile by sending an HTTP `PUT` request to the Security Log Profiles API endpoint that includes the log profile's unique identifier (UID).
 
-1. Retrieve the profile’s UID:
+To find the UID, send an HTTP `GET` request to the Security Log Profiles API endpoint. This returns a list of all Security Log Profiles that contains the unique identifier for each log profile.
 
-    ```shell
-    curl -X PUT https://{{NIM_FQDN}}/api/platform/v1/security/logprofiles/<log-profile-uid> \
-      -H "Authorization: Bearer <access token>" \
-      --Content-Type application/json \
-      -d @update-log-profile.json
-    ```
+Include the UID for the security log profile in your `PUT` request to update the log profile.
 
-2. Use the UID in your PUT request:
-   
-    ```shell
-    curl -X PUT https://{{NIM_FQDN}}/api/platform/v1/security/logprofiles/<log-profile-uid> \
-      -H "Authorization: Bearer <access token>" \
-      --Content-Type application/json \
-      -d @update-log-profile.json
-      ```
+For example:
 
-After updating the security log profile, you can [publish it](#publish-policy) to specific instances or instance groups.
+```shell
+curl -X PUT https://{{NMS_FQDN}}/api/platform/v1/security/logprofiles/23139e0a-4ac8-49f9-b7a0-0577b42c70c7 \
+    -H "Authorization: Bearer <access token>" \
+    --Content-Type application/json -d @update-default-log.json
+```
+
+After you have pushed an updated security log profile, you can [publish it](#publish-policy) to selected instances or instance groups.
 
 ---
 
-## Delete a security log profile {#delete-security-log-profile}
+## Delete a Security Log Profile
 
-To delete a security log profile, send a `DELETE` request to the Security Log Profiles API using the profile’s UID.
+To delete a security log profile, send an HTTP `DELETE` request to the Security Log Profiles API endpoint that includes the unique identifier for the log profile that you want to delete.
 
 
 {{<bootstrap-table "table">}}
 
-| Method | Endpoint                                                           |
-|--------|--------------------------------------------------------------------|
+| Method | Endpoint                                                   |
+|--------|------------------------------------------------------------|
 | DELETE | `/api/platform/v1/security/logprofiles/{security-log-profile-uid}` |
 
 {{</bootstrap-table>}}
 
 
-1. Retrieve the UID:
+For example:
 
-    ```shell
-    curl -X GET https://{{NIM_FQDN}}/api/platform/v1/security/logprofiles \
-        -H "Authorization: Bearer <access token>"
-    ```
-
-2. Send the delete request:
-
-    ```shell
-    curl -X DELETE https://{{NIM_FQDN}}/api/platform/v1/security/logprofiles/<log-profile-uid> \
-        -H "Authorization: Bearer <access token>"
-    ```
+```shell
+curl -X DELETE https://{{NMS_FQDN}}/api/platform/v1/security/logprofiles/23139e0a-4ac8-49f9-b7a0-0577b42c70c7 \
+    -H "Authorization: Bearer <access token>"
+```
 
 ---
 
-## Publish updates to instances {#publish-policy}
+## Publish Updates to Instances {#publish-policy}
 
-Use the Publish API to push security policies, log profiles, attack signatures, and threat campaigns to NGINX instances or instance groups.
+The Publish API lets you distribute security policies, security log profiles, attack signatures, and/or threat campaigns to instances and instance groups.
 
-Call this endpoint *after* you've created or updated the resources you want to deploy.
+{{<tip>}}Use this endpoint *after* you've added or updated security policies, security log profiles, attack signatures, and/or threat campaigns.{{</tip>}}
 
 
 {{<bootstrap-table "table">}}
@@ -673,20 +650,18 @@ Call this endpoint *after* you've created or updated the resources you want to d
 {{</bootstrap-table>}}
 
 
-Include the following information in your request, depending on what you're publishing:
+When making a request to the Publish API, make sure to include all the necessary information for your specific use case:
 
-- Instance and instance group UIDs
-- Policy UID and name
-- Log profile UID and name
-- Attack signature library UID and version
-- Threat campaign UID and version
+- Instance and/or Instance Group UID(s) to push the bundle to
+- Threat Campaign version and UID
+- Attack Signature version and UID
+- Security Policy UID(s)
+- Security Log Profile UID(s)
 
-Example:
+For example:
 
 ```shell
-curl -X POST https://{{NIM_FQDN}}/api/platform/v1/security/publish \
-    -H "Authorization: Bearer <access token>" \
-    -d @publish-request.json
+curl -X PUT https://{{NMS_FQDN}}/api/platform/v1/security/publish -H "Authorization: Bearer <access token>"
 ```
 
 <details open>
@@ -696,27 +671,27 @@ curl -X POST https://{{NIM_FQDN}}/api/platform/v1/security/publish \
 {
   "publications": [
     {
-      "instances": [
-        "<instance-uid>"
-      ],
-      "instanceGroups": [
-        "<instance-group-uid>"
-      ],
-      "policyContent": {
-        "name": "example-policy",
-        "uid": "<policy-uid>"
-      },
-      "logProfileContent": {
-        "name": "example-log-profile",
-        "uid": "<log-profile-uid>"
-      },
       "attackSignatureLibrary": {
-        "uid": "<signature-library-uid>",
-        "versionDateTime": "2023.10.02"
+        "uid": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        "versionDateTime": "2022.10.02"
+      },
+      "instanceGroups": [
+        "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+      ],
+      "instances": [
+        "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+      ],
+      "logProfileContent": {
+        "name": "default-log",
+        "uid": "ffdbda39-88be-420a-b673-19d4183b7e4c"
+      },
+      "policyContent": {
+        "name": "default-enforcement",
+        "uid": "3fa85f64-5717-4562-b3fc-2c963f66afa6"
       },
       "threatCampaign": {
-        "uid": "<campaign-uid>",
-        "versionDateTime": "2023.10.01"
+        "uid": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        "versionDateTime": "2022.10.01"
       }
     }
   ]
@@ -746,91 +721,357 @@ curl -X POST https://{{NIM_FQDN}}/api/platform/v1/security/publish \
 
 ---
 
-## Check security policy and security log profile publication status {#check-publication-status}
+## Check Security Policy and Security Log Profile Publication Status
+When publishing an NGINX configuration that references a security policy and secuity log profile, the Instance Manager REST APIs can provide further details about the status of the configuration publications. To access this information, use the Instance Manager API endpoints and method as indicated.
 
-After publishing updates, you can check deployment status using the NGINX Instance Manager REST API.
+To retrieve the details for the different configuration publication statuses for a particular security policy, send an HTTP `GET` request to the Security Deployments Associations API endpoint, providing the name of the security policy.
 
-Use the following endpoints to verify whether the configuration updates were successfully deployed to instances or instance groups.
+| Method | Endpoint                                                                    |
+|--------|-----------------------------------------------------------------------------|
+| GET    | `/api/platform/v1/security/deployments/associations/{security-policy-name}` |
 
-### Check publication status for a security policy
+You can locate the configuration publication status in the response within the field `lastDeploymentDetails` for instances and instance groups:
 
-To view deployment status for a specific policy, send a `GET` request to the Security Deployments Associations API using the policy name.
+- `lastDeploymentDetails` (for an instance): associations -> instance -> lastDeploymentDetails
+- `lastDeploymentDetails` (for an instance in an instance group): associations -> instanceGroup -> instances -> lastDeploymentDetails
 
-{{<bootstrap-table "table">}}
-
-| Method | Endpoint                                                           |
-|--------|--------------------------------------------------------------------|
-| GET    | `/api/platform/v1/security/deployments/associations/{policy-name}` |
-
-{{</bootstrap-table>}}
-
-Example:
+The example below shows a call to the `security deployments associations` endpoint and the corresponding JSON response containing successful deployments.
 
 ```shell
-curl -X GET "https://{{NIM_FQDN}}/api/platform/v1/security/deployments/associations/ignore-xss" \
-    -H "Authorization: Bearer <access token>"
+curl -X GET "https://{NGINX-INSTANCE-MANAGER-FQDN}/api/platform/v1/security/deployments/associations/ignore-xss" -H "Authorization: Bearer <access token>"
 ```
 
-In the response, look for the `lastDeploymentDetails` field under instance or `instanceGroup.instances`.
+<details close>
+<summary>JSON Response</summary>
 
+```json
+{
+  "associations": [
+    {
+      "attackSignatureLibrary": {
+        "uid": "c69460cc-6b59-4813-8d9c-76e4a6c56b4b",
+        "versionDateTime": "2023.02.16"
+      },
+      "instance": {
+        "hostName": "ip-172-16-0-99",
+        "lastDeploymentDetails": {
+          "createTime": "2023-04-11T21:36:11.519174534Z",
+          "details": {
+            "failure": [],
+            "pending": [],
+            "success": [
+              {
+                "name": "ip-172-16-0-99"
+              }
+            ]
+          },
+          "id": "19cf5ed4-29d6-4139-b5f5-308c0d0ebb13",
+          "message": "Instance config successfully published to",
+          "status": "successful",
+          "updateTime": "2023-04-11T21:36:14.008108979Z"
+        },
+        "systemUid": "0435a5de-41c1-3754-b2e8-9d9fe946bafe",
+        "uid": "29d86fe8-612a-5c69-895a-04fc5b9849a6"
+      },
+      "instanceGroup": {
+        "displayName": "inst_group_1",
+        "instances": [
+          {
+            "hostName": "hostname1",
+            "systemUid": "49d143c2-f556-4cd7-8658-76fff54fb861",
+            "uid": "c8e15dcf-c504-4b7f-b52d-def7b8fd2f64",
+            "lastDeploymentDetails": {
+              "createTime": "2023-04-11T21:36:11.519174534Z",
+              "details": {
+                "failure": [],
+                "pending": [],
+                "success": [
+                  {
+                    "name": "ip-172-16-0-99"
+                  }
+                ]
+              },
+              "id": "19cf5ed4-29d6-4139-b5f5-308c0d0ebb13",
+              "message": "Instance config successfully published to",
+              "status": "successful",
+              "updateTime": "2023-04-11T21:36:14.008108979Z"
+            },
+          },
+          {
+            "hostName": "hostname2",
+            "systemUid": "88a99ab0-15bb-4719-9107-daf5007c33f7",
+            "uid": "ed7e9173-794f-41af-80d9-4ed37d593247",
+            "lastDeploymentDetails": {
+              "createTime": "2023-04-11T21:36:11.519174534Z",
+              "details": {
+                "failure": [],
+                "pending": [],
+                "success": [
+                  {
+                    "name": "ip-172-16-0-99"
+                  }
+                ]
+              },
+              "id": "19cf5ed4-29d6-4139-b5f5-308c0d0ebb13",
+              "message": "Instance config successfully published to",
+              "status": "successful",
+              "updateTime": "2023-04-11T21:36:14.008108979Z"
+            },
+          }
+        ],
+        "uid": "51f8addc-c0e9-438b-b0b6-3e4f1aa8202d"
+      },
+      "policyUid": "9991f237-d9c7-47b7-98aa-faa836838f38",
+      "policyVersionDateTime": "2023-04-11T21:18:19.183Z",
+      "threatCampaign": {
+        "uid": "eab683fe-c2f1-4910-a88c-8bfbc6363164",
+        "versionDateTime": "2023.02.15"
+      }
+    }
+  ]
+}
+```
 
-### Check publication status for a security log profile
+</details>
 
-{{<bootstrap-table "table">}}
+To retrieve the details for the different configuration publication statuses for a particular security log profile, send an HTTP `GET` request to the Security Deployments Associations API endpoint, providing the name of the security log profile.
 
-| Method | Endpoint                                                                            |
-|--------|-------------------------------------------------------------------------------------|
-| GET    | `/api/platform/v1/security/deployments/logprofiles/associations/{log-profile-name}` |
+| Method | Endpoint                                                                    |
+|--------|-----------------------------------------------------------------------------|
+| GET    | `/api/platform/v1/security/deployments/logprofiles/associations/{security-log-profile-name}` |
 
-{{</bootstrap-table>}}
+You can locate the configuration publication status in the response within the field `lastDeploymentDetails` for instances and instance groups:
 
-Example:
+- `lastDeploymentDetails` (for an instance): associations -> instance -> lastDeploymentDetails
+- `lastDeploymentDetails` (for an instance in an instance group): associations -> instanceGroup -> instances -> lastDeploymentDetails
+
+The example below shows a call to the `security deployments associations` endpoint and the corresponding JSON response containing successful deployments.
 
 ```shell
-curl -X GET "https://{{NIM_FQDN}}/api/platform/v1/security/deployments/logprofiles/associations/default-log" \
-    -H "Authorization: Bearer <access token>"
+curl -X GET "https://{NGINX-INSTANCE-MANAGER-FQDN}/api/platform/v1/security/deployments/logprofiles/associations/default-log" -H "Authorization: Bearer <access token>"
 ```
 
-The response also contains `lastDeploymentDetails` for each instance or group.
+<details close>
+<summary>JSON Response</summary>
 
-### Check status for a specific instance
+```json
+{
+  "associations": [
+    {
+      "instance": {
+        "hostName": "",
+        "systemUid": "",
+        "uid": ""
+      },
+      "instanceGroup": {
+        "displayName": "ig1",
+        "instances": [
+          {
+            "hostName": "ip-172-16-0-142",
+            "systemUid": "1d1f03ff-02de-32c5-8dfd-902658aada4c",
+            "uid": "18d074e6-3868-51ba-9999-b7466a936815"
+          }
+        ],
+        "lastDeploymentDetails": {
+          "createTime": "2023-07-05T23:01:06.679136973Z",
+          "details": {
+            "failure": [],
+            "pending": [],
+            "success": [
+              {
+                "name": "ip-172-16-0-142"
+              }
+            ]
+          },
+          "id": "9bfc9db7-877d-4e8e-a43d-9660a6cd11cc",
+          "message": "Instance Group config successfully published to ig1",
+          "status": "successful",
+          "updateTime": "2023-07-05T23:01:06.790802157Z"
+        },
+        "uid": "0df0386e-82f7-4efc-863e-5d7cfbc3f7df"
+      },
+      "logProfileUid": "b680f7c3-6fc0-4c6b-889a-3025580c7fcb",
+      "logProfileVersionDateTime": "2023-07-05T22:08:47.371Z"
+    },
+    {
+      "instance": {
+        "hostName": "ip-172-16-0-5",
+        "lastDeploymentDetails": {
+          "createTime": "2023-07-05T21:45:08.698646791Z",
+          "details": {
+            "failure": [],
+            "pending": [],
+            "success": [
+              {
+                "name": "ip-172-16-0-5"
+              }
+            ]
+          },
+          "id": "73cf670a-738a-4a74-b3fb-ac9771e89814",
+          "message": "Instance config successfully published to",
+          "status": "successful",
+          "updateTime": "2023-07-05T21:45:08.698646791Z"
+        },
+        "systemUid": "0afe5ac2-43aa-36c8-bcdc-7f88cdd35ab2",
+        "uid": "9bb4e2ef-3746-5d79-b526-e545fad27e90"
+      },
+      "instanceGroup": {
+        "displayName": "",
+        "instances": [],
+        "uid": ""
+      },
+      "logProfileUid": "bb3badb2-f8f5-4b95-9428-877fc208e2f1",
+      "logProfileVersionDateTime": "2023-07-03T21:46:17.006Z"
+    }
+  ]
+}
+```
 
-You can also view the deployment status for a specific instance by providing the system UID and instance UID.
+</details>
 
-{{<bootstrap-table "table">}}
+To retrieve the configuration publication status details for a particular instance, send an HTTP `GET` request to the Instances API endpoint, providing the unique system and instance identifiers.
 
-| Method | Endpoint                                                         |
-|--------|------------------------------------------------------------------|
-| GET    | `/api/platform/v1/systems/{system-uid}/instances/{instance-uid}` |
+| Method | Endpoint                                                        |
+|--------|-----------------------------------------------------------------|
+| GET    | `/api/platform/v1/systems/{system-uid}/instances/{instance-id}` |
 
-{{</bootstrap-table>}}
+You can locate the configuration publication status in the the response within the `lastDeploymentDetails` field, which contains additional fields that provide more context around the status.
 
-Example:
+The example below shows a call to the `instances` endpoint and the corresponding JSON response containing a compiler related error message.
 
 ```shell
-curl -X GET "https://{{NIM_FQDN}}/api/platform/v1/systems/<system-uid>/instances/<instance-uid>" \
-    -H "Authorization: Bearer <access token>"
+curl -X GET "https://{NGINX-INSTANCE-MANAGER-FQDN}/api/platform/v1/systems/b9df6377-2c4f-3266-a64a-e064b0371c73/instances/5663cf4e-a0c7-50c8-b93c-16fd11a0f00b" -H "Authorization: Bearer <access token>"
 ```
 
-In the response, look for the `lastDeploymentDetails` field, which shows the deployment status and any related errors.
+<details close>
+<summary>JSON Response</summary>
 
-### Check deployment result by deployment ID
+```json
+{
+  "build": {
+    "nginxPlus": true,
+    "release": "nginx-plus-r28",
+    "version": "1.23.2"
+  },
+  "configPath": "/etc/nginx/nginx.conf",
+  "configVersion": {
+    "instanceGroup": {
+      "createTime": "0001-01-01T00:00:00Z",
+      "uid": "",
+      "versionHash": ""
+    },
+    "versions": [
+      {
+        "createTime": "2023-01-14T10:48:46.319Z",
+        "uid": "5663cf4e-a0c7-50c8-b93c-16fd11a0f00b",
+        "versionHash": "922e9d40fa6d4dd3a4b721295b8ecd95f73402644cb8d234f9f4f862b8a56bfc"
+      }
+    ]
+  },
+  "displayName": "ip-192-0-2-27",
+  "links": [
+    {
+      "rel": "/api/platform/v1/systems/b9df6377-2c4f-3266-a64a-e064b0371c73",
+      "name": "system"
+    },
+    {
+      "rel": "/api/platform/v1/systems/b9df6377-2c4f-3266-a64a-e064b0371c73/instances/5663cf4e-a0c7-50c8-b93c-16fd11a0f00b",
+      "name": "self"
+    },
+    {
+      "rel": "/api/platform/v1/systems/instances/deployments/b31c6ab1-4a46-4c81-a065-204575145e8e",
+      "name": "deployment"
+    }
+  ],
+  "processPath": "/usr/sbin/nginx",
+  "registrationTime": "2023-01-14T10:12:31.000Z",
+  "startTime": "2023-01-14T10:09:43Z",
+  "status": {
+    "lastStatusReport": "2023-01-14T11:11:49.323495017Z",
+    "state": "online"
+  },
+  "uid": "5663cf4e-a0c7-50c8-b93c-16fd11a0f00b",
+  "version": "1.23.2",
+  "appProtect": {
+    "attackSignatureVersion": "Available after publishing Attack Signatures from Instance Manager",
+    "status": "active",
+    "threatCampaignVersion": "Available after publishing Threat Campaigns from Instance Manager",
+    "version": "4.2.0"
+  },
+  "configureArgs": [
+    ...
+  ],
+  "lastDeploymentDetails": {
+    "createTime": "2023-01-14T11:10:25.096812852Z",
+    "details": {
+      "error": "{\"instance:b9df6377-2c4f-3266-a64a-e064b0371c73\":\"failed building config payload: policy compilation failed for deployment b31c6ab1-4a46-4c81-a065-204575145e8e due to integrations service error: the specified compiler (4.2.0) is missing, please install it and try again.\"}",
+      "failure": [
+        {
+          "failMessage": "failed building config payload: policy compilation failed for deployment b31c6ab1-4a46-4c81-a065-204575145e8e due to integrations service error: the specified compiler (4.2.0) is missing, please install it and try again.",
+          "name": "ip-192-0-2-27"
+        }
+      ],
+      "pending": [],
+      "success": []
+    },
+    "id": "b31c6ab1-4a46-4c81-a065-204575145e8e",
+    "message": "Instance config failed to publish to",
+    "status": "failed",
+    "updateTime": "2023-01-14T11:10:25.175145693Z"
+  },
+  "loadableModules": [
+    ...
+  ],
+  "packages": [
+    ...
+  ],
+  "processId": "10345",
+  "ssl": {
+    "built": null,
+    "runtime": null
+  }
+}
+```
 
-When you use the Publish API to [publish security content](#publish-policy), NGINX Instance Manager creates a deployment ID for the request. You can use this ID to check the result of the publication.
+</details>
 
-{{<bootstrap-table "table">}}
+When you use the Publish API (`/security/publish`) to [publish a security policy and security log profile](#publish-policy), Instance Manager creates a deployment ID for the request. To view the status of the update, or to check for any errors, use the endpoint and method shown below and reference the deployment ID.
 
 | Method | Endpoint                                                         |
 |--------|------------------------------------------------------------------|
 | GET    | `/api/platform/v1/systems/instances/deployments/{deployment-id}` |
 
-{{</bootstrap-table>}}
+You can locate the configuration publication status in the the response within the `details` field, which contains additional fields that provide more context around the status.
 
-Example:
+The example below shows a call to the `deployments` endpoint and the corresponding JSON response containing a compiler error message.
 
 ```shell
-curl -X GET "https://{{NIM_FQDN}}/api/platform/v1/systems/instances/deployments/<deployment-id>" \
+curl -X GET --url "https://{NGINX-INSTANCE-MANAGER-FQDN}/api/platform/v1/systems/instances/deployments/d38a8e5d-2312-4046-a60f-a30a4aea1fbb" \
     -H "Authorization: Bearer <access token>"
 ```
 
-The response includes the full deployment status, success or failure details, and any compiler error messages.
+<details open>
+<summary>JSON Response</summary>
+
+```json
+{
+  "createTime": "2023-01-14T04:35:47.566082799Z",
+  "details": {
+    "error": "{\"instance:8a2092aa-5612-370d-bff0-5d7521e206d6\":\"failed building config payload: policy bundle compilation failed for d38a8e5d-2312-4046-a60f-a30a4aea1fbb, integrations service returned the following error: missing the specified compiler (4.2.0) please install it and try again\"}",
+    "failure": [
+      {
+        "failMessage": "failed building config payload: policy bundle compilation failed for d38a8e5d-2312-4046-a60f-a30a4aea1fbb, integrations service returned the following error: missing the specified compiler (4.2.0) please install it and try again",
+        "name": "ip-192-0-2-243"
+      }
+    ],
+    "pending": [],
+    "success": []
+  },
+  "id": "d38a8e5d-2312-4046-a60f-a30a4aea1fbb",
+  "message": "Instance config failed to publish to",
+  "status": "failed",
+  "updateTime": "2023-01-14T04:35:47.566082799Z"
+}
+```
+
+</details>

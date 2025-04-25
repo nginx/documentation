@@ -1,75 +1,74 @@
----
-docs: DOCS-1031
-files:
-  - content/nim/nginx-app-protect/setup-waf-config-management.md
----
-
-{{<note>}}Make sure `gpg` is installed on your system before continuing. You can install NGINX Agent using command-line tools like `curl` or `wget`.{{</note>}}
-
-If your NGINX Instance Manager host doesn't use valid TLS certificates, you can use the insecure flags to bypass verification. Here are some example commands:
+**Note**: To complete this step, make sure that `gpg` is installed on your system. You can install NGINX Agent using various command-line tools like `curl` or `wget`. If your NGINX Instance Manager host is not set up with valid TLS certificates, you can use the insecure flags provided by those tools. See the following examples:
 
 {{<tabs name="install-agent-api">}}
 
 {{%tab name="curl"%}}
 
-- **Secure:**
+- Secure:
 
   ```bash
-  curl https://<NIM_FQDN>/install/nginx-agent | sudo sh
+  curl https://<NMS_FQDN>/install/nginx-agent | sudo sh
   ```
 
-- **Insecure:**
+- Insecure:
 
   ```bash
-  curl --insecure https://<NIM_FQDN>/install/nginx-agent | sudo sh
+  curl --insecure https://<NMS_FQDN>/install/nginx-agent | sudo sh
   ```
 
-To add the instance to a specific instance group during installation, use the `--instance-group` (or `-g`) flag:
+  You can add your NGINX instance to an existing instance group or create one using `--instance-group` or `-g` flag when installing NGINX Agent.
 
-```shell
-curl https://<NIM_FQDN>/install/nginx-agent -o install.sh
-chmod u+x install.sh
-sudo ./install.sh --instance-group <instance group>
-```
+  The following example shows how to download and run the script with the optional `--instance-group` flag adding the NGINX instance to the instance group **my-instance-group**:
 
-By default, the install script uses a secure connection to download packages. If it can’t establish one, it falls back to an insecure connection and logs this message:
+  ```bash
+  curl https://<NMS_FQDN>/install/nginx-agent > install.sh; chmod u+x install.sh
+  sudo ./install.sh --instance-group my-instance-group
+  ```
 
-```text
-Warning: An insecure connection will be used during this nginx-agent installation
-```
+  By default, the install script attempts to use a secure connection when downloading packages. If, however, the script cannot create a secure connection, it uses an insecure connection instead and logs the following warning message:
 
-To enforce a secure connection, set the `--skip-verify` flag to false:
+  ``` text
+  Warning: An insecure connection will be used during this nginx-agent installation
+  ```
 
-```shell
-curl https://<NIM_FQDN>/install/nginx-agent -o install.sh
-chmod u+x install.sh
-sudo ./install.sh --skip-verify false
-```
+  To require a secure connection, you can set the optional flag `skip-verify` to `false`.
+
+  The following example shows how to download and run the script with an enforced secure connection:
+
+  ```bash
+  curl https://<NMS_FQDN>/install/nginx-agent > install.sh chmod u+x install.sh; chmod u+x install.sh
+  sudo sh ./install.sh --skip-verify false
+  ```
 
 {{%/tab%}}
 
 {{%tab name="wget"%}}
 
-- **Secure:**
 
-  ```shell
-  wget https://<NIM_FQDN>/install/nginx-agent -O - | sudo sh -s --skip-verify false
+- Secure:
+
+  ```bash
+  wget https://<NMS_FQDN>/install/nginx-agent -O - | sudo sh -s --skip-verify false
   ```
 
-- **Insecure:**
+- Insecure:
 
-  ```shell
-  wget --no-check-certificate https://<NIM_FQDN>/install/nginx-agent -O - | sudo sh
+  ```bash
+  wget --no-check-certificate https://<NMS_FQDN>/install/nginx-agent -O - | sudo sh
   ```
 
-To add your instance to a group during installation, use the `--instance-group` (or `-g`) flag:
+   When you install the NGINX Agent, you can use the  `--instance-group` or `-g` flag to add your NGINX instance to an existing instance group or to a new group that you specify.
 
-```shell
-wget https://<NIM_FQDN>/install/nginx-agent -O install.sh
-chmod u+x install.sh
-sudo ./install.sh --instance-group <instance group>
-```
+   The following example downloads and runs the NGINX Agent install script with the optional `--instance-group` flag, adding the NGINX instance to the instance group **my-instance-group**:
+
+   ```bash
+   wget https://gnms1.npi.f5net.com/install/nginx-agent -O install.sh ; chmod u+x install.sh
+   sudo ./install.sh --instance-group my-instance-group
+   ```
+
 
 {{%/tab%}}
-
 {{</tabs>}}
+
+<!-- Do not remove. Keep this code at the bottom of the include -->
+<!-- DOCS-1031 -->
