@@ -32,11 +32,13 @@ Stay up-to-date with what's new and improved in the F5 NGINX One Console.
 
 ## April 30, 2025
 
-### Alert on CVE impacting new/registered instance in the F5 NGINX One Console.
-We have added ability to alert user of F5 distributed cloud if CVE in N1 impacts instance in the F5 NGINX One Console.
+### Alert when CVEs impact registered instances
 
-### Alert on new registered instance in the F5 NGINX One Console.
-We have added ability to alert user of F5 distributed cloud on when new instance is registered in the F5 NGINX One Console.
+We now include an alert in the [F5 Distributed Cloud](https://docs.cloud.f5.com/docs-v2/platform/reference/alerts-reference) when affected by one or more CVEs.
+
+### Alert on new registered instances 
+
+We now include an alert in the [F5 Distributed Cloud](https://docs.cloud.f5.com/docs-v2/platform/reference/alerts-reference) when new instances are registered in the F5 NGINX One Console.
 
 ## April 3, 2025
 
