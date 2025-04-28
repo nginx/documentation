@@ -182,7 +182,7 @@ The output should look similar to this (note that the pod name will include a un
 
 ```text
 NAME                             READY   STATUS    RESTARTS   AGE
-nginx-gateway-5d4f4c7db7-xk2kq   2/2     Running   0          112s
+nginx-gateway-5d4f4c7db7-xk2kq   1/1     Running   0          112s
 ```
 
 ---
