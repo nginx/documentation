@@ -39,6 +39,13 @@ We have added support for namespaces in N1C. You can now:
 - Manage resources in isolation in different namespaces.
 - Configure granular user permission controls base on namespace.
 
+If you already have set up resources in a namespace that:
+
+- Does not exist in your F5 Distributed Cloud tenant
+- Was deleted from your NGINX One Console tenant
+
+Then you may lose access to those resources. To regain access, create the matching namespace in your F5 Distributed Cloud (F5XC) tenant, and assign necessary [RBAC](https://docs.cloud.f5.com/docs-v2/administration/how-tos/user-mgmt/roles) permissions to access that namespace.
+
 ## April 3, 2025
 
 ### Create Custom Roles with more precise permissions
