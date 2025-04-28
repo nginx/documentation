@@ -301,7 +301,7 @@ Follow these steps to get and upload the certificate and key:
 4. Create a JSON file that includes the contents of both files. Replace newlines (`\n`) in each file with literal `\n` characters so the certificate and key can be formatted correctly inside the JSON.
 
    <details open>
-   <summary>Example resquest</summary>
+   <summary>Example request</summary>
 
    ```json
     {
