@@ -113,8 +113,8 @@ To activate the API:
   }
   ```
 
-## Using the Dashboard
-### Accessing the Dashboard
+## Use the Dashboard
+### Access the Dashboard
 To view the Dashboard, enter the corresponding address in your browser's address bar.<br>
 For example, "http://192.168.1.23/dashboard-dos.html" will show the Dashboard page located in /usr/share/nginx/html as indicated in the root directive.
 
@@ -158,12 +158,12 @@ The displayed graph is a stacked composition, encompassing two specific metrics:
 - **Yellow**: Indicates the presence of either an active attack or diminished server health.
 - **Red**: Indicates a severe scenario, where the object is experiencing an attack combined with poor health.
 
-### Configuring Dashboard Options
+### Configure Dashboard Options
 You can configure the dashboard by clicking the Gear button in the Tabs menu.<br>
 **Update every N sec** - updates the Dashboard data after the specified number of seconds, default is 1 second.<br>
 <br>
 
-## Using the REST API
+## Use the REST API
 Statistics of your server infrastructure can be managed with the REST API interface. The API is based on standard HTTP requests: statistics can be obtained with `GET` requests.
 
 The requests are sent in the JSON format that allows you to connect the stats to monitoring tools or dashboards that support JSON.
