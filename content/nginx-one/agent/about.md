@@ -1,9 +1,9 @@
 ---
 title: "About"
-weight: 100
+weight: 10
 toc: true
-docs: DOCS-000
 ---
+
 {{<call-out "note" "F5 NGINX Agent v3.0 is available now">}}
 NGINX Agent v3.0 is a major release that introduces new features and enhancements.
 
