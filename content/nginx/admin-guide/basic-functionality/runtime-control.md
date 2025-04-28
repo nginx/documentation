@@ -2,7 +2,7 @@
 description: Understand the NGINX processes that handle traffic, and how to control
   them at runtime.
 docs: DOCS-379
-title: Controlling NGINX Processes at Runtime
+title: Control NGINX Processes at Runtime
 toc: true
 weight: 100
 type:
@@ -19,7 +19,7 @@ The main purpose of the master process is to read and evaluate configuration fil
 
 The worker processes do the actual processing of requests. NGINX relies on <span style="white-space: nowrap;">OS-dependent</span> mechanisms to efficiently distribute requests among worker processes. The number of worker processes is defined by the [worker_processes](https://nginx.org/en/docs/ngx_core_module.html#worker_processes) directive in the **nginx.conf** configuration file and can either be set to a fixed number or configured to adjust automatically to the number of available CPU cores.
 
-## Controlling NGINX
+## Control NGINX
 
 To reload your configuration, you can stop or restart NGINX, or send signals to the master process. A signal can be sent by running the `nginx` command (invoking the NGINX executable) with the `-s` argument.
 
@@ -36,4 +36,4 @@ where `<SIGNAL>` can be one of the following:
 
 The `kill` utility can also be used to send a signal directly to the master process. The process ID of the master process is written, by default, to the **nginx.pid** file, which is located in the **/usr/local/nginx/logs** or **/var/run** directory.
 
-For more information about advanced signals (for performing live binary upgrades, for example), see [Controlling nginx](https://nginx.org/en/docs/control.html) at **nginx.org**.
+For more information about advanced signals (for performing live binary upgrades, for example), see [Control nginx](https://nginx.org/en/docs/control.html) at **nginx.org**.
