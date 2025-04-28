@@ -278,6 +278,7 @@ spec:
   type: NodePort
   ports:
     - targetPort: http
+      port: 80
       protocol: TCP
       # The port name helps connect to NGINXaaS. It must be prefixed with either `http-` or `stream-`
       # and the rest of the name must match the name of an upstream in that context.
