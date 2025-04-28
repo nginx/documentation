@@ -101,7 +101,30 @@ The following table shows the path to the precompiled policy file that needs to 
 
 To view the contents of the available security policies, navigate to the azure portal and select the **Security Policies** tab in the App Protect section.
 
-{{<note>}}Custom policies are not supported at this time.{{</note>}}
+## Custom policies
+
+NGINXaas for Azure also supports custom security policies. You can create and modify custom security policies to deploy to NGINX App Protect Instances using the API or Azure Portal.
+
+### Manage custom policies
+
+To create a custom security policy in the Azure Portal:
+
+1. Select your deployment
+2. Select **NGINX app protect WAF** from the menu on the left
+3. Select **Custom Policies**
+4. Select **Add Custom Security Policy** to open the policy editor
+
+In the policy editor, enter the **Name**, **File path**, your policy content, and then select **Save**. The **File path** is optional and will default to the path "/etc/app_protect/conf/" plus the policy **Name** with a ".json" extension. After your policy has been saved, you can then reference it in your NGINX configuration. For more information on policy configuration and syntax, refer to the NGINX App Protect [configuration guide](https://docs.nginx.com/nginx-app-protect-waf/v5/configuration-guide/configuration/).
+
+{{<note>}}The **name** field within the security policy must be unique among the policies referenced in your NGINX configuration.{{</note>}}
+
+{{<warning>}}Referencing both custom and precompiled policies in your NGINX configuration is not supported at this time. 
+As a workaround, make a copy of the default policy you want to use, then add it as a custom policy with a different name.
+{{</warning>}}
+
+The **Custom Policies** tab shows the status of your custom policies (Compilation and Application Status). Custom policies are automatically compiled when created or modified. Policies that are applied to the NGINX configuration cannot be deleted until they are first removed from the configuration. 
+
+It is highly recommended to use logging to monitor the performance of NGINX App Protect WAF and to help diagnose problems. See [Enable App Protect WAF Logs]({{< ref "/nginxaas-azure/app-protect/enable-logging.md" >}}) for directions to configure security and operational logs.
 
 ## What's next
 
