@@ -3,9 +3,11 @@ title: Basic configuration
 draft: false
 weight: 100
 toc: true
-docs: DOCS-1229
-type:
+nd-docs: DOCS-1229
+nd-content-type:
 - how-to
+
+
 ---
 
 The following sections explain how to configure NGINX Agent using configuration files, CLI flags, and environment variables.

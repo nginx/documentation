@@ -3,8 +3,8 @@ title: Upgrade NGINX Agent package
 draft: false
 weight: 600
 toc: true
-docs: DOCS-1227
-type:
+nd-docs: DOCS-1227
+nd-content-type:
 - how-to
 ---
 

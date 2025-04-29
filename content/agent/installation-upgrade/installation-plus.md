@@ -3,8 +3,8 @@ title: Installation from NGINX Plus repository
 draft: false
 weight: 400
 toc: true
-docs: DOCS-1217
-type:
+nd-docs: DOCS-1217
+nd-content-type:
 - how-to
 ---
 
@@ -16,7 +16,7 @@ Learn how to install NGINX Agent from NGINX Plus repository
 
 - An NGINX Plus subscription (purchased or trial)
 - NGINX Plus installed. Once installed, ensure it is running. If you don't have it installed already, follow these steps to install [NGINX Plus](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/)
-- A [supported operating system and architecture]({{< ref "/agent/tech-specs.md#supported-distributions" >}})
+- A [supported operating system and architecture]({{< ref "/agent/technical-specifications.md#supported-distributions" >}})
 - `root` privilege
 - Your credentials to the MyF5 Customer Portal, provided by email from F5, Inc.
 - Your NGINX Plus certificate and public key (`nginx-repo.crt` and `nginx-repo.key` files), provided by email from F5, Inc.

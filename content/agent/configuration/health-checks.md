@@ -3,7 +3,7 @@ title: Health checks
 draft: false
 weight: 400
 toc: true
-type:
+nd-content-type:
 - how-to
 ---
 

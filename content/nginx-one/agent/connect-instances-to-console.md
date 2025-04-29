@@ -1,7 +1,7 @@
 ---
 title: Connect NGINX instances to NGINX One Console
 toc: true
-weight: 300
+weight: 500
 docs: DOCS-000
 ---
 

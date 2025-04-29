@@ -2,7 +2,8 @@
 title: "Development environment setup"
 toc: true
 weight: 200
-docs: DOCS-000
+nd-docs: DOCS-000
+draft: true
 ---
 
 ## Overview
@@ -17,7 +18,7 @@ Ubuntu is the recommended operating system for development, as it comes with mos
 
 To begin this task, you will require the following:
 
-- A [working NGINX Agent instance]({{< ref "/agent/install-upgrade/" >}}).
+- A [working NGINX Agent instance]({{< ref "/nginx-one/agent/install-upgrade/" >}}).
 - A [Go installation](https://go.dev/dl/) of version 1.22.2 or newer.
 - A [Protocol Buffer Compiler](https://grpc.io/docs/protoc-installation/) installation.
 
@@ -29,7 +30,7 @@ git clone git@github.com:nginx/agent.git
 
 Read [Cloning a repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) for more information
 
-Follow the steps in the [Installation]({{< ref "/agent/install-upgrade/" >}}) topic to install NGINX Agent.
+Follow the steps in the [Installation]({{< ref "/nginx-one/agent/install-upgrade/" >}}) topic to install NGINX Agent.
 
 ## Install prerequisite packages
 Depending on the operating system distribution, it may be necessary to install the following packages in order to build NGINX Agent.

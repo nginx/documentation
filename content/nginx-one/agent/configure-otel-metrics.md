@@ -1,13 +1,14 @@
 ---
-title: Export metrics with NGINX Agent
-weight: 200
+title: Export NGINX instance metrics
+weight: 450
+toc: true
 ---
 
 ## Overview
 
-F5 NGINX Agent now includes an embedded [OpenTelemetry](https://opentelemetry.io/) collector, streamlining observability and metric collection for NGINX instances. With this feature, you can collect: 
+F5 NGINX Agent now includes an embedded [OpenTelemetry](https://opentelemetry.io/) collector, streamlining observability and metric collection for NGINX instances. With this feature, you can collect:
 
-* Metrics from NGINX Plus and NGINX Open Source 
+* Metrics from NGINX Plus and NGINX Open Source
 * Host metrics  (CPU, memory, disk, and network activity) from VMs or Containers
 
 {{< note >}}
@@ -21,7 +22,7 @@ The OpenTelemetry exporter is enabled by default. Once a valid connection to the
 
 ### Verify that metrics are exported
 
-You can validate that metrics are successfully exported by using the methods below: 
+You can validate that metrics are successfully exported by using the methods below:
 
 - **NGINX One dashboard**
 
@@ -29,11 +30,11 @@ You can validate that metrics are successfully exported by using the methods bel
 
 - **Agent logs**
 
-   Check the OpenTelemetry Collector logs for confirmation of successful metric processing: 
+   Check the OpenTelemetry Collector logs for confirmation of successful metric processing:
 
    1. Open the file: ```/var/log/nginx-agent/opentelemetry-collector-agent.log```
-   2. Look for the following logs: 
-      
+   2. Look for the following logs:
+
       ```text
       Everything is ready. Begin running and processing data.
       ```
