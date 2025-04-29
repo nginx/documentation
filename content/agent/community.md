@@ -5,13 +5,13 @@ weight: 600
 nd-docs: DOCS-000
 ---
 
-Discover the various ways you can get involved with the F5 NGINX Agent project:
+Discover the various ways you can participate in the F5 NGINX Agent project:
 
 ## Community
 
-- Our [Slack channel #nginx-agent](https://nginxcommunity.slack.com/), is the go-to place to start asking questions and sharing your thoughts.
+- Our [GitHub issues page](https://github.com/nginx/agent/issues) is the best place to report bugs, request features, or suggest improvements.
 
-- Our [GitHub issues page](https://github.com/nginx/agent/issues) offers space for a more technical discussion at your own pace.
+- If you have any questions, you can reach out using the [NGINX Community Forum](https://community.nginx.org/)
 
 ## Contribute
 
