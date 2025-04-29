@@ -4,8 +4,7 @@ draft: false
 weight: 100
 toc: true
 nd-docs: DOCS-1229
-nd-content-type:
-- how-to
+nd-content-type: how-to
 
 
 ---
