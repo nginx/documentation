@@ -24,7 +24,13 @@ NGINX Gateway Fabric is an open source project that provides an implementation o
 
 For a list of supported Gateway API resources and features, see the [Gateway API Compatibility]({{< ref "/ngf/overview/gateway-api-compatibility.md" >}}) documentation.
 
-NGINX Gateway Fabric separates the control plane and data plane into distinct deployments. The control plane interacts with the Kubernetes API to watch for Gateway API resources. When a new Gateway resource is provisioned, the control plane dynamically creates and manages a corresponding NGINX data plane Deployment and Service. Each NGINX data plane pod consists of an NGINX container with the integrated [NGINX agent](https://github.com/nginx/agent), which securely communicates with the control plane over gRPC. The control plane translates Gateway API resources into NGINX configuration, and sends the configuration to the agent. This enables multiple Gateways to be managed centrally while ensuring that each NGINX instance remains aligned with the current cluster state. Labels, annotations, and infrastructure settings such as service type or replica count can be specified globally via the Helm chart or customized per Gateway using the enhanced NginxProxy CRD and the Gateway’s `infrastructure` section.
+NGINX Gateway Fabric separates the control plane and data plane into distinct deployments. This architectural separation enhances scalability, security, and operational isolation between the two components.
+
+The control plane interacts with the Kubernetes API, watching for Gateway API resources. When a new Gateway resource is provisioned, it dynamically creates and manages a corresponding NGINX data plane Deployment and Service. This ensures that the system can adapt to changes in the cluster state seamlessly.
+
+Each NGINX data plane pod consists of an NGINX container integrated with the [NGINX agent](https://github.com/nginx/agent). The agent securely communicates with the control plane using gRPC. The control plane translates Gateway API resources into NGINX configurations and sends these configurations to the agent to ensure consistent traffic management.
+
+This design enables centralized management of multiple Gateways while ensuring that each NGINX instance stays aligned with the cluster's current configuration. Labels, annotations, and infrastructure settings such as service type or replica count can be specified globally via the Helm chart or customized per Gateway using the enhanced NginxProxy CRD and the Gateway's `infrastructure` section.
 
 We have more information regarding our [design principles](https://github.com/nginx/nginx-gateway-fabric/blob/v1.6.1/docs/developer/design-principles.md) in the project's GitHub repository.
 
@@ -196,7 +202,7 @@ graph LR
     style NGINXProcessAB fill:#66CDAA,stroke:#333,stroke-width:2px
     style NGINXProcessC fill:#66CDAA,stroke:#333,stroke-width:2px
 
-    style KubernetesAPI fill:#8A2BE2,stroke:#333,stroke-width:2px
+    style KubernetesAPI fill:#9370DB,stroke:#333,stroke-width:2px
 
     style HTTPRouteAAndApplicationA fill:#E0FFFF,stroke:#333,stroke-width:2px
     style HTTPRouteBAndApplicationB fill:#E0FFFF,stroke:#333,stroke-width:2px
