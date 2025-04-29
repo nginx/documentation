@@ -170,13 +170,6 @@ If you already have NGINX Gateway Fabric installed, then you can create the `Ngi
 kubectl edit gatewayclasses.gateway.networking.k8s.io nginx
 ```
 
-Save the public IP address and port of NGINX Gateway Fabric into shell variables:
-
-```text
-GW_IP=XXX.YYY.ZZZ.III
-GW_PORT=<port number>
-```
-
 You can now create the application, route, and tracing policy.
 
 ---
@@ -255,6 +248,15 @@ spec:
     - name: coffee
       port: 80
 EOF
+```
+
+After creating the Gateway resource, NGINX Gateway Fabric will provision an NGINX Pod and Service fronting it to route traffic.
+
+Save the public IP address and port of the NGINX Service into shell variables:
+
+```text
+GW_IP=XXX.YYY.ZZZ.III
+GW_PORT=<port number>
 ```
 
 Check that traffic can flow to the application.

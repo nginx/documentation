@@ -7,7 +7,7 @@ product: NGF
 docs: DOCS-000
 ---
 
-Learn how to use TLSRoutes to configure TLS Passthrough load-balancing with NGINX Gateway Fabric.
+Learn how to use TLSRoutes to configure TLS passthrough load-balancing with NGINX Gateway Fabric.
 
 ---
 
@@ -27,15 +27,7 @@ In this guide, we will show how to configure TLS passthrough for your applicatio
 
 ## Before you begin
 
-- [Install]({{< ref "/ngf/installation/" >}}) NGINX Gateway Fabric with experimental features enabled.
-- Save the public IP address and port of NGINX Gateway Fabric into shell variables:
-
-   ```text
-   GW_IP=XXX.YYY.ZZZ.III
-   GW_TLS_PORT=<port number>
-   ```
-
-{{< note >}} In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the Gateway will forward for. {{< /note >}}
+- [Install]({{< relref "/ngf/installation/" >}}) NGINX Gateway Fabric with experimental features enabled.
 
 ---
 
@@ -171,6 +163,17 @@ This Gateway will configure NGINX Gateway Fabric to accept TLS connections on po
 
 {{< note >}}It is possible to add an HTTPS listener on the same port that terminates TLS connections so long as the hostname does not overlap with the TLS listener hostname.{{< /note >}}
 
+After creating the Gateway resource, NGINX Gateway Fabric will provision an NGINX Pod and Service fronting it to route traffic.
+
+Save the public IP address and port of the NGINX Service into shell variables:
+
+```text
+GW_IP=XXX.YYY.ZZZ.III
+GW_TLS_PORT=<port number>
+```
+
+{{< note >}} In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the Gateway will forward for. {{< /note >}}
+
 Create a TLSRoute that attaches to the Gateway and routes requests to `app.example.com` to the `secure-app` Service:
 
 ```yaml
@@ -199,7 +202,7 @@ EOF
 
 ## Send traffic
 
-Using the external IP address and port for NGINX Gateway Fabric, send traffic to the `secure-app` application.
+Using the external IP address and port for the NGINX Service, send traffic to the `secure-app` application.
 
 {{< note >}}If you have a DNS record allocated for `app.example.com`, you can send the request directly to that hostname, without needing to resolve.{{< /note >}}
 

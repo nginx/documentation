@@ -20,14 +20,6 @@ This guide describes how to configure the headers application to modify the head
 ## Before you begin
 
 - [Install]({{< ref "/ngf/installation/" >}}) NGINX Gateway Fabric.
-- Save the public IP address and port of NGINX Gateway Fabric into shell variables:
-
-  ```text
-  GW_IP=XXX.YYY.ZZZ.III
-  GW_PORT=<port number>
-  ```
-
-{{< note >}} In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the gateway will forward for .{{< /note >}}
 
 ---
 
@@ -55,6 +47,18 @@ spec:
     protocol: HTTP
 EOF
 ```
+
+After creating the Gateway resource, NGINX Gateway Fabric will provision an NGINX Pod and Service fronting it to route traffic.
+
+Save the public IP address and port of the NGINX Service into shell variables:
+
+```text
+GW_IP=XXX.YYY.ZZZ.III
+GW_PORT=<port number>
+```
+
+{{< note >}} In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the gateway will forward for .{{< /note >}}
+
 
 ---
 
