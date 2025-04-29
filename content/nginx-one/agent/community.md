@@ -9,9 +9,7 @@ Discover the various ways you can participate in the F5 NGINX Agent project:
 
 ## Community
 
-- Our [GitHub issues page](https://github.com/nginx/agent/issues) is the best place to report bugs, request features, or suggest improvements.
-
-- If you have any questions, you can reach out using the [NGINX Community Forum](https://community.nginx.org/)
+- Have questions or ideas to discuss? Join the conversation about NGINX Agent in the [NGINX Community Forum](https://community.nginx.org/).
 
 ## Contribute
 
