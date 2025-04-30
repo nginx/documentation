@@ -30,7 +30,7 @@ h2 {
 
 Stay up-to-date with what's new and improved in the F5 NGINX One Console.
 
-## Apr 28, 2025
+## Apr 30, 2025
 
 ### Manage RBAC access with namespaces
 
