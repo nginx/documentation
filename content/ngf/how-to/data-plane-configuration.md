@@ -260,7 +260,6 @@ infrastructure:
         group: gateway.nginx.org
         kind: NginxProxy
         name: ngf-proxy-config
-        namespace: default
 ```
 
 After updating, you can check the status of the Gateway to see if the configuration is valid:
