@@ -71,7 +71,7 @@ See [signature sets](#signature-sets) for configuring the signature sets include
 
 ### Policy Configuration Overview
 
-The NGINX App Protect WAF security policy configuration uses the declarative format based on a pre-defined base template. The policy is represented in a JSON file which you can edit to add, modify and remove security capabilities with respect to the base template. The JSON file then should be compiled to a bundle file (`.tgz`) using the [NGINX App Protect WAF Compiler]({{< ref "/nap-waf/v5/admin-guide/compiler.md" >}}). The way the policy is integrated into the NGINX configuration is via referencing the bundle file (using the full path) in the `nginx.conf` file.
+The NGINX App Protect WAF security policy configuration uses the declarative format based on a pre-defined base template. The policy is represented in a JSON file which you can edit to add, modify and remove security capabilities with respect to the base template. The JSON file then should be compiled to a bundle file (`.tar.gz`) using the [NGINX App Protect WAF Compiler]({{< ref "/nap-waf/v5/admin-guide/compiler.md" >}}). The way the policy is integrated into the NGINX configuration is via referencing the bundle file (using the full path) in the `nginx.conf` file.
 
 Refer to the [admin guide]({{< ref "/nap-waf/v5/admin-guide/install.md#using-policy-and-logging-profile-bundles" >}}) for instructions on how to mount bundle files to your deployment.
 
@@ -89,7 +89,7 @@ Replace the `1.0.0` with the version you use.
 
 This script will output the schema to a file named `policy.json` into the current working directory. Once the schema file is generated, you can use validation tools such as [AJV](https://ajv.js.org/standalone.html) to validate a JSON policy file.
 
-In the following example, the NGINX configuration file with App Protect enabled in the HTTP context and the policy `/policies/policy1.tgz` is used:
+In the following example, the NGINX configuration file with App Protect enabled in the HTTP context and the policy `/policies/policy1.tar.gz` is used:
 
 ```nginx
 user nginx;
@@ -110,9 +110,9 @@ http {
     keepalive_timeout  65;
 
     app_protect_enable on; # This is how you enable NGINX App Protect WAF in the relevant context/block
-    app_protect_policy_file "/etc/app_protect/conf/policy1.tgz"; # This is a reference to the policy bundle file to use. If not defined, the default policy is used
+    app_protect_policy_file "/etc/app_protect/conf/policy1.tar.gz"; # This is a reference to the policy bundle file to use. If not defined, the default policy is used
     app_protect_security_log_enable on; # This section enables the logging capability
-    app_protect_security_log "/etc/app_protect/conf/log_all.tgz" syslog:server=127.0.0.1:514; # This is where the remote logger is defined in terms of: logging options (defined in the referenced file), log server IP, log server port
+    app_protect_security_log "/etc/app_protect/conf/log_all.tar.gz" syslog:server=127.0.0.1:514; # This is where the remote logger is defined in terms of: logging options (defined in the referenced file), log server IP, log server port
 
     server {
         listen       80;
@@ -177,7 +177,7 @@ For instance, to create an updated version of the `app_protect_default_policy`, 
 docker run \
  -v $(pwd):$(pwd) \
  waf-compiler-1.0.0:custom \
- -factory-policy default -o $(pwd)/new_default_policy.tgz
+ -factory-policy default -o $(pwd)/new_default_policy.tar.gz
 ```
 
 To create an updated version of the `app_protect_strict_policy`, use:
@@ -186,13 +186,13 @@ To create an updated version of the `app_protect_strict_policy`, use:
 docker run \
  -v $(pwd):$(pwd) \
  waf-compiler-1.0.0:custom \
- -factory-policy strict -o $(pwd)/new_strict_policy.tgz
+ -factory-policy strict -o $(pwd)/new_strict_policy.tar.gz
 ```
 
 After creating the updated version of a policy, reference it in the `nginx.conf` file:
 
 ```nginx
-app_protect_policy_file /policies_mount/new_default_policy.tgz;
+app_protect_policy_file /policies_mount/new_default_policy.tar.gz;
 ```
 
 ### Policy Authoring and Tuning
@@ -976,9 +976,9 @@ This table summarizes the nginx.conf directives for NGINX App Protect WAF functi
 |load_module | load_module <library_file_path> | NGINX directive to load the App Protect module. It must be invoked with the App Protect library path | Global | load_module modules/ngx_http_app_protect_module.so |
 |app_protect_enforcer_address | <hostname/ip>:<port> | The Enforcer service address. | HTTP | app_protect_enforcer_address 127.0.0.1:50000; |
 |app_protect_enable | app_protect_enable on &#124; off | Whether to enable App Protect at the respective context. If not present, inherits from the parent context | HTTP, Server, Location | app_protect_enable on |
-|app_protect_policy_file | app_protect_policy_file <file_path> | Set a App Protect policy configuring behavior for the respective context. | HTTP, Server, Location | app_protect_policy_file /config/waf/strict_policy.tgz |
+|app_protect_policy_file | app_protect_policy_file <file_path> | Set a App Protect policy configuring behavior for the respective context. | HTTP, Server, Location | app_protect_policy_file /config/waf/strict_policy.tar.gz |
 |app_protect_security_log_enable | app_protect_security_log_enable on &#124; off | Whether to enable the App Protect per-request log at the respective context. | HTTP, Server, Location | app_protect_security_log_enable on |
-|app_protect_security_log | app_protect_security_log <file_path> <destination> | Specifies the per-request logging: what to log and where | HTTP, Server, Location | app_protect_security_log /config/waf/log_illegal.tgz syslog:localhost:522 |
+|app_protect_security_log | app_protect_security_log <file_path> <destination> | Specifies the per-request logging: what to log and where | HTTP, Server, Location | app_protect_security_log /config/waf/log_illegal.tar.gz syslog:localhost:522 |
 |app_protect_custom_log_attribute | app_protect_custom_log_attribute <key_value> | Specifies the assigned location/server/http dimension of each request. | HTTP, Server, Location | app_protect_custom_log_attribute ‘environment' 'env1' |
 
 #### Failure Mode

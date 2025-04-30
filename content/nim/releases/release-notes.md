@@ -127,7 +127,7 @@ This release has the following changes in default behavior:
 This release fixes the following issues. Check the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic for more information on the latest resolved issues. Use your browser's search function to find the issue ID in the page.
 
 - {{% icon-resolved %}} Error messages persist after fix (45024)
-- {{% icon-resolved %}} .tgz files are not accepted in templates (45301)
+- {{% icon-resolved %}} .tar.gz files are not accepted in templates (45301)
 - {{% icon-resolved %}} The web interface can't display more than 100 certificates (45565)
 - {{% icon-resolved %}} NGINX configuration error messages overlap outside the error window (45570)
 - {{% icon-resolved %}} Syntax errors while saving template configuration (45573)

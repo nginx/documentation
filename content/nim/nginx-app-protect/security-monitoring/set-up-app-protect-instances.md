@@ -213,20 +213,20 @@ Take the steps below to update your NGINX App Protect WAF configurations by usin
    ```nginx
       app_protect_enable on;
       app_protect_enable on;
-      app_protect_policy_file "/etc/nms/NginxDefaultPolicy.tgz";
+      app_protect_policy_file "/etc/nms/NginxDefaultPolicy.tar.gz";
       app_protect_security_log_enable on;
-      app_protect_security_log "/etc/nms/secops_dashboard.tgz" syslog:server=127.0.0.1:514;
+      app_protect_security_log "/etc/nms/secops_dashboard.tar.gz" syslog:server=127.0.0.1:514;
    ```
 
    - Add the `app_protect_policy_file` directive with a reference to a security policy.
 
-      The policy reference must use the `.tgz` file extension when using Instance Manager to perform precompiled publication of NGINX App Protect WAF policies and log profiles. The file path referenced must exist on the NGINX Instance Manager host, but it's ok if the policy file doesn't exist yet. If your Instance is not configured for precompiled publication, then use the `.json` file extension for polcies and log profiles. In this case, the file path referenced in the NGINX configuration must reside on the Instance.
+      The policy reference must use the `.tar.gz` file extension when using Instance Manager to perform precompiled publication of NGINX App Protect WAF policies and log profiles. The file path referenced must exist on the NGINX Instance Manager host, but it's ok if the policy file doesn't exist yet. If your Instance is not configured for precompiled publication, then use the `.json` file extension for polcies and log profiles. In this case, the file path referenced in the NGINX configuration must reside on the Instance.
 
       If you are using custom security policies, at this stage, it's fine to use the default security policy shown in the example above. After completing the steps in this guide, refer to the instructions in [Set Up App Protect WAF Configuration Management]({{< ref "/nim/nginx-app-protect/setup-waf-config-management#add-waf-config" >}}) to add your custom security policy files to NGINX Instance Manager and update your NGINX configuration.
 
    - Add the `app_protect_security_log_enable on` and the `app_protect_security_log` directive to any NGINX context where NGINX App Protect WAF is enabled and you want to be able to review attack data.
 
-      The logging configuration must reference `"/etc/nms/secops_dashboard.tgz"`, as shown in the example.
+      The logging configuration must reference `"/etc/nms/secops_dashboard.tar.gz"`, as shown in the example.
 
       If the `app_protect_security_log_enable` setting is already present, just add the `app_protect_security_log` beneath it in the same context.
 

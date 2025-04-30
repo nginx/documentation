@@ -22,6 +22,6 @@ By setting up this volume mount, the bundle files can be referenced within your 
 For instance:
 
    ```nginx
-   app_protect_policy_file /bundles/custom_policy.tgz;
-   app_protect_security_log /bundles/custom_logging_profile.tgz syslog:server=localhost:514;
+   app_protect_policy_file /bundles/custom_policy.tar.gz;
+   app_protect_security_log /bundles/custom_logging_profile.tar.gz syslog:server=localhost:514;
    ```

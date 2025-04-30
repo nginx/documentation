@@ -38,7 +38,7 @@ The F5 NGINX Instance Manager Helm chart includes the `k8s-support-package.sh` s
     helm repo add nginx-stable https://helm.nginx.com/stable
     helm repo update
     helm pull nginx-stable/nms
-    tar zxvf nms-<version>.tgz
+    tar zxvf nms-<version>.tar.gz
     ```
 
 2. Run the Kubernetes support package script. For available options, refer to the [arguments](#arguments) section:

@@ -105,7 +105,7 @@ If there is an NGINX configuration error when pushing a template configuration, 
 
 ---
 
-### {{% icon-resolved %}} .tgz files are not accepted in templates {#45301}
+### {{% icon-resolved %}} .tar.gz files are not accepted in templates {#45301}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 | Issue ID       | Status |
@@ -390,7 +390,7 @@ In Instance Manager 2.13, a new configuration is published before the compile st
 The initial failure message looks like this:
 
 ```text
-Config push failed - err: failure from multiple instances. Affected placements: instance/70328a2c-699d-3a90-8548-b8fcec15dabd (instance-group: ig1) - err: failed building config payload: config: aux payload /etc/nms/NginxDefaultPolicy.tgz for instance:70328a2c-699d-3a90-8548-b8fcec15dabd not ready aux payload not ready, instance/2e637e08-64b3-36f9-8f47-b64517805e98 (instance-group: ig1) - err: failed building config payload: config: aux payload /etc/nms/NginxDefaultPolicy.tgz for instance:2e637e08-64b3-36f9-8f47-b64517805e98 not ready aux payload not ready
+Config push failed - err: failure from multiple instances. Affected placements: instance/70328a2c-699d-3a90-8548-b8fcec15dabd (instance-group: ig1) - err: failed building config payload: config: aux payload /etc/nms/NginxDefaultPolicy.tar.gz for instance:70328a2c-699d-3a90-8548-b8fcec15dabd not ready aux payload not ready, instance/2e637e08-64b3-36f9-8f47-b64517805e98 (instance-group: ig1) - err: failed building config payload: config: aux payload /etc/nms/NginxDefaultPolicy.tar.gz for instance:2e637e08-64b3-36f9-8f47-b64517805e98 not ready aux payload not ready
 ```
 
 #### Workaround

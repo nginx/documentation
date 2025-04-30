@@ -22,7 +22,7 @@ For details on matching NGINX App Protect WAF releases with their WAF compiler v
 
 ## Upgrade NGINX App Protect on the Data Plane
 
-Before you start, make sure you're using NGINX Management Suite for your policy management. Your NGINX configuration should be set up to use WAF policies with a _.tgz_ extension.
+Before you start, make sure you're using NGINX Management Suite for your policy management. Your NGINX configuration should be set up to use WAF policies with a _.tar.gz_ extension.
 
 To update NGINX App Protect on an NGINX data plane instance, follow these steps:
 

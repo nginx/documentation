@@ -18,7 +18,7 @@ NGINX App Protect WAF uses its own logging mechanism for request logging rather 
 
 The Security log has the following properties:
 
- * **Log Configuration**: `app_protect_security_log` directive referencing a custom logging profile bundle file (tgz) or a built-in logging profile name, for example - `log_all`.
+ * **Log Configuration**: `app_protect_security_log` directive referencing a custom logging profile bundle file (tar.gz) or a built-in logging profile name, for example - `log_all`.
 
  * **Configuration contexts**: nginx.conf: `http`, `server`, `location`
 
@@ -59,11 +59,11 @@ The security log attributes are determined by the `app_protect_security_log` dir
 •	Examples:
 ```nginx
 app_protect_security_log log_default stderr;
-app_protect_security_log /mounted_host_dir/logging_profile_01.tgz /mounted_host_dir/security.log;
+app_protect_security_log /mounted_host_dir/logging_profile_01.tar.gz /mounted_host_dir/security.log;
 app_protect_security_log log_all syslog:server=localhost:514;
 app_protect_security_log log_grpc_all syslog:server=my-specific-machine-name:514;
 app_protect_security_log log_illegal syslog:server=192.168.12.34:51400;
-app_protect_security_log /shared_volume/logging_profile_02.tgz syslog:server=my.domain.com:514;
+app_protect_security_log /shared_volume/logging_profile_02.tar.gz syslog:server=my.domain.com:514;
 ```
 
 ##### Arguments
@@ -77,7 +77,7 @@ app_protect_security_log /shared_volume/logging_profile_02.tgz syslog:server=my.
 
 ### Security Log Configuration File
 
-Before applying, the log configuration file (JSON) should be [compiled]({{< ref "/nap-waf/v5/admin-guide/compiler.md#logging-profile-compilation" >}}) into a logging profile bundle (tgz).
+Before applying, the log configuration file (JSON) should be [compiled]({{< ref "/nap-waf/v5/admin-guide/compiler.md#logging-profile-compilation" >}}) into a logging profile bundle (tar.gz).
 
 The file is in JSON format and consists of two parts:
 1.	**filter:** which requests are to be logged.

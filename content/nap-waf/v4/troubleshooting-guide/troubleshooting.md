@@ -105,9 +105,9 @@ In order to open a support ticket, collect the troubleshooting information in a 
  5. Create the tarball:
 
      ```none
-     tar cvfz logs.tgz `cat logs.txt`
+     tar cvfz logs.tar.gz `cat logs.txt`
      ```
 
- 7. Attach `logs.tgz` to support ticket.
+ 7. Attach `logs.tar.gz` to support ticket.
 
  8. On the support ticket, in the NGINX App Protect WAF, set the release version according to the `opt/app_protect/RELEASE` file.

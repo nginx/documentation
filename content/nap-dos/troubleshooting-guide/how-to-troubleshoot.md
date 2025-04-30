@@ -150,7 +150,7 @@ If there are any problems, collect the troubleshooting information in a tarball 
 3. Create the tarball:
 
    ```shell
-   tar cvfz logs.tgz `cat logs.txt`
+   tar cvfz logs.tar.gz `cat logs.txt`
    ```
 
-4. Send `logs.tgz` to your customer support.
+4. Send `logs.tar.gz` to your customer support.

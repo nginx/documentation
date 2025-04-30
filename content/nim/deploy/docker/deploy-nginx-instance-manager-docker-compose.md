@@ -140,7 +140,7 @@ Once you've set up your Docker containers, use the following command to back the
 ```shell
 ~$ docker exec nim-nim-1 nim-backup
 ...
-Backup has been successfully created: /data/backup/nim-backup-<date>.tgz
+Backup has been successfully created: /data/backup/nim-backup-<date>.tar.gz
 ```
 
 If your system uses named volumes, inspect the `Mountpoint`. Alternatively, if you're using a shared NFS volume, then collect the data directly from the mount point.
@@ -149,7 +149,7 @@ If your system uses named volumes, inspect the `Mountpoint`. Alternatively, if y
 ~/compose$ docker inspect volume nim_nim-data | jq '.[0].Mountpoint'
 "/var/lib/docker/volumes/nim_nim-data/_data"
 ubuntu@ip-<address>:~/compose$ sudo ls -l /var/lib/docker/volumes/nim_nim-data/_data/backup
--rw-r--r-- 1 root root 5786953 Sep 27 02:03 nim-backup-<date>.tgz
+-rw-r--r-- 1 root root 5786953 Sep 27 02:03 nim-backup-<date>.tar.gz
 ```
 
 ---
@@ -164,7 +164,7 @@ Before you can restore a backup, set your containers to maintenance mode in the 
 ```
 
 ```shell
-~$ docker exec nim-nim-1 nim-restore /data/backup/nim-backup-<date>.tgz
+~$ docker exec nim-nim-1 nim-restore /data/backup/nim-backup-<date>.tar.gz
 ...
 NGINX Instance Manager has been restored.
 ```

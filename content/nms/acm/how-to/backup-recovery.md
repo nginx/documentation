@@ -118,7 +118,7 @@ To back up the NGINX Management Suite configuration files, secrets, and database
     sudo ./backup.sh
     ```
 
-    The backup is saved to a tarball file similar to the following example: `/tmp/nms-backup-<DATETIME>.tgz`
+    The backup is saved to a tarball file similar to the following example: `/tmp/nms-backup-<DATETIME>.tar.gz`
 
 To restore NGINX Management Suite:
 
@@ -187,14 +187,14 @@ To complete the instructions in this guide, you need the following:
         helm repo add nginx-stable https://helm.nginx.com/stable
         helm repo update
         helm pull nginx-stable/nms
-        tar zxvf nms-<version>.tgz
+        tar zxvf nms-<version>.tar.gz
         ```
 
 ### Back up NGINX Management Suite and API Connectivity Manager
 
 To back up NGINX Management Suite deployed in a Kubernetes cluster, follow these steps:
 
-1. Copy the backup script `k8s-backup.sh` extracted from `nms-<version>.tgz` to your working directory:
+1. Copy the backup script `k8s-backup.sh` extracted from `nms-<version>.tar.gz` to your working directory:
 
     ```shell
     cp nms-<version>/charts/nms-hybrid/backup-restore/k8s-backup.sh .
@@ -220,7 +220,7 @@ To back up NGINX Management Suite deployed in a Kubernetes cluster, follow these
 
 To restore NGINX Management Suite and the installed modules deployed in the same Kubernetes cluster, follow these steps:
 
-1. Copy the restore script `k8s-restore.sh` extracted from `nms-<version>.tgz` to your working directory:
+1. Copy the restore script `k8s-restore.sh` extracted from `nms-<version>.tar.gz` to your working directory:
 
     - For NGINX Management Suite and API Connectivity Manager, copy `k8s-restore.sh` from the `nms-<version>/charts/nms-hybrid/backup-restore/` directory.
 
@@ -256,7 +256,7 @@ To restore NGINX Management Suite and the installed modules deployed in the same
 
 To restore NGINX Management Suite and the installed modules into a different Kubernetes cluster, follow these steps:
 
-1. Copy the restore script `k8s-restore.sh` extracted from `nms-<version>.tgz` to your working directory:
+1. Copy the restore script `k8s-restore.sh` extracted from `nms-<version>.tar.gz` to your working directory:
 
     - For NGINX Management Suite and API Connectivity Manager, copy `k8s-restore.sh` from the `nms-<version>/charts/nms-hybrid/backup-restore/` directory.
 

@@ -84,7 +84,7 @@ After installing NGINX Controller, you should back up the cluster config and enc
   /opt/nginx-controller/helper.sh cluster-config save
   ```
 
-  The file is saved to `/opt/nginx-controller/cluster-config.tgz`.
+  The file is saved to `/opt/nginx-controller/cluster-config.tar.gz`.
 
 - To restore the cluster's config and encryption keys, take the following steps:
 

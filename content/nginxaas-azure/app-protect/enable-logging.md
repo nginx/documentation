@@ -59,9 +59,9 @@ http {
 
         location / {
             app_protect_enable on;
-            app_protect_policy_file /etc/app_protect/conf/NginxDefaultPolicy.tgz;
+            app_protect_policy_file /etc/app_protect/conf/NginxDefaultPolicy.tar.gz;
             app_protect_security_log_enable on;
-            app_protect_security_log "/etc/app_protect/conf/log_all.tgz" syslog:server=localhost:5140;
+            app_protect_security_log "/etc/app_protect/conf/log_all.tar.gz" syslog:server=localhost:5140;
             proxy_pass http://127.0.0.1:80/proxy/$request_uri;
         }
 
