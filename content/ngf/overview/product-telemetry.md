@@ -33,7 +33,7 @@ Telemetry data is collected once every 24 hours and sent to a service managed by
 - **Count of Resources:** the total count of resources related to NGINX Gateway Fabric. This includes `GatewayClasses`, `Gateways`, `HTTPRoutes`,`GRPCRoutes`, `TLSRoutes`, `Secrets`, `Services`, `BackendTLSPolicies`, `ClientSettingsPolicies`, `NginxProxies`, `ObservabilityPolicies`, `UpstreamSettingsPolicies`, `SnippetsFilters`, and `Endpoints`. The data within these resources is **not** collected.
 - **SnippetsFilters Info**a list of directive-context strings from applied SnippetFilters and a total count per strings. The actual value of any NGINX directive is **not** collected.
 - **Control Plane Pod Count** the count of NGINX Gateway Fabric Pods.
-- **Data Plane Pod Count** the count of NGINX data plane pods.
+- **Data Plane Pod Count** the count of NGINX data plane Pods.
 This data is used to identify the following information:
 
 - The flavors of Kubernetes environments that are most popular among our users.
