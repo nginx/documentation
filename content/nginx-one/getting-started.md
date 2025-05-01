@@ -88,18 +88,7 @@ To install NGINX Agent on an NGINX instance:
    - Replace `YOUR_DATA_PLANE_KEY` with your actual data plane key.
    - The `-y` option automatically confirms any prompts during installation.
 
-The `install` script writes an `nginx-agent.conf` file to the `/etc/nginx-agent/` directory, with the [data plane key](#generate-data-plane-key) that you generated. You can find this information in the `nginx-agent.conf` file:
-
-```yaml
-server:
-  token: "<YOUR_DATA_PLANE_KEY>"
-  host: agent.connect.nginx.com
-  grpcPort: 443
-
-tls:
-  enable: True
-  skip_verify: False
-```
+The `install` script writes an `nginx-agent.conf` file to the `/etc/nginx-agent/` directory, with the [data plane key](#generate-data-plane-key) that you generated. You can find the key, host address, TLS status, and other information in the `nginx-agent.conf` file.
 
 If you followed the [Installation and upgrade](https://docs.nginx.com/nginx-agent/installation-upgrade/) guides for installing NGINX Agent, you may need to add this information manually to `nginx-agent.conf`.
 
@@ -170,7 +159,7 @@ nginx -s reload
 
 {{< include "/use-cases/monitoring/enable-nginx-oss-stub-status.md" >}}
 
---- 
+---
 
 ## View instance metrics with the NGINX One dashboard
 
