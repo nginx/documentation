@@ -17,5 +17,5 @@ docs:
 3. Reload NGINX:
 
     ``` bash
-    nginx -s reload
+    systemctl reload nginx
     ```
