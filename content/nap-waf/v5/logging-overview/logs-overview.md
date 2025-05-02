@@ -32,7 +32,7 @@ There are several pre-compiled logging profile bundles available:
 - log_grpc_blocked
 - log_grpc_illegal
 
-These logging profiles can be referenced by their names, excluding the file path and the `tar.gz` extension.
+These logging profiles can be referenced by their names, excluding the file path and the `tgz` extension.
 
 For instance:
 

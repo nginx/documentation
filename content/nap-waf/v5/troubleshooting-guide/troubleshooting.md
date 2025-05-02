@@ -124,7 +124,7 @@ In order to open a support ticket, collect the troubleshooting information in on
 6. At the same direcotory, run the following command to create the tarball file:
 
      ```shell
-     tar cvfz logs.tar.gz .
+     tar cvfz logs.tgz .
      ```
 
-7. Attach `logs.tar.gz` to support ticket.
+7. Attach `logs.tgz` to support ticket.

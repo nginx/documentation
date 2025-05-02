@@ -14,9 +14,9 @@ server {
     server_name my_grpc_service.com;
     location / {
         app_protect_enable on;
-        app_protect_policy_file "/etc/app_protect/conf/policy_with_grpc_profile.tar.gz";
+        app_protect_policy_file "/etc/app_protect/conf/policy_with_grpc_profile.tgz";
         app_protect_security_log_enable on;
-        app_protect_security_log "/etc/app_protect/conf/log_grpc_all.tar.gz" stderr;
+        app_protect_security_log "/etc/app_protect/conf/log_grpc_all.tgz" stderr;
         grpc_pass grpcs://grpc_backend;
     }
 }

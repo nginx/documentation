@@ -128,7 +128,7 @@ Ensure that the output directory is writable, otherwise you may encounter a perm
 docker run --rm \
  -v $(pwd):$(pwd) \
  waf-compiler-<version-tag>:custom \
- -p $(pwd)/policy.json -o $(pwd)/compiled_policy.tar.gz
+ -p $(pwd)/policy.json -o $(pwd)/compiled_policy.tgz
 ```
 
 However, to utilize multiple policy bundles within a single NGINX configuration, it's necessary to supply a [global settings](#global-settings) JSON file. This ensures that all bundles have a common foundation, including cookie seed, user-defined signatures, and more.
@@ -153,7 +153,7 @@ Compilation with global settings:
 docker run --rm \
  -v $(pwd):$(pwd) \
  waf-compiler-1.0.0:custom \
- -g $(pwd)/global_settings.json -p $(pwd)/policy.json -o $(pwd)/compiled_policy.tar.gz
+ -g $(pwd)/global_settings.json -p $(pwd)/policy.json -o $(pwd)/compiled_policy.tgz
 ```
 
 Using `-include-source`, you can incorporate the source of the policy (as `policy.json`) or logging profile (as `logging_profile.json`) into the final bundle. This process transforms any configuration that relies on external references into an inline configuration within the bundled source. Furthermore, when `-include-source` is combined with `-full-export`, the policy.json within the bundle will contain the entire source policy, including any default settings from the base template.
@@ -162,7 +162,7 @@ Using `-include-source`, you can incorporate the source of the policy (as `polic
 docker run --rm \
  -v $(pwd):$(pwd) \
  waf-compiler-1.0.0:custom \
- -include-source -full-export -g $(pwd)/global_settings.json -p $(pwd)/policy.json -o $(pwd)/compiled_policy.tar.gz
+ -include-source -full-export -g $(pwd)/global_settings.json -p $(pwd)/policy.json -o $(pwd)/compiled_policy.tgz
 ```
 
 ### Logging Profile Compilation
@@ -173,7 +173,7 @@ To compile a logging profile, execute the command below:
 docker run \
  -v $(pwd):$(pwd) \
  waf-compiler-<version-tag>:custom \
- -l $(pwd)/log_01.json -o $(pwd)/log01.tar.gz
+ -l $(pwd)/log_01.json -o $(pwd)/log01.tgz
 ```
 
 ### Bundle Information
@@ -184,7 +184,7 @@ To view information about a bundle file, such as attack signatures versions, use
 docker run \
  -v $(pwd):$(pwd) \
  waf-compiler-<version-tag>:custom \
- -dump -bundle $(pwd)/compiled_policy.tar.gz
+ -dump -bundle $(pwd)/compiled_policy.tgz
 ```
 
 ---
@@ -246,7 +246,7 @@ When executing commands inside the compiler container, especially if it's part o
 For example:
 
 ```shell
-/opt/app_protect/bin/apcompile -g /path/to/global_settings.json -p /path/to/policy.json -o /path/to/compiled_policy.tar.gz
+/opt/app_protect/bin/apcompile -g /path/to/global_settings.json -p /path/to/policy.json -o /path/to/compiled_policy.tgz
 ```
 
 <!-- ## Converter Tools
