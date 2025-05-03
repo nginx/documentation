@@ -8,28 +8,38 @@ type:
 ---
 
 
-This guide describes how to configure disaster recovery (DR) for F5 NGINX as a Service for Azure deployments in separate Azure regions, ensuring upstream access remains available even if a region fails. The deployment architecture ensures users can access backend application servers (upstreams) continuously from an alternative region if the primary region becomes unavailable. The solution leverages Terraform, Azure Virtual Network (VNet) peering, and unique subnets to support failover.
+This guide describes how to configure disaster recovery (DR) for F5 NGINX as a Service for Azure deployments in separate (ideally [paired](https://learn.microsoft.com/en-us/azure/reliability/regions-paired)) Azure regions, ensuring upstream access remains available even if a region fails. The deployment architecture ensures users can access backend application servers (upstreams) continuously from an alternative region if the primary region becomes unavailable. The solution leverages Terraform, Azure Virtual Network (VNet) peering, and unique subnets to support failover.
 
 ---
 
 **Architecture Overview**
 
-```
-+-------------------+         +-------------------+
-|  Region 1         |         |  Region 2         |
-|  VNet1            |         |  VNet2            |
-|  +-------------+  | Peered  |  +-------------+  |
-|  | Subnet A1   |  |<------->|  | Subnet B    |  |
-|  | NGINXaaS #1 |  |         |  | NGINXaaS #2 |  |
-|  +-------------+  |         |  +-------------+  |
-|  | Subnet A2   |  |         |                   |
-|  | Upstreams   |  |         |                   |
-|  +-------------+  |         |                   |
-+-------------------+         +-------------------+
+```mermaid
+graph LR
+	    %% Region 1
+	    subgraph Region_1 ["Region 1 (VNet1)"]
+	        A1["Subnet A1<br/>NGINXaaS #1"]
+	        A2["Subnet A2<br/>Upstreams"]
+	    end
+	    %% Region 2
+	    subgraph Region_2 ["Region 2 (VNet2)"]
+	        B1["Subnet B<br/>NGINXaaS #2"]
+           B2["Subnet B<br/>Upstreams"]
+	    end
+	    %% Peering connection between regions
+	    Region_1 <-->|"Peered"| Region_2
+	    %% Node styles (updated colors)
+	    style Region_1 fill:#9bb1de,stroke:#4a90e2,stroke-width:2px
+	    style Region_2 fill:#9bb1de,stroke:#4a90e2,stroke-width:2px
+	    style A1 fill:#d9fade,stroke:#2e7d32,stroke-width:2px,color:#000
+	    style A2 fill:#e8f3fe,stroke:#3075ff,stroke-width:2px,color:#000
+	    style B1 fill:#d9fade,stroke:#2e7d32,stroke-width:2px,color:#000
+       style B2 fill:#e8f3fe,stroke:#3075ff,stroke-width:2px,color:#000
+	    accDescr: Diagram showing two Azure regions side by side: Region 1 (VNet1) contains Subnet A1 with NGINXaaS #1 and Subnet A2 with upstreams. Region 2 (VNet2) contains Subnet B1 with NGINXaaS #2 and Subnet B2 with upstreams. A double-headed arrow labeled "Peered" connects the two regions, indicating VNet peering. The visual illustrates that upstreams in Region 1 and 2 can be accessed from either NGINX deployment across regions.
 ```
 
 - Each region has its own VNet, subnet, and NGINXaaS for Azure deployment.
-- VNet peering enables cross-region connectivity.
+- Cross region connectivity ensures that upstreams are reachable from either deployment. We use VNet peering in this guide to establish that connectivity.
 - Upstreams (for example, VMs) are accessible from either NGINX deployment.
 
 ---
@@ -42,8 +52,8 @@ This guide describes how to configure disaster recovery (DR) for F5 NGINX as a S
 
 > **Note**: Each NGINX deployment **must run on separate subnets and non-overlapping address spaces**. This is critical for [Virtual Network (VNet) peering](https://learn.microsoft.com/en-us/azure/virtual-network/how-to-configure-subnet-peering) between the two regions. For example:
 >
->  - Region 1 (Virtual Network - 1 Address Space): `10.0.0.0/16`
->  - Region 2 (Virtual Network - 2 Address Space): `10.1.0.0/16`
+>  - Region 1 (Primary Deployment's Virtual Network Address Space): `10.0.0.0/16`
+>  - Region 2 (Secondary Deployment's Virtual Network Address Space): `172.16.0.0/16`
 
 ---
 
@@ -59,16 +69,19 @@ resource "azurerm_virtual_network" "deployment_primary_vnet" {
   address_space = ["10.0.0.0/16"]
   # other config...
 }
+
 resource "azurerm_subnet" "deployment_primary_subnet" {
   address_prefixes = [cidrsubnet("10.0.0.0/16", 8, 0)] # results in 10.0.0.0/24
 }
 
+
 # Region 2
 resource "azurerm_virtual_network" "deployment_secondary_vnet" {
-  address_space = ["10.1.0.0/16"]
+  address_space = ["172.16.0.0/16"]
 }
+
 resource "azurerm_subnet" "deployment_secondary_subnet" {
-  address_prefixes = [cidrsubnet("10.1.0.0/16", 8, 0)] # results in 10.1.0.0/24
+  address_prefixes = [cidrsubnet("172.16.0.0/16", 8, 0)] # results in 172.16.0.0/24
 }
 ```
 ---
@@ -85,6 +98,7 @@ resource "azurerm_nginx_deployment" "deployment_primary_nginxaas" {
     subnet_id = azurerm_subnet.deployment_primary_subnet.id
   }
 }
+
 resource "azurerm_nginx_deployment" "deployment_secondary_nginxaas" {
   name                = var.name_secondary
   resource_group_name = var.resource_group_secondary
@@ -108,6 +122,7 @@ resource "azurerm_virtual_network_peering" "vnet_primary_to_vnet_secondary" {
   virtual_network_name      = azurerm_virtual_network.deployment_primary_vnet.name
   remote_virtual_network_id = azurerm_virtual_network.deployment_secondary_vnet.id
 }
+
 resource "azurerm_virtual_network_peering" "vnet_secondary_to_vnet_primary" {
   name                      = "peering-vnet-secondary-to-vnet-primary"
   resource_group_name       = var.resource_group_secondary
@@ -135,9 +150,9 @@ resource "azurerm_subnet" "upstreams" {
 
 ---
 
-## Step 5: NGINX Configuration for Failover
+## Step 5: NGINXaaS Configuration for Failover
 
-Configure both NGINX deployments to include upstreams from the primary regions in their load balancing configuration. Example `nginx.conf` snippet:
+Configure both NGINXaaS deployments to include upstreams from the primary region in their corresponding NGINX configuration. Example `nginx.conf` snippet:
 
 ```nginx
 upstream backend {
@@ -174,7 +189,7 @@ az network vnet peering create \
   --local-subnet-names <subnet1> \
   --remote-subnet-names <subnet2>
 ```
-
+> **Note**: As of May 2025, subnet peering is not available by default for all subscriptions. To use this feature, you must have the subscription on which you want to configure subnet peering be registered with Azure. Please review the configuration details and limitations in this [document](https://learn.microsoft.com/en-us/azure/virtual-network/how-to-configure-subnet-peering).
 
 ---
 
