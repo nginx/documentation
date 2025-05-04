@@ -13,7 +13,7 @@ type:
 
 The VM image contains the latest version of NGINX Plus, optimized for use with Azure.
 
-## Installing the NGINX Plus VM
+## Install the NGINX Plus VM
 
 To quickly set up an NGINX Plus environment on Microsoft Azure:
 
