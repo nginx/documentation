@@ -8,7 +8,7 @@ type:
 ---
 
 
-This guide describes how to configure disaster recovery (DR) for F5 NGINX as a Service for Azure deployments in separate (ideally [paired](https://learn.microsoft.com/en-us/azure/reliability/regions-paired)) Azure regions, ensuring upstream access remains available even if a region fails. The deployment architecture ensures users can access backend application servers (upstreams) continuously from an alternative region if the primary region becomes unavailable. The solution leverages Terraform, Azure Traffic Manager, Azure Virtual Network (VNet) peering, and unique subnets to support failover.
+This guide describes how to configure disaster recovery (DR) for F5 NGINX as a Service for Azure deployments in separate (ideally [paired](https://learn.microsoft.com/en-us/azure/reliability/regions-paired)) Azure regions, ensuring upstream access remains available even if the primary NGINXaaS deployment in a region fails. The deployment architecture ensures users can access backend application servers (upstreams) continuously from an alternative region if the primary NGINXaaS deployment becomes unavailable. The solution leverages Terraform, Azure Traffic Manager, Azure Virtual Network (VNet) peering, and unique subnets to support failover.
 
 ---
 
@@ -197,6 +197,7 @@ resource "azurerm_linux_virtual_machine" "nginx_upstream_vm" {
   )
 }
 ```
+> **Note**: As a best practice, maintain identical upstream resources in your secondary region as in your primary region to ensure full protection and availability in the event of a region-wide outage or disaster.
 ---
 
 ### Step 3: Peer the VNets
