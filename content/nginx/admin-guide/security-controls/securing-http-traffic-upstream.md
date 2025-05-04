@@ -9,7 +9,7 @@ type:
 - how-to
 ---
 
-This article explains how to encrypt HTTP traffic between NGINX and a upstream group or a proxied server.
+This article explains how to encrypt HTTP traffic between NGINX and an upstream group or an proxied server.
 
 
 ## Prerequisites
@@ -20,14 +20,14 @@ This article explains how to encrypt HTTP traffic between NGINX and a upstream g
 
 ## Obtaining SSL Server Certificates
 
-Purchase a server certificate from a trusted certificate authority (CA). You can create your own internal CA with an [OpenSSL](https://www.openssl.org/) library and generate your own certificate instead. The server certificate, along with the private key, should be placed on each upstream server.
+You can purchase a server certificate from a trusted certificate authority (CA). You can create own internal CA with an [OpenSSL](https://www.openssl.org/) library and generate your own certificate instead. The server certificate, along with a private key, should be placed on each upstream server.
 
 <span id="client_certs"></span>
 ## Obtaining an SSL Client Certificate
 
-NGINX will identify itself to the upstream servers with an SSL client certificate. A trusted CA must sign the client certificate, which is configured on NGINX together with the corresponding private key.
+NGINX will identify itself to the upstream servers with an SSL client certificate. A trusted CA must sign the client certificate, which is configured on NGINX, together with the corresponding private key.
 
-You will also need to configure the upstream servers to require client certificates for all incoming SSL connections, and to trust the CA that issued NGINX client certificate. Then, when NGINX connects to the upstream, it will provide its client certificate and the upstream server will accept it.
+You will also need to configure the upstream servers to require client certificates for all incoming SSL connections. In addition, you will need to trust the CA that issued the NGINX client certificate. Then, when NGINX connects to the upstream server, it will provide its client certificate and the upstream server will accept it.
 
 <span id="config"></span>
 ## Configuring NGINX
