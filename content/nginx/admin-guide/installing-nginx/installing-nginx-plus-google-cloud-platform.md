@@ -12,7 +12,7 @@ type:
 [NGINX Plus](https://www.f5.com/products/nginx/nginx-plus), the high‑performance application delivery platform, load balancer, and web server, is available on the Google Cloud Platform as a virtual machine (VM) image. The VM image contains the latest version of NGINX Plus, optimized for use with the Google Cloud Platform Compute Engine.
 
 
-## Installing the NGINX Plus VM
+## Install the NGINX Plus VM
 
 To quickly set up an NGINX Plus environment on the Google Cloud Platform, perform the following steps.
 
@@ -52,7 +52,7 @@ If you encounter any problems with NGINX Plus configuration, documentation is a
 Customers who purchase an NGINX Plus VM image on the Google Cloud Platform are eligible for the Google Cloud Platform VM support provided by the NGINX, Inc. engineering team. To activate support, submit the [Google Cloud Platform Support Activation](https://www.nginx.com/gcp-support-activation/) form.
 
 
-### Accessing the Open Source Licenses for NGINX Plus
+### Access the Open Source Licenses for NGINX Plus
 
 NGINX Plus includes open source software written by NGINX, Inc. and other contributors. The text of the open source licenses is provided in Appendix B of the _NGINX Plus Reference Guide_. To access the guide included with the NGINX Plus VM instance, run this command:
 
