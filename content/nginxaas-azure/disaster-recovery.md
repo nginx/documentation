@@ -39,7 +39,28 @@ This guide describes how to configure disaster recovery (DR) for F5 NGINX as a S
 
 ## Configure disaster recovery 
 
-### Step 1: Deploy prerequisite infrastructure
+### Step 1: Terrraform setup
+
+To get started, please review the [Terraform prerequisites]({{< ref "/nginxaas-azure/getting-started/create-deployment/deploy-terraform.md#prerequisites" >}}) for NGINX as a Service for Azure.
+The following steps outline Terraform resources required to set up the disaster recovery topology; these resources can be placed in a `main.tf` file, variables used by these resources can go into `variables.tf`, and outputs you need to collect can be defined in `outputs.tf`. The directory structure looks as follows:
+
+```bash
+$ tree
+.
+|-- main.tf
+|-- outputs.tf
+`-- variables.tf
+```
+
+To execute the Terraform code, `cd` into the directory with these files and run:
+
+```bash
+terraform init
+terraform plan
+terraform apply --auto-approve
+```
+
+### Step 2: Deploy prerequisite infrastructure
 
 Each region requires its own VNet, subnet(s), public IP and network security group. The following example shows the creation of the prerequisite resources:
 
@@ -146,7 +167,7 @@ resource "azurerm_subnet_network_security_group_association" "secondary_virtual_
 
 ---
 
-### Step 2: Configure app servers (upstreams)
+### Step 3: Configure app servers (upstreams)
 
 You may already have upstreams in the primary region that you wish to reverse proxy using NGINXaaS. For the sake of completion, the following example shows creation of Primary Subnet 2, NICs for the upstreams and the upstreams themselves. The upstream VMs need to be in a subnet separate from the NGINXaaS deployment subnet in the **primary region**.
 
@@ -204,7 +225,7 @@ resource "azurerm_linux_virtual_machine" "nginx_upstream_vm" {
 
 ---
 
-### Step 3: Peer the VNets
+### Step 4: Peer the VNets
 
 Peer the virtual networks so that the upstream app servers are accessible from either primary or secondary NGINXaaS deployment
 
@@ -231,7 +252,7 @@ If overlapping address spaces are unavoidable, use subnet-level peering to selec
 
 ---
 
-### Step 4: Deploy NGINXaaS for Azure in each region
+### Step 5: Deploy NGINXaaS for Azure in each region
 
 Reverse proxy your upstreams using NGINXaaS. Since the virtual networks are peered, both deployments would be able to access the upstreams. The following code deploys and configures both primary and secondary NGINXaaS deployments.
 
@@ -355,7 +376,7 @@ EOT
 
 ---
 
-### Step 5: DNS and failover
+### Step 6: DNS and failover
 
 - Use Azure Traffic Manager to direct traffic to the primary NGINXaaS deployment.
 - When the primary deployment is detected as being unhealthy, Azure Traffic Manager updates the public DNS record of your service to point to the public IP of the NGINXaaS deployment in the secondary region.
