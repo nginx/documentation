@@ -507,7 +507,7 @@ To include only access log messages in the output, include only `stdout=1`. To l
 
 
 <span id="log_custom"></span>
-### Use Customized Logging
+### Use customized logging
 
 If you want to configure logging differently for certain configuration blocks (such as `server {}` and `location {}`), define a Docker volume for the directory in which to store the log files in the container, create a helper container to access the log files, and use any logging tools. To implement this, create a new image that contains the volume or volumes for the logging files.
 
