@@ -390,7 +390,7 @@ Any change made to the files in the local directories `/var/www and /var/nginx/c
 
 
 <span id="manage_copy"></span>
-### Copy Content and Configuration Files from the Docker Host
+### Copy content and configuration files from the Docker host
 
 Docker can copy the content and configuration files from a local directory on the Docker host during container creation. Once a container is created, the files are maintained by creating a new container when files change or by modifying the files in the container.
 
