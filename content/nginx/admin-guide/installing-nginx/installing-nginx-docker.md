@@ -421,7 +421,7 @@ To make changes to the files in the container, use a helper container as describ
 
 
 <span id="manage_container"></span>
-### Maintain Content and Configuration Files in the Container
+### Maintain content and configuration files in the container
 
 As SSH cannot be used to access the NGINX container, to edit the content or configuration files directly you need to create a helper container that has shell access. For the helper container to have access to the files, create a new image that has the proper Docker data volumes defined for the image:
 
