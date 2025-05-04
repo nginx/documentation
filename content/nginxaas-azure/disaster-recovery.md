@@ -30,14 +30,15 @@ This guide describes how to configure disaster recovery (DR) for F5 NGINX as a S
 - Unique, non-overlapping VNet and subnet address spaces for each region.
 - Terraform 1.3+ and AzureRM provider 4.23+.
 
-> **Note**: Each NGINX deployment **must run on separate subnets and non-overlapping address spaces**. This is critical for [Virtual Network (VNet) peering](https://learn.microsoft.com/en-us/azure/virtual-network/how-to-configure-subnet-peering) between the two regions. For example:
->
->  - Prmary Region Virtual Network Address Space: `10.0.0.0/16`
->  - Secondary Region Virtual Network Address Space: `172.16.0.0/16`
+{{< note >}} Each NGINX deployment **must run on separate subnets and non-overlapping address spaces**. This is critical for [Virtual Network (VNet) peering](https://learn.microsoft.com/en-us/azure/virtual-network/how-to-configure-subnet-peering) between the two regions. For example:
+
+  - Prmary Region Virtual Network Address Space: `10.0.0.0/16`
+  - Secondary Region Virtual Network Address Space: `172.16.0.0/16`
+{{< /note >}}
 
 ---
 
-## Configure disaster recovery 
+## Configure disaster recovery
 
 ### Step 1: Terrraform setup
 
@@ -195,11 +196,11 @@ resource "azurerm_linux_virtual_machine" "nginx_upstream_vm" {
   # ...
   count               = 2
   name                = "nginx-upstream${count.index + 1}"
-  
+
   network_interface_ids = [
     azurerm_network_interface.app_server_nic[count.index].id,
   ]
-  
+
   source_image_reference {
     publisher = "Canonical"
     offer     = "0001-com-ubuntu-server-jammy"
@@ -248,7 +249,7 @@ resource "azurerm_virtual_network_peering" "secondary_vnet_to_primary_vnet" {
 - **Subnet Peering for Overlapping VNets:**
 If overlapping address spaces are unavoidable, use subnet-level peering to selectively peer only the required subnets.
 
-  > **Note**: As of May 2025, subnet peering is not available by default for all subscriptions. To use this feature, you must have the subscription on which you want to configure subnet peering be registered with Azure. Please review the configuration details and limitations in this [document](https://learn.microsoft.com/en-us/azure/virtual-network/how-to-configure-subnet-peering).
+   {{< note >}}As of May 2025, subnet peering is not available by default for all subscriptions. To use this feature, you must have the subscription on which you want to configure subnet peering be registered with Azure. Please review the configuration details and limitations in this [document](https://learn.microsoft.com/en-us/azure/virtual-network/how-to-configure-subnet-peering).{{< /note >}}
 
 ---
 
@@ -390,7 +391,7 @@ resource "azurerm_traffic_manager_profile" "nginxaas_failover_monitor" {
     # relative_name needs to be globally unique
     # <relative_name>.trafficmanager.net resolves to the public IP of either NGINXaaS deployment
     relative_name = "nginxaas-global-record"
-    ttl           = 60  
+    ttl           = 60
   }
 
   monitor_config {
@@ -413,7 +414,7 @@ resource "azurerm_traffic_manager_external_endpoint" "primary" {
 resource "azurerm_traffic_manager_external_endpoint" "secondary" {
   name                = "nginx-secondary"
   profile_id          = azurerm_traffic_manager_profile.nginxaas_failover_monitor.id
-  priority            = 20  
+  priority            = 20
   target              = azurerm_nginx_deployment.secondary_nginxaas_deployment.ip_address
 }
 ```
