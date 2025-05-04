@@ -38,7 +38,7 @@
     },
     {
       "name": "Certificates",
-      "description": "The `Certificates` object in the NGINX One console represents an SSL certificate, covering both managed and unmanaged types. \nYou can view essential details like issuer, expiration status, and the instances or config sync groups where each certificate is deployed.\n",
+      "description": "The `Certificates` object in the NGINX One Console represents an SSL certificate, covering both managed and unmanaged types. \nYou can view essential details like issuer, expiration status, and the instances or config sync groups where each certificate is deployed.\n",
       "x-displayName": "Certificates"
     },
     {
@@ -48,7 +48,7 @@
     },
     {
       "name": "Events",
-      "description": "Get a list of system events in the NGINX One console.\n",
+      "description": "Get a list of system events in the NGINX One Console.\n",
       "x-displayName": "Events"
     },
     {
@@ -619,7 +619,7 @@
         ],
         "summary": "Delete an SSL certificate",
         "operationId": "deleteCertificate",
-        "description": "* Deletes a managed SSL certificate from the NGINX One console. This operation is disabled for unmanaged certificates, as they get cleaned up automatically when they are not used in any NGINX configuration. \n* An optional flag `deleteFromDataPlanes` when set to true, can be used to remove the certificate from data plane instances to where it was deployed.\n  * Deleting from data planes triggers publications on either instances or Config Sync Groups. After the managed cert object is deleted from NGINX One Console, a `PublicationBulkResponse` is returned along with status code 202, indicating whether an error occurred while issuing a publication to a data plane target.\n  * If this cert is not associated with any data plane, status code 204 is returned when `deleteFromDataPlanes` set to true.\n",
+        "description": "* Deletes a managed SSL certificate from the NGINX One Console. This operation is disabled for unmanaged certificates, as they get cleaned up automatically when they are not used in any NGINX configuration. \n* An optional flag `deleteFromDataPlanes` when set to true, can be used to remove the certificate from data plane instances to where it was deployed.\n  * Deleting from data planes triggers publications on either instances or Config Sync Groups. After the managed cert object is deleted from NGINX One Console, a `PublicationBulkResponse` is returned along with status code 202, indicating whether an error occurred while issuing a publication to a data plane target.\n  * If this cert is not associated with any data plane, status code 204 is returned when `deleteFromDataPlanes` set to true.\n",
         "parameters": [
           {
             "$ref": "#/components/parameters/DeleteFromDataPlanesParamFlag"
@@ -1145,7 +1145,7 @@
           "Config Sync Groups"
         ],
         "summary": "Delete an NGINX config sync group",
-        "description": "Delete a NGINX config sync group from the NGINX One console. You can delete a config sync group, only if it contains no NGINX instances.\n",
+        "description": "Delete a NGINX config sync group from the NGINX One Console. You can delete a config sync group, only if it contains no NGINX instances.\n",
         "operationId": "deleteConfigSyncGroup",
         "responses": {
           "204": {
@@ -3296,7 +3296,7 @@
           "Staged Configs"
         ],
         "summary": "Delete an NGINX staged config",
-        "description": "Delete a NGINX staged config from the NGINX One console.\n",
+        "description": "Delete a NGINX staged config from the NGINX One Console.\n",
         "operationId": "deleteStagedConfig",
         "responses": {
           "204": {
@@ -4637,7 +4637,7 @@
       },
       "CertificateType": {
         "type": "string",
-        "description": "Certificate type:\n  * `ca_bundle` - This certificate object is a CA bundle.\n  * `cert_key` - This certificate object is consisted of public certificates and key.\n  * `unmanaged` - This certificate is not managed by NGINX One console and its type is unmanaged.\n",
+        "description": "Certificate type:\n  * `ca_bundle` - This certificate object is a CA bundle.\n  * `cert_key` - This certificate object is consisted of public certificates and key.\n  * `unmanaged` - This certificate is not managed by NGINX One Console and its type is unmanaged.\n",
         "enum": [
           "ca_bundle",
           "cert_key",
