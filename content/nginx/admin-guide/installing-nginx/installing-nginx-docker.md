@@ -46,7 +46,7 @@ The registry contains the following image types:
 
 The images can be targeted for a particular operating system and NGINX Plus release using tags.
 
-### Tags for Operating Systems
+### Tags for operating systems
 
 {{<bootstrap-table "table table-bordered">}}
 | Operating system                           | Basic OS tag | Tag examples                                  |
