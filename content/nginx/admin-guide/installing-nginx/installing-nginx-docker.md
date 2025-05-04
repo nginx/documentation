@@ -205,7 +205,7 @@ docker tag private-registry.nginx.com/nginx-plus/base:<version-tag> <my-docker-r
 docker push <my-docker-registry>/nginx-plus/base:<version-tag>
 ```
 
-### Run the NGINX Plus Container
+### Run the NGINX Plus container
 
 {{< note >}} Starting from [NGINX Plus Release 33]({{< ref "nginx/releases.md#r33" >}}), the JWT file is required for each NGINX Plus instance. For more information, see [About Subscription Licenses]({{< ref "/solutions/about-subscription-licenses.md">}}). {{< /note >}}
 
