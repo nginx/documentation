@@ -481,7 +481,7 @@ To exit the shell and terminate the container, run the `exit` command.
 You can use default logging or customize logging.
 
 <span id="log_default"></span>
-### Use Default Logging
+### Use default logging
 
 By default, the NGINX image is configured to send NGINX [access log](https://nginx.org/en/docs/http/ngx_http_log_module.html#access_log) and [error log](https://nginx.org/en/docs/ngx_core_module.html#error_log) to the Docker log collector. This is done by linking them to `stdout` and `stderr`: all messages from both logs are then written to the file `/var/lib/docker/containers/container-ID/container-ID-json.log` on the Docker host. The container‑ID is the long‑form ID returned when you [create a container](#docker_oss_image). To display the long form ID, run the command:
 
