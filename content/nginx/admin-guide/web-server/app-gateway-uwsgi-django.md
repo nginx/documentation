@@ -23,20 +23,20 @@ Most commonly used application containers have embedded external HTTP interfaces
 <span id="about-uwsgi-django"></span>
 ## About uWSGI and Django
 
-A few words about "specialized interfaces". As useful as it is, HTTP has never been designed for modern, lightweight application‑deployment scenarios. Over time, standardized interfaces have evolved for use with various application frameworks and application containers. One of these interfaces is the Web Server Gateway Interface ([WSGI](http://wsgi.readthedocs.org/en/latest/)), an interface between a web server/proxy and Python‑based applications.
+A few words about "specialized interfaces." As useful as it is, HTTP has never been designed for modern, lightweight application‑deployment scenarios. Over time, standardized interfaces have evolved for use with various application frameworks and application containers. One of these interfaces is the Web Server Gateway Interface ([WSGI](http://wsgi.readthedocs.org/en/latest/)), an interface between a web server/proxy and Python‑based applications.
 
 One of the most commonly used application servers offering the [uwsgi](http://uwsgi-docs.readthedocs.org/en/latest/Protocol.html) protocol – its own implementation of the WSGI protocol – is the [uWSGI application server container](https://github.com/unbit/uwsgi).
 
 Other than that, the uWSGI application server supports HTTP, FastCGI, and SCGI – with the uwsgi protocol being recommended as the fastest way to talk to applications.
 
 <span id="configure"></span>
-## Configuring NGINX and NGINX Plus for Use with uWSGI and Django
+## Configure NGINX and NGINX Plus for Use with uWSGI and Django
 
 This document provides an example of how to configure NGINX and NGINX Plus for use with a [uWSGI](http://uwsgi-docs.readthedocs.org/en/latest/) server and a Python development environment.
 
-NGINX 0.8.40 and later (and all releases of NGINX Plus) includes native support for passing traffic from users to Python applications via the uwsgi protocol. If you download [NGINX Open Source  binaries or source](https://nginx.org/en/download.html) from our official repositories, or [NGINX Plus from the customer portal](https://account.f5.com/myf5), you don’t have to do anything to enable support for the uwsgi protocol – NGINX and NGINX Plus support uswgi by default.
+NGINX 0.8.40 and later (and all releases of NGINX Plus) includes native support for passing traffic from users to Python applications via the uwsgi protocol. If you downloaded [NGINX Open Source  binaries or source](https://nginx.org/en/download.html) from our official repositories, or [NGINX Plus from the customer portal](https://account.f5.com/myf5), no action is needed to enable support for the uwsgi protocol – NGINX and NGINX Plus support uswgi by default.
 
-Configuring the uWSGI application container itself is outside the scope of this document,; refer to the excellent [Quickstart for Python/WSGI applications](http://uwsgi-docs.readthedocs.org/en/latest/WSGIquickstart.html) for more information.
+Configuring the uWSGI application container itself is outside the scope of this document; refer to the excellent [Quickstart for Python/WSGI applications](http://uwsgi-docs.readthedocs.org/en/latest/WSGIquickstart.html) for more information.
 
 [Django](https://www.djangoproject.com/) is probably the most commonly used Python web framework, so for simplicity's sake the example uses a Django‑based setup for the Python app. The [Django documentation](https://docs.djangoproject.com/en/1.11/) provides extensive information on how to configure a Django environment.
 
@@ -97,9 +97,9 @@ Serving of static content is offloaded to NGINX or NGINX Plus, which serves it 
 <span id="conclusion"></span>
 ## Conclusion
 
-Lightweight, heterogeneous application environments are becoming an increasingly popular way of building and deploying modern web applications. Newer, standardized application interface protocols like uwsgi and FastCGI enable faster communication between users and applications.
+Lightweight, heterogeneous application environments are becoming a popular way of building and deploying modern web applications. Newer, standardized application interface protocols like uwsgi and FastCGI enable faster communication between users and applications.
 
-Using NGINX and NGINX Plus in front of an application container has become a common way to free applications from the burden of HTTP traffic management, and to protect the application from unexpected spikes of user traffic, malicious behavior, denial‑of‑service (DoS) attacks, and more. This allows  developers to fully focus on the application logic, and leave the web acceleration and fundamental HTTP traffic security tasks to NGINX or NGINX Plus.
+Using NGINX and NGINX Plus in front of an application container has become a common way to free applications from the burden of HTTP traffic management, and to protect the application from unexpected spikes of user traffic, malicious behavior, denial‑of‑service (DoS) attacks, and more. This allows developers to fully focus on the application logic, and leave the web acceleration and fundamental HTTP traffic security tasks to NGINX or NGINX Plus.
 
 <span id="resources"></span>
 ## Resources
