@@ -56,7 +56,7 @@ The images can be targeted for a particular operating system and NGINX Plus rele
 | Red Hat Enterprise Linux (x86_64, aarch64) | `ubi`        | `r33-ubi`, `r33-ubi-9`,  `r33-ubi-9-20240624` |
 {{</bootstrap-table>}}
 
-### Tags for NGINX Plus Versions
+### Tags for NGINX Plus versions
 
 The NGINX Plus registry contains images for the two most recent versions of NGINX Plus. The basic operating system tag returns the latest version of NGINX Plus built for the latest version of this operating system.
 
