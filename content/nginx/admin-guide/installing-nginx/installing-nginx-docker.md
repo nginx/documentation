@@ -476,7 +476,7 @@ To exit the shell and terminate the container, run the `exit` command.
 
 
 <span id="log"></span>
-## Manage Logging
+## Manage logging
 
 You can use default logging or customize logging.
 
