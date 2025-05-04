@@ -15,7 +15,7 @@ This article explains how to use NGINX or F5 NGINX Plus as an application gatew
 
 NGINX is a high‑performance, scalable, secure, and reliable web server and a reverse proxy. NGINX uses web acceleration techniques to manage HTTP connections and traffic. Using features like [load balancing]({{< relref "../load-balancer/http-load-balancer.md" >}}), [SSL termination]({{< ref "/nginx/admin-guide/security-controls/terminating-ssl-http.md" >}}), connection and request [policing]({{< ref "/nginx/admin-guide/security-controls/controlling-access-proxied-http.md" >}}), static [content offload]({{< ref "/nginx/admin-guide/web-server/serving-static-content.md" >}}), and [content caching]({{< ref "/nginx/admin-guide/content-cache/content-caching.md" >}}) has helped NGINX users to build reliable websites.
 
-NGINX can also act as a secure application gateway, passing traffic from users to applications. In this regard, not only can NGINX proxy HTTP and HTTPS traffic to an HTTP‑enabled application container, it can also connect to most of the popular application servers and web frameworks via optimized app‑gateway interfaces implemented in modules like [FastCGI](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html), [Memcached](https://nginx.org/en/docs/http/ngx_http_memcached_module.html), [scgi](https://nginx.org/en/docs/http/ngx_http_scgi_module.html), and [uwsgi](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html).
+NGINX acts as a secure application gateway, passing traffic from users to applications. In this regard, not only can NGINX proxy HTTP and HTTPS traffic to an HTTP‑enabled application container, it can also connect to most of the popular application servers and web frameworks via optimized app‑gateway interfaces implemented in modules like [FastCGI](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html), [Memcached](https://nginx.org/en/docs/http/ngx_http_memcached_module.html), [scgi](https://nginx.org/en/docs/http/ngx_http_scgi_module.html), and [uwsgi](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html).
 
 Many application containers have embedded external HTTP interfaces with some routing capabilities, but using NGINX as an application gateway offers an all‑in‑one solution. It handles HTTP connection management, load balancing, content caching, and traffic security. The application backend sits behind NGINX for better scalability and performance. You can group app instances behind NGINX to ensure high availability.
 
@@ -91,7 +91,7 @@ http {
 
 Notice that the configuration defines an upstream called django. The port number on the server in the group, 29000, matches the one the uWSGI server binds to, as specified by the `socket` argument in the sample `uwsgi` command.
 
-NGINX or NGINX Plus serves static files from /var/django/projects/myapp/static. Traffic to /main goes through NGINX, which converts it from HTTP to the uwsgi protocol and sends it to the Django app in the uWSGI container.
+NGINX or NGINX Plus serves static files from /var/django/projects/myapp/static. NGINX sends /main traffic to the Django app by converting it from HTTP to the uwsgi protocol.
 
 <span id="conclusion"></span>
 ## Conclusion
