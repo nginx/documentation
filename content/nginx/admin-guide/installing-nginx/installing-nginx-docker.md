@@ -109,7 +109,7 @@ Before you get a container image, you should provide the JSON Web Token file or 
 
 {{% /tabs %}}
 
-### Set Up Docker for NGINX Plus Container Registry
+### Set Up Docker for NGINX Plus container registry
 
 Set up Docker to communicate with the NGINX Container Registry located at `private-registry.nginx.com`.
 
