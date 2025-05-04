@@ -144,7 +144,7 @@ docker login private-registry.nginx.com
 
 {{% /tabs %}}
 
-### Pull the Image
+### Pull the image
 
 Next, pull the image you need from `private-registry.nginx.com`.
 
