@@ -66,7 +66,7 @@ The NGINX Plus registry contains images for the two most recent versions of NGIN
 
 The image may contain a particular version of NGINX Plus or contain a bundle of NGINX Plus and NGINX Agent, and can be targeted for a specific architecture.
 
-### List All Tags
+### List all tags
 
 For a complete tag list for NGINX Plus bundled with NGINX Agent images, use the command:
 
