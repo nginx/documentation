@@ -143,6 +143,7 @@ resource "azurerm_subnet_network_security_group_association" "secondary_virtual_
   network_security_group_id = azurerm_network_security_group.secondary_virtual_network_nsg.id
 }
 ```
+
 ---
 
 ### Step 2: Configure App Servers (Upstreams)
