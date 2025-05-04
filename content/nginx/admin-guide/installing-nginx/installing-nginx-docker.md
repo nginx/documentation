@@ -183,7 +183,7 @@ docker pull private-registry.nginx.com/nginx-plus/modules:<version-tag>
 
 {{< include "security/jwt-password-note.md" >}}
 
-### Push the Image to Your Private Registry
+### Push the image to your private registry
 
 After pulling the image, tag it and upload it to your private registry.
 
