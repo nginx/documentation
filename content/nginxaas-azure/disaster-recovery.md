@@ -146,7 +146,8 @@ resource "azurerm_subnet_network_security_group_association" "secondary_virtual_
 
 ---
 
-### Step 2: Configure App Servers (Upstreams)
+### Step 2: Configure app servers (upstreams)
+
 You may already have upstreams in the primary region that you wish to reverse proxy using NGINXaaS. For the sake of completion, the following example shows creation of Primary Subnet 2, NICs for the upstreams and the upstreams themselves. The upstream VMs need to be in a subnet separate from the NGINXaaS deployment subnet in the **primary region**.
 
 ```hcl
@@ -198,11 +199,15 @@ resource "azurerm_linux_virtual_machine" "nginx_upstream_vm" {
   )
 }
 ```
+
 > **Note**: As a best practice, maintain identical upstream resources in your secondary region as in your primary region to ensure full protection and availability in the event of a region-wide outage or disaster.
+
 ---
 
 ### Step 3: Peer the VNets
-Peer the Virtual Networks so that the upstream app servers are accessible from either primary or secondary NGINXaaS deployment
+
+Peer the virtual networks so that the upstream app servers are accessible from either primary or secondary NGINXaaS deployment
+
 ```hcl
 resource "azurerm_virtual_network_peering" "primary_vnet_to_secondary_vnet" {
   name                      = "peering-primary-vnet-to-secondary-vnet"
@@ -227,6 +232,7 @@ If overlapping address spaces are unavoidable, use subnet-level peering to selec
 ---
 
 ### Step 4: Deploy NGINXaaS for Azure in each region
+
 Reverse proxy your upstreams using NGINXaaS. Since the virtual networks are peered, both deployments would be able to access the upstreams. The following code deploys and configures both primary and secondary NGINXaaS deployments.
 
 ```hcl
@@ -346,12 +352,14 @@ EOT
   }
 }
 ```
+
 ---
 
 ### Step 5: DNS and failover
 
 - Use Azure Traffic Manager to direct traffic to the primary NGINXaaS deployment.
 - When the primary deployment is detected as being unhealthy, Azure Traffic Manager updates the public DNS record of your service to point to the public IP of the NGINXaaS deployment in the secondary region.
+
 ```hcl
 resource "azurerm_traffic_manager_profile" "nginxaas_failover_monitor" {
   ...
@@ -391,7 +399,7 @@ resource "azurerm_traffic_manager_external_endpoint" "secondary" {
 
 ---
 
-## Failover Process
+## Failover process
 
 1. **Monitor**: `/health` endpoint continuously monitors NGINXaaS deployment reachability in both regions.
 1. **Failover**: If the primary region deployment is deemed unhealthy, Azure Traffic Manager updates the DNS record for the service to route traffic to the secondary region's NGINXaaS deployment.
