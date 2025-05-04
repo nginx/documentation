@@ -90,7 +90,7 @@ where:
 
 
 
-### Download the JSON Web Token or NGINX Plus Certificate and Key {#myf5-download}
+### Download the JSON Web Token or NGINX Plus certificate and key {#myf5-download}
 
 Before you get a container image, you should provide the JSON Web Token file or SSL certificate and private key files provided with your NGINX Plus subscription. These files grant access to the package repository from which the script will download the NGINX Plus package:
 
