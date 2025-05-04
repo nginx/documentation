@@ -20,7 +20,9 @@ This article explains how to encrypt HTTP traffic between NGINX and an upstream 
 
 ## Obtaining SSL Server Certificates
 
+
 You can purchase a server certificate from a trusted certificate authority (CA). You can create own internal CA with an [OpenSSL](https://www.openssl.org/) library and generate your own certificate instead. The server certificate, along with a private key, should be placed on each upstream server.
+
 
 <span id="client_certs"></span>
 ## Obtaining an SSL Client Certificate
