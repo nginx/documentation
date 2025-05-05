@@ -89,9 +89,9 @@ http {
 }
 ```
 
-Notice that the configuration defines an upstream called django, with a server containing the port number `29000`. It matches the port specified by the `socket` argument in the sample `uwsgi` command. The uWSGI server binds to this port.
+Notice that the configuration defines an upstream called Django, with a server containing the port number `29000`. It matches the port specified by the `socket` argument in the sample `uwsgi` command. The uWSGI server binds to this port.
 
-NGINX or NGINX Plus serves static files from /var/django/projects/myapp/static. NGINX sends /main traffic to the Django app by converting it from HTTP to the uwsgi protocol.
+NGINX or NGINX Plus serves static files from **/var/django/projects/myapp/static**. NGINX sends /main traffic to the Django app by converting it from HTTP to the uWSGI protocol.
 
 <span id="conclusion"></span>
 ## Conclusion
