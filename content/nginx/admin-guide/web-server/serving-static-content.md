@@ -2,7 +2,7 @@
 description: Configure NGINX and F5 NGINX Plus to serve static content, with type-specific
   root directories, checks for file existence, and performance optimizations.
 docs: DOCS-442
-title: Serving Static Content
+title: Serve Static Content
 toc: true
 weight: 200
 type:
@@ -108,11 +108,11 @@ location @backend {
 For more information, watch the [Content Caching](https://www.nginx.com/resources/webinars/content-caching-nginx-plus/) webinar on‑demand to learn how to dramatically improve the performance of a website, and get a deep‑dive into NGINX’s caching capabilities.
 
 <span id="optimize"></span>
-## Optimizing Performance for Serving Content
+## Optimize Performance for Serving Content
 
 Loading speed is a crucial factor of serving any content. Making minor optimizations to your NGINX configuration may boost the productivity and help reach optimal performance.
 
-### Enabling `sendfile`
+### Enable `sendfile`
 
 By default, NGINX handles file transmission itself and copies the file into the buffer before sending it. Enabling the [sendfile](https://nginx.org/en/docs/http/ngx_http_core_module.html#sendfile) directive eliminates the step of copying the data into the buffer and enables direct copying data from one file descriptor to another. Alternatively, to prevent one fast connection from entirely occupying the worker process, you can use the [sendfile_max_chunk](https://nginx.org/en/docs/http/ngx_http_core_module.html#sendfile_max_chunk) directive to limit the amount of data transferred in a single `sendfile()` call (in this example, to `1` MB):
 
@@ -124,7 +124,7 @@ location /mp3 {
 }
 ```
 
-### Enabling `tcp_nopush`
+### Enable `tcp_nopush`
 
 Use the [tcp_nopush](https://nginx.org/en/docs/http/ngx_http_core_module.html#tcp_nopush) directive together with the [sendfile](https://nginx.org/en/docs/http/ngx_http_core_module.html#sendfile) `on;`directive. This enables NGINX to send HTTP response headers in one packet right after the chunk of data has been obtained by `sendfile()`.
 
@@ -136,7 +136,7 @@ location /mp3 {
 }
 ```
 
-### Enabling `tcp_nodelay`
+### Enable `tcp_nodelay`
 
 The [tcp_nodelay](https://nginx.org/en/docs/http/ngx_http_core_module.html#tcp_nodelay) directive allows override of [Nagle’s algorithm](https://en.wikipedia.org/wiki/Nagle's_algorithm), originally designed to solve problems with small packets in slow networks. The algorithm consolidates a number of small packets into a larger one and sends the packet with a `200` ms delay. Nowadays, when serving large static files, the data can be sent immediately regardless of the packet size. The delay also affects online applications (ssh, online games, online trading, and so on). By default, the [tcp_nodelay](https://nginx.org/en/docs/http/ngx_http_core_module.html#tcp_nodelay) directive is set to `on` which means that the Nagle’s algorithm is disabled. Use this directive only for keepalive connections:
 
@@ -150,11 +150,11 @@ location /mp3  {
 ```
 
 
-### Optimizing the Backlog Queue
+### Optimize the Backlog Queue
 
 One of the important factors is how fast NGINX can handle incoming connections. The general rule is when a connection is established, it is put into the “listen” queue of a listen socket. Under normal load, either the queue is small or there is no queue at all. But under high load, the queue can grow dramatically, resulting in uneven performance, dropped connections, and increased latency.
 
-#### Displaying the Listen Queue
+#### Display the Listen Queue
 
 To display the current listen queue, run this command:
 
@@ -182,7 +182,7 @@ Listen         Local Address
 0/0/128        *.8080
 ```
 
-#### Tuning the Operating System
+#### Tune the Operating System
 
 Increase the value of the `net.core.somaxconn` kernel parameter from its default value (`128`) to a value high enough for a large burst of traffic. In this example, it's increased to `4096`.
 
@@ -205,7 +205,7 @@ Increase the value of the `net.core.somaxconn` kernel parameter from its default
        net.core.somaxconn = 4096
        ```
 
-#### Tuning NGINX
+#### Tune NGINX
 
 If you set the `somaxconn` kernel parameter to a value greater than `512`, change the `backlog` parameter to the NGINX [listen](https://nginx.org/en/docs/http/ngx_http_core_module.html#listen) directive to match:
 
