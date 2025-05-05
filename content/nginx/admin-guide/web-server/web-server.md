@@ -19,7 +19,7 @@ Each virtual server for HTTP traffic defines special configuration instances cal
 
 
 <span id="virtual-server"></span>
-## Setting Up Virtual Servers
+## Set Up Virtual Servers
 
 The NGINX Plus configuration file must include at least one [server](https://nginx.org/en/docs/http/ngx_http_core_module.html#server) directive to define a virtual server. When NGINX Plus processes a request, it first selects the virtual server that will serve the request.
 
@@ -76,7 +76,7 @@ server {
 
 
 <span id="locations"></span>
-## Configuring Locations
+## Configure Locations
 
 NGINX Plus can send traffic to different proxies or serve different files based on the request URIs. These blocks are defined using the [location](https://nginx.org/en/docs/http/ngx_http_core_module.html#location) directive placed within a `server` directive.
 
@@ -148,7 +148,7 @@ The [proxy_pass](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy
 
 
 <span id="variables"></span>
-## Using Variables
+## Use Variables
 
 You can use variables in the configuration file to have NGINX Plus process requests differently depending on defined circumstances. Variables are named values that are calculated at runtime and are used as parameters to directives. A variable is denoted by the `$` (dollar) sign at the beginning of its name. Variables define information based upon NGINX’s state, such as the properties of the request being currently processed.
 
@@ -156,7 +156,7 @@ There are a number of predefined variables, such as the [core HTTP](https://ngin
 
 
 <span id="return-codes"></span>
-## Returning Specific Status Codes
+## Return Specific Status Codes
 
 Some website URIs require immediate return of a response with a specific error or redirect code, for example when a page has been moved temporarily or permanently. The easiest way to do this is to use the [return](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html#return) directive. For example:
 
@@ -180,7 +180,7 @@ The `return` directive can be included in both the `location` and `server` conte
 
 
 <span id="rewrite"></span>
-## Rewriting URIs in Requests
+## Rewrite URIs in Requests
 
 A request URI can be modified multiple times during request processing through the use of the [rewrite](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html#rewrite) directive, which has one optional and two required parameters. The first (required) parameter is the regular expression that the request URI must match. The second parameter is the URI to substitute for the matching URI. The optional third parameter is a flag that can halt processing of further `rewrite` directives or send a redirect (code `301` or `302`). For example:
 
@@ -217,7 +217,7 @@ There are two parameters that interrupt processing of `rewrite` directives:
 
 
 <span id="sub_filter"></span>
-## Rewriting HTTP Responses
+## Rewrite HTTP Responses
 
 Sometimes you need to rewrite or change the content in an HTTP response, substituting one string for another. You can use the [sub_filter](https://nginx.org/en/docs/http/ngx_http_sub_module.html#sub_filter) directive to define the rewrite to apply. The directive supports variables and chains of substitutions, making more complex changes possible.
 
@@ -244,7 +244,7 @@ Note that the part of the response already modified with the `sub_filter` is not
 
 
 <span id="errors"></span>
-## Handling Errors
+## Handle Errors
 
 With the [error_page](https://nginx.org/en/docs/http/ngx_http_core_module.html#error_page) directive, you can configure NGINX Plus to return a custom page along with an error code, substitute a different error code in the response, or redirect the browser to a different URI. In the following example, the `error_page` directive specifies the page (**/404.html**) to return with the `404` error code.
 
