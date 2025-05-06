@@ -245,7 +245,6 @@ sudo service keepalived stop
 Check the state on the backup instance, confirming that it has transitioned to `MASTER`. In the AWS Console, the Elastic IP address is now associated with the new primary instance.
 
 <span id="ha-aws_troubleshooting"></span>
-
 ## Troubleshooting
 
 If the solution doesn’t work as expected, check the `keepalived` logs, which are written to <span style="white-space: nowrap; font-weight:bold;">/var/log/syslog</span>. Also, you can manually run the commands that invoke the `awscli` utility in the <span style="white-space:nowrap; font-weight:bold;">nginx-ha-notify</span> script to check that the utility is working properly.
