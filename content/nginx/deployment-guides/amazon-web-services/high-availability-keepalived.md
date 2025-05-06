@@ -34,9 +34,7 @@ As an alternative to ELB, you can use Route 53 to distribute traffic among NGINX
 
 - We have successfully tested the instructions on <span style="white-space: nowrap;">Ubuntu 16.04 LTS</span> (Xenial Xerus) and CentOS 7, with `keepalived` installed from the respective OS vendor repositories.
 - Except as noted, perform all steps on both the primary and backup instance.
-
 - The solution is not covered by your NGINX Plus support contract.
-
 - Also  the [active‑active HA solution]({{< ref "high-availability-network-load-balancer.md" >}}) mentioned above, NGINX offers a solution based on [AWS Lambda](https://aws.amazon.com/lambda/) which does not need installation of any extra software on the NGINX Plus instances. The [NGINX Professional Services](https://www.nginx.com/services/) team can deploy and configure the Lambda‑based solution for you and provide support.
 
 <span id="ha-aws_nginx-plus"></span><span id="ha-aws_step1"></span>
