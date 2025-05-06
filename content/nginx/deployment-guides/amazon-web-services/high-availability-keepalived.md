@@ -218,7 +218,6 @@ HA_NODE_1=<value>
 HA_NODE_2=<value>
 ALLOCATION_ID=<value>
 - `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` – The credentials for accessing the AWS API. Set them only when an IAM instance profile isn’t used. Otherwise, delete the corresponding two lines.
-
 - `AWS_DEFAULT_REGION` – The AWS region of your deployment.
 
 - `HA_NODE_1` and `HA_NODE_2` – The internal or private DNS names of the two NGINX Plus instances.
