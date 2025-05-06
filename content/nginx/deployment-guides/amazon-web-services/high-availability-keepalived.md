@@ -14,7 +14,6 @@ This guide shows how to set up a high availability (HA) active‑passive deploym
 NGINX also provides a [solution for active‑active HA of NGINX Plus in AWS]({{< ref "high-availability-network-load-balancer.md" >}}), using AWS Network Load Balancer.
 
 <span id="ha-aws_overview"></span>
-
 ## Overview
 
 The [supported solution for HA deployment]({{< ref "nginx/admin-guide/high-availability/ha-keepalived.md" >}}) of NGINX Plus that uses `keepalived` is for on‑premises deployments. It is typically not viable in cloud environments, such as AWS, because of the networking restrictions they impose.
