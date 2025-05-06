@@ -202,7 +202,6 @@ You must change values for the following configuration keywords. As you do so, r
 - `notify` – The script that is invoked during a state transition.
 
   - On Ubuntu systems, <span style="white-space: nowrap; font-weight:bold;">/usr/lib/keepalived/nginx-ha-notify</span>
-
   - On CentOS systems, <span style="white-space: nowrap; font-weight:bold;">/usr/libexec/keepalived/nginx-ha-notify</span>
 
 <span id="ha-aws_nginx-ha-notify-script"></span>
