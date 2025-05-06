@@ -91,7 +91,7 @@ stream {
 
 In general, a _child_ context – a context contained within another context (its _parent_) – inherits the settings of directives included at the parent level. Some directives can appear in multiple contexts, in which case you can override the setting inherited from the parent by including the directive in the child context. For an example, see the [proxy_set_header](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_set_header) directive.
 
-## Reloading Configuration
+## Reload Configuration File
 
 For changes to the configuration file to take effect, it must be reloaded. You can either restart the `nginx` process or send the `reload` signal to upgrade the configuration without interrupting the processing of current requests. For details, see [Control NGINX Processes at Runtime]({{< ref "/nginx/admin-guide/basic-functionality/runtime-control.md" >}}).
 
