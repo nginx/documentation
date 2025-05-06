@@ -254,7 +254,6 @@ If the solution doesn’t work as expected, check the `keepalived` logs, which a
 
 - In most of our tests it took five to six seconds for the Elastic IP address to be reassigned.
 - Elastic IP address reassignment is not free; see [Amazon EC2 Pricing](https://aws.amazon.com/ec2/pricing/).
-
 - AWS API issues may prevent the Elastic IP from associating with the primary instance during flip-flopping or split-brain scenarios (though we couldn’t reproduce these in testing). If this happens, restart ‘keepalived’ on both instances.​​​​​​​​​​​​​​​​
 
 <span id="has-aws_resources"></span>
