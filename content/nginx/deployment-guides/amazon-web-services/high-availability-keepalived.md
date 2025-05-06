@@ -11,7 +11,7 @@ type:
 
 This guide shows how to set up a high availability (HA) active‑passive deployment of F5 NGINX Plus in the [Amazon Web Services](https://aws.amazon.com/) (AWS) cloud. The solution combines keepalived with AWS Elastic IP address features.
 
-Refer to [AWS Network Load Balancer solution]({{< ref "high-availability-network-load-balancer.md" >}}) for active-active HA of NGINX Plus in AWS. 
+NGINX also provides a [solution for active‑active HA of NGINX Plus in AWS]({{< ref "high-availability-network-load-balancer.md" >}}), using AWS Network Load Balancer.
 
 <span id="ha-aws_overview"></span>
 
