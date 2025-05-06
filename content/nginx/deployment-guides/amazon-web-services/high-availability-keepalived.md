@@ -71,7 +71,6 @@ The scripts in the HA solution use the AWS API to associate an Elastic IP addres
 3. Attach this IAM role to the instance.
 
 <span id="ha-aws_eip"></span>
-
 ## Step 2 – Allocate an Elastic IP address
 
 Allocate an Elastic IP address and remember its ID. For detailed instructions, see the [AWS documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html#using-instance-addressing-eips-allocating).
