@@ -240,10 +240,7 @@ The command outputs `STATE=MASTER` on the primary instance and `STATE=BACKUP` ot
 You can simulate the failure of the primary by stopping the `keepalived` daemon:
 
 ```shell
-
 sudo service keepalived stop
-
-```
 
 Check the state on the backup instance, confirming that it has transitioned to `MASTER`. In the AWS Console, the Elastic IP address is now associated with the new primary instance.
 
