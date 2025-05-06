@@ -21,7 +21,6 @@ The [supported solution for HA deployment]({{< ref "nginx/admin-guide/high-avail
 One method for deploying NGINX Plus in a highly available manner on AWS is to use ELB in front of NGINX Plus instances. But, the method has several disadvantages:
 
 - It increases the cost of your deployment.
-
 - It limits the number of protocols NGINX Plus and your applications can support. In particular, ELB does not support UDP load balancing.
 - It does not provide a single static IP address for NGINX Plus instances, which is a crucial need for some applications.
 
