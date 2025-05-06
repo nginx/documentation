@@ -19,7 +19,7 @@ To review older entries, visit the [Changelog archive]({{< ref "/nginxaas-azure/
 
 - {{% icon-feature %}} **NGINX App Protect WAF is now generally available**
 
-NGINX App Protect WAF is now generally available and is no longer a preview feature and will therefore be billed as specified in the [Azure Marketplace](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/f5-networks.f5-nginx-for-azure?tab=PlansAndPrice)
+NGINX App Protect WAF is now generally available and is no longer a preview feature and will therefore be billed as specified in the [Azure Marketplace](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/f5-networks.f5-nginx-for-azure?tab=PlansAndPrice). This feature now supports the creation and deployment of [custom security policies]({{< relref "./app-protect/configure-waf.md#custom-policies" >}}).
 
 ## April 16, 2025
 
