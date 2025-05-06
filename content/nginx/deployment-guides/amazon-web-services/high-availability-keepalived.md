@@ -83,9 +83,7 @@ Allocate an Elastic IP address and remember its ID. For detailed instructions, s
    - On Ubuntu systems:
 
       ```shell
-
      sudo apt-get install keepalived wget
-
      ```
 
    - On CentOS systems:
