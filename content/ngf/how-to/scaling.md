@@ -13,7 +13,7 @@ Users can scale both the NGINX Gateway Fabric control plane and data planes sepa
 
 ### Scaling the data plane
 
-Data plane constitutes of a single container running both agent and nginx processes. Agent recieves configuration from control plane over a streaming RPC. 
+The data plane is the NGINX deployment that handles user traffic to backend applications.
 Every Gateway object that gets created results in a new NGINX deployment being provisioned with its own configuration. There are a couple of options on how to scale data plane deployments. You can do so either by increasing the number of replicas for the data plane deployment or by creating a new Gateway to provision a new data plane. 
 
 #### When to create a new gateway vs Scale Data plane replicas
@@ -22,10 +22,18 @@ When using NGINX Gateway Fabric, understanding when to scale the data plane vs w
 
 Scaling data plane replicas is ideal when you need to handle more traffic without changing the configuration. For example, if you're routing traffic to `api.example.com` and notice an increase in load, you can scale the replicas from 1 to 5 to better distribute the traffic and reduce latency. All replicas will share the same configuration from the Gateway used to set up the data plane, making configuration management easy.
 
-You can increase the number of replicas for an NGINX deployment by modifying the field `nginx.replicas` in the `values.yaml` or add the `--set nginx.replicas=` flag to the `helm install` command. Below is an example to do so:
+There are two ways to modify the number of replicas for an NGINX deployment:
+
+- Modifying the field `nginx.replicas` in the `values.yaml` or add the `--set nginx.replicas=` flag to the `helm install` command. Below is an example to do so:
 
   ```text
   helm install ngf oci://ghcr.io/nginx/charts/nginx-gateway-fabric --create-namespace -n nginx-gateway --set nginx.replicas=5
+  ```
+
+- Editing the `NginxProxy` resource attached to the data plane deployment. You can specify the number of replicas in the field `kubernetes.deployment.replicas` of the nginxProxy resource:
+
+  ```text
+  kubectl edit nginxproxies.gateway.nginx.org ngf-proxy-config -n nginx-gateway
   ```
 
 The other way to scale data planes is by creating a new Gateway. This is is beneficial when you need distinct configurations, isolation, or separate policies. For example, if you're routing traffic to a new domain `admin.example.com` and require a different TLS certificate, stricter rate limits, or separate authentication policies, creating a new Gateway could be a good approach. It allows safe experimentation with isolated configurations and makes it easier to enforce security boundaries and apply specific routing rules.
@@ -40,7 +48,7 @@ Scaling the control plane can be beneficial in the following scenarios:
 
   1. *Higher Availability* - When a control plane pod crashes, runs out of memory, or goes down during an upgrade, it can interrupt configuration delivery. By scaling to multiple replicas, another pod can quickly step in and take over, keeping things running smoothly with minimal downtime.
   2. *Faster Configuration Distribution* - As the number of connected NGINX instances grows, a single control plane pod may become a bottleneck in handling connections or streaming configuration updates. Scaling the control plane improves concurrency and responsiveness when delivering configuration over gRPC.
-  3. *Improved Resilience* - Running multiple control plane replicas provides fault tolerance. Even if the leader fails, another replica can quickly take over the leader lease, preventing disruptions in config management and status updates.
+  3. *Improved Resilience* - Running multiple control plane replicas provides fault tolerance. Even if the pod holding the leader lease fails, another pod can quickly step in and take over, preventing disruptions in status updates.
 
 To scale the control plane, use the `kubectl scale` command on the control plane deployment to increase or decrease the number of replicas. For example, the following command scales the control plane deployment to 3 replicas:
 
