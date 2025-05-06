@@ -22,7 +22,7 @@ For information on enabling synchronization for rate limiting with NGINXaaS for 
 
 ## Configuring runtime state sharing among NGINXaaS for Azure deployment cluster instances
 
-To enable runtime state sharing, edit the NGINXaaS deployment's NGINX configuration to create a server with the `zone_sync` directive in the top-level `stream` block. The `stream` `server` block containing the `zone_sync` directive should use a local resolver at `127.0.0.1:49153`. It should also provide a `listen` directive with only a port for the TCP server. The chosen port should match the port used with `zone_sync_server` directive. NGINXaaS cluster instances should use `internal.nginxaas.nginx.com` as the domain name. They should resolve using the `resolve` parameter of the `zone_sync_server` directive.
+To enable runtime state sharing, edit the NGINXaaS deployment's NGINX configuration to create a server with the `zone_sync` directive in the top-level `stream` block. The `stream` `server` block containing the `zone_sync` directive should use a local resolver at `127.0.0.1:49153`. It should also provide a `listen` directive with only a port for the TCP server. The chosen port should match the port used with `zone_sync_server` directive. NGINXaaS cluster instances should use `internal.nginxaas.nginx.com` as the domain name. They resolve using the `resolve` parameter of the `zone_sync_server` directive.
 
 ```nginx
 stream {
@@ -86,7 +86,7 @@ stream {
 
 ## Set up certificate-based authentication across cluster instances of the NGINXaaS for Azure deployment
 
-To set up certificate-based authentication across the cluster instances edit the NGINXaaS deployment's NGINX configuration. Enable the `ssl_verify_client` directive and the `zone_sync` directive in the top-level `stream` block. Should additionally provide the `ssl_client_certificate` directive. `zone_sync_ssl_certificate`, `zone_sync_ssl_certificate_key` and `ssl_client_certificate` directives can reference a Key Vault certificate attached to the deployment.
+To set up certificate-based authentication across the cluster instances edit the NGINXaaS deployment's NGINX configuration. Enable the `ssl_verify_client` directive and the `zone_sync` directive in the top-level `stream` block. In addition, provide the `ssl_client_certificate` directive. `zone_sync_ssl_certificate`, `zone_sync_ssl_certificate_key` and `ssl_client_certificate` directives can reference a Key Vault certificate attached to the deployment.
 
 ```nginx
 stream {
