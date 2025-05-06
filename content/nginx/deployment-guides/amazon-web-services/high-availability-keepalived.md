@@ -129,7 +129,6 @@ There are two configuration files for the HA solution:
 - <span style="white-space: nowrap; font-weight:bold;">nginx-ha-notify</span> – The script you downloaded in [Step 4](#ha-aws_ha-scripts), with several user‑defined variables.
 
 <span id="ha-aws_keepalived-conf-file"></span>
-
 ### Creating keepalived.conf
 
 In the /etc/keepalived folder create a file named keepalived.conf with the following content.
