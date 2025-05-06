@@ -89,9 +89,7 @@ Allocate an Elastic IP address and remember its ID. For detailed instructions, s
    - On CentOS systems:
 
       ```shell
-
      sudo yum install keepalived wget
-
      ```
 
 2. Follow the instructions in the [AWS documentation](https://docs.aws.amazon.com/cli/latest/userguide/installing.html) to install the AWS CLI.
