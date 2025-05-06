@@ -64,7 +64,7 @@ The scripts in the HA solution use the AWS API to associate an Elastic IP addres
    }
    ```
 
-   Or, you can use the `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` environment variables to provide credentials to the HA scripts, as shown in [Step 5](#ha-aws_keepalived-configure).
+   Alternatively, you can use the `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` environment variables to provide credentials to the HA scripts, as shown in [Step 5](#ha-aws_keepalived-configure).
 
 2. Launch two instances and [install NGINX Plus]({{< ref "nginx/admin-guide/installing-nginx/installing-nginx-plus-amazon-web-services.md" >}}) on each. (As noted, we tested the instructions on <span style="white-space: nowrap;">Ubuntu 16.04 LTS</span> and CentOS 7.)
 
