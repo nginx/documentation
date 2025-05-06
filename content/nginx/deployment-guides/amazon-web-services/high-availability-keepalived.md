@@ -121,7 +121,6 @@ The NGINX Plus HA solution uses two scripts, which are invoked by `keepalived`:
 2. Download the scripts from our [GitHub repository](https://github.com/nginxinc/aws-ha-elastic-ip) into the created directory.
 
 <span id="ha-aws_keepalived-configure"></span>
-
 ## Step 5 – Configure `keepalived` and the HA Scripts
 
 There are two configuration files for the HA solution:
