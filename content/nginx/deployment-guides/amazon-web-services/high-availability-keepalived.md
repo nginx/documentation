@@ -33,7 +33,6 @@ As an alternative to ELB, you can use Route 53 to distribute traffic among NGINX
 **Notes:**
 
 - We have successfully tested the instructions on <span style="white-space: nowrap;">Ubuntu 16.04 LTS</span> (Xenial Xerus) and CentOS 7, with `keepalived` installed from the respective OS vendor repositories.
-
 - Except as noted, perform all steps on both the primary and backup instance.
 
 - The solution is not covered by your NGINX Plus support contract.
