@@ -16,13 +16,13 @@ With runtime state sharing, NGINXaaS instances can share some state data between
 - [Rate limiting](https://nginx.org/en/docs/http/ngx_http_limit_req_module.html#limit_req_zone)
 - [Key‑value store](https://nginx.org/en/docs/http/ngx_http_keyval_module.html#keyval_zone)
 
-{{<note>}}`sync` parameter with a directive describing shared memory zones, cannot be added to an existing memory zone that was not configured to sync and cannot be removed from an existing memory zone that was configured to sync. To switch, consider removing the directive before reapplying it with the desired parameters.{{</note>}}
+{{<note>}} Can not add the `sync` parameter with a directive describing shared memory zones to an existing memory zone that was not configured to sync. It also cannot be removed from an existing memory zone configured to sync. To switch, remove the directive before reapplying it with the desired parameters.{{</note>}}
 
 For information on enabling synchronization for rate limiting with NGINXaaS for Azure, please visit the [Rate Limiting]({{< ref "/nginxaas-azure/quickstart/rate-limiting.md" >}}) documentation.
 
 ## Configuring runtime state sharing among NGINXaaS for Azure deployment cluster instances
 
-To enable runtime state sharing, edit the NGINXaaS deployment's NGINX configuration to create a server with the `zone_sync` directive in the top-level `stream` block. The `stream` `server` block containing the `zone_sync` directive should use a local resolver at `127.0.0.1:49153` and provide a `listen` directive with only a port for the TCP server. The chosen port should match the port used with `zone_sync_server` directive. NGINXaaS cluster instances should be identified using domain name `internal.nginxaas.nginx.com` and resolved using `resolve` parameter of the `zone_sync_server` directive.
+To enable runtime state sharing, edit the NGINXaaS deployment's NGINX configuration to create a server with the `zone_sync` directive in the top-level `stream` block. The `stream` `server` block containing the `zone_sync` directive should use a local resolver at `127.0.0.1:49153`. It should also provide a `listen` directive with only a port for the TCP server. The chosen port should match the port used with `zone_sync_server` directive. NGINXaaS cluster instances should use `internal.nginxaas.nginx.com` as the domain name. They resolve using the `resolve` parameter of the `zone_sync_server` directive.
 
 ```nginx
 stream {
@@ -41,7 +41,7 @@ stream {
 
 ## Enable the SSL/TLS protocol for connections to another cluster instance of the NGINXaaS for Azure deployment
 
- To allow SSL connections between cluster instances, edit the NGINXaaS deployment's NGINX configuration to enable the  `zone_sync_ssl` directive along with `zone_sync` directive in the top-level `stream` block.  The `stream` `server` block containing the `zone_sync_ssl` directive should specify the `ssl` parameter with the `listen` directive for the TCP server. `ssl_certificate` and `ssl_certificate_key` directives can reference a Key Vault certificate attached to the deployment.
+ To allow SSL connections between cluster instances, edit the NGINXaaS deployment's NGINX configuration to enable the `zone_sync_ssl` directive along with `zone_sync` directive in the top-level `stream` block. The `stream` `server` block containing the `zone_sync_ssl` directive should specify the `ssl` parameter with the `listen` directive for the TCP server. `ssl_certificate` and `ssl_certificate_key` directives can reference a Key Vault certificate attached to the deployment.
 
 ```nginx
 stream {
@@ -62,7 +62,7 @@ stream {
 
 ## Enable verification of certificate of another cluster instance of the NGINXaaS for Azure deployment
 
-To enable verification of the cluster instance certificate edit the NGINXaaS deployment's NGINX configuration to enable the `zone_sync_ssl_verify` directive along with `zone_sync` directive in the top-level `stream` block and provide the `zone_sync_ssl_trusted_certificate` directive. `zone_sync_ssl_trusted_certificate` directive can reference a Key Vault certificate attached to the deployment. The `zone_sync_ssl_name` directive if used, should provide the `name` parameter as `internal.nginxaas.nginx.com`.
+To enable verification of the cluster instance certificate edit the NGINXaaS deployment's NGINX configuration to enable the `zone_sync_ssl_verify` directive along with `zone_sync` directive in the top-level `stream` block and provide the `zone_sync_ssl_trusted_certificate` directive. `zone_sync_ssl_trusted_certificate` directive can reference a Key Vault certificate attached to the deployment. If the `zone_sync_ssl_name` directive is used, the `name` parameter should be set to `internal.nginxaas.nginx.com`.
 
 ```nginx
 stream {
@@ -86,7 +86,7 @@ stream {
 
 ## Set up certificate-based authentication across cluster instances of the NGINXaaS for Azure deployment
 
-To set up certificate-based authentication across the cluster instances edit the NGINXaaS deployment's NGINX configuration to enable the `ssl_verify_client` directive along with `zone_sync` directive in the top-level `stream` block and provide the `ssl_client_certificate` directive. `zone_sync_ssl_certificate`, `zone_sync_ssl_certificate_key` and `ssl_client_certificate` directives can reference a Key Vault certificate attached to the deployment.
+To set up certificate-based authentication across the cluster instances edit the NGINXaaS deployment's NGINX configuration. Enable the `ssl_verify_client` directive and the `zone_sync` directive in the top-level `stream` block. In addition, provide the `ssl_client_certificate` directive. `zone_sync_ssl_certificate`, `zone_sync_ssl_certificate_key` and `ssl_client_certificate` directives can reference a Key Vault certificate attached to the deployment.
 
 ```nginx
 stream {

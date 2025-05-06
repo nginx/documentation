@@ -24,7 +24,7 @@ type:
 
 
 <span id="nginx_plus_official_images"></span>
-## Using official NGINX Plus Docker images
+## Use official NGINX Plus Docker images
 
 Since NGINX Plus NGINX Plus [Release 31]({{< ref "nginx/releases.md#r31" >}}) you can get an NGINX Plus image from the official NGINX Plus Docker registry and upload it to your private registry.
 
@@ -66,7 +66,7 @@ The NGINX Plus registry contains images for the two most recent versions of NGIN
 
 The image may contain a particular version of NGINX Plus or contain a bundle of NGINX Plus and NGINX Agent, and can be targeted for a specific architecture.
 
-### Listing all tags
+### List all tags
 
 For a complete tag list for NGINX Plus bundled with NGINX Agent images, use the command:
 
@@ -90,7 +90,7 @@ where:
 
 
 
-### Downloading the JSON Web Token or NGINX Plus certificate and key {#myf5-download}
+### Download the JSON Web Token or NGINX Plus certificate and key {#myf5-download}
 
 Before you get a container image, you should provide the JSON Web Token file or SSL certificate and private key files provided with your NGINX Plus subscription. These files grant access to the package repository from which the script will download the NGINX Plus package:
 
@@ -109,7 +109,7 @@ Before you get a container image, you should provide the JSON Web Token file or 
 
 {{% /tabs %}}
 
-### Set up Docker for NGINX Plus Container Registry
+### Set up Docker for NGINX Plus container registry
 
 Set up Docker to communicate with the NGINX Container Registry located at `private-registry.nginx.com`.
 
@@ -144,7 +144,7 @@ docker login private-registry.nginx.com
 
 {{% /tabs %}}
 
-### Pulling the image
+### Pull the image
 
 Next, pull the image you need from `private-registry.nginx.com`.
 
@@ -183,7 +183,7 @@ docker pull private-registry.nginx.com/nginx-plus/modules:<version-tag>
 
 {{< include "security/jwt-password-note.md" >}}
 
-### Pushing the image to your private registry
+### Push the image to your private registry
 
 After pulling the image, tag it and upload it to your private registry.
 
@@ -205,7 +205,7 @@ docker tag private-registry.nginx.com/nginx-plus/base:<version-tag> <my-docker-r
 docker push <my-docker-registry>/nginx-plus/base:<version-tag>
 ```
 
-### Running the NGINX Plus container
+### Run the NGINX Plus container
 
 {{< note >}} Starting from [NGINX Plus Release 33]({{< ref "nginx/releases.md#r33" >}}), the JWT file is required for each NGINX Plus instance. For more information, see [About Subscription Licenses]({{< ref "/solutions/about-subscription-licenses.md">}}). {{< /note >}}
 
@@ -390,7 +390,7 @@ Any change made to the files in the local directories `/var/www and /var/nginx/c
 
 
 <span id="manage_copy"></span>
-### Copying Content and Configuration Files from the Docker Host
+### Copy content and configuration files from the Docker host
 
 Docker can copy the content and configuration files from a local directory on the Docker host during container creation. Once a container is created, the files are maintained by creating a new container when files change or by modifying the files in the container.
 
@@ -421,7 +421,7 @@ To make changes to the files in the container, use a helper container as describ
 
 
 <span id="manage_container"></span>
-### Maintaining Content and Configuration Files in the Container
+### Maintain content and configuration files in the container
 
 As SSH cannot be used to access the NGINX container, to edit the content or configuration files directly you need to create a helper container that has shell access. For the helper container to have access to the files, create a new image that has the proper Docker data volumes defined for the image:
 
@@ -476,12 +476,12 @@ To exit the shell and terminate the container, run the `exit` command.
 
 
 <span id="log"></span>
-## Managing Logging
+## Manage logging
 
 You can use default logging or customize logging.
 
 <span id="log_default"></span>
-### Using Default Logging
+### Use default logging
 
 By default, the NGINX image is configured to send NGINX [access log](https://nginx.org/en/docs/http/ngx_http_log_module.html#access_log) and [error log](https://nginx.org/en/docs/ngx_core_module.html#error_log) to the Docker log collector. This is done by linking them to `stdout` and `stderr`: all messages from both logs are then written to the file `/var/lib/docker/containers/container-ID/container-ID-json.log` on the Docker host. The container‑ID is the long‑form ID returned when you [create a container](#docker_oss_image). To display the long form ID, run the command:
 
@@ -507,7 +507,7 @@ To include only access log messages in the output, include only `stdout=1`. To l
 
 
 <span id="log_custom"></span>
-### Using Customized Logging
+### Use customized logging
 
 If you want to configure logging differently for certain configuration blocks (such as `server {}` and `location {}`), define a Docker volume for the directory in which to store the log files in the container, create a helper container to access the log files, and use any logging tools. To implement this, create a new image that contains the volume or volumes for the logging files.
 
@@ -524,7 +524,7 @@ Then you can [create an image](#docker_plus_image) and use it to create an NGINX
 
 
 <span id="control"></span>
-## Controlling NGINX
+## Control NGINX
 
 Since there is no direct access to the command line of the NGINX container, NGINX commands cannot be sent to a container directly. Instead, [signals](https://nginx.org/en/docs/control.html) can be sent to a container via Docker `kill` command.
 

@@ -9,7 +9,7 @@ type:
 - how-to
 ---
 
-This article explains how to encrypt HTTP traffic between NGINX and a upstream group or a proxied server.
+This article explains how to encrypt HTTP traffic between NGINX and an upstream group or a proxied server.
 
 
 ## Prerequisites
@@ -20,7 +20,7 @@ This article explains how to encrypt HTTP traffic between NGINX and a upstream g
 
 ## Obtaining SSL Server Certificates
 
-Purchase a server certificate from a trusted certificate authority (CA), or create your own internal CA with an [OpenSSL](https://www.openssl.org/) library and generate your own certificate. The server certificate together with a private key should be placed on each upstream server.
+You can purchase a server certificate from a trusted certificate authority (CA). You can create own internal CA with an [OpenSSL](https://www.openssl.org/) library and generate your own certificate instead. The server certificate, along with a private key, should be placed on each upstream server.
 
 <span id="client_certs"></span>
 ## Obtaining an SSL Client Certificate
@@ -32,7 +32,7 @@ You will also need to configure the upstream servers to require client certifica
 <span id="config"></span>
 ## Configuring NGINX
 
-First, change the URL to an upstream group to support SSL connections. Specify the “https” protocol for the proxied server in the NGINX configuration file. In the proxy_pass](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass) directive, specify an upstream group.
+First, change the URL to an upstream group to support SSL connections. Specify the “https” protocol for the proxied server in the NGINX configuration file. Alternatively, [in the proxy_pass](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass) directive, specify an upstream group.) >>>>>>> main
 
 ```nginx
 location /upstream {
