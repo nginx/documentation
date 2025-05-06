@@ -48,35 +48,20 @@ The scripts in the HA solution use the AWS API to associate an Elastic IP addres
    ```json
 
    {
-
        "Version": "2012-10-17",
-
        "Statement": [
-
            {
-
                "Effect": "Allow",
-
                "Action": [
-
                    "ec2:AssociateAddress",
-
                    "ec2:DescribeInstances",
-
                    "ec2:DescribeAddresses",
-
                    "ec2:DisassociateAddress"
-
                ],
-
                "Resource": "*"
-
            }
-
        ]
-
    }
-
    ```
 
    Or, you can use the `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` environment variables to provide credentials to the HA scripts, as shown in [Step 5](#ha-aws_keepalived-configure).
