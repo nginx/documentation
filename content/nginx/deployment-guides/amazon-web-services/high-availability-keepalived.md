@@ -78,7 +78,7 @@ Allocate an Elastic IP address and remember its ID. For detailed instructions, s
 <span id="ha-aws_keepalived-install"></span><span id="ha-aws_step3"></span>
 ## Step 3 – Install `keepalived`, `wget`, and the AWS CLI
 
-1. Install two packages from your OS vendor’s repository: the keepalived and wget. The HA scripts will use these.
+1. Install two packages from your OS vendor’s repository: keepalived and wget. The HA scripts will use these.
 
    - On Ubuntu systems:
 
