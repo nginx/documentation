@@ -76,7 +76,6 @@ The scripts in the HA solution use the AWS API to associate an Elastic IP addres
 Allocate an Elastic IP address and remember its ID. For detailed instructions, see the [AWS documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html#using-instance-addressing-eips-allocating).
 
 <span id="ha-aws_keepalived-install"></span><span id="ha-aws_step3"></span>
-
 ## Step 3 – Install `keepalived`, `wget`, and the AWS CLI
 
 1. Install two packages from your OS vendor’s repository: the keepalived and wget. The HA scripts will use these.
