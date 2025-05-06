@@ -32,7 +32,7 @@ You will also need to configure the upstream servers to require client certifica
 <span id="config"></span>
 ## Configuring NGINX
 
-First, change the URL to an upstream group to support SSL connections. Specify the “https” protocol for the proxied server in the NGINX configuration file. (In the proxy_pass](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass) directive, specify an upstream group.) 
+First, change the URL to an upstream group to support SSL connections. Specify the “https” protocol for the proxied server in the NGINX configuration file. In the proxy_pass](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass) directive, specify an upstream group.
 
 ```nginx
 location /upstream {
@@ -178,11 +178,9 @@ In this example, the “`https`” protocol in the [proxy_pass](https://nginx.or
 
 When a secure connection is passed from NGINX to the upstream server for the first time, the full handshake process is performed:
 
-* The [proxy_ssl_certificate](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_ssl_certificate) directive defines the location of the PEM-format certificate required by the upstream server.
-
-* The [proxy_ssl_certificate_key](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_ssl_certificate_key) directive defines the location of the certificate’s private key.
-
-* The [proxy_ssl_protocols](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_ssl_protocols and [proxy_ssl_ciphers](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_ssl_ciphers) directives control which protocols and ciphers are used.
+- The [proxy_ssl_certificate](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_ssl_certificate) directive defines the location of the PEM-format certificate required by the upstream server.
+- The [proxy_ssl_certificate_key](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_ssl_certificate_key) directive defines the location of the certificate’s private key.
+- The [proxy_ssl_protocols](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_ssl_protocols and [proxy_ssl_ciphers](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_ssl_ciphers) directives control which protocols and ciphers are used.
 
 The next time NGINX passes a connection to the upstream server, session parameters will be reused because of the [proxy_ssl_session_reuse](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_ssl_session_reuse) directive, and the secured connection is established faster.
 
