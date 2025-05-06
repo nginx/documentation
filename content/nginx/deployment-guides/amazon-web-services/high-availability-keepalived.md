@@ -223,7 +223,6 @@ ALLOCATION_ID=<value>
 - `ALLOCATION_ID` – The ID of the allocated Elastic IP address.
 
 <span id="ha-aws_testing"></span>
-
 ## Testing
 
 Run this command on both instances to start the `keepalived` daemon:
