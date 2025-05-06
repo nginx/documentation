@@ -30,7 +30,7 @@ This guide explains how to create an active‑passive HA deployment of NGINX Plu
 
 As an alternative to ELB, you can use Route 53 to distribute traffic among NGINX Plus instances, relying only on DNS load balancing. However, clients as well as intermediate DNS servers often cache DNS records as specified by the TTL value in the record, so there can be a delay in propagation of the updated records to the clients. This can lead to increased downtime of your applications as observed by clients. Such an update can happen when Route 53 detects the failure of an NGINX Plus instance and removes the corresponding record. In contrast, when you use the HA solution along with Route 53, the record usually doesn’t change because the IP address stays the same, and there is no TTL‑related problem.
 
-Notes:
+**Notes:**
 
 - We have successfully tested the instructions on <span style="white-space: nowrap;">Ubuntu 16.04 LTS</span> (Xenial Xerus) and CentOS 7, with `keepalived` installed from the respective OS vendor repositories.
 
