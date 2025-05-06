@@ -234,11 +234,7 @@ The instance with the higher priority becomes the primary. As a result, the Elas
 To check the instance state, run:
 
 ```shell
-
 cat /var/run/nginx-ha-keepalived.state
-
-```
-
 The command outputs `STATE=MASTER` on the primary instance and `STATE=BACKUP` otherwise.
 
 You can simulate the failure of the primary by stopping the `keepalived` daemon:
