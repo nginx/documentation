@@ -126,7 +126,6 @@ The NGINX Plus HA solution uses two scripts, which are invoked by `keepalived`:
 There are two configuration files for the HA solution:
 
 - keepalived.conf – The main configuration file for `keepalived`, slightly different for each NGINX Plus instance.
-
 - <span style="white-space: nowrap; font-weight:bold;">nginx-ha-notify</span> – The script you downloaded in [Step 4](#ha-aws_ha-scripts), with several user‑defined variables.
 
 <span id="ha-aws_keepalived-conf-file"></span>
