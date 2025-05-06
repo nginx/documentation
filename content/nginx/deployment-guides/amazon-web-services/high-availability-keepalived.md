@@ -208,7 +208,7 @@ You must change values for the following configuration keywords. As you do so, r
 
 ### Creating nginx-ha-notify
 
-Change the user‑defined variables section of the <span style="white-space: nowrap; font-weight:bold;">nginx-ha-notify</span> script, replacing each `<value>` placeholder with the value specified in the list below:
+Modify the user‑defined variables section of the <span style="white-space: nowrap; font-weight:bold;">nginx-ha-notify</span> script, replacing each `<value>` placeholder with the value specified in the list below:
 
 ```none
 
