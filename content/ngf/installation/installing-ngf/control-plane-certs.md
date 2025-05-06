@@ -9,7 +9,7 @@ docs: DOCS-0000
 
 ## Overview
 
-By default, NGINX Gateway Fabric installs self-signed certificates to secure the connection between the NGINX Gateway Fabric control plane and the NGINX data plane Pods. These certificates are created by a `cert-generator` Job when NGINX Gateway Fabric is first installed. However, because these certificates are self-signed and will expire after 3 years, it is recommended to use a solution such as [cert-manager](https://cert-manager.io) to create and manage these certificates in a production environment.
+By default, NGINX Gateway Fabric installs self-signed certificates to secure the connection between the NGINX Gateway Fabric control plane and the NGINX data plane pods. These certificates are created by a `cert-generator` job when NGINX Gateway Fabric is first installed. However, because these certificates are self-signed and will expire after 3 years, it is recommended to use a solution such as [cert-manager](https://cert-manager.io) to create and manage these certificates in a production environment.
 
 This guide will step through how to install and use `cert-manager` to secure this connection. **This should be done _before_ you install NGINX Gateway Fabric.**
 
@@ -158,7 +158,7 @@ spec:
 EOF
 ```
 
-Since the TLS Secrets are mounted into each Pod that uses them, the NGINX agent (client) Secret is duplicated by the NGINX Gateway Fabric control plane into whichever namespace NGINX is deployed into. All updates to the source Secret are propagated to the duplicate Secrets.
+Since the TLS Secrets are mounted into each pod that uses them, the NGINX agent (client) Secret is duplicated by the NGINX Gateway Fabric control plane into whichever namespace NGINX is deployed into. All updates to the source Secret are propagated to the duplicate Secrets.
 
 The name of the agent Secret is provided to the NGINX Gateway Fabric control plane via the command-line. `agent-tls` is the default name, but if you wish to use a different name, you can provide it when installing NGINX Gateway Fabric:
 
