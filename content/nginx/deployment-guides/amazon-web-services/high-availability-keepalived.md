@@ -117,9 +117,7 @@ The NGINX Plus HA solution uses two scripts, which are invoked by `keepalived`:
    - On CentOS systems:
 
       ```shell
-
      sudo mkdir -p /usr/libexec/keepalived
-
      ```
 
 2. Download the scripts from our [GitHub repository](https://github.com/nginxinc/aws-ha-elastic-ip) into the created directory.
