@@ -228,11 +228,7 @@ ALLOCATION_ID=<value>
 Run this command on both instances to start the `keepalived` daemon:
 
 ```shell
-
 sudo service keepalived start
-
-```
-
 The instance with the higher priority becomes the primary. As a result, the Elastic IP address becomes associated with the primary instance, as confirmed on the AWS Console.
 
 To check the instance state, run:
