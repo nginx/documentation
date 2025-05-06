@@ -250,7 +250,6 @@ Check the state on the backup instance, confirming that it has transitioned to `
 If the solution doesn’t work as expected, check the `keepalived` logs, which are written to <span style="white-space: nowrap; font-weight:bold;">/var/log/syslog</span>. Also, you can manually run the commands that invoke the `awscli` utility in the <span style="white-space:nowrap; font-weight:bold;">nginx-ha-notify</span> script to check that the utility is working properly.
 
 <span id="ha-aws_caveats"></span>
-
 ## Caveats
 
 - In most of our tests it took five to six seconds for the Elastic IP address to be reassigned.
