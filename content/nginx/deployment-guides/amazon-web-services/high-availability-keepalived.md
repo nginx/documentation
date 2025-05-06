@@ -131,7 +131,7 @@ There are two configuration files for the HA solution:
 <span id="ha-aws_keepalived-conf-file"></span>
 ### Creating keepalived.conf
 
-In the /etc/keepalived folder create a file named keepalived.conf with the following content.
+In the **/etc/keepalived** folder create a file named **keepalived.conf** with the following content.
 
 ```nginx
 
