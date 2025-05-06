@@ -257,7 +257,6 @@ If the solution doesn’t work as expected, check the `keepalived` logs, which a
 - AWS API issues may prevent the Elastic IP from associating with the primary instance during flip-flopping or split-brain scenarios (though we couldn’t reproduce these in testing). If this happens, restart ‘keepalived’ on both instances.​​​​​​​​​​​​​​​​
 
 <span id="has-aws_resources"></span>
-
 ## Resources
 
 [Download the HA solution from the NGINX GitHub repository](https://github.com/nginxinc/aws-ha-elastic-ip).
