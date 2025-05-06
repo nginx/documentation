@@ -211,21 +211,12 @@ You must change values for the following configuration keywords. As you do so, r
 Modify the user‑defined variables section of the <span style="white-space: nowrap; font-weight:bold;">nginx-ha-notify</span> script, replacing each `<value>` placeholder with the value specified in the list below:
 
 ```none
-
 export AWS_ACCESS_KEY_ID=<value>
-
 export AWS_SECRET_ACCESS_KEY=<value>
-
 export AWS_DEFAULT_REGION=<value>
-
 HA_NODE_1=<value>
-
 HA_NODE_2=<value>
-
 ALLOCATION_ID=<value>
-
-```
-
 - `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` – The credentials for accessing the AWS API. Set them only when an IAM instance profile isn’t used. Otherwise, delete the corresponding two lines.
 
 - `AWS_DEFAULT_REGION` – The AWS region of your deployment.
