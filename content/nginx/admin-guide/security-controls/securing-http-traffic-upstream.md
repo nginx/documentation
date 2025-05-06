@@ -186,5 +186,4 @@ The next time NGINX passes a connection to the upstream server, session paramete
 
 The trusted CA certificates in the file named by the [proxy_ssl_trusted_certificate](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_ssl_trusted_certificate) directive are used to verify the certificate on the upstream.
 The [proxy_ssl_verify_depth](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_ssl_verify_depth) directive specifies that two certificates in the certificates chain are checked. 
-
 The [proxy_ssl_verify](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_ssl_verify) directive verifies the validity of certificates.
