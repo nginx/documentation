@@ -111,9 +111,7 @@ The NGINX Plus HA solution uses two scripts, which are invoked by `keepalived`:
    - On Ubuntu systems:
 
       ```shell
-
      sudo mkdir -p /usr/lib/keepalived
-
      ```
 
    - On CentOS systems:
