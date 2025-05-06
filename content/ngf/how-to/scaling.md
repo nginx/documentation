@@ -7,7 +7,7 @@ product: NGF
 docs: DOCS-0000
 ---
 
-Scaling the control plane and data plane has its own set of trade-offs. This guide walks you through how to scale each component effectively and helps you decide when to scale the data plane versus creating a new gateway, based on your traffic patterns.
+Users can scale both the NGINX Gateway Fabric control plane and data planes separately. This guide walks you through how to scale each component effectively and helps you decide when to scale the data plane versus creating a new gateway, based on your traffic patterns.
 
 ---
 
