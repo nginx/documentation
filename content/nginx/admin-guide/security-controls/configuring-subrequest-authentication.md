@@ -12,18 +12,14 @@ type:
 <span id="intro"></span>
 ## Introduction
 
-NGINX and F5 NGINX Plus can authenticate each request to your website with an external server or service. To perform authentication, NGINX makes an HTTP subrequest to an external server where it is verified.
-
-HTTP authentication can use various authentication schemes:
-- Multifactor authentication
-- LDAP/OAuth authentication 
+NGINX and F5 NGINX Plus can authenticate each request to your website with an external server or service. To perform authentication, NGINX makes an HTTP subrequest to an external server where it is verified. Such type of authentication allows implementing various authentication schemes, such as multifactor authentication, or allows implementing LDAP or OAuth authentication.
 
 ## Response Codes
 
 Subrequest Response Codes:
+
 - 2xx - access is allowed
-- 402 - access is denied
-- 403 - access is denied
+- 401, 403 - access is denied
 
 ## Prerequisites
 
