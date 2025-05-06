@@ -24,7 +24,6 @@ One method for deploying NGINX Plus in a highly available manner on AWS is to us
 - It increases the cost of your deployment.
 
 - It limits the number of protocols NGINX Plus and your applications can support. In particular, ELB does not support UDP load balancing.
-
 - It does not provide a single static IP address for NGINX Plus instances, which is a crucial need for some applications.
 
 This guide explains how to create an active‑passive HA deployment of NGINX Plus on AWS that doesn’t need ELB and thus isn't subject to its disadvantages. It combines the `keepalived`‑based solution with AWS’s [Elastic IP address](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html) feature. Most importantly, this method addresses the need for a single IP address: as long as the primary NGINX Plus instance is operating correctly, it has the Elastic IP address. If the primary fails, the backup instance becomes the primary and reassociates the Elastic IP address with itself, as shown in the figure.
