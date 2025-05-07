@@ -98,7 +98,7 @@ curl -s https://private-registry.nginx.com/v2/nap/waf-compiler/tags/list --key <
     Run the command below to build your image, where `waf-compiler-<version-tag>:custom` is an example of the image tag:
 
     ```shell
-    sudo docker build --no-cache \
+    sudo docker build --no-cache --platform linux/amd64 \
     --secret id=nginx-crt,src=nginx-repo.crt \
     --secret id=nginx-key,src=nginx-repo.key \
     -t waf-compiler-<version-tag>:custom .
