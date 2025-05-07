@@ -51,7 +51,6 @@ For example, if you're routing traffic to a new domain `admin.example.com` and r
 
 It allows for safe experimentation with isolated configurations and makes it easier to enforce security boundaries and specific routing rules.
 
-
 ### Scaling the control plane
 
 The control plane builds configuration based on defined Gateway API resources and sends that configuration to the NGINX data planes. With leader election enabled by default, the control plane can be scaled horizontally by running multiple replicas, although only the pod with leader lease can actively manage configuration status updates. 
