@@ -1,5 +1,5 @@
 ---
-title: Control Plane and Data Plane Authentication
+title: Add secure authentication to the control and data planes
 weight: 300
 toc: true
 type: how-to
@@ -22,31 +22,29 @@ You need:
 
 ## Install cert-manager
 
-- Add the Helm repository.
+Add the Helm repository:
 
-  ```shell
-  helm repo add jetstack https://charts.jetstack.io
-  helm repo update
-  ```
+```shell
+helm repo add jetstack https://charts.jetstack.io
+helm repo update
 
-- Install cert-manager:
+Install cert-manager:
 
-  ```shell
-  helm install \
-    cert-manager jetstack/cert-manager \
-    --namespace cert-manager \
-    --create-namespace \
-    --set config.apiVersion="controller.config.cert-manager.io/v1alpha1" \
-    --set config.kind="ControllerConfiguration" \
-    --set config.enableGatewayAPI=true \
-    --set crds.enabled=true
-  ```
+```shell
+helm install \
+  cert-manager jetstack/cert-manager \
+  --namespace cert-manager \
+  --create-namespace \
+  --set config.apiVersion="controller.config.cert-manager.io/v1alpha1" \
+  --set config.kind="ControllerConfiguration" \
+  --set config.enableGatewayAPI=true \
+  --set crds.enabled=true
 
   This also enables Gateway API features for cert-manager, which can be useful for [securing your workload traffic]({{< ref "/ngf/how-to/traffic-security/integrating-cert-manager.md" >}}).
 
-## Create CA Issuer
+## Create the CA issuer
 
-The first step is to create the CA Issuer.
+The first step is to create the CA (certificate authority) issuer.
 
 {{< note >}} This example uses a self-signed Issuer, which should not be used in production environments. For production environments, you should use a real [CA issuer](https://cert-manager.io/docs/configuration/ca/). {{< /note >}}
 
@@ -94,9 +92,9 @@ spec:
 EOF
 ```
 
-## Create Server and Client Certificates
+## Create server and client certificates
 
-Now we can create the Certificate resources for the NGINX Gateway Fabric control plane (server) and the NGINX agent (client).
+Create the Certificate resources for the NGINX Gateway Fabric control plane (server) and the NGINX agent (client).
 
 The `dnsName` field in the server Certificate represents the name that the NGINX Gateway Fabric control plane service will have once you install it. This name depends on your method of installation.
 
@@ -106,7 +104,7 @@ The `dnsName` field in the server Certificate represents the name that the NGINX
 
 The full service name is of the format: `<helm-release-name>-nginx-gateway-fabric.<namespace>.svc`.
 
-The default helm release name used in our installation docs is `ngf`, and the default namespace is `nginx-gateway`, so the `dnsName` should be `ngf-nginx-gateway-fabric.nginx-gateway.svc`.
+The default Helm release name used in our installation docs is `ngf`, and the default namespace is `nginx-gateway`, so the `dnsName` should be `ngf-nginx-gateway-fabric.nginx-gateway.svc`.
 
 {{% /tab %}}
 
