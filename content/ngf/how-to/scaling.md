@@ -33,15 +33,17 @@ All replicas will share the same configuration from the Gateway used to set up t
 
 There are two ways to modify the number of replicas for an NGINX deployment:
 
-First, by modifying the field `nginx.replicas` in the `values.yaml` or adding the `--set nginx.replicas=` flag to the `helm install` command.
+First, at the time of installation you can modify the field `nginx.replicas` in the `values.yaml` or add the `--set nginx.replicas=` flag to the `helm install` command 
 
-```text
+```shell
 helm install ngf oci://ghcr.io/nginx/charts/nginx-gateway-fabric --create-namespace -n nginx-gateway --set nginx.replicas=5
-Secondly, by editing the `NginxProxy` resource attached to the data plane deployment. You can specify the number of replicas in the field `kubernetes.deployment.replicas` of the nginxProxy resource:
+```
 
-```text
+Secondly, you can update the `NginxProxy` resource while NGINX is running to modify the `kubernetes.deployment.replicas` field and scale the data plane deployment dynamically:
+
+```shell
 kubectl edit nginxproxies.gateway.nginx.org ngf-proxy-config -n nginx-gateway
-
+```
 
 The alternate way to scale the data plane is by creating a new Gateway.  This is is beneficial when you need distinct configurations, isolation, or separate policies. 
 
@@ -58,11 +60,10 @@ Scaling the control plane can be beneficial in the following scenarios:
 
 1. _Higher availability_ - When a control plane pod crashes, runs out of memory, or goes down during an upgrade, it can interrupt configuration delivery. By scaling to multiple replicas, another pod can quickly step in and take over, keeping things running smoothly with minimal downtime.
 1. _Faster configuration distribution_ - As the number of connected NGINX instances grows, a single control plane pod may become a bottleneck in handling connections or streaming configuration updates. Scaling the control plane improves concurrency and responsiveness when delivering configuration over gRPC.
-1. _Improved resilience_ - Running multiple control plane replicas provides fault tolerance. Even if the pod holding the leader lease fails, another pod can quickly step in and take over, preventing disruptions in status updates.
 
 To scale the control plane, use the `kubectl scale` command on the control plane deployment to increase or decrease the number of replicas. For example, the following command scales the control plane deployment to 3 replicas:
 
-  ```text
+  ```shell
   kubectl scale deployment -n nginx-gateway ngf-nginx-gateway-fabric --replicas 3
   ```
 
@@ -82,13 +83,15 @@ There is still a chance (however unlikely) that one of the data planes connected
 
 To identify which control plane pod currently holds the leader election lease, retrieve the leases in the same namespace as the control plane pods. For example:
 
-```text
+```shell
 kubectl get leases -n nginx-gateway
+```
 
 The current leader lease is held by the pod `ngf-nginx-gateway-fabric-b45ffc8d6-d9z2g`:
 
-```text
+```shell
 NAME                                       HOLDER                                                                          AGE
 ngf-nginx-gateway-fabric-leader-election   ngf-nginx-gateway-fabric-b45ffc8d6-d9z2g_2ef81ced-f19d-41a0-9fcd-a68d89380d10   16d
+```
 
 ---
