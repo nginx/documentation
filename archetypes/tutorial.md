@@ -29,8 +29,6 @@ By the end of the tutorial, you should have enough working knowledge of <thing> 
 
 <thing> is a common use for <product>: it enables the ability to use <feature 1>, <feature 2> and <feature 3>, which are important when configuring <product> for <use case>.
 
----
-
 ## Before you begin
 
 [//]: # "List everything someone will need installed or configured before it's required. Link directly to installation guides where possible."
@@ -42,8 +40,6 @@ To complete this guide, you will need the following prerequisites:
 - Requirement 3
 
 [//]: # "Note the style of link for requirement two: keep the markdown extension. Links are resolved from the root of the documentation folder, often /site."
-
----
 
 ## Step 1
 
@@ -60,8 +56,6 @@ The first thing required for setting up <thing> is <step name>. This is the <ser
 ```
 
 Starting from the <top/left> of the diagram, you can see that <thing> is connected to <other thing>: this relationship is established when configuring <parameter> as part of <file name>.
-
----
 
 ### Sub-step 1
 
@@ -87,25 +81,17 @@ To verify the creation of <component>, you can also inspect information about it
 <the output of that command, possibly truncated and with changed IPs or domains>
 ```
 
----
-
 ### Sub-step 2
-
----
 
 ## Step 2
 
 [//]: # "Explain any additional steps required. If the tutorial involves multiple components, each component can have its own step for delineation."
 
----
-
 ### Sub-step 1
 
----
 
 ### Sub-step 2
 
----
 
 ## Conclusion
 
@@ -113,8 +99,7 @@ To verify the creation of <component>, you can also inspect information about it
 [//]: # "It should fulfill the promise made by the introductory paragraph at the top of the document."
 [//]: # "You may wish to link to another tutorial as the next logical step, but that could also be part of the 'See also' section."
 
----
 
-## See also
+## Next steps
 
-[//]: # "Link to related documents, such as concepts, reference material or similar use cases."
+[//]: # "Link to related documents, such as concepts, reference material or specific use cases."
