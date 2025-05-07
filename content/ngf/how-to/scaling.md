@@ -33,7 +33,7 @@ All replicas will share the same configuration from the Gateway used to set up t
 
 There are two ways to modify the number of replicas for an NGINX deployment:
 
-First, at the time of installation you can modify the field `nginx.replicas` in the `values.yaml` or add the `--set nginx.replicas=` flag to the `helm install` command 
+First, at the time of installation you can modify the field `nginx.replicas` in the `values.yaml` or add the `--set nginx.replicas=` flag to the `helm install` command:
 
 ```shell
 helm install ngf oci://ghcr.io/nginx/charts/nginx-gateway-fabric --create-namespace -n nginx-gateway --set nginx.replicas=5
