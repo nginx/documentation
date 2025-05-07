@@ -341,7 +341,7 @@ EOF
 
 ## Configure infrastructure-related settings
 
-You can configure deployment and service settings for all data plane instances by editing the `NginxProxy` resource at the Gateway or GatewayClass level. These settings can also be specified under `nginx.` in the Helm values file. You can edit things such as replicas, pod scheduling options, container resource limits, extra volume mounts, service types and load balancer settings. 
+You can configure deployment and service settings for all data plane instances by editing the `NginxProxy` resource at the Gateway or GatewayClass level. These settings can also be specified under the `nginx` section in the Helm values file. You can edit things such as replicas, pod scheduling options, container resource limits, extra volume mounts, service types and load balancer settings. 
 
 The following command creates an `NginxProxy` resource with 2 replicas, sets `container.resources.requests` to 100m CPU and 128Mi memory, configures a 90 second `pod.terminationGracePeriodSeconds`, and sets the service type to `LoadBalancer` with IP `192.87.9.1` and AWS NLB annotation.
 
@@ -370,7 +370,7 @@ spec:
 EOF
 ```
 
-To view the full list of supported log levels, see the `NginxProxy spec` in the [API reference]({{< ref "/ngf/reference/api.md" >}}).
+To view the full list of configuration options, see the `NginxProxy spec` in the [API reference]({{< ref "/ngf/reference/api.md" >}}).
 
 ---
 
