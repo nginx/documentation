@@ -11,9 +11,9 @@ Learn how to dynamically update the NGINX Gateway Fabric global data plane confi
 
 ## Overview
 
-NGINX Gateway Fabric can dynamically update the global data plane configuration without restarting. The data plane configuration contains configuration for NGINX that is not available using the standard Gateway API resources. This includes such things as setting an OpenTelemetry collector config, disabling http2, changing the IP family, or setting the NGINX error log level.
+NGINX Gateway Fabric can dynamically update the global data plane configuration without restarting. The data plane configuration contains configuration for NGINX that is not available using the standard Gateway API resources. This includes options such as configuring an OpenTelemetry collector, disabling HTTP/2, changing the IP family, modifying infrastructure-related fields, and setting the NGINX error log level.
 
-The data plane configuration is stored in the NginxProxy custom resource, which is a namespace-scoped resource that can be attached to a GatewayClass or Gateway. When attached to a GatewayClass, the fields in the NginxProxy affect all Gateways that belong to the GatewayClass.
+The data plane configuration is stored in the `NginxProxy` custom resource, which is a namespace-scoped resource that can be attached to a GatewayClass or Gateway. When attached to a GatewayClass, the fields in the NginxProxy affect all Gateways that belong to the GatewayClass.
 When attached to a Gateway, the fields in the NginxProxy only affect the Gateway. If a GatewayClass and its Gateway both specify an NginxProxy, the GatewayClass NginxProxy provides defaults that can be overridden by the Gateway NginxProxy. See the [Merging Semantics](#merging-semantics) section for more detail.
 
 ---
@@ -172,13 +172,11 @@ telemetry:
 
 ---
 
-## Configuring the GatewayClass NginxProxy on Install
+## Configuring the GatewayClass NginxProxy on install
 
-By default, the NginxProxy resource is not created when installing NGINX Gateway Fabric. However, you can set configuration options in the `nginx.config` Helm values, and the resource will be created and attached to the GatewayClass when NGINX Gateway Fabric is installed using Helm. You can also [manually create and attach](#manually-creating-nginxproxies) the resource after NGINX Gateway Fabric is already installed.
+By default, an `NginxProxy` resource is created in the same namespace where NGINX Gateway Fabric is installed, attached to the GatewayClass. You can set configuration options in the `nginx` Helm value section, and the resource will be created and attached using the set values. You can also [manually create and attach](#manually-creating-nginxProxies) specific `NginxProxy` resources to target different Gateways.
 
 When installed using the Helm chart, the NginxProxy resource is named `<release-name>-proxy-config` and is created in the release Namespace.
-
-**For a full list of configuration options that can be set, see the `NginxProxy spec` in the [API reference]({{< ref "/ngf/reference/api.md" >}}).**
 
 {{< note >}} Some global configuration also requires an [associated policy]({{< ref "/ngf/overview/custom-policies.md" >}}) to fully enable a feature (such as [tracing]({{< ref "/ngf/how-to/monitoring/tracing.md" >}}), for example). {{< /note >}}
 
@@ -186,7 +184,7 @@ When installed using the Helm chart, the NginxProxy resource is named `<release-
 
 ## Manually Creating NginxProxies
 
-The following command creates a basic `NginxProxy` configuration that sets the IP family to `ipv4` instead of the default value of `dual`:
+The following command creates a basic `NginxProxy` configuration in the `default` namespace that sets the IP family to `ipv4` instead of the default value of `dual`:
 
 ```yaml
 kubectl apply -f - <<EOF
@@ -200,47 +198,7 @@ spec:
 EOF
 ```
 
-**For a full list of configuration options that can be set, see the `NginxProxy spec` in the [API reference]({{< ref "/ngf/reference/api.md" >}}).**
-
----
-
-### Attaching NginxProxy to GatewayClass
-
-To attach the `ngf-proxy-config` NginxProxy to the GatewayClass:
-
-```shell
-kubectl edit gatewayclass nginx
-```
-
-This will open your default editor, allowing you to add the following to the `spec`:
-
-```yaml
-parametersRef:
-    group: gateway.nginx.org
-    kind: NginxProxy
-    name: ngf-proxy-config
-    namespace: default
-```
-
-After updating, you can check the status of the GatewayClass to see if the configuration is valid:
-
-```shell
-kubectl describe gatewayclass nginx
-```
-
-```text
-...
-Status:
-  Conditions:
-     ...
-    Message:               parametersRef resource is resolved
-    Observed Generation:   1
-    Reason:                ResolvedRefs
-    Status:                True
-    Type:                  ResolvedRefs
-```
-
-If everything is valid, the `ResolvedRefs` condition should be `True`. Otherwise, you will see an `InvalidParameters` condition in the status.
+For a full list of configuration options that can be set, see the `NginxProxy spec` in the [API reference]({{< ref "/ngf/reference/api.md" >}}).
 
 ---
 
@@ -261,6 +219,8 @@ infrastructure:
         kind: NginxProxy
         name: ngf-proxy-config
 ```
+
+{{< note >}} The `NginxProxy` resource must reside in the same namespace as the Gateway it is attached to. {{< /note >}}
 
 After updating, you can check the status of the Gateway to see if the configuration is valid:
 
@@ -286,7 +246,7 @@ If everything is valid, the `ResolvedRefs` condition should be `True`. Otherwise
 
 ## Configure the data plane log level
 
-You can use the `NginxProxy` resource to dynamically configure the Data Plane Log Level.
+You can use the `NginxProxy` resource to dynamically configure the log level.
 
 The following command creates a basic `NginxProxy` configuration that sets the log level to `warn` instead of the default value of `info`:
 
@@ -375,6 +335,42 @@ spec:
 EOF
 ```
 
-For the full configuration API, see the `NginxProxy spec` in the [API reference]({{< ref "/ngf/reference/api.md" >}}).
-
 {{< note >}} When sending curl requests to a server expecting proxy information, use the flag `--haproxy-protocol` to avoid broken header errors. {{< /note >}}
+
+---
+
+## Configure infrastructure-related settings
+
+You can configure deployment and service settings for all data plane instances by editing the `NginxProxy` resource at the Gateway or GatewayClass level. These settings can also be specified under the `nginx` section in the Helm values file. You can edit things such as replicas, pod scheduling options, container resource limits, extra volume mounts, service types and load balancer settings. 
+
+The following command creates an `NginxProxy` resource with 2 replicas, sets `container.resources.requests` to 100m CPU and 128Mi memory, configures a 90 second `pod.terminationGracePeriodSeconds`, and sets the service type to `LoadBalancer` with IP `192.87.9.1` and AWS NLB annotation.
+
+```yaml
+kubectl apply -f - <<EOF
+apiVersion: gateway.nginx.org/v1alpha2
+kind: NginxProxy
+metadata:
+  name: ngf-proxy-config-test
+spec:
+  kubernetes:
+    deployment:
+      container:
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+      pod:
+        terminationGracePeriodSeconds: 90
+      replicas: 2
+    service:
+      annotations:
+        service.beta.kubernetes.io/aws-load-balancer-type: "nlb"
+      type: LoadBalancer
+      loadBalancerIP: "192.87.9.1"
+EOF
+```
+
+To view the full list of configuration options, see the `NginxProxy spec` in the [API reference]({{< ref "/ngf/reference/api.md" >}}).
+
+---
+
