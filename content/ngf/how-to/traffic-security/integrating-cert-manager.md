@@ -23,6 +23,8 @@ Follow the steps in this guide to:
 
 ## Before you begin
 
+You need:
+
 - Administrator access to a Kubernetes cluster.
 - [Helm](https://helm.sh) and [kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl) must be installed locally.
 - [NGINX Gateway Fabric deployed]({{< ref "/ngf/installation/" >}}) in the Kubernetes cluster.

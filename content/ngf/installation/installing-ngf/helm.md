@@ -19,6 +19,7 @@ To complete this guide, you'll need to install:
 
 - [kubectl](https://kubernetes.io/docs/tasks/tools/), a command-line tool for managing Kubernetes clusters.
 - [Helm 3.0 or later](https://helm.sh/docs/intro/install/), for deploying and managing applications on Kubernetes.
+- If deploying into a production environment, we highly recommend [installing custom certificates]({{< ref "/ngf/installation/installing-ngf/control-plane-certs.md" >}}) for securing the connection between the NGINX Gateway Fabric control plane and NGINX data plane Pods. **This should be done _before_ you install NGINX Gateway Fabric.** The default certificates are self-signed and will expire after 3 years.
 
 {{< important >}} If you’d like to use NGINX Plus, some additional setup is also required: {{</ important >}}
 
