@@ -198,45 +198,7 @@ spec:
 EOF
 ```
 
----
-
-### Attaching NginxProxy to GatewayClass
-
-To attach the `ngf-proxy-config` NginxProxy to the GatewayClass:
-
-```shell
-kubectl edit gatewayclass nginx
-```
-
-This will open your default editor, allowing you to add the following to the `spec`:
-
-```yaml
-parametersRef:
-    group: gateway.nginx.org
-    kind: NginxProxy
-    name: ngf-proxy-config
-    namespace: default
-```
-
-After updating, you can check the status of the GatewayClass to see if the configuration is valid:
-
-```shell
-kubectl describe gatewayclass nginx
-```
-
-```text
-...
-Status:
-  Conditions:
-     ...
-    Message:               parametersRef resource is resolved
-    Observed Generation:   1
-    Reason:                ResolvedRefs
-    Status:                True
-    Type:                  ResolvedRefs
-```
-
-If everything is valid, the `ResolvedRefs` condition should be `True`. Otherwise, you will see an `InvalidParameters` condition in the status.
+For a full list of configuration options that can be set, see the `NginxProxy spec` in the [API reference]({{< ref "/ngf/reference/api.md" >}}).
 
 ---
 
@@ -258,6 +220,8 @@ infrastructure:
         name: ngf-proxy-config
 ```
 
+{{< note >}} The `NginxProxy` resource must reside in the same namespace as the Gateway it is attached to. {{< /note >}}
+
 After updating, you can check the status of the Gateway to see if the configuration is valid:
 
 ```shell
@@ -278,13 +242,11 @@ Status:
 
 If everything is valid, the `ResolvedRefs` condition should be `True`. Otherwise, you will see an `InvalidParameters` condition in the status.
 
-{{< note >}} The `NginxProxy` resource must reside in the same namespace as the Gateway it is attached to. {{< /note >}}
-
 ---
 
 ## Configure the data plane log level
 
-You can use the `NginxProxy` resource at the GatewayClass level to dynamically configure the log level for all data plane instances.
+You can use the `NginxProxy` resource to dynamically configure the log level.
 
 The following command creates a basic `NginxProxy` configuration that sets the log level to `warn` instead of the default value of `info`:
 
@@ -300,7 +262,7 @@ spec:
 EOF
 ```
 
-Other log levels supported are debug, notice, error, crit, alert, emerg.
+To view the full list of supported log levels, see the `NginxProxy spec` in the [API reference]({{< ref "/ngf/reference/api.md" >}}).
 
 {{< note >}}For `debug` logging to work, NGINX needs to be built with `--with-debug` or "in debug mode". NGINX Gateway Fabric can easily
 be [run with NGINX in debug mode](#run-nginx-gateway-fabric-with-nginx-in-debug-mode) upon startup through the addition
@@ -379,27 +341,36 @@ EOF
 
 ## Configure infrastructure-related settings
 
-You can configure deployment and service settings for all data plane instances by editing the `NginxProxy` resource at the GatewayClass level. These settings can also be specified under `nginx.` in the Helm values file. 
+You can configure deployment and service settings for all data plane instances by editing the `NginxProxy` resource at the Gateway or GatewayClass level. These settings can also be specified under `nginx.` in the Helm values file. You can edit things such as replicas, pod scheduling options, container resource limits, extra volume mounts, service types and load balancer settings. 
 
-Users can specify these settings for NGINX data plane deployments:
+The following command creates an `NginxProxy` resource with 2 replicas, sets `container.resources.requests` to 100m CPU and 128Mi memory, configures a 90 second `pod.terminationGracePeriodSeconds`, and sets the service type to `LoadBalancer` with IP `192.87.9.1` and AWS NLB annotation.
 
-- _replicas_ specifies the number of data plane pod replicas..
-- The `pod` section provides control over pod scheduling and lifecycle behavior. You can configure settings such as _terminationGracePeriodSeconds_, _tolerations_, _nodeSelector_, _affinity_, and _topologySpreadConstraints_. Use _extraVolumes_ to mount additional volumes, typically alongside container-level _extraVolumeMounts_.
-- The `container` defines settings for the NGINX container itself., such as resource requests and limits using _resources_, and lifecycle hooks like preStop or postStart via _lifecycle_. You can also specify _extraVolumeMounts_ to mount additional volumes defined at the pod level.
+```yaml
+kubectl apply -f - <<EOF
+apiVersion: gateway.nginx.org/v1alpha2
+kind: NginxProxy
+metadata:
+  name: ngf-proxy-config-test
+spec:
+  kubernetes:
+    deployment:
+      container:
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+      pod:
+        terminationGracePeriodSeconds: 90
+      replicas: 2
+    service:
+      annotations:
+        service.beta.kubernetes.io/aws-load-balancer-type: "nlb"
+      type: LoadBalancer
+      loadBalancerIP: "192.87.9.1"
+EOF
+```
 
-Users can specify these settings for NGINX data plane service in the `service` config:
+To view the full list of supported log levels, see the `NginxProxy spec` in the [API reference]({{< ref "/ngf/reference/api.md" >}}).
 
-- _type_ specifies the service type for the NGINX data plane. Allowed values are ClusterIP, NodePort, or LoadBalancer.
-- _externalTrafficPolicy_ sets how external traffic is handled. `Local` preserves the client’s source IP.
-- _annotations_ adds custom annotations to the NGINX data plane service.
-
-The below fields can only be specified when the `service.type` is `LoadBalancer`:
-- _loadBalancerIP_ specifies the static IP address of the load balancer.
-- _loadBalancerClass_ specifies the class of the load balancer implementation this service belongs to.
-- _loadBalancerSourceRanges_ specifies IP ranges (CIDR) that are allowed to access the load balancer.
-
-
-## See also
-
-For a full list of configuration options that can be set, see the `NginxProxy spec` in the [API reference]({{< ref "/ngf/reference/api.md" >}}).
+---
 
