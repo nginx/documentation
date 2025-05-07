@@ -174,7 +174,7 @@ telemetry:
 
 ## Configuring the GatewayClass NginxProxy on install
 
-By default, the `NginxProxy` resource is created in the same namespace where NGINX Gateway Fabric is installed. You can set configuration options in the `nginx.` Helm values, and the resource will be created and attached using the set values, when NGINX Gateway Fabric is installed using Helm. You can also manually create and attach specific `NginxProxy` resources to target different data planes [manually creating NginxProxies](#manually-creating-nginxProxies).
+By default, an `NginxProxy` resource is created in the same namespace where NGINX Gateway Fabric is installed, attached to the GatewayClass. You can set configuration options in the `nginx` Helm value section, and the resource will be created and attached using the set values. You can also [manually create and attach](#manually-creating-nginxProxies) specific `NginxProxy` resources to target different Gateways.
 
 When installed using the Helm chart, the NginxProxy resource is named `<release-name>-proxy-config` and is created in the release Namespace.
 
@@ -383,26 +383,23 @@ You can configure deployment and service settings for all data plane instances b
 
 Users can specify these settings for NGINX data plane deployments:
 
-  - _replicas_ specifies the number of data plane pod replicas..
-  - The `pod` section provides control over pod scheduling and lifecycle behavior. You can configure settings such as _terminationGracePeriodSeconds_, _tolerations_, _nodeSelector_, _affinity_, and _topologySpreadConstraints_. Use _extraVolumes_ to mount additional volumes, typically alongside container-level _extraVolumeMounts_.
-  - The `container` defines settings for the NGINX container itself., such as resource requests and limits using _resources_, and lifecycle hooks like preStop or postStart via _lifecycle_. You can also specify _extraVolumeMounts_ to mount additional volumes defined at the pod level.
+- _replicas_ specifies the number of data plane pod replicas..
+- The `pod` section provides control over pod scheduling and lifecycle behavior. You can configure settings such as _terminationGracePeriodSeconds_, _tolerations_, _nodeSelector_, _affinity_, and _topologySpreadConstraints_. Use _extraVolumes_ to mount additional volumes, typically alongside container-level _extraVolumeMounts_.
+- The `container` defines settings for the NGINX container itself., such as resource requests and limits using _resources_, and lifecycle hooks like preStop or postStart via _lifecycle_. You can also specify _extraVolumeMounts_ to mount additional volumes defined at the pod level.
 
 Users can specify these settings for NGINX data plane service in the `service` config:
 
-  - _type_ specifies the service type for the NGINX data plane. Allowed values are ClusterIP, NodePort, or LoadBalancer.
-  - _externalTrafficPolicy_ sets how external traffic is handled. `Local` preserves the client’s source IP.
-  - _annotations_ adds custom annotations to the NGINX data plane service.
-  - Certain fields are only applicable when _service.type_ is set to `LoadBalancer`: _loadBalancerIP_ to assign a static IP, _loadBalancerClass_ to define the load balancer implementation, and _loadBalancerSourceRanges_ to restrict access to specific IP ranges (CIDRs).
+- _type_ specifies the service type for the NGINX data plane. Allowed values are ClusterIP, NodePort, or LoadBalancer.
+- _externalTrafficPolicy_ sets how external traffic is handled. `Local` preserves the client’s source IP.
+- _annotations_ adds custom annotations to the NGINX data plane service.
 
-  The below fields can only be specified when the `service.type` is `LoadBalancer`:
-  - _loadBalancerIP_ specifies the static IP address of the load balancer.
-  - _loadBalancerClass_ specifies the class of the load balancer implementation this service belongs to.
-  - _loadBalancerSourceRanges_ specifies IP ranges (CIDR) that are allowed to access the load balancer.
+The below fields can only be specified when the `service.type` is `LoadBalancer`:
+- _loadBalancerIP_ specifies the static IP address of the load balancer.
+- _loadBalancerClass_ specifies the class of the load balancer implementation this service belongs to.
+- _loadBalancerSourceRanges_ specifies IP ranges (CIDR) that are allowed to access the load balancer.
 
----
 
 ## See also
 
 For a full list of configuration options that can be set, see the `NginxProxy spec` in the [API reference]({{< ref "/ngf/reference/api.md" >}}).
 
----
