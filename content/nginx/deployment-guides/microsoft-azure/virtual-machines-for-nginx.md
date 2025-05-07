@@ -19,18 +19,20 @@ To speed up NGINX Plus deployment, get a prebuilt VM from [Microsoft Azure Marke
 <span id="prereqs"></span>
 ## Prerequisites
 
-These instructions assume you have:
+Azure Setup:
 
-- An Azure [account](https://azure.microsoft.com/en-us/free/).
-- An Azure [subscription](https://docs.microsoft.com/en-us/azure/azure-glossary-cloud-terminology?toc=/azure/virtual-network/toc.json#subscription).
-- An Azure [resource group](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-overview#resource-groups). In this guide, it is called <span style="color:#666666; font-weight:bolder; white-space: nowrap;">NGINX-Plus-HA</span>.
-- An Azure [virtual network](https://docs.microsoft.com/en-us/azure/virtual-network/virtual-networks-overview).
-- If using the instructions in [Automating Installation with Ansible](#automate-ansible), basic Linux system administration skills, including installation of Linux software from vendor‑supplied packages, and file creation and editing.
+- Active Azure [account](https://azure.microsoft.com/en-us/free/).
+- Azure [subscription](https://docs.microsoft.com/en-us/azure/azure-glossary-cloud-terminology?toc=/azure/virtual-network/toc.json#subscription).
+- Azure [resource group](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-overview#resource-groups). In this guide, it is called <span style="color:#666666; font-weight:bolder; white-space: nowrap;">NGINX-Plus-HA</span>.
+- Azure [virtual network](https://docs.microsoft.com/en-us/azure/virtual-network/virtual-networks-overview).
 
-In addition, to install NGINX software by following the linked instructions, you need:
+For [Ansible Installation](#automate-ansible):
+- Basic Linux system administration skills, including installation of Linux software from vendor‑supplied packages, and file creation and editing.
 
-- A paid or trial NGINX Plus subscription, if you plan to install that product.
-- `root` privilege on the hosts where NGINX Open Source and NGINX Plus are to be installed. If appropriate for your environment, prefix commands with the `sudo` command.
+For NGINX installation:
+
+- NGINX Plus subscription (paid or trial).
+- `root` access or `sudo` privilege on your preferred host for NGINX Open Source and NGINX Plus. If appropriate for your environment, prefix commands with the `sudo` command.
 
 <span id="create-vm"></span>
 ## Creating a Microsoft Azure Virtual Machine
