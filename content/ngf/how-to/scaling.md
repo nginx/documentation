@@ -85,7 +85,7 @@ To identify which control plane pod currently holds the leader election lease, r
 ```text
 kubectl get leases -n nginx-gateway
 
-The current leader lease is held by the pod `ngf-nginx-gateway-fabric-b45ffc8d6-d9z2g_2ef81ced-f19d-41a0-9fcd-a68d89380d10`:
+The current leader lease is held by the pod `ngf-nginx-gateway-fabric-b45ffc8d6-d9z2g`:
 
 ```text
 NAME                                       HOLDER                                                                          AGE
