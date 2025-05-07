@@ -81,7 +81,7 @@ Using `kubectl get` you can see the NGINX Deployment:
 ```shell
 kubectl get deployments
 ```
-```text                                                                                                                                    ⎈ kind-kind
+```text
 NAME         READY   UP-TO-DATE   AVAILABLE   AGE
 cafe-nginx   1/1     1            1           3m18s
 ```
@@ -91,9 +91,9 @@ You can also see the Service fronting it:
 ```shell
 kubectl get services
 ```
-```text                                                                                                                                        ⎈ kind-kind
-NAME         TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
-cafe-nginx   NodePort    10.96.125.117   <none>        80:30180/TCP   5m2s
+```text
+NAME         TYPE            CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
+cafe-nginx   LoadBalancer    10.96.125.117   <pending>     80:30180/TCP   5m2s
 ```
 
 The Service type can be changed, explained in the next section.
@@ -104,7 +104,7 @@ The NginxProxy custom resource can modify the provisioning of the Service object
 
 {{< note >}} Updating most Kubernetes related fields in NginxProxy will trigger a restart of the related resources. {{< /note >}}
 
-An NginxProxy resource is created by default after deploying NGINX Gateway Fabric. This NginxProxy resource is attached to the GatewayClass (created on NGINX Gateway Fabric deployment), and 
+An NginxProxy resource is created by default after deploying NGINX Gateway Fabric. This NginxProxy resource is attached to the GatewayClass (created on NGINX Gateway Fabric installation), and 
 its settings are applied globally to all Gateways.
 
 Use `kubectl get` and `kubectl describe` to get some more information on the resource:
@@ -112,7 +112,7 @@ Use `kubectl get` and `kubectl describe` to get some more information on the res
 ```shell
 kubectl get nginxproxies -A   
 ```
-```text                                                                                                                               ⎈ kind-kind
+```text
 NAMESPACE       NAME                      AGE
 nginx-gateway   ngf-proxy-config   19h
 ```
@@ -120,10 +120,10 @@ nginx-gateway   ngf-proxy-config   19h
 ```shell
 kubectl describe nginxproxy -n nginx-gateway ngf-proxy-config
 ```
-```text                                                                                                ⎈ kind-kind
+```text
 Name:         ngf-proxy-config
 Namespace:    nginx-gateway
-Labels:       app.kubernetes.io/instance=mngf
+Labels:       app.kubernetes.io/instance=ngf
               app.kubernetes.io/managed-by=Helm
               app.kubernetes.io/name=nginx-gateway-fabric
               app.kubernetes.io/version=edge
@@ -149,7 +149,7 @@ Spec:
       Replicas:         1
     Service:
       External Traffic Policy:  Local
-      Type:                     NodePort
+      Type:                     LoadBalancer
 Events:                         <none>
 ```
 
@@ -159,14 +159,15 @@ Under `Spec.Kubernetes` you can see a few things:
 - How many NGINX Deployment replicas are specified
 - The type of Service and external traffic policy
 
-{{< note >}} Depending on installation configuration, the default NginxProxy settings may be slightly different from what is shown in the example. {{< /note >}}
+{{< note >}} Depending on installation configuration, the default NginxProxy settings may be slightly different from what is shown in the example. 
+For more information on NginxProxy and its configurable fields, see the [API reference]({{< ref "/ngf/reference/api.md" >}}). {{< /note >}}
 
 Modify the NginxProxy resource to change the type of Service.
 
 Use `kubectl edit` to modify the default NginxProxy and insert the following under `spec.kubernetes.service`:
 
 ```yaml
-type: LoadBalancer
+type: NodePort
 ```
 
 After saving the changes, use `kubectl get` on the service, and you should see the service type has changed to LoadBalancer.
@@ -174,9 +175,9 @@ After saving the changes, use `kubectl get` on the service, and you should see t
 ```shell
 kubectl get service cafe-nginx      
 ```
-```text                                                                                                                                             ⎈ kind-kind
+```text
 NAME         TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
-cafe-nginx   LoadBalancer   10.96.172.204   <pending>     80:32615/TCP   3h5m
+cafe-nginx   NodePort       10.96.172.204   <none>        80:32615/TCP   3h5m
 ```
 
 ### How to set annotations and labels on provisioned resources
@@ -200,7 +201,7 @@ After saving the changes, check the Service and NGINX deployment with `kubectl d
 ```shell
 kubectl describe deployment cafe
 ```
-```text                                                                                                                                      1m 52s ⎈ kind-kind
+```text
 Name:                   cafe-nginx
 Namespace:              default
 CreationTimestamp:      Mon, 05 May 2025 16:49:33 -0700
@@ -222,7 +223,7 @@ Pod Template:
 ```shell
 kubectl describe service cafe-nginx
 ```
-```text                                                                                                                                             ⎈ kind-kind
+```text
 Name:                     cafe-nginx
 Namespace:                default
 Labels:                   app.kubernetes.io/instance=ngf
