@@ -10,11 +10,11 @@ type:
 - how-to
 ---
 
-These instructions explain how to create virtual machines (VMs) in the Microsoft Azure environment that are suitable for running NGINX Open Source and NGINX Plus.
+Follow this guide to install and run NGINX Open Source or NGINX Plus on a Microsoft Azure virtual machine.
 
 The names and other settings used in this guide are appropriate for the high‑availability deployment described in [Active-Active HA for NGINX Plus on Microsoft Azure Using the Azure Standard Load Balancer]({{< ref "high-availability-standard-load-balancer.md" >}}), but the VMs can be used for any purpose.
 
-For NGINX Plus, a faster alternative is to purchase a prebuilt VM in the [Microsoft Azure Marketplace](https://azuremarketplace.microsoft.com/en-us/marketplace/apps?search=NGINX%20Plus) (several current operating systems are available). For instructions, see [Installing NGINX Plus on Microsoft Azure]({{< ref "nginx/admin-guide/installing-nginx/installing-nginx-plus-microsoft-azure.md" >}}).
+To speed up NGINX Plus deployment, get a prebuilt VM from [Microsoft Azure Marketplace](https://azuremarketplace.microsoft.com/en-us/marketplace/apps?search=NGINX%20Plus) There are various operating systems available. See [Installing NGINX Plus on Microsoft Azure]({{< ref "nginx/admin-guide/installing-nginx/installing-nginx-plus-microsoft-azure.md" >}}) for more details. 
 
 <span id="prereqs"></span>
 ## Prerequisites
