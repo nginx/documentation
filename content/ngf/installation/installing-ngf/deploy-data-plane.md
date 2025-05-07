@@ -1,5 +1,5 @@
 ---
-title: Deploy the Data Plane
+title: Deploy a Gateway for data plane instances
 weight: 500
 toc: true
 type: how-to
@@ -9,30 +9,17 @@ docs: DOCS-000
 
 ## Overview
 
-Learn how NGINX Gateway Fabric provisions NGINX Data Plane instances and how to modify them.
+This document describes how to use a Gateway to deploy the NGINX data plane, and how to modify it using an NGINX custom resource.
 
----
+[A Gateway](https://gateway-api.sigs.k8s.io/concepts/api-overview/#gateway) is used to manage all inbound requests, and is a key Gateway API resource.
+
+When a Gateway is attached to a GatewayClass associated with NGINX Gateway Fabric, it creates a Service and an NGINX deployment. This forms the NGINX data plane, handling requests.
+
+A single GatewayClass can have multiple Gateways: each Gateway will create a separate Service and NGINX deployment.
 
 ## Before you begin
 
 - [Install]({{< ref "/ngf/installation/" >}}) NGINX Gateway Fabric.
-
----
-
-## What is a Gateway
-
-As the official [Gateway API Docs](https://gateway-api.sigs.k8s.io/concepts/api-overview/#gateway) put it, 
-"A Gateway describes how traffic can be translated to Services within the cluster. 
-That is, it defines a request for a way to translate traffic from somewhere that does not know about Kubernetes to somewhere that does.".
-
-As the name suggests, a Gateway is at the heart for all inbound request trafficking and is a key Gateway API resource.
-When a Gateway is attached to a GatewayClass associated with NGINX Gateway Fabric, a Service and NGINX Deployment are created
-and form the NGINX Data Plane to handle requests.
-
-Multiple Gateways can be attached to the single GatewayClass associated with NGINX Gateway Fabric. 
-Separate Services and NGINX Deployments are then created for each Gateway. 
-
----
 
 ## Create a Gateway
 
@@ -89,52 +76,59 @@ Conditions:
       Type:                  Conflicted
 ```
 
-Using `kubectl get` we can see the NGINX Deployment:
+Using `kubectl get` you can see the NGINX Deployment:
 
-```text
-~ ❯ kubectl get deployments                                                                                                                                        ⎈ kind-kind
+```shell
+kubectl get deployments
+```
+```text                                                                                                                                    ⎈ kind-kind
 NAME         READY   UP-TO-DATE   AVAILABLE   AGE
 cafe-nginx   1/1     1            1           3m18s
 ```
 
-We can also see the Service fronting it:
+You can also see the Service fronting it:
 
-```text
-~ ❯ kubectl get services                                                                                                                                           ⎈ kind-kind
+```shell
+kubectl get services
+```
+```text                                                                                                                                        ⎈ kind-kind
 NAME         TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
 cafe-nginx   NodePort    10.96.125.117   <none>        80:30180/TCP   5m2s
 ```
 
-The type of Service can be modified, which will be explained below.
-
----
+The Service type can be changed, explained in the next section.
 
 ## How to modify provisioned NGINX instances
 
-Both the NGINX Deployment and Service Kubernetes objects provisioned by NGINX Gateway Fabric upon creation of a Gateway
-can be modified through the NginxProxy custom resource. 
+The NginxProxy custom resource can modify the provisioning of the Service object and NGINX deployment when a Gateway is created.
 
-{{< note >}} Updating most Kubernetes related fields in NginxProxy will trigger a restart of the related resource to update. {{< /note >}}
+{{< note >}} Updating most Kubernetes related fields in NginxProxy will trigger a restart of the related resources. {{< /note >}}
 
-An NginxProxy resource is created by default after deploying NGINX Gateway Fabric. Use `kubectl get` and `kubectl describe` to 
-get some more information on the resource:
+An NginxProxy resource is created by default after deploying NGINX Gateway Fabric. This NginxProxy resource is attached to the GatewayClass (created on NGINX Gateway Fabric deployment), and 
+its settings are applied globally to all Gateways.
 
-```text
-~ ❯ kubectl get nginxproxies -A                                                                                                                                    ⎈ kind-kind
+Use `kubectl get` and `kubectl describe` to get some more information on the resource:
+
+```shell
+kubectl get nginxproxies -A   
+```
+```text                                                                                                                               ⎈ kind-kind
 NAMESPACE       NAME                      AGE
-nginx-gateway   my-release-proxy-config   19h
+nginx-gateway   ngf-proxy-config   19h
 ```
 
-```text
-~ ❯ kubectl describe nginxproxy -n nginx-gateway my-release-proxy-config                                                                                                   ⎈ kind-kind
-Name:         my-release-proxy-config
+```shell
+kubectl describe nginxproxy -n nginx-gateway ngf-proxy-config
+```
+```text                                                                                                ⎈ kind-kind
+Name:         ngf-proxy-config
 Namespace:    nginx-gateway
-Labels:       app.kubernetes.io/instance=my-release
+Labels:       app.kubernetes.io/instance=mngf
               app.kubernetes.io/managed-by=Helm
               app.kubernetes.io/name=nginx-gateway-fabric
               app.kubernetes.io/version=edge
               helm.sh/chart=nginx-gateway-fabric-1.6.2
-Annotations:  meta.helm.sh/release-name: my-release
+Annotations:  meta.helm.sh/release-name: ngf
               meta.helm.sh/release-namespace: nginx-gateway
 API Version:  gateway.nginx.org/v1alpha2
 Kind:         NginxProxy
@@ -149,7 +143,7 @@ Spec:
     Deployment:
       Container:
         Image:
-          Pull Policy:  Never
+          Pull Policy:  IfNotPresent
           Repository:   nginx-gateway-fabric/nginx
           Tag:          edge
       Replicas:         1
@@ -159,16 +153,17 @@ Spec:
 Events:                         <none>
 ```
 
-From the information we got through `kubectl describe` we can see the default settings for the provisioned NGINX Deployment and Service.
-Under `Spec.Kubernetes` we can see a couple of things:
+From the information obtained with `kubectl describe` you can see the default settings for the provisioned NGINX Deployment and Service.
+Under `Spec.Kubernetes` you can see a few things:
 - The NGINX container image settings
 - How many NGINX Deployment replicas are specified
 - The type of Service and external traffic policy
 
-{{< note >}} These default NginxProxy settings may change over time, and may not match what is shown. {{< /note >}}
+{{< note >}} Depending on installation configuration, the default NginxProxy settings may be slightly different from what is shown in the example. {{< /note >}}
 
-Let's modify the NginxProxy resource to change the type of Service. Use `kubectl edit` to modify the default
-NginxProxy and insert the following under `spec.kubernetes.service`
+Modify the NginxProxy resource to change the type of Service.
+
+Use `kubectl edit` to modify the default NginxProxy and insert the following under `spec.kubernetes.service`:
 
 ```yaml
 type: LoadBalancer
@@ -176,8 +171,10 @@ type: LoadBalancer
 
 After saving the changes, use `kubectl get` on the service, and you should see the service type has changed to LoadBalancer.
 
-```text
-~ ❯ kubectl get service cafe-nginx                                                                                                                                                  ⎈ kind-kind
+```shell
+kubectl get service cafe-nginx      
+```
+```text                                                                                                                                             ⎈ kind-kind
 NAME         TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
 cafe-nginx   LoadBalancer   10.96.172.204   <pending>     80:32615/TCP   3h5m
 ```
@@ -188,7 +185,7 @@ While the majority of configuration will happen on the NginxProxy resource, that
 you want to set any annotations or labels on the NGINX Deployment or Service, you need to set those annotations on the Gateway which
 provisioned them. 
 
-To do so, we can use `kubectl edit` on our gateway and add the following to the `spec`:
+You can use `kubectl edit` on the Gateway and add the following to the `spec`:
 
 ```yaml
 infrastructure:
@@ -198,17 +195,19 @@ infrastructure:
     labelKey: labelValue
 ```
 
-After saving the changes, we can check our NGINX Deployment and Service using `kubectl describe`. 
+After saving the changes, check the Service and NGINX deployment with `kubectl describe`.
 
-```text
-~ ❯ kubectl describe deployment cafe                                                                                                                                         1m 52s ⎈ kind-kind
+```shell
+kubectl describe deployment cafe
+```
+```text                                                                                                                                      1m 52s ⎈ kind-kind
 Name:                   cafe-nginx
 Namespace:              default
 CreationTimestamp:      Mon, 05 May 2025 16:49:33 -0700
 ...
 Pod Template:
-  Labels:           app.kubernetes.io/instance=my-release
-                    app.kubernetes.io/managed-by=my-release-nginx
+  Labels:           app.kubernetes.io/instance=ngf
+                    app.kubernetes.io/managed-by=ngf-nginx
                     app.kubernetes.io/name=cafe-nginx
                     gateway.networking.k8s.io/gateway-name=cafe
                     labelKey=labelValue
@@ -220,25 +219,25 @@ Pod Template:
 
 {{< note >}} In order for the changes to propagate onto the Service, it needs to be manually restarted. {{< /note >}}
 
-```text
-~ ❯ kubectl describe service cafe-nginx                                                                                                                                             ⎈ kind-kind
+```shell
+kubectl describe service cafe-nginx
+```
+```text                                                                                                                                             ⎈ kind-kind
 Name:                     cafe-nginx
 Namespace:                default
-Labels:                   app.kubernetes.io/instance=my-release
-                          app.kubernetes.io/managed-by=my-release-nginx
+Labels:                   app.kubernetes.io/instance=ngf
+                          app.kubernetes.io/managed-by=ngf-nginx
                           app.kubernetes.io/name=cafe-nginx
                           gateway.networking.k8s.io/gateway-name=cafe
                           labelKey=labelValue
 Annotations:              annotationKey: annotationValue
 ```
 
----
-
-## See Also
+## See also
 
 For more guides on routing traffic to applications and more information on Data Plane configuration, check out the following resources:
 
-- [Routing Traffic to Your App]({{< ref "/ngf/how-to/traffic-management/routing-traffic-to-your-app.md" >}})
-- [Advanced Routing]({{< ref "/ngf/how-to/traffic-management/advanced-routing.md" >}})
-- [Data Plane Configuration]({{< ref "/ngf/how-to/data-plane-configuration.md" >}})
-- [NGINX Gateway Fabric API Reference]({{< ref "/ngf/reference/api.md" >}})
+- [Routing traffic to applications]({{< ref "/ngf/how-to/traffic-management/routing-traffic-to-your-app.md" >}})
+- [Application routes using HTTP matching conditions]({{< ref "/ngf/how-to/traffic-management/advanced-routing.md" >}})
+- [Data plane configuration]({{< ref "/ngf/how-to/data-plane-configuration.md" >}})
+- [API reference]({{< ref "/ngf/reference/api.md" >}})
