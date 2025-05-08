@@ -9,8 +9,7 @@ type:
 - how-to
 ---
 
-This guide explains how to create a highly available (HA) active‑passive deployment of F5 NGINX Plus in the [Amazon Web Services](https://aws.amazon.com/) (AWS) cloud. It combines the `keepalived`‑based solution for high availability (provided by NGINX for on‑premises HA deployments) with the AWS Elastic IP address feature.
-
+This guide explains how to create a high availability (HA) active‑passive deployment of F5 NGINX Plus in the [Amazon Web Services](https://aws.amazon.com/) (AWS) cloud. It combines the `keepalived`‑based solution for high availability (provided by NGINX for on‑premises HA deployments) with the AWS Elastic IP address feature.
 NGINX also provides a [solution for active‑active HA of NGINX Plus in AWS]({{< ref "high-availability-network-load-balancer.md" >}}), using AWS Network Load Balancer.
 
 <span id="ha-aws_overview"></span>
@@ -18,7 +17,7 @@ NGINX also provides a [solution for active‑active HA of NGINX Plus in AWS]({{
 
 The [supported solution for HA deployment]({{< ref "nginx/admin-guide/high-availability/ha-keepalived.md" >}}) of NGINX Plus that uses `keepalived` is designed for on‑premises deployments. It is typically not viable in cloud environments, such as AWS, because of the networking restrictions they impose.
 
-One method for deploying NGINX Plus in a highly available manner on AWS is to use ELB in front of NGINX Plus instances. However, the method has several disadvantages:
+One method for deploying NGINX Plus in a highly available manner on AWS is to use ELB in front of NGINX Plus instances. But, the method has several disadvantages:
 
 - It increases the cost of your deployment.
 - It limits the number of protocols NGINX Plus and your applications can support. In particular, ELB does not support UDP load balancing.
@@ -69,14 +68,14 @@ The scripts in the HA solution use the AWS API to associate an Elastic IP addre
 3. Attach this IAM role to the instance.
 
 <span id="ha-aws_eip"></span>
-## Step 2 – Allocate an Elastic IP Address
+## Step 2 – Allocate an Elastic IP address
 
 Allocate an Elastic IP address and remember its ID. For detailed instructions, see the [AWS documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html#using-instance-addressing-eips-allocating).
 
 <span id="ha-aws_keepalived-install"></span><span id="ha-aws_step3"></span>
 ## Step 3 – Install `keepalived`, `wget`, and the AWS CLI
 
-1. Install two packages from your OS vendor’s repository: the **keepalived** package and **wget**, which is used by the HA scripts.
+1. Install two packages from your OS vendor’s repository: **keepalived** and **wget**, which is used by the HA scripts.
 
    - On Ubuntu systems:
 
@@ -155,7 +154,7 @@ vrrp_instance VI_1 {
 }
 ```
 
-You must change values for the following configuration keywords (as you do so, also remove the angle brackets enclosing the placeholder value):
+You must change values for the following configuration keywords. As you do so, also remove the angle brackets enclosing the placeholder value:
 
 - `script` in the `chk_nginx_service` block – The script that sends health checks to NGINX Plus.
 

@@ -53,7 +53,7 @@ Before you install or upgrade to NGINX Plus R33 or later, make sure to:
 
 {{< include "licensing-and-reporting/apply-jwt.md" >}}
 
-#### Custom paths: {#custom-paths}
+### Custom paths {#custom-paths}
 
 {{< include "licensing-and-reporting/custom-paths-jwt.md" >}}
 
