@@ -16,7 +16,7 @@ The AMIs contain the following components:
 - Latest version of [NGINX Plus](https://www.f5.com/products/nginx/nginx-plus), optimized for use on Amazon EC2
 - Pre-packaged software for building highly available (HA) NGINX Plus configurations
 
-## Installing the F5 NGINX Plus AMI
+## Install the F5 NGINX Plus AMI
 
 To quickly set up an NGINX Plus environment on AWS:
 
