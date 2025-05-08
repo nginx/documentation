@@ -90,7 +90,7 @@ NGINX Gateway Fabric supports a single GatewayClass resource configured with the
 
 {{< /bootstrap-table >}}
 
-NGINX Gateway Fabric supports a single Gateway resource. The Gateway resource must reference NGINX Gateway Fabric's corresponding GatewayClass.
+NGINX Gateway Fabric supports a multiple Gateway resources. The Gateway resources must reference NGINX Gateway Fabric's corresponding GatewayClass.
 
 See the [static-mode]({{< ref "/ngf/reference/cli-help.md#static-mode">}}) command for more information.
 
@@ -100,8 +100,8 @@ See the [static-mode]({{< ref "/ngf/reference/cli-help.md#static-mode">}}) comma
   - `gatewayClassName`: Supported.
   - `infrastructure`: Partially Supported.
     - `parametersRef`: NginxProxy resource supported.
-    - `labels`: Not supported.
-    - `annotations`: Not supported.
+    - `labels`: Supported.
+    - `annotations`: Supported.
   - `listeners`
     - `name`: Supported.
     - `hostname`: Supported.
@@ -113,7 +113,6 @@ See the [static-mode]({{< ref "/ngf/reference/cli-help.md#static-mode">}}) comma
       - `options`: Not supported.
     - `allowedRoutes`: Supported.
   - `addresses`: Not supported.
-  - `infrastructure`: Not supported.
   - `backendTLS`: Not supported.
 - `status`
   - `addresses`: Partially supported (LoadBalancer and Pod IP).
@@ -124,10 +123,9 @@ See the [static-mode]({{< ref "/ngf/reference/cli-help.md#static-mode">}}) comma
     - `Accepted/False/Invalid`
     - `Accepted/False/UnsupportedValue`: Custom reason for when a value of a field in a Gateway is invalid or not supported.
     - `Accepted/False/GatewayConflict`: Custom reason for when the Gateway is ignored due to a conflicting Gateway.
-          NGINX Gateway Fabric only supports a single Gateway.
     - `Programmed/True/Programmed`
     - `Programmed/False/Invalid`
-    - `Programmed/False/GatewayConflict`: Custom reason for when the Gateway is ignored due to a conflicting Gateway. NGINX Gateway Fabric only supports a single Gateway.
+    - `Programmed/False/GatewayConflict`: Custom reason for when the Gateway is ignored due to a conflicting Gateway.
   - `listeners`
     - `name`: Supported.
     - `supportedKinds`: Supported.
@@ -139,7 +137,7 @@ See the [static-mode]({{< ref "/ngf/reference/cli-help.md#static-mode">}}) comma
       - `Accepted/False/ProtocolConflict`
       - `Accpeted/False/HostnameConflict`
       - `Accepted/False/UnsupportedValue`: Custom reason for when a value of a field in a Listener is invalid or not supported.
-      - `Accepted/False/GatewayConflict`: Custom reason for when the Gateway is ignored due to a conflicting Gateway. NGINX Gateway Fabric only supports a single Gateway.
+      - `Accepted/False/GatewayConflict`: Custom reason for when the Gateway is ignored due to a conflicting Gateway.
       - `Programmed/True/Programmed`
       - `Programmed/False/Invalid`
       - `ResolvedRefs/True/ResolvedRefs`
@@ -389,3 +387,5 @@ Custom policies are NGINX Gateway Fabric-specific CRDs (Custom Resource Definiti
 While these CRDs are not part of the Gateway API, the mechanism to attach them to Gateway API resources is part of the Gateway API. See the [Policy Attachment documentation](https://gateway-api.sigs.k8s.io/references/policy-attachment/).
 
 See the [custom policies]({{< ref "/ngf/overview/custom-policies.md" >}}) document for more information.
+
+---
