@@ -61,7 +61,7 @@ See the [Supported Regions]({{< ref "/nginxaas-azure/overview/overview.md#suppor
 
 - {{% icon-feature %}} **NGINXaaS Load Balancer for Kubernetes is now Generally Available**
 
-   NGINXaaS can now be used as an external load balancer to route traffic to workloads running in your Azure Kubernetes Cluster. To learn how to set it up, see the [Quickstart Guide]({{< ref "/nginxaas-azure/quickstart/loadbalancer-kubernetes.md">}}).
+   NGINXaaS can now be used as an external load balancer to route traffic to workloads running in your Azure Kubernetes Cluster. To learn how to set it up, see the [Quickstart Guide]({{< ref "/nginxaas-azure/loadbalancer-kubernetes.md">}}).
 
 ## January 23, 2025
 

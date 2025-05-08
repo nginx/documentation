@@ -2,7 +2,7 @@
 title: NGINXaaS Load Balancer for Kubernetes
 weight: 250
 toc: true
-url: /nginxaas/azure/quickstart/loadbalancer-kubernetes/
+url: /nginxaas/azure/loadbalancer-kubernetes/
 type:
 - how-to
 ---
@@ -250,7 +250,7 @@ Expose a Kubernetes `Service` to route traffic to your workload.  The `Service` 
 - Choose one of the following `Service` types:
   - `NodePort`: To route external traffic into the cluster using a well defined port exposed on each AKS worker node.
   - `ClusterIP`: To route traffic to pods directly if you are running an Azure Container Networking Interface (CNI) that lets you expose the pods on the Azure VNET.
-  - `LoadBalancer`: To route traffic to the cluster's external load balancer. The load balancer routes traffic into the cluster as normal.   
+  - `LoadBalancer`: To route traffic to the cluster's external load balancer. The load balancer routes traffic into the cluster as normal.
 - The port name must be formatted as `{{NGINX Context}}-{{NGINX upstream name}}`. For example:
   - If the upstream is in the `http` context and named `my-service` then the name is `http-my-service`
   - If the upstream is in the `stream` context and named `jet` then the port name is `stream-jet`
@@ -259,7 +259,7 @@ Expose a Kubernetes `Service` to route traffic to your workload.  The `Service` 
 **NGINX Ingress Controller users**: with v5.0.0 and upwards, if you wish to route traffic from your NGINXaaS deployment to your NGINX Ingress Controller service, please make the following changes to your helm chart values:
 
 - Add `"nginx.com/nginxaas": "nginxaas"` to the NGINX Ingress Controller service annotations.
-- Modify the `service.httpPort.name` or `service.httpsPort.name` values to provide the expected port name format, as above.  
+- Modify the `service.httpPort.name` or `service.httpsPort.name` values to provide the expected port name format, as above.
 {{</ note >}}
 
 The following example uses a service of type `NodePort`:
