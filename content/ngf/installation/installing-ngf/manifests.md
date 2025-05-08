@@ -91,10 +91,17 @@ kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v{
 
 {{%tab name="AWS NLB"%}}
 
-Deploys NGINX Gateway Fabric with NGINX OSS and an AWS Network Load Balancer service.
+Deploys NGINX Gateway Fabric with NGINX OSS.
 
 ```shell
-kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v{{< version-ngf >}}/deploy/aws-nlb/deploy.yaml
+kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v{{< version-ngf >}}/deploy/default/deploy.yaml
+```
+
+To set up an AWS Network Load Balancer service, add these annotations to your Gateway infrastructure fields:
+
+```yaml
+service.beta.kubernetes.io/aws-load-balancer-type: "external"
+service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: "ip"
 ```
 
 {{% /tab %}}
