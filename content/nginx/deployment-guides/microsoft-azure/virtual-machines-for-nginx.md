@@ -39,7 +39,7 @@ For NGINX installation:
 
 1. Sign into the [Microsoft Azure portal](https://portal.azure.com/) (**<https://portal.azure.com/>**).
 
-2.Click the Virtual machines icon. Or click the stacked lines icon (☰) in the top-left corner and select Virtual machines from the menu.
+2. Click the Virtual machines icon. Or click the stacked lines icon (☰) in the top-left corner and select Virtual machines from the menu.
    <img src="/nginx/images/azure-portal.png" alt="screenshot of top navigation bar at Microsoft Azure portal" width="1024" height="226" class="aligncenter size-full image-64310" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
 3. On the Virtual machines page that opens, click **<span style="color:#4d9bdc;">+</span> Add** in the upper left corner.
@@ -51,20 +51,21 @@ For NGINX installation:
 
    - **Subscription** – <span style="color:#666666; font-weight:bolder; white-space: nowrap;">NGINX-Plus-HA-subscription</span>
    - **Resource group** – <span style="color:#666666; font-weight:bolder; white-space: nowrap;">NGINX-Plus-HA</span>
-   - **Virtual machine name** – <span style="color:#666666; font-weight:bolder; white-space: nowrap;">ngx-plus-1</span>
+   - **Virtual machine name** – <span style="color:#666666; font-weight:bolder; white-space: nowrap;">ngx-plus-1</span> ngx-plus-1
+For Active-Active HA for NGINX Plus on Microsoft Azure Using the Azure Standard Load Balancer, you’ll need six VMs. 
 
-     The value <span style="color:#666666; font-weight:bolder; white-space: nowrap;">ngx-plus-1</span> is one of the six used for VMs in [Active-Active HA for NGINX Plus on Microsoft Azure Using the Azure Standard Load Balancer]({{< ref "high-availability-standard-load-balancer.md" >}}). See <a href="#create-vm_list">Step 7</a> below for the other instance names.
+     The value <span style="color:#666666; font-weight:bolder; white-space: nowrap;">ngx-plus-1</span> is one of the six machines. See <a href="#create-vm_list">Step 7</a> below for the other values.
 
    - **Region** – <span style="color:#666666; font-weight:bolder; white-space: nowrap;">(US) West US 2</span>
    - **Availability options** – <span style="color:#666666; font-weight:bolder; white-space: nowrap;">No infrastructure redundancy required</span>
 
-     This option is sufficient for a demo like the one in this guide. For production deployments, you might want to select a more robust option; we recommend deploying a copy of each VM in a different Availability Zone. For more information, see the [Azure documentation](https://docs.microsoft.com/en-us/azure/availability-zones/az-overview).
+     This option is best for a demo like the one in this guide. For production deployments, deploy a copy of each VM in a different Availability Zone. For more information, see the [Azure documentation](https://docs.microsoft.com/en-us/azure/availability-zones/az-overview).
    - **Image** – <span style="color:#666666; font-weight:bolder; white-space: nowrap;">Ubuntu Server 18.04 LTS</span>
    - **Azure Spot instance** – <span style="color:#666666; font-weight:bolder;">No</span>
    - **Size** – <span style="color:#666666; font-weight:bolder;">B1s</span> (click <span style="color:#2d89d6; white-space: nowrap;">Select size</span> to access the <span style="font-weight:bold; white-space: nowrap;">Select a VM size</span> window, click the **B1s** row, and click the <span style="background-color:#137ad1; color:white;"> Select </span> button to return to the **Basics** tab)
    - **Authentication type** – <span style="color:#666666; font-weight:bolder; white-space: nowrap;">SSH public key</span>
    - **Username** – <span style="color:#666666; font-weight:bolder;">nginx_azure</span>
-   - **SSH public key source** – <span style="color:#666666; font-weight:bolder; white-space: nowrap;">Generate new key pair</span> (the other choices on the drop‑down menu are to use an existing key stored in Azure or an existing public key)
+   - **SSH public key source** – <span style="color:#666666; font-weight:bolder; white-space: nowrap;">Generate new key pair</span> (If you don’t want to generate a new key pair, use the existing key stored in your Azure account or an existing public key)
    - **Key pair name** – <span style="color:#666666; font-weight:bolder; white-space: nowrap;">nginx_key</span>
    - **Public inbound ports** – <span style="color:#666666; font-weight:bolder; white-space: nowrap;">Allow selected ports</span>
    - **Select inbound ports** – Select from the drop-down menu: <span style="color:#666666; font-weight:bolder; white-space: nowrap;">SSH (22)</span> and <span style="color:#666666; font-weight:bolder; white-space: nowrap;">HTTP (80)</span>, plus <span style="color:#666666; font-weight:bolder; white-space: nowrap;">HTTPS (443)</span> if you plan to configure NGINX and NGINX Plus for SSL/TLS
@@ -72,10 +73,18 @@ For NGINX installation:
    <a href="/nginx/images/azure-create-vm-basics.png"><img src="/nginx/images/azure-create-vm-basics.png" alt="screenshot of 'Basics' tab on Azure 'Create a virtual machine' page" width="1024" height="1168" class="aligncenter size-full wp-image-64995" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
    <span id="create-vm_Networking"></span>
-5. If you are creating VMs to use in [Active-Active HA for NGINX Plus on Microsoft Azure Using the Azure Standard Load Balancer]({{< ref "high-availability-standard-load-balancer.md" >}}), the two NGINX Plus VMs in that deployment must have public IP addresses with SKU type **Standard** instead of the default **Basic**.
+5. For Active-Active HA for NGINX Plus on Microsoft Azure:
+ Two VMs run NGINX Plus behind an Azure Load Balancer. And both VMs require Standard SKU public IP addresses. By default, Azure assigns Basic SKU IPs. So, you must manually change this during VM setup.
 
-   For simplicity, we recommend allocating **Standard** public IP addresses for all six VMs used in the deployment. At the time of initial publication of this guide, the hourly cost for six such VMs was only $0.008 more than for six VMs with Basic addresses; for current pricing, see the [Microsoft documentation](https://azure.microsoft.com/en-us/pricing/details/ip-addresses/).
+To avoid errors, allocate Standard public IP addresses to the six VMs you’ll use in the deployment. 
+Follow these steps:
+• Open the Networking tab on the Create a virtual machine window.
+• Click Create new below the Public IP field.
+• In the Create public IP address column that opens, click the Standard Radio button under SKU. 
+• In the Name field, accept the default created by Azure, ngx-plus-1-ip. 
+• Click the  OK  button.
 
+When this guide was first published, the hourly cost for the six VMs was only $0.008. And this costlier than VMs with basic IP addresses. For current pricing, see the Microsoft documentation.
    To allocate a **Standard** public IP address, open the **Networking** tab on the **Create a virtual machine** window. Click <span style="color:#2d89d6; white-space: nowrap;">Create new</span> below the **Public IP** field. In the <span style="font-weight:bold; white-space: nowrap;">Create public IP address</span> column that opens at right, click the **Standard** radio button under **SKU**. You can change the value in the **Name** field; here we are accepting the default created by Azure, <span style="color:#666666; font-weight:bolder; white-space: nowrap;">ngx-plus-1-ip</span>. Click the <span style="background-color:#137ad1; color:white; font-weight:bold;"> OK </span> button.
 
    <a href="/nginx/images/azure-create-vm-networking.png"><img src="/nginx/images/azure-create-vm-networking.png" alt="screenshot of 'Networking' tab on Azure 'Create a virtual machine' page" width="1024" height="718" class="aligncenter size-full wp-image-64994" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
