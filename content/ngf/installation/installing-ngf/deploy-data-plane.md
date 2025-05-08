@@ -218,8 +218,6 @@ Pod Template:
 ...
 ```
 
-{{< note >}} In order for the changes to propagate onto the Service, it needs to be manually restarted. {{< /note >}}
-
 ```shell
 kubectl describe service cafe-nginx
 ```
