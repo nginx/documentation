@@ -78,8 +78,7 @@ For Active-Active HA for NGINX Plus on Microsoft Azure Using the Azure Standard 
  Two VMs run NGINX Plus behind an Azure Load Balancer. And both VMs require Standard SKU public IP addresses. By default, Azure assigns Basic SKU IPs. So, you must manually change this during VM setup.
 
 To avoid errors, allocate Standard public IP addresses to the six VMs you’ll use in the deployment. 
-
-Follow these steps:
+Follow these steps to allocate:
   - Open the Networking tab on the Create a virtual machine window.
   - Click Create new below the Public IP field.
   - In the Create public IP address column that opens, click the Standard Radio button under SKU. 
@@ -87,15 +86,14 @@ Follow these steps:
   - Click the  OK  button.
 
 When this guide was first published, the hourly cost for the six VMs was only $0.008. And this costlier than VMs with basic IP addresses. For current pricing, see the Microsoft documentation.
-   To allocate a **Standard** public IP address, open the **Networking** tab on the **Create a virtual machine** window. Click <span style="color:#2d89d6; white-space: nowrap;">Create new</span> below the **Public IP** field. In the <span style="font-weight:bold; white-space: nowrap;">Create public IP address</span> column that opens at right, click the **Standard** radio button under **SKU**. You can change the value in the **Name** field; here we are accepting the default created by Azure, <span style="color:#666666; font-weight:bolder; white-space: nowrap;">ngx-plus-1-ip</span>. Click the <span style="background-color:#137ad1; color:white; font-weight:bold;"> OK </span> button.
 
    <a href="/nginx/images/azure-create-vm-networking.png"><img src="/nginx/images/azure-create-vm-networking.png" alt="screenshot of 'Networking' tab on Azure 'Create a virtual machine' page" width="1024" height="718" class="aligncenter size-full wp-image-64994" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
-6. At this point, you have the option of selecting nondefault values on the **Disks**, **Networking**, **Management**, **Advanced**, and **Tags** tabs. For a demo like the one in this guide, for example, selecting <span style="color:#666666; font-weight:bolder;">Standard HDD</span> for <span style="white-space: nowrap;">OS disk type</span> on the **Disks** tab saves money compared to the default, <span style="color:#666666; font-weight:bolder;">Premium SSD</span>. You might also want to create or apply tags to this VM, on the **Tags** tab.
+6. Here, you can select non-default values on the Disks, Networking, Management, Advanced, and Tags tabs. In our demo, for example, selecting Premium SS Standard HDD for OS disk type on the Disks tab is more affordable than the default, premium SSD. You can also create or apply tags to your VM via the Tags tab.
 
-   When you have completed your changes on all tabs, click the <span style="background-color:#137ad1; color:white; white-space: nowrap;"> Review + create </span> button at the bottom of the **Create a virtual machine** page.
+   After youve completed your changes, click the <span style="background-color:#137ad1; color:white; white-space: nowrap;"> Review + create </span> button at the bottom of the **Create a virtual machine** page.
 
-   If all of your settings are valid, a summary of them appears under the **Validation passed** banner, as in the following screenshot.
+   If all of your settings are correct, you’ll find a summary of them under the Validation passed banner. Like this:
 
    To change any settings, open the appropriate tab. If the settings are correct, click the <span style="background-color:#137ad1; color:white;"> Create </span> button.
 
