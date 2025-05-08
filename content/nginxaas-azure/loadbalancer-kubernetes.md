@@ -300,7 +300,7 @@ spec:
 
 ### Multiple AKS clusters
 
-A single NGINXaaS deployment can direct trafifc to multiple AKS clusters. Each AKS cluster needs its own copy of NLK installed and connected to NGINXaaS.
+A single NGINXaaS deployment can direct traffic to multiple AKS clusters. Each AKS cluster needs its own copy of NLK installed and connected to NGINXaaS.
 
 ```mermaid
 flowchart TB
@@ -351,7 +351,7 @@ flowchart TB
 
 Multiple NLK controllers can be installed in the same AKS cluster to update separate NGINXaaS deployments.
 
-Each NLK needs a unique helm release name and needs a unique helm value for `nlk.config.serviceAnnotationMatch`.  Each NLK will only watch services that have the matching annotation.
+Each NLK needs a unique helm release name and needs a unique helm value for `nlk.config.serviceAnnotationMatch`. Each NLK will only watch services that have the matching annotation.
 
 {{<note>}}
 
@@ -374,7 +374,7 @@ The logs can be made more verbose by setting the Helm value `nlk.config.logLevel
 
 NGINXaaS supports exporting dynamic upstream update logs to an Azure Storage account or to a Log Analytics workspace.
 
-To setup logging:
+To set up logging:
 
 1. Select **Diagnostic settings** under **Monitoring**.
 1. Select **Add diagnostic setting**.
