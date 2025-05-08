@@ -21,7 +21,7 @@ The release notes for F5 NGINX Instance Manager highlight the latest features, i
 
 ## 2.19.2
 
-May 06, 2025
+May 08, 2025
 
 ### Upgrade Paths {#2-19-2-upgrade-paths}
 
