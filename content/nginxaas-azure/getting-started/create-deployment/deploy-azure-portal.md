@@ -12,6 +12,24 @@ type:
 
 This guide explains how to deploy F5 NGINX as a Service for Azure (NGINXaaS) using [Microsoft Azure portal](https://azure.microsoft.com/en-us/get-started/azure-portal). The deployment process involves creating a new deployment, configuring the deployment, and testing the deployment.
 
+## Prerequisites
+
+The specific permissions required to deploy NGINXaaS are:
+
+  - microsoft.network/publicIPAddresses/join/action
+
+  - nginx.nginxplus/nginxDeployments/Write
+
+  - microsoft.network/virtualNetworks/subnets/join/action
+
+  - nginx.nginxplus/nginxDeployments/configurations/Write
+
+  - nginx.nginxplus/nginxDeployments/certificates/Write
+
+- Additionally, if you are creating the Virtual Network or IP address resources that NGINXaaS for Azure will be using, then you probably also want those permissions as well.
+
+- Note that assigning the managed identity permissions normally requires an “Owner” role.
+
 ## Find the NGINX as a Service for Azure offer in the Azure portal
 
 You can start the NGINXaaS deployment process by visiting the [Create NGINXaaS](https://portal.azure.com/#create/f5-networks.f5-nginx-for-azure) page or finding the NGINXaaS service in the Azure portal:
@@ -19,6 +37,8 @@ You can start the NGINXaaS deployment process by visiting the [Create NGINXaaS](
 1. [Sign in](https://portal.azure.com/) to the Azure portal with your Azure account.
 1. Use the search field to find "NGINXaaS" in the Azure Portal. In the Services results, select **NGINXaaS**.
 1. Select **+ Create** on the **NGINXaaS** page to start the deployment process.
+
+   {{< note >}}It is not possible to select the instance type for an NGINXaaS deployment.NGINXaaS will deploy the right resources to ensure you get the right price-to-performance ratio.{{< /note >}}
 
 ## Create a deployment
 
@@ -46,16 +66,43 @@ You can start the NGINXaaS deployment process by visiting the [Create NGINXaaS](
 
 1. On the Create NGINXaaS Deployment **Networking** page, provide the following information:
 
-  {{<bootstrap-table "table table-striped table-bordered">}}
-  | Field                       | Description                |
-  |---------------------------- | ---------------------------- |
-  | Virtual Network             | A virtual network is required for communication between the resources you create.<br>You can create a new virtual network or use an existing one (for an existing one see note below).<br>Additionally, you can peer a new virtual network with existing ones (in any region) to create network access from NGINXaaS for Azure to your upstream servers. To peer the virtual network with another see [Create, change, or delete a virtual network peering](https://docs.microsoft.com/en-us/azure/virtual-network/virtual-network-manage-peering).|
-  | Subnet              | If you select an existing virtual network, you can select the existing subnet to be used. Before creating a deployment, the existing subnet needs to be delegated to `NGINX.NGINXPLUS/nginxDeployments`. To delegate a subnet to an Azure service, see [Delegate a subnet to an Azure service](https://learn.microsoft.com/en-us/azure/virtual-network/manage-subnet-delegation?source=recommendations#delegate-a-subnet-to-an-azure-service).<br><br>Otherwise, if you have chosen to create a new virtual network, a new subnet will be selected by default.<br><br>The minimum subnet size is `/27` and is sufficient for a single NGINXaaS deployment even at large scales. Multiple NGINXaaS deployments can be placed in a single delegated subnet, along with other resources. When doing so a larger subnet, e.g. a `/24`, is recommended. |
-  | Allow NGINX access to Virtual Network | Confirm that you allow:<br>- Registration of the NGINX provider to your Azure subscription.<br>- Delegation of the subnet to the NGINX provider.|
-  | IP address          | Set the IP address (public or private) that the service listens to for requests:<br><br>If you select a public IP address:<br>- Create a new public IP or use an existing one (for an existing one see the note below).<br>- Set the resource name for your public IP address.<br>Newly created public IPs are [zone-redundant in supported regions](https://learn.microsoft.com/en-us/azure/virtual-network/ip-services/public-ip-addresses#availability-zone). <br><br>If you select a private IP address:<br>- Provide a static IP address from the same subnet range set previously.   |
-  | Inbound port rules | Select `None` to disallow inbound access on any port, or choose to allow traffic from one of these common http(s) ports. <br><br> **Note:** This option is only available when specifying a new virtual network as part of the create workflow. If you select an existing virtual network which is associated with a subnet and Network Security Group (NSG), you will need to edit the Inbound security rules to add access for the specific ports you want to allow (for example, ports 80 and 443).|
-  | Apply default NGINX configuration | Confirm that you want your NGINXaaS deployment to be bootstrapped with a default NGINX configuration and a browsable splash page. |
+   {{<bootstrap-table "table table-striped table-bordered">}}
+   | Field                       | Description                |
+   |---------------------------- | ---------------------------- |
+   | Virtual Network             | A virtual network is required for communication between the resources you create.<br>You can create a new virtual network or use an existing one (for an existing one see note below).<br>Additionally, you can peer a new virtual network with existing ones (in any region) to create network access from NGINXaaS for Azure to your upstream servers. To peer the virtual network with another see [Create, change, or delete a virtual network peering](https://docs.microsoft.com/en-us/azure/virtual-network/virtual-network-manage-peering).|
+   | Subnet              | If you select an existing virtual network, you can select the existing subnet to be used. Before creating a deployment, the existing subnet needs to be delegated to `NGINX.NGINXPLUS/nginxDeployments`. To delegate a subnet to an Azure service, see [Delegate a subnet to an Azure service](https://learn.microsoft.com/en-us/azure/virtual-network/manage-subnet-delegation?source=recommendations#delegate-a-subnet-to-an-azure-service).<br><br>Otherwise, if you have chosen to create a new virtual network, a new subnet will be selected by default.<br><br>The minimum subnet size is `/27` and is sufficient for a single NGINXaaS deployment even at large scales. Multiple NGINXaaS deployments can be placed in a single delegated subnet, along with other resources. When doing so a larger subnet, e.g. a `/24`, is recommended. |
+   | Allow NGINX access to Virtual Network | Confirm that you allow:<br>- Registration of the NGINX provider to your Azure subscription.<br>- Delegation of the subnet to the NGINX provider.|
+   | IP address          | Set the IP address (public or private) that the service listens to for requests:<br><br>If you select a public IP address:<br>- Create a new public IP or use an existing one (for an existing one see the note below).<br>- Set the resource name for your public IP address.<br>Newly created public IPs are [zone-redundant in supported regions](https://learn.microsoft.com/en-us/azure/virtual-network/ip-services/public-ip-addresses#availability-zone). <br><br>If you select a private IP address:<br>- Provide a static IP address from the same subnet range set previously.   |
+   | Inbound port rules | Select `None` to disallow inbound access on any port, or choose to allow traffic from one of these common http(s) ports. <br><br> **Note:** This option is only available when specifying a new virtual network as part of the create workflow. If you select an existing virtual network which is associated with a subnet and Network Security Group (NSG), you will need to edit the Inbound security rules to add access for the specific ports you want to allow (for example, ports 80 and 443).|
+   | Apply default NGINX configuration | Confirm that you want your NGINXaaS deployment to be bootstrapped with a default NGINX configuration and a browsable splash page. |
    {{</bootstrap-table>}}
+
+   #### **Notes on subnets:**
+
+   - The minimum subnet size for NGINXaaS is `/27` and is enough for a single NGINXaaS deployment even at large scales.
+   - You can use an existing subnet; make sure that the subnet is delegated to `NGINX.NGINXPLUS/nginxDeployments` before creating a deployment in it. To delegate a subnet to an Azure service, see [Delegate a subnet to an Azure service](https://learn.microsoft.com/en-us/azure/virtual-network/manage-subnet-delegation?source=recommendations#delegate-a-subnet-to-an-azure-service).
+   - The subnet can contain other resources; ensure the subnet size is adequate to scale the NGINXaaS deployment.
+   - You can deploy more than one NGINXaas in the same subnet, however, every deployment in the subnet will share the address space (range of IP addresses that resources can use within the VNet), so ensure the subnet is adequately sized to scale the deployments. If you are more than one NGINXaaS deployment or other resources, a larger subnet, for example, a `/24` is recommended.
+   - You can change the virtual network or subnet for an existing NGINXaaS deployment. If the existing NGINXaaS deployment is using a public IP address, you can change the backend virtual network or subnet. Please make sure that the subnet is delegated to `NGINX.NGINXPLUS/nginxDeployments` before creating a deployment in it.
+   - If your DNS nameservers are configured in the same VNet as your deployment, then you can use those DNS nameservers to resolve the hostname of the upstream servers referenced in your NGINX configuration.
+   - Changes to a virtual network's DNS settings will not be applied automatically to your NGINXaaS deployment. To ensure DNS settings are applied, you must add any custom DNS servers to the VNET's DNS settings before creating an NGINXaaS deployment. As a workaround for existing deployments, we recommend using the [`resolver` directive](https://nginx.org/en/docs/http/ngx_http_core_module.html#resolver) to explicitly specify your name server(s) and the [`resolve` parameter](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#resolve) to automatically re-resolve the domain name of the server without restarting NGINX.
+
+      For example,
+
+      ```nginx
+      resolver 10.0.0.2 valid=10s;
+      upstream backends {
+         zone backends 64k;
+         server backends.example.com:8080 resolve;
+      }
+
+      server {
+         location / {
+            proxy_pass http://backends;
+         }
+      }
+      ```
+
 
 1. Next, select **Tags**.
 
@@ -69,9 +116,9 @@ You can start the NGINXaaS deployment process by visiting the [Create NGINXaaS](
 
 1. On the Review + create tab, your configuration is validated. You can review the selections made in the previous screens.
 
-1. After validation has succeeded and you've reviewed the terms, select **Create** for Azure to start the deployment.
+1. After validation has succeeded and you've reviewed the terms, select **Create** for Azure to start the deployment. The NGINXaaS deployment usually takes less than 5 minutes to complete.
 
-1. After the deployment finishes, select the NGINX deployment from the list (with "Type: NGINXaaS") to view information about the deployed resource.
+1. After the deployment finishes, select the NGINX deployment from the list (with "Type: NGINXaaS") to view information about the deployed resource, including the public and internal IP addresses (which don't change over time).
 
    {{< img src="nginxaas-azure/deployment-complete.png" alt="Resource Deployment Completed page showing the available deployments and the new NGINXaaS type deployment in the Deployment details section." >}}
 
@@ -84,6 +131,9 @@ You can start the NGINXaaS deployment process by visiting the [Create NGINXaaS](
 
    {{< img src="nginxaas-azure/test-deployment.png" alt="NGINXaaS Overview page showing the IP address of the deployment in the Essentials section." >}}
 
+{{< important >}}It's not possible to manually stop or start NGINXaaS. If necessary, you have the option to delete the deployment and re-deploy at a future date.
+
+When you remove or delete an NGINXaaS deployment, the associated eNICs will automatically be deleted.{{</ important >}}
 
 ## What's next
 

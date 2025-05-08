@@ -33,126 +33,23 @@ Table of contents
 - [Quickstart/Security Controls/Securing Upstream Traffic](#quickstartsecurity-controlssupporting-upstream-traffic)
 - [Quickstart/Upgrade Channels](#quickstartupgrade-channels)
 
-## Billing
 
-### Where is the usage data reported?
-
-- The usage data is reported to NGINXaaS.
-
-### Is NGINXaaS available in my subscription or in F5 subscription?
-
-- Your NGINXaaS deployment resource is visible to you under your subscription. The underlying compute resources of your deployment, which are managed by NGINX on your behalf, are not visible in your subscription.
-
-## Billing/Overview
-
-### How often does my deployment get billed?
-
-- NGINXaaS is [billed monthly]({{< ref "/nginxaas-azure/billing/overview.md" >}}) based on hourly consumption.
 
 ## Deployment
 
-### Do I need to manually supply a JWT license for my instances?
-
-- No, the license management process is handled automatically by NGINXaaS.
-
-## Getting Started/Create Deployment
-
-### How large should I make the subnet for NGINXaaS?
-
-- The minimum subnet size is `/27` and is sufficient for a single NGINXaaS deployment even at large scales. Multiple NGINXaaS deployments can be placed in a single delegated subnet, along with other resources. When doing so, a larger subnet, for example, a `/24` is recommended.
-
-### Can I deploy more than one NGINXaaS to a single subnet?
-
-- Yes, however, every deployment in the subnet will share the address space (range of IP addresses that resources can use within the VNet), so ensure the subnet is adequately sized to scale the deployments.
-
-### How long does it take to deploy NGINXaaS?
-
-- Typically you can deploy NGINXaaS in under 5 minutes.
-
-### Can I deploy any other resources in the NGINXaaS subnet?
-
-- Yes, the subnet can contain other resources and is not dedicated to the NGINXaaS for Azure resources; ensure the subnet size is adequate to scale the NGINXaaS deployment.
-
-### Can I select my desired instance type for NGINXaaS deployment?
-
-- No; NGINXaaS will deploy the right resources to ensure you get the right price-to-performance ratio.
 
 ### Can I migrate from on-prem NGINX+ to NGINXaaS on Azure?
 
 - Yes, you can bring your own configurations or create a new configuration in the cloud. See the [NGINXaaS Deployment]({{< ref "/nginxaas-azure/getting-started/create-deployment/">}}) documentation for more details.
 
-### Where do I find the NGINXaaS IP (Internet Protocol) address?
 
-- Once you successfully deploy NGINXaaS, you can double-click on NGINXaaS in the Azure portal; you can see both public and private IP addresses, as shown in the following screenshot:
-
-### Does my deployment IP change over time?
-
-- The NGINXaaS deployment IP doesn't change over time.
-
-### How can I manually start/stop NGINXaaS?
-
-- Currently, we can't manually start/stop NGINXaaS. You have the option to delete the deployment and re-deploy at a future date.
-
-### Can I change the virtual network or subnet for an existing NGINXaaS?
-
-- If the existing NGINXaaS deployment is using a public IP address, you can change the backend virtual network or subnet. Please make sure that the subnet is delegated to `NGINX.NGINXPLUS/nginxDeployments` before creating a deployment in it. To delegate a subnet to an Azure service, see [Delegate a subnet to an Azure service](https://learn.microsoft.com/en-us/azure/virtual-network/manage-subnet-delegation?source=recommendations#delegate-a-subnet-to-an-azure-service).
-
-### If I remove/delete an NGINXaaS deployment, what will happen to the eNICs that were associated with it?
-
-- When you remove or delete an NGINXaaS deployment, the associated eNICs will automatically be deleted.
-
-
-### What are the specific permissions that NGINXaaS for Azure needs?
-
-- The specific permissions required to deploy NGINXaaS are:
-
-  - microsoft.network/publicIPAddresses/join/action
-
-  - nginx.nginxplus/nginxDeployments/Write
-
-  - microsoft.network/virtualNetworks/subnets/join/action
-
-  - nginx.nginxplus/nginxDeployments/configurations/Write
-
-  - nginx.nginxplus/nginxDeployments/certificates/Write
-
-- Additionally, if you are creating the Virtual Network or IP address resources that NGINXaaS for Azure will be using, then you probably also want those permissions as well.
-
-- Note that assigning the managed identity permissions normally requires an “Owner” role.
-
-### Can I use an existing subnet to create my deployment?
-
-- You can use an existing subnet to create a deployment. Please make sure that the subnet is delegated to `NGINX.NGINXPLUS/nginxDeployments` before creating a deployment in it. To delegate a subnet to an Azure service, see [Delegate a subnet to an Azure service](https://learn.microsoft.com/en-us/azure/virtual-network/manage-subnet-delegation?source=recommendations#delegate-a-subnet-to-an-azure-service).
 
 ## Getting Started/Nginx Configuration/Nginx Configuration Portal
 
-### How do I configure HTTPS listeners for .com and .net sites?
-
-- NGINXaaS is a Layer 7 HTTP protocol. To configure .com and .net servers, refer to the server name in the server block within the HTTP context. To learn more, and see examples, follow the instructions in the [NGINX Configuration]({{< ref "/nginxaas-azure/getting-started/nginx-configuration/nginx-configuration-portal.md#nginx-configuration-validation" >}}) documentation.
-
-### Can I reference my upstream servers by internal DNS hostname?
-
-- Yes. If your DNS nameservers are configured in the same VNet as your deployment, then you can use those DNS nameservers to resolve the hostname of the upstream servers referenced in your NGINX configuration.
 
 ### Will updates to my virtual network’s DNS settings automatically apply to my NGINXaaS deployment?
 
-- No, changes to a virtual network's DNS settings will not be applied automatically to your NGINXaaS deployment. To ensure DNS settings are applied, you must add any custom DNS servers to the VNET's DNS settings before creating an NGINXaaS deployment. As a workaround for existing deployments, we recommend using the [`resolver` directive](https://nginx.org/en/docs/http/ngx_http_core_module.html#resolver) to explicitly specify your name server(s) and the [`resolve` parameter](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#resolve) to automatically re-resolve the domain name of the server without restarting NGINX.
-
-- For example,
-
-   ```nginx
-   resolver 10.0.0.2 valid=10s;
-   upstream backends {
-      zone backends 64k;
-      server backends.example.com:8080 resolve;
-   }
-
-   server {
-      location / {
-         proxy_pass http://backends;
-      }
-   }
-   ```
+- No,
 
 ### Does changing the worker_connections in the NGINX config have any effect?
 

@@ -12,6 +12,8 @@ NGINXaaS for Azure is deployed into your Azure subscription. Your NGINXaaS deplo
 
 ## Pricing plans
 
+NGINXaaS for Azure is billed monthly based on hourly consumption.
+
 F5 NGINX as a Service for Azure (NGINXaaS) provides two pricing plans.
 
 ### Standard V2 plan
