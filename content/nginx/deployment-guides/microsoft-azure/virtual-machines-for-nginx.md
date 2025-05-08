@@ -37,18 +37,17 @@ For NGINX installation:
 <span id="create-vm"></span>
 ## Creating a Microsoft Azure Virtual Machine
 
-1. Access the [Microsoft Azure portal](https://portal.azure.com/) (**<https://portal.azure.com/>**) and sign in.
+1. Sign into the [Microsoft Azure portal](https://portal.azure.com/) (**<https://portal.azure.com/>**).
 
-2. Click the **Virtual machines** icon. (If that icon doesn't appear at the top of your window, click the stacked‑lines icon in the upper left corner of the title bar and click **Virtual machines** in the navigation column that opens at left.)
-
+2.Click the Virtual machines icon. Or click the stacked lines icon (☰) in the top-left corner and select Virtual machines from the menu.
    <img src="/nginx/images/azure-portal.png" alt="screenshot of top navigation bar at Microsoft Azure portal" width="1024" height="226" class="aligncenter size-full image-64310" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
-3. On the **Virtual machines** page that opens, click **<span style="color:#4d9bdc;">+</span> Add** in the upper left corner.
+3. On the Virtual machines page that opens, click **<span style="color:#4d9bdc;">+</span> Add** in the upper left corner.
 
    <img src="/nginx/images/azure-create-vm-add-button.png" alt="screenshot of Azure 'Virtual machines' page" width="1024" height="195" class="aligncenter size-full image-64309" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
    <span id="create-vm_Basics"></span>
-4. In the **Create a virtual machine** window that opens, enter the requested information on the **Basics** tab. In this guide, we're using the following values:
+4. In the **Create a virtual machine** window that opens, enter the requested information on the **Basics** tab. For this guide, enter the following values:
 
    - **Subscription** – <span style="color:#666666; font-weight:bolder; white-space: nowrap;">NGINX-Plus-HA-subscription</span>
    - **Resource group** – <span style="color:#666666; font-weight:bolder; white-space: nowrap;">NGINX-Plus-HA</span>
