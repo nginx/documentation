@@ -16,6 +16,8 @@ NGINXaaS for Azure is available in the Azure Marketplace.
 NGINXaaS for Azure is powered by [NGINX Plus](https://www.nginx.com/products/nginx/), which extends NGINX Open Source with advanced functionality and provides customers with a complete application delivery solution. Initial use cases covered by NGINXaaS include L7 HTTP load balancing and reverse proxy which can be managed through various Azure management tools.
 NGINXaaS allows you to provision distinct deployments as per your business or technical requirements.
 
+NGINXaaS handles the NGINX Plus license management automatically
+
 ## Capabilities
 
 The key capabilities of NGINXaaS for Azure are:
