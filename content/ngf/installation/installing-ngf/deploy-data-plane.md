@@ -96,7 +96,7 @@ NAME         TYPE            CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
 cafe-nginx   LoadBalancer    10.96.125.117   <pending>     80:30180/TCP   5m2s
 ```
 
-The Service type can be changed, explained in the next section.
+The Service type can be changed, as explained in the next section.
 
 ## How to modify provisioned NGINX instances
 
@@ -170,7 +170,7 @@ Use `kubectl edit` to modify the default NginxProxy and insert the following und
 type: NodePort
 ```
 
-After saving the changes, use `kubectl get` on the service, and you should see the service type has changed to LoadBalancer.
+After saving the changes, use `kubectl get` on the service, and you should see the service type has changed to `LoadBalancer`.
 
 ```shell
 kubectl get service cafe-nginx      
