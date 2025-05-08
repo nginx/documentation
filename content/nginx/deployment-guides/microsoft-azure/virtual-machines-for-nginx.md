@@ -74,15 +74,17 @@ For Active-Active HA for NGINX Plus on Microsoft Azure Using the Azure Standard 
 
    <span id="create-vm_Networking"></span>
 5. For Active-Active HA for NGINX Plus on Microsoft Azure:
+
  Two VMs run NGINX Plus behind an Azure Load Balancer. And both VMs require Standard SKU public IP addresses. By default, Azure assigns Basic SKU IPs. So, you must manually change this during VM setup.
 
 To avoid errors, allocate Standard public IP addresses to the six VMs you’ll use in the deployment. 
+
 Follow these steps:
-• Open the Networking tab on the Create a virtual machine window.
-• Click Create new below the Public IP field.
-• In the Create public IP address column that opens, click the Standard Radio button under SKU. 
-• In the Name field, accept the default created by Azure, ngx-plus-1-ip. 
-• Click the  OK  button.
+  - Open the Networking tab on the Create a virtual machine window.
+  - Click Create new below the Public IP field.
+  - In the Create public IP address column that opens, click the Standard Radio button under SKU. 
+  - In the Name field, accept the default created by Azure, ngx-plus-1-ip. 
+  - Click the  OK  button.
 
 When this guide was first published, the hourly cost for the six VMs was only $0.008. And this costlier than VMs with basic IP addresses. For current pricing, see the Microsoft documentation.
    To allocate a **Standard** public IP address, open the **Networking** tab on the **Create a virtual machine** window. Click <span style="color:#2d89d6; white-space: nowrap;">Create new</span> below the **Public IP** field. In the <span style="font-weight:bold; white-space: nowrap;">Create public IP address</span> column that opens at right, click the **Standard** radio button under **SKU**. You can change the value in the **Name** field; here we are accepting the default created by Azure, <span style="color:#666666; font-weight:bolder; white-space: nowrap;">ngx-plus-1-ip</span>. Click the <span style="background-color:#137ad1; color:white; font-weight:bold;"> OK </span> button.
