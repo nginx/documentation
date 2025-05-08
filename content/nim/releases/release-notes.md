@@ -16,6 +16,34 @@ The release notes for F5 NGINX Instance Manager highlight the latest features, i
 
 </details>
 
+
+---
+
+## 2.19.2
+
+May 06, 2025
+
+### Upgrade Paths {#2-19-2-upgrade-paths}
+
+NGINX Instance Manager 2.19.2 supports upgrades from these previous versions:
+
+- 2.16.0 - 2.19.1
+
+If your NGINX Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
+
+### What's New{#2-19-2-whats-new}
+This release includes the following updates:
+
+- {{% icon-feature %}} **Stability and performance improvements**<a name="2-19-2-whats-new-Stability-and-performance-improvements"></a>
+
+   This release includes stability and performance improvements for a more reliable experience.
+
+
+
+### Known Issues{#2-19-2-known-issues}
+
+You can find information about known issues in the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic.
+
 ---
 
 ## 2.19.1
