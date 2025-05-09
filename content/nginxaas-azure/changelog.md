@@ -13,6 +13,14 @@ To see a list of currently active issues, visit the [Known issues]({{< ref "/ngi
 
 To review older entries, visit the [Changelog archive]({{< ref "/nginxaas-azure/changelog-archive" >}}) section.
 
+## April 22, 2025
+
+### What's New
+
+- {{% icon-feature %}} **NGINX App Protect WAF is now generally available**
+
+NGINX App Protect WAF is now generally available and is no longer a preview feature and will therefore be billed as specified in the [Azure Marketplace](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/f5-networks.f5-nginx-for-azure?tab=PlansAndPrice). This feature now supports the creation and deployment of [custom security policies]({{< relref "./app-protect/configure-waf.md#custom-policies" >}}).
+
 ## April 16, 2025
 
 - {{% icon-feature %}} **Notification on update to deployments using the Stable Upgrade Channel**
@@ -23,7 +31,6 @@ To review older entries, visit the [Changelog archive]({{< ref "/nginxaas-azure/
    Please review the [NGINX Plus Release 33 (R33)]({{< ref "/nginx/releases.md#nginxplusrelease-33-r33" >}}) Release Notes carefully. If you have any concerns, it's recommended to validate your configuration against NGINX Plus R33 by setting up a test deployment using the **Preview** [Upgrade Channel]({{< ref "/nginxaas-azure/quickstart/upgrade-channels.md" >}}). See [these instructions]({{< ref "/nginxaas-azure/quickstart/recreate.md" >}}) on how to set up a deployment similar to your current one. For entitlement and visibility policy, check [the FAQs]({{< ref "/nginxaas-azure/faq.md" >}}) to address any additional questions you might have.
 
    If you have any questions or concerns, please [contact us]({{< ref "/nginxaas-azure/troubleshooting/troubleshooting.md" >}}).
-
 
 ## March 31, 2025
 
@@ -54,7 +61,7 @@ See the [Supported Regions]({{< ref "/nginxaas-azure/overview/overview.md#suppor
 
 - {{% icon-feature %}} **NGINXaaS Load Balancer for Kubernetes is now Generally Available**
 
-   NGINXaaS can now be used as an external load balancer to route traffic to workloads running in your Azure Kubernetes Cluster. To learn how to set it up, see the [Quickstart Guide]({{< ref "/nginxaas-azure/quickstart/loadbalancer-kubernetes.md">}}).
+   NGINXaaS can now be used as an external load balancer to route traffic to workloads running in your Azure Kubernetes Cluster. To learn how to set it up, see the [Quickstart Guide]({{< ref "/nginxaas-azure/loadbalancer-kubernetes.md">}}).
 
 ## January 23, 2025
 
