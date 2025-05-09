@@ -1,5 +1,5 @@
 ---
-title: Get started
+title: Deploy on kind for demos
 weight: 200
 toc: true
 type: how-to
@@ -7,19 +7,17 @@ product: NGF
 docs: DOCS-000
 ---
 
-{{< important >}}
-This document is for trying out NGINX Gateway Fabric, and not intended for a production environment. 
+## Overview
 
-For standard deployments, you should read the [Install NGINX Gateway Fabric]({{< ref "/ngf/installation/installing-ngf" >}}) section.
-{{< /important >}}
+This guide walks you through a demo deployment of NGINX Gateway Fabric using a local [kind (Kubernetes in Docker)](https://kind.sigs.k8s.io/) cluster. This setup is useful for testing and evaluation but isn't intended for production use.
 
-This is a guide for getting started with NGINX Gateway Fabric. It explains how to:
+You'll learn how to:
 
-- Set up a [kind (Kubernetes in Docker)](https://kind.sigs.k8s.io/) cluster
-- Install [NGINX Gateway Fabric](https://github.com/nginx/nginx-gateway-fabric) with [NGINX](https://nginx.org/)
-- Test NGINX Gateway Fabric with an example application
+- Set up a kind cluster
+- Install NGINX Gateway Fabric with [NGINX](https://nginx.org/)
+- Deploy and test an example application
 
-By following the steps in order, you will finish with a functional NGINX Gateway Fabric cluster.
+After you complete the steps, you'll have a working NGINX Gateway Fabric environment running locally.
 
 ---
 
