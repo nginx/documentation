@@ -30,10 +30,10 @@ resources/
 .markdownlint.json
 **/.vscode/
 **/.idea/
-
-# Local Netlify artifacts
-.netlify/plugins/*
-.netlify/
+ 
+# Vale files
+/styles/Microsoft
+/styles/.vale-config/1-Hugo.ini
 
 # Local Lighthouse artifacts
 lighthouse-reports
