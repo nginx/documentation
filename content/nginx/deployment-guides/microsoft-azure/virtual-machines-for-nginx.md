@@ -75,38 +75,36 @@ For Active-Active HA for NGINX Plus on Microsoft Azure Using the Azure Standard 
    <span id="create-vm_Networking"></span>
 5. For Active-Active HA for NGINX Plus on Microsoft Azure:
 
- Two VMs run NGINX Plus behind an Azure Load Balancer. And both VMs require Standard SKU public IP addresses. By default, Azure assigns Basic SKU IPs. So, you must manually change this during VM setup.
+ Two VMs run NGINX Plus behind an Azure Load Balancer. And both VMs require **Standard** SKU public IP addresses. By default, Azure assigns **Basic** SKU IPs. So, you must manually change this during VM setup.
 
-To avoid errors, allocate Standard public IP addresses to the six VMs you’ll use in the deployment. 
+To avoid errors, allocate **Standard** public IP addresses to the six VMs you’ll use in the deployment. 
 Follow these steps to allocate:
-  - Open the Networking tab on the Create a virtual machine window.
-  - Click Create new below the Public IP field.
-  - In the Create public IP address column that opens, click the Standard Radio button under SKU. 
-  - In the Name field, accept the default created by Azure, ngx-plus-1-ip. 
-  - Click the  OK  button.
+  - Open the **Networking** tab on the **Create a virtual machine** window.
+  - Click <span style="color:#2d89d6; white-space: nowrap;"> Create new </span> below the **Public IP** field.
+  - In the **Create public IP address column** that opens, click the **Standard Radio button** under **SKU**. 
+  - In the **Name** field, accept the default created by Azure, ngx-plus-1-ip. 
+  - Click the <span style="background-color:#137ad1; color:white;"> Ok </span>  button.
 
 When this guide was first published, the hourly cost for the six VMs was only $0.008. And this costlier than VMs with basic IP addresses. For current pricing, see the Microsoft documentation.
 
    <a href="/nginx/images/azure-create-vm-networking.png"><img src="/nginx/images/azure-create-vm-networking.png" alt="screenshot of 'Networking' tab on Azure 'Create a virtual machine' page" width="1024" height="718" class="aligncenter size-full wp-image-64994" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
-6. Here, you can select non-default values on the Disks, Networking, Management, Advanced, and Tags tabs. In our demo, for example, selecting Premium SS Standard HDD for OS disk type on the Disks tab is more affordable than the default, premium SSD. You can also create or apply tags to your VM via the Tags tab.
+6. Here, you can select non-default values on the **Disks**, **Networking**, **Management**, **Advanced**, and **Tags** tabs. In our demo, for example, Premium SS Standard HDD for OS disk type on the **Disks** tab is more affordable than the default, Premium SSD. You can also create or apply tags to your VM via the **Tags** tab.
 
-   After youve completed your changes, click the <span style="background-color:#137ad1; color:white; white-space: nowrap;"> Review + create </span> button at the bottom of the **Create a virtual machine** page.
+   After you've completed your changes, click the <span style="background-color:#137ad1; color:white; white-space: nowrap;"> Review + create </span> button at the bottom of the **Create a virtual machine** page.
 
-   If all of your settings are correct, you’ll find a summary of them under the Validation passed banner. Like this:
+   You’ll find a summary of your setting under the **Validation passed** banner. Ensure they’re suitable. Then, click on <span style="background-color:#137ad1; color:white;"> Create </span> 
 
-   To change any settings, open the appropriate tab. If the settings are correct, click the <span style="background-color:#137ad1; color:white;"> Create </span> button.
-
-   If you chose in [Step 4](#create-vm_Basics) to generate a new key pair, a <span style="white-space: nowrap; font-weight:bold;">Generate new key pair</span> window pops up. Click the <span style="background-color:#137ad1; color:white; white-space: nowrap;"> Download key and create private resource </span> button.
+   If you generated a new key pair in [Step 4](#create-vm_Basics), a <span style="white-space: nowrap; font-weight:bold;">Generate new key pair</span> window pops up. Click on <span style="background-color:#137ad1; color:white; white-space: nowrap;"> Download key and create private resource </span> button.
 
    <a href="/nginx/images/azure-create-vm-validation-passed.png"><img src="/nginx/images/azure-create-vm-validation-passed.png" alt="screenshot of validation message on Azure 'Create a virtual machine' page" width="1024" height="954" class="aligncenter size-full image-64993" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
-   It takes a few minutes for a VM to deploy. When it's ready, a summary of associated resources appears, as in the following screenshot.
+   VM deployment only takes a few minutes. After that, you’ll get a summary of your resources. Just like in the following screenshot. 
 
    <a href="/nginx/images/azure-create-vm-deployment-complete.png"><img src="/nginx/images/azure-create-vm-deployment-complete.png" alt="screenshot of Azure 'CreateVM-Canonical' page" width="1024" height="634" class="aligncenter size-full image-64992" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
    <span id="create-vm_list"></span>
-7. If you are following these instructions to create the six VMs used in [Active-Active HA for NGINX Plus on Microsoft Azure Using the Azure Standard Load Balancer]({{< ref "high-availability-standard-load-balancer.md" >}}), their names are as follows:
+7. If you’re creating 6 VMs for [Active-Active HA for NGINX Plus on Microsoft Azure Using the Azure Standard Load Balancer]({{< ref "high-availability-standard-load-balancer.md" >}}), use the following names:
 
    - <span style="color:#666666; font-weight:bolder;">ngx-plus-1</span>
    - <span style="color:#666666; font-weight:bolder;">ngx-plus-2</span>
@@ -115,33 +113,33 @@ When this guide was first published, the hourly cost for the six VMs was only $0
    - <span style="color:#666666; font-weight:bolder;">ngx-oss-app2-1</span>
    - <span style="color:#666666; font-weight:bolder;">ngx-oss-app2-2</span>
 
-   For <span style="color:#666666; font-weight:bolder;">ngx-plus-2</span>, it is probably simplest to repeat Steps 2 through 6 above (or purchase a second prebuilt VM in the [Microsoft Azure Marketplace](https://azuremarketplace.microsoft.com/en-us/marketplace/apps?search=NGINX%20Plus)).
+   For <span style="color:#666666; font-weight:bolder;">ngx-plus-2</span> (2nd NGINX Plus VM), repeat Steps 2 to 6 above or purchase a pre built VM from the [Microsoft Azure Marketplace](https://azuremarketplace.microsoft.com/en-us/marketplace/apps?search=NGINX%20Plus)).
 
-   For the NGINX Open Source VMs, you can create them individually using Steps 2 through 6. Alternatively, create them based on an Azure image. To do so, follow Steps 2 through 6 above to create a source VM (naming it <span style="color:#666666; font-weight:bolder; white-space: nowrap;">nginx-oss</span>), [install the NGINX Open Source software](#install-nginx) on it, and then follow the instructions in [Optional: Creating an NGINX Open Source Image](#create-nginx-oss-image).
+  NGINX Open Source VMs gives you two options: Create each VM manually by following steps 2 to 6.Or, make one template VM (named  <span style="color:#666666; font-weight:bolder; white-space: nowrap;">nginx-oss</span>), [install the NGINX Open Source software](#install-nginx) on it, and clone that VM into three more copies using Azure image. For that, follow the instructions in [Optional: Creating an NGINX Open Source Image](#create-nginx-oss-image).
 
 <span id="connect-vm"></span>
 ## Connecting to a Virtual Machine
 
-To install and configure NGINX Open Source or NGINX Plus on a VM, you need to open a terminal window and connect to the VM over SSH.
+To install and configure NGINX Open Source or NGINX Plus on a VM, open a terminal window and connect to the VM over SSH. Do like so: 
 
 1. Navigate to the **Virtual machines** page on the Azure dashboard and click the VM's name in the **Name** column of the table.
 
    <a href="/nginx/images/azure-create-vm-virtual-machines.png"><img src="/nginx/images/azure-create-vm-virtual-machines.png" alt="screenshot of Azure 'Virtual machines' page with list of VMs" width="1024" height="396" class="aligncenter size-full wp-image-64991" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
-2. On the page that opens (<span style="white-space: nowrap; font-weight:bold;">ngx-plus-1</span> in this guide), note the VM's public IP address (in the <span style="white-space: nowrap; font-weight:bold;">Public IP address</span> field in the right column).
+2. On the page that opens (<span style="white-space: nowrap; font-weight:bold;">ngx-plus-1</span> in this guide), note or write down the VM's public IP address (in the <span style="white-space: nowrap; font-weight:bold;">Public IP address</span> field in the right column).
 
    <a href="/nginx/images/azure-create-vm-ngx-plus-1.png"><img src="/nginx/images/azure-create-vm-ngx-plus-1.png" alt="screenshot of details page for 'ngx-plus-1' VM in Azure" width="1024" height="363" class="aligncenter size-full wp-image-64990" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
-3. Run this command to establish an SSH connection to the VM:
+3. Run this command to confirm an SSH connection to the VM:
 
    ```shell
    ssh -i <private-key-file> <username>@<public-IP-address>
    ```
 
-   where
+   Note:
 
-   - `<private-key-file>` is the name of the file containing the private key paired with the public key you entered in the <span style="white-space: nowrap; font-weight:bold;">SSH public key</span> field in <a href="#create-vm_Basics">Step 4</a> of _Creating a Microsoft Azure Virtual Machine_.
-   - `<username>` is the name you entered in the **Username** field in <a href="#create-vm_Basics">Step 4</a> of _Creating a Microsoft Azure Virtual Machine_ (in this guide it is <span style="color:#666666; font-weight:bolder;">nginx_azure</span>).
+   - `<private-key-file>` contains the private key paired with the public key you entered in the <span style="white-space: nowrap; font-weight:bold;">SSH public key</span> field in <a href="#create-vm_Basics">Step 4</a> of _Creating a Microsoft Azure Virtual Machine_.
+   - `<username>` is the name you entered in the **Username** field in <a href="#create-vm_Basics">Step 4</a> of _Creating a Microsoft Azure Virtual Machine_. In this guide, it is <span style="color:#666666; font-weight:bolder;">nginx_azure</span>).
    - `<public-IP-address>` is the address you looked up in the previous step.
 
 <span id="install-nginx"></span>
