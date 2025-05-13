@@ -391,4 +391,4 @@ NGINXaaS has the following metrics that are useful to monitor upstream health:
 - `plus.http.upstream.peers.state.up` -- does the peer report being healthy.
 - `plus.http.upstream.peers.request.count` -- which peers are handling requests.
 
-See the [metrics catalog](../../monitoring/metrics-catalog) for the entire list of NGINXaaS metrics.
+See the [metrics catalog]({{< ref "/nginxaas-azure/monitoring/metrics-catalog.md" >}}) for the entire list of NGINXaaS metrics.
