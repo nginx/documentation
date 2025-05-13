@@ -44,7 +44,7 @@ To see a list of currently active issues, visit the [Known issues]({{< ref "/ngi
 
 - {{% icon-feature %}} **NGINXaaS Load Balancer for Kubernetes preview release**
 
-  You can now use NGINXaaS as an external load balancer to direct traffic into Kubernetes. For details, see the [quickstart]({{< ref "/nginxaas-azure/quickstart/loadbalancer-kubernetes.md" >}}).
+  You can now use NGINXaaS as an external load balancer to direct traffic into Kubernetes. For details, see the [quickstart]({{< ref "/nginxaas-azure/loadbalancer-kubernetes.md" >}}).
 
 ## October 10, 2024
 
