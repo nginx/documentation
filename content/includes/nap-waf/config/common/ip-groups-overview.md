@@ -1,6 +1,9 @@
-IP groups is a feature to organize lists of allowed and forbidden IP addresses in several lists with common attributes.
-With this enhancement, users have more control over how a unique policy setting is applied to incoming requests with a specific IP address.
-Each IP Group contains a unique name, enforcement type (always, never and policy-default), list of IP addresses.
+IP groups is a feature to organize lists of allowed and forbidden IP addresses across several lists with common attributes.
+
+This allows you to control unique policy settings for incoming requests based on specific IP addresses.
+
+Each IP Group contains a unique name, enforcement type (_always_, _never_ and _policy-default_), and list of IP addresses.
+
 
 An example of a declarative policy using IP Groups configuration: 
 
