@@ -4,7 +4,8 @@ This can be done by defining override rules in the designated section, based on 
 Override rule condition with IP group based on JSON schema defined by the declarative policy and applied to "clientIp" attribute using “matches” function.
 'clientIp.matches(ipAddressLists["standalone"])'
 
-The policy example 
+Here is a policy example:
+
 ```json
 { 
   "policy": { 
