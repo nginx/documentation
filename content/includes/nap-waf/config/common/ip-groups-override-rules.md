@@ -55,7 +55,7 @@ Here is a policy example:
 
 The previous example policy contains an IP group with the name "standalone", used for the override rule condition "clientIp.matches(ipAddressLists['standalone'])".
 The condition means that the rule enforcement is applied when clientIp is matched to one of ipAddresses in ipAddressList with name "standalone". 
-The value used in override rule condition must exist and be exactly equal the name in "ip-address-lists".  
+The value used for the override condition must exist and exactly match the name in "ip-address-lists".  
 
 #### Several error cases are verified: 
 - Using another keyword instead of ipAddressLists;   
