@@ -57,18 +57,13 @@ The previous example policy contains an IP group with the name "standalone", use
 The condition means that the rule enforcement is applied when clientIp is matched to one of ipAddresses in ipAddressList with name "standalone". 
 The value used for the override condition must exist and exactly match the name in "ip-address-lists".  
 
-#### Several error cases are verified: 
-- Using another keyword instead of ipAddressLists;   
-  example: clientIp.matches(invalidList['standalone']);  
-  error_message: " Invalid field invalidList" 
+#### Possible errors
 
-- Using empty name; 
-  example: clientIp.matches(ipAddressLists['']);  
-  error_message: " Invalid value empty string" 
-
-- Using ipAddressLists with attribute otherwise then clientIp;  
-  example: uri.matches(ipAddressLists['standalone']);  
-  error_message: "Failed to compile policy - 'ipGroupOverridePolicy'" 
+| Error text | Input          | Explanation |
+| -----------| ------------- | ------------ |
+| _Invalid field invalidList_ | _clientIp.matches(invalidList['standalone']);_ | An incorrect keyword was used instead of _ipAddressLists_ |
+| _Invalid value empty string_ | _clientIp.matches(ipAddressLists['']_ | An empty name was provided |
+| _Failed to compile policy - 'ipGroupOverridePolicy'_ | _uri.matches(ipAddressLists['standalone']);_ |  Used _ipAddressLists_ without the _clientIP_ attribute |
 
 
  
