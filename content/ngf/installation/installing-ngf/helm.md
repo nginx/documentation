@@ -147,13 +147,7 @@ By default, the NGINX Gateway Fabric helm chart deploys a LoadBalancer Service.
 To use a NodePort Service instead:
 
 ```shell
-helm install ngf oci://ghcr.io/nginx/charts/nginx-gateway-fabric --create-namespace -n nginx-gateway --set service.type=NodePort
-```
-
-To disable the creation of a Service:
-
-```shell
-helm install ngf oci://ghcr.io/nginx/charts/nginx-gateway-fabric --create-namespace -n nginx-gateway --set service.create=false
+helm install ngf oci://ghcr.io/nginx/charts/nginx-gateway-fabric --create-namespace -n nginx-gateway --set nginx.service.type=NodePort
 ```
 
 ---

@@ -70,9 +70,13 @@ Visit [http://127.0.0.1:16686](http://127.0.0.1:16686) to view the dashboard.
 
 To enable tracing, you must configure two resources:
 
-- `NginxProxy`: This resource contains global settings relating to the NGINX data plane. It is created and managed by the [cluster operator](https://gateway-api.sigs.k8s.io/concepts/roles-and-personas/), and is referenced in the `parametersRef` field of the GatewayClass. This resource can be created and linked when we install NGINX Gateway Fabric using its helm chart, or it can be added later. This guide installs the resource using the helm chart, but the resource can also be created for an existing deployment.
+- `NginxProxy`: This resource contains global settings relating to the NGINX data plane. It is created and managed by the [cluster operator](https://gateway-api.sigs.k8s.io/concepts/roles-and-personas/), and is referenced in the `parametersRef` field of the GatewayClass. By default, an `NginxProxy` resource is created in the same namespace where NGINX Gateway Fabric is installed, attached to the GatewayClass. You can set configuration options in the `nginx` Helm value section, and the resource will be created and attached using the set values.
+
+When installed using the Helm chart, the NginxProxy resource is named `<release-name>-proxy-config` and is created in the release Namespace.
 
   The `NginxProxy` resource contains configuration for the collector, and applies to all Gateways and routes under the GatewayClass. It does not enable tracing, but is a prerequisite to the next piece of configuration.
+
+{{< note >}} You can also override the tracing configuration for a particular Gateway by manually creating and attaching specific `NginxProxy` resources to target the different Gateways. This guide covers the global tracing configuration only. {{< /note >}}
 
 - `ObservabilityPolicy`: This resource is a [Direct PolicyAttachment](https://gateway-api.sigs.k8s.io/reference/policy-attachment/) that targets HTTPRoutes or GRPCRoutes. It is created by the [application developer](https://gateway-api.sigs.k8s.io/concepts/roles-and-personas/) and enables tracing for a specific route or routes. It requires the `NginxProxy` resource to exist in order to complete the tracing configuration.
 
@@ -110,11 +114,11 @@ helm install ngf oci://ghcr.io/nginx/charts/nginx-gateway-fabric --create-namesp
 You should see the following configuration:
 
 ```shell
-kubectl get nginxproxies.gateway.nginx.org ngf-proxy-config -o yaml
+kubectl get nginxproxies.gateway.nginx.org ngf-proxy-config -n nginx-gateway -o yaml
 ```
 
 ```yaml
-apiVersion: gateway.nginx.org/v1alpha1
+apiVersion: gateway.nginx.org/v1alpha2
 kind: NginxProxy
 metadata:
   name: ngf-proxy-config
@@ -164,10 +168,10 @@ status:
       type: ResolvedRefs
 ```
 
-If you already have NGINX Gateway Fabric installed, then you can create the `NginxProxy` resource and link it to the GatewayClass `parametersRef`:
+If you already have NGINX Gateway Fabric installed, then you can modify the `NginxProxy` resource to include the tracing configuration:
 
 ```shell
-kubectl edit gatewayclasses.gateway.networking.k8s.io nginx
+kubectl edit nginxproxies.gateway.nginx.org ngf-proxy-config -n nginx-gateway
 ```
 
 You can now create the application, route, and tracing policy.
@@ -351,5 +355,6 @@ The trace includes the attribute from the global NginxProxy resource as well as 
 
 ## See also
 
+- [Data plane configuration]({{< ref "/ngf/how-to/data-plane-configuration.md" >}}): learn how to dynamically update the NGINX Gateway Fabric global data plane configuration, including how to override the telemetry configuration for a particular Gateway.
 - [Custom policies]({{< ref "/ngf/overview/custom-policies.md" >}}): learn about how NGINX Gateway Fabric custom policies work.
 - [API reference]({{< ref "/ngf/reference/api.md" >}}): all configuration fields for the policies mentioned in this guide
