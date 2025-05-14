@@ -1,4 +1,4 @@
----
+=---
 description: Create Microsoft Azure virtual machines for running NGINX Open Source
   and F5 NGINX Plus.
 docs: DOCS-458
@@ -47,7 +47,7 @@ For NGINX installation:
    <img src="/nginx/images/azure-create-vm-add-button.png" alt="screenshot of Azure 'Virtual machines' page" width="1024" height="195" class="aligncenter size-full image-64309" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
    <span id="create-vm_Basics"></span>
-4. In the **Create a virtual machine** window that opens, enter the requested information on the **Basics** tab. For this guide, enter the following values:
+4. In the **Create a virtual machine** window that opens, enter the requested information on the **Basics** tab. For this guide, use the following values:
 
    - **Subscription** – <span style="color:#666666; font-weight:bolder; white-space: nowrap;">NGINX-Plus-HA-subscription</span>
    - **Resource group** – <span style="color:#666666; font-weight:bolder; white-space: nowrap;">NGINX-Plus-HA</span>
@@ -60,7 +60,7 @@ For Active-Active HA for NGINX Plus on Microsoft Azure Using the Azure Standard 
    - **Availability options** – <span style="color:#666666; font-weight:bolder; white-space: nowrap;">No infrastructure redundancy required</span>
 
      This option is best for a demo like the one in this guide. For production deployments, deploy a copy of each VM in a different Availability Zone. For more information, see the [Azure documentation](https://docs.microsoft.com/en-us/azure/availability-zones/az-overview).
-   - **Image** – <span style="color:#666666; font-weight:bolder; white-space: nowrap;">Ubuntu Server 18.04 LTS</span>
+   - **Image** – <span style="color:#666666; font-weight:bolder; white-space: nowrap;">Ubuntu Server 18.04 LTS</span> <span style="color:#374936;font-weight:bolder; white-space:nowrap;"> Ubuntu Server </span>
    - **Azure Spot instance** – <span style="color:#666666; font-weight:bolder;">No</span>
    - **Size** – <span style="color:#666666; font-weight:bolder;">B1s</span> (click <span style="color:#2d89d6; white-space: nowrap;">Select size</span> to access the <span style="font-weight:bold; white-space: nowrap;">Select a VM size</span> window, click the **B1s** row, and click the <span style="background-color:#137ad1; color:white;"> Select </span> button to return to the **Basics** tab)
    - **Authentication type** – <span style="color:#666666; font-weight:bolder; white-space: nowrap;">SSH public key</span>
