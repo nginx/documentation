@@ -427,7 +427,7 @@ HTTP/2 is fully supported in both <span style="white-space: nowrap;">NGINX Open 
 
 - In <span style="white-space: nowrap;">NGINX Plus R8</span> and later, NGINX Plus supports HTTP/2 by default. (Support for SPDY is deprecated as of that release). Specifically:
 
-  In <span style="white-space: nowrap;">NGINX Plus R11</span> and later, the <span style="white-space: nowrap; font-weight:bold;">nginx-plus</span> package continues to support HTTP/2 by default, but the <span style="white-space: nowrap; font-weight:bold;">nginx-plus-extras</span> package available in previous releases is deprecated by [dynamic modules](https://www.nginx.com/products/dynamic-modules/).
+  In [NGINX Plus R11]({{< ref "/nginx/releases.md#r11" >}}) and later, the **nginx-plus** package continues to support HTTP/2 by default, but the **nginx-plus-extras** package available in previous releases is deprecated and replaced by [dynamic modules]({{< ref "/nginx/admin-guide/dynamic-modules/dynamic-modules.md" >}}).
 
   For <span style="white-space: nowrap;">NGINX Plus R8</span> through R10, the <span style="white-space: nowrap; font-weight:bold;">nginx-plus</span> and <span style="white-space: nowrap; font-weight:bold;">nginx-plus-extras</span> packages support HTTP/2 by default.
 
