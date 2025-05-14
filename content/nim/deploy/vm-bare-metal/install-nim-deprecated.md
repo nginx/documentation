@@ -91,7 +91,7 @@ NGINX Instance Manager uses ClickHouse to store metrics, events, alerts, and con
 
 If you do not need to store metrics, you can skip the installation steps in this section. Instead, you must disable metrics collection in the `/etc/nms/nms.conf` configuration file.
 
-For instructions, see [Turn Off ClickHouse]({{< ref "nim/system-configuration/configure-clickhouse.md#turn-off-clickhouse" >}}).
+For instructions, see [Disable metrics collection]({{< ref "nim/system-configuration/configure-clickhouse.md#disable-metrics-collection" >}}).
 
 ### Install ClickHouse to enable metrics
 

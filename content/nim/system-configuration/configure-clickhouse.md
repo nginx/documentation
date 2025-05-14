@@ -40,7 +40,7 @@ Unless otherwise specified in the `/etc/nms/nms.conf` file, NGINX Instance Manag
 
 As of version 2.20, NGINX Instance Manager can run without ClickHouse. This lightweight option reduces system requirements and simplifies installation for users who do not need metrics.
 
-To disable metrics collection after installation:
+To disable metrics collection after installing NGINX Instance Manager:
 
 1. Open the configuration file at `/etc/nms/nms.conf`.
 
