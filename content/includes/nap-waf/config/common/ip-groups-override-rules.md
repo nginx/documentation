@@ -1,4 +1,5 @@
 #### IP-Groups feature as part of Override Rules feature.
+
 The Override Rules feature allows you to modify original or parent policy settings.
 
 Rules are defined using specific conditions, which can include an IP group based on the declarative policy JSON schema.
