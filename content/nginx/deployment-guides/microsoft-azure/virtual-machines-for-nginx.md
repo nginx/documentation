@@ -75,9 +75,9 @@ For Active-Active HA for NGINX Plus on Microsoft Azure Using the Azure Standard 
    <span id="create-vm_Networking"></span>
 5. For [Active-Active HA for NGINX Plus on Microsoft Azure]( https://docs.nginx.com/nginx/deployment-guides/microsoft-azure/high-availability-standard-load-balancer/):
 
- Two VMs run NGINX Plus behind an Azure Load Balancer. And both VMs require **Standard** SKU public IP addresses. By default, Azure assigns **Basic** SKU IPs. So, you must manually change this during VM setup.
+ Two major virtual machines run NGINX Plus behind an Azure Load Balancer. And both VMs require **Standard** SKU public IP addresses. By default, Azure assigns **Basic** SKU IPs. So, you must manually change this during VM setup.
 
-To avoid errors, allocate **Standard** public IP addresses to the six VMs you’ll use in the deployment. 
+To avoid errors, allocate **Standard** public IP addresses to the VMs you’ll use in the deployment. Depending on your work load, you might need up to 6 VMs.
 Follow these steps to allocate:
   - Open the **Networking** tab on the **Create a virtual machine** window.
   - Click <span style="color:#2d89d6; white-space: nowrap;"> Create new </span> below the **Public IP** field.
