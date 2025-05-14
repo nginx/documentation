@@ -59,7 +59,7 @@ For Active-Active HA for NGINX Plus on Microsoft Azure Using the Azure Standard 
    - **Region** – <span style="color:#666666; font-weight:bolder; white-space: nowrap;">(US) West US 2</span>
    - **Availability options** – <span style="color:#666666; font-weight:bolder; white-space: nowrap;">No infrastructure redundancy required</span>
 
-     This option is best for a demo like the one in this guide. For production deployments, deploy a copy of each VM in a different Availability Zone. For more information, see the [Azure documentation](https://docs.microsoft.com/en-us/azure/availability-zones/az-overview).
+     This option is best for a demo like the one in this guide. For production deployments, position a copy of each VM in a different Availability Zone. For more information, see the [Azure documentation](https://docs.microsoft.com/en-us/azure/availability-zones/az-overview).
    - **Image** – <span style="color:#666666; font-weight:bolder; white-space: nowrap;">Ubuntu Server 18.04 LTS</span>
    - **Azure Spot instance** – <span style="color:#666666; font-weight:bolder;">No</span>
    - **Size** – <span style="color:#666666; font-weight:bolder;">B1s</span> (click <span style="color:#2d89d6; white-space: nowrap;">Select size</span> to access the <span style="font-weight:bold; white-space: nowrap;">Select a VM size</span> window, click the **B1s** row, and click the <span style="background-color:#137ad1; color:white;"> Select </span> button to return to the **Basics** tab)
@@ -78,7 +78,7 @@ For Active-Active HA for NGINX Plus on Microsoft Azure Using the Azure Standard 
  Two major virtual machines run NGINX Plus behind an Azure Load Balancer. And both VMs require **Standard** SKU public IP addresses. By default, Azure assigns **Basic** SKU IPs. So, you must manually change this during VM setup.
 
 To avoid errors, allocate **Standard** public IP addresses to the VMs you’ll use in the deployment. Depending on your work load, you might need up to 6 VMs.
-Follow these steps to allocate:
+Follow these steps:
   - Open the **Networking** tab on the **Create a virtual machine** window.
   - Click <span style="color:#2d89d6; white-space: nowrap;"> Create new </span> below the **Public IP** field.
   - In the **Create public IP address column** that opens, click the **Standard Radio button** under **SKU**. 
@@ -210,12 +210,12 @@ If you've installed NGINX Open Source correctly on one VM, and saved it as an Az
 
    <a href="/nginx/images/azure-create-image-ngx-oss.png"><img src="/nginx/images/azure-create-image-ngx-oss.png" alt="screenshot of details page for 'nginx-oss' VM in Azure" width="1024" height="363" class="aligncenter size-full wp-image-64989" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
-4. On the Create image page, observe and comply with the informational and warning banners. If you use one of the VMs you created in [Creating a Microsoft Azure Virtual Machine](#create-vm) as the source for the image, you will need to re‑create a VM with that name.
+4. On the Create image page, observe and comply with the warnings. If you use one of the VMs you created in [Creating a Microsoft Azure Virtual Machine](#create-vm) as the source for the image, you will need to re‑create a VM with that name.
 
    Then select the following values:
 
    - **Name** – Keep the current value.
-   - **Resource group** – Select the appropriate resource group from the drop‑down menu. Here it is <span style="color:#666666; font-weight:bolder; white-space: nowrap;">NGINX-Plus-HA</span>.
+   - **Resource group** – Select the appropriate resource group from the drop‑down menu. Here, it is <span style="color:#666666; font-weight:bolder; white-space: nowrap;">NGINX-Plus-HA</span>.
    - **Automatically delete this virtual machine after creating the image** – We recommend checking the box, since you can't do anything more with the image anyway.
    - **Zone resiliency** – <span style="color:#666666; font-weight:bolder;">On</span>.
    - **Type the virtual machine name** – Name of the source VM (<span style="color:#666666; font-weight:bolder; white-space: nowrap;">ngx-oss</span> in this guide).
@@ -228,7 +228,7 @@ If you've installed NGINX Open Source correctly on one VM, and saved it as an Az
 
 An Azure image takes only a few moments to deploy. When it’s ready, you can create VMs from it with NGINX Open Source already installed.
 
-1. Navigate to the Images page. You may type images in the search box in the Microsoft Azure header bar. Then, select that value in the Services section of the resulting drop‑down menu.
+1. Navigate to the Images page. You may type "images" in the search box in the Microsoft Azure header bar. Then, select that value in the Services section of the resulting drop‑down menu.
 
    <a href="/nginx/images/azure-create-image-images.png"><img src="/nginx/images/azure-create-image-images.png" alt="screenshot of Azure 'Images' page" width="1024" height="349" class="aligncenter size-full wp-image-64987" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
