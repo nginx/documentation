@@ -1,4 +1,4 @@
-=---
+---
 description: Create Microsoft Azure virtual machines for running NGINX Open Source
   and F5 NGINX Plus.
 docs: DOCS-458
