@@ -73,7 +73,7 @@ For Active-Active HA for NGINX Plus on Microsoft Azure Using the Azure Standard 
    <a href="/nginx/images/azure-create-vm-basics.png"><img src="/nginx/images/azure-create-vm-basics.png" alt="screenshot of 'Basics' tab on Azure 'Create a virtual machine' page" width="1024" height="1168" class="aligncenter size-full wp-image-64995" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
    <span id="create-vm_Networking"></span>
-5. For Active-Active HA for NGINX Plus on Microsoft Azure:
+5. For [Active-Active HA for NGINX Plus on Microsoft Azure]( https://docs.nginx.com/nginx/deployment-guides/microsoft-azure/high-availability-standard-load-balancer/):
 
  Two VMs run NGINX Plus behind an Azure Load Balancer. And both VMs require **Standard** SKU public IP addresses. By default, Azure assigns **Basic** SKU IPs. So, you must manually change this during VM setup.
 
@@ -115,14 +115,14 @@ When this guide was first published, the hourly cost for the six VMs was only $0
 
    For <span style="color:#666666; font-weight:bolder;">ngx-plus-2</span> (2nd NGINX Plus VM), repeat Steps 2 to 6 above or purchase a pre built VM from the [Microsoft Azure Marketplace](https://azuremarketplace.microsoft.com/en-us/marketplace/apps?search=NGINX%20Plus)).
 
-  NGINX Open Source VMs gives you two options: Create each VM manually by following steps 2 to 6.Or, make one template VM (named  <span style="color:#666666; font-weight:bolder; white-space: nowrap;">nginx-oss</span>), [install the NGINX Open Source software](#install-nginx) on it, and clone that VM into three more copies using Azure image. For that, follow the instructions in [Optional: Creating an NGINX Open Source Image](#create-nginx-oss-image).
+  NGINX Open Source VMs gives you two options: create each VM manually by following steps 2 to 6. Or, make one template VM (named  <span style="color:#666666; font-weight:bolder; white-space: nowrap;">nginx-oss</span>), [install the NGINX Open Source software](#install-nginx) on it, and clone that VM into three more copies using Azure image. For that, follow the instructions in [Optional: Creating an NGINX Open Source Image](#create-nginx-oss-image).
 
 <span id="connect-vm"></span>
 ## Connecting to a Virtual Machine
 
 To install and configure NGINX Open Source or NGINX Plus on a VM, open a terminal window and connect to the VM over SSH. Do like so: 
 
-1. Navigate to the **Virtual machines** page on the Azure dashboard and click the VM's name in the **Name** column of the table.
+1. Go to the **Virtual machines** page on the Azure dashboard and click the VM's name in the **Name** column of the table.
 
    <a href="/nginx/images/azure-create-vm-virtual-machines.png"><img src="/nginx/images/azure-create-vm-virtual-machines.png" alt="screenshot of Azure 'Virtual machines' page with list of VMs" width="1024" height="396" class="aligncenter size-full wp-image-64991" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
@@ -145,12 +145,12 @@ To install and configure NGINX Open Source or NGINX Plus on a VM, open a termina
 <span id="install-nginx"></span>
 ## Installing NGINX Software
 
-Once you have established a connection with an instance, you can install the NGINX software on it. Follow the instructions in the NGINX Plus Admin Guide for <a href="../../../admin-guide/installing-nginx/installing-nginx-open-source/index.html#prebuilt">NGINX Open Source</a> and [NGINX Plus]({{< ref "nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}). The [Admin Guide]({{< ref "/nginx/admin-guide/" >}}) also provides instructions for many maintenance tasks.
+After you’ve successfully connected to your Azure VM, you can install the NGINX software on it. Follow the instructions in the NGINX Plus Admin Guide for <a href="../../../admin-guide/installing-nginx/installing-nginx-open-source/index.html#prebuilt">NGINX Open Source</a> and [NGINX Plus]({{< ref "nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}). The [Admin Guide]({{< ref "/nginx/admin-guide/" >}}) has several maintenance instructions, too.
 
 <span id="automate"></span>
 ### Automating Installation with a Configuration Manager
 
-You can automate the installation of NGINX Open Source and NGINX Plus. Instructions for Ansible are provided below. For Chef and Puppet, see these articles on the NGINX blog:
+You can automatically install NGINX Open Source and NGINX Plus with Ansible. The instructions are provided below. For Chef and Puppet, see the following articles on the NGINX blog:
 
 - [Installing NGINX and NGINX Plus with Chef](https://www.nginx.com/blog/installing-nginx-nginx-plus-chef/)
 - [Deploying NGINX Plus for High Availability with Chef](https://www.nginx.com/blog/nginx-plus-high-availability-chef/)
@@ -159,11 +159,11 @@ You can automate the installation of NGINX Open Source and NGINX Plus. Instruct
 <span id="automate-ansible"></span>
 #### Automating Installation with Ansible
 
-NGINX publishes a unified Ansible role for NGINX Open Source and NGINX Plus on [Ansible Galaxy](https://galaxy.ansible.com/nginxinc/nginx/) and [GitHub](https://github.com/nginxinc/ansible-role-nginx). Perform these steps to install and run it.
+NGINX provides automatic setup files for Open Source and Plus versions on [Ansible Galaxy](https://galaxy.ansible.com/nginxinc/nginx/) and [GitHub](https://github.com/nginxinc/ansible-role-nginx). Use these steps to install and run it:
 
 1. [Connect to the VM](#connect-vm).
 
-2. Install Ansible. These commands are appropriate for Debian and Ubuntu systems:
+2. Install Ansible. These commands are suitable for Debian and Ubuntu systems:
 
    ```shell
    apt update
@@ -177,7 +177,7 @@ NGINX publishes a unified Ansible role for NGINX Open Source and NGINX Plus on 
    ansible-galaxy install nginxinc.nginx
    ```
 
-4. (NGINX Plus only) Copy the <span style="white-space: nowrap; font-weight:bold;">nginx-repo.key</span> and <span style="white-space: nowrap; font-weight:bold;">nginx-repo.crt</span> files provided by NGINX to <span style="white-space: nowrap; font-weight:bold;">~/.ssh/ngx-certs/</span>.
+4. For NGINX Plus only: Copy the <span style="white-space: nowrap; font-weight:bold;">nginx-repo.key</span> and <span style="white-space: nowrap; font-weight:bold;">nginx-repo.crt</span> files provided by NGINX to <span style="white-space: nowrap; font-weight:bold;">~/.ssh/ngx-certs/</span>.
 
 5. Create a file called **playbook.yml** with the following contents:
 
@@ -189,7 +189,7 @@ NGINX publishes a unified Ansible role for NGINX Open Source and NGINX Plus on 
        - role: nginxinc.nginx
    ```
 
-5. Run the playbook:
+6. Run the playbook:
 
    ```shell
    ansible-playbook playbook.yml
@@ -198,19 +198,19 @@ NGINX publishes a unified Ansible role for NGINX Open Source and NGINX Plus on 
 <span id="create-nginx-oss-image"></span>
 ## Optional: Creating an NGINX Open Source Image
 
-To streamline the process of installing NGINX Open Source on multiple VMs, you can create a Microsoft Azure image from an existing NGINX Open Source VM, and spin up additional instances of the image when needed.
+If you've installed NGINX Open Source correctly on one VM, and saved it as an Azure template, you can make VM copies as needed without the long installation processes. Follow these steps:
 
 1. [Install NGINX Open Source](#install-nginx) on the source VM, if you haven't already.
 
-2. Navigate to the **Virtual machines** page, if you are not already there.
+2. Navigate to the **Virtual machines** page.
 
-2. In the list of VMs, click the name of the one to use as a source image (in this guide, we have called it <span style="color:#666666; font-weight:bolder; white-space: nowrap;">ngx-oss</span>). Remember that NGINX Open Source needs to be installed on it already.
+2. In the list of VMs, click your preferred one to use as a source image (in this guide, we have called it ngx-oss). Remember that NGINX Open Source must be installed on it already.
 
 3. On the page than opens, click the **Capture** icon in the top navigation bar.
 
    <a href="/nginx/images/azure-create-image-ngx-oss.png"><img src="/nginx/images/azure-create-image-ngx-oss.png" alt="screenshot of details page for 'nginx-oss' VM in Azure" width="1024" height="363" class="aligncenter size-full wp-image-64989" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
-4. On the **Create image** page that opens, take note of the informational and warning banners and take any necessary action. Note in particular that if you use one of the VMs you created in [Creating a Microsoft Azure Virtual Machine](#create-vm) as the source for the image, you will need to re‑create a VM with that name.
+4. On the Create image page, observe and comply with the informational and warning banners. If you use one of the VMs you created in [Creating a Microsoft Azure Virtual Machine](#create-vm) as the source for the image, you will need to re‑create a VM with that name.
 
    Then select the following values:
 
@@ -226,9 +226,9 @@ To streamline the process of installing NGINX Open Source on multiple VMs, you c
 
 ### Creating a VM from the Image
 
-It takes a few moments for the image to be created. When it's ready, you can create VMs from it with NGINX Open Source already installed.
+An Azure image takes only a few moments to deploy. When it’s ready, you can create VMs from it with NGINX Open Source already installed.
 
-1. Navigate to the **Images** page. (One method is to type <span style="color:#666666; font-weight:bolder;">images</span> in the search box in the Microsoft Azure header bar and select that value in the **Services** section of the resulting drop‑down menu.)
+1. Navigate to the Images page. You may type images in the search box in the Microsoft Azure header bar. Then, select that value in the Services section of the resulting drop‑down menu.
 
    <a href="/nginx/images/azure-create-image-images.png"><img src="/nginx/images/azure-create-image-images.png" alt="screenshot of Azure 'Images' page" width="1024" height="349" class="aligncenter size-full wp-image-64987" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
