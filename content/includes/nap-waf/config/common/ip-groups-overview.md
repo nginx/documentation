@@ -37,7 +37,7 @@ An example of a declarative policy using IP Groups configuration:
 }
 
 ```
-The example with IP-Group definition in external file external_ip_groups.json 
+The example with IP-Group definition in external file external_ip_groups.json:
 
 ```json
 {
