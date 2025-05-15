@@ -1,5 +1,7 @@
 name: Build and deploy (docs)
 on:
+  repository_dispatch:
+    types: [trigger-preview-build]
   workflow_call:
     inputs:
       environment:

@@ -41,7 +41,8 @@ Configuring the uWSGI application container itself is outside the scope of this 
 
 This example is illustrative only, and one way you might invoke your uWSGI server with Django:
 
-```none
+```shell
+uwsgi \
     --chdir=/var/django/projects/myapp \
     --module=myapp.wsgi:application \
     --env DJANGO_SETTINGS_MODULE=myapp.settings \
@@ -60,38 +61,38 @@ With these options in place, here's a sample NGINX configuration for use with a 
 ```nginx
 http {
     # ...
-     upstream django {
-       server 127.0.0.1:29000;
+    upstream django {
+        server 127.0.0.1:29000;
     }
 
     server {
-       listen 80;
-       server_name myapp.example.com;
-       root /var/www/myapp/html;
+        listen      80;
+        server_name myapp.example.com;
+        root        /var/www/myapp/html;
 
-       location / {
-         index index.html;
-       }
+        location / {
+            index index.html;
+        }
 
-       location /static/  {
-         alias /var/django/projects/myapp/static/;
-       }
+        location /static/  {
+            alias /var/django/projects/myapp/static/;
+        }
 
-       location /main {
-         include /etc/nginx/uwsgi_params;
-         uwsgi_pass django;
-         uwsgi_param Host $host;
-         uwsgi_param X-Real-IP $remote_addr;
-         uwsgi_param X-Forwarded-For $proxy_add_x_forwarded_for;
-         uwsgi_param X-Forwarded-Proto $http_x_forwarded_proto;
-       }
+        location /main {
+            include     /etc/nginx/uwsgi_params;
+            uwsgi_pass  django;
+            uwsgi_param Host $host;
+            uwsgi_param X-Real-IP $remote_addr;
+            uwsgi_param X-Forwarded-For $proxy_add_x_forwarded_for;
+            uwsgi_param X-Forwarded-Proto $http_x_forwarded_proto;
+        }
     }
 }
 ```
 
-Notice that the configuration defines an upstream called Django, with a server containing the port number `29000`. It matches the port specified by the `socket` argument in the sample `uwsgi` command. The uWSGI server binds to this port.
+This configuration defines an upstream named `django`. The port number `29000` specified for the server in this upstream matches the port that the uWSGI server binds to, as specified by the `--socket=` argument in the sample `uwsgi` command.
 
-NGINX or NGINX Plus serves static files from **/var/django/projects/myapp/static**. NGINX sends /main traffic to the Django app by converting it from HTTP to the uWSGI protocol.
+Serving static content is offloaded to NGINX or NGINX Plus, which serves it directly from `/var/django/projects/myapp/static`. Application traffic to the `/main` location is proxied and bridged from HTTP to the uwsgi protocol, and then passed to the Django app that runs within the uWSGI application container.
 
 <span id="conclusion"></span>
 ## Conclusion
