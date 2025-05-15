@@ -50,8 +50,6 @@ NGINXaaS is a Layer 7 HTTP protocol. To configure .com and .net servers, refer t
 
 1. Select **Submit** to apply the new configuration.
 
-{{<note>}}We currently only support more than 5 unique listen ports on the Standard V2 plan. NGINX configurations that specify more than 5 ports on other plans will be rejected. For more information on listen port limitations, see our [FAQ]({{< ref "/nginxaas-azure/faq" >}}).{{</note>}}
-
 ### NGINX configuration validation
 
 NGINX configuration is validated real-time to check for syntax and compatibility with the service. Validation errors are reported in the editor for you to correct.

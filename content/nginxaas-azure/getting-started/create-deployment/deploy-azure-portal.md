@@ -12,24 +12,6 @@ type:
 
 This guide explains how to deploy F5 NGINX as a Service for Azure (NGINXaaS) using [Microsoft Azure portal](https://azure.microsoft.com/en-us/get-started/azure-portal). The deployment process involves creating a new deployment, configuring the deployment, and testing the deployment.
 
-## Prerequisites
-
-The specific permissions required to deploy NGINXaaS are:
-
-  - microsoft.network/publicIPAddresses/join/action
-
-  - nginx.nginxplus/nginxDeployments/Write
-
-  - microsoft.network/virtualNetworks/subnets/join/action
-
-  - nginx.nginxplus/nginxDeployments/configurations/Write
-
-  - nginx.nginxplus/nginxDeployments/certificates/Write
-
-- Additionally, if you are creating the Virtual Network or IP address resources that NGINXaaS for Azure will be using, then you probably also want those permissions as well.
-
-- Note that assigning the managed identity permissions normally requires an “Owner” role.
-
 ## Find the NGINX as a Service for Azure offer in the Azure portal
 
 You can start the NGINXaaS deployment process by visiting the [Create NGINXaaS](https://portal.azure.com/#create/f5-networks.f5-nginx-for-azure) page or finding the NGINXaaS service in the Azure portal:
