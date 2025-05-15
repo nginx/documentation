@@ -30,11 +30,11 @@ F5 NGINX App Protect supports logging to multiple destinations. This allows user
 2. **For an instance with Security Monitoring and NGINX Instance Manager:**
 
    ```nginx
-   app_protect_policy_file "/etc/nms/NginxDefaultPolicy.tgz";
+   app_protect_policy_file "/etc/nms/NginxDefaultPolicy.tar.gz";
    app_protect_security_log_enable on;
-   app_protect_security_log "/etc/nms/secops_dashboard.tgz" syslog:server=127.0.0.1:514;
-   app_protect_security_log "/etc/nms/secops_dashboard.tgz" <Path to store log file>;
-   # Example: app_protect_security_log "/etc/nms/secops_dashboard.tgz" /var/log/app_protect/security.log;
+   app_protect_security_log "/etc/nms/secops_dashboard.tar.gz" syslog:server=127.0.0.1:514;
+   app_protect_security_log "/etc/nms/secops_dashboard.tar.gz" <Path to store log file>;
+   # Example: app_protect_security_log "/etc/nms/secops_dashboard.tar.gz" /var/log/app_protect/security.log;
    ```
 
 ---

@@ -430,21 +430,21 @@ If you prefer not to enable automatic updates, you can manually update the Attac
     - For Threat Campaigns: package starts with `app-protect-threat-campaigns`
 
 4. Extract the following three files from the package:
-    - `signatures.bin.tgz` (or `threat_campaigns.bin.tgz`)
+    - `signatures.bin.tar.gz` (or `threat_campaigns.bin.tar.gz`)
     - `signature_update.yaml` (or `threat_campaign_update.yaml`)
     - `version`
 
     Use tools like `rpm2cpio | cpio` or `ar` (for `.deb`) to extract the files.
 
-5. Create a `.tgz` bundle that includes the three files. For example:
+5. Create a `.tar.gz` bundle that includes the three files. For example:
 
     ```shell
-    tar -czvf attack-signatures.tgz signatures.bin.tgz signature_update.yaml version
+    tar -czvf attack-signatures.tar.gz signatures.bin.tar.gz signature_update.yaml version
     ```
 
 #### Upload packages to NGINX Instance Manager
 
-Use the NGINX Instance Manager REST API to upload the `.tgz` files.
+Use the NGINX Instance Manager REST API to upload the `.tar.gz` files.
 
 **Upload Attack Signatures:**
 
@@ -452,7 +452,7 @@ Use the NGINX Instance Manager REST API to upload the `.tgz` files.
 curl -X POST 'https://{{NIM_FQDN}}/api/platform/v1/security/attack-signatures' \
   --header "Authorization: Bearer <access token>" \
   --form 'revisionTimestamp="2022.11.16"' \
-  --form 'filename=@"/attack-signatures.tgz"'
+  --form 'filename=@"/attack-signatures.tar.gz"'
 ```
 
 **Upload Threat Campaigns:**
@@ -461,10 +461,10 @@ curl -X POST 'https://{{NIM_FQDN}}/api/platform/v1/security/attack-signatures' \
 curl -X POST 'https://{{NIM_FQDN}}/api/platform/v1/security/threat-campaigns' \
   --header "Authorization: Bearer <access token>" \
   --form 'revisionTimestamp="2022.11.15"' \
-  --form 'filename=@"/threat-campaigns.tgz"'
+  --form 'filename=@"/threat-campaigns.tar.gz"'
 ```
 
-{{<important>}}The bundle you upload must match the OS of your NGINX Instance Manager host. For example, if the host is running Ubuntu 20.04, create the `.tgz` from the Ubuntu 20.04 package.{{</important>}}
+{{<important>}}The bundle you upload must match the OS of your NGINX Instance Manager host. For example, if the host is running Ubuntu 20.04, create the `.tar.gz` from the Ubuntu 20.04 package.{{</important>}}
 
 ### Update the Security Monitoring signature database
 
@@ -798,10 +798,10 @@ You can use these default policies as-is or customize them for your app. Securit
 
 Keep the following in mind when configuring NGINX App Protect WAF through NGINX Instance Manager:
 
-- Instance Manager compiles JSON security policies into `.tgz` bundles.
+- Instance Manager compiles JSON security policies into `.tar.gz` bundles.
 - Use the `app_protect_policy_file` directive to reference custom policies.
 
-  If you're using precompiled publication with NGINX Agent, make sure to change the file extension from `.json` to `.tgz`. The filename remains the same. NGINX Instance Manager doesn't support referencing both `.json` and `.tgz` in the same NGINX configuration.
+  If you're using precompiled publication with NGINX Agent, make sure to change the file extension from `.json` to `.tar.gz`. The filename remains the same. NGINX Instance Manager doesn't support referencing both `.json` and `.tar.gz` in the same NGINX configuration.
 
 - If you're using custom policies, make sure NGINX Agent has permission to access the directories where those policy files are stored. Update the `config_dirs` setting in the NGINX Agent's configuration file if needed.
 - NGINX Instance Manager uses the default log profiles that come with NGINX App Protect WAF. You can reference them with the `app_protect_security_log` directive. Custom log profiles aren't supported.
@@ -821,13 +821,13 @@ server {
     app_protect_enable on;
 
     # Reference a custom security policy bundle
-    app_protect_policy_file /etc/nms/ignore-xss.tgz;
+    app_protect_policy_file /etc/nms/ignore-xss.tar.gz;
 
     # Enable security logging
     app_protect_security_log_enable on;
 
     # Reference the log profile bundle
-    app_protect_security_log /etc/nms/log-default.tgz /var/log/nginx/security-violations.log;
+    app_protect_security_log /etc/nms/log-default.tar.gz /var/log/nginx/security-violations.log;
 
     ...
   }
@@ -837,7 +837,7 @@ server {
 If you’re using NGINX Instance Manager with Security Monitoring, your configuration may already include the following directive:
 
 ```nginx
-app_protect_security_log "/etc/nms/secops_dashboard.tgz" syslog:server=127.0.0.1:514;
+app_protect_security_log "/etc/nms/secops_dashboard.tar.gz" syslog:server=127.0.0.1:514;
 ```
 
 **Don’t change this value.** See the [Security Monitoring setup guide]({{< ref "/nim/nginx-app-protect/security-monitoring/set-up-app-protect-instances.md" >}}) for more details.
@@ -860,7 +860,7 @@ If you’re using NGINX App Protect WAF v5:
 1. {{< include "nim/webui-nim-login.md" >}}
 2. In the left menu, select **Instances** or **Instance Groups**.
 3. From the **Actions** menu (**...**), select **Edit Config** for the instance or group.
-4. If you’re using precompiled publication, change any `.json` file extensions to `.tgz`.
+4. If you’re using precompiled publication, change any `.json` file extensions to `.tar.gz`.
 5. If you want to apply a default policy, select **Apply Security**, then copy the policy snippet and paste it into your configuration.
 6. Add the directives inside an `http`, `server`, or `location` block.
 7. Select **Publish** to push the configuration.
@@ -899,17 +899,17 @@ You can use the NGINX Instance Manager REST API to deploy your NGINX App Protect
         app_protect_enable on;
         ```
     
-    - If precompiled publication is enabled, change any `.json` policy references to `.tgz`.
+    - If precompiled publication is enabled, change any `.json` policy references to `.tar.gz`.
     - If you want to apply a default policy, you can use:
 
         ```nginx
-        app_protect_policy_file /etc/nms/NginxDefaultPolicy.tgz;
+        app_protect_policy_file /etc/nms/NginxDefaultPolicy.tar.gz;
         ```
 
         or
 
         ```nginx
-        app_protect_policy_file /etc/nms/NginxStrictPolicy.tgz;
+        app_protect_policy_file /etc/nms/NginxStrictPolicy.tar.gz;
         ```
 
     - Add the directives to an `http`, `server`, or `location` context.
@@ -1014,11 +1014,11 @@ USAGE:
     /opt/nms-nap-compiler/app_protect-5.342.0/bin/apcompile <options>
 
 Examples:
-    /opt/nms-nap-compiler/app_protect-5.342.0/bin/apcompile -p /path/to/policy.json -o mypolicy.tgz
-    /opt/nms-nap-compiler/app_protect-5.342.0/bin/apcompile -p policyA.json -g myglobal.json -o /path/to/policyA_bundle.tgz
-    /opt/nms-nap-compiler/app_protect-5.342.0/bin/apcompile -g myglobalsettings.json --global-state-outfile /path/to/myglobalstate.tgz
-    /opt/nms-nap-compiler/app_protect-5.342.0/bin/apcompile -b /path/to/policy_bundle.tgz --dump
-    /opt/nms-nap-compiler/app_protect-5.342.0/bin/apcompile -l logprofA.json -o /path/to/logprofA_bundle.tgz
+    /opt/nms-nap-compiler/app_protect-5.342.0/bin/apcompile -p /path/to/policy.json -o mypolicy.tar.gz
+    /opt/nms-nap-compiler/app_protect-5.342.0/bin/apcompile -p policyA.json -g myglobal.json -o /path/to/policyA_bundle.tar.gz
+    /opt/nms-nap-compiler/app_protect-5.342.0/bin/apcompile -g myglobalsettings.json --global-state-outfile /path/to/myglobalstate.tar.gz
+    /opt/nms-nap-compiler/app_protect-5.342.0/bin/apcompile -b /path/to/policy_bundle.tar.gz --dump
+    /opt/nms-nap-compiler/app_protect-5.342.0/bin/apcompile -l logprofA.json -o /path/to/logprofA_bundle.tar.gz
 ```
 
 ### Confirm NGINX Agent configuration on the NGINX App Protect WAF instance
