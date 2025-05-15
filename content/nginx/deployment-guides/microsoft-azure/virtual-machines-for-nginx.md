@@ -14,7 +14,7 @@ Follow this guide to install and run NGINX Open Source or NGINX Plus on a Micros
 
 This guide’s settings support [Active-Active HA for NGINX Plus on Microsoft Azure Using the Azure Standard Load Balancer]( https://docs.nginx.com/nginx/deployment-guides/microsoft-azure/high-availability-standard-load-balancer/). But you can repurpose your VMs for other tasks.
 
-To speed up NGINX Plus deployment, get a prebuilt VM from [Microsoft Azure Marketplace](https://azuremarketplace.microsoft.com/en-us/marketplace/apps?search=NGINX%20Plus).There are various operating systems available. See [Installing NGINX Plus on Microsoft Azure]({{< ref "nginx/admin-guide/installing-nginx/installing-nginx-plus-microsoft-azure.md" >}}) for more details. 
+To speed up NGINX Plus deployment, get a prebuilt VM from [Microsoft Azure Marketplace](https://azuremarketplace.microsoft.com/en-us/marketplace/apps?search=NGINX%20Plus).There are various operating systems available. See [Installing NGINX Plus on Microsoft Azure](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus-microsoft-azure/) for more details. 
 
 <span id="prereqs"></span>
 ## Prerequisites
@@ -90,7 +90,7 @@ When this guide was first published, the hourly cost for the six VMs was only $0
 
    <a href="/nginx/images/azure-create-vm-networking.png"><img src="/nginx/images/azure-create-vm-networking.png" alt="screenshot of 'Networking' tab on Azure 'Create a virtual machine' page" width="1024" height="718" class="aligncenter size-full wp-image-64994" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
-6. Here, you can select non-default values on the **Disks**, **Networking**, **Management**, **Advanced**, and **Tags** tabs. By default, Azure might assign **Premium SSD** for the OS disk on the disk tab, but you can  choose a cheaper option like **Standard HDD**.
+6. Here, you can select non-default values on the **Disks**, **Networking**, **Management**, **Advanced**, and **Tags** tabs. By default, Azure assigns **Premium SSD** for the OS disk on the disk tab, but you can choose a cheaper option like **Standard HDD**.
 
    After you've completed your changes, click the <span style="background-color:#137ad1; color:white; white-space: nowrap;"> Review + create </span> button at the bottom of the **Create a virtual machine** page.
 
