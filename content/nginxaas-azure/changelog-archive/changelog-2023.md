@@ -265,7 +265,7 @@ To see a list of currently active issues, visit the [Known issues]({{< ref "/ngi
 
    Update the [network security group's inbound security rules](https://docs.microsoft.com/en-us/azure/virtual-network/tutorial-filter-network-traffic#create-security-rules) associated with the NGINXaaS deployment's subnet to allow inbound traffic for all listen ports in the NGINX configuration.
 
-   See our [Overview]({{< ref "/nginxaas-azure/getting-started/nginx-configuration/overview.md#nginx-listen-port-restrictions" >}}) document for limits on how many unique ports may be specified in a configuration and a list of restricted ports.
+   See our [NGINX configuration overview]({{< ref "/nginxaas-azure/getting-started/nginx-configuration/overview.md#nginx-listen-port-restrictions" >}}) document for limits on how many unique ports may be specified in a configuration and a list of restricted ports.
 
 
 ## March 16, 2023
