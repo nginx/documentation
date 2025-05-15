@@ -86,7 +86,7 @@ Follow these steps:
   - In the **Name** field, accept the default created by Azure, ngx-plus-1-ip. 
   - Click the <span style="background-color:#137ad1; color:white;">Ok</span>  button.
 
-When this guide was first published, the hourly cost for the six VMs was only $0.008. And this costlier than VMs with basic IP addresses. For current pricing, see the Microsoft documentation.
+When this guide was first published, the hourly cost for the six VMs was only $0.008. And this costlier than VMs with basic IP addresses. For current pricing, see the [Microsoft documentation](https://azure.microsoft.com/en-us/pricing/details/ip-addresses/).
 
    <a href="/nginx/images/azure-create-vm-networking.png"><img src="/nginx/images/azure-create-vm-networking.png" alt="screenshot of 'Networking' tab on Azure 'Create a virtual machine' page" width="1024" height="718" class="aligncenter size-full wp-image-64994" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
@@ -105,7 +105,7 @@ When this guide was first published, the hourly cost for the six VMs was only $0
    <a href="/nginx/images/azure-create-vm-deployment-complete.png"><img src="/nginx/images/azure-create-vm-deployment-complete.png" alt="screenshot of Azure 'CreateVM-Canonical' page" width="1024" height="634" class="aligncenter size-full image-64992" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
    <span id="create-vm_list"></span>
-7. If you’re creating 6 VMs for [Active-Active HA for NGINX Plus on Microsoft Azure Using the Azure Standard Load Balancer]({{< ref "high-availability-standard-load-balancer.md" >}}), use the following names:
+7. If you’re creating 6 VMs for [Active-Active HA for NGINX Plus on Microsoft Azure Using the Azure Standard Load Balancer]( https://docs.nginx.com/nginx/deployment-guides/microsoft-azure/high-availability-standard-load-balancer/), use the following names:
 
    - <span style="color:#666666; font-weight:bolder;">ngx-plus-1</span>
    - <span style="color:#666666; font-weight:bolder;">ngx-plus-2</span>
@@ -114,7 +114,7 @@ When this guide was first published, the hourly cost for the six VMs was only $0
    - <span style="color:#666666; font-weight:bolder;">ngx-oss-app2-1</span>
    - <span style="color:#666666; font-weight:bolder;">ngx-oss-app2-2</span>
 
-   For <span style="color:#666666; font-weight:bolder;">ngx-plus-2</span> (2nd NGINX Plus VM), repeat Steps 2 to 6 above or purchase a pre built VM from the [Microsoft Azure Marketplace](https://azuremarketplace.microsoft.com/en-us/marketplace/apps?search=NGINX%20Plus)).
+For <span style="color:#666666; font-weight:bolder;">ngx-plus-2</span> (2nd NGINX Plus VM), repeat Steps 2 to 6 above or purchase a pre built VM from the [Microsoft Azure Marketplace](https://azuremarketplace.microsoft.com/en-us/marketplace/apps?search=NGINX%20Plus)).
 
   NGINX Open Source VMs gives you two options: create each VM manually by following steps 2 to 6. Or, make one template VM (named  <span style="color:#666666; font-weight:bolder; white-space: nowrap;">nginx-oss</span>), [install the NGINX Open Source software](#install-nginx) on it, and clone that VM into three more copies using Azure image. For that, follow the instructions in [Optional: Creating an NGINX Open Source Image](#create-nginx-oss-image).
 
