@@ -115,17 +115,15 @@ See the [static-mode]({{< ref "/ngf/reference/cli-help.md#static-mode">}}) comma
   - `addresses`: Not supported.
   - `backendTLS`: Not supported.
 - `status`
-  - `addresses`: Partially supported (LoadBalancer and Pod IP).
+  - `addresses`: Partially supported (LoadBalancer and ClusterIP).
   - `conditions`: Supported (Condition/Status/Reason):
     - `Accepted/True/Accepted`
     - `Accepted/True/ListenersNotValid`
     - `Accepted/False/ListenersNotValid`
     - `Accepted/False/Invalid`
     - `Accepted/False/UnsupportedValue`: Custom reason for when a value of a field in a Gateway is invalid or not supported.
-    - `Accepted/False/GatewayConflict`: Custom reason for when the Gateway is ignored due to a conflicting Gateway.
     - `Programmed/True/Programmed`
     - `Programmed/False/Invalid`
-    - `Programmed/False/GatewayConflict`: Custom reason for when the Gateway is ignored due to a conflicting Gateway.
   - `listeners`
     - `name`: Supported.
     - `supportedKinds`: Supported.
@@ -137,7 +135,6 @@ See the [static-mode]({{< ref "/ngf/reference/cli-help.md#static-mode">}}) comma
       - `Accepted/False/ProtocolConflict`
       - `Accpeted/False/HostnameConflict`
       - `Accepted/False/UnsupportedValue`: Custom reason for when a value of a field in a Listener is invalid or not supported.
-      - `Accepted/False/GatewayConflict`: Custom reason for when the Gateway is ignored due to a conflicting Gateway.
       - `Programmed/True/Programmed`
       - `Programmed/False/Invalid`
       - `ResolvedRefs/True/ResolvedRefs`
