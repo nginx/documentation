@@ -77,7 +77,7 @@ helm install ngf oci://ghcr.io/nginx/charts/nginx-gateway-fabric --create-namesp
 To install the latest stable release of NGINX Gateway Fabric in the **nginx-gateway** namespace, run the following command:
 
 ```shell
-helm install ngf oci://ghcr.io/nginx/charts/nginx-gateway-fabric  --set nginx.image.repository=private-registry.nginx.com/nginx-gateway-fabric/nginx-plus --set nginx.plus=true --set serviceAccount.imagePullSecret=nginx-plus-registry-secret -n nginx-gateway
+helm install ngf oci://ghcr.io/nginx/charts/nginx-gateway-fabric  --set nginx.image.repository=private-registry.nginx.com/nginx-gateway-fabric/nginx-plus --set nginx.plus=true --set nginx.imagePullSecret=nginx-plus-registry-secret -n nginx-gateway
 ```
 
 {{% /tab %}}
@@ -121,7 +121,7 @@ helm install ngf . --create-namespace -n nginx-gateway
 To install the chart into the **nginx-gateway** namespace, run the following command:
 
 ```shell
-helm install ngf . --set nginx.image.repository=private-registry.nginx.com/nginx-gateway-fabric/nginx-plus --set nginx.plus=true --set serviceAccount.imagePullSecret=nginx-plus-registry-secret -n nginx-gateway
+helm install ngf . --set nginx.image.repository=private-registry.nginx.com/nginx-gateway-fabric/nginx-plus --set nginx.plus=true --set nginx.imagePullSecret=nginx-plus-registry-secret -n nginx-gateway
 ```
 
 {{% /tab %}}
@@ -260,7 +260,7 @@ To upgrade from NGINX OSS to NGINX Plus, update the Helm command to include the 
 {{< important >}} Ensure that you [Create the required JWT Secrets]({{< ref "/ngf/installation/nginx-plus-jwt.md" >}}) before installing.{{< /important >}}
 
 ```shell
-helm upgrade ngf oci://ghcr.io/nginx/charts/nginx-gateway-fabric  --set nginx.image.repository=private-registry.nginx.com/nginx-gateway-fabric/nginx-plus --set nginx.plus=true --set serviceAccount.imagePullSecret=nginx-plus-registry-secret -n nginx-gateway
+helm upgrade ngf oci://ghcr.io/nginx/charts/nginx-gateway-fabric  --set nginx.image.repository=private-registry.nginx.com/nginx-gateway-fabric/nginx-plus --set nginx.plus=true --set nginx.imagePullSecret=nginx-plus-registry-secret -n nginx-gateway
 ```
 
 If needed, replace `ngf` with your chosen release name.
