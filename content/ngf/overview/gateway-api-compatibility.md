@@ -90,7 +90,7 @@ NGINX Gateway Fabric supports a single GatewayClass resource configured with the
 
 {{< /bootstrap-table >}}
 
-NGINX Gateway Fabric supports a multiple Gateway resources. The Gateway resources must reference NGINX Gateway Fabric's corresponding GatewayClass.
+NGINX Gateway Fabric supports multiple Gateway resources. The Gateway resources must reference NGINX Gateway Fabric's corresponding GatewayClass.
 
 See the [static-mode]({{< ref "/ngf/reference/cli-help.md#static-mode">}}) command for more information.
 
@@ -98,7 +98,7 @@ See the [static-mode]({{< ref "/ngf/reference/cli-help.md#static-mode">}}) comma
 
 - `spec`
   - `gatewayClassName`: Supported.
-  - `infrastructure`: Partially Supported.
+  - `infrastructure`: Supported.
     - `parametersRef`: NginxProxy resource supported.
     - `labels`: Supported.
     - `annotations`: Supported.
