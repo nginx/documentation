@@ -44,6 +44,9 @@ The metrics are categorized by the namespace used in Azure Monitor. The dimensio
 | nginxaas.maxmind      | status         | count    | The status of any MaxMind license in use for downloading geoip2 databases. Refer to [License Health]({{< ref "/nginxaas-azure/quickstart/geoip2.md#monitoring" >}}) to learn more about the status dimension.                                                                                                                 | deployment      |
 | waf.enabled      |          | count | Current status of Web Application Firewall on the deployment.  | deployment      |
 | ports.used      |          | count | The number of listen ports used by the deployment during the aggregation interval. | deployment      |
+| system.listener_backlog.max| listen_addr, file_desc | count | The fullness (expressed as a fraction) of the fullest backlog queue. | deployment |
+| system.listener_backlog.length| listen_address, file_desc | count | The number of items in a specific backlog queue, labelled by listen address. | deployment |
+| system.listener_backlog.queue_limit| listen_address, file_desc | count | The capacity of a specific backlog queue, labelled by listen address. | deployment |
 
 {{</bootstrap-table>}}
 
@@ -250,9 +253,6 @@ The metrics are categorized by the namespace used in Azure Monitor. The dimensio
 | system.interface.packets_sent| interface | count | System Interface Packets Sent. | deployment |
 | system.interface.total_bytes| interface | count | System Interface Total Bytes,  sum of bytes_sent and bytes_rcvd. | deployment |
 | system.interface.egress_throughput| interface | count | System Interface Egress Throughput, i.e. bytes sent per second| deployment |
-| system.listener_backlog.max| listen_addr, file_desc | count | The fullness (expressed as a fraction) of the fullest backlog queue. | deployment |
-| system.listener_backlog.length| listen_address, file_desc | count | The number of items in a specific backlog queue, labelled by listen address. | deployment |
-| system.listener_backlog.queue_limit| listen_address, file_desc | count | The capacity of a specific backlog queue, labelled by listen address. | deployment |
 
 {{</bootstrap-table>}}
 
