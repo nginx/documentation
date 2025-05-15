@@ -9,7 +9,7 @@ type:
 - how-to
 ---
 
-In March, 2013 we released the first version of the [“nginx web server” plug‑in](http://newrelic.com/plugins/nginx-inc/13) for New Relic monitoring of the NGINX Open Source  software and F5 NGINX Plus. Since then, we’ve received lots of interest from users – we greatly appreciate it! The plug‑in continues to be one of the most popular New Relic plug‑ins, in spite of the few things that (we believe!) could be improved. If you don’t already have a New Relic account, [sign up](http://newrelic.com/).
+In March, 2013 we released the first version of the [“nginx web server” plug‑in](https://newrelic.com/instant-observability/nginx) for New Relic monitoring of the NGINX Open Source  software and F5 NGINX Plus. Since then, we’ve received lots of interest from users – we greatly appreciate it! The plug‑in continues to be one of the most popular New Relic plug‑ins, in spite of the few things that (we believe!) could be improved. If you don’t already have a New Relic account, [sign up](http://newrelic.com/).
 
 We selected Ruby as the base language for the original plug‑in, because the New Relic platform itself is written in Ruby, the API was not yet published, and many things were changing quickly.
 
@@ -29,7 +29,7 @@ Today, we are pleased to announce a major update of the NGINX plug‑in for New�
 
 ## Installation
 
-Download the [plug‑in and installation instructions](https://www.nginx.com/nr-plugin/).
+Download the [plug‑in and installation instructions](https://docs.newrelic.com/install/nginx/).
 
 ## Configuring the Plug‑In
 
