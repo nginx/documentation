@@ -38,7 +38,7 @@ When you work with such archives, consider the following:
 - Do not include files with secrets or personally identifying information.
 - We ignore SSL/TLS certificate files and keys.
   - If you import or export such files in archives, NGINX One Console does not include those files.
-- The size of the archive is limited to 10MB.  
+- The size of the archive is limited to 10 MB.  The size of uncompressed files is limited to 1 MB.
 
 {{< tip >}}
 
