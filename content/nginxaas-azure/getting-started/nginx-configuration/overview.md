@@ -63,13 +63,22 @@ Some directives cannot be overridden by the user provided configuration.
   |------------------ | ----------------------- | -----------------|
   | `user` | `nginx` | The `nginx` user has the correct permissions for accessing certificates, policy files and other auxfiles. |
   | `worker_processes` | `auto` | Set to `auto` to automatically set `worker_processes` to the number of CPU cores. |
-  | `worker_connections` |   <ul><li>Standard V2 plan `4000`</li><li>basic plan `3000`</li></ul> | To ensure reasonable performance of the NGINXaaS deployment for Standard V2 plan, the `worker_connections` is fixed at 400/NCU; for basic plan this is set lower. |
+  | `worker_connections` |   <ul><li>Standard V2 plan `4000`</li><li>basic plan `3000`</li></ul> | To ensure reasonable performance of the NGINXaaS deployment for Standard V2 plan, the `worker_connections` is fixed at 400/NCU; for basic plan this is set lower.<br><br> Changing the value in the config has no effect on the NGINX process in the deployment. |
   | `pid` | `/run/nginx/nginx.pid` | Set to this value to allow NGINXaaS to automatically manage the NGINX master process. |
   | `daemon` | `on` | Automatically set to `on` to allow NGINXaaS to manage the NGINX master process. |
   | `master_process` | `on` | This directive is intended for NGINX developers. |
   | `worker_cpu_affinity` | `auto` | The value `auto` allows binding worker processes automatically to available CPUs based on the current capacity of the deployment. |
 
 {{</bootstrap-table>}}
+
+
+## NGINX listen port restrictions
+
+- Due to port restrictions on Azure Load Balancer health probes, ports `19`, `21`, `70`, and `119` are not allowed. The NGINXaaS deployment can listen on all other ports.
+
+- The [Basic]({{< ref "/nginxaas-azure/billing/overview.md#basic-plan" >}}) plan (and the deprecated Standard (v1) plan) supports a maximum of 5 listen ports in the NGINX configuration. Configurations that specify over 5 unique ports are rejected.
+
+- The [Standard V2]({{< ref "/nginxaas-azure/billing/overview.md#standard-v2-plan" >}}) plan allow users to listen on more than 5 ports. The first five ports under this plan come at no extra cost and there are charges for each additional port utilized.
 
 ## Configuration directives list
 

@@ -40,6 +40,8 @@ terraform plan -var="storage_account_resource_group=myresourcegroup" -var="stora
 terraform apply plan.cache
 ```
 
+As NGINXaaS logs are stored in your storage, you can define the retention policy most appropriate for your needs.
+
 {{<note>}}Due to limitations imposed by Azure, if the destination chosen is an Azure Storage account, the resource has to be in the same region as the NGINXaaS deployment resource.
 {{</note>}}
 

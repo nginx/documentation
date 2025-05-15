@@ -114,7 +114,7 @@ An NGINXaaS deployment can now be gracefully updated to a new subnet with zero d
 
    Please review the [NGINX Plus Release 32 (R32)](https://docs.nginx.com/nginx/releases/#nginxplusrelease-32-r32) Release Notes carefully. If you have any concerns, it's recommended to validate your configuration against NGINX Plus R32 by setting up a test deployment using the **Preview** [Upgrade Channel]({{< ref "/nginxaas-azure/quickstart/upgrade-channels.md" >}}). See [these instructions]({{< ref "/nginxaas-azure/quickstart/recreate.md" >}}) on how to set up a deployment similar to your current one.
 
-   If you have any questions or concerns, please [contact us]({{< ref "/nginxaas-azure/troubleshooting/troubleshooting.md" >}}).
+   If you have any questions or concerns, please [contact us]({{< ref "/nginxaas-azure/get-help.md" >}}).
 
 ## July 30, 2024
 
@@ -182,7 +182,7 @@ An NGINXaaS deployment can now be gracefully updated to a new subnet with zero d
 
    Please review the [NGINX Plus Release 31 (R31)](https://docs.nginx.com/nginx/releases/#nginxplusrelease-31-r31) Release Notes carefully. If you have any concerns, it's recommended to validate your configuration against NGINX Plus R31 by setting up a test deployment using the **Preview** [Upgrade Channel]({{< ref "/nginxaas-azure/quickstart/upgrade-channels.md" >}}). See [these instructions]({{< ref "/nginxaas-azure/quickstart/recreate.md" >}}) on how to set up a deployment similar to your current one.
 
-   If you have any questions or concerns, please [contact us]({{< ref "/nginxaas-azure/troubleshooting/troubleshooting.md" >}}).
+   If you have any questions or concerns, please [contact us]({{< ref "/nginxaas-azure/get-help.md" >}}).
 
 ## May 20, 2024
 

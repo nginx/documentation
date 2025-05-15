@@ -34,14 +34,26 @@ Monitoring your application's performance is crucial for maintaining its reliabi
 2. In the navigation pane under **Settings**, select the **NGINX monitoring** section.
 3. Turn on the **Send metrics to Azure Monitor** setting.
 
-## View metrics with Azure Monitor metrics explorer
+## Review metrics
+
+Once you have enabled monitoring, you can view the metrics using the Azure portal or the Azure Monitor API.
+
+{{< note >}} NGINX Agent periodically gathers connection and request statistics using an internal HTTP request. An Azure service health probe checks for status using a TCP connection for each listen port in the NGINX configuration, incrementing the connection count for each port.
+
+This contributes to minimal traffic and should not affect these metrics significantly, but you might see an unexpected ammount of connections and requests.{{</note>}}
+
+{{< important >}}If some of your deployment's metrics are intermittently missing in Azure monitor, it may indicate that the deployment's underlying compute resources are being exhausted.
+
+Monitor the `system.cpu` metric to see the deployment's CPU utilization. If it's nearing 100%, consider increasing the deployment's NCU capacity. See the [Scaling Guidance]({{< ref "/nginxaas-azure/quickstart/scaling.md" >}}) documentation for more information.{{</important>}}
+
+### View metrics with Azure Monitor metrics explorer
 
 1. In the navigation pane under **Monitoring**, select the **Metrics** section to access the Azure Monitor metrics explorer for your NGINXaaS deployment.
 2. Refer to the [Azure Monitor metrics explorer](https://docs.microsoft.com/en-us/azure/azure-monitor/essentials/metrics-getting-started) documentation from Microsoft to learn how you can create queries.
 
 {{<note>}}Many of NGINX Plus's advanced statistics need to be enabled in the "nginx.conf" file before they will appear in the metrics explorer, for example "plus.http.request.bytes_*". Refer to [Gathering Data to Appear in Statistics](https://docs.nginx.com/nginx/admin-guide/monitoring/live-activity-monitoring/#gathering-data-to-appear-in-statistics) to learn more.{{</note>}}
 
-## Retrieve metrics through Azure Monitor API
+### Retrieve metrics through Azure Monitor API
 
 This section shows you how to effectively discover, gather and analyze NGINXaaS metrics through the Azure Monitor API.
 
