@@ -20,7 +20,7 @@ You can start the NGINXaaS deployment process by visiting the [Create NGINXaaS](
 1. Use the search field to find "NGINXaaS" in the Azure Portal. In the Services results, select **NGINXaaS**.
 1. Select **+ Create** on the **NGINXaaS** page to start the deployment process.
 
-   {{< note >}}It is not possible to select the instance type for an NGINXaaS deployment.NGINXaaS will deploy the right resources to ensure you get the right price-to-performance ratio.{{< /note >}}
+   {{< note >}}It is not possible to select the instance type for an NGINXaaS deployment. NGINXaaS will deploy the right resources to ensure you get the right price-to-performance ratio.{{< /note >}}
 
 ## Create a deployment
 
