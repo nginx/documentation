@@ -160,7 +160,7 @@ You can automatically install NGINX Open Source and NGINX Plus with Ansible. The
 <span id="automate-ansible"></span>
 #### Automating Installation with Ansible
 
-NGINX provides automatic setup files for Open Source and Plus versions on [Ansible Galaxy](https://galaxy.ansible.com/nginxinc/nginx/) and [GitHub](https://github.com/nginxinc/ansible-role-nginx). Use these steps to install and run it:
+NGINX provides automatic setup files for Open Source and Plus versions on [Ansible Galaxy](https://galaxy.ansible.com/nginxinc/nginx/) and [GitHub](https://github.com/nginxinc/ansible-role-nginx). Follow these steps to install and run:
 
 1. [Connect to the VM](#connect-vm).
 
