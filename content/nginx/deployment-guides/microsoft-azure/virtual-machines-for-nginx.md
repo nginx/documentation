@@ -199,7 +199,7 @@ NGINX provides automatic setup files for Open Source and Plus versions on [Ansib
 <span id="create-nginx-oss-image"></span>
 ## Optional: Creating an NGINX Open Source Image
 
-If you've installed NGINX Open Source correctly on one VM, and saved it as an Azure template, you can make VM copies as needed without the long installation processes. Follow these steps:
+If you've installed NGINX Open Source correctly on one VM, and saved it as an Azure template, you can make more copies without following long installation processes. Follow these steps:
 
 1. [Install NGINX Open Source](#install-nginx) on the source VM, if you haven't already.
 
@@ -229,7 +229,7 @@ If you've installed NGINX Open Source correctly on one VM, and saved it as an Az
 
 An Azure image takes only a few moments to deploy. When it’s ready, you can create VMs from it with NGINX Open Source already installed.
 
-1. Navigate to the Images page. You may type "images" in the search box in the Microsoft Azure header bar. Then, select that value in the Services section of the resulting drop‑down menu.
+1. Navigate to the Images page. To find it, type “images” in the Azure search bar. Then select Images from the services drop down. 
 
    <a href="/nginx/images/azure-create-image-images.png"><img src="/nginx/images/azure-create-image-images.png" alt="screenshot of Azure 'Images' page" width="1024" height="349" class="aligncenter size-full wp-image-64987" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
@@ -237,7 +237,7 @@ An Azure image takes only a few moments to deploy. When it’s ready, you can cr
 
    <a href="/nginx/images/azure-create-image-create-vm.png"><img src="/nginx/images/azure-create-image-create-vm.png" alt="screenshot of details page for Azure 'ngx-plus-1-image' image" width="1024" height="426" class="aligncenter size-full wp-image-64986" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
-The **Create a virtual machine** page that opens is the same as in Step 4 of Creating a Microsoft Azure Virtual Machine, except that some fields have hardcoded values derived from the image and the **Image** field has the name of the image instead of an operating system. Return to that [step](#create-vm_Basics) to complete the VM creation.
+The **Create a VM** page looks like Step 4 in Creating a Microsoft Azure Virtual Machine, but some fields are pre-filled from your image. The **Image** field now shows the image name instead of an OS. Go back to that [step](#create-vm_Basics) to finish creating your VM.
 
 ### Revision History
 
