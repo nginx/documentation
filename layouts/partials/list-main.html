@@ -19,7 +19,7 @@
         </div>
     </div>
 
-    {{ if or (lt .WordCount 1) (eq $PageTitle "F5 NGINX One Console") (eq $PageTitle "F5 NGINX App Protect DoS") (eq $PageTitle "F5 NGINX Plus")  }}
+    {{ if or (lt .WordCount 1) (eq $PageTitle "fF5 NGINX One Console") (eq $PageTitle "F5 NGINX App Protect DoS") (eq $PageTitle "F5 NGINX Plus")  }}
     <section>
         <div class="row">
             <div class="card-deck">
@@ -37,8 +37,16 @@
                             {{ if and (eq $PageTitle "F5 NGINX One Console") (eq .Title "Get started")}}
                                 <p style="padding-bottom: 10px;">See benefits from the NGINX One Console </p> 
                             {{ end }}
+<<<<<<< HEAD
                             {{ if and (eq $PageTitle "F5 NGINX One Console") (eq .Title "Draft new configurations")}}
                                 <p style="padding-bottom: 10px;">Work with Staged Configurations</p> 
+=======
+                            {{ if and (eq $PageTitle "F5 NGINX One Console") (eq .Title "Set up new instances")}}
+                                <p style="padding-bottom: 10px;">Collaborate with Staged Configurations</p> 
+                            {{ end }}
+                            {{ if and (eq $PageTitle "F5 NGINX One Console") (eq .Title "Secure your fleet")}}
+                                <p style="padding-bottom: 10px;">Configure alerts that match your security policies </p> 
+>>>>>>> 3dbfb304 (Sync with presentation)
                             {{ end }}
 <<<<<<< HEAD
 <!--                            {{ if and (eq $PageTitle "F5 NGINX One Console") (eq .Title "Secure your fleet")}}
@@ -56,8 +64,12 @@
                                 <p style="padding-bottom: 10px;">Assign responsibilities with role-based access control </p> 
 =======
                             {{ if and (eq $PageTitle "F5 NGINX One Console") (eq .Title "Monitor your certificates")}}
+<<<<<<< HEAD
                                 <p style="padding-bottom: 10px;">Detect and resolve expired SSL certs in minutes </p> 
 >>>>>>> 5e6d32b4 (new messages)
+=======
+                                <p style="padding-bottom: 10px;">Update your SSL certs before they expire </p> 
+>>>>>>> 3dbfb304 (Sync with presentation)
                             {{ end }}
 <<<<<<< HEAD
                             {{ if and (eq $PageTitle "F5 NGINX One Console") (eq .Title "Automate with the NGINX One API")}}
@@ -67,7 +79,7 @@
                                 <p style="padding-bottom: 10px;">Secure your systems with role-based access control </p> 
                             {{ end }}
                             {{ if and (eq $PageTitle "F5 NGINX One Console") (eq .Title "Change multiple instances with one push")}}
-                                <p style="padding-bottom: 10px;">Synchronize changes across cloud environments </p> 
+                                <p style="padding-bottom: 10px;">Simplify changes with Config Sync Groups </p> 
                             {{ end }}
                             {{ if and (eq $PageTitle "F5 NGINX One Console") (eq .Title "NGINX One API")}}
 <<<<<<< HEAD
