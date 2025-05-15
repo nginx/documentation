@@ -65,7 +65,8 @@ For Active-Active HA for NGINX Plus on Microsoft Azure Using the Azure Standard 
    - **Size** – <span style="color:#666666; font-weight:bolder;">B1s</span> (click <span style="color:#2d89d6; white-space: nowrap;">Select size</span> to access the <span style="font-weight:bold; white-space: nowrap;">Select a VM size</span> window, click the **B1s** row, and click the <span style="background-color:#137ad1; color:white;"> Select </span> button to return to the **Basics** tab)
    - **Authentication type** – <span style="color:#666666; font-weight:bolder; white-space: nowrap;">SSH public key</span>
    - **Username** – <span style="color:#666666; font-weight:bolder;">nginx_azure</span>
-   - **SSH public key source** – <span style="color:#666666; font-weight:bolder; white-space: nowrap;">Generate new key pair</span> (If you don’t want to generate a new key pair, use the existing key stored in your Azure account or an existing public key)
+   - **SSH public key source** – <span style="color:#666666; font-weight:bolder; white-space: nowrap;">Generate new key pair</span> 
+(If you don’t want to generate a new key pair, use the existing key stored in your Azure account or an existing public key)
    - **Key pair name** – <span style="color:#666666; font-weight:bolder; white-space: nowrap;">nginx_key</span>
    - **Public inbound ports** – <span style="color:#666666; font-weight:bolder; white-space: nowrap;">Allow selected ports</span>
    - **Select inbound ports** – Select from the drop-down menu: <span style="color:#666666; font-weight:bolder; white-space: nowrap;">SSH (22)</span> and <span style="color:#666666; font-weight:bolder; white-space: nowrap;">HTTP (80)</span>, plus <span style="color:#666666; font-weight:bolder; white-space: nowrap;">HTTPS (443)</span> if you plan to configure NGINX and NGINX Plus for SSL/TLS
@@ -89,7 +90,7 @@ When this guide was first published, the hourly cost for the six VMs was only $0
 
    <a href="/nginx/images/azure-create-vm-networking.png"><img src="/nginx/images/azure-create-vm-networking.png" alt="screenshot of 'Networking' tab on Azure 'Create a virtual machine' page" width="1024" height="718" class="aligncenter size-full wp-image-64994" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
-6. Here, you can select non-default values on the **Disks**, **Networking**, **Management**, **Advanced**, and **Tags** tabs. In our demo, for example, Premium SS Standard HDD for OS disk type on the **Disks** tab is more affordable than the default, Premium SSD. You can also create or apply tags to your VM via the **Tags** tab.
+6. Here, you can select non-default values on the **Disks**, **Networking**, **Management**, **Advanced**, and **Tags** tabs. By default, Azure might assign **Premium SSD** for the OS disk on the disk tab, but you can  choose a cheaper option like **Standard HDD**.
 
    After you've completed your changes, click the <span style="background-color:#137ad1; color:white; white-space: nowrap;"> Review + create </span> button at the bottom of the **Create a virtual machine** page.
 
