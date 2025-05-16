@@ -26,4 +26,4 @@ You can use F5 NGINX One Console API to manage your Staged Configurations. With 
 - [Bulk manage multiple Staged Configurations]({{< ref "/nginx-one/api/api-reference-guide/#operation/bulkStagedConfigs" >}})
   - Allows you to create, modify, or delete multiple Staged Configurations. Requires each `object_id`.
   
-  For several API endpoints, we ask for a `conf_path`. Make sure to set an absolute file path. If you make a REST call without an absolute file path, you'll see a 400 error message..
+  For several API endpoints, we ask for a `conf_path`. Make sure to set an absolute file path. If you make a REST call without an absolute file path, you'll see a 400 error message.
