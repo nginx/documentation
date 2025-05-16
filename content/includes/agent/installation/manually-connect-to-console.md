@@ -27,4 +27,8 @@ NGINX One Console to manage your NGINX instances.
    sudo systemctl restart nginx-agent
    ```
 
-1. Connect your NGINX instance to the [NGINX One Console](/nginx-one/how-to/nginx-configs/add-instance/#add-an-instance)
+1. Check the Agent log for `"Agent Connected"`
+
+   ```
+   sudo cat /var/log/nginx-agent/agent.log | grep "Agent connected"
+   ```
