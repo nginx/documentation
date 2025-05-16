@@ -90,19 +90,23 @@ NGINX Gateway Fabric currently supports a subset of all metrics available throug
 the supported metrics along with a small accompanying description.
 
 Metrics provided by NGINX Open Source include:
-- `nginx_http_connections`: NGINX-wide statistics describing HTTP connections.
-- `nginx_http_requests`: The total number of client requests received from clients.
+- `nginx_http_connection_count_connections`: The current number of connections.
+- `nginx_http_connections_total`: The total number of connections, since NGINX was last started or reloaded.
+- `nginx_http_request_count_requests`: The total number of client requests received, since the last collection interval.
+- `nginx_http_requests_total`: The total number of client requests received, since NGINX was last started or reloaded.
 
 In addition to the previous metrics provided by NGINX Open Source, NGINX Plus includes:
-- `nginx_config_reloads`: The total number of NGINX config reloads.
-- `nginx_http_response_status_responses_total`: The number of responses, grouped by status code range.
+- `nginx_config_reloads_total`: The total number of NGINX config reloads.
+- `nginx_http_response_count_responses`: The total number of HTTP responses sent to clients since the last collection interval, grouped by status code range.
+- `nginx_http_response_status_responses_total`: The total number of responses since NGINX was last started or reloaded, grouped by status code range.
 - `nginx_http_request_discarded_requests_total`: The total number of requests completed without sending a response.
 - `nginx_http_request_processing_count_requests`: The number of client requests that are currently being processed.
 - `nginx_http_request_byte_io_bytes_total`: The total number of HTTP byte IO.
 - `nginx_http_upstream_keepalive_count_connections`: The current number of idle keepalive connections per HTTP upstream.
+- `nginx_http_upstream_peer_connection_count_connections`: The average number of active connections per HTTP upstream peer.
 - `nginx_http_upstream_peer_byte_io_bytes_total`: The total number of byte IO per HTTP upstream peer.
 - `nginx_http_upstream_peer_count_peers`: The current count of peers on the HTTP upstream grouped by state.
-- `nginx_http_upstream_peer_fails_attempts`: The total number of unsuccessful attempts to communicate with the HTTP upstream peer.
+- `nginx_http_upstream_peer_fails_attempts_total`: The total number of unsuccessful attempts to communicate with the HTTP upstream peer.
 - `nginx_http_upstream_peer_header_time_milliseconds`: The average time to get the response header from the HTTP upstream peer.
 - `nginx_http_upstream_peer_health_checks_requests_total`: The total number of health check requests made to a HTTP upstream peer.
 - `nginx_http_upstream_peer_requests_total`: The total number of client requests forwarded to the HTTP upstream peer.
