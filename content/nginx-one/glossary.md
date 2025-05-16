@@ -10,6 +10,7 @@ type:
 
 This glossary defines terms used in the F5 NGINX One Console and F5 Distributed Cloud.
 
+## General terms
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 | Term        | Definition |
@@ -23,6 +24,10 @@ This glossary defines terms used in the F5 NGINX One Console and F5 Distributed 
 | **Staged Configurations** | Also known as **Staged Configs**. Allows you to save "work in progress." You can create it from scratch, an Instance, another Staged Config, or a Config Sync Group. It does _not_ have to be a working configuration until you publish it to an instance or a Config Sync Group. You can even manage your **Staged Configurations** through our [API]({{< ref "/nginx-one/api/api-reference-guide/#tag/StagedConfigs" >}}). |
 | **Tenant** | A tenant in F5 Distributed Cloud is an entity that owns a specific set of configuration and infrastructure. It is fundamental for isolation, meaning a tenant cannot access objects or infrastructure of other tenants. Tenants can be either individual or enterprise, with the latter allowing multiple users with role-based access control (RBAC). |
 {{</bootstrap-table>}}
+
+## NGINX App Protect WAF terminology
+
+{{< include "nap-waf/config/common/nginx-app-protect-waf-terminology.md" >}}
 
 ## Legal notice: Licensing agreements for NGINX products
 

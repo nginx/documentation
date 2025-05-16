@@ -19,6 +19,7 @@ F5 NGINX One Console makes it easy to manage NGINX instances across locations an
 [//]: # "You can add a maximum of three cards: any extra will not display."
 [//]: # "One card will take full width page: two will take half width each. Three will stack like an inverse pyramid."
 [//]: # "Some examples of content could be the latest release note, the most common install path, and a popular new feature."
+
 {{<card-layout>}}
   {{<card-section showAsCards="true" isFeaturedSection="true">}}
     {{<card title="Get started" titleUrl="/nginx-one/getting-started/" isFeatured="true" icon="unplug">}}
@@ -34,6 +35,9 @@ F5 NGINX One Console makes it easy to manage NGINX instances across locations an
       Work with data plane keys, containers, and proxy servers
     {{</card>}}
     {{<card title="Manage your NGINX instances" titleUrl="/nginx-one/nginx-configs/" >}}
+      Manage one instance or groups of instances. Monitor certificates. Set up metrics.
+    {{</card>}}
+    {{<card title="Secure with NGINX App Protect" titleUrl="/nginx-one/nap-integration/" >}}
       Manage one instance or groups of instances. Monitor certificates. Set up metrics.
     {{</card>}}
     {{<card title="Organize users with RBAC" titleUrl="/nginx-one/rbac/" >}}
@@ -58,10 +62,23 @@ F5 NGINX One Console makes it easy to manage NGINX instances across locations an
   {{</card-section>}}
 {{</card-layout>}}
 
+### More information
+
+{{<card-layout>}}
+  {{<card-section showAsCards="true" >}}
+    {{<card title="Glossary" titleUrl="/nginx-one/glossary/" >}}
+      See latest updates: New features, improvements, and bug fixes
+    {{</card>}}
+    {{<card title="Changelog" titleUrl="/nginx-one/changelog/" icon="clock-alert">}}
+      See latest updates: New features, improvements, and bug fixes
+    {{</card>}}
+  {{</card-section>}}
+{{</card-layout>}}
+
 ## NGINX One components
 [//]: # "You can add any extra content for the page here, such as additional cards, diagrams or text."
 
-{{< card-layout >}}
+{{<card-layout>}}
   {{< card-section title="Kubernetes Solutions">}}
     {{< card title="NGINX Ingress Controller" titleUrl="/nginx-ingress-controller/" brandIcon="NGINX-Ingress-Controller-product-icon">}}
       Kubernetes traffic management with API gateway, identity, and observability features.
