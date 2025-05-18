@@ -78,7 +78,7 @@ For Active-Active HA for NGINX Plus on Microsoft Azure Using the Azure Standard 
 
  Two major virtual machines run NGINX Plus behind an Azure Load Balancer. And both VMs require **Standard** SKU public IP addresses. By default, Azure assigns **Basic** SKU IPs. So, you must manually change this during VM setup.
 
-To avoid errors, allocate **Standard** public IP addresses to the VMs you’ll use in the deployment. Depending on your work load, you might need up to 6 VMs.
+To avoid errors, assign **Standard** public IP addresses to the VMs you’ll use in the deployment. Depending on your work load, you might need up to 6 VMs.
 Follow these steps:
   - Open the **Networking** tab on the **Create a virtual machine** window.
   - Click <span style="color:#2d89d6; white-space: nowrap;"> Create new </span> below the **Public IP** field.
@@ -114,7 +114,7 @@ When this guide was first published, the hourly cost for the six VMs was only $0
    - <span style="color:#666666; font-weight:bolder;">ngx-oss-app2-1</span>
    - <span style="color:#666666; font-weight:bolder;">ngx-oss-app2-2</span>
 
-For <span style="color:#666666; font-weight:bolder;">ngx-plus-2</span> (2nd NGINX Plus VM), repeat Steps 2 to 6 above or purchase a pre built VM from the [Microsoft Azure Marketplace](https://azuremarketplace.microsoft.com/en-us/marketplace/apps?search=NGINX%20Plus)).
+For <span style="color:#666666; font-weight:bolder;">ngx-plus-2</span> (2nd NGINX Plus VM), repeat Steps 2 to 6 above or get a pre built VM from the [Microsoft Azure Marketplace](https://azuremarketplace.microsoft.com/en-us/marketplace/apps?search=NGINX%20Plus)).
 
   NGINX Open Source VMs gives you two options: create each VM manually by following steps 2 to 6. Or, make one template VM (named  <span style="color:#666666; font-weight:bolder; white-space: nowrap;">nginx-oss</span>), [install the NGINX Open Source software](#install-nginx) on it, and clone that VM into three more copies using Azure image. For that, follow the instructions in [Optional: Creating an NGINX Open Source Image](#create-nginx-oss-image).
 
