@@ -76,7 +76,7 @@ With the Standard V2 Plan, NGINXaaS uses the following redundancy features to ke
 
 {{< img src="nginxaas-azure/n4a-data-plane-architecture.svg" alt="The diagram illustrates the architecture of F5 NGINXaaS for Azure, showing end users accessing a public IP that routes through a network security group within a customer's Azure subscription. This leads to a delegated subnet in a virtual network, which connects to a zone-redundant load balancer within the NGINXaaS subscription. The load balancer distributes traffic across NGINX Plus instances in multiple availability zones, ensuring scalability and redundancy." >}}
 
-- NGINXaaS uses new Azure networking capabilities to keep end-user traffic private. Each NGINX Plus instance passes traffic to  downstream services using an elastic network card (NIC) that exists inside your subscription. These NICs are injected into a delegated virtual network. A network security group ensures that the deployment is secured and inbound connections are allowed to the ports the NGINX service listens to.
+- NGINXaaS uses new Azure networking capabilities to keep end-user traffic private. A network security group ensures that the deployment is secured and inbound connections are allowed to the ports the NGINX service listens to.
 - You can restrict access to NGINXaaS by defining restriction rules at the Network Security Group level or using NGINX's access control list. To learn more, see the [NGINX module ngx_http_access_module](http://nginx.org/en/docs/http/ngx_http_access_module.html) documentation.
 - NGINX Plus instances are automatically upgraded to receive security patches and the latest stable NGINX Plus version.
 
