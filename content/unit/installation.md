@@ -71,34 +71,17 @@ they're available for:
 - Amazon Linux [AMI]({{< relref "/unit/installation.md#installation-amazon-ami" >}}),
   Amazon Linux [2]({{< relref "/unit/installation.md#installation-amazon-20lts" >}}),
   Amazon Linux [2023]({{< relref "/unit/installation.md#installation-amazon-2023" >}})
-- Debian [9]({{< relref "/unit/installation.md#installation-debian-9" >}}),
-  [10]({{< relref "/unit/installation.md#installation-debian-10" >}}),
-  [11]({{< relref "/unit/installation.md#installation-debian-11" >}}),
+- Debian [11]({{< relref "/unit/installation.md#installation-debian-11" >}}),
   [12]({{< relref "/unit/installation.md#installation-debian-12" >}})
-- Fedora [29]({{< relref "/unit/installation.md#installation-fedora-29" >}}),
-  [30]({{< relref "/unit/installation.md#installation-fedora-3130" >}}),
-  [31]({{< relref "/unit/installation.md#installation-fedora-3130" >}}),
-  [32]({{< relref "/unit/installation.md#installation-fedora-32" >}}),
-  [33]({{< relref "/unit/installation.md#installation-fedora-3433" >}}),
-  [34]({{< relref "/unit/installation.md#installation-fedora-3433" >}}),
-  [35]({{< relref "/unit/installation.md#installation-fedora-3635" >}}),
-  [36]({{< relref "/unit/installation.md#installation-fedora-3635" >}}),
-  [37]({{< relref "/unit/installation.md#installation-fedora-37" >}}),
-  [38]({{< relref "/unit/installation.md#installation-fedora-38" >}})
-- RHEL [6]({{< relref "/unit/installation.md#installation-rhel-6x" >}}),
-  [7]({{< relref "/unit/installation.md#installation-rhel-7x" >}}),
-  [8]({{< relref "/unit/installation.md#installation-rhel-8x" >}}),
+- Fedora [41]({{< relref "/unit/installation.md#installation-fedora-41" >}})
+- RHEL [8]({{< relref "/unit/installation.md#installation-rhel-8x" >}}),
   [9]({{< relref "/unit/installation.md#installation-rhel-9x" >}})
 - Ubuntu [16.04]({{< relref "/unit/installation.md#installation-ubuntu-1604" >}}),
   [18.04]({{< relref "/unit/installation.md#installation-ubuntu-1804" >}}),
-  [19.10]({{< relref "/unit/installation.md#installation-ubuntu-1910" >}}),
   [20.04]({{< relref "/unit/installation.md#installation-ubuntu-2004" >}}),
-  [20.10]({{< relref "/unit/installation.md#installation-ubuntu-2010" >}}),
   [21.04]({{< relref "/unit/installation.md#installation-ubuntu-2104" >}}),
-  [21.10]({{< relref "/unit/installation.md#installation-ubuntu-2110" >}}),
   [22.04]({{< relref "/unit/installation.md#installation-ubuntu-2204" >}}),
-  [22.10]({{< relref "/unit/installation.md#installation-ubuntu-2210" >}}),
-  [23.04]({{< relref "/unit/installation.md#installation-ubuntu-2304" >}})
+  [24.04]({{< relref "/unit/installation.md#installation-ubuntu-2404" >}})
 
 The packages include core executables, developer files,and support for individual
 languages.
@@ -247,19 +230,23 @@ Supported architecture: x86-64.
       gpgkey=https://unit.nginx.org/keys/nginx-keyring.gpg
       gpgcheck=1
       enabled=1
+   ```
 
 1. Install the core package
    and other packages you need:
 
    ```console
      # yum install unit
+   ```
 
    ```console
      # yum install unit-devel unit-jsc8 unit-perl unit-php  \ # unit-devel is required to install the Node.js module
             unit-python27 unit-python34 unit-python35 unit-python36
+   ```
 
    ```console
      # systemctl restart unit  # Necessary for Unit to pick up any changes in language module setup
+   ```
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
@@ -376,112 +363,6 @@ Supported architectures: arm64, x86-64.
 {{</bootstrap-table>}}
 
 {{%/tab%}}
-{{%tab name="10"%}}
-
-{{< warning >}}
-Unit's 1.28+ packages aren't built for Debian 10. This distribution is
-obsolete; please update.
-{{< /warning >}}
-
-Supported architectures: i386, x86-64.
-
-1. Download and save NGINX's signing key:
-
-```console
-  # curl --output /usr/share/keyrings/nginx-keyring.gpg  \
-         https://unit.nginx.org/keys/nginx-keyring.gpg
-
-This eliminates the
-"packages cannot be authenticated"
-warnings
-during installation.
-
-1. To configure Unit's repository,
-create the following file named
-**/etc/apt/sources.list.d/unit.list**:
-
-```none
-
-   deb [signed-by=/usr/share/keyrings/nginx-keyring.gpg] https://packages.nginx.org/unit/debian/ buster unit
-   deb-src [signed-by=/usr/share/keyrings/nginx-keyring.gpg] https://packages.nginx.org/unit/debian/ buster unit
-
-1. Install the core package
-and other packages you need:
-
-```console
-  # apt update
-
-```console
-  # apt install unit
-
-```console
-  # apt install unit-dev unit-jsc11 unit-perl  \ # unit-dev is required to install the Node.js module
-         unit-php unit-python2.7 unit-python3.7 unit-ruby
-
-```console
-  # systemctl restart unit  # Necessary for Unit to pick up any changes in language module setup
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-| Runtime details                                          | Description                                   |
-|-----------------------------------------------|-----------------------------------------------|
-| Control [socket]({{< relref "/unit/howto/security.md#sec-socket" >}}) | **/var/run/control.unit.sock** |
-| Log [file]({{< relref "/unit/troubleshooting.md#troubleshooting-log" >}}) | **/var/log/unit.log** |
-| Non-privileged [user and group]({{< relref "/unit/howto/security.md#security-apps" >}}) | **unit** |
-{{</bootstrap-table>}}
-
-{{%/tab%}}
-{{%tab name="9"%}}
-{{< warning >}}
-Unit's 1.28+ packages aren't built for Debian 9. This distribution is
-obsolete; please update.
-{{< /warning >}}
-
-Supported architectures: i386, x86-64.
-
-1. Download and save NGINX's signing key:
-
-   ```console
-   # curl --output /usr/share/keyrings/nginx-keyring.gpg  \
-         https://unit.nginx.org/keys/nginx-keyring.gpg
-   ```
-
-   This eliminates the "packages cannot be authenticated" warnings during installation.
-
-1. To configure Unit's repository, create the following file named
-   **/etc/apt/sources.list.d/unit.list**:
-
-   ```none
-   deb [signed-by=/usr/share/keyrings/nginx-keyring.gpg] https://packages.nginx.org/unit/debian/ stretch unit
-   deb-src [signed-by=/usr/share/keyrings/nginx-keyring.gpg] https://packages.nginx.org/unit/debian/ stretch unit
-   ```
-
-1. Install the core package and other packages you need:
-
-   ```console
-   # apt update
-   ```
-
-   ```console
-      # apt install unit
-   ```
-
-   ```console
-   # apt install unit-dev unit-jsc8 unit-perl  \ # unit-dev is required to install the Node.js module
-         unit-php unit-python2.7 unit-python3.5 unit-ruby
-
-   ```console
-   # systemctl restart unit  # Necessary for Unit to pick up any changes in language module setup
-   ```
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-| Runtime details                                          | Description                                   |
-|-----------------------------------------------|-----------------------------------------------|
-| Control [socket]({{< relref "/unit/howto/security.md#sec-socket" >}}) | **/var/run/control.unit.sock** |
-| Log [file]({{< relref "/unit/troubleshooting.md#troubleshooting-log" >}}) | **/var/log/unit.log** |
-| Non-privileged [user and group]({{< relref "/unit/howto/security.md#security-apps" >}}) | **unit** |
-{{</bootstrap-table>}}
-
-{{%/tab%}}
 {{</tabs>}}
 
 ---
@@ -489,7 +370,7 @@ Supported architectures: i386, x86-64.
 ### Fedora {#installation-precomp-fedora}
 
 {{<tabs name="Fedora">}}
-{{%tab name="38"%}}
+{{%tab name="41"%}}
 
 Supported architecture: x86-64.
 
@@ -508,16 +389,17 @@ Supported architecture: x86-64.
 1. Install the core package and other packages you need:
 
    ```console
-   # yum install unit
+   # dnf install unit
    ```
 
    ```console
-   # yum install unit-devel unit-jsc8 unit-jsc11 unit-perl  \ # unit-devel is required to install the Node.js module
+   # dnf install unit-devel unit-jsc17 unit-perl  \ # unit-devel is required to install the Node.js module
          unit-php unit-python311 unit-ruby
    ```
 
    ```console
    # systemctl restart unit  # Necessary for Unit to pick up any changes in language module setup
+   ```
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 | Runtime details                                          | Description                                   |
@@ -525,285 +407,6 @@ Supported architecture: x86-64.
 | Control [socket]({{< relref "/unit/howto/security.md#sec-socket" >}}) | **/var/run/unit/control.sock** |
 | Log [file]({{< relref "/unit/troubleshooting.md#troubleshooting-log" >}}) | **/var/log/unit/unit.log** |
 | Non-privileged [user and group]({{< relref "/unit/howto/security.md#security-apps" >}}) | **unit** |
-{{</bootstrap-table>}}
-
-{{%/tab%}}
-{{%tab name="37"%}}
-
-Supported architecture: x86-64.
-
-1. To configure Unit's repository, create the following file named
-   **/etc/yum.repos.d/unit.repo**:
-
-   ```ini
-   [unit]
-   name=unit repo
-   baseurl=https://packages.nginx.org/unit/fedora/$releasever/$basearch/
-   gpgkey=https://unit.nginx.org/keys/nginx-keyring.gpg
-   gpgcheck=1
-   enabled=1
-   ```
-
-1. Install the core package and other packages you need:
-
-   ```console
-   # yum install unit
-   ```
-
-   ```console
-   # yum install unit-devel unit-jsc8 unit-jsc11 unit-perl  \ # unit-devel is required to install the Node.js module
-         unit-php unit-python311 unit-ruby unit-wasm
-
-   ```console
-   # systemctl restart unit  # Necessary for Unit to pick up any changes in language module setup
-   ```
-
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-
-| Runtime details                                          | Description                                   |
-|-----------------------------------------------|-----------------------------------------------|
-| Control [socket]({{< relref "/unit/howto/security.md#sec-socket" >}}) | **/var/run/unit/control.sock** |
-| Log [file]({{< relref "/unit/troubleshooting.md#troubleshooting-log" >}}) | **/var/log/unit/unit.log** |
-| Non-privileged [user and group]({{< relref "/unit/howto/security.md#security-apps" >}}) | **unit** |
-
-{{</bootstrap-table>}}
-{{%/tab%}}
-{{%tab name="36, 35"%}}
-
-{{< warning >}}
-Unit's 1.31+ packages aren't built for Fedora 36 and Fedora 35.
-These distributions are obsolete;
-please update.
-{{< /warning >}}
-
-Supported architecture: x86-64.
-
-1. To configure Unit's repository, create the following file named
-   **/etc/yum.repos.d/unit.repo**:
-
-   ```ini
-   [unit]
-   name=unit repo
-   baseurl=https://packages.nginx.org/unit/fedora/$releasever/$basearch/
-   gpgkey=https://unit.nginx.org/keys/nginx-keyring.gpg
-   gpgcheck=1
-   enabled=1
-   ```
-
-1. Install the core package and other packages you need:
-
-   ```console
-   # yum install unit
-   ```
-
-   ```console
-   # yum install unit-devel unit-jsc8 unit-jsc11 unit-perl  \ # unit-devel is required to install the Node.js module
-         unit-php unit-python39 unit-python310 unit-ruby unit-wasm
-   ```
-
-   ```console
-   # systemctl restart unit  # Necessary for Unit to pick up any changes in language module setup
-   ```
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-
-| Runtime details                                          | Description                                   |
-|-----------------------------------------------|-----------------------------------------------|
-| Control [socket]({{< relref "/unit/howto/security.md#sec-socket" >}}) | **/var/run/unit/control.sock** |
-| Log [file]({{< relref "/unit/troubleshooting.md#troubleshooting-log" >}}) | **/var/log/unit/unit.log** |
-| Non-privileged [user and group]({{< relref "/unit/howto/security.md#security-apps" >}}) | **unit** |
-
-{{</bootstrap-table>}}
-
-{{%/tab%}}
-{{%tab name="34, 33"%}}
-
-{{< warning >}}
-Unit's 1.27+ packages aren't built for Fedora 33 and Fedora 34.
-These distributions are obsolete; please update.
-{{< /warning >}}
-
-Supported architecture: x86-64.
-
-1. To configure Unit's repository, create the following file named
-   **/etc/yum.repos.d/unit.repo**:
-
-   ```ini
-   [unit]
-   name=unit repo
-   baseurl=https://packages.nginx.org/unit/fedora/$releasever/$basearch/
-   gpgkey=https://unit.nginx.org/keys/nginx-keyring.gpg
-   gpgcheck=1
-   enabled=1
-   ```
-
-1. Install the core package and other packages you need:
-
-   ```console
-   # yum install unit
-   ```
-
-   ```console
-   # yum install unit-devel unit-jsc8 unit-jsc11 unit-perl  \ # unit-devel is required to install the Node.js module
-         unit-php unit-python39 unit-ruby
-   ```
-
-   ```console
-   # systemctl restart unit  # Necessary for Unit to pick up any changes in language module setup
-   ```
-
-   .. list-table::
-
-      * - Control [socket]({{< relref "/unit/howto/security.md#sec-socket" >}})
-         - **/var/run/unit/control.sock**
-
-      * - Log [file]({{< relref "/unit/troubleshooting.md#troubleshooting-log" >}})
-         - **/var/log/unit/unit.log**
-
-      * - Non-privileged [user and group]({{< relref "/unit/howto/security.md#security-apps" >}})
-         - **unit**
-
-{{%/tab%}}
-{{%tab name="32"%}}
-
-{{< warning >}}
-Unit's 1.24+ packages aren't built for Fedora 32. These distributions are obsolete;
-please update.
-{{< /warning >}}
-
-Supported architecture: x86-64.
-
-1. To configure Unit's repository, create the following file named
-   **/etc/yum.repos.d/unit.repo**:
-
-   ```ini
-   [unit]
-   name=unit repo
-   baseurl=https://packages.nginx.org/unit/fedora/$releasever/$basearch/
-   gpgkey=https://unit.nginx.org/keys/nginx-keyring.gpg
-   gpgcheck=1
-   enabled=1
-   ```
-
-1. Install the core package and other packages you need:
-
-   ```console
-   # yum install unit
-   ```
-
-   ```console
-   # yum install unit-devel unit-jsc8 unit-jsc11 unit-perl  \ # unit-devel is required to install the Node.js module
-         unit-php unit-python38 unit-ruby
-   ```
-
-   ```console
-   # systemctl restart unit  # Necessary for Unit to pick up any changes in language module setup
-   ```
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-
-| Runtime details                                          | Description                                   |
-|-----------------------------------------------|-----------------------------------------------|
-| Control [socket]({{< relref "/unit/howto/security.md#sec-socket" >}}) | **/var/run/unit/control.sock** |
-| Log [file]({{< relref "/unit/troubleshooting.md#troubleshooting-log" >}}) | **/var/log/unit/unit.log** |
-| Non-privileged [user and group]({{< relref "/unit/howto/security.md#security-apps" >}}) | **unit** |
-
-{{</bootstrap-table>}}
-
-{{%/tab%}}
-{{%tab name="31, 30"%}}
-
-{{< warning >}}
-Unit's 1.20+ packages aren't built for Fedora 30; 1.22+ packages aren't built for
-Fedora 31. These distributions are obsolete; please update.
-{{< /warning >}}
-
-Supported architecture: x86-64.
-
-1. To configure Unit's repository, create the following file named
-   **/etc/yum.repos.d/unit.repo**:
-
-   ```ini
-   [unit]
-   name=unit repo
-   baseurl=https://packages.nginx.org/unit/fedora/$releasever/$basearch/
-   gpgkey=https://unit.nginx.org/keys/nginx-keyring.gpg
-   gpgcheck=1
-   enabled=1
-   ```
-
-1. Install the core package and other packages you need:
-
-   ```console
-   # yum install unit
-   ```
-
-   ```console
-   # yum install unit-devel unit-jsc8 unit-jsc11 unit-perl  \ # unit-devel is required to install the Node.js module
-         unit-php unit-python27 unit-python37 unit-ruby
-   ```
-
-   ```console
-   # systemctl restart unit  # Necessary for Unit to pick up any changes in language module setup
-   ```
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-
-| Runtime details                                 | Description                    |
-|---------------------------------------|--------------------------------|
-| Control [socket]({{< relref "/unit/howto/security.md#sec-socket" >}})        | **/var/run/unit/control.sock** |
-| Log [file]({{< relref "/unit/troubleshooting.md#troubleshooting-log" >}})    | **/var/log/unit/unit.log**     |
-| Non-privileged [user and group]({{< relref "/unit/howto/security.md#security-apps" >}}) | **unit**                       |
-
-{{</bootstrap-table>}}
-
-{{%/tab%}}
-{{%tab name="29"%}}
-
-{{< warning >}}
-Unit's 1.20+ packages aren't built for Fedora 29.
-This distribution is obsolete;
-please update.
-{{< /warning >}}
-
-Supported architecture: x86-64.
-
-1. To configure Unit's repository, create the following file named
-   **/etc/yum.repos.d/unit.repo**:
-
-   ```ini
-   [unit]
-   name=unit repo
-   baseurl=https://packages.nginx.org/unit/fedora/$releasever/$basearch/
-   gpgkey=https://unit.nginx.org/keys/nginx-keyring.gpg
-   gpgcheck=1
-   enabled=1
-   ```
-
-1. Install the core package and other packages you need:
-
-   ```console
-   # yum install unit
-   ```
-
-   ```console
-   # yum install unit-devel unit-jsc8 unit-perl  \  # unit-devel is required to install the Node.js module
-         unit-php unit-python27 unit-python37 unit-ruby
-   ```
-
-   ```console
-   # systemctl restart unit  # Necessary for Unit to pick up any changes in language module setup
-   ```
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-
-| Runtime details                                 | Description                    |
-|---------------------------------------|--------------------------------|
-| Control [socket]({{< relref "/unit/howto/security.md#sec-socket" >}})        | **/var/run/unit/control.sock** |
-| Log [file]({{< relref "/unit/troubleshooting.md#troubleshooting-log" >}})    | **/var/log/unit/unit.log**     |
-| Non-privileged [user and group]({{< relref "/unit/howto/security.md#security-apps" >}}) | **unit**                       |
-
 {{</bootstrap-table>}}
 
 {{%/tab%}}
@@ -903,106 +506,17 @@ Supported architecture: x86-64.
 {{</bootstrap-table>}}
 
 {{%/tab%}}
-{{%tab name="7.x"%}}
-
-{{< note >}}
-Official packages for CentOS 7.x are also available.
-{{< /note >}}
-
-Supported architecture: x86-64.
-
-1. To configure Unit's repository, create the following file named
-   **/etc/yum.repos.d/unit.repo**:
-
-   ```ini
-   [unit]
-   name=unit repo
-   baseurl=https://packages.nginx.org/unit/rhel/$releasever/$basearch/
-   gpgkey=https://unit.nginx.org/keys/nginx-keyring.gpg
-   gpgcheck=1
-   enabled=1
-   ```
-
-1. Install the core package and other packages you need:
-
-   ```console
-   # yum install unit
-   ```
-
-   ```console
-   # yum install unit-devel unit-jsc8 unit-jsc11  \  # unit-devel is required to install the Node.js module
-         unit-perl unit-php unit-python27 unit-python36
-   ```
-
-   ```console
-   # systemctl restart unit  # Necessary for Unit to pick up any changes in language module setup
-   ```
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-
-| Runtime details                                 | Description                    |
-|---------------------------------------|--------------------------------|
-| Control [socket]({{< relref "/unit/howto/security.md#sec-socket" >}})        | **/var/run/unit/control.sock** |
-| Log [file]({{< relref "/unit/troubleshooting.md#troubleshooting-log" >}})    | **/var/log/unit/unit.log**     |
-| Non-privileged [user and group]({{< relref "/unit/howto/security.md#security-apps" >}}) | **unit**                       |
-
-{{</bootstrap-table>}}
-
-{{%/tab%}}
-{{%tab name="6.x"%}}
-
-{{< warning >}}
-Unit's 1.20+ packages aren't built for RHEL 6. This distribution is obsolete;
-please update.
-{{< /warning >}}
-
-Supported architectures: i386, x86-64.
-
-1. To configure Unit's repository, create the following file named
-   **/etc/yum.repos.d/unit.repo**:
-
-   ```ini
-   [unit]
-   name=unit repo
-   baseurl=https://packages.nginx.org/unit/rhel/$releasever/$basearch/
-   gpgkey=https://unit.nginx.org/keys/nginx-keyring.gpg
-   gpgcheck=1
-   enabled=1
-   ```
-
-1. Install the core package and other packages you need:
-
-   ```console
-   # yum install unit
-   ```
-
-   ```console
-   # yum install unit-devel unit-jsc8 unit-perl  \  # unit-devel is required to install the Node.js module
-         unit-php unit-python
-   ```
-
-   ```console
-   # systemctl restart unit  # Necessary for Unit to pick up any changes in language module setup
-   ```
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-
-| Runtime details                                          | Description                    |
-|-----------------------------------------------|--------------------------------|
-| Control [socket]({{< relref "/unit/howto/security.md#sec-socket" >}})        | **/var/run/unit/control.sock** |
-| Log [file]({{< relref "/unit/troubleshooting.md#troubleshooting-log" >}})        | **/var/log/unit/unit.log**     |
-| Non-privileged [user and group]({{< relref "/unit/howto/security.md#security-apps" >}}) | **unit**                       |
-
-{{</bootstrap-table>}}
-
-{{%/tab%}}
 {{</tabs>}}
+
+---
+
+{{< note >}}Use these steps for binary-compatible distributions: AlmaLinux, CentOS, Oracle Linux, or Rocky Linux.{{< /note >}}
 
 ---
 
 ### Ubuntu {#installation-precomp-ubuntu}
 {{<tabs name="Ubuntu">}}
-{{%tab name="23.04"%}}
+{{%tab name="24.04"%}}
 
 Supported architectures: arm64, x86-64.
 
@@ -1020,8 +534,10 @@ Supported architectures: arm64, x86-64.
    **/etc/apt/sources.list.d/unit.list**:
 
    ```none
-   deb [signed-by=/usr/share/keyrings/nginx-keyring.gpg] https://packages.nginx.org/unit/ubuntu/ lunar unit
-   deb-src [signed-by=/usr/share/keyrings/nginx-keyring.gpg] https://packages.nginx.org/unit/ubuntu/ lunar unit
+   deb [signed-by=/usr/share/keyrings/nginx-keyring.gpg] https://packages.nginx.org/unit/ubuntu/ noble unit
+   deb-src [signed-by=/usr/share/keyrings/nginx-keyring.gpg] https://packages.nginx.org/unit/ubuntu/ noble unit
+   ```
+
 
 1. Install the core package and other packages you need:
 
@@ -1034,64 +550,8 @@ Supported architectures: arm64, x86-64.
    ```
 
    ```console
-      # apt install unit-dev unit-go unit-jsc11 unit-jsc17 unit-jsc18 unit-jsc19 unit-jsc20  \ # unit-dev is required to install the Node.js module and build Go apps
-                  unit-perl unit-php unit-python3.11 unit-ruby unit-wasm
-   ```
-
-   ```console
-   # systemctl restart unit  # Necessary for Unit to pick up any changes in language module setup
-   ```
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-
-| Runtime details                                          | Description                    |
-|-----------------------------------------------|--------------------------------|
-| Control [socket]({{< relref "/unit/howto/security.md#sec-socket" >}}) | **/var/run/control.unit.sock** |
-| Log [file]({{< relref "/unit/troubleshooting.md#troubleshooting-log" >}})        | **/var/log/unit.log**          |
-| Non-privileged [user and group]({{< relref "/unit/howto/security.md#security-apps" >}}) | **unit**                       |
-
-{{</bootstrap-table>}}
-
-{{%/tab%}}
-{{%tab name="22.10"%}}
-
-{{< warning >}}
-Unit's 1.31+ packages aren't built for Ubuntu 22.10. This distribution is obsolete;
-please update.
-{{< /warning >}}
-
-Supported architectures: arm64, x86-64.
-
-1. Download and save NGINX's signing key:
-
-   ```console
-   # curl --output /usr/share/keyrings/nginx-keyring.gpg  \
-         https://unit.nginx.org/keys/nginx-keyring.gpg
-   ```
-
-   This eliminates the "packages cannot be authenticated" warnings
-   during installation.
-
-1. To configure Unit's repository, create the following file named
-   **/etc/apt/sources.list.d/unit.list**:
-
-   ```none
-         deb [signed-by=/usr/share/keyrings/nginx-keyring.gpg] https://packages.nginx.org/unit/ubuntu/ kinetic unit
-         deb-src [signed-by=/usr/share/keyrings/nginx-keyring.gpg] https://packages.nginx.org/unit/ubuntu/ kinetic unit
-
-1. Install the core package and other packages you need:
-
-   ```console
-   # apt update
-   ```
-
-   ```console
-   # apt install unit
-   ```
-
-   ```console
-   # apt install unit-dev unit-go unit-jsc11 unit-jsc17 unit-jsc18 unit-jsc19  \ # unit-dev is required to install the Node.js module and build Go apps
-                  unit-perl unit-php unit-python2.7 unit-python3.10 unit-ruby unit-wasm
+      # apt install unit-dev unit-go unit-jsc11 unit-jsc17 unit-jsc21  \ # unit-dev is required to install the Node.js module and build Go apps
+                  unit-perl unit-php unit-python3.12 unit-ruby unit-wasm
    ```
 
    ```console
@@ -1127,8 +587,9 @@ Supported architectures: arm64, x86-64.
    **/etc/apt/sources.list.d/unit.list**:
 
    ```none
-         deb [signed-by=/usr/share/keyrings/nginx-keyring.gpg] https://packages.nginx.org/unit/ubuntu/ jammy unit
-         deb-src [signed-by=/usr/share/keyrings/nginx-keyring.gpg] https://packages.nginx.org/unit/ubuntu/ jammy unit
+   deb [signed-by=/usr/share/keyrings/nginx-keyring.gpg] https://packages.nginx.org/unit/ubuntu/ jammy unit
+   deb-src [signed-by=/usr/share/keyrings/nginx-keyring.gpg] https://packages.nginx.org/unit/ubuntu/ jammy unit
+   ```
 
 1. Install the core package and other packages you need:
 
@@ -1143,173 +604,6 @@ Supported architectures: arm64, x86-64.
    ```console
    # apt install unit-dev unit-go unit-jsc11 unit-jsc16 unit-jsc17 unit-jsc18  \ # unit-dev is required to install the Node.js module and build Go apps
                   unit-perl unit-php unit-python2.7 unit-python3.10 unit-ruby unit-wasm
-   ```
-
-   ```console
-   # systemctl restart unit  # Necessary for Unit to pick up any changes in language module setup
-   ```
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-
-| Runtime details                                          | Description                    |
-|-----------------------------------------------|--------------------------------|
-| Control [socket]({{< relref "/unit/howto/security.md#sec-socket" >}}) | **/var/run/control.unit.sock** |
-| Log [file]({{< relref "/unit/troubleshooting.md#troubleshooting-log" >}})        | **/var/log/unit.log**          |
-| Non-privileged [user and group]({{< relref "/unit/howto/security.md#security-apps" >}}) | **unit**                       |
-
-{{</bootstrap-table>}}
-
-{{%/tab%}}
-{{%tab name="21.10"%}}
-
-{{< warning >}}
-Unit's 1.28+ packages aren't built for Ubuntu 21.10. This distribution is obsolete;
-please update.
-{{< /warning >}}
-
-Supported architectures: arm64, x86-64.
-
-1. Download and save NGINX's signing key:
-
-   ```console
-   # curl --output /usr/share/keyrings/nginx-keyring.gpg  \
-         https://unit.nginx.org/keys/nginx-keyring.gpg
-   ```
-
-   This eliminates the "packages cannot be authenticated" warnings
-   during installation.
-
-   1. To configure Unit's repository, create the following file named
-      **/etc/apt/sources.list.d/unit.list**:
-
-      ```none
-            deb [signed-by=/usr/share/keyrings/nginx-keyring.gpg] https://packages.nginx.org/unit/ubuntu/ impish unit
-            deb-src [signed-by=/usr/share/keyrings/nginx-keyring.gpg] https://packages.nginx.org/unit/ubuntu/ impish unit
-
-   1. Install the core package and other packages you need:
-
-      ```console
-      # apt update
-      ```
-
-      ```console
-      # apt install unit
-      ```
-
-      ```console
-            # apt install unit-dev unit-jsc11 unit-jsc16 unit-jsc17 unit-jsc18  \ # unit-dev is required to install the Node.js module
-                          unit-perl unit-php unit-python2.7 unit-python3.9 unit-python3.10 unit-ruby
-
-   ```console
-   # systemctl restart unit  # Necessary for Unit to pick up any changes in language module setup
-   ```
-
-      Runtime details:
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-
-| Runtime details                                          | Description                    |
-|-----------------------------------------------|--------------------------------|
-| Control [socket]({{< relref "/unit/howto/security.md#sec-socket" >}}) | **/var/run/control.unit.sock** |
-| Log [file]({{< relref "/unit/troubleshooting.md#troubleshooting-log" >}})        | **/var/log/unit.log**          |
-| Non-privileged [user and group]({{< relref "/unit/howto/security.md#security-apps" >}}) | **unit**                       |
-
-{{</bootstrap-table>}}
-
-
-
-   .. tab:: 21.04
-
-{{< warning >}}
-Unit's 1.27+ packages aren't built for Ubuntu 21.04. This distribution is obsolete;
-please update.
-{{< /warning >}}
-
-Supported architectures: arm64, x86-64.
-
-1. Download and save NGINX's signing key:
-
-   ```console
-   # curl --output /usr/share/keyrings/nginx-keyring.gpg  \
-         https://unit.nginx.org/keys/nginx-keyring.gpg
-   ```
-
-   This eliminates the "packages cannot be authenticated" warnings
-   during installation.
-
-1. To configure Unit's repository, create the following file named
-   **/etc/apt/sources.list.d/unit.list**:
-
-   ```none
-   deb [signed-by=/usr/share/keyrings/nginx-keyring.gpg] https://packages.nginx.org/unit/ubuntu/ hirsute unit
-   deb-src [signed-by=/usr/share/keyrings/nginx-keyring.gpg] https://packages.nginx.org/unit/ubuntu/ hirsute unit
-
-1. Install the core package and other packages you need:
-
-   ```console
-   # apt update
-   ```
-
-   ```console
-   # apt install unit
-   ```
-
-   ```console
-   # apt install unit-dev unit-jsc11 unit-jsc15 unit-jsc16 unit-jsc17  \ # unit-dev is required to install the Node.js module
-                  unit-perl unit-php unit-python2.7 unit-python3.9 unit-ruby
-   # systemctl restart unit  # Necessary for Unit to pick up any changes in language module setup
-   ```
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-
-| Runtime details                                          | Description                    |
-|-----------------------------------------------|--------------------------------|
-| Control [socket]({{< relref "/unit/howto/security.md#sec-socket" >}}) | **/var/run/control.unit.sock** |
-| Log [file]({{< relref "/unit/troubleshooting.md#troubleshooting-log" >}})        | **/var/log/unit.log**          |
-| Non-privileged [user and group]({{< relref "/unit/howto/security.md#security-apps" >}}) | **unit**                       |
-
-{{</bootstrap-table>}}
-
-{{%/tab%}}
-{{%tab name="20.10"%}}
-
-{{< warning >}}
-Unit's 1.25+ packages aren't built for Ubuntu 20.10. This distribution is obsolete;
-please update.
-{{< /warning >}}
-
-Supported architectures: arm64, x86-64.
-
-1. Download and save NGINX's signing key:
-
-   ```console
-   # curl --output /usr/share/keyrings/nginx-keyring.gpg  \
-         https://unit.nginx.org/keys/nginx-keyring.gpg
-   ```
-
-   This eliminates the "packages cannot be authenticated" warnings
-   during installation.
-
-1. To configure Unit's repository, create the following file named
-   **/etc/apt/sources.list.d/unit.list**:
-
-   ```none
-         deb [signed-by=/usr/share/keyrings/nginx-keyring.gpg] https://packages.nginx.org/unit/ubuntu/ groovy unit
-         deb-src [signed-by=/usr/share/keyrings/nginx-keyring.gpg] https://packages.nginx.org/unit/ubuntu/ groovy unit
-
-1. Install the core package and other packages you need:
-
-   ```console
-   # apt update
-   ```
-
-   ```console
-   # apt install unit
-   ```
-
-   ```console
-   # apt install unit-dev unit-jsc11 unit-jsc13 unit-jsc14 unit-jsc15  \ # unit-dev is required to install the Node.js module
-                  unit-perl unit-php unit-python3.8 unit-ruby
    ```
 
    ```console
@@ -1345,8 +639,9 @@ Supported architectures: arm64, x86-64.
    **/etc/apt/sources.list.d/unit.list**:
 
    ```none
-         deb [signed-by=/usr/share/keyrings/nginx-keyring.gpg] https://packages.nginx.org/unit/ubuntu/ focal unit
-         deb-src [signed-by=/usr/share/keyrings/nginx-keyring.gpg] https://packages.nginx.org/unit/ubuntu/ focal unit
+   deb [signed-by=/usr/share/keyrings/nginx-keyring.gpg] https://packages.nginx.org/unit/ubuntu/ focal unit
+   deb-src [signed-by=/usr/share/keyrings/nginx-keyring.gpg] https://packages.nginx.org/unit/ubuntu/ focal unit
+   ```
 
 1. Install the core package and other packages you need:
 
@@ -1361,62 +656,6 @@ Supported architectures: arm64, x86-64.
    ```console
    # apt install unit-dev unit-jsc11 unit-perl  \ # unit-dev is required to install the Node.js module
          unit-php unit-python2.7 unit-python3.8 unit-ruby unit-wasm
-   ```
-
-   ```console
-   # systemctl restart unit  # Necessary for Unit to pick up any changes in language module setup
-   ```
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-
-| Runtime details                                          | Description                    |
-|-----------------------------------------------|--------------------------------|
-| Control [socket]({{< relref "/unit/howto/security.md#sec-socket" >}}) | **/var/run/control.unit.sock** |
-| Log [file]({{< relref "/unit/troubleshooting.md#troubleshooting-log" >}})        | **/var/log/unit.log**          |
-| Non-privileged [user and group]({{< relref "/unit/howto/security.md#security-apps" >}}) | **unit**                       |
-
-{{</bootstrap-table>}}
-
-{{%/tab%}}
-{{%tab name="19.10"%}}
-
-{{< warning >}}
-Unit's 1.20+ packages aren't built for Ubuntu 19.10. This distribution is obsolete;
-please update.
-{{< /warning >}}
-
-Supported architecture: x86-64.
-
-1. Download and save NGINX's signing key:
-
-   ```console
-   # curl --output /usr/share/keyrings/nginx-keyring.gpg  \
-         https://unit.nginx.org/keys/nginx-keyring.gpg
-   ```
-
-   This eliminates the "packages cannot be authenticated" warnings
-   during installation.
-
-1. To configure Unit's repository, create the following file named
-   **/etc/apt/sources.list.d/unit.list**:
-
-   ```none
-         deb [signed-by=/usr/share/keyrings/nginx-keyring.gpg] https://packages.nginx.org/unit/ubuntu/ eoan unit
-         deb-src [signed-by=/usr/share/keyrings/nginx-keyring.gpg] https://packages.nginx.org/unit/ubuntu/ eoan unit
-
-1. Install the core package and other packages you need:
-
-   ```console
-   # apt update
-   ```
-
-   ```console
-   # apt install unit
-   ```
-
-   ```console
-   # apt install unit-dev unit-jsc11 unit-perl  \ # unit-dev is required to install the Node.js module
-         unit-php unit-python2.7 unit-python3.7 unit-python3.8 unit-ruby
    ```
 
    ```console
@@ -1457,8 +696,9 @@ Supported architectures: arm64, x86-64.
    **/etc/apt/sources.list.d/unit.list**:
 
    ```none
-         deb [signed-by=/usr/share/keyrings/nginx-keyring.gpg] https://packages.nginx.org/unit/ubuntu/ bionic unit
-         deb-src [signed-by=/usr/share/keyrings/nginx-keyring.gpg] https://packages.nginx.org/unit/ubuntu/ bionic unit
+   deb [signed-by=/usr/share/keyrings/nginx-keyring.gpg] https://packages.nginx.org/unit/ubuntu/ bionic unit
+   deb-src [signed-by=/usr/share/keyrings/nginx-keyring.gpg] https://packages.nginx.org/unit/ubuntu/ bionic unit
+   ```
 
 1. Install the core package and other packages you need:
 
@@ -1557,7 +797,7 @@ To install Unit on macOS, use the official Homebrew
 [tap](https://github.com/nginx/homebrew-unit).
 
 ```console
-   $ brew install nginx/unit/unit
+$ brew install nginx/unit/unit
 ```
 
 This deploys the core Unit binary and the prerequisites for the
@@ -2377,6 +1617,7 @@ After that, restart Unit:
 
    ```console
    # rcctl disable unit # Disable Unit's automatic startup
+   ```
 
 {{%/tab%}}
 {{%tab name="Remi's RPM" %}}
@@ -2642,18 +1883,13 @@ in the container's **/docker-entrypoint.d/** directory:
 {{</bootstrap-table>}}
 
 
-The script warns about any other file types
-in **/docker-entrypoint.d/**.
+The script warns about any other file types in **/docker-entrypoint.d/**.
 
-This mechanism enables
-customizing your containers at startup,
-reusing configurations,
-and automating workflows to reduce manual effort.
-To use the feature,
-add **COPY** directives for certificate bundles,
-configuration fragments,
-and shell scripts
-to your **Dockerfile** derived from an official image:
+This mechanism enables customizing your containers at startup,
+reusing configurations, and automating workflows to reduce manual effort.
+To use the feature, add **COPY** directives for certificate bundles,
+configuration fragments, and shell scripts to your **Dockerfile** derived from
+an official image:
 
 ```dockerfile
 FROM unit:{{< param "unitversion" >}}-minimal
