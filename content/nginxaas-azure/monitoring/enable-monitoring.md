@@ -40,7 +40,7 @@ Once you have enabled monitoring, you can view the metrics using the Azure porta
 
 {{< note >}} NGINX Agent periodically gathers connection and request statistics using an internal HTTP request. An Azure service health probe checks for status using a TCP connection for each listen port in the NGINX configuration, incrementing the connection count for each port.
 
-This contributes to minimal traffic and should not affect these metrics significantly, but you might see an unexpected ammount of connections and requests.{{</note>}}
+This contributes to minimal traffic and should not affect these metrics significantly, but you might see an unexpected number of connections and requests.{{</note>}}
 
 {{< important >}}If some of your deployment's metrics are intermittently missing in Azure monitor, it may indicate that the deployment's underlying compute resources are being exhausted.
 
