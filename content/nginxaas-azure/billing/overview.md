@@ -8,7 +8,7 @@ type:
 - concept
 ---
 
-NGINXaaS for Azure is deployed into your Azure subscription. Your NGINXaaS deployment resource is visible within your subscription, while the underlying compute infrastructure is managed by F5 and not exposed in your Azure resource list. This separation enables simplified management while maintaining visibility over your service instance.
+NGINXaaS for Azure is deployed into your Azure subscription. Your NGINXaaS deployment resource is visible within your subscription, while the underlying infrastructure is managed by F5 and is abstracted away from you.
 
 ## Pricing plans
 
