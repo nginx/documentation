@@ -97,7 +97,7 @@ You can start the NGINXaaS deployment process by visiting the [Create NGINXaaS](
 
 1. On the Review + create tab, your configuration is validated. You can review the selections made in the previous screens.
 
-1. After validation has succeeded and you've reviewed the terms, select **Create** for Azure to start the deployment. The NGINXaaS deployment usually takes less than 5 minutes to complete.
+1. After validation has succeeded and you've reviewed the terms, select **Create** for Azure to start the deployment.
 
 1. After the deployment finishes, select the NGINX deployment from the list (with "Type: NGINXaaS") to view information about the deployed resource, including the deployment IP address.
 
