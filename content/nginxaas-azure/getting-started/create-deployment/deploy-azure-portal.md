@@ -112,7 +112,7 @@ You can start the NGINXaaS deployment process by visiting the [Create NGINXaaS](
 
    {{< img src="nginxaas-azure/test-deployment.png" alt="NGINXaaS Overview page showing the IP address of the deployment in the Essentials section." >}}
 
-{{< important >}}It's not possible to manually stop or start NGINXaaS. If necessary, you have the option to delete the deployment and re-deploy at a future date.
+{{< note >}}It's not possible to manually stop or start NGINXaaS. If necessary, you have the option to delete the deployment and re-deploy at a future date.{{< /note >}}
 
 
 ## What's next
