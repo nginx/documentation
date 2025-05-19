@@ -44,7 +44,7 @@ This contributes to minimal traffic and should not affect these metrics signific
 
 {{< important >}}If some of your deployment's metrics are intermittently missing in Azure monitor, it may indicate that the underlying resources for your deployment are being exhausted.
 
-Monitor the `system.cpu` metric to see the deployment's CPU utilization. If it's nearing 100%, consider increasing the deployment's NCU capacity. See the [Scaling Guidance]({{< ref "/nginxaas-azure/quickstart/scaling.md" >}}) documentation for more information.{{</important>}}
+Monitor the `nginxaas.capacity.percentage` metric to see the deployment's resource utilization. If it's nearing 100%, consider increasing the deployment's NCU capacity. See the [Scaling Guidance]({{< ref "/nginxaas-azure/quickstart/scaling.md" >}}) documentation for more information.{{</important>}}
 
 ### View metrics with Azure Monitor metrics explorer
 
