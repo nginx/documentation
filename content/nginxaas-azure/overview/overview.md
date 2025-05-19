@@ -16,7 +16,7 @@ NGINXaaS for Azure is available in the Azure Marketplace.
 NGINXaaS for Azure is powered by [NGINX Plus](https://www.nginx.com/products/nginx/), which extends NGINX Open Source with advanced functionality and provides customers with a complete application delivery solution. Initial use cases covered by NGINXaaS include L4 TCP and L7 HTTP load balancing and reverse proxy which can be managed through various Azure management tools.
 NGINXaaS allows you to provision distinct deployments as per your business or technical requirements.
 
-NGINXaaS handles the NGINX Plus license management automatically
+NGINXaaS handles the NGINX Plus license management automatically.
 
 ## Capabilities
 
@@ -56,7 +56,7 @@ NGINXaaS for Azure is supported in the following regions:
 
 - Azure management tools (API, CLI, portal, terraform) work with NGINXaaS to create, update, and delete deployments
 - Each NGINXaaS deployment has dedicated network and compute resources. There is no possibility of [noisy neighbor problems](https://learn.microsoft.com/en-us/azure/architecture/antipatterns/noisy-neighbor/noisy-neighbor) or data leakage between deployments
-- NGINXaaS can load balance even if upstream servers are located in different geography as long as no networking limitations are mentioned in the [Known Issues]({{< ref "/nginxaas-azure/known-issues.md" >}})
+- NGINXaaS can route traffic to upstreams even if the upstream servers are located in different geographies. See [Known Issues]({{< ref "/nginxaas-azure/known-issues.md" >}}) for any networking restrictions.
 - NGINXaaS supports request tracing. See the [Application Performance Management with NGINX Variables](https://www.f5.com/company/blog/nginx/application-tracing-nginx-plus) blog to learn more about tracing.
 - Supports HTTP to HTTPS, HTTPS to HTTP, and HTTP to HTTP redirects. NGINXaaS also provides the ability to create new rules for redirecting. See [How to Create NGINX Rewrite Rules | NGINX](https://www.nginx.com/blog/creating-nginx-rewrite-rules/) for more details.
 - NGINXaaS supports VNet, and VPN gateways if they do not have limitations. Known limitations can be found in the [Known Issues]({{< ref "/nginxaas-azure/known-issues.md" >}}).
@@ -78,7 +78,7 @@ With the Standard V2 Plan, NGINXaaS uses the following redundancy features to ke
 
 - NGINXaaS uses new Azure networking capabilities to keep end-user traffic private. A network security group ensures that the deployment is secured and inbound connections are allowed to the ports the NGINX service listens to.
 - You can restrict access to NGINXaaS by defining restriction rules at the Network Security Group level or using NGINX's access control list. To learn more, see the [NGINX module ngx_http_access_module](http://nginx.org/en/docs/http/ngx_http_access_module.html) documentation.
-- NGINX Plus instances are automatically upgraded to receive security patches and the latest stable NGINX Plus version.
+- NGINXaaS deployment is automatically upgraded to receive security patches and the latest stable NGINX Plus version.
 
 ## What's next
 

@@ -42,7 +42,7 @@ Once you have enabled monitoring, you can view the metrics using the Azure porta
 
 This contributes to minimal traffic and should not affect these metrics significantly, but you might see an unexpected number of connections and requests.{{</note>}}
 
-{{< important >}}If some of your deployment's metrics are intermittently missing in Azure monitor, it may indicate that the deployment's underlying compute resources are being exhausted.
+{{< important >}}If some of your deployment's metrics are intermittently missing in Azure monitor, it may indicate that the underlying resources for your deployment are being exhausted.
 
 Monitor the `system.cpu` metric to see the deployment's CPU utilization. If it's nearing 100%, consider increasing the deployment's NCU capacity. See the [Scaling Guidance]({{< ref "/nginxaas-azure/quickstart/scaling.md" >}}) documentation for more information.{{</important>}}
 
