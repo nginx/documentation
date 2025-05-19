@@ -29,6 +29,6 @@ NGINX One Console to manage your NGINX instances.
 
 1. Check the Agent log for `"Agent Connected"`
 
-   ```
+   ```shell
    sudo cat /var/log/nginx-agent/agent.log | grep "Agent connected"
    ```
