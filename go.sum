@@ -6,3 +6,5 @@ github.com/nginxinc/nginx-hugo-theme v0.42.28 h1:1SGzBADcXnSqP4rOKEhlfEUloopH6Uv
 github.com/nginxinc/nginx-hugo-theme v0.42.28/go.mod h1:DPNgSS5QYxkjH/BfH4uPDiTfODqWJ50NKZdorguom8M=
 github.com/nginxinc/nginx-hugo-theme v0.42.30 h1:qcHvB8tElbFN5ZWgs/TGn5IEmvnT5PG4ImQCCbMZ/Rw=
 github.com/nginxinc/nginx-hugo-theme v0.42.30/go.mod h1:DPNgSS5QYxkjH/BfH4uPDiTfODqWJ50NKZdorguom8M=
+github.com/nginxinc/nginx-hugo-theme v0.42.34 h1:9wNBHsyjY89YDI8vTYHav3YHPR2ngqKKtX5S8y9gFHg=
+github.com/nginxinc/nginx-hugo-theme v0.42.34/go.mod h1:DPNgSS5QYxkjH/BfH4uPDiTfODqWJ50NKZdorguom8M=

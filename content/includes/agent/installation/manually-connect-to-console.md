@@ -2,6 +2,11 @@ If you have installed NGINX Agent manually, you will need to connect it to the
 NGINX One Console to manage your NGINX instances.
 
 1. Ensure NGINX Agent is installed
+
+   ```shell
+   nginx-agent -v
+   ```
+
 1. Locate the NGINX Agent Configuration File:
 
    ```shell
@@ -19,5 +24,11 @@ NGINX One Console to manage your NGINX instances.
 1. Restart the NGINX Agent service:
 
    ```shell
-   sudo systemctl stop nginx-agent
+   sudo systemctl restart nginx-agent
+   ```
+
+1. Check the Agent log for `"Agent Connected"`
+
+   ```shell
+   sudo cat /var/log/nginx-agent/agent.log | grep "Agent connected"
    ```
