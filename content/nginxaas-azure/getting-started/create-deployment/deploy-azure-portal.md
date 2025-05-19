@@ -114,7 +114,6 @@ You can start the NGINXaaS deployment process by visiting the [Create NGINXaaS](
 
 {{< important >}}It's not possible to manually stop or start NGINXaaS. If necessary, you have the option to delete the deployment and re-deploy at a future date.
 
-When you remove or delete an NGINXaaS deployment, the associated eNICs will automatically be deleted.{{</ important >}}
 
 ## What's next
 
