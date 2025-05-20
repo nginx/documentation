@@ -48,7 +48,7 @@ jobs:
     steps:
       - name: Output variables
         run: |
-          echo "Environment: ${{ inputs.environment }}"
+          echo "Environment: ${{ inputs.environment || github.event.client_payload.environment }}"
           echo "Branch: ${{ github.ref }}"
       - name: Checks to see that main branch is selected if deploying to prod
         if: ${{ inputs.environment == 'prod' && github.ref != 'refs/heads/main' }}
@@ -65,7 +65,7 @@ jobs:
       docs_source_path: "public"
       docs_build_path: "./"
       doc_type: "hugo"
-      environment: ${{inputs.environment}}
+      environment: ${{ inputs.environment || github.event.client_payload.environment }}
       force_hugo_theme_version: ${{inputs.hugo_theme_override}}
       auto_deploy_branch: "main"
       auto_deploy_env: "prod"
