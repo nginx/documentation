@@ -92,7 +92,7 @@ The definitions of `OperationResult` and `Condition` messages are in the importe
 
 The profile in this example enables checking of attack signatures and disallowed metacharacters in the string-typed fields within the service messages. Two signatures are disabled. The profile also limits the size of the messages to 100KB and disallows fields that are not defined in the IDL files.
 
-The main IDL file, `album.proto` is marked as `primary`. The file it imports, `messages.proto`, is marked as secondary, i.e., `isPrimary` is `false` and so should be any imported file. In order for App Protect to be able to match it to the import statement, the file location should be specified as done in the example above using the `importUrl` property.
+The main IDL file, `album.proto` is marked as `primary`. The file it imports, `messages.proto`, is marked as secondary, that is, `isPrimary` is `false` and so should be any imported file. In order for App Protect to be able to match it to the import statement, the file location should be specified as done in the example above using the `importUrl` property.
 
 An alternative and probably more convenient way to specify all the IDL files, the primary and all its imports, direct and indirect, is to bundle them into a single tar file in the same directory structure as they are expected by the import statements. In this case, you will have to specify which of the files in the tarball is the primary one. The supported formats are `tar` and `tgz`. App Protect will identify the file type automatically (tar, gzipped tar, or JSON) and handle it accordingly. Following the above example:
 
