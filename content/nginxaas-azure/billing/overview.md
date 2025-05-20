@@ -76,4 +76,4 @@ The standard Azure [networking](https://azure.microsoft.com/en-us/pricing/detail
 
 ## Review billing data
 
-NGINXaaS usage data is reported directly to NGINXaaS. This data is utilized for billing purposes and is reflected in your Azure subscription's cost analysis. You can view detailed usage information in the Azure Portal under "Cost Management + Billing".​
+NGINXaaS billing data is reported per deployment and can be viewed in the Azure Portal under "Cost Management + Billing".​
