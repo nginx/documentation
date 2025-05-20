@@ -9,6 +9,17 @@ docs: DOCS-1393
 
 This guide provides step-by-step instructions on how to activate and start using F5 NGINX One Console. NGINX One is a management console for monitoring and managing NGINX data plane instances.
 
+## Confirm access to the F5 Distributed Cloud
+
+You can access NGINX One Console through the F5 Distributed Cloud. 
+
+1. Log in to [MyF5](https://my.f5.com/manage/s/).
+1. Go to **My Products & Plans > Subscriptions** to see your active subscriptions.
+1. Within one of your subscriptions, you should see either an NGINX and/or a Distributed Cloud subscription
+   - If the above does not appear in any of your subscriptions, please reach out to either your F5 Account Team or Customer Success Manager.
+
+Now identify your tenant. You or someone in your organization should have received an email from no-reply@cloud.f5.com asking you to update your password. The account name referenced in the E-Mail is the tenant name. Navigate to https://YOUR_TENANT_NAME.console.ves.volterra.io to access the F5 Distributed Cloud. 
+
 ## Enable the NGINX One service {#enable-nginx-one}
 
 To get started using NGINX One, enable the service on F5 Distributed Cloud.
