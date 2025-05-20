@@ -89,8 +89,8 @@ The sections below provide detailed descriptions of the OIDC configuration value
 - **$oidc_logout_endpoint**: The URL of the IdP’s end_session endpoint.
 - **$oidc_token_endpoint**: The URL of the IdP’s OAuth 2.0 Token endpoint.
 - **$oidc_userinfo_endpoint**: The URL of the IdP’s UserInfo endpoint.
-- **$oidc_host**: The URL of the IdP’s application (e.g., `https://{my-app}.okta.com`).
-- **$oidc_scopes**: List of OAuth 2.0 scope values supported by the server (e.g., `openid+profile+email+offline_access`).
+- **$oidc_host**: The URL of the IdP’s application (for example, `https://{my-app}.okta.com`).
+- **$oidc_scopes**: List of OAuth 2.0 scope values supported by the server (for example, `openid+profile+email+offline_access`).
 
 #### Custom configuration for well-known endpoints
 
