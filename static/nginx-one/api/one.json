@@ -18,17 +18,6 @@
           "default": "tenant-example"
         }
       }
-    },
-    {
-      "url": "/api/v1/marketplace"
-    },
-    {
-      "url": "/api/v1/namespaces/{namespace}",
-      "variables": {
-        "namespace": {
-          "default": "default"
-        }
-      }
     }
   ],
   "tags": [
@@ -74,26 +63,6 @@
       "name": "Settings",
       "description": "Configuration option for different aspect of NGINX One service.\nYou can set NGINX Instance cleanup preferences.\n",
       "x-displayName": "Settings"
-    },
-    {
-      "name": "Authorization",
-      "description": "Facilitate user authentication and authorization.",
-      "x-displayName": "Authorization"
-    },
-    {
-      "name": "Signup",
-      "description": "Manage account activation and first user creation.",
-      "x-displayName": "Signup"
-    },
-    {
-      "name": "User",
-      "description": "Manage cloud users.",
-      "x-displayName": "User"
-    },
-    {
-      "name": "Deployments",
-      "description": "Manage NAAS deployments.",
-      "x-displayName": "Deployments"
     }
   ],
   "paths": {
@@ -3900,7 +3869,7 @@
               },
               "encoding": {
                 "file": {
-                  "contentType": "application/gzip"
+                  "contentType": "application/gzip, application/x-gzip"
                 }
               }
             }
@@ -4090,434 +4059,6 @@
                 }
               }
             }
-          },
-          "500": {
-            "$ref": "#/components/responses/InternalServerErr"
-          }
-        }
-      }
-    },
-    "/auth/google/authorize": {
-      "get": {
-        "tags": [
-          "Authorization"
-        ],
-        "summary": "Returns a redirect to authenticate with Google.",
-        "operationId": "googleAuthorize",
-        "responses": {
-          "302": {
-            "description": "Redirect to authenticate with Google."
-          },
-          "500": {
-            "description": "An unexpected error occurred on the server. Please try the request again later.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/auth/google/callback": {
-      "get": {
-        "tags": [
-          "Authorization"
-        ],
-        "summary": "Callback after the Google login page.",
-        "description": "The Google callback endpoint is where the user will be redirected after logging in and authorizing our service. This callback carries the Google code we exchange for an authorization token.\n",
-        "operationId": "googleCallback",
-        "parameters": [
-          {
-            "name": "code",
-            "in": "query",
-            "required": true,
-            "description": "The authorization code returned by the Google authorization server.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "state",
-            "in": "query",
-            "required": true,
-            "description": "A signed state parameter used to mitigate CSRF attacks. In some cases, this may additionally be used to carry needed state from the redirect back to the callback.\n",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Authorization has been granted and an access token is generated. Use the returned access token to\nauthenticate future API requests.\n",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/AuthGoogleCallbackResponse"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "The request is either missing or provided invalid input.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "The request contains valid input, but authorization cannot be granted."
-          },
-          "500": {
-            "description": "An unexpected error occurred on the server. Please try the request again later.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/auth/google/signup": {
-      "post": {
-        "tags": [
-          "Signup"
-        ],
-        "summary": "Creates an account and first user.",
-        "operationId": "googleSignup",
-        "requestBody": {
-          "description": "Completed sign up form with Google account and user identity from the\nmarketplace token.\n",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/SignupWithGoogleRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "The new account has been activated and first user created.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SignupWithGoogleResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "An unexpected error occurred on the server. Please try the request again later.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/users": {
-      "post": {
-        "tags": [
-          "User"
-        ],
-        "x-nginx-one-action": "create",
-        "x-nginx-one-entity": "user",
-        "summary": "Create a user",
-        "description": "Creates a cloud user.",
-        "operationId": "createUser",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CloudUserCreateRequest"
-              },
-              "examples": {
-                "CloudUserCreateRequest": {
-                  "$ref": "#/components/examples/CloudUserResponse"
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Successfully created the cloud user.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CloudUser"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "An unexpected error occurred on the server. Please try the request again later.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/deployments": {
-      "get": {
-        "tags": [
-          "Deployments"
-        ],
-        "summary": "List deployments",
-        "description": "Returns a list of deployments.",
-        "operationId": "listDeployments",
-        "responses": {
-          "200": {
-            "description": "Successfully returned the list of deployments.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DeploymentListResponse"
-                },
-                "examples": {
-                  "DeploymentListResponse": {
-                    "$ref": "#/components/examples/DeploymentListResponse"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "$ref": "#/components/responses/InvalidRequest"
-          },
-          "401": {
-            "$ref": "#/components/responses/Unauthorized"
-          },
-          "500": {
-            "$ref": "#/components/responses/InternalServerErr"
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "Deployments"
-        ],
-        "summary": "Create deployment",
-        "description": "Creates a new deployment.",
-        "operationId": "createDeployment",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/DeploymentCreateRequest"
-              },
-              "examples": {
-                "DeploymentCreateRequest": {
-                  "$ref": "#/components/examples/DeploymentCreateRequest"
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "202": {
-            "description": "Successfully created the deployment.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Deployment"
-                },
-                "examples": {
-                  "DeploymentCreateResponse": {
-                    "$ref": "#/components/examples/DeploymentCreateResponse"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "$ref": "#/components/responses/InvalidRequest"
-          },
-          "401": {
-            "$ref": "#/components/responses/Unauthorized"
-          },
-          "500": {
-            "$ref": "#/components/responses/InternalServerErr"
-          }
-        }
-      }
-    },
-    "/deployments/{deployment_id}": {
-      "delete": {
-        "tags": [
-          "Deployments"
-        ],
-        "summary": "Delete deployment",
-        "description": "Deletes the specified deployment.",
-        "operationId": "deleteDeployment",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/DeploymentObjectID"
-          }
-        ],
-        "responses": {
-          "202": {
-            "description": "Successfully deleted the deployment.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Deployment"
-                },
-                "examples": {
-                  "DeploymentDeleteResponse": {
-                    "$ref": "#/components/examples/DeploymentDeleteResponse"
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "$ref": "#/components/responses/Unauthorized"
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
-          },
-          "500": {
-            "$ref": "#/components/responses/InternalServerErr"
-          }
-        }
-      },
-      "get": {
-        "tags": [
-          "Deployments"
-        ],
-        "summary": "Get deployment",
-        "description": "Returns deployment details.",
-        "operationId": "getDeployment",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/DeploymentObjectID"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successfully returned the deployment details.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Deployment"
-                },
-                "examples": {
-                  "DeploymentGetResponse": {
-                    "$ref": "#/components/examples/DeploymentGetResponse"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "$ref": "#/components/responses/InvalidRequest"
-          },
-          "401": {
-            "$ref": "#/components/responses/Unauthorized"
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
-          },
-          "500": {
-            "$ref": "#/components/responses/InternalServerErr"
-          }
-        }
-      },
-      "patch": {
-        "tags": [
-          "Deployments"
-        ],
-        "summary": "Update deployment",
-        "description": "Updates the specified deployment.",
-        "operationId": "updateDeployment",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/DeploymentObjectID"
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/DeploymentUpdateRequest"
-              },
-              "examples": {
-                "DeploymentUpdateRequest": {
-                  "$ref": "#/components/examples/DeploymentUpdateRequest"
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Successfully updated the deployment.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Deployment"
-                },
-                "examples": {
-                  "DeploymentUpdateResponse": {
-                    "$ref": "#/components/examples/DeploymentUpdateResponse"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "$ref": "#/components/responses/InvalidRequest"
-          },
-          "401": {
-            "$ref": "#/components/responses/Unauthorized"
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
-          },
-          "409": {
-            "$ref": "#/components/responses/Conflict"
           },
           "500": {
             "$ref": "#/components/responses/InternalServerErr"
@@ -4917,15 +4458,6 @@
         },
         "description": "Optional flag to control how the request is processed.\n  - When `false` or omitted (by default), the request creates a Staged Config directly. (`StagedConfigCreateResponse`)\n  - When `true`, the request parses the import and returns metadata you can use to create a Staged Config through a POST. ( `StagedConfigCreateRequest`)\n",
         "required": false
-      },
-      "DeploymentObjectID": {
-        "name": "deployment_id",
-        "in": "path",
-        "schema": {
-          "$ref": "#/components/schemas/DeploymentObjectID"
-        },
-        "description": "A globally unique identifier for the deployment.",
-        "required": true
       }
     },
     "schemas": {
@@ -5811,17 +5343,21 @@
           "filter_name_certificate_deployments_deployment_status"
         ]
       },
-      "CertificateAssociationType": {
+      "DeploymentAssociatedType": {
         "type": "string",
-        "description": "Certificate association type:\n  * `instance` - This certificate deployment is for an instance.\n  * `config_sync_group` - This certificate deployment is for a config sync group.\n",
+        "description": "The type of the deployment association, with the following values:\n  * `instance`\n  * `config_sync_group`\n",
         "enum": [
           "instance",
           "config_sync_group"
         ],
         "x-enum-varnames": [
-          "certificate_association_type_instance",
-          "certificate_association_type_config_sync_group"
+          "deployment_associated_type_instance",
+          "deployment_associated_type_config_sync_group"
         ]
+      },
+      "DeploymentAssociatedName": {
+        "type": "string",
+        "description": "Based on deployment type:\n  * `instance`\n  * `config_sync_group`\n"
       },
       "CertificateDeploymentStatus": {
         "type": "string",
@@ -5848,14 +5384,13 @@
         ],
         "properties": {
           "association_type": {
-            "$ref": "#/components/schemas/CertificateAssociationType"
+            "$ref": "#/components/schemas/DeploymentAssociatedType"
           },
           "object_id": {
             "$ref": "#/components/schemas/ObjectID"
           },
           "name": {
-            "type": "string",
-            "description": "The host name of an instance or the name of a config sync group."
+            "$ref": "#/components/schemas/DeploymentAssociatedName"
           },
           "deployment_status": {
             "$ref": "#/components/schemas/CertificateDeploymentStatus"
@@ -9119,18 +8654,6 @@
           "nap_deployment_status_failed"
         ]
       },
-      "NapDeploymentType": {
-        "description": "The type of the deployment, with the following possible values:\n  * `instance` - The deployment is of type instance.\n  * `config_sync_group` - The deployment is of type config sync group.\n",
-        "type": "string",
-        "enum": [
-          "instance",
-          "config_sync_group"
-        ],
-        "x-enum-varnames": [
-          "nap_policy_deployment_type_instance",
-          "nap_policy_deployment_type_csg"
-        ]
-      },
       "Version": {
         "description": "The version of the NGINX App Protect resource.",
         "type": "string",
@@ -9178,7 +8701,6 @@
         }
       },
       "NapPolicyObject": {
-        "type": "object",
         "allOf": [
           {
             "$ref": "#/components/schemas/NapPolicyMetadata"
@@ -9213,28 +8735,6 @@
           }
         }
       },
-      "NapPolicyListItem": {
-        "type": "object",
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/NapPolicyMetadata"
-          },
-          {
-            "type": "object",
-            "required": [
-              "deployments"
-            ],
-            "properties": {
-              "deployments": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/NapPolicyDeployment"
-                }
-              }
-            }
-          }
-        ]
-      },
       "NapPolicyListResponse": {
         "description": "List of all NGINX App Protect policies.",
         "allOf": [
@@ -9252,7 +8752,7 @@
                 "description": "An array of NGINX App Protect policy objects.",
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/NapPolicyListItem"
+                  "$ref": "#/components/schemas/NapPolicyObject"
                 }
               }
             },
@@ -9265,9 +8765,9 @@
                   "deployments": [
                     {
                       "publication_object_id": "pub_-uvR3F2TQGm18jnl7bpaGw",
-                      "target_name": "test-instance",
-                      "target_type": "instance",
-                      "target_object_id": "inst_-uvR3F2TQGm18jnl7bpaGw",
+                      "associated_name": "test-instance",
+                      "associated_type": "instance",
+                      "associated_object_id": "inst_-uvR3F2TQGm18jnl7bpaGw",
                       "status": "deployed",
                       "enforcement_mode": "blocking",
                       "policy_version": "2023-12-06 22:37:24",
@@ -9299,51 +8799,67 @@
           }
         }
       },
-      "NapPolicyVersionDeployment": {
-        "description": "detailed information about a NGINX App Protect policy version deployment.",
+      "NapDeploymentAssociation": {
         "type": "object",
         "required": [
-          "publication_object_id",
-          "target_object_id",
-          "target_name",
-          "target_type",
-          "status",
-          "deployed_on"
+          "associated_type",
+          "associated_object_id",
+          "associated_name"
         ],
         "properties": {
-          "publication_object_id": {
-            "$ref": "#/components/schemas/PublicationObjectID"
+          "associated_type": {
+            "$ref": "#/components/schemas/DeploymentAssociatedType"
           },
-          "target_object_id": {
+          "associated_object_id": {
             "$ref": "#/components/schemas/ObjectID"
           },
-          "target_name": {
-            "description": "The name of the NGINX One instance or config sync group.",
-            "type": "string"
-          },
-          "target_type": {
-            "$ref": "#/components/schemas/NapDeploymentType"
-          },
-          "status": {
-            "$ref": "#/components/schemas/NapDeploymentStatus"
-          },
-          "deployed_on": {
-            "description": "The date and time when the NGINX App Protect policy was deployed.",
-            "type": "string",
-            "format": "date-time"
+          "associated_name": {
+            "$ref": "#/components/schemas/DeploymentAssociatedName"
           }
-        },
-        "example": {
-          "publication_object_id": "pub_-uvR3F2TQGm18jnl7bpaGw",
-          "target_name": "test-instance",
-          "target_type": "instance",
-          "target_object_id": "inst_-uvR3F2TQGm18jnl7bpaGw",
-          "status": "deployed",
-          "deployed_on": "2023-12-06T22:37:24.120114Z"
         }
+      },
+      "NapPolicyVersionDeployment": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/NapDeploymentAssociation"
+          },
+          {
+            "type": "object",
+            "description": "Information about a NGINX App Protect policy deployment.\n",
+            "required": [
+              "publication_object_id",
+              "status",
+              "deployed_on"
+            ],
+            "properties": {
+              "publication_object_id": {
+                "$ref": "#/components/schemas/PublicationObjectID"
+              },
+              "status": {
+                "$ref": "#/components/schemas/NapDeploymentStatus"
+              },
+              "deployed_on": {
+                "description": "Date and time.",
+                "type": "string",
+                "format": "date-time"
+              }
+            },
+            "example": {
+              "publication_object_id": "pub_-uvR3F2TQGm18jnl7bpaGw",
+              "associated_name": "test-instance",
+              "associated_type": "instance",
+              "associated_object_id": "inst_-uvR3F2TQGm18jnl7bpaGw",
+              "status": "deployed",
+              "deployed_on": "2023-12-06T22:37:24.120114Z"
+            }
+          }
+        ]
       },
       "NapPolicyDeployments": {
         "type": "object",
+        "required": [
+          "deployments"
+        ],
         "properties": {
           "deployments": {
             "type": "array",
@@ -9358,9 +8874,9 @@
         "type": "object",
         "required": [
           "publication_object_id",
-          "target_object_id",
-          "target_name",
-          "target_type",
+          "associated_object_id",
+          "associated_name",
+          "associated_type",
           "enforcement_mode",
           "status",
           "policy_version",
@@ -9394,9 +8910,9 @@
         ],
         "example": {
           "publication_object_id": "pub_-uvR3F2TQGm18jnl7bpaGw",
-          "target_name": "test-instance",
-          "target_type": "instance",
-          "target_object_id": "inst_-uvR3F2TQGm18jnl7bpaGw",
+          "associated_name": "test-instance",
+          "associated_type": "instance",
+          "associated_object_id": "inst_-uvR3F2TQGm18jnl7bpaGw",
           "status": "deployed",
           "deployed_on": "2023-12-06T22:37:24.120114Z",
           "enforcement_mode": "blocking",
@@ -9408,9 +8924,9 @@
         "type": "object",
         "required": [
           "publication_object_id",
-          "target_object_id",
-          "target_name",
-          "target_type",
+          "associated_object_id",
+          "associated_name",
+          "associated_type",
           "enforcement_mode",
           "status",
           "policy_version",
@@ -9441,9 +8957,9 @@
         ],
         "example": {
           "publication_object_id": "pub_-uvR3F2TQGm18jnl7bpaGw",
-          "target_name": "test-instance",
-          "target_type": "instance",
-          "target_object_id": "inst_-uvR3F2TQGm18jnl7bpaGw",
+          "associated_name": "test-instance",
+          "associated_type": "instance",
+          "associated_object_id": "inst_-uvR3F2TQGm18jnl7bpaGw",
           "status": "deployed",
           "policy_version": "2023-12-06 22:37:24",
           "policy_version_object_id": "pv_-abc3F2TQGm18jnl7bpaGw",
@@ -9478,9 +8994,9 @@
               "items": [
                 {
                   "publication_object_id": "pub_-uvR3F2TQGm18jnl7bpaGw",
-                  "target_name": "test-instance",
-                  "target_type": "instance",
-                  "target_object_id": "inst_-uvR3F2TQGm18jnl7bpaGw",
+                  "associated_name": "test-instance",
+                  "associated_type": "instance",
+                  "associated_object_id": "inst_-uvR3F2TQGm18jnl7bpaGw",
                   "status": "deployed",
                   "policy_version": "2023-12-06 22:37:24",
                   "policy_version_object_id": "pv_-abc3F2TQGm18jnl7bpaGw",
@@ -9623,8 +9139,24 @@
           }
         ]
       },
-      "NapLogProfileResponse": {
-        "$ref": "#/components/schemas/NapLogProfileMetadata"
+      "NapLogProfileGetResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/NapLogProfileMetadata"
+          },
+          {
+            "type": "object",
+            "required": [
+              "config"
+            ],
+            "properties": {
+              "config": {
+                "description": "The NGINX App Protect log profile configuration.",
+                "type": "string"
+              }
+            }
+          }
+        ]
       },
       "NapLogProfileMetadata": {
         "type": "object",
@@ -9663,17 +9195,33 @@
                 "description": "An array of NGINX App Protect global settings.",
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/NapGlobalSettingsMetadata"
+                  "$ref": "#/components/schemas/NapGlobalSettingMetadata"
                 }
               }
             }
           }
         ]
       },
-      "NapGlobalSettingsResponse": {
-        "$ref": "#/components/schemas/NapGlobalSettingsMetadata"
+      "NapGlobalSettingGetResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/NapGlobalSettingMetadata"
+          },
+          {
+            "type": "object",
+            "required": [
+              "config"
+            ],
+            "properties": {
+              "config": {
+                "description": "The NGINX App Protect global setting configuration.",
+                "type": "string"
+              }
+            }
+          }
+        ]
       },
-      "NapGlobalSettingsMetadata": {
+      "NapGlobalSettingMetadata": {
         "type": "object",
         "required": [
           "name",
@@ -9682,7 +9230,7 @@
         "properties": {
           "name": {
             "type": "string",
-            "description": "The name of the NGINX App Protect global settings object."
+            "description": "The name of the NGINX App Protect global setting object."
           },
           "description": {
             "description": "Optional field to describe the NGINX App Protect global setting object.",
@@ -9691,7 +9239,7 @@
             "maxLength": 256
           },
           "object_id": {
-            "$ref": "#/components/schemas/NapGlobalSettingsObjectID"
+            "$ref": "#/components/schemas/NapGlobalSettingObjectID"
           }
         }
       },
@@ -9728,7 +9276,7 @@
           "path": "gitlab.com/f5/nginx/one/saas/control-plane/pkg/collections/objects"
         }
       },
-      "NapGlobalSettingsObjectID": {
+      "NapGlobalSettingObjectID": {
         "description": "A globally unique identifier for the App Protect global settings object.",
         "type": "string",
         "format": "object_id",
@@ -9737,364 +9285,6 @@
         "x-go-type-import": {
           "name": "objects",
           "path": "gitlab.com/f5/nginx/one/saas/control-plane/pkg/collections/objects"
-        }
-      },
-      "CloudIdentity": {
-        "type": "object",
-        "required": [
-          "google_identity"
-        ],
-        "minProperties": 1,
-        "maxProperties": 1,
-        "properties": {
-          "google_identity": {
-            "$ref": "#/components/schemas/GoogleIdentity"
-          }
-        }
-      },
-      "GoogleIdentity": {
-        "type": "object",
-        "required": [
-          "id"
-        ],
-        "properties": {
-          "id": {
-            "type": "string",
-            "minLength": 1,
-            "maxLength": 256,
-            "example": "253092013665251357076"
-          }
-        }
-      },
-      "CloudUserCreateRequest": {
-        "type": "object",
-        "description": "Request structure for creating a new cloud user.",
-        "required": [
-          "cloud_identity"
-        ],
-        "properties": {
-          "cloud_identity": {
-            "$ref": "#/components/schemas/CloudIdentity"
-          }
-        }
-      },
-      "CloudAccountObjectID": {
-        "description": "A globally unique identifier for the cloud account.",
-        "type": "string",
-        "format": "object_id",
-        "pattern": "^acc_.*",
-        "x-go-type": "objects.ID",
-        "x-go-type-import": {
-          "name": "objects",
-          "path": "gitlab.com/f5/nginx/one/saas/control-plane/pkg/collections/objects"
-        }
-      },
-      "CloudUserObjectID": {
-        "description": "A globally unique identifier for the cloud user.",
-        "type": "string",
-        "format": "object_id",
-        "pattern": "^usr_.*",
-        "x-go-type": "objects.ID",
-        "x-go-type-import": {
-          "name": "objects",
-          "path": "gitlab.com/f5/nginx/one/saas/control-plane/pkg/collections/objects"
-        }
-      },
-      "CloudUser": {
-        "type": "object",
-        "required": [
-          "object_id",
-          "cloud_identity"
-        ],
-        "properties": {
-          "object_id": {
-            "$ref": "#/components/schemas/CloudUserObjectID"
-          },
-          "cloud_identity": {
-            "$ref": "#/components/schemas/CloudIdentity"
-          }
-        }
-      },
-      "AuthGoogleCallbackResponse": {
-        "type": "object",
-        "required": [
-          "access_token"
-        ],
-        "properties": {
-          "access_token": {
-            "type": "string",
-            "description": "The signed access token to be used to authenticate API requests. This token should be treated as a \"secret\".\n"
-          }
-        }
-      },
-      "SignupWithGoogleRequest": {
-        "required": [
-          "account_id",
-          "google_user_id"
-        ],
-        "properties": {
-          "account_id": {
-            "type": "string",
-            "description": "Google marketplace account id"
-          },
-          "google_user_id": {
-            "type": "string",
-            "description": "Google user identity of the user completing signup."
-          }
-        }
-      },
-      "SignupWithGoogleResponse": {
-        "type": "object",
-        "required": [
-          "account_id",
-          "user_id"
-        ],
-        "properties": {
-          "account_id": {
-            "$ref": "#/components/schemas/CloudAccountObjectID"
-          },
-          "user_id": {
-            "$ref": "#/components/schemas/CloudUserObjectID"
-          }
-        }
-      },
-      "DeploymentObjectID": {
-        "type": "string",
-        "description": "A globally unique identifier for the deployment.",
-        "format": "object_id",
-        "pattern": "^depl_.*",
-        "x-go-type": "objects.ID",
-        "x-go-type-import": {
-          "name": "objects",
-          "path": "gitlab.com/f5/nginx/one/saas/control-plane/pkg/collections/objects"
-        }
-      },
-      "DeploymentAccountID": {
-        "type": "string",
-        "description": "Account ID of deployment.",
-        "format": "object_id",
-        "pattern": "^acc_.*",
-        "x-go-type": "objects.ID",
-        "x-go-type-import": {
-          "name": "objects",
-          "path": "gitlab.com/f5/nginx/one/saas/control-plane/pkg/collections/objects"
-        }
-      },
-      "DeploymentName": {
-        "type": "string",
-        "description": "Name of deployment.",
-        "minLength": 3,
-        "maxLength": 30,
-        "pattern": "^[a-z][a-z0-9-]*[a-z0-9]$"
-      },
-      "DeploymentDescription": {
-        "type": "string",
-        "description": "Description of deployment.",
-        "maxLength": 256
-      },
-      "DeploymentCloudName": {
-        "type": "string",
-        "description": "Name of the cloud where deployment resources are provisioned.",
-        "enum": [
-          "google"
-        ]
-      },
-      "DeploymentCloudInfo": {
-        "type": "object",
-        "description": "Cloud-specific deployment info.",
-        "oneOf": [
-          {
-            "$ref": "#/components/schemas/GoogleDeploymentInfo"
-          }
-        ]
-      },
-      "GoogleDeploymentInfo": {
-        "type": "object",
-        "description": "Google deployment info.",
-        "required": [
-          "region",
-          "network_attachment"
-        ],
-        "properties": {
-          "region": {
-            "$ref": "#/components/schemas/GoogleRegion"
-          },
-          "network_attachment": {
-            "$ref": "#/components/schemas/GoogleNetworkAttachment"
-          },
-          "service_attachment": {
-            "$ref": "#/components/schemas/GoogleServiceAttachment"
-          }
-        }
-      },
-      "GoogleResourceName": {
-        "type": "string",
-        "minLength": 1,
-        "maxLength": 63,
-        "pattern": "^[a-z]([-a-z0-9]*[a-z0-9])?"
-      },
-      "GoogleRegion": {
-        "description": "Google region.",
-        "$ref": "#/components/schemas/GoogleResourceName"
-      },
-      "GoogleNetworkAttachment": {
-        "type": "string",
-        "description": "Google network attachment.",
-        "pattern": "projects/[a-z]([-a-z0-9]*[a-z0-9])?/regions/[a-z]([-a-z0-9]*[a-z0-9])?/networkAttachments/[a-z]([-a-z0-9]*[a-z0-9])?"
-      },
-      "GoogleServiceAttachment": {
-        "type": "string",
-        "description": "Google service attachment.",
-        "pattern": "projects/[a-z]([-a-z0-9]*[a-z0-9])?/regions/[a-z]([-a-z0-9]*[a-z0-9])?/serviceAttachments/[a-z]([-a-z0-9]*[a-z0-9])?"
-      },
-      "Deployment": {
-        "type": "object",
-        "description": "Deployment specification.",
-        "required": [
-          "id",
-          "account_id",
-          "name",
-          "description",
-          "cloud",
-          "cloud_info",
-          "status",
-          "created_at",
-          "modified_at"
-        ],
-        "properties": {
-          "id": {
-            "$ref": "#/components/schemas/DeploymentObjectID"
-          },
-          "account_id": {
-            "$ref": "#/components/schemas/DeploymentAccountID"
-          },
-          "name": {
-            "$ref": "#/components/schemas/DeploymentName"
-          },
-          "description": {
-            "$ref": "#/components/schemas/DeploymentDescription"
-          },
-          "cloud": {
-            "$ref": "#/components/schemas/DeploymentCloudName"
-          },
-          "cloud_info": {
-            "$ref": "#/components/schemas/DeploymentCloudInfo"
-          },
-          "status": {
-            "$ref": "#/components/schemas/DeploymentStatus"
-          },
-          "created_at": {
-            "type": "string",
-            "description": "Datetime when request to create deployment was received.",
-            "format": "date-time"
-          },
-          "modified_at": {
-            "type": "string",
-            "description": "Datetime when deployment was last modified.",
-            "format": "date-time"
-          },
-          "deleted_at": {
-            "type": "string",
-            "description": "Datetime when request to delete deployment was received.",
-            "format": "date-time"
-          }
-        }
-      },
-      "DeploymentStatus": {
-        "type": "object",
-        "description": "Deployment status info.",
-        "required": [
-          "provisioning_state"
-        ],
-        "properties": {
-          "provisioning_state": {
-            "$ref": "#/components/schemas/DeploymentProvisioningState"
-          }
-        }
-      },
-      "DeploymentProvisioningState": {
-        "type": "object",
-        "description": "Deployment provisioning state info.",
-        "required": [
-          "state",
-          "modified_at"
-        ],
-        "properties": {
-          "state": {
-            "type": "string",
-            "description": "Provisioning state name/value.",
-            "enum": [
-              "deleting",
-              "failed",
-              "pending",
-              "ready"
-            ]
-          },
-          "details": {
-            "type": "string",
-            "description": "Provisioning state details.",
-            "maxLength": 256
-          },
-          "modified_at": {
-            "type": "string",
-            "description": "Datetime of last state change.",
-            "format": "date-time"
-          }
-        }
-      },
-      "DeploymentListResponse": {
-        "type": "object",
-        "description": "List of deployments.",
-        "required": [
-          "count",
-          "items"
-        ],
-        "properties": {
-          "count": {
-            "description": "The total number of deployments returned.",
-            "type": "integer"
-          },
-          "items": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Deployment"
-            }
-          }
-        }
-      },
-      "DeploymentCreateRequest": {
-        "type": "object",
-        "description": "Request spec for creating a deployment.",
-        "required": [
-          "name",
-          "cloud",
-          "cloud_info"
-        ],
-        "properties": {
-          "name": {
-            "$ref": "#/components/schemas/DeploymentName"
-          },
-          "description": {
-            "$ref": "#/components/schemas/DeploymentDescription"
-          },
-          "cloud": {
-            "$ref": "#/components/schemas/DeploymentCloudName"
-          },
-          "cloud_info": {
-            "$ref": "#/components/schemas/DeploymentCloudInfo"
-          }
-        }
-      },
-      "DeploymentUpdateRequest": {
-        "type": "object",
-        "description": "Request spec for updating a deployment.",
-        "properties": {
-          "name": {
-            "$ref": "#/components/schemas/DeploymentName"
-          },
-          "description": {
-            "$ref": "#/components/schemas/DeploymentDescription"
-          }
         }
       }
     },
@@ -10151,173 +9341,6 @@
           "object_id": "key_wN3IhLCmR3qmwybG_6ptEg",
           "instances_count": 3
         }
-      },
-      "CloudUserResponse": {
-        "value": {
-          "cloud_identity": {
-            "google_identity": {
-              "id": "253092013665251357076"
-            }
-          }
-        }
-      },
-      "DeploymentListResponse": {
-        "value": {
-          "count": 2,
-          "items": [
-            {
-              "id": "depl_6zYc64JKR0uxnoEcLH1gGA",
-              "account_id": "acc_FsFgfeDtScOjGbQJDaVNiQ",
-              "name": "tst-foo",
-              "description": "",
-              "cloud": "google",
-              "cloud_info": {
-                "region": "us-east1",
-                "network_attachment": "projects/foo/regions/us-east1/networkAttachments/foo",
-                "service_attachment": "projects/foo/regions/us-east1/serviceAttachments/foo"
-              },
-              "status": {
-                "provisioning_state": {
-                  "state": "ready",
-                  "details": "",
-                  "modified_at": "2025-03-31T10:05:00Z"
-                }
-              },
-              "created_at": "2025-03-31T10:00:00Z",
-              "modified_at": "2025-03-31T10:05:00Z"
-            },
-            {
-              "id": "depl_DrRnpntTRpGOxaroQ6aOFg",
-              "account_id": "acc_FsFgfeDtScOjGbQJDaVNiQ",
-              "name": "tst-bar",
-              "description": "test w/ network attachment from project bar",
-              "cloud": "google",
-              "cloud_info": {
-                "region": "eu-west-1",
-                "network_attachment": "projects/bar/regions/us-east1/networkAttachments/bar"
-              },
-              "status": {
-                "provisioning_state": {
-                  "state": "failed",
-                  "details": "network attachment 'bar' not found",
-                  "modified_at": "2025-03-31T11:03:00Z"
-                }
-              },
-              "created_at": "2025-03-31T11:00:00Z",
-              "modified_at": "2025-03-31T11:03:00Z"
-            }
-          ]
-        }
-      },
-      "DeploymentCreateRequest": {
-        "value": {
-          "name": "tst-foo",
-          "description": "",
-          "cloud": "google",
-          "cloud_info": {
-            "region": "us-east1",
-            "network_attachment": "projects/foo/regions/us-east1/networkAttachments/foo"
-          }
-        }
-      },
-      "DeploymentCreateResponse": {
-        "value": {
-          "id": "depl_6zYc64JKR0uxnoEcLH1gGA",
-          "account_id": "acc_FsFgfeDtScOjGbQJDaVNiQ",
-          "name": "tst-foo",
-          "description": "",
-          "cloud": "google",
-          "cloud_info": {
-            "region": "us-east1",
-            "network_attachment": "projects/foo/regions/us-east1/networkAttachments/foo",
-            "service_attachment": "projects/foo/regions/us-east1/serviceAttachments/foo"
-          },
-          "status": {
-            "provisioning_state": {
-              "state": "pending",
-              "details": "",
-              "modified_at": "2025-03-31T10:05:00Z"
-            }
-          },
-          "created_at": "2025-03-31T10:00:00Z",
-          "modified_at": "2025-03-31T10:05:00Z"
-        }
-      },
-      "DeploymentGetResponse": {
-        "value": {
-          "id": "depl_6zYc64JKR0uxnoEcLH1gGA",
-          "account_id": "acc_FsFgfeDtScOjGbQJDaVNiQ",
-          "name": "tst-foo",
-          "description": "",
-          "cloud": "google",
-          "cloud_info": {
-            "region": "us-east1",
-            "network_attachment": "projects/foo/regions/us-east1/networkAttachments/foo",
-            "service_attachment": "projects/foo/regions/us-east1/serviceAttachments/foo"
-          },
-          "status": {
-            "provisioning_state": {
-              "state": "ready",
-              "details": "",
-              "modified_at": "2025-03-31T10:05:00Z"
-            }
-          },
-          "created_at": "2025-03-31T10:00:00Z",
-          "modified_at": "2025-03-31T10:05:00Z"
-        }
-      },
-      "DeploymentUpdateRequest": {
-        "value": {
-          "name": "poc-foo",
-          "description": "test deployment for project foo"
-        }
-      },
-      "DeploymentUpdateResponse": {
-        "value": {
-          "id": "depl_6zYc64JKR0uxnoEcLH1gGA",
-          "account_id": "acc_FsFgfeDtScOjGbQJDaVNiQ",
-          "name": "poc-foo",
-          "description": "test deployment for project foo",
-          "cloud": "google",
-          "cloud_info": {
-            "region": "us-east1",
-            "network_attachment": "projects/foo/regions/us-east1/networkAttachments/foo",
-            "service_attachment": "projects/foo/regions/us-east1/serviceAttachments/foo"
-          },
-          "status": {
-            "provisioning_state": {
-              "state": "ready",
-              "details": "",
-              "modified_at": "2025-03-31T10:05:00Z"
-            }
-          },
-          "created_at": "2025-03-31T10:00:00Z",
-          "modified_at": "2025-03-31T10:05:00Z"
-        }
-      },
-      "DeploymentDeleteResponse": {
-        "value": {
-          "id": "depl_6zYc64JKR0uxnoEcLH1gGA",
-          "account_id": "acc_FsFgfeDtScOjGbQJDaVNiQ",
-          "name": "poc-foo",
-          "description": "test deployment for project foo",
-          "cloud": "google",
-          "cloud_info": {
-            "region": "us-east1",
-            "network_attachment": "projects/foo/regions/us-east1/networkAttachments/foo",
-            "service_attachment": "projects/foo/regions/us-east1/serviceAttachments/foo"
-          },
-          "status": {
-            "provisioning_state": {
-              "state": "deleting",
-              "details": "",
-              "modified_at": "2025-03-31T10:15:00Z"
-            }
-          },
-          "created_at": "2025-03-31T10:00:00Z",
-          "modified_at": "2025-03-31T10:05:00Z",
-          "deleted_at": "2025-03-31T10:15:00Z"
-        }
       }
     },
     "responses": {
@@ -10333,36 +9356,6 @@
       },
       "InternalServerErr": {
         "description": "An unexpected error occurred on the server. Please try the request again later.",
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/Error"
-            }
-          }
-        }
-      },
-      "Unauthorized": {
-        "description": "Client is not authorized to perform the requested operation.",
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/Error"
-            }
-          }
-        }
-      },
-      "NotFound": {
-        "description": "Requested resource was not found.",
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/Error"
-            }
-          }
-        }
-      },
-      "Conflict": {
-        "description": "Requested operation cannot be performed at this time.",
         "content": {
           "application/json": {
             "schema": {
@@ -10408,20 +9401,6 @@
       "name": "Manage NGINX One Settings",
       "tags": [
         "Settings"
-      ]
-    },
-    {
-      "name": "NAAS Marketplace",
-      "tags": [
-        "Authorization",
-        "Signup",
-        "User"
-      ]
-    },
-    {
-      "name": "Manage NAAS deployments",
-      "tags": [
-        "Deployments"
       ]
     }
   ]
