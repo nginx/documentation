@@ -30,6 +30,21 @@ h2 {
 
 Stay up-to-date with what's new and improved in the F5 NGINX One Console.
 
+## May 19, 2025
+
+### Import and export your Staged Configs
+
+You can now import and export your Staged Configs from the UI and with our APIs. This can help you deploy Staged Configs on the systems of your choice.
+
+## April 30, 2025
+
+### Manage RBAC access with namespaces
+
+We have added support for namespaces in N1C. You can now:
+
+- Manage resources in isolation in different namespaces.
+- Configure granular user permission controls base on namespace.
+
 ## April 3, 2025
 
 ### Create Custom Roles with more precise permissions

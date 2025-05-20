@@ -6,10 +6,10 @@ weight: i00
 # Creates a table of contents and sidebar, useful for large documents
 toc: false
 # Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
-type: concept
+nd-content-type: concept
 # Intended for internal catalogue and search, case sensitive:
 # Agent, N4Azure, NIC, NIM, NGF, NAP-DOS, NAP-WAF, NGINX One, NGINX+, Solutions, Unit
-product:
+nd-product:
 ---
 
 [//]: # "These are Markdown comments to guide you through document structure. Remove them as you go, as well as any unnecessary sections."
@@ -22,14 +22,10 @@ This guide provides an overview of <concept>, which is used <for/in> <action 1>,
 
 It is an example of a <other concept>, and is closely related to <third concept>.
 
----
-
 ## Background
 
 [//]: # "Explain what the concept is. If possible, relate it to another commonly known concept or software."
 [//]: # "This relates the new idea to the reader using their existing knowledge, helping their understanding of it and thus what its purpose is in context."
-
----
 
 ## Use cases
 
@@ -56,7 +52,6 @@ Starting from the <top/left> of the diagram, you can see that <thing> is connect
 
 ### Use case 2
 
----
 
 ## Conclusion
 
@@ -65,8 +60,6 @@ Starting from the <top/left> of the diagram, you can see that <thing> is connect
 [//]: # "Since each use case provides links to additional documents, you may not need to link to more,"
 [//]: # "or even include the final 'See also' section."
 
----
-
 ## See also
 
-[//]: # "Link to related documents, such as concepts, reference material or similar use cases."
+[//]: # "Link to related documents, such as reference material or task instructions."

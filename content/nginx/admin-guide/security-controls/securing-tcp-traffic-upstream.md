@@ -9,29 +9,29 @@ type:
 - how-to
 ---
 
-This article explains how to secure TCP traffic between NGINX and a TCP upstream server or an upstream group of TCP servers.
+This article explains how to secure TCP traffic between NGINX and an upstream TCP server or group of upstream TCP servers.
 
 ## Prerequisites
 
-- F5 NGINX Plus [R6]({{< ref "nginx/releases.md" >}}) and later or the latest NGINX Open Source compiled with the `--with-stream` and `with-stream_ssl_module` configuration parameters
+- F5 NGINX Plus [R6]({{< ref "nginx/releases.md" >}}) or later, or the latest NGINX Open Source compiled with the `--with-stream` and `with-stream_ssl_module` configuration parameters
 - A proxied TCP server or an [upstream group of TCP servers]({{< ref "nginx/admin-guide/load-balancer/tcp-udp-load-balancer.md" >}})
 - SSL certificates and a private key
 
 ## Obtaining SSL Server Certificates
 
-First, you will need to get server certificates and a private key and put them on the upstream server or on each server in the upstream group. A certificate can be obtained from a trusted certificate authority (CA) or generated using an SSL library such as [OpenSSL](http://www.openssl.org/).
+First, obtain SSL server certificates and a private key. Obtain an SSL server certificate from a trusted certificate authority (CA). Alternatively, generate one using an SSL library such as [OpenSSL](http://www.openssl.org/). Place the server certificates and private key on each of the upstream servers. 
 
-Self-signed server certificates are used when you need to encrypt the connection between NGINX and the upstream server. However, these connections are vulnerable to a man-in-the-middle attack: an imposter can impersonate the upstream server and NGINX will not know it is talking to a fake server. If you obtain server certificates that have been signed by a trusted CA (you can create your own internal CA using OpenSSL), you can then configure NGINX to only trust certificates that have been signed by that CA. This makes it much more difficult for an attacker to impersonate an upstream server.
+Self-signed server certificates encrypt the connection between NGINX and the upstream server. However, these connections are vulnerable to a man-in-the-middle attack. (If an imposter impersonates the upstream server, NGINX will not know it is talking to a fake server.) To lessen the risk, obtain server certificates signed by a trusted CA. (You can create your own internal CA using OpenSSL.) Afterward, configure NGINX to only trust certificates signed by that CA. This makes it much more difficult for an attacker to impersonate an upstream server.
 
 ## Obtaining an SSL Client Certificate
 
-NGINX can identify itself to the upstream servers by using an SSL Client Certificate. This client certificate must be signed by a trusted CA and stored on NGINX along with the corresponding private key.
+NGINX can identify itself to the upstream servers using an SSL client certificate. A trusted CA must sign this client certificate. It must be stored on NGINX along with the corresponding private key.
 
-You will need to configure the upstream servers to require client certificates for all incoming SSL connections and to trust the CA that issued the client certificate to NGINX. Then, when NGINX connects to the upstream, it will provide its client certificate and the upstream server will accept it.
+Configure the upstream servers to require client certificates for all incoming SSL connections and trust the CA that issued the client certificate to NGINX. By doing so, NGINX provides its client certificate when it connects to an upstream server, and the server will accept the certificate.
 
 ## Configuring NGINX
 
-In the NGINX configuration file, include the [proxy_ssl](https://nginx.org/en/docs/stream/ngx_stream_proxy_module.html#proxy_ssl) directive in the `server` block on the `stream` level:
+Open the NGINX configuration file. Then, include the [proxy_ssl](https://nginx.org/en/docs/stream/ngx_stream_proxy_module.html#proxy_ssl) directive in the `server` block on the `stream` level:
 
 ```nginx
 stream {
@@ -43,7 +43,7 @@ stream {
 }
 ```
 
-Then specify the path to the SSL client certificate required by the upstream server and the certificate’s private key:
+Specify the path to the SSL client certificate required by the upstream server. Also, specify the certificate’s private key:
 
 ```nginx
 server {
@@ -53,7 +53,7 @@ server {
 }
 ```
 
-Optionally, you can specify which SSL protocols and ciphers are used:
+Optionally, specify which SSL protocols and ciphers to use:
 
 ```nginx
 server {
@@ -63,7 +63,7 @@ server {
 }
 ```
 
-If you use certificates issued by a CA, also include the [proxy_ssl_trusted_certificate](https://nginx.org/en/docs/stream/ngx_stream_proxy_module.html#proxy_ssl_trusted_certificate) directive to name the file containing the trusted CA certificates used to verify the upstream’s security certificates. The file must be in the PEM format. Optionally, include the [proxy_ssl_verify](https://nginx.org/en/docs/stream/ngx_stream_proxy_module.html#proxy_ssl_verify) and [proxy_ssl_verfiy_depth](https://nginx.org/en/docs/stream/ngx_stream_proxy_module.html#proxy_ssl_verify_depth) directives to have NGINX check the validity of the security certificates:
+The [proxy_ssl_trusted_certificate](https://nginx.org/en/docs/stream/ngx_stream_proxy_module.html#proxy_ssl_trusted_certificate) directive specifies the file containing the trusted CA certificates. These trusted certificates are used to validate the upstream server’s security certificates. The file must be in PEM format. Optionally, include the [proxy_ssl_verify](https://nginx.org/en/docs/stream/ngx_stream_proxy_module.html#proxy_ssl_verify) and [proxy_ssl_verfiy_depth](https://nginx.org/en/docs/stream/ngx_stream_proxy_module.html#proxy_ssl_verify_depth) directives so NGINX vaidates the security certificates:
 
 ```nginx
 server {
@@ -74,7 +74,7 @@ server {
 }
 ```
 
-Each new SSL connection requires a full SSL handshake between the client and server, which is quite CPU-intensive. To have NGINX proxy previously negotiated connection parameters and use a so-called abbreviated handshake, include the [proxy_ssl_session_reuse](https://nginx.org/en/docs/stream/ngx_stream_proxy_module.html#proxy_ssl_session_reuse) directive:
+New SSL connections require a full SSL handshake between the client and server. This is quite CPU-intensive. NGINX can proxy previously negotiated connection parameters and use a so-called abbreviated handshake. This lessens the CPU load for new SSL connections. To enable this, include the [proxy_ssl_session_reuse](https://nginx.org/en/docs/stream/ngx_stream_proxy_module.html#proxy_ssl_session_reuse) directive:
 
 ```nginx
 proxy_ssl_session_reuse on;
@@ -109,12 +109,12 @@ stream {
 }
 ```
 
-In this example, the [proxy_ssl](https://nginx.org/en/docs/stream/ngx_stream_proxy_module.html#proxy_ssl) directive specifies that TCP traffic forwarded by NGINX to upstream servers be secured.
+In this example, the [proxy_ssl](https://nginx.org/en/docs/stream/ngx_stream_proxy_module.html#proxy_ssl) directive specifies to secure the TCP traffic NGINX forwards to upstream servers.
 
-When a secure TCP connection is passed from NGINX to the upstream server for the first time, the full handshake process is performed. The upstream server asks NGINX to present a security certificate specified in the [proxy_ssl_certificate](https://nginx.org/en/docs/stream/ngx_stream_proxy_module.html#proxy_ssl_certificate) directive. The [proxy_ssl_protocols](https://nginx.org/en/docs/stream/ngx_stream_proxy_module.html#proxy_ssl_protocols) and [proxy_ssl_ciphers](https://nginx.org/en/docs/stream/ngx_stream_proxy_module.html#proxy_ssl_ciphers) directives control which protocols and ciphers are used.
+A full handshake occurs when NGINX first secures a TCP connection to an upstream server. The upstream server asks NGINX to present a security certificate specified in the [proxy_ssl_certificate](https://nginx.org/en/docs/stream/ngx_stream_proxy_module.html#proxy_ssl_certificate) directive. The [proxy_ssl_protocols](https://nginx.org/en/docs/stream/ngx_stream_proxy_module.html#proxy_ssl_protocols) and [proxy_ssl_ciphers](https://nginx.org/en/docs/stream/ngx_stream_proxy_module.html#proxy_ssl_ciphers) directives specify the respective protocols and ciphers.
 
-The next time NGINX passes a connection to the upstream, session parameters will be reused because of the [proxy_ssl_session_reuse](https://nginx.org/en/docs/stream/ngx_stream_proxy_module.html#proxy_ssl_session_reuse) directive, and the secured TCP connection is established faster.
+The [proxy_ssl_session_reuse](https://nginx.org/en/docs/stream/ngx_stream_proxy_module.html#proxy_ssl_session_reuse) directive causes subsequent upstream connections to reuse the session parameters. This makes establishing a secured TCP connection faster.
 
-The trusted CA certificates in the file named by the [proxy_ssl_trusted_certificate](https://nginx.org/en/docs/stream/ngx_stream_proxy_module.html#proxy_ssl_trusted_certificate) directive are used to verify the certificate on the upstream server. The [proxy_ssl_verify_depth](https://nginx.org/en/docs/stream/ngx_stream_proxy_module.html#proxy_ssl_verify_depth) directive specifies that two certificates in the certificates chain are checked, and the [proxy_ssl_verify](https://nginx.org/en/docs/stream/ngx_stream_proxy_module.html#proxy_ssl_verify) directive verifies the validity of certificates.
+The [proxy_ssl_trusted_certificate](https://nginx.org/en/docs/stream/ngx_stream_proxy_module.html#proxy_ssl_trusted_certificate) directive names a file containing trusted CA certificates. Use these certificates to verify the certificate on the upstream server. The [proxy_ssl_verify_depth](https://nginx.org/en/docs/stream/ngx_stream_proxy_module.html#proxy_ssl_verify_depth) directive specifies to check two certificates in the certificates chain. The [proxy_ssl_verify](https://nginx.org/en/docs/stream/ngx_stream_proxy_module.html#proxy_ssl_verify) directive verifies the validity of certificates.
 
 To learn more about NGINX Plus, please see our [commercial subscriptions](https://nginx.com/products/).

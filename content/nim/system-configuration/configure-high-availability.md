@@ -129,7 +129,7 @@ vrrp_instance VI_28 {
 ```
 
 Replace:
-- `<NETWORK_INTERFACE>` with your actual network interface (e.g., `ens32`).
+- `<NETWORK_INTERFACE>` with your actual network interface (for example, `ens32`).
 - `<AUTH_PASSWORD>` with a secure authentication password.
 - `<VIRTUAL_IP_ADDRESS>` with your reserved VIP.
 

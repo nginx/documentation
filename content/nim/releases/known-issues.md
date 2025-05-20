@@ -72,7 +72,7 @@ On Ubuntu 24.04, NGINX Instance Manager v2.18.0 and v2.19.0 fail to automaticall
 
 #### Workaround
 
-Manually install the missing compiler by following the instructions in [Install the WAF compiler]({{< relref "nim/nginx-app-protect/setup-waf-config-management.md#install-the-waf-compiler" >}}).
+Manually install the missing compiler by following the instructions in [Install the WAF compiler]({{< ref "nim/nginx-app-protect/setup-waf-config-management.md#install-the-waf-compiler" >}}).
 
 ---
 

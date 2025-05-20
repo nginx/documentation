@@ -2,7 +2,7 @@
 title: NGINXaaS Load Balancer for Kubernetes
 weight: 250
 toc: true
-url: /nginxaas/azure/quickstart/loadbalancer-kubernetes/
+url: /nginxaas/azure/loadbalancer-kubernetes/
 type:
 - how-to
 ---
@@ -250,7 +250,7 @@ Expose a Kubernetes `Service` to route traffic to your workload.  The `Service` 
 - Choose one of the following `Service` types:
   - `NodePort`: To route external traffic into the cluster using a well defined port exposed on each AKS worker node.
   - `ClusterIP`: To route traffic to pods directly if you are running an Azure Container Networking Interface (CNI) that lets you expose the pods on the Azure VNET.
-  - `LoadBalancer`: To route traffic to the cluster's external load balancer. The load balancer routes traffic into the cluster as normal.   
+  - `LoadBalancer`: To route traffic to the cluster's external load balancer. The load balancer routes traffic into the cluster as normal.
 - The port name must be formatted as `{{NGINX Context}}-{{NGINX upstream name}}`. For example:
   - If the upstream is in the `http` context and named `my-service` then the name is `http-my-service`
   - If the upstream is in the `stream` context and named `jet` then the port name is `stream-jet`
@@ -259,7 +259,7 @@ Expose a Kubernetes `Service` to route traffic to your workload.  The `Service` 
 **NGINX Ingress Controller users**: with v5.0.0 and upwards, if you wish to route traffic from your NGINXaaS deployment to your NGINX Ingress Controller service, please make the following changes to your helm chart values:
 
 - Add `"nginx.com/nginxaas": "nginxaas"` to the NGINX Ingress Controller service annotations.
-- Modify the `service.httpPort.name` or `service.httpsPort.name` values to provide the expected port name format, as above.  
+- Modify the `service.httpPort.name` or `service.httpsPort.name` values to provide the expected port name format, as above.
 {{</ note >}}
 
 The following example uses a service of type `NodePort`:
@@ -278,6 +278,7 @@ spec:
   type: NodePort
   ports:
     - targetPort: http
+      port: 80
       protocol: TCP
       # The port name helps connect to NGINXaaS. It must be prefixed with either `http-` or `stream-`
       # and the rest of the name must match the name of an upstream in that context.
@@ -299,7 +300,7 @@ spec:
 
 ### Multiple AKS clusters
 
-A single NGINXaaS deployment can direct trafifc to multiple AKS clusters. Each AKS cluster needs its own copy of NLK installed and connected to NGINXaaS.
+A single NGINXaaS deployment can direct traffic to multiple AKS clusters. Each AKS cluster needs its own copy of NLK installed and connected to NGINXaaS.
 
 ```mermaid
 flowchart TB
@@ -350,7 +351,7 @@ flowchart TB
 
 Multiple NLK controllers can be installed in the same AKS cluster to update separate NGINXaaS deployments.
 
-Each NLK needs a unique helm release name and needs a unique helm value for `nlk.config.serviceAnnotationMatch`.  Each NLK will only watch services that have the matching annotation.
+Each NLK needs a unique helm release name and needs a unique helm value for `nlk.config.serviceAnnotationMatch`. Each NLK will only watch services that have the matching annotation.
 
 {{<note>}}
 
@@ -373,7 +374,7 @@ The logs can be made more verbose by setting the Helm value `nlk.config.logLevel
 
 NGINXaaS supports exporting dynamic upstream update logs to an Azure Storage account or to a Log Analytics workspace.
 
-To setup logging:
+To set up logging:
 
 1. Select **Diagnostic settings** under **Monitoring**.
 1. Select **Add diagnostic setting**.
@@ -390,4 +391,4 @@ NGINXaaS has the following metrics that are useful to monitor upstream health:
 - `plus.http.upstream.peers.state.up` -- does the peer report being healthy.
 - `plus.http.upstream.peers.request.count` -- which peers are handling requests.
 
-See the [metrics catalog](../../monitoring/metrics-catalog) for the entire list of NGINXaaS metrics.
+See the [metrics catalog]({{< ref "/nginxaas-azure/monitoring/metrics-catalog.md" >}}) for the entire list of NGINXaaS metrics.

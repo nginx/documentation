@@ -17,7 +17,7 @@ When caching is enabled, F5 NGINX Plus saves responses in a disk cache and uses 
 To learn more about NGINX Plus’s caching capabilities, watch the [Content Caching with NGINX](https://nginx.com/resources/webinars/content-caching-nginx-plus/) webinar on demand and get an in‑depth review of features such as dynamic [content caching](https://nginx.com/products/nginx/caching/), cache purging, and delayed caching.
 
 <span id="enable"></span>
-## Enabling the Caching of Responses
+## Enable the Caching of Responses
 
 To enable caching, include the [`proxy_cache_path`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_cache_path) directive in the top‑level `http {}` context. The mandatory first parameter is the local filesystem path for cached content, and the mandatory `keys_zone` parameter defines the name and size of the shared memory zone that is used to store metadata about cached items:
 
@@ -65,7 +65,7 @@ proxy_cache_path /data/nginx/cache keys_zone=mycache:10m loader_threshold=300 lo
 ```
 
 <span id="select"></span>
-## Specifying Which Requests to Cache
+## Specify Which Requests to Cache
 
 By default, NGINX Plus caches all responses to requests made with the HTTP `GET` and `HEAD` methods the first time such responses are received from a proxied server. As the key (identifier) for a request, NGINX Plus uses the request string. If a request has the same key as a cached response, NGINX Plus sends the cached response to the client. You can include various directives in the `http {}`, `server {}`, or `location {}` context to control which responses are cached.
 
@@ -88,7 +88,7 @@ proxy_cache_methods GET HEAD POST;
 ```
 
 <span id="bypass"></span>
-## Limiting or Disabling Caching
+## Limit or Disable Caching
 
 By default, responses remain in the cache indefinitely. They are removed only when the cache exceeds the maximum configured size, and then in order by length of time since they were last requested. You can set how long cached responses are considered valid, or even whether they are used at all, by including directives in the `http {}`, `server {}`, or `location {}` context:
 
@@ -118,12 +118,12 @@ proxy_no_cache $http_pragma $http_authorization;
 ```
 
 <span id="purge"></span>
-## Purging Content From The Cache
+## Purge Content From The Cache
 
 NGINX makes it possible to remove outdated cached files from the cache. This is necessary for removing outdated cached content to prevent serving old and new versions of web pages at the same time. The cache is purged upon receiving a special “purge” request that contains either a custom HTTP header, or the HTTP `PURGE` method.
 
 <span id="purge_configure"></span>
-### Configuring Cache Purge
+### Configure Cache Purge
 
 Let’s set up a configuration that identifies requests that use the HTTP `PURGE` method and deletes matching URLs.
 
@@ -156,7 +156,7 @@ Let’s set up a configuration that identifies requests that use the HTTP `PURGE
     ```
 
 <span id="purge_request"></span>
-### Sending the Purge Command
+### Send the Purge Command
 
 When the `proxy_cache_purge` directive is configured, you need to send a special cache‑purge request to purge the cache. You can issue purge requests using a range of tools, including the `curl` command as in this example:
 
@@ -171,7 +171,7 @@ Connection: keep-alive
 In the example, the resources that have a common URL part (specified by the asterisk wildcard) are purged. However, such cache entries are not removed completely from the cache: they remain on disk until they are deleted for either inactivity (as determined by the `inactive` parameter to the [`proxy_cache_path`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_cache_path) directive) or by the cache purger (enabled with the [`purger`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#purger) parameter to `proxy_cache_path`), or a client attempts to access them.
 
 <span id="purge_secure"></span>
-### Restricting Access to the Purge Command
+### Restrict Access to the Purge Command
 
 We recommend that you limit the number of IP addresses that are allowed to send a cache‑purge request:
 
@@ -191,7 +191,7 @@ map $request_method $purge_method {
 In this example, NGINX checks if the `PURGE` method is used in a request, and, if so, analyzes the client IP address. If the IP address is whitelisted, then the `$purge_method` is set to `$purge_allowed`: `1` permits purging, and `0` denies it.
 
 <span id="purge_remove"></span>
-### Completely Removing Files from the Cache
+### Completely Remove Files from the Cache
 
 To completely remove cache files that match an asterisk, activate a special `cache purger` process that permanently iterates through all cache entries and deletes the entries that match the wildcard key. Include the [`purger`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#purger) parameter to the [`proxy_cache_path`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_cache_path) directive in the `http {}` context:
 
