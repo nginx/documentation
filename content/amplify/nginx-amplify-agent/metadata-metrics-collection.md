@@ -9,7 +9,7 @@ docs: DOCS-964
 F5 NGINX Amplify Agent collects the following types of data:
 
   * **NGINX metrics.** NGINX Amplify Agent collects a lot of NGINX related metrics from [stub_status](http://nginx.org/en/docs/http/ngx_http_stub_status_module.html), the NGINX Plus status API, the NGINX log files, and from the NGINX process state.
-  * **System metrics.** These are various key metrics describing the system, e.g., CPU usage, memory usage, network traffic, etc.
+  * **System metrics.** These are various key metrics describing the system, for example, CPU usage, memory usage, network traffic, etc.
   * **PHP-FPM metrics.** NGINX Amplify Agent can obtain metrics from the PHP-FPM pool status if it detects a running PHP-FPM main process.
   * **MySQL metrics.** NGINX Amplify Agent can obtain metrics from the MySQL global status set of variables.
   * **NGINX metadata.** This is what describes your NGINX instances, and it includes package data, build information, the path to the binary, build configuration options, etc. NGINX metadata also includes the NGINX configuration elements.
