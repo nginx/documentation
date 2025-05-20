@@ -97,11 +97,14 @@ Deploys NGINX Gateway Fabric with NGINX OSS.
 kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v{{< version-ngf >}}/deploy/default/deploy.yaml
 ```
 
-To set up an AWS Network Load Balancer service, add these annotations to your Gateway infrastructure fields:
+To set up an AWS Network Load Balancer service, add these annotations to your Gateway infrastructure field:
 
 ```yaml
-service.beta.kubernetes.io/aws-load-balancer-type: "external"
-service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: "ip"
+spec:
+  infrastructure:
+    annotations:
+      service.beta.kubernetes.io/aws-load-balancer-type: "external"
+      service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: "ip"
 ```
 
 {{% /tab %}}
