@@ -74,6 +74,6 @@ The standard Azure [networking](https://azure.microsoft.com/en-us/pricing/detail
 {{< note >}}The management traffic for NGINX instances is billed as a `Virtual Network Peering - Intra-Region Egress` charge. This charge includes the data for shipping metrics and logs. The cost for shipping metrics data is approximately $0.03/month. If you enable NGINX logging the cost increases by roughly $0.005 per GB of logs NGINX generates. To estimate this, multiply the number of requests by the average log line size of the access_log format you have configured.
 {{< /note >}}
 
-## Usage Data Reporting​
+## Review billing data
 
 NGINXaaS usage data is reported directly to NGINXaaS. This data is utilized for billing purposes and is reflected in your Azure subscription's cost analysis. You can view detailed usage information in the Azure Portal under "Cost Management + Billing".​
