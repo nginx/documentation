@@ -83,113 +83,25 @@ Install NGINX Open Source or NGINX Plus on the host where you'll install NGINX I
 
 ---
 
-## Install ClickHouse {#install-clickhouse}
+## Configure metrics collection
 
-{{<note>}}NGINX Instance Manager requires ClickHouse 22.3.15.33 or later.{{</note>}}
+### Disable metrics collection
 
-NGINX Instance Manager uses [ClickHouse](https://clickhouse.com) to store metrics, events, and alerts, as well as configuration settings.
+NGINX Instance Manager uses ClickHouse to store metrics, events, alerts, and configuration data.
 
-Select the tab for your Linux distribution, then follow the instructions to install ClickHouse.
+If you do not need to store metrics, you can skip the installation steps in this section. Instead, you must disable metrics collection in the `/etc/nms/nms.conf` configuration file.
 
-{{<tabs name="clickhouse">}}
+For instructions, see [Disable metrics collection]({{< ref "nim/system-configuration/configure-clickhouse.md#disable-metrics-collection" >}}).
 
-{{%tab name="CentOS, RHEL, RPM-Based"%}}
+### Install ClickHouse to enable metrics
 
-To install and enable ClickHouse CentOS, RHEL, and RPM-Based distributions, take the following steps:
+{{< include "nim/clickhouse/clickhouse-install.md" >}}
 
-1. Set up the repository:
+#### ClickHouse Default Settings
 
-    ``` bash
-    sudo yum install -y yum-utils
-    sudo yum-config-manager --add-repo https://packages.clickhouse.com/rpm/clickhouse.repo
-    ```
+NGINX Instance Manager uses the following default values for ClickHouse. To change these values, see the [Configure ClickHouse](nim/system-configuration/configure-clickhouse.md) guide.
 
-1. Install the ClickHouse server and client:
-
-    ```bash
-    sudo yum install -y clickhouse-server clickhouse-client
-    ```
-
-    > <span style="color: #c20025;"><i class="fas fa-exclamation-triangle"></i> **IMPORTANT!**</span> When installing ClickHouse, you have the option to specify a password or leave the password blank (the default is an empty string). If you choose to specify a password for ClickHouse, you must also edit the `/etc/nms/nms.conf` file after installing NGINX Instance Manager and enter your ClickHouse password; otherwise, NGINX Instance Manager won't start.
-    >
-    > For more information on customizing ClickHouse settings, refer to the [Configure ClickHouse]({{< ref "nim/system-configuration/configure-clickhouse.md" >}}) topic.
-
-1. Enable ClickHouse so that it starts automatically if the server is restarted:
-
-    ```bash
-    sudo systemctl enable clickhouse-server
-    ```
-
-1. Start the ClickHouse server:
-
-    ```bash
-    sudo systemctl start clickhouse-server
-    ```
-
-1. Verify ClickHouse is running:
-
-    ```bash
-    sudo systemctl status clickhouse-server
-    ```
-
-{{%/tab%}}
-
-{{%tab name="Debian, Ubuntu, Deb-Based"%}}
-
-To install and enable ClickHouse on Debian, Ubuntu, and Deb-Based distributions, take the following steps:
-
-1. Set up the repository:
-
-   ```bash
-   sudo apt-get install -y apt-transport-https ca-certificates dirmngr
-   GNUPGHOME=$(mktemp -d)
-   sudo GNUPGHOME="$GNUPGHOME" gpg --no-default-keyring --keyring /usr/share/keyrings/clickhouse-keyring.gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 8919F6BD2B48D754
-   sudo rm -r "$GNUPGHOME"
-   sudo chmod +r /usr/share/keyrings/clickhouse-keyring.gpg
-
-   echo "deb [signed-by=/usr/share/keyrings/clickhouse-keyring.gpg] https://packages.clickhouse.com/deb lts main" | sudo tee /etc/apt/sources.list.d/clickhouse.list
-   sudo apt-get update
-   ```
-
-1. Install the ClickHouse server and client:
-
-    ``` bash
-    sudo apt-get install -y clickhouse-server clickhouse-client
-    ```
-
-    > <span style="color: #c20025;"><i class="fas fa-exclamation-triangle"></i> **IMPORTANT!**</span> When installing ClickHouse, you have the option to specify a password or leave the password blank (the default is an empty string). If you choose to specify a password for ClickHouse, you must also edit the `/etc/nms/nms.conf` file after installing NGINX Instance Manager and enter your ClickHouse password; otherwise, NGINX Instance Manager won't start.
-    >
-    > For more information on customizing ClickHouse settings, refer to the [Configure ClickHouse]({{< ref "nim/system-configuration/configure-clickhouse.md" >}}) topic.
-
-1. Enable ClickHouse so that it starts automatically if the server is restarted:
-
-    ```bash
-    sudo systemctl enable clickhouse-server
-    ```
-
-1. Start the ClickHouse server:
-
-    ``` bash
-    sudo systemctl start clickhouse-server
-    ```
-
-1. Verify ClickHouse is running:
-
-    ```bash
-    sudo systemctl status clickhouse-server
-    ```
-
-{{%/tab%}}
-
-{{</tabs>}}
-
-### ClickHouse Default Settings
-
-NGINX Instance Manager uses the following default values for ClickHouse:
-
-{{<important>}}You can customize these settings. However, if you use custom settings, make sure to follow the [Configure ClickHouse]({{< ref "nim/system-configuration/configure-clickhouse.md" >}}) instructions to update the `nms.conf` file after you've installed NGINX Instance Manager; otherwise NGINX Instance Manager won't be able to connect to ClickHouse.{{</important>}}
-
-{{< include "installation/clickhouse-defaults.md" >}}
+{{< include "nim/clickhouse/clickhouse-defaults.md" >}}
 
 ---
 
@@ -258,16 +170,27 @@ To install NGINX Instance Manager, you need to add the official repository to pu
    sudo systemctl restart nginx
    ```
 
-### Post-Installation Steps
+## Optional post-installation steps
 
-{{< include "installation/optional-installation-steps.md" >}}
+### Configure ClickHouse
 
-### Accessing the Web Interface
+{{< include "nim/installation/optional-steps/configure-clickhouse.md" >}}
+
+### Install and configure Vault {#install-vault}
+
+{{< include "nim/installation/optional-steps/install-configure-vault.md" >}}
+
+
+### Configure SELinux
+
+{{< include "nim/installation/optional-steps/configure-selinux.md" >}}
+
+## Accessing the Web Interface
 
 {{< include "installation/access-web-ui.md" >}}
 
 
-### Add License
+## Add License
 
 {{< include "nim/admin-guide/license/connected-install-license-note.md" >}}
 
