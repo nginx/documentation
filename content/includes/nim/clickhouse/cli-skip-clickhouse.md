@@ -6,7 +6,7 @@ files:
 ---
 
 {{< call-out "note" "Optional: Disable metrics collection" "" >}}
-To skip downloading and installing ClickHouse, add the following flag to the script: `<flag-to-be-confirmed>`. This is useful if you do not plan to collect metrics.
+To skip downloading and installing ClickHouse, add the `-s` flag to the script. This is useful if you do not plan to collect metrics.
 
 If you skip ClickHouse, make sure to [disable metrics collection]({{< ref "nim/system-configuration/configure-clickhouse.md#disable-metrics-collection" >}}) in the `/etc/nms/nms.conf` configuration file after installing NGINX Instance Manager.
 {{< /call-out >}}
