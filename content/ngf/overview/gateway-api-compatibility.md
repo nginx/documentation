@@ -384,5 +384,3 @@ Custom policies are NGINX Gateway Fabric-specific CRDs (Custom Resource Definiti
 While these CRDs are not part of the Gateway API, the mechanism to attach them to Gateway API resources is part of the Gateway API. See the [Policy Attachment documentation](https://gateway-api.sigs.k8s.io/references/policy-attachment/).
 
 See the [custom policies]({{< ref "/ngf/overview/custom-policies.md" >}}) document for more information.
-
----
