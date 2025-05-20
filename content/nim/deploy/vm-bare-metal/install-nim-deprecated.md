@@ -1,7 +1,7 @@
 ---
 description: ''
 docs: DOCS-1211
-title: Manually install on a virtual machine or bare metal (deprecated)
+title: Manually install any version of NGINX Instance Manager
 toc: true
 weight: 10
 noindex: true
@@ -11,10 +11,7 @@ type:
 
 ## Overview
 
-Follow the steps in this guide to install or upgrade NGINX Instance Manager.
-
-{{<call-out "caution" "Deprecated documentation notice" "fa fa-exclamation-triangle" >}}
-This document outlines manual steps that have been replaced by a simplified script-based process. For most users, we recommend using the updated process documented [here]({{< ref "nim/deploy/vm-bare-metal/install.md" >}}).{{</call-out>}}
+Follow the steps in this guide to install or upgrade a specific version of NGINX Instance Manager.
 
 ## Before You Begin
 

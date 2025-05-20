@@ -246,7 +246,7 @@ The status should show `STATUS: deployed` if successful.
 
 A valid license is required to use all NGINX Instance Manager features.
 
-For instructions on downloading and applying a license, see [Add a License]({{< ref "/nim/admin-guide/license/add-license.md" >}}).
+For instructions on downloading and applying a license, see [Add a License]({{< ref "/nim/admin-guide/add-license.md" >}}).
 
 ---
 

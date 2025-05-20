@@ -1,7 +1,7 @@
 ---
 description: ''
 docs: DOCS-1211
-title: Install on a virtual machine or bare metal using a script
+title: Install the latest NGINX Instance Manager with a script
 toc: true
 weight: 10
 type:
@@ -12,15 +12,26 @@ type:
 
 ## Overview
 
-This guide explains how to install F5 NGINX Instance Manager on a virtual machine or bare metal system using the `install-nim-bundle.sh` script.
+This guide shows you how to install and upgrade F5 NGINX Instance Manager on a virtual machine or bare metal system using the installation script in online mode.
 
-The script simplifies the installation by automating tasks such as verifying system requirements, configuring services, and managing environment-specific options. For more control or an alternative approach, you can refer to the [manual installation guide]({{< ref "nim/deploy/vm-bare-metal/install-nim-deprecated.md" >}}), which provides detailed, step-by-step instructions.
+The script installs:
+
+- The latest version of NGINX Open Source
+- The latest version of NGINX Instance Manager
+- ClickHouse by default, unless you choose to skip it
+- Optionally, NGINX Plus (requires a license and additional flags)
+
+The script also installs all required operating system packages automatically. If you need to install earlier versions of NGINX or NGINX Instance Manager, follow the [manual installation process](({{< ref "nim/deploy/vm-bare-metal/install-nim-deprecated.md" >}})) instead.
 
 ---
 
 ## Before you begin
 
 Follow these steps to prepare for installing NGINX Instance Manager:
+
+- **Download the installation script**:
+
+  {{<fa "download">}} {{<link "/scripts/install-nim-bundle.sh" "Download install-nim-bundle.sh script">}}
 
 - **Download the certificate and private key** (see the steps [below](#download-cert-key)):
   Use the certificate and private key for NGINX Instance Manager (the same files used for NGINX Plus).
@@ -31,14 +42,21 @@ Follow these steps to prepare for installing NGINX Instance Manager:
 
 - **Check for previous deployments**:
   Ensure that NGINX Instance Manager and its components are not already installed.
-  - If NGINX Instance Manager or its components (such as ClickHouse or NGINX) are detected, either follow the [upgrade instructions](#upgrade-nim) to update them or [manually remove the components](#uninstall-nim) before proceeding with the installation.
-
-- **Record the version details**:
-  Note the current version of NGINX Instance Manager and confirm the supported version of NGINX OSS or NGINX Plus you intend to use.
-  - By default, the script installs the latest version.
+  
+  If NGINX Instance Manager or its components (such as ClickHouse or NGINX) are detected, either follow the [upgrade instructions](#upgrade-nim) to update them or [manually remove the components](#uninstall-nim) before proceeding with the installation.
 
 - **(Optional) Install and configure Vault**:
   If you plan to use Vault, set it up before proceeding.
+
+### Supported NGINX versions and Linux distributions
+
+The installation script installs the latest version of [NGINX Open Source](https://nginx.org/news.html) or [NGINX Plus](https://docs.nginx.com/nginx/releases/).
+
+To see the list of supported distributions, run:
+
+```shell
+grep '\-d distribution' install-nim-bundle.sh
+```
 
 ### Security considerations
 
@@ -49,35 +67,13 @@ To ensure that your NGINX Instance Manager deployment remains secure, follow the
 
 ---
 
-## Requirements
-
-### Supported NGINX versions and Linux distributions
-
-<details open>
-<summary><i class="fa-solid fa-circle-info"></i> Supported NGINX versions</summary>
-
-{{< include "nim/tech-specs/supported-nginx-versions.md" >}}
-
-</details>
-
-<details open>
-<summary><i class="fa-solid fa-circle-info"></i> Supported Linux distributions</summary>
-
-{{< include "nim/tech-specs/supported-distros.md" >}}
-
-</details>
-
-
-
----
-
 ## Download certificate and key {#download-cert-key}
 
 Download the certificate and private key required for NGINX Instance Manager. These files are necessary for adding the official repository during installation and can also be used when installing NGINX Plus.
 
 1. On the host where you're installing NGINX Instance Manager, create the **/etc/ssl/nginx/** directory:
 
-    ```bash
+    ```shell
     sudo mkdir -p /etc/ssl/nginx
     ```
 
@@ -85,16 +81,16 @@ Download the certificate and private key required for NGINX Instance Manager. Th
 
 3. Move and rename the cert and key files to the correct directory:
 
-    ```bash
+    ```shell
     sudo mv nginx-<subscription id>.crt /etc/ssl/nginx/nginx-repo.crt
     sudo mv nginx-<subscription id>.key /etc/ssl/nginx/nginx-repo.key
     ```
 
 ---
 
-## Download and run the installation script {#download-install}
+## Prepare the system and run the installation script {#download-install}
 
-Download the `install-nim-bundle.sh` script:
+If you haven’t already downloaded the script, you can download it here:
 
 {{<fa "download">}} {{<link "/scripts/install-nim-bundle.sh" "Download install-nim-bundle.sh script">}}
 
@@ -122,69 +118,89 @@ If the script fails or if you prefer more control over the process, consider usi
 
 ### Run the installation script
 
-The `install-nim-bundle.sh` script automates the installation of NGINX Instance Manager. By default, the script:
+The `install-nim-bundle.sh` script automates installing NGINX Instance Manager. 
 
-- Assumes no prior installation of NGINX Instance Manager or its dependencies and performs a fresh installation.
-- Reads SSL files from the `/etc/ssl/nginx` directory.
-- Installs the latest version of NGINX Open Source (OSS).
-- Installs the ClickHouse database.
-- Installs NGINX Instance Manager.
-- Requires an active internet connection.
+By default, the script:
 
-{{< warning >}}
+- Assumes no prior installation of NGINX Instance Manager or its dependencies
+- Reads SSL files from the `/etc/ssl/nginx` directory
+- Installs the latest version of NGINX Open Source (OSS)
+- Installs the ClickHouse database
+- Installs the latest version of NGINX Instance Manager
+- Requires an active internet connection
 
-As noted in [About subscription licenses]({{< ref "solutions/about-subscription-licenses.md#apply-the-jwt" >}}), **custom paths won't work until you upgrade to NGINX Plus R33**.
+You can customize the installation using the following options:
 
-{{< /warning >}}
+**Installation platform**
 
-When you run the script, it downloads and installs NGINX Instance Manager.
+- {{< include "nim/installation/install-script-flags/distribution.md" >}}
 
-If you want to use the script with non-default options, use these switches:
+**SSL certificate and key**
 
-- To point to a repository key stored in a directory other than **/etc/ssl/nginx**: `-k /path/to/your/<nginx-repo.key>` file
-- To point to a repository certificate stored in a directory other than **/etc/ssl/nginx**: `-c /path/to/your/<nginx-repo.crt>` file
-- To install NGINX Plus (instead of NGINX OSS): `-p <nginx_plus_version>  -j /path/to/license.jwt`
+- {{< include "nim/installation/install-script-flags/cert.md" >}}
+- {{< include "nim/installation/install-script-flags/key.md" >}}
 
-{{< note >}} Starting from [NGINX Plus Release 33]({{< ref "nginx/releases.md#r33" >}}), a JWT file is required for each NGINX Plus instance. For more information, see [About Subscription Licenses]({{< ref "/solutions/about-subscription-licenses.md">}}). {{< /note >}}
 
-You also need to specify the current operating system. To get the latest list supported by the script, run the following command:
+**NGINX installation**
+
+You can install either NGINX Open Source or NGINX Plus—but not both.  
+
+If you don’t specify `-n` or `-p`, the script installs the latest version of NGINX Open Source by default.
+
+- `-n`: Install the latest version of NGINX Open Source.
+- `-p`: Install the latest version of NGINX Plus as the API gateway. Must be used with `-j` to provide a JWT license.
+- `-j <path/to/license.jwt>`: Path to the `license.jwt` file (required if using `-p` to install NGINX Plus).  
+
+    A JWT license is required for NGINX Plus R33 and later (see [NGINX Plus R33 release notes]({{< ref "nginx/releases.md#r33" >}})).
+
+    By default, the script looks for the license at `/etc/nginx/license.jwt` (or `/usr/local/etc/nginx/license.jwt` on FreeBSD).
+
+    If you use a custom path, note that custom paths aren’t supported until after the R33 upgrade.  
+    See [About subscription licenses]({{< ref "solutions/about-subscription-licenses.md#apply-the-jwt" >}}) for details and a workaround.
+
+**ClickHouse installation**
+
+- {{< include "nim/installation/install-script-flags/skip-clickhouse.md" >}}
+
+- {{< include "nim/installation/install-script-flags/clickhouse-version.md" >}}
+
+
+**Example: install with default key and certificate paths**
+
+To use the script to install NGINX Instance Manager on Ubuntu 24.04, with repository keys in the default `/etc/ssl/nginx` directory, with the latest version of NGINX Open Source, run the following command:
 
 ```bash
-grep '\-d distribution' install-nim-bundle.sh
+sudo bash install-nim-bundle.sh -d ubuntu24.04
 ```
 
-For example, to use the script to install NGINX Instance Manager on Ubuntu 24.04, with repository keys in the default `/etc/ssl/nginx` directory, with the latest version of NGINX OSS, run the following command:
+<br>
 
-```bash
-sudo bash install-nim-bundle.sh -n latest -d ubuntu24.04 -j /path/to/license.jwt
-```
+**Example: install with custom repo key and certificate**
 
 To install NGINX Instance Manager on Ubuntu 24.04 with the latest version of NGINX Plus by pointing to the location of your NGINX cert and key, run the following command:
 
 ```bash
 sudo bash install-nim-bundle.sh \
-  -c /path/to/nginx-repo.crt \
-  -k /path/to/nginx-repo.key \
-  -p latest \
+  -c <path/to/nginx-repo.crt> \
+  -k <path/to/nginx-repo.key> \
+  -p \
   -d ubuntu24.04 \
-  -j /path/to/license.jwt
+  -j <path/to/license.jwt>
 ```
 
 <br>
 
-{{< include "nim/clickhouse/cli-skip-clickhouse.md" >}}
-
-In most cases, the script completes the installation of NGINX Instance Manager and associated packages. After installation is complete, the script takes a few minutes to generate a password. At the end of the process, you'll see an autogenerated password:
+After installing NGINX Instance Manager and related packages, the script generates an admin password. This may take a few minutes to appear: 
 
 ```bash
 Regenerated Admin password: <encrypted password>
 ```
 
-Save that password. You'll need it when you sign in to NGINX Instance Manager.
+Save this password. You'll need it to log in to NGINX Instance Manager.
 
 ### Problems and additional script parameters
 
-There are multiple parameters to configure in the Installation script. If you see fatal errors when running the script, first run the following command, which includes command options that can help you bypass problems:
+There are multiple parameters to configure in the installation script. If you see fatal errors when running the script, first run the following command, which includes command options that can help you bypass problems:
 
 ```bash
 bash install-nim-bundle.sh -h
@@ -267,7 +283,7 @@ bash install-nim-bundle.sh -r
    sudo apt-get install -y --only-upgrade nms-instance-manager
    ```
 
-1. To upgrade to the latest version of Clickhouse, run the following commands:
+1. To upgrade to the latest version of ClickHouse, run the following commands:
 
    ```bash
    sudo apt-get update
