@@ -13,7 +13,7 @@ This article explains how to install NGINX Open Source on various operating syst
 
 ## Stable and mainline versions {#stable_vs_mainline}
 
-NGINX Open Source is available in two versions: Mainline and Stable. The source code and release notes for both versions are available from [nginx download page](https://nginx.org/en/download.html).
+NGINX Open Source is available in two versions: Mainline and Stable. The source code and release notes for both versions are available from [NGINX download page](https://nginx.org/en/download.html).
 
 ### Mainline version
 
