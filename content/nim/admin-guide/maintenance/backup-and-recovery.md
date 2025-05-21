@@ -61,7 +61,7 @@ To back up configuration files, secrets, and databases:
     sudo ./backup.sh
     ```
 
-    The backup will be saved as a tarball, similar to this example: `/tmp/nms-backup-<DATETIME>.tgz`.
+    The backup will be saved as a tarball, similar to this example: `/tmp/nms-backup-<DATETIME>.tar.gz`.
 
 To restore NGINX Instance Manager:
 
@@ -70,7 +70,7 @@ To restore NGINX Instance Manager:
 
     ```shell
     cd /etc/nms/scripts
-    sudo ./restore.sh /tmp/nms-backup-<DATETIME>.tgz
+    sudo ./restore.sh /tmp/nms-backup-<DATETIME>.tar.gz
     ```
 
 ---
@@ -122,7 +122,7 @@ To complete the steps in this guide, ensure the following:
     helm repo add nginx-stable https://helm.nginx.com/stable
     helm repo update
     helm pull nginx-stable/nms
-    tar zxvf nms-<version>.tgz
+    tar zxvf nms-<version>.tar.gz
     ```
 
 ### Back up NGINX Instance Manager

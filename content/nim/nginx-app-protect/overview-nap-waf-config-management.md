@@ -30,7 +30,7 @@ The **Security Monitoring** module shows real-time data from NGINX App Protect W
 
 ### Security bundle compilation {#security-bundle}
 
-NGINX Instance Manager includes a compiler that packages your complete WAF configuration — security policies, attack signatures, threat campaigns, and log profiles — into a single `.tgz` file. It then pushes this bundle to the selected NGINX App Protect WAF instances.
+NGINX Instance Manager includes a compiler that packages your complete WAF configuration — security policies, attack signatures, threat campaigns, and log profiles — into a single `.tar.gz` file. It then pushes this bundle to the selected NGINX App Protect WAF instances.
 
 **Why precompile with NGINX Instance Manager?**
 
@@ -46,7 +46,7 @@ Example [`location`](https://nginx.org/en/docs/http/ngx_http_core_module.html#lo
 ```nginx
 location / {
     app_protect_enable on;
-    app_protect_policy_file /etc/app_protect/policies/policy_bundle.tgz;
+    app_protect_policy_file /etc/app_protect/policies/policy_bundle.tar.gz;
 }
 ```
 
@@ -55,7 +55,7 @@ location / {
 You can also configure NGINX Instance Manager to compile log profiles when you install a new version of the compiler. When publishing NGINX configs that include the [`app_protect_security_log`](https://docs.nginx.com/nginx-app-protect/logging-overview/security-log/#app_protect_security_log) directive, NGINX Instance Manager pushes the compiled log profile to your WAF instances (when precompiled publication is turned on).
 
 {{<important>}}
-NGINX Instance Manager and Security Monitoring both use log profiles, but their configurations are different. If you're using configuration management in NGINX Instance Manager, you must reference the log profile with the `.tgz` file extension, not `.json`.
+NGINX Instance Manager and Security Monitoring both use log profiles, but their configurations are different. If you're using configuration management in NGINX Instance Manager, you must reference the log profile with the `.tar.gz` file extension, not `.json`.
 {{</important>}}
 
 ## Security management APIs

@@ -487,13 +487,13 @@ curl -X GET https://{{NIM_FQDN}}/api/platform/v1/security/policies/<policy-uid>/
     -H "Authorization: Bearer <access token>"
 ```
 
-The response includes a content field that contains the bundle in base64 format. To use it, you’ll need to decode the content and save it as a `.tgz` file.
+The response includes a content field that contains the bundle in base64 format. To use it, you’ll need to decode the content and save it as a `.tar.gz` file.
 
 Example:
 
 ```bash
 curl -X GET "https://{{NIM_FQDN}}/api/platform/v1/security/policies/<policy-uid>/bundles/<bundle-uid>" \
-    -H "Authorization: Bearer <access token>" | jq -r '.content' | base64 -d > security-policy-bundle.tgz
+    -H "Authorization: Bearer <access token>" | jq -r '.content' | base64 -d > security-policy-bundle.tar.gz
 ```
 
 <details open>
