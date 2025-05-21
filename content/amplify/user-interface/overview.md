@@ -20,7 +20,7 @@ The cumulative [metrics]({{< ref "/amplify/metrics-metadata" >}}) displayed on t
 
 {{< note >}} By default the metrics above are calculated for all monitored hosts. You can configure specific tags in the **Overview** settings popup to display the metrics for a set of hosts (e.g. only the "production environment"). {{< /note >}}
 
-You may see zero numbers if some metrics are not being gathered, e.g., if the request time (P95) is 0.000s, please check that you have correctly configured NGINX log for [additional metric]() collection.
+You may see zero numbers if some metrics are not being gathered, for example, if the request time (P95) is 0.000s, please check that you have correctly configured NGINX log for [additional metric]() collection.
 
 {{< img src="amplify/amplify-overview.png" alt="Overview section of the User Interface" >}}
 
