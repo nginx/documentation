@@ -17,7 +17,7 @@ NGINX Open Source is available in two versions: Mainline and Stable. The source 
 
 ### Mainline version
 
-Mainline version (also Mainline release, Mainline branch) is the latest development version, updated approximately every 1 or 2 months, includes the latest features, bug fixes and security fixes. This version is recommended for production unless your organization has strict requirements for stability, in which case the stable version is the better choice. The Mainline version is always odd-numbered, for example, 1.*27*.X.
+Mainline version (also Mainline release, Mainline branch) is the latest development version, updated approximately every 1 or 2 months, includes the latest features, bug fixes and security fixes. This version is recommended for production unless your organization has strict requirements for stability, in which case the stable version is the better choice. The Mainline version always has an odd middle number, for example, 1.*27*.X.
 
 ### Stable version
 
