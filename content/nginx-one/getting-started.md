@@ -130,7 +130,7 @@ The NGINX One Console dashboard relies on APIs for NGINX Plus and NGINX Open Sou
 ### Enable NGINX Plus API
 
 <!-- possible future include: "/use-cases/monitoring/enable-nginx-plus-api.md" -->
-To collect metrics for NGINX Plus, add the following to your NGINX Plus configuration file:
+To collect metrics for NGINX Plus, add the following to your NGINX Plus configuration file, `nginx.conf`:
 
 ```nginx
 # Enable the /api/ location with appropriate access control

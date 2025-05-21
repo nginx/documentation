@@ -16,10 +16,10 @@ to set up a data plane key to connect your instances to NGINX One.
 
 Before you add an instance to NGINX One Console, ensure:
 
-- You have administrator access to NGINX One Console.
-- You have configured instances of NGINX that you want to manage through NGINX One Console.
-- You have or are ready to configure a data plane key.
-- You have or are ready to set up managed certificates.
+- You have [administrator access]({{< ref "/nginx-one/rbac/roles.md" >}}) to NGINX One Console.
+- You have [configured instances of NGINX]({{< ref "/nginx-one/getting-started.md#add-your-nginx-instances-to-nginx-one" >}}) that you want to manage through NGINX One Console.
+- You have or are ready to configure a [data plane key]({{< ref "/nginx-one/getting-started.md#generate-data-plane-key" >}}).
+- You have or are ready to set up [managed certificates]({{< ref "/nginx-one/how-to/certificates/manage-certificates.md" >}}).
 
 {{< note >}}If this is the first time an instance is being added to a Config Sync Group, and you have not yet defined the configuration for that Config Sync Group, that instance provides the template for that group. For more information, see [Configuration management]({{< ref "nginx-one/how-to/config-sync-groups/manage-config-sync-groups#configuration-management" >}}).{{< /note >}}
 
