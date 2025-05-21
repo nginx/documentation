@@ -8,16 +8,6 @@ type:
 - how-to
 ---
 
-## NGINX Plus users
-
-If you are an existing F5 NGINX Plus user and you want to migrate to F5 NGINX as a Service for Azure (NGINXaaS), you need to know the following:
-
-- In NGINX Plus, you SSH into the NGINX Plus system, store your certificates in the file system, and configure the network and subnet to connect to NGINX Plus.
-
-- For NGINXaaS, you need to store your certificates in Azure Key Vault and configure NGINXaaS in the same VNet or peer to the VNet in which NGINXaaS is deployed.
-
-You will need to move your certificates from NGINX Plus to the Azure Key Vault. You can do this by using the [Azure CLI]({{< ref "/nginxaas-azure/getting-started/ssl-tls-certificates/ssl-tls-certificates-azure-cli.md" >}}) or the [Azure portal]({{< ref "/nginxaas-azure/getting-started/ssl-tls-certificates/ssl-tls-certificates-portal.md" >}}).
-
 ## Before you begin
 
 Before you deploy NGINXaaS you need to meet the following prerequisites:
