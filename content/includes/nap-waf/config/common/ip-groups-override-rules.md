@@ -50,9 +50,6 @@ Here is a policy example:
         }
       }
     ],
-    "general": {
-      "trustXff": true
-    }
   }
 }
 ```
