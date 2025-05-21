@@ -127,7 +127,7 @@ Some modules, especially those with external dependencies, are not included in t
 
 ## Install from the default system repository
 
-Installing from your operating system’s default repository is the easiest method, but the package it provides is often outdated. To compare release versions and features, see [Changelog](https://nginx.org/en/CHANGES). For the most current version, it is recommended to install from the official NGINX repository instead.
+Installing from your operating system’s default repository is the easiest method, but the package it provides is often outdated. To compare release versions and features, see the [Changelog](https://nginx.org/en/CHANGES). For the most current version, it is recommended to install from the official NGINX repository instead.
 
 The steps include updating the package repository and installing NGINX.
 
@@ -135,7 +135,7 @@ The steps include updating the package repository and installing NGINX.
 
   ```shell
   # ensure Homebrew is installed, see https://brew.sh/
-  brew update
+  brew update && \
   brew install nginx
   ```
 
@@ -213,7 +213,7 @@ RHEL-based operating systems include RHEL, CentOS, Oracle Linux, AlmaLinux, Rock
 
 Before installing, check if your operating system and architecture are supported, see [Supported distributions and versions](https://nginx.org/en/linux_packages.html#distributions).
 
-1. Set up the `yum` and `dnf` repositories.
+1. Set up the `yum` or `dnf` repository.
 
    - In the `/etc/yum.repos.d` directory, create the `nginx.repo` file using any text editor, for example, `vi`:
 
