@@ -166,7 +166,7 @@ See [Sizing Guide for Deploying NGINX Plus on Bare Metal Servers](https://www.ng
 ### HTTP/2, HTTP/3 and SSL/TLS
 
 - [HTTP/2](https://nginx.org/en/docs/http/ngx_http_v2_module.html) – Process HTTP/2 traffic
-- [HTTP/3](https://nginx.org/en/docs/http/ngx_http_v3_module.html) – Process HTTP/2 traffic
+- [HTTP/3](https://nginx.org/en/docs/http/ngx_http_v3_module.html) – Process HTTP/3 traffic
 - [SSL/TLS](https://nginx.org/en/docs/http/ngx_http_ssl_module.html) – Process HTTPS traffic
 
 ### Mail
