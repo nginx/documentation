@@ -59,7 +59,7 @@ NGINXaaS for Azure is supported in the following regions:
 - NGINXaaS can route traffic to upstreams even if the upstream servers are located in different geographies. See [Known Issues]({{< ref "/nginxaas-azure/known-issues.md" >}}) for any networking restrictions.
 - NGINXaaS supports request tracing. See the [Application Performance Management with NGINX Variables](https://www.f5.com/company/blog/nginx/application-tracing-nginx-plus) blog to learn more about tracing.
 - Supports HTTP to HTTPS, HTTPS to HTTP, and HTTP to HTTP redirects. NGINXaaS also provides the ability to create new rules for redirecting. See [How to Create NGINX Rewrite Rules | NGINX](https://www.nginx.com/blog/creating-nginx-rewrite-rules/) for more details.
-- NGINXaaS supports VNet, and VPN gateways if they do not have limitations. Known limitations can be found in the [Known Issues]({{< ref "/nginxaas-azure/known-issues.md" >}}).
+- NGINXaaS is deployed inside of your Azure network and can connect to your upstream application running in your ecosystem. Known networking limitations can be found in the [Known Issues]({{< ref "/nginxaas-azure/known-issues.md" >}}).
 
 ### Redundancy
 
