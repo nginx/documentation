@@ -29,7 +29,7 @@ helm uninstall ngf -n nginx-gateway
 Afterwards, remove CRDs associated with NGINX Gateway Fabric version 1.x with the following command:
 
 ```shell
-kubectl delete -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v{{< version-ngf >}}/deploy/crds.yaml
+kubectl delete -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v1.6.2/deploy/crds.yaml
 ```
 
 {{<tabs name="install-ngf-2.x">}}
@@ -38,13 +38,7 @@ kubectl delete -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v
 
 Follow these steps to install NGINX Gateway Fabric v2.x using Helm:
 
-Apply the new CRDs with the following command:
-
-```shell
-kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v{{< version-ngf >}}/deploy/crds.yaml
-```
-
-Next, install the latest stable release of NGINX Gateway Fabric in the `nginx-gateway` namespace with the following command:
+Next, install the latest stable release of NGINX Gateway Fabric in the `nginx-gateway` namespace. The following `helm install` command will install the NGINX Gateway Fabric release along with the necessary CRDs required for the deployment:
 
 ```shell
 helm install ngf oci://ghcr.io/nginx/charts/nginx-gateway-fabric --create-namespace -n nginx-gateway
