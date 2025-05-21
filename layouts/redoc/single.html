@@ -62,7 +62,7 @@
 </style>
 <!--Use wide page layout for the API reference pages-->
 <section class="main-layout api">
-  <div class="sidebar-layout" data-mf="true" style="display:none;">
+  <div data-mf="true" class="sidebar-layout">
     <nav id="sidebar-v2" class="sidebar">
       {{ partial "sidebar-v2.html" . }}
     </nav>
@@ -77,6 +77,7 @@
     "
   >
     <nav
+    data-mf="false"
       id="sidebar"
       class="sidenav overflow-auto col-md-3 d-none d-md-block d-print-none sidebar-toggle-hidden-width"
       style="width: 25%; border-right: 1px solid #e6e6e6"
@@ -84,10 +85,10 @@
     >
       {{ partial "sidebar.html" . }}
     </nav>
-    <section class="breadcrumb-layout" data-mf="true" style="display: none;">
+    <section data-mf="true" class="breadcrumb-layout">
       {{ if not .IsHome }}
         {{ if not (in .Params.display_breadcrumb "false" ) }}
-        {{ partial "breadcrumb" .}}  
+        {{ partial "breadcrumb" .}}
         {{ end }}
       {{ end }}
     </section>
