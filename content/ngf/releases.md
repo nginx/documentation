@@ -1,7 +1,7 @@
 ---
 title: Releases
 description: "NGINX Gateway Fabric releases."
-weight: 700
+weight: 800
 toc: true
 type: reference
 product: NGF

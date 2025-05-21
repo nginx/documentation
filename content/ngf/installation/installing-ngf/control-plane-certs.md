@@ -13,6 +13,8 @@ By default, NGINX Gateway Fabric installs self-signed certificates to secure the
 
 This guide will step through how to install and use `cert-manager` to secure this connection. **This should be done _before_ you install NGINX Gateway Fabric.**
 
+---
+
 ## Before you begin
 
 You need:
@@ -27,6 +29,7 @@ Add the Helm repository:
 ```shell
 helm repo add jetstack https://charts.jetstack.io
 helm repo update
+```
 
 Install cert-manager:
 
@@ -39,8 +42,9 @@ helm install \
   --set config.kind="ControllerConfiguration" \
   --set config.enableGatewayAPI=true \
   --set crds.enabled=true
+```
 
-  This also enables Gateway API features for cert-manager, which can be useful for [securing your workload traffic]({{< ref "/ngf/how-to/traffic-security/integrating-cert-manager.md" >}}).
+This also enables Gateway API features for cert-manager, which can be useful for [securing your workload traffic]({{< ref "/ngf/how-to/traffic-security/integrating-cert-manager.md" >}}).
 
 ## Create the CA issuer
 
