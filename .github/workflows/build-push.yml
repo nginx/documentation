@@ -41,7 +41,9 @@ on:
 env:
   FRONT_DOOR_USERNAME: ${{ secrets.FRONT_DOOR_USERNAME }}
   FRONT_DOOR_PASSWORD: ${{ secrets.FRONT_DOOR_PASSWORD }}
-  GITHUB_PR_NUMBER: ${{ github.event.pull_request.number }}     
+  GITHUB_PR_NUMBER: ${{ github.event.pull_request.number }}    
+  OWNER: nginxinc
+  REPO: nginx-hugo-theme
 jobs:
   prod-check-branch:
     runs-on: ubuntu-24.04
@@ -86,8 +88,8 @@ jobs:
               -H "Accept: application/vnd.github+json" \
               -H "Authorization: Bearer ${{ secrets.PERSONAL_ACCESS_TOKEN }}" \
               -H "X-GitHub-Api-Version: 2022-11-28" \
-              "https://api.github.com/repos/nginxinc/nginx-hugo-theme/dispatches" \
-              -d "{"event_type": "trigger-slack-notification", "client_payload": {"previewURL": "${{PREVIEW_URL}}"}}"
+              "https://api.github.com/repos/${{ env.OWNER }}/${{ env.REPO }}/dispatches" \
+              -d "{"event_type": "trigger-slack-notification", "client_payload": {"previewURL": "${{ env.PREVIEW_URL }}"}}"
     env:
       PREVIEW_URL: ${{ needs.call-docs-build-push.outputs.PREVIEW_URL }}
 
