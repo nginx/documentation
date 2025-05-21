@@ -183,7 +183,7 @@ The choice of mode depends on how the load balancer fronting NGINX Gateway Fabri
 
 **TrustedAddresses** are used to specify the IP addresses of the trusted proxies that pass the request. These can be in the form of CIDRs, IPs, or hostnames. For example, if a load balancer is forwarding the request to NGINX Gateway Fabric, the IP address of the load balancer should be specified in the `trustedAddresses` list to inform NGINX that the forwarded request is from a known source.
 
-**SetIPRecursively** is a boolean field used to enable recursive search when selecting the client's address from a multi-value header. It is applicable in cases where we have a multi-value header containing client IPs to select from, i.e., when using `XForwardedFor` mode.
+**SetIPRecursively** is a boolean field used to enable recursive search when selecting the client's address from a multi-value header. It is applicable in cases where we have a multi-value header containing client IPs to select from, that is, when using `XForwardedFor` mode.
 
 The following command creates an `NginxProxy` resource with `RewriteClientIP` settings that set the mode to ProxyProtocol and sets a CIDR in the list of trusted addresses to find the original client IP address.
 
