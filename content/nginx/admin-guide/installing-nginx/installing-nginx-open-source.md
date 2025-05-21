@@ -33,7 +33,7 @@ Both the NGINX Open Source Mainline and Stable versions can be installed in seve
 
 - Your own package [compiled from source](#sources) (recommended for advanced and custom builds). This method is the most flexible: you can add non-standard modules, including third‑party modules, or apply the latest security patches.
 
-## Package contetns {#prebuilt}
+## Package contents {#prebuilt}
 
 NGINX has a modular architecture. Some modules are the part of the core and are always included in the package. Some are not part of the core, but included in the package using the `--with-` configuration parameter. Some can be included as [dynamic modules](#dynamic-modules) and are distributed as separate packages.
 
