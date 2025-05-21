@@ -9,5 +9,5 @@ cascade:
     type: deprecation
     start-date: 2024-01-01
     end-date: 2024-02-01
-    md: /partials/banner/deprecation-product-r33.html
+    md: banner/deprecation-r33
 ---
