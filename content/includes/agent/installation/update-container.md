@@ -21,4 +21,4 @@ See [Add Config Sync Group]({{< ref "/nginx-one/how-to/config-sync-groups/manage
 
 If you need to roll back your environment to NGINX Agent v2, the upgrade process creates a backup of the NGINX Agent v2 config in the file `/etc/nginx-agent/nginx-agent-v2-backup.conf`.
 
-Replace the conents of `/etc/nginx-agent/nginx-agent.conf` with the contents of `/etc/nginx-agent/nginx-agent-v2-backup.conf` and then reinstall an older version of NGINX Agent.
+Replace the contents of `/etc/nginx-agent/nginx-agent.conf` with the contents of `/etc/nginx-agent/nginx-agent-v2-backup.conf` and then reinstall an older version of NGINX Agent.
