@@ -9,7 +9,7 @@ type:
 - how-to
 ---
 
-This article explains how to install NGINX Open Source on various operating systems, including an overview of existing NGINX Open Source versions, installation types and methods, modules included in the default package and dynamic modules packages, and the basics of compiling nginx from the source code.
+This article explains how to install NGINX Open Source on various operating systems, including an overview of existing NGINX Open Source versions, installation types and methods, modules included in the default package and dynamic modules packages, and the basics of compiling NGINX from the source code.
 
 ## Stable and mainline versions {#stable_vs_mainline}
 
