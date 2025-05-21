@@ -129,7 +129,7 @@ Some modules, especially those with external dependencies, are not included in t
 
 Installing from your operating system’s default repository is the easiest method, but the package it provides is often outdated. To compare release versions and features, see [Changelog](https://nginx.org/en/CHANGES). For the most current version, it is recommended to install from the official NGINX repository instead.
 
-The steps include updating the package repository and installing nginx.
+The steps include updating the package repository and installing NGINX.
 
 - For MacOS:
 
