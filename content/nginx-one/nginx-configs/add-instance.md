@@ -16,34 +16,16 @@ to set up a data plane key to connect your instances to NGINX One.
 
 Before you add an instance to NGINX One Console, ensure:
 
-- You have administrator access to NGINX One Console.
-- You have configured instances of NGINX that you want to manage through NGINX One Console.
-- You have or are ready to configure a data plane key.
-- You have or are ready to set up managed certificates.
+- You have [administrator access]({{< ref "/nginx-one/rbac/roles.md" >}}) to NGINX One Console.
+- You have [configured instances of NGINX]({{< ref "/nginx-one/getting-started.md#add-your-nginx-instances-to-nginx-one" >}}) that you want to manage through NGINX One Console.
+- You have or are ready to configure a [data plane key]({{< ref "/nginx-one/getting-started.md#generate-data-plane-key" >}}).
+- You have or are ready to set up [managed certificates]({{< ref "/nginx-one/certificates/manage-certificates.md" >}}).
 
 {{< note >}}If this is the first time an instance is being added to a Config Sync Group, and you have not yet defined the configuration for that Config Sync Group, that instance provides the template for that group. For more information, see [Configuration management]({{< ref "nginx-one/config-sync-groups/manage-config-sync-groups#configuration-management" >}}).{{< /note >}}
 
 ## Add an instance
 
-You can add an instance to NGINX One Console in the following ways:
-
-- Directly, under **Instances**
-- Indirectly, by selecting a Config Sync Group, and selecting **Add Instance to Config Sync Group**
-
-In either case, NGINX One Console gives you a choice for data plane keys:
-
-- Create a new key
-- Use an existing key
-
-NGINX One Console takes the option you use, and adds the data plane key to a command that you'd use to register your target instance. You should see the command in the **Add Instance** screen in the console.
-
-Connect to the host where your NGINX instance is running. Run the provided command to [install NGINX Agent]({{< ref "/nginx-one/getting-started#install-nginx-agent" >}}) dependencies and packages on that host.
-
-```bash
-curl https://agent.connect.nginx.com/nginx-agent/install | DATA_PLANE_KEY="<data_plane_key>" sh -s -- -y
-```
-
-Once the process is complete, you can configure that instance in your NGINX One Console.
+{{< include "/nginx-one/how-to/add-instance.md" >}}
 
 ## Managed and Unmanaged Certificates
 
@@ -51,7 +33,7 @@ If you add an instance with SSL/TLS certificates, those certificates can match a
 
 ### If the certificate is already managed
 
-If you add an instance with a managed certificate, as described in [Add your NGINX instances to NGINX One], these certificates are added to your list of **Managed Certificates**.
+If you add an instance with a managed certificate, as described in [Add your NGINX instances to NGINX One]({{< ref "/nginx-one/getting-started.md#add-your-nginx-instances-to-nginx-one" >}}), these certificates are added to your list of **Managed Certificates**.
 
 NGINX One Console can manage your instances along with those certificates.
 
