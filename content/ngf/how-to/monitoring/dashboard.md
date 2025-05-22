@@ -17,10 +17,10 @@ The NGINX Plus dashboard offers a real-time live activity monitoring interface t
 
 To access the dashboard:
 
-1. Use port-forwarding to forward connections to port 8765 on your local machine to port 8765 on the NGINX Gateway Fabric pod (replace `<nginx-gateway-fabric-pod>` with the actual name of the pod).
+1. Use port-forwarding to forward connections to port 8765 on your local machine to port 8765 on the NGINX Plus pod (replace `<nginx-plus-pod>` with the actual name of the pod).
 
     ```shell
-    kubectl port-forward <nginx-gateway-fabric-pod> 8765:8765 -n nginx-gateway
+    kubectl port-forward <nginx-plus-pod> 8765:8765 -n <nginx-plus-pod-namespace>
     ```
 
 1. Open your browser to [http://127.0.0.1:8765/dashboard.html](http://127.0.0.1:8765/dashboard.html) to access the dashboard.

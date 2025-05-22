@@ -28,14 +28,6 @@ In this guide, we will show how to specify the TLS configuration of the connecti
 ## Before you begin
 
 - [Install]({{< ref "/ngf/installation/" >}}) NGINX Gateway Fabric with experimental features enabled.
-- Save the public IP address and port of NGINX Gateway Fabric into shell variables:
-
-   ```text
-   GW_IP=XXX.YYY.ZZZ.III
-   GW_PORT=<port number>
-   ```
-
-{{< note >}}In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the gateway will forward for.{{< /note >}}
 
 ---
 
@@ -187,11 +179,22 @@ spec:
 EOF
 ```
 
+After creating the Gateway resource, NGINX Gateway Fabric will provision an NGINX Pod and Service fronting it to route traffic.
+
+Save the public IP address and port of the NGINX Service into shell variables:
+
+```text
+GW_IP=XXX.YYY.ZZZ.III
+GW_PORT=<port number>
+```
+
+{{< note >}}In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the gateway will forward for.{{< /note >}}
+
 ---
 
 ## Send Traffic without backend TLS configuration
 
-Using the external IP address and port for NGINX Gateway Fabric, we can send traffic to our secure-app application. To show what happens if we send plain HTTP traffic from NGF to our `secure-app`, let's try sending a request before we create the backend TLS configuration.
+Using the external IP address and port for the NGINX Service, we can send traffic to our secure-app application. To show what happens if we send plain HTTP traffic from NGINX to our `secure-app`, let's try sending a request before we create the backend TLS configuration.
 
 {{< note >}}If you have a DNS record allocated for `secure-app.example.com`, you can send the request directly to that hostname, without needing to resolve.{{< /note >}}
 

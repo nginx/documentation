@@ -1,6 +1,6 @@
 ---
 title: Upgrade applications without downtime
-weight: 500
+weight: 600
 toc: true
 type: how-to
 product: NGF

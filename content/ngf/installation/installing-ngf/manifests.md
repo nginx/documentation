@@ -18,6 +18,7 @@ Learn how to install, upgrade, and uninstall NGINX Gateway Fabric using Kubernet
 To complete this guide, you'll need to install:
 
 - [kubectl](https://kubernetes.io/docs/tasks/tools/), a command-line interface for managing Kubernetes clusters.
+- If deploying into a production environment, we highly recommend [installing custom certificates]({{< ref "/ngf/installation/installing-ngf/control-plane-certs.md" >}}) for securing the connection between the NGINX Gateway Fabric control plane and NGINX data plane Pods. **This should be done _before_ you install NGINX Gateway Fabric.** The default certificates are self-signed and will expire after 3 years.
 
 {{< important >}} If you’d like to use NGINX Plus, some additional setup is also required: {{</ important >}}
 
@@ -90,10 +91,20 @@ kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v{
 
 {{%tab name="AWS NLB"%}}
 
-Deploys NGINX Gateway Fabric with NGINX OSS and an AWS Network Load Balancer service.
+Deploys NGINX Gateway Fabric with NGINX OSS.
 
 ```shell
-kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v{{< version-ngf >}}/deploy/aws-nlb/deploy.yaml
+kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v{{< version-ngf >}}/deploy/default/deploy.yaml
+```
+
+To set up an AWS Network Load Balancer service, add these annotations to your Gateway infrastructure field:
+
+```yaml
+spec:
+  infrastructure:
+    annotations:
+      service.beta.kubernetes.io/aws-load-balancer-type: "external"
+      service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: "ip"
 ```
 
 {{% /tab %}}
@@ -182,7 +193,7 @@ The output should look similar to this (note that the pod name will include a un
 
 ```text
 NAME                             READY   STATUS    RESTARTS   AGE
-nginx-gateway-5d4f4c7db7-xk2kq   2/2     Running   0          112s
+nginx-gateway-5d4f4c7db7-xk2kq   1/1     Running   0          112s
 ```
 
 ---

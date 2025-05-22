@@ -64,15 +64,6 @@ We have outlined a few best practices to keep in mind when using `SnippetsFilter
   - Using Kubernetes manifests: set the `--snippets-filters` flag in the nginx-gateway container argument, add `snippetsfilters` to the RBAC
     rules with verbs `list` and `watch`, and add `snippetsfilters/status` to the RBAC rules with verb `update`. See this [example manifest](https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/main/deploy/snippets-filters/deploy.yaml) for clarification.
 
-- Save the public IP address and port of NGINX Gateway Fabric into shell variables:
-
-  ```text
-  GW_IP=<ip address>
-  GW_PORT=<port number>
-  ```
-
-  {{< note >}} In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the gateway will forward for. {{< /note >}}
-
 - Create the coffee and tea example applications:
 
   ```yaml
@@ -85,6 +76,18 @@ We have outlined a few best practices to keep in mind when using `SnippetsFilter
   kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v{{< version-ngf >}}/examples/snippets-filter/gateway.yaml
   ```
 
+After creating the Gateway resource, NGINX Gateway Fabric will provision an NGINX Pod and Service fronting it to route traffic.
+
+- Save the public IP address and port of the NGINX Service into shell variables:
+
+  ```text
+  GW_IP=<ip address>
+  GW_PORT=<port number>
+  ```
+
+  {{< note >}} In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the gateway will forward for. {{< /note >}}
+
+
 - Create HTTPRoutes for the coffee and tea applications:
 
   ```yaml
@@ -93,7 +96,7 @@ We have outlined a few best practices to keep in mind when using `SnippetsFilter
 
 - Test the configuration:
 
-  You can send traffic to the coffee and tea applications using the external IP address and port for NGINX Gateway Fabric.
+  You can send traffic to the coffee and tea applications using the external IP address and port for the NGINX Service.
 
   Send a request to coffee:
 
@@ -427,7 +430,7 @@ An example of an error from the NGINX Gateway Fabric `nginx-gateway` container l
 {"level":"error","ts":"2024-10-29T22:19:41Z","logger":"eventLoop.eventHandler","msg":"Failed to update NGINX configuration","batchID":156,"error":"failed to reload NGINX: reload unsuccessful: no new NGINX worker processes started for config version 141. Please check the NGINX container logs for possible configuration issues: context deadline exceeded","stacktrace":"github.com/nginx/nginx-gateway-fabric/internal/mode/static.(*eventHandlerImpl).HandleEventBatch\n\tgithub.com/nginx/nginx-gateway-fabric/internal/mode/static/handler.go:219\ngithub.com/nginx/nginx-gateway-fabric/internal/framework/events.(*EventLoop).Start.func1.1\n\tgithub.com/nginx/nginx-gateway-fabric/internal/framework/events/loop.go:74"}
 ```
 
-An example of an error from the NGINX Gateway Fabric `nginx` container logs:
+An example of an error from the NGINX Pod's `nginx` container logs:
 
 ```text
 2024/10/29 22:18:41 [emerg] 40#40: invalid number of arguments in "limit_req_zone" directive in /etc/nginx/includes/SnippetsFilter_http_default_rate-limiting-sf.conf:1
