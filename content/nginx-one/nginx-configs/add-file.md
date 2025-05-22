@@ -76,6 +76,6 @@ Enter the name of the desired configuration file, such as `abc.conf` and select 
 - [Manage certificates]({{< ref "/nginx-one/nginx-configs/certificates/manage-certificates.md" >}})
 =======
 - [Create and manage data plane keys]({{< ref "/nginx-one/how-to/data-plane-keys/create-manage-data-plane-keys.md" >}})
-- [View and edit NGINX configurations]({{< ref "/nginx-one/nginx-configs/view-edit-nginx-configurations.md" >}})
+- [Add an NGINX instance]({{< ref "/nginx-one/nginx-configs/add-instance.md" >}})
 - [Manage certificates]({{< ref "/nginx-one/certificates/manage-certificates.md" >}})
 >>>>>>> c7ce27ce (Draft: new N1C doc homepage)

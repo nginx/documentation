@@ -193,5 +193,5 @@ To convert these cerificates to managed, start with the Certificates menu, and s
 ## See also
 
 - [Create and manage data plane keys]({{< ref "/nginx-one/how-to/data-plane-keys/create-manage-data-plane-keys.md" >}})
-- [View and edit NGINX configurations]({{< ref "/nginx-one/nginx-configs/view-edit-nginx-configurations.md" >}})
+- [Add an instance]({{< ref "/nginx-one/nginx-configs/add-instance.md" >}})
 - [Add a file in a configuration]({{< ref "/nginx-one/nginx-configs/add-file.md" >}})

@@ -1,11 +1,15 @@
 ---
 # We use sentence case and present imperative tone
 <<<<<<< HEAD
+<<<<<<< HEAD
 title: View and edit an NGINX instance
 # Weights are assigned in increments of 100: determines sorting order
 weight: 200
 =======
 title: View and edit NGINX configurations
+=======
+title: View and edit an NGINX instance
+>>>>>>> 4da8aa7e (based on Jason's feedback)
 # Weights are assigned in increments of 100: determines sorting order
 weight: 300
 >>>>>>> c7ce27ce (Draft: new N1C doc homepage)
@@ -18,6 +22,7 @@ product: NGINX One
 ---
 <!-- Possible future include, with similar files in config-sync-groups/ and staged-configs/ subdirectories -->
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 This guide explains how to edit the configuration of an existing **Instance** in your NGINX One Console.
 =======
@@ -33,6 +38,9 @@ Before you add **Instances** to NGINX One Console, ensure:
 
 Once you've registered your NGINX Instances with the F5 NGINX One Console, you can view and edit their NGINX configurations on the **Instances** details page.
 >>>>>>> c7ce27ce (Draft: new N1C doc homepage)
+=======
+This guide explains how to edit the configuration of an existing **Instance** in your NGINX One Console.
+>>>>>>> 4da8aa7e (based on Jason's feedback)
 
 To view and edit an NGINX configuration, follow these steps:
 
