@@ -34,8 +34,8 @@ To view and edit an NGINX configuration, follow these steps:
 6. When you are satisfied with the changes, select **Next**.
 7. Compare and verify your changes before selecting **Save and Publish** to publish the edited configuration.
 
-Alternatively, you can select **Save Changes As**. In the window that appears, you can set up this instance as a [**Staged Configuration**]({{< ref "/nginx-one/how-to/staged-configs/_index.md" >}}).
+Alternatively, you can select **Save Changes As**. In the window that appears, you can set up this instance as a [**Staged Configuration**]({{< ref "/nginx-one/staged-configs/_index.md" >}}).
 
 ## See also
 
-- [Manage Config Sync Groups]({{< ref "/nginx-one/how-to/config-sync-groups/manage-config-sync-groups.md" >}})
+- [Manage Config Sync Groups]({{< ref "/nginx-one/config-sync-groups/manage-config-sync-groups.md" >}})

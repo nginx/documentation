@@ -33,8 +33,8 @@ From the NGINX One Console you can:
 
 You can manage the certificates for:
 
-- [Unique instances]({{< ref "/nginx-one/how-to/nginx-configs/add-file.md#new-ssl-certificate-or-ca-bundle" >}})
-- For all instances that are members of a [Config Sync Group]({{< ref "/nginx-one/how-to/config-sync-groups/manage-config-sync-groups/#configuration-management" >}})
+- [Unique instances]({{< ref "/nginx-one/nginx-configs/add-file.md#new-ssl-certificate-or-ca-bundle" >}})
+- For all instances that are members of a [Config Sync Group]({{< ref "/nginx-one/config-sync-groups/manage-config-sync-groups/#configuration-management" >}})
 
 
 {{< tip >}}
@@ -193,5 +193,5 @@ To convert these cerificates to managed, start with the Certificates menu, and s
 ## See also
 
 - [Create and manage data plane keys]({{< ref "/nginx-one/how-to/data-plane-keys/create-manage-data-plane-keys.md" >}})
-- [View and edit NGINX configurations]({{< ref "/nginx-one/how-to/nginx-configs/view-edit-nginx-configurations.md" >}})
-- [Add a file in a configuration]({{< ref "/nginx-one/how-to/nginx-configs/add-file.md" >}})
+- [View and edit NGINX configurations]({{< ref "/nginx-one/nginx-configs/view-edit-nginx-configurations.md" >}})
+- [Add a file in a configuration]({{< ref "/nginx-one/nginx-configs/add-file.md" >}})

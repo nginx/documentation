@@ -1,6 +1,6 @@
 ---
 description:
-title: Staged Configurations
-weight: 800
+title: Set up new instances
+weight: 200
 url: /nginx-one/how-to/staged-configs
 ---

@@ -236,4 +236,4 @@ Monitoring the **Config Sync Status** helps ensure that your configurations are 
 ## See also
 
 - [Create and manage data plane keys]({{< ref "/nginx-one/how-to/data-plane-keys/create-manage-data-plane-keys.md" >}})
-- [View and edit NGINX configurations]({{< ref "/nginx-one/how-to/nginx-configs/view-edit-nginx-configurations.md" >}})
+- [View and edit NGINX configurations]({{< ref "/nginx-one/nginx-configs/view-edit-nginx-configurations.md" >}})

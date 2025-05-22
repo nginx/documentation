@@ -1,6 +1,6 @@
 ---
 docs: null
-title: Add a file to a Config Sync Group
+title: Add a file to an instance
 toc: true
 weight: 400
 type:
@@ -15,18 +15,19 @@ type:
 
 Before you add files in your configuration, ensure:
 
-- You have access to the NGINX One Console.
-- Config Sync Groups are properly registered with NGINX One Console
+- You have [access to the NGINX One Console]({{< ref "/nginx-one/rbac/roles.md" >}}).
+- NGINX instances are [properly registered]({{< ref "/nginx-one/getting-started.md#add-your-nginx-instances-to-nginx-one" >}}) with NGINX One Console.
 
 ## Important considerations
 
-This page applies when you want to add a file to a Config Sync Group. Any changes you make here apply to all [Instances]({{< ref "/nginx-one/glossary.md" >}}) of that Config Sync Group.
+If your instance is a member of a Config Sync Group, changes that you make may be synchronized to other instances in that group.
+For more information, see how you can [Manage Config Sync Groups]({{< ref "/nginx-one/config-sync-groups/manage-config-sync-groups.md" >}}).
 
 ## Add a file
 
-You can use the NGINX One Console to add a file to a specific Config Sync Group. To do so:
+You can use the NGINX One Console to add a file to a specific instance. To do so:
 
-1. Select the Config Sync Group to manage.
+1. Select the instance to manage.
 1. Select the **Configuration** tab.
 
    {{< tip >}}
@@ -58,10 +59,9 @@ Enter the name of the desired configuration file, such as `abc.conf` and select 
 ### Existing SSL Certificate or CA Bundle
 
 {{< include "nginx-one/add-file/existing-ssl-bundle.md" >}}
-With this option, You can incorporate [Managed certificates]({{< ref "/nginx-one/how-to/certificates/manage-certificates.md#managed-and-unmanaged-certificates" >}}).
 
 ## See also
 
 - [Create and manage data plane keys]({{< ref "/nginx-one/how-to/data-plane-keys/create-manage-data-plane-keys.md" >}})
-- [View and edit NGINX configurations]({{< ref "/nginx-one/how-to/nginx-configs/view-edit-nginx-configurations.md" >}})
-- [Manage certificates]({{< ref "/nginx-one/how-to/certificates/manage-certificates.md" >}})
+- [View and edit NGINX configurations]({{< ref "/nginx-one/nginx-configs/view-edit-nginx-configurations.md" >}})
+- [Manage certificates]({{< ref "/nginx-one/certificates/manage-certificates.md" >}})

@@ -100,12 +100,6 @@ Now that you created a Config Sync Group, you can add instances to that group. A
 
 Any instance that joins the group afterwards inherits that configuration.
 
-{{< note >}} If you see the following [Config Sync Group Status](#config-sync-group-status) message: **Out of Sync**:
-
- - Review the instance details in NGINX One Console to identify any publication problems.
- - After you change the configuration of the Config Sync Group, [Publish it](#publish-the-config-sync-group-configuration].
-In that case, review and resolve discrepancies between the Instance and the rest of the Config Sync Group. {{< /note >}}
-
 ### Add an existing instance to a Config Sync Group {#add-an-existing-instance-to-a-config-sync-group}
 
 You can add existing NGINX instances that are already registered with NGINX One to a Config Sync Group.
@@ -264,4 +258,4 @@ Monitor the **Config Sync Status** column. It can help you ensure that your conf
 ## See also
 
 - [Create and manage data plane keys]({{< ref "/nginx-one/how-to/data-plane-keys/create-manage-data-plane-keys.md" >}})
-- [View and edit NGINX configurations]({{< ref "/nginx-one/how-to/nginx-configs/view-edit-nginx-configurations.md" >}})
+- [View and edit NGINX configurations]({{< ref "/nginx-one/nginx-configs/view-edit-nginx-configurations.md" >}})
