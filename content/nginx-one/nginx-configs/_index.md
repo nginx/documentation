@@ -2,6 +2,7 @@
 description:
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 title: Manage your NGINX instances
 =======
 title: Organize your NGINX instances
@@ -9,6 +10,9 @@ title: Organize your NGINX instances
 =======
 title: Watch your NGINX instances
 >>>>>>> 09d8a53f (More)
+=======
+title: Access and connect to your NGINX instances
+>>>>>>> 614bafed (more)
 weight: 300
 url: /nginx-one/nginx-configs
 ---
