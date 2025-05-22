@@ -17,9 +17,9 @@ If you’ve used [instance groups in NGINX Instance Manager]({{< ref "/nim/nginx
 
 Before you create and manage config sync groups, ensure:
 
-- You have access to the NGINX One Console.
-- You have the necessary permissions to create and manage config sync groups.
-- NGINX instances are properly registered with NGINX One if you plan to add existing instances to a config sync group.
+- You have [access to the NGINX One Console]({{< ref "/nginx-one/rbac/roles.md" >}}).
+- You have the [necessary permissions to create and manage config sync groups]({{< ref "/nginx-one/rbac/roles.md" >}}).
+- NGINX instances are [properly registered]({{< ref "/nginx-one/getting-started.md#add-your-nginx-instances-to-nginx-one" >}}) with NGINX One Console, if you plan to add existing instances to a config sync group.
 
 ## Important considerations
 
