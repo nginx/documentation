@@ -19,7 +19,7 @@ Real-time observability into NGINX One data plane instances:
 
    - Provides live monitoring and actionable insights into the performance, status, and health of NGINX One data plane
      instances, improving decision-making and operational efficiency.
-   - NGINX Agent supports [OpenTelemetry](https://opentelemetry.io/), and the ability to
+   - NGINX Agent supports [OpenTelemetry](https://opentelemetry.io/) and the ability to
      [export the metrics data]({{< ref "/nginx-one/agent/configure-otel-metrics.md" >}}) for use in other applications.
 
 
