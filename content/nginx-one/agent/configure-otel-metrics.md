@@ -26,7 +26,7 @@ You can validate that metrics are successfully exported by using the methods bel
 
 - **NGINX One dashboard**
 
-   - When an instance has connected to NGINX One Console [See: Connect to NGINX One Console]({{< ref "/nginx-one/how-to/nginx-configs/add-instance.md" >}}), you should see metrics showing on the NGINX One Dashboard.
+   - When an instance has connected to NGINX One Console [See: Connect to NGINX One Console]({{< ref "/nginx-one/nginx-configs/add-instance.md" >}}), you should see metrics showing on the NGINX One Dashboard.
 
 - **Agent logs**
 

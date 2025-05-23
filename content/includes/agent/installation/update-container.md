@@ -15,7 +15,7 @@ wget https://raw.githubusercontent.com/nginx/agent/refs/heads/v3/scripts/package
 ```
 
 If your NGINX Agent container was previously a member of a config sync group, then your NGINX Agent config must be manually updated to add the config sync group label.
-See [Add Config Sync Group]({{< ref "/nginx-one/how-to/config-sync-groups/manage-config-sync-groups.md" >}}) for more information.
+See [Add Config Sync Group]({{< ref "/nginx-one/config-sync-groups/manage-config-sync-groups.md" >}}) for more information.
 
 ### Rolling back from NGINX Agent v3 to v2
 
