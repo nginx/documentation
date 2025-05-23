@@ -15,7 +15,7 @@ h2 {
 }
 </style>
 
-## About data plane keys
+## About data plane keysj (and more)
 
 Data plane keys are required for registering NGINX instances with the F5 NGINX One Console. These keys serve as secure tokens, ensuring that only authorized NGINX instances can connect to and communicate with  NGINX One. You have the flexibility to reuse a key with multiple instances, or to create a unique key for each instance.
 
