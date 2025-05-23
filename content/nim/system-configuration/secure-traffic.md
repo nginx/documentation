@@ -1,6 +1,6 @@
 ---
 docs: DOCS-794
-title: Secure Client Access and Network Traffic
+title: Secure client access and network traffic
 toc: true
 weight: 600
 type:
