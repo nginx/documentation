@@ -2,7 +2,7 @@
 docs:
 ---
 
-With this option, You can incorporate [Managed certificates]({{< ref "/nginx-one/how-to/certificates/manage-certificates.md#managed-and-unmanaged-certificates" >}}).
+With this option, You can incorporate [Managed certificates]({{< ref "/nginx-one/certificates/manage-certificates.md#managed-and-unmanaged-certificates" >}}).
 In the **Choose Certificate** drop-down, select the managed certificate of your choice, and select **Add**. You can then:
 
 1. Review details of the certificate. The next steps depend on whether the certificate is a CA bundle or a certificate / key pair.
