@@ -9,7 +9,7 @@ toc: true
 F5 NGINX Agent now includes an embedded [OpenTelemetry](https://opentelemetry.io/) collector, streamlining observability and metric collection for NGINX instances. With this feature, you can collect:
 
 * Metrics from NGINX Plus and NGINX Open Source
-* Host metrics  (CPU, memory, disk, and network activity) from VMs or Containers
+* Host metrics (CPU, memory, disk, and network activity) from VMs or Containers
 
 {{< note >}}
 The OpenTelemetry exporter is enabled by default. Once a valid connection to the management plane is established, the Agent will automatically begin exporting metrics.
