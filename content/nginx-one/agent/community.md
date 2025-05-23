@@ -13,7 +13,7 @@ Discover the various ways you can participate in the F5 NGINX Agent project:
 
 ## Contribute
 
-Get involved with the project by contributing! Please see our [contributing guide](https://github.com/nginx/agent/blob/main/CONTRIBUTING.md) for details.
+Get involved with the project by contributing! See our [contributing guide](https://github.com/nginx/agent/blob/main/CONTRIBUTING.md) for details.
 
 ## License
 
