@@ -5,8 +5,11 @@ title: F5 NGINX Controller
 weight: 2100
 cascade:
   logo: "NGINX-Controller-product-icon-RGB.svg"
-  type: "ctlr-eos"
   noindex: true
+  banner:
+    enabled: true
+    type: deprecation
+    md: _banners/eos-cltr.md
 url: /nginx-controller/
 ---
 

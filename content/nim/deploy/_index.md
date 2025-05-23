@@ -4,5 +4,8 @@ description:
 weight: 20
 url: /nginx-instance-manager/deploy/
 cascade:
-   type: "nim-r33"
+  banner:
+    enabled: true
+    type: deprecation
+    md: _banners/upgrade-r33.md
 ---
