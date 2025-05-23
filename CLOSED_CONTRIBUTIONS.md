@@ -33,7 +33,7 @@ To create closed content, add the closed repository as a remote to the main repo
 ```shell
 cd documentation
 git remote add internal git@github.com:<closed-url>.git
-git fetch
+git fetch --all
 ```
 
 Check out the remote `main` branch, and use it to create a feature branch. **Ensure that you prefix all branch names with `internal/`**
