@@ -8,7 +8,11 @@ type:
 - concept
 ---
 
+NGINXaaS for Azure is deployed into your Azure subscription. Your NGINXaaS deployment resource is visible within your subscription, while the underlying infrastructure is managed by F5 and is abstracted away from you.
+
 ## Pricing plans
+
+NGINXaaS for Azure is billed monthly based on hourly consumption.
 
 F5 NGINX as a Service for Azure (NGINXaaS) provides two pricing plans.
 
@@ -69,3 +73,7 @@ The standard Azure [networking](https://azure.microsoft.com/en-us/pricing/detail
 
 {{< note >}}The management traffic for NGINX instances is billed as a `Virtual Network Peering - Intra-Region Egress` charge. This charge includes the data for shipping metrics and logs. The cost for shipping metrics data is approximately $0.03/month. If you enable NGINX logging the cost increases by roughly $0.005 per GB of logs NGINX generates. To estimate this, multiply the number of requests by the average log line size of the access_log format you have configured.
 {{< /note >}}
+
+## Review billing data
+
+NGINXaaS billing data is reported per deployment and can be viewed in the Azure Portal under "Cost Management + Billing".​

@@ -2,9 +2,11 @@
 docs: "DOCS-000"
 ---
 
+NGINXaaS natively integrates with [Azure Key Vault (AKV)](https://azure.microsoft.com/en-us/products/key-vault), so you can bring your own certificates and manage them in a centralized location. You will need:
+
 - AKV to store certificates that you want to add to the deployment.
 
-- A user or system assigned identity associated with your NGINXaaS deployment. Ensure that your managed identity (MI) has read access to secrets stored in AKV:
+- A user or system assigned identity associated with your NGINXaaS deployment. Ensure that your Managed Identity (MI) has read access to secrets stored in AKV:
 
   - If using Azure RBAC for AKV, ensure that your MI has [Key Vault Secrets User](https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#key-vault-secrets-user) or higher permissions.
 

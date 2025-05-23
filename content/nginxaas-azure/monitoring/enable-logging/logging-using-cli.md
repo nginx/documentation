@@ -51,6 +51,8 @@ To view the supported log categories for an NGINXaaS resource, use the following
 az monitor diagnostic-settings list --resource <nginxaas_resource_id>
 ```
 
+As NGINXaaS logs are stored in your storage, you can define the retention policy most appropriate for your needs.
+
 ### Analyzing NGINX logs in Azure Storage
 
 {{< include "/nginxaas-azure/logging-analysis-azure-storage.md" >}}

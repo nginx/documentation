@@ -8,7 +8,7 @@ type:
 - how-to
 ---
 
-Monitoring your application's performance is crucial for maintaining its reliability and efficiency. F5 NGINX as a Service for Azure (NGINXaaS) seamlessly integrates with Azure Monitor, allowing you to collect, correlate, and analyze metrics for a thorough understanding of your application's health and behavior. 
+Monitoring your application's performance is crucial for maintaining its reliability and efficiency. F5 NGINX as a Service for Azure (NGINXaaS) seamlessly integrates with Azure Monitor, allowing you to collect, correlate, and analyze metrics for a thorough understanding of your application's health and behavior.
 
 Refer to the [Azure monitor overview](https://docs.microsoft.com/en-us/azure/azure-monitor/overview) documentation from Microsoft to learn more about Azure Monitor.
 
@@ -34,7 +34,19 @@ To configure diagnostic settings for a service, see [Create diagnostic settings 
 Azure Monitor platform metrics are ingested and stored free of charge, with a standard retention period of 93 days. Adding alerts, querying Azure Monitor using REST API or exporting metrics using Azure Monitor's diagnostic settings would incurs costs. For detailed pricing, you can refer to the [Azure Monitor pricing page](https://azure.microsoft.com/en-us/pricing/details/monitor/).
 
 
-## View metrics with Azure Monitor metrics explorer
+## Review metrics
+
+Once you have enabled monitoring, you can view the metrics using the Azure portal or the Azure Monitor API.
+
+{{< note >}} NGINX Agent periodically gathers connection and request statistics using an internal HTTP request. An Azure service health probe checks for status using a TCP connection for each listen port in the NGINX configuration, incrementing the connection count for each port.
+
+This contributes to minimal traffic and should not affect these metrics significantly, but you might see an unexpected number of connections and requests.{{</note>}}
+
+{{< important >}}If some of your deployment's metrics are intermittently missing in Azure monitor, it may indicate that the underlying resources for your deployment are being exhausted.
+
+Monitor the `nginxaas.capacity.percentage` metric to see the deployment's resource utilization. If it's nearing 100%, consider increasing the deployment's NCU capacity. See the [Scaling Guidance]({{< ref "/nginxaas-azure/quickstart/scaling.md" >}}) documentation for more information.{{</important>}}
+
+### View metrics with Azure Monitor metrics explorer
 
 Access the [Microsoft Azure portal](https://portal.azure.com)
 
@@ -45,7 +57,7 @@ Refer to the [Azure Monitor metrics explorer](https://docs.microsoft.com/en-us/a
 
 {{<note>}}Many of NGINX Plus's advanced statistics need to be enabled in the "nginx.conf" file before they will appear in the metrics explorer, for example "plus.http.request.bytes_*". Refer to [Gathering Data to Appear in Statistics](https://docs.nginx.com/nginx/admin-guide/monitoring/live-activity-monitoring/#gathering-data-to-appear-in-statistics) to learn more.{{</note>}}
 
-## Retrieve metrics through Azure Monitor REST API
+### Retrieve metrics through Azure Monitor API
 
 This section shows you how to effectively discover, gather and analyze NGINXaaS metrics through the Azure Monitor REST API.
 

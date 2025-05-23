@@ -46,6 +46,8 @@ Enabling logs using the **NGINX Logs** blade on your NGINXaaS deployment is now 
 
    {{< img src="nginxaas-azure/diagnostic-settings.png" alt="Screenshot of the Diagnostic Settings configuration page" >}}
 
+As NGINXaaS logs are stored in your storage, you can define the retention policy most appropriate for your needs.
+
 For more information about diagnostic settings destinations, please see the [Diagnostic Settings Destinations](https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/diagnostic-settings#destinations) documentation.
 
 {{<note>}}Due to limitations imposed by Azure, if the destination chosen is an Azure Storage account, the resource has to be in the same region as the NGINXaaS deployment resource.
