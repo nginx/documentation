@@ -34,7 +34,7 @@ package's authenticity. Fetch the key:
 1. The output should contain the full fingerprint `573B FD6B 3D8F BC64 1079 A6AB ABF5 BD82 7BD9 BF62` as follows:
 
    ```
-   pub   rsa2048 2011-08-19 [SC] [expires: 2024-06-14]
+   pub   rsa2048 2011-08-19 [SC] [expires: 2027-05-24]
       573B FD6B 3D8F BC64 1079  A6AB ABF5 BD82 7BD9 BF62
    uid                      nginx signing key <signing-key@nginx.com>
    ```
