@@ -1,6 +1,6 @@
 ---
 title: Secure your fleet
 description:
-weight: 350
+weight: 450
 url: /nginx-one/secure-your-fleet
 ---
