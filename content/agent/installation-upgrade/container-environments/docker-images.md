@@ -3,9 +3,8 @@ title: Build container images
 draft: false
 weight: 100
 toc: true
-docs: DOCS-1410
-type:
-- how-to
+nd-docs: DOCS-1410
+nd-content-type: how-to
 ---
 
 ## Overview

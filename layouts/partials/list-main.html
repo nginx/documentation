@@ -19,7 +19,7 @@
         </div>
     </div>
 
-    {{ if or (lt .WordCount 1) (eq $PageTitle "F5 NGINX One Console") (eq $PageTitle "F5 NGINX App Protect DoS") (eq $PageTitle "F5 NGINX Plus")  }}
+    {{ if or (lt .WordCount 1) (eq $PageTitle "fF5 NGINX One Console") (eq $PageTitle "F5 NGINX App Protect DoS") (eq $PageTitle "F5 NGINX Plus")  }}
     <section>
         <div class="row">
             <div class="card-deck">
@@ -31,6 +31,36 @@
                                 <i class="fas fa-{{if eq .Kind "page"}}file-alt{{else}}book{{end}} fa-lg card-img-top"></i>
                                 <a href="{{ if .Params.url}}{{ .Params.url}}{{else}}{{ .Permalink }}{{end}}">{{ .Title }}</a>
                             </h3>
+                            {{ if and (eq $PageTitle "F5 NGINX One Console") (eq .Title "Manage your NGINX fleet")}}
+                                <p style="padding-bottom: 10px;">Simplify, scale, secure, and collaborate with your NGINX fleet </p> 
+                            {{ end }}
+                            {{ if and (eq $PageTitle "F5 NGINX One Console") (eq .Title "Get started")}}
+                                <p style="padding-bottom: 10px;">See benefits from the NGINX One Console </p> 
+                            {{ end }}
+                            {{ if and (eq $PageTitle "F5 NGINX One Console") (eq .Title "Set up new instances")}}
+                                <p style="padding-bottom: 10px;">Collaborate with Staged Configurations</p> 
+                            {{ end }}
+<!--                            {{ if and (eq $PageTitle "F5 NGINX One Console") (eq .Title "Secure your fleet")}}
+                                <p style="padding-bottom: 10px;">Configure alerts that match your security policies </p> 
+                            {{ end }} -->
+                            {{ if and (eq $PageTitle "F5 NGINX One Console") (eq .Title "Watch your NGINX instances")}}
+                                <p style="padding-bottom: 10px;">Keep an inventory of your deployments </p> 
+                            {{ end }}
+                            {{ if and (eq $PageTitle "F5 NGINX One Console") (eq .Title "Monitor your certificates")}}
+                                <p style="padding-bottom: 10px;">Update your SSL certs before they expire </p> 
+                            {{ end }}
+                            {{ if and (eq $PageTitle "F5 NGINX One Console") (eq .Title "Organize your administrators with RBAC")}}
+                                <p style="padding-bottom: 10px;">Secure your systems with role-based access control </p> 
+                            {{ end }}
+                            {{ if and (eq $PageTitle "F5 NGINX One Console") (eq .Title "Change multiple instances with one push")}}
+                                <p style="padding-bottom: 10px;">Simplify changes with Config Sync Groups </p> 
+                            {{ end }}
+                            {{ if and (eq $PageTitle "F5 NGINX One Console") (eq .Title "NGINX One API")}}
+                                <p style="padding-bottom: 10px;">Automate NGINX fleet management from the CLI </p> 
+                            {{ end }}
+                            {{ if and (eq $PageTitle "F5 NGINX One Console") (eq .Title "Glossary")}}
+                                <p style="padding-bottom: 10px;">Terms unique to NGINX One Console </p> 
+                            {{ end }}
                             {{ if and (eq $PageTitle "F5 NGINX One Console") (eq .Title "How-to guides") }}
                                 <ul style="padding-top: 10px;">
                                     {{ range .Pages }}
@@ -43,6 +73,7 @@
                                 </ul>
                             {{ end }}
                             {{ if and (eq $PageTitle "F5 NGINX One Console") (eq .Title "API")}}
+                                <p style="padding-bottom: 10px;">These are API docs</p> <!-- Added text here -->
                                 <ul style="padding-top: 10px;">
                                     {{ range .Pages }}
                                         <li><a href="{{ .Permalink }}"> {{ .Title }}</a></li>
