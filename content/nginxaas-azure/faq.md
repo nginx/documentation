@@ -17,10 +17,10 @@ Common questions about F5 NGINX as a Service for Azure (NGINXaaS).
 - The usage data is reported to NGINXaaS. 
 
 ### Is NGINXaaS available in my subscription or in F5 subscription?
-- Your NGINXaaS deployment resource is visible to you under your subscription. The underlying compute resources of your deployment, which are managed by NGINX on your behalf, are not visible in your subscription.
+- Your NGINXaaS deployment resource is visible to you under your Azure subscription. The underlying resources of any NaaS deployment, which are managed by NGINX on your behalf, are not visible in your subscription.
 
 ### Is NGINXaaS active-active? What is the architecture of NGINXaaS?
-- NGINXaaS is deployed as an active-active pattern for high availability. To learn more, see the [user guide]({{< ref "/nginxaas-azure/overview/overview.md#architecture" >}}).
+- NGINXaaS is deployed as an active-active pattern for high availability when you choose the "Standard" plan SLA. To learn more, see the [user guide]({{< ref "/nginxaas-azure/overview/overview.md#architecture" >}}).
 
 ### In which Azure regions is NGINXaaS currently supported?
 - We are constantly adding support for new regions. You can find the updated list of supported regions in the [NGINXaaS documentation]({{< ref "/nginxaas-azure/overview/overview.md" >}}).
@@ -39,7 +39,7 @@ Common questions about F5 NGINX as a Service for Azure (NGINXaaS).
 ### I am an NGINX Plus customer; how can I switch to NGINXaaS?
 - In NGINX Plus, customers SSH into the NGINX Plus system, store their certificates in some kind of storage and configure the network and subnet to connect to NGINX Plus.
 
-- For NGINXaaS, customers store their certificates in the Azure key vault and configure NGINXaaS in the same VNet or peer to the VNet in which NGINXaaS is deployed.
+- For NGINXaaS, customers store their certificates in the Azure key vault and configure NGINXaaS in the same VNet or peer to the VNet in which NGINXaaS is deployed.  There is a Portal option to upload your existing configuration as a single archive.
 
 ### How does NGINXaaS react to a workload/traffic spike?
 - You can monitor the NCUs consumed by looking at the metrics tab of NGINXaaS. To learn about the NCUs consumed, choose NGINXaaS statistics and select "NCU consumed." If the NCU consumed is close to the requested NCUs, we encourage you to scale your system and increase the NCU units. You can manually scale from your base NCUs (For example, 10) to up to 500 NCUs by selecting the NGINXaaS scaling tab.
@@ -79,7 +79,7 @@ Common questions about F5 NGINX as a Service for Azure (NGINXaaS).
 
 ### Does NGINXaaS support multiple public IPs, a mix of public and private IPs?
 
-- NGINXaaS supports one public or private IP per deployment. NGINXaaS doesn't support a mix of public and private IPs at this time.
+- NGINXaaS supports one public or private IP per deployment. A single NGINXaaS deployment doesn't support a mix of public and private IPs.  We recommend defining separate deployments.
 
 ### Can I change the IP address used for an NGINXaaS deployment to be public or private?
 
@@ -131,12 +131,12 @@ Common questions about F5 NGINX as a Service for Azure (NGINXaaS).
 ### What types of logs does NGINXaaS provide?
 - NGINXaaS supports the following [two types of logs]({{< ref "/nginxaas-azure/monitoring/enable-logging/">}}).
 
-- Access Log: To troubleshoot server issues, analyze web traffic patterns and monitor server performance. For more details, please see the [Module ngx_http_log_module](https://nginx.org/en/docs/http/ngx_http_log_module.html?&_ga=2.80762515.545098740.1677716889-256521444.1670450998#access_log) documentation.
+- Access Log: To troubleshoot server issues, analyze web traffic patterns and monitor server performance. Think of these as API logs, you can use the default format or customize them to your business needs. For more details, please see the [Module ngx_http_log_module](https://nginx.org/en/docs/http/ngx_http_log_module.html?&_ga=2.80762515.545098740.1677716889-256521444.1670450998#access_log) documentation.
 
 - Error Log: To capture, troubleshoot and identify issues that may occur during the server's operations, such as 400 bad requests, 401 unauthorized, 500 internal server errors, etc. For more details, please see the [Core functionality](https://nginx.org/en/docs/ngx_core_module.html?&_ga=2.8347062.545098740.1677716889-256521444.1670450998#error_log) documentation.
 
 ### What is the retention policy for the above logs? How long are the logs stored? Where are they stored?
-- NGINXaaS logs are stored in customer’s storage. Customers can custom define the retention policy. Customers can configure the storage by following the steps outlined in the [NGINXaaS Logging]({{< ref "/nginxaas-azure/monitoring/enable-logging/">}}) documentation.
+- NGINXaaS logs are stored in your Azure storage. As the owner of the storage, you can custom define the retention policy. Configure log storage by following the steps outlined in the [NGINXaaS Logging]({{< ref "/nginxaas-azure/monitoring/enable-logging/">}}) documentation.
 
 ### Can I set up an alert with NGINXaaS?
 - You can set up an alert with NGINXaaS by following the steps outlined in the [Configure Alerts]({{< ref "/nginxaas-azure/monitoring/configure-alerts.md">}}) documentation.
