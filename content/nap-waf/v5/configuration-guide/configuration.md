@@ -475,6 +475,16 @@ For the full reference of Override Rules condition syntax and usage see the NGIN
 
 {{< include "nap-waf/config/common/geolocation-override-rules.md" >}}
 
+## IP Groups
+
+### Overview
+
+{{< include "nap-waf/config/common/ip-groups-overview.md" >}}
+
+### IP Groups in Policy Override Rules Conditions
+
+{{< include "nap-waf/config/common/ip-groups-override-rules.md" >}}
+
 ## JSON Web Token Protection
 
 ### Overview
