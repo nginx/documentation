@@ -171,17 +171,26 @@ NGINX Plus can be installed on the following versions of Debian or Ubuntu:
     - **For Debian**:
 
         ```shell
-        sudo apt update
-        sudo apt install apt-transport-https lsb-release ca-certificates wget gnupg2 debian-archive-keyring
+        sudo apt update && \
+        sudo apt install apt-transport-https \
+                         lsb-release \
+                         ca-certificates \
+                         wget \
+                         gnupg2 \
+                         debian-archive-keyring
         ```
 
     - **For Ubuntu**:
 
         ```shell
-        sudo apt update
-        sudo apt install apt-transport-https lsb-release ca-certificates wget gnupg2 ubuntu-keyring
+        sudo apt update && \
+        sudo apt install apt-transport-https \
+                         lsb-release \
+                         ca-certificates \
+                         wget \
+                         gnupg2 \
+                         ubuntu-keyring
         ```
-
 1. Download and add NGINX signing key:
 
     ```shell
