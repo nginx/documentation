@@ -1,6 +1,6 @@
 ---
 title: Changelog
-weight: 900
+weight: 90000
 toc: true
 ---
 

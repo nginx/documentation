@@ -223,7 +223,6 @@ Supported architecture: x86-64.
    **/etc/yum.repos.d/unit.repo**:
 
    ```ini
-
       [unit]
       name=unit repo
       baseurl=https://packages.nginx.org/unit/amzn/$releasever/$basearch/
@@ -550,8 +549,8 @@ Supported architectures: arm64, x86-64.
    ```
 
    ```console
-      # apt install unit-dev unit-go unit-jsc11 unit-jsc17 unit-jsc21  \ # unit-dev is required to install the Node.js module and build Go apps
-                  unit-perl unit-php unit-python3.12 unit-ruby unit-wasm
+   # apt install unit-dev unit-go unit-jsc11 unit-jsc17 unit-jsc21  \ # unit-dev is required to install the Node.js module and build Go apps
+               unit-perl unit-php unit-python3.12 unit-ruby unit-wasm
    ```
 
    ```console
@@ -1759,13 +1758,16 @@ For other customization scenarios, see the [Docker howto]({{< relref "/unit/howt
 
 <details>
 <summary>Image tags for pre-1.29.1 Unit versions</summary>
+
 Before Unit 1.29.1 was released, our Docker images were available
 from the official [NGINX repository](https://hub.docker.com/r/nginx/unit/)
 on Docker Hub.
+
 </details>
 
 <details>
 <summary>Images with pre-1.22.0 Unit versions</summary>
+
 Before Unit 1.22.0 was released, the following tagging scheme was used:
 
 {{<bootstrap-table "table table-striped table-bordered">}}

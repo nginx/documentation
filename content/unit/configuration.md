@@ -470,6 +470,7 @@ with arbitrary status codes, or
 
 In its simplest form, **routes** is an array that defines a single route:
 
+```json
 {
    "listeners": {
       "*:8300": {
