@@ -23,9 +23,9 @@ Mainline version (also Mainline release, Mainline branch) is the latest developm
 
 Stable version (also Stable release, Stable branch) is updated typically once a year or as needed for critical bug fixes or security fixes that are always backported from the Mainline version. This version is recommended for environments with strict requirements for stability. The Stable version is always even-numbered, for example, 1.*28*.X.
 
-##  Packages or custom builds {#compile_vs_package}
+##  Distribution and installation methods {#compile_vs_package}
 
-Both the NGINX Open Source Mainline and Stable versions can be installed in several ways:
+Both the NGINX Open Source Mainline and Stable versions can be obtained and installed in several ways:
 
 - A package from the [official NGINX Open Source repository](#official-repository) (recommended for production). This is the most reliable method: you have to set up the repository once, but after that the provided package is always up to date.
 
@@ -33,12 +33,14 @@ Both the NGINX Open Source Mainline and Stable versions can be installed in seve
 
 - Your own package [compiled from source](#sources) (recommended for advanced and custom builds). This method is the most flexible: you can include non-standard or third‑party modules, apply the latest security patches, or build the binary for almost any Unix-like operating system using different compilers and custom compiler options.
 
+- A container: suitable for development, testing, production deployments in container environments such as Docker, Podman, Kubernetes: see [Deploying NGINX with Docker]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-docker.md#using-nginx-open-source-docker-images" >}})
+
 ## OS default repository
 
 Installing from your operating system’s default repository is the simplest and fastest method. It is suitable for demos, learning, or testing environments. However, for production use, there are some considerations:
 - The package is maintained by the distribution’s repository maintainers, so F5/NGINX cannot verify its contents, build process, or update frequency.
 - The package may be outdated. To compare release versions and features, see the [Changelog](https://nginx.org/en/CHANGES).
-- Some distributions, especially those focused on long-term support, provide the Stable version by default.
+- Some Linux distros, especially those focused on long-term support, provide the Stable version only.
 
 For the latest official release and better control over updates, it is recommended to configure your package manager to install [from the official NGINX repository](#official-repository).
 
@@ -75,14 +77,14 @@ The installation steps include updating the package repository and installing th
   sudo apt install nginx
   ```
 
-- For FreeBSD:
+- For FreeBSD or DragonFly BSD:
 
   ```shell
   sudo pkg update -y && \
   sudo pkg install nginx
   ```
 
-- For SUSE Linux Enterprise:
+- For SUSE Linux Enterprise or openSUSE:
 
   ```shell
   # ensure Web-Scripting-Module repo is enabled
@@ -128,6 +130,8 @@ where:
 You can configure your package manager to install NGINX Open Source from the official **nginx.org** repository, which provides both the latest [Mainline and Stable](#stable_vs_mainline) versions for most major production operating systems. See the [Changelog](https://nginx.org/en/CHANGES) for version details.
 
 You need to set up the repository once, but after that the provided package will stay up to date with the latest releases. Before installing, ensure your operating system and architecture are [supported](https://nginx.org/en/linux_packages.html#distributions).
+
+This installation method is recommended for production environments.
 
 ### Repository contents
 
@@ -242,7 +246,7 @@ Before installing, check if your operating system and architecture are supported
 
    After installation, the following files are available for configuration and troubleshooting:
 
-   - Configuration file: `nginx.conf`, located in `/etc/nginx/`.
+   - Configuration file: `nginx.conf`, located in `/etc/nginx/`
    - Log files: `access.log` and `error.log`, located in `/var/log/nginx/`
 
 9. If needed, install one or more [dynamic module packages](#repository-contents):
@@ -460,7 +464,7 @@ Before installing, check if your operating system and architecture are supported
 
    After installation, the following files are available for configuration and troubleshooting:
 
-   - Configuration file: `nginx.conf`, located in `/etc/nginx/`.
+   - Configuration file: `nginx.conf`, located in `/etc/nginx/`
    - Log files: `access.log` and `error.log`, located in `/var/log/nginx/`
 
 9. If needed, install one or more [dynamic module packages](#repository-contents):
@@ -554,7 +558,7 @@ Before installing, check if your operating system and architecture are supported
 
    After installation, the following files are available for configuration and troubleshooting:
 
-   - Configuration file: `nginx.conf`, located in `/etc/nginx/`.
+   - Configuration file: `nginx.conf`, located in `/etc/nginx/`
    - Log files: `access.log` and `error.log`, located in `/var/log/nginx/`
 
 8. If needed, install one or more [dynamic module packages](#repository-contents):
@@ -672,7 +676,7 @@ Before installing, check if your operating system and architecture are supported
 
    After installation, the following files are available for configuration and troubleshooting:
 
-   - Configuration file: `nginx.conf`, located in `/etc/nginx/`.
+   - Configuration file: `nginx.conf`, located in `/etc/nginx/`
    - Log files: `access.log` and `error.log`, located in `/var/log/nginx/`
 
 9. If needed, install one or more [dynamic module packages](#repository-contents). The `@nginx` tag should also be specified:
@@ -765,7 +769,7 @@ Before installing, check if your operating system and architecture are supported
 
    After installation, the following files are available for configuration and troubleshooting:
 
-   - Configuration file: `nginx.conf`, located in `/etc/nginx/`.
+   - Configuration file: `nginx.conf`, located in `/etc/nginx/`
    - Log files: `access.log` and `error.log`, located in `/var/log/nginx/`
 
 8. If needed, install one or more [dynamic module packages](#repository-contents):
@@ -842,7 +846,7 @@ Before installing, check if your operating system and architecture are supported
 
    After installation, the following files are available for configuration and troubleshooting:
 
-   - Configuration file: `nginx.conf`, located in `/etc/nginx/`.
+   - Configuration file: `nginx.conf`, located in `/etc/nginx/`
    - Log files: `access.log` and `error.log`, located in `/var/log/nginx/`
 
 
@@ -922,9 +926,9 @@ In addition to core modules, the `nginx` package includes other nginx modules th
 |[`--with-http_sub_module`](https://nginx.org/en/docs/http/ngx_http_sub_module.html) |  Modifies a response by replacing one specified string by another.  |
 |[`--with-http_v2_module`](https://nginx.org/en/docs/http/ngx_http_v2_module.html)| Enable support for [HTTP/2](https://datatracker.ietf.org/doc/html/rfc7540). See [The HTTP/2 Module in NGINX](https://www.nginx.com/blog/http2-module-nginx/) on the NGINX blog for details.|
 |[`--with-http_v3_module`](https://nginx.org/en/docs/http/ngx_http_v3_module.html)| Provides experimental support for [HTTP/3](https://datatracker.ietf.org/doc/html/rfc9114). |
-|[`--with-mail`](https://nginx.org/en/docs/mail/ngx_mail_core_module.html)| Enables mail proxy functionality. To compile as a separate [dynamic module](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/dynamic-modules/) instead, change the option to `--with-mail=dynamic`. |
+|[`--with-mail`](https://nginx.org/en/docs/mail/ngx_mail_core_module.html)| Enables mail proxy functionality. To compile as a separate [dynamic module]({{< ref "/nginx/admin-guide/dynamic-modules/dynamic-modules.md" >}}) instead, change the option to `--with-mail=dynamic`. |
 |[`--with-mail_ssl_module`](https://nginx.org/en/docs/mail/ngx_mail_ssl_module.html)| Provides support for a mail proxy server to work with the SSL/TLS protocol. Requires an SSL library such as [OpenSSL](https://www.openssl.org/). |
-|[`--with-stream`](https://nginx.org/en/docs/stream/ngx_stream_core_module.html) | Enables the TCP and UDP proxy functionality. To compile as a separate [dynamic module](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/dynamic-modules/) instead, change the option to `--with-stream=dynamic`. |
+|[`--with-stream`](https://nginx.org/en/docs/stream/ngx_stream_core_module.html) | Enables the TCP and UDP proxy functionality. To compile as a separate [dynamic module]({{< ref "nginx/admin-guide/dynamic-modules/dynamic-modules.md" >}}) instead, change the option to `--with-stream=dynamic`. |
 |[`--with-stream_realip_module`](https://nginx.org/en/docs/stream/ngx_stream_realip_module.html) | Changes the client address and port to the ones sent in the PROXY protocol header. |
 |[`--with-stream_ssl_module`](https://nginx.org/en/docs/stream/ngx_stream_ssl_module.html)| Provides support for a stream proxy server to work with the SSL/TLS protocol. Requires an SSL library such as [OpenSSL](https://www.openssl.org/). |
 {{</bootstrap-table>}}
@@ -1160,7 +1164,7 @@ If you do not need a module that is built by default, you can disable it by nami
 
 Many NGINX modules are not built by default, and must be listed on the `configure` command line to be built.
 
-The [mail](https://nginx.org/en/docs/mail/ngx_mail_core_module.html), [stream](https://nginx.org/en/docs/stream/ngx_stream_core_module.html), [geoip](https://nginx.org/en/docs/http/ngx_http_geoip_module.html), [image_filter](https://nginx.org/en/docs/http/ngx_http_image_filter_module.html), [perl](https://nginx.org/en/docs/http/ngx_http_perl_module.html) and [xslt](https://nginx.org/en/docs/http/ngx_http_xslt_module.html) modules can be compiled as dynamic. See [Dynamic Modules]({{< ref "nginx/admin-guide/dynamic-modules/dynamic-modules.md" >}}) for details.
+The [mail](https://nginx.org/en/docs/mail/ngx_mail_core_module.html), [stream](https://nginx.org/en/docs/stream/ngx_stream_core_module.html), [geoip](https://nginx.org/en/docs/http/ngx_http_geoip_module.html), [image_filter](https://nginx.org/en/docs/http/ngx_http_image_filter_module.html), [perl](https://nginx.org/en/docs/http/ngx_http_perl_module.html) and [xslt](https://nginx.org/en/docs/http/ngx_http_xslt_module.html) modules can be compiled as dynamic. See [Dynamic Modules]({{< ref "/nginx/admin-guide/dynamic-modules/dynamic-modules.md" >}}) for details.
 
 An example of the `configure` command that includes nondefault modules (should be typed as a single line):
 
@@ -1180,7 +1184,7 @@ An example of the `configure` command that includes nondefault modules (should b
 |Module Name               | Description                                  |
 | -------------------------| ---------------------------------------------|
 |`--with-cpp_test_module`   | Tests the C++ compatibility of header files.|
-|`--with-debug`   | Enables the [debugging log](https://docs.nginx.com/nginx/admin-guide/monitoring/debugging/)|
+|`--with-debug`   | Enables the [debugging log]({{< ref "/nginx/admin-guide/monitoring/debugging.md" >}})|
 | `--with-file-aio`        |Enables asynchronous I/O. |
 |  `--with-google-perftools` | Allows using [Google Performance tools](https://github.com/gperftools/gperftools) library. |
 |[`--with-http_addition_module`](https://nginx.org/en/docs/http/ngx_http_addition_module.html)| Adds text before and after a response. |
@@ -1188,12 +1192,12 @@ An example of the `configure` command that includes nondefault modules (should b
 |[`--with-http_dav_module`](https://nginx.org/en/docs/http/ngx_http_dav_module.html)|Enables file management automation using the WebDAV protocol. |
 |`--with-http_degradation_module`|Allows returning an error when a memory size exceeds the defined value. |
 |[`--with-http_flv_module`](https://nginx.org/en/docs/http/ngx_http_flv_module.html)|Provides pseudo-streaming server-side support for Flash Video (FLV) files. |
-|[`--with-http_geoip_module`](https://nginx.org/en/docs/http/ngx_http_geoip_module.html)|Enables creating variables whose values depend on the client IP address. The module uses [MaxMind](http://www.maxmind.com) GeoIP databases. To compile as a separate [dynamic module](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/dynamic-modules/) instead, change the option to `--with-http_geoip_module=dynamic`. |
+|[`--with-http_geoip_module`](https://nginx.org/en/docs/http/ngx_http_geoip_module.html)|Enables creating variables whose values depend on the client IP address. The module uses [MaxMind](http://www.maxmind.com) GeoIP databases. To compile as a separate [dynamic module]({{< ref "/nginx/admin-guide/dynamic-modules/dynamic-modules.md" >}}) instead, change the option to `--with-http_geoip_module=dynamic`. |
 |[`--with-http_gunzip_module`](https://nginx.org/en/docs/http/ngx_http_gunzip_module.html)|Decompresses responses with `Content-Encoding: gzip` for clients that do not support the _zip_ encoding method. |
 |[`--with-http_gzip_static_module`](https://nginx.org/en/docs/http/ngx_http_gzip_static_module.html)| Allows sending precompressed files with the **.gz** filename extension instead of regular files. |
-|[`--with-http_image_filter_module`](https://nginx.org/en/docs/http/ngx_http_image_filter_module.html)|T ransforms images in JPEG, GIF, and PNG formats. The module requires the [LibGD](http://libgd.github.io/) library. To compile as a separate [dynamic module](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/dynamic-modules/) instead, change the option to `--with-http_image_filter_module=dynamic`. |
+|[`--with-http_image_filter_module`](https://nginx.org/en/docs/http/ngx_http_image_filter_module.html)|T ransforms images in JPEG, GIF, and PNG formats. The module requires the [LibGD](http://libgd.github.io/) library. To compile as a separate [dynamic module]({{< ref "/nginx/admin-guide/dynamic-modules/dynamic-modules.md" >}}) instead, change the option to `--with-http_image_filter_module=dynamic`. |
 |[`--with-http_mp4_module`](https://nginx.org/en/docs/http/ngx_http_mp4_module.html)| Provides pseudo-streaming server-side support for MP4 files.                                              |
-|[`--with-http_perl_module`](https://nginx.org/en/docs/http/ngx_http_perl_module.html)| Used to implement location and variable handlers in Perl and insert Perl calls into SSI. Requires the [PERL](https://www.perl.org/get.html) library. To compile as a separate [dynamic module](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/dynamic-modules/) instead, change the option to `--with-http_perl_module=dynamic`. |
+|[`--with-http_perl_module`](https://nginx.org/en/docs/http/ngx_http_perl_module.html)| Used to implement location and variable handlers in Perl and insert Perl calls into SSI. Requires the [PERL](https://www.perl.org/get.html) library. To compile as a separate [dynamic module]({{< ref "/nginx/admin-guide/dynamic-modules/dynamic-modules.md" >}}) instead, change the option to `--with-http_perl_module=dynamic`. |
 |[`--with-http_random_index_module`](https://nginx.org/en/docs/http/ngx_http_random_index_module.html) | Processes requests ending with the slash character (‘/’) and picks a random file in a directory to serve as an index file. |
 |[`--with-http_realip_module`](https://nginx.org/en/docs/http/ngx_http_realip_module.html) | Changes the client address to the one sent in the specified header field. |
 |[`--with-http_secure_link_module`](https://nginx.org/en/docs/http/ngx_http_secure_link_module.html) | Used to check authenticity of requested links, protect resources from unauthorized access, and limit link lifetime. |
@@ -1201,11 +1205,11 @@ An example of the `configure` command that includes nondefault modules (should b
 |[`--with-http_ssl_module`](https://nginx.org/en/docs/http/ngx_http_ssl_module.html) | Enables HTTPS support. Requires an SSL library such as [OpenSSL](https://www.openssl.org/). |
 |[`--with-http_stub_status_module`](https://nginx.org/en/docs/http/ngx_http_stub_status_module.html)| Provides access to basic status information. Note that NGINX Plus customers do not require this module as they are already provided with extended status metrics and interactive dashboard. |
 |[`--with-http_sub_module`](https://nginx.org/en/docs/http/ngx_http_sub_module.html) |  Modifies a response by replacing one specified string by another.  |
-|[`--with-http_xslt_module`](https://nginx.org/en/docs/http/ngx_http_xslt_module.html)| Transforms XML responses using one or more XSLT stylesheets. The module requires the [Libxml2](http://xmlsoft.org/) and [XSLT](http://xmlsoft.org/XSLT/) libraries. To compile as a separate [dynamic module](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/dynamic-modules/) instead, change the option to `--with-http_xslt_module=dynamic`. |
+|[`--with-http_xslt_module`](https://nginx.org/en/docs/http/ngx_http_xslt_module.html)| Transforms XML responses using one or more XSLT stylesheets. The module requires the [Libxml2](http://xmlsoft.org/) and [XSLT](http://xmlsoft.org/XSLT/) libraries. To compile as a separate [dynamic module]({{< ref "/nginx/admin-guide/dynamic-modules/dynamic-modules.md" >}}) instead, change the option to `--with-http_xslt_module=dynamic`. |
 |[`--with-http_v2_module`](https://nginx.org/en/docs/http/ngx_http_v2_module.html)| Enable support for [HTTP/2](https://datatracker.ietf.org/doc/html/rfc7540). See [The HTTP/2 Module in NGINX](https://www.nginx.com/blog/http2-module-nginx/) on the NGINX blog for details.                                             |
-| [`--with-mail`](https://nginx.org/en/docs/mail/ngx_mail_core_module.html)| Enables mail proxy functionality. To compile as a separate [dynamic module](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/dynamic-modules/) instead, change the option to `--with-mail=dynamic`.                                            |
+| [`--with-mail`](https://nginx.org/en/docs/mail/ngx_mail_core_module.html)| Enables mail proxy functionality. To compile as a separate [dynamic module]({{< ref "/nginx/admin-guide/dynamic-modules/dynamic-modules.md" >}}) instead, change the option to `--with-mail=dynamic`.                                            |
 |[`--with-mail_ssl_module`](https://nginx.org/en/docs/mail/ngx_mail_ssl_module.html)| Provides support for a mail proxy server to work with the SSL/TLS protocol. Requires an SSL library such as [OpenSSL](https://www.openssl.org/). |
-| [`--with-stream`](https://nginx.org/en/docs/stream/ngx_stream_core_module.html) | Enables the TCP and UDP proxy functionality. To compile as a separate [dynamic module](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/dynamic-modules/) instead, change the option to `--with-stream=dynamic`. |
+| [`--with-stream`](https://nginx.org/en/docs/stream/ngx_stream_core_module.html) | Enables the TCP and UDP proxy functionality. To compile as a separate [dynamic module]({{< ref "/nginx/admin-guide/dynamic-modules/dynamic-modules.md" >}}) instead, change the option to `--with-stream=dynamic`. |
 | [`--with-stream_ssl_module`](https://nginx.org/en/docs/stream/ngx_stream_ssl_module.html)| Provides support for a stream proxy server to work with the SSL/TLS protocol. Requires an SSL library such as [OpenSSL](https://www.openssl.org/). |
 | `--with-threads` | Enables NGINX to use thread pools. For details, see [Thread Pools in NGINX Boost Performance 9x!](https://www.nginx.com/blog/thread-pools-boost-performance-9x/) on the NGINX blog. |
 {{</bootstrap-table>}}
