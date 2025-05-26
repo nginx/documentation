@@ -39,7 +39,7 @@ In example above, the payload contains several claims:
 
 - nbf (Not Before) - Specifies the time before which the token should not be considered valid.
 
-- exp (Expiration Time) - Specifies the expiration time of the token. It is represented as a numeric timestamp (e.g., 1654608348), and the token is considered invalid after this time.
+- exp (Expiration Time) - Specifies the expiration time of the token. It is represented as a numeric timestamp (for example, 1654608348), and the token is considered invalid after this time.
 
 These claims provide information about the JWT and can be used by the recipient to verify the token's authenticity and determine its validity. Additionally, you can include custom claims in the payload to carry additional information specific to your application.
 
