@@ -2,7 +2,7 @@
 docs:
 files:
    - content/agent/about.md
-   - content/nginx-one/agent/about.md
+   - content/nginx-one/agent/overview/about.md
 ---
 
 F5 NGINX Agent is a lightweight companion daemon designed to work with NGINX One and enable remote management of NGINX instances. It also gathers performance metrics from NGINX and transmits them to the NGINX One Console for enhanced monitoring and control.
@@ -20,7 +20,7 @@ Real-time observability into NGINX One data plane instances:
    - Provides live monitoring and actionable insights into the performance, status, and health of NGINX One data plane
      instances, improving decision-making and operational efficiency.
    - NGINX Agent supports [OpenTelemetry](https://opentelemetry.io/) and the ability to
-     [export the metrics data]({{< ref "/nginx-one/agent/configure-otel-metrics.md" >}}) for use in other applications.
+     [export the metrics data]({{< ref "/nginx-one/agent/metrics/configure-otel-metrics.md" >}}) for use in other applications.
 
 
 

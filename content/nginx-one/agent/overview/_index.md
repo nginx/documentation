@@ -1,5 +1,5 @@
 ---
-title: "Install and update"
-weight: 200
+title: "Overview"
+weight: 100
 url: /nginx-one/agent/install-upgrade/
 ---

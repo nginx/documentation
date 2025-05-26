@@ -2,7 +2,7 @@
 docs:
 files:
    - content/agent/install-upgrade/update.md
-   - content/nginx-one/agent/update.md
+   - content/nginx-one/agent/install-upgrade/update.md
 ---
 
 To migrate NGINX Agent containers, we provide a script to convert NGINX Agent v2 config files to NGINX Agent v3 config files: [NGINX Agent Config Upgrade Script](https://github.com/nginx/agent/blob/v3/scripts/packages/upgrade-agent-config.sh)
