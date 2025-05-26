@@ -10,7 +10,7 @@ To build the image, execute the following command in the directory containing th
 
 
 ```shell
-sudo docker build --no-cache \
+sudo docker build --no-cache --platform linux/amd64 \
   --secret id=nginx-crt,src=nginx-repo.crt \
   --secret id=nginx-key,src=nginx-repo.key \
   -t nginx-app-protect-5 .

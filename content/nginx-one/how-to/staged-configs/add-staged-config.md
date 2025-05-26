@@ -6,10 +6,10 @@ weight: 100
 # Creates a table of contents and sidebar, useful for large documents
 toc: true
 # Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
-type: tutorial
+nd-content-type: how-to
 # Intended for internal catalogue and search, case sensitive:
 # Agent, N4Azure, NIC, NIM, NGF, NAP-DOS, NAP-WAF, NGINX One, NGINX+, Solutions, Unit
-product:
+nd-product: NGINX One
 ---
 
 ## Overview
@@ -33,7 +33,7 @@ You can add a Staged Configuration from:
 - An existing Config Sync Group
 - An existing Staged Configuration
 
-To start the process from NGINX One Console, select **Manage > Staged Configruations**. Select **Add Staged Configuration**.
+To start the process from NGINX One Console, select **Manage > Staged Configurations**. Select **Add Staged Configuration**.
 
 The following sections start from the **Add Staged Configuration** window that appears.
 
@@ -80,7 +80,7 @@ To start from an existing Staged Config:
 
 1. Select **Existing Source**.
 1. Select **Staged Configuration**.
-1. In the Choose Staged Configuratiog menu that appears, select an existing Staged Configuration.
+1. In the Choose Staged Configuration menu that appears, select an existing Staged Configuration.
 1. Enter a name for your new Staged Configuration.
 1. Select **Next**. 
 

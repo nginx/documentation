@@ -14,7 +14,7 @@ type:
 Follow the steps in this guide to install or upgrade NGINX Instance Manager.
 
 {{<call-out "caution" "Deprecated documentation notice" "fa fa-exclamation-triangle" >}}
-This document outlines manual steps that have been replaced by a simplified script-based process. For most users, we recommend using the updated process documented [here]({{< relref "nim/deploy/vm-bare-metal/install.md" >}}).{{</call-out>}}
+This document outlines manual steps that have been replaced by a simplified script-based process. For most users, we recommend using the updated process documented [here]({{< ref "nim/deploy/vm-bare-metal/install.md" >}}).{{</call-out>}}
 
 ## Before You Begin
 
@@ -79,7 +79,7 @@ Install NGINX Open Source or NGINX Plus on the host where you'll install NGINX I
 
 </details>
 
-{{<see-also>}}Make sure to review the [Technical Specifications]({{< relref "tech-specs" >}}) guide for sizing requirements and other recommended specs.{{</see-also>}}
+{{<see-also>}}Make sure to review the [Technical Specifications]({{< ref "/nim/fundamentals/tech-specs" >}}) guide for sizing requirements and other recommended specs.{{</see-also>}}
 
 ---
 
@@ -112,7 +112,7 @@ To install and enable ClickHouse CentOS, RHEL, and RPM-Based distributions, take
 
     > <span style="color: #c20025;"><i class="fas fa-exclamation-triangle"></i> **IMPORTANT!**</span> When installing ClickHouse, you have the option to specify a password or leave the password blank (the default is an empty string). If you choose to specify a password for ClickHouse, you must also edit the `/etc/nms/nms.conf` file after installing NGINX Instance Manager and enter your ClickHouse password; otherwise, NGINX Instance Manager won't start.
     >
-    > For more information on customizing ClickHouse settings, refer to the [Configure ClickHouse]({{< relref "nim/system-configuration/configure-clickhouse.md" >}}) topic.
+    > For more information on customizing ClickHouse settings, refer to the [Configure ClickHouse]({{< ref "nim/system-configuration/configure-clickhouse.md" >}}) topic.
 
 1. Enable ClickHouse so that it starts automatically if the server is restarted:
 
@@ -159,7 +159,7 @@ To install and enable ClickHouse on Debian, Ubuntu, and Deb-Based distributions,
 
     > <span style="color: #c20025;"><i class="fas fa-exclamation-triangle"></i> **IMPORTANT!**</span> When installing ClickHouse, you have the option to specify a password or leave the password blank (the default is an empty string). If you choose to specify a password for ClickHouse, you must also edit the `/etc/nms/nms.conf` file after installing NGINX Instance Manager and enter your ClickHouse password; otherwise, NGINX Instance Manager won't start.
     >
-    > For more information on customizing ClickHouse settings, refer to the [Configure ClickHouse]({{< relref "nim/system-configuration/configure-clickhouse.md" >}}) topic.
+    > For more information on customizing ClickHouse settings, refer to the [Configure ClickHouse]({{< ref "nim/system-configuration/configure-clickhouse.md" >}}) topic.
 
 1. Enable ClickHouse so that it starts automatically if the server is restarted:
 
@@ -187,7 +187,7 @@ To install and enable ClickHouse on Debian, Ubuntu, and Deb-Based distributions,
 
 NGINX Instance Manager uses the following default values for ClickHouse:
 
-{{<important>}}You can customize these settings. However, if you use custom settings, make sure to follow the [Configure ClickHouse]({{< relref "nim/system-configuration/configure-clickhouse.md" >}}) instructions to update the `nms.conf` file after you've installed NGINX Instance Manager; otherwise NGINX Instance Manager won't be able to connect to ClickHouse.{{</important>}}
+{{<important>}}You can customize these settings. However, if you use custom settings, make sure to follow the [Configure ClickHouse]({{< ref "nim/system-configuration/configure-clickhouse.md" >}}) instructions to update the `nms.conf` file after you've installed NGINX Instance Manager; otherwise NGINX Instance Manager won't be able to connect to ClickHouse.{{</important>}}
 
 {{< include "installation/clickhouse-defaults.md" >}}
 
@@ -201,7 +201,7 @@ To install and enable Vault, take the following steps:
 
 - Follow Vault's instructions to [install Vault 1.8.8 or later](https://www.vaultproject.io/docs/install) for your distribution.
 - Ensure you are running Vault in a [Production Hardened Environment](https://learn.hashicorp.com/tutorials/vault/production-hardening).
-- After installing NGINX Instance Manager, follow the steps to [Configure Vault for Storing Secrets]({{< relref "nim/system-configuration/configure-vault.md" >}}).
+- After installing NGINX Instance Manager, follow the steps to [Configure Vault for Storing Secrets]({{< ref "nim/system-configuration/configure-vault.md" >}}).
 
 ---
 
@@ -278,7 +278,7 @@ To install NGINX Instance Manager, you need to add the official repository to pu
 {{<tabs name="upgrade_nim">}}
 {{%tab name="CentOS, RHEL, RPM-Based"%}}
 
-1. To upgrade to the latest version of the Instance Manger, run the following command:
+1. To upgrade to the latest version of the Instance Manager, run the following command:
 
    ```bash
    sudo yum update -y nms-instance-manager
@@ -312,4 +312,4 @@ To install NGINX Instance Manager, you need to add the official repository to pu
    sudo systemctl restart nginx
    ```
 
-4. (Optional) If you use SELinux, follow the steps in the [Configure SELinux]({{< relref "nim/system-configuration/configure-selinux.md" >}}) guide to restore the default SELinux labels (`restorecon`) for the files and directories related to NGINX Management suite.
+4. (Optional) If you use SELinux, follow the steps in the [Configure SELinux]({{< ref "nim/system-configuration/configure-selinux.md" >}}) guide to restore the default SELinux labels (`restorecon`) for the files and directories related to NGINX Management suite.

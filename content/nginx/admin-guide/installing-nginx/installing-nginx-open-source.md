@@ -594,7 +594,7 @@ The package can be installed from the official repo at **nginx.org**. You have t
     sudo apk add nginx
     ```
 
-    The `@nginx` tag should also be specified when installing packages with [dynamic modules]({{< relref "../dynamic-modules/dynamic-modules.md" >}}):
+    The `@nginx` tag should also be specified when installing packages with [dynamic modules]({{< ref "nginx/admin-guide/dynamic-modules/dynamic-modules.md" >}}):
 
     ```shell
     sudo apk add nginx-module-image-filter@nginx nginx-module-njs@nginx
@@ -885,7 +885,7 @@ If you do not need a module that is built by default, you can disable it by nami
 
 Many NGINX modules are not built by default, and must be listed on the `configure` command line to be built.
 
-The [mail](https://nginx.org/en/docs/mail/ngx_mail_core_module.html), [stream](https://nginx.org/en/docs/stream/ngx_stream_core_module.html), [geoip](https://nginx.org/en/docs/http/ngx_http_geoip_module.html), [image_filter](https://nginx.org/en/docs/http/ngx_http_image_filter_module.html), [perl](https://nginx.org/en/docs/http/ngx_http_perl_module.html) and [xslt](https://nginx.org/en/docs/http/ngx_http_xslt_module.html) modules can be compiled as dynamic. See [Dynamic Modules]({{< relref "../dynamic-modules/dynamic-modules.md" >}}) for details.
+The [mail](https://nginx.org/en/docs/mail/ngx_mail_core_module.html), [stream](https://nginx.org/en/docs/stream/ngx_stream_core_module.html), [geoip](https://nginx.org/en/docs/http/ngx_http_geoip_module.html), [image_filter](https://nginx.org/en/docs/http/ngx_http_image_filter_module.html), [perl](https://nginx.org/en/docs/http/ngx_http_perl_module.html) and [xslt](https://nginx.org/en/docs/http/ngx_http_xslt_module.html) modules can be compiled as dynamic. See [Dynamic Modules]({{< ref "nginx/admin-guide/dynamic-modules/dynamic-modules.md" >}}) for details.
 
 An example of the `configure` command that includes nondefault modules (should be typed as a single line):
 

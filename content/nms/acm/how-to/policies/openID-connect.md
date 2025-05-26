@@ -50,7 +50,7 @@ The Developer Portal supports both PCKE and AuthCode [authorization code flows](
 
 To apply the OpenID Connect (OIDC) policy or make changes to it, here's what you need to do:
 
-- [Edit an existing environment or create a new one]({{< relref "/nms/acm/how-to/infrastructure/manage-api-infrastructure.md#add-environment" >}}).
+- [Edit an existing environment or create a new one]({{< ref "/nms/acm/how-to/infrastructure/manage-api-infrastructure.md#add-environment" >}}).
 - Select the cluster on which to apply the policy.
 - Check the advanced settings to see if the policy has been applied.
 - Edit the policy as needed.

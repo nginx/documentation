@@ -15,8 +15,8 @@ September 25, 2024
 
 ### New features
 
-- [Ubuntu 24.04 support]({{< relref "nap-waf/v5/admin-guide/install.md#common-steps-for-nginx-open-source-and-nginx-plus" >}})
-- [Secure Traffic Between NGINX and App Protect Enforcer]({{< relref "/nap-waf/v5/configuration-guide/configuration.md#secure-traffic-between-nginx-and-app-protect-enforcer-using-mtls" >}})
+- [Ubuntu 24.04 support]({{< ref "nap-waf/v5/admin-guide/install.md#common-steps-for-nginx-open-source-and-nginx-plus" >}})
+- [Secure Traffic Between NGINX and App Protect Enforcer]({{< ref "/nap-waf/v5/configuration-guide/configuration.md#secure-traffic-between-nginx-and-app-protect-enforcer-using-mtls" >}})
 
 ---
 

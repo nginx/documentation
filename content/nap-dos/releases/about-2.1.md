@@ -13,9 +13,9 @@ December 29, 2021
 
 ### New Features
 
-- [Support for RHEL (7.4.x and above) Virtual Machine (VM) deployment]({{< relref "learn-about-deployment.md#rhel-74-installation" >}})
-- [Support for RHEL 8 and UBI 8]({{< relref "learn-about-deployment.md#rhel-8-installation" >}})
-- [GRPC and HTTP/2 protection support for Centos (7.4.x and above) and RHEL (7.4.x and above)]({{< relref "/nap-dos/deployment-guide/learn-about-deployment.md" >}})
+- [Support for RHEL (7.4.x and above) Virtual Machine (VM) deployment]({{< ref "learn-about-deployment.md#rhel-74-installation" >}})
+- [Support for RHEL 8 and UBI 8]({{< ref "learn-about-deployment.md#rhel-8-installation" >}})
+- [GRPC and HTTP/2 protection support for Centos (7.4.x and above) and RHEL (7.4.x and above)]({{< ref "/nap-dos/deployment-guide/learn-about-deployment.md" >}})
 
 ### Supported Packages
 
@@ -61,7 +61,7 @@ December 29, 2021
 
 - gRPC and HTTP/2 protection require active monitoring of the protected service. The directive `app_protect_dos_monitor` is mandatory for these use cases, otherwise, the attack will not be detected.
 
-- [TLS fingerprint]({{< relref "/nap-dos/directives-and-policy/learn-about-directives-and-policy.md#policy-directive-app_protect_dos_policy_file" >}}) feature is not used in CentOS 7.4 and RHEL 7 / UBI 7 due to the old OpenSSL version. The required OpenSSL version is 1.1.1 or higher.
+- [TLS fingerprint]({{< ref "/nap-dos/directives-and-policy/learn-about-directives-and-policy.md#policy-directive-app_protect_dos_policy_file" >}}) feature is not used in CentOS 7.4 and RHEL 7 / UBI 7 due to the old OpenSSL version. The required OpenSSL version is 1.1.1 or higher.
 
 - Slow POST attack always mitigates with block action while other types of attacks can also be mitigated with redirection or JS challenges.
 

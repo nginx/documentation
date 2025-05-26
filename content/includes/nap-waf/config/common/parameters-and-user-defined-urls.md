@@ -161,7 +161,7 @@ The user-defined URL feature allows the user to configure the URL while supporti
 - Define an Allowed/Disallowed user-defined URL.
 - Add a user-defined URL to the Signature/Metacharacters override list.
 
-For `urlContentProfiles` default values, see NGINX App Protect WAF [Declarative Policy guide.]({{< relref "/nap-waf/v4/declarative-policy/policy.md" >}})
+For `urlContentProfiles` default values, see NGINX App Protect WAF [Declarative Policy guide.]({{< ref "/nap-waf/v4/declarative-policy/policy.md" >}})
 
 In this example we configure allowed meta-characters in a user-defined URL:
 

@@ -9,6 +9,12 @@ url: /nginxaas/azure/known-issues/
 
 List of known issues in the latest release of F5 NGINX as a Service for Azure (NGINXaaS).
 
+### {{% icon-bug %}} Custom and precompiled security policies cannot both be referenced in an NGINX configuration 
+
+When using NGINX App Protect WAF, you can only reference default or custom security policies in your NGINX configuration, not both.
+
+**Workaround**: Make a copy of the default policy you want to use, then add it as a custom policy with a different name.  
+
 ### {{% icon-bug %}} Terraform fails to apply due to validation errors, but creates "Failed" resources in Azure (ID-4424)
 
 Some validation errors are caught later in the creation process, and can leave behind "Failed" resources in Azure. An example initial failure might look like:
@@ -59,7 +65,7 @@ Inner Errors:
 
 ### {{% icon-bug %}} Not all NGINX Plus directives and use-cases are supported in NGINXaaS (ID-4331)
 
-NGINXaaS currently does not support all NGINX Plus directives and use-cases. We are continually adding new NGINX Plus capabilities into NGINXaaS to close the gap in functionality. You can follow the updates to the supported use-cases by visiting the [Changelog]({{< relref "./changelog.md" >}}). For a comprehensive list of currently allowed directives, please see the [Configuration Directives List]({{< relref "/nginxaas-azure/getting-started/nginx-configuration/nginx-configuration-portal.md#configuration-directives-list" >}}).
+NGINXaaS currently does not support all NGINX Plus directives and use-cases. We are continually adding new NGINX Plus capabilities into NGINXaaS to close the gap in functionality. You can follow the updates to the supported use-cases by visiting the [Changelog]({{< relref "./changelog.md" >}}). For a comprehensive list of currently allowed directives, please see the [Configuration Directives List]({{< ref "/nginxaas-azure/getting-started/nginx-configuration/nginx-configuration-portal.md#configuration-directives-list" >}}).
 
 ### {{% icon-bug %}} Terraform errors using `package_data` (ID-2752)
 
@@ -111,7 +117,7 @@ Attaching multiple certificates to a deployment quickly will result in a deploym
 
 Use [depends_on](https://developer.hashicorp.com/terraform/language/meta-arguments/depends_on) to add a dependency between certificate resources:
 
-{{< highlight hcl "linenos=false,hl_lines=16" >}}
+```hcl {linenos=false,hl_lines=[16]}
 resource "azurerm_nginx_certificate" "cert1" {
   name                     = "examplecert"
   nginx_deployment_id      = azurerm_nginx_deployment.test.id
@@ -129,13 +135,13 @@ resource "azurerm_nginx_certificate" "cert2" {
 
   depends_on               = [azurerm_nginx_certificate.cert1]
 }
-{{< / highlight >}}
+```
 
 **ARM Template**
 
 Use [dependsOn](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/resource-dependency) to add a dependency between certificate resources:
 
-{{< highlight json "linenos=false,hl_lines=21" >}}
+```json {linenos=false,hl_lines=[21]}
 {
     "type": "NGINX.NGINXPLUS/nginxDeployments/certificates",
     "apiVersion": "2021-05-01-preview",
@@ -158,13 +164,13 @@ Use [dependsOn](https://learn.microsoft.com/en-us/azure/azure-resource-manager/t
      }
     "dependsOn": ["cert1"]
 }
-{{< / highlight >}}
+```
 
 **Bicep Template**
 
 Use [dependsOn](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/resource-dependencies) to add a dependency between certificate resources:
 
-{{< highlight bicep "linenos=false,hl_lines=17" >}}
+```bicep {linenos=false,hl_lines=[17]}
 resource cert1 'NGINX.NGINXPLUS/nginxDeployments/certificates@2021-05-01-preview' = {
   name: '${nginxDeploymentName}/cert1'
   properties: {
@@ -183,7 +189,7 @@ resource cert2 'NGINX.NGINXPLUS/nginxDeployments/certificates@2021-05-01-preview
   }
   dependsOn: [cert1]
 }
-{{< / highlight >}}
+```
 
 ### {{% icon-bug %}} Terraform errors around capacity for Basic plan deployments (ID-4880)
 

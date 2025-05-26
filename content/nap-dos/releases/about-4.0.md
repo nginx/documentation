@@ -13,7 +13,7 @@ January 31, 2023
 
 ### New Features
 
-- Distributed Denial of Service (DDoS) protection feature for WebSocket services. <br> Refer to the [Configuration Example]({{< relref "/nap-dos/directives-and-policy/learn-about-directives-and-policy.md#monitor-directive-app_protect_dos_monitor" >}}) for WebSocket services here.<br>
+- Distributed Denial of Service (DDoS) protection feature for WebSocket services. <br> Refer to the [Configuration Example]({{< ref "/nap-dos/directives-and-policy/learn-about-directives-and-policy.md#monitor-directive-app_protect_dos_monitor" >}}) for WebSocket services here.<br>
 - DDoS protection against slow attacks has been improved using machine learning algorithm on all types of traffic.
 - `app_protect_dos_monitor` directive, which monitors the proxied server, supports a new type of protocol - "WebSocket".
 
@@ -82,7 +82,7 @@ January 31, 2023
 
 - gRPC and HTTP/2 protection require active monitoring of the protected service. The directive `app_protect_dos_monitor` is mandatory for the attack to be detected.
 
-- [TLS fingerprint]({{< relref "/nap-dos/directives-and-policy/learn-about-directives-and-policy.md#policy-directive-app_protect_dos_policy_file" >}}) feature is not used in CentOS 7.4 and RHEL 7 / UBI 7 due to the old OpenSSL version. The required OpenSSL version is 1.1.1 or higher.
+- [TLS fingerprint]({{< ref "/nap-dos/directives-and-policy/learn-about-directives-and-policy.md#policy-directive-app_protect_dos_policy_file" >}}) feature is not used in CentOS 7.4 and RHEL 7 / UBI 7 due to the old OpenSSL version. The required OpenSSL version is 1.1.1 or higher.
 
 - Monitor directive `app_protect_dos_monitor` with `proxy_protocol` parameter can not be configured on Ubuntu 18.04. As a result, gRPC and HTTP/2 DoS protection for `proxy_protocol` configuration is not supported.
 

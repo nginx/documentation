@@ -18,7 +18,7 @@ In this release, NGINX App Protect DoS supports NGINX Plus R28.
 - Support for NGINX Plus R28.
 - NGINX App protect DoS can be deployed behind L4/L7 load balancers when L4 protection is enabled.
 - Fixed the issue: Installing NGINX App protect DoS with L4 (eBPF) mitigation behind L4/L7 load balancer may result in the load balancer's starvation during an attack.
-- Support for [proxy_protocol]({{< relref "/nap-dos/directives-and-policy/learn-about-directives-and-policy.md#monitor-directive-app_protect_dos_monitor" >}}) configuration for server health monitoring.<br>
+- Support for [proxy_protocol]({{< ref "/nap-dos/directives-and-policy/learn-about-directives-and-policy.md#monitor-directive-app_protect_dos_monitor" >}}) configuration for server health monitoring.<br>
 Previously, server health monitoring could not be used when the listen directive of the correspondent server block contained the `proxy_protocol` parameter.<br>
 This disallowed using NGINX App protect DoS for Denial of Service (DoS) protection for HTTP2 and gRPC protected objects in the `proxy_protocol` configuration.
 
@@ -89,7 +89,7 @@ Port configuration should correspond to the port the server listens to.
 
 - gRPC and HTTP/2 protection require active monitoring of the protected service. The directive `app_protect_dos_monitor` is mandatory for these use cases, otherwise, the attack will not be detected.
 
-- [TLS fingerprint]({{< relref "/nap-dos/directives-and-policy/learn-about-directives-and-policy.md#policy-directive-app_protect_dos_policy_file" >}}) feature is not used in CentOS 7.4 and RHEL 7 / UBI 7 due to the old OpenSSL version. The required OpenSSL version is 1.1.1 or higher.
+- [TLS fingerprint]({{< ref "/nap-dos/directives-and-policy/learn-about-directives-and-policy.md#policy-directive-app_protect_dos_policy_file" >}}) feature is not used in CentOS 7.4 and RHEL 7 / UBI 7 due to the old OpenSSL version. The required OpenSSL version is 1.1.1 or higher.
 
 - Monitor directive (app_protect_monitor) with the `proxy_protocol` parameter can not be configured on Ubuntu 18.04. As a result, gRPC and HTTP/2 DoS protection for `proxy_protocol` configuration is not supported.
 

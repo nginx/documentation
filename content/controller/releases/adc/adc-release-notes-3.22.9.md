@@ -20,7 +20,7 @@ September 06, 2023
 
 - NGINX Controller App Delivery Module 3.22.9 supports upgrades from 3.22.4 and newer versions.
 
-  We recommend you [upgrade the NGINX Controller Agent]({{< relref "/controller/admin-guides/install/install-nginx-controller-agent#update-the-nginx-controller-agent" >}}) whenever you upgrade NGINX Controller.
+  We recommend you [upgrade the NGINX Controller Agent]({{< ref "/controller/admin-guides/install/install-nginx-controller-agent#update-the-nginx-controller-agent" >}}) whenever you upgrade NGINX Controller.
 
   If you're upgrading NGINX Controller on a multi-node cluster, run the `update.sh` script on each node individually -- the order in which you update the nodes doesn't matter.
 

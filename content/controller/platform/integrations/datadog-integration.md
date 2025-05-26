@@ -32,6 +32,6 @@ Take the following steps to create an Integration for Datadog:
 9. In the **Integration Type** list, select `GENERIC_INTEGRATION`.
 10. In the **Endpoint URI** box, add the API endpoint for your Datadog region. For example, `https://api.datadoghq.com/api/v1/series` for metrics or `https://http-intake.logs.datadoghq.com/v1/input` for events.
 11. In the **Credential Type** list, select `API_KEY`.
-12. In the **API Key** box, add the [Datadog API Key]({{< relref "/controller/analytics/forwarders/forward-analytics-to-datadog.md#generate-datadog-api-token" >}}).
+12. In the **API Key** box, add the [Datadog API Key]({{< ref "/controller/analytics/forwarders/forward-analytics-to-datadog.md#generate-datadog-api-token" >}}).
 13. Select **Submit**.
 

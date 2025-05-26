@@ -153,7 +153,7 @@ Monitor directive has four arguments - **uri**, **protocol**, **timeout** and **
 - **URI** - The URI of the Protected Object as defined in the `nginx.conf`. This must point to a location block that proxies traffic to the backend (upstream) to ensure accurate monitoring.<br>
   Format: **scheme://server_name:port/location**.
 
-  {{< note >}}For gRPC, the URI must specify a valid gRPC method (e.g., /RouteGuide/GetFeature).<br>
+  {{< note >}}For gRPC, the URI must specify a valid gRPC method (for example, /RouteGuide/GetFeature).<br>
   The health check is not a true gRPC client, so its requests do not conform to the gRPC wire protocol. As a result, the backend responds with grpc-status: 12 (UNIMPLEMENTED), which is expected and treated as a successful health check. Regular gRPC client traffic is unaffected by this behavior.{{< /note >}}
 
 - **Protocol** -  determines the protocol type of the service. Options are `http1 / http2 / grpc / websocket`.<br>Default: `http1`.<br>
@@ -212,7 +212,7 @@ server_name my_grpc;
 
 location /routeguide. {
     # Protected Object is defined here
-    # Note: The URI must include a valid gRPC method (e.g., /routeguide.RouteGuide/GetFeature).
+    # Note: The URI must include a valid gRPC method (for example, /routeguide.RouteGuide/GetFeature).
     # The health check will expect a grpc-status of 12 (UNIMPLEMENTED) because it is not a true gRPC client.
     app_protect_dos_monitor uri=http://my_grpc:50051/routeguide.RouteGuide/GetFeature protocol=grpc;
 }
@@ -277,7 +277,7 @@ Second argument is the destination (the location which the events will be sent t
 - `stderr` (**default**)
 - `{absolute_file_path}`, i.e. `/shared/dos_sec_logger.log`
 
-Implemented according to: [NGINX App Protect DoS Security Log]({{< relref "/nap-dos/monitoring/security-log.md" >}})
+Implemented according to: [NGINX App Protect DoS Security Log]({{< ref "/nap-dos/monitoring/security-log.md" >}})
 
    {{< note >}}
 
@@ -402,7 +402,7 @@ This directive is used to enable the App Protect DoS monitoring capability via R
 The REST API interface provides extended metrics information of the Protected Objects.
 It can be used by sending REST API requests manually or by using the App Protect DoS dashboard page.
 
-For more information refer to [NGINX App Protect DoS Live Activity Monitoring]({{< relref "/nap-dos/monitoring/live-activity-monitoring.md" >}})
+For more information refer to [NGINX App Protect DoS Live Activity Monitoring]({{< ref "/nap-dos/monitoring/live-activity-monitoring.md" >}})
 
 **Example:**
 

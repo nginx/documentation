@@ -28,7 +28,7 @@ Ensure the following prerequisites are met:
 ## Update the Signature Database
 
 1. Open an SSH connection to the data plane host and log in.
-1. Generate a Signature Report file using the [Attack Signature Report Tool]({{< relref "/nap-waf/v4/configuration-guide/configuration.md#attack-signature-report-tool" >}}). Save the file as `signature-report.json`:
+1. Generate a Signature Report file using the [Attack Signature Report Tool]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#attack-signature-report-tool" >}}). Save the file as `signature-report.json`:
 
     ```bash
     sudo /opt/app_protect/bin/get-signatures -o ./signature-report.json

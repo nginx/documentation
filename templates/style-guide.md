@@ -107,6 +107,7 @@ The table provides guidelines about the terms you should and should not use for 
 | data source | | |
 | database | Do not abbreviate as "db". Always a single word. | |
 |date format | Use _month day, year_ format, as in December 4, 2024. Don't use _day month year_, as in 31 July 2016. <br>  In the UI, it's OK to use numbers and slashes for dates if the code supports that format and automatically displays the appropriate date format for different locales. For example, 12/4/2024. | This format aligns with standard American usage for consistency and clarity. |
+| disconnected | Use this term to describe environments without internet or external network access, such as air-gapped, offline, or network-restricted setups. Preferred term due to alignment with product UI and configuration settings (for example, `mode_of_operation: disconnected`). If needed, clarify as "in a disconnected (network-restricted) environment" for context. | |
 | DoS/DDoS/3DoS | Spell out on first reference:<br>- denial-of-service (DoS)<br>- distributed denial-of-service (DDoS)<br>- diverse distributed denial-of-service (3DoS) | |
 | e.g., i.e., etc. | Avoid using Latin abbreviations.<br>- e.g. = for example<br>- i.e. = in other words<br>- etc. = and so on | |
 | earlier and later | Use to describe versioning. For example, "This applies to versions earlier than NGINX Plus R31".<br>Do not use before, after, greater, lower, higher, below, above, and so on. | |
@@ -297,7 +298,7 @@ The table provides guidelines about the terms you should and should not use for 
 | SSLi/SSL Intercept | For the SSL Intercept iRule. Spell out. Do not abbreviate except to match UI label. | |
 | Sync-Failover (and Sync-Only) | Title capitalize and hyphenate to Sync-Failover unless referencing the option in tmsh; then lowercase and hyphenate as sync-failover. These guidelines apply to Sync-Only as well. | |
 | tap | Describes action of touching the hardware touchscreens in hardware documentation. Do not use in software documentation; use "select" instead. | |
-| tarball | tarball is defined as "files distributed as a tar archive"; a computer file format that can combine multiple files into a single, typically compressed, file. | |
+| tarball | tarball is defined as "files distributed as a tar archive"; a computer file format that can combine multiple files into a single, typically compressed, file. For the standard `gzip` compression algorithm, use the `tar.gz` extension for such files | |
 | TCP flag names | All caps. SYN, ACK, PSH, URG, FIN, etc. (Industry standard) | |
 | tense | Strive to use the simple present tense rather than the past or future, unless necessary for clarity. Do not: The system will receive. Do: The system receives. Do not: The feature was introduced in NGINX Instance Manger 2.16. Do: The feature is introduced in NGINX Instance Manager 2.16. (Remember that for some users older versions are used in the present.) | |
 | text box | Use box. | |
@@ -503,6 +504,7 @@ this style guide over time. This guide uses the Major.Minor.Patch
 
 | Edition | Date          | Lead Author(s) | Comments                                              |
 |---------|---------------|----------------|-------------------------------------------------------|
+| 1.11  | April 23, 2025 | Mike Jang | Specify use of .tar.gz for tarballs. |
 | 1.10  | February 19, 2025 | Mike Jang | Clarify use of nested includes. |
 | 1.9   | December 10, 2024 | Mike Jang | Specify the use of "license" when writing about the JWT token associated with licensed versions of NGINX. |
 | 1.8   | December 4, 2024 | Jon Torre | Clarify that heading text must not contain a link to other pages. |

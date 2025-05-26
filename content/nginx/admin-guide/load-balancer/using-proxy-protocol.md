@@ -28,19 +28,19 @@ Using this data, NGINX can get the originating IP address of the client in sever
 <span id="prereq"></span>
 ## Prerequisites
 
-- To accept the PROXY protocol v2, NGINX Plus <a href="../../../releases/#r16">R16</a> and later or NGINX Open Source [1.13.11](https://nginx.org/en/CHANGES) and later
+- To accept the PROXY protocol v2, NGINX Plus [R16]({{< ref "nginx/releases.md#r16" >}}) and later or NGINX Open Source [1.13.11](https://nginx.org/en/CHANGES) and later
 
-- To accept the PROXY protocol for HTTP, NGINX Plus <a href="../../../releases/#r3">R3</a> and later or NGINX Open Source [1.5.12](https://nginx.org/en/CHANGES) and later
+- To accept the PROXY protocol for HTTP, NGINX Plus [R3]({{< ref "nginx/releases.md#r3" >}}) and later or NGINX Open Source [1.5.12](https://nginx.org/en/CHANGES) and later
 
-- For TCP client‑side PROXY protocol support, NGINX Plus <a href="../../../releases/#r7">R7</a> and later or NGINX Open Source [1.9.3](https://nginx.org/en/CHANGES) and later
+- For TCP client‑side PROXY protocol support, NGINX Plus [R7]({{< ref "nginx/releases.md#r7" >}}) and later or NGINX Open Source [1.9.3](https://nginx.org/en/CHANGES) and later
 
-- To accept the PROXY protocol for TCP, NGINX Plus <a href="../../../releases/#r11">R11</a> and later or NGINX Open Source [1.11.4](https://nginx.org/en/CHANGES) and later
+- To accept the PROXY protocol for TCP, NGINX Plus [R11]({{< ref "nginx/releases.md#r11" >}}) and later or NGINX Open Source [1.11.4](https://nginx.org/en/CHANGES) and later
 
-- The Real‑IP modules for [HTTP](https://nginx.org/en/docs/http/ngx_http_realip_module.html) and [Stream TCP](https://nginx.org/en/docs/stream/ngx_stream_realip_module.html) are not included in NGINX Open Source by default; see [Installing NGINX Open Source]({{< relref "../installing-nginx/installing-nginx-open-source.md" >}}) for details. No extra steps are required for NGINX Plus.
+- The Real‑IP modules for [HTTP](https://nginx.org/en/docs/http/ngx_http_realip_module.html) and [Stream TCP](https://nginx.org/en/docs/stream/ngx_stream_realip_module.html) are not included in NGINX Open Source by default; see [Installing NGINX Open Source]({{< ref "nginx/admin-guide/installing-nginx/installing-nginx-open-source.md" >}}) for details. No extra steps are required for NGINX Plus.
 
 
 <span id="listen"></span>
-## Configuring NGINX to Accept the PROXY Protocol
+## Configure NGINX to Accept the PROXY Protocol
 
 To configure NGINX to accept PROXY protocol headers, add the `proxy_protocol` parameter to the `listen` directive in a `server` block in the [`http {}`](https://nginx.org/en/docs/http/ngx_http_core_module.html#listen) or [`stream {}`](https://nginx.org/en/docs/stream/ngx_stream_core_module.html#listen) block.
 
@@ -66,7 +66,7 @@ stream {
 Now you can use the [`$proxy_protocol_addr`](https://nginx.org/en/docs/http/ngx_http_core_module.html#var_proxy_protocol_addr) and [`$proxy_protocol_port`](https://nginx.org/en/docs/http/ngx_http_core_module.html#var_proxy_protocol_port) variables for the client IP address and port and additionally configure the [HTTP](https://nginx.org/en/docs/http/ngx_http_realip_module.html) and [`stream`](https://nginx.org/en/docs/stream/ngx_stream_realip_module.html) RealIP modules to replace the IP address of the load balancer in the [`$remote_addr`](https://nginx.org/en/docs/http/ngx_http_core_module.html#var_remote_addr) and [`$remote_port`](https://nginx.org/en/docs/http/ngx_http_core_module.html#var_remote_port) variables with the IP address and port of the client.
 
 <span id="realip"></span>
-## Changing the Load Balancer's IP Address To the Client IP Address
+## Change the Load Balancer's IP Address To the Client IP Address
 
 You can replace the address of the load balancer or TCP proxy with the client IP address received from the PROXY protocol. This can be done with the [HTTP](https://nginx.org/en/docs/http/ngx_http_realip_module.html) and [`stream`](https://nginx.org/en/docs/stream/ngx_stream_realip_module.html) RealIP modules. With these modules, the [`$remote_addr`](https://nginx.org/en/docs/http/ngx_http_core_module.html#var_remote_addr) and [`$remote_port`](https://nginx.org/en/docs/http/ngx_http_core_module.html#var_remote_port) variables retain the real IP address and port of the client, while the [`$realip_remote_addr`](https://nginx.org/en/docs/http/ngx_http_realip_module.html#var_realip_remote_addr) and [`$realip_remote_port`](https://nginx.org/en/docs/http/ngx_http_realip_module.html#var_realip_remote_port) variables retain the IP address and port of the load balancer.
 
@@ -81,7 +81,7 @@ To change the IP address from the load balancer's IP address to the client's IP 
    nginx -V 2>&1 | grep -- 'stream_realip_module'
    ```
 
-   If not, recompile NGINX with these modules. See [Installing NGINX Open Source]({{< relref "../installing-nginx/installing-nginx-open-source.md" >}}) for details. No extra steps are required for NGINX Plus.
+   If not, recompile NGINX with these modules. See [Installing NGINX Open Source]({{< ref "nginx/admin-guide/installing-nginx/installing-nginx-open-source.md" >}}) for details. No extra steps are required for NGINX Plus.
 
 3. In the `set_real_ip_from` directive for [HTTP](https://nginx.org/en/docs/http/ngx_http_realip_module.html#set_real_ip_from), [Stream](https://nginx.org/en/docs/stream/ngx_stream_realip_module.html#set_real_ip_from), or both, specify the IP address or the CIDR range of addresses of the TCP proxy or load balancer:
 
@@ -105,7 +105,7 @@ To change the IP address from the load balancer's IP address to the client's IP 
    ```
 
 <span id="log"></span>
-## Logging the Original IP Address
+## Log the Original IP Address
 
 When you know the original IP address of the client, you can configure the correct logging:
 

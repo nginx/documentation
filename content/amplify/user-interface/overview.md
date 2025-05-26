@@ -10,7 +10,7 @@ The Overview page is designed to provide a quick summary of the state of your NG
 
 Five key overlay graphs are displayed for the selected period. By switching over various periods, you can compare trends and see if anything abnormal shows up.
 
-The cumulative [metrics]({{< relref "/amplify/metrics-metadata" >}}) displayed on the **Overview** page are:
+The cumulative [metrics]({{< ref "/amplify/metrics-metadata" >}}) displayed on the **Overview** page are:
 
   * Total requests — sum of **nginx.http.request.count**
   * HTTP 5xx errors — sum of **nginx.http.status.5xx**
@@ -20,7 +20,7 @@ The cumulative [metrics]({{< relref "/amplify/metrics-metadata" >}}) displayed o
 
 {{< note >}} By default the metrics above are calculated for all monitored hosts. You can configure specific tags in the **Overview** settings popup to display the metrics for a set of hosts (e.g. only the "production environment"). {{< /note >}}
 
-You may see zero numbers if some metrics are not being gathered, e.g., if the request time (P95) is 0.000s, please check that you have correctly configured NGINX log for [additional metric]() collection.
+You may see zero numbers if some metrics are not being gathered, for example, if the request time (P95) is 0.000s, please check that you have correctly configured NGINX log for [additional metric]() collection.
 
 {{< img src="amplify/amplify-overview.png" alt="Overview section of the User Interface" >}}
 

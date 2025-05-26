@@ -1,6 +1,6 @@
 ---
-title: Deploying NGINX App Protect WAF on Docker
-weight: 400
+title: Deploy NGINX App Protect WAF with Docker
+weight: 500
 toc: true
 type: how-to
 product: NAP-WAF
@@ -32,7 +32,7 @@ Choose the appropriate `Dockerfile` example based on your Operating System (OS).
 
 {{<tabs name="nap5_nginx_OSS_dockerfiles">}}
 {{%tab name="Alpine Linux"%}}
- 
+
 {{< include "nap-waf/config/v5/build-nginx-image-oss/build-alpine.md" >}}
 
 {{%/tab%}}
@@ -52,7 +52,7 @@ FROM amazonlinux:2023
 # Install NGINX OSS and NGINX App Protect WAF v5 module
 RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
-    && yum -y install wget ca-certificates shadow-utils yum-utils \
+    yum -y install wget ca-certificates shadow-utils yum-utils \
     && echo "[nginx-mainline]" > /etc/yum.repos.d/nginx.repo \
     && echo "name=nginx mainline repo" >> /etc/yum.repos.d/nginx.repo \
     && echo "baseurl=http://nginx.org/packages/mainline/amzn/2023/\$basearch/" >> /etc/yum.repos.d/nginx.repo \
@@ -118,7 +118,7 @@ You are ready to [Build the image](#build-image-main)
 
 {{<tabs name="nap5_nginx_plus_dockerfiles">}}
 {{%tab name="Alpine Linux"%}}
- 
+
 {{< include "nap-waf/config/v5/build-nginx-image-plus/build-alpine.md" >}}
 
 {{%/tab%}}
@@ -138,7 +138,7 @@ FROM amazonlinux:2023
 # Install NGINX Plus and NGINX App Protect WAF v5 module
 RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
-    && yum -y install wget ca-certificates shadow-utils \
+    yum -y install wget ca-certificates shadow-utils \
     && wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/plus-amazonlinux2023.repo \
     && echo "[app-protect-x-plus]" > /etc/yum.repos.d/app-protect-plus.repo \
     && echo "name=nginx-app-protect repo" >> /etc/yum.repos.d/app-protect-plus.repo \
@@ -278,6 +278,19 @@ http {
 
 {{< include "nap-waf/setup-docker-registry.md" >}}
 
+### List all tags
+
+For a complete tag list for NGINX App Protect WAF enforcer and NGINX App Protect WAF configuration manager, use the following commands:
+
+```shell
+curl https://private-registry.nginx.com/v2/nap/waf-enforcer/tags/list --key <nginx-repo.key> --cert <nginx-repo.crt> | jq
+```
+
+```shell
+curl https://private-registry.nginx.com/v2/nap/waf-config-mgr/tags/list --key <nginx-repo.key> --cert <nginx-repo.crt> | jq
+```
+
+
 ### Docker Compose File
 
 Create a `docker-compose.yml` with the following configuration: Replace `<version-tag>` with the actual release version you are deploying.
@@ -337,7 +350,7 @@ volumes:
 
 To secure traffic between NGINX and App Protect Enforcer using mTLS, create a `docker-compose.yml` with the following configuration:
 
-{{< note >}} Refer to the [Configuration Guide]({{< relref "/nap-waf/v5/configuration-guide/configuration.md#secure-traffic-between-nginx-and-app-protect-enforcer-using-mtls" >}}) to generate certificates and modify the `nginx.conf` for mTLS.
+{{< note >}} Refer to the [Configuration Guide]({{< ref "/nap-waf/v5/configuration-guide/configuration.md#secure-traffic-between-nginx-and-app-protect-enforcer-using-mtls" >}}) to generate certificates and modify the `nginx.conf` for mTLS.
 {{< /note >}}
 
 ```yaml
@@ -351,12 +364,12 @@ services:
 	      - app_protect_etc_config:/etc/app_protect/conf
 	      - /conf/nginx.conf:/etc/nginx/nginx.conf # based on the provided example
 	      - /conf/default.conf:/etc/nginx/conf.d/default.conf # based on the provided example
-	      - /path/to/your/certs:/etc/ssl/certs  # mount certificates directory 
+	      - /path/to/your/certs:/etc/ssl/certs  # mount certificates directory
 	    networks:
 	      - waf_network
 	    ports:
 	      - "80:80"
-	
+
 	  waf-enforcer:
 	    container_name: waf-enforcer
 	    image: "private-registry.nginx.com/nap/waf-enforcer:<version-tag>"
@@ -371,7 +384,7 @@ services:
 	    networks:
 	      - waf_network
 	    restart: always
-	
+
 	  waf-config-mgr:
 	    container_name: waf-config-mgr
 	    image: "private-registry.nginx.com/nap/waf-config-mgr:<version-tag>"
@@ -384,11 +397,11 @@ services:
 	    depends_on:
 	      waf-enforcer:
 	        condition: service_started
-	
+
 	networks:
 	  waf_network:
 	    driver: bridge
-	
+
 	volumes:
 	  app_protect_bd_config:
 	  app_protect_config:
@@ -429,7 +442,7 @@ services:
 
 Sometimes, simply restarting the services can resolve transient issues. Use `sudo docker compose down -v` followed by `sudo docker compose up -d` to restart all services.
 
-If you encounter any other issues, check the [Troubleshooting Guide]({{< relref "/nap-waf/v5/troubleshooting-guide/troubleshooting#nginx-app-protect-5" >}}).
+If you encounter any other issues, check the [Troubleshooting Guide]({{< ref "/nap-waf/v5/troubleshooting-guide/troubleshooting#nginx-app-protect-5" >}}).
 
 ## Air-Gap Install: Secure Offline Deployment
 
@@ -455,7 +468,7 @@ Proceed, by creating a `Dockerfile` using one of the examples provided below.
 
 {{<tabs name="offline_nap5_nginx_OSS_dockerfiles">}}
 {{%tab name="Alpine Linux"%}}
- 
+
 {{< include "nap-waf/config/v5/build-nginx-image-oss/build-alpine.md" >}}
 
 {{%/tab%}}
@@ -487,7 +500,7 @@ You are ready to [Build the image](#build-image-sub)
 
 {{<tabs name="offline_nap5_nginx_plus_dockerfiles">}}
 {{%tab name="Alpine Linux"%}}
- 
+
 {{< include "nap-waf/config/v5/build-nginx-image-plus/build-alpine.md" >}}
 
 {{%/tab%}}
@@ -522,7 +535,7 @@ You are ready to [Build the image](#build-image-sub)
 {{< include "nap-waf/setup-docker-registry.md" >}}
 
 #### Download Waf-Enforcer and Waf-Config-mgr Images
-Pull the `waf-enforcer` and `waf-config-mgr` images. Replace `5.4.0` with the actual release version you are deploying. 
+Pull the `waf-enforcer` and `waf-config-mgr` images. Replace `5.4.0` with the actual release version you are deploying.
 
 ```shell
 docker pull private-registry.nginx.com/nap/waf-enforcer:5.4.0
@@ -676,4 +689,4 @@ volumes:
 
 This guide provides the foundational steps for deploying NGINX App Protect WAF v5 using Docker Compose. You may need to adjust the deployment to fit your specific requirements.
 
-For more detailed configuration options and advanced deployment strategies, refer to the [NGINX App Protect WAF v5 Configuration Guide]({{< relref "/nap-waf/v5/configuration-guide/configuration.md" >}}).
+For more detailed configuration options and advanced deployment strategies, refer to the [NGINX App Protect WAF v5 Configuration Guide]({{< ref "/nap-waf/v5/configuration-guide/configuration.md" >}}).

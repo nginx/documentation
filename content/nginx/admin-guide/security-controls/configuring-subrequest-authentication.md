@@ -12,7 +12,14 @@ type:
 <span id="intro"></span>
 ## Introduction
 
-NGINX and F5 NGINX Plus can authenticate each request to your website with an external server or service. To perform authentication, NGINX makes an HTTP subrequest to an external server where the subrequest is verified. If the subrequest returns a `2xx` response code, the access is allowed, if it returns `401` or `403`, the access is denied. Such type of authentication allows implementing various authentication schemes, such as multifactor authentication, or allows implementing LDAP or OAuth authentication.
+NGINX and F5 NGINX Plus can authenticate each request to your website with an external server or service. To perform authentication, NGINX makes an HTTP subrequest to an external server where it is verified. Such type of authentication allows implementing various authentication schemes, such as multifactor authentication, or allows implementing LDAP or OAuth authentication.
+
+## Response Codes
+
+Subrequest Response Codes:
+
+- 2xx - access is allowed
+- 401, 403 - access is denied
 
 ## Prerequisites
 
@@ -30,7 +37,7 @@ NGINX and F5 NGINX Plus can authenticate each request to your website with an ex
 
     Skip this step for NGINX Plus as it already includes the auth_request module.
 
-2. In the location that requires request authentication, specify the [auth_request](https://nginx.org/en/docs/http/ngx_http_auth_request_module.html#auth_request) directive in which specify an internal location where an authorization subrequest will be forwarded to:
+2. In the location that requires request authentication, specify the [auth_request](https://nginx.org/en/docs/http/ngx_http_auth_request_module.html#auth_request) directive and specify an internal location where an authorization subrequest will be forwarded to:
 
     ```nginx
     location /private/ {
@@ -51,7 +58,7 @@ NGINX and F5 NGINX Plus can authenticate each request to your website with an ex
     }
     ```
 
-4. As the request body is discarded for authentication subrequests, you will need to set the [proxy_pass_request_body](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass_request_body) directive to `off` and also set the `Content-Length` header to a null string:
+4. As the request body is discarded for authentication subrequests, set the [proxy_pass_request_body](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass_request_body) directive to `off` and also set the `Content-Length` header to a null string:
 
     ```nginx
     location = /auth {

@@ -43,9 +43,9 @@ To generate a data plane key:
 {{<call-out "caution" "Data plane key guidelines" "fas fa-key" >}}
 Data plane keys are displayed only once and cannot be retrieved later. Be sure to copy and store this key securely.
 
-Data plane keys expire after one year. You can change this expiration date later by [editing the key]({{< relref "nginx-one/how-to/data-plane-keys/create-manage-data-plane-keys.md#change-expiration-date" >}}).
+Data plane keys expire after one year. You can change this expiration date later by [editing the key]({{< ref "nginx-one/how-to/data-plane-keys/create-manage-data-plane-keys.md#change-expiration-date" >}}).
 
-[Revoking a data plane key]({{< relref "nginx-one/how-to/data-plane-keys/create-manage-data-plane-keys.md#revoke-data-plane-key" >}}) disconnects all instances that were registered with that key.
+[Revoking a data plane key]({{< ref "nginx-one/how-to/data-plane-keys/create-manage-data-plane-keys.md#revoke-data-plane-key" >}}) disconnects all instances that were registered with that key.
 {{</call-out>}}
 
 
@@ -136,17 +136,41 @@ If you followed the [Installation and upgrade](https://docs.nginx.com/nginx-agen
 
 ## Enable NGINX metrics reporting
 
-In order for NGINX One Console to show specific traffic and system metrics, you need to enable the appropriate API on your NGINX data plane instances. The sections below provide step-by-step instructions for both NGINX Plus and NGINX Open Source (OSS).
+The NGINX One Console dashboard relies on APIs for NGINX Plus and NGINX Open Source Stub Status to report traffic and system metrics. The following sections show you how to enable those metrics.
 
 ### Enable NGINX Plus API
 
-{{< include "/use-cases/monitoring/enable-nginx-plus-api.md" >}}
+<!-- possible future include: "/use-cases/monitoring/enable-nginx-plus-api.md" -->
+To collect metrics for NGINX Plus, add the following to your NGINX Plus configuration file:
+
+```nginx
+# Enable the /api/ location with appropriate access control
+# to use the NGINX Plus API.
+#
+location /api/ {
+    api write=on;
+    allow 127.0.0.1;
+    deny all;
+}
+```
+
+This configuration:
+
+- Enables the NGINX Plus API.
+- Allows requests only from `127.0.0.1` (localhost).
+- Blocks all other requests for security.
+
+After saving the changes, reload NGINX to apply the new configuration:
+
+```shell
+nginx -s reload
+```
 
 ### Enable NGINX Open Source Stub Status API
 
-{{< include "/use-cases/monitoring/enable-nginx-oss-stub-status.md" >}} 
+{{< include "/use-cases/monitoring/enable-nginx-oss-stub-status.md" >}}
 
----
+--- 
 
 ## View instance metrics with the NGINX One dashboard
 

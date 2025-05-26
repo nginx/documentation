@@ -9,12 +9,13 @@ type:
 - how-to
 ---
 
-This article describes how to configure logging of errors and processed requests in NGINX Open Source and NGINX Plus.
+This article describes how to log errors and requests in NGINX Open Source and NGINX Plus.
 
 <span id="error_log"></span>
-## Setting Up the Error Log
+## Set Up the Error Log
 
-NGINX writes information about encountered issues of different severity levels to the error log. The [error_log](https://nginx.org/en/docs/ngx_core_module.html#error_log) directive sets up logging to a particular file, `stderr`, or `syslog` and specifies the minimal severity level of messages to log. By default, the error log is located at **logs/error.log** (the absolute path depends on the operating system and installation), and messages from all severity levels above the one specified are logged.
+NGINX writes an error log that records encountered issues of different severity levels. The [error_log](https://nginx.org/en/docs/ngx_core_module.html#error_log) directive sets up the log location and severity level. The log location can be a particular file, `stderr`, or `syslog`. By default, the error log is located at **logs/error.log**, but the absolute path depends on the operating system and installation. The error severity level follows the `syslog` classification system. The log includes messages from all severity levels above the specified level. 
+
 
 The configuration below changes the minimal severity level of error messages to log from `error` to `warn`:
 
@@ -22,19 +23,19 @@ The configuration below changes the minimal severity level of error messages to 
 error_log logs/error.log warn;
 ```
 
-In this case, messages of `warn`, `error` `crit`, `alert`, and `emerg` levels are logged.
+In this case, messages above the `warn` level are logged. That includes `warn`, `error` `crit`, `alert`, and `emerg` levels.
 
-The default setting of the error log works globally. To override it, place the [error_log](https://nginx.org/en/docs/ngx_core_module.html#error_log) directive in the `main` (top-level) configuration context. Settings in the `main` context are always inherited by other configuration levels (`http`, `server`, `location`). The `error_log` directive can be also specified at the [http](https://nginx.org/en/docs/http/ngx_http_core_module.html#http), [stream](https://nginx.org/en/docs/stream/ngx_stream_core_module.html#stream), `server` and [location](https://nginx.org/en/docs/http/ngx_http_core_module.html#location) levels and overrides the setting inherited from the higher levels. In case of an error, the message is written to only one error log, the one closest to the level where the error has occurred. However, if several `error_log` directives are specified on the same level, the message are written to all specified logs.
+The default setting of the error log works globally. To override it, place the [error_log](https://nginx.org/en/docs/ngx_core_module.html#error_log) directive in the `main` (top-level) configuration context. Settings in the `main` context are always inherited by other configuration levels (`http`, `server`, `location`). The `error_log` directive can be also specified at the [http](https://nginx.org/en/docs/http/ngx_http_core_module.html#http), [stream](https://nginx.org/en/docs/stream/ngx_stream_core_module.html#stream), `server` and [location](https://nginx.org/en/docs/http/ngx_http_core_module.html#location) levels. Settings at lower levels override the settings inherited from the higher levels. Each error message is written only once to the error log closest to the level where the error has occurred. However, if several `error_log` directives are specified on the same level, the message is written to all specified logs.
 
 > **Note:** The ability to specify multiple `error_log` directives on the same configuration level was added in NGINX Open Source  version [1.5.2](https://nginx.org/en/CHANGES).
 
 
 <span id="access_log"></span>
-## Setting Up the Access Log
+## Set Up the Access Log
 
-NGINX writes information about client requests in the access log right after the request is processed. By default, the access log is located at **logs/access.log**, and the information is written to the log in the predefined **combined** format. To override the default setting, use the [log_format](https://nginx.org/en/docs/http/ngx_http_log_module.html#log_format) directive to change the format of logged messages, as well as the [access_log](https://nginx.org/en/docs/http/ngx_http_log_module.html#access_log) directive to specify the location of the log and its format. The log format is defined using variables.
+NGINX records client requests in the access log right after the request is processed. The [access_log](https://nginx.org/en/docs/http/ngx_http_log_module.html#access_log) directive specifies the location of the log and its format. By default, the access log is located at **logs/access.log**. The format of logged messages is the predefined **combined** format. To change the format of logged messages, use the [log_format](https://nginx.org/en/docs/http/ngx_http_log_module.html#log_format) directive. The log format is defined using variables.
 
-The following examples define the log format that extends the predefined **combined** format with the value indicating the ratio of gzip compression of the response. The format is then applied to a virtual server that enables compression.
+The following example extends the predefined **combined** format by specifying the `gzip ratio` keyword. This enables gzip compression of the response in a virtual server.
 
 ```nginx
 http {
@@ -50,7 +51,7 @@ http {
 }
 ```
 
-Another example of the log format enables tracking different time values between NGINX and an upstream server that may help to diagnose a problem if your website experience slowdowns. You can use the following variables to log the indicated time values:
+Another example of the log format enables tracking different time values between NGINX and an upstream server. This may help with diagnosing a slowdown of your website. You can use the following variables to log the indicated time values:
 
 - [`$upstream_connect_time`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#var_upstream_connect_time) – The time spent on establishing a connection with an upstream server
 - [`$upstream_header_time`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#var_upstream_header_time) – The time between establishing a connection and receiving the first byte of the response header from the upstream server
@@ -64,7 +65,7 @@ http {
     log_format upstream_time '$remote_addr - $remote_user [$time_local] '
                              '"$request" $status $body_bytes_sent '
                              '"$http_referer" "$http_user_agent"'
-                             'rt=$request_time uct="$upstream_connect_time" uht="$upstream_header_time" urt="$upstream_response_time"';
+                             'rt="$request_time" uct="$upstream_connect_time" uht="$upstream_header_time" urt="$upstream_response_time"';
 
     server {
         access_log /spool/logs/nginx-access.log upstream_time;
@@ -80,11 +81,10 @@ When reading the resulting time values, keep the following in mind:
 - When a request is unable to reach an upstream server or a full header cannot be received, the variable contains `0` (zero)
 - In case of internal error while connecting to an upstream or when a reply is taken from the cache, the variable contains `-` (hyphen)
 
-Logging can be optimized by enabling the buffer for log messages and the cache of descriptors of frequently used log files whose names contain variables. To enable buffering use the `buffer` parameter of the [access_log](https://nginx.org/en/docs/http/ngx_http_log_module.html#access_log) directive to specify the size of the buffer. The buffered messages are then written to the log file when the next log message does not fit into the buffer as well as in some other [cases](https://nginx.org/en/docs/http/ngx_http_log_module.html#access_log).
-
+The log can be optimized by enabling the `buffer` and the `cache`. With the [buffer](https://nginx.org/en/docs/http/ngx_http_log_module.html#access_log) parameter enabled, messages will be stored in the buffer first. When the buffer is full (or in some other [cases](https://nginx.org/en/docs/http/ngx_http_log_module.html#access_log)), the messages will be written to the log. 
 To enable caching of log file descriptors, use the [open_log_file_cache](https://nginx.org/en/docs/http/ngx_http_log_module.html#open_log_file_cache) directive.
 
-Similar to the `error_log` directive, the [access_log](https://nginx.org/en/docs/http/ngx_http_log_module.html#access_log) directive defined on a particular configuration level overrides the settings from the previous levels. When processing of a request is completed, the message is written to the log that is configured on the current level, or inherited from the previous levels. If one level defines multiple access logs, the message is written to all of them.
+Similar to the `error_log` directive, the [access_log](https://nginx.org/en/docs/http/ngx_http_log_module.html#access_log) directive defined on a particular configuration level overrides the settings from the previous levels. When processing of a request is completed, the message is written to the log that is configured on the current level, or inherited from the previous levels. If one level has multiple access log definitions, the message is written to all of them.
 
 
 <span id="conditional"></span>
@@ -205,6 +205,6 @@ The `severity=` parameter sets the severity level of syslog messages for access 
 <span id="monitoring"></span>
 ## Live Activity Monitoring
 
-NGINX Plus provides a real-time live activity monitoring interface that shows key load and performance metrics of your [HTTP]({{< relref "../load-balancer/http-load-balancer.md" >}}) and [TCP]({{< relref "../load-balancer/tcp-udp-load-balancer.md" >}}) upstream servers. See the [Live Activity Monitoring]({{< relref "live-activity-monitoring.md" >}}) article for more information.
+NGINX Plus provides a real-time live activity monitoring interface that shows key load and performance metrics of your [HTTP]({{< ref "nginx/admin-guide/load-balancer/http-load-balancer.md" >}}) and [TCP]({{< ref "nginx/admin-guide/load-balancer/tcp-udp-load-balancer.md" >}}) upstream servers. See the [Live Activity Monitoring]({{< ref "live-activity-monitoring.md" >}}) article for more information.
 
 To learn more about NGINX Plus, please visit the [Products](https://www.nginx.com/products/) page.

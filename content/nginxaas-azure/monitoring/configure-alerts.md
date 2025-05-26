@@ -11,18 +11,18 @@ type:
 
 ## Overview
 
-{{<note>}}F5 NGINX as a Service for Azure (NGINXaaS) publishes custom metrics to Azure Monitor. To learn more about how to create and manage metrics-based alert rules, refer to the [Alerts section in Azure Monitor](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-create-new-alert-rule?tabs=metric) documentation from Microsoft. {{</note>}}
+{{<note>}}F5 NGINX as a Service for Azure (NGINXaaS) publishes platform metrics to Azure Monitor. To learn more about how to create and manage metrics-based alert rules, refer to the [Alerts section in Azure Monitor](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-create-new-alert-rule?tabs=metric) documentation from Microsoft. {{</note>}}
 
 This guide explains how to create and configure metrics-based alerts for your NGINXaaS for Azure deployment using Azure Monitor.
 
 
 ## Prerequisites
 
-- Setup is complete for [NGINXaaS for Azure deployment]({{< relref "/nginxaas-azure/getting-started/create-deployment/" >}}).
+- Setup is complete for [NGINXaaS for Azure deployment]({{< ref "/nginxaas-azure/getting-started/create-deployment/" >}}).
 
 - To complete this setup, you must be an owner or user access administrator for the NGINX deployment resource.
 
-- To enable metrics, see [Enable Monitoring]({{< relref "/nginxaas-azure/monitoring/enable-monitoring.md" >}}).
+- To enable metrics, see [Enable Monitoring]({{< ref "/nginxaas-azure/monitoring/enable-monitoring.md" >}}).
 
 {{<note>}} See [Azure monitor overview](https://docs.microsoft.com/en-us/azure/azure-monitor/overview) documentation to familiarize with Azure Monitor. {{</note>}}
 

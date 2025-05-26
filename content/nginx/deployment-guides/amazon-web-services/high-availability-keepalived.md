@@ -9,16 +9,15 @@ type:
 - how-to
 ---
 
-This guide explains how to create a highly available (HA) active‑passive deployment of F5 NGINX Plus in the [Amazon Web Services](https://aws.amazon.com/) (AWS) cloud. It combines the `keepalived`‑based solution for high availability (provided by NGINX for on‑premises HA deployments) with the AWS Elastic IP address feature.
-
-NGINX also provides a [solution for active‑active HA of NGINX Plus in AWS]({{< relref "high-availability-network-load-balancer.md" >}}), using AWS Network Load Balancer.
+This guide explains how to create a high availability (HA) active‑passive deployment of F5 NGINX Plus in the [Amazon Web Services](https://aws.amazon.com/) (AWS) cloud. It combines the `keepalived`‑based solution for high availability (provided by NGINX for on‑premises HA deployments) with the AWS Elastic IP address feature.
+NGINX also provides a [solution for active‑active HA of NGINX Plus in AWS]({{< ref "high-availability-network-load-balancer.md" >}}), using AWS Network Load Balancer.
 
 <span id="ha-aws_overview"></span>
 ## Overview
 
-The [supported solution for HA deployment]({{< relref "../../admin-guide/high-availability/ha-keepalived.md" >}}) of NGINX Plus that uses `keepalived` is designed for on‑premises deployments. It is typically not viable in cloud environments, such as AWS, because of the networking restrictions they impose.
+The [supported solution for HA deployment]({{< ref "nginx/admin-guide/high-availability/ha-keepalived.md" >}}) of NGINX Plus that uses `keepalived` is designed for on‑premises deployments. It is typically not viable in cloud environments, such as AWS, because of the networking restrictions they impose.
 
-One method for deploying NGINX Plus in a highly available manner on AWS is to use ELB in front of NGINX Plus instances. However, the method has several disadvantages:
+One method for deploying NGINX Plus in a highly available manner on AWS is to use ELB in front of NGINX Plus instances. But, the method has several disadvantages:
 
 - It increases the cost of your deployment.
 - It limits the number of protocols NGINX Plus and your applications can support. In particular, ELB does not support UDP load balancing.
@@ -35,7 +34,7 @@ As an alternative to ELB, you can use Route 53 to distribute traffic among NGIN
 - We have successfully tested the instructions on <span style="white-space: nowrap;">Ubuntu 16.04 LTS</span> (Xenial Xerus) and CentOS 7, with `keepalived` installed from the respective OS vendor repositories.
 - Except as noted, perform all steps on both the primary and backup instance.
 - The solution is not covered by your NGINX Plus support contract.
-- In addition to the [active‑active HA solution]({{< relref "high-availability-network-load-balancer.md" >}}) mentioned above, NGINX offers a solution based on [AWS Lambda](https://aws.amazon.com/lambda/) which does not require installation of any additional software on the NGINX Plus instances. The [NGINX Professional Services](https://www.nginx.com/services/) team can deploy and configure the Lambda‑based solution for you and provide support.
+- In addition to the [active‑active HA solution]({{< ref "high-availability-network-load-balancer.md" >}}) mentioned above, NGINX offers a solution based on [AWS Lambda](https://aws.amazon.com/lambda/) which does not require installation of any additional software on the NGINX Plus instances. The [NGINX Professional Services](https://www.nginx.com/services/) team can deploy and configure the Lambda‑based solution for you and provide support.
 
 <span id="ha-aws_nginx-plus"></span><span id="ha-aws_step1"></span>
 ## Step 1 – Launch Two NGINX Plus Instances
@@ -64,19 +63,19 @@ The scripts in the HA solution use the AWS API to associate an Elastic IP addre
 
    Alternatively, you can use the `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` environment variables to provide credentials to the HA scripts, as shown in [Step 5](#ha-aws_keepalived-configure).
 
-2. Launch two instances and [install NGINX Plus]({{< relref "../../admin-guide/installing-nginx/installing-nginx-plus-amazon-web-services.md" >}}) on each. (As noted, we tested the instructions on <span style="white-space: nowrap;">Ubuntu 16.04 LTS</span> and CentOS 7.)
+2. Launch two instances and [install NGINX Plus]({{< ref "nginx/admin-guide/installing-nginx/installing-nginx-plus-amazon-web-services.md" >}}) on each. (As noted, we tested the instructions on <span style="white-space: nowrap;">Ubuntu 16.04 LTS</span> and CentOS 7.)
 
 3. Attach this IAM role to the instance.
 
 <span id="ha-aws_eip"></span>
-## Step 2 – Allocate an Elastic IP Address
+## Step 2 – Allocate an Elastic IP address
 
 Allocate an Elastic IP address and remember its ID. For detailed instructions, see the [AWS documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html#using-instance-addressing-eips-allocating).
 
 <span id="ha-aws_keepalived-install"></span><span id="ha-aws_step3"></span>
 ## Step 3 – Install `keepalived`, `wget`, and the AWS CLI
 
-1. Install two packages from your OS vendor’s repository: the **keepalived** package and **wget**, which is used by the HA scripts.
+1. Install two packages from your OS vendor’s repository: **keepalived** and **wget**, which is used by the HA scripts.
 
    - On Ubuntu systems:
 
@@ -155,7 +154,7 @@ vrrp_instance VI_1 {
 }
 ```
 
-You must change values for the following configuration keywords (as you do so, also remove the angle brackets enclosing the placeholder value):
+You must change values for the following configuration keywords. As you do so, also remove the angle brackets enclosing the placeholder value:
 
 - `script` in the `chk_nginx_service` block – The script that sends health checks to NGINX Plus.
 

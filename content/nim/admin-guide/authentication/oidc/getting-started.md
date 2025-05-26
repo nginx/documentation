@@ -16,7 +16,7 @@ NGINX Instance Manager’s implementation of OIDC is designed to work with any I
 
 {{<call-out "tip" "Do you need to configure a specific IdP?">}}To learn how to configure OIDC with a specific identity provider, refer to the linked topics in the [Set up specific IdPs for OIDC](#oidc-specific-idps) section at the bottom of this page.{{</call-out>}}
 
-{{<call-out "important" "OIDC is not supported in forward-proxy mode" "fa-solid fa-triangle-exclamation" >}}OpenID Connect (OIDC) authentication is not supported when NGINX Instance Manager is running in [forward-proxy mode]({{< relref "nim/system-configuration/configure-forward-proxy.md" >}}). OIDC is configured on the NGINX Plus layer and cannot pass authentication requests through a forward proxy.{{</call-out>}}
+{{<call-out "important" "OIDC is not supported in forward-proxy mode" "fa-solid fa-triangle-exclamation" >}}OpenID Connect (OIDC) authentication is not supported when NGINX Instance Manager is running in [forward-proxy mode]({{< ref "nim/system-configuration/configure-forward-proxy.md" >}}). OIDC is configured on the NGINX Plus layer and cannot pass authentication requests through a forward proxy.{{</call-out>}}
 
 ## Create roles and user groups in NGINX Instance Manager {#configure-nim}
 
@@ -60,7 +60,7 @@ When you configure OIDC for NGINX Instance Manager, basic authentication will be
 
 The following requirements must be met before you can use OIDC with NGINX Instance Manager:
 
-1. [Install Instance Manager]({{< relref "/nim/deploy/vm-bare-metal/install.md" >}}) on a server that also has [NGINX Plus R21 or newer]({{< relref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}) installed. Ensure the server hosting NGINX Plus has a fully qualified domain name (FQDN).
+1. [Install Instance Manager]({{< ref "/nim/deploy/vm-bare-metal/install.md" >}}) on a server that also has [NGINX Plus R21 or newer]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}) installed. Ensure the server hosting NGINX Plus has a fully qualified domain name (FQDN).
 
 2. [Install the NGINX JavaScript module (njs)](https://www.nginx.com/blog/introduction-nginscript/) on the same server as Instance Manager. This module is required for managing communications between NGINX Plus and the identity provider.
 
@@ -89,8 +89,8 @@ The sections below provide detailed descriptions of the OIDC configuration value
 - **$oidc_logout_endpoint**: The URL of the IdP’s end_session endpoint.
 - **$oidc_token_endpoint**: The URL of the IdP’s OAuth 2.0 Token endpoint.
 - **$oidc_userinfo_endpoint**: The URL of the IdP’s UserInfo endpoint.
-- **$oidc_host**: The URL of the IdP’s application (e.g., `https://{my-app}.okta.com`).
-- **$oidc_scopes**: List of OAuth 2.0 scope values supported by the server (e.g., `openid+profile+email+offline_access`).
+- **$oidc_host**: The URL of the IdP’s application (for example, `https://{my-app}.okta.com`).
+- **$oidc_scopes**: List of OAuth 2.0 scope values supported by the server (for example, `openid+profile+email+offline_access`).
 
 #### Custom configuration for well-known endpoints
 
@@ -101,5 +101,5 @@ For custom settings, adjust parameters such as `$oidc_authz_path_params_enable`,
 
 For specific IdP setup instructions, refer to the following:
 
-- [Set up Microsoft Entra as an OIDC identity provider]({{< relref "/nim/admin-guide/authentication/oidc/microsoft-entra-setup.md" >}})
-- [Set up Keycloak as an OIDC identity provider]({{< relref "/nim/admin-guide/authentication/oidc/keycloak-setup.md" >}})
+- [Set up Microsoft Entra as an OIDC identity provider]({{< ref "/nim/admin-guide/authentication/oidc/microsoft-entra-setup.md" >}})
+- [Set up Keycloak as an OIDC identity provider]({{< ref "/nim/admin-guide/authentication/oidc/keycloak-setup.md" >}})

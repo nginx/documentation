@@ -26,7 +26,7 @@ Users can be assigned one of the three roles — Admin, User, or Read-Only. Admi
 
 In the **Notifications** section, you will find information about the emails currently registered with your account and whether they are verified or not. The alert notifications are only sent to verified emails.
 
-In addition to the email alert notifications, you can optionally configure the integration with your Slack team and workspace. Under the registered emails section, select the "Add to Slack" button to allow Amplify to send you certain notifications on Slack. You will have to log in and provide the necessary details about your team and what channels you'd like to add to Amplify notifications. Both direct messages and channels can be used for notifications. If configured successfully, Amplify can send alert information to Slack. A few more additional notifications are available — e.g., F5 NGINX Amplify Agent not finding a running NGINX instance, but also proactive messages about the issues with the SSL certs.
+In addition to the email alert notifications, you can optionally configure the integration with your Slack team and workspace. Under the registered emails section, select the "Add to Slack" button to allow Amplify to send you certain notifications on Slack. You will have to log in and provide the necessary details about your team and what channels you'd like to add to Amplify notifications. Both direct messages and channels can be used for notifications. If configured successfully, Amplify can send alert information to Slack. A few more additional notifications are available — for example, F5 NGINX Amplify Agent not finding a running NGINX instance, but also proactive messages about the issues with the SSL certs.
 
 
 {{< img src="amplify/amplify-notifications.png" alt="Notifications" >}}
@@ -39,4 +39,4 @@ The "Agent settings section is where you enable or disable account-wide behavior
   * Periodic NGINX configuration syntax checking with "nginx -t"
   * Analyzing SSL certs
 
-Per-system settings are accessible via the "Settings" icon that can be found for a particular NGINX on the [**Analyzer**]({{< relref "/amplify/user-interface/analyzer.md" >}}) page. Per-system settings override the global settings. If you prefer to monitor your NGINX configurations on all but some specific systems, you can uncheck the corresponding settings.
+Per-system settings are accessible via the "Settings" icon that can be found for a particular NGINX on the [**Analyzer**]({{< ref "/amplify/user-interface/analyzer.md" >}}) page. Per-system settings override the global settings. If you prefer to monitor your NGINX configurations on all but some specific systems, you can uncheck the corresponding settings.

@@ -394,7 +394,7 @@ Confirm that the policy has been set up and configured correctly by taking these
 
 ## Troubleshooting
 
-For help resolving common issues when setting up and configuring the policy, follow the steps in this section. If you cannot find a solution to your specific issue, reach out to [NGINX Customer Support]({{< relref "/nms/support/contact-support.md" >}}) for assistance.
+For help resolving common issues when setting up and configuring the policy, follow the steps in this section. If you cannot find a solution to your specific issue, reach out to [NGINX Customer Support]({{< ref "/nms/support/contact-support.md" >}}) for assistance.
 
 ### Issue 1
 

@@ -13,7 +13,7 @@ F5 NGINX as a Service for Azure (NGINXaaS) configurations can be managed using t
 
 ## Prerequisites
 
-- Install [Azure CLI with NGINXaaS extension]({{< relref "/nginxaas-azure/client-tools/cli.md" >}})
+- Install [Azure CLI with NGINXaaS extension]({{< ref "/nginxaas-azure/client-tools/cli.md" >}})
 
 - If the NGINX configuration requires SSL/TLS certificates, then a managed identity and integration with Azure Key Vault is required.
 
@@ -216,13 +216,13 @@ See the [Azure CLI Configuration Update Documentation](https://learn.microsoft.c
 
 {{< tip >}}
 
-See the [NGINX connfiguration overview]({{< relref "overview.md" >}}) topic
+See the [NGINX connfiguration overview]({{< ref "overview.md" >}}) topic
 to learn more about:
 
-- [NGINX configuration automation workflows]({{< relref "overview.md#nginx-configuration-automation-workflows" >}})
-- [NGINX filesystem restrictions]({{< relref "overview.md#nginx-filesystem-restrictions" >}})
-- [Disallowed configuration directives]({{< relref "overview.md#disallowed-configuration-directives" >}})
-- [Directives that cannot be overridden]({{< relref "overview.md#directives-that-cannot-be-overridden" >}})
-- [Configuration directives list]({{< relref "overview.md#configuration-directives-list" >}})
+- [NGINX configuration automation workflows]({{< ref "overview.md#nginx-configuration-automation-workflows" >}})
+- [NGINX filesystem restrictions]({{< ref "overview.md#nginx-filesystem-restrictions" >}})
+- [Disallowed configuration directives]({{< ref "overview.md#disallowed-configuration-directives" >}})
+- [Directives that cannot be overridden]({{< ref "overview.md#directives-that-cannot-be-overridden" >}})
+- [Configuration directives list]({{< ref "overview.md#configuration-directives-list" >}})
 
 {{< /tip >}}

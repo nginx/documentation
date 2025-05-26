@@ -2,7 +2,7 @@
 title: NGINXaaS Load Balancer for Kubernetes
 weight: 250
 toc: true
-url: /nginxaas/azure/quickstart/loadbalancer-kubernetes/
+url: /nginxaas/azure/loadbalancer-kubernetes/
 type:
 - how-to
 ---
@@ -56,7 +56,7 @@ This guide explains how to integrate NGINXaaS with an Azure Kubernetes Service (
 Before following the steps in this guide, you must:
 
 - Create an AKS cluster.
-- Create an NGINXaaS deployment. See the [documentation]({{< relref "/nginxaas-azure/getting-started/create-deployment/deploy-azure-portal/" >}}) to deploy via the Azure portal.
+- Create an NGINXaaS deployment. See the [documentation]({{< ref "/nginxaas-azure/getting-started/create-deployment/deploy-azure-portal/" >}}) to deploy via the Azure portal.
 - Ensure network connectivity between the subnet delegated to the NGINXaaS deployment and the subnet where AKS is deployed. For example, the AKS cluster and NGINXaaS deployment can run on the same Azure VNET or on peered VNETs.
 
 ### Initial setup
@@ -71,6 +71,7 @@ The steps in this section must be completed once for each new setup. We will ins
 
 {{<note>}}
 The data plane API key has the following requirements:
+
 - The key should have an expiration date. The default expiration date is six months from the date of creation. The expiration date cannot be longer than two years from the date of creation.
 - The key should be at least 12 characters long.
 - The key requires three out of four of the following types of characters:
@@ -184,6 +185,7 @@ You can also install the NLK controller AKS extension by navigating to [F5 NGINX
 - On the **Basics** tab, provide the following information:
 
   {{<bootstrap-table "table table-striped table-bordered">}}
+
   | Field                       | Description                |
   |---------------------------- | ---------------------------- |
   | Subscription                | Select the appropriate Azure subscription. |
@@ -194,6 +196,7 @@ You can also install the NLK controller AKS extension by navigating to [F5 NGINX
 - Select **Application Details**, and provide the following information:
 
   {{<bootstrap-table "table table-striped table-bordered">}}
+
   | Field                       | Description                |
   |---------------------------- | ---------------------------- |
   | Cluster extension resource name             | Provide a name for the NLK controller.             |
@@ -237,7 +240,7 @@ http {
 }
 ```
 
-[Apply the NGINX configuration]({{< relref "/nginxaas-azure/getting-started/nginx-configuration/overview/" >}}) to your deployment after making the required changes.
+[Apply the NGINX configuration]({{< ref "/nginxaas-azure/getting-started/nginx-configuration/overview/" >}}) to your deployment after making the required changes.
 
 ### Create a Kubernetes Service
 
@@ -247,9 +250,17 @@ Expose a Kubernetes `Service` to route traffic to your workload.  The `Service` 
 - Choose one of the following `Service` types:
   - `NodePort`: To route external traffic into the cluster using a well defined port exposed on each AKS worker node.
   - `ClusterIP`: To route traffic to pods directly if you are running an Azure Container Networking Interface (CNI) that lets you expose the pods on the Azure VNET.
+  - `LoadBalancer`: To route traffic to the cluster's external load balancer. The load balancer routes traffic into the cluster as normal.
 - The port name must be formatted as `{{NGINX Context}}-{{NGINX upstream name}}`. For example:
   - If the upstream is in the `http` context and named `my-service` then the name is `http-my-service`
   - If the upstream is in the `stream` context and named `jet` then the port name is `stream-jet`
+
+{{< note >}}
+**NGINX Ingress Controller users**: with v5.0.0 and upwards, if you wish to route traffic from your NGINXaaS deployment to your NGINX Ingress Controller service, please make the following changes to your helm chart values:
+
+- Add `"nginx.com/nginxaas": "nginxaas"` to the NGINX Ingress Controller service annotations.
+- Modify the `service.httpPort.name` or `service.httpsPort.name` values to provide the expected port name format, as above.
+{{</ note >}}
 
 The following example uses a service of type `NodePort`:
 
@@ -267,6 +278,7 @@ spec:
   type: NodePort
   ports:
     - targetPort: http
+      port: 80
       protocol: TCP
       # The port name helps connect to NGINXaaS. It must be prefixed with either `http-` or `stream-`
       # and the rest of the name must match the name of an upstream in that context.
@@ -288,7 +300,7 @@ spec:
 
 ### Multiple AKS clusters
 
-A single NGINXaaS deployment can direct trafifc to multiple AKS clusters. Each AKS cluster needs its own copy of NLK installed and connected to NGINXaaS.
+A single NGINXaaS deployment can direct traffic to multiple AKS clusters. Each AKS cluster needs its own copy of NLK installed and connected to NGINXaaS.
 
 ```mermaid
 flowchart TB
@@ -331,6 +343,7 @@ flowchart TB
 ```
 
 {{<note>}}
+
 - Configuring multiple NLK controllers to update the same upstream isn't supported and will result in unpredictable behavior.
 {{</note>}}
 
@@ -338,9 +351,10 @@ flowchart TB
 
 Multiple NLK controllers can be installed in the same AKS cluster to update separate NGINXaaS deployments.
 
-Each NLK needs a unique helm release name and needs a unique helm value for `nlk.config.serviceAnnotationMatch`.  Each NLK will only watch services that have the matching annotation.
+Each NLK needs a unique helm release name and needs a unique helm value for `nlk.config.serviceAnnotationMatch`. Each NLK will only watch services that have the matching annotation.
 
 {{<note>}}
+
 - Consider using `helm` to install multiple NLK controllers on an AKS cluster. Installing multiple copies of the controller on the same AKS cluster is not supported via the [AKS Extension](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/f5-networks.f5-nginx-for-azure-aks-extension?tab=overview).
 {{</note>}}
 
@@ -360,14 +374,15 @@ The logs can be made more verbose by setting the Helm value `nlk.config.logLevel
 
 NGINXaaS supports exporting dynamic upstream update logs to an Azure Storage account or to a Log Analytics workspace.
 
-To setup logging:
+To set up logging:
+
 1. Select **Diagnostic settings** under **Monitoring**.
 1. Select **Add diagnostic setting**.
 1. On the following panel, provide a **Diagnostic setting name**.
 1. Enable the **NGINX Upstream Update Logs** category.
 1. Select a destination.
 
-For more information on logging, see [Enable NGINX Logs]({{< relref "/nginxaas-azure/monitoring/enable-logging/">}}).
+For more information on logging, see [Enable NGINX Logs]({{< ref "/nginxaas-azure/monitoring/enable-logging/">}}).
 
 ### Metrics
 
@@ -376,4 +391,4 @@ NGINXaaS has the following metrics that are useful to monitor upstream health:
 - `plus.http.upstream.peers.state.up` -- does the peer report being healthy.
 - `plus.http.upstream.peers.request.count` -- which peers are handling requests.
 
-See the [metrics catalog](../../monitoring/metrics-catalog) for the entire list of NGINXaaS metrics.
+See the [metrics catalog]({{< ref "/nginxaas-azure/monitoring/metrics-catalog.md" >}}) for the entire list of NGINXaaS metrics.

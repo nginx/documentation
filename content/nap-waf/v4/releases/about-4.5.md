@@ -9,7 +9,7 @@ docs: DOCS-1253
 
 August 15, 2023
 
-This release includes new signatures for [Anti Automation]({{< relref "/nap-waf/v4/configuration-guide/configuration.md#anti-automation-bot-mitigation" >}}) (bot defense):
+This release includes new signatures for [Anti Automation]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#anti-automation-bot-mitigation" >}}) (bot defense):
 
 - Added the following Crawler bot signatures: SEOChecker, ev-crawler, FFZBot ImageGrabber, ConveraCrawler, EveryoneSocialBot, Google Ads Bot
 - Added the following HTTP Library bot signatures: Airbnb calendar importer
@@ -24,7 +24,7 @@ This release includes new signatures for [Anti Automation]({{< relref "/nap-waf/
 
 In this release, NGINX App Protect WAF supports NGINX Plus R30.
 
-- [Alpine 3.17 Support]({{< relref "/nap-waf/v4/admin-guide/install.md#alpine-316--alpine-317-installation" >}})
+- [Alpine 3.17 Support]({{< ref "/nap-waf/v4/admin-guide/install.md#alpine-316--alpine-317-installation" >}})
 
 ### Supported Packages
 
@@ -70,7 +70,7 @@ In this release, NGINX App Protect WAF supports NGINX Plus R30.
 - 8312 Fixed - Running the get-signatures utility writes output to a different location.
 - 8936 Fixed - To reduce potential false positives, user defined Headers and Cookies that do not specify whether their decodeValueAsBase64 value, are now `disabled` instead of `enabled` by default.
 - 8939 Fixed - The issue with rejected gRPC request support id logged as "Passed" has been fixed.
-- 8821 Fixed - The Override Rules now support gRPC traffic. The previous limitation regarding the use of [Override Rules]({{< relref "/nap-waf/v4/configuration-guide/configuration.md#override-rules" >}}) with gRPC traffic has been resolved.
+- 8821 Fixed - The Override Rules now support gRPC traffic. The previous limitation regarding the use of [Override Rules]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#override-rules" >}}) with gRPC traffic has been resolved.
 - 9061 Fixed - Evasions configuration does not work in an Override Rule policy.
 
 

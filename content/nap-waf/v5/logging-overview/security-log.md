@@ -77,7 +77,7 @@ app_protect_security_log /shared_volume/logging_profile_02.tgz syslog:server=my.
 
 ### Security Log Configuration File
 
-Before applying, the log configuration file (JSON) should be [compiled]({{< relref "/nap-waf/v5/admin-guide/compiler.md#logging-profile-compilation" >}}) into a logging profile bundle (tgz).
+Before applying, the log configuration file (JSON) should be [compiled]({{< ref "/nap-waf/v5/admin-guide/compiler.md#logging-profile-compilation" >}}) into a logging profile bundle (tgz).
 
 The file is in JSON format and consists of two parts:
 1.	**filter:** which requests are to be logged.
@@ -89,7 +89,7 @@ The filter is mandatory, although it may be left blank.
 {{<bootstrap-table "table table-striped table-bordered table-sm table-responsive">}}
 |Element | Meaning | Type/Values | Default |
 | ---| ---| ---| --- |
-|request_type | Log according to what App Protect detected in the request. | Enumerated values:<ul><li>**all:** all requests, both legal and illegal.</li><li>**illegal:** requests with violations (i.e., either alerted or blocked).</li><li>**blocked:** requests with violations that were blocked.</li></ul> | all |
+|request_type | Log according to what App Protect detected in the request. | Enumerated values:<ul><li>**all:** all requests, both legal and illegal.</li><li>**illegal:** requests with violations (that is, either alerted or blocked).</li><li>**blocked:** requests with violations that were blocked.</li></ul> | all |
 {{</bootstrap-table>}}
 
 
@@ -123,7 +123,7 @@ This is the content of `log_default.json`. It is pre-compield (built-in) and is 
     "filter": {
         "request_type": "illegal"
     },
- 
+
     "content": {
         "format": "default",
         "max_request_size": "2k",
@@ -240,7 +240,7 @@ NGINX will provide example configuration files under /opt/app_protect/share/defa
 
 ### Available Security Log Attributes
 
-The table below lists attributes that are generated in the security logs. When using customized logs (i.e., format=user-defined), you can add or remove entries from the list below. Per each attribute we show whether it is included in each of the predefined formats: `default` and `grpc`.
+The table below lists attributes that are generated in the security logs. When using customized logs (that is, format=user-defined), you can add or remove entries from the list below. Per each attribute we show whether it is included in each of the predefined formats: `default` and `grpc`.
 
 {{<bootstrap-table "table table-striped table-bordered table-sm table-responsive">}}
 |Attribute Name | Description | Included in formats |
@@ -286,7 +286,7 @@ The table below lists attributes that are generated in the security logs. When u
 |uri | The URI or Uniform Resource Identifier of the request. | default, grpc |
 |violation_details | XML including details about each violation. | default, grpc |
 |violation_rating | Estimation of the likelihood that the request is indeed a threat on a scale of 0 to 5: 0 - not a threat (no violations), 5 - most likely a threat | default, grpc |
-|violations | Comma-separated list of logical violation names (e.g., `VIOL_ATTACK_SIGNATURES`, `VIOL_HTTP_PROTOCOL`). | default, grpc |
+|violations | Comma-separated list of logical violation names (for example, `VIOL_ATTACK_SIGNATURES`, `VIOL_HTTP_PROTOCOL`). | default, grpc |
 |vs_name | A unique identifier of the location in the nginx.conf file that this request is associated with. It contains the line number of the containing server block in nginx.conf, the server name, a numeric discriminator that distinguishes between multiple entries within the same server, and the location name.  For example: ’34-mydomain.com:0-~/.*php(2). | default, grpc |
 |x_forwarded_for_header_value | `X-Forwarded-For` header information. This option is commonly used when proxies are involved to track the originator of the request. | default, grpc |
 {{</bootstrap-table>}}

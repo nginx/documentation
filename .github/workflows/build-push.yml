@@ -1,5 +1,7 @@
 name: Build and deploy (docs)
 on:
+  repository_dispatch:
+    types: [trigger-preview-build]
   workflow_call:
     inputs:
       environment:
@@ -31,7 +33,7 @@ on:
         type: string
   pull_request:
     branches:
-      - "*"
+      - "**"
   push:
     branches:
       - "main"
@@ -39,14 +41,14 @@ on:
 env:
   FRONT_DOOR_USERNAME: ${{ secrets.FRONT_DOOR_USERNAME }}
   FRONT_DOOR_PASSWORD: ${{ secrets.FRONT_DOOR_PASSWORD }}
-  GITHUB_PR_NUMBER: ${{ github.event.pull_request.number }}     
+  GITHUB_PR_NUMBER: ${{ github.event.pull_request.number }}    
 jobs:
   prod-check-branch:
     runs-on: ubuntu-24.04
     steps:
       - name: Output variables
         run: |
-          echo "Environment: ${{ inputs.environment }}"
+          echo "Environment: ${{ inputs.environment || github.event.client_payload.environment }}"
           echo "Branch: ${{ github.ref }}"
       - name: Checks to see that main branch is selected if deploying to prod
         if: ${{ inputs.environment == 'prod' && github.ref != 'refs/heads/main' }}
@@ -63,13 +65,32 @@ jobs:
       docs_source_path: "public"
       docs_build_path: "./"
       doc_type: "hugo"
-      environment: ${{inputs.environment}}
+      environment: ${{ inputs.environment || github.event.client_payload.environment }}
       force_hugo_theme_version: ${{inputs.hugo_theme_override}}
       auto_deploy_branch: "main"
       auto_deploy_env: "prod"
     secrets:
       AZURE_CREDENTIALS: ${{secrets.AZURE_CREDENTIALS_DOCS}}
       AZURE_KEY_VAULT: ${{secrets.AZURE_KEY_VAULT_DOCS}}
+
+  trigger-theme-slack-notification:
+    if: github.event_name == 'repository_dispatch'
+    needs: call-docs-build-push
+    runs-on: ubuntu-latest
+    permissions: read-all
+    steps:
+      - name: Trigger 'Slack notification for new theme release' workflow in 'nginx-hugo-theme' repo.
+        run: |
+           curl -L \
+              -X POST \
+              -H "Accept: application/vnd.github+json" \
+              -H "Authorization: Bearer ${{ secrets.THEME_SLACK_FLOW_PAT }}" \
+              -H "X-GitHub-Api-Version: 2022-11-28" \
+              "https://api.github.com/repos/${{ secrets.OWNER }}/${{ secrets.REPO }}/dispatches" \
+              -d "{\"event_type\": \"trigger-slack-notification\", \"client_payload\": {\"previewURL\": \"${{ env.PREVIEW_URL }}\",  \"author\": \"${{ github.event.client_payload.author}}\", \"tag_name\": \"${{ github.event.client_payload.tag_name }}\", \"release_name\": \"${{ github.event.client_payload.release_name }}\"}}"
+    env:
+      PREVIEW_URL: ${{ needs.call-docs-build-push.outputs.PREVIEW_URL }}
+
 
   lighthouseci:
     if: github.event.pull_request

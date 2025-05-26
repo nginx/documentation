@@ -20,8 +20,8 @@ This chapter explains how to install the F5 NGINX ModSecurity web application f
 
 This chapter explains how to install the NGINX ModSecurity WAF, presents a sample configuration of a simple rule, and sets up logging. For information about rule sets, see:
 
-- [Using the OWASP CRS with the NGINX ModSecurity WAF]({{< relref "nginx-plus-modsecurity-waf-owasp-crs.md" >}})
-- [Using the ModSecurity Rules from Trustwave SpiderLabs with the NGINX ModSecurity WAF]({{< relref "nginx-plus-modsecurity-waf-trustwave-spiderlabs-rules.md" >}})
+- [Using the OWASP CRS with the NGINX ModSecurity WAF]({{< ref "nginx-plus-modsecurity-waf-owasp-crs.md" >}})
+- [Using the ModSecurity Rules from Trustwave SpiderLabs with the NGINX ModSecurity WAF]({{< ref "nginx-plus-modsecurity-waf-trustwave-spiderlabs-rules.md" >}})
 
 <span id="waf-install_prereq"></span>
 
@@ -298,8 +298,8 @@ In this chapter, we installed the NGINX ModSecurity WAF for NGINX Plus, created 
 
 The simple rule works correctly, but doesn’t provide any real protection to an application. See the following chapters for instructions on configuring rules for comprehensive application protection:
 
-- [Using the OWASP CRS with the NGINX ModSecurity WAF]({{< relref "nginx-plus-modsecurity-waf-owasp-crs.md" >}})
-- [Using the ModSecurity Rules from Trustwave SpiderLabs with the NGINX ModSecurity WAF]({{< relref "nginx-plus-modsecurity-waf-trustwave-spiderlabs-rules.md" >}})
+- [Using the OWASP CRS with the NGINX ModSecurity WAF]({{< ref "nginx-plus-modsecurity-waf-owasp-crs.md" >}})
+- [Using the ModSecurity Rules from Trustwave SpiderLabs with the NGINX ModSecurity WAF]({{< ref "nginx-plus-modsecurity-waf-trustwave-spiderlabs-rules.md" >}})
 
 <span id="waf-install_resources"></span>
 

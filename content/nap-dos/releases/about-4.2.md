@@ -16,7 +16,7 @@ In this release, NGINX App Protect DoS supports NGINX Plus R30.
 ### New Features
 
 - Support for Nginx Plus R30
-- [Support for Ubuntu 22.04]({{< relref "learn-about-deployment.md#debian--ubuntu-installation" >}})
+- [Support for Ubuntu 22.04]({{< ref "learn-about-deployment.md#debian--ubuntu-installation" >}})
 - Support for HTTP3/QUIC
 - Improvement of Embedded Server Health mechanism
 
@@ -80,7 +80,7 @@ In this release, NGINX App Protect DoS supports NGINX Plus R30.
             listen 8080;
             server_name myservice.com;
             location / {
-                app_protect_dos_monitor "myservice.com:8080/";  
+                app_protect_dos_monitor "myservice.com:8080/";
             }
         }
     ```
@@ -89,12 +89,12 @@ In this release, NGINX App Protect DoS supports NGINX Plus R30.
 
 - gRPC and HTTP/2 protection require active monitoring of the protected service. The directive `app_protect_dos_monitor` is mandatory for the attack to be detected.
 
-- [TLS fingerprint]({{< relref "/nap-dos/directives-and-policy/learn-about-directives-and-policy.md#policy-directive-app_protect_dos_policy_file" >}}) feature is not used in CentOS 7.4 and RHEL 7 / UBI 7 due to the old OpenSSL version. The required OpenSSL version is 1.1.1 or higher.
+- [TLS fingerprint]({{< ref "/nap-dos/directives-and-policy/learn-about-directives-and-policy.md#policy-directive-app_protect_dos_policy_file" >}}) feature is not used in CentOS 7.4 and RHEL 7 / UBI 7 due to the old OpenSSL version. The required OpenSSL version is 1.1.1 or higher.
 
 - Slow POST attack always mitigates with block action while other types of attacks can also be mitigated with redirection or JS challenges.
 
 - The recommended option of running NGINX Plus in a Docker Container is with the `daemon off` flag. It's mandatory for UBI 8.
 
-- The package dependencies for NGINX App Protect DoS have changed in this release, replacing the `curl` dependencies with `libcurl` only. For more information, see the [NGINX App Protect DoS Deployment Guide]({{< relref "/nap-dos/deployment-guide/learn-about-deployment.md#prerequisites" >}}).
+- The package dependencies for NGINX App Protect DoS have changed in this release, replacing the `curl` dependencies with `libcurl` only. For more information, see the [NGINX App Protect DoS Deployment Guide]({{< ref "/nap-dos/deployment-guide/learn-about-deployment.md#prerequisites" >}}).
 
 - Starting with this release, Ubuntu 18.04 support has been deprecated.
