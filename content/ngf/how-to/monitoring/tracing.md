@@ -82,7 +82,7 @@ For all the possible configuration options for these resources, see the [API ref
 
 ### Install NGINX Gateway Fabric with global tracing configuration
 
-{{< note >}}Ensure that you [install the Gateway API resources]({{< ref "/ngf/installation/installing-ngf/helm.md#installing-the-gateway-api-resources" >}}).{{< /note >}}
+{{< note >}} Ensure that you [install the Gateway API resources]({{< ref "/ngf/install/helm.md#installing-the-gateway-api-resources" >}}).{{< /note >}}
 
 Referencing the previously deployed collector, create the following `values.yaml` file for installing NGINX Gateway Fabric:
 

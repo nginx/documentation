@@ -10,7 +10,7 @@ docs: DOCS-000
 {{< important >}}
 This document is for trying out NGINX Gateway Fabric, and not intended for a production environment. 
 
-For standard deployments, you should read the [Install NGINX Gateway Fabric]({{< ref "/ngf/installation/installing-ngf" >}}) section.
+For standard deployments, you should read the [Install NGINX Gateway Fabric]({{< ref "/ngf/install/" >}}) section.
 {{< /important >}}
 
 This is a guide for getting started with NGINX Gateway Fabric. It explains how to:
@@ -508,6 +508,6 @@ Request ID: 43882f2f5794a1ee05d2ea017a035ce3
 
 ## See also
 
-- [Install NGINX Gateway Fabric]({{< ref "/ngf/installation/installing-ngf/" >}}), for additional ways to install NGINX Gateway Fabric
+- [Install NGINX Gateway Fabric]({{< ref "/ngf/install/" >}}), for additional ways to install NGINX Gateway Fabric
 - [How-to guides]({{< ref "/ngf/how-to/" >}}), for configuring your cluster
 - [Traffic management]({{< ref "/ngf/how-to/traffic-management/" >}}), for more in-depth traffic management configuration

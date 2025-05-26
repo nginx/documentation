@@ -22,7 +22,7 @@ sent to the **coffee** application will also be sent to the **tea** application 
 
 ## Before you begin
 
-- [Install]({{< ref "/ngf/installation/" >}}) NGINX Gateway Fabric.
+- [Install]({{< ref "/ngf/install/" >}}) NGINX Gateway Fabric.
 - Save the public IP address and port of NGINX Gateway Fabric into shell variables:
 
    ```text

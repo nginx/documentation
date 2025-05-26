@@ -27,7 +27,7 @@ In this guide, we will show how to specify the TLS configuration of the connecti
 
 ## Before you begin
 
-- [Install]({{< ref "/ngf/installation/" >}}) NGINX Gateway Fabric with experimental features enabled.
+- [Install]({{< ref "/ngf/install/" >}}) NGINX Gateway Fabric with experimental features enabled.
 - Save the public IP address and port of NGINX Gateway Fabric into shell variables:
 
    ```text

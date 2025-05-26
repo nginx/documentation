@@ -313,7 +313,7 @@ of a few arguments. {{</ note >}}
 
 ### Run NGINX Gateway Fabric with NGINX in debug mode
 
-To run NGINX Gateway Fabric with NGINX in debug mode, follow the [installation document]({{< ref "/ngf/installation/installing-ngf" >}}) with these additional steps:
+To run NGINX Gateway Fabric with NGINX in debug mode, after[installation]({{< ref "/ngf/install/" >}}), follow these additional steps:
 
 Using Helm: Set `nginx.debug` to true.
 

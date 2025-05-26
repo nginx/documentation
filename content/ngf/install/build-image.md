@@ -1,6 +1,6 @@
 ---
 title: Build NGINX Gateway Fabric
-weight: 500
+weight: 400
 toc: true
 type: how-to
 product: NGF
@@ -9,7 +9,7 @@ docs: DOCS-1431
 
 ## Overview
 
-While most users will install NGINX Gateway Fabric [with Helm]({{< ref "/ngf/installation/installing-ngf/helm.md" >}}) or [Kubernetes manifests]({{< ref "/ngf/installation/installing-ngf/manifests.md" >}}), manually building the [NGINX Gateway Fabric and NGINX images]({{< ref "/ngf/overview/gateway-architecture.md#the-nginx-gateway-fabric-pod" >}}) can be helpful for testing and development purposes. Follow the steps in this document to build the NGINX Gateway Fabric and NGINX images.
+While most users will install NGINX Gateway Fabric [with Helm]({{< ref "/ngf/install/helm.md" >}}) or [Kubernetes manifests]({{< ref "/ngf/install/manifests.md" >}}), manually building the [NGINX Gateway Fabric and NGINX images]({{< ref "/ngf/overview/gateway-architecture.md#the-nginx-gateway-fabric-pod" >}}) can be helpful for testing and development purposes. Follow the steps in this document to build the NGINX Gateway Fabric and NGINX images.
 
 ---
 

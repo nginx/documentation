@@ -19,7 +19,7 @@ In this guide, we will show how to configure HTTPS termination for your applicat
 
 ## Before you begin
 
-- [Install]({{< ref "/ngf/installation/" >}}) NGINX Gateway Fabric.
+- [Install]({{< ref "/ngf/install/" >}}) NGINX Gateway Fabric.
 - Save the public IP address and port of NGINX Gateway Fabric into shell variables:
 
    ```text

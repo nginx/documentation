@@ -58,7 +58,7 @@ We have outlined a few best practices to keep in mind when using `SnippetsFilter
 
 ## Setup
 
-- To enable Snippets, [install]({{< ref "/ngf/installation/" >}}) NGINX Gateway Fabric with these modifications:
+- To enable Snippets, [install]({{< ref "/ngf/install/" >}}) NGINX Gateway Fabric with these modifications:
 
   - Using Helm: set the `nginxGateway.snippetsFilters.enable=true` Helm value.
   - Using Kubernetes manifests: set the `--snippets-filters` flag in the nginx-gateway container argument, add `snippetsfilters` to the RBAC

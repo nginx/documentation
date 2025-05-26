@@ -39,7 +39,7 @@ To complete this guide, you'll need to install:
 
 {{< include "/ngf/installation/nginx-plus/nginx-plus-secret.md" >}}
 
-{{< note >}} For more information on why this is needed and additional configuration options, including how to report to NGINX Instance Manager instead, see the [NGINX Plus Image and JWT Requirement]({{< ref "/ngf/installation/nginx-plus-jwt.md" >}}) document. {{< /note >}}
+{{< note >}} For more information on why this is needed and additional configuration options, including how to report to NGINX Instance Manager instead, see the [NGINX Plus Image and JWT Requirement]({{< ref "/ngf/install/nginx-plus.md" >}}) document. {{< /note >}}
 
 </details>
 
@@ -262,7 +262,7 @@ To upgrade from NGINX OSS to NGINX Plus, update the Helm command to include the 
 
 {{< note >}} If applicable, replace the F5 Container registry `private-registry.nginx.com` with your internal registry for your NGINX Plus image, and replace `nginx-plus-registry-secret` with your Secret name containing the registry credentials.{{< /note >}}
 
-{{< important >}} Ensure that you [Create the required JWT Secrets]({{< ref "/ngf/installation/nginx-plus-jwt.md" >}}) before installing.{{< /important >}}
+{{< important >}} Ensure that you [Create the required JWT Secrets]({{< ref "/ngf/install/nginx-plus.md" >}}) before installing.{{< /important >}}
 
 ```shell
 helm upgrade ngf oci://ghcr.io/nginx/charts/nginx-gateway-fabric  --set nginx.image.repository=private-registry.nginx.com/nginx-gateway-fabric/nginx-plus --set nginx.plus=true --set serviceAccount.imagePullSecret=nginx-plus-registry-secret -n nginx-gateway

@@ -38,7 +38,7 @@ For all the possible configuration options for `ClientSettingsPolicy`, see the [
 
 ## Before you begin
 
-- [Install]({{< ref "/ngf/installation/" >}}) NGINX Gateway Fabric.
+- [Install]({{< ref "/ngf/install/" >}}) NGINX Gateway Fabric.
 - Save the public IP address and port of NGINX Gateway Fabric into shell variables:
 
   ```text

@@ -38,7 +38,7 @@ To complete this guide, you'll need to install:
 
 {{< include "/ngf/installation/nginx-plus/nginx-plus-secret.md" >}}
 
-{{< note >}} For more information on why this is needed and additional configuration options, including how to report to NGINX Instance Manager instead, see the [NGINX Plus Image and JWT Requirement]({{< ref "/ngf/installation/nginx-plus-jwt.md" >}}) document. {{< /note >}}
+{{< note >}} For more information on why this is needed and additional configuration options, including how to report to NGINX Instance Manager instead, see the [NGINX Plus Image and JWT Requirement]({{< ref "/ngf/install/nginx-plus.md" >}}) document. {{< /note >}}
 
 </details>
 

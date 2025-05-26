@@ -1,5 +1,5 @@
 ---
-title: NGINX Plus and JWT
+title: Installation with NGINX Plus
 weight: 300
 toc: true
 type: how-to
@@ -13,7 +13,7 @@ NGINX Gateway Fabric with NGINX Plus requires a valid JSON Web Token (JWT) to do
 
 This requirement is part of F5’s broader licensing program and aligns with industry best practices. The JWT will streamline subscription renewals and usage reporting, helping you manage your NGINX Plus subscription more efficiently. The [telemetry](#telemetry) data we collect helps us improve our products and services to better meet your needs.
 
-The JWT is required for validating your subscription and reporting telemetry data. For environments connected to the internet, telemetry is automatically sent to F5’s licensing endpoint. In offline environments, telemetry is routed through [NGINX Instance Manager](https://docs.nginx.com/nginx-instance-manager/). Usage is reported every hour and on startup whenever NGINX is reloaded.
+The JWT is required for validating your subscription and reporting telemetry data. For environments connected to the internet, telemetry is automatically sent to F5’s licensing endpoint. In offline environments, telemetry is routed through [NGINX Instance Manager]({{< ref "/nim/" >}}). Usage is reported every hour and on startup whenever NGINX is reloaded.
 
 ---
 
@@ -93,7 +93,7 @@ and the following volume mount to the `nginx` container:
 
 {{</tabs>}}
 
-{{< note >}} If you are reporting to the default licensing endpoint, then you can now proceed with [installing NGINX Gateway Fabric]({{< ref "/ngf/installation/installing-ngf" >}}). Otherwise, follow the steps below to configure reporting to NGINX Instance Manager. {{< /note >}}
+{{< note >}} If you are reporting to the default licensing endpoint, then you can now proceed with [installing NGINX Gateway Fabric]({{< ref "/ngf/install/" >}}). Otherwise, follow the steps below to configure reporting to NGINX Instance Manager. {{< /note >}}
 
 ---
 
@@ -186,7 +186,7 @@ ssl_certificate_key    /etc/nginx/certs-bootstrap/tls.key;
 
 <br>
 
-{{< note >}} Once these Secrets are created and configuration options are set, you can now [install NGINX Gateway Fabric]({{< ref "/ngf/installation/installing-ngf" >}}). {{< /note >}}
+{{< note >}} Once these Secrets are created and configuration options are set, you can now [install NGINX Gateway Fabric]({{< ref "/ngf/install/" >}}). {{< /note >}}
 
 ---
 
@@ -261,4 +261,4 @@ Once you have successfully pulled the image, you can tag it as needed, then push
 
 There are alternative ways to get an NGINX Plus image for NGINX Gateway Fabric:
 
-- [Build the Gateway Fabric image]({{< ref "/ngf/installation/building-the-images.md">}}) describes how to use the source code with an NGINX Plus subscription certificate and key to build an image.
+- [Build the Gateway Fabric image]({{< ref "/ngf/install/build-image.md">}}) describes how to use the source code with an NGINX Plus subscription certificate and key to build an image.

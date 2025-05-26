@@ -25,7 +25,7 @@ The goal is to create a set of rules that will result in client requests being s
 
 ## Before you begin
 
-- [Install]({{< ref "/ngf/installation/" >}}) NGINX Gateway Fabric.
+- [Install]({{< ref "/ngf/install/" >}}) NGINX Gateway Fabric.
 - Save the public IP address and port of NGINX Gateway Fabric into shell variables:
 
   ```text
@@ -303,7 +303,7 @@ This request should receive a response from the `tea-post` pod. Any other type o
 
 If you have any issues while sending traffic, try the following to debug your configuration and setup:
 
-- Make sure you set the shell variables $GW_IP and $GW_PORT to the public IP and port of the NGINX Gateway Fabric service. Refer to the [Installation]({{< ref "/ngf/installation/" >}}) guides for more information.
+- Make sure you set the shell variables $GW_IP and $GW_PORT to the public IP and port of the NGINX Gateway Fabric service. Refer to the [Installation]({{< ref "/ngf/install/" >}}) guides for more information.
 
 - Check the status of the Gateway:
 
