@@ -510,4 +510,4 @@ Request ID: 43882f2f5794a1ee05d2ea017a035ce3
 
 - [Install NGINX Gateway Fabric]({{< ref "/ngf/install/" >}}), for additional ways to install NGINX Gateway Fabric
 - [How-to guides]({{< ref "/ngf/how-to/" >}}), for configuring your cluster
-- [Traffic management]({{< ref "/ngf/how-to/traffic-management/" >}}), for more in-depth traffic management configuration
+- [Traffic management]({{< ref "/ngf/traffic-management/" >}}), for more in-depth traffic management configuration

@@ -1,6 +1,6 @@
 ---
 title: Troubleshooting
-weight: 400
+weight: 600
 toc: true
 type: how-to
 product: NGF
@@ -288,7 +288,7 @@ The configuration may change in future releases. This configuration is valid for
 
 #### Metrics for troubleshooting
 
-Metrics can be useful to identify performance bottlenecks and pinpoint areas of high resource consumption within NGINX Gateway Fabric. To set up metrics collection, refer to the [Prometheus Metrics guide]({{< ref "prometheus.md" >}}). The metrics dashboard will help you understand problems with the way NGINX Gateway Fabric is set up or potential issues that could show up with time.
+Metrics can be useful to identify performance bottlenecks and pinpoint areas of high resource consumption within NGINX Gateway Fabric. To set up metrics collection, refer to the [Prometheus Metrics guide]({{< ref "/ngf/monitoring/prometheus.md" >}}). The metrics dashboard will help you understand problems with the way NGINX Gateway Fabric is set up or potential issues that could show up with time.
 
 For example, metrics `nginx_reloads_total` and `nginx_reload_errors_total` offer valuable insights into the system's stability and reliability. A high `nginx_reloads_total` value indicates frequent updates or configuration changes, while a high `nginx_reload_errors_total` value suggests issues with the configuration or other problems preventing successful reloads. Monitoring these metrics helps identify and resolve configuration errors, ensuring consistent service reliability.
 
@@ -313,7 +313,7 @@ Verify that the port number (for example, `8080`) matches the port number you ha
 | Resources not configured | Status missing on resources. | Check referenced resources. | Referenced resources do not belong to NGINX Gateway Fabric. |
 | NGINX errors | Reload failures on NGINX | Fix permissions for control plane. | Security context not configured. |
 | NGINX Plus errors | Failure to start; traffic interruptions | Set up the [NGINX Plus JWT]({{< ref "/ngf/install/nginx-plus.md" >}}) | License is not configured or has expired. |
-| Client Settings | Request entity too large error | Adjust client settings. Refer to [Client Settings Policy]({{< relref "../traffic-management/client-settings.md" >}}) | Payload is greater than the [`client_max_body_size`](https://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size) value.|
+| Client Settings | Request entity too large error | Adjust client settings. Refer to [Client Settings Policy]({{< ref "/ngf/traffic-management/client-settings.md" >}}) | Payload is greater than the [`client_max_body_size`](https://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size) value.|
 
 {{< /bootstrap-table >}}
 
@@ -421,7 +421,7 @@ Or view the following error message in the NGINX logs:
 ```
 
 The request body exceeds the [client_max_body_size](https://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size).
-To **resolve** this, you can configure the `client_max_body_size` using the `ClientSettingsPolicy` API. Read the [Client Settings Policy]({{< ref "/ngf/how-to/traffic-management/client-settings.md" >}}) documentation for more information.
+To **resolve** this, you can configure the `client_max_body_size` using the `ClientSettingsPolicy` API. Read the [Client Settings Policy]({{< ref "/ngf/traffic-management/client-settings.md" >}}) documentation for more information.
 
 ---
 
