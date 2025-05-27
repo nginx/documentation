@@ -37,7 +37,7 @@ Config Sync Groups support configuration inheritance and persistance. If you've 
 
 On the other hand, if you remove all instances from a Config Sync Group, the original configuration persists. In other words, the group retains the configuration from that first instance (or the original configuration). Any new instance that you add later still inherits that configuration.
 
-{{< tip >}}You can use _unmanaged_ certificates. Your actions can affect the [Config Sync Group status](#config-sync-group-status). For future instances on the data plane, if it:
+{{< tip >}}You can use _unmanaged_ certificates. NGINX One Console collects _only_ the metadata shown in the console. It does not include the content of the certificate. Your actions can affect the [Config Sync Group status](#config-sync-group-status). For future instances on the data plane, if it:
 
 - Has unmanaged certificates in the same file paths as defined by the NGINX configuration as the Config Sync Group, that instance will be [**In Sync**](#config-sync-group-status).
 - Will be [**Out of Sync**](#config-sync-group-status) if the instance:
