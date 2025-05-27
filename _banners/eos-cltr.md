@@ -1,6 +1,3 @@
----
-title: NGINX Controller EOS Banner
----
 {{< banner "warning" "End of Sale Notice:" >}}
   F5 NGINX is announcing the <strong>End of Sale (EoS)</strong> for NGINX Controller Application Delivery Module, <strong>effective January 1, 2024</strong>.
   <br><br>

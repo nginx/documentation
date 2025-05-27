@@ -1,6 +1,3 @@
----
-title: R33 Upgrade Banner
----
 {{< banner "caution" "Important: NGINX Plus R33 requires NGINX Instance Manager 2.18 or later" >}}
   To ensure uninterrupted traffic processing, upgrade to NGINX Instance Manager 2.18 or later if your NGINX data plane instances are running NGINX Plus R33. This upgrade is necessary to support usage reporting.
   <br><br>

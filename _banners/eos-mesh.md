@@ -1,6 +1,3 @@
----
-title: NGINX Service Mesh EOS Banner
----
 {{< banner "warning" "End of Sale Notice:" >}}
   F5 NGINX is announcing the <strong>End of Sale (EoS)</strong> for NGINX Management Suite API Connectivity Manager Module, <strong>effective January 1, 2024</strong>.
   <br><br>
