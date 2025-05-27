@@ -114,6 +114,7 @@ See the [static-mode]({{< ref "/ngf/reference/cli-help.md#static-mode">}}) comma
     - `allowedRoutes`: Supported.
   - `addresses`: Not supported.
   - `backendTLS`: Not supported.
+  - `allowedListeners`: Not supported.
 - `status`
   - `addresses`: Partially supported (LoadBalancer and ClusterIP).
   - `conditions`: Supported (Condition/Status/Reason):
