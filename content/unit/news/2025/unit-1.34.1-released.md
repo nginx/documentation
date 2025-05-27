@@ -1,6 +1,6 @@
 ---
 title: Unit 1.34.1 Released
-weight: 100
+weight: 1000
 ---
 
 We are pleased to announce the release of NGINX Unit 1.34.1. This is a

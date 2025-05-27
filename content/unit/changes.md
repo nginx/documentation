@@ -5,6 +5,15 @@ toc: true
 ---
 
 ```text
+Changes with Unit 1.34.2                                         26 Feb 2025
+
+    *) Security: fix missing websocket payload length validation in the Java
+       language module which could lead to Java language module processes
+       consuming excess CPU. (CVE-2025-1695).
+
+    *) Bugfix: fix incorrect websocket payload length calculation in the
+       Java language module.
+
 Changes with Unit 1.34.1                                         10 Jan 2025
 
     *) Bugfix: fix instability issues due to OpenTelemetry (OTEL) support.
