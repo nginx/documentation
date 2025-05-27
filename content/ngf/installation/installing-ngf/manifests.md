@@ -211,6 +211,8 @@ Secret before upgrading. Follow the steps in the [Before you begin](#before-you-
 
 {{< tip >}} For guidance on zero downtime upgrades, see the [Delay Pod Termination](#configure-delayed-pod-termination-for-zero-downtime-upgrades) section. {{</ tip >}}
 
+{{< note >}} To upgrade from version 1.x to 2.x, please refer to this [guide]({{< ref "/ngf/upgrading-ngf.md" >}}). {{< /note >}}
+
 To upgrade NGINX Gateway Fabric and get the latest features and improvements, take the following steps:
 
 ### Upgrade Gateway API resources
