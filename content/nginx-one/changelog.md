@@ -30,7 +30,13 @@ h2 {
 
 Stay up-to-date with what's new and improved in the F5 NGINX One Console.
 
-## Apr 30, 2025
+## May 19, 2025
+
+### Import and export your Staged Configs
+
+You can now import and export your Staged Configs from the UI and with our APIs. This can help you deploy Staged Configs on the systems of your choice.
+
+## April 30, 2025
 
 ### Manage RBAC access with namespaces
 

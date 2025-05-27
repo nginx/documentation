@@ -32,7 +32,7 @@ You will also need to configure the upstream servers to require client certifica
 <span id="config"></span>
 ## Configuring NGINX
 
-First, change the URL to an upstream group to support SSL connections. Specify the “https” protocol for the proxied server in the NGINX configuration file. Alternatively, [in the proxy_pass](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass) directive, specify an upstream group.) >>>>>>> main
+First, change the URL to an upstream group to support SSL connections. In the NGINX configuration file, specify the `https` protocol in the [proxy_pass](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass) directive:
 
 ```nginx
 location /upstream {
