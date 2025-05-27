@@ -12,8 +12,11 @@ running application code (including WebAssembly), serving static assets,
 handling TLS and request routing.
 
 Unit was created by [nginx](https://nginx.org/en/) team members from scratch to
-be highly efficient and fully configurable at runtime. You can read the details
-about the latest release in the [news]({{< relref "/unit/news/">}}) section.
+be highly efficient and fully configurable at runtime.
+
+{{< tip >}}You can read the details
+about the latest release in the [Releases and announcements]({{< relref "/unit/news/">}}) section.
+{{< /tip >}}
 
 - See a quickstart [guide](https://github.com/nginx/unit/) on our GitHub page.
 - Browse the [Changelog]({{< relref "/unit/changes/">}}) or see the release notes in the [Releases and announcements]({{< relref "/unit/news/">}}) archive.
