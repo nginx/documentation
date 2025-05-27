@@ -38,8 +38,8 @@ When configuring NGINX App Protect WAF, `app_protect_enable` should always be en
 |[Deny and Allow IP lists](#deny-and-allow-ip-lists) | Manually define denied & allowed IP addresses as well as IP addresses to never log. |
 |[XFF headers & trust](#xff-headers-and-trust) | Disabled by default. User can enable it and optionally add a list of custom XFF headers. |
 |[gRPC Protection](#grpc-protection-for-unary-traffic) | gRPC content profile detects malformed content, parses well-formed content, and extracts the text fields for detecting attack signatures and disallowed meta-characters. In addition, it enforces size restrictions and prohibition of unknown fields. The Interface Definition Language (IDL) files for the gRPC API must be attached to the profile. gRPC protection can be on [unary](#grpc-protection-for-unary-traffic) or [bidirectional](#grpc-protection-for-bidirectional-streaming) traffic.|
-|[Brute Force Attack Preventions](#brute-force-attack-preventions) | Configure brute-force-attack-preventions parameters to secured areas of a web application from brute force attacks.|}
-|[IP Groups](#ip-address-lists) | Configure IP Groups feature to organize lists of allowed and forbidden IP addresses across several lists with common attributes.|}
+|[Brute Force Attack Preventions](#brute-force-attack-preventions) | Configure brute-force-attack-preventions parameters to secured areas of a web application from brute force attacks.|
+|[IP Groups](#ip-address-lists) | Configure IP Groups feature to organize lists of allowed and forbidden IP addresses across several lists with common attributes.|
 
 ### Disallowed File Types
 {{< include "nap-waf/config/common/disallowed-file-types.md" >}}
@@ -760,7 +760,6 @@ Example2: Different brute force configurations can be defined for individual log
             }
         ],
 ```
-{{< note >}} For further configuration details, see NGINX App Protect WAF Declarative Policy Guide [Declarative Policy guide]({{< ref "/nap-waf/v4/declarative-policy/policy/#policy/brute-force-attack-preventions" >}}). {{< /note >}}
 
 The following example adds all three of the pieces for a complete example policy.
 
@@ -822,6 +821,8 @@ The following example adds all three of the pieces for a complete example policy
   }
 }
 ```
+
+{{< note >}} For further configuration details, see NGINX App Protect WAF Declarative Policy Guide [Declarative Policy guide]({{< ref "/nap-waf/v4/declarative-policy/policy/#policy/brute-force-attack-preventions" >}}). {{< /note >}}
 
 ## Custom Dimensions Log Entries
 
