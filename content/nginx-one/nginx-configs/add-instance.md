@@ -3,6 +3,7 @@ description: ''
 title: Add an NGINX instance
 toc: true
 weight: 100
+aliases: /nginx-one/how-to/nginx-configs/add-instance/
 type:
 - how-to
 ---

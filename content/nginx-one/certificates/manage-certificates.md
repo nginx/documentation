@@ -3,6 +3,7 @@ docs: null
 title: Manage certificates
 toc: true
 weight: 100
+aliases: /nginx-one/how-to/certificates/manage-certificates/
 type:
 - how-to
 ---

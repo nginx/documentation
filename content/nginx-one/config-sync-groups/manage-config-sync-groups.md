@@ -3,6 +3,7 @@ docs: null
 title: Manage Config Sync Groups
 toc: true
 weight: 300
+aliases: /nginx-one/how-to/config-sync-groups/manage-config-sync-groups/
 type:
 - how-to
 ---

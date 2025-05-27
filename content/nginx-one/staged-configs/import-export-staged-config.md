@@ -7,6 +7,7 @@ weight: 300
 toc: true
 # Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
 type: how-to
+aliases: /nginx-one/how-to/staged-configs/import-export-staged-config/
 # Intended for internal catalogue and search, case sensitive:
 # Agent, N4Azure, NIC, NIM, NGF, NAP-DOS, NAP-WAF, NGINX One, NGINX+, Solutions, Unit
 product: NGINX One

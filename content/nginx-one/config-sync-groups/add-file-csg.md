@@ -3,6 +3,7 @@ docs: null
 title: Add a file to a Config Sync Group
 toc: true
 weight: 400
+aliases: /nginx-one/how-to/config-sync-groups/add-file-csg/
 type:
 - how-to
 ---

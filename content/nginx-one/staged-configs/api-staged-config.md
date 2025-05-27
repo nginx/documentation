@@ -7,6 +7,7 @@ weight: 300
 toc: true
 # Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
 type: tutorial
+aliases: /nginx-one/how-to/staged-configs/api-staged-config/
 # Intended for internal catalogue and search, case sensitive:
 product: NGINX One
 ---

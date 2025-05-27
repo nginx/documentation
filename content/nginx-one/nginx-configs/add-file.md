@@ -3,6 +3,7 @@ docs: null
 title: Add a file to an instance
 toc: true
 weight: 400
+aliases: /nginx-one/how-to/nginx-configs/add-file/
 type:
 - how-to
 ---

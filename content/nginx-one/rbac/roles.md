@@ -4,6 +4,7 @@ weight: 500
 toc: true
 type: reference
 product: NGINX One
+aliases: /nginx-one/how-to/rbac/roles/
 docs: DOCS-000
 ---
 
