@@ -83,9 +83,48 @@ NGINX Gateway Fabric provides a variety of metrics for monitoring and analyzing 
 
 ### NGINX/NGINX Plus metrics
 
-NGINX metrics cover specific NGINX operations such as the total number of accepted client connections. For a complete list of available NGINX/NGINX Plus metrics, refer to the [NGINX Prometheus Exporter developer docs](https://github.com/nginx/nginx-prometheus-exporter#exported-metrics).
+NGINX metrics include NGINX-specific data such as the total number of accepted client connections. These metrics are
+collected through NGINX Agent and are reported by each NGINX Pod.
 
-These metrics use the `nginx_gateway_fabric` namespace and include the `class` label, indicating the NGINX Gateway class. For example, `nginx_gateway_fabric_connections_accepted{class="nginx"}`.
+NGINX Gateway Fabric currently supports a subset of all metrics available through NGINX OSS and Plus. Listed below are
+the supported metrics along with a small accompanying description.
+
+Metrics provided by NGINX Open Source include:
+- `nginx_http_connection_count_connections`: The current number of connections.
+- `nginx_http_connections_total`: The total number of connections, since NGINX was last started or reloaded.
+- `nginx_http_request_count_requests`: The total number of client requests received, since the last collection interval.
+- `nginx_http_requests_total`: The total number of client requests received, since NGINX was last started or reloaded.
+
+In addition to the previous metrics provided by NGINX Open Source, NGINX Plus includes:
+- `nginx_config_reloads_total`: The total number of NGINX config reloads.
+- `nginx_http_response_count_responses`: The total number of HTTP responses sent to clients since the last collection interval, grouped by status code range.
+- `nginx_http_response_status_responses_total`: The total number of responses since NGINX was last started or reloaded, grouped by status code range.
+- `nginx_http_request_discarded_requests_total`: The total number of requests completed without sending a response.
+- `nginx_http_request_processing_count_requests`: The number of client requests that are currently being processed.
+- `nginx_http_request_byte_io_bytes_total`: The total number of HTTP byte IO.
+- `nginx_http_upstream_keepalive_count_connections`: The current number of idle keepalive connections per HTTP upstream.
+- `nginx_http_upstream_peer_connection_count_connections`: The average number of active connections per HTTP upstream peer.
+- `nginx_http_upstream_peer_byte_io_bytes_total`: The total number of byte IO per HTTP upstream peer.
+- `nginx_http_upstream_peer_count_peers`: The current count of peers on the HTTP upstream grouped by state.
+- `nginx_http_upstream_peer_fails_attempts_total`: The total number of unsuccessful attempts to communicate with the HTTP upstream peer.
+- `nginx_http_upstream_peer_header_time_milliseconds`: The average time to get the response header from the HTTP upstream peer.
+- `nginx_http_upstream_peer_health_checks_requests_total`: The total number of health check requests made to a HTTP upstream peer.
+- `nginx_http_upstream_peer_requests_total`: The total number of client requests forwarded to the HTTP upstream peer.
+- `nginx_http_upstream_peer_response_time_milliseconds`: The average time to get the full response from the HTTP upstream peer.
+- `nginx_http_upstream_peer_responses_total`: The total number of responses obtained from the HTTP upstream peer grouped by status range.
+- `nginx_http_upstream_peer_state_is_deployed`: Current state of an upstream peer in deployment.
+- `nginx_http_upstream_peer_unavailables_requests_total`: Number of times the server became unavailable for client requests (“unavail”).
+- `nginx_http_upstream_queue_limit_requests`: The maximum number of requests that can be in the queue at the same time.
+- `nginx_http_upstream_queue_overflows_responses_total`: The total number of requests rejected due to the queue overflow.
+- `nginx_http_upstream_queue_usage_requests`: The current number of requests in the queue.
+- `nginx_http_upstream_zombie_count_is_deployed`: The current number of upstream peers removed from the group but still processing active client requests.
+- `nginx_slab_page_free_pages`: The current number of free memory pages.
+- `nginx_slab_page_usage_pages`: The current number of used memory pages.
+- `nginx_slab_slot_allocations_total`: The number of attempts to allocate memory of specified size.
+- `nginx_slab_slot_free_slots`: The current number of free memory slots.
+- `nginx_slab_slot_usage_slots`: The current number of used memory slots.
+- `nginx_ssl_certificate_verify_failures_certificates_total`: The total number of SSL certificate verification failures.
+- `nginx_ssl_handshakes_total`: The total number of SSL handshakes.
 
 ---
 
@@ -93,13 +132,9 @@ These metrics use the `nginx_gateway_fabric` namespace and include the `class` l
 
 Metrics specific to NGINX Gateway Fabric include:
 
-- `nginx_reloads_total`: Counts successful NGINX reloads.
-- `nginx_reload_errors_total`: Counts NGINX reload failures.
-- `nginx_stale_config`: Indicates if NGINX Gateway Fabric couldn't update NGINX with the latest configuration, resulting in a stale version.
-- `nginx_reloads_milliseconds`: Time in milliseconds for NGINX reloads.
 - `event_batch_processing_milliseconds`: Time in milliseconds to process batches of Kubernetes events.
 
-All these metrics are under the `nginx_gateway_fabric` namespace and include a `class` label set to the Gateway class of NGINX Gateway Fabric. For example, `nginx_gateway_fabric_nginx_reloads_total{class="nginx"}`.
+All these metrics are under the `nginx_gateway_fabric` namespace and include a `class` label set to the GatewayClass of NGINX Gateway Fabric. For example, `nginx_gateway_fabric_event_batch_processing_milliseconds_sum{class="nginx"}`.
 
 ---
 

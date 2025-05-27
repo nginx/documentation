@@ -23,6 +23,8 @@ Follow the steps in this guide to:
 
 ## Before you begin
 
+You need:
+
 - Administrator access to a Kubernetes cluster.
 - [Helm](https://helm.sh) and [kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl) must be installed locally.
 - [NGINX Gateway Fabric deployed]({{< ref "/ngf/installation/" >}}) in the Kubernetes cluster.
@@ -288,7 +290,7 @@ Request ID: e64c54a2ac253375ac085d48980f000a
   - The temporary HTTPRoute created by cert-manager routes the traffic between cert-manager and the Let's Encrypt server through NGINX Gateway Fabric. If the challenge is not successful, it may be useful to inspect the NGINX logs to see the ACME challenge requests. You should see something like the following:
 
     ```shell
-    kubectl logs <pod-name> -n nginx-gateway -c nginx
+    kubectl logs <nginx-pod-name> -n <nginx-pod-namespace>
     <...>
     52.208.162.19 - - [15/Aug/2023:13:18:12 +0000] "GET /.well-known/acme-challenge/bXQn27Lenax2AJKmOOS523T-MWOKeFhL0bvrouNkUc4 HTTP/1.1" 200 87 "-" "cert-manager-challenges/v1.12.0 (linux/amd64) cert-manager/bd192c4f76dd883f9ee908035b894ffb49002384"
     52.208.162.19 - - [15/Aug/2023:13:18:14 +0000] "GET /.well-known/acme-challenge/bXQn27Lenax2AJKmOOS523T-MWOKeFhL0bvrouNkUc4 HTTP/1.1" 200 87 "-" "cert-manager-challenges/v1.12.0 (linux/amd64) cert-manager/bd192c4f76dd883f9ee908035b894ffb49002384"

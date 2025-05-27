@@ -1,5 +1,5 @@
 ---
 title: "Reference"
-weight: 500
+weight: 600
 url: /nginx-gateway-fabric/reference/
 ---

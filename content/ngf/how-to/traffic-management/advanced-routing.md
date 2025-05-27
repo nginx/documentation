@@ -26,14 +26,6 @@ The goal is to create a set of rules that will result in client requests being s
 ## Before you begin
 
 - [Install]({{< ref "/ngf/installation/" >}}) NGINX Gateway Fabric.
-- Save the public IP address and port of NGINX Gateway Fabric into shell variables:
-
-  ```text
-  GW_IP=XXX.YYY.ZZZ.III
-  GW_PORT=<port number>
-  ```
-
-{{< note >}} In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the gateway will forward for. {{< /note >}}
 
 ---
 
@@ -69,6 +61,16 @@ EOF
 ```
 
 This gateway defines a single listener on port 80. Since no hostname is specified, this listener matches on all hostnames.
+After creating the Gateway resource, NGINX Gateway Fabric will provision an NGINX Pod and Service fronting it to route traffic.
+
+Save the public IP address and port of the NGINX Service into shell variables:
+
+   ```text
+   GW_IP=XXX.YYY.ZZZ.III
+   GW_PORT=<port number>
+   ```
+
+{{< note >}}In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the gateway will forward for.{{< /note >}}
 
 The [HTTPRoute](https://gateway-api.sigs.k8s.io/api-types/httproute/) is typically deployed by the [application developer](https://gateway-api.sigs.k8s.io/concepts/roles-and-personas/#roles-and-personas_1). To deploy the `coffee` HTTPRoute:
 
@@ -154,7 +156,7 @@ This HTTPRoute has a few important properties:
 
 ### Send traffic to Coffee
 
-Using the external IP address and port for NGINX Gateway Fabric, we can send traffic to our coffee applications.
+Using the external IP address and port for the NGINX Service, we can send traffic to our coffee applications.
 
 {{< note >}} If you have a DNS record allocated for `cafe.example.com`, you can send the request directly to that hostname, without needing to resolve. {{< /note >}}
 
@@ -269,7 +271,7 @@ The properties of this HTTPRoute include:
 
 ### Send traffic to Tea
 
-Using the external IP address and port for NGINX Gateway Fabric, we can send traffic to our tea applications.
+Using the external IP address and port for the NGINX Service, we can send traffic to our tea applications.
 
 {{< note >}} If you have a DNS record allocated for `cafe.example.com`, you can send the request directly to that hostname, without needing to resolve. {{< /note >}}
 
@@ -303,7 +305,7 @@ This request should receive a response from the `tea-post` pod. Any other type o
 
 If you have any issues while sending traffic, try the following to debug your configuration and setup:
 
-- Make sure you set the shell variables $GW_IP and $GW_PORT to the public IP and port of the NGINX Gateway Fabric service. Refer to the [Installation]({{< ref "/ngf/installation/" >}}) guides for more information.
+- Make sure you set the shell variables $GW_IP and $GW_PORT to the public IP and port of the NGINX Service. Refer to the [Installation]({{< ref "/ngf/installation/" >}}) guides for more information.
 
 - Check the status of the Gateway:
 

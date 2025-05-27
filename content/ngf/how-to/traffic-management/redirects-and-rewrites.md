@@ -24,14 +24,6 @@ To see an example of a redirect using scheme and port, see the [HTTPS Terminatio
 ## Before you begin
 
 - [Install]({{< ref "/ngf/installation/" >}}) NGINX Gateway Fabric.
-- Save the public IP address and port of NGINX Gateway Fabric into shell variables:
-
-   ```text
-   GW_IP=XXX.YYY.ZZZ.III
-   GW_PORT=<port number>
-   ```
-
-{{< note >}}In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the gateway will forward for.{{< /note >}}
 
 ---
 
@@ -59,6 +51,18 @@ spec:
     protocol: HTTP
 EOF
 ```
+
+After creating the Gateway resource, NGINX Gateway Fabric will provision an NGINX Pod and Service fronting it to route traffic.
+
+Save the public IP address and port of the NGINX Service into shell variables:
+
+```text
+GW_IP=XXX.YYY.ZZZ.III
+GW_PORT=<port number>
+```
+
+{{< note >}}In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the gateway will forward for.{{< /note >}}
+
 
 ---
 
@@ -184,7 +188,7 @@ EOF
 
 ### Send traffic
 
-Using the external IP address and port for NGINX Gateway Fabric, we can send traffic to our coffee application.
+Using the external IP address and port for the NGINX Service, we can send traffic to our coffee application.
 
 {{< note >}}If you have a DNS record allocated for `cafe.example.com`, you can send the request directly to that hostname, without needing to resolve.{{< /note >}}
 
@@ -431,7 +435,7 @@ EOF
 
 ### Send traffic
 
-Using the external IP address and port for NGINX Gateway Fabric, we can send traffic to our tea and soda applications to verify the redirect is successful. We will use curl's `--include` option to print the response headers (we are interested in the `Location` header).
+Using the external IP address and port for the NGINX Service, we can send traffic to our tea and soda applications to verify the redirect is successful. We will use curl's `--include` option to print the response headers (we are interested in the `Location` header).
 
 {{< note >}}If you have a DNS record allocated for `cafe.example.com`, you can send the request directly to that hostname, without needing to resolve.{{< /note >}}
 
