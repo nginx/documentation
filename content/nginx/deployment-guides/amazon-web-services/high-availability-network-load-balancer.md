@@ -254,15 +254,15 @@ Assign the following names to the instances, then install the indicated NGINX so
 
 - Four NGINX Open Source instances:
   - App 1:
-    - <span style="color:#666666; font-weight:bolder">ngx-oss-app1-1</span>
-    - <span style="color:#666666; font-weight:bolder">ngx-oss-app1-2</span>
+    - **ngx-oss-app1-1**
+    - **ngx-oss-app1-2**
   - App 2:
-    - <span style="color:#666666; font-weight:bolder">ngx-oss-app2-1</span>
-    - <span style="color:#666666; font-weight:bolder">ngx-oss-app2-2</span>
+    - **ngx-oss-app2-1**
+    - **ngx-oss-app2-2**
 
 - Two NGINX Plus instances:
-  - <span style="color:#666666; font-weight:bolder">ngx-plus-1</span>
-  - <span style="color:#666666; font-weight:bolder">ngx-plus-2</span>
+  - **ngx-plus-1**
+  - **ngx-plus-2**
 
 <a href="/nginx/images/aws-nlb-instances-summary.png"><img src="/nginx/images/aws-nlb-instances-summary.png" alt="" width="1024" height="263" class="aligncenter size-full wp-image-54856" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
@@ -278,11 +278,11 @@ Use the *Step‑by‑step* instructions in our deployment guide, [Setting Up an 
 Repeat the instructions on all four web servers:
 
 - Running App 1:
-  - <span style="color:#666666; font-weight:bolder">ngx-oss-app1-1</span>
-  - <span style="color:#666666; font-weight:bolder">ngx-oss-app1-2</span>
+  - **ngx-oss-app1-1**
+  - **ngx-oss-app1-2**
 - Running App 2:
-  - <span style="color:#666666; font-weight:bolder">ngx-oss-app2-1</span>
-  - <span style="color:#666666; font-weight:bolder">ngx-oss-app2-2</span>
+  - **ngx-oss-app2-1**
+  - **ngx-oss-app2-2**
 
 <span id="configure-load-balancers"></span>
 #### Configure NGINX Plus on the load balancers
@@ -291,7 +291,7 @@ Configure NGINX Plus instances as load balancers. These distribute requests to 
 
 Use the *Step‑by‑step* instructions in our deployment guide, [Setting Up an NGINX Demo Environment]({{< ref "/nginx/deployment-guides/setting-up-nginx-demo-environment.md" >}}).
 
-Repeat the instructions on both <span style="color:#666666; font-weight:bolder; white-space: nowrap;">ngx-plus-1</span> and <span style="color:#666666; font-weight:bolder; white-space: nowrap;">ngx-plus-2</span>.
+Repeat the instructions on both **ngx&#8209;plus&#8209;1** and **ngx&#8209;plus&#8209;2**.
 
 <span id="create-instances-automated"></span>
 ### Automate instance setup with Packer and Terraform
@@ -317,7 +317,7 @@ To run the scripts, follow these instructions:
 
 3. Set your AWS credentials in the Packer and Terraform scripts:
 
-   - For Packer, set your credentials in the `variables` block in <span style="text-decoration: underline;">both</span> <span style="white-space: nowrap; font-weight:bold;">packer/ngx-oss/packer.json</span> and <span style="white-space: nowrap; font-weight:bold;">packer/ngx-plus/packer.json</span>:
+   - For Packer, set your credentials in the `variables` block in <span style="text-decoration: underline;">both</span> **packer/ngx&#8209;oss/packer.json** and **packer/ngx&#8209;plus/packer.json**:
 
      ```none
      "variables": {
