@@ -118,7 +118,7 @@ Configure NGINX Plus as the OpenID Connect relying party:
 3. Get the URLs for the authorization endpoint, token endpoint, and JSON Web Key (JWK) file from the Keycloak configuration. Run the following `curl` command in a terminal, piping the output to the indicated `python` command to output the entire configuration in an easily readable format. We've abridged the output to show only the relevant fields.
 
    ```shell
-   $ curl https://<keycloak-server-address>/auth/realms/master/.well-known/openid-configuration | python -m json.tool
+   $ curl https://<keycloak-server-address>/realms/master/.well-known/openid-configuration | python -m json.tool
    ...
    {
        "authorization_endpoint": "https://<keycloak-server-address>/auth/realms/master/protocol/openid-connect/auth",
