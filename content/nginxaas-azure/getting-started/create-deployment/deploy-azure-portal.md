@@ -63,6 +63,7 @@ You can start the NGINXaaS deployment process by visiting the [Create NGINXaaS](
    - The minimum subnet size for NGINXaaS is `/27` and is enough for a single NGINXaaS deployment even at large scales.
    - You can use an existing subnet; make sure that the subnet is delegated to `NGINX.NGINXPLUS/nginxDeployments` before creating a deployment in it. The subnet can contain other resources.
    - You can deploy more than one NGINXaaS in the same subnet. Every deployment in the subnet will share the subnet IP address space. A larger subnet, for example, a `/24` is recommended.
+   - If you plan on using an IPv6 address on the frontend, make sure the subnet is dual-stack, i.e., the subnet has both IPv4 and IPv6 address spaces. Attempting to use a subnet that is not dual-stack will cause deployment creation to fail.
    - Changes to a virtual network's DNS settings will not be applied automatically to your NGINXaaS deployment. To ensure DNS settings are applied, you must add any custom DNS servers to the VNET's DNS settings before creating an NGINXaaS deployment. As a workaround for existing deployments, we recommend using the [`resolver` directive](https://nginx.org/en/docs/http/ngx_http_core_module.html#resolver) to explicitly specify your name server(s) and the [`resolve` parameter](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#resolve) to automatically re-resolve the domain name of the server without restarting NGINX.
 
       <details>

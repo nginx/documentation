@@ -103,8 +103,6 @@ If a configuration update request uses a certificate that is in failed `provisio
 - NGINXaaS deployments cannot access [Private Endpoints](https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-overview) behind network security groups for private links. Attempts to do so will fail silently.
 - NGINXaaS deployments cannot access [Private Endpoints](https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-overview) in a globally peered VNET. Attempts to do so will fail silently.
 - The resource group which contains the public IP resource attached to NGINXaaS deployment cannot be moved across subscriptions. Attempts to do so will result in a validation error.
-- Creating an NGINXaaS deployment in a dual-stack subnet is not supported. Attempts to do so will result in a validation error.
-- NGINXaaS deployments cannot be created with an IPv6 Public IP address. Attempts to do so will result in a validation error.
 - [Network security group](https://learn.microsoft.com/en-us/azure/virtual-network/network-security-groups-overview) (NSG) flow logs will not be available for IP traffic flowing through an NGINXaaS deployment attached to a customer delegated subnet. Flow logs for other resources on the same subnet will be available as normal.
 
 ### {{% icon-bug %}} Deployment locked when updating mutliple certificates at once. (ID-767)
