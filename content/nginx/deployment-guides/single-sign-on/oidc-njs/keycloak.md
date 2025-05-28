@@ -121,11 +121,11 @@ Configure NGINX Plus as the OpenID Connect relying party:
    $ curl https://<keycloak-server-address>/realms/master/.well-known/openid-configuration | python -m json.tool
    ...
    {
-       "authorization_endpoint": "https://<keycloak-server-address>/auth/realms/master/protocol/openid-connect/auth",
+       "authorization_endpoint": "https://<keycloak-server-address>/realms/master/protocol/openid-connect/auth",
        ...
-       "jwks_uri": "https://<keycloak-server-address>/auth/realms/master/protocol/openid-connect/certs",
+       "jwks_uri": "https://<keycloak-server-address>/realms/master/protocol/openid-connect/certs",
        ...
-       "token_endpoint": "https://<keycloak-server-address>/auth/realms/master/protocol/openid-connect/token",
+       "token_endpoint": "https://<keycloak-server-address>/realms/master/protocol/openid-connect/token",
     ...
     }
     ```
@@ -133,8 +133,8 @@ Configure NGINX Plus as the OpenID Connect relying party:
    <span id="nginx-plus-variables"></span>
 4. Using your preferred text editor, open **/etc/nginx/conf.d/openid_connect_configuration.conf**. Change the "default" parameter value of each of the following [map](https://nginx.org/en/docs/http/ngx_http_map_module.html#map) directives to the specified value:
 
-   - `map $host $oidc_authz_endpoint` – Value of `authorization_endpoint` from [Step 3](#nginx-plus-urls) (in this guide, <span style="white-space: nowrap;">`https://<keycloak-server-address>/auth/realms/master/protocol/openid-connect/auth`</span>)
-   - `map $host $oidc_token_endpoint` – Value of `token_endpoint` from [Step 3](#nginx-plus-urls) (in this guide, <span style="white-space: nowrap;">`https://<keycloak-server-address>/auth/realms/master/protocol/openid-connect/token`)</span>
+   - `map $host $oidc_authz_endpoint` – Value of `authorization_endpoint` from [Step 3](#nginx-plus-urls) (in this guide, <span style="white-space: nowrap;">`https://<keycloak-server-address>/realms/master/protocol/openid-connect/auth`</span>)
+   - `map $host $oidc_token_endpoint` – Value of `token_endpoint` from [Step 3](#nginx-plus-urls) (in this guide, <span style="white-space: nowrap;">`https://<keycloak-server-address>/realms/master/protocol/openid-connect/token`)</span>
    - `map $host $oidc_client` – Value in the **Client ID** field from [Step 3 of _Configuring Keycloak_](#keycloak-client-id) (in this guide, `NGINX Plus`)
    - `map $host $oidc_client_secret` – Value in the **Secret** field from [Step 5 of _Configuring Keycloak_](#keycloak-secret) (in this guide, <span style="white-space: nowrap;">`<oidc client secret>`)</span>
    - `map $host $oidc_hmac_key` – A unique, long, and secure phrase
@@ -146,11 +146,11 @@ Configure NGINX Plus as the OpenID Connect relying party:
       1. Comment out (or remove) the [auth_jwt_key_file](http://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html#auth_jwt_key_file) directive.
 
       2. Uncomment the [auth_jwt_key_request](http://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html#auth_jwt_key_request) directive. (Its parameter, `/_jwks_uri`, refers to the value of the `$oidc_jwt_keyfile` variable, which you set in the next step.)
-      3. Change the "default" parameter of the `map $host $oidc_jwt_keyfile` directive to the value reported in the `jwks_uri` field in [Step 3](#nginx-plus-urls) (in this guide, <span style="white-space: nowrap;">`https://<keycloak-server-address>/auth/realms/master/protocol/openid-connect/certs`)</span>.
+      3. Change the "default" parameter of the `map $host $oidc_jwt_keyfile` directive to the value reported in the `jwks_uri` field in [Step 3](#nginx-plus-urls) (in this guide, <span style="white-space: nowrap;">`https://<keycloak-server-address>/realms/master/protocol/openid-connect/certs`)</span>.
 
    - In <span style="white-space: nowrap;">NGINX Plus R16</span> and earlier, the JWK file must be on the local disk. (You can also use this method with <span style="white-space: nowrap;">NGINX Plus R17</span> and later if you wish.)
 
-      1. Copy the JSON contents from the JWK file named in the `jwks_uri` field in [Step 3](#nginx-plus-urls) (in this guide, <span style="white-space: nowrap;">`https://<keycloak-server-address>/auth/realms/master/protocol/openid-connect/certs`)</span> to a local file (for example, `/etc/nginx/my_keycloak_jwk.json`).
+      1. Copy the JSON contents from the JWK file named in the `jwks_uri` field in [Step 3](#nginx-plus-urls) (in this guide, <span style="white-space: nowrap;">`https://<keycloak-server-address>/realms/master/protocol/openid-connect/certs`)</span> to a local file (for example, `/etc/nginx/my_keycloak_jwk.json`).
       2. In **/etc/nginx/conf.d/openid_connect_configuration.conf**, change the "default" parameter of the <span style="white-space: nowrap;">`map $host $oidc_jwt_keyfile`</span> directive to the local file path.
 
 6. Confirm that the user named by the [user](http://nginx.org/en/docs/ngx_core_module.html#user) directive in the NGINX Plus configuration (in **/etc/nginx/nginx.conf** by convention) has read permission on the JWK file.
