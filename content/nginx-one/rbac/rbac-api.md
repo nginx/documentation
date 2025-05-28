@@ -42,6 +42,6 @@ The following table lists the available API groups that you can use to construct
 | f5xc-nginx-one-custom-settings-manage               | Write           | View and update NGINX One Console Settings.                                                                               |
 | f5xc-nginx-one-custom-settings-read                 | Read            | View NGINX One Console Settings.                                                                                          |
 | f5xc-nginx-one-custom-event-read                   | Read            | View NGINX One Events.                                                                                                    |
-| f5xc-nginx-one-custom-ai-assistant                  | Write           | Interact with the NGINX One AI Assistant.                                                                                     |
+| f5xc-nginx-one-custom-ai-assistant                  | Write           | Interact with the F5 AI Assistant.                                                                                     |
 | f5xc-nginx-one-custom-staged-config-manage         | Write           | View, create, update, and delete Staged Configs.                                                                          |
 | f5xc-nginx-one-custom-staged-config-read           | Read            | View Staged Configs.                                                                                                      |
