@@ -51,11 +51,11 @@ server:
   host: <FQDN>
   grpcPort: 443
   backoff: # note: default values are prepopulated 
-    initial_interval: 100ms # Add the appropriate duration value here, e.g., "100ms" for 100 milliseconds, "5s" for 5 seconds, "1m" for 1 minute, "1h" for 1 hour
-    randomization_factor: 0.10 # Add the appropriate float value here, e.g., 0.10
-    multiplier: 1.5 # Add the appropriate float value here, e.g., 1.5
-    max_interval: 1m # Add the appropriate duration value here, e.g., "100ms" for 100 milliseconds, "5s" for 5 seconds, "1m" for 1 minute, "1h" for 1 hour
-    max_elapsed_time: 0 # Add the appropriate duration value here, e.g., "0" for indefinite "100ms" for 100 milliseconds, "5s" for 5 seconds, "1m" for 1 minute, "1h" for 1 hour
+    initial_interval: 100ms # Add the appropriate duration value here, for example, "100ms" for 100 milliseconds, "5s" for 5 seconds, "1m" for 1 minute, "1h" for 1 hour
+    randomization_factor: 0.10 # Add the appropriate float value here, for example, 0.10
+    multiplier: 1.5 # Add the appropriate float value here, for example, 1.5
+    max_interval: 1m # Add the appropriate duration value here, for example, "100ms" for 100 milliseconds, "5s" for 5 seconds, "1m" for 1 minute, "1h" for 1 hour
+    max_elapsed_time: 0 # Add the appropriate duration value here, for example, "0" for indefinite "100ms" for 100 milliseconds, "5s" for 5 seconds, "1m" for 1 minute, "1h" for 1 hour
 # tls options
 tls:
   # enable tls in the nginx-agent setup for grpcs
@@ -89,11 +89,11 @@ metrics:
   collection_interval: 15s
   mode: aggregated
     backoff: # note: default values are prepopulated 
-      initial_interval: 100ms # Add the appropriate duration value here, e.g., "100ms" for 100 milliseconds, "5s" for 5 seconds, "1m" for 1 minute, "1h" for 1 hour
-      randomization_factor: 0.10 # Add the appropriate float value here, e.g., 0.10
-      multiplier: 1.5 # Add the appropriate float value here, e.g., 1.5
-      max_interval: 1m # Add the appropriate duration value here, e.g., "100ms" for 100 milliseconds, "5s" for 5 seconds, "1m" for 1 minute, "1h" for 1 hour
-      max_elapsed_time: 0 # Add the appropriate duration value here, e.g., "0" for indefinite "100ms" for 100 milliseconds, "5s" for 5 seconds, "1m" for 1 minute, "1h" for 1 hour
+      initial_interval: 100ms # Add the appropriate duration value here, for example, "100ms" for 100 milliseconds, "5s" for 5 seconds, "1m" for 1 minute, "1h" for 1 hour
+      randomization_factor: 0.10 # Add the appropriate float value here, for example, 0.10
+      multiplier: 1.5 # Add the appropriate float value here, for example, 1.5
+      max_interval: 1m # Add the appropriate duration value here, for example, "100ms" for 100 milliseconds, "5s" for 5 seconds, "1m" for 1 minute, "1h" for 1 hour
+      max_elapsed_time: 0 # Add the appropriate duration value here, for example, "0" for indefinite "100ms" for 100 milliseconds, "5s" for 5 seconds, "1m" for 1 minute, "1h" for 1 hour
 
 # OSS NGINX default config path
 # path to aux file dirs can also be added
@@ -193,7 +193,7 @@ If you are upgrading from an older version, update your configuration accordingl
 | `--features`                                | `NGINX_AGENT_FEATURES`                       | Specifies a comma-separated list of features enabled for the agent. Default: *[registration, nginx-config-async, nginx-ssl-config, nginx-counting, metrics, dataplane-status, process-watcher, file-watcher, activity-events, agent-api]* |
 | `--ignore-directives`                       |                                      | Specifies a comma-separated list of directives to ignore for sensitive info.|
 | `--instance-group`                          | `NGINX_AGENT_INSTANCE_GROUP`                 | Sets the instance's group value.                                            |
-| `--log-level`                               | `NGINX_AGENT_LOG_LEVEL`                      | Sets the logging level (e.g., panic, fatal, error, info, debug, trace). Default: *info* |
+| `--log-level`                               | `NGINX_AGENT_LOG_LEVEL`                      | Sets the logging level (for example, panic, fatal, error, info, debug, trace). Default: *info* |
 | `--log-path`                                | `NGINX_AGENT_LOG_PATH`                       | Specifies the path to output log messages.                                  |
 | `--metrics-bulk-size`                       | `NGINX_AGENT_METRICS_BULK_SIZE`              | Specifies the number of metrics reports collected before sending data. Default: *20* |
 | `--metrics-collection-interval`             | `NGINX_AGENT_METRICS_COLLECTION_INTERVAL`    | Sets the interval for metrics collection. Default: *15s*                    |

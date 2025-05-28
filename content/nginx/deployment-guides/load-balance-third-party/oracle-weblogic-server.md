@@ -173,7 +173,7 @@ http {
 }
 ```
 
-You can also use wildcard notation to reference all files that pertain to a certain function or traffic type in the appropriate context block. For example, if you name all HTTP configuration files <span style="white-space: nowrap; font-weight:bold;">_function_-http.conf</span>, this is an appropriate include directive:
+You can also use wildcard notation to reference all files that pertain to a certain function or traffic type in the appropriate context block. For example, if you name all HTTP configuration files **_function_&#8209;http.conf**, this is an appropriate include directive:
 
 ```nginx
 http {
@@ -299,7 +299,7 @@ By putting NGINX Open Source or NGINX Plus in front of WebLogic Server servers
 
 2. In the `server` block for HTTPS traffic that we created in [Configuring Virtual Servers for HTTP and HTTPS Traffic](#virtual-servers), include two `location` blocks:
 
-   - The first one matches HTTPS requests in which the path starts with <span style="white-space: nowrap; font-weight:bold;">/weblogic-app/</span>, and proxies them to the **weblogic** upstream group we created in the previous step.
+   - The first one matches HTTPS requests in which the path starts with **/weblogic&#8209;app/**, and proxies them to the **weblogic** upstream group we created in the previous step.
 
    - The second one funnels all traffic to the first `location` block, by doing a temporary redirect of all requests for **"http://example.com/"**.
 
@@ -414,7 +414,7 @@ To create a very simple caching configuration:
 
    Directive documentation: [proxy_cache_path](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_cache_path)
 
-2. In the `location` block that matches HTTPS requests in which the path starts with <span style="white-space: nowrap; font-weight:bold;">/weblogic-app/</span>, include the `proxy_cache` directive to reference the cache created in the previous step.
+2. In the `location` block that matches HTTPS requests in which the path starts with **/weblogic&#8209;app/**, include the `proxy_cache` directive to reference the cache created in the previous step.
 
    ```nginx
    # In the 'server' block for HTTPS traffic
@@ -443,13 +443,13 @@ HTTP/2 is fully supported in both NGINX 1.9.5 and later, and NGINX Plus R7 and
 
 - If using NGINX Open Source, note that in version 1.9.5 and later the SPDY module is completely removed from the codebase and replaced with the [HTTP/2](https://nginx.org/en/docs/http/ngx_http_v2_module.html) module. After upgrading to version 1.9.5 or later, you can no longer configure NGINX Open Source to use SPDY. If you want to keep using SPDY, you need to compile NGINX Open Source from the sources in the [NGINX 1.8.x branch](https://nginx.org/en/download.html).
 
-- If using NGINX Plus, in R11 and later the <span style="white-space: nowrap; font-weight:bold;">nginx-plus</span> package supports HTTP/2 by default, and the <span style="white-space: nowrap; font-weight:bold;">nginx-plus-extras</span> package available in previous releases is deprecated by separate [dynamic modules](https://www.nginx.com/products/nginx/modules/) authored by NGINX.
+- If using NGINX Plus, in R11 and later the **nginx&#8209;plus** package supports HTTP/2 by default, and the **nginx&#8209;plus&#8209;extras** package available in previous releases is deprecated by separate [dynamic modules](https://www.nginx.com/products/nginx/modules/) authored by NGINX.
 
-  In NGINX Plus R8 through R10, the <span style="white-space: nowrap; font-weight:bold;">nginx-plus</span> and <span style="white-space: nowrap; font-weight:bold;">nginx-plus-extras</span> packages support HTTP/2 by default.
+  In NGINX Plus R8 through R10, the **nginx&#8209;plus** and **nginx&#8209;plus&#8209;extras** packages support HTTP/2 by default.
 
   In NGINX Plus R8 and later, NGINX Plus supports HTTP/2 by default, and does not support SPDY.
 
-    If using NGINX Plus R7, you must install the <span style="white-space: nowrap; font-weight:bold;">nginx-plus-http2</span> package instead of the <span style="white-space: nowrap; font-weight:bold;">nginx-plus</span> or <span style="white-space: nowrap; font-weight:bold;">nginx-plus-extras</span> package.
+    If using NGINX Plus R7, you must install the **nginx&#8209;plus&#8209;http2** package instead of the **nginx&#8209;plus** or **nginx&#8209;plus&#8209;extras** package.
 
 To enable HTTP/2 support, add the `http2` directive in the `server` block for HTTPS traffic that we created in [Configuring Virtual Servers for HTTP and HTTPS Traffic](#virtual-servers), so that it looks like this:
 
@@ -601,7 +601,7 @@ Health checks are out‑of‑band HTTP requests sent to a server at fixed interv
 
 Because the `health_check` directive is placed in the `location` block, we can enable different health checks for each application.
 
-1. In the `location` block that matches HTTPS requests in which the path starts with <span style="white-space: nowrap; font-weight:bold;">/weblogic-app/</span> (created in [Configuring Basic Load Balancing](#load-balancing-basic)), add the `health_check` directive.
+1. In the `location` block that matches HTTPS requests in which the path starts with **/weblogic&#8209;app/** (created in [Configuring Basic Load Balancing](#load-balancing-basic)), add the `health_check` directive.
 
     Here we configure NGINX Plus to send an out‑of‑band request for the URI **/benefits** to each of the servers in the **weblogic** upstream group every 5 seconds (the default frequency). If a server does not respond correctly, it is marked down and NGINX Plus stops sending requests to it until it passes a subsequent health check. We include the `match` parameter to the `health_check` directive to define a nondefault set of health‑check tests.
 
@@ -814,7 +814,7 @@ To enable dynamic reconfiguration of your upstream group of WebLogic Server app 
 
 The full configuration for enhanced load balancing appears here for your convenience. It goes in the `http` context. The complete file is available for [download](https://www.nginx.com/resource/conf/weblogic-enhanced.conf) from the NGINX website.
 
-We recommend that you do not copy text directly from this document, but instead use the method described in [Creating and Modifying Configuration Files](#config-files) to include these directives in your configuration – add an `include` directive to the `http` context of the main **nginx.conf** file to read in the contents of <span style="white-space: nowrap; font-weight:bold;">/etc/nginx/conf.d/weblogic-enhanced.conf</span>.
+We recommend that you do not copy text directly from this document, but instead use the method described in [Creating and Modifying Configuration Files](#config-files) to include these directives in your configuration – add an `include` directive to the `http` context of the main **nginx.conf** file to read in the contents of **/etc/nginx/conf.d/weblogic&#8209;enhanced.conf**.
 
 ```nginx
 proxy_cache_path /tmp/NGINX_cache/ keys_zone=backcache:10m;

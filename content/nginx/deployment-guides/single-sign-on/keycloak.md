@@ -24,29 +24,77 @@ This guide explains how to enable single sign-on (SSO) for applications being pr
 
 ## Configure Keycloak {#keycloak-setup}
 
-1. Log in to your Keycloak admin console, for example, `https://<keycloak-server>/auth/admin/`.
+{{<tabs name="configure-keycloak">}}
 
-2. In the left navigation, go to **Clients**.then 
+{{%tab name="Standard OIDC"%}}
 
-3. Select **Create** and provide the following details:
+1. Log in to your Keycloak admin console, for example, `https://<keycloak-server>/admin/master/console/`.
 
-   - Enter a **Client ID**, for example, `nginx-demo-app`. You will need it later when configuring NGINX Plus.
+2. In the left navigation, go to **Clients**, then
 
-   - Set **Client Protocol** to **openid-connect**.
+3. Select **Create client** and provide the following details:
 
-   - Select **Save**.
+    - Set **Client type** to **OpenID Connect**.
 
-4. In the **Settings** tab of your new client:
+    - Enter a **Client ID**, for example, `nginx-demo-app`. You will need it later when configuring NGINX Plus.
 
-   - Set **Access Type** to `confidential`.
+    - Select **Next**.
 
-   - Add a **Redirect URI**, for example:
+4. In the **Capability Config** section:
+
+    - Set **Client Authentication** to **On**. This sets the client type to **confidential**.
+   
+    - Select **Next**.
+
+5. In the **Login Settings** section:
+
+    - Add a **Redirect URI**, for example:
      ```
      https://demo.example.com/oidc_callback
      ```
    - Select **Save**.
 
-5. In the **Credentials** tab, make note of the **Client Secret**. You will need it later when configuring NGINX Plus.
+6. In the **Credentials** tab, make note of the **Client Secret**. You will need it later when configuring NGINX Plus.
+
+{{%/tab%}}
+
+{{%tab name="Using PKCE"%}}
+
+1. Log in to your Keycloak admin console, for example, `https://<keycloak-server>/auth/admin/`.
+
+2. In the left navigation, go to **Clients**, then
+
+3. Select **Create client** and provide the following details:
+
+    - Set **Client type** to **OpenID Connect**.
+
+    - Enter a **Client ID**, for example, `nginx-demo-app`. You will need it later when configuring NGINX Plus.
+
+    - Select **Next**.
+
+4. In the **Capability Config** section:
+
+    - Set **Client Authentication** to **Off**. This sets the client type to **public**.
+
+    - Unselect the **Direct access grants** in the **Authentication Flow** section.
+
+    - Select **Next**
+
+5. In the **Login Settings** section:
+
+    - Add a **Redirect URI**, for example:
+     ```
+     https://demo.example.com/oidc_callback
+     ```
+    - Select **Save**.
+
+6. In the **Advanced** tab, under the **Advanced Settings** section set the **Proof Key for Code Exchange Code Challenge Method** to **S256**.
+
+7. Note that as opposed to standard OIDC flow, PKCE does not use Client Secrets, so there is no Credentials tab. This is expected.
+
+{{%/tab%}}
+
+{{</tabs>}}
 
 ### Assign Users or Groups
 
@@ -63,7 +111,7 @@ This step is optional, and is necessary if you need to restrict or organize user
 
 ## Set up NGINX Plus {#nginx-plus-setup}
 
-With Keycloak configured, you can enable OIDC on NGINX Plus. NGINX Plus serves as the Rely Party (RP) application &mdash; a client service that verifies user identity.
+With Keycloak configured, you can enable OIDC on NGINX Plus. NGINX Plus serves as the Relying Party (RP) application &mdash; a client service that verifies user identity.
 
 1.  Ensure that you are using the latest version of NGINX Plus by running the `nginx -v` command in a terminal:
 
@@ -76,7 +124,8 @@ With Keycloak configured, you can enable OIDC on NGINX Plus. NGINX Plus serves a
     nginx version: nginx/1.27.4 (nginx-plus-r34)
     ```
 
-2.  Ensure that you have the values of the **Client ID**, **Client Secret**, and **Issuer** obtained during [Keycloak Configuration](#keycloak-setup).
+2.  Ensure that you have the values of the **Client ID**, **Client Secret**, and **Issuer** obtained during 
+    [Keycloak Configuration](#keycloak-setup) if applicable. PKCE will not have a **Client Secret**.
 
 3.  In your preferred text editor, open the NGINX configuration file (`/etc/nginx/nginx.conf` for Linux or `/usr/local/etc/nginx/nginx.conf` for FreeBSD).
 
@@ -110,7 +159,8 @@ With Keycloak configured, you can enable OIDC on NGINX Plus. NGINX Plus serves a
 
     - your actual Keycloak **Client ID** obtained in [Keycloak Configuration](#keycloak-setup) with the [`client_id`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#client_id) directive
 
-    - your **Client Secret** obtained in [Keycloak Configuration](#keycloak-setup) with the [`client_secret`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#client_secret) directive
+    - (if not using PKCE) your **Client Secret** obtained in [Keycloak Configuration](#keycloak-setup) with the 
+      [`client_secret`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#client_secret) directive
 
     - the **Issuer** URL obtained in [Keycloak Configuration](#keycloak-setup) with the [`issuer`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#client_secret) directive
 

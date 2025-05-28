@@ -70,7 +70,7 @@ To see a list of currently active issues, visit the [Known issues]({{< ref "/ngi
    To get started using HTTP/3 and NGINXaaS:
 
    - Update the [network security group](https://docs.microsoft.com/en-us/azure/virtual-network/tutorial-filter-network-traffic#create-security-rules) associated with the NGINXaaS deployment’s subnet to allow inbound traffic for HTTP/3 UDP ports in the NGINX configuration.
-   See our [FAQ]({{< ref "/nginxaas-azure/faq" >}}), for limits on how many unique ports may be specified in a configuration and a list of restricted ports.
+   See the [NGINXaaS limitations]({{< ref "/nginxaas-azure/overview/overview.md#limitations" >}}), for limits on how many unique ports may be specified in a configuration and a list of restricted ports.
 
    - Additionally, add a [Managed Identity]({{< ref "/nginxaas-azure/getting-started/managed-identity-portal.md" >}}) to your deployment and create [SSL/TLS Certificates]({{< ref "/nginxaas-azure/getting-started/ssl-tls-certificates/" >}}). For more information on using NGINX with HTTP/3, see the [HTTP/3 module](https://nginx.org/en/docs/http/ngx_http_v3_module.html).
 
@@ -265,7 +265,7 @@ To see a list of currently active issues, visit the [Known issues]({{< ref "/ngi
 
    Update the [network security group's inbound security rules](https://docs.microsoft.com/en-us/azure/virtual-network/tutorial-filter-network-traffic#create-security-rules) associated with the NGINXaaS deployment's subnet to allow inbound traffic for all listen ports in the NGINX configuration.
 
-   See our [FAQ]({{< ref "/nginxaas-azure/faq" >}}), for limits on how many unique ports may be specified in a configuration and a list of restricted ports.
+   See our [NGINX configuration overview]({{< ref "/nginxaas-azure/getting-started/nginx-configuration/overview.md#nginx-listen-port-restrictions" >}}) document for limits on how many unique ports may be specified in a configuration and a list of restricted ports.
 
 
 ## March 16, 2023
