@@ -2,6 +2,6 @@
 description:
 title: Settings
 weight: 500
-url: /nginx-one/how-to/settings  
+url: /nginx-one/connect-instances/settings  
 draft: true
 ---

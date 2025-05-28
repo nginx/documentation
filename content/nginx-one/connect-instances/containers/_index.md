@@ -1,6 +1,6 @@
 ---
 description:
-title: Containers
+title: Connect your containers
 weight: 300
-url: /nginx-one/how-to/containers  
+url: /nginx-one/connect-instances/containers  
 ---

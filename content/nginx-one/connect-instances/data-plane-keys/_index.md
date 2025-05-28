@@ -1,6 +1,6 @@
 ---
 description:
-title: Data plane keys
+title: Set up data plane keys
 weight: 100
-url: /nginx-one/how-to/data-plane-keys  
+url: /nginx-one/connect-instances/data-plane-keys  
 ---
