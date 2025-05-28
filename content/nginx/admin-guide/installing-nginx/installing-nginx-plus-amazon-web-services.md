@@ -30,8 +30,8 @@ To quickly set up an NGINX Plus environment on AWS:
 
     Click the **Continue to Subscribe** button to proceed to the **Launch on EC2** page.
 
-3. Select the type of launch by clicking the appropriate tab (<span style="white-space: nowrap; font-weight:bold;">1‑Click Launch</span>, **Manual Launch**, or **Service Catalog**). Choose the desired options for billing, instance size, and so on, and click the <span style="white-space: nowrap; font-weight:bold;">Accept Software Terms…</span> button.
-4. When configuring the firewall rules, add a rule to accept web traffic on TCP ports 80 and 443 (this happens automatically if you launch from the <span style="white-space: nowrap; font-weight:bold;">1-Click Launch</span> tab).
+3. Select the type of launch by clicking the appropriate tab (**1&#8209;Click&nbsp;Launch***, **Manual&nbsp;Launch**, or **Service&nbsp;Catalog**). Choose the desired options for billing, instance size, and so on, and click the **Accept&nbsp;Software&nbsp;Terms…** button.
+4. When configuring the firewall rules, add a rule to accept web traffic on TCP ports 80 and 443 (this happens automatically if you launch from the **1&#8209;Click&nbsp;Launch** tab).
 5. As soon as the new EC2 instance launches, NGINX Plus starts automatically and serves a default **index.html** page. To view the page, use a web browser to access the public DNS name of the new instance. You can also check the status of the NGINX Plus server by logging into the EC2 instance and running this command:
 
 	```nginx

@@ -14,7 +14,7 @@ This guide explains how to secure NGINX Instance Manager with OpenID Connect (OI
 ## Before you begin
 
 {{<call-out "important" "Required steps">}}
-Before proceeding, first secure NGINX Instance Manager with OpenID Connect (OIDC) using Microsoft Entra as the identity provider. Complete the steps in the [Set up OIDC authentication with Microsoft Entra]({{< ref "/nim/admin-guide/authentication/oidc/microsoft-entra-setup.md" >}}) guide. Afterward, you'll have a registered application (e.g., "NGINX Instance Manager") in Microsoft Entra, as well as a client ID and secret to configure automation.
+Before proceeding, first secure NGINX Instance Manager with OpenID Connect (OIDC) using Microsoft Entra as the identity provider. Complete the steps in the [Set up OIDC authentication with Microsoft Entra]({{< ref "/nim/admin-guide/authentication/oidc/microsoft-entra-setup.md" >}}) guide. Afterward, you'll have a registered application (for example, "NGINX Instance Manager") in Microsoft Entra, as well as a client ID and secret to configure automation.
 {{</call-out>}}
 
 ## Configure Azure
@@ -26,7 +26,7 @@ Before proceeding, first secure NGINX Instance Manager with OpenID Connect (OIDC
 3. In the left navigation menu, under **Manage**, select **App registrations**.
 4. Select **New registration**.
 5. Complete the following:
-   - In the **Name** field, enter the name of the application (e.g., "Automation").
+   - In the **Name** field, enter the name of the application (for example, "Automation").
    - Select **Accounts in this organizational directory only** for account types.
    - Leave **Redirect URI** blank.
 6. Select **Register**.
@@ -46,7 +46,7 @@ Before proceeding, first secure NGINX Instance Manager with OpenID Connect (OIDC
 1. In the left navigation menu, under **Manage**, select **App roles**.
 2. Select **Create app role**.
 3. Fill in the role details. Use the information from an existing user group in NGINX Instance Manager, such as from the [Create user groups in Instance Manager]({{< ref "/nim/admin-guide/authentication/oidc/microsoft-entra-setup.md#create-user-groups-in-nginx-instance-manager" >}}) step:
-   - In the **Display name** field, enter a role name (e.g., "Admin").
+   - In the **Display name** field, enter a role name (for example, "Admin").
    - In **Allowed member types**, select **Applications**.
    - In the **Value** field, enter the value for the role. This must match the user group in NGINX Management Suite.
    - Provide a description for the role.
@@ -54,12 +54,12 @@ Before proceeding, first secure NGINX Instance Manager with OpenID Connect (OIDC
 
 ### Assign the app role to the application
 
-1. On the **App registrations** page, select the first application you created (e.g., "Instance Manager").
+1. On the **App registrations** page, select the first application you created (for example, "Instance Manager").
 2. In the left navigation menu, under **Manage**, select **API permissions**.
 3. Select **Add a permission**.
 4. In the **Request API permissions** section, select **My APIs**.
-5. Select the app name you created for automation (e.g., "Automation").
-6. Under **Application permissions**, select the role you created earlier (e.g., "Admin").
+5. Select the app name you created for automation (for example, "Automation").
+6. Under **Application permissions**, select the role you created earlier (for example, "Admin").
 7. Select **Add permissions**.
 
 {{< note >}}If the permission is not granted, contact your Microsoft Entra administrator to approve it.{{< /note >}}
@@ -115,7 +115,7 @@ Additionally, complete the following steps:
 2. Include the following in your request body:
     - `client_id`: The client ID of the application you created.
     - `client_secret`: The client secret for the application.
-    - `scope`: The application scope (e.g., `api://<client-id>/.default`).
+    - `scope`: The application scope (for example, `api://<client-id>/.default`).
     - `grant_type`: Use `client_credentials`.
 
 3. The response will contain an access token. Decoding the token should give you a result similar to:
