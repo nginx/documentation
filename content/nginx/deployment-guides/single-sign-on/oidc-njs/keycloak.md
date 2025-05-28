@@ -60,15 +60,15 @@ Create a Keycloak client for NGINX Plus in the Keycloak GUI:
    <span id="keycloak-client-id"></span>
 3. On the **Add Client** page that opens, enter or select these values, then click the <span style="background-color:#009edc; color:white;"> Save </span> button.
 
-   - **Client ID** – The name of the application for which you're enabling SSO (Keycloak refers to it as the “client”). Here we're using <span style="white-space: nowrap; color:#666666; font-weight:bolder;">NGINX-Plus</span>.
-   - **Client Protocol** – <span style="white-space: nowrap; color:#666666; font-weight:bolder;">openid-connect</span>.
+   - **Client ID** – The name of the application for which you're enabling SSO (Keycloak refers to it as the “client”). Here we're using **NGINX&#8209;Plus**.
+   - **Client Protocol** – **openid&#8209;connect**.
 
    <img src="/nginx/images/keycloak-add-client.png" alt="" width="1024" height="490" class="aligncenter size-full wp-image-62013" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
 4. On the **NGINX Plus** page that opens, enter or select these values on the <span style="color:#48a5e2;">Settings</span> tab:
 
-   - **Access Type** – <span style="color:#666666; font-weight:bolder;">confidential</span>
-   - **Valid Redirect URIs** – The URI of the NGINX Plus instance, including the port number, and ending in **/\_codexch** (in this guide it is <span style="color:#666666; font-weight:bolder; white-space: nowrap;">https://my-nginx.example.com:443/_codexch</span>)
+   - **Access Type** – **confidential**
+   - **Valid Redirect URIs** – The URI of the NGINX Plus instance, including the port number, and ending in **/\_codexch** (in this guide it is **https://my&#8209;nginx.example.com:443/_codexch**)
 
      **Notes:**
 
@@ -84,14 +84,14 @@ Create a Keycloak client for NGINX Plus in the Keycloak GUI:
 
 6. Click the <span style="color:#48a5e2;">Roles</span> tab, then click the **Add Role** button in the upper right corner of the page that opens.
 
-7. On the **Add Role** page that opens, type a value in the **Role Name** field (here it is <span style="white-space: nowrap; color:#666666; font-weight:bolder;">nginx-keycloak-role</span>) and click the <span style="background-color:#009edc; color:white;"> Save </span> button.
+7. On the **Add Role** page that opens, type a value in the **Role Name** field (here it is **nginx&#8209;keycloak&#8209;role**) and click the <span style="background-color:#009edc; color:white;"> Save </span> button.
 
    <img src="/nginx/images/keycloak-add-role.png" alt="" width="1024" height="480" class="aligncenter size-full wp-image-62006" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
 8. In the left navigation column, click **Users**. On the **Users** page that opens, either click the name of an existing user, or click the **Add user** button in the upper right corner to create a new user. For complete instructions, see the [Keycloak documentation](https://www.keycloak.org/docs/latest/server_admin/index.html#user-management).
 
    <span id="keycloak-users"></span>
-9. On the management page for the user (here, <span style="color:#666666; font-weight:bolder;">user01</span>), click the <span style="white-space: nowrap; color:#48a5e2;">Role Mappings</span> tab. On the page that opens, select <span style="white-space: nowrap; color:#666666; font-weight:bolder;">NGINX-Plus</span> on the **Client Roles** drop‑down menu. Click <span style="white-space: nowrap; color:#666666; font-weight:bolder;">nginx-keycloak-role</span> in the **Available Roles** box, then click the **Add selected** button below the box. The role then appears in the **Assigned Roles** and **Effective Roles** boxes, as shown in the screenshot.
+9. On the management page for the user (here, **user01**), click the <span style="white-space: nowrap; color:#48a5e2;">Role Mappings</span> tab. On the page that opens, select **NGINX&#8209;Plus** on the **Client Roles** drop‑down menu. Click **nginx&#8209;keycloak&#8209;role** in the **Available Roles** box, then click the **Add selected** button below the box. The role then appears in the **Assigned Roles** and **Effective Roles** boxes, as shown in the screenshot.
 
    <img src="/nginx/images/keycloak-role-mappings-tab.png" alt="" width="1024" height="526" class="aligncenter size-full wp-image-62008" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
@@ -101,7 +101,7 @@ Create a Keycloak client for NGINX Plus in the Keycloak GUI:
 
 Configure NGINX Plus as the OpenID Connect relying party:
 
-1. Create a clone of the [<span style="white-space: nowrap; font-weight:bold;">nginx-openid-connect</span>](https://github.com/nginxinc/nginx-openid-connect) GitHub repository.
+1. Create a clone of the [**nginx&#8209;openid&#8209;connect**](https://github.com/nginxinc/nginx-openid-connect) GitHub repository.
 
    ```shell
    git clone https://github.com/nginxinc/nginx-openid-connect
@@ -118,14 +118,14 @@ Configure NGINX Plus as the OpenID Connect relying party:
 3. Get the URLs for the authorization endpoint, token endpoint, and JSON Web Key (JWK) file from the Keycloak configuration. Run the following `curl` command in a terminal, piping the output to the indicated `python` command to output the entire configuration in an easily readable format. We've abridged the output to show only the relevant fields.
 
    ```shell
-   $ curl https://<keycloak-server-address>/auth/realms/master/.well-known/openid-configuration | python -m json.tool
+   $ curl https://<keycloak-server-address>/realms/master/.well-known/openid-configuration | python -m json.tool
    ...
    {
-       "authorization_endpoint": "https://<keycloak-server-address>/auth/realms/master/protocol/openid-connect/auth",
+       "authorization_endpoint": "https://<keycloak-server-address>/realms/master/protocol/openid-connect/auth",
        ...
-       "jwks_uri": "https://<keycloak-server-address>/auth/realms/master/protocol/openid-connect/certs",
+       "jwks_uri": "https://<keycloak-server-address>/realms/master/protocol/openid-connect/certs",
        ...
-       "token_endpoint": "https://<keycloak-server-address>/auth/realms/master/protocol/openid-connect/token",
+       "token_endpoint": "https://<keycloak-server-address>/realms/master/protocol/openid-connect/token",
     ...
     }
     ```
@@ -133,8 +133,8 @@ Configure NGINX Plus as the OpenID Connect relying party:
    <span id="nginx-plus-variables"></span>
 4. Using your preferred text editor, open **/etc/nginx/conf.d/openid_connect_configuration.conf**. Change the "default" parameter value of each of the following [map](https://nginx.org/en/docs/http/ngx_http_map_module.html#map) directives to the specified value:
 
-   - `map $host $oidc_authz_endpoint` – Value of `authorization_endpoint` from [Step 3](#nginx-plus-urls) (in this guide, <span style="white-space: nowrap;">`https://<keycloak-server-address>/auth/realms/master/protocol/openid-connect/auth`</span>)
-   - `map $host $oidc_token_endpoint` – Value of `token_endpoint` from [Step 3](#nginx-plus-urls) (in this guide, <span style="white-space: nowrap;">`https://<keycloak-server-address>/auth/realms/master/protocol/openid-connect/token`)</span>
+   - `map $host $oidc_authz_endpoint` – Value of `authorization_endpoint` from [Step 3](#nginx-plus-urls) (in this guide, <span style="white-space: nowrap;">`https://<keycloak-server-address>/realms/master/protocol/openid-connect/auth`</span>)
+   - `map $host $oidc_token_endpoint` – Value of `token_endpoint` from [Step 3](#nginx-plus-urls) (in this guide, <span style="white-space: nowrap;">`https://<keycloak-server-address>/realms/master/protocol/openid-connect/token`)</span>
    - `map $host $oidc_client` – Value in the **Client ID** field from [Step 3 of _Configuring Keycloak_](#keycloak-client-id) (in this guide, `NGINX Plus`)
    - `map $host $oidc_client_secret` – Value in the **Secret** field from [Step 5 of _Configuring Keycloak_](#keycloak-secret) (in this guide, <span style="white-space: nowrap;">`<oidc client secret>`)</span>
    - `map $host $oidc_hmac_key` – A unique, long, and secure phrase
@@ -146,11 +146,11 @@ Configure NGINX Plus as the OpenID Connect relying party:
       1. Comment out (or remove) the [auth_jwt_key_file](http://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html#auth_jwt_key_file) directive.
 
       2. Uncomment the [auth_jwt_key_request](http://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html#auth_jwt_key_request) directive. (Its parameter, `/_jwks_uri`, refers to the value of the `$oidc_jwt_keyfile` variable, which you set in the next step.)
-      3. Change the "default" parameter of the `map $host $oidc_jwt_keyfile` directive to the value reported in the `jwks_uri` field in [Step 3](#nginx-plus-urls) (in this guide, <span style="white-space: nowrap;">`https://<keycloak-server-address>/auth/realms/master/protocol/openid-connect/certs`)</span>.
+      3. Change the "default" parameter of the `map $host $oidc_jwt_keyfile` directive to the value reported in the `jwks_uri` field in [Step 3](#nginx-plus-urls) (in this guide, <span style="white-space: nowrap;">`https://<keycloak-server-address>/realms/master/protocol/openid-connect/certs`)</span>.
 
    - In <span style="white-space: nowrap;">NGINX Plus R16</span> and earlier, the JWK file must be on the local disk. (You can also use this method with <span style="white-space: nowrap;">NGINX Plus R17</span> and later if you wish.)
 
-      1. Copy the JSON contents from the JWK file named in the `jwks_uri` field in [Step 3](#nginx-plus-urls) (in this guide, <span style="white-space: nowrap;">`https://<keycloak-server-address>/auth/realms/master/protocol/openid-connect/certs`)</span> to a local file (for example, `/etc/nginx/my_keycloak_jwk.json`).
+      1. Copy the JSON contents from the JWK file named in the `jwks_uri` field in [Step 3](#nginx-plus-urls) (in this guide, <span style="white-space: nowrap;">`https://<keycloak-server-address>/realms/master/protocol/openid-connect/certs`)</span> to a local file (for example, `/etc/nginx/my_keycloak_jwk.json`).
       2. In **/etc/nginx/conf.d/openid_connect_configuration.conf**, change the "default" parameter of the <span style="white-space: nowrap;">`map $host $oidc_jwt_keyfile`</span> directive to the local file path.
 
 6. Confirm that the user named by the [user](http://nginx.org/en/docs/ngx_core_module.html#user) directive in the NGINX Plus configuration (in **/etc/nginx/nginx.conf** by convention) has read permission on the JWK file.
@@ -165,7 +165,7 @@ In a browser, enter the address of your NGINX Plus instance and try to log in u
 <span id="troubleshooting"></span>
 ## Troubleshooting
 
-See the [**Troubleshooting**](https://github.com/nginxinc/nginx-openid-connect#troubleshooting) section at the <span style="white-space: nowrap; font-weight:bold;">nginx-openid-connect</span> repository on GitHub.
+See the [**Troubleshooting**](https://github.com/nginxinc/nginx-openid-connect#troubleshooting) section at the **nginx&#8209;openid&#8209;connect** repository on GitHub.
 
 ### Revision History
 

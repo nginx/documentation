@@ -33,7 +33,7 @@ Download the [plug‑in and installation instructions](https://docs.newrelic.com
 
 ## Configuring the Plug‑In
 
-The configuration file for the NGINX plug‑in is <span style="white-space: nowrap; font-weight:bold;">/etc/nginx-nr-agent/nginx-nr-agent.ini</span>. The minimal configuration includes:
+The configuration file for the NGINX plug‑in is **/etc/nginx&#8209;nr&#8209;agent/nginx&#8209;nr&#8209;agent.ini**. The minimal configuration includes:
 
 - Your New Relic license key in the `newrelic_license_key` statement in the `global` section.
 
@@ -44,7 +44,7 @@ The configuration file for the NGINX plug‑in is <span style="white-space: nowr
 
 You can include the optional `http_user` and `http_pass` statements to set HTTP basic authentication credentials in cases where the corresponding location is protected by the NGINX [auth_basic](https://nginx.org/en/docs/http/ngx_http_auth_basic_module.html#auth_basic) directive.
 
-The default log file is <span style="white-space: nowrap; font-weight:bold;">/var/log/nginx-nr-agent.log</span>.
+The default log file is **/var/log/nginx&#8209;nr&#8209;agent.log**.
 
 ## Running the Plug‑In
 

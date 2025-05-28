@@ -371,7 +371,7 @@ To set up the conventional configuration scheme, perform these steps:
 
    Directive documentation: [include](https://nginx.org/en/docs/ngx_core_module.html#include)
 
-   You can also use wildcard notation to read all function‑specific files for either HTTP or TCP traffic into the appropriate context block. For example, if you name all HTTP configuration files <span style="white-space: nowrap; font-weight:bold;">_function_-http.conf</span> and all TCP configuration files <span style="white-space: nowrap; font-weight:bold;">_function_-stream.conf</span> (the filenames we specify in this section conform to this pattern), the wildcarded `include` directives are:
+   You can also use wildcard notation to read all function‑specific files for either HTTP or TCP traffic into the appropriate context block. For example, if you name all HTTP configuration files **_function_&#8209;http.conf** and all TCP configuration files **_function_&#8209;stream.conf** (the filenames we specify in this section conform to this pattern), the wildcarded `include` directives are:
 
    ```nginx
    http {
@@ -383,9 +383,9 @@ To set up the conventional configuration scheme, perform these steps:
    }
    ```
 
-2. In the **/etc/nginx/conf.d** directory, create a new file called <span style="white-space: nowrap; font-weight:bold;">exchange-http.conf</span> for directives that pertain to Exchange HTTP and HTTPS traffic (or substitute the name you chose in Step 1). Copy in the directives from the `http` configuration block in the downloaded configuration file. Remember not to copy the first line <span style="white-space: nowrap;">(`http` `{`)</span> or the closing curly brace (`}`) for the block, because the `http` block you created in Step 1 already has them.
+2. In the **/etc/nginx/conf.d** directory, create a new file called **exchange&#8209;http.conf** for directives that pertain to Exchange HTTP and HTTPS traffic (or substitute the name you chose in Step 1). Copy in the directives from the `http` configuration block in the downloaded configuration file. Remember not to copy the first line <span style="white-space: nowrap;">(`http` `{`)</span> or the closing curly brace (`}`) for the block, because the `http` block you created in Step 1 already has them.
 
-3. Also in the **/etc/nginx/conf.d** directory, create a new file called <span style="white-space: nowrap; font-weight:bold;">exchange-stream.conf</span> for directives that pertain to Exchange TCP traffic (or substitute the name you chose in Step 1). Copy in the directives from the `stream` configuration block in the dowloaded configuration file. Again, do not copy the first line <span style="white-space: nowrap;">(`stream` `{`)</span> or the closing curly brace (`}`).
+3. Also in the **/etc/nginx/conf.d** directory, create a new file called **exchange&#8209;stream.conf** for directives that pertain to Exchange TCP traffic (or substitute the name you chose in Step 1). Copy in the directives from the `stream` configuration block in the dowloaded configuration file. Again, do not copy the first line <span style="white-space: nowrap;">(`stream` `{`)</span> or the closing curly brace (`}`).
 
 For reference purposes, the text of the full configuration files is included in this document:
 
@@ -468,7 +468,7 @@ The directives in the top‑level `stream` configuration block configure TCP loa
     }
     ```
 
-3. This `server` block defines the virtual server that proxies traffic on port 993 to the <span style="white-space: nowrap; font-weight:bold;">exchange-imaps</span> upstream group configured in Step 1.
+3. This `server` block defines the virtual server that proxies traffic on port 993 to the **exchange&#8209;imaps** upstream group configured in Step 1.
 
     ```nginx
     # In the 'stream' block
@@ -481,7 +481,7 @@ The directives in the top‑level `stream` configuration block configure TCP loa
 
    Directive documentation: [listen](https://nginx.org/en/docs/stream/ngx_stream_core_module.html#listen), [proxy_pass](https://nginx.org/en/docs/stream/ngx_stream_proxy_module.html#proxy_pass), [server](https://nginx.org/en/docs/stream/ngx_stream_core_module.html#server), [status_zone](https://nginx.org/en/docs/http/ngx_http_status_module.html#status_zone)
 
-4. This `server` block defines the virtual server that proxies traffic on port 25 to the <span style="white-space: nowrap; font-weight:bold;">exchange-smtp</span> upstream group configured in Step 2. If you wish to change the port number from 25 (for example, to 587), change the `listen` directive.
+4. This `server` block defines the virtual server that proxies traffic on port 25 to the **exchange&#8209;smtp** upstream group configured in Step 2. If you wish to change the port number from 25 (for example, to 587), change the `listen` directive.
 
     ```nginx
     # In the 'stream' block
@@ -615,11 +615,11 @@ HTTP/2 is fully supported in <span style="white-space: nowrap;">NGINX Plus R7</s
 
 In <span style="white-space: nowrap;">NGINX Plus R8</span> and later, NGINX Plus supports HTTP/2 by default, and does not support SPDY:
 
-- In <span style="white-space: nowrap;">NGINX Plus R11</span> and later, the <span style="white-space: nowrap; font-weight:bold;">nginx-plus</span> package continues to support HTTP/2 by default, but the <span style="white-space: nowrap; font-weight:bold;">nginx-plus-extras</span> package available in previous releases is deprecated by [dynamic modules](https://www.nginx.com/products/nginx/dynamic-modules/).
+- In <span style="white-space: nowrap;">NGINX Plus R11</span> and later, the **nginx&#8209;plus** package continues to support HTTP/2 by default, but the **nginx&#8209;plus&#8209;extras** package available in previous releases is deprecated by [dynamic modules](https://www.nginx.com/products/nginx/dynamic-modules/).
 
-- For <span style="white-space: nowrap;">NGINX Plus R8</span> through R10, the <span style="white-space: nowrap; font-weight:bold;">nginx-plus</span> and <span style="white-space: nowrap; font-weight:bold;">nginx-plus-extras</span> packages support HTTP/2 by default.
+- For <span style="white-space: nowrap;">NGINX Plus R8</span> through R10, the **nginx&#8209;plus** and **nginx&#8209;plus&#8209;extras** packages support HTTP/2 by default.
 
-If using <span style="white-space: nowrap;">NGINX Plus R7</span>, you must install the <span style="white-space: nowrap; font-weight:bold;">nginx-plus-http2</span> package instead of the <span style="white-space: nowrap; font-weight:bold;">nginx-plus</span> or <span style="white-space: nowrap; font-weight:bold;">nginx-plus-extras</span> package.
+If using <span style="white-space: nowrap;">NGINX Plus R7</span>, you must install the **nginx&#8209;plus&#8209;http2** package instead of the **nginx&#8209;plus** or **nginx&#8209;plus&#8209;extras** package.
 
 To enable HTTP/2 support, add the `http2` directive in the `server` block for HTTPS traffic that we created in [Configuring Virtual Servers for HTTP and HTTPS Traffic](#virtual-servers), so that it looks like this:
 
@@ -926,7 +926,7 @@ Exchange CASs interact with various applications used by clients on different ty
       }
       ```
 
-    - Mobile clients like iPhone and Android access the ActiveSync location (<span style="white-space: nowrap; font-weight:bold;">/Microsoft-Server-ActiveSync</span>).
+    - Mobile clients like iPhone and Android access the ActiveSync location (**/Microsoft&#8209;Server&#8209;ActiveSync**).
 
       ```nginx
       # In the 'server' block for HTTPS traffic
@@ -1092,7 +1092,7 @@ The quickest way to configure the module and the built‑in dashboard is to down
    include conf.d/status.conf;
    ```
 
-    If you are using the conventional configuration scheme and your existing `include` directives use the wildcard notation discussed in [Creating and Modifying Configuration Files](#config-files), you can either add a separate `include` directive for **status.conf** as shown above, or change the name of **status.conf** so it is captured by the wildcard in an existing `include` directive in the `http` block. For example, changing it to <span style="white-space: nowrap; font-weight:bold;">status-http.conf</span> means it is captured by the `include` directive for <span style="white-space: nowrap;">`*-http.conf`</span>.
+    If you are using the conventional configuration scheme and your existing `include` directives use the wildcard notation discussed in [Creating and Modifying Configuration Files](#config-files), you can either add a separate `include` directive for **status.conf** as shown above, or change the name of **status.conf** so it is captured by the wildcard in an existing `include` directive in the `http` block. For example, changing it to **status&#8209;http.conf** means it is captured by the `include` directive for <span style="white-space: nowrap;">`*-http.conf`</span>.
 
     Directive documentation: [include](https://nginx.org/en/docs/ngx_core_module.html#include)
 
