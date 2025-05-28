@@ -322,7 +322,7 @@ http {
 
 Directive documentation: [include](https://nginx.org/en/docs/ngx_core_module.html#include)
 
-You can also use wildcard notation to reference all files that pertain to a certain function or traffic type in the appropriate context block. For example, if you name all HTTP configuration files <span style="white-space: nowrap; font-weight:bold;">_function_-http.conf</span>, this is an appropriate include directive:
+You can also use wildcard notation to reference all files that pertain to a certain function or traffic type in the appropriate context block. For example, if you name all HTTP configuration files **_function_&#8209;http.conf**, this is an appropriate include directive:
 
 ```nginx
 http {
@@ -505,13 +505,13 @@ HTTP/2 is fully supported in both NGINX 1.9.5 and later, and NGINX Plus R7 and
 
 - If using open source NGINX, note that in version 1.9.5 and later the SPDY module is completely removed from the NGINX codebase and replaced with the [HTTP/2](https://nginx.org/en/docs/http/ngx_http_v2_module.html) module. After upgrading to version 1.9.5 or later, you can no longer configure NGINX to use SPDY. If you want to keep using SPDY, you need to compile NGINX from the sources in the [NGINX 1.8 branch](https://nginx.org/en/download.html).
 
-- If using NGINX Plus, in R11 and later the <span style="white-space: nowrap; font-weight:bold;">nginx-plus</span> package supports HTTP/2 by default, and the <span style="white-space: nowrap; font-weight:bold;">nginx-plus-extras</span> package available in previous releases is deprecated by separate [dynamic modules](https://www.nginx.com/products/nginx/modules/) authored by NGINX.
+- If using NGINX Plus, in R11 and later the **nginx&#8209;plus** package supports HTTP/2 by default, and the **nginx&#8209;plus&#8209;extras** package available in previous releases is deprecated by separate [dynamic modules](https://www.nginx.com/products/nginx/modules/) authored by NGINX.
 
-  In NGINX Plus R8 through R10, the <span style="white-space: nowrap; font-weight:bold;">nginx-plus</span> and <span style="white-space: nowrap; font-weight:bold;">nginx-plus-extras</span> packages support HTTP/2 by default.
+  In NGINX Plus R8 through R10, the **nginx&#8209;plus** and **nginx&#8209;plus&#8209;extras** packages support HTTP/2 by default.
 
   In NGINX Plus R8 and later, NGINX Plus supports HTTP/2 by default, and does not support SPDY.
 
-    If using NGINX Plus R7, you must install the <span style="white-space: nowrap; font-weight:bold;">nginx-plus-http2</span> package instead of the <span style="white-space: nowrap; font-weight:bold;">nginx-plus</span> or <span style="white-space: nowrap; font-weight:bold;">nginx-plus-extras</span> package.
+    If using NGINX Plus R7, you must install the **nginx&#8209;plus&#8209;http2** package instead of the **nginx&#8209;plus** or **nginx&#8209;plus&#8209;extras** package.
 
 To enable HTTP/2 support, add the `http2` directive in the `server` block for HTTPS traffic that we created in [Configuring Virtual Servers for HTTP and HTTPS Traffic](#virtual-servers), so that it looks like this:
 

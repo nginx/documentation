@@ -27,9 +27,9 @@ To set up the highly available active/passive cluster, we’re using the [HA sol
 
 ## Modifying the NGINX Cookbook
 
-First we set up the Chef files for installing of the NGINX Plus HA package (<span style="white-space: nowrap; font-weight:bold">nginx-ha-keepalived</span>) and creating the `keepalived` configuration file, **keepalive.conf**.
+First we set up the Chef files for installing of the NGINX Plus HA package (**nginx&#8209;ha&#8209;keepalived**) and creating the `keepalived` configuration file, **keepalive.conf**.
 
-1. Modify the existing **plus_package** recipe to include package and configuration templates for the HA solution, by adding the following code to the bottom of the **plus_package.rb** file (per the instructions in the previous post, the file is in the <span style="white-space: nowrap; font-weight:bold">~/chef-zero/playground/cookbooks/nginx/recipes</span> directory).
+1. Modify the existing **plus_package** recipe to include package and configuration templates for the HA solution, by adding the following code to the bottom of the **plus_package.rb** file (per the instructions in the previous post, the file is in the **~/chef&#8209;zero/playground/cookbooks/nginx/recipes** directory).
 
     We are using the **eth1** interface on each NGINX host, which makes the code a bit more complicated than if we used **eth0**. In case you are using **eth0**, the relevant code appears near the top of the file, commented out.
 
@@ -37,7 +37,7 @@ First we set up the Chef files for installing of the NGINX Plus HA package (<sp
 
     - It looks up the IP address of the **eth1** interface on the node where NGINX Plus is being installed, and assigns the value to the `origip` variable so it can be passed to the template.
     - It finds the other node in the HA pair by using Chef’s `search` function to iterate through all Chef nodes, then looks up the IP address for that node’s **eth1** interface and assigns the address to the `ha_pair_ips` variable.
-    - It installs the <span style="white-space: nowrap; font-weight:bold">nginx-ha-keepalived</span> package, registers the `keepalived` service with Chef, and generates the **keepalived.conf** configuration file as a template, passing in the values of the `origip` and `ha_pair_ips` variables.
+    - It installs the **nginx&#8209;ha&#8209;keepalived** package, registers the `keepalived` service with Chef, and generates the **keepalived.conf** configuration file as a template, passing in the values of the `origip` and `ha_pair_ips` variables.
 
     ```nginx
      if node['nginx']['enable_ha_mode'] == 'true'
@@ -102,7 +102,7 @@ First we set up the Chef files for installing of the NGINX Plus HA package (<sp
 
     You can download the [full recipe file](https://www.nginx.com/resource/conf/plus_package.rb-chef-recipe) from the NGINX, Inc. website.
 
-2. Create the Chef template for creating **keepalived.conf**, by copying the following content to a new template file, **nginx_plus_keepalived.conf.erb**, in the <span style="white-space: nowrap; font-weight:bold">~/chef-zero/playground/cookbooks/nginx/templates/default</span> directory.
+2. Create the Chef template for creating **keepalived.conf**, by copying the following content to a new template file, **nginx_plus_keepalived.conf.erb**, in the **~/chef&#8209;zero/playground/cookbooks/nginx/templates/default** directory.
 
     We’re using a combination of variables and attributes to pass the necessary information to **keepalived.conf**. We’ll set the attributes in the next step. Here we set the two variables in the template file to the host IP addresses that were set with the `variables` directive in the **plus_package.rb** recipe (modified in the previous step):
 
@@ -186,7 +186,7 @@ First we set up the Chef files for installing of the NGINX Plus HA package (<sp
 
     ```
 
-3. Create a role that sets attributes used in the recipe and template files created in the previous steps, by copying the following contents to a new role file, **nginx_plus_ha.rb** in the <span style="white-space: nowrap; font-weight:bold">~/chef-zero/playground/roles</span> directory.
+3. Create a role that sets attributes used in the recipe and template files created in the previous steps, by copying the following contents to a new role file, **nginx_plus_ha.rb** in the **~/chef&#8209;zero/playground/roles** directory.
 
     Four attributes need to be set, and in the role we set the following three:
 
@@ -290,13 +290,13 @@ Now we bootstrap the nodes and get them ready for the installation. Note that th
 
     `
 
-2. Create a local copy of the node definition file, which we’ll edit as appropriate for the node we bootstrapped in the previous step, <span style="white-space: nowrap; font-weight:bold">chef-test-1</span>:
+2. Create a local copy of the node definition file, which we’ll edit as appropriate for the node we bootstrapped in the previous step, **chef&#8209;test&#8209;1**:
 
     ```nginx
     root@chef-server:~/chef-zero/playground# knife node show chef-test-1 --format json > nodes/chef-test-1.json
     ```
 
-3. Edit <span style="white-space: nowrap; font-weight:bold">chef-test-1.json</span> to have the following contents. In particular, we’re updating the run list and setting the `ha_primary` attribute, as required for the HA deployment.
+3. Edit **chef&#8209;test&#8209;1.json** to have the following contents. In particular, we’re updating the run list and setting the `ha_primary` attribute, as required for the HA deployment.
 
     ```json
     {
@@ -323,7 +323,7 @@ Now we bootstrap the nodes and get them ready for the installation. Note that th
     Updated Node chef-test-1!
     ```
 
-5. Log in on the <span style="white-space: nowrap; font-weight:bold">chef-test-1</span> node and run the <span style="white-space: nowrap;">`chef-client`</span> command to get everything configured:
+5. Log in on the **chef&#8209;test&#8209;1** node and run the <span style="white-space: nowrap;">`chef-client`</span> command to get everything configured:
 
     ```text
     username@chef-test-1:~$ <span style="color:#66ff99; font-weight: bold;">sudo chef-client</span>
@@ -616,7 +616,7 @@ Enter your password:
 
 10.100.10.102 Chef Client finished, 18/50 resources updated in 10 seconds`
 
-If we look at **keepalived.conf** at this point, we see that there is a peer set in the `unicast_peer` section. But the following command shows that <span style="white-space: nowrap; font-weight:bold">chef-test-2</span>, which we intend to be the secondary node, is also assigned the VIP (10.100.10.50). This is because we haven’t yet updated the Chef configuration on <span style="white-space: nowrap; font-weight:bold">chef-test-1</span> to make its `keepalived` aware of the secondary node.
+If we look at **keepalived.conf** at this point, we see that there is a peer set in the `unicast_peer` section. But the following command shows that **chef&#8209;test&#8209;2**, which we intend to be the secondary node, is also assigned the VIP (10.100.10.50). This is because we haven’t yet updated the Chef configuration on **chef&#8209;test&#8209;1** to make its `keepalived` aware of the secondary node.
 
     username@chef-test-2:~$ ip addr show eth1
     3: eth1:  mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
@@ -630,7 +630,7 @@ If we look at **keepalived.conf** at this point, we see that there is a peer set
 
 ### Synchronizing the Nodes
 
-To make `keepalived` on <span style="white-space: nowrap; font-weight:bold">chef-test-1</span> aware of <span style="white-space: nowrap; font-weight:bold">chef-test-2</span> and its IP address, we rerun the <span style="white-space: nowrap;">`chef-client`</span> command on <span style="white-space: nowrap; font-weight:bold">chef-test-1</span>:
+To make `keepalived` on **chef&#8209;test&#8209;1** aware of **chef&#8209;test&#8209;2** and its IP address, we rerun the <span style="white-space: nowrap;">`chef-client`</span> command on **chef&#8209;test&#8209;1**:
 
 ```text
 username@chef-test-1:~$ <span style="color:#66ff99; font-weight: bold;">sudo chef-client</span>
@@ -741,7 +741,7 @@ Chef Client finished, 2/47 resources updated in 05 seconds
 
 ```
 
-We see that <span style="white-space: nowrap; font-weight:bold">chef-test-1</span> is still assigned the VIP:
+We see that **chef&#8209;test&#8209;1** is still assigned the VIP:
 
   ```nginx
   username@chef-test-1:~$ ip addr show eth1
@@ -755,7 +755,7 @@ We see that <span style="white-space: nowrap; font-weight:bold">chef-test-1</spa
          valid_lft forever preferred_lft forever
   ```
 
-And <span style="white-space: nowrap; font-weight:bold">chef-test-2</span>, as the secondary node, is now assigned only its physical IP address:
+And **chef&#8209;test&#8209;2**, as the secondary node, is now assigned only its physical IP address:
 
   ```nginx
   username@chef-test-2:~$ ip addr show eth1
