@@ -25,7 +25,6 @@ Make sure you have:
 
 - An F5 Distributed Cloud (XC) account
 - NGINX One service enabled in your account
-- Completed setup in Lab0
 - Basic knowledge of Linux and NGINX
 
 ---
