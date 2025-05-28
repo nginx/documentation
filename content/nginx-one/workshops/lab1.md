@@ -1,153 +1,122 @@
 ---
-# We use sentence case and present imperative tone
-title: "Lab1: NGINX One Console Introduction & Access"
-# Weights are assigned in increments of 100: determines sorting order
-weight: i00
-# Creates a table of contents and sidebar, useful for large documents
-toc: false
-# Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
+title: "Get started with NGINX One Console"
+weight: 100
+toc: true
 nd-content-type: tutorial
-# Intended for internal catalogue and search, case sensitive:
-# Agent, N4Azure, NIC, NIM, NGF, NAP-DOS, NAP-WAF, NGINX One, NGINX+, Solutions, Unit
-nd-product: nginx-one
-docs:
+nd-product: NGINX-ONE
 ---
 
 ## Introduction
 
-In this lab, you will be logging into NGINX One Console and exploring various components within it. This lab requires that you have access to F5 Distributed Cloud to work with the One Console. As part of this lab, you will explore the NGINX One Console product, as a quick Overview of what it is and how to access it.
+This guide helps you log in to NGINX One Console and understand the basics of how it works. You’ll learn how to get started, find your way around the Console, and manage your NGINX instances using data plane keys.
 
-<br/>
+## What you’ll learn
 
-## Learning Objectives
+By the end of this tutorial, you’ll know how to:
 
-By the end of the lab you will be able to:
+- Open and use NGINX One Console
+- Understand what NGINX One Console does and how it works
+- Create, copy, and save a data plane key
+- Revoke or delete a data plane key (optional)
 
-- [Introduction](#introduction)
-- [Learning Objectives](#learning-objectives)
-- [Prerequisites](#prerequisites)
-  - [NGINX One Console Introduction](#nginx-one-console-introduction)
-  - [How it works](#how-it-works)
-  - [Access and navigate NGINX One Console](#access-and-navigate-nginx-one-console)
-  - [Create and manage data plane keys that would be used to manage NGINX instances](#create-and-manage-data-plane-keys-that-would-be-used-to-manage-nginx-instances)
-  - [(Optional Exercise): Revoke a data plane key](#optional-exercise-revoke-a-data-plane-key)
-  - [(Optional Exercise): Delete a data plane key](#optional-exercise-delete-a-data-plane-key)
-- [References:](#references)
-  - [Authors](#authors)
+## Before you begin
 
-## Prerequisites
+Make sure you have:
 
-- You must have an F5 Distributed Cloud(XC) Account
-- You must have enabled NGINX One service on F5 Distributed Cloud(XC)
-- See `Lab0` for instructions on setting up your system for this Workshop
-- Familiarity with basic Linux concepts and commands
-- Familiarity with basic NGINX concepts and commands
+- An F5 Distributed Cloud (XC) account
+- NGINX One service enabled in your account
+- Completed setup in Lab0
+- Basic knowledge of Linux and NGINX
 
-<br/>
+---
 
-### NGINX One Console Introduction
+## Learn what NGINX One Console does
 
-The F5 NGINX One Console is a service which is part of the F5 Distributed Cloud, gives all NGINX users access to a SaaS experience for managing NGINX instances. The console lets you monitor and control your NGINX fleet from one place. You can check configurations, track performance metrics, identify security vulnerabilities, manage SSL certificates, and more.
+NGINX One Console is a cloud-based service in the F5 Distributed Cloud platform. It helps you:
 
-The NGINX One Console is valuable because it simplifies the complexities of modern application delivery by integrating multiple functionalities into a single platform. This reduces the need for disparate tools, lowers operational overhead and costs, and ensures robust security for your applications. You will be able to accelerate application delivery and time-to-value like never before with SaaS capabilities.
+- Manage all your NGINX instances from one place
+- Monitor performance and health metrics
+- Catch security risks like expired SSL certificates and known vulnerabilities
+- Keep track of software versions and get performance tips
 
-NGINX One Console offers the following key benefits:
+With NGINX One Console, you don’t need to switch between tools. You get a single dashboard with real-time data and alerts.
 
-- **Centralized control:** Manage all your NGINX instances from a single console.
-- **Enhanced monitoring and risk detection:** Automatically detect critical vulnerabilities (CVEs), verify SSL certificate statuses, and identify security issues in NGINX configurations.
-- **Performance optimization:** Track your NGINX versions and receive recommendations for tuning your configurations for better performance.
-- **Graphical Metrics Display:** Access a dashboard that shows key metrics for your NGINX instances, including instance availability, version distribution, system health, and utilization trends.
-- **Real-time alerts:** Receive alerts about critical issues.
+---
 
-### How it works
+## How NGINX One Console works
 
+NGINX One Console connects to each NGINX instance using a small agent called **NGINX Agent**.
 
-The NGINX One Console requires `NGINX Agent`, an open source software module written by NGINX that connects and communicates with NGINX One Console.  This NGINX Agent must be installed and running on every NGINX instance that you wish to manage with NGINX One Console.  You will use the publicly available NGINX with Agent images from Docker Hub for your NGINX OSS containers.  In addition, as part of your Docker Compose file, your NGINX Plus containers already have the required `NGINX Agent` installed for you.  NGINX Agent can also be installed using regular Linux package managers like `apt` and `yum`.  Refer to the References Section for links to the NGINX Agent installation guides.
+You can install NGINX Agent by:
 
-### Access and navigate NGINX One Console
+- Using public NGINX OSS Docker images with the agent already included
+- Using NGINX Plus containers (these already include the agent)
+- Installing from Linux package managers like `apt` or `yum`
 
-1. Login into the F5 Distributed Cloud console using your account credentials. The login page can be found at: https://console.ves.volterra.io/login/start
+See the [NGINX Agent docs](https://docs.nginx.com/nginx-agent/overview/) for more details.
 
-   {{< img src="nginx-one/labs/lab-01/lab1_xc-login.png" alt="<Alternative text>">}}
+---
 
-1. Once logged in, the "home" screen shows you various tiles which represent F5 Distributed Cloud console features. In this lab, we'll focus on the `NGINX One` Console tile as highlighted in the below screenshot.
+## Open and use NGINX One Console
 
-    {{< img src="nginx-one/labs/lab-01/lab1_none-tile.png" alt="<Alternative text>">}}
+1. Go to [https://console.ves.volterra.io/login/start](https://console.ves.volterra.io/login/start).
+2. Sign in using your Distributed Cloud account.
+3. On the home page, find the **NGINX One** tile.
+4. Select the tile to open the console.
+5. Make sure the service status shows **Enabled**.
+6. Select **Visit Service** to go to the **Overview** dashboard.
 
-1. Click on the `NGINX One` Console tile from the home screen. The NGINX One Console "welcome" screen will appear. Make sure the NGINX One Console status shows `green - Enabled` as highlighted in below screenshot.  Click on `Visit Service`.  If it is not enabled, you must request access from your F5 Distributed Cloud admin.
+If NGINX Console isn’t enabled, contact your XC administrator to request access.
 
-    {{< img src="nginx-one/labs/lab-01/lab1_none-service.png" alt="<Alternative text>">}}
+When no NGINX instances are connected, the dashboard will be empty. Once you add instances, it will show metrics like availability, version, and usage trends.
 
-2. By default, this will bring you to the NGINX One Console `Overview Dashboard` page. As no NGINX Instances are being managed by NGINX One Console you are seeing the blank dashboard as shown in below screenshot.
+---
 
-    {{< img src="nginx-one/labs/lab-01/lab1_none-empty-overview-dashboard.png" alt="<Alternative text>">}}
+## Create and save a data plane key
 
-    Once you add different NGINX Instance in the next section, this Dashboard would get populated by useful insights as depicted in below sample dashboard screenshot.
+To register NGINX instances, you need a data plane key.
 
-    {{< img src="nginx-one/labs/lab-01/lab1_none-overview-dashboard.png" alt="<Alternative text>">}}
+1. In the console, go to **Manage > Data Plane Keys**
+2. Select **Add Data Plane Key**
+3. Enter a name for the key
+4. Set an expiration date (or keep the default of one year)
+5. Select **Generate**
+6. Copy the key when it appears—**you won’t be able to see it again**
+7. Save it somewhere safe
 
-<br/>
+You can use the same key to register many instances. If you lose the key, you’ll need to create a new one.
 
-### Create and manage data plane keys that would be used to manage NGINX instances
+---
 
-1. Within the NGINX One Console, click on `Manage > Data Plane Keys`. This would show all the Data Plane keys that you currently have.
+## (Optional) Revoke a data plane key
 
-    ![Dataplane key](../media/lab1/lab1_none-dataplane-key-overview.png)
+To disable a key:
 
-1. Click on `Add Data Plane Key` to create a new Dataplane key. This should open an `Add Data Plane Key` window. Provide a name of your choice for the new key. By default, the expiration date is set for a year. You can modify the expiration data as per your preference or keep the defaults for this workshop. Click on `Generate` to create your new key.
+1. In the **Data Plane Keys** page, find the key you want to revoke
+2. Select the key
+3. Choose **Revoke**, then confirm
 
-    ![New Dataplane key](../media/lab1/lab1_none-dataplane-key-new.png)
+---
 
-    Once the key is generated, copy the value of this key to the clipboard using the `Copy` icon on the right side.  
+## (Optional) Delete a revoked key
 
-    > **NOTE:**  This Dataplane Key is only shown here and NGINX One Console doesn't save this value. Save this value locally as you would be using it to register new NGINX Instances.  You can Register as many NGINX Instances as you like with the same Dataplane Key.  If you lose the value of the key then you need to generate a new one again.
+You can only delete a key after you revoke it.
 
-    ![New Dataplane key save](../media/lab1/lab1_none-dataplane-key-save.png)
+1. In the **Revoked Keys** tab, find the key you want to delete
+2. Select the key
+3. Choose **Delete Selected**, then confirm
 
-1. Once you have saved the key locally for future use, click the `Close` button to finish the Data plane key creation process.
+---
 
-<br/>
+## Next steps
 
-### (Optional Exercise): Revoke a data plane key
+Now that you’ve explored NGINX One Console and created a key, you’re ready to connect your first NGINX instance.
 
-1. To revoke the data plane key, search the key that you would like to revoke within the Data Plane Keys Page and then click on the key. This should open a new overlay window on the right side as shown in below screenshot. Click on `Revoke` button. In the next confirmation window, again click on `Revoke` button to disable the data plane key.
+[Go to Lab 2 →](../lab2/readme.md)
 
-    ![Revoke Dataplane Key](../media/lab1/lab1_none-dataplane-key-revoke1.png)
-    ![Confirm Revoke](../media/lab1/lab1_none-dataplane-key-revoke2.png)
+---
 
-### (Optional Exercise): Delete a data plane key
+## References
 
-1. Active keys cannot be directly deleted. The key must first be revoked and then can be deleted.
-
-1. You can delete a revoked data plane key by opening the Data Plane Keys Page and then navigating to the `Revoked Keys` tab. This view should list all the revoked keys.
-
-    ![Revoke key list](../media/lab1/lab1_none-dataplane-key-revoke-list.png)
-
-    To delete a particular revoked key, select the key and then click on `Delete Selected` button. In the next confirmation window, again click on `Delete` button to delete the data plane key.
-
-    ![Delete key](../media/lab1/lab1_none-dataplane-key-delete1.png)
-    ![Delete key confirmation](../media/lab1/lab1_none-dataplane-key-delete2.png)
-
-<br/>
-
-This ends lab1.
-
-<br/>
-
-## References:
-
-- [NGINX One Console](https://docs.nginx.com/nginx-one/)
-- [NGINX Agent](https://docs.nginx.com/nginx-agent/overview/)
-
-<br/>
-
-### Authors
-
-- Chris Akker - Solutions Architect - Community and Alliances @ F5, Inc.
-- Shouvik Dutta - Solutions Architect - Community and Alliances @ F5, Inc.
-- Adam Currier - Solutions Architect - Community and Alliances @ F5, Inc.
-
--------------
-
-Navigate to ([Lab2](../lab2/readme.md) | [LabGuide](../readme.md))
-
+- [NGINX One Console documentation](https://docs.nginx.com/nginx-one/)
+- [NGINX Agent overview](https://docs.nginx.com/nginx-agent/overview/)
