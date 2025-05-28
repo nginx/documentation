@@ -1,5 +1,5 @@
 ---
-title: Add a license in a disconnected environment
+title: Add a license (disconnected)
 draft: false
 description: ''
 weight: 200
@@ -25,7 +25,7 @@ This guide shows you how to add a license to NGINX Instance Manager in a disconn
 
 ### Set the operation mode to disconnected
 
-To configure NGINX Instance Manager for a network-restricted environment, you need to set the `mode_of_operation` to `disconnected` in the configuration file.
+To configure NGINX Instance Manager for a disconnected environment, you need to set the `mode_of_operation` to `disconnected` in the configuration file.
 
 {{< include "nim/disconnected/set-mode-of-operation-disconnected.md" >}}
 

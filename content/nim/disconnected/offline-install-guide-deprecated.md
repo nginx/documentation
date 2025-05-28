@@ -1,5 +1,5 @@
 ---
-title: Manually install in a disconnected environment (deprecated)
+title: Manually install any version of NGINX Instance Manager (disconnected)
 weight: 100
 toc: true
 noindex: true
@@ -7,9 +7,6 @@ type: how-to
 product: NIM
 docs: DOCS-000
 ---
-
-{{<call-out "caution" "Deprecated documentation notice" "fa fa-exclamation-triangle" >}}
-This document outlines manual steps that have been replaced by a simplified script-based process. For most users, we recommend using the updated process documented [here]({{< ref "nim/disconnected/offline-install-guide.md" >}}).{{</call-out>}}
 
 ## Overview
 
