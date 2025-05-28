@@ -1,7 +1,7 @@
 ---
 title: "Technical Specifications"
 toc: false
-weight: 50
+weight: 200
 docs: DOCS-000
 ---
 

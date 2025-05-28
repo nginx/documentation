@@ -2,7 +2,7 @@
 docs:
 files:
    - content/agent/about.md
-   - content/nginx-one/agent/about.md
+   - content/nginx-one/agent/overview/about.md
 ---
 
 The figure shows:

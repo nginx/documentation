@@ -1,14 +1,10 @@
 ---
 title: "About"
-weight: 10
+weight: 100
 toc: true
 ---
 
-{{<call-out "note" "F5 NGINX Agent v3.0 is available now">}}
-NGINX Agent v3.0 is a major release that introduces new features and enhancements.
-
-Visit our [Update]({{< ref "/nginx-one/agent/install-upgrade/update.md" >}}) guide to install the latest version in your environment.
-{{</call-out>}}
+{{< include "agent/v3-available.md" >}}
 
 {{< include "agent/about.md" >}}
 

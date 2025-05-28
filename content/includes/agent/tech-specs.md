@@ -2,7 +2,7 @@
 docs:
 files:
    - content/agent/tech-specs.md
-   - content/nginx-one/agent/tech-specs.md
+   - content/nginx-one/agent/overview/tech-specs.md
 ---
 
 NGINX Agent is designed to operate efficiently on any system that meets the standard

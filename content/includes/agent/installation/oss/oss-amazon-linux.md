@@ -2,7 +2,7 @@
 docs:
 files:
    - content/agent/install-upgrade/install-from-oss-repo.md
-   - content/nginx-one/agent/install-from-oss-repo.md
+   - content/nginx-one/agent/install-upgrade/install-from-oss-repo.md
 ---
 
 1. Install the prerequisites:

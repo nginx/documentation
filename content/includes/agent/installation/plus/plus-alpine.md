@@ -2,7 +2,7 @@
 docs:
 files:
    - content/agent/install-upgrade/install-from-plus-repo.md
-   - content/nginx-one/agent/install-from-plus-repo.md
+   - content/nginx-one/agent/install-upgrade/install-from-plus-repo.md
 ---
 
 1. Log in to [MyF5 Customer Portal](https://account.f5.com/myf5/) and download
