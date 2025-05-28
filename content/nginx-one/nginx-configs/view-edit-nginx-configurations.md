@@ -7,7 +7,6 @@ weight: 300
 toc: true
 # Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
 type: tutorial
-aliases: /nginx-one/how-to/nginx-configs/view-edit-nginx-configurations/
 # Intended for internal catalogue and search, case sensitive:
 product: NGINX One
 ---
@@ -29,4 +28,4 @@ Alternatively, you can select **Save Changes As**. In the window that appears, y
 
 ## See also
 
-- [Manage Config Sync Groups]({{< ref "/nginx-one/config-sync-groups/manage-config-sync-groups.md" >}})
+- [Manage Config Sync Groups]({{< ref "/nginx-one/nginx-configs/config-sync-groups/manage-config-sync-groups.md" >}})

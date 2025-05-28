@@ -4,7 +4,6 @@ docs: null
 title: Clean up unavailable NGINX instances
 toc: true
 weight: 200
-aliases: /nginx-one/how-to/nginx-configs/clean-up-unavailable-instances/
 type:
 - how-to
 ---

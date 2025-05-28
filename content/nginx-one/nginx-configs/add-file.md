@@ -3,7 +3,6 @@ docs: null
 title: Add a file to an instance
 toc: true
 weight: 400
-aliases: /nginx-one/how-to/nginx-configs/add-file/
 type:
 - how-to
 ---
@@ -22,7 +21,7 @@ Before you add files in your configuration, ensure:
 ## Important considerations
 
 If your instance is a member of a Config Sync Group, changes that you make may be synchronized to other instances in that group.
-For more information, see how you can [Manage Config Sync Groups]({{< ref "/nginx-one/config-sync-groups/manage-config-sync-groups.md" >}}).
+For more information, see how you can [Manage Config Sync Groups]({{< ref "/nginx-one/nginx-configs/config-sync-groups/manage-config-sync-groups.md" >}}).
 
 ## Add a file
 
@@ -63,6 +62,6 @@ Enter the name of the desired configuration file, such as `abc.conf` and select 
 
 ## See also
 
-- [Create and manage data plane keys]({{< ref "/nginx-one/how-to/data-plane-keys/create-manage-data-plane-keys.md" >}})
+- [Create and manage data plane keys]({{< ref "/nginx-one/connect-instances/data-plane-keys/create-manage-data-plane-keys.md" >}})
 - [Add an NGINX instance]({{< ref "/nginx-one/nginx-configs/add-instance.md" >}})
-- [Manage certificates]({{< ref "/nginx-one/certificates/manage-certificates.md" >}})
+- [Manage certificates]({{< ref "/nginx-one/nginx-configs/certificates/manage-certificates.md" >}})

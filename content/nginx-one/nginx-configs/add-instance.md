@@ -3,7 +3,6 @@ description: ''
 title: Add an NGINX instance
 toc: true
 weight: 100
-aliases: /nginx-one/how-to/nginx-configs/add-instance/
 type:
 - how-to
 ---
@@ -20,9 +19,9 @@ Before you add an instance to NGINX One Console, ensure:
 - You have [administrator access]({{< ref "/nginx-one/rbac/roles.md" >}}) to NGINX One Console.
 - You have [configured instances of NGINX]({{< ref "/nginx-one/getting-started.md#add-your-nginx-instances-to-nginx-one" >}}) that you want to manage through NGINX One Console.
 - You have or are ready to configure a [data plane key]({{< ref "/nginx-one/getting-started.md#generate-data-plane-key" >}}).
-- You have or are ready to set up [managed certificates]({{< ref "/nginx-one/certificates/manage-certificates.md" >}}).
+- You have or are ready to set up [managed certificates]({{< ref "/nginx-one/nginx-configs/certificates/manage-certificates.md" >}}).
 
-{{< note >}}If this is the first time an instance is being added to a Config Sync Group, and you have not yet defined the configuration for that Config Sync Group, that instance provides the template for that group. For more information, see [Configuration management]({{< ref "nginx-one/config-sync-groups/manage-config-sync-groups#configuration-management" >}}).{{< /note >}}
+{{< note >}}If this is the first time an instance is being added to a Config Sync Group, and you have not yet defined the configuration for that Config Sync Group, that instance provides the template for that group. For more information, see [Configuration management]({{< ref "nginx-one/nginx-configs/config-sync-groups/manage-config-sync-groups#configuration-management" >}}).{{< /note >}}
 
 ## Add an instance
 
@@ -54,5 +53,5 @@ Once you've completed the process, NGINX One reassigns this as a managed certifi
 
 ## Add an instance to a Config Sync Group
 
-When you [Manage Config Sync Group membership]({{< ref "nginx-one/config-sync-groups/manage-config-sync-groups#manage-config-sync-group-membership" >}}), you can add an existing or new instance to the group of your choice.
+When you [Manage Config Sync Group membership]({{< ref "nginx-one/nginx-configs/config-sync-groups/manage-config-sync-groups#manage-config-sync-group-membership" >}}), you can add an existing or new instance to the group of your choice.
 That instance inherits the setup of that Config Sync Group.

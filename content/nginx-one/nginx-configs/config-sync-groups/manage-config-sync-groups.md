@@ -3,7 +3,6 @@ docs: null
 title: Manage Config Sync Groups
 toc: true
 weight: 300
-aliases: /nginx-one/how-to/config-sync-groups/manage-config-sync-groups/
 type:
 - how-to
 ---
@@ -183,7 +182,7 @@ When adding a new NGINX instance that is not yet registered with NGINX One, you 
 
 Data plane keys are required for registering NGINX instances with the NGINX One Console. These keys serve as secure tokens, ensuring that only authorized instances can connect and communicate with NGINX One.
 
-For more details on creating and managing data plane keys, see [Create and manage data plane keys]({{<ref "/nginx-one/how-to/data-plane-keys/create-manage-data-plane-keys.md" >}}).
+For more details on creating and managing data plane keys, see [Create and manage data plane keys]({{<ref "/nginx-one/connect-instances/data-plane-keys/create-manage-data-plane-keys.md" >}}).
 
 {{</call-out>}}
 
@@ -258,5 +257,5 @@ Monitor the **Config Sync Status** column. It can help you ensure that your conf
 
 ## See also
 
-- [Create and manage data plane keys]({{< ref "/nginx-one/how-to/data-plane-keys/create-manage-data-plane-keys.md" >}})
+- [Create and manage data plane keys]({{< ref "/nginx-one/connect-instances/data-plane-keys/create-manage-data-plane-keys.md" >}})
 - [Add an NGINX instance]({{< ref "/nginx-one/nginx-configs/add-instance.md" >}})
