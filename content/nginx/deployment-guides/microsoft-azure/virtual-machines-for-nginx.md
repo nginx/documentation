@@ -23,7 +23,7 @@ These instructions assume you have:
 
 - An Azure [account](https://azure.microsoft.com/en-us/free/).
 - An Azure [subscription](https://docs.microsoft.com/en-us/azure/azure-glossary-cloud-terminology?toc=/azure/virtual-network/toc.json#subscription).
-- An Azure [resource group](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-overview#resource-groups). In this guide, it is called <span style="color:#666666; font-weight:bolder; white-space: nowrap;">NGINX-Plus-HA</span>.
+- An Azure [resource group](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-overview#resource-groups). In this guide, it is called **NGINX&#8209;Plus&#8209;HA**.
 - An Azure [virtual network](https://docs.microsoft.com/en-us/azure/virtual-network/virtual-networks-overview).
 - If using the instructions in [Automating Installation with Ansible](#automate-ansible), basic Linux system administration skills, including installation of Linux software from vendor‑supplied packages, and file creation and editing.
 
@@ -48,25 +48,25 @@ In addition, to install NGINX software by following the linked instructions, you
    <span id="create-vm_Basics"></span>
 4. In the **Create a virtual machine** window that opens, enter the requested information on the **Basics** tab. In this guide, we're using the following values:
 
-   - **Subscription** – <span style="color:#666666; font-weight:bolder; white-space: nowrap;">NGINX-Plus-HA-subscription</span>
-   - **Resource group** – <span style="color:#666666; font-weight:bolder; white-space: nowrap;">NGINX-Plus-HA</span>
-   - **Virtual machine name** – <span style="color:#666666; font-weight:bolder; white-space: nowrap;">ngx-plus-1</span>
+   - **Subscription** – **NGINX&#8209;Plus&#8209;HA&#8209;subscription**
+   - **Resource group** – **NGINX&#8209;Plus&#8209;HA**
+   - **Virtual machine name** – **ngx&#8209;plus&#8209;1**
 
-     The value <span style="color:#666666; font-weight:bolder; white-space: nowrap;">ngx-plus-1</span> is one of the six used for VMs in [Active-Active HA for NGINX Plus on Microsoft Azure Using the Azure Standard Load Balancer]({{< ref "high-availability-standard-load-balancer.md" >}}). See <a href="#create-vm_list">Step 7</a> below for the other instance names.
+     The value **ngx&#8209;plus&#8209;1** is one of the six used for VMs in [Active-Active HA for NGINX Plus on Microsoft Azure Using the Azure Standard Load Balancer]({{< ref "high-availability-standard-load-balancer.md" >}}). See <a href="#create-vm_list">Step 7</a> below for the other instance names.
 
-   - **Region** – <span style="color:#666666; font-weight:bolder; white-space: nowrap;">(US) West US 2</span>
-   - **Availability options** – <span style="color:#666666; font-weight:bolder; white-space: nowrap;">No infrastructure redundancy required</span>
+   - **Region** – **(US)&nbsp;West&nbsp;US&nbsp;2**
+   - **Availability options** – **No&nbsp;infrastructure&nbsp;redundancy&nbsp;required**
 
      This option is sufficient for a demo like the one in this guide. For production deployments, you might want to select a more robust option; we recommend deploying a copy of each VM in a different Availability Zone. For more information, see the [Azure documentation](https://docs.microsoft.com/en-us/azure/availability-zones/az-overview).
-   - **Image** – <span style="color:#666666; font-weight:bolder; white-space: nowrap;">Ubuntu Server 18.04 LTS</span>
-   - **Azure Spot instance** – <span style="color:#666666; font-weight:bolder;">No</span>
-   - **Size** – <span style="color:#666666; font-weight:bolder;">B1s</span> (click <span style="color:#2d89d6; white-space: nowrap;">Select size</span> to access the <span style="font-weight:bold; white-space: nowrap;">Select a VM size</span> window, click the **B1s** row, and click the <span style="background-color:#137ad1; color:white;"> Select </span> button to return to the **Basics** tab)
-   - **Authentication type** – <span style="color:#666666; font-weight:bolder; white-space: nowrap;">SSH public key</span>
-   - **Username** – <span style="color:#666666; font-weight:bolder;">nginx_azure</span>
-   - **SSH public key source** – <span style="color:#666666; font-weight:bolder; white-space: nowrap;">Generate new key pair</span> (the other choices on the drop‑down menu are to use an existing key stored in Azure or an existing public key)
-   - **Key pair name** – <span style="color:#666666; font-weight:bolder; white-space: nowrap;">nginx_key</span>
-   - **Public inbound ports** – <span style="color:#666666; font-weight:bolder; white-space: nowrap;">Allow selected ports</span>
-   - **Select inbound ports** – Select from the drop-down menu: <span style="color:#666666; font-weight:bolder; white-space: nowrap;">SSH (22)</span> and <span style="color:#666666; font-weight:bolder; white-space: nowrap;">HTTP (80)</span>, plus <span style="color:#666666; font-weight:bolder; white-space: nowrap;">HTTPS (443)</span> if you plan to configure NGINX and NGINX Plus for SSL/TLS
+   - **Image** – **Ubuntu&nbsp;Server&nbsp;18.04&nbsp;LTS**
+   - **Azure Spot instance** – **No**
+   - **Size** – **B1s** (click <span style="color:#2d89d6; white-space: nowrap;">Select size</span> to access the **Select&nbsp;a&nbsp;VM&nbsp;size** window, click the **B1s** row, and click the <span style="background-color:#137ad1; color:white;"> Select </span> button to return to the **Basics** tab)
+   - **Authentication type** – **SSH&nbsp;public&nbsp;key**
+   - **Username** – **nginx_azure**
+   - **SSH public key source** – **Generate&nbsp;new&nbsp;key&nbsp;pair** (the other choices on the drop‑down menu are to use an existing key stored in Azure or an existing public key)
+   - **Key pair name** – **nginx_key**
+   - **Public inbound ports** – **Allow&nbsp;selected&nbsp;ports**
+   - **Select inbound ports** – Select from the drop-down menu: **SSH&nbsp;(22)** and **HTTP&nbsp;(80)**, plus **HTTPS&nbsp;(443)** if you plan to configure NGINX and NGINX Plus for SSL/TLS
 
    <a href="/nginx/images/azure-create-vm-basics.png"><img src="/nginx/images/azure-create-vm-basics.png" alt="screenshot of 'Basics' tab on Azure 'Create a virtual machine' page" width="1024" height="1168" class="aligncenter size-full wp-image-64995" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
@@ -75,11 +75,11 @@ In addition, to install NGINX software by following the linked instructions, you
 
    For simplicity, we recommend allocating **Standard** public IP addresses for all six VMs used in the deployment. At the time of initial publication of this guide, the hourly cost for six such VMs was only $0.008 more than for six VMs with Basic addresses; for current pricing, see the [Microsoft documentation](https://azure.microsoft.com/en-us/pricing/details/ip-addresses/).
 
-   To allocate a **Standard** public IP address, open the **Networking** tab on the **Create a virtual machine** window. Click <span style="color:#2d89d6; white-space: nowrap;">Create new</span> below the **Public IP** field. In the <span style="font-weight:bold; white-space: nowrap;">Create public IP address</span> column that opens at right, click the **Standard** radio button under **SKU**. You can change the value in the **Name** field; here we are accepting the default created by Azure, <span style="color:#666666; font-weight:bolder; white-space: nowrap;">ngx-plus-1-ip</span>. Click the <span style="background-color:#137ad1; color:white; font-weight:bold;"> OK </span> button.
+   To allocate a **Standard** public IP address, open the **Networking** tab on the **Create a virtual machine** window. Click <span style="color:#2d89d6; white-space: nowrap;">Create new</span> below the **Public IP** field. In the **Create&nbsp;public&nbsp;IP&nbsp;address** column that opens at right, click the **Standard** radio button under **SKU**. You can change the value in the **Name** field; here we are accepting the default created by Azure, **ngx&#8209;plus&#8209;1&#8209;ip**. Click the ** OK ** button.
 
    <a href="/nginx/images/azure-create-vm-networking.png"><img src="/nginx/images/azure-create-vm-networking.png" alt="screenshot of 'Networking' tab on Azure 'Create a virtual machine' page" width="1024" height="718" class="aligncenter size-full wp-image-64994" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
-6. At this point, you have the option of selecting nondefault values on the **Disks**, **Networking**, **Management**, **Advanced**, and **Tags** tabs. For a demo like the one in this guide, for example, selecting <span style="color:#666666; font-weight:bolder;">Standard HDD</span> for <span style="white-space: nowrap;">OS disk type</span> on the **Disks** tab saves money compared to the default, <span style="color:#666666; font-weight:bolder;">Premium SSD</span>. You might also want to create or apply tags to this VM, on the **Tags** tab.
+6. At this point, you have the option of selecting nondefault values on the **Disks**, **Networking**, **Management**, **Advanced**, and **Tags** tabs. For a demo like the one in this guide, for example, selecting **Standard HDD** for <span style="white-space: nowrap;">OS disk type</span> on the **Disks** tab saves money compared to the default, **Premium SSD**. You might also want to create or apply tags to this VM, on the **Tags** tab.
 
    When you have completed your changes on all tabs, click the <span style="background-color:#137ad1; color:white; white-space: nowrap;"> Review + create </span> button at the bottom of the **Create a virtual machine** page.
 
@@ -87,7 +87,7 @@ In addition, to install NGINX software by following the linked instructions, you
 
    To change any settings, open the appropriate tab. If the settings are correct, click the <span style="background-color:#137ad1; color:white;"> Create </span> button.
 
-   If you chose in [Step 4](#create-vm_Basics) to generate a new key pair, a <span style="white-space: nowrap; font-weight:bold;">Generate new key pair</span> window pops up. Click the <span style="background-color:#137ad1; color:white; white-space: nowrap;"> Download key and create private resource </span> button.
+   If you chose in [Step 4](#create-vm_Basics) to generate a new key pair, a **Generate&nbsp;new&nbsp;key&nbsp;pair** window pops up. Click the <span style="background-color:#137ad1; color:white; white-space: nowrap;"> Download key and create private resource </span> button.
 
    <a href="/nginx/images/azure-create-vm-validation-passed.png"><img src="/nginx/images/azure-create-vm-validation-passed.png" alt="screenshot of validation message on Azure 'Create a virtual machine' page" width="1024" height="954" class="aligncenter size-full image-64993" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
@@ -98,16 +98,16 @@ In addition, to install NGINX software by following the linked instructions, you
    <span id="create-vm_list"></span>
 7. If you are following these instructions to create the six VMs used in [Active-Active HA for NGINX Plus on Microsoft Azure Using the Azure Standard Load Balancer]({{< ref "high-availability-standard-load-balancer.md" >}}), their names are as follows:
 
-   - <span style="color:#666666; font-weight:bolder;">ngx-plus-1</span>
-   - <span style="color:#666666; font-weight:bolder;">ngx-plus-2</span>
-   - <span style="color:#666666; font-weight:bolder;">ngx-oss-app1-1</span>
-   - <span style="color:#666666; font-weight:bolder;">ngx-oss-app1-2</span>
-   - <span style="color:#666666; font-weight:bolder;">ngx-oss-app2-1</span>
-   - <span style="color:#666666; font-weight:bolder;">ngx-oss-app2-2</span>
+   - **ngx-plus-1**
+   - **ngx-plus-2**
+   - **ngx-oss-app1-1**
+   - **ngx-oss-app1-2**
+   - **ngx-oss-app2-1**
+   - **ngx-oss-app2-2**
 
-   For <span style="color:#666666; font-weight:bolder;">ngx-plus-2</span>, it is probably simplest to repeat Steps 2 through 6 above (or purchase a second prebuilt VM in the [Microsoft Azure Marketplace](https://azuremarketplace.microsoft.com/en-us/marketplace/apps?search=NGINX%20Plus)).
+   For **ngx-plus-2**, it is probably simplest to repeat Steps 2 through 6 above (or purchase a second prebuilt VM in the [Microsoft Azure Marketplace](https://azuremarketplace.microsoft.com/en-us/marketplace/apps?search=NGINX%20Plus)).
 
-   For the NGINX Open Source VMs, you can create them individually using Steps 2 through 6. Alternatively, create them based on an Azure image. To do so, follow Steps 2 through 6 above to create a source VM (naming it <span style="color:#666666; font-weight:bolder; white-space: nowrap;">nginx-oss</span>), [install the NGINX Open Source software](#install-nginx) on it, and then follow the instructions in [Optional: Creating an NGINX Open Source Image](#create-nginx-oss-image).
+   For the NGINX Open Source VMs, you can create them individually using Steps 2 through 6. Alternatively, create them based on an Azure image. To do so, follow Steps 2 through 6 above to create a source VM (naming it **nginx&#8209;oss**), [install the NGINX Open Source software](#install-nginx) on it, and then follow the instructions in [Optional: Creating an NGINX Open Source Image](#create-nginx-oss-image).
 
 <span id="connect-vm"></span>
 ## Connecting to a Virtual Machine
@@ -118,7 +118,7 @@ To install and configure NGINX Open Source or NGINX Plus on a VM, you need to o
 
    <a href="/nginx/images/azure-create-vm-virtual-machines.png"><img src="/nginx/images/azure-create-vm-virtual-machines.png" alt="screenshot of Azure 'Virtual machines' page with list of VMs" width="1024" height="396" class="aligncenter size-full wp-image-64991" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
-2. On the page that opens (<span style="white-space: nowrap; font-weight:bold;">ngx-plus-1</span> in this guide), note the VM's public IP address (in the <span style="white-space: nowrap; font-weight:bold;">Public IP address</span> field in the right column).
+2. On the page that opens (**ngx&#8209;plus&#8209;1** in this guide), note the VM's public IP address (in the **Public&nbsp;IP&nbsp;address** field in the right column).
 
    <a href="/nginx/images/azure-create-vm-ngx-plus-1.png"><img src="/nginx/images/azure-create-vm-ngx-plus-1.png" alt="screenshot of details page for 'ngx-plus-1' VM in Azure" width="1024" height="363" class="aligncenter size-full wp-image-64990" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
@@ -130,8 +130,8 @@ To install and configure NGINX Open Source or NGINX Plus on a VM, you need to o
 
    where
 
-   - `<private-key-file>` is the name of the file containing the private key paired with the public key you entered in the <span style="white-space: nowrap; font-weight:bold;">SSH public key</span> field in <a href="#create-vm_Basics">Step 4</a> of _Creating a Microsoft Azure Virtual Machine_.
-   - `<username>` is the name you entered in the **Username** field in <a href="#create-vm_Basics">Step 4</a> of _Creating a Microsoft Azure Virtual Machine_ (in this guide it is <span style="color:#666666; font-weight:bolder;">nginx_azure</span>).
+   - `<private-key-file>` is the name of the file containing the private key paired with the public key you entered in the **SSH&nbsp;public&nbsp;key** field in <a href="#create-vm_Basics">Step 4</a> of _Creating a Microsoft Azure Virtual Machine_.
+   - `<username>` is the name you entered in the **Username** field in <a href="#create-vm_Basics">Step 4</a> of _Creating a Microsoft Azure Virtual Machine_ (in this guide it is **nginx_azure**).
    - `<public-IP-address>` is the address you looked up in the previous step.
 
 <span id="install-nginx"></span>
@@ -169,7 +169,7 @@ NGINX publishes a unified Ansible role for NGINX Open Source and NGINX Plus on 
    ansible-galaxy install nginxinc.nginx
    ```
 
-4. (NGINX Plus only) Copy the <span style="white-space: nowrap; font-weight:bold;">nginx-repo.key</span> and <span style="white-space: nowrap; font-weight:bold;">nginx-repo.crt</span> files provided by NGINX to <span style="white-space: nowrap; font-weight:bold;">~/.ssh/ngx-certs/</span>.
+4. (NGINX Plus only) Copy the **nginx&#8209;repo.key** and **nginx&#8209;repo.crt** files provided by NGINX to **~/.ssh/ngx&#8209;certs/**.
 
 5. Create a file called **playbook.yml** with the following contents:
 
@@ -196,7 +196,7 @@ To streamline the process of installing NGINX Open Source on multiple VMs, you c
 
 2. Navigate to the **Virtual machines** page, if you are not already there.
 
-2. In the list of VMs, click the name of the one to use as a source image (in this guide, we have called it <span style="color:#666666; font-weight:bolder; white-space: nowrap;">ngx-oss</span>). Remember that NGINX Open Source needs to be installed on it already.
+2. In the list of VMs, click the name of the one to use as a source image (in this guide, we have called it **ngx&#8209;oss**). Remember that NGINX Open Source needs to be installed on it already.
 
 3. On the page than opens, click the **Capture** icon in the top navigation bar.
 
@@ -207,10 +207,10 @@ To streamline the process of installing NGINX Open Source on multiple VMs, you c
    Then select the following values:
 
    - **Name** – Keep the current value.
-   - **Resource group** – Select the appropriate resource group from the drop‑down menu. Here it is <span style="color:#666666; font-weight:bolder; white-space: nowrap;">NGINX-Plus-HA</span>.
+   - **Resource group** – Select the appropriate resource group from the drop‑down menu. Here it is **NGINX&#8209;Plus&#8209;HA**.
    - **Automatically delete this virtual machine after creating the image** – We recommend checking the box, since you can't do anything more with the image anyway.
-   - **Zone resiliency** – <span style="color:#666666; font-weight:bolder;">On</span>.
-   - **Type the virtual machine name** – Name of the source VM (<span style="color:#666666; font-weight:bolder; white-space: nowrap;">ngx-oss</span> in this guide).
+   - **Zone resiliency** – **On**.
+   - **Type the virtual machine name** – Name of the source VM (**ngx&#8209;oss** in this guide).
 
    Click the <span style="background-color:#137ad1; color:white;"> Create </span> button.
 
@@ -220,7 +220,7 @@ To streamline the process of installing NGINX Open Source on multiple VMs, you c
 
 It takes a few moments for the image to be created. When it's ready, you can create VMs from it with NGINX Open Source already installed.
 
-1. Navigate to the **Images** page. (One method is to type <span style="color:#666666; font-weight:bolder;">images</span> in the search box in the Microsoft Azure header bar and select that value in the **Services** section of the resulting drop‑down menu.)
+1. Navigate to the **Images** page. (One method is to type **images** in the search box in the Microsoft Azure header bar and select that value in the **Services** section of the resulting drop‑down menu.)
 
    <a href="/nginx/images/azure-create-image-images.png"><img src="/nginx/images/azure-create-image-images.png" alt="screenshot of Azure 'Images' page" width="1024" height="349" class="aligncenter size-full wp-image-64987" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
