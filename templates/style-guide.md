@@ -64,6 +64,7 @@ The table provides guidelines about the terms you should and should not use for 
 | abort | Never use this term in your docs. Use the preferred terms when writing about a process:<br>stop<br>interrupt<br>shut down | Abort is acceptable to use in programmer or similar technical documentation only if it is a function name, parameter name, or otherwise part of a name in the API. |
 | above and below | Avoid. Refer to the specific section, table, figure, an so on, as opposed to indicating its relative position in the document. | |
 | access | Used as a verb, it's jargon, so don't use it.| |
+| AI Chatbot | The official name for any F5 chatbot: "F5 AI Assistant" | |
 | allows | Not recommended. \<br>Avoid phrases such as "NGINX Plus allows you to…". \<br><br>Use direct, active verbs from the perspective of the user instead. | |
 | and/or | Not recommended. Usually, this means either "and" or "or". Try to be specific in your writing; people are counting on you for clear instructions. | |
 | anthropomorphism | Avoid referring to the product or feature as though it were alive. \<br>When referring to products, stay away from words like: decides, knows, sees, listens, and hears.<br>A wizard guides you, it doesn't walk you through the steps. | |
