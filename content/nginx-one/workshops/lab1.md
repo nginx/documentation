@@ -8,7 +8,7 @@ nd-product: NGINX-ONE
 
 ## Introduction
 
-This guide helps you log in to NGINX One Console and understand the basics of how it works. You’ll learn how to get started, find your way around the Console, and manage your NGINX instances using data plane keys.
+This guide helps you log in to NGINX One Console and understand the basics of how it works. You’ll learn how to get started, find your way around the console, and manage your NGINX instances using data plane keys.
 
 ## What you’ll learn
 
