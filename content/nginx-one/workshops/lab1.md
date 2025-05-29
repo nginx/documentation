@@ -46,7 +46,7 @@ With NGINX One Console, you don’t need to switch between tools. You get a sing
 
 NGINX One Console connects to each NGINX instance using a lightweight agent called **NGINX Agent**.
 
-The agent is responsible for securely registering and managing each instance through the Console.
+The agent is responsible for securely registering and managing each instance through the console.
 
 There are a few ways to install the NGINX Agent:
 
