@@ -56,30 +56,30 @@ Create a new application for NGINX Plus:
 
 1. Log in to your Ping Identity account. The administrative dashboard opens automatically. In this guide, we show the PingOne for Enterprise dashboard, and for brevity refer simply to ”PingOne”.
 
-2. Click <span style="white-space: nowrap; background-color:#595f66; color:white"> APPLICATIONS </span> in the title bar, and on the **My Applications** page that opens, click **OIDC** and then the <span style="white-space: nowrap; font-weight:bold;">+ Add Application</span> button.
+2. Click <span style="white-space: nowrap; background-color:#595f66; color:white"> APPLICATIONS </span> in the title bar, and on the **My Applications** page that opens, click **OIDC** and then the **+&nbsp;Add&nbsp;Application** button.
 
    <img src="/nginx/images/pingidentity-sso-my-applications-empty.png" alt="" width="1024" height="355" class="aligncenter size-full" />
 
-3. The <span style="white-space: nowrap; font-weight:bold;">Add OIDC Application</span> window pops up. Click the <span style="white-space: nowrap; color:#4a95c7;">ADVANCED CONFIGURATION</span> box, and then the <span style="background-color:#4a95c7; color:white;"> Next </span> button.
+3. The **Add&nbsp;OIDC&nbsp;Application** window pops up. Click the <span style="white-space: nowrap; color:#4a95c7;">ADVANCED CONFIGURATION</span> box, and then the <span style="background-color:#4a95c7; color:white;"> Next </span> button.
 
    <img src="/nginx/images/pingidentity-sso-add-oidc-application.png" alt="" width="956" height="662" class="aligncenter size-full" />
 
-4. In section 1 (PROVIDE DETAILS ABOUT YOUR APPLICATION), type a name in the **APPLICATION NAME** field and a short description in the **SHORT DESCRIPTION** field. Here, we're using <span style="color:#666666; font-weight:bolder; white-space: nowrap;">nginx-plus-application</span> and <span style="color:#666666; font-weight:bolder; white-space: nowrap;">NGINX Plus</span>. Choose a value from the **CATEGORY** drop‑down menu; here we’re using <span style="color:#666666; font-weight:bolder; white-space: nowrap;">Information Technology</span>. You can also add an icon if you wish. Click the <span style="background-color:#4a95c7; color:white;"> Next </span> button.
+4. In section 1 (PROVIDE DETAILS ABOUT YOUR APPLICATION), type a name in the **APPLICATION NAME** field and a short description in the **SHORT DESCRIPTION** field. Here, we're using **nginx&#8209;plus&#8209;application** and **NGINX&nbsp;Plus**. Choose a value from the **CATEGORY** drop‑down menu; here we’re using **Information&nbsp;Technology**. You can also add an icon if you wish. Click the <span style="background-color:#4a95c7; color:white;"> Next </span> button.
 
    <img src="/nginx/images/pingidentity-sso-section1.png" alt="" width="954" height="665" class="aligncenter size-full" />
 
 5. In section 2 (AUTHORIZATION SETTINGS), perform these steps:
 
-   1. Under **GRANTS**, click both <span style="color:#666666; font-weight:bolder; white-space: nowrap;">Authorization Code</span> and <span style="color:#666666; font-weight:bolder;">Implicit</span>.<br/>
-   2. Under **CREDENTIALS**, click the <span style="white-space: nowrap; font-weight:bold;">+ Add Secret</span> button. PingOne creates a client secret and opens the **CLIENT SECRETS** field to display it, as shown in the screenshot. To see the actual value of the secret, click the eye icon.<br/>
+   1. Under **GRANTS**, click both **Authorization&nbsp;Code** and **Implicit**.<br/>
+   2. Under **CREDENTIALS**, click the **+&nbsp;Add&nbsp;Secret** button. PingOne creates a client secret and opens the **CLIENT SECRETS** field to display it, as shown in the screenshot. To see the actual value of the secret, click the eye icon.<br/>
    3.	Click the <span style="background-color:#4a95c7; color:white;"> Next </span> button.
 
    <img src="/nginx/images/pingidentity-sso-section2.png" alt="" width="959" height="1054" class="aligncenter size-full" />
 
 6. In section 3 (SSO FLOW AND AUTHENTICATION SETTINGS):
 
-   1. In the <span style="white-space: nowrap; font-weight:bold;">START SSO URL</span> field, type the URL where users access your application. Here we’re using <span style="color:#666666; font-weight:bolder; white-space: nowrap;">https://example.com</span>.
-   2. In the **REDIRECT URIS** field, type the URI of the NGINX Plus instance including the port number, and ending in **/\_codexch**. Here we’re using <span style="color:#666666; font-weight:bolder; white-space: nowrap;">https://my-nginx-plus.example.com:443/\_codexch</span> (the full value is not visible in the screenshot).
+   1. In the **START&nbsp;SSO&nbsp;URL** field, type the URL where users access your application. Here we’re using **https://example.com**.
+   2. In the **REDIRECT URIS** field, type the URI of the NGINX Plus instance including the port number, and ending in **/\_codexch**. Here we’re using **https://my&#8209;nginx&#8209;plus.example.com:443/\_codexch** (the full value is not visible in the screenshot).
 
       **Notes:**
 
@@ -88,34 +88,34 @@ Create a new application for NGINX Plus:
 
    <img src="/nginx/images/pingidentity-sso-section3.png" alt="" width="1024" height="781" class="aligncenter size-full" />
 
-7. In section 4 (DEFAULT USER PROFILE ATTRIBUTE CONTRACT), optionally add attributes to the required <span style="color:#666666; font-weight:bolder;">sub</span> and <span style="color:#666666; font-weight:bolder;">idpid</span> attributes, by clicking the <span style="white-space: nowrap; font-weight:bold;">+ Add Attribute</span> button. We’re not adding any in this example. When finished, click the <span style="background-color:#4a95c7; color:white;"> Next </span> button.
+7. In section 4 (DEFAULT USER PROFILE ATTRIBUTE CONTRACT), optionally add attributes to the required **sub** and **idpid** attributes, by clicking the **+&nbsp;Add&nbsp;Attribute** button. We’re not adding any in this example. When finished, click the <span style="background-color:#4a95c7; color:white;"> Next </span> button.
 
    <img src="/nginx/images/pingidentity-sso-section4.png" alt="" width="1024" height="532" class="aligncenter size-full" />
 
-8. In section 5 (CONNECT SCOPES), click the circled plus-sign on the <span style="white-space: nowrap; font-weight:bold;">OpenID Profile (profile)</span> and <span style="white-space: nowrap; font-weight:bold;">OpenID Profile Email (email)</span> scopes in the <span style="white-space: nowrap; font-weight:bold;">LIST OF SCOPES</span> column. They are moved to the **CONNECTED SCOPES** column, as shown in the screenshot. Click the <span style="background-color:#4a95c7; color:white;"> Next </span> button.
+8. In section 5 (CONNECT SCOPES), click the circled plus-sign on the **OpenID&nbsp;Profile&nbsp;(profile)** and **OpenID&nbsp;Profile&nbsp;Email&nbsp;(email)** scopes in the **LIST&nbsp;OF&nbsp;SCOPES** column. They are moved to the **CONNECTED SCOPES** column, as shown in the screenshot. Click the <span style="background-color:#4a95c7; color:white;"> Next </span> button.
 
    <img src="/nginx/images/pingidentity-sso-section5.png" alt="" width="960" height="451" class="aligncenter size-full" />
 
-9. In section 6 (ATTRIBUTE MAPPING), map attributes from your identity repository to the claims available to the application. The one attribute you must map is **sub**, and here we have selected the value <span style="color:#666666; font-weight:bolder;">Email</span> from the drop‑down menu (the screenshot is abridged for brevity).
+9. In section 6 (ATTRIBUTE MAPPING), map attributes from your identity repository to the claims available to the application. The one attribute you must map is **sub**, and here we have selected the value **Email** from the drop‑down menu (the screenshot is abridged for brevity).
 
    <img src="/nginx/images/pingidentity-sso-section6.png" alt="" width="959" height="863" class="aligncenter size-full" />
 
    <span id="ping-group-access"></span>
-10. In section 7 (GROUP ACCESS), select the groups that will have access to the application, by clicking the circled plus-sign on the corresponding boxes in the **AVAILABLE GROUPS** column. The boxes move to the **ADDED GROUPS** column. As shown in the screenshot we have selected the two default groups, <span style="color:#666666; font-weight:bolder;">Domain Administrators@directory</span> and <span style="color:#666666; font-weight:bolder;">Users@directory</span>.
+10. In section 7 (GROUP ACCESS), select the groups that will have access to the application, by clicking the circled plus-sign on the corresponding boxes in the **AVAILABLE GROUPS** column. The boxes move to the **ADDED GROUPS** column. As shown in the screenshot we have selected the two default groups, **Domain Administrators@directory** and **Users@directory**.
 
     Click the <span style="background-color:#4fb97a; color:white;"> Done </span> button.
 
     <img src="/nginx/images/pingidentity-sso-section7.png" alt="" width="959" height="516" class="aligncenter size-full" />
 
-11. You are returned to the **My Applications** window, which now includes a row for <span style="white-space: nowrap; font-weight:bold;">nginx-plus-application</span>. Click the toggle switch at the right end of the row to the “on” position, as shown in the screenshot. Then click the “expand” icon at the end of the row, to display the application’s details.
+11. You are returned to the **My Applications** window, which now includes a row for **nginx&#8209;plus&#8209;application**. Click the toggle switch at the right end of the row to the “on” position, as shown in the screenshot. Then click the “expand” icon at the end of the row, to display the application’s details.
 
     <img src="/nginx/images/pingidentity-sso-my-applications-new-app.png" alt="" width="1024" height="408" class="aligncenter size-full" />
 
     <span id="ping-client-id-secrets"></span>
 12. On the page that opens, make note of the values in the following fields on the **Details** tab. You will add them to the NGINX Plus configuration in [Step 4 of _Configuring NGINX Plus_](#nginx-plus-variables).
 
-    - **CLIENT ID** (in the screenshot, <span style="white-space: nowrap; color:#666666; font-weight:bolder;">28823604-83c5-4608-88da-c73fff9c607a</span>)
-    - **CLIENT SECRETS** (in the screenshot, <span style="white-space: nowrap; color:#666666; font-weight:bolder;">7GMKILBofxb...</span>); click on the eye icon to view the actual value
+    - **CLIENT ID** (in the screenshot, **28823604&#8209;83c5&#8209;4608&#8209;88da&#8209;c73fff9c607a**)
+    - **CLIENT SECRETS** (in the screenshot, **7GMKILBofxb...**); click on the eye icon to view the actual value
 
     <img src="/nginx/images/pingidentity-sso-my-applications-details.png" alt="" width="1024" height="963" class="aligncenter size-full" />
 
@@ -124,7 +124,7 @@ Create a new application for NGINX Plus:
 
 Configure NGINX Plus as the OpenID Connect relying party:
 
-1. Create a clone of the [<span style="white-space: nowrap; font-weight:bold;">nginx-openid-connect</span>](https://github.com/nginxinc/nginx-openid-connect) GitHub repository.
+1. Create a clone of the [**nginx&#8209;openid&#8209;connect**](https://github.com/nginxinc/nginx-openid-connect) GitHub repository.
 
    ```shell
    git clone https://github.com/nginxinc/nginx-openid-connect
@@ -190,7 +190,7 @@ In a browser, enter the address of your NGINX Plus instance and try to log in u
 <span id="troubleshooting"></span>
 ## Troubleshooting
 
-See the [**Troubleshooting**](https://github.com/nginxinc/nginx-openid-connect#troubleshooting) section at the <span style="white-space: nowrap; font-weight:bold;">nginx-openid-connect</span> repository on GitHub.
+See the [**Troubleshooting**](https://github.com/nginxinc/nginx-openid-connect#troubleshooting) section at the **nginx&#8209;openid&#8209;connect** repository on GitHub.
 
 ### Revision History
 

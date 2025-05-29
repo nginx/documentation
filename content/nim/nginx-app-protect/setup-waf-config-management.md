@@ -244,7 +244,7 @@ This typically happens when:
 - A managed instance is upgraded to a new NGINX App Protect WAF version.
 - You add a new instance running a different version of NGINX App Protect WAF.
 
-To enable this automatic download feature, you need to [upload your NGINX App Protect WAF certificate and key](#upload-nginx-app-protect-waf-certificate-and-key) to NGINX Instance Manager. This step allows Instance Manager to securely connect to the NGINX package repository and retrieve the necessary files. You only need to upload the certificate and key once.
+To enable this automatic download feature, you need to [upload your NGINX App Protect WAF certificate and key](#upload-the-nginx-app-protect-waf-certificate-and-key) to NGINX Instance Manager. This step allows Instance Manager to securely connect to the NGINX package repository and retrieve the necessary files. You only need to upload the certificate and key once.
 
 If the certificate is missing or invalid, or if NGINX Instance Manager can’t connect to the repository, you’ll see an error like:
 
@@ -301,7 +301,7 @@ Follow these steps to get and upload the certificate and key:
 4. Create a JSON file that includes the contents of both files. Replace newlines (`\n`) in each file with literal `\n` characters so the certificate and key can be formatted correctly inside the JSON.
 
    <details open>
-   <summary>Example resquest</summary>
+   <summary>Example request</summary>
 
    ```json
     {

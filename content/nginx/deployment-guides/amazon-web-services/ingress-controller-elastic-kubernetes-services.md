@@ -33,7 +33,7 @@ The `PREFIX` argument specifies the repo name in your private container registry
    
 
 <span id="amazon-eks"></span>
-## Creating an Amazon EKS Cluster
+## Create an Amazon EKS Cluster
 You can create an Amazon EKS cluster with:
 - the AWS Management Console
 - the AWS CLI
@@ -43,14 +43,14 @@ This guide covers the `eksctl` command as it is the simplest option.
 
 1. Follow the instructions in the [eksctl.io documentation](https://eksctl.io/installation/) to install or update the `eksctl` command.
 
-2. Create an Amazon EKS cluster by following the instructions in the [AWS documentation](https://docs.aws.amazon.com/eks/latest/userguide/getting-started-eksctl.html). Select the <span style="white-space: nowrap; font-weight:bold;">Managed nodes – Linux</span> option for each step. Note that the <span style="white-space: nowrap;">`eksctl create cluster`</span> command in the first step can take ten minutes or more.
+2. Create an Amazon EKS cluster by following the instructions in the [AWS documentation](https://docs.aws.amazon.com/eks/latest/userguide/getting-started-eksctl.html). Select the **Managed&nbsp;nodes&nbsp;–&nbsp;Linux** option for each step. Note that the <span style="white-space: nowrap;">`eksctl create cluster`</span> command in the first step can take ten minutes or more.
 
 <span id="amazon-ecr"></span>
-## Pushing the NGINX Plus Ingress Controller Image to AWS ECR
+## Push the NGINX Plus Ingress Controller Image to AWS ECR
 
 This step is only required if you do not plan to use the prebuilt NGINX Open Source image.
 
-1. Use the [AWS documentation](https://docs.aws.amazon.com/AmazonECR/latest/userguide/repository-create.html) to create a repository in the Amazon Elastic Container Registry (ECR). In Step 4 of the AWS instructions, name the repository <span style="white-space: nowrap; font-weight:bold;">nginx-plus-ic</span> as that is what we use in this guide. 
+1. Use the [AWS documentation](https://docs.aws.amazon.com/AmazonECR/latest/userguide/repository-create.html) to create a repository in the Amazon Elastic Container Registry (ECR). In Step 4 of the AWS instructions, name the repository **nginx&#8209;plus&#8209;ic** as that is what we use in this guide. 
 
 2. Run the following AWS CLI command. It generates an auth token for your AWS ECR registry, then pipes it into the `docker login` command. This lets AWS ECR authenticate and authorize the upcoming Docker requests. For details about the command, see the [AWS documentation](https://docs.aws.amazon.com/AmazonECR/latest/userguide/registry_auth.html).
 
@@ -81,7 +81,7 @@ This step is only required if you do not plan to use the prebuilt NGINX Open Sou
    ```
 
 <span id="ingress-controller"></span>
-## Installing the NGINX Plus Ingress Controller
+## Install the NGINX Plus Ingress Controller
 
 Use [our documentation](https://docs.nginx.com/nginx-ingress-controller/installation/installation-with-manifests/) to install the NGINX Plus Ingress Controller in your Amazon EKS cluster.
 
@@ -97,7 +97,7 @@ You need a Kubernetes `LoadBalancer` service to route traffic to the NGINX Ingre
 
 We also recommend enabling the PROXY Protocol for both the NGINX Plus Ingress Controller and your NLB target groups. This is used to forward client connection information. If you choose not to enable the PROXY protocol, see the [Appendix](#appendix).
 
-### Configuring a `LoadBalancer` Service to Use NLB
+### Configure a `LoadBalancer` Service to Use NLB
 
 Apply the manifest `deployments/service/loadbalancer-aws-elb.yaml` to create a `LoadBalancer` of type NLB:
 
@@ -105,7 +105,7 @@ Apply the manifest `deployments/service/loadbalancer-aws-elb.yaml` to create a `
    kubectl apply -f deployments/service/loadbalancer-aws-elb.yaml
    ```
 
-### Enabling the PROXY Protocol
+### Enable the PROXY Protocol
 
 1. Add the following keys to the `deployments/common/nginx-config.yaml` config map file:
 
@@ -158,7 +158,7 @@ Apply the manifest `deployments/service/loadbalancer-aws-elb.yaml` to create a `
 
 
 <span id="appendix"></span>
-## Appendix: Disabling the PROXY Protocol
+## Appendix: Disable the PROXY Protocol
 
 If you want to disable the PROXY Protocol, perform these steps.
 

@@ -37,7 +37,7 @@ Config Sync Groups support configuration inheritance and persistance. If you've 
 
 On the other hand, if you remove all instances from a Config Sync Group, the original configuration persists. In other words, the group retains the configuration from that first instance (or the original configuration). Any new instance that you add later still inherits that configuration.
 
-{{< tip >}}You can use _unmanaged_ certificates. Your actions can affect the [Config Sync Group status](#config-sync-group-status). For future instances on the data plane, if it:
+{{< tip >}}You can use _unmanaged_ certificates. NGINX One Console does not store unmanaged certs or keys, only metadata associated with the certs or keys for monitoring. Your actions can affect the [Config Sync Group status](#config-sync-group-status). For future instances on the data plane, if it:
 
 - Has unmanaged certificates in the same file paths as defined by the NGINX configuration as the Config Sync Group, that instance will be [**In Sync**](#config-sync-group-status).
 - Will be [**Out of Sync**](#config-sync-group-status) if the instance:
@@ -99,6 +99,12 @@ When you create a Config Sync Group, you can manage the configurations of multip
 Now that you created a Config Sync Group, you can add instances to that group. As described in [Configuration management](#configuration-management), the first instance you add to a group, when you add it, defines the initial configuration for the group. You can update the configuration for the entire Config Sync Group.
 
 Any instance that joins the group afterwards inherits that configuration.
+
+{{< note >}} If you see the following [Config Sync Group Status](#config-sync-group-status) message: **Out of Sync**:
+
+ - Review the instance details in NGINX One Console to identify any publication problems.
+ - After you change the configuration of the Config Sync Group, [Publish it](#publish-the-config-sync-group-configuration].
+In that case, review and resolve discrepancies between the Instance and the rest of the Config Sync Group. {{< /note >}}
 
 ### Add an existing instance to a Config Sync Group {#add-an-existing-instance-to-a-config-sync-group}
 
