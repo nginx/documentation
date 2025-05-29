@@ -68,33 +68,14 @@ Download the SSL certificate and private key required for NGINX Instance Manager
 
 Run the installation script in `offline` mode to download NGINX Instance Manager, NGINX Open Source, ClickHouse (unless skipped), and all required dependencies into a tarball for use in disconnected environments.
 
-### Required flags for packaging
+### Installation script options
 
-**Installation mode and platform**
-
-- `-m offline`: Required to package the installation files into a tarball for disconnected environments.
-- {{< include "nim/installation/install-script-flags/distribution.md" >}}
-
-**SSL certificate and key**
-
-- {{< include "nim/installation/install-script-flags/cert.md" >}}
-- {{< include "nim/installation/install-script-flags/key.md" >}}
-
-**NGINX installation**
-
-- `-n`: Include the latest version of NGINX Open Source in the tarball. 
-
-  This option is optional in `offline` mode—if not specified, the script installs the latest version of NGINX Open Source by default.
-
-  NGINX Plus is **not supported** when using the script in offline mode.  
-
-  To install NGINX Plus offline, see the [manual installation guide]({{< ref "nginx/admin-guide/installing-nginx/installing-nginx-plus.md#offline_install" >}}).
-
-**ClickHouse installation**
-
-- {{< include "nim/installation/install-script-flags/skip-clickhouse.md" >}}
-
-- {{< include "nim/installation/install-script-flags/clickhouse-version.md" >}}
+| Category | Option or Flag |
+|----------|----------------|
+| **Installation mode and platform** | `-m offline`: Required to package the installation files into a tarball for disconnected environments.<br>{{< include "nim/installation/install-script-flags/distribution.md" >}} |
+| **SSL certificate and key** | {{< include "nim/installation/install-script-flags/cert.md" >}}<br>{{< include "nim/installation/install-script-flags/key.md" >}} |
+| **NGINX installation** | `-n`: Include the latest version of NGINX Open Source in the tarball.<br><br>This option is optional in `offline` mode—if not specified, the script installs the latest version of NGINX Open Source by default.<br><br>NGINX Plus is **not supported** when using the script in offline mode.<br><br>To install NGINX Plus offline, see the [manual installation guide]({{< ref "nginx/admin-guide/installing-nginx/installing-nginx-plus.md#offline_install" >}}). |
+| **ClickHouse installation** | {{< include "nim/installation/install-script-flags/skip-clickhouse.md" >}}<br>{{< include "nim/installation/install-script-flags/clickhouse-version.md" >}} |
 
 ### Example: packaging command
 

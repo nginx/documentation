@@ -76,7 +76,7 @@ Install NGINX Open Source or NGINX Plus on the host where you'll install NGINX I
 
 </details>
 
-{{<see-also>}}Make sure to review the [Technical Specifications]({{< ref "/nim/fundamentals/tech-specs" >}}) guide for sizing requirements and other recommended specs.{{</see-also>}}
+{{< see-also >}} Make sure to review the [Technical Specifications]({{< ref "/nim/fundamentals/tech-specs" >}}) guide for sizing requirements and other recommended specs. {{< /see-also >}}
 
 ---
 
@@ -86,7 +86,7 @@ Install NGINX Open Source or NGINX Plus on the host where you'll install NGINX I
 
 NGINX Instance Manager uses ClickHouse to store metrics, events, alerts, and configuration data.
 
-If you do not need to store metrics, you can skip the installation steps in this section. Instead, you must disable metrics collection in the `/etc/nms/nms.conf` configuration file.
+If you don’t need to store metrics, you can skip installing ClickHouse. But you must use NGINX Agent version 2.41.1 or later, and you must disable metrics collection in the `/etc/nms/nms.conf` file.
 
 For instructions, see [Disable metrics collection]({{< ref "nim/system-configuration/configure-clickhouse.md#disable-metrics-collection" >}}).
 

@@ -14,9 +14,9 @@ This guide explains how to install and upgrade NGINX Instance Manager in environ
 
 ## Before you begin
 
-{{<call-out "important" "Complete the required prerequisites" "fas fa-exclamation-triangle">}}
+{{< call-out "important" "Complete the required prerequisites" "fas fa-exclamation-triangle" >}}
 You must complete the following prerequisite steps **before** installing NGINX Instance Manager. **Skipping these steps could cause installation issues**.
-{{</call-out>}}
+{{</ call-out >}}
 
 ### Security considerations
 

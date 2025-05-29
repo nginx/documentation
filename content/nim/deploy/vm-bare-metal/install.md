@@ -129,41 +129,17 @@ By default, the script:
 - Installs the latest version of NGINX Instance Manager
 - Requires an active internet connection
 
+#### Installation script options
+
 You can customize the installation using the following options:
 
-**Installation platform**
 
-- {{< include "nim/installation/install-script-flags/distribution.md" >}}
-
-**SSL certificate and key**
-
-- {{< include "nim/installation/install-script-flags/cert.md" >}}
-- {{< include "nim/installation/install-script-flags/key.md" >}}
-
-
-**NGINX installation**
-
-You can install either NGINX Open Source or NGINX Plus—but not both.  
-
-If you don’t specify `-n` or `-p`, the script installs the latest version of NGINX Open Source by default.
-
-- `-n`: Install the latest version of NGINX Open Source.
-- `-p`: Install the latest version of NGINX Plus as the API gateway. Must be used with `-j` to provide a JWT license.
-- `-j <path/to/license.jwt>`: Path to the `license.jwt` file (required if using `-p` to install NGINX Plus).  
-
-    A JWT license is required for NGINX Plus R33 and later (see [NGINX Plus R33 release notes]({{< ref "nginx/releases.md#r33" >}})).
-
-    By default, the script looks for the license at `/etc/nginx/license.jwt` (or `/usr/local/etc/nginx/license.jwt` on FreeBSD).
-
-    If you use a custom path, note that custom paths aren’t supported until after the R33 upgrade.  
-    See [About subscription licenses]({{< ref "solutions/about-subscription-licenses.md#apply-the-jwt" >}}) for details and a workaround.
-
-**ClickHouse installation**
-
-- {{< include "nim/installation/install-script-flags/skip-clickhouse.md" >}}
-
-- {{< include "nim/installation/install-script-flags/clickhouse-version.md" >}}
-
+| Category | Option or Flag |
+|----------|----------------|
+| **Installation platform** | {{< include "nim/installation/install-script-flags/distribution.md" >}} |
+| **SSL certificate and key** | {{< include "nim/installation/install-script-flags/cert.md" >}}<br>{{< include "nim/installation/install-script-flags/key.md" >}} |
+| **NGINX installation** | `-n` Install the latest version of NGINX Open Source. *(Default if `-n` or `-p` not specified)*<br><br>`-p` Install NGINX Plus as the API gateway. Must be used with `-j` to provide a JWT license.<br><br>`-j <path>` Path to the `license.jwt` file. Required when using `-p`. |
+| **ClickHouse installation** | {{< include "nim/installation/install-script-flags/skip-clickhouse.md" >}}<br>{{< include "nim/installation/install-script-flags/clickhouse-version.md" >}} |
 
 **Example: install with default key and certificate paths**
 
