@@ -55,7 +55,7 @@ There are a few ways to install the NGINX Agent:
 - Install manually using package managers like `apt` or `yum`
 - Use the one-line curl command that NGINX One provides during registration
 
-When you register a new instance in the Console, you'll get a ready-to-use `curl` command that downloads and installs the NGINX Agent on your target system.
+When you register a new instance in the console, you'll get a ready-to-use `curl` command that downloads and installs the NGINX Agent on your target system.
 
 For more information about NGINX Agent, see the [NGINX Agent documentation](https://docs.nginx.com/nginx-agent/overview/).
 
