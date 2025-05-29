@@ -36,8 +36,6 @@ When you work with such archives, consider the following:
 - Do _not_ unpack archives directly to your NGINX configuration directories. You do not want to accidentally overwrite existing configuration files.
 - The files are set to a default file permission mode of 0644.
 - Do not include files with secrets or personally identifying information.
-- We ignore hidden files.
-  - If you import or export such files in archives, NGINX One Console does not include those files.
 - The size of the archive is limited to 5 MB.  The size of all uncompressed files in the archive is limited to 10 MB.
 
 {{< tip >}}
