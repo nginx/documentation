@@ -38,7 +38,7 @@ _Based on NGINX Open Source 1.27.4_
 
 NGINX Plus R34 is a feature release:
 
-- [OIDC authentication support]({{< ref "nginx/admin-guide/security-controls/configuring-oidc.md" >}}) via native [ngx_http_oidc_module](https://nginx.org/en/docs/http/ngx_http_oidc_module.html) module.
+- [OIDC authentication support]({{< ref "/nginx/admin-guide/security-controls/configuring-oidc.md" >}}) via native [ngx_http_oidc_module](https://nginx.org/en/docs/http/ngx_http_oidc_module.html) module.
 
 - NGINX usage reporting: [proxy](https://nginx.org/en/docs/ngx_mgmt_module.html#proxy) support.
 - [Caching](https://blog.nginx.org/blog/optimizing-resource-usage-for-complex-ssl-configurations) of SSL certificates and secret keys with variables for [http](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_certificate_cache) and [stream](https://nginx.org/en/docs/stream/ngx_stream_ssl_module.html#ssl_certificate_cache).
@@ -76,7 +76,7 @@ NGINX Plus R34 is supported on:
 - Alpine Linux 3.21 is new in this release
 - SUSE Linux Enterprise Server 12 is removed
 - Ubuntu 20.04 is deprecated
-- the [OpenTracing]({{< ref "nginx/admin-guide/dynamic-modules/opentracing.md" >}}) dynamic module is no longer available. It is recommended to use the [OpenTelemetry Distributed Tracing]({{< ref "nginx/admin-guide/dynamic-modules/opentelemetry.md" >}}) module, which incorporates all the features of the OpenTracing module.
+- the [OpenTracing]({{< ref "/nginx/admin-guide/dynamic-modules/opentracing.md" >}}) dynamic module is no longer available. It is recommended to use the [OpenTelemetry Distributed Tracing]({{< ref "/nginx/admin-guide/dynamic-modules/opentelemetry.md" >}}) module, which incorporates all the features of the OpenTracing module.
 
 More information: [Announcing NGINX Plus R34](https://community.f5.com/kb/technicalarticles/f5-nginx-plus-r34-release-now-available/340300)
 
@@ -121,7 +121,7 @@ The argument is a file name in the `SSLKEYLOGFILE` format compatible with Wiresh
 
 - Response trailers support in proxy with the [`proxy_pass_trailers`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass_trailers) directive that allows passing trailer fields from a proxied server to a client.
 
-- The [NGINX JavaScript]({{< ref "nginx/admin-guide/dynamic-modules/nginscript.md" >}}) module was updated to version [0.8.7](https://nginx.org/en/docs/njs/changes.html#njs0.8.7), featuring QuickJS [runtime support](https://nginx.org/en/docs/njs/engine.html).
+- The [NGINX JavaScript]({{< ref "/nginx/admin-guide/dynamic-modules/nginscript.md" >}}) module was updated to version [0.8.7](https://nginx.org/en/docs/njs/changes.html#njs0.8.7), featuring QuickJS [runtime support](https://nginx.org/en/docs/njs/engine.html).
 
 - Added initial support for Post Quantum Cryptography.
 
@@ -151,7 +151,7 @@ The argument is a file name in the `SSLKEYLOGFILE` format compatible with Wiresh
 - Oracle Linux 7.4+ is removed
 - SUSE Linux Enterprise Server 12 is deprecated
 - support for s390x architecture removed
-- the [Lua]({{< ref "nginx/admin-guide/dynamic-modules/lua.md" >}}) module is no longer available for SUSE Linux Enterprise Server 12
+- the [Lua]({{< ref "/nginx/admin-guide/dynamic-modules/lua.md" >}}) module is no longer available for SUSE Linux Enterprise Server 12
 
 More information: [Announcing NGINX Plus R33](https://community.f5.com/kb/technicalarticles/announcing-nginx-plus-r33-release/336403)
 
@@ -184,7 +184,7 @@ NGINX Plus R32 is a feature release:
 
 - The [`stream_pass`](https://nginx.org/en/docs/stream/ngx_stream_pass_module.html) module that allows passing the accepted connection directly to any configured listening socket in `http`, `stream`, `mail`, and other similar modules
 
-- NGINX Plus [official container images](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-docker/)
+- NGINX Plus [official container images]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-docker.md" >}})
 
 - [Virtual servers](https://nginx.org/en/docs/stream/ngx_stream_core_module.html#server_name) in the [`stream`](https://nginx.org/en/docs/stream/ngx_stream_core_module.html) module
 
@@ -251,8 +251,8 @@ NGINX Plus R32 is supported on:
 - RHEL 7 is deprecated
 - Oracle Linux 7 is deprecated
 - FreeBSD 12 is removed
-- [OpenTracing dynamic module](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/opentracing/) (package name is `nginx-plus-module-opentracing-module`) is deprecated
-- [ModSecurity WAF dynamic module](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/nginx-waf/) (package name is `nginx-plus-module-modsecurity`) reached end of support and is no longer available
+- [OpenTracing dynamic module]({{< ref "/nginx/admin-guide/dynamic-modules/opentracing.md" >}}) (package name is `nginx-plus-module-opentracing-module`) is deprecated
+- [ModSecurity WAF dynamic module]({{< ref "/nginx/admin-guide/dynamic-modules/nginx-waf.md" >}}) (package name is `nginx-plus-module-modsecurity`) reached end of support and is no longer available
 
 More information: [Announcing NGINX Plus R32](https://www.f5.com/company/blog/nginx/announcing-NGINX-plus-R32)
 
@@ -288,7 +288,7 @@ _Based on NGINX Open Source 1.25.3_
 NGINX Plus R31 is a feature release:
 
 - [Native usage reporting](https://nginx.org/en/docs/ngx_mgmt_module.html)
-of NGINX Plus installations to [NGINX Instance Manager](https://docs.nginx.com/nginx-management-suite/nim/)
+of NGINX Plus installations to [NGINX Instance Manager]({{< ref "/nim/" >}})
 
 - The [$upstream_last_server_name](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#var_upstream_last_server_name) variable that keeps the name of the last selected upstream server and allows passing it to the proxied server through SNI
 
@@ -336,7 +336,7 @@ of NGINX Plus installations to [NGINX Instance Manager](https://docs.nginx.com/n
 
   - improved detection of misbehaving clients when using HTTP/2
 
-- The [OpenTracing](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/opentracing/) module introduced in NGINX Plus [R18](#r18) is deprecated, it recommended to use the [OpenTelemetry Distributed Tracing](https://nginx.org/en/docs/ngx_otel_module.html) module that incorporates all the features of the OpenTracing module.
+- The [OpenTracing]({{< ref "/nginx/admin-guide/dynamic-modules/opentracing.md" >}}) module introduced in NGINX Plus [R18](#r18) is deprecated, it recommended to use the [OpenTelemetry Distributed Tracing](https://nginx.org/en/docs/ngx_otel_module.html) module that incorporates all the features of the OpenTracing module.
 
 NGINX Plus R31 is supported on:
 
@@ -417,7 +417,7 @@ NGINX Plus R30 is a feature release:
 
   - Per-worker connection statistics including accepted, dropped, active and idle connections, total and current requests
 
-- The [Prometheus-njs module](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/prometheus-njs/) now supports version [`9`](https://nginx.org/en/docs/http/ngx_http_api_module.html) of the [API](https://nginx.org/en/docs/http/ngx_http_api_module.html)
+- The [Prometheus-njs module]({{< ref "/nginx/admin-guide/dynamic-modules/prometheus-njs.md" >}}) now supports version [`9`](https://nginx.org/en/docs/http/ngx_http_api_module.html) of the [API](https://nginx.org/en/docs/http/ngx_http_api_module.html)
 
 - DNS reload optimization: now DNS name expiry time for dynamically-resolved upstream hosts is preserved across reloads
 
@@ -505,7 +505,7 @@ NGINX Plus R29 is a feature release:
 
 - [SAML Authentication reference implementation](https://github.com/nginxinc/nginx-saml) based on native njs [XML support](http://nginx.org/en/docs/njs/reference.html#xml)
 
-- OpenTelemetry Distributed Tracing [module](https://nginx.org/en/docs/ngx_otel_module.html), distributed in NGINX Plus packages (package name is `nginx-plus-module-otel`) and is available as a [dynamic module](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/opentelemetry/)
+- OpenTelemetry Distributed Tracing [module](https://nginx.org/en/docs/ngx_otel_module.html), distributed in NGINX Plus packages (package name is `nginx-plus-module-otel`) and is available as a [dynamic module]({{< ref "/nginx/admin-guide/dynamic-modules/opentelemetry.md" >}})
 
 - Experimental support for [HTTP/3 and QUIC](https://nginx.org/en/docs/http/ngx_http_v3_module.html), distributed in NGINX Plus packages (package name is `nginx-plus-quic`)
 
@@ -515,9 +515,9 @@ NGINX Plus R29 is a feature release:
 
 - New feature in [OpenID Connect reference implementation](https://github.com/nginxinc/nginx-openid-connect): support for access token
 
-- The [Prometheus-njs module](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/prometheus-njs/) now supports version [`8`](https://nginx.org/en/docs/http/ngx_http_api_module.html#compatibility) of the [API](https://nginx.org/en/docs/http/ngx_http_api_module.html), including SSL extended statistics for each HTTP [upstream](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_http_upstream) and stream [upstream](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_stream_upstream), SSL extended statistics for each HTTP [server zone](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_http_server_zone) and stream [server zone](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_stream_server_zone), and extended statistics for [SSL](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_ssl_object)
+- The [Prometheus-njs module]({{< ref "/nginx/admin-guide/dynamic-modules/prometheus-njs.md" >}}) now supports version [`8`](https://nginx.org/en/docs/http/ngx_http_api_module.html#compatibility) of the [API](https://nginx.org/en/docs/http/ngx_http_api_module.html), including SSL extended statistics for each HTTP [upstream](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_http_upstream) and stream [upstream](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_stream_upstream), SSL extended statistics for each HTTP [server zone](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_http_server_zone) and stream [server zone](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_stream_server_zone), and extended statistics for [SSL](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_ssl_object)
 
-- The NGINX JavaScript ([njs](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/nginscript/)) module for NGINX Plus was updated to version [0.7.12](http://nginx.org/en/docs/njs/changes.html#njs0.7.12), featuring extended [Fetch API](https://nginx.org/en/docs/njs/reference.html#ngx_fetch) and [WebCrypto API](http://nginx.org/en/docs/njs/reference.html#builtin_crypto), [XML module](https://nginx.org/en/docs/njs/reference.html#xml_node) to parse and modify XML documents, [Zlib module](https://nginx.org/en/docs/njs/reference.html#zlib) to support compression
+- The NGINX JavaScript ([njs]({{< ref "/nginx/admin-guide/dynamic-modules/nginscript.md" >}}) module for NGINX Plus was updated to version [0.7.12](http://nginx.org/en/docs/njs/changes.html#njs0.7.12), featuring extended [Fetch API](https://nginx.org/en/docs/njs/reference.html#ngx_fetch) and [WebCrypto API](http://nginx.org/en/docs/njs/reference.html#builtin_crypto), [XML module](https://nginx.org/en/docs/njs/reference.html#xml_node) to parse and modify XML documents, [Zlib module](https://nginx.org/en/docs/njs/reference.html#zlib) to support compression
 
 NGINX Plus R29 is supported on:
 
@@ -640,7 +640,7 @@ NGINX Plus R27 is a feature release:
 that enables keepalive connections for health checks and specifies the time
 during which requests can be processed through one keepalive connection
 
-- The [Prometheus-njs module](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/prometheus-njs/) now supports version [`7`](https://nginx.org/en/docs/http/ngx_http_api_module.html#compatibility) of the [API](https://nginx.org/en/docs/http/ngx_http_api_module.html), including `/stream/limit_conns/`, `/http/limit_conns/`, `/http/limit_req/` data, and HTTP status code statistics for [upstreams](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_http_upstream), [server zones](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_http_server_zone) and [location zones](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_http_location_zone)
+- The [Prometheus-njs module]({{< ref "/nginx/admin-guide/dynamic-modules/prometheus-njs.md" >}}) now supports version [`7`](https://nginx.org/en/docs/http/ngx_http_api_module.html#compatibility) of the [API](https://nginx.org/en/docs/http/ngx_http_api_module.html), including `/stream/limit_conns/`, `/http/limit_conns/`, `/http/limit_req/` data, and HTTP status code statistics for [upstreams](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_http_upstream), [server zones](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_http_server_zone) and [location zones](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_http_location_zone)
 
 - [kTLS](https://www.nginx.com/blog/improving-nginx-performance-with-kernel-tls/) is now also available on RHEL 9.0 and Ubuntu 22.04
 
@@ -731,7 +731,7 @@ NGINX Plus R26 is supported on:
 - The [`js_include`](https://nginx.org/en/docs/http/ngx_http_js_module.html#js_include) directive was removed, the [`js_import`](http://nginx.org/en/docs/http/ngx_http_js_module.html#js_import) directive should be used instead
 - The [`aio sendfile`](https://nginx.org/en/docs/http/ngx_http_core_module.html#aio) directive was removed, the [`sendfile`](https://nginx.org/en/docs/http/ngx_http_core_module.html#sendfile) directive should be used instead
 - The third-party `Cookie‑Flag` was removed from the dynamic modules repository, the [`proxy_cookie_flags`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_cookie_flags) directive should be used instead
-- Swagger UI with REST API YAML specification is not included into NGINX Plus packages by default any more and now is a part of [docs.nginx.com](https://docs.nginx.com/nginx/admin-guide/monitoring/live-activity-monitoring/#the-swagger-ui)
+- Swagger UI with REST API YAML specification is not included into NGINX Plus packages by default any more and now is a part of [docs.nginx.com]({{< ref "/nginx/admin-guide/monitoring/live-activity-monitoring.md#the-swagger-ui" >}})
 
 More information: [Announcing NGINX Plus R26](https://www.nginx.com/blog/nginx-plus-r26-released/)
 
@@ -882,7 +882,9 @@ NGINX Plus R24 is supported on:
 
 **Upgrade Note:**
 
-NGINX Plus repositories have been separated into individual repositories based on operating system distribution and license subscription. Before upgrading from previous NGINX Plus versions, you must first reconfigure your repositories to point to the correct location. To reconfigure your repository, follow the [installation instructions](http://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/) for your operating system.
+NGINX Plus repositories have been separated into individual repositories based on operating system distribution and license subscription. Before upgrading from previous NGINX Plus versions, you must first reconfigure your repositories to point to the correct location. To reconfigure your repository, follow the [installation instructions]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}).
+
+ for your operating system.
 
 More information: [Announcing NGINX Plus R24](https://www.nginx.com/blog/nginx-plus-r24-released/)
 
@@ -913,7 +915,7 @@ NGINX Plus R23 is a feature release:
 
 - Support for cookie flags with the [proxy_cookie_flags](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_cookie_flags) and [userid_flags](https://nginx.org/en/docs/http/ngx_http_userid_module.html#userid_flags) directives
 
-- Introduced script that performs [unprivileged installation](https://docs.nginx.com/nginx/admin-guide/installing-nginx#unpriv_install) of NGINX Plus
+- Introduced script that performs [unprivileged installation]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md#unpriv_install" >}}) of NGINX Plus
 
 - New command-line switch to redefine an error log file: [-e](https://nginx.org/en/docs/switches.html)
 
@@ -1128,10 +1130,10 @@ NGINX Plus R18 is a feature release:
 - For TCP/UDP, existing connections to proxied upstream server can be explicitly closed after server is removed from upstream group due to health check failure, API call, or re-resolve action (new [proxy_session_drop](https://nginx.org/en/docs/stream/ngx_stream_proxy_module.html#proxy_session_drop) directive)
 - New variable, [$upstream_bytes_sent](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#var_upstream_bytes_sent), contains number of bytes sent to an upstream server
 - New or updated dynamic modules:
-  - [Brotli](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/brotli/) (New): General‑purpose, lossless data compression algorithm
-  - [OpenTracing](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/opentracing/) (New): Ability to instrument NGINX Plus with OpenTracing‑compliant requests for a range of distributed tracing services, such as Datadog, Jaeger, and Zipkin
-  - [Lua](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/lua//) (Updated): Scripting language for NGINX Plus, updated to use LuaJIT 2.1
-  - [NGINX JavaScript](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/nginscript/) (Updated): JavaScript module for NGINX Plus, updated to version [0.3.0](https://nginx.org/en/docs/njs/changes.html#njs0.3.0)
+  - [Brotli]({{< ref "/nginx/admin-guide/dynamic-modules/brotli.md" >}}) (New): General‑purpose, lossless data compression algorithm
+  - [OpenTracing]({{< ref "/nginx/admin-guide/dynamic-modules/opentracing.md" >}}) (New): Ability to instrument NGINX Plus with OpenTracing‑compliant requests for a range of distributed tracing services, such as Datadog, Jaeger, and Zipkin
+  - [Lua]({{< ref "/nginx/admin-guide/dynamic-modules/lua.md" >}}) (Updated): Scripting language for NGINX Plus, updated to use LuaJIT 2.1
+  - [NGINX JavaScript]({{< ref "/nginx/admin-guide/dynamic-modules/nginscript.md" >}}) (Updated): JavaScript module for NGINX Plus, updated to version [0.3.0](https://nginx.org/en/docs/njs/changes.html#njs0.3.0)
 
 NGINX Plus R18 is supported on:
 
@@ -1231,7 +1233,7 @@ NGINX Plus R16 is a feature release:
 - Support for [AWS PrivateLink](https://aws.amazon.com/privatelink/), Amazon's technology for creating secure tunnels into a VPC
 - opaque session token support in the [OpenID Connect reference implementation](https://github.com/nginxinc/nginx-openid-connect)
 - New [$ssl_preread_protocol](https://nginx.org/en/docs/stream/ngx_stream_ssl_preread_module.html#var_ssl_preread_protocol) variable to distinguish between SSL/TLS and other protocols when forwarding traffic using a TCP ([stream](https://nginx.org/en/docs/stream/ngx_stream_core_module.html)) proxy
-- New [Encrypted Session](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/encrypted-session/) dynamic module
+- New [Encrypted Session]({{< ref "/nginx/admin-guide/dynamic-modules/encrypted-session.md" >}}) dynamic module
 - The NGINX JavaScript module has been updated:
   - Single object (`r`) is used to access both request and response attributes associated with each HTTP request
   - New language support: `bytesFrom()`, `padStart()`, `padEnd()`, `getrandom()`, `getentropy()`, and binary literals
@@ -1290,7 +1292,7 @@ NGINX Plus R15 is a feature release:
 - Updates to [LDAP authentication reference implementation](https://github.com/nginxinc/nginx-ldap-auth)
 - New [$upstream_queue_time](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#var_upstream_queue_time) variable to hold the amount of time a request spends in the [upstream queue](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#queue)
 - New [$ssl_preread_alpn_protocols](https://nginx.org/en/docs/stream/ngx_stream_ssl_preread_module.html#var_ssl_preread_alpn_protocols) variable to hold the Application Layer Protocol Negotiation (ALPN) protocols presented by client
-- New [Cookie-Flag](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/cookie-flag/) dynamic module
+- New [Cookie-Flag]({{< ref "/nginx/admin-guide/dynamic-modules/cookie-flag.md" >}}) dynamic module
 
 NGINX Plus R15 is supported on:
 
@@ -1521,7 +1523,7 @@ NGINX Plus R11 is supported on:
 
 - FreeBSD 11.0 is new in this release
 - Ubuntu 16.10 is new in this release
-- The `nginx-plus-extras` package is no longer provided; migrate to the `nginx-plus` package and then install the needed [dynamic modules](https://www.nginx.com/products/dynamic-modules)
+- The `nginx-plus-extras` package is no longer provided; migrate to the `nginx-plus` package and then install the needed [dynamic modules][Cookie-Flag]({{< ref "/nginx/admin-guide/dynamic-modules/dynamic-modules.md" >}})
 
 More information: [Announcing NGINX Plus R11](https://www.nginx.com/blog/nginx-plus-r11-released/)
 
@@ -1566,7 +1568,7 @@ NGINX Plus R10 is supported on:
 **Notes:**
 
 - Ubuntu 15.10 is no longer supported
-- NGINX Plus R10 is the last release to include the `nginx-plus-extras` package; if using this package, migrate to the `nginx-plus` package and then install the needed [dynamic modules](https://www.nginx.com/products/dynamic-modules)
+- NGINX Plus R10 is the last release to include the `nginx-plus-extras` package; if using this package, migrate to the `nginx-plus` package and then install the needed [dynamic modules]({{< ref "/nginx/admin-guide/dynamic-modules/dynamic-modules.md" >}})
 
 More information: [Announcing NGINX Plus R10](https://www.nginx.com/blog/nginx-plus-r10-released/)
 
