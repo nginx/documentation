@@ -70,7 +70,7 @@ For more information about NGINX Agent, see the [NGINX Agent documentation](http
 5. Make sure the service status shows **Enabled**.
 6. Select **Visit Service** to go to the **Overview** dashboard.
 
-If NGINX Console isn’t enabled, contact your XC administrator to request access.
+If NGINX One Console isn’t enabled, contact your XC administrator to request access.
 
 When no NGINX instances are connected, the dashboard will be empty. Once you add instances, it will show metrics like availability, version, and usage trends.
 
