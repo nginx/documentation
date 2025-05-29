@@ -15,7 +15,7 @@ This guide explains how to deploy F5 NGINX Plus in a high-availability configura
 **Notes:**
 
 - The GCE environment changes constantly. This could include names and arrangements of GUI elements. This guide was accurate when published. But, some GCE GUI elements might have changed over time. Use this guide as a reference and adapt to the current GCE working environment.
-- The configuration described in this guide allows anyone from a public IP address to access the NGINX Plus instances. While this works in common scenarios in a test environment, we do not recommend it in production. Block external HTTP/HTTPS access to **app&#8209;1** and **app&#8209;2** instances to external IP address before production deployment. Alternatively, remove the external IP addresses for all application instances, so they're accessible only on the internal GCE network.
+- The configuration described in this guide allows anyone from a public IP address to access the NGINX Plus instances. While this works in common scenarios in a test environment, we do not recommend it in production. Block external HTTP/HTTPS access to {{<nb>}}**app-1**{{</nb>}} and {{<nb>}}**app-2**{{</nb>}} instances to external IP address before production deployment. Alternatively, remove the external IP addresses for all application instances, so they're accessible only on the internal GCE network.
 
 
 
@@ -38,7 +38,7 @@ The GCE network LB assigns each new client to a specific NGINX Plus LB. This ass
 
 NGINX Plus LB uses the round-robin algorithm to forward requests to specific app instances. It also adds a session cookie. It keeps future requests from the same client on the same app instance as long as it's running.
 
-This deployment guide uses two groups of app instances: – **app&#8209;1** and **app&#8209;2**. It demonstrates [load balancing](https://www.nginx.com/products/nginx/load-balancing/) between different app types. But both groups have the same app configurations.
+This deployment guide uses two groups of app instances: – {{<nb>}}**app-1**{{</nb>}} and {{<nb>}}**app-2**{{</nb>}}. It demonstrates [load balancing](https://www.nginx.com/products/nginx/load-balancing/) between different app types. But both groups have the same app configurations.
 
 You can adapt the deployment to distribute unique connections to different groups of app instances. This can be done by creating discrete upstream blocks and routing content based on the URI.
 
@@ -69,17 +69,17 @@ Create a new GCE project to host the all‑active NGINX Plus deployment.
 
 1. Log into the [GCP Console](http://console.cloud.google.com) at **console.cloud.google.com**.
 
-2. The GCP **Home&nbsp;>&nbsp;Dashboard** tab opens. Its contents depend on whether you have any existing projects.
+2. The GCP {{<nb>}}**Home > Dashboard**{{</nb>}} tab opens. Its contents depend on whether you have any existing projects.
 
    - If there are no existing projects, click the <span style="background-color:#3366cc; color:white; white-space: nowrap;"> Create a project </span> button.
 
      <img src="/nginx/images/gce-dashboard-no-project.png" alt="Screenshot of the Google Cloud Platform dashboard that appears when there are no existing projects (creating a project is the first step in configuring NGINX Plus as the Google Cloud load balancer)" width="1024" height="422" class="aligncenter size-full wp-image-47475" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
-   - If there are existing projects, the name of one of them appears in the upper left of the blue header bar (in the screenshot, it's <span style="background-color:#3366cc; color:white; white-space: nowrap;"> My Test Project </span>). Click the project name and select **Create&nbsp;project** from the menu that opens.
+   - If there are existing projects, the name of one of them appears in the upper left of the blue header bar (in the screenshot, it's <span style="background-color:#3366cc; color:white; white-space: nowrap;"> My Test Project </span>). Click the project name and select {{<nb>}}**Create project**{{</nb>}} from the menu that opens.
 
      <img src="/nginx/images/gce-dashboard-existing-project.png" alt="Screenshot of the Google Cloud Platform page that appears when other projects already exist (creating a project is the first step in configuring NGINX Plus as the Google Cloud load balancer)" width="1024" height="533" class="aligncenter size-full wp-image-47474" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
-3. Type your project name in the **New&nbsp;Project** window that pops up, then click <span style="color:#3366cc;">CREATE</span>. We're naming the project **NGINX Plus&nbsp;All&#8209;Active&#8209;LB**.
+3. Type your project name in the {{<nb>}}**New Project**{{</nb>}} window that pops up, then click <span style="color:#3366cc;">CREATE</span>. We're naming the project **NGINX {{<nb>}}Plus All-Active-LB**{{</nb>}}.
 
     <img src="/nginx/images/gce-new-project-popup.png" alt="Screenshot of the New Project pop-up window for naming a new project on the Google Cloud Platform, which is the first step in configuring NGINX Plus as the Google load balancer" width="512" height="249" class="aligncenter size-full wp-image-47514" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
@@ -87,24 +87,24 @@ Create a new GCE project to host the all‑active NGINX Plus deployment.
 
 Create firewall rules that allow access to the HTTP and HTTPS ports on your GCE instances. You'll attach the rules to all the instances you create for the deployment.
 
-1. Navigate to the **Networking&nbsp;>&nbsp;Firewall&nbsp;rules** tab and click <span style="background-color:#3366cc; color:white;"> + </span> <span style="color:#3366cc;">CREATE FIREWALL RULE</span>. (The screenshot shows the default rules provided by GCE.)
+1. Navigate to the {{<nb>}}**Networking > Firewall rules**{{</nb>}} tab and click <span style="background-color:#3366cc; color:white;"> + </span> <span style="color:#3366cc;">CREATE FIREWALL RULE</span>. (The screenshot shows the default rules provided by GCE.)
 
    <img src="/nginx/images/gce-firewall-rules-tab.png" alt="Screenshot of the Google Cloud Platform page for defining new firewall rules; when configuring NGINX Plus as the Google Cloud load balancer, we open ports 80, 443, and 8080 for it." width="1024" height="413" class="aligncenter size-full wp-image-47476" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
-2. Fill in the fields on the **Create&nbsp;a&nbsp;firewall&nbsp;rule** screen that opens:<!-- Tony notes Feb 2018: I have purposely broken the "rule" that if any bullet in a list ends in a period (here, bullet 3), they all must. I think the appropriate values in bullets 1, 2, and 4 are clearer without a final period -->
+2. Fill in the fields on the {{<nb>}}**Create a firewall rule**{{</nb>}} screen that opens:<!-- Tony notes Feb 2018: I have purposely broken the "rule" that if any bullet in a list ends in a period (here, bullet 3), they all must. I think the appropriate values in bullets 1, 2, and 4 are clearer without a final period -->
 
-   - **Name** – **nginx&#8209;plus&#8209;http&#8209;fw&#8209;rule**
+   - **Name** – {{<nb>}}**nginx-plus-http-fw-rule**{{</nb>}}
    - **Description** – **Allow access to ports 80, 8080, and 443 on all NGINX Plus instances**
-   - **Source&nbsp;filter** – On the drop-down menu, select either **Allow from any source (0.0.0.0/0)**, or **IP&nbsp;range** if you want to restrict access to users on your private network. In the second case, fill in the **Source&nbsp;IP&nbsp;ranges** field that opens. In the screenshot, we are allowing unrestricted access.
-   - **Allowed&nbsp;protocols&nbsp;and&nbsp;ports** – **tcp:80;&nbsp;tcp:8080;&nbsp;tcp:443**
+   - {{<nb>}}**Source filter**{{</nb>}} – On the drop-down menu, select either **Allow from any source (0.0.0.0/0)**, or {{<nb>}}**IP range**{{</nb>}} if you want to restrict access to users on your private network. In the second case, fill in the {{<nb>}}**Source IP ranges**{{</nb>}} field that opens. In the screenshot, we are allowing unrestricted access.
+   - {{<nb>}}**Allowed protocols and ports**{{</nb>}} – {{<nb>}}**tcp:80; tcp:8080; tcp:443**{{</nb>}}
 
      **Note:** As noted in the introduction, allowing access from any public IP address is appropriate only in a test environment. Before deploying the architecture in production, create a firewall rule. Use this rule to block access to the external IP address for your application instances. Alternatively, you can disable external IP addresses for the instances. This limits access only to the internal GCE network.
 
-   - **Target&nbsp;tags** – **nginx&#8209;plus&#8209;http&#8209;fw&#8209;rule**
+   - {{<nb>}}**Target tags**{{</nb>}} – {{<nb>}}**nginx-plus-http-fw-rule**{{</nb>}}
 
    <img src="/nginx/images/gce-create-firewall-rule.png" alt="Screenshot of the interface for creating a Google Compute Engine (GCE) firewall rule, used during deployment of NGINX Plus as the Google load balancer." width="1024" height="619" class="aligncenter size-full wp-image-47470" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
-3. Click the <span style="background-color:#3366cc; color:white;"> Create </span> button. The new rule is added to the table on the **Firewall&nbsp;rules** tab.
+3. Click the <span style="background-color:#3366cc; color:white;"> Create </span> button. The new rule is added to the table on the {{<nb>}}**Firewall rules**{{</nb>}} tab.
 
 <span id="source"></span>
 ## Task 2: Creating Source Instances
@@ -123,29 +123,29 @@ The methods to create a source instance are different. Once you've created the s
 
 Create three source VM instances based on a GCE VM image. We're basing our instances on the <span style="white-space: nowrap;">Ubuntu 16.04 LTS</span> image.
 
-1. Verify that the **NGINX Plus&nbsp;All&#8209;Active&#8209;LB** project is still selected in the Google Cloud Platform header bar.
+1. Verify that the **NGINX {{<nb>}}Plus All-Active-LB**{{</nb>}} project is still selected in the Google Cloud Platform header bar.
 
-2. Navigate to the **Compute&nbsp;Engine&nbsp;>&nbsp;VM&nbsp;instances** tab.
+2. Navigate to the {{<nb>}}**Compute Engine > VM instances**{{</nb>}} tab.
 
-3. Click the <span style="background-color:#3366cc; color:white; white-space: nowrap;"> Create instance </span> button. The **Create&nbsp;an&nbsp;instance** page opens.
+3. Click the <span style="background-color:#3366cc; color:white; white-space: nowrap;"> Create instance </span> button. The {{<nb>}}**Create an instance**{{</nb>}} page opens.
 
 <span id="source-vm-app-1"></span>
 #### Creating the First Application Instance from a VM Image
 
-1. On the **Create&nbsp;an&nbsp;instance** page, modify or verify the fields and checkboxes as indicated (a screenshot of the completed page appears in the next step):
+1. On the {{<nb>}}**Create an instance**{{</nb>}} page, modify or verify the fields and checkboxes as indicated (a screenshot of the completed page appears in the next step):
 
-   - **Name** – **nginx&#8209;plus&#8209;app&#8209;1**
-   - **Zone** – The GCP zone that makes sense for your location. We're using **us&#8209;west1&#8209;a**.
-   - **Machine&nbsp;type** – The appropriate size for the level of traffic you anticipate. We're selecting **micro**, which is ideal for testing purposes.
-   - **Boot&nbsp;disk** – Click **Change**. The **Boot&nbsp;disk** page opens to the <span style="color:#3366cc; white-space: nowrap;">OS images</span> subtab. Perform the following steps:
+   - **Name** – {{<nb>}}**nginx-plus-app-1**{{</nb>}}
+   - **Zone** – The GCP zone that makes sense for your location. We're using {{<nb>}}**us-west1-a**{{</nb>}}.
+   - {{<nb>}}**Machine type**{{</nb>}} – The appropriate size for the level of traffic you anticipate. We're selecting **micro**, which is ideal for testing purposes.
+   - {{<nb>}}**Boot disk**{{</nb>}} – Click **Change**. The {{<nb>}}**Boot disk**{{</nb>}} page opens to the <span style="color:#3366cc; white-space: nowrap;">OS images</span> subtab. Perform the following steps:
 
-      - Click the radio button for the Unix or Linux image of your choice (here, **Ubuntu&nbsp;16.04&nbsp;LTS**).
-      - Accept the default values in the **Boot&nbsp;disk&nbsp;type** and **Size&nbsp;(GB)** fields (**Standard&nbsp;persistent&nbsp;disk** and **10** respectively).
+      - Click the radio button for the Unix or Linux image of your choice (here, {{<nb>}}**Ubuntu 16.04 LTS**{{</nb>}}).
+      - Accept the default values in the {{<nb>}}**Boot disk type**{{</nb>}} and {{<nb>}}**Size (GB)**{{</nb>}} fields ({{<nb>}}**Standard persistent disk**{{</nb>}} and **10** respectively).
       - Click the <span style="background-color:#3366cc; color:white;"> Select </span> button.
 
       <img src="/nginx/images/gce-ubuntu-instance-boot-disk.png" alt="Screenshot of the 'Boot disk' page in Google Cloud Platform for selecting the OS on which a VM runs. In the deployment of NGINX Plus as the Google load balancer, we select Ubuntu 16.04 LTS." width="512" height="577" class="aligncenter size-full wp-image-47484" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
-   - **Identity&nbsp;and&nbsp;API&nbsp;access** – Keep the defaults for the **Service&nbsp;account&nbsp;** field and **Access&nbsp;scopes** radio button. Unless you need more granular control.
+   - {{<nb>}}**Identity and API access**{{</nb>}} – Keep the defaults for the {{<nb>}}**Service account **{{</nb>}} field and {{<nb>}}**Access scopes**{{</nb>}} radio button. Unless you need more granular control.
    - **Firewall** – Verify that neither check box is checked (the default). The firewall rule invoked in the **Tags** field on the **Management** subtab (see Step 3 below) controls this type of access.
 
 2. Click <span style="color:#3366cc; white-space: nowrap;">Management, disk, networking, SSH keys</span> to open that set of subtabs. (The screenshot shows the values entered in the previous step.)
@@ -154,11 +154,11 @@ Create three source VM instances based on a GCE VM image. We're basing our insta
 
 3. On the **Management** subtab, modify or verify the fields as indicated:
 
-   - **Description** – **NGINX Plus&nbsp;app&#8209;1&nbsp;Image**
-   - **Tags** – **nginx&#8209;plus&#8209;http&#8209;fw&#8209;rule**
-   - **Preemptibility** – **Off&nbsp;(recommended)** (the default)
-   - **Automatic&nbsp;restart** – **On&nbsp;(recommended)** (the default)
-   - **On&nbsp;host&nbsp;maintenance** – **Migrate&nbsp;VM&nbsp;instance&nbsp;(recommended)** (the default)
+   - **Description** – **NGINX {{<nb>}}Plus app-1 Image**{{</nb>}}
+   - **Tags** – {{<nb>}}**nginx-plus-http-fw-rule**{{</nb>}}
+   - **Preemptibility** – {{<nb>}}**Off (recommended)**{{</nb>}} (the default)
+   - {{<nb>}}**Automatic restart**{{</nb>}} – {{<nb>}}**On (recommended)**{{</nb>}} (the default)
+   - {{<nb>}}**On host maintenance**{{</nb>}} – {{<nb>}}**Migrate VM instance (recommended)**{{</nb>}} (the default)
 
    <img src="/nginx/images/gce-ubuntu-instance-management.png" alt="Screenshot of the Management subtab used during creation of a new VM instance, part of deploying NGINX Plus as the Google load balancer." width="487" height="551" class="aligncenter size-full wp-image-47486" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
@@ -166,38 +166,38 @@ Create three source VM instances based on a GCE VM image. We're basing our insta
 
    <img src="/nginx/images/gce-ubuntu-instance-disks.png" alt="Screenshot of the Disks subtab used during creation of a new VM instance, part of deploying NGINX Plus as the Google Cloud load balancer." width="487" height="224" class="aligncenter size-full wp-image-47485" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
-5. On the **Networking** subtab, verify the default settings, in particular **Ephemeral** for **External&nbsp;IP** and **Off** for **IP&nbsp;Forwarding**.
+5. On the **Networking** subtab, verify the default settings, in particular **Ephemeral** for {{<nb>}}**External IP**{{</nb>}} and **Off** for {{<nb>}}**IP Forwarding**{{</nb>}}.
 
    <img src="/nginx/images/gce-ubuntu-instance-networking.png" alt="Screenshot of the Networking subtab used during creation of a new VM instance, part of deploying NGINX Plus as the Google Cloud load balancer." width="488" height="279" class="aligncenter size-full wp-image-47487" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
-6. If you're using your own SSH public key instead of your default GCE keys, paste the hexadecimal key string on the **SSH&nbsp;Keys** subtab. Right into the box that reads **Enter&nbsp;entire&nbsp;key&nbsp;data**.
+6. If you're using your own SSH public key instead of your default GCE keys, paste the hexadecimal key string on the {{<nb>}}**SSH Keys**{{</nb>}} subtab. Right into the box that reads {{<nb>}}**Enter entire key data**{{</nb>}}.
 
    <img src="/nginx/images/gce-ubuntu-instance-ssh-keys.png" alt="Screenshot of the SSH Keys subtab used during creation of a new VM instance, part of deploying NGINX Plus as the Google Cloud Platform load balancer." width="488" height="205" class="aligncenter size-full wp-image-47488" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
-7. Click the <span style="background-color:#3366cc; color:white; white-space: nowrap;"> Create </span> button at the bottom of the **Create&nbsp;an&nbsp;instance** page.
+7. Click the <span style="background-color:#3366cc; color:white; white-space: nowrap;"> Create </span> button at the bottom of the {{<nb>}}**Create an instance**{{</nb>}} page.
 
-    The **VM&nbsp;instances** summary page opens. It can take several minutes for the instance to be created. Wait to continue until the green check mark appears.
+    The {{<nb>}}**VM instances**{{</nb>}} summary page opens. It can take several minutes for the instance to be created. Wait to continue until the green check mark appears.
 
     <img src="/nginx/images/gce-ubuntu-instance-summary.png" alt="Screenshot of the summary page that verifies the creation of a new VM instance, part of deploying NGINX Plus as the load balancer for Google Cloud." width="1024" height="192" class="aligncenter size-full wp-image-47490" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
 <span id="source-vm-app-2"></span>
 #### Creating the Second Application Instance from a VM Image
 
-1. On the **VM&nbsp;instances** summary page, click <span style="color:#3366cc; white-space: nowrap;">CREATE INSTANCE</span>.
+1. On the {{<nb>}}**VM instances**{{</nb>}} summary page, click <span style="color:#3366cc; white-space: nowrap;">CREATE INSTANCE</span>.
 
 2. Repeat the steps in <a href="#source-vm-app-1">Creating the First Application Instance</a> to create the second application instance. Specify the same values as for the first application instance, except:
 
-   - In Step 1, **Name** – **nginx&#8209;plus&#8209;app&#8209;2**
-   - In Step 3, **Description** – **NGINX Plus&nbsp;app&#8209;2&nbsp;Image**
+   - In Step 1, **Name** – {{<nb>}}**nginx-plus-app-2**{{</nb>}}
+   - In Step 3, **Description** – **NGINX {{<nb>}}Plus app-2 Image**{{</nb>}}
 
 <span id="source-vm-lb"></span>
 #### Creating the Load-Balancing Instance from a VM Image
 
-1. On the **VM&nbsp;instances** summary page, click <span style="color:#3366cc; white-space: nowrap;">CREATE INSTANCE</span>.
+1. On the {{<nb>}}**VM instances**{{</nb>}} summary page, click <span style="color:#3366cc; white-space: nowrap;">CREATE INSTANCE</span>.
 
 2. Repeat the steps in <a href="#source-vm-app-1">Creating the First Application Instance</a> to create the load‑balancing instance. Specify the same values as for the first application instance, except:
 
-   - In Step 1, **Name** – **nginx&#8209;plus&#8209;lb**
+   - In Step 1, **Name** – {{<nb>}}**nginx-plus-lb**{{</nb>}}
    - In Step 3, **Description** – **NGINX Plus Load Balancing Image**
 
 <span id="source-vm-php"></span>
@@ -205,14 +205,14 @@ Create three source VM instances based on a GCE VM image. We're basing our insta
 
 Install and configure PHP and FastCGI on the instances.
 
-<span style="text-decoration: underline; white-space: nowrap;">Repeat these instructions</span> for all three source instances (**nginx&#8209;plus&#8209;app&#8209;1**, **nginx&#8209;plus&#8209;app&#8209;2**, and **nginx&#8209;plus&#8209;lb**).
+<span style="text-decoration: underline; white-space: nowrap;">Repeat these instructions</span> for all three source instances ({{<nb>}}**nginx-plus-app-1**{{</nb>}}, {{<nb>}}**nginx-plus-app-2**{{</nb>}}, and {{<nb>}}**nginx-plus-lb**{{</nb>}}).
 
 **Note:** Some commands require `root` privilege. If appropriate for your environment, prefix commands with the `sudo` command.
 
 1. Connect to the instance over SSH using the method of your choice. GCE provides a built-in mechanism:
 
-   - Navigate to the **Compute&nbsp;Engine&nbsp;>&nbsp;VM&nbsp;instances** tab.
-   - In the instance's row in the table, click the triangle icon in the **Connect** column at the far right and select a method (for example, **Open&nbsp;in&nbsp;browser&nbsp;window**).
+   - Navigate to the {{<nb>}}**Compute Engine > VM instances**{{</nb>}} tab.
+   - In the instance's row in the table, click the triangle icon in the **Connect** column at the far right and select a method (for example, {{<nb>}}**Open in browser window**{{</nb>}}).
 
    <img src="/nginx/images/gce-ubuntu-instance-ssh.png" alt="Screenshot showing how to connect via SSH to a VM instance, part of deploying NGINX Plus as the Google load balancer." width="1024" height="284" class="aligncenter size-full wp-image-47489" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
@@ -253,7 +253,7 @@ Now install NGINX Plus and download files that are specific to the all‑active
 
 Both the configuration and content files are available at the [NGINX GitHub repository](https://github.com/nginxinc/NGINX-Demos/tree/master/gce-nginx-plus-deployment-guide-files).
 
-<span style="text-decoration: underline; white-space: nowrap;">Repeat these instructions</span> for all three source instances (**nginx&#8209;plus&#8209;app&#8209;1**, **nginx&#8209;plus&#8209;app&#8209;2**, and **nginx&#8209;plus&#8209;lb**).
+<span style="text-decoration: underline; white-space: nowrap;">Repeat these instructions</span> for all three source instances ({{<nb>}}**nginx-plus-app-1**{{</nb>}}, {{<nb>}}**nginx-plus-app-2**{{</nb>}}, and {{<nb>}}**nginx-plus-lb**{{</nb>}}).
 
 **Note:** Some commands require `root` privilege. If appropriate for your environment, prefix commands with the `sudo` command.
 
@@ -265,7 +265,7 @@ Both the configuration and content files are available at the [NGINX GitHub repo
 
 4. Copy the right configuration file from the **etc\_nginx\_conf.d** subdirectory of the cloned repository to **/etc/nginx/conf.d**:
 
-   - On <span style="text-decoration: underline;">both</span> **nginx&#8209;plus&#8209;app&#8209;1** and **nginx&#8209;plus&#8209;app&#8209;2**, copy **gce&#8209;all&#8209;active&#8209;app.conf**.
+   - On <span style="text-decoration: underline;">both</span> {{<nb>}}**nginx-plus-app-1**{{</nb>}} and {{<nb>}}**nginx-plus-app-2**{{</nb>}}, copy {{<nb>}}**gce-all-active-app.conf**{{</nb>}}.
 
       You can also run the following commands to download the configuration file directly from the GitHub repository:
 
@@ -281,7 +281,7 @@ Both the configuration and content files are available at the [NGINX GitHub repo
       wget https://github.com/nginxinc/NGINX-Demos/blob/master/gce-nginx-plus-deployment-guide-files/etc_nginx_conf.d/gce-all-active-app.conf
       ```
 
-   - On **nginx&#8209;plus&#8209;lb**, copy **gce&#8209;all&#8209;active&#8209;lb.conf**.
+   - On {{<nb>}}**nginx-plus-lb**{{</nb>}}, copy {{<nb>}}**gce-all-active-lb.conf**{{</nb>}}.
 
      You can also run the following commands to download the configuration file directly from the GitHub repository:
 
@@ -297,9 +297,9 @@ Both the configuration and content files are available at the [NGINX GitHub repo
       wget https://github.com/nginxinc/NGINX-Demos/blob/master/gce-nginx-plus-deployment-guide-files/etc_nginx_conf.d/gce-all-active-lb.conf
       ```
 
-5. On the LB instance (**nginx&#8209;plus&#8209;lb**), use a text editor to open **gce&#8209;all&#8209;active&#8209;lb.conf**. Change the `server` directives in the `upstream` block to reference the internal IP addresses of the **nginx&#8209;plus&#8209;app&#8209;1** and **nginx&#8209;plus&#8209;app&#8209;2** instances (substitute the address for the expression in angle brackets). You do not need to modify the two application instances.
+5. On the LB instance ({{<nb>}}**nginx-plus-lb**{{</nb>}}), use a text editor to open {{<nb>}}**gce-all-active-lb.conf**{{</nb>}}. Change the `server` directives in the `upstream` block to reference the internal IP addresses of the {{<nb>}}**nginx-plus-app-1**{{</nb>}} and {{<nb>}}**nginx-plus-app-2**{{</nb>}} instances (substitute the address for the expression in angle brackets). You do not need to modify the two application instances.
 
-   You can look up internal IP addresses in the **Internal&nbsp;IP** column of the table on the **Compute&nbsp;Engine&nbsp;>&nbsp;VM&nbsp;instances** summary page.
+   You can look up internal IP addresses in the {{<nb>}}**Internal IP**{{</nb>}} column of the table on the {{<nb>}}**Compute Engine > VM instances**{{</nb>}} summary page.
 
    ```nginx
    upstream upstream_app_pool {
@@ -341,7 +341,7 @@ Both the configuration and content files are available at the [NGINX GitHub repo
    nginx -s reload
    ```
 
-9. Verify the instance is working by accessing it at its external IP address. (As previously noted, we recommend blocking access to the external IP addresses of the application instances in a production environment.) The external IP address for the instance appears on the **Compute&nbsp;Engine&nbsp;>&nbsp;VM&nbsp;instances** summary page, in the **External&nbsp;IP** column of the table.
+9. Verify the instance is working by accessing it at its external IP address. (As previously noted, we recommend blocking access to the external IP addresses of the application instances in a production environment.) The external IP address for the instance appears on the {{<nb>}}**Compute Engine > VM instances**{{</nb>}} summary page, in the {{<nb>}}**External IP**{{</nb>}} column of the table.
 
     - Access the **index.html** page either in a browser or by running this `curl` command.
 
@@ -351,7 +351,7 @@ Both the configuration and content files are available at the [NGINX GitHub repo
 
     - Access its NGINX Plus live activity monitoring dashboard in a browser, at:
 
-        **https://_external&#8209;IP&#8209;address_:8080/status.html**
+        {{<nb>}}**https://_external-IP-address_:8080/status.html**{{</nb>}}
 
 10. Proceed to [Task 3: Creating "Gold" Images](#gold).
 
@@ -363,7 +363,7 @@ Create three source instances based on a prebuilt NGINX Plus image running on <
 <span id="source-prebuilt-app-1"></span>
 #### Creating the First Application Instance from a Prebuilt Image
 
-1. Verify that the **NGINX Plus&nbsp;All&#8209;Active&#8209;LB** project is still selected in the Google Cloud Platform header bar.
+1. Verify that the **NGINX {{<nb>}}Plus All-Active-LB**{{</nb>}} project is still selected in the Google Cloud Platform header bar.
 
 2. Navigate to the GCP Marketplace and search for **nginx plus**.
 
@@ -373,16 +373,16 @@ Create three source instances based on a prebuilt NGINX Plus image running on <
 
 4. On the **NGINX Plus** page that opens, click the <span style="background-color:#3366cc; color:white; white-space: nowrap;"> Launch on Compute Engine </span> button.
 
-5. Fill in the fields on the **New&nbsp;NGINX Plus&nbsp;deployment** page as indicated.
+5. Fill in the fields on the {{<nb>}}**New NGINX{{</nb>}} {{<nb>}}Plus deployment**{{</nb>}} page as indicated.
 
-   - **Deployment&nbsp;name** – **nginx&#8209;plus&#8209;app&#8209;1**
-   - **Zone** – The GCP zone that makes sense for your location. We're using **us&#8209;west1&#8209;a**.
-   - **Machine&nbsp;type** – The appropriate size for the level of traffic you anticipate. We're selecting **micro**, which is ideal for testing purposes.
-   - **Disk&nbsp;type** – **Standard&nbsp;Persistent&nbsp;Disk** (the default)
-   - **Disk&nbsp;size&nbsp;in&nbsp;GB** – **10** (the default and minimum allowed)
-   - **Network&nbsp;name** – **default**
-   - **Subnetwork&nbsp;name** – **default**
-   - **Firewall** – Verify that the **Allow&nbsp;HTTP&nbsp;traffic** checkbox is checked.
+   - {{<nb>}}**Deployment name**{{</nb>}} – {{<nb>}}**nginx-plus-app-1**{{</nb>}}
+   - **Zone** – The GCP zone that makes sense for your location. We're using {{<nb>}}**us-west1-a**{{</nb>}}.
+   - {{<nb>}}**Machine type**{{</nb>}} – The appropriate size for the level of traffic you anticipate. We're selecting **micro**, which is ideal for testing purposes.
+   - {{<nb>}}**Disk type**{{</nb>}} – {{<nb>}}**Standard Persistent Disk**{{</nb>}} (the default)
+   - {{<nb>}}**Disk size in GB**{{</nb>}} – **10** (the default and minimum allowed)
+   - {{<nb>}}**Network name**{{</nb>}} – **default**
+   - {{<nb>}}**Subnetwork name**{{</nb>}} – **default**
+   - **Firewall** – Verify that the {{<nb>}}**Allow HTTP traffic**{{</nb>}} checkbox is checked.
 
    <a href="/nginx/images/gce-marketplace-new-deployment.png"><img src="/nginx/images/gce-marketplace-new-deployment.png" alt="Screenshot of the page for creating a prebuilt NGINX Plus VM instance when deploying NGINX Plus as the Google Cloud Platform load balancer." width="1054" height="973" class="aligncenter size-full wp-image-47468" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
@@ -392,25 +392,25 @@ Create three source instances based on a prebuilt NGINX Plus image running on <
 
    <img src="/nginx/images/gce-marketplace-instance-deployed.png" alt="Screenshot of the page that confirms the creation of a prebuilt NGINX Plus VM instance when deploying NGINX Plus as the Google load balancer." width="1024" height="399" class="aligncenter size-full wp-image-47467" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
-7. Navigate to the **Compute&nbsp;Engine&nbsp;>&nbsp;VM&nbsp;instances** tab and click **nginx&#8209;plus&#8209;app&#8209;1&#8209;vm** in the <span style="color:#3366cc;">Name</span> column in the table. (The **&#8209;vm** suffix is added automatically to the name of the newly created instance.)
+7. Navigate to the {{<nb>}}**Compute Engine > VM instances**{{</nb>}} tab and click {{<nb>}}**nginx-plus-app-1-vm**{{</nb>}} in the <span style="color:#3366cc;">Name</span> column in the table. (The {{<nb>}}**-vm**{{</nb>}} suffix is added automatically to the name of the newly created instance.)
 
    <img src="/nginx/images/gce-app-1-vm-select.png" alt="Screenshot showing how to access the page where configuration details for a VM instance can be modified during deployment of NGINX Plus as the Google Cloud load balancer." width="1023" height="194" class="aligncenter size-full wp-image-47465" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
-8. On the **VM&nbsp;instances** page that opens, click <span style="color:#3366cc;">EDIT</span> at the top of the page. In fields that can be edited, the value changes from static text to text boxes, drop‑down menus, and checkboxes.
+8. On the {{<nb>}}**VM instances**{{</nb>}} page that opens, click <span style="color:#3366cc;">EDIT</span> at the top of the page. In fields that can be edited, the value changes from static text to text boxes, drop‑down menus, and checkboxes.
 
 9. Modify or verify the indicated editable fields (non‑editable fields are not listed):
 
-   - **Tags** – If a default tag appears (for example, **nginx&#8209;plus&#8209;app&#8209;1&#8209;tcp&#8209;80**), click the **X** after its name to remove it. Then, type in **nginx&#8209;plus&#8209;http&#8209;fw&#8209;rule**.
-   - **External&nbsp;IP** – **Ephemeral** (the default)
-   - **Boot&nbsp;disk&nbsp;and&nbsp;local&nbsp;disks** – Uncheck the checkbox labeled **Delete boot disk when instance is deleted**.
-   - **Additional&nbsp;disks** – No changes
-   - **Network** – If you must change the defaults, for example, when configuring a production environment, select <span style="color:#3366cc;">default</span> Then, select <span style="color:#3366cc;">EDIT</span> on the opened **Network&nbsp;details** page. After making your changes select the <span style="background-color:#3366cc; color:white; white-space: nowrap;"> Save </span> button.
+   - **Tags** – If a default tag appears (for example, {{<nb>}}**nginx-plus-app-1-tcp-80**{{</nb>}}), click the **X** after its name to remove it. Then, type in {{<nb>}}**nginx-plus-http-fw-rule**{{</nb>}}.
+   - {{<nb>}}**External IP**{{</nb>}} – **Ephemeral** (the default)
+   - {{<nb>}}**Boot disk and local disks**{{</nb>}} – Uncheck the checkbox labeled **Delete boot disk when instance is deleted**.
+   - {{<nb>}}**Additional disks**{{</nb>}} – No changes
+   - **Network** – If you must change the defaults, for example, when configuring a production environment, select <span style="color:#3366cc;">default</span> Then, select <span style="color:#3366cc;">EDIT</span> on the opened {{<nb>}}**Network details**{{</nb>}} page. After making your changes select the <span style="background-color:#3366cc; color:white; white-space: nowrap;"> Save </span> button.
    - **Firewall** – Verify that neither check box is checked (the default). The firewall rule named in the **Tags** field that's above on the current page (see the first bullet in this list) controls this type of access.
-   - **Automatic&nbsp;restart** – **On&nbsp;(recommended)** (the default)
-   - **On&nbsp;host&nbsp;maintenance** – **Migrate&nbsp;VM&nbsp;instance&nbsp;(recommended)** (the default)
-   - **Custom&nbsp;metadata** – No changes
-   - **SSH&nbsp;Keys** – If you're using your own SSH public key instead of your default GCE keys, paste the hexadecimal key string into the box labeled **Enter&nbsp;entire&nbsp;key&nbsp;data**.
-   - **Serial&nbsp;port** – Verify that the check box labeled **Enable&nbsp;connecting&nbsp;to&nbsp;serial&nbsp;ports** is not checked (the default).
+   - {{<nb>}}**Automatic restart**{{</nb>}} – {{<nb>}}**On (recommended)**{{</nb>}} (the default)
+   - {{<nb>}}**On host maintenance**{{</nb>}} – {{<nb>}}**Migrate VM instance (recommended)**{{</nb>}} (the default)
+   - {{<nb>}}**Custom metadata**{{</nb>}} – No changes
+   - {{<nb>}}**SSH Keys**{{</nb>}} – If you're using your own SSH public key instead of your default GCE keys, paste the hexadecimal key string into the box labeled {{<nb>}}**Enter entire key data**{{</nb>}}.
+   - {{<nb>}}**Serial port**{{</nb>}} – Verify that the check box labeled {{<nb>}}**Enable connecting to serial ports**{{</nb>}} is not checked (the default).
 
    The screenshot shows the results of your changes. It omits some fields that can't be edited or for which we recommend keeping the defaults.
 
@@ -423,29 +423,29 @@ Create three source instances based on a prebuilt NGINX Plus image running on <
 
 Create the second application instance by cloning the first one.
 
-1. Navigate back to the summary page on the **Compute&nbsp;Engine&nbsp;>&nbsp;VM&nbsp;instances** tab (click the arrow that is circled in the following figure).
+1. Navigate back to the summary page on the {{<nb>}}**Compute Engine > VM instances**{{</nb>}} tab (click the arrow that is circled in the following figure).
 
    <img src="/nginx/images/gce-vm-instances-back-arrow.png" alt="Screenshot showing how to return to the VM instance summary page during deployment of NGINX Plus as the Google Cloud Platform load balancer." width="1024" height="110" class="aligncenter size-full wp-image-47492" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
-2. Click **nginx&#8209;plus&#8209;app&#8209;1&#8209;vm** in the <span style="color:#3366cc;">Name</span> column of the table (shown in the screenshot in Step 7 of <a href="#source-prebuilt-app-1">Creating the First Application Instance</a>).
+2. Click {{<nb>}}**nginx-plus-app-1-vm**{{</nb>}} in the <span style="color:#3366cc;">Name</span> column of the table (shown in the screenshot in Step 7 of <a href="#source-prebuilt-app-1">Creating the First Application Instance</a>).
 
-3. On the **VM&nbsp;instances** page that opens, click <span style="color:#3366cc;">CLONE</span> at the top of the page.
+3. On the {{<nb>}}**VM instances**{{</nb>}} page that opens, click <span style="color:#3366cc;">CLONE</span> at the top of the page.
 
-4. On the **Create&nbsp;an&nbsp;instance** page that opens, modify or verify the fields and checkboxes as indicated:
+4. On the {{<nb>}}**Create an instance**{{</nb>}} page that opens, modify or verify the fields and checkboxes as indicated:
 
-   - **Name** – **nginx&#8209;plus&#8209;app&#8209;2&#8209;vm**. Here we're adding the **&#8209;vm** suffix to make the name consistent with the first instance; GCE does not add it automatically when you clone an instance.
-   - **Zone** – The GCP zone that makes sense for your location. We're using **us&#8209;west1&#8209;a**.
-   - **Machine&nbsp;type** – The appropriate size for the level of traffic you anticipate. We're selecting **f1&#8209;micro**, which is ideal for testing purposes.
-   - **Boot&nbsp;disk&nbsp;type** – **New&nbsp;10&nbsp;GB&nbsp;standard&nbsp;persistent&nbsp;disk** (the value inherited from **nginx&#8209;plus&#8209;app&#8209;1&#8209;vm**)
-   - **Identity&nbsp;and&nbsp;API&nbsp;access** – Set the **Access&nbsp;scopes** radio button to **Allow&nbsp;default&nbsp;access** and accept the default values in all other fields. If you want more granular control over access than is provided by these settings, modify the fields in this section as appropriate.
+   - **Name** – {{<nb>}}**nginx-plus-app-2-vm**{{</nb>}}. Here we're adding the {{<nb>}}**-vm**{{</nb>}} suffix to make the name consistent with the first instance; GCE does not add it automatically when you clone an instance.
+   - **Zone** – The GCP zone that makes sense for your location. We're using {{<nb>}}**us-west1-a**{{</nb>}}.
+   - {{<nb>}}**Machine type**{{</nb>}} – The appropriate size for the level of traffic you anticipate. We're selecting {{<nb>}}**f1-micro**{{</nb>}}, which is ideal for testing purposes.
+   - {{<nb>}}**Boot disk type**{{</nb>}} – {{<nb>}}**New 10 GB standard persistent disk**{{</nb>}} (the value inherited from {{<nb>}}**nginx-plus-app-1-vm**{{</nb>}})
+   - {{<nb>}}**Identity and API access**{{</nb>}} – Set the {{<nb>}}**Access scopes**{{</nb>}} radio button to {{<nb>}}**Allow default access**{{</nb>}} and accept the default values in all other fields. If you want more granular control over access than is provided by these settings, modify the fields in this section as appropriate.
    - **Firewall** – Verify that neither check box is checked (the default).
 
 5. Click <span style="color:#3366cc; white-space: nowrap;">Management, disk, networking, SSH keys</span> to open that set of subtabs.
 
 6. Verify the following settings on the subtabs, modifying them as necessary:
 
-   - **Management** – In the **Tags** field: **nginx&#8209;plus&#8209;http&#8209;fw&#8209;rule**
-   - **Disks** – The **Deletion&nbsp;rule** checkbox (labeled **Delete boot disk when instance is deleted**) is <span style="text-decoration: underline;">not</span> checked
+   - **Management** – In the **Tags** field: {{<nb>}}**nginx-plus-http-fw-rule**{{</nb>}}
+   - **Disks** – The {{<nb>}}**Deletion rule**{{</nb>}} checkbox (labeled **Delete boot disk when instance is deleted**) is <span style="text-decoration: underline;">not</span> checked
 
 7. Select the <span style="background-color:#3366cc; color:white;"> Create </span> button.
 
@@ -454,21 +454,21 @@ Create the second application instance by cloning the first one.
 
 Create the source load‑balancing instance by cloning the first instance again.
 
-Repeat Steps 2 through 7 of <a href="#source-prebuilt-app-2">Creating the Second Application Instance</a>. In Step 4, specify **nginx&#8209;plus&#8209;lb&#8209;vm** as the name.
+Repeat Steps 2 through 7 of <a href="#source-prebuilt-app-2">Creating the Second Application Instance</a>. In Step 4, specify {{<nb>}}**nginx-plus-lb-vm**{{</nb>}} as the name.
 
 <span id="source-prebuilt-php"></span>
 #### Configuring PHP and FastCGI on the Prebuilt-Based Instances
 
 Install and configure PHP and FastCGI on the instances.
 
-<span style="text-decoration: underline; white-space: nowrap;">Repeat these instructions</span> for all three source instances (**nginx&#8209;plus&#8209;app&#8209;1&#8209;vm**, **nginx&#8209;plus&#8209;app&#8209;2&#8209;vm**, and **nginx&#8209;plus&#8209;lb&#8209;vm**).
+<span style="text-decoration: underline; white-space: nowrap;">Repeat these instructions</span> for all three source instances ({{<nb>}}**nginx-plus-app-1-vm**{{</nb>}}, {{<nb>}}**nginx-plus-app-2-vm**{{</nb>}}, and {{<nb>}}**nginx-plus-lb-vm**{{</nb>}}).
 
 **Note:** Some commands require `root` privilege. If appropriate for your environment, prefix commands with the `sudo` command.
 
 1. Connect to the instance over SSH using the method of your choice. GCE provides a built‑in mechanism:
 
-   - Navigate to the **Compute&nbsp;Engine&nbsp;>&nbsp;VM&nbsp;instances** tab.
-   - In the table, find the row for the instance. Select the triangle icon in the **Connect** column at the far right. Then, select a method (for example, **Open&nbsp;in&nbsp;browser&nbsp;window**).
+   - Navigate to the {{<nb>}}**Compute Engine > VM instances**{{</nb>}} tab.
+   - In the table, find the row for the instance. Select the triangle icon in the **Connect** column at the far right. Then, select a method (for example, {{<nb>}}**Open in browser window**{{</nb>}}).
 
    The screenshot shows instances based on the prebuilt NGINX Plus images.
 
@@ -511,7 +511,7 @@ Now download files that are specific to the all‑active deployment:
 
 Both the configuration and content files are available at the [NGINX GitHub repository](https://github.com/nginxinc/NGINX-Demos/tree/master/gce-nginx-plus-deployment-guide-files).
 
-<span style="text-decoration: underline; white-space: nowrap;">Repeat these instructions</span> for all three source instances (**nginx&#8209;plus&#8209;app&#8209;1&#8209;vm**, **nginx&#8209;plus&#8209;app&#8209;2&#8209;vm**, and **nginx&#8209;plus&#8209;lb&#8209;vm**).
+<span style="text-decoration: underline; white-space: nowrap;">Repeat these instructions</span> for all three source instances ({{<nb>}}**nginx-plus-app-1-vm**{{</nb>}}, {{<nb>}}**nginx-plus-app-2-vm**{{</nb>}}, and {{<nb>}}**nginx-plus-lb-vm**{{</nb>}}).
 
 **Note:** Some commands require `root` privilege. If appropriate for your environment, prefix commands with the `sudo` command.
 
@@ -522,7 +522,7 @@ Both the configuration and content files are available at the [NGINX GitHub repo
 
 3. Copy the right configuration file from the **etc\_nginx\_conf.d** subdirectory of the cloned repository to **/etc/nginx/conf.d**:
 
-   - On <span style="text-decoration: underline;">both</span> **nginx&#8209;plus&#8209;app&#8209;1&#8209;vm** and **nginx&#8209;plus&#8209;app&#8209;2&#8209;vm**, copy **gce&#8209;all&#8209;active&#8209;app.conf**.
+   - On <span style="text-decoration: underline;">both</span> {{<nb>}}**nginx-plus-app-1-vm**{{</nb>}} and {{<nb>}}**nginx-plus-app-2-vm**{{</nb>}}, copy {{<nb>}}**gce-all-active-app.conf**{{</nb>}}.
 
      You can also run these commands to download the configuration file from GitHub:
 
@@ -538,7 +538,7 @@ Both the configuration and content files are available at the [NGINX GitHub repo
       wget https://github.com/nginxinc/NGINX-Demos/blob/master/gce-nginx-plus-deployment-guide-files/etc_nginx_conf.d/gce-all-active-app.conf
       ```
 
-   - On **nginx&#8209;plus&#8209;lb&#8209;vm**, copy **gce&#8209;all&#8209;active&#8209;lb.conf**.
+   - On {{<nb>}}**nginx-plus-lb-vm**{{</nb>}}, copy {{<nb>}}**gce-all-active-lb.conf**{{</nb>}}.
 
       You can also run the following commands to download the configuration file directly from the GitHub repository:
 
@@ -554,9 +554,9 @@ Both the configuration and content files are available at the [NGINX GitHub repo
       wget https://github.com/nginxinc/NGINX-Demos/blob/master/gce-nginx-plus-deployment-guide-files/etc_nginx_conf.d/gce-all-active-lb.conf
       ```
 
-4. On the LB instance (**nginx&#8209;plus&#8209;lb&#8209;vm**), use a text editor to open **gce&#8209;all&#8209;active&#8209;lb.conf**. Change the `server` directives in the `upstream` block to reference the internal IP addresses of the **nginx&#8209;plus&#8209;app&#8209;1&#8209;vm** and **nginx&#8209;plus&#8209;app&#8209;2&#8209;vm** instances. (No action is required on the two application instances themselves.)
+4. On the LB instance ({{<nb>}}**nginx-plus-lb-vm**{{</nb>}}), use a text editor to open {{<nb>}}**gce-all-active-lb.conf**{{</nb>}}. Change the `server` directives in the `upstream` block to reference the internal IP addresses of the {{<nb>}}**nginx-plus-app-1-vm**{{</nb>}} and {{<nb>}}**nginx-plus-app-2-vm**{{</nb>}} instances. (No action is required on the two application instances themselves.)
 
-   You can look up internal IP addresses in the **Internal&nbsp;IP** column of the table on the **Compute&nbsp;Engine&nbsp;>&nbsp;VM&nbsp;instances** summary page.
+   You can look up internal IP addresses in the {{<nb>}}**Internal IP**{{</nb>}} column of the table on the {{<nb>}}**Compute Engine > VM instances**{{</nb>}} summary page.
 
    ```nginx
    upstream upstream_app_pool {
@@ -598,7 +598,7 @@ Both the configuration and content files are available at the [NGINX GitHub repo
    nginx -s reload
    ```
 
-8. Verify the instance is working by accessing it at its external IP address. (As noted, we recommend blocking access, in production, to the external IPs of the app.) The external IP address for the instance appears on the **Compute&nbsp;Engine&nbsp;>&nbsp;VM&nbsp;instances** summary page, in the **External&nbsp;IP** column of the table.
+8. Verify the instance is working by accessing it at its external IP address. (As noted, we recommend blocking access, in production, to the external IPs of the app.) The external IP address for the instance appears on the {{<nb>}}**Compute Engine > VM instances**{{</nb>}} summary page, in the {{<nb>}}**External IP**{{</nb>}} column of the table.
 
    - Access the **index.html** page either in a browser or by running this `curl` command.
 
@@ -608,7 +608,7 @@ Both the configuration and content files are available at the [NGINX GitHub repo
 
    - Access the NGINX Plus live activity monitoring dashboard in a browser, at:
 
-     **https://_external&#8209;IP&#8209;address&#8209;of&#8209;NGINX&#8209;Plus&#8209;server_:8080/dashboard.html**
+     {{<nb>}}**https://_external-IP-address-of-NGINX-Plus-server_:8080/dashboard.html**{{</nb>}}
 
 9. Proceed to [Task 3: Creating "Gold" Images](#gold).
 
@@ -617,14 +617,14 @@ Both the configuration and content files are available at the [NGINX GitHub repo
 
 Create _gold images_, which are base images that GCE clones automatically when it needs to scale up the number of instances. They are derived from the instances you created in [Creating Source Instances](#source). Before creating the images, delete the source instances. This breaks the attachment between them and the disk. (you can't create an image from a disk attached to a VM instance).
 
-1. Verify that the **NGINX Plus&nbsp;All&#8209;Active&#8209;LB** project is still selected in the Google Cloud Platform header bar.
+1. Verify that the **NGINX {{<nb>}}Plus All-Active-LB**{{</nb>}} project is still selected in the Google Cloud Platform header bar.
 
-2. Navigate to the **Compute&nbsp;Engine&nbsp;>&nbsp;VM&nbsp;instances** tab.
+2. Navigate to the {{<nb>}}**Compute Engine > VM instances**{{</nb>}} tab.
 
 3. In the table, select all three instances:
 
-   - If you created source instances from [VM (Ubuntu) images](#source-vm): **nginx&#8209;plus&#8209;app&#8209;1**, **nginx&#8209;plus&#8209;app&#8209;2**, and **nginx&#8209;plus&#8209;lb**
-   - If you created source instances from [prebuilt NGINX Plus images](#source-prebuilt): **nginx&#8209;plus&#8209;app&#8209;1&#8209;vm**, **nginx&#8209;plus&#8209;app&#8209;2&#8209;vm**, and **nginx&#8209;plus&#8209;lb&#8209;vm**
+   - If you created source instances from [VM (Ubuntu) images](#source-vm): {{<nb>}}**nginx-plus-app-1**{{</nb>}}, {{<nb>}}**nginx-plus-app-2**{{</nb>}}, and {{<nb>}}**nginx-plus-lb**{{</nb>}}
+   - If you created source instances from [prebuilt NGINX Plus images](#source-prebuilt): {{<nb>}}**nginx-plus-app-1-vm**{{</nb>}}, {{<nb>}}**nginx-plus-app-2-vm**{{</nb>}}, and {{<nb>}}**nginx-plus-lb-vm**{{</nb>}}
 
 4. Click <span style="color:#3366cc;">STOP</span> in the top toolbar to stop the instances.
 
@@ -634,43 +634,43 @@ Create _gold images_, which are base images that GCE clones automatically when i
 
    **Note:** If the pop-up warns that it will delete the boot disk for any instance, cancel the deletion. Then, perform the steps below <span style="text-decoration: underline;">for each affected instance</span>:
 
-   - Navigate to the **Compute&nbsp;Engine&nbsp;>&nbsp;VM&nbsp;instances** tab and click the instance in the <span style="color:#3366cc;">Name</span> column in the table. (The screenshot shows **nginx&#8209;plus&#8209;app&#8209;1&#8209;vm**.)
+   - Navigate to the {{<nb>}}**Compute Engine > VM instances**{{</nb>}} tab and click the instance in the <span style="color:#3366cc;">Name</span> column in the table. (The screenshot shows {{<nb>}}**nginx-plus-app-1-vm**.){{</nb>}}
 
      <img src="/nginx/images/gce-app-1-vm-select.png" alt="Screenshot showing how to access the page where configuration details for a VM instance can be modified during deployment of NGINX Plus as the Google Cloud load balancer." width="1023" height="194" class="aligncenter size-full wp-image-47465" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
-   - On the **VM&nbsp;instances** page that opens, click <span style="color:#3366cc;">EDIT</span> at the top of the page. In fields that can be edited, the value changes from static text to text boxes, drop‑down menus, and checkboxes.
-   - In the **Boot&nbsp;disk&nbsp;and&nbsp;local&nbsp;disks** field, uncheck the checkbox labeled **Delete boot disk when instance is deleted**.
+   - On the {{<nb>}}**VM instances**{{</nb>}} page that opens, click <span style="color:#3366cc;">EDIT</span> at the top of the page. In fields that can be edited, the value changes from static text to text boxes, drop‑down menus, and checkboxes.
+   - In the {{<nb>}}**Boot disk and local disks**{{</nb>}} field, uncheck the checkbox labeled **Delete boot disk when instance is deleted**.
    - Click the <span style="background-color:#3366cc; color:white;"> Save </span> button.
-   - On the **VM&nbsp;instances** summary page, select the instance in the table and click <span style="color:#3366cc;">DELETE</span> in the top toolbar to delete it.
+   - On the {{<nb>}}**VM instances**{{</nb>}} summary page, select the instance in the table and click <span style="color:#3366cc;">DELETE</span> in the top toolbar to delete it.
 
-6. Navigate to the **Compute&nbsp;Engine&nbsp;>&nbsp;Images** tab.
+6. Navigate to the {{<nb>}}**Compute Engine > Images**{{</nb>}} tab.
 
 7. Click <span style="color:#3366cc; white-space: nowrap;">[+] CREATE IMAGE</span>.
 
-8. On the **Create&nbsp;an&nbsp;image** page that opens, modify or verify the fields as indicated:
+8. On the {{<nb>}}**Create an image**{{</nb>}} page that opens, modify or verify the fields as indicated:
 
-   - **Name** – **nginx&#8209;plus&#8209;app&#8209;1&#8209;image**
+   - **Name** – {{<nb>}}**nginx-plus-app-1-image**{{</nb>}}
    - **Family** – Leave the field empty
    - **Description** – **NGINX Plus Application 1 Gold Image**
-   - **Encryption** – **Automatic&nbsp;(recommended)** (the default)
+   - **Encryption** – {{<nb>}}**Automatic (recommended)**{{</nb>}} (the default)
    - **Source** – **Disk** (the default)
-   - **Source&nbsp;disk** – **nginx&#8209;plus&#8209;app&#8209;1** or **nginx&#8209;plus&#8209;app&#8209;1&#8209;vm**, depending on the method you used to create source instances (select the source instance from the drop‑down menu)
+   - {{<nb>}}**Source disk**{{</nb>}} – {{<nb>}}**nginx-plus-app-1**{{</nb>}} or {{<nb>}}**nginx-plus-app-1-vm**{{</nb>}}, depending on the method you used to create source instances (select the source instance from the drop‑down menu)
 
 9. Click the <span style="background-color:#3366cc; color:white;"> Create </span> button.
 
 10. Repeat Steps 7 through 9 to create a second image with the following values (retain the default values in all other fields):
 
-    - **Name** – **nginx&#8209;plus&#8209;app&#8209;2&#8209;image**
-    - **Description** – **NGINX Plus&nbsp;Application&nbsp;2&nbsp;Gold&nbsp;Image**
-    - **Source&nbsp;disk** – **nginx&#8209;plus&#8209;app&#8209;2** or **nginx&#8209;plus&#8209;app&#8209;2&#8209;vm**, depending on the method you used to create source instances (select the source instance from the drop‑down menu)
+    - **Name** – {{<nb>}}**nginx-plus-app-2-image**{{</nb>}}
+    - **Description** – **NGINX {{<nb>}}Plus Application 2 Gold Image**{{</nb>}}
+    - {{<nb>}}**Source disk**{{</nb>}} – {{<nb>}}**nginx-plus-app-2**{{</nb>}} or {{<nb>}}**nginx-plus-app-2-vm**{{</nb>}}, depending on the method you used to create source instances (select the source instance from the drop‑down menu)
 
 11. Repeat Steps 7 through 9 to create a third image with the following values (retain the default values in all other fields):
 
-    - **Name** – **nginx&#8209;plus&#8209;lb&#8209;image**
+    - **Name** – {{<nb>}}**nginx-plus-lb-image**{{</nb>}}
     - **Description** – **NGINX Plus LB Gold Image**
-    - **Source&nbsp;disk** – **nginx&#8209;plus&#8209;lb** or **nginx&#8209;plus&#8209;lb&#8209;vm**, depending on the method you used to create source instances (select the source instance from the drop‑down menu)
+    - {{<nb>}}**Source disk**{{</nb>}} – {{<nb>}}**nginx-plus-lb**{{</nb>}} or {{<nb>}}**nginx-plus-lb-vm**{{</nb>}}, depending on the method you used to create source instances (select the source instance from the drop‑down menu)
 
-12. Verify that the three images appear at the top of the table on the **Compute&nbsp;Engine&nbsp;>&nbsp;Images** tab.
+12. Verify that the three images appear at the top of the table on the {{<nb>}}**Compute Engine > Images**{{</nb>}} tab.
 
 <span id="templates"></span>
 ## Task 4: Creating Instance Templates
@@ -681,31 +681,31 @@ Create _instance templates_. They are the compute workloads in instance groups. 
 <span id="templates-app-1"></span>
 ### Creating the First Application Instance Template
 
-1. Verify that the **NGINX Plus&nbsp;All&#8209;Active&#8209;LB** project is still selected in the Google Cloud Platform header bar.
+1. Verify that the **NGINX {{<nb>}}Plus All-Active-LB**{{</nb>}} project is still selected in the Google Cloud Platform header bar.
 
-2. Navigate to the **Compute&nbsp;Engine&nbsp;>&nbsp;Instance&nbsp;templates** tab.
+2. Navigate to the {{<nb>}}**Compute Engine > Instance templates**{{</nb>}} tab.
 
 3. Click the <span style="background-color:#3366cc; color:white; white-space: nowrap;"> Create instance template </span> button.
 
-4. On the **Create&nbsp;an&nbsp;instance&nbsp;template** page that opens, modify or verify the fields as indicated:
+4. On the {{<nb>}}**Create an instance template**{{</nb>}} page that opens, modify or verify the fields as indicated:
 
-   - **Name** – **nginx&#8209;plus&#8209;app&#8209;1&#8209;instance&#8209;template**
-   - **Machine&nbsp;type** – The appropriate size for the level of traffic you anticipate. We're selecting **micro**, which is ideal for testing purposes.
-   - **Boot&nbsp;disk** – Click **Change**. The **Boot&nbsp;disk** page opens. Perform the following steps:
+   - **Name** – {{<nb>}}**nginx-plus-app-1-instance-template**{{</nb>}}
+   - {{<nb>}}**Machine type**{{</nb>}} – The appropriate size for the level of traffic you anticipate. We're selecting **micro**, which is ideal for testing purposes.
+   - {{<nb>}}**Boot disk**{{</nb>}} – Click **Change**. The {{<nb>}}**Boot disk**{{</nb>}} page opens. Perform the following steps:
 
-     - Open the **Custom&nbsp;Images** subtab.
+     - Open the {{<nb>}}**Custom Images**{{</nb>}} subtab.
 
          <img src="/nginx/images/gce-instance-template-boot-disk.png" alt="Screenshot of the 'Boot disk' page in Google Cloud Platform for selecting the source instance of a new instance template, part of deploying NGINX Plus as the Google load balancer." width="491" height="517" class="aligncenter size-full wp-image-47478" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
-     - Select **NGINX Plus&nbsp;All&#8209;Active&#8209;LB** from the drop-down menu labeled **Show&nbsp;images&nbsp;from**.
+     - Select **NGINX {{<nb>}}Plus All-Active-LB**{{</nb>}} from the drop-down menu labeled {{<nb>}}**Show images from**{{</nb>}}.
 
-     - Click the **nginx&#8209;plus&#8209;app&#8209;1&#8209;image** radio button.
+     - Click the {{<nb>}}**nginx-plus-app-1-image**{{</nb>}} radio button.
 
-     - Accept the default values in the **Boot&nbsp;disk&nbsp;type** and **Size&nbsp;(GB)** fields (**Standard&nbsp;persistent&nbsp;disk** and **10** respectively).
+     - Accept the default values in the {{<nb>}}**Boot disk type**{{</nb>}} and {{<nb>}}**Size (GB)**{{</nb>}} fields ({{<nb>}}**Standard persistent disk**{{</nb>}} and **10** respectively).
 
      - Click the <span style="background-color:#3366cc; color:white;"> Select </span> button.
 
-   - **Identity&nbsp;and&nbsp;API&nbsp;access** – Unless you want more granular control over access, keep the defaults in the **Service&nbsp;account** field (**Compute Engine default service account**) and **Access&nbsp;scopes** field (**Allow&nbsp;default&nbsp;access**).
+   - {{<nb>}}**Identity and API access**{{</nb>}} – Unless you want more granular control over access, keep the defaults in the {{<nb>}}**Service account**{{</nb>}} field (**Compute Engine default service account**) and {{<nb>}}**Access scopes**{{</nb>}} field ({{<nb>}}**Allow default access**{{</nb>}}).
    - **Firewall** – Verify that neither check box is checked (the default). The firewall rule invoked in the **Tags** field on the **Management** subtab (see Step 6 below) controls this type of access.
 
 5. Select <span style="color:#3366cc; white-space: nowrap;">Management, disk, networking, SSH keys</span> (indicated with a red arrow in the following screenshot) to open that set of subtabs.
@@ -714,11 +714,11 @@ Create _instance templates_. They are the compute workloads in instance groups. 
 
 6. On the **Management** subtab, modify or verify the fields as indicated:
 
-   - **Description** – **NGINX Plus&nbsp;app&#8209;1&nbsp;Instance&nbsp;Template**
-   - **Tags** – **nginx&#8209;plus&#8209;http&#8209;fw&#8209;rule**
-   - **Preemptibility** – **Off&nbsp;(recommended)** (the default)
-   - **Automatic&nbsp;restart** – **On&nbsp;(recommended)** (the default)
-   - **On&nbsp;host&nbsp;maintenance** – **Migrate&nbsp;VM&nbsp;instance&nbsp;(recommended)** (the default)
+   - **Description** – **NGINX {{<nb>}}Plus app-1 Instance Template**{{</nb>}}
+   - **Tags** – {{<nb>}}**nginx-plus-http-fw-rule**{{</nb>}}
+   - **Preemptibility** – {{<nb>}}**Off (recommended)**{{</nb>}} (the default)
+   - {{<nb>}}**Automatic restart**{{</nb>}} – {{<nb>}}**On (recommended)**{{</nb>}} (the default)
+   - {{<nb>}}**On host maintenance**{{</nb>}} – {{<nb>}}**Migrate VM instance (recommended)**{{</nb>}} (the default)
 
    <img src="/nginx/images/gce-instance-template-management.png" alt="Screenshot of the Management subtab used during creation of a new VM instance template, part of deploying NGINX Plus as the Google load balancer." width="487" height="551" class="aligncenter size-full wp-image-47480" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
@@ -728,11 +728,11 @@ Create _instance templates_. They are the compute workloads in instance groups. 
 
    <img src="/nginx/images/gce-instance-template-disks.png" alt="Screenshot of the Disks subtab used during creation of a new VM instance template, part of deploying NGINX Plus as the Google Cloud load balancer." width="488" height="184" class="aligncenter size-full wp-image-47479" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
-8. On the **Networking** subtab, verify the default settings of **Ephemeral** for **External&nbsp;IP** and **Off** for **IP&nbsp;Forwarding**.
+8. On the **Networking** subtab, verify the default settings of **Ephemeral** for {{<nb>}}**External IP**{{</nb>}} and **Off** for {{<nb>}}**IP Forwarding**{{</nb>}}.
 
    <img src="/nginx/images/gce-instance-template-networking.png" alt="Screenshot of the Networking subtab used during creation of a new VM instance template, part of deploying NGINX Plus as the Google load balancer." width="488" height="174" class="aligncenter size-full wp-image-47481" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
-9. If you're using your own SSH public key instead of your default keys, paste the hexadecimal key string on the **SSH&nbsp;Keys** subtab. Right into the box that reads **Enter&nbsp;entire&nbsp;key&nbsp;data**.
+9. If you're using your own SSH public key instead of your default keys, paste the hexadecimal key string on the {{<nb>}}**SSH Keys**{{</nb>}} subtab. Right into the box that reads {{<nb>}}**Enter entire key data**{{</nb>}}.
 
     <img src="/nginx/images/gce-ubuntu-instance-ssh-keys.png" alt="Screenshot of the SSH Keys subtab used during creation of a new VM instance, part of deploying NGINX Plus as the Google Cloud Platform load balancer." width="488" height="205" class="aligncenter size-full wp-image-47488" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
@@ -741,25 +741,25 @@ Create _instance templates_. They are the compute workloads in instance groups. 
 <span id="templates-app-2"></span>
 ### Creating the Second Application Instance Template
 
-1. On the **Instance&nbsp;templates** summary page, click <span style="color:#3366cc; white-space: nowrap;">CREATE INSTANCE TEMPLATE</span>.
+1. On the {{<nb>}}**Instance templates**{{</nb>}} summary page, click <span style="color:#3366cc; white-space: nowrap;">CREATE INSTANCE TEMPLATE</span>.
 
 2. Repeat Steps 4 through 10 of <a href="#templates-app-1">Creating the First Application Instance Template</a> to create a second application instance template. Use the same values as for the first instance template, except as noted:
 
    - In Step 4:
-     - **Name** – **nginx&#8209;plus&#8209;app&#8209;2&#8209;instance&#8209;template**
-     - **Boot&nbsp;disk** – Click the **nginx&#8209;plus&#8209;app&#8209;2&#8209;image** radio button
-   - In Step 6, **Description** – **NGINX Plus&nbsp;app&#8209;2&nbsp;Instance&nbsp;Template**
+     - **Name** – {{<nb>}}**nginx-plus-app-2-instance-template**{{</nb>}}
+     - {{<nb>}}**Boot disk**{{</nb>}} – Click the {{<nb>}}**nginx-plus-app-2-image**{{</nb>}} radio button
+   - In Step 6, **Description** – **NGINX {{<nb>}}Plus app-2 Instance Template**{{</nb>}}
 
 <span id="templates-lb"></span>
 ### Creating the Load-Balancing Instance Template
 
-1. On the **Instance&nbsp;templates** summary page, click <span style="color:#3366cc; white-space: nowrap;">CREATE INSTANCE TEMPLATE</span>.
+1. On the {{<nb>}}**Instance templates**{{</nb>}} summary page, click <span style="color:#3366cc; white-space: nowrap;">CREATE INSTANCE TEMPLATE</span>.
 
 2. Repeat Steps 4 through 10 of <a href="#templates-app-1">Creating the First Application Instance Template</a> to create the load‑balancing instance template. Use the same values as for the first instance template, except as noted:
 
    - In Step 4:
-      - **Name** – **nginx&#8209;plus&#8209;lb&#8209;instance&#8209;template**.
-      - **Boot&nbsp;disk** – Click the **nginx&#8209;plus&#8209;lb&#8209;image** radio button
+      - **Name** – {{<nb>}}**nginx-plus-lb-instance-template**{{</nb>}}.
+      - {{<nb>}}**Boot disk**{{</nb>}} – Click the {{<nb>}}**nginx-plus-lb-image**{{</nb>}} radio button
 
    - In Step 6, **Description** – **NGINX Plus Load‑Balancing Instance Template**
 
@@ -768,28 +768,28 @@ Create _instance templates_. They are the compute workloads in instance groups. 
 
 Define the simple HTTP health check that GCE uses. This verifies that each NGINX Plus LB image is running (and to re-create any LB instance that isn't running).
 
-1. Verify that the **NGINX Plus&nbsp;All&#8209;Active&#8209;LB** project is still selected in the Google Cloud Platform header bar.
+1. Verify that the **NGINX {{<nb>}}Plus All-Active-LB**{{</nb>}} project is still selected in the Google Cloud Platform header bar.
 
-2. Navigate to the **Compute&nbsp;Engine&nbsp;>&nbsp;Health&nbsp;checks** tab.
+2. Navigate to the {{<nb>}}**Compute Engine > Health checks**{{</nb>}} tab.
 
 3. Click the <span style="background-color:#3366cc; color:white; white-space: nowrap;"> Create a health check </span> button.
 
-4. On the **Create&nbsp;a&nbsp;health&nbsp;check** page that opens, modify or verify the fields as indicated:
+4. On the {{<nb>}}**Create a health check**{{</nb>}} page that opens, modify or verify the fields as indicated:
 
-   - **Name** – **nginx&#8209;plus&#8209;http&#8209;health&#8209;check**
+   - **Name** – {{<nb>}}**nginx-plus-http-health-check**{{</nb>}}
    - **Description** – **Basic HTTP health check to monitor NGINX Plus instances**
    - **Protocol** – **HTTP** (the default)
    - **Port** – **80** (the default)
-   - **Request&nbsp;path** – **/status&#8209;old.html**
+   - {{<nb>}}**Request path**{{</nb>}} – {{<nb>}}**/status-old.html**{{</nb>}}
 
-5. If the **Health&nbsp;criteria** section is not already open, click <span style="color:#3366cc;">More</span>.
+5. If the {{<nb>}}**Health criteria**{{</nb>}} section is not already open, click <span style="color:#3366cc;">More</span>.
 
 6. Modify or verify the fields as indicated:
 
-   - **Check&nbsp;interval** – **10&nbsp;seconds**
-   - **Timeout** – **10&nbsp;seconds**
-   - **Healthy&nbsp;threshold** – **2&nbsp;consecutive&nbsp;successes** (the default)
-   - **Unhealthy&nbsp;threshold** – **10&nbsp;consecutive&nbsp;failures**
+   - {{<nb>}}**Check interval**{{</nb>}} – {{<nb>}}**10 seconds**{{</nb>}}
+   - **Timeout** – {{<nb>}}**10 seconds**{{</nb>}}
+   - {{<nb>}}**Healthy threshold**{{</nb>}} – {{<nb>}}**2 consecutive successes**{{</nb>}} (the default)
+   - {{<nb>}}**Unhealthy threshold**{{</nb>}} – {{<nb>}}**10 consecutive failures**{{</nb>}}
 
 7. Click the <span style="background-color:#3366cc; color:white;"> Create </span> button.
 
@@ -800,28 +800,28 @@ Define the simple HTTP health check that GCE uses. This verifies that each NGINX
 
 Create three independent instance groups, one for each type of function-specific instance.
 
-1. Verify that the **NGINX Plus&nbsp;All&#8209;Active&#8209;LB** project is still selected in the Google Cloud Platform header bar.
+1. Verify that the **NGINX {{<nb>}}Plus All-Active-LB**{{</nb>}} project is still selected in the Google Cloud Platform header bar.
 
-2. Navigate to the **Compute&nbsp;Engine&nbsp;>&nbsp;Instance&nbsp;groups** tab.
+2. Navigate to the {{<nb>}}**Compute Engine > Instance groups**{{</nb>}} tab.
 
 3. Click the <span style="background-color:#3366cc; color:white; white-space: nowrap;"> Create instance group </span> button.
 
 <span id="groups-app-1"></span>
 ### Creating the First Application Instance Group
 
-1. On the **Create&nbsp;a&nbsp;new&nbsp;instance&nbsp;group** page that opens, modify or verify the fields as indicated. Ignore fields that are not mentioned:
+1. On the {{<nb>}}**Create a new instance group**{{</nb>}} page that opens, modify or verify the fields as indicated. Ignore fields that are not mentioned:
 
-   - **Name** – **nginx&#8209;plus&#8209;app&#8209;1&#8209;instance&#8209;group**
+   - **Name** – {{<nb>}}**nginx-plus-app-1-instance-group**{{</nb>}}
    - **Description** – **Instance group to host NGINX Plus app-1 instances**
    - **Location** –
-     - Click the **Single&#8209;zone** radio button (the default).
-     - **Zone** – The GCP zone you specified when you created source instances (Step 1 of [Creating the First Application Instance from a VM Image](#source-vm-app-1) or Step 5 of [Creating the First Application Instance from a Prebuilt Image](#source-prebuilt)). We're using **us&#8209;west1&#8209;a**.
-   - **Creation&nbsp;method** – **Use&nbsp;instance&nbsp;template** radio button (the default)
-   - **Instance&nbsp;template** – **nginx&#8209;plus&#8209;app&#8209;1&#8209;instance&#8209;template** (select from the drop-down menu)
+     - Click the {{<nb>}}**Single-zone**{{</nb>}} radio button (the default).
+     - **Zone** – The GCP zone you specified when you created source instances (Step 1 of [Creating the First Application Instance from a VM Image](#source-vm-app-1) or Step 5 of [Creating the First Application Instance from a Prebuilt Image](#source-prebuilt)). We're using {{<nb>}}**us-west1-a**{{</nb>}}.
+   - {{<nb>}}**Creation method**{{</nb>}} – {{<nb>}}**Use instance template**{{</nb>}} radio button (the default)
+   - {{<nb>}}**Instance template**{{</nb>}} – {{<nb>}}**nginx-plus-app-1-instance-template**{{</nb>}} (select from the drop-down menu)
    - **Autoscaling** – **Off** (the default)
-   - **Number&nbsp;of&nbsp;instances** – **2**
-   - **Health&nbsp;check** – **nginx&#8209;plus&#8209;http&#8209;health&#8209;check** (select from the drop-down menu)
-   - **Initial&nbsp;delay** – **300&nbsp;seconds** (the default)
+   - {{<nb>}}**Number of instances**{{</nb>}} – **2**
+   - {{<nb>}}**Health check**{{</nb>}} – {{<nb>}}**nginx-plus-http-health-check**{{</nb>}} (select from the drop-down menu)
+   - {{<nb>}}**Initial delay**{{</nb>}} – {{<nb>}}**300 seconds**{{</nb>}} (the default)
 
 3. Click the <span style="background-color:#3366cc; color:white;"> Create </span> button.
 
@@ -834,25 +834,25 @@ Create three independent instance groups, one for each type of function-specific
 
 2. Repeat the steps in [Creating the First Application Instance Group](#groups-app-1) to create a second application instance group. Specify the same values as for the first instance template, except for these fields:
 
-   - **Name** – **nginx&#8209;plus&#8209;app&#8209;2&#8209;instance&#8209;group**
+   - **Name** – {{<nb>}}**nginx-plus-app-2-instance-group**{{</nb>}}
    - **Description** – **Instance group to host NGINX Plus app-2 instances**
-   - **Instance&nbsp;template** – **nginx&#8209;plus&#8209;app&#8209;2&#8209;instance&#8209;template** (select from the drop-down menu)
+   - {{<nb>}}**Instance template**{{</nb>}} – {{<nb>}}**nginx-plus-app-2-instance-template**{{</nb>}} (select from the drop-down menu)
 
 <span id="groups-lb"></span>
 ### Creating the Load-Balancing Instance Group
 
-1. On the **Instance&nbsp;groups** summary page, click <span style="color:#3366cc; white-space: nowrap;">CREATE INSTANCE GROUP</span>.
+1. On the {{<nb>}}**Instance groups**{{</nb>}} summary page, click <span style="color:#3366cc; white-space: nowrap;">CREATE INSTANCE GROUP</span>.
 
 2. Repeat the steps in [Creating the First Application Instance Group](#groups-app-1) to create the load‑balancing instance group. Specify the same values as for the first instance template, except for these fields:
 
-   - **Name** – **nginx&#8209;plus&#8209;lb&#8209;instance&#8209;group**
+   - **Name** – {{<nb>}}**nginx-plus-lb-instance-group**{{</nb>}}
    - **Description** – **Instance group to host NGINX Plus load balancing instances**
-   - **Instance&nbsp;template** – **nginx&#8209;plus&#8209;lb&#8209;instance&#8209;template** (select from the drop-down menu)
+   - {{<nb>}}**Instance template**{{</nb>}} – {{<nb>}}**nginx-plus-lb-instance-template**{{</nb>}} (select from the drop-down menu)
 
 <span id="update-test"></span>
 ### Updating and Testing the NGINX Plus Configuration
 
-Update the NGINX Plus configuration on the two LB instances (**nginx&#8209;plus&#8209;lb&#8209;instance&#8209;group&#8209;[a...z]**). It should list the internal IP addresses of the four application servers (two instances each of **nginx&#8209;plus&#8209;app&#8209;1&#8209;instance&#8209;group&#8209;[a...z]** and **nginx&#8209;plus&#8209;app&#8209;2&#8209;instance&#8209;group&#8209;[a...z]**).
+Update the NGINX Plus configuration on the two LB instances ({{<nb>}}**nginx-plus-lb-instance-group-[a...z]**{{</nb>}}). It should list the internal IP addresses of the four application servers (two instances each of {{<nb>}}**nginx-plus-app-1-instance-group-[a...z]**{{</nb>}} and {{<nb>}}**nginx-plus-app-2-instance-group-[a...z]**{{</nb>}}).
 
 <span style="text-decoration: underline; white-space: nowrap;">Repeat these instructions</span> for both LB instances.
 
@@ -860,10 +860,10 @@ Update the NGINX Plus configuration on the two LB instances (**nginx&#8209;plus
 
 1. Connect to the LB instance over SSH using the method of your choice. GCE provides a built-in mechanism:
 
-   - Navigate to the **Compute&nbsp;Engine&nbsp;>&nbsp;VM&nbsp;instances** tab.
-   - In the table, find the row for the instance. Click the triangle icon in the **Connect** column at the far right. Then, select a method (for example, **Open&nbsp;in&nbsp;browser&nbsp;window**).
+   - Navigate to the {{<nb>}}**Compute Engine > VM instances**{{</nb>}} tab.
+   - In the table, find the row for the instance. Click the triangle icon in the **Connect** column at the far right. Then, select a method (for example, {{<nb>}}**Open in browser window**{{</nb>}}).
 
-2. In the SSH terminal, use your preferred text editor to edit **gce&#8209;all&#8209;active&#8209;lb.conf**. Change the `server` directives in the `upstream` block to  reference the internal IPs of the two **nginx&#8209;plus&#8209;app&#8209;1&#8209;instance&#8209;group&#8209;[a...z]** instances and the two **nginx&#8209;plus&#8209;app&#8209;2&#8209;instance&#8209;group&#8209;[a...z]** instances. You can check the addresses in the **Internal&nbsp;IP** column of the table on the **Compute&nbsp;Engine&nbsp;>&nbsp;VM&nbsp;instances** summary page. For example:
+2. In the SSH terminal, use your preferred text editor to edit {{<nb>}}**gce-all-active-lb.conf**{{</nb>}}. Change the `server` directives in the `upstream` block to  reference the internal IPs of the two {{<nb>}}**nginx-plus-app-1-instance-group-[a...z]**{{</nb>}} instances and the two {{<nb>}}**nginx-plus-app-2-instance-group-[a...z]**{{</nb>}} instances. You can check the addresses in the {{<nb>}}**Internal IP**{{</nb>}} column of the table on the {{<nb>}}**Compute Engine > VM instances**{{</nb>}} summary page. For example:
 
    ```nginx
    upstream upstream_app_pool {
@@ -887,9 +887,9 @@ Update the NGINX Plus configuration on the two LB instances (**nginx&#8209;plus
    nginx -s reload
    ```
 
-4. Verify that the four application instances are receiving traffic and responding. To do this, access the NGINX Plus live activity monitoring dashboard on the load-balancing instance (**nginx&#8209;plus&#8209;lb&#8209;instance&#8209;group&#8209;[a...z]**). You can see the instance's external IP address on the **Compute&nbsp;Engine&nbsp;>&nbsp;VM&nbsp;instances** summary page in the **External&nbsp;IP** column of the table.
+4. Verify that the four application instances are receiving traffic and responding. To do this, access the NGINX Plus live activity monitoring dashboard on the load-balancing instance ({{<nb>}}**nginx-plus-lb-instance-group-[a...z]**{{</nb>}}). You can see the instance's external IP address on the {{<nb>}}**Compute Engine > VM instances**{{</nb>}} summary page in the {{<nb>}}**External IP**{{</nb>}} column of the table.
 
-   **https://_LB&#8209;external&#8209;IP&#8209;address_:8080/status.html**
+   {{<nb>}}**https://_LB-external-IP-address_:8080/status.html**{{</nb>}}
 
 5. Verify that NGINX Plus is load balancing traffic among the four application instance groups. Do this by running this command on a separate client machine:
 
@@ -904,50 +904,50 @@ Update the NGINX Plus configuration on the two LB instances (**nginx&#8209;plus
 
 Set up a GCE network load balancer. It will distribute incoming client traffic to the NGINX Plus LB instances. First, reserve the static IP address the GCE network load balancer advertises to clients.
 
-1. Verify that the **NGINX Plus&nbsp;All&#8209;Active&#8209;LB** project is still selected in the Google Cloud Platform header bar.
+1. Verify that the **NGINX {{<nb>}}Plus All-Active-LB**{{</nb>}} project is still selected in the Google Cloud Platform header bar.
 
-2. Navigate to the **Networking&nbsp;>&nbsp;External&nbsp;IP&nbsp;addresses** tab.
+2. Navigate to the {{<nb>}}**Networking > External IP addresses**{{</nb>}} tab.
 
 3. Click the <span style="background-color:#3366cc; color:white; white-space: nowrap;"> Reserve static address </span> button.
 
-4. On the **Reserve&nbsp;a&nbsp;static&nbsp;address** page that opens, modify or verify the fields as indicated:
+4. On the {{<nb>}}**Reserve a static address**{{</nb>}} page that opens, modify or verify the fields as indicated:
 
-   - **Name** – **nginx&#8209;plus&#8209;network&#8209;lb&#8209;static&#8209;ip**
+   - **Name** – {{<nb>}}**nginx-plus-network-lb-static-ip**{{</nb>}}
    - **Description** – **Static IP address for Network LB frontend to NGINX Plus LB instances**
    - **Type** – Click the **Regional** radio button (the default)
-   - **Region** – The GCP zone you specified when you created source instances (Step 1 of [Creating the First Application Instance from a VM Image](#source-vm-app-1) or Step 5 of [Creating the First Application Instance from a Prebuilt Image](#source-prebuilt)). We're using **us&#8209;west1**.
-   - **Attached&nbsp;to** – **None** (the default)
+   - **Region** – The GCP zone you specified when you created source instances (Step 1 of [Creating the First Application Instance from a VM Image](#source-vm-app-1) or Step 5 of [Creating the First Application Instance from a Prebuilt Image](#source-prebuilt)). We're using {{<nb>}}**us-west1**{{</nb>}}.
+   - {{<nb>}}**Attached to**{{</nb>}} – **None** (the default)
 
 5. Click the <span style="background-color:#3366cc; color:white;"> Reserve </span> button.
 
    <img src="/nginx/images/gce-reserve-static-address.png" alt="Screenshot of the interface for reserving a static IP address for Google Compute Engine network load balancer." width="488" height="496" class="aligncenter size-full wp-image-47483" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
-6. Navigate to the **Networking&nbsp;>&nbsp;Load&nbsp;balancing** tab.
+6. Navigate to the {{<nb>}}**Networking > Load balancing**{{</nb>}} tab.
 
 7. Click the <span style="background-color:#3366cc; color:white; white-space: nowrap;"> Create load balancer </span> button.
 
-8. On the **Load&nbsp;balancing** page that opens, click **Start&nbsp;configuration** in the **TCP&nbsp;Load&nbsp;Balancing** box.
+8. On the {{<nb>}}**Load balancing**{{</nb>}} page that opens, click {{<nb>}}**Start configuration**{{</nb>}} in the {{<nb>}}**TCP Load Balancing**{{</nb>}} box.
 
-9. On the page that opens, click the **From&nbsp;Internet&nbsp;to&nbsp;my&nbsp;VMs** and **No&nbsp;(TCP)** radio buttons (the defaults).
+9. On the page that opens, click the {{<nb>}}**From Internet to my VMs**{{</nb>}} and {{<nb>}}**No (TCP)**{{</nb>}} radio buttons (the defaults).
 
-10. Click the <span style="background-color:#3366cc; color:white;"> Continue </span> button. The **New&nbsp;TCP&nbsp;load&nbsp;balancer** page opens.
+10. Click the <span style="background-color:#3366cc; color:white;"> Continue </span> button. The {{<nb>}}**New TCP load balancer**{{</nb>}} page opens.
 
-11. In the **Name** field, type **nginx&#8209;plus&#8209;network&#8209;lb&#8209;frontend**.
+11. In the **Name** field, type {{<nb>}}**nginx-plus-network-lb-frontend**{{</nb>}}.
 
-12. Click **Backend&nbsp;configuration** in the left column to open the **Backend&nbsp;configuration** interface in the right column. Fill in the fields as indicated:
+12. Click {{<nb>}}**Backend configuration**{{</nb>}} in the left column to open the {{<nb>}}**Backend configuration**{{</nb>}} interface in the right column. Fill in the fields as indicated:
 
-    - **Region** – The GCP region you specified in Step 4. We're using **us&#8209;west1**.
-    - **Backends** – With **Select&nbsp;existing&nbsp;instance&nbsp;groups** selected, select **nginx&#8209;plus&#8209;lb&#8209;instance&#8209;group** from the drop-down menu
-    - **Backup&nbsp;pool** – **None** (the default)
-    - **Failover&nbsp;ratio** – **10** (the default)
-    - **Health&nbsp;check** – **nginx&#8209;plus&#8209;http&#8209;health&#8209;check**
-    - **Session&nbsp;affinity** – **Client&nbsp;IP**
+    - **Region** – The GCP region you specified in Step 4. We're using {{<nb>}}**us-west1**{{</nb>}}.
+    - **Backends** – With {{<nb>}}**Select existing instance groups**{{</nb>}} selected, select {{<nb>}}**nginx-plus-lb-instance-group**{{</nb>}} from the drop-down menu
+    - {{<nb>}}**Backup pool**{{</nb>}} – **None** (the default)
+    - {{<nb>}}**Failover ratio**{{</nb>}} – **10** (the default)
+    - {{<nb>}}**Health check**{{</nb>}} – {{<nb>}}**nginx-plus-http-health-check**{{</nb>}}
+    - {{<nb>}}**Session affinity**{{</nb>}} – {{<nb>}}**Client IP**{{</nb>}}
 
     <img src="/nginx/images/gce-backend-configuration.png" alt="Screenshot of the interface for backend configuration of GCE network load balancer, used during deployment of NGINX Plus as the Google Cloud Platform load balancer." width="862" height="584" class="aligncenter size-full wp-image-47466" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
-13. Select **Frontend&nbsp;configuration** in the left column. This opens up the **Frontend&nbsp;configuration** interface on the right column.
+13. Select {{<nb>}}**Frontend configuration**{{</nb>}} in the left column. This opens up the {{<nb>}}**Frontend configuration**{{</nb>}} interface on the right column.
 
-14. Create three **Protocol&#8209;IP&#8209;Port** tuples, each with:
+14. Create three {{<nb>}}**Protocol-IP-Port**{{</nb>}} tuples, each with:
 
     - **Protocol** – **TCP**
     - **IP** – The address you reserved in Step 5, selected from the drop-down menu (if there is more than one address, select the one labeled in parentheses with the name you specified in Step 5)
@@ -978,7 +978,7 @@ If load balancing is working properly, the unique **Server** field from the inde
 
 To verify that high availability is working:
 
-1. Connect to one of the instances in the **nginx&#8209;plus&#8209;lb&#8209;instance&#8209;group** over SSH and run this command to force it offline:
+1. Connect to one of the instances in the {{<nb>}}**nginx-plus-lb-instance-group**{{</nb>}} over SSH and run this command to force it offline:
 
    ```shell
    iptables -A INPUT -p tcp --destination-port 80 -j DROP

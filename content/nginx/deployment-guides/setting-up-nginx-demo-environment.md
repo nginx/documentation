@@ -21,7 +21,7 @@ Some commands require `root` privilege. If appropriate for your environment, pre
 <span id="nginx-oss"></span>
 ## Configuring NGINX Open Source for web serving
 
-The steps in this section configure an NGINX Open Source instance as a web server to return a page like the following, which specifies the server name, address, and other information. The page is defined in the **demo&#8209;index.html** configuration file you create in Step 4 below.
+The steps in this section configure an NGINX Open Source instance as a web server to return a page like the following, which specifies the server name, address, and other information. The page is defined in the {{<nb>}}**demo-index.html**{{</nb>}} configuration file you create in Step 4 below.
 
    <a href="/nginx/images/aws-nlb-app1.png"><img src="/nginx/images/aws-nlb-app1.png" alt="" width="1024" height="491" class="aligncenter size-full wp-image-54839" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
