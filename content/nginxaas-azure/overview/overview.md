@@ -13,8 +13,10 @@ type:
 NGINX as a Service for Azure is a service offering that is tightly integrated into Microsoft Azure public cloud and its ecosystem, making applications fast, efficient, and reliable with full lifecycle management of advanced NGINX traffic services.
 NGINXaaS for Azure is available in the Azure Marketplace.
 
-NGINXaaS for Azure is powered by [NGINX Plus](https://www.nginx.com/products/nginx/), which extends NGINX Open Source with advanced functionality and provides customers with a complete application delivery solution. Initial use cases covered by NGINXaaS include L7 HTTP load balancing and reverse proxy which can be managed through various Azure management tools.
+NGINXaaS for Azure is powered by [NGINX Plus](https://www.nginx.com/products/nginx/), which extends NGINX Open Source with advanced functionality and provides customers with a complete application delivery solution. Initial use cases covered by NGINXaaS include L4 TCP and L7 HTTP load balancing and reverse proxy which can be managed through various Azure management tools.
 NGINXaaS allows you to provision distinct deployments as per your business or technical requirements.
+
+NGINXaaS handles the NGINX Plus license management automatically.
 
 ## Capabilities
 
@@ -27,6 +29,16 @@ The key capabilities of NGINXaaS for Azure are:
 - Integrates with the Azure ecosystem (Microsoft Entra, Azure Key Vault, and Azure Monitor).
 - Addresses a wide range of deployment scenarios (HTTP reverse proxy, JWT authentication, etc).
 - Adopts a consumption-based pricing to align infrastructure costs to actual usage by billing transactions using Azure.
+- Supports end-to-end encryption from client to upstream server.
+- Supports the following protocols: HTTPS, HTTP, HTTP/2, HTTP/3, TCP, QUIC, IMAP, POP3, and SMTP.
+- Supports any type of message body for upstream and error status code responses, including text/plain, text/css, text/html, application/javascript, and application/json.
+
+
+## Limitations
+
+- NGINXaaS does not support IPv6 yet.
+- NGINXaaS supports one public or private IP per deployment. NGINXaaS doesn't support a mix of public and private IPs at this time.
+- The IP address associated with an NGINXaaS deployment can't be changed from public to private, or from private to public.
 
 ## Supported regions
 
@@ -44,6 +56,10 @@ NGINXaaS for Azure is supported in the following regions:
 
 - Azure management tools (API, CLI, portal, terraform) work with NGINXaaS to create, update, and delete deployments
 - Each NGINXaaS deployment has dedicated network and compute resources. There is no possibility of [noisy neighbor problems](https://learn.microsoft.com/en-us/azure/architecture/antipatterns/noisy-neighbor/noisy-neighbor) or data leakage between deployments
+- NGINXaaS can route traffic to upstreams even if the upstream servers are located in different geographies. See [Known Issues]({{< ref "/nginxaas-azure/known-issues.md" >}}) for any networking restrictions.
+- NGINXaaS supports request tracing. See the [Application Performance Management with NGINX Variables](https://www.f5.com/company/blog/nginx/application-tracing-nginx-plus) blog to learn more about tracing.
+- Supports HTTP to HTTPS, HTTPS to HTTP, and HTTP to HTTP redirects. NGINXaaS also provides the ability to create new rules for redirecting. See [How to Create NGINX Rewrite Rules | NGINX](https://www.nginx.com/blog/creating-nginx-rewrite-rules/) for more details.
+- NGINXaaS is deployed inside of your Azure network and can connect to your upstream application running in your ecosystem. Known networking limitations can be found in the [Known Issues]({{< ref "/nginxaas-azure/known-issues.md" >}}).
 
 ### Redundancy
 
@@ -60,9 +76,9 @@ With the Standard V2 Plan, NGINXaaS uses the following redundancy features to ke
 
 {{< img src="nginxaas-azure/n4a-data-plane-architecture.svg" alt="The diagram illustrates the architecture of F5 NGINXaaS for Azure, showing end users accessing a public IP that routes through a network security group within a customer's Azure subscription. This leads to a delegated subnet in a virtual network, which connects to a zone-redundant load balancer within the NGINXaaS subscription. The load balancer distributes traffic across NGINX Plus instances in multiple availability zones, ensuring scalability and redundancy." >}}
 
-NGINXaaS uses new Azure networking capabilities to keep end-user traffic private. Each NGINX Plus instance passes traffic to  downstream services using an elastic network card (NIC) that exists inside your subscription. These NICs are injected into a delegated virtual network. A network security group controls traffic to your NGINX Plus instances.
-
-NGINX Plus instances are automatically upgraded to receive security patches and the latest stable NGINX Plus version.
+- NGINXaaS uses new Azure networking capabilities to keep end-user traffic private. A network security group ensures that the deployment is secured and inbound connections are allowed to the ports the NGINX service listens to.
+- You can restrict access to NGINXaaS by defining restriction rules at the Network Security Group level or using NGINX's access control list. To learn more, see the [NGINX module ngx_http_access_module](http://nginx.org/en/docs/http/ngx_http_access_module.html) documentation.
+- NGINXaaS deployment is automatically upgraded to receive security patches and the latest stable NGINX Plus version.
 
 ## What's next
 

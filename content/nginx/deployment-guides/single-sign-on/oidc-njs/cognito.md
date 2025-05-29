@@ -59,7 +59,7 @@ Create a new application for NGINX Plus in the Cognito GUI:
 
    <img src="/nginx/images/cognito-sso-your-user-pools.png" alt="" width="1024" height="212" class="aligncenter size-full wp-image-63792" />
 
-3. In the **Create a user pool** window that opens, type a value in the **Pool name** field (in this guide, it's <span style="color:#666666; font-weight:bolder; white-space: nowrap;">nginx-plus-pool</span>), then click the <span style=" color:#479bd4; font-weight: bold; white-space: nowrap;">Review defaults</span> button.
+3. In the **Create a user pool** window that opens, type a value in the **Pool name** field (in this guide, it's **nginx&#8209;plus&#8209;pool**), then click the <span style=" color:#479bd4; font-weight: bold; white-space: nowrap;">Review defaults</span> button.
 
    <img src="/nginx/images/cognito-sso-create-name-tab.png" alt="" width="1024" height="808" class="aligncenter size-full wp-image-63953" />
 
@@ -70,11 +70,11 @@ Create a new application for NGINX Plus in the Cognito GUI:
 
 5. On the **App clients** tab which opens, click <span style=" color:#479bd4; font-weight: bolder; white-space: nowrap;">Add an app client</span>.
 
-6. On the **Which app clients will have access to this user pool?** window which opens, enter a value (in this guide, <span style="color:#666666; font-weight:bolder; white-space: nowrap;">nginx-plus-app</span>) in the <span style="white-space: nowrap; font-weight:bold;">App client name</span> field. Make sure the <span style="white-space: nowrap; font-weight:bold;">Generate client secret</span> box is checked, then click the <span style="background-color:#479bd4; color:white; white-space: nowrap;"> Create app client </span> button.
+6. On the **Which app clients will have access to this user pool?** window which opens, enter a value (in this guide, **nginx&#8209;plus&#8209;app**) in the **App&nbsp;client&nbsp;name** field. Make sure the **Generate&nbsp;client&nbsp;secret** box is checked, then click the <span style="background-color:#479bd4; color:white; white-space: nowrap;"> Create app client </span> button.
 
    <img src="/nginx/images/cognito-sso-create-app-clients-tab.png" alt="" width="1024" height="942" class="aligncenter size-full wp-image-63788" />
 
-7. On the confirmation page which opens, click <span style="color:#479bd4; font-weight:bold; white-space: nowrap;">Return to pool details</span> to return to the **Review** tab. On that tab click the <span style="background-color:#479bd4; color:white; white-space: nowrap;"> Create pool </span> button at the bottom. (The screenshot in [Step 4](#cognito-review-tab) shows the button.)
+7. On the confirmation page which opens, click **Return&nbsp;to&nbsp;pool&nbsp;details** to return to the **Review** tab. On that tab click the <span style="background-color:#479bd4; color:white; white-space: nowrap;"> Create pool </span> button at the bottom. (The screenshot in [Step 4](#cognito-review-tab) shows the button.)
 
    <span id="cognito-pool-id"></span>
 8. On the details page which opens to confirm the new user pool was successfully created, make note of the value in the **Pool Id** field; you will add it to the NGINX Plus configuration in [Step 3 of _Configuring NGINX Plus_](#nginx-plus-variables).
@@ -82,36 +82,36 @@ Create a new application for NGINX Plus in the Cognito GUI:
    <img src="/nginx/images/cognito-sso-config-general-settings-tab.png" alt="'General settings' tab in Amazon Cognito GUI" width="1024" height="435" class="aligncenter size-full wp-image-63787" />
 
    <span id="cognito-users"></span>
-9. Click <span style="white-space: nowrap; font-weight:bold;">Users and groups</span> in the left navigation column. In the interface that opens, designate the users (or group of users, on the **Groups** tab) who will be able to use SSO for the app being proxied by NGINX Plus. For instructions, see the Cognito documentation about [creating users](https://docs.aws.amazon.com/cognito/latest/developerguide/how-to-create-user-accounts.html), [importing users](https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-using-import-tool.html), or [adding a group](https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-user-groups.html).
+9. Click **Users&nbsp;and&nbsp;groups** in the left navigation column. In the interface that opens, designate the users (or group of users, on the **Groups** tab) who will be able to use SSO for the app being proxied by NGINX Plus. For instructions, see the Cognito documentation about [creating users](https://docs.aws.amazon.com/cognito/latest/developerguide/how-to-create-user-accounts.html), [importing users](https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-using-import-tool.html), or [adding a group](https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-user-groups.html).
 
    <img src="/nginx/images/cognito-sso-config-users-tab.png" alt="'Users and groups' tab in Amazon Cognito GUI" width="1023" height="466" class="aligncenter size-full wp-image-63786" />
 
-10. Click **App clients** in the left navigation bar. On the tab that opens, click the <span style=" color:#479bd4; font-weight: bold; white-space: nowrap;">Show Details</span> button in the box labeled with the app client name (in this guide, <span style="color:#666666; font-weight:bolder; white-space: nowrap;">nginx-plus-app</span>).
+10. Click **App clients** in the left navigation bar. On the tab that opens, click the <span style=" color:#479bd4; font-weight: bold; white-space: nowrap;">Show Details</span> button in the box labeled with the app client name (in this guide, **nginx&#8209;plus&#8209;app**).
 
     <img src="/nginx/images/cognito-sso-config-app-clients-tab.png" alt="'App clients' tab in Amazon Cognito GUI" width="1024" height="497" class="aligncenter size-full wp-image-63785" />
 
     <span id="cognito-app-client-id-secret"></span>
-11. On the details page that opens, make note of the values in the <span style="white-space: nowrap; font-weight:bold;">App client id</span> and <span style="white-space: nowrap; font-weight:bold;">App client secret</span> fields. You will add them to the NGINX Plus configuration in [Step 3 of _Configuring NGINX Plus_](#nginx-plus-variables).
+11. On the details page that opens, make note of the values in the **App&nbsp;client&nbsp;id** and **App&nbsp;client&nbsp;secret** fields. You will add them to the NGINX Plus configuration in [Step 3 of _Configuring NGINX Plus_](#nginx-plus-variables).
 
     <img src="/nginx/images/cognito-sso-config-app-clients-details.png" alt="" width="1024" height="672" class="aligncenter size-full wp-image-63784" />
 
-12. Click <span style="white-space: nowrap; font-weight:bold;">App client settings</span> in the left navigation column. In the tab that opens, perform the following steps:
+12. Click **App&nbsp;client&nbsp;settings** in the left navigation column. In the tab that opens, perform the following steps:
 
-    1. In the <span style="white-space: nowrap; font-weight:bold;">Enabled Identity Providers</span> section, click the <span style="white-space: nowrap; font-weight:bold;">Cognito User Pool</span> checkbox (the **Select all** box gets checked automatically).
-    2. In the **Callback URL(s)** field of the <span style="white-space: nowrap; font-weight:bold;">Sign in and sign out URLs</span> section, type the URI of the NGINX Plus instance including the port number, and ending in **/\_codexch**. Here we’re using <span style="color:#666666; font-weight:bolder; white-space: nowrap;">https://my-nginx-plus.example.com:443/_codexch</span>.
+    1. In the **Enabled&nbsp;Identity&nbsp;Providers** section, click the **Cognito&nbsp;User&nbsp;Pool** checkbox (the **Select all** box gets checked automatically).
+    2. In the **Callback URL(s)** field of the **Sign&nbsp;in&nbsp;and&nbsp;sign&nbsp;out&nbsp;URLs** section, type the URI of the NGINX Plus instance including the port number, and ending in **/\_codexch**. Here we’re using **https://my&#8209;nginx&#8209;plus.example.com:443/_codexch**.
 
        **Notes:**
 
        - For production, we strongly recommend that you use SSL/TLS (port 443).
        - The port number is mandatory even when you're using the default port for HTTP (80) or HTTPS (443).
 
-    3. In the **OAuth 2.0** section, click the <span style="white-space: nowrap; font-weight:bold;">Authorization code grant</span> checkbox under <span style="white-space: nowrap; font-weight:bold;">Allowed OAuth Flows</span> and the **email**, **openid**, and **profile** checkboxes under <span style="white-space: nowrap; font-weight:bold;">Allowed OAuth Scopes</span>.
+    3. In the **OAuth 2.0** section, click the **Authorization&nbsp;code&nbsp;grant** checkbox under **Allowed&nbsp;OAuth&nbsp;Flows** and the **email**, **openid**, and **profile** checkboxes under **Allowed&nbsp;OAuth&nbsp;Scopes**.
     4. Click the <span style="background-color:#479bd4; color:white; white-space: nowrap;"> Save changes </span> button.
 
     <img src="/nginx/images/cognito-sso-config-app-client-settings-tab.png" alt="" width="1024" height="1181" class="aligncenter size-full wp-image-63783" />
 
     <span id="cognito-domain-name"></span>
-13. Click **Domain name** in the left navigation column. In the tab that opens, type a domain prefix in the **Domain prefix** field under <span style="white-space: nowrap; font-weight:bold;">Amazon Cognito domain</span> (in this guide, <span style="color:#666666; font-weight:bolder; white-space: nowrap;">my-nginx-plus</span>). Click the <span style="background-color:#479bd4; color:white; white-space: nowrap;"> Save changes </span> button.
+13. Click **Domain name** in the left navigation column. In the tab that opens, type a domain prefix in the **Domain prefix** field under **Amazon&nbsp;Cognito&nbsp;domain** (in this guide, **my&#8209;nginx&#8209;plus**). Click the <span style="background-color:#479bd4; color:white; white-space: nowrap;"> Save changes </span> button.
 
     <img src="/nginx/images/cognito-sso-config-domain-name-tab.png" alt="" width="1024" height="817" class="aligncenter size-full wp-image-63782" />
 
@@ -120,7 +120,7 @@ Create a new application for NGINX Plus in the Cognito GUI:
 
 Configure NGINX Plus as the OpenID Connect relying party:
 
-1. Create a clone of the [<span style="white-space: nowrap; font-weight:bold;">nginx-openid-connect</span>](https://github.com/nginxinc/nginx-openid-connect) GitHub repository.
+1. Create a clone of the [**nginx&#8209;openid&#8209;connect**](https://github.com/nginxinc/nginx-openid-connect) GitHub repository.
 
    ```shell
    git clone https://github.com/nginxinc/nginx-openid-connect
@@ -135,12 +135,12 @@ Configure NGINX Plus as the OpenID Connect relying party:
    <span id="nginx-plus-variables"></span>
 3. In your preferred text editor, open **/etc/nginx/conf.d/frontend.conf**. Change the second parameter of each of the following [set](http://nginx.org/en/docs/http/ngx_http_rewrite_module.html#set) directives to the specified value.
 
-   The `<My-Cognito-Domain-Name>` variable is the full value in the **Domain prefix** field in [Step 13 of _Configuring Amazon Cognito_](#cognito-domain-name). In this guide it is <span style="color:#666666; font-weight:bolder; white-space: nowrap;">https://my-nginx-plus.auth.us-east-2.amazoncognito.com</span>.
+   The `<My-Cognito-Domain-Name>` variable is the full value in the **Domain prefix** field in [Step 13 of _Configuring Amazon Cognito_](#cognito-domain-name). In this guide it is **https://my&#8209;nginx&#8209;plus.auth.us&#8209;east&#8209;2.amazoncognito.com**.
 
    - `set $oidc_authz_endpoint` – `<My-Cognito-Domain-Name>/oauth2/authorize`
    - `set $oidc_token_endpoint` – `<My-Cognito-Domain-Name>/oauth2/token`
-   - `set $oidc_client` – Value in the <span style="white-space: nowrap; font-weight:bold;">App client id</span> field from [Step 11 of _Configuring Amazon Cognito_](#cognito-app-client-id-secret) (in this guide, `2or4cs8bjo1lkbq6143tqp6ist`)
-   - `set $oidc_client_secret` – Value in the <span style="white-space: nowrap; font-weight:bold;">App client secret</span> field from [Step 11 of _Configuring Amazon Cognito_](#cognito-app-client-id-secret) (in this guide, `1k63m3nrcnu...`)
+   - `set $oidc_client` – Value in the **App&nbsp;client&nbsp;id** field from [Step 11 of _Configuring Amazon Cognito_](#cognito-app-client-id-secret) (in this guide, `2or4cs8bjo1lkbq6143tqp6ist`)
+   - `set $oidc_client_secret` – Value in the **App&nbsp;client&nbsp;secret** field from [Step 11 of _Configuring Amazon Cognito_](#cognito-app-client-id-secret) (in this guide, `1k63m3nrcnu...`)
    - `set $oidc_hmac_key` – A unique, long, and secure phrase
 
 4. Configure the JWK file. The file's URL is
@@ -154,7 +154,7 @@ Configure NGINX Plus as the OpenID Connect relying party:
 
    In this guide, the URL is
 
-   <span style="color:#666666; font-weight:bolder; white-space: nowrap;">https://cognito-idp.us-east-2.amazonaws.com/us-east-2_mLoGHJpOs/.well-known/jwks.json</span>.
+   **https://cognito&#8209;idp.us&#8209;east&#8209;2.amazonaws.com/us&#8209;east&#8209;2_mLoGHJpOs/.well&#8209;known/jwks.json**.
 
    The method for configuring the JWK file depends on which version of NGINX Plus you are using:
 
@@ -187,7 +187,7 @@ In a browser, enter the address of your NGINX Plus instance and try to log in u
 <span id="troubleshooting"></span>
 ## Troubleshooting
 
-See the [**Troubleshooting**](https://github.com/nginxinc/nginx-openid-connect#troubleshooting) section at the <span style="white-space: nowrap; font-weight:bold;">nginx-openid-connect</span> repository on GitHub.
+See the [**Troubleshooting**](https://github.com/nginxinc/nginx-openid-connect#troubleshooting) section at the **nginx&#8209;openid&#8209;connect** repository on GitHub.
 
 ### Revision History
 

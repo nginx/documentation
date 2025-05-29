@@ -40,7 +40,7 @@ The setup for global server load balancing (GSLB) in this guide combines Amazon 
 
 <img src="/nginx/images/aws-route-53-topology.png" alt="Diagram showing a topology for global server load balancing (GSLB). Eight backend servers, four in each of two regions, host the content for a domain. Two NGINX Plus load balancers in each region route traffic to the backend servers. For each client requesting DNS information for the domain, Amazon Route 53 provides the DNS record for the region closest to the client." style="border:2px solid #666666; padding:2px; margin:2px;" />
 
-Route 53 is a Domain Name System (DNS) service that performs global server load balancing by routing each request to the AWS region closest to the requester's location. This guide uses two regions: <span style="color:#666666; font-weight:bolder; white-space: nowrap;">US West (Oregon)</span> and <span style="color:#666666; font-weight:bolder; white-space: nowrap;">US East (N. Virginia)</span>.
+Route 53 is a Domain Name System (DNS) service that performs global server load balancing by routing each request to the AWS region closest to the requester's location. This guide uses two regions: **US&nbsp;West&nbsp;(Oregon)** and **US&nbsp;East&nbsp;(N.&nbsp;Virginia)**.
 
 In each region, two or more NGINX Plus load balancers are deployed in a high‑availability (HA) configuration. In this guide, there are two NGINX Plus load balancer instances per region. You can also use NGINX Open Source for this purpose, but it lacks the [application health checks](https://docs.nginx.com/nginx/admin-guide/load-balancer/http-health-check/) that make for more precise error detection. For simplicity, we'll refer to NGINX Plus load balancers throughout this guide, noting when features specific to NGINX Plus are used.
 
@@ -79,7 +79,7 @@ Create a _hosted zone_, which basically involves designating a domain name to be
 
 1. Log in to the [AWS Management Console](https://console.aws.amazon.com/) (**console.aws.amazon.com/**).
 
-2. Access the Route 53 dashboard page by clicking **Services** in the top AWS navigation bar, mousing over **Networking** in the <span style="color:#666666; font-weight:bolder; white-space: nowrap;">All AWS Services</span> column and then clicking **Route 53**.
+2. Access the Route 53 dashboard page by clicking **Services** in the top AWS navigation bar, mousing over **Networking** in the **All&nbsp;AWS&nbsp;Services** column and then clicking **Route 53**.
 
     <img src="https://cdn-1.wp.nginx.com/wp-content/uploads/2016/10/aws-route53-dashboard-open.png" alt="Screenshot showing how to access the Amazon Route 53 dashboard to configure global load balancing (GLB) with NGINX Plus" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
@@ -87,7 +87,7 @@ Create a _hosted zone_, which basically involves designating a domain name to be
 
     <img src="https://cdn-1.wp.nginx.com/wp-content/uploads/2016/10/aws-route53-registered-domains-tab.png" alt="Screenshot showing the Route 53 Registered domains tab during configuration of NGINX GSLB (global server load balancing)" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
-    If you see the Route 53 home page instead, access the **Registered domains** tab by clicking the <span style="background-color:#3366cc; color:white; white-space: nowrap;"> Get started now </span> button under <span style="color:#666666; font-weight:bolder; white-space: nowrap;">Domain registration</span>.
+    If you see the Route 53 home page instead, access the **Registered domains** tab by clicking the <span style="background-color:#3366cc; color:white; white-space: nowrap;"> Get started now </span> button under **Domain&nbsp;registration**.
 
     <img src="https://cdn-1.wp.nginx.com/wp-content/uploads/2016/10/aws-route53-homepage.png" alt="Screenshot showing the Amazon Route 53 homepage for a first-time Route 53 user during configuration of AWS GSLB (global server load balancing) with NGINX Plus" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
@@ -123,21 +123,21 @@ Create records sets for your domain:
 
 4. Fill in the fields in the **Create Record Set** column:
 
-    - **Name** – You can leave this field blank, but for this guide we are setting the name to <span style="color:#666666; font-weight:bolder; white-space: nowrap;">www.nginxroute53.com</span>.
-    - **Type** – <span style="color:#666666; font-weight:bolder; white-space: nowrap;">A – IPv4 address</span>.
-    - **Alias** – <span style="color:#666666; font-weight:bolder;">No</span>.
-    - **TTL (Seconds)** – <span style="color:#666666; font-weight:bolder;">60</span>.
+    - **Name** – You can leave this field blank, but for this guide we are setting the name to **www.nginxroute53.com**.
+    - **Type** – **A –&nbsp;IPv4&nbsp;address**.
+    - **Alias** – **No**.
+    - **TTL (Seconds)** – **60**.
 
-        **Note**: Reducing TTL from the default of <span style="color:#666666; font-weight:bolder;">300</span> in this way can decrease the time that it takes for Route 53 to fail over when both NGINX Plus load balancers in the region are down, but there is always a delay of about two minutes regardless of the TTL setting. This is a built‑in limitation of Route 53.
+        **Note**: Reducing TTL from the default of **300** in this way can decrease the time that it takes for Route 53 to fail over when both NGINX Plus load balancers in the region are down, but there is always a delay of about two minutes regardless of the TTL setting. This is a built‑in limitation of Route 53.
 
-    - **Value** – [Elastic IP addresses](#elastic-ip) of the NGINX Plus load balancers in the first region [in this guide, <span style="color:#666666; font-weight:bolder; white-space: nowrap;">US West (Oregon)</span>].
-    - **Routing Policy** – <span style="color:#666666; font-weight:bolder;">Latency</span>.
+    - **Value** – [Elastic IP addresses](#elastic-ip) of the NGINX Plus load balancers in the first region [in this guide, **US&nbsp;West&nbsp;(Oregon)**].
+    - **Routing Policy** – **Latency**.
 
-5. A new area opens when you select <span style="color:#666666; font-weight:bolder;">Latency</span>. Fill in the fields as indicated (see the figure below):
+5. A new area opens when you select **Latency**. Fill in the fields as indicated (see the figure below):
 
-    - **Region** – Region to which the load balancers belong (in this guide, <span style="color:#666666; font-weight:bolder; white-space: nowrap;">us-west-2</span>).
-    - **Set ID** – Identifier for this group of load balancers (in this guide, <span style="color:#666666; font-weight:bolder; white-space: nowrap;">US West LBs</span>).
-    - **Associate with Health Check** – <span style="color:#666666; font-weight:bolder;">No</span>.
+    - **Region** – Region to which the load balancers belong (in this guide, **us&#8209;west&#8209;2**).
+    - **Set ID** – Identifier for this group of load balancers (in this guide, **US&nbsp;West&nbsp;LBs**).
+    - **Associate with Health Check** – **No**.
 
     When you complete all fields, the tab looks like this:
 
@@ -145,7 +145,7 @@ Create records sets for your domain:
 
 6. Click the <span style="background-color:#3366cc; color:white; white-space: nowrap;"> Create </span> button.
 
-7. Repeat Steps 3 through 6 for the load balancers in the other region [in this guide, <span style="color:#666666; font-weight:bolder; white-space: nowrap;">US East (N. Virginia)</span>].
+7. Repeat Steps 3 through 6 for the load balancers in the other region [in this guide, **US&nbsp;East&nbsp;(N.&nbsp;Virginia)**].
 
 You can now test your website. Insert your domain name into a browser and see that your request is being load balanced between servers based on your location.
 
@@ -172,21 +172,21 @@ We create health checks both for each NGINX Plus load balancer individually and
 
     <img src="https://cdn-1.wp.nginx.com/wp-content/uploads/2016/10/aws-route53-health-checks-tab-welcome.png" alt="Screenshot of Amazon Route 53 welcome screen seen by first-time user of Route 53 during configuration of global server load balancing (GSLB) with NGINX Plus" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
-2. Click the <span style="background-color:#3366cc; color:white; white-space: nowrap;"> Create health check </span> button. In the <span style="color:#666666; font-weight:bolder; white-space: nowrap;">Configure health check</span> form that opens, specify the following values, then click the <span style="background-color:#3366cc; color:white; white-space: nowrap;"> Next </span> button.
+2. Click the <span style="background-color:#3366cc; color:white; white-space: nowrap;"> Create health check </span> button. In the **Configure&nbsp;health&nbsp;check** form that opens, specify the following values, then click the <span style="background-color:#3366cc; color:white; white-space: nowrap;"> Next </span> button.
 
-   - **Name** – Identifier for an NGINX Plus load balancer instance, for example <span style="color:#666666; font-weight:bolder; white-space: nowrap;">US West LB 1</span>.
-   - **What to monitor** – <span style="color:#666666; font-weight:bolder;">Endpoint</span>.
-   - **Specify endpoint by** – <span style="color:#666666; font-weight:bolder; white-space: nowrap;">IP address</span>.
+   - **Name** – Identifier for an NGINX Plus load balancer instance, for example **US&nbsp;West&nbsp;LB&nbsp;1**.
+   - **What to monitor** – **Endpoint**.
+   - **Specify endpoint by** – **IP&nbsp;address**.
    - **IP address** – The [elastic IP address](#elastic-ip) of the NGINX Plus load balancer.
-   - **Port** – The port advertised to clients for your domain or web service (the default is <span style="color:#666666; font-weight:bolder;">80</span>).
+   - **Port** – The port advertised to clients for your domain or web service (the default is **80**).
 
    <img src="https://cdn-1.wp.nginx.com/wp-content/uploads/2016/10/aws-route53-configure-health-check.png" alt="Screenshot of Amazon Route 53 interface for configuring health checks, during configuration of AWS global load balancing (GLB) with NGINX Plus" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
-3. On the <span style="color:#666666; font-weight:bolder; white-space: nowrap;">Get notified when health check fails</span> screen that opens, set the **Create alarm** radio button to **Yes** or **No** as appropriate, then click the <span style="background-color:#3366cc; color:white; white-space: nowrap;"> Create health check </span> button.
+3. On the **Get&nbsp;notified&nbsp;when&nbsp;health&nbsp;check&nbsp;fails** screen that opens, set the **Create alarm** radio button to **Yes** or **No** as appropriate, then click the <span style="background-color:#3366cc; color:white; white-space: nowrap;"> Create health check </span> button.
 
    <img src="https://cdn-1.wp.nginx.com/wp-content/uploads/2016/10/aws-route53-get-notified-health-check.png" alt="Screenshot of Route 53 configuration screen for enabling notifications of failed health checks, during configuration of Route 53 global load balancing (GLB) with NGINX Plus" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
-4. Repeat Steps 2 and 3 for your other NGINX Plus load balancers (in this guide, <span style="color:#666666; font-weight:bolder; white-space: nowrap;">US West LB 2</span>, <span style="color:#666666; font-weight:bolder; white-space: nowrap;">US East LB 1</span>, and <span style="color:#666666; font-weight:bolder; white-space: nowrap;">US East LB 2</span>).
+4. Repeat Steps 2 and 3 for your other NGINX Plus load balancers (in this guide, **US&nbsp;West&nbsp;LB&nbsp;2**, **US&nbsp;East&nbsp;LB&nbsp;1**, and **US&nbsp;East&nbsp;LB&nbsp;2**).
 
 5. Proceed to the next section to configure health checks for the load balancer pairs.
 
@@ -195,18 +195,18 @@ We create health checks both for each NGINX Plus load balancer individually and
 
 1. Click the <span style="background-color:#3366cc; color:white; white-space: nowrap;"> Create health check </span> button.
 
-2. In the <span style="color:#666666; font-weight:bolder; white-space: nowrap;">Configure health check</span> form that opens, specify the following values, then click the <span style="background-color:#3366cc; color:white; white-space: nowrap;"> Next </span> button.
+2. In the **Configure&nbsp;health&nbsp;check** form that opens, specify the following values, then click the <span style="background-color:#3366cc; color:white; white-space: nowrap;"> Next </span> button.
 
-   - **Name** – Identifier for the pair of NGINX Plus load balancers in the first region, for example <span style="color:#666666; font-weight:bolder; white-space: nowrap;">US West LBs</span>.
-   - **What to monitor** – <span style="color:#666666; font-weight:bolder; white-space: nowrap;">Status of other health checks </span>.
+   - **Name** – Identifier for the pair of NGINX Plus load balancers in the first region, for example **US&nbsp;West&nbsp;LBs**.
+   - **What to monitor** – **Status&nbsp;of&nbsp;other&nbsp;health&nbsp;checks **.
    - **Health checks to monitor** – The health checks of the two US West load balancers (add them one after the other by clicking in the box and choosing them from the drop‑down menu as shown).
-   - **Report healthy when** – <span style="color:#666666; font-weight:bolder;">at least 1 of 2 selected health checks are healthy</span> (the choices in this field are obscured in the screenshot by the drop‑down menu).
+   - **Report healthy when** – **at least 1 of 2 selected health checks are healthy** (the choices in this field are obscured in the screenshot by the drop‑down menu).
 
    <img src="https://cdn-1.wp.nginx.com/wp-content/uploads/2016/10/aws-route53-configure-health-check-status-others.png" alt="Screenshot of Amazon Route 53 interface for configuring a health check of combined other health checks, during configuration of global server load balancing (GSLB) with NGINX Plus" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
-3. On the <span style="color:#666666; font-weight:bolder; white-space: nowrap;">Get notified when health check fails</span> screen that opens, set the **Create alarm** radio button as appropriate (see Step 5 in the <a href="#route-53-health-checks-individual">previous section</a>), then click the <span style="background-color:#3366cc; color:white; white-space: nowrap;"> Create health check </span> button.
+3. On the **Get&nbsp;notified&nbsp;when&nbsp;health&nbsp;check&nbsp;fails** screen that opens, set the **Create alarm** radio button as appropriate (see Step 5 in the <a href="#route-53-health-checks-individual">previous section</a>), then click the <span style="background-color:#3366cc; color:white; white-space: nowrap;"> Create health check </span> button.
 
-4. Repeat Steps 1 through 3 for the paired load balancers in the other region [in this guide, <span style="color:#666666; font-weight:bolder; white-space: nowrap;">US East (N. Virginia)</span>].
+4. Repeat Steps 1 through 3 for the paired load balancers in the other region [in this guide, **US&nbsp;East&nbsp;(N.&nbsp;Virginia)**].
 
 When you have finished configuring all six health checks, the **Health checks** tab looks like this:
 
@@ -223,13 +223,13 @@ When you have finished configuring all six health checks, the **Health checks** 
 
    The tab changes to display the record sets for the domain.
 
-3. In the list of record sets that opens, click the row for the record set belonging to your first region [in this guide, <span style="color:#666666; font-weight:bolder; white-space: nowrap;">US West (Oregon)</span>]. The <span style="font-weight: bolder; white-space: nowrap;">Edit Record Set</span> column opens on the right side of the tab.
+3. In the list of record sets that opens, click the row for the record set belonging to your first region [in this guide, **US&nbsp;West&nbsp;(Oregon)**]. The <span style="font-weight: bolder; white-space: nowrap;">Edit Record Set</span> column opens on the right side of the tab.
 
    <img src="https://cdn-1.wp.nginx.com/wp-content/uploads/2016/10/aws-route53-edit-record-set.png" alt="Screenshot of interface for editing Route 53 record sets during configuration of global server load balancing (GSLB) with NGINX Plus" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
-4. Change the **Associate with Health Check** radio button to <span style="color:#666666; font-weight:bolder;">Yes</span>.
+4. Change the **Associate with Health Check** radio button to **Yes**.
 
-5. In the **Health Check to Associate** field, select the paired health check for your first region (in this guide, <span style="color:#666666; font-weight:bolder; white-space: nowrap;">US West LBs</span>).
+5. In the **Health Check to Associate** field, select the paired health check for your first region (in this guide, **US&nbsp;West&nbsp;LBs**).
 
 6. Click the <span style="background-color:#3366cc; color:white; white-space: nowrap;"> Save Record Set </span> button.
 
@@ -242,7 +242,7 @@ These instructions assume that you have configured NGINX Plus on two EC2 instan
 
 **Note:** Some commands require `root` privilege. If appropriate for your environment, prefix commands with the `sudo` command.
 
-1. Connect to the <span style="color:#666666; font-weight:bolder; white-space: nowrap;">US West LB 1</span> instance. For instructions, see <a href="../ec2-instances-for-nginx/#connect-to-instance">Connecting to an EC2 Instance</a>.
+1. Connect to the **US&nbsp;West&nbsp;LB&nbsp;1** instance. For instructions, see <a href="../ec2-instances-for-nginx/#connect-to-instance">Connecting to an EC2 Instance</a>.
 
 2. Change directory to **/etc/nginx/conf.d**.
 
@@ -250,7 +250,7 @@ These instructions assume that you have configured NGINX Plus on two EC2 instan
    cd /etc/nginx/conf.d
    ```
 
-3. Edit the <span style="white-space: nowrap; font-weight:bold;">west-lb1.conf</span> file and add the **@healthcheck** location to set up health checks.
+3. Edit the **west&#8209;lb1.conf** file and add the **@healthcheck** location to set up health checks.
 
    ```nginx
    upstream backend-servers {
@@ -282,9 +282,9 @@ These instructions assume that you have configured NGINX Plus on two EC2 instan
    nginx -s reload
    ```
 
-5. Repeat Steps 1 through 4 for the other three load balancers (<span style="color:#666666; font-weight:bolder; white-space: nowrap;">US West LB 2</span>, <span style="color:#666666; font-weight:bolder; white-space: nowrap;">US East LB 1</span>, and <span style="color:#666666; font-weight:bolder; white-space: nowrap;">US East LB2</span>).
+5. Repeat Steps 1 through 4 for the other three load balancers (**US&nbsp;West&nbsp;LB&nbsp;2**, **US&nbsp;East&nbsp;LB&nbsp;1**, and **US&nbsp;East&nbsp;LB2**).
 
-   In Step 3, change the filename as appropriate (<span style="white-space: nowrap; font-weight:bold;">west-lb2.conf</span>, <span style="white-space: nowrap; font-weight:bold;">east-lb1.conf</span>, and <span style="white-space: nowrap; font-weight:bold;">east-lb2.conf</span>). In the <span style="white-space: nowrap; font-weight:bold;">east-lb1.conf</span> and <span style="white-space: nowrap; font-weight:bold;">east-lb2.conf</span> files, the `server` directives specify the public DNS names of Backup 3 and Backup 4.
+   In Step 3, change the filename as appropriate (**west&#8209;lb2.conf**, **east&#8209;lb1.conf**, and **east&#8209;lb2.conf**). In the **east&#8209;lb1.conf** and **east&#8209;lb2.conf** files, the `server` directives specify the public DNS names of Backup 3 and Backup 4.
 
 <span id="appendix"></span>
 ## Appendix
@@ -307,31 +307,31 @@ Step‑by‑step instructions for creating EC2 instances and installing NGINX so
 
 Assign the following names to the instances, and then install the indicated NGINX software.
 
-- In the first region, which is <span style="color:#666666; font-weight:bolder; white-space: nowrap;">US West (Oregon)</span> in this guide:
+- In the first region, which is **US&nbsp;West&nbsp;(Oregon)** in this guide:
 
   - Two load balancer instances running NGINX Plus:
 
-    - <span style="color:#666666; font-weight:bolder; white-space: nowrap;">US West LB 1</span>
-    - <span style="color:#666666; font-weight:bolder; white-space: nowrap;">US West LB 2</span>
+    - **US&nbsp;West&nbsp;LB&nbsp;1**
+    - **US&nbsp;West&nbsp;LB&nbsp;2**
 
   - Two backend instances running NGINX Open Source:
 
-         * <span style="color:#666666; font-weight:bolder; white-space: nowrap;">Backend 1</span>
-    - <span style="color:#666666; font-weight:bolder; white-space: nowrap;">Backend 2</span>
+         * **Backend&nbsp;1**
+    - **Backend&nbsp;2**
 
-- In the second region, which is <span style="color:#666666; font-weight:bolder; white-space: nowrap;">US East (N. Virginia)</span> in this guide:
+- In the second region, which is **US&nbsp;East&nbsp;(N.&nbsp;Virginia)** in this guide:
 
   - Two load balancer instances running NGINX Plus:
 
-    - <span style="color:#666666; font-weight:bolder; white-space: nowrap;">US East LB 1</span>
-    - <span style="color:#666666; font-weight:bolder; white-space: nowrap;">US East LB 2</span>
+    - **US&nbsp;East&nbsp;LB&nbsp;1**
+    - **US&nbsp;East&nbsp;LB&nbsp;2**
 
   - Two backend instances running NGINX Open Source:
 
-         * <span style="color:#666666; font-weight:bolder; white-space: nowrap;">Backend 3</span>
-    - <span style="color:#666666; font-weight:bolder; white-space: nowrap;">Backend 4</span>
+         * **Backend&nbsp;3**
+    - **Backend&nbsp;4**
 
-Here's the **Instances** tab after we create the four instances in the <span style="color:#666666; font-weight:bolder; white-space: nowrap;">N. Virginia</span> region.
+Here's the **Instances** tab after we create the four instances in the **N.&nbsp;Virginia** region.
 
 <img src="https://cdn-1.wp.nginx.com/wp-content/uploads/2016/10/aws-ec2-useast-instances.png" alt="Screenshot showing newly created EC2 instances in one of two regions, which is a prerequisite to configuring AWS GSLB (global server load balancing) with NGINX Plus" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
@@ -359,14 +359,14 @@ Perform these steps on all eight instances.
 
    <img src="https://cdn-1.wp.nginx.com/wp-content/uploads/2016/10/aws-ec2-associate-address-popup.png" alt="Screenshot of the interface for associating an AWS EC2 instance with an elastic IP address, which is a prerequisite to configuring AWS global load balancing (GLB) with NGINX Plus" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
-After you complete the instructions on all instances, the list for a region (here, <span style="color:#666666; font-weight:bolder; white-space: nowrap;">Oregon</span>) looks like this:
+After you complete the instructions on all instances, the list for a region (here, **Oregon**) looks like this:
 
 <img src="https://cdn-1.wp.nginx.com/wp-content/uploads/2018/03/aws-ec2-elastic-ip-address-list.png" alt="Screenshot showing the elastic IP addresses assigned to four AWS EC2 instances during configuration of global server load balancing (GSLB) with NGINX Plus" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
 <span id="configure-backend-servers"></span>
 ### Configuring NGINX Open Source on the Backend Servers
 
-Perform these steps on all four backend servers: <span style="color:#666666; font-weight:bolder; white-space: nowrap;">Backend 1</span>, <span style="color:#666666; font-weight:bolder; white-space: nowrap;">Backend 2</span>, <span style="color:#666666; font-weight:bolder; white-space: nowrap;">Backend 3</span>, and <span style="color:#666666; font-weight:bolder; white-space: nowrap;">Backend 4</span>. In Step 3, substitute the appropriate name for `Backend X` in the **index.html** file.
+Perform these steps on all four backend servers: **Backend&nbsp;1**, **Backend&nbsp;2**, **Backend&nbsp;3**, and **Backend&nbsp;4**. In Step 3, substitute the appropriate name for `Backend X` in the **index.html** file.
 
 **Note:** Some commands require `root` privilege. If appropriate for your environment, prefix commands with the `sudo` command.
 
@@ -421,7 +421,7 @@ Perform these steps on all four backend servers: <span style="color:#666666; fon
 <span id="configure-load-balancers"></span>
 ### Configuring NGINX Plus on the Load Balancers
 
-Perform these steps on all four backend servers: <span style="color:#666666; font-weight:bolder; white-space: nowrap;">US West LB 1</span>, <span style="color:#666666; font-weight:bolder; white-space: nowrap;">US West LB 2</span>, <span style="color:#666666; font-weight:bolder; white-space: nowrap;">US East LB 1</span>, and <span style="color:#666666; font-weight:bolder; white-space: nowrap;">US West LB 2</span>.
+Perform these steps on all four backend servers: **US&nbsp;West&nbsp;LB&nbsp;1**, **US&nbsp;West&nbsp;LB&nbsp;2**, **US&nbsp;East&nbsp;LB&nbsp;1**, and **US&nbsp;West&nbsp;LB&nbsp;2**.
 
 **Note:** Some commands require `root` privilege. If appropriate for your environment, prefix commands with the `sudo` command.
 
@@ -439,10 +439,10 @@ Perform these steps on all four backend servers: <span style="color:#666666; fon
 
 4. Create a new file containing the following text, which configures load balancing of the two backend servers in the relevant region. The filename on each instance is:
 
-   - For <span style="color:#666666; font-weight:bolder; white-space: nowrap;">US West LB 1</span> – <span style="font-weight:bold; white-space: nowrap;">west-lb1.conf</span>
-   - For <span style="color:#666666; font-weight:bolder; white-space: nowrap;">US West LB 2</span> – <span style="font-weight:bold; white-space: nowrap;">west-lb2.conf</span>
-   - For <span style="color:#666666; font-weight:bolder; white-space: nowrap;">US East LB 1</span> – <span style="font-weight:bold; white-space: nowrap;">east-lb1.conf</span>
-   - For <span style="color:#666666; font-weight:bolder; white-space: nowrap;">US West LB 2</span> – <span style="font-weight:bold; white-space: nowrap;">east-lb2.conf</span>
+   - For **US&nbsp;West&nbsp;LB&nbsp;1** – **west&#8209;lb1.conf**
+   - For **US&nbsp;West&nbsp;LB&nbsp;2** – **west&#8209;lb2.conf**
+   - For **US&nbsp;East&nbsp;LB&nbsp;1** – **east&#8209;lb1.conf**
+   - For **US&nbsp;West&nbsp;LB&nbsp;2** – **east&#8209;lb2.conf**
 
    In the `server` directives in the `upstream` block, substitute the public DNS names of the backend instances in the region; to learn them, see the **Instances** tab in the EC2 Dashboard.
 

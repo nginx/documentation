@@ -15,6 +15,9 @@ An NGINX configuration can be applied to the deployment using the Azure portal i
 
 As part of applying your NGINX configuration, the service validates the configuration for syntax and compatibility with F5 NGINX as a Service for Azure (NGINXaaS). The use of certain directives and parameters is not allowed to ensure the NGINX configuration’s compatibility with IaaS deployment model in Azure. Validation errors are reported in the editor for you to correct. For more information, check the [NGINX Configuration Validation]({{< ref "nginx-configuration.md#nginx-configuration-validation" >}}) section.
 
+{{< note >}}
+NGINXaaS supports Layer 7 HTTP loadbalancing. To configure .com and .net servers, refer to the server name in the server block within the HTTP context. To learn more, and see examples, follow the instructions in the [NGINX configuration validtion]({{< ref "/nginxaas-azure/getting-started/nginx-configuration/nginx-configuration-portal.md#nginx-configuration-validation" >}}) section.{{< /note >}}
+
 ## Prerequisites
 
 - If the NGINX configuration requires SSL/TLS certificates, then a managed identity and integration with Azure Key Vault is required.
@@ -46,8 +49,6 @@ As part of applying your NGINX configuration, the service validates the configur
 1. Files like SSL/TLS certificates can be added as well. However, we reccommend using Azure Key Vault to store your certificates. See [Add SSL/TLS certificates]({{< ref "/nginxaas-azure/getting-started/ssl-tls-certificates/overview.md#add-ssltls-certificates">}}) for more information.
 
 1. Select **Submit** to apply the new configuration.
-
-{{<note>}}We currently only support more than 5 unique listen ports on the Standard V2 plan. NGINX configurations that specify more than 5 ports on other plans will be rejected. For more information on listen port limitations, see our [FAQ]({{< ref "/nginxaas-azure/faq" >}}).{{</note>}}
 
 ### NGINX configuration validation
 
