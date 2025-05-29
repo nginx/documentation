@@ -80,13 +80,13 @@ When no NGINX instances are connected, the dashboard will be empty. Once you add
 
 To register NGINX instances, you need a data plane key.
 
-1. In the console, go to **Manage > Data Plane Keys**
-2. Select **Add Data Plane Key**
-3. Enter a name for the key
-4. Set an expiration date (or keep the default of one year)
-5. Select **Generate**
-6. Copy the key when it appears—**you won’t be able to see it again**
-7. Save it somewhere safe
+1. In the console, go to **Manage > Data Plane Keys**.
+2. Select **Add Data Plane Key**.
+3. Enter a name for the key.
+4. Set an expiration date (or keep the default of one year).
+5. Select **Generate**.
+6. Copy the key when it appears—**you won’t be able to see it again**.
+7. Save it somewhere safe.
 
 You can use the same key to register many instances. If you lose the key, you’ll need to create a new one.
 
@@ -96,9 +96,9 @@ You can use the same key to register many instances. If you lose the key, you’
 
 To disable a key:
 
-1. In the **Data Plane Keys** page, find the key you want to revoke
-2. Select the key
-3. Choose **Revoke**, then confirm
+1. In the **Data Plane Keys** page, find the key you want to revoke.
+2. Select the key.
+3. Choose **Revoke**, then confirm.
 
 ---
 
@@ -106,9 +106,9 @@ To disable a key:
 
 You can only delete a key after you revoke it.
 
-1. In the **Revoked Keys** tab, find the key you want to delete
-2. Select the key
-3. Choose **Delete Selected**, then confirm
+1. In the **Revoked Keys** tab, find the key you want to delete.
+2. Select the key.
+3. Choose **Delete Selected**, then confirm.
 
 ---
 
