@@ -26,8 +26,8 @@ Next, add your NGINX instances to NGINX One. You'll need to create a data plane 
 
 The following instructions include minimal information, sufficient to "get started." See the following links for detailed instructions:
 
-- [Create and manage data plane keys]({{< ref "nginx-one/connect-instances/create-manage-data-plane-keys.md" >}})
-- [Add an NGINX instance]({{< ref "nginx-one/connect-instances/add-instance.md" >}})
+- [Create and manage data plane keys]({{< ref "/nginx-one/connect-instances/create-manage-data-plane-keys.md" >}})
+- [Add an NGINX instance]({{< ref "/nginx-one/connect-instances/add-instance.md" >}})
 
 ### Generate a data plane key {#generate-data-plane-key}
 
