@@ -43,9 +43,9 @@ NGINX App Protect WAF is now generally available and is no longer a preview feat
    NGINXaaS for Azure deployments using the **Stable** [Upgrade Channel]({{< ref "/nginxaas-azure/quickstart/upgrade-channels.md" >}}) will be updated to [NGINX Plus Release 33 (R33)]({{< ref "/nginx/releases.md#nginxplusrelease-33-r33" >}}) during the week of May 05-09, 2025. This will also include updates to the following NGINX Plus modules:
   - nginx-plus-module-njs
 
-   Please review the [NGINX Plus Release 33 (R33)]({{< ref "/nginx/releases.md#nginxplusrelease-33-r33" >}}) Release Notes carefully. If you have any concerns, it's recommended to validate your configuration against NGINX Plus R33 by setting up a test deployment using the **Preview** [Upgrade Channel]({{< ref "/nginxaas-azure/quickstart/upgrade-channels.md" >}}). See [these instructions]({{< ref "/nginxaas-azure/quickstart/recreate.md" >}}) on how to set up a deployment similar to your current one. For entitlement and visibility policy, check [the FAQs]({{< ref "/nginxaas-azure/faq.md" >}}) to address any additional questions you might have.
+   Please review the [NGINX Plus Release 33 (R33)]({{< ref "/nginx/releases.md#nginxplusrelease-33-r33" >}}) Release Notes carefully. If you have any concerns, it's recommended to validate your configuration against NGINX Plus R33 by setting up a test deployment using the **Preview** [Upgrade Channel]({{< ref "/nginxaas-azure/quickstart/upgrade-channels.md" >}}). See [these instructions]({{< ref "/nginxaas-azure/quickstart/recreate.md" >}}) on how to set up a deployment similar to your current one.
 
-   If you have any questions or concerns, please [contact us]({{< ref "/nginxaas-azure/troubleshooting/troubleshooting.md" >}}).
+   If you have any questions or concerns, please [contact us]({{< ref "/nginxaas-azure/get-help.md" >}}).
 
 ## March 31, 2025
 
@@ -70,7 +70,7 @@ See the [Supported Regions]({{< ref "/nginxaas-azure/overview/overview.md#suppor
 
 - {{% icon-info %}} **Retirement of Standard Plan**
 
-   The `Standard` plan for NGINXaaS for Azure has been retired, and you can no longer use it to create new deployments. If you have a deployment running on the `Standard` plan, consider [migrating]({{< ref "/nginxaas-azure/troubleshooting/migrate-from-standard.md">}}) it to the [`Standard V2 plan`]({{< ref "/nginxaas-azure/billing/overview.md#standard-v2-plan" >}}) to access new features such as NGINX App Protect WAF and additional listen ports. Plan migration does not incur downtime.
+   The `Standard` plan for NGINXaaS for Azure has been retired, and you can no longer use it to create new deployments. If you have a deployment running on the `Standard` plan, consider [migrating]({{< ref "/nginxaas-azure/getting-started/migrate-from-standard.md">}}) it to the [`Standard V2 plan`]({{< ref "/nginxaas-azure/billing/overview.md#standard-v2-plan" >}}) to access new features such as NGINX App Protect WAF and additional listen ports. Plan migration does not incur downtime.
 
 ## February 10, 2025
 
@@ -82,4 +82,4 @@ See the [Supported Regions]({{< ref "/nginxaas-azure/overview/overview.md#suppor
 
 - {{< icon-feature >}} **In-place SKU Migration from Standard to Standard V2**
 
-   You can now migrate NGINXaaS for Azure from the Standard plan to the Standard V2 plan without redeploying. We recommend upgrading to the Standard V2 plan to access features like NGINX App Protect WAF and more listen ports. The Standard plan will be retired soon. For migration details, see [migrate from standard]({{< ref "/nginxaas-azure/troubleshooting/migrate-from-standard.md">}}).
+   You can now migrate NGINXaaS for Azure from the Standard plan to the Standard V2 plan without redeploying. We recommend upgrading to the Standard V2 plan to access features like NGINX App Protect WAF and more listen ports. The Standard plan will be retired soon. For migration details, see [migrate from standard]({{< ref "/nginxaas-azure/getting-started/migrate-from-standard.md">}}).
