@@ -48,7 +48,7 @@ NGINX One Console connects to each NGINX instance using a lightweight agent call
 
 The agent is responsible for securely registering and managing each instance through the console.
 
-There are a few ways to install the NGINX Agent:
+There are a few ways to install NGINX Agent:
 
 - Use public Docker images of NGINX OSS that already include the agent
 - Use NGINX Plus containers with the agent preinstalled
@@ -96,7 +96,7 @@ You can use the same key to register many instances. If you lose the key, you’
 
 To disable a key:
 
-1. In the **Data Plane Keys** page, find the key you want to revoke.
+1. On the **Data Plane Keys** page, find the key you want to revoke.
 2. Select the key.
 3. Choose **Revoke**, then confirm.
 
@@ -106,7 +106,7 @@ To disable a key:
 
 You can only delete a key after you revoke it.
 
-1. In the **Revoked Keys** tab, find the key you want to delete.
+1. On the **Revoked Keys** tab, find the key you want to delete.
 2. Select the key.
 3. Choose **Delete Selected**, then confirm.
 
@@ -122,5 +122,5 @@ Now that you’ve explored NGINX One Console and created a key, you’re ready t
 
 ## References
 
-- [NGINX One Console documentation](https://docs.nginx.com/nginx-one/)
-- [NGINX Agent overview](https://docs.nginx.com/nginx-agent/overview/)
+- [Create and manage data plane keys]({{< ref "nginx-one/how-to/data-plane-keys/create-manage-data-plane-keys.md" >}})
+- [NGINX Agent overview]({{< ref "agent/overview.md" >}})
