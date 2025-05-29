@@ -1,6 +1,6 @@
 ---
 title: Upgrade NGINX Gateway Fabric to version 2.x
-weight: 400
+weight: 700
 toc: true
 type: how-to
 product: NGF

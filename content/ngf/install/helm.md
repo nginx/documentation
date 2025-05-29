@@ -1,9 +1,9 @@
 ---
-title: Installation with Helm
-weight: 100
+title: Install NGINX Gateway Fabric with Helm
+weight: 200
 toc: true
-type: how-to
-product: NGF
+nd-content-type: how-to
+nd-product: NGF
 docs: DOCS-1430
 ---
 
@@ -15,11 +15,11 @@ Learn how to install, upgrade, and uninstall NGINX Gateway Fabric in a Kubernete
 
 ## Before you begin
 
-To complete this guide, you'll need to install:
+To complete this guide, you will need:
 
 - [kubectl](https://kubernetes.io/docs/tasks/tools/), a command-line tool for managing Kubernetes clusters.
 - [Helm 3.0 or later](https://helm.sh/docs/intro/install/), for deploying and managing applications on Kubernetes.
-- If deploying into a production environment, we highly recommend [installing custom certificates]({{< ref "/ngf/install/control-plane-certs.md" >}}) for securing the connection between the NGINX Gateway Fabric control plane and NGINX data plane Pods. **This should be done _before_ you install NGINX Gateway Fabric.** The default certificates are self-signed and will expire after 3 years.
+- [Add certificates for secure authentication]({{< ref "/ngf/install/control-plane-certs.md" >}}) in a production environment.
 
 {{< important >}} If you’d like to use NGINX Plus, some additional setup is also required: {{</ important >}}
 
@@ -316,8 +316,6 @@ For additional information on configuring and understanding the behavior of cont
 
 {{</see-also>}}
 
----
-
 ## Uninstall NGINX Gateway Fabric
 
 Follow these steps to uninstall NGINX Gateway Fabric and Gateway API from your Kubernetes cluster:
@@ -345,8 +343,9 @@ Follow these steps to uninstall NGINX Gateway Fabric and Gateway API from your K
 
    - {{< include "/ngf/installation/uninstall-gateway-api-resources.md" >}}
 
----
+## Next steps
 
-## Additional configuration
+- [Deploy a Gateway for data plane instances]({{< ref "/ngf/install/deploy-data-plane.md" >}})
+- [Routing traffic to applications]({{< ref "/ngf/traffic-management/routing-traffic-to-your-app.md" >}})
 
 For a full list of the Helm Chart configuration parameters, read [the NGINX Gateway Fabric Helm Chart](https://github.com/nginx/nginx-gateway-fabric/blob/v{{< version-ngf >}}/charts/nginx-gateway-fabric/README.md#configuration).

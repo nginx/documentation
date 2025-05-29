@@ -1,5 +1,5 @@
 ---
-title: Installation with NGINX Plus
+title: Install NGINX Gateway Fabric with NGINX Plus
 weight: 300
 toc: true
 type: how-to
@@ -210,10 +210,13 @@ docker pull private-registry.nginx.com/nginx-gateway-fabric/nginx-plus:{{< versi
 
 Once you have successfully pulled the image, you can tag it as needed, then push it to a different container registry.
 
----
-
 ## Alternative installation options
 
 There are alternative ways to get an NGINX Plus image for NGINX Gateway Fabric:
 
 - [Build the Gateway Fabric image]({{< ref "/ngf/install/build-image.md">}}) describes how to use the source code with an NGINX Plus subscription certificate and key to build an image.
+
+## Next steps
+
+- [Deploy a Gateway for data plane instances]({{< ref "/ngf/install/deploy-data-plane.md" >}})
+- [Routing traffic to applications]({{< ref "/ngf/traffic-management/routing-traffic-to-your-app.md" >}})

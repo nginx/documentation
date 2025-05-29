@@ -1,23 +1,28 @@
 ---
-title: Add secure authentication to the control and data planes
-weight: 300
+title: Add certificates for secure authentication
+weight: 100
 toc: true
-type: how-to
-product: NGF
-docs: DOCS-0000
+nd-content-type: how-to
+nd-product: NGF
 ---
 
-## Overview
+By default, NGINX Gateway Fabric installs self-signed certificates to secure the connection between the NGINX Gateway Fabric control plane and the NGINX data plane pods. These certificates are created by a `cert-generator` job when NGINX Gateway Fabric is first installed. 
 
-By default, NGINX Gateway Fabric installs self-signed certificates to secure the connection between the NGINX Gateway Fabric control plane and the NGINX data plane pods. These certificates are created by a `cert-generator` job when NGINX Gateway Fabric is first installed. However, because these certificates are self-signed and will expire after 3 years, it is recommended to use a solution such as [cert-manager](https://cert-manager.io) to create and manage these certificates in a production environment.
+However, because these certificates are self-signed and will expire after 3 years, we recommend a solution such as [cert-manager](https://cert-manager.io) to create and manage these certificates in a production environment.
 
-This guide will step through how to install and use `cert-manager` to secure this connection. **This should be done _before_ you install NGINX Gateway Fabric.**
+This guide will step through how to install and use `cert-manager` to secure this connection. 
+
+{{< caution >}}
+
+These steps should be completed before you install NGINX Gateway Fabric.
+
+{{< /caution >}}
 
 ---
 
 ## Before you begin
 
-You need:
+To complete this guide, you will need the following prerequisites:
 
 - Administrator access to a Kubernetes cluster.
 - [Helm](https://helm.sh) and [kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl) must be installed locally.
@@ -180,7 +185,7 @@ Specify the Secret name using the `agent-tls-secret` command-line argument.
 
 {{</tabs>}}
 
-## Final steps
+## Confirm the Secrets have been created
 
 You should see the Secrets created in the `nginx-gateway` namespace:
 
@@ -195,3 +200,9 @@ server-tls         kubernetes.io/tls   3      8s
 ```
 
 You can now [install NGINX Gateway Fabric]({{< ref "/ngf/install/" >}}).
+
+## Next steps
+
+- [Install NGINX Gateway Fabric with Helm]({{< ref "/ngf/install/helm.md" >}})
+- [Install NGINX Gateway Fabric with Manifests]({{< ref "/ngf/install/manifests.md" >}})
+- [Install NGINX Gateway Fabric with NGINX Plus]({{< ref "/ngf/install/nginx-plus.md" >}})

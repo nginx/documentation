@@ -1,6 +1,6 @@
 ---
 title: Deploy a Gateway for data plane instances
-weight: 500
+weight: 600
 toc: true
 type: how-to
 product: NGF
