@@ -107,6 +107,7 @@ The table provides guidelines about the terms you should and should not use for 
 | data source | | |
 | database | Do not abbreviate as "db". Always a single word. | |
 |date format | Use _month day, year_ format, as in December 4, 2024. Don't use _day month year_, as in 31 July 2016. <br>  In the UI, it's OK to use numbers and slashes for dates if the code supports that format and automatically displays the appropriate date format for different locales. For example, 12/4/2024. | This format aligns with standard American usage for consistency and clarity. |
+| disconnected | Use this term to describe environments without internet or external network access, such as air-gapped, offline, or network-restricted setups. Preferred term due to alignment with product UI and configuration settings (for example, `mode_of_operation: disconnected`). If needed, clarify as "in a disconnected (network-restricted) environment" for context. | |
 | DoS/DDoS/3DoS | Spell out on first reference:<br>- denial-of-service (DoS)<br>- distributed denial-of-service (DDoS)<br>- diverse distributed denial-of-service (3DoS) | |
 | e.g., i.e., etc. | Avoid using Latin abbreviations.<br>- e.g. = for example<br>- i.e. = in other words<br>- etc. = and so on | |
 | earlier and later | Use to describe versioning. For example, "This applies to versions earlier than NGINX Plus R31".<br>Do not use before, after, greater, lower, higher, below, above, and so on. | |

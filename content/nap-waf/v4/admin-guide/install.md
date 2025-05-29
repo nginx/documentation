@@ -1819,6 +1819,7 @@ On an offline host:
     apt-get update
     apt-get install -y app-protect
     ```
+    
     Only use if you want to install and use the IP intelligence feature:
 
     ```shell

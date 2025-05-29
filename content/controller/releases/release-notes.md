@@ -1274,7 +1274,7 @@ Refer to the [NGINX Controller Tech Specs]({{< ref "/controller/admin-guides/ins
 
 - **After enabling WAF, security violations aren't reported right away (10558)**
 
-  When an App Component is initially enabled with WAF, there may be a few seconds where Security Events (that is, WAF violation events) are not mapped to the correct App Component and App. The following warning message is logged in `/var/log/nginx-controller/security-events-mgr.log`: *"Generating event without app-centric dimensions (i.e., app, component, environment, gateway, correlationId)."*
+  When an App Component is initially enabled with WAF, there may be a few seconds where Security Events (that is, WAF violation events) are not mapped to the correct App Component and App. The following warning message is logged in `/var/log/nginx-controller/security-events-mgr.log`: *"Generating event without app-centric dimensions (that is, app, component, environment, gateway, correlationId)."*
 
 - **Security events not mapped to App or App Component if combined length of resource IDs exceeds 445 characters (11112)**
 
