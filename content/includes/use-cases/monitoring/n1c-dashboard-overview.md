@@ -7,8 +7,8 @@ files:
 
 Navigating the dashboard:
 
-- **Drill down into specifics**: For in-depth information on a specific metric, like expiring certificates, click on the relevant link in the metric's card to go to a detailed overview page.
-- **Refine metric timeframe**: Metrics show the last hour's data by default. To view data from a different period, select the time interval you want from the drop-down menu.
+- **Drill down into specifics**: For in-depth information on a specific metric, like expiring certificates, select the relevant link in the metric's card to go to a detailed overview page.
+- **Refine metric timeframe**: Metrics show the last hour's data by default. To view data from a different period, select the time interval you want from the menu.
 
 <span style="display: inline-block; margin-top: 20px; margin-bottom: 50px;">
 {{< img src="nginx-one/images/nginx-one-dashboard.png">}}

@@ -1,6 +1,10 @@
 ---
 docs:
+files: 
+   - content/nginx-one/nginx-configs/add-instance.md
+   - content/nginx-one/getting-started.md
 ---
+<!-- Note: I still want to set this up in getting-started.md. (has not happened yet) -->
 
 You can add an instance to NGINX One Console in the following ways:
 

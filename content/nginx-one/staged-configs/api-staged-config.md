@@ -8,10 +8,10 @@ toc: true
 # Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
 type: tutorial
 # Intended for internal catalogue and search, case sensitive:
-product: NGINX One
+nd-product: NGINX-ONE
 ---
 
-You can use F5 NGINX One Console API to manage your Staged Configurations. With our API, you can:
+Use F5 NGINX One Console API to manage your Staged Configurations. With our API, you can:
 
 - [Create an NGINX Staged Configuration]({{< ref "/nginx-one/api/api-reference-guide/#operation/createStagedConfig" >}})
   - The details allow you to add existing configuration files.
