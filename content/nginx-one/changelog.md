@@ -30,6 +30,16 @@ h2 {
 
 Stay up-to-date with what's new and improved in the F5 NGINX One Console.
 
+## April 30, 2025
+
+### Alert when CVEs impact registered instances
+
+We now include an alert in the [F5 Distributed Cloud](https://docs.cloud.f5.com/docs-v2/platform/reference/alerts-reference) when affected by one or more CVEs.
+
+### Alert on new registered instances 
+
+We now include an alert in the [F5 Distributed Cloud](https://docs.cloud.f5.com/docs-v2/platform/reference/alerts-reference) when new instances are registered in the F5 NGINX One Console.
+
 ## May 19, 2025
 
 ### Import and export your Staged Configs
