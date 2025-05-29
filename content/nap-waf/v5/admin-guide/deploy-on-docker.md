@@ -346,6 +346,11 @@ volumes:
 ```
 
 
+### Docker Compose File with IP Intelligence
+
+{{< include "nap-waf/ip-intelligence.md" >}}
+
+
 ### Docker Compose File with mTLS
 
 To secure traffic between NGINX and App Protect Enforcer using mTLS, create a `docker-compose.yml` with the following configuration:
@@ -665,6 +670,11 @@ volumes:
   app_protect_config:
   app_protect_etc_config:
 ```
+
+#### Docker Compose File with IP Intelligence
+
+{{< include "nap-waf/ip-intelligence.md" >}}
+
 ### Start Deployment
 
 1. To start the NGINX and WAF services, navigate to the directory that contains the `docker-compose.yml` file and run:

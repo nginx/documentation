@@ -240,6 +240,10 @@ http {
 
 {{< include "nap-waf/config/common/enforcer-cookie-settings.md" >}}
 
+### IP Intelligence Configuration
+
+{{< include "nap-waf/config/common/ip-intelligence-conf.md" >}}
+
 ### Additional Configuration Options
 
 
