@@ -1,6 +1,6 @@
 ---
-title: Role-based access control
+title: Organize users with RBAC
 description:
-weight: 300
+weight: 600
 url: /nginx-one/rbac
 ---
