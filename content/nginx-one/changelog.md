@@ -40,6 +40,21 @@ We now include an alert in the [F5 Distributed Cloud](https://docs.cloud.f5.com/
 
 We now include an alert in the [F5 Distributed Cloud](https://docs.cloud.f5.com/docs-v2/platform/reference/alerts-reference) when new instances are registered in the F5 NGINX One Console.
 
+## May 19, 2025
+
+### Import and export your Staged Configs
+
+You can now import and export your Staged Configs from the UI and with our APIs. This can help you deploy Staged Configs on the systems of your choice.
+
+## April 30, 2025
+
+### Manage RBAC access with namespaces
+
+We have added support for namespaces in N1C. You can now:
+
+- Manage resources in isolation in different namespaces.
+- Configure granular user permission controls base on namespace.
+
 ## April 3, 2025
 
 ### Create Custom Roles with more precise permissions
@@ -89,9 +104,9 @@ Using the NGINX One Console you can now:
 - Review the differences between the current and other saved configurations
 - Revert to older configurations as needed
 
-### AI Assistant
+### F5 AI Assistant
 
-In the F5 NGINX One Console, you can now select lines from your configuration files, and then select **Explain with AI**. The NGINX One AI Assistant explains those lines based on the official NGINX documentation.
+In the F5 NGINX One Console, you can now select lines from your configuration files, and then select **Explain with AI**. The F5 AI Assistant explains those lines based on the official NGINX documentation.
 
 ## November 7, 2024
 

@@ -289,7 +289,7 @@ The table below lists all the available Server Technologies. Some of them are bu
 |Elasticsearch | Elasticsearch is a search engine based on Lucene. |  | Yes |
 |Apache Struts | Apache Struts is an open source web application framework for developing Java EE web applications. | Java Servlets/JSP | Yes |
 |XML | Extensible Markup Language (XML) is a markup language that defines a set of rules for encoding documents in a format that is both human-readable and machine-readable. |  | Yes |
-|PostgreSQL | PostgreSQL, often simply Postgres, is an object-relational database (ORDBMS) - i.e., an RDBMS, with additional (optional use) \"object\" features - with an emphasis on extensibility and standards-compliance. |  | Yes |
+|PostgreSQL | PostgreSQL, often simply Postgres, is an object-relational database (ORDBMS) - that is, an RDBMS, with additional (optional use) \"object\" features - with an emphasis on extensibility and standards-compliance. |  | Yes |
 |IBM DB2 | IBM DB2 contains database server products developed by IBM. |  | Yes |
 |Sybase/ASE | SAP ASE (Adaptive Server Enterprise), originally known as Sybase SQL Server, and also commonly known as Sybase DB or ASE, is a relational model database server product for businesses developed by Sybase Corporation which became part of SAP AG. |  | Yes |
 |CGI | Common Gateway Interface (CGI) offers a standard protocol for web servers to interface with executable programs running on a server that generate web pages dynamically. |  | Yes |

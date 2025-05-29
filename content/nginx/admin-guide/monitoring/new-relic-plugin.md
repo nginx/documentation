@@ -9,7 +9,7 @@ type:
 - how-to
 ---
 
-In March, 2013 we released the first version of the [“nginx web server” plug‑in](http://newrelic.com/plugins/nginx-inc/13) for New Relic monitoring of the NGINX Open Source  software and F5 NGINX Plus. Since then, we’ve received lots of interest from users – we greatly appreciate it! The plug‑in continues to be one of the most popular New Relic plug‑ins, in spite of the few things that (we believe!) could be improved. If you don’t already have a New Relic account, [sign up](http://newrelic.com/).
+In March, 2013 we released the first version of the [“nginx web server” plug‑in](https://newrelic.com/instant-observability/nginx) for New Relic monitoring of the NGINX Open Source  software and F5 NGINX Plus. Since then, we’ve received lots of interest from users – we greatly appreciate it! The plug‑in continues to be one of the most popular New Relic plug‑ins, in spite of the few things that (we believe!) could be improved. If you don’t already have a New Relic account, [sign up](http://newrelic.com/).
 
 We selected Ruby as the base language for the original plug‑in, because the New Relic platform itself is written in Ruby, the API was not yet published, and many things were changing quickly.
 
@@ -29,11 +29,11 @@ Today, we are pleased to announce a major update of the NGINX plug‑in for New�
 
 ## Installation
 
-Download the [plug‑in and installation instructions](https://www.nginx.com/nr-plugin/).
+Download the [plug‑in and installation instructions](https://docs.newrelic.com/install/nginx/).
 
 ## Configuring the Plug‑In
 
-The configuration file for the NGINX plug‑in is <span style="white-space: nowrap; font-weight:bold;">/etc/nginx-nr-agent/nginx-nr-agent.ini</span>. The minimal configuration includes:
+The configuration file for the NGINX plug‑in is **/etc/nginx&#8209;nr&#8209;agent/nginx&#8209;nr&#8209;agent.ini**. The minimal configuration includes:
 
 - Your New Relic license key in the `newrelic_license_key` statement in the `global` section.
 
@@ -44,7 +44,7 @@ The configuration file for the NGINX plug‑in is <span style="white-space: nowr
 
 You can include the optional `http_user` and `http_pass` statements to set HTTP basic authentication credentials in cases where the corresponding location is protected by the NGINX [auth_basic](https://nginx.org/en/docs/http/ngx_http_auth_basic_module.html#auth_basic) directive.
 
-The default log file is <span style="white-space: nowrap; font-weight:bold;">/var/log/nginx-nr-agent.log</span>.
+The default log file is **/var/log/nginx&#8209;nr&#8209;agent.log**.
 
 ## Running the Plug‑In
 

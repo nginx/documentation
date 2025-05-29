@@ -101,6 +101,6 @@ To see a list of currently active issues, visit the [Known issues]({{< ref "/ngi
 
 ### Welcome to the NGINXaaS Public Preview
 
-NGINXaaS for Azure is now available for public preview. Give it a try! If you find any issues please let us know by [raising a support ticket]({{< ref "/nginxaas-azure/troubleshooting/troubleshooting.md" >}}).
+NGINXaaS for Azure is now available for public preview. Give it a try! If you find any issues please let us know by [raising a support ticket]({{< ref "/nginxaas-azure/get-help.md" >}}).
 
 Visit the [Known issues]({{< ref "/nginxaas-azure/known-issues.md" >}}) section to learn about the issues present in this release.

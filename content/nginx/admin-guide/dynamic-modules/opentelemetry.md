@@ -13,7 +13,7 @@ type:
 
 [OpenTelemetry](https://opentelemetry.io/) (OTel) is an observability framework for monitoring, tracing, troubleshooting, and optimizing applications. OTel enables the collection of telemetry data from a deployed application stack.
 
-The `nginx-plus-module-otel` module is an NGINX-authored dynamic module that enables NGINX Plus to send telemetry data to an OTel collector. The module supports [W3C](https://w3c.github.io/trace-context/) trace context propagation, OpenTelemetry Protocol (OTLP)/gRPC trace exports, and offers several advantages over existing OTel modules including:
+The `nginx-plus-module-otel` module is an [NGINX-authored]({{< ref "nginx/admin-guide/installing-nginx/installing-nginx-plus.md#nginx-authored-dynamic-modules" >}}) dynamic module that enables NGINX Plus to send telemetry data to an OTel collector. The module supports [W3C](https://w3c.github.io/trace-context/) trace context propagation, OpenTelemetry Protocol (OTLP)/gRPC trace exports, and offers several advantages over existing OTel modules including:
 
 - Enhanced performance: with the module enabled, request processing overhead is limited to 10-15%, compared to other OpenTelemetry implementations, which can introduce performance degradation of up to 50%.
 
@@ -30,7 +30,7 @@ The OpenTelemetry module supersedes the deprecated [OpenTracing]({{< ref "opentr
 
 ## Installation
 
-The installation process closely follows the [NGINX Plus installation procedure]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}). Prebuilt packages of the module for various Linux distributions can can be installed directly from the official repository. Prior to installation, you need to add the NGINX Plus package repository for your distribution and update the repository metadata.
+The installation process closely follows the [NGINX Plus installation procedure]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}). The module is available as the prebuilt `nginx-plus-module-otel` package for various Linux distributions and can be installed directly from the official NGINX Plus repository. Prior to installation, you need to add the NGINX Plus package repository for your distribution and update the repository metadata.
 
 1.  Check the [Technical Specifications]({{< ref "nginx/technical-specs.md" >}}) page to verify that the module is supported by your operating system.
 
@@ -131,7 +131,7 @@ The installation process closely follows the [NGINX Plus installation procedure]
 
 6.  Ensure that your package management system is configured to pull packages from the NGINX Plus repository. See [Installing NGINX Plus]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}) for details.
 
-7.  Update the repository information and install the package. In a terminal, run the appropriate command for your operating system.
+7.  Update the repository information and install the `nginx-plus-module-otel` package. In a terminal, run the appropriate command for your operating system.
 
     For CentOS, Oracle Linux, and RHEL:
 
@@ -170,9 +170,9 @@ The installation process closely follows the [NGINX Plus installation procedure]
 
     The resulting `ngx_otel_module.so`  dynamic module will be written to the following directory, depending on your operating system:
 
-    - `/usr/local/nginx/modules` for most Linux Distributions
-    - `/usr/lib/nginx/modules` for Ubuntu
-    - `/usr/local/etc/nginx/modules` for FreeBSD
+   - `/usr/lib64/nginx/modules/` for most Linux distributions
+   - `/usr/lib/nginx/modules` for Debian, Ubuntu, Alpine
+   - `/usr/local/etc/nginx/modules` for FreeBSD
 
 8.  Enable dynamic loading of the module.
 
@@ -211,7 +211,9 @@ The installation process closely follows the [NGINX Plus installation procedure]
 
 ## Configuration
 
- In a text editor, open the NGINX Plus configuration file (`/etc/nginx/nginx.conf` for Linux or `/usr/local/etc/nginx/nginx.conf` for FreeBSD).
+ In a text editor, open the NGINX Plus configuration file:
+   - `/etc/nginx/nginx.conf` for Linux
+   - `/usr/local/etc/nginx/nginx.conf` for FreeBSD
 
 For a complete list of directives, embedded variables, default span attributes, refer to the `ngx_otel_module` official documentation.
 

@@ -1,5 +1,5 @@
 ---
-title: Prerequisites
+title: Overview and prerequisites
 weight: 100
 toc: true
 docs: DOCS-880
@@ -8,7 +8,9 @@ type:
 - how-to
 ---
 
-Before you deploy F5 NGINX as a Service for Azure (NGINXaaS) you need to meet the following prerequisites:
+## Before you begin
+
+Before you deploy NGINXaaS you need to meet the following prerequisites:
 
 - An Azure account with an active subscription (if you don’t have one, [create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F)).
 
@@ -18,7 +20,18 @@ Before you deploy F5 NGINX as a Service for Azure (NGINXaaS) you need to meet th
 
   - It's possible to complete a limited setup with the built-in [Contributor](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#contributor) role.
 
-For specific permissions check the [NGINXaaS for Azure Frequently Asked Questions]({{< ref "/nginxaas-azure/faq" >}}).
+
+- The specific Azure permissions required to deploy NGINXaaS are:
+
+   - microsoft.network/publicIPAddresses/join/action
+   - nginx.nginxplus/nginxDeployments/Write
+   - microsoft.network/virtualNetworks/subnets/join/action
+   - nginx.nginxplus/nginxDeployments/configurations/Write
+   - nginx.nginxplus/nginxDeployments/certificates/Write
+
+- Additionally, if you are creating the Virtual Network or IP address resources that NGINXaaS for Azure will be using, then you probably also want those permissions as well.
+
+- Note that assigning the managed identity permissions normally requires an "Owner" role.
 
 ## What's next
 

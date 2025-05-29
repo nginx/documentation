@@ -51,7 +51,7 @@ If you add an instance with SSL/TLS certificates, those certificates can match a
 
 ### If the certificate is already managed
 
-If you add an instance with a managed certificate, as described in [Add your NGINX instances to NGINX One], these certificates are added to your list of **Managed Certificates**.
+If you add an instance with a managed certificate, as described in [Add your NGINX instances to NGINX One]({{< ref "/nginx-one/getting-started.md#add-your-nginx-instances-to-nginx-one" >}}), these certificates are added to your list of **Managed Certificates**.
 
 NGINX One Console can manage your instances along with those certificates.
 

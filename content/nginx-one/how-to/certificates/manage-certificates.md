@@ -178,7 +178,7 @@ If you register an instance to NGINX One Console, as described in [Add your NGIN
 - Are used in their NGINX configuration
 - Do _not_ match an existing managed SSL certificate/CA bundle
 
-These certificates appear in the list of unmanaged certificates.
+These certificates appear in the list of unmanaged certificates. NGINX One Console does not store unmanaged certs or keys, only metadata associated with certs for monitoring.
 
 We recommend that you convert your unmanaged certificates. Converting to a managed certificate allows you to centrally manage, update, and deploy a certificate to your data plane from the NGINX One Console.
 

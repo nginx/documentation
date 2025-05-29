@@ -8,7 +8,9 @@ docs: DOCS-000
 ---
 
 Beyond the [Default roles]({{< ref "/nginx-one/rbac/roles.md" >}}) for NGINX One Console access, you can create [custom roles](https://docs.cloud.f5.com/docs-v2/administration/how-tos/user-mgmt/roles#custom-roles) with more precisely defined access permissions.
-You can assign custom roles to users or service accounts. You can associate these roles with specific namespaces, to help facilitate the principle of least privilege across your tenant.
+You can assign custom roles to users or service accounts.
+
+You can associate these roles with specific [namespaces](https://docs.cloud.f5.com/docs-v2/multi-cloud-app-connect/how-to/app-security/service-policy), to help facilitate the principle of least privilege across your tenant. 
 For this use-case, we include a list of API groups that you can use to specify permissions for custom roles with more granular access controls to NGINX One Console APIs.
 
 ## F5 API groups for NGINX One
@@ -40,6 +42,6 @@ The following table lists the available API groups that you can use to construct
 | f5xc-nginx-one-custom-settings-manage               | Write           | View and update NGINX One Console Settings.                                                                               |
 | f5xc-nginx-one-custom-settings-read                 | Read            | View NGINX One Console Settings.                                                                                          |
 | f5xc-nginx-one-custom-event-read                   | Read            | View NGINX One Events.                                                                                                    |
-| f5xc-nginx-one-custom-ai-assistant                  | Write           | Interact with the NGINX One AI Assistant.                                                                                     |
+| f5xc-nginx-one-custom-ai-assistant                  | Write           | Interact with the F5 AI Assistant.                                                                                     |
 | f5xc-nginx-one-custom-staged-config-manage         | Write           | View, create, update, and delete Staged Configs.                                                                          |
 | f5xc-nginx-one-custom-staged-config-read           | Read            | View Staged Configs.                                                                                                      |
