@@ -1,5 +1,3 @@
-### Docker Compose File with IP Intelligence
-
 If the deployment intends to use the IP intelligence Feature (avaiable from version 5.7.0), then the IP intelligence container needs to be added to the deployment in the docker compose file.
 
 Modify the original `docker-compose.yml` file to include the additional IP Intelligence container:
@@ -56,13 +54,13 @@ Notes:
 - Replace `waf-config-mgr`, `waf-enforcer` and `waf-ip-intelligence` tags with the actual release version tag you are deploying. We are using version 5.7.0 for this example deployment.
 - By default, the containers `waf-config-mgr`, `waf-enforcer` and `waf-ip-intelligence` operate with the user and group IDs set to 101:101. Ensure that the folders and files are accessible to these IDs.
 
-Before you create the deployment in docker compose, create the directories:
+Before creating the deployment in docker compose, create the required directories:
 
 ```shell
 sudo mkdir -p /opt/app_protect/config /opt/app_protect/bd_config /var/IpRep
 ```
 
-Then set ownership:
+Then set correct ownership:
 
 ```shell
 sudo chown -R 101:101 /opt/app_protect/ /var/IpRep

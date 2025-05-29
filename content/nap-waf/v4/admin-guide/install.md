@@ -1079,7 +1079,7 @@ RUN --mount=type=secret,id=nginx-crt,dst=/etc/apk/cert.pem,mode=0644 \
 # Only use if you want to install and use the IP intelligence feature:
 RUN --mount=type=secret,id=nginx-crt,dst=/etc/apk/cert.pem,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/apk/cert.key,mode=0644 \
-    apk update && apk app-protect-ip-intelligence
+    apk update && apk add app-protect-ip-intelligence
 
 # Forward request logs to Docker log collector:
 RUN ln -sf /dev/stdout /var/log/nginx/access.log \
@@ -1743,7 +1743,7 @@ On a host with access to the NGINX App Protect WAF repository:
     yum install --downloadonly --downloaddir=/etc/packages/ app-protect
     ```
 
-Only use if you want to install and use the IP intelligence feature:
+    Only use if you want to install and use the IP intelligence feature:
 
     ```shell
     yum install --downloadonly --downloaddir=/etc/packages/ app-protect-ip-intelligence
@@ -1777,7 +1777,7 @@ On an offline host:
     yum -y install app-protect
     ```
 
-Only use if you want to install and use the IP intelligence feature:
+    Only use if you want to install and use the IP intelligence feature:
 
     ```shell
     yum -y install app-protect-ip-intelligence
@@ -1797,7 +1797,8 @@ On a host with access to the NGINX App Protect WAF repository:
     apt-get update
     for i in $(apt-cache depends --recurse --no-recommends --no-suggests --no-conflicts --no-breaks --no-replaces --no-enhances app-protect | grep "^\w" | sort -u); do apt-get download $i 2>>errors.txt; done
     ```
-Only use if you want to install and use the IP intelligence feature:
+    
+    Only use if you want to install and use the IP intelligence feature:
 
     ```shell
     cd /etc/packages/
@@ -1818,7 +1819,7 @@ On an offline host:
     apt-get update
     apt-get install -y app-protect
     ```
-Only use if you want to install and use the IP intelligence feature:
+    Only use if you want to install and use the IP intelligence feature:
 
     ```shell
     apt-get install -y app-protect-ip-intelligence
