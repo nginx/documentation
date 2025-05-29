@@ -19,7 +19,7 @@ To complete this guide, you'll need to install:
 
 - [kubectl](https://kubernetes.io/docs/tasks/tools/), a command-line tool for managing Kubernetes clusters.
 - [Helm 3.0 or later](https://helm.sh/docs/intro/install/), for deploying and managing applications on Kubernetes.
-- If deploying into a production environment, we highly recommend [installing custom certificates]({{< ref "/ngf/installation/installing-ngf/control-plane-certs.md" >}}) for securing the connection between the NGINX Gateway Fabric control plane and NGINX data plane Pods. **This should be done _before_ you install NGINX Gateway Fabric.** The default certificates are self-signed and will expire after 3 years.
+- If deploying into a production environment, we highly recommend [installing custom certificates]({{< ref "/ngf/install/control-plane-certs.md" >}}) for securing the connection between the NGINX Gateway Fabric control plane and NGINX data plane Pods. **This should be done _before_ you install NGINX Gateway Fabric.** The default certificates are self-signed and will expire after 3 years.
 
 {{< important >}} If you’d like to use NGINX Plus, some additional setup is also required: {{</ important >}}
 
@@ -184,7 +184,7 @@ Secret before upgrading. Follow the steps in the [Before you begin](#before-you-
 
 {{< tip >}} For guidance on zero downtime upgrades, see the [Delay Pod Termination](#configure-delayed-pod-termination-for-zero-downtime-upgrades) section below. {{< /tip >}}
 
-{{< note >}} To upgrade from version 1.x to 2.x, please refer to this [guide]({{< ref "/ngf/upgrading-ngf.md" >}}). {{< /note >}}
+{{< note >}} To upgrade from version 1.x to 2.x, please refer to this [guide]({{< ref "/ngf/install/upgrade-2.0.md" >}}). {{< /note >}}
 
 To upgrade NGINX Gateway Fabric and get the latest features and improvements, take the following steps:
 

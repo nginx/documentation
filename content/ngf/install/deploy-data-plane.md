@@ -19,7 +19,7 @@ A single GatewayClass can have multiple Gateways: each Gateway will create a sep
 
 ## Before you begin
 
-- [Install]({{< ref "/ngf/installation/" >}}) NGINX Gateway Fabric.
+- [Install]({{< ref "/ngf/install/" >}}) NGINX Gateway Fabric.
 
 ## Create a Gateway
 
@@ -236,7 +236,7 @@ Annotations:              annotationKey: annotationValue
 
 For more guides on routing traffic to applications and more information on Data Plane configuration, check out the following resources:
 
-- [Routing traffic to applications]({{< ref "/ngf/how-to/traffic-management/routing-traffic-to-your-app.md" >}})
-- [Application routes using HTTP matching conditions]({{< ref "/ngf/how-to/traffic-management/advanced-routing.md" >}})
+- [Routing traffic to applications]({{< ref "/ngf/traffic-management/routing-traffic-to-your-app.md" >}})
+- [Application routes using HTTP matching conditions]({{< ref "/ngf/traffic-management/advanced-routing.md" >}})
 - [Data plane configuration]({{< ref "/ngf/how-to/data-plane-configuration.md" >}})
 - [API reference]({{< ref "/ngf/reference/api.md" >}})

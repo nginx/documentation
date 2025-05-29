@@ -44,7 +44,7 @@ helm install \
   --set crds.enabled=true
 ```
 
-This also enables Gateway API features for cert-manager, which can be useful for [securing your workload traffic]({{< ref "/ngf/how-to/traffic-security/integrating-cert-manager.md" >}}).
+This also enables Gateway API features for cert-manager, which can be useful for [securing your workload traffic]({{< ref "/ngf/traffic-security/integrating-cert-manager.md" >}}).
 
 ## Create the CA issuer
 
@@ -194,4 +194,4 @@ nginx-gateway-ca   kubernetes.io/tls   3      15s
 server-tls         kubernetes.io/tls   3      8s
 ```
 
-**You can now [install NGINX Gateway Fabric]({{< ref "/ngf/installation/installing-ngf" >}}).**
+You can now [install NGINX Gateway Fabric]({{< ref "/ngf/install/" >}}).

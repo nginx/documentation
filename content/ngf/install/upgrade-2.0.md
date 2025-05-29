@@ -44,7 +44,7 @@ Next, install the latest stable release of NGINX Gateway Fabric in the `nginx-ga
 helm install ngf oci://ghcr.io/nginx/charts/nginx-gateway-fabric --create-namespace -n nginx-gateway
 ```
 
-For additional customization options during the helm installation process, take a look at [Installation with Helm]({{< ref "/ngf/installation/installing-ngf/helm.md" >}}).
+For additional customization options during the helm installation process, take a look at [Installation with Helm]({{< ref "/ngf/install/helm.md" >}}).
 
 {{% /tab %}}
 
@@ -64,7 +64,7 @@ Next, install the latest stable release of NGINX Gateway Fabric in the `nginx-ga
 kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v{{< version-ngf >}}/deploy/default/deploy.yaml
 ```
 
-For additional customization options during the installation process using manifests, take a look at [Installation with Manifests]({{< ref "/ngf/installation/installing-ngf/manifests.md" >}}).
+For additional customization options during the installation process using manifests, take a look at [Installation with Manifests]({{< ref "/ngf/install/manifests.md" >}}).
 
 {{% /tab %}}
 
@@ -89,7 +89,7 @@ For detailed instructions on how to modify these settings, refer to the [Configu
 ### Key links for the version 2.x update
 
 - To read more on [modifying data plane configuration]({{< ref "/ngf/how-to/data-plane-configuration.md" >}}).
-- To learn more about [deploying a Gateway for data plane instances]({{< ref "/ngf/installation/installing-ngf/deploy-data-plane.md" >}}).
-- To adding secure [authentication to control plane and data planes]({{< ref "/ngf/installation/installing-ngf/control-plane-certs.md" >}}).
+- To learn more about [deploying a Gateway for data plane instances]({{< ref "/ngf/install/deploy-data-plane.md" >}}).
+- To adding secure [authentication to control plane and data planes]({{< ref "/ngf/install/control-plane-certs.md" >}}).
 - To read more about [architecture changes]({{< ref "/ngf/overview/gateway-architecture.md" >}}).
 - For detailed [API reference]({{< ref "/ngf/reference/api.md" >}}).
