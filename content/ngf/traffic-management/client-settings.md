@@ -59,6 +59,7 @@ For all the possible configuration options for `ClientSettingsPolicy`, see the [
   ```yaml
   kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v{{< version-ngf >}}/examples/client-settings-policy/gateway.yaml
   ```
+After creating the Gateway resource, NGINX Gateway Fabric will provision an NGINX Pod and Service fronting it to route traffic.
 
 - Create HTTPRoutes for the coffee and tea applications:
 
@@ -66,9 +67,19 @@ For all the possible configuration options for `ClientSettingsPolicy`, see the [
   kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v{{< version-ngf >}}/examples/client-settings-policy/httproutes.yaml
   ```
 
+- Save the public IP address and port of the NGINX Service into shell variables:
+
+  ```text
+  GW_IP=XXX.YYY.ZZZ.III
+  GW_PORT=<port number>
+  ```
+
+  {{< note >}}In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the gateway will forward for.{{< /note >}}
+
+
 - Test the configuration:
 
-  You can send traffic to the coffee and tea applications using the external IP address and port for NGINX Gateway Fabric.
+  You can send traffic to the coffee and tea applications using the external IP address and port for the NGINX Service.
 
   Send a request to coffee:
 

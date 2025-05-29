@@ -175,6 +175,18 @@ This gateway configures:
 - `http` listener for HTTP traffic
 - `https` listener for HTTPS traffic. It terminates TLS connections using the `cafe-secret` we created.
 
+After creating the Gateway resource, NGINX Gateway Fabric will provision an NGINX Pod and Service fronting it to route traffic.
+
+Save the public IP address and ports of the NGINX Service into shell variables:
+
+ ```text
+ GW_IP=XXX.YYY.ZZZ.III
+ GW_HTTP_PORT=<http port number>
+ GW_HTTPS_PORT=<https port number>
+ ```
+
+{{< note >}}In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the gateway will forward for.{{< /note >}}
+
 To create the httproute resources, copy and paste the following into your terminal:
 
 ```yaml
@@ -223,7 +235,7 @@ The first route issues a `requestRedirect` from the `http` listener on port 80 t
 
 ## Send traffic
 
-Using the external IP address and port for NGINX Gateway Fabric, we can send traffic to our coffee application.
+Using the external IP address and ports for the NGINX Service, we can send traffic to our coffee application.
 
 {{< note >}}If you have a DNS record allocated for `cafe.example.com`, you can send the request directly to that hostname, without needing to resolve.{{< /note >}}
 

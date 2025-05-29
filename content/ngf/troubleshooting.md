@@ -80,7 +80,7 @@ LAST SEEN   TYPE      REASON              OBJECT                                
 Getting shell access to containers allows developers and operators to view the environment of a running container, see its logs or diagnose any problems. To get shell access to the NGINX container, use `kubectl exec`:
 
 ```shell
-kubectl exec -it -n nginx-gateway  <ngf-pod-name> -c nginx -- /bin/sh
+kubectl exec -it -n <nginx-pod-namespace> <nginx-pod-name> -- /bin/sh
 ```
 
 ---
@@ -104,7 +104,7 @@ You can see logs for a crashed or killed container by adding the `-p` flag to th
    To see logs for the data plane container:
 
    ```shell
-   kubectl -n nginx-gateway logs <ngf-pod-name> -c nginx
+   kubectl -n <nginx-pod-namespace> logs <nginx-pod-name> -c nginx
    ```
 
 1. Error Logs
@@ -118,13 +118,13 @@ You can see logs for a crashed or killed container by adding the `-p` flag to th
    For the _nginx_ container you can `grep` for various [error](https://nginx.org/en/docs/ngx_core_module.html#error_log) logs. For example, to search for all logs logged at the `emerg` level:
 
    ```shell
-   kubectl -n nginx-gateway logs <ngf-pod-name> -c nginx | grep emerg
+   kubectl -n <nginx-pod-namespace> logs <nginx-pod-name> -c nginx | grep emerg
    ```
 
    For example, if a variable is too long, NGINX may display such an error message:
 
    ```text
-   kubectl logs -n nginx-gateway ngf-nginx-gateway-fabric-bb8598998-jwk2m -c nginx | grep emerg
+   kubectl logs -n dev-env gateway-nginx-bb8598998-jwk2m -c nginx | grep emerg
    2024/06/13 20:04:17 [emerg] 27#27: too long parameter, probably missing terminating """ character in /etc/nginx/conf.d/http.conf:78
    ```
 
@@ -158,7 +158,7 @@ server {
 }
 ```
 
-Once a HTTPRoute with path matches and rules are defined, nginx.conf is updated accordingly to determine which location block will manage incoming requests. To demonstrate how `nginx.conf` is changed, create some resources:
+Once an HTTPRoute with path matches and rules are defined, nginx.conf is updated accordingly to determine which location block will manage incoming requests. To demonstrate how `nginx.conf` is changed, create some resources:
 
 1. A Gateway with single listener with the hostname `*.example.com` on port 80.
 2. A simple `coffee` application.
@@ -290,10 +290,6 @@ The configuration may change in future releases. This configuration is valid for
 
 Metrics can be useful to identify performance bottlenecks and pinpoint areas of high resource consumption within NGINX Gateway Fabric. To set up metrics collection, refer to the [Prometheus Metrics guide]({{< ref "/ngf/monitoring/prometheus.md" >}}). The metrics dashboard will help you understand problems with the way NGINX Gateway Fabric is set up or potential issues that could show up with time.
 
-For example, metrics `nginx_reloads_total` and `nginx_reload_errors_total` offer valuable insights into the system's stability and reliability. A high `nginx_reloads_total` value indicates frequent updates or configuration changes, while a high `nginx_reload_errors_total` value suggests issues with the configuration or other problems preventing successful reloads. Monitoring these metrics helps identify and resolve configuration errors, ensuring consistent service reliability.
-
-In such situations, it's advisable to review the logs of both NGINX and NGINX Gateway containers for any potential error messages. Additionally, verify the configured resources to ensure they are in a valid state.
-
 ---
 
 #### Access the NGINX Plus Dashboard
@@ -336,46 +332,100 @@ To understand why the NGINX Gateway Fabric Pod has not started running or is not
 kubectl describe pod <ngf-pod-name> -n nginx-gateway
 ```
 
-The Pod description includes details about the image name, tags, current status, and environment variables. Verify that these details match your setup and cross-check with the events to ensure everything is functioning as expected. For example, the Pod below has two containers that are running and the events reflect the same.
+The Pod description includes details about the image name, tags, current status, and environment variables. Verify that these details match your setup and cross-check with the events to ensure everything is functioning as expected. For example, the Pod below has the nginx-gateway container that is running and the events reflect the same.
 
 ```text
 Containers:
   nginx-gateway:
-    Container ID:  containerd://06c97a9de938b35049b7c63e251418395aef65dd1ff996119362212708b79cab
-    Image:         nginx-gateway-fabric
-    Image ID:      docker.io/library/import-2024-06-13@sha256:1460d63bd8a352a6e455884d7ebf51ce9c92c512cb43b13e44a1c3e3e6a08918
-    Ports:         9113/TCP, 8081/TCP
-    Host Ports:    0/TCP, 0/TCP
+    Container ID:    containerd://492f380d5919ae2cdca0e009e7a7d5bf4092f8e1910f52d8951d58b73f125646
+    Image:           nginx-gateway-fabric:latest
+    Image ID:        sha256:c034f1e5bde0490b1f2441e0e9b0bcfce5f2e259bb6210c55d4d67f808a74ecb
+    Ports:           8443/TCP, 9113/TCP, 8081/TCP
+    Host Ports:      0/TCP, 0/TCP, 0/TCP
+    SeccompProfile:  RuntimeDefault
+    Args:
+      controller
+      --gateway-ctlr-name=gateway.nginx.org/nginx-gateway-controller
+      --gatewayclass=nginx
+      --config=my-release-config
+      --service=my-release-nginx-gateway-fabric
+      --agent-tls-secret=agent-tls
+      --metrics-port=9113
+      --health-port=8081
+      --leader-election-lock-name=my-release-nginx-gateway-fabric-leader-election
     State:          Running
-      Started:      Thu, 13 Jun 2024 11:47:46 -0600
+      Started:      Thu, 24 Apr 2025 10:57:16 -0700
     Ready:          True
     Restart Count:  0
     Readiness:      http-get http://:health/readyz delay=3s timeout=1s period=1s #success=1 #failure=3
     Environment:
-      POD_IP:          (v1:status.podIP)
       POD_NAMESPACE:  nginx-gateway (v1:metadata.namespace)
-      POD_NAME:       ngf-nginx-gateway-fabric-66dd665756-zh7d7 (v1:metadata.name)
-  nginx:
-    Container ID:   containerd://c2f3684fd8922e4fac7d5707ab4eb5f49b1f76a48893852c9a812cd6dbaa2f55
-    Image:          nginx-gateway-fabric/nginx
-    Image ID:       docker.io/library/import-2024-06-13@sha256:c9a02cb5665c6218373f8f65fc2c730f018d0ca652ae827cc913a7c6e9db6f45
-    Ports:          80/TCP, 443/TCP
-    Host Ports:     0/TCP, 0/TCP
-    State:          Running
-      Started:      Thu, 13 Jun 2024 11:47:46 -0600
-    Ready:          True
-    Restart Count:  0
-    Environment:    <none>
+      POD_NAME:       my-release-nginx-gateway-fabric-b99bd5cdd-qzp5q (v1:metadata.name)
+      POD_UID:         (v1:metadata.uid)
+      INSTANCE_NAME:   (v1:metadata.labels['app.kubernetes.io/instance'])
+      IMAGE_NAME:     nginx-gateway-fabric:latest
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-5dg45 (ro)
+      /var/run/secrets/ngf from nginx-agent-tls (rw)
 Events:
   Type    Reason     Age   From               Message
   ----    ------     ----  ----               -------
-  Normal  Scheduled  40s   default-scheduler  Successfully assigned nginx-gateway/ngf-nginx-gateway-fabric-66dd665756-zh7d7 to kind-control-plane
-  Normal  Pulled     40s   kubelet            Container image "nginx-gateway-fabric" already present on machine
-  Normal  Created    40s   kubelet            Created container nginx-gateway
-  Normal  Started    39s   kubelet            Started container nginx-gateway
-  Normal  Pulled     39s   kubelet            Container image "nginx-gateway-fabric/nginx" already present on machine
-  Normal  Created    39s   kubelet            Created container nginx
-  Normal  Started    39s   kubelet            Started container nginx
+  Normal  Scheduled  22s   default-scheduler  Successfully assigned nginx-gateway/my-release-nginx-gateway-fabric-b99bd5cdd-qzp5q to kind-control-plane
+  Normal  Pulled     20s   kubelet            Container image "nginx-gateway-fabric:latest" already present on machine
+  Normal  Created    20s   kubelet            Created container: nginx-gateway
+  Normal  Started    20s   kubelet            Started container nginx-gateway
+```
+
+---
+
+##### NGINX Pod is not running or ready
+
+To understand why the NGINX Pod has not started running or is not ready, check the state of the Pod to get detailed information about the current status and events happening in the Pod. To do this, use `kubectl describe`:
+
+```shell
+kubectl describe pod <nginx-pod-name> -n <nginx-pod-namespace>
+```
+
+The Pod description includes details about the image name, tags, current status, and environment variables. Verify that these details match your setup and cross-check with the events to ensure everything is functioning as expected. For example, the Pod below has the nginx container that is running and the events reflect the same.
+
+```text
+Containers:
+  nginx:
+    Container ID:    containerd://0dd33fd358ba3b369de315be15b197e369342aba7aa8d3ea12e4455823fa90ce
+    Image:           nginx-gateway-fabric/nginx:latest
+    Image ID:        sha256:e5cb19bab49cbde6222df607a0946e1e00c1af767263b79ae36e4c69f8547f20
+    Ports:           80/TCP, 9113/TCP
+    Host Ports:      0/TCP, 0/TCP
+    SeccompProfile:  RuntimeDefault
+    State:           Running
+      Started:       Thu, 24 Apr 2025 10:57:36 -0700
+    Ready:           True
+    Restart Count:   0
+    Environment:     <none>
+    Mounts:
+      /etc/nginx-agent from nginx-agent (rw)
+      /etc/nginx/conf.d from nginx-conf (rw)
+      /etc/nginx/includes from nginx-includes (rw)
+      /etc/nginx/main-includes from nginx-main-includes (rw)
+      /etc/nginx/secrets from nginx-secrets (rw)
+      /etc/nginx/stream-conf.d from nginx-stream-conf (rw)
+      /var/cache/nginx from nginx-cache (rw)
+      /var/lib/nginx-agent from nginx-agent-lib (rw)
+      /var/log/nginx-agent from nginx-agent-log (rw)
+      /var/run/nginx from nginx-run (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-f9kph (ro)
+      /var/run/secrets/ngf from nginx-agent-tls (rw)
+      /var/run/secrets/ngf/serviceaccount from token (rw)
+Events:
+  Type    Reason     Age    From               Message
+  ----    ------     ----   ----               -------
+  Normal  Scheduled  2m57s  default-scheduler  Successfully assigned default/gateway-nginx-85f7f6d7d-fx7q2 to kind-control-plane
+  Normal  Pulled     2m54s  kubelet            Container image "nginx-gateway-fabric:latest" already present on machine
+  Normal  Created    2m54s  kubelet            Created container: init
+  Normal  Started    2m54s  kubelet            Started container init
+  Normal  Pulled     2m53s  kubelet            Container image "nginx-gateway-fabric/nginx:latest" already present on machine
+  Normal  Created    2m53s  kubelet            Created container: nginx
+  Normal  Started    2m53s  kubelet            Started container nginx
 ```
 
 ---

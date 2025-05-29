@@ -15,6 +15,8 @@ This requirement is part of F5’s broader licensing program and aligns with ind
 
 The JWT is required for validating your subscription and reporting telemetry data. For environments connected to the internet, telemetry is automatically sent to F5’s licensing endpoint. In offline environments, telemetry is routed through [NGINX Instance Manager]({{< ref "/nim/" >}}). Usage is reported every hour and on startup whenever NGINX is reloaded.
 
+{{< note >}} The following Secrets should be created in the same namespace as the NGINX Gateway Fabric control plane (default: nginx-gateway). The control plane will copy these Secrets into any namespaces where NGINX gets deployed. If you need to update the Secrets, update the originals that you created in the control plane namespace, and the control plane will propagate those updates to all duplicated Secrets. {{< /note >}}
+
 ---
 
 ## Set up the JWT
@@ -41,13 +43,13 @@ Provide the name of this Secret when installing NGINX Gateway Fabric:
 
 {{%tab name="Helm"%}}
 
-Specify the Secret name using the `serviceAccount.imagePullSecret` or `serviceAccount.imagePullSecrets` helm value.
+Specify the Secret name using the `nginx.imagePullSecret` or `nginx.imagePullSecrets` helm value.
 
 {{% /tab %}}
 
 {{%tab name="Manifests"%}}
 
-Specify the Secret name in the `imagePullSecrets` field of the `nginx-gateway` ServiceAccount.
+Specify the Secret name in the `nginx-docker-secret` command-line argument of the `nginx-gateway` container.
 
 {{% /tab %}}
 
@@ -73,22 +75,6 @@ Specify the Secret name using the `nginx.usage.secretName` helm value.
 
 Specify the Secret name in the `--usage-report-secret` command-line flag on the `nginx-gateway` container.
 
-You also need to define the proper volume mount to mount the Secret to the nginx container. If it doesn't already exist, add the following volume to the Deployment:
-
-```yaml
-- name: nginx-plus-license
-  secret:
-    secretName: nplus-license
-```
-
-and the following volume mount to the `nginx` container:
-
-```yaml
-- mountPath: /etc/nginx/license.jwt
-  name: nginx-plus-license
-  subPath: license.jwt
-```
-
 {{% /tab %}}
 
 {{</tabs>}}
@@ -113,11 +99,7 @@ Specify the endpoint using the `nginx.usage.endpoint` helm value.
 
 {{%tab name="Manifests"%}}
 
-Specify the endpoint in the `--usage-report-endpoint` command-line flag on the `nginx-gateway` container. You also need to add the following line to the `mgmt` block of the `nginx-includes-bootstrap` ConfigMap:
-
-```text
-usage_report endpoint=<your-endpoint>;
-```
+Specify the endpoint in the `--usage-report-endpoint` command-line flag on the `nginx-gateway` container.
 
 {{% /tab %}}
 
@@ -153,33 +135,6 @@ Specify the CA Secret name using the `nginx.usage.caSecretName` helm value. Spec
 
 Specify the CA Secret name in the `--usage-report-ca-secret` command-line flag on the `nginx-gateway` container. Specify the client Secret name in the `--usage-report-client-ssl-secret` command-line flag on the `nginx-gateway` container.
 
-You also need to define the proper volume mount to mount the Secrets to the nginx container. Add the following volume to the Deployment:
-
-```yaml
-- name: nginx-plus-usage-certs
-  projected:
-    sources:
-      - secret:
-          name: nim-ca
-      - secret:
-          name: nim-client
-```
-
-and the following volume mounts to the `nginx` container:
-
-```yaml
-- mountPath: /etc/nginx/certs-bootstrap/
-  name: nginx-plus-usage-certs
-```
-
-Finally, in the `nginx-includes-bootstrap` ConfigMap, add the following lines to the `mgmt` block:
-
-```text
-ssl_trusted_certificate /etc/nginx/certs-bootstrap/ca.crt;
-ssl_certificate        /etc/nginx/certs-bootstrap/tls.crt;
-ssl_certificate_key    /etc/nginx/certs-bootstrap/tls.key;
-```
-
 {{% /tab %}}
 
 {{</tabs>}}
@@ -205,12 +160,12 @@ If using Helm, the `nginx.usage` values should be set as necessary:
 
 If using manifests, the following command-line options should be set as necessary on the `nginx-gateway` container:
 
-- `--usage-report-secret` should be the name of the JWT Secret you created. Must exist in the same namespace that the NGINX Gateway Fabric control plane is running in (default namespace: nginx-gateway). By default this field is set to `nplus-license`. A [volume mount](#nginx-plus-secret) for this Secret is required for installation.
-- `--usage-report-endpoint` is the endpoint to send the telemetry data to. This is optional, and by default is `product.connect.nginx.com`. Requires [extra configuration](#nim) if specified.
+- `--usage-report-secret` should be the name of the JWT Secret you created. Must exist in the same namespace that the NGINX Gateway Fabric control plane is running in (default namespace: nginx-gateway). By default this field is set to `nplus-license`.
+- `--usage-report-endpoint` is the endpoint to send the telemetry data to. This is optional, and by default is `product.connect.nginx.com`.
 - `--usage-report-resolver` is the nameserver used to resolve the NGINX Plus usage reporting endpoint. This is optional and used with NGINX Instance Manager.
 - `--usage-report-skip-verify` disables client verification of the NGINX Plus usage reporting server certificate.
-- `--usage-report-ca-secret` is the name of the Secret containing the NGINX Instance Manager CA certificate. Must exist in the same namespace that the NGINX Gateway Fabric control plane is running in (default namespace: nginx-gateway). Requires [extra configuration](#nim-cert) if specified.
-- `--usage-report-client-ssl-secret` is the name of the Secret containing the client certificate and key for authenticating with NGINX Instance Manager. Must exist in the same namespace that the NGINX Gateway Fabric control plane is running in (default namespace: nginx-gateway). Requires [extra configuration](#nim-cert) if specified.
+- `--usage-report-ca-secret` is the name of the Secret containing the NGINX Instance Manager CA certificate. Must exist in the same namespace that the NGINX Gateway Fabric control plane is running in (default namespace: nginx-gateway).
+- `--usage-report-client-ssl-secret` is the name of the Secret containing the client certificate and key for authenticating with NGINX Instance Manager. Must exist in the same namespace that the NGINX Gateway Fabric control plane is running in (default namespace: nginx-gateway).
 
 ---
 
