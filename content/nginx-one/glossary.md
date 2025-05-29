@@ -3,7 +3,7 @@ description: ''
 docs: DOCS-1396
 title: Glossary
 toc: true
-weight: 2000
+weight: 800
 type:
 - reference
 ---

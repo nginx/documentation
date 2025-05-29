@@ -1,6 +1,6 @@
 ---
 description:
 title: Set up metrics
-weight: 300
+weight: 500
 url: /nginx-one/metrics/
 ---

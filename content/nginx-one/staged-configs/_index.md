@@ -1,6 +1,6 @@
 ---
 description:
 title: Draft new configurations
-weight: 200
+weight: 400
 url: /nginx-one/staged-configs
 ---
