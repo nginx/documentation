@@ -257,10 +257,5 @@ Monitor the **Config Sync Status** column. It can help you ensure that your conf
 
 ## See also
 
-<<<<<<<< HEAD:content/nginx-one/config-sync-groups/manage-config-sync-groups.md
-- [Create and manage data plane keys]({{< ref "/nginx-one/how-to/data-plane-keys/create-manage-data-plane-keys.md" >}})
-- [View and edit NGINX configurations]({{< ref "/nginx-one/nginx-configs/view-edit-nginx-configurations.md" >}})
-========
 - [Create and manage data plane keys]({{< ref "/nginx-one/connect-instances/create-manage-data-plane-keys.md" >}})
 - [Add an NGINX instance]({{< ref "/nginx-one/connect-instances/add-instance.md" >}})
->>>>>>>> origin:content/nginx-one/nginx-configs/config-sync-groups/manage-config-sync-groups.md

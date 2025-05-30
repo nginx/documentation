@@ -58,15 +58,6 @@ Enter the name of the desired configuration file, such as `abc.conf` and select 
 ### Existing SSL Certificate or CA Bundle
 
 {{< include "nginx-one/add-file/existing-ssl-bundle.md" >}}
-<<<<<<<< HEAD:content/nginx-one/config-sync-groups/add-file-csg.md
-With this option, You can incorporate [Managed certificates]({{< ref "/nginx-one/certificates/manage-certificates.md#managed-and-unmanaged-certificates" >}}).
-
-## See also
-
-- [Create and manage data plane keys]({{< ref "/nginx-one/how-to/data-plane-keys/create-manage-data-plane-keys.md" >}})
-- [View and edit NGINX configurations]({{< ref "/nginx-one/nginx-configs/view-edit-nginx-configurations.md" >}})
-- [Manage certificates]({{< ref "/nginx-one/certificates/manage-certificates.md" >}})
-========
 With this option, you can incorporate [Managed certificates]({{< ref "/nginx-one/nginx-configs/certificates/manage-certificates.md#managed-and-unmanaged-certificates" >}}).
 
 ## See also
@@ -74,4 +65,3 @@ With this option, you can incorporate [Managed certificates]({{< ref "/nginx-one
 - [Create and manage data plane keys]({{< ref "/nginx-one/connect-instances/create-manage-data-plane-keys.md" >}})
 - [Add an NGINX instance]({{< ref "/nginx-one/connect-instances/add-instance.md" >}})
 - [Manage certificates]({{< ref "/nginx-one/nginx-configs/certificates/manage-certificates.md" >}})
->>>>>>>> origin:content/nginx-one/nginx-configs/config-sync-groups/add-file-csg.md
