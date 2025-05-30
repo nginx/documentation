@@ -9,14 +9,13 @@ docs: DOCS-0000
 
 This guide provides step-by-step instructions for upgrading NGINX Gateway Fabric from version 1.x to 2.x, highlighting key architectural changes, expected downtime, and important considerations for custom resource definitions (CRDs).
 
-
-### Upgrade from v1.x to v2.x
+## Upgrade from v1.x to v2.x
 
 To upgrade NGINX Gateway Fabric from version 1.x to the new architecture in version 2.x, you must uninstall the existing NGINX Gateway Fabric CRDs and deployment, and perform a fresh installation. This will cause brief downtime during the upgrade process.
 
 {{<note>}} You do not need to uninstall the Gateway API CRDs during the upgrade. These resources are compatible with the new NGINX Gateway Fabric version. {{</note>}}
 
-#### Uninstall NGINX Gateway Fabric v1.x
+### Uninstall NGINX Gateway Fabric v1.x
 
 To remove the previous version 1.x of NGINX Gateway Fabric, follow these steps:
 
@@ -70,8 +69,7 @@ For additional customization options during the installation process using manif
 
 {{</tabs>}}
 
-
-### Architecture changes
+## Architecture changes
 
 With this release, NGINX Gateway Fabric adopts a new architecture that separates the control plane and data plane into independent deployments. This separation improves scalability, security, and operational clarity.
 
@@ -85,8 +83,51 @@ New fields have been added to the `NginxProxy` resource to configure infrastruct
 
 For detailed instructions on how to modify these settings, refer to the [Configure infrastructure-related settings]({{< ref "/ngf/how-to/data-plane-configuration.md#configure-infrastructure-related-settings" >}}) guide.
 
+## Access NGINX Gateway Fabric 1.x documentation
 
-### Key links for the version 2.x update
+The documentation website is intended for the latest version of NGINX Gateway Fabric.
+
+To review documentation prior to 2.x, check out the desired release branch (Such as _release-1.6_):
+
+```shell
+git clone git@github.com:nginx/nginx-gateway-fabric.git
+git checkout release-1.6
+```
+
+To review the documentation in a local webserver, run _make watch_ in the _/site_ folder:
+
+```shell
+cd site
+make watch
+```
+```text
+Hugo is available and has a version greater than 133. Proceeding with build.
+hugo --bind 0.0.0.0 -p 1313 server --disableFastRender
+Watching for changes in /home/<your-user>/nginx-gateway-fabric/site/{content,layouts,static}
+Watching for config changes in /home/<your-user>/nginx-gateway-fabric/site/config/_default, /home/<your-user>/nginx-gateway-fabric/site/config/development, /home/<your-user>/nginx-gateway-fabric/site/go.mod
+Start building sites …
+hugo v0.135.0-f30603c47f5205e30ef83c70419f57d7eb7175ab linux/amd64 BuildDate=2024-09-27T13:17:08Z VendorInfo=gohugoio
+
+
+                   | EN
+-------------------+------
+  Pages            |  72
+  Paginator pages  |   0
+  Non-page files   |   0
+  Static files     | 176
+  Processed images |   0
+  Aliases          |   9
+  Cleaned          |   0
+
+Built in 213 ms
+Environment: "development"
+Serving pages from disk
+Web Server is available
+```
+
+You can then follow [this localhost link](http://localhost:1313/nginx-gateway-fabric/) for 1.x NGINX Gateway Fabric documentation.
+
+## Key links for the version 2.x update
 
 - To read more on [modifying data plane configuration]({{< ref "/ngf/how-to/data-plane-configuration.md" >}}).
 - To learn more about [deploying a Gateway for data plane instances]({{< ref "/ngf/install/deploy-data-plane.md" >}}).
