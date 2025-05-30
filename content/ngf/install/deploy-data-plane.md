@@ -98,7 +98,7 @@ cafe-nginx   LoadBalancer    10.96.125.117   <pending>     80:30180/TCP   5m2s
 
 The Service type can be changed, as explained in the next section.
 
-## How to modify provisioned NGINX instances
+## Modify provisioned NGINX instances
 
 The NginxProxy custom resource can modify the provisioning of the Service object and NGINX deployment when a Gateway is created.
 
@@ -180,7 +180,7 @@ NAME         TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
 cafe-nginx   NodePort       10.96.172.204   <none>        80:32615/TCP   3h5m
 ```
 
-### How to set annotations and labels on provisioned resources
+### Set annotations and labels on provisioned resources
 
 While the majority of configuration will happen on the NginxProxy resource, that is not always the case. Uniquely, if
 you want to set any annotations or labels on the NGINX Deployment or Service, you need to set those annotations on the Gateway which
