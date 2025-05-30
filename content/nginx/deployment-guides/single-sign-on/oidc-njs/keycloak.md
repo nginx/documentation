@@ -60,15 +60,15 @@ Create a Keycloak client for NGINX Plus in the Keycloak GUI:
    <span id="keycloak-client-id"></span>
 3. On the **Add Client** page that opens, enter or select these values, then click the <span style="background-color:#009edc; color:white;"> Save </span> button.
 
-   - **Client ID** – The name of the application for which you're enabling SSO (Keycloak refers to it as the “client”). Here we're using **NGINX&#8209;Plus**.
-   - **Client Protocol** – **openid&#8209;connect**.
+   - **Client ID** – The name of the application for which you're enabling SSO (Keycloak refers to it as the “client”). Here we're using {{<nb>}}**NGINX-Plus**{{</nb>}}.
+   - **Client Protocol** – {{<nb>}}**openid-connect**{{</nb>}}.
 
    <img src="/nginx/images/keycloak-add-client.png" alt="" width="1024" height="490" class="aligncenter size-full wp-image-62013" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
 4. On the **NGINX Plus** page that opens, enter or select these values on the <span style="color:#48a5e2;">Settings</span> tab:
 
    - **Access Type** – **confidential**
-   - **Valid Redirect URIs** – The URI of the NGINX Plus instance, including the port number, and ending in **/\_codexch** (in this guide it is **https://my&#8209;nginx.example.com:443/_codexch**)
+   - **Valid Redirect URIs** – The URI of the NGINX Plus instance, including the port number, and ending in **/\_codexch** (in this guide it is {{<nb>}}**https://my-nginx.example.com:443/_codexch**{{</nb>}})
 
      **Notes:**
 
@@ -84,14 +84,14 @@ Create a Keycloak client for NGINX Plus in the Keycloak GUI:
 
 6. Click the <span style="color:#48a5e2;">Roles</span> tab, then click the **Add Role** button in the upper right corner of the page that opens.
 
-7. On the **Add Role** page that opens, type a value in the **Role Name** field (here it is **nginx&#8209;keycloak&#8209;role**) and click the <span style="background-color:#009edc; color:white;"> Save </span> button.
+7. On the **Add Role** page that opens, type a value in the **Role Name** field (here it is {{<nb>}}**nginx-keycloak-role**{{</nb>}}) and click the <span style="background-color:#009edc; color:white;"> Save </span> button.
 
    <img src="/nginx/images/keycloak-add-role.png" alt="" width="1024" height="480" class="aligncenter size-full wp-image-62006" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
 8. In the left navigation column, click **Users**. On the **Users** page that opens, either click the name of an existing user, or click the **Add user** button in the upper right corner to create a new user. For complete instructions, see the [Keycloak documentation](https://www.keycloak.org/docs/latest/server_admin/index.html#user-management).
 
    <span id="keycloak-users"></span>
-9. On the management page for the user (here, **user01**), click the <span style="white-space: nowrap; color:#48a5e2;">Role Mappings</span> tab. On the page that opens, select **NGINX&#8209;Plus** on the **Client Roles** drop‑down menu. Click **nginx&#8209;keycloak&#8209;role** in the **Available Roles** box, then click the **Add selected** button below the box. The role then appears in the **Assigned Roles** and **Effective Roles** boxes, as shown in the screenshot.
+9. On the management page for the user (here, **user01**), click the <span style="white-space: nowrap; color:#48a5e2;">Role Mappings</span> tab. On the page that opens, select {{<nb>}}**NGINX-Plus**{{</nb>}} on the **Client Roles** drop‑down menu. Click {{<nb>}}**nginx-keycloak-role**{{</nb>}} in the **Available Roles** box, then click the **Add selected** button below the box. The role then appears in the **Assigned Roles** and **Effective Roles** boxes, as shown in the screenshot.
 
    <img src="/nginx/images/keycloak-role-mappings-tab.png" alt="" width="1024" height="526" class="aligncenter size-full wp-image-62008" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
@@ -101,7 +101,7 @@ Create a Keycloak client for NGINX Plus in the Keycloak GUI:
 
 Configure NGINX Plus as the OpenID Connect relying party:
 
-1. Create a clone of the [**nginx&#8209;openid&#8209;connect**](https://github.com/nginxinc/nginx-openid-connect) GitHub repository.
+1. Create a clone of the {{<nb>}}[**nginx-openid-connect**](https://github.com/nginxinc/nginx-openid-connect){{</nb>}} GitHub repository.
 
    ```shell
    git clone https://github.com/nginxinc/nginx-openid-connect
@@ -165,7 +165,7 @@ In a browser, enter the address of your NGINX Plus instance and try to log in u
 <span id="troubleshooting"></span>
 ## Troubleshooting
 
-See the [**Troubleshooting**](https://github.com/nginxinc/nginx-openid-connect#troubleshooting) section at the **nginx&#8209;openid&#8209;connect** repository on GitHub.
+See the [**Troubleshooting**](https://github.com/nginxinc/nginx-openid-connect#troubleshooting) section at the {{<nb>}}**nginx-openid-connect**{{</nb>}} repository on GitHub.
 
 ### Revision History
 
