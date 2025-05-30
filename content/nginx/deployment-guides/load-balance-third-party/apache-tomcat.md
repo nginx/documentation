@@ -171,7 +171,7 @@ http {
 }
 ```
 
-You can also use wildcard notation to reference all files that pertain to a certain function or traffic type in the appropriate context block. For example, if you name all HTTP configuration files **_function_&#8209;http.conf**, this is an appropriate `include` directive:
+You can also use wildcard notation to reference all files that pertain to a certain function or traffic type in the appropriate context block. For example, if you name all HTTP configuration files {{<nb>}}**_function_-http.conf**{{</nb>}}, this is an appropriate `include` directive:
 
 ```nginx
 http {
@@ -294,7 +294,7 @@ To configure load balancing, first create a named _upstream group_, which lists 
 
 2. In the `server` block for HTTPS traffic that we created in [Configuring Virtual Servers for HTTP and HTTPS Traffic](#virtual-servers), include two `location` blocks:
 
-   - The first one matches HTTPS requests in which the path starts with **/tomcat&#8209;app/**, and proxies them to the **tomcat** upstream group we created in the previous step.
+   - The first one matches HTTPS requests in which the path starts with {{<nb>}}**/tomcat-app/**{{</nb>}}, and proxies them to the **tomcat** upstream group we created in the previous step.
 
    - The second one funnels all traffic to the first `location` block, by doing a temporary redirect of all requests for **"http://example.com/"**.
 
@@ -409,7 +409,7 @@ To enable basic caching in <span style="white-space: nowrap;">NGINX Open Source<
 
    Directive documentation: [proxy_cache_path](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_cache_path)
 
-2. In the `location` block that matches HTTPS requests in which the path starts with **/tomcat&#8209;app/**, include the `proxy_cache` directive to reference the cache created in the previous step.
+2. In the `location` block that matches HTTPS requests in which the path starts with {{<nb>}}**/tomcat-app/**{{</nb>}}, include the `proxy_cache` directive to reference the cache created in the previous step.
 
    ```nginx
    # In the 'server' block for HTTPS traffic
@@ -440,11 +440,11 @@ HTTP/2 is fully supported in both <span style="white-space: nowrap;">NGINX Open 
 
 - In <span style="white-space: nowrap;">NGINX Plus R8</span> and later, NGINX Plus supports HTTP/2 by default. (Support for SPDY is deprecated as of that release). Specifically:
 
-  In <span style="white-space: nowrap;">NGINX Plus R11</span> and later, the **nginx&#8209;plus** package continues to support HTTP/2 by default, but the **nginx&#8209;plus&#8209;extras** package available in previous releases is deprecated by [dynamic modules](https://www.nginx.com/products/nginx/dynamic-modules/).
+  In <span style="white-space: nowrap;">NGINX Plus R11</span> and later, the {{<nb>}}**nginx-plus**{{</nb>}} package continues to support HTTP/2 by default, but the {{<nb>}}**nginx-plus-extras**{{</nb>}} package available in previous releases is deprecated by [dynamic modules](https://www.nginx.com/products/nginx/dynamic-modules/).
 
-  For <span style="white-space: nowrap;">NGINX Plus R8</span> through R10, the **nginx&#8209;plus** and **nginx&#8209;plus&#8209;extras** packages support HTTP/2 by default.
+  For <span style="white-space: nowrap;">NGINX Plus R8</span> through R10, the {{<nb>}}**nginx-plus**{{</nb>}} and {{<nb>}}**nginx-plus-extras**{{</nb>}} packages support HTTP/2 by default.
 
-  If using <span style="white-space: nowrap;">NGINX Plus R7</span>, you must install the **nginx&#8209;plus&#8209;http2** package instead of the **nginx&#8209;plus** or **nginx&#8209;plus&#8209;extras** package.
+  If using <span style="white-space: nowrap;">NGINX Plus R7</span>, you must install the {{<nb>}}**nginx-plus-http2**{{</nb>}} package instead of the {{<nb>}}**nginx-plus**{{</nb>}} or {{<nb>}}**nginx-plus-extras**{{</nb>}} package.
 
 To enable HTTP/2 support, add the `http2` directive in the `server` block for HTTPS traffic that we created in [Configuring Virtual Servers for HTTP and HTTPS Traffic](#virtual-servers), so that it looks like this:
 
@@ -636,7 +636,7 @@ Health checks are <span style="white-space: nowrap;">out-of-band</span> HTTP req
 
 Because the `health_check` directive is placed in the `location` block, we can enable different health checks for each application.
 
-1. In the `location` block that matches HTTPS requests in which the path starts with **/tomcat&#8209;app/** (created in [Configuring Basic Load Balancing](#load-balancing-basic)), add the `health_check` directive.
+1. In the `location` block that matches HTTPS requests in which the path starts with {{<nb>}}**/tomcat-app/**{{</nb>}} (created in [Configuring Basic Load Balancing](#load-balancing-basic)), add the `health_check` directive.
 
    Here we configure NGINX Plus to send an <span style="white-space: nowrap;">out-of-band</span> request for the top‑level URI **/** (slash) to each of the servers in the **tomcat** upstream group every 2 seconds, which is more aggressive than the default 5‑second interval. If a server does not respond correctly, it is marked down and NGINX Plus stops sending requests to it until it passes five subsequent health checks in a row. We include the `match` parameter to define a nondefault set of health‑check tests.
 
@@ -719,7 +719,7 @@ The quickest way to configure the module and the built‑in dashboard is to down
 
     Directive documentation: [include](https://nginx.org/en/docs/ngx_core_module.html#include)
 
-    If you are using the conventional configuration scheme and your existing `include` directives use the wildcard notation discussed in [Creating and Modifying Configuration Files](#config-files), you can either add a separate `include` directive for **status.conf** as shown above, or change the name of **status.conf** so it is captured by the wildcard in an existing `include` directive in the `http` block. For example, changing it to **status&#8209;http.conf** means it is captured by the `include` directive for <span style="white-space: nowrap;">`*-http.conf`</span>.
+    If you are using the conventional configuration scheme and your existing `include` directives use the wildcard notation discussed in [Creating and Modifying Configuration Files](#config-files), you can either add a separate `include` directive for **status.conf** as shown above, or change the name of **status.conf** so it is captured by the wildcard in an existing `include` directive in the `http` block. For example, changing it to {{<nb>}}**status-http.conf**{{</nb>}} means it is captured by the `include` directive for <span style="white-space: nowrap;">`*-http.conf`</span>.
 
 3. Comments in **status.conf** explain which directives you must customize for your deployment. In particular, the default settings in the sample configuration file allow anyone on any network to access the dashboard. We strongly recommend that you restrict access to the dashboard with one or more of the following methods:
 
