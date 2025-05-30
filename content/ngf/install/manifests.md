@@ -11,8 +11,6 @@ docs: DOCS-1429
 
 Learn how to install, upgrade, and uninstall NGINX Gateway Fabric using Kubernetes manifests.
 
----
-
 ## Before you begin
 
 To complete this guide, you'll need to install:
@@ -43,19 +41,13 @@ To complete this guide, you'll need to install:
 
 </details>
 
----
-
 ## Deploy NGINX Gateway Fabric
 
 Deploying NGINX Gateway Fabric with Kubernetes manifests takes only a few steps. With manifests, you can configure your deployment exactly how you want. Manifests also make it easy to replicate deployments across environments or clusters, ensuring consistency.
 
----
-
 ### Install the Gateway API resources
 
 {{< include "/ngf/installation/install-gateway-api-resources.md" >}}
-
----
 
 ### Deploy the NGINX Gateway Fabric CRDs
 
@@ -70,8 +62,6 @@ kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v{
 ```shell
 kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/main/deploy/crds.yaml
 ```
-
----
 
 ### Deploy NGINX Gateway Fabric
 
@@ -179,8 +169,6 @@ kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v{
 
 {{</tabs>}}
 
----
-
 ### Verify the Deployment
 
 To confirm that NGINX Gateway Fabric is running, check the pods in the `nginx-gateway` namespace:
@@ -196,93 +184,9 @@ NAME                             READY   STATUS    RESTARTS   AGE
 nginx-gateway-5d4f4c7db7-xk2kq   1/1     Running   0          112s
 ```
 
----
-
 ### Access NGINX Gateway Fabric
 
 {{< include "/ngf/installation/expose-nginx-gateway-fabric.md" >}}
-
----
-
-## Upgrade NGINX Gateway Fabric
-
-{{< important >}} NGINX Plus users that are upgrading from version 1.4.0 to 1.5.x need to install an NGINX Plus JWT
-Secret before upgrading. Follow the steps in the [Before you begin](#before-you-begin) section to create the Secret, which is referenced in the updated deployment manifest for the newest version. {{< /important >}}
-
-{{< tip >}} For guidance on zero downtime upgrades, see the [Delay Pod Termination](#configure-delayed-pod-termination-for-zero-downtime-upgrades) section. {{</ tip >}}
-
-{{< note >}} To upgrade from version 1.x to 2.x, please refer to this [guide]({{< ref "/ngf/install/upgrade-2.0.md" >}}). {{< /note >}}
-
-To upgrade NGINX Gateway Fabric and get the latest features and improvements, take the following steps:
-
-### Upgrade Gateway API resources
-
-{{< include "/ngf/installation/upgrade-api-resources.md" >}}
-
-### Upgrade NGINX Gateway Fabric CRDs
-
-To upgrade the Custom Resource Definitions (CRDs), run:
-
-```shell
-kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v{{< version-ngf >}}/deploy/crds.yaml
-```
-
-### Upgrade NGINX Gateway Fabric deployment
-
-Select the deployment manifest that matches your current deployment from the table above in the [Deploy NGINX Gateway Fabric](#deploy-nginx-gateway-fabric) section and apply it.
-
----
-
-## Delay pod termination for zero downtime upgrades {#configure-delayed-pod-termination-for-zero-downtime-upgrades}
-
-{{< include "/ngf/installation/delay-pod-termination/delay-pod-termination-overview.md" >}}
-
-Follow these steps to configure delayed pod termination:
-
-1. Open the `deploy.yaml` for editing.
-
-1. **Add delayed shutdown hooks**:
-
-   - In the `deploy.yaml` file, add `lifecycle: preStop` hooks to both the `nginx` and `nginx-gateway` container definitions. These hooks instruct the containers to delay their shutdown process, allowing time for connections to close gracefully. Update the `sleep` value to what works for your environment.
-
-     ```yaml
-     <...>
-     name: nginx-gateway
-     <...>
-     lifecycle:
-       preStop:
-         exec:
-           command:
-           - /usr/bin/gateway
-           - sleep
-           - --duration=40s # This flag is optional, the default is 30s
-     <...>
-     name: nginx
-     <...>
-     lifecycle:
-       preStop:
-         exec:
-           command:
-           - /bin/sleep
-           - "40"
-     <...>
-     ```
-
-1. **Set the termination grace period**:
-
-   - {{< include "/ngf/installation/delay-pod-termination/termination-grace-period.md" >}}
-
-1. Save the changes.
-
-{{< see-also >}}
-For additional information on configuring and understanding the behavior of containers and pods during their lifecycle, refer to the following Kubernetes documentation:
-
-- [Container Lifecycle Hooks](https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks)
-- [Pod Lifecycle](https://kubernetes.io/docs/concepts/workloads/Pods/Pod-lifecycle/#Pod-termination)
-
-{{< /see-also >}}
-
----
 
 ## Uninstall NGINX Gateway Fabric
 

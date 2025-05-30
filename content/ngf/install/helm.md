@@ -11,7 +11,6 @@ docs: DOCS-1430
 
 Learn how to install, upgrade, and uninstall NGINX Gateway Fabric in a Kubernetes cluster using Helm.
 
----
 
 ## Before you begin
 
@@ -44,15 +43,12 @@ To complete this guide, you will need:
 
 </details>
 
----
-
 ## Deploy NGINX Gateway Fabric
 
 ### Installing the Gateway API resources
 
 {{< include "/ngf/installation/install-gateway-api-resources.md" >}}
 
----
 
 ### Install from the OCI registry
 
@@ -94,8 +90,6 @@ To wait for the Deployment to be ready, you can either add the `--wait` flag to 
 kubectl wait --timeout=5m -n nginx-gateway deployment/ngf-nginx-gateway-fabric --for=condition=Available
 ```
 
----
-
 ### Install from sources {#install-from-sources}
 
 If you prefer to install directly from sources, instead of through the OCI helm registry, use the following steps.
@@ -136,8 +130,6 @@ To wait for the Deployment to be ready, you can either add the `--wait` flag to 
 kubectl wait --timeout=5m -n nginx-gateway deployment/ngf-nginx-gateway-fabric --for=condition=Available
 ```
 
----
-
 ### Custom installation options
 
 #### Service type
@@ -150,8 +142,6 @@ To use a NodePort Service instead:
 helm install ngf oci://ghcr.io/nginx/charts/nginx-gateway-fabric --create-namespace -n nginx-gateway --set nginx.service.type=NodePort
 ```
 
----
-
 #### Experimental features
 
 We support a subset of the additional features provided by the Gateway API experimental channel. To enable the
@@ -163,158 +153,14 @@ helm install ngf oci://ghcr.io/nginx/charts/nginx-gateway-fabric --create-namesp
 
 {{< note >}} Requires the Gateway APIs installed from the experimental channel. {{< /note >}}
 
----
 
 #### Examples
 
 You can find several examples of configuration options of the `values.yaml` file in the [helm examples](https://github.com/nginx/nginx-gateway-fabric/tree/v{{< version-ngf >}}/examples/helm) directory.
 
----
-
 ### Access NGINX Gateway Fabric
 
 {{< include "/ngf/installation/expose-nginx-gateway-fabric.md" >}}
-
----
-
-## Upgrade NGINX Gateway Fabric
-
-{{< important >}} NGINX Plus users that are upgrading from version 1.4.0 to 1.5.x need to install an NGINX Plus JWT
-Secret before upgrading. Follow the steps in the [Before you begin](#before-you-begin) section to create the Secret. If you use a different name than the default `nplus-license` name, specify the Secret name by setting `--set nginx.usage.secretName=<secret-name>` when running `helm upgrade`. {{< /important >}}
-
-{{< tip >}} For guidance on zero downtime upgrades, see the [Delay Pod Termination](#configure-delayed-pod-termination-for-zero-downtime-upgrades) section below. {{< /tip >}}
-
-{{< note >}} To upgrade from version 1.x to 2.x, please refer to this [guide]({{< ref "/ngf/install/upgrade-2.0.md" >}}). {{< /note >}}
-
-To upgrade NGINX Gateway Fabric and get the latest features and improvements, take the following steps:
-
----
-
-### Upgrade Gateway resources
-
-{{< include "/ngf/installation/upgrade-api-resources.md" >}}
-
----
-
-### Upgrade NGINX Gateway Fabric CRDs
-
-Helm's upgrade process does not automatically upgrade the NGINX Gateway Fabric CRDs (Custom Resource Definitions).
-
-To upgrade the CRDs, take the following steps:
-
-1. {{< include "/ngf/installation/helm/pulling-the-chart.md" >}}
-
-2. Upgrade the CRDs:
-
-   ```shell
-   kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v{{< version-ngf >}}/deploy/crds.yaml
-   ```
-
-   {{<note>}}Ignore the following warning, as it is expected.{{</note>}}
-
-   ```text
-   Warning: kubectl apply should be used on resource created by either kubectl create --save-config or kubectl apply.
-   ```
-
----
-
-### Upgrade NGINX Gateway Fabric release
-
-{{< important >}} NGINX Plus users that are upgrading from version 1.4.0 to 1.5.x need to install an NGINX Plus JWT
-Secret before upgrading. Follow the steps in the [Before you begin](#before-you-begin) section to create the Secret. If you use a different name than the default `nplus-license` name, specify the Secret name by setting `--set nginx.usage.secretName=<secret-name>` when running `helm upgrade`. {{< /important >}}
-
-There are two possible ways to upgrade NGINX Gateway Fabric. You can either upgrade from the OCI registry, or download the chart and upgrade from the source.
-
----
-
-#### Upgrade from the OCI registry
-
-To upgrade to the latest stable release of NGINX Gateway Fabric, run:
-
-```shell
-helm upgrade ngf oci://ghcr.io/nginx/charts/nginx-gateway-fabric -n nginx-gateway
-```
-
-If needed, replace `ngf` with your chosen release name.
-
----
-
-#### Upgrade from sources
-
-{{< include "/ngf/installation/helm/pulling-the-chart.md" >}}
-
-To upgrade, run: the following command:
-
-```shell
-helm upgrade ngf . -n nginx-gateway
-```
-
-If needed, replace `ngf` with your chosen release name.
-
----
-
-## How to upgrade from NGINX OSS to NGINX Plus
-
-To upgrade from NGINX OSS to NGINX Plus, update the Helm command to include the necessary values for Plus:
-
-{{< note >}} If applicable, replace the F5 Container registry `private-registry.nginx.com` with your internal registry for your NGINX Plus image, and replace `nginx-plus-registry-secret` with your Secret name containing the registry credentials.{{< /note >}}
-
-{{< important >}} Ensure that you [Create the required JWT Secrets]({{< ref "/ngf/install/nginx-plus.md" >}}) before installing.{{< /important >}}
-
-```shell
-helm upgrade ngf oci://ghcr.io/nginx/charts/nginx-gateway-fabric  --set nginx.image.repository=private-registry.nginx.com/nginx-gateway-fabric/nginx-plus --set nginx.plus=true --set nginx.imagePullSecret=nginx-plus-registry-secret -n nginx-gateway
-```
-
-If needed, replace `ngf` with your chosen release name.
-
----
-
-## Delay pod termination for zero downtime upgrades {#configure-delayed-pod-termination-for-zero-downtime-upgrades}
-
-{{< include "/ngf/installation/delay-pod-termination/delay-pod-termination-overview.md" >}}
-
-Follow these steps to configure delayed pod termination:
-
-1. Open the `values.yaml` for editing.
-
-1. **Add delayed shutdown hooks**:
-
-   - In the `values.yaml` file, add `lifecycle: preStop` hooks to both the `nginx` and `nginx-gateway` container definitions. These hooks instruct the containers to delay their shutdown process, allowing time for connections to close gracefully. Update the `sleep` value to what works for your environment.
-
-     ```yaml
-      nginxGateway:
-      <...>
-      lifecycle:
-          preStop:
-          exec:
-              command:
-              - /usr/bin/gateway
-              - sleep
-              - --duration=40s # This flag is optional, the default is 30s
-
-      nginx:
-      <...>
-      lifecycle:
-          preStop:
-          exec:
-              command:
-              - /bin/sleep
-              - "40"
-     ```
-
-1. **Set the termination grace period**:
-
-   - {{< include "/ngf/installation/delay-pod-termination/termination-grace-period.md">}}
-
-1. Save the changes.
-
-{{<see-also>}}
-For additional information on configuring and understanding the behavior of containers and pods during their lifecycle, refer to the following Kubernetes documentation:
-
-- [Container Lifecycle Hooks](https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks)
-- [Pod Lifecycle](https://kubernetes.io/docs/concepts/workloads/Pods/Pod-lifecycle/#Pod-termination)
-
-{{</see-also>}}
 
 ## Uninstall NGINX Gateway Fabric
 
