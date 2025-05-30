@@ -43,14 +43,14 @@ This guide covers the `eksctl` command as it is the simplest option.
 
 1. Follow the instructions in the [eksctl.io documentation](https://eksctl.io/installation/) to install or update the `eksctl` command.
 
-2. Create an Amazon EKS cluster by following the instructions in the [AWS documentation](https://docs.aws.amazon.com/eks/latest/userguide/getting-started-eksctl.html). Select the **Managed&nbsp;nodes&nbsp;–&nbsp;Linux** option for each step. Note that the <span style="white-space: nowrap;">`eksctl create cluster`</span> command in the first step can take ten minutes or more.
+2. Create an Amazon EKS cluster by following the instructions in the [AWS documentation](https://docs.aws.amazon.com/eks/latest/userguide/getting-started-eksctl.html). Select the {{<nb>}}**Managed nodes – Linux**{{</nb>}} option for each step. Note that the <span style="white-space: nowrap;">`eksctl create cluster`</span> command in the first step can take ten minutes or more.
 
 <span id="amazon-ecr"></span>
 ## Push the NGINX Plus Ingress Controller Image to AWS ECR
 
 This step is only required if you do not plan to use the prebuilt NGINX Open Source image.
 
-1. Use the [AWS documentation](https://docs.aws.amazon.com/AmazonECR/latest/userguide/repository-create.html) to create a repository in the Amazon Elastic Container Registry (ECR). In Step 4 of the AWS instructions, name the repository **nginx&#8209;plus&#8209;ic** as that is what we use in this guide. 
+1. Use the [AWS documentation](https://docs.aws.amazon.com/AmazonECR/latest/userguide/repository-create.html) to create a repository in the Amazon Elastic Container Registry (ECR). In Step 4 of the AWS instructions, name the repository {{<nb>}}**nginx-plus-ic**{{</nb>}} as that is what we use in this guide. 
 
 2. Run the following AWS CLI command. It generates an auth token for your AWS ECR registry, then pipes it into the `docker login` command. This lets AWS ECR authenticate and authorize the upcoming Docker requests. For details about the command, see the [AWS documentation](https://docs.aws.amazon.com/AmazonECR/latest/userguide/registry_auth.html).
 

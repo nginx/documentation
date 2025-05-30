@@ -93,7 +93,7 @@ The solution functions alongside other NS1 capabilities, such as geo‑proximal 
 
    - **Canadian province(s)** – Two‑letter codes for Canadian provinces
    - **Country/countries** – Two‑letter codes for nations and territories
-   - **Geographic region(s)** – Identifiers like **US&#8209;WEST** and **ASIAPAC**
+   - **Geographic region(s)** – Identifiers like {{<nb>}}**US-WEST**{{</nb>}} and **ASIAPAC**
    - **ISO region code** – Identification codes for nations and territories as defined in [ISO 3166](https://www.iso.org/iso-3166-country-codes.html)
    - **Latitude** – Degrees, minutes, and seconds of latitude (northern or southern hemisphere)
    - **Longitude** – Degrees, minutes, and seconds of longitude (eastern or western hemisphere)
@@ -114,8 +114,8 @@ The solution functions alongside other NS1 capabilities, such as geo‑proximal 
 12. In the **Add Filters** window that pops up, click the plus sign (+) on the button for each filter you want to apply. In this guide, we're configuring the filters in this order:
 
     - **Up** in the ** HEALTHCHECKS ** section
-    - **Geotarget&nbsp;Country** in the ** GEOGRAPHIC ** section
-    - **Select&nbsp;First&nbsp;N** in the ** TRAFFIC&nbsp;MANAGEMENT ** section
+    - {{<nb>}}**Geotarget Country**{{</nb>}} in the ** GEOGRAPHIC ** section
+    - {{<nb>}}**Select First N**{{</nb>}} in the ** {{<nb>}}TRAFFIC MANAGEMENT{{</nb>}} ** section
 
     Click the <span style="background-color:#ea1f71; color:white; font-family:helvetica; white-space: nowrap;"> Save Filter Chain </span>  button.
 
@@ -128,17 +128,17 @@ In this section we install and configure the NS1 agent on the same hosts as our 
 
 1. Follow the instructions in the [NS1 documentation](https://help.ns1.com/hc/en-us/articles/360020474154) to set up and connect a separate data feed for each of the three NGINX Plus instances, which NS1 calls _answers_.
 
-   On the first page (**Configure a new data source from NSONE Data Feed API v1**) specify a name for the _data source_, which is the administrative container for the data feeds you will be creating. Use the same name each of the three times you go through the instructions. We're naming the data source **NGINX&#8209;GSLB**.
+   On the first page (**Configure a new data source from NSONE Data Feed API v1**) specify a name for the _data source_, which is the administrative container for the data feeds you will be creating. Use the same name each of the three times you go through the instructions. We're naming the data source {{<nb>}}**NGINX-GSLB**{{</nb>}}.
 
    On the next page (**Create Feed from NSONE Data Feed API v1**), create a data feed for the instance. Because the **Name** field is just for internal use, any value is fine. The value in the **Label** field is used in the YAML configuration file for the instance (see Step 4 below). We're specifying labels that indicate the country (using the ISO 3166 codes) in which the instance is running:
 
-   - **us&#8209;nginxgslb&#8209;datafeed** for instance 1 in the US
-   - **de&#8209;nginxgslb&#8209;datafeed** for instance 2 in Germany
-   - **sg&#8209;nginxgslb&#8209;datafeed** for instance 3 in Singapore
+   - {{<nb>}}**us-nginxgslb-datafeed**{{</nb>}} for instance 1 in the US
+   - {{<nb>}}**de-nginxgslb-datafeed**{{</nb>}} for instance 2 in Germany
+   - {{<nb>}}**sg-nginxgslb-datafeed**{{</nb>}} for instance 3 in Singapore
 
    After creating the three feeds, note the value in the **Feeds URL** field on the <span style="background-color:#000000; color:white; font-family:helvetica; white-space: nowrap;"> INTEGRATIONS </span> tab. The final element of the URL is the ``<NS1-data-source-ID>`` you will specify in the YAML configuration file in Step 4. In the third screenshot in the [NS1 documentation](https://help.ns1.com/hc/en-us/articles/360020474154), for example, it is **e566332c5d22c6b66aeaa8837eae90ac**.
 
-2. Follow the instructions in the [NS1 documentation](https://help.ns1.com/hc/en-us/articles/360017341694-Creating-managing-API-keys) to create an NS1 API key for the agent, if you have not already. (To access **Account Settings** in Step 1, click your username in the upper right corner of the NS1 title bar.) We're naming the app **NGINX&#8209;GSLB**. Make note of the key value – you'll specify it as ``<NS1-API-key>`` in the YAML configuration file in Step 4. To see the actual hexadecimal value, click on the circled letter **i** in the **API Key** field.
+2. Follow the instructions in the [NS1 documentation](https://help.ns1.com/hc/en-us/articles/360017341694-Creating-managing-API-keys) to create an NS1 API key for the agent, if you have not already. (To access **Account Settings** in Step 1, click your username in the upper right corner of the NS1 title bar.) We're naming the app {{<nb>}}**NGINX-GSLB**{{</nb>}}. Make note of the key value – you'll specify it as ``<NS1-API-key>`` in the YAML configuration file in Step 4. To see the actual hexadecimal value, click on the circled letter **i** in the **API Key** field.
 
 3. On each NGINX Plus host, clone the [GitHub repo](https://github.com/nginxinc/nginx-ns1-gslb) for the NS1 agent.
 
@@ -349,7 +349,7 @@ First we perform these steps to create the shed filter:
 
    <img src="/nginx/images/ns1-add-filters-shed-load.png" alt="Screenshot of NS1 GUI: clicking Shed Load button on Add Filters page" width="1022" height="701" class="aligncenter size-full wp-image-63017" />
 
-3. The **Shed Load** filter is added as the fourth (lowest) box in the **Active Filters** section. Move it to be third by clicking and dragging it above the **Select&nbsp;First&nbsp;N** box.
+3. The **Shed Load** filter is added as the fourth (lowest) box in the **Active Filters** section. Move it to be third by clicking and dragging it above the {{<nb>}}**Select First N**{{</nb>}} box.
 
 4. Click the <span style="background-color:#ea1f71; color:white; font-family:helvetica; white-space: nowrap;"> Save Filter Chain </span> button.
 
@@ -363,7 +363,7 @@ First we perform these steps to create the shed filter:
 
 7. In the **Answer Metadata** window that opens, set values for the following metadata. In each case, click the icon in the <span style="background-color:#000000; color:white; font-family:helvetica; white-space: nowrap;"> FEED </span> column of the metadata's row, then select or enter the indicated value in the <span style="background-color:#000000; color:white; font-family:helvetica; white-space: nowrap;"> AVAILABLE </span> column. (For testing purposes, we're setting very small values for the watermarks so that the threshold is exceeded very quickly.)
 
-   - **Active connections** – **us&#8209;nginxgslb&#8209;datafeed**
+   - **Active connections** – {{<nb>}}**us-nginxgslb-datafeed**{{</nb>}}
    - **High watermark** – **5**
    - **Low watermark** – **2**
 
