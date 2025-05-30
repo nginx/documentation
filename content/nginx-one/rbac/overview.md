@@ -1,5 +1,5 @@
 ---
-title: "Role-based access control overview"
+title: "Learn about Role-based access control"
 weight: 400
 toc: true
 type: reference

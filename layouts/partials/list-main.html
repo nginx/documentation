@@ -31,18 +31,38 @@
                                 <i class="fas fa-{{if eq .Kind "page"}}file-alt{{else}}book{{end}} fa-lg card-img-top"></i>
                                 <a href="{{ if .Params.url}}{{ .Params.url}}{{else}}{{ .Permalink }}{{end}}">{{ .Title }}</a>
                             </h3>
-                            {{ if and (eq $PageTitle "F5 NGINX One Console") (eq .Title "How-to guides") }}
-                                <ul style="padding-top: 10px;">
-                                    {{ range .Pages }}
-                                        {{ if eq .Kind "section" }}
-                                            {{ range .Pages }}
-                                                <li><a href="{{ .Permalink }}"> {{ .Title }}</a></li>
-                                            {{ end }}
-                                        {{ end }}
-                                    {{ end }}
-                                </ul>
+                            {{ if and (eq $PageTitle "F5 NGINX One Console") (eq .Title "Manage your NGINX fleet")}}
+                                <p style="padding-bottom: 10px;">Simplify, scale, secure, and collaborate with your NGINX fleet </p> 
+                            {{ end }}
+                            {{ if and (eq $PageTitle "F5 NGINX One Console") (eq .Title "Get started")}}
+                                <p style="padding-bottom: 10px;">See benefits from the NGINX One Console </p> 
+                            {{ end }}
+                            {{ if and (eq $PageTitle "F5 NGINX One Console") (eq .Title "Draft new configurations")}}
+                                <p style="padding-bottom: 10px;">Work with Staged Configurations</p> 
+                            {{ end }}
+<!--                            {{ if and (eq $PageTitle "F5 NGINX One Console") (eq .Title "Secure your fleet")}}
+                                <p style="padding-bottom: 10px;">Configure alerts that match your security policies </p> 
+                            {{ end }} -->
+                            {{ if and (eq $PageTitle "F5 NGINX One Console") (eq .Title "Manage your NGINX instances")}}
+                                <p style="padding-bottom: 10px;">Monitor and maintain your deployments </p> 
+                            {{ end }}
+                            {{ if and (eq $PageTitle "F5 NGINX One Console") (eq .Title "Organize users with RBAC")}}
+                                <p style="padding-bottom: 10px;">Assign responsibilities with role-based access control </p> 
+                            {{ end }}
+                            {{ if and (eq $PageTitle "F5 NGINX One Console") (eq .Title "Automate with the NGINX One API")}}
+                                <p style="padding-bottom: 10px;">Manage your NGINX fleet over REST </p> 
+                            {{ end }}
+                            {{ if and (eq $PageTitle "F5 NGINX One Console") (eq .Title "Glossary")}}
+                                <p style="padding-bottom: 10px;">Learn terms unique to NGINX One Console </p> 
+                            {{ end }}
+                            {{ if and (eq $PageTitle "F5 NGINX One Console") (eq .Title "Connect your instances") }}
+                                <p style="padding-bottom: 10px;">Work with data plane keys, containers, and proxy servers </p> 
+                            {{ end }}
+                            {{ if and (eq $PageTitle "F5 NGINX One Console") (eq .Title "Set up metrics") }}
+                                <p style="padding-bottom: 10px;">Review your deployments in a dashboard </p> 
                             {{ end }}
                             {{ if and (eq $PageTitle "F5 NGINX One Console") (eq .Title "API")}}
+                                <p style="padding-bottom: 10px;">These are API docs</p> <!-- Added text here -->
                                 <ul style="padding-top: 10px;">
                                     {{ range .Pages }}
                                         <li><a href="{{ .Permalink }}"> {{ .Title }}</a></li>

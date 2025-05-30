@@ -84,6 +84,16 @@ NGINX Plus R34 is supported on:
 More information: [Announcing NGINX Plus R34](https://community.f5.com/kb/technicalarticles/f5-nginx-plus-r34-release-now-available/340300)
 
 
+### NGINX Plus R34 Update {#r34_p1}
+
+NGINX Plus R34 P1<br/>
+_28 May 2025_
+
+This is a bugfix release for NGINX Plus R34.
+
+- Fixed license expiration warning issue in the NGINX Plus live activity monitoring dashboard specifically for deployments utilizing marketplace images of NGINX Plus.
+
+
 <span id="r33"></span>
 ## NGINX Plus Release 33 (R33)
 _19 November 2024_<br/>
