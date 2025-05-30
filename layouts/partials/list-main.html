@@ -1,0 +1,119 @@
+{{/*  TODO: Delete this page, and use the one from nginx-hugo-them  */}}
+<div class="list-page">
+    {{ $PageTitle := .Title }}
+    <div class="col-md-12 col-xl-12 py-md-3" style="margin-left: -1.75em;">
+        <div class="page-header list">
+            <h1 class="bd-title">
+                {{ .Title }}
+            </h1>
+            {{ if .Description }}
+                <p>
+                    {{ .Description | markdownify }}
+                </p>
+            {{ end}}
+            {{ if .Content }}
+                <p>
+                    {{ .Content | markdownify }}
+                </p>
+            {{ end }}
+        </div>
+    </div>
+
+    {{ if or (lt .WordCount 1) (eq $PageTitle "F5 NGINX One Console") (eq $PageTitle "F5 NGINX App Protect DoS") (eq $PageTitle "F5 NGINX Plus")  }}
+    <section>
+        <div class="row">
+            <div class="card-deck">
+                {{ range .Pages.GroupBy "Section" }}
+                    {{ range .Pages.ByWeight }}
+                    <div class="col-md-5 card">
+                        <div class="card-body">
+                            <h3 class="card-title" style="display: flex; align-items: center; gap: 5px;">
+                                <i class="fas fa-{{if eq .Kind "page"}}file-alt{{else}}book{{end}} fa-lg card-img-top"></i>
+                                <a href="{{ if .Params.url}}{{ .Params.url}}{{else}}{{ .Permalink }}{{end}}">{{ .Title }}</a>
+                            </h3>
+                            {{ if and (eq $PageTitle "F5 NGINX One Console") (eq .Title "Manage your NGINX fleet")}}
+                                <p style="padding-bottom: 10px;">Simplify, scale, secure, and collaborate with your NGINX fleet </p> 
+                            {{ end }}
+                            {{ if and (eq $PageTitle "F5 NGINX One Console") (eq .Title "Get started")}}
+                                <p style="padding-bottom: 10px;">See benefits from the NGINX One Console </p> 
+                            {{ end }}
+                            {{ if and (eq $PageTitle "F5 NGINX One Console") (eq .Title "Draft new configurations")}}
+                                <p style="padding-bottom: 10px;">Work with Staged Configurations</p> 
+                            {{ end }}
+<!--                            {{ if and (eq $PageTitle "F5 NGINX One Console") (eq .Title "Secure your fleet")}}
+                                <p style="padding-bottom: 10px;">Configure alerts that match your security policies </p> 
+                            {{ end }} -->
+                            {{ if and (eq $PageTitle "F5 NGINX One Console") (eq .Title "Manage your NGINX instances")}}
+                                <p style="padding-bottom: 10px;">Monitor and maintain your deployments </p> 
+                            {{ end }}
+                            {{ if and (eq $PageTitle "F5 NGINX One Console") (eq .Title "Organize users with RBAC")}}
+                                <p style="padding-bottom: 10px;">Assign responsibilities with role-based access control </p> 
+                            {{ end }}
+                            {{ if and (eq $PageTitle "F5 NGINX One Console") (eq .Title "Automate with the NGINX One API")}}
+                                <p style="padding-bottom: 10px;">Manage your NGINX fleet over REST </p> 
+                            {{ end }}
+                            {{ if and (eq $PageTitle "F5 NGINX One Console") (eq .Title "Glossary")}}
+                                <p style="padding-bottom: 10px;">Learn terms unique to NGINX One Console </p> 
+                            {{ end }}
+                            {{ if and (eq $PageTitle "F5 NGINX One Console") (eq .Title "Connect your instances") }}
+                                <p style="padding-bottom: 10px;">Work with data plane keys, containers, and proxy servers </p> 
+                            {{ end }}
+                            {{ if and (eq $PageTitle "F5 NGINX One Console") (eq .Title "Set up metrics") }}
+                                <p style="padding-bottom: 10px;">Review your deployments in a dashboard </p> 
+                            {{ end }}
+                            {{ if and (eq $PageTitle "F5 NGINX One Console") (eq .Title "API")}}
+                                <p style="padding-bottom: 10px;">These are API docs</p> <!-- Added text here -->
+                                <ul style="padding-top: 10px;">
+                                    {{ range .Pages }}
+                                        <li><a href="{{ .Permalink }}"> {{ .Title }}</a></li>
+                                    {{ end }}
+                                </ul>
+                            {{ end }}
+                            {{ if and (eq $PageTitle "F5 NGINX One Console") (eq .Title "Changelog") }}
+                                {{ partial "changelog-date.html" . }}
+                            {{ end }}
+                        </div>
+                    </div>
+                    {{ end }}
+                {{ end }}
+            </div>
+            {{ if eq $PageTitle "F5 NGINX One Console" }}
+                <h1 class="bd-title" style="margin-top: 15px;">Other Products</h1>
+                {{ $nginxProducts := slice 
+                    (dict "title" "NGINX Instance Manager" "url" "/nginx-instance-manager" "imgSrc" "NGINX-Instance-Manager-product-icon" "type" "local-console-option" "description" "Track and control NGINX Open Source and NGINX Plus instances.")
+                    (dict "title" "NGINX Ingress Controller" "url" "/nginx-ingress-controller" "imgSrc" "NGINX-Ingress-Controller-product-icon" "type" "kubernetes-solutions" "description" "Kubernetes traffic management with API gateway, identity, and observability features.")
+                    (dict "title" "NGINX Gateway Fabric" "url" "/nginx-gateway-fabric" "imgSrc" "NGINX-product-icon" "type" "kubernetes-solutions" "description" "Next generation Kubernetes connectivity using the Gateway API.")
+                    (dict "title" "NGINX App Protect WAF" "url" "/nginx-app-protect-waf" "imgSrc" "NGINX-App-Protect-WAF-product-icon" "type" "security" "description" "Lightweight, high-performance, advanced protection against Layer 7 attacks on your apps and APIs.")
+                    (dict "title" "NGINX App Protect DoS" "url" "/nginx-app-protect-dos" "imgSrc" "NGINX-App-Protect-DoS-product-icon" "type" "security" "description" "Defend, adapt, and mitigate against Layer 7 denial-of-service attacks on your apps and APIs.")
+                    (dict "title" "NGINX Plus" "url" "/nginx" "imgSrc" "NGINX-Plus-product-icon-RGB" "type" "modern-app-delivery"  "description" "The all-in-one load balancer, reverse proxy, web server, content cache, and API gateway.")
+                    (dict "title" "NGINX Open Source" "url" "https://nginx.org/en/docs/" "imgSrc" "NGINX-product-icon" "type" "modern-app-delivery" "description" "The open source all-in-one load balancer, content cache, and web server")
+                }}
+                {{ $groupedProducts := dict 
+                    "local-console-option" (where $nginxProducts "type" "local-console-option")
+                    "kubernetes-solutions" (where $nginxProducts "type" "kubernetes-solutions")
+                    "security" (where $nginxProducts "type" "security")
+                    "modern-app-delivery" (where $nginxProducts "type" "modern-app-delivery")
+                }}
+                {{ range $type, $products := $groupedProducts }}
+                <div class="card-deck">
+                    <p style="margin-left: 15px; width: 100%; font-weight: bold;">{{ $type | humanize | title }}</p>
+                    {{ range $products }}
+                        <div class="card" style="margin-top: 0px; {{ if eq (len $products) 1 }}max-width: calc(50% - 30px);{{ else }}min-width: 40%;{{ end }}">
+                            <div class="card-body">
+                                <h3 class="card-title" style="display: flex; align-items: center;">
+                                    <img class="card-img-top" src="{{ .Site.BaseURL }}/images/icons/{{ .imgSrc }}.png"/>
+                                <a href="{{ if eq .title "NGINX Open Source" }}{{ .url }}{{ else }}{{ .Site.BaseURL }}{{ .url }}{{ end }}">{{ .title }}</a>
+                                </h3>
+                                <p >
+                                    {{ if .description }}{{ .description | markdownify }}{{ end }}    
+                                </p>
+                            </div>
+                        </div>
+                    {{ end }}
+                </div>            
+                {{ end }}
+            {{ end }} 
+        </div>  
+    </section>
+    {{end}}
+</div>
