@@ -313,7 +313,7 @@ This request should receive a response from the `tea-post` pod. Any other type o
 
 If you have any issues while sending traffic, try the following to debug your configuration and setup:
 
-- Make sure you set the shell variables $GW_IP and $GW_PORT to the public IP and port of the NGINX Gateway Fabric service. Refer to the [Installation]({{< ref "/ngf/install/" >}}) guides for more information.
+- Make sure you set the shell variables $GW_IP and $GW_PORT to the public IP and port of the NGINX service. Refer to the [Installation]({{< ref "/ngf/install/" >}}) guides for more information.
 
 - Check the status of the Gateway:
 

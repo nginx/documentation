@@ -259,7 +259,7 @@ You should receive a 404 Not Found error:
 
 If you have any issues while testing the configuration, try the following to debug your configuration and setup:
 
-- Make sure you set the shell variables $GW_IP and $GW_PORT to the public IP and port of the NGINX Gateway Fabric Service. Refer to the [Installation]({{< ref "/ngf/install/" >}}) guides for more information.
+- Make sure you set the shell variables $GW_IP and $GW_PORT to the public IP and port of the NGINX Service. Refer to the [Installation]({{< ref "/ngf/install/" >}}) guides for more information.
 
 - Check the status of the gateway:
 
