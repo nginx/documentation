@@ -5,5 +5,10 @@ description: NGINX Agent is a companion daemon for your NGINX Open Source or NGI
 url: /nginx-agent/
 cascade:
   logo: NGINX-product-icon.png
-  type: agent-v2-migration
+  banner:
+    enabled: true
+    type: deprecation
+    start-date: 2025-05-29
+    end-date: 2025-09-09
+    md: /_banners/agent-v3-release.md
 ---
