@@ -11,7 +11,7 @@ This document describes how to upgrade NGINX Gateway Fabric when a new version r
 
 It covers the necessary steps for minor versions as well as major versions (such as 1.x to 2.x).
 
-Many of the nuances in upgrade paths relate to how custom resource defitions (CRDs) are managed.
+Many of the nuances in upgrade paths relate to how custom resource definitions (CRDs) are managed.
 
 {{< tip >}} 
 
