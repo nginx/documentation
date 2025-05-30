@@ -11,6 +11,16 @@ F5 NGINX as a Service for Azure (NGINXaaS) enables customers to secure traffic b
 
 This document provides details about using SSL/TLS certificates with your F5 NGINX as a Service for Azure deployment.
 
+## Supported certificate types and formats
+
+NGINXaaS supports **up to 100** TLS/SSL certificates of the following types:
+
+- Self-signed certificates, Domain Validated (DV) certificates, Organization Validated (OV) certificates, and Extended Validation (EV) certificates.
+
+NGINX supports the following certificate formats:
+
+- PEM and PKCS12 format certificates.
+
 ## Add SSL/TLS certificates
 
 Add a certificate from an Azure Key Vault to your NGINXaaS deployment using your preferred client tool:
@@ -18,6 +28,10 @@ Add a certificate from an Azure Key Vault to your NGINXaaS deployment using your
 * [Add certificates using the Azure portal]({{< ref "/nginxaas-azure/getting-started/ssl-tls-certificates/ssl-tls-certificates-portal.md">}})
 * [Add certificates using the Azure CLI]({{< ref "/nginxaas-azure/getting-started/ssl-tls-certificates/ssl-tls-certificates-azure-cli.md">}})
 * [Add certificates using Terraform]({{< ref "/nginxaas-azure/getting-started/ssl-tls-certificates/ssl-tls-certificates-terraform.md">}})
+
+{{< note >}}- You can overwrite the NGINX default protocol to configure the desired TLS/SSL policy. Read more about the procedure in the [Module ngx_http_ssl_module](http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_protocols) documentation.
+
+- You can associate multiple certificates for the same domain; the "ssl_certificate" directive can be specified multiple times to load certificates of different types. To learn more, see the [Module ngx_http_ssl_module](http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_certificate) documentation.{{</ note >}}
 
 ### Add SSL/TLS certificates bundled with NGINXaaS configuration
 
@@ -64,6 +78,9 @@ To view the status of your SSL/TLS certificates, [enable monitoring]({{< ref "/n
 ## Common certificate errors
 
 The following section describes common errors you might encounter while adding SSL/TLS certificates to your NGINXaaS deployment and how to resolve them.
+
+<details>
+<summary><b>Expand to view common certificate errors</b></summary>
 
 #### Error code: `ForbiddenByRbac`
 
@@ -350,3 +367,4 @@ The following section describes common errors you might encounter while adding S
 **Description:** The PEM certificate could not be parsed.
 
 **Resolution:** Ensure the file is not empty and contains properly formatted PEM certificate data.
+</details>

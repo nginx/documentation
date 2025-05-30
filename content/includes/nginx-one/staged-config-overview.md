@@ -13,6 +13,6 @@ With Staged Configurations, you can use these features of NGINX One Console:
 - Automatic syntax checking
 - Contextual documentation
 - Dynamic analysis of your work in progress
-- Suggestions from our AI assistant
+- Suggestions from our F5 AI assistant
 
 Once you've finished your work and have pushed the changes to an Instance or a Config Sync Group, you can next delete that Staged Configuration.

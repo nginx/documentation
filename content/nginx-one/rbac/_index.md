@@ -1,6 +1,6 @@
 ---
-title: Organize your administrators with RBAC
+title: Organize users with RBAC
 description:
-weight: 500
+weight: 600
 url: /nginx-one/rbac
 ---

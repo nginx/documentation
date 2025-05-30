@@ -3,7 +3,7 @@ description: ''
 docs: DOCS-1396
 title: Glossary
 toc: true
-weight: 2000
+weight: 800
 type:
 - reference
 ---
@@ -14,7 +14,7 @@ This glossary defines terms used in the F5 NGINX One Console and F5 Distributed 
 {{<bootstrap-table "table table-striped table-bordered">}}
 | Term        | Definition |
 |-------------|-------------|
-| **Config Sync Group** | A group of NGINX systems (or instances) with identical configurations. They may also share the same certificates. However, the instances in a Config Sync Group could belong to different systems and even different clusters. For more information, see this explanation of [Important considerations]({{< ref "/nginx-one/config-sync-groups/manage-config-sync-groups.md#important-considerations" >}}) |
+| **Config Sync Group** | A group of NGINX systems (or instances) with identical configurations. They may also share the same certificates. However, the instances in a Config Sync Group could belong to different systems and even different clusters. For more information, see this explanation of [Important considerations]({{< ref "/nginx-one/nginx-configs/config-sync-groups/manage-config-sync-groups.md#important-considerations" >}}) |
 | **Control Plane** | The control plane is the part of a network architecture that manages and controls the flow or data or traffic (the Data Plane). It is responsible for system-level tasks such as routing and traffic management. |
 | **Data Plane** | The data plane is the part of a network architecture that carries user traffic. It handles tasks like forwarding data packets between devices and managing network communication. In the context of NGINX, the data plane is responsible for tasks such as load balancing, caching, and serving web content. |
 | **Instance** | An instance is an individual system with NGINX installed. You can group the instances of your choice in a Config Sync Group. When you add an instance to NGINX One, you need to use a data plane key. |

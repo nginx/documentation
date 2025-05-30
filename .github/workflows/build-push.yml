@@ -33,7 +33,7 @@ on:
         type: string
   pull_request:
     branches:
-      - "*"
+      - "**"
   push:
     branches:
       - "main"

@@ -1,6 +1,6 @@
 ---
 description:
-title: Watch your NGINX instances
+title: Manage your NGINX instances
 weight: 300
 url: /nginx-one/nginx-configs
 ---

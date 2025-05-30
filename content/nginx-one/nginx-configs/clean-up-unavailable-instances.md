@@ -3,7 +3,7 @@ description: ''
 docs: null
 title: Clean up unavailable NGINX instances
 toc: true
-weight: 200
+weight: 1000
 type:
 - how-to
 ---
