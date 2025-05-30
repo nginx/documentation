@@ -6,5 +6,5 @@ cascade:
         enabled: true
         type: deprecation
         start-date: 2025-05-30
-        md: /_banners/ngf-release-2.0.md
+        md: /_banners/ngf-2.0-release.md
 ---

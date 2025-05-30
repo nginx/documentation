@@ -1,7 +1,7 @@
-{{< banner "notice" "NGINX Gateway Fabric 2.0" >}}
+{{< banner "notice" "NGINX Gateway Fabric 2.0 is now available" >}}
 
-NGINX Gateway Fabric 2.0 has released! Follow this guide to upgrade from 1.x to 2.0.
+NGINX Gateway Fabric 2.0 has released! Follow [this guide]({{< ref "/ngf/upgrading-ngf.md" >}}) to upgrade from 1.x to 2.0.
 
-For documentation for 1.x, you can read the files from this git commit.
+For 1.x, you can checkout [an older version](https://github.com/nginx/documentation/commit/0be97114d93be0f44acff8711f31bf0b6448dd94) of documentation.
 
 {{< /banner >}}
