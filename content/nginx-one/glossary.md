@@ -24,7 +24,7 @@ This glossary defines terms used in the F5 NGINX One Console and F5 Distributed 
 
 ## Legal notice: Licensing agreements for NGINX products
 
-Using NGINX One is subject to our End User Service Agreement (EUSA). For [NGINX Plus]({{< ref "/nginx" >}}), usage is governed by the End User License Agreement (EULA). Open source projects, including [NGINX Agent](https://github.com/nginx/agent) and [NGINX OSS](https://github.com/nginx/nginx), are covered under their respective licenses. For more details on these licenses, follow the provided links.
+Using NGINX One is subject to our End User Service Agreement (EUSA). For [NGINX Plus]({{< ref "/nginx" >}}), usage is governed by the End User License Agreement (EULA). Open source projects, including [NGINX Agent](https://github.com/nginx/agent) and [NGINX Open Source](https://github.com/nginx/nginx), are covered under their respective licenses. For more details on these licenses, follow the provided links.
 
 ---
 
