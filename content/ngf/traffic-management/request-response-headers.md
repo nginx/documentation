@@ -13,13 +13,21 @@ Learn how to modify the request and response headers of your application using N
 
 [HTTP Header Modifiers](https://gateway-api.sigs.k8s.io/guides/http-header-modifier/?h=request#http-header-modifiers) can be used to add, modify or remove headers during the request-response lifecycle. The [RequestHeaderModifier](https://gateway-api.sigs.k8s.io/guides/http-header-modifier/#http-request-header-modifier) is used to alter headers in a request sent by client and [ResponseHeaderModifier](https://gateway-api.sigs.k8s.io/guides/http-header-modifier/#http-response-header-modifier) is used to alter headers in a response to the client.
 
-This guide describes how to configure the headers application to modify the headers in the request. Another version of the headers application is then used to modify response headers when client requests are made. For an introduction to exposing your application, we recommend that you follow the [basic guide]({{< ref "/ngf/how-to/traffic-management/routing-traffic-to-your-app.md" >}}) first.
+This guide describes how to configure the headers application to modify the headers in the request. Another version of the headers application is then used to modify response headers when client requests are made. For an introduction to exposing your application, we recommend that you follow the [basic guide]({{< ref "/ngf/traffic-management/routing-traffic-to-your-app.md" >}}) first.
 
 ---
 
 ## Before you begin
 
-- [Install]({{< ref "/ngf/installation/" >}}) NGINX Gateway Fabric.
+- [Install]({{< ref "/ngf/install/" >}}) NGINX Gateway Fabric.
+- Save the public IP address and port of NGINX Gateway Fabric into shell variables:
+
+  ```text
+  GW_IP=XXX.YYY.ZZZ.III
+  GW_PORT=<port number>
+  ```
+
+{{< note >}} In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the gateway will forward for .{{< /note >}}
 
 ---
 

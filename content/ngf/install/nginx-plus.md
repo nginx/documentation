@@ -1,5 +1,5 @@
 ---
-title: NGINX Plus and JWT
+title: Install NGINX Gateway Fabric with NGINX Plus
 weight: 300
 toc: true
 type: how-to
@@ -13,7 +13,7 @@ NGINX Gateway Fabric with NGINX Plus requires a valid JSON Web Token (JWT) to do
 
 This requirement is part of F5’s broader licensing program and aligns with industry best practices. The JWT will streamline subscription renewals and usage reporting, helping you manage your NGINX Plus subscription more efficiently. The [telemetry](#telemetry) data we collect helps us improve our products and services to better meet your needs.
 
-The JWT is required for validating your subscription and reporting telemetry data. For environments connected to the internet, telemetry is automatically sent to F5’s licensing endpoint. In offline environments, telemetry is routed through [NGINX Instance Manager](https://docs.nginx.com/nginx-instance-manager/). Usage is reported every hour and on startup whenever NGINX is reloaded.
+The JWT is required for validating your subscription and reporting telemetry data. For environments connected to the internet, telemetry is automatically sent to F5’s licensing endpoint. In offline environments, telemetry is routed through [NGINX Instance Manager]({{< ref "/nim/" >}}). Usage is reported every hour and on startup whenever NGINX is reloaded.
 
 {{< note >}} The following Secrets should be created in the same namespace as the NGINX Gateway Fabric control plane (default: nginx-gateway). The control plane will copy these Secrets into any namespaces where NGINX gets deployed. If you need to update the Secrets, update the originals that you created in the control plane namespace, and the control plane will propagate those updates to all duplicated Secrets. {{< /note >}}
 
@@ -79,7 +79,7 @@ Specify the Secret name in the `--usage-report-secret` command-line flag on the 
 
 {{</tabs>}}
 
-{{< note >}} If you are reporting to the default licensing endpoint, then you can now proceed with [installing NGINX Gateway Fabric]({{< ref "/ngf/installation/installing-ngf" >}}). Otherwise, follow the steps below to configure reporting to NGINX Instance Manager. {{< /note >}}
+{{< note >}} If you are reporting to the default licensing endpoint, then you can now proceed with [installing NGINX Gateway Fabric]({{< ref "/ngf/install/" >}}). Otherwise, follow the steps below to configure reporting to NGINX Instance Manager. {{< /note >}}
 
 ---
 
@@ -141,7 +141,7 @@ Specify the CA Secret name in the `--usage-report-ca-secret` command-line flag o
 
 <br>
 
-{{< note >}} Once these Secrets are created and configuration options are set, you can now [install NGINX Gateway Fabric]({{< ref "/ngf/installation/installing-ngf" >}}). {{< /note >}}
+{{< note >}} Once these Secrets are created and configuration options are set, you can now [install NGINX Gateway Fabric]({{< ref "/ngf/install/" >}}). {{< /note >}}
 
 ---
 
@@ -210,10 +210,13 @@ docker pull private-registry.nginx.com/nginx-gateway-fabric/nginx-plus:{{< versi
 
 Once you have successfully pulled the image, you can tag it as needed, then push it to a different container registry.
 
----
-
 ## Alternative installation options
 
 There are alternative ways to get an NGINX Plus image for NGINX Gateway Fabric:
 
-- [Build the Gateway Fabric image]({{< ref "/ngf/installation/building-the-images.md">}}) describes how to use the source code with an NGINX Plus subscription certificate and key to build an image.
+- [Build the Gateway Fabric image]({{< ref "/ngf/install/build-image.md">}}) describes how to use the source code with an NGINX Plus subscription certificate and key to build an image.
+
+## Next steps
+
+- [Deploy a Gateway for data plane instances]({{< ref "/ngf/install/deploy-data-plane.md" >}})
+- [Routing traffic to applications]({{< ref "/ngf/traffic-management/routing-traffic-to-your-app.md" >}})

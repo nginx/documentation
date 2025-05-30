@@ -1,6 +1,6 @@
 ---
 title: Deploy a Gateway for data plane instances
-weight: 500
+weight: 600
 toc: true
 type: how-to
 product: NGF
@@ -19,7 +19,7 @@ A single GatewayClass can have multiple Gateways: each Gateway will create a sep
 
 ## Before you begin
 
-- [Install]({{< ref "/ngf/installation/" >}}) NGINX Gateway Fabric.
+- [Install]({{< ref "/ngf/install/" >}}) NGINX Gateway Fabric.
 
 ## Create a Gateway
 
@@ -98,7 +98,7 @@ cafe-nginx   LoadBalancer    10.96.125.117   <pending>     80:30180/TCP   5m2s
 
 The Service type can be changed, as explained in the next section.
 
-## How to modify provisioned NGINX instances
+## Modify provisioned NGINX instances
 
 The NginxProxy custom resource can modify the provisioning of the Service object and NGINX deployment when a Gateway is created.
 
@@ -180,7 +180,7 @@ NAME         TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
 cafe-nginx   NodePort       10.96.172.204   <none>        80:32615/TCP   3h5m
 ```
 
-### How to set annotations and labels on provisioned resources
+### Set annotations and labels on provisioned resources
 
 While the majority of configuration will happen on the NginxProxy resource, that is not always the case. Uniquely, if
 you want to set any annotations or labels on the NGINX Deployment or Service, you need to set those annotations on the Gateway which
@@ -236,7 +236,7 @@ Annotations:              annotationKey: annotationValue
 
 For more guides on routing traffic to applications and more information on Data Plane configuration, check out the following resources:
 
-- [Routing traffic to applications]({{< ref "/ngf/how-to/traffic-management/routing-traffic-to-your-app.md" >}})
-- [Application routes using HTTP matching conditions]({{< ref "/ngf/how-to/traffic-management/advanced-routing.md" >}})
+- [Routing traffic to applications]({{< ref "/ngf/traffic-management/routing-traffic-to-your-app.md" >}})
+- [Application routes using HTTP matching conditions]({{< ref "/ngf/traffic-management/advanced-routing.md" >}})
 - [Data plane configuration]({{< ref "/ngf/how-to/data-plane-configuration.md" >}})
 - [API reference]({{< ref "/ngf/reference/api.md" >}})

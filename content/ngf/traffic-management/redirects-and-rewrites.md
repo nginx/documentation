@@ -15,15 +15,23 @@ Learn how to redirect or rewrite your HTTP traffic using NGINX Gateway Fabric.
 
 [HTTPRoute](https://gateway-api.sigs.k8s.io/api-types/httproute/) filters can be used to configure HTTP redirects or rewrites. Redirects return HTTP 3XX responses to a client, instructing it to retrieve a different resource. Rewrites modify components of a client request (such as hostname and/or path) before proxying it upstream.
 
-In this guide, we will set up the coffee application to demonstrate path URL rewriting, and the tea and soda applications to showcase path-based request redirection. For an introduction to exposing your application, we recommend that you follow the [basic guide]({{< ref "/ngf/how-to/traffic-management/routing-traffic-to-your-app.md" >}}) first.
+In this guide, we will set up the coffee application to demonstrate path URL rewriting, and the tea and soda applications to showcase path-based request redirection. For an introduction to exposing your application, we recommend that you follow the [basic guide]({{< ref "/ngf/traffic-management/routing-traffic-to-your-app.md" >}}) first.
 
-To see an example of a redirect using scheme and port, see the [HTTPS Termination]({{< ref "/ngf/how-to/traffic-management/https-termination.md" >}}) guide.
+To see an example of a redirect using scheme and port, see the [HTTPS Termination]({{< ref "/ngf/traffic-management/https-termination.md" >}}) guide.
 
 ---
 
 ## Before you begin
 
-- [Install]({{< ref "/ngf/installation/" >}}) NGINX Gateway Fabric.
+- [Install]({{< ref "/ngf/install/" >}}) NGINX Gateway Fabric.
+- Save the public IP address and port of NGINX Gateway Fabric into shell variables:
+
+   ```text
+   GW_IP=XXX.YYY.ZZZ.III
+   GW_PORT=<port number>
+   ```
+
+{{< note >}}In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the gateway will forward for.{{< /note >}}
 
 ---
 

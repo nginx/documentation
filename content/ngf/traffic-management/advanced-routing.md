@@ -13,7 +13,7 @@ Learn how to deploy multiple applications and HTTPRoutes with request conditions
 
 ## Overview
 
-In this guide we will configure advanced routing rules for multiple applications. These rules will showcase request matching by path, headers, query parameters, and method. For an introduction to exposing your application, we recommend that you follow the [basic guide]({{< ref "/ngf/how-to/traffic-management/routing-traffic-to-your-app.md" >}}) first.
+In this guide we will configure advanced routing rules for multiple applications. These rules will showcase request matching by path, headers, query parameters, and method. For an introduction to exposing your application, we recommend that you follow the [basic guide]({{< ref "/ngf/traffic-management/routing-traffic-to-your-app.md" >}}) first.
 
 The following image shows the traffic flow that we will be creating with these rules.
 
@@ -25,7 +25,15 @@ The goal is to create a set of rules that will result in client requests being s
 
 ## Before you begin
 
-- [Install]({{< ref "/ngf/installation/" >}}) NGINX Gateway Fabric.
+- [Install]({{< ref "/ngf/install/" >}}) NGINX Gateway Fabric.
+- Save the public IP address and port of NGINX Gateway Fabric into shell variables:
+
+  ```text
+  GW_IP=XXX.YYY.ZZZ.III
+  GW_PORT=<port number>
+  ```
+
+{{< note >}} In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the gateway will forward for. {{< /note >}}
 
 ---
 
@@ -305,7 +313,7 @@ This request should receive a response from the `tea-post` pod. Any other type o
 
 If you have any issues while sending traffic, try the following to debug your configuration and setup:
 
-- Make sure you set the shell variables $GW_IP and $GW_PORT to the public IP and port of the NGINX Service. Refer to the [Installation]({{< ref "/ngf/installation/" >}}) guides for more information.
+- Make sure you set the shell variables $GW_IP and $GW_PORT to the public IP and port of the NGINX service. Refer to the [Installation]({{< ref "/ngf/install/" >}}) guides for more information.
 
 - Check the status of the Gateway:
 

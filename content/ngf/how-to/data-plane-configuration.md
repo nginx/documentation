@@ -178,7 +178,9 @@ By default, an `NginxProxy` resource is created in the same namespace where NGIN
 
 When installed using the Helm chart, the NginxProxy resource is named `<release-name>-proxy-config` and is created in the release Namespace.
 
-{{< note >}} Some global configuration also requires an [associated policy]({{< ref "/ngf/overview/custom-policies.md" >}}) to fully enable a feature (such as [tracing]({{< ref "/ngf/how-to/monitoring/tracing.md" >}}), for example). {{< /note >}}
+**For a full list of configuration options that can be set, see the `NginxProxy spec` in the [API reference]({{< ref "/ngf/reference/api.md" >}}).**
+
+{{< note >}} Some global configuration also requires an [associated policy]({{< ref "/ngf/overview/custom-policies.md" >}}) to fully enable a feature (such as [tracing]({{< ref "/ngf/monitoring/tracing.md" >}}), for example). {{< /note >}}
 
 ---
 
@@ -272,7 +274,7 @@ of a few arguments. {{</ note >}}
 
 ### Run NGINX Gateway Fabric with NGINX in debug mode
 
-To run NGINX Gateway Fabric with NGINX in debug mode, follow the [installation document]({{< ref "/ngf/installation/installing-ngf" >}}) with these additional steps:
+To run NGINX Gateway Fabric with NGINX in debug mode, after[installation]({{< ref "/ngf/install/" >}}), follow these additional steps:
 
 Using Helm: Set `nginx.debug` to true.
 

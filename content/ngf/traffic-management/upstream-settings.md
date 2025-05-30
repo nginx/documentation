@@ -34,7 +34,21 @@ For all the possible configuration options for `UpstreamSettingsPolicy`, see the
 
 ## Before you begin
 
-- [Install]({{< relref "/ngf/installation/" >}}) NGINX Gateway Fabric.
+- [Install]({{< ref "/ngf/install/" >}}) NGINX Gateway Fabric.
+- Save the public IP address and port of NGINX Gateway Fabric into shell variables:
+
+   ```text
+  GW_IP=XXX.YYY.ZZZ.III
+  GW_PORT=<port number>
+  ```
+
+- Lookup the name of the NGINX Gateway Fabric pod and save into shell variable:
+
+  ```text
+  NGF_POD_NAME=<NGF Pod>
+  ```
+
+  {{< note >}}In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the gateway will forward for.{{< /note >}}
 
 ---
 
