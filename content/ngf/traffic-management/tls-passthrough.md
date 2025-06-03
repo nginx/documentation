@@ -28,14 +28,12 @@ In this guide, we will show how to configure TLS passthrough for your applicatio
 ## Before you begin
 
 - [Install]({{< ref "/ngf/install/" >}}) NGINX Gateway Fabric with experimental features enabled.
-- Save the public IP address and port of NGINX Gateway Fabric into shell variables:
 
-   ```text
-   GW_IP=XXX.YYY.ZZZ.III
-   GW_TLS_PORT=<port number>
-   ```
+{{< note >}} 
 
-{{< note >}} In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the Gateway will forward for. {{< /note >}}
+In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the Gateway will forward for. 
+
+{{< /note >}}
 
 ---
 
