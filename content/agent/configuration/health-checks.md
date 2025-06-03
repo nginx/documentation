@@ -1,11 +1,11 @@
 ---
-title: "Health checks"
+title: Health checks
 draft: false
 weight: 400
 toc: true
 type:
 - how-to
-docs: "DOCS-1677"
+docs: DOCS-1677
 ---
 
 ## Overview
