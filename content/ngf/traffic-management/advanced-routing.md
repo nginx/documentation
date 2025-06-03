@@ -27,8 +27,6 @@ The goal is to create a set of rules that will result in client requests being s
 
 - [Install]({{< ref "/ngf/install/" >}}) NGINX Gateway Fabric.
 
-{{< note >}} In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the gateway will forward for. {{< /note >}}
-
 ## Coffee applications
 
 ### Deploy the Coffee applications
@@ -65,12 +63,16 @@ After creating the Gateway resource, NGINX Gateway Fabric will provision an NGIN
 
 Save the public IP address and port of the NGINX Service into shell variables:
 
-   ```text
-   GW_IP=XXX.YYY.ZZZ.III
-   GW_PORT=<port number>
-   ```
+```text
+GW_IP=XXX.YYY.ZZZ.III
+GW_PORT=<port number>
+```
 
-{{< note >}}In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the gateway will forward for.{{< /note >}}
+{{< note >}} 
+
+In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the gateway will forward for. 
+
+{{< /note >}}
 
 The [HTTPRoute](https://gateway-api.sigs.k8s.io/api-types/httproute/) is typically deployed by the [application developer](https://gateway-api.sigs.k8s.io/concepts/roles-and-personas/#roles-and-personas_1). To deploy the `coffee` HTTPRoute:
 

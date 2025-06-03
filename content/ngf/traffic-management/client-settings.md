@@ -40,8 +40,6 @@ For all the possible configuration options for `ClientSettingsPolicy`, see the [
 
 - [Install]({{< ref "/ngf/install/" >}}) NGINX Gateway Fabric.
 
-{{< note >}}In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the gateway will forward for.{{< /note >}}
-
 Create the coffee and tea example applications:
 
 ```yaml

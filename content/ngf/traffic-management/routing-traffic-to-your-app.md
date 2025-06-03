@@ -148,7 +148,11 @@ Save the public IP address and port of the NGINX Service into shell variables:
  GW_PORT=<port number>
  ```
 
-{{< note >}}In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the gateway will forward for.{{< /note >}}
+{{< note >}}
+
+In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the gateway will forward for.
+
+{{< /note >}}
 
 This Gateway is associated with NGINX Gateway Fabric through the **gatewayClassName** field. The default installation of NGINX Gateway Fabric creates a GatewayClass with the name **nginx**. NGINX Gateway Fabric will only configure Gateways with a **gatewayClassName** of **nginx** unless you change the name via the `--gatewayclass` [command-line flag]({{< ref "/ngf/reference/cli-help.md#static-mode" >}}).
 

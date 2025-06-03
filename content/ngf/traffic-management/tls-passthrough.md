@@ -29,14 +29,6 @@ In this guide, we will show how to configure TLS passthrough for your applicatio
 
 - [Install]({{< ref "/ngf/install/" >}}) NGINX Gateway Fabric with experimental features enabled.
 
-{{< note >}} 
-
-In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the Gateway will forward for. 
-
-{{< /note >}}
-
----
-
 ## Set up
 
 Create the `secure-app` application by copying and pasting the following block into your terminal:
@@ -178,7 +170,11 @@ GW_IP=XXX.YYY.ZZZ.III
 GW_TLS_PORT=<port number>
 ```
 
-{{< note >}} In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the Gateway will forward for. {{< /note >}}
+{{< note >}} 
+
+In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the Gateway will forward for. 
+
+{{< /note >}}
 
 Create a TLSRoute that attaches to the Gateway and routes requests to `app.example.com` to the `secure-app` Service:
 

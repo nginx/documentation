@@ -21,12 +21,6 @@ This guide describes how to configure the headers application to modify the head
 
 - [Install]({{< ref "/ngf/install/" >}}) NGINX Gateway Fabric.
 
-{{< note >}} 
-
-In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the gateway will forward for.
-
-{{< /note >}}
-
 ---
 
 ## HTTP Header Modifiers examples
@@ -63,8 +57,11 @@ GW_IP=XXX.YYY.ZZZ.III
 GW_PORT=<port number>
 ```
 
-{{< note >}} In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the gateway will forward for .{{< /note >}}
+{{< note >}} 
 
+In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the gateway will forward for.
+
+{{< /note >}}
 
 ---
 

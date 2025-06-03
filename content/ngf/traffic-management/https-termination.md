@@ -21,12 +21,6 @@ In this guide, we will show how to configure HTTPS termination for your applicat
 
 - [Install]({{< ref "/ngf/install/" >}}) NGINX Gateway Fabric.
 
-{{< note >}}
-
-In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the gateway will forward for.
-
-{{< /note >}}
-
 ---
 
 ## Set up
@@ -176,7 +170,11 @@ Save the public IP address and ports of the NGINX Service into shell variables:
  GW_HTTPS_PORT=<https port number>
  ```
 
-{{< note >}}In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the gateway will forward for.{{< /note >}}
+{{< note >}}
+
+In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the gateway will forward for.
+
+{{< /note >}}
 
 To create the httproute resources, copy and paste the following into your terminal:
 

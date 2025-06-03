@@ -25,12 +25,6 @@ To see an example of a redirect using scheme and port, see the [HTTPS Terminatio
 
 - [Install]({{< ref "/ngf/install/" >}}) NGINX Gateway Fabric.
 
-{{< note >}}
-
-In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the gateway will forward for.
-
-{{< /note >}}
-
 ---
 
 ## HTTP rewrites and redirects examples
@@ -72,7 +66,6 @@ GW_PORT=<port number>
 In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the gateway will forward for.
 
 {{< /note >}}
-
 
 ---
 
