@@ -1,10 +1,11 @@
 ---
-title: Features configuration
+title: "Features configuration"
 draft: false
 weight: 150
 toc: true
 type:
 - how-to
+docs: "DOCS-1678"
 ---
 
 ## Overview
