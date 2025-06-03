@@ -39,73 +39,71 @@ For all the possible configuration options for `ClientSettingsPolicy`, see the [
 ## Before you begin
 
 - [Install]({{< ref "/ngf/install/" >}}) NGINX Gateway Fabric.
-- Save the public IP address and port of NGINX Gateway Fabric into shell variables:
 
-  ```text
-  GW_IP=XXX.YYY.ZZZ.III
-  GW_PORT=<port number>
-  ```
+{{< note >}}In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the gateway will forward for.{{< /note >}}
 
-  {{< note >}}In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the gateway will forward for.{{< /note >}}
+Create the coffee and tea example applications:
 
-- Create the coffee and tea example applications:
+```yaml
+kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v{{< version-ngf >}}/examples/client-settings-policy/app.yaml
+```
 
-  ```yaml
-  kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v{{< version-ngf >}}/examples/client-settings-policy/app.yaml
-  ```
+Create a Gateway:
 
-- Create a Gateway:
+```yaml
+kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v{{< version-ngf >}}/examples/client-settings-policy/gateway.yaml
+```
 
-  ```yaml
-  kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v{{< version-ngf >}}/examples/client-settings-policy/gateway.yaml
-  ```
 After creating the Gateway resource, NGINX Gateway Fabric will provision an NGINX Pod and Service fronting it to route traffic.
 
-- Create HTTPRoutes for the coffee and tea applications:
+Create HTTPRoutes for the coffee and tea applications:
 
-  ```yaml
-  kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v{{< version-ngf >}}/examples/client-settings-policy/httproutes.yaml
-  ```
+```yaml
+kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v{{< version-ngf >}}/examples/client-settings-policy/httproutes.yaml
+```
 
-- Save the public IP address and port of the NGINX Service into shell variables:
+Save the public IP address and port of the NGINX Service into shell variables:
 
-  ```text
-  GW_IP=XXX.YYY.ZZZ.III
-  GW_PORT=<port number>
-  ```
+```text
+GW_IP=XXX.YYY.ZZZ.III
+GW_PORT=<port number>
+```
 
-  {{< note >}}In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the gateway will forward for.{{< /note >}}
+{{< note >}}
 
+In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the gateway will forward for.
 
-- Test the configuration:
+{{< /note >}}
 
-  You can send traffic to the coffee and tea applications using the external IP address and port for the NGINX Service.
+Test the configuration:
 
-  Send a request to coffee:
+You can send traffic to the coffee and tea applications using the external IP address and port for the NGINX Service.
 
-  ```shell
-  curl --resolve cafe.example.com:$GW_PORT:$GW_IP http://cafe.example.com:$GW_PORT/coffee
-  ```
+Send a request to coffee:
 
-  This request should receive a response from the coffee Pod:
+```shell
+curl --resolve cafe.example.com:$GW_PORT:$GW_IP http://cafe.example.com:$GW_PORT/coffee
+```
 
-  ```text
-  Server address: 10.244.0.9:8080
-  Server name: coffee-76c7c85bbd-cf8nz
-  ```
+This request should receive a response from the coffee Pod:
 
-  Send a request to tea:
+```text
+Server address: 10.244.0.9:8080
+Server name: coffee-76c7c85bbd-cf8nz
+```
 
-  ```shell
-  curl --resolve cafe.example.com:$GW_PORT:$GW_IP http://cafe.example.com:$GW_PORT/tea
-  ```
+Send a request to tea:
 
-  This request should receive a response from the tea Pod:
+```shell
+curl --resolve cafe.example.com:$GW_PORT:$GW_IP http://cafe.example.com:$GW_PORT/tea
+```
 
-  ```text
-  Server address: 10.244.0.9:8080
-  Server name: tea-76c7c85bbd-cf8nz
-  ```
+This request should receive a response from the tea Pod:
+
+```text
+Server address: 10.244.0.9:8080
+Server name: tea-76c7c85bbd-cf8nz
+```
 
 ---
 
