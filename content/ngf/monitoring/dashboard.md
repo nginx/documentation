@@ -21,7 +21,7 @@ To access the dashboard, you will first need to forward connections to port 8765
 kubectl port-forward <nginx-plus-pod> 8765:8765 -n <nginx-plus-pod-namespace>
 ```
 
-Afterwards, use a browser to access [http://127.0.0.1:8765/dashboard.html](http://127.0.0.1:8765/dashboard.html) to access the dashboard.
+Afterwards, use a browser to access [http://127.0.0.1:8765/dashboard.html](http://127.0.0.1:8765/dashboard.html) to view the dashboard.
 
 The dashboard will look like this:
 

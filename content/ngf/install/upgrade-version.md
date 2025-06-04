@@ -128,6 +128,16 @@ Afterwards, remove CRDs associated with NGINX Gateway Fabric version 1.x with th
 kubectl delete -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v1.6.2/deploy/crds.yaml
 ```
 
+### Install NGINX Gateway Fabric 2.x
+
+{{< important >}}
+
+Before installing 2.x, we recommend following [Add certificates for secure authentication]({{< ref "/ngf/install/secure-certificates.md" >}}).
+
+By default, NGINX Gateway Fabric installs self-signed certificates, which may be unsuitable for a production environment.
+
+{{< /important >}}
+
 {{<tabs name="install-ngf-2.x">}}
 
 {{%tab name="Helm"%}}
