@@ -4,7 +4,7 @@ weight: 200
 toc: true
 nd-content-type: how-to
 nd-product: NGF
-docs: DOCS-1430
+nd-docs: DOCS-1430
 ---
 
 ## Overview
@@ -18,7 +18,7 @@ To complete this guide, you will need:
 
 - [kubectl](https://kubernetes.io/docs/tasks/tools/), a command-line tool for managing Kubernetes clusters.
 - [Helm 3.0 or later](https://helm.sh/docs/intro/install/), for deploying and managing applications on Kubernetes.
-- [Add certificates for secure authentication]({{< ref "/ngf/install/control-plane-certs.md" >}}) in a production environment.
+- [Add certificates for secure authentication]({{< ref "/ngf/install/secure-certificates.md" >}}) in a production environment.
 
 {{< important >}} If you’d like to use NGINX Plus, some additional setup is also required: {{</ important >}}
 
@@ -192,6 +192,6 @@ Follow these steps to uninstall NGINX Gateway Fabric and Gateway API from your K
 ## Next steps
 
 - [Deploy a Gateway for data plane instances]({{< ref "/ngf/install/deploy-data-plane.md" >}})
-- [Routing traffic to applications]({{< ref "/ngf/traffic-management/routing-traffic-to-your-app.md" >}})
+- [Routing traffic to applications]({{< ref "/ngf/traffic-management/basic-routing.md" >}})
 
 For a full list of the Helm Chart configuration parameters, read [the NGINX Gateway Fabric Helm Chart](https://github.com/nginx/nginx-gateway-fabric/blob/v{{< version-ngf >}}/charts/nginx-gateway-fabric/README.md#configuration).

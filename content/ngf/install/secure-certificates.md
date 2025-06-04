@@ -49,7 +49,7 @@ helm install \
   --set crds.enabled=true
 ```
 
-This also enables Gateway API features for cert-manager, which can be useful for [securing your workload traffic]({{< ref "/ngf/traffic-security/integrating-cert-manager.md" >}}).
+This also enables Gateway API features for cert-manager, which can be useful for [securing your workload traffic]({{< ref "/ngf/traffic-security/integrate-cert-manager.md" >}}).
 
 ## Create the CA issuer
 

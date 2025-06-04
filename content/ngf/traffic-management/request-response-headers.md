@@ -2,9 +2,9 @@
 title: Modify HTTP request and response headers
 weight: 600
 toc: true
-type: how-to
-product: NGF
-docs: DOCS-000
+nd-content-type: how-to
+nd-product: NGF
+nd-docs: DOCS-000
 ---
 
 Learn how to modify the request and response headers of your application using NGINX Gateway Fabric.
@@ -13,21 +13,15 @@ Learn how to modify the request and response headers of your application using N
 
 [HTTP Header Modifiers](https://gateway-api.sigs.k8s.io/guides/http-header-modifier/?h=request#http-header-modifiers) can be used to add, modify or remove headers during the request-response lifecycle. The [RequestHeaderModifier](https://gateway-api.sigs.k8s.io/guides/http-header-modifier/#http-request-header-modifier) is used to alter headers in a request sent by client and [ResponseHeaderModifier](https://gateway-api.sigs.k8s.io/guides/http-header-modifier/#http-response-header-modifier) is used to alter headers in a response to the client.
 
-This guide describes how to configure the headers application to modify the headers in the request. Another version of the headers application is then used to modify response headers when client requests are made. For an introduction to exposing your application, we recommend that you follow the [basic guide]({{< ref "/ngf/traffic-management/routing-traffic-to-your-app.md" >}}) first.
-
----
+This guide describes how to configure the headers application to modify the headers in the request. Another version of the headers application is then used to modify response headers when client requests are made. For an introduction to exposing your application, we recommend that you follow the [basic guide]({{< ref "/ngf/traffic-management/basic-routing.md" >}}) first.
 
 ## Before you begin
 
 - [Install]({{< ref "/ngf/install/" >}}) NGINX Gateway Fabric.
 
----
-
 ## HTTP Header Modifiers examples
 
 We will configure a common gateway for the `RequestHeaderModifier` and `ResponseHeaderModifier` examples mentioned below.
-
----
 
 ### Deploy the Gateway API resources for the Header application
 
@@ -63,8 +57,6 @@ In a production environment, you should have a DNS record for the external IP ad
 
 {{< /note >}}
 
----
-
 ## RequestHeaderModifier example
 
 This examples demonstrates how to configure traffic routing for a simple echo server. A HTTPRoute resource is used to route traffic to the headers application, using the `RequestHeaderModifier` filter to modify headers in the request. You can then verify that the server responds with the modified request headers.
@@ -89,8 +81,6 @@ pod/headers-545698447b-z52kj   1/1     Running   0          23s
 NAME                 TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)   AGE
 service/headers      ClusterIP   10.96.26.161   <none>        80/TCP    23s
 ```
-
----
 
 ### Configure the HTTPRoute with RequestHeaderModifier filter
 
@@ -143,8 +133,6 @@ This HTTPRoute has a few important properties:
   1. Appends the value `compress` to the `Accept-Encoding` header and `this-is-an-appended-value` to the `My-Cool-header`.
   1. Removes `User-Agent` header.
 
----
-
 ### Send traffic to the Headers application
 
 To access the application, use `curl` to send requests to the `headers` Service, which includes headers within the request.
@@ -175,8 +163,6 @@ In the output above, you can see that the headers application modifies the follo
 - The header `My-Overwrite-Header` gets overwritten from `dont-see-this` to `this-is-the-only-value`.
 - The header `Accept-encoding` remains unchanged as we did not modify it in the curl request sent.
 
----
-
 ### Delete the resources
 
 Delete the headers application and HTTPRoute: another instance will be used for the next examples.
@@ -189,13 +175,9 @@ kubectl delete httproutes.gateway.networking.k8s.io headers
 kubectl delete -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v{{< version-ngf >}}/examples/http-request-header-filter/headers.yaml
 ```
 
----
-
 ## ResponseHeaderModifier example
 
 Begin by configuring an application with custom headers and a simple HTTPRoute. The server response can be observed see its headers. The next step is to modify some of the headers using HTTPRoute filters to modify responses. Finally, verify the server responds with the modified headers.
-
----
 
 ### Deploy the Headers application
 
@@ -218,8 +200,6 @@ pod/headers-6f854c478-hd2jr   1/1     Running   0          95s
 NAME                 TYPE        CLUSTER-IP    EXTERNAL-IP   PORT(S)   AGE
 service/headers      ClusterIP   10.96.15.12   <none>        80/TCP    95s
 ```
-
----
 
 ### Configure the basic HTTPRoute
 
@@ -254,8 +234,6 @@ This HTTPRoute has a few important properties:
 - `cafe.example.com` is the hostname that is matched for all requests to the backends defined in this HTTPRoute.
 - The `match` rule defines that all requests with the path prefix `/headers` are sent to the `headers` Service.
 
----
-
 ### Send traffic to the Headers application
 
 Use `curl` with the `-i` flag to access the application and include the response headers in the output:
@@ -287,8 +265,6 @@ In the output above, you can see that the headers application adds the following
 - X-Header-Remove: remove
 
 The next section will modify these headers by adding a ResponseHeaderModifier filter to the headers HTTPRoute.
-
----
 
 ### Update the HTTPRoute to modify the Response headers
 
@@ -334,8 +310,6 @@ Notice that this HTTPRoute has a `ResponseHeaderModifier` filter defined for the
 - Adds the value `this-is-the-appended-value` to the header `X-Header-Add`.
 - Removes `X-Header-Remove` header.
 
----
-
 ### Send traffic to the modified Headers application
 
 Send a curl request to the modified `headers` application to verify the response headers are modified.
@@ -360,8 +334,6 @@ ok
 ```
 
 In the output above you can notice the modified response headers as the `X-Header-Unmodified` remains unchanged as we did not include it in the filter and `X-Header-Remove` header is absent. The header `X-Header-Add` gets appended with the new value and `X-Header-Set` gets overwritten to `overwritten-value` as defined in the _HttpRoute_.
-
----
 
 ## See also
 

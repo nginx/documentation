@@ -1,11 +1,10 @@
 ---
 title: Changelog
-description: "NGINX Gateway Fabric releases."
-weight: 900
 toc: true
-type: reference
-product: NGF
-docs: "DOCS-1359"
+weight: 900
+nd-content-type: reference
+nd-product: NGF
+nd-docs: "DOCS-1359"
 ---
 
 See the NGINX Gateway Fabric changelog page:

@@ -2,9 +2,9 @@
 title: Gateway architecture
 weight: 100
 toc: true
-type: reference
-product: NGF
-docs: DOCS-1413
+nd-content-type: reference
+nd-product: NGF
+nd-docs: DOCS-1413
 ---
 
 Learn about the architecture and design principles of NGINX Gateway Fabric.

@@ -2,36 +2,28 @@
 title: HTTP redirects and rewrites
 weight: 400
 toc: true
-type: how-to
-product: NGF
-docs: DOCS-1424
+nd-content-type: how-to
+nd-product: NGF
+nd-docs: DOCS-1424
 ---
 
 Learn how to redirect or rewrite your HTTP traffic using NGINX Gateway Fabric.
-
----
 
 ## Overview
 
 [HTTPRoute](https://gateway-api.sigs.k8s.io/api-types/httproute/) filters can be used to configure HTTP redirects or rewrites. Redirects return HTTP 3XX responses to a client, instructing it to retrieve a different resource. Rewrites modify components of a client request (such as hostname and/or path) before proxying it upstream.
 
-In this guide, we will set up the coffee application to demonstrate path URL rewriting, and the tea and soda applications to showcase path-based request redirection. For an introduction to exposing your application, we recommend that you follow the [basic guide]({{< ref "/ngf/traffic-management/routing-traffic-to-your-app.md" >}}) first.
+In this guide, we will set up the coffee application to demonstrate path URL rewriting, and the tea and soda applications to showcase path-based request redirection. For an introduction to exposing your application, we recommend that you follow the [basic guide]({{< ref "/ngf/traffic-management/basic-routing.md" >}}) first.
 
 To see an example of a redirect using scheme and port, see the [HTTPS Termination]({{< ref "/ngf/traffic-management/https-termination.md" >}}) guide.
-
----
 
 ## Before you begin
 
 - [Install]({{< ref "/ngf/install/" >}}) NGINX Gateway Fabric.
 
----
-
 ## HTTP rewrites and redirects examples
 
 We will configure a common gateway for the `URLRewrite` and `RequestRedirect` filter examples mentioned below.
-
----
 
 ### Deploy the Gateway resource for the applications
 
@@ -67,13 +59,9 @@ In a production environment, you should have a DNS record for the external IP ad
 
 {{< /note >}}
 
----
-
 ## URLRewrite example
 
 This examples demonstrates how to rewrite the traffic URL for a simple coffee application. An HTTPRoute resource is used to define two `URLRewrite` filters that will rewrite requests. You can verify the server responds with the rewritten URL.
-
----
 
 ### Deploy the coffee application
 
@@ -133,8 +121,6 @@ NAME                 TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)   AGE
 service/coffee       ClusterIP   10.96.189.37   <none>        80/TCP    40s
 ```
 
----
-
 ### Configure a path rewrite
 
 The following HTTPRoute defines two filters that will rewrite requests such as the following:
@@ -186,8 +172,6 @@ spec:
       port: 80
 EOF
 ```
-
----
 
 ### Send traffic
 
@@ -265,13 +249,9 @@ Server name: coffee-6db967495b-twn6x
 URI: /prices?test=v1&test=v2
 ```
 
----
-
 ## RequestRedirect example
 
 This example demonstrates how to redirect the traffic to a new location for the tea and soda applications, using `RequestRedirect` filters.
-
----
 
 ### Setup
 
@@ -366,8 +346,6 @@ service/soda         ClusterIP   10.96.230.208   <none>        80/TCP    89m
 service/tea          ClusterIP   10.96.151.194   <none>        80/TCP    120m
 ```
 
----
-
 ### Configure a path redirect
 
 In this section, we'll define two HTTPRoutes for the tea and soda applications to demonstrate different types of request redirection using the `RequestRedirect` filter.
@@ -433,8 +411,6 @@ spec:
         port: 8080
 EOF
 ```
-
----
 
 ### Send traffic
 
@@ -517,8 +493,6 @@ HTTP/1.1 302 Moved Temporarily
 ..
 Location: http://cafe.example.com:8080/flavors?test=v1
 ```
-
----
 
 ## See also
 

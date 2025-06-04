@@ -2,14 +2,12 @@
 title: "Use the SnippetsFilter API"
 weight: 800
 toc: true
-type: how-to
-product: NGF
-docs: "DOCS-000"
+nd-content-type: how-to
+nd-product: NGF
+nd-docs: "DOCS-000"
 ---
 
 This topic introduces Snippets, how to implement them using the `SnippetsFilter` API, and provides an example of how to use `SnippetsFilter` for rate limiting.
-
----
 
 ## Overview
 
@@ -21,8 +19,6 @@ and only in cases where Gateway API resources or NGINX extension policies don't 
 
 Users can configure Snippets through the `SnippetsFilter` API. `SnippetsFilter` can be an [HTTPRouteFilter](https://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1.HTTPRouteFilter) or [GRPCRouteFilter](https://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1.GRPCRouteFilter),
 that can be defined in an HTTPRoute/GRPCRoute rule and is intended to modify NGINX configuration specifically for that Route rule. `SnippetsFilter` is an `extensionRef` type filter.
-
----
 
 ## Disadvantages of Snippets
 
@@ -41,8 +37,6 @@ Snippets have the following disadvantages:
 
 {{< note >}} If the NGINX configuration includes an invalid Snippet, NGINX will continue to operate with the last valid configuration. No new configuration will be applied until the invalid Snippet is fixed. {{< /note >}}
 
----
-
 ## Best practices for SnippetsFilters
 
 There are endless ways to use `SnippetsFilters` to modify NGINX configuration, and equal ways to generate invalid or undesired NGINX configuration.
@@ -53,8 +47,6 @@ We have outlined a few best practices to keep in mind when using `SnippetsFilter
    `SnippetsFilter` creates a natural split of responsibilities between the Cluster operator and the Application developer: the Cluster operator creates a `SnippetsFilter`; the Application developer references the `SnippetsFilter` in an HTTPRoute/GRPCRoute to enable it.
 1. In a `SnippetsFilter`, only one Snippet per NGINX context is allowed, however multiple `SnippetsFilters` can be referenced in the same routing rule. As such, `SnippetsFilters` should not conflict with each other. If `SnippetsFilters` do conflict, they should not be referenced on the same routing rule.
 1. `SnippetsFilters` that define Snippets targeting NGINX contexts `main`, `http`, or `http.server`, can potentially affect more than the routing rule they are referenced by. Proceed with caution and verify the behavior of the NGINX configuration before creating those `SnippetsFilters` in a production scenario.
-
----
 
 ## Setup
 
@@ -131,8 +123,6 @@ After creating the Gateway resource, NGINX Gateway Fabric will provision an NGIN
   ```
 
   You should see all successful responses in quick succession as we have not configured any rate limiting rules yet.
-
----
 
 ## Create Rate Limiting SnippetsFilters
 
@@ -222,8 +212,6 @@ Status:
 Events:                      <none>
 ```
 
----
-
 ## Configure coffee to reference rate-limiting-sf SnippetsFilter
 
 To use the `rate-limiting-sf` `SnippetsFilter`, update the coffee HTTPRoute to reference it:
@@ -305,8 +293,6 @@ for i in `seq 1 10`; do curl --resolve cafe.example.com:$GW_PORT:$GW_IP http://c
 
 You should see all successful responses from the coffee Pod, but they should be spaced apart roughly one second each as
 expected through the rate limiting configuration.
-
----
 
 ## Configure tea to reference no-delay-rate-limiting-sf SnippetsFilter
 
@@ -403,8 +389,6 @@ Request ID: 890c17df930ef1ef573feed3c6e81290
 This is the default error response given by NGINX when the rate limit burst is exceeded, meaning our `SnippetsFilter`
 correctly applied our rate limiting NGINX configuration changes.
 
----
-
 ## Conclusion
 
 You've successfully used Snippets with the `SnippetsFilter` resource to configure two distinct rate limiting rules to different backend applications.
@@ -416,8 +400,6 @@ This follows our recommended Role and Persona separation described in the [Best 
 
 For an alternative method of modifying the NGINX configuration NGINX Gateway Fabric generates through Gateway API resources, check out
 our supported [first-class policies]({{< ref "/ngf/overview/custom-policies.md" >}}) which don't carry many of the aforementioned disadvantages of Snippets.
-
----
 
 ## Troubleshooting
 
@@ -475,8 +457,6 @@ Conditions:
 
 {{< note >}} If you run into situations where an NGINX directive fails to be applied and the troubleshooting information here isn't sufficient, please create an issue in the
 [NGINX Gateway Fabric Github repository](https://github.com/nginx/nginx-gateway-fabric). {{< /note >}}
-
----
 
 ## See also
 

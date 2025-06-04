@@ -2,20 +2,18 @@
 title: Securing backend traffic
 weight: 200
 toc: true
-type: how-to
-product: NGF
-docs: DOCS-1423
+nd-content-type: how-to
+nd-product: NGF
+nd-docs: DOCS-1423
 ---
 
 Learn how to encrypt HTTP traffic between NGINX Gateway Fabric and your backend pods.
 
----
-
 ## Overview
 
-In this guide, we will show how to specify the TLS configuration of the connection from the Gateway to a backend pod/s via the Service API object using a [BackendTLSPolicy](https://gateway-api.sigs.k8s.io/api-types/backendtlspolicy/). This covers the use-case where the service or backend owner is doing their own TLS and NGINX Gateway Fabric needs to know how to connect to this backend pod that has its own certificate over HTTPS.
+In this guide, we will show how to specify the TLS configuration of the connection from the Gateway to a backend pod with the Service API object using a [BackendTLSPolicy](https://gateway-api.sigs.k8s.io/api-types/backendtlspolicy/). 
 
----
+The intended use-case is when a service or backend owner is managing their own TLS and NGINX Gateway Fabric needs to know how to connect to this backend pod that has its own certificate over HTTPS.
 
 ## Note on Gateway API Experimental Features
 
@@ -23,19 +21,9 @@ In this guide, we will show how to specify the TLS configuration of the connecti
 
 {{< include "/ngf/installation/install-gateway-api-experimental-features.md" >}}
 
----
-
 ## Before you begin
 
 - [Install]({{< ref "/ngf/install/" >}}) NGINX Gateway Fabric with experimental features enabled.
-
-{{< note >}}
-
-In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the gateway will forward for.
-
-{{< /note >}}
-
----
 
 ## Set up
 
@@ -139,11 +127,9 @@ NAME                 TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)   AGE
 service/secure-app   ClusterIP   10.96.213.57   <none>        8443/TCP  9s
 ```
 
----
-
 ## Configure routing rules
 
-First, we will create the Gateway resource with an HTTP listener:
+First, create the Gateway resource with an HTTP listener:
 
 ```yaml
 kubectl apply -f - <<EOF
@@ -160,7 +146,7 @@ spec:
 EOF
 ```
 
-Next, we will create our HTTPRoute to route traffic to our secure-app backend:
+Next, create a HTTPRoute to route traffic to the secure-app backend:
 
 ```yaml
 kubectl apply -f - <<EOF

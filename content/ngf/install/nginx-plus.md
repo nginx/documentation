@@ -2,9 +2,9 @@
 title: Install NGINX Gateway Fabric with NGINX Plus
 weight: 300
 toc: true
-type: how-to
-product: NGF
-docs: DOCS-000
+nd-content-type: how-to
+nd-product: NGF
+nd-docs: DOCS-000
 ---
 
 ## Overview
@@ -17,21 +17,15 @@ The JWT is required for validating your subscription and reporting telemetry dat
 
 {{< note >}} The following Secrets should be created in the same namespace as the NGINX Gateway Fabric control plane (default: nginx-gateway). The control plane will copy these Secrets into any namespaces where NGINX gets deployed. If you need to update the Secrets, update the originals that you created in the control plane namespace, and the control plane will propagate those updates to all duplicated Secrets. {{< /note >}}
 
----
-
 ## Set up the JWT
 
 The JWT needs to be configured before deploying NGINX Gateway Fabric. The JWT will be stored in two Kubernetes Secrets: one for downloading the NGINX Plus container image, and the other for running NGINX Plus.
 
 {{< include "/ngf/installation/jwt-password-note.md" >}}
 
----
-
 ### Download the JWT from MyF5
 
 {{< include "/ngf/installation/nginx-plus/download-jwt.md" >}}
-
----
 
 ### Docker Registry Secret
 
@@ -54,8 +48,6 @@ Specify the Secret name in the `nginx-docker-secret` command-line argument of th
 {{% /tab %}}
 
 {{</tabs>}}
-
----
 
 ### NGINX Plus Secret
 
@@ -81,8 +73,6 @@ Specify the Secret name in the `--usage-report-secret` command-line flag on the 
 
 {{< note >}} If you are reporting to the default licensing endpoint, then you can now proceed with [installing NGINX Gateway Fabric]({{< ref "/ngf/install/" >}}). Otherwise, follow the steps below to configure reporting to NGINX Instance Manager. {{< /note >}}
 
----
-
 ### Reporting to NGINX Instance Manager {#nim}
 
 If you are deploying NGINX Gateway Fabric in an environment where you need to report to NGINX Instance Manager instead of the default licensing endpoint, a few extra steps may be required.
@@ -104,8 +94,6 @@ Specify the endpoint in the `--usage-report-endpoint` command-line flag on the `
 {{% /tab %}}
 
 {{</tabs>}}
-
----
 
 #### CA and Client certificate/key {#nim-cert}
 
@@ -143,8 +131,6 @@ Specify the CA Secret name in the `--usage-report-ca-secret` command-line flag o
 
 {{< note >}} Once these Secrets are created and configuration options are set, you can now [install NGINX Gateway Fabric]({{< ref "/ngf/install/" >}}). {{< /note >}}
 
----
-
 ## Installation flags to configure usage reporting {#flags}
 
 When installing NGINX Gateway Fabric, the following flags can be specified to configure usage reporting to fit your needs:
@@ -167,8 +153,6 @@ If using manifests, the following command-line options should be set as necessar
 - `--usage-report-ca-secret` is the name of the Secret containing the NGINX Instance Manager CA certificate. Must exist in the same namespace that the NGINX Gateway Fabric control plane is running in (default namespace: nginx-gateway).
 - `--usage-report-client-ssl-secret` is the name of the Secret containing the client certificate and key for authenticating with NGINX Instance Manager. Must exist in the same namespace that the NGINX Gateway Fabric control plane is running in (default namespace: nginx-gateway).
 
----
-
 ## What’s reported and how it’s protected {#telemetry}
 
 NGINX Plus reports the following data every hour by default:
@@ -183,8 +167,6 @@ NGINX Plus reports the following data every hour by default:
 - **NGINX uptime**: The number of reloads and worker connections during uptime.
 - **Usage report timestamps**: Start and end times for each usage report.
 - **Kubernetes node details**: Information about Kubernetes nodes.
-
----
 
 ### Security and privacy of reported data
 
@@ -219,4 +201,4 @@ There are alternative ways to get an NGINX Plus image for NGINX Gateway Fabric:
 ## Next steps
 
 - [Deploy a Gateway for data plane instances]({{< ref "/ngf/install/deploy-data-plane.md" >}})
-- [Routing traffic to applications]({{< ref "/ngf/traffic-management/routing-traffic-to-your-app.md" >}})
+- [Routing traffic to applications]({{< ref "/ngf/traffic-management/basic-routing.md" >}})

@@ -1,15 +1,13 @@
 ---
 title: Client Settings Policy API
-weight: 800
-type: how-to
-product: NGF
 toc: true
-docs: DOCS-000
+weight: 800
+nd-content-type: how-to
+nd-product: NGF
+nd-docs: DOCS-000
 ---
 
 Learn how to use the `ClientSettingsPolicy` API.
-
----
 
 ## Overview
 
@@ -33,8 +31,6 @@ Settings applied to an HTTPRoute or GRPCRoute take precedence over settings appl
 This guide will show you how to use the `ClientSettingsPolicy` API to configure the client max body size for your applications.
 
 For all the possible configuration options for `ClientSettingsPolicy`, see the [API reference]({{< ref "/ngf/reference/api.md" >}}).
-
----
 
 ## Before you begin
 
@@ -102,8 +98,6 @@ This request should receive a response from the tea Pod:
 Server address: 10.244.0.9:8080
 Server name: tea-76c7c85bbd-cf8nz
 ```
-
----
 
 ## Configure client max body size
 
@@ -189,8 +183,6 @@ Server name: coffee-56b44d4c55-7ldjc
 ```
 
 You can repeat this test with the tea application to confirm that the policy affects both HTTPRoutes.
-
----
 
 ### Set a different client max body size for a route
 
@@ -290,8 +282,6 @@ spec:
     maxSize: "75" # sizes without a unit are bytes.
 EOF
 ```
-
----
 
 ## See also
 

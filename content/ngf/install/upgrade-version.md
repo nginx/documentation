@@ -56,14 +56,15 @@ Run the following command to upgrade the CRDs:
 kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v{{< version-ngf >}}/deploy/crds.yaml
 ```
 
-{{< note>}} Ignore the following warning, as it is expected.
+{{< note >}} 
+
+Ignore the following warning, as it is expected.
 
 ```text
 Warning: kubectl apply should be used on resource created by either kubectl create --save-config or kubectl apply.
 ```
-{{</ note >}}
 
-
+{{< /note >}}
 
 ### Upgrade NGINX Gateway Fabric release
 
@@ -183,7 +184,7 @@ For detailed instructions on how to modify these settings, refer to the [Configu
 
 - To read more on [modifying data plane configuration]({{< ref "/ngf/how-to/data-plane-configuration.md" >}}).
 - To learn more about [deploying a Gateway for data plane instances]({{< ref "/ngf/install/deploy-data-plane.md" >}}).
-- To adding secure [authentication to control plane and data planes]({{< ref "/ngf/install/control-plane-certs.md" >}}).
+- To adding secure [authentication to control plane and data planes]({{< ref "/ngf/install/secure-certificates.md" >}}).
 - To read more about [architecture changes]({{< ref "/ngf/overview/gateway-architecture.md" >}}).
 - For detailed [API reference]({{< ref "/ngf/reference/api.md" >}}).
 

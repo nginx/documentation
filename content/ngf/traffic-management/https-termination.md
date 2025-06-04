@@ -2,14 +2,12 @@
 title: HTTPS termination
 weight: 500
 toc: true
-type: how-to
-product: NGF
-docs: DOCS-1421
+nd-content-type: how-to
+nd-product: NGF
+nd-docs: DOCS-1421
 ---
 
 Learn how to terminate HTTPS traffic using NGINX Gateway Fabric.
-
----
 
 ## Overview
 
@@ -20,8 +18,6 @@ In this guide, we will show how to configure HTTPS termination for your applicat
 ## Before you begin
 
 - [Install]({{< ref "/ngf/install/" >}}) NGINX Gateway Fabric.
-
----
 
 ## Set up
 
@@ -80,8 +76,6 @@ pod/coffee-6b8b6d6486-7fc78   1/1     Running   0          40s
 NAME                 TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)   AGE
 service/coffee       ClusterIP   10.96.189.37   <none>        80/TCP    40s
 ```
-
----
 
 ## Configure HTTPS termination and routing
 
@@ -220,8 +214,6 @@ EOF
 
 The first route issues a `requestRedirect` from the `http` listener on port 80 to `https` on port 443. The second route binds the `coffee` route to the `https` listener.
 
----
-
 ## Send traffic
 
 Using the external IP address and ports for the NGINX Service, we can send traffic to our coffee application.
@@ -253,8 +245,6 @@ curl --resolve cafe.example.com:$GW_HTTPS_PORT:$GW_IP https://cafe.example.com:$
 Server address: 10.244.0.6:80
 Server name: coffee-6b8b6d6486-7fc78
 ```
-
----
 
 ## See also
 

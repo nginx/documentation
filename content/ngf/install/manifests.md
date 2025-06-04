@@ -2,9 +2,9 @@
 title: Install NGINX Gateway Fabric with Manifests
 weight: 200
 toc: true
-type: how-to
-product: NGF
-docs: DOCS-1429
+nd-content-type: how-to
+nd-product: NGF
+nd-docs: DOCS-1429
 ---
 
 ## Overview
@@ -16,7 +16,7 @@ Learn how to install, upgrade, and uninstall NGINX Gateway Fabric using Kubernet
 To complete this guide, you'll need to install:
 
 - [kubectl](https://kubernetes.io/docs/tasks/tools/), a command-line interface for managing Kubernetes clusters.
-- [Add certificates for secure authentication]({{< ref "/ngf/install/control-plane-certs.md" >}}) in a production environment.
+- [Add certificates for secure authentication]({{< ref "/ngf/install/secure-certificates.md" >}}) in a production environment.
 
 {{< important >}} If you’d like to use NGINX Plus, some additional setup is also required: {{</ important >}}
 
@@ -213,4 +213,4 @@ Follow these steps to uninstall NGINX Gateway Fabric and Gateway API from your K
 ## Next steps
 
 - [Deploy a Gateway for data plane instances]({{< ref "/ngf/install/deploy-data-plane.md" >}})
-- [Routing traffic to applications]({{< ref "/ngf/traffic-management/routing-traffic-to-your-app.md" >}})
+- [Routing traffic to applications]({{< ref "/ngf/traffic-management/basic-routing.md" >}})

@@ -2,9 +2,9 @@
 title: Deploy a Gateway for data plane instances
 weight: 600
 toc: true
-type: how-to
-product: NGF
-docs: DOCS-000
+nd-content-type: how-to
+nd-product: NGF
+nd-docs: DOCS-000
 ---
 
 ## Overview
@@ -236,7 +236,7 @@ Annotations:              annotationKey: annotationValue
 
 For more guides on routing traffic to applications and more information on Data Plane configuration, check out the following resources:
 
-- [Routing traffic to applications]({{< ref "/ngf/traffic-management/routing-traffic-to-your-app.md" >}})
+- [Routing traffic to applications]({{< ref "/ngf/traffic-management/basic-routing.md" >}})
 - [Application routes using HTTP matching conditions]({{< ref "/ngf/traffic-management/advanced-routing.md" >}})
 - [Data plane configuration]({{< ref "/ngf/how-to/data-plane-configuration.md" >}})
 - [API reference]({{< ref "/ngf/reference/api.md" >}})

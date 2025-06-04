@@ -2,26 +2,20 @@
 title: Routing traffic to applications
 weight: 100
 toc: true
-type: how-to
-product: NGF
-docs: DOCS-1426
+nd-content-type: how-to
+nd-product: NGF
+nd-docs: DOCS-1426
 ---
 
 Learn how to route external traffic to your Kubernetes applications using NGINX Gateway Fabric.
-
----
 
 ## Overview
 
 You can route traffic to your Kubernetes applications using the Gateway API and NGINX Gateway Fabric. Whether you're managing a web application or a REST backend API, you can use NGINX Gateway Fabric to expose your application outside the cluster.
 
----
-
 ## Before you begin
 
 - [Install]({{< ref "/ngf/install/" >}}) NGINX Gateway Fabric.
-
----
 
 ## Example application
 

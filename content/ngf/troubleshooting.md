@@ -1,21 +1,17 @@
 ---
 title: Troubleshooting
-weight: 600
 toc: true
-type: how-to
-product: NGF
-docs: DOCS-1419
+weight: 600
+nd-content-type: how-to
+nd-product: NGF
+nd-docs: DOCS-1419
 ---
 
 This topic describes possible issues when using NGINX Gateway Fabric and general troubleshooting techniques. When possible, suggested workarounds are provided.
 
----
-
 ### General troubleshooting
 
 When investigating a problem or requesting help, there are important data points that can be collected to help understand what issues may exist.
-
----
 
 #### Resource status
 
@@ -55,8 +51,6 @@ If a resource has errors relating to its configuration or relationship to other 
 
 If no `Status` is written on the resource, further debug by checking if the referenced resources exist and belong to NGINX Gateway Fabric.
 
----
-
 #### Events
 
 Events created by NGINX Gateway Fabric or other Kubernetes components could indicate system or configuration issues. To see events:
@@ -73,8 +67,6 @@ LAST SEEN   TYPE      REASON              OBJECT                                
 5s          Warning   ResourceDeleted     nginxgateway/ngf-config                          NginxGateway configuration was deleted; using defaults
 ```
 
----
-
 #### Get shell access to NGINX container
 
 Getting shell access to containers allows developers and operators to view the environment of a running container, see its logs or diagnose any problems. To get shell access to the NGINX container, use `kubectl exec`:
@@ -82,8 +74,6 @@ Getting shell access to containers allows developers and operators to view the e
 ```shell
 kubectl exec -it -n <nginx-pod-namespace> <nginx-pod-name> -- /bin/sh
 ```
-
----
 
 #### Logs
 
@@ -137,8 +127,6 @@ You can see logs for a crashed or killed container by adding the `-p` flag to th
 
    To modify log levels for the control plane in NGINX Gateway Fabric, edit the `NginxGateway` configuration. This can be done either before or after deploying NGINX Gateway Fabric. Refer to this [guide](https://docs.nginx.com/nginx-gateway-fabric/how-to/control-plane-configuration/) to do so.
    To check error logs, modify the log level to `error` to view error logs. Similarly, change the log level to `debug` and `grep` for the word `debug` to view debug logs.
-
----
 
 #### Understanding the generated NGINX configuration
 
@@ -284,20 +272,14 @@ Handling connection for 8080
 The configuration may change in future releases. This configuration is valid for version 1.3.
 {{< /warning >}}
 
----
-
 #### Metrics for troubleshooting
 
 Metrics can be useful to identify performance bottlenecks and pinpoint areas of high resource consumption within NGINX Gateway Fabric. To set up metrics collection, refer to the [Prometheus Metrics guide]({{< ref "/ngf/monitoring/prometheus.md" >}}). The metrics dashboard will help you understand problems with the way NGINX Gateway Fabric is set up or potential issues that could show up with time.
-
----
 
 #### Access the NGINX Plus Dashboard
 
 If you have NGINX Gateway Fabric installed with NGINX Plus, you can access the NGINX Plus dashboard at `http://localhost:8080/dashboard.html`.
 Verify that the port number (for example, `8080`) matches the port number you have port-forwarded to your NGINX Gateway Fabric Pod. For further details, see the [dashboard guide]({{< ref "dashboard.md" >}})
-
----
 
 ### Common errors
 
@@ -313,16 +295,12 @@ Verify that the port number (for example, `8080`) matches the port number you ha
 
 {{< /bootstrap-table >}}
 
----
-
 ##### NGINX fails to reload
 
 NGINX reload errors can occur for various reasons, including syntax errors in configuration files, permission issues, and more. To determine if NGINX has failed to reload, check logs for your _nginx-gateway_ and _nginx_ containers.
 You will see the following error in the _nginx-gateway_ logs: `failed to reload NGINX:`, followed by the reason for the failure. Similarly, error logs in _nginx_ container start with `emerg`. For example, `2024/06/12 14:25:11 [emerg] 12345#0: open() "/var/run/nginx.pid" failed (13: Permission denied)` shows a critical error, such as a permission problem preventing NGINX from accessing necessary files.
 
 To debug why your reload has failed, start with verifying the syntax of your configuration files by opening a shell in the NGINX container following these [steps](#get-shell-access-to-nginx-container) and running `nginx -T`. If there are errors in your configuration file, the reload will fail and specify the reason for it.
-
----
 
 ##### NGINX Gateway Fabric Pod is not running or ready
 
@@ -376,8 +354,6 @@ Events:
   Normal  Started    20s   kubelet            Started container nginx-gateway
 ```
 
----
-
 ##### NGINX Pod is not running or ready
 
 To understand why the NGINX Pod has not started running or is not ready, check the state of the Pod to get detailed information about the current status and events happening in the Pod. To do this, use `kubectl describe`:
@@ -428,8 +404,6 @@ Events:
   Normal  Started    2m53s  kubelet            Started container nginx
 ```
 
----
-
 ##### NGINX Plus failure to start or traffic interruptions
 
 Beginning with NGINX Gateway Fabric 1.5.0, NGINX Plus requires a valid JSON Web Token (JWT) to run. If this is not set up properly, or your JWT token has expired, you may see errors in the NGINX logs that look like the following:
@@ -447,8 +421,6 @@ nginx: [emerg] license expired
 ```
 
 These errors could prevent NGINX Plus from starting or prevent traffic from flowing. To fix these issues, see the [NGINX Plus JWT]({{< ref "/ngf/install/nginx-plus.md" >}}) guide.
-
----
 
 ##### 413 Request Entity Too Large
 
@@ -472,8 +444,6 @@ Or view the following error message in the NGINX logs:
 
 The request body exceeds the [client_max_body_size](https://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size).
 To **resolve** this, you can configure the `client_max_body_size` using the `ClientSettingsPolicy` API. Read the [Client Settings Policy]({{< ref "/ngf/traffic-management/client-settings.md" >}}) documentation for more information.
-
----
 
 ##### IP Family Mismatch Errors
 
@@ -509,8 +479,6 @@ To **resolve** this, you can do one of the following:
 
 - Adjust the IPFamily of your Service to match that of the NginxProxy configuration.
 
----
-
 ##### Policy cannot be applied to target
 
 If you `describe` your Policy and see the following error:
@@ -530,8 +498,6 @@ This means you are attempting to attach a Policy to a Route that has an overlapp
 - Combine the Route rules for the overlapping path into a single Route.
 - If the Policy allows it, specify both Routes in the `targetRefs` list.
 
----
-
 ##### Broken Header error
 
 If you check your _nginx_ container logs and see the following error:
@@ -545,8 +511,6 @@ It indicates that `proxy_protocol` is enabled for the gateway listeners, but the
 - Unassign the field [`rewriteClientIP.mode`]({{< ref "/ngf/reference/api.md" >}}) in the NginxProxy configuration.
 
 - Send valid proxy information with requests being handled by your application.
-
----
 
 ### See also
 

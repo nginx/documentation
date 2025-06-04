@@ -2,24 +2,22 @@
 title: Monitoring with Prometheus and Grafana
 weight: 200
 toc: true
-type: how-to
-product: NGF
-docs: DOCS-1418
+nd-content-type: how-to
+nd-product: NGF
+nd-docs: DOCS-1418
 ---
 
 This document describes how to monitor NGINX Gateway Fabric using Prometheus and Grafana. It explains installation and configuration, as well as what metrics are available.
-
----
 
 ## Overview
 
 NGINX Gateway Fabric metrics are displayed in [Prometheus](https://prometheus.io/) format. These metrics are served through a metrics server orchestrated by the controller-runtime package on HTTP port `9113`. When installed, Prometheus automatically scrapes this port and collects metrics. [Grafana](https://grafana.com/) can be used for rich visualization of these metrics.
 
 {{< call-out "important" "Security note for metrics" >}}
-Metrics are served over HTTP by default. Enabling HTTPS will secure the metrics endpoint with a self-signed certificate. When using HTTPS, adjust the Prometheus Pod scrape settings by adding the `insecure_skip_verify` flag to handle the self-signed certificate. For further details, refer to the [Prometheus documentation](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#tls_config).
-{{< /call-out >}}
 
----
+Metrics are served over HTTP by default. Enabling HTTPS will secure the metrics endpoint with a self-signed certificate. When using HTTPS, adjust the Prometheus Pod scrape settings by adding the `insecure_skip_verify` flag to handle the self-signed certificate. For further details, refer to the [Prometheus documentation](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#tls_config).
+
+{{< /call-out >}}
 
 ## Installing Prometheus and Grafana
 
@@ -40,8 +38,6 @@ kubectl port-forward -n monitoring svc/prometheus-server 9090:80 &
 ```
 
 Visit [http://127.0.0.1:9090](http://127.0.0.1:9090) to view the dashboard.
-
----
 
 ### Grafana
 
@@ -65,8 +61,6 @@ The username for login is `admin`. The password can be acquired by running:
 kubectl get secret -n monitoring grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
 ```
 
----
-
 #### Configuring Grafana
 
 In the Grafana UI menu, go to `Connections` then `Data sources`. Add your Prometheus service (`http://prometheus-server.monitoring.svc`) as a data source.
@@ -74,8 +68,6 @@ In the Grafana UI menu, go to `Connections` then `Data sources`. Add your Promet
 Download the following sample dashboard and Import as a new Dashboard in the Grafana UI.
 
 - {{< download "ngf/grafana-dashboard.json" "ngf-grafana-dashboard.json" >}}
-
----
 
 ## Available metrics in NGINX Gateway Fabric
 
@@ -126,8 +118,6 @@ In addition to the previous metrics provided by NGINX Open Source, NGINX Plus in
 - `nginx_ssl_certificate_verify_failures_certificates_total`: The total number of SSL certificate verification failures.
 - `nginx_ssl_handshakes_total`: The total number of SSL handshakes.
 
----
-
 ### NGINX Gateway Fabric metrics
 
 Metrics specific to NGINX Gateway Fabric include:
@@ -135,8 +125,6 @@ Metrics specific to NGINX Gateway Fabric include:
 - `event_batch_processing_milliseconds`: Time in milliseconds to process batches of Kubernetes events.
 
 All these metrics are under the `nginx_gateway_fabric` namespace and include a `class` label set to the GatewayClass of NGINX Gateway Fabric. For example, `nginx_gateway_fabric_event_batch_processing_milliseconds_sum{class="nginx"}`.
-
----
 
 ### Controller-runtime metrics
 
@@ -146,8 +134,6 @@ Provided by the [controller-runtime](https://github.com/kubernetes-sigs/controll
 - Go runtime metrics such as the number of Go routines, garbage collection duration, and Go version.
 - Controller-specific metrics, including reconciliation errors per controller, length of the reconcile queue, and reconciliation latency.
 
----
-
 ## Change the default metrics configuration
 
 You can configure monitoring metrics for NGINX Gateway Fabric using Helm or Manifests.
@@ -156,13 +142,9 @@ You can configure monitoring metrics for NGINX Gateway Fabric using Helm or Mani
 
 If you're setting up NGINX Gateway Fabric with Helm, you can adjust the `metrics.*` parameters to fit your needs. For detailed options and instructions, see the [Helm README](https://github.com/nginx/nginx-gateway-fabric/blob/v{{< version-ngf >}}/charts/nginx-gateway-fabric/README.md).
 
----
-
 ### Using Kubernetes manifests
 
 For setups using Kubernetes manifests, change the metrics configuration by editing the NGINX Gateway Fabric manifest that you want to deploy. You can find some examples in the [deploy](https://github.com/nginx/nginx-gateway-fabric/tree/v{{< version-ngf >}}/deploy) directory.
-
----
 
 #### Disabling metrics
 
@@ -204,8 +186,6 @@ To change the default port for metrics:
        prometheus.io/port: "<new-port>"
        <...>
    ```
-
----
 
 #### Enabling HTTPS for metrics
 

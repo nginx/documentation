@@ -2,9 +2,9 @@
 title: Get started
 weight: 200
 toc: true
-type: how-to
-product: NGF
-docs: DOCS-000
+nd-content-type: how-to
+nd-product: NGF
+nd-docs: DOCS-000
 ---
 
 {{< important >}}
@@ -20,8 +20,6 @@ This is a guide for getting started with NGINX Gateway Fabric. It explains how t
 - Test NGINX Gateway Fabric with an example application
 
 By following the steps in order, you will finish with a functional NGINX Gateway Fabric cluster.
-
----
 
 ## Before you begin
 
@@ -84,8 +82,6 @@ make create-kind-cluster
 
 {{< /note >}}
 
----
-
 ## Install NGINX Gateway Fabric
 
 ### Add Gateway API resources
@@ -103,8 +99,6 @@ customresourcedefinition.apiextensions.k8s.io/grpcroutes.gateway.networking.k8s.
 customresourcedefinition.apiextensions.k8s.io/httproutes.gateway.networking.k8s.io created
 customresourcedefinition.apiextensions.k8s.io/referencegrants.gateway.networking.k8s.io created
 ```
-
----
 
 ### Install the Helm chart
 
@@ -128,8 +122,6 @@ REVISION: 1
 TEST SUITE: None
 ```
 
----
-
 ## Create an example application
 
 In the previous section, you deployed NGINX Gateway Fabric to a local cluster. This section shows you how to deploy a simple web application to test that NGINX Gateway Fabric works.
@@ -137,8 +129,6 @@ In the previous section, you deployed NGINX Gateway Fabric to a local cluster. T
 {{< note >}}
 The YAML code in the following sections can be found in the [cafe-example folder](https://github.com/nginx/nginx-gateway-fabric/tree/main/examples/cafe-example) of the GitHub repository.
 {{< /note >}}
-
----
 
 ### Create the application resources
 
@@ -170,8 +160,6 @@ NAME                      READY   STATUS    RESTARTS   AGE
 coffee-676c9f8944-k2bmd   1/1     Running   0          9s
 tea-6fbfdcb95d-9lhbj      1/1     Running   0          9s
 ```
-
----
 
 ### Create Gateway and HTTPRoute resources
 
@@ -216,8 +204,6 @@ kubectl apply -f cafe-routes.yaml
 httproute.gateway.networking.k8s.io/coffee created
 httproute.gateway.networking.k8s.io/tea created
 ```
-
----
 
 ### Verify the configuration
 
@@ -431,8 +417,6 @@ Status:
 Events:       <none>
 ```
 
----
-
 ## Test NGINX Gateway Fabric
 
 By configuring the cluster with the port `31437`, there is implicit port forwarding from your local machine to NodePort, allowing for direct communication to the NGINX Gateway Fabric service.
@@ -462,8 +446,6 @@ Date: 29/Apr/2025:19:08:31 +0000
 URI: /tea
 Request ID: 1b5c8f3a4532ea7d7510cf14ffeb27af
 ```
-
----
 
 ## Next steps
 

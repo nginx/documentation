@@ -2,9 +2,9 @@
 title: Secure traffic using Let's Encrypt and cert-manager
 weight: 100
 toc: true
-type: how-to
-product: NGF
-docs: DOCS-1425
+nd-content-type: how-to
+nd-product: NGF
+nd-docs: DOCS-1425
 ---
 
 Learn how to issue and manage certificates using Let's Encrypt and cert-manager.

@@ -1,15 +1,13 @@
 ---
 title: Configure Request Mirroring
-weight: 700
 toc: true
-type: how-to
-product: NGF
-docs: DOCS-000
+weight: 700
+nd-content-type: how-to
+nd-product: NGF
+nd-docs: DOCS-000
 ---
 
 Learn how to mirror your HTTP or gRPC traffic using NGINX Gateway Fabric.
-
----
 
 ## Overview
 
@@ -18,13 +16,9 @@ Learn how to mirror your HTTP or gRPC traffic using NGINX Gateway Fabric.
 In this guide, we will set up two applications, **coffee** and **tea**, and mirror requests between them. All requests
 sent to the **coffee** application will also be sent to the **tea** application automatically.
 
----
-
 ## Before you begin
 
 - [Install]({{< ref "/ngf/install/" >}}) NGINX Gateway Fabric.
-
----
 
 ## Set up
 

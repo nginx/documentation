@@ -2,26 +2,22 @@
 title: Application routes using HTTP matching conditions
 weight: 200
 toc: true
-type: how-to
-product: NGF
-docs: DOCS-1422
+nd-content-type: how-to
+nd-product: NGF
+nd-docs: DOCS-1422
 ---
 
 Learn how to deploy multiple applications and HTTPRoutes with request conditions such as paths, methods, headers, and query parameters
 
----
-
 ## Overview
 
-In this guide we will configure advanced routing rules for multiple applications. These rules will showcase request matching by path, headers, query parameters, and method. For an introduction to exposing your application, we recommend that you follow the [basic guide]({{< ref "/ngf/traffic-management/routing-traffic-to-your-app.md" >}}) first.
+In this guide we will configure advanced routing rules for multiple applications. These rules will showcase request matching by path, headers, query parameters, and method. For an introduction to exposing your application, we recommend that you follow the [basic guide]({{< ref "/ngf/traffic-management/basic-routing.md" >}}) first.
 
 The following image shows the traffic flow that we will be creating with these rules.
 
 {{< img src="/ngf/img/advanced-routing.png" alt="" >}}
 
 The goal is to create a set of rules that will result in client requests being sent to specific backends based on the request attributes. In this diagram, we have two versions of the `coffee` service. Traffic for v1 needs to be directed to the old application, while traffic for v2 needs to be directed towards the new application. We also have two `tea` services, one that handles GET operations and one that handles POST operations. Both the `tea` and `coffee` applications share the same Gateway.
-
----
 
 ## Before you begin
 
@@ -36,8 +32,6 @@ Begin by deploying the `coffee-v1`, `coffee-v2` and `coffee-v3` applications:
 ```shell
 kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v{{< version-ngf >}}/examples/advanced-routing/coffee.yaml
 ```
-
----
 
 ### Deploy the Gateway API Resources for the Coffee applications
 
@@ -154,8 +148,6 @@ This HTTPRoute has a few important properties:
 
   If you want both conditions to be required, you can define headers and queryParams in the same match object.
 
----
-
 ### Send traffic to Coffee
 
 Using the external IP address and port for the NGINX Service, we can send traffic to our coffee applications.
@@ -211,21 +203,15 @@ Server address: 10.244.0.104:8080
 Server name: coffee-v3-66d58645f4-6zsl2
 ```
 
----
-
 ## Tea applications
 
 Let's deploy a different set of applications now called `tea` and `tea-post`. These applications will have their own set of rules, but will still attach to the same gateway listener as the `coffee` apps.
-
----
 
 ### Deploy the Tea applications
 
 ```shell
 kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v{{< version-ngf >}}/examples/advanced-routing/tea.yaml
 ```
-
----
 
 ### Deploy the HTTPRoute for the Tea services
 
@@ -269,8 +255,6 @@ The properties of this HTTPRoute include:
 - The first rule defines that a POST request to the `/tea` path is routed to the `tea-post` Service.
 - The second rule defines that a GET request to the `/tea` path is routed to the `tea` Service.
 
----
-
 ### Send traffic to Tea
 
 Using the external IP address and port for the NGINX Service, we can send traffic to our tea applications.
@@ -300,8 +284,6 @@ Server name: tea-post-b59b8596b-g586r
 ```
 
 This request should receive a response from the `tea-post` pod. Any other type of method, such as PATCH, will result in a `404 Not Found` response.
-
----
 
 ## Troubleshooting
 
@@ -404,8 +386,6 @@ If you have any issues while sending traffic, try the following to debug your co
   ```
 
   Check for any error messages in the conditions.
-
----
 
 ## See also
 

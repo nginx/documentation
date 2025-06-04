@@ -2,9 +2,9 @@
 title: Custom policies
 weight: 600
 toc: true
-type: reference
-product: NGF
-docs: "DOCS-000"
+nd-content-type: reference
+nd-product: NGF
+nd-docs: DOCS-000
 ---
 
 ## Overview
@@ -29,16 +29,12 @@ The following table summarizes NGINX Gateway Fabric custom policies:
 If attaching a Policy to a Route, that Route must not share a hostname:port/path combination with any other Route that is not referenced by the same Policy. If it does, the Policy will be rejected. This is because the Policy would end up affecting other Routes that it is not attached to.
 {{< /important >}}
 
----
-
 ## Terminology
 
 - _Attachment Type_. How the policy attaches to an object. Attachment type can be "direct" or "inherited".
 - _Supported Target Object(s)_. API objects the policy can be applied to.
 - _Supports Multiple Target Refs_. Whether a single policy can target multiple objects.
 - _Mergeable_. Whether policies that target the same object can be merged.
-
----
 
 ## Direct Policy Attachment
 
@@ -49,8 +45,6 @@ This diagram uses a fictional retry policy to show how Direct Policy Attachment 
 {{< img src="/ngf/img/direct-policy-attachment.png" alt="" >}}
 
 The policy targets the HTTPRoute `baz` and sets `retries` to `3` and `timeout` to `60s`. Since this policy is a Direct Policy Attachment, its settings are only applied to the `baz` HTTPRoute.
-
----
 
 ## Inherited Policy Attachment
 
@@ -79,8 +73,6 @@ The settings in `dev-policy` affect the `dev` Gateway and are inherited by all t
 The `baz-policy` and `foo-policy` are attached to the `baz` and `foo` HTTPRoutes. Since HTTPRoutes are lower than Gateways in the hierarchy, the settings defined in them override those in the `dev` policy.
 Since the `foo-policy` only defines the `retries` setting, it still inherits the `timeout` setting from `dev-policy`.
 The `bar` HTTPRoute has no policy attached to it and inherits all the settings from `dev-policy`.
-
----
 
 ## Merging Policies
 
@@ -128,8 +120,6 @@ However, if both policies had the `retries` field set, then the policies cannot 
 1. The policy appearing first in alphabetical order by "{namespace}/{name}"
 
 If a policy conflicts with a configured policy, NGINX Gateway Fabric will set the policy `Accepted` status to false with a reason of `Conflicted`. See [Policy Status](#policy-status) for more details.
-
----
 
 ## Policy Status
 

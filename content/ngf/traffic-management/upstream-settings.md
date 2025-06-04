@@ -35,19 +35,6 @@ For all the possible configuration options for `UpstreamSettingsPolicy`, see the
 ## Before you begin
 
 - [Install]({{< ref "/ngf/install/" >}}) NGINX Gateway Fabric.
-- Check the name of the NGINX Gateway Fabric pod and save into a shell variable:
-
-  ```text
-  NGF_POD_NAME=<NGF Pod>
-  ```
-
-  {{< note >}}
-  
-  In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the gateway will forward for.
-  
-  {{< /note >}}
-
----
 
 ## Setup
 
