@@ -142,21 +142,17 @@ By default, NGINX Gateway Fabric installs self-signed certificates, which may be
 
 {{%tab name="Helm"%}}
 
-Follow these steps to install NGINX Gateway Fabric v2.x using Helm:
-
-Next, install the latest stable release of NGINX Gateway Fabric in the `nginx-gateway` namespace. The following `helm install` command will install the NGINX Gateway Fabric release along with the necessary CRDs required for the deployment:
+Use the following `helm install` command to install the latest stable NGINX Gateway Fabric release in the `nginx-gateway` namespace. It will also install the CRDs required for the deployment:
 
 ```shell
 helm install ngf oci://ghcr.io/nginx/charts/nginx-gateway-fabric --create-namespace -n nginx-gateway
 ```
 
-For additional customization options during the helm installation process, take a look at [Installation with Helm]({{< ref "/ngf/install/helm.md" >}}).
+For customization options during the Helm installation process, view the [Install NGINX Gateway Fabric with Helm]({{< ref "/ngf/install/helm.md" >}}) topic.
 
 {{% /tab %}}
 
 {{%tab name="Manifests"%}}
-
-Follow these steps to install NGINX Gateway Fabric v2.x using Manifests:
 
 Apply the new CRDs with the following command:
 
@@ -170,7 +166,7 @@ Next, install the latest stable release of NGINX Gateway Fabric in the `nginx-ga
 kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v{{< version-ngf >}}/deploy/default/deploy.yaml
 ```
 
-For additional customization options during the installation process using manifests, take a look at [Installation with Manifests]({{< ref "/ngf/install/manifests.md" >}}).
+For customization options during the Manifest installation process, view the [Install NGINX Gateway Fabric with Manifests]({{< ref "/ngf/install/manifests.md" >}}) topic.
 
 {{% /tab %}}
 
