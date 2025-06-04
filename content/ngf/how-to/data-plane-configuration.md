@@ -178,7 +178,9 @@ By default, an `NginxProxy` resource is created in the same namespace where NGIN
 
 When installed using the Helm chart, the NginxProxy resource is named `<release-name>-proxy-config` and is created in the release Namespace.
 
-{{< note >}} Some global configuration also requires an [associated policy]({{< ref "/ngf/overview/custom-policies.md" >}}) to fully enable a feature (such as [tracing]({{< ref "/ngf/how-to/monitoring/tracing.md" >}}), for example). {{< /note >}}
+**For a full list of configuration options that can be set, see the `NginxProxy spec` in the [API reference]({{< ref "/ngf/reference/api.md" >}}).**
+
+{{< note >}} Some global configuration also requires an [associated policy]({{< ref "/ngf/overview/custom-policies.md" >}}) to fully enable a feature (such as [tracing]({{< ref "/ngf/monitoring/tracing.md" >}}), for example). {{< /note >}}
 
 ---
 
@@ -272,15 +274,14 @@ of a few arguments. {{</ note >}}
 
 ### Run NGINX Gateway Fabric with NGINX in debug mode
 
-To run NGINX Gateway Fabric with NGINX in debug mode, follow the [installation document]({{< ref "/ngf/installation/installing-ngf" >}}) with these additional steps:
+To run NGINX Gateway Fabric with NGINX in debug mode, during [installation]({{< ref "/ngf/install/" >}}), follow these additional steps:
 
-Using Helm: Set `nginx.debug` to true.
+- **Helm**: Set _nginx.debug_ to _true_.
+- **Manifests**: Set  _spec.kubernetes.deployment.container.debug_ field in the _NginxProxy_ resource to _true_.
 
-Using Kubernetes Manifests: In the deployment manifest, set the `spec.kubernetes.deployment.container.debug` field in the `NginxProxy` resource to true.
+To change NGINX mode **after** deploying NGINX Gateway Fabric, use the _NginxProxy_ _spec.kubernetes.deployment.container.debug_ field.
 
-If you want to change the NGINX mode after deploying NGINX Gateway Fabric, you can do so through the `NginxProxy` `spec.kubernetes.deployment.container.debug` field.
-
-The following command creates a basic `NginxProxy` configuration that both sets the NGINX log level to `debug` and runs NGINX in `debug` mode.
+The following command creates a basic _NginxProxy_ configuration that sets both the NGINX mode and log level to _debug_.
 
 ```yaml
 kubectl apply -f - <<EOF
@@ -298,7 +299,7 @@ spec:
 EOF
 ```
 
-{{< note >}} When modifying any `deployment` field in the `NginxProxy` resource, any corresponding NGINX instances will be restarted. {{< /note >}}
+{{< note >}} When modifying any _deployment_ field in the _NginxProxy_ resource, any corresponding NGINX instances will be restarted. {{< /note >}}
 
 ---
 

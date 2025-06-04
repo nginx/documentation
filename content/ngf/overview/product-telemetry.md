@@ -1,9 +1,9 @@
 ---
 title: Product telemetry
 weight: 500
-type: reference
-product: NGF
-docs: DOCS-000
+nd-content-type: reference
+nd-product: NGF
+nd-docs: DOCS-000
 ---
 
 Learn why, what and how NGINX Gateway Fabric collects telemetry.
@@ -15,8 +15,6 @@ NGINX Gateway Fabric collects telemetry by default, which allows its developers 
 Telemetry data is collected once every 24 hours and sent to a service managed by F5 over HTTPS. Personally identifiable information (PII) is **not** collected. The list of data points that are collected can be seen below.
 
 **If you would prefer to not have data collected, you can [opt-out](#opt-out) when installing NGINX Gateway Fabric.**
-
----
 
 ## Collected data
 

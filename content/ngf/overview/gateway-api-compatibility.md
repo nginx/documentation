@@ -2,9 +2,9 @@
 title: Gateway API Compatibility
 weight: 200
 toc: true
-type: reference
-product: NGF
-docs: DOCS-1412
+nd-content-type: reference
+nd-product: NGF
+nd-docs: DOCS-1412
 ---
 
 Learn which Gateway API resources NGINX Gateway Fabric supports and to which level.
@@ -28,8 +28,6 @@ Learn which Gateway API resources NGINX Gateway Fabric supports and to which lev
 
 {{< /bootstrap-table >}}
 
----
-
 ## Terminology
 
 Gateway API features has three [support levels](https://gateway-api.sigs.k8s.io/concepts/conformance/#2-support-levels): Core, Extended and Implementation-specific. We use the following terms to describe the support status for each level and resource field:
@@ -42,7 +40,6 @@ Gateway API features has three [support levels](https://gateway-api.sigs.k8s.io/
 
 {{< note >}} It's possible that NGINX Gateway Fabric will never support some resources or fields of the Gateway API. They will be documented on a case by case basis. {{< /note >}}
 
----
 
 ## Resources
 
@@ -77,8 +74,6 @@ NGINX Gateway Fabric supports a single GatewayClass resource configured with the
           a different GatewayClass name is provided to the controller via the command-line argument.
     - `SupportedVersion/True/SupportedVersion`
     - `SupportedVersion/False/UnsupportedVersion`
-
----
 
 ### Gateway
 
@@ -145,8 +140,6 @@ See the [static-mode]({{< ref "/ngf/reference/cli-help.md#static-mode">}}) comma
       - `Conflicted/True/HostnameConflict`
       - `Conflicted/False/NoConflicts`
 
----
-
 ### HTTPRoute
 
 {{< bootstrap-table "table table-striped table-bordered" >}}
@@ -198,8 +191,6 @@ See the [static-mode]({{< ref "/ngf/reference/cli-help.md#static-mode">}}) comma
       - `ResolvedRefs/False/InvalidIPFamily`: Custom reason for when one of the HTTPRoute rules has a backendRef that has an invalid IPFamily.
       - `PartiallyInvalid/True/UnsupportedValue`
 
----
-
 ### GRPCRoute
 
 {{< bootstrap-table "table table-striped table-bordered" >}}
@@ -245,8 +236,6 @@ See the [static-mode]({{< ref "/ngf/reference/cli-help.md#static-mode">}}) comma
       - `ResolvedRefs/False/UnsupportedValue`: Custom reason for when one of the GRPCRoute rules has a backendRef with an unsupported value.
       - `PartiallyInvalid/True/UnsupportedValue`
 
----
-
 ### ReferenceGrant
 
 {{< bootstrap-table "table table-striped table-bordered" >}}
@@ -268,8 +257,6 @@ Fields:
     - `group` - supported.
     - `kind` - supports `Gateway` and `HTTPRoute`.
     - `namespace`- supported.
-
----
 
 ### TLSRoute
 
@@ -321,8 +308,6 @@ Fields:
 
 {{< /bootstrap-table >}}
 
----
-
 ### UDPRoute
 
 {{< bootstrap-table "table table-striped table-bordered" >}}
@@ -332,8 +317,6 @@ Fields:
 | UDPRoute | Not supported      | Not supported          | Not supported                         | v1alpha2    | Experimental        |
 
 {{< /bootstrap-table >}}
-
----
 
 ### BackendTLSPolicy
 
