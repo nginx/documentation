@@ -107,7 +107,7 @@ sudo docker run \
 
 For more details, see:
 
-- [Deploying NGINX and NGINX Plus on Docker](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-docker/)
-- [Full List of Agent Environment Variables](https://docs.nginx.com/nginx-agent/configuration/configuration-overview/#nginx-agent-environment-variables)
-- [NGINX One Data Plane Keys](https://docs.nginx.com/nginx-one/how-to/data-plane-keys/create-manage-data-plane-keys/)
+- [Deploying NGINX and NGINX Plus on Docker]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-docker.md" >}})
+- [Full List of Agent Environment Variables]({{< ref "/agent/configuration/configuration-overview.md#cli-flags-and-environment-variables" >}})
+- [NGINX One Data Plane Keys]({{< ref "/nginx-one/connect-instances/create-manage-data-plane-keys.md" >}})
 - [My F5 Knowledge Article](https://my.f5.com/manage/s/article/K000090257)

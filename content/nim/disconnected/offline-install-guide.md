@@ -66,7 +66,7 @@ sudo bash install-nim-bundle.sh \
   -k <path/to/private.key> \
   -m offline \
   -d <distribution> \
-  -v <version> \
+  -v <version>
 ```
 
 <br>
