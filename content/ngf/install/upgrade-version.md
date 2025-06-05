@@ -190,7 +190,7 @@ For detailed instructions on how to modify these settings, refer to the [Configu
 
 - To read more on [modifying data plane configuration]({{< ref "/ngf/how-to/data-plane-configuration.md" >}}).
 - To learn more about [deploying a Gateway for data plane instances]({{< ref "/ngf/install/deploy-data-plane.md" >}}).
-- To adding secure [authentication to control plane and data planes]({{< ref "/ngf/install/secure-certificates.md" >}}).
+- To add secure [authentication to control plane and data planes]({{< ref "/ngf/install/secure-certificates.md" >}}).
 - To read more about [architecture changes]({{< ref "/ngf/overview/gateway-architecture.md" >}}).
 - For detailed [API reference]({{< ref "/ngf/reference/api.md" >}}).
 
