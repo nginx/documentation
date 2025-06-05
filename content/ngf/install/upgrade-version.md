@@ -198,7 +198,7 @@ For detailed instructions on how to modify these settings, refer to the [Configu
 
 The documentation website is intended for the latest version of NGINX Gateway Fabric.
 
-To review documentation prior to 2.x, check out the desired release branch (Such as _release-1.6_):
+To review documentation prior to 2.x, check out the desired release branch (such as _release-1.6_):
 
 ```shell
 git clone git@github.com:nginx/nginx-gateway-fabric.git
