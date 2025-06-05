@@ -96,8 +96,8 @@ Allocate an Elastic IP address and remember its ID. For detailed instructions, s
 
 The NGINX Plus HA solution uses two scripts, which are invoked by `keepalived`:
 
-- **nginx&#8209;ha&#8209;check** – Determines the health of NGINX Plus.
-- **nginx&#8209;ha&#8209;notify** – Moves the Elastic IP address when a state transition happens, for example when the backup instance becomes the primary.
+- {{<nb>}}**nginx-ha-check**{{</nb>}} – Determines the health of NGINX Plus.
+- {{<nb>}}**nginx-ha-notify**{{</nb>}} – Moves the Elastic IP address when a state transition happens, for example when the backup instance becomes the primary.
 
 1. Create a directory for the scripts, if it doesn’t already exist.
 
@@ -121,7 +121,7 @@ The NGINX Plus HA solution uses two scripts, which are invoked by `keepalived`:
 There are two configuration files for the HA solution:
 
 - **keepalived.conf** – The main configuration file for `keepalived`, slightly different for each NGINX Plus instance.
-- **nginx&#8209;ha&#8209;notify** – The script you downloaded in [Step 4](#ha-aws_ha-scripts), with several user‑defined variables.
+- {{<nb>}}**nginx-ha-notify**{{</nb>}} – The script you downloaded in [Step 4](#ha-aws_ha-scripts), with several user‑defined variables.
 
 <span id="ha-aws_keepalived-conf-file"></span>
 ### Creating keepalived.conf
@@ -158,8 +158,8 @@ You must change values for the following configuration keywords. As you do so, a
 
 - `script` in the `chk_nginx_service` block – The script that sends health checks to NGINX Plus.
 
-  - On Ubuntu systems, **/usr/lib/keepalived/nginx&#8209;ha&#8209;check**
-  - On CentOS systems, **/usr/libexec/keepalived/nginx&#8209;ha&#8209;check**
+  - On Ubuntu systems, {{<nb>}}**/usr/lib/keepalived/nginx-ha-check**{{</nb>}}
+  - On CentOS systems, {{<nb>}}**/usr/libexec/keepalived/nginx-ha-check**{{</nb>}}
 
 - `priority` – The value that controls which instance becomes primary, with a higher value meaning a higher priority. Use `101` for the primary instance and `100` for the backup.
 
@@ -171,13 +171,13 @@ You must change values for the following configuration keywords. As you do so, a
 
 - `notify` – The script that is invoked during a state transition.
 
-  - On Ubuntu systems, **/usr/lib/keepalived/nginx&#8209;ha&#8209;notify**
-  - On CentOS systems, **/usr/libexec/keepalived/nginx&#8209;ha&#8209;notify**
+  - On Ubuntu systems, {{<nb>}}**/usr/lib/keepalived/nginx-ha-notify**{{</nb>}}
+  - On CentOS systems, {{<nb>}}**/usr/libexec/keepalived/nginx-ha-notify**{{</nb>}}
 
 <span id="ha-aws_nginx-ha-notify-script"></span>
 ### Creating nginx-ha-notify
 
-Modify the user‑defined variables section of the **nginx&#8209;ha&#8209;notify** script, replacing each `<value>` placeholder with the value specified in the list below:
+Modify the user‑defined variables section of the {{<nb>}}**nginx-ha-notify**{{</nb>}} script, replacing each `<value>` placeholder with the value specified in the list below:
 
 ```none
 export AWS_ACCESS_KEY_ID=<value>
@@ -223,7 +223,7 @@ Check the state on the backup instance, confirming that it has transitioned to `
 <span id="ha-aws_troubleshooting"></span>
 ## Troubleshooting
 
-If the solution doesn’t work as expected, check the `keepalived` logs, which are written to **/var/log/syslog**. Also, you can manually run the commands that invoke the `awscli` utility in the **nginx&#8209;ha&#8209;notify** script to check that the utility is working properly.
+If the solution doesn’t work as expected, check the `keepalived` logs, which are written to **/var/log/syslog**. Also, you can manually run the commands that invoke the `awscli` utility in the {{<nb>}}**nginx-ha-notify**{{</nb>}} script to check that the utility is working properly.
 
 <span id="ha-aws_caveats"></span>
 ## Caveats

@@ -327,7 +327,7 @@ NGINX Plus and Citrix ADC handle high availability (HA) in similar but slightly
 
 Citrix ADC handles the monitoring and failover of the VIP in a proprietary way.
 
- For [on‑premises deployments]({{< ref "nginx/admin-guide/high-availability/ha-keepalived.md" >}}), NGINX Plus uses a separate software package called ****nginx&#8209;ha&#8209;keepalived**** to handle the VIP and the failover process for an active‑passive pair of NGINX Plus servers. The package implements the VRRP protocol to handle the VIP. Limited [active‑active]({{< ref "nginx/admin-guide/high-availability/ha-keepalived-nodes.md" >}}) scenarios are also possible with the **nginx&#8209;ha&#8209;keepalived** package.
+ For [on‑premises deployments]({{< ref "nginx/admin-guide/high-availability/ha-keepalived.md" >}}), NGINX Plus uses a separate software package called {{<nb>}}****nginx-ha-keepalived****{{</nb>}} to handle the VIP and the failover process for an active‑passive pair of NGINX Plus servers. The package implements the VRRP protocol to handle the VIP. Limited [active‑active]({{< ref "nginx/admin-guide/high-availability/ha-keepalived-nodes.md" >}}) scenarios are also possible with the {{<nb>}}**nginx-ha-keepalived**{{</nb>}} package.
 
 Solutions for high availability of NGINX Plus in cloud environments are also available, including these:
 

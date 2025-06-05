@@ -50,9 +50,9 @@ The instructions assume you have the following:
 
 Create an AD FS application for NGINX Plus:
 
-1. Open the AD FS Management window. In the navigation column on the left, right‑click on the **Application Groups** folder and select **Add&nbsp;Application&nbsp;Group** from the drop‑down menu.
+1. Open the AD FS Management window. In the navigation column on the left, right‑click on the **Application Groups** folder and select {{<nb>}}**Add Application Group**{{</nb>}} from the drop‑down menu.
 
-   The **Add&nbsp;Application&nbsp;Group&nbsp;Wizard** window opens. The left navigation column shows the steps you will complete to add an application group.
+   The {{<nb>}}**Add Application Group Wizard**{{</nb>}} window opens. The left navigation column shows the steps you will complete to add an application group.
 
 2. In the **Welcome** step, type the application group name in the **Name** field. Here we are using **ADFSSSO**. In the **Template** field, select **Server application** under **Standalone applications**. Click the <span style="background-color:#e1e1e1; white-space: nowrap; font-weight: bolder"> Next > </span> button.
 
@@ -63,7 +63,7 @@ Create an AD FS application for NGINX Plus:
 
    1. Make a note of the value in the **Client Identifier** field. You will add it to the NGINX Plus configuration in [Step 4 of _Configuring NGINX Plus_](#nginx-plus-variables).<br/>
 
-   2. In the **Redirect URI** field, type the URI of the NGINX Plus instance including the port number, and ending in **/\_codexch**. Here we’re using **https://my&#8209;nginx.example.com:443/\_codexch**. Click the <span style="background-color:#e1e1e1; white-space: nowrap; font-weight: bolder"> Add </span> button.
+   2. In the **Redirect URI** field, type the URI of the NGINX Plus instance including the port number, and ending in **/\_codexch**. Here we’re using {{<nb>}}**https://my-nginx.example.com:443/\_codexch**{{</nb>}}. Click the <span style="background-color:#e1e1e1; white-space: nowrap; font-weight: bolder"> Add </span> button.
 
       **Notes:**
 
@@ -75,7 +75,7 @@ Create an AD FS application for NGINX Plus:
    <img src="/nginx/images/adfs-sso-server-application.png" alt="" width="860" height="523" class="aligncenter size-full wp-image-62012" />
 
    <span id="ad-fs-configure-application-credentials"></span>
-4. In the **Configure&nbsp;Application&nbsp;Credentials** step, click the **Generate&nbsp;a&nbsp;shared&nbsp;secret** checkbox. Make a note of the secret that AD FS generates (perhaps by clicking the **Copy&nbsp;to&nbsp;clipboard** button and pasting the clipboard content into a file). You will add the secret to the NGINX Plus configuration in [Step 4 of _Configuring NGINX Plus_](#nginx-plus-variables). Click the <span style="background-color:#e1e1e1; white-space: nowrap; font-weight: bolder"> Next > </span> button.
+4. In the {{<nb>}}**Configure Application Credentials**{{</nb>}} step, click the {{<nb>}}**Generate a shared secret**{{</nb>}} checkbox. Make a note of the secret that AD FS generates (perhaps by clicking the {{<nb>}}**Copy to clipboard**{{</nb>}} button and pasting the clipboard content into a file). You will add the secret to the NGINX Plus configuration in [Step 4 of _Configuring NGINX Plus_](#nginx-plus-variables). Click the <span style="background-color:#e1e1e1; white-space: nowrap; font-weight: bolder"> Next > </span> button.
 
    <img src="/nginx/images/adfs-sso-configure-application-credentials.png" alt="" width="750" height="432" class="aligncenter size-full wp-image-62011" />
 
@@ -87,7 +87,7 @@ Create an AD FS application for NGINX Plus:
 
 Configure NGINX Plus as the OpenID Connect relying party:
 
-1. Create a clone of the [**nginx&#8209;openid&#8209;connect**](https://github.com/nginxinc/nginx-openid-connect) GitHub repository.
+1. Create a clone of the {{<nb>}}[**nginx-openid-connect**](https://github.com/nginxinc/nginx-openid-connect){{</nb>}} GitHub repository.
 
    ```shell
    git clone https://github.com/nginxinc/nginx-openid-connect
@@ -150,7 +150,7 @@ In a browser, enter the address of your NGINX Plus instance and try to log in u
 <span id="troubleshooting"></span>
 ## Troubleshooting
 
-See the [**Troubleshooting**](https://github.com/nginxinc/nginx-openid-connect#troubleshooting) section at the **nginx&#8209;openid&#8209;connect** repository on GitHub.
+See the [**Troubleshooting**](https://github.com/nginxinc/nginx-openid-connect#troubleshooting) section at the {{<nb>}}**nginx-openid-connect**{{</nb>}} repository on GitHub.
 
 ### Revision History
 

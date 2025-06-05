@@ -175,7 +175,7 @@ http {
 
 Directive documentation: [include](https://nginx.org/en/docs/ngx_core_module.html#include)
 
-You can also use wildcard notation to reference all files that pertain to a certain function or traffic type in the appropriate context block. For example, if you name all HTTP configuration files **_function_&#8209;http.conf**, this is an appropriate `include` directive:
+You can also use wildcard notation to reference all files that pertain to a certain function or traffic type in the appropriate context block. For example, if you name all HTTP configuration files {{<nb>}}**_function_-http.conf**{{</nb>}}, this is an appropriate `include` directive:
 
 ```nginx
 http {
@@ -433,13 +433,13 @@ HTTP/2 is fully supported in both NGINX 1.9.5 and later, and NGINX Plus R7 and
 
 - If using NGINX Open Source, note that in version 1.9.5 and later the SPDY module is completely removed from the codebase and replaced with the [HTTP/2](https://nginx.org/en/docs/http/ngx_http_v2_module.html) module. After upgrading to version 1.9.5 or later, you can no longer configure NGINX Open Source to use SPDY. If you want to keep using SPDY, you need to compile NGINX Open Source from the sources in the [NGINX 1.8.x branch](https://nginx.org/en/download.html).
 
-- If using NGINX Plus, in R11 and later the **nginx&#8209;plus** package supports HTTP/2 by default, and the **nginx&#8209;plus&#8209;extras** package available in previous releases is deprecated by separate [dynamic modules](https://www.nginx.com/products/nginx/modules/) authored by NGINX.
+- If using NGINX Plus, in R11 and later the {{<nb>}}**nginx-plus**{{</nb>}} package supports HTTP/2 by default, and the {{<nb>}}**nginx-plus-extras**{{</nb>}} package available in previous releases is deprecated by separate [dynamic modules](https://www.nginx.com/products/nginx/modules/) authored by NGINX.
 
-  In NGINX Plus R8 through R10, the **nginx&#8209;plus** and **nginx&#8209;plus&#8209;extras** packages support HTTP/2 by default.
+  In NGINX Plus R8 through R10, the {{<nb>}}**nginx-plus**{{</nb>}} and {{<nb>}}**nginx-plus-extras**{{</nb>}} packages support HTTP/2 by default.
 
   In NGINX Plus R8 and later, NGINX Plus supports HTTP/2 by default, and does not support SPDY.
 
-    If using NGINX Plus R7, you must install the **nginx&#8209;plus&#8209;http2** package instead of the **nginx&#8209;plus** or **nginx&#8209;plus&#8209;extras** package.
+    If using NGINX Plus R7, you must install the {{<nb>}}**nginx-plus-http2**{{</nb>}} package instead of the {{<nb>}}**nginx-plus**{{</nb>}} or {{<nb>}}**nginx-plus-extras**{{</nb>}} package.
 
 To enable HTTP/2 support, add the [http2](https://nginx.org/en/docs/http/ngx_http_v2_module.html#http2) directive in the `server` block for HTTPS traffic that we created in [Configuring Virtual Servers for HTTP and HTTPS Traffic](#virtual-servers), so that it looks like this:
 
@@ -459,7 +459,7 @@ To verify that HTTP/2 translation is working, you can use the "HTTP/2 and SPDY i
 
 The full configuration for basic load balancing appears here for your convenience. It goes in the `http` context. The complete file is available for [download](https://www.nginx.com/resource/conf/nodejs-basic.conf) from the NGINX website.
 
-We recommend that you do not copy text directly from this document, but instead use the method described in [Creating and Modifying Configuration Files](#config-files) to include these directives in your configuration – add an `include` directive to the `http` context of the main **nginx.conf** file to read in the contents of **/etc/nginx/conf.d/nodejs&#8209;basic.conf**.
+We recommend that you do not copy text directly from this document, but instead use the method described in [Creating and Modifying Configuration Files](#config-files) to include these directives in your configuration – add an `include` directive to the `http` context of the main **nginx.conf** file to read in the contents of {{<nb>}}**/etc/nginx/conf.d/nodejs-basic.conf**{{</nb>}}.
 
 ```nginx
 proxy_cache_path /tmp/NGINX_cache/ keys_zone=backcache:10m;
@@ -785,9 +785,9 @@ Parameter documentation: [service](https://nginx.org/en/docs/http/ngx_http_upstr
 
 The full configuration for enhanced load balancing appears here for your convenience. It goes in the `http` context. The complete file is available for [download](https://www.nginx.com/resource/conf/nodejs-enhanced.conf) from the NGINX website.
 
-We recommend that you do not copy text directly from this document, but instead use the method described in [Creating and Modifying Configuration Files](#config-files) to include these directives in your configuration – namely, add an `include` directive to the `http` context of the main **nginx.conf** file to read in the contents of **/etc/nginx/conf.d/nodejs&#8209;enhanced.conf**.
+We recommend that you do not copy text directly from this document, but instead use the method described in [Creating and Modifying Configuration Files](#config-files) to include these directives in your configuration – namely, add an `include` directive to the `http` context of the main **nginx.conf** file to read in the contents of {{<nb>}}**/etc/nginx/conf.d/nodejs-enhanced.conf**{{</nb>}}.
 
-**Note:** The `api` block in this configuration summary and the [downloadable](https://www.nginx.com/resource/conf/nodejs-enhanced.conf) **nodejs&#8209;enhanced.conf** file is for the [API method](#reconfiguration-api) of dynamic reconfiguration. If you want to use the [DNS method](#reconfiguration-dns) instead, make the appropriate changes to the block. (You can also remove or comment out the directives for the NGINX Plus API in that case, but they do not conflict with using the DNS method and enable features other than dynamic reconfiguration.)
+**Note:** The `api` block in this configuration summary and the [downloadable](https://www.nginx.com/resource/conf/nodejs-enhanced.conf) {{<nb>}}**nodejs-enhanced.conf**{{</nb>}} file is for the [API method](#reconfiguration-api) of dynamic reconfiguration. If you want to use the [DNS method](#reconfiguration-dns) instead, make the appropriate changes to the block. (You can also remove or comment out the directives for the NGINX Plus API in that case, but they do not conflict with using the DNS method and enable features other than dynamic reconfiguration.)
 
 ```nginx
 proxy_cache_path /tmp/NGINX_cache/ keys_zone=backcache:10m;
