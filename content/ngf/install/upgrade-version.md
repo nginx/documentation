@@ -98,7 +98,7 @@ helm upgrade ngf . -n nginx-gateway
 
 {{% tab name="Manifests" %}}
 
-Select the deployment manifest that matches your current deployment from options available in the  [Deploy NGINX Gateway Fabric]({{< ref "/ngf/install/manifests.md#deploy-nginx-gateway-fabric-1">}}) section and apply it.
+Select the deployment manifest that matches your current deployment from options available in the [Deploy NGINX Gateway Fabric]({{< ref "/ngf/install/manifests.md#deploy-nginx-gateway-fabric-1">}}) section and apply it.
 
 {{% /tab %}}
 
