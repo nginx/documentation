@@ -45,7 +45,7 @@ Secondly, you can update the `NginxProxy` resource while NGINX is running to mod
 kubectl edit nginxproxies.gateway.nginx.org ngf-proxy-config -n nginx-gateway
 ```
 
-The alternate way to scale the data plane is by creating a new Gateway.  This is is beneficial when you need distinct configurations, isolation, or separate policies. 
+The alternate way to scale the data plane is by creating a new Gateway.  This is beneficial when you need distinct configurations, isolation, or separate policies. 
 
 For example, if you're routing traffic to a new domain `admin.example.com` and require a different TLS certificate, stricter rate limits, or separate authentication policies, creating a new Gateway could be a good approach. 
 
