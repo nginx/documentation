@@ -3,9 +3,8 @@ title: Installation from GitHub release
 draft: false
 weight: 200
 toc: true
-docs: DOCS-1090
-type:
-- how-to
+nd-docs: DOCS-1090
+nd-content-type: how-to
 ---
 
 ## Overview
