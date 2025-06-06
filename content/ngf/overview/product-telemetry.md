@@ -1,9 +1,9 @@
 ---
 title: Product telemetry
 weight: 500
-type: reference
-product: NGF
-docs: DOCS-000
+nd-content-type: reference
+nd-product: NGF
+nd-docs: DOCS-000
 ---
 
 Learn why, what and how NGINX Gateway Fabric collects telemetry.
@@ -16,8 +16,6 @@ Telemetry data is collected once every 24 hours and sent to a service managed by
 
 **If you would prefer to not have data collected, you can [opt-out](#opt-out) when installing NGINX Gateway Fabric.**
 
----
-
 ## Collected data
 
 - **Kubernetes:**
@@ -28,12 +26,12 @@ Telemetry data is collected once every 24 hours and sent to a service managed by
 - **Cluster Node Count:** the number of Nodes in the cluster.
 - **Version:** the version of the NGINX Gateway Fabric Deployment.
 - **Deployment UID:** the UID of the NGINX Gateway Fabric Deployment.
-- **Deployment Replica Count:** the count of NGINX Gateway Fabric Pods.
 - **Image Build Source:** whether the image was built by GitHub or locally (values are `gha`, `local`, or `unknown`). The source repository of the images is **not** collected.
 - **Deployment Flags:** a list of NGINX Gateway Fabric Deployment flags that are specified by a user. The actual values of non-boolean flags are **not** collected; we only record that they are either `true` or `false` for boolean flags and `default` or `user-defined` for the rest.
 - **Count of Resources:** the total count of resources related to NGINX Gateway Fabric. This includes `GatewayClasses`, `Gateways`, `HTTPRoutes`,`GRPCRoutes`, `TLSRoutes`, `Secrets`, `Services`, `BackendTLSPolicies`, `ClientSettingsPolicies`, `NginxProxies`, `ObservabilityPolicies`, `UpstreamSettingsPolicies`, `SnippetsFilters`, and `Endpoints`. The data within these resources is **not** collected.
-- **SnippetsFilters Info:** a list of directive-context strings from applied SnippetFilters and a total count per strings. The actual value of any NGINX directive is **not** collected.
-
+- **SnippetsFilters Info** a list of directive-context strings from applied SnippetFilters and a total count per strings. The actual value of any NGINX directive is **not** collected.
+- **Control Plane Pod Count** the count of NGINX Gateway Fabric Pods.
+- **Data Plane Pod Count** the count of NGINX data plane Pods.
 This data is used to identify the following information:
 
 - The flavors of Kubernetes environments that are most popular among our users.
