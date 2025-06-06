@@ -41,7 +41,7 @@ To upgrade NGINX Agent, follow these steps:
 
 ## Upgrade NGINX Agent to a Specific Version 
 
-To upgrade the NGINX Agent to a specific **v2.x version**, follow these steps: 
+To upgrade NGINX Agent to a specific **v2.x version**, follow these steps: 
 
 #### Steps to Upgrade: 
 
