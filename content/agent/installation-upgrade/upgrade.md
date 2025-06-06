@@ -45,7 +45,7 @@ To upgrade NGINX Agent to a specific **v2.x version**, follow these steps:
 
 #### Steps to Upgrade: 
 
-1. Open an SSH connection to the server running the NGINX Agent and log in. 
+1. Open an SSH connection to the server running  NGINX Agent and log in.
 
 1. Back up the following files and directories to ensure recovery in case of issues during the upgrade: 
 
