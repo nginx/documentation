@@ -47,7 +47,7 @@ To upgrade NGINX Agent to a specific **v2.x version**, follow these steps:
 
 1. Open an SSH connection to the server running  NGINX Agent and log in.
 
-1. Back up the following files and directories to ensure recovery in case of issues during the upgrade: 
+1. Back up the following files and directories to ensure you can restore the environment in case of issues during the upgrade: 
 
     - `/etc/nginx-agent`
     - Any `config_dirs` directory specified in `/etc/nginx-agent/nginx-agent.conf`.
