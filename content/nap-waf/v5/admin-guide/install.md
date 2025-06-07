@@ -590,7 +590,7 @@ Follow these steps before you install NGINX Open Source or NGINX Plus.
     ```
 
 {{%/tab%}}
-{{%tab name="Ubuntu 20.04"%}}
+{{%tab name="Ubuntu 22.04"%}}
 
 {{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-oss-ubuntu.md" >}}
 
@@ -766,7 +766,7 @@ Then you can move onto the next step, depending on your chosen operating system.
     ```
 
 {{%/tab%}}
-{{%tab name="Ubuntu 20.04"%}}
+{{%tab name="Ubuntu 22.04"%}}
 
 {{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-plus-ubuntu.md" >}}
 
@@ -1174,7 +1174,7 @@ sudo dnf remove app-protect-module-plus
 ```
 
 {{%/tab%}}
-{{%tab name="Ubuntu 20.04"%}}
+{{%tab name="Ubuntu 22.04"%}}
 
 For NGINX Open Source
 Uninstall the NGINX App Protect WAF v5 package:
