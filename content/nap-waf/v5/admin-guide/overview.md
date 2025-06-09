@@ -36,7 +36,7 @@ NGINX App Protect WAF v5 supports the following operating systems:
 | ------------ | ------------------- |
 | Alpine       | 3.19                |
 | Debian       | 11, 12              |
-| Ubuntu       | 20.04, 22.04, 24.04 |
+| Ubuntu       | 22.04, 24.04        |
 | Amazon Linux | 2023                |
 | RHEL         | 8, 9                |
 | Rocky Linux  | 8                   |
