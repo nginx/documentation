@@ -1,6 +1,6 @@
 ---
 title: NGINX Agent
-description:
-weight: 1100
-url: /nginx-one/agent
+description: Learn about NGINX Agent, its features, and how to install it.
+weight: 750
+url: /nginx-one/agent/
 ---
