@@ -50,7 +50,7 @@ Follow these steps to download the certificate and private key for NGINX Instanc
    sudo mv <nginx-mgmt-suite-trial.key> /etc/ssl/nginx/nginx-repo.key
    ```
 
-   {{<note>}}The downloaded filenames may vary depending on your subscription type. Modify the commands above accordingly to match the actual filenames.{{</note>}}
+   The downloaded filenames may vary depending on your subscription type. Modify the commands above accordingly to match the actual filenames.
 
 ---
 
@@ -60,7 +60,9 @@ Install NGINX Open Source or NGINX Plus on the host where you'll install NGINX I
 
 - [Installing NGINX and NGINX Plus](https://docs.nginx.com/nginx/admin-guide/installing-nginx/)
 
-   {{<note>}}If you're installing NGINX Plus, you can use the `nginx-repo.key` and `nginx-repo.crt` that you added in the [previous section](#download-cert-key).{{</note>}}
+   <br>
+
+   If you're installing NGINX Plus, you can use the `nginx-repo.key` and `nginx-repo.crt` that you added in the [previous section](#download-cert-key).
 
 <details open>
 <summary><i class="fa-solid fa-circle-info"></i> Supported NGINX versions</summary>
@@ -76,7 +78,7 @@ Install NGINX Open Source or NGINX Plus on the host where you'll install NGINX I
 
 </details>
 
-{{< see-also >}} Make sure to review the [Technical Specifications]({{< ref "/nim/fundamentals/tech-specs" >}}) guide for sizing requirements and other recommended specs. {{< /see-also >}}
+Make sure to review the [Technical Specifications]({{< ref "/nim/fundamentals/tech-specs" >}}) guide for sizing requirements and other recommended specs.
 
 ---
 
@@ -86,7 +88,7 @@ Install NGINX Open Source or NGINX Plus on the host where you'll install NGINX I
 
 NGINX Instance Manager uses ClickHouse to store metrics, events, alerts, and configuration data.
 
-If you don’t need to store metrics, you can skip installing ClickHouse. But you must use NGINX Agent version 2.41.1 or later, and you must disable metrics collection in the `/etc/nms/nms.conf` file.
+If you don’t need to store metrics, you can skip installing ClickHouse. But you must use NGINX Agent version {{< lightweight-nim-nginx-agent-version >}}, and you must disable metrics collection in the `/etc/nms/nms.conf` file.
 
 For instructions, see [Disable metrics collection]({{< ref "nim/system-configuration/configure-clickhouse.md#disable-metrics-collection" >}}).
 

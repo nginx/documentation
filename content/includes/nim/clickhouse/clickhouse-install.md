@@ -6,14 +6,12 @@ files:
 
 NGINX Instance Manager uses [ClickHouse](https://clickhouse.com) to store metrics, events, alerts, and configuration settings.
 
-{{< call-out "important" "ClickHouse configuration requirements" "" >}} 
-If you install ClickHouse and choose to set a password (the default is an empty string), you must add it to the `clickhouse.password` setting in the `/etc/nms/nms.conf` file. If the password is missing or incorrect, NGINX Instance Manager will not start.
+If you install ClickHouse and choose to set a password (the default is an empty string), you must add it to the `clickhouse.password` setting in the `/etc/nms/nms.conf` file. If the password is missing or incorrect, NGINX Instance Manager **will not start**.
 
 For instructions and additional configuration options, including TLS settings, see [Configure ClickHouse]({{< ref "nim/system-configuration/configure-clickhouse.md" >}}).
-{{< /call-out >}}
 
-{{< call-out "note" "ClickHouse version requirement" "" >}}NGINX Instance Manager requires ClickHouse version {{< clickhouse-version >}} or later.
-{{< /call-out >}}
+NGINX Instance Manager requires ClickHouse version {{< clickhouse-version >}} or later.
+
 
 Follow these steps to install and enable ClickHouse on supported Linux distributions.
 
