@@ -58,7 +58,7 @@ cascade:
     {{< card title="NGINX Plus" titleUrl="/nginx" icon="NGINX-Plus-product-icon-RGB">}}
       The all-in-one load balancer, reverse proxy, web server, content cache, and API gateway. 
     {{</ card >}}
-    {{< card title="NGINX Open Source" titleUrl="nginx.org" icon="NGINX-product-icon">}}
+    {{< card title="NGINX Open Source" titleUrl="https://nginx.org" icon="NGINX-product-icon">}}
       The open source all-in-one load balancer, content cache, and web server 
     {{</ card >}}
   {{</ card-section >}}
