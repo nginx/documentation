@@ -1,5 +1,5 @@
 ---
-title: "Changelog"
+title: "Releases"
 weight: 1200
 toc: true
 docs: "DOCS-1093"
