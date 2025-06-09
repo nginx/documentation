@@ -21,7 +21,7 @@ The script installs:
 
 NGINX Plus is not supported in disconnected mode.
 
-If you need to install earlier versions of NGINX or NGINX Instance Manager, follow the [manual installation process](({{< ref "nim/deploy/vm-bare-metal/install-nim-deprecated.md" >}})) instead.
+If you need to install earlier versions of NGINX or NGINX Instance Manager, follow the [manual installation process](({{< ref "nim/deploy/vm-bare-metal/install-nim-manual.md" >}})) instead.
 
 ---
 
@@ -49,7 +49,7 @@ Ensure that the required `.crt` and `.key` files are available, preferably in th
 
 #### Use the manual installation steps if needed
 
-If the script fails or if you prefer more control over the process, consider using the [manual installation steps]({{< ref "nim/disconnected/offline-install-guide-deprecated.md" >}}). These steps provide a reliable alternative for troubleshooting or handling complex setups.
+If the script fails or if you prefer more control over the process, consider using the [manual installation steps]({{< ref "nim/disconnected/offline-install-guide-manual.md" >}}). These steps provide a reliable alternative for troubleshooting or handling complex setups.
 
 ### Download the SSL Certificate and Private Key from MyF5
 

@@ -2,7 +2,7 @@
 docs: DOCS-1238
 files:
 - content/nim/system-configuration/configure-clickhouse.md
-- content/nim/deploy/vm-bare-metal/install-nim-deprecated.md
+- content/nim/deploy/vm-bare-metal/install-nim-manual.md
 ---
 
 {{<bootstrap-table "table table-striped table-bordered">}}

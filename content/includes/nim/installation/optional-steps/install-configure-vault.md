@@ -1,9 +1,9 @@
 ---
 docs:
 files:
-- content/nim/deploy/vm-bare-metal/install-nim-deprecated.md
+- content/nim/deploy/vm-bare-metal/install-nim-manual.md
 - content/nim/deploy/vm-bare-metal/install.md
-- content/nim/disconnected/offline-install-guide-deprecated.md
+- content/nim/disconnected/offline-install-guide-manual.md
 - content/nim/disconnected/offline-install-guide.md
 ---
 
