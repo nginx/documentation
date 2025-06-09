@@ -42,7 +42,7 @@ To create a support package from a Helm installation:
     helm repo add nginx-stable https://helm.nginx.com/stable
     helm repo update
     helm pull nginx-stable/nms
-    tar zxvf nms-<version>.tgz
+    tar zxvf nms-<version>.tar.gz
     ```
 
 2. Run the Kubernetes support package script. See the [Arguments](#arguments) section for a list of the available options.
