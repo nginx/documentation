@@ -5,6 +5,6 @@ files:
 - content/nim/disconnected/offline-install-guide.md
 ---
 
-`-s`: Skip installing ClickHouse. This lightweight option reduces system requirements and simplifies installation for users who do not need metrics.
+`-s`: Skip installing ClickHouse. This lightweight mode reduces system requirements and simplifies installation for users who do not need metrics.
   
 {{< include "nim/clickhouse/cli-skip-clickhouse.md" >}}
