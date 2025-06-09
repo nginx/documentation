@@ -1,6 +1,6 @@
 ---
-title: API
+title: Automate with the NGINX One API
 description:
-weight: 1000
+weight: 700
 url: /nginx-one/api
 ---
