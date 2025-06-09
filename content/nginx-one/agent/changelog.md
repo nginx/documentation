@@ -5,7 +5,7 @@ toc: true
 docs: "DOCS-1093"
 ---
 
-{{< note >}}You can find the full changelog, contributor list and assets for NGINX Agent in the [GitHub repository](https://github.com/nginx/agent/releases).{{< /note >}}
+{{< note >}}You can find the full list of NGINX Agent releases, contributor list and assets for NGINX Agent in the [GitHub repository](https://github.com/nginx/agent/releases).{{< /note >}}
 
 See the list of supported Operating Systems and architectures in the [Technical Specifications]({{< ref "/nginx-one/agent/overview/tech-specs.md" >}}).
 
