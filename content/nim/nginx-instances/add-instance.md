@@ -33,6 +33,16 @@ Make sure you have:
    sudo systemctl start nginx-agent
    ```
 
+## Set up metrics reporting
+
+### Enable NGINX Plus API
+
+{{< include "/use-cases/monitoring/enable-nginx-plus-api.md" >}}
+
+### Enable NGINX Open Source Stub Status API
+
+{{< include "/use-cases/monitoring/enable-nginx-oss-stub-status.md" >}}
+
 ## Next steps
 
 - [Add instances to instance groups]({{< ref "nim/nginx-instances/manage-instance-groups.md" >}})
