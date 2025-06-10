@@ -12,6 +12,17 @@ type:
 
 This document provides technical specifications for NGINX Agent. It includes information on supported distributions, deployment environments, NGINX versions, sizing recommendations, and logging.
 
+## NGINX Agent v3 Compatibility 
+{{< bootstrap-table "table table-striped table-bordered" >}}
+| NGINX Product | Agent Version  |
+|-----------|--------------|
+| **NGINX One Console** | No (Coming soon) |
+| **NGINX Gateway Fabric** | Yes |
+| **NGINX Plus** | Yes |
+| **NGINX Ingress Controller** | No (Coming soon)|
+| **NGINX Instance Manager** | No |
+{{< /bootstrap-table >}}
+
 ## Supported Distributions
 
 NGINX Agent can run in most environments. We support the following distributions:
