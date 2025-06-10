@@ -1,7 +1,9 @@
 ---
 title: "API reference"
 weight: 100
-toc: false
+type: reference
+product: NGF
+docs: DOCS-000
 ---
 ## Overview
 NGINX Gateway API Reference
@@ -24,8 +26,6 @@ Resource Types:
 <a href="#gateway.nginx.org/v1alpha1.ClientSettingsPolicy">ClientSettingsPolicy</a>
 </li><li>
 <a href="#gateway.nginx.org/v1alpha1.NginxGateway">NginxGateway</a>
-</li><li>
-<a href="#gateway.nginx.org/v1alpha1.NginxProxy">NginxProxy</a>
 </li><li>
 <a href="#gateway.nginx.org/v1alpha1.ObservabilityPolicy">ObservabilityPolicy</a>
 </li><li>
@@ -241,141 +241,6 @@ NginxGatewayStatus
 </td>
 <td>
 <p>NginxGatewayStatus defines the state of the NginxGateway.</p>
-</td>
-</tr>
-</tbody>
-</table>
-<h3 id="gateway.nginx.org/v1alpha1.NginxProxy">NginxProxy
-<a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.NginxProxy" title="Permanent link">¶</a>
-</h3>
-<p>
-<p>NginxProxy is a configuration object that is attached to a GatewayClass parametersRef. It provides a way
-to configure global settings for all Gateways defined from the GatewayClass.</p>
-</p>
-<table class="table table-bordered table-striped">
-<thead>
-<tr>
-<th>Field</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<code>apiVersion</code><br/>
-string</td>
-<td>
-<code>
-gateway.nginx.org/v1alpha1
-</code>
-</td>
-</tr>
-<tr>
-<td>
-<code>kind</code><br/>
-string
-</td>
-<td><code>NginxProxy</code></td>
-</tr>
-<tr>
-<td>
-<code>metadata</code><br/>
-<em>
-<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#objectmeta-v1-meta">
-Kubernetes meta/v1.ObjectMeta
-</a>
-</em>
-</td>
-<td>
-Refer to the Kubernetes API documentation for the fields of the
-<code>metadata</code> field.
-</td>
-</tr>
-<tr>
-<td>
-<code>spec</code><br/>
-<em>
-<a href="#gateway.nginx.org/v1alpha1.NginxProxySpec">
-NginxProxySpec
-</a>
-</em>
-</td>
-<td>
-<p>Spec defines the desired state of the NginxProxy.</p>
-<br/>
-<br/>
-<table class="table table-bordered table-striped">
-<tr>
-<td>
-<code>ipFamily</code><br/>
-<em>
-<a href="#gateway.nginx.org/v1alpha1.IPFamilyType">
-IPFamilyType
-</a>
-</em>
-</td>
-<td>
-<em>(Optional)</em>
-<p>IPFamily specifies the IP family to be used by the NGINX.
-Default is &ldquo;dual&rdquo;, meaning the server will use both IPv4 and IPv6.</p>
-</td>
-</tr>
-<tr>
-<td>
-<code>telemetry</code><br/>
-<em>
-<a href="#gateway.nginx.org/v1alpha1.Telemetry">
-Telemetry
-</a>
-</em>
-</td>
-<td>
-<em>(Optional)</em>
-<p>Telemetry specifies the OpenTelemetry configuration.</p>
-</td>
-</tr>
-<tr>
-<td>
-<code>rewriteClientIP</code><br/>
-<em>
-<a href="#gateway.nginx.org/v1alpha1.RewriteClientIP">
-RewriteClientIP
-</a>
-</em>
-</td>
-<td>
-<em>(Optional)</em>
-<p>RewriteClientIP defines configuration for rewriting the client IP to the original client&rsquo;s IP.</p>
-</td>
-</tr>
-<tr>
-<td>
-<code>logging</code><br/>
-<em>
-<a href="#gateway.nginx.org/v1alpha1.NginxLogging">
-NginxLogging
-</a>
-</em>
-</td>
-<td>
-<em>(Optional)</em>
-<p>Logging defines logging related settings for NGINX.</p>
-</td>
-</tr>
-<tr>
-<td>
-<code>disableHTTP2</code><br/>
-<em>
-bool
-</em>
-</td>
-<td>
-<em>(Optional)</em>
-<p>DisableHTTP2 defines if http2 should be disabled for all servers.
-Default is false, meaning http2 will be enabled for all servers.</p>
-</td>
-</tr>
-</table>
 </td>
 </tr>
 </tbody>
@@ -707,78 +572,6 @@ sigs.k8s.io/gateway-api/apis/v1alpha2.PolicyStatus
 </tr>
 </tbody>
 </table>
-<h3 id="gateway.nginx.org/v1alpha1.Address">Address
-<a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.Address" title="Permanent link">¶</a>
-</h3>
-<p>
-(<em>Appears on: </em>
-<a href="#gateway.nginx.org/v1alpha1.RewriteClientIP">RewriteClientIP</a>)
-</p>
-<p>
-<p>Address is a struct that specifies address type and value.</p>
-</p>
-<table class="table table-bordered table-striped">
-<thead>
-<tr>
-<th>Field</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<code>type</code><br/>
-<em>
-<a href="#gateway.nginx.org/v1alpha1.AddressType">
-AddressType
-</a>
-</em>
-</td>
-<td>
-<p>Type specifies the type of address.</p>
-</td>
-</tr>
-<tr>
-<td>
-<code>value</code><br/>
-<em>
-string
-</em>
-</td>
-<td>
-<p>Value specifies the address value.</p>
-</td>
-</tr>
-</tbody>
-</table>
-<h3 id="gateway.nginx.org/v1alpha1.AddressType">AddressType
-(<code>string</code> alias)</p><a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.AddressType" title="Permanent link">¶</a>
-</h3>
-<p>
-(<em>Appears on: </em>
-<a href="#gateway.nginx.org/v1alpha1.Address">Address</a>)
-</p>
-<p>
-<p>AddressType specifies the type of address.</p>
-</p>
-<table class="table table-bordered table-striped">
-<thead>
-<tr>
-<th>Value</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody><tr><td><p>&#34;CIDR&#34;</p></td>
-<td><p>CIDRAddressType specifies that the address is a CIDR block.</p>
-</td>
-</tr><tr><td><p>&#34;Hostname&#34;</p></td>
-<td><p>HostnameAddressType specifies that the address is a Hostname.</p>
-</td>
-</tr><tr><td><p>&#34;IPAddress&#34;</p></td>
-<td><p>IPAddressType specifies that the address is an IP address.</p>
-</td>
-</tr></tbody>
-</table>
 <h3 id="gateway.nginx.org/v1alpha1.ClientBody">ClientBody
 <a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.ClientBody" title="Permanent link">¶</a>
 </h3>
@@ -1105,8 +898,8 @@ longer necessary.</p>
 <a href="#gateway.nginx.org/v1alpha1.ClientBody">ClientBody</a>,
 <a href="#gateway.nginx.org/v1alpha1.ClientKeepAlive">ClientKeepAlive</a>,
 <a href="#gateway.nginx.org/v1alpha1.ClientKeepAliveTimeout">ClientKeepAliveTimeout</a>,
-<a href="#gateway.nginx.org/v1alpha1.TelemetryExporter">TelemetryExporter</a>,
-<a href="#gateway.nginx.org/v1alpha1.UpstreamKeepAlive">UpstreamKeepAlive</a>)
+<a href="#gateway.nginx.org/v1alpha1.UpstreamKeepAlive">UpstreamKeepAlive</a>,
+<a href="#gateway.nginx.org/v1alpha2.TelemetryExporter">TelemetryExporter</a>)
 </p>
 <p>
 <p>Duration is a string value representing a duration in time.
@@ -1114,34 +907,6 @@ Duration can be specified in milliseconds (ms), seconds (s), minutes (m), hours 
 A value without a suffix is seconds.
 Examples: 120s, 50ms, 5m, 1h.</p>
 </p>
-<h3 id="gateway.nginx.org/v1alpha1.IPFamilyType">IPFamilyType
-(<code>string</code> alias)</p><a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.IPFamilyType" title="Permanent link">¶</a>
-</h3>
-<p>
-(<em>Appears on: </em>
-<a href="#gateway.nginx.org/v1alpha1.NginxProxySpec">NginxProxySpec</a>)
-</p>
-<p>
-<p>IPFamilyType specifies the IP family to be used by NGINX.</p>
-</p>
-<table class="table table-bordered table-striped">
-<thead>
-<tr>
-<th>Value</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody><tr><td><p>&#34;dual&#34;</p></td>
-<td><p>Dual specifies that NGINX will use both IPv4 and IPv6.</p>
-</td>
-</tr><tr><td><p>&#34;ipv4&#34;</p></td>
-<td><p>IPv4 specifies that NGINX will use only IPv4.</p>
-</td>
-</tr><tr><td><p>&#34;ipv6&#34;</p></td>
-<td><p>IPv6 specifies that NGINX will use only IPv6.</p>
-</td>
-</tr></tbody>
-</table>
 <h3 id="gateway.nginx.org/v1alpha1.Logging">Logging
 <a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.Logging" title="Permanent link">¶</a>
 </h3>
@@ -1207,49 +972,6 @@ ControllerLogLevel
 </td>
 </tr><tr><td><p>&#34;main&#34;</p></td>
 <td><p>NginxContextMain is the main context of the NGINX configuration.</p>
-</td>
-</tr></tbody>
-</table>
-<h3 id="gateway.nginx.org/v1alpha1.NginxErrorLogLevel">NginxErrorLogLevel
-(<code>string</code> alias)</p><a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.NginxErrorLogLevel" title="Permanent link">¶</a>
-</h3>
-<p>
-(<em>Appears on: </em>
-<a href="#gateway.nginx.org/v1alpha1.NginxLogging">NginxLogging</a>)
-</p>
-<p>
-<p>NginxErrorLogLevel type defines the log level of error logs for NGINX.</p>
-</p>
-<table class="table table-bordered table-striped">
-<thead>
-<tr>
-<th>Value</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody><tr><td><p>&#34;alert&#34;</p></td>
-<td><p>NginxLogLevelAlert is the alert level for NGINX error logs.</p>
-</td>
-</tr><tr><td><p>&#34;crit&#34;</p></td>
-<td><p>NginxLogLevelCrit is the crit level for NGINX error logs.</p>
-</td>
-</tr><tr><td><p>&#34;debug&#34;</p></td>
-<td><p>NginxLogLevelDebug is the debug level for NGINX error logs.</p>
-</td>
-</tr><tr><td><p>&#34;emerg&#34;</p></td>
-<td><p>NginxLogLevelEmerg is the emerg level for NGINX error logs.</p>
-</td>
-</tr><tr><td><p>&#34;error&#34;</p></td>
-<td><p>NginxLogLevelError is the error level for NGINX error logs.</p>
-</td>
-</tr><tr><td><p>&#34;info&#34;</p></td>
-<td><p>NginxLogLevelInfo is the info level for NGINX error logs.</p>
-</td>
-</tr><tr><td><p>&#34;notice&#34;</p></td>
-<td><p>NginxLogLevelNotice is the notice level for NGINX error logs.</p>
-</td>
-</tr><tr><td><p>&#34;warn&#34;</p></td>
-<td><p>NginxLogLevelWarn is the warn level for NGINX error logs.</p>
 </td>
 </tr></tbody>
 </table>
@@ -1362,133 +1084,6 @@ Logging
 </tr>
 </tbody>
 </table>
-<h3 id="gateway.nginx.org/v1alpha1.NginxLogging">NginxLogging
-<a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.NginxLogging" title="Permanent link">¶</a>
-</h3>
-<p>
-(<em>Appears on: </em>
-<a href="#gateway.nginx.org/v1alpha1.NginxProxySpec">NginxProxySpec</a>)
-</p>
-<p>
-<p>NginxLogging defines logging related settings for NGINX.</p>
-</p>
-<table class="table table-bordered table-striped">
-<thead>
-<tr>
-<th>Field</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<code>errorLevel</code><br/>
-<em>
-<a href="#gateway.nginx.org/v1alpha1.NginxErrorLogLevel">
-NginxErrorLogLevel
-</a>
-</em>
-</td>
-<td>
-<em>(Optional)</em>
-<p>ErrorLevel defines the error log level. Possible log levels listed in order of increasing severity are
-debug, info, notice, warn, error, crit, alert, and emerg. Setting a certain log level will cause all messages
-of the specified and more severe log levels to be logged. For example, the log level &lsquo;error&rsquo; will cause error,
-crit, alert, and emerg messages to be logged. <a href="https://nginx.org/en/docs/ngx_core_module.html#error_log">https://nginx.org/en/docs/ngx_core_module.html#error_log</a></p>
-</td>
-</tr>
-</tbody>
-</table>
-<h3 id="gateway.nginx.org/v1alpha1.NginxProxySpec">NginxProxySpec
-<a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.NginxProxySpec" title="Permanent link">¶</a>
-</h3>
-<p>
-(<em>Appears on: </em>
-<a href="#gateway.nginx.org/v1alpha1.NginxProxy">NginxProxy</a>)
-</p>
-<p>
-<p>NginxProxySpec defines the desired state of the NginxProxy.</p>
-</p>
-<table class="table table-bordered table-striped">
-<thead>
-<tr>
-<th>Field</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<code>ipFamily</code><br/>
-<em>
-<a href="#gateway.nginx.org/v1alpha1.IPFamilyType">
-IPFamilyType
-</a>
-</em>
-</td>
-<td>
-<em>(Optional)</em>
-<p>IPFamily specifies the IP family to be used by the NGINX.
-Default is &ldquo;dual&rdquo;, meaning the server will use both IPv4 and IPv6.</p>
-</td>
-</tr>
-<tr>
-<td>
-<code>telemetry</code><br/>
-<em>
-<a href="#gateway.nginx.org/v1alpha1.Telemetry">
-Telemetry
-</a>
-</em>
-</td>
-<td>
-<em>(Optional)</em>
-<p>Telemetry specifies the OpenTelemetry configuration.</p>
-</td>
-</tr>
-<tr>
-<td>
-<code>rewriteClientIP</code><br/>
-<em>
-<a href="#gateway.nginx.org/v1alpha1.RewriteClientIP">
-RewriteClientIP
-</a>
-</em>
-</td>
-<td>
-<em>(Optional)</em>
-<p>RewriteClientIP defines configuration for rewriting the client IP to the original client&rsquo;s IP.</p>
-</td>
-</tr>
-<tr>
-<td>
-<code>logging</code><br/>
-<em>
-<a href="#gateway.nginx.org/v1alpha1.NginxLogging">
-NginxLogging
-</a>
-</em>
-</td>
-<td>
-<em>(Optional)</em>
-<p>Logging defines logging related settings for NGINX.</p>
-</td>
-</tr>
-<tr>
-<td>
-<code>disableHTTP2</code><br/>
-<em>
-bool
-</em>
-</td>
-<td>
-<em>(Optional)</em>
-<p>DisableHTTP2 defines if http2 should be disabled for all servers.
-Default is false, meaning http2 will be enabled for all servers.</p>
-</td>
-</tr>
-</tbody>
-</table>
 <h3 id="gateway.nginx.org/v1alpha1.ObservabilityPolicySpec">ObservabilityPolicySpec
 <a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.ObservabilityPolicySpec" title="Permanent link">¶</a>
 </h3>
@@ -1537,116 +1132,6 @@ Support: HTTPRoute, GRPCRoute.</p>
 </td>
 </tr>
 </tbody>
-</table>
-<h3 id="gateway.nginx.org/v1alpha1.RewriteClientIP">RewriteClientIP
-<a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.RewriteClientIP" title="Permanent link">¶</a>
-</h3>
-<p>
-(<em>Appears on: </em>
-<a href="#gateway.nginx.org/v1alpha1.NginxProxySpec">NginxProxySpec</a>)
-</p>
-<p>
-<p>RewriteClientIP specifies the configuration for rewriting the client&rsquo;s IP address.</p>
-</p>
-<table class="table table-bordered table-striped">
-<thead>
-<tr>
-<th>Field</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<code>mode</code><br/>
-<em>
-<a href="#gateway.nginx.org/v1alpha1.RewriteClientIPModeType">
-RewriteClientIPModeType
-</a>
-</em>
-</td>
-<td>
-<em>(Optional)</em>
-<p>Mode defines how NGINX will rewrite the client&rsquo;s IP address.
-There are two possible modes:
-- ProxyProtocol: NGINX will rewrite the client&rsquo;s IP using the PROXY protocol header.
-- XForwardedFor: NGINX will rewrite the client&rsquo;s IP using the X-Forwarded-For header.
-Sets NGINX directive real_ip_header: <a href="https://nginx.org/en/docs/http/ngx_http_realip_module.html#real_ip_header">https://nginx.org/en/docs/http/ngx_http_realip_module.html#real_ip_header</a></p>
-</td>
-</tr>
-<tr>
-<td>
-<code>setIPRecursively</code><br/>
-<em>
-bool
-</em>
-</td>
-<td>
-<em>(Optional)</em>
-<p>SetIPRecursively configures whether recursive search is used when selecting the client&rsquo;s address from
-the X-Forwarded-For header. It is used in conjunction with TrustedAddresses.
-If enabled, NGINX will recurse on the values in X-Forwarded-Header from the end of array
-to start of array and select the first untrusted IP.
-For example, if X-Forwarded-For is [11.11.11.11, 22.22.22.22, 55.55.55.1],
-and TrustedAddresses is set to 55.55.55.<sup>1</sup>&frasl;<sub>32</sub>, NGINX will rewrite the client IP to 22.22.22.22.
-If disabled, NGINX will select the IP at the end of the array.
-In the previous example, 55.55.55.1 would be selected.
-Sets NGINX directive real_ip_recursive: <a href="https://nginx.org/en/docs/http/ngx_http_realip_module.html#real_ip_recursive">https://nginx.org/en/docs/http/ngx_http_realip_module.html#real_ip_recursive</a></p>
-</td>
-</tr>
-<tr>
-<td>
-<code>trustedAddresses</code><br/>
-<em>
-<a href="#gateway.nginx.org/v1alpha1.Address">
-[]Address
-</a>
-</em>
-</td>
-<td>
-<em>(Optional)</em>
-<p>TrustedAddresses specifies the addresses that are trusted to send correct client IP information.
-If a request comes from a trusted address, NGINX will rewrite the client IP information,
-and forward it to the backend in the X-Forwarded-For* and X-Real-IP headers.
-If the request does not come from a trusted address, NGINX will not rewrite the client IP information.
-TrustedAddresses only supports CIDR blocks: 192.33.21.<sup>1</sup>&frasl;<sub>24</sub>, fe80::<sup>1</sup>&frasl;<sub>64</sub>.
-To trust all addresses (not recommended for production), set to 0.0.0.0/0.
-If no addresses are provided, NGINX will not rewrite the client IP information.
-Sets NGINX directive set_real_ip_from: <a href="https://nginx.org/en/docs/http/ngx_http_realip_module.html#set_real_ip_from">https://nginx.org/en/docs/http/ngx_http_realip_module.html#set_real_ip_from</a>
-This field is required if mode is set.</p>
-</td>
-</tr>
-</tbody>
-</table>
-<h3 id="gateway.nginx.org/v1alpha1.RewriteClientIPModeType">RewriteClientIPModeType
-(<code>string</code> alias)</p><a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.RewriteClientIPModeType" title="Permanent link">¶</a>
-</h3>
-<p>
-(<em>Appears on: </em>
-<a href="#gateway.nginx.org/v1alpha1.RewriteClientIP">RewriteClientIP</a>)
-</p>
-<p>
-<p>RewriteClientIPModeType defines how NGINX Gateway Fabric will determine the client&rsquo;s original IP address.</p>
-</p>
-<table class="table table-bordered table-striped">
-<thead>
-<tr>
-<th>Value</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody><tr><td><p>&#34;ProxyProtocol&#34;</p></td>
-<td><p>RewriteClientIPModeProxyProtocol configures NGINX to accept PROXY protocol and
-set the client&rsquo;s IP address to the IP address in the PROXY protocol header.
-Sets the proxy_protocol parameter on the listen directive of all servers and sets real_ip_header
-to proxy_protocol: <a href="https://nginx.org/en/docs/http/ngx_http_realip_module.html#real_ip_header">https://nginx.org/en/docs/http/ngx_http_realip_module.html#real_ip_header</a>.</p>
-</td>
-</tr><tr><td><p>&#34;XForwardedFor&#34;</p></td>
-<td><p>RewriteClientIPModeXForwardedFor configures NGINX to set the client&rsquo;s IP address to the
-IP address in the X-Forwarded-For HTTP header.
-<a href="https://nginx.org/en/docs/http/ngx_http_realip_module.html#real_ip_header">https://nginx.org/en/docs/http/ngx_http_realip_module.html#real_ip_header</a>.</p>
-</td>
-</tr></tbody>
 </table>
 <h3 id="gateway.nginx.org/v1alpha1.Size">Size
 (<code>string</code> alias)</p><a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.Size" title="Permanent link">¶</a>
@@ -1828,8 +1313,8 @@ and the status of the SnippetsFilter with respect to each controller.</p>
 </h3>
 <p>
 (<em>Appears on: </em>
-<a href="#gateway.nginx.org/v1alpha1.Telemetry">Telemetry</a>,
 <a href="#gateway.nginx.org/v1alpha1.Tracing">Tracing</a>,
+<a href="#gateway.nginx.org/v1alpha2.Telemetry">Telemetry</a>,
 <a href="#gateway.nginx.org/v1alpha2.Tracing">Tracing</a>)
 </p>
 <p>
@@ -1865,141 +1350,6 @@ string
 <td>
 <p>Value is the value for a span attribute.
 Format: must have all &lsquo;&ldquo;&rsquo; escaped and must not contain any &lsquo;$&rsquo; or end with an unescaped &lsquo;\&rsquo;</p>
-</td>
-</tr>
-</tbody>
-</table>
-<h3 id="gateway.nginx.org/v1alpha1.Telemetry">Telemetry
-<a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.Telemetry" title="Permanent link">¶</a>
-</h3>
-<p>
-(<em>Appears on: </em>
-<a href="#gateway.nginx.org/v1alpha1.NginxProxySpec">NginxProxySpec</a>)
-</p>
-<p>
-<p>Telemetry specifies the OpenTelemetry configuration.</p>
-</p>
-<table class="table table-bordered table-striped">
-<thead>
-<tr>
-<th>Field</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<code>exporter</code><br/>
-<em>
-<a href="#gateway.nginx.org/v1alpha1.TelemetryExporter">
-TelemetryExporter
-</a>
-</em>
-</td>
-<td>
-<em>(Optional)</em>
-<p>Exporter specifies OpenTelemetry export parameters.</p>
-</td>
-</tr>
-<tr>
-<td>
-<code>serviceName</code><br/>
-<em>
-string
-</em>
-</td>
-<td>
-<em>(Optional)</em>
-<p>ServiceName is the &ldquo;service.name&rdquo; attribute of the OpenTelemetry resource.
-Default is &lsquo;ngf:<gateway-namespace>:<gateway-name>&rsquo;. If a value is provided by the user,
-then the default becomes a prefix to that value.</p>
-</td>
-</tr>
-<tr>
-<td>
-<code>spanAttributes</code><br/>
-<em>
-<a href="#gateway.nginx.org/v1alpha1.SpanAttribute">
-[]SpanAttribute
-</a>
-</em>
-</td>
-<td>
-<em>(Optional)</em>
-<p>SpanAttributes are custom key/value attributes that are added to each span.</p>
-</td>
-</tr>
-</tbody>
-</table>
-<h3 id="gateway.nginx.org/v1alpha1.TelemetryExporter">TelemetryExporter
-<a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.TelemetryExporter" title="Permanent link">¶</a>
-</h3>
-<p>
-(<em>Appears on: </em>
-<a href="#gateway.nginx.org/v1alpha1.Telemetry">Telemetry</a>)
-</p>
-<p>
-<p>TelemetryExporter specifies OpenTelemetry export parameters.</p>
-</p>
-<table class="table table-bordered table-striped">
-<thead>
-<tr>
-<th>Field</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<code>interval</code><br/>
-<em>
-<a href="#gateway.nginx.org/v1alpha1.Duration">
-Duration
-</a>
-</em>
-</td>
-<td>
-<em>(Optional)</em>
-<p>Interval is the maximum interval between two exports.
-Default: <a href="https://nginx.org/en/docs/ngx_otel_module.html#otel_exporter">https://nginx.org/en/docs/ngx_otel_module.html#otel_exporter</a></p>
-</td>
-</tr>
-<tr>
-<td>
-<code>batchSize</code><br/>
-<em>
-int32
-</em>
-</td>
-<td>
-<em>(Optional)</em>
-<p>BatchSize is the maximum number of spans to be sent in one batch per worker.
-Default: <a href="https://nginx.org/en/docs/ngx_otel_module.html#otel_exporter">https://nginx.org/en/docs/ngx_otel_module.html#otel_exporter</a></p>
-</td>
-</tr>
-<tr>
-<td>
-<code>batchCount</code><br/>
-<em>
-int32
-</em>
-</td>
-<td>
-<em>(Optional)</em>
-<p>BatchCount is the number of pending batches per worker, spans exceeding the limit are dropped.
-Default: <a href="https://nginx.org/en/docs/ngx_otel_module.html#otel_exporter">https://nginx.org/en/docs/ngx_otel_module.html#otel_exporter</a></p>
-</td>
-</tr>
-<tr>
-<td>
-<code>endpoint</code><br/>
-<em>
-string
-</em>
-</td>
-<td>
-<p>Endpoint is the address of OTLP/gRPC endpoint that will accept telemetry data.
-Format: alphanumeric hostname with optional http scheme and optional port.</p>
 </td>
 </tr>
 </tbody>
@@ -2308,8 +1658,192 @@ gateway.nginx.org API group.</p>
 </p>
 Resource Types:
 <ul><li>
+<a href="#gateway.nginx.org/v1alpha2.NginxProxy">NginxProxy</a>
+</li><li>
 <a href="#gateway.nginx.org/v1alpha2.ObservabilityPolicy">ObservabilityPolicy</a>
 </li></ul>
+<h3 id="gateway.nginx.org/v1alpha2.NginxProxy">NginxProxy
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha2.NginxProxy" title="Permanent link">¶</a>
+</h3>
+<p>
+<p>NginxProxy is a configuration object that can be referenced from a GatewayClass parametersRef
+or a Gateway infrastructure.parametersRef. It provides a way to configure data plane settings.
+If referenced from a GatewayClass, the settings apply to all Gateways attached to the GatewayClass.
+If referenced from a Gateway, the settings apply to that Gateway alone. If both a Gateway and its GatewayClass
+reference an NginxProxy, the settings are merged. Settings specified on the Gateway NginxProxy override those
+set on the GatewayClass NginxProxy.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>apiVersion</code><br/>
+string</td>
+<td>
+<code>
+gateway.nginx.org/v1alpha2
+</code>
+</td>
+</tr>
+<tr>
+<td>
+<code>kind</code><br/>
+string
+</td>
+<td><code>NginxProxy</code></td>
+</tr>
+<tr>
+<td>
+<code>metadata</code><br/>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#objectmeta-v1-meta">
+Kubernetes meta/v1.ObjectMeta
+</a>
+</em>
+</td>
+<td>
+Refer to the Kubernetes API documentation for the fields of the
+<code>metadata</code> field.
+</td>
+</tr>
+<tr>
+<td>
+<code>spec</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha2.NginxProxySpec">
+NginxProxySpec
+</a>
+</em>
+</td>
+<td>
+<p>Spec defines the desired state of the NginxProxy.</p>
+<br/>
+<br/>
+<table class="table table-bordered table-striped">
+<tr>
+<td>
+<code>ipFamily</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha2.IPFamilyType">
+IPFamilyType
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>IPFamily specifies the IP family to be used by the NGINX.
+Default is &ldquo;dual&rdquo;, meaning the server will use both IPv4 and IPv6.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>telemetry</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha2.Telemetry">
+Telemetry
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Telemetry specifies the OpenTelemetry configuration.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>metrics</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha2.Metrics">
+Metrics
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Metrics defines the configuration for Prometheus scraping metrics. Changing this value results in a
+re-roll of the NGINX deployment.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>rewriteClientIP</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha2.RewriteClientIP">
+RewriteClientIP
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>RewriteClientIP defines configuration for rewriting the client IP to the original client&rsquo;s IP.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>logging</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha2.NginxLogging">
+NginxLogging
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Logging defines logging related settings for NGINX.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>nginxPlus</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha2.NginxPlus">
+NginxPlus
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>NginxPlus specifies NGINX Plus additional settings.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>disableHTTP2</code><br/>
+<em>
+bool
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>DisableHTTP2 defines if http2 should be disabled for all servers.
+If not specified, or set to false, http2 will be enabled for all servers.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>kubernetes</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha2.KubernetesSpec">
+KubernetesSpec
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Kubernetes contains the configuration for the NGINX Deployment and Service Kubernetes objects.</p>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
 <h3 id="gateway.nginx.org/v1alpha2.ObservabilityPolicy">ObservabilityPolicy
 <a class="headerlink" href="#gateway.nginx.org%2fv1alpha2.ObservabilityPolicy" title="Permanent link">¶</a>
 </h3>
@@ -2420,6 +1954,863 @@ sigs.k8s.io/gateway-api/apis/v1alpha2.PolicyStatus
 </tr>
 </tbody>
 </table>
+<h3 id="gateway.nginx.org/v1alpha2.AgentLogLevel">AgentLogLevel
+(<code>string</code> alias)</p><a class="headerlink" href="#gateway.nginx.org%2fv1alpha2.AgentLogLevel" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha2.NginxLogging">NginxLogging</a>)
+</p>
+<p>
+<p>AgentLevel defines the log level of the NGINX agent process.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr><td><p>&#34;debug&#34;</p></td>
+<td><p>AgentLogLevelDebug is the debug level NGINX agent logs.</p>
+</td>
+</tr><tr><td><p>&#34;error&#34;</p></td>
+<td><p>AgentLogLevelError is the error level NGINX agent logs.</p>
+</td>
+</tr><tr><td><p>&#34;fatal&#34;</p></td>
+<td><p>AgentLogLevelFatal is the fatal level NGINX agent logs.</p>
+</td>
+</tr><tr><td><p>&#34;info&#34;</p></td>
+<td><p>AgentLogLevelInfo is the info level NGINX agent logs.</p>
+</td>
+</tr><tr><td><p>&#34;panic&#34;</p></td>
+<td><p>AgentLogLevelPanic is the panic level NGINX agent logs.</p>
+</td>
+</tr></tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha2.ContainerSpec">ContainerSpec
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha2.ContainerSpec" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha2.DaemonSetSpec">DaemonSetSpec</a>,
+<a href="#gateway.nginx.org/v1alpha2.DeploymentSpec">DeploymentSpec</a>)
+</p>
+<p>
+<p>ContainerSpec defines container fields for the NGINX container.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>debug</code><br/>
+<em>
+bool
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Debug enables debugging for NGINX by using the nginx-debug binary.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>image</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha2.Image">
+Image
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Image is the NGINX image to use.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>resources</code><br/>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#resourcerequirements-v1-core">
+Kubernetes core/v1.ResourceRequirements
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Resources describes the compute resource requirements.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>lifecycle</code><br/>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#lifecycle-v1-core">
+Kubernetes core/v1.Lifecycle
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Lifecycle describes actions that the management system should take in response to container lifecycle
+events. For the PostStart and PreStop lifecycle handlers, management of the container blocks
+until the action is complete, unless the container process fails, in which case the handler is aborted.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>volumeMounts</code><br/>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#volumemount-v1-core">
+[]Kubernetes core/v1.VolumeMount
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>VolumeMounts describe the mounting of Volumes within a container.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha2.DaemonSetSpec">DaemonSetSpec
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha2.DaemonSetSpec" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha2.KubernetesSpec">KubernetesSpec</a>)
+</p>
+<p>
+<p>DaemonSet is the configuration for the NGINX DaemonSet.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>pod</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha2.PodSpec">
+PodSpec
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Pod defines Pod-specific fields.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>container</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha2.ContainerSpec">
+ContainerSpec
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Container defines container fields for the NGINX container.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha2.DeploymentSpec">DeploymentSpec
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha2.DeploymentSpec" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha2.KubernetesSpec">KubernetesSpec</a>)
+</p>
+<p>
+<p>Deployment is the configuration for the NGINX Deployment.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>replicas</code><br/>
+<em>
+int32
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Number of desired Pods.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>pod</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha2.PodSpec">
+PodSpec
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Pod defines Pod-specific fields.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>container</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha2.ContainerSpec">
+ContainerSpec
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Container defines container fields for the NGINX container.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha2.DisableTelemetryFeature">DisableTelemetryFeature
+(<code>string</code> alias)</p><a class="headerlink" href="#gateway.nginx.org%2fv1alpha2.DisableTelemetryFeature" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha2.Telemetry">Telemetry</a>)
+</p>
+<p>
+<p>DisableTelemetryFeature is a telemetry feature that can be disabled.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr><td><p>&#34;DisableTracing&#34;</p></td>
+<td><p>DisableTracing disables the OpenTelemetry tracing feature.</p>
+</td>
+</tr></tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha2.ExternalTrafficPolicy">ExternalTrafficPolicy
+(<code>string</code> alias)</p><a class="headerlink" href="#gateway.nginx.org%2fv1alpha2.ExternalTrafficPolicy" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha2.ServiceSpec">ServiceSpec</a>)
+</p>
+<p>
+<p>ExternalTrafficPolicy describes how nodes distribute service traffic they
+receive on one of the Service&rsquo;s &ldquo;externally-facing&rdquo; addresses (NodePorts, ExternalIPs,
+and LoadBalancer IPs. Ignored for ClusterIP services.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr><td><p>&#34;Cluster&#34;</p></td>
+<td><p>ExternalTrafficPolicyCluster routes traffic to all endpoints.</p>
+</td>
+</tr><tr><td><p>&#34;Local&#34;</p></td>
+<td><p>ExternalTrafficPolicyLocal preserves the source IP of the traffic by
+routing only to endpoints on the same node as the traffic was received on
+(dropping the traffic if there are no local endpoints).</p>
+</td>
+</tr></tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha2.IPFamilyType">IPFamilyType
+(<code>string</code> alias)</p><a class="headerlink" href="#gateway.nginx.org%2fv1alpha2.IPFamilyType" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha2.NginxProxySpec">NginxProxySpec</a>)
+</p>
+<p>
+<p>IPFamilyType specifies the IP family to be used by NGINX.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr><td><p>&#34;dual&#34;</p></td>
+<td><p>Dual specifies that NGINX will use both IPv4 and IPv6.</p>
+</td>
+</tr><tr><td><p>&#34;ipv4&#34;</p></td>
+<td><p>IPv4 specifies that NGINX will use only IPv4.</p>
+</td>
+</tr><tr><td><p>&#34;ipv6&#34;</p></td>
+<td><p>IPv6 specifies that NGINX will use only IPv6.</p>
+</td>
+</tr></tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha2.Image">Image
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha2.Image" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha2.ContainerSpec">ContainerSpec</a>)
+</p>
+<p>
+<p>Image is the NGINX image to use.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>repository</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Repository is the image path.
+Default is ghcr.io/nginx/nginx-gateway-fabric/nginx.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>tag</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Tag is the image tag to use. Default matches the tag of the control plane.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>pullPolicy</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha2.PullPolicy">
+PullPolicy
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>PullPolicy describes a policy for if/when to pull a container image.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha2.KubernetesSpec">KubernetesSpec
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha2.KubernetesSpec" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha2.NginxProxySpec">NginxProxySpec</a>)
+</p>
+<p>
+<p>KubernetesSpec contains the configuration for the NGINX Deployment and Service Kubernetes objects.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>deployment</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha2.DeploymentSpec">
+DeploymentSpec
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Deployment is the configuration for the NGINX Deployment.
+This is the default deployment option.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>daemonSet</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha2.DaemonSetSpec">
+DaemonSetSpec
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>DaemonSet is the configuration for the NGINX DaemonSet.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>service</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha2.ServiceSpec">
+ServiceSpec
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Service is the configuration for the NGINX Service.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha2.Metrics">Metrics
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha2.Metrics" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha2.NginxProxySpec">NginxProxySpec</a>)
+</p>
+<p>
+<p>Metrics defines the configuration for Prometheus scraping metrics.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>port</code><br/>
+<em>
+int32
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Port where the Prometheus metrics are exposed.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>disable</code><br/>
+<em>
+bool
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Disable serving Prometheus metrics on the listen port.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha2.NginxErrorLogLevel">NginxErrorLogLevel
+(<code>string</code> alias)</p><a class="headerlink" href="#gateway.nginx.org%2fv1alpha2.NginxErrorLogLevel" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha2.NginxLogging">NginxLogging</a>)
+</p>
+<p>
+<p>NginxErrorLogLevel type defines the log level of error logs for NGINX.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr><td><p>&#34;alert&#34;</p></td>
+<td><p>NginxLogLevelAlert is the alert level for NGINX error logs.</p>
+</td>
+</tr><tr><td><p>&#34;crit&#34;</p></td>
+<td><p>NginxLogLevelCrit is the crit level for NGINX error logs.</p>
+</td>
+</tr><tr><td><p>&#34;debug&#34;</p></td>
+<td><p>NginxLogLevelDebug is the debug level for NGINX error logs.</p>
+</td>
+</tr><tr><td><p>&#34;emerg&#34;</p></td>
+<td><p>NginxLogLevelEmerg is the emerg level for NGINX error logs.</p>
+</td>
+</tr><tr><td><p>&#34;error&#34;</p></td>
+<td><p>NginxLogLevelError is the error level for NGINX error logs.</p>
+</td>
+</tr><tr><td><p>&#34;info&#34;</p></td>
+<td><p>NginxLogLevelInfo is the info level for NGINX error logs.</p>
+</td>
+</tr><tr><td><p>&#34;notice&#34;</p></td>
+<td><p>NginxLogLevelNotice is the notice level for NGINX error logs.</p>
+</td>
+</tr><tr><td><p>&#34;warn&#34;</p></td>
+<td><p>NginxLogLevelWarn is the warn level for NGINX error logs.</p>
+</td>
+</tr></tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha2.NginxLogging">NginxLogging
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha2.NginxLogging" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha2.NginxProxySpec">NginxProxySpec</a>)
+</p>
+<p>
+<p>NginxLogging defines logging related settings for NGINX.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>errorLevel</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha2.NginxErrorLogLevel">
+NginxErrorLogLevel
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>ErrorLevel defines the error log level. Possible log levels listed in order of increasing severity are
+debug, info, notice, warn, error, crit, alert, and emerg. Setting a certain log level will cause all messages
+of the specified and more severe log levels to be logged. For example, the log level &lsquo;error&rsquo; will cause error,
+crit, alert, and emerg messages to be logged. <a href="https://nginx.org/en/docs/ngx_core_module.html#error_log">https://nginx.org/en/docs/ngx_core_module.html#error_log</a></p>
+</td>
+</tr>
+<tr>
+<td>
+<code>agentLevel</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha2.AgentLogLevel">
+AgentLogLevel
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>AgentLevel defines the log level of the NGINX agent process. Changing this value results in a
+re-roll of the NGINX deployment.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha2.NginxPlus">NginxPlus
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha2.NginxPlus" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha2.NginxProxySpec">NginxProxySpec</a>)
+</p>
+<p>
+<p>NginxPlus specifies NGINX Plus additional settings. These will only be applied if NGINX Plus is being used.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>allowedAddresses</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha2.NginxPlusAllowAddress">
+[]NginxPlusAllowAddress
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>AllowedAddresses specifies IPAddresses or CIDR blocks to the allow list for accessing the NGINX Plus API.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha2.NginxPlusAllowAddress">NginxPlusAllowAddress
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha2.NginxPlusAllowAddress" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha2.NginxPlus">NginxPlus</a>)
+</p>
+<p>
+<p>NginxPlusAllowAddress specifies the address type and value for an NginxPlus allow address.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>type</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha2.NginxPlusAllowAddressType">
+NginxPlusAllowAddressType
+</a>
+</em>
+</td>
+<td>
+<p>Type specifies the type of address.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>value</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<p>Value specifies the address value.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha2.NginxPlusAllowAddressType">NginxPlusAllowAddressType
+(<code>string</code> alias)</p><a class="headerlink" href="#gateway.nginx.org%2fv1alpha2.NginxPlusAllowAddressType" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha2.NginxPlusAllowAddress">NginxPlusAllowAddress</a>)
+</p>
+<p>
+<p>NginxPlusAllowAddressType specifies the type of address.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr><td><p>&#34;CIDR&#34;</p></td>
+<td><p>NginxPlusAllowCIDRAddressType specifies that the address is a CIDR block.</p>
+</td>
+</tr><tr><td><p>&#34;IPAddress&#34;</p></td>
+<td><p>NginxPlusAllowIPAddressType specifies that the address is an IP address.</p>
+</td>
+</tr></tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha2.NginxProxySpec">NginxProxySpec
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha2.NginxProxySpec" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha2.NginxProxy">NginxProxy</a>)
+</p>
+<p>
+<p>NginxProxySpec defines the desired state of the NginxProxy.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>ipFamily</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha2.IPFamilyType">
+IPFamilyType
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>IPFamily specifies the IP family to be used by the NGINX.
+Default is &ldquo;dual&rdquo;, meaning the server will use both IPv4 and IPv6.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>telemetry</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha2.Telemetry">
+Telemetry
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Telemetry specifies the OpenTelemetry configuration.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>metrics</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha2.Metrics">
+Metrics
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Metrics defines the configuration for Prometheus scraping metrics. Changing this value results in a
+re-roll of the NGINX deployment.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>rewriteClientIP</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha2.RewriteClientIP">
+RewriteClientIP
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>RewriteClientIP defines configuration for rewriting the client IP to the original client&rsquo;s IP.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>logging</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha2.NginxLogging">
+NginxLogging
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Logging defines logging related settings for NGINX.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>nginxPlus</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha2.NginxPlus">
+NginxPlus
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>NginxPlus specifies NGINX Plus additional settings.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>disableHTTP2</code><br/>
+<em>
+bool
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>DisableHTTP2 defines if http2 should be disabled for all servers.
+If not specified, or set to false, http2 will be enabled for all servers.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>kubernetes</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha2.KubernetesSpec">
+KubernetesSpec
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Kubernetes contains the configuration for the NGINX Deployment and Service Kubernetes objects.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha2.NodePort">NodePort
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha2.NodePort" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha2.ServiceSpec">ServiceSpec</a>)
+</p>
+<p>
+<p>NodePort creates a port on each node on which the NGINX data plane service is exposed. The NodePort MUST
+map to a Gateway listener port, otherwise it will be ignored. If not specified, Kubernetes allocates a NodePort
+automatically if required. The default NodePort range enforced by Kubernetes is 30000-32767.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>port</code><br/>
+<em>
+int32
+</em>
+</td>
+<td>
+<p>Port is the NodePort to expose.
+kubebuilder:validation:Minimum=1
+kubebuilder:validation:Maximum=65535</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>listenerPort</code><br/>
+<em>
+int32
+</em>
+</td>
+<td>
+<p>ListenerPort is the Gateway listener port that this NodePort maps to.
+kubebuilder:validation:Minimum=1
+kubebuilder:validation:Maximum=65535</p>
+</td>
+</tr>
+</tbody>
+</table>
 <h3 id="gateway.nginx.org/v1alpha2.ObservabilityPolicySpec">ObservabilityPolicySpec
 <a class="headerlink" href="#gateway.nginx.org%2fv1alpha2.ObservabilityPolicySpec" title="Permanent link">¶</a>
 </h3>
@@ -2467,6 +2858,614 @@ Objects must be in the same namespace as the policy.
 Support: HTTPRoute, GRPCRoute.</p>
 <p>TargetRefs must be <em>distinct</em>. This means that the multi-part key defined by <code>kind</code> and <code>name</code> must
 be unique across all targetRef entries in the ObservabilityPolicy.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha2.PodSpec">PodSpec
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha2.PodSpec" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha2.DaemonSetSpec">DaemonSetSpec</a>,
+<a href="#gateway.nginx.org/v1alpha2.DeploymentSpec">DeploymentSpec</a>)
+</p>
+<p>
+<p>PodSpec defines Pod-specific fields.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>terminationGracePeriodSeconds</code><br/>
+<em>
+int64
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>TerminationGracePeriodSeconds is the optional duration in seconds the pod needs to terminate gracefully.
+Value must be non-negative integer. The value zero indicates stop immediately via
+the kill signal (no opportunity to shut down).
+If this value is nil, the default grace period will be used instead.
+The grace period is the duration in seconds after the processes running in the pod are sent
+a termination signal and the time when the processes are forcibly halted with a kill signal.
+Set this value longer than the expected cleanup time for your process.
+Defaults to 30 seconds.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>affinity</code><br/>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#affinity-v1-core">
+Kubernetes core/v1.Affinity
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Affinity is the pod&rsquo;s scheduling constraints.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>nodeSelector</code><br/>
+<em>
+map[string]string
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>NodeSelector is a selector which must be true for the pod to fit on a node.
+Selector which must match a node&rsquo;s labels for the pod to be scheduled on that node.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>tolerations</code><br/>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#toleration-v1-core">
+[]Kubernetes core/v1.Toleration
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Tolerations allow the scheduler to schedule Pods with matching taints.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>volumes</code><br/>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#volume-v1-core">
+[]Kubernetes core/v1.Volume
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Volumes represents named volumes in a pod that may be accessed by any container in the pod.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>topologySpreadConstraints</code><br/>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#topologyspreadconstraint-v1-core">
+[]Kubernetes core/v1.TopologySpreadConstraint
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>TopologySpreadConstraints describes how a group of Pods ought to spread across topology
+domains. Scheduler will schedule Pods in a way which abides by the constraints.
+All topologySpreadConstraints are ANDed.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha2.PullPolicy">PullPolicy
+(<code>string</code> alias)</p><a class="headerlink" href="#gateway.nginx.org%2fv1alpha2.PullPolicy" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha2.Image">Image</a>)
+</p>
+<p>
+<p>PullPolicy describes a policy for if/when to pull a container image.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr><td><p>&#34;Always&#34;</p></td>
+<td><p>PullAlways means that kubelet always attempts to pull the latest image. Container will fail if the pull fails.</p>
+</td>
+</tr><tr><td><p>&#34;IfNotPresent&#34;</p></td>
+<td><p>PullIfNotPresent means that kubelet pulls if the image isn&rsquo;t present on disk. Container will fail if the image
+isn&rsquo;t present and the pull fails.</p>
+</td>
+</tr><tr><td><p>&#34;Never&#34;</p></td>
+<td><p>PullNever means that kubelet never pulls an image, but only uses a local image. Container will fail if the
+image isn&rsquo;t present.</p>
+</td>
+</tr></tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha2.RewriteClientIP">RewriteClientIP
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha2.RewriteClientIP" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha2.NginxProxySpec">NginxProxySpec</a>)
+</p>
+<p>
+<p>RewriteClientIP specifies the configuration for rewriting the client&rsquo;s IP address.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>mode</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha2.RewriteClientIPModeType">
+RewriteClientIPModeType
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Mode defines how NGINX will rewrite the client&rsquo;s IP address.
+There are two possible modes:
+- ProxyProtocol: NGINX will rewrite the client&rsquo;s IP using the PROXY protocol header.
+- XForwardedFor: NGINX will rewrite the client&rsquo;s IP using the X-Forwarded-For header.
+Sets NGINX directive real_ip_header: <a href="https://nginx.org/en/docs/http/ngx_http_realip_module.html#real_ip_header">https://nginx.org/en/docs/http/ngx_http_realip_module.html#real_ip_header</a></p>
+</td>
+</tr>
+<tr>
+<td>
+<code>setIPRecursively</code><br/>
+<em>
+bool
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>SetIPRecursively configures whether recursive search is used when selecting the client&rsquo;s address from
+the X-Forwarded-For header. It is used in conjunction with TrustedAddresses.
+If enabled, NGINX will recurse on the values in X-Forwarded-Header from the end of array
+to start of array and select the first untrusted IP.
+For example, if X-Forwarded-For is [11.11.11.11, 22.22.22.22, 55.55.55.1],
+and TrustedAddresses is set to 55.55.55.<sup>1</sup>&frasl;<sub>32</sub>, NGINX will rewrite the client IP to 22.22.22.22.
+If disabled, NGINX will select the IP at the end of the array.
+In the previous example, 55.55.55.1 would be selected.
+Sets NGINX directive real_ip_recursive: <a href="https://nginx.org/en/docs/http/ngx_http_realip_module.html#real_ip_recursive">https://nginx.org/en/docs/http/ngx_http_realip_module.html#real_ip_recursive</a></p>
+</td>
+</tr>
+<tr>
+<td>
+<code>trustedAddresses</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha2.RewriteClientIPAddress">
+[]RewriteClientIPAddress
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>TrustedAddresses specifies the addresses that are trusted to send correct client IP information.
+If a request comes from a trusted address, NGINX will rewrite the client IP information,
+and forward it to the backend in the X-Forwarded-For* and X-Real-IP headers.
+If the request does not come from a trusted address, NGINX will not rewrite the client IP information.
+To trust all addresses (not recommended for production), set to 0.0.0.0/0.
+If no addresses are provided, NGINX will not rewrite the client IP information.
+Sets NGINX directive set_real_ip_from: <a href="https://nginx.org/en/docs/http/ngx_http_realip_module.html#set_real_ip_from">https://nginx.org/en/docs/http/ngx_http_realip_module.html#set_real_ip_from</a>
+This field is required if mode is set.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha2.RewriteClientIPAddress">RewriteClientIPAddress
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha2.RewriteClientIPAddress" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha2.RewriteClientIP">RewriteClientIP</a>)
+</p>
+<p>
+<p>RewriteClientIPAddress specifies the address type and value for a RewriteClientIP address.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>type</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha2.RewriteClientIPAddressType">
+RewriteClientIPAddressType
+</a>
+</em>
+</td>
+<td>
+<p>Type specifies the type of address.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>value</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<p>Value specifies the address value.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha2.RewriteClientIPAddressType">RewriteClientIPAddressType
+(<code>string</code> alias)</p><a class="headerlink" href="#gateway.nginx.org%2fv1alpha2.RewriteClientIPAddressType" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha2.RewriteClientIPAddress">RewriteClientIPAddress</a>)
+</p>
+<p>
+<p>RewriteClientIPAddressType specifies the type of address.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr><td><p>&#34;CIDR&#34;</p></td>
+<td><p>RewriteClientIPCIDRAddressType specifies that the address is a CIDR block.</p>
+</td>
+</tr><tr><td><p>&#34;Hostname&#34;</p></td>
+<td><p>RewriteClientIPHostnameAddressType specifies that the address is a Hostname.</p>
+</td>
+</tr><tr><td><p>&#34;IPAddress&#34;</p></td>
+<td><p>RewriteClientIPIPAddressType specifies that the address is an IP address.</p>
+</td>
+</tr></tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha2.RewriteClientIPModeType">RewriteClientIPModeType
+(<code>string</code> alias)</p><a class="headerlink" href="#gateway.nginx.org%2fv1alpha2.RewriteClientIPModeType" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha2.RewriteClientIP">RewriteClientIP</a>)
+</p>
+<p>
+<p>RewriteClientIPModeType defines how NGINX Gateway Fabric will determine the client&rsquo;s original IP address.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr><td><p>&#34;ProxyProtocol&#34;</p></td>
+<td><p>RewriteClientIPModeProxyProtocol configures NGINX to accept PROXY protocol and
+set the client&rsquo;s IP address to the IP address in the PROXY protocol header.
+Sets the proxy_protocol parameter on the listen directive of all servers and sets real_ip_header
+to proxy_protocol: <a href="https://nginx.org/en/docs/http/ngx_http_realip_module.html#real_ip_header">https://nginx.org/en/docs/http/ngx_http_realip_module.html#real_ip_header</a>.</p>
+</td>
+</tr><tr><td><p>&#34;XForwardedFor&#34;</p></td>
+<td><p>RewriteClientIPModeXForwardedFor configures NGINX to set the client&rsquo;s IP address to the
+IP address in the X-Forwarded-For HTTP header.
+<a href="https://nginx.org/en/docs/http/ngx_http_realip_module.html#real_ip_header">https://nginx.org/en/docs/http/ngx_http_realip_module.html#real_ip_header</a>.</p>
+</td>
+</tr></tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha2.ServiceSpec">ServiceSpec
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha2.ServiceSpec" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha2.KubernetesSpec">KubernetesSpec</a>)
+</p>
+<p>
+<p>ServiceSpec is the configuration for the NGINX Service.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>type</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha2.ServiceType">
+ServiceType
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>ServiceType describes ingress method for the Service.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>externalTrafficPolicy</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha2.ExternalTrafficPolicy">
+ExternalTrafficPolicy
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>ExternalTrafficPolicy describes how nodes distribute service traffic they
+receive on one of the Service&rsquo;s &ldquo;externally-facing&rdquo; addresses (NodePorts, ExternalIPs,
+and LoadBalancer IPs.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>loadBalancerIP</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>LoadBalancerIP is a static IP address for the load balancer. Requires service type to be LoadBalancer.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>loadBalancerClass</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>LoadBalancerClass is the class of the load balancer implementation this Service belongs to.
+Requires service type to be LoadBalancer.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>loadBalancerSourceRanges</code><br/>
+<em>
+[]string
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>LoadBalancerSourceRanges are the IP ranges (CIDR) that are allowed to access the load balancer.
+Requires service type to be LoadBalancer.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>nodePorts</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha2.NodePort">
+[]NodePort
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>NodePorts are the list of NodePorts to expose on the NGINX data plane service.
+Each NodePort MUST map to a Gateway listener port, otherwise it will be ignored.
+The default NodePort range enforced by Kubernetes is 30000-32767.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha2.ServiceType">ServiceType
+(<code>string</code> alias)</p><a class="headerlink" href="#gateway.nginx.org%2fv1alpha2.ServiceType" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha2.ServiceSpec">ServiceSpec</a>)
+</p>
+<p>
+<p>ServiceType describes ingress method for the Service.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr><td><p>&#34;ClusterIP&#34;</p></td>
+<td><p>ServiceTypeClusterIP means a Service will only be accessible inside the
+cluster, via the cluster IP.</p>
+</td>
+</tr><tr><td><p>&#34;LoadBalancer&#34;</p></td>
+<td><p>ServiceTypeLoadBalancer means a Service will be exposed via an
+external load balancer (if the cloud provider supports it), in addition
+to &lsquo;NodePort&rsquo; type.</p>
+</td>
+</tr><tr><td><p>&#34;NodePort&#34;</p></td>
+<td><p>ServiceTypeNodePort means a Service will be exposed on one port of
+every node, in addition to &lsquo;ClusterIP&rsquo; type.</p>
+</td>
+</tr></tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha2.Telemetry">Telemetry
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha2.Telemetry" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha2.NginxProxySpec">NginxProxySpec</a>)
+</p>
+<p>
+<p>Telemetry specifies the OpenTelemetry configuration.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>disabledFeatures</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha2.DisableTelemetryFeature">
+[]DisableTelemetryFeature
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>DisabledFeatures specifies OpenTelemetry features to be disabled.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>exporter</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha2.TelemetryExporter">
+TelemetryExporter
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Exporter specifies OpenTelemetry export parameters.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>serviceName</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>ServiceName is the &ldquo;service.name&rdquo; attribute of the OpenTelemetry resource.
+Default is &lsquo;ngf:<gateway-namespace>:<gateway-name>&rsquo;. If a value is provided by the user,
+then the default becomes a prefix to that value.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>spanAttributes</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.SpanAttribute">
+[]SpanAttribute
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>SpanAttributes are custom key/value attributes that are added to each span.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha2.TelemetryExporter">TelemetryExporter
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha2.TelemetryExporter" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha2.Telemetry">Telemetry</a>)
+</p>
+<p>
+<p>TelemetryExporter specifies OpenTelemetry export parameters.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>interval</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.Duration">
+Duration
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Interval is the maximum interval between two exports.
+Default: <a href="https://nginx.org/en/docs/ngx_otel_module.html#otel_exporter">https://nginx.org/en/docs/ngx_otel_module.html#otel_exporter</a></p>
+</td>
+</tr>
+<tr>
+<td>
+<code>batchSize</code><br/>
+<em>
+int32
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>BatchSize is the maximum number of spans to be sent in one batch per worker.
+Default: <a href="https://nginx.org/en/docs/ngx_otel_module.html#otel_exporter">https://nginx.org/en/docs/ngx_otel_module.html#otel_exporter</a></p>
+</td>
+</tr>
+<tr>
+<td>
+<code>batchCount</code><br/>
+<em>
+int32
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>BatchCount is the number of pending batches per worker, spans exceeding the limit are dropped.
+Default: <a href="https://nginx.org/en/docs/ngx_otel_module.html#otel_exporter">https://nginx.org/en/docs/ngx_otel_module.html#otel_exporter</a></p>
+</td>
+</tr>
+<tr>
+<td>
+<code>endpoint</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Endpoint is the address of OTLP/gRPC endpoint that will accept telemetry data.
+Format: alphanumeric hostname with optional http scheme and optional port.</p>
 </td>
 </tr>
 </tbody>
