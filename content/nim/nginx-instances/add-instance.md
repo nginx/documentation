@@ -6,13 +6,13 @@ nd-content-type: how-to
 nd-product: NIM
 ---
 
-This guide shows you how to add NGINX Open Source and NGINX Plus instances to F5 NGINX Instance Manager.
+This guide shows you how to add NGINX Open Source and NGINX Plus instances to F5 NGINX Instance Manager so you can manage them from a central dashboard.
 
 ## Before you begin
 
 Make sure you have:
 
-- One or more instances running NGINX Open Source or NGINX Plus.
+- One or more instances running [NGINX Open Source]({{< ref "nginx/admin-guide/installing-nginx/installing-nginx-open-source.md" >}}) or [NGINX Plus]({{< ref "nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}).
 - Admin access to NGINX Instance Manager.
 
 ## Add instances

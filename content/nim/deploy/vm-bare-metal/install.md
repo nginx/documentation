@@ -296,3 +296,9 @@ bash install-nim-bundle.sh -r
 ## Uninstall NGINX Instance Manager {#uninstall-nim}
 
 {{< include "nim/uninstall/uninstall-nim.md" >}}
+
+---
+
+## Next steps
+
+- [Add NGINX Open Source and NGINX Plus instances to NGINX Instance Manager]({{< ref "nim/nginx-instances/add-instance.md" >}})

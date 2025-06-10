@@ -41,11 +41,7 @@ To deploy NGINX Instance Manager using a Helm chart, you need:
 
 ---
 
-## Get the NGINX Instance Manager images
-
-### Using Docker
-
-### Using Helm with a JWT token
+## Set up image registry access for NGINX Instance Manager
 
 You can use your NGINX JWT as a Docker configuration secret with Helm charts.
 
@@ -433,5 +429,10 @@ To upgrade:
 
 ## Troubleshooting
 
-For instructions on creating a support package to share with NGINX Customer Support, see [Create a Support Package from a Helm Installation]({{< ref "/nms/support/k8s-support-package.md" >}}).
+For instructions on creating a support package to share with NGINX Customer Support, see [Create a Support Package from a Helm Installation]({{< ref "nim/support/k8s-support-package.md" >}}).
 
+---
+
+## Next steps
+
+- [Add NGINX Open Source and NGINX Plus instances to NGINX Instance Manager]({{< ref "nim/nginx-instances/add-instance.md" >}})

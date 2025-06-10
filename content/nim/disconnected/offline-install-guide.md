@@ -206,3 +206,8 @@ sudo chmod 644 /usr/share/nms/cve.xml && \
 sudo systemctl restart nms-dpm
 ```
 
+---
+
+## Next steps
+
+- [Add NGINX Open Source and NGINX Plus instances to NGINX Instance Manager]({{< ref "nim/nginx-instances/add-instance.md" >}})
