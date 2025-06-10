@@ -12,7 +12,7 @@ type:
 
 This document provides technical specifications for NGINX Agent. It includes information on supported distributions, deployment environments, NGINX versions, sizing recommendations, and logging.
 
-## NGINX Agent v3 Compatibility 
+## NGINX Agent v3.0 Compatibility 
 {{< bootstrap-table "table table-striped table-bordered" >}}
 | NGINX Product | Agent Version  |
 |-----------|--------------|
