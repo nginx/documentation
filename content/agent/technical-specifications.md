@@ -14,13 +14,13 @@ This document provides technical specifications for NGINX Agent. It includes inf
 
 ## NGINX Agent v3.0 Compatibility 
 {{< bootstrap-table "table table-striped table-bordered" >}}
-| NGINX Product | Agent Version  |
-|-----------|--------------|
-| **NGINX One Console** | No |
-| **NGINX Gateway Fabric** | Yes |
-| **NGINX Plus** | Yes |
-| **NGINX Ingress Controller** | No |
-| **NGINX Instance Manager** | No |
+| NGINX Product                | Agent Version  |
+|------------------------------|----------------|
+| **NGINX One Console**        | 2.x            |
+| **NGINX Gateway Fabric**     | 3.x            | 
+| **NGINX Plus**               | 2.x, 3.x       |
+| **NGINX Ingress Controller** | 2.x            |
+| **NGINX Instance Manager**   | 2.x            |
 {{< /bootstrap-table >}}
 
 ## Supported Distributions
