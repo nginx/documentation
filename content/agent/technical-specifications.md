@@ -16,10 +16,10 @@ This document provides technical specifications for NGINX Agent. It includes inf
 {{< bootstrap-table "table table-striped table-bordered" >}}
 | NGINX Product | Agent Version  |
 |-----------|--------------|
-| **NGINX One Console** | No (Coming soon) |
+| **NGINX One Console** | No |
 | **NGINX Gateway Fabric** | Yes |
 | **NGINX Plus** | Yes |
-| **NGINX Ingress Controller** | No (Coming soon)|
+| **NGINX Ingress Controller** | No |
 | **NGINX Instance Manager** | No |
 {{< /bootstrap-table >}}
 
