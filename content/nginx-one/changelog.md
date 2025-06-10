@@ -83,8 +83,8 @@ You can:
 - Remove a deployed certificate from a Config Sync Group
 
 For more information, including warnings about risks, see our documentation on how you can:
-- [Add a file]({{< ref "/nginx-one/how-to/nginx-configs/add-file.md" >}})
-- [Manage certificates]({{< ref "/nginx-one/how-to/certificates/manage-certificates.md" >}})
+- [Add a file]({{< ref "/nginx-one/nginx-configs/add-file.md" >}})
+- [Manage certificates]({{< ref "/nginx-one/nginx-configs/certificates/manage-certificates.md" >}})
 
 ### Revert a configuration
 
@@ -108,7 +108,7 @@ From the NGINX One Console you can now:
 - Ensure that your certificates are current and correct.
 - Manage your certificates from a central location. This can help you simplify operations and remotely update, rotate, and deploy those certificates.
 
-For more information, see the full documentation on how you can [Manage Certificates]({{< ref "/nginx-one/how-to/certificates/manage-certificates.md" >}}).
+For more information, see the full documentation on how you can [Manage Certificates]({{< ref "/nginx-one/nginx-configs/certificates/manage-certificates.md" >}}).
 
 ## August 22, 2024
 
@@ -116,7 +116,7 @@ For more information, see the full documentation on how you can [Manage Certific
 
 Config Sync Groups are now available in the F5 NGINX One Console. This feature allows you to manage and synchronize NGINX configurations across multiple instances as a single entity, ensuring consistency and simplifying the management of your NGINX environment.
 
-For more information, see the full documentation on [Managing Config Sync Groups]({{< ref "/nginx-one/how-to/config-sync-groups/manage-config-sync-groups.md" >}}).
+For more information, see the full documentation on [Managing Config Sync Groups]({{< ref "/nginx-one/nginx-configs/config-sync-groups/manage-config-sync-groups.md" >}}).
 
 ## August 8, 2024
 
@@ -136,7 +136,7 @@ Select the link for each CVE to see the details, including the CVE's publish dat
 
 ### Edit NGINX configurations
 
-You can now make configuration changes to your NGINX instances. For more details, see [View and edit NGINX configurations]({{< ref "/nginx-one/how-to/nginx-configs/view-edit-nginx-configurations.md" >}}).
+You can now make configuration changes to your NGINX instances. For more details, see [View and edit NGINX configurations]({{< ref "/nginx-one/nginx-configs/view-edit-nginx-configurations.md" >}}).
 
 ## May 28, 2024
 
