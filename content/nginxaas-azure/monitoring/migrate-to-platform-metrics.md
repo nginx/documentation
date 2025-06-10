@@ -9,7 +9,7 @@ type:
 
 ## Overview
 
-F5 NGINXaaS for Azure previously supported monitoring using [Custom Metrics](https://learn.microsoft.com/en-us/azure/azure-monitor/metrics/metrics-custom-overview). Custom metrics is a preview feature in Azure and support for it will be dropped in the future. We have added support for Platform metrics which is the Azure recommended way for monitoring resources, we strongly recommend you to migrate your deployments monitoring to use Platform metrics to take advantage of reduced latency and higher reliability.
+F5 NGINXaaS for Azure previously supported monitoring through [Custom Metrics](https://learn.microsoft.com/en-us/azure/azure-monitor/metrics/metrics-custom-overview), which is a preview feature in Azure. As a preview feature, support for Custom Metrics will be removed in the future. We've added support for Platform Metrics, which is the recommended way to monitor resources in Azure. We strongly recommend switching your deployment's monitoring to Platform Metrics to take advantage of lower latency and better reliability.
 
 ## Migration steps
 
