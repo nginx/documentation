@@ -42,7 +42,7 @@ Since version 1.23.4, NGINX uses these defaults:
 
 ```nginx
 ssl_protocols TLSv1.2 TLSv1.3;
-ssl_ciphers HIGH:!aNULL:!MD5;
+ssl_ciphers   HIGH:!aNULL:!MD5;
 ```
 
 Vulnerabilities are sometimes found in the design of older ciphers, and we recommend disabling them in a modern NGINX configuration (unfortunately, the default configuration cannot easily be changed because of backward compatibility for existing NGINX deployments). Please note that CBC-mode ciphers might be vulnerable to a number of attacks (the BEAST attack in particular as described in  [CVE-2011-3389](https://nvd.nist.gov/vuln/detail/CVE-2011-3389)), and we recommend not using SSLv3 due to the [POODLE](https://nvd.nist.gov/vuln/detail/CVE-2014-3566) attack, unless you need to support legacy clients.
