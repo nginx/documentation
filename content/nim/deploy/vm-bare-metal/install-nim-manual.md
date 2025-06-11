@@ -1,7 +1,7 @@
 ---
 description: ''
 docs: DOCS-1211
-title: Manually install on a virtual machine or bare metal (deprecated)
+title: Manually install any version of NGINX Instance Manager
 toc: true
 weight: 10
 noindex: true
@@ -11,10 +11,7 @@ type:
 
 ## Overview
 
-Follow the steps in this guide to install or upgrade NGINX Instance Manager.
-
-{{<call-out "caution" "Deprecated documentation notice" "fa fa-exclamation-triangle" >}}
-This document outlines manual steps that have been replaced by a simplified script-based process. For most users, we recommend using the updated process documented [here]({{< ref "nim/deploy/vm-bare-metal/install.md" >}}).{{</call-out>}}
+Follow the steps in this guide to install or upgrade a specific version of NGINX Instance Manager.
 
 ## Before You Begin
 
@@ -53,7 +50,7 @@ Follow these steps to download the certificate and private key for NGINX Instanc
    sudo mv <nginx-mgmt-suite-trial.key> /etc/ssl/nginx/nginx-repo.key
    ```
 
-   {{<note>}}The downloaded filenames may vary depending on your subscription type. Modify the commands above accordingly to match the actual filenames.{{</note>}}
+   The downloaded filenames may vary depending on your subscription type. Modify the commands above accordingly to match the actual filenames.
 
 ---
 
@@ -63,7 +60,9 @@ Install NGINX Open Source or NGINX Plus on the host where you'll install NGINX I
 
 - [Installing NGINX and NGINX Plus](https://docs.nginx.com/nginx/admin-guide/installing-nginx/)
 
-   {{<note>}}If you're installing NGINX Plus, you can use the `nginx-repo.key` and `nginx-repo.crt` that you added in the [previous section](#download-cert-key).{{</note>}}
+   <br>
+
+   If you're installing NGINX Plus, you can use the `nginx-repo.key` and `nginx-repo.crt` that you added in the [previous section](#download-cert-key).
 
 <details open>
 <summary><i class="fa-solid fa-circle-info"></i> Supported NGINX versions</summary>
@@ -79,117 +78,29 @@ Install NGINX Open Source or NGINX Plus on the host where you'll install NGINX I
 
 </details>
 
-{{<see-also>}}Make sure to review the [Technical Specifications]({{< ref "/nim/fundamentals/tech-specs" >}}) guide for sizing requirements and other recommended specs.{{</see-also>}}
+Make sure to review the [Technical Specifications]({{< ref "/nim/fundamentals/tech-specs" >}}) guide for sizing requirements and other recommended specs.
 
 ---
 
-## Install ClickHouse {#install-clickhouse}
+## Configure metrics collection
 
-{{<note>}}NGINX Instance Manager requires ClickHouse 22.3.15.33 or later.{{</note>}}
+### Disable metrics collection
 
-NGINX Instance Manager uses [ClickHouse](https://clickhouse.com) to store metrics, events, and alerts, as well as configuration settings.
+NGINX Instance Manager uses ClickHouse to store metrics, events, alerts, and configuration data.
 
-Select the tab for your Linux distribution, then follow the instructions to install ClickHouse.
+If you don’t need to store metrics, you can skip installing ClickHouse. But you must use NGINX Agent version {{< lightweight-nim-nginx-agent-version >}}, and you must disable metrics collection in the `/etc/nms/nms.conf` file.
 
-{{<tabs name="clickhouse">}}
+For instructions, see [Disable metrics collection]({{< ref "nim/system-configuration/configure-clickhouse.md#disable-metrics-collection" >}}).
 
-{{%tab name="CentOS, RHEL, RPM-Based"%}}
+### Install ClickHouse to enable metrics
 
-To install and enable ClickHouse CentOS, RHEL, and RPM-Based distributions, take the following steps:
+{{< include "nim/clickhouse/clickhouse-install.md" >}}
 
-1. Set up the repository:
+#### ClickHouse Default Settings
 
-    ``` bash
-    sudo yum install -y yum-utils
-    sudo yum-config-manager --add-repo https://packages.clickhouse.com/rpm/clickhouse.repo
-    ```
+NGINX Instance Manager uses the following default values for ClickHouse. To change these values, see the [Configure ClickHouse](nim/system-configuration/configure-clickhouse.md) guide.
 
-1. Install the ClickHouse server and client:
-
-    ```bash
-    sudo yum install -y clickhouse-server clickhouse-client
-    ```
-
-    > <span style="color: #c20025;"><i class="fas fa-exclamation-triangle"></i> **IMPORTANT!**</span> When installing ClickHouse, you have the option to specify a password or leave the password blank (the default is an empty string). If you choose to specify a password for ClickHouse, you must also edit the `/etc/nms/nms.conf` file after installing NGINX Instance Manager and enter your ClickHouse password; otherwise, NGINX Instance Manager won't start.
-    >
-    > For more information on customizing ClickHouse settings, refer to the [Configure ClickHouse]({{< ref "nim/system-configuration/configure-clickhouse.md" >}}) topic.
-
-1. Enable ClickHouse so that it starts automatically if the server is restarted:
-
-    ```bash
-    sudo systemctl enable clickhouse-server
-    ```
-
-1. Start the ClickHouse server:
-
-    ```bash
-    sudo systemctl start clickhouse-server
-    ```
-
-1. Verify ClickHouse is running:
-
-    ```bash
-    sudo systemctl status clickhouse-server
-    ```
-
-{{%/tab%}}
-
-{{%tab name="Debian, Ubuntu, Deb-Based"%}}
-
-To install and enable ClickHouse on Debian, Ubuntu, and Deb-Based distributions, take the following steps:
-
-1. Set up the repository:
-
-   ```bash
-   sudo apt-get install -y apt-transport-https ca-certificates dirmngr
-   GNUPGHOME=$(mktemp -d)
-   sudo GNUPGHOME="$GNUPGHOME" gpg --no-default-keyring --keyring /usr/share/keyrings/clickhouse-keyring.gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 8919F6BD2B48D754
-   sudo rm -r "$GNUPGHOME"
-   sudo chmod +r /usr/share/keyrings/clickhouse-keyring.gpg
-
-   echo "deb [signed-by=/usr/share/keyrings/clickhouse-keyring.gpg] https://packages.clickhouse.com/deb lts main" | sudo tee /etc/apt/sources.list.d/clickhouse.list
-   sudo apt-get update
-   ```
-
-1. Install the ClickHouse server and client:
-
-    ``` bash
-    sudo apt-get install -y clickhouse-server clickhouse-client
-    ```
-
-    > <span style="color: #c20025;"><i class="fas fa-exclamation-triangle"></i> **IMPORTANT!**</span> When installing ClickHouse, you have the option to specify a password or leave the password blank (the default is an empty string). If you choose to specify a password for ClickHouse, you must also edit the `/etc/nms/nms.conf` file after installing NGINX Instance Manager and enter your ClickHouse password; otherwise, NGINX Instance Manager won't start.
-    >
-    > For more information on customizing ClickHouse settings, refer to the [Configure ClickHouse]({{< ref "nim/system-configuration/configure-clickhouse.md" >}}) topic.
-
-1. Enable ClickHouse so that it starts automatically if the server is restarted:
-
-    ```bash
-    sudo systemctl enable clickhouse-server
-    ```
-
-1. Start the ClickHouse server:
-
-    ``` bash
-    sudo systemctl start clickhouse-server
-    ```
-
-1. Verify ClickHouse is running:
-
-    ```bash
-    sudo systemctl status clickhouse-server
-    ```
-
-{{%/tab%}}
-
-{{</tabs>}}
-
-### ClickHouse Default Settings
-
-NGINX Instance Manager uses the following default values for ClickHouse:
-
-{{<important>}}You can customize these settings. However, if you use custom settings, make sure to follow the [Configure ClickHouse]({{< ref "nim/system-configuration/configure-clickhouse.md" >}}) instructions to update the `nms.conf` file after you've installed NGINX Instance Manager; otherwise NGINX Instance Manager won't be able to connect to ClickHouse.{{</important>}}
-
-{{< include "installation/clickhouse-defaults.md" >}}
+{{< include "nim/clickhouse/clickhouse-defaults.md" >}}
 
 ---
 
@@ -258,16 +169,27 @@ To install NGINX Instance Manager, you need to add the official repository to pu
    sudo systemctl restart nginx
    ```
 
-### Post-Installation Steps
+## Optional post-installation steps
 
-{{< include "installation/optional-installation-steps.md" >}}
+### Configure ClickHouse
 
-### Accessing the Web Interface
+{{< include "nim/installation/optional-steps/configure-clickhouse.md" >}}
+
+### Install and configure Vault {#install-vault}
+
+{{< include "nim/installation/optional-steps/install-configure-vault.md" >}}
+
+
+### Configure SELinux
+
+{{< include "nim/installation/optional-steps/configure-selinux.md" >}}
+
+## Accessing the Web Interface
 
 {{< include "installation/access-web-ui.md" >}}
 
 
-### Add License
+## Add License
 
 {{< include "nim/admin-guide/license/connected-install-license-note.md" >}}
 
@@ -313,3 +235,9 @@ To install NGINX Instance Manager, you need to add the official repository to pu
    ```
 
 4. (Optional) If you use SELinux, follow the steps in the [Configure SELinux]({{< ref "nim/system-configuration/configure-selinux.md" >}}) guide to restore the default SELinux labels (`restorecon`) for the files and directories related to NGINX Management suite.
+
+---
+
+## Next steps
+
+- [Add NGINX Open Source and NGINX Plus instances to NGINX Instance Manager]({{< ref "nim/nginx-instances/add-instance.md" >}})

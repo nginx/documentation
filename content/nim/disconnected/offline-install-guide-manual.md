@@ -1,5 +1,5 @@
 ---
-title: Manually install in a disconnected environment (deprecated)
+title: Manually install any version of NGINX Instance Manager (disconnected)
 weight: 100
 toc: true
 noindex: true
@@ -8,18 +8,15 @@ product: NIM
 docs: DOCS-000
 ---
 
-{{<call-out "caution" "Deprecated documentation notice" "fa fa-exclamation-triangle" >}}
-This document outlines manual steps that have been replaced by a simplified script-based process. For most users, we recommend using the updated process documented [here]({{< ref "nim/disconnected/offline-install-guide.md" >}}).{{</call-out>}}
-
 ## Overview
 
 This guide explains how to install and upgrade NGINX Instance Manager in environments without Internet access. It covers key steps, including downloading packages, managing dependencies, and configuring the system for offline use. You’ll also learn how to set up NGINX Instance Manager in disconnected mode and manually update the CVE list to keep your system secure.
 
 ## Before you begin
 
-{{<call-out "important" "Complete the required prerequisites" "fas fa-exclamation-triangle">}}
+{{< call-out "important" "Complete the required prerequisites" "fas fa-exclamation-triangle" >}}
 You must complete the following prerequisite steps **before** installing NGINX Instance Manager. **Skipping these steps could cause installation issues**.
-{{</call-out>}}
+{{</ call-out >}}
 
 ### Security considerations
 
@@ -96,16 +93,13 @@ To download external dependencies:
         sudo dpkg -i ./*.deb
         ```
 
-    {{< call-out "important" "Setting a custom ClickHouse password" "fas fa-exclamation-triangle" >}}
-
-    When installing ClickHouse, you can set a password or leave it blank (default is an empty string). If you set a password, make sure to update the **/etc/nms/nms.conf** file with it after installing NGINX Instance Manager. Otherwise, NGINX Instance Manager won't start. For more information on customizing ClickHouse settings, refer to the [Configure ClickHouse]({{< ref "/nim/system-configuration/configure-clickhouse.md" >}}) topic.
-
-    {{</ call-out >}}
-
-
 ---
 
 ## Install NGINX Instance Manager {#install-nim-offline}
+
+{{< call-out "important" "Save the password!" "" >}}
+The administrator username (default: **admin**) and the generated password are displayed in the terminal during installation. Be sure to record the password and store it securely.
+{{</ call-out >}}
 
 1. Log in to the [MyF5 Customer Portal](https://account.f5.com/myf5) and download the NGINX Instance Manager package files.
 
@@ -122,10 +116,6 @@ To download external dependencies:
         ```bash
         sudo apt-get -y install -f /home/<user>/nms-instance-manager_<version>_amd64.deb
         ```
-
-    {{< call-out "important" "Save the password!" "fas fa-exclamation-triangle" >}}
-    The administrator username (default: **admin**) and the generated password are displayed in the terminal during installation. Be sure to record the password and store it securely.
-    {{</ call-out >}}
 
 3. Enable and start NGINX Instance Manager services:
 
@@ -149,9 +139,25 @@ To download external dependencies:
 
 ---
 
-## Post-installation steps (optional)
+## Optional post-installation steps
 
-{{< include "installation/optional-installation-steps.md"  >}}
+### Configure ClickHouse
+
+{{< include "nim/installation/optional-steps/configure-clickhouse.md" >}}
+
+### Disable metrics collection
+
+{{< include "nim/installation/optional-steps/disable-metrics-collection.md" >}}
+
+
+### Install and configure Vault {#install-vault}
+
+{{< include "nim/installation/optional-steps/install-configure-vault.md" >}}
+
+
+### Configure SELinux
+
+{{< include "nim/installation/optional-steps/configure-selinux.md" >}}
 
 ## Upgrade NGINX Instance Manager {#upgrade-nim-offline}
 
@@ -192,3 +198,8 @@ sudo chmod 644 /usr/share/nms/cve.xml && \
 sudo systemctl restart nms-dpm
 ```
 
+---
+
+## Next steps
+
+- [Add NGINX Open Source and NGINX Plus instances to NGINX Instance Manager]({{< ref "nim/nginx-instances/add-instance.md" >}})

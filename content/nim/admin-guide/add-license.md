@@ -1,11 +1,13 @@
 ---
 docs: DOCS-789
-title: Add license
+title: Add a license (connected)
 toc: true
-weight: 1
+weight: 10
 type:
 - how-to
 ---
+
+{{< note >}}For disconnected environments, see [Add a license (disconnected)]({{< ref "nim/disconnected/add-license-disconnected-deployment.md" >}}).{{< /note >}}
 
 ## Overview
 
