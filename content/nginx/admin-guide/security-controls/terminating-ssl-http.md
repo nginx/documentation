@@ -302,15 +302,25 @@ therefore SNI is not available
 
 - The SNI support status has been shown by the `-V` switch since versions 0.8.21 and 0.7.62.
 
-- The `ssl` parameter to the [`listen`](https://nginx.org/en/docs/http/ngx_http_core_module.html#listen) directive has been supported since version 0.7.14. Prior to version 0.8.21 it could only be specified along with the `default` parameter.
+- The `ssl` parameter of the [`listen`](https://nginx.org/en/docs/http/ngx_http_core_module.html#listen) directive has been supported since version 0.7.14. Prior to version 0.8.21 it could only be specified along with the `default` parameter.
 
 - SNI has been supported since version 0.5.23.
+
 - The shared SSL session cache has been supported since version 0.5.6.
 
+### SSL protocols
+
+ - Version 1.27.3 and later: the default SSL protocols are `TLSv1.2` and `TLSv1.3` (if supported by the OpenSSL library). Otherwise, when OpenSSL 1.0.0 or older is used, the default SSL protocols are `TLSv1` and `TLSv1.1`.
+
+- Version 1.23.4 and later: the default SSL protocols are `TLSv1`, `TLSv1.1`, `TLSv1.2`, and `TLSv1.3` (if supported by the OpenSSL library).
+
 - Version 1.9.1 and later: the default SSL protocols are `TLSv1`, `TLSv1.1`, and `TLSv1.2` (if supported by the OpenSSL library).
+
 - From versions 0.7.65 and 0.8.19 and later, the default SSL protocols are `SSLv3`, `TLSv1`, `TLSv1.1`, and `TLSv1.2` (if supported by the OpenSSL library).
 
 - In versions 0.7.64 and 0.8.18 and earlier, the default SSL protocols are `SSLv2`, `SSLv3`, and `TLSv1`.
+
+### SSL ciphers
 
 - In version 1.0.5 and later, the default SSL ciphers are `HIGH:!aNULL:!MD5`.
 
