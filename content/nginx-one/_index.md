@@ -40,7 +40,7 @@ cascade:
     {{</ card >}}
   {{</ card-section >}}
 
-  # Other Products 
+  # Other Components 
   {{< card-section title="Kubernetes Solutions">}}
     {{< card title="NGINX Ingress Controller" titleUrl="/nginx-ingress-controller/" icon="NGINX-Ingress-Controller-product-icon">}}
       Kubernetes traffic management with API gateway, identity, and observability features. 
