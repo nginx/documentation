@@ -1,0 +1,164 @@
+# NGINX Plus / OSS with NGINX Agent
+# NGINX webservers with ingress-demo pages
+# NGINX One Console Instance Registration
+# NGINX Basics, Dec 2024
+# Chris Akker, Shouvik Dutta, Adam Currier
+#
+services:
+  plus1: # Alpine NGINX Plus Web / Load Balancer
+    environment:
+      NGINX_AGENT_SERVER_HOST: 'agent.connect.nginx.com'
+      NGINX_AGENT_SERVER_GRPCPORT: '443'
+      NGINX_AGENT_TLS_ENABLE: 'true'
+      NGINX_AGENT_SERVER_TOKEN: $TOKEN # Datakey From One Console
+      # NGINX_AGENT_INSTANCE_GROUP: $NAME-sync-group
+    hostname: $NAME-plus1
+    container_name: $NAME-plus1
+    image: private-registry.nginx.com/nginx-plus/agent:nginx-plus-r32-alpine-3.20-20240613 # CVE - From Nginx Private Registry
+    volumes: # Sync these folders to container
+      - ./nginx-plus/etc/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx-plus/etc/nginx/conf.d:/etc/nginx/conf.d
+      - ./nginx-plus/etc/nginx/includes:/etc/nginx/includes
+      - ./nginx-plus/usr/share/nginx/html:/usr/share/nginx/html
+    ports:
+      - 80:80 # Open for HTTP
+      - 443:443 # Open for HTTPS
+      - 9000:9000 # Open for stub status page
+      - 9113:9113 # Open for Prometheus Scraper page
+    restart: always
+  #
+  plus2: # Alpine NGINX Plus Web / Load Balancer
+    environment:
+      NGINX_AGENT_SERVER_HOST: 'agent.connect.nginx.com'
+      NGINX_AGENT_SERVER_GRPCPORT: '443'
+      NGINX_AGENT_TLS_ENABLE: 'true'
+      NGINX_AGENT_SERVER_TOKEN: $TOKEN # Datakey Fron Nginx One Console
+      # NGINX_AGENT_INSTANCE_GROUP: $NAME-sync-group
+    hostname: $NAME-plus2
+    container_name: $NAME-plus2
+    image: private-registry.nginx.com/nginx-plus/agent:nginx-plus-r31-alpine-3.19-20240522 # CVE - From Nginx Private Registry
+    volumes: # Sync these folders to container
+      - ./nginx-plus/etc/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx-plus/etc/nginx/conf.d:/etc/nginx/conf.d
+      - ./nginx-plus/etc/nginx/includes:/etc/nginx/includes
+      - ./nginx-plus/usr/share/nginx/html:/usr/share/nginx/html
+    ports:
+      - '80' # Open for HTTP
+      - '443' # Open for HTTPS
+      - '9000' # Open for API / Dashboard page
+      - '9113' # Open for Prometheus Scraper page
+    restart: always
+  #
+  plus3: # RHEL UBI NGINX Plus Web / Load Balancer
+    environment:
+      NGINX_AGENT_SERVER_HOST: 'agent.connect.nginx.com'
+      NGINX_AGENT_SERVER_GRPCPORT: '443'
+      NGINX_AGENT_TLS_ENABLE: 'true'
+      NGINX_AGENT_SERVER_TOKEN: $TOKEN # Datakey Fron Nginx One Console
+      # NGINX_AGENT_INSTANCE_GROUP: $NAME-sync-group
+    hostname: $NAME-plus3
+    container_name: $NAME-plus3
+    image: private-registry.nginx.com/nginx-plus/agent:nginx-plus-r31-ubi-9-20240522 # From Nginx Private Registry
+    volumes: # Sync these folders to container
+      - ./nginx-plus/etc/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx-plus/etc/nginx/conf.d:/etc/nginx/conf.d
+      - ./nginx-plus/etc/nginx/includes:/etc/nginx/includes
+      - ./nginx-plus/usr/share/nginx/html:/usr/share/nginx/html
+    ports:
+      - '80' # Open for HTTP
+      - '443' # Open for HTTPS
+      - '9000' # Open for API / Dashboard page
+      - '9113' # Open for Prometheus Scraper page
+    restart: always
+  #
+  oss1: # Debian NGINX OSS Web / Load Balancer
+    environment:
+      NGINX_AGENT_SERVER_HOST: 'agent.connect.nginx.com'
+      NGINX_AGENT_SERVER_GRPCPORT: '443'
+      NGINX_AGENT_TLS_ENABLE: 'true'
+      NGINX_AGENT_SERVER_TOKEN: $TOKEN # Datakey Fron Nginx One Console
+    hostname: $NAME-oss1
+    container_name: $NAME-oss1
+    image: docker-registry.nginx.com/nginx/agent:mainline # From Docker Public Registry
+    volumes: # Sync these folders to container
+      - ./nginx-oss/etc/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx-oss/etc/nginx/conf.d:/etc/nginx/conf.d
+      - ./nginx-oss/etc/nginx/includes:/etc/nginx/includes
+      - ./nginx-oss/etc/ssl/nginx:/etc/ssl/nginx
+      - ./nginx-oss/usr/share/nginx/html:/usr/share/nginx/html
+    ports:
+      - '80' # Open for HTTP
+      - '443' # Open for HTTPS
+      - '9000' # Open for stub status page
+      - '9113' # Open for Prometheus Scraper page
+    restart: always
+  #
+  oss2: # Alpine NGINX OSS Web / Load Balancer
+    environment:
+      NGINX_AGENT_SERVER_HOST: 'agent.connect.nginx.com'
+      NGINX_AGENT_SERVER_GRPCPORT: '443'
+      NGINX_AGENT_TLS_ENABLE: 'true'
+      NGINX_AGENT_SERVER_TOKEN: $TOKEN # Datakey Fron Nginx One Console
+    hostname: $NAME-oss2
+    container_name: $NAME-oss2
+    image: docker-registry.nginx.com/nginx/agent:alpine # From Docker Public Registry
+    volumes: # Sync these folders to container
+      - ./nginx-oss/etc/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx-oss/etc/nginx/conf.d:/etc/nginx/conf.d
+      - ./nginx-oss/etc/nginx/includes:/etc/nginx/includes
+      - ./nginx-oss/etc/ssl/nginx:/etc/ssl/nginx
+      - ./nginx-oss/usr/share/nginx/html:/usr/share/nginx/html
+    ports:
+      - '80' # Open for HTTP
+      - '443' # Open for HTTPS
+      - '9000' # Open for stub status page
+      - '9113' # Open for Prometheus Scraper page
+    restart: always
+    #
+  oss3: # Older Alpine NGINX OSS Web / Load Balancer
+    environment:
+      NGINX_AGENT_SERVER_HOST: 'agent.connect.nginx.com'
+      NGINX_AGENT_SERVER_GRPCPORT: '443'
+      NGINX_AGENT_TLS_ENABLE: 'true'
+      NGINX_AGENT_SERVER_TOKEN: $TOKEN # Datakey Fron Nginx One Console
+    hostname: $NAME-oss3
+    container_name: $NAME-oss3
+    image: docker-registry.nginx.com/nginx/agent:1.26-alpine # From Docker Public Registry
+    volumes: # Sync these folders to container
+      - ./nginx-oss/etc/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx-oss/etc/nginx/conf.d:/etc/nginx/conf.d
+      - ./nginx-oss/etc/nginx/includes:/etc/nginx/includes
+      - ./nginx-oss/etc/ssl/nginx:/etc/ssl/nginx
+      - ./nginx-oss/usr/share/nginx/html:/usr/share/nginx/html
+    ports:
+      - '80' # Open for HTTP
+      - '443' # Open for HTTPS
+      - '9000' # Open for stub status page
+      - '9113' # Open for Prometheus Scraper page
+    restart: always
+  #
+  web1:
+    hostname: $NAME-web1
+    container_name: $NAME-web1
+    platform: linux/amd64
+    image: nginxinc/ingress-demo # Image from Docker Hub
+    ports:
+      - '80' # Open for HTTP
+      - '443' # Open for HTTPS
+  web2:
+    hostname: $NAME-web2
+    container_name: $NAME-web2
+    platform: linux/amd64
+    image: nginxinc/ingress-demo
+    ports:
+      - '80'
+      - '433'
+  web3:
+    hostname: $NAME-web3
+    container_name: $NAME-web3
+    platform: linux/amd64
+    image: nginxinc/ingress-demo
+    ports:
+      - '80'
+      - '443'
+
