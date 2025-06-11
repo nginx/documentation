@@ -13,7 +13,7 @@ This section describes how to configure an HTTPS server on NGINX and F5 NGINX Pl
 
 ## Setting up an HTTPS Server {#setup}
 
-To set up an HTTPS server, in your **nginx.conf** file include the `ssl` parameter to the [listen](https://nginx.org/en/docs/http/ngx_http_core_module.html#listen) directive in the [server](https://nginx.org/en/docs/http/ngx_http_core_module.html#server) block, then specify the locations of the server certificate and private key files:
+To set up an HTTPS server, in your **nginx.conf** file include the `ssl` parameter to the [`listen`](https://nginx.org/en/docs/http/ngx_http_core_module.html#listen) directive in the [`server`](https://nginx.org/en/docs/http/ngx_http_core_module.html#server) block, then specify the locations of the server certificate and private key files:
 
 ```nginx
 server {
@@ -36,7 +36,7 @@ ssl_certificate_key www.example.com.cert;
 
 In this case it is important to restrict access to the file. Note that although the certificate and the key are stored in one file in this case, only the certificate is sent to clients.
 
-The [ssl_protocols](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_protocols) and [ssl_ciphers](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_ciphers ) directives can be used to require that clients use only the strong versions and ciphers of SSL/TLS when establishing connections.
+The [`ssl_protocols`](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_protocols) and [`ssl_ciphers`](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_ciphers ) directives can be used to require that clients use only the strong versions and ciphers of SSL/TLS when establishing connections.
 
 Since version 1.23.4, NGINX uses these defaults:
 
@@ -56,7 +56,7 @@ NGINX can be configured to use Online Certificate Status Protocol (OCSP) to chec
 - `Revoked` - the certificate is revoked
 - `Unknown` - no information is available about the client certificate
 
-To enable OCSP validation of SSL client certificates, specify the [ssl_ocsp](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_ocsp) directive along with the [ssl_verify_client](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_verify_client) directive, which enables certificate verification:
+To enable OCSP validation of SSL client certificates, specify the [`ssl_ocsp`](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_ocsp) directive along with the [`ssl_verify_client`](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_verify_client) directive, which enables certificate verification:
 
 ```nginx
 server {
@@ -73,7 +73,7 @@ server {
 }
 ```
 
-NGINX sends the OCSP request to the OCSP URI embedded in the client certificate unless a different URI is defined with the [ssl_ocsp_responder](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_ocsp_responder) directive. `Only http://` OCSP responders are supported:
+NGINX sends the OCSP request to the OCSP URI embedded in the client certificate unless a different URI is defined with the [`ssl_ocsp_responder`](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_ocsp_responder) directive. Only `http://` OCSP responders are supported:
 
 ```nginx
 #...
@@ -81,7 +81,7 @@ ssl_ocsp_responder http://ocsp.example.com/;
 #...
 ```
 
-To cache OCSP responses in a single memory zone shared by all worker processes, specify the [ssl_ocsp_cache](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_ocsp_cache) directive to define the name and size of the zone. Responses are cached for `1` hour unless the `nextUpdate`value in the OCSP response specifies a different value:
+To cache OCSP responses in a single memory zone shared by all worker processes, specify the [`ssl_ocsp_cache`](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_ocsp_cache) directive to define the name and size of the zone. Responses are cached for `1` hour unless the `nextUpdate`value in the OCSP response specifies a different value:
 
 ```nginx
 #...
@@ -99,7 +99,7 @@ SSL operations consume extra CPU resources. The most CPU-intensive operation is 
 - Enabling keepalive connections to send several requests via one connection
 - Reusing SSL session parameters to avoid SSL handshakes for parallel and subsequent connections
 
-Sessions are stored in the SSL session cache shared between worker processes and configured by the [ssl_session_cache](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_session_cache) directive. One megabyte of cache contains about 4000 sessions. The default cache timeout is 5 minutes. This timeout can be increased using the [ssl_session_timeout](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_session_timeout) directive. Below is a sample configuration optimized for a multi-core system with 10 megabyte shared session cache:
+Sessions are stored in the SSL session cache shared between worker processes and configured by the [`ssl_session_cache`](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_session_cache) directive. One megabyte of cache contains about 4000 sessions. The default cache timeout is `5` minutes. This timeout can be increased using the [`ssl_session_timeout`](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_session_timeout) directive. Below is a sample configuration optimized for a multi-core system with 10 megabyte shared session cache:
 
 ```nginx
 worker_processes auto;
@@ -130,7 +130,7 @@ Some browsers may complain about a certificate signed by a well-known certificat
 cat www.example.com.crt bundle.crt > www.example.com.chained.crt
 ```
 
-The resulting file should be used in the [ssl_certificate](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_certificate) directive:
+The resulting file should be used in the [`ssl_certificate`](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_certificate) directive:
 
 ```nginx
 server {
@@ -242,7 +242,7 @@ server {
 }
 ```
 
-Note that there are also some specific proxy settings for HTTPS upstreams ([proxy_ssl_ciphers](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_ssl_ciphers), [proxy_ssl_protocols](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_ssl_protocols), and [proxy_ssl_session_reuse](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_ssl_session_reuse)) which can be used for fine‑tuning SSL between NGINX and upstream servers. You can read more about these in the [HTTP proxy module documentation](https://nginx.org/en/docs/http/ngx_http_proxy_module.html).
+Note that there are also some specific proxy settings for HTTPS upstreams ([`proxy_ssl_ciphers`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_ssl_ciphers), [`proxy_ssl_protocols`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_ssl_protocols), and [`proxy_ssl_session_reuse`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_ssl_session_reuse)) which can be used for fine‑tuning SSL between NGINX and upstream servers. You can read more about these in the [HTTP proxy module documentation](https://nginx.org/en/docs/http/ngx_http_proxy_module.html).
 
 ### An SSL Certificate With Several Names
 
@@ -302,7 +302,7 @@ therefore SNI is not available
 
 - The SNI support status has been shown by the `-V` switch since versions 0.8.21 and 0.7.62.
 
-- The `ssl` parameter to the [listen](https://nginx.org/en/docs/http/ngx_http_core_module.html#listen) directive has been supported since version 0.7.14. Prior to version 0.8.21 it could only be specified along with the `default` parameter.
+- The `ssl` parameter to the [`listen`](https://nginx.org/en/docs/http/ngx_http_core_module.html#listen) directive has been supported since version 0.7.14. Prior to version 0.8.21 it could only be specified along with the `default` parameter.
 
 - SNI has been supported since version 0.5.23.
 - The shared SSL session cache has been supported since version 0.5.6.
