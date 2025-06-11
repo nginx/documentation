@@ -271,13 +271,13 @@ server {
 
 ### Server Name Indication
 
-A more generic solution for running several HTTPS servers on a single IP address is the [TLS Server Name Indication](https://en.wikipedia.org/wiki/Server_Name_Indication) (SNI) extension ([RFC 6066](https://tools.ietf.org/html/rfc6066)), which allows a browser to pass a requested server name during the SSL handshake. With this solution, the server will know which certificate it should use for the connection. However, SNI has limited browser support. Currently it is supported starting with the following browser versions:
+A more generic solution for running several HTTPS servers on a single IP address is the [TLS Server Name Indication](https://en.wikipedia.org/wiki/Server_Name_Indication) (SNI) extension ([RFC 6066](https://tools.ietf.org/html/rfc6066)), which allows a browser to pass a requested server name during the SSL handshake. With this solution, the server will know which certificate it should use for the connection. Although SNI is widely supported by modern browsers, some old browsers may still not include support for it. Major browsers support SNI starting with the following versions:
 
-- Opera 8.0
-- MSIE 7.0 (but only on Windows Vista or higher)
+- Chrome 105 (Windows version supports SNI on Vista or higher, too)
 - Firefox 2.0 and other browsers using Mozilla Platform rv:1.8.1
+- MSIE 7.0 (but only on Windows Vista or higher)
+- Opera 8.0
 - Safari 3.2.1 (Windows version supports SNI on Vista or higher)
-- Chrome (Windows version supports SNI on Vista or higher, too)
 
 Only domain names can be passed in SNI. However, some browsers will pass the IP address of the server as its name if a request includes a literal IP address. It is best not to rely on this.
 
