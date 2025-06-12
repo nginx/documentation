@@ -57,7 +57,7 @@ For a description of each field, visit the [Gateway API documentation](https://g
 
 {{< /bootstrap-table >}}
 
-NGINX Gateway Fabric supports a single GatewayClass resource configured with the `--gatewayclass` flag of the [controller]({{< ref "/ngf/reference/cli-help.md#controller>}}) command.
+NGINX Gateway Fabric supports a single GatewayClass resource configured with the `--gatewayclass` flag of the [controller]({{< ref "/ngf/reference/cli-help.md#controller">}}) command.
 
 **Fields**:
 
