@@ -67,6 +67,7 @@ The table provides guidelines about the terms you should and should not use for 
 | abort | Never use this term in your docs. Use the preferred terms when writing about a process:<br>stop<br>interrupt<br>shut down | Abort is acceptable to use in programmer or similar technical documentation only if it is a function name, parameter name, or otherwise part of a name in the API. |
 | above and below | Avoid. Refer to the specific section, table, figure, an so on, as opposed to indicating its relative position in the document. | |
 | access | Used as a verb, it's jargon, so don't use it.| |
+| AI Chatbot | The official name for any F5 chatbot: "F5 AI Assistant" | |
 | allows | Not recommended. \<br>Avoid phrases such as "NGINX Plus allows you to…". \<br><br>Use direct, active verbs from the perspective of the user instead. | |
 | and/or | Not recommended. Usually, this means either "and" or "or". Try to be specific in your writing; people are counting on you for clear instructions. | |
 | anthropomorphism | Avoid referring to the product or feature as though it were alive. \<br>When referring to products, stay away from words like: decides, knows, sees, listens, and hears.<br>A wizard guides you, it doesn't walk you through the steps. | |
@@ -110,6 +111,7 @@ The table provides guidelines about the terms you should and should not use for 
 | data source | | |
 | database | Do not abbreviate as "db". Always a single word. | |
 |date format | Use _month day, year_ format, as in December 4, 2024. Don't use _day month year_, as in 31 July 2016. <br>  In the UI, it's OK to use numbers and slashes for dates if the code supports that format and automatically displays the appropriate date format for different locales. For example, 12/4/2024. | This format aligns with standard American usage for consistency and clarity. |
+| disconnected | Use this term to describe environments without internet or external network access, such as air-gapped, offline, or network-restricted setups. Preferred term due to alignment with product UI and configuration settings (for example, `mode_of_operation: disconnected`). If needed, clarify as "in a disconnected (network-restricted) environment" for context. | |
 | DoS/DDoS/3DoS | Spell out on first reference:<br>- denial-of-service (DoS)<br>- distributed denial-of-service (DDoS)<br>- diverse distributed denial-of-service (3DoS) | |
 | e.g., i.e., etc. | Avoid using Latin abbreviations.<br>- e.g. = for example<br>- i.e. = in other words<br>- etc. = and so on | |
 | earlier and later | Use to describe versioning. For example, "This applies to versions earlier than NGINX Plus R31".<br>Do not use before, after, greater, lower, higher, below, above, and so on. | |

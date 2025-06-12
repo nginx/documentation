@@ -1,21 +1,19 @@
 ---
 title: Support
-weight: 600
+weight: 800
 toc: true
-type: reference
-product: NGF
-docs: DOCS-1411
+nd-content-type: reference
+nd-product: NGF
+nd-docs: DOCS-1411
 ---
 
 F5 NGINX Gateway Fabric adheres to the support policy detailed in the following knowledge base article: [K000140156](https://my.f5.com/manage/s/article/K000140156).
 
 After opening a support ticket, F5 staff will request additional information to better understand the problem.
 
----
-
 ## Kubernetes support plugin
 
-The [nginx-supportpkg-for-k8s](https://github.com/nginxinc/nginx-supportpkg-for-k8s) plugin collects the information needed by F5 Technical Support to assist with troubleshooting your issue.
+The [nginx-supportpkg-for-k8s](https://github.com/nginx/nginx-supportpkg-for-k8s) plugin collects the information needed by F5 Technical Support to assist with troubleshooting your issue.
 
 The plugin uses [krew](https://krew.sigs.k8s.io), the plugin manager for the Kubernetes [kubectl](https://kubernetes.io/docs/reference/kubectl/) command-line tool.
 
@@ -30,9 +28,7 @@ The plugin may collect some or all of the following global and namespace-specifi
 
 This plugin **does not** collect secrets or coredumps.
 
-Visit the [project’s GitHub repository](https://github.com/nginxinc/nginx-supportpkg-for-k8s) for further details.
-
----
+Visit the [project’s GitHub repository](https://github.com/nginx/nginx-supportpkg-for-k8s) for further details.
 
 ## Support channels
 

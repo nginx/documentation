@@ -13,7 +13,7 @@ F5 NGINX App Protect WAF v5, designed for NGINX Open Source and NGINX Plus envir
 
 ### Key Advantages
 
-- Ability to work with NGINX Open Source in addition to NGINX Plus.
+- Ability to work with NGINX Open Source as well as NGINX Plus.
 - Scalable architecture, ideal for both small and large-scale deployments.
 - Seamless integration with existing DevOps and SecOps workflows.
 
@@ -44,7 +44,7 @@ NGINX App Protect WAF v5 supports the following operating systems:
 
 ## Deployment Types
 
-NGINX App Protect WAF v5 supports a range of deployment scenarios to meet various operational needs:
+NGINX App Protect WAF v5 supports a range of use cases to meet various operational needs:
 
 1. [Docker Compose Deployment]({{< ref "/nap-waf/v5/admin-guide/deploy-on-docker.md" >}})
    - Deploys both NGINX and WAF components within containers.
@@ -55,8 +55,8 @@ NGINX App Protect WAF v5 supports a range of deployment scenarios to meet variou
    - Ideal for scalable, cloud-native environments.
 
 3. [NGINX on Host/VM with Containerized WAF]({{< ref "/nap-waf/v5/admin-guide/install.md" >}})
-   - NGINX is operated directly on the host system or a virtual machine, with WAF components deployed in containers.
-   - Perfect for situations where NGINX is already in use on host systems, allowing for the addition of WAF components without disrupting the existing NGINX setup.
+   - NGINX operates on the host system or a virtual machine. WAF components are deployed in containers.
+   - Perfect for situations where NGINX is already in use on host systems. Addition of WAF components will not disrupt the existing NGINX setup.
 
 ## NGINX App Protect WAF Compiler
 
@@ -70,23 +70,23 @@ For signature updates, read the [Update App Protect Signatures]({{< ref "/nap-wa
 
 ## Transitioning from NGINX App Protect WAF v4 to v5
 
-Upgrading directly from v4 to v5 is not supported due to architectural changes in NGINX App Protect WAF v5.
+Upgrading from v4 to v5 is not supported due to architectural changes in NGINX App Protect WAF v5.
 
 {{< note >}}
-We recommend that you deploy the NGINX App Protect WAF v5 in a staging environment.  Only after you compile policies with WAF compiler and test the enforcement should you transfer the traffic from the v4 to v5. This keeps the v4 deployment for backup.
+We recommend that you deploy the NGINX App Protect WAF v5 in a staging environment.  Compile policies with WAF compiler and test the enforcement before you transfer the traffic from the v4 to v5. This keeps the v4 deployment for backup.
 {{< /note >}}
 
-1. Back up your NGINX App Protect WAF configuration files, such as NGINX configurations, JSON policies, logging profiles, user-defined signatures, and global settings.
+1. Back up your NGINX App Protect WAF configuration files. These include NGINX configurations, JSON policies, logging profiles, user-defined signatures, and global settings.
 
-1. Install NGINX App Protect WAF 5 (using either nginx OSS or nginx-plus based on the need of customer's application).
+2. Install NGINX App Protect WAF 5. Use either nginx OSS or nginx-plus based on the need of customer's application.
    - [Installing NGINX App Protect WAF]({{<ref "/nap-waf/v5/admin-guide/install.md">}})
    - [Deploying NGINX App Protect WAF on Docker]({{<ref "/nap-waf/v5/admin-guide/deploy-on-docker.md">}})
    - [Deploying NGINX App Protect WAF on Kubernetes]({{<ref "/nap-waf/v5/admin-guide/deploy-with-helm.md">}})
 
-1. Compile your `.json` policies and logging profiles to `.tgz` bundles using [compiler-image]({{<ref "/nap-waf/v5/admin-guide/compiler.md">}}) because NGINX App Protect WAF v5 supports policies and logging profiles in a compiled bundle format only.
+3. Compile your `.json` policies and logging profiles to `.tgz` bundles using [compiler-image]({{<ref "/nap-waf/v5/admin-guide/compiler.md">}}). NGINX App Protect WAF v5 supports policies and logging profiles in a compiled bundle format only.
 
    {{< note >}}
-   If you were previously using a default [logging profile]({{<ref "/nap-waf/v5/admin-guide/deploy-on-docker.md#using-policy-and-logging-profile-bundles">}}) JSON like `/opt/app_protect/share/defaults/log_all.json`, you can replace it with the default constant such as `log_all`, and then you will not need to explicitly compile the logging profile into a bundle.
+   If you were previously using a default [logging profile]({{<ref "/nap-waf/v5/admin-guide/deploy-on-docker.md#using-policy-and-logging-profile-bundles">}}) JSON like `/opt/app_protect/share/defaults/log_all.json`, you can replace it with the default constant such as `log_all`, and then you will not need to compile the logging profile into a bundle.
 
    ```nginx
    app_protect_security_log log_all /log_volume/security.log;
@@ -94,17 +94,17 @@ We recommend that you deploy the NGINX App Protect WAF v5 in a staging environme
 
    {{< /note >}}
 
-1. Replace the `.json` references in nginx.conf with the above created `.tgz` [bundles]({{<ref "/nap-waf/v5/admin-guide/install.md#using-policy-and-logging-profile-bundles">}}).
+4. Replace the `.json` references in nginx.conf with the above created `.tgz` [bundles]({{<ref "/nap-waf/v5/admin-guide/install.md#using-policy-and-logging-profile-bundles">}}).
 
-1. Make sure that `.tgz` bundles references are accessible to the `waf-config-mgr` container.
+5. Make sure that `.tgz` bundles references are accessible to the `waf-config-mgr` container.
 
-1. Restart the deployment if it has already been initiated. Additionally, restart NGINX if utilizing the VM + containers deployment type.  After the migrations, check that the NGINX process is running in the NGINX error log and there are no issues.
+6. Restart the deployment if it has already initiated. Additionally, restart NGINX if utilizing the VM + containers deployment type.  After the migrations, check that the NGINX process is running in the NGINX error log and there are no issues.
 
 
 ---
 
 ## Troubleshooting and FAQs
 
-See common deployment challenges and solutions to ensure a smooth setup process in the [Troubleshooting Guide]({{< ref "/nap-waf/v5/troubleshooting-guide/troubleshooting.md#nginx-app-protect-5" >}}).
+Review the [Troubleshooting Guide]({{< ref "/nap-waf/v5/troubleshooting-guide/troubleshooting.md#nginx-app-protect-5" >}}) for common deployment challenges and solutions to ensure a smooth setup process.
 
 Docker images for NGINX App Protect WAF v5 are built using Ubuntu 22.04 (Jammy) binaries.

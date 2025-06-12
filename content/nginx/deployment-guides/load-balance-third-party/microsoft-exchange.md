@@ -371,7 +371,7 @@ To set up the conventional configuration scheme, perform these steps:
 
    Directive documentation: [include](https://nginx.org/en/docs/ngx_core_module.html#include)
 
-   You can also use wildcard notation to read all function‑specific files for either HTTP or TCP traffic into the appropriate context block. For example, if you name all HTTP configuration files <span style="white-space: nowrap; font-weight:bold;">_function_-http.conf</span> and all TCP configuration files <span style="white-space: nowrap; font-weight:bold;">_function_-stream.conf</span> (the filenames we specify in this section conform to this pattern), the wildcarded `include` directives are:
+   You can also use wildcard notation to read all function‑specific files for either HTTP or TCP traffic into the appropriate context block. For example, if you name all HTTP configuration files {{<nb>}}**_function_-http.conf**{{</nb>}} and all TCP configuration files {{<nb>}}**_function_-stream.conf**{{</nb>}} (the filenames we specify in this section conform to this pattern), the wildcarded `include` directives are:
 
    ```nginx
    http {
@@ -383,9 +383,9 @@ To set up the conventional configuration scheme, perform these steps:
    }
    ```
 
-2. In the **/etc/nginx/conf.d** directory, create a new file called <span style="white-space: nowrap; font-weight:bold;">exchange-http.conf</span> for directives that pertain to Exchange HTTP and HTTPS traffic (or substitute the name you chose in Step 1). Copy in the directives from the `http` configuration block in the downloaded configuration file. Remember not to copy the first line <span style="white-space: nowrap;">(`http` `{`)</span> or the closing curly brace (`}`) for the block, because the `http` block you created in Step 1 already has them.
+2. In the **/etc/nginx/conf.d** directory, create a new file called {{<nb>}}**exchange-http.conf**{{</nb>}} for directives that pertain to Exchange HTTP and HTTPS traffic (or substitute the name you chose in Step 1). Copy in the directives from the `http` configuration block in the downloaded configuration file. Remember not to copy the first line <span style="white-space: nowrap;">(`http` `{`)</span> or the closing curly brace (`}`) for the block, because the `http` block you created in Step 1 already has them.
 
-3. Also in the **/etc/nginx/conf.d** directory, create a new file called <span style="white-space: nowrap; font-weight:bold;">exchange-stream.conf</span> for directives that pertain to Exchange TCP traffic (or substitute the name you chose in Step 1). Copy in the directives from the `stream` configuration block in the dowloaded configuration file. Again, do not copy the first line <span style="white-space: nowrap;">(`stream` `{`)</span> or the closing curly brace (`}`).
+3. Also in the **/etc/nginx/conf.d** directory, create a new file called {{<nb>}}**exchange-stream.conf**{{</nb>}} for directives that pertain to Exchange TCP traffic (or substitute the name you chose in Step 1). Copy in the directives from the `stream` configuration block in the dowloaded configuration file. Again, do not copy the first line <span style="white-space: nowrap;">(`stream` `{`)</span> or the closing curly brace (`}`).
 
 For reference purposes, the text of the full configuration files is included in this document:
 
@@ -468,27 +468,27 @@ The directives in the top‑level `stream` configuration block configure TCP loa
     }
     ```
 
-3. This `server` block defines the virtual server that proxies traffic on port 993 to the <span style="white-space: nowrap; font-weight:bold;">exchange-imaps</span> upstream group configured in Step 1.
+3. This `server` block defines the virtual server that proxies traffic on port 993 to the {{<nb>}}**exchange-imaps**{{</nb>}} upstream group configured in Step 1.
 
     ```nginx
     # In the 'stream' block
     server {
         listen 993;
         status_zone exchange-imaps;
-        proxy_pass exchange-imaps;
+        proxy_pass  exchange-imaps;
     }
     ```
 
    Directive documentation: [listen](https://nginx.org/en/docs/stream/ngx_stream_core_module.html#listen), [proxy_pass](https://nginx.org/en/docs/stream/ngx_stream_proxy_module.html#proxy_pass), [server](https://nginx.org/en/docs/stream/ngx_stream_core_module.html#server), [status_zone](https://nginx.org/en/docs/http/ngx_http_status_module.html#status_zone)
 
-4. This `server` block defines the virtual server that proxies traffic on port 25 to the <span style="white-space: nowrap; font-weight:bold;">exchange-smtp</span> upstream group configured in Step 2. If you wish to change the port number from 25 (for example, to 587), change the `listen` directive.
+4. This `server` block defines the virtual server that proxies traffic on port 25 to the {{<nb>}}**exchange-smtp**{{</nb>}} upstream group configured in Step 2. If you wish to change the port number from 25 (for example, to 587), change the `listen` directive.
 
     ```nginx
     # In the 'stream' block
     server {
         listen 25; # SMTP port can be changed here (to 587, for example)
         status_zone exchange-smtp;
-        proxy_pass exchange-smtp;
+        proxy_pass  exchange-smtp;
     }
     ```
 
@@ -517,7 +517,7 @@ These directives in the top‑level `http` configuration block configure global 
 
     ```nginx
     # In the 'http' block
-    keepalive_timeout 3h;
+    keepalive_timeout  3h;
     proxy_read_timeout 3h;
     ```
 
@@ -542,7 +542,7 @@ These directives define virtual servers for HTTP and HTTPS traffic in the top‑
    ```nginx
    # In the 'http' block
    server {
-       listen 443 ssl;
+       listen      443 ssl;
        status_zone exchange-combined;
    }
    ```
@@ -564,9 +564,9 @@ These directives define virtual servers for HTTP and HTTPS traffic in the top‑
 
    ```nginx
    # In the 'server' block for HTTPS traffic
-   ssl_certificate /etc/nginx/ssl/company.com.crt;
+   ssl_certificate     /etc/nginx/ssl/company.com.crt;
    ssl_certificate_key /etc/nginx/ssl/company.com.key;
-   ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+   ssl_protocols       TLSv1.2 TLSv1.3;
    ```
 
    Directive documentation: [ssl_certificate](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_certificate), [ssl_certificate_key](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_certificate_key), [ssl_protocols](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_protocols)
@@ -615,11 +615,11 @@ HTTP/2 is fully supported in <span style="white-space: nowrap;">NGINX Plus R7</s
 
 In <span style="white-space: nowrap;">NGINX Plus R8</span> and later, NGINX Plus supports HTTP/2 by default, and does not support SPDY:
 
-- In <span style="white-space: nowrap;">NGINX Plus R11</span> and later, the <span style="white-space: nowrap; font-weight:bold;">nginx-plus</span> package continues to support HTTP/2 by default, but the <span style="white-space: nowrap; font-weight:bold;">nginx-plus-extras</span> package available in previous releases is deprecated by [dynamic modules](https://www.nginx.com/products/nginx/dynamic-modules/).
+- In <span style="white-space: nowrap;">NGINX Plus R11</span> and later, the {{<nb>}}**nginx-plus**{{</nb>}} package continues to support HTTP/2 by default, but the {{<nb>}}**nginx-plus-extras**{{</nb>}} package available in previous releases is deprecated by [dynamic modules](https://www.nginx.com/products/nginx/dynamic-modules/).
 
-- For <span style="white-space: nowrap;">NGINX Plus R8</span> through R10, the <span style="white-space: nowrap; font-weight:bold;">nginx-plus</span> and <span style="white-space: nowrap; font-weight:bold;">nginx-plus-extras</span> packages support HTTP/2 by default.
+- For <span style="white-space: nowrap;">NGINX Plus R8</span> through R10, the {{<nb>}}**nginx-plus**{{</nb>}} and {{<nb>}}**nginx-plus-extras**{{</nb>}} packages support HTTP/2 by default.
 
-If using <span style="white-space: nowrap;">NGINX Plus R7</span>, you must install the <span style="white-space: nowrap; font-weight:bold;">nginx-plus-http2</span> package instead of the <span style="white-space: nowrap; font-weight:bold;">nginx-plus</span> or <span style="white-space: nowrap; font-weight:bold;">nginx-plus-extras</span> package.
+If using <span style="white-space: nowrap;">NGINX Plus R7</span>, you must install the {{<nb>}}**nginx-plus-http2**{{</nb>}} package instead of the {{<nb>}}**nginx-plus**{{</nb>}} or {{<nb>}}**nginx-plus-extras**{{</nb>}} package.
 
 To enable HTTP/2 support, add the `http2` directive in the `server` block for HTTPS traffic that we created in [Configuring Virtual Servers for HTTP and HTTPS Traffic](#virtual-servers), so that it looks like this:
 
@@ -668,11 +668,11 @@ These directives complete the configuration for basic load balancing of Exchange
     ```nginx
     # In the 'server' block for HTTPS traffic
     location / {
-        proxy_pass https://exchange;
-        proxy_buffering off;
-        proxy_http_version 1.1;
+        proxy_pass              https://exchange;
+        proxy_buffering         off;
+        proxy_http_version      1.1;
         proxy_request_buffering off;
-        proxy_set_header Connection "Keep-Alive";
+        proxy_set_header        Connection "Keep-Alive";
     }
     ```
 
@@ -730,10 +730,10 @@ http {
         listen 443 ssl;
         http2  on;
         client_max_body_size 2G;
-        ssl_certificate /etc/nginx/ssl/company.com.crt;
-        ssl_certificate_key /etc/nginx/ssl/company.com.key;
-        ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
-        status_zone exchange-combined;
+        ssl_certificate      /etc/nginx/ssl/company.com.crt;
+        ssl_certificate_key  /etc/nginx/ssl/company.com.key;
+        ssl_protocols        TLSv1.2 TLSv1.3;
+        status_zone          exchange-combined;
 
         location = / {
             return 301 "/owa/";
@@ -745,11 +745,11 @@ http {
         }
 
         location / {
-            proxy_pass https://exchange;
-            proxy_buffering off;
-            proxy_http_version 1.1;
+            proxy_pass              https://exchange;
+            proxy_buffering         off;
+            proxy_http_version      1.1;
             proxy_request_buffering off;
-            proxy_set_header Connection "Keep-Alive";
+            proxy_set_header        Connection "Keep-Alive";
         }
     }
 }
@@ -780,13 +780,13 @@ stream {
     server {
         listen 993;
         status_zone exchange-imaps;
-        proxy_pass exchange-imaps;
+        proxy_pass  exchange-imaps;
     }
 
     server {
         listen 25; # SMTP port can be changed here (to 587, for example)
         status_zone exchange-smtp;
-        proxy_pass exchange-smtp;
+        proxy_pass  exchange-smtp;
     }
 }
 ```
@@ -818,9 +818,6 @@ Exchange CASs interact with various applications used by clients on different ty
 |RPC Over HTTP | **/rpc/rpcproxy.dll** | Unbuffered upload and download; session persistence |
 
 {{</bootstrap-table>}}
-
-
-
 
 
 <span id="url-control"></span>
@@ -892,9 +889,9 @@ Exchange CASs interact with various applications used by clients on different ty
        ```nginx
        # In the 'server' block for HTTPS traffic
        location / {
-           proxy_pass https://exchange;
+           proxy_pass         https://exchange;
            proxy_http_version 1.1;
-           proxy_set_header Connection "";
+           proxy_set_header   Connection "";
        }
        ```
 
@@ -907,9 +904,9 @@ Exchange CASs interact with various applications used by clients on different ty
        location /ecp {
            #allow 172.16.0.0/16; # Replace with your admin network
            #deny all;
-           proxy_pass https://exchange-ecp;
+           proxy_pass         https://exchange-ecp;
            proxy_http_version 1.1;
-           proxy_set_header Connection "";
+           proxy_set_header   Connection "";
        }
        ```
 
@@ -920,20 +917,20 @@ Exchange CASs interact with various applications used by clients on different ty
       ```nginx
       # In the 'server' block for HTTPS traffic
       location /mapi {
-          proxy_pass https://exchange-mapi;
+          proxy_pass         https://exchange-mapi;
           proxy_http_version 1.1;
-          proxy_set_header Connection "";
+          proxy_set_header   Connection "";
       }
       ```
 
-    - Mobile clients like iPhone and Android access the ActiveSync location (<span style="white-space: nowrap; font-weight:bold;">/Microsoft-Server-ActiveSync</span>).
+    - Mobile clients like iPhone and Android access the ActiveSync location ({{<nb>}}**/Microsoft-Server-ActiveSync**{{</nb>}}).
 
       ```nginx
       # In the 'server' block for HTTPS traffic
       location /Microsoft-Server-ActiveSync {
-          proxy_pass https://exchange-activesync;
+          proxy_pass         https://exchange-activesync;
           proxy_http_version 1.1;
-          proxy_set_header Connection "";
+          proxy_set_header   Connection "";
       }
       ```
 
@@ -942,9 +939,9 @@ Exchange CASs interact with various applications used by clients on different ty
       ```nginx
       # In the 'server' block for HTTPS traffic
       location /owa {
-          proxy_pass https://exchange-owa;
+          proxy_pass         https://exchange-owa;
           proxy_http_version 1.1;
-          proxy_set_header Connection "";
+          proxy_set_header   Connection "";
       }
       ```
 
@@ -953,11 +950,11 @@ Exchange CASs interact with various applications used by clients on different ty
       ```nginx
       # In the 'server' block for HTTPS traffic
       location /rpc/rpcproxy.dll {
-          proxy_pass https://exchange-rpc;
-          proxy_buffering off;
-          proxy_http_version 1.1;
+          proxy_pass              https://exchange-rpc;
+          proxy_buffering         off;
+          proxy_http_version      1.1;
           proxy_request_buffering off;
-          proxy_set_header Connection "Keep-Alive";
+          proxy_set_header        Connection "Keep-Alive";
       }
       ```
 
@@ -1018,27 +1015,27 @@ These directives configure NGINX Plus health checks.
    location /ecp {
        #allow 172.16.0.0/16; # Replace with your admin network
        #deny all;
-       proxy_pass https://exchange-ecp;
+       proxy_pass         https://exchange-ecp;
        proxy_http_version 1.1;
-       proxy_set_header Connection "";
-       health_check uri=/ecp/healthcheck.htm interval=3s
-                    match=exchange-health;
+       proxy_set_header   Connection "";
+       health_check       uri=/ecp/healthcheck.htm interval=3s
+                          match=exchange-health;
    }
 
    location /mapi {
-       proxy_pass https://exchange-mapi;
+       proxy_pass         https://exchange-mapi;
        proxy_http_version 1.1;
-       proxy_set_header Connection "";
-       health_check uri=/mapi/healthcheck.htm interval=3s
-                    match=exchange-health;
+       proxy_set_header   Connection "";
+       health_check       uri=/mapi/healthcheck.htm interval=3s
+                          match=exchange-health;
    }
 
    location /owa {
-       proxy_pass https://exchange-owa;
+       proxy_pass         https://exchange-owa;
        proxy_http_version 1.1;
-       proxy_set_header Connection "";
-       health_check uri=/owa/healthcheck.htm interval=3s
-                    match=exchange-health;
+       proxy_set_header   Connection "";
+       health_check       uri=/owa/healthcheck.htm interval=3s
+                          match=exchange-health;
    }
    ```
 
@@ -1092,7 +1089,7 @@ The quickest way to configure the module and the built‑in dashboard is to down
    include conf.d/status.conf;
    ```
 
-    If you are using the conventional configuration scheme and your existing `include` directives use the wildcard notation discussed in [Creating and Modifying Configuration Files](#config-files), you can either add a separate `include` directive for **status.conf** as shown above, or change the name of **status.conf** so it is captured by the wildcard in an existing `include` directive in the `http` block. For example, changing it to <span style="white-space: nowrap; font-weight:bold;">status-http.conf</span> means it is captured by the `include` directive for <span style="white-space: nowrap;">`*-http.conf`</span>.
+    If you are using the conventional configuration scheme and your existing `include` directives use the wildcard notation discussed in [Creating and Modifying Configuration Files](#config-files), you can either add a separate `include` directive for **status.conf** as shown above, or change the name of **status.conf** so it is captured by the wildcard in an existing `include` directive in the `http` block. For example, changing it to {{<nb>}}**status-http.conf**{{</nb>}} means it is captured by the `include` directive for <span style="white-space: nowrap;">`*-http.conf`</span>.
 
     Directive documentation: [include](https://nginx.org/en/docs/ngx_core_module.html#include)
 
@@ -1234,10 +1231,10 @@ http {
         http2  on;
 
         client_max_body_size 2G;
-        ssl_certificate /etc/nginx/ssl/company.com.crt;
+        ssl_certificate     /etc/nginx/ssl/company.com.crt;
         ssl_certificate_key /etc/nginx/ssl/company.com.key;
-        ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
-        status_zone exchange-combined;
+        ssl_protocols       TLSv1.2 TLSv1.3;
+        status_zone         exchange-combined;
 
         location = / {
             return 301 "/owa/";
@@ -1249,9 +1246,9 @@ http {
         }
 
         location / {
-            proxy_pass https://exchange;
+            proxy_pass         https://exchange;
             proxy_http_version 1.1;
-            proxy_set_header Connection "";
+            proxy_set_header   Connection "";
         }
 
         location /ecp {
@@ -1263,43 +1260,43 @@ http {
             #allow 172.16.0.0/16; # Replace with your admin network
             #deny all;
 
-            proxy_pass https://exchange-ecp;
+            proxy_pass         https://exchange-ecp;
             proxy_http_version 1.1;
-            proxy_set_header Connection "";
-            health_check uri=/ecp/healthcheck.htm interval=3s
-                         match=exchange-health;
+            proxy_set_header   Connection "";
+            health_check       uri=/ecp/healthcheck.htm interval=3s
+                               match=exchange-health;
         }
 
         location /mapi {
-            proxy_pass https://exchange-mapi;
+            proxy_pass         https://exchange-mapi;
             proxy_http_version 1.1;
-            proxy_set_header Connection "";
-            health_check uri=/mapi/healthcheck.htm interval=3s
-                         match=exchange-health;
+            proxy_set_header   Connection "";
+            health_check       uri=/mapi/healthcheck.htm interval=3s
+                               match=exchange-health;
         }
 
         location /Microsoft-Server-ActiveSync {
-            proxy_pass https://exchange-active-sync;
+            proxy_pass         https://exchange-active-sync;
             proxy_http_version 1.1;
-            proxy_set_header Connection "";
+            proxy_set_header   Connection "";
         }
 
         location /owa {
-            proxy_pass https://exchange-owa;
+            proxy_pass         https://exchange-owa;
             proxy_http_version 1.1;
-            proxy_set_header Connection "";
-            health_check uri=/owa/healthcheck.htm interval=3s
-                         match=exchange-health;
+            proxy_set_header   Connection "";
+            health_check       uri=/owa/healthcheck.htm interval=3s
+                               match=exchange-health;
         }
 
         location /rpc/rpcproxy.dll {
-            proxy_pass https://exchange-rpc;
-            proxy_buffering off;
-            proxy_http_version 1.1;
-            proxy_request_buffering off;
+            proxy_pass                  https://exchange-rpc;
+            proxy_buffering             off;
+            proxy_http_version          1.1;
+            proxy_request_buffering     off;
             proxy_set_header Connection "Keep-Alive";
-            health_check uri=/rpc/rpcproxy.dll interval=3s
-                         match=exchange-auth;
+            health_check                uri=/rpc/rpcproxy.dll interval=3s
+                                        match=exchange-auth;
         }
     }
 }
@@ -1330,13 +1327,13 @@ stream {
     server {
         listen 993;
         status_zone exchange-imaps;
-        proxy_pass exchange-imaps;
+        proxy_pass  exchange-imaps;
     }
 
     server {
         listen 25; # SMTP port can be changed here (to 587, for example)
         status_zone exchange-smtp;
-        proxy_pass exchange-smtp;
+        proxy_pass  exchange-smtp;
     }
 }
 ```
@@ -1344,6 +1341,7 @@ stream {
 <span id="revision"></span>
 ### Revision History
 
+- Version 7 (June 2025) – Update for the `ssl_protocols` directive
 - Version 6 (May 2024) – Update about HTTP/2 support (the [http2](https://nginx.org/en/docs/http/ngx_http_v2_module.html#http2) directive)
 - Version 5 (April 2018) – Update for NGINX Plus API (<span style="white-space: nowrap;">NGINX Plus R14</span>)
 - Version 4 (May 2017) – Update about HTTP/2 support (<span style="white-space: nowrap;">NGINX Plus Release 11</span> and later)

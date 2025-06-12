@@ -22,7 +22,7 @@ server {
     server_name         www.example.com;
     ssl_certificate     www.example.com.crt;
     ssl_certificate_key www.example.com.key;
-    ssl_protocols       TLSv1 TLSv1.1 TLSv1.2;
+    ssl_protocols       TLSv1.2 TLSv1.3;
     ssl_ciphers         HIGH:!aNULL:!MD5;
     #...
 }
@@ -39,10 +39,10 @@ In this case it is important to restrict access to the file. Note that although 
 
 The [ssl_protocols](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_protocols) and [ssl_ciphers](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_ciphers ) directives can be used to require that clients use only the strong versions and ciphers of SSL/TLS when establishing connections.
 
-Since version 1.9.1, NGINX uses these defaults:
+Since version 1.23.4, NGINX uses these defaults:
 
 ```nginx
-ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+ssl_protocols TLSv1.2 TLSv1.3;
 ssl_ciphers HIGH:!aNULL:!MD5;
 ```
 
@@ -118,7 +118,7 @@ http {
 
         ssl_certificate     www.example.com.crt;
         ssl_certificate_key www.example.com.key;
-        ssl_protocols       TLSv1 TLSv1.1 TLSv1.2;
+        ssl_protocols       TLSv1.2 TLSv1.3;
         ssl_ciphers         HIGH:!aNULL:!MD5;
         #...
     }

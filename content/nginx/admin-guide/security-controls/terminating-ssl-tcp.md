@@ -62,7 +62,7 @@ Additionally, the [ssl_protocols](https://nginx.org/en/docs/stream/ngx_stream_ss
 ```nginx
 server {
     #...
-    ssl_protocols  TLSv1 TLSv1.1 TLSv1.2;
+    ssl_protocols  TLSv1.2 TLSv1.3;
     ssl_ciphers    HIGH:!aNULL:!MD5;
 }
 ```
@@ -152,7 +152,7 @@ stream {
 
         ssl_certificate       /etc/ssl/certs/server.crt;
         ssl_certificate_key   /etc/ssl/certs/server.key;
-        ssl_protocols         SSLv3 TLSv1 TLSv1.1 TLSv1.2;
+        ssl_protocols         TLSv1.2 TLSv1.3;
         ssl_ciphers           HIGH:!aNULL:!MD5;
         ssl_session_cache     shared:SSL:20m;
         ssl_session_timeout   4h;

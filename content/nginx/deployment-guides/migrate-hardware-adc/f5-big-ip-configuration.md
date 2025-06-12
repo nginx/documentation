@@ -1,4 +1,4 @@
----
+    ---
 description: Migrate load-balancing configuration from F5 BIG-IP LTM to NGINX Plus,
   using our syntax conversion examples.
 docs: DOCS-460
@@ -99,7 +99,7 @@ In addition to these networking concepts, there are two other important technolo
 
   <span style="white-space: nowrap;">BIG-IP LTM</span> uses a built‑in HA mechanism to handle the failover.
 
-  For [on‑premises deployments]({{< ref "nginx/admin-guide/high-availability/ha-keepalived.md" >}}), NGINX Plus uses a separate software package called <span style="white-space: nowrap; font-weight:bold;">**nginx-ha-keepalived**</span> to handle the VIP and the failover process for an active‑passive pair of NGINX Plus servers. The package implements the VRRP protocol to handle the VIP. Limited [active‑active]({{< ref "nginx/admin-guide/high-availability/ha-keepalived-nodes.md" >}}) scenarios are also possible with the <span style="white-space: nowrap; font-weight:bold;">nginx-ha-keepalived</span> package.
+  For [on‑premises deployments]({{< ref "nginx/admin-guide/high-availability/ha-keepalived.md" >}}), NGINX Plus uses a separate software package called {{<nb>}}****nginx-ha-keepalived****{{</nb>}} to handle the VIP and the failover process for an active‑passive pair of NGINX Plus servers. The package implements the VRRP protocol to handle the VIP. Limited [active‑active]({{< ref "nginx/admin-guide/high-availability/ha-keepalived-nodes.md" >}}) scenarios are also possible with the {{<nb>}}**nginx-ha-keepalived**{{</nb>}} package.
 
   Solutions for high availability of NGINX Plus in cloud environments are also available, including these:
 
@@ -240,7 +240,7 @@ There are two methods for handling SSL/TLS traffic on a load balancer instance, 
             proxy_pass https://ssl_test_pool;
             proxy_ssl_certificate /etc/nginx/ssl/client.pem;
             proxy_ssl_certificate_key /etc/nginx/ssl/client.key;
-            proxy_ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+            proxy_ssl_protocols TLSv1.2 TLSv1.3;
             proxy_ssl_ciphers HIGH:!aNULL:!MD5;
             proxy_ssl_trusted_certificate /etc/nginx/ssl/trusted_ca_cert.crt;
             proxy_ssl_verify on;
