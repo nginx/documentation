@@ -43,7 +43,7 @@ type:
 
    ```shell
    sudo apt update && \
-   sudo apt install nginx-plus-module-geoip2
+   sudo apt install libnginx-mod-http-geoip2
    ```
 
    For Alpine:
