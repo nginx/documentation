@@ -1,6 +1,7 @@
 ---
 title: Configure SELinux
 weight: 600
+toc: true
 ---
 
 ## Overview
@@ -8,8 +9,6 @@ weight: 600
 You can use the optional SELinux policy module included in the package to secure F5 NGINX Agent operations with flexible, mandatory access control that follows the principle of least privilege.
 
 {{< important >}}The SELinux policy module is optional. It is not loaded automatically during installation, even on SELinux-enabled systems. You must manually load the policy module using the steps below.{{< /important >}}
-
----
 
 ## Before you begin
 
@@ -26,6 +25,10 @@ Take these preparatory steps before configuring SELinux:
 ## Enable SELinux for NGINX Agent {#selinux-agent}
 
 {{< include "/installation/enable-agent-selinux.md" >}}
+
+### Add ports to NGINX Agent SELinux context
+
+{{< include "/installation/add-ports-agent-selinux.md" >}}
 
 ---
 

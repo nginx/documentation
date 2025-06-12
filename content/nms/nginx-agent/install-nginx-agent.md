@@ -402,6 +402,10 @@ Additionally, you can use the agent installation script to add these fields:
 
 {{< include "/installation/enable-agent-selinux.md" >}}
 
+### Add ports to NGINX Agent SELinux context
+
+{{< include "/installation/add-ports-agent-selinux.md" >}}
+
 ---
 
 ## Secure NGINX Agent with mTLS

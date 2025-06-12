@@ -120,6 +120,10 @@ sudo semanage port -d -t nms_t 11000
 
 {{< include "/installation/enable-agent-selinux.md" >}}
 
+### Add ports to NGINX Agent SELinux context
+
+{{< include "/installation/add-ports-agent-selinux.md" >}}
+
 ---
 
 ## Recommended Resources
