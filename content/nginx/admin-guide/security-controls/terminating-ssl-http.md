@@ -275,7 +275,7 @@ A more generic solution for running several HTTPS servers on a single IP address
 
 - Chrome 105 (Windows version supports SNI on Vista or higher, too)
 - Firefox 2.0 and other browsers using Mozilla Platform rv:1.8.1
-- MSIE 7.0 (but only on Windows Vista or higher)
+- Microsoft Internet Explorer 7.0 (but only on Windows Vista or higher)
 - Opera 8.0
 - Safari 3.2.1 (Windows version supports SNI on Vista or higher)
 
