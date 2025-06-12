@@ -1,4 +1,4 @@
-HUGO?=docker run --rm -it -v ${CURDIR}:/src -p 1313:1313 ${HUGO_IMG} /src/hugo-entrypoint.sh
+HUGO?=hugo
 HUGO_VERSION?=$(shell hugo version 2>/dev/null | awk '{print $$2}' | cut -d '.' -f 2)
 HUGO_IMG?=hugomods/hugo:std-go-git-0.134.3
 
