@@ -95,7 +95,7 @@ volumes:
 
 
 
-When Nginx instance manager runs in lightweight mode(ENABLE_METRICS: false), all metrics related APIs are not registered and will return 403 Bad Request and all the UI screens where metrics were shown will now show a banner as shown below saying “metrics are disabled”. If you want re-enable the metrics, set the ENABLE_METRICS env to true and re-deploy NIM docker cmpose with docker compose up d then these notifications will disappear and start showing the metrics(provided clickhouse config is added back to the docker compose.yaml).
+When Nginx instance manager runs in lightweight mode (ENABLE_METRICS: false), all metrics-related APIs are not registered and will return 403 Bad Request and all the UI screens where metrics were shown will now show a banner as shown below saying “metrics are disabled”. If you want to re-enable the metrics, set the ENABLE_METRICS env to true and re-deploy NIM docker compose with docker compose up d then these notifications will disappear and start showing the metrics (provided ClickHouse config is added back to the docker compose.yaml).
 
 When NGINX Instance Manager is run in lightweight mode (ENABLE_METRICS: false), all metrics-related APIs are disabled and will return a 403 Bad Request. Additionally, any UI screens that previously displayed metrics will now show a banner stating that “metrics are disabled.”
 
@@ -103,7 +103,7 @@ If you wish to re-enable metrics, set the ENABLE_METRICS environment variable to
 
 Install script changes:
 
-We are making significant changes to the installation script and going forward customers can use install script to install only latest Nginx Instance Manager. As part of the changes, we have -s option which stands for “skip clickhouse installation”. When customers give -s option then script will not install the clickhouse and metrics will be disabled.
+We are making significant changes to the installation script and going forward customers can use install script to install only latest Nginx Instance Manager. As part of the changes, we have -s option which stands for “skip ClickHouse installation”. When customers give -s option then script will not install the ClickHouse and metrics will be disabled.
 
 
 
