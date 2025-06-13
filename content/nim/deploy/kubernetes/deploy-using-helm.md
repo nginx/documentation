@@ -13,16 +13,14 @@ You can deploy F5 NGINX Instance Manager on Kubernetes using Helm. This method i
 
 ### New in 2.20.0
 
-Starting with version 2.20.0, NGINX Instance Manager supports **lightweight mode**. This mode skips ClickHouse and disables metrics collection—ideal for simpler setups or resource-limited environments.
+Starting with version 2.20.0, NGINX Instance Manager supports **lightweight mode**, which skips ClickHouse and disables metrics collection, ideal for simpler setups or resource-limited environments.
 
-Also new in this release: the Helm chart has moved to a dedicated location:
+- Lightweight mode requires NGINX Agent v2.41.1 or later.
 
-{{< call-out "note" "Chart renamed in NIM 2.20.0" "" >}}
+{{< call-out "note" "Chart renamed in NIM 2.20.0" >}}
 The Helm chart has been renamed from `nginx-stable/nms-hybrid` to `nginx-stable/nim`.  
 Make sure to update your chart references if you’re using version 2.20.0 or later.
-{{</ call-out >}}
-
-You can choose standard (with ClickHouse and metrics) or lightweight mode by setting the `clickhouse.mode` value in your `values.yaml` file. We show both deployment examples below.
+{{< /call-out >}}
 
 
 ---
@@ -31,20 +29,22 @@ You can choose standard (with ClickHouse and metrics) or lightweight mode by set
 
 To deploy NGINX Instance Manager using a Helm chart, you need:
 
+## Requirements
+
+To deploy NGINX Instance Manager using a Helm chart, you need:
+
 {{< bootstrap-table "table table-striped table-bordered" >}}
-| Requirements | Notes |
-|--------------|-------|
-| Docker 20.10 or later (linux/amd64) | [Docker documentation](https://docs.docker.com/get-docker/) |
-| Kubernetes 1.21.3 or later (linux/amd64) | Ensure your client can [access the Kubernetes API server](https://kubernetes.io/docs/concepts/overview/components/#kube-apiserver). Helm uses the default storage class for persistent volume provisioning. |
-| `kubectl` 1.21.3 or later | [kubectl documentation](https://kubernetes.io/docs/reference/kubectl/) |
-| Helm 3.10.0 or later | [Helm installation guide](https://helm.sh/docs/intro/install/) |
-| OpenSSL 1.1.1 or later | [OpenSSL source](https://www.openssl.org/source/) |
-| `tar` 1.20 or later | The `tar` tool is usually installed by default. Check with `tar --version`. |
-| `values.yaml` file with `clickhouse.mode` setting | Required in version 2.20.0 and later. Set to `standalone` or `disabled`. |
-| NGINX subscription JWT | Required to authenticate with `private-registry.nginx.com` to pull the image. Download your JWT from [MyF5](https://my.f5.com/manage/s/) under **My Products & Plans > Subscriptions**. |
+| Requirements                                 | Notes                                                                                                                                                                                                                  |
+|----------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Docker 20.10 or later (linux/amd64)          | [Docker documentation](https://docs.docker.com/get-docker/)                                                                                                                                                            |
+| Kubernetes 1.21.3 or later (linux/amd64)     | Ensure your client can [access the Kubernetes API server](https://kubernetes.io/docs/concepts/overview/components/#kube-apiserver). Helm uses the default storage class for persistent volume provisioning.            |
+| `kubectl` 1.21.3 or later                    | [kubectl documentation](https://kubernetes.io/docs/reference/kubectl/)                                                                                                                                                 |
+| Helm 3.10.0 or later                         | [Helm installation guide](https://helm.sh/docs/intro/install/)                                                                                                                                                         |
+| OpenSSL 1.1.1 or later                       | [OpenSSL source](https://www.openssl.org/source/)                                                                                                                                                                      |
+| `tar` 1.20 or later                          | The `tar` tool is usually installed by default. Check with `tar --version`.                                                                                                                                            |
+| `values.yaml` file with `nmsClickhouse.mode` | Optional. Defaults to `internal`. Set to `external` or `disabled` to use an external ClickHouse instance or enable lightweight mode. In `external` mode, set `nim.externalClickhouse.address` to your ClickHouse host. |
+| NGINX subscription JWT                       | Required to authenticate with `private-registry.nginx.com` to pull the image. Download your JWT from [MyF5](https://my.f5.com/manage/s/) under **My Products & Plans > Subscriptions**.                                |
 {{</ bootstrap-table >}}
-
-
 
 ---
 
@@ -125,17 +125,27 @@ The values file lets you:
 - Provide registry credentials
 - Specify image sources for each NIM service
 
-Set `nmsClickhouse.mode` to control how ClickHouse is deployed. This determines whether you run in standard mode (with internal or external ClickHouse) or lightweight mode (no metrics).
+Set `nmsClickhouse.mode` to control ClickHouse deployment:
 
-| Mode       | Description |
-|------------|-------------|
-| `internal` | Deploys ClickHouse in the cluster (default). |
-| `external` | Connects to an external ClickHouse instance. |
-| `disabled` | Disables ClickHouse completely and enables lightweight mode. |
+| Mode       | Description                                                                                |
+|------------|--------------------------------------------------------------------------------------------|
+| `internal` | Deploys ClickHouse in the cluster (default).                                               |
+| `external` | Connects to an external ClickHouse instance and requires `nim.externalClickhouse.address`. |
+| `disabled` | Disables ClickHouse and enables lightweight mode (no metrics).                             |
+
+{{< call-out "note" "See also" >}}
+See the [Helm chart configuration settings](
+https://docs.nginx.com/nginx-instance-manager/deploy/kubernetes/helm-config-settings/
+) guide for a complete list of chart parameters.
+{{< /call-out >}}
 
 ```yaml
 nmsClickhouse:
-  mode: internal  # change to "disabled" for lightweight mode
+  mode: internal # options: internal, external, disabled
+
+# when mode is external, uncomment and set this:
+# externalClickhouse:
+#   address: <clickhouse-host>:<port>
 
 imagePullSecrets:
   - name: regcred
@@ -185,7 +195,6 @@ OpenShift support was added in NGINX Instance Manager 2.19. To enable it, add th
 For more details, see [Appendix: OpenShift security constraints](#appendix-openshift-security-constraints).
 {{< /call-out >}}
 
-
 ---
 
 ## Install the chart
@@ -205,6 +214,23 @@ helm install nim nginx-stable/nim \
 - Replace `<your-password>` with your preferred admin password.
 - Replace `<your-values.yaml>` with the path to your customized values.yaml file.
 - Replace `<chart-version>` with the version you want to install (for example, `2.20.0`).
+
+**Note:** You can set the ClickHouse mode at install time instead of editing `values.yaml`:
+
+For lightweight mode (no ClickHouse):
+
+```shell
+--set nmsClickhouse.mode=disabled
+```
+
+For external ClickHouse:
+
+```shell
+--set nmsClickhouse.mode=external \
+--set nim.externalClickhouse.address=<clickhouse-host>:<port>
+```
+
+**Validate the deployment**
 
 After installation, run the following command to confirm the deployment was successful:
 
@@ -315,7 +341,7 @@ secmon       app.kubernetes.io/name=secmon    2m
 
 If you’re using lightweight mode, your output may include fewer entries.
 
-To disable network policies, add the following to your values.yaml file:
+To disable network policies, add the following to your `values.yaml` file:
 
 ```yaml
 networkPolicies:
@@ -380,7 +406,7 @@ Run the `helm install` command to deploy NGINX Instance Manager:
 
    {{< important >}} Remember to save the password for future use. Only the encrypted password is stored, and there's no way to recover or reset it if lost. {{< /important >}}
 
-3. Replace `<chart-version>` with the desired chart version 1.15.0 or lower. If omitted, it will lead to an unsuccessful deployment as it will try to install the latest vesrion 1.16.0 or later.
+3. (Optional) Replace `<chart-version>` with the desired chart version. If omitted, the latest version will be installed.
 
 ```shell
 helm install -n nms \
