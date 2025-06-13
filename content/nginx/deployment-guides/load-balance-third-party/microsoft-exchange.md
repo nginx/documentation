@@ -475,7 +475,7 @@ The directives in the top‑level `stream` configuration block configure TCP loa
     server {
         listen 993;
         status_zone exchange-imaps;
-        proxy_pass exchange-imaps;
+        proxy_pass  exchange-imaps;
     }
     ```
 
@@ -488,7 +488,7 @@ The directives in the top‑level `stream` configuration block configure TCP loa
     server {
         listen 25; # SMTP port can be changed here (to 587, for example)
         status_zone exchange-smtp;
-        proxy_pass exchange-smtp;
+        proxy_pass  exchange-smtp;
     }
     ```
 
@@ -517,7 +517,7 @@ These directives in the top‑level `http` configuration block configure global 
 
     ```nginx
     # In the 'http' block
-    keepalive_timeout 3h;
+    keepalive_timeout  3h;
     proxy_read_timeout 3h;
     ```
 
@@ -542,7 +542,7 @@ These directives define virtual servers for HTTP and HTTPS traffic in the top‑
    ```nginx
    # In the 'http' block
    server {
-       listen 443 ssl;
+       listen      443 ssl;
        status_zone exchange-combined;
    }
    ```
@@ -564,9 +564,9 @@ These directives define virtual servers for HTTP and HTTPS traffic in the top‑
 
    ```nginx
    # In the 'server' block for HTTPS traffic
-   ssl_certificate /etc/nginx/ssl/company.com.crt;
+   ssl_certificate     /etc/nginx/ssl/company.com.crt;
    ssl_certificate_key /etc/nginx/ssl/company.com.key;
-   ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+   ssl_protocols       TLSv1.2 TLSv1.3;
    ```
 
    Directive documentation: [ssl_certificate](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_certificate), [ssl_certificate_key](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_certificate_key), [ssl_protocols](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_protocols)
@@ -668,11 +668,11 @@ These directives complete the configuration for basic load balancing of Exchange
     ```nginx
     # In the 'server' block for HTTPS traffic
     location / {
-        proxy_pass https://exchange;
-        proxy_buffering off;
-        proxy_http_version 1.1;
+        proxy_pass              https://exchange;
+        proxy_buffering         off;
+        proxy_http_version      1.1;
         proxy_request_buffering off;
-        proxy_set_header Connection "Keep-Alive";
+        proxy_set_header        Connection "Keep-Alive";
     }
     ```
 
@@ -730,10 +730,10 @@ http {
         listen 443 ssl;
         http2  on;
         client_max_body_size 2G;
-        ssl_certificate /etc/nginx/ssl/company.com.crt;
-        ssl_certificate_key /etc/nginx/ssl/company.com.key;
-        ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
-        status_zone exchange-combined;
+        ssl_certificate      /etc/nginx/ssl/company.com.crt;
+        ssl_certificate_key  /etc/nginx/ssl/company.com.key;
+        ssl_protocols        TLSv1.2 TLSv1.3;
+        status_zone          exchange-combined;
 
         location = / {
             return 301 "/owa/";
@@ -745,11 +745,11 @@ http {
         }
 
         location / {
-            proxy_pass https://exchange;
-            proxy_buffering off;
-            proxy_http_version 1.1;
+            proxy_pass              https://exchange;
+            proxy_buffering         off;
+            proxy_http_version      1.1;
             proxy_request_buffering off;
-            proxy_set_header Connection "Keep-Alive";
+            proxy_set_header        Connection "Keep-Alive";
         }
     }
 }
@@ -780,13 +780,13 @@ stream {
     server {
         listen 993;
         status_zone exchange-imaps;
-        proxy_pass exchange-imaps;
+        proxy_pass  exchange-imaps;
     }
 
     server {
         listen 25; # SMTP port can be changed here (to 587, for example)
         status_zone exchange-smtp;
-        proxy_pass exchange-smtp;
+        proxy_pass  exchange-smtp;
     }
 }
 ```
@@ -818,9 +818,6 @@ Exchange CASs interact with various applications used by clients on different ty
 |RPC Over HTTP | **/rpc/rpcproxy.dll** | Unbuffered upload and download; session persistence |
 
 {{</bootstrap-table>}}
-
-
-
 
 
 <span id="url-control"></span>
@@ -892,9 +889,9 @@ Exchange CASs interact with various applications used by clients on different ty
        ```nginx
        # In the 'server' block for HTTPS traffic
        location / {
-           proxy_pass https://exchange;
+           proxy_pass         https://exchange;
            proxy_http_version 1.1;
-           proxy_set_header Connection "";
+           proxy_set_header   Connection "";
        }
        ```
 
@@ -907,9 +904,9 @@ Exchange CASs interact with various applications used by clients on different ty
        location /ecp {
            #allow 172.16.0.0/16; # Replace with your admin network
            #deny all;
-           proxy_pass https://exchange-ecp;
+           proxy_pass         https://exchange-ecp;
            proxy_http_version 1.1;
-           proxy_set_header Connection "";
+           proxy_set_header   Connection "";
        }
        ```
 
@@ -920,9 +917,9 @@ Exchange CASs interact with various applications used by clients on different ty
       ```nginx
       # In the 'server' block for HTTPS traffic
       location /mapi {
-          proxy_pass https://exchange-mapi;
+          proxy_pass         https://exchange-mapi;
           proxy_http_version 1.1;
-          proxy_set_header Connection "";
+          proxy_set_header   Connection "";
       }
       ```
 
@@ -931,9 +928,9 @@ Exchange CASs interact with various applications used by clients on different ty
       ```nginx
       # In the 'server' block for HTTPS traffic
       location /Microsoft-Server-ActiveSync {
-          proxy_pass https://exchange-activesync;
+          proxy_pass         https://exchange-activesync;
           proxy_http_version 1.1;
-          proxy_set_header Connection "";
+          proxy_set_header   Connection "";
       }
       ```
 
@@ -942,9 +939,9 @@ Exchange CASs interact with various applications used by clients on different ty
       ```nginx
       # In the 'server' block for HTTPS traffic
       location /owa {
-          proxy_pass https://exchange-owa;
+          proxy_pass         https://exchange-owa;
           proxy_http_version 1.1;
-          proxy_set_header Connection "";
+          proxy_set_header   Connection "";
       }
       ```
 
@@ -953,11 +950,11 @@ Exchange CASs interact with various applications used by clients on different ty
       ```nginx
       # In the 'server' block for HTTPS traffic
       location /rpc/rpcproxy.dll {
-          proxy_pass https://exchange-rpc;
-          proxy_buffering off;
-          proxy_http_version 1.1;
+          proxy_pass              https://exchange-rpc;
+          proxy_buffering         off;
+          proxy_http_version      1.1;
           proxy_request_buffering off;
-          proxy_set_header Connection "Keep-Alive";
+          proxy_set_header        Connection "Keep-Alive";
       }
       ```
 
@@ -1018,27 +1015,27 @@ These directives configure NGINX Plus health checks.
    location /ecp {
        #allow 172.16.0.0/16; # Replace with your admin network
        #deny all;
-       proxy_pass https://exchange-ecp;
+       proxy_pass         https://exchange-ecp;
        proxy_http_version 1.1;
-       proxy_set_header Connection "";
-       health_check uri=/ecp/healthcheck.htm interval=3s
-                    match=exchange-health;
+       proxy_set_header   Connection "";
+       health_check       uri=/ecp/healthcheck.htm interval=3s
+                          match=exchange-health;
    }
 
    location /mapi {
-       proxy_pass https://exchange-mapi;
+       proxy_pass         https://exchange-mapi;
        proxy_http_version 1.1;
-       proxy_set_header Connection "";
-       health_check uri=/mapi/healthcheck.htm interval=3s
-                    match=exchange-health;
+       proxy_set_header   Connection "";
+       health_check       uri=/mapi/healthcheck.htm interval=3s
+                          match=exchange-health;
    }
 
    location /owa {
-       proxy_pass https://exchange-owa;
+       proxy_pass         https://exchange-owa;
        proxy_http_version 1.1;
-       proxy_set_header Connection "";
-       health_check uri=/owa/healthcheck.htm interval=3s
-                    match=exchange-health;
+       proxy_set_header   Connection "";
+       health_check       uri=/owa/healthcheck.htm interval=3s
+                          match=exchange-health;
    }
    ```
 
@@ -1234,10 +1231,10 @@ http {
         http2  on;
 
         client_max_body_size 2G;
-        ssl_certificate /etc/nginx/ssl/company.com.crt;
+        ssl_certificate     /etc/nginx/ssl/company.com.crt;
         ssl_certificate_key /etc/nginx/ssl/company.com.key;
-        ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
-        status_zone exchange-combined;
+        ssl_protocols       TLSv1.2 TLSv1.3;
+        status_zone         exchange-combined;
 
         location = / {
             return 301 "/owa/";
@@ -1249,9 +1246,9 @@ http {
         }
 
         location / {
-            proxy_pass https://exchange;
+            proxy_pass         https://exchange;
             proxy_http_version 1.1;
-            proxy_set_header Connection "";
+            proxy_set_header   Connection "";
         }
 
         location /ecp {
@@ -1263,43 +1260,43 @@ http {
             #allow 172.16.0.0/16; # Replace with your admin network
             #deny all;
 
-            proxy_pass https://exchange-ecp;
+            proxy_pass         https://exchange-ecp;
             proxy_http_version 1.1;
-            proxy_set_header Connection "";
-            health_check uri=/ecp/healthcheck.htm interval=3s
-                         match=exchange-health;
+            proxy_set_header   Connection "";
+            health_check       uri=/ecp/healthcheck.htm interval=3s
+                               match=exchange-health;
         }
 
         location /mapi {
-            proxy_pass https://exchange-mapi;
+            proxy_pass         https://exchange-mapi;
             proxy_http_version 1.1;
-            proxy_set_header Connection "";
-            health_check uri=/mapi/healthcheck.htm interval=3s
-                         match=exchange-health;
+            proxy_set_header   Connection "";
+            health_check       uri=/mapi/healthcheck.htm interval=3s
+                               match=exchange-health;
         }
 
         location /Microsoft-Server-ActiveSync {
-            proxy_pass https://exchange-active-sync;
+            proxy_pass         https://exchange-active-sync;
             proxy_http_version 1.1;
-            proxy_set_header Connection "";
+            proxy_set_header   Connection "";
         }
 
         location /owa {
-            proxy_pass https://exchange-owa;
+            proxy_pass         https://exchange-owa;
             proxy_http_version 1.1;
-            proxy_set_header Connection "";
-            health_check uri=/owa/healthcheck.htm interval=3s
-                         match=exchange-health;
+            proxy_set_header   Connection "";
+            health_check       uri=/owa/healthcheck.htm interval=3s
+                               match=exchange-health;
         }
 
         location /rpc/rpcproxy.dll {
-            proxy_pass https://exchange-rpc;
-            proxy_buffering off;
-            proxy_http_version 1.1;
-            proxy_request_buffering off;
+            proxy_pass                  https://exchange-rpc;
+            proxy_buffering             off;
+            proxy_http_version          1.1;
+            proxy_request_buffering     off;
             proxy_set_header Connection "Keep-Alive";
-            health_check uri=/rpc/rpcproxy.dll interval=3s
-                         match=exchange-auth;
+            health_check                uri=/rpc/rpcproxy.dll interval=3s
+                                        match=exchange-auth;
         }
     }
 }
@@ -1330,13 +1327,13 @@ stream {
     server {
         listen 993;
         status_zone exchange-imaps;
-        proxy_pass exchange-imaps;
+        proxy_pass  exchange-imaps;
     }
 
     server {
         listen 25; # SMTP port can be changed here (to 587, for example)
         status_zone exchange-smtp;
-        proxy_pass exchange-smtp;
+        proxy_pass  exchange-smtp;
     }
 }
 ```
@@ -1344,6 +1341,7 @@ stream {
 <span id="revision"></span>
 ### Revision History
 
+- Version 7 (June 2025) – Update for the `ssl_protocols` directive
 - Version 6 (May 2024) – Update about HTTP/2 support (the [http2](https://nginx.org/en/docs/http/ngx_http_v2_module.html#http2) directive)
 - Version 5 (April 2018) – Update for NGINX Plus API (<span style="white-space: nowrap;">NGINX Plus R14</span>)
 - Version 4 (May 2017) – Update about HTTP/2 support (<span style="white-space: nowrap;">NGINX Plus Release 11</span> and later)
