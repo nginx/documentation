@@ -15,7 +15,7 @@ secrets:
 services:
   nim:
     image: private-registry.nginx.com/nms/nim-standalone-compose:2.20.0
-    hostname: nim
+    hostname: nim
     ports:
       - 443:443
     networks:
@@ -91,53 +91,3 @@ volumes:
     #  type: "nfs"
     #  o: "addr=172.16.0.92,rw"
     #  device: ":/mnt/nfs_share/data"
-
-
-
-
-When Nginx instance manager runs in lightweight mode (ENABLE_METRICS: false), all metrics-related APIs are not registered and will return 403 Bad Request and all the UI screens where metrics were shown will now show a banner as shown below saying “metrics are disabled”. If you want to re-enable the metrics, set the ENABLE_METRICS env to true and re-deploy NIM docker compose with docker compose up d then these notifications will disappear and start showing the metrics (provided ClickHouse config is added back to the docker compose.yaml).
-
-When NGINX Instance Manager is run in lightweight mode (ENABLE_METRICS: false), all metrics-related APIs are disabled and will return a 403 Bad Request. Additionally, any UI screens that previously displayed metrics will now show a banner stating that “metrics are disabled.”
-
-If you wish to re-enable metrics, set the ENABLE_METRICS environment variable to "true "and redeploy NIM using "docker compose up -d". Once redeployed (and with ClickHouse configuration included in your docker-compose.yaml), the notifications will disappear and metrics will be displayed again.
-
-Install script changes:
-
-We are making significant changes to the installation script and going forward customers can use install script to install only latest Nginx Instance Manager. As part of the changes, we have -s option which stands for “skip ClickHouse installation”. When customers give -s option then script will not install the ClickHouse and metrics will be disabled.
-
-
-
-
-Kubernetes:
-
-Previously, the configuration used a simple boolean flag—nmsClickhouse.enabled = true/false—defined in values.yaml. This has now been replaced with a tri-state mode field, which accepts one of three values: internal, external, or disabled.
-
-internal: Default value and deploys a ClickHouse pod within the cluster. Internally maps to clickhouse.enable = true in the nms.conf ConfigMap.
-
-external: Connects to an external ClickHouse server. Also maps to clickhouse.enable = true in nms.conf. Here, externalClickhouse.address is needed to connect.
-
-disabled: A newly introduced mode that skips deploying a ClickHouse pod and doesn’t require an external ClickHouse server, too. It internally maps to clickhouse.enable = false in nms.conf configmap and enables a lightweight version of NIM without ClickHouse.
-
-
-
-Deployment Command
-
-helm install -n nms \
---set adminPasswordHash=$(openssl passwd -6 'YourPassword123#') \
-nms nginx-stable/nms-hybrid \
---create-namespace \
--f <path-to-your-values.yaml> \
-[--version <chart-version>] \
---wait
-
-
-Values.yaml (https://gitlab.com/f5/nginx/controller/product/platform/-/blob/main/k8s/charts/values.yaml?ref_type=heads#L44)
-
-## nmsClickhouse server configuration packaged with helm
-## Enable this if external clickhouse is disabled
-nmsClickhouse:
-  # Defines how ClickHouse is provisioned for NMS:
-  # "internal" - deploy ClickHouse as part of this chart
-  # "external" - connect to an existing external ClickHouse instance
-  # "disabled" - do not use ClickHouse at all
-  mode: "internal"  # options: "internal", "external", "disabled"
