@@ -31,7 +31,7 @@ type:
 
    ```shell
    sudo apt update && \
-   sudo apt install nginx-plus-module-geoip
+   sudo apt install libnginx-mod-http-geoip
    ```
 
    For SLES:
