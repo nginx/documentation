@@ -1,4 +1,4 @@
----
+    ---
 description: Migrate load-balancing configuration from F5 BIG-IP LTM to NGINX Plus,
   using our syntax conversion examples.
 docs: DOCS-460
@@ -240,7 +240,7 @@ There are two methods for handling SSL/TLS traffic on a load balancer instance, 
             proxy_pass https://ssl_test_pool;
             proxy_ssl_certificate /etc/nginx/ssl/client.pem;
             proxy_ssl_certificate_key /etc/nginx/ssl/client.key;
-            proxy_ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+            proxy_ssl_protocols TLSv1.2 TLSv1.3;
             proxy_ssl_ciphers HIGH:!aNULL:!MD5;
             proxy_ssl_trusted_certificate /etc/nginx/ssl/trusted_ca_cert.crt;
             proxy_ssl_verify on;
