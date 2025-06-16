@@ -1,5 +1,5 @@
 ---
-title: Install in a disconnected environment using a script
+title: Install the latest NGINX Instance Manager with a script (disconnected)
 toc: true
 weight: 100
 type: how-to
@@ -11,9 +11,17 @@ docs: DOCS-803
 
 ## Overview
 
-This guide shows you how to install and upgrade NGINX Instance Manager in environments without internet access. It covers key steps, including downloading packages, managing dependencies, and configuring the system for offline use. You’ll also learn how to set up NGINX Instance Manager in disconnected mode and update the CVE list manually to keep your system secure.
+This guide shows you how to install and upgrade F5 NGINX Instance Manager in disconnected environments.
 
-{{<call-out "note" "Access the deprecated manual steps" "">}}If you prefer to follow the original manual steps, you can access the [deprecated guide]({{< ref "nim/disconnected/offline-install-guide-deprecated.md" >}}). Please note that this guide is no longer actively maintained and may not reflect the latest updates or best practices.{{</call-out>}}
+The script installs:
+
+- The latest version of NGINX Open Source
+- The latest version of NGINX Instance Manager
+- ClickHouse by default, unless you choose to skip it
+
+NGINX Plus is not supported in disconnected mode.
+
+If you need to install earlier versions of NGINX or NGINX Instance Manager, follow the [manual installation process](({{< ref "nim/deploy/vm-bare-metal/install-nim-manual.md" >}})) instead.
 
 ---
 
@@ -41,7 +49,7 @@ Ensure that the required `.crt` and `.key` files are available, preferably in th
 
 #### Use the manual installation steps if needed
 
-If the script fails or if you prefer more control over the process, consider using the [manual installation steps]({{< ref "nim/disconnected/offline-install-guide-deprecated.md" >}}). These steps provide a reliable alternative for troubleshooting or handling complex setups.
+If the script fails or if you prefer more control over the process, consider using the [manual installation steps]({{< ref "nim/disconnected/offline-install-guide-manual.md" >}}). These steps provide a reliable alternative for troubleshooting or handling complex setups.
 
 ### Download the SSL Certificate and Private Key from MyF5
 
@@ -56,47 +64,45 @@ Download the SSL certificate and private key required for NGINX Instance Manager
 
 {{<fa "download">}} {{<link "/scripts/install-nim-bundle.sh" "Download the install-nim-bundle.sh script.">}}
 
-### Use the script to Download the necessary packages to Install NGINX Instance Manager in a Disconnected environment
+## Package NGINX Instance Manager and dependencies for offline installation
 
-To run the script, enter the following command, replacing `<path/to/certificate.crt>` and `<path/to/private.key>` with the full paths and filenames of your SSL certificate and private key files:
+Run the installation script in `offline` mode to download NGINX Instance Manager, NGINX Open Source, ClickHouse (unless skipped), and all required dependencies into a tarball for use in disconnected environments.
 
-```shell
-sudo bash install-nim-bundle.sh \
-  -c <path/to/certificate.crt> \
-  -k <path/to/private.key> \
+### Installation script options
+
+| Category | Option or Flag |
+|----------|----------------|
+| **Installation mode and platform** | `-m offline`: Required to package the installation files into a tarball for disconnected environments.<br>{{< include "nim/installation/install-script-flags/distribution.md" >}} |
+| **SSL certificate and key** | {{< include "nim/installation/install-script-flags/cert.md" >}}<br>{{< include "nim/installation/install-script-flags/key.md" >}} |
+| **NGINX installation** | `-n`: Include the latest version of NGINX Open Source in the tarball.<br><br>This option is optional in `offline` mode—if not specified, the script installs the latest version of NGINX Open Source by default.<br><br>NGINX Plus is **not supported** when using the script in offline mode.<br><br>To install NGINX Plus offline, see the [manual installation guide]({{< ref "nginx/admin-guide/installing-nginx/installing-nginx-plus.md#offline_install" >}}). |
+| **ClickHouse installation** | {{< include "nim/installation/install-script-flags/skip-clickhouse.md" >}}<br>{{< include "nim/installation/install-script-flags/clickhouse-version.md" >}} |
+
+### Example: packaging command
+
+  ```shell
+  sudo bash install-nim-bundle.sh \
+  -c <path/to/nginx-repo.crt> \
+  -k <path/to/nginx-repo.key> \
   -m offline \
   -d <distribution> \
-  -v <version>
-```
-
-<br>
-
-By default, this command installs the latest version of NGINX Open Source to run NGINX Instance Manager. NGINX Plus is currently not supported when using the script in Disconnected mode. Please see this guide to install NGINX Plus offline if you would like to use this in front of NGINX Instance Manager
-
-<br>
-
-**Explanation of options:**
-
-- **`-c`**: Uses the specified SSL certificate file. Copies the file to the /etc/ssl/nginx directory.
-- **`-k`**: Uses the specified private key file. Copies the file to the /etc/ssl/nginx directory.
-- **`-m`**: Sets the installation mode (use `offline` for disconnected environments).
-- **`-d`**: Defines the target distribution (replace `<distribution>` with one of the supported options below).
-- **`-n`**: Installs a specific version of NGINX Open Source. Use `latest` to install the most recent version or specify a version like `1.27.1`. The script defaults to installing the latest version of NGINX Open Source.
-- **`-v`**: Installs the specified version of NGINX Instance Manager. Use `latest` for the newest version or a specific release like `2.18.0`. If you skip this option, the script assumes you want to install `latest`.
-
-**Supported distributions:**
-
-To get the latest list supported by the script, run the following command:
-
-```bash
-grep '\-d distribution' install-nim-bundle.sh
-```
-
-The script downloads the required packages and adds them to a tarball file. You’ll need to copy this tarball to the target machine in the disconnected environment.
+  -v <clickhouse-version>
+  ```
 
 ---
 
 ## Install NGINX Instance Manager
+
+After you’ve packaged the installation files on a connected system, copy the tarball, script, and SSL files to your disconnected system. Then, run the script again to install NGINX Instance Manager using the tarball.
+
+### Required flags for installing in offline mode
+
+- `-m offline`: Required to run the script in offline mode. When used with `-i`, the script installs NGINX Instance Manager and its dependencies from the specified tarball.
+- `-i <path/to/tarball.tar.gz>`: Path to the tarball created during the packaging step.
+- {{< include "nim/installation/install-script-flags/cert.md" >}}
+- {{< include "nim/installation/install-script-flags/key.md" >}}
+- `-d <distribution>`: Target Linux distribution (must match what was used during packaging).
+
+### Install from the tarball
 
 1. Copy the following files to the target system:
    - `install-nim-bundle.sh` script
@@ -108,11 +114,11 @@ The script downloads the required packages and adds them to a tarball file. You�
 
     ```shell
     sudo bash install-nim-bundle.sh \
-    -c <path/to/certificate.crt>
-    -k <path/to/private.key> \
-    -m offline \
-    -d <distribution> \
+    -m offline
     -i <path/to/tarball.tar.gz>
+    -c <path/to/nginx-repo.crt>
+    -k <path/to/nginx-repo.key> \
+    -d <distribution> \
     ```
 
 3. **Save the admin password**. In most cases, the script completes the installation of NGINX Instance Manager and associated packages. After installation is complete, the script takes a few minutes to generate a password. At the end of the process, you'll see an autogenerated password:
@@ -133,9 +139,25 @@ The script downloads the required packages and adds them to a tarball file. You�
 
 ---
 
-## Post-installation steps (optional)
+## Optional post-installation steps
 
-{{< include "installation/optional-installation-steps.md"  >}}
+### Configure ClickHouse
+
+{{< include "nim/installation/optional-steps/configure-clickhouse.md" >}}
+
+### Disable metrics collection
+
+{{< include "nim/installation/optional-steps/disable-metrics-collection.md" >}}
+
+
+### Install and configure Vault {#install-vault}
+
+{{< include "nim/installation/optional-steps/install-configure-vault.md" >}}
+
+
+### Configure SELinux
+
+{{< include "nim/installation/optional-steps/configure-selinux.md" >}}
 
 ---
 
@@ -184,3 +206,8 @@ sudo chmod 644 /usr/share/nms/cve.xml && \
 sudo systemctl restart nms-dpm
 ```
 
+---
+
+## Next steps
+
+- [Add NGINX Open Source and NGINX Plus instances to NGINX Instance Manager]({{< ref "nim/nginx-instances/add-instance.md" >}})

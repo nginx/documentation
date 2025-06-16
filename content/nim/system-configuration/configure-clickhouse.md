@@ -12,84 +12,52 @@ type:
 
 ## Overview
 
-Follow this guide to update the `/etc/nms/nms.conf` file if you used a custom address, username, or password, or enabled TLS during ClickHouse installation. NGINX Instance Manager requires this information to connect to ClickHouse.
+NGINX Instance Manager uses ClickHouse to store metrics, events, alerts, and configuration data.  
+If your setup differs from the default configuration—for example, if you use a custom address, enable TLS, set a password, or turn off metrics—you need to update the `/etc/nms/nms.conf` file.
 
-## Default ClickHouse values {#default-values}
+This guide explains how to update those settings so that NGINX Instance Manager can connect to ClickHouse correctly.
+
+## Change default settings {#change-settings}
+
+To change a ClickHouse setting:
+
+1. Open the configuration file at `/etc/nms/nms.conf`.
+
+2. In the `[clickhouse]` section, update the setting or settings you want to change.
+
+3. Restart the NGINX Instance Manager service:
+
+   ```shell
+   sudo systemctl restart nms
+   ```
 
 Unless otherwise specified in the `/etc/nms/nms.conf` file, NGINX Instance Manager uses the following default values for ClickHouse:
 
-{{< include "installation/clickhouse-defaults.md" >}}
+{{< include "nim/clickhouse/clickhouse-defaults.md" >}}
 
----
 
-## Use custom address, username, or password
+## Disable metrics collection
 
-If your ClickHouse installation uses a custom address, username, or password, update the NGINX Instance Manager configuration to match.
+As of version 2.20, NGINX Instance Manager can run without ClickHouse. This lightweight mode reduces system requirements and simplifies installation for users who do not need metrics. To use this setup, you must run NGINX Agent version {{< lightweight-nim-nginx-agent-version >}}.
 
-To set custom values:
+To disable metrics collection after installing NGINX Instance Manager:
 
-1. Open the `/etc/nms/nms.conf` file on the NGINX Instance Manager server.
-2. Update the following settings to match your ClickHouse configuration:
+1. Open the configuration file at `/etc/nms/nms.conf`.
 
-    ```yaml
-    clickhouse:
-      address: tcp://localhost:9000
-      username: <INSERT USERNAME HERE>
-      password: <INSERT PASSWORD HERE>
-    ```
+2. In the `[clickhouse]` section, set the following value:
 
-3. Save and close the file.
+   ```yaml
+   enable = false
+   ```
 
----
+3. Restart the NGINX Instance Manager service:
 
-## Configure TLS
+   ```shell
+   sudo systemctl restart nms
+   ```
 
-If you enabled TLS for ClickHouse, update the `nms.conf` file settings to enable secure connections.
+When metrics are turned off:
 
-To configure TLS:
-
-1. Open the `/etc/nms/nms.conf` file on the NGINX Instance Manager server.
-2. Update the `clickhouse` TLS settings as needed:
-
-    ```yaml
-    clickhouse:
-
-      # Sets the log level for ClickHouse processes within NMS.
-      log_level: debug
-
-      # Sets the address that will be used to connect to ClickHouse.
-      address: 127.0.0.1:9001
-
-      ## Note: Username and password should only be set, if you have custom defined username and password for ClickHouse.
-      ## Ensure that any configured username or password is wrapped in single quotes.
-      # Sets the username that will be used to connect to ClickHouse.
-      username: 'test-1'
-
-      # Sets the password that will be used to connect to ClickHouse.
-      password: 'test-2'
-
-      # Activates or deactivates TLS for connecting to ClickHouse.
-      # Note: `tls_mode` will be deprecated in the future, use the `tls` key to enable TLS connection for ClickHouse.
-      tls_mode: true
-
-      tls:
-        # Sets the address (form <ip-address:port>)used to connect to ClickHouse with a TLS connection.
-        address: 127.0.0.1:9441
-
-        # Activates or deactivates TLS verification of ClickHouse connection.
-        skip_verify: false
-
-        # Sets the path of the certificate used for TLS connections in PEM encoded format.
-        cert_path: /etc/certs
-
-        # Sets the path of the client key used for TLS connections in PEM encoded format.
-        key_path: /etc/key
-
-        # Sets the path of the Certificate Authority installed on the system for verifying certificates.
-        cert_ca: /etc/ca
-
-      # Sets directory containing ClickHouse migration files.
-      migrations_path: /test/migrations
-    ```
-
-3. Save and close the file.
+- The web interface no longer shows metrics dashboards. Instead, it displays a message explaining that metrics are turned off.
+- Metrics-related API endpoints return a 403 error.
+- All other NGINX Instance Manager features continue to work as expected.
