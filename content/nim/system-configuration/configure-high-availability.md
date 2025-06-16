@@ -1,5 +1,5 @@
 ---
-Title: Configure high availability (HA) for NGINX Instance Manager
+Title: High availability with keepalived
 weight: 3
 toc: true
 type: how-to

@@ -1,6 +1,6 @@
 ---
 docs: DOCS-999
-title: Configure Vault for storing secrets
+title: Use Vault for storing secrets
 toc: true
 weight: 200
 type:
