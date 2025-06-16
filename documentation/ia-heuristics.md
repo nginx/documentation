@@ -2,24 +2,24 @@
 
 This document describes some of the heuristics that the NGINX DocOps team uses to examine information architecture.
 
-Is is intended as reference information for discussions and work management artefacts (Such as reports or issues).
+It is intended as reference information for discussions and work management artefacts (Such as reports or issues).
 
 These heuristics are an adaptation of work done by [Abby Covert](https://abbycovert.com/).
 
 ## Overview
 
-| Name                            | Description                                         |
-| --------------------------------| --------------------------------------------------- |
-| [Accessible](#accessible)       | Where and how is information being accessed?        |
-| [Clear](#clear)                 | Does the user have clear and essential information? |
-| [Communicative](#communicative) | Can the user |
-| [Controllable](#controllable)   | |
-| [Credible](#credible)           | |
-| [Delightful](#delightful)       | Does the user experience feel fun and easy?          |
-| [Findable](#findable)           | Is information easily discoverable for users?        |
-| [Learnable](#learnable)         |   |
-| [Useful](#useful)               | Does the information lead to the intended result?    |
-| [Valuable](#valuable)           | Is the information provided valuable, and how?       |
+| Name                            | Description                                             |
+| --------------------------------| ------------------------------------------------------- |
+| [Accessible](#accessible)       | Where and how is information being accessed?            |
+| [Clear](#clear)                 | Does the user have clear and essential information?     |
+| [Communicative](#communicative) | Can the user anticipate content based on the structure? |
+| [Controllable](#controllable)   | Does the user retain agency throughout a process?       |
+| [Credible](#credible)           | Can the user trust the information?                     |
+| [Delightful](#delightful)       | Does the user experience feel fun and easy?             |
+| [Findable](#findable)           | Is information easily discoverable for users?           |
+| [Learnable](#learnable)         | Is navigating information familiar to the user?         |
+| [Useful](#useful)               | Does the information lead to the intended result?       |
+| [Valuable](#valuable)           | Is the information provided valuable, and how?          |
 
 ## Accessible
 
@@ -27,11 +27,17 @@ These heuristics are an adaptation of work done by [Abby Covert](https://abbycov
 - How does the information behave when perceived through other means?
 - Does the information match or exceed any compliance guidelines?
 
+_Accessible_ concerns how navigable the information is by users. A user should be able to traverse content using any input method, browser or device desired.
+
+If critical details are not available to a user based on the method they use to access information, it is not accessible.
+
 ## Clear
 
 - Is the information easy to understand and explain?
 - How does the structure reduce noise for the user journey?
 - Does the structure fulfil the expectations of the user persona?
+
+_Clear_ concerns 
 
 ## Communicative
 
@@ -45,11 +51,19 @@ These heuristics are an adaptation of work done by [Abby Covert](https://abbycov
 - Can the user anticipate errors or mistakes?
 - Are important controls clearly marked?
 
+_Controllable_ concerns where information leads a user and how that affects them. They should be aware of the consequences when following instructions.
+
+If a document leaves a user in an inoperable state, it is not controllable. This could be caused by incomplete information, or information split across multiple places reliant on context to finish a task.
+
 ## Credible
 
 - Is the tone and focus of the information consistent?
 - Can the user trust the accuracy of the information?
 - When and how is information updated?
+
+_Credible_ concerns trust in the information provided. If the tone or presentation of information is unclear, it may build uncertainty for a user.
+
+The credibility of information can be considered based on where it exists in overall structure, and indicators of how recently it was updated.
 
 ## Delightful
 
@@ -63,11 +77,19 @@ These heuristics are an adaptation of work done by [Abby Covert](https://abbycov
 - What methods are available for users to discover information?
 - Does the information translate effectively for non-human users?
 
+_Findable_ concerns how a user discovers and traverses your collection of information.
+
+This can reflect the navigation tree or sitemap of a website, as well as contextual links between information. It is also related to how the information is percieved through search mechanisms.
+
 ## Learnable
 
 - Is the structure clear and easy to understand?
 - Is the structure memorable?
 - How does the structure help someone understand the information?
+
+_Learnable_ concerns whether or not the structure makes sense to a user, and how it shapes their mental model of information.
+
+This can be examined from multiple angles, such as if the structure is consistent across products, or if it matches their journey.
 
 ## Useful
 
