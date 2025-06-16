@@ -88,6 +88,8 @@ Make sure to review the [Technical Specifications]({{< ref "/nim/fundamentals/te
 
 NGINX Instance Manager uses ClickHouse to store metrics, events, alerts, and configuration data.
 
+In 2.20.0, we introduced Lightweight mode, which can skip the ClickHouse installation entirely. It’s ideal if you don’t need monitoring data or want a simpler setup. This reduces system requirements and avoids the work of managing a metrics database. You can add ClickHouse later if your needs change.
+
 If you don’t need to store metrics, you can skip installing ClickHouse. But you must use NGINX Agent version {{< lightweight-nim-nginx-agent-version >}}, and you must disable metrics collection in the `/etc/nms/nms.conf` file.
 
 For instructions, see [Disable metrics collection]({{< ref "nim/system-configuration/configure-clickhouse.md#disable-metrics-collection" >}}).
@@ -101,18 +103,6 @@ For instructions, see [Disable metrics collection]({{< ref "nim/system-configura
 NGINX Instance Manager uses the following default values for ClickHouse. To change these values, see the [Configure ClickHouse](nim/system-configuration/configure-clickhouse.md) guide.
 
 {{< include "nim/clickhouse/clickhouse-defaults.md" >}}
-
----
-
-## (Optional) Install and Configure Vault {#install-vault}
-
-NGINX Instance Manager can use [Vault](https://www.vaultproject.io/) as a datastore for secrets.
-
-To install and enable Vault, take the following steps:
-
-- Follow Vault's instructions to [install Vault 1.8.8 or later](https://www.vaultproject.io/docs/install) for your distribution.
-- Ensure you are running Vault in a [Production Hardened Environment](https://learn.hashicorp.com/tutorials/vault/production-hardening).
-- After installing NGINX Instance Manager, follow the steps to [Configure Vault for Storing Secrets]({{< ref "nim/system-configuration/configure-vault.md" >}}).
 
 ---
 
