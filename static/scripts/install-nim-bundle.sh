@@ -566,8 +566,9 @@ This action deletes all files in the following directories: /etc/nms , /etc/ngin
 getLatestPkgVersionFromRepo(){
     repoUrl=$1
     version=$2
-    if [[ "$repoUrl" == *"packages.clickhouse.com"* ]]; then
-        response=$(curl -sL  "${repoUrl}" | awk -F'[<>"]' '/href=.*\.(deb|rpm)/ {print $5}' |  grep -E "$version" | sort -t'_' -k2,2V | tac)
+    pkg_extension=$3
+    if [[ "${pkg_extension}" == "rpm" ]]; then
+        response=$(curl --cert ${NGINX_CERT_PATH} --key ${NGINX_CERT_KEY_PATH} -sL  "${repoUrl}" | awk -F '"' '/href=/ {print $2}' | grep -E "$version"|  sort -t'-' -k4,4V | tac)
         readarray -t versions < <(printf "%s" "${response}")
     else
         response=$(curl --cert ${NGINX_CERT_PATH} --key ${NGINX_CERT_KEY_PATH} -sL  "${repoUrl}" | awk -F '"' '/href=/ {print $2}' | grep -E "$version"|  sort -t'_' -k2,2V | tac)
@@ -605,7 +606,7 @@ package_nim_offline(){
                NGINX_PLUS_PACKAGE="^nginx-plus-[0-9]+-([0-9]+)${OS_DISTRO_MAP[${TARGET_DISTRIBUTION}]}\.${PKG_EXTENSION}$"
             fi
             echo "regex for looking latest version : ${NGINX_PLUS_PACKAGE}"
-            NGINX_PLUS_VERSION=$(getLatestPkgVersionFromRepo "${NGINX_PLUS_REPO[${TARGET_DISTRIBUTION}]}" "${NGINX_PLUS_PACKAGE}")
+            NGINX_PLUS_VERSION=$(getLatestPkgVersionFromRepo "${NGINX_PLUS_REPO[${TARGET_DISTRIBUTION}]}" "${NGINX_PLUS_PACKAGE}" "${PKG_EXTENSION}")
             echo "latest version for nginx_plus is ${NGINX_PLUS_VERSION}"
             echo "Downloading ${NGINX_PLUS_REPO[${TARGET_DISTRIBUTION}]}/${NGINX_PLUS_VERSION}...."
             curl -sfLO --cert ${NGINX_CERT_PATH} --key ${NGINX_CERT_KEY_PATH} "${NGINX_PLUS_REPO[${TARGET_DISTRIBUTION}]}/${NGINX_PLUS_VERSION}"
@@ -616,7 +617,7 @@ package_nim_offline(){
               NGINX_OSS_PACKAGE="^nginx-[0-9]+\.[0-9]+\.[0-9]+-([0-9]+)${OS_DISTRO_MAP[${TARGET_DISTRIBUTION}]}\.${PKG_EXTENSION}$"
             fi
             echo "fetching latest version using ${NGINX_OSS_PACKAGE}"
-            NGINX_OSS_VERSION=$(getLatestPkgVersionFromRepo "${NGINX_REPO[${TARGET_DISTRIBUTION}]}" "${NGINX_OSS_PACKAGE}")
+            NGINX_OSS_VERSION=$(getLatestPkgVersionFromRepo "${NGINX_REPO[${TARGET_DISTRIBUTION}]}" "${NGINX_OSS_PACKAGE}" "${PKG_EXTENSION}")
             echo "latest version for nginx is ${NGINX_OSS_VERSION}"
             echo "Downloading ${NGINX_REPO[${TARGET_DISTRIBUTION}]}/${NGINX_OSS_VERSION}...."
             curl -sfLO "${NGINX_REPO[${TARGET_DISTRIBUTION}]}/${NGINX_OSS_VERSION}"
@@ -651,7 +652,7 @@ package_nim_offline(){
         if [[ "${PKG_EXTENSION}" == "rpm" ]]; then
            NIM_PACKAGE_PATH="^nms-instance-manager-[0-9]+\.[0-9]+\.[0-9]+-([0-9]+)${OS_DISTRO_MAP[${TARGET_DISTRIBUTION}]}\.${PKG_EXTENSION}$"
         fi
-        NIM_PACKAGE_VERSION=$(getLatestPkgVersionFromRepo "${NIM_REPO[${TARGET_DISTRIBUTION}]}" "${NIM_PACKAGE_PATH}")
+        NIM_PACKAGE_VERSION=$(getLatestPkgVersionFromRepo "${NIM_REPO[${TARGET_DISTRIBUTION}]}" "${NIM_PACKAGE_PATH}" "${PKG_EXTENSION}")
         echo "Latest version for nginx instance manager is ${NIM_PACKAGE_VERSION}...."
         curl -sfLO --cert ${NGINX_CERT_PATH} --key ${NGINX_CERT_KEY_PATH}  "${NIM_REPO[${TARGET_DISTRIBUTION}]}/${NIM_PACKAGE_VERSION}"
         check_last_command_status "curl -sfLO --cert ${NGINX_CERT_PATH} --key ${NGINX_CERT_KEY_PATH}  \"${NIM_REPO[${TARGET_DISTRIBUTION}]}/${NIM_PACKAGE_VERSION}\"" $?
