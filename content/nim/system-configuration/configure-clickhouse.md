@@ -51,7 +51,7 @@ To disable metrics collection after installing NGINX Instance Manager:
       enable = false
    ```
 
-3. Open the `/etc/nms-sm-conf.yaml` file and set:
+3. Open the `/etc/nms/nms-sm-conf.yaml` file and set:
 
    ```yaml
    clickhouse:
