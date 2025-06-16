@@ -112,6 +112,10 @@ The script supports only new installations. If NGINX Instance Manager is already
 
 Ensure that the required `.crt` and `.key` files are available, preferably in the default **/etc/ssl/nginx** directory. Missing certificates or keys will prevent the script from completing the installation.
 
+#### Verify If Metrics Are Required (Exclude ClickHouse)
+
+In 2.20.0, we introduced Lightweight mode, which means you can skip the ClickHouse installation entirely. It’s ideal if you don’t need monitoring data or want a simpler setup. This reduces system requirements and avoids the work of managing a metrics database. You can add ClickHouse later if your needs change.
+
 #### Use the manual installation steps if needed
 
 If the script fails or if you prefer more control over the process, consider using the [manual installation steps]({{< ref "nim/deploy/vm-bare-metal/install-nim-manual.md" >}}). These steps provide a reliable alternative for troubleshooting or handling complex setups.
