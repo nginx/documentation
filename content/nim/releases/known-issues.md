@@ -42,6 +42,10 @@ Fetching latest CVE data from internet might fail if you enable "ssl_verify" in 
 2. Download the latest security advisories file from the [nginx.org repository]( https://raw.githubusercontent.com/nginx/nginx.org/main/xml/en/security_advisories.xml) and save them with "cve.xml" as filename in "/usr/share/nms/cve.xml”
 3. Restart the `nms` service.
 
+   ```shell
+   sudo systemctl restart nms
+   ```
+
 After the restart you will see the line “loading CVE data from file” in the "nms.log" file.
 
 ---
