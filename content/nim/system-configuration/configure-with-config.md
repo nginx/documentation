@@ -1,7 +1,7 @@
 ---
 description: ''
 docs: DOCS-1100
-title: Configure NGINX Instance Manager with nms.conf
+title: Configure settings with nms.conf
 toc: true
 weight: 1
 type:

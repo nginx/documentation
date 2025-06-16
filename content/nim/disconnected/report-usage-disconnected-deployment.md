@@ -1,5 +1,5 @@
 ---
-title: Report usage to F5 in a disconnected environment
+title: Report usage data to F5 (disconnected)
 draft: false
 weight: 300
 toc: true
