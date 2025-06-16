@@ -13,6 +13,83 @@ This document lists and describes the known issues and possible workarounds in F
 
 ---
 
+## 2.20.0
+
+June 16, 2025
+
+### {{% icon-bug %}} Failing to fetch CVE data when using forward proxy in K8s environments {#46177}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID       | Status |
+|----------------|--------|
+| 46177 | Open  |
+{{</bootstrap-table>}}
+
+#### Description
+
+Fetching latest CVE data from internet might fail if you enable "ssl_verify" in Kubernetes environments.
+
+
+#### Workaround
+
+1. Switch to the offline CVE database. To switch add the property "offline_nginx_cve: true" under the DPM section in the "nms.conf" file.
+
+   ```cfg
+   dpm:
+       offline_nginx_cve: true
+   ```
+
+2. Download the latest security advisories file from the [nginx.org repository]( https://raw.githubusercontent.com/nginx/nginx.org/main/xml/en/security_advisories.xml) and save them with "cve.xml" as filename in "/usr/share/nms/cve.xml”
+3. Restart the `nms` service.
+
+   ```shell
+   sudo systemctl restart nms
+   ```
+
+After the restart you will see the line “loading CVE data from file” in the "nms.log" file.
+
+---
+
+### {{% icon-bug %}} New warning message when no usage data or report is available {#46022}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID       | Status |
+|----------------|--------|
+| 46022 | Won't be resolved  |
+{{</bootstrap-table>}}
+
+#### Description
+
+Users now see a warning message when they click the **Send Usage To F5** button if no new usage data or report is available. The message reads:
+
+> "Usage data is not available at the moment. Please try submitting usage details again later."
+
+---
+
+
+## 2.19.1
+
+March 27, 2025
+
+### {{% icon-resolved %}} The certificate stats are not displayed correctly in the Certificates and Keys page as well as the Dashboard page. {#45991}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID       | Status |
+|----------------|--------|
+| 45991 | Fixed in Instance Manager 2.20.0  |
+{{</bootstrap-table>}}
+
+#### Description
+
+When the dashboard page and certificates page are loaded, the count displayed for total, valid, expired, expires soon, managed and unmanaged are incorrect.
+
+#### Workaround
+
+The changes required have been made and the UI displays the values correctly now. Pagination also works well along with the certificate stats.
+
+---
+
+
 ## 2.19.0
 
 February 06, 2025
@@ -134,71 +211,19 @@ There is an issue that causes previous error messages to persist in the web inte
 ---
 
 
-## 2.17.3
-
-September 13, 2024
-
-### {{% icon-resolved %}} The web interface can't display more than 100 certificates {#45565}
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID       | Status |
-|----------------|--------|
-| 45565 | Fixed in Instance Manager 2.19.0  |
-{{</bootstrap-table>}}
-
-#### Description
-
-The Certificate Management screen can only show up to 100 certificates.
-
----
-
-
 ## 2.17.0
 
 July 10, 2024
 
-### {{% icon-resolved %}} Mismatch in date formats in custom date selection on NGINX usage graph {#45512}
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID       | Status |
-|----------------|--------|
-| 45512 | Fixed in Instance Manager 2.18.0  |
-{{</bootstrap-table>}}
-
-#### Description
-
-The months in the custom date range were not displayed correctly because NGINX Instance Manager assumed the data format was in the US timezone.
-
----
-
-### {{% icon-resolved %}} NGINX Agent 2.36.0 fails to validate certain NGINX configurations in NGINX Instance Manager 2.17.0 {#45153}
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID       | Status |
-|----------------|--------|
-| 45153 | Fixed in nginxagent-2.36.0  |
-{{</bootstrap-table>}}
-
-#### Description
-
-In NGINX Instance Manager 2.17.0, an "invalid number of arguments" error appears in the web interface when using specific configuration parameters in NGINX Agent 2.36.0.
-
-#### Workaround
-
-Install NGINX Agent **2.35.1** if you're using NGINX Instance Manager 2.17.0. This version is included with NGINX Instance Manager 2.17.0 by default.
-
-If you're installing NGINX Agent from package files, follow the steps in the [Installing NGINX Agent](https://github.com/nginx/agent?tab=readme-ov-file#installing-nginx-agent-from-package-files) guide.
-
----
-
 ### {{% icon-bug %}} Web Analytics are not enabled after upgrading Instance Manager when keeping existing nms-http.conf {#45131}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
+
 | Issue ID       | Status |
 |----------------|--------|
 | 45131 | Open  |
-{{</bootstrap-table>}}
 
+{{</bootstrap-table>}}
 #### Description
 
 When using NGINX Instance Manager, you configure OIDC by manually editing the /etc/nginx/conf.d/nms-http.conf and /etc/nms/nms.conf files.
@@ -218,11 +243,12 @@ add_header Content-Security-Policy "default-src 'none'; block-all-mixed-content;
 ### {{% icon-bug %}} Failure to retrieve instance configuration when NAP-enabled instance doesn't register properly {#45113}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
+
 | Issue ID       | Status |
 |----------------|--------|
 | 45113 | Open  |
-{{</bootstrap-table>}}
 
+{{</bootstrap-table>}}
 #### Description
 
 If NGINX Agent is configured to monitor NGINX App Protect before App Protect is installed, NGINX Agent will send an empty App Protect metadata structure to NGINX Instance Manager. This causes Instance Manager to fail to register the NGINX instance properly.
@@ -230,34 +256,6 @@ If NGINX Agent is configured to monitor NGINX App Protect before App Protect is 
 #### Workaround
 
 Edit the "/etc/nginx-agent/nginx-agent.conf" file and configure "precompiled_publication" as "false". Then restart the nginx-agent process running `sudo systemctl restart nginx-agent`.
-
----
-
-### {{% icon-resolved %}} Failure to notify user when template configuration publish fails {#44975}
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID       | Status |
-|----------------|--------|
-| 44975 | Fixed in Instance Manager 2.18.0  |
-{{</bootstrap-table>}}
-
-#### Description
-
-When publishing a configuration template fails, the system only displays "Accepted" without providing the final result, such as "Success" or "Failure."
-
----
-
-### {{% icon-resolved %}} Editing template submissions now allows for using most recent template version {#44971}
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID       | Status |
-|----------------|--------|
-| 44971 | Fixed in Instance Manager 2.17.0  |
-{{</bootstrap-table>}}
-
-#### Description
-
-When editing a template submission, you can now choose between using a snapshot of the template from when it was first deployed or the latest version of the template. **Important:** Note that if you use the latest version, changes to the templates might make an augment template incompatible with a base template, causing the publication to the data plane to fail.
 
 ---
 
