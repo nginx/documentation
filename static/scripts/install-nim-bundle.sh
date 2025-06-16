@@ -566,14 +566,9 @@ This action deletes all files in the following directories: /etc/nms , /etc/ngin
 getLatestPkgVersionFromRepo(){
     repoUrl=$1
     version=$2
-    pkg_extension=$3
-    if [[ "${pkg_extension}" == "rpm" ]]; then
-        response=$(curl --cert ${NGINX_CERT_PATH} --key ${NGINX_CERT_KEY_PATH} -sL  "${repoUrl}" | awk -F '"' '/href=/ {print $2}' | grep -E "$version"|  sort -t'-' -k4,4V | tac)
-        readarray -t versions < <(printf "%s" "${response}")
-    else
-        response=$(curl --cert ${NGINX_CERT_PATH} --key ${NGINX_CERT_KEY_PATH} -sL  "${repoUrl}" | awk -F '"' '/href=/ {print $2}' | grep -E "$version"|  sort -t'_' -k2,2V | tac)
-        readarray -t versions < <(printf "%s" "${response}")
-    fi
+    sort_fields=$3
+    response=$(curl --cert ${NGINX_CERT_PATH} --key ${NGINX_CERT_KEY_PATH} -sL  "${repoUrl}" | awk -F '"' '/href=/ {print $2}' | grep -E "$version"|  sort "${sort_fields}" | tac)
+    readarray -t versions < <(printf "%s" "${response}")
     if [ "${#versions[@]}" -eq 0 ]; then
         printf "Package %s not found. See available versions:" "${versions[@]}"
         exit 1;
@@ -602,22 +597,26 @@ package_nim_offline(){
         cd "${TEMP_DIR}/${TARGET_DISTRIBUTION}" || echo "directory ${TEMP_DIR} does not exits"
         if [[ "${USE_NGINX_PLUS}" == "true" ]]; then
             NGINX_PLUS_PACKAGE="^nginx-plus_[0-9]+-([0-9]+)~${OS_DISTRO_MAP[${TARGET_DISTRIBUTION}]}_${OS_ARCH}\.${PKG_EXTENSION}$"
+            SORT_FIELDS="-t'_' -k2,2V"
             if [[ "${PKG_EXTENSION}" == "rpm" ]]; then
                NGINX_PLUS_PACKAGE="^nginx-plus-[0-9]+-([0-9]+)${OS_DISTRO_MAP[${TARGET_DISTRIBUTION}]}\.${PKG_EXTENSION}$"
+               SORT_FIELDS="-t'-' -k3,3V"
             fi
             echo "regex for looking latest version : ${NGINX_PLUS_PACKAGE}"
-            NGINX_PLUS_VERSION=$(getLatestPkgVersionFromRepo "${NGINX_PLUS_REPO[${TARGET_DISTRIBUTION}]}" "${NGINX_PLUS_PACKAGE}" "${PKG_EXTENSION}")
+            NGINX_PLUS_VERSION=$(getLatestPkgVersionFromRepo "${NGINX_PLUS_REPO[${TARGET_DISTRIBUTION}]}" "${NGINX_PLUS_PACKAGE}" "${SORT_FIELDS}")
             echo "latest version for nginx_plus is ${NGINX_PLUS_VERSION}"
             echo "Downloading ${NGINX_PLUS_REPO[${TARGET_DISTRIBUTION}]}/${NGINX_PLUS_VERSION}...."
             curl -sfLO --cert ${NGINX_CERT_PATH} --key ${NGINX_CERT_KEY_PATH} "${NGINX_PLUS_REPO[${TARGET_DISTRIBUTION}]}/${NGINX_PLUS_VERSION}"
             check_last_command_status "curl -sfLO --cert ${NGINX_CERT_PATH} --key ${NGINX_CERT_KEY_PATH} \"${NGINX_PLUS_REPO[${TARGET_DISTRIBUTION}]}/${NGINX_PLUS_VERSION}\"" $?
         else
             NGINX_OSS_PACKAGE="^nginx_[0-9]+\.[0-9]+\.[0-9]+-([0-9]+)~${OS_DISTRO_MAP[${TARGET_DISTRIBUTION}]}_${OS_ARCH}\.${PKG_EXTENSION}$"
+            SORT_FIELDS="-t'_' -k2,2V"
             if [[ "${PKG_EXTENSION}" == "rpm" ]]; then
               NGINX_OSS_PACKAGE="^nginx-[0-9]+\.[0-9]+\.[0-9]+-([0-9]+)${OS_DISTRO_MAP[${TARGET_DISTRIBUTION}]}\.${PKG_EXTENSION}$"
+               SORT_FIELDS="-t'-' -k2,2V"
             fi
             echo "fetching latest version using ${NGINX_OSS_PACKAGE}"
-            NGINX_OSS_VERSION=$(getLatestPkgVersionFromRepo "${NGINX_REPO[${TARGET_DISTRIBUTION}]}" "${NGINX_OSS_PACKAGE}" "${PKG_EXTENSION}")
+            NGINX_OSS_VERSION=$(getLatestPkgVersionFromRepo "${NGINX_REPO[${TARGET_DISTRIBUTION}]}" "${NGINX_OSS_PACKAGE}" "${SORT_FIELDS}")
             echo "latest version for nginx is ${NGINX_OSS_VERSION}"
             echo "Downloading ${NGINX_REPO[${TARGET_DISTRIBUTION}]}/${NGINX_OSS_VERSION}...."
             curl -sfLO "${NGINX_REPO[${TARGET_DISTRIBUTION}]}/${NGINX_OSS_VERSION}"
@@ -649,10 +648,12 @@ package_nim_offline(){
             check_last_command_status "curl -sfLO \"${CLICKHOUSE_CLIENT_PATH}\"" $?
         fi
         NIM_PACKAGE_PATH="^nms-instance-manager_[0-9]+\.[0-9]+\.[0-9]+-([0-9]+)~${OS_DISTRO_MAP[${TARGET_DISTRIBUTION}]}_${OS_ARCH}\.${PKG_EXTENSION}$"
+        SORT_FIELDS="-t'_' -k2,2V"
         if [[ "${PKG_EXTENSION}" == "rpm" ]]; then
            NIM_PACKAGE_PATH="^nms-instance-manager-[0-9]+\.[0-9]+\.[0-9]+-([0-9]+)${OS_DISTRO_MAP[${TARGET_DISTRIBUTION}]}\.${PKG_EXTENSION}$"
+           SORT_FIELDS="-t'-' -k4,4V"
         fi
-        NIM_PACKAGE_VERSION=$(getLatestPkgVersionFromRepo "${NIM_REPO[${TARGET_DISTRIBUTION}]}" "${NIM_PACKAGE_PATH}" "${PKG_EXTENSION}")
+        NIM_PACKAGE_VERSION=$(getLatestPkgVersionFromRepo "${NIM_REPO[${TARGET_DISTRIBUTION}]}" "${NIM_PACKAGE_PATH}" "${SORT_FIELDS}")
         echo "Latest version for nginx instance manager is ${NIM_PACKAGE_VERSION}...."
         curl -sfLO --cert ${NGINX_CERT_PATH} --key ${NGINX_CERT_KEY_PATH}  "${NIM_REPO[${TARGET_DISTRIBUTION}]}/${NIM_PACKAGE_VERSION}"
         check_last_command_status "curl -sfLO --cert ${NGINX_CERT_PATH} --key ${NGINX_CERT_KEY_PATH}  \"${NIM_REPO[${TARGET_DISTRIBUTION}]}/${NIM_PACKAGE_VERSION}\"" $?
