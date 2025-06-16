@@ -427,7 +427,7 @@ http {
         listen              443 ssl;
         ssl_certificate     /etc/nginx/ssl/company.com.crt;
         ssl_certificate_key /etc/nginx/ssl/company.com.key;
-        ssl_protocols       TLSv1 TLSv1.1 TLSv1.2;
+        ssl_protocols       TLSv1.2 TLSv1.3;
 
         location / {
             proxy_pass         https://exchange;
