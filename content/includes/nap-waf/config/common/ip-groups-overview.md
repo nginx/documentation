@@ -55,11 +55,6 @@ The example with IP-Group definition in external file external_ip_groups.json:
         "description": "Optional Description",
         "blockRequests": "always",
         "setGeolocation": "IL",
-        "ipAddresses": [ 
-           {
-             "ipAddress": "31.8.194.27"
-           }
-        ],
         "$ref": "file:///tmp/policy/external_ip_groups.json"
       }
     ]
