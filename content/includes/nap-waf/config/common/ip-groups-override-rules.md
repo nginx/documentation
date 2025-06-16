@@ -23,39 +23,31 @@ Here is a policy example:
     "ip-address-lists": [ 
       { 
         "name": "standalone", 
-        "description": "This is my list of IP addresses", 
         "ipAddresses": [ 
           { 
-            "ipAddress": "6.5.3.3/32" 
-          }, 
-          { 
-            "ipAddress": "6.5.4.2" 
+            "ipAddress": "1.1.1.1/32" 
           } 
         ] 
       } 
      ], 
      "override-rules": [ 
       { 
-        "name": "myFirstRule", 
+        "name": "myRule1", 
         "condition": "clientIp.matches(ipAddressLists['standalone'])", 
-        "actionType": "violation", 
-        "violation": { 
-          "block": true, 
-          "alarm": true, 
-          "attackType": { 
-            "name": "Forceful Browsing" 
-          }, 
-          "description": "Attempt to access from clientIp", 
-          "rating": 4
-        }
+        "actionType": "extend-policy",
+        "override": {
+          "policy": {
+            "enforcementMode": "transparent"
+          }
+        }  
       }
-    ],
+    ]
   }
 }
 ```
 
 The previous example policy contains an IP group with the name "standalone", used for the override rule condition "clientIp.matches(ipAddressLists['standalone'])".
-The condition means that the rule enforcement is applied when clientIp is matched to one of ipAddresses in ipAddressList with name "standalone". 
+The condition means that the rule enforcement is applied and override base policy enforcement when clientIp is matched to one of ipAddresses in ipAddressList with name "standalone". 
 The value used for the override condition must exist and exactly match the name in "ip-address-lists".  
 
 #### Possible errors
