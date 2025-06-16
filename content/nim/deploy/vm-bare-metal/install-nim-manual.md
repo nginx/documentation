@@ -58,7 +58,7 @@ Follow these steps to download the certificate and private key for NGINX Instanc
 
 Install NGINX Open Source or NGINX Plus on the host where you'll install NGINX Instance Manager. NGINX Instance Manager uses NGINX as a front-end proxy and for managing user access.
 
-- [Installing NGINX and NGINX Plus](https://docs.nginx.com/nginx/admin-guide/installing-nginx/)
+- [Installing NGINX and NGINX Plus]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}})
 
    <br>
 
@@ -88,9 +88,9 @@ Make sure to review the [Technical Specifications]({{< ref "/nim/fundamentals/te
 
 NGINX Instance Manager uses ClickHouse to store metrics, events, alerts, and configuration data.
 
-In 2.20.0, we introduced Lightweight mode, which can skip the ClickHouse installation entirely. It’s ideal if you don’t need monitoring data or want a simpler setup. This reduces system requirements and avoids the work of managing a metrics database. You can add ClickHouse later if your needs change.
+Starting in version 2.20.0, you can run NGINX Instance Manager in Lightweight mode, which skips the ClickHouse installation entirely. This setup works well if you don’t need monitoring data or want to reduce system requirements. It also avoids the effort of managing a metrics database. You can add ClickHouse later if your needs change.
 
-If you don’t need to store metrics, you can skip installing ClickHouse. But you must use NGINX Agent version {{< lightweight-nim-nginx-agent-version >}}, and you must disable metrics collection in the `/etc/nms/nms.conf` file.
+If you don’t need to store metrics, you can skip installing ClickHouse. But you must use NGINX Agent version {{< lightweight-nim-nginx-agent-version >}}, and you must disable metrics collection in the `/etc/nms/nms.conf` and `/etc/nms-sm.conf.yaml` files.
 
 For instructions, see [Disable metrics collection]({{< ref "nim/system-configuration/configure-clickhouse.md#disable-metrics-collection" >}}).
 
@@ -203,7 +203,7 @@ To install NGINX Instance Manager, you need to add the official repository to pu
 1. To upgrade to the latest version of the Instance Manager, run the following command:
 
    ```bash
-   sudo apt-get update
+   sudo apt-get update && \
    sudo apt-get install -y --only-upgrade nms-instance-manager
    ```
 

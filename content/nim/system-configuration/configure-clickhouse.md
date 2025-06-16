@@ -13,7 +13,7 @@ type:
 ## Overview
 
 NGINX Instance Manager uses ClickHouse to store metrics, events, alerts, and configuration data.  
-If your setup differs from the default configuration—for example, if you use a custom address, enable TLS, set a password, or turn off metrics—you need to update the `/etc/nms/nms.conf` file.
+If your setup differs from the default configuration — for example, if you use a custom address, enable TLS, set a password, or turn off metrics — you need to update the `/etc/nms/nms.conf` file.
 
 This guide explains how to update those settings so that NGINX Instance Manager can connect to ClickHouse correctly.
 
@@ -38,19 +38,27 @@ Unless otherwise specified in the `/etc/nms/nms.conf` file, NGINX Instance Manag
 
 ## Disable metrics collection
 
-As of version 2.20, NGINX Instance Manager can run without ClickHouse. This lightweight mode reduces system requirements and simplifies installation for users who do not need metrics. To use this setup, you must run NGINX Agent version {{< lightweight-nim-nginx-agent-version >}}.
+Starting in version 2.20, NGINX Instance Manager can run without ClickHouse. This lightweight mode reduces system requirements and simplifies installation for users who don't need metrics. To use this setup, you must run NGINX Agent version `{{< lightweight-nim-nginx-agent-version >}}`.
 
 To disable metrics collection after installing NGINX Instance Manager:
 
-1. Open the configuration file at `/etc/nms/nms.conf`.
-
+1. Open the config file at `/etc/nms/nms.conf`.
+   
 2. In the `[clickhouse]` section, set the following value:
 
    ```yaml
-   enable = false
+   clickhouse:
+      enable = false
    ```
 
-3. Restart the NGINX Instance Manager service:
+3. Open the `/etc/nms-sm-conf.yaml` file and set:
+
+   ```yaml
+   clickhouse:
+      enable = false
+   ```
+
+4. Restart the NGINX Instance Manager service:
 
    ```shell
    sudo systemctl restart nms

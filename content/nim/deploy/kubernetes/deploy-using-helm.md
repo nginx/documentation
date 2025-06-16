@@ -72,7 +72,7 @@ kubectl create secret docker-registry regcred \
 ### OpenShift
 
 ```shell
-oc new-project nms
+oc new-project nms && \
 oc create secret docker-registry regcred \
   --docker-server=private-registry.nginx.com \
   --docker-username=<NGINX JWT Token> \
