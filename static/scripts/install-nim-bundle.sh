@@ -567,7 +567,7 @@ getLatestPkgVersionFromRepo(){
     repoUrl=$1
     version=$2
     sort_fields=$3
-    response=$(curl --cert ${NGINX_CERT_PATH} --key ${NGINX_CERT_KEY_PATH} -sL  "${repoUrl}" | awk -F '"' '/href=/ {print $2}' | grep -E "$version"|  sort "${sort_fields}" | tac)
+    response=$(curl --cert ${NGINX_CERT_PATH} --key ${NGINX_CERT_KEY_PATH} -sL  "${repoUrl}" | awk -F '"' '/href=/ {print $2}' | grep -E "$version"|  eval sort "$sort_fields" | tac)
     readarray -t versions < <(printf "%s" "${response}")
     if [ "${#versions[@]}" -eq 0 ]; then
         printf "Package %s not found. See available versions:" "${versions[@]}"
