@@ -95,7 +95,7 @@ To install NGINX Agent on an NGINX instance:
 
 The `install` script writes an `nginx-agent.conf` file to the `/etc/nginx-agent/` directory, with the [data plane key](#generate-data-plane-key) that you generated. You can find this information in the `nginx-agent.conf` file:
 
-{{< include "/nginx-one/conf/nginx-agent.conf.md" >}}
+{{< include "/nginx-one/conf/nginx-agent-conf.md" >}}
 ```yaml
 server:
   token: "<YOUR_DATA_PLANE_KEY>"

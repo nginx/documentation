@@ -46,7 +46,7 @@ Create a configuration file named `nginx-agent.conf` in your current directory
 and populate the file with the following structure:
 
 
-{{< include "/nginx-one/conf/nginx-agent.conf.md" >}}
+{{< include "/nginx-one/conf/nginx-agent-conf.md" >}}
 
 Replace the placeholder values:
 
