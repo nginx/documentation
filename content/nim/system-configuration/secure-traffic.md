@@ -1,6 +1,6 @@
 ---
 docs: DOCS-794
-title: Secure Client Access and Network Traffic
+title: Secure client access and network traffic
 toc: true
 weight: 600
 type:
@@ -468,7 +468,7 @@ To generate the necessary certificates, follow these steps. You can modify these
 ## Configure SSL verification for usage reporting with self-signed certificates {#configure-ssl-verify}
 
 {{<call-out "note" "Version requirements" "">}}
-Usage reporting for NGINX Plus R33 or later in network-restricted environments requires **NGINX Instance Manager version 2.18 or later**.
+Usage reporting for NGINX Plus R33 or later in disconnected environments requires **NGINX Instance Manager version 2.18 or later**.
 {{</call-out>}}
 
 Starting with NGINX Plus R33, NGINX Plus must report usage data to a reporting endpoint, such as NGINX Instance Manager. For more information, see [About subscription licenses]({{< ref "solutions/about-subscription-licenses.md" >}}).
