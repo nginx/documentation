@@ -15,3 +15,8 @@ command:
   tls:
     skip_verify: false
 ```
+
+Replace the placeholder values:
+
+- `<NGINX-One-Console-URL>`: The URL of your NGINX One Console instance, typically https://INSERT_YOUR_TENANT_NAME.console.ves.volterra.io/ .
+- `<your-data-plane-key-here>`: Your Data Plane key.
