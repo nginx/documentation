@@ -93,17 +93,17 @@ jobs:
                   fields: [
                   {
                     title: 'Tag',
-                    value: ${{ github.event.client_payload.tag_name }},
+                    value: `${{ github.event.client_payload.tag_name }}`,
                     short: true
                   },
                   {
                     title: 'Author',
-                    value: ${{ github.event.client_payload.author }},
+                    value: `${{ github.event.client_payload.author }}`,
                     short: true
                   },
                   {
                     title: 'Preview URL',
-                    value: ${{ env.PREVIEW_URL }},
+                    value: `${{ env.PREVIEW_URL }}`,
                     short: true
                   }]
                 }]
