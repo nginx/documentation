@@ -73,6 +73,15 @@ jobs:
       AZURE_CREDENTIALS: ${{secrets.AZURE_CREDENTIALS_DOCS}}
       AZURE_KEY_VAULT: ${{secrets.AZURE_KEY_VAULT_DOCS}}
 
+  dummy-step:
+    needs: call-docs-build-push
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checking variable
+        run: | 
+          echo ${{ needs.build.outputs.PREVIEW_URL }}
+          echo ${{ needs.call-docs-build-push.outputs.PREVIEW_URL }}
+
   trigger-theme-slack-notification:
     if: github.event_name == 'repository_dispatch'
     needs: call-docs-build-push
@@ -110,7 +119,7 @@ jobs:
             }
     env:
       SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL_FRIENDS_OF_DOCS }}
-      PREVIEW_URL: ${{ needs.call-docs-build-push.outputs.PREVIEW_URL }}
+      PREVIEW_URL: ${{ needs.build.outputs.PREVIEW_URL }}
 
 
   lighthouseci:
