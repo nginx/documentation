@@ -58,7 +58,7 @@ Optionally, specify which SSL protocols and ciphers to use:
 ```nginx
 server {
         ...
-        proxy_ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+        proxy_ssl_protocols TLSv1.2 TLSv1.3;
         proxy_ssl_ciphers   HIGH:!aNULL:!MD5;
 }
 ```
@@ -98,7 +98,7 @@ stream {
 
         proxy_ssl_certificate         /etc/ssl/certs/backend.crt;
         proxy_ssl_certificate_key     /etc/ssl/certs/backend.key;
-        proxy_ssl_protocols           TLSv1 TLSv1.1 TLSv1.2;
+        proxy_ssl_protocols           TLSv1.2 TLSv1.3;
         proxy_ssl_ciphers             HIGH:!aNULL:!MD5;
         proxy_ssl_trusted_certificate /etc/ssl/certs/trusted_ca_cert.crt;
 

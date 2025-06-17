@@ -163,9 +163,10 @@ See [Sizing Guide for Deploying NGINX Plus on Bare Metal Servers](https://www.ng
 - [Limit Requests](https://nginx.org/en/docs/http/ngx_http_limit_req_module.html) – Limit rate of request processing for a client IP address or other keyed value
 - [Limit Responses](https://nginx.org/en/docs/http/ngx_http_core_module.html#limit_rate) – Limit rate of responses per client connection
 
-### HTTP/2 and SSL/TLS
+### HTTP/2, HTTP/3 and SSL/TLS
 
 - [HTTP/2](https://nginx.org/en/docs/http/ngx_http_v2_module.html) – Process HTTP/2 traffic
+- [HTTP/3](https://nginx.org/en/docs/http/ngx_http_v3_module.html) – Process HTTP/3 traffic
 - [SSL/TLS](https://nginx.org/en/docs/http/ngx_http_ssl_module.html) – Process HTTPS traffic
 
 ### Mail

@@ -31,7 +31,7 @@ This statement uses the following terms:
 
 - **Cryptographic module**: The OpenSSL software, comprised of libraries of FIPS‑validated algorithms that can be used by other applications.
 
-- **Cryptographic boundary**: The operational functions that use FIPS‑validated algorithms. For NGINX Plus, the cryptographic boundary includes all functionality that is implemented by the [http_ssl](http://nginx.org/en/docs/http/ngx_http_ssl_module.html), [http_v2](http://nginx.org/en/docs/http/ngx_http_v2_module.html), [stream_ssl](http://nginx.org/en/docs/stream/ngx_stream_ssl_module.html), and [mail_ssl](http://nginx.org/en/docs/mail/ngx_mail_ssl_module.html) modules. These modules implement SSL and TLS operations for inbound and outbound connections which use HTTP, HTTP/2, TCP, and mail protocols.
+- **Cryptographic boundary**: The operational functions that use FIPS‑validated algorithms. For NGINX Plus, the cryptographic boundary includes all functionality that is implemented by the [http_ssl](http://nginx.org/en/docs/http/ngx_http_ssl_module.html), [http_v2](http://nginx.org/en/docs/http/ngx_http_v2_module.html), [stream_ssl](http://nginx.org/en/docs/stream/ngx_stream_ssl_module.html), [mail_ssl](http://nginx.org/en/docs/mail/ngx_mail_ssl_module.html), and [http_auth_jwt](http://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html) modules. These modules implement SSL and TLS operations for inbound and outbound connections which use HTTP, HTTP/2, TCP, and mail protocols.
 
 - **NGINX Plus**: The NGINX Plus software application developed by NGINX, Inc. and delivered in binary format from NGINX servers.
 
@@ -110,7 +110,7 @@ server {
     ssl_certificate     /etc/nginx/ssl/test.crt;
     ssl_certificate_key /etc/nginx/ssl/test.key;
 
-    ssl_protocols   	TLSv1 TLSv1.1 TLSv1.2;
+    ssl_protocols   	TLSv1.2 TLSv1.3;
 
     location / {
         root   /usr/share/nginx/html;

@@ -24,12 +24,10 @@ To get started using NGINX One, enable the service on F5 Distributed Cloud.
 
 Next, add your NGINX instances to NGINX One. You'll need to create a data plane key and then install NGINX Agent on each instance you want to monitor.
 
-### Add an instance
+The following instructions include minimal information, sufficient to "get started." See the following links for detailed instructions:
 
-Depending on whether this is your first time using NGINX One Console or you've used it before, follow the appropriate steps to add an instance:
-
-- **For first-time users:** On the welcome screen, select **Add Instance**.
-- **For returning users:** If you've added instances previously and want to add more, select **Instances** on the left menu, then select **Add Instance**.
+- [Create and manage data plane keys]({{< ref "/nginx-one/connect-instances/create-manage-data-plane-keys.md" >}})
+- [Add an NGINX instance]({{< ref "/nginx-one/connect-instances/add-instance.md" >}})
 
 ### Generate a data plane key {#generate-data-plane-key}
 
@@ -43,10 +41,17 @@ To generate a data plane key:
 {{<call-out "caution" "Data plane key guidelines" "fas fa-key" >}}
 Data plane keys are displayed only once and cannot be retrieved later. Be sure to copy and store this key securely.
 
-Data plane keys expire after one year. You can change this expiration date later by [editing the key]({{< ref "nginx-one/how-to/data-plane-keys/create-manage-data-plane-keys.md#change-expiration-date" >}}).
+Data plane keys expire after one year. You can change this expiration date later by [editing the key]({{< ref "nginx-one/connect-instances/create-manage-data-plane-keys.md#change-expiration-date" >}}).
 
-[Revoking a data plane key]({{< ref "nginx-one/how-to/data-plane-keys/create-manage-data-plane-keys.md#revoke-data-plane-key" >}}) disconnects all instances that were registered with that key.
+[Revoking a data plane key]({{< ref "nginx-one/connect-instances/create-manage-data-plane-keys.md#revoke-data-plane-key" >}}) disconnects all instances that were registered with that key.
 {{</call-out>}}
+
+### Add an instance
+
+Depending on whether this is your first time using NGINX One Console or you've used it before, follow the appropriate steps to add an instance:
+
+- **For first-time users:** On the welcome screen, select **Add Instance**.
+- **For returning users:** If you've added instances previously and want to add more, select **Instances** on the left menu, then select **Add Instance**.
 
 
 ### Install NGINX Agent
@@ -134,37 +139,11 @@ If you followed the [Installation and upgrade](https://docs.nginx.com/nginx-agen
 
 ---
 
-## Enable NGINX metrics reporting
-
 The NGINX One Console dashboard relies on APIs for NGINX Plus and NGINX Open Source Stub Status to report traffic and system metrics. The following sections show you how to enable those metrics.
 
 ### Enable NGINX Plus API
 
-<!-- possible future include: "/use-cases/monitoring/enable-nginx-plus-api.md" -->
-To collect metrics for NGINX Plus, add the following to your NGINX Plus configuration file:
-
-```nginx
-# Enable the /api/ location with appropriate access control
-# to use the NGINX Plus API.
-#
-location /api/ {
-    api write=on;
-    allow 127.0.0.1;
-    deny all;
-}
-```
-
-This configuration:
-
-- Enables the NGINX Plus API.
-- Allows requests only from `127.0.0.1` (localhost).
-- Blocks all other requests for security.
-
-After saving the changes, reload NGINX to apply the new configuration:
-
-```shell
-nginx -s reload
-```
+{{< include "/use-cases/monitoring/enable-nginx-plus-api.md" >}}
 
 ### Enable NGINX Open Source Stub Status API
 
@@ -182,6 +161,8 @@ After connecting your NGINX instances to NGINX One, you can monitor their perfor
 1. Select **NGINX One > Visit Service**.
 
 ### Overview of the NGINX One dashboard
+
+{{< include "/use-cases/monitoring/n1c-dashboard-overview.md" >}}
 
 Navigating the dashboard:
 

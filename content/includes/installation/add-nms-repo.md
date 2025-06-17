@@ -36,23 +36,39 @@ Add the NGINX Instance Manager repository:
 
 {{%tab name="Debian, Ubuntu, Deb-Based"%}}
 
-Add the NGINX Instance Manager repository:
-
-- **Debian**
+1. Add the NGINX signing key:
 
   ```shell
-  printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https://pkgs.nginx.com/nms/debian `lsb_release -cs` nginx-plus\n" | sudo tee /etc/apt/sources.list.d/nms.list
-  sudo wget -q -O /etc/apt/apt.conf.d/90pkgs-nginx https://cs.nginx.com/static/files/90pkgs-nginx
+  wget -qO - https://cs.nginx.com/static/keys/nginx_signing.key \
+      | gpg --dearmor \
+      | sudo tee /usr/share/keyrings/nginx-archive-keyring.gpg >/dev/null 
   ```
 
-  <br>
+2. Add the NGINX Instance Manager repository:
 
-- **Ubuntu**
+   - **Debian**
 
-  ```shell
-  printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https://pkgs.nginx.com/nms/ubuntu `lsb_release -cs` nginx-plus\n" | sudo tee /etc/apt/sources.list.d/nms.list
-  sudo wget -q -O /etc/apt/apt.conf.d/90pkgs-nginx https://cs.nginx.com/static/files/90pkgs-nginx
-  ```
+    ```shell
+    printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
+    https://pkgs.nginx.com/nms/debian $(lsb_release -cs) nginx-plus\n" | \
+    sudo tee /etc/apt/sources.list.d/nms.list
+
+    sudo wget -q -O /etc/apt/apt.conf.d/90pkgs-nginx \
+    https://cs.nginx.com/static/files/90pkgs-nginx
+    ```
+
+     <br>
+
+   - **Ubuntu**
+
+    ```shell
+    printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
+    https://pkgs.nginx.com/nms/ubuntu $(lsb_release -cs) nginx-plus\n" | \
+    sudo tee /etc/apt/sources.list.d/nms.list
+
+    sudo wget -q -O /etc/apt/apt.conf.d/90pkgs-nginx \
+    https://cs.nginx.com/static/files/90pkgs-nginx
+    ```
 
 {{%/tab%}}
 {{</tabs>}}

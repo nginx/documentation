@@ -1,0 +1,93 @@
+name: nim
+secrets:
+  nim_admin_password:
+    file: admin_password.txt
+  # Optional: set admin and user credentials from a .htpasswd file.
+  #nim_credential_file:
+  #  file: nim_creds.txt
+  # Optional: set external SSL certificate, key, and CA in PEM format for the NIM ingress proxy.
+  #nim_proxy_cert_file:
+  #  file: ./certs/nim_cert.pem
+  #nim_proxy_cert_key:
+  #  file: ./certs/nim_key.pem
+  #nim_proxy_ca_cert:
+  #  file: ./certs/nim_ca.pem
+services:
+  nim:
+    image: private-registry.nginx.com/nms/nim-standalone-compose:2.20.0
+    hostname: nim
+    ports:
+      - 443:443
+    networks:
+      - external_network
+    volumes:
+      - nim-data:/data
+      - proxy-certs:/usr/local/share/ca-certificates
+    # Uncomment to set custom service limits.
+    #deploy:
+    #  resources:
+    #    limits:
+    #      cpus: '0.5'
+    #      memory: '512M'
+    restart: no
+    healthcheck:
+      test: ["CMD", "sh", "/etc/nms/scripts/health.sh"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    stop_grace_period: 30s
+    secrets:
+      - nim_admin_password
+      # Uncomment this line if you use a .htpasswd credential file. The credential file takes priority over the nim_admin_password file.
+      #- nim_credential_file
+      # Uncomment these lines to use user-provided certificate, key, and CA for the NIM ingress proxy.
+      #- nim_proxy_cert_file
+      #- nim_proxy_cert_key
+      #- nim_proxy_ca_cert
+    environment:
+      # Set the NIM logging level.
+      NIM_LOG_LEVEL: "INFO"
+      # Set a custom time-to-live value (in days) for metrics retention.
+      NIM_METRICS_TTL: "1"
+      # Set a custom time-to-live value (in days) for event retention.
+      NIM_EVENTS_TTL: "1"
+      # Set a custom time-to-live value (in days) for security violation retention.
+      NIM_SECURITY_TTL: "1"
+      # Enable maintenance mode to perform backup, restore, and troubleshooting.
+      #NIM_MAINTENANCE: "true"
+      # Set a custom watchdog timeout (in seconds).
+      NIM_WATCHDOG_TIMEOUT: "60"
+      # Set the NIM license mode to connected or disconnected. Default is connected.
+      NIM_LICENSE_MODE_OF_OPERATION: "connected"
+      # Enable basic proxy support.
+      PROXY_ENABLE: false
+      # Configure the proxy server host.
+      PROXY_HOST: ""
+      # Configure the proxy server protocol (http or https). Default is http.
+      PROXY_PROTOCOL: "http"
+      # Configure the proxy server port.
+      PROXY_PORT: 3128
+      # Enable basic authentication for the proxy.
+      PROXY_AUTH_REQUIRED: false
+      # Configure proxy username for basic authentication (required when proxy_auth_required is true).
+      PROXY_AUTH_USERNAME: ""
+      # Configure proxy password for basic authentication (required when proxy_auth_required is true).
+      # We recommend using a .env file for the password.
+      # PROXY_PASSWORD: ""
+      # Configure proxy SSL verification to trust the proxy server.
+      PROXY_SSL_VERIFY: true
+      ENABLE_METRICS: false
+networks:
+  external_network:
+    driver: bridge
+volumes:
+  # By default, Docker Compose creates a named volume.
+  # For additional storage options such as NFS, see https://docs.docker.com/reference/compose-file/volumes/.
+  proxy-certs:
+    driver: local
+  nim-data:
+    driver: local
+    #driver_opts:
+    #  type: "nfs"
+    #  o: "addr=172.16.0.92,rw"
+    #  device: ":/mnt/nfs_share/data"
