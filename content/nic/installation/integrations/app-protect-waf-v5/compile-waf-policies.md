@@ -203,7 +203,7 @@ This GET request uses the policy and bundle IDs from the previous examples:
 
 ```shell
 curl -X GET -k 'https://127.0.0.1/api/platform/v1/security/policies/6af9f261-658b-4be1-b07a-cebd83e917a1/bundles/de08b324-99d8-4155-b2eb-fe687b21034e' \
-    -H "Authorization: Basic YWRtaW46UncxQXBQS3lRRTRuQXRXOFRYa1J4ZFdVSWVTSGtU" \
+    -H "Authorization: Basic <auth token>" \
      | jq -r '.content' | base64 -d > security-policy-bundle.tgz
 ```
 
