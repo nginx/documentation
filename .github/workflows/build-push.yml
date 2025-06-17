@@ -79,7 +79,7 @@ jobs:
     steps:
       - name: Checking variable
         run: | 
-          echo ${{ needs.build.outputs.PREVIEW_URL }}
+          echo ${{ needs }}
           echo ${{ needs.call-docs-build-push.outputs.PREVIEW_URL }}
 
   trigger-theme-slack-notification:
