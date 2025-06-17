@@ -11,7 +11,7 @@ When using F5 NGINX Ingress Controller, you can customize or fine tune NGINX beh
 
 ## Using ConfigMap
 
-1. The [Installation with Manifests]({{< relref "installation/installing-nic/installation-with-manifests.md" >}}) documentation deploy an empty ConfigMap while the default installation manifests specify it in the command-line arguments of the Ingress Controller. However, if you customized the manifests, to use ConfigMap, make sure to specify the ConfigMap resource to use the [command-line arguments]({{< relref "configuration/global-configuration/command-line-arguments" >}}) of NGINX Ingress Controller.
+1. The [Installation with Manifests]({{< relref "installation/installing-nic/installation-with-manifests.md" >}}) documentation deploy an empty ConfigMap while the default installation manifests specify it in the command-line arguments of the Ingress Controller. However, if you customized the manifests, to use ConfigMap, make sure to specify the ConfigMap resource to use the [command-line arguments]({{< ref "/nic/configuration/global-configuration/command-line-arguments" >}}) of NGINX Ingress Controller.
 
 1. Create a ConfigMap file with the name *nginx-config.yaml* and set the values
 that make sense for your setup:
@@ -44,7 +44,7 @@ that make sense for your setup:
 
 ConfigMap applies globally, meaning that it affects every Ingress resource. In contrast, annotations always apply to their Ingress resource. Annotations can override some ConfigMap keys: an example is that the `nginx.org/proxy-connect-timeout` annotations overrides the `proxy-connect-timeout` ConfigMap key.
 
-For more information, view the [Advanced configuration with annotations]({{< relref "configuration/ingress-resources/advanced-configuration-with-annotations" >}}) topic.
+For more information, view the [Advanced configuration with annotations]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations" >}}) topic.
 
 ---
 
@@ -52,7 +52,7 @@ For more information, view the [Advanced configuration with annotations]({{< rel
 
 The ConfigMap affects every VirtualServer and VirtualServerRoute resources. However, the fields of those resources allow overriding some ConfigMap keys. For example, the `connect-timeout` field of the `upstream` overrides the `proxy-connect-timeout` ConfigMap key.
 
-For more information, view the [VirtualServer and VirtualServerRoute resources]({{< relref "configuration/virtualserver-and-virtualserverroute-resources" >}}) topic.
+For more information, view the [VirtualServer and VirtualServerRoute resources]({{< ref "/nic/configuration/virtualserver-and-virtualserverroute-resources" >}}) topic.
 
 ---
 
@@ -63,7 +63,7 @@ For more information, view the [VirtualServer and VirtualServerRoute resources](
 {{<bootstrap-table "table table-striped table-bordered table-responsive">}}
 |ConfigMap Key | Description | Default | Example |
 | ---| ---| ---| --- |
-|*external-status-address* | Sets the address to be reported in the status of Ingress resources. Requires the *-report-status* command-line argument. Overrides the *-external-service* argument. | N/A | [Reporting resource status]({{< relref "configuration/global-configuration/reporting-resources-status" >}}) |
+|*external-status-address* | Sets the address to be reported in the status of Ingress resources. Requires the *-report-status* command-line argument. Overrides the *-external-service* argument. | N/A | [Reporting resource status]({{< ref "/nic/configuration/global-configuration/reporting-resources-status" >}}) |
 {{</bootstrap-table>}}
 
 ---

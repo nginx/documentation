@@ -14,14 +14,14 @@ This document explains how to use F5 NGINX Ingress Controller to configure NGINX
 
 ## Global Configuration
 
-NGINX Ingress Controller has global configuration parameters that match those in NGINX App Protect WAF. They are found in the [ConfigMap resource]({{< relref "configuration/global-configuration/configmap-resource.md#modules" >}}): the NGINX App Protect WAF parameters are prefixed with `app-protect*`.
+NGINX Ingress Controller has global configuration parameters that match those in NGINX App Protect WAF. They are found in the [ConfigMap resource]({{< ref "/nic/configuration/global-configuration/configmap-resource.md#modules" >}}): the NGINX App Protect WAF parameters are prefixed with `app-protect*`.
 
 ## Enable NGINX App Protect WAF
 
 NGINX App Protect WAF can be enabled and configured for custom resources (VirtualServer, VirtualServerRoute) or Ingress resources.
 
-- For custom resources, you need to create a Policy Custom Resource referencing the `APPolicy` custom resource or bundle, then add it to the VirtualServer definition. Additional detail can be found in the [Policy Resource documentation]({{< relref "configuration/policy-resource.md#waf" >}}).
-- For Ingress resources, apply the [`app-protect` annotations]({{< relref "configuration/ingress-resources/advanced-configuration-with-annotations.md#app-protect" >}}) to each desired resource.
+- For custom resources, you need to create a Policy Custom Resource referencing the `APPolicy` custom resource or bundle, then add it to the VirtualServer definition. Additional detail can be found in the [Policy Resource documentation]({{< ref "/nic/configuration/policy-resource.md#waf" >}}).
+- For Ingress resources, apply the [`app-protect` annotations]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations.md#app-protect" >}}) to each desired resource.
 
 
 ## NGINX App Protect WAF Policies {#waf-policies}
@@ -111,7 +111,7 @@ To add the [log configurations](/nginx-app-protect-waf/v4/logging-overview/secur
 
 1. Create an `APLogConf` Custom Resource manifest.
 1. Add the log configuration to the `spec` field in the `APLogConf` resource.
-1. Add a reference to `APLogConf` in the [VirtualServer Policy resource]({{< relref "configuration/policy-resource.md#waf" >}}) or the [Ingress resource]({{< relref "configuration/ingress-resources/advanced-configuration-with-annotations.md#app-protect" >}}) as per the documentation.
+1. Add a reference to `APLogConf` in the [VirtualServer Policy resource]({{< ref "/nic/configuration/policy-resource.md#waf" >}}) or the [Ingress resource]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations.md#app-protect" >}}) as per the documentation.
 
 {{< note >}}
 
@@ -158,7 +158,7 @@ You can define NGINX App Protect WAF [User-Defined Signatures](/nginx-app-protec
 
 The field `revisionDatetime` is not currently supported.
 
-`APUserSig` resources increase the reload time of NGINX Plus compared with `APPolicy` and `APLogConf` resources. Read [NGINX fails to start or reload]({{< relref "installation/integrations/app-protect-waf-v5/troubleshoot-app-protect-waf.md#nginx-fails-to-start-or-reload" >}}) for more information.
+`APUserSig` resources increase the reload time of NGINX Plus compared with `APPolicy` and `APLogConf` resources. Read [NGINX fails to start or reload]({{< ref "/nic/installation/integrations/app-protect-waf-v5/troubleshoot-app-protect-waf.md#nginx-fails-to-start-or-reload" >}}) for more information.
 
 {{< /note >}}
 
@@ -442,7 +442,7 @@ In this example we deploy NGINX Ingress Controller with NGINX Plus and NGINX App
 
 ## Prerequisites
 
-1. Follow the installation [instructions]({{< relref "installation/integrations/app-protect-waf/installation.md" >}}) to deploy NGINX Ingress Controller with NGINX Plus and NGINX App Protect WAF.
+1. Follow the installation [instructions]({{< ref "/nic/installation/integrations/app-protect-waf/installation.md" >}}) to deploy NGINX Ingress Controller with NGINX Plus and NGINX App Protect WAF.
 2. Save the public IP address of NGINX Ingress Controller into a shell variable:
 
    ```shell

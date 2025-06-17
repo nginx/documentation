@@ -1,10 +1,10 @@
 ---
-docs: DOCS-609
-doctypes:
-- reference
 title: The design of NGINX Ingress Controller
 toc: true
 weight: 200
+nd-content-type: concept
+nd-product: NIC
+nd-docs: DOCS-609
 ---
 
 This document explains how the F5 NGINX Ingress Controller is designed, and how it differs when using NGINX or NGINX Plus.
@@ -18,13 +18,11 @@ We assume that the reader is familiar with core Kubernetes concepts, such as Pod
 
 For conciseness in diagrams, NGINX Ingress Controller is often labelled "IC" on this page.
 
----
-
 ## NGINX Ingress Controller at a high level
 
 This figure depicts an example of NGINX Ingress Controller exposing two web applications within a Kubernetes cluster to clients on the internet:
 
-{{<img src="img/ic-high-level.png" alt="">}}
+{{<img src="/nic/ic-high-level.png" alt="">}}
 
 {{<note>}} For simplicity, necessary Kubernetes resources like Deployments and Services aren't shown, which Admin and the users also need to create.{{</note>}}
 
@@ -52,7 +50,7 @@ The NGINX Ingress Controller pod consists of a single container, which includes 
 
 The following is an architectural diagram depicting how those processes interact together and with some external entities:
 
-{{<img src="img/ic-pod.png" alt="">}}
+{{<img src="/nic/ic-pod.png" alt="">}}
 
 This table describes each connection, starting with its type:
 
@@ -108,7 +106,7 @@ This section covers the architecture of the NGINX Ingress Controller process, in
 
 The following diagram depicts how NGINX Ingress Controller processes a new Ingress resource. The the NGINX master and worker processes are represented as a single rectangle, _NGINX_ for simplicity. VirtualServer and VirtualServerRoute resources are indicated similarly.
 
-{{<img src="img/ic-process.png" alt="">}}
+{{<img src="/nic/ic-process.png" alt="">}}
 
 Processing a new Ingress resource involves the following steps: each step corresponds to the arrow on the diagram with the same number:
 
@@ -155,7 +153,7 @@ The desired state is based on the following built-in Kubernetes resources and Cu
 
 NGINX Ingress Controller can watch additional Custom Resources, which are less common and not enabled by default:
 
-- [NGINX App Protect resources]({{< relref "installation/integrations/app-protect-dos/configuration" >}}) (APPolicies, APLogConfs, APUserSigs)
+- [NGINX App Protect resources]({{< ref "/nic/installation/integrations/app-protect-dos/configuration" >}}) (APPolicies, APLogConfs, APUserSigs)
 - IngressLink resource (only one resource)
 
 ---
@@ -177,7 +175,7 @@ In an earlier section, [Processing a New Ingress Resource](#processing-a-new-ing
 
 We also mentioned that once the cache is updated, it notifies the control loop about the changed resources. The cache is actually a collection of *informers*. The following diagram shows how changes to resources are processed by NGINX Ingress Controller.
 
-{{<img src="img/ic-process-components.png" alt="">}}
+{{<img src="/nic/ic-process-components.png" alt="">}}
 
 - For every resource type that NGINX Ingress Controller monitors, it creates an [_Informer_](https://pkg.go.dev/k8s.io/client-go@v0.21.0/tools/cache#SharedInformer). The _Informer_ includes a _Store_ that holds the resources of that type. To keep the _Store_ in sync with the latest versions of the resources in the cluster, the _Informer_ calls the Watch and List _Kubernetes APIs_ for that resource type (see the arrow _1. Watch and List_ on the diagram).
 - When a change happens in the cluster (for example, a new resource is created), the _Informer_ updates its _Store_ and invokes [_Handlers_](https://pkg.go.dev/k8s.io/client-go@v0.21.0/tools/cache#ResourceEventHandler) (See the arrow _2. Invoke_) for that _Informer_.
@@ -205,7 +203,7 @@ This section discusses the main components of NGINX Ingress Controller, which co
 
 The following diagram shows how the three components interact:
 
-{{<img src="img/control-loop.png" alt="">}}
+{{<img src="/nic/control-loop.png" alt="">}}
 
 ---
 
@@ -215,7 +213,7 @@ The Controller [sync](https://github.com/nginx/kubernetes-ingress/blob/v1.11.0/i
 
 To explain how the sync methods work, we will examine the most important one: the _syncIngress_ method, and describe how it processes a new Ingress resource.
 
-{{<img src="img/controller-sync.png" alt="">}}
+{{<img src="/nic/controller-sync.png" alt="">}}
 
 1. The _Workqueue_ calls the _sync_ method and passes a workqueue element to it that includes the changed resource _kind_ and _key_ (The key is the resource namespace/name such as “default/cafe-ingress”).
 1. Using the _kind_, the _sync_ method calls the appropriate sync method and passes the resource key. For Ingress resources, the method is _syncIngress_.
@@ -331,7 +329,7 @@ Reloads occur with this sequence of steps:
 1. NGINX Ingress Controller updates the config version in `/etc/nginx/config-version.conf`.
 1. NGINX Ingress Controller runs `nginx -s reload`. If the command fails, NGINX Ingress Controller logs the error and considers the reload failed.
 1. If the command succeeds, NGINX Ingress Controller periodically checks for the config version by sending an HTTP request to the config version server on  `unix:/var/lib/nginx/nginx-config-version.sock`.
-1. Once NGINX Ingress Controller sees the correct config version returned by NGINX, it considers the reload successful. If it doesn't see the correct configuration version after the configurable timeout ( [`-nginx-reload-timeout`]({{<relref "configuration/global-configuration/command-line-arguments">}})), NGINX Ingress Controller considers the reload failed.
+1. Once NGINX Ingress Controller sees the correct config version returned by NGINX, it considers the reload successful. If it doesn't see the correct configuration version after the configurable timeout ( [`-nginx-reload-timeout`]({{<ref "/nic/configuration/global-configuration/command-line-arguments">}})), NGINX Ingress Controller considers the reload failed.
 
 The [NGINX Ingress Controller Control Loop](#the-control-loop) stops during a reload so that it cannot affect configuration files or reload NGINX until the current reload succeeds or fails.
 

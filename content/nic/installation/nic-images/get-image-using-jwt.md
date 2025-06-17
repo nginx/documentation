@@ -25,8 +25,8 @@ To list the available image tags using the Docker registry API, you will also ne
 
 You can also get the image using alternative methods:
 
-* You can use Docker to pull an NGINX Ingress Controller image with NGINX Plus and push it to your private registry by following the [Get NGINX Ingress Controller from the F5 Registry]({{< relref "installation/nic-images/get-registry-image.md" >}}) topic.
-* You can follow the [Build NGINX Ingress Controller]({{< relref "installation/build-nginx-ingress-controller.md" >}}) topic.
+* You can use Docker to pull an NGINX Ingress Controller image with NGINX Plus and push it to your private registry by following the [Get NGINX Ingress Controller from the F5 Registry]({{< ref "/nic/installation/nic-images/get-registry-image.md" >}}) topic.
+* You can follow the [Build NGINX Ingress Controller]({{< ref "/nic/installation/build-nginx-ingress-controller.md" >}}) topic.
 
 If you would like to use an NGINX Ingress Controller image with NGINX open source, we provide the image through [DockerHub](https://hub.docker.com/r/nginx/nginx-ingress/).
 
@@ -66,7 +66,7 @@ You will need the following information from [MyF5](https://my.f5.com) for these
 
 1. You can now use the newly created Kubernetes secret in Helm and manifest deployments.
 
-{{< include "installation/jwt-password-note.md" >}}
+{{< include "/nic/installation/jwt-password-note.md" >}}
 
 ---
 
@@ -99,7 +99,7 @@ If you are using Helm for deployment, there are two main methods: using *sources
 
 ### Helm Source
 
-The [Installation with Helm ]({{< relref "installation/installing-nic/installation-with-helm.md#managing-the-chart-via-sources" >}}) documentation has a section describing how to use sources: these are the unique steps for Docker secrets using JWT tokens.
+The [Installation with Helm ]({{< ref "/nic/installation/installing-nic/installation-with-helm.md#managing-the-chart-via-sources" >}}) documentation has a section describing how to use sources: these are the unique steps for Docker secrets using JWT tokens.
 
 1. Clone the NGINX [`kubernetes-ingress` repository](https://github.com/nginx/kubernetes-ingress).
 1. Navigate to the `charts/nginx-ingress` folder of your local clone.
@@ -206,4 +206,4 @@ docker login private-registry.nginx.com --username=<output_of_jwt_token> --passw
 Replace the contents of `<output_of_jwt_token>` with the contents of the JWT token itself.
 Once you have successfully pulled the image, you can then tag it as needed.
 
-{{< include "installation/jwt-password-note.md" >}}
+{{< include "/nic/installation/jwt-password-note.md" >}}

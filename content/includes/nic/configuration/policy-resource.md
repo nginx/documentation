@@ -630,7 +630,7 @@ In this example NGINX Ingress Controller will use the configuration from the fir
 
 {{< tip >}}
 
-This feature is disabled by default. To enable it, set the [enable-oidc]({{< relref "configuration/global-configuration/command-line-arguments.md#cmdoption-enable-oidc" >}}) command-line argument of NGINX Ingress Controller.
+This feature is disabled by default. To enable it, set the [enable-oidc]({{< ref "/nic/configuration/global-configuration/command-line-arguments.md#cmdoption-enable-oidc" >}}) command-line argument of NGINX Ingress Controller.
 
 {{< /tip >}}
 

@@ -9,7 +9,7 @@ weight: 400
 
 This document describes how to troubleshoot problems when using NGINX Ingress Controller and the App Protect DoS module.
 
-To troubleshoot other parts of NGINX Ingress Controller, check the [troubleshooting]({{< relref "troubleshooting/troubleshoot-common.md" >}}) section of the documentation.
+To troubleshoot other parts of NGINX Ingress Controller, check the [troubleshooting]({{< ref "/nic/troubleshooting/troubleshoot-common.md" >}}) section of the documentation.
 
 ## Potential problems
 
@@ -26,7 +26,7 @@ The table below outlines potential problems with NGINX Ingress Controller when t
 
 ### Checking NGINX Ingress Controller and App Protect DoS logs
 
-App Protect DoS logs are part of the NGINX Ingress Controller logs when the module is enabled. To check the Ingress Controller logs, follow the steps of [Checking the Ingress Controller Logs]({{< relref "troubleshooting/troubleshoot-common#checking-nginx-ingress-controller-logs" >}}s) of the Troubleshooting guide.
+App Protect DoS logs are part of the NGINX Ingress Controller logs when the module is enabled. To check the Ingress Controller logs, follow the steps of [Checking the Ingress Controller Logs]({{< ref "/nic/troubleshooting/troubleshoot-common#checking-nginx-ingress-controller-logs" >}}s) of the Troubleshooting guide.
 
 For App Protect DoS specific logs, look for messages starting with `APP_PROTECT_DOS`, such as:
 
@@ -36,11 +36,11 @@ For App Protect DoS specific logs, look for messages starting with `APP_PROTECT_
 
 ### Checking Ingress Resource Events
 
-Follow the steps of [Troubleshooting Ingress Resources]({{< relref "troubleshooting/troubleshoot-ingress" >}}).
+Follow the steps of [Troubleshooting Ingress Resources]({{< ref "/nic/troubleshooting/troubleshoot-ingress" >}}).
 
 ### Checking VirtualServer Resource Events
 
-Follow the steps of [Troubleshooting VirtualServer Resources]({{< relref "troubleshooting/troubleshoot-virtualserver" >}}).
+Follow the steps of [Troubleshooting VirtualServer Resources]({{< ref "/nic/troubleshooting/troubleshoot-virtualserver" >}}).
 
 ### Checking for DoSProtectedResource Events
 

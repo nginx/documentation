@@ -2,27 +2,25 @@
 title: Installation with Helm
 toc: true
 weight: 100
-type: how-to
-product: NIC
-docs: DOCS-602
+nd-content-type: how-to
+nd-product: NIC
+nd-docs: DOCS-602
 ---
 
 This document explains how to install F5 NGINX Ingress Controller using [Helm](https://helm.sh/).
 
 ## Before you begin
 
-{{< note >}} All documentation should only be used with the latest stable release, indicated on [the releases page]({{< relref "releases.md" >}}) of the GitHub repository. {{< /note >}}
+{{< note >}} All documentation should only be used with the latest stable release, indicated on [the releases page]({{< ref "/nic/releases.md" >}}) of the GitHub repository. {{< /note >}}
 
-- A [Kubernetes Version Supported by NGINX Ingress Controller](https://docs.nginx.com/nginx-ingress-controller/technical-specifications/#supported-kubernetes-versions)
+- A [Kubernetes Version Supported by NGINX Ingress Controller]({{< ref "/nic/technical-specifications.md#supported-kubernetes-versions" >}})
 - Helm 3.0+.
 - If you’d like to use NGINX Plus:
-  - Get the NGINX Ingress Controller JWT and [create a license secret]({{< relref "/installation/create-license-secret.md" >}}).
-  - Download the image using your NGINX Ingress Controller subscription certificate and key. View the [Get NGINX Ingress Controller from the F5 Registry]({{< relref "installation/nic-images/get-registry-image.md" >}}) topic.
-  - The [Get the NGINX Ingress Controller image with JWT]({{< relref "installation/nic-images/get-image-using-jwt.md" >}}) topic describes how to use your subscription JWT token to get the image.
-  - The [Build NGINX Ingress Controller]({{< relref "installation/build-nginx-ingress-controller.md" >}}) topic explains how to push an image to a private Docker registry.
+  - Get the NGINX Ingress Controller JWT and [create a license secret]({{< ref "/nic/installation/create-license-secret.md" >}}).
+  - Download the image using your NGINX Ingress Controller subscription certificate and key. View the [Get NGINX Ingress Controller from the F5 Registry]({{< ref "/nic/installation/nic-images/get-registry-image.md" >}}) topic.
+  - The [Get the NGINX Ingress Controller image with JWT]({{< ref "/nic/installation/nic-images/get-image-using-jwt.md" >}}) topic describes how to use your subscription JWT token to get the image.
+  - The [Build NGINX Ingress Controller]({{< ref "/nic/installation/build-nginx-ingress-controller.md" >}}) topic explains how to push an image to a private Docker registry.
   - Update the `controller.image.repository` field of the `values-plus.yaml` accordingly.
-
----
 
 ## Custom Resource Definitions
 
@@ -30,11 +28,9 @@ NGINX Ingress Controller requires custom resource definitions (CRDs) installed i
 
 If you do not use the custom resources that require those CRDs (which corresponds to `controller.enableCustomResources` set to `false` and `controller.appprotect.enable` set to `false` and `controller.appprotectdos.enable` set to `false`), the installation of the CRDs can be skipped by specifying `--skip-crds` for the helm install command.
 
----
-
 ### Upgrade the CRDs
 
-{{< note >}} Please make sure to read the steps outlined in [Upgrade to V4](https://docs.nginx.com/nginx-ingress-controller/installation/installing-nic/upgrade-to-v4/#update-custom-resource-apiversion) before running the CRD upgrade and perform the steps if applicable.
+{{< note >}} Please make sure to read the steps outlined in [Upgrade to V4]({{< ref "/nic/installation/installing-nic/upgrade-to-v4.md#update-custom-resource-apiversion" >}}) before running the CRD upgrade and perform the steps if applicable.
 {{< /note >}}
 
 To upgrade the CRDs, pull the chart sources as described in [Pull the Chart](#pull-the-chart) and then run:
@@ -297,7 +293,7 @@ If you are running NGINX Ingress Controller releases in your cluster with custom
 
 Ensure the NGINX Ingress Controller versions match the version of the CRDs. When uninstalling a release, ensure that you don’t remove the CRDs until there are no other NGINX Ingress Controller releases running in the cluster.
 
-The [Run multiple NGINX Ingress Controllers]({{< relref "installation/run-multiple-ingress-controllers.md" >}}) topic has more details.
+The [Run multiple NGINX Ingress Controllers]({{< ref "/nic/installation/run-multiple-ingress-controllers.md" >}}) topic has more details.
 
 ## Configuration
 

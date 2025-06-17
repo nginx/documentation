@@ -1,16 +1,13 @@
 ---
-docs: DOCS-1459
-doctypes:
-- troubleshooting
-draft: false
-tags:
-- docs
 title: Troubleshooting common issues
 toc: true
 weight: 200
+nd-content-type: how-to
+nd-product: NIC
+nd-docs: DOCS-1459
 ---
 
-This page describes how to troubleshoot common issues with NGINX Ingress Controller. Instruction for specific resources is available in the [Troubleshooting]({{< relref "troubleshooting/" >}}) section.
+This page describes how to troubleshoot common issues with NGINX Ingress Controller. Instruction for specific resources is available in the [Troubleshooting]({{< ref "/nic/troubleshooting/" >}}) section.
 
 ## Common issues
 
@@ -24,8 +21,6 @@ This page describes how to troubleshoot common issues with NGINX Ingress Control
 | ConfigMap keys | The configuration is not applied. | Check the events of the ConfigMap, check the logs, check the generated config.  | Invalid values of ConfigMap keys. |
 | NGINX | NGINX responds with unexpected responses. | Check the logs, check the generated config, check the live activity dashboard (NGINX Plus only), run NGINX in the debug mode. | Unhealthy backend pods, a misconfigured backend service. |
 {{% /table %}}
-
----
 
 ## Troubleshooting Methods
 
@@ -68,7 +63,7 @@ However, this command will fail if any of the configuration files is not valid.
 
 ### Check the Live Activity Monitoring Dashboard
 
-The live activity monitoring dashboard shows the real-time information about NGINX Plus and the applications it is load balancing, which is helpful for troubleshooting. To access the dashboard, read the [Status Page]({{< relref "logging-and-monitoring/status-page.md" >}}) topic.
+The live activity monitoring dashboard shows the real-time information about NGINX Plus and the applications it is load balancing, which is helpful for troubleshooting. To access the dashboard, read the [Status Page]({{< ref "/nic/logging-and-monitoring/status-page.md" >}}) topic.
 
 ### Enable debugging for NGINX Ingress Controller
 
@@ -79,7 +74,7 @@ Increasing the debug log levels for NGINX Ingress Controller will also apply to 
 There are two places to configure more verbose logging for NGINX Ingress Controller:
 
 1. Command line arguments
-2. Configmap settings
+1. Configmap settings
 
 **Command line arguments**
 

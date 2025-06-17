@@ -27,7 +27,7 @@ nginxAgent:
  The `dataplaneKey` is used to authenticate the agent with NGINX One Console. See the NGINX One Console Docs [here](https://docs.nginx.com/nginx-one/getting-started/#generate-data-plane-key) to generate your dataplane key from the NGINX One Console.
 
 
-Follow the [Installation with Helm]({{< ref "/installation/installing-nic/installation-with-helm.md" >}}) instructions to deploy NGINX Ingress Controller.
+Follow the [Installation with Helm]({{< ref "/nic/installation/installing-nic/installation-with-helm.md" >}}) instructions to deploy NGINX Ingress Controller.
 
 {{%/tab%}}
 
@@ -92,7 +92,7 @@ volumes:
     name: nginx-agent-config
 ```
 
-Follow the [Installation with Manifests]({{< ref "/installation/installing-nic/installation-with-manifests.md" >}}) instructions to deploy NGINX Ingress Controller.
+Follow the [Installation with Manifests]({{< ref "/nic/installation/installing-nic/installation-with-manifests.md" >}}) instructions to deploy NGINX Ingress Controller.
 
 {{%/tab%}}
 

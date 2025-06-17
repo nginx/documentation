@@ -20,7 +20,7 @@ NGINX Ingress Controller acts as a Kubernetes Ingress Controller for both NGINX 
 
 ## Before you begin
 
-Before installing NGINX Ingress Controller, review our [Installation with Manifests]({{< relref "installation/installing-nic/installation-with-manifests.md" >}}) guide. This guide shows you how to build a local NGINX Ingress Controller image and set up the required CustomResourceDefinitions (CRDs).
+Before installing NGINX Ingress Controller, review our [Installation with Manifests]({{< ref "/nic/installation/installing-nic/installation-with-manifests.md" >}}) guide. This guide shows you how to build a local NGINX Ingress Controller image and set up the required CustomResourceDefinitions (CRDs).
 
 ## Installation
 
@@ -111,7 +111,7 @@ metadata:
 
 <br>
 
-For options to customize your resources, see our [Configuration documentation]({{< relref "configuration/" >}}).
+For options to customize your resources, see our [Configuration documentation]({{< ref "/nic/configuration/" >}}).
 
 ## Basic Usage
 

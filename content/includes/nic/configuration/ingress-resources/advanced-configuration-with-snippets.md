@@ -15,9 +15,9 @@ Snippets are intended for advanced NGINX users who need more control over the ge
 
 ## Disadvantages of snippets
 
-Snippets are configured [using Annotations]({{< relref "configuration/ingress-resources/advanced-configuration-with-annotations.md#snippets-and-custom-templates" >}}), but are disabled by default due to their complexity. They are also available through the [ConfigMap]({{< relref "/configuration/global-configuration/configmap-resource.md#snippets-and-custom-templates" >}}) resource.
+Snippets are configured [using Annotations]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations.md#snippets-and-custom-templates" >}}), but are disabled by default due to their complexity. They are also available through the [ConfigMap]({{< relref "/configuration/global-configuration/configmap-resource.md#snippets-and-custom-templates" >}}) resource.
 
-To use snippets, set the [`enable-snippets`]({{< relref "configuration/global-configuration/command-line-arguments.md#cmdoption-enable-snippets" >}}) command-line argument.
+To use snippets, set the [`enable-snippets`]({{< ref "/nic/configuration/global-configuration/command-line-arguments.md#cmdoption-enable-snippets" >}}) command-line argument.
 
 Snippets have the following disadvantages:
 

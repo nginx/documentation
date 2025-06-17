@@ -12,7 +12,7 @@ docs: DOCS-1445
 {{< important >}}
 This page is only applicable to NGINX Ingress Controller versions 3.2.0 - 3.7.2.
 
-For more recent versions of NGINX Ingress Controller, view the [Upgrade to NGINX Ingress Controller 4.0.0]({{< ref "/installation/install-nic/upgrade-to-v4.md" >}}) topic.
+For more recent versions of NGINX Ingress Controller, view the [Upgrade to NGINX Ingress Controller 4.0.0]({{< ref "/nic/installation/install-nic/upgrade-to-v4.md" >}}) topic.
 
 {{< /important >}}
 

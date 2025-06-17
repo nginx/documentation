@@ -13,7 +13,7 @@ This document describes how to migrate from the community-maintained Ingress-NGI
 
 ## Overview
 
-This page explains two different ways to migrate from the community-maintained [Ingress-NGINX Controller](https://github.com/kubernetes/ingress-nginx) project to NGINX Ingress Controller: using NGINX's Ingress Resources or with Kubernetes's built-in Ingress Resources. This is typically because of implementation differences, and to take advantage of features such as [NGINX Plus integration]({{<relref "overview/nginx-plus">}}).
+This page explains two different ways to migrate from the community-maintained [Ingress-NGINX Controller](https://github.com/kubernetes/ingress-nginx) project to NGINX Ingress Controller: using NGINX's Ingress Resources or with Kubernetes's built-in Ingress Resources. This is typically because of implementation differences, and to take advantage of features such as [NGINX Plus integration]({{<ref "/nic/overview/nginx-plus">}}).
 
 The information in this guide is extracted from a free eBook called "_Kubernetes Ingress Controller Deployment and Security with NGINX_", which can be downloaded from the [NGINX Library](https://www.nginx.com/resources/library/kubernetes-ingress-controller-deployment-security-nginx/).
 
@@ -21,8 +21,8 @@ The information in this guide is extracted from a free eBook called "_Kubernetes
 
 To complete the instructions in this guide, you need the following:
 
-- A working knowledge of [Ingress Controllers]({{<relref "glossary.md#ingress-controller-ingress-controller">}}).
-- An [NGINX Ingress Controller installation]({{<relref "installation/installing-nic">}}) on the same host as an existing Ingress-NGINX Controller.
+- A working knowledge of [Ingress Controllers]({{<ref "/nic/glossary.md#ingress-controller-ingress-controller">}}).
+- An [NGINX Ingress Controller installation]({{<ref "/nic/installation/installing-nic">}}) on the same host as an existing Ingress-NGINX Controller.
 
 There are two primary paths for migrating between the community Ingress-NGINX Controller to NGINX Ingress Controller:
 
@@ -32,13 +32,13 @@ There are two primary paths for migrating between the community Ingress-NGINX Co
 ## Migration with NGINX Ingress resources
 This path uses Kubernetes Ingress Resources to set root permissions, then NGINX Ingress Resources for configuration using custom resource definitions (CRDs):
 
-* [VirtualServer and VirtualServerRoute]({{<relref "configuration/virtualserver-and-virtualserverroute-resources">}})
-* [TransportServer]({{<relref "configuration/transportserver-resource">}})
-* [GlobalConfiguration]({{<relref "configuration/global-configuration/globalconfiguration-resource">}})
-* [Policy]({{<relref "configuration/policy-resource">}})
+* [VirtualServer and VirtualServerRoute]({{<ref "/nic/configuration/virtualserver-and-virtualserverroute-resources">}})
+* [TransportServer]({{<ref "/nic/configuration/transportserver-resource">}})
+* [GlobalConfiguration]({{<ref "/nic/configuration/global-configuration/globalconfiguration-resource">}})
+* [Policy]({{<ref "/nic/configuration/policy-resource">}})
 
 ### Configuring SSL termination and HTTP path-based routing
-The following two code examples correspond to a Kubernetes Ingress Resource and an [NGINX VirtualServer Resource]({{<relref "configuration/virtualserver-and-virtualserverroute-resources">}}). Although the syntax and indentation is different, they accomplish the same basic Ingress functions, used for SSL termination and Layer 7 path-based routing.
+The following two code examples correspond to a Kubernetes Ingress Resource and an [NGINX VirtualServer Resource]({{<ref "/nic/configuration/virtualserver-and-virtualserverroute-resources">}}). Although the syntax and indentation is different, they accomplish the same basic Ingress functions, used for SSL termination and Layer 7 path-based routing.
 
 **Kubernetes Ingress Resource**
 ```yaml
@@ -91,7 +91,7 @@ spec:
 ```
 
 ### Configuring TCP/UDP load balancing and TLS passthrough
-NGINX Ingress Controller exposes TCP and UDP services using [TransportServer]({{<relref "configuration/transportserver-resource">}}) and [GlobalConfiguration]({{<relref "configuration/global-configuration/globalconfiguration-resource">}}) resources. These resources provide a broad range of options for TCP/UDP and TLS Passthrough load balancing. By contrast, the community Ingress-NGINX Controller exposes TCP/UDP services by using a Kubernetes ConfigMap object.
+NGINX Ingress Controller exposes TCP and UDP services using [TransportServer]({{<ref "/nic/configuration/transportserver-resource">}}) and [GlobalConfiguration]({{<ref "/nic/configuration/global-configuration/globalconfiguration-resource">}}) resources. These resources provide a broad range of options for TCP/UDP and TLS Passthrough load balancing. By contrast, the community Ingress-NGINX Controller exposes TCP/UDP services by using a Kubernetes ConfigMap object.
 
 ---
 
@@ -103,7 +103,7 @@ These custom Lua extensions are intended for specific NGINX Ingress resource def
 ---
 
 #### Canary deployments
-Canary and blue-green deployments allow you to push code changes to production environments without disrupting existing users. NGINX Ingress Controller runs them on the data plane: to migrate from the community Ingress-NGINX Controller, you must map the latter's annotations to [VirtualServer and VirtualServerRoute resources]({{<relref "configuration/virtualserver-and-virtualserverroute-resources">}}).
+Canary and blue-green deployments allow you to push code changes to production environments without disrupting existing users. NGINX Ingress Controller runs them on the data plane: to migrate from the community Ingress-NGINX Controller, you must map the latter's annotations to [VirtualServer and VirtualServerRoute resources]({{<ref "/nic/configuration/virtualserver-and-virtualserverroute-resources">}}).
 
 The Ingress-NGINX Controller evaluates canary annotations in the following order:
 
@@ -185,7 +185,7 @@ action:
 #### Traffic control
 Environments using microservices tend to use extensive traffic-control policies to manage ephemeral applications using circuit breaking and rate and connection limiting to prevent error conditions due to unhealthy states or abnormal behavior.
 
-The following examples map Ingress-NGINX Controller annotations to NGINX [VirtualServer and VirtualServerRoute resources]({{<relref "configuration/virtualserver-and-virtualserverroute-resources">}}) for rate limiting, custom HTTP errors, custom default backend and URI rewriting.
+The following examples map Ingress-NGINX Controller annotations to NGINX [VirtualServer and VirtualServerRoute resources]({{<ref "/nic/configuration/virtualserver-and-virtualserverroute-resources">}}) for rate limiting, custom HTTP errors, custom default backend and URI rewriting.
 
 **Ingress-NGINX Controller**
 ```yaml
@@ -309,7 +309,7 @@ There are four Ingress-NGINX Controller annotations without NGINX Ingress resour
 #### Header manipulation
 Manipulating HTTP headers is useful in many cases, as they contain information that is important and relevant to systems involved in HTTP transactions. The community Ingress-NGINX Controller supports enabling and configuring cross-origin resource sharing (CORS) headings used by AJAX applications, where front-end Javascript code interacts with backend applications or web servers.
 
-These code blocks show how the Ingress-NGINX annotations correspond to NGINX Ingress Controller [VirtualServer and VirtualServerRoute resources]({{<relref "configuration/virtualserver-and-virtualserverroute-resources">}}).
+These code blocks show how the Ingress-NGINX annotations correspond to NGINX Ingress Controller [VirtualServer and VirtualServerRoute resources]({{<ref "/nic/configuration/virtualserver-and-virtualserverroute-resources">}}).
 
 **Ingress-NGINX Controller**
 ```yaml
@@ -346,7 +346,7 @@ responseHeaders:
 #### Proxying and load balancing
 NGINX Ingress Controller has multiple proxy and load balancing functionalities you may want to configure based on the use case, such as configuring the load balancing algorithm and the timeout and buffering settings for proxied connections.
 
-This table shows how Ingress-NGINX Controller annotations map to statements in the upstream field for [VirtualServer and VirtualServerRoute resources]({{<relref "configuration/virtualserver-and-virtualserverroute-resources">}}), covering load balancing, proxy timeout, proxy buffering and connection routing for a services' ClusterIP address and port.
+This table shows how Ingress-NGINX Controller annotations map to statements in the upstream field for [VirtualServer and VirtualServerRoute resources]({{<ref "/nic/configuration/virtualserver-and-virtualserverroute-resources">}}), covering load balancing, proxy timeout, proxy buffering and connection routing for a services' ClusterIP address and port.
 
 {{< bootstrap-table "table table-bordered table-striped table-responsive" >}}
 | Ingress-NGINX Controller | NGINX Ingress Controller |
@@ -367,7 +367,7 @@ This table shows how Ingress-NGINX Controller annotations map to statements in t
 
 mTLS authentication is a way of enforcing mutual authentication on traffic entering and exiting a cluster (north-sourth traffic). This secure form of communication is common within a service mesh, commonly used in strict zero-trust environments.
 
-NGINX Ingress Controller layer can handle mTLS authentication for end systems through the presentation of valid certificates for external connections. It accomplishes this through [Policy]({{<relref "configuration/policy-resource">}}) resources, which correspond to Ingress-NGINX Controller annotations for [client certificate authentication](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#client-certificate-authentication) and [backend certificate authentication](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#backend-certificate-authentication).
+NGINX Ingress Controller layer can handle mTLS authentication for end systems through the presentation of valid certificates for external connections. It accomplishes this through [Policy]({{<ref "/nic/configuration/policy-resource">}}) resources, which correspond to Ingress-NGINX Controller annotations for [client certificate authentication](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#client-certificate-authentication) and [backend certificate authentication](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#backend-certificate-authentication).
 
 **Ingress-NGINX Controller**
 ```yaml
@@ -419,7 +419,7 @@ egressMTLS:
 ---
 
 #### Session persistence with NGINX Plus
-With [NGINX Plus]({{<relref "overview/nginx-plus">}}), you can use [Policy]({{<relref "configuration/policy-resource">}}) resources for session persistence, which have corresponding annotations for the community Ingress-NGINX Controller.
+With [NGINX Plus]({{<ref "/nic/overview/nginx-plus">}}), you can use [Policy]({{<ref "/nic/configuration/policy-resource">}}) resources for session persistence, which have corresponding annotations for the community Ingress-NGINX Controller.
 
 **Ingress-NGINX Controller**
 ```yaml

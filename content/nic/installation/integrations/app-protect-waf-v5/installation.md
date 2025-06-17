@@ -15,7 +15,7 @@ This document explains how to build a F5 NGINX Ingress Controller image with NGI
 
 - To use NGINX App Protect WAF with NGINX Ingress Controller, you must have NGINX Plus.
 
-{{< include "/compatibility-tables/nic-nap.md" >}}
+{{< include "/nic/compatibility-tables/nic-nap.md" >}}
 
 ---
 
@@ -78,7 +78,7 @@ Follow these steps to build the NGINX Controller Image with NGINX App Protect WA
     make debian-image-nap-v5-plus PREFIX=<my-docker-registry>/nginx-plus-ingress TARGET=download
     ```
 
-   **What to expect**: The image is built and tagged with a version number, which is derived from the `VERSION` variable in the [_Makefile_]({{< relref "installation/build-nginx-ingress-controller.md#makefile-details" >}}). This version number is used for tracking and deployment purposes.
+   **What to expect**: The image is built and tagged with a version number, which is derived from the `VERSION` variable in the [_Makefile_]({{< ref "/nic/installation/build-nginx-ingress-controller.md#makefile-details" >}}). This version number is used for tracking and deployment purposes.
 
 {{<note>}} In the event a patch of NGINX Plus is released, make sure to rebuild your image to get the latest version. If your system is caching the Docker layers and not updating the packages, add `DOCKER_BUILD_OPTIONS="--pull --no-cache"` to the make command. {{</note>}}
 
@@ -97,7 +97,7 @@ Create Docker image for NGINX Ingress Controller (Alpine with NGINX Plus, NGINX 
 
 <br>
 
-{{<see-also>}} For the complete list of _Makefile_ targets and customizable variables, see the [Build NGINX Ingress Controller]({{< relref "installation/build-nginx-ingress-controller.md#makefile-details" >}}) guide. {{</see-also>}}
+{{<see-also>}} For the complete list of _Makefile_ targets and customizable variables, see the [Build NGINX Ingress Controller]({{< ref "/nic/installation/build-nginx-ingress-controller.md#makefile-details" >}}) guide. {{</see-also>}}
 
 If you intend to use [external references](/nginx-app-protect-waf/v5/configuration-guide/configuration/#external-references) in NGINX App Protect WAF policies, you may want to provide a custom CA certificate to authenticate with the hosting server.
 
@@ -130,7 +130,7 @@ docker push <my-docker-registry>/waf-enforcer:<your-tag>
 
 ---
 
-{{< include "installation/create-custom-resources.md" >}}
+{{< include "/nic/installation/create-custom-resources.md" >}}
 
 
 ## Deploy NGINX Ingress Controller {#deploy-ingress-controller}
@@ -469,11 +469,11 @@ Add `readOnlyRootFilesystem` to the `waf-enforcer` container and set value to `t
 
 ### Using a Deployment
 
-{{< include "installation/manifests/deployment.md" >}}
+{{< include "/nic/installation/manifests/deployment.md" >}}
 
 ### Using a DaemonSet
 
-{{< include "installation/manifests/daemonset.md" >}}
+{{< include "/nic/installation/manifests/daemonset.md" >}}
 
 ---
 
@@ -481,7 +481,7 @@ Add `readOnlyRootFilesystem` to the `waf-enforcer` container and set value to `t
 
 To enable the NGINX App Protect DoS Module:
 
-- Add the `enable-app-protect` [command-line argument]({{< relref "configuration/global-configuration/command-line-arguments.md#cmdoption-enable-app-protect" >}}) to your Deployment or DaemonSet file.
+- Add the `enable-app-protect` [command-line argument]({{< ref "/nic/configuration/global-configuration/command-line-arguments.md#cmdoption-enable-app-protect" >}}) to your Deployment or DaemonSet file.
 
 {{%/tab%}}
 
@@ -491,9 +491,9 @@ To enable the NGINX App Protect DoS Module:
 
 ## Confirm NGINX Ingress Controller is running
 
-{{< include "installation/manifests/verify-pods-are-running.md" >}}
+{{< include "/nic/installation/manifests/verify-pods-are-running.md" >}}
 
-For more information, see the [Configuration guide]({{< relref "installation/integrations/app-protect-waf-v5/configuration.md" >}}) and the NGINX Ingress Controller with App Protect version 5 example resources on GitHub [for VirtualServer resources](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/custom-resources/app-protect-waf-v5).
+For more information, see the [Configuration guide]({{< ref "/nic/installation/integrations/app-protect-waf-v5/configuration.md" >}}) and the NGINX Ingress Controller with App Protect version 5 example resources on GitHub [for VirtualServer resources](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/custom-resources/app-protect-waf-v5).
 
 ---
 
@@ -501,5 +501,5 @@ For more information, see the [Configuration guide]({{< relref "installation/int
 
 If you prefer not to build your own NGINX Ingress Controller image, you can use pre-built images. Here are your options:
 
-- Download the image using your NGINX Ingress Controller subscription certificate and key. View the [Get NGINX Ingress Controller from the F5 Registry]({{< relref "installation/nic-images/get-registry-image.md" >}}) topic.
-- The [Get the NGINX Ingress Controller image with JWT]({{< relref "installation/nic-images/get-image-using-jwt.md" >}}) topic describes how to use your subscription JWT token to get the image.
+- Download the image using your NGINX Ingress Controller subscription certificate and key. View the [Get NGINX Ingress Controller from the F5 Registry]({{< ref "/nic/installation/nic-images/get-registry-image.md" >}}) topic.
+- The [Get the NGINX Ingress Controller image with JWT]({{< ref "/nic/installation/nic-images/get-image-using-jwt.md" >}}) topic describes how to use your subscription JWT token to get the image.

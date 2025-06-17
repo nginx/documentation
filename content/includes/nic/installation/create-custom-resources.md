@@ -13,10 +13,10 @@ There are two ways you can install the custom resource definitions:
 
 The core custom CRDs are the following:
 
-- [VirtualServer and VirtualServerRoute]({{< relref "configuration/virtualserver-and-virtualserverroute-resources.md" >}})
-- [TransportServer]({{< relref "configuration/transportserver-resource.md" >}})
-- [Policy]({{< relref "configuration/policy-resource.md" >}})
-- [GlobalConfiguration]({{< relref "configuration/global-configuration/globalconfiguration-resource.md" >}})
+- [VirtualServer and VirtualServerRoute]({{< ref "/nic/configuration/virtualserver-and-virtualserverroute-resources.md" >}})
+- [TransportServer]({{< ref "/nic/configuration/transportserver-resource.md" >}})
+- [Policy]({{< ref "/nic/configuration/policy-resource.md" >}})
+- [GlobalConfiguration]({{< ref "/nic/configuration/global-configuration/globalconfiguration-resource.md" >}})
 
 {{<tabs name="install-crds">}}
 

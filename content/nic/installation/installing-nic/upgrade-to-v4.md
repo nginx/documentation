@@ -122,8 +122,8 @@ args:
 
 ## Create License secret
 
-If you're using [NGINX Plus]({{< ref "/overview/nginx-plus.md" >}}) with NGINX Ingress Controller, you should read the [Create License Secret]({{< ref "/installation/create-license-secret.md" >}}) topic to set up your NGINX Plus license.
+If you're using [NGINX Plus]({{< ref "/nic/overview/nginx-plus.md" >}}) with NGINX Ingress Controller, you should read the [Create License Secret]({{< ref "/nic/installation/create-license-secret.md" >}}) topic to set up your NGINX Plus license.
 
-The topic also contains guidance for [sending reports to NGINX Instance Manager]({{< ref "/installation/create-license-secret.md#nim">}}), which is necessary for air-gapped environments.
+The topic also contains guidance for [sending reports to NGINX Instance Manager]({{< ref "/nic/installation/create-license-secret.md#nim">}}), which is necessary for air-gapped environments.
 
 In prior versions, usage reporting with the cluster connector was required: it is no longer necessary, as it is built into NGINX Plus.

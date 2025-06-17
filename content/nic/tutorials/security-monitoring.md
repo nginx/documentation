@@ -28,7 +28,7 @@ If you use custom container images, NGINX Agent must be installed along with NGI
             host: "<FQDN or IP address of NGINX Instance Manager>"
     ```
 
-2. Follow the [Installation with Helm]({{< relref "/installation/installing-nic/installation-with-helm.md" >}}) instructions to deploy NGINX Ingress Controller with custom resources enabled, and optionally set other `nginxAgent.*` values if required.
+2. Follow the [Installation with Helm]({{< ref "/nic/installation/installing-nic/installation-with-helm.md" >}}) instructions to deploy NGINX Ingress Controller with custom resources enabled, and optionally set other `nginxAgent.*` values if required.
 
 {{%/tab%}}
 
@@ -78,7 +78,7 @@ If you use custom container images, NGINX Agent must be installed along with NGI
 
 {{< note >}} The `features` list must not contain `nginx-config-async` or `nginx-ssl-config` as these features can cause conflicts with NGINX Ingress Controller.{{< /note >}}
 
-3. Follow the [Installation with Manifests]({{< relref "/installation/installing-nic/installation-with-manifests.md" >}}) instructions to deploy NGINX Ingress Controller with custom resources enabled.
+3. Follow the [Installation with Manifests]({{< ref "/nic/installation/installing-nic/installation-with-manifests.md" >}}) instructions to deploy NGINX Ingress Controller with custom resources enabled.
 
 {{%/tab%}}
 

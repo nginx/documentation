@@ -11,19 +11,19 @@ This guide explains how to use Manifests to install F5 NGINX Ingress Controller,
 
 ## Before you start
 
-If you are using NGINX Plus, get the NGINX Ingress Controller JWT and [create a license secret]({{< relref "/installation/create-license-secret.md" >}}).
+If you are using NGINX Plus, get the NGINX Ingress Controller JWT and [create a license secret]({{< ref "/nic/installation/create-license-secret.md" >}}).
 
 ### Get the NGINX Controller Image
 
-{{< note >}} Always use the latest stable release listed on the [releases page]({{< relref "releases.md" >}}). {{< /note >}}
+{{< note >}} Always use the latest stable release listed on the [releases page]({{< ref "/nic/releases.md" >}}). {{< /note >}}
 
 Choose one of the following methods to get the NGINX Ingress Controller image:
 
 - **NGINX Ingress Controller**: Download the image `nginx/nginx-ingress` from [DockerHub](https://hub.docker.com/r/nginx/nginx-ingress).
 - **NGINX Plus Ingress Controller**: You have two options for this, both requiring an NGINX Ingress Controller subscription.
-  - Download the image using your NGINX Ingress Controller subscription certificate and key. View the [Get NGINX Ingress Controller from the F5 Registry]({{< relref "installation/nic-images/get-registry-image.md" >}}) topic.
-  - The [Get the NGINX Ingress Controller image with JWT]({{< relref "installation/nic-images/get-image-using-jwt.md" >}}) topic describes how to use your subscription JWT token to get the image.
-- **Build your own image**: To build your own image, follow the [Build NGINX Ingress Controller]({{< relref "installation/build-nginx-ingress-controller.md" >}}) topic.
+  - Download the image using your NGINX Ingress Controller subscription certificate and key. View the [Get NGINX Ingress Controller from the F5 Registry]({{< ref "/nic/installation/nic-images/get-registry-image.md" >}}) topic.
+  - The [Get the NGINX Ingress Controller image with JWT]({{< ref "/nic/installation/nic-images/get-image-using-jwt.md" >}}) topic describes how to use your subscription JWT token to get the image.
+- **Build your own image**: To build your own image, follow the [Build NGINX Ingress Controller]({{< ref "/nic/installation/build-nginx-ingress-controller.md" >}}) topic.
 
 ### Clone the repository
 
@@ -55,19 +55,19 @@ To use App Protect DoS, install the App Protect DoS Arbitrator using the provide
 
 ## Set up role-based access control (RBAC) {#configure-rbac}
 
-{{< include "rbac/set-up-rbac.md" >}}
+{{< include "/nic/rbac/set-up-rbac.md" >}}
 
 ---
 
 ## Create common resources {#create-common-resources}
 
-{{< include "installation/create-common-resources.md" >}}
+{{< include "/nic/installation/create-common-resources.md" >}}
 
 ---
 
 ## Create core custom resources {#create-custom-resources}
 
-{{< include "installation/create-custom-resources.md" >}}
+{{< include "/nic/installation/create-custom-resources.md" >}}
 
 ### Create optional custom resources
 
@@ -137,21 +137,21 @@ You have two options for deploying NGINX Ingress Controller:
 - **Deployment**. Choose this method for the flexibility to dynamically change the number of NGINX Ingress Controller replicas.
 - **DaemonSet**. Choose this method if you want NGINX Ingress Controller to run on all nodes or a subset of nodes.
 
-Before you start, update the [command-line arguments]({{< relref "configuration/global-configuration/command-line-arguments.md" >}}) for the NGINX Ingress Controller container in the relevant manifest file to meet your specific requirements.
+Before you start, update the [command-line arguments]({{< ref "/nic/configuration/global-configuration/command-line-arguments.md" >}}) for the NGINX Ingress Controller container in the relevant manifest file to meet your specific requirements.
 
 ### Using a Deployment
 
-{{< include "installation/manifests/deployment.md" >}}
+{{< include "/nic/installation/manifests/deployment.md" >}}
 
 ### Using a DaemonSet
 
-{{< include "installation/manifests/daemonset.md" >}}
+{{< include "/nic/installation/manifests/daemonset.md" >}}
 
 ---
 
 ## Confirm NGINX Ingress Controller is running
 
-{{< include "installation/manifests/verify-pods-are-running.md" >}}
+{{< include "/nic/installation/manifests/verify-pods-are-running.md" >}}
 
 ---
 
@@ -231,7 +231,7 @@ For more information about the _LoadBalancer_ service, refer to the [Kubernetes 
         nslookup <dns-name>
         ```
 
-    You can also find more details about the public IP in the status section of an ingress resource. For more details, refer to the [Reporting Resources Status doc]({{< relref "configuration/global-configuration/reporting-resources-status.md" >}}).
+    You can also find more details about the public IP in the status section of an ingress resource. For more details, refer to the [Reporting Resources Status doc]({{< ref "/nic/configuration/global-configuration/reporting-resources-status.md" >}}).
 
 ### Using a DaemonSet
 

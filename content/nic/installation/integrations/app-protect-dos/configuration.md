@@ -1,10 +1,10 @@
 ---
-docs: DOCS-580
-doctypes:
-- ''
 title: Configuration
 toc: true
 weight: 200
+nd-content-type: how-to
+nd-product: NIC
+nd-docs: DOCS-580
 ---
 
 {{< tip >}}
@@ -16,7 +16,7 @@ Check out the complete [NGINX Ingress Controller with App Protect DoS example fo
 ## App Protect DoS Configuration
 
 A `DosProtectedResource` is a [Custom Resource](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) that holds the configuration of a collection of protected resources.
-An [Ingress]({{< relref "configuration/ingress-resources/basic-configuration" >}}), [VirtualServer and VirtualServerRoute]({{< relref "configuration/virtualserver-and-virtualserverroute-resources.md" >}}) can be protected by specifying a reference to the DosProtectedResource.
+An [Ingress]({{< ref "/nic/configuration/ingress-resources/basic-configuration" >}}), [VirtualServer and VirtualServerRoute]({{< ref "/nic/configuration/virtualserver-and-virtualserverroute-resources.md" >}}) can be protected by specifying a reference to the DosProtectedResource.
 
 1. Create an `DosProtectedResource` Custom resource manifest. As an example:
 
@@ -113,7 +113,7 @@ Then add a reference in the `DosProtectedResource` to the `ApDosPolicy`:
 
 ## App Protect DoS Logs {#app-protect-dos-logs}
 
-You can set the [App Protect DoS Log configuration](/nginx-app-protect-dos/monitoring/types-of-logs/) by creating an `APDosLogConf` [Custom Resource](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) and specifying the qualified identifier(`namespace/name`) of the `ApDosLogConf` in the `DosProtectedResource`.
+You can set the [App Protect DoS Log configuration]({{< ref "/nap-dos/monitoring/types-of-logs.md" >}}) by creating an `APDosLogConf` [Custom Resource](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) and specifying the qualified identifier(`namespace/name`) of the `ApDosLogConf` in the `DosProtectedResource`.
 
 For example, say you want to log state changing requests for your Ingress resources using App Protect DoS. The App Protect DoS log configuration looks like this:
 
@@ -161,4 +161,4 @@ Then add a reference in the `DosProtectedResource` to the `APDosLogConf`:
 
 ## Global Configuration
 
-NGINX Ingress Controller has a set of global configuration parameters that align with those available in the NGINX App Protect DoS module. See [ConfigMap keys]({{< relref "configuration/global-configuration/configmap-resource.md#modules" >}}) for the complete list. The App Protect parameters use the `app-protect-dos*` prefix.
+NGINX Ingress Controller has a set of global configuration parameters that align with those available in the NGINX App Protect DoS module. See [ConfigMap keys]({{< ref "/nic/configuration/global-configuration/configmap-resource.md#modules" >}}) for the complete list. The App Protect parameters use the `app-protect-dos*` prefix.

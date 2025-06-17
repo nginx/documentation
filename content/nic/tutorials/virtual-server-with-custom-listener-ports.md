@@ -1,10 +1,10 @@
 ---
-docs: DOCS-1452
-doctypes:
-- concept
 title: Configuring VirtualServer with custom HTTP and HTTPS listener ports
 toc: true
 weight: 1800
+nd-content-type: how-to
+nd-product: NIC
+nd-docs: DOCS-1452
 ---
 
 This tutorial outlines how to configure and deploy a VirtualServer resource with custom HTTP and HTTPS listener ports.
@@ -12,7 +12,7 @@ This tutorial outlines how to configure and deploy a VirtualServer resource with
 ## Configuring a VirtualServer with custom HTTP and HTTPS listener ports.
 
 VirtualServer can explicitly define custom HTTP and HTTPS listener ports using the `spec.listener.http` and `spec.listener.https` fields.
-Each field must reference a valid listener defined by in a [GlobalConfiguration]({{< relref "/configuration/global-configuration/globalconfiguration-resource.md" >}}) resource.
+Each field must reference a valid listener defined by in a [GlobalConfiguration]({{< ref "/nic/configuration/global-configuration/globalconfiguration-resource.md" >}}) resource.
 
 ## Deploy GlobalConfiguration
 
@@ -58,7 +58,7 @@ kubectl apply -f nginx-configuration.yaml
         ssl: true
     ```
 
-1. Follow the [Installation with Helm]({{< relref "/installation/installing-nic/installation-with-helm.md" >}}) instructions to deploy the NGINX Ingress Controller with custom resources enabled.
+1. Follow the [Installation with Helm]({{< ref "/nic/installation/installing-nic/installation-with-helm.md" >}}) instructions to deploy the NGINX Ingress Controller with custom resources enabled.
 
 1. Ensure your NodePort or LoadBalancer service is configured to expose the custom listener ports. This is set in the `customPorts` section under `controller.service.customPorts`:
 
@@ -85,7 +85,7 @@ kubectl apply -f nginx-configuration.yaml
       - -$(POD_NAMESPACE)/nginx-configuration
     ```
 
-2. Follow the [Installation with Manifests]({{< relref "/installation/installing-nic/installation-with-manifests.md" >}}) instructions to deploy NGINX Ingress Controller with custom resources enabled.
+2. Follow the [Installation with Manifests]({{< ref "/nic/installation/installing-nic/installation-with-manifests.md" >}}) instructions to deploy NGINX Ingress Controller with custom resources enabled.
 
 3. Ensure your NodePort or LoadBalancer service is configured to expose the custom listener ports. Below is an example yaml configuration using NodePort, which would also apply to a LoadBalancer service:
 

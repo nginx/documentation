@@ -1,10 +1,10 @@
 ---
-docs: DOCS-605
-doctypes:
-- install
 title: Get NGINX Ingress Controller from the F5 Registry
 toc: true
 weight: 100
+nd-content-type: how-to
+nd-product: NIC
+nd-docs: DOCS-605
 ---
 
 Learn how to pull an F5 NGINX Plus Ingress Controller image from the official F5 Docker registry and upload it to your private registry. 
@@ -12,8 +12,6 @@ Learn how to pull an F5 NGINX Plus Ingress Controller image from the official F5
 The F5 Registry images include versions with NGINX App Protect WAF and NGINX App Protect DoS.
 
 This guide covers the prerequisites, image tagging, and troubleshooting steps.
-
----
 
 ## Before you begin
 
@@ -36,11 +34,9 @@ cp <path-to-your-nginx-repo.key> /etc/docker/certs.d/private-registry.nginx.com/
 
 The steps provided are for Linux. For Mac or Windows, consult the [Docker for Mac](https://docs.docker.com/docker-for-mac/#add-client-certificates) or [Docker for Windows](https://docs.docker.com/docker-for-windows/#how-do-i-add-client-certificates) documentation. For more details on Docker Engine security, you can refer to the [Docker Engine Security documentation](https://docs.docker.com/engine/security/).
 
----
-
 ## Pull the image
 
-Next, pull the image you need from `private-registry.nginx.com`. To find the correct image, consult the [Tech Specs guide]({{< relref "technical-specifications#images-with-nginx-plus" >}}).
+Next, pull the image you need from `private-registry.nginx.com`. To find the correct image, consult the [Tech Specs guide]({{< ref "/nic/technical-specifications.md#images-with-nginx-plus" >}}).
 
 To pull an image, follow these steps. Replace `<version-tag>` with the specific version you need, for example, `{{< nic-version >}}`.
 
@@ -117,8 +113,6 @@ $ curl https://private-registry.nginx.com/v2/nginx-ic-dos/nginx-plus-ingress/tag
 }
 ```
 
----
-
 ## Push to your private registry
 
 After pulling the image, tag it and upload it to your private registry.
@@ -169,8 +163,6 @@ After pulling the image, tag it and upload it to your private registry.
       docker push <my-docker-registry>/nginx-ic-dos/nginx-plus-ingress:<version-tag>
       ```
 
----
-
 ## Troubleshooting
 
 If you encounter issues while following this guide, here are solutions to common problems:
@@ -185,18 +177,17 @@ If you encounter issues while following this guide, here are solutions to common
 
 - **Can't pull the image**
   - **Likely Cause**: Mismatched image name or tag.
-  - **Solution**: Double-check the image name and tag against the [Tech Specs guide]({{< relref "technical-specifications.md#images-with-nginx-plus" >}}).
+  - **Solution**: Double-check the image name and tag against the [Tech Specs guide]({{< ref "/nic/technical-specifications.md#images-with-nginx-plus" >}}).
 
 - **Failed to push to private registry**
   - **Likely Cause**: Not logged into your private registry or incorrect image tagging.
   - **Solution**: Verify login status and correct image tagging before pushing. Consult the [Docker documentation](https://docs.docker.com/docker-hub/repos/) for more details.
 
----
 
 ## Alternative installation options
 
 You can also get the NGINX Ingress Controller image using the following alternate methods:
 
-- [Get the NGINX Ingress Controller image with JWT]({{< relref "get-image-using-jwt.md" >}}).
-- [Build NGINX Ingress Controller]({{< relref "installation/build-nginx-ingress-controller.md" >}}) using the source code from the GitHub repository and your NGINX Plus subscription certificate and key.
+- [Get the NGINX Ingress Controller image with JWT]({{< ref "/nic/installation/nic-images/get-image-using-jwt.md" >}}).
+- [Build NGINX Ingress Controller]({{< ref "/nic/installation/build-nginx-ingress-controller.md" >}}) using the source code from the GitHub repository and your NGINX Plus subscription certificate and key.
 - For NGINX Ingress Controller using NGINX OSS, you can pull the [nginx/nginx-ingress image](https://hub.docker.com/r/nginx/nginx-ingress/) from DockerHub.

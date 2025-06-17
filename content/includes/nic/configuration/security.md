@@ -82,7 +82,7 @@ The block below shows the code you will look for:
 
 ### Prometheus
 
-If Prometheus metrics are [enabled]({{< relref "/logging-and-monitoring/prometheus.md" >}}), we recommend [using HTTPS]({{< relref "configuration/global-configuration/command-line-arguments.md#cmdoption-prometheus-tls-secret" >}}).
+If Prometheus metrics are [enabled]({{< relref "/logging-and-monitoring/prometheus.md" >}}), we recommend [using HTTPS]({{< ref "/nic/configuration/global-configuration/command-line-arguments.md#cmdoption-prometheus-tls-secret" >}}).
 
 ### Snippets
 
@@ -97,6 +97,6 @@ Snippets are disabled by default. To use snippets, set the [**enable-snippets**]
 For more information, read the following:
 
 - [Advanced configuration using Snippets]({{< relref "/configuration/ingress-resources/advanced-configuration-with-snippets.md" >}})
-- [Using Snippets with VirtualServer/VirtualServerRoute]({{< relref "configuration/virtualserver-and-virtualserverroute-resources.md#using-snippets" >}})
+- [Using Snippets with VirtualServer/VirtualServerRoute]({{< ref "/nic/configuration/virtualserver-and-virtualserverroute-resources.md#using-snippets" >}})
 - [Using Snippets with TransportServer]({{< relref "/configuration/transportserver-resource.md#using-snippets" >}})
-- [ConfigMap snippets and custom templates]({{< relref "configuration/global-configuration/configmap-resource.md#snippets-and-custom-templates" >}})
+- [ConfigMap snippets and custom templates]({{< ref "/nic/configuration/global-configuration/configmap-resource.md#snippets-and-custom-templates" >}})

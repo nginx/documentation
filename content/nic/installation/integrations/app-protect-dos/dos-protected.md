@@ -1,15 +1,15 @@
 ---
-docs: DOCS-581
-doctypes:
-- ''
 title: DoS protected resource specification
 toc: true
 weight: 300
+nd-content-type: reference
+nd-product: NIC
+nd-docs: DOCS-581
 ---
 
 NGINX App Protect DoS protected resource specification
 
-{{< note >}} This feature is only available using the NGINX Plus [NGINX App Protect DoS Module](/nginx-app-protect-dos/deployment-guide/learn-about-deployment/). {{< /note >}}
+{{< note >}} This feature is only available using the NGINX Plus [NGINX App Protect DoS Module]({{< ref "/nap-dos/deployment-guide/learn-about-deployment.md" >}}). {{< /note >}}
 
 ## DoS Protected resource specification
 
@@ -38,7 +38,7 @@ spec:
 |``apDosMonitor.timeout`` | Determines how long (in seconds) should NGINX App Protect DoS wait for a response. [App Protect DoS monitor](#dosprotectedresourceapdosmonitor) Default value: 10 seconds for http1/http2 and 5 seconds for grpc. | ``int64`` | No |
 |``apDosPolicy`` | The [App Protect DoS policy](#dosprotectedresourceapdospolicy) of the dos. Accepts an optional namespace. | ``string`` | No |
 |``dosSecurityLog.enable`` | Enables security log. | ``bool`` | No |
-|``dosSecurityLog.apDosLogConf`` | The [App Protect DoS log conf]({{< relref "installation/integrations/app-protect-dos/configuration.md#app-protect-dos-logs" >}}) resource. Accepts an optional namespace. | ``string`` | No |
+|``dosSecurityLog.apDosLogConf`` | The [App Protect DoS log conf]({{< ref "/nic/installation/integrations/app-protect-dos/configuration.md#app-protect-dos-logs" >}}) resource. Accepts an optional namespace. | ``string`` | No |
 |``dosSecurityLog.dosLogDest`` | The log destination for the security log. Accepted variables are ``<ip-address \| localhost \| fqdn>:<port>`` or ``stderr``. Default is ``127.0.0.1:514``. | ``string`` | No |
 |``allowList`` | List of allowed IP addresses and subnet masks. Each entry is represented by an `IPWithMask` string. | ``[]AllowListEntry`` | No |
 {{% /table %}}

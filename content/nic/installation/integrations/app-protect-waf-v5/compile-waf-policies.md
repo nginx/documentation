@@ -24,7 +24,7 @@ The following steps describe how to use the NGINX Instance Manager API to create
 ### Requirements
 - A working [NGINX Instance Manager](https://docs.nginx.com/nginx-instance-manager/deploy/) instance.
 - An [NGINX Instance Manager user](https://docs.nginx.com/nginx-instance-manager/admin-guide/rbac/overview-rbac/) for API requests.
-- A NGINX Ingress Controller [deployment with NGINX App Protect WAF]({{< relref "/installation/integrations/app-protect-waf/installation.md" >}}).
+- A NGINX Ingress Controller [deployment with NGINX App Protect WAF]({{< ref "/nic/installation/integrations/app-protect-waf/installation.md" >}}).
 
 ---
 

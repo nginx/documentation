@@ -17,11 +17,11 @@ NGINX Ingress Controller supports [OpenTracing](https://opentracing.io/) with th
 
 1. Use a NGINX Ingress Controller image that contains OpenTracing.
 
-    - You can find the images that include OpenTracing listed [in the technical specs doc]({{< relref "technical-specifications.md#supported-docker-images" >}}).
-    - Alternatively, you follow [Build NGINX Ingress Controller]({{< relref "installation/build-nginx-ingress-controller.md" >}}) using `debian-image` (or `alpine-image`) for NGINX or `debian-image-plus` (or `alpine-image-plus`) for NGINX Plus.
+    - You can find the images that include OpenTracing listed [in the technical specs doc]({{< ref "/nic/technical-specifications.md#supported-docker-images" >}}).
+    - Alternatively, you follow [Build NGINX Ingress Controller]({{< ref "/nic/installation/build-nginx-ingress-controller.md" >}}) using `debian-image` (or `alpine-image`) for NGINX or `debian-image-plus` (or `alpine-image-plus`) for NGINX Plus.
     - [Jaeger](https://github.com/jaegertracing/jaeger-client-cpp), [Zipkin](https://github.com/rnburn/zipkin-cpp-opentracing) and [Datadog](https://github.com/DataDog/dd-opentracing-cpp/) tracers are installed by default.
 
-1. Enable snippets annotations by setting the [`enable-snippets`]({{< relref "configuration/global-configuration/command-line-arguments#cmdoption-enable-snippets" >}}) command-line argument to true.
+1. Enable snippets annotations by setting the [`enable-snippets`]({{< ref "/nic/configuration/global-configuration/command-line-arguments#cmdoption-enable-snippets" >}}) command-line argument to true.
 
 1. Load the OpenTracing module.
 
@@ -73,7 +73,7 @@ Consider the following two cases:
 
 1. To enable OpenTracing for specific paths:
 
-    - You need to use [Mergeable Ingress resources]({{< relref "configuration/ingress-resources/cross-namespace-configuration" >}})
+    - You need to use [Mergeable Ingress resources]({{< ref "/nic/configuration/ingress-resources/cross-namespace-configuration" >}})
     - You need to use the location snippets annotation to enable OpenTracing for the paths of a specific Minion Ingress resource:
 
         ```yaml
@@ -92,7 +92,7 @@ Consider the following two cases:
 
 1. To disable OpenTracing for specific paths:
 
-    - You need to use [Mergeable Ingress resources]({{< relref "configuration/ingress-resources/cross-namespace-configuration" >}})
+    - You need to use [Mergeable Ingress resources]({{< ref "/nic/configuration/ingress-resources/cross-namespace-configuration" >}})
     - You need to use the location snippets annotation to disable OpenTracing for the paths of a specific Minion Ingress resource:
 
         ```yaml

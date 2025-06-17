@@ -15,11 +15,11 @@ This document explains how to use F5 NGINX Ingress Controller to configure [NGIN
 
 ## Global configuration
 
-NGINX Ingress Controller has global configuration parameters that match those in NGINX App Protect WAF. They are found in the [ConfigMap resource]({{< relref "configuration/global-configuration/configmap-resource.md#modules" >}}): the NGINX App Protect WAF parameters are prefixed with `app-protect*`.
+NGINX Ingress Controller has global configuration parameters that match those in NGINX App Protect WAF. They are found in the [ConfigMap resource]({{< ref "/nic/configuration/global-configuration/configmap-resource.md#modules" >}}): the NGINX App Protect WAF parameters are prefixed with `app-protect*`.
 
 ## Enable NGINX App Protect WAF v5
 
-NGINX App Protect WAF v5 can be enabled and configured for custom resources only(VirtualServer, VirtualServerRoute). You need to create a Policy Custom Resource referencing a policy bundle, then add it to the VirtualServer/VirtualServerRoute definition. Additional detail can be found in the [Policy Resource documentation]({{< relref "configuration/policy-resource.md#waf" >}}).
+NGINX App Protect WAF v5 can be enabled and configured for custom resources only(VirtualServer, VirtualServerRoute). You need to create a Policy Custom Resource referencing a policy bundle, then add it to the VirtualServer/VirtualServerRoute definition. Additional detail can be found in the [Policy Resource documentation]({{< ref "/nic/configuration/policy-resource.md#waf" >}}).
 
 ---
 
@@ -71,7 +71,7 @@ This example shows how to deploy NGINX Ingress Controller with NGINX Plus and NG
 
 ### Prerequisites
 
-1. Follow the installation [instructions]({{< relref "installation/integrations/app-protect-waf-v5/installation.md" >}}) to deploy NGINX Ingress Controller with NGINX Plus and NGINX App Protect WAF version 5.
+1. Follow the installation [instructions]({{< ref "/nic/installation/integrations/app-protect-waf-v5/installation.md" >}}) to deploy NGINX Ingress Controller with NGINX Plus and NGINX App Protect WAF version 5.
 
 2. Save the public IP address of NGINX Ingress Controller into a shell variable:
 

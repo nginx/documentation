@@ -14,7 +14,7 @@ This page describes technical specifications for F5 NGINX Ingress Controller, su
 ## Supported NGINX Ingress Controller versions
 
 We recommend using the latest release of NGINX Ingress Controller. We provide software updates for the most recent release. We provide technical support for F5 customers who are using the most recent version of NGINX Ingress Controller, and any version released within two years of the current release.
-We test NGINX Ingress Controller on a range of Kubernetes platforms for each release, and list them in the [release notes]({{< relref "/releases.md" >}}). We provide technical support for NGINX Ingress Controller on any Kubernetes platform that is currently supported by its provider, and that passes the [Kubernetes conformance tests](https://www.cncf.io/certification/software-conformance/).
+We test NGINX Ingress Controller on a range of Kubernetes platforms for each release, and list them in the [release notes]({{< ref "/nic/releases.md" >}}). We provide technical support for NGINX Ingress Controller on any Kubernetes platform that is currently supported by its provider, and that passes the [Kubernetes conformance tests](https://www.cncf.io/certification/software-conformance/).
 
 {{< bootstrap-table "table table-bordered table-striped table-responsive" >}}
 | NIC version | Kubernetes versions tested  | NIC Helm Chart version | NIC Operator version | NGINX / NGINX Plus version |
@@ -62,7 +62,7 @@ _NGINX Plus images include NGINX Plus R34._
 
 #### **F5 Container registry**
 
-NGINX Plus images are available through the F5 Container registry `private-registry.nginx.com`, explained in the [Get the NGINX Ingress Controller image with JWT]({{<relref "/installation/nic-images/get-image-using-jwt.md">}}) and [Get the F5 Registry NGINX Ingress Controller image]({{<relref "/installation/nic-images/get-registry-image.md">}}) topics.
+NGINX Plus images are available through the F5 Container registry `private-registry.nginx.com`, explained in the [Get the NGINX Ingress Controller image with JWT]({{<ref "/nic/installation/nic-images/get-image-using-jwt.md">}}) and [Get the F5 Registry NGINX Ingress Controller image]({{<ref "/nic/installation/nic-images/get-registry-image.md">}}) topics.
 
 {{< bootstrap-table "table table-striped table-bordered table-responsive" >}}
 |<div style="width:200px">Name</div> | <div style="width:100px">Base image</div> | <div style="width:200px">Additional modules</div> | F5 Container Registry Image | Architectures |
@@ -96,4 +96,4 @@ You can customize an existing Dockerfile or use it as a reference to create a ne
 
 ## Supported Helm versions
 
-NGINX Ingress Controller can be [installed]({{< relref "/installation/installing-nic/installation-with-helm.md" >}}) using Helm 3.0 or later.
+NGINX Ingress Controller can be [installed]({{< ref "/nic/installation/installing-nic/installation-with-helm.md" >}}) using Helm 3.0 or later.
