@@ -21,7 +21,7 @@ The script installs:
 - ClickHouse by default, unless you choose to skip it
 - Optionally, NGINX Plus (requires a license and additional flags)
 
-The script also installs all required operating system packages automatically. If you need to install earlier versions of NGINX or NGINX Instance Manager, follow the [manual installation process](({{< ref "nim/deploy/vm-bare-metal/install-nim-manual.md" >}})) instead.
+The script also installs all required operating system packages automatically. If you need to install earlier versions of NGINX or NGINX Instance Manager, follow the [manual installation process]({{< ref "nim/deploy/vm-bare-metal/install-nim-manual.md" >}}) instead.
 
 ---
 
