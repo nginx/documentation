@@ -45,10 +45,14 @@ Make sure you have:
 2. **Change to the Lab 2 directory**
 
    ```shell
-   cd workshops/nginx-one/lab2
+   cd static/workshops/nginx-one/lab2
    ```
 
 This folder contains `docker-compose.yml` and `generate_certs.sh`.
+
+{{<fa "download">}} {{<link "/workshops/nginx-one/lab2/docker-compose.yml" "Download docker-compose.yaml">}}
+
+{{<fa "download">}} {{<link "/workshops/nginx-one/lab2/generate_certs.sh" "Download generate_certs.sh">}}
 
 ---
 
@@ -141,7 +145,7 @@ If you don’t see them, double-check your `$TOKEN` or generate a new data plane
 
 Now that your containers are up and registered, go on to explore NGINX One Console features in Lab 3.
 
-[Go to Lab 3 →](../lab3/readme.md)
+Go to [Lab 3: Explore NGINX One Console features]({{< ref "nginx-one/workshops/lab3/explore-nginx-one-console-and-features.md" >}})
 
 ---
 

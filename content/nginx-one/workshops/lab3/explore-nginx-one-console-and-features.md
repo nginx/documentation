@@ -33,9 +33,14 @@ By the end of this tutorial, you’ll know how to:
 Make sure you have:
 
 - An F5 Distributed Cloud (XC) account with NGINX One enabled  
-- All containers from Lab 2 running and registered  
+- All containers from [Lab 2](nginx-one/workshops/lab2/run-workshop-components-with-docker.md) running and registered  
+- Your unique identifier in the `NAME` environment variable (set in Lab 2), for example `s.jobs`:
+
+   ```shell
+   export NAME="s.jobs"
+   ```
+
 - Basic NGINX and Linux knowledge  
-- Your `$NAME` environment variable set (from [Lab 2]({{< ref "nginx-one/workshops/lab2/run-workshop-components-with-docker.md" >}}))  
 
 ---
 
@@ -174,7 +179,7 @@ Try it on:
 
 ## Next steps
 
-When you’re ready, move on to [Lab 4 →](../lab4/readme.md)
+Go to [Lab 4: Config Sync Groups]({{< ref "nginx-one/workshops/lab4/config-sync-groups.md" >}})
 
 ---
 
