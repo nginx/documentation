@@ -61,23 +61,23 @@ Make sure there are no extra characters or spaces when copying the JWT token. Th
 ### Kubernetes
 
 ```shell
-kubectl create namespace nms
+kubectl create namespace nim
 kubectl create secret docker-registry regcred \
   --docker-server=private-registry.nginx.com \
   --docker-username=<NGINX JWT Token> \
   --docker-password=none \
-  -n nms
+  -n nim
 ```
 
 ### OpenShift
 
 ```shell
-oc new-project nms && \
+oc new-project nim && \
 oc create secret docker-registry regcred \
   --docker-server=private-registry.nginx.com \
   --docker-username=<NGINX JWT Token> \
   --docker-password=none \
-  -n nms
+  -n nim
 ```
 
 {{< call-out "note" "Note" >}}
@@ -91,13 +91,13 @@ As a best practice, you can delete the JWT token and clear your shell history af
 - Kubernetes
 
     ```shell
-    kubectl get secret regcred --output=yaml -n nms
+    kubectl get secret regcred --output=yaml -n nim
     ```
 
 - OpenShift
 
     ```shell
-    oc get secret regcred --output=yaml -n nms
+    oc get secret regcred --output=yaml -n nim
     ```
 
 You can now use this secret for Helm deployments and point the chart to the private registry.
