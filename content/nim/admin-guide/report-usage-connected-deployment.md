@@ -1,8 +1,8 @@
 ---
-title: Report usage data to F5
+title: Report usage data to F5 (connected)
 draft: false
 description: ''
-weight: 10
+weight: 20
 toc: true
 docs: DOCS-1650
 personas:
@@ -14,6 +14,8 @@ type:
 - how-to
 ---
 
+{{< note >}}For disconnected environments, see [Report usage data to F5 (disconnected)]({{< ref "nim/disconnected/report-usage-disconnected-deployment.md" >}}).{{< /note >}}
+
 ## Overview
 
 In environments where NGINX Instance Manager has internet access but NGINX Plus doesn’t, NGINX Plus sends usage data to NGINX Instance Manager. NGINX Instance Manager will automatically send the usage reports to F5 for verification, or you can choose to send them manually.
@@ -21,8 +23,6 @@ In environments where NGINX Instance Manager has internet access but NGINX Plus 
 **If usage reporting fails, NGINX Plus will stop processing traffic.** There's an exception for previously reported instances — refer to [handling outages](#handling-outages) for more details.
 
 See the steps below to configure NGINX Plus to report usage data to NGINX Instance Manager and how to submit the report to F5 for verification.
-
-{{<call-out "tip" "For network-restricted environments:" "" >}}If your deployment of NGINX Instance Manager doesn’t allow internet access, follow the steps in [Report usage data in network-restricted environments]({{< ref "nim/disconnected/report-usage-disconnected-deployment.md" >}}) to report usage data to F5.{{</call-out>}}
 
 ---
 
@@ -49,7 +49,7 @@ To configure NGINX Plus (R33 and later) to report usage data to NGINX Instance M
 
 ### Automatic reporting
 
-When you [add your JSON Web Token (JWT)]({{< ref "nim/admin-guide/license/add-license.md" >}}) to NGINX Instance Manager, usage reporting is enabled by default.
+When you [add your JSON Web Token (JWT)]({{< ref "nim/admin-guide/add-license.md" >}}) to NGINX Instance Manager, usage reporting is enabled by default.
 
 NGINX Instance Manager will automatically report subscription entitlement and usage data to F5 if internet access is available.
 
