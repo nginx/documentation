@@ -1,5 +1,5 @@
 ---
-title: Migrate from Custom Metrics to Platform Metrics
+title: Migrate from Custom metrics to Platform metrics
 weight: 1000
 toc: true
 url: /nginxaas/azure/getting-started/migrate-to-platform-metrics/
@@ -8,27 +8,29 @@ type:
 ---
 
 ## Overview
-NGINXaaS previously supported monitoring using [Custom Metrics](https://learn.microsoft.com/en-us/azure/azure-monitor/metrics/metrics-custom-overview). Custom metrics is a preview feature in Azure and support for it will be dropped in the future. We have added support for Platform metrics which is the Azure recommended way for monitoring resources, we strongly recommend you to migrate your deployments monitoring to use Platform metrics to take advantage of reduced latency and higher reliability.
 
-## Migration Steps
-This section contains instructions on how to migrate your deployment monitoring from Custom Metrics to Platform Metrics.
+F5 NGINXaaS for Azure previously supported monitoring through [Custom Metrics](https://learn.microsoft.com/en-us/azure/azure-monitor/metrics/metrics-custom-overview), which is a preview feature in Azure. As a preview feature, support for Custom Metrics will be removed in the future. We've added support for Platform Metrics, which is the recommended way to monitor resources in Azure. We strongly recommend switching your deployment's monitoring to Platform Metrics to take advantage of lower latency and better reliability.
 
-1. Verify that your NGINXaaS deployment meets the [pre-requisites]({{< relref "/nginxaas-azure/monitoring/enable-monitoring.md#prerequisites">}}) for Platform metrics to work.
-2. If the per-requisites are met, Platform metrics are enabled by default on all NGINXaaS deployment. Verify that you are able to see the new metrics in Azure Monitor under the `Standard Metrics` namespace.
-3. Turn off legacy monitoring.
+## Migration steps
 
-   - **Using Portal**  
-     1. Go to the **NGINX monitoring** page of the NGINXaaS deployment in the Azure portal.  
-     2. Toggle Off the `Send metrics to Azure Monitor` switch.  
-     3. Click Save.  
+Follow the steps in this section to migrate your deployment monitoring from Custom metrics to Platform metrics.
 
-   - **Using Terraform**  
-     1. Set `diagnose_support_enabled` to false in the `azurerm_nginx_deployment` resource.  
-     2. Run `terraform plan` followed by `terraform apply` to upgrade the deployment.  
+1. Verify that your NGINXaaS deployment meets the [pre-requisites]({{< ref "/nginxaas-azure/monitoring/enable-monitoring.md#prerequisites">}}) for Platform metrics to work.
+2. If the pre-requisites are met, Platform metrics are enabled by default on all NGINXaaS deployment. Verify that you are able to see the new metrics in Azure Monitor under the `Standard Metrics` namespace.
+3. Turn off legacy monitoring:
 
-   - **Using Azure CLI**  
-     Run the command below:  
-     ```bash
+   - Using the Azure portal
+     1. In the Azure portal, go to the **NGINX monitoring** page for your NGINXaaS deployment.
+     2. Turn off the **Send metrics to Azure Monitor** setting.
+     3. Select **Save**.
+
+   - Using Terraform
+     1. Set `diagnose_support_enabled` to false in the `azurerm_nginx_deployment` resource.
+     2. Run `terraform plan` followed by `terraform apply` to upgrade the deployment.
+
+   - Using the Azure CLI
+     Run the following command:
+     ```shell
      az nginx deployment update --name myDeployment --resource-group \
      myResourceGroup --enable-diagnostics="false"
      ```

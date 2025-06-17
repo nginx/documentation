@@ -1,0 +1,929 @@
+2025-05-21 06:21:52,139: File read successfully.
+2025-05-21 06:21:52,140: Initial shape (rows x columns): (743, 39)
+2025-05-21 06:21:52,140: Subheading row detected and removed.
+2025-05-21 06:21:52,143: Dataframe shape after header adjustments: (741, 39)
+2025-05-21 06:21:52,143: Columns found: ['StartDate', 'EndDate', 'Status', 'IPAddress', 'Progress', 'Duration (in seconds)', 'Finished', 'RecordedDate', 'ResponseId', 'RecipientLastName', 'RecipientFirstName', 'RecipientEmail', 'ExternalReference', 'LocationLatitude', 'LocationLongitude', 'DistributionChannel', 'UserLanguage', 'Q1', 'Q2', 'Q3', 'Q4', 'current_url', 'QID2_OriginalResponse', 'QID2_AICategory', 'QID2_FollowUpPrompt', 'Link URL', 'Q2 - Actionability', 'Q2 - Effort', 'Q2 - Effort Numeric', 'Q2 - Emotion Intensity', 'Q2 - Emotion', 'Q2 - Parent Topics', 'Q2 - Sentiment Polarity', 'Q2 - Sentiment Score', 'Q2 - Sentiment', 'Q2 - Topic Sentiment Label', 'Q2 - Topic Sentiment Score', 'Q2 - Topics', 'Q2 - Topic Hierarchy Level 1']
+2025-05-21 06:21:52,157: Row 0 deleted because Link URL is missing.
+2025-05-21 06:21:52,157: Row 1 deleted because Link URL is missing.
+2025-05-21 06:21:52,157: Row 2 deleted because Link URL is missing.
+2025-05-21 06:21:52,158: Row 3 deleted because Link URL is missing.
+2025-05-21 06:21:52,158: Row 4 deleted because Link URL is missing.
+2025-05-21 06:21:52,158: Row 5 deleted because Link URL is missing.
+2025-05-21 06:21:52,158: Row 6 deleted because Link URL is missing.
+2025-05-21 06:21:52,158: Row 7 deleted because Link URL is missing.
+2025-05-21 06:21:52,158: Row 8 deleted because Link URL is missing.
+2025-05-21 06:21:52,158: Row 9 deleted because Link URL is missing.
+2025-05-21 06:21:52,158: Row 10 deleted because Link URL is missing.
+2025-05-21 06:21:52,158: Row 11 deleted because Link URL is missing.
+2025-05-21 06:21:52,158: Row 12 deleted because Link URL is missing.
+2025-05-21 06:21:52,158: Row 13 deleted because Link URL is missing.
+2025-05-21 06:21:52,158: Row 14 deleted because Link URL is missing.
+2025-05-21 06:21:52,158: Row 15 deleted because Link URL is missing.
+2025-05-21 06:21:52,159: Row 16 deleted because Link URL is missing.
+2025-05-21 06:21:52,159: Row 17 deleted because Link URL is missing.
+2025-05-21 06:21:52,159: Row 18 deleted because Link URL is missing.
+2025-05-21 06:21:52,159: Row 19 deleted because Link URL is missing.
+2025-05-21 06:21:52,159: Row 20 deleted because Link URL is missing.
+2025-05-21 06:21:52,159: Row 21 deleted because Link URL is missing.
+2025-05-21 06:21:52,159: Row 22 deleted because Link URL is missing.
+2025-05-21 06:21:52,159: Row 23 deleted because Link URL is missing.
+2025-05-21 06:21:52,159: Row 24 deleted because Link URL is missing.
+2025-05-21 06:21:52,159: Row 25 deleted because Link URL is missing.
+2025-05-21 06:21:52,159: Row 26 deleted because Link URL is missing.
+2025-05-21 06:21:52,159: Row 27 deleted because Link URL is missing.
+2025-05-21 06:21:52,159: Row 28 deleted because Link URL is missing.
+2025-05-21 06:21:52,159: Row 29 deleted because Link URL is missing.
+2025-05-21 06:21:52,160: Row 30 deleted because Link URL is missing.
+2025-05-21 06:21:52,160: Row 31 deleted because Link URL is missing.
+2025-05-21 06:21:52,160: Row 32 deleted because Link URL is missing.
+2025-05-21 06:21:52,160: Row 33 deleted because Link URL is missing.
+2025-05-21 06:21:52,160: Row 34 deleted because Link URL is missing.
+2025-05-21 06:21:52,161: Row 35 deleted because Link URL is missing.
+2025-05-21 06:21:52,161: Row 36 deleted because Link URL is missing.
+2025-05-21 06:21:52,161: Row 37 deleted because Link URL is missing.
+2025-05-21 06:21:52,161: Row 38 deleted because Link URL is missing.
+2025-05-21 06:21:52,161: Row 39 deleted because Link URL is missing.
+2025-05-21 06:21:52,161: Row 40 deleted because Link URL is missing.
+2025-05-21 06:21:52,161: Row 41 deleted because Link URL is missing.
+2025-05-21 06:21:52,161: Row 42 deleted because Link URL is missing.
+2025-05-21 06:21:52,161: Row 43 deleted because Link URL is missing.
+2025-05-21 06:21:52,161: Row 44 deleted because Link URL is missing.
+2025-05-21 06:21:52,161: Row 45 deleted because Link URL is missing.
+2025-05-21 06:21:52,161: Row 46 deleted because Link URL is missing.
+2025-05-21 06:21:52,161: Row 47 deleted because Link URL is missing.
+2025-05-21 06:21:52,161: Row 48 deleted because Link URL is missing.
+2025-05-21 06:21:52,161: Row 49 deleted because Link URL is missing.
+2025-05-21 06:21:52,161: Row 50 deleted because Link URL is missing.
+2025-05-21 06:21:52,161: Row 213 deleted because Link URL is missing.
+2025-05-21 06:21:52,162: Rows before removing missing Link URL: 741, after: 689
+2025-05-21 06:21:52,163: Row 51 deleted because Q2 contains 'testing'.
+2025-05-21 06:21:52,163: Row 77 deleted because Q2 contains 'testing'.
+2025-05-21 06:21:52,163: Row 78 deleted because Q2 contains 'testing'.
+2025-05-21 06:21:52,163: Row 169 deleted because Q2 contains 'testing'.
+2025-05-21 06:21:52,163: Rows before removing Q2='testing': 689, after: 685
+2025-05-21 06:21:52,165: Row 58: Link URL updated from https://docs.nginx.com/nginx-ingress-controller/configuration/ingress-resources/cross-namespace-configuration to https://docs.nginx.com/nginx-ingress-controller/configuration/ingress-resources/cross-namespace-configuration/
+2025-05-21 06:21:52,165: Row 59: Link URL updated from https://docs.nginx.com/nginx-ingress-controller/installation/installing-nic/upgrade-to-v4/#update-custom-resource-apiversion to https://docs.nginx.com/nginx-ingress-controller/installation/installing-nic/upgrade-to-v4/
+2025-05-21 06:21:52,165: Row 71: Link URL updated from https://docs.nginx.com/nginx-ingress-controller/configuration/global-configuration/custom-templates to https://docs.nginx.com/nginx-ingress-controller/configuration/global-configuration/custom-templates/
+2025-05-21 06:21:52,165: Row 88: Link URL updated from https://docs.nginx.com/nginx-ingress-controller/overview/design/#nginx-ingress-controller-process-components to https://docs.nginx.com/nginx-ingress-controller/overview/design/
+2025-05-21 06:21:52,165: Row 115: Link URL updated from https://docs.nginx.com/nginx/admin-guide/load-balancer/http-load-balancer/#weights to https://docs.nginx.com/nginx/admin-guide/load-balancer/http-load-balancer/
+2025-05-21 06:21:52,165: Row 120: Link URL updated from https://docs.nginx.com/nginx-ingress-controller/configuration/ingress-resources/cross-namespace-configuration to https://docs.nginx.com/nginx-ingress-controller/configuration/ingress-resources/cross-namespace-configuration/
+2025-05-21 06:21:52,165: Row 152: Link URL updated from https://docs.nginx.com/nginx-ingress-controller/glossary/#ingress-controller-ingress-controller to https://docs.nginx.com/nginx-ingress-controller/glossary/
+2025-05-21 06:21:52,165: Row 297: Link URL updated from https://docs.nginx.com/ossc to https://docs.nginx.com/ossc/
+2025-05-21 06:21:52,165: Row 308: Link URL updated from https://docs.nginx.com/ossc to https://docs.nginx.com/ossc/
+2025-05-21 06:21:52,166: Row 324: Link URL updated from https://docs.nginx.com/nginxaas-azure/known-issues/ to https://docs.nginx.com/nginxaas/azure/known-issues/ (URL replacement)
+2025-05-21 06:21:52,166: Row 324: Link URL updated from https://docs.nginx.com/nginxaas-azure/known-issues/ to https://docs.nginx.com/nginxaas/azure/known-issues/
+2025-05-21 06:21:52,166: Row 367: Link URL updated from https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-open-source/#prebuilt to https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-open-source/
+2025-05-21 06:21:52,166: Row 395: Link URL updated from https://docs.nginx.com/nginx/admin-guide/web-server/web-server/#locations to https://docs.nginx.com/nginx/admin-guide/web-server/web-server/
+2025-05-21 06:21:52,166: Row 396: Link URL updated from https://docs.nginx.com/nginx/admin-guide/load-balancer/http-load-balancer/#method to https://docs.nginx.com/nginx/admin-guide/load-balancer/http-load-balancer/
+2025-05-21 06:21:52,166: Row 417: Link URL updated from https://docs.nginx.com/nginx/admin-guide/basic-functionality/managing-configuration-files/#virtual-servers to https://docs.nginx.com/nginx/admin-guide/basic-functionality/managing-configuration-files/
+2025-05-21 06:21:52,166: Row 418: Link URL updated from https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/#upgrading-nginx-plus to https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/
+2025-05-21 06:21:52,166: Row 477: Link URL updated from https://docs.nginx.com/nginx/admin-guide/basic-functionality/runtime-control/#master-and-worker-processes to https://docs.nginx.com/nginx/admin-guide/basic-functionality/runtime-control/
+2025-05-21 06:21:52,166: Row 501: Link URL updated from https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-open-source to https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-open-source/
+2025-05-21 06:21:52,167: Row 587: Link URL updated from https://docs.nginx.com/ossc to https://docs.nginx.com/ossc/
+2025-05-21 06:21:52,167: Row 590: Link URL updated from https://docs.nginx.com/ossc to https://docs.nginx.com/ossc/
+2025-05-21 06:21:52,167: Row 592: Link URL updated from https://docs.nginx.com/nginx-one/getting-started/#enable-nginx-plus-api to https://docs.nginx.com/nginx-one/getting-started/
+2025-05-21 06:21:52,167: Row 617: Link URL updated from https://docs.nginx.com/nginx-ingress-controller/configuration/global-configuration/globalconfiguration-resource to https://docs.nginx.com/nginx-ingress-controller/configuration/global-configuration/globalconfiguration-resource/
+2025-05-21 06:21:52,167: Row 636: Link URL updated from https://docs.nginx.com/nginx-ingress-controller/configuration/ingress-resources/cross-namespace-configuration to https://docs.nginx.com/nginx-ingress-controller/configuration/ingress-resources/cross-namespace-configuration/
+2025-05-21 06:21:52,167: Row 692: Link URL updated from https://docs.nginx.com/nginx-ingress-controller/configuration/ingress-resources/cross-namespace-configuration to https://docs.nginx.com/nginx-ingress-controller/configuration/ingress-resources/cross-namespace-configuration/
+2025-05-21 06:21:52,167: Row 695: Link URL updated from https://docs.nginx.com/nginx-management-suite/acm/how-to/infrastructure/manage-api-infrastructure/#add-environment to https://docs.nginx.com/nginx-management-suite/acm/how-to/infrastructure/manage-api-infrastructure/
+2025-05-21 06:21:52,167: Row 729: Link URL updated from https://docs.nginx.com/nginx-ingress-controller/configuration/global-configuration/command-line-arguments to https://docs.nginx.com/nginx-ingress-controller/configuration/global-configuration/command-line-arguments/
+2025-05-21 06:21:52,168: Total Link URLs updated: 26
+2025-05-21 06:21:52,170: Exclude file loaded. Excluding 111 ResponseIDs.
+2025-05-21 06:21:52,172: Excluded bogus responses: removed 104 rows based on ResponseId.
+2025-05-21 06:21:52,172: Removed ResponseIDs: ['R_2BFXRROEE9C3BRP', 'R_2D8NGQPK1IWGIHY', 'R_2FP9OE7JF5GLHOP', 'R_2J2ML9WMO3BCXZ0', 'R_2LGQFCKEOOAPFCT', 'R_2RPFQ7PIR4C48DT', 'R_3J7OQ6V3GPEPYSJ', 'R_3JG7M3IHPME7LRX', 'R_401DHNTF0HMOWBL', 'R_40YHV7FFGANJU6F', 'R_424K44PYVRK8Y1G', 'R_429OWKCURJNOCTK', 'R_42NYN092DSVZXN7', 'R_45R6NUBXVOIPVEN', 'R_47VDGIRXA5NNCGO', 'R_4AK2INIGD1FFTDO', 'R_4BKCWEQU5MOZHA9', 'R_4DLQ3LQ6NHSZHBJ', 'R_4EFZQCTIWFGSTS9', 'R_4EXDDJGUFFTHDCC', 'R_4FO80F1TI4XXMDF', 'R_4GOFQWU2CBJQ9I8', 'R_4HOXH1YLAOVUM8Q', 'R_4JPODUU6FT5EJTD', 'R_4KHCYH2G4RX8GU6', 'R_4LGNMF3ZOJTCHSX', 'R_4MQKUOCWNMU1SPL', 'R_4N9TKVM3T4LLYKG', 'R_4NASUNJJHBDUNYB', 'R_4O67VYRCF2LMJJH', 'R_4OAKKCL6GPFZ6HE', 'R_4P2A79ACQ2DAXVN', 'R_4P9VTDYBBAGHH50', 'R_4QAAZ7C7ZBWLAZP', 'R_4QEFBD2SFDQ0REO', 'R_4QSJZTOLA1EOPTV', 'R_4QVW5AOMQL8JKAH', 'R_4QZ4BOZX5ZAWT8O', 'R_4SBC6FAX8YM8UGW', 'R_4SFJ4F2DSWFAHQZ', 'R_4ST9JXVOCQPNZWV', 'R_4U6KCOFBA0VPNFR', 'R_4VOH9KW1KCSSUJF', 'R_4WMMZUSHCE79AJG', 'R_4YE1NR6MWNJKK3P', 'R_51KKOSYZR16XRWF', 'R_5JBAKUSVN2PQSYJ', 'R_5MMU8NUYQQORLYE', 'R_6F3YPGOQKQMDPMC', 'R_6JLNAULKUPECILR', 'R_6PPUIKFYISENOOK', 'R_6VCPCX5BLHAFBKC', 'R_84BS33CREBBE09U', 'R_85HYVNJRFKFIUZ7', 'R_8C1JLR1AQTTTNE4', 'R_8NMFUZTTQCCOCN1', 'R_8OYXTWQHPPI60A9', 'R_8RTA9M4IQEQQDTR', 'R_8SBR3CGJS6QKOUL', 'R_8TTJC5OTE89JFJJ', 'R_8V8S2WSR76BZVDZ', 'R_8VPTIBSYWQJNJ42', 'R_8WBVOCJ7VLNATZF', 'R_906TQMCOD2GZKZH', 'R_93CMAHY49QS6HFS', 'R_93LGPITFTUNJBD4', 'R_96FPCSSZZ6OQGA5', 'R_97G6U0YYUPWZKAJ', 'R_9889CFZHAMBBJKL', 'R_9949KYHTOMG0ZXU', 'R_99ANGFU2UYWLPTX', 'R_9AGAOUORA4CPHTJ', 'R_9BAI4SFWRIEMME6', 'R_9BSJVEIWI90STOT', 'R_9C5BLPTCDY9OWIP', 'R_9CIYQQ0HJBEUA0O', 'R_9CPNDHPV7ZKBRFP', 'R_9DIMXPUAFKMVKJW', 'R_9DPMP66UHSZNLMP', 'R_9DUZARWZWO1OTNU', 'R_9EIFBZMGJ2RIMFJ', 'R_9EY7BUWKXFBNJWK', 'R_9FWXWDHSKHI0KCC', 'R_9HRYIJ0WJQNXLBV', 'R_9HVUPXH88UF2ALP', 'R_9J6C8A0F54FGTOE', 'R_9J9IEQJV2QIJNOO', 'R_9K6G6NUBNDQSLZC', 'R_9KOOA1DO1YZQCNN', 'R_9LIA90ICK0Z49X1', 'R_9MGHZSS6CHGXIGY', 'R_9MWUMGQY6B6KBSX', 'R_9OHCDWPHUIEEKKU', 'R_9OLOUQJMICBQCSJ', 'R_9PC2GVYGYM5RML5', 'R_9POGVOMHFMYBFJ2', 'R_9PPYOF1BOHS61LV', 'R_9QKQ89HE4TJYTIY', 'R_9ROSQUGFBCRUCUU', 'R_9RPKMREBNL1WAIO', 'R_9SUDDZVEJT2JFAS', 'R_9UASQESCV6I1RJD', 'R_9VIEDXC63JY6EL7', 'R_9ZAMFS0DAF1Z2ZT']
+2025-05-21 06:21:52,175: Row 712: Found and removed 1 email(s) from Q2.
+2025-05-21 06:21:52,175: Row 728: Found and removed 1 email(s) from Q2.
+2025-05-21 06:21:52,739: Row 52: Reverse geocoded lat=-29.9228, lon=-51.1744 -> country=Brazil, city=Canoas, state=Rio Grande do Sul
+2025-05-21 06:21:53,745: Row 53: Reverse geocoded lat=26.8756, lon=80.9115 -> country=India, city=Lucknow, state=Uttar Pradesh
+2025-05-21 06:21:54,735: Row 54: Reverse geocoded lat=13.6671, lon=100.5775 -> country=Thailand, city=Pu Chao Saming Phrai Town Municipality, state=None
+2025-05-21 06:21:55,697: Row 55: Reverse geocoded lat=36.6229, lon=114.4698 -> country=China, city=Handan, state=Hebei
+2025-05-21 06:21:56,656: Row 56: Reverse geocoded lat=-16.561, lon=-49.2063 -> country=Brazil, city=Goiânia, state=Goiás
+2025-05-21 06:21:57,664: Row 57: Reverse geocoded lat=-16.561, lon=-49.2063 -> country=Brazil, city=Goiânia, state=Goiás
+2025-05-21 06:21:58,695: Row 58: Reverse geocoded lat=53.481, lon=-2.2367 -> country=United Kingdom, city=Manchester, state=England
+2025-05-21 06:21:59,700: Row 60: Reverse geocoded lat=50.1187, lon=8.6842 -> country=Germany, city=Frankfurt, state=Hesse
+2025-05-21 06:22:00,919: Row 61: Reverse geocoded lat=17.9641, lon=102.5987 -> country=Laos, city=Vientiane Capital, state=Vientiane Prefecture
+2025-05-21 06:22:01,696: Row 62: Reverse geocoded lat=25.5908, lon=85.1348 -> country=India, city=Patna, state=Bihar
+2025-05-21 06:22:02,796: Row 63: Reverse geocoded lat=13.7159, lon=100.417 -> country=Thailand, city=Bangkok, state=None
+2025-05-21 06:22:04,250: Row 64: Reverse geocoded lat=48.157, lon=17.0915 -> country=Slovakia, city=Bratislava, state=Region of Bratislava
+2025-05-21 06:22:04,695: Row 65: Reverse geocoded lat=20.6381, lon=-103.348 -> country=Mexico, city=Guadalajara, state=Jalisco
+2025-05-21 06:22:05,783: Row 66: Reverse geocoded lat=22.155, lon=-101.9465 -> country=Mexico, city=Villa García, state=Zacatecas
+2025-05-21 06:22:07,105: Row 68: Reverse geocoded lat=49.1231, lon=8.6011 -> country=Germany, city=Bruchsal, state=Baden-Württemberg
+2025-05-21 06:22:07,783: Row 69: Reverse geocoded lat=49.1231, lon=8.6011 -> country=Germany, city=Bruchsal, state=Baden-Württemberg
+2025-05-21 06:22:08,729: Row 70: Reverse geocoded lat=23.0276, lon=72.5871 -> country=India, city=Ahmedabad, state=Gujarat
+2025-05-21 06:22:09,796: Row 71: Reverse geocoded lat=39.8655, lon=-86.122 -> country=United States, city=Indianapolis, state=Indiana
+2025-05-21 06:22:10,932: Row 72: Reverse geocoded lat=38.7584, lon=-9.2495 -> country=Portugal, city=Sintra, state=None
+2025-05-21 06:22:11,896: Row 73: Reverse geocoded lat=52.9044, lon=-1.2326 -> country=United Kingdom, city=Nottingham, state=England
+2025-05-21 06:22:12,850: Row 74: Reverse geocoded lat=50.1155, lon=14.4124 -> country=Czechia, city=Capital City of Prague, state=Prague
+2025-05-21 06:22:14,282: Row 75: Reverse geocoded lat=51.3593, lon=7.4763 -> country=Germany, city=Hagen, state=North Rhine-Westphalia
+2025-05-21 06:22:14,794: Row 76: Reverse geocoded lat=-1.2841, lon=36.8155 -> country=Kenya, city=Nairobi, state=Nairobi County
+2025-05-21 06:22:15,810: Row 79: Reverse geocoded lat=46.0653, lon=23.5917 -> country=Romania, city=Alba Iulia, state=None
+2025-05-21 06:22:16,899: Row 80: Reverse geocoded lat=46.7657, lon=23.5943 -> country=Romania, city=Cluj-Napoca, state=None
+2025-05-21 06:22:17,742: Row 81: Reverse geocoded lat=51.4964, lon=-0.1224 -> country=United Kingdom, city=London, state=England
+2025-05-21 06:22:19,063: Row 82: Reverse geocoded lat=34.6946, lon=135.5021 -> country=Japan, city=Osaka, state=None
+2025-05-21 06:22:19,876: Row 83: Reverse geocoded lat=37.5079, lon=127.1177 -> country=South Korea, city=Seoul, state=None
+2025-05-21 06:22:20,974: Row 84: Reverse geocoded lat=46.4752, lon=30.7338 -> country=Ukraine, city=Odesa, state=Odesa Oblast
+2025-05-21 06:22:21,672: Row 85: Reverse geocoded lat=46.4752, lon=30.7338 -> country=Ukraine, city=Odesa, state=Odesa Oblast
+2025-05-21 06:22:22,667: Row 86: Reverse geocoded lat=-23.1798, lon=-46.8816 -> country=Brazil, city=Jundiaí, state=São Paulo
+2025-05-21 06:22:23,748: Row 87: Reverse geocoded lat=37.5537, lon=-77.4602 -> country=United States, city=Richmond, state=Virginia
+2025-05-21 06:22:24,717: Row 88: Reverse geocoded lat=22.2578, lon=114.1657 -> country=China, city=Hong Kong Island, state=Hong Kong
+2025-05-21 06:22:25,754: Row 89: Reverse geocoded lat=36.7637, lon=-119.7602 -> country=United States, city=Fresno, state=California
+2025-05-21 06:22:26,727: Row 90: Reverse geocoded lat=28.6542, lon=77.2373 -> country=India, city=Delhi, state=Delhi
+2025-05-21 06:22:27,804: Row 91: Reverse geocoded lat=50.458, lon=30.5303 -> country=Ukraine, city=Kyiv, state=None
+2025-05-21 06:22:29,090: Row 92: Reverse geocoded lat=3.1685, lon=101.7034 -> country=Malaysia, city=Kuala Lumpur, state=Kuala Lumpur
+2025-05-21 06:22:29,779: Row 93: Reverse geocoded lat=36.7943, lon=-119.8856 -> country=United States, city=Fresno, state=California
+2025-05-21 06:22:30,928: Row 94: Reverse geocoded lat=47.1085, lon=15.7054 -> country=Austria, city=Gleisdorf, state=Styria
+2025-05-21 06:22:31,774: Row 95: Reverse geocoded lat=14.5971, lon=120.9798 -> country=Philippines, city=Manila, state=None
+2025-05-21 06:22:32,873: Row 96: Reverse geocoded lat=30.5851, lon=114.2662 -> country=China, city=Jianghan District, state=Hubei
+2025-05-21 06:22:33,711: Row 97: Reverse geocoded lat=32.4643, lon=14.5726 -> country=Libya, city=Zliten, state=Bani Walid
+2025-05-21 06:22:34,796: Row 98: Reverse geocoded lat=59.3591, lon=17.9951 -> country=Sweden, city=Solna, state=None
+2025-05-21 06:22:35,676: Row 99: Reverse geocoded lat=38.8897, lon=-121.2873 -> country=United States, city=Lincoln, state=California
+2025-05-21 06:22:36,708: Row 100: Reverse geocoded lat=-22.9616, lon=-49.8632 -> country=Brazil, city=Ourinhos, state=São Paulo
+2025-05-21 06:22:37,835: Row 101: Reverse geocoded lat=50.1169, lon=8.6837 -> country=Germany, city=Frankfurt, state=Hesse
+2025-05-21 06:22:38,698: Row 102: Reverse geocoded lat=39.018, lon=-77.539 -> country=United States, city=None, state=Virginia
+2025-05-21 06:22:39,654: Row 103: Reverse geocoded lat=40.1086, lon=-75.2835 -> country=United States, city=Plymouth Township, state=Pennsylvania
+2025-05-21 06:22:40,744: Row 104: Reverse geocoded lat=46.0653, lon=23.5917 -> country=Romania, city=Alba Iulia, state=None
+2025-05-21 06:22:41,718: Row 105: Reverse geocoded lat=-6.175, lon=106.8286 -> country=Indonesia, city=Special capital Region of Jakarta, state=None
+2025-05-21 06:22:42,737: Row 106: Reverse geocoded lat=37.1554, lon=9.7861 -> country=Tunisia, city=None, state=Bizerte
+2025-05-21 06:22:43,679: Row 107: Reverse geocoded lat=51.2437, lon=-2.2746 -> country=United Kingdom, city=None, state=England
+2025-05-21 06:22:44,800: Row 108: Reverse geocoded lat=12.9753, lon=77.591 -> country=India, city=Bengaluru, state=Karnataka
+2025-05-21 06:22:45,823: Row 109: Reverse geocoded lat=32.4633, lon=44.4179 -> country=Iraq, city=Al Hillah, state=Babil Governorate
+2025-05-21 06:22:46,743: Row 110: Reverse geocoded lat=-33.8715, lon=151.2006 -> country=Australia, city=Sydney, state=New South Wales
+2025-05-21 06:22:47,768: Row 111: Reverse geocoded lat=14.3269, lon=120.9336 -> country=Philippines, city=Dasmariñas, state=Cavite
+2025-05-21 06:22:48,782: Row 112: Reverse geocoded lat=36.3188, lon=139.579 -> country=Japan, city=Sano, state=None
+2025-05-21 06:22:49,815: Row 114: Reverse geocoded lat=9.0245, lon=38.7485 -> country=Ethiopia, city=None, state=Addis Ababa
+2025-05-21 06:22:50,739: Row 115: Reverse geocoded lat=9.0245, lon=38.7485 -> country=Ethiopia, city=None, state=Addis Ababa
+2025-05-21 06:22:51,687: Row 116: Reverse geocoded lat=39.018, lon=-77.539 -> country=United States, city=None, state=Virginia
+2025-05-21 06:22:52,702: Row 117: Reverse geocoded lat=42.6826, lon=23.3223 -> country=Bulgaria, city=Sofia, state=Sofia-City
+2025-05-21 06:22:53,690: Row 119: Reverse geocoded lat=38.7219, lon=-9.1398 -> country=Portugal, city=Lisbon, state=None
+2025-05-21 06:22:54,806: Row 120: Reverse geocoded lat=35.5641, lon=139.5295 -> country=Japan, city=Yokohama, state=None
+2025-05-21 06:22:55,755: Row 121: Reverse geocoded lat=19.0748, lon=72.8856 -> country=India, city=Mumbai, state=Maharashtra
+2025-05-21 06:22:56,698: Row 122: Reverse geocoded lat=23.0276, lon=72.5871 -> country=India, city=Ahmedabad, state=Gujarat
+2025-05-21 06:22:57,803: Row 123: Reverse geocoded lat=11.3085, lon=106.0948 -> country=Vietnam, city=Tây Ninh, state=Tây Ninh Province
+2025-05-21 06:22:58,705: Row 124: Reverse geocoded lat=13.0895, lon=80.2739 -> country=India, city=Chennai, state=Tamil Nadu
+2025-05-21 06:22:59,737: Row 125: Reverse geocoded lat=14.3614, lon=121.4875 -> country=Philippines, city=Paete, state=Laguna
+2025-05-21 06:23:00,876: Row 126: Reverse geocoded lat=29.3959, lon=-98.4761 -> country=United States, city=San Antonio, state=Texas
+2025-05-21 06:23:01,698: Row 127: Reverse geocoded lat=26.1885, lon=91.7392 -> country=India, city=None, state=Assam
+2025-05-21 06:23:02,688: Row 128: Reverse geocoded lat=-18.913, lon=47.5296 -> country=Madagascar, city=Antananarivo, state=Analamanga
+2025-05-21 06:23:03,716: Row 129: Reverse geocoded lat=50.1169, lon=8.6837 -> country=Germany, city=Frankfurt, state=Hesse
+2025-05-21 06:23:05,028: Row 131: Reverse geocoded lat=52.1928, lon=5.4199 -> country=Netherlands, city=Amersfoort, state=Utrecht
+2025-05-21 06:23:06,180: Row 132: Reverse geocoded lat=51.9277, lon=4.5844 -> country=Netherlands, city=Capelle aan den IJssel, state=South Holland
+2025-05-21 06:23:06,676: Row 133: Reverse geocoded lat=40.5828, lon=-73.9532 -> country=United States, city=New York, state=New York
+2025-05-21 06:23:07,719: Row 134: Reverse geocoded lat=36.5312, lon=3.0698 -> country=Algeria, city=Bougara, state=Blida
+2025-05-21 06:23:09,028: Row 135: Reverse geocoded lat=49.2625, lon=8.6235 -> country=Germany, city=None, state=Baden-Württemberg
+2025-05-21 06:23:09,811: Row 137: Reverse geocoded lat=36.061, lon=120.3814 -> country=China, city=Shinan District, state=Shandong
+2025-05-21 06:23:11,054: Row 138: Reverse geocoded lat=20.0024, lon=73.7945 -> country=India, city=Nashik, state=Maharashtra
+2025-05-21 06:23:11,728: Row 139: Reverse geocoded lat=-25.0907, lon=-50.1653 -> country=Brazil, city=Ponta Grossa, state=Paraná
+2025-05-21 06:23:12,696: Row 140: Reverse geocoded lat=25.0734, lon=55.2979 -> country=United Arab Emirates, city=None, state=Dubai
+2025-05-21 06:23:14,214: Row 141: Reverse geocoded lat=52.3759, lon=4.8975 -> country=Netherlands, city=Amsterdam, state=North Holland
+2025-05-21 06:23:15,323: Row 142: Reverse geocoded lat=36.1898, lon=44.0157 -> country=Iraq, city=Erbil, state=Erbil Governorate
+2025-05-21 06:23:16,104: Row 143: Reverse geocoded lat=53.3382, lon=-6.2591 -> country=Ireland, city=Dublin, state=None
+2025-05-21 06:23:16,986: Row 144: Reverse geocoded lat=37.751, lon=-97.822 -> country=United States, city=None, state=Kansas
+2025-05-21 06:23:18,038: Row 145: Reverse geocoded lat=28.6327, lon=77.2198 -> country=India, city=New Delhi, state=Delhi
+2025-05-21 06:23:19,029: Row 146: Reverse geocoded lat=28.6327, lon=77.2198 -> country=India, city=New Delhi, state=Delhi
+2025-05-21 06:23:20,112: Row 147: Reverse geocoded lat=40.7547, lon=-73.9614 -> country=United States, city=New York, state=New York
+2025-05-21 06:23:21,068: Row 148: Reverse geocoded lat=31.33, lon=75.5844 -> country=India, city=Jalandhar, state=Punjab
+2025-05-21 06:23:22,064: Row 149: Reverse geocoded lat=26.8373, lon=80.9165 -> country=India, city=Lucknow, state=Uttar Pradesh
+2025-05-21 06:23:23,110: Row 150: Reverse geocoded lat=18.5211, lon=73.8502 -> country=India, city=Pune, state=Maharashtra
+2025-05-21 06:23:24,010: Row 151: Reverse geocoded lat=25.5943, lon=85.1352 -> country=India, city=Patna, state=Bihar
+2025-05-21 06:23:24,998: Row 152: Reverse geocoded lat=36.61, lon=114.4876 -> country=China, city=Handan, state=Hebei
+2025-05-21 06:23:26,476: Row 154: Reverse geocoded lat=44.776, lon=17.1995 -> country=Bosnia and Herzegovina, city=Banja Luka, state=Republika Srpska
+2025-05-21 06:23:26,997: Row 155: Reverse geocoded lat=13.0895, lon=80.2739 -> country=India, city=Chennai, state=Tamil Nadu
+2025-05-21 06:23:28,037: Row 156: Reverse geocoded lat=51.4964, lon=-0.1224 -> country=United Kingdom, city=London, state=England
+2025-05-21 06:23:29,244: Row 157: Reverse geocoded lat=35.5641, lon=45.4326 -> country=Iraq, city=Sulaymaniyah, state=Sulaymaniyah Governorate
+2025-05-21 06:23:29,989: Row 158: Reverse geocoded lat=35.5641, lon=45.4326 -> country=Iraq, city=Sulaymaniyah, state=Sulaymaniyah Governorate
+2025-05-21 06:23:31,087: Row 159: Reverse geocoded lat=28.6327, lon=77.2198 -> country=India, city=New Delhi, state=Delhi
+2025-05-21 06:23:32,044: Row 160: Reverse geocoded lat=13.0895, lon=80.2739 -> country=India, city=Chennai, state=Tamil Nadu
+2025-05-21 06:23:33,016: Row 161: Reverse geocoded lat=13.0895, lon=80.2739 -> country=India, city=Chennai, state=Tamil Nadu
+2025-05-21 06:23:34,029: Row 162: Reverse geocoded lat=-22.8951, lon=-47.0439 -> country=Brazil, city=Campinas, state=São Paulo
+2025-05-21 06:23:35,059: Row 163: Reverse geocoded lat=4.0505, lon=9.7023 -> country=Cameroon, city=Douala I, state=Littoral
+2025-05-21 06:23:36,094: Row 164: Reverse geocoded lat=19.4371, lon=-99.0111 -> country=Mexico, city=Texcoco de Mora, state=State of Mexico
+2025-05-21 06:23:37,037: Row 165: Reverse geocoded lat=60.1719, lon=24.9347 -> country=Finland, city=Helsinki, state=Uusimaa
+2025-05-21 06:23:38,004: Row 166: Reverse geocoded lat=13.0895, lon=80.2739 -> country=India, city=Chennai, state=Tamil Nadu
+2025-05-21 06:23:39,241: Row 167: Reverse geocoded lat=49.5546, lon=25.5842 -> country=Ukraine, city=Ternopil, state=Ternopil Oblast
+2025-05-21 06:23:40,016: Row 168: Reverse geocoded lat=40.4327, lon=-3.621 -> country=Spain, city=Madrid, state=Community of Madrid
+2025-05-21 06:23:41,041: Row 170: Reverse geocoded lat=-24.0589, lon=-46.8456 -> country=Brazil, city=Itanhaem, state=São Paulo
+2025-05-21 06:23:42,079: Row 171: Reverse geocoded lat=33.3967, lon=-111.6545 -> country=United States, city=Mesa, state=Arizona
+2025-05-21 06:23:43,013: Row 172: Reverse geocoded lat=33.3967, lon=-111.6545 -> country=United States, city=Mesa, state=Arizona
+2025-05-21 06:23:44,056: Row 173: Reverse geocoded lat=21.9974, lon=79.0011 -> country=India, city=Malhanwara, state=Madhya Pradesh
+2025-05-21 06:23:45,153: Row 174: Reverse geocoded lat=51.7655, lon=-0.4482 -> country=United Kingdom, city=Dacorum, state=England
+2025-05-21 06:23:46,204: Row 175: Reverse geocoded lat=26.58, lon=106.7223 -> country=China, city=Yunyan, state=Guizhou
+2025-05-21 06:23:47,032: Row 176: Reverse geocoded lat=19.0748, lon=72.8856 -> country=India, city=Mumbai, state=Maharashtra
+2025-05-21 06:23:48,146: Row 177: Reverse geocoded lat=30.6667, lon=104.0667 -> country=China, city=Chengdu, state=Sichuan
+2025-05-21 06:23:48,996: Row 178: Reverse geocoded lat=48, lon=68 -> country=Kazakhstan, city=Jezqazğan, state=Ulytau Region
+2025-05-21 06:23:50,382: Row 179: Reverse geocoded lat=41.0145, lon=28.9533 -> country=Turkey, city=Istanbul, state=Istanbul
+2025-05-21 06:23:51,037: Row 180: Reverse geocoded lat=60.1719, lon=24.9347 -> country=Finland, city=Helsinki, state=Uusimaa
+2025-05-21 06:23:52,005: Row 181: Reverse geocoded lat=37.1038, lon=-113.5764 -> country=United States, city=Saint George, state=Utah
+2025-05-21 06:23:53,205: Row 182: Reverse geocoded lat=50.1169, lon=8.6837 -> country=Germany, city=Frankfurt, state=Hesse
+2025-05-21 06:23:54,144: Row 183: Reverse geocoded lat=50.1169, lon=8.6837 -> country=Germany, city=Frankfurt, state=Hesse
+2025-05-21 06:23:55,048: Row 184: Reverse geocoded lat=22.6276, lon=110.1507 -> country=China, city=Yulin, state=Guangxi
+2025-05-21 06:23:55,996: Row 185: Reverse geocoded lat=-26.9873, lon=-48.6276 -> country=Brazil, city=Balneário Camboriú, state=Santa Catarina
+2025-05-21 06:23:57,100: Row 186: Reverse geocoded lat=-27.6157, lon=-48.6235 -> country=Brazil, city=São José, state=Santa Catarina
+2025-05-21 06:23:58,085: Row 187: Reverse geocoded lat=23.1181, lon=113.2539 -> country=China, city=Yuexiu District, state=Guangdong Province
+2025-05-21 06:23:59,137: Row 188: Reverse geocoded lat=58.0701, lon=11.8131 -> country=Sweden, city=Stenungsön, state=None
+2025-05-21 06:24:00,071: Row 189: Reverse geocoded lat=50.6223, lon=26.2396 -> country=Ukraine, city=Rivne, state=Rivne Oblast
+2025-05-21 06:24:01,008: Row 190: Reverse geocoded lat=37.751, lon=-97.822 -> country=United States, city=None, state=Kansas
+2025-05-21 06:24:02,316: Row 191: Reverse geocoded lat=17.3843, lon=78.4583 -> country=India, city=Hyderabad, state=Telangana
+2025-05-21 06:24:03,051: Row 192: Reverse geocoded lat=11.5583, lon=104.9121 -> country=Cambodia, city=Khan Prampi Makara, state=Phnom Penh
+2025-05-21 06:24:04,186: Row 193: Reverse geocoded lat=29.3885, lon=76.9669 -> country=India, city=Panipat, state=Haryana
+2025-05-21 06:24:05,218: Row 194: Reverse geocoded lat=44.447, lon=26.0185 -> country=Romania, city=Roșu, state=None
+2025-05-21 06:24:06,146: Row 195: Reverse geocoded lat=-6.2114, lon=106.8446 -> country=Indonesia, city=Special capital Region of Jakarta, state=None
+2025-05-21 06:24:07,006: Row 196: Reverse geocoded lat=25.5943, lon=85.1352 -> country=India, city=Patna, state=Bihar
+2025-05-21 06:24:08,129: Row 197: Reverse geocoded lat=33.8651, lon=-118.0673 -> country=United States, city=Cerritos, state=California
+2025-05-21 06:24:09,049: Row 198: Reverse geocoded lat=25.2925, lon=51.5321 -> country=Qatar, city=Doha, state=None
+2025-05-21 06:24:10,356: Row 199: Reverse geocoded lat=-6.2876, lon=106.722 -> country=Indonesia, city=South Tangerang, state=Banten
+2025-05-21 06:24:11,120: Row 200: Reverse geocoded lat=47.1449, lon=8.1551 -> country=Switzerland, city=Eich, state=Lucerne
+2025-05-21 06:24:12,261: Row 201: Reverse geocoded lat=41.6959, lon=44.832 -> country=Georgia, city=Tbilisi, state=None
+2025-05-21 06:24:13,784: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=25.0389&lon=102.7183&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:24:14,128: Row 202: Reverse geocoded lat=25.0389, lon=102.7183 -> country=China, city=Guandu, state=Yunnan
+2025-05-21 06:24:15,125: Row 203: Reverse geocoded lat=-23.4553, lon=-46.3348 -> country=Brazil, city=Itaquaquecetuba, state=São Paulo
+2025-05-21 06:24:16,063: Row 204: Reverse geocoded lat=19.3808, lon=-99.1982 -> country=Mexico, city=Mexico City, state=Mexico City
+2025-05-21 06:24:17,072: Row 206: Reverse geocoded lat=-23.5246, lon=-46.1835 -> country=Brazil, city=Mogi das Cruzes, state=São Paulo
+2025-05-21 06:24:18,143: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=59.7531&lon=10.1419&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:24:19,111: Row 207: Reverse geocoded lat=59.7531, lon=10.1419 -> country=Norway, city=Drammen, state=None
+2025-05-21 06:24:20,120: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=46.2253&lon=6.1516&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:24:21,105: Row 208: Reverse geocoded lat=46.2253, lon=6.1516 -> country=Switzerland, city=Geneva, state=Geneva
+2025-05-21 06:24:22,110: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=51.5042&lon=-0.2199000&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:24:23,207: Row 209: Reverse geocoded lat=51.5042, lon=-0.2199 -> country=United Kingdom, city=London, state=England
+2025-05-21 06:24:24,090: Row 210: Reverse geocoded lat=51.5042, lon=-0.2199 -> country=United Kingdom, city=London, state=England
+2025-05-21 06:24:25,124: Row 211: Reverse geocoded lat=51.5042, lon=-0.2199 -> country=United Kingdom, city=London, state=England
+2025-05-21 06:24:26,220: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=23.7018&lon=90.3742&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:24:27,085: Row 212: Reverse geocoded lat=23.7018, lon=90.3742 -> country=Bangladesh, city=Keraniganj, state=Dhaka Division
+2025-05-21 06:24:28,068: Row 214: Reverse geocoded lat=34.7732, lon=113.722 -> country=China, city=Jinshui District, state=Henan
+2025-05-21 06:24:29,093: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=51.3917&lon=-0.5099000&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:24:30,169: Row 215: Reverse geocoded lat=51.3917, lon=-0.5099 -> country=United Kingdom, city=Borough of Runnymede, state=England
+2025-05-21 06:24:31,174: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=53.3382&lon=-6.2591&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:24:32,217: Row 216: Reverse geocoded lat=53.3382, lon=-6.2591 -> country=Ireland, city=Dublin, state=None
+2025-05-21 06:24:33,108: Row 217: Reverse geocoded lat=50.458, lon=30.5303 -> country=Ukraine, city=Kyiv, state=None
+2025-05-21 06:24:34,051: Row 218: Reverse geocoded lat=50.458, lon=30.5303 -> country=Ukraine, city=Kyiv, state=None
+2025-05-21 06:24:35,082: Row 219: Reverse geocoded lat=28.6327, lon=77.2198 -> country=India, city=New Delhi, state=Delhi
+2025-05-21 06:24:36,211: Row 220: Reverse geocoded lat=51.5088, lon=-0.093 -> country=United Kingdom, city=London, state=England
+2025-05-21 06:24:37,231: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=-30.3299&lon=-54.3251&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:24:38,102: Row 221: Reverse geocoded lat=-30.3299, lon=-54.3251 -> country=Brazil, city=São Gabriel, state=Rio Grande do Sul
+2025-05-21 06:24:39,107: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=36.7906&lon=118.0633&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:24:40,047: Row 222: Reverse geocoded lat=36.7906, lon=118.0633 -> country=China, city=Zhangdian District, state=Shandong
+2025-05-21 06:24:41,051: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=30.0&lon=70.0&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:24:42,032: Row 223: Reverse geocoded lat=30, lon=70 -> country=Pakistan, city=Fort Monroe, state=Punjab
+2025-05-21 06:24:43,041: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=37.3388&lon=-121.8916&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:24:44,063: Row 224: Reverse geocoded lat=37.3388, lon=-121.8916 -> country=United States, city=San Jose, state=California
+2025-05-21 06:24:45,039: Row 225: Reverse geocoded lat=25.0734, lon=55.2979 -> country=United Arab Emirates, city=None, state=Dubai
+2025-05-21 06:24:46,071: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=34.6808&lon=112.4531&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:24:47,050: Row 226: Reverse geocoded lat=34.6808, lon=112.4531 -> country=China, city=Luoyang, state=Henan
+2025-05-21 06:24:48,057: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=31.9555&lon=35.9435&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:24:49,125: Row 228: Reverse geocoded lat=31.9555, lon=35.9435 -> country=Jordan, city=None, state=Amman
+2025-05-21 06:24:50,043: Row 229: Reverse geocoded lat=31.9555, lon=35.9435 -> country=Jordan, city=None, state=Amman
+2025-05-21 06:24:51,032: Row 230: Reverse geocoded lat=31.9555, lon=35.9435 -> country=Jordan, city=None, state=Amman
+2025-05-21 06:24:52,058: Row 231: Reverse geocoded lat=31.9555, lon=35.9435 -> country=Jordan, city=None, state=Amman
+2025-05-21 06:24:53,109: Row 232: Reverse geocoded lat=30.7488, lon=120.7486 -> country=China, city=Nanhu District, state=Zhejiang
+2025-05-21 06:24:54,077: Row 233: Reverse geocoded lat=31.9555, lon=35.9435 -> country=Jordan, city=None, state=Amman
+2025-05-21 06:24:55,148: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=13.0895&lon=80.2739&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:24:56,076: Row 234: Reverse geocoded lat=13.0895, lon=80.2739 -> country=India, city=Chennai, state=Tamil Nadu
+2025-05-21 06:24:57,080: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=-34.9087&lon=-56.1539&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:24:58,126: Row 235: Reverse geocoded lat=-34.9087, lon=-56.1539 -> country=Uruguay, city=Montevideo, state=Montevideo
+2025-05-21 06:24:59,082: Row 236: Reverse geocoded lat=38.3169, lon=116.8478 -> country=China, city=Yunhe District, state=Hebei
+2025-05-21 06:25:00,075: Row 240: Reverse geocoded lat=22.5643, lon=88.3693 -> country=India, city=Kolkata, state=West Bengal
+2025-05-21 06:25:01,094: Row 241: Reverse geocoded lat=22.5643, lon=88.3693 -> country=India, city=Kolkata, state=West Bengal
+2025-05-21 06:25:02,097: Row 243: Reverse geocoded lat=39.911, lon=116.395 -> country=China, city=Dongcheng District, state=Beijing
+2025-05-21 06:25:03,109: Row 244: Reverse geocoded lat=34.1794, lon=117.1612 -> country=China, city=Tongshan District, state=Jiangsu
+2025-05-21 06:25:04,149: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=53.4146&lon=-2.2274&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:25:05,127: Row 245: Reverse geocoded lat=53.4146, lon=-2.2274 -> country=United Kingdom, city=Manchester, state=England
+2025-05-21 06:25:06,129: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=50.9158&lon=-1.3601&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:25:07,140: Row 246: Reverse geocoded lat=50.9158, lon=-1.3601 -> country=United Kingdom, city=Southampton, state=England
+2025-05-21 06:25:08,145: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=50.1169&lon=8.6837&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:25:09,175: Row 247: Reverse geocoded lat=50.1169, lon=8.6837 -> country=Germany, city=Frankfurt, state=Hesse
+2025-05-21 06:25:10,113: Row 248: Reverse geocoded lat=23.0276, lon=72.5871 -> country=India, city=Ahmedabad, state=Gujarat
+2025-05-21 06:25:11,098: Row 250: Reverse geocoded lat=26.9136, lon=75.7858 -> country=India, city=Jaipur, state=Rajasthan
+2025-05-21 06:25:12,068: Row 251: Reverse geocoded lat=-34.1801, lon=-58.9181 -> country=Argentina, city=None, state=Buenos Aires
+2025-05-21 06:25:13,178: Row 252: Reverse geocoded lat=45.4722, lon=9.1922 -> country=Italy, city=Milan, state=Lombardy
+2025-05-21 06:25:14,161: Row 253: Reverse geocoded lat=31.8696, lon=117.293 -> country=China, city=Luyang District, state=Anhui
+2025-05-21 06:25:15,093: Row 254: Reverse geocoded lat=18.5211, lon=73.8502 -> country=India, city=Pune, state=Maharashtra
+2025-05-21 06:25:16,115: Row 255: Reverse geocoded lat=22.3008, lon=73.2043 -> country=India, city=Vadodara, state=Gujarat
+2025-05-21 06:25:17,128: Row 257: Reverse geocoded lat=39.0469, lon=-77.4903 -> country=United States, city=Ashburn, state=Virginia
+2025-05-21 06:25:18,210: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=24.8591&lon=66.9983&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:25:19,043: Row 260: Reverse geocoded lat=24.8591, lon=66.9983 -> country=Pakistan, city=Karachi Division, state=None
+2025-05-21 06:25:20,047: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=24.8591&lon=66.9983&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:25:21,030: Row 261: Reverse geocoded lat=24.8591, lon=66.9983 -> country=Pakistan, city=Karachi Division, state=None
+2025-05-21 06:25:22,032: Row 264: Reverse geocoded lat=9.0245, lon=38.7485 -> country=Ethiopia, city=None, state=Addis Ababa
+2025-05-21 06:25:23,036: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=52.5549&lon=13.4645&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:25:24,105: Row 265: Reverse geocoded lat=52.5549, lon=13.4645 -> country=Germany, city=Berlin, state=None
+2025-05-21 06:25:25,060: Row 266: Reverse geocoded lat=18.5211, lon=73.8502 -> country=India, city=Pune, state=Maharashtra
+2025-05-21 06:25:26,113: Row 267: Reverse geocoded lat=51.5081, lon=-0.1278 -> country=United Kingdom, city=City of Westminster, state=England
+2025-05-21 06:25:27,068: Row 268: Reverse geocoded lat=39.911, lon=116.395 -> country=China, city=Dongcheng District, state=Beijing
+2025-05-21 06:25:28,127: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=21.1463&lon=79.0849&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:25:29,083: Row 269: Reverse geocoded lat=21.1463, lon=79.0849 -> country=India, city=Nagpur, state=Maharashtra
+2025-05-21 06:25:30,079: Row 270: Reverse geocoded lat=43.0147, lon=-81.3049 -> country=Canada, city=London, state=Ontario
+2025-05-21 06:25:31,088: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=-33.914&lon=18.4129&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:25:32,098: Row 271: Reverse geocoded lat=-33.914, lon=18.4129 -> country=South Africa, city=Cape Town, state=Western Cape
+2025-05-21 06:25:33,102: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=41.5053&lon=-81.5566&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:25:34,193: Row 272: Reverse geocoded lat=41.5053, lon=-81.5566 -> country=United States, city=Cleveland Heights, state=Ohio
+2025-05-21 06:25:35,011: Row 273: Reverse geocoded lat=22.3008, lon=73.2043 -> country=India, city=Vadodara, state=Gujarat
+2025-05-21 06:25:36,116: Row 274: Reverse geocoded lat=-27.6157, lon=-48.6235 -> country=Brazil, city=São José, state=Santa Catarina
+2025-05-21 06:25:37,119: Row 275: Reverse geocoded lat=40.4422, lon=-79.9927 -> country=United States, city=Pittsburgh, state=Pennsylvania
+2025-05-21 06:25:38,061: Row 276: Reverse geocoded lat=25.5943, lon=85.1352 -> country=India, city=Patna, state=Bihar
+2025-05-21 06:25:39,210: Row 277: Reverse geocoded lat=-36.8322, lon=174.7898 -> country=New Zealand, city=Devonport-Takapuna, state=Auckland
+2025-05-21 06:25:40,165: Row 278: Reverse geocoded lat=35.7204, lon=-0.6659 -> country=Algeria, city=Oran, state=Oran
+2025-05-21 06:25:41,206: Row 279: Reverse geocoded lat=41.4765, lon=1.9278 -> country=Spain, city=Martorell, state=Catalonia
+2025-05-21 06:25:42,175: Row 281: Reverse geocoded lat=21, lon=96 -> country=Myanmar, city=Wet Toe, state=Mandalay
+2025-05-21 06:25:43,213: Row 282: Reverse geocoded lat=14.6475, lon=121.0494 -> country=Philippines, city=Quezon City, state=None
+2025-05-21 06:25:44,084: Row 283: Reverse geocoded lat=14.6475, lon=121.0494 -> country=Philippines, city=Quezon City, state=None
+2025-05-21 06:25:45,232: Row 284: Reverse geocoded lat=59.4786, lon=18.2931 -> country=Sweden, city=Åkersberga, state=None
+2025-05-21 06:25:46,462: Row 285: Reverse geocoded lat=45.4722, lon=9.1922 -> country=Italy, city=Milan, state=Lombardy
+2025-05-21 06:25:47,405: Row 287: Reverse geocoded lat=35.4711, lon=44.3925 -> country=Iraq, city=Kirkuk, state=Kirkuk Governorate
+2025-05-21 06:25:48,051: Row 288: Reverse geocoded lat=33.8333, lon=35.8333 -> country=Lebanon, city=Jdita, state=Beqaa Governorate
+2025-05-21 06:25:49,219: Row 289: Reverse geocoded lat=48.0295, lon=7.573 -> country=France, city=Biesheim, state=Grand Est
+2025-05-21 06:25:50,104: Row 290: Reverse geocoded lat=22.5643, lon=88.3693 -> country=India, city=Kolkata, state=West Bengal
+2025-05-21 06:25:51,173: Row 291: Reverse geocoded lat=22.5643, lon=88.3693 -> country=India, city=Kolkata, state=West Bengal
+2025-05-21 06:25:52,465: Row 292: Reverse geocoded lat=51.2192, lon=4.3917 -> country=Belgium, city=Antwerp, state=Antwerp
+2025-05-21 06:25:53,220: Row 294: Reverse geocoded lat=45.4722, lon=9.1922 -> country=Italy, city=Milan, state=Lombardy
+2025-05-21 06:25:54,345: Row 295: Reverse geocoded lat=50.8397, lon=12.9358 -> country=Germany, city=Chemnitz, state=Saxony
+2025-05-21 06:25:55,064: Row 296: Reverse geocoded lat=-26.2309, lon=28.0583 -> country=South Africa, city=Johannesburg, state=Gauteng
+2025-05-21 06:25:56,189: Row 297: Reverse geocoded lat=47.4121, lon=8.0864 -> country=Switzerland, city=Biberstein, state=Aargau
+2025-05-21 06:25:57,113: Row 299: Reverse geocoded lat=50.458, lon=30.5303 -> country=Ukraine, city=Kyiv, state=None
+2025-05-21 06:25:58,134: Row 300: Reverse geocoded lat=50.1169, lon=8.6837 -> country=Germany, city=Frankfurt, state=Hesse
+2025-05-21 06:25:59,281: Row 301: Reverse geocoded lat=30.7096, lon=31.2554 -> country=Egypt, city=Mit Ghamr City, state=Ad Dakahliya
+2025-05-21 06:26:00,079: Row 302: Reverse geocoded lat=26.8373, lon=80.9165 -> country=India, city=Lucknow, state=Uttar Pradesh
+2025-05-21 06:26:01,121: Row 303: Reverse geocoded lat=-22.9035, lon=-47.0565 -> country=Brazil, city=Campinas, state=São Paulo
+2025-05-21 06:26:02,232: Row 304: Reverse geocoded lat=44.1145, lon=24.3402 -> country=Romania, city=Caracal, state=None
+2025-05-21 06:26:03,072: Row 305: Reverse geocoded lat=41.8835, lon=-87.6305 -> country=United States, city=Chicago, state=Illinois
+2025-05-21 06:26:04,061: Row 306: Reverse geocoded lat=49.2635, lon=-122.9331 -> country=Canada, city=Burnaby, state=British Columbia
+2025-05-21 06:26:05,101: Row 307: Reverse geocoded lat=36.5312, lon=3.0698 -> country=Algeria, city=Bougara, state=Blida
+2025-05-21 06:26:06,600: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=49.6113&lon=6.1294&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:26:07,249: Row 309: Reverse geocoded lat=49.6113, lon=6.1294 -> country=Luxembourg, city=Luxembourg, state=None
+2025-05-21 06:26:08,163: Row 310: Reverse geocoded lat=0.321, lon=32.5714 -> country=Uganda, city=Kampala, state=Central Region
+2025-05-21 06:26:09,135: Row 311: Reverse geocoded lat=-29.9434, lon=-50.9934 -> country=Brazil, city=Gravataí, state=Rio Grande do Sul
+2025-05-21 06:26:10,215: Row 312: Reverse geocoded lat=23.0276, lon=72.5871 -> country=India, city=Ahmedabad, state=Gujarat
+2025-05-21 06:26:11,056: Row 313: Reverse geocoded lat=-7.2333, lon=-62.9 -> country=Brazil, city=Humaitá, state=Amazonas
+2025-05-21 06:26:12,118: Row 314: Reverse geocoded lat=45.4722, lon=9.1922 -> country=Italy, city=Milan, state=Lombardy
+2025-05-21 06:26:13,119: Row 315: Reverse geocoded lat=-16.7267, lon=-49.1091 -> country=Brazil, city=Senador Canedo, state=Goiás
+2025-05-21 06:26:14,275: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=51.4466&lon=5.4736&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:26:15,135: Row 316: Reverse geocoded lat=51.4466, lon=5.4736 -> country=Netherlands, city=Eindhoven, state=North Brabant
+2025-05-21 06:26:16,140: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=3.8661&lon=11.5154&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:26:17,081: Row 317: Reverse geocoded lat=3.8661, lon=11.5154 -> country=Cameroon, city=Yaoundé, state=Centre
+2025-05-21 06:26:18,086: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=3.8661&lon=11.5154&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:26:19,033: Row 318: Reverse geocoded lat=3.8661, lon=11.5154 -> country=Cameroon, city=Yaoundé, state=Centre
+2025-05-21 06:26:20,038: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=31.7126&lon=76.9328&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:26:21,081: Row 319: Reverse geocoded lat=31.7126, lon=76.9328 -> country=India, city=Mandi, state=Himachal Pradesh
+2025-05-21 06:26:22,085: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=47.5534&lon=7.9519&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:26:23,182: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=47.5534&lon=7.9519&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:26:24,156: Row 320: Reverse geocoded lat=47.5534, lon=7.9519 -> country=Germany, city=Säckingen, state=Baden-Württemberg
+2025-05-21 06:26:25,165: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=23.0276&lon=72.5871&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:26:26,089: Row 321: Reverse geocoded lat=23.0276, lon=72.5871 -> country=India, city=Ahmedabad, state=Gujarat
+2025-05-21 06:26:27,095: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=50.0848&lon=14.4112&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:26:28,135: Row 322: Reverse geocoded lat=50.0848, lon=14.4112 -> country=Czechia, city=Capital City of Prague, state=Prague
+2025-05-21 06:26:29,141: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=37.1477&lon=-3.5655&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:26:30,020: Row 323: Reverse geocoded lat=37.1477, lon=-3.5655 -> country=Spain, city=Huétor Vega, state=Andalusia
+2025-05-21 06:26:31,024: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=46.0025&lon=8.9533&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:26:32,099: Row 325: Reverse geocoded lat=46.0025, lon=8.9533 -> country=Switzerland, city=Lugano, state=Ticino
+2025-05-21 06:26:33,104: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=12.3729&lon=-1.5264&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:26:34,075: Row 326: Reverse geocoded lat=12.3729, lon=-1.5264 -> country=Burkina Faso, city=Ouagadougou, state=None
+2025-05-21 06:26:35,078: Row 327: Reverse geocoded lat=35.6893, lon=139.6899 -> country=Japan, city=Shinjuku, state=None
+2025-05-21 06:26:36,079: Row 328: Reverse geocoded lat=37.9842, lon=23.7353 -> country=Greece, city=Athens, state=Attica
+2025-05-21 06:26:37,067: Row 329: Reverse geocoded lat=54.8636, lon=-7.7557 -> country=Ireland, city=None, state=None
+2025-05-21 06:26:38,083: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=34.8305&lon=-87.656&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:26:39,123: Row 330: Reverse geocoded lat=34.8305, lon=-87.656 -> country=United States, city=Florence, state=Alabama
+2025-05-21 06:26:40,128: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=38.8978&lon=-77.2885&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:26:41,231: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=38.8978&lon=-77.2885&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:26:42,087: Row 331: Reverse geocoded lat=38.8978, lon=-77.2885 -> country=United States, city=Reston, state=Virginia
+2025-05-21 06:26:43,091: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=47.5&lon=19.0412&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:26:44,067: Row 332: Reverse geocoded lat=47.5, lon=19.0412 -> country=Hungary, city=Budapest, state=None
+2025-05-21 06:26:45,072: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=21.4668&lon=83.9764&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:26:46,159: Row 333: Reverse geocoded lat=21.4668, lon=83.9764 -> country=India, city=Sambalpur, state=Odisha
+2025-05-21 06:26:47,170: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=52.808&lon=-2.1118&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:26:48,040: Row 334: Reverse geocoded lat=52.808, lon=-2.1118 -> country=United Kingdom, city=Stafford, state=England
+2025-05-21 06:26:49,050: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=-22.2635&lon=-49.1364&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:26:50,033: Row 335: Reverse geocoded lat=-22.2635, lon=-49.1364 -> country=Brazil, city=Bauru, state=São Paulo
+2025-05-21 06:26:51,039: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=40.8449&lon=14.2716&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:26:52,041: Row 336: Reverse geocoded lat=40.8449, lon=14.2716 -> country=Italy, city=Naples, state=Campania
+2025-05-21 06:26:53,045: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=13.6687&lon=100.579&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:26:54,087: Row 337: Reverse geocoded lat=13.6687, lon=100.579 -> country=Thailand, city=Pu Chao Saming Phrai Town Municipality, state=None
+2025-05-21 06:26:55,092: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=18.5211&lon=73.8502&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:26:56,061: Row 338: Reverse geocoded lat=18.5211, lon=73.8502 -> country=India, city=Pune, state=Maharashtra
+2025-05-21 06:26:57,070: Row 339: Reverse geocoded lat=23.7018, lon=90.3742 -> country=Bangladesh, city=Keraniganj, state=Dhaka Division
+2025-05-21 06:26:58,077: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=51.5112&lon=0.0300000&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:26:59,110: Row 340: Reverse geocoded lat=51.5112, lon=0.03 -> country=United Kingdom, city=London, state=England
+2025-05-21 06:27:00,093: Row 341: Reverse geocoded lat=18.5211, lon=73.8502 -> country=India, city=Pune, state=Maharashtra
+2025-05-21 06:27:01,039: Row 342: Reverse geocoded lat=-7.2333, lon=-62.9 -> country=Brazil, city=Humaitá, state=Amazonas
+2025-05-21 06:27:02,085: Row 343: Reverse geocoded lat=40.7547, lon=-73.9614 -> country=United States, city=New York, state=New York
+2025-05-21 06:27:03,124: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=50.458&lon=30.5303&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:27:04,124: Row 344: Reverse geocoded lat=50.458, lon=30.5303 -> country=Ukraine, city=Kyiv, state=None
+2025-05-21 06:27:05,122: Row 347: Reverse geocoded lat=28.6327, lon=77.2198 -> country=India, city=New Delhi, state=Delhi
+2025-05-21 06:27:06,130: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=11.0027&lon=124.6083&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:27:07,107: Row 348: Reverse geocoded lat=11.0027, lon=124.6083 -> country=Philippines, city=Ormoc, state=Leyte
+2025-05-21 06:27:08,086: Row 349: Reverse geocoded lat=22.717, lon=75.8337 -> country=India, city=Indore, state=Madhya Pradesh
+2025-05-21 06:27:09,050: Row 350: Reverse geocoded lat=22.717, lon=75.8337 -> country=India, city=Indore, state=Madhya Pradesh
+2025-05-21 06:27:10,056: Row 351: Reverse geocoded lat=7.0712, lon=125.6089 -> country=Philippines, city=Davao City, state=None
+2025-05-21 06:27:11,126: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=-4.7776&lon=11.8659&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:27:12,027: Row 352: Reverse geocoded lat=-4.7776, lon=11.8659 -> country=Congo-Brazzaville, city=None, state=Pointe-Noire (département)
+2025-05-21 06:27:13,038: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=19.0748&lon=72.8856&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:27:14,086: Row 353: Reverse geocoded lat=19.0748, lon=72.8856 -> country=India, city=Mumbai, state=Maharashtra
+2025-05-21 06:27:15,092: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=34.6874&lon=33.0366&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:27:16,128: Row 354: Reverse geocoded lat=34.6874, lon=33.0366 -> country=Cyprus, city=Limassol, state=Cyprus
+2025-05-21 06:27:17,066: Row 355: Reverse geocoded lat=34.6874, lon=33.0366 -> country=Cyprus, city=Limassol, state=Cyprus
+2025-05-21 06:27:18,138: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=46.1953&lon=6.1385&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:27:19,053: Row 356: Reverse geocoded lat=46.1953, lon=6.1385 -> country=Switzerland, city=Geneva, state=Geneva
+2025-05-21 06:27:20,057: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=51.8951&lon=-1.1585&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:27:21,045: Row 357: Reverse geocoded lat=51.8951, lon=-1.1585 -> country=United Kingdom, city=Cherwell District, state=England
+2025-05-21 06:27:22,055: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=51.8951&lon=-1.1585&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:27:23,039: Row 358: Reverse geocoded lat=51.8951, lon=-1.1585 -> country=United Kingdom, city=Cherwell District, state=England
+2025-05-21 06:27:24,046: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=29.3706&lon=47.9697&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:27:25,074: Row 359: Reverse geocoded lat=29.3706, lon=47.9697 -> country=Kuwait, city=Kuwait City, state=Capital Governorate
+2025-05-21 06:27:26,078: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=37.3177&lon=-122.0438&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:27:27,058: Row 360: Reverse geocoded lat=37.3177, lon=-122.0438 -> country=United States, city=Cupertino, state=California
+2025-05-21 06:27:28,064: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=38.9609&lon=-77.3429&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:27:29,066: Row 361: Reverse geocoded lat=38.9609, lon=-77.3429 -> country=United States, city=Reston, state=Virginia
+2025-05-21 06:27:30,072: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=51.1613&lon=-113.9518&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:27:31,126: Row 363: Reverse geocoded lat=51.1613, lon=-113.9518 -> country=Canada, city=Calgary, state=Alberta
+2025-05-21 06:27:32,130: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=38.036&lon=114.4654&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:27:33,052: Row 364: Reverse geocoded lat=38.036, lon=114.4654 -> country=China, city=Shijiazhuang, state=Hebei
+2025-05-21 06:27:34,057: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=18.0&lon=105.0&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:27:35,079: Row 365: Reverse geocoded lat=18, lon=105 -> country=Laos, city=Phonkeo, state=Bolikhamsai
+2025-05-21 06:27:36,084: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=36.096&lon=114.3828&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:27:37,120: Row 366: Reverse geocoded lat=36.096, lon=114.3828 -> country=China, city=开发区银杏大街街道, state=Henan
+2025-05-21 06:27:38,126: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=39.6933&lon=-104.7865&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:27:39,074: Row 367: Reverse geocoded lat=39.6933, lon=-104.7865 -> country=United States, city=Aurora, state=Colorado
+2025-05-21 06:27:40,083: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=38.7219&lon=-9.1398&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:27:41,149: Row 368: Reverse geocoded lat=38.7219, lon=-9.1398 -> country=Portugal, city=Lisbon, state=None
+2025-05-21 06:27:42,154: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=17.3843&lon=78.4583&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:27:43,053: Row 369: Reverse geocoded lat=17.3843, lon=78.4583 -> country=India, city=Hyderabad, state=Telangana
+2025-05-21 06:27:44,058: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=40.8273&lon=-83.2813&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:27:45,126: Row 370: Reverse geocoded lat=40.8273, lon=-83.2813 -> country=United States, city=Upper Sandusky, state=Ohio
+2025-05-21 06:27:46,132: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=31.2222&lon=121.4581&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:27:47,091: Row 371: Reverse geocoded lat=31.2222, lon=121.4581 -> country=China, city=Shanghai, state=Shanghai
+2025-05-21 06:27:48,104: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=28.6542&lon=77.2373&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:27:49,036: Row 372: Reverse geocoded lat=28.6542, lon=77.2373 -> country=India, city=Delhi, state=Delhi
+2025-05-21 06:27:50,026: Row 373: Reverse geocoded lat=13.0895, lon=80.2739 -> country=India, city=Chennai, state=Tamil Nadu
+2025-05-21 06:27:51,048: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=13.0895&lon=80.2739&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:27:52,072: Row 374: Reverse geocoded lat=13.0895, lon=80.2739 -> country=India, city=Chennai, state=Tamil Nadu
+2025-05-21 06:27:53,080: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=28.5&lon=-10.0&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:27:54,053: Row 375: Reverse geocoded lat=28.5, lon=-10 -> country=Morocco, city=Aouint Lahna عوينة لهنا, state=None
+2025-05-21 06:27:55,059: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=45.0729&lon=7.689&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:27:56,182: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=45.0729&lon=7.689&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:27:57,227: Row 377: Reverse geocoded lat=45.0729, lon=7.689 -> country=Italy, city=Turin, state=Piedmont
+2025-05-21 06:27:58,146: Row 378: Reverse geocoded lat=21.4668, lon=83.9764 -> country=India, city=Sambalpur, state=Odisha
+2025-05-21 06:27:59,096: Row 379: Reverse geocoded lat=33.1976, lon=-96.6178 -> country=United States, city=McKinney, state=Texas
+2025-05-21 06:28:00,242: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=40.7126&lon=-74.0066&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:28:01,224: Row 380: Reverse geocoded lat=40.7126, lon=-74.0066 -> country=United States, city=New York, state=New York
+2025-05-21 06:28:02,142: Row 381: Reverse geocoded lat=33.4306, lon=-111.9256 -> country=United States, city=Tempe, state=Arizona
+2025-05-21 06:28:03,102: Row 382: Reverse geocoded lat=38.7883, lon=-121.2366 -> country=United States, city=Rocklin, state=California
+2025-05-21 06:28:04,072: Row 383: Reverse geocoded lat=22.5643, lon=88.3693 -> country=India, city=Kolkata, state=West Bengal
+2025-05-21 06:28:05,222: Row 384: Reverse geocoded lat=51.1876, lon=71.4491 -> country=Kazakhstan, city=Astana, state=Astana
+2025-05-21 06:28:06,135: Row 385: Reverse geocoded lat=22.3008, lon=73.2043 -> country=India, city=Vadodara, state=Gujarat
+2025-05-21 06:28:07,247: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=35.6893&lon=139.6899&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:28:08,080: Row 387: Reverse geocoded lat=35.6893, lon=139.6899 -> country=Japan, city=Shinjuku, state=None
+2025-05-21 06:28:09,087: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=35.6893&lon=139.6899&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:28:10,055: Row 388: Reverse geocoded lat=35.6893, lon=139.6899 -> country=Japan, city=Shinjuku, state=None
+2025-05-21 06:28:11,060: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=35.6893&lon=139.6899&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:28:12,078: Row 389: Reverse geocoded lat=35.6893, lon=139.6899 -> country=Japan, city=Shinjuku, state=None
+2025-05-21 06:28:13,083: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=35.6893&lon=139.6899&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:28:14,083: Row 390: Reverse geocoded lat=35.6893, lon=139.6899 -> country=Japan, city=Shinjuku, state=None
+2025-05-21 06:28:15,090: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=3.1023&lon=101.6265&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:28:16,171: Row 391: Reverse geocoded lat=3.1023, lon=101.6265 -> country=Malaysia, city=Petaling Jaya, state=Selangor
+2025-05-21 06:28:17,178: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=37.3392&lon=-77.4175&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:28:18,063: Row 392: Reverse geocoded lat=37.3392, lon=-77.4175 -> country=United States, city=None, state=Virginia
+2025-05-21 06:28:19,067: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=21.2339&lon=110.3875&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:28:20,071: Row 394: Reverse geocoded lat=21.2339, lon=110.3875 -> country=China, city=Chikan District, state=Guangdong Province
+2025-05-21 06:28:21,080: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=43.3699&lon=-8.4096&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:28:22,211: Row 395: Reverse geocoded lat=43.3699, lon=-8.4096 -> country=Spain, city=A Coruña, state=Galicia
+2025-05-21 06:28:23,221: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=43.3699&lon=-8.4096&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:28:24,158: Row 396: Reverse geocoded lat=43.3699, lon=-8.4096 -> country=Spain, city=A Coruña, state=Galicia
+2025-05-21 06:28:25,078: Row 398: Reverse geocoded lat=42.2645, lon=-88.0034 -> country=United States, city=Mundelein, state=Illinois
+2025-05-21 06:28:26,034: Row 399: Reverse geocoded lat=-1.4428, lon=-79.4627 -> country=Ecuador, city=Ventanas, state=Los Ríos
+2025-05-21 06:28:27,126: Row 400: Reverse geocoded lat=-1.4428, lon=-79.4627 -> country=Ecuador, city=Ventanas, state=Los Ríos
+2025-05-21 06:28:28,174: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=30.0507&lon=31.2489&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:28:29,174: Row 401: Reverse geocoded lat=30.0507, lon=31.2489 -> country=Egypt, city=Cairo, state=Cairo
+2025-05-21 06:28:30,179: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=-33.914&lon=18.4129&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:28:31,130: Row 403: Reverse geocoded lat=-33.914, lon=18.4129 -> country=South Africa, city=Cape Town, state=Western Cape
+2025-05-21 06:28:32,139: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=28.4597&lon=77.0282&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:28:33,081: Row 406: Reverse geocoded lat=28.4597, lon=77.0282 -> country=India, city=Gurgaon, state=Haryana
+2025-05-21 06:28:34,082: Row 407: Reverse geocoded lat=37.3388, lon=-121.8916 -> country=United States, city=San Jose, state=California
+2025-05-21 06:28:35,092: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=23.1181&lon=113.2539&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:28:36,089: Row 408: Reverse geocoded lat=23.1181, lon=113.2539 -> country=China, city=Yuexiu District, state=Guangdong Province
+2025-05-21 06:28:37,093: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=49.3518&lon=0.8088000&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:28:38,131: Row 409: Reverse geocoded lat=49.3518, lon=0.8088 -> country=France, city=Bourg-Achard, state=Normandy
+2025-05-21 06:28:39,141: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=25.315&lon=83.0058&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:28:40,072: Row 410: Reverse geocoded lat=25.315, lon=83.0058 -> country=India, city=Varanasi, state=Uttar Pradesh
+2025-05-21 06:28:41,076: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=30.3275&lon=78.0325&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:28:42,079: Row 411: Reverse geocoded lat=30.3275, lon=78.0325 -> country=India, city=Dehradun, state=Uttarakhand
+2025-05-21 06:28:43,089: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=11.9924&lon=8.5173&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:28:44,125: Row 412: Reverse geocoded lat=11.9924, lon=8.5173 -> country=Nigeria, city=Tudun Wazurchi, state=Kano State
+2025-05-21 06:28:45,133: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=25.0734&lon=55.2979&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:28:46,101: Row 413: Reverse geocoded lat=25.0734, lon=55.2979 -> country=United Arab Emirates, city=None, state=Dubai
+2025-05-21 06:28:47,057: Row 414: Reverse geocoded lat=31.9555, lon=35.9435 -> country=Jordan, city=None, state=Amman
+2025-05-21 06:28:48,050: Row 415: Reverse geocoded lat=25.0734, lon=55.2979 -> country=United Arab Emirates, city=None, state=Dubai
+2025-05-21 06:28:49,113: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=28.6542&lon=77.2373&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:28:50,092: Row 416: Reverse geocoded lat=28.6542, lon=77.2373 -> country=India, city=Delhi, state=Delhi
+2025-05-21 06:28:51,096: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=41.8835&lon=-87.6305&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:28:52,049: Row 417: Reverse geocoded lat=41.8835, lon=-87.6305 -> country=United States, city=Chicago, state=Illinois
+2025-05-21 06:28:53,056: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=30.8707&lon=120.0898&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:28:54,132: Row 418: Reverse geocoded lat=30.8707, lon=120.0898 -> country=China, city=Wuxing District, state=Zhejiang
+2025-05-21 06:28:55,135: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=38.1302&lon=13.329&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:28:56,025: Row 419: Reverse geocoded lat=38.1302, lon=13.329 -> country=Italy, city=Palermo, state=Sicily
+2025-05-21 06:28:57,030: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=52.5852&lon=-0.2360000&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:28:58,078: Row 420: Reverse geocoded lat=52.5852, lon=-0.236 -> country=United Kingdom, city=Peterborough, state=England
+2025-05-21 06:28:59,082: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=37.4073&lon=-121.939&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:29:00,103: Row 421: Reverse geocoded lat=37.4073, lon=-121.939 -> country=United States, city=San Jose, state=California
+2025-05-21 06:29:01,100: Row 422: Reverse geocoded lat=37.4073, lon=-121.939 -> country=United States, city=San Jose, state=California
+2025-05-21 06:29:02,114: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=55.6922&lon=12.5478&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:29:03,221: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=55.6922&lon=12.5478&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:29:04,095: Row 423: Reverse geocoded lat=55.6922, lon=12.5478 -> country=Denmark, city=Copenhagen, state=Capital Region of Denmark
+2025-05-21 06:29:05,099: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=25.5943&lon=85.1352&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:29:06,049: Row 425: Reverse geocoded lat=25.5943, lon=85.1352 -> country=India, city=Patna, state=Bihar
+2025-05-21 06:29:07,058: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=51.5064&lon=-0.0200000&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:29:08,080: Row 427: Reverse geocoded lat=51.5064, lon=-0.02 -> country=United Kingdom, city=London, state=England
+2025-05-21 06:29:09,085: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=56.1567&lon=10.2153&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:29:10,051: Row 428: Reverse geocoded lat=56.1567, lon=10.2153 -> country=Denmark, city=Aarhus, state=Central Denmark Region
+2025-05-21 06:29:11,061: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=45.5547&lon=5.9801&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:29:12,079: Row 429: Reverse geocoded lat=45.5547, lon=5.9801 -> country=France, city=Challes-les-Eaux, state=Auvergne-Rhône-Alpes
+2025-05-21 06:29:13,085: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=-19.9218&lon=-43.9359&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:29:14,028: Row 432: Reverse geocoded lat=-19.9218, lon=-43.9359 -> country=Brazil, city=Belo Horizonte, state=Minas Gerais
+2025-05-21 06:29:15,033: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=47.615&lon=-122.1619&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:29:16,027: Row 433: Reverse geocoded lat=47.615, lon=-122.1619 -> country=United States, city=Bellevue, state=Washington
+2025-05-21 06:29:17,033: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=30.8707&lon=120.0898&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:29:18,075: Row 436: Reverse geocoded lat=30.8707, lon=120.0898 -> country=China, city=Wuxing District, state=Zhejiang
+2025-05-21 06:29:19,080: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=59.4381&lon=24.7369&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:29:20,133: Row 437: Reverse geocoded lat=59.4381, lon=24.7369 -> country=Estonia, city=Tallinn, state=None
+2025-05-21 06:29:21,144: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=26.8373&lon=80.9165&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:29:22,051: Row 438: Reverse geocoded lat=26.8373, lon=80.9165 -> country=India, city=Lucknow, state=Uttar Pradesh
+2025-05-21 06:29:23,055: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=26.8373&lon=80.9165&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:29:24,064: Row 439: Reverse geocoded lat=26.8373, lon=80.9165 -> country=India, city=Lucknow, state=Uttar Pradesh
+2025-05-21 06:29:25,068: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=18.5211&lon=73.8502&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:29:26,114: Row 440: Reverse geocoded lat=18.5211, lon=73.8502 -> country=India, city=Pune, state=Maharashtra
+2025-05-21 06:29:27,120: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=51.9439&lon=5.8939&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:29:28,100: Row 441: Reverse geocoded lat=51.9439, lon=5.8939 -> country=Netherlands, city=Arnhem, state=Gelderland
+2025-05-21 06:29:29,105: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=18.7857&lon=98.9736&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:29:30,104: Row 442: Reverse geocoded lat=18.7857, lon=98.9736 -> country=Thailand, city=Chiang Mai City Municipality, state=None
+2025-05-21 06:29:31,108: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=20.4636&lon=85.8783&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:29:32,202: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=20.4636&lon=85.8783&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:29:33,025: Row 443: Reverse geocoded lat=20.4636, lon=85.8783 -> country=India, city=Cuttack, state=Odisha
+2025-05-21 06:29:34,029: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=46.2253&lon=6.1516&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:29:35,072: Row 444: Reverse geocoded lat=46.2253, lon=6.1516 -> country=Switzerland, city=Geneva, state=Geneva
+2025-05-21 06:29:36,076: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=30.6667&lon=104.0667&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:29:37,169: Row 446: Reverse geocoded lat=30.6667, lon=104.0667 -> country=China, city=Chengdu, state=Sichuan
+2025-05-21 06:29:38,174: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=50.1169&lon=8.6837&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:29:39,115: Row 447: Reverse geocoded lat=50.1169, lon=8.6837 -> country=Germany, city=Frankfurt, state=Hesse
+2025-05-21 06:29:40,041: Row 448: Reverse geocoded lat=26.3304, lon=-81.5871 -> country=United States, city=None, state=Florida
+2025-05-21 06:29:41,056: Row 449: Reverse geocoded lat=-3.717, lon=-38.5287 -> country=Brazil, city=Fortaleza, state=Ceará
+2025-05-21 06:29:42,047: Row 450: Reverse geocoded lat=55.7481, lon=12.5347 -> country=Denmark, city=Jægersborg, state=Capital Region of Denmark
+2025-05-21 06:29:43,132: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=37.5625&lon=-122.0004&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:29:44,023: Row 451: Reverse geocoded lat=37.5625, lon=-122.0004 -> country=United States, city=Fremont, state=California
+2025-05-21 06:29:45,027: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=-12.0432&lon=-77.0282&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:29:46,105: Row 452: Reverse geocoded lat=-12.0432, lon=-77.0282 -> country=Peru, city=Lima, state=Lima
+2025-05-21 06:29:47,111: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=59.3287&lon=18.0717&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:29:48,064: Row 453: Reverse geocoded lat=59.3287, lon=18.0717 -> country=Sweden, city=Stockholm, state=None
+2025-05-21 06:29:49,045: Row 454: Reverse geocoded lat=59.3287, lon=18.0717 -> country=Sweden, city=Stockholm, state=None
+2025-05-21 06:29:50,074: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=52.1922&lon=20.8846&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:29:51,089: Row 456: Reverse geocoded lat=52.1922, lon=20.8846 -> country=Poland, city=Warsaw, state=Masovian Voivodeship
+2025-05-21 06:29:52,059: Row 457: Reverse geocoded lat=40.4153, lon=-3.694 -> country=Spain, city=Madrid, state=Community of Madrid
+2025-05-21 06:29:53,098: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=40.4153&lon=-3.694&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:29:54,167: Row 458: Reverse geocoded lat=40.4153, lon=-3.694 -> country=Spain, city=Madrid, state=Community of Madrid
+2025-05-21 06:29:55,171: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=59.3247&lon=18.056&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:29:56,113: Row 459: Reverse geocoded lat=59.3247, lon=18.056 -> country=Sweden, city=Stockholm, state=None
+2025-05-21 06:29:57,067: Row 460: Reverse geocoded lat=59.3247, lon=18.056 -> country=Sweden, city=Stockholm, state=None
+2025-05-21 06:29:58,118: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=50.0596&lon=19.9338&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:29:59,092: Row 461: Reverse geocoded lat=50.0596, lon=19.9338 -> country=Poland, city=Krakow, state=Lesser Poland Voivodeship
+2025-05-21 06:30:00,095: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=52.3924&lon=16.9019&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:30:01,130: Row 462: Reverse geocoded lat=52.3924, lon=16.9019 -> country=Poland, city=Poznan, state=Greater Poland Voivodeship
+2025-05-21 06:30:02,136: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=59.3287&lon=18.0717&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:30:03,111: Row 463: Reverse geocoded lat=59.3287, lon=18.0717 -> country=Sweden, city=Stockholm, state=None
+2025-05-21 06:30:04,114: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=50.7599&lon=6.0953&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:30:05,112: Row 465: Reverse geocoded lat=50.7599, lon=6.0953 -> country=Germany, city=Aachen, state=North Rhine-Westphalia
+2025-05-21 06:30:06,118: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=60.3951&lon=5.3237&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:30:07,090: Row 466: Reverse geocoded lat=60.3951, lon=5.3237 -> country=Norway, city=Bergen, state=None
+2025-05-21 06:30:08,096: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=60.3951&lon=5.3237&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:30:09,200: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=60.3951&lon=5.3237&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:30:10,061: Row 467: Reverse geocoded lat=60.3951, lon=5.3237 -> country=Norway, city=Bergen, state=None
+2025-05-21 06:30:11,055: Row 468: Reverse geocoded lat=60.3951, lon=5.3237 -> country=Norway, city=Bergen, state=None
+2025-05-21 06:30:12,068: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=52.3759&lon=4.8975&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:30:13,176: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=52.3759&lon=4.8975&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:30:14,156: Row 469: Reverse geocoded lat=52.3759, lon=4.8975 -> country=Netherlands, city=Amsterdam, state=North Holland
+2025-05-21 06:30:15,095: Row 470: Reverse geocoded lat=-25.5283, lon=-49.2161 -> country=Brazil, city=São José dos Pinhais, state=Paraná
+2025-05-21 06:30:16,166: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=47.0042&lon=28.8574&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:30:17,106: Row 471: Reverse geocoded lat=47.0042, lon=28.8574 -> country=Moldova, city=Chișinău, state=None
+2025-05-21 06:30:18,110: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=-3.1032&lon=-60.0288&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:30:19,094: Row 473: Reverse geocoded lat=-3.1032, lon=-60.0288 -> country=Brazil, city=Manaus, state=Amazonas
+2025-05-21 06:30:20,098: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=12.9753&lon=77.591&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:30:21,083: Row 474: Reverse geocoded lat=12.9753, lon=77.591 -> country=India, city=Bengaluru, state=Karnataka
+2025-05-21 06:30:22,086: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=54.5455&lon=18.4494&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:30:23,100: Row 476: Reverse geocoded lat=54.5455, lon=18.4494 -> country=Poland, city=Gdynia, state=Pomeranian Voivodeship
+2025-05-21 06:30:24,104: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=38.7219&lon=-9.1398&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:30:25,105: Row 477: Reverse geocoded lat=38.7219, lon=-9.1398 -> country=Portugal, city=Lisbon, state=None
+2025-05-21 06:30:26,109: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=41.3946&lon=2.1406&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:30:27,155: Row 478: Reverse geocoded lat=41.3946, lon=2.1406 -> country=Spain, city=Barcelona, state=Catalonia
+2025-05-21 06:30:28,105: Row 479: Reverse geocoded lat=-27.4683, lon=153.0322 -> country=Australia, city=None, state=Queensland
+2025-05-21 06:30:29,165: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=45.7537&lon=21.2257&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:30:30,276: Row 480: Reverse geocoded lat=45.7537, lon=21.2257 -> country=Romania, city=Timișoara, state=None
+2025-05-21 06:30:31,158: Row 481: Reverse geocoded lat=53.7606, lon=-0.3734 -> country=United Kingdom, city=Hull, state=England
+2025-05-21 06:30:32,164: Row 482: Reverse geocoded lat=52.3759, lon=4.8975 -> country=Netherlands, city=Amsterdam, state=North Holland
+2025-05-21 06:30:33,286: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=52.3759&lon=4.8975&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:30:34,191: Row 483: Reverse geocoded lat=52.3759, lon=4.8975 -> country=Netherlands, city=Amsterdam, state=North Holland
+2025-05-21 06:30:35,102: Row 484: Reverse geocoded lat=31.3709, lon=73.0336 -> country=Pakistan, city=Faisalabad City Tehsil, state=Punjab
+2025-05-21 06:30:36,097: Row 485: Reverse geocoded lat=-26.2309, lon=28.0583 -> country=South Africa, city=Johannesburg, state=Gauteng
+2025-05-21 06:30:37,127: Row 486: Reverse geocoded lat=45.4722, lon=9.1922 -> country=Italy, city=Milan, state=Lombardy
+2025-05-21 06:30:38,115: Row 487: Reverse geocoded lat=12.9753, lon=77.591 -> country=India, city=Bengaluru, state=Karnataka
+2025-05-21 06:30:39,209: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=48.1836&lon=11.5754&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:30:40,049: Row 488: Reverse geocoded lat=48.1836, lon=11.5754 -> country=Germany, city=Munich, state=Bavaria
+2025-05-21 06:30:41,054: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=54.1085&lon=12.0645&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:30:42,050: Row 489: Reverse geocoded lat=54.1085, lon=12.0645 -> country=Germany, city=Rostock, state=Mecklenburg-Vorpommern
+2025-05-21 06:30:43,056: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=38.8327&lon=-9.166&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:30:44,122: Row 490: Reverse geocoded lat=38.8327, lon=-9.166 -> country=Portugal, city=Loures, state=None
+2025-05-21 06:30:45,127: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=56.9473&lon=24.0979&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:30:46,055: Row 491: Reverse geocoded lat=56.9473, lon=24.0979 -> country=Latvia, city=Riga, state=None
+2025-05-21 06:30:47,057: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=29.9192&lon=73.8741&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:30:48,167: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=29.9192&lon=73.8741&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:30:49,080: Row 494: Reverse geocoded lat=29.9192, lon=73.8741 -> country=India, city=Ganganagar, state=Rajasthan
+2025-05-21 06:30:50,085: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=50.1169&lon=8.6837&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:30:51,090: Row 495: Reverse geocoded lat=50.1169, lon=8.6837 -> country=Germany, city=Frankfurt, state=Hesse
+2025-05-21 06:30:52,043: Row 496: Reverse geocoded lat=-29.8553, lon=31.0428 -> country=South Africa, city=Durban, state=KwaZulu-Natal
+2025-05-21 06:30:53,095: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=29.5689&lon=106.5577&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:30:54,073: Row 498: Reverse geocoded lat=29.5689, lon=106.5577 -> country=China, city=Yuzhong District, state=Chongqing
+2025-05-21 06:30:55,048: Row 500: Reverse geocoded lat=22.5643, lon=88.3693 -> country=India, city=Kolkata, state=West Bengal
+2025-05-21 06:30:56,082: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=53.0582&lon=8.7868&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:30:57,050: Row 501: Reverse geocoded lat=53.0582, lon=8.7868 -> country=Germany, city=Bremen, state=Bremen
+2025-05-21 06:30:58,053: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=19.0748&lon=72.8856&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:30:59,082: Row 502: Reverse geocoded lat=19.0748, lon=72.8856 -> country=India, city=Mumbai, state=Maharashtra
+2025-05-21 06:31:00,085: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=35.0&lon=105.0&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:31:01,139: Row 503: Reverse geocoded lat=35, lon=105 -> country=China, city=Bangluo, state=Gansu
+2025-05-21 06:31:02,145: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=51.4537&lon=-0.2320000&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:31:03,054: Row 505: Reverse geocoded lat=51.4537, lon=-0.232 -> country=United Kingdom, city=London, state=England
+2025-05-21 06:31:04,061: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=33.8333&lon=35.8333&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:31:05,056: Row 507: Reverse geocoded lat=33.8333, lon=35.8333 -> country=Lebanon, city=Jdita, state=Beqaa Governorate
+2025-05-21 06:31:06,061: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=14.5971&lon=120.9798&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:31:07,077: Row 509: Reverse geocoded lat=14.5971, lon=120.9798 -> country=Philippines, city=Manila, state=None
+2025-05-21 06:31:08,081: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=52.0729&lon=4.5475&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:31:09,043: Row 510: Reverse geocoded lat=52.0729, lon=4.5475 -> country=Netherlands, city=Benthuizen, state=South Holland
+2025-05-21 06:31:10,049: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=52.0729&lon=4.5475&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:31:11,067: Row 511: Reverse geocoded lat=52.0729, lon=4.5475 -> country=Netherlands, city=Benthuizen, state=South Holland
+2025-05-21 06:31:12,073: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=23.0276&lon=72.5871&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:31:13,109: Row 512: Reverse geocoded lat=23.0276, lon=72.5871 -> country=India, city=Ahmedabad, state=Gujarat
+2025-05-21 06:31:14,113: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=38.9757&lon=-77.6414&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:31:15,077: Row 513: Reverse geocoded lat=38.9757, lon=-77.6414 -> country=United States, city=Aldie, state=Virginia
+2025-05-21 06:31:16,081: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=10.4873&lon=-66.8738&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:31:17,046: Row 514: Reverse geocoded lat=10.4873, lon=-66.8738 -> country=Venezuela, city=Caracas, state=Miranda State
+2025-05-21 06:31:18,053: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=-23.6301&lon=-46.6378&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:31:19,058: Row 515: Reverse geocoded lat=-23.6301, lon=-46.6378 -> country=Brazil, city=São Paulo, state=São Paulo
+2025-05-21 06:31:20,061: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=14.6475&lon=121.0494&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:31:21,038: Row 516: Reverse geocoded lat=14.6475, lon=121.0494 -> country=Philippines, city=Quezon City, state=None
+2025-05-21 06:31:22,043: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=26.9136&lon=75.7858&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:31:23,079: Row 519: Reverse geocoded lat=26.9136, lon=75.7858 -> country=India, city=Jaipur, state=Rajasthan
+2025-05-21 06:31:24,087: Row 520: Reverse geocoded lat=40.7592, lon=-111.8875 -> country=United States, city=Salt Lake City, state=Utah
+2025-05-21 06:31:25,091: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=20.2706&lon=85.8334&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:31:26,124: Row 523: Reverse geocoded lat=20.2706, lon=85.8334 -> country=India, city=Bhubaneswar Municipal Corporation, state=Odisha
+2025-05-21 06:31:27,131: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=17.3843&lon=78.4583&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:31:28,041: Row 525: Reverse geocoded lat=17.3843, lon=78.4583 -> country=India, city=Hyderabad, state=Telangana
+2025-05-21 06:31:29,047: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=28.6327&lon=77.2198&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:31:30,139: Row 528: Reverse geocoded lat=28.6327, lon=77.2198 -> country=India, city=New Delhi, state=Delhi
+2025-05-21 06:31:31,141: Row 529: Reverse geocoded lat=45.4722, lon=9.1922 -> country=Italy, city=Milan, state=Lombardy
+2025-05-21 06:31:32,145: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=25.5943&lon=85.1352&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:31:33,015: Row 530: Reverse geocoded lat=25.5943, lon=85.1352 -> country=India, city=Patna, state=Bihar
+2025-05-21 06:31:34,021: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=24.6869&lon=46.7224&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:31:35,025: Row 531: Reverse geocoded lat=24.6869, lon=46.7224 -> country=Saudi Arabia, city=Riyadh, state=Riyadh Region
+2025-05-21 06:31:36,032: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=48.7556&lon=21.2526&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:31:37,089: Row 532: Reverse geocoded lat=48.7556, lon=21.2526 -> country=Slovakia, city=Košice, state=Region of Košice
+2025-05-21 06:31:38,094: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=37.3028&lon=-121.9982&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:31:39,114: Row 533: Reverse geocoded lat=37.3028, lon=-121.9982 -> country=United States, city=San Jose, state=California
+2025-05-21 06:31:40,108: Row 536: Reverse geocoded lat=35.7449, lon=0.5663 -> country=Algeria, city=Relizane, state=Relizane
+2025-05-21 06:31:41,081: Row 538: Reverse geocoded lat=23.1181, lon=113.2539 -> country=China, city=Yuexiu District, state=Guangdong Province
+2025-05-21 06:31:42,124: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=39.9707&lon=32.7316&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:31:43,051: Row 540: Reverse geocoded lat=39.9707, lon=32.7316 -> country=Turkey, city=Yenimahalle, state=Ankara
+2025-05-21 06:31:44,058: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=23.6533&lon=90.4923&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:31:45,101: Row 541: Reverse geocoded lat=23.6533, lon=90.4923 -> country=Bangladesh, city=Narayanganj, state=Dhaka Division
+2025-05-21 06:31:46,060: Row 542: Reverse geocoded lat=22.3008, lon=73.2043 -> country=India, city=Vadodara, state=Gujarat
+2025-05-21 06:31:47,109: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=30.0822&lon=-81.5498&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:31:48,085: Row 545: Reverse geocoded lat=30.0822, lon=-81.5498 -> country=United States, city=None, state=Florida
+2025-05-21 06:31:49,090: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=3.5847&lon=98.6629&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:31:50,083: Row 546: Reverse geocoded lat=3.5847, lon=98.6629 -> country=Indonesia, city=City of Medan, state=North Sumatra
+2025-05-21 06:31:51,089: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=28.8964&lon=76.5909&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:31:52,053: Row 547: Reverse geocoded lat=28.8964, lon=76.5909 -> country=India, city=Rohtak, state=Haryana
+2025-05-21 06:31:53,057: Row 548: Reverse geocoded lat=30.5394, lon=-91.0522 -> country=United States, city=Central, state=Louisiana
+2025-05-21 06:31:54,062: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=51.4562&lon=6.0573&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:31:55,152: Row 550: Reverse geocoded lat=51.4562, lon=6.0573 -> country=Netherlands, city=Horst, state=Limburg
+2025-05-21 06:31:56,160: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=37.4073&lon=-121.939&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:31:57,154: Row 551: Reverse geocoded lat=37.4073, lon=-121.939 -> country=United States, city=San Jose, state=California
+2025-05-21 06:31:58,160: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=48.8558&lon=2.3494&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:31:59,167: Row 552: Reverse geocoded lat=48.8558, lon=2.3494 -> country=France, city=Paris, state=Ile-de-France
+2025-05-21 06:32:00,017: Row 553: Reverse geocoded lat=25.5943, lon=85.1352 -> country=India, city=Patna, state=Bihar
+2025-05-21 06:32:01,177: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=-37.867&lon=144.9973&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:32:02,067: Row 554: Reverse geocoded lat=-37.867, lon=144.9973 -> country=Australia, city=Melbourne, state=Victoria
+2025-05-21 06:32:03,073: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=53.5956&lon=10.0044&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:32:04,071: Row 555: Reverse geocoded lat=53.5956, lon=10.0044 -> country=Germany, city=Hamburg, state=None
+2025-05-21 06:32:05,076: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=51.144&lon=17.1332&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:32:06,024: Row 556: Reverse geocoded lat=51.144, lon=17.1332 -> country=Poland, city=Wrocław, state=Lower Silesian Voivodeship
+2025-05-21 06:32:07,029: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=48.8558&lon=2.3494&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:32:08,151: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=48.8558&lon=2.3494&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:32:09,192: Row 557: Reverse geocoded lat=48.8558, lon=2.3494 -> country=France, city=Paris, state=Ile-de-France
+2025-05-21 06:32:10,198: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=43.2951&lon=5.3861&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:32:11,103: Row 558: Reverse geocoded lat=43.2951, lon=5.3861 -> country=France, city=Marseille, state=Provence-Alpes-Côte d'Azur
+2025-05-21 06:32:12,084: Row 559: Reverse geocoded lat=17.3843, lon=78.4583 -> country=India, city=Hyderabad, state=Telangana
+2025-05-21 06:32:13,108: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=30.3275&lon=78.0325&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:32:14,090: Row 561: Reverse geocoded lat=30.3275, lon=78.0325 -> country=India, city=Dehradun, state=Uttarakhand
+2025-05-21 06:32:15,094: Row 562: Reverse geocoded lat=21.4913, lon=39.1841 -> country=Saudi Arabia, city=Jeddah, state=Makkah Region
+2025-05-21 06:32:16,099: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=1.3153&lon=103.9143&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:32:17,104: Row 563: Reverse geocoded lat=1.3153, lon=103.9143 -> country=Singapore, city=Singapore, state=None
+2025-05-21 06:32:18,108: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=37.9414&lon=40.1933&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:32:19,057: Row 565: Reverse geocoded lat=37.9414, lon=40.1933 -> country=Turkey, city=Kayapınar, state=None
+2025-05-21 06:32:20,062: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=48.767&lon=9.1827&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:32:21,042: Row 566: Reverse geocoded lat=48.767, lon=9.1827 -> country=Germany, city=Stuttgart, state=Baden-Württemberg
+2025-05-21 06:32:22,033: Row 568: Reverse geocoded lat=17.3843, lon=78.4583 -> country=India, city=Hyderabad, state=Telangana
+2025-05-21 06:32:23,047: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=47.3741&lon=9.5417&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:32:24,097: Row 569: Reverse geocoded lat=47.3741, lon=9.5417 -> country=Switzerland, city=Altstätten, state=St. Gallen
+2025-05-21 06:32:25,101: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=28.1454&lon=77.3281&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:32:26,203: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=28.1454&lon=77.3281&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:32:27,049: Row 573: Reverse geocoded lat=28.1454, lon=77.3281 -> country=India, city=Palwal, state=Haryana
+2025-05-21 06:32:28,056: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=52.4982&lon=13.4755&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:32:29,047: Row 575: Reverse geocoded lat=52.4982, lon=13.4755 -> country=Germany, city=Berlin, state=None
+2025-05-21 06:32:30,052: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=52.4982&lon=13.4755&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:32:31,102: Row 576: Reverse geocoded lat=52.4982, lon=13.4755 -> country=Germany, city=Berlin, state=None
+2025-05-21 06:32:32,107: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=14.6438&lon=120.9632&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:32:33,102: Row 578: Reverse geocoded lat=14.6438, lon=120.9632 -> country=Philippines, city=Caloocan, state=None
+2025-05-21 06:32:34,105: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=41.0396&lon=-111.9361&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:32:35,184: Row 579: Reverse geocoded lat=41.0396, lon=-111.9361 -> country=United States, city=Kaysville, state=Utah
+2025-05-21 06:32:36,189: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=50.8713&lon=4.3758&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:32:37,105: Row 580: Reverse geocoded lat=50.8713, lon=4.3758 -> country=Belgium, city=Schaerbeek - Schaarbeek, state=None
+2025-05-21 06:32:38,108: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=55.867&lon=-4.2621&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:32:39,115: Row 581: Reverse geocoded lat=55.867, lon=-4.2621 -> country=United Kingdom, city=Glasgow, state=Scotland
+2025-05-21 06:32:40,120: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=18.0&lon=105.0&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:32:41,107: Row 583: Reverse geocoded lat=18, lon=105 -> country=Laos, city=Phonkeo, state=Bolikhamsai
+2025-05-21 06:32:42,028: Row 584: Reverse geocoded lat=13.0895, lon=80.2739 -> country=India, city=Chennai, state=Tamil Nadu
+2025-05-21 06:32:43,031: Row 586: Reverse geocoded lat=26.8373, lon=80.9165 -> country=India, city=Lucknow, state=Uttar Pradesh
+2025-05-21 06:32:44,118: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=39.911&lon=116.395&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:32:45,043: Row 587: Reverse geocoded lat=39.911, lon=116.395 -> country=China, city=Dongcheng District, state=Beijing
+2025-05-21 06:32:46,050: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=51.5081&lon=-0.1278000&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:32:47,144: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=51.5081&lon=-0.1278000&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:32:48,220: Row 591: Reverse geocoded lat=51.5081, lon=-0.1278 -> country=United Kingdom, city=City of Westminster, state=England
+2025-05-21 06:32:49,171: Row 592: Reverse geocoded lat=32.3039, lon=-110.8368 -> country=United States, city=None, state=Arizona
+2025-05-21 06:32:50,093: Row 594: Reverse geocoded lat=37.5453, lon=-77.9187 -> country=United States, city=Powhatan, state=Virginia
+2025-05-21 06:32:51,168: Row 595: Reverse geocoded lat=30.6798, lon=-88.2914 -> country=United States, city=None, state=Alabama
+2025-05-21 06:32:52,188: Row 596: Reverse geocoded lat=36.8178, lon=10.1656 -> country=Tunisia, city=Tunis, state=Tunis
+2025-05-21 06:32:53,174: Row 597: Reverse geocoded lat=34.2635, lon=108.9246 -> country=China, city=Lianhu District, state=Shaanxi
+2025-05-21 06:32:54,166: Row 598: Reverse geocoded lat=12.9753, lon=77.591 -> country=India, city=Bengaluru, state=Karnataka
+2025-05-21 06:32:55,079: Row 599: Reverse geocoded lat=12.9753, lon=77.591 -> country=India, city=Bengaluru, state=Karnataka
+2025-05-21 06:32:56,073: Row 600: Reverse geocoded lat=21.9974, lon=79.0011 -> country=India, city=Malhanwara, state=Madhya Pradesh
+2025-05-21 06:32:57,009: Row 602: Reverse geocoded lat=-29.8553, lon=31.0428 -> country=South Africa, city=Durban, state=KwaZulu-Natal
+2025-05-21 06:32:58,142: Row 603: Reverse geocoded lat=1.2872, lon=103.8507 -> country=Singapore, city=Singapore, state=None
+2025-05-21 06:32:59,091: Row 604: Reverse geocoded lat=23.7207, lon=90.5635 -> country=Bangladesh, city=None, state=Dhaka Division
+2025-05-21 06:33:00,155: Row 606: Reverse geocoded lat=51.5164, lon=-0.093 -> country=United Kingdom, city=City of London, state=England
+2025-05-21 06:33:01,195: Row 607: Reverse geocoded lat=29.572, lon=-95.54 -> country=United States, city=Missouri City, state=Texas
+2025-05-21 06:33:02,031: Row 609: Reverse geocoded lat=37.751, lon=-97.822 -> country=United States, city=None, state=Kansas
+2025-05-21 06:33:03,096: Row 610: Reverse geocoded lat=18.5211, lon=73.8502 -> country=India, city=Pune, state=Maharashtra
+2025-05-21 06:33:04,228: Row 611: Reverse geocoded lat=18.5211, lon=73.8502 -> country=India, city=Pune, state=Maharashtra
+2025-05-21 06:33:05,147: Row 612: Reverse geocoded lat=40.2584, lon=-111.6591 -> country=United States, city=Provo, state=Utah
+2025-05-21 06:33:06,139: Row 613: Reverse geocoded lat=37.4073, lon=-121.939 -> country=United States, city=San Jose, state=California
+2025-05-21 06:33:07,134: Row 614: Reverse geocoded lat=22.2904, lon=70.7915 -> country=India, city=Rajkot, state=Gujarat
+2025-05-21 06:33:08,126: Row 615: Reverse geocoded lat=37.9448, lon=-122.0279 -> country=United States, city=Concord, state=California
+2025-05-21 06:33:09,246: Row 617: Reverse geocoded lat=34.2619, lon=-6.5821 -> country=Morocco, city=Kenitra, state=None
+2025-05-21 06:33:10,158: Row 619: Reverse geocoded lat=45.3696, lon=-73.5654 -> country=Canada, city=Saint-Constant, state=Quebec
+2025-05-21 06:33:11,127: Row 620: Reverse geocoded lat=19.0748, lon=72.8856 -> country=India, city=Mumbai, state=Maharashtra
+2025-05-21 06:33:12,055: Row 621: Reverse geocoded lat=-23.5475, lon=-46.6361 -> country=Brazil, city=São Paulo, state=São Paulo
+2025-05-21 06:33:13,134: Row 622: Reverse geocoded lat=55.6523, lon=12.0805 -> country=Denmark, city=Roskilde, state=Region Zealand
+2025-05-21 06:33:14,059: Row 623: Reverse geocoded lat=-33.914, lon=18.4129 -> country=South Africa, city=Cape Town, state=Western Cape
+2025-05-21 06:33:15,314: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=49.6113&lon=6.1294&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:33:16,173: Row 625: Reverse geocoded lat=49.6113, lon=6.1294 -> country=Luxembourg, city=Luxembourg, state=None
+2025-05-21 06:33:17,144: Row 626: Reverse geocoded lat=-26.2309, lon=28.0583 -> country=South Africa, city=Johannesburg, state=Gauteng
+2025-05-21 06:33:18,159: Row 627: Reverse geocoded lat=30.7339, lon=76.7889 -> country=India, city=Chandigarh, state=Chandigarh
+2025-05-21 06:33:19,101: Row 628: Reverse geocoded lat=40.7547, lon=-73.9614 -> country=United States, city=New York, state=New York
+2025-05-21 06:33:20,165: Row 629: Reverse geocoded lat=51.5081, lon=-0.1278 -> country=United Kingdom, city=City of Westminster, state=England
+2025-05-21 06:33:21,085: Row 630: Reverse geocoded lat=31.2222, lon=121.4581 -> country=China, city=Shanghai, state=Shanghai
+2025-05-21 06:33:22,096: Row 631: Reverse geocoded lat=31.2222, lon=121.4581 -> country=China, city=Shanghai, state=Shanghai
+2025-05-21 06:33:23,172: Row 633: Reverse geocoded lat=9.0245, lon=38.7485 -> country=Ethiopia, city=None, state=Addis Ababa
+2025-05-21 06:33:24,049: Row 634: Reverse geocoded lat=1, lon=38 -> country=Kenya, city=Waso ward, state=Samburu
+2025-05-21 06:33:25,067: Row 635: Reverse geocoded lat=-22.1231, lon=-51.3881 -> country=Brazil, city=Presidente Prudente, state=São Paulo
+2025-05-21 06:33:26,108: Row 636: Reverse geocoded lat=40.6036, lon=-3.7041 -> country=Spain, city=Tres Cantos, state=Community of Madrid
+2025-05-21 06:33:27,099: Row 637: Reverse geocoded lat=33.1371, lon=-96.7488 -> country=United States, city=Frisco, state=Texas
+2025-05-21 06:33:28,178: Row 638: Reverse geocoded lat=39.7593, lon=-104.9651 -> country=United States, city=Denver, state=Colorado
+2025-05-21 06:33:29,096: Row 639: Reverse geocoded lat=13.0895, lon=80.2739 -> country=India, city=Chennai, state=Tamil Nadu
+2025-05-21 06:33:30,217: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=36.1898&lon=44.0157&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:33:31,034: Row 640: Reverse geocoded lat=36.1898, lon=44.0157 -> country=Iraq, city=Erbil, state=Erbil Governorate
+2025-05-21 06:33:32,040: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=37.2845&lon=-107.8646&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:33:33,127: Row 641: Reverse geocoded lat=37.2845, lon=-107.8646 -> country=United States, city=Durango, state=Colorado
+2025-05-21 06:33:34,126: Row 642: Reverse geocoded lat=35.9825, lon=-78.5376 -> country=United States, city=Wake Forest, state=North Carolina
+2025-05-21 06:33:35,098: Row 643: Reverse geocoded lat=-14.785, lon=-39.2785 -> country=Brazil, city=Itabuna, state=Bahia
+2025-05-21 06:33:36,135: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=-14.785&lon=-39.2785&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:33:37,095: Row 644: Reverse geocoded lat=-14.785, lon=-39.2785 -> country=Brazil, city=Itabuna, state=Bahia
+2025-05-21 06:33:38,100: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=51.3904&lon=-0.0992000&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:33:39,138: Row 648: Reverse geocoded lat=51.3904, lon=-0.0992 -> country=United Kingdom, city=London, state=England
+2025-05-21 06:33:40,142: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=11.0102&lon=76.9701&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:33:41,193: Row 649: Reverse geocoded lat=11.0102, lon=76.9701 -> country=India, city=Coimbatore, state=Tamil Nadu
+2025-05-21 06:33:42,021: Row 650: Reverse geocoded lat=-22.4851, lon=-47.1733 -> country=Brazil, city=Engenheiro Coelho, state=São Paulo
+2025-05-21 06:33:43,203: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=48.9171&lon=24.7158&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:33:44,162: Row 652: Reverse geocoded lat=48.9171, lon=24.7158 -> country=Ukraine, city=Ivano-Frankivsk, state=Ivano-Frankivsk Oblast
+2025-05-21 06:33:45,168: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=48.8558&lon=2.3494&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:33:46,178: Row 653: Reverse geocoded lat=48.8558, lon=2.3494 -> country=France, city=Paris, state=Ile-de-France
+2025-05-21 06:33:47,182: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=-6.3088&lon=107.316&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:33:48,153: Row 654: Reverse geocoded lat=-6.3088, lon=107.316 -> country=Indonesia, city=Karawang, state=West Java
+2025-05-21 06:33:49,151: Row 655: Reverse geocoded lat=43.6547, lon=-79.3623 -> country=Canada, city=Toronto, state=Ontario
+2025-05-21 06:33:50,154: Row 657: Reverse geocoded lat=45.4722, lon=9.1922 -> country=Italy, city=Milan, state=Lombardy
+2025-05-21 06:33:51,149: Row 658: Reverse geocoded lat=39.338, lon=-82.986 -> country=United States, city=Chillicothe, state=Ohio
+2025-05-21 06:33:52,164: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=22.2842&lon=114.1759&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:33:53,119: Row 659: Reverse geocoded lat=22.2842, lon=114.1759 -> country=China, city=Hong Kong Island, state=Hong Kong
+2025-05-21 06:33:54,091: Row 660: Reverse geocoded lat=17.3843, lon=78.4583 -> country=India, city=Hyderabad, state=Telangana
+2025-05-21 06:33:55,060: Row 661: Reverse geocoded lat=25.0734, lon=55.2979 -> country=United Arab Emirates, city=None, state=Dubai
+2025-05-21 06:33:56,075: Row 662: Reverse geocoded lat=7.3782, lon=3.9062 -> country=Nigeria, city=None, state=Oyo State
+2025-05-21 06:33:57,072: Row 663: Reverse geocoded lat=-31.8544, lon=115.8433 -> country=Australia, city=None, state=Western Australia
+2025-05-21 06:33:58,136: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=55.6078&lon=12.9982&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:33:59,022: Row 664: Reverse geocoded lat=55.6078, lon=12.9982 -> country=Sweden, city=Malmö, state=None
+2025-05-21 06:34:00,027: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=55.6078&lon=12.9982&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:34:01,017: Row 665: Reverse geocoded lat=55.6078, lon=12.9982 -> country=Sweden, city=Malmö, state=None
+2025-05-21 06:34:02,020: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=48.2049&lon=16.3662&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:34:03,130: Row 667: Reverse geocoded lat=48.2049, lon=16.3662 -> country=Austria, city=Vienna, state=None
+2025-05-21 06:34:04,134: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=53.5466&lon=10.021&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:34:05,028: Row 668: Reverse geocoded lat=53.5466, lon=10.021 -> country=Germany, city=Hamburg, state=None
+2025-05-21 06:34:06,033: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=53.5247&lon=-7.3385&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:34:07,036: Row 669: Reverse geocoded lat=53.5247, lon=-7.3385 -> country=Ireland, city=Mullingar, state=None
+2025-05-21 06:34:08,040: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=34.5329&lon=69.1682&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:34:09,149: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=34.5329&lon=69.1682&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:34:10,180: Row 670: Reverse geocoded lat=34.5329, lon=69.1682 -> country=Afghanistan, city=Kabul, state=Kabul Province
+2025-05-21 06:34:11,115: Row 671: Reverse geocoded lat=59.3326, lon=18.0651 -> country=Sweden, city=Stockholm, state=None
+2025-05-21 06:34:12,117: Row 672: Reverse geocoded lat=-31.8544, lon=115.8433 -> country=Australia, city=None, state=Western Australia
+2025-05-21 06:34:13,143: Row 673: Reverse geocoded lat=-26.2309, lon=28.0583 -> country=South Africa, city=Johannesburg, state=Gauteng
+2025-05-21 06:34:14,190: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=51.7169&lon=-1.9716&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:34:15,189: Row 674: Reverse geocoded lat=51.7169, lon=-1.9716 -> country=United Kingdom, city=Cotswold District, state=England
+2025-05-21 06:34:16,111: Row 675: Reverse geocoded lat=19.0748, lon=72.8856 -> country=India, city=Mumbai, state=Maharashtra
+2025-05-21 06:34:17,199: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=-6.2056&lon=106.8376&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:34:18,107: Row 676: Reverse geocoded lat=-6.2056, lon=106.8376 -> country=Indonesia, city=Special capital Region of Jakarta, state=None
+2025-05-21 06:34:19,111: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=47.409&lon=9.3361&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:34:20,173: Row 677: Reverse geocoded lat=47.409, lon=9.3361 -> country=Switzerland, city=St. Gallen, state=St. Gallen
+2025-05-21 06:34:21,081: Row 678: Reverse geocoded lat=38.3802, lon=-75.6347 -> country=United States, city=None, state=Maryland
+2025-05-21 06:34:22,046: Row 679: Reverse geocoded lat=19.0748, lon=72.8856 -> country=India, city=Mumbai, state=Maharashtra
+2025-05-21 06:34:23,126: Row 681: Reverse geocoded lat=34.197, lon=-118.8199 -> country=United States, city=Thousand Oaks, state=California
+2025-05-21 06:34:24,189: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=26.9136&lon=75.7858&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:34:25,044: Row 682: Reverse geocoded lat=26.9136, lon=75.7858 -> country=India, city=Jaipur, state=Rajasthan
+2025-05-21 06:34:26,050: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=-6.9172&lon=107.6296&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:34:27,069: Row 683: Reverse geocoded lat=-6.9172, lon=107.6296 -> country=Indonesia, city=Bandung City, state=West Java
+2025-05-21 06:34:28,072: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=35.7681&lon=139.6258&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:34:29,116: Row 685: Reverse geocoded lat=35.7681, lon=139.6258 -> country=Japan, city=Nerima, state=None
+2025-05-21 06:34:30,120: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=22.9505&lon=91.4608&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:34:31,051: Row 686: Reverse geocoded lat=22.9505, lon=91.4608 -> country=Bangladesh, city=Feni, state=Chittagong Division
+2025-05-21 06:34:32,055: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=34.1211&lon=-117.4362&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:34:33,140: Row 687: Reverse geocoded lat=34.1211, lon=-117.4362 -> country=United States, city=Fontana, state=California
+2025-05-21 06:34:34,135: Row 689: Reverse geocoded lat=-22.3135, lon=-42.8741 -> country=Brazil, city=Teresópolis, state=Rio de Janeiro
+2025-05-21 06:34:35,144: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=32.8908&lon=13.1796&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:34:36,120: Row 690: Reverse geocoded lat=32.8908, lon=13.1796 -> country=Libya, city=Tripoli, state=Tripoli
+2025-05-21 06:34:37,026: Row 691: Reverse geocoded lat=13.0895, lon=80.2739 -> country=India, city=Chennai, state=Tamil Nadu
+2025-05-21 06:34:38,118: Row 692: Reverse geocoded lat=59.3287, lon=18.0717 -> country=Sweden, city=Stockholm, state=None
+2025-05-21 06:34:39,129: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=16.2689&lon=-61.5073&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:34:40,073: Row 693: Reverse geocoded lat=16.2689, lon=-61.5073 -> country=France, city=Les Abymes, state=Guadeloupe
+2025-05-21 06:34:41,076: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=14.6343&lon=-90.5155&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:34:42,143: Row 694: Reverse geocoded lat=14.6343, lon=-90.5155 -> country=Guatemala, city=Guatemala City, state=Guatemala Department
+2025-05-21 06:34:43,097: Row 695: Reverse geocoded lat=-25.757, lon=28.1443 -> country=South Africa, city=Pretoria, state=Gauteng
+2025-05-21 06:34:44,152: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=50.8713&lon=4.3758&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:34:45,112: Row 696: Reverse geocoded lat=50.8713, lon=4.3758 -> country=Belgium, city=Schaerbeek - Schaarbeek, state=None
+2025-05-21 06:34:46,102: Row 698: Reverse geocoded lat=6.4474, lon=3.3903 -> country=Nigeria, city=Lagos, state=Lagos State
+2025-05-21 06:34:47,119: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=33.6099&lon=73.0301&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:34:48,060: Row 699: Reverse geocoded lat=33.6099, lon=73.0301 -> country=Pakistan, city=Rawalpindi Cantonment, state=Punjab
+2025-05-21 06:34:49,064: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=51.4964&lon=-0.1224000&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:34:50,061: Row 700: Reverse geocoded lat=51.4964, lon=-0.1224 -> country=United Kingdom, city=London, state=England
+2025-05-21 06:34:51,046: Row 701: Reverse geocoded lat=33.6128, lon=-117.6622 -> country=United States, city=Mission Viejo, state=California
+2025-05-21 06:34:52,037: Row 702: Reverse geocoded lat=28.6327, lon=77.2198 -> country=India, city=New Delhi, state=Delhi
+2025-05-21 06:34:53,071: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=-1.944&lon=30.062&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:34:54,102: Row 703: Reverse geocoded lat=-1.944, lon=30.062 -> country=Rwanda, city=Kigali, state=Kigali City
+2025-05-21 06:34:55,071: Row 704: Reverse geocoded lat=31.9555, lon=35.9435 -> country=Jordan, city=None, state=Amman
+2025-05-21 06:34:56,111: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=41.2615&lon=69.2177&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:34:57,076: Row 705: Reverse geocoded lat=41.2615, lon=69.2177 -> country=Uzbekistan, city=Tashkent, state=None
+2025-05-21 06:34:58,087: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=-22.9072&lon=-43.1883&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:34:59,053: Row 706: Reverse geocoded lat=-22.9072, lon=-43.1883 -> country=Brazil, city=Rio de Janeiro, state=Rio de Janeiro
+2025-05-21 06:35:00,057: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=35.6893&lon=139.6899&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:35:01,043: Row 707: Reverse geocoded lat=35.6893, lon=139.6899 -> country=Japan, city=Shinjuku, state=None
+2025-05-21 06:35:02,050: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=30.9977&lon=29.7432&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:35:03,118: Row 708: Reverse geocoded lat=30.9977, lon=29.7432 -> country=Egypt, city=Al Wadi, state=Alexandria
+2025-05-21 06:35:04,124: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=20.0024&lon=73.7945&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:35:05,042: Row 709: Reverse geocoded lat=20.0024, lon=73.7945 -> country=India, city=Nashik, state=Maharashtra
+2025-05-21 06:35:06,046: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=28.6327&lon=77.2198&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:35:07,076: Row 712: Reverse geocoded lat=28.6327, lon=77.2198 -> country=India, city=New Delhi, state=Delhi
+2025-05-21 06:35:08,080: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=18.1667&lon=-77.25&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:35:09,053: Row 714: Reverse geocoded lat=18.1667, lon=-77.25 -> country=Jamaica, city=None, state=None
+2025-05-21 06:35:10,045: Row 715: Reverse geocoded lat=18.1667, lon=-77.25 -> country=Jamaica, city=None, state=None
+2025-05-21 06:35:11,058: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=34.2635&lon=108.9246&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:35:12,107: Row 716: Reverse geocoded lat=34.2635, lon=108.9246 -> country=China, city=Lianhu District, state=Shaanxi
+2025-05-21 06:35:13,112: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=9.0245&lon=38.7485&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:35:14,090: Row 717: Reverse geocoded lat=9.0245, lon=38.7485 -> country=Ethiopia, city=None, state=Addis Ababa
+2025-05-21 06:35:15,094: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=48.8582&lon=2.3387&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:35:16,219: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=48.8582&lon=2.3387&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:35:17,242: Row 718: Reverse geocoded lat=48.8582, lon=2.3387 -> country=France, city=Paris, state=None
+2025-05-21 06:35:18,209: Row 719: Reverse geocoded lat=48.8582, lon=2.3387 -> country=France, city=Paris, state=None
+2025-05-21 06:35:19,250: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=48.8582&lon=2.3387&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:35:20,228: Row 720: Reverse geocoded lat=48.8582, lon=2.3387 -> country=France, city=Paris, state=None
+2025-05-21 06:35:21,081: Row 721: Reverse geocoded lat=37.751, lon=-97.822 -> country=United States, city=None, state=Kansas
+2025-05-21 06:35:22,084: Row 722: Reverse geocoded lat=51.5164, lon=-0.093 -> country=United Kingdom, city=City of London, state=England
+2025-05-21 06:35:23,117: Row 723: Reverse geocoded lat=51.5164, lon=-0.093 -> country=United Kingdom, city=City of London, state=England
+2025-05-21 06:35:24,076: Row 724: Reverse geocoded lat=24.1844, lon=88.2673 -> country=India, city=Murshidabad, state=West Bengal
+2025-05-21 06:35:25,245: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=49.0719&lon=17.4638&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:35:26,063: Row 725: Reverse geocoded lat=49.0719, lon=17.4638 -> country=Czechia, city=Uherské Hradiště, state=Central Moravia
+2025-05-21 06:35:27,066: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=39.1994&lon=-84.526&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:35:28,048: Row 726: Reverse geocoded lat=39.1994, lon=-84.526 -> country=United States, city=Cincinnati, state=Ohio
+2025-05-21 06:35:29,058: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=23.0276&lon=72.5871&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:35:30,181: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=23.0276&lon=72.5871&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:35:31,148: Row 727: Reverse geocoded lat=23.0276, lon=72.5871 -> country=India, city=Ahmedabad, state=Gujarat
+2025-05-21 06:35:32,083: Row 728: Reverse geocoded lat=12.9753, lon=77.591 -> country=India, city=Bengaluru, state=Karnataka
+2025-05-21 06:35:33,115: Row 729: Reverse geocoded lat=12.9753, lon=77.591 -> country=India, city=Bengaluru, state=Karnataka
+2025-05-21 06:35:34,141: Row 731: Reverse geocoded lat=34.7599, lon=113.6459 -> country=China, city=Zhengzhou, state=Henan
+2025-05-21 06:35:35,069: Row 732: Reverse geocoded lat=19.4324, lon=-99.1229 -> country=Mexico, city=Mexico City, state=Mexico City
+2025-05-21 06:35:36,162: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=45.4722&lon=9.1922&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:35:37,171: Row 733: Reverse geocoded lat=45.4722, lon=9.1922 -> country=Italy, city=Milan, state=Lombardy
+2025-05-21 06:35:38,131: Row 734: Reverse geocoded lat=29.1383, lon=-80.9956 -> country=United States, city=Port Orange, state=Florida
+2025-05-21 06:35:39,127: Row 735: Reverse geocoded lat=45.4722, lon=9.1922 -> country=Italy, city=Milan, state=Lombardy
+2025-05-21 06:35:40,054: Row 736: Reverse geocoded lat=35.6893, lon=139.6899 -> country=Japan, city=Shinjuku, state=None
+2025-05-21 06:35:41,169: Row 737: Reverse geocoded lat=38.8574, lon=-77.1 -> country=United States, city=Arlington, state=Virginia
+2025-05-21 06:35:42,189: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /reverse?lat=23.7891&lon=90.4126&format=json&accept-language=en-US&addressdetails=1
+2025-05-21 06:35:43,127: Row 739: Reverse geocoded lat=23.7891, lon=90.4126 -> country=Bangladesh, city=Dhaka, state=Dhaka Division
+2025-05-21 06:35:43,159: Created columns 'Country', 'City', and 'State' with reverse geocoded data.
+2025-05-21 06:35:43,429: Cleaned data written to /Users/T.Martin/Projects/reporting_doc_feedback/data_exports/cleaned_data.xlsx
+2025-05-21 06:35:43,429: Script completed successfully.
