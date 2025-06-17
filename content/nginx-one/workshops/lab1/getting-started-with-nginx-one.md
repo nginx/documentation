@@ -122,5 +122,5 @@ Now that you’ve explored NGINX One Console and created a key, you’re ready t
 
 ## References
 
-- [Create and manage data plane keys]({{< ref "nginx-one/how-to/data-plane-keys/create-manage-data-plane-keys.md" >}})
+- [Create and manage data plane keys]({{< ref "nginx-one/connect-instances/create-manage-data-plane-keys.md" >}})
 - [NGINX Agent overview]({{< ref "agent/overview.md" >}})
