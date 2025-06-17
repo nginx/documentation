@@ -79,7 +79,7 @@ jobs:
     steps:
       - name: Checking variable
         run: | 
-          echo ${{ needs }}
+          echo '${{ toJson(needs) }}'
           echo ${{ needs.call-docs-build-push.outputs.PREVIEW_URL }}
 
   trigger-theme-slack-notification:
