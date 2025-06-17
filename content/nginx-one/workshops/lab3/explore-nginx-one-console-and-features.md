@@ -1,5 +1,5 @@
 ---
-title: "Explore NGINX One Console features"
+title: "Lab 3: Explore NGINX One Console features"
 weight: 300
 toc: true
 nd-content-type: tutorial
@@ -44,7 +44,8 @@ Make sure you have:
 Open NGINX One Console and select **Overview**. Here are the key metrics you’ll see and what they tell you:
 
 <span style="display: inline-block;">
-{{< img src="nginx-one/images/nginx-one-dashboard.png" >}}
+{{< img src="nginx-one/images/nginx-one-dashboard.png"
+    alt="Overview dashboard showing panels for instance availability, NGINX versions, operating systems, certificates status, configuration recommendations, CVE severity, CPU and memory utilization, disk space usage, unsuccessful response codes, and network usage." >}}
 </span>
 
 - **Instance availability**  
@@ -106,6 +107,8 @@ Use the **CVEs** panel to investigate vulnerabilities in your instances:
 
 The **Certificates** panel shows the total number of certificates and their status distribution across all instances.
 
+**Note:** NGINX One only scans certificates that are part of a running NGINX configuration.
+
 The statuses mean:
 
 - **Expired**: The certificate’s expiration date is past.  
@@ -113,7 +116,6 @@ The statuses mean:
 - **Valid**: The certificate is not near expiration.  
 - **Not Ready**: NGINX One can’t determine this certificate’s status.  
 
-> **Note:** NGINX One only scans certificates that are part of a running NGINX configuration.
 
 1. In the **Certificates** panel, select **Expiring** to list certificates that will expire soon.  
 2. Select your `$NAME-oss1` instance and switch to the **Unmanaged** tab to see each certificate’s name, status, expiration date, and subject.  
@@ -124,27 +126,35 @@ The statuses mean:
 
 ## 4. Configuration recommendations
 
-Recommendations are color-coded:
+The **Configuration Recommendations** pane provides actionable suggestions:
 
 - **Orange** = Security  
 - **Green** = Optimization  
-- **Blue** = Best practices  
+- **Blue** = Best practices
 
-1. On **Overview > Config Recommendations**, Select **Security** then select `$NAME-oss1`.  
-2. Switch to the **Configuration** tab. Files with issues show colored badges.  
-3. Select a file (for example, `cafe.example.com.conf`) to view recommendations with line numbers.  
-4. Use the **Edit** (pencil) icon to enter edit mode.  
-5. Fix issues or apply best practices. Select **Next** to see a diff, then **Publish** to apply changes.  
+1. In the Console, navigate to **Overview > Dashboard**.  
+2. In the **Configuration Recommendations** pane, select **Security** to view instances with security-related suggestions.  
+3. Select an instance hostname.  
+4. Switch to the **Configuration** tab.  
+5. Select a config file (for example, `cafe.example.com.conf`) to see recommendations highlighted by line number.  
+6. Select **Edit Configuration** (pencil icon) to enter edit mode.  
+7. Update the configuration to address each recommendation.  
+8. Select **Next** to preview your changes, then select **Save and Publish** to apply them.
+
+<span style="display: inline-block;">
+{{< img src="nginx-one/images/config-recommendation.png"
+    alt="NGINX One Console configuration recommendation panel showing a Best Practice warning: ‘log should not be set to off on line 34’, with a pencil icon to enter edit mode." >}}
+</span>
 
 ---
 
 ## 5. AI Assistant
 
-Highlight any config text (directive, variable, or phrase) and Select **Explain with AI**. The AI will provide:
+Highlight any configuration text, such as a directive, variable, or phrase, in a config preview and select **Explain with AI**. The AI Assistant panel shows:
 
-- Definitions of directives and variables  
-- Best-practice tips  
-- Use-case guidance  
+- A concise definition of the selected element  
+- Practical best-practice tips  
+- Guidance on common use cases  
 
 Try it on:
 
@@ -152,7 +162,13 @@ Try it on:
 - `proxy_buffering off`  
 - `$upstream_response_time`  
 
-> **Pro tip:** Use AI to explore logging variables or other obscure directives without leaving the Console.
+<span style="display: inline-block;">
+{{< img src="nginx-one/images/ai-assistant.png"
+    alt="NGINX One AI Assistant panel showing a highlighted $upstream_response_time snippet alongside the assistant’s response with Purpose and Guidance headings." >}}
+</span>
+
+> **Pro tip:** You can learn about NGINX directives and variables without leaving the Console.
+
 
 ---
 
@@ -164,4 +180,5 @@ When you’re ready, move on to [Lab 4 →](../lab4/readme.md)
 
 ## References
 
-- [NGINX One Console docs](https://docs.nginx.com/nginx-one/)
+- [NGINX One Console docs]({{< ref "nginx-one/" >}})
+- [CVE.org](https://www.cve.org/)
