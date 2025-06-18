@@ -4,7 +4,7 @@ docs: DOCS-1324
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| NGINX Instance Manager chart | chart                      | Instance Manager |
+| NGINX Instance Manager chart | Chart                      | Instance Manager |
 |------------------------------|----------------------------|------------------|
 | 2.0.0                        | nginx-stable/nim           | 2.20.0           |
 | 2.19.0                       | nginx-stable/nms-hybrid    | 2.20.0           |
