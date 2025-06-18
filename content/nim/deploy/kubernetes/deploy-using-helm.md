@@ -213,7 +213,7 @@ helm install nim nginx-stable/nim \
 
 - Replace `<your-password>` with your preferred admin password.
 - Replace `<your-values.yaml>` with the path to your customized values.yaml file.
-- Replace `<chart-version>` with the version you want to install (for example, `2.20.0`).
+- Replace `<chart-version>` with the version you want to install (for example, `2.0.0`).
 
 **Note:** You can set the ClickHouse mode at install time instead of editing `values.yaml`:
 
@@ -269,13 +269,13 @@ helm upgrade nim nginx-stable/nim \
   -n nim \
   --set adminPasswordHash=$(openssl passwd -6 '<your-password>') \
   -f <path-to-your-values.yaml> \
-  --version <nim-version> \
+  --version <chart-version> \
   --wait
 ```
 
-- Replace `<your-password>` with a secure password that includes uppercase and lowercase letters, numbers, and special characters.
-- Replace `<path-to-your-values.yaml>` with the full path to your configuration file.
-- Replace `<nim-version>` with the version of NGINX Instance Manager you want to upgrade to.
+- Replace `<your-password>` with your preferred admin password.
+- Replace `<your-values.yaml>` with the path to your customized values.yaml file.
+- Replace `<chart-version>` with the version you want to install (for example, `2.0.0`).
 
 
 {{< call-out "important" "Save the password!" >}}
