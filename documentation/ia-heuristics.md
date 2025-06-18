@@ -37,13 +37,19 @@ If critical details are not available to a user based on the method they use to 
 - How does the structure reduce noise for the user journey?
 - Does the structure fulfil the expectations of the user persona?
 
-_Clear_ concerns 
+_Clear_ concerns whether or not the information aligns with the user's background and if it is devoid of distractions.
+
+The structure should streamline the user experience for navigating and reading information, allowing them to understand intent without ambiguity.
 
 ## Communicative
 
 - Is the structure effective in recognising the user's state?
 - Are the structure and information consistent?
 - How does the structure support the information being shared?
+
+_Communicative_ concerns the effectiveness of the user journey.
+
+A user should be able to make informed decisions about their actions in a timely manner, and able to orient themselves within the structure.
 
 ## Controllable
 
@@ -71,6 +77,10 @@ The credibility of information can be considered based on where it exists in ove
 - Is supporting information provided where useful?
 - How does the information exceed expectation?
 
+_Delightful_ is the step beyond fulfilling basic expectations.
+
+This concerns overall quality of the user experience, such as smooth transitions between mediums and useful recommendations.
+
 ## Findable
 
 - Is it easy for users to locate information?
@@ -97,8 +107,16 @@ This can be examined from multiple angles, such as if the structure is consisten
 - Is the information complete?
 - Does the information serve both existing and new users?
 
+_Useful_ concerns the baseline for the user experience by enabling them to complete tasks.
+
+Information is useful if it accomodates new and old users, and if it enables them to concisely navigate through context with confidence.
+
 ## Valuable
 
 - Is the information desireable to the user?
 - Does it fulfill expectations across all channels?
 - How is success quantified?
+
+_Valuable_ concerns if the information is desireable, and if the story presented compelling to the user.
+
+This can be emphasized by highlighting information that aligns with the user's mental models and the tangible benefits of a particular use case.
