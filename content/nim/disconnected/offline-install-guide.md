@@ -21,7 +21,7 @@ The script installs:
 
 NGINX Plus is not supported in disconnected mode.
 
-If you need to install earlier versions of NGINX or NGINX Instance Manager, follow the [manual installation process](({{< ref "nim/deploy/vm-bare-metal/install-nim-manual.md" >}})) instead.
+If you need to install earlier versions of NGINX or NGINX Instance Manager, follow the [manual installation process]({{< ref "nim/disconnected/offline-install-guide-manual.md" >}}) instead.
 
 ---
 
