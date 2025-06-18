@@ -7,7 +7,9 @@ docs: DOCS-1324
 | NGINX Instance Manager chart | Chart                      | Instance Manager |
 |------------------------------|----------------------------|------------------|
 | 2.0.0                        | nginx-stable/nim           | 2.20.0           |
-| 2.19.0                       | nginx-stable/nms-hybrid    | 2.20.0           |
+| 2.19.2                       | nginx-stable/nms-hybrid    | 2.19.2           |
+| 2.19.1                       | nginx-stable/nms-hybrid    | 2.19.1           |
+| 2.19.0                       | nginx-stable/nms-hybrid    | 2.19.0           |
 | 1.15.0                       | ngnx-stable/nms            | 2.18.0           |
 | 1.14.4                       | ngnx-stable/nms            | 2.17.4           |
 | 1.14.0                       | ngnx-stable/nms            | 2.17.0           |
