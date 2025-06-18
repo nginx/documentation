@@ -38,13 +38,13 @@ This section outlines the recommendations for NGINX Instance Manager deployments
 
 We recommend using SSDs to enhance storage performance.
 
-{{<bootstrap-table "table table-striped table-bordered">}}
+{{< bootstrap-table "table table-striped table-bordered" >}}
 | Number of Data Plane Instances | CPU    | Memory   | Network   | Storage |
 |--------------------------------|--------|----------|-----------|---------|
 | 10                             | 2 vCPU | 4 GB RAM | 1 GbE NIC | 100 GB  |
 | 100                            | 2 vCPU | 4 GB RAM | 1 GbE NIC | 1 TB    |
 | 1000                           | 4 vCPU | 8 GB RAM | 1 GbE NIC | 3 TB    |
-{{</bootstrap-table>}}
+{{</ bootstrap-table >}}
 
 These values represent the minimum resources needed for deployments that fall under standard configurations.
 
@@ -52,22 +52,33 @@ These values represent the minimum resources needed for deployments that fall un
 
 For environments requiring more resources, **large configurations** are suitable. These configurations can support up to **300 upstream servers** and are designed for enterprise environments or applications handling high traffic and complex configurations, without NGINX App Protect.
 
-{{<bootstrap-table "table table-striped table-bordered">}}
+{{< bootstrap-table "table table-striped table-bordered" >}}
 | Number of Data Plane Instances | CPU    | Memory   | Network   | Storage |
 |--------------------------------|--------|----------|-----------|---------|
 | 50                             | 4 vCPU | 8 GB RAM | 1 GbE NIC | 1 TB    |
 | 250                            | 4 vCPU | 8 GB RAM | 1 GbE NIC | 2 TB    |
-{{</bootstrap-table>}}
+{{</ bootstrap-table >}}
 
 ### NGINX configuration deployments with NGINX App Protect {#system-sizing-app-protect}
 
 If using NGINX App Protect features in NGINX Instance Manager, this requires additional CPU and Memory for policy compilation and security monitoring features. At a minimum, 8gb Memory and 4 CPUs are required for a standard NGINX App Protect use case (under 20 NGINX Plus instances). The requirements are heavily dependent on the number of policies being managed, the frequency of updates and the number of events being that occur in the security monitoring feature.
 
+### Lightweight mode {#lightweight-mode}
+
+(New in 2.20.0) You can run NGINX Instance Manager without installing ClickHouse. This setup is useful if you don’t need monitoring data or prefer a simpler deployment. It reduces system requirements and removes the need to manage a metrics database. You can add ClickHouse later if your needs change. For instructions, see [Disable metrics collection]({{< ref "nim/system-configuration/configure-clickhouse.md#disable-metrics-collection" >}}).
+
+In Lightweight mode, we tested NGINX Instance Manager with ten managed NGINX instances and configuration publishing. It ran with as little as 1 CPU core and 1 GB of memory (without App Protect). When App Protect was enabled, we needed 2 CPU cores and 4 GB of memory to compile policies.
+
+These figures are guidelines only. They reflect the minimum tested configuration and may cause performance issues depending on your setup. For better performance, consider allocating more system resources.
+
+
 ### License and usage reporting only {#reporting-sizing}
 
-This section assumes you've configured NGINX Instance Manager to manage your NGINX instances for licensing and usage reporting only. NGINX commercial license and usage reporting is done in an “unmanaged” way, where NGINX sends a request periodically to NGINX Instance Manager solely for counting purposes. For more information, see how you would [Prepare your environment for reporting]({{< ref "/solutions/about-subscription-licenses.md#set-up-environment" >}}).
+This section applies when you’ve set up NGINX Instance Manager to handle licensing and usage reporting only. In this setup, NGINX instances report license and usage data in an "unmanaged" way. Each instance sends periodic updates to NGINX Instance Manager for counting purposes only.
 
-Therefore, the requirements for NGINX Instance Manager when used solely for licensing and usage reporting are minimal.
+For details on how to configure this setup, see [Prepare your environment for reporting]({{< ref "/solutions/about-subscription-licenses.md#set-up-environment" >}}).
+
+When used only for licensing and usage reporting, NGINX Instance Manager has minimal system requirements. We recommend using [Lightweight mode](#lightweight-mode) in this case to avoid the ClickHouse dependency, especially if you don’t plan to use other features.
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 | Number of Data Plane Instances | CPU    | Memory   | Network   | Storage |

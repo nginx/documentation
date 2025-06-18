@@ -19,9 +19,84 @@ The release notes for F5 NGINX Instance Manager highlight the latest features, i
 
 ---
 
+## 2.20.0
+
+June 16, 2025
+
+### Upgrade Paths {#2-20-0-upgrade-paths}
+
+NGINX Instance Manager 2.20.0 supports upgrades from these previous versions:
+
+- 2.17.0 - 2.19.2
+
+If your NGINX Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
+
+### What's New{#2-20-0-whats-new}
+This release includes the following updates:
+
+- {{% icon-feature %}} **Added support to report on multiple NGINX One subscriptions using a single instance of NGINX Instance Manager**<a name="2-20-0-whats-new-Added-support-to-report-on-multiple-NGINX-One-subscriptions-using-a-single-instance-of-NGINX-Instance-Manager"></a>
+
+   Customers can have multiple NGINX One subscriptions or licenses with different attributes (prod, nonprod, etc.). Now a single NGINX Instance Manager can receive usage from these instances and send a bulk usage report to F5.
+
+  We also simplified the licensing process for disconnected use cases. When running NGINX Instance Manager in disconnected mode, all features are enabled for 90 days when a JWT is uploaded. Customers have these 90 days to send the first usage report to activate the NGINX Instance Manager license.
+
+- {{% icon-feature %}} **Introducing lightweight mode**<a name="2-20-0-whats-new-Introducing-lightweight-mode"></a>
+
+   NGINX Instance Manager can now run in lightweight mode without the ClickHouse database dependency. This mode requires fewer resources and is perfect for customers who don’t need metrics-related functionality. It supports basic use cases such as:
+
+  - Fleet management
+  - WAF configuration
+  - Usage tracking
+  - Certificate management
+  - Template automation
+
+- {{% icon-feature %}} **Improved web analytics sent to F5**<a name="2-20-0-whats-new-Improved-web-analytics-sent-to-F5"></a>
+
+   NGINX Instance Manager now sends improved web analytics to F5. This helps F5 understand common use cases of NGINX Instance Manager and improve functionality.
+
+
+### Changes in Default Behavior{#2-20-0-changes-in-behavior}
+This release has the following changes in default behavior:
+
+- {{% icon-feature %}} **Breadcrumbs added for Overview, Manage, and Config templates**<a name="2-20-0-changes-in-behavior-Breadcrumbs-added-for-Overview,-Manage,-and-Config-templates"></a>
+
+  We have added breadcrumb navigation links for the "Overview", "Manage", and "Config" templates in the NGINX Instance Manager user interface.
+
+- {{% icon-feature %}} **Export instance groups to Excel**<a name="2-20-0-changes-in-behavior-Export-instance-groups-to-Excel"></a>
+
+  You can now export instance groups to a Microsoft Excel spreadsheet from the Instance Group section.
+
+- {{% icon-feature %}} **Export all instances functionality added**<a name="2-20-0-changes-in-behavior-Export-all-instances-functionality-added"></a>
+
+  NGINX Instance Manager’s export function only included currently visible instances, not the full list. Customers had to run separate exports and merge data manually.
+
+  An `Export All` button is now available under the Instances section. Clicking it downloads all instance details in a single Excel file.
+
+- {{% icon-feature %}} **Automatic feature enablement in disconnected instances on license upload**<a name="2-20-0-changes-in-behavior-Automatic-feature-enablement-in-disconnected-instances-on-license-upload"></a>
+
+
+  NGINX Instance Manager now enables all features by default when you upload a license to a disconnected instance. This update ensures customers can begin using the full capabilities of the system without additional configuration.
+
+  Customers have a 90-day window to complete the full license process. If they don’t complete it within this period, the instance is automatically deactivated.
+
+
+
+### Resolved Issues{#2-20-0-resolved-issues}
+
+This release fixes the following issues. Check the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic for more information on the latest resolved issues. Use your browser's search function to find the issue ID in the page.
+
+- {{% icon-resolved %}} The certificate stats are not displayed correctly in the Certificates and Keys page as well as the Dashboard page. (45991)
+
+
+### Known Issues{#2-20-0-known-issues}
+
+You can find information about known issues in the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic.
+
+---
+
 ## 2.19.2
 
-May 08, 2025
+May 06, 2025
 
 ### Upgrade Paths {#2-19-2-upgrade-paths}
 
@@ -188,11 +263,11 @@ This release includes the following updates:
 
   This [Docker Compose option]({{< ref "nim/deploy/docker/deploy-nginx-instance-manager-docker-compose.md" >}}) unlocks another easy, production-ready installation method for customers using Docker. It will also make upgrades easier when new Docker images are released by F5 NGINX. This option includes health checking, NGINX App Protect compilation support, and security monitoring.
 
-- {{% icon-feature %}} **Entitlement and visibility for NGINX Plus R33 – Telemetry reporting for network-restricted environments**<a name="2-18-0-whats-new-Entitlement-and-visibility-for-NGINX-Plus-R33-–-Telemetry-reporting-for-network-restricted-environments"></a>
+- {{% icon-feature %}} **Entitlement and visibility for NGINX Plus R33 – Telemetry reporting for disconnected environments**<a name="2-18-0-whats-new-Entitlement-and-visibility-for-NGINX-Plus-R33-–-Telemetry-reporting-for-disconnected-environments"></a>
 
-   If NGINX Instance Manager has internet access, customers can [automatically or manually send the usage data to F5]({{< ref "nim/admin-guide/license/report-usage-connected-deployment.md" >}}) as part of the new NGINX Plus R33 changes.
+   If NGINX Instance Manager has internet access, customers can [automatically or manually send the usage data to F5]({{< ref "nim/admin-guide/report-usage-connected-deployment.md" >}}) as part of the new NGINX Plus R33 changes.
 
-  For customers who have NGINX Instance Manager deployed in [network-restricted environments]({{< ref "nim/disconnected" >}}), this release also includes support for manual usage reporting. Customers can now manually license NGINX Instance Manager and export usage telemetry for fully disconnected environments. For usage reporting, customers can:
+  For customers who have NGINX Instance Manager deployed in [disconnected environments]({{< ref "nim/disconnected" >}}), this release also includes support for manual usage reporting. Customers can now manually license NGINX Instance Manager and export usage telemetry for fully disconnected environments. For usage reporting, customers can:
 
   - **Export the usage report**: Manually export the usage report from NGINX Instance Manager.
   - **Send the report to F5**: Submit the report to F5 for verification from a location with internet access.
@@ -692,7 +767,7 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **Use NGINX Plus Health Checks to easily track NGINX Plus Usage with NGINX Instance Manager**<a name="2-13-0-whats-new-Use-NGINX-Plus-Health-Checks-to-easily-track-NGINX-Plus-Usage-with-NGINX-Instance-Manager"></a>
 
-   The NGINX Plus Health Check feature now allows you to monitor the count of both NGINX Plus and NGINX App Protect instances that you've deployed. You can view this information in the "NGINX Plus" area of the "Instance Manager" web interface, or through the `/inventory` API. For guidance on how to set this up, refer to the following documentation: [View Count of NGINX Plus Instances]({{< ref "/nim/admin-guide/license/report-usage-connected-deployment.md" >}}).
+   The NGINX Plus Health Check feature now allows you to monitor the count of both NGINX Plus and NGINX App Protect instances that you've deployed. You can view this information in the "NGINX Plus" area of the "Instance Manager" web interface, or through the `/inventory` API. For guidance on how to set this up, refer to the following documentation: [View Count of NGINX Plus Instances]({{< ref "/nim/admin-guide/report-usage-connected-deployment.md" >}}).
 
 - {{% icon-feature %}} **Improved log output for better JSON parsing**<a name="2-13-0-whats-new-Improved-log-output-for-better-JSON-parsing"></a>
 
@@ -731,7 +806,7 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **New support for license tokens for automatic entitlement updates, renewals, and Flexible Consumption Reporting**<a name="2-12-0-whats-new-New-support-for-license-tokens-for-automatic-entitlement-updates,-renewals,-and-Flexible-Consumption-Reporting"></a>
 
-   NGINX Management Suite now supports license tokens formatted as a JSON Web Token (JWT). With JWT licensing, you can automatically update entitlements during subscription renewals or amendments, and you can automate reporting for the Flexible Consumption Program (FCP). For more information, see the [Add a License]({{< ref "/nim/admin-guide/license/add-license.md" >}}) topic.
+   NGINX Management Suite now supports license tokens formatted as a JSON Web Token (JWT). With JWT licensing, you can automatically update entitlements during subscription renewals or amendments, and you can automate reporting for the Flexible Consumption Program (FCP). For more information, see the [Add a License]({{< ref "/nim/admin-guide/add-license.md" >}}) topic.
 
 
 ### Resolved Issues{#2-12-0-resolved-issues}
@@ -1357,7 +1432,7 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **Track NGINX Plus usage over time**<a name="2-5-0-whats-new-Track-NGINX-Plus-usage-over-time"></a>
 
-   When viewing your NGINX Plus instances in the Instnace Manager web interface, you can set a date and time filter to review the [NGINX Plus instance count]({{< ref "/nim/admin-guide/license/report-usage-connected-deployment.md" >}}) for a specific period. Also, you can use the Instance Manager REST API to view the lowest, highest, and average number of NGINX Plus instances over time.
+   When viewing your NGINX Plus instances in the Instance Manager web interface, you can set a date and time filter to review the [NGINX Plus instance count]({{< ref "/nim/admin-guide/report-usage-connected-deployment.md" >}}) for a specific period. Also, you can use the Instance Manager REST API to view the lowest, highest, and average number of NGINX Plus instances over time.
 
 - {{% icon-feature %}} **New helm charts for each release of Instance Manager**<a name="2-5-0-whats-new-New-helm-charts-for-each-release-of-Instance-Manager"></a>
 
@@ -1400,7 +1475,7 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **See which of your NGINX Plus instances have NGINX App Protect installed**<a name="2-4-0-whats-new-See-which-of-your-NGINX-Plus-instances-have-NGINX-App-Protect-installed"></a>
 
-   Now, when you [view your NGINX Plus inventory]({{< ref "/nim/admin-guide/license/report-usage-connected-deployment.md" >}}), you can see which instances have [NGINX App Protect](https://www.nginx.com/products/nginx-app-protect/) installed. NGINX App Protect is a modern app‑security solution that works seamlessly in DevOps environments as a robust WAF or app‑level DoS defense, helping you deliver secure apps from code to customer.
+   Now, when you [view your NGINX Plus inventory]({{< ref "/nim/admin-guide/report-usage-connected-deployment.md" >}}), you can see which instances have [NGINX App Protect](https://www.nginx.com/products/nginx-app-protect/) installed. NGINX App Protect is a modern app‑security solution that works seamlessly in DevOps environments as a robust WAF or app‑level DoS defense, helping you deliver secure apps from code to customer.
 
 
 ### Changes in Default Behavior{#2-4-0-changes-in-behavior}
@@ -1494,7 +1569,7 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **Track the details for your NGINX Plus instances**<a name="2-3-0-whats-new-Track-the-details-for-your-NGINX-Plus-instances"></a>
 
-   Easily track your NGINX Plus instances from the new NGINX Plus inventory list page. [View the current count for all your NGINX Plus instances]({{< ref "/nim/admin-guide/license/report-usage-connected-deployment.md" >}}), as well as each instance's hostname, UID, version, and the last time each instance was reported to Instance Manager. Select the `Export` button to export the list of NGINX Plus instances to a `.csv` file.
+   Easily track your NGINX Plus instances from the new NGINX Plus inventory list page. [View the current count for all your NGINX Plus instances]({{< ref "/nim/admin-guide/report-usage-connected-deployment.md" >}}), as well as each instance's hostname, UID, version, and the last time each instance was reported to Instance Manager. Select the `Export` button to export the list of NGINX Plus instances to a `.csv` file.
 
 - {{% icon-feature %}} **Explore events in NGINX Instance Manager with the Events Catalogs API**<a name="2-3-0-whats-new-Explore-events-in-NGINX-Instance-Manager-with-the-Events-Catalogs-API"></a>
 

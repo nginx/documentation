@@ -7,7 +7,20 @@ nd-docs: "DOCS-1092"
 
 This document describes the requirements for NGINX Agent v2.
 
-## Supported distributions
+This document provides technical specifications for NGINX Agent. It includes information on supported distributions, deployment environments, NGINX versions, sizing recommendations, and logging.
+
+## NGINX Agent v3.0 Compatibility
+{{< bootstrap-table "table table-striped table-bordered" >}}
+| NGINX Product                | Agent Version  |
+|------------------------------|----------------|
+| **NGINX One Console**        | 2.x            |
+| **NGINX Gateway Fabric**     | 3.x            |
+| **NGINX Plus**               | 2.x, 3.x       |
+| **NGINX Ingress Controller** | 2.x            |
+| **NGINX Instance Manager**   | 2.x            |
+{{< /bootstrap-table >}}
+
+## Supported Distributions
 
 NGINX Agent can run in most environments. We support the following distributions:
 

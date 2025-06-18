@@ -12,7 +12,7 @@ Monitoring your application's performance is crucial for maintaining its reliabi
 
 Refer to the [Azure monitor overview](https://docs.microsoft.com/en-us/azure/azure-monitor/overview) documentation from Microsoft to learn more about Azure Monitor.
 
-### Prerequisites
+## Prerequisites
 
 - A system assigned managed identity with `Monitoring Metrics Publisher` role.
 
@@ -25,7 +25,7 @@ Azure Monitor will collects metrics from the NGINXaaS deployment automatically i
 ## Exporting
 You can export Azure Monitor metrics to other destinations like Log Analytics workspace, Azure Storage Account, Azure Event Hubs or Azure Monitor partner solutions using Diagnostic Setting. For more information, see the [Metrics diagnostic setting](https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/diagnostic-settings).
 
-To configure diagnostic settings for a service, see [Create diagnostic settings in Azure Monitor](https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/create-diagnostic-settings).
+To configure diagnostic settings for a service, see [Create diagnostic settings in Azure Monitor](https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/create-diagnostic-settings). You can export metrics by selecting the `AllMetrics` category in diagnostic settings.
 
 {{<note>}} Not all metrics are exportable via diagnostic settings, for a list of exportable metrics, see [NGINXaaS exportable metrics](https://learn.microsoft.com/en-us/azure/azure-monitor/reference/supported-metrics/nginx-nginxplus-nginxdeployments-metrics).{{</note>}}
 

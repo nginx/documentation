@@ -148,7 +148,7 @@ The NLK controller can be installed in your Kubernetes cluster using either Helm
 Install the NLK controller using `helm install`. Be sure your kubectl context is pointed at the desired cluster.
 
 ```bash
-helm install nlk oci://registry-1.docker.io/nginxcharts/nginxaas-loadbalancer-kubernetes --version 1.0.0 \
+helm install nlk oci://registry-1.docker.io/nginxcharts/nginxaas-loadbalancer-kubernetes --version 1.1.1 \
   --set "nlk.dataplaneApiKey=${keyValue}" \
   --set "nlk.config.nginxHosts=${dataplaneAPIEndpoint}nplus"
 ```
