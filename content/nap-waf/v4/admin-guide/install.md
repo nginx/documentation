@@ -32,7 +32,7 @@ NGINX App Protect WAF supports the following operating systems:
 - [Debian 11 (Bullseye) & 12 (Bookworm)](#debian-10--debian-11--debian-12-installation)
 - [Oracle Linux 8.1.x and above](#oracle-linux-81-installation)
 - [RHEL 8.1.x and above](#rhel-81-installation)
-- [RHEL 9 and above](#rhel-9-installation)
+- [RHEL 9, Rocky Linux 9 and above](#rhel-9-installation)
 - [Ubuntu 22.04 (Jammy) & 24.04 (Noble)](#ubuntu-installation)
 
 The NGINX App Protect WAF package has the following dependencies:
@@ -640,7 +640,7 @@ If a user other than **nginx** is to be used, note the following:
 
 ---
 
-## RHEL 9+ Installation
+## RHEL 9+ / Rocky Linux 9 Installation
 
 1. If you already have NGINX packages in your system, back up your configs and logs:
 
@@ -665,6 +665,12 @@ If a user other than **nginx** is to be used, note the following:
 4. Copy the above two files to the RHEL server's `/etc/ssl/nginx/` directory. Use an SCP client or another secure file transfer tool to perform this task.
 
 5. Install prerequisite packages:
+
+     {{< note >}}For Rocky Linux: {{< /note >}}
+    ```shell
+    sudo dnf -y install wget ca-certificates 'dnf-command(config-manager)'
+    sudo dnf config-manager --set-enabled crb
+    ```
 
     ```shell
     sudo dnf install ca-certificates wget
@@ -1757,7 +1763,7 @@ For RHEL 8.1+ / Oracle Linux 8.1+:
 wget -P /etc/packages https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
 ```
 
-For RHEL 9+:
+For RHEL 9+ / Rocky Linux 9:
 
 ```shell
 wget -P /etc/packages https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
@@ -1962,7 +1968,7 @@ After having updated the Attack Signature package you have to reload the configu
     sudo dnf downgrade app-protect-attack-signatures-2019.07.16
     ```
 
-### RHEL 9+
+### RHEL 9+ / Rocky Linux 9
 
 1. To add NGINX App Protect WAF Security Updates repository, download the file `app-protect-9.repo` to `/etc/yum.repos.d`:
 
@@ -2183,7 +2189,7 @@ Example: app-protect-threat-campaigns-2022.07.21
     sudo dnf install app-protect-threat-campaigns-2022.07.21
     ```
 
-### RHEL 9+
+### RHEL 9+ / Rocky Linux 9
 
 1. If not already configured, add NGINX App Protect WAF Security Updates repository by downloading the file `app-protect-9.repo` to `/etc/yum.repos.d`:
 
@@ -2379,7 +2385,7 @@ The App Protect Bot Signatures is named: app-protect-bot-signatures and it is a 
     sudo dnf downgrade app-protect-bot-signatures-2023.11.14
     ```
 
-### RHEL 9+
+### RHEL 9+ / Rocky Linux 9
 
 1. If not already configured, add NGINX App Protect WAF Security Updates repository by downloading the file `app-protect-9.repo` to `/etc/yum.repos.d`:
 
@@ -2566,7 +2572,7 @@ In case of using the prebuilt SELinux policy module for NGINX App Protect WAF (a
 
 You can uninstall the App Protect in below Operating Systems by using the following commands:
 
-### RHEL 8.1+ / Oracle Linux 8.1+ / RHEL 9+
+### RHEL 8.1+ / Oracle Linux 8.1+ / RHEL 9+ / Rocky Linux 9
 
 ```shell
 sudo dnf remove app-protect app-protect-selinux
@@ -2604,7 +2610,7 @@ app-protect-bot-signatures
 
 ## Upgrading App Protect to a Specific Version
 
-### RHEL 8.1+ / Oracle Linux 8.1+ / RHEL 9+
+### RHEL 8.1+ / Oracle Linux 8.1+ / RHEL 9+ / Rocky Linux 9
 
 1. Upgrade the NGINX App Protect WAF to the specific version:
 
@@ -2658,7 +2664,7 @@ app-protect=27+3.1088.2-1~[OS_CODENAME]
 
 ## Upgrading App Protect to the latest version
 
-### RHEL 8.1+ / RHEL 9+ / Oracle Linux 8.1+ 
+### RHEL 8.1+ / RHEL 9+ / Oracle Linux 8.1+ / Rocky Linux 9
 
 Upgrade the NGINX App Protect WAF to the latest 4.x version:
 
