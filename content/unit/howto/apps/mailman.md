@@ -2,6 +2,7 @@
 title: Mailman Web
 toc: true
 weight: 800
+docs: DOCS-1721
 ---
 
 To install and run the web UI for the [Mailman 3](https://docs.list.org/en/latest/index.html) suite using Unit:

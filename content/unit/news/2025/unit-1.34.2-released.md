@@ -1,6 +1,7 @@
 ---
 title: Unit 1.34.2 Released
 weight: 900
+docs: DOCS-1774
 ---
 
 We are pleased to announce the release of NGINX Unit 1.34.2. This is a maintenance release that fixes a couple of issues in the Java WebSocket code within the Java language module.

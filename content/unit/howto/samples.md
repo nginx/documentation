@@ -2,6 +2,7 @@
 title: App samples
 toc: true
 weight: 800
+docs: DOCS-1714
 ---
 
 
