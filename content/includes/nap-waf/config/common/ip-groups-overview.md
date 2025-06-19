@@ -1,11 +1,11 @@
-IP groups is a feature to organize lists of allowed and forbidden IP addresses across several lists with common attributes.
+IP address lists is a feature to organize lists of allowed and forbidden IP addresses across several lists with common attributes.
 
 This allows you to control unique policy settings for incoming requests based on specific IP addresses.
 
-Each IP Group contains a unique name, enforcement type (_always_, _never_ and _policy-default_), and list of IP addresses.
+Each IP address list contains a unique name, enforcement type (_always_, _never_ and _policy-default_), and list of IP addresses.
 
 
-An example of a declarative policy using IP Groups configuration: 
+An example of a declarative policy using IP address lists configuration: 
 
 ```json
 { 
@@ -65,7 +65,7 @@ Example of the file external_ip_groups.json
 
 ```json
 { 
-    "name": "External Ip Groups List",
+    "name": "External IP address lists",
     "description": "Optional Description",
     "blockRequests": "always",
     "setGeolocation": "IR",
