@@ -1,5 +1,5 @@
 ---
-title: Wasm Components: Working with the Spin SDK for Rust
+title: Wasm Components - Working with the Spin SDK for Rust
 weight: 500
 docs: DOCS-1765
 ---
