@@ -68,6 +68,12 @@ Please follow these steps before you install either NGINX Open Source or NGINX P
 
 {{%/tab%}}
 
+{{%tab name="Rocky Linux 9"%}}
+
+{{< include "nap-waf/config/v5/host-based-nginx-instructions/common-steps-with-dnf.md" >}}
+
+{{%/tab%}}
+
 {{%tab name="Ubuntu"%}}
 
 {{< include "nap-waf/config/v5/host-based-nginx-instructions/common-steps-with-ubuntu.md" >}}
@@ -106,6 +112,12 @@ Please follow these steps before you install either NGINX Open Source or NGINX P
 {{%/tab%}}
 
 {{%tab name="RHEL"%}}
+
+{{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-oss-centos.md" >}}
+
+{{%/tab%}}
+
+{{%tab name="Rocky Linux 9"%}}
 
 {{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-oss-centos.md" >}}
 
@@ -166,7 +178,7 @@ sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/nginx-plus-8.rep
 
 {{%/tab%}}
 
-{{%tab name="RHEL 9"%}}
+{{%tab name="RHEL 9 / Rocky Linux 9"%}}
 
 Download the NGINX Plus repository file [plus-9.repo](https://cs.nginx.com/static/files/plus-9.repo) to `/etc/yum.repos.d`:
 
@@ -384,6 +396,11 @@ Follow these steps before you install NGINX Open Source or NGINX Plus.
 {{< include "nap-waf/config/v5/host-based-nginx-instructions/common-steps-with-dnf.md" >}}
 
 {{%/tab%}}
+{{%tab name="Rocky Linux 9"%}}
+
+{{< include "nap-waf/config/v5/host-based-nginx-instructions/common-steps-with-dnf.md" >}}
+
+{{%/tab%}}
 {{%tab name="Ubuntu 20.04"%}}
 
 {{< include "nap-waf/config/v5/host-based-nginx-instructions/common-steps-with-ubuntu.md" >}}
@@ -571,7 +588,7 @@ Follow these steps before you install NGINX Open Source or NGINX Plus.
     ```
 
 {{%/tab%}}
-{{%tab name="RHEL 9"%}}
+{{%tab name="RHEL 9 / Rocky Linux 9"%}}
 
 {{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-oss-centos.md" >}}
 
@@ -747,7 +764,7 @@ Then you can move onto the next step, depending on your chosen operating system.
     ```
 
 {{%/tab%}}
-{{%tab name="RHEL 9"%}}
+{{%tab name="RHEL 9 / Rocky Linux 9"%}}
 
 {{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-plus-centos.md" >}}
 
@@ -1158,7 +1175,7 @@ sudo dnf remove app-protect-module-plus
 ```
 
 {{%/tab%}}
-{{%tab name="RHEL 9"%}}
+{{%tab name="RHEL 9 / Rocky Linux 9"%}}
 
 For NGINX Open Source
 Uninstall the NGINX App Protect WAF v5 package:
