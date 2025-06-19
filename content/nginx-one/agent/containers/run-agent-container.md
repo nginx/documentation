@@ -45,21 +45,8 @@ Ensure you are using the correct image version. Replace `latest` with the desire
 Create a configuration file named `nginx-agent.conf` in your current directory
 and populate the file with the following structure:
 
-```yaml
-command:
-  server:
-    host: "<NGINX-One-Console-URL>" # Command server host
-    port: 443                       # Command server port
-  auth:
-    token: "<your-data-plane-key-here>" # Authentication token for the command server
-  tls:
-    skip_verify: false
-```
 
-Replace the placeholder values:
-
-- `<NGINX-One-Console-URL>`: The URL of your NGINX One Console instance.
-- `<your-data-plane-key-here>`: Your Data Plane access token.
+{{< include "/nginx-one/conf/nginx-agent-conf.md" >}}
 
 
 ## Run the container
