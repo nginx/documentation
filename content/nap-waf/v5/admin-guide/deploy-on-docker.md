@@ -105,6 +105,11 @@ CMD ["nginx", "-g", "daemon off;"]
 {{< include "nap-waf/config/v5/build-nginx-image-oss/build-rhel.md" >}}
 
 {{%/tab%}}
+{{%tab name="Rocky Linux 9"%}}
+
+{{< include "nap-waf/config/v5/build-nginx-image-oss/build-rhel.md" >}}
+
+{{%/tab%}}
 {{%tab name="Ubuntu"%}}
 
 {{< include "nap-waf/config/v5/build-nginx-image-oss/build-ubuntu.md" >}}
@@ -180,6 +185,11 @@ CMD ["nginx", "-g", "daemon off;"]
 
 {{%/tab%}}
 {{%tab name="RHEL"%}}
+
+{{< include "nap-waf/config/v5/build-nginx-image-plus/build-rhel.md" >}}
+
+{{%/tab%}}
+{{%tab name="Rocky Linux 9"%}}
 
 {{< include "nap-waf/config/v5/build-nginx-image-plus/build-rhel.md" >}}
 
@@ -492,6 +502,11 @@ Proceed, by creating a `Dockerfile` using one of the examples provided below.
 {{< include "nap-waf/config/v5/build-nginx-image-oss/build-rhel.md" >}}
 
 {{%/tab%}}
+{{%tab name="Rocky Linux 9"%}}
+
+{{< include "nap-waf/config/v5/build-nginx-image-oss/build-rhel.md" >}}
+
+{{%/tab%}}
 {{%tab name="Ubuntu"%}}
 
 {{< include "nap-waf/config/v5/build-nginx-image-oss/build-ubuntu.md" >}}
@@ -520,6 +535,11 @@ You are ready to [Build the image](#build-image-sub)
 
 {{%/tab%}}
 {{%tab name="RHEL"%}}
+
+{{< include "nap-waf/config/v5/build-nginx-image-plus/build-rhel.md" >}}
+
+{{%/tab%}}
+{{%tab name="Rocky Linux 9"%}}
 
 {{< include "nap-waf/config/v5/build-nginx-image-plus/build-rhel.md" >}}
 
