@@ -1,8 +1,8 @@
-#### IP-Groups feature as part of Override Rules feature.
+#### IP-Address-Lists feature as part of Override Rules feature.
 
 The Override Rules feature allows you to modify original or parent policy settings.
 
-Rules are defined using specific conditions, which can include an IP group based on the declarative policy JSON schema.
+Rules are defined using specific conditions, which can include an IP Address Lists based on the declarative policy JSON schema.
 
 When triggered, the rule is applied to the _clientIp_ attribute using the _matches_ function.
 
@@ -46,7 +46,7 @@ Here is a policy example:
 }
 ```
 
-The previous example policy contains an IP group with the name "standalone", used for the override rule condition "clientIp.matches(ipAddressLists['standalone'])".
+The previous example policy contains an IP address lists with the name "standalone", used for the override rule condition "clientIp.matches(ipAddressLists['standalone'])".
 The condition means that the rule enforcement is applied and override base policy enforcement when clientIp is matched to one of ipAddresses in ipAddressList with name "standalone". 
 The value used for the override condition must exist and exactly match the name in "ip-address-lists".  
 
