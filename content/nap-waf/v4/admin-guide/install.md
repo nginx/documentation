@@ -32,7 +32,7 @@ NGINX App Protect WAF supports the following operating systems:
 - [Debian 11 (Bullseye) & 12 (Bookworm)](#debian-10--debian-11--debian-12-installation)
 - [Oracle Linux 8.1.x and above](#oracle-linux-81-installation)
 - [RHEL 8.1.x and above](#rhel-81-installation)
-- [RHEL 9, Rocky Linux 9 and above](#rhel-9-installation)
+- [RHEL 9,  Linux 9 and above](#rhel-9-installation)
 - [Ubuntu 22.04 (Jammy) & 24.04 (Noble)](#ubuntu-installation)
 
 The NGINX App Protect WAF package has the following dependencies:
@@ -666,12 +666,13 @@ If a user other than **nginx** is to be used, note the following:
 
 5. Install prerequisite packages:
 
-     {{< note >}}For Rocky Linux: {{< /note >}}
+    - For Rocky Linux:
     ```shell
     sudo dnf -y install wget ca-certificates 'dnf-command(config-manager)'
     sudo dnf config-manager --set-enabled crb
+    sudo dnf install ca-certificates wget
     ```
-
+    - For RHEL
     ```shell
     sudo dnf install ca-certificates wget
     ```
