@@ -14,7 +14,7 @@ type:
 
 Load balancing across multiple application instances is a commonly used technique for optimizing resource utilization, maximizing throughput, reducing latency, and ensuring fault‑tolerant configurations.
 
-The [F5 NGINX Plus for Load Balancing and Scaling](https://www.nginx.com/resources/webinars/nginx-plus-for-load-balancing-30-min/) webinar offers a deep dive on techniques to build large‑scale, highly available web services.
+Watch the [F5 NGINX Plus for Load Balancing and Scaling](https://www.nginx.com/resources/webinars/nginx-plus-for-load-balancing-30-min/) webinar, for a deep dive on techniques to build large‑scale, highly available web services.
 
 NGINX and NGINX Plus can be used in different deployment scenarios as a [very efficient HTTP load balancer](https://www.nginx.com/blog/nginx-load-balance-deployment-models/).
 
@@ -22,9 +22,9 @@ NGINX and NGINX Plus can be used in different deployment scenarios as a [very ef
 <span id="proxy_pass"></span>
 ## Proxy HTTP Traffic to a Group of Servers
 
-The first step in using NGINX Plus or NGINX Open Source to load balance across a group of servers is to define the group of servers. Define the group of servers with the [`upstream`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#upstream) directive. The directive is placed in the [`http`](https://nginx.org/en/docs/http/ngx_http_core_module.html#http) context.
+Use NGINX Plus or NGINX Open Source to load balance across a group of servers. First, define the group of servers with the [`upstream`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#upstream) directive. Place the directive in the [`http`](https://nginx.org/en/docs/http/ngx_http_core_module.html#http) context.
 
-Servers in the group are configured using the [`server`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#server) directive (not to be confused with the `server` block that defines a virtual server running on NGINX). For example, the following configuration defines a group named **backend** and consists of three server configurations. (This may resolve to more than three actual servers):
+Servers in the group are configured using the [`server`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#server) directive (not to be confused with the `server` block that defines a virtual server running on NGINX). For example, the following configuration defines a group named **backend** and consists of three server configurations. This may resolve to more than three actual servers:
 
 ```nginx
 http {
