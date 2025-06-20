@@ -6,6 +6,7 @@ product: NGINX-PLUS
 title: Single Sign-On with Amazon Cognito
 toc: true
 weight: 200
+docs: DOCS-1685
 ---
 
 This guide explains how to enable single sign-on (SSO) for applications being proxied by F5 NGINX Plus. The solution uses OpenID Connect as the authentication mechanism, with [Amazon Cognito](https://aws.amazon.com/cognito/) as the Identity Provider (IdP), and NGINX Plus as the Relying Party, or OIDC client application that verifies user identity.
