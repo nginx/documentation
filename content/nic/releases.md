@@ -2,18 +2,18 @@
 title: Releases
 weight: 2100
 toc: true
-type: reference
-product: NIC
-docs: DOCS-616
+nd-content-type: reference
+nd-product: NIC
+nd-docs: DOCS-616
 ---
 ## 5.0.0
 
 16 Apr 2025
 
-Added support for [NGINX Plus R34](https://docs.nginx.com/nginx/releases/#nginxplusrelease-34-r34), users needing to use a forward proxy for license verification are now able to make use of the [`proxy`](https://nginx.org/en/docs/ngx_mgmt_module.html#proxy) directives available in F5 NGINX Plus.
+Added support for [NGINX Plus R34]({{< ref "/nginx/releases.md#nginxplusrelease-34-r34" >}}), users needing to use a forward proxy for license verification are now able to make use of the [`proxy`](https://nginx.org/en/docs/ngx_mgmt_module.html#proxy) directives available in F5 NGINX Plus.
 
 {{< important >}}
-With the removal of the OpenTracing dynamic module from [NGINX Plus R34](https://docs.nginx.com/nginx/releases/#nginxplusrelease-34-r34), NGINX Ingress Controller also removes full OpenTracing support.  This will affect users making use of OpenTracing with the ConfigMap, `server-snippets` & `location-snippets` parameters.  Support for tracing with [OpenTelemetry](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/opentelemetry/) will come in a future release.
+With the removal of the OpenTracing dynamic module from [NGINX Plus R34](({{< ref "/nginx/releases.md#nginxplusrelease-34-r34" >}}), NGINX Ingress Controller also removes full OpenTracing support.  This will affect users making use of OpenTracing with the ConfigMap, `server-snippets` & `location-snippets` parameters.  Support for tracing with [OpenTelemetry]({{< ref "/nginx/admin-guide/dynamic-modules/opentelemetry.md" >}}) will come in a future release.
 {{< /important >}}
 
 We have extended the rate-limit Policy to allow tiered rate limit groups with JWT claims.  This will also allow users to apply different rate limits to their `VirtualServer` or `VirtualServerRoutes` with the value of a JWT claim.  See [here](https://github.com/nginx/kubernetes-ingress/tree/v5.0.0/examples/custom-resources/rate-limit-tiered-jwt-claim/) for a working example.
@@ -102,11 +102,11 @@ versions: 1.25-1.32.
 
 16 Dec 2024
 
-With added support for [NGINX R33](https://docs.nginx.com/nginx/releases/#nginxplusrelease-33-r33), deployments of F5 NGINX Ingress Controller using NGINX Plus now require a valid JSON Web Token to run.
-Please see the [Upgrading to v4]({{< ref "/nic/installation/installing-nic/upgrade-to-v4#create-license-secret" >}}) for full details on setting up your license `Secret`.
+With added support for [NGINX R33]({{< ref "/nginx/releases.md#nginxplusrelease-33-r33" >}}), deployments of F5 NGINX Ingress Controller using NGINX Plus now require a valid JSON Web Token to run.
+Please see the [Upgrading to v4]({{< ref "/nic/installation/installing-nic/upgrade-to-v4.md#create-license-secret" >}}) for full details on setting up your license `Secret`.
 
 API Version `v1alpha1` of `GlobalConfiguration`, `Policy` and `TransportServer` resources are now deprecated.
-Please see [Update custom resource apiVersion]({{< ref "/nic/installation/installing-nic/upgrade-to-v4#update-custom-resource-apiversion" >}}) for full details on updating your resources.
+Please see [Update custom resource apiVersion]({{< ref "/nic/installation/installing-nic/upgrade-to-v4.md#update-custom-resource-apiversion" >}}) for full details on updating your resources.
 
 Updates have been made to our logging library. For a while, F5 NGINX Ingress Controller has been using the [golang/glog](https://github.com/golang/glog). For this release, we have moved to the native golang library [log/slog](https://pkg.go.dev/log/slog).
 This change was made for these reasons:
@@ -150,7 +150,7 @@ For more details on what this feature does, and how to configure it yourself, pl
 [Amazon ECR Public Gallery](https://gallery.ecr.aws/nginx/nginx-ingress) or [Quay.io](https://quay.io/repository/nginx/nginx-ingress).
 - For NGINX Plus, use the 4.0.0 images from the F5 Container registry or build your own image using the 4.0.0 source code
 - For Helm, use version 2.0.0 of the chart.
-- [Upgrading to v4]({{< ref "/nic/installation/installing-nic/upgrade-to-v4" >}})
+- [Upgrading to v4]({{< ref "/nic/installation/installing-nic/upgrade-to-v4.md" >}})
 
 ### <i class="fa-solid fa-life-ring"></i> Supported Platforms
 
@@ -197,10 +197,7 @@ When `v4.0.0` is released, the release notes will contain the required upgrade s
 [DockerHub](https://hub.docker.com/r/nginx/nginx-ingress/tags?page=1&ordering=last_updated&name=3.7.2),
 [GitHub Container](https://github.com/nginx/kubernetes-ingress/pkgs/container/kubernetes-ingress),
 [Amazon ECR Public Gallery](https://gallery.ecr.aws/nginx/nginx-ingress) or [Quay.io](https://quay.io/repository/nginx/nginx-ingress).
-- For NGINX Plus, use the 3.7.2 images from the F5 Container registry,
-the [AWS Marketplace](https://aws.amazon.com/marketplace/search/?CREATOR=741df81b-dfdc-4d36-b8da-945ea66b522c&FULFILLMENT_OPTION_TYPE=CONTAINER&filters=CREATOR%2CFULFILLMENT_OPTION_TYPE),
-the [GCP Marketplace](https://console.cloud.google.com/marketplace/browse?filter=partner:F5,%20Inc.&filter=solution-type:k8s&filter=category:networking)
-or build your own image using the 3.7.2 source code
+- For NGINX Plus, use the 3.7.2 images from the F5 Container registry, the AWS Marketplace, the GCP Marketplace or build your own image using the 3.7.2 source code.
 - For Helm, use version 1.4.2 of the chart.
 
 ### <i class="fa-solid fa-life-ring"></i> Supported Platforms
@@ -229,10 +226,7 @@ versions: 1.25-1.31.
 [DockerHub](https://hub.docker.com/r/nginx/nginx-ingress/tags?page=1&ordering=last_updated&name=3.7.1),
 [GitHub Container](https://github.com/nginx/kubernetes-ingress/pkgs/container/kubernetes-ingress),
 [Amazon ECR Public Gallery](https://gallery.ecr.aws/nginx/nginx-ingress) or [Quay.io](https://quay.io/repository/nginx/nginx-ingress).
-- For NGINX Plus, use the 3.7.1 images from the F5 Container registry,
-the [AWS Marketplace](https://aws.amazon.com/marketplace/search/?CREATOR=741df81b-dfdc-4d36-b8da-945ea66b522c&FULFILLMENT_OPTION_TYPE=CONTAINER&filters=CREATOR%2CFULFILLMENT_OPTION_TYPE),
-the [GCP Marketplace](https://console.cloud.google.com/marketplace/browse?filter=partner:F5,%20Inc.&filter=solution-type:k8s&filter=category:networking)
-or build your own image using the 3.7.1 source code
+- For NGINX Plus, use the 3.7.1 images from the F5 Container registry, the AWS Marketplace, the GCP Marketplace or build your own image using the 3.7.1 source code.
 - For Helm, use version 1.4.1 of the chart.
 
 ### <i class="fa-solid fa-life-ring"></i> Supported Platforms
@@ -290,10 +284,7 @@ When installing NGINX Ingress Controller via Helm, a uniquely named lease object
 [DockerHub](https://hub.docker.com/r/nginx/nginx-ingress/tags?page=1&ordering=last_updated&name=3.7.0),
 [GitHub Container](https://github.com/nginx/kubernetes-ingress/pkgs/container/kubernetes-ingress),
 [Amazon ECR Public Gallery](https://gallery.ecr.aws/nginx/nginx-ingress) or [Quay.io](https://quay.io/repository/nginx/nginx-ingress).
-- For NGINX Plus, use the 3.7.0 images from the F5 Container registry,
-the [AWS Marketplace](https://aws.amazon.com/marketplace/search/?CREATOR=741df81b-dfdc-4d36-b8da-945ea66b522c&FULFILLMENT_OPTION_TYPE=CONTAINER&filters=CREATOR%2CFULFILLMENT_OPTION_TYPE),
-the [GCP Marketplace](https://console.cloud.google.com/marketplace/browse?filter=partner:F5,%20Inc.&filter=solution-type:k8s&filter=category:networking)
-or build your own image using the 3.7.0 source code
+- For NGINX Plus, use the 3.7.0 images from the F5 Container registry, the AWS Marketplace, the GCP Marketplace or build your own image using the 3.7.0 source code.
 - For Helm, use version 1.4.0 of the chart.
 
 ### <i class="fa-solid fa-life-ring"></i> Supported Platforms
@@ -321,10 +312,7 @@ versions: 1.25-1.31.
 [DockerHub](https://hub.docker.com/r/nginx/nginx-ingress/tags?page=1&ordering=last_updated&name=3.6.2),
 [GitHub Container](https://github.com/nginx/kubernetes-ingress/pkgs/container/kubernetes-ingress),
 [Amazon ECR Public Gallery](https://gallery.ecr.aws/nginx/nginx-ingress) or [Quay.io](https://quay.io/repository/nginx/nginx-ingress).
-- For NGINX Plus, use the 3.6.2 images from the F5 Container registry,
-the [AWS Marketplace](https://aws.amazon.com/marketplace/search/?CREATOR=741df81b-dfdc-4d36-b8da-945ea66b522c&FULFILLMENT_OPTION_TYPE=CONTAINER&filters=CREATOR%2CFULFILLMENT_OPTION_TYPE),
-the [GCP Marketplace](https://console.cloud.google.com/marketplace/browse?filter=partner:F5,%20Inc.&filter=solution-type:k8s&filter=category:networking)
-or build your own image using the 3.6.2 source code
+- For NGINX Plus, use the 3.6.2 images from the F5 Container registry, the AWS Marketplace, the GCP Marketplace, or build your own image using the 3.6.2 source code.
 - For Helm, use version 1.3.2 of the chart.
 
 ### <i class="fa-solid fa-life-ring"></i> Supported Platforms
@@ -353,10 +341,7 @@ versions: 1.25-1.31.
 [DockerHub](https://hub.docker.com/r/nginx/nginx-ingress/tags?page=1&ordering=last_updated&name=3.6.1),
 [GitHub Container](https://github.com/nginx/kubernetes-ingress/pkgs/container/kubernetes-ingress),
 [Amazon ECR Public Gallery](https://gallery.ecr.aws/nginx/nginx-ingress) or [Quay.io](https://quay.io/repository/nginx/nginx-ingress).
-- For NGINX Plus, use the 3.6.1 images from the F5 Container registry,
-the [AWS Marketplace](https://aws.amazon.com/marketplace/search/?CREATOR=741df81b-dfdc-4d36-b8da-945ea66b522c&FULFILLMENT_OPTION_TYPE=CONTAINER&filters=CREATOR%2CFULFILLMENT_OPTION_TYPE),
-the [GCP Marketplace](https://console.cloud.google.com/marketplace/browse?filter=partner:F5,%20Inc.&filter=solution-type:k8s&filter=category:networking), the [Azure Marketplace](https://azuremarketplace.microsoft.com/en-gb/marketplace/apps/category/containers?page=1&search=f5&subcategories=container-apps)
-or build your own image using the 3.6.1 source code
+- For NGINX Plus, use the 3.6.1 images from the F5 Container registry, the AWS Marketplace, the GCP Marketplace, the Azure Marketplace or build your own image using the 3.6.1 source code.
 - For Helm, use version 1.3.1 of the chart.
 
 ### <i class="fa-solid fa-life-ring"></i> Supported Platforms
@@ -371,7 +356,7 @@ versions: 1.25-1.30.
 25 Jun 2024
 
 Added support for the latest generation of NGINX App Protect Web Application Firewall, v5. NGINX Ingress Controller will continue to support the NGINX App Protect v4 family to allow customers to implement new Policy Bundle workflow at their own pace.
-NGINX App Protect WAF v5 does not accept the JSON based policies, instead requiring users to compile a Policy Bundle outside of the NGINX Ingress Controller pod. Policy bundles contain a combination of custom Policy, signatures, and campaigns. Bundles can be compiled using either App Protect [compiler](https://docs.nginx.com/nginx-app-protect-waf/v5/admin-guide/compiler/), or [NGINX Instance Manager](https://docs.nginx.com/nginx-instance-manager/nginx-app-protect/manage-waf-security-policies/#list-security-policy-bundles). Read more in the [NGINX App Protect WAF V5]({{< ref "/nic/installation/integrations/app-protect-waf-v5/" >}})  topic.
+NGINX App Protect WAF v5 does not accept the JSON based policies, instead requiring users to compile a Policy Bundle outside of the NGINX Ingress Controller pod. Policy bundles contain a combination of custom Policy, signatures, and campaigns. Bundles can be compiled using either App Protect [compiler]({{< ref "/nap-waf/v5/admin-guide/compiler/" >}}), or [NGINX Instance Manager]({{< ref "/nim/nginx-app-protect/manage-waf-security-policies.md#list-security-policy-bundles" >}}). Read more in the [NGINX App Protect WAF V5]({{< ref "/nic/installation/integrations/app-protect-waf-v5/" >}})  topic.
 
 With this release, NGINX Ingress Controller is implementing a new image maintenance policy. Container images for subscribed users will be updated on a regular basis in-between releases to reduce the CVE vulnerabilities.
 Customers can observe the 3.6.x tag when listing images in the registry and select the latest image to update to for the current release.
@@ -402,10 +387,7 @@ Customers can observe the 3.6.x tag when listing images in the registry and sele
 [DockerHub](https://hub.docker.com/r/nginx/nginx-ingress/tags?page=1&ordering=last_updated&name=3.6.0),
 [GitHub Container](https://github.com/nginx/kubernetes-ingress/pkgs/container/kubernetes-ingress),
 [Amazon ECR Public Gallery](https://gallery.ecr.aws/nginx/nginx-ingress) or [Quay.io](https://quay.io/repository/nginx/nginx-ingress).
-- For NGINX Plus, use the 3.6.0 images from the F5 Container registry,
-the [AWS Marketplace](https://aws.amazon.com/marketplace/search/?CREATOR=741df81b-dfdc-4d36-b8da-945ea66b522c&FULFILLMENT_OPTION_TYPE=CONTAINER&filters=CREATOR%2CFULFILLMENT_OPTION_TYPE),
-the [GCP Marketplace](https://console.cloud.google.com/marketplace/browse?filter=partner:F5,%20Inc.&filter=solution-type:k8s&filter=category:networking), the [Azure Marketplace](https://azuremarketplace.microsoft.com/en-gb/marketplace/apps/category/containers?page=1&search=f5&subcategories=container-apps)
-or build your own image using the 3.6.0 source code
+- For NGINX Plus, use the 3.6.0 images from the F5 Container registry, the AWS Marketplace, the GCP Marketplace, the Azure Marketplace or build your own image using the 3.6.0 source code.
 - For Helm, use version 1.3.0 of the chart.
 
 ### <i class="fa-solid fa-life-ring"></i> Supported Platforms
@@ -436,10 +418,7 @@ versions: 1.25-1.30.
 [DockerHub](https://hub.docker.com/r/nginx/nginx-ingress/tags?page=1&ordering=last_updated&name=3.5.2),
 [GitHub Container](https://github.com/nginx/kubernetes-ingress/pkgs/container/kubernetes-ingress),
 [Amazon ECR Public Gallery](https://gallery.ecr.aws/nginx/nginx-ingress) or [Quay.io](https://quay.io/repository/nginx/nginx-ingress).
-- For NGINX Plus, use the 3.5.2 images from the F5 Container registry,
-the [AWS Marketplace](https://aws.amazon.com/marketplace/search/?CREATOR=741df81b-dfdc-4d36-b8da-945ea66b522c&FULFILLMENT_OPTION_TYPE=CONTAINER&filters=CREATOR%2CFULFILLMENT_OPTION_TYPE),
-the [GCP Marketplace](https://console.cloud.google.com/marketplace/browse?filter=partner:F5,%20Inc.&filter=solution-type:k8s&filter=category:networking), the [Azure Marketplace](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/nginxinc.nginx_ingress_premium?tab=Overview),
-or build your own image using the 3.5.2 source code
+- For NGINX Plus, use the 3.5.2 images from the F5 Container registry, the AWS Marketplace, the GCP Marketplace, the Azure Marketplace, or build your own image using the 3.5.2 source code
 - For Helm, use version 1.2.2 of the chart.
 
 ### <i class="fa-solid fa-life-ring"></i> Supported Platforms
@@ -470,10 +449,7 @@ versions: 1.25-1.30.
 [DockerHub](https://hub.docker.com/r/nginx/nginx-ingress/tags?page=1&ordering=last_updated&name=3.5.1),
 [GitHub Container](https://github.com/nginx/kubernetes-ingress/pkgs/container/kubernetes-ingress),
 [Amazon ECR Public Gallery](https://gallery.ecr.aws/nginx/nginx-ingress) or [Quay.io](https://quay.io/repository/nginx/nginx-ingress).
-- For NGINX Plus, use the 3.5.1 images from the F5 Container registry,
-the [AWS Marketplace](https://aws.amazon.com/marketplace/search/?CREATOR=741df81b-dfdc-4d36-b8da-945ea66b522c&FULFILLMENT_OPTION_TYPE=CONTAINER&filters=CREATOR%2CFULFILLMENT_OPTION_TYPE),
-the [GCP Marketplace](https://console.cloud.google.com/marketplace/browse?filter=partner:F5,%20Inc.&filter=solution-type:k8s&filter=category:networking)
-or build your own image using the 3.5.1 source code
+- For NGINX Plus, use the 3.5.1 images from the F5 Container registry, the AWS Marketplace, the GCP Marketplace or build your own image using the 3.5.1 source code.
 - For Helm, use version 1.2.1 of the chart.
 
 ### <i class="fa-solid fa-life-ring"></i> Supported Platforms
@@ -486,7 +462,7 @@ versions: 1.23-1.29.
 
 26 Mar 2024
 
-NGINX Ingress Controller and NGINX App Protect WAF users can can now view violations through NGINX Instance Manager Security Monitor.  Security Monitor can be used to build Policy bundles, reducing reload time impacts on NGINX Ingress Controller.  Read more information in [NGINX App Protect WAF Bundles]({{< ref "/nic/installation/integrations/app-protect-waf/configuration.md#waf-bundles" >}}) and [Security Monitoring](https://docs.nginx.com/nginx-instance-manager/monitoring/security-monitoring/).
+NGINX Ingress Controller and NGINX App Protect WAF users can can now view violations through NGINX Instance Manager Security Monitor.  Security Monitor can be used to build Policy bundles, reducing reload time impacts on NGINX Ingress Controller.  Read more information in [NGINX App Protect WAF Bundles]({{< ref "/nic/installation/integrations/app-protect-waf/configuration.md#waf-bundles" >}}) and Security Monitoring.
 
 When using NGINX Plus for two version [split rollouts]({{ ref "/nic/configuration/virtualserver-and-virtualserverroute-resources.md#split" }}), you can now control progressive rollouts of a new backend version without reloading NGINX using the [**-weight-changes-dynamic-reload**]({{< ref "/nic/configuration/global-configuration/command-line-arguments.md#-weight-changes-dynamic-reload" >}}) command line argument.
 
@@ -522,10 +498,7 @@ The [**use-cluster-ip**]({{< ref "/nic/configuration/ingress-resources/advanced-
 [DockerHub](https://hub.docker.com/r/nginx/nginx-ingress/tags?page=1&ordering=last_updated&name=3.5.0),
 [GitHub Container](https://github.com/nginx/kubernetes-ingress/pkgs/container/kubernetes-ingress),
 [Amazon ECR Public Gallery](https://gallery.ecr.aws/nginx/nginx-ingress) or [Quay.io](https://quay.io/repository/nginx/nginx-ingress).
-- For NGINX Plus, use the 3.5.0 images from the F5 Container registry,
-the [AWS Marketplace](https://aws.amazon.com/marketplace/search/?CREATOR=741df81b-dfdc-4d36-b8da-945ea66b522c&FULFILLMENT_OPTION_TYPE=CONTAINER&filters=CREATOR%2CFULFILLMENT_OPTION_TYPE),
-the [GCP Marketplace](https://console.cloud.google.com/marketplace/browse?filter=partner:F5,%20Inc.&filter=solution-type:k8s&filter=category:networking)
-or build your own image using the 3.5.0 source code
+- For NGINX Plus, use the 3.5.0 images from the F5 Container registry, the AWS Marketplace, the GCP Marketplace or build your own image using the 3.5.0 source code.
 - For Helm, use version 1.2.0 of the chart.
 
 ### <i class="fa-solid fa-life-ring"></i> Supported Platforms
@@ -565,10 +538,7 @@ versions: 1.23-1.29.
 [DockerHub](https://hub.docker.com/r/nginx/nginx-ingress/tags?page=1&ordering=last_updated&name=3.4.3),
 [GitHub Container](https://github.com/nginx/kubernetes-ingress/pkgs/container/kubernetes-ingress),
 [Amazon ECR Public Gallery](https://gallery.ecr.aws/nginx/nginx-ingress) or [Quay.io](https://quay.io/repository/nginx/nginx-ingress).
-- For NGINX Plus, use the 3.4.3 images from the F5 Container registry,
-the [AWS Marketplace](https://aws.amazon.com/marketplace/search/?CREATOR=741df81b-dfdc-4d36-b8da-945ea66b522c&FULFILLMENT_OPTION_TYPE=CONTAINER&filters=CREATOR%2CFULFILLMENT_OPTION_TYPE),
-the [GCP Marketplace](https://console.cloud.google.com/marketplace/browse?filter=partner:F5,%20Inc.&filter=solution-type:k8s&filter=category:networking)
-or build your own image using the 3.4.3 source code
+- For NGINX Plus, use the 3.4.3 images from the F5 Container registry, the AWS Marketplace, the GCP Marketplace or build your own image using the 3.4.3 source code.
 - For Helm, use version 1.1.3 of the chart.
 
 ### <i class="fa-solid fa-life-ring"></i> Supported Platforms
@@ -590,10 +560,7 @@ versions: 1.23-1.29.
 [DockerHub](https://hub.docker.com/r/nginx/nginx-ingress/tags?page=1&ordering=last_updated&name=3.4.2),
 [GitHub Container](https://github.com/nginx/kubernetes-ingress/pkgs/container/kubernetes-ingress),
 [Amazon ECR Public Gallery](https://gallery.ecr.aws/nginx/nginx-ingress) or [Quay.io](https://quay.io/repository/nginx/nginx-ingress).
-- For NGINX Plus, use the 3.4.2 images from the F5 Container registry,
-the [AWS Marketplace](https://aws.amazon.com/marketplace/search/?CREATOR=741df81b-dfdc-4d36-b8da-945ea66b522c&FULFILLMENT_OPTION_TYPE=CONTAINER&filters=CREATOR%2CFULFILLMENT_OPTION_TYPE),
-the [GCP Marketplace](https://console.cloud.google.com/marketplace/browse?filter=partner:F5,%20Inc.&filter=solution-type:k8s&filter=category:networking)
-or build your own image using the 3.4.2 source code
+- For NGINX Plus, use the 3.4.2 images from the F5 Container registry, the AWS Marketplace, the GCP Marketplace or build your own image using the 3.4.2 source code.
 - For Helm, use version 1.1.2 of the chart.
 
 ### <i class="fa-solid fa-life-ring"></i> Supported Platforms
@@ -616,10 +583,7 @@ versions: 1.23-1.29.
 [DockerHub](https://hub.docker.com/r/nginx/nginx-ingress/tags?page=1&ordering=last_updated&name=3.4.1),
 [GitHub Container](https://github.com/nginx/kubernetes-ingress/pkgs/container/kubernetes-ingress),
 [Amazon ECR Public Gallery](https://gallery.ecr.aws/nginx/nginx-ingress) or [Quay.io](https://quay.io/repository/nginx/nginx-ingress).
-- For NGINX Plus, use the 3.4.1 images from the F5 Container registry,
-the [AWS Marketplace](https://aws.amazon.com/marketplace/search/?CREATOR=741df81b-dfdc-4d36-b8da-945ea66b522c&FULFILLMENT_OPTION_TYPE=CONTAINER&filters=CREATOR%2CFULFILLMENT_OPTION_TYPE),
-the [GCP Marketplace](https://console.cloud.google.com/marketplace/browse?filter=partner:F5,%20Inc.&filter=solution-type:k8s&filter=category:networking)
-or build your own image using the 3.4.1 source code
+- For NGINX Plus, use the 3.4.1 images from the F5 Container registry, the AWS Marketplace, the GCP Marketplace or build your own image using the 3.4.1 source code.
 - For Helm, use version 1.1.1 of the chart.
 
 ### <i class="fa-solid fa-life-ring"></i> Supported Platforms
@@ -676,10 +640,7 @@ We’ve added the functionality to define App Protect WAF bundles for VirtualSer
 [DockerHub](https://hub.docker.com/r/nginx/nginx-ingress/tags?page=1&ordering=last_updated&name=3.4.0),
 [GitHub Container](https://github.com/nginx/kubernetes-ingress/pkgs/container/kubernetes-ingress),
 [Amazon ECR Public Gallery](https://gallery.ecr.aws/nginx/nginx-ingress) or [Quay.io](https://quay.io/repository/nginx/nginx-ingress).
-- For NGINX Plus, use the 3.4.0 images from the F5 Container registry,
-the [AWS Marketplace](https://aws.amazon.com/marketplace/search/?CREATOR=741df81b-dfdc-4d36-b8da-945ea66b522c&FULFILLMENT_OPTION_TYPE=CONTAINER&filters=CREATOR%2CFULFILLMENT_OPTION_TYPE),
-the [GCP Marketplace](https://console.cloud.google.com/marketplace/browse?filter=partner:F5,%20Inc.&filter=solution-type:k8s&filter=category:networking)
-or build your own image using the 3.4.0 source code
+- For NGINX Plus, use the 3.4.0 images from the F5 Container registry, the AWS Marketplace, the GCP Marketplace or build your own image using the 3.4.0 source code.
 - For Helm, use version 1.1.0 of the chart.
 
 ### <i class="fa-solid fa-life-ring"></i> Supported Platforms
@@ -708,13 +669,8 @@ versions: 1.22-1.29.
 [DockerHub](https://hub.docker.com/r/nginx/nginx-ingress/tags?page=1&ordering=last_updated&name=3.3.2),
 [GitHub Container](https://github.com/nginx/kubernetes-ingress/pkgs/container/kubernetes-ingress),
 [Amazon ECR Public Gallery](https://gallery.ecr.aws/nginx/nginx-ingress) or [Quay.io](https://quay.io/repository/nginx/nginx-ingress).
-- For NGINX Plus, use the 3.3.2 images from the F5 Container registry,
-the [AWS Marketplace](https://aws.amazon.com/marketplace/search/?CREATOR=741df81b-dfdc-4d36-b8da-945ea66b522c&FULFILLMENT_OPTION_TYPE=CONTAINER&filters=CREATOR%2CFULFILLMENT_OPTION_TYPE),
-the [GCP Marketplace](https://console.cloud.google.com/marketplace/browse?filter=partner:F5,%20Inc.&filter=solution-type:k8s&filter=category:networking)
-or build your own image using the 3.3.2 source code
+- For NGINX Plus, use the 3.3.2 images from the F5 Container registry, the AWS Marketplace, the GCP Marketplace or build your own image using the 3.3.2 source code.
 - For Helm, use version 1.0.2 of the chart.
-
-<hr>
 
 ## 3.3.1
 
@@ -732,9 +688,7 @@ This releases updates NGINX Plus to R30 P1 and dependencies to mitigate HTTP/2 R
 ### <i class="fa-solid fa-download"></i> Upgrade
 
 - For NGINX, use the 3.3.1 images from our [DockerHub](https://hub.docker.com/r/nginx/nginx-ingress/tags?page=1&ordering=last_updated&name=3.3.1), [GitHub Container](https://github.com/nginx/kubernetes-ingress/pkgs/container/kubernetes-ingress), [Amazon ECR Public Gallery](https://gallery.ecr.aws/nginx/nginx-ingress) or [Quay.io](https://quay.io/repository/nginx/nginx-ingress).
-- For NGINX Plus, use the 3.3.1 images from the F5 Container registry, the [AWS Marketplace](https://aws.amazon.com/marketplace/search/?CREATOR=741df81b-dfdc-4d36-b8da-945ea66b522c&FULFILLMENT_OPTION_TYPE=CONTAINER&filters=CREATOR%2CFULFILLMENT_OPTION_TYPE), the [GCP Marketplace](https://console.cloud.google.com/marketplace/browse?filter=partner:F5,%20Inc.&filter=solution-type:k8s&filter=category:networking) or build your own image using the 3.3.1 source code
-
-<hr>
+- For NGINX Plus, use the 3.3.1 images from the F5 Container registry, the AWS Marketplace, the GCP Marketplace or build your own image using the 3.3.1 source code
 
 ## 3.3.0
 
@@ -797,7 +751,7 @@ listeners so they can tailor to their specific needs and policies.
 ### <i class="fa-solid fa-download"></i> Upgrade
 
 - For NGINX, use the 3.3.0 images from our [DockerHub](https://hub.docker.com/r/nginx/nginx-ingress/tags?page=1&ordering=last_updated&name=3.3.0), [GitHub Container](https://github.com/nginx/kubernetes-ingress/pkgs/container/kubernetes-ingress), [Amazon ECR Public Gallery](https://gallery.ecr.aws/nginx/nginx-ingress) or [Quay.io](https://quay.io/repository/nginx/nginx-ingress).
-- For NGINX Plus, use the 3.3.0 images from the F5 Container registry, the [AWS Marketplace](https://aws.amazon.com/marketplace/search/?CREATOR=741df81b-dfdc-4d36-b8da-945ea66b522c&FULFILLMENT_OPTION_TYPE=CONTAINER&filters=CREATOR%2CFULFILLMENT_OPTION_TYPE), the [GCP Marketplace](https://console.cloud.google.com/marketplace/browse?filter=partner:F5,%20Inc.&filter=solution-type:k8s&filter=category:networking) or build your own image using the 3.3.0 source code
+- For NGINX Plus, use the 3.3.0 images from the F5 Container registry, the AWS Marketplace, the GCP Marketplace or build your own image using the 3.3.0 source code.
 - For Helm, use version 1.0.0 of the chart.
 
 ### <i class="fa-solid fa-life-ring"></i> Supported Platforms
@@ -819,7 +773,7 @@ We will provide technical support for NGINX Ingress Controller on any Kubernetes
 ### <i class="fa-solid fa-download"></i> Upgrade
 
 - For NGINX, use the 3.2.1 images from our [DockerHub](https://hub.docker.com/r/nginx/nginx-ingress/tags?page=1&ordering=last_updated&name=3.2.1), [GitHub Container](https://github.com/nginx/kubernetes-ingress/pkgs/container/kubernetes-ingress), [Amazon ECR Public Gallery](https://gallery.ecr.aws/nginx/nginx-ingress) or [Quay.io](https://quay.io/repository/nginx/nginx-ingress).
-- For NGINX Plus, use the 3.2.1 images from the F5 Container registry, the [AWS Marketplace](https://aws.amazon.com/marketplace/search/?CREATOR=741df81b-dfdc-4d36-b8da-945ea66b522c&FULFILLMENT_OPTION_TYPE=CONTAINER&filters=CREATOR%2CFULFILLMENT_OPTION_TYPE), the [GCP Marketplace](https://console.cloud.google.com/marketplace/browse?filter=partner:F5,%20Inc.&filter=solution-type:k8s&filter=category:networking) or build your own image using the 3.2.1 source code
+- For NGINX Plus, use the 3.2.1 images from the F5 Container registry, the AWS Marketplace, the GCP Marketplace or build your own image using the 3.2.1 source code.
 - For Helm, use version 0.18.1 of the chart.
 
 <hr>
@@ -861,7 +815,7 @@ We will provide technical support for NGINX Ingress Controller on any Kubernetes
 ### <i class="fa-solid fa-download"></i> Upgrade
 
 - For NGINX, use the 3.2.0 images from our [DockerHub](https://hub.docker.com/r/nginx/nginx-ingress/tags?page=1&ordering=last_updated&name=3.2.0), [GitHub Container](https://github.com/nginx/kubernetes-ingress/pkgs/container/kubernetes-ingress), [Amazon ECR Public Gallery](https://gallery.ecr.aws/nginx/nginx-ingress) or [Quay.io](https://quay.io/repository/nginx/nginx-ingress).
-- For NGINX Plus, use the 3.2.0 images from the F5 Container registry, the [AWS Marketplace](https://aws.amazon.com/marketplace/search/?CREATOR=741df81b-dfdc-4d36-b8da-945ea66b522c&FULFILLMENT_OPTION_TYPE=CONTAINER&filters=CREATOR%2CFULFILLMENT_OPTION_TYPE), the [GCP Marketplace](https://console.cloud.google.com/marketplace/browse?filter=partner:F5,%20Inc.&filter=solution-type:k8s&filter=category:networking) or build your own image using the 3.2.0 source code.
+- For NGINX Plus, use the 3.2.0 images from the F5 Container registry, the AWS Marketplace, the GCP Marketplace or build your own image using the 3.2.0 source code.
 - For Helm, use version 0.18.0 of the chart.
 
 ### <i class="fa-solid fa-life-ring"></i> Supported Platforms
@@ -1072,7 +1026,7 @@ We will provide technical support for NGINX Ingress Controller on any Kubernetes
 
 - Make sure the Kubernetes version is in the supported platforms listed below.
 - For NGINX, use the 3.0.0 images from our [DockerHub](https://hub.docker.com/r/nginx/nginx-ingress/tags?page=1&ordering=last_updated&name=3.0.0), [GitHub Container](https://github.com/nginx/kubernetes-ingress/pkgs/container/kubernetes-ingress) or [Amazon ECR Public Gallery](https://gallery.ecr.aws/nginx/nginx-ingress).
-- For NGINX Plus, use the 3.0.0 images from the F5 Container registry or the [AWS Marketplace](https://aws.amazon.com/marketplace/search/?CREATOR=741df81b-dfdc-4d36-b8da-945ea66b522c&FULFILLMENT_OPTION_TYPE=CONTAINER&filters=CREATOR%2CFULFILLMENT_OPTION_TYPE) or build your own image using the 3.0.0 source code.
+- For NGINX Plus, use the 3.0.0 images from the F5 Container registry or the AWS Marketplace or build your own image using the 3.0.0 source code.
 - For Helm, use version 0.16.0 of the chart. Helm does not upgrade the CRDs. If you're using custom resources like VirtualServer and TransportServer (`controller.enableCustomResources` is set to `true`), after running the `helm upgrade` command, run `kubectl apply -f deployments/helm-chart/crds` to upgrade the CRDs.
 
 ### <i class="fa-solid fa-life-ring"></i> Supported Platforms
@@ -1116,7 +1070,7 @@ We will provide technical support for NGINX Ingress Controller on any Kubernetes
 ### <i class="fa-solid fa-download"></i> Upgrade
 
 - For NGINX, use the 2.4.1 images from our [DockerHub](https://hub.docker.com/r/nginx/nginx-ingress/tags?page=1&ordering=last_updated&name=2.4.1), [GitHub Container](https://github.com/nginx/kubernetes-ingress/pkgs/container/kubernetes-ingress), [Amazon ECR Public Gallery](https://gallery.ecr.aws/nginx/nginx-ingress) or [Quay.io](https://quay.io/repository/nginx/nginx-ingress).
-- For NGINX Plus, use the 2.4.1 images from the F5 Container registry or the [AWS Marketplace](https://aws.amazon.com/marketplace/search/?CREATOR=741df81b-dfdc-4d36-b8da-945ea66b522c&FULFILLMENT_OPTION_TYPE=CONTAINER&filters=CREATOR%2CFULFILLMENT_OPTION_TYPE) or build your own image using the 2.4.1 source code.
+- For NGINX Plus, use the 2.4.1 images from the F5 Container registry or the AWS Marketplace or build your own image using the 2.4.1 source code.
 - For Helm, use version 0.15.1 of the chart.
 
 <hr>
@@ -1181,7 +1135,7 @@ We will provide technical support for NGINX Ingress Controller on any Kubernetes
 ### <i class="fa-solid fa-download"></i> Upgrade
 
 - For NGINX, use the 2.4.0 images from our [DockerHub](https://hub.docker.com/r/nginx/nginx-ingress/tags?page=1&ordering=last_updated&name=2.4.0), [GitHub Container](https://github.com/nginx/kubernetes-ingress/pkgs/container/kubernetes-ingress) or [Amazon ECR Public Gallery](https://gallery.ecr.aws/nginx/nginx-ingress).
-- For NGINX Plus, use the 2.4.0 images from the F5 Container registry or the [AWS Marketplace](https://aws.amazon.com/marketplace/search/?CREATOR=741df81b-dfdc-4d36-b8da-945ea66b522c&FULFILLMENT_OPTION_TYPE=CONTAINER&filters=CREATOR%2CFULFILLMENT_OPTION_TYPE) or build your own image using the 2.4.0 source code.
+- For NGINX Plus, use the 2.4.0 images from the F5 Container registry or the AWS Marketplace or build your own image using the 2.4.0 source code.
 - For Helm, use version 0.15.0 of the chart. If you're using custom resources like VirtualServer and TransportServer (`controller.enableCustomResources` is set to `true`), after you run the `helm upgrade` command, the CRDs will not be upgraded. After running the `helm upgrade` command, run `kubectl apply -f deployments/helm-chart/crds` to upgrade the CRDs.
 
 ### <i class="fa-solid fa-life-ring"></i> Supported Platforms
@@ -1263,7 +1217,7 @@ We will provide technical support for NGINX Ingress Controller on any Kubernetes
 ### <i class="fa-solid fa-download"></i> Upgrade
 
 - For NGINX, use the 2.3.0 images from our [DockerHub](https://hub.docker.com/r/nginx/nginx-ingress/tags?page=1&ordering=last_updated&name=2.3.0), [GitHub Container](https://github.com/nginx/kubernetes-ingress/pkgs/container/kubernetes-ingress) or [Amazon ECR Public Gallery](https://gallery.ecr.aws/nginx/nginx-ingress).
-- For NGINX Plus, use the 2.3.0 images from the F5 Container registry or the [AWS Marketplace](https://aws.amazon.com/marketplace/search/?CREATOR=741df81b-dfdc-4d36-b8da-945ea66b522c&FULFILLMENT_OPTION_TYPE=CONTAINER&filters=CREATOR%2CFULFILLMENT_OPTION_TYPE) or build your own image using the 2.3.0 source code.
+- For NGINX Plus, use the 2.3.0 images from the F5 Container registry or the AWS Marketplace or build your own image using the 2.3.0 source code.
 - For Helm, use version 0.14.0 of the chart. If you're using custom resources like VirtualServer and TransportServer (`controller.enableCustomResources` is set to `true`), after you run the `helm upgrade` command, the CRDs will not be upgraded. After running the `helm upgrade` command, run `kubectl apply -f deployments/helm-chart/crds` to upgrade the CRDs.
 - When upgrading using [Manifests]({{< ref "/nic/installation/installing-nic/installation-with-manifests.md" >}}), make sure to update the [ClusterRole](https://github.com/nginx/kubernetes-ingress/blob/v2.3.1/deployments/rbac/rbac.yaml). This is required to enable the ExternalDNS for VirtualServer resources integration.
 
@@ -1360,8 +1314,6 @@ the documentation here
 
 We will provide technical support for NGINX Ingress Controller on any Kubernetes platform that is currently supported by its provider and which passes the Kubernetes conformance tests. This release was fully tested on the following Kubernetes versions: 1.19-1.23.
 
-<hr>
-
 ## 2.1.2
 
 29 March 2022
@@ -1373,7 +1325,7 @@ We will provide technical support for NGINX Ingress Controller on any Kubernetes
 ### <i class="fa-solid fa-download"></i> Upgrade
 
 - For NGINX, use the 2.1.2 images from our [DockerHub](https://hub.docker.com/r/nginx/nginx-ingress/tags?page=1&ordering=last_updated&name=2.1.2), [GitHub Container](https://github.com/nginx/kubernetes-ingress/pkgs/container/kubernetes-ingress) or [Amazon ECR Public Gallery](https://gallery.ecr.aws/nginx/nginx-ingress).
-- For NGINX Plus, use the 2.1.2 images from the F5 Container registry or the [AWS Marketplace](https://aws.amazon.com/marketplace/search/?CREATOR=741df81b-dfdc-4d36-b8da-945ea66b522c&FULFILLMENT_OPTION_TYPE=CONTAINER&filters=CREATOR%2CFULFILLMENT_OPTION_TYPE) or build your own image using the 2.1.2 source code.
+- For NGINX Plus, use the 2.1.2 images from the F5 Container registry or the AWS Marketplace or build your own image using the 2.1.2 source code.
 - For Helm, use version 0.12.2 of the chart.
 
 <hr>
@@ -1430,10 +1382,10 @@ We will provide technical support for NGINX Ingress Controller on any Kubernetes
 
 - Full support for gRPC services using the NGINX Ingress Controller [VirtualServer and VirtualServerRoute]({{< ref "/nic/configuration/virtualserver-and-virtualserverroute-resources.md" >}}) custom resource definitions.  This makes configuring and supporting gRPC services much easier, giving a simple YAML configuration and removing the need for snippets. Resource definition examples for gRPC can be found [here](https://github.com/nginx/kubernetes-ingress/tree/v2.1.1/examples/custom-resources/grpc-upstreams).
 
-- Implementation of NGINX mandatory and persistent health checks in VirtualServer and VirtualServerRoute to further reduce interruptions to your service traffic as configuration changes continuously happen in your dynamic Kubernetes environment(s). Health checks have been extended to include `mandatory` and `persistent` fields. Mandatory health checks ensures that a new upstream server starts receiving traffic only after the health check passes. Mandatory health checks can be marked as persistent, so that the previous state is remembered when the Ingress Controller reloads NGINX Plus configuration. When combined with the slow-start parameter, the mandatory health check give a new upstream server more time to connect to databases and “warm up” before being asked to handle their full share of traffic. See the settings [here]({{< ref "/nic/configuration/virtualserver-and-virtualserverroute-resources.md#upstreamhealthcheck" >}}). More about the [NGINX Plus mandatory and persistent health check features](https://docs.nginx.com/nginx/admin-guide/load-balancer/http-health-check/#mandatory-health-checks).
+- Implementation of NGINX mandatory and persistent health checks in VirtualServer and VirtualServerRoute to further reduce interruptions to your service traffic as configuration changes continuously happen in your dynamic Kubernetes environment(s). Health checks have been extended to include `mandatory` and `persistent` fields. Mandatory health checks ensures that a new upstream server starts receiving traffic only after the health check passes. Mandatory health checks can be marked as persistent, so that the previous state is remembered when the Ingress Controller reloads NGINX Plus configuration. When combined with the slow-start parameter, the mandatory health check give a new upstream server more time to connect to databases and “warm up” before being asked to handle their full share of traffic. See the settings [here]({{< ref "/nic/configuration/virtualserver-and-virtualserverroute-resources.md#upstreamhealthcheck" >}}). More about the [NGINX Plus mandatory and persistent health check features]({{< ref "/nginx/admin-guide/load-balancer/http-health-check.md#mandatory-health-checks" >}}).
 Mandatory health checks can be marked as persistent, so that the previous state is remembered when reloading configuration. When combined with the slow-start parameter, it gives a new service pod more time to connect to databases and “warm up” before being asked to handle their full share of traffic.
 See the settings [here]({{< ref "/nic/configuration/virtualserver-and-virtualserverroute-resources.md#upstreamhealthcheck" >}}).
-More about the [NGINX Plus mandatory and persistent health check features](https://docs.nginx.com/nginx/admin-guide/load-balancer/http-health-check/#mandatory-health-checks)
+More about the [NGINX Plus mandatory and persistent health check features]({{< ref "/nginx/admin-guide/load-balancer/http-health-check.md#mandatory-health-checks" >}})
 
 ### <i class="fa-solid fa-rocket"></i> Features
 
@@ -1589,7 +1541,7 @@ Release 2.0.0 includes:
 
      We migrated all our documentation and examples to use `networking.k8s.io/v1` and the `ingressClassName` field of the Ingress resource.
 - *Scalability improvements*. We improved the time for an Ingress Controller pod to become ready and start receiving traffic. This is especially noticeable when you have hundreds of Ingress or other configuration resources like VirtualServers: instead of several minutes or more in rare cases, a pod will become ready within a few minutes.
-- *Documentation improvements* We changed the look and feel of our documentation at <https://docs.nginx.com/nginx-ingress-controller> as well as the underlying publishing technology, which will allow us to bring even more improvements in the next releases.
+- *Documentation improvements* We changed the look and feel of our documentation as well as the underlying publishing technology, which will allow us to bring even more improvements in the next releases.
 - *Upgrade path for k8s.nginx.org/v1alpha1 Policy resource* If you’re running release 1.9.0 and using the k8s.nginx.org/v1alpha1 Policy, the Ingress Controller now supports an upgrade path from v1alpha1 to v1 Policy version without downtime. See UPDATING POLICIES section below.
 
 You will find the complete changelog for release 2.0.0, including bug fixes, improvements, and changes below.
@@ -1685,8 +1637,6 @@ We will provide technical support for NGINX Ingress Controller on any Kubernetes
 - For NGINX Plus, use the 1.12.1 image from the F5 Container Registry - see [the documentation here]({{< ref "/nic/installation/nic-images/get-registry-image.md">}})
 - Alternatively, you can also build your own image using the 1.12.1 source code.
 - For Helm, use version 0.10.1 of the chart.
-
-<hr>
 
 ## 1.12.0
 
@@ -1851,7 +1801,7 @@ You will find the complete changelog for release 1.11.0, including bug fixes, im
 
 ### <i class="fa-solid fa-download"></i> Upgrade
 
-- For NGINX, use the 1.11.0 image from our DockerHub: `nginx/nginx-ingress:1.11.0`, `nginx/nginx-ingress:1.11.0-alpine` or `nginx-ingress:1.11.0-ubi`
+-- For NGINX, use the 1.11.0 image from our DockerHub: `nginx/nginx-ingress:1.11.0`, `nginx/nginx-ingress:1.11.0-alpine` or `nginx-ingress:1.11.0-ubi`
 - For NGINX Plus, please build your own image using the 1.11.0 source code.
 - For Helm, use version 0.9.0 of the chart.
 - [1241](https://github.com/nginx/kubernetes-ingress/pull/1241) improved the Makefile. As a result, the commands for building the Ingress Controller image were changed. See the updated commands [here]({{< ref "/nic/installation/build-nginx-ingress-controller.md" >}}).
@@ -2029,7 +1979,7 @@ You will find the complete changelog for release 1.9.0, including bug fixes, imp
 - [1120](https://github.com/nginx/kubernetes-ingress/pull/1120) Add RateLimit policy support.
 - [1058](https://github.com/nginx/kubernetes-ingress/pull/1058) Support policies in VS routes and VSR subroutes.
 - [1147](https://github.com/nginx/kubernetes-ingress/pull/1147) Add option to specify other log destinations in AppProtect.
-- [1131](https://github.com/nginx/kubernetes-ingress/pull/1131) Update packages and CRDs to AppProtect 2.0. This update includes features such as: [JSON Schema Validation](https://docs.nginx.com/nginx-app-protect/configuration#applying-a-json-schema), [User-Defined URLs](https://docs.nginx.com/nginx-app-protect/configuration/#user-defined-urls) and [User-Defined Parameters](https://docs.nginx.com/nginx-app-protect/configuration/#user-defined-parameters). See the [release notes](https://docs.nginx.com/nginx-app-protect/releases/#release-2-0) for a complete feature list.
+- [1131](https://github.com/nginx/kubernetes-ingress/pull/1131) Update packages and CRDs to AppProtect 2.0. This update includes features such as: [JSON Schema Validation]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#applying-a-json-schema" >}}), [User-Defined URLs]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#user-defined-urls" >}}) and [User-Defined Parameters]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#user-defined-parameters" >}}). See the [release notes]({{< ref "/nap-waf/v4/releases/about-2.0.md" >}}) for a complete feature list.
 - [1100](https://github.com/nginx/kubernetes-ingress/pull/1100) Add external references to AppProtect.
 - [1085](https://github.com/nginx/kubernetes-ingress/pull/1085) Add installation of threat campaigns package.
 - [1133](https://github.com/nginx/kubernetes-ingress/pull/1133) Add support for IngressClass resources.
@@ -2251,7 +2201,7 @@ FEATURES FOR VIRTUALSERVER AND VIRTUALSERVERROUTE RESOURCES:
 - For NGINX Plus, please build your own image using the 1.7.0 source code.
 - For Helm, use version 0.5.0 of the chart.
 
-When upgrading using the [manifests](/nginx-ingress-controller/installation/installation-with-manifests/), make sure to deploy the new TransportServer CRD (`common/ts-definition.yaml`), as it is required by the Ingress Controller. Otherwise, you will get error messages in the Ingress Controller logs.
+When upgrading using the [manifests]({{< ref "/nic/installation/installing-nic/installation-with-manifests.md" >}}), make sure to deploy the new TransportServer CRD (`common/ts-definition.yaml`), as it is required by the Ingress Controller. Otherwise, you will get error messages in the Ingress Controller logs.
 
 <hr>
 

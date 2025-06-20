@@ -1,11 +1,11 @@
 ---
-docs: DOCS-610
-doctypes:
-- concept
-draft: true
 title: Which Ingress Controller Do I Need?
 toc: true
+draft: true
 weight: 400
+nd-content-type: reference
+nd-product: NIC
+nd-docs: DOCS-610
 ---
 
 This document describes the key differences between the community Ingress-NGINX Controller and F5 NGINX Ingress Controller.
@@ -18,7 +18,7 @@ If you are unsure about which implementation you are using, check the container 
 
 ## The Key Differences
 
-The table below summarizes the key difference between nginx/kubernetes-ingress and kubernetes/ingress-nginx Ingress Controllers. Note that the table has two columns for the nginx/kubernetes-ingress Ingress Controller, as it can be used both with NGINX and NGINX Plus. For more information about nginx/kubernetes-ingress with NGINX Plus, read the [NGINX Ingress Controller with NGINX Plus](/nginx-ingress-controller/intro/nginx-plus) documentation.
+The table below summarizes the key difference between nginx/kubernetes-ingress and kubernetes/ingress-nginx Ingress Controllers. Note that the table has two columns for the nginx/kubernetes-ingress Ingress Controller, as it can be used both with NGINX and NGINX Plus. For more information about nginx/kubernetes-ingress with NGINX Plus, read the [Extensibility with NGINX Plus]({{< ref "/nic/overview/nginx-plus.md" >}}) documentation.
 
 {{% table %}}
 | Aspect or Feature | kubernetes/ingress-nginx | nginx/kubernetes-ingress with NGINX | nginx/kubernetes-ingress with NGINX Plus |
@@ -29,8 +29,8 @@ The table below summarizes the key difference between nginx/kubernetes-ingress a
 | Commercial support | N/A | N/A | Included |
 | **Load balancing configuration via the Ingress resource** |
 | Merging Ingress rules with the same host | Supported | Supported via [Mergeable Ingresses](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/ingress-resources/mergeable-ingress-types) | Supported via [Mergeable Ingresses](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/ingress-resources/mergeable-ingress-types) |
-| HTTP load balancing extensions - Annotations | See the [supported annotations](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/) | See the [supported annotations](https://docs.nginx.com/nginx-ingress-controller/configuration/ingress-resources/advanced-configuration-with-annotations/) | See the [supported annotations](https://docs.nginx.com/nginx-ingress-controller/configuration/ingress-resources/advanced-configuration-with-annotations/)|
-| HTTP load balancing extensions -- ConfigMap | See the [supported ConfigMap keys](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/) | See the [supported ConfigMap keys](https://docs.nginx.com/nginx-ingress-controller/configuration/global-configuration/configmap-resource/) | See the [supported ConfigMap keys](https://docs.nginx.com/nginx-ingress-controller/configuration/global-configuration/configmap-resource/) |
+| HTTP load balancing extensions - Annotations | See the [supported annotations](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/) | See the [supported annotations]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations.md" >}}) | See the [supported annotations]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations.md#summary-of-annotations" >}})|
+| HTTP load balancing extensions -- ConfigMap | See the [supported ConfigMap keys](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/) | See the [supported ConfigMap keys]({{< ref "/nic/configuration/global-configuration/configmap-resource.md" >}}) | See the [supported ConfigMap keys]({{< ref "/nic/configuration/global-configuration/configmap-resource.md" >}}) |
 | TCP/UDP | Supported via a ConfigMap | Supported via custom resources | Supported via custom resources |
 | Websocket  | Supported | Supported via an [annotation](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/ingress-resources/websocket) | Supported via an [annotation](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/ingress-resources/websocket) |
 | TCP SSL Passthrough | Supported via a ConfigMap | Supported via custom resources | Supported via custom resources |
@@ -39,11 +39,11 @@ The table below summarizes the key difference between nginx/kubernetes-ingress a
 | Canary testing (by header, cookie, weight) | Supported via annotations | Supported via custom resources | Supported via custom resources |
 | Configuration templates *1 | See the [template](https://github.com/kubernetes/ingress-nginx/blob/main/rootfs/etc/nginx/template/nginx.tmpl) | See the [templates](../internal/configs/version1) | See the [templates](../internal/configs/version1) |
 | **Load balancing configuration via Custom Resources** |
-| HTTP load balancing | Not supported | See [VirtualServer and VirtualServerRoute](https://docs.nginx.com/nginx-ingress-controller/configuration/virtualserver-and-virtualserverroute-resources/) resources | See [VirtualServer and VirtualServerRoute](https://docs.nginx.com/nginx-ingress-controller/configuration/virtualserver-and-virtualserverroute-resources/) resources |
-| TCP/UDP load balancing | Not supported | See [TransportServer](https://docs.nginx.com/nginx-ingress-controller/configuration/transportserver-resource/) resource | See [TransportServer](https://docs.nginx.com/nginx-ingress-controller/configuration/transportserver-resource/) resource |
-| TCP SSL Passthrough load balancing | Not supported | See [TransportServer](https://docs.nginx.com/nginx-ingress-controller/configuration/transportserver-resource/) resource | See [TransportServer](https://docs.nginx.com/nginx-ingress-controller/configuration/transportserver-resource/) resource |
+| HTTP load balancing | Not supported | See [VirtualServer and VirtualServerRoute]({{< ref "/nic/configuration/virtualserver-and-virtualserverroute-resources.md" >}}) resources | See [VirtualServer and VirtualServerRoute]({{< ref "/nic/configuration/virtualserver-and-virtualserverroute-resources.md" >}}) resources |
+| TCP/UDP load balancing | Not supported | See [TransportServer]({{< ref "/nic/configuration/transportserver-resource.md" >}}) resource | See [TransportServer](({{< ref "/nic/configuration/transportserver-resource.md" >}}) resource |
+| TCP SSL Passthrough load balancing | Not supported | See [TransportServer]({{< ref "/nic/configuration/transportserver-resource.md" >}}) resource | See [TransportServer]({{< ref "/nic/configuration/transportserver-resource.md" >}}) resource |
 | **Deployment** |
-| Command-line arguments *2 | See the [arguments](https://kubernetes.github.io/ingress-nginx/user-guide/cli-arguments/) | See the [arguments](https://docs.nginx.com/nginx-ingress-controller/configuration/global-configuration/command-line-arguments/) | See the [arguments](https://docs.nginx.com/nginx-ingress-controller/configuration/global-configuration/command-line-arguments/) |
+| Command-line arguments *2 | See the [arguments](https://kubernetes.github.io/ingress-nginx/user-guide/cli-arguments/) | See the [arguments]({{< ref "/nic/configuration/global-configuration/command-line-arguments.md" >}}) | See the [arguments]({{< ref "/nic/configuration/global-configuration/command-line-arguments.md" >}}) |
 | TLS certificate and key for the default server | Required as a command-line argument/ auto-generated | Required as a command-line argument | Required as a command-line argument |
 | Helm chart | Supported | Supported | Supported |
 | Operator | Not supported | Supported | Supported |
