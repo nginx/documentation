@@ -12,4 +12,5 @@ If you're interested in contributing to the [NGINX documentation website](https:
 
 ## Topics
 
+- [Information architecture heuristics](/documentation/ia-heuristics.md)
 - [Proposals](/documentation/proposals/README.md)
