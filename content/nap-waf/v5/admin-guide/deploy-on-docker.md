@@ -105,6 +105,11 @@ CMD ["nginx", "-g", "daemon off;"]
 {{< include "nap-waf/config/v5/build-nginx-image-oss/build-rhel.md" >}}
 
 {{%/tab%}}
+{{%tab name="Rocky Linux 9"%}}
+
+{{< include "nap-waf/config/v5/build-nginx-image-oss/build-rhel.md" >}}
+
+{{%/tab%}}
 {{%tab name="Ubuntu"%}}
 
 {{< include "nap-waf/config/v5/build-nginx-image-oss/build-ubuntu.md" >}}
@@ -180,6 +185,11 @@ CMD ["nginx", "-g", "daemon off;"]
 
 {{%/tab%}}
 {{%tab name="RHEL"%}}
+
+{{< include "nap-waf/config/v5/build-nginx-image-plus/build-rhel.md" >}}
+
+{{%/tab%}}
+{{%tab name="Rocky Linux 9"%}}
 
 {{< include "nap-waf/config/v5/build-nginx-image-plus/build-rhel.md" >}}
 
@@ -346,6 +356,11 @@ volumes:
 ```
 
 
+### Docker Compose File with IP Intelligence
+
+{{< include "nap-waf/ip-intelligence.md" >}}
+
+
 ### Docker Compose File with mTLS
 
 To secure traffic between NGINX and App Protect Enforcer using mTLS, create a `docker-compose.yml` with the following configuration:
@@ -487,6 +502,11 @@ Proceed, by creating a `Dockerfile` using one of the examples provided below.
 {{< include "nap-waf/config/v5/build-nginx-image-oss/build-rhel.md" >}}
 
 {{%/tab%}}
+{{%tab name="Rocky Linux 9"%}}
+
+{{< include "nap-waf/config/v5/build-nginx-image-oss/build-rhel.md" >}}
+
+{{%/tab%}}
 {{%tab name="Ubuntu"%}}
 
 {{< include "nap-waf/config/v5/build-nginx-image-oss/build-ubuntu.md" >}}
@@ -515,6 +535,11 @@ You are ready to [Build the image](#build-image-sub)
 
 {{%/tab%}}
 {{%tab name="RHEL"%}}
+
+{{< include "nap-waf/config/v5/build-nginx-image-plus/build-rhel.md" >}}
+
+{{%/tab%}}
+{{%tab name="Rocky Linux 9"%}}
 
 {{< include "nap-waf/config/v5/build-nginx-image-plus/build-rhel.md" >}}
 
@@ -665,6 +690,11 @@ volumes:
   app_protect_config:
   app_protect_etc_config:
 ```
+
+#### Docker Compose File with IP Intelligence
+
+{{< include "nap-waf/ip-intelligence.md" >}}
+
 ### Start Deployment
 
 1. To start the NGINX and WAF services, navigate to the directory that contains the `docker-compose.yml` file and run:

@@ -55,7 +55,7 @@ Proceed, by creating a `Dockerfile` using one of the examples provided below.
 {{< include "nap-waf/config/v5/build-nginx-image-oss/build-oracle.md" >}}
 
 {{%/tab%}}
-{{%tab name="RHEL"%}}
+{{%tab name="RHEL & Rocky"%}}
 
 {{< include "nap-waf/config/v5/build-nginx-image-oss/build-rhel.md" >}}
 
@@ -97,7 +97,7 @@ You are ready to [Build the image](#build-image).
 {{< include "nap-waf/config/v5/build-nginx-image-plus/build-oracle.md" >}}
 
 {{%/tab%}}
-{{%tab name="RHEL"%}}
+{{%tab name="RHEL & Rocky"%}}
 
 {{< include "nap-waf/config/v5/build-nginx-image-plus/build-rhel.md" >}}
 
@@ -432,7 +432,7 @@ Proceed, by creating a `Dockerfile` using one of the examples provided below.
 {{< include "nap-waf/config/v5/build-nginx-image-oss/build-oracle.md" >}}
 
 {{%/tab%}}
-{{%tab name="RHEL"%}}
+{{%tab name="RHEL & Rocky"%}}
 
 {{< include "nap-waf/config/v5/build-nginx-image-oss/build-rhel.md" >}}
 
@@ -464,7 +464,7 @@ You are ready to [Build the image](#build-image-sub)
 {{< include "nap-waf/config/v5/build-nginx-image-plus/build-oracle.md" >}}
 
 {{%/tab%}}
-{{%tab name="RHEL"%}}
+{{%tab name="RHEL & Rocky"%}}
 
 {{< include "nap-waf/config/v5/build-nginx-image-plus/build-rhel.md" >}}
 

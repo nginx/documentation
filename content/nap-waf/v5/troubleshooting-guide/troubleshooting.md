@@ -91,7 +91,7 @@ In order to open a support ticket, collect the troubleshooting information in on
 
 3. If NGINX is directly installed on the host machine:
 
-    - For CentOS / RHEL / Amazon Linux / Oracle Linux:
+    - For CentOS / RHEL / Rocky Linux / Amazon Linux / Oracle Linux:
 
     ```shell
     rpm -qa nginx* app-protect* > package_versions.txt

@@ -68,6 +68,12 @@ Please follow these steps before you install either NGINX Open Source or NGINX P
 
 {{%/tab%}}
 
+{{%tab name="Rocky Linux 9"%}}
+
+{{< include "nap-waf/config/v5/host-based-nginx-instructions/common-steps-with-dnf.md" >}}
+
+{{%/tab%}}
+
 {{%tab name="Ubuntu"%}}
 
 {{< include "nap-waf/config/v5/host-based-nginx-instructions/common-steps-with-ubuntu.md" >}}
@@ -106,6 +112,12 @@ Please follow these steps before you install either NGINX Open Source or NGINX P
 {{%/tab%}}
 
 {{%tab name="RHEL"%}}
+
+{{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-oss-centos.md" >}}
+
+{{%/tab%}}
+
+{{%tab name="Rocky Linux 9"%}}
 
 {{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-oss-centos.md" >}}
 
@@ -166,7 +178,7 @@ sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/nginx-plus-8.rep
 
 {{%/tab%}}
 
-{{%tab name="RHEL 9"%}}
+{{%tab name="RHEL 9 / Rocky Linux 9"%}}
 
 Download the NGINX Plus repository file [plus-9.repo](https://cs.nginx.com/static/files/plus-9.repo) to `/etc/yum.repos.d`:
 
@@ -294,6 +306,10 @@ networks:
 In some operating systems, security mechanisms like **SELinux** or **AppArmor** are enabled by default, potentially blocking necessary file access for the `nginx` process and `waf-config-mgr` and `waf-enforcer` containers. To ensure NGINX App Protect WAF v5 operates smoothly without compromising security, consider setting up a custom SELinux policy or AppArmor profile. For short-term troubleshooting, you may use `permissive` (SELinux) or `complain` (AppArmor) mode to avoid these restrictions, but keep in mind that this lowers security and isn't advised for prolonged use.
 {{< /note >}}
 
+### Docker Compose File with IP Intelligence
+
+{{< include "nap-waf/ip-intelligence.md" >}}
+
 ## Start the Deployment
 
 1. To start the WAF services, navigate to the directory that contains the `docker-compose.yml` file and run:
@@ -313,6 +329,10 @@ In some operating systems, security mechanisms like **SELinux** or **AppArmor** 
     ```shell
     curl "localhost/<script>"
     ```
+
+## Using IP intelligence feature
+
+{{< include "nap-waf/ip-intelligence.md" >}}
 
 ## Using Policy and Logging Profile Bundles
 
@@ -372,6 +392,11 @@ Follow these steps before you install NGINX Open Source or NGINX Plus.
 
 {{%/tab%}}
 {{%tab name="RHEL 9"%}}
+
+{{< include "nap-waf/config/v5/host-based-nginx-instructions/common-steps-with-dnf.md" >}}
+
+{{%/tab%}}
+{{%tab name="Rocky Linux 9"%}}
 
 {{< include "nap-waf/config/v5/host-based-nginx-instructions/common-steps-with-dnf.md" >}}
 
@@ -563,7 +588,7 @@ Follow these steps before you install NGINX Open Source or NGINX Plus.
     ```
 
 {{%/tab%}}
-{{%tab name="RHEL 9"%}}
+{{%tab name="RHEL 9 / Rocky Linux 9"%}}
 
 {{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-oss-centos.md" >}}
 
@@ -739,7 +764,7 @@ Then you can move onto the next step, depending on your chosen operating system.
     ```
 
 {{%/tab%}}
-{{%tab name="RHEL 9"%}}
+{{%tab name="RHEL 9 / Rocky Linux 9"%}}
 
 {{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-plus-centos.md" >}}
 
@@ -893,18 +918,25 @@ docker pull private-registry.nginx.com/nap/waf-enforcer:5.2.0
 docker pull private-registry.nginx.com/nap/waf-config-mgr:5.2.0
 ```
 
+If IP Intelligence feature is to be used on the deployment, download the `waf-ip-intelligence` as well:
+
+```shell
+docker pull private-registry.nginx.com/nap/waf-ip-intelligence:5.2.0
+```
+
 #### Saving and Transferring Images
 
-1. Save the `waf-enforcer` docker image:
+1. Save the `waf-enforcer` and `waf-config-mgr` docker images:
 
     ```shell
     docker save -o waf-enforcer.tar waf-enforcer:5.2.0
+    docker save -o waf-config-mgr.tar waf-config-mgr:5.2.0
     ```
 
-2. Save the `waf-config-mgr` docker image:
+2. If IP Intelligence feature is to be used on the deployment, save the `waf-ip-intelligence` docker image:
 
     ```shell
-    docker save -o waf-config-mgr.tar waf-config-mgr:5.2.0
+    docker save -o waf-ip-intelligence.tar waf-ip-intelligence:5.2.0
     ```
 
 3. Transfer the tar files from the online machine to the offline/air-gapped machine:
@@ -914,6 +946,12 @@ docker pull private-registry.nginx.com/nap/waf-config-mgr:5.2.0
     ```shell
     docker load -i waf-enforcer.tar
     docker load -i waf-config-mgr.tar
+    ```
+
+5. If IP Intelligence feature is to be used on the deployment, on the offline machine load the docker images:
+
+    ```shell
+    docker load -i waf-ip-intelligence.tar
     ```
 
 #### Docker Compose File
@@ -958,6 +996,10 @@ networks:
 {{< note >}}
 In some operating systems, security mechanisms like **SELinux** or **AppArmor** are enabled by default, potentially blocking necessary file access for the `nginx` process and `waf-config-mgr` and `waf-enforcer` containers. To ensure NGINX App Protect WAF v5 operates smoothly without compromising security, consider setting up a custom SELinux policy or AppArmor profile. For short-term troubleshooting, you may use `permissive` (SELinux) or `complain` (AppArmor) mode to avoid these restrictions, but keep in mind that this lowers security and isn't advised for prolonged use.
 {{< /note >}}
+
+#### Docker Compose File with IP Intelligence
+
+{{< include "nap-waf/ip-intelligence.md" >}}
 
 ### Start the Deployment
 
@@ -1133,7 +1175,7 @@ sudo dnf remove app-protect-module-plus
 ```
 
 {{%/tab%}}
-{{%tab name="RHEL 9"%}}
+{{%tab name="RHEL 9 / Rocky Linux 9"%}}
 
 For NGINX Open Source
 Uninstall the NGINX App Protect WAF v5 package:
