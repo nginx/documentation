@@ -38,8 +38,6 @@ The figure shows:
 
 The yellow and purple arrows represent connections related to the client traffic, and the black arrows represent access to the Kubernetes API.
 
----
-
 ## The NGINX Ingress Controller pod
 
 The NGINX Ingress Controller pod consists of a single container, which includes the following:
@@ -75,12 +73,10 @@ This table describes each connection, starting with its type:
 |16|Signal| The _NGINX master_ controls the [lifecycle of _NGINX workers_](https://nginx.org/en/docs/control.html#reconfiguration) it creates workers with the new configuration and shutdowns workers with the old configuration.
 |17|File I/O| An _NGINX worker_ writes logs to its _stdout_ and _stderr_, which are collected by the container runtime.
 |18|UDP| An _NGINX worker_ sends the HTTP upstream server response latency logs via the Syslog protocol over the UNIX socket `/var/lib/nginx/nginx-syslog.sock` to _NGINX Ingress Controller_. In turn, _NGINX Ingress Controller_ analyzes and transforms the logs into Prometheus metrics.
-|19|HTTP,HTTPS,TCP,UDP| A _client_ sends traffic to and receives traffic from any of the _NGINX workers_ on ports 80 and 443 and any additional ports exposed by the [GlobalConfiguration resource](/nginx-ingress-controller/configuration/global-configuration/globalconfiguration-resource).
+|19|HTTP,HTTPS,TCP,UDP| A _client_ sends traffic to and receives traffic from any of the _NGINX workers_ on ports 80 and 443 and any additional ports exposed by the [GlobalConfiguration resource]({{< ref "/nic//configuration/global-configuration/globalconfiguration-resource.md" >}}).
 |20|HTTP,HTTPS,TCP,UDP| An _NGINX worker_ sends traffic to and receives traffic from the _backends_.
 |21|HTTP| _Admin_ can connect to the [NGINX stub_status](http://nginx.org/en/docs/http/ngx_http_stub_status_module.html#stub_status) using port 8080 via an _NGINX worker_. By default, NGINX only allows connections from `localhost`.
 {{% /bootstrap-table %}}
-
----
 
 ### Differences with NGINX Plus
 
@@ -90,8 +86,6 @@ The previous diagram depicts NGINX Ingress Controller using NGINX. NGINX Ingress
 - Instead of the stub status metrics, the extended metrics available from the NGINX Plus API are used.
 - In addition to TLS certs and keys, NGINX Ingress Controller writes JWKs from the secrets of the type `nginx.org/jwk`, and NGINX workers read them.
 
----
-
 ## The NGINX Ingress Controller process
 
 This section covers the architecture of the NGINX Ingress Controller process, including:
@@ -99,8 +93,6 @@ This section covers the architecture of the NGINX Ingress Controller process, in
 - How NGINX Ingress Controller processes a new Ingress resource created by a user.
 - A summary of how NGINX Ingress Controller works in relation to others Kubernetes Controllers.
 - The different components of the IC process.
-
----
 
 ### Processing a new Ingress resource
 
@@ -120,8 +112,6 @@ Processing a new Ingress resource involves the following steps: each step corres
     1. _NGINX_ reads the _TLS certs and keys_.
     1. _NGINX_ reads the _configuration files_.
 1. The _Control Loop_ emits an event for the Ingress resource and updates its status. If the reload fails, the event includes the error message.
-
----
 
 ### NGINX Ingress Controller is a Kubernetes controller
 
@@ -156,8 +146,6 @@ NGINX Ingress Controller can watch additional Custom Resources, which are less c
 - [NGINX App Protect resources]({{< ref "/nic/installation/integrations/app-protect-dos/configuration" >}}) (APPolicies, APLogConfs, APUserSigs)
 - IngressLink resource (only one resource)
 
----
-
 ## NGINX Ingress Controller process components
 
 In this section, we describe the components of the NGINX Ingress Controller process and how they interact, including:
@@ -183,8 +171,6 @@ We also mentioned that once the cache is updated, it notifies the control loop a
 - The _Workqueue_ always tries to drain itself: if there is an element at the front, the queue will remove the element and send it to the _Controller_ by calling a callback function (See the arrow _4. Send_).
 - The _Controller_ is the primary component of NGINX Ingress Controller, which represents the _Control Loop_, explained in [The Control Loop](#the-control-loop) section. To process a workqueue element, the _Controller_ component gets the latest version of the resource from the _Store_ (See the arrow _5. Get_), reconfigures _NGINX_ according to the resource (See the arrow _6. Reconfigure*_, updates the resource status, and emits an event via the _Kubernetes API_ (See the arrow  _7. Update status and emit event_).
 
----
-
 ### The control loop
 
 This section discusses the main components of NGINX Ingress Controller, which comprise the control loop:
@@ -204,8 +190,6 @@ This section discusses the main components of NGINX Ingress Controller, which co
 The following diagram shows how the three components interact:
 
 {{<img src="/nic/control-loop.png" alt="">}}
-
----
 
 #### The Controller sync method
 
@@ -234,13 +218,9 @@ To explain how the sync methods work, we will examine the most important one: th
 - The _syncVirtualServer_, _syncVirtualServerRoute_, and _syncTransportServer_ methods are similar to _syncIngress_, while other sync methods are different. However, those methods typically find the affected Ingress, VirtualServer, and TransportServer resources and regenerate the configuration for them.
 - The _Workqueue_ has only a single worker thread that calls the sync method synchronously, meaning the _Control Loop_ processes only one change at a time.
 
----
-
 #### Helper components
 
 There are two additional helper components crucial for processing changes: _Configuration_ and _LocalSecretStore_.
-
----
 
 ##### Configuration
 
@@ -257,21 +237,15 @@ Additionally, the _Configuration_ ensures that only one Ingress/VirtualServer/Tr
 
 Ultimately, NGINX Ingress Controller ensures the NGINX config on the filesystem reflects the state of the objects in the _Configuration_ at any point in time.
 
----
-
 ##### LocalSecretStore
 
 [_LocalSecretStore_](https://github.com/nginx/kubernetes-ingress/blob/v1.11.0/internal/k8s/secrets/store.go#L32) (of the _SecretStore_ interface) holds the valid Secret resources and keeps the corresponding files on the filesystem in sync with them. Secrets are used to hold TLS certificates and keys (type `kubernetes.io/tls`), CAs (`nginx.org/ca`), JWKs (`nginx.org/jwk`), and client secrets for an OIDC provider (`nginx.org/oidc`).
 
 When _Controller_ processes a change to a configuration resource like Ingress, it creates an extended version of a resource that includes the dependencies (Such as Secrets) necessary to generate the NGINX configuration. _LocalSecretStore_ allows _Controller_ to reference the filesystem for a secret using the secret key (namespace/name).
 
----
-
 ## Reloading NGINX
 
 The following sections describe how NGINX reloads and how NGINX Ingress Controller specifically affects this process.
-
----
 
 ### How NGINX reloads work
 
@@ -282,8 +256,6 @@ Reloading NGINX is necessary to apply new configuration changes and occurs with 
 1. The administrator verifies the reload has successfully finished.
 
 The [NGINX documentation](https://nginx.org/en/docs/control.html#reconfiguration) has more details about reloading.
-
----
 
 #### How to reload NGINX and confirm success
 
@@ -301,8 +273,6 @@ Once the reload operation has been invoked with `nginx -s reload`, there is no w
 
 NGINX reloads take roughly 200ms. The factors affecting reload time are configuration size and details, the number of TLS certificates/keys, enabled modules, and available CPU resources.
 
----
-
 #### Potential problems
 
 Most of the time, if `nginx -s reload` executes, the reload will also succeed. In the rare case a reload fails, the NGINX master process will print the an error message. This is an example:
@@ -314,8 +284,6 @@ Most of the time, if `nginx -s reload` executes, the reload will also succeed. I
 The operation is graceful; reloading doesn't lead to any traffic loss by NGINX. However, frequent reloads can lead to high memory utilization and potential OOM (Out-Of-Memory) errors, resulting in traffic loss. This can most likely happen if you (1) proxy traffic that utilizes long-lived connections (ex: Websockets, gRPC) and (2) reload frequently. In these scenarios, you can end up with multiple generations of NGINX worker processes that are shutting down which will force old workers to shut down after the timeout). Eventually, all those worker processes can exhaust the system's available memory.
 
 Old NGINX workers will not shut down until all connections are terminated either by clients or backends, unless you configure [worker_shutdown_timeout](https://nginx.org/en/docs/ngx_core_module.html#worker_shutdown_timeout). Since both the old and new NGINX worker processes coexist during a reload, reloading can lead to two spikes in memory utilization. With a lack of available memory, the NGINX master process can fail to create new worker processes.
-
----
 
 ### Reloading in NGINX Ingress Controller
 
@@ -332,8 +300,6 @@ Reloads occur with this sequence of steps:
 1. Once NGINX Ingress Controller sees the correct config version returned by NGINX, it considers the reload successful. If it doesn't see the correct configuration version after the configurable timeout ( [`-nginx-reload-timeout`]({{<ref "/nic/configuration/global-configuration/command-line-arguments">}})), NGINX Ingress Controller considers the reload failed.
 
 The [NGINX Ingress Controller Control Loop](#the-control-loop) stops during a reload so that it cannot affect configuration files or reload NGINX until the current reload succeeds or fails.
-
----
 
 ### When NGINX Ingress Controller reloads NGINX
 

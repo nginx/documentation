@@ -1,10 +1,10 @@
 ---
-docs: DOCS-1450
-doctypes:
-- concept
 title: NGINX Ingress Controller and Linkerd
 toc: true
 weight: 1800
+nd-content-type: how-to
+nd-product: NIC
+nd-docs: DOCS-1450
 ---
 
 This document explains how to integrate NGINX Ingress Controller with Linkerd using Linkerd's sidecar proxy. Linkerd works with both NGINX Ingress Controller open source and NGINX Ingress Controller using NGINX Plus.
@@ -37,7 +37,7 @@ You can do this through the use of NGINX Ingress Controller's custom resource de
 
 **Using Manifests**
 
-When installing NGINX Ingress Controller, you can [create a custom resource](https://docs.nginx.com/nginx-ingress-controller/installation/installation-with-manifests/#3-create-custom-resources) for Linkerd.
+When installing NGINX Ingress Controller, you can [create a custom resource]({{< ref "/nic/installation/installing-nic/installation-with-manifests.md#create-optional-custom-resources" >}}) for Linkerd.
 
 ```yaml
 apiVersion: apps/v1
