@@ -1,10 +1,10 @@
 ---
-docs: DOCS-597
-doctypes:
-- ''
 title: Security recommendations
 toc: true
 weight: 300
+nd-content-type: reference
+nd-product: NIC
+nd-docs: DOCS-597
 ---
 
 F5 NGINX Ingress Controller follows Kubernetes best practices: this page outlines configuration specific to NGINX Ingress Controller you may require, including links to examples in the [GitHub repository](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples).
@@ -34,7 +34,7 @@ By default, the ServiceAccount has access to all Secret resources in the cluster
 ### Configure root filesystem as read-only
 
 {{< caution >}}
- This feature is compatible with [NGINX App Protect WAFv5](https://docs.nginx.com/nginx-app-protect-waf/v5/). It is not compatible with [NGINX App Protect WAFv4](https://docs.nginx.com/nginx-app-protect-waf/v4/) or [NGINX App Protect DoS](https://docs.nginx.com/nginx-app-protect-dos/).
+ This feature is compatible with [NGINX App Protect WAF v5]({{< ref "/nap-waf/v5/" >}}). It is not compatible with [NGINX App Protect WAF v4]({{< ref "/nap-waf/v4/" >}}) or [NGINX App Protect DoS]({{< ref "/nap-dos/" >}}).
 {{< /caution >}}
 
 NGINX Ingress Controller is designed to be resilient against attacks in various ways, such as running the service as non-root to avoid changes to files. We recommend setting filesystems on all containers to read-only, this includes `nginx-ingress-controller`, though also includes `waf-enforcer` and `waf-config-mgr` when NGINX App Protect WAFv5 is in use.  This is so that the attack surface is further reduced by limiting changes to binaries and libraries.

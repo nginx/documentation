@@ -1,10 +1,10 @@
 ---
-docs: DOCS-595
-doctypes:
-- ''
 title: Custom annotations
 toc: true
 weight: 300
+nd-content-type: how-to
+nd-product: NIC
+nd-docs: DOCS-595
 ---
 
 This topic explains how you can use custom annotations with F5 NGINX Ingress Controller.
@@ -13,7 +13,7 @@ Custom annotations enable you to quickly extend the Ingress resource to support 
 
 ## Overview
 
-NGINX Ingress Controller supports a number of annotations for the Ingress resource that fine tune NGINX configuration (for example, connection timeouts) or enable additional features (for example, JWT validation). The complete list of annotations is available [here](/nginx-ingress-controller/configuration/ingress-resources/advanced-configuration-with-annotations).
+NGINX Ingress Controller supports a number of annotations for the Ingress resource that fine tune NGINX configuration (for example, connection timeouts) or enable additional features (for example, JWT validation). The complete list of annotations is available [here]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations.md" >}}).
 
 The annotations are provided only for the most common features and use cases, meaning that not every NGINX feature or a customization option is available through the annotations. Additionally, even if an annotation is available, it might not give you the satisfactory level of control of a particular NGINX feature.
 
@@ -72,14 +72,14 @@ Assuming that the Ingress Controller is using that customized template, it will 
 
 **Notes**:
 
-- You can customize the template to insert you custom annotations via [custom templates](/nginx-ingress-controller/configuration/global-configuration/custom-templates).
+- You can customize the template to insert you custom annotations via [custom templates]({{< ref "/nic//configuration/global-configuration/custom-templates.md" >}}).
 - The Ingress Controller uses go templates to generate NGINX config. You can read more information about go templates [here](https://golang.org/pkg/text/template/).
 
 See the examples in the next section that use custom annotations to configure NGINX features.
 
 ### Custom Annotations with Mergeable Ingress Resources
 
-A Mergeable Ingress resource consists of multiple Ingress resources - one master and one or several minions. Read more about Mergeable Ingress resources [here](/nginx-ingress-controller/configuration/ingress-resources/cross-namespace-configuration).
+A Mergeable Ingress resource consists of multiple Ingress resources - one master and one or several minions. Read more about Mergeable Ingress resources [here]({{< ref "/nic/configuration/ingress-resources/cross-namespace-configuration.md" >}}).
 
 If you'd like to use custom annotations with Mergeable Ingress resources, please keep the following in mind:
 
