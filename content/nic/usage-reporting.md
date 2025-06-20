@@ -4,9 +4,9 @@ toc: true
 weight: 1800
 noindex: true
 headless: true
-type: how-to
-product: NIC
-docs: DOCS-1445
+nd-content-type: how-to
+nd-product: NIC
+nd-docs: DOCS-1445
 ---
 
 {{< important >}}
@@ -32,8 +32,8 @@ To use Usage Reporting, you must have access to NGINX Instance Manager. For more
 
 To deploy Usage Reporting, you must have the following:
 
-- [NGINX Ingress Controller](https://docs.nginx.com/nginx-ingress-controller) 3.2.0 - 3.7.2
-- [NGINX Instance Manager](https://docs.nginx.com/nginx-instance-manager) 2.11.0 or later
+- [NGINX Ingress Controller]({{< ref "/nic/" >}}) 3.2.0 - 3.7.2
+- [NGINX Instance Manager]({{< ref "/nim/" >}}) 2.11.0 or later
 
 In addition to the software requirements, you will need:
 
@@ -49,12 +49,12 @@ In addition to the software requirements, you will need:
 
 Usage Reporting needs a user account to send usage data to NGINX Instance Manager: these are the steps involved.
 
-1. Create a role following the steps in [Create a Role](https://docs.nginx.com/nginx-instance-manager/admin-guide/rbac/create-roles/#create-roles) section of the NGINX Instance Manager documentation. Select these permissions in step 6 for the role:
+1. Create a role following the steps in [Create a Role]({{< ref "/nim/admin-guide/rbac/create-roles.md#create-roles" >}}) section of the NGINX Instance Manager documentation. Select these permissions in step 6 for the role:
    - Module: Instance Manager
    - Feature: NGINX Plus Usage
    - Access: CRUD
 
-1. Create a user account following the steps in [Add Users](https://docs.nginx.com/nginx-instance-manager/admin-guide/rbac/assign-roles/#assign-roles-to-users-basic-authentication) section of the NGINX Instance Manager documentation. In step 5, assign the user to the role created above. Note that currently only "basic auth" authentication is supported for usage reporting purposes.
+1. Create a user account following the steps in [Add Users]({{< ref "/nim/admin-guide/rbac/assign-roles.md#assign-roles-to-users-basic-authentication" >}}) section of the NGINX Instance Manager documentation. In step 5, assign the user to the role created above. Note that currently only "basic auth" authentication is supported for usage reporting purposes.
 
 ---
 
@@ -152,6 +152,7 @@ Usage Reporting sends the number of NGINX Ingress Controller instances and nodes
 ```shell
 curl --user "foo:bar" https://nms.example.com/api/platform/v1/k8s-usage
 ```
+
 ```json
 {
   "items": [
@@ -212,6 +213,7 @@ You can query the usage data for a specific cluster by specifying the cluster ui
 ```shell
 curl --user "foo:bar" https://nms.example.com/api/platform/v1/k8s-usage/d290f1ee-6c54-4b01-90e6-d701748f0851
 ```
+
 ```json
 {
   "metadata": {

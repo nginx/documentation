@@ -1,10 +1,10 @@
 ---
-docs: DOCS-1456
-doctypes:
-- ''
 title: Troubleshoot NGINX App Protect DoS
 toc: true
 weight: 400
+nd-content-type: how-to
+nd-product: NIC
+nd-docs: DOCS-1456
 ---
 
 This document describes how to troubleshoot problems when using NGINX Ingress Controller and the App Protect DoS module.
@@ -106,6 +106,7 @@ The events section has a *Normal* event with the *AddedOrUpdated reason*, indica
 
 ## Run App Protect DoS in Debug log Mode
 
-When you set the Ingress Controller to use debug log mode, the setting also applies to the App Protect DoS module.  See  [Running NGINX in the Debug Mode](/nginx-ingress-controller/troubleshooting/#running-nginx-in-the-debug-mode) for instructions.
+When you configure NGINX Ingress Controller to use debug log mode, the setting also applies to the App Protect DoS module. See [Enable debugging for NGINX Ingress Controller
+]({{< ref "/nic/troubleshooting/troubleshoot-common.md#enable-debugging-for-nginx-ingress-controller" >}}) for instructions.
 
-You can enable debug log mode to App Protect DoS module only by setting the `app-protect-dos-debug` [configmap](/nginx-ingress-controller/configuration/global-configuration/configmap-resource#modules).
+You can enable debug log mode to App Protect DoS module only by setting the `app-protect-dos-debug` [configmap]({{< ref "/nic/configuration/global-configuration/configmap-resource.md#modules" >}}).
