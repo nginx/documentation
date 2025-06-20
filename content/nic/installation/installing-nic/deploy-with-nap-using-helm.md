@@ -2,8 +2,8 @@
 title: Install NGINX Ingress Controller and NGINX App Protect WAF with Docker and Helm
 toc: true
 weight: 500
-type: how-to
-product: NIC
+nd-content-type: how-to
+nd-product: NIC
 ---
 
 This document describes how to build a local F5 NGINX App Protect WAF v5 Docker image with NGINX Plus Ingress 
@@ -340,4 +340,4 @@ deployment in a single file with the policy bundle already set.
 
 You now have a fully operational NGINX Ingress Controller instance with NGINX App Protect deployed in your Kubernetes environment. 
 
-For further details, troubleshooting, or support, refer to the [official NGINX documentation](https://docs.nginx.com) or reach out directly to your F5/NGINX account team.
+For further details, troubleshooting, or support, refer to the [official NGINX documentation]({{< ref "/" >}}) or reach out directly to your F5/NGINX account team.

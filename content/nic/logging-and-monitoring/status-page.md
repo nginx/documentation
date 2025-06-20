@@ -1,26 +1,26 @@
 ---
-docs: DOCS-615
-doctypes:
-- ''
 title: Status Page
 toc: true
 weight: 1900
+nd-content-type: how-to
+nd-product: NIC
+nd-docs: DOCS-615
 ---
 
 This document explains how to get access to the stub status in NGINX and the dashboard in NGINX Plus.
 
 NGINX comes with a status page that reports basic metrics about NGINX called the [stub status](https://nginx.org/en/docs/http/ngx_http_stub_status_module.html).
 
-NGINX Plus comes with a [dashboard](https://docs.nginx.com/nginx/admin-guide/monitoring/live-activity-monitoring/) that reports key load-balancing and performance metrics.
+NGINX Plus comes with a [dashboard]({{< ref "/nginx/admin-guide/monitoring/live-activity-monitoring.md" >}}) that reports key load-balancing and performance metrics.
 
-NGINX App Protect DoS comes with a [dashboard](https://docs.nginx.com/nginx-app-protect-dos/monitoring/live-activity-monitoring/) that shows the status and information of the protected objects.
+NGINX App Protect DoS comes with a [dashboard]({{< ref "/nap-dos/monitoring/live-activity-monitoring.md" >}}) that shows the status and information of the protected objects.
 This doc shows how to get access to the stub status/dashboard.
 
 ## Accessing Stub Status
 
 Prerequisites:
 
-1. The stub status is enabled by default. Ensure that the `nginx-status` [command-line argument](/nginx-ingress-controller/configuration/global-configuration/command-line-arguments) is not set to false.
+1. The stub status is enabled by default. Ensure that the `nginx-status` [command-line argument]({{< ref "/nic/configuration/global-configuration/command-line-arguments.md" >}}) is not set to false.
 1. The stub status is available on port 8080 by default. It is customizable by the `nginx-status-port` command-line argument. If yours is not on 8080, modify the kubectl proxy command below.
 
 To access the status:
@@ -42,7 +42,7 @@ If you want to access the stub status externally (without `kubectl port-forward`
 
 Prerequisites:
 
-1. The dashboard is enabled by default. Ensure that the `nginx-status` [command-line argument](/nginx-ingress-controller/configuration/global-configuration/command-line-arguments)is not set to false.
+1. The dashboard is enabled by default. Ensure that the `nginx-status` [command-line argument]({{< ref "/nic/configuration/global-configuration/command-line-arguments.md" >}}) is not set to false.
 1. The dashboard is available on port 8080 by default. It is customizable by the `nginx-status-port` command-line argument. If yours is not on 8080, modify the kubectl proxy command below.
 
 To access the dashboard:
