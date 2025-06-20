@@ -311,7 +311,7 @@ If you are upgrading from an older version, update your configuration accordingl
 | `--features`                                | `NGINX_AGENT_FEATURES`                       | Specifies a comma-separated list of features enabled for the agent. Default: *[registration, nginx-config-async, nginx-ssl-config, nginx-counting, metrics, dataplane-status, process-watcher, file-watcher, activity-events, agent-api]* |
 | `--ignore-directives`                       |                                      | Specifies a comma-separated list of directives to ignore for sensitive info.|
 | `--instance-group`                          | `NGINX_AGENT_INSTANCE_GROUP`                 | Sets the instance's group value.                                            |
-| `--log-level`                               | `NGINX_AGENT_LOG_LEVEL`                      | Sets the logging level (e.g., panic, fatal, error, info, debug, trace). Default: *info* |
+| `--log-level`                               | `NGINX_AGENT_LOG_LEVEL`                      | Sets the logging level (for example, panic, fatal, error, info, debug, trace). Default: *info* |
 | `--log-path`                                | `NGINX_AGENT_LOG_PATH`                       | Specifies the path to output log messages.                                  |
 | `--metrics-bulk-size`                       | `NGINX_AGENT_METRICS_BULK_SIZE`              | Specifies the number of metrics reports collected before sending data. Default: *20* |
 | `--metrics-collection-interval`             | `NGINX_AGENT_METRICS_COLLECTION_INTERVAL`    | Sets the interval for metrics collection. Default: *15s*                    |

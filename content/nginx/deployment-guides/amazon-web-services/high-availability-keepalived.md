@@ -9,8 +9,7 @@ type:
 - how-to
 ---
 
-This guide explains how to create a highly available (HA) active‑passive deployment of F5 NGINX Plus in the [Amazon Web Services](https://aws.amazon.com/) (AWS) cloud. It combines the `keepalived`‑based solution for high availability (provided by NGINX for on‑premises HA deployments) with the AWS Elastic IP address feature.
-
+This guide explains how to create a high availability (HA) active‑passive deployment of F5 NGINX Plus in the [Amazon Web Services](https://aws.amazon.com/) (AWS) cloud. It combines the `keepalived`‑based solution for high availability (provided by NGINX for on‑premises HA deployments) with the AWS Elastic IP address feature.
 NGINX also provides a [solution for active‑active HA of NGINX Plus in AWS]({{< ref "high-availability-network-load-balancer.md" >}}), using AWS Network Load Balancer.
 
 <span id="ha-aws_overview"></span>
@@ -18,7 +17,7 @@ NGINX also provides a [solution for active‑active HA of NGINX Plus in AWS]({{
 
 The [supported solution for HA deployment]({{< ref "nginx/admin-guide/high-availability/ha-keepalived.md" >}}) of NGINX Plus that uses `keepalived` is designed for on‑premises deployments. It is typically not viable in cloud environments, such as AWS, because of the networking restrictions they impose.
 
-One method for deploying NGINX Plus in a highly available manner on AWS is to use ELB in front of NGINX Plus instances. However, the method has several disadvantages:
+One method for deploying NGINX Plus in a highly available manner on AWS is to use ELB in front of NGINX Plus instances. But, the method has several disadvantages:
 
 - It increases the cost of your deployment.
 - It limits the number of protocols NGINX Plus and your applications can support. In particular, ELB does not support UDP load balancing.
@@ -69,14 +68,14 @@ The scripts in the HA solution use the AWS API to associate an Elastic IP addre
 3. Attach this IAM role to the instance.
 
 <span id="ha-aws_eip"></span>
-## Step 2 – Allocate an Elastic IP Address
+## Step 2 – Allocate an Elastic IP address
 
 Allocate an Elastic IP address and remember its ID. For detailed instructions, see the [AWS documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html#using-instance-addressing-eips-allocating).
 
 <span id="ha-aws_keepalived-install"></span><span id="ha-aws_step3"></span>
 ## Step 3 – Install `keepalived`, `wget`, and the AWS CLI
 
-1. Install two packages from your OS vendor’s repository: the **keepalived** package and **wget**, which is used by the HA scripts.
+1. Install two packages from your OS vendor’s repository: **keepalived** and **wget**, which is used by the HA scripts.
 
    - On Ubuntu systems:
 
@@ -97,8 +96,8 @@ Allocate an Elastic IP address and remember its ID. For detailed instructions, s
 
 The NGINX Plus HA solution uses two scripts, which are invoked by `keepalived`:
 
-- <span style="white-space: nowrap; font-weight:bold;">nginx-ha-check</span> – Determines the health of NGINX Plus.
-- <span style="white-space: nowrap; font-weight:bold;">nginx-ha-notify</span> – Moves the Elastic IP address when a state transition happens, for example when the backup instance becomes the primary.
+- {{<nb>}}**nginx-ha-check**{{</nb>}} – Determines the health of NGINX Plus.
+- {{<nb>}}**nginx-ha-notify**{{</nb>}} – Moves the Elastic IP address when a state transition happens, for example when the backup instance becomes the primary.
 
 1. Create a directory for the scripts, if it doesn’t already exist.
 
@@ -122,7 +121,7 @@ The NGINX Plus HA solution uses two scripts, which are invoked by `keepalived`:
 There are two configuration files for the HA solution:
 
 - **keepalived.conf** – The main configuration file for `keepalived`, slightly different for each NGINX Plus instance.
-- <span style="white-space: nowrap; font-weight:bold;">nginx-ha-notify</span> – The script you downloaded in [Step 4](#ha-aws_ha-scripts), with several user‑defined variables.
+- {{<nb>}}**nginx-ha-notify**{{</nb>}} – The script you downloaded in [Step 4](#ha-aws_ha-scripts), with several user‑defined variables.
 
 <span id="ha-aws_keepalived-conf-file"></span>
 ### Creating keepalived.conf
@@ -155,12 +154,12 @@ vrrp_instance VI_1 {
 }
 ```
 
-You must change values for the following configuration keywords (as you do so, also remove the angle brackets enclosing the placeholder value):
+You must change values for the following configuration keywords. As you do so, also remove the angle brackets enclosing the placeholder value:
 
 - `script` in the `chk_nginx_service` block – The script that sends health checks to NGINX Plus.
 
-  - On Ubuntu systems, <span style="white-space: nowrap; font-weight:bold;">/usr/lib/keepalived/nginx-ha-check</span>
-  - On CentOS systems, <span style="white-space: nowrap; font-weight:bold;">/usr/libexec/keepalived/nginx-ha-check</span>
+  - On Ubuntu systems, {{<nb>}}**/usr/lib/keepalived/nginx-ha-check**{{</nb>}}
+  - On CentOS systems, {{<nb>}}**/usr/libexec/keepalived/nginx-ha-check**{{</nb>}}
 
 - `priority` – The value that controls which instance becomes primary, with a higher value meaning a higher priority. Use `101` for the primary instance and `100` for the backup.
 
@@ -172,13 +171,13 @@ You must change values for the following configuration keywords (as you do so, a
 
 - `notify` – The script that is invoked during a state transition.
 
-  - On Ubuntu systems, <span style="white-space: nowrap; font-weight:bold;">/usr/lib/keepalived/nginx-ha-notify</span>
-  - On CentOS systems, <span style="white-space: nowrap; font-weight:bold;">/usr/libexec/keepalived/nginx-ha-notify</span>
+  - On Ubuntu systems, {{<nb>}}**/usr/lib/keepalived/nginx-ha-notify**{{</nb>}}
+  - On CentOS systems, {{<nb>}}**/usr/libexec/keepalived/nginx-ha-notify**{{</nb>}}
 
 <span id="ha-aws_nginx-ha-notify-script"></span>
 ### Creating nginx-ha-notify
 
-Modify the user‑defined variables section of the <span style="white-space: nowrap; font-weight:bold;">nginx-ha-notify</span> script, replacing each `<value>` placeholder with the value specified in the list below:
+Modify the user‑defined variables section of the {{<nb>}}**nginx-ha-notify**{{</nb>}} script, replacing each `<value>` placeholder with the value specified in the list below:
 
 ```none
 export AWS_ACCESS_KEY_ID=<value>
@@ -224,7 +223,7 @@ Check the state on the backup instance, confirming that it has transitioned to `
 <span id="ha-aws_troubleshooting"></span>
 ## Troubleshooting
 
-If the solution doesn’t work as expected, check the `keepalived` logs, which are written to <span style="white-space: nowrap; font-weight:bold;">/var/log/syslog</span>. Also, you can manually run the commands that invoke the `awscli` utility in the <span style="white-space:nowrap; font-weight:bold;">nginx-ha-notify</span> script to check that the utility is working properly.
+If the solution doesn’t work as expected, check the `keepalived` logs, which are written to **/var/log/syslog**. Also, you can manually run the commands that invoke the `awscli` utility in the {{<nb>}}**nginx-ha-notify**{{</nb>}} script to check that the utility is working properly.
 
 <span id="ha-aws_caveats"></span>
 ## Caveats

@@ -33,8 +33,10 @@ To update the capacity of your deploymentv using the Azure Portal,
 
  1. Select **NGINXaaS scaling** in the left menu.
  1. Select `Manual`.
- 1. Set the desired number of NCUs.
- 1. Click **Submit** to update your deployment.
+ 1. Set the desired number of NCUs. Scale increases in 10 NCU intervals (10, 20, 30, and so on).
+ 1. Select **Submit** to update your deployment.
+
+  {{< note >}}There's no downtime while an NGINXaaS deployment changes capacity.{{< /note >}}
 
 ## Autoscaling
 
@@ -47,7 +49,7 @@ To enable autoscaling using the Azure Portal,
  1. Select **NGINXaaS scaling** in the left menu.
  1. Select `Autoscale`.
  1. Specify the minimum and maximum NCU count.
- 1. Click **Submit** to enable NGINXaaS deployment autoscaling.
+ 1. Select **Submit** to enable NGINXaaS deployment autoscaling.
 
 ### Scaling rules
 

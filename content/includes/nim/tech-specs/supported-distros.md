@@ -1,5 +1,7 @@
 ---
 docs: DOCS-1071
+files:
+- content/nim/fundamentals/tech-specs.md
 ---
 
 The following table lists the Linux distributions supported by NGINX Instance Manager and NGINX App Protect:

@@ -140,12 +140,12 @@ The instructions below use the terms "internet-connected" and "network-restricte
 
 #### License NGINX Instance Manager
 
-- **Internet-connected**: Follow the steps in [Add license]({{< ref "nim/admin-guide/license/add-license.md" >}}).
+- **Internet-connected**: Follow the steps in [Add license]({{< ref "nim/admin-guide/add-license.md" >}}).
 - **Network-restricted**: Follow the steps in [Add a license in a disconnected environment]({{< ref "nim/disconnected/add-license-disconnected-deployment.md" >}}).
 
 #### Submit usage reports to F5 from NGINX Instance Manager {#submit-usage-reports-from-nim}
 
-- **Internet-connected**: Follow the steps in [Report usage to F5]({{< ref "nim/admin-guide/license/report-usage-connected-deployment.md" >}}).
+- **Internet-connected**: Follow the steps in [Report usage to F5]({{< ref "nim/admin-guide/report-usage-connected-deployment.md" >}}).
 - **Network-restricted**: Follow the steps in [Report usage to F5 in a disconnected environment]({{< ref "nim/disconnected/report-usage-disconnected-deployment.md" >}}).
 
 ### NGINX App Protect WAF

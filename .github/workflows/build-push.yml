@@ -1,5 +1,7 @@
 name: Build and deploy (docs)
 on:
+  repository_dispatch:
+    types: [trigger-preview-build]
   workflow_call:
     inputs:
       environment:
@@ -31,7 +33,7 @@ on:
         type: string
   pull_request:
     branches:
-      - "*"
+      - "**"
   push:
     branches:
       - "main"
@@ -39,14 +41,14 @@ on:
 env:
   FRONT_DOOR_USERNAME: ${{ secrets.FRONT_DOOR_USERNAME }}
   FRONT_DOOR_PASSWORD: ${{ secrets.FRONT_DOOR_PASSWORD }}
-  GITHUB_PR_NUMBER: ${{ github.event.pull_request.number }}     
+  GITHUB_PR_NUMBER: ${{ github.event.pull_request.number }}    
 jobs:
   prod-check-branch:
     runs-on: ubuntu-24.04
     steps:
       - name: Output variables
         run: |
-          echo "Environment: ${{ inputs.environment }}"
+          echo "Environment: ${{ inputs.environment || github.event.client_payload.environment }}"
           echo "Branch: ${{ github.ref }}"
       - name: Checks to see that main branch is selected if deploying to prod
         if: ${{ inputs.environment == 'prod' && github.ref != 'refs/heads/main' }}
@@ -56,20 +58,60 @@ jobs:
 
   call-docs-build-push:
     needs: prod-check-branch
-    uses: nginxinc/docs-actions/.github/workflows/docs-build-push.yml@9c59fab05a8131f4d691ba6ea2b6a119f3ef832a # v1.0.7
+    uses: nginxinc/docs-actions/.github/workflows/docs-build-push.yml@cc69def33942d819719164723b35b5163d838276 # v1.0.9
     with:
       production_url_path: ""
       preview_url_path: "${{ vars.PREVIEW_URL_PATH }}"
       docs_source_path: "public"
       docs_build_path: "./"
       doc_type: "hugo"
-      environment: ${{inputs.environment}}
+      environment: ${{ inputs.environment || github.event.client_payload.environment }}
       force_hugo_theme_version: ${{inputs.hugo_theme_override}}
       auto_deploy_branch: "main"
       auto_deploy_env: "prod"
     secrets:
       AZURE_CREDENTIALS: ${{secrets.AZURE_CREDENTIALS_DOCS}}
       AZURE_KEY_VAULT: ${{secrets.AZURE_KEY_VAULT_DOCS}}
+
+  trigger-theme-slack-notification:
+    if: github.event_name == 'repository_dispatch'
+    needs: call-docs-build-push
+    runs-on: ubuntu-latest
+    permissions: read-all
+    steps:
+      - name: Send notification
+        uses:  8398a7/action-slack@1750b5085f3ec60384090fb7c52965ef822e869e # v3.18.0
+        with: 
+          status: custom
+          custom_payload: |
+            {
+                username: 'Github',
+                mention: 'channel',
+                attachments: [{
+                  title: `New theme release - ${{ github.event.client_payload.release_name }}`,
+                  color: '#009223',
+                  fields: [
+                  {
+                    title: 'Tag',
+                    value: `${{ github.event.client_payload.tag_name }}`,
+                    short: true
+                  },
+                  {
+                    title: 'Author',
+                    value: `${{ github.event.client_payload.author }}`,
+                    short: true
+                  },
+                  {
+                    title: 'Preview URL',
+                    value: `${{ env.PREVIEW_URL }}`,
+                    short: true
+                  }]
+                }]
+            }
+    env:
+      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL_FRIENDS_OF_DOCS }}
+      PREVIEW_URL: ${{ needs.call-docs-build-push.outputs.PREVIEW_URL }}
+
 
   lighthouseci:
     if: github.event.pull_request

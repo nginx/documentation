@@ -1,7 +1,7 @@
 ---
 description: ''
 docs: DOCS-1100
-title: Configure NGINX Instance Manager with nms.conf
+title: Configure settings with nms.conf
 toc: true
 weight: 1
 type:
@@ -132,7 +132,7 @@ integrations:
     attack_signatures_ttl: 336h
     # Time to live for compiled bundles, this includes compiled security policies and compiled log profiles. If a compiled
     # bundle exceeds its TTL and is not deployed to an instance or instance group, it will be deleted from the database. Note
-    # that the compiled bundle is deleted, not the definition of it (i.e., the security policy or log profile definition).
+    # that the compiled bundle is deleted, not the definition of it (that is, the security policy or log profile definition).
     # Duration unit can be seconds (s), minutes (m), or hours (h).
     compiled_bundles_ttl: 336h
     # Time to live for threat campaigns. If the threat campaigns exceed their TTL and are not deployed to an instance or

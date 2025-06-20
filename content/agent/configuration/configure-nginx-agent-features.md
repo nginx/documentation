@@ -5,6 +5,7 @@ weight: 150
 toc: true
 type:
 - how-to
+docs: DOCS-1678
 ---
 
 ## Overview
@@ -47,7 +48,7 @@ The following table lists the NGINX Agent features.
     ssh user@your-nginx-instance
 ```
 
-2. **Edit NGINX Agent configuration:** 
+2. **Edit NGINX Agent configuration:**
 
 ```
     sudo vim /etc/nginx-agent/nginx-agent.conf
@@ -60,7 +61,7 @@ The following table lists the NGINX Agent features.
       - metrics
       - metrics-throttle
       - dataplane-status
-``` 
+```
 
 4. **Restart the NGINX Agent service:** Restart the NGINX Agent service to enable changes.
 
@@ -73,7 +74,7 @@ Once the steps have been completed, users will be able to view metrics data bein
     ssh user@your-nginx-instance
 ```
 
-2. **Edit NGINX Agent configuration:** 
+2. **Edit NGINX Agent configuration:**
 
 ```
     sudo vim /etc/nginx-agent/nginx-agent.conf
@@ -86,9 +87,9 @@ Once the steps have been completed, users will be able to view metrics data bein
       - nginx-config-async
       - dataplane-status
       - file-watcher
-``` 
+```
 
 4. **Restart the NGINX Agent service:** Restart the NGINX Agent service to enable changes.
 
-Once the steps have been completed, users will be able to publish NGINX configurations but metrics data will not be collected by the NGINX Agent. 
+Once the steps have been completed, users will be able to publish NGINX configurations but metrics data will not be collected by the NGINX Agent.
 

@@ -169,7 +169,7 @@ http {
 
 Directive documentation: [include](https://nginx.org/en/docs/ngx_core_module.html#include)
 
-You can also use wildcard notation to reference all files that pertain to a certain function or traffic type in the appropriate context block. For example, if you name all HTTP configuration files <span style="white-space: nowrap; font-weight:bold;">_function_-http.conf</span>, this is an appropriate include directive:
+You can also use wildcard notation to reference all files that pertain to a certain function or traffic type in the appropriate context block. For example, if you name all HTTP configuration files {{<nb>}}**_function_-http.conf**{{</nb>}}, this is an appropriate include directive:
 
 ```nginx
 http {
@@ -427,11 +427,11 @@ HTTP/2 is fully supported in both <span style="white-space: nowrap;">NGINX Open 
 
 - In <span style="white-space: nowrap;">NGINX Plus R8</span> and later, NGINX Plus supports HTTP/2 by default. (Support for SPDY is deprecated as of that release). Specifically:
 
-  In <span style="white-space: nowrap;">NGINX Plus R11</span> and later, the <span style="white-space: nowrap; font-weight:bold;">nginx-plus</span> package continues to support HTTP/2 by default, but the <span style="white-space: nowrap; font-weight:bold;">nginx-plus-extras</span> package available in previous releases is deprecated by [dynamic modules](https://www.nginx.com/products/dynamic-modules/).
+  In [NGINX Plus R11]({{< ref "/nginx/releases.md#r11" >}}) and later, the **nginx-plus** package continues to support HTTP/2 by default, but the **nginx-plus-extras** package available in previous releases is deprecated and replaced by [dynamic modules]({{< ref "/nginx/admin-guide/dynamic-modules/dynamic-modules.md" >}}).
 
-  For <span style="white-space: nowrap;">NGINX Plus R8</span> through R10, the <span style="white-space: nowrap; font-weight:bold;">nginx-plus</span> and <span style="white-space: nowrap; font-weight:bold;">nginx-plus-extras</span> packages support HTTP/2 by default.
+  For <span style="white-space: nowrap;">NGINX Plus R8</span> through R10, the {{<nb>}}**nginx-plus**{{</nb>}} and {{<nb>}}**nginx-plus-extras**{{</nb>}} packages support HTTP/2 by default.
 
-  If using <span style="white-space: nowrap;">NGINX Plus R7</span>, you must install the <span style="white-space: nowrap; font-weight:bold;">nginx-plus-http2</span> package instead of the <span style="white-space: nowrap; font-weight:bold;">nginx-plus</span> or <span style="white-space: nowrap; font-weight:bold;">nginx-plus-extras</span> package.
+  If using <span style="white-space: nowrap;">NGINX Plus R7</span>, you must install the {{<nb>}}**nginx-plus-http2**{{</nb>}} package instead of the {{<nb>}}**nginx-plus**{{</nb>}} or {{<nb>}}**nginx-plus-extras**{{</nb>}} package.
 
 To enable HTTP/2 support, add the `http2` directive in the `server` block for HTTPS traffic that we created in [Configuring Virtual Servers for HTTP and HTTPS Traffic](#virtual-servers), so that it looks like this:
 
@@ -793,7 +793,7 @@ The full configuration for enhanced load balancing appears here for your conveni
 
 We recommend that you do not copy text directly from this document, but instead use the method described in [Creating and Modifying Configuration Files](#config-files) to include these directives in your configuration – add an `include` directive to the `http` context of the main **nginx.conf** file to read in the contents of <span style="white-space: nowrap;">/etc/nginx/conf.d/jboss-enhanced.conf</span>.
 
-**Note:** The `api` block in this configuration summary and the [downloadable](https://www.nginx.com/resource/conf/jboss-enhanced.conf) <span style="white-space: nowrap; font-weight:bold;">jboss-enhanced.conf</span> file is for the [API method](#reconfiguration-api) of dynamic reconfiguration. If you want to use the [DNS method](#reconfiguration-dns) instead, make the appropriate changes to the block. (You can also remove or comment out the directives for the NGINX Plus API in that case, but they do not conflict with using the DNS method and enable features other than dynamic reconfiguration.)
+**Note:** The `api` block in this configuration summary and the [downloadable](https://www.nginx.com/resource/conf/jboss-enhanced.conf) {{<nb>}}**jboss-enhanced.conf**{{</nb>}} file is for the [API method](#reconfiguration-api) of dynamic reconfiguration. If you want to use the [DNS method](#reconfiguration-dns) instead, make the appropriate changes to the block. (You can also remove or comment out the directives for the NGINX Plus API in that case, but they do not conflict with using the DNS method and enable features other than dynamic reconfiguration.)
 
 ```nginx
 proxy_cache_path /tmp/NGINX_cache/ keys_zone=backcache:10m;
