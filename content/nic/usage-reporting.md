@@ -152,6 +152,7 @@ Usage Reporting sends the number of NGINX Ingress Controller instances and nodes
 ```shell
 curl --user "foo:bar" https://nms.example.com/api/platform/v1/k8s-usage
 ```
+
 ```json
 {
   "items": [
@@ -212,6 +213,7 @@ You can query the usage data for a specific cluster by specifying the cluster ui
 ```shell
 curl --user "foo:bar" https://nms.example.com/api/platform/v1/k8s-usage/d290f1ee-6c54-4b01-90e6-d701748f0851
 ```
+
 ```json
 {
   "metadata": {
