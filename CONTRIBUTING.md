@@ -1,9 +1,10 @@
 # Contributing guidelines
 
-The following is a set of guidelines for community contributions to this
-project. We really appreciate your desire to contribute!
+The following is a set of guidelines for community contributions to this project. 
 
-If you are an F5 employee, see the following additional guidance [For F5 Employees](./F5-NGINX-team-notes.md).
+We really appreciate your desire to contribute!
+
+If you are an F5 employee, see the following additional guidance on [Maintainers etiquette](/documentation/maintainers-etiquette.md).
 
 ## Table of contents
 
@@ -12,8 +13,8 @@ If you are an F5 employee, see the following additional guidance [For F5 Employe
 - [Open a Discussion](#open-a-discussion)
 - [Submit a Pull Request](#submit-a-pull-request)
   - Review our [Git style guide](#git-style-guide)
-  - Review our Documentation [style guide](./templates/style-guide.md)
-  - Review our [Contributing guidelines for writers](./CONTRIBUTING_DOCS.md)
+  - Review the [Writing style guide](/documentation/style-guide.md)
+  - Review [Managing content with Hugo](/documentation/writing-hugo.md)
 - [Issue Lifecycle](#issue-lifecycle)
 - [Additional NGINX documentation](#additional-nginx-documentation)
 - [F5 Contributor License Agreement (CLA)](#f5-contributor-license-agreement)
@@ -51,6 +52,7 @@ our documentation as described in our [support](./SUPPORT.md) page.
 ### Git style guide
 
 - Keep a clean, concise and meaningful Git commit history on your branch, rebasing locally and squashing before you submit a PR
+- We use [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/#summary) formatting.
 - Follow the guidelines of writing a good commit message as described here <https://chris.beams.io/posts/git-commit/>
   and summarized in the next few points:
 
