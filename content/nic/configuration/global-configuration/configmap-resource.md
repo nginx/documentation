@@ -2,9 +2,9 @@
 title: ConfigMap resources
 weight: 300
 toc: true
-type: how-to
-product: NIC
-docs: DOCS-586
+nd-content-type: how-to
+nd-product: NIC
+nd-docs: DOCS-586
 ---
 
 When using F5 NGINX Ingress Controller, you can customize or fine tune NGINX behavior using ConfigMap resources. Examples include setting the number of worker processes or customizing the access log format.
@@ -171,7 +171,7 @@ For more information, view the [VirtualServer and VirtualServerRoute resources](
 {{<bootstrap-table "table table-striped table-bordered table-responsive">}}
 |ConfigMap Key | Description | Default | Example |
 | ---| ---| ---| --- |
-|*lb-method* | Sets the [load balancing method](https://docs.nginx.com/nginx/admin-guide/load-balancer/http-load-balancer/#choosing-a-load-balancing-method). To use the round-robin method, specify *"round_robin"*. | *"random two least_conn"* |  |
+|*lb-method* | Sets the [load balancing method]({{< ref "/nginx/admin-guide/load-balancer/http-load-balancer.md#choosing-a-load-balancing-method" >}}). To use the round-robin method, specify *"round_robin"*. | *"random two least_conn"* |  |
 |*max-fails* | Sets the value of the [max_fails](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#max_fails) parameter of the *server* directive. | *1* |  |
 |*upstream-zone-size* | Sets the size of the shared memory [zone](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#zone) for upstreams. For NGINX, the special value 0 disables the shared memory zones. For NGINX Plus, shared memory zones are required and cannot be disabled. The special value 0 will be ignored. | *256k* for NGINX, *512k* for NGINX Plus  |  |
 |*fail-timeout* | Sets the value of the [fail_timeout](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#fail_timeout) parameter of the *server* directive. | *10s* |  |
@@ -182,7 +182,7 @@ For more information, view the [VirtualServer and VirtualServerRoute resources](
 
 ### Zone Sync
 
-Zone Sync enables the [ngx_stream_zone_sync_module](https://nginx.org/en/docs/stream/ngx_stream_zone_sync_module.html) in NGINX Ingress Controller when NGINX Plus is used.  Multiple replicas are required to effectively utililise this functionality. More information is available in the [How NGINX Plus Performs Zone Synchronization](https://docs.nginx.com/nginx/admin-guide/high-availability/zone_sync_details/) topic.
+Zone Sync enables the [ngx_stream_zone_sync_module](https://nginx.org/en/docs/stream/ngx_stream_zone_sync_module.html) in NGINX Ingress Controller when NGINX Plus is used.  Multiple replicas are required to effectively utililise this functionality. More information is available in the [How NGINX Plus Performs Zone Synchronization]({{< ref "/nginx/admin-guide/high-availability/zone_sync_details.md" >}}) topic.
 
 Zone synchronization with TLS for NGINX Ingress Controller is not yet available with ConfigMap. If you would like to enable Zone Sync with TLS, please remove `zone-sync` from ConfigMap and add Zone Sync parameters via [`stream-snippets`]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-snippets.md" >}}) similar to [this example](https://github.com/nginx/kubernetes-ingress/blob/v4.0.1/examples/custom-resources/oidc/nginx-config.yaml) and adding the [zone_sync_ssl directive](https://nginx.org/en/docs/stream/ngx_stream_zone_sync_module.html#zone_sync_ssl) along with any other TLS parameters to the `stream-snippets`. 
 
@@ -217,10 +217,10 @@ If you encounter the error `error [emerg] 13#13: "zone_sync" directive is duplic
 |*location-snippets* | Sets a custom snippet in location context. | N/A |  |
 |*server-snippets* | Sets a custom snippet in server context. | N/A |  |
 |*stream-snippets* | Sets a custom snippet in stream context. | N/A | [Support for TCP/UDP Load Balancing](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/ingress-resources/tcp-udp). |
-|*main-template* | Sets the main NGINX configuration template. | By default the template is read from the file in the container. | [Custom Templates](/nginx-ingress-controller/configuration/global-configuration/custom-templates). |
-|*ingress-template* | Sets the NGINX configuration template for an Ingress resource. | By default the template is read from the file on the container. | [Custom Templates](/nginx-ingress-controller/configuration/global-configuration/custom-templates). |
-|*virtualserver-template* | Sets the NGINX configuration template for an VirtualServer resource. | By default the template is read from the file on the container. | [Custom Templates](/nginx-ingress-controller/configuration/global-configuration/custom-templates). |
-|*transportserver-template* | Sets the NGINX configuration template for a TransportServer resource. | By default the template is read from the file on the container. | [Custom Templates](/nginx-ingress-controller/configuration/global-configuration/custom-templates). |
+|*main-template* | Sets the main NGINX configuration template. | By default the template is read from the file in the container. | [Custom Templates]({{< ref "/nic/configuration/global-configuration/custom-templates.md" >}}). |
+|*ingress-template* | Sets the NGINX configuration template for an Ingress resource. | By default the template is read from the file on the container. | [Custom Templates]({{< ref "/nic/configuration/global-configuration/custom-templates.md" >}}). |
+|*virtualserver-template* | Sets the NGINX configuration template for an VirtualServer resource. | By default the template is read from the file on the container. | [Custom Templates]({{< ref "/nic/configuration/global-configuration/custom-templates.md" >}}). |
+|*transportserver-template* | Sets the NGINX configuration template for a TransportServer resource. | By default the template is read from the file on the container. | [Custom Templates]({{< ref "/nic/configuration/global-configuration/custom-templates.md" >}}) |
 {{</bootstrap-table>}}
 
 ---

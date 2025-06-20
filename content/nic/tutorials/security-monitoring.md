@@ -1,18 +1,18 @@
 ---
-doctypes:
-- concept
 title: Connect NGINX App Protect WAF to NGINX Security Monitoring
 toc: true
 weight: 1800
+nd-content-type: how-to
+nd-product: NIC
 ---
 
 This document explains how to use NGINX Ingress Controller to configure NGINX Agent for sending F5 NGINX App Protect WAF metrics to NGINX Security Monitoring.
 
 ## Prerequisites
 
-This guide assumes that you have an installation of NGINX Instance Manager with [NGINX Security Monitoring](https://docs.nginx.com/nginx-instance-manager/monitoring/security-monitoring/deploy/install-security-monitoring/) which is reachable from the Kubernetes cluster on which NGINX Ingress Controller is deployed.
+This guide assumes that you have an installation of NGINX Instance Manager with NGINX Security Monitoring which is reachable from the Kubernetes cluster on which NGINX Ingress Controller is deployed.
 
-If you use custom container images, NGINX Agent must be installed along with NGINX App Protect WAF. See the [Dockerfile](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/build/Dockerfile) for examples of how to install NGINX Agent or the [NGINX Agent installation documentation](https://docs.nginx.com/nginx-agent/installation-upgrade/) for more information.
+If you use custom container images, NGINX Agent must be installed along with NGINX App Protect WAF. See the [Dockerfile](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/build/Dockerfile) for examples of how to install NGINX Agent or the [NGINX Agent installation documentation]({{< ref "/agent/installation-upgrade/" >}}) for more information.
 
 ## Deploying NGINX Ingress Controller with NGINX Agent configuration
 
@@ -74,7 +74,7 @@ If you use custom container images, NGINX Agent must be installed along with NGI
           syslog_ip: 127.0.0.1
           syslog_port: 1514
    ```
-   See the [NGINX Agent Configuration Overview](https://docs.nginx.com/nginx-agent/configuration/configuration-overview/) for more configuration options.
+   See the [NGINX Agent Configuration Overview]({{< ref "/agent/configuration/configuration-overview.md" >}}) for more configuration options.
 
 {{< note >}} The `features` list must not contain `nginx-config-async` or `nginx-ssl-config` as these features can cause conflicts with NGINX Ingress Controller.{{< /note >}}
 

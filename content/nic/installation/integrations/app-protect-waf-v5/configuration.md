@@ -2,14 +2,14 @@
 title: Configure NGINX App Protect with NGINX Ingress Controller
 weight: 200
 toc: true
-type: how-to
-product: NIC
-docs: DOCS-000
+nd-content-type: how-to
+nd-product: NIC
+nd-docs: DOCS-000
 ---
 
 ## Overview
 
-This document explains how to use F5 NGINX Ingress Controller to configure [NGINX App Protect WAF v5](https://docs.nginx.com/nginx-app-protect-waf/v5/).
+This document explains how to use F5 NGINX Ingress Controller to configure [NGINX App Protect WAF v5]({{< ref "/nap-waf/v5/" >}}).
 
 {{< note >}} There are complete NGINX Ingress Controller with NGINX App Protect WAF [example resources on GitHub](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/custom-resources/app-protect-waf-v5). {{< /note >}}
 
