@@ -2,6 +2,7 @@
 title: Datasette
 weight: 300
 toc: true
+docs: DOCS-1718
 ---
 
 To run the [Datasette](https://docs.datasette.io/en/stable/) data exploration tool using Unit:

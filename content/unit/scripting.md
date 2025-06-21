@@ -2,6 +2,7 @@
 title: Scripting
 weight: 700
 toc: true
+docs: DOCS-1699
 ---
 
 NGINX Unit's [control API]({{< relref "/unit/controlapi.md" >}}) supports

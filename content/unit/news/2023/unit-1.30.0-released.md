@@ -1,6 +1,7 @@
 ---
 title: Unit 1.30.0 Released
 weight: 300
+docs: DOCS-1777
 ---
 
 We are happy to announce Unit 1.30.0! This release brings a new level of

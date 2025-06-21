@@ -1,6 +1,5 @@
 ---
 description: ''
-docs: DOCS-1211
 title: Install the latest NGINX Instance Manager with a script
 toc: true
 weight: 10
@@ -42,7 +41,7 @@ Follow these steps to prepare for installing NGINX Instance Manager:
 
 - **Check for previous deployments**:
   Ensure that NGINX Instance Manager and its components are not already installed.
-  
+
   If NGINX Instance Manager or its components (such as ClickHouse or NGINX) are detected, either follow the [upgrade instructions](#upgrade-nim) to update them or [manually remove the components](#uninstall-nim) before proceeding with the installation.
 
 - **(Optional) Install and configure Vault**:
@@ -122,7 +121,7 @@ If the script fails or if you prefer more control over the process, consider usi
 
 ### Run the installation script
 
-The `install-nim-bundle.sh` script automates installing NGINX Instance Manager. 
+The `install-nim-bundle.sh` script automates installing NGINX Instance Manager.
 
 By default, the script:
 
@@ -170,7 +169,7 @@ sudo bash install-nim-bundle.sh \
 
 <br>
 
-After installing NGINX Instance Manager and related packages, the script generates an admin password. This may take a few minutes to appear: 
+After installing NGINX Instance Manager and related packages, the script generates an admin password. This may take a few minutes to appear:
 
 ```bash
 Regenerated Admin password: <encrypted password>

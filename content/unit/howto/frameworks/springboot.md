@@ -2,6 +2,7 @@
 title: Spring Boot
 weight: 1800
 toc: true
+docs: DOCS-1758
 ---
 
 To run apps based on the [Spring Boot](https://spring.io/projects/spring-boot) frameworks using Unit:

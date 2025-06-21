@@ -2,6 +2,7 @@
 title: NGINX integration
 toc: true
 weight: 500
+docs: DOCS-1705
 ---
 
 Unit is a potent and versatile server in its own right. However, if you're

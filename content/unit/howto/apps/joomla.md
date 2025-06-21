@@ -2,6 +2,7 @@
 title: Joomla
 toc: true
 weight: 800
+docs: DOCS-1734
 ---
 
 To run the [Joomla](https://www.joomla.org) content management system using

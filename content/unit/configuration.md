@@ -2,6 +2,7 @@
 title: Configuration
 weight: 600
 toc: true
+docs: DOCS-1700
 ---
 
 {{<note>}}
