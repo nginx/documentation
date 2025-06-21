@@ -65,7 +65,7 @@ A Config Sync Group lets you apply one configuration to multiple NGINX instances
 
 ## Exercise 2: Add instances to the Config Sync Group
 
-{{< call-out "note" "Note" "" >}} You can mix OSS and Plus instances in one group. But any config feature you use must work on every instance. If you need Plus-only features, put them in a separate group. {{</ call-out >}}
+{{< call-out "note" "Note" "" >}} You can mix NGINX Open Source and NGINX Plus instances in one group. But any config feature you use must work on every instance. If you need NGINX Plus-only features, put them in a separate group. {{</ call-out >}}
 
 When you create a Config Sync Group, it has no shared config to begin with. You can add a shared config in two ways:
 
