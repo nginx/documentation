@@ -32,8 +32,8 @@ NGINX App Protect WAF supports the following operating systems:
 - [Debian 11 (Bullseye) & 12 (Bookworm)](#debian-10--debian-11--debian-12-installation)
 - [Oracle Linux 8.1.x and above](#oracle-linux-81-installation)
 - [RHEL 8.1.x and above](#rhel-81-installation)
-- [RHEL 9, Rocky Linux 9 and above](#rhel-9-installation)
-- [Ubuntu 22.04 (Jammy) & 24.04 (Noble)](#ubuntu-installation)
+- [RHEL 9 and above](#rhel-9-installation)
+- [Ubuntu 20.04 (Focal), 22.04 (Jammy) & 24.04 (Noble)](#ubuntu-installation)
 
 The NGINX App Protect WAF package has the following dependencies:
 
@@ -216,7 +216,7 @@ If a user other than **nginx** is to be used, note the following:
     sudo service nginx start
     ```
 
-14. As of version 4.15.0, a new feature feature `IP Intelligence` is available. The feature requires the installation of an additional package to function properly:
+14. (Optional) A new feature feature `IP Intelligence` is available (version 4.15.0 and above). The feature requires the installation of an additional package to function properly:
 
     ```shell
     sudo apk add app-protect-ip-intelligence
@@ -226,6 +226,11 @@ If a user other than **nginx** is to be used, note the following:
 
     ```shell
     /opt/app_protect/bin/iprepd /etc/app_protect/tools/iprepd.cfg > ipi.log 2>&1 &
+    ```
+
+    Update your policy to include the new configuration, then restart the nginx service:
+    ```shell
+    service nginx restart
     ```
 
 ---
@@ -342,16 +347,21 @@ If a user other than **nginx** is to be used, note the following:
     sudo systemctl start nginx
     ```
 
-1. As of version 4.15.0, a new feature feature `IP Intelligence` is available. The feature requires the installation of an additional package to function properly:
+1. (Optional) A new feature feature `IP Intelligence` is available (version 4.15.0 and above). The feature requires the installation of an additional package to function properly:
 
     ```shell
-    sudo dnf install app-protect-ip-intelligence
+    sudo dnf install -y app-protect-ip-intelligence
     ```
 
     After installing the package, run the client:
 
     ```shell
     /opt/app_protect/bin/iprepd /etc/app_protect/tools/iprepd.cfg > ipi.log 2>&1 &
+    ```
+    
+    Update your policy to include the new configuration, then restart the nginx service:
+    ```shell
+    service nginx restart
     ```
 
 ## Debian Installation
@@ -493,16 +503,22 @@ If a user other than **nginx** is to be used, note the following:
     sudo systemctl start nginx
     ```
 
-16. As of version 4.15.0, a new feature feature `IP Intelligence` is available. The feature requires the installation of an additional package to function properly:
+16. (Optional) A new feature feature `IP Intelligence` is available (version 4.15.0 and above). The feature requires the installation of an additional package to function properly:
 
     ```shell
-    sudo apt install app-protect-ip-intelligence
+    sudo apt-get -y install app-protect-ip-intelligence
     ```
 
     After installing the package, run the client:
     
     ```shell
     /opt/app_protect/bin/iprepd /etc/app_protect/tools/iprepd.cfg > ipi.log 2>&1 &
+    ```
+    
+    Update your policy to include the new configuration, then restart the nginx service:
+    
+    ```shell
+    service nginx restart
     ```
 
 {{< warning >}} Debian enables **AppArmor** by default, but NGINX App Protect WAF will run in unconfined mode after being installed as it is shipped with no AppArmor profile. To benefit from AppArmor access control capabilities for NGINX App Protect WAF, you will have to write your own AppArmor profile for NGINX App Protect WAF executables found in `/opt/app_protect/bin` such that it best suits your environment.
@@ -626,10 +642,10 @@ If a user other than **nginx** is to be used, note the following:
     sudo systemctl start nginx
     ```
 
-17. As of version 4.15.0, a new feature feature `IP Intelligence` is available. The feature requires the installation of an additional package to function properly:
+17. (Optional) A new feature feature `IP Intelligence` is available (version 4.15.0 and above). The feature requires the installation of an additional package to function properly:
 
     ```shell
-    sudo dnf install app-protect-ip-intelligence
+    sudo dnf install -y app-protect-ip-intelligence
     ```
 
     After installing the package, run the client:
@@ -637,10 +653,16 @@ If a user other than **nginx** is to be used, note the following:
     ```shell
     /opt/app_protect/bin/iprepd /etc/app_protect/tools/iprepd.cfg > ipi.log 2>&1 &
     ```
+    
+    Update your policy to include the new configuration, then restart the nginx service:
+    
+    ```shell
+    service nginx restart
+    ```
 
 ---
 
-## RHEL 9+ / Rocky Linux 9 Installation
+## RHEL 9+ Installation
 
 1. If you already have NGINX packages in your system, back up your configs and logs:
 
@@ -666,13 +688,6 @@ If a user other than **nginx** is to be used, note the following:
 
 5. Install prerequisite packages:
 
-    - For Rocky Linux:
-    ```shell
-    sudo dnf -y install wget ca-certificates 'dnf-command(config-manager)'
-    sudo dnf config-manager --set-enabled crb
-    sudo dnf install ca-certificates wget
-    ```
-    - For RHEL
     ```shell
     sudo dnf install ca-certificates wget
     ```
@@ -765,16 +780,21 @@ If a user other than **nginx** is to be used, note the following:
     sudo systemctl start nginx
     ```
 
-1. As of version 4.15.0, a new feature feature `IP Intelligence` is available. The feature requires the installation of an additional package to function properly:
+1. (Optional) A new feature feature `IP Intelligence` is available (version 4.15.0 and above). The feature requires the installation of an additional package to function properly:
 
     ```shell
-    sudo dnf install app-protect-ip-intelligence
+    sudo dnf install -y app-protect-ip-intelligence
     ```
 
     After installing the package, run the client:
     
     ```shell
     /opt/app_protect/bin/iprepd /etc/app_protect/tools/iprepd.cfg > ipi.log 2>&1 &
+    ```
+
+   Update your policy to include the new configuration, then restart the nginx service:
+    ```shell
+    service nginx restart
     ```
 
 ---
@@ -877,7 +897,7 @@ If a user other than **nginx** is to be used, note the following:
     app-protect=23+3.263.0-1~[OS_CODENAME]
     ```
 
-    Replace the [OS_CODENAME] in above the example with **jammy** for Ubuntu 22.04 and **noble** for Ubuntu 24.04.
+    Replace the [OS_CODENAME] in above the example with **focal** for Ubuntu 20.04, **jammy** for Ubuntu 22.04 and **noble** for Ubuntu 24.04.
     <br>
     <br>
 
@@ -912,10 +932,10 @@ If a user other than **nginx** is to be used, note the following:
     sudo systemctl start nginx
     ```
 
-16. As of version 4.15.0 (not avaiable for the deprecated Ubuntu 20.04), a new feature `IP Intelligence` is available. The feature requires the installation of an additional package to function properly:
+16. (Optional), a new feature `IP Intelligence` is supported (Check the release notes for the App Protect versions that support IP Intelligence). The feature requires the installation of an additional package to function properly:
 
     ```shell
-    sudo apt install app-protect-ip-intelligence
+    sudo apt-get -y install app-protect-ip-intelligence
     ```
 
     After installing the package, run the client:
@@ -924,7 +944,15 @@ If a user other than **nginx** is to be used, note the following:
     /opt/app_protect/bin/iprepd /etc/app_protect/tools/iprepd.cfg > ipi.log 2>&1 &
     ```
 
-{{< note >}} Ubuntu 22.04 / Ubuntu 24.04 activates **AppArmor** by default, but NGINX App Protect WAF will run in unconfined mode after being installed as it is shipped with no AppArmor profile. To benefit from AppArmor access control capabilities for NGINX App Protect WAF, you will have to write your own AppArmor profile for NGINX App Protect WAF executables found in `/opt/app_protect/bin` such that it best suits your environment.
+    Verify the client is populating the database:
+
+    ```shell
+    tail -f iprepd.log
+    ```
+
+    Update your policy to include the new configuration for IP Intelligence, then reload the policy or restart the nginx service.
+
+{{< note >}} Ubuntu 20.04 / Ubuntu 22.04 / Ubuntu 24.04 activates **AppArmor** by default, but NGINX App Protect WAF will run in unconfined mode after being installed as it is shipped with no AppArmor profile. To benefit from AppArmor access control capabilities for NGINX App Protect WAF, you will have to write your own AppArmor profile for NGINX App Protect WAF executables found in `/opt/app_protect/bin` such that it best suits your environment.
 {{< /note >}}
 
 ## Docker Deployments
@@ -1340,7 +1368,7 @@ CMD ["sh", "/root/entrypoint.sh"]
 ARG OS_CODENAME
 # Where OS_CODENAME can be: focal/jammy/noble
 # syntax=docker/dockerfile:1
-# For Ubuntu 22.04 / 24.04:
+# For Ubuntu 20.04 / 22.04 / 24.04:
 FROM ubuntu:${OS_CODENAME}
 
 # Install prerequisite packages:
@@ -1671,13 +1699,13 @@ RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644
     apt-get update && DEBIAN_FRONTEND="noninteractive" apt-get install -y app-protect-compiler
 ```
 
-### Ubuntu 22.04 / Ubuntu 24.04 Converter Docker Deployment Example
+### Ubuntu 20.04 / Ubuntu 22.04 / Ubuntu 24.04 Converter Docker Deployment Example
 
 ```dockerfile
 ARG OS_CODENAME
 # Where OS_CODENAME can be: bionic/focal/jammy/noble
 # syntax=docker/dockerfile:1
-# For Ubuntu 22.04 / 24.04:
+# For Ubuntu 20.04 /22.04 / 24.04:
 FROM ubuntu:${OS_CODENAME}
 
 # Install prerequisite packages:
@@ -1764,7 +1792,7 @@ For RHEL 8.1+ / Oracle Linux 8.1+:
 wget -P /etc/packages https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
 ```
 
-For RHEL 9+ / Rocky Linux 9:
+For RHEL 9+:
 
 ```shell
 wget -P /etc/packages https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
@@ -1826,7 +1854,6 @@ On an offline host:
     apt-get update
     apt-get install -y app-protect
     ```
-    
     Only use if you want to install and use the IP intelligence feature:
 
     ```shell
@@ -1969,7 +1996,7 @@ After having updated the Attack Signature package you have to reload the configu
     sudo dnf downgrade app-protect-attack-signatures-2019.07.16
     ```
 
-### RHEL 9+ / Rocky Linux 9
+### RHEL 9+
 
 1. To add NGINX App Protect WAF Security Updates repository, download the file `app-protect-9.repo` to `/etc/yum.repos.d`:
 
@@ -2048,7 +2075,7 @@ For Debian 12:
 sudo apt-get install app-protect-attack-signatures=2020.04.30-1~bookworm
 ```
 
-### Ubuntu 22.04 / Ubuntu 24.04
+### Ubuntu 20.04 / Ubuntu 22.04
 
 1. Add NGINX App Protect WAF Security Updates repository:
 
@@ -2081,6 +2108,12 @@ sudo apt-get install app-protect-attack-signatures=2020.04.30-1~bookworm
 
 ```shell
 sudo apt-cache policy app-protect-attack-signatures
+```
+
+For Ubuntu 20.04:
+
+```shell
+sudo apt-get install app-protect-attack-signatures=2020.07.16-1~focal
 ```
 
 For Ubuntu 22.04:
@@ -2190,7 +2223,7 @@ Example: app-protect-threat-campaigns-2022.07.21
     sudo dnf install app-protect-threat-campaigns-2022.07.21
     ```
 
-### RHEL 9+ / Rocky Linux 9
+### RHEL 9+
 
 1. If not already configured, add NGINX App Protect WAF Security Updates repository by downloading the file `app-protect-9.repo` to `/etc/yum.repos.d`:
 
@@ -2295,7 +2328,7 @@ sudo apt-get install app-protect-threat-campaigns=2020.06.25-1~bullseye
 sudo apt-get install app-protect-threat-campaigns=2020.06.25-1~bookworm
 ```
 
-### Ubuntu 22.04
+### Ubuntu 20.04 / Ubuntu 22.04
 
 1. If not already configured, add the NGINX App Protect WAF Security Updates repository:
 
@@ -2386,7 +2419,7 @@ The App Protect Bot Signatures is named: app-protect-bot-signatures and it is a 
     sudo dnf downgrade app-protect-bot-signatures-2023.11.14
     ```
 
-### RHEL 9+ / Rocky Linux 9
+### RHEL 9+
 
 1. If not already configured, add NGINX App Protect WAF Security Updates repository by downloading the file `app-protect-9.repo` to `/etc/yum.repos.d`:
 
@@ -2501,7 +2534,7 @@ The App Protect Bot Signatures is named: app-protect-bot-signatures and it is a 
     ```
 
 
-### Ubuntu 22.04
+### Ubuntu 20.04 / Ubuntu 22.04
 
 1. If not already configured, add the NGINX App Protect WAF Security Updates repository:
 
@@ -2573,13 +2606,29 @@ In case of using the prebuilt SELinux policy module for NGINX App Protect WAF (a
 
 You can uninstall the App Protect in below Operating Systems by using the following commands:
 
-### RHEL 8.1+ / Oracle Linux 8.1+ / RHEL 9+ / Rocky Linux 9
+### RHEL 8.1+ / Oracle Linux 8.1+ / RHEL 9+
+
+If you have previously installed `app-protect-ip-intelligence` package, please make sure to uninstall it first:
+
+```shell
+sudo dnf remove app-protect-ip-intelligence
+```
+
+Then proceed with uninstalling App Protect packages:
 
 ```shell
 sudo dnf remove app-protect app-protect-selinux
 ```
 
-### Debian 11 / Debian 12 / Ubuntu 22.04 / Ubuntu 24.04
+### Debian 11 / Debian 12 / Ubuntu 20.04 / Ubuntu 22.04 / Ubuntu 24.04
+
+If you have previously installed `app-protect-ip-intelligence` package, please make sure to uninstall it first:
+
+```shell
+sudo apt-get remove app-protect-ip-intelligence
+```
+
+Then proceed with uninstalling App Protect packages:
 
 ```shell
 sudo apt-get remove app-protect \
@@ -2596,6 +2645,14 @@ app-protect-bot-signatures
 
 ### Alpine 3.16 / Alpine 3.17 / Alpine 3.19
 
+If you have previously installed `app-protect-ip-intelligence` package, please make sure to uninstall it first:
+
+```shell
+sudo apk del app-protect-ip-intelligence
+```
+
+Then proceed with uninstalling App Protect packages:
+
 ```shell
 sudo apk del app-protect \
 app-protect-plugin \
@@ -2611,7 +2668,7 @@ app-protect-bot-signatures
 
 ## Upgrading App Protect to a Specific Version
 
-### RHEL 8.1+ / Oracle Linux 8.1+ / RHEL 9+ / Rocky Linux 9
+### RHEL 8.1+ / Oracle Linux 8.1+ / RHEL 9+
 
 1. Upgrade the NGINX App Protect WAF to the specific version:
 
@@ -2641,7 +2698,7 @@ app-protect=27+3.1088.2-1~[OS_CODENAME]
 
 **Note**: Replace the [OS_CODENAME] in the above command with **bullseye** for Debian 11 and **bookworm** for Debian 12.
 
-### Ubuntu 22.04
+### Ubuntu 20.04 / Ubuntu 22.04
 
 1. Get the dependencies and their versions to be upgraded to by using the command:
 
@@ -2661,11 +2718,11 @@ app-protect=27+3.1088.2-1~[OS_CODENAME]
     app-protect=27+3.1088.2-1~[OS_CODENAME]
     ```
 
-**Note**: Replace the [OS_CODENAME] in the above command with **jammy** for Ubuntu 22.04, and **noble** for Ubuntu 24.04.
+**Note**: Replace the [OS_CODENAME] in the above command with **focal** for Ubuntu 20.04, **jammy** for Ubuntu 22.04, and **noble** for Ubuntu 24.04.
 
 ## Upgrading App Protect to the latest version
 
-### RHEL 8.1+ / RHEL 9+ / Oracle Linux 8.1+ / Rocky Linux 9
+### RHEL 8.1+ / RHEL 9+ / Oracle Linux 8.1+ 
 
 Upgrade the NGINX App Protect WAF to the latest 4.x version:
 
@@ -2673,7 +2730,7 @@ Upgrade the NGINX App Protect WAF to the latest 4.x version:
 sudo dnf -y update app-protect
 ```
 
-### Debian 11 / Debian 12 / Ubuntu 22.04
+### Debian 11 / Debian 12 / Ubuntu 20.04 / Ubuntu 22.04
 
 Upgrade the NGINX App Protect WAF to the latest 4.x version:
 
