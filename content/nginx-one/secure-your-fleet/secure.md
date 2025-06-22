@@ -52,7 +52,7 @@ You can then connect that instance with the help of NGINX Agent and a data plane
 
 ## Connect at least one NGINX instance to the NGINX One Console
 
-If you already have connected instances to the NGINX One Console, you can start to [Configure an active alert policy]({{< ref "/nginx-one/secure-your-fleet.md/#configure-an-active-alert-policy" >}}).
+If you already have connected instances to the NGINX One Console, you can start to [Configure an active alert policy]({{< ref "/nginx-one/secure-your-fleet/secure.md#configure-an-active-alert-policy" >}}).
 Otherwise, you need to generate a data plane key, add an instance, and install NGINX Agent. We assume this is the first time you are connecting an instance.
 
 ### Add an instance
@@ -119,3 +119,18 @@ Now set a second alert related to Common Vulnerabilities and Exposures (CVEs).
 1. Select **Save and Exit**
 
 You've now set up F5 Distributed Cloud to send you security-related alerts from NGINX One Console.
+
+## Summary
+
+In this tutorial, you learned how to:
+
+- Access the NGINX One Console
+- Connect an NGINX instance
+- Configure an Alert
+
+You will now receive an email any time the NGINX One Console recognizes one of your connected instances has a configuration that is insecure or an NGINX CVE impacts it.
+
+## Next steps
+
+Now that you have NGINX instances connected to the Console, consider reviewing our [use cases]({{< ref "/nginx-one/" >}}) to see how you can easily manage your NGINX instances, draft new configurations, and more.
+Additionally, you can review how to add additional Alert Receivers such as [SMS](https://docs.cloud.f5.com/docs-v2/shared-configuration/how-tos/alerting/alerts-email-sms), [Slack](https://docs.cloud.f5.com/docs-v2/shared-configuration/how-tos/alerting/alerts-slack), [PagerDuty](https://docs.cloud.f5.com/docs-v2/shared-configuration/how-tos/alerting/alerts-pagerduty), or with a [webhook](https://docs.cloud.f5.com/docs-v2/shared-configuration/how-tos/alerting/alerts-webhook).
