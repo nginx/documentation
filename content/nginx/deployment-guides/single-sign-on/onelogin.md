@@ -6,6 +6,7 @@ product: NGINX-PLUS
 title: Single Sign-On with OneLogin
 toc: true
 weight: 600
+docs: DOCS-1687
 ---
 
 This guide explains how to enable single sign-on (SSO) for applications being proxied by F5 NGINX Plus. The solution uses OpenID Connect as the authentication mechanism, with [OneLogin](https://www.onelogin.com/) as the Identity Provider (IdP) and NGINX Plus as the Relying Party (RP), or OIDC client application that verifies user identity.

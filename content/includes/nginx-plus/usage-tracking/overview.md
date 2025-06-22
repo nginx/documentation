@@ -6,5 +6,5 @@ Start by installing NGINX Instance Manager on a dedicated host. Then, configure 
 
 
 {{<call-out tip "Tip for Automated Reporting">}}
-To set up automatic reporting, [add your JWT-based license to NGINX Instance Manager]({{< ref "/nim/admin-guide/license/add-license.md#apply-jwt-license" >}}). This license can be downloaded from [MyF5](https://account.f5.com/myf5) if needed.
+To set up automatic reporting, [add your JWT-based license to NGINX Instance Manager]({{< ref "/nim/admin-guide/add-license.md#apply-jwt-license" >}}). This license can be downloaded from [MyF5](https://account.f5.com/myf5) if needed.
 {{</call-out>}}

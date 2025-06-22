@@ -1,5 +1,5 @@
 ---
-Title: Configure NGINX Instance Manager to use a forward proxy
+Title: Use a third-party forward proxy
 weight: 2
 toc: true
 type: how-to
