@@ -1,9 +1,12 @@
 
 
 
-As of NAP version 4.15.0 (for NAP V4 deployments), and NAP version 5.7.0 (for NAP V5 deployments), NGINX App Protect WAF includes a new feature named IP Intelligence. This features allows customizing the enforcement based on the source IP of the request to limit access from IP addresses with questionable reputation. Please note that:
+NGINX App Protect WAF supports IP Intelligence feature which allows customizing the enforcement based on the source IP of the request to limit access from IP addresses with questionable reputation. Please note that:
 - The IP intelligence feature is **disabled** by default and needs to be explicitly enabled and configured in the policy.
 - The package `app-protect-ip-intelligence` must be installed (for NAP V4 deployments), or the IP Intelligence image deployed (for NAP V5 deployments), before configuring and using the feature. This package installs the client that downloads and updates the database required for enforcing IP Intelligence.
+
+{{< note >}} Please refer to the installation steps relevant to NAP V4 or NAP V5, and check the optional steps for installing `app-protect-ip-intelligence` package per operating system, .
+{{< /note >}}
 
 After installing the package or image, enable the feature in the following two places in the policy:
 1. By enabling the corresponding violation in the violation list: `"name": "VIOL_MALICIOUS_IP"` and assigning the appropriate `block` and `alarm` values to the violation.
