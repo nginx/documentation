@@ -216,7 +216,7 @@ If a user other than **nginx** is to be used, note the following:
     sudo service nginx start
     ```
 
-14. (Optional) A new feature feature `IP Intelligence` is available (version 4.15.0 and above). The feature requires the installation of an additional package to function properly:
+14. (Optional) A new feature, `IP Intelligence` is available (version 4.15.0 and above). The feature requires the installation of an additional package to function properly:
 
     ```shell
     sudo apk add app-protect-ip-intelligence
@@ -228,10 +228,7 @@ If a user other than **nginx** is to be used, note the following:
     /opt/app_protect/bin/iprepd /etc/app_protect/tools/iprepd.cfg > ipi.log 2>&1 &
     ```
 
-    Update your policy to include the new configuration, then restart the nginx service:
-    ```shell
-    service nginx restart
-    ```
+    Update your policy to include the new configuration, then run [apreload]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#apreload" >}})  command to make changes take effect
 
 ---
 
