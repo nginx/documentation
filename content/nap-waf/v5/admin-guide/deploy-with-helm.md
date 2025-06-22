@@ -69,7 +69,7 @@ Next, create a `Dockerfile` using one of the examples provided below.
 {{%/tab%}}
 {{%tab name="Rocky Linux"%}}
 
-{{< include "nap-waf/config/v5/build-nginx-image-oss/build-rhel.md" >}}
+{{< include "nap-waf/config/v5/build-nginx-image-oss/build-rocky.md" >}}
 
 {{%/tab%}}
 {{%tab name="Ubuntu"%}}
@@ -109,9 +109,14 @@ You are ready to [Build the image](#build-image).
 {{< include "nap-waf/config/v5/build-nginx-image-plus/build-oracle.md" >}}
 
 {{%/tab%}}
-{{%tab name="RHEL & Rocky"%}}
+{{%tab name="RHEL"%}}
 
 {{< include "nap-waf/config/v5/build-nginx-image-plus/build-rhel.md" >}}
+
+{{%/tab%}}
+{{%tab name="Rocky Linux 9"%}}
+
+{{< include "nap-waf/config/v5/build-nginx-image-plus/build-rocky.md" >}}
 
 {{%/tab%}}
 {{%tab name="Ubuntu"%}}
