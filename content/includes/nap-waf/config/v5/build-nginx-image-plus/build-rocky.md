@@ -1,3 +1,4 @@
+```dockerfile
 # syntax=docker/dockerfile:1
 
 # Base Image
@@ -31,3 +32,4 @@ STOPSIGNAL SIGQUIT
 
 # Set default command
 CMD ["nginx", "-g", "daemon off;"]
+```
