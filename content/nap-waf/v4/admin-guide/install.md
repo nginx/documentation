@@ -228,6 +228,12 @@ If a user other than **nginx** is to be used, note the following:
     /opt/app_protect/bin/iprepd /etc/app_protect/tools/iprepd.cfg > ipi.log 2>&1 &
     ```
 
+    Verify the client is populating the database:
+
+    ```shell
+    tail -f iprepd.log
+    ```
+
     Update your policy to include the new configuration, then run [apreload]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#apreload" >}})  command to make changes take effect
 
 ---
@@ -356,10 +362,13 @@ If a user other than **nginx** is to be used, note the following:
     /opt/app_protect/bin/iprepd /etc/app_protect/tools/iprepd.cfg > ipi.log 2>&1 &
     ```
     
-    Update your policy to include the new configuration, then restart the nginx service:
+    Verify the client is populating the database:
+
     ```shell
-    service nginx restart
+    tail -f iprepd.log
     ```
+
+    Update your policy to include the new configuration, then run [apreload]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#apreload" >}})  command to make changes take effect
 
 ## Debian Installation
 
@@ -512,11 +521,13 @@ If a user other than **nginx** is to be used, note the following:
     /opt/app_protect/bin/iprepd /etc/app_protect/tools/iprepd.cfg > ipi.log 2>&1 &
     ```
     
-    Update your policy to include the new configuration, then restart the nginx service:
-    
+    Verify the client is populating the database:
+
     ```shell
-    service nginx restart
+    tail -f iprepd.log
     ```
+
+    Update your policy to include the new configuration, then run [apreload]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#apreload" >}})  command to make changes take effect
 
 {{< warning >}} Debian enables **AppArmor** by default, but NGINX App Protect WAF will run in unconfined mode after being installed as it is shipped with no AppArmor profile. To benefit from AppArmor access control capabilities for NGINX App Protect WAF, you will have to write your own AppArmor profile for NGINX App Protect WAF executables found in `/opt/app_protect/bin` such that it best suits your environment.
 {{< /warning >}}
@@ -651,11 +662,13 @@ If a user other than **nginx** is to be used, note the following:
     /opt/app_protect/bin/iprepd /etc/app_protect/tools/iprepd.cfg > ipi.log 2>&1 &
     ```
     
-    Update your policy to include the new configuration, then restart the nginx service:
-    
+    Verify the client is populating the database:
+
     ```shell
-    service nginx restart
+    tail -f iprepd.log
     ```
+
+    Update your policy to include the new configuration, then run [apreload]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#apreload" >}})  command to make changes take effect
 
 ---
 
@@ -777,7 +790,7 @@ If a user other than **nginx** is to be used, note the following:
     sudo systemctl start nginx
     ```
 
-1. (Optional) A new feature feature `IP Intelligence` is available (version 4.15.0 and above). The feature requires the installation of an additional package to function properly:
+1. (Optional) A new feature `IP Intelligence` is available (version 4.15.0 and above). The feature requires the installation of an additional package to function properly:
 
     ```shell
     sudo dnf install -y app-protect-ip-intelligence
@@ -789,10 +802,13 @@ If a user other than **nginx** is to be used, note the following:
     /opt/app_protect/bin/iprepd /etc/app_protect/tools/iprepd.cfg > ipi.log 2>&1 &
     ```
 
-   Update your policy to include the new configuration, then restart the nginx service:
+    Verify the client is populating the database:
+
     ```shell
-    service nginx restart
+    tail -f iprepd.log
     ```
+
+    Update your policy to include the new configuration, then run [apreload]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#apreload" >}})  command to make changes take effect
 
 ---
 
@@ -947,7 +963,7 @@ If a user other than **nginx** is to be used, note the following:
     tail -f iprepd.log
     ```
 
-    Update your policy to include the new configuration for IP Intelligence, then reload the policy or restart the nginx service.
+    Update your policy to include the new configuration, then run [apreload]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#apreload" >}})  command to make changes take effect
 
 {{< note >}} Ubuntu 20.04 / Ubuntu 22.04 / Ubuntu 24.04 activates **AppArmor** by default, but NGINX App Protect WAF will run in unconfined mode after being installed as it is shipped with no AppArmor profile. To benefit from AppArmor access control capabilities for NGINX App Protect WAF, you will have to write your own AppArmor profile for NGINX App Protect WAF executables found in `/opt/app_protect/bin` such that it best suits your environment.
 {{< /note >}}
