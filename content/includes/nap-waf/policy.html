@@ -2849,13 +2849,13 @@
 <td><dl>
 <dt>Specifies how the system responds to blocking requests sent from this IP address list.</dt>
 <dd><ul>
-<li><strong>Policy Default:</strong> Specifies that the Policy Blocking Settings will be used for requests from this IP address list.</li>
+<li><strong>Policy Default:</strong> Specifies that the policy enforcementMode will be used for requests from this IP address list.</li>
 <li><strong>Never Block:</strong> Specifies that the system does not block requests sent from this IP address list, even if your security policy is configured to block all traffic.</li>
 <li><strong>Always Block:</strong> Specifies that the system blocks requests sent from this IP address list.</li>
 </ul>
 </dd>
 </dl>
-<p>Optional</p></td>
+<p>Optional, if absent Policy Default is used.</p></td>
 <td><ul>
 <li>always</li>
 <li>never</li>
@@ -2871,13 +2871,13 @@
 <tr class="odd">
 <td><a href="#policy/ip-address-lists/ipAddresses">ipAddresses</a></td>
 <td>array of objects</td>
-<td>Specifies the IP addresses.</td>
+<td>Specifies the IP addresses. Use CIDR notation for subnet definition.</td>
 <td></td>
 </tr>
 <tr class="even">
 <td><code>matchOrder</code></td>
 <td>integer</td>
-<td>Specifies the order index for IP Address List matching. If unspecified, the order is implicitly as the lists appear in the policy. IP Address Groups with a lower matchOrder will be checked for a match prior to items with higher matchOrder.</td>
+<td>Specifies the order matching index between different IP Address Lists. If unspecified, the order is implicitly as the lists appear in the policy. IP Address Lists with a lower matchOrder will be checked for a match prior to items with higher matchOrder.</td>
 <td></td>
 </tr>
 <tr class="odd">
@@ -2889,13 +2889,13 @@
 <tr class="even">
 <td><code>neverLogRequests</code></td>
 <td>boolean</td>
-<td>Specifies when enabled that the system does not log requests or responses sent from this IP address list, even if the traffic is illegal, and even if your security policy is configured to log all traffic.</td>
+<td>Specifies when enabled that the system does not log requests or responses sent from this IP address list, even if the traffic is illegal, and even if your security policy is configured to log all traffic. Optional, if absent default value is false.</td>
 <td></td>
 </tr>
 <tr class="odd">
 <td><code>setGeolocation</code></td>
 <td>string</td>
-<td>Specifies a geolocation to be associated for this IP address list. Optional</td>
+<td>Specifies a geolocation to be associated for this IP address list. This will force the IP addresses in the list to be considered as though they are in that geolocation. This applies to blocking via "disallowed-geolocations" and to logging. Optional</td>
 <td></td>
 </tr>
 </tbody>
@@ -2920,7 +2920,7 @@
 <tr class="odd">
 <td><code>ipAddress</code></td>
 <td>string</td>
-<td></td>
+<td>Specifies the IP address. Use CIDR notation for subnet definition.</td>
 <td></td>
 </tr>
 </tbody>
@@ -3605,7 +3605,7 @@
 <p>Request Attributes:</p>
 <blockquote>
 <ul>
-<li><strong>clientIp</strong>: Client IP address in canonical IPv4 or IPv6 format. Use CIDR notation for subnet definition. Example: <em>192.168.1.2</em> or <em>fd00:1::/48</em>. If <em>trustXff</em> (X-Forwarded-For) is enabled in the containing policy, then the value is taken from the configured header (XFF or other). The only supported boolean function for the clientIP attribute is <em>matches</em>.</li>
+<li><strong>clientIp</strong>: Client IP address in canonical IPv4 or IPv6 format or ip-address-list. Use CIDR notation for subnet definition. Example: <em>192.168.1.2</em> or <em>fd00:1::/48</em>. If <em>trustXff</em> (X-Forwarded-For) is enabled in the containing policy, then the value is taken from the configured header (XFF or other). The only supported boolean function for the clientIP attribute is <em>matches</em>.</li>
 <li><strong>host</strong>: The value of the Host header</li>
 <li><strong>method</strong>: The HTTP method in the request</li>
 <li><strong>uri</strong>: The URI (path part) of the request</li>
@@ -3616,7 +3616,7 @@
 <li><strong>headers['&lt;name&gt;']</strong>: (map-type) The value of the specified header name. Example: "headers['Accept'].startsWith('application')"</li>
 </ul>
 </blockquote>
-<p><strong>Note</strong>: The "headers['&lt;name&gt;']" attribute does not support 'Cookie' as a header name.</p></td>
+<p><strong>Note</strong>: The "headers['&lt;name&gt;']" attribute does not support 'Cookie' as a header name. Attribute "clientIp" supports using "ipAddressLists" in condition: "clientIp.matches(ipAddressLists['<name>'])</p></td>
 <td></td>
 </tr>
 <tr class="odd">
