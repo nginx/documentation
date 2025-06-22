@@ -433,7 +433,8 @@
                                        "VIOL_XML_FORMAT",
                                        "VIOL_XML_MALFORMED",
                                        "VIOL_GEOLOCATION",
-                                       "VIOL_WEBSOCKET_BAD_REQUEST"
+                                       "VIOL_WEBSOCKET_BAD_REQUEST",
+                                       "VIOL_MALICIOUS_IP"
                                     ],
                                     "type" : "string"
                                  }
@@ -2424,6 +2425,58 @@
                   }
                ]
             },
+            "ip-intelligence" : {
+               "oneOf" : [
+                  {
+                     "properties" : {
+                        "enabled" : {
+                           "default" : false,
+                           "type" : "boolean"
+                        },
+                        "ipIntelligenceCategories" : {
+                           "items" : {
+                              "properties" : {
+                                 "alarm" : {
+                                    "default" : false,
+                                    "type" : "boolean"
+                                 },
+                                 "block" : {
+                                    "default" : false,
+                                    "type" : "boolean"
+                                 },
+                                 "category" : {
+                                    "enum" : [
+                                       "Anonymous Proxy",
+                                       "BotNets",
+                                       "Cloud-based Services",
+                                       "Denial of Service",
+                                       "Infected Sources",
+                                       "Mobile Threats",
+                                       "Phishing Proxies",
+                                       "Scanners",
+                                       "Spam Sources",
+                                       "Tor Proxies",
+                                       "Web Attacks",
+                                       "Windows Exploits"
+                                    ],
+                                    "type" : "string"
+                                 }
+                              },
+                              "required" : [
+                                 "category"
+                              ],
+                              "type" : "object"
+                           },
+                           "type" : "array"
+                        }
+                     },
+                     "type" : "object"
+                  },
+                  {
+                     "$ref" : "#/definitions/reference"
+                  }
+               ]
+            },
             "json-profiles" : {
                "oneOf" : [
                   {
@@ -2848,7 +2901,7 @@
                            },
                            "authenticationType" : {
                               "default" : "none",
-                              "description" : "Authentication Type is method the web server uses to authenticate the login URL's credentials with a web user.\n\n- **none**: The web server does not authenticate users trying to access the web application through the login URL. This is the default setting.\n- **form**: The web application uses a form to collect and authenticate user credentials. If using this option, you also need to type the user name and password parameters written in the code of the HTML form.\n- **http-basic**: The user name and password are transmitted in Base64 and stored on the server in plain text.\n- **http-digest**: The web server performs the authentication; user names and passwords are not transmitted over the network, nor are they stored in plain text.\n- **ntlm**: Microsoft LAN Manager authentication (also called Integrated Windows Authentication) does not transmit credentials in plain text, but requires a continuous TCP connection between the server and client.\n- **ajax-or-json-request**: The web server uses JSON and AJAX requests to authenticate users trying to access the web application through the login URL. For this option, you also need to type the name of the JSON element containing the user name and password.",
+                              "description" : "Authentication Type is method the web server uses to authenticate the login URL's credentials with a web user.\n\n- **none**: The web server does not authenticate users trying to access the web application through the login URL. This is the default setting.\n- **form**: The web application uses a form to collect and authenticate user credentials. If using this option, you also need to type the user name and password parameters written in the code of the HTML form.\n- **http-basic**: The user name and password are transmitted in Base64 and stored on the server in plain text.\n- **http-digest**: The web server performs the authentication; user names and passwords are not transmitted over the network, nor are they stored in plain text.\n- **ntlm**: Microsoft LAN Manager authentication (also called Integrated Windows Authentication) does not transmit credentials in plain text, but requires a continuous TCP connection between the server and client.\n- **ajax-or-json-request**: The web server uses JSON and AJAX requests to authenticate users trying to access the web application through the login URL. For this option, you also need to type the name of the JSON element containing the user name and password.\n- **request-body**: The web server uses the request body to authenticate users trying to access the web application through the login URL. This allows brute force login detection using, for example, SAML authentication used on Microsoft Federation Services for SSO which uses SOAP API to login.",
                               "enum" : [
                                  "ajax-or-json-request",
                                  "form",
@@ -2865,6 +2918,7 @@
                               "type" : "string"
                            },
                            "passwordRegex" : {
+                              "description" : "PCRE regular expression for capturing the password. The regular expression must include exactly one capturing group (in rounded parentheses) for the value of the password. For example: \"pwd=(\\w+)\". The entered expression is validated and any invalid code is noted and must be corrected. Note: This setting is only relevant if authenticationType is request-body.",
                               "type" : "string"
                            },
                            "url" : {
@@ -2877,6 +2931,7 @@
                               "type" : "string"
                            },
                            "usernameRegex" : {
+                              "description" : "PCRE regular expression for capturing the username. The regular expression must include exactly one capturing group (in rounded parentheses) for the value of the username. For example: \"user_id=(\\w+)\". The entered expression is validated and any invalid code is noted and must be corrected. Note: This setting is only relevant if authenticationType is request-body.",
                               "type" : "string"
                            }
                         },
