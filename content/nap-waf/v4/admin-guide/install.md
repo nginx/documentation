@@ -1286,6 +1286,48 @@ COPY entrypoint.sh /root/
 CMD ["sh", "/root/entrypoint.sh"]
 ```
 
+### Rocky Linux 9 Dockerfile example
+
+```dockerfile
+# syntax=docker/dockerfile:1
+# For Rocky Linux 9:
+FROM rockylinux:9
+
+# Install prerequisite packages:
+RUN dnf -y install wget ca-certificates 'dnf-command(config-manager)'
+
+# Add NGINX Plus repo to Yum:
+RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/plus-9.repo
+
+# Add NGINX App-protect & dependencies repo to Yum:
+RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-9.repo
+RUN dnf config-manager --set-enabled crb \
+    && wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.repo \
+    && dnf clean all
+
+# Install NGINX App Protect WAF:
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
+    --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
+    dnf install --enablerepo=codeready-builder-for-rhel-9-x86_64-rpms -y app-protect \
+    && dnf clean all \
+    && rm -rf /var/cache/dnf
+
+# Only use if you want to install and use the IP intelligence feature:
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
+    --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
+    dnf install -y app-protect-ip-intelligence
+
+# Forward request logs to Docker log collector:
+RUN ln -sf /dev/stdout /var/log/nginx/access.log \
+    && ln -sf /dev/stderr /var/log/nginx/error.log
+
+# Copy configuration files:
+COPY nginx.conf custom_log_format.json /etc/nginx/
+COPY entrypoint.sh /root/
+
+CMD ["sh", "/root/entrypoint.sh"]
+```
+
 ### Oracle Linux Dockerfile example
 
 ```dockerfile
@@ -1586,6 +1628,30 @@ RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644
     && dnf clean all \
     && rm -rf /var/cache/dnf
 ```
+
+### Rocky Linux 9 Converter Docker Deployment Example
+
+```dockerfile
+# syntax=docker/dockerfile:1
+# For Rocky Linux 9:
+FROM rockylinux:9
+
+# Install prerequisite packages:
+RUN dnf -y install wget ca-certificates 'dnf-command(config-manager)'
+
+# Add NGINX App-protect & dependencies repo to Yum:
+RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-9.repo
+RUN dnf config-manager --set-enabled crb \
+    && wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.repo \
+    && dnf clean all
+
+# Install NGINX App Protect WAF:
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
+    --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
+    dnf install -y app-protect-compiler \
+    && dnf clean all \
+    && rm -rf /var/cache/dnf
+```    
 
 ### Oracle Linux 8 Converter Docker Deployment Example
 
