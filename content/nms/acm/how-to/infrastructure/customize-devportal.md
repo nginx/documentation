@@ -162,7 +162,7 @@ To edit the **Get Started** steps:
 1. Enter your desired **Title** (required), **Description** (required), icon, and **Alt Text** for each of the four steps.
 1. Select **Save Changes**.
 
-> {{< fa "fa-solid fa-lightbulb" >}} At this point, we recommend selecting **Save and Publish** to save any customizations you've made.
+> {{< icon "fa-solid fa-lightbulb" >}} At this point, we recommend selecting **Save and Publish** to save any customizations you've made.
 > Verify that the changes have been applied, then move on to adding your [**Documentation**](#add-documentation).
 
 ### Documentation {#add-documentation}
