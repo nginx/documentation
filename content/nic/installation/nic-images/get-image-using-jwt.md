@@ -1,10 +1,10 @@
 ---
-docs: DOCS-1454
-doctypes:
-- ''
 title: Get the NGINX Ingress Controller image with JWT
 toc: true
 weight: 150
+nd-content-type: how-to
+nd-product: NIC
+nd-docs: DOCS-1454
 ---
 
 This document describes how to pull the F5 NGINX Plus Ingress Controller image from the F5 Docker registry into your Kubernetes cluster using your JWT token.
@@ -41,7 +41,7 @@ You will need the following information from [MyF5](https://my.f5.com) for these
 
 ## Prepare NGINX Ingress Controller
 
-1. Choose your desired [NGINX Ingress Controller Image](https://docs.nginx.com/nginx-ingress-controller/technical-specifications/#images-with-nginx-plus).
+1. Choose your desired [NGINX Ingress Controller Image]({{< ref "/nic/technical-specifications.md#images-with-nginx-plus" >}}).
 1. Log into the [MyF5 Portal](https://my.f5.com/), navigate to your subscription details, and download the relevant .cert, .key and .JWT files.
 1. Create a Kubernetes secret using the JWT token. You should use `cat` to view the contents of the JWT token and store the output for use in later steps.
 1. Ensure there are no additional characters or extra whitespace that might have been accidentally added. This will break authorization and prevent the NGINX Ingress Controller image from being downloaded.
@@ -72,7 +72,7 @@ You will need the following information from [MyF5](https://my.f5.com) for these
 
 ## Manifest Deployment
 
-The page ["Installation with Manifests"](https://docs.nginx.com/nginx-ingress-controller/installation/installation-with-manifests/) explains how to install NGINX Ingress Controller using manifests. The following snippet is an example of a deployment:
+The page ["Installation with Manifests"]({{< ref "/nic/installation/installing-nic/installation-with-manifests.md" >}}) explains how to install NGINX Ingress Controller using manifests. The following snippet is an example of a deployment:
 
 ```yaml
 spec:

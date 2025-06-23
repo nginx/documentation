@@ -1,10 +1,10 @@
 ---
-docs: DOCS-589
-doctypes:
-- ''
 title: Reporting resource status
 toc: true
 weight: 600
+nd-content-type: how-to
+nd-product: NIC
+nd-docs: DOCS-589
 ---
 
 This page describes how to view the status of resources managed by F5 NGINX Ingress Controller.
@@ -30,7 +30,7 @@ NGINX Ingress Controller must be configured to report an Ingress status:
     1. A user defined address, specified in the `external-status-address` ConfigMap key.
     1. A Service of the type LoadBalancer configured with an external IP or address and specified by the `-external-service` command-line flag.
 
-View the [ConfigMap keys](/nginx-ingress-controller/configuration/global-configuration/configmap-resource) and [Command-line arguments](/nginx-ingress-controller/configuration/global-configuration/command-line-arguments) topics for more information.
+View the [ConfigMap keys]({{< ref "/nic/configuration/global-configuration/configmap-resource.md" >}}) and [Command-line arguments]({{< ref "/nic/configuration/global-configuration/command-line-arguments.md" >}}) topics for more information.
 
 {{< note >}} NGINX Ingress Controller does not clear the status of Ingress resources when it is being shut down. {{< /note >}}
 
@@ -113,7 +113,7 @@ NGINX Ingress Controller must be configured to report a VirtualServer or Virtual
     1. A user defined address, specified in the `external-status-address` ConfigMap key.
     1. A Service of the type LoadBalancer configured with an external IP or address and specified by the `-external-service` command-line flag.
 
-View the [ConfigMap keys](/nginx-ingress-controller/configuration/global-configuration/configmap-resource) and [Command-line arguments](/nginx-ingress-controller/configuration/global-configuration/command-line-arguments) topics for more information.
+View the [ConfigMap keys]({{< ref "/nic/configuration/global-configuration/configmap-resource.md" >}}) and [Command-line arguments]({{< ref "/nic/configuration/global-configuration/command-line-arguments.md" >}}) topics for more information.
 
 {{< note >}} NGINX Ingress Controller does not clear the status of VirtualServer and VirtualServerRoute resources when it is being shut down. {{< /note >}}
 

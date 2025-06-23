@@ -1,10 +1,10 @@
 ---
-docs: DOCS-591
-doctypes:
-- ''
 title: Advanced configuration with Annotations
 toc: true
 weight: 200
+nd-content-type: how-to
+nd-product: NIC
+nd-docs: DOCS-591
 ---
 
 This topic explains how to enable advanced features in F5 NGINX Ingress Controller with Annotations.
@@ -157,7 +157,7 @@ The table below summarizes the available annotations.
 {{<bootstrap-table "table table-striped table-bordered table-responsive">}}
 |Annotation | ConfigMap Key | Description | Default | Example |
 | ---| ---| ---| ---| --- |
-| *nginx.org/lb-method* | *lb-method* | Sets the [load balancing method](https://docs.nginx.com/nginx/admin-guide/load-balancer/http-load-balancer/#choosing-a-load-balancing-method). To use the round-robin method, specify ``"round_robin"``. | *"random two least_conn"* |  |
+| *nginx.org/lb-method* | *lb-method* | Sets the [load balancing method]({{< ref "/nginx/admin-guide/load-balancer/http-load-balancer.md#choosing-a-load-balancing-method" >}}). To use the round-robin method, specify ``"round_robin"``. | *"random two least_conn"* |  |
 | *nginx.org/ssl-services* | N/A | Enables HTTPS or gRPC over SSL when connecting to the endpoints of services. | N/A | [ssl-services](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/ingress-resources/ssl-services) |
 | *nginx.org/grpc-services* | N/A | Enables gRPC for services. Note: requires HTTP/2 (see ``http2* ConfigMap key); only works for Ingresses with TLS termination enabled. | N/A | [grpc-services](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/ingress-resources/grpc-services) |
 | *nginx.org/websocket-services* | N/A | Enables WebSocket for services. | N/A | [websocket](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/ingress-resources/websocket) |
@@ -170,7 +170,7 @@ The table below summarizes the available annotations.
 | *nginx.com/health-checks* | N/A | Enables active health checks. | *False* | [health-checks](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/ingress-resources/health-checks) |
 | *nginx.com/health-checks-mandatory* | N/A | Configures active health checks as mandatory. | *False* | [health-checks](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/ingress-resources/health-checks) |
 | *nginx.com/health-checks-mandatory-queue* | N/A | When active health checks are mandatory, creates a queue where incoming requests are temporarily stored while NGINX Plus is checking the health of the endpoints after a configuration reload. | *0* | [health-checks](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/ingress-resources/health-checks) |
-| *nginx.com/slow-start* | N/A | Sets the upstream server [slow-start period](https://docs.nginx.com/nginx/admin-guide/load-balancer/http-load-balancer/#server-slow-start). By default, slow-start is activated after a server becomes [available](https://docs.nginx.com/nginx/admin-guide/load-balancer/http-health-check/#passive-health-checks) or [healthy](https://docs.nginx.com/nginx/admin-guide/load-balancer/http-health-check/#active-health-checks). To enable slow-start for newly-added servers, configure [mandatory active health checks](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/ingress-resources/health-checks). | *"0s"* |  |
+| *nginx.com/slow-start* | N/A | Sets the upstream server [slow-start period]({{< ref "/nginx/admin-guide/load-balancer/http-load-balancer.md#server-slow-start" >}}). By default, slow-start is activated after a server becomes [available]({{< ref "/nginx/admin-guide/load-balancer/http-health-check.md#passive-health-checks" >}}) or [healthy]({{< ref "/nginx/admin-guide/load-balancer/http-health-check.md#active-health-checks" >}}). To enable slow-start for newly-added servers, configure [mandatory active health checks](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/ingress-resources/health-checks). | *"0s"* |  |
 | *nginx.org/use-cluster-ip* | N/A | Enables using the Cluster IP and port of the service instead of the default behavior of using the IP and port of the pods. When this field is enabled, the fields that configure NGINX behavior related to multiple upstream servers (like ``lb-method* and ``next-upstream``) will have no effect, as NGINX Ingress Controller will configure NGINX with only one upstream server that will match the service Cluster IP.   | *False* |  |
 {{</bootstrap-table>}}
 

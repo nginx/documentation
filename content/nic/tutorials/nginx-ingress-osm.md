@@ -1,19 +1,16 @@
 ---
-docs: DOCS-1181
-doctypes:
-- concept
 title: NGINX Ingress Controller and Open Service Mesh
 toc: true
 weight: 1800
+nd-content-type: how-to
+nd-product: NIC
+nd-docs: DOCS-1181
 ---
 
 
 This document outlines how to integrate F5 NGINX Ingress Controller with Open Service Mesh (OSM)
 
 Open Service Mesh will work with both versions of [F5 NGINX Ingress controller](https://github.com/nginx/kubernetes-ingress): the free as well as the NGINX Plus versions.
-
-Below is a link to the official F5 NGINX Ingress Controller documentation.
-[F5 NGINX Ingress controller](https://docs.nginx.com/nginx-ingress-controller/)
 
 # Integrating NGINX Ingress Controller with Open Service Mesh
 
@@ -53,8 +50,8 @@ The above command will use the mark the `nginx-ingress` namespace, where OSM wil
 
 Links to the complete install guides:
 
-[Using Helm to install NGINX Ingress](https://docs.nginx.com/nginx-ingress-controller/installation/installation-with-helm/)
-[Using Manifests to install NGINX Ingress](https://docs.nginx.com/nginx-ingress-controller/installation/installation-with-manifests/)
+[Using Helm to install NGINX Ingress]({{< ref "/nic/installation/installing-nic/installation-with-helm.md" >}})
+[Using Manifests to install NGINX Ingress]({{< ref "/nic/installation/installing-nic/installation-with-manifests.md" >}})
 
 When using the sidecar method, ensure that you add the correct annotations listed below. This ensures proper integration of NGINX Ingress Controller with the envoy sidecar proxy.
 
@@ -224,8 +221,8 @@ osm namespace add nginx-ingress --mesh-name osm-nginx --disable-sidecar-injectio
 
 Links to the complete install guides:
 
-[Using Helm to install NGINX Ingress](https://docs.nginx.com/nginx-ingress-controller/installation/installation-with-helm/)
-[Using Manifests to install NGINX Ingress](https://docs.nginx.com/nginx-ingress-controller/installation/installation-with-manifests/)
+[Using Helm to install NGINX Ingress]({{< ref "/nic/installation/installing-nic/installation-with-helm.md" >}})
+[Using Manifests to install NGINX Ingress]({{< ref "/nic/installation/installing-nic/installation-with-manifests.md" >}})
 
 *NOTE*: This method does NOT require annotations added to the deployment, compared to the sidecar install method.
 
