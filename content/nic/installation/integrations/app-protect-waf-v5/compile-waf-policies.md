@@ -2,9 +2,9 @@
 title: Compile NGINX App Protect WAF policies using NGINX Instance Manager
 weight: 300
 toc: true
-type: how-to
-product: NIC
-docs: DOCS-000
+nd-content-type: how-to
+nd-product: NIC
+nd-docs: DOCS-000
 ---
 
 ## Overview
@@ -22,8 +22,8 @@ The following steps describe how to use the NGINX Instance Manager API to create
 ## Before you start
 
 ### Requirements
-- A working [NGINX Instance Manager](https://docs.nginx.com/nginx-instance-manager/deploy/) instance.
-- An [NGINX Instance Manager user](https://docs.nginx.com/nginx-instance-manager/admin-guide/rbac/overview-rbac/) for API requests.
+- A working [NGINX Instance Manager]({{< ref "/nim/deploy/" >}}) instance.
+- An [NGINX Instance Manager user]({{< ref "/nim/admin-guide/rbac/overview-rbac.md" >}}) for API requests.
 - A NGINX Ingress Controller [deployment with NGINX App Protect WAF]({{< ref "/nic/installation/integrations/app-protect-waf/installation.md" >}}).
 
 ---
@@ -32,7 +32,7 @@ The following steps describe how to use the NGINX Instance Manager API to create
 
 {{< tip >}} You can skip this step if you intend to use an existing security policy. {{< /tip >}}
 
-Create a [new security policy](https://docs.nginx.com/nginx-instance-manager/nginx-app-protect/manage-waf-security-policies/#create-security-policy) using the API: this will require the use of a tool such as [`curl`](https://curl.se/) or [Postman](https://www.postman.com/)
+Create a [new security policy]({{< ref "/nim/nginx-app-protect/manage-waf-security-policies.md#create-security-policy" >}}) using the API: this will require the use of a tool such as [`curl`](https://curl.se/) or [Postman](https://www.postman.com/)
 
 Create the file `simple-policy.json` with the contents below:
 
@@ -91,7 +91,7 @@ It is one of two unique IDs we will use to download the bundle: it will be refer
 
 ## Create a new security bundle
 
-Once you have created (Or selected) a security policy, [create a security bundle](https://docs.nginx.com/nginx-instance-manager/nginx-app-protect/manage-waf-security-policies/#create-security-policy-bundles) using the API. The version in the bundle you create **must** match the WAF compiler version you intend to use.
+Once you have created (Or selected) a security policy, [create a security bundle]({{< ref "/nim/nginx-app-protect/manage-waf-security-policies.md#create-security-policy-bundles" >}}) using the API. The version in the bundle you create **must** match the WAF compiler version you intend to use.
 
 You can check which version is installed in NGINX Instance Manager by checking the operating system packages. If the wrong version is noted in the JSON payload, you will receive an error similar to below:
 

@@ -73,6 +73,12 @@ product/nginxaas:
           - 'content/nginxaas-azure/**'
           - 'content/includes/nginxaas-azure/**'
 
+product/nic:
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'content/nic/**'
+          - 'content/includes/nic/**'
+
 product/nim:
   - changed-files:
       - any-glob-to-any-file:
