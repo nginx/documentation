@@ -31,9 +31,9 @@ Before you begin, make sure you have the following:
 - A JSON Web Token (JWT) from your [MyF5 subscriptions page](https://my.f5.com/manage/s/subscriptions). This is the same token used for NGINX Plus.
 - The right `docker-compose.yaml` file for your setup:
   - For **standard mode** (with metrics and dashboards):
-    {{<fa "download">}} {{<link "/scripts/docker-compose/docker-compose.yaml" "Download the standard docker-compose.yaml file">}}
+    {{< icon "download">}} {{<link "/scripts/docker-compose/docker-compose.yaml" "Download the standard docker-compose.yaml file">}}
   - For **lightweight mode** (no ClickHouse, no metrics):
-    {{<fa "download">}} {{<link "/scripts/docker-compose/docker-compose-lightweight.yaml" "Download the lightweight docker-compose.yaml file">}}
+    {{< icon "download">}} {{<link "/scripts/docker-compose/docker-compose-lightweight.yaml" "Download the lightweight docker-compose.yaml file">}}
 
 {{< call-out "note" >}} If you're not sure which one to use, start with lightweight mode. You can always switch later by changing the Compose file and setting `ENABLE_METRICS: "true"`.{{< /call-out >}}
 

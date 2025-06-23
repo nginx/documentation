@@ -107,7 +107,7 @@ Before continuing, check the NGINX Ingress Controller [supported versions](#supp
 
       Download the SecurityContextConstraint necessary to run NGINX Ingress Controller in an OpenShift environment.
 
-        - {{< fa "download" >}} {{< link "/examples/nginx-ingress-controller/oss/openshift/nic-scc.yaml" "`nginx-ingress-controller/oss/openshift/nic-scc.yaml`" >}}
+        - {{< icon "download" >}} {{< link "/examples/nginx-ingress-controller/oss/openshift/nic-scc.yaml" "`nginx-ingress-controller/oss/openshift/nic-scc.yaml`" >}}
 
         - Apply the `nginx-ingress-permissions` SecurityContextConstraint:
 
@@ -143,7 +143,7 @@ Before continuing, check the NGINX Ingress Controller [supported versions](#supp
 
       Download the SecurityContextConstraint necessary to run NGINX Ingress Controller in an OpenShift environment.
 
-      - {{< fa "download" >}} {{< link "/examples/nginx-ingress-controller/openshift/nic-scc.yaml" "`nginx-ingress-controller/openshift/nic-scc.yaml`" >}}
+      - {{< icon "download" >}} {{< link "/examples/nginx-ingress-controller/openshift/nic-scc.yaml" "`nginx-ingress-controller/openshift/nic-scc.yaml`" >}}
 
       - Apply the `nginx-ingress-permissions` SecurityContextConstraint:
 
@@ -356,8 +356,8 @@ The NGINX Service Mesh uses the Pod's container name setting to identify the NGI
 Add the applicable `nginx-ingress` scrape config to your Prometheus configuration and consult
 [Monitoring and Tracing]( {{< ref "/mesh/guides/monitoring-and-tracing.md#prometheus" >}} ) for installation instructions.
 
-- {{< fa "download" >}} {{< link "/examples/nginx-ingress-scrape-config.yaml" "`nginx-ingress-scrape-config.yaml`" >}}
-- {{< fa "download" >}} {{< link "/examples/nginx-plus-ingress-scrape-config.yaml" "`nginx-plus-ingress-scrape-config.yaml`" >}}
+- {{< icon "download" >}} {{< link "/examples/nginx-ingress-scrape-config.yaml" "`nginx-ingress-scrape-config.yaml`" >}}
+- {{< icon "download" >}} {{< link "/examples/nginx-plus-ingress-scrape-config.yaml" "`nginx-plus-ingress-scrape-config.yaml`" >}}
 
 ## Available metrics
 For a list of the NGINX Ingress Controller metrics, consult the [Available Metrics](https://docs.nginx.com/nginx-ingress-controller/logging-and-monitoring/prometheus/#available-metrics) section of the NGINX Ingress Controller docs.

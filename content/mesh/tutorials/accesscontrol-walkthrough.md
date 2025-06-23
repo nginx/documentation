@@ -19,10 +19,10 @@ The access control mode can be [set to `deny` at the global level]( {{< ref "/me
 1. Enable [automatic sidecar injection]( {{< ref "/mesh/guides/inject-sidecar-proxy.md#automatic-proxy-injection" >}} ) for the `default` namespace.
 1. Download all of the example files:
 
-    - {{< fa "download" >}} {{< link "/examples/dest-svc.yaml" >}}
-    - {{< fa "download" >}} {{< link "/examples/access.yaml" >}}
-    - {{< fa "download" >}} {{< link "/examples/driver-allowed.yaml" >}}
-    - {{< fa "download" >}} {{< link "/examples/driver-disallowed.yaml" >}}
+    - {{< icon "download" >}} {{< link "/examples/dest-svc.yaml" >}}
+    - {{< icon "download" >}} {{< link "/examples/access.yaml" >}}
+    - {{< icon "download" >}} {{< link "/examples/driver-allowed.yaml" >}}
+    - {{< icon "download" >}} {{< link "/examples/driver-disallowed.yaml" >}}
 
 ## Objectives
 

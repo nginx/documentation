@@ -18,7 +18,7 @@ NGINXaaS uses your MaxMind license to download GeoIP2 databases, puts them in th
 To enable GeoIP2 you [update your NGINX configuration]({{< ref "/nginxaas-azure/getting-started/nginx-configuration/overview.md">}}) to include your MaxMind license and the relevant NGINX directives.
 
 1. Log into MaxMind and [generate a `GeoIP.conf`](https://dev.maxmind.com/geoip/updating-databases/#2-obtain-geoipconf-with-account-information) file.
-2. Add the `GeoIP.conf` file to your NGINX configuration, using the exact path `/etc/nginx/GeoIP.conf`. The `GeoIP.conf` will be validated, and must include `AccountID`, `LicenseKey`, and `EditionIDs`. Other configuration options in `GeoIP.conf` are ignored.  We recommend you enable the **Protected** {{<fa "solid fa-toggle-on">}} toggle button to mark `GeoIP.conf` as a protected file, which will prevent the contents from being read via any Azure client tools.
+2. Add the `GeoIP.conf` file to your NGINX configuration, using the exact path `/etc/nginx/GeoIP.conf`. The `GeoIP.conf` will be validated, and must include `AccountID`, `LicenseKey`, and `EditionIDs`. Other configuration options in `GeoIP.conf` are ignored.  We recommend you enable the **Protected** {{< icon "solid fa-toggle-on">}} toggle button to mark `GeoIP.conf` as a protected file, which will prevent the contents from being read via any Azure client tools.
 3. Add the `load_module` directive - the modules are available at `modules/ngx_http_geoip2_module.so` or `modules/ngx_stream_geoip2_module.so`.
 4. Add `geoip2` directives to your NGINX configuration as desired. The `EditionIDs` from your `GeoIP.conf` are available at `/usr/local/share/GeoIP`
 
