@@ -47,7 +47,7 @@ To download external dependencies:
 
 1. Download the `fetch-external-dependencies.sh` script:
 
-    {{<fa "download">}} {{<link "/scripts/fetch-external-dependencies.sh" "Download fetch-external-dependencies.sh script">}}
+    {{< icon "download">}} {{<link "/scripts/fetch-external-dependencies.sh" "Download fetch-external-dependencies.sh script">}}
 
 2. Run the script to download the external dependencies for your specific Linux distribution:
 
