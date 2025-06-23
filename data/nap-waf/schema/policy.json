@@ -2410,7 +2410,7 @@
                               "type" : "boolean"
                            },
                            "setGeolocation" : {
-                              "description" : "Specifies a geolocation to be associated for this IP address list. This will force the IP addresses in the list to be considered as though they are in that geolocation. This applies to blocking via "disallowed-geolocations" and to logging. Optional",
+                              "description" : "Specifies a geolocation to be associated for this IP address list. This will force the IP addresses in the list to be considered as though they are in that geolocation. This applies to blocking via \"disallowed-geolocations\" and to logging. Optional",
                               "type" : "string"
                            }
                         },
