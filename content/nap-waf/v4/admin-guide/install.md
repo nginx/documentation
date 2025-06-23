@@ -236,7 +236,7 @@ If a user other than **nginx** is to be used, note the following:
 
     Update your policy to include the new configuration, then run [apreload]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#apreload" >}})  command to make changes take effect
 
-    {{< note >}} If the Nap system is behind a firewall, make sure that the Nap system has external access to vector.brightcloud.com using port 443. {{< /note >}}
+    {{< note >}} For this capability to function properly, please follow the guidelines listed in the [configuration guide]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#ip-intelligence-configuration" >}}){{< /note >}}
     
     
 
@@ -374,8 +374,8 @@ If a user other than **nginx** is to be used, note the following:
 
     Update your policy to include the new configuration, then run [apreload]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#apreload" >}})  command to make changes take effect
 
-    {{< note >}} If the Nap system is behind a firewall, make sure that the Nap system has external access to vector.brightcloud.com using port 443. {{< /note >}}
-   
+    {{< note >}} For this capability to function properly, please follow the guidelines listed in the [configuration guide]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#ip-intelligence-configuration" >}}){{< /note >}}
+      
 ## Debian Installation
 
 1. If you already have NGINX packages in your system, back up your configs and logs:
@@ -535,8 +535,8 @@ If a user other than **nginx** is to be used, note the following:
 
     Update your policy to include the new configuration, then run [apreload]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#apreload" >}})  command to make changes take effect
 
-    {{< note >}} If the Nap system is behind a firewall, make sure that the Nap system has external access to vector.brightcloud.com using port 443. {{< /note >}}
-
+    {{< note >}} For this capability to function properly, please follow the guidelines listed in the [configuration guide]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#ip-intelligence-configuration" >}}){{< /note >}}
+    
 {{< warning >}} Debian enables **AppArmor** by default, but NGINX App Protect WAF will run in unconfined mode after being installed as it is shipped with no AppArmor profile. To benefit from AppArmor access control capabilities for NGINX App Protect WAF, you will have to write your own AppArmor profile for NGINX App Protect WAF executables found in `/opt/app_protect/bin` such that it best suits your environment.
 {{< /warning >}}
 
@@ -678,8 +678,9 @@ If a user other than **nginx** is to be used, note the following:
 
     Update your policy to include the new configuration, then run [apreload]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#apreload" >}})  command to make changes take effect
 
-    {{< note >}} If the Nap system is behind a firewall, make sure that the Nap system has external access to vector.brightcloud.com using port 443. {{< /note >}}
----
+    {{< note >}} For this capability to function properly, please follow the guidelines listed in the [configuration guide]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#ip-intelligence-configuration" >}}){{< /note >}}
+
+    ---
 
 ## RHEL 9+ Installation
 
@@ -819,8 +820,9 @@ If a user other than **nginx** is to be used, note the following:
 
     Update your policy to include the new configuration, then run [apreload]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#apreload" >}})  command to make changes take effect
 
-    {{< note >}} If the Nap system is behind a firewall, make sure that the Nap system has external access to vector.brightcloud.com using port 443. {{< /note >}}
----
+    {{< note >}} For this capability to function properly, please follow the guidelines listed in the [configuration guide]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#ip-intelligence-configuration" >}}){{< /note >}}
+
+   ---
 
 ## Ubuntu Installation
 
@@ -975,8 +977,8 @@ If a user other than **nginx** is to be used, note the following:
 
     Update your policy to include the new configuration, then run [apreload]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#apreload" >}})  command to make changes take effect
 
-    {{< note >}} If the Nap system is behind a firewall, make sure that the Nap system has external access to vector.brightcloud.com using port 443. {{< /note >}}
-    
+    {{< note >}} For this capability to function properly, please follow the guidelines listed in the [configuration guide]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#ip-intelligence-configuration" >}}){{< /note >}}
+        
 {{< note >}} Ubuntu 20.04 / Ubuntu 22.04 / Ubuntu 24.04 activates **AppArmor** by default, but NGINX App Protect WAF will run in unconfined mode after being installed as it is shipped with no AppArmor profile. To benefit from AppArmor access control capabilities for NGINX App Protect WAF, you will have to write your own AppArmor profile for NGINX App Protect WAF executables found in `/opt/app_protect/bin` such that it best suits your environment.
 {{< /note >}}
 
