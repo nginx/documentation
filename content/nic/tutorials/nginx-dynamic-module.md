@@ -1,10 +1,10 @@
 ---
-docs: DOCS-1231
-doctypes:
-- concept
 title: Using NGINX Ingress Controller with NGINX Dynamic Modules
 toc: true
 weight: 1800
+nd-content-type: how-to
+nd-product: NIC
+nd-docs: DOCS-1231
 ---
 
 This document describes how to use NGINX Ingress Controller with NGINX dynamic modules.
@@ -13,7 +13,7 @@ This document describes how to use NGINX Ingress Controller with NGINX dynamic m
 
 NGINX Plus has several Dynamic Modules that can add additional features and capabilities to NGINX, which NGINX Ingress Controller can also use. To do this, you must modify your NGINX Ingress Controller image to add a module, then load the updated image.
 
-For more information about Dynamic Modules, you can read [the documentation for NGINX Plus](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/dynamic-modules/).
+For more information about Dynamic Modules, you can read [the documentation for NGINX Plus]({{< ref "/nginx/admin-guide/dynamic-modules/dynamic-modules.md" >}}).
 
 There are two steps involved:
 

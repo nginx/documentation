@@ -4,9 +4,6 @@
       <loc>https://docs.nginx.com/sitemap.xml</loc>
     </sitemap>
     <sitemap>
-      <loc>https://docs.nginx.com/nginx-ingress-controller/sitemap.xml</loc>
-    </sitemap>
-    <sitemap>
       <loc>https://unit.nginx.org/sitemap.xml</loc>
     </sitemap>
   </sitemapindex>

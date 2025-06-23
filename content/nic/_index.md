@@ -1,5 +1,6 @@
 ---
 title: NGINX Ingress Controller
-menu: docs
 url: /nginx-ingress-controller/
+cascade:
+  logo: NGINX-Ingress-Controller-product-icon.png
 ---

@@ -2,12 +2,12 @@
 title: Policy resources
 weight: 500
 toc: true
-type: how-to
-product: NIC
-docs: DOCS-596
+nd-content-type: how-to
+nd-product: NIC
+nd-docs: DOCS-596
 ---
 
-The Policy resource allows you to configure features like access control and rate-limiting, which you can add to your [VirtualServer and VirtualServerRoute resources](/nginx-ingress-controller/configuration/virtualserver-and-virtualserverroute-resources/).
+The Policy resource allows you to configure features like access control and rate-limiting, which you can add to your [VirtualServer and VirtualServerRoute resources]({{< ref "/nic/configuration/virtualserver-and-virtualserverroute-resources.md" >}}).
 
 The resource is implemented as a [Custom Resource](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/).
 
@@ -15,7 +15,7 @@ This document is the reference documentation for the Policy resource. An example
 
 ## Prerequisites
 
-Policies work together with [VirtualServer and VirtualServerRoute resources](/nginx-ingress-controller/configuration/virtualserver-and-virtualserverroute-resources/), which you need to create separately.
+Policies work together with [VirtualServer and VirtualServerRoute resources]({{< ref "/nic/configuration/virtualserver-and-virtualserverroute-resources.md" >}}), which you need to create separately.
 
 ## Policy Specification
 
@@ -227,7 +227,7 @@ The policies' API keys are securely stored using SHA-256 hashing. When a client 
 
 If the hashed keys match, the NGINX JavaScript (NJS) subrequest issues a 204 No Content response to the `auth_request` directive, indicating successful authorization. Conversely, if no API Key is provided in the specified header or query parameter, a 401 Unauthorized response is returned. Similarly, if an invalid key is presented in the expected header or query parameter, a 403 Forbidden response is issued, denying access.
 
-It is possible to use the [errorPages](/nginx-ingress-controller/configuration/virtualserver-and-virtualserverroute-resources/#errorpage) property on a route, to change the default behaviour of 401 or 403 errors.
+It is possible to use the [errorPages]({{< ref "/nic/configuration/virtualserver-and-virtualserverroute-resources.md#errorpage" >}}) property on a route, to change the default behaviour of 401 or 403 errors.
 
 At least one header or query param is required.
 
@@ -362,7 +362,7 @@ action:
         value: ${jwt_header_alg}
 ```
 
-We use the `requestHeaders` of the [Action.Proxy](/nginx-ingress-controller/configuration/virtualserver-and-virtualserverroute-resources/#actionproxy) to set the values of two headers that NGINX will pass to the upstream servers.
+We use the `requestHeaders` of the [Action.Proxy]({{< ref "/nic/configuration/virtualserver-and-virtualserverroute-resources.md#actionproxy" >}}) to set the values of two headers that NGINX will pass to the upstream servers.
 
 The value of the `${jwt_claim_user}` variable is the `user` claim of a JWT. For other claims, use `${jwt_claim_name}`, where `name` is the name of the claim. Note that nested claims and claims that include a period (`.`) are not supported. Similarly, use `${jwt_header_name}` where `name` is the name of a header. In our example, we use the `alg` header.
 
@@ -474,8 +474,8 @@ data:
 
 A VirtualServer that references an IngressMTLS policy must:
 
-- Enable [TLS termination](/nginx-ingress-controller/configuration/virtualserver-and-virtualserverroute-resources/#virtualservertls).
-- Reference the policy in the VirtualServer [`spec`](/nginx-ingress-controller/configuration/virtualserver-and-virtualserverroute-resources/#virtualserver-specification). It is not allowed to reference an IngressMTLS policy in a [`route`](/nginx-ingress-controller/configuration/virtualserver-and-virtualserverroute-resources/#virtualserverroute) or in a VirtualServerRoute [`subroute`](/nginx-ingress-controller/configuration/virtualserver-and-virtualserverroute-resources/#virtualserverroutesubroute).
+- Enable [TLS termination]({{< ref "/nic/configuration/virtualserver-and-virtualserverroute-resources.md#virtualservertls" >}}).
+- Reference the policy in the VirtualServer [`spec`]({{< ref "/nic/configuration/virtualserver-and-virtualserverroute-resources.md#virtualserver-specification" >}}). It is not allowed to reference an IngressMTLS policy in a [`route`](({{< ref "/nic/configuration/virtualserver-and-virtualserverroute-resources.md#virtualserverroute" >}}) or in a VirtualServerRoute [`subroute`]({{< ref "/nic/configuration/virtualserver-and-virtualserverroute-resources.md#virtualserverroutesubroute" >}}).
 
 If the conditions above are not met, NGINX will send the `500` status code to clients.
 
@@ -493,7 +493,7 @@ action:
         value: ${ssl_client_escaped_cert} # client certificate in the PEM format (urlencoded)
 ```
 
-We use the `requestHeaders` of the [Action.Proxy](/nginx-ingress-controller/configuration/virtualserver-and-virtualserverroute-resources/#actionproxy) to set the values of the two headers that NGINX will pass to the upstream servers. See the [list of embedded variables](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#variables) that are supported by the `ngx_http_ssl_module`, which you can use to pass the client certificate details.
+We use the `requestHeaders` of the [Action.Proxy]({{< ref "/nic/configuration/virtualserver-and-virtualserverroute-resources.md#actionproxy" >}}) to set the values of the two headers that NGINX will pass to the upstream servers. See the [list of embedded variables](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#variables) that are supported by the `ngx_http_ssl_module`, which you can use to pass the client certificate details.
 
 {{< note >}}
 
@@ -611,7 +611,7 @@ The feature is implemented using the NGINX [ngx_http_proxy_module](https://nginx
 |``serverName`` | Enables passing of the server name through ``Server Name Indication`` extension. | ``bool`` | No |
 |``sslName`` | Allows overriding the server name used to verify the certificate of the upstream HTTPS server. | ``string`` | No |
 |``ciphers`` | Specifies the enabled ciphers for requests to an upstream HTTPS server. The default is ``DEFAULT``. | ``string`` | No |
-|``protocols`` | Specifies the protocols for requests to an upstream HTTPS server. The default is ``TLSv1 TLSv1.1 TLSv1.2``. | ``string`` | No | > Note: the value of ``ciphers`` and ``protocols`` is not validated by NGINX Ingress Controller. As a result, NGINX can fail to reload the configuration. To ensure that the configuration for a VirtualServer/VirtualServerRoute that references the policy was successfully applied, check its [status](/nginx-ingress-controller/configuration/global-configuration/reporting-resources-status/#virtualserver-and-virtualserverroute-resources). The validation will be added in the future releases. |
+|``protocols`` | Specifies the protocols for requests to an upstream HTTPS server. The default is ``TLSv1 TLSv1.1 TLSv1.2``. | ``string`` | No | > Note: the value of ``ciphers`` and ``protocols`` is not validated by NGINX Ingress Controller. As a result, NGINX can fail to reload the configuration. To ensure that the configuration for a VirtualServer/VirtualServerRoute that references the policy was successfully applied, check its [status]({{< ref "/nic/configuration/global-configuration/reporting-resources-status.md#virtualserver-and-virtualserverroute-resources" >}}). The validation will be added in the future releases. |
 {{% /table %}}
 
 #### EgressMTLS Merging Behavior
@@ -662,7 +662,7 @@ The feature is implemented using the [reference implementation](https://github.c
 
 #### Prerequisites
 
-In order to use OIDC, you need to enable [zone synchronization](https://docs.nginx.com/nginx/admin-guide/high-availability/zone_sync/). If you don't set up zone synchronization, NGINX Plus will fail to reload.
+In order to use OIDC, you need to enable [zone synchronization]({{< ref "/nginx/admin-guide/high-availability/zone_sync.md" >}}). If you don't set up zone synchronization, NGINX Plus will fail to reload.
 You also need to configure a resolver, which NGINX Plus will use to resolve the IDP authorization endpoint. You can find an example configuration [in our GitHub repository](https://github.com/nginx/kubernetes-ingress/blob/v{{< nic-version >}}/examples/custom-resources/oidc#step-7---configure-nginx-plus-zone-synchronization-and-resolver).
 
 {{< warning >}}
@@ -734,9 +734,9 @@ webapp-policy   27m
 
 For `kubectl get` and similar commands, you can also use the short name `pol` instead of `policy`.
 
-### WAF {#waf}
+### WAF
 
-{{< note >}} The feature is implemented using the NGINX Plus [NGINX App Protect WAF Module](https://docs.nginx.com/nginx-app-protect/configuration/). {{< /note >}}
+{{< note >}} The feature is implemented using the NGINX Plus [NGINX App Protect WAF Module]({{< ref "/nap-waf/" >}}). {{< /note >}}
 
 The WAF policy configures NGINX Plus to secure client requests using App Protect WAF policies.
 
@@ -867,7 +867,7 @@ For an invalid policy, NGINX returns the 500 status code for client requests wit
 - If a policy is referenced in a VirtualServer `route` or a VirtualServerRoute `subroute`, then NGINX will return the 500 status code for requests for the URIs of that route/subroute.
 - If a policy is referenced in the VirtualServer `spec`, then NGINX will return the 500 status code for requests for all URIs of that VirtualServer.
 
-If a policy is invalid, the VirtualServer or VirtualServerRoute will have the [status](/nginx-ingress-controller/configuration/global-configuration/reporting-resources-status#virtualserver-and-virtualserverroute-resources) with the state `Warning` and the message explaining why the policy wasn't considered invalid.
+If a policy is invalid, the VirtualServer or VirtualServerRoute will have the [status]({{< ref "/nic/configuration/global-configuration/reporting-resources-status.md#virtualserver-and-virtualserverroute-resources" >}}) with the state `Warning` and the message explaining why the policy wasn't considered invalid.
 
 ### Validation
 
