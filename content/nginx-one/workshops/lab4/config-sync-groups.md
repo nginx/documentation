@@ -24,24 +24,7 @@ Make sure you have:
 
 - Completed [Lab 2: Run workshop components with Docker]({{< ref "nginx-one/workshops/lab2/run-workshop-components-with-docker.md" >}})  
 - Docker and Docker Compose installed and running  
-- Your data plane key in the `TOKEN` environment variable (set in Lab 2):  
-
-  ```shell
-  export TOKEN="your-data-plane-key"
-  ```
-
-- Your NGINX Plus JWT license file saved as `nginx-repo.jwt`, and `JWT` set (set in Lab 2):
-  
-  ```shell
-  export JWT=$(cat path/to/nginx-repo.jwt)
-  ```
-
-- Your unique identifier in the NAME environment variable (set in Lab 2), for example `s.jobs`:
-
-   ```shell
-   export NAME="s.jobs"
-   ```
-
+- {{< include "workshops/nginx-one-env-variables.md" >}}
 - Basic familiarity with Linux command line and NGINX concepts
 
 ---
