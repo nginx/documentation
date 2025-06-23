@@ -10,9 +10,9 @@ June 30th, 2025
 
 ## New features
 
+- Added support for [IP Intelligence]({{< ref "/nap-waf/v5/configuration-guide/configuration.md#ip-intelligence-configuration" >}})
 - Added support for Rocky Linux 9 
 - Added support for Override rules for [IP Address Lists]({{< ref "/nap-waf/v5/configuration-guide/configuration.md#ip-address-lists" >}})
-- Added support for [IP Intelligence]({{< ref "/nap-waf/v5/configuration-guide/configuration.md#ip-intelligence-configuration" >}})
   
 ## Important notes
 
