@@ -6,7 +6,7 @@ nd-content-type: reference
 nd-product: NAP-WAF
 ---
 
-June 30th, 2025
+June 23rd, 2025
 
 ## New features
 
