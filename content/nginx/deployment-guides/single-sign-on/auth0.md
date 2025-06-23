@@ -6,6 +6,7 @@ product: NGINX-PLUS
 title: Single Sign-On With Auth0
 toc: true
 weight: 100
+docs: DOCS-1686
 ---
 
 This guide explains how to enable single sign-on (SSO) for applications being proxied by F5 NGINX Plus. The solution uses OpenID Connect as the authentication mechanism, with [Auth0](https://auth0.com/features/single-sign-on) as the Identity Provider (IdP), and NGINX Plus as the Relying Party, or OIDC client application that verifies user identity.
