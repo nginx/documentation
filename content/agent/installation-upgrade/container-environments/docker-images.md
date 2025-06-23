@@ -77,7 +77,7 @@ git clone git@github.com:nginx/agent.git
 
 ### Download the NGINX Plus certificate and key {#myf5-download}
 
-{{< fa "circle-info" "text-muted" >}} **This step is required if you are using NGINX Plus. If you are using NGINX open source, you can skip this section.**
+{{< icon "circle-info" "text-muted" >}} **This step is required if you are using NGINX Plus. If you are using NGINX open source, you can skip this section.**
 
 In order to build a container image with NGINX Plus, you must provide the SSL certificate and private key files provided with your NGINX Plus license. These files grant access to the package repository from which the script will download the NGINX Plus package.
 
@@ -213,6 +213,3 @@ To build an image with Debian and an older version of NGINX Agent you can run th
 ```shell
 IMAGE_BUILD_TARGET=install-agent-repo NGINX_AGENT_VERSION=2.37.0~bullseye OS_RELEASE=debian OS_VERSION=bullseye-slim make image
 ```
-
-
-

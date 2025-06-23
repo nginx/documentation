@@ -19,7 +19,7 @@ The user following performing the uninstall steps needs to have `root` privilege
 Complete the following steps on each host where you've installed NGINX Agent
 
 <details>
-<summary>{{< fa "brands fa-centos" >}} Uninstall NGINX Agent on RHEL, CentOS, Rocky Linux, AlmaLinux, and Oracle Linux</summary>
+<summary>{{< icon "brands fa-centos" >}} Uninstall NGINX Agent on RHEL, CentOS, Rocky Linux, AlmaLinux, and Oracle Linux</summary>
 
 ### Uninstall NGINX Agent on RHEL, CentOS, Rocky Linux, AlmaLinux, and Oracle Linux
 
@@ -28,7 +28,7 @@ Complete the following steps on each host where you've installed NGINX Agent
 </details>
 
 <details>
-<summary>{{< fa "brands fa-ubuntu" >}} Uninstall NGINX Agent on Ubuntu</summary>
+<summary>{{< icon "brands fa-ubuntu" >}} Uninstall NGINX Agent on Ubuntu</summary>
 
 ### Uninstall NGINX Agent on Ubuntu
 
@@ -37,7 +37,7 @@ Complete the following steps on each host where you've installed NGINX Agent
 </details>
 
 <details>
-<summary>{{< fa "brands fa-debian" >}} Uninstall NGINX Agent on Debian</summary>
+<summary>{{< icon "brands fa-debian" >}} Uninstall NGINX Agent on Debian</summary>
 
 ### Uninstall NGINX Agent on Debian
 
@@ -46,7 +46,7 @@ Complete the following steps on each host where you've installed NGINX Agent
 </details>
 
 <details>
-<summary>{{< fa "brands fa-suse" >}} Uninstall NGINX Agent on SLES</summary>
+<summary>{{< icon "brands fa-suse" >}} Uninstall NGINX Agent on SLES</summary>
 
 ### Uninstall NGINX Agent on SLES
 
@@ -55,7 +55,7 @@ Complete the following steps on each host where you've installed NGINX Agent
 </details>
 
 <details>
-<summary>{{< fa "solid fa-mountain-sun" >}} Uninstall NGINX Agent on Alpine Linux</summary>
+<summary>{{< icon "solid fa-mountain-sun" >}} Uninstall NGINX Agent on Alpine Linux</summary>
 
 ### Uninstall NGINX Agent on Alpine Linux
 
@@ -64,7 +64,7 @@ Complete the following steps on each host where you've installed NGINX Agent
 </details>
 
 <details>
-<summary>{{< fa "brands fa-aws" >}} Uninstall NGINX Agent on Amazon Linux</summary>
+<summary>{{< icon "brands fa-aws" >}} Uninstall NGINX Agent on Amazon Linux</summary>
 
 ### Uninstall NGINX Agent on Amazon Linux
 

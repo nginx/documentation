@@ -44,7 +44,7 @@ Next, you can add an SSL/TLS certificate to your key vault by following [Azure's
 
 1. Go to your key vault, `nginxaas-kv`.
 1. Select **Certificates** in the left menu.
-1. Select {{< fa "plus">}}**Generate/Import** and provide the following information:
+1. Select {{< icon "plus">}}**Generate/Import** and provide the following information:
 
    {{<bootstrap-table "table table-striped table-bordered">}}
   | Field                       | Description                |
@@ -68,7 +68,7 @@ In order for your NGINXaaS deployment to access your key vault, it must have an 
 1. Under **System assigned**, ensure the status is set to "On".
   {{< call-out "note" >}} When you create a deployment through the Azure portal, a system-assigned managed identity is automatically enabled for your deployment. {{< /call-out >}}
 1. Under **System assigned**, select **Azure role assignments**.
-1. Select {{< fa "plus">}}**Add role assignment** and provide the following information:
+1. Select {{< icon "plus">}}**Add role assignment** and provide the following information:
 
    {{<bootstrap-table "table table-striped table-bordered">}}
   | Field                       | Description                |
@@ -87,7 +87,7 @@ Now, you can add your SSL/TLS certificate from your key vault to your NGINXaaS d
 
 1. Go to your NGINXaaS deployment.
 1. Select **NGINX certificates** in the left menu.
-1. Select {{< fa "plus">}}**Add certificate** and provide the following information:
+1. Select {{< icon "plus">}}**Add certificate** and provide the following information:
    {{<bootstrap-table "table table-striped table-bordered">}}
    | Field                       | Description                |
    |---------------------------- | ---------------------------- |
@@ -166,7 +166,7 @@ If you want to disable public access to your key vault, you can configure a [Net
 
 1. Follow [Azure's documentation on prerequisites](https://learn.microsoft.com/en-us/azure/private-link/create-network-security-perimeter-portal#prerequisites) to ensure you are registed to create an NSP.
 1. In the Search box, enter **Network Security Perimeters** and select **Network Security Perimeters** from the search results.
-1. Select {{< fa "plus">}}**Create**.
+1. Select {{< icon "plus">}}**Create**.
 1. In the **Basics** tab, provide the following information:
    {{<bootstrap-table "table table-striped table-bordered">}}
   | Field                       | Description                |
@@ -177,9 +177,9 @@ If you want to disable public access to your key vault, you can configure a [Net
   | Region                      | Select the region you want to deploy to. Refer to any [regional limitations](https://learn.microsoft.com/en-us/azure/private-link/network-security-perimeter-concepts#regional-limitations) NSP has while in public preview. |
   | Profile name | Leave the profile name as the default `defaultProfile`. |
    {{</bootstrap-table>}}
-1. In the **Resources** tab, select {{< fa "plus">}}**Add**.
+1. In the **Resources** tab, select {{< icon "plus">}}**Add**.
 1. Search for your key vault, `nginxaas-kv`, select it, and click **Select**.
-1. In the **Inbound access rules** tab, select {{< fa "plus">}}**Add** and provide the following information:
+1. In the **Inbound access rules** tab, select {{< icon "plus">}}**Add** and provide the following information:
    {{<bootstrap-table "table table-striped table-bordered">}}
   | Field                       | Description                |
   |---------------------------- | ---------------------------- |
