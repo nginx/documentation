@@ -1,7 +1,7 @@
 ---
 # The title is the product name
 title: 
-# The URL is the base of the deployed path, becoming "docs.nginx/<url>/<other-pages>"
+# The URL is the base of the deployed path, becoming "docs.nginx.com/<url>/<other-pages>"
 url: 
 # The cascade directive applies its nested parameters down the page tree until overwritten
 cascade:
@@ -19,33 +19,31 @@ nd-product:
 ---
 
 ## About
-
 [//]: # "These are Markdown comments to guide you through document structure. Remove them as you go, as well as any unnecessary sections."
 [//]: # "Use underscores for _italics_, and double asterisks for **bold**."
 [//]: # "Backticks are for `monospace`, used sparingly and reserved mostly for executable names - they can cause formatting problems. Avoid them in tables: use italics instead."
 
-[//]: # "Give a short 1-2 sentence summary of what the product does and its value to a customer."
-This is a short description about a product highlighting key values, mission, or purpose.
+[//]: # "This initial section introduces the product to a reader: give a short 1-2 sentence summary of what the product does and its value to the reader."
+[//]: # "Name specific functionality it provides: avoid ambiguous descriptions such as 'enables efficiency', focus on what makes it uniquely."
 
 ## Featured content
+[//]: # "You can add a maximum of three cards: any extra will not display."
+[//]: # "One card will take full width page: two will take half width each. Three will stack like an inverse pyramid."
+[//]: # "Some examples of content could be the latest release note, the most common install path, and a popular new feature."
 
-[//]: # "Maximum of three cards available to display."
-[//]: # "Each card should be less than 10 words for a description."
-[//]: # "If more than three cards are placed here, they are not displayed."
-[//]: # "If there is one card, it will take full width and be the only card in the row."
-[//]: # "If there is two cards, one card will take half width and there will be two cards in a row."
-[//]: # "If there is three cards, there will be two rows, where first row has two equal-sized cards, and second row will have a full width card. Can we inversed in order to feature content."
 {{<card-layout>}}
   {{<card-section showAsCards="true" isFeaturedSection="true">}}
     {{<card title="<some-title>">}}
-      some-description
+      <!-- Each description should be roughly 10 words or less. -->
     {{</card>}}
+    <!-- The titleURL and icon are both optional -->
+    <!-- Lucide icon names can be found at https://lucide.dev/icons/ -->
     {{<card title="<some-title>" titleUrl="<some-url>" icon="<some-lucide-icon>">}}
-      some-description
+      <!-- Each description should be roughly 10 words or less. -->
     {{</card>}}
   {{</card-section>}}
 {{</card-layout>}}
 
 ## Other content 
 
-[//]: # "Provide any sort of additional supporting content you may want customers to see as well (e.g. more cards, diagrams, changelogs, etc.)"
+[//]: # "You can add any extra content for the page here, such as additional cards, diagrams or text."
