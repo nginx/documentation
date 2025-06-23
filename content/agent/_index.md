@@ -3,7 +3,7 @@ title: NGINX Agent
 url: /nginx-agent/
 cascade:
   logo: NGINX-product-icon.png
-  banner:
+  nd-banner:
     enabled: true
     type: deprecation
     start-date: 2025-05-29

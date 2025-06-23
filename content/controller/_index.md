@@ -6,7 +6,7 @@ weight: 2100
 cascade:
   logo: "NGINX-Controller-product-icon-RGB.svg"
   noindex: true
-  banner:
+  nd-banner:
     enabled: true
     type: deprecation
     md: _banners/eos-cltr.md
