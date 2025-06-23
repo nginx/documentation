@@ -43,12 +43,8 @@ Once you've logged in with your password, you should be able to see and select t
 
 ### Install an instance of NGINX
 
-Ensure you have an instance of NGINX Open Source or NGINX Plus installed and available. This guide will provide instructions for connecting an instance installed in a Linux environment (VM or bare metal hardware) where you have command line access.
-You can then connect that instance with the help of NGINX Agent and a data plane key.
-<!-- possibl3 problem: i see conflict between how proposed docs for Agent 3.0 connect, in the way we configure /etc/nginx-agent/nginx-agent.conf and our N1C docs in Get Started.. Jason's mentioned an env variable.
-
-: Jason, I think you noted about connections using environment variables. -->
-<!--  Alternatively, we also have instructions for [Deploying NGINX and NGINX Plus with Docker]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-docker.md" >}}) -->
+Ensure you have an instance of [NGINX Open Source or NGINX Plus]({{< ref "/nginx/admin-guide/installing-nginx/" >}}) installed and available. This guide will provide instructions for connecting an instance installed in a Linux environment (VM or bare metal hardware) where you have command line access.
+Alternatively, we also have instructions for [Deploying NGINX and NGINX Plus with Docker]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-docker.md" >}}) with NGINX and the NGINX Agent installed. That deployment can connect with environment variables
 
 ## Connect at least one NGINX instance to the NGINX One Console
 
