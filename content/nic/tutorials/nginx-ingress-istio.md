@@ -1,18 +1,18 @@
 ---
-docs: DOCS-889
-doctypes:
-- concept
 title: NGINX Ingress Controller and Istio Service Mesh
 toc: true
 weight: 1800
+nd-content-type: concept
+nd-product: NIC
+nd-docs: DOCS-889
 ---
 
 NGINX Ingress Controller can be used as the Ingress Controller for applications running inside an Istio service mesh. This allows you to continue using the advanced capabilities that NGINX IC provides on Istio-based environments without resorting to any workarounds.
-This is accomplished using the special setting [use-cluster-ip](https://docs.nginx.com/nginx-ingress-controller/configuration/virtualserver-and-virtualserverroute-resources/#upstream) for the backend.
+This is accomplished using the special setting [use-cluster-ip]({{< ref "/nic/configuration/virtualserver-and-virtualserverroute-resources.md#upstream" >}}) for the backend.
 
 Here is a standard deployment of NGINX Ingress Controller without a sidecar proxy injected into the pod.
 
-{{< img src="./img/nginx_plain.png" alt="NGINX stand alone." >}}
+{{< img src="/nic/nginx_plain.png" alt="NGINX stand alone." >}}
 
 Notice that NGINX Ingress Controller enumerates the pods of the backend service and balances traffic directly to them, granting full control of the backend load balancer and stickiness behavior.
 If your service pods support TLS, then NIC can re-encrypt the traffic to them and provide end-to-end encryption.
@@ -67,7 +67,7 @@ Now, our deployment will look like the following (with Envoy sidecar proxies).
 
 The image below shows how an NGINX Ingress Controller and Istio deployment looks:
 
-{{< img src="./img/nginx-envoy.png" alt="NGINX with envoy sidecar." >}}
+{{< img src="/nic/nginx-envoy.png" alt="NGINX with envoy sidecar." >}}
 
 ## Install NGINX Ingress Controller
 
@@ -111,7 +111,7 @@ spec:
         sidecar.istio.io/inject: 'true'
 ```
 
-{{< img src="./img/nginx_istio_small.png" alt="NGINX Ingress pod with envoy sidecar." >}}
+{{< img src="/nic/nginx_istio_small.png" alt="NGINX Ingress pod with envoy sidecar." >}}
 
 We can now see that after configuring Istio, an Istio sidecar proxy has been installed into the same pod as NGINX Ingress Controller. Now, there are two containers in the same pod for NGINX Ingress Controller: the NGINX Ingress controller container and the Istio sidecar proxy container.
 
