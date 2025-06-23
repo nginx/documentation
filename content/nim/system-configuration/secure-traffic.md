@@ -194,7 +194,7 @@ To generate the necessary certificates, follow these steps. You can modify these
     <details>
         <summary>ca.cnf</summary>
 
-    {{<fa "download">}} {{<link "/admin/encrypt/ca.cnf" "ca.cnf">}}
+    {{< icon "download">}} {{<link "/admin/encrypt/ca.cnf" "ca.cnf">}}
 
     ``` yaml
     [req]

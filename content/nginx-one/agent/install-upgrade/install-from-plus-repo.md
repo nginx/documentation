@@ -31,7 +31,7 @@ NGINX Agent from the repository.
 
 
 <details>
-<summary>{{< fa "brands fa-centos" >}} Install NGINX Agent on RHEL, CentOS, Rocky Linux, AlmaLinux, and Oracle Linux</summary>
+<summary>{{< icon "brands fa-centos" >}} Install NGINX Agent on RHEL, CentOS, Rocky Linux, AlmaLinux, and Oracle Linux</summary>
 
 ### Install NGINX Agent on RHEL, CentOS, Rocky Linux, AlmaLinux, and Oracle Linux<a name="install-nginx-agent-on-rhel-centos-rocky-linux-almalinux-and-oracle-linux-plus"></a>
 
@@ -40,7 +40,7 @@ NGINX Agent from the repository.
 </details>
 
 <details>
-<summary>{{< fa "brands fa-ubuntu" >}} Install NGINX Agent on Ubuntu</summary>
+<summary>{{< icon "brands fa-ubuntu" >}} Install NGINX Agent on Ubuntu</summary>
 
 ### Install NGINX Agent on Ubuntu<a name="install-nginx-agent-on-ubuntu-plus"></a>
 
@@ -49,7 +49,7 @@ NGINX Agent from the repository.
 </details>
 
 <details>
-<summary>{{< fa "brands fa-debian" >}} Install NGINX Agent on Debian</summary>
+<summary>{{< icon "brands fa-debian" >}} Install NGINX Agent on Debian</summary>
 
 ### Install NGINX Agent on Debian<a name="install-nginx-agent-on-debian-plus"></a>
 
@@ -58,7 +58,7 @@ NGINX Agent from the repository.
 </details>
 
 <details>
-<summary>{{< fa "brands fa-suse" >}} Install NGINX Agent on SLES</summary>
+<summary>{{< icon "brands fa-suse" >}} Install NGINX Agent on SLES</summary>
 
 ### Install NGINX Agent on SLES<a name="install-nginx-agent-on-sles-plus"></a>
 
@@ -67,7 +67,7 @@ NGINX Agent from the repository.
 </details>
 
 <details>
-<summary>{{< fa "solid fa-mountain-sun" >}} Install NGINX Agent on Alpine Linux</summary>
+<summary>{{< icon "solid fa-mountain-sun" >}} Install NGINX Agent on Alpine Linux</summary>
 
 ### Install NGINX Agent on Alpine Linux<a name="install-nginx-agent-on-alpine-linux-plus"></a>
 
@@ -75,7 +75,7 @@ NGINX Agent from the repository.
 
 </details>
 <details>
-<summary>{{< fa "brands fa-aws" >}} Install NGINX Agent on Amazon Linux</summary>
+<summary>{{< icon "brands fa-aws" >}} Install NGINX Agent on Amazon Linux</summary>
 
 ### Install NGINX Agent on Amazon Linux<a name="install-nginx-agent-on-amazon-linux-plus"></a>
 

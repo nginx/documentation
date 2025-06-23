@@ -24,14 +24,14 @@ You can use traffic splitting for most deployment scenarios, including canary, b
 1. Enable [automatic sidecar injection]( {{< ref "/mesh/guides/inject-sidecar-proxy.md#automatic-proxy-injection" >}} ) for the `default` namespace.
 1. Download all the example files:
 
-    - {{< fa "download" >}} {{< link "/examples/traffic-split/gateway.yaml" "gateway.yaml" >}}
-    - {{< fa "download" >}} {{< link "/examples/traffic-split/target-svc.yaml" "target-svc.yaml" >}}
-    - {{< fa "download" >}} {{< link "/examples/traffic-split/target-v1.0.yaml" "target-v1.0.yaml" >}}
-    - {{< fa "download" >}} {{< link "/examples/traffic-split/target-v2.0-failing.yaml" "target-v2.0-failing.yaml" >}}
-    - {{< fa "download" >}} {{< link "/examples/traffic-split/target-v2.1-successful.yaml" "target-v2.1-successful.yaml" >}}
-    - {{< fa "download" >}} {{< link "/examples/traffic-split/target-v3.0.yaml" "target-v3.0.yaml" >}}
-    - {{< fa "download" >}} {{< link "/examples/traffic-split/trafficsplit.yaml" "trafficsplit.yaml" >}}
-    - {{< fa "download" >}} {{< link "/examples/traffic-split/trafficsplit-matches.yaml" "trafficsplit-matches.yaml" >}}
+    - {{< icon "download" >}} {{< link "/examples/traffic-split/gateway.yaml" "gateway.yaml" >}}
+    - {{< icon "download" >}} {{< link "/examples/traffic-split/target-svc.yaml" "target-svc.yaml" >}}
+    - {{< icon "download" >}} {{< link "/examples/traffic-split/target-v1.0.yaml" "target-v1.0.yaml" >}}
+    - {{< icon "download" >}} {{< link "/examples/traffic-split/target-v2.0-failing.yaml" "target-v2.0-failing.yaml" >}}
+    - {{< icon "download" >}} {{< link "/examples/traffic-split/target-v2.1-successful.yaml" "target-v2.1-successful.yaml" >}}
+    - {{< icon "download" >}} {{< link "/examples/traffic-split/target-v3.0.yaml" "target-v3.0.yaml" >}}
+    - {{< icon "download" >}} {{< link "/examples/traffic-split/trafficsplit.yaml" "trafficsplit.yaml" >}}
+    - {{< icon "download" >}} {{< link "/examples/traffic-split/trafficsplit-matches.yaml" "trafficsplit-matches.yaml" >}}
 
 
 {{< call-out "note" >}}
