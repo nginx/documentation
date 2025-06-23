@@ -1,4 +1,4 @@
-If the deployment intends to use the IP intelligence Feature (avaiable from version 5.7.0), then the IP intelligence container needs to be added to the deployment in the docker compose file.
+If the deployment intends to use the IP intelligence Feature (available from version 5.7.0), then the IP intelligence container needs to be added to the deployment in the docker compose file.
 
 Modify the original `docker-compose.yml` file to include the additional IP Intelligence container:
 
