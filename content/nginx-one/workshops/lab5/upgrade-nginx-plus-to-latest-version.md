@@ -32,7 +32,8 @@ By the end of this lab, you’ll know how to:
 Make sure you have:
 
 - Completed [Lab 4: Config Sync Groups]({{< ref "nginx-one/workshops/lab4/config-sync-groups.md" >}})  
-- Docker and Docker Compose installed and running (for Docker scenario)  
+- Docker and Docker Compose installed and running (for Docker scenario)
+- A trial or paid NGINX One JWT license (saved as `nginx-repo.jwt`) from [MyF5](https://my.f5.com/manage/s/). 
 - A VM with NGINX Plus R32 (or earlier), SSH access, and the NGINX Agent installed (for VM scenario)  
 - {{< include "workshops/nginx-one-env-variables.md" >}}
 - Basic familiarity with Linux command line and NGINX concepts
@@ -104,3 +105,69 @@ When you recreate containers, they re-register in the NGINX One Console. Use the
 {{< img src="nginx-one/images/unavailable-instances.png"
     alt="Table of three NGINX One Console instances filtered to ‘Availability = Unavailable.’ Shows hostnames (s.jobs-plus1, s.jobs-plus2, s.jobs-plus3), NGINX versions, grey ‘Unavailable’ circles, CVE and recommendation indicators, certificate status, operating system, and last reported times. The ‘Delete selected’ button appears at top right." >}}
 </span>
+
+## Scenario B: Use Config Sync Groups to upgrade NGINX Plus on a VM
+
+### Exercise B1: Create a Config Sync Group for VMs
+
+1. In the NGINX One Console, go to **Manage > Config Sync Groups**.  
+2. Select **Add Config Sync Group**.  
+3. In the **Name** field, enter `$NAME-sync-group-vm` (for example, `s.jobs-sync-group-vm`), then select **Create**.
+
+### Exercise B2: Add your VM to the Config Sync Group
+
+1. Select **Manage > Config Sync Groups**, then pick your config sync group's name.  
+2. On the **Details** tab, in the **Instances** pane, select **Add Instance to Config Sync Group**.  
+3. Select **Register a new instance with NGINX One then add to config sync group**, then select **Next**.  
+4. Select **Use existing key**, paste `<your-key>` into the **Data Plane Key** box.  
+5. Copy the pre-filled `curl` command and run it on your VM:
+
+    **Example**:
+
+    ```shell
+    curl https://agent.connect.nginx.com/nginx-agent/install | \
+    DATA_PLANE_KEY="<your-key>" \
+    sh -s -- -y -c "<config-sync-group-name>"
+    ```
+
+6. Back in the NGINX One Console, select **Refresh**. Your VM appears in the list and its **Config Sync Status** shows **In Sync**.
+
+### Exercise B3: Enable the NGINX Plus API and dashboard
+
+In this exercise, you add a new configuration file (`/etc/nginx/conf.d/dashboard.conf`) to your shared group config. This file enables the NGINX Plus API and dashboard. Any instance you add to the group will pick up these settings automatically.
+
+{{< include "use-cases/monitoring/enable-nginx-plus-api-with-config-sync-group.md" >}}
+
+### Exercise B4: Add your JWT license file
+
+You need your NGINX One JWT license (from [MyF5](https://my.f5.com/manage/s/)) on each instance before you upgrade to the latest NGINX Plus. You can add it in your Config Sync Group so every member gets it automatically.
+
+1. In the NGINX One Console, select **Manage > Config Sync Groups**, then pick your config sync group's name.  
+2. Select the **Configuration** tab, then **Edit Configuration**.  
+3. Select **Add File**.  
+4. Select **New Configuration File**.  
+5. In the **File name** box, enter `/etc/nginx/license.jwt` (the filename must match exactly), then select **Add**.
+6. Paste the contents of your JWT file into new file workspace.  
+7. Select **Next**, review the diff, then select **Save and Publish**.  
+
+For more information, see [About subscription licenses]({{< ref "solutions/about-subscription-licenses.md" >}}).
+
+### Exercise B5: Upgrade NGINX Plus on your VM
+
+1. Upgrade the NGINX Plus package on your VM:
+   - **RHEL, Amazon Linux, CentOS, Oracle Linux, AlmaLinux, Rocky Linux**  
+
+     ```shell
+     sudo yum upgrade nginx-plus
+     ```
+
+   - **Debian, Ubuntu**  
+
+     ```shell
+     sudo apt update && sudo apt install nginx-plus
+     ```
+
+2. In the NGINX One Console, go to **Manage > Instances**.  
+3. Select your VM instance in the list.  
+4. In the Instance Details panel, confirm the NGINX Plus version has been updated.  
+5. If the version doesn’t update right away, refresh the page after a few seconds.

@@ -28,7 +28,7 @@ Make sure you have:
 - NGINX One service enabled in your XC account
 - Docker and Docker Compose installed and running
 - An active data plane key from [Lab 1: Get started with NGINX One Console]({{< ref "nginx-one/workshops/lab1/getting-started-with-nginx-one.md" >}})
-- A trial or paid NGINX Plus JWT license (saved as `nginx-repo.jwt`) from [MyF5](https://my.f5.com/manage/s/).
+- A trial or paid NGINX One JWT license (saved as `nginx-repo.jwt`) from [MyF5](https://my.f5.com/manage/s/). 
 - Basic Linux and NGINX know-how
 - Git installed and SSH key set up for GitHub access
 
