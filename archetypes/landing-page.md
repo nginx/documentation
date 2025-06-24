@@ -24,7 +24,7 @@ nd-product:
 [//]: # "Backticks are for `monospace`, used sparingly and reserved mostly for executable names - they can cause formatting problems. Avoid them in tables: use italics instead."
 
 [//]: # "This initial section introduces the product to a reader: give a short 1-2 sentence summary of what the product does and its value to the reader."
-[//]: # "Name specific functionality it provides: avoid ambiguous descriptions such as 'enables efficiency', focus on what makes it uniquely."
+[//]: # "Name specific functionality it provides: avoid ambiguous descriptions such as 'enables efficiency', focus on what makes it unique."
 
 ## Featured content
 [//]: # "You can add a maximum of three cards: any extra will not display."
