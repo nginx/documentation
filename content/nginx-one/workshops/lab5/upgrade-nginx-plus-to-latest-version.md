@@ -108,6 +108,10 @@ When you recreate containers, they re-register in the NGINX One Console. Use the
 
 ## Scenario B: Use Config Sync Groups to upgrade NGINX Plus on a VM
 
+{{< call-out "note" "Note" >}}
+These steps cover RHEL, Amazon Linux, CentOS, Oracle Linux, AlmaLinux, Rocky Linux, Debian, and Ubuntu only. Other systems (for example, FreeBSD) aren’t covered here.
+{{</ call-out >}}
+
 ### Exercise B1: Create a Config Sync Group for VMs
 
 1. In the NGINX One Console, go to **Manage > Config Sync Groups**.  
@@ -155,6 +159,7 @@ For more information, see [About subscription licenses]({{< ref "solutions/about
 ### Exercise B5: Upgrade NGINX Plus on your VM
 
 1. Upgrade the NGINX Plus package on your VM:
+
    - **RHEL, Amazon Linux, CentOS, Oracle Linux, AlmaLinux, Rocky Linux**  
 
      ```shell
