@@ -1,4 +1,4 @@
-# Contributing guidelines for writers
+# Managing content with Hugo
 
 This page describes our guidelines on using [Hugo](https://gohugo.io/) to write documentation.
 
@@ -6,7 +6,7 @@ You will need [git](https://git-scm.com/) to interact with the repository and fi
 
 Our workflow is to develop content locally, then submit a pull request once we've done our initial draft and editing passes.
 
-If you're an employee of F5/NGINX, also read [For F5/NGINX Employees](./F5-NGINX-team-notes.md).
+For guidance around how to write content, please check [the style guide](/documentation/style-guide.md).
 
 ## Setup
 
