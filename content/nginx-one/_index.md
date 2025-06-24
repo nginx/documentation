@@ -28,7 +28,10 @@ nd-product: NGINX One
     {{<card title="Set up metrics" titleUrl="/nginx-one/metrics/">}}
       Review your deployments in a dashboard 
     {{</card >}}
-    {{<card title="Organize users with RBAC" titleUrl="/nginx-one/rbac/">}}
+    {{< card title="Connect Kubernetes deployments" >}}
+      Monitor deployments for CVEs and certificates
+    {{</ card >}}
+    {{< card title="Organize users with RBAC" >}}
       Assign responsibilities with role-based access control 
     {{</card >}}
     {{<card title="Automate with the NGINX One API" titleUrl="/nginx-one/api/">}}
@@ -72,4 +75,8 @@ nd-product: NGINX One
       Defend, adapt, and mitigate against Layer 7 denial-of-service attacks on your apps and APIs. 
     {{</ card >}}
   {{</ card-section >}}
+<<<<<<< HEAD
 {{</card-layout>}}
+=======
+{{</ card-layout >}}
+>>>>>>> 484cb0a2 (update)
