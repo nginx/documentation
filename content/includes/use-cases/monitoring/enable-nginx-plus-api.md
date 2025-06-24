@@ -55,7 +55,7 @@ server {
 }
 ```
 
-For more details, see the [NGINX Plus API module documentation](https://nginx.org/en/docs/http/ngx_http_api_module.html) and [Configuring the NGINX Plus API]({{< ref “nginx/admin-guide/monitoring/live-activity-monitoring.md#configuring-the-api” >}}).
+For more details, see the [NGINX Plus API module documentation](https://nginx.org/en/docs/http/ngx_http_api_module.html) and [Configuring the NGINX Plus API]({{< ref "nginx/admin-guide/monitoring/live-activity-monitoring.md#configuring-the-api" >}}).
 
 After saving the changes, reload NGINX:
 
