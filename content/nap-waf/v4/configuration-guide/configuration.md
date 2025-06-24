@@ -246,6 +246,10 @@ http {
 
 {{< include "nap-waf/config/common/ip-intelligence-conf.md" >}}
 
+### IP Intelligence Forward Proxy Configuration
+
+{{< include "nap-waf/config/common/forward-proxy-conf.md" >}}
+
 ### Additional Configuration Options
 
 
