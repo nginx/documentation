@@ -40,6 +40,9 @@ F5 NGINX One Console makes it easy to manage NGINX instances across locations an
     {{<card title="Secure with NGINX App Protect" titleUrl="/nginx-one/nap-integration/" >}}
       Manage one instance or groups of instances. Monitor certificates. Set up metrics.
     {{</card>}}
+    {{<card title="Connect Kubernetes deployments" titleUrl="/nginx-one/k8s/">}}
+      Monitor deployments for CVEs and certificates
+    {{</ card >}}
     {{<card title="Organize users with RBAC" titleUrl="/nginx-one/rbac/" >}}
       Assign responsibilities with role-based access control 
     {{</card>}}
