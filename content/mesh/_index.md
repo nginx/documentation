@@ -8,7 +8,7 @@ description: 'NGINX Service Mesh is a fully integrated lightweight service mesh 
 url: /nginx-service-mesh/
 cascade:
   noindex: true
-  banner:
+  nd-banner:
     enabled: true
     type: deprecation
     md: _banners/eos-mesh.md

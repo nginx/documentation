@@ -3,7 +3,7 @@ title: NGINX Gateway Fabric
 url: /nginx-gateway-fabric/
 cascade:
   logo: NGINX-Gateway-Fabric-product-icon.png
-  banner:
+  nd-banner:
     enabled: true
     type: deprecation
     start-date: 2025-05-30
