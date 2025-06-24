@@ -60,6 +60,11 @@ Proceed, by creating a `Dockerfile` using one of the examples provided below.
 {{< include "nap-waf/config/v5/build-nginx-image-oss/build-rhel.md" >}}
 
 {{%/tab%}}
+{{%tab name="Rocky Linux 9"%}}
+
+{{< include "nap-waf/config/v5/build-nginx-image-oss/build-rocky.md" >}}
+
+{{%/tab%}}
 {{%tab name="Ubuntu"%}}
 
 {{< include "nap-waf/config/v5/build-nginx-image-oss/build-ubuntu.md" >}}
@@ -100,6 +105,11 @@ You are ready to [Build the image](#build-image).
 {{%tab name="RHEL"%}}
 
 {{< include "nap-waf/config/v5/build-nginx-image-plus/build-rhel.md" >}}
+
+{{%/tab%}}
+{{%tab name="Rocky Linux 9"%}}
+
+{{< include "nap-waf/config/v5/build-nginx-image-plus/build-rocky.md" >}}
 
 {{%/tab%}}
 {{%tab name="Ubuntu"%}}
@@ -281,6 +291,82 @@ spec:
             claimName: nap5-bundles-pvc
 ```
 
+An example `nap5-deployment-with-ip-intelligence.yaml` if you are using the IP Intelligence feature:
+
+Replace the `<your-private-registry>/nginx-app-protect-5:<your-tag>` with the actual image tag.
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nap5-deployment
+spec:
+  selector:
+    matchLabels:
+      app: nap5
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: nap5
+    spec:
+      imagePullSecrets:
+        - name: regcred
+      containers:
+        - name: nginx
+          image: <your-private-registry>/nginx-app-protect-5:<your-tag>
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - name: app-protect-bd-config
+              mountPath: /opt/app_protect/bd_config
+            - name: app-protect-config
+              mountPath: /opt/app_protect/config
+        - name: waf-enforcer
+          image: private-registry.nginx.com/nap/waf-enforcer:<version-tag>
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: ENFORCER_PORT
+              value: "50000"
+          volumeMounts:
+            - name: app-protect-bd-config
+              mountPath: /opt/app_protect/bd_config
+            - name: var-iprep
+              mountPath: /var/IpRep
+        - name: waf-config-mgr
+          image: private-registry.nginx.com/nap/waf-config-mgr:<version-tag>
+          imagePullPolicy: IfNotPresent
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - all
+          volumeMounts:
+            - name: app-protect-bd-config
+              mountPath: /opt/app_protect/bd_config
+            - name: app-protect-config
+              mountPath: /opt/app_protect/config
+            - name: app-protect-bundles
+              mountPath: /etc/app_protect/bundles
+        - name: waf-ip-intelligence
+          image: private-registry.nginx.com/napwaf-ip-intelligence:<version-tag>
+          imagePullPolicy: IfNotPresent
+          securityContext:
+            allowPrivilegeEscalation: false
+          volumeMounts:
+            - name: var-iprep
+              mountPath: /var/IpRep
+      volumes:
+        - name: app-protect-bd-config
+          emptyDir: {}
+        - name: app-protect-config
+          emptyDir: {}
+         - name: var-iprep
+          emptyDir: {}
+        - name: app-protect-bundles
+          persistentVolumeClaim:
+            claimName: nap5-bundles-pvc
+```
+
 Finally, `nap5-service.yaml`:
 
 ```yaml
@@ -437,6 +523,11 @@ Proceed, by creating a `Dockerfile` using one of the examples provided below.
 {{< include "nap-waf/config/v5/build-nginx-image-oss/build-rhel.md" >}}
 
 {{%/tab%}}
+{{%tab name="Rocky Linux 9"%}}
+
+{{< include "nap-waf/config/v5/build-nginx-image-oss/build-rocky.md" >}}
+
+{{%/tab%}}
 {{%tab name="Ubuntu"%}}
 
 {{< include "nap-waf/config/v5/build-nginx-image-oss/build-ubuntu.md" >}}
@@ -467,6 +558,11 @@ You are ready to [Build the image](#build-image-sub)
 {{%tab name="RHEL"%}}
 
 {{< include "nap-waf/config/v5/build-nginx-image-plus/build-rhel.md" >}}
+
+{{%/tab%}}
+{{%tab name="Rocky Linux 9"%}}
+
+{{< include "nap-waf/config/v5/build-nginx-image-plus/build-rocky.md" >}}
 
 {{%/tab%}}
 {{%tab name="Ubuntu"%}}
