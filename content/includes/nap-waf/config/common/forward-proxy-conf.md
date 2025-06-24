@@ -1,19 +1,20 @@
-Enable Forward Proxy settings to enable proxy settings for the IP Intelligence client. 
+Enable Forward Proxy Settings for IP Intelligence Client. 
 
-Edit configuration file:
+To configure proxy settings, edit the client configuration file:
+Path:
 ```shell
 /etc/app_protect/tools/iprepd.cfg
 ```
-and set the following, for example:
+Example configuration:
 ```shell
 EnableProxy=True 
 ProxyHost=5.1.2.4
 ProxyPort=8080
-ProxyUsername=admin (optional)
-ProxyPassword=admin (optional)
-CACertPath=/etc/ssl/certs/ca-certificates.crt (optional)
+ProxyUsername=admin        # Optional
+ProxyPassword=admin        # Optional
+CACertPath=/etc/ssl/certs/ca-certificates.crt  # Optional 
 ```
-Then re-run the client again:
+After saving the changes, restart the client to apply the new settings.
 ```shell
 /opt/app_protect/bin/iprepd /etc/app_protect/tools/iprepd.cfg > ipi.log 2>&1 &
 ```
