@@ -117,7 +117,7 @@ You can edit the `docker-config.yaml` file to add those instances to the config 
    docker compose down
    ```
 
-2. Open `docker-compose.yaml` in a text editor.
+2. Open `compose.yaml` in a text editor.
 3. Uncomment the lines beginning with:
 
    ```yaml

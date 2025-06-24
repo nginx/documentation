@@ -48,7 +48,7 @@ Make sure you have:
      --username "$JWT" --password-stdin
    ```
 
-2. Open `docker-compose.yaml` in a text editor and uncomment the **plus4** service block (lines 74–95). This block pulls the latest Debian NGINX Plus image with the latest NGINX Agent installed, and sets your data plane key, JWT, and config sync group.
+2. Open `compose.yaml` in a text editor and uncomment the **plus4** service block (lines 74–95). This block pulls the latest Debian NGINX Plus image with the latest NGINX Agent installed, and sets your data plane key, JWT, and config sync group.
 
    ```yaml
    plus4: # Debian latest NGINX Plus Web / Load Balancer

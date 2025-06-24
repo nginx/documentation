@@ -48,9 +48,9 @@ Make sure you have:
    cd static/workshops/nginx-one/lab2
    ```
 
-This folder contains `docker-compose.yml` and `generate_certs.sh`.
+This folder contains `compose.yaml` and `generate_certs.sh`.
 
-{{<fa "download">}} {{<link "/workshops/nginx-one/lab2/docker-compose.yml" "Download docker-compose.yaml">}}
+{{<fa "download">}} {{<link "/workshops/nginx-one/lab2/compose.yaml" "Download compose.yaml">}}
 
 {{<fa "download">}} {{<link "/workshops/nginx-one/lab2/generate_certs.sh" "Download generate_certs.sh">}}
 
