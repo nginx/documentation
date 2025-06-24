@@ -1,5 +1,5 @@
 ---
-title: Connect NGINX Ingress Controller to NGINX One Console
+title: Connect to NGINX One Console
 toc: true
 weight: 200
 nd-content-type: how-to

@@ -1,5 +1,5 @@
 ---
-title: Connect NGINX Ingress Controller to NGINX One Console
+title: Connect Kubernetes deployments
 description:
 weight: 750
 url: /nginx-one/nic-ngf
