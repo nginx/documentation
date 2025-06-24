@@ -6,10 +6,10 @@ nd-content-type: how-to
 nd-product: NGINX One
 ---
 
-This document explains how to connect F5 NGINX Ingress Controller and F5 NGINX Gateway Fabric to F5 NGINX One Console using NGINX Agent.
+This document explains how to connect F5 NGINX Ingress Controller <!-- and F5 NGINX Gateway Fabric -->to F5 NGINX One Console using NGINX Agent.
 Connecting NGINX Ingress Controller to NGINX One Console enables centralized monitoring of all controller instances.
 
-Once connected, you'll see a **read-only** configuration of NGINX Ingress Controller and NGINX Gateway Fabric. For each instance, you can review:
+Once connected, you'll see a **read-only** configuration of NGINX Ingress Controller. For each instance, you can review:
 
 - Read-only configuration file
 - F5 NGINX App Protect WAF policies
@@ -45,7 +45,7 @@ nginxAgent:
   dataplaneKeySecretName: "<Your Dataplane Key Secret Name>"
 ```
 
-The `dataplaneKey` is used to authenticate the agent with NGINX One Console. See the [NGINX One Console Docs]({{< ref "/nginx-one/connect-instances/create-manage-data-plane-keys.md" >}})
+The `dataplaneKeySecretName` is used to authenticate the agent with NGINX One Console. See the [NGINX One Console Docs]({{< ref "/nginx-one/connect-instances/create-manage-data-plane-keys.md" >}})
 for instructions on to generate your dataplane key from the NGINX One Console.
 
 Follow the [Installation with Helm]({{< ref "/nic/installation/installing-nic/installation-with-helm.md" >}}) instructions to deploy NGINX Ingress Controller.
@@ -151,7 +151,7 @@ Check NGINX Agent logs:
 kubectl exec -it -n <namespace> <nginx-ingress-pod-name> -- nginx-agent
 ```
 
-For each connected NGINX Ingress Controller and Gateway Fabric instance, you can review:
+For each connected NGINX Ingress Controller instance, you can review:
 
 - Read-only configuration file
 - F5 NGINX App Protect WAF policies
