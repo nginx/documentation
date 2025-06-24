@@ -1,4 +1,4 @@
-# Contributing guidelines for closed content
+# Contributing closed content
 
 This document describes the process for authoring "closed content", which is content of a sensitive nature that cannot be publicised before release.
 
