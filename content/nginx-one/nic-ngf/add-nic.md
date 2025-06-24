@@ -151,7 +151,7 @@ Check NGINX Agent logs:
 kubectl exec -it -n <namespace> <nginx-ingress-pod-name> -- nginx-agent
 ```
 
-For each connected NGINX Ingress Controller instance, you can review:
+Select the instance associated with your deployment of NGINX Ingress Controller. You'll be able to review:
 
 - Read-only configuration file
 - F5 NGINX App Protect WAF policies
