@@ -2,10 +2,10 @@
 
 NGINX App Protect WAF provides an IP Intelligence feature, which allows customizing the enforcement based on the source IP of the request to limit access from IP addresses with questionable reputation. Please note that:
 - The IP intelligence feature is **disabled** by default and needs to be installed, enabled, and configured within the policy.
-- To review the installation steps, please refer to the administration guide: [App Protect V4]({{< ref "/nap-waf/v4/admin-guide/install.md#Prerequisites" >}}) / [App Protect V5]({{< ref "/nap-waf/v5/admin-guide/install.md#Prerequisites" >}})
+- To review the installation steps, please refer to the administration guide: [App Protect v4]({{< ref "/nap-waf/v4/admin-guide/install.md#Prerequisites" >}}) / [App Protect v5]({{< ref "/nap-waf/v5/admin-guide/install.md#Prerequisites" >}})
 - The system must have an active Internet connection and a working DNS.
 - If NGINX App Protect is behind a firewall, ensure external access to vector.brightcloud.com over port 443 - this is the IP Intelligence server used for data retrieval.
-- If NGINX App Protect accesses the Internet through a forward proxy server, ensure that it is configured correctly.
+- If NGINX App Protect accesses the Internet through a forward proxy server, ensure that it is configured correctly [App Protect v4]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#ip-intelligence-forward-proxy-configuration" >}}) / [App Protect v5]({{< ref "/nap-waf/v5/configuration-guide/configuration.md##ip-intelligence-forward-proxy-configuration" >}}).
   
 Once installed, make sure to enable the feature in the two relevant sections of the policy:
 1. By enabling the corresponding violation in the violation list: `"name": "VIOL_MALICIOUS_IP"` and assigning the appropriate `block` and `alarm` values to the violation.
