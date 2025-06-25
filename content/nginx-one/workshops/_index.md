@@ -1,6 +1,6 @@
 ---
 title: Workshops
 description:
-weight: 300
+weight: 750
 url: /nginx-one/workshops
 ---
