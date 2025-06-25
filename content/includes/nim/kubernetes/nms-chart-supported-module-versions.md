@@ -16,5 +16,9 @@ docs: DOCS-1324
 | 1.13.0                       | ngnx-stable/nms            | 2.16.0           |
 | 1.12.1                       | ngnx-stable/nms            | 2.15.1           |
 | 1.12.0                       | ngnx-stable/nms            | 2.15.0           |
+| 1.11.0                       | ngnx-stable/nms            | 2.14.0           |
+| 1.10.1                       | ngnx-stable/nms            | 2.13.1           |
+| 1.10.0                       | ngnx-stable/nms            | 2.13.1           |
+| 1.9.0                        | ngnx-stable/nms            | 2.13.0           |
 
 {{</bootstrap-table>}}
