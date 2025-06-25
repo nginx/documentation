@@ -3,9 +3,8 @@ title: Getting started
 draft: false
 weight: 100
 toc: true
-docs: DOCS-1089
-type:
-- how-to
+nd-docs: DOCS-1089
+nd-content-type: how-to
 ---
 
 ## Overview
