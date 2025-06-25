@@ -8,7 +8,7 @@ nd-product: nginx-one
 
 ## Introduction
 
-This guide shows you how to run a demo backend application and multiple NGINX OSS and Plus containers with Docker. The backend application runs in three `nginxinc/ingress-demo` containers, each serving a simple web page. You’ll also link each NGINX container to NGINX One Console for management and monitoring.
+This guide shows you how to run a demo backend application and multiple NGINX Open source and Plus containers with Docker. The backend application runs in three `nginxinc/ingress-demo` containers, each serving a simple web page. You’ll also link each NGINX container to NGINX One Console for management and monitoring.
 
 ## What you’ll learn
 

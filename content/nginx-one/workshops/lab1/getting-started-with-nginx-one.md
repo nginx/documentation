@@ -46,12 +46,12 @@ With NGINX One Console, you don’t need to switch between tools. You get a sing
 
 NGINX One Console connects to each NGINX instance using a lightweight agent called **NGINX Agent**.
 
-The agent is responsible for securely registering and managing each instance through the console.
+NGINX Agent is responsible for securely registering and managing each instance through the console.
 
 There are a few ways to install NGINX Agent:
 
-- Use public Docker images of NGINX OSS that already include the agent
-- Use NGINX Plus containers with the agent preinstalled
+- Use public Docker images of NGINX Open source that already include NGINX Agent
+- Use NGINX Plus containers with NGINX Agent preinstalled
 - Install manually using package managers like `apt` or `yum`
 - Use the one-line curl command that NGINX One provides during registration
 

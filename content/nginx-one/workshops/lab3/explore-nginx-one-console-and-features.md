@@ -56,12 +56,12 @@ Open NGINX One Console and select **Overview**. Here are the key metrics you’l
 - **Instance availability**  
   Understand the operational state of each instance.  
   - **Online**: Agent and NGINX are connected and working.  
-  - **Offline**: Agent is running but NGINX isn’t installed, isn’t running, or can’t talk to the agent.  
+  - **Offline**: Agent is running but NGINX isn’t installed, isn’t running, or can’t talk to NGINX Agent.  
   - **Unavailable**: Agent lost connection or instance was removed.  
   - **Unknown**: Current state can’t be determined.  
 
 - **NGINX versions by instance**  
-  See which NGINX OSS or Plus versions your instances are running.  
+  See which NGINX Open source or Plus versions your instances are running.  
 
 - **Operating systems**  
   Find out which Linux distributions are in use.  
