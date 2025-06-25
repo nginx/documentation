@@ -33,10 +33,5 @@ server {
     location = /dashboard.html {
         root /usr/share/nginx/html;
     }
-
-    # Redirect any request to the root path "/" to the dashboard
-    location / {
-        return 301 /dashboard.html;
-    }
 }
 ```
