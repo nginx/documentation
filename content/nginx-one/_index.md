@@ -25,6 +25,9 @@ nd-product: NGINX One
     {{< card title="Draft new configurations" >}}
       Work with Staged Configurations
     {{</ card >}}
+    {{< card title="Secure your fleet" >}}
+      Configure alerts that match your security policies
+    {{</ card >}}
     {{< card title="Set up metrics" >}}
       Review your deployments in a dashboard 
     {{</ card >}}
