@@ -28,7 +28,7 @@ Make sure you have:
 - NGINX One service enabled in your XC account
 - Docker and Docker Compose installed and running
 - An active data plane key from [Lab 1: Get started with NGINX One Console]({{< ref "nginx-one/workshops/lab1/getting-started-with-nginx-one.md" >}})
-- A trial or paid NGINX Plus JWT license (saved as `nginx-repo.jwt`) from [MyF5](https://my.f5.com/manage/s/).
+- A trial or paid NGINX One JWT license (saved as `nginx-repo.jwt`) from [MyF5](https://my.f5.com/manage/s/). 
 - Basic Linux and NGINX know-how
 - Git installed and SSH key set up for GitHub access
 
@@ -48,9 +48,9 @@ Make sure you have:
    cd static/workshops/nginx-one/lab2
    ```
 
-This folder contains `docker-compose.yml` and `generate_certs.sh`.
+This folder contains `compose.yaml` and `generate_certs.sh`.
 
-{{<fa "download">}} {{<link "/workshops/nginx-one/lab2/docker-compose.yml" "Download docker-compose.yaml">}}
+{{<fa "download">}} {{<link "/workshops/nginx-one/lab2/compose.yaml" "Download compose.yaml">}}
 
 {{<fa "download">}} {{<link "/workshops/nginx-one/lab2/generate_certs.sh" "Download generate_certs.sh">}}
 
