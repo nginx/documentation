@@ -187,7 +187,7 @@ Modify the shared group configuration and apply those changes to all group membe
 
 You have created a Config Sync Group and added instances. In Lab 5, you will install your NGINX Plus license (JWT) on each instance so you can upgrade them to NGINX R34.
 
-Go to [Lab 5: Upgrade to R34]()
+Go to [Lab 5: Upgrade NGINX Plus to the latest version]({{< ref "/nginx-one/workshops/lab5/upgrade-nginx-plus-to-latest-version.md" >}})
 
 ---
 
