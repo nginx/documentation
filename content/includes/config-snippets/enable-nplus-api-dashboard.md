@@ -5,7 +5,6 @@ files:
 - content/includes/use-cases/monitoring/enable-nginx-plus-api.md
 ---
 
-
 ```nginx
 # This block enables the NGINX Plus API and dashboard
 # For configuration and security recommendations, see:
