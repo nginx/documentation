@@ -8,40 +8,41 @@ cascade:
 nd-content-type: landing-page
 nd-product: NGINX One
 ---
-{{< card-layout >}}
-  {{< card-section >}}
-    {{< card title="Manage your NGINX fleet" >}}
+{{<card-layout>}}
+  {{<card-section>}}
+    {{<card title="Manage your NGINX fleet" titleUrl="about/" >}}
       Simplify, scale, secure, and collaborate with your NGINX fleet 
-    {{</ card >}}
-    {{< card title="Get started" >}}
+    {{</card >}}
+    {{<card title="Get started" titleUrl="getting-started/">}}
       See benefits from the NGINX One Console
-    {{</ card >}}
-    {{< card title="Connect your instances" >}}
+    {{</card >}}
+    {{<card title="Connect your instances" titleUrl="connect-instances/" >}}
       Work with data plane keys, containers, and proxy servers
-    {{</ card >}}
-    {{< card title="Manage your NGINX instances" >}}
+    {{</card >}}
+    {{<card title="Manage your NGINX instances" titleUrl="nginx-configs/">}}
       Monitor and maintain your deployments
-    {{</ card >}}
-    {{< card title="Draft new configurations" >}}
+    {{</card >}}
+    {{<card title="Draft new configurations" titleUrl="staged-configs">}}
       Work with Staged Configurations
     {{</ card >}}
-    {{< card title="Set up metrics" >}}
+    {{<card title="Set up metrics" titleUrl="metrics/">}}
       Review your deployments in a dashboard 
-    {{</ card >}}
-    {{< card title="Organize users with RBAC" >}}
+    {{</card >}}
+    {{<card title="Organize users with RBAC" titleUrl="rbac/">}}
       Assign responsibilities with role-based access control 
-    {{</ card >}}
-    {{< card title="Automate with the NGINX One API" >}}
+    {{</card >}}
+    {{<card title="Automate with the NGINX One API" titleUrl="api/">}}
       Manage your NGINX fleet over REST 
-    {{</ card >}}
-    {{< card title="Glossary" >}}
+    {{</card >}}
+    {{<card title="Glossary" titleUrl="glossary/">}}
       Learn terms unique to NGINX One Console 
-    {{</ card >}}
-    {{< card title="Changelog" >}}{{< changelog-dates >}}
-    {{</ card >}}
-  {{</ card-section >}}
+    {{</card >}}
+    {{<card title="Changelog" titleUrl="changelog/" >}}{{< changelog-dates >}}{{</card >}}
+  {{</card-section >}}
+{{</card-layout >}}
 
-  # Other Components 
+# Other Components
+{{<card-layout>}}
   {{< card-section title="Kubernetes Solutions">}}
     {{< card title="NGINX Ingress Controller" titleUrl="/nginx-ingress-controller/" brandIcon="NGINX-Ingress-Controller-product-icon">}}
       Kubernetes traffic management with API gateway, identity, and observability features. 
@@ -71,4 +72,4 @@ nd-product: NGINX One
       Defend, adapt, and mitigate against Layer 7 denial-of-service attacks on your apps and APIs. 
     {{</ card >}}
   {{</ card-section >}}
-{{</ card-layout >}}
+{{</card-layout>}}
