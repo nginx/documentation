@@ -5,6 +5,8 @@ url: /nginx-one/
 nd-landing-page: true
 cascade:
   logo: "NGINX-One-product-icon.svg"
+nd-content-type: landing-page
+nd-product: NGINX One
 ---
 {{< card-layout >}}
   {{< card-section >}}
