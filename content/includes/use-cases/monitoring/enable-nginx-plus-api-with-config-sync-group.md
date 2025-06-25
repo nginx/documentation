@@ -15,3 +15,4 @@ files:
 {{< include "config-snippets/enable-nplus-api-dashboard.md" >}}
 
 7. Select **Next**, review the diff, then select **Save and Publish**.
+8. Open your browser to `http://<instance-ip>:9000/dashboard.html` (replace `<instance-ip>` with the IP or hostname of one of your group members). You should see the NGINX Plus dashboard.
