@@ -34,12 +34,7 @@ Make sure you have:
 
 - An F5 Distributed Cloud (XC) account with NGINX One enabled  
 - All containers from [Lab 2](nginx-one/workshops/lab2/run-workshop-components-with-docker.md) running and registered  
-- Your unique identifier in the `NAME` environment variable (set in Lab 2), for example `s.jobs`:
-
-   ```shell
-   export NAME="s.jobs"
-   ```
-
+- {{< include "workshops/nginx-one-env-variables.md" >}}
 - Basic NGINX and Linux knowledge  
 
 ---
