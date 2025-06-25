@@ -1,6 +1,6 @@
 ---
 title: F5 NGINX One Console
-nd-subtitle: Optimize, Secure, and Scale Your Modern Apps 
+nd-subtitle: Optimize, secure, and scale your modern apps 
 url: /nginx-one/
 nd-landing-page: true
 cascade:
