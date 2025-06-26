@@ -30,6 +30,14 @@ h2 {
 
 Stay up-to-date with what's new and improved in the F5 NGINX One Console.
 
+## June 27, 2025
+
+### NGINX Agent V3
+
+We have added support for NGINX Agent V3 in N1C. You can now:
+
+- Manage dataplane instances with NGINX Agent V3.
+
 ## May 19, 2025
 
 ### Import and export your Staged Configs
