@@ -149,40 +149,40 @@ imagePullSecrets:
 apigw:
   image:
     repository: private-registry.nginx.com/nms/apigw
-    tag: <nim-version>
+    tag: <version>
 
 core:
   image:
     repository: private-registry.nginx.com/nms/core
-    tag: <nim-version>
+    tag: <version>
 
 dpm:
   image:
     repository: private-registry.nginx.com/nms/dpm
-    tag: <nim-version>
+    tag: <version>
 
 ingestion:
   image:
     repository: private-registry.nginx.com/nms/ingestion
-    tag: <nim-version>
+    tag: <version>
 
 integrations:
   image:
     repository: private-registry.nginx.com/nms/integrations
-    tag: <nim-version>
+    tag: <version>
 
 secmon:
   image:
     repository: private-registry.nginx.com/nms/secmon
-    tag: <nim-version>
+    tag: <version>
 
 utility:
   image:
     repository: private-registry.nginx.com/nms/utility
-    tag: <nim-version>
+    tag: <version>
 ```
 
-These values are required when pulling images from the NGINX private registry. The chart does not auto-resolve image tags. Update the tag: fields to match the NGINX Instance Manager version you want to install.
+These values are required when pulling images from the NGINX private registry. The chart does not auto-resolve image tags. Update the tag: fields to match the NGINX Instance Manager version you want to install referring the helm chart table.
 
 Use the file with the `-f values.yaml` flag when installing the chart.
 
@@ -360,7 +360,7 @@ The `values.yaml` file customizes the Helm chart installation without modifying 
 1. Create a `values.yaml` file similar to this example:
 
     - In the `imagePullSecrets` section, add the credentials for your private Docker registry.
-    - Change the version tag to the version of NGINX Instance Manager you would like to install. See "Install the chart" below for versions.
+    - Change the version tag to the version of NGINX Instance Manager you would like to install. Refer helm chart table for versions.
 
     {{< see-also >}} For details on creating a secret, see Kubernetes [Pull an Image from a Private Registry](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/). {{</ see-also >}}
 
@@ -426,7 +426,7 @@ To upgrade:
 1. [Update the Helm repository list](#add-repository).
 2. [Adjust your `values.yaml` file](#create-a-helm-deployment-values.yaml-file) if needed.
 3. To upgrade the NGINX Instance Manager deployment, run the following command. This command updates the `nms` deployment with a new version from the `nginx-stable/nms-hybrid` repository. It also hashes the provided password and uses the `values.yaml` file at the path you specify.
-4. Replace `<chart-version>` with the desired chart version of NGINX Instance Manager 2.19 referring the helm chart table. 
+4. Replace `<chart-version>` with the desired chart version of NGINX Instance Manager 2.19.x referring the helm chart table. 
 
    ```shell
     helm upgrade -n nms \
@@ -442,12 +442,10 @@ To upgrade:
 
       {{<call-out "important" "Save the password!" "" >}} Save this password for future use. Only the encrypted password is stored in Kubernetes, and you can’t recover or reset it later. {{</call-out>}}
 
-{{< call-out "note" "Upgrading from 2.18.0 or lower to 2.19" >}}
+{{< call-out "note" "Upgrading from 2.18.0 or lower to 2.19.x" >}}
 If you’re upgrading from a deployment that used the legacy `nms` chart or release name, you’ll need to update the chart reference and adjust the release name as needed.
 The structure of values.yaml is different from previous releases.
 {{< /call-out >}}
-
----
 
 ---
 
