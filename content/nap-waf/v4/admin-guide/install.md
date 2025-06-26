@@ -32,8 +32,8 @@ NGINX App Protect WAF supports the following operating systems:
 - [Debian 11 (Bullseye) & 12 (Bookworm)](#debian-10--debian-11--debian-12-installation)
 - [Oracle Linux 8.1.x and above](#oracle-linux-81-installation)
 - [RHEL 8.1.x and above](#rhel-81-installation)
-- [RHEL 9 and above](#rhel-9-installation)
-- [Ubuntu 20.04 (Focal), 22.04 (Jammy) & 24.04 (Noble)](#ubuntu-installation)
+- [RHEL 9, Rocky Linux 9 and above](#rhel-9-installation)
+- [Ubuntu 22.04 (Jammy) & 24.04 (Noble)](#ubuntu-installation)
 
 The NGINX App Protect WAF package has the following dependencies:
 
@@ -50,6 +50,8 @@ The NGINX App Protect WAF package has the following dependencies:
 1. **app-protect-selinux** - The prebuilt SELinux policy module for NGINX App Protect WAF (optional dependency)
 
 See the NGINX Plus full list of prerequisites for more details. NGINX App Protect WAF can be installed as a module to an existing NGINX Plus installation or as a complete NGINX Plus with App Protect installation in a clean environment.
+
+Please note that an additional package **app-protect-ip-intelligence** is required if the customer intends to use the IP Intelligence feature. This package does not come as a dependency of App Protect and needs to be installed and maintained separately. This package installs the client that downloads and updates the database required for enforcing IP Intelligence.
 
 ## Storage I/O Performance
 
@@ -214,6 +216,30 @@ If a user other than **nginx** is to be used, note the following:
     sudo service nginx start
     ```
 
+14. (Optional) A new feature, `IP Intelligence` is available (version 4.15.0 and above). The feature requires the installation of an additional package to function properly:
+
+    ```shell
+    sudo apk add app-protect-ip-intelligence
+    ```
+
+    After installing the package, run the client:
+
+    ```shell
+    /opt/app_protect/bin/iprepd /etc/app_protect/tools/iprepd.cfg > ipi.log 2>&1 &
+    ```
+
+    Verify the client is populating the database:
+
+    ```shell
+    tail -f iprepd.log
+    ```
+
+    Update your policy to include the new configuration, then run [apreload]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#apreload" >}})  command to make changes take effect
+
+    {{< note >}} For this capability to function properly, please follow the guidelines listed in the [configuration guide]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#ip-intelligence-configuration" >}}){{< /note >}}
+    
+    
+
 ---
 
 ## Amazon Linux Installation
@@ -328,6 +354,28 @@ If a user other than **nginx** is to be used, note the following:
     sudo systemctl start nginx
     ```
 
+1. (Optional) A new feature feature `IP Intelligence` is available (version 4.15.0 and above). The feature requires the installation of an additional package to function properly:
+
+    ```shell
+    sudo dnf install -y app-protect-ip-intelligence
+    ```
+
+    After installing the package, run the client:
+
+    ```shell
+    /opt/app_protect/bin/iprepd /etc/app_protect/tools/iprepd.cfg > ipi.log 2>&1 &
+    ```
+    
+    Verify the client is populating the database:
+
+    ```shell
+    tail -f iprepd.log
+    ```
+
+    Update your policy to include the new configuration, then run [apreload]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#apreload" >}})  command to make changes take effect
+
+    {{< note >}} For this capability to function properly, please follow the guidelines listed in the [configuration guide]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#ip-intelligence-configuration" >}}){{< /note >}}
+      
 ## Debian Installation
 
 1. If you already have NGINX packages in your system, back up your configs and logs:
@@ -467,6 +515,28 @@ If a user other than **nginx** is to be used, note the following:
     sudo systemctl start nginx
     ```
 
+16. (Optional) A new feature feature `IP Intelligence` is available (version 4.15.0 and above). The feature requires the installation of an additional package to function properly:
+
+    ```shell
+    sudo apt-get -y install app-protect-ip-intelligence
+    ```
+
+    After installing the package, run the client:
+    
+    ```shell
+    /opt/app_protect/bin/iprepd /etc/app_protect/tools/iprepd.cfg > ipi.log 2>&1 &
+    ```
+    
+    Verify the client is populating the database:
+
+    ```shell
+    tail -f iprepd.log
+    ```
+
+    Update your policy to include the new configuration, then run [apreload]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#apreload" >}})  command to make changes take effect
+
+    {{< note >}} For this capability to function properly, please follow the guidelines listed in the [configuration guide]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#ip-intelligence-configuration" >}}){{< /note >}}
+    
 {{< warning >}} Debian enables **AppArmor** by default, but NGINX App Protect WAF will run in unconfined mode after being installed as it is shipped with no AppArmor profile. To benefit from AppArmor access control capabilities for NGINX App Protect WAF, you will have to write your own AppArmor profile for NGINX App Protect WAF executables found in `/opt/app_protect/bin` such that it best suits your environment.
 {{< /warning >}}
 
@@ -588,7 +658,29 @@ If a user other than **nginx** is to be used, note the following:
     sudo systemctl start nginx
     ```
 
----
+17. (Optional) A new feature feature `IP Intelligence` is available (version 4.15.0 and above). The feature requires the installation of an additional package to function properly:
+
+    ```shell
+    sudo dnf install -y app-protect-ip-intelligence
+    ```
+
+    After installing the package, run the client:
+    
+    ```shell
+    /opt/app_protect/bin/iprepd /etc/app_protect/tools/iprepd.cfg > ipi.log 2>&1 &
+    ```
+    
+    Verify the client is populating the database:
+
+    ```shell
+    tail -f iprepd.log
+    ```
+
+    Update your policy to include the new configuration, then run [apreload]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#apreload" >}})  command to make changes take effect
+
+    {{< note >}} For this capability to function properly, please follow the guidelines listed in the [configuration guide]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#ip-intelligence-configuration" >}}){{< /note >}}
+
+    ---
 
 ## RHEL 9+ Installation
 
@@ -708,7 +800,29 @@ If a user other than **nginx** is to be used, note the following:
     sudo systemctl start nginx
     ```
 
----
+1. (Optional) A new feature `IP Intelligence` is available (version 4.15.0 and above). The feature requires the installation of an additional package to function properly:
+
+    ```shell
+    sudo dnf install -y app-protect-ip-intelligence
+    ```
+
+    After installing the package, run the client:
+    
+    ```shell
+    /opt/app_protect/bin/iprepd /etc/app_protect/tools/iprepd.cfg > ipi.log 2>&1 &
+    ```
+
+    Verify the client is populating the database:
+
+    ```shell
+    tail -f iprepd.log
+    ```
+
+    Update your policy to include the new configuration, then run [apreload]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#apreload" >}})  command to make changes take effect
+
+    {{< note >}} For this capability to function properly, please follow the guidelines listed in the [configuration guide]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#ip-intelligence-configuration" >}}){{< /note >}}
+
+   ---
 
 ## Ubuntu Installation
 
@@ -843,6 +957,28 @@ If a user other than **nginx** is to be used, note the following:
     sudo systemctl start nginx
     ```
 
+16. (Optional), a new feature `IP Intelligence` is supported (Check the release notes for the App Protect versions that support IP Intelligence). The feature requires the installation of an additional package to function properly:
+
+    ```shell
+    sudo apt-get -y install app-protect-ip-intelligence
+    ```
+
+    After installing the package, run the client:
+    
+    ```shell
+    /opt/app_protect/bin/iprepd /etc/app_protect/tools/iprepd.cfg > ipi.log 2>&1 &
+    ```
+
+    Verify the client is populating the database:
+
+    ```shell
+    tail -f iprepd.log
+    ```
+
+    Update your policy to include the new configuration, then run [apreload]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#apreload" >}})  command to make changes take effect
+
+    {{< note >}} For this capability to function properly, please follow the guidelines listed in the [configuration guide]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#ip-intelligence-configuration" >}}){{< /note >}}
+        
 {{< note >}} Ubuntu 20.04 / Ubuntu 22.04 / Ubuntu 24.04 activates **AppArmor** by default, but NGINX App Protect WAF will run in unconfined mode after being installed as it is shipped with no AppArmor profile. To benefit from AppArmor access control capabilities for NGINX App Protect WAF, you will have to write your own AppArmor profile for NGINX App Protect WAF executables found in `/opt/app_protect/bin` such that it best suits your environment.
 {{< /note >}}
 
@@ -933,7 +1069,13 @@ If a user other than **nginx** is to be used, note the following:
     /bin/su -s /bin/sh -c "/usr/share/ts/bin/bd-socket-plugin tmm_count 4 proc_cpuinfo_cpu_mhz 2000000 total_xml_memory 307200000 total_umu_max_size 3129344 sys_max_account_id 1024 no_static_config 2>&1 >> /var/log/app_protect/bd-socket-plugin.log &" nginx
     /usr/sbin/nginx -g 'daemon off;'
     ```
+    
+    If you want to use IP intelligence feature (Available from versions 4.15.0 and above), add this additional line to your `entrypoint.sh` file:
 
+    ```shell
+    /opt/app_protect/bin/iprepd /etc/app_protect/tools/iprepd.cfg > ipi.log 2>&1 &
+    ```
+    
 7. Create a Docker image:
 
     - For Oracle Linux/Debian/Ubuntu/Alpine/Amazon Linux:
@@ -996,6 +1138,11 @@ RUN --mount=type=secret,id=nginx-crt,dst=/etc/apk/cert.pem,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/apk/cert.key,mode=0644 \
     apk update && apk add app-protect
 
+# Only use if you want to install and use the IP intelligence feature:
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/apk/cert.pem,mode=0644 \
+    --mount=type=secret,id=nginx-key,dst=/etc/apk/cert.key,mode=0644 \
+    apk update && apk add app-protect-ip-intelligence
+
 # Forward request logs to Docker log collector:
 RUN ln -sf /dev/stdout /var/log/nginx/access.log \
     && ln -sf /dev/stderr /var/log/nginx/error.log
@@ -1032,6 +1179,11 @@ RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644
     dnf -y install app-protect \
     && dnf clean all \
     && rm -rf /var/cache/yum
+
+# Only use if you want to install and use the IP intelligence feature:
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
+    --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
+    dnf -y install app-protect-ip-intelligence
 
 # Forward request logs to Docker log collector:
 RUN ln -sf /dev/stdout /var/log/nginx/access.log \
@@ -1085,6 +1237,11 @@ RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
     apt-get update && apt-get install -y app-protect
 
+# Only use if you want to install and use the IP intelligence feature:
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
+    --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
+    apt-get install -y app-protect-ip-intelligence
+
 # Forward request logs to Docker log collector:
 RUN ln -sf /dev/stdout /var/log/nginx/access.log \
     && ln -sf /dev/stderr /var/log/nginx/error.log
@@ -1125,6 +1282,11 @@ RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644
     && dnf clean all \
     && rm -rf /var/cache/dnf
 
+# Only use if you want to install and use the IP intelligence feature:
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
+    --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
+    dnf install -y app-protect-ip-intelligence
+
 # Forward request logs to Docker log collector:
 RUN ln -sf /dev/stdout /var/log/nginx/access.log \
     && ln -sf /dev/stderr /var/log/nginx/error.log
@@ -1162,6 +1324,53 @@ RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644
     dnf install --enablerepo=codeready-builder-for-rhel-9-x86_64-rpms -y app-protect \
     && dnf clean all \
     && rm -rf /var/cache/dnf
+
+# Only use if you want to install and use the IP intelligence feature:
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
+    --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
+    dnf install -y app-protect-ip-intelligence
+
+# Forward request logs to Docker log collector:
+RUN ln -sf /dev/stdout /var/log/nginx/access.log \
+    && ln -sf /dev/stderr /var/log/nginx/error.log
+
+# Copy configuration files:
+COPY nginx.conf custom_log_format.json /etc/nginx/
+COPY entrypoint.sh /root/
+
+CMD ["sh", "/root/entrypoint.sh"]
+```
+
+### Rocky Linux 9 Dockerfile example
+
+```dockerfile
+# syntax=docker/dockerfile:1
+# For Rocky Linux 9:
+FROM rockylinux:9
+
+# Install prerequisite packages:
+RUN dnf -y install wget ca-certificates 'dnf-command(config-manager)'
+
+# Add NGINX Plus repo to Yum:
+RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/plus-9.repo
+
+# Add NGINX App-protect & dependencies repo to Yum:
+RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-9.repo
+RUN dnf config-manager --set-enabled crb \
+    && wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.repo \
+    && dnf clean all
+
+# Install NGINX App Protect WAF:
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
+    --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
+    dnf install --enablerepo=codeready-builder-for-rhel-9-x86_64-rpms -y app-protect \
+    && dnf clean all \
+    && rm -rf /var/cache/dnf
+
+# Only use if you want to install and use the IP intelligence feature:
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
+    --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
+    dnf install -y app-protect-ip-intelligence
 
 # Forward request logs to Docker log collector:
 RUN ln -sf /dev/stdout /var/log/nginx/access.log \
@@ -1203,6 +1412,11 @@ RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644
     dnf -y install app-protect \
     && dnf clean all \
     && rm -rf /var/cache/dnf
+
+# Only use if you want to install and use the IP intelligence feature:
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
+    --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
+    dnf install -y app-protect-ip-intelligence
 
 # Forward request logs to Docker log collector:
 RUN ln -sf /dev/stdout /var/log/nginx/access.log \
@@ -1255,6 +1469,11 @@ RUN wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
 RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
     apt-get update && DEBIAN_FRONTEND="noninteractive" apt-get install -y app-protect
+
+# Only use if you want to install and use the IP intelligence feature:
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
+    --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
+    apt-get install -y app-protect-ip-intelligence
 
 # Forward request logs to Docker log collector:
 RUN ln -sf /dev/stdout /var/log/nginx/access.log \
@@ -1465,6 +1684,30 @@ RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644
     && rm -rf /var/cache/dnf
 ```
 
+### Rocky Linux 9 Converter Docker Deployment Example
+
+```dockerfile
+# syntax=docker/dockerfile:1
+# For Rocky Linux 9:
+FROM rockylinux:9
+
+# Install prerequisite packages:
+RUN dnf -y install wget ca-certificates 'dnf-command(config-manager)'
+
+# Add NGINX App-protect & dependencies repo to Yum:
+RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-9.repo
+RUN dnf config-manager --set-enabled crb \
+    && wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.repo \
+    && dnf clean all
+
+# Install NGINX App Protect WAF:
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
+    --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
+    dnf install -y app-protect-compiler \
+    && dnf clean all \
+    && rm -rf /var/cache/dnf
+```    
+
 ### Oracle Linux 8 Converter Docker Deployment Example
 
 ```dockerfile
@@ -1628,6 +1871,12 @@ On a host with access to the NGINX App Protect WAF repository:
     yum install --downloadonly --downloaddir=/etc/packages/ app-protect
     ```
 
+    Only use if you want to install and use the IP intelligence feature:
+
+    ```shell
+    yum install --downloadonly --downloaddir=/etc/packages/ app-protect-ip-intelligence
+    ```
+
 3. Download the `epel-release` dependency package:
 
 For RHEL 8.1+ / Oracle Linux 8.1+:
@@ -1656,6 +1905,12 @@ On an offline host:
     yum -y install app-protect
     ```
 
+    Only use if you want to install and use the IP intelligence feature:
+
+    ```shell
+    yum -y install app-protect-ip-intelligence
+    ```
+
 ### Example Deployment for Debian/Ubuntu
 
 #### Add the NGINX App Protect WAF Packages to an Internal Repository
@@ -1669,6 +1924,13 @@ On a host with access to the NGINX App Protect WAF repository:
     cd /etc/packages/
     apt-get update
     for i in $(apt-cache depends --recurse --no-recommends --no-suggests --no-conflicts --no-breaks --no-replaces --no-enhances app-protect | grep "^\w" | sort -u); do apt-get download $i 2>>errors.txt; done
+    ```
+    
+    Only use if you want to install and use the IP intelligence feature:
+
+    ```shell
+    cd /etc/packages/
+    apt-get download app-protect-ip-intelligence
     ```
 
 2. Add the packages in `/etc/packages` to your local repository.
@@ -1684,6 +1946,11 @@ On an offline host:
     ```shell
     apt-get update
     apt-get install -y app-protect
+    ```
+    Only use if you want to install and use the IP intelligence feature:
+
+    ```shell
+    apt-get install -y app-protect-ip-intelligence
     ```
 
 ## Post-Installation Checks
@@ -2434,11 +2701,27 @@ You can uninstall the App Protect in below Operating Systems by using the follow
 
 ### RHEL 8.1+ / Oracle Linux 8.1+ / RHEL 9+
 
+If you have previously installed `app-protect-ip-intelligence` package, please make sure to uninstall it first:
+
+```shell
+sudo dnf remove app-protect-ip-intelligence
+```
+
+Then proceed with uninstalling App Protect packages:
+
 ```shell
 sudo dnf remove app-protect app-protect-selinux
 ```
 
 ### Debian 11 / Debian 12 / Ubuntu 20.04 / Ubuntu 22.04 / Ubuntu 24.04
+
+If you have previously installed `app-protect-ip-intelligence` package, please make sure to uninstall it first:
+
+```shell
+sudo apt-get remove app-protect-ip-intelligence
+```
+
+Then proceed with uninstalling App Protect packages:
 
 ```shell
 sudo apt-get remove app-protect \
@@ -2454,6 +2737,14 @@ app-protect-bot-signatures
 ```
 
 ### Alpine 3.16 / Alpine 3.17 / Alpine 3.19
+
+If you have previously installed `app-protect-ip-intelligence` package, please make sure to uninstall it first:
+
+```shell
+sudo apk del app-protect-ip-intelligence
+```
+
+Then proceed with uninstalling App Protect packages:
 
 ```shell
 sudo apk del app-protect \
