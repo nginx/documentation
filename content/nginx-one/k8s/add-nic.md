@@ -12,7 +12,6 @@ Connecting NGINX Ingress Controller to NGINX One Console enables centralized mon
 Once connected, you'll see a **read-only** configuration of NGINX Ingress Controller. For each instance, you can review:
 
 - Read-only configuration file
-- F5 NGINX App Protect WAF policies
 - SSL/TLS certificates
 - CVEs
 
@@ -123,8 +122,8 @@ Follow the [Installation with Manifests]({{< ref "/nic/installation/installing-n
 
 ## Verify a connection to NGINX One Console
 
-After deploying NGINX Ingress Controller or NGINX Gateway Fabricwith NGINX Agent, you can verify the connection to NGINX One Console.
-Log in to your NGINX One Console account and navigate to the Instances dashboard. Your instances should appear in the list, where the instance name will be the pod name.
+After deploying NGINX Ingress Controller or NGINX Gateway Fabric with NGINX Agent, you can verify the connection to NGINX One Console.
+Log in to your F5 Distributed Console cloud account. Select **NGINX One > Visit Service**. In the dashboard that appears, navigate to **Manage > Instances**. Your instances should appear in the list, where the instance name is the hostname and also the pod name.
 
 ## Troubleshooting
 
@@ -151,9 +150,10 @@ Check NGINX Agent logs:
 kubectl exec -it -n <namespace> <nginx-ingress-pod-name> -- nginx-agent
 ```
 
-Select the instance associated with your deployment of NGINX Ingress Controller. You'll be able to review:
+Select the instance associated with your deployment of NGINX Ingress Controller. Under the **Details** tab, you'll see You'll see information associated with:
 
-- Read-only configuration file
-- F5 NGINX App Protect WAF policies
 - SSL/TLS certificates
 - CVEs
+- Configuration recommendations 
+
+Under the **Configuration** tab, you'll see a **read-only** view of the configuration files.
