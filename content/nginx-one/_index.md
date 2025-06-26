@@ -34,7 +34,7 @@ nd-product: NGINX One
     {{<card title="Automate with the NGINX One API" titleUrl="/nginx-one/api/">}}
       Manage your NGINX fleet over REST 
     {{</ card >}}
-    {{<card title="Workshops" titleUrl="workshops/">}}
+    {{<card title="Workshops" titleUrl="/nginx-one/workshops/">}}
       Self-paced labs that teach key NGINX One workflows: creating config sync groups, adding and upgrading NGINX Plus instances, setting up monitoring, and more.
     {{</card >}}
     {{<card title="Glossary" titleUrl="/nginx-one/glossary/">}}
