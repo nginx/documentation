@@ -10,34 +10,34 @@ nd-product: NGINX One
 ---
 {{<card-layout>}}
   {{<card-section>}}
-    {{<card title="Manage your NGINX fleet" titleUrl="about/" >}}
+    {{<card title="Manage your NGINX fleet" titleUrl="/nginx-one/about/" >}}
       Simplify, scale, secure, and collaborate with your NGINX fleet 
     {{</card >}}
-    {{<card title="Get started" titleUrl="getting-started/">}}
+    {{<card title="Get started" titleUrl="/nginx-one/getting-started/">}}
       See benefits from the NGINX One Console
     {{</card >}}
-    {{<card title="Connect your instances" titleUrl="connect-instances/" >}}
+    {{<card title="Connect your instances" titleUrl="/nginx-one/connect-instances/" >}}
       Work with data plane keys, containers, and proxy servers
     {{</card >}}
-    {{<card title="Manage your NGINX instances" titleUrl="nginx-configs/">}}
+    {{<card title="Manage your NGINX instances" titleUrl="/nginx-one/nginx-configs/">}}
       Monitor and maintain your deployments
     {{</card >}}
-    {{<card title="Draft new configurations" titleUrl="staged-configs">}}
+    {{<card title="Draft new configurations" titleUrl="/nginx-one/staged-configs">}}
       Work with Staged Configurations
     {{</ card >}}
-    {{<card title="Set up metrics" titleUrl="metrics/">}}
+    {{<card title="Set up metrics" titleUrl="/nginx-one/metrics/">}}
       Review your deployments in a dashboard 
     {{</card >}}
-    {{<card title="Organize users with RBAC" titleUrl="rbac/">}}
+    {{<card title="Organize users with RBAC" titleUrl="/nginx-one/rbac/">}}
       Assign responsibilities with role-based access control 
     {{</card >}}
-    {{<card title="Automate with the NGINX One API" titleUrl="api/">}}
+    {{<card title="Automate with the NGINX One API" titleUrl="/nginx-one/api/">}}
       Manage your NGINX fleet over REST 
     {{</card >}}
-    {{<card title="Glossary" titleUrl="glossary/">}}
+    {{<card title="Glossary" titleUrl="/nginx-one/glossary/">}}
       Learn terms unique to NGINX One Console 
     {{</card >}}
-    {{<card title="Changelog" titleUrl="changelog/" >}}{{< changelog-dates >}}{{</card >}}
+    {{<card title="Changelog" titleUrl="/nginx-one/changelog/" >}}{{< changelog-dates >}}{{</card >}}
   {{</card-section >}}
 {{</card-layout >}}
 
