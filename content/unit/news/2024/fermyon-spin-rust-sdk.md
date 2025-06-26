@@ -1,6 +1,7 @@
 ---
-title: "Wasm Components: Working with the Spin SDK for Rust"
+title: Wasm Components - Working with the Spin SDK for Rust
 weight: 500
+docs: DOCS-1765
 ---
 
 In our blog series [Part 1]({{< relref "/unit/news/2024/wasm-component-model-part-1.md" >}}) and [Part 2]({{< relref "/unit/news/2024/wasm-component-model-part-2.md" >}}) , we have covered the core mechanism of the WebAssembly Component Model and showcased how to create a Wasm Component using WASI 0.2 APIs and the **wasi/http:proxy** world.

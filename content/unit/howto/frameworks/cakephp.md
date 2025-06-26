@@ -2,6 +2,7 @@
 title: CakePHP
 weight: 200
 toc: true
+docs: DOCS-1745
 ---
 
 To run apps based on the [CakePHP](https://cakephp.org) framework using Unit:

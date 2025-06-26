@@ -2,6 +2,7 @@
 title: Sanic
 weight: 1700
 toc: true
+docs: DOCS-1756
 ---
 
 To run apps built with the [Sanic](https://sanic.dev/) web framework
