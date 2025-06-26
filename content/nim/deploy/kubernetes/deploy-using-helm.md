@@ -29,10 +29,6 @@ Make sure to update your chart references if you’re using version 2.20.0 or la
 
 To deploy NGINX Instance Manager using a Helm chart, you need:
 
-## Requirements
-
-To deploy NGINX Instance Manager using a Helm chart, you need:
-
 {{< bootstrap-table "table table-striped table-bordered" >}}
 | Requirements                                 | Notes                                                                                                                                                                                                                  |
 |----------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
