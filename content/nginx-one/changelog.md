@@ -36,7 +36,7 @@ Stay up-to-date with what's new and improved in the F5 NGINX One Console.
 
 We have added support for NGINX Agent 3.x in NGINX One Console You can now:
 
-- Manage dataplane instances with NGINX Agent V3.
+- Manage data plane instances with NGINX Agent version 3.
 
 ## May 19, 2025
 
