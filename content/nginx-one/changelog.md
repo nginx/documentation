@@ -32,7 +32,7 @@ Stay up-to-date with what's new and improved in the F5 NGINX One Console.
 
 ## June 27, 2025
 
-### NGINX Agent V3
+### NGINX Agent version 3 support
 
 We have added support for NGINX Agent 3.x in NGINX One Console You can now:
 
