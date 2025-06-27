@@ -28,6 +28,9 @@ nd-product: NGINX One
     {{<card title="Set up metrics" titleUrl="/nginx-one/metrics/">}}
       Review your deployments in a dashboard 
     {{</card >}}
+    {{<card title="Connect Kubernetes deployments" titleUrl="/nginx-one/k8s/">}}
+      Monitor deployments for CVEs and certificatesd
+    {{</card >}}
     {{<card title="Organize users with RBAC" titleUrl="/nginx-one/rbac/">}}
       Assign responsibilities with role-based access control 
     {{</card >}}
