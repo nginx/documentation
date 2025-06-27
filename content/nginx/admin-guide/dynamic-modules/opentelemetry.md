@@ -9,11 +9,9 @@ type:
 - how-to
 ---
 
-## Overview
-
 [OpenTelemetry](https://opentelemetry.io/) (OTel) is an observability framework for monitoring, tracing, troubleshooting, and optimizing applications. OTel enables the collection of telemetry data from a deployed application stack.
 
-The `nginx-plus-module-otel` module is an [NGINX-authored]({{< ref "nginx/admin-guide/installing-nginx/installing-nginx-plus.md#nginx-authored-dynamic-modules" >}}) dynamic module that enables NGINX Plus to send telemetry data to an OTel collector. The module supports [W3C](https://w3c.github.io/trace-context/) trace context propagation, OpenTelemetry Protocol (OTLP)/gRPC trace exports, and offers several advantages over existing OTel modules including:
+The `nginx-plus-module-otel` module is an [NGINX-authored]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md#nginx-authored-dynamic-modules" >}}) dynamic module that enables NGINX Plus to send telemetry data to an OTel collector. The module supports [W3C](https://w3c.github.io/trace-context/) trace context propagation, OpenTelemetry Protocol (OTLP)/gRPC trace exports, and offers several advantages over existing OTel modules including:
 
 - Enhanced performance: with the module enabled, request processing overhead is limited to 10-15%, compared to other OpenTelemetry implementations, which can introduce performance degradation of up to 50%.
 
@@ -25,14 +23,14 @@ The `nginx-plus-module-otel` module is an [NGINX-authored]({{< ref "nginx/admin-
 
 The source code for the module is available in the official [GitHub repository](https://github.com/nginxinc/nginx-otel). The official documentation, including module reference and usage examples, is available on the [nginx.org](https://nginx.org/en/docs/ngx_otel_module.html) website.
 
-The OpenTelemetry module supersedes the deprecated [OpenTracing]({{< ref "opentracing.md" >}}) module which was available until NGINX Plus [Release 34]({{< ref "nginx/releases.md#r34" >}}).
+The OpenTelemetry module supersedes the deprecated [OpenTracing]({{< ref "opentracing.md" >}}) module which was available until NGINX Plus [Release 34]({{< ref "/nginx/releases.md#r34" >}}).
 
 
 ## Installation
 
 The installation process closely follows the [NGINX Plus installation procedure]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}). The module is available as the prebuilt `nginx-plus-module-otel` package for various Linux distributions and can be installed directly from the official NGINX Plus repository. Prior to installation, you need to add the NGINX Plus package repository for your distribution and update the repository metadata.
 
-1.  Check the [Technical Specifications]({{< ref "nginx/technical-specs.md" >}}) page to verify that the module is supported by your operating system.
+1.  Check the [Technical Specifications]({{< ref "/nginx/technical-specs.md" >}}) page to verify that the module is supported by your operating system.
 
     {{< note >}} The OpenTelemetry module cannot be installed on Amazon Linux 2 LTS and SLES 15 SP5+. {{< /note >}}
 
@@ -211,9 +209,9 @@ The installation process closely follows the [NGINX Plus installation procedure]
 
 ## Configuration
 
- In a text editor, open the NGINX Plus configuration file:
-   - `/etc/nginx/nginx.conf` for Linux
-   - `/usr/local/etc/nginx/nginx.conf` for FreeBSD
+In a text editor, open the NGINX Plus configuration file:
+  - `/etc/nginx/nginx.conf` for Linux
+  - `/usr/local/etc/nginx/nginx.conf` for FreeBSD
 
 For a complete list of directives, embedded variables, default span attributes, refer to the `ngx_otel_module` official documentation.
 
@@ -295,12 +293,12 @@ http {
 
 ## More info
 
-- [GitHub Repository for the NGINX Native OpenTelemetry Module](https://github.com/nginxinc/nginx-otel)
+- [NGINX Native OpenTelemetry module GitHub project](https://github.com/nginxinc/nginx-otel)
 
-- [Official Documentation for the NGINX Native OpenTelemetry Module](https://nginx.org/en/docs/ngx_otel_module.html)
+- [Official documentation for the NGINX Native OpenTelemetry module](https://nginx.org/en/docs/ngx_otel_module.html)
 
-- [NGINX Plus Technical Specifications]({{< ref "nginx/technical-specs.md" >}})
+- [NGINX Plus technical specifications]({{< ref "/nginx/technical-specs.md" >}})
 
-- [NGINX Dynamic Modules]({{< ref "dynamic-modules.md" >}})
+- [NGINX dynamic modules]({{< ref "dynamic-modules.md" >}})
 
-- [Uninstalling a Dynamic Module]({{< ref "uninstall.md" >}})
+- [Uninstalling a dynamic module]({{< ref "uninstall.md" >}})

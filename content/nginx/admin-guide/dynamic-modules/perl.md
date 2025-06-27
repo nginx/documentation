@@ -10,12 +10,15 @@ type:
 - how-to
 ---
 
-<span id="install"></span>
+The Perl dynamic module allows implementing location and variable handlers in Perl and insert Perl calls into Server Side Includes (SSI).
+
 ## Installation
 
-1. Check the [Technical Specifications]({{< ref "nginx/technical-specs.md" >}}) page to verify that the module is supported by your operating system.
+1. Check the [Technical Specifications]({{< ref "/nginx/technical-specs.md#dynamic-modules" >}}) page to verify that the module is supported by your operating system.
 
-2. Install the Perl module package `nginx-plus-module-perl`.
+2. Make sure that your operating system is configured to retrieve binary packages from the official NGINX Plus repository. See installation instructions for your operating system on the [Installing NGINX Plus]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}) page.
+
+3. Install the Perl module package `nginx-plus-module-perl` from the official NGINX Plus repository.
 
    For Amazon Linux 2, CentOS, Oracle Linux, and RHEL:
 
@@ -58,9 +61,6 @@ type:
    sudo pkg install nginx-plus-module-perl
    ```
 
-
-<span id="configure"></span>
-
 ## Configuration
 
 After installation you will need to enable and configure the module in F5 NGINX Plus configuration file `nginx.conf`.
@@ -96,14 +96,12 @@ After installation you will need to enable and configure the module in F5 NGINX 
     nginx -s reload
     ```
 
+## More info
 
-<span id="info"></span>
-## More Info
+- [NGINX Perl module reference](https://nginx.org/en/docs/http/ngx_http_perl_module.html)
 
-- [NGINX Perl Module Reference](https://nginx.org/en/docs/http/ngx_http_perl_module.html)
+- [NGINX dynamic modules]({{< ref "dynamic-modules.md" >}})
 
-- [NGINX Dynamic Modules]({{< ref "dynamic-modules.md" >}})
+- [NGINX Plus technical specifications]({{< ref "/nginx/technical-specs.md" >}})
 
-- [NGINX Plus Technical Specifications]({{< ref "nginx/technical-specs.md" >}})
-
-- [Uninstalling a Dynamic Module]({{< ref "uninstall.md" >}})
+- [Uninstalling a dynamic module]({{< ref "uninstall.md" >}})
