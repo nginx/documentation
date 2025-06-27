@@ -15,6 +15,5 @@ nd-product: NGINX One
 You can now include Kubernetes systems through the [control plane](https://www.f5.com/glossary/control-plane). In related documentation, you can learn how to:
 
 - Set up a connection to F5 NGINX One Console through a data plane key.
-- Monitor each connected Kubernetes system for CVEs.
-- Review the NGINX Ingress Controller and NGINX Gateway Fabric instances that are part of your fleet
+- Review the NGINX Ingress Controller instances that are part of your fleet.
 

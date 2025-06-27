@@ -12,19 +12,20 @@ Connecting NGINX Ingress Controller to NGINX One Console enables centralized mon
 Once connected, you'll see a **read-only** configuration of NGINX Ingress Controller. For each instance, you can review:
 
 - Read-only configuration file
-- SSL/TLS certificates
-- CVEs
+- Unmanaged SSL/TLS certificates for Control Planes
 
-## Prerequisites
+## Before you begin
 
 Before connecting NGINX Ingress Controller to NGINX One Console, you need to create a Kubernetes Secret with the data plane key. Use the following command:
 
 ```shell
-kubectl create secret generic dataplane-key --from-literal=dataplane.key=<Your Dataplane Key> -n <namespace>
+kubectl create secret generic dataplane-key \
+  --from-literal=dataplane.key=<Your Dataplane Key> \
+  -n <namespace>
 ```
 
 When you create a Kubernetes Secret, use the same namespace where NGINX Ingress Controller is running. 
-If you use `-watch-namespace` or `watch-secret-namespace` arguments with NGINX Ingress Controller, 
+If you use [`-watch-namespace`]({{< ref "/nic/configuration/global-configuration/command-line-arguments.md#watch-namespace-string" >}}) or [`watch-secret-namespace`]({{< ref "/nic/configuration/global-configuration/command-line-arguments.md#watch-secret-namespace-string" >}}) arguments with NGINX Ingress Controller, 
 you need to add the dataplane key secret to the watched namespaces. This secret will take approximately 60 - 90 seconds to reload on the pod.
 
 {{<note>}}
@@ -41,11 +42,11 @@ Edit your `values.yaml` file to enable NGINX Agent and configure it to connect t
 ```yaml
 nginxAgent:
   enable: true
-  dataplaneKeySecretName: "<Your Dataplane Key Secret Name>"
+  dataplaneKeySecretName: "<data_plane_key_secret_name>"
 ```
 
 The `dataplaneKeySecretName` is used to authenticate the agent with NGINX One Console. See the [NGINX One Console Docs]({{< ref "/nginx-one/connect-instances/create-manage-data-plane-keys.md" >}})
-for instructions on to generate your dataplane key from the NGINX One Console.
+for instructions on how to generate your dataplane key from the NGINX One Console.
 
 Follow the [Installation with Helm]({{< ref "/nic/installation/installing-nic/installation-with-helm.md" >}}) instructions to deploy NGINX Ingress Controller.
 
@@ -97,7 +98,7 @@ data:
 ```      
 
 Make sure to set the namespace in the nginx-agent.config to the same namespace as NGINX Ingress Controller.
-Mount the ConfigMap to the deployment/daemonset file of NGINX Ingress Controller:
+Mount the ConfigMap to the Deployment/DaemonSet file of NGINX Ingress Controller:
 
 ```yaml
 volumeMounts:
@@ -112,7 +113,7 @@ volumes:
     name: nginx-agent-config
 - name: dataplane-key
   secret:
-    secretName: <Your Dataplane Key Secret Name>
+    secretName: "<data_plane_key_secret_name>"
 ```
 
 Follow the [Installation with Manifests]({{< ref "/nic/installation/installing-nic/installation-with-manifests.md" >}}) instructions to deploy NGINX Ingress Controller.
@@ -122,8 +123,8 @@ Follow the [Installation with Manifests]({{< ref "/nic/installation/installing-n
 
 ## Verify a connection to NGINX One Console
 
-After deploying NGINX Ingress Controller or NGINX Gateway Fabric with NGINX Agent, you can verify the connection to NGINX One Console.
-Log in to your F5 Distributed Console cloud account. Select **NGINX One > Visit Service**. In the dashboard that appears, navigate to **Manage > Instances**. Your instances should appear in the list, where the instance name is the hostname and also the pod name.
+After deploying NGINX Ingress Controller <!-- or NGINX Gateway Fabric --> with NGINX Agent, you can verify the connection to NGINX One Console.
+Log in to your F5 Distributed Cloud Console account. Select **NGINX One > Visit Service**. In the dashboard, go to **Manage > Instances**. You should see your instances listed by name. The instance name matches both the hostname and the pod name.
 
 ## Troubleshooting
 
@@ -132,7 +133,7 @@ If you encounter issues connecting your instances to NGINX One Console, try the 
 Check the NGINX Agent version:
 
 ```shell
-kubectl exec -it -n <namespace> <nginx-ingress-pod-name> -- nginx-agent -v
+kubectl exec -it -n <namespace> <nginx_ingress_pod_name> -- nginx-agent -v
 ```
   
 If nginx-agent version is v3, continue with the following steps.
@@ -141,19 +142,18 @@ Otherwise, make sure you are using an image that does not include NGINX App Prot
 Check the NGINX Agent configuration:
 
 ```shell
-kubectl exec -it -n <namespace> <nginx-ingress-pod-name> -- cat /etc/nginx-agent/nginx-agent.conf
+kubectl exec -it -n <namespace> <nginx_ingress_pod_name> -- cat /etc/nginx-agent/nginx-agent.conf
 ```
 
 Check NGINX Agent logs:
 
 ```shell
-kubectl exec -it -n <namespace> <nginx-ingress-pod-name> -- nginx-agent
+kubectl exec -it -n <namespace> <nginx_ingress_pod_name> -- nginx-agent
 ```
 
-Select the instance associated with your deployment of NGINX Ingress Controller. Under the **Details** tab, you'll see You'll see information associated with:
+Select the instance associated with your deployment of NGINX Ingress Controller. Under the **Details** tab, you'll see information associated with:
 
-- SSL/TLS certificates
-- CVEs
+- Unmanaged SSL/TLS certificates for Control Planes 
 - Configuration recommendations 
 
 Under the **Configuration** tab, you'll see a **read-only** view of the configuration files.
