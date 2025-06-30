@@ -20,7 +20,9 @@ Once connected, you'll see a **read-only** configuration of NGINX Ingress Contro
 Before connecting NGINX Ingress Controller to NGINX One Console, you need to create a Kubernetes Secret with the data plane key. Use the following command:
 
 ```shell
-kubectl create secret generic dataplane-key --from-literal=dataplane.key=<Your Dataplane Key> -n <namespace>
+kubectl create secret generic dataplane-key \
+  --from-literal=dataplane.key=<Your Dataplane Key> \
+  -n <namespace>
 ```
 
 When you create a Kubernetes Secret, use the same namespace where NGINX Ingress Controller is running. 
@@ -123,7 +125,7 @@ Follow the [Installation with Manifests]({{< ref "/nic/installation/installing-n
 ## Verify a connection to NGINX One Console
 
 After deploying NGINX Ingress Controller <!-- or NGINX Gateway Fabric --> with NGINX Agent, you can verify the connection to NGINX One Console.
-Log in to your F5 Distributed Console cloud account. Select **NGINX One > Visit Service**. In the dashboard that appears, navigate to **Manage > Instances**. Your instances should appear in the list, where the instance name is the hostname and also the pod name.
+Log in to your F5 Distributed Cloud Console account. Select **NGINX One > Visit Service**. In the dashboard, go to **Manage > Instances**. You should see your instances listed by name. The instance name matches both the hostname and the pod name.
 
 ## Troubleshooting
 
