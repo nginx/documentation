@@ -395,6 +395,10 @@ The `values.yaml` file customizes the Helm chart installation without modifying 
         image:
             repository: private-registry.nginx.com/nms/utility
             tag: <version>
+    secmon:
+        image:
+            repository: private-registry.nginx.com/nms/secmon
+            tag: <version>
     ```
 
 2. Save and close the `values.yaml` file.
