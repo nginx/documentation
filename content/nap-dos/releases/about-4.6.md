@@ -2,7 +2,7 @@
 title: NGINX App Protect DoS 4.6
 toc: true
 weight: 60
-docs: DOCS-000
+docs: DOCS-1783
 ---
 
 Here you can find the release information for F5 NGINX App Protect DoS v4.6  
