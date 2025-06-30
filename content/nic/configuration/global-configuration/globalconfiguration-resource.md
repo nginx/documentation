@@ -1,5 +1,5 @@
 ---
-docs: DOCS-588
+nd-docs: DOCS-588
 doctypes:
 - ''
 title: GlobalConfiguration resource

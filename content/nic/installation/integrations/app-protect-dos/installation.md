@@ -4,7 +4,7 @@ weight: 100
 toc: true
 type: how-to
 product: NIC
-docs: DOCS-583
+nd-docs: DOCS-583
 ---
 
 This document explains how to build an image for F5 NGINX Ingress Controller with NGINX App Protect DoS from source code.
