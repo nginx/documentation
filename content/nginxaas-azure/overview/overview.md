@@ -2,7 +2,7 @@
 title: Overview and architecture
 weight: 100
 toc: true
-docs: DOCS-879
+nd-docs: DOCS-879
 url: /nginxaas/azure/overview/overview/
 type:
 - concept

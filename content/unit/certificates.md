@@ -2,7 +2,7 @@
 title: SSL/TLS certificates
 weight: 800
 toc: true
-docs: DOCS-1698
+nd-docs: DOCS-1698
 ---
 
 The **/certificates** section of the [control API]({{< relref "/unit/controlapi.md" >}})

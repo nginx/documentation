@@ -2,7 +2,7 @@
 title: Upload using the Azure portal
 weight: 100
 toc: true
-docs: DOCS-873
+nd-docs: DOCS-873
 url: /nginxaas/azure/getting-started/nginx-configuration/nginx-configuration-portal/
 type:
 - how-to

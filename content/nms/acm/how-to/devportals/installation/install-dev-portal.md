@@ -1,7 +1,7 @@
 ---
 description: Follow the steps in this guide to install or upgrade the Developer Portal
   for F5 NGINX Management Suite API Connectivity Manager.
-docs: DOCS-1214
+nd-docs: DOCS-1214
 title: Install or Upgrade the Developer Portal
 toc: true
 weight: 10

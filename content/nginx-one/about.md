@@ -1,6 +1,6 @@
 ---
 description: ''
-docs: DOCS-1392
+nd-docs: DOCS-1392
 title: Manage your NGINX fleet
 toc: true
 weight: 10

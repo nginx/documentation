@@ -1,7 +1,7 @@
 ---
 description: Learn how to use F5 NGINX Management Suite Instance Manager to publish
   NGINX App Protect WAF configurations.
-docs: DOCS-1114
+nd-docs: DOCS-1114
 title: WAF Configuration Management
 toc: true
 weight: 100

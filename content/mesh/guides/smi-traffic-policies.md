@@ -4,7 +4,7 @@ toc: true
 description: Learn about the traffic policies supported by F5 NGINX Service Mesh and
   how to configure them.
 weight: 60
-docs: DOCS-698
+nd-docs: DOCS-698
 type:
 - how-to
 ---

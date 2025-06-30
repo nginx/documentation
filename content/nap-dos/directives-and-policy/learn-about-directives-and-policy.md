@@ -2,7 +2,7 @@
 title: NGINX App Protect DoS Directives and Policy
 toc: true
 weight: 120
-docs: DOCS-667
+nd-docs: DOCS-667
 ---
 
 ## Introduction

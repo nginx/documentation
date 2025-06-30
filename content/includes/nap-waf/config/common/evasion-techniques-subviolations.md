@@ -1,5 +1,5 @@
 ---
-docs: "DOCS-1542"
+nd-docs: "DOCS-1542"
 ---
 
 The following table specifies the Evasion Techniques sub-violation settings. All are supported in NGINX App Protect WAF.

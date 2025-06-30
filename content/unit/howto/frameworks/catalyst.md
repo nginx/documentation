@@ -2,7 +2,7 @@
 title: Catalyst
 weight: 300
 toc: true
-docs: DOCS-1753
+nd-docs: DOCS-1753
 ---
 
 To run apps based on the [Catalyst](https://metacpan.org/dist/Catalyst-Manual) 5.9+ framework using Unit:

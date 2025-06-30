@@ -4,7 +4,7 @@ description: Instrument NGINX with OpenTracing-compliant requests for a range of
   module provides the framework for recording traces; you will also need to install
   a service-specific tracing module.  This module (“tracer”) pushes traces to the
   collector and analyser provided by that service.
-docs: DOCS-395
+nd-docs: DOCS-395
 title: OpenTracing
 toc: true
 weight: 100

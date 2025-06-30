@@ -1,7 +1,7 @@
 ---
 description: Set up Active Directory authentication for F5 NGINX Controller using
   OIDC with Microsoft Entra or LDAP, LDAPs, and StartTLS with Windows Active Directory.
-docs: DOCS-782
+nd-docs: DOCS-782
 title: Configure Active Directory Integration
 toc: true
 weight: 10

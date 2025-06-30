@@ -1,7 +1,7 @@
 ---
 description: Learn how to use your own F5 NGINX App Protect WAF policies with NGINX
   Controller.
-docs: DOCS-481
+nd-docs: DOCS-481
 title: Bring Your Own WAF Policy
 toc: true
 weight: 300

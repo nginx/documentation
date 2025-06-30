@@ -1,5 +1,5 @@
 ---
-docs: DOCS-1355
+nd-docs: DOCS-1355
 ---
 
 {{<note>}}A separate license for NGINX Instance Manager is not required to track your NGINX product usage.{{</note>}}

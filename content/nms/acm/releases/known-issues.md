@@ -3,7 +3,7 @@ description: This document is a summary of the known issues in F5 NGINX Manageme
   Suite API Connectivity Manager. Fixed issues are removed after **45 days**. <p>We
   recommend upgrading to the latest version of API Connectivity Manager to take advantage
   of new features, improvements, and bug fixes.</p>
-docs: DOCS-930
+nd-docs: DOCS-930
 title: Known Issues
 toc: true
 weight: 200

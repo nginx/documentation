@@ -2,7 +2,7 @@
 title: Security checklist
 weight: 800
 toc: true
-docs: DOCS-1710
+nd-docs: DOCS-1710
 ---
 
 At its core, Unit has security as one of its top priorities; our development

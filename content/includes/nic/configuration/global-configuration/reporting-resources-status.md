@@ -1,5 +1,5 @@
 ---
-docs: DOCS-589
+nd-docs: DOCS-589
 doctypes:
 - ''
 title: Reporting resource status

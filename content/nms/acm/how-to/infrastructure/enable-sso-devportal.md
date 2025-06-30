@@ -1,6 +1,6 @@
 ---
 description: Learn how to enable Single Sign-On for Developer Portal.
-docs: DOCS-928
+nd-docs: DOCS-928
 title: Enable Single Sign-On for Developer Portal
 toc: true
 weight: 400

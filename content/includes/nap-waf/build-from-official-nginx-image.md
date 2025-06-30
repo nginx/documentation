@@ -1,5 +1,5 @@
 ---
-docs: "DOCS-1509"
+nd-docs: "DOCS-1509"
 ---
 
 {{< note >}}

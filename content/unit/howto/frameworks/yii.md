@@ -2,7 +2,7 @@
 title: Yii
 weight: 2000
 toc: true
-docs: DOCS-1752
+nd-docs: DOCS-1752
 ---
 
 

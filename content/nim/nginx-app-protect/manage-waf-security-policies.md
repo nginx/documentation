@@ -5,7 +5,7 @@ weight: 300
 toc: true
 type: how-to
 product: NIM
-docs: DOCS-1105
+nd-docs: DOCS-1105
 ---
 
 ## Overview
@@ -32,14 +32,14 @@ Before continuing, complete the following steps:
 - [Set up App Protect WAF configuration management]({{< ref "setup-waf-config-management" >}})
 - Make sure your user account has the [required permissions]({{< ref "/nim/admin-guide/rbac/overview-rbac.md" >}}) to access the REST API:
 
-  - **Module**: Instance Manager  
-  - **Feature**: Instance Management → `READ`  
+  - **Module**: Instance Manager
+  - **Feature**: Instance Management → `READ`
   - **Feature**: Security Policies → `READ`, `CREATE`, `UPDATE`, `DELETE`
 
 To use policy bundles, you also need to:
 
-- Have `UPDATE` permissions for each referenced security policy  
-- [Install the correct `nms-nap-compiler` package]({{< ref "/nim/nginx-app-protect/setup-waf-config-management.md#install-the-waf-compiler" >}}) for your App Protect WAF version  
+- Have `UPDATE` permissions for each referenced security policy
+- [Install the correct `nms-nap-compiler` package]({{< ref "/nim/nginx-app-protect/setup-waf-config-management.md#install-the-waf-compiler" >}}) for your App Protect WAF version
 - [Install the required attack signatures and threat campaigns]({{< ref "/nim/nginx-app-protect/setup-waf-config-management.md#set-up-attack-signatures-and-threat-campaigns" >}})
 
 ### Access the web interface
@@ -60,13 +60,13 @@ To access the web interface, open a browser and go to the fully qualified domain
 
 To create a security policy using the NGINX Instance Manager web interface:
 
-1. In your browser, go to the FQDN for your NGINX Instance Manager host and log in.  
-2. From the Launchpad menu, select **Instance Manager**.  
-3. In the left menu, select **App Protect**.  
-4. On the *Security Policies* page, select **Create**.  
+1. In your browser, go to the FQDN for your NGINX Instance Manager host and log in.
+2. From the Launchpad menu, select **Instance Manager**.
+3. In the left menu, select **App Protect**.
+4. On the *Security Policies* page, select **Create**.
 5. On the *Create Policy* page, enter the required information:
-   - **Name**: Enter a name for the policy.  
-   - **Description**: (Optional) Add a brief description.  
+   - **Name**: Enter a name for the policy.
+   - **Description**: (Optional) Add a brief description.
    - **Enter Policy**: Paste or type the JSON-formatted policy into the editor. The interface automatically validates the JSON.
 
     For help writing custom policies, see the [NGINX App Protect WAF Declarative Policy guide](https://docs.nginx.com/nginx-app-protect/declarative-policy/policy/) and the [Policy Authoring and Tuning section](https://docs.nginx.com/nginx-app-protect/configuration-guide/configuration/#policy-authoring-and-tuning) in the configuration guide.
@@ -197,9 +197,9 @@ After updating the policy, you can [publish it](#publish-policy) to selected ins
 
 To delete a security policy using the NGINX Instance Manager web interface:
 
-1. In your browser, go to the FQDN for your NGINX Instance Manager host and log in.  
-2. From the Launchpad menu, select **Instance Manager**.  
-3. In the left menu, select **App Protect**.  
+1. In your browser, go to the FQDN for your NGINX Instance Manager host and log in.
+2. From the Launchpad menu, select **Instance Manager**.
+3. In the left menu, select **App Protect**.
 4. On the *Security Policies* page, find the policy you want to delete.
 5. Select the **Actions** menu (**...**) and choose **Delete**.
 
@@ -615,7 +615,7 @@ To overwrite an existing security log profile:
     ```
 
 2. Use the UID in your PUT request:
-   
+
     ```shell
     curl -X PUT https://{{NIM_FQDN}}/api/platform/v1/security/logprofiles/<log-profile-uid> \
       -H "Authorization: Bearer <access token>" \

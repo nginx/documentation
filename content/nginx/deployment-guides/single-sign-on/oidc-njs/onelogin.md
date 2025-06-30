@@ -1,7 +1,7 @@
 ---
 description: Learn how to enable single sign-on (SSO) with [OneLogin](https://www.onelogin.com/)
   for applications proxied by F5 NGINX Plus.
-docs: DOCS-467
+nd-docs: DOCS-467
 type:
 - tutorial
 title: Single Sign-On with OneLogin and njs

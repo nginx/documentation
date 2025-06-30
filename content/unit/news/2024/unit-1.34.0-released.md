@@ -1,7 +1,7 @@
 ---
 title: Unit 1.34.0 Released
 weight: 100
-docs: DOCS-1768
+nd-docs: DOCS-1768
 ---
 
 We are pleased to announce the release of NGINX Unit 1.34.0. This release

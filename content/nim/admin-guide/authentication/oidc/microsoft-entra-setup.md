@@ -1,5 +1,5 @@
 ---
-docs: DOCS-795
+nd-docs: DOCS-795
 title: 'Microsoft Entra: Set up OIDC authentication'
 toc: true
 weight: 100

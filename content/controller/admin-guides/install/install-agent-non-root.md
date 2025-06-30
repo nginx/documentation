@@ -1,6 +1,6 @@
 ---
 description: How to install the F5 NGINX Controller Agent to run as a non-root user.
-docs: DOCS-253
+nd-docs: DOCS-253
 title: Install NGINX Controller Agent for Non-root Users
 toc: true
 weight: 205

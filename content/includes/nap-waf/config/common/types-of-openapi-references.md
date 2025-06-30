@@ -1,5 +1,5 @@
 ---
-docs: "DOCS-1636"
+nd-docs: "DOCS-1636"
 ---
 
 There are different ways of referencing OpenAPI Specification files. The configuration is similar to [External References](#external-references).
