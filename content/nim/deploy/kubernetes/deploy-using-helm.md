@@ -241,7 +241,7 @@ helm status nim -n nim
 You should see `STATUS: deployed` in the output.
 
 
-To help you choose the right NGINX Instance Manager chart version, see the table in:
+To help you choose the right NGINX Instance Manager chart version, see the following table:
 
 {{< include "nim/kubernetes/nms-chart-supported-module-versions.md" >}}
 
