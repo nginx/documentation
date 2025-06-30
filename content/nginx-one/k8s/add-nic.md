@@ -153,7 +153,7 @@ kubectl exec -it -n <namespace> <nginx_ingress_pod_name> -- nginx-agent
 
 Select the instance associated with your deployment of NGINX Ingress Controller. Under the **Details** tab, you'll see information associated with:
 
-- SSL/TLS certificates
+- Unmanaged SSL/TLS certificates for Control Planes 
 - Configuration recommendations 
 
 Under the **Configuration** tab, you'll see a **read-only** view of the configuration files.
