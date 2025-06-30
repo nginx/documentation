@@ -22,8 +22,8 @@ The Helm chart has been renamed from `nginx-stable/nms-hybrid` to `nginx-stable/
 Make sure to update your chart references if you’re using version 2.20.0 or later.
 {{< /call-out >}}
 
-{{< call-out "note" "Versioning update from NIM 2.20.0" >}}
-With the chart rename in NIM 2.20.0, Helm chart versioning was also reset—`v2.0.0` is the first release under the new nginx-stable/nim chart name.
+{{< call-out "note" "Versioning update from NGINX Instance Manager 2.20.0" >}}
+Helm chart versioning was reset with the chart rename in NGINX Instance Manager 2.20.0; `v2.0.0` is the first release under the new nginx-stable/nim chart name.
 {{< /call-out >}}
 
 
