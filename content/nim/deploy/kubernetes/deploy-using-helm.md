@@ -355,7 +355,7 @@ networkPolicies:
 
 ---
 
-## Helm Deployment for NGINX Instance Manager 2.19
+## Helm deployment for NGINX Instance Manager 2.19
 
 ### Create a Helm deployment values.yaml file
 
