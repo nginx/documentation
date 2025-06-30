@@ -15,7 +15,7 @@ Once connected, you'll see a **read-only** configuration of NGINX Ingress Contro
 - SSL/TLS certificates
 - CVEs
 
-## Prerequisites
+## Before you begin
 
 Before connecting NGINX Ingress Controller to NGINX One Console, you need to create a Kubernetes Secret with the data plane key. Use the following command:
 
