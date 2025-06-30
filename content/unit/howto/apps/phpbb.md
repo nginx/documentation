@@ -2,6 +2,7 @@
 title: phpBB
 toc: true
 weight: 1600
+docs: DOCS-1723
 ---
 
 To run the [phpBB](https://www.phpbb.com) bulletin board using Unit:

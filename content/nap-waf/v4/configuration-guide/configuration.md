@@ -38,7 +38,9 @@ When configuring NGINX App Protect WAF, `app_protect_enable` should always be en
 |[Deny and Allow IP lists](#deny-and-allow-ip-lists) | Manually define denied & allowed IP addresses as well as IP addresses to never log. |
 |[XFF headers & trust](#xff-headers-and-trust) | Disabled by default. User can enable it and optionally add a list of custom XFF headers. |
 |[gRPC Protection](#grpc-protection-for-unary-traffic) | gRPC content profile detects malformed content, parses well-formed content, and extracts the text fields for detecting attack signatures and disallowed meta-characters. In addition, it enforces size restrictions and prohibition of unknown fields. The Interface Definition Language (IDL) files for the gRPC API must be attached to the profile. gRPC protection can be on [unary](#grpc-protection-for-unary-traffic) or [bidirectional](#grpc-protection-for-bidirectional-streaming) traffic.|
-|[Brute Force Attack Preventions](#brute-force-attack-preventions) | Configure brute-force-attack-preventions parameters to secured areas of a web application from brute force attacks.|}
+|[Brute Force Attack Preventions](#brute-force-attack-preventions) | Configure brute-force-attack-preventions parameters to secured areas of a web application from brute force attacks.|
+|[IP Address Lists](#ip-address-lists) | Configure IP Address Lists feature to organize lists of allowed and forbidden IP addresses across several lists with common attributes.|
+|[IP Intelligence](#ip-intelligence-configuration) | Configure the IP Intelligence feature to customize enforcement based on the source IP of the request, limiting access from IP addresses with questionable reputation.|
 
 ### Disallowed File Types
 {{< include "nap-waf/config/common/disallowed-file-types.md" >}}
@@ -239,6 +241,14 @@ http {
 ### Enforcer Cookie Settings
 
 {{< include "nap-waf/config/common/enforcer-cookie-settings.md" >}}
+
+### IP Intelligence Configuration
+
+{{< include "nap-waf/config/common/ip-intelligence-conf.md" >}}
+
+### IP Intelligence Forward Proxy Configuration
+
+{{< include "nap-waf/config/common/forward-proxy-conf.md" >}}
 
 ### Additional Configuration Options
 
@@ -478,6 +488,15 @@ For the full reference of Override Rules condition syntax and usage see the NGIN
 
 {{< include "nap-waf/config/common/geolocation-override-rules.md" >}}
 
+## IP Address Lists
+
+### Overview
+
+{{< include "nap-waf/config/common/ip-groups-overview.md" >}}
+
+### IP Address Lists in Policy Override Rules Conditions
+
+{{< include "nap-waf/config/common/ip-groups-override-rules.md" >}}
 
 ## JSON Web Token Protection
 
@@ -660,12 +679,23 @@ systematic, username/password combinations to discover legitimate authentication
 To prevent brute force attacks, NGINX App Protect WAF monitors IP addresses, usernames, and the number of failed login attempts beyond a maximum threshold.
 When brute force patterns are detected, the NGINX App Protect WAF policy either trigger an alarm or block the attack if the failed
 login attempts reached a maximum threshold for a specific username or coming from a specific IP address.
-To enable brute force protection, at least one login page must be created.
-The login page entity is created separately and is not included in the brute force configuration block.
+In order to create a brute force configuration for a specific URL in NGINX App Protect you must first create a User-Defined URL, then a Login Page and finally define the URL element in the Brute Force configuration section. 
 
 ---
+### The User-Defined URL example
 
-### Login page policy example
+```json
+"urls": [
+      {
+        "method": "*",
+        "name": "/html_login",
+        "protocol": "http",
+        "type": "explicit"
+      }
+    ],
+```
+
+### Login pages example
 
 A login page specifies the login URL that users must pass through to get authenticated. The configuration of a login URL includes the URL itself, the username and passwords parameters and the validation criteria (how we know that a login was successful or failed)
 ```json
@@ -690,18 +720,10 @@ A login page specifies the login URL that users must pass through to get authent
 {{< note >}} For further configuration details, see NGINX App Protect WAF Declarative Policy Guide [Declarative Policy guide]({{< ref "/nap-waf/v4/declarative-policy/policy/#policy/login-pages" >}}). {{< /note >}}
 
 ---
-### Brute force policy example
+### Brute force prevention example
 
 Example1: A single brute force configuration is applied universally to all login pages.
 ```json
-{
-    "policy": {
-        "name": "BruteForcePolicy",
-        "template": {
-            "name": "POLICY_TEMPLATE_NGINX_BASE"
-        },
-        "applicationLanguage": "utf-8",
-        "enforcementMode": "blocking",
         "brute-force-attack-preventions" : [
             {
                "bruteForceProtectionForAllLoginPages" : true,
@@ -719,21 +741,11 @@ Example1: A single brute force configuration is applied universally to all login
                "sourceBasedProtectionDetectionPeriod" : 3600
             }
         ]
-    }
-}
 ```
 
 Example2: Different brute force configurations can be defined for individual login pages,
           with each configuration referencing a specific login page.
 ```json
-{
-    "policy": {
-        "name": "BruteForcePolicySpec",
-        "template": {
-            "name": "POLICY_TEMPLATE_NGINX_BASE"
-        },
-        "applicationLanguage": "utf-8",
-        "enforcementMode": "blocking",
         "brute-force-attack-preventions" : [
             {
                "bruteForceProtectionForAllLoginPages" : false,
@@ -753,13 +765,72 @@ Example2: Different brute force configurations can be defined for individual log
                  "method": "*",
                  "name": "/html_login",
                  "protocol": "http"
-		       }
+               }
             }
         ],
+```
 
-    }
+The following example adds all three of the pieces for a complete example policy.
+
+```json
+{
+  "policy": {
+    "name": "BruteForcePolicy",
+    "template": {
+      "name": "POLICY_TEMPLATE_NGINX_BASE"
+    },
+    "applicationLanguage": "utf-8",
+    "enforcementMode": "blocking",
+    "urls": [
+      {
+        "method": "*",
+        "name": "/html_login",
+        "protocol": "http",
+        "type": "explicit"
+      }
+    ],
+    "login-pages": [
+      {
+        "accessValidation": {
+          "responseContains": "Success"
+        },
+        "authenticationType": "form",
+        "url": {
+          "method": "*",
+          "name": "/html_login",
+          "protocol": "http",
+          "type": "explicit"
+        },
+        "usernameParameterName": "username",
+        "passwordParameterName": "password"
+      }
+    ],
+    "brute-force-attack-preventions": [
+      {
+        "bruteForceProtectionForAllLoginPages": false,
+        "loginAttemptsFromTheSameIp": {
+          "action": "alarm",
+          "enabled": true,
+          "threshold": 20
+        },
+        "loginAttemptsFromTheSameUser": {
+          "action": "alarm",
+          "enabled": true,
+          "threshold": 3
+        },
+        "reEnableLoginAfter": 3600,
+        "sourceBasedProtectionDetectionPeriod": 3600,
+        "url": {
+          "method": "*",
+          "name": "/html_login",
+          "protocol": "http"
+        }
+      }
+    ]
+  }
 }
 ```
+
 {{< note >}} For further configuration details, see NGINX App Protect WAF Declarative Policy Guide [Declarative Policy guide]({{< ref "/nap-waf/v4/declarative-policy/policy/#policy/brute-force-attack-preventions" >}}). {{< /note >}}
 
 ## Custom Dimensions Log Entries

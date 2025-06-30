@@ -1,4 +1,4 @@
-# Contributing guidelines for writers
+# Managing content with Hugo
 
 This page describes our guidelines on using [Hugo](https://gohugo.io/) to write documentation.
 
@@ -6,7 +6,7 @@ You will need [git](https://git-scm.com/) to interact with the repository and fi
 
 Our workflow is to develop content locally, then submit a pull request once we've done our initial draft and editing passes.
 
-If you're an employee of F5/NGINX, also read [For F5/NGINX Employees](./F5-NGINX-team-notes.md).
+For guidance around how to write content, please check [the style guide](/documentation/style-guide.md).
 
 ## Setup
 
@@ -17,7 +17,7 @@ Read the [Hugo installation instructions](https://gohugo.io/getting-started/inst
 If you have [Docker](https://www.docker.com/get-started/) installed, there are fallbacks for all requirements in the [Makefile](Makefile), meaning you don't need to install them.
 
 - [Installing Hugo](https://gohugo.io/getting-started/installing/)
-  - **NOTE**: We are currently running [Hugo v0.134.2](https://github.com/gohugoio/hugo/releases/tag/v0.134.2) in production.
+  - **NOTE**: We are currently running [Hugo v0.147.8](https://github.com/gohugoio/hugo/releases/tag/v0.147.8) in production.
 - [Installing markdownlint-cli](https://github.com/igorshubovych/markdownlint-cli?tab=readme-ov-file#installation)
 - [Installing markdown-link-check](https://github.com/tcort/markdown-link-check?tab=readme-ov-file#installation)
 
