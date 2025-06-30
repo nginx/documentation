@@ -1,5 +1,5 @@
 ---
-docs: "DOCS-1604"
+nd-docs: "DOCS-1604"
 ---
 
 It is possible to define IP addresses or ranges for which the traffic will always be allowed or denied or never logged despite the rest of the configuration settings in the policy.

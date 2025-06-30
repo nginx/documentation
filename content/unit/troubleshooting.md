@@ -2,7 +2,7 @@
 title: Troubleshooting
 weight: 1100
 toc: true
-docs: DOCS-1703
+nd-docs: DOCS-1703
 ---
 
 {{< note >}}

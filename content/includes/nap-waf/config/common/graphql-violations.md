@@ -1,5 +1,5 @@
 ---
-docs: "DOCS-1578"
+nd-docs: "DOCS-1578"
 ---
 
 NGINX App Protect WAF introduces four new violations specific to GraphQL: `VIOL_GRAPHQL_FORMAT`, `VIOL_GRAPHQL_MALFORMED`, `VIOL_GRAPHQL_INTROSPECTION_QUERY` and `VIOL_GRAPHQL_ERROR_RESPONSE`. <br>

@@ -4,7 +4,7 @@ weight: 100
 toc: true
 type: how-to
 product: NIC
-docs: DOCS-000
+nd-docs: DOCS-1865
 ---
 
 This document explains how to build a F5 NGINX Ingress Controller image with NGINX App Protect WAF v5 from source code.

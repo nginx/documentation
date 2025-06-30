@@ -1,7 +1,7 @@
 ---
 description: Create a highly available active-passive deployment of F5 NGINX Plus
   on AWS with a solution combining keepalived and the AWS Elastic IP address feature.
-docs: DOCS-445
+nd-docs: DOCS-445
 title: Active-Passive HA for NGINX Plus on AWS Using Elastic IP Addresses
 toc: true
 weight: 200

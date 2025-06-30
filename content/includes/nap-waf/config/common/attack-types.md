@@ -1,5 +1,5 @@
 ---
-docs: "DOCS-1570"
+nd-docs: "DOCS-1570"
 ---
 
 Each signature, factory or user-defined, and violation has an **Attack Type**, the attack vector it protects from. When you create a user-defined signature you associate it with the most appropriate attack type from the list below. If you do not find an Attack Type that matches the threat for which your signature was written, use `Other Application Activity` Attack Type. Attach Types are also useful as part of the filter in user-defined signature **sets**.

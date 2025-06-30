@@ -1,7 +1,7 @@
 ---
 description: 'This guide lists and describes the parameters you can set when deploying
   the Developer Portal from a Helm chart. '
-docs: DOCS-1171
+nd-docs: DOCS-1171
 title: Deployment Options for Developer Portal Helm
 toc: true
 weight: 25

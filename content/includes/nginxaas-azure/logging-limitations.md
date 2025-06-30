@@ -1,5 +1,5 @@
 ---
-docs: "DOCS-000"
+nd-docs: "DOCS-000"
 ---
 
 1. File-based logs must be configured to use the path **/var/log/nginx**.

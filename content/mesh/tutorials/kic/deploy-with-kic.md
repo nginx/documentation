@@ -5,7 +5,7 @@ description: This topic describes how to install and use F5 NGINX Ingress Contro
 weight: 200
 draft: false
 toc: true
-docs: DOCS-721
+nd-docs: DOCS-721
 type:
 - tutorial
 ---

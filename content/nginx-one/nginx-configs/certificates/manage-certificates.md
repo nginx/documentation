@@ -1,5 +1,5 @@
 ---
-docs: null
+nd-docs: null
 title: Manage certificates
 toc: true
 weight: 100

@@ -1,5 +1,5 @@
 ---
-docs: DOCS-1349
+nd-docs: DOCS-1349
 ---
 
 Start by installing NGINX Instance Manager on a dedicated host. Then, configure your NGINX Plus systems to report back to Instance Manager. Once connected, you can easily view and report on your NGINX Plus inventory using the NGINX Instance Manager REST API or web interface. You can send these reports to your F5 contact as needed.

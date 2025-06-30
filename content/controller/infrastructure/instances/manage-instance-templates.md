@@ -1,6 +1,6 @@
 ---
 description: Create and manage templates for your F5 NGINX Plus instances.
-docs: DOCS-776
+nd-docs: DOCS-776
 title: Manage Your Instance Templates
 toc: true
 weight: 50

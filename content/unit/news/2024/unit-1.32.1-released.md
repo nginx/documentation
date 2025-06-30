@@ -1,7 +1,7 @@
 ---
 title: Unit 1.32.1 Released
 weight: 300
-docs: DOCS-1767
+nd-docs: DOCS-1767
 ---
 
 NGINX Unit 1.32.1 is a maintenance release that fixes bugs in the new WebAssembly Language Module and in our njs implementation.

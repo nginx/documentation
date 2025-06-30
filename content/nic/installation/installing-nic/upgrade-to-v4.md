@@ -4,7 +4,7 @@ toc: true
 weight: 400
 type: how-to
 product: NIC
-docs: DOCS-000
+nd-docs: DOCS-1862
 ---
 
 This document explains how to upgrade F5 NGINX Ingress Controller to 4.0.0.

@@ -4,7 +4,7 @@ weight: 100
 toc: true
 nd-content-type: how-to
 nd-product: NGF
-nd-docs: DOCS-000
+nd-docs: DOCS-1844
 ---
 
 This guide explains how to enable tracing on HTTPRoutes in NGINX Gateway Fabric using the OpenTelemetry Collector. Jaeger is used to process and collect the traces.

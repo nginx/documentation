@@ -2,7 +2,7 @@
 title: Changelog
 weight: 90000
 toc: true
-docs: DOCS-1695
+nd-docs: DOCS-1695
 ---
 
 ```text

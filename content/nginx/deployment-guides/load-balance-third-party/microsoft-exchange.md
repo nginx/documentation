@@ -1,7 +1,7 @@
 ---
 description: Load balance Microsoft Exchange servers with the advanced features in
   F5 NGINX Plus, following our step-by-step setup instructions.
-docs: DOCS-452
+nd-docs: DOCS-452
 title: Load Balancing Microsoft Exchange Servers with NGINX Plus
 toc: true
 weight: 100

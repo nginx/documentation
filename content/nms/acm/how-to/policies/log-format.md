@@ -1,7 +1,7 @@
 ---
 description: As an Infrastructure Administrator, use this guide to implement a standard
   log format for all environments hosting APIs.
-docs: DOCS-1127
+nd-docs: DOCS-1127
 toc: true
 weight: 700
 title: Log Format

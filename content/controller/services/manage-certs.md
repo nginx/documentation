@@ -1,6 +1,6 @@
 ---
 description: Create, apply, and mange Certs to use with your environments.
-docs: DOCS-371
+nd-docs: DOCS-371
 title: Manage Certs
 toc: true
 weight: 120

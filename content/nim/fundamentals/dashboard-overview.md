@@ -1,5 +1,5 @@
 ---
-docs: DOCS-1387
+nd-docs: DOCS-1387
 title: NGINX Instance Manager dashboard
 toc: true
 weight: 300

@@ -3,7 +3,7 @@ title: Installation from NGINX repository
 draft: false
 weight: 300
 toc: true
-docs: DOCS-1216
+nd-docs: DOCS-1216
 type:
 - how-to
 ---

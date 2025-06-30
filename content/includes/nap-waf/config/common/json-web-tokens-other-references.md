@@ -1,5 +1,5 @@
 ---
-docs: "DOCS-1573"
+nd-docs: "DOCS-1573"
 ---
 
 For more information about JSON Web Token (JWT) see below reference links:

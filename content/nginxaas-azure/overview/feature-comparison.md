@@ -3,7 +3,7 @@ title: Feature comparison
 weight: 300
 description: Compare NGINXaaS for Azure with other NGINX offerings.
 toc: false
-docs: DOCS-1473
+nd-docs: DOCS-1473
 url: /nginxaas/azure/overview/feature-comparison/
 type:
 - concept

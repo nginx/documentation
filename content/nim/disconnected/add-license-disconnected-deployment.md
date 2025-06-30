@@ -4,7 +4,7 @@ draft: false
 description: ''
 weight: 200
 toc: true
-docs: DOCS-1657
+nd-docs: DOCS-1657
 personas:
 - devops
 - netops
@@ -107,7 +107,7 @@ Run these `curl` commands on a system that can access NGINX Instance Manager and
     ```
 
 1. **Poll the license status on NGINX Instance Manager**:
-   
+
    Use this command to check the current license status. Look for `INITIALIZE_ACTIVATION_COMPLETE` or `CONFIG_REPORT_READY` in the status field. Poll periodically if necessary.
 
     ```bash
@@ -217,7 +217,7 @@ To add a license:
 
 Download the initial usage report to send to F5:
 
-- On the **License > Overview** page, select **Download License Report**. 
+- On the **License > Overview** page, select **Download License Report**.
 
 
 #### Submit usage report to F5
@@ -230,7 +230,7 @@ To upload the the usage acknowledgement:
 
 1. On the **License > Overview** page, select **Upload Usage Acknowledgement**.
 2. Upload the acknowledgement by selecting **Browse** or dragging the file into the form.
-3. Select **Add**. 
+3. Select **Add**.
 
 {{%/tab%}}
 

@@ -1,6 +1,6 @@
 ---
 description: Learn how to support various deployment patterns for Developer Portal.
-docs: DOCS-955
+nd-docs: DOCS-955
 title: Deployment Patterns for Developer Portal
 toc: true
 weight: 200

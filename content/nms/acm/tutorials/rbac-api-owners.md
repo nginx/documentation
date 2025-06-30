@@ -1,7 +1,7 @@
 ---
 description: Learn how to use both built-in and custom roles to configure role-based
   access control for F5 NGINX Management Suite API Connectivity Manager.
-docs: DOCS-1173
+nd-docs: DOCS-1173
 title: Set Up RBAC for API Owners
 toc: true
 weight: 110

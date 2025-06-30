@@ -2,7 +2,7 @@
 title: WordPress
 toc: true
 weight: 2300
-docs: DOCS-1737
+nd-docs: DOCS-1737
 ---
 
 {{< note >}}

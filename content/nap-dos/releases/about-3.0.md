@@ -2,7 +2,7 @@
 title: NGINX App Protect DoS 3.0
 toc: true
 weight: 150
-docs: DOCS-946
+nd-docs: DOCS-946
 ---
 
 Here you can find the release information for F5 NGINX App Protect DoS v3.0. NGINX App Protect DoS provides behavioral protection against Denial of Service (DoS) for your web applications.

@@ -1,7 +1,7 @@
 ---
 description: Step-by-step instructions for using Chef to automate the setup and maintenance
   of an active-passive high availability cluster of F5 NGINX Plus instances.
-docs: DOCS-461
+nd-docs: DOCS-461
 draft: true
 title: NGINX Plus High Availability Chef
 toc: true

@@ -1,7 +1,7 @@
 ---
 description: Represents the state of the F5 NGINX Controller Application Delivery
   REST API.
-docs: DOCS-1280
+nd-docs: DOCS-1280
 type:
 - reference
 doctypes:

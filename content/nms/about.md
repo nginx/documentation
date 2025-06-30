@@ -7,7 +7,7 @@ description: F5 NGINX Management Suite brings together advanced features into a 
 weight: 10
 toc: true
 type: concept
-docs: DOCS-905
+nd-docs: DOCS-905
 ---
 
 Explore the topics below to find out what the F5 NGINX Management Suite modules have to offer.

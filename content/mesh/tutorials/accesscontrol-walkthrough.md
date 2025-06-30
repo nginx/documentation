@@ -3,7 +3,7 @@ title: "Services using Access Control"
 description: "This article provides a guide for using access control between services."
 weight: 130
 toc: true
-docs: "DOCS-719"
+nd-docs: "DOCS-719"
 ---
 
 ## Overview

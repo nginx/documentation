@@ -1,6 +1,6 @@
 ---
 description: ''
-docs: DOCS-1397
+nd-docs: DOCS-1397
 title: Authentication
 toc: true
 weight: 10

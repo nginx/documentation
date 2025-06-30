@@ -1,6 +1,6 @@
 ---
 description: Customize the F5 NGINX Controller Agent configuration.
-docs: DOCS-510
+nd-docs: DOCS-510
 title: Configure the NGINX Controller Agent
 toc: true
 weight: 110

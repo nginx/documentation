@@ -1,5 +1,5 @@
 ---
-docs: DOCS-606
+nd-docs: DOCS-606
 doctypes:
 - ''
 title: Run multiple NGINX Ingress Controllers

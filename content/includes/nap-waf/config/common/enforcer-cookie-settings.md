@@ -1,5 +1,5 @@
 ---
-docs: "DOCS-1608"
+nd-docs: "DOCS-1608"
 ---
 
 NGINX App Protect WAF generates its own cookies and adds them on top of the application cookies.

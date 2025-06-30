@@ -2,7 +2,7 @@
 title: MoinMoin
 toc: true
 weight: 1300
-docs: DOCS-1732
+nd-docs: DOCS-1732
 ---
 
 {{< warning >}}

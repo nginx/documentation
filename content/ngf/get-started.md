@@ -4,11 +4,11 @@ weight: 200
 toc: true
 nd-content-type: how-to
 nd-product: NGF
-nd-docs: DOCS-000
+nd-docs: DOCS-1834
 ---
 
 {{< important >}}
-This document is for trying out NGINX Gateway Fabric, and not intended for a production environment. 
+This document is for trying out NGINX Gateway Fabric, and not intended for a production environment.
 
 For standard deployments, you should read the [Install NGINX Gateway Fabric]({{< ref "/ngf/install/" >}}) section.
 {{< /important >}}
@@ -102,7 +102,7 @@ customresourcedefinition.apiextensions.k8s.io/referencegrants.gateway.networking
 
 ### Install the Helm chart
 
-Use `helm` to install NGINX Gateway Fabric, specifying the NodePort configuration that will be set on the 
+Use `helm` to install NGINX Gateway Fabric, specifying the NodePort configuration that will be set on the
 NGINX Service when it is provisioned:
 
 ```shell

@@ -1,6 +1,6 @@
 ---
 description: Use the Instance Overview page to view and manage your F5 NGINX Instances.
-docs: DOCS-777
+nd-docs: DOCS-777
 title: Manage Your NGINX Instances
 toc: true
 weight: 10

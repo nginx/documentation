@@ -1,7 +1,7 @@
 ---
 description: Learn about the F5 NGINX Controller Application Security metrics and
   events.
-docs: DOCS-480
+nd-docs: DOCS-480
 title: App Security Metrics
 toc: true
 weight: 400

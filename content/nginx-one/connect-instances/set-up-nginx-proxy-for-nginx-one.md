@@ -1,6 +1,6 @@
 ---
 description: ''
-docs: null
+nd-docs: null
 title: Minimize connections - Set up NGINX as a proxy
 toc: true
 weight: 300

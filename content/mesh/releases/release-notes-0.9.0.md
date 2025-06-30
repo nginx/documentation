@@ -7,7 +7,7 @@ description: Release information for F5 GINX Service Mesh, a configurable, lowâ€
   communication among application infrastructure services using application programming
   interfaces (APIs).  Lists of new features and known issues are provided.
 weight: -900
-docs: DOCS-709
+nd-docs: DOCS-709
 type:
 - reference
 ---

@@ -1,6 +1,6 @@
 ---
 description: View the audit log of system and user actions.
-docs: DOCS-530
+nd-docs: DOCS-530
 title: View Events
 toc: true
 weight: 20

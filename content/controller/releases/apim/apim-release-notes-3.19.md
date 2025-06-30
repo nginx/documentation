@@ -1,7 +1,7 @@
 ---
 description: These release notes contain information about new features, improvements,
   known issues, and bug fixes in the NGINX Controller API Management Module.
-docs: DOCS-369
+nd-docs: DOCS-369
 title: Release Notes 3.19.0
 toc: true
 weight: 97

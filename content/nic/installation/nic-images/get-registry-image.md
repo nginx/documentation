@@ -7,7 +7,7 @@ nd-product: NIC
 nd-docs: DOCS-605
 ---
 
-Learn how to pull an F5 NGINX Plus Ingress Controller image from the official F5 Docker registry and upload it to your private registry. 
+Learn how to pull an F5 NGINX Plus Ingress Controller image from the official F5 Docker registry and upload it to your private registry.
 
 The F5 Registry images include versions with NGINX App Protect WAF and NGINX App Protect DoS.
 

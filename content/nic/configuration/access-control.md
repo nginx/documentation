@@ -2,7 +2,7 @@
 title: Deploy a Policy for access control
 weight: 900
 toc: true
-docs: DOCS-000
+nd-docs: DOCS-1858
 ---
 
 This topic describes how to use F5 NGINX Ingress Controller to apply and update a Policy for access control. It demonstrates it using an example application and a [VirtualServer custom resource]({{< ref "/nic/configuration/virtualserver-and-virtualserverroute-resources.md" >}}).

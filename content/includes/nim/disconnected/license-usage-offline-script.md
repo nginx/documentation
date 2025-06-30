@@ -1,5 +1,5 @@
 ---
-docs: "DOCS-1662"
+nd-docs: "DOCS-1662"
 ---
 
 <details closed>
@@ -26,13 +26,13 @@ if [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
   echo
   echo "For Licensing in Disconnected Mode:"
   echo "$0 -j my-jwt.jwt -i <NIM-IP> -u admin -p <password> -o report.zip -s initial"
-  echo 
+  echo
   echo "For Usage Reporting in Disconnected Mode:"
   echo "$0 -j my-jwt.jwt -i <NIM-IP> -u admin -p <password> -o report.zip -s telemetry"
-  echo 
-  echo "Note: Since NGINX Instance Manager comes with self-signed certificates by default, the --insecure flag is set in this script to run specific Curl commands." 
+  echo
+  echo "Note: Since NGINX Instance Manager comes with self-signed certificates by default, the --insecure flag is set in this script to run specific Curl commands."
   echo "You can alter this script if you wish to change from self-signed to verified certificates in Instance Manager."
-  echo 
+  echo
   exit 1
 fi
 

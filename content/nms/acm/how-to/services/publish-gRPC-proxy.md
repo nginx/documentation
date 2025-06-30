@@ -1,7 +1,7 @@
 ---
 description: Learn how to use F5 NGINX Management Suite API Connectivity Manager to
   publish a gRPC Proxy and manage traffic to gRPC services.
-docs: DOCS-997
+nd-docs: DOCS-997
 title: Publish a gRPC API Proxy
 toc: true
 weight: 300

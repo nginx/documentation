@@ -2,7 +2,7 @@
 title: Apollo
 weight: 100
 toc: true
-docs: DOCS-1730
+nd-docs: DOCS-1730
 ---
 
 To run the [Apollo](https://www.apollographql.com) GraphQL server

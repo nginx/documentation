@@ -1,7 +1,7 @@
 ---
 title: Unit 1.32.0 Released
 weight: 700
-docs: DOCS-1762
+nd-docs: DOCS-1762
 ---
 
 Unit 1.32.0 comes with a new language module for WebAssembly that supports

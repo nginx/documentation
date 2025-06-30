@@ -1,5 +1,5 @@
 ---
-docs: DOCS-600
+nd-docs: DOCS-600
 doctypes:
 - concept
 title: F5 BIG-IP

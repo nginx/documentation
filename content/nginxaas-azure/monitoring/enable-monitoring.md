@@ -2,7 +2,7 @@
 title: Enable monitoring
 weight: 200
 toc: true
-docs: DOCS-876
+nd-docs: DOCS-876
 url: /nginxaas/azure/monitoring/enable-monitoring/
 type:
 - how-to

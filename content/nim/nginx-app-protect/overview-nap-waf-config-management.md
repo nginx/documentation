@@ -1,6 +1,6 @@
 ---
 description: Learn how to use F5 NGINX Instance Manager to set up and manage NGINX App Protect WAF security policies.
-docs: DOCS-992
+nd-docs: DOCS-992
 title: "How WAF policy management works"
 toc: true
 weight: 100
@@ -16,9 +16,9 @@ Use NGINX Instance Manager with NGINX App Protect WAF to inspect incoming traffi
 
 ### Key features
 
-- Manage WAF policies using the NGINX Instance Manager web interface or REST API  
-- Update attack signature and threat campaign packages  
-- Compile WAF configurations into a binary bundle for deployment  
+- Manage WAF policies using the NGINX Instance Manager web interface or REST API
+- Update attack signature and threat campaign packages
+- Compile WAF configurations into a binary bundle for deployment
 
 ## Architecture
 
@@ -34,8 +34,8 @@ NGINX Instance Manager includes a compiler that packages your complete WAF confi
 
 **Why precompile with NGINX Instance Manager?**
 
-- Saves system resources on WAF instances  
-- Lets you reuse the same bundle across multiple instances  
+- Saves system resources on WAF instances
+- Lets you reuse the same bundle across multiple instances
 
 If you choose to compile policies on the WAF instance instead, that works too—but with this limitation:
 
@@ -62,10 +62,10 @@ NGINX Instance Manager and Security Monitoring both use log profiles, but their 
 
 Use the NGINX Instance Manager REST API to automate updates across your NGINX App Protect WAF instances. You can use the API to manage:
 
-- Security policies  
-- Log profiles  
-- Attack signatures  
-- Threat campaigns  
+- Security policies
+- Log profiles
+- Attack signatures
+- Threat campaigns
 
 Just like with the web interface, the compiler creates a binary bundle with your updates that you can push to your WAF instances.
 

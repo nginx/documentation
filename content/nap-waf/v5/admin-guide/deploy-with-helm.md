@@ -4,6 +4,7 @@ weight: 300
 toc: true
 type: how-to
 product: NAP-WAF
+nd-docs: DOCS-1793
 ---
 
 ## Overview
@@ -38,7 +39,7 @@ Next, create a `Dockerfile` using one of the examples provided below.
 
 {{<tabs name="nap5_nginx_OSS_dockerfiles">}}
 {{%tab name="Alpine Linux"%}}
- 
+
 {{< include "nap-waf/config/v5/build-nginx-image-oss/build-alpine.md" >}}
 
 {{%/tab%}}
@@ -85,7 +86,7 @@ You are ready to [Build the image](#build-image).
 
 {{<tabs name="nap5_nginx_plus_dockerfiles">}}
 {{%tab name="Alpine Linux"%}}
- 
+
 {{< include "nap-waf/config/v5/build-nginx-image-plus/build-alpine.md" >}}
 
 {{%/tab%}}
@@ -132,7 +133,7 @@ You are ready to [Build the image](#build-image).
 
 Next, push it to your private image repository, ensuring it's accessible to your Kubernetes cluster.
 
---- 
+---
 
 ## Pull the chart
 

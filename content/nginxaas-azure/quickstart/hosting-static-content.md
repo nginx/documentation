@@ -2,7 +2,7 @@
 title: Hosting static content
 weight: 200
 toc: true
-docs: DOCS-1344
+nd-docs: DOCS-1344
 url: /nginxaas/azure/quickstart/hosting-static-content/
 type:
 - how-to

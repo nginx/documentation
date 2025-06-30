@@ -3,7 +3,7 @@ title: Basic configuration
 draft: false
 weight: 100
 toc: true
-docs: DOCS-1229
+nd-docs: DOCS-1229
 type:
 - how-to
 ---
@@ -50,7 +50,7 @@ server:
   # host of the control plane
   host: <FQDN>
   grpcPort: 443
-  backoff: # note: default values are prepopulated 
+  backoff: # note: default values are prepopulated
     initial_interval: 100ms # Add the appropriate duration value here, for example, "100ms" for 100 milliseconds, "5s" for 5 seconds, "1m" for 1 minute, "1h" for 1 hour
     randomization_factor: 0.10 # Add the appropriate float value here, for example, 0.10
     multiplier: 1.5 # Add the appropriate float value here, for example, 1.5
@@ -88,7 +88,7 @@ metrics:
   report_interval: 1m
   collection_interval: 15s
   mode: aggregated
-    backoff: # note: default values are prepopulated 
+    backoff: # note: default values are prepopulated
       initial_interval: 100ms # Add the appropriate duration value here, for example, "100ms" for 100 milliseconds, "5s" for 5 seconds, "1m" for 1 minute, "1h" for 1 hour
       randomization_factor: 0.10 # Add the appropriate float value here, for example, 0.10
       multiplier: 1.5 # Add the appropriate float value here, for example, 1.5
@@ -170,9 +170,9 @@ nginx-agent
 
 ### CLI Flags and Environment Variables
 
-{{< warning >}} 
+{{< warning >}}
 
-Before version 2.35.0, the environment variables were prefixed with `NMS_` instead of `NGINX_AGENT_`. 
+Before version 2.35.0, the environment variables were prefixed with `NMS_` instead of `NGINX_AGENT_`.
 
 If you are upgrading from an older version, update your configuration accordingly.
 
@@ -220,9 +220,9 @@ If you are upgrading from an older version, update your configuration accordingl
 <br>
 
 {{<note>}}
-Use the `--config-dirs` command-line option, or the `config_dirs` key in the `nginx-agent.conf` file, to identify the directories NGINX Agent can read from or write to. This setting also defines the location to which you can upload config files when using a control plane. 
+Use the `--config-dirs` command-line option, or the `config_dirs` key in the `nginx-agent.conf` file, to identify the directories NGINX Agent can read from or write to. This setting also defines the location to which you can upload config files when using a control plane.
 
-NGINX Agent cannot write to directories outside the specified location when updating a config and cannot upload files to directories outside of the configured location. 
+NGINX Agent cannot write to directories outside the specified location when updating a config and cannot upload files to directories outside of the configured location.
 
 NGINX Agent follows NGINX configuration directives to file paths outside the designated directories and reads certificates' metadata. NGINX Agent uses the following directives:
 

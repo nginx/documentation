@@ -1,7 +1,7 @@
 ---
 description: Learn how to protect your upstream TCP application servers by denying/allowing
   access from certain client IP addresses, CIDR blocks, client IDs or JWT Claims.
-docs: DOCS-950
+nd-docs: DOCS-950
 toc: true
 weight: 200
 title: API Access Control Lists

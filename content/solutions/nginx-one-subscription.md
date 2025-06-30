@@ -1,6 +1,6 @@
 ---
 description: ''
-docs: null
+nd-docs: null
 title: NGINX One subscription
 toc: true
 weight: 100

@@ -4,7 +4,7 @@ weight: 1800
 toc: true
 type: how-to
 product: NIC
-docs: DOCS-000
+nd-docs: DOCS-1448
 ---
 
 The F5 NGINX Ingress Controller implements OpenID Connect (OIDC) using the NGINX OpenID Connect Reference implementation: [nginx-openid-connect](https://github.com/nginxinc/nginx-openid-connect).
@@ -46,7 +46,6 @@ Annotations:  <none>
 Data
 ====
 oidc.conf:
-docs: "DOCS-1448"
 ----
     # Advanced configuration START
     set $internal_error_message "NGINX / OpenID Connect login failure\n";

@@ -1,5 +1,5 @@
 ---
-docs: DOCS-566
+nd-docs: DOCS-566
 title: Splunk Integration
 weight: 40
 ---

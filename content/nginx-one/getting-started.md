@@ -4,7 +4,7 @@ toc: true
 weight: 100
 type: how-to
 product: NGINX One
-docs: DOCS-1393
+nd-docs: DOCS-1393
 ---
 
 This guide provides step-by-step instructions on how to activate and start using F5 NGINX One Console. NGINX One is a management console for monitoring and managing NGINX data plane instances.
@@ -149,7 +149,7 @@ The NGINX One Console dashboard relies on APIs for NGINX Plus and NGINX Open Sou
 
 {{< include "/use-cases/monitoring/enable-nginx-oss-stub-status.md" >}}
 
---- 
+---
 
 ## View instance metrics with the NGINX One dashboard
 

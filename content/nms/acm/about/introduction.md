@@ -1,5 +1,5 @@
 ---
-docs: DOCS-1385
+nd-docs: DOCS-1385
 title: Introduction
 weight: 100
 ---

@@ -1,5 +1,5 @@
 ---
-docs: "DOCS-1663"
+nd-docs: "DOCS-1663"
 ---
 
 1. Open the `/etc/nms/nms.conf` file and add the following in the `integrations:license` section:

@@ -1,7 +1,7 @@
 ---
 description: Enable high availability of F5 NGINX Plus instances in on-premises deployments,
   with active-active pairs and multiple passive instances.
-docs: DOCS-405
+nd-docs: DOCS-405
 title: Configuring Active-Active High Availability and Additional Passive Nodes with
   keepalived
 toc: true

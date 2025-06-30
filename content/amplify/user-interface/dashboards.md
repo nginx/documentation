@@ -3,7 +3,7 @@ title: Dashboards
 description: Learn about the Dashboards page of the User Interface.
 weight: 40
 toc: false
-docs: DOCS-981
+nd-docs: DOCS-981
 ---
 
 You can create your own dashboards populated with highly customizable graphs of NGINX and system-level metrics.

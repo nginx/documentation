@@ -1,6 +1,6 @@
 ---
 description: Create custom dashboards to view custom graphs.
-docs: DOCS-527
+nd-docs: DOCS-527
 title: Create Custom Dashboards
 toc: true
 weight: 20

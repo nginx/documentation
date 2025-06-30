@@ -1,5 +1,5 @@
 ---
-docs: DOCS-821
+nd-docs: DOCS-821
 title: Manage SSL certificates
 toc: true
 weight: 650

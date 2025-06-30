@@ -1,5 +1,5 @@
 ---
-docs: "DOCS-1589"
+nd-docs: "DOCS-1589"
 ---
 
 The `app_protect_custom_log_attribute` directive has a few limitations which should be kept in mind while configuring this directive:

@@ -1,5 +1,5 @@
 ---
-docs: DOCS-1286
+nd-docs: DOCS-1286
 ---
 
 In API Connectivity Manager, you can apply policies to an API Gateway to further enhance their configuration to meet your requirements.

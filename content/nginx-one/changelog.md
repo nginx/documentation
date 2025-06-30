@@ -1,6 +1,6 @@
 ---
 description: ''
-docs: DOCS-1394
+nd-docs: DOCS-1394
 title: Changelog
 toc: true
 weight: 99999

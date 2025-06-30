@@ -1,6 +1,6 @@
 ---
 description: View graphs and system reports for your Instances.
-docs: DOCS-772
+nd-docs: DOCS-772
 title: View Performance Reports for Your Instances
 toc: true
 weight: 60

@@ -1,5 +1,5 @@
 ---
-docs: DOCS-1405
+nd-docs: DOCS-1405
 ---
 
 To ensure that your NGINX Instance Manager deployment remains secure, follow the recommendations in this section:

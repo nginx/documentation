@@ -1,5 +1,5 @@
 ---
-docs: "DOCS-1580"
+nd-docs: "DOCS-1580"
 ---
 
 The default and strict policies include and enable common signature sets, which are categorized groups of [signatures](#attack-signatures-overview) applied to the policy. However, you may wish to modify the list of signature sets and their logging and enforcement settings via the `signature-sets` array property. There are several ways to configure the enforced signature sets.

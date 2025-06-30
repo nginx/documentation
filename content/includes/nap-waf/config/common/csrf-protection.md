@@ -1,5 +1,5 @@
 ---
-docs: "DOCS-1590"
+nd-docs: "DOCS-1590"
 ---
 
 CSRF (Cross-Site Request Forgery) is an attack vector in which the victim user that visits a sensitive site such as a bank account, is lured to click on a malicious link attempting a fraudulent operation on that sensitive site. The link may be sent over email or in a hidden frame in another site. NGINX App Protect WAF provides protection against CSRF attacks by validating the Origin header for AJAX POST requests (default configuration).

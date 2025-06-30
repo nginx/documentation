@@ -1,5 +1,5 @@
 ---
-docs: DOCS-595
+nd-docs: DOCS-595
 doctypes:
 - ''
 title: Custom annotations

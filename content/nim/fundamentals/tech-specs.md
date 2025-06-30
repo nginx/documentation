@@ -1,5 +1,5 @@
 ---
-docs: DOCS-805
+nd-docs: DOCS-805
 title: Technical Specifications
 toc: true
 weight: 20

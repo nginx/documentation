@@ -4,7 +4,7 @@ description: Find out which platforms are supported for use with F5 NGINX Servic
   Mesh.
 weight: 100
 toc: true
-docs: DOCS-688
+nd-docs: DOCS-688
 ---
 
 ## Kubernetes

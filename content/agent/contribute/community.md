@@ -3,7 +3,7 @@ title: Community and contribution
 draft: false
 weight: 100
 toc: true
-docs: DOCS-1087
+nd-docs: DOCS-1087
 type:
 - how-to
 ---

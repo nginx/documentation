@@ -1,5 +1,5 @@
 ---
-docs: "DOCS-000"
+nd-docs: "DOCS-000"
 ---
 
 - Confirm that you meet the [NGINXaaS Prerequisites]({{< ref "/nginxaas-azure/getting-started/prerequisites.md" >}}).

@@ -8,7 +8,7 @@ type:
 draft: true
 type: concept
 product: Solutions
-docs: DOCS-000
+nd-docs: DOCS-000
 ---
 
 {{<call-out "caution" "NGINX R33: Immediate action required for automatic upgrades" "fa-solid fa-triangle-exclamation" >}}

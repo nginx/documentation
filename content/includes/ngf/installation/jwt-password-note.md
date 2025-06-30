@@ -1,5 +1,5 @@
 ---
-docs: "DOCS-000"
+nd-docs: "DOCS-000"
 ---
 
 {{< note >}} For security, follow these practices with JSON Web Tokens (JWTs), passwords, and shell history:

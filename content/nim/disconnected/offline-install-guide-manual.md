@@ -5,7 +5,7 @@ toc: true
 noindex: true
 type: how-to
 product: NIM
-docs: DOCS-000
+nd-docs: DOCS-000
 ---
 
 ## Overview

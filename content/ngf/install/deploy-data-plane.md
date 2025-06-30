@@ -4,7 +4,7 @@ weight: 600
 toc: true
 nd-content-type: how-to
 nd-product: NGF
-nd-docs: DOCS-000
+nd-docs: DOCS-1854
 ---
 
 ## Overview
@@ -104,13 +104,13 @@ The NginxProxy custom resource can modify the provisioning of the Service object
 
 {{< note >}} Updating most Kubernetes related fields in NginxProxy will trigger a restart of the related resources. {{< /note >}}
 
-An NginxProxy resource is created by default after deploying NGINX Gateway Fabric. This NginxProxy resource is attached to the GatewayClass (created on NGINX Gateway Fabric installation), and 
+An NginxProxy resource is created by default after deploying NGINX Gateway Fabric. This NginxProxy resource is attached to the GatewayClass (created on NGINX Gateway Fabric installation), and
 its settings are applied globally to all Gateways.
 
 Use `kubectl get` and `kubectl describe` to get some more information on the resource:
 
 ```shell
-kubectl get nginxproxies -A   
+kubectl get nginxproxies -A
 ```
 ```text
 NAMESPACE       NAME                      AGE
@@ -159,7 +159,7 @@ Under `Spec.Kubernetes` you can see a few things:
 - How many NGINX Deployment replicas are specified
 - The type of Service and external traffic policy
 
-{{< note >}} Depending on installation configuration, the default NginxProxy settings may be slightly different from what is shown in the example. 
+{{< note >}} Depending on installation configuration, the default NginxProxy settings may be slightly different from what is shown in the example.
 For more information on NginxProxy and its configurable fields, see the [API reference]({{< ref "/ngf/reference/api.md" >}}). {{< /note >}}
 
 Modify the NginxProxy resource to change the type of Service.
@@ -173,7 +173,7 @@ type: NodePort
 After saving the changes, use `kubectl get` on the service, and you should see the service type has changed to `LoadBalancer`.
 
 ```shell
-kubectl get service cafe-nginx      
+kubectl get service cafe-nginx
 ```
 ```text
 NAME         TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
@@ -184,7 +184,7 @@ cafe-nginx   NodePort       10.96.172.204   <none>        80:32615/TCP   3h5m
 
 While the majority of configuration will happen on the NginxProxy resource, that is not always the case. Uniquely, if
 you want to set any annotations or labels on the NGINX Deployment or Service, you need to set those annotations on the Gateway which
-provisioned them. 
+provisioned them.
 
 You can use `kubectl edit` on the Gateway and add the following to the `spec`:
 

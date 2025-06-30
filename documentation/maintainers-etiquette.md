@@ -16,6 +16,6 @@ This repository is public, and we do as much of our work as possible in the publ
 
 As an F5/NGINX employee, if you have a GitHub account, you should be able to clone these repositories.
 
-If your content cannot be visible before release, you should read the [Contributing guidelines for closed content](/CLOSED_CONTRIBUTIONS.md) document.
+If your content cannot be visible before release, read the guidelines for [Contributing closed content](/documentation/closed-contributions.md).
 
 To protect F5/NGINX, the ability to merge pull requests is strictly limited to employees of F5/NGINX.

@@ -1,7 +1,7 @@
 ---
 description: Follow the steps in this guide to install or upgrade F5 NGINX Management
   Suite API Connectivity Manager.
-docs: DOCS-1213
+nd-docs: DOCS-1213
 layout: acm-eos
 title: Install or Upgrade API Connectivity Manager
 toc: true

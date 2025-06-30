@@ -2,7 +2,7 @@
 title: Mercurial
 weight: 1100
 toc: true
-docs: DOCS-1728
+nd-docs: DOCS-1728
 ---
 
 To install and run the [Mercurial](https://www.mercurial-scm.org) source

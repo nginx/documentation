@@ -1,6 +1,6 @@
 ---
 description: Represents the state of the F5 NGINX Controller Analytics REST API.
-docs: DOCS-1279
+nd-docs: DOCS-1279
 type:
 - reference
 doctypes:

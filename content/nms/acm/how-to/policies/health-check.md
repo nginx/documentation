@@ -2,7 +2,7 @@
 description: Learn how to create, configure, and implement health check policies for
   your HTTP and gRPC API Proxies using F5 NGINX Management Suite API Connectivity
   Manager.
-docs: DOCS-1125
+nd-docs: DOCS-1125
 title: Health Check
 toc: true
 weight: 610

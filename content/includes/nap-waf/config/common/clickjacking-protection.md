@@ -1,5 +1,5 @@
 ---
-docs: "DOCS-1611"
+nd-docs: "DOCS-1611"
 ---
 
 Clickjacking refers to a technique used by malicious actors to embed remote website content into their malicious websites, tricking the end users to click on the embedded frames triggering actions the users were not aware of, such as liking a certain Facebook page or giving a restaurant a 5 star rating. To protect against such attacks, NGINX App Protect WAF uses the `X-Frame-Options` header capabilities. The `X-Frame-Options` header is injected by NGINX App Protect WAF to indicate to the browser whether it should embed  the content or not. Please note that this additional layer of security is available only in browsers that support the `X-Frame-Options` headers.

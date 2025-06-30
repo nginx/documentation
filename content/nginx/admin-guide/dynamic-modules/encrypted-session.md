@@ -1,6 +1,6 @@
 ---
 description: ''
-docs: DOCS-384
+nd-docs: DOCS-384
 title: Encrypted-Session
 toc: true
 weight: 100

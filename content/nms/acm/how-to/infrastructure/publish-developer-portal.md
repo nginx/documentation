@@ -1,7 +1,7 @@
 ---
 description: Learn how to use the F5 NGINX Management Suite API Connectivity Manager
   web interface to create, update, or delete a Developer Portal.
-docs: DOCS-901
+nd-docs: DOCS-901
 title: Publish a Developer Portal
 toc: true
 weight: 300

@@ -4,7 +4,7 @@ weight: 400
 toc: true
 type: how-to
 product: NGF
-docs: DOCS-1416
+nd-docs: DOCS-1839
 ---
 
 Learn how to dynamically update the NGINX Gateway Fabric control plane configuration.

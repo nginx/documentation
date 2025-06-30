@@ -1,5 +1,5 @@
 ---
-docs: "DOCS-1615"
+nd-docs: "DOCS-1615"
 ---
 
 Geolocation refers to the process of assessing or determining the geographic location of an object. This feature helps in identifying the geographic location of a client or web application user.

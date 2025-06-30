@@ -4,7 +4,7 @@ toc: true
 description: Learn about the configuration options for F5 NGINX Service Mesh sidecar
   proxy injection.
 weight: 10
-docs: DOCS-692
+nd-docs: DOCS-692
 type:
 - how-to
 ---

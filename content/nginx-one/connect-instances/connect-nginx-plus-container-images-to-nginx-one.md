@@ -1,6 +1,6 @@
 ---
 description: ''
-docs: null
+nd-docs: null
 title: Connect NGINX Plus container images
 toc: true
 weight: 400

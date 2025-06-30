@@ -1,11 +1,11 @@
 ---
-docs: DOCS-000
+nd-docs: DOCS-000
 ---
 
 To pin NGINX Plus to a specific version (for example, R33):
 
 1. Edit the `/etc/yum.repos.d/nginx-plus-8.repo` file.
-1. Update the repository base URL to the desired version: 
+1. Update the repository base URL to the desired version:
 
    ```shell
    baseurl=https://pkgs.nginx.com/plus/R33/centos/8/$basearch/

@@ -179,7 +179,7 @@ graph LR
 
     %% Kubernetes Configuration Flow
     HTTPRouteA --> GatewayAB
-    HTTPRouteB --> GatewayAB 
+    HTTPRouteB --> GatewayAB
     HTTPRouteC --> GatewayC
 
     NGFPod --> KubernetesAPI
@@ -247,9 +247,9 @@ The figure shows:
 - _Application B_ with one pod deployed in the _applications_ namespace by _Application Developer B_. To expose the application to its clients (_Clients B_) via the host `b.example.com`, _Application Developer B_ creates _HTTPRoute B_ and attaches it to `Gateway AB`.
 - _Application C_ with one pod deployed in the _applications2_ namespace by _Application Developer C_. To expose the application to its clients (_Clients C_) via the host `c.other-example.com`, _Application Developer C_ creates _HTTPRoute C_ and attaches it to `Gateway C`.
 - _Public Endpoint AB_, and _Public Endpoint C_ and  which fronts the _NGINX AB_, and _NGINX C_ pods respectively. A public endpoint is typically a TCP load balancer (cloud, software, or hardware) or a combination of such load balancer with a NodePort service. _Clients A_ and _B_ connect to their applications via the _Public Endpoint AB_, and _Clients C_ connect to their applications via the _Public Endpoint C_.
-- The bold arrows represent connections related to the client traffic. Note that the traffic from _Clients C_ to _Application C_ is completely isolated from the traffic between _Clients A_ and _B_ and _Application A_ and _B_ respectively. 
+- The bold arrows represent connections related to the client traffic. Note that the traffic from _Clients C_ to _Application C_ is completely isolated from the traffic between _Clients A_ and _B_ and _Application A_ and _B_ respectively.
 
-The resources within the cluster are color-coded based on the user responsible for their creation. 
+The resources within the cluster are color-coded based on the user responsible for their creation.
 For example, the Cluster Operator is denoted by the color green, indicating they create and manage all the green resources.
 
 ---
@@ -340,12 +340,12 @@ The following list describes the connections, preceeded by their types in parent
 1. (HTTPS)
    - Read: _NGF_ reads the _Kubernetes API_ to get the latest versions of the resources in the cluster.
    - Write: _NGF_ writes to the _Kubernetes API_ to update the handled resources' statuses and emit events. If there's more than one replica of _NGF_ and [leader election](https://github.com/nginx/nginx-gateway-fabric/tree/v1.6.1/charts/nginx-gateway-fabric#configuration) is enabled, only the _NGF_ pod that is leading will write statuses to the _Kubernetes API_.
-1. (HTTP, HTTPS) _Prometheus_ fetches the `controller-runtime` metrics via an HTTP endpoint that _NGF_ exposes (`:9113/metrics` by default). 
+1. (HTTP, HTTPS) _Prometheus_ fetches the `controller-runtime` metrics via an HTTP endpoint that _NGF_ exposes (`:9113/metrics` by default).
 Prometheus is **not** required by NGINX Gateway Fabric, and its endpoint can be turned off.
 1. (HTTPS) NGF sends [product telemetry data]({{< ref "/ngf/overview/product-telemetry.md" >}}) to the F5 telemetry service.
 1. (File I/O) _NGF_ writes logs to its _stdout_ and _stderr_, which are collected by the container runtime.
 1. (HTTP, HTTPS) _Prometheus_ fetches the NGINX metrics via an HTTP endpoint that _NGINX_ exposes (`:9113/metrics` by default). Prometheus is **not** required by NGINX, and its endpoint can be turned off.
-1. (gRPC) _NGF_ generates NGINX _configuration_ based on the cluster resources and sends them to _NGINX Agent_ over a secure gRPC connection. 
+1. (gRPC) _NGF_ generates NGINX _configuration_ based on the cluster resources and sends them to _NGINX Agent_ over a secure gRPC connection.
     - NGF sends a message containing file metadata to all pods (subscriptions) for the deployment.
     - Agent receives a ConfigApplyRequest with the list of file metadata.
     - Agent calls GetFile for each file in the list, which NGF sends back to the agent.

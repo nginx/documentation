@@ -1,5 +1,5 @@
 ---
-docs: DOCS-597
+nd-docs: DOCS-597
 doctypes:
 - ''
 title: Security recommendations

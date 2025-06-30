@@ -1,5 +1,5 @@
 ---
-docs: DOCS-1283
+nd-docs: DOCS-1283
 ---
 
 The following table shows the available Global Policies you can use when creating a new cluster.

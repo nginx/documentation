@@ -1,5 +1,5 @@
 ---
-docs: DOCS-728
+nd-docs: DOCS-728
 title: Using the ModSecurity Rules from Trustwave SpiderLabs with the NGINX ModSecurity
   WAF
 toc: true

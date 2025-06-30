@@ -1,5 +1,5 @@
 ---
-docs: "DOCS-1616"
+nd-docs: "DOCS-1616"
 ---
 
 The gRPC Content Profile contains all the definitions for protecting a gRPC service. It is similar in nature to the **JSON and XML profiles** handling JSON and XML traffic respectively. Roughly it includes:

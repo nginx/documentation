@@ -1,7 +1,7 @@
 ---
 description: Secure TCP traffic between NGINX or F5 F5 NGINX Plus and upstream servers,
   using SSL/TLS encryption.
-docs: DOCS-436
+nd-docs: DOCS-436
 title: Securing TCP Traffic to Upstream Servers
 toc: true
 weight: 1000
@@ -19,7 +19,7 @@ This article explains how to secure TCP traffic between NGINX and an upstream TC
 
 ## Obtaining SSL Server Certificates
 
-First, obtain SSL server certificates and a private key. Obtain an SSL server certificate from a trusted certificate authority (CA). Alternatively, generate one using an SSL library such as [OpenSSL](http://www.openssl.org/). Place the server certificates and private key on each of the upstream servers. 
+First, obtain SSL server certificates and a private key. Obtain an SSL server certificate from a trusted certificate authority (CA). Alternatively, generate one using an SSL library such as [OpenSSL](http://www.openssl.org/). Place the server certificates and private key on each of the upstream servers.
 
 Self-signed server certificates encrypt the connection between NGINX and the upstream server. However, these connections are vulnerable to a man-in-the-middle attack. (If an imposter impersonates the upstream server, NGINX will not know it is talking to a fake server.) To lessen the risk, obtain server certificates signed by a trusted CA. (You can create your own internal CA using OpenSSL.) Afterward, configure NGINX to only trust certificates signed by that CA. This makes it much more difficult for an attacker to impersonate an upstream server.
 

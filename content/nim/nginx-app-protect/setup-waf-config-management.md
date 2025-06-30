@@ -5,7 +5,7 @@ toc: true
 description: Learn how to set up F5 NGINX Instance Manager to manage NGINX App Protect WAF configurations, including compiler installation, security policy onboarding, and threat update management.
 type: how-to
 product: NIM
-docs: DOCS-996
+nd-docs: DOCS-996
 ---
 
 ## Overview
@@ -114,7 +114,7 @@ To install the WAF compiler on RHEL 8.1 or later:
    ```
 
 3. Install the WAF compiler:
-   
+
    ```shell
    sudo yum install nms-nap-compiler-v5.342.0
    ```
@@ -184,7 +184,7 @@ To install the WAF compiler on Oracle Linux 7.4 or later:
    ```
 
 2. Enable the `ol8_codeready_builder` repository:
-   
+
    ```shell
    sudo yum-config-manager --enable ol8_codeready_builder
    ```
@@ -751,7 +751,7 @@ To upload a policy, follow these steps:
    ```
 
 2. Create a JSON request that includes the base64-encoded policy from step 1 as the value for the `content` field.
-   
+
    Replace the example string below with the actual base64-encoded output you generated.
 
     ```json
@@ -898,7 +898,7 @@ You can use the NGINX Instance Manager REST API to deploy your NGINX App Protect
         ```nginx
         app_protect_enable on;
         ```
-    
+
     - If precompiled publication is enabled, change any `.json` policy references to `.tgz`.
     - If you want to apply a default policy, you can use:
 

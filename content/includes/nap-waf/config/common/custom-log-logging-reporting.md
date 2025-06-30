@@ -1,5 +1,5 @@
 ---
-docs: "DOCS-1609"
+nd-docs: "DOCS-1609"
 ---
 
 When `app_protect_custom_log_attribute` is assigned to a particular location/server/http context, it will appear in the `json_log` field as a new JSON property called "customLogAttributes" at the top level. The property will not appear if no `app_protect_custom_log_attribute` directive was assigned.

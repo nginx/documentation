@@ -1,6 +1,6 @@
 ---
 description: Deploy NGINX and F5 NGINX Plus as the Docker container.
-docs: DOCS-409
+nd-docs: DOCS-409
 title: Deploying NGINX and NGINX Plus with Docker
 toc: true
 weight: 600
@@ -28,7 +28,7 @@ type:
 
 Since NGINX Plus NGINX Plus [Release 31]({{< ref "nginx/releases.md#r31" >}}) you can get an NGINX Plus image from the official NGINX Plus Docker registry and upload it to your private registry.
 
-The NGINX Plus Docker registry is available at `https://private-registry.nginx.com/v2/`. 
+The NGINX Plus Docker registry is available at `https://private-registry.nginx.com/v2/`.
 
 The registry contains the following image types:
 

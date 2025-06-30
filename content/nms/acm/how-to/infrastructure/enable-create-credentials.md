@@ -1,7 +1,7 @@
 ---
 description: Follow the steps in this guide to allow users to create credentials as
   a self-service workflow on the Developer Portal.
-docs: DOCS-947
+nd-docs: DOCS-947
 title: Enable Creating Credentials on the Developer Portal
 toc: true
 weight: 400

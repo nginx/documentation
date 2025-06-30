@@ -3,7 +3,7 @@ title: NGINX Service Mesh API
 description: Instructions for interacting with the F5 NGINX Service Mesh API.
 toc: true
 weight: 200
-docs: DOCS-702
+nd-docs: DOCS-702
 type:
 - reference
 ---

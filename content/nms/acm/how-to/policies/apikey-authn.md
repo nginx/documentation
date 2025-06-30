@@ -1,7 +1,7 @@
 ---
 description: Learn how to use F5 NGINX Management Suite API Connectivity Manager to
   secure API Gateways by applying an API key authentication policy.
-docs: DOCS-1117
+nd-docs: DOCS-1117
 toc: true
 weight: 400
 title: API Key Authentication

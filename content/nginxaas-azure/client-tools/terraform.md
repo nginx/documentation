@@ -3,7 +3,7 @@ title: Terraform
 weight: 400
 description: Learn how to use the Terraform to manage NGINXaaS for Azure.
 toc: true
-docs: DOCS-1472
+nd-docs: DOCS-1472
 draft: true
 url: /nginxaas/azure/client-tools/terraform/
 type:

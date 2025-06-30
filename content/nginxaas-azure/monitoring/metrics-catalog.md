@@ -2,7 +2,7 @@
 title: Metrics catalog
 weight: 400
 toc: false
-docs: DOCS-877
+nd-docs: DOCS-877
 url: /nginxaas/azure/monitoring/metrics-catalog/
 type:
 - concept

@@ -2,7 +2,7 @@
 title: Community
 weight: 1200
 toc: true
-docs: DOCS-1701
+nd-docs: DOCS-1701
 ---
 
 <a name="community"></a>

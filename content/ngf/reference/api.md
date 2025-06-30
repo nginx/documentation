@@ -1,9 +1,9 @@
 ---
-title: "API reference"
+title: API reference
 weight: 100
 type: reference
 product: NGF
-docs: DOCS-000
+nd-docs: DOCS-1855
 ---
 ## Overview
 NGINX Gateway API Reference

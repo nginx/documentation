@@ -1,5 +1,5 @@
 ---
-docs: "DOCS-1567"
+nd-docs: "DOCS-1567"
 ---
 
 The below example represents a security policy for a web application. The policy named as "override_rule_example" is based on a template called "POLICY_TEMPLATE_NGINX_BASE." The policy is set to operate in "blocking" mode, which means it will prevent certain activities.

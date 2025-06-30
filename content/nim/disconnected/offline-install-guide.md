@@ -4,7 +4,7 @@ toc: true
 weight: 100
 type: how-to
 product: NIM
-docs: DOCS-803
+nd-docs: DOCS-803
 ---
 
 {{< include "/nim/decoupling/note-legacy-nms-references.md" >}}

@@ -1,6 +1,6 @@
 ---
 description: How to view App Security Analytics.
-docs: DOCS-487
+nd-docs: DOCS-487
 title: View App Security Analytics
 toc: true
 weight: 500

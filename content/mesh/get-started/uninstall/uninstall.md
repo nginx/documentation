@@ -3,7 +3,7 @@ title: Uninstall with nginx-meshctl
 draft: false
 toc: true
 weight: 200
-docs: DOCS-1481
+nd-docs: DOCS-1481
 type:
 - how-to
 ---

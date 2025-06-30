@@ -3,7 +3,7 @@ title: Configure alerts
 weight: 300
 toc: true
 draft: false
-docs: DOCS-985
+nd-docs: DOCS-985
 url: /nginxaas/azure/monitoring/configure-alerts/
 type:
 - how-to

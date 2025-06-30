@@ -1,7 +1,7 @@
 ---
 description: Enable OpenID Connect-based single-sign for applications proxied by NGINX
   Plus, using Amazon Cognito as the identity provider (IdP).
-docs: DOCS-464
+nd-docs: DOCS-464
 type:
 - how-to
 title: Single Sign-On with Amazon Cognito and njs

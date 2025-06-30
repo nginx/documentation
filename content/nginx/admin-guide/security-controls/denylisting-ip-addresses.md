@@ -1,7 +1,7 @@
 ---
 description: Control access to your site or apps from specific client IP addresses,
   using dynamic denylists built with the F5 NGINX Plus key-value store and API.
-docs: DOCS-434
+nd-docs: DOCS-434
 title: Dynamic Denylisting of IP Addresses
 toc: true
 weight: 1100

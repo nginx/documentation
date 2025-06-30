@@ -1,7 +1,7 @@
 ---
 description: This chapter describes how to use F5 NGINX Plus and NGINX Open Source
   to proxy and load balance TCP and UDP traffic.
-docs: DOCS-420
+nd-docs: DOCS-420
 title: TCP and UDP Load Balancing
 toc: true
 weight: 200

@@ -4,7 +4,7 @@ toc: true
 weight: 900
 nd-content-type: reference
 nd-product: NGF
-nd-docs: "DOCS-1359"
+nd-docs: DOCS-1359
 ---
 
 See the NGINX Gateway Fabric changelog page:

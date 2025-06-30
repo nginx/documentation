@@ -2,7 +2,7 @@
 title: Billing overview
 weight: 100
 toc: true
-docs: DOCS-885
+nd-docs: DOCS-885
 url: /nginxaas/azure/billing/overview/
 type:
 - concept

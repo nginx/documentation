@@ -4,9 +4,10 @@ toc: true
 weight: 500
 nd-content-type: how-to
 nd-product: NIC
+nd-docs: DOCS-1861
 ---
 
-This document describes how to build a local F5 NGINX App Protect WAF v5 Docker image with NGINX Plus Ingress 
+This document describes how to build a local F5 NGINX App Protect WAF v5 Docker image with NGINX Plus Ingress
 Controller, which can be used to compile WAF policies.
 
 This is accomplished with the following steps:
@@ -21,7 +22,7 @@ This is accomplished with the following steps:
 
 ## Prepare Secrets and credentials
 
-1. Download your NGINX Ingress Controller subscription's JSON Web Token, SSL Certificate, and Private Key from MyF5. 
+1. Download your NGINX Ingress Controller subscription's JSON Web Token, SSL Certificate, and Private Key from MyF5.
    You can use the same JSON Web Token, Certificate, and Key as NGINX Plus in your MyF5 portal.
 1. Rename the files to the following:
    - `nginx-repo.crt`
@@ -330,7 +331,7 @@ curl --resolve webapp.example.com:$IC_HTTP_PORT:$IC_IP "http://webapp.example.co
 ```
 
 ```text
-<html><head><title>Request Rejected</title></head><body>The requested URL was rejected. Please consult with your 
+<html><head><title>Request Rejected</title></head><body>The requested URL was rejected. Please consult with your
 administrator.<br><br>Your support ID is: 11241918873745059631<br><br>
 <a href='javascript:history.back();'>[Go Back]</a></body></html>
 ```
@@ -338,6 +339,6 @@ administrator.<br><br>Your support ID is: 11241918873745059631<br><br>
 This is mostly the same as the [examples/custom_resources/app-protect-waf-v5](https://github.com/nginx/kubernetes-ingress/tree/main/examples/custom-resources/app-protect-waf-v5)
 deployment in a single file with the policy bundle already set.
 
-You now have a fully operational NGINX Ingress Controller instance with NGINX App Protect deployed in your Kubernetes environment. 
+You now have a fully operational NGINX Ingress Controller instance with NGINX App Protect deployed in your Kubernetes environment.
 
 For further details, troubleshooting, or support, refer to the [official NGINX documentation]({{< ref "/" >}}) or reach out directly to your F5/NGINX account team.

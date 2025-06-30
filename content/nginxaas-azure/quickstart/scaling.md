@@ -2,7 +2,7 @@
 title: Scaling guidance
 weight: 100
 toc: true
-docs: DOCS-989
+nd-docs: DOCS-989
 url: /nginxaas/azure/quickstart/scaling/
 type:
 - how-to

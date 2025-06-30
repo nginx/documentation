@@ -201,7 +201,7 @@ The rate limit policy will only apply to requests that contain a JWT with the sp
 {
   "user_details": {
     "level": "premium"
-  }, 
+  },
   "sub": "client1"
 }
 ```

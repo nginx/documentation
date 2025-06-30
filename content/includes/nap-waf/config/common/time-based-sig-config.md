@@ -1,5 +1,5 @@
 ---
-docs: DOCS-1491
+nd-docs: DOCS-1491
 ---
 
 A new property known as `stagingCertificationDatetime` is added to `signature-settings` section. All signatures that were created or modified in a signature update that is later than that time are in staging while all the rest are enforced and not in staging.

@@ -2,7 +2,7 @@
 title: CodeIgniter
 weight: 400
 toc: true
-docs: DOCS-1739
+nd-docs: DOCS-1739
 ---
 
 To run apps built with the [CodeIgniter](https://codeigniter.com) web

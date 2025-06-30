@@ -4,6 +4,7 @@ toc: true
 weight: 1800
 nd-content-type: how-to
 nd-product: NIC
+nd-docs: DOCS-1856
 ---
 
 This document explains how to use NGINX Ingress Controller to configure NGINX Agent for sending F5 NGINX App Protect WAF metrics to NGINX Security Monitoring.

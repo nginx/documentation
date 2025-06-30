@@ -1,5 +1,5 @@
 ---
-docs: DOCS-1241
+nd-docs: DOCS-1241
 ---
 
 To access the NGINX Instance Manager web interface, open a web browser and go to `https://<NMS_FQDN>`, replacing `<NMS_FQDN>` with the Fully Qualified Domain Name of your NGINX Instance Manager host.

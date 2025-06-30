@@ -1,7 +1,7 @@
 ---
 description: Learn how F5 NGINX Controller handles caching configurations and what
   NGINX cache directives are supported.
-docs: DOCS-339
+nd-docs: DOCS-339
 title: About Caching
 toc: true
 weight: 200

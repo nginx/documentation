@@ -1,7 +1,7 @@
 ---
 description: Load balance HTTP traffic across web or application server groups, with
   several algorithms and advanced features like slow-start and session persistence.
-docs: DOCS-418
+nd-docs: DOCS-418
 title: HTTP Load Balancing
 toc: true
 weight: 100
@@ -217,7 +217,7 @@ NGINX Plus supports three session persistence methods. The methods are set with 
 
     In the example above, the `srv_id` parameter sets the name of the cookie. The optional `expires` parameter sets the time for the browser to keep the cookie (here, `1` hour). The optional `domain` parameter defines the domain for which the cookie is set, and the optional `path` parameter defines the path for which the cookie is set.
 
-- [Sticky route](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#sticky_route) – Use the [`route`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#route) parameter to the `server` directive to assign a route identifier to each server. NGINX Plus assigns one of the route identifiers to the client when it receives the client's first request. Subsequent requests then compare these route identifiers, which are either stored in a cookie or passed in the request URI. 
+- [Sticky route](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#sticky_route) – Use the [`route`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#route) parameter to the `server` directive to assign a route identifier to each server. NGINX Plus assigns one of the route identifiers to the client when it receives the client's first request. Subsequent requests then compare these route identifiers, which are either stored in a cookie or passed in the request URI.
 
     ```nginx
     upstream backend {
@@ -227,7 +227,7 @@ NGINX Plus supports three session persistence methods. The methods are set with 
     }
     ```
     In the example above, the session cookie is checked first for the route identifier. If there is none, then the URI is checked second.
-  
+
 - [Sticky learn](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#sticky_learn) – NGINX Plus first finds session identifiers by inspecting requests and responses. Then NGINX Plus “learns” which upstream server corresponds to which session identifier. Generally, these identifiers are passed in a HTTP cookie. If a request contains a session identifier already “learned”, NGINX Plus forwards the request to the corresponding server:
 
     ```nginx
@@ -279,7 +279,7 @@ The [`max_conns`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#m
 
 The [`queue`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#queue) directive allows excess connections to be held in a queue. It requires a maxmum number for the queue and a timeout.
 
-If the `max_conns` limit has been reached, the request is placed in a queue for further processing. If the queue limit has been reached, if no queue directive is specified, or if a client reaches the `timeout` time in queue, the client will receive an error. 
+If the `max_conns` limit has been reached, the request is placed in a queue for further processing. If the queue limit has been reached, if no queue directive is specified, or if a client reaches the `timeout` time in queue, the client will receive an error.
 
 ```nginx
 upstream backend {

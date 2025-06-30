@@ -1,5 +1,5 @@
 ---
-docs: "DOCS-1543"
+nd-docs: "DOCS-1543"
 ---
 
 The User-Defined Browser Control feature allows a user to define new custom browsers, and create a list of allowed or disallowed browsers (both user-defined and factory preset browsers) used by the client application. It mainly provides the opportunity:

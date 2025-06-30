@@ -1,5 +1,5 @@
 ---
-docs: DOCS-1025
+nd-docs: DOCS-1025
 ---
 
 To assign roles to a user in NGINX Instance Manager, follow these steps:

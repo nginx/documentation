@@ -1,7 +1,7 @@
 ---
 description: Find what's new in version 2 of the NGINX and F5 NGINX Plus plug‑in for
   New Relic – more convenience, more metrics, richer visualization.
-docs: DOCS-427
+nd-docs: DOCS-427
 title: Monitoring NGINX and NGINX Plus with the New Relic Plug-In
 toc: true
 weight: 500

@@ -1,5 +1,5 @@
 ---
-docs: DOCS-1494
+nd-docs: DOCS-1494
 ---
 
 Time-based Signature will be logged and reported in the Security log without blocking the request as discussed in the above section.
@@ -7,7 +7,7 @@ Time-based Signature will be logged and reported in the Security log without blo
 Security log will have the following new fields under the enforcementState:
 -	The Violation Rating if there was no staging - `ratingIncludingViolationsInStaging`
 -	The `stagingCertificationDatetime` from the policy
--	The specific staging state of the signature 
+-	The specific staging state of the signature
 -	The `lastUpdateTime` of the signature - for the user to be able to determine why the signature was (or was not) in staging.
 
 ```json

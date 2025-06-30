@@ -1,7 +1,7 @@
 ---
 description: Monitor the health of TCP servers in an upstream group by sending periodic
   health checks, including customizable active health checks in F5 NGINX Plus.
-docs: DOCS-419
+nd-docs: DOCS-419
 title: TCP Health Checks
 toc: true
 weight: 400

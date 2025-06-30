@@ -1,5 +1,5 @@
 ---
-docs: DOCS-611
+nd-docs: DOCS-611
 doctypes:
 - concept
 title: Extensibility with NGINX Plus

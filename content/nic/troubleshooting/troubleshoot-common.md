@@ -92,7 +92,7 @@ args:
   - -log-level=debug
 ```
 
-**ConfigMap settings**  
+**ConfigMap settings**
 You can configure `error-log-level` in NGINX Ingress Controller `configMap`:
 
 ```yaml

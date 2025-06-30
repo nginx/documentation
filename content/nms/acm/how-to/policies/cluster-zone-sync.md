@@ -1,7 +1,7 @@
 ---
 description: Learn how to configure the Cluster Zone Sync policy to enable runtime
   state sharing between the instances belonging to a proxy cluster.
-docs: DOCS-1159
+nd-docs: DOCS-1159
 title: Cluster Zone Sync
 toc: true
 weight: 499

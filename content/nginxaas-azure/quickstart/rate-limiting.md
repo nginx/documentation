@@ -2,7 +2,7 @@
 title: Enable rate limiting
 weight: 300
 toc: true
-docs: DOCS-899
+nd-docs: DOCS-899
 url: /nginxaas/azure/quickstart/rate-limiting/
 type:
 - how-to

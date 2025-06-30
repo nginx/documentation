@@ -3,7 +3,7 @@ title: Development environment setup
 draft: false
 weight: 200
 toc: true
-docs: DOCS-1088
+nd-docs: DOCS-1088
 type:
 - how-to
 ---

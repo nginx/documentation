@@ -1,5 +1,5 @@
 ---
-docs: DOCS-000
+nd-docs: DOCS-000
 ---
 
 To pin NGINX Plus to a specific version (for example, R33):

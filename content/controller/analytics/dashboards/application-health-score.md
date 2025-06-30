@@ -1,6 +1,6 @@
 ---
 description: View and understand the Application Health Score for your application.
-docs: DOCS-526
+nd-docs: DOCS-526
 title: Understanding the Application Health Score
 toc: true
 weight: 20

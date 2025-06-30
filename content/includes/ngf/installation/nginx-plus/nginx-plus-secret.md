@@ -1,5 +1,5 @@
 ---
-docs: "DOCS-000"
+nd-docs: "DOCS-000"
 ---
 
 Place the JWT in a file called `license.jwt`. Create a Kubernetes Secret using the contents of the JWT file.

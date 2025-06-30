@@ -1,5 +1,5 @@
 ---
-docs: DOCS-1408
+nd-docs: DOCS-1408
 ---
 
 Since [Release 31]({{< ref "/nginx/releases.md#nginxplusrelease-31-r31" >}}), NGINX Plus provides a built-in support for reporting of your NGINX Plus instances to NGINX Instance Manager without the need of installing NGINX Agent or tuning HTTP Health checks. If you participate in the [F5 Flex Consumption Program](https://www.f5.com/products/get-f5/flex-consumption-program), you will no longer need to manually track your NGINX Plus instances.

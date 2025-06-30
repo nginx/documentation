@@ -1,5 +1,5 @@
 ---
-docs: DOCS-000
+nd-docs: DOCS-000
 ---
 
 Global configuration consists of a series of `nginx.conf` directives at the `http` context controlling aspects that are not specific to a specific application.

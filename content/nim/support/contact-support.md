@@ -1,5 +1,5 @@
 ---
-docs: DOCS-817
+nd-docs: DOCS-817
 title: Where to go for support
 toc: true
 weight: 300

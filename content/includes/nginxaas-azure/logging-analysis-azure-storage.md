@@ -1,5 +1,5 @@
 ---
-docs: "DOCS-000"
+nd-docs: "DOCS-000"
 ---
 
 If the diagnostic setting destination details included a storage account, logs show up in the storage container "insights-logs-nginxlogs" with the following format: `resourceID=/<NGINXaaS-resourceID>/y=<YYYY>/m=<MM>/d=<DD>/h=<HH>/PT1H.json`

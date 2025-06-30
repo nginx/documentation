@@ -1,10 +1,10 @@
 ---
-title: "Command-line reference guide"
+title: Command-line reference guide
 weight: 100
 toc: true
 type: reference
 product: NGF
-docs: "DOCS-1435"
+nd-docs: DOCS-1843
 ---
 
 ## Overview

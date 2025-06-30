@@ -3,7 +3,7 @@ title: Add NGINX users to nginx-agent Group
 draft: false
 weight: 300
 toc: true
-docs: DOCS-933
+nd-docs: DOCS-933
 type:
 - how-to
 ---

@@ -2,7 +2,7 @@
 title: Use the njs Scripting language
 weight: 400
 toc: true
-docs: DOCS-874
+nd-docs: DOCS-874
 url: /nginxaas/azure/quickstart/njs-support/
 type:
 - how-to

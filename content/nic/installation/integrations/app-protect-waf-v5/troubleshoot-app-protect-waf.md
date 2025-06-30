@@ -4,7 +4,7 @@ weight: 400
 toc: true
 nd-content-type: how-to
 nd-product: NIC
-nd-docs: DOCS-000
+nd-docs: DOCS-1864
 ---
 
 This document describes how to troubleshoot problems when using NGINX Ingress Controller and the NGINX App Protect WAF module version 5.

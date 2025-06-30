@@ -4,7 +4,7 @@ weight: 500
 toc: true
 type: how-to
 product: NIC
-docs: DOCS-596
+nd-docs: DOCS-596
 ---
 
 The Policy resource allows you to configure features like access control and rate-limiting, which you can add to your [VirtualServer and VirtualServerRoute resources](/nginx-ingress-controller/configuration/virtualserver-and-virtualserverroute-resources/).
@@ -201,7 +201,7 @@ The rate limit policy will only apply to requests that contain a JWT with the sp
 {
   "user_details": {
     "level": "premium"
-  }, 
+  },
   "sub": "client1"
 }
 ```

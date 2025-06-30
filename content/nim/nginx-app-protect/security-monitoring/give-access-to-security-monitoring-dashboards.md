@@ -4,7 +4,7 @@ weight: 200
 toc: true
 type: how-to
 product: NIM
-docs: DOCS-1026
+nd-docs: DOCS-1026
 ---
 
 ## Overview

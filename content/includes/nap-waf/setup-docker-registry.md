@@ -1,5 +1,5 @@
 ---
-docs: "DOCS-1508"
+nd-docs: "DOCS-1508"
 ---
 
 Configure Docker to interact with the F5 Container Registry at `private-registry.nginx.com`:

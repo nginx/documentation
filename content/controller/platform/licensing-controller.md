@@ -1,6 +1,6 @@
 ---
 description: Follow these steps to license your F5 NGINX Controller.
-docs: DOCS-787
+nd-docs: DOCS-787
 title: License NGINX Controller
 toc: true
 weight: 120

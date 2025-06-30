@@ -4,7 +4,7 @@ description: Learn how to configure rate limiting between workloads.
 draft: false
 toc: true
 weight: 140
-docs: DOCS-724
+nd-docs: DOCS-724
 type:
 - tutorial
 ---

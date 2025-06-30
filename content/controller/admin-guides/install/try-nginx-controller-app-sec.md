@@ -1,7 +1,7 @@
 ---
 description: This quick-start tutorial shows you how to get started using F5 NGINX
   Controller with the Application Security Add-on.
-docs: DOCS-259
+nd-docs: DOCS-259
 title: Trial NGINX Controller with App Security
 toc: true
 weight: 115

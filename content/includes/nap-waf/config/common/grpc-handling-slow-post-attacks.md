@@ -1,5 +1,5 @@
 ---
-docs: "DOCS-1599"
+nd-docs: "DOCS-1599"
 ---
 
 Slow POST attack mitigation - A client sending messages very slowly for a long time may be cut off by resetting the connection.

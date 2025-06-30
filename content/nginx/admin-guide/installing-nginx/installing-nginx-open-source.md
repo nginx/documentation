@@ -1,7 +1,7 @@
 ---
 description: Install NGINX Open Source either as a prebuilt package or from source,
   following step-by-step instructions for all supported Linux distributions.
-docs: DOCS-410
+nd-docs: DOCS-410
 title: Installing NGINX Open Source
 toc: true
 weight: 200
@@ -106,7 +106,7 @@ The installation steps include updating the package repository and installing th
   amazon-linux-extras list | grep nginx # get package name, e.g. nginx1
   sudo amazon-linux-extras install nginx1
   ```
-  
+
 Check the version installed:
 
 ```shell
@@ -437,7 +437,7 @@ Before installing, check if your operating system and architecture are supported
        | sudo tee /etc/apt/preferences.d/99nginx
     ```
 
-6. Install the `nginx` package: 
+6. Install the `nginx` package:
 
    ```shell
    sudo apt update && \

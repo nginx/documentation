@@ -1,7 +1,7 @@
 ---
 description: Install and upgrade F5 NGINX Plus with step-by-step instructions for
   the base package and dynamic modules on all supported Linux distributions.
-docs: DOCS-414
+nd-docs: DOCS-414
 title: Installing NGINX Plus
 toc: true
 weight: 100
@@ -452,7 +452,7 @@ NGINX-certified community dynamic modules are popular third‑party modules test
 | [SPNEGO for Kerberos](https://github.com/stnoonan/spnego-http-auth-nginx-module) | Adds support for [GSS‑API based](https://www.rfc-editor.org/rfc/rfc2743) SPNEGO/Kerberos authentication. | [`nginx-plus-module-auth-spnego`]({{< ref "nginx/admin-guide/dynamic-modules/spnego.md" >}}) |
 {{< /bootstrap-table >}}
 
-### Install from official repository 
+### Install from official repository
 [NGINX‑authored](#nginx-authored-dynamic-modules) and [NGINX‑certified community](#nginx-certified-community-dynamic-modules) dynamic modules can be installed as packaged binaries directly from the official `nginx-plus` repository.
 
 To install a binary package, run the command in a terminal that corresponds to your operating system, replacing `<MODULE-NAME>` with the actual binary package name, for example, `nginx-plus-module-njs`.
@@ -679,7 +679,7 @@ For a community dynamic module to work with NGINX Plus, it must be compiled alo
    cp objs/ngx_http_hello_world_module.so ./ngx_http_hello_world_module_1.27.4.so
    ```
 
-1. Transfer the resulting `.so` file from your build environment to the production environment. 
+1. Transfer the resulting `.so` file from your build environment to the production environment.
 
 1. In your production environment, copy the resulting `.so` file to the dynamic modules directory. The path to the directory depends on your operating system:
 

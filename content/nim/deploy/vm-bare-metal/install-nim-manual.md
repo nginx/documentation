@@ -1,6 +1,6 @@
 ---
 description: ''
-docs: DOCS-1211
+nd-docs: DOCS-1211
 title: Manually install any version of NGINX Instance Manager
 toc: true
 weight: 10

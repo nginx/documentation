@@ -1,6 +1,6 @@
 ---
 description: Represents the state of the F5 NGINX Controller API Management REST API.
-docs: DOCS-1281
+nd-docs: DOCS-1281
 type:
 - reference
 doctypes:

@@ -5,7 +5,7 @@ toc: true
 description: This topic provides a walkthrough of deploying an App with F5 NGINX Service
   Mesh.
 weight: 100
-docs: DOCS-720
+nd-docs: DOCS-720
 type:
 - tutorial
 ---

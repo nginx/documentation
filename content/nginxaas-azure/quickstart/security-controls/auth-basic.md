@@ -2,7 +2,7 @@
 title: Restricting access with HTTP basic authentication
 weight: 100
 toc: true
-docs: DOCS-990
+nd-docs: DOCS-990
 url: /nginxaas/azure/security-controls/auth-basic/
 type:
 - how-to

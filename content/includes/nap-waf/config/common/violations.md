@@ -1,5 +1,5 @@
 ---
-docs: "DOCS-1577"
+nd-docs: "DOCS-1577"
 ---
 
 App Protect violations are rated by the App Protect algorithms to help distinguish between attacks and potential false positive alerts.  A violation rating is a numerical rating that our algorithms give to requests based on the presence of violation(s). Each violation type and severity contributes to the calculation of the final rating. The final rating then defines the action taken for the specific request. As per the default policy, any violation rating of 1, 2 and 3 will not cause the request to be blocked and only a log will be generated with **alerted** status. If the violation rating is 4 or 5, the request is blocked: a blocking page is displayed and a log generated for the transaction with **blocked** status. Violation ratings are displayed in the logs by default.

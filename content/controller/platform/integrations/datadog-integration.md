@@ -1,6 +1,6 @@
 ---
 description: Create a Datadog Integration for F5 NGINX Controller.
-docs: DOCS-564
+nd-docs: DOCS-564
 title: Datadog Integration
 weight: 30
 ---

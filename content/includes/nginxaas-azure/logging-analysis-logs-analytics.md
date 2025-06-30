@@ -1,5 +1,5 @@
 ---
-docs: "DOCS-000"
+nd-docs: "DOCS-000"
 ---
 
 If the diagnostic setting destination details included a Logs Analytics workspace, logs show up in the table "NGXOperationLogs" with the following non-standard attributes:

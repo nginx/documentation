@@ -1,5 +1,5 @@
 ---
-docs: "DOCS-1601"
+nd-docs: "DOCS-1601"
 ---
 
 There are different implementations based on the type of references that are being made.

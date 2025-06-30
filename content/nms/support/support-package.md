@@ -1,7 +1,7 @@
 ---
 description: This guide explains how to generate a support package for troubleshooting
   error scenarios.
-docs: DOCS-818
+nd-docs: DOCS-818
 title: Create a Support Package
 toc: true
 weight: 200

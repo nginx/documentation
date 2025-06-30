@@ -1,6 +1,6 @@
 ---
 description: Steps to take to investigate and fix issues with data forwarders.
-docs: DOCS-377
+nd-docs: DOCS-377
 title: Troubleshoot Data Forwarders
 toc: true
 weight: 200

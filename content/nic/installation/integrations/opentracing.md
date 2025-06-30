@@ -1,5 +1,5 @@
 ---
-docs: DOCS-618
+nd-docs: DOCS-618
 doctypes:
 - ''
 title: OpenTracing (Deprecated in v5.0.0)

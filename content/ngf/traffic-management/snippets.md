@@ -1,10 +1,10 @@
 ---
-title: "Use the SnippetsFilter API"
+title: Use the SnippetsFilter API
 weight: 800
 toc: true
 nd-content-type: how-to
 nd-product: NGF
-nd-docs: "DOCS-000"
+nd-docs: DOCS-1848
 ---
 
 This topic introduces Snippets, how to implement them using the `SnippetsFilter` API, and provides an example of how to use `SnippetsFilter` for rate limiting.

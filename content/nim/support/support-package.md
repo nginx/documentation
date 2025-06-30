@@ -1,5 +1,5 @@
 ---
-docs: DOCS-818
+nd-docs: DOCS-818
 title: Create a support package
 toc: true
 weight: 200

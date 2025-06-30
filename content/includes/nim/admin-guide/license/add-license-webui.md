@@ -1,5 +1,5 @@
 ---
-docs: "DOCS-1660"
+nd-docs: "DOCS-1660"
 ---
 
 1. Go to the FQDN of your NGINX Instance Manager host and log in.

@@ -3,7 +3,7 @@ title: NGINX Amplify Agent
 description: Questions about F5 NGINX Amplify Agent
 weight: 20
 toc: true
-docs: DOCS-958
+nd-docs: DOCS-958
 ---
 
 ### What Operating Systems are Supported?

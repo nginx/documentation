@@ -1,5 +1,5 @@
 ---
-docs: DOCS-727
+nd-docs: DOCS-727
 title: Using the OWASP CRS with the NGINX ModSecurity WAF
 toc: true
 weight: 200

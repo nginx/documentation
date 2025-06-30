@@ -1,6 +1,6 @@
 ---
 description: Learn about the F5 NGINX App Protect DoS Request Log Mechanism.
-docs: DOCS-668
+nd-docs: DOCS-668
 title: NGINX App Protect DoS Access Log Request Mechanism
 toc: true
 weight: 160

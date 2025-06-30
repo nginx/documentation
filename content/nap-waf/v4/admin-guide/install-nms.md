@@ -1,7 +1,7 @@
 ---
 description: Learn how to get more from F5 NGINX App Protect WAF with the NGINX Management
   Suite Security Monitoring and Instance Manager modules.
-docs: DOCS-1126
+nd-docs: DOCS-1126
 title: Using NGINX App Protect WAF with NGINX Management Suite
 toc: true
 weight: 100

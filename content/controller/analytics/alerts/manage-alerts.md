@@ -1,6 +1,6 @@
 ---
 description: Learn how to view, add, mute, and delete Alerts.
-docs: DOCS-521
+nd-docs: DOCS-521
 title: Manage Alerts
 toc: true
 weight: 200

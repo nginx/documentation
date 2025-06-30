@@ -1,7 +1,7 @@
 ---
 description: Use NGINX or F5 NGINX Plus as the Ingress Controller for Amazon Elastic
   Kubernetes Services.
-docs: DOCS-447
+nd-docs: DOCS-447
 title: Using NGINX or NGINX Plus as the Ingress Controller for Amazon Elastic Kubernetes
   Services
 toc: true
@@ -19,7 +19,7 @@ This guide explains how to use NGINX Open Source or F5 NGINX Plus with NGINX Ing
 ## Prerequisites
 
 - [An AWS account](https://docs.aws.amazon.com/AmazonSimpleDB/latest/DeveloperGuide/AboutAWSAccounts.html).
-- A prebuilt image of the NGINX or NGINX Plus Ingress Controller for Kubernetes. 
+- A prebuilt image of the NGINX or NGINX Plus Ingress Controller for Kubernetes.
   - For NGINX Open Source you can use the pre-built image [on DockerHub](https://hub.docker.com/r/nginx/nginx-ingress/). You can also build your own image.
   - For NGINX Plus, you must [build an image](https://docs.nginx.com/nginx-ingress-controller/installation/build-nginx-ingress-controller/).
 
@@ -30,16 +30,16 @@ make container DOCKERFILE=DockerfileForPlus PREFIX=nginx/nginx-plus-ingress
 ```
 
 The `PREFIX` argument specifies the repo name in your private container registry. In this example, we set it to `nginx/nginx-plus-ingress`. You can later use that name to reference the image instead of its numerical ID.
-   
+
 
 <span id="amazon-eks"></span>
 ## Create an Amazon EKS Cluster
 You can create an Amazon EKS cluster with:
 - the AWS Management Console
 - the AWS CLI
-- the `eksctl` command line utility. 
+- the `eksctl` command line utility.
 
-This guide covers the `eksctl` command as it is the simplest option. 
+This guide covers the `eksctl` command as it is the simplest option.
 
 1. Follow the instructions in the [eksctl.io documentation](https://eksctl.io/installation/) to install or update the `eksctl` command.
 
@@ -50,7 +50,7 @@ This guide covers the `eksctl` command as it is the simplest option.
 
 This step is only required if you do not plan to use the prebuilt NGINX Open Source image.
 
-1. Use the [AWS documentation](https://docs.aws.amazon.com/AmazonECR/latest/userguide/repository-create.html) to create a repository in the Amazon Elastic Container Registry (ECR). In Step 4 of the AWS instructions, name the repository {{<nb>}}**nginx-plus-ic**{{</nb>}} as that is what we use in this guide. 
+1. Use the [AWS documentation](https://docs.aws.amazon.com/AmazonECR/latest/userguide/repository-create.html) to create a repository in the Amazon Elastic Container Registry (ECR). In Step 4 of the AWS instructions, name the repository {{<nb>}}**nginx-plus-ic**{{</nb>}} as that is what we use in this guide.
 
 2. Run the following AWS CLI command. It generates an auth token for your AWS ECR registry, then pipes it into the `docker login` command. This lets AWS ECR authenticate and authorize the upcoming Docker requests. For details about the command, see the [AWS documentation](https://docs.aws.amazon.com/AmazonECR/latest/userguide/registry_auth.html).
 
@@ -93,7 +93,7 @@ Complete the steps up to and including [Confirm NGINX Ingress Controller is runn
 
 These steps assume you've cloned the [kubernetes-ingress](https://github.com/nginx/kubernetes-ingress) repository in the previous step.
 
-You need a Kubernetes `LoadBalancer` service to route traffic to the NGINX Ingress Controller. By default, Amazon EKS will create a [Classic Load Balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/introduction.html) for Kubernetes services of type `LoadBalancer`. However, we recommend that you create a [Network Load Balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/network/introduction.html) (NLB). It operates at the transport layer and is optimized for high performance and low latency. 
+You need a Kubernetes `LoadBalancer` service to route traffic to the NGINX Ingress Controller. By default, Amazon EKS will create a [Classic Load Balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/introduction.html) for Kubernetes services of type `LoadBalancer`. However, we recommend that you create a [Network Load Balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/network/introduction.html) (NLB). It operates at the transport layer and is optimized for high performance and low latency.
 
 We also recommend enabling the PROXY Protocol for both the NGINX Plus Ingress Controller and your NLB target groups. This is used to forward client connection information. If you choose not to enable the PROXY protocol, see the [Appendix](#appendix).
 
@@ -144,7 +144,7 @@ Apply the manifest `deployments/service/loadbalancer-aws-elb.yaml` to create a `
    * The `kubectl` commands are relative to the `deployment/examples/ingress-resources/complete-example` directory of the [kubernetes-ingress](https://github.com/nginx/kubernetes-ingress) repository.
    * Run the `curl` command listed in the instructions. It will access the demo app and populate the NGINX Plus Ingress Controller logs.
 
-4. Run the following commands to check if the PROXY Protocol is enabled: 
+4. Run the following commands to check if the PROXY Protocol is enabled:
    1. Display the pod of NGINX Ingress Controller:
 
       ```shell

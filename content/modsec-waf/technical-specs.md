@@ -1,5 +1,5 @@
 ---
-docs: DOCS-729
+nd-docs: DOCS-729
 title: Technical Specifications
 toc: true
 weight: 300

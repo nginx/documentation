@@ -1,5 +1,5 @@
 ---
-docs: DOCS-567
+nd-docs: DOCS-567
 title: Syslog Integration
 weight: 30
 ---

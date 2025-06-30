@@ -1,7 +1,7 @@
 ---
 description: Protect your upstream web and application servers by limiting connections,
   rate of requests, or bandwidth, based on client IP address or other variables.
-docs: DOCS-432
+nd-docs: DOCS-432
 title: Limiting Access to Proxied HTTP Resources
 toc: true
 weight: 600

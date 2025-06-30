@@ -1,6 +1,6 @@
 ---
 description: Learn how to view events and metrics in F5 NGINX Instance Manager.
-docs: DOCS-847
+nd-docs: DOCS-847
 title: View events and metrics
 toc: true
 weight: 300

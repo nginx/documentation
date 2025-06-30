@@ -1,6 +1,6 @@
 ---
 description: Create, view, and edit Gateways.
-docs: DOCS-373
+nd-docs: DOCS-373
 title: Manage Gateways
 toc: true
 weight: 120

@@ -1,7 +1,7 @@
 ---
 description: Understand the basic elements in an NGINX or F5 NGINX Plus configuration
   file, including directives and contexts.
-docs: DOCS-378
+nd-docs: DOCS-378
 title: Create NGINX Plus and NGINX Configuration Files
 toc: true
 weight: 200
@@ -9,7 +9,7 @@ type:
 - how-to
 ---
 
-NGINX and NGINX Plus are similar to other services in using a text‑based configuration file with a precise format. By default the file is named **nginx.conf** and for NGINX Plus is placed in the `**/etc/nginx**` directory. 
+NGINX and NGINX Plus are similar to other services in using a text‑based configuration file with a precise format. By default the file is named **nginx.conf** and for NGINX Plus is placed in the `**/etc/nginx**` directory.
 
 For NGINX Open Source, the location depends on the package system used to install NGINX and the operating system. It is typically one of `**/usr/local/nginx/conf**`, `**/etc/nginx**`, or `**/usr/local/etc/nginx**`.
 

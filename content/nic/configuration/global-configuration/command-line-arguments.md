@@ -1,5 +1,5 @@
 ---
-docs: DOCS-585
+nd-docs: DOCS-585
 doctypes:
 - ''
 title: Command-line arguments

@@ -3,7 +3,7 @@ title: Troubleshooting Metrics Collection
 description: Learn what to check if F5 NGINX Amplify Agent isn't reporting metrics.
 weight: 500
 toc: true
-docs: DOCS-966
+nd-docs: DOCS-966
 ---
 
 After you [install and start]({{< ref "/amplify/nginx-amplify-agent/install/installing-amplify-agent" >}}) F5 NGINX Amplify Agent, it should start reporting right away, pushing aggregated data to the Amplify backend at regular 1 minute intervals. It'll take about a minute for a new system to appear in the Amplify web interface.

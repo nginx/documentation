@@ -3,7 +3,7 @@ title: NGINX Metrics
 description: List of NGINX Metrics
 weight: 30
 toc: true
-docs: DOCS-973
+nd-docs: DOCS-973
 ---
 
 ## HTTP Connections and Requests
@@ -48,7 +48,7 @@ docs: DOCS-973
 
   ```
   Type:        gauge, integer
-  Description: Number of currently active requests (reading and writing). 
+  Description: Number of currently active requests (reading and writing).
                Number of requests reading headers or writing responses to clients.
   Source:      stub_status (or NGINX Plus status API)
   ```
@@ -127,7 +127,7 @@ docs: DOCS-973
 
   ```
   Type:        counter, integer
-  Description: Number of requests finalized with status code 499 which is 
+  Description: Number of requests finalized with status code 499 which is
                logged when the client closes the connection.
   Source:      access.log
   ```
@@ -213,7 +213,7 @@ docs: DOCS-973
 
   ```
   Type:        gauge, integer
-  Description: Hard limit on the number of file descriptors as seen 
+  Description: Hard limit on the number of file descriptors as seen
                by NGINX worker processes.
   ```
 

@@ -1,6 +1,6 @@
 ---
 description: How to add F5 NGINX Controller App Security to your applications.
-docs: DOCS-484
+nd-docs: DOCS-484
 title: Manage App Security
 toc: true
 weight: 100

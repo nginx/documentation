@@ -3,7 +3,7 @@ title: Install with nginx-meshctl
 draft: false
 toc: true
 weight: 200
-docs: DOCS-681
+nd-docs: DOCS-681
 type:
 - how-to
 ---

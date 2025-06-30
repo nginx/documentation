@@ -4,7 +4,7 @@ draft: false
 toc: true
 description: This guide explains how to upgrade F5 NGINX Service Mesh using nginx-meshctl.
 weight: 200
-docs: DOCS-1482
+nd-docs: DOCS-1482
 type:
 - how-to
 ---

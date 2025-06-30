@@ -5,7 +5,7 @@ toc: true
 description: This topic provides a walkthrough of deploying F5 NGINX Service Mesh
   with basic observability components.
 weight: 90
-docs: DOCS-886
+nd-docs: DOCS-886
 type:
 - tutorial
 ---

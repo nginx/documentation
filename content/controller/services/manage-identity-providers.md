@@ -1,6 +1,6 @@
 ---
 description: Create and Manage Identity Providers.
-docs: DOCS-571
+nd-docs: DOCS-571
 title: Manage Identity Providers
 toc: true
 weight: 140

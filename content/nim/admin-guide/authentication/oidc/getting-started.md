@@ -1,6 +1,6 @@
 ---
 description: ''
-docs: DOCS-1267
+nd-docs: DOCS-1267
 title: Get started with OIDC
 toc: true
 weight: 1

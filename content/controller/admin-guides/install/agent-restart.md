@@ -1,7 +1,7 @@
 ---
 description: How to start, stop, and verify the state of the F5 NGINX Controller Agent
   service.
-docs: DOCS-251
+nd-docs: DOCS-251
 title: Manage the NGINX Controller Agent Service
 toc: true
 weight: 210

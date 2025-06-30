@@ -2,7 +2,7 @@
 description: This document provides instructions on how to publish API documentation
   and API proxies to a Developer Portal in order to make them available at a designated
   hostname.
-docs: DOCS-1082
+nd-docs: DOCS-1082
 title: Publish Docs to a Developer Portal
 toc: true
 weight: 200

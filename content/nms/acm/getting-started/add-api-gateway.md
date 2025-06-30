@@ -1,7 +1,7 @@
 ---
 description: Learn how to use F5 NGINX Management Suite API Connectivity Manager to
   configure an API Gateway.
-docs: DOCS-921
+nd-docs: DOCS-921
 title: Set Up an API Gateway Environment
 toc: true
 weight: 100

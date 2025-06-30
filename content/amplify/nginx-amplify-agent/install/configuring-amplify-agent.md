@@ -3,7 +3,7 @@ title: Configuring NGINX Amplify Agent
 description: Learn how to configure F5 NGINX Amplify Agent.
 weight: 300
 toc: true
-docs: DOCS-967
+nd-docs: DOCS-967
 ---
 
 F5 NGINX Amplify Agent keeps its configuration in `/etc/amplify-agent/agent.conf`. The NGINX Amplify Agent configuration is a text-based file.

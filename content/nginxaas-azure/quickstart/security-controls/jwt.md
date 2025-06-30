@@ -2,7 +2,7 @@
 title: Setting up JWT authentication
 weight: 200
 toc: true
-docs: DOCS-1101
+nd-docs: DOCS-1101
 url: /nginxaas/azure/quickstart/security-controls/jwt/
 type:
 - how-to

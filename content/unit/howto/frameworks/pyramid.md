@@ -2,7 +2,7 @@
 title: Pyramid
 weight: 1300
 toc: true
-docs: DOCS-1757
+nd-docs: DOCS-1757
 ---
 
 To run apps built with the [Pyramid](https://trypyramid.com) web framework

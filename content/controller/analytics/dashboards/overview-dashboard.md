@@ -1,7 +1,7 @@
 ---
 description: Learn about the Dashboards that displays cumulative metrics for your
   NGINX Instances.
-docs: DOCS-528
+nd-docs: DOCS-528
 title: Analytics Overview
 toc: true
 weight: 10

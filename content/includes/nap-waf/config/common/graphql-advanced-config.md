@@ -1,5 +1,5 @@
 ---
-docs: "DOCS-1551"
+nd-docs: "DOCS-1551"
 ---
 
 The below sections provides details about enabling GraphQL with advanced configuration.

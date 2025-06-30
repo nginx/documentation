@@ -3,7 +3,7 @@ title: Detecting and Monitoring NGINX Instances
 description: Learn how F5 NGINX Amplify Agent detects NGINX Instances.
 weight: 300
 toc: true
-docs: DOCS-962
+nd-docs: DOCS-962
 ---
 
 F5 NGINX Amplify Agent is capable of detecting several types of NGINX instances:

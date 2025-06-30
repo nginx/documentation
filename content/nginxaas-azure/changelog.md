@@ -2,7 +2,7 @@
 title: "Changelog"
 weight: 900
 toc: true
-docs: "DOCS-870"
+nd-docs: "DOCS-870"
 url: /nginxaas/azure/changelog/
 
 ---

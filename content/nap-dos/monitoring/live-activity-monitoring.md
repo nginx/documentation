@@ -1,6 +1,6 @@
 ---
 description: Learn about the F5 NGINX App Protect DoS Live Activity Monitoring.
-docs: DOCS-1389
+nd-docs: DOCS-1389
 title: NGINX App Protect DoS Live Activity Monitoring
 toc: true
 weight: 140

@@ -2,7 +2,7 @@
 title: TLS with Certbot
 toc: true
 weight: 600
-docs: DOCS-1706
+nd-docs: DOCS-1706
 ---
 
 To set up

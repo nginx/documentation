@@ -3,7 +3,7 @@ description: Learn about the F5 NGINX App Protect WAF Troubleshooting Guide.
 title: NGINX App Protect WAF Troubleshooting Guide
 toc: true
 weight: 400
-docs: DOCS-1645
+nd-docs: DOCS-1645
 type:
 - concept
 ---
