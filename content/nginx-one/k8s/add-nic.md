@@ -12,8 +12,7 @@ Connecting NGINX Ingress Controller to NGINX One Console enables centralized mon
 Once connected, you'll see a **read-only** configuration of NGINX Ingress Controller. For each instance, you can review:
 
 - Read-only configuration file
-- SSL/TLS certificates
-- CVEs
+- Unmanaged SSL/TLS certificates for Control Planes
 
 ## Before you begin
 
@@ -43,7 +42,7 @@ Edit your `values.yaml` file to enable NGINX Agent and configure it to connect t
 ```yaml
 nginxAgent:
   enable: true
-  dataplaneKeySecretName: "<Your Dataplane Key Secret Name>"
+  dataplaneKeySecretName: "<data_plane_key_secret_name>"
 ```
 
 The `dataplaneKeySecretName` is used to authenticate the agent with NGINX One Console. See the [NGINX One Console Docs]({{< ref "/nginx-one/connect-instances/create-manage-data-plane-keys.md" >}})
@@ -99,7 +98,7 @@ data:
 ```      
 
 Make sure to set the namespace in the nginx-agent.config to the same namespace as NGINX Ingress Controller.
-Mount the ConfigMap to the deployment/daemonset file of NGINX Ingress Controller:
+Mount the ConfigMap to the Deployment/DaemonSet file of NGINX Ingress Controller:
 
 ```yaml
 volumeMounts:
@@ -114,7 +113,7 @@ volumes:
     name: nginx-agent-config
 - name: dataplane-key
   secret:
-    secretName: <Your Dataplane Key Secret Name>
+    secretName: "<data_plane_key_secret_name>"
 ```
 
 Follow the [Installation with Manifests]({{< ref "/nic/installation/installing-nic/installation-with-manifests.md" >}}) instructions to deploy NGINX Ingress Controller.
@@ -134,7 +133,7 @@ If you encounter issues connecting your instances to NGINX One Console, try the 
 Check the NGINX Agent version:
 
 ```shell
-kubectl exec -it -n <namespace> <nginx-ingress-pod-name> -- nginx-agent -v
+kubectl exec -it -n <namespace> <nginx_ingress_pod_name> -- nginx-agent -v
 ```
   
 If nginx-agent version is v3, continue with the following steps.
@@ -143,19 +142,18 @@ Otherwise, make sure you are using an image that does not include NGINX App Prot
 Check the NGINX Agent configuration:
 
 ```shell
-kubectl exec -it -n <namespace> <nginx-ingress-pod-name> -- cat /etc/nginx-agent/nginx-agent.conf
+kubectl exec -it -n <namespace> <nginx_ingress_pod_name> -- cat /etc/nginx-agent/nginx-agent.conf
 ```
 
 Check NGINX Agent logs:
 
 ```shell
-kubectl exec -it -n <namespace> <nginx-ingress-pod-name> -- nginx-agent
+kubectl exec -it -n <namespace> <nginx_ingress_pod_name> -- nginx-agent
 ```
 
-Select the instance associated with your deployment of NGINX Ingress Controller. Under the **Details** tab, you'll see You'll see information associated with:
+Select the instance associated with your deployment of NGINX Ingress Controller. Under the **Details** tab, you'll see information associated with:
 
 - SSL/TLS certificates
-- CVEs
 - Configuration recommendations 
 
 Under the **Configuration** tab, you'll see a **read-only** view of the configuration files.
