@@ -2,6 +2,7 @@
 title: Drupal
 weight: 500
 toc: true
+docs: DOCS-1719
 ---
 
 To run the [Drupal](https://www.drupal.org) content management system using

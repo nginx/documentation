@@ -1,6 +1,7 @@
 ---
 title: Unit 1.31.1 Released
 weight: 100
+docs: DOCS-1776
 ---
 
 We are delighted to announce Unit 1.31.1, a maintenance release that fixes
