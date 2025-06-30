@@ -24,7 +24,7 @@ kubectl create secret generic dataplane-key --from-literal=dataplane.key=<Your D
 ```
 
 When you create a Kubernetes Secret, use the same namespace where NGINX Ingress Controller is running. 
-If you use `-watch-namespace` or `watch-secret-namespace` arguments with NGINX Ingress Controller, 
+If you use [`-watch-namespace`]({{< ref "/nic/configuration/global-configuration/command-line-arguments.md#watch-namespace-string" >}}) or [`watch-secret-namespace`]({{< ref "/nic/configuration/global-configuration/command-line-arguments.md#watch-secret-namespace-string" >}}) arguments with NGINX Ingress Controller, 
 you need to add the dataplane key secret to the watched namespaces. This secret will take approximately 60 - 90 seconds to reload on the pod.
 
 {{<note>}}
@@ -45,7 +45,7 @@ nginxAgent:
 ```
 
 The `dataplaneKeySecretName` is used to authenticate the agent with NGINX One Console. See the [NGINX One Console Docs]({{< ref "/nginx-one/connect-instances/create-manage-data-plane-keys.md" >}})
-for instructions on to generate your dataplane key from the NGINX One Console.
+for instructions on how to generate your dataplane key from the NGINX One Console.
 
 Follow the [Installation with Helm]({{< ref "/nic/installation/installing-nic/installation-with-helm.md" >}}) instructions to deploy NGINX Ingress Controller.
 
@@ -122,7 +122,7 @@ Follow the [Installation with Manifests]({{< ref "/nic/installation/installing-n
 
 ## Verify a connection to NGINX One Console
 
-After deploying NGINX Ingress Controller or NGINX Gateway Fabric with NGINX Agent, you can verify the connection to NGINX One Console.
+After deploying NGINX Ingress Controller <!-- or NGINX Gateway Fabric --> with NGINX Agent, you can verify the connection to NGINX One Console.
 Log in to your F5 Distributed Console cloud account. Select **NGINX One > Visit Service**. In the dashboard that appears, navigate to **Manage > Instances**. Your instances should appear in the list, where the instance name is the hostname and also the pod name.
 
 ## Troubleshooting

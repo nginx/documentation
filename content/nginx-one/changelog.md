@@ -34,7 +34,7 @@ Stay up-to-date with what's new and improved in the F5 NGINX One Console.
 
 ### Monitor F5 NGINX Ingress Controller deployments
 
-You can now montior your NGINX Ingress Controller deployments. For details, see how
+You can now monitor your NGINX Ingress Controller deployments. For details, see how
 you can [Connect to NGINX One Console]({{< ref "/nginx-one/k8s/add-nic.md" >}}).
 
 Unlike other NGINX instances, when you connect NGINX Ingress Controller to NGINX One Console, access is read-only. Refer to our [NGINX Ingress Controller]({{< ref "/nic/" >}}) for details on how to modify these instances.
