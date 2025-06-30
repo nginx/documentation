@@ -186,7 +186,7 @@ utility:
     tag: <version>
 ```
 
-These values are required when pulling images from the NGINX private registry. The chart does not auto-resolve image tags. Update the tag: fields to match the NGINX Instance Manager version you want to install referring the helm chart table.
+These values are required when pulling images from the NGINX private registry. The chart does not auto-resolve image tags. Update the tag: fields to match the NGINX Instance Manager version you want to install referring the Helm chart table.
 
 Use the file with the `-f values.yaml` flag when installing the chart.
 
