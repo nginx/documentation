@@ -1,6 +1,6 @@
 ---
 description: Learn the types of logs available in F5 NGINX App Protect WAF v5.
-docs: DOCS-1374
+nd-docs: DOCS-1374
 title: NGINX App Protect WAF Logs Overview
 toc: true
 weight: 1010

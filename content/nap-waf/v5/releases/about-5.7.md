@@ -4,7 +4,7 @@ weight: 840
 toc: true
 nd-content-type: reference
 nd-product: NAP-WAF
-docs: DOCS-1794
+nd-docs: DOCS-1794
 ---
 
 June 24th, 2025
@@ -12,9 +12,9 @@ June 24th, 2025
 ## New features
 
 - Added support for [IP Intelligence]({{< ref "/nap-waf/v5/configuration-guide/configuration.md#ip-intelligence-configuration" >}})
-- Added support for Rocky Linux 9 
+- Added support for Rocky Linux 9
 - Added support for Override rules for [IP Address Lists]({{< ref "/nap-waf/v5/configuration-guide/configuration.md#ip-address-lists" >}})
-  
+
 ## Important notes
 
 - Ubuntu 20.04 is no longer supported
@@ -26,7 +26,7 @@ June 24th, 2025
 - 12527 - Remove CPAN - installed certs and source files
 - 11112 - Remove systemd/init.d leftovers in NAP WAF v5 pkgs
 - 12400 - Cookie attributes are not added to a TS cookie when there is more than one TS cookie
-- 12498 - Undefined behavior when using huge XFF 
+- 12498 - Undefined behavior when using huge XFF
 - 12731 - Multiple clean_resp_reset internal error messages in logs when loading NAP
 
 ## Supported packages

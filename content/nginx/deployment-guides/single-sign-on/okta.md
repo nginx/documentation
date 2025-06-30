@@ -6,7 +6,7 @@ product: NGINX-PLUS
 title: Single Sign-On with Okta
 toc: true
 weight: 700
-docs: DOCS-1689
+nd-docs: DOCS-1689
 ---
 
 This guide explains how to enable single sign-on (SSO) for applications being proxied by F5 NGINX Plus. The solution uses OpenID Connect as the authentication mechanism, with [Okta](https://www.okta.com/) as the Identity Provider (IdP), and NGINX Plus as the Relying Party, or OIDC client application that verifies user identity.

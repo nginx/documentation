@@ -1,5 +1,5 @@
 ---
-docs: DOCS-991
+nd-docs: DOCS-991
 ---
 
 You can access the NGINX Instance Manager API documentation from the web interface:

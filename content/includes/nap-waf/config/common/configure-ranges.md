@@ -1,5 +1,5 @@
 ---
-docs: "DOCS-1544"
+nd-docs: "DOCS-1544"
 ---
 
 ```nginx

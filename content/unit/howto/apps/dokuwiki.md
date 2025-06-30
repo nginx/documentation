@@ -2,7 +2,7 @@
 title: DokuWiki
 toc: true
 weight: 400
-docs: DOCS-1716
+nd-docs: DOCS-1716
 ---
 
 To run the [DokuWiki](https://www.dokuwiki.org) content management system

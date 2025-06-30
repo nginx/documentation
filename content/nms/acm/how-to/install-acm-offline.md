@@ -1,6 +1,6 @@
 ---
 title: "Offline Installation Guide"
-docs: "DOCS-1669"
+nd-docs: "DOCS-1669"
 ---
 
 ## Install or Upgrade API Connectivity Manager {#install-or-upgrade-acm-offline}

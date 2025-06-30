@@ -1,7 +1,7 @@
 ---
 description: Learn how to back up and restore the embedded F5 NGINX Controller config
   database.
-docs: DOCS-248
+nd-docs: DOCS-248
 title: Back Up & Restore an Embedded Config Database
 toc: true
 weight: 98

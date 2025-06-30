@@ -2,7 +2,7 @@
 title: Installation
 weight: 400
 toc: true
-docs: DOCS-1697
+nd-docs: DOCS-1697
 ---
 
 You can install NGINX Unit in four alternative ways:

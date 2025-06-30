@@ -1,5 +1,5 @@
 ---
-docs: "DOCS-1602"
+nd-docs: "DOCS-1602"
 ---
 
 Attack signatures are detected within the JSON values of the token, i.e. the header and claims parts, but not on the digital signature part of the token. The detection of signatures, and specifically which signatures are recognized, depends on the configuration entity within the Policy. Typically, this configuration entity is the Authorization HTTP header or else, the header or parameter entity configured as the location of the token in the access profile.

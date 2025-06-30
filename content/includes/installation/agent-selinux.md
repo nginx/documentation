@@ -1,5 +1,5 @@
 ---
-docs: DOCS-1403
+nd-docs: DOCS-1403
 ---
 
 ```bash

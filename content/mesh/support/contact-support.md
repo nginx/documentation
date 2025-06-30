@@ -4,7 +4,7 @@ weight: 100
 description: Learn where to go for F5 NGINX Service Mesh support.
 toc: true
 draft: false
-docs: DOCS-718
+nd-docs: DOCS-718
 type:
 - task
 ---

@@ -4,7 +4,7 @@ weight: 620
 toc: true
 type: reference
 product: NAP-WAF
-docs: DOCS-988
+nd-docs: DOCS-988
 ---
 
 November 17, 2022

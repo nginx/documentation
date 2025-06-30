@@ -7,7 +7,7 @@ description: Release information for F5 NGINX Service Mesh, a configurable, lowâ
   communication among application infrastructure services using application programming
   interfaces (APIs). Lists of new features and known issues are provided.
 weight: -1001
-docs: DOCS-712
+nd-docs: DOCS-712
 type:
 - reference
 ---

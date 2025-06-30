@@ -1,7 +1,7 @@
 ---
 description: Load modules dynamically into F5 NGINX Plus at runtime to add specialized
   functionality, including features authored by third parties.
-docs: DOCS-383
+nd-docs: DOCS-383
 title: Dynamic Modules
 toc: true
 weight: 10
@@ -46,7 +46,7 @@ For module‑specific installation and usage instructions, select the correspond
 | [XSLT](https://nginx.org/en/docs/http/ngx_http_xslt_module.html) | Applies XSLT transformations to XML responses. | [`nginx-plus-module-xslt`]({{< ref "nginx/admin-guide/dynamic-modules/xslt.md" >}}) |
 {{< /bootstrap-table >}}
 
-### Community Dynamic Modules 
+### Community Dynamic Modules
 Besides the modules provided in the official repository, a wide range of third-party modules is available through community-driven projects such as [Awesome NGINX GitHub project](https://github.com/agile6v/awesome-nginx#third-party-modules). Many of these modules can be [compiled as dynamic modules](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/#install_modules_oss) and used with your NGINX Plus or NGINX Open Source deployments.
 
 ### NGINX Certified Partner Dynamic Modules
@@ -110,7 +110,7 @@ nginx-plus-module-njs/stable
 
 nginx-plus-module-opentracing/stable
   NGINX Plus 3rd-party OpenTracing dynamic module
-  
+
 nginx-plus-module-otel/stable
   NGINX Plus OpenTelemetry dynamic module
 

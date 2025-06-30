@@ -4,7 +4,7 @@ weight: 500
 toc: true
 type: how-to
 product: NAP-WAF
-docs: DOCS-1365
+nd-docs: DOCS-1365
 ---
 
 ## Prerequisites

@@ -1,7 +1,7 @@
 ---
 description: As an Infrastructure Administrator, use this guide to configure OpenID
   Connect policy to enable Single Sign On for the gateways.
-docs: DOCS-1134
+nd-docs: DOCS-1134
 title: OpenID Connect
 toc: true
 weight: 910

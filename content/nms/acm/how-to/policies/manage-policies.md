@@ -1,7 +1,7 @@
 ---
 description: Learn how to use F5 NGINX Management Suite API Connectivity Manager to
   set up policies.
-docs: DOCS-925
+nd-docs: DOCS-925
 toc: true
 weight: 100
 title: How to Set Up Policies

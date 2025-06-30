@@ -1,5 +1,5 @@
 ---
-docs: "DOCS-1476"
+nd-docs: "DOCS-1476"
 ---
 
 An NGINX Capacity Unit (NCU) quantifies the capacity of an NGINX instance based on the underlying compute resources. This abstraction allows you to specify the desired capacity in NCUs without having to consider the regional hardware differences.

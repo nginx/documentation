@@ -5,7 +5,7 @@ weight: 150
 toc: true
 type:
 - how-to
-docs: DOCS-1678
+nd-docs: DOCS-1678
 ---
 
 ## Overview
