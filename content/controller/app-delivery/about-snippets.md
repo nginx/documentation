@@ -1,5 +1,5 @@
 ---
-docs: DOCS-340
+nd-docs: DOCS-340
 title: About Snippets
 toc: true
 weight: 300

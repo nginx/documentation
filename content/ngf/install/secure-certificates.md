@@ -4,13 +4,14 @@ weight: 100
 toc: true
 nd-content-type: how-to
 nd-product: NGF
+nd-docs: DOCS-1851
 ---
 
-By default, NGINX Gateway Fabric installs self-signed certificates to secure the connection between the NGINX Gateway Fabric control plane and the NGINX data plane pods. These certificates are created by a `cert-generator` job when NGINX Gateway Fabric is first installed. 
+By default, NGINX Gateway Fabric installs self-signed certificates to secure the connection between the NGINX Gateway Fabric control plane and the NGINX data plane pods. These certificates are created by a `cert-generator` job when NGINX Gateway Fabric is first installed.
 
 However, because these certificates are self-signed and will expire after 3 years, we recommend a solution such as [cert-manager](https://cert-manager.io) to create and manage these certificates in a production environment.
 
-This guide will step through how to install and use `cert-manager` to secure this connection. 
+This guide will step through how to install and use `cert-manager` to secure this connection.
 
 {{< caution >}}
 
@@ -179,7 +180,7 @@ Specify the Secret name using the `certGenerator.agentTLSSecretName` helm value.
 
 {{%tab name="Manifests"%}}
 
-Specify the Secret name using the `agent-tls-secret` command-line argument. 
+Specify the Secret name using the `agent-tls-secret` command-line argument.
 
 {{% /tab %}}
 

@@ -1,5 +1,5 @@
 ---
-docs: DOCS-614
+nd-docs: DOCS-614
 doctypes:
 - concept
 title: Prometheus

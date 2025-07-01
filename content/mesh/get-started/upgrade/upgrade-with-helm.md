@@ -4,7 +4,7 @@ draft: false
 toc: true
 description: This guide explains how to upgrade F5 NGINX Service Mesh using Helm.
 weight: 300
-docs: DOCS-700
+nd-docs: DOCS-700
 type:
 - how-to
 ---

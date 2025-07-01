@@ -5,7 +5,7 @@ description: Follow the steps in this guide to install the F5 NGINX Plus dynamic
 weight: 110
 toc: true
 type: how-to
-docs: DOCS-1099
+nd-docs: DOCS-1099
 ---
 
 {{< eol-call-out "warning" "End of Sale Notice:" >}} F5 NGINX is announcing the End of Sale (EoS) for NGINX Instance Manager API Connectivity Manager Module, effective January 1, 2024.

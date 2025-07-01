@@ -1,7 +1,7 @@
 ---
 description: Capture detailed information about errors and request processing in log
   files, either locally or via syslog.
-docs: DOCS-426
+nd-docs: DOCS-426
 title: Configuring Logging
 toc: true
 weight: 200
@@ -14,7 +14,7 @@ This article describes how to log errors and requests in NGINX Open Source and 
 <span id="error_log"></span>
 ## Set Up the Error Log
 
-NGINX writes an error log that records encountered issues of different severity levels. The [error_log](https://nginx.org/en/docs/ngx_core_module.html#error_log) directive sets up the log location and severity level. The log location can be a particular file, `stderr`, or `syslog`. By default, the error log is located at **logs/error.log**, but the absolute path depends on the operating system and installation. The error severity level follows the `syslog` classification system. The log includes messages from all severity levels above the specified level. 
+NGINX writes an error log that records encountered issues of different severity levels. The [error_log](https://nginx.org/en/docs/ngx_core_module.html#error_log) directive sets up the log location and severity level. The log location can be a particular file, `stderr`, or `syslog`. By default, the error log is located at **logs/error.log**, but the absolute path depends on the operating system and installation. The error severity level follows the `syslog` classification system. The log includes messages from all severity levels above the specified level.
 
 
 The configuration below changes the minimal severity level of error messages to log from `error` to `warn`:
@@ -81,7 +81,7 @@ When reading the resulting time values, keep the following in mind:
 - When a request is unable to reach an upstream server or a full header cannot be received, the variable contains `0` (zero)
 - In case of internal error while connecting to an upstream or when a reply is taken from the cache, the variable contains `-` (hyphen)
 
-The log can be optimized by enabling the `buffer` and the `cache`. With the [buffer](https://nginx.org/en/docs/http/ngx_http_log_module.html#access_log) parameter enabled, messages will be stored in the buffer first. When the buffer is full (or in some other [cases](https://nginx.org/en/docs/http/ngx_http_log_module.html#access_log)), the messages will be written to the log. 
+The log can be optimized by enabling the `buffer` and the `cache`. With the [buffer](https://nginx.org/en/docs/http/ngx_http_log_module.html#access_log) parameter enabled, messages will be stored in the buffer first. When the buffer is full (or in some other [cases](https://nginx.org/en/docs/http/ngx_http_log_module.html#access_log)), the messages will be written to the log.
 To enable caching of log file descriptors, use the [open_log_file_cache](https://nginx.org/en/docs/http/ngx_http_log_module.html#open_log_file_cache) directive.
 
 Similar to the `error_log` directive, the [access_log](https://nginx.org/en/docs/http/ngx_http_log_module.html#access_log) directive defined on a particular configuration level overrides the settings from the previous levels. When processing of a request is completed, the message is written to the log that is configured on the current level, or inherited from the previous levels. If one level has multiple access log definitions, the message is written to all of them.

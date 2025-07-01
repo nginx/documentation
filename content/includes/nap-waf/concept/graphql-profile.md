@@ -1,5 +1,5 @@
 ---
-docs: DOCS-000
+nd-docs: DOCS-000
 ---
 
 The GraphQL Profile defines the GraphQL properties that are enforced by the security policy.

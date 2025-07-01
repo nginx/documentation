@@ -1,5 +1,5 @@
 ---
-docs: "DOCS-1555"
+nd-docs: "DOCS-1555"
 ---
 
 As with JSON and XML profiles, in order for a gRPC Content Profile to become effective, it has to be associated with a URL that represents the service. However, in the sample policy above, the profile was apparently not associated with any URL and yet the profile is active. How did this happen? By setting `associateUrls` with `true`, App Protect **implicitly** creates the URL based on the package and service name as defined in the IDL file and associates the profile with that URL. In this example, the URL is `/myorg.services.photo_album/*`. Note it is a wildcard URL so that all methods in this service match it in its suffix; for example `/myorg.services.photo_album/get_photos` represents the `get_photos` RPC method.

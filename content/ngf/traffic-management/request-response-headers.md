@@ -4,7 +4,7 @@ weight: 600
 toc: true
 nd-content-type: how-to
 nd-product: NGF
-nd-docs: DOCS-000
+nd-docs: DOCS-1849
 ---
 
 Learn how to modify the request and response headers of your application using NGINX Gateway Fabric.
@@ -51,7 +51,7 @@ GW_IP=XXX.YYY.ZZZ.III
 GW_PORT=<port number>
 ```
 
-{{< note >}} 
+{{< note >}}
 
 In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the gateway will forward for.
 

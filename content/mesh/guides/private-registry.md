@@ -3,7 +3,7 @@ title: Private Registry
 description: How to set up access to a private registry
 weight: 70
 toc: true
-docs: DOCS-694
+nd-docs: DOCS-694
 type:
 - how-to
 ---

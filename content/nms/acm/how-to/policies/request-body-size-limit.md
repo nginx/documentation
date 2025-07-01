@@ -1,7 +1,7 @@
 ---
 description: Learn how to configure the Request Policy Size Limit policy to prevent
   Denial of Service (DoS) and other types of attacks.
-docs: DOCS-1122
+nd-docs: DOCS-1122
 title: Request Body Size Limit
 toc: true
 weight: 1200

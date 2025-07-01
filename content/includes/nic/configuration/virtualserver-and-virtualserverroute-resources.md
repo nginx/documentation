@@ -2,7 +2,7 @@
 title: VirtualServer and VirtualServerRoute resources
 toc: true
 weight: 700
-docs: DOCS-599
+nd-docs: DOCS-599
 ---
 
 This document is reference material for the VirtualServer and VirtualServerRoute resources used by F5 NGINX Ingress Controller.

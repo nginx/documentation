@@ -2,6 +2,7 @@
 title: Redmine
 toc: true
 weight: 1900
+nd-docs: DOCS-1717
 ---
 
 To run the [Redmine](https://www.redmine.org) project management system using

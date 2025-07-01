@@ -1,6 +1,6 @@
 ---
 description: Overview of the App Security module's WAF feature.
-docs: DOCS-483
+nd-docs: DOCS-483
 title: About App Security
 toc: true
 weight: 100

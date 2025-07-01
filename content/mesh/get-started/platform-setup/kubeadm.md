@@ -2,7 +2,7 @@
 title: Kubeadm
 description: Learn how to set up Kubeadm for use with F5 NGINX Service Mesh.
 toc: true
-docs: DOCS-684
+nd-docs: DOCS-684
 type:
 - how-to
 ---

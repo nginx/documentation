@@ -1,5 +1,5 @@
 ---
-docs: "DOCS-1547"
+nd-docs: "DOCS-1547"
 ---
 
 For applications protected by app protect, you can use Geolocation enforcement to restrict or allow application use in specific countries. You can adjust the lists of which countries or locations are allowed or disallowed in a app protect security policy. If the user tries to access the web application from a location that is not allowed, the `VIOL_GEOLOCATION` violation will be triggered. By default, all locations are allowed, and the alarm and block flags are enabled.

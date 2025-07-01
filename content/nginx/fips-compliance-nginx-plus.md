@@ -1,6 +1,6 @@
 ---
 description: ''
-docs: DOCS-470
+nd-docs: DOCS-470
 title: NGINX Plus FIPS Compliance
 toc: true
 weight: 600

@@ -3,7 +3,7 @@ title: SMI Traffic Metrics
 description: How to set up and view SMI traffic metrics
 weight: 50
 toc: true
-docs: DOCS-697
+nd-docs: DOCS-697
 type:
 - how-to
 ---

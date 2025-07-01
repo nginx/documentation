@@ -3,7 +3,7 @@ description: Learn about the F5 NGINX App Protect WAF Troubleshooting Guide.
 title: NGINX App Protect WAF Troubleshooting Guide
 toc: true
 weight: 400
-docs: DOCS-1645
+nd-docs: DOCS-1645
 type:
 - concept
 ---
@@ -91,7 +91,7 @@ In order to open a support ticket, collect the troubleshooting information in on
 
 3. If NGINX is directly installed on the host machine:
 
-    - For CentOS / RHEL / Amazon Linux / Oracle Linux:
+    - For CentOS / RHEL / Rocky Linux / Amazon Linux / Oracle Linux:
 
     ```shell
     rpm -qa nginx* app-protect* > package_versions.txt

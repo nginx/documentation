@@ -1,5 +1,5 @@
 ---
-docs: "DOCS-1594"
+nd-docs: "DOCS-1594"
 ---
 
 NGINX App Protect WAF introduces three new violations specific to JWT: `VIOL_ACCESS_INVALID`, `VIOL_ACCESS_MISSING` and `VIOL_ACCESS_MALFORMED`.

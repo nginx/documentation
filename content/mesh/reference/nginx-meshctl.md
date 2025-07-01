@@ -4,7 +4,7 @@ description: Man page and instructions for using the F5 NGINX Service Mesh CLI
 draft: false
 weight: 300
 toc: true
-docs: DOCS-704
+nd-docs: DOCS-704
 type:
 - reference
 ---

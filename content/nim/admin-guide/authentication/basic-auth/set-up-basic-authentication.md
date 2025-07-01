@@ -5,7 +5,7 @@ toc: true
 weight: 10
 type: how-to
 product: NIM
-docs: DOCS-792
+nd-docs: DOCS-792
 ---
 
 <style>

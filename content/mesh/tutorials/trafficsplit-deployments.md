@@ -4,7 +4,7 @@ description: This topic provides a guide for using traffic splits with different
   strategies.
 weight: 110
 toc: true
-docs: DOCS-725
+nd-docs: DOCS-725
 type:
 - tutorial
 ---

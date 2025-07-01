@@ -4,7 +4,7 @@ toc: true
 weight: 700
 nd-content-type: how-to
 nd-product: NGF
-nd-docs: DOCS-000
+nd-docs: DOCS-1847
 ---
 
 Learn how to mirror your HTTP or gRPC traffic using NGINX Gateway Fabric.

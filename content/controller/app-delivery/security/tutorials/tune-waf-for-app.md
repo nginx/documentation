@@ -1,6 +1,6 @@
 ---
 description: How to tune WAF for your App.
-docs: DOCS-486
+nd-docs: DOCS-486
 title: Manage WAF Tuning for App Components
 toc: true
 weight: 300

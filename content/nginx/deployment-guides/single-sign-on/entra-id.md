@@ -6,7 +6,7 @@ product: NGINX-PLUS
 title: Single Sign-On with Microsoft Entra ID
 toc: true
 weight: 400
-docs: DOCS-1688
+nd-docs: DOCS-1688
 ---
 
 This guide explains how to enable single sign-on (SSO) for applications being proxied by F5 NGINX Plus. The solution uses OpenID Connect as the authentication mechanism, with [Microsoft Entra ID](https://www.microsoft.com/en-us/security/business/identity-access/microsoft-entra-id) as the Identity Provider (IdP), and NGINX Plus as the Relying Party, or OIDC client application that verifies user identity.
@@ -40,7 +40,7 @@ Register a new application in Microsoft Entra ID that will represent NGINX Plus 
 
 2. Register a New Application.
 
-   - Create a new application, for example, "Nginx Demo App", with NGINX callback URI `/oidc_callback`: 
+   - Create a new application, for example, "Nginx Demo App", with NGINX callback URI `/oidc_callback`:
 
      ```bash
      az ad app create --display-name "Nginx Demo App" --web-redirect-uris "https://demo.example.com/oidc_callback"
@@ -58,7 +58,7 @@ Register a new application in Microsoft Entra ID that will represent NGINX Plus 
 
     - Replace the `<appId>` with the value obtained in the previous step.
 
-    - From the command output, copy the the `password` value which represents your **Client Secret**. You will need it later when configuring NGINX Plus. Make sure to securely save the generated client secret, as it will not be displayed again. 
+    - From the command output, copy the the `password` value which represents your **Client Secret**. You will need it later when configuring NGINX Plus. Make sure to securely save the generated client secret, as it will not be displayed again.
 
     - From the same command output, copy the the `tenant` value which represents your **Tenant ID**. You will need it later when configuring NGINX Plus.
 
