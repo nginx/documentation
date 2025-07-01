@@ -433,7 +433,7 @@ To upgrade:
 
    ```shell
     helm upgrade -n nms \
-    --set nms-hybrid.adminPasswordHash=$(openssl passwd -6 'YourPassword123#') \
+    --set nms-hybrid.adminPasswordHash=$(openssl passwd -6 '<your-password>') \
     nms nginx-stable/nms-hybrid \
     -f <path-to-your-values.yaml> \
     --version <chart-version> \
