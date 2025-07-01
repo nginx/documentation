@@ -441,7 +441,7 @@ To upgrade:
    ```
 
    - Replace `<path-to-your-values.yaml>` with the path to the `values.yaml` file you created]({{< ref "/nim/deploy/kubernetes/deploy-using-helm.md#configure-chart" >}}).
-   - Replace `YourPassword123#` with a secure password that includes uppercase and lowercase letters, numbers, and special characters.
+   - Replace `<your-password>` with a secure password that includes uppercase and lowercase letters, numbers, and special characters.
 
       {{<call-out "important" "Save the password!" "" >}} Save this password for future use. Only the encrypted password is stored in Kubernetes, and you can’t recover or reset it later. {{</call-out>}}
 
