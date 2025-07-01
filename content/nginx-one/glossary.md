@@ -3,9 +3,8 @@ description: ''
 nd-docs: DOCS-1396
 title: Glossary
 toc: true
-weight: 800
-type:
-- reference
+weight: 1000
+nd-content-type: reference
 ---
 
 This glossary defines terms used in the F5 NGINX One Console and F5 Distributed Cloud.
