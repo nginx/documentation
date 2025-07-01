@@ -9,13 +9,17 @@ type:
 - how-to
 ---
 
+The GeoIP dynamic module captures information from the client IP address in variables using the MaxMind GeoLite databases.
+
 {{< note >}} MaxMind GeoLite Legacy databases are currently [discontinued](https://blog.maxmind.com/2018/01/discontinuation-of-the-geolite-legacy-databases), MaxMind GeoIP2 or Geolite2 databases and F5 NGINX Plus [GeoIP2 module]({{< ref "geoip2.md" >}}) should be used instead. {{< /note >}}
 
 ## Installation
 
-1. Check the [Technical Specifications]({{< ref "nginx/technical-specs.md" >}}) page to verify that the module is supported by your operating system.
+1. Check the [Technical Specifications]({{< ref "/nginx/technical-specs.md#dynamic-modules" >}}) page to verify that the module is supported by your operating system.
 
-2. Install the GeoIP module package `nginx-plus-module-geoip`.
+2. Make sure that your operating system is configured to retrieve binary packages from the official NGINX Plus repository. See installation instructions for your operating system on the [Installing NGINX Plus]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}) page.
+
+3. Install the GeoIP module package `nginx-plus-module-geoip` from the official NGINX Plus repository.
 
    For Amazon Linux 2, CentOS, Oracle Linux, and RHEL:
 
@@ -60,6 +64,10 @@ After installation you will need to enable and configure the module in NGINX Plu
    http {
        # ...
    }
+
+   stream {
+       # ...
+   }
    ```
 
 2. Perform additional configuration as required by the module ([HTTP](https://nginx.org/en/docs/http/ngx_http_geoip_module.html) or [TCP/UDP](https://nginx.org/en/docs/stream/ngx_stream_geoip_module.html)).
@@ -83,18 +91,18 @@ After installation you will need to enable and configure the module in NGINX Plu
     nginx -s reload
     ```
 
-## More Info
+## More info
 
-- [GeoIP2 Dynamic Module Installation Instructions]({{< ref "geoip2.md" >}})
+- [GeoIP2 dynamic module]({{< ref "geoip2.md" >}})
 
-- [Restricting Access by Geographical Location]({{< ref "nginx/admin-guide/security-controls/controlling-access-by-geoip.md" >}})
+- [Restricting access by geographical location]({{< ref "/nginx/admin-guide/security-controls/controlling-access-by-geoip.md" >}})
 
-- [ngx_http_geoip_module Module Reference](https://nginx.org/en/docs/http/ngx_http_geoip_module.html)
+- [NGINX `ngx_http_geoip_module` module reference](https://nginx.org/en/docs/http/ngx_http_geoip_module.html)
 
-- [ngx_stream_geoip_module Module Reference](https://nginx.org/en/docs/stream/ngx_stream_geoip_module.html)
+- [NGINX `ngx_stream_geoip_module` module reference](https://nginx.org/en/docs/stream/ngx_stream_geoip_module.html)
 
-- [NGINX Dynamic Modules]({{< ref "dynamic-modules.md" >}})
+- [NGINX dynamic modules]({{< ref "dynamic-modules.md" >}})
 
-- [NGINX Plus Technical Specifications]({{< ref "nginx/technical-specs.md" >}})
+- [NGINX Plus technical specifications]({{< ref "/nginx/technical-specs.md" >}})
 
-- [Uninstalling a Dynamic Module]({{< ref "uninstall.md" >}})
+- [Uninstalling a dynamic module]({{< ref "uninstall.md" >}})
