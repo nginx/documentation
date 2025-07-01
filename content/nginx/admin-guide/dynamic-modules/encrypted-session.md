@@ -8,17 +8,19 @@ type:
 - how-to
 ---
 
-The Encrypted Session dynamic module provides encryption and decryption support for NGINX variables based on AES-256 with MAC. It is usually used with the [Set-Misc](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/set-misc/) dynamic module and the NGINX [`rewrite`](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html) module.
+The Encrypted Session dynamic module provides encryption and decryption support for NGINX variables based on AES-256 with MAC. It is usually used with the [Set-Misc]({{< ref "/nginx/admin-guide/dynamic-modules/set-misc.md" >}}) dynamic module and the NGINX [`rewrite`](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html) module.
 
 ## Prerequisites
 
-1. Check the [Technical Specifications]({{< ref "nginx/technical-specs.md" >}}) page to verify that the module is supported by your operating system.
+1. Check the [Technical Specifications]({{< ref "/nginx/technical-specs.md#dynamic-modules" >}}) page to verify that the module is supported by your operating system.
 
-2. Prior to installing the module, verify that the [NDK]({{< ref "ndk.md" >}}) module is already installed.
+2.  Make sure that your operating system is configured to retrieve binary packages from the official NGINX Plus repository. See installation instructions for your operating system on the [Installing NGINX Plus]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}) page.
+
+3. Prior to installing the module, verify that the [NDK]({{< ref "ndk.md" >}}) module is already installed.
 
 ## Installation
 
-1. Install the Encrypted Session module package `nginx-plus-module-encrypted-session`.
+1. Install the Encrypted Session module package `nginx-plus-module-encrypted-session` from the official NGINX Plus repository.
 
    For Amazon Linux 2, CentOS, Oracle Linux, and RHEL:
 
@@ -99,12 +101,12 @@ After installation you will need to enable and configure the module in F5 NGINX 
     nginx -s reload
     ```
 
-## More Info
+## More info
 
-- [NGINX encrypted-session-nginx-module Module Reference](https://github.com/openresty/encrypted-session-nginx-module)
+- [The `encrypted-session-nginx-module` module GitHub project](https://github.com/openresty/encrypted-session-nginx-module)
 
-- [NGINX Dynamic Modules]({{< ref "dynamic-modules.md" >}})
+- [NGINX dynamic modules]({{< ref "dynamic-modules.md" >}})
 
-- [NGINX Plus Technical Specifications]({{< ref "nginx/technical-specs.md" >}})
+- [NGINX Plus technical specifications]({{< ref "/nginx/technical-specs.md" >}})
 
-- [Uninstalling a Dynamic Module]({{< ref "uninstall.md" >}})
+- [Uninstalling a dynamic module]({{< ref "uninstall.md" >}})
