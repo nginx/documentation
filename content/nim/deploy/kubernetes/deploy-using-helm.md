@@ -17,13 +17,8 @@ Starting with version 2.20.0, NGINX Instance Manager supports **lightweight mode
 
 - Lightweight mode requires NGINX Agent v2.41.1 or later.
 
-{{< call-out "note" "Chart renamed in NIM 2.20.0" >}}
-The Helm chart has been renamed from `nginx-stable/nms-hybrid` to `nginx-stable/nim`.  
-Make sure to update your chart references if you’re using version 2.20.0 or later.
-{{< /call-out >}}
-
-{{< call-out "note" "Versioning update from NGINX Instance Manager 2.20.0" >}}
-Helm chart versioning was reset with the chart rename in NGINX Instance Manager 2.20.0; `v2.0.0` is the first release under the new nginx-stable/nim chart name.
+{{< call-out "note" "Chart renamed with new versioning from NGINX Instance Manager 2.20.0" >}}
+Starting with version 2.20.0, the Helm chart was renamed from `nginx-stable/nms-hybrid` to `nginx-stable/nim`. Chart versioning was also reset; `v2.0.0` is the first release under the new name. Be sure to update your chart references if you’re using version `2.20.0` or later.
 {{< /call-out >}}
 
 
