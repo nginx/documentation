@@ -2,8 +2,7 @@
 title: "Development environment setup"
 toc: true
 nd-docs: DOCS-1088
-type:
-- how-to
+nd-content-type: how-to
 ---
 
 ## Overview

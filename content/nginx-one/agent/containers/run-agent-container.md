@@ -2,7 +2,7 @@
 title: "Run the NGINX Agent in a container"
 weight: 100
 toc: true
-type: how-to
+nd-content-type: how-to
 product: Agent
 ---
 

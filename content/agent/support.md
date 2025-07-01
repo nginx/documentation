@@ -2,7 +2,7 @@
 title: Support
 weight: 800
 toc: false
-type: reference
+nd-content-type: reference
 product: Agent
 ---
 

@@ -3,8 +3,7 @@ title: "Technical specifications"
 weight: 100
 toc: true
 nd-docs: DOCS-1092
-type:
-- how-to
+nd-content-type: how-to
 ---
 
 This document describes the requirements for NGINX Agent v2.
