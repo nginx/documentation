@@ -1,5 +1,5 @@
 ---
-docs: "DOCS-1560"
+nd-docs: "DOCS-1560"
 ---
 
 An error message "`app_protect_custom_log_attribute` directive is invalid" will be displayed in the Security Log if the below conditions are met:

@@ -1,6 +1,6 @@
 ---
 description: Create and manage User resources.
-docs: DOCS-784
+nd-docs: DOCS-784
 title: Manage Users
 toc: true
 weight: 20

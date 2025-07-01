@@ -1,5 +1,5 @@
 ---
-docs: "DOCS-1617"
+nd-docs: "DOCS-1617"
 ---
 
 A user can enable/disable specific file types in the policy.

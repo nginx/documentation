@@ -1,7 +1,7 @@
 ---
 description: Control access using HTTP Basic authentication, and optionally in combination
   with IP address-based access control.
-docs: DOCS-428
+nd-docs: DOCS-428
 title: Restricting Access with HTTP Basic Authentication
 toc: true
 weight: 300

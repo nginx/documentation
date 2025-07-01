@@ -2,6 +2,7 @@
 title: MediaWiki
 weight: 1000
 toc: true
+nd-docs: DOCS-1720
 ---
 
 To run the [MediaWiki](https://www.mediawiki.org) collaboration and

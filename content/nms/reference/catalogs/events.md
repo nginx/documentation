@@ -1,6 +1,6 @@
 ---
 description: Information about all of the Events collected by NGINX Controller Agent
-docs: DOCS-1132
+nd-docs: DOCS-1132
 title: Events Catalog
 toc: true
 weight: 20

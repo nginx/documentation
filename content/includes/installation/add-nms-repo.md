@@ -1,5 +1,5 @@
 ---
-docs: DOCS-1243
+nd-docs: DOCS-1243
 ---
 
 Select the tab matching your Linux distribution, then follow the instructions to add the NGINX Instance Manager repository.
@@ -41,7 +41,7 @@ Add the NGINX Instance Manager repository:
   ```shell
   wget -qO - https://cs.nginx.com/static/keys/nginx_signing.key \
       | gpg --dearmor \
-      | sudo tee /usr/share/keyrings/nginx-archive-keyring.gpg >/dev/null 
+      | sudo tee /usr/share/keyrings/nginx-archive-keyring.gpg >/dev/null
   ```
 
 2. Add the NGINX Instance Manager repository:

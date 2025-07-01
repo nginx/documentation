@@ -1,7 +1,7 @@
 ---
 description: Learn how to configure the Cluster-Wide Config settings to fine tune
   and control proxy cluster's behavior with performance enhancing configurations.
-docs: DOCS-1160
+nd-docs: DOCS-1160
 title: Cluster-Wide Config
 toc: true
 weight: 498

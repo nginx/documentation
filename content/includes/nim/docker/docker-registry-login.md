@@ -1,12 +1,12 @@
 ---
-docs: "DOCS-1666"
+nd-docs: "DOCS-1666"
 ---
 
 1. Download your NGINX Instance Manager subscription's JSON Web Token from MyF5. You can use the same JSON Web Token as NGINX Plus in your MyF5 portal.
 
    {{< include "licensing-and-reporting/download-jwt-from-myf5.md" >}}
 
-1. Open the JSON Web Token file you downloaded from [MyF5](https://my.f5.com/manage/s/subscriptions) and copy its contents. 
+1. Open the JSON Web Token file you downloaded from [MyF5](https://my.f5.com/manage/s/subscriptions) and copy its contents.
 
    {{<call-out "tip" "Copying the JWT token" "" >}} Make sure there are **no extra characters or spaces** when copying the contents of the JWT token: they can invalidate the token and cause 401 errors during authentication.{{</call-out>}}
 

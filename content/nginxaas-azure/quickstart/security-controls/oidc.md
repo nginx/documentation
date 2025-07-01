@@ -2,7 +2,7 @@
 title: Set up OIDC authentication
 weight: 300
 toc: true
-docs: DOCS-1646
+nd-docs: DOCS-1646
 url: /nginxaas/azure/quickstart/security-controls/oidc/
 type:
 - how-to

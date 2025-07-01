@@ -1,6 +1,6 @@
 ---
 description: null
-docs: DOCS-1446
+nd-docs: DOCS-1446
 title: Glossary
 weight: 10000
 ---

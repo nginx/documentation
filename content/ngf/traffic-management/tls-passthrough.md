@@ -4,7 +4,7 @@ weight: 800
 toc: true
 nd-content-type: how-to
 nd-product: NGF
-nd-docs: DOCS-000
+nd-docs: DOCS-1850
 ---
 
 Learn how to use TLSRoutes to configure TLS passthrough load-balancing with NGINX Gateway Fabric.
@@ -164,9 +164,9 @@ GW_IP=XXX.YYY.ZZZ.III
 GW_TLS_PORT=<port number>
 ```
 
-{{< note >}} 
+{{< note >}}
 
-In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the Gateway will forward for. 
+In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the Gateway will forward for.
 
 {{< /note >}}
 

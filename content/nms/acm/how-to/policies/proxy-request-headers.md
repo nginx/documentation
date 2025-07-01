@@ -1,7 +1,7 @@
 ---
 description: Learn how to use F5 NGINX Management Suite API Connectivity Manager to
   set request headers to send to your backend services.
-docs: DOCS-1129
+nd-docs: DOCS-1129
 toc: true
 weight: 1100
 title: Proxy Request Headers

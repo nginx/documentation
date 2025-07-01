@@ -1,5 +1,5 @@
 ---
-docs: DOCS-1323
+nd-docs: DOCS-1323
 ---
 
 You can access the NGINX Instance Manager web interface using the external IP address for the API Gateway.
@@ -7,10 +7,10 @@ You can access the NGINX Instance Manager web interface using the external IP ad
 1. To look up the external IP address for the API Gateway, run the following command:
 
    ```bash
-   kubectl -n nms get svc apigw
+   kubectl -n nim get svc apigw
    ```
 
-   This `kubectl` command retrieves the service named `apigw` from the namespace `nms`. It outputs the details of the service, such as its type, port, cluster and external IP addresses.
+   This `kubectl` command shows details for the `apigw` service in the `nim` namespace. You’ll see the service type, port, cluster IP, and external IP addresses.
 
    The default service type is `ClusterIP` and the output looks similar to the following example:
 

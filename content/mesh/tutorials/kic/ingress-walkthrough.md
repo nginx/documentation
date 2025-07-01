@@ -4,7 +4,7 @@ description: This topic provides a walkthrough of deploying F5 NGINX Ingress Con
   for Kubernetes to expose an application within NGINX Service Mesh.
 weight: 220
 toc: true
-docs: DOCS-723
+nd-docs: DOCS-723
 type:
 - tutorial
 ---

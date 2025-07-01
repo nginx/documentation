@@ -1,5 +1,5 @@
 ---
-docs: DOCS-789
+nd-docs: DOCS-789
 title: Add a license (connected)
 toc: true
 weight: 10

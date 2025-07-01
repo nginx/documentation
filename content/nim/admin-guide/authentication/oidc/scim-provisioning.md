@@ -1,5 +1,5 @@
 ---
-docs: DOCS-918
+nd-docs: DOCS-918
 title: Provision users and groups using SCIM
 toc: true
 weight: 500

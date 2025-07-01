@@ -1,5 +1,5 @@
 ---
-docs: DOCS-1247
+nd-docs: DOCS-1247
 title: Build and deploy images
 toc: true
 weight: 300

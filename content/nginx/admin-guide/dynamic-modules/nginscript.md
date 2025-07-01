@@ -2,7 +2,7 @@
 description: Integrate [JavaScript-like](https://nginx.org/en/docs/njs/) code into
   the NGINX event-processing model for HTTP or TDP/UDP, with the NGINX njs module,
   supported by NGINX, Inc.
-docs: DOCS-393
+nd-docs: DOCS-393
 title: njs Scripting Language
 toc: true
 weight: 100
@@ -10,11 +10,15 @@ type:
 - how-to
 ---
 
+njs is an NGINX module that extends the server's functionality through JavaScript scripting, enabling the creation of custom server-side logic and [more](https://nginx.org/en/docs/njs/#usecases).
+
 ## Installation
 
-1. Check the [Technical Specifications]({{< ref "nginx/technical-specs.md" >}}) page to verify that the module is supported by your operating system.
+1. Check the [Technical Specifications]({{< ref "/nginx/technical-specs.md#dynamic-modules" >}}) page to verify that the module is supported by your operating system.
 
-2. Install the njs module package `nginx-plus-module-njs`.
+2. Make sure that your operating system is configured to retrieve binary packages from the official NGINX Plus repository. See installation instructions for your operating system on the [Installing NGINX Plus]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}) page.
+
+3. Install the njs module package `nginx-plus-module-njs` from the official NGINX Plus repository.
 
    For Amazon Linux 2, CentOS, Oracle Linux, and RHEL:
 
@@ -70,6 +74,10 @@ After installation you will need to enable and configure the module in F5 NGINX 
    http {
        # ...
    }
+
+   stream {
+       # ...
+   }
    ```
 
 2. Perform additional configuration as required by the [module](https://www.nginx.com/blog/introduction-nginscript/).
@@ -93,12 +101,12 @@ After installation you will need to enable and configure the module in F5 NGINX 
     nginx -s reload
     ```
 
-## More Info
+## More info
 
-- [njs Scripting Language Reference and Examples](https://nginx.org/en/docs/njs/)
+- [njs Scripting Language reference and examples](https://nginx.org/en/docs/njs/)
 
-- [NGINX Dynamic Modules]({{< ref "dynamic-modules.md" >}})
+- [NGINX dynamic modules]({{< ref "dynamic-modules.md" >}})
 
-- [NGINX Plus Technical Specifications]({{< ref "nginx/technical-specs.md" >}})
+- [NGINX Plus technical specifications]({{< ref "/nginx/technical-specs.md" >}})
 
-- [Uninstalling a Dynamic Module]({{< ref "uninstall.md" >}})
+- [Uninstalling a dynamic module]({{< ref "uninstall.md" >}})

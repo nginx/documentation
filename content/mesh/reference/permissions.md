@@ -3,7 +3,7 @@ title: NGINX Service Mesh Permissions
 weight: 100
 draft: false
 toc: true
-docs: DOCS-883
+nd-docs: DOCS-883
 type:
 - reference
 ---
