@@ -18,4 +18,5 @@ If you're interested in contributing to the [NGINX documentation website](https:
 - [Maintainers etiquette](/documentation/maintainers-etiquette.md)
 - [Managing content with Hugo](/documentation/writing-hugo.md)
 - [Proposals](/documentation/proposals/README.md)
+- [Set up pre-commit](/documentation/pre-commit.md)
 - [Writing style guide](/documentation/style-guide.md)
