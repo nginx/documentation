@@ -354,14 +354,14 @@ networkPolicies:
 
 ### Create a Helm deployment values.yaml file
 
-The `values.yaml` file customizes the Helm chart installation without modifying the chart itself. You can use it to specify image repositories, environment variables, resource requests, and other settings.
+The `values.yaml` file customizes the Helm chart installation without changing the chart itself. You can use it to set image repositories, environment variables, resource requests, and other options.
 
-1. Create a `values.yaml` file similar to this example:
+1. Create a `values.yaml` file like this example:
 
-    - In the `imagePullSecrets` section, add the credentials for your private Docker registry.
-    - Change the version tag to the version of NGINX Instance Manager you would like to install. Refer Helm chart table for versions.
+   - In the `imagePullSecrets` section, add your private Docker registry credentials.
+   - Set the `tag:` field to the version of NGINX Instance Manager you want to install. You can find supported versions in the Helm chart table.
 
-    {{< see-also >}} For details on creating a secret, see the Kubernetes [Pull an Image from a Private Registry](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/) documentation. {{</ see-also >}}
+For details on creating a secret, see the Kubernetes [Pull an Image from a Private Registry](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/) guide.
 
     ```yaml
     imagePullSecrets:
