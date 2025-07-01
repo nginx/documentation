@@ -21,13 +21,13 @@ The F5 NGINX One Console makes it easy to manage NGINX instances across location
 [//]: # "Some examples of content could be the latest release note, the most common install path, and a popular new feature."
 {{<card-layout>}}
   {{<card-section showAsCards="true" isFeaturedSection="true">}}
-    {{<card title="Get started" titleUrl="getting-started/" isFeatured="true" icon="unplug">}}
+    {{<card title="Get started" titleUrl="nginx-one/getting-started/" isFeatured="true" icon="unplug">}}
       See benefits from the NGINX One Console
     {{</card >}}
-    {{<card title="Changelog" titleUrl="changelog/" icon="clock-alert">}}
+    {{<card title="Changelog" titleUrl="nginx-one/changelog/" icon="clock-alert">}}
       See latest updates: New features, improvements, and bug fixes
     {{</card>}}
-    {{<card title="Add an NGINX instance" titleUrl="connect-instances/add-instance/" icon="copy-plus">}}
+    {{<card title="Add an NGINX instance" titleUrl="nginx-one/connect-instances/add-instance/" icon="copy-plus">}}
       Connect your instances to NGINX One
     {{</card>}}
   {{</card-section>}}
