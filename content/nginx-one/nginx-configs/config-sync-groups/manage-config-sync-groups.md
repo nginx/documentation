@@ -1,5 +1,5 @@
 ---
-docs: null
+nd-docs: null
 title: Manage Config Sync Groups
 toc: true
 weight: 300

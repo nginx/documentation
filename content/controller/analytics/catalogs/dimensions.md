@@ -1,7 +1,7 @@
 ---
 description: Information about all of the Dimensions collected by F5 NGINX Controller
   Agent.
-docs: DOCS-524
+nd-docs: DOCS-524
 title: NGINX Controller Dimensions Catalog
 toc: false
 weight: 20

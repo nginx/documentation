@@ -1,7 +1,7 @@
 ---
 description: These release notes list and describe the new features, enhancements,
   and resolved issues in NGINX Management Suite API Connectivity Manager.
-docs: DOCS-931
+nd-docs: DOCS-931
 title: Release Notes
 toc: true
 weight: 100

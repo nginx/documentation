@@ -1,7 +1,7 @@
 ---
 description: Learn how to enable single sign-on (SSO) with Okta for applications proxied
   by F5 NGINX Plus.
-docs: DOCS-466
+nd-docs: DOCS-466
 type:
 - how-to
 title: Single Sign-On with Okta and njs

@@ -1,7 +1,7 @@
 ---
 description: Load balance Node.js application servers with NGINX Open Source or the
   advanced features in F5 NGINX Plus, following our step-by-step setup instructions.
-docs: DOCS-453
+nd-docs: DOCS-453
 title: Load Balancing Node.js Application Servers with NGINX Open Source and NGINX
   Plus
 toc: true

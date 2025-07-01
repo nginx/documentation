@@ -150,7 +150,8 @@ Install the NLK controller using `helm install`. Be sure your kubectl context is
 ```bash
 helm install nlk oci://registry-1.docker.io/nginxcharts/nginxaas-loadbalancer-kubernetes --version 1.1.1 \
   --set "nlk.dataplaneApiKey=${keyValue}" \
-  --set "nlk.config.nginxHosts=${dataplaneAPIEndpoint}nplus"
+  --set "nlk.config.nginxHosts=${dataplaneAPIEndpoint}nplus" \
+  --set "nlk.config.tls.mode=ca-tls"
 ```
 
 ##### Install the AKS Extension using the Azure CLI
@@ -173,7 +174,8 @@ az k8s-extension create \
   --plan-publisher f5-networks \
   --release-namespace nlk \
   --config nlk.dataplaneApiKey=${keyValue} \
-  --config nlk.config.nginxHosts=${dataplaneAPIEndpoint}nplus
+  --config nlk.config.nginxHosts=${dataplaneAPIEndpoint}nplus \
+  --config nlk.config.tls.mode=ca-tls
 ```
 
 ##### Install the AKS Extension using the Azure portal
@@ -296,6 +298,7 @@ spec:
 | `nlk.config.logLevel` | How verbose should the NLK controller logs be. | Possible values are `debug`, `info`, `warn`, `error`. Default: `info`. |
 | `nlk.config.nginxHosts` | The NGINX Plus APIs to send upstream updates to. | Should be set to `{{dataplaneApiEndpoint}}nplus`.|
 | `nlk.config.serviceAnnotationMatch` | The value to match on a Service's `nginx.com/nginxaas` annotation. Useful when configuring multiple NLK controllers to update separate NGINXaaS deployemnts. | Default: `nginxaas`. |
+| `nlk.config.tls.mode` | The TLS mode to use when forming connections with the data plane API server. | Should be set to `ca-tls` to enforce TLS with the data plane API server.|
 | `nlk.dataplaneApiKey`   | The NGINXaaS data plane API key that will authorize the controller to talk to your NGINXaaS deployment.           |                                                                                         |
 
 ### Multiple AKS clusters

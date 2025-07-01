@@ -1,6 +1,6 @@
 ---
 description: Create and manage Roles and Role Groups.
-docs: DOCS-783
+nd-docs: DOCS-783
 title: Manage Roles and Role Groups
 toc: true
 weight: 30

@@ -1,5 +1,5 @@
 ---
-docs: "DOCS-1439"
+nd-docs: "DOCS-1439"
 ---
 
 ```shell

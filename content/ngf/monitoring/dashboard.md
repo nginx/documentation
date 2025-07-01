@@ -9,7 +9,7 @@ nd-docs: DOCS-1417
 
 This topic describes how to view the NGINX Plus dashboard to see real-time metrics.
 
-The NGINX Plus dashboard offers a real-time live activity monitoring interface that shows key load and performance metrics of your server infrastructure. 
+The NGINX Plus dashboard offers a real-time live activity monitoring interface that shows key load and performance metrics of your server infrastructure.
 
 The dashboard is enabled by default for NGINX Gateway Fabric deployments that use NGINX Plus as the data plane, and is available on port 8765.
 
@@ -33,7 +33,7 @@ The dashboard will look like this:
 
 To access the NGINX Plus dashboard from sources than the default `127.0.0.1`, you can use the NginxProxy resource to allow access to other IP Addresses or CIDR blocks.
 
-The following example configuration allows access to the NGINX Plus dashboard from the IP Addresses `192.0.2.8` and 
+The following example configuration allows access to the NGINX Plus dashboard from the IP Addresses `192.0.2.8` and
 `192.0.2.0` and the CIDR block `198.51.100.0/24`:
 
 ```yaml

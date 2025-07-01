@@ -1,7 +1,7 @@
 ---
 description: Enable OpenID Connect-based single-sign for applications proxied by NGINX
   Plus, using Microsoft AD FS as the identity provider (IdP).
-docs: DOCS-463
+nd-docs: DOCS-463
 type:
 - how-to
 title: Single Sign-On with Microsoft AD FS and njs

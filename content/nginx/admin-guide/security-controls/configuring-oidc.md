@@ -6,10 +6,10 @@ title: Single Sign-On with OpenID Connect and Identity Providers
 toc: true
 weight: 550
 product: NGINX-PLUS
-docs: DOCS-1690
+nd-docs: DOCS-1690
 ---
 
-This guide explains how to enable single sign-on (SSO) for applications being proxied by F5 NGINX Plus using: 
+This guide explains how to enable single sign-on (SSO) for applications being proxied by F5 NGINX Plus using:
 - OpenID Connect as the authentication mechanism.
 - An external Identity Provider (IdP) such as AD FS, Auth0, Cognito, Entra ID, Keycloak, OneLogin, Okta, Ping Identity and others.
 - NGINX Plus as an OIDC client application that verifies user identity (Relying Party).
@@ -35,7 +35,7 @@ For the target client application, OIDC authentication can be enabled with great
 
 6. NGINX Plus validates the `id_token` and retrieves profile data for the user using the `UserInfo` endpoint. The retrieved profile data is validated and the content of the `id_token` and the profile data is used for providing access control to the client application.
 
-7. Upon successful validation, the resource access request is sent to the client application along with the access token. 
+7. Upon successful validation, the resource access request is sent to the client application along with the access token.
 
 8. The client application validates the access token and based on the token validation, the resource access request is allowed or denied.
 
@@ -66,7 +66,7 @@ For the target client application, OIDC authentication can be enabled with great
 
 - An identity provider (IdP) set up on your network or in the cloud. You need admin access to the IdP.
 
-- An [NGINX Plus subscription](https://www.f5.com/products/nginx/nginx-plus) and NGINX Plus [Release 34]({{< ref "nginx/releases.md#r34" >}}) or later.  
+- An [NGINX Plus subscription](https://www.f5.com/products/nginx/nginx-plus) and NGINX Plus [Release 34]({{< ref "nginx/releases.md#r34" >}}) or later.
   To install NGINX Plus, follow the steps in [Installing NGINX Plus](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/).
 
 - A domain name that points to your NGINX Plus instance (for example, `demo.example.com`).
@@ -83,7 +83,7 @@ The setup steps are similar for most identity providers, but some details may di
    - Give the app a name.
    - Add the users or groups who need access.
 
-3. Find the **Client ID** and **Client Secret** for your app.  
+3. Find the **Client ID** and **Client Secret** for your app.
    You'll need these later when you [set up NGINX Plus as the relying party](#setup-oidc-provider2).
 
 4. Find the **issuer** value.

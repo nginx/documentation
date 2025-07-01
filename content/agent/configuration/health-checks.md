@@ -5,7 +5,7 @@ weight: 400
 toc: true
 type:
 - how-to
-docs: DOCS-1677
+nd-docs: DOCS-1677
 ---
 
 ## Overview

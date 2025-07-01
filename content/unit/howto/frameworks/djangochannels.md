@@ -2,6 +2,7 @@
 title: Django Channels
 toc: true
 weight: 600
+nd-docs: DOCS-1742
 ---
 
 To run Django apps using the Django Channels [framework](https://channels.readthedocs.io/en/stable/) with Unit:

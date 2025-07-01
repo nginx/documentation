@@ -1,7 +1,7 @@
 ---
 description: How to set up Kubernetes-native API Gateways using Instance Groups (requires
   the API Management module).
-docs: DOCS-775
+nd-docs: DOCS-775
 title: Manage Containerized Instances
 toc: true
 weight: 15

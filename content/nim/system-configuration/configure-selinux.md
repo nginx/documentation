@@ -1,5 +1,5 @@
 ---
-docs: DOCS-796
+nd-docs: DOCS-796
 title: Configure SELinux
 toc: true
 weight: 250

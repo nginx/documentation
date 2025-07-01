@@ -2,7 +2,7 @@
 description: Platforms supported by F5 NGINX Plus and dynamically loaded modules,
   supported SSL/TLS versions, supported deployment environments, and list of modules
   built into NGINX Plus.
-docs: DOCS-473
+nd-docs: DOCS-473
 title: Technical Specs
 toc: true
 weight: 400

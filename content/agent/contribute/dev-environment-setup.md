@@ -1,9 +1,9 @@
 ---
 title: "Development environment setup"
 toc: true
-weight: 200
-nd-docs: DOCS-000
-draft: true
+nd-docs: DOCS-1088
+type:
+- how-to
 ---
 
 ## Overview

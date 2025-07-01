@@ -5,8 +5,6 @@ weight: 100
 toc: true
 nd-docs: DOCS-1229
 nd-content-type: how-to
-
-
 ---
 
 The following sections explain how to configure NGINX Agent using configuration files, CLI flags, and environment variables.

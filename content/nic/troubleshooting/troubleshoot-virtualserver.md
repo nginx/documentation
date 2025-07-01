@@ -1,5 +1,5 @@
 ---
-docs: DOCS-1461
+nd-docs: DOCS-1461
 doctypes:
 - ''
 title: Troubleshooting VirtualServer resources

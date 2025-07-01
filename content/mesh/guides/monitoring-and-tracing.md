@@ -4,7 +4,7 @@ toc: true
 description: Learn about the monitoring and tracing features available in F5 NGINX
   Service Mesh.
 weight: 20
-docs: DOCS-693
+nd-docs: DOCS-693
 type:
 - how-to
 ---

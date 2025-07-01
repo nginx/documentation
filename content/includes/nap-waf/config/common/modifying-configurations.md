@@ -1,5 +1,5 @@
 ---
-docs: "DOCS-1591"
+nd-docs: "DOCS-1591"
 ---
 
 What we have been seeing so far has been related to making changes by actually overriding specific configuration values. What would happen in the case we wanted to remove a specific configuration entity from the policy. For example, let's say we have added file types "aaa", "bbb", and "ccc", and now we wish to remove "bbb" from the list of disallowed file types. Deleting this entity from the declarative configuration file will simply mean that this entity will be left intact when the policy is rebuilt, meaning that the entity is still in the disallowed file types list. To resolve such situations, we have a `modifications` section where we can force modification where otherwise it is not possible using direct declarative configuration.

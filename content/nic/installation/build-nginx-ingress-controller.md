@@ -4,7 +4,7 @@ toc: true
 weight: 400
 type: how-to
 product: NIC
-docs: DOCS-1453
+nd-docs: DOCS-1453
 ---
 
 This document describes how to build an F5 NGINX Ingress Controller image from source code and upload it to a private Docker registry.

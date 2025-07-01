@@ -1,7 +1,7 @@
 ---
 description: Follow the instructions in this guide to install and configure the NGINX
   Agent on your data plane systems.
-docs: DOCS-800
+nd-docs: DOCS-800
 title: Install and Configure NGINX Agent
 toc: true
 weight: 100

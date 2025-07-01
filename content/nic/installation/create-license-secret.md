@@ -1,12 +1,13 @@
 ---
-title: Create a license Secret 
+title: Create a license Secret
 toc: true
 weight: 300
 nd-content-type: how-to
 nd-product: NIC
+nd-docs: DOCS-1860
 ---
 
-This document explains how to create and use a license secret for F5 NGINX Ingress Controller. 
+This document explains how to create and use a license secret for F5 NGINX Ingress Controller.
 
 # Overview
 
@@ -18,18 +19,18 @@ The JWT is required for validating your subscription and reporting telemetry dat
 
 {{< note >}} Read the [subscription licenses topic]({{< ref "/solutions/about-subscription-licenses.md#for-internet-connected-environments" >}}) for a list of IPs associated with F5's licensing endpoint (`product.connect.nginx.com`). {{</ note >}}
 
-## Set up your NGINX Plus license 
+## Set up your NGINX Plus license
 
 ### Download the JWT
 
 {{< include "/nic/installation/download-jwt.md" >}}
 
-### Create the Secret 
+### Create the Secret
 
 The JWT needs to be configured before deploying NGINX Ingress Controller. The JWT will be stored in a Kubernetes Secret of type `nginx.com/license`, and can be created with the following command.
 
 ```shell
-kubectl create secret generic license-token --from-file=license.jwt=<path-to-your-jwt> --type=nginx.com/license -n <Your Namespace> 
+kubectl create secret generic license-token --from-file=license.jwt=<path-to-your-jwt> --type=nginx.com/license -n <Your Namespace>
 ```
 You can now delete the downloaded `.jwt` file.
 
@@ -91,7 +92,7 @@ Specify the endpoint in the `usage-report-endpoint` Management ConfigMap key.
 
 To configure SSL certificates or SSL trusted certificates, extra steps are necessary.
 
-To use Client Auth with NGINX Instance Manager, first create a Secret of type `kubernetes.io/tls` in the same namespace as the NGINX Ingress Controller pods. 
+To use Client Auth with NGINX Instance Manager, first create a Secret of type `kubernetes.io/tls` in the same namespace as the NGINX Ingress Controller pods.
 
 ```shell
 kubectl create secret tls ssl-certificate --cert=<path-to-your-client.pem> --key=<path-to-your-client.key> -n <Your Namespace>
@@ -112,7 +113,7 @@ Providing an optional CRL (certificate revocation list) will configure the [`ssl
 
 {{%tab name="Helm"%}}
 
-Specify the SSL certificate Secret name using the `controller.mgmt.sslCertificateSecretName` Helm value. 
+Specify the SSL certificate Secret name using the `controller.mgmt.sslCertificateSecretName` Helm value.
 
 Specify the SSL trusted certificate Secret name using the `controller.mgmt.sslTrustedCertificateSecretName` Helm value.
 

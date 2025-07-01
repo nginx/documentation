@@ -1,7 +1,7 @@
 ---
 description: Stream video in multiple formats, including  Real-Time Messaging Protocol
   (RTMP), HLS, and DASH, with the RTMP dynamic module, supported by NGINX, Inc.
-docs: DOCS-399
+nd-docs: DOCS-399
 title: RTMP
 toc: true
 weight: 100
@@ -9,12 +9,15 @@ type:
 - how-to
 ---
 
-<span id="install"></span>
+The RTMP dynamic module enables video streaming in multiple formats, including  Real-Time Messaging Protocol (RTMP), HLS, and DASH.
+
 ## Installation
 
-1. Check the [Technical Specifications]({{< ref "nginx/technical-specs.md" >}}) page to verify that the module is supported by your operating system.
+1. Check the [Technical Specifications]({{< ref "/nginx/technical-specs.md#dynamic-modules" >}}) page to verify that the module is supported by your operating system.
 
-2. Install the RTMP Media Streaming module package `nginx-plus-module-rtmp`.
+2. Make sure that your operating system is configured to retrieve binary packages from the official NGINX Plus repository. See installation instructions for your operating system on the [Installing NGINX Plus]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}) page.
+
+3. Install the RTMP Media Streaming module package `nginx-plus-module-rtmp` from the official NGINX Plus repository.
 
    For Amazon Linux 2, CentOS, Oracle Linux, and RHEL:
 
@@ -57,9 +60,6 @@ type:
    sudo pkg install nginx-plus-module-rtmp
    ```
 
-
-<span id="configure"></span>
-
 ## Configuration
 
 After installation you will need to enable and configure the module in F5 NGINX Plus configuration file `nginx.conf`.
@@ -95,16 +95,12 @@ After installation you will need to enable and configure the module in F5 NGINX 
     nginx -s reload
     ```
 
+## More info {#info}
 
-<span id="info"></span>
-## More Info
+- [NGINX RTMP GitHub project](https://github.com/arut/nginx-rtmp-module)
 
-- [NGINX RTMP Module Reference](https://github.com/arut/nginx-rtmp-module)
+- [NGINX dynamic modules]({{< ref "dynamic-modules.md" >}})
 
-- [NGINX Dynamic Modules]({{< ref "dynamic-modules.md" >}})
+- [NGINX Plus technical specifications]({{< ref "/nginx/technical-specs.md" >}})
 
-- [NGINX Plus Technical Specifications]({{< ref "nginx/technical-specs.md" >}})
-
-- [NGINX Plus Technical Specifications]({{< ref "nginx/technical-specs.md" >}})
-
-- [Uninstalling a Dynamic Module]({{< ref "uninstall.md" >}})
+- [Uninstalling a dynamic module]({{< ref "uninstall.md" >}})

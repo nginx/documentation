@@ -1,19 +1,19 @@
 ---
 description: This section describes how to uninstall an F5 NGINX Plus dynamic module.
-docs: DOCS-402
+nd-docs: DOCS-402
 title: Uninstalling a dynamic module
 toc: true
 weight: 100
 type:
 - how-to
 ---
-You may need to uninstall a dynamic module in NGINX Plus in several scenarios: 
+You may need to uninstall a dynamic module in NGINX Plus in several scenarios:
 
 - The module is being replaced with a newer or alternative version. For example, the [OpenTracing]({{< ref "opentracing.md" >}}) module has been replaced by the [OpenTelemetry]({{< ref "opentelemetry.md" >}}) module. The [Cookie-Flag]({{< ref "cookie-flag.md" >}}) dynamic module has been superseded by natively supported [`proxy_cookie_flags`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_cookie_flags) directive.
 
 - The module is no longer supported, for example, the [NGINX ModSecurity WAF]({{< ref "nginx-waf.md" >}}) module.
 
-- The operating system is not supported by the module. See the the [Dynamic Modules]({{< ref "nginx/technical-specs.md#dynamic-modules" >}}) section of the [NGINX Plus Technical Specifications]({{< ref "nginx/technical-specs.md#dynamic-modules" >}}).
+- The operating system is not supported by the module. See the the [Dynamic Modules]({{< ref "/nginx/technical-specs.md#dynamic-modules" >}}) section of the [NGINX Plus Technical Specifications]({{< ref "/nginx/technical-specs.md#dynamic-modules" >}}).
 
 - The module it is no longer required, uninstalling it helps optimize resource usage and reduce maintenance overhead.
 
@@ -88,10 +88,10 @@ After uninstalling the package, you will need to disable the module in the NGINX
     nginx -s reload
     ```
 
-## More Info
+## More info
 
-- [NGINX Module Reference](https://nginx.org/en/docs/)
+- [NGINX modules reference](https://nginx.org/en/docs/)
 
-- [NGINX Dynamic Modules]({{< ref "dynamic-modules.md" >}})
+- [NGINX dynamic modules]({{< ref "dynamic-modules.md" >}})
 
-- [NGINX Plus Technical Specifications]({{< ref "nginx/technical-specs.md" >}})
+- [NGINX Plus technical specifications]({{< ref "/nginx/technical-specs.md" >}})
