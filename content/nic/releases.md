@@ -10,9 +10,9 @@ nd-docs: DOCS-616
 
 30 Jun 2025
 
-This release of NGINX Ingress Controller brings with it initial connectivity to the NGINX One Console! With this, you can now manage your NGINX instances that are part of the NGINX Ingress Controller.
+This NGINX Ingress Controller release brings initial connectivity to the NGINX One Console! You can now use NGINX One Console to manage NGINX instances that are part of your NGINX Ingress Controller cluster.
 
-This release also brings with it the ability to perform Rate Limiting to your APIs based on a supplied NGINX variable and its value. With this capability, you now have more finer grained control over how frequently specific users access your resources.
+This release also includes the ability to configure Rate Limiting for your APIs based on a specific NGINX variable and its value. This allows you more granular control over how frequently specific users access your resources.
 
 Lastly, in our previous release of v5.0.0, we removed support for Open Tracing. This release brings back this observability capability through native NGINX Open Telemetry Traces allowing you to monitor the internal traffic of your applications.
 

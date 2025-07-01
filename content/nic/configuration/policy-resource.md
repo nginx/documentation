@@ -180,7 +180,7 @@ condition:
 {{% /table %}}
 {{< note >}}
  
-One condition of type `jwt` or `variables` is required.  Only ony condition per Policy is supported.
+One condition of type `jwt` or `variables` is required. Each Policy supports only one condition.
 
 {{< /note >}}
 
@@ -221,7 +221,7 @@ The rate limit policy will only apply to requests that contain a JWT with the sp
 
 ### RateLimit.Condition.Variables
 
-RateLimit.Condition.Variables defines a condition for a rate limit by NGINX variable. For example, here we define a condition for a rate limit policy that only applies to requests with the request method with a value `GET`:
+RateLimit.Condition.Variables defines a condition for a rate limit by NGINX variable. The following example defines a condition for a rate limit policy that only applies to requests with the request method with a value `GET`:
 
 ```yaml
 variables:
