@@ -1,7 +1,7 @@
 ---
 description: Analyze your software performance by instrumenting, generating, collecting,
   and exporting telemetry data.
-docs: DOCS-1207
+nd-docs: DOCS-1207
 title: OpenTelemetry
 toc: true
 weight: 100

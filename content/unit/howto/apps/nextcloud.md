@@ -2,7 +2,7 @@
 title: NextCloud
 weight: 1400
 toc: true
-docs: DOCS-1724
+nd-docs: DOCS-1724
 ---
 
 To run the [NextCloud](https://nextcloud.com) share and collaboration

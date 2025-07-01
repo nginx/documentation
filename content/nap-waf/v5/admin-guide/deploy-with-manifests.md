@@ -4,7 +4,7 @@ weight: 400
 toc: true
 type: how-to
 product: NAP-WAF
-docs: DOCS-1366
+nd-docs: DOCS-1366
 ---
 
 ## Prerequisites
@@ -457,8 +457,8 @@ spec:
 
 {{< include "/nap-waf/nap-k8s-readonly-paths.md" >}}
 
---- 
- 
+---
+
 ### Possible issues
 
 {{< include "/nap-waf/nap-k8s-readonly-issues.md" >}}

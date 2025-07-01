@@ -3,7 +3,7 @@ title: OS Metrics
 description: List of OS Metrics
 weight: 20
 toc: true
-docs: DOCS-974
+nd-docs: DOCS-974
 ---
 
 ## System Metrics

@@ -2,7 +2,7 @@
 title: Recreating a deployment
 weight: 500
 toc: true
-docs: DOCS-1378
+nd-docs: DOCS-1378
 url: /nginxaas/azure/quickstart/recreate/
 type:
 - how-to

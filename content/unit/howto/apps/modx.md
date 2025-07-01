@@ -2,7 +2,7 @@
 title: MODX
 weight: 1200
 toc: true
-docs: DOCS-1726
+nd-docs: DOCS-1726
 ---
 
 To run the [MODX](https://modx.com) content application platform using Unit:

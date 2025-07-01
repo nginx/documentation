@@ -1,5 +1,5 @@
 ---
-docs: "DOCS-1556"
+nd-docs: "DOCS-1556"
 ---
 
 The following file types are disallowed by default:

@@ -2,7 +2,7 @@
 description: Integrate [JavaScript-like](https://nginx.org/en/docs/njs/) code into
   the NGINX event-processing model for HTTP or TDP/UDP, with the NGINX njs module,
   supported by NGINX, Inc.
-docs: DOCS-393
+nd-docs: DOCS-393
 title: njs Scripting Language
 toc: true
 weight: 100

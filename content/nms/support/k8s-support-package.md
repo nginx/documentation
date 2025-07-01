@@ -1,7 +1,7 @@
 ---
 description: This guide outlines the steps for creating a support package from a Helm
   installation to aid in troubleshooting error scenarios.
-docs: DOCS-1123
+nd-docs: DOCS-1123
 title: Create a Support Package from a Helm Installation
 toc: true
 weight: 200

@@ -1,7 +1,7 @@
 ---
 description: This topic describes possible issues users might encounter when using
   API Connectivity Manager. When possible, suggested workarounds are provided.
-docs: DOCS-1222
+nd-docs: DOCS-1222
 title: Troubleshooting
 toc: true
 weight: 1000

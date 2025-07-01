@@ -1,7 +1,7 @@
 ---
 description: Understand the NGINX processes that handle traffic, and how to control
   them at runtime.
-docs: DOCS-379
+nd-docs: DOCS-379
 title: Control NGINX Processes at Runtime
 toc: true
 weight: 100

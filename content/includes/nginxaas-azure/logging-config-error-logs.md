@@ -1,5 +1,5 @@
 ---
-docs: "DOCS-000"
+nd-docs: "DOCS-000"
 ---
 
 By default, NGINXaaS for Azure puts the error log at **/var/log/nginx/error.log**. It includes messages with severity **error** and above.

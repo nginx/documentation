@@ -1,6 +1,6 @@
 ---
 description: ''
-docs: DOCS-391
+nd-docs: DOCS-391
 title: Lua
 toc: true
 weight: 100

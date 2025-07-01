@@ -1,7 +1,7 @@
 ---
 description: Migrate load-balancing configuration from Citrix ADC to F5 NGINX Plus
   for equal performance at lower cost, using our syntax conversion examples.
-docs: DOCS-459
+nd-docs: DOCS-459
 title: Migrating Load Balancer Configuration from Citrix ADC to NGINX Plus
 toc: true
 weight: 100

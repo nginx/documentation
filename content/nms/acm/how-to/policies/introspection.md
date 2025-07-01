@@ -1,7 +1,7 @@
 ---
 description: API Owners can restrict access to their APIs with OAuth2 tokens. The
   policy is configured to grant access to APIs after having tokens introspected.
-docs: DOCS-953
+nd-docs: DOCS-953
 toc: true
 weight: 800
 Title: Introspection

@@ -4,7 +4,7 @@ weight: 100
 toc: true
 type: how-to
 product: NIM
-docs: DOCS-1107
+nd-docs: DOCS-1107
 ---
 
 ## Overview

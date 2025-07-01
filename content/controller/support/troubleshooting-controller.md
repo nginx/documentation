@@ -1,7 +1,7 @@
 ---
 description: Steps to take to investigate and fix issues with F5 NGINX Controller
   and the Controller Agent.
-docs: DOCS-376
+nd-docs: DOCS-376
 title: Troubleshoot NGINX Controller and the Controller Agent
 toc: true
 weight: 100

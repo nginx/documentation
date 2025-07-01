@@ -4,7 +4,7 @@ weight: 130
 toc: true
 type: reference
 product: NAP-WAF
-docs: DOCS-1787
+nd-docs: DOCS-1787
 ---
 
 May 29, 2024
@@ -23,7 +23,7 @@ In this release, NGINX App Protect WAF supports NGINX Plus R32.
 #### App Protect
 
 
-##### Alpine Linux 3.16 
+##### Alpine Linux 3.16
 
 - app-protect-32.5.48.0-r1.apk
 
@@ -47,7 +47,7 @@ In this release, NGINX App Protect WAF supports NGINX Plus R32.
 
 - app-protect-32+5.48.0-1.el8.ngx.x86_64.rpm
 
-##### RHEL 8.1+ 
+##### RHEL 8.1+
 
 - app-protect-32+5.48.0-1.el8.ngx.x86_64.rpm
 

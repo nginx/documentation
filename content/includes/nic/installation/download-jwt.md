@@ -1,5 +1,5 @@
 ---
-docs: "DOCS-000"
+nd-docs: "DOCS-000"
 ---
 
 1. Log in to [MyF5](https://my.f5.com/manage/s/).

@@ -1,7 +1,7 @@
 ---
 description: Learn how to set up an F5 NGINX Management Suite API Connectivity Manager
   OAuth2 Introspection policy with Keycloak as the authorization server.
-docs: DOCS-954
+nd-docs: DOCS-954
 title: OAuth2 Introspection with Keycloak
 toc: true
 weight: 400

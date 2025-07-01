@@ -1,6 +1,6 @@
 ---
 description: ''
-docs: DOCS-422
+nd-docs: DOCS-422
 title: Accepting the PROXY Protocol
 toc: true
 weight: 800

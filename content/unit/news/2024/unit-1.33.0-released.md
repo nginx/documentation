@@ -1,7 +1,7 @@
 ---
 title: Unit 1.33.0 Released
 weight: 200
-docs: DOCS-1763
+nd-docs: DOCS-1763
 ---
 
 We are pleased to announce the release of NGINX Unit 1.33.0. This release includes

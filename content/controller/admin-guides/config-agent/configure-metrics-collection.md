@@ -1,7 +1,7 @@
 ---
 description: Contains instructions for setting up the F5 NGINX Controller Agent to
   collect metrics for NGINX Plus instances.
-docs: DOCS-509
+nd-docs: DOCS-509
 title: Set up Metrics Collection
 toc: true
 weight: 120

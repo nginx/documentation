@@ -1,6 +1,6 @@
 ---
 description: This guide explains how to install and update F5 NGINX Controller.
-docs: DOCS-255
+nd-docs: DOCS-255
 title: Install NGINX Controller
 toc: true
 weight: 120
