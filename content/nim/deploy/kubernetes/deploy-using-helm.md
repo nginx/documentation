@@ -445,9 +445,11 @@ To upgrade:
 
       {{<call-out "important" "Save the password!" "" >}} Save this password for future use. Only the encrypted password is stored in Kubernetes, and you can’t recover or reset it later. {{</call-out>}}
 
-{{< call-out "note" "Upgrading from 2.18.0 or lower to 2.19.x" >}}
-If you’re upgrading from a deployment that used the legacy `nms` chart or release name, you’ll need to update the chart reference and adjust the release name as needed.
-The structure of values.yaml is different from previous releases.
+{{< call-out "note" "Upgrading from 2.18.0 or earlier to 2.19.x" >}}
+If you're upgrading from version 2.18.0 or earlier to 2.19.x, note the following changes:
+
+- If you used the legacy `nms` chart or release name, update the chart reference and adjust the release name if needed.
+- The structure of the `values.yaml` file has changed in this release.
 {{< /call-out >}}
 
 ---
