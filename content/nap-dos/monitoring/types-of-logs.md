@@ -1,6 +1,6 @@
 ---
 description: Learn about the F5 NGINX App Protect DoS Logs Overview.
-docs: DOCS-671
+nd-docs: DOCS-671
 title: NGINX App Protect DoS Logs Overview
 toc: true
 weight: 130

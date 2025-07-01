@@ -1,7 +1,7 @@
 ---
 description: Enable high availability of F5 NGINX Plus instances in on-premises deployments,
   configuring an active-passive pair in a solution based on keepalived and VRRP.
-docs: DOCS-406
+nd-docs: DOCS-406
 title: High Availability Support for NGINX Plus in On-Premises Deployments
 toc: true
 weight: 100

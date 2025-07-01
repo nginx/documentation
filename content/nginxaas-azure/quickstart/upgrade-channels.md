@@ -2,7 +2,7 @@
 title: Upgrade channels
 weight: 150
 toc: true
-docs: DOCS-1480
+nd-docs: DOCS-1480
 url: /nginxaas/azure/quickstart/upgrade-channels/
 type:
 - how-to

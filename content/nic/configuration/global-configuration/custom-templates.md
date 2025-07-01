@@ -1,5 +1,5 @@
 ---
-docs: DOCS-587
+nd-docs: DOCS-587
 doctypes:
 - ''
 title: Custom templates

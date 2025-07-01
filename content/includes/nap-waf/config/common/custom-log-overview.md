@@ -1,5 +1,5 @@
 ---
-docs: "DOCS-1614"
+nd-docs: "DOCS-1614"
 ---
 
 Custom dimensions log entries feature refers to the new configuration in NGINX App Protect WAF, where the new directive called `app_protect_custom_log_attribute` is assigned to a particular location or server or http level in the `nginx.conf` file. The need is to be able to add custom identifiers to the respective location and/or server and identify requests in the Security Log by those identifiers.

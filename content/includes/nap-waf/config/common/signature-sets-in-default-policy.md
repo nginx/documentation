@@ -1,5 +1,5 @@
 ---
-docs: "DOCS-1587"
+nd-docs: "DOCS-1587"
 ---
 
 The following signature sets are included in the default policy. Most of the sets are defined by the Attack Type they protect from. In all sets the **Alarm** flag is enabled and **Block** disabled except High Accuracy Signatures, which are set to **blocked** (`block` parameter is enabled).

@@ -4,7 +4,7 @@ description: Learn how to set up persistent storage for use with F5 NGINX Servic
   Mesh.
 weight: 101
 toc: true
-docs: DOCS-686
+nd-docs: DOCS-686
 type:
 - how-to
 ---

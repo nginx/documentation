@@ -2,6 +2,7 @@
 title: Ruby on Rails
 weight: 1600
 toc: true
+nd-docs: DOCS-1759
 ---
 
 To run apps based on the [Ruby on Rails](https://rubyonrails.org) framework

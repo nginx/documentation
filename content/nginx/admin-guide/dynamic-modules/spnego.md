@@ -1,7 +1,7 @@
 ---
 description: This module adds [SPNEGO](https://tools.ietf.org/html/rfc4178) support
   to F5 NGINX Plus. Currently, only Kerberos authentication via GSSAPI is supported.
-docs: DOCS-401
+nd-docs: DOCS-401
 title: SPNEGO
 toc: true
 weight: 100
@@ -9,11 +9,15 @@ type:
 - how-to
 ---
 
+The SPNEGO Auth module adds [SPNEGO](https://tools.ietf.org/html/rfc4178) support to F5 NGINX Plus. Currently, only Kerberos authentication via GSSAPI is supported.
+
 ## Installation
 
-1. Check the [Technical Specifications]({{< ref "nginx/technical-specs.md" >}}) page to verify that the module is supported by your operating system.
+1. Check the [Technical Specifications]({{< ref "/nginx/technical-specs.md#dynamic-modules" >}}) page to verify that the module is supported by your operating system.
 
-2. Install the SPNEGO Auth module package `nginx-plus-module-auth-spnego`.
+2. Make sure that your operating system is configured to retrieve binary packages from the official NGINX Plus repository. See installation instructions for your operating system on the [Installing NGINX Plus]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}) page.
+
+3. Install the SPNEGO Auth module package `nginx-plus-module-auth-spnego` from the official NGINX Plus repository.
 
    For Amazon Linux 2, CentOS, Oracle Linux, and RHEL:
 
@@ -91,14 +95,12 @@ After installation you will need to enable and configure the module in F5 NGINX 
     nginx -s reload
     ```
 
-## More Info
+## More info
 
-- [NGINX Module for HTTP SPNEGO Auth Reference](https://github.com/stnoonan/spnego-http-auth-nginx-module)
+- [NGINX module for HTTP SPNEGO auth GitHub poject](https://github.com/stnoonan/spnego-http-auth-nginx-module)
 
-- [NGINX Dynamic Modules]({{< ref "dynamic-modules.md" >}})
+- [NGINX dynamic modules]({{< ref "dynamic-modules.md" >}})
 
-- [NGINX Plus Technical Specifications]({{< ref "nginx/technical-specs.md" >}})
+- [NGINX Plus technical specifications]({{< ref "/nginx/technical-specs.md" >}})
 
-- [NGINX Plus Technical Specifications]({{< ref "nginx/technical-specs.md" >}})
-
-- [Uninstalling a Dynamic Module]({{< ref "uninstall.md" >}})
+- [Uninstalling a dynamic module]({{< ref "uninstall.md" >}})

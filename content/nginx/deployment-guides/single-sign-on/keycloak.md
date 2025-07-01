@@ -6,7 +6,7 @@ product: NGINX-PLUS
 title: Single Sign-On with Keycloak
 toc: true
 weight: 500
-docs: DOCS-1682
+nd-docs: DOCS-1682
 ---
 
 This guide explains how to enable single sign-on (SSO) for applications being proxied by F5 NGINX Plus. The solution uses OpenID Connect as the authentication mechanism, with [Keycloak](https://www.keycloak.org/) as the Identity Provider (IdP), and NGINX Plus as the Relying Party, or OIDC client application that verifies user identity.
@@ -44,7 +44,7 @@ This guide explains how to enable single sign-on (SSO) for applications being pr
 4. In the **Capability Config** section:
 
     - Set **Client Authentication** to **On**. This sets the client type to **confidential**.
-   
+
     - Select **Next**.
 
 5. In the **Login Settings** section:
@@ -125,7 +125,7 @@ With Keycloak configured, you can enable OIDC on NGINX Plus. NGINX Plus serves a
     nginx version: nginx/1.27.4 (nginx-plus-r34)
     ```
 
-2.  Ensure that you have the values of the **Client ID**, **Client Secret**, and **Issuer** obtained during 
+2.  Ensure that you have the values of the **Client ID**, **Client Secret**, and **Issuer** obtained during
     [Keycloak Configuration](#keycloak-setup) if applicable. PKCE will not have a **Client Secret**.
 
 3.  In your preferred text editor, open the NGINX configuration file (`/etc/nginx/nginx.conf` for Linux or `/usr/local/etc/nginx/nginx.conf` for FreeBSD).
@@ -160,7 +160,7 @@ With Keycloak configured, you can enable OIDC on NGINX Plus. NGINX Plus serves a
 
     - your actual Keycloak **Client ID** obtained in [Keycloak Configuration](#keycloak-setup) with the [`client_id`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#client_id) directive
 
-    - (if not using PKCE) your **Client Secret** obtained in [Keycloak Configuration](#keycloak-setup) with the 
+    - (if not using PKCE) your **Client Secret** obtained in [Keycloak Configuration](#keycloak-setup) with the
       [`client_secret`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#client_secret) directive
 
     - the **Issuer** URL obtained in [Keycloak Configuration](#keycloak-setup) with the [`issuer`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#client_secret) directive

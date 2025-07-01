@@ -1,7 +1,7 @@
 ---
 description: Configure highly available F5 NGINX Plus load balancing of application
   instances, in an all-active deployment on the Google Cloud Platform.
-docs: DOCS-450
+nd-docs: DOCS-450
 title: All-Active HA for NGINX Plus on the Google Cloud Platform
 toc: true
 weight: 100

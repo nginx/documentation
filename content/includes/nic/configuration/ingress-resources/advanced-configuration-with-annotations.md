@@ -1,5 +1,5 @@
 ---
-docs: DOCS-591
+nd-docs: DOCS-591
 doctypes:
 - ''
 title: Advanced configuration with Annotations

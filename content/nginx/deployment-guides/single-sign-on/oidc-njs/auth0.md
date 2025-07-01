@@ -1,7 +1,7 @@
 ---
 description: Learn how to enable single sign-on (SSO) with [Auth0](https://auth0.com/)
   for applications proxied by F5 NGINX Plus.
-docs: DOCS-884
+nd-docs: DOCS-884
 type:
 - tutorial
 title: Single Sign-On With Auth0 and njs

@@ -1,5 +1,5 @@
 ---
-docs: "DOCS-000"
+nd-docs: "DOCS-000"
 ---
 
 NGINX access logs are disabled by default. You can enable access logs by adding **access_log** directives to your NGINX configuration to specify the location of the logs and formats. The log path should always be configured to be inside **/var/log/nginx**.

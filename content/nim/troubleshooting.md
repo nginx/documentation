@@ -1,7 +1,7 @@
 ---
 description: This topic describes possible issues users might encounter when using
   Instance Manager. When possible, suggested workarounds are provided.
-docs: DOCS-1224
+nd-docs: DOCS-1224
 title: Troubleshooting
 toc: true
 weight: 1000

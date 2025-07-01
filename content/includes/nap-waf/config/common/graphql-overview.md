@@ -1,5 +1,5 @@
 ---
-docs: "DOCS-1595"
+nd-docs: "DOCS-1595"
 ---
 
 GraphQL is an API technology that has grown rapidly in recent years and is continuing to gain traction. GraphQL is a query language designed for APIs to use in the development of client applications that access large data sets with intricate relations among themselves. It provides an intuitive application and flexible syntax for describing data requirements. <br>

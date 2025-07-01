@@ -2,7 +2,7 @@
 title: Encrypt communication
 toc: true
 weight: 200
-docs: DOCS-802
+nd-docs: DOCS-802
 ---
 
 ## Overview

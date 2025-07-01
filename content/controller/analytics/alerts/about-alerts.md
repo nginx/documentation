@@ -1,6 +1,6 @@
 ---
 description: Learn about NGINX Controller Alerts and Notifications.
-docs: DOCS-520
+nd-docs: DOCS-520
 title: About Alerts
 toc: true
 weight: 100

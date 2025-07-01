@@ -1,6 +1,6 @@
 ---
 description: Overview of the steps required to deploy a simple App.
-docs: DOCS-477
+nd-docs: DOCS-477
 title: Deploy a Simple Application
 toc: true
 weight: 400

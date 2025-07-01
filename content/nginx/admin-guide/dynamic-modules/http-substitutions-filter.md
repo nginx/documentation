@@ -1,7 +1,7 @@
 ---
 description: Replace text in response bodies, using regular expressions and fixed
   strings, with the HTTP Substitutions Filter dynamic module supported by NGINX, Inc.
-docs: DOCS-389
+nd-docs: DOCS-389
 title: HTTP Substitutions Filter
 toc: true
 weight: 100
@@ -9,11 +9,15 @@ type:
 - how-to
 ---
 
+The HTTP Substitutions Filter dynamic module replaces text in response bodies, using regular expressions and fixed strings.
+
 ## Installation
 
-1. Check the [Technical Specifications]({{< ref "nginx/technical-specs.md" >}}) page to verify that the module is supported by your operating system.
+1. Check the [Technical Specifications]({{< ref "/nginx/technical-specs.md#dynamic-modules" >}}) page to verify that the module is supported by your operating system.
 
-2. Install the HTTP Substitutions Filter module package `nginx-plus-module-subs-filter`.
+2. Make sure that your operating system is configured to retrieve binary packages from the official NGINX Plus repository. See installation instructions for your operating system on the [Installing NGINX Plus]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}) page.
+
+3. Install the HTTP Substitutions Filter module package `nginx-plus-module-subs-filter` from the official NGINX Plus repository.
 
    For Amazon Linux 2, CentOS, Oracle Linux, and RHEL:
 
@@ -85,12 +89,12 @@ After installation you will need to enable and configure the module in F5 NGINX 
     nginx -s reload
     ```
 
-## More Info
+## More info
 
-- [NGINX Substitution Filter Module Reference](https://github.com/yaoweibin/ngx_http_substitutions_filter_module)
+- [NGINX Substitution Filter GitHub project](https://github.com/yaoweibin/ngx_http_substitutions_filter_module)
 
-- [NGINX Dynamic Modules]({{< ref "dynamic-modules.md" >}})
+- [NGINX dynamic modules]({{< ref "dynamic-modules.md" >}})
 
-- [NGINX Plus Technical Specifications]({{< ref "nginx/technical-specs.md" >}})
+- [NGINX Plus technical specifications]({{< ref "/nginx/technical-specs.md" >}})
 
-- [Uninstalling a Dynamic Module]({{< ref "uninstall.md" >}})
+- [Uninstalling a dynamic module]({{< ref "uninstall.md" >}})

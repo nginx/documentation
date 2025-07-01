@@ -1,5 +1,5 @@
 ---
-docs: DOCS-1028
+nd-docs: DOCS-1028
 ---
 
 Roles in NGINX Instance Manager are a critical part of [role-based access control (RBAC)]({{< ref "/nim/admin-guide/rbac/overview-rbac.md" >}}). By creating roles, you define the access levels and permissions for different user groups that correspond to groups in your Identity Provider (IdP).

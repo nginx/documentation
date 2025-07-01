@@ -1,5 +1,5 @@
 ---
-docs: "DOCS-1619"
+nd-docs: "DOCS-1619"
 ---
 
 The maximum total request size is applied to each message on its own, rather than to the total stream messages. By default, the maximum gRPC message size is 4MB.

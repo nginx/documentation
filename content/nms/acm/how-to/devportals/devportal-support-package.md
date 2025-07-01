@@ -1,7 +1,7 @@
 ---
 description: This guide explains how to generate a support package for troubleshooting
   error scenarios.
-docs: DOCS-1259
+nd-docs: DOCS-1259
 title: Create an NGINX Developer Portal Support Package
 toc: true
 weight: 300

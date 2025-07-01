@@ -4,7 +4,7 @@ weight: 500
 toc: true
 type: reference
 product: NGINX One
-docs: DOCS-000
+nd-docs: DOCS-000
 ---
 
 ## Default roles
@@ -13,7 +13,7 @@ We provide three default **[roles](https://docs.cloud.f5.com/docs-v2/administrat
 
 ### Admin
 
-The Admin role, identified as `f5xc-nginx-one-standard-admin`, provides full read and write access to all endpoints and features within the NGINX One Console. 
+The Admin role, identified as `f5xc-nginx-one-standard-admin`, provides full read and write access to all endpoints and features within the NGINX One Console.
 It also supports Role-based access control for related XC services.<!--, as described in [Role-based Access Control Concepts](https://docs.cloud.f5.com/docs-v2/administration/how-tos/user-mgmt/rbac).-->
 
 ### User

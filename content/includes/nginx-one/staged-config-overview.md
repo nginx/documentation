@@ -1,5 +1,5 @@
 ---
-docs: DOCS-000
+nd-docs: DOCS-000
 files:
   - content/nginx-one/how-to/staged-configs/add-staged-config.md
   - content/nginx-one/how-to/staged-configs/edit-staged-config.md

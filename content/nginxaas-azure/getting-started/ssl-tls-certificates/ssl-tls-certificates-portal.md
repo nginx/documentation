@@ -2,7 +2,7 @@
 title: Add certificates using the Azure portal
 weight: 100
 toc: true
-docs: DOCS-875
+nd-docs: DOCS-875
 url: /nginxaas/azure/getting-started/ssl-tls-certificates/ssl-tls-certificates-portal/
 type:
 - how-to

@@ -4,18 +4,18 @@ weight: 700
 toc: true
 type: how-to
 product: NGF
-docs: DOCS-0000
+nd-docs: DOCS-1852
 ---
 
-This document describes how to upgrade NGINX Gateway Fabric when a new version releases. 
+This document describes how to upgrade NGINX Gateway Fabric when a new version releases.
 
 It covers the necessary steps for minor versions as well as major versions (such as 1.x to 2.x).
 
 Many of the nuances in upgrade paths relate to how custom resource definitions (CRDs) are managed.
 
-{{< tip >}} 
+{{< tip >}}
 
-To avoid interruptions, review the [Delay pod termination for zero downtime upgrades](#configure-delayed-pod-termination-for-zero-downtime-upgrades) section. 
+To avoid interruptions, review the [Delay pod termination for zero downtime upgrades](#configure-delayed-pod-termination-for-zero-downtime-upgrades) section.
 
 {{< /tip >}}
 
@@ -24,7 +24,7 @@ To avoid interruptions, review the [Delay pod termination for zero downtime upgr
 
 {{< important >}} NGINX Plus users need a JWT secret before upgrading from version 1.4.0 to 1.5.x.
 
-Follow the steps in [Set up the JWT]({{< ref "/ngf/install/nginx-plus.md#set-up-the-jwt" >}}) to create the Secret. 
+Follow the steps in [Set up the JWT]({{< ref "/ngf/install/nginx-plus.md#set-up-the-jwt" >}}) to create the Secret.
 
 {{< /important >}}
 
@@ -33,7 +33,7 @@ Follow the steps in [Set up the JWT]({{< ref "/ngf/install/nginx-plus.md#set-up-
 
 To upgrade your Gateway API resources, take the following steps:
 
-- Use [Technical specifications]({{< ref "/ngf/reference/technical-specifications.md" >}}) to verify your Gateway API resources are compatible with your NGINX Gateway Fabric version. 
+- Use [Technical specifications]({{< ref "/ngf/reference/technical-specifications.md" >}}) to verify your Gateway API resources are compatible with your NGINX Gateway Fabric version.
 - Review the [release notes](https://github.com/kubernetes-sigs/gateway-api/releases) for any important upgrade-specific information.
 
 To upgrade the Gateway API resources, run the following command:
@@ -56,7 +56,7 @@ Run the following command to upgrade the CRDs:
 kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v{{< version-ngf >}}/deploy/crds.yaml
 ```
 
-{{< note >}} 
+{{< note >}}
 
 Ignore the following warning, as it is expected.
 
@@ -119,7 +119,7 @@ To remove the previous version 1.x of NGINX Gateway Fabric, follow these steps:
 First, run the following command to uninstall NGINX Gateway Fabric from the `nginx-gateway` namespace, and update `ngf` to your release name if it is different:
 
 ```shell
-helm uninstall ngf -n nginx-gateway 
+helm uninstall ngf -n nginx-gateway
 ```
 
 Afterwards, remove CRDs associated with NGINX Gateway Fabric version 1.x with the following command:
@@ -240,7 +240,7 @@ You can then follow [this localhost link](http://localhost:1313/nginx-gateway-fa
 
 ## Upgrade from NGINX Open Source to NGINX Plus
 
-{{< important >}} 
+{{< important >}}
 
 Ensure that you [Set up the JWT]({{< ref "/ngf/install/nginx-plus.md#set-up-the-jwt" >}}) before upgrading. These instructions only apply to Helm.
 
