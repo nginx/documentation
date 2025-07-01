@@ -9,19 +9,19 @@ weight: 100
 type:
 - how-to
 ---
-
+The Set-Misc dynamic module extends the NGINX core [Rewrite](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html) by implementing numerous additional `set_*` directives. 
 
 ## Prerequisites
 
-1. Check the [Technical Specifications]({{< ref "nginx/technical-specs.md" >}}) page to verify that the module is supported by your operating system.
+1. Check the [Technical Specifications]({{< ref "/nginx/technical-specs.md#dynamic-modules" >}}) page to verify that the module is supported by your operating system.
 
-2. Prior to installing the module, verify that the [NDK]({{< ref "ndk.md" >}}) module is already installed.
+2. Make sure that your operating system is configured to retrieve binary packages from the official NGINX Plus repository. See installation instructions for your operating system on the [Installing NGINX Plus]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}) page.
 
-
+3. Prior to installing the module, verify that the [NDK]({{< ref "ndk.md" >}}) module is already installed.
 
 ## Installation
 
-Install the Set-Misc module package `nginx-plus-module-set-misc`.
+Install the Set-Misc module package `nginx-plus-module-set-misc` from the official NGINX Plus repository.
 
    For Amazon Linux 2, CentOS, Oracle Linux, and RHEL:
 
@@ -64,9 +64,6 @@ Install the Set-Misc module package `nginx-plus-module-set-misc`.
    sudo pkg install nginx-plus-module-set-misc
    ```
 
-
-
-
 ## Configuration
 
 After installation you will need to enable and configure the module in F5 NGINX Plus configuration file `nginx.conf`.
@@ -105,14 +102,12 @@ After installation you will need to enable and configure the module in F5 NGINX 
     nginx -s reload
     ```
 
+## More info
 
+- [The `ngx_set_misc` module GitHub project](https://github.com/openresty/set-misc-nginx-module)
 
-## More Info
+- [NGINX dynamic modules]({{< ref "dynamic-modules.md" >}})
 
-- [NGINX `ngx_set_misc` Module Reference](https://github.com/openresty/set-misc-nginx-module)
+- [NGINX Plus technical specifications]({{< ref "/nginx/technical-specs.md" >}})
 
-- [NGINX Dynamic Modules]({{< ref "dynamic-modules.md" >}})
-
-- [NGINX Plus Technical Specifications]({{< ref "nginx/technical-specs.md" >}})
-
-- [Uninstalling a Dynamic Module]({{< ref "uninstall.md" >}})
+- [Uninstalling a dynamic module]({{< ref "uninstall.md" >}})
