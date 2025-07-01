@@ -1,6 +1,6 @@
 ---
 description: Learn about the F5 NGINX App Protect DoS Troubleshooting Guide.
-docs: DOCS-675
+nd-docs: DOCS-675
 title: NGINX App Protect DoS Troubleshooting Guide
 toc: true
 weight: 200

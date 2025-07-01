@@ -1,5 +1,5 @@
 ---
-docs: DOCS-594
+nd-docs: DOCS-594
 doctypes:
 - ''
 title: Cross-namespace configuration

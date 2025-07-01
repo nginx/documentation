@@ -1,7 +1,7 @@
 ---
 description: This chapter describes how to configure different types of health checks
   for UDP servers in a load‑balanced upstream server group.
-docs: DOCS-421
+nd-docs: DOCS-421
 title: UDP Health Checks
 toc: true
 weight: 500
@@ -240,7 +240,7 @@ This is the raw DNS query of `healthcheck.example.com`, represented as one line 
 where:
 
 {{<bootstrap-table "table table-striped table-bordered">}}
-| HEX              | Description            | 
+| HEX              | Description            |
 |------------------|------------------------|
 | \x00\x01         | Transaction ID: 0x0001 |
 | \x01\x00         | Flags: Standard query, recursion desired |

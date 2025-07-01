@@ -1,6 +1,6 @@
 ---
 description: ''
-docs: DOCS-998
+nd-docs: DOCS-998
 title: Configure ClickHouse
 toc: true
 weight: 100
@@ -12,7 +12,7 @@ type:
 
 ## Overview
 
-NGINX Instance Manager uses ClickHouse to store metrics, events, alerts, and configuration data.  
+NGINX Instance Manager uses ClickHouse to store metrics, events, alerts, and configuration data.
 If your setup differs from the default configuration — for example, if you use a custom address, enable TLS, set a password, or turn off metrics — you need to update the `/etc/nms/nms.conf` file.
 
 This guide explains how to update those settings so that NGINX Instance Manager can connect to ClickHouse correctly.
@@ -43,7 +43,7 @@ Starting in version 2.20, NGINX Instance Manager can run without ClickHouse. Thi
 To disable metrics collection after installing NGINX Instance Manager:
 
 1. Open the config file at `/etc/nms/nms.conf`.
-   
+
 2. In the `[clickhouse]` section, set the following value:
 
    ```yaml

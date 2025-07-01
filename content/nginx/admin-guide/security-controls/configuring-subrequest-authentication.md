@@ -1,7 +1,7 @@
 ---
 description: Authenticate clients during request processing by making a subrequest
   to an external authentication service, such as LDAP or OAuth.
-docs: DOCS-430
+nd-docs: DOCS-430
 title: Authentication Based on Subrequest Result
 toc: true
 weight: 400

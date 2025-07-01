@@ -1,7 +1,7 @@
 ---
 description: Learn how to use F5 NGINX Management Suite API Connectivity Manager to
   configure a Developer Portal.
-docs: DOCS-922
+nd-docs: DOCS-922
 title: Set Up a Developer Portal Environment
 toc: true
 weight: 200

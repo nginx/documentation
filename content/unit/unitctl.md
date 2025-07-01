@@ -2,6 +2,7 @@
 title: CLI (unitctl)
 weight: 1000
 toc: true
+nd-docs: DOCS-1696
 ---
 
 {{< note >}}

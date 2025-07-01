@@ -2,6 +2,7 @@
 title: Grafana
 toc: true
 weight: 600
+nd-docs: DOCS-1715
 ---
 
 Here, we install Grafana from [sources](https://github.com/grafana/grafana/blob/main/contribute/developer-guide.md)

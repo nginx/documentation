@@ -1,5 +1,5 @@
 ---
-docs: DOCS-592
+nd-docs: DOCS-592
 doctypes:
 - ''
 title: Advanced configuration with Snippets
@@ -7,9 +7,9 @@ toc: true
 weight: 400
 ---
 
-Snippets allow you to insert raw NGINX config into different contexts of the NGINX configurations that F5 NGINX Ingress Controller generates. 
+Snippets allow you to insert raw NGINX config into different contexts of the NGINX configurations that F5 NGINX Ingress Controller generates.
 
-Snippets are intended for advanced NGINX users who need more control over the generated NGINX configuration, and can be used in cases where Annotations and ConfigMap entries would not apply. 
+Snippets are intended for advanced NGINX users who need more control over the generated NGINX configuration, and can be used in cases where Annotations and ConfigMap entries would not apply.
 
 
 
@@ -27,7 +27,7 @@ Snippets have the following disadvantages:
 - *Decreased robustness*. An incorrect snippet can invalidate NGINX configuration, causing reload failures. Until the snippet is fixed, it will prevent any new configuration updates, including updates for the other Ingress resources.
 - *Security implications*. Snippets give access to NGINX configuration primitives, which are not validated by NGINX Ingress Controller. For example, a snippet can configure NGINX to serve the TLS certificates and keys used for TLS termination for Ingress resources.
 
-{{< note >}} If the NGINX configuration includes an invalid snippet, NGINX will continue to operate with the last valid configuration. {{< /note >}} 
+{{< note >}} If the NGINX configuration includes an invalid snippet, NGINX will continue to operate with the last valid configuration. {{< /note >}}
 
 ## Using snippets
 
@@ -68,7 +68,7 @@ spec:
 
 These snippets generate the following NGINX configuration:
 
-{{< note >}} The example is shortened for conciseness. {{< /note >}} 
+{{< note >}} The example is shortened for conciseness. {{< /note >}}
 
 ```nginx
 server {

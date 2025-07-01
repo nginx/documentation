@@ -4,7 +4,7 @@ toc: true
 weight: 300
 type: how-to
 product: NIC
-docs: DOCS-604
+nd-docs: DOCS-604
 ---
 
 This document explains how to install F5 NGINX Ingress Controller using NGINX Ingress Operator.

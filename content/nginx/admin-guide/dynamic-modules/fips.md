@@ -1,7 +1,7 @@
 ---
 description: Verify compliance with [FIPS 140-2](https://csrc.nist.gov/publications/detail/fips/140/2/final)
   security requirements for cryptographic modules.
-docs: DOCS-385
+nd-docs: DOCS-385
 title: FIPS Status Check
 toc: true
 weight: 100
@@ -13,9 +13,11 @@ For F5 NGINX Plus, the cryptographic boundary includes all functionality that is
 
 ## Installation
 
-1. Check the [Technical Specifications]({{< ref "nginx/technical-specs.md" >}}) page to verify that the module is supported by your operating system.
+1. Check the [Technical Specifications]({{< ref "/nginx/technical-specs.md#dynamic-modules" >}}) page to verify that the module is supported by your operating system.
 
-2. Install the FIPS module package `nginx-plus-module-fips-check`.
+2. Make sure that your operating system is configured to retrieve binary packages from the official NGINX Plus repository. See installation instructions for your operating system on the [Installing NGINX Plus]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}) page.
+
+3. Install the FIPS module package `nginx-plus-module-fips-check` from the official NGINX Plus repository.
 
    For Amazon Linux 2, CentOS, Oracle Linux, and RHEL:
 
@@ -93,14 +95,14 @@ After installation you will need to enable and configure the module in NGINX Plu
     nginx -s reload
     ```
 
-## More Info
+## More info
 
-- [FIPS Compliance for NGINX Plus](https://docs.nginx.com/nginx/fips-compliance-nginx-plus/)
+- [FIPS compliance for NGINX Plus]({{< ref "/nginx/fips-compliance-nginx-plus.md" >}})
 
-- [NGINX FIPS Status Check Module Reference](https://github.com/ogarrett/nginx-fips-check-module)
+- [NGINX FIPS Status Check module GitHub project](https://github.com/ogarrett/nginx-fips-check-module)
 
-- [NGINX Dynamic Modules]({{< ref "dynamic-modules.md" >}})
+- [NGINX dynamic modules]({{< ref "dynamic-modules.md" >}})
 
-- [NGINX Plus Technical Specifications]({{< ref "nginx/technical-specs.md" >}})
+- [NGINX Plus technical specifications]({{< ref "/nginx/technical-specs.md" >}})
 
-- [Uninstalling a Dynamic Module]({{< ref "uninstall.md" >}})
+- [Uninstalling a dynamic module]({{< ref "uninstall.md" >}})

@@ -1,5 +1,5 @@
 ---
-docs: DOCS-1131
+nd-docs: DOCS-1131
 title: Optimize NGINX proxy gateway for large data planes
 toc: true
 weight: 400
@@ -17,7 +17,7 @@ If the NGINX proxy gateway for F5 NGINX Instance Manager alerts you that there a
 
 ## Configure worker connections
 
-By default, the NGINX Instance Manager's NGINX configuration allows 1,024 worker connections (`worker_connections`). However, this default may not be sufficient for large data planes with numerous NGINX Agents. 
+By default, the NGINX Instance Manager's NGINX configuration allows 1,024 worker connections (`worker_connections`). However, this default may not be sufficient for large data planes with numerous NGINX Agents.
 
 We recommend allowing **twice as many worker connections as the number of NGINX Agents** you need to support. Each NGINX Agent requires two persistent gRPC connections to the NGINX Instance Manager host. For example, if you have 1,000 NGINX Agents, configure approximately 2,000 worker connections.
 

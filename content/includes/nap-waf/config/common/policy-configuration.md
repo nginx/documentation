@@ -1,5 +1,5 @@
 ---
-docs: "DOCS-1548"
+nd-docs: "DOCS-1548"
 ---
 
 The NGINX App Protect WAF ships with two reference policies, both with a default enforcement mode set to Blocking:

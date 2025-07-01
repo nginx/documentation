@@ -1,6 +1,6 @@
 ---
 description: ''
-docs: DOCS-1395
+nd-docs: DOCS-1395
 title: Prepare - Create and manage data plane keys
 toc: true
 weight: 100

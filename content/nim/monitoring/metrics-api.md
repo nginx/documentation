@@ -1,7 +1,7 @@
 ---
 description: Tips and tricks for using the Metrics API query parameters to refine
   your data.
-docs: DOCS-825
+nd-docs: DOCS-825
 title: Query the Metrics API
 toc: true
 weight: 200

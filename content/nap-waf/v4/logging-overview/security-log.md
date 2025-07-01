@@ -1,6 +1,6 @@
 ---
 description: Learn about the F5 NGINX App Protect WAF Security Log.
-docs: DOCS-915
+nd-docs: DOCS-915
 title: NGINX App Protect WAF Security Log
 toc: true
 weight: 520

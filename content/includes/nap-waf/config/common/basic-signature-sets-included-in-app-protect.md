@@ -1,5 +1,5 @@
 ---
-docs: "DOCS-1568"
+nd-docs: "DOCS-1568"
 ---
 
 These signatures sets are included but are not part of the default template.

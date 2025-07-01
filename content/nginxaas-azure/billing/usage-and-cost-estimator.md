@@ -2,7 +2,7 @@
 title: Usage and cost estimator
 weight: 200
 toc: true
-docs: DOCS-1474
+nd-docs: DOCS-1474
 url: /nginxaas/azure/billing/usage-and-cost-estimator/
 type:
 - concept

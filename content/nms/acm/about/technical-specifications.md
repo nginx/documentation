@@ -1,5 +1,5 @@
 ---
-docs: DOCS-1470
+nd-docs: DOCS-1470
 title: Technical Specifications
 weight: 200
 ---

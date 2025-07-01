@@ -1,6 +1,6 @@
 ---
 description: View key metrics for all of your monitored systems.
-docs: DOCS-773
+nd-docs: DOCS-773
 title: View System Metrics Graphs
 toc: true
 weight: 70
