@@ -3,7 +3,7 @@ title: Configuring NGINX for Metric Collection
 description: Learn how to configure NGINX Instances to collect data.
 weight: 400
 toc: true
-docs: DOCS-963
+nd-docs: DOCS-963
 ---
 
 To monitor an NGINX instance, F5 NGINX Amplify Agent must [find the relevant NGINX master process]({{< ref "/amplify/nginx-amplify-agent/detecting-monitoring-instances" >}}) and determine its key characteristics.

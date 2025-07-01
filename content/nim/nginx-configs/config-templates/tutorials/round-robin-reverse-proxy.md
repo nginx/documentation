@@ -5,7 +5,7 @@ description: Learn how to set up a round-robin reverse proxy using NGINX Instanc
   Manager with base and augment templates.
 weight: 100
 toc: true
-docs: DOCS-1655
+nd-docs: DOCS-1655
 type:
 - tutorial
 ---

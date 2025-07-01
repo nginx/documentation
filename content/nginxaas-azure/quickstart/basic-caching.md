@@ -2,7 +2,7 @@
 title: Enable content caching
 weight: 200
 toc: true
-docs: DOCS-897
+nd-docs: DOCS-897
 url: /nginxaas/azure/quickstart/basic-caching/
 type:
 - how-to

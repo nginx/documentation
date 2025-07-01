@@ -4,7 +4,7 @@ weight: 700
 toc: true
 type: how-to
 product: NGF
-docs: DOCS-0000
+nd-docs: DOCS-1840
 ---
 
 This document describes how you can separately scale the NGINX Gateway Fabric control plane and data plane.
@@ -14,7 +14,7 @@ It provides guidance on how to scale each plane effectively, and when you should
 
 ### Scaling the data plane
 
-The data plane is the NGINX deployment that handles user traffic to backend applications. Every Gateway object created provisions its own NGINX deployment and configuration. 
+The data plane is the NGINX deployment that handles user traffic to backend applications. Every Gateway object created provisions its own NGINX deployment and configuration.
 
 You have two options for scaling the data plane:
 
@@ -25,9 +25,9 @@ You have two options for scaling the data plane:
 
 Understanding when to increase replicas or create a new Gateway is key to managing traffic effectively.
 
-Increasing data plane replicas is ideal when you need to handle more traffic without changing the configuration. 
+Increasing data plane replicas is ideal when you need to handle more traffic without changing the configuration.
 
-For example, if you're routing traffic to `api.example.com` and notice an increase in load, you can scale the replicas from 1 to 5 to better distribute the traffic and reduce latency. 
+For example, if you're routing traffic to `api.example.com` and notice an increase in load, you can scale the replicas from 1 to 5 to better distribute the traffic and reduce latency.
 
 All replicas will share the same configuration from the Gateway used to set up the data plane, simplifying configuration management.
 
@@ -45,15 +45,15 @@ Secondly, you can update the `NginxProxy` resource while NGINX is running to mod
 kubectl edit nginxproxies.gateway.nginx.org ngf-proxy-config -n nginx-gateway
 ```
 
-The alternate way to scale the data plane is by creating a new Gateway.  This is beneficial when you need distinct configurations, isolation, or separate policies. 
+The alternate way to scale the data plane is by creating a new Gateway.  This is beneficial when you need distinct configurations, isolation, or separate policies.
 
-For example, if you're routing traffic to a new domain `admin.example.com` and require a different TLS certificate, stricter rate limits, or separate authentication policies, creating a new Gateway could be a good approach. 
+For example, if you're routing traffic to a new domain `admin.example.com` and require a different TLS certificate, stricter rate limits, or separate authentication policies, creating a new Gateway could be a good approach.
 
 It allows for safe experimentation with isolated configurations and makes it easier to enforce security boundaries and specific routing rules.
 
 ### Scaling the control plane
 
-The control plane builds configuration based on defined Gateway API resources and sends that configuration to the NGINX data planes. With leader election enabled by default, the control plane can be scaled horizontally by running multiple replicas, although only the pod with leader lease can actively manage configuration status updates. 
+The control plane builds configuration based on defined Gateway API resources and sends that configuration to the NGINX data planes. With leader election enabled by default, the control plane can be scaled horizontally by running multiple replicas, although only the pod with leader lease can actively manage configuration status updates.
 
 Scaling the control plane can be beneficial in the following scenarios:
 
@@ -70,11 +70,11 @@ To scale the control plane, use the `kubectl scale` command on the control plane
 
 When scaling the control plane, it's important to understand how status updates are handled for Gateway API resources.
 
-All control plane pods can send NGINX configuration to the data planes. However, only the leader control plane pod is allowed to write status updates to Gateway API resources. 
+All control plane pods can send NGINX configuration to the data planes. However, only the leader control plane pod is allowed to write status updates to Gateway API resources.
 
-If an NGINX instance connects to a non-leader pod, and an error occurs when applying the config, that error status will not be written to the Gateway object status. 
+If an NGINX instance connects to a non-leader pod, and an error occurs when applying the config, that error status will not be written to the Gateway object status.
 
-To mitigate the potential for this issue, ensure that the number of NGINX data plane pods equals or exceeds the number of control plane pods. 
+To mitigate the potential for this issue, ensure that the number of NGINX data plane pods equals or exceeds the number of control plane pods.
 
 This increases the likelihood that at least one of the data planes is connected to the leader control plane pod. If an applied configuration has an error, the leader pod will be aware of it and status can still be written.
 

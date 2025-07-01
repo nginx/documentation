@@ -1,6 +1,6 @@
 ---
 description: How to use Role Based Access Control with App Security.
-docs: DOCS-845
+nd-docs: DOCS-845
 title: Using RBAC with the App Security Add-On
 toc: true
 weight: 400

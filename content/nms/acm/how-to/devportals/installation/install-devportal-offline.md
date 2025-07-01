@@ -1,7 +1,7 @@
 ---
 description: Complete the steps in this guide to install the Developer Portal directly
   from package files in environments without Internet access.
-docs: DOCS-1215
+nd-docs: DOCS-1215
 title: Install the Developer Portal in an Offline Environment
 toc: true
 weight: 30

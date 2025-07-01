@@ -3,7 +3,7 @@ title: Report usage data to F5 (disconnected)
 draft: false
 weight: 300
 toc: true
-docs: DOCS-1658
+nd-docs: DOCS-1658
 personas:
 - devops
 - netops
@@ -89,11 +89,11 @@ Run these `curl` commands on a system that can access NGINX Instance Manager and
     --header 'accept: application/json' \
     --header 'authorization: Basic <base64-encoded-credentials>' \
     --header 'referer: https://<NIM-FQDN>/ui/settings/license'
-    ``` 
+    ```
 
 1. **Download the usage report from NGINX Instance Manager**:
 
-    ```bash  
+    ```bash
     curl -k --location 'https://<NIM-FQDN>/api/platform/v1/report/download?format=zip&reportType=telemetry&telemetryAction=download' \
     --header 'accept: */*' \
     --header 'authorization: Basic <base64-encoded-credentials>' \
@@ -153,7 +153,7 @@ Run these `curl` commands on a system that can access NGINX Instance Manager and
 
 Download the usage report to send to F5:
 
-- On the **License > Overview** page, select **Download License Report**. 
+- On the **License > Overview** page, select **Download License Report**.
 
 #### Submit usage report to F5
 
@@ -165,7 +165,7 @@ To upload the the usage acknowledgement:
 
 1. On the **License > Overview** page, select **Upload Usage Acknowledgement**.
 2. Upload the acknowledgement by selecting **Browse** or dragging the file into the form.
-3. Select **Add**. 
+3. Select **Add**.
 
 {{%/tab%}}
 

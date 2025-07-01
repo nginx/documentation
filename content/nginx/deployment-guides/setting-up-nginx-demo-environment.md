@@ -1,7 +1,7 @@
 ---
 description: Configure NGINX Open Source as a web server and F5 NGINX Plus as a load
   balancer, as required for the sample deployments in NGINX deployment guides.
-docs: DOCS-462
+nd-docs: DOCS-462
 title: Setting up an NGINX demo environment
 toc: true
 weight: 100

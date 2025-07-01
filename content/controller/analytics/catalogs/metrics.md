@@ -1,7 +1,7 @@
 ---
 description: Information about all of the Metrics collected by F5 NGINX Controller
   Agent.
-docs: DOCS-525
+nd-docs: DOCS-525
 title: NGINX Controller Metrics Catalog
 toc: false
 weight: 20

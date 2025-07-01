@@ -1,5 +1,5 @@
 ---
-docs: "DOCS-1592"
+nd-docs: "DOCS-1592"
 ---
 
 {{<bootstrap-table "table table-striped table-bordered table-sm table-responsive">}}

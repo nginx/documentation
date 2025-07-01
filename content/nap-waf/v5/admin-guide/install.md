@@ -4,7 +4,7 @@ weight: 200
 toc: true
 type: how-to
 product: NAP-WAF
-docs: DOCS-1363
+nd-docs: DOCS-1363
 ---
 
 ## Prerequisites
@@ -39,7 +39,7 @@ Please follow these steps before you install either NGINX Open Source or NGINX P
 {{<tabs name="common_steps_for_nginx_oss_and_plus">}}
 
 {{%tab name="Alpine Linux"%}}
- 
+
 {{< include "nap-waf/config/v5/host-based-nginx-instructions/common-steps-with-alpine" >}}
 
 {{%/tab%}}

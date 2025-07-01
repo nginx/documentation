@@ -1,5 +1,5 @@
 ---
-docs: DOCS-1651
+nd-docs: DOCS-1651
 title: Deploy using Helm
 toc: true
 weight: 100
@@ -16,6 +16,7 @@ You can deploy F5 NGINX Instance Manager on Kubernetes using Helm. This method i
 Starting with version 2.20.0, NGINX Instance Manager supports **lightweight mode**, which skips ClickHouse and disables metrics collection, ideal for simpler setups or resource-limited environments.
 
 - Lightweight mode requires NGINX Agent v2.41.1 or later.
+
 
 {{< call-out "note" "Chart renamed with new versioning from NGINX Instance Manager 2.20.0" >}}
 Starting with version 2.20.0, the Helm chart was renamed from `nginx-stable/nms-hybrid` to `nginx-stable/nim`. Chart versioning was also reset; `v2.0.0` is the first release under the new name. Be sure to update your chart references if you’re using version `2.20.0` or later.
@@ -186,7 +187,7 @@ These values are required when pulling images from the NGINX private registry. T
 Use the file with the `-f values.yaml` flag when installing the chart.
 
 {{< call-out "note" "OpenShift support" >}}
-OpenShift support was added in NGINX Instance Manager 2.19. To enable it, add the setting `openshift.enabled: true` to your `values.yaml` file.  
+OpenShift support was added in NGINX Instance Manager 2.19. To enable it, add the setting `openshift.enabled: true` to your `values.yaml` file.
 For more details, see [Appendix: OpenShift security constraints](#appendix-openshift-security-constraints).
 {{< /call-out >}}
 

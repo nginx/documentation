@@ -1,5 +1,5 @@
 ---
-docs: DOCS-1071
+nd-docs: DOCS-1071
 files:
 - content/nim/fundamentals/tech-specs.md
 ---

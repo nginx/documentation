@@ -1,6 +1,6 @@
 ---
 description: Guidelines and recommendations for configuring F5 NGINX Controller.
-docs: DOCS-256
+nd-docs: DOCS-256
 title: NGINX Controller Tech Specs
 toc: true
 weight: 100

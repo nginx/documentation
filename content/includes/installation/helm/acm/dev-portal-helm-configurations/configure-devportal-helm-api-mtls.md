@@ -1,5 +1,5 @@
 ---
-docs: DOCS-1309
+nd-docs: DOCS-1309
 ---
 
 When deploying the Developer Portal using a helm chart, you can configure TLS to secure communication between the NGINX API Gateway and backend API service.

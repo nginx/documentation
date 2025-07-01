@@ -3,7 +3,7 @@ title: Product telemetry
 weight: 500
 nd-content-type: reference
 nd-product: NGF
-nd-docs: DOCS-000
+nd-docs: DOCS-1836
 ---
 
 Learn why, what and how NGINX Gateway Fabric collects telemetry.

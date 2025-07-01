@@ -1,5 +1,5 @@
 ---
-docs: DOCS-1457
+nd-docs: DOCS-1457
 doctypes:
 - ''
 title: Troubleshooting Policy resources

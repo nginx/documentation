@@ -4,7 +4,7 @@ draft: false
 description: ''
 weight: 300
 toc: true
-docs: DOCS-1505
+nd-docs: DOCS-1505
 personas:
 - devops
 - netops

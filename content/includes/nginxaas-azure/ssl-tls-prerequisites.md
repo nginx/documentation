@@ -1,5 +1,5 @@
 ---
-docs: "DOCS-000"
+nd-docs: "DOCS-000"
 ---
 
 NGINXaaS natively integrates with [Azure Key Vault (AKV)](https://azure.microsoft.com/en-us/products/key-vault), so you can bring your own certificates and manage them in a centralized location. You will need:

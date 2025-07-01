@@ -4,7 +4,7 @@ weight: 200
 toc: true
 type: how-to
 product: NIC
-docs: DOCS-578
+nd-docs: DOCS-578
 ---
 
 This document explains how to use F5 NGINX Ingress Controller to configure NGINX App Protect WAF.

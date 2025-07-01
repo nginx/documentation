@@ -3,7 +3,7 @@ title: Technical Specifications
 weight: 110
 description: Cluster requirements and F5 NGINX Service Mesh footprint.
 toc: true
-docs: DOCS-677
+nd-docs: DOCS-677
 type:
 - reference
 ---

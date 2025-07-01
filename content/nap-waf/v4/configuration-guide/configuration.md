@@ -1,6 +1,6 @@
 ---
 description: F5 NGINX App Protect WAF security features.
-docs: DOCS-647
+nd-docs: DOCS-647
 title: NGINX App Protect WAF Configuration Guide
 toc: true
 weight: 200
@@ -679,7 +679,7 @@ systematic, username/password combinations to discover legitimate authentication
 To prevent brute force attacks, NGINX App Protect WAF monitors IP addresses, usernames, and the number of failed login attempts beyond a maximum threshold.
 When brute force patterns are detected, the NGINX App Protect WAF policy either trigger an alarm or block the attack if the failed
 login attempts reached a maximum threshold for a specific username or coming from a specific IP address.
-In order to create a brute force configuration for a specific URL in NGINX App Protect you must first create a User-Defined URL, then a Login Page and finally define the URL element in the Brute Force configuration section. 
+In order to create a brute force configuration for a specific URL in NGINX App Protect you must first create a User-Defined URL, then a Login Page and finally define the URL element in the Brute Force configuration section.
 
 ---
 ### The User-Defined URL example

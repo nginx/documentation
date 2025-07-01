@@ -1,5 +1,5 @@
 ---
-docs: DOCS-1458
+nd-docs: DOCS-1458
 doctypes:
 - ''
 title: Troubleshooting Ingress resources

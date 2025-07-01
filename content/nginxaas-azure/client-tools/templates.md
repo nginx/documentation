@@ -4,7 +4,7 @@ weight: 100
 description: Learn how to use Azure Resource Manager (ARM) JSON and Bicep templates
   to manage NGINXaaS for Azure.
 toc: true
-docs: DOCS-1097
+nd-docs: DOCS-1097
 url: /nginxaas/azure/client-tools/templates/
 type:
 - task

@@ -4,7 +4,7 @@ weight: 100
 toc: true
 type: reference
 product: NIC
-docs: DOCS-593
+nd-docs: DOCS-593
 ---
 
 This document shows a basic Ingress resource definition for F5 NGINX Ingress Controller. It load balances requests for two services as part of a single application.
@@ -93,9 +93,9 @@ NGINX Ingress Controller imposes the following restrictions on Ingress resources
 
 ## Advanced configuration
 
-NGINX Ingress Controller generates NGINX configuration by executing a template file that contains the configuration options. 
+NGINX Ingress Controller generates NGINX configuration by executing a template file that contains the configuration options.
 
-These options are set with the Ingress resource and NGINX Ingress Controller's ConfigMap.  
+These options are set with the Ingress resource and NGINX Ingress Controller's ConfigMap.
 
 The Ingress resource only allows you to use basic NGINX features: host and path-based routing and TLS termination.
 
