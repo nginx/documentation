@@ -30,7 +30,7 @@ h2 {
 
 Stay up-to-date with what's new and improved in the F5 NGINX One Console.
 
-## June 30, 2025
+## July 1, 2025
 
 ### NGINX Agent version 3 support
 
