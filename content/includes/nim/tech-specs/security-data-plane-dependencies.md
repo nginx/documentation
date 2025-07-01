@@ -1,6 +1,8 @@
 The Security Monitoring module requires the following versions of [NGINX App Protect WAF](https://docs.nginx.com/nginx-app-protect/) and [NGINX Plus](https://www.f5.com/products/nginx/nginx-plus) for the **data plane**:
 
-{{< note >}}Nginx Instance Manager v2.19.0 or higher: The Security Monitoring module is one of the in-built feature of Nginx Instance Manager. You'll need not to manually install or upgrade NGINX Instance Manager to a supported version.
+{{< note >}}
+In NGINX Instance Manager 2.18.0 and under, the Security Monitoring module was a separate package that was installed manually.
+From NGINX Instance Manager 2.19.0 onward, Security Monitoring is part of the NGINX Instance Manager feature-set and is packaged by default; no manual installation or upgrade is needed.
 {{< /note >}}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
