@@ -567,12 +567,13 @@ openshift:
 This ensures pods can run with the user IDs required by NGINX Instance Manager services.
 
 
-When `openshift.enabled: true` is set in the `values.yaml` file, the NGINX Instance Manager deployment automatically creates a **custom [Security Context Constraints](https://docs.redhat.com/en/documentation/openshift_container_platform/4.13/html/authentication_and_authorization/managing-pod-security-policies) (SCCs)** and links it to the Service Account used by all pods.
+When `openshift.enabled: true` is set in the `values.yaml` file, the NGINX Instance Manager deployment automatically creates a custom [Security Context Constraints (SCC)](https://docs.redhat.com/en/documentation/openshift_container_platform/4.13/html/authentication_and_authorization/managing-pod-security-policies) object and links it to the Service Account used by all pods.
 
-By default, OpenShift enforces strict security policies that require containers to run as **non-root** users. The NGINX Instance Manager deployment needs specific user IDs (UIDs) for certain services, such as **1000** for `nms` and **101** for `nginx` and `clickhouse`. Since the default SCCs do not allow these UIDs, a **custom SCC** is created. This ensures that the deployment can run with the necessary permissions while maintaining OpenShift’s security standards. The custom SCC allows these UIDs by setting the `runAsUser` field, which controls which users can run containers.
+By default, OpenShift enforces strict security policies that require containers to run as **non-root** users. The deployment needs specific user IDs (UIDs) for certain services—**1000** for `nms`, and **101** for `nginx` and `clickhouse`. Since the default SCCs don’t allow these UIDs, the deployment creates a custom SCC. This SCC sets the `runAsUser` field to allow the necessary UIDs while still complying with OpenShift’s security standards.
 
-{{< note >}} The NGINX Instance Manager deployment on OpenShift has been tested with OpenShift v4.13.0 Server. {{< /note >}}
-{{< note >}} If you see permission errors during deployment, your user account might not have access to manage SCCs. Contact a cluster administrator to request access. {{< /note >}}
+This deployment has been tested with OpenShift v4.13.0 Server.
+
+If you see permission errors during deployment, your account might not have access to manage SCCs. Ask a cluster administrator for access.
 
 To verify that the SCC was created after installing the Helm chart, run:
 
