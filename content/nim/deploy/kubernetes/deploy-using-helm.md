@@ -405,7 +405,7 @@ For details on creating a secret, see the Kubernetes [Pull an Image from a Priva
 Run the `helm install` command to deploy NGINX Instance Manager:
 
 1. Replace `<path-to-your-values.yaml>` with the path to your `values.yaml` file.
-2. Replace `YourPassword123#` with a secure password (containing a mix of uppercase, lowercase letters, numbers, and special characters).
+2. Replace `<your-password>` with a secure password (containing a mix of uppercase, lowercase letters, numbers, and special characters).
 
    {{< important >}} Remember to save the password for future use. Only the encrypted password is stored, and there's no way to recover or reset it if lost. {{< /important >}}
 
