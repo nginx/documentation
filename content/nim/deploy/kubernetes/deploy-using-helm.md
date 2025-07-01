@@ -364,38 +364,46 @@ The `values.yaml` file customizes the Helm chart installation without changing t
 
 For details on creating a secret, see the Kubernetes [Pull an Image from a Private Registry](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/) guide.
 
-    ```yaml
-    imagePullSecrets:
-        - name: regcred
-    apigw:
-        image:
-            repository: private-registry.nginx.com/nms/apigw
-            tag: <version>
-    core:
-        image:
-            repository: private-registry.nginx.com/nms/core
-            tag: <version>
-    dpm:
-        image:
-            repository: private-registry.nginx.com/nms/dpm
-            tag: <version>
-    ingestion:
-        image:
-            repository: private-registry.nginx.com/nms/ingestion
-            tag: <version>
-    integrations:
-        image:
-            repository: private-registry.nginx.com/nms/integrations
-            tag: <version>
-    secmon:
-        image:
-            repository: private-registry.nginx.com/nms/secmon
-            tag: <version>
-    utility:
-        image:
-            repository: private-registry.nginx.com/nms/utility
-            tag: <version>
-    ```
+```yaml
+imagePullSecrets:
+  - name: regcred
+
+apigw:
+  image:
+    repository: private-registry.nginx.com/nms/apigw
+    tag: <version>
+
+core:
+  image:
+    repository: private-registry.nginx.com/nms/core
+    tag: <version>
+
+dpm:
+  image:
+    repository: private-registry.nginx.com/nms/dpm
+    tag: <version>
+
+ingestion:
+  image:
+    repository: private-registry.nginx.com/nms/ingestion
+    tag: <version>
+
+integrations:
+  image:
+    repository: private-registry.nginx.com/nms/integrations
+    tag: <version>
+
+secmon:
+  image:
+    repository: private-registry.nginx.com/nms/secmon
+    tag: <version>
+
+utility:
+  image:
+    repository: private-registry.nginx.com/nms/utility
+    tag: <version>
+```
+
 
 2. Save and close the `values.yaml` file.
 
