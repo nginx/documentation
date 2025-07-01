@@ -412,7 +412,7 @@ Run the `helm install` command to deploy NGINX Instance Manager:
 
 ```shell
 helm install -n nms-hybrid \
---set adminPasswordHash=$(openssl passwd -6 'YourPassword123#') \
+--set adminPasswordHash=$(openssl passwd -6 '<your-password>') \
 nms nginx-stable/nms-hybrid \
 --create-namespace \
 -f <path-to-your-values.yaml> \
