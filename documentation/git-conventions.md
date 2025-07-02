@@ -31,6 +31,12 @@ The exception to this branch naming convention is release branches for products.
 
 Typically, the technical writer for a given product will ensure that branches are kept in sync with `main`, to minimize the risk of merge conflicts.
 
+If you need to rename a branch, here's the syntax:
+
+```shell
+git branch -m <current-branch-name> <new-branch-name>
+```
+
 ## Commit messages
 
 When opening a pull request on GitHub, the very first commit from a branch is automatically pulled to populate the description.

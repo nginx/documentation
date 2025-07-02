@@ -2,7 +2,7 @@
 
 [pre-commit](https://pre-commit.com/) is a command-line tool used for automatic linting.
 
-It is currently used for consistent [Git conventions](/documentation/git-conventions.md), but will be used for more in the future.
+It is currently *optional*, and used for consistent [Git conventions](/documentation/git-conventions.md), but will be used for more in the future.
 
 The configuration file is located at the root of the repository, [pre-commit-config.yaml](/.pre-commit-config.yaml).
 
@@ -27,3 +27,7 @@ It will then run every time you use `git commit`.
 If you encounter an error about a missing configuration file, you are likely working in a branch that has not synced changes from `main`.
 
 You will need to sync changes from `main` or temporarily uninstall pre-commit to address the error.
+
+```shell
+pre-commit uninstall
+```
