@@ -4,7 +4,7 @@ weight: 100
 toc: true
 type: how-to
 product: NAP-WAF
-docs: DOCS-646
+nd-docs: DOCS-646
 
 ---
 
@@ -17,7 +17,7 @@ This guide explains how to deploy NGINX App Protect WAF as well as upgrade App P
 ### Using NGINX App Protect with NGINX Instance Manager
 
 NGINX Instance Manager provides centralized configuration management and visibility for your NGINX App Protect WAF fleet.
-After completing the NGINX App Protect WAF installation, refer to the [NGINX Instance Manager Installation Guide](https://docs.nginx.com/nginx-instance-manager/deploy/) for the deployment instructions.  
+After completing the NGINX App Protect WAF installation, refer to the [NGINX Instance Manager Installation Guide](https://docs.nginx.com/nginx-instance-manager/deploy/) for the deployment instructions.
 
 ## Prerequisites
 
@@ -237,8 +237,8 @@ If a user other than **nginx** is to be used, note the following:
     Update your policy to include the new configuration, then run [apreload]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#apreload" >}})  command to make changes take effect
 
     {{< note >}} For this capability to function properly, please follow the guidelines listed in the [configuration guide]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#ip-intelligence-configuration" >}}){{< /note >}}
-    
-    
+
+
 
 ---
 
@@ -365,7 +365,7 @@ If a user other than **nginx** is to be used, note the following:
     ```shell
     /opt/app_protect/bin/iprepd /etc/app_protect/tools/iprepd.cfg > ipi.log 2>&1 &
     ```
-    
+
     Verify the client is populating the database:
 
     ```shell
@@ -375,7 +375,7 @@ If a user other than **nginx** is to be used, note the following:
     Update your policy to include the new configuration, then run [apreload]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#apreload" >}})  command to make changes take effect
 
     {{< note >}} For this capability to function properly, please follow the guidelines listed in the [configuration guide]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#ip-intelligence-configuration" >}}){{< /note >}}
-      
+
 ## Debian Installation
 
 1. If you already have NGINX packages in your system, back up your configs and logs:
@@ -522,11 +522,11 @@ If a user other than **nginx** is to be used, note the following:
     ```
 
     After installing the package, run the client:
-    
+
     ```shell
     /opt/app_protect/bin/iprepd /etc/app_protect/tools/iprepd.cfg > ipi.log 2>&1 &
     ```
-    
+
     Verify the client is populating the database:
 
     ```shell
@@ -536,7 +536,7 @@ If a user other than **nginx** is to be used, note the following:
     Update your policy to include the new configuration, then run [apreload]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#apreload" >}})  command to make changes take effect
 
     {{< note >}} For this capability to function properly, please follow the guidelines listed in the [configuration guide]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#ip-intelligence-configuration" >}}){{< /note >}}
-    
+
 {{< warning >}} Debian enables **AppArmor** by default, but NGINX App Protect WAF will run in unconfined mode after being installed as it is shipped with no AppArmor profile. To benefit from AppArmor access control capabilities for NGINX App Protect WAF, you will have to write your own AppArmor profile for NGINX App Protect WAF executables found in `/opt/app_protect/bin` such that it best suits your environment.
 {{< /warning >}}
 
@@ -665,11 +665,11 @@ If a user other than **nginx** is to be used, note the following:
     ```
 
     After installing the package, run the client:
-    
+
     ```shell
     /opt/app_protect/bin/iprepd /etc/app_protect/tools/iprepd.cfg > ipi.log 2>&1 &
     ```
-    
+
     Verify the client is populating the database:
 
     ```shell
@@ -807,7 +807,7 @@ If a user other than **nginx** is to be used, note the following:
     ```
 
     After installing the package, run the client:
-    
+
     ```shell
     /opt/app_protect/bin/iprepd /etc/app_protect/tools/iprepd.cfg > ipi.log 2>&1 &
     ```
@@ -964,7 +964,7 @@ If a user other than **nginx** is to be used, note the following:
     ```
 
     After installing the package, run the client:
-    
+
     ```shell
     /opt/app_protect/bin/iprepd /etc/app_protect/tools/iprepd.cfg > ipi.log 2>&1 &
     ```
@@ -978,7 +978,7 @@ If a user other than **nginx** is to be used, note the following:
     Update your policy to include the new configuration, then run [apreload]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#apreload" >}})  command to make changes take effect
 
     {{< note >}} For this capability to function properly, please follow the guidelines listed in the [configuration guide]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#ip-intelligence-configuration" >}}){{< /note >}}
-        
+
 {{< note >}} Ubuntu 20.04 / Ubuntu 22.04 / Ubuntu 24.04 activates **AppArmor** by default, but NGINX App Protect WAF will run in unconfined mode after being installed as it is shipped with no AppArmor profile. To benefit from AppArmor access control capabilities for NGINX App Protect WAF, you will have to write your own AppArmor profile for NGINX App Protect WAF executables found in `/opt/app_protect/bin` such that it best suits your environment.
 {{< /note >}}
 
@@ -1069,13 +1069,13 @@ If a user other than **nginx** is to be used, note the following:
     /bin/su -s /bin/sh -c "/usr/share/ts/bin/bd-socket-plugin tmm_count 4 proc_cpuinfo_cpu_mhz 2000000 total_xml_memory 307200000 total_umu_max_size 3129344 sys_max_account_id 1024 no_static_config 2>&1 >> /var/log/app_protect/bd-socket-plugin.log &" nginx
     /usr/sbin/nginx -g 'daemon off;'
     ```
-    
+
     If you want to use IP intelligence feature (Available from versions 4.15.0 and above), add this additional line to your `entrypoint.sh` file:
 
     ```shell
     /opt/app_protect/bin/iprepd /etc/app_protect/tools/iprepd.cfg > ipi.log 2>&1 &
     ```
-    
+
 7. Create a Docker image:
 
     - For Oracle Linux/Debian/Ubuntu/Alpine/Amazon Linux:
@@ -1706,7 +1706,7 @@ RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644
     dnf install -y app-protect-compiler \
     && dnf clean all \
     && rm -rf /var/cache/dnf
-```    
+```
 
 ### Oracle Linux 8 Converter Docker Deployment Example
 
@@ -1925,7 +1925,7 @@ On a host with access to the NGINX App Protect WAF repository:
     apt-get update
     for i in $(apt-cache depends --recurse --no-recommends --no-suggests --no-conflicts --no-breaks --no-replaces --no-enhances app-protect | grep "^\w" | sort -u); do apt-get download $i 2>>errors.txt; done
     ```
-    
+
     Only use if you want to install and use the IP intelligence feature:
 
     ```shell
@@ -2815,7 +2815,7 @@ app-protect=27+3.1088.2-1~[OS_CODENAME]
 
 ## Upgrading App Protect to the latest version
 
-### RHEL 8.1+ / RHEL 9+ / Oracle Linux 8.1+ 
+### RHEL 8.1+ / RHEL 9+ / Oracle Linux 8.1+
 
 Upgrade the NGINX App Protect WAF to the latest 4.x version:
 

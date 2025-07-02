@@ -4,7 +4,7 @@ draft: false
 toc: true
 description: This guide explains how to install F5 NGINX Service Mesh using Helm.
 weight: 300
-docs: DOCS-680
+nd-docs: DOCS-680
 type:
 - how-to
 ---

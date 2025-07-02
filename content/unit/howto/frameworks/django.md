@@ -2,7 +2,7 @@
 title: Django
 toc: true
 weight: 500
-docs: DOCS-1746
+nd-docs: DOCS-1746
 ---
 
 To run apps based on the Django [framework](https://www.djangoproject.com)

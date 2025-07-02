@@ -2,7 +2,7 @@
 title: phpMyAdmin
 toc: true
 weight: 1700
-docs: DOCS-1736
+nd-docs: DOCS-1736
 ---
 
 To run the [phpMyAdmin](https://www.phpmyadmin.net) web tool using Unit:

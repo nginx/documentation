@@ -1,5 +1,5 @@
 ---
-docs: DOCS-1238
+nd-docs: DOCS-1238
 files:
 - content/nim/system-configuration/configure-clickhouse.md
 - content/nim/deploy/vm-bare-metal/install-nim-manual.md

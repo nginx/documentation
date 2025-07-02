@@ -1,5 +1,5 @@
 ---
-docs: DOCS-1495
+nd-docs: DOCS-1495
 ---
 
 All signatures are considered to be in staging if their creation or modification time is later than the `stagingCertificationDatetime`.

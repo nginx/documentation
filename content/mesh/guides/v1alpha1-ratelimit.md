@@ -1,6 +1,6 @@
 ---
 title: v1alpha1 RateLimit Documentation
-docs: DOCS-701
+nd-docs: DOCS-701
 description: v1alpha1 RateLimit documentation.
 ---
 
@@ -53,10 +53,10 @@ The rate limit spec contains the following fields:
 
   Each Pod in the destination accepts the total rate defined in a rate limit policy. If a policy has
   a rate of 100 r/m, and the destination consists of 3 Pods, each Pod accepts 100 r/m.
-  
+
   If a single rate limit policy contains multiple sources, the rate divides evenly amongst them. For
   example, a policy defined with
-  
+
   ```yaml
   destination:
   name: destService
@@ -65,7 +65,7 @@ The rate limit spec contains the following fields:
   - name: source2
   rate: 100 r/m
   ```
-  
+
   would result in `destService` accepting 50 requests per minute from `source1`, and 50 requests per minute
   from `source2`, for a total rate of 100 requests per minute. If two separate policies are defined for the
   same destination, then the rate is not divided amongst the sources.

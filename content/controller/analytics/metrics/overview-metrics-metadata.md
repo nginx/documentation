@@ -1,7 +1,7 @@
 ---
 description: Understanding how the F5 NGINX Controller Agent collects and reports
   metrics and metadata.
-docs: DOCS-536
+nd-docs: DOCS-536
 title: 'Overview: Metrics and Metadata'
 toc: true
 weight: 20

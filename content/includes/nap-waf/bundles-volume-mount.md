@@ -1,5 +1,5 @@
 ---
-docs: "DOCS-1511"
+nd-docs: "DOCS-1511"
 ---
 
 To work with custom policy and logging profile bundles, these files must be accessible to the `waf-config-mgr` container.

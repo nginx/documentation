@@ -2,7 +2,7 @@
 description: Capture information from the client IP address in variables, using the
   [MaxMind GeoIP2](https://www.maxmind.com/en/geoip2-databases) databases, with the
   GeoIP2 dynamic module supported by NGINX, Inc.
-docs: DOCS-387
+nd-docs: DOCS-387
 title: GeoIP2
 toc: true
 weight: 100
@@ -10,18 +10,16 @@ type:
 - how-to
 ---
 
-
-## Module Info
-
 [MaxMind GeoIP2](https://www.maxmind.com/en/geoip2-databases) databases provide contextual data for a comprehensive profile of IP addresses, including geolocation data (region, state, city, postal code) and extra data (ISP, domain, connection type). Basing on these data, F5 NGINX Plus will be able to perform different user differentiation strategies, for example, provide different type of content depending on a country.
-
 
 
 ## Installation
 
-1. Check the [Technical Specifications]({{< ref "nginx/technical-specs.md" >}}) page to verify that the module is supported by your operating system.
+1. Check the [Technical Specifications]({{< ref "/nginx/technical-specs.md#dynamic-modules" >}}) page to verify that the module is supported by your operating system.
 
-2. Install the GeoIP2 module package `nginx-plus-module-geoip2`.
+2. Make sure that your operating system is configured to retrieve binary packages from the official NGINX Plus repository. See installation instructions for your operating system on the [Installing NGINX Plus]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}) page.
+
+3. Install the GeoIP2 module package `nginx-plus-module-geoip2` from the official NGINX Plus repository.
 
    For CentOS, Oracle Linux, and RHEL:
 
@@ -74,6 +72,10 @@ After installation you will need to enable and configure the module in NGINX Plu
    http {
        # ...
    }
+
+   stream {
+       # ...
+   }
    ```
 
 2. Perform additional configuration as required by the [module](https://github.com/leev/ngx_http_geoip2_module#user-content-download-maxmind-geolite2-database-optional).
@@ -98,16 +100,16 @@ After installation you will need to enable and configure the module in NGINX Plu
     ```
 
 
-## More Info
+## More info
 
-- [Restricting Access by Geographical Location]({{< ref "nginx/admin-guide/security-controls/controlling-access-by-geoip.md" >}})
+- [Restricting Access by Geographical Location]({{< ref "/nginx/admin-guide/security-controls/controlling-access-by-geoip.md" >}})
 
-- [MaxMind GeoIP2 Databases](https://www.maxmind.com/en/geoip2-databases)
+- [MaxMind GeoIP2 databases](https://www.maxmind.com/en/geoip2-databases)
 
-- [MaxMind Geolite2 Free Downloadable Databases](https://dev.maxmind.com/geoip/geoip2/geolite2/)
+- [MaxMind Geolite2 free downloadable databases](https://dev.maxmind.com/geoip/geoip2/geolite2/)
 
-- [NGINX Dynamic Modules]({{< ref "dynamic-modules.md" >}})
+- [NGINX dynamic modules]({{< ref "dynamic-modules.md" >}})
 
-- [NGINX Plus Technical Specifications]({{< ref "nginx/technical-specs.md" >}})
+- [NGINX Plus technical specifications]({{< ref "/nginx/technical-specs.md" >}})
 
-- [Uninstalling a Dynamic Module]({{< ref "uninstall.md" >}})
+- [Uninstalling a dynamic module]({{< ref "uninstall.md" >}})

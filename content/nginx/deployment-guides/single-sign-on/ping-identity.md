@@ -6,7 +6,7 @@ product: NGINX-PLUS
 title: Single Sign-On with Ping Identity
 toc: true
 weight: 800
-docs: DOCS-1684
+nd-docs: DOCS-1684
 ---
 
 This guide explains how to enable single sign-on (SSO) for applications being proxied by F5 NGINX Plus. The solution uses OpenID Connect as the authentication mechanism, with [Ping Identity](https://www.pingidentity.com/en.html) (PingFederate or PingOne) as the Identity Provider (IdP), and NGINX Plus as the Relying Party.
@@ -30,7 +30,7 @@ This guide explains how to enable single sign-on (SSO) for applications being pr
 Create a new application for NGINX Plus:
 
 1. Log in to your Ping Identity admin console.
- 
+
 2. Go to **Applications** > **Applications**.
 
 3. Click the **+** (plus) symbol to create a new OIDC Application.

@@ -2,7 +2,7 @@
 title: Jira
 toc: true
 weight: 700
-docs: DOCS-1725
+nd-docs: DOCS-1725
 ---
 
 {{< note >}}

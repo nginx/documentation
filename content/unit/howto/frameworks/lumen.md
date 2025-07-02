@@ -2,7 +2,7 @@
 title: Lumen
 weight: 1300
 toc: true
-docs: DOCS-1751
+nd-docs: DOCS-1751
 ---
 
 To run apps based on the [Lumen](https://lumen.laravel.com) framework using

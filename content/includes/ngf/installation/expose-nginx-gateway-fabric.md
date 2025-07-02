@@ -1,7 +1,7 @@
 ---
 title: "Expose NGINX Gateway Fabric"
 weight: 300
-docs: "DOCS-1427"
+nd-docs: "DOCS-1427"
 ---
 
 There are two options for accessing NGINX Gateway Fabric depending on the type of LoadBalancer service you chose during installation:

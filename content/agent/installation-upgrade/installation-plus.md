@@ -3,7 +3,7 @@ title: Installation from NGINX Plus repository
 draft: false
 weight: 400
 toc: true
-docs: DOCS-1217
+nd-docs: DOCS-1217
 type:
 - how-to
 ---

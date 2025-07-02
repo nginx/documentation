@@ -3,7 +3,7 @@ description: Learn how to use the F5 NGINX Management Suite API Connectivity Man
   Rate Limiting policy to protect backend servers. The Rate Limiting policy lets you
   limit connections and the rate of requests based on request URI, client IP address,
   or authenticated clients.
-docs: DOCS-1251
+nd-docs: DOCS-1251
 title: Rate Limiting
 toc: true
 weight: 1300

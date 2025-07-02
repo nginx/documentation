@@ -2,7 +2,7 @@
 title: Status API
 weight: 900
 toc: true
-docs: DOCS-1702
+nd-docs: DOCS-1702
 ---
 
 <a name="configuration-stats"></a>

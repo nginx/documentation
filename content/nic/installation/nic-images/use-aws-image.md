@@ -1,5 +1,5 @@
 ---
-docs: DOCS-607
+nd-docs: DOCS-607
 doctypes:
 - ''
 title: Use the AWS Marketplace NGINX Ingress Controller image
@@ -107,7 +107,7 @@ Follow this guide to set up NGINX Ingress Controller using AWS Marketplace. This
 
     <br>
 
-    Ensure the service account name matches the one in your _values.yaml_ file for helm deployment.  
+    Ensure the service account name matches the one in your _values.yaml_ file for helm deployment.
     Ensure the EKS `role-arn` matches the service account annotation in your _values.yaml_ file for helm deployment.  You can use this command to retrieve the `role-arn`
     ``` shell
     aws iam list-roles | jq -r --arg role "my-cluster-sa" '.Roles[] | select(.RoleName==$role) | .Arn'

@@ -1,5 +1,5 @@
 ---
-docs: DOCS-584
+nd-docs: DOCS-584
 doctypes:
 - ''
 title: Configuration examples

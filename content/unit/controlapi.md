@@ -2,7 +2,7 @@
 title: Control API
 weight: 500
 toc: true
-docs: DOCS-1693
+nd-docs: DOCS-1693
 ---
 
 Unit's configuration is JSON-based, accessible via a RESTful control API,

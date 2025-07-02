@@ -6,7 +6,7 @@ title: Single Sign-On with Microsoft Active Directory FS
 toc: true
 weight: 300
 product: NGINX-PLUS
-docs: DOCS-1683
+nd-docs: DOCS-1683
 ---
 
 This guide explains how to enable single sign-on (SSO) for applications being proxied by F5 NGINX Plus. The solution uses OpenID Connect as the authentication mechanism, with [Microsoft Active Directory Federation Services](https://docs.microsoft.com/en-us/windows-server/identity/active-directory-federation-services) (AD FS) as the Identity Provider (IdP) and NGINX Plus as the Relying Party (RP), or OIDC client application that verifies user identity.
