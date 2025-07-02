@@ -27,11 +27,11 @@ The F5 NGINX One Console makes it easy to manage NGINX instances across location
     {{<card title="Workshops" titleUrl="nginx-one/workshops/" icon="lightbulb">}}
        Self-paced labs that teach key NGINX One Console workflows
     {{</card >}}
-    {{<card title="Changelog" titleUrl="nginx-one/changelog/" icon="clock-alert">}}
-      See latest updates: New features, improvements, and bug fixes
-    {{</card>}}
     {{<card title="Add an NGINX instance" titleUrl="nginx-one/connect-instances/add-instance/" icon="copy-plus">}}
       Connect your instances to the NGINX One Console
+    {{</card>}}
+    {{<card title="Changelog" titleUrl="nginx-one/changelog/" icon="clock-alert">}}
+      See latest updates: New features, improvements, and bug fixes
     {{</card>}}
   {{</card-section>}}
 {{</card-layout>}}

@@ -57,7 +57,7 @@ There are a few ways to install NGINX Agent:
 
 When you register a new instance in the console, you'll get a ready-to-use `curl` command that downloads and installs the NGINX Agent on your target system.
 
-For more information about NGINX Agent, see the [NGINX Agent documentation](https://docs.nginx.com/nginx-agent/overview/).
+For more information about NGINX Agent, see the [NGINX Agent documentation]({{< ref "/agent/about.md" >}}).
 
 ---
 
@@ -123,4 +123,4 @@ Go to [Lab 2: Run workshop components with Docker]({{< ref "nginx-one/workshops/
 ## References
 
 - [Create and manage data plane keys]({{< ref "nginx-one/connect-instances/create-manage-data-plane-keys.md" >}})
-- [NGINX Agent overview]({{< ref "agent/overview.md" >}})
+- [NGINX Agent overview]({{< ref "/agent/about.md" >}})
