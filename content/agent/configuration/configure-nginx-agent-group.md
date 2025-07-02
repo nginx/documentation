@@ -1,11 +1,10 @@
 ---
-title: Add NGINX users to nginx-agent Group
+title: "Add NGINX users to nginx-agent group"
 draft: false
 weight: 300
 toc: true
 nd-docs: DOCS-933
-type:
-- how-to
+nd-content-type: how-to
 ---
 
 ## Overview
