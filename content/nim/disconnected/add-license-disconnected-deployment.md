@@ -65,8 +65,7 @@ To add a license and submit the initial usage report in a disconnected environme
       -j <license-filename>.jwt \
       -i <NIM-IP-address> \
       -u admin \
-      -p <password> \
-      -o report.zip \
+      -p <password> \      
       -s initial
     ```
 
