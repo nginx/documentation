@@ -37,12 +37,6 @@ F5 NGINX One Console makes it easy to manage NGINX instances across locations an
     {{<card title="Manage your NGINX instances" titleUrl="/nginx-one/nginx-configs/" >}}
       Monitor and maintain your deployments
     {{</card>}}
-    {{<card title="Draft new configurations" titleUrl="/nginx-one/staged-configs/" >}}
-      Work with Staged Configurations
-    {{</card>}}
-    {{<card title="Set up metrics" titleUrl="/nginx-one/metrics/" >}}
-      Review your deployments in a dashboard
-    {{</card>}}
     {{<card title="Organize users with RBAC" titleUrl="/nginx-one/rbac/" >}}
       Assign responsibilities with role-based access control 
     {{</card>}}
