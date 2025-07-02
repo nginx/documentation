@@ -16,7 +16,7 @@ To review older entries, visit the [Changelog archive]({{< ref "/nginxaas-azure/
 
 ## May 22, 2025
 
-- {{% icon-feature %}} **NGINXaaS for Azure can now support IPv6**
+- {{% icon-feature %}} **NGINXaaS for Azure now supports IPv6**
 
   Users can now configure their NGINXaaS deployments with just a single IPv6 frontend IP or in dual-stack (IPv4 + IPv6) mode.
 
