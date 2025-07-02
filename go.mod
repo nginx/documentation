@@ -2,4 +2,4 @@ module github.com/nginxinc/docs
 
 go 1.19
 
-require github.com/nginxinc/nginx-hugo-theme v0.43.3 // indirect
+require github.com/nginxinc/nginx-hugo-theme v0.43.4 // indirect
