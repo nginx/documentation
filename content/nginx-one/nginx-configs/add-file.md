@@ -15,8 +15,8 @@ type:
 
 Before you add files in your configuration, ensure:
 
-- You have access to the NGINX One Console.
-- NGINX instances are properly registered with NGINX One Console
+- You have [access to the NGINX One Console]({{< ref "/nginx-one/rbac/roles.md" >}}).
+- NGINX instances are [properly registered]({{< ref "/nginx-one/getting-started.md#add-your-nginx-instances-to-nginx-one" >}}) with NGINX One Console.
 
 ## Important considerations
 

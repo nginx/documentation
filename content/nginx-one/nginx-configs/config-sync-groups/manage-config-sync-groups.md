@@ -162,13 +162,13 @@ When adding a new NGINX instance that is not yet registered with NGINX One, you 
    - From the **OS Type** list, choose the appropriate operating system for your Docker image.
    - After selecting the OS, run the provided command to pull the Docker image.
 
-   **Note**: Subject to availability, you can modify the `agent: <VERSION_TAG>` to match the specific NGINX Plus version, OS type, and OS version you need. For example, you might use `agent: r32-ubi-9`. For more details on version tags and how to pull an image, see [Deploying NGINX and NGINX Plus on Docker]({{< ref "nginx/admin-guide/installing-nginx/installing-nginx-docker.md#pulling-the-image" >}}).
+   **Note**: Subject to availability, you can modify the `agent: <VERSION_TAG>` to match the specific NGINX Plus version, OS type, and OS version you need. For example, you might use `agent: r32-ubi-9`. For more details on version tags and how to pull an image, see [Deploying NGINX and NGINX Plus on Docker]({{< ref "nginx/admin-guide/installing-nginx/installing-nginx-docker.md#pull-the-image" >}}).
 
 
    - From the **OS Type** list, choose the appropriate operating system for your Docker image.
    - After selecting the OS, run the provided command to pull the Docker image.
 
-   **Note**: Subject to availability, you can modify the `agent: <VERSION_TAG>` to match the specific NGINX Plus version, OS type, and OS version you need. For example, you might use `agent: r32-ubi-9`. For more details on version tags and how to pull an image, see [Deploying NGINX and NGINX Plus on Docker]({{< ref "nginx/admin-guide/installing-nginx/installing-nginx-docker.md#pulling-the-image" >}}).
+   **Note**: Subject to availability, you can modify the `agent: <VERSION_TAG>` to match the specific NGINX Plus version, OS type, and OS version you need. For example, you might use `agent: r32-ubi-9`. For more details on version tags and how to pull an image, see [Deploying NGINX and NGINX Plus on Docker]({{< ref "nginx/admin-guide/installing-nginx/installing-nginx-docker.md#pull-the-image" >}}).
 
 10. Run the provided command, which includes the data plane key, in your NGINX instance terminal to start the Docker container.
 
