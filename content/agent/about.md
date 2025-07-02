@@ -9,7 +9,7 @@ nd-content-type: how-to
 
 ## Overview
 
-NGINX Agent v2 is a companion daemon for your NGINX Open Source or NGINX Plus instance. It enables:
+NGINX Agent version 2 is a companion daemon for your NGINX Open Source or NGINX Plus instance. It enables:
 
 - Remote management of NGINX configurations
 - Collection and reporting of real-time NGINX performance and operating system metrics

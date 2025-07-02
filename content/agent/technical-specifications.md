@@ -6,11 +6,11 @@ nd-docs: DOCS-1092
 nd-content-type: how-to
 ---
 
-This document describes the requirements for NGINX Agent v2.
+This document describes the requirements for NGINX Agent version 2.
 
 This document provides technical specifications for NGINX Agent. It includes information on supported distributions, deployment environments, NGINX versions, sizing recommendations, and logging.
 
-## NGINX Agent v3.0 Compatibility
+## NGINX Agent 3.0 Compatibility
 {{< bootstrap-table "table table-striped table-bordered" >}}
 | NGINX Product                | Agent Version  |
 |------------------------------|----------------|
