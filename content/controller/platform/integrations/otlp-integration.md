@@ -1,6 +1,6 @@
 ---
 description: Create an OpenTelemetry Protocol (OTLP) Integration for F5 NGINX Controller.
-docs: DOCS-565
+nd-docs: DOCS-565
 title: OTLP Integration
 weight: 30
 ---

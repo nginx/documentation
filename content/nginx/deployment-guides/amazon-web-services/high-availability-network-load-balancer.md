@@ -1,7 +1,7 @@
 ---
 description: Create a highly available active-active deployment of F5 NGINX Plus on
   AWS in combination with AWS Network Load Balancer (NLB).
-docs: DOCS-446
+nd-docs: DOCS-446
 title: Active-Active HA for NGINX Plus on AWS Using AWS Network Load Balancer
 toc: true
 weight: 100
@@ -291,7 +291,7 @@ Configure NGINX Plus instances as load balancers. These distribute requests to 
 
 Use the *Step‑by‑step* instructions in our deployment guide, [Setting Up an NGINX Demo Environment]({{< ref "/nginx/deployment-guides/setting-up-nginx-demo-environment.md" >}}).
 
-Repeat the instructions on both **ngx&#8209;plus&#8209;1** and **ngx&#8209;plus&#8209;2**.
+Repeat the instructions on both {{<nb>}}**ngx-plus-1**{{</nb>}} and {{<nb>}}**ngx-plus-2**{{</nb>}}.
 
 <span id="create-instances-automated"></span>
 ### Automate instance setup with Packer and Terraform
@@ -317,7 +317,7 @@ To run the scripts, follow these instructions:
 
 3. Set your AWS credentials in the Packer and Terraform scripts:
 
-   - For Packer, set your credentials in the `variables` block in <span style="text-decoration: underline;">both</span> **packer/ngx&#8209;oss/packer.json** and **packer/ngx&#8209;plus/packer.json**:
+   - For Packer, set your credentials in the `variables` block in <span style="text-decoration: underline;">both</span> {{<nb>}}**packer/ngx-oss/packer.json**{{</nb>}} and {{<nb>}}**packer/ngx-plus/packer.json**{{</nb>}}:
 
      ```none
      "variables": {

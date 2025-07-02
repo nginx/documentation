@@ -1,6 +1,6 @@
 ---
 description: Follow the steps in this guide to scan for and discover NGINX instances.
-docs: DOCS-828
+nd-docs: DOCS-828
 title: Scan and discover NGINX instances
 toc: true
 weight: 110

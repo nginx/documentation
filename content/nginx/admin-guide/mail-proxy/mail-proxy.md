@@ -1,7 +1,7 @@
 ---
 description: Simplify your email service and improve its performance with NGINX or
   F5 NGINX Plus as a proxy for the IMAP, POP3, and SMTP protocols
-docs: DOCS-423
+nd-docs: DOCS-423
 title: Configure NGINX as a Mail Proxy Server
 toc: true
 weight: 100
@@ -166,7 +166,7 @@ To enable SSL/TLS for the mail proxy:
     ```nginx
     mail {
         #...
-        ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+        ssl_protocols TLSv1.2 TLSv1.3;
         ssl_ciphers   HIGH:!aNULL:!MD5;
     }
     ```
@@ -223,7 +223,7 @@ mail {
     ssl                 on;
     ssl_certificate     /etc/ssl/certs/server.crt;
     ssl_certificate_key /etc/ssl/certs/server.key;
-    ssl_protocols       TLSv1 TLSv1.1 TLSv1.2;
+    ssl_protocols       TLSv1.2 TLSv1.3;
     ssl_ciphers         HIGH:!aNULL:!MD5;
     ssl_session_cache   shared:SSL:10m;
     ssl_session_timeout 10m;

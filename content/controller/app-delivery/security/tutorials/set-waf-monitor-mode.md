@@ -1,7 +1,7 @@
 ---
 description: How to use F5 NGINX Controller App Security to monitor or block security
   violations.
-docs: DOCS-485
+nd-docs: DOCS-485
 title: Set Up App Security Monitor Mode
 toc: true
 weight: 200

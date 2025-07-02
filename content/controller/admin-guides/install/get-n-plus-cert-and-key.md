@@ -1,7 +1,7 @@
 ---
 description: How to download the F5 NGINX Plus nginx.crt and nginx.key files using
   the NGINX Controller API.
-docs: DOCS-252
+nd-docs: DOCS-252
 title: Download the NGINX Plus Cert and Key Bundle
 toc: true
 weight: 105

@@ -4,7 +4,7 @@ weight: 100
 toc: true
 type: how-to
 product: NIM
-docs: DOCS-1107
+nd-docs: DOCS-1107
 ---
 
 ## Overview
@@ -30,7 +30,7 @@ Complete the following prerequisites before proceeding with the steps in this gu
    {{< include "nim/tech-specs/security-data-plane-dependencies.md" >}}
 
 1. Determine your use case: **Security Monitoring only** or **Security Monitoring and Configuration Management**.
-1. [Upload your license]({{< ref "/nim/admin-guide/license/add-license.md" >}}).
+1. [Upload your license]({{< ref "/nim/admin-guide/add-license.md" >}}).
 
 ---
 

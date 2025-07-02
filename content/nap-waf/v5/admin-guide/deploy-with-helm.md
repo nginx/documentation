@@ -4,6 +4,7 @@ weight: 300
 toc: true
 type: how-to
 product: NAP-WAF
+nd-docs: DOCS-1793
 ---
 
 ## Overview
@@ -38,7 +39,7 @@ Next, create a `Dockerfile` using one of the examples provided below.
 
 {{<tabs name="nap5_nginx_OSS_dockerfiles">}}
 {{%tab name="Alpine Linux"%}}
- 
+
 {{< include "nap-waf/config/v5/build-nginx-image-oss/build-alpine.md" >}}
 
 {{%/tab%}}
@@ -67,6 +68,11 @@ Next, create a `Dockerfile` using one of the examples provided below.
 {{< include "nap-waf/config/v5/build-nginx-image-oss/build-rhel.md" >}}
 
 {{%/tab%}}
+{{%tab name="Rocky Linux"%}}
+
+{{< include "nap-waf/config/v5/build-nginx-image-oss/build-rocky.md" >}}
+
+{{%/tab%}}
 {{%tab name="Ubuntu"%}}
 
 {{< include "nap-waf/config/v5/build-nginx-image-oss/build-ubuntu.md" >}}
@@ -80,7 +86,7 @@ You are ready to [Build the image](#build-image).
 
 {{<tabs name="nap5_nginx_plus_dockerfiles">}}
 {{%tab name="Alpine Linux"%}}
- 
+
 {{< include "nap-waf/config/v5/build-nginx-image-plus/build-alpine.md" >}}
 
 {{%/tab%}}
@@ -109,6 +115,11 @@ You are ready to [Build the image](#build-image).
 {{< include "nap-waf/config/v5/build-nginx-image-plus/build-rhel.md" >}}
 
 {{%/tab%}}
+{{%tab name="Rocky Linux 9"%}}
+
+{{< include "nap-waf/config/v5/build-nginx-image-plus/build-rocky.md" >}}
+
+{{%/tab%}}
 {{%tab name="Ubuntu"%}}
 
 {{< include "nap-waf/config/v5/build-nginx-image-plus/build-ubuntu.md" >}}
@@ -122,7 +133,7 @@ You are ready to [Build the image](#build-image).
 
 Next, push it to your private image repository, ensuring it's accessible to your Kubernetes cluster.
 
---- 
+---
 
 ## Pull the chart
 
@@ -231,6 +242,11 @@ To use the *mTLS Configuration* options, read the [Secure Traffic Between NGINX 
 | | _appprotect.wafEnforcer.imagePullPolicy_ | Image pull policy. | IfNotPresent |
 | | _appprotect.wafEnforcer.env.enforcerPort_ | Port for the WAF Enforcer. | 50000 |
 | | _appprotect.wafEnforcer.resources_ | The resources of the WAF Enforcer container. | requests: cpu=20m,memory=256Mi |
+| **WAF IP Intelligence** | _appprotect.wafIpIntelligence.enable | Enable or disable the use of the IP intelligence container | false |
+| | _appprotect.wafIpIntelligence.image.repository_ | Docker image repository for the WAF IP Intelligence. | private-registry.nginx.com/nap/waf-ip-intelligence |
+| | _appprotect.wafIpIntelligence.image.tag_ | Docker image tag for the WAF Enforcer. | 5.6.0 |
+| | _appprotect.wafIpIntelligence.imagePullPolicy_ | Image pull policy. | IfNotPresent |
+| | _appprotect.wafIpIntelligence.resources_ | The resources of the WAF Enforcer container. | requests: cpu=10m,memory=256Mi |
 | **Config** | _appprotect.config.name_ | The name of the ConfigMap used by the NGINX container. | nginx-config |
 | | _appprotect.config.annotations_ | The annotations of the ConfigMap. | {} |
 | | _appprotect.config.nginxJWT_ | JWT license for NGINX. | "" |

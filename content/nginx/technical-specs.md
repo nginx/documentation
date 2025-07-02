@@ -2,7 +2,7 @@
 description: Platforms supported by F5 NGINX Plus and dynamically loaded modules,
   supported SSL/TLS versions, supported deployment environments, and list of modules
   built into NGINX Plus.
-docs: DOCS-473
+nd-docs: DOCS-473
 title: Technical Specs
 toc: true
 weight: 400
@@ -39,12 +39,12 @@ Dynamic modules are supported on the [same distributions as NGINX Plus](#support
 {{<bootstrap-table "table table-striped table-bordered">}}
 | Module           | Distribution and details                                                                                   |
 |-------------------|-----------------------------------------------------------------------------------------------------------|
-| AppProtect        | AlmaLinux/Rocky Linux: **Not supported**<br>Alpine Linux: **Not supported**<br>Amazon Linux 2: **x86_64 only**<br>Amazon Linux 2023: **Not supported**<br>Debian 11: **x86_64 only**<br>FreeBSD: **Not supported**<br>Oracle Linux 8: **x86_64 only**<br>RHEL 8: **x86_64 only**<br>SLES: **Not supported**<br>Ubuntu 20.04: **x86_64 only** |
-| GeoIP             | Amazon Linux 2023  **Not supported**<br>RHEL/Oracle Linux/AlmaLinux/Rocky Linux 8.0+, 9: **Not supported**<br>FreeBSD: **Not supported**           |
-| GeoIP2            | Amazon Linux 2: **Not supported**                                            |
-| HA-Keepalived     | FreeBSD: **Not supported**<br>Alpine Linux: **Not supported**<br>Amazon Linux 2: **Not supported**<br>Amazon Linux 2023: **Not supported** |
-| NGINX sync        | FreeBSD: **Not supported**<br>Alpine Linux: **Not supported**                                              |
-| OpenTelemetry     | Amazon Linux 2: **Not supported**<br>SLES: **Not supported**                                               |                                                                                |
+| [AppProtect]({{< ref "/nap-waf/v5/admin-guide/install.md" >}}) | AlmaLinux/Rocky Linux: **Not supported**<br>Alpine Linux: **Not supported**<br>Amazon Linux 2: **x86_64 only**<br>Amazon Linux 2023: **Not supported**<br>Debian 11: **x86_64 only**<br>FreeBSD: **Not supported**<br>Oracle Linux 8: **x86_64 only**<br>RHEL 8: **x86_64 only**<br>SLES: **Not supported**<br>Ubuntu 20.04: **x86_64 only** |
+| [GeoIP]({{< ref "/nginx/admin-guide/dynamic-modules/geoip.md" >}}) | Amazon Linux 2023  **Not supported**<br>RHEL/Oracle Linux/AlmaLinux/Rocky Linux 8.0+, 9: **Not supported**<br>FreeBSD: **Not supported**           |
+| [GeoIP2]({{< ref "/nginx/admin-guide/dynamic-modules/geoip2.md" >}}) | Amazon Linux 2: **Not supported**                                            |
+| [HA-Keepalived]({{< ref "/nginx/admin-guide/high-availability/ha-keepalived-nodes.md#configuring-keepalived-for-an-additional-passive-node" >}}) | FreeBSD: **Not supported**<br>Alpine Linux: **Not supported**<br>Amazon Linux 2: **Not supported**<br>Amazon Linux 2023: **Not supported** |
+| [NGINX sync]({{< ref "/nginx/admin-guide/high-availability/configuration-sharing.md#installing-nginx-sync-on-the-primary-machine" >}}) | FreeBSD: **Not supported**<br>Alpine Linux: **Not supported**                                              |
+| [OpenTelemetry]({{< ref "/nginx/admin-guide/dynamic-modules/opentelemetry.md" >}})| Amazon Linux 2: **Not supported**<br>SLES: **Not supported**                                               |                                                                                |
 {{</bootstrap-table>}}
 
 ---
@@ -163,9 +163,10 @@ See [Sizing Guide for Deploying NGINX Plus on Bare Metal Servers](https://www.ng
 - [Limit Requests](https://nginx.org/en/docs/http/ngx_http_limit_req_module.html) – Limit rate of request processing for a client IP address or other keyed value
 - [Limit Responses](https://nginx.org/en/docs/http/ngx_http_core_module.html#limit_rate) – Limit rate of responses per client connection
 
-### HTTP/2 and SSL/TLS
+### HTTP/2, HTTP/3 and SSL/TLS
 
 - [HTTP/2](https://nginx.org/en/docs/http/ngx_http_v2_module.html) – Process HTTP/2 traffic
+- [HTTP/3](https://nginx.org/en/docs/http/ngx_http_v3_module.html) – Process HTTP/3 traffic
 - [SSL/TLS](https://nginx.org/en/docs/http/ngx_http_ssl_module.html) – Process HTTPS traffic
 
 ### Mail

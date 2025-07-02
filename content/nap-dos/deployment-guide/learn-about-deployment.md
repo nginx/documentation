@@ -1,6 +1,6 @@
 ---
 description: Learn about F5 NGINX App Protect DoS Deployment.
-docs: DOCS-666
+nd-docs: DOCS-666
 title: NGINX App Protect DoS Deployment
 toc: true
 weight: 100
@@ -33,7 +33,7 @@ NGINX App Protect DoS supports the following operating systems:
 - [Ubuntu 22.04 (Jammy)](#debian--ubuntu-installation)
 - [Ubuntu 24.04 (Noble)](#debian--ubuntu-installation)
 - [Alpine 3.15](#alpine-315x--317x--319x-installation) - (Deprecated starting from NGINX Plus R30)
-- [Alpine 3.17](#alpine-315x--317x--319x-installation) - (Deprecated starting from NGINX Plus R34) 
+- [Alpine 3.17](#alpine-315x--317x--319x-installation) - (Deprecated starting from NGINX Plus R34)
 - [Alpine 3.19](#alpine-315x--317x--319x-installation)
 - [AmazonLinux 2023](#amazonlinux-linux-2023-installation)
 
@@ -402,7 +402,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     ```
 
 1. {{< include "nginx-plus/install/create-dir-for-crt-key.md" >}}
- 
+
 1. {{< include "nginx-plus/install/create-dir-for-jwt.md" >}}
 
 1. {{< include "licensing-and-reporting/download-jwt-crt-from-myf5.md" >}}
@@ -2621,7 +2621,7 @@ ${DIR}/appprotect-dos-arb/install_appprotect-dos-arb.sh
 ## App Protect DoS eBPF manager
 
 ### Overview
-The eBPF Manager is a powerful and efficient tool designed to simplify and secure the deployment of eBPF (Extended Berkeley Packet Filter) programs for advanced networking use cases. 
+The eBPF Manager is a powerful and efficient tool designed to simplify and secure the deployment of eBPF (Extended Berkeley Packet Filter) programs for advanced networking use cases.
 Its primary responsibilities include program installation and managing client interactions to enable real-time packet processing and mitigation solutions.
 
 ### CLI Options for Flexible Configuration
@@ -2632,4 +2632,4 @@ The eBPF Manager comes with configurable command-line flags for ease of use and 
 * gRPC UDS Ownership:
   * -u, --user <user_name>: Set the user ownership for the gRPC Unix Domain Socket (UDS). Defaults to nginx.
   * -g, --group <group_name>: Set the group ownership for the gRPC Unix Domain Socket (UDS). Defaults to nginx.
-    
+

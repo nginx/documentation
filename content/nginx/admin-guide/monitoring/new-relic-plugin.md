@@ -1,7 +1,7 @@
 ---
 description: Find what's new in version 2 of the NGINX and F5 NGINX Plus plug‑in for
   New Relic – more convenience, more metrics, richer visualization.
-docs: DOCS-427
+nd-docs: DOCS-427
 title: Monitoring NGINX and NGINX Plus with the New Relic Plug-In
 toc: true
 weight: 500
@@ -33,7 +33,7 @@ Download the [plug‑in and installation instructions](https://docs.newrelic.com
 
 ## Configuring the Plug‑In
 
-The configuration file for the NGINX plug‑in is **/etc/nginx&#8209;nr&#8209;agent/nginx&#8209;nr&#8209;agent.ini**. The minimal configuration includes:
+The configuration file for the NGINX plug‑in is {{<nb>}}**/etc/nginx-nr-agent/nginx-nr-agent.ini**{{</nb>}}. The minimal configuration includes:
 
 - Your New Relic license key in the `newrelic_license_key` statement in the `global` section.
 
@@ -44,7 +44,7 @@ The configuration file for the NGINX plug‑in is **/etc/nginx&#8209;nr&#8209;ag
 
 You can include the optional `http_user` and `http_pass` statements to set HTTP basic authentication credentials in cases where the corresponding location is protected by the NGINX [auth_basic](https://nginx.org/en/docs/http/ngx_http_auth_basic_module.html#auth_basic) directive.
 
-The default log file is **/var/log/nginx&#8209;nr&#8209;agent.log**.
+The default log file is {{<nb>}}**/var/log/nginx-nr-agent.log**{{</nb>}}.
 
 ## Running the Plug‑In
 

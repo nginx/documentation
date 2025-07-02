@@ -2,7 +2,7 @@
 title: Kubespray
 description: Learn how to set up Kubespray for use with F5 NGINX Service Mesh.
 toc: true
-docs: DOCS-685
+nd-docs: DOCS-685
 type:
 - how-to
 ---

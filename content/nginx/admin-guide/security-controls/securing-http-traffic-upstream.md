@@ -1,7 +1,7 @@
 ---
 description: Secure HTTP traffic between NGINX or F5 NGINX Plus and upstream servers,
   using SSL/TLS encryption.
-docs: DOCS-435
+nd-docs: DOCS-435
 title: Securing HTTP Traffic to Upstream Servers
 toc: true
 weight: 900
@@ -77,7 +77,7 @@ Optionally, you can specify which SSL protocols and ciphers are used:
 ```nginx
 location /upstream {
         #...
-        proxy_ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+        proxy_ssl_protocols TLSv1.2 TLSv1.3;
         proxy_ssl_ciphers   HIGH:!aNULL:!MD5;
 }
 ```
@@ -133,7 +133,7 @@ http {
             proxy_pass                    https://backend.example.com;
             proxy_ssl_certificate         /etc/nginx/client.pem;
             proxy_ssl_certificate_key     /etc/nginx/client.key;
-            proxy_ssl_protocols           TLSv1 TLSv1.1 TLSv1.2;
+            proxy_ssl_protocols           TLSv1.2 TLSv1.3;
             proxy_ssl_ciphers             HIGH:!aNULL:!MD5;
             proxy_ssl_trusted_certificate /etc/nginx/trusted_ca_cert.crt;
 
@@ -185,5 +185,5 @@ When a secure connection is passed from NGINX to the upstream server for the fir
 The next time NGINX passes a connection to the upstream server, session parameters will be reused because of the [proxy_ssl_session_reuse](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_ssl_session_reuse) directive, and the secured connection is established faster.
 
 The trusted CA certificates in the file named by the [proxy_ssl_trusted_certificate](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_ssl_trusted_certificate) directive are used to verify the certificate on the upstream.
-The [proxy_ssl_verify_depth](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_ssl_verify_depth) directive specifies that two certificates in the certificates chain are checked. 
+The [proxy_ssl_verify_depth](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_ssl_verify_depth) directive specifies that two certificates in the certificates chain are checked.
 The [proxy_ssl_verify](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_ssl_verify) directive verifies the validity of certificates.

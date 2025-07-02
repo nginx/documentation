@@ -1,6 +1,6 @@
 ---
 description: Learn how to use the Brotli module with F5 NGINX Plus
-docs: DOCS-381
+nd-docs: DOCS-381
 title: Brotli
 toc: true
 weight: 100
@@ -19,7 +19,7 @@ The [ngx_brotli](https://github.com/google/ngx_brotli) module enables Brotli com
 
 ## Prerequisites
 
-1. Check the [Technical Specifications]({{< ref "nginx/technical-specs.md" >}}) page to verify that the module is supported by your operating system.
+1. Check the [Technical Specifications]({{< ref "/nginx/technical-specs.md#dynamic-modules" >}}) page to verify that the module is supported by your operating system.
 
 2. If required, install the **epel-release** dependency
 
@@ -35,12 +35,11 @@ The [ngx_brotli](https://github.com/google/ngx_brotli) module enables Brotli com
    sudo yum update && \
    sudo yum install epel-release -y
    ```
-
-
+3. Make sure that your operating system is configured to retrieve binary packages from the official NGINX Plus repository. See installation instructions for your operating system on the [Installing NGINX Plus]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}) page.
 
 ## Installation
 
-Install the Brotli module package `nginx-plus-module-brotli`.
+Install the Brotli module package `nginx-plus-module-brotli` from the official NGINX Plus repository.
 
 - for Amazon Linux 2 LTS, CentOS, Oracle Linux, and RHEL:
 
@@ -76,8 +75,6 @@ Install the Brotli module package `nginx-plus-module-brotli`.
    sudo pkg update && \
    sudo pkg install nginx-plus-module-brotli
    ```
-
-
 
 ## Configuration
 
@@ -125,14 +122,12 @@ After installation you will need to enable and configure Brotli modules in NGINX
     nginx -s reload
     ```
 
+## More info
 
+- [The `ngx_brotli` module GitHub project](https://github.com/google/ngx_brotli)
 
-## More Info
+- [NGINX dynamic modules]({{< ref "dynamic-modules.md" >}})
 
-- [NGINX Module for Brotli Compression Reference](https://github.com/google/ngx_brotli)
+- [NGINX Plus technical specifications]({{< ref "/nginx/technical-specs.md" >}})
 
-- [NGINX Dynamic Modules]({{< ref "dynamic-modules.md" >}})
-
-- [NGINX Plus Technical Specifications]({{< ref "nginx/technical-specs.md" >}})
-
-- [Uninstalling a Dynamic Module]({{< ref "uninstall.md" >}})
+- [Uninstalling a dynamic module]({{< ref "uninstall.md" >}})

@@ -1,10 +1,10 @@
 ---
-title: Add a license in a disconnected environment
+title: Add a license (disconnected)
 draft: false
 description: ''
 weight: 200
 toc: true
-docs: DOCS-1657
+nd-docs: DOCS-1657
 personas:
 - devops
 - netops
@@ -18,14 +18,14 @@ type:
 
 This guide shows you how to add a license to NGINX Instance Manager in a disconnected (offline) environment. In this setup, systems don’t have internet access. You’ll download and apply your subscription’s JSON Web Token (JWT) license, then verify your entitlements with F5.
 
-{{< call-out "tip" "Using the REST API" "" >}}{{< include "nim/how-to-access-nim-api.md" >}}{{</call-out>}}
+{{< call-out "tip" "Using the REST API" "" >}}{{< include "nim/how-to-access-nim-api.md" >}}{{</ call-out >}}
 
 
 ## Before you begin
 
 ### Set the operation mode to disconnected
 
-To configure NGINX Instance Manager for a network-restricted environment, you need to set the `mode_of_operation` to `disconnected` in the configuration file.
+To configure NGINX Instance Manager for a disconnected environment, you need to set the `mode_of_operation` to `disconnected` in the configuration file.
 
 {{< include "nim/disconnected/set-mode-of-operation-disconnected.md" >}}
 
@@ -39,7 +39,7 @@ To configure NGINX Instance Manager for a network-restricted environment, you ne
 ## Add license and submit initial usage report {#add-license-submit-initial-usage-report}
 
 
-{{<tabs name="submit-usage-report">}}
+{{< tabs name="submit-usage-report" >}}
 
 {{%tab name="Bash script (recommended)"%}}
 
@@ -86,7 +86,7 @@ To license NGINX Instance Manager, complete each of the following steps in order
 
 Run these `curl` commands on a system that can access NGINX Instance Manager and connect to `https://product.apis.f5.com/` on port `443`. Replace each placeholder with your specific values.
 
-{{<important>}}The `-k` flag skips SSL certificate validation. Use this only if your NGINX Instance Manager is using a self-signed certificate or if the certificate is not trusted by your system.{{</important>}}
+{{< important >}}The `-k` flag skips SSL certificate validation. Use this only if your NGINX Instance Manager is using a self-signed certificate or if the certificate is not trusted by your system.{{</ important >}}
 
 1. **Add the license to NGINX Instance Manager**:
 
@@ -107,7 +107,7 @@ Run these `curl` commands on a system that can access NGINX Instance Manager and
     ```
 
 1. **Poll the license status on NGINX Instance Manager**:
-   
+
    Use this command to check the current license status. Look for `INITIALIZE_ACTIVATION_COMPLETE` or `CONFIG_REPORT_READY` in the status field. Poll periodically if necessary.
 
     ```bash
@@ -117,7 +117,7 @@ Run these `curl` commands on a system that can access NGINX Instance Manager and
     --header "referer: https://<NIM-FQDN>/ui/settings/license"
     ```
 
-1. **Update the license configuration on NGINX Instance Manager**:
+1. **Update the license configuration on NGINX Instance Manager (not required in 2.20 or later)**:
 
    This step ensures that the license configuration is fully applied.
 
@@ -217,7 +217,7 @@ To add a license:
 
 Download the initial usage report to send to F5:
 
-- On the **License > Overview** page, select **Download License Report**. 
+- On the **License > Overview** page, select **Download License Report**.
 
 
 #### Submit usage report to F5
@@ -230,7 +230,7 @@ To upload the the usage acknowledgement:
 
 1. On the **License > Overview** page, select **Upload Usage Acknowledgement**.
 2. Upload the acknowledgement by selecting **Browse** or dragging the file into the form.
-3. Select **Add**. 
+3. Select **Add**.
 
 {{%/tab%}}
 

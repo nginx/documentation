@@ -1,7 +1,7 @@
 ---
 description: Learn how to create dynamic routes for your deployments using F5 NGINX
   Management Suite API Connectivity Manager.
-docs: DOCS-1218
+nd-docs: DOCS-1218
 title: Set Up Advanced Routing
 toc: true
 weight: 110
@@ -43,7 +43,7 @@ In the steps that follow, we will:
 
 To complete the instructions in this guide, you need the following:
 
-- [API Connectivity Manager is installed]({{< ref "/nms/acm/how-to/install-acm.md" >}}), [licensed]({{< ref "/nim/admin-guide/license/add-license.md" >}}), and running
+- [API Connectivity Manager is installed]({{< ref "/nms/acm/how-to/install-acm.md" >}}), [licensed]({{< ref "/nim/admin-guide/add-license.md" >}}), and running
 - One or more [Service workspaces]({{< ref "/nms/acm/how-to/services/publish-api.md#create-a-service-workspace" >}})
 - One or more [Proxies]({{< ref "/nms/acm/how-to/services/publish-api.md" >}})
 

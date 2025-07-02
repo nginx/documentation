@@ -1,6 +1,6 @@
 ---
 description: Learn about the NGINX Controller Agent.
-docs: DOCS-508
+nd-docs: DOCS-508
 title: Get to Know the F5 NGINX Controller Agent
 toc: true
 weight: 100

@@ -1,5 +1,5 @@
 ---
-docs: DOCS-000
+nd-docs: DOCS-000
 ---
 
 The base template is the common starting point to any policy you write. The default policy just reflects that template without any further modifications, thus we use the terms **base template** and **default policy** interchangeably. The default policy appears as follows

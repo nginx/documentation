@@ -1,6 +1,6 @@
 ---
 description: Create and manage environments to use with your apps, gateways, and certs.
-docs: DOCS-372
+nd-docs: DOCS-372
 title: Manage Environments
 toc: true
 weight: 100

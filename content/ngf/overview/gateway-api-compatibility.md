@@ -2,9 +2,9 @@
 title: Gateway API Compatibility
 weight: 200
 toc: true
-type: reference
-product: NGF
-docs: DOCS-1412
+nd-content-type: reference
+nd-product: NGF
+nd-docs: DOCS-1412
 ---
 
 Learn which Gateway API resources NGINX Gateway Fabric supports and to which level.
@@ -28,8 +28,6 @@ Learn which Gateway API resources NGINX Gateway Fabric supports and to which lev
 
 {{< /bootstrap-table >}}
 
----
-
 ## Terminology
 
 Gateway API features has three [support levels](https://gateway-api.sigs.k8s.io/concepts/conformance/#2-support-levels): Core, Extended and Implementation-specific. We use the following terms to describe the support status for each level and resource field:
@@ -42,7 +40,6 @@ Gateway API features has three [support levels](https://gateway-api.sigs.k8s.io/
 
 {{< note >}} It's possible that NGINX Gateway Fabric will never support some resources or fields of the Gateway API. They will be documented on a case by case basis. {{< /note >}}
 
----
 
 ## Resources
 
@@ -60,7 +57,7 @@ For a description of each field, visit the [Gateway API documentation](https://g
 
 {{< /bootstrap-table >}}
 
-NGINX Gateway Fabric supports a single GatewayClass resource configured with the `--gatewayclass` flag of the [static-mode]({{< ref "/ngf/reference/cli-help.md#static-mode">}}) command.
+NGINX Gateway Fabric supports a single GatewayClass resource configured with the `--gatewayclass` flag of the [controller]({{< ref "/ngf/reference/cli-help.md#controller">}}) command.
 
 **Fields**:
 
@@ -78,8 +75,6 @@ NGINX Gateway Fabric supports a single GatewayClass resource configured with the
     - `SupportedVersion/True/SupportedVersion`
     - `SupportedVersion/False/UnsupportedVersion`
 
----
-
 ### Gateway
 
 {{< bootstrap-table "table table-striped table-bordered" >}}
@@ -90,14 +85,18 @@ NGINX Gateway Fabric supports a single GatewayClass resource configured with the
 
 {{< /bootstrap-table >}}
 
-NGINX Gateway Fabric supports a single Gateway resource. The Gateway resource must reference NGINX Gateway Fabric's corresponding GatewayClass.
+NGINX Gateway Fabric supports multiple Gateway resources. The Gateway resources must reference NGINX Gateway Fabric's corresponding GatewayClass.
 
-See the [static-mode]({{< ref "/ngf/reference/cli-help.md#static-mode">}}) command for more information.
+See the [controller]({{< ref "/ngf/reference/cli-help.md#controller">}}) command for more information.
 
 **Fields**:
 
 - `spec`
   - `gatewayClassName`: Supported.
+  - `infrastructure`: Supported.
+    - `parametersRef`: NginxProxy resource supported.
+    - `labels`: Supported.
+    - `annotations`: Supported.
   - `listeners`
     - `name`: Supported.
     - `hostname`: Supported.
@@ -109,21 +108,18 @@ See the [static-mode]({{< ref "/ngf/reference/cli-help.md#static-mode">}}) comma
       - `options`: Not supported.
     - `allowedRoutes`: Supported.
   - `addresses`: Not supported.
-  - `infrastructure`: Not supported.
   - `backendTLS`: Not supported.
+  - `allowedListeners`: Not supported.
 - `status`
-  - `addresses`: Partially supported (LoadBalancer and Pod IP).
+  - `addresses`: Partially supported (LoadBalancer and ClusterIP).
   - `conditions`: Supported (Condition/Status/Reason):
     - `Accepted/True/Accepted`
     - `Accepted/True/ListenersNotValid`
     - `Accepted/False/ListenersNotValid`
     - `Accepted/False/Invalid`
     - `Accepted/False/UnsupportedValue`: Custom reason for when a value of a field in a Gateway is invalid or not supported.
-    - `Accepted/False/GatewayConflict`: Custom reason for when the Gateway is ignored due to a conflicting Gateway.
-          NGINX Gateway Fabric only supports a single Gateway.
     - `Programmed/True/Programmed`
     - `Programmed/False/Invalid`
-    - `Programmed/False/GatewayConflict`: Custom reason for when the Gateway is ignored due to a conflicting Gateway. NGINX Gateway Fabric only supports a single Gateway.
   - `listeners`
     - `name`: Supported.
     - `supportedKinds`: Supported.
@@ -135,7 +131,6 @@ See the [static-mode]({{< ref "/ngf/reference/cli-help.md#static-mode">}}) comma
       - `Accepted/False/ProtocolConflict`
       - `Accpeted/False/HostnameConflict`
       - `Accepted/False/UnsupportedValue`: Custom reason for when a value of a field in a Listener is invalid or not supported.
-      - `Accepted/False/GatewayConflict`: Custom reason for when the Gateway is ignored due to a conflicting Gateway. NGINX Gateway Fabric only supports a single Gateway.
       - `Programmed/True/Programmed`
       - `Programmed/False/Invalid`
       - `ResolvedRefs/True/ResolvedRefs`
@@ -144,8 +139,6 @@ See the [static-mode]({{< ref "/ngf/reference/cli-help.md#static-mode">}}) comma
       - `Conflicted/True/ProtocolConflict`
       - `Conflicted/True/HostnameConflict`
       - `Conflicted/False/NoConflicts`
-
----
 
 ### HTTPRoute
 
@@ -165,8 +158,8 @@ See the [static-mode]({{< ref "/ngf/reference/cli-help.md#static-mode">}}) comma
   - `rules`
     - `matches`
       - `path`: Partially supported. Only `PathPrefix` and `Exact` types.
-      - `headers`: Partially supported. Only `Exact` type.
-      - `queryParams`: Partially supported. Only `Exact` type.
+      - `headers`: Supported.
+      - `queryParams`: Supported.
       - `method`: Supported.
     - `filters`
       - `type`: Supported.
@@ -174,7 +167,8 @@ See the [static-mode]({{< ref "/ngf/reference/cli-help.md#static-mode">}}) comma
       - `requestHeaderModifier`: Supported. If multiple filters are configured, NGINX Gateway Fabric will choose the first and ignore the rest.
       - `urlRewrite`: Supported. If multiple filters are configured, NGINX Gateway Fabric will choose the first and ignore the rest. Incompatible with `requestRedirect`.
       - `responseHeaderModifier`: Supported. If multiple filters are configured, NGINX Gateway Fabric will choose the first and ignore the rest.
-      - `requestMirror`, `extensionRef`: Not supported.
+      - `requestMirror`: Supported. Multiple mirrors can be specified.
+      - `extensionRef`: Supported for SnippetsFilters.
     - `backendRefs`: Partially supported. Backend ref `filters` are not supported.
 - `status`
   - `parents`
@@ -197,8 +191,6 @@ See the [static-mode]({{< ref "/ngf/reference/cli-help.md#static-mode">}}) comma
       - `ResolvedRefs/False/InvalidIPFamily`: Custom reason for when one of the HTTPRoute rules has a backendRef that has an invalid IPFamily.
       - `PartiallyInvalid/True/UnsupportedValue`
 
----
-
 ### GRPCRoute
 
 {{< bootstrap-table "table table-striped table-bordered" >}}
@@ -217,12 +209,13 @@ See the [static-mode]({{< ref "/ngf/reference/cli-help.md#static-mode">}}) comma
   - `rules`
     - `matches`
       - `method`: Partially supported. Only `Exact` type with both `method.service` and `method.method` specified.
-      - `headers`: Partially supported. Only `Exact` type.
+      - `headers`: Supported
     - `filters`
       - `type`: Supported.
       - `requestHeaderModifier`: Supported. If multiple filters are configured, NGINX Gateway Fabric will choose the first and ignore the rest.
       - `responseHeaderModifier`: Supported. If multiple filters are configured, NGINX Gateway Fabric will choose the first and ignore the rest.
-      - `requestMirror`, `extensionRef`: Not supported.
+      - `requestMirror`: Supported. Multiple mirrors can be specified.
+      - `extensionRef`: Supported for SnippetsFilters.
     - `backendRefs`: Partially supported. Backend ref `filters` are not supported.
 - `status`
   - `parents`
@@ -242,8 +235,6 @@ See the [static-mode]({{< ref "/ngf/reference/cli-help.md#static-mode">}}) comma
       - `ResolvedRefs/False/BackendNotFound`
       - `ResolvedRefs/False/UnsupportedValue`: Custom reason for when one of the GRPCRoute rules has a backendRef with an unsupported value.
       - `PartiallyInvalid/True/UnsupportedValue`
-
----
 
 ### ReferenceGrant
 
@@ -266,8 +257,6 @@ Fields:
     - `group` - supported.
     - `kind` - supports `Gateway` and `HTTPRoute`.
     - `namespace`- supported.
-
----
 
 ### TLSRoute
 
@@ -319,8 +308,6 @@ Fields:
 
 {{< /bootstrap-table >}}
 
----
-
 ### UDPRoute
 
 {{< bootstrap-table "table table-striped table-bordered" >}}
@@ -330,8 +317,6 @@ Fields:
 | UDPRoute | Not supported      | Not supported          | Not supported                         | v1alpha2    | Experimental        |
 
 {{< /bootstrap-table >}}
-
----
 
 ### BackendTLSPolicy
 
@@ -351,10 +336,10 @@ Fields:
     - `kind`: Supports `Service`.
     - `name`: Supported.
   - `validation`
-    - `caCertificateRefs`: Supports single reference to a `ConfigMap`, with the CA certificate in a key named `ca.crt`.
+    - `caCertificateRefs`: Supports single reference to a `ConfigMap` or `Secret`, with the CA certificate in a key named `ca.crt`.
       - `name`: Supported.
       - `group`: Supported.
-      - `kind`: Supports `ConfigMap`.
+      - `kind`: Supports `ConfigMap` and `Secret`.
     - `hostname`: Supported.
     - `wellKnownCertificates`: Supports `System`. This will set the CA certificate to the Alpine system root CA path `/etc/ssl/cert.pem`. NB: This option will only work if the NGINX image used is Alpine based. The NGF NGINX images are Alpine based by default.
     - `subjectAltNames`: Not supported.
