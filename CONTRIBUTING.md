@@ -11,10 +11,7 @@ If you are an F5 employee, see the following additional guidance on [Maintainers
 - [Report a Bug](#report-a-bug)
 - [Suggest a Feature or Enhancement](#suggest-a-feature-or-enhancement)
 - [Open a Discussion](#open-a-discussion)
-- [Submit a Pull Request](#submit-a-pull-request)
-  - Review our [Git style guide](#git-style-guide)
-  - Review the [Writing style guide](/documentation/style-guide.md)
-  - Review [Managing content with Hugo](/documentation/writing-hugo.md)
+- [Submit a pull request](#submit-a-pull-request)
 - [Issue Lifecycle](#issue-lifecycle)
 - [Additional NGINX documentation](#additional-nginx-documentation)
 - [F5 Contributor License Agreement (CLA)](#f5-contributor-license-agreement)
@@ -37,9 +34,13 @@ If you want to start a conversation with the community and maintainers,
 we encourage you to use
 [GitHub Discussions](https://github.com/nginx/documentation/discussions).
 
-## Submit a Pull Request
+## Submit a pull request
 
-To contribute to F5 NGINX documentation, follow these steps:
+Before making documentation changes, you should view the [documentation style guide](/documentation/style-guide.md) and [Managing content with Hugo](/documentation/writing-hugo.md).
+
+To understand how we use Git in this repository, read our [Git conventions](/documentation/git-conventions.md) documentation.
+
+The broad workflow is as follows:
 
 - Fork the NGINX repository
 - Create a branch
@@ -47,12 +48,6 @@ To contribute to F5 NGINX documentation, follow these steps:
 - Submit a pull request (PR) when your changes are ready for review
 
 Alternatively, you're welcome to suggest improvements to highlight problems with our documentation as described in our [support](./SUPPORT.md) page.
-
-To understand how we use Git in this repository, read our [Git conventions](/documentation/git-conventions.md) documentation.
-
-### Documentation style guide
-
-For detailed guidance, see our documentation [style guide](./templates/style-guide.md).
 
 ## Issue lifecycle
 
