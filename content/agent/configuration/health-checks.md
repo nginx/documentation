@@ -3,8 +3,7 @@ title: Health checks
 draft: false
 weight: 400
 toc: true
-type:
-- how-to
+nd-content-type: how-to
 nd-docs: DOCS-1677
 ---
 

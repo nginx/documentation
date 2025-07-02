@@ -14,7 +14,7 @@ product: NGINX-One
 
 ## Overview
 
-This guide explains how to add a Staged Configuration to your NGINX One Console. 
+This guide explains how to add a Staged Configuration to your NGINX One Console.
 
 {{< include "nginx-one/staged-config-overview.md" >}}
 
@@ -47,7 +47,7 @@ To start a new Staged Configuration:
 
    You will see a new Staged Configuration with the default NGINX configuration file, `/etc/nginx/nginx.conf`, in edit mode.
 1. Type or paste content for `/etc/nginx/nginx.conf`.
-1. Select **Add File** to add the configuration, certificate, or other file(s) of your choice. 
+1. Select **Add File** to add the configuration, certificate, or other file(s) of your choice.
 1. When you're done, select **Save**.
 
 ### Start from an existing Instance
@@ -58,7 +58,7 @@ To start from an existing Instance:
 1. Enter a name for your new Staged Configuration.
 1. Select **Instance**.
 1. In the Choose Instance menu that appears, select an existing Instance.
-1. Select **Next**. 
+1. Select **Next**.
 
 NGINX One Console imports the configuration from the existing Instance. You can now edit the configuration. When you're ready to stop and save your work, select Save.
 
@@ -70,7 +70,7 @@ To start from an existing Config Sync Group:
 1. Select **Config Sync Group**.
 1. In the Choose Config Sync Group menu that appears, select an existing Config Sync Group.
 1. Enter a name for your new Staged Configuration.
-1. Select **Next**. 
+1. Select **Next**.
 
 NGINX One Console imports the configuration from the existing Config Sync Group. You can now edit the configuration. When you're ready to stop and save your work, select Save.
 
@@ -82,7 +82,7 @@ To start from an existing Staged Config:
 1. Select **Staged Configuration**.
 1. In the Choose Staged Configuration menu that appears, select an existing Staged Configuration.
 1. Enter a name for your new Staged Configuration.
-1. Select **Next**. 
+1. Select **Next**.
 
 NGINX One Console imports the configuration from the existing Staged Configuration. You can now edit the configuration. When you're ready to stop and save your work, select Save.
 
