@@ -2,6 +2,7 @@
 title: Export NGINX instance metrics
 weight: 450
 toc: true
+nd-docs: DOCS-1882
 ---
 
 ## Overview

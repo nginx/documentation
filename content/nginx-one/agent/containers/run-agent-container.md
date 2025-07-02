@@ -1,9 +1,10 @@
 ---
-title: "Run the NGINX Agent in a container"
+title: Run the NGINX Agent in a container
 weight: 100
 toc: true
 nd-content-type: how-to
 product: Agent
+nd-docs: DOCS-1872
 ---
 
 ## Overview

@@ -1,8 +1,9 @@
 ---
-title: "Community and contribution"
+title: Community and contribution
 toc: true
 weight: 600
 docs: DOCS-000
+nd-docs: DOCS-1869
 ---
 
 Discover the various ways you can participate in the F5 NGINX Agent project:

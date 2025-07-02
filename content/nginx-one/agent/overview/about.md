@@ -1,7 +1,8 @@
 ---
-title: "About"
+title: About
 weight: 100
 toc: true
+nd-docs: DOCS-1870
 ---
 
 {{< include "agent/v3-available.md" >}}

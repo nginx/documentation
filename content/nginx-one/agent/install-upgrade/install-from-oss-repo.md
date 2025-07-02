@@ -3,6 +3,7 @@ title: Install from Open Source repo
 toc: true
 weight: 100
 docs: DOCS-000
+nd-docs: DOCS-1873
 ---
 
 {{< note>}}

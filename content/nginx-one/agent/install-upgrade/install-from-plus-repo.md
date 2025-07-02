@@ -3,6 +3,7 @@ title: Install from NGINX Plus repo
 toc: true
 weight: 200
 docs: DOCS-000
+nd-docs: DOCS-1877
 ---
 
 {{< note>}}

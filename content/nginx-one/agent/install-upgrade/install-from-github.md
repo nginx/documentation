@@ -3,6 +3,7 @@ title: Install from GitHub package files
 toc: true
 weight: 300
 docs: DOCS-000
+nd-docs: DOCS-1876
 ---
 
 {{< note >}}
