@@ -54,7 +54,7 @@ Keep the subject line around 50 characters or less: imagine the reader is using 
 The body of the git message should have its lines kept around 72 characters or less, and can be structured as follows:
 
 - What was changed and why
-- How the changes were implement
+- How the changes were implemented
 - What else the changes might affect, and what may change in the future
 
 This provides enough context for a reader to get a strong impression of what the commit accomplishes, which in turn makes reviewing pull requests easier
