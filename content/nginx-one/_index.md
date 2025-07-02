@@ -27,7 +27,6 @@ F5 NGINX One Console makes it easy to manage NGINX instances across locations an
   {{</card-section>}}
 {{</card-layout>}}
 
-### Use cases
 
 {{<card-layout>}}
   {{<card-section showAsCards="true" >}}
