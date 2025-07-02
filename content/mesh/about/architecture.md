@@ -3,7 +3,7 @@ title: Architecture
 weight: 200
 description: Learn about F5 NGINX Service Mesh Architecture.
 toc: true
-docs: DOCS-676
+nd-docs: DOCS-676
 type:
 - concept
 - reference

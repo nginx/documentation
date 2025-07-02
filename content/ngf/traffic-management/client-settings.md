@@ -4,7 +4,7 @@ toc: true
 weight: 800
 nd-content-type: how-to
 nd-product: NGF
-nd-docs: DOCS-000
+nd-docs: DOCS-1846
 ---
 
 Learn how to use the `ClientSettingsPolicy` API.

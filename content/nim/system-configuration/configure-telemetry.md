@@ -1,5 +1,5 @@
 ---
-docs: DOCS-1269
+nd-docs: DOCS-1269
 title: Configure telemetry and web analytics
 toc: true
 weight: 260

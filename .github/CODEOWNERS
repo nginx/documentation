@@ -37,6 +37,10 @@ content/includes/nginxaas-azure/* @nginx/n4a-docs-approvers
 content/ngf/*               @nginx/nginx-gateway-fabric
 content/includes/ngf/*      @nginx/nginx-gateway-fabric
 
+# NGINX Ingress Controller
+content/nic/*                   @nginx/kic
+content/includes/nic/*          @nginx/kic
+
 # NGINX Instance Manager
 content/nms/nim/*           @nginx/nim-docs-approvers
 content/nim/*               @nginx/nim-docs-approvers

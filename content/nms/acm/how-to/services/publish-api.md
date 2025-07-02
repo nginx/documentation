@@ -1,7 +1,7 @@
 ---
 description: Learn how to use F5 NGINX Management Suite API Connectivity Manager to
   publish APIs to your API Gateway.
-docs: DOCS-927
+nd-docs: DOCS-927
 title: Publish an HTTP API
 toc: true
 weight: 100

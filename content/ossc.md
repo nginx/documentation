@@ -1,5 +1,5 @@
 ---
-docs: DOCS-1343
+nd-docs: DOCS-1343
 title: Open Source Components
 ---
 

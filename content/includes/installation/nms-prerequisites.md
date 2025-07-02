@@ -1,5 +1,5 @@
 ---
-docs: DOCS-1242
+nd-docs: DOCS-1242
 ---
 
 {{< important >}}

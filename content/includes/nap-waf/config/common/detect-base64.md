@@ -1,5 +1,5 @@
 ---
-docs: "DOCS-1593"
+nd-docs: "DOCS-1593"
 ---
 
 The Detect Base64 feature allows NGINX App Protect WAF to detect whether values in headers, cookies, and parameters are Base64 encoded. When an entity is detected as Base64 encoded NGINX App Protect WAF will enforce the configured signatures on the decoded value, instead of on the original value.

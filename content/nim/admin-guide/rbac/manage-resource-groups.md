@@ -1,5 +1,5 @@
 ---
-docs: DOCS-1271
+nd-docs: DOCS-1271
 title: Manage resource groups
 toc: true
 weight: 300

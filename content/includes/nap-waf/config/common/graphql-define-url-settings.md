@@ -1,5 +1,5 @@
 ---
-docs: "DOCS-1588"
+nd-docs: "DOCS-1588"
 ---
 
 The second step to configure GraphQL is to define the URL settings. Set the values for "isAllowed": **true**, "name": **/graphql** in the URLs section, which means URLs with **/graphql** name are permitted. This path will be used for all GraphQL API requests.

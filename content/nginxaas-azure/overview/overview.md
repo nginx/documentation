@@ -2,7 +2,7 @@
 title: Overview and architecture
 weight: 100
 toc: true
-docs: DOCS-879
+nd-docs: DOCS-879
 url: /nginxaas/azure/overview/overview/
 type:
 - concept
@@ -36,8 +36,8 @@ The key capabilities of NGINXaaS for Azure are:
 
 ## Limitations
 
-- NGINXaaS does not support IPv6 yet.
-- NGINXaaS supports one public or private IP per deployment. NGINXaaS doesn't support a mix of public and private IPs at this time.
+- NGINXaaS supports at most one IPv4 and one IPv6 IP address at any given time.
+- NGINXaaS doesn't support a mix of public and private IPs at this time.
 - The IP address associated with an NGINXaaS deployment can't be changed from public to private, or from private to public.
 
 ## Supported regions

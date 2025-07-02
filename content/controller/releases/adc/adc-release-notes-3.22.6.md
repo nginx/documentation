@@ -1,7 +1,7 @@
 ---
 description: These release notes contain information about new features, improvements,
   known issues, and bug fixes in the NGINX Controller Application Delivery Module.
-docs: DOCS-1086
+nd-docs: DOCS-1086
 title: Release Notes 3.22.6
 toc: true
 weight: 91

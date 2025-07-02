@@ -1,6 +1,6 @@
 ---
 description: ''
-docs: null
+nd-docs: null
 title: Clean up unavailable NGINX instances
 toc: true
 weight: 1000

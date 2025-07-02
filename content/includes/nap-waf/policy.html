@@ -270,153 +270,160 @@
 <td></td>
 </tr>
 <tr class="even">
+<td><a href="#policy/ip-intelligence">ip-intelligence</a></td>
+<td>Yes</td>
+<td>object</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
 <td><a href="#policy/json-profiles">json-profiles</a></td>
 <td>Yes</td>
 <td>array of objects</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="#policy/json-validation-files">json-validation-files</a></td>
 <td>Yes</td>
 <td>array of objects</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="#policy/login-enforcement">login-enforcement</a></td>
 <td>Yes</td>
 <td>object</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="#policy/login-pages">login-pages</a></td>
 <td>Yes</td>
 <td>array of objects</td>
 <td>A login page is a URL in a web application that requests must pass through to get to the authenticated URLs. Use login pages, for example, to prevent forceful browsing of restricted parts of the web application, by defining access permissions for users. Login pages also allow session tracking of user sessions.</td>
 <td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="#policy/methods">methods</a></td>
 <td>Yes</td>
 <td>array of objects</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>name</code></td>
 <td>No</td>
 <td>string</td>
 <td>The unique user-given name of the policy. Policy names cannot contain spaces or special characters. Allowed characters are a-z, A-Z, 0-9, dot, dash (-), colon (:) and underscore (_).</td>
 <td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="#policy/open-api-files">open-api-files</a></td>
 <td>Yes</td>
 <td>array of objects</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="#policy/override-rules">override-rules</a></td>
 <td>Yes</td>
 <td>array of objects</td>
 <td>This section defines policy override rules.</td>
 <td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="#policy/parameters">parameters</a></td>
 <td>Yes</td>
 <td>array of objects</td>
 <td>This section defines parameters that the security policy permits in requests.</td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>performStaging</code></td>
 <td>No</td>
 <td>boolean</td>
 <td>Determines staging handling for all applicable entities in the policy, such as signatures, URLs, parameters, and cookies. If disabled, all entities will be enforced and any violations triggered will be considered illegal.</td>
 <td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="#policy/response-pages">response-pages</a></td>
 <td>Yes</td>
 <td>array of objects</td>
 <td>The Security Policy has a default blocking response page that it returns to the client when the client request, or the web server response, is blocked by the security policy. You can change the way the system responds to blocked requests. All default response pages contain a variable, &lt;%TS.request.ID()%&gt;, that the system replaces with a support ID number when it issues the page.</td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="#policy/sensitive-parameters">sensitive-parameters</a></td>
 <td>Yes</td>
 <td>array of objects</td>
 <td>This section defines sensitive parameters. The contents of these parameters are not visible in logs nor in the user interfaces. Instead of actual values a string of asterisks is shown for these parameters. Use these parameters to protect sensitive user input, such as a password or a credit card number, in a validated request. A parameter name of "password" is always defined as sensitive by default.</td>
 <td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="#policy/server-technologies">server-technologies</a></td>
 <td>Yes</td>
 <td>array of objects</td>
 <td>The server technology is a server-side application, framework, web server or operating system type that is configured in the policy in order to adapt the policy to the checks needed for the respective technology.</td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="#policy/signature-requirements">signature-requirements</a></td>
 <td>Yes</td>
 <td>array of objects</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="#policy/signature-sets">signature-sets</a></td>
 <td>Yes</td>
 <td>array of objects</td>
 <td>Defines behavior when signatures found within a signature-set are detected in a request. Settings are culmulative, so if a signature is found in any set with block enabled, that signature will have block enabled.</td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="#policy/signature-settings">signature-settings</a></td>
 <td>Yes</td>
 <td>object</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="#policy/signatures">signatures</a></td>
 <td>Yes</td>
 <td>array of objects</td>
 <td>This section defines the properties of a signature on the policy.</td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="#policy/template">template</a></td>
 <td>Yes</td>
 <td>object</td>
 <td>Specifies the template to populate the default attributes of a new policy.</td>
 <td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="#policy/threat-campaigns">threat-campaigns</a></td>
 <td>Yes</td>
 <td>array of objects</td>
 <td>This section defines the enforcement state for the threat campaigns in the security policy.</td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="#policy/urls">urls</a></td>
 <td>Yes</td>
 <td>array of objects</td>
 <td>In a security policy, you can manually specify the HTTP URLs that are allowed (or disallowed) in traffic to the web application being protected. When you create a security policy, wildcard URLs of * (representing all HTTP URLs) are added to the Allowed HTTP URLs lists.</td>
 <td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>wafEngineVersion</code></td>
 <td>No</td>
 <td>string</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="#policy/xml-profiles">xml-profiles</a></td>
 <td>Yes</td>
 <td>array of objects</td>
@@ -2849,13 +2856,13 @@
 <td><dl>
 <dt>Specifies how the system responds to blocking requests sent from this IP address list.</dt>
 <dd><ul>
-<li><strong>Policy Default:</strong> Specifies that the Policy Blocking Settings will be used for requests from this IP address list.</li>
+<li><strong>Policy Default:</strong> Specifies that the policy enforcementMode will be used for requests from this IP address list.</li>
 <li><strong>Never Block:</strong> Specifies that the system does not block requests sent from this IP address list, even if your security policy is configured to block all traffic.</li>
 <li><strong>Always Block:</strong> Specifies that the system blocks requests sent from this IP address list.</li>
 </ul>
 </dd>
 </dl>
-<p>Optional</p></td>
+<p>Optional, if absent Policy Default is used.</p></td>
 <td><ul>
 <li>always</li>
 <li>never</li>
@@ -2871,13 +2878,13 @@
 <tr class="odd">
 <td><a href="#policy/ip-address-lists/ipAddresses">ipAddresses</a></td>
 <td>array of objects</td>
-<td>Specifies the IP addresses.</td>
+<td>Specifies the IP addresses. Use CIDR notation for subnet definition.</td>
 <td></td>
 </tr>
 <tr class="even">
 <td><code>matchOrder</code></td>
 <td>integer</td>
-<td>Specifies the order index for IP Address List matching. If unspecified, the order is implicitly as the lists appear in the policy. IP Address Groups with a lower matchOrder will be checked for a match prior to items with higher matchOrder.</td>
+<td>Specifies the order matching index between different IP Address Lists. If unspecified, the order is implicitly as the lists appear in the policy. IP Address Lists with a lower matchOrder will be checked for a match prior to items with higher matchOrder.</td>
 <td></td>
 </tr>
 <tr class="odd">
@@ -2889,13 +2896,13 @@
 <tr class="even">
 <td><code>neverLogRequests</code></td>
 <td>boolean</td>
-<td>Specifies when enabled that the system does not log requests or responses sent from this IP address list, even if the traffic is illegal, and even if your security policy is configured to log all traffic.</td>
+<td>Specifies when enabled that the system does not log requests or responses sent from this IP address list, even if the traffic is illegal, and even if your security policy is configured to log all traffic. Optional, if absent default value is false.</td>
 <td></td>
 </tr>
 <tr class="odd">
 <td><code>setGeolocation</code></td>
 <td>string</td>
-<td>Specifies a geolocation to be associated for this IP address list. Optional</td>
+<td>Specifies a geolocation to be associated for this IP address list. This will force the IP addresses in the list to be considered as though they are in that geolocation. This applies to blocking via "disallowed-geolocations" and to logging. Optional</td>
 <td></td>
 </tr>
 </tbody>
@@ -2920,8 +2927,89 @@
 <tr class="odd">
 <td><code>ipAddress</code></td>
 <td>string</td>
+<td>Specifies the IP address. Use CIDR notation for subnet definition.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="policy/ip-intelligence">ip-intelligence</h2>
+<table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 5%" />
+<col style="width: 47%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Allowed Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>enabled</code></td>
+<td>boolean</td>
 <td></td>
 <td></td>
+</tr>
+<tr class="even">
+<td><a href="#policy/ip-intelligence/ipIntelligenceCategories">ipIntelligenceCategories</a></td>
+<td>array of objects</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="policy/ip-intelligence/ipIntelligenceCategories">ipIntelligenceCategories</h3>
+<table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 5%" />
+<col style="width: 47%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Allowed Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>alarm</code></td>
+<td>boolean</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>block</code></td>
+<td>boolean</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>category</code></td>
+<td>string</td>
+<td></td>
+<td><ul>
+<li>Anonymous Proxy</li>
+<li>BotNets</li>
+<li>Cloud-based Services</li>
+<li>Denial of Service</li>
+<li>Infected Sources</li>
+<li>Mobile Threats</li>
+<li>Phishing Proxies</li>
+<li>Scanners</li>
+<li>Spam Sources</li>
+<li>Tor Proxies</li>
+<li>Web Attacks</li>
+<li>Windows Exploits</li>
+</ul></td>
 </tr>
 </tbody>
 </table>
@@ -3359,6 +3447,7 @@
 <li><strong>http-digest</strong>: The web server performs the authentication; user names and passwords are not transmitted over the network, nor are they stored in plain text.</li>
 <li><strong>ntlm</strong>: Microsoft LAN Manager authentication (also called Integrated Windows Authentication) does not transmit credentials in plain text, but requires a continuous TCP connection between the server and client.</li>
 <li><strong>ajax-or-json-request</strong>: The web server uses JSON and AJAX requests to authenticate users trying to access the web application through the login URL. For this option, you also need to type the name of the JSON element containing the user name and password.</li>
+<li><strong>request-body</strong>: The web server uses the request body to authenticate users trying to access the web application through the login URL. This allows brute force login detection using, for example, SAML authentication used on Microsoft Federation Services for SSO which uses SOAP API to login.</li>
 </ul>
 </blockquote></td>
 <td><ul>
@@ -3380,7 +3469,7 @@
 <tr class="even">
 <td><code>passwordRegex</code></td>
 <td>string</td>
-<td></td>
+<td>PCRE regular expression for capturing the password. The regular expression must include exactly one capturing group (in rounded parentheses) for the value of the password. For example: "pwd=(w+)". The entered expression is validated and any invalid code is noted and must be corrected. Note: This setting is only relevant if authenticationType is request-body.</td>
 <td></td>
 </tr>
 <tr class="odd">
@@ -3398,7 +3487,7 @@
 <tr class="odd">
 <td><code>usernameRegex</code></td>
 <td>string</td>
-<td></td>
+<td>PCRE regular expression for capturing the username. The regular expression must include exactly one capturing group (in rounded parentheses) for the value of the username. For example: "user_id=(w+)". The entered expression is validated and any invalid code is noted and must be corrected. Note: This setting is only relevant if authenticationType is request-body.</td>
 <td></td>
 </tr>
 </tbody>
@@ -3605,7 +3694,7 @@
 <p>Request Attributes:</p>
 <blockquote>
 <ul>
-<li><strong>clientIp</strong>: Client IP address in canonical IPv4 or IPv6 format. Use CIDR notation for subnet definition. Example: <em>192.168.1.2</em> or <em>fd00:1::/48</em>. If <em>trustXff</em> (X-Forwarded-For) is enabled in the containing policy, then the value is taken from the configured header (XFF or other). The only supported boolean function for the clientIP attribute is <em>matches</em>.</li>
+<li><strong>clientIp</strong>: Client IP address in canonical IPv4 or IPv6 format or ip-address-list. Use CIDR notation for subnet definition. Example: <em>192.168.1.2</em> or <em>fd00:1::/48</em>. If <em>trustXff</em> (X-Forwarded-For) is enabled in the containing policy, then the value is taken from the configured header (XFF or other). The only supported boolean function for the clientIP attribute is <em>matches</em>.</li>
 <li><strong>host</strong>: The value of the Host header</li>
 <li><strong>method</strong>: The HTTP method in the request</li>
 <li><strong>uri</strong>: The URI (path part) of the request</li>
@@ -3616,7 +3705,7 @@
 <li><strong>headers['&lt;name&gt;']</strong>: (map-type) The value of the specified header name. Example: "headers['Accept'].startsWith('application')"</li>
 </ul>
 </blockquote>
-<p><strong>Note</strong>: The "headers['&lt;name&gt;']" attribute does not support 'Cookie' as a header name.</p></td>
+<p><strong>Note</strong>: The "headers['&lt;name&gt;']" attribute does not support 'Cookie' as a header name. Attribute "clientIp" supports using "ipAddressLists" in condition: "clientIp.matches(ipAddressLists['<name>'])</p></td>
 <td></td>
 </tr>
 <tr class="odd">
@@ -6414,6 +6503,7 @@
 <li>VIOL_XML_MALFORMED</li>
 <li>VIOL_GEOLOCATION</li>
 <li>VIOL_WEBSOCKET_BAD_REQUEST</li>
+<li>VIOL_MALICIOUS_IP</li>
 </ul></td>
 </tr>
 </tbody>

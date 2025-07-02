@@ -4,7 +4,7 @@ weight: 500
 toc: true
 type: how-to
 product: NAP-WAF
-docs: DOCS-1367
+nd-docs: DOCS-1367
 ---
 
 ## Overview

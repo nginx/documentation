@@ -1,7 +1,7 @@
 ---
 description: Deploy global server load balancing (GSLB) for domains hosted in multiple
   AWS regions, with Amazon Route 53 and F5 NGINX Plus in an HA configuration.
-docs: DOCS-448
+nd-docs: DOCS-448
 title: Global Server Load Balancing with Amazon Route 53 and NGINX Plus
 toc: true
 weight: 300

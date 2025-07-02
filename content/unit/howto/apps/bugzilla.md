@@ -2,6 +2,7 @@
 title: Bugzilla
 weight: 200
 toc: true
+nd-docs: DOCS-1779
 ---
 
 To run the [Bugzilla](https://www.bugzilla.org) bug tracking system using

@@ -1,6 +1,6 @@
 ---
 description: Overview of F5 NGINX Controller.
-docs: DOCS-781
+nd-docs: DOCS-781
 title: Get to Know NGINX Controller
 toc: true
 weight: 100
