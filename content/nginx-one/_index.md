@@ -30,11 +30,11 @@ F5 NGINX One Console makes it easy to manage NGINX instances across locations an
 
 {{<card-layout>}}
   {{<card-section showAsCards="true" >}}
-    {{<card title="Connect your NGINX instances" titleUrl="/nginx-one/connect-instances/" >}}
+    {{<card title="Connect more NGINX instances" titleUrl="/nginx-one/connect-instances/" >}}
       Work with data plane keys, containers, and proxy servers
     {{</card>}}
     {{<card title="Manage your NGINX instances" titleUrl="/nginx-one/nginx-configs/" >}}
-      Monitor and maintain your deployments
+      Manage one instance or groups of instances. Monitor certificates. Set up metrics.
     {{</card>}}
     {{<card title="Organize users with RBAC" titleUrl="/nginx-one/rbac/" >}}
       Assign responsibilities with role-based access control 

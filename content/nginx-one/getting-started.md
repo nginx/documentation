@@ -60,20 +60,6 @@ If you want to register for a trial, navigate to https://account.f5.com/myf5. If
 </details>
 
 <details>
-<summary>Enable the NGINX One service</summary>
-
-### Enable the NGINX One service {#enable-nginx-one}
-
-To get started using NGINX One, enable the service on F5 Distributed Cloud.
-
-1. Log in to [F5 Distributed Console](https://www.f5.com/cloud/products/distributed-cloud-console).
-1. Select **NGINX One** from the list of services.
-1. Select **Enable Service**.
-1. After the service has been enabled, select **Visit Service** to load NGINX One Console.
-
-</details>
-
-<details>
 <summary>Install an instance of NGINX</summary>
 
 ### Install an instance of NGINX
@@ -118,8 +104,9 @@ Add your NGINX instances to NGINX One. You'll need to create a data plane key an
 
 The following instructions include minimal information, sufficient to "get started." See the following links for detailed instructions:
 
-- [Create and manage data plane keys]({{< ref "/nginx-one/connect-instances/create-manage-data-plane-keys.md" >}})
+- [Prepare - Create and manage data plane keys]({{< ref "/nginx-one/connect-instances/create-manage-data-plane-keys.md" >}})
 - [Add an NGINX instance]({{< ref "/nginx-one/connect-instances/add-instance.md" >}})
+- [Connect NGINX Plus container images]({{< ref "/nginx-one/connect-instances/connect-nginx-plus-container-images-to-nginx-one.md" >}})
 
 ### Generate a data plane key {#generate-data-plane-key}
 
