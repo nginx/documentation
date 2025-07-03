@@ -1,6 +1,6 @@
 # Contributing guidelines
 
-The following is a set of guidelines for community contributions to this project. 
+The following is a set of guidelines for community contributions to this project.
 
 We really appreciate your desire to contribute!
 
@@ -11,10 +11,7 @@ If you are an F5 employee, see the following additional guidance on [Maintainers
 - [Report a Bug](#report-a-bug)
 - [Suggest a Feature or Enhancement](#suggest-a-feature-or-enhancement)
 - [Open a Discussion](#open-a-discussion)
-- [Submit a Pull Request](#submit-a-pull-request)
-  - Review our [Git style guide](#git-style-guide)
-  - Review the [Writing style guide](/documentation/style-guide.md)
-  - Review [Managing content with Hugo](/documentation/writing-hugo.md)
+- [Submit a pull request](#submit-a-pull-request)
 - [Issue Lifecycle](#issue-lifecycle)
 - [Additional NGINX documentation](#additional-nginx-documentation)
 - [F5 Contributor License Agreement (CLA)](#f5-contributor-license-agreement)
@@ -37,44 +34,20 @@ If you want to start a conversation with the community and maintainers,
 we encourage you to use
 [GitHub Discussions](https://github.com/nginx/documentation/discussions).
 
-## Submit a Pull Request
+## Submit a pull request
 
-To contribute to F5 NGINX documentation, follow these steps:
+Before making documentation changes, you should view the [documentation style guide](/documentation/style-guide.md) and [Managing content with Hugo](/documentation/writing-hugo.md).
+
+To understand how we use Git in this repository, read our [Git conventions](/documentation/git-conventions.md) documentation.
+
+The broad workflow is as follows:
 
 - Fork the NGINX repository
 - Create a branch
 - Implement your changes in your branch
 - Submit a pull request (PR) when your changes are ready for review
 
-Alternatively, you're welcome to suggest improvements to highlight problems with
-our documentation as described in our [support](./SUPPORT.md) page.
-
-### Git style guide
-
-- Keep a clean, concise and meaningful Git commit history on your branch, rebasing locally and squashing before you submit a PR
-- We use [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/#summary) formatting.
-- Follow the guidelines of writing a good commit message as described here <https://chris.beams.io/posts/git-commit/>
-  and summarized in the next few points:
-
-  - In the subject line, use the present tense ("Add feature" not "Added feature")
-  - In the subject line, use the imperative mood ("Move cursor to..." not "Moves cursor to...")
-  - Limit the subject line to 72 characters or less
-  - Reference issues and pull requests liberally after the subject line
-  - Add more detailed description in the body of the git message (`git commit -a` to give you more space and time in
-    your text editor to write a good message instead of `git commit -am`)
-
-#### Branch protection rules
-
-This repository has the following branch protection rules in place:
-
-- **Pushing branches that contain the "internal/" prefix is not allowed.** This ensures internal development branches are not accidentally or purposefully pushed to this repo.
-- **Two approvers are required for all merges to main and release branches.** This ensures all code that is approved for release to production is appropriately reviewed. This rule applies to all branches with `*release*` in the branch name.
-- **Only NGINX DocOps Team members can create release branches.** This ensures the docs team is aware of all branches supporting specific product releases. This rule applies to all branches with `*release*` in the branch name.
-- **Pushes (force or otherwise) directly to main or release branches is not allowed.** Release branches serve as "main" for the release they are associated with. Restricting pushes directly to main and release branches ensures all content changes are reviewed and approved. This rule applies to all branches with `*release*` in the branch name and to "main".
-
-### Documentation style guide
-
-For detailed guidance, see our documentation [style guide](./templates/style-guide.md).
+Alternatively, you're welcome to suggest improvements to highlight problems with our documentation as described in our [support](./SUPPORT.md) page.
 
 ## Issue lifecycle
 
