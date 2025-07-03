@@ -67,9 +67,10 @@ This new page will be created with the default how-to archetype. To use a specif
 
 Our archetypes [currently include](/archetypes/) the following:
 
-- `default` (How-to instructions, general use)
-- `concept`(An explanation of one implementation detail and some use cases)
-- `tutorial` (An in-depth set of how-to instructions, referencing concepts)
+- `default` - How-to instructions, general use
+- `concept` - An explanation of one implementation detail and some use cases
+- `tutorial` - An in-depth set of how-to instructions, referencing concepts
+- `landing-page` - A special archetype for the landing page of a documentation set, with a unique layout
 
 These archetypes are adapted from some existing [templates](/templates/): please [file an issue](https://github.com/nginx/documentation/issues/new?template=1-feature_request.md) if you would like a new archetype.
 
