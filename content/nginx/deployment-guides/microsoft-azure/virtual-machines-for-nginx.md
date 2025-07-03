@@ -145,7 +145,7 @@ To install and configure NGINX Open Source or NGINX Plus on a VM, open a termina
 <span id="install-nginx"></span>
 ## Installing NGINX Software
 
-After you’ve successfully connected to your Azure VM, you can install the NGINX software on it. Follow the instructions in the NGINX Plus Admin Guide for <a href="../../../admin-guide/installing-nginx/installing-nginx-open-source/index.html#prebuilt">NGINX Open Source</a> and [NGINX Plus](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/). The [Admin Guide](https://docs.nginx.com/nginx/admin-guide/) has several maintenance instructions, too.
+After you’ve successfully connected to your Azure VM, you can install the NGINX software on it. Follow the instructions in the NGINX Plus Admin Guide for [NGINX Open Source](({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-open-source.md" >}})) and [NGINX Plus]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}). The [Admin Guide]({{< ref "/nginx/admin-guide/" >}}) has several maintenance instructions, too.
 
 <span id="automate"></span>
 ### Automating Installation with a Configuration Manager
