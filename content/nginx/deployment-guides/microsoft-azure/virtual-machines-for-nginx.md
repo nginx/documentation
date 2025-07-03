@@ -115,7 +115,7 @@ When this guide was first published, the hourly cost for the six VMs was only $0
 
 For _ngx-plus-2_ (2nd NGINX Plus VM), repeat Steps 2 to 6 above or get a pre built VM from the [Microsoft Azure Marketplace](https://azuremarketplace.microsoft.com/en-us/marketplace/apps?search=NGINX%20Plus)).
 
-  NGINX Open Source VMs gives you two options: create each VM manually by following steps 2 to 6. Or, make one template VM (named  <span style="color:#666666; font-weight:bolder; white-space: nowrap;">nginx-oss</span>), [install the NGINX Open Source software](#install-nginx) on it, and clone that VM into three more copies using Azure image. For that, follow the instructions in [Optional: Creating an NGINX Open Source Image](#create-nginx-oss-image).
+  NGINX Open Source VMs gives you two options: create each VM manually by following steps 2 to 6. Or, make one template VM (named _nginx-oss_), [install the NGINX Open Source software](#install-nginx) on it, and clone that VM into three more copies using Azure image. For that, follow the instructions in [Optional: Creating an NGINX Open Source Image](#create-nginx-oss-image).
 
 <span id="connect-vm"></span>
 ## Connecting to a Virtual Machine
