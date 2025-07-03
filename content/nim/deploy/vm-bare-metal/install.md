@@ -54,7 +54,7 @@ The installation script installs the latest version of [NGINX Open Source](https
 To see the list of supported distributions, run:
 
 ```shell
-grep '\-d distribution' install-nim-bundle.sh
+install-nim-bundle.sh -l
 ```
 
 ### Security considerations

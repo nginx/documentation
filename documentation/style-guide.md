@@ -20,7 +20,6 @@ This document provides guidelines specific to documenting F5 NGINX products and 
 
 When writing documentation for our project, align with the default guide's voice and tone.
 
-
 ## F5 brand trademarks and product names
 
 - On the first mention of an enterprise NGINX product in a document, use the full product name. For example:
@@ -48,8 +47,11 @@ When writing documentation for our project, align with the default guide's voice
 
   - Using NGINX Plus Docker images with NGINX Instance Manager
 
-- Don't use articles ("the", "a") in front of product names. For example, use
+- Don't use articles ("the", "a") in front of product names. For example, use:
   - NGINX Agent (not "the NGINX Agent").
+- An article can be used if the product name is qualifying another noun. For example, use:
+  - Edit the NGINX Agent configuration file (not "Edit NGINX Agent configuration file"): In this case, "NGINX Agent" is a descriptor for the term "configuration file". 
+  - Expose NGINX Agent's REST API: In this case, NGINX Agent is a standalone noun phrase, and it "possesses" the REST API.
 - Always use the full brand name in the meta description. The meta description does not count as first mention of the product in the document.
 
 
@@ -343,7 +345,6 @@ The table provides guidelines about the terms you should and should not use for 
 | Wizard and wizard | When documenting the GUI, you can capitalize Wizard if appropriate, such as for the Network Access Setup Wizard. When writing about wizards in general, or when a page title of a dialog box or GUI does not show Wizard in uppercase format, you can leave wizard in lowercase format. | |
 | WWW or www | Do not include www. in web addresses In text, do not use WWW, but use Internet instead. Of course, you can use www as part of a URL. Although we're moving away from that, too. | |
 
----
 
 ## Topic types and templates
 
@@ -465,7 +466,6 @@ Before reloading or restarting NGINX, always check the syntax of the NGINX confi
 ```bash
 sudo nginx -t
 ```
-
 
 - **sudo systemctl nginx reload**
   Use `reload` to apply configuration changes without stopping active connections. This keeps the NGINX service running while updating the configuration. It’s the preferred option for most changes because it avoids downtime and doesn’t interrupt users.

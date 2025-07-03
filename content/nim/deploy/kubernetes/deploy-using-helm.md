@@ -17,9 +17,9 @@ Starting with version 2.20.0, NGINX Instance Manager supports **lightweight mode
 
 - Lightweight mode requires NGINX Agent v2.41.1 or later.
 
-{{< call-out "note" "Chart renamed in NIM 2.20.0" >}}
-The Helm chart has been renamed from `nginx-stable/nms-hybrid` to `nginx-stable/nim`.
-Make sure to update your chart references if you’re using version 2.20.0 or later.
+
+{{< call-out "note" "Chart renamed with new versioning from NGINX Instance Manager 2.20.0" >}}
+Starting with version 2.20.0, the Helm chart was renamed from `nginx-stable/nms-hybrid` to `nginx-stable/nim`. Chart versioning was also reset; `v2.0.0` is the first release under the new name. Be sure to update your chart references if you’re using version `2.20.0` or later.
 {{< /call-out >}}
 
 
@@ -149,40 +149,34 @@ imagePullSecrets:
 apigw:
   image:
     repository: private-registry.nginx.com/nms/apigw
-    tag: 2.20.0
-
+    tag: <version>
 core:
   image:
     repository: private-registry.nginx.com/nms/core
-    tag: 2.20.0
-
+    tag: <version>
 dpm:
   image:
     repository: private-registry.nginx.com/nms/dpm
-    tag: 2.20.0
-
+    tag: <version>
 ingestion:
   image:
     repository: private-registry.nginx.com/nms/ingestion
-    tag: 2.20.0
-
+    tag: <version>
 integrations:
   image:
     repository: private-registry.nginx.com/nms/integrations
-    tag: 2.20.0
-
+    tag: <version>
 secmon:
   image:
     repository: private-registry.nginx.com/nms/secmon
-    tag: 2.20.0
-
+    tag: <version>
 utility:
   image:
     repository: private-registry.nginx.com/nms/utility
-    tag: 2.20.0
+    tag: <version>
 ```
 
-These values are required when pulling images from the NGINX private registry. The chart does not auto-resolve image tags. Update the tag: fields to match the NGINX Instance Manager version you want to install.
+These values are required when pulling images from the NGINX private registry. The chart doesn't auto-resolve image tags. Set each `tag:` value to match the NGINX Instance Manager version you want to install. Refer to the Helm chart table for version details.
 
 Use the file with the `-f values.yaml` flag when installing the chart.
 
@@ -235,6 +229,11 @@ helm status nim -n nim
 ```
 
 You should see `STATUS: deployed` in the output.
+
+
+To find the right NGINX Instance Manager chart version, see the following table:
+
+{{< include "nim/kubernetes/nms-chart-supported-module-versions.md" >}}
 
 ---
 
@@ -346,6 +345,112 @@ networkPolicies:
 
 ---
 
+## Helm deployment for NGINX Instance Manager 2.19
+
+### Create a Helm deployment values.yaml file
+
+The `values.yaml` file customizes the Helm chart installation without changing the chart itself. You can use it to set image repositories, environment variables, resource requests, and other options.
+
+1. Create a `values.yaml` file like this example:
+
+   - In the `imagePullSecrets` section, add your private Docker registry credentials.
+   - Set the `tag:` field to the version of NGINX Instance Manager you want to install. You can find supported versions in the Helm chart table.
+
+For details on creating a secret, see the Kubernetes [Pull an Image from a Private Registry](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/) guide.
+
+```yaml
+imagePullSecrets:
+  - name: regcred
+
+apigw:
+  image:
+    repository: private-registry.nginx.com/nms/apigw
+    tag: <version>
+core:
+  image:
+    repository: private-registry.nginx.com/nms/core
+    tag: <version>
+dpm:
+  image:
+    repository: private-registry.nginx.com/nms/dpm
+    tag: <version>
+ingestion:
+  image:
+    repository: private-registry.nginx.com/nms/ingestion
+    tag: <version>
+integrations:
+  image:
+    repository: private-registry.nginx.com/nms/integrations
+    tag: <version>
+secmon:
+  image:
+    repository: private-registry.nginx.com/nms/secmon
+    tag: <version>
+utility:
+  image:
+    repository: private-registry.nginx.com/nms/utility
+    tag: <version>
+```
+
+
+2. Save and close the `values.yaml` file.
+
+---
+
+### Install the chart
+
+Run the `helm install` command to deploy NGINX Instance Manager:
+
+1. Replace `<path-to-your-values.yaml>` with the path to your `values.yaml` file.
+2. Replace `<your-password>` with a secure password (containing a mix of uppercase, lowercase letters, numbers, and special characters).
+
+   {{< important >}} Remember to save the password for future use. Only the encrypted password is stored, and there's no way to recover or reset it if lost. {{< /important >}}
+
+
+```shell
+helm install -n nms-hybrid \
+--set adminPasswordHash=$(openssl passwd -6 '<your-password>') \
+nms nginx-stable/nms-hybrid \
+--create-namespace \
+-f <path-to-your-values.yaml> \
+--version <chart-version> \
+--wait
+```
+
+---
+
+### Upgrade NGINX Instance Manager
+
+To upgrade:
+
+1. [Update the Helm repository list](#add-repository).
+2. [Adjust your `values.yaml` file](#create-a-helm-deployment-values.yaml-file) if needed.
+3. To upgrade the NGINX Instance Manager deployment, run the following command. This command updates the `nms` deployment with a new version from the `nginx-stable/nms-hybrid` repository. It also hashes the provided password and uses the `values.yaml` file at the path you specify.
+4. Replace `<chart-version>` with the desired chart version of NGINX Instance Manager 2.19.x referring the Helm chart table. 
+
+   ```shell
+    helm upgrade -n nms \
+    --set nms-hybrid.adminPasswordHash=$(openssl passwd -6 '<your-password>') \
+    nms nginx-stable/nms-hybrid \
+    -f <path-to-your-values.yaml> \
+    --version <chart-version> \
+    --wait
+   ```
+
+   - Replace `<path-to-your-values.yaml>` with the path to the `values.yaml` file you created]({{< ref "/nim/deploy/kubernetes/deploy-using-helm.md#configure-chart" >}}).
+   - Replace `<your-password>` with a secure password that includes uppercase and lowercase letters, numbers, and special characters.
+
+      {{<call-out "important" "Save the password!" "" >}} Save this password for future use. Only the encrypted password is stored in Kubernetes, and you can’t recover or reset it later. {{</call-out>}}
+
+{{< call-out "note" "Upgrading from 2.18.0 or earlier to 2.19.x" >}}
+If you're upgrading from version 2.18.0 or earlier to 2.19.x, note the following changes:
+
+- If you used the legacy `nms` chart or release name, update the chart reference and adjust the release name if needed.
+- The structure of the `values.yaml` file has changed in this release.
+{{< /call-out >}}
+
+---
+
 ## Helm Deployment for NGINX Instance Manager 2.18 or lower
 
 ### Create a Helm deployment values.yaml file
@@ -414,10 +519,6 @@ nms nginx-stable/nms \
 --wait
 ```
 
-To help you choose the right NGINX Instance Manager chart version, see the table in:
-
-{{< include "nim/kubernetes/nms-chart-supported-module-versions.md" >}}
-
 ---
 
 ### Upgrade NGINX Instance Manager
@@ -462,9 +563,14 @@ openshift:
 
 This ensures pods can run with the user IDs required by NGINX Instance Manager services.
 
-{{< call-out "note" "Note" >}}
-If you see permission errors during deployment, your user account might not have access to manage SCCs. Contact a cluster administrator to request access.
-{{< /call-out >}}
+
+When `openshift.enabled: true` is set in the `values.yaml` file, the NGINX Instance Manager deployment automatically creates a custom [Security Context Constraints (SCC)](https://docs.redhat.com/en/documentation/openshift_container_platform/4.13/html/authentication_and_authorization/managing-pod-security-policies) object and links it to the Service Account used by all pods.
+
+By default, OpenShift enforces strict security policies that require containers to run as **non-root** users. The deployment needs specific user IDs (UIDs) for certain services—**1000** for `nms`, and **101** for `nginx` and `clickhouse`. Since the default SCCs don’t allow these UIDs, the deployment creates a custom SCC. This SCC sets the `runAsUser` field to allow the necessary UIDs while still complying with OpenShift’s security standards.
+
+This deployment has been tested with OpenShift v4.13.0 Server.
+
+If you see permission errors during deployment, your account might not have access to manage SCCs. Ask a cluster administrator for access.
 
 To verify that the SCC was created after installing the Helm chart, run:
 

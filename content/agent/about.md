@@ -1,16 +1,15 @@
 ---
-title: Overview
+title: About
 draft: false
 weight: 100
 toc: true
 nd-docs: DOCS-1091
-type:
-- how-to
+nd-content-type: how-to
 ---
 
 ## Overview
 
-NGINX Agent is a companion daemon for your NGINX Open Source or NGINX Plus instance. It enables:
+NGINX Agent version 2 is a companion daemon for your NGINX Open Source or NGINX Plus instance. It enables:
 
 - Remote management of NGINX configurations
 - Collection and reporting of real-time NGINX performance and operating system metrics
@@ -47,7 +46,6 @@ For NGINX Agent to work properly with an NGINX Plus instance, the API needs to b
 NGINX Agent allows a gRPC connected control system to register a listener for a specific event. The control mechanism is then invoked when NGINX Agent sends an associated system signal. The source of a notification can be either the NGINX instance or NGINX Agent itself. Here's a list of currently supported events:
 
 
-{{< raw-html>}}<div class="table-responsive">{{</raw-html>}}
 {{<bootstrap-table "table table-striped table-bordered">}}
 | Event                            | Description                                  |
 | -------------------------------- | -------------------------------------------- |
@@ -64,6 +62,6 @@ NGINX Agent allows a gRPC connected control system to register a listener for a 
 | CONFIG_ROLLBACK_SUCCESS_MESSAGE  | Successfully rolled back NGINX configuration |
 | CONFIG_ROLLBACK_FAILURE_MESSAGE  | Failed to roll back NGINX configuration      |
 {{</bootstrap-table>}}
-{{< raw-html>}}</div>{{</raw-html>}}
+
 
 

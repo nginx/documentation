@@ -48,7 +48,7 @@ Pull the NGINX Plus image from the private registry. Replace `VERSION_TAG` with 
 sudo docker pull private-registry.nginx.com/nginx-plus/agent:VERSION_TAG
 ```
 
-You must specify a version tag. The `latest` tag is not supported. Learn more in the [Deploying NGINX and NGINX Plus on Docker]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-docker.md#pulling-the-image" >}}) guide.
+You must specify a version tag. The `latest` tag is not supported. Learn more in the [Deploying NGINX and NGINX Plus on Docker]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-docker.md#pull-the-image" >}}) guide.
 
 <br>
 

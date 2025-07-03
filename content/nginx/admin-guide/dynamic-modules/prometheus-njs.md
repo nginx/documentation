@@ -8,15 +8,11 @@ type:
 - how-to
 ---
 
-<span id="info"></span>
-## Module Info
-
 The `nginx-plus-module-prometheus` module is an [njs](https://nginx.org/en/docs/njs/) module that converts miscellaneous F5 NGINX Plus status metrics exposed by the [API](https://nginx.org/en/docs/http/ngx_http_api_module.html) module to a Prometheus compliant format. The module uses subrequests to the `/api` endpoint to access the metrics.
 In case you have configured [dynamic upstream routing](#prom_keyval) with generic names for upstream groups, the module can understand replacements for these names and display the correct statistics.
 
 
-<span id="data"></span>
-## Exported Metrics
+## Exported metrics {#data}
 
 The following NGINX Plus status metrics are exported to Prometheus:
 
@@ -57,52 +53,54 @@ The following NGINX Plus status metrics are exported to Prometheus:
 {{</bootstrap-table>}}
 {{< /note >}}
 
-<span id="install"></span>
-## Installation
+## Installation {#install}
 
-Install the `nginx-plus-module-prometheus` module.
+1. Check the [Technical Specifications]({{< ref "/nginx/technical-specs.md#dynamic-modules" >}}) page to verify that the module is supported by your operating system.
 
-- For Amazon Linux 2, CentOS, Oracle Linux, and RHEL:
+2. Make sure that your operating system is configured to retrieve binary packages from the official NGINX Plus repository. See installation instructions for your operating system on the [Installing NGINX Plus]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}) page.
 
-  ```shell
-  sudo yum install nginx-plus-module-prometheus
-  ```
+3. Install the `nginx-plus-module-prometheus` module from the official NGINX Plus repository.
 
-- For Amazon Linux 2023, AlmaLinux, Rocky Linux:
+   - For Amazon Linux 2, CentOS, Oracle Linux, and RHEL:
 
-  ```shell
-  sudo dnf install nginx-plus-module-prometheus
-  ```
+     ```shell
+     sudo yum install nginx-plus-module-prometheus
+     ```
 
-- For Debian and Ubuntu:
+   - For Amazon Linux 2023, AlmaLinux, Rocky Linux:
 
-  ```shell
-  sudo apt install nginx-plus-module-prometheus
-  ```
+     ```shell
+     sudo dnf install nginx-plus-module-prometheus
+     ```
 
-- For SLES:
+   - For Debian and Ubuntu:
 
-  ```shell
-  sudo zypper install nginx-plus-module-prometheus
-  ```
+     ```shell
+     sudo apt install nginx-plus-module-prometheus
+     ```
 
-- For Alpine:
+   - For SLES:
 
-  ```shell
-  apk add nginx-plus-module-prometheus
-  ```
+     ```shell
+     sudo zypper install nginx-plus-module-prometheus
+     ```
 
-  For FreeBSD:
+   - For Alpine:
 
-  ```shell
-  sudo pkg install nginx-plus-module-prometheus
-  ```
+     ```shell
+     apk add nginx-plus-module-prometheus
+     ```
 
-{{< note >}} The [`nginx-plus-module-njs`]({{< ref "nginscript.md" >}}) module will also be installed together with the module. {{< /note >}}
+     For FreeBSD:
+
+     ```shell
+     sudo pkg install nginx-plus-module-prometheus
+     ```
+
+   {{< note >}} The [`nginx-plus-module-njs`]({{< ref "nginscript.md" >}}) module will also be installed together with the module. {{< /note >}}
 
 
-<span id="conf"></span>
-## Configuration
+## Configuration {#conf}
 
 After module installation, perform the following steps in NGINX Plus configuration file (**nginx.conf**):
 
@@ -154,8 +152,7 @@ After module installation, perform the following steps in NGINX Plus configurati
 6. Configure Prometheus to obtain metrics from NGINX Plus by specifying the network address of the NGINX Plus instance in a [scrape_config](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#scrape_config) section of the Prometheus configuration file.
 
 
-<span id="upgrade"></span>
-## Upgrade Instructions
+## Upgrade
 
 When upgrading Prometheus-njs version to version 1.3.1 and later, it is important to update NGINX Plus configuration file with the changes introduced in NGINX Plus [R22](https://www.nginx.com/blog/nginx-plus-r22-released/) and [njs 0.4.0](https://www.nginx.com/blog/nginx-plus-r22-released#njs):
 
@@ -166,8 +163,7 @@ When upgrading Prometheus-njs version to version 1.3.1 and later, it is importan
 See [Configuration](#conf) for the example of Prometheus-njs configuration in NGINX Plus configuration file.
 
 
-<span id="vars"></span>
-## Module Variables
+## Module variables {#vars}
 
 The module supports several embedded variables:
 
@@ -178,8 +174,7 @@ The module supports several embedded variables:
 The variables can be set in NGINX Plus configuration file with the [`set`](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html#set) directive.
 
 
-<span id="prom_keyval"></span>
-### Using the $prom_keyval Variable
+### Using the $prom_keyval variable {#prom_keyval}
 
 The `$prom_keyval` variable has been created to correctly show statistics for dynamic configuration of upstream routing: when names of upstreams are generic and these names are dynamically replaced by real names from the [key-value](https://nginx.org/en/docs/http/ngx_http_keyval_module.html) storage.
 
@@ -226,9 +221,7 @@ http {
 }
 ```
 
-
-<span id="prom_keyval_stream"></span>
-### Using the $prom_keyval_stream Variable
+### Using the $prom_keyval_stream variable {#prom_keyval_stream}
 
 In order to perform dynamic replacements in the [`stream {}`](https://nginx.org/en/docs/stream/ngx_stream_core_module.html#stream) context, you will need to specify a new key-value storage in the stream block and set the name of the key-value storage in the `$prom_keyval_stream` variable:
 
@@ -267,9 +260,7 @@ stream {
 }
 ```
 
-
-<span id="prom_metrics_disabled"></span>
-### Using the $prom_metrics_disabled Variable
+### Using the $prom_metrics_disabled variable {#prom_metrics_disabled}
 
 The `$prom_metrics_disabled` variable disables exporting particular NGINX Plus status metrics to Prometheus. If you are concerned about the amount of storage NGINX Plus metrics are taking in Prometheus, you can disable particular endpoints via this variable. The variable value must be a comma separated list of NGINX Plus endpoints:
 
@@ -306,8 +297,7 @@ You can disable exporting the following NGINX Plus status metrics to Prometheus:
 - `stream/limit_conns`
 
 
-<span id="example"></span>
-## Example
+## Example 
 
 ```nginx
 load_module modules/ngx_http_js_module.so;
@@ -366,12 +356,10 @@ stream {
 }
 ```
 
+## More info {#info}
 
-<span id="info"></span>
-## More Info
+- [NGINX dynamic modules]({{< ref "dynamic-modules.md" >}})
 
-- [NGINX Dynamic Modules]({{< ref "dynamic-modules.md" >}})
+- [NGINX Plus technical specifications]({{< ref "/nginx/technical-specs.md" >}})
 
-- [NGINX Plus Technical Specifications]({{< ref "nginx/technical-specs.md" >}})
-
-- [Uninstalling a Dynamic Module]({{< ref "uninstall.md" >}})
+- [Uninstalling a dynamic module]({{< ref "uninstall.md" >}})
