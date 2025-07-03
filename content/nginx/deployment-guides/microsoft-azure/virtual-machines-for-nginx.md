@@ -91,7 +91,7 @@ When this guide was first published, the hourly cost for the six VMs was only $0
 
 6. Here, you can select non-default values on the **Disks**, **Networking**, **Management**, **Advanced**, and **Tags** tabs. By default, Azure assigns **Premium SSD** for the OS disk on the disk tab, but you can choose a cheaper option like **Standard HDD**.
 
-   After you've completed your changes, click the <span style="background-color:#137ad1; color:white; white-space: nowrap;"> Review + create </span> button at the bottom of the **Create a virtual machine** page.
+   After you've completed your changes, click the _Review + create_ button at the bottom of the **Create a virtual machine** page.
 
    You’ll find a summary of your setting under the **Validation passed** banner. Ensure they’re suitable. Then, click on <span style="background-color:#137ad1; color:white;"> Create </span> 
 
