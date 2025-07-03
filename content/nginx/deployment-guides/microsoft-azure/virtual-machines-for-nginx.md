@@ -87,7 +87,7 @@ Follow these steps:
 
 When this guide was first published, the hourly cost for the six VMs was only $0.008. And this costlier than VMs with basic IP addresses. For current pricing, see the [Microsoft documentation](https://azure.microsoft.com/en-us/pricing/details/ip-addresses/).
 
-   <a href="/nginx/images/azure-create-vm-networking.png"><img src="/nginx/images/azure-create-vm-networking.png" alt="screenshot of 'Networking' tab on Azure 'Create a virtual machine' page" width="1024" height="718" class="aligncenter size-full wp-image-64994" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
+{{< img src="nginx/images/azure-create-vm-networking.png" alt="The 'Networking' tab on Azure's 'Create a virtual machine' page" >}}
 
 6. Here, you can select non-default values on the **Disks**, **Networking**, **Management**, **Advanced**, and **Tags** tabs. By default, Azure assigns **Premium SSD** for the OS disk on the disk tab, but you can choose a cheaper option like **Standard HDD**.
 
