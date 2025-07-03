@@ -95,7 +95,7 @@ When this guide was first published, the hourly cost for the six VMs was only $0
 
    You’ll find a summary of your setting under the **Validation passed** banner. Ensure they’re suitable. Then, click on <span style="background-color:#137ad1; color:white;"> Create </span> 
 
-   If you generated a new key pair in [Step 4](#create-vm_Basics), a <span style="white-space: nowrap; font-weight:bold;">Generate new key pair</span> window pops up. Click on <span style="background-color:#137ad1; color:white; white-space: nowrap;"> Download key and create private resource </span> button.
+   If you generated a new key pair in [Step 4](#create-vm_Basics), a _Generate new key pair_ window pops up. Click on the _Download key and create private resource_ button.
 
    <a href="/nginx/images/azure-create-vm-validation-passed.png"><img src="/nginx/images/azure-create-vm-validation-passed.png" alt="screenshot of validation message on Azure 'Create a virtual machine' page" width="1024" height="954" class="aligncenter size-full image-64993" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
