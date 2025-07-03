@@ -48,7 +48,7 @@ Pull the NGINX Plus image from the private registry. Replace `<version-tag>` wit
 docker pull private-registry.nginx.com/nginx-plus/agentv3:<version-tag>
 ```
 
-You must specify a distribution tag. The `latest` tag is not supported. Learn more in the [Deploying NGINX and NGINX Plus on Docker]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-docker.md#pull-the-image" >}}) guide.
+You must specify a version tag that matches your distribution. The `latest` tag is not supported. Learn more in the [Deploying NGINX and NGINX Plus on Docker]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-docker.md#pull-the-image" >}}) guide.
 
 <br>
 
