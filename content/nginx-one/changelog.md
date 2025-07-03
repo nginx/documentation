@@ -91,7 +91,7 @@ You can:
 - Remove a deployed certificate from a Config Sync Group
 
 For more information, including warnings about risks, see our documentation on how you can:
-- [Add a file]({{< ref "/nginx-one/nginx-configs/add-file.md" >}})
+- [Add a file]({{< ref "/nginx-one/nginx-configs/one-instance/add-file.md" >}})
 - [Manage certificates]({{< ref "/nginx-one/nginx-configs/certificates/manage-certificates.md" >}})
 
 ### Revert a configuration
@@ -144,7 +144,7 @@ Select the link for each CVE to see the details, including the CVE's publish dat
 
 ### Edit NGINX configurations
 
-You can now make configuration changes to your NGINX instances. For more details, see [View and edit NGINX configurations]({{< ref "/nginx-one/nginx-configs/view-edit-nginx-configurations.md" >}}).
+You can now make configuration changes to your NGINX instances. For more details, see [View and edit NGINX configurations]({{< ref "/nginx-one/nginx-configs/one-instance/view-edit-nginx-configurations.md" >}}).
 
 ## May 28, 2024
 
