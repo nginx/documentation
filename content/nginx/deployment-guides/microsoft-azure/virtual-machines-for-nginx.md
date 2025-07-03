@@ -83,7 +83,7 @@ Follow these steps:
   - Click  _Create new_ below the **Public IP** field.
   - In the **Create public IP address column** that opens, click the **Standard Radio button** under **SKU**. 
   - In the **Name** field, accept the default created by Azure, ngx-plus-1-ip. 
-  - Click the <span style="background-color:#137ad1; color:white;">Ok</span>  button.
+  - Click the _Ok_  button.
 
 When this guide was first published, the hourly cost for the six VMs was only $0.008. And this costlier than VMs with basic IP addresses. For current pricing, see the [Microsoft documentation](https://azure.microsoft.com/en-us/pricing/details/ip-addresses/).
 
