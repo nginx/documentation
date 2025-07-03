@@ -139,7 +139,7 @@ To install and configure NGINX Open Source or NGINX Plus on a VM, open a termina
    Note:
 
    - `<private-key-file>` contains the private key paired with the public key you entered in the _SSH public key_ field in <a href="#create-vm_Basics">Step 4</a> of _Creating a Microsoft Azure Virtual Machine_.
-   - `<username>` is the name you entered in the **Username** field in <a href="#create-vm_Basics">Step 4</a> of _Creating a Microsoft Azure Virtual Machine_. In this guide, it is <span style="color:#666666; font-weight:bolder;">nginx_azure</span>).
+   - `<username>` is the name you entered in the **Username** field in <a href="#create-vm_Basics">Step 4</a> of _Creating a Microsoft Azure Virtual Machine_. In this guide, it is _nginx_azure_.
    - `<public-IP-address>` is the address you looked up in the previous step.
 
 <span id="install-nginx"></span>
