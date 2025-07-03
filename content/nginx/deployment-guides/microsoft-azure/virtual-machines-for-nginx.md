@@ -126,7 +126,7 @@ To install and configure NGINX Open Source or NGINX Plus on a VM, open a termina
 
    <a href="/nginx/images/azure-create-vm-virtual-machines.png"><img src="/nginx/images/azure-create-vm-virtual-machines.png" alt="screenshot of Azure 'Virtual machines' page with list of VMs" width="1024" height="396" class="aligncenter size-full wp-image-64991" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
-2. On the page that opens ({{<nb>}}**ngx-plus-1**{{</nb>}} in this guide), note the VM's public IP address (in the {{<nb>}}**Public IP address**{{</nb>}} field in the right column).>>>>>>> main
+2. On the page that opens ({{<nb>}}**ngx-plus-1**{{</nb>}} in this guide), note the VM's public IP address (in the {{<nb>}}**Public IP address**{{</nb>}} field in the right column).
 
    <a href="/nginx/images/azure-create-vm-ngx-plus-1.png"><img src="/nginx/images/azure-create-vm-ngx-plus-1.png" alt="screenshot of details page for 'ngx-plus-1' VM in Azure" width="1024" height="363" class="aligncenter size-full wp-image-64990" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
