@@ -62,7 +62,7 @@ sudo docker pull private-registry.nginx.com/nginx-plus/agent:debian
 
 ### Start the NGINX Plus container
 
-Start the Docker container to connect it to NGINX One. Replace `YOUR_NGINX_ONE_DATA_PLANE_KEY_HERE` with your data plane key and `VERSION_TAG` with the version tag you pulled.
+Start the Docker container to connect it to NGINX One. Replace `YOUR_NGINX_ONE_DATA_PLANE_KEY_HERE` with your data plane key and `version-tag` with the version tag you pulled.
 
 **For NGINX Plus R33 or later**:
 
@@ -79,7 +79,7 @@ sudo docker run \
 --env=NGINX_AGENT_TLS_ENABLE=true \
 --restart=always \
 --runtime=runc \
--d private-registry.nginx.com/nginx-plus/agent:<VERSION_TAG>
+-d private-registry.nginx.com/nginx-plus/agent:<version-tag>
 ```
 
 <br>
