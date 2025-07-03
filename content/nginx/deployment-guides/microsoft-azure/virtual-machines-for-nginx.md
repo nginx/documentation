@@ -43,7 +43,7 @@ For NGINX installation:
 2. Click the Virtual machines icon. Or click the stacked lines icon (☰) in the top-left corner and select Virtual machines from the menu.
    <img src="/nginx/images/azure-portal.png" alt="screenshot of top navigation bar at Microsoft Azure portal" width="1024" height="226" class="aligncenter size-full image-64310" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
-3. On the Virtual machines page that opens, click **<span style="color:#4d9bdc;">+</span> Add** in the upper left corner.
+3. On the Virtual machines page that opens, click **+ Add** in the upper left corner.
 
    <img src="/nginx/images/azure-create-vm-add-button.png" alt="screenshot of Azure 'Virtual machines' page" width="1024" height="195" class="aligncenter size-full image-64309" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
