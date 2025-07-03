@@ -32,4 +32,4 @@ Before merging a pull request, run through this checklist and mark each as compl
 - [ ] I have ensured that existing tests pass after adding my changes
 - [ ] If applicable, I have updated [`README.md`](/README.md)
 
-[^1]: Potentially sensitive changes include anything involving code, personally identify information (PII), live URLs or significant amounts of new or revised documentation. Please refer to [our style guide](/documentation/README.md) for guidance about placeholder content.
+[^1]: Potentially sensitive changes include anything involving code, personally identify information (PII), live URLs or significant amounts of new or revised documentation. Please refer to [our style guide](/documentation/style-guide.md) for guidance about placeholder content.
