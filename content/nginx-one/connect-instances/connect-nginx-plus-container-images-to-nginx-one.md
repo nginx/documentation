@@ -42,13 +42,13 @@ sudo docker login private-registry.nginx.com --username=YOUR_JWT_HERE --password
 
 ### Pull the NGINX Plus image
 
-Pull the NGINX Plus image from the private registry. Replace `VERSION_TAG` with the desired version, such as `alpine`, `debian`, or `ubi`.
+Pull the NGINX Plus image from the private registry. Replace `<version-tag>` with the desired version, such as `alpine`, `debian`, or `ubi`.
 
 ```sh
-sudo docker pull private-registry.nginx.com/nginx-plus/agent:VERSION_TAG
+docker pull private-registry.nginx.com/nginx-plus/agentv3:<version-tag>
 ```
 
-You must specify a version tag. The `latest` tag is not supported. Learn more in the [Deploying NGINX and NGINX Plus on Docker]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-docker.md#pull-the-image" >}}) guide.
+You must specify a distribution tag. The `latest` tag is not supported. Learn more in the [Deploying NGINX and NGINX Plus on Docker]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-docker.md#pull-the-image" >}}) guide.
 
 <br>
 
