@@ -80,7 +80,7 @@ For NGINX installation:
 To avoid errors, assign **Standard** public IP addresses to the VMs you’ll use in the deployment. Depending on your work load, you might need up to 6 VMs.
 Follow these steps:
   - Open the **Networking** tab on the **Create a virtual machine** window.
-  - Click <span style="color:#2d89d6; white-space: nowrap;"> Create new </span> below the **Public IP** field.
+  - Click  _Create new_ below the **Public IP** field.
   - In the **Create public IP address column** that opens, click the **Standard Radio button** under **SKU**. 
   - In the **Name** field, accept the default created by Azure, ngx-plus-1-ip. 
   - Click the <span style="background-color:#137ad1; color:white;">Ok</span>  button.
