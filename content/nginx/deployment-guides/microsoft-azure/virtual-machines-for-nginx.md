@@ -75,17 +75,17 @@ For NGINX installation:
    <span id="create-vm_Networking"></span>
 5. For [Active-Active HA for NGINX Plus on Microsoft Azure]( https://docs.nginx.com/nginx/deployment-guides/microsoft-azure/high-availability-standard-load-balancer/):
 
- Two major virtual machines run NGINX Plus behind an Azure Load Balancer. And both VMs require **Standard** SKU public IP addresses. By default, Azure assigns **Basic** SKU IPs. So, you must manually change this during VM setup.
+ Two major virtual machines run NGINX Plus behind an Azure Load Balancer. And both VMs require **Standard** SKU public IP addresses. By default, Azure assigns **Basic** SKU IPs. So, you must manually change this during VM setup. 
 
-To avoid errors, assign **Standard** public IP addresses to the VMs you’ll use in the deployment. Depending on your work load, you might need up to 6 VMs.
-Follow these steps:
+To avoid errors, assign **Standard** public IP addresses to the VMs you’ll use in the deployment. 
+
+When this guide was first published, the hourly cost for the six VMs was only $0.008. And this costlier than VMs with basic IP addresses. For current pricing, see the [Microsoft documentation](https://azure.microsoft.com/en-us/pricing/details/ip-addresses/).
+Depending on your work load, you might need up to 6 VMs. Follow these steps:
   - Open the **Networking** tab on the **Create a virtual machine** window.
   - Click  _Create new_ below the **Public IP** field.
   - In the **Create public IP address column** that opens, click the **Standard Radio button** under **SKU**. 
   - In the **Name** field, accept the default created by Azure, ngx-plus-1-ip. 
   - Click the _Ok_  button.
-
-When this guide was first published, the hourly cost for the six VMs was only $0.008. And this costlier than VMs with basic IP addresses. For current pricing, see the [Microsoft documentation](https://azure.microsoft.com/en-us/pricing/details/ip-addresses/).
 
 {{< img src="nginx/images/azure-create-vm-networking.png" alt="The 'Networking' tab on Azure's 'Create a virtual machine' page" >}}
 
