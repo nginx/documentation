@@ -512,6 +512,21 @@ It indicates that `proxy_protocol` is enabled for the gateway listeners, but the
 
 - Send valid proxy information with requests being handled by your application.
 
+#### Custom Resource Definition is invalid due to being too large 
+
+If you apply the NGINX Gateway Fabric CRDs and see the following error:
+
+```text
+The CustomResourceDefinition "nginxproxies.gateway.nginx.org" is invalid: metadata.annotations: Too long: may not be more than 262144 bytes
+```
+
+This is a known issue with Kubernetes, more specifically the client-side-apply annotation limit with kubectl, and our recommended workaround 
+is to use kubectl's server-side apply when installing the NGINX Gateway Fabric CRDs. To do this, you can use the `--server-side` flag when applying the CRDs:
+
+```shell
+kubectl apply --server-side -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v{{< version-ngf >}}/deploy/crds.yaml
+```
+
 ### See also
 
 You can view the [Kubernetes Troubleshooting Guide](https://kubernetes.io/docs/tasks/debug/debug-application/) for more debugging guidance.
