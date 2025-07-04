@@ -13,7 +13,7 @@ nd-product: NGINX One
 [//]: # "These are Markdown comments to guide you through document structure. Remove them as you go, as well as any unnecessary sections."
 [//]: # "Use underscores for _italics_, and double asterisks for **bold**."
 [//]: # "Backticks are for `monospace`, used sparingly and reserved mostly for executable names - they can cause formatting problems. Avoid them in tables: use italics instead."
-The F5 NGINX One Console makes it easy to manage NGINX instances across locations and environments. The console lets you monitor and control your NGINX fleet from one place—you can check configurations, track performance metrics, identify security vulnerabilities, manage SSL certificates, and more.
+F5 NGINX One Console makes it easy to manage NGINX instances across locations and environments. The console lets you monitor and control your NGINX fleet from one place—you can check configurations, track performance metrics, identify security vulnerabilities, manage SSL certificates, and more. NGINX One Console is part of NGINX One, which includes [NGINX One components](#nginx-one-components).
 
 ## Featured content
 [//]: # "You can add a maximum of three cards: any extra will not display."
@@ -21,19 +21,44 @@ The F5 NGINX One Console makes it easy to manage NGINX instances across location
 [//]: # "Some examples of content could be the latest release note, the most common install path, and a popular new feature."
 {{<card-layout>}}
   {{<card-section showAsCards="true" isFeaturedSection="true">}}
-    {{<card title="Get started" titleUrl="nginx-one/getting-started/" isFeatured="true" icon="unplug">}}
-      See benefits from the NGINX One Console
+    {{<card title="Get started" titleUrl="/nginx-one/getting-started/" isFeatured="true" icon="unplug">}}
+      Get up and running with NGINX One Console
     {{</card >}}
-    {{<card title="Changelog" titleUrl="nginx-one/changelog/" icon="clock-alert">}}
-      See latest updates: New features, improvements, and bug fixes
+  {{</card-section>}}
+{{</card-layout>}}
+
+
+{{<card-layout>}}
+  {{<card-section showAsCards="true" >}}
+    {{<card title="Connect more NGINX instances" titleUrl="/nginx-one/connect-instances/" >}}
+      Work with data plane keys, containers, and proxy servers
     {{</card>}}
-    {{<card title="Add an NGINX instance" titleUrl="nginx-one/connect-instances/add-instance/" icon="copy-plus">}}
-      Connect your instances to NGINX One
+    {{<card title="Manage your NGINX instances" titleUrl="/nginx-one/nginx-configs/" >}}
+      Manage one instance or groups of instances. Monitor certificates. Set up metrics.
+    {{</card>}}
+    {{<card title="Organize users with RBAC" titleUrl="/nginx-one/rbac/" >}}
+      Assign responsibilities with role-based access control 
+    {{</card>}}
+    {{<card title="Automate with the NGINX One API" titleUrl="/nginx-one/api/" >}}
+      Manage your NGINX fleet over REST
     {{</card>}}
   {{</card-section>}}
 {{</card-layout>}}
 
-## Other Components
+### More information
+
+{{<card-layout>}}
+  {{<card-section showAsCards="true" >}}
+    {{<card title="Glossary" titleUrl="/nginx-one/glossary/" >}}
+      See latest updates: New features, improvements, and bug fixes
+    {{</card>}}
+    {{<card title="Changelog" titleUrl="/nginx-one/changelog/" icon="clock-alert">}}
+      See latest updates: New features, improvements, and bug fixes
+    {{</card>}}
+  {{</card-section>}}
+{{</card-layout>}}
+
+## NGINX One components
 [//]: # "You can add any extra content for the page here, such as additional cards, diagrams or text."
 
 {{< card-layout >}}

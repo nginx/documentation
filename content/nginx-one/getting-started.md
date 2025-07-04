@@ -4,30 +4,109 @@ toc: true
 weight: 100
 type: how-to
 product: NGINX One
-nd-docs: DOCS-1393
 ---
 
-This guide provides step-by-step instructions on how to activate and start using F5 NGINX One Console. NGINX One is a management console for monitoring and managing NGINX data plane instances.
+The F5 NGINX One Console makes it easy to manage NGINX instances across locations and environments. The console lets you monitor and control your NGINX fleet from one place—you can check configurations, track performance metrics, identify security vulnerabilities, manage SSL certificates, and more. 
 
-## Enable the NGINX One service {#enable-nginx-one}
+This guide provides step-by-step instructions to activate and use F5 NGINX One Console. For a list of the latest changes, see our [changelog]({{< ref "/nginx-one/changelog.md" >}})
 
-To get started using NGINX One, enable the service on F5 Distributed Cloud.
+## Benefits and key features
 
-1. Log in to [F5 Distributed Console](https://www.f5.com/cloud/products/distributed-cloud-console).
-1. Select **NGINX One** from the list of services.
-1. Select **Enable Service**.
-1. After the service has been enabled, select **Visit Service** to load NGINX One Console.
+NGINX One offers the following key benefits:
+
+- **Centralized control**: Manage all your NGINX instances from a single console.
+- **Enhanced monitoring and risk detection**: Automatically detect critical vulnerabilities (CVEs), verify SSL certificate statuses, and identify security issues in NGINX configurations.
+- **Performance optimization**: Track your NGINX versions and receive recommendations for tuning your configurations for better performance.
+- **Graphical Metrics Display**: Access a dashboard that shows key metrics for your NGINX instances, including instance availability, version distribution, system health, and utilization trends.
+- **Real-time alerts**: Receive alerts about critical issues.
+
+## Before you begin 
+
+**You need access to F5 Distributed Cloud**.
+
+If you already have accessed F5 Distributed Cloud and have NGINX instances available, you can skip these sections and start to [Add your NGINX instances to NGINX One](#add-your-nginx-instances-to-nginx-one). Otherwise, take these steps to "onboard" yourself to NGINX One Console.
+
+<details>
+<summary>If you want to register for a trial</summary>
+
+### Register for a trial subscription
+
+<!-- Make sure to check with sales enablement -->
+If you want to register for a trial, navigate to https://account.f5.com/myf5. If needed, select **Sign up** to get an account. Then follow these steps:
+
+1. Navigate to https://account.f5.com/myf5 and log in.
+1. Select trials
+1. Find **F5 NGINX**. Sign up for the trial. 
+1. The trial may require approval. 
+
+</details>
+
+<details>
+<summary>Confirm access to the F5 Distributed Cloud</summary>
+
+### Confirm access to the F5 Distributed Cloud
+
+{{< include "/nginx-one/cloud-access.md" >}}
+
+</details>
+
+<details>
+<summary>Confirm access to NGINX One Console</summary>
+
+### Confirm access to NGINX One Console
+
+{{< include "/nginx-one/cloud-access-nginx.md" >}}
+
+</details>
+
+<details>
+<summary>Install an instance of NGINX</summary>
+
+### Install an instance of NGINX
+
+{{< include "/nginx-one/install-nginx.md" >}}
+
+</details>
+
+<details>
+<summary>Make sure you're running a supported Linux distribution</summary>
+
+NGINX Agent sets up communication between your NGINX Instance and NGINX One Console. Make sure your Linux operating system is listed below. The installation script for NGINX Agent is compatible with these distributions and versions.
+
+### NGINX Agent installation script: supported distributions
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+
+| Distribution                 | Version              | Architecture    |
+|------------------------------|----------------------|-----------------|
+| AlmaLinux                    | 8, 9                 | x86_64, aarch64 |
+| Alpine Linux                 | 3.16 - 3.18          | x86_64, aarch64 |
+| Amazon Linux                 | 2023                 | x86_64, aarch64 |
+| Amazon Linux 2               | LTS                  | x86_64, aarch64 |
+| CentOS                       | 7.4+                 | x86_64, aarch64 |
+| Debian                       | 11, 12               | x86_64, aarch64 |
+| Oracle Linux                 | 7.4+, 8.1+, 9        | x86_64          |
+| Red Hat Enterprise Linux     | 7.4+, 8.1+, 9        | x86_64, aarch64 |
+| Rocky Linux                  | 8, 9                 | x86_64, aarch64 |
+| Ubuntu                       | 20.04 LTS, 22.04 LTS | x86_64, aarch64 |
+
+{{</bootstrap-table>}}
+
+</span>
+
+</details>
 
 ---
 
 ## Add your NGINX instances to NGINX One
 
-Next, add your NGINX instances to NGINX One. You'll need to create a data plane key and then install NGINX Agent on each instance you want to monitor.
+Add your NGINX instances to NGINX One. You'll need to create a data plane key and then install NGINX Agent on each instance you want to monitor.
 
 The following instructions include minimal information, sufficient to "get started." See the following links for detailed instructions:
 
-- [Create and manage data plane keys]({{< ref "/nginx-one/connect-instances/create-manage-data-plane-keys.md" >}})
+- [Prepare - Create and manage data plane keys]({{< ref "/nginx-one/connect-instances/create-manage-data-plane-keys.md" >}})
 - [Add an NGINX instance]({{< ref "/nginx-one/connect-instances/add-instance.md" >}})
+- [Connect NGINX Plus container images]({{< ref "/nginx-one/connect-instances/connect-nginx-plus-container-images-to-nginx-one.md" >}})
 
 ### Generate a data plane key {#generate-data-plane-key}
 
@@ -103,29 +182,6 @@ The `install` script writes an `nginx-agent.conf` file to the `/etc/nginx-agent/
 
 <br>
 
-<i class="fa fa-check-circle" aria-hidden="true"></i> Make sure your Linux operating system is listed below. The installation script for NGINX Agent is compatible with these distributions and versions.
-
-#### NGINX Agent installation script: supported distributions
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-
-| Distribution                 | Version              | Architecture    |
-|------------------------------|----------------------|-----------------|
-| AlmaLinux                    | 8, 9                 | x86_64, aarch64 |
-| Alpine Linux                 | 3.16 - 3.18          | x86_64, aarch64 |
-| Amazon Linux                 | 2023                 | x86_64, aarch64 |
-| Amazon Linux 2               | LTS                  | x86_64, aarch64 |
-| CentOS                       | 7.4+                 | x86_64, aarch64 |
-| Debian                       | 11, 12               | x86_64, aarch64 |
-| Oracle Linux                 | 7.4+, 8.1+, 9        | x86_64          |
-| Red Hat Enterprise Linux     | 7.4+, 8.1+, 9        | x86_64, aarch64 |
-| Rocky Linux                  | 8, 9                 | x86_64, aarch64 |
-| Ubuntu                       | 20.04 LTS, 22.04 LTS | x86_64, aarch64 |
-
-{{</bootstrap-table>}}
-
-</span>
-
 ---
 
 The NGINX One Console dashboard relies on APIs for NGINX Plus and NGINX Open Source Stub Status to report traffic and system metrics. The following sections show you how to enable those metrics.
@@ -152,37 +208,6 @@ After connecting your NGINX instances to NGINX One, you can monitor their perfor
 ### Overview of the NGINX One dashboard
 
 {{< include "/use-cases/monitoring/n1c-dashboard-overview.md" >}}
-
-Navigating the dashboard:
-
-- **Drill down into specifics**: For in-depth information on a specific metric, like expiring certificates, click on the relevant link in the metric's card to go to a detailed overview page.
-- **Refine metric timeframe**: Metrics show the last hour's data by default. To view data from a different period, select the time interval you want from the drop-down menu.
-
-<span style="display: inline-block; margin-top: 20px; margin-bottom: 50px;">
-{{< img src="nginx-one/images/nginx-one-dashboard.png">}}
-</span>
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-**NGINX One dashboard metrics**
-| Metric | Description | Details |
-|---|---|---|
-| <i class="fas fa-heartbeat"></i> **Instance availability** | Understand the operational status of your NGINX instances. | - **Online**: The NGINX instance is actively connected and functioning properly. <br> - **Offline**: NGINX Agent is connected but the NGINX instance isn't running, isn't installed, or can't communicate with NGINX Agent. <br> - **Unavailable**: The connection between NGINX Agent and NGINX One has been lost or the instance has been decommissioned. <br> - **Unknown**: The current state can't be determined at the moment. |
-| <i class="fas fa-code-branch"></i> **NGINX versions by instance** | See which NGINX versions are in use across your instances. | |
-| <i class="fas fa-desktop"></i> **Operating systems** | Find out which operating systems your instances are running on. | |
-| <i class="fas fa-certificate"></i> **Certificates** | Monitor the status of your SSL certificates to know which are expiring soon and which are still valid. | |
-| <i class="fas fa-cogs"></i> **Config recommendations** | Get configuration recommendations to optimize your instances' settings. | |
-| <i class="fas fa-shield-alt"></i> **CVEs (Common Vulnerabilities and Exposures)** | Evaluate the severity and number of potential security threats in your instances. | - **Major**: Indicates a high-severity threat that needs immediate attention. <br> - **Medium**: Implies a moderate threat level. <br> - **Minor** and **Low**: Represent less critical issues that still require monitoring. <br> - **Other**: Encompasses any threats that don't fit the standard categories. |
-| <i class="fas fa-microchip"></i> **CPU utilization** | Track CPU usage trends and pinpoint instances with high CPU demand. | |
-| <i class="fas fa-memory"></i> **Memory utilization** | Watch memory usage patterns to identify instances using significant memory. | |
-| <i class="fas fa-hdd"></i> **Disk space utilization** | Monitor how much disk space your instances are using and identify those nearing capacity. | |
-| <i class="fas fa-exclamation-triangle"></i> **Unsuccessful response codes** | Look for instances with a high number of HTTP server errors and investigate their error codes. | |
-| <i class="fas fa-tachometer-alt"></i> **Top network usage** | Review the network usage and bandwidth consumption of your instances. | |
-
-{{</bootstrap-table>}}
-
-
-
-
 
 
 
