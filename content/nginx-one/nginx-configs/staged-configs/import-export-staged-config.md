@@ -26,7 +26,7 @@ Before you import or export a Staged Configuration to NGINX One Console, ensure:
 
 - You have an NGINX One Console account with staged configuration permissions.
 
-You can also import, export, and manage multiple Staged Configurations through [the API]({{< ref "/nginx-one/staged-configs/api-staged-config.md" >}}).
+You can also import, export, and manage multiple Staged Configurations through [the API]({{< ref "/nginx-one/nginx-configs/staged-configs/api-staged-config.md" >}}).
 
 ## Considerations
 

@@ -7,19 +7,19 @@ pygmentsUseClasses = true
 enableGitInfo = true
 
 [permalinks]
-  agent = '/nginx-agent/:sections[1:]/:filename'
-  amplify = '/nginx-amplify/:sections[1:]/:filename'
-  controller = '/nginx-controller/:sections[1:]/:filename'
-  mesh = '/nginx-service-mesh/:sections[1:]/:filename'
-  modsec-waf = '/nginx-waf/:sections[1:]/:filename'
-  nap-dos = '/nginx-app-protect-dos/:sections[1:]/:filename'
-  nap-waf = '/nginx-app-protect-waf/:sections[1:]/:filename'
-  nginxaas = '/nginxaas/azure/:sections[1:]/:filename'
-  ngf = '/nginx-gateway-fabric/:sections[1:]/:filename'
-  nic = '/nginx-ingress-controller/:sections[1:]/:filename'
-  nim = '/nginx-instance-manager/:sections[1:]/:filename'
-  nms = '/nginx-management-suite/:sections[1:]/:filename'
-  unit = '/nginx-unit/:sections[1:]/:filename'
+  agent = '/nginx-agent/:sections[1:]/:contentbasename'
+  amplify = '/nginx-amplify/:sections[1:]/:contentbasename'
+  controller = '/nginx-controller/:sections[1:]/:contentbasename'
+  mesh = '/nginx-service-mesh/:sections[1:]/:contentbasename'
+  modsec-waf = '/nginx-waf/:sections[1:]/:contentbasename'
+  nap-dos = '/nginx-app-protect-dos/:sections[1:]/:contentbasename'
+  nap-waf = '/nginx-app-protect-waf/:sections[1:]/:contentbasename'
+  nginxaas = '/nginxaas/azure/:sections[1:]/:contentbasename'
+  ngf = '/nginx-gateway-fabric/:sections[1:]/:contentbasename'
+  nic = '/nginx-ingress-controller/:sections[1:]/:contentbasename'
+  nim = '/nginx-instance-manager/:sections[1:]/:contentbasename'
+  nms = '/nginx-management-suite/:sections[1:]/:contentbasename'
+  unit = '/nginx-unit/:sections[1:]/:contentbasename'
 
 [caches]
   [caches.modules]

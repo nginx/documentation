@@ -1,80 +1,51 @@
 # Contributing guidelines
 
-The following is a set of guidelines for community contributions to this project. 
-
-We really appreciate your desire to contribute!
+The following are a set of guidelines for contributing to this project. We appreciate your desire to get involved!
 
 If you are an F5 employee, see the following additional guidance on [Maintainers etiquette](/documentation/maintainers-etiquette.md).
 
 ## Table of contents
 
-- [Report a Bug](#report-a-bug)
-- [Suggest a Feature or Enhancement](#suggest-a-feature-or-enhancement)
-- [Open a Discussion](#open-a-discussion)
-- [Submit a Pull Request](#submit-a-pull-request)
-  - Review our [Git style guide](#git-style-guide)
-  - Review the [Writing style guide](/documentation/style-guide.md)
-  - Review [Managing content with Hugo](/documentation/writing-hugo.md)
-- [Issue Lifecycle](#issue-lifecycle)
+- [Create an issue](#create-an-issue)
+- [Start a discussion](#start-a-discussion)
+- [Submit a pull request](#submit-a-pull-request)
+- [Issue lifecycle](#issue-lifecycle)
 - [Additional NGINX documentation](#additional-nginx-documentation)
 - [F5 Contributor License Agreement (CLA)](#f5-contributor-license-agreement)
 
-## Report a bug
+## Create an issue
 
-To report a bug, open an issue on GitHub with the label `bug` using the
-available bug report issue template. Before reporting a bug, make sure the
-issue has not already been reported.
+One way to contribute to the project is by [creating an issue](https://github.com/nginx/documentation/issues/new/choose).
 
-## Suggest a feature or enhancement
+The two most common are enhancements and bug reports. When using the issue templates, they will be automatically labelled.
 
-To suggest a feature or enhancement, open an issue on GitHub with the label
-`feature` or `enhancement` using the available feature request issue template.
-Please ensure the feature or enhancement has not already been suggested.
+- An enhancement is an improvement of some kind, such as a new document or additional detail for a product feature
+- A bug report draws attention to an issue in documentation, such as an incorrect command or outdated information
 
-## Open a Discussion
+Before creating an issue, please check there is [no existing issue](https://github.com/nginx/documentation/issues?q=is%3Aissue) for the topic.
 
-If you want to start a conversation with the community and maintainers,
-we encourage you to use
-[GitHub Discussions](https://github.com/nginx/documentation/discussions).
+We encourage discussions within issues, since they act as a source of contextual truth and are linked to pull requests.
 
-## Submit a Pull Request
+## Start a discussion
 
-To contribute to F5 NGINX documentation, follow these steps:
+We encourage you to use [GitHub Discussions](https://github.com/nginx/documentation/discussions) for conversations with the community and maintainers.
+
+If you'd like to discuss something NGINX-related that doesn't involve documentation, you should go to the [NGINX Community Forum](https://community.nginx.org/). 
+
+## Submit a pull request
+
+Before making documentation changes, you should view the [documentation style guide](/documentation/style-guide.md) and [Managing content with Hugo](/documentation/writing-hugo.md).
+
+To understand how we use Git in this repository, read our [Git conventions](/documentation/git-conventions.md) documentation.
+
+The broad workflow is as follows:
 
 - Fork the NGINX repository
 - Create a branch
 - Implement your changes in your branch
 - Submit a pull request (PR) when your changes are ready for review
 
-Alternatively, you're welcome to suggest improvements to highlight problems with
-our documentation as described in our [support](./SUPPORT.md) page.
-
-### Git style guide
-
-- Keep a clean, concise and meaningful Git commit history on your branch, rebasing locally and squashing before you submit a PR
-- We use [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/#summary) formatting.
-- Follow the guidelines of writing a good commit message as described here <https://chris.beams.io/posts/git-commit/>
-  and summarized in the next few points:
-
-  - In the subject line, use the present tense ("Add feature" not "Added feature")
-  - In the subject line, use the imperative mood ("Move cursor to..." not "Moves cursor to...")
-  - Limit the subject line to 72 characters or less
-  - Reference issues and pull requests liberally after the subject line
-  - Add more detailed description in the body of the git message (`git commit -a` to give you more space and time in
-    your text editor to write a good message instead of `git commit -am`)
-
-#### Branch protection rules
-
-This repository has the following branch protection rules in place:
-
-- **Pushing branches that contain the "internal/" prefix is not allowed.** This ensures internal development branches are not accidentally or purposefully pushed to this repo.
-- **Two approvers are required for all merges to main and release branches.** This ensures all code that is approved for release to production is appropriately reviewed. This rule applies to all branches with `*release*` in the branch name.
-- **Only NGINX DocOps Team members can create release branches.** This ensures the docs team is aware of all branches supporting specific product releases. This rule applies to all branches with `*release*` in the branch name.
-- **Pushes (force or otherwise) directly to main or release branches is not allowed.** Release branches serve as "main" for the release they are associated with. Restricting pushes directly to main and release branches ensures all content changes are reviewed and approved. This rule applies to all branches with `*release*` in the branch name and to "main".
-
-### Documentation style guide
-
-For detailed guidance, see our documentation [style guide](./templates/style-guide.md).
+Alternatively, you're welcome to suggest improvements to highlight problems with our documentation as described in our [support](./SUPPORT.md) page.
 
 ## Issue lifecycle
 
@@ -93,7 +64,6 @@ This repository does not include all of the source content for the NGINX documen
 - [NGINX Open Source](https://github.com/nginx/nginx) - source for [NGINX changelog](https://nginx.org/en/CHANGES)
 - [nginx.org](https://github.com/nginx/nginx.org) - source for https://nginx.org
 - [NGINX Unit](https://github.com/nginx/unit) - source for https://unit.nginx.org
-- [NGINX Ingress Controller](https://github.com/nginxinc/kubernetes-ingress/) - source for https://docs.nginx.com/nginx-ingress-controller
 
 In those repositories, you can find documentation source code in the `docs` or `site` subdirectories.
 

@@ -1,9 +1,9 @@
 ---
 description: ''
 nd-docs: null
-title: Minimize connections - Set up NGINX as a proxy
+title: Prepare - Set up NGINX as a proxy
 toc: true
-weight: 300
+weight: 200
 type:
 - how-to
 ---
