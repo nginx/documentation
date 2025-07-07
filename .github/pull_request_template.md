@@ -26,10 +26,10 @@ Before merging a pull request, run through this checklist and mark each as compl
 - [ ] I have rebased my branch onto main
 - [ ] I have ensured my PR is targeting the main branch and pulling from my branch from my own fork
 - [ ] I have ensured that the commit messages adhere to [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/#summary)
-- [ ] I have ensured that documentation content adheres to [the style guide](https://github.com/nginx/documentation/blob/main/templates/style-guide.md)
+- [ ] I have ensured that documentation content adheres to [the style guide](/documentation/style-guide.md)
 - [ ] If the change involves potentially sensitive changes[^1], I have assessed the possible impact
 - [ ] If applicable, I have added tests that prove my fix is effective or that my feature works
 - [ ] I have ensured that existing tests pass after adding my changes
-- [ ] If applicable, I have updated [`README.md`](https://github.com/nginx/documentation/blob/main/README.md) and [`CHANGELOG.md`](https://github.com/nginx/documentation/blob/main/CHANGELOG.md)
+- [ ] If applicable, I have updated [`README.md`](/README.md)
 
-[^1]: Potentially sensitive changes include anything involving code, personally identify information (PII), live URLs or significant amounts of new or revised documentation. Please refer to [our style guide](https://github.com/nginx/documentation/blob/main/templates/style-guide.md) for guidance about placeholder content.
+[^1]: Potentially sensitive changes include anything involving code, personally identify information (PII), live URLs or significant amounts of new or revised documentation. Please refer to [our style guide](/documentation/style-guide.md) for guidance about placeholder content.

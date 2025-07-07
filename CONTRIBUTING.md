@@ -1,38 +1,36 @@
 # Contributing guidelines
 
-The following is a set of guidelines for community contributions to this project.
-
-We really appreciate your desire to contribute!
+The following are a set of guidelines for contributing to this project. We appreciate your desire to get involved!
 
 If you are an F5 employee, see the following additional guidance on [Maintainers etiquette](/documentation/maintainers-etiquette.md).
 
 ## Table of contents
 
-- [Report a Bug](#report-a-bug)
-- [Suggest a Feature or Enhancement](#suggest-a-feature-or-enhancement)
-- [Open a Discussion](#open-a-discussion)
+- [Create an issue](#create-an-issue)
+- [Start a discussion](#start-a-discussion)
 - [Submit a pull request](#submit-a-pull-request)
-- [Issue Lifecycle](#issue-lifecycle)
+- [Issue lifecycle](#issue-lifecycle)
 - [Additional NGINX documentation](#additional-nginx-documentation)
 - [F5 Contributor License Agreement (CLA)](#f5-contributor-license-agreement)
 
-## Report a bug
+## Create an issue
 
-To report a bug, open an issue on GitHub with the label `bug` using the
-available bug report issue template. Before reporting a bug, make sure the
-issue has not already been reported.
+One way to contribute to the project is by [creating an issue](https://github.com/nginx/documentation/issues/new/choose).
 
-## Suggest a feature or enhancement
+The two most common are enhancements and bug reports. When using the issue templates, they will be automatically labelled.
 
-To suggest a feature or enhancement, open an issue on GitHub with the label
-`feature` or `enhancement` using the available feature request issue template.
-Please ensure the feature or enhancement has not already been suggested.
+- An enhancement is an improvement of some kind, such as a new document or additional detail for a product feature
+- A bug report draws attention to an issue in documentation, such as an incorrect command or outdated information
 
-## Open a Discussion
+Before creating an issue, please check there is [no existing issue](https://github.com/nginx/documentation/issues?q=is%3Aissue) for the topic.
 
-If you want to start a conversation with the community and maintainers,
-we encourage you to use
-[GitHub Discussions](https://github.com/nginx/documentation/discussions).
+We encourage discussions within issues, since they act as a source of contextual truth and are linked to pull requests.
+
+## Start a discussion
+
+We encourage you to use [GitHub Discussions](https://github.com/nginx/documentation/discussions) for conversations with the community and maintainers.
+
+If you'd like to discuss something NGINX-related that doesn't involve documentation, you should go to the [NGINX Community Forum](https://community.nginx.org/). 
 
 ## Submit a pull request
 
@@ -66,7 +64,6 @@ This repository does not include all of the source content for the NGINX documen
 - [NGINX Open Source](https://github.com/nginx/nginx) - source for [NGINX changelog](https://nginx.org/en/CHANGES)
 - [nginx.org](https://github.com/nginx/nginx.org) - source for https://nginx.org
 - [NGINX Unit](https://github.com/nginx/unit) - source for https://unit.nginx.org
-- [NGINX Ingress Controller](https://github.com/nginxinc/kubernetes-ingress/) - source for https://docs.nginx.com/nginx-ingress-controller
 
 In those repositories, you can find documentation source code in the `docs` or `site` subdirectories.
 
