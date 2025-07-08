@@ -1,4 +1,4 @@
-# NGINX Documentation repository 
+# NGINX Documentation repository
 
 This directory contains the documentation for the NGINX Documentation repository.
 
@@ -13,8 +13,10 @@ If you're interested in contributing to the [NGINX documentation website](https:
 ## Topics
 
 - [Contributing closed content](/documentation/closed-contributions.md)
+- [Git conventions](/documentation/git-conventions.md)
 - [Information architecture heuristics](/documentation/ia-heuristics.md)
 - [Maintainers etiquette](/documentation/maintainers-etiquette.md)
 - [Managing content with Hugo](/documentation/writing-hugo.md)
 - [Proposals](/documentation/proposals/README.md)
+- [Set up pre-commit](/documentation/pre-commit.md)
 - [Writing style guide](/documentation/style-guide.md)
