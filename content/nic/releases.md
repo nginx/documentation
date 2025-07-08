@@ -6,6 +6,55 @@ nd-content-type: reference
 nd-product: NIC
 nd-docs: DOCS-616
 ---
+## 5.1.0
+
+08 Jul 2025
+
+This release includes the ability to configure Rate Limiting for your APIs based on a specific NGINX variable and its value. This allows you more granular control over how frequently specific users access your resources.
+
+Lastly, in our previous v5.0.0 release, we removed support for Open Tracing. This release replaces that observability capability with native NGINX Open Telemetry traces, allowing you to monitor the internal traffic of your applications.
+
+### <i class="fa-solid fa-rocket"></i> Features
+- [7642](https://github.com/nginx/kubernetes-ingress/pull/7642) Add OpenTelemetry support
+- [7916](https://github.com/nginx/kubernetes-ingress/pull/7916) Add support for Agent V3
+- [7884](https://github.com/nginx/kubernetes-ingress/pull/7884) Tiered rate limits with variables
+- [7765](https://github.com/nginx/kubernetes-ingress/pull/7765) Add OIDC PKCE configuration through Policy
+- [7832](https://github.com/nginx/kubernetes-ingress/pull/7832) Add request_method to rate-limit Policy
+- [7695](https://github.com/nginx/kubernetes-ingress/pull/7695) Add ConfigMapKeys & MGMTConfigMapKeys to Telemetry
+- [7705](https://github.com/nginx/kubernetes-ingress/pull/7705) Add Context to logging for JSON and TEXT formats
+
+### <i class="fa-solid fa-bug-slash"></i> Fixes
+
+- [7651](https://github.com/nginx/kubernetes-ingress/pull/7651) Use pod labels as headless selector labels
+- [7691](https://github.com/nginx/kubernetes-ingress/pull/7691) Avoid applying updates on Ingress Controller shutdown
+- [7748](https://github.com/nginx/kubernetes-ingress/pull/7748) Add ; in oidc files
+- [7786](https://github.com/nginx/kubernetes-ingress/pull/7786) Correct namespace for mgmt secrets
+- [7853](https://github.com/nginx/kubernetes-ingress/pull/7853) Update template for custom redirect URI
+- [7865](https://github.com/nginx/kubernetes-ingress/pull/7865) Maintain HeadlessService on upgrade
+
+### <i class="fa-solid fa-upload"></i> Dependencies
+
+- [7647](https://github.com/nginx/kubernetes-ingress/pull/7647), [7666](https://github.com/nginx/kubernetes-ingress/pull/7666), [7711](https://github.com/nginx/kubernetes-ingress/pull/7711), [7767](https://github.com/nginx/kubernetes-ingress/pull/7767), [7798](https://github.com/nginx/kubernetes-ingress/pull/7798), [7824](https://github.com/nginx/kubernetes-ingress/pull/7824), [7854](https://github.com/nginx/kubernetes-ingress/pull/7854), [7900](https://github.com/nginx/kubernetes-ingress/pull/7900), [7918](https://github.com/nginx/kubernetes-ingress/pull/7918), [7926](https://github.com/nginx/kubernetes-ingress/pull/7926) Bump Go dependancies
+- [7714](https://github.com/nginx/kubernetes-ingress/pull/7714), [7788](https://github.com/nginx/kubernetes-ingress/pull/7788), [7825](https://github.com/nginx/kubernetes-ingress/pull/7825), [7855](https://github.com/nginx/kubernetes-ingress/pull/7855), [7890](https://github.com/nginx/kubernetes-ingress/pull/7890), [7888](https://github.com/nginx/kubernetes-ingress/pull/7888), [7893](https://github.com/nginx/kubernetes-ingress/pull/7893), [7903](https://github.com/nginx/kubernetes-ingress/pull/7903) Bump Docker dependencies
+- [7808](https://github.com/nginx/kubernetes-ingress/pull/7808) Update kubernetes version to v1.33.1 in helm schema
+- [7896](https://github.com/nginx/kubernetes-ingress/pull/7896) Update go version to 1.24.4
+
+### <i class="fa-solid fa-download"></i> Upgrade
+
+- For NGINX, use the 5.1.0 images from our
+[DockerHub](https://hub.docker.com/r/nginx/nginx-ingress/tags?page=1&ordering=last_updated&name=5.1.0),
+[GitHub Container](https://github.com/nginx/kubernetes-ingress/pkgs/container/kubernetes-ingress),
+[Amazon ECR Public Gallery](https://gallery.ecr.aws/nginx/nginx-ingress) or [Quay.io](https://quay.io/repository/nginx/nginx-ingress).
+- For NGINX Plus, use the 5.1.0 images from the F5 Container registry or build your own image using the 5.1.0 source code
+- For Helm, use version 2.2.0 of the chart.
+
+### <i class="fa-solid fa-life-ring"></i> Supported Platforms
+
+We will provide technical support for NGINX Ingress Controller on any Kubernetes platform that is currently supported by
+its provider and that passes the Kubernetes conformance tests. This release was fully tested on the following Kubernetes
+versions: 1.25-1.33.
+
+---
 ## 5.0.0
 
 16 Apr 2025
