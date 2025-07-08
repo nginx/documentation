@@ -132,13 +132,77 @@ The YAML code in the following sections can be found in the [cafe-example folder
 
 ### Create the application resources
 
-Create the file _cafe.yaml_ with the following contents:
+Run the below command to deploy the **coffee* application into your cluster.
+This command will also create a file called `cafe.yaml` in your current working directory:
 
-{{< ghcode `https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/refs/heads/main/examples/cafe-example/cafe.yaml`>}}
-
-Apply it using `kubectl`:
-
-```shell
+```yaml
+cat <<EOF > cafe.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: coffee
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: coffee
+  template:
+    metadata:
+      labels:
+        app: coffee
+    spec:
+      containers:
+      - name: coffee
+        image: nginxdemos/nginx-hello:plain-text
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: coffee
+spec:
+  ports:
+  - port: 80
+    targetPort: 8080
+    protocol: TCP
+    name: http
+  selector:
+    app: coffee
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tea
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tea
+  template:
+    metadata:
+      labels:
+        app: tea
+    spec:
+      containers:
+      - name: tea
+        image: nginxdemos/nginx-hello:plain-text
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: tea
+spec:
+  ports:
+  - port: 80
+    targetPort: 8080
+    protocol: TCP
+    name: http
+  selector:
+    app: tea
+EOF
 kubectl apply -f cafe.yaml
 ```
 
@@ -163,13 +227,23 @@ tea-6fbfdcb95d-9lhbj      1/1     Running   0          9s
 
 ### Create Gateway and HTTPRoute resources
 
-Create the file _gateway.yaml_ with the following contents:
+Run the below command to deploy a gateway your cluster.
+This command will also create a file called `gateway.yaml` in your current working directory:
 
-{{< ghcode `https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/refs/heads/main/examples/cafe-example/gateway.yaml`>}}
-
-Apply it using `kubectl`:
-
-```shell
+```yaml
+cat <<EOF > gateway.yaml
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: gateway
+spec:
+  gatewayClassName: nginx
+  listeners:
+  - name: http
+    port: 80
+    protocol: HTTP
+    hostname: "*.example.com"
+EOF
 kubectl apply -f gateway.yaml
 ```
 
@@ -190,13 +264,49 @@ gateway-nginx-66b5d78f8f-4fmtb   1/1     Running   0          13s
 tea-6fbfdcb95d-9lhbj             1/1     Running   0          31s
 ```
 
-Create the file _cafe-routes.yaml_ with the following contents:
+Run the below command to deploy a two `HTTPRoute`resources into your cluster. One for `/coffee` and one for `/tea`.
+This command will also create a file called `cafe-routes.yaml` in your current working directory:
 
-{{< ghcode `https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/refs/heads/main/examples/cafe-example/cafe-routes.yaml`>}}
-
-Apply it using `kubectl`:
-
-```shell
+```yaml
+cat <<EOF > cafe-routes.yaml
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: coffee
+spec:
+  parentRefs:
+  - name: gateway
+    sectionName: http
+  hostnames:
+  - "cafe.example.com"
+  rules:
+  - matches:
+    - path:
+        type: PathPrefix
+        value: /coffee
+    backendRefs:
+    - name: coffee
+      port: 80
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: tea
+spec:
+  parentRefs:
+  - name: gateway
+    sectionName: http
+  hostnames:
+  - "cafe.example.com"
+  rules:
+  - matches:
+    - path:
+        type: Exact
+        value: /tea
+    backendRefs:
+    - name: tea
+      port: 80
+EOF
 kubectl apply -f cafe-routes.yaml
 ```
 
