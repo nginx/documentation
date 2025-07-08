@@ -8,17 +8,15 @@ nd-docs: DOCS-616
 ---
 ## 5.1.0
 
-30 Jun 2025
+08 Jul 2025
 
-This NGINX Ingress Controller release brings initial connectivity to the NGINX One Console! You can now use NGINX One Console to manage NGINX instances that are part of your NGINX Ingress Controller cluster.
+This release includes the ability to configure Rate Limiting for your APIs based on a specific NGINX variable and its value. This allows you more granular control over how frequently specific users access your resources.
 
-This release also includes the ability to configure Rate Limiting for your APIs based on a specific NGINX variable and its value. This allows you more granular control over how frequently specific users access your resources.
-
-Lastly, in our previous release of v5.0.0, we removed support for Open Tracing. This release brings back this observability capability through native NGINX Open Telemetry Traces allowing you to monitor the internal traffic of your applications.
+Lastly, in our previous v5.0.0 release, we removed support for Open Tracing. This release replaces that observability capability with native NGINX Open Telemetry traces, allowing you to monitor the internal traffic of your applications.
 
 ### <i class="fa-solid fa-rocket"></i> Features
 - [7642](https://github.com/nginx/kubernetes-ingress/pull/7642) Add OpenTelemetry support
-- [7916](https://github.com/nginx/kubernetes-ingress/pull/7916) Add support for Agent V3 and Connecting to NGINX One Console
+- [7916](https://github.com/nginx/kubernetes-ingress/pull/7916) Add support for Agent V3
 - [7884](https://github.com/nginx/kubernetes-ingress/pull/7884) Tiered rate limits with variables
 - [7765](https://github.com/nginx/kubernetes-ingress/pull/7765) Add OIDC PKCE configuration through Policy
 - [7832](https://github.com/nginx/kubernetes-ingress/pull/7832) Add request_method to rate-limit Policy
