@@ -80,7 +80,7 @@ Take the steps below to create a new Authentication Provider by using the NGINX 
 
 ## Set up an Microsoft Entra Auth Provider {#set-up-entra}
 
-{{< fa "arrow-circle-right" >}} **Introduced in NGINX Controller ADC v3.22**
+{{< icon "arrow-circle-right" >}} **Introduced in NGINX Controller ADC v3.22**
 
 In the previous section, you selected **Microsoft Entra** from the **Authentication Provider Type** list. Next, you'll set up the Auth Provider so it can connect to Microsoft Entra.
 

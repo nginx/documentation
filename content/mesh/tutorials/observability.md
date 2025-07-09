@@ -18,10 +18,10 @@ In this tutorial, we will install F5 NGINX Service Mesh with some basic observab
 
 Download the following files containing the configurations for the observability components:
 
-- {{< fa "download" >}} {{< link "/examples/prometheus.yaml" "prometheus.yaml" >}}
-- {{< fa "download" >}} {{< link "/examples/grafana.yaml" "grafana.yaml" >}}
-- {{< fa "download" >}} {{< link "/examples/otel-collector.yaml" "otel-collector.yaml" >}}
-- {{< fa "download" >}} {{< link "/examples/jaeger.yaml" "jaeger.yaml" >}}
+- {{< icon "download" >}} {{< link "/examples/prometheus.yaml" "prometheus.yaml" >}}
+- {{< icon "download" >}} {{< link "/examples/grafana.yaml" "grafana.yaml" >}}
+- {{< icon "download" >}} {{< link "/examples/otel-collector.yaml" "otel-collector.yaml" >}}
+- {{< icon "download" >}} {{< link "/examples/jaeger.yaml" "jaeger.yaml" >}}
 
 Deploy the components:
 

@@ -96,10 +96,10 @@ Before continuing, check the NGINX Ingress Controller [supported versions](#supp
     - [Configure role-based access control (RBAC)](https://docs.nginx.com/nginx-ingress-controller/installation/installation-with-manifests/#1-configure-rbac)
     - [Create Common Resources](https://docs.nginx.com/nginx-ingress-controller/installation/installation-with-manifests/#2-create-common-resources)
 1. Create the NGINX Ingress Controller as a **Deployment** or **DaemonSet** in Kubernetes using one of the following example manifests:
-    - Kubernetes Deployment: {{< fa "download" >}} {{< link "/examples/nginx-ingress-controller/oss/nginx-ingress.yaml" "`nginx-ingress-controller/oss/nginx-ingress.yaml`" >}}
-    - Kubernetes DaemonSet: {{< fa "download" >}} {{< link "/examples/nginx-ingress-controller/oss/nginx-ingress-daemonset.yaml" "`nginx-ingress-controller/oss/nginx-ingress-daemonset.yaml`" >}}
-    - OpenShift Deployment: {{< fa "download" >}} {{< link "/examples/nginx-ingress-controller/oss/openshift/nginx-ingress.yaml" "`nginx-ingress-controller/oss/openshift/nginx-ingress.yaml`" >}}
-    - Openshift DaemonSet:  {{< fa "download" >}} {{< link "/examples/nginx-ingress-controller/oss/openshift/nginx-ingress-daemonset.yaml" "`nginx-ingress-controller/oss/openshift/nginx-ingress-daemonset.yaml`" >}}
+    - Kubernetes Deployment: {{< icon "download" >}} {{< link "/examples/nginx-ingress-controller/oss/nginx-ingress.yaml" "`nginx-ingress-controller/oss/nginx-ingress.yaml`" >}}
+    - Kubernetes DaemonSet: {{< icon "download" >}} {{< link "/examples/nginx-ingress-controller/oss/nginx-ingress-daemonset.yaml" "`nginx-ingress-controller/oss/nginx-ingress-daemonset.yaml`" >}}
+    - OpenShift Deployment: {{< icon "download" >}} {{< link "/examples/nginx-ingress-controller/oss/openshift/nginx-ingress.yaml" "`nginx-ingress-controller/oss/openshift/nginx-ingress.yaml`" >}}
+    - Openshift DaemonSet:  {{< icon "download" >}} {{< link "/examples/nginx-ingress-controller/oss/openshift/nginx-ingress-daemonset.yaml" "`nginx-ingress-controller/oss/openshift/nginx-ingress-daemonset.yaml`" >}}
       {{< note >}} The provided manifests configure NGINX Ingress Controller for ingress traffic only. If you would like to enable egress traffic, refer to the [Enable Egress](#enable-with-manifests) section of this guide. {{< /note >}}
       {{< important >}} Be sure to replace the `nginx-ingress:version` image used in the manifest with the chosen image from a supported Container registry; or the container image that you have built. {{< /important >}}
 
@@ -107,7 +107,7 @@ Before continuing, check the NGINX Ingress Controller [supported versions](#supp
 
       Download the SecurityContextConstraint necessary to run NGINX Ingress Controller in an OpenShift environment.
 
-        - {{< fa "download" >}} {{< link "/examples/nginx-ingress-controller/oss/openshift/nic-scc.yaml" "`nginx-ingress-controller/oss/openshift/nic-scc.yaml`" >}}
+        - {{< icon "download" >}} {{< link "/examples/nginx-ingress-controller/oss/openshift/nic-scc.yaml" "`nginx-ingress-controller/oss/openshift/nic-scc.yaml`" >}}
 
         - Apply the `nginx-ingress-permissions` SecurityContextConstraint:
 
@@ -132,10 +132,10 @@ Before continuing, check the NGINX Ingress Controller [supported versions](#supp
     - [Configure role-based access control (RBAC)](https://docs.nginx.com/nginx-ingress-controller/installation/installation-with-manifests/#1-configure-rbac)
     - [Create Common Resources](https://docs.nginx.com/nginx-ingress-controller/installation/installation-with-manifests/#2-create-common-resources)
 1. Create the NGINX Plus Ingress Controller as a **Deployment** or **DaemonSet** in Kubernetes using one of the following example manifests:
-    - Kubernetes Deployment: {{< fa "download" >}} {{< link "/examples/nginx-ingress-controller/plus/nginx-plus-ingress.yaml" "`nginx-ingress-controller/plus/nginx-plus-ingress.yaml`" >}}
-    - Kubernetes DaemonSet: {{< fa "download" >}} {{< link "/examples/nginx-ingress-controller/plus/nginx-plus-ingress-daemonset.yaml" "`nginx-ingress-controller/plus/nginx-plus-ingress-daemonset.yaml`" >}}
-    - OpenShift Deployment: {{< fa "download" >}} {{< link "/examples/nginx-ingress-controller/openshift/nginx-plus-ingress.yaml" "`nginx-ingress-controller/openshift/nginx-plus-ingress.yaml`" >}}
-    - Openshift DaemonSet:  {{< fa "download" >}} {{< link "/examples/nginx-ingress-controller/openshift/nginx-plus-ingress-daemonset.yaml" "`nginx-ingress-controller/openshift/nginx-plus-ingress-daemonset.yaml`" >}}
+    - Kubernetes Deployment: {{< icon "download" >}} {{< link "/examples/nginx-ingress-controller/plus/nginx-plus-ingress.yaml" "`nginx-ingress-controller/plus/nginx-plus-ingress.yaml`" >}}
+    - Kubernetes DaemonSet: {{< icon "download" >}} {{< link "/examples/nginx-ingress-controller/plus/nginx-plus-ingress-daemonset.yaml" "`nginx-ingress-controller/plus/nginx-plus-ingress-daemonset.yaml`" >}}
+    - OpenShift Deployment: {{< icon "download" >}} {{< link "/examples/nginx-ingress-controller/openshift/nginx-plus-ingress.yaml" "`nginx-ingress-controller/openshift/nginx-plus-ingress.yaml`" >}}
+    - Openshift DaemonSet:  {{< icon "download" >}} {{< link "/examples/nginx-ingress-controller/openshift/nginx-plus-ingress-daemonset.yaml" "`nginx-ingress-controller/openshift/nginx-plus-ingress-daemonset.yaml`" >}}
       {{< note >}} The provided manifests configure NGINX Plus Ingress Controller for ingress traffic only. If you would like to enable egress traffic, refer to the [Enable Egress](#enable-with-manifests) section of this guide. {{< /note >}}
       {{< important >}} Be sure to replace the `nginx-plus-ingress:version` image used in the manifest with the chosen image from the F5 Container registry; or the container image that you have built. {{< /important >}}
 
@@ -143,7 +143,7 @@ Before continuing, check the NGINX Ingress Controller [supported versions](#supp
 
       Download the SecurityContextConstraint necessary to run NGINX Ingress Controller in an OpenShift environment.
 
-      - {{< fa "download" >}} {{< link "/examples/nginx-ingress-controller/openshift/nic-scc.yaml" "`nginx-ingress-controller/openshift/nic-scc.yaml`" >}}
+      - {{< icon "download" >}} {{< link "/examples/nginx-ingress-controller/openshift/nic-scc.yaml" "`nginx-ingress-controller/openshift/nic-scc.yaml`" >}}
 
       - Apply the `nginx-ingress-permissions` SecurityContextConstraint:
 
@@ -356,8 +356,8 @@ The NGINX Service Mesh uses the Pod's container name setting to identify the NGI
 Add the applicable `nginx-ingress` scrape config to your Prometheus configuration and consult
 [Monitoring and Tracing]( {{< ref "/mesh/guides/monitoring-and-tracing.md#prometheus" >}} ) for installation instructions.
 
-- {{< fa "download" >}} {{< link "/examples/nginx-ingress-scrape-config.yaml" "`nginx-ingress-scrape-config.yaml`" >}}
-- {{< fa "download" >}} {{< link "/examples/nginx-plus-ingress-scrape-config.yaml" "`nginx-plus-ingress-scrape-config.yaml`" >}}
+- {{< icon "download" >}} {{< link "/examples/nginx-ingress-scrape-config.yaml" "`nginx-ingress-scrape-config.yaml`" >}}
+- {{< icon "download" >}} {{< link "/examples/nginx-plus-ingress-scrape-config.yaml" "`nginx-plus-ingress-scrape-config.yaml`" >}}
 
 ## Available metrics
 For a list of the NGINX Ingress Controller metrics, consult the [Available Metrics](https://docs.nginx.com/nginx-ingress-controller/logging-and-monitoring/prometheus/#available-metrics) section of the NGINX Ingress Controller docs.
