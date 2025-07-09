@@ -19,7 +19,8 @@ We test NGINX Ingress Controller on a range of Kubernetes platforms for each rel
 {{< bootstrap-table "table table-bordered table-striped table-responsive" >}}
 | NIC version | Kubernetes versions tested  | NIC Helm Chart version | NIC Operator version | NGINX / NGINX Plus version | End of Technical Support |
 | --- | --- | --- | --- | --- | --- |
-| {{< nic-version >}} | 1.25 - 1.32 | {{< nic-helm-version >}} | {{< nic-operator-version >}} | 1.27.4 / R34 | - |
+| {{< nic-version >}} | 1.25 - 1.33 | {{< nic-helm-version >}} | {{< nic-operator-version >}} | 1.27.5 / R34 P1 | - |
+| 5.0.0 | 1.25 - 1.32 | 2.1.0 | 3.1.0 | 1.27.4 / R34 | Apr 16, 2027 |
 | 4.0.1 | 1.25 - 1.32 | 2.0.1 | 3.0.1 | 1.27.4 / R33 P2 | Feb 7, 2027 |
 | 3.7.2 | 1.25 - 1.31 | 1.4.2 | 2.4.2 | 1.27.2 / R32 P1 | Nov 25, 2026 |
 | 3.6.2 | 1.25 - 1.31 | 1.3.2 | 2.3.2 | 1.27.1 / R32 P1 | Aug 19, 2026 |
@@ -41,13 +42,13 @@ We provide the following Docker images, which include NGINX or NGINX Plus bundle
 From release `v5.1.0` onwards, NGINX Ingress Controller will no longer provide binaries for the `armv7`, `s390x` & `ppc64le` architectures.
 {{< /important >}}
 
-_All images include NGINX 1.27.4._
+_All images include NGINX 1.27.5._
 
 {{< bootstrap-table "table table-bordered table-responsive" >}}
 |<div style="width:200px">Name</div> | <div style="width:100px">Base image</div> | DockerHub image | Architectures |
 | ---| --- | --- | --- |
-|Alpine-based image | ``nginx:1.27.4-alpine``,<br>based on on ``alpine:3.21`` | ``nginx/nginx-ingress:{{< nic-version >}}-alpine`` | arm64<br>amd64 |
-|Debian-based image | ``nginx:1.27.4``,<br>based on on ``debian:12-slim`` | ``nginx/nginx-ingress:{{< nic-version >}}`` | arm64<br>amd64 |
+|Alpine-based image | ``nginx:1.27.5-alpine``,<br>based on on ``alpine:3.21`` | ``nginx/nginx-ingress:{{< nic-version >}}-alpine`` | arm64<br>amd64 |
+|Debian-based image | ``nginx:1.27.5``,<br>based on on ``debian:12-slim`` | ``nginx/nginx-ingress:{{< nic-version >}}`` | arm64<br>amd64 |
 |Ubi-based image | ``redhat/ubi9-minimal`` | ``nginx/nginx-ingress:{{< nic-version >}}-ubi`` | arm64<br>amd64 |
 {{% /bootstrap-table %}}
 

@@ -14,7 +14,7 @@ type:
 
 In this tutorial, we will use the `bookinfo` example app Deployment.
 
-- {{< fa "download" >}} {{< link "examples/bookinfo.yaml" "examples/bookinfo.yaml" >}}
+- {{< icon "download" >}} {{< link "examples/bookinfo.yaml" "examples/bookinfo.yaml" >}}
 
 {{< note >}}
 Notice in the above yaml:

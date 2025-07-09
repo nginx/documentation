@@ -40,4 +40,4 @@ Additionally, it collects system-level data, including CPU usage, memory consump
 deep observability into NGINX's behavior, enabling teams to troubleshoot issues effectively, optimize performance, and
 maintain high availability.
 
-Collected metrics can be seamlessly exported to NGINX One Console or integrated with third-party data aggregators.
+By default, the OpenTelemetry Collector is configured to send metrics to NGINX One Console.
