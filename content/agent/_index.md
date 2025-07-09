@@ -46,8 +46,6 @@ configurations, collection and reporting of real-time NGINX performance and oper
   {{</card-section>}}
 {{</card-layout>}}
 
-## Other content
-
 {{<card-layout>}}
   {{<card-section showAsCards="true" isFeaturedSection="true">}}
     {{<card title="Upgrade" titleUrl="/nginx-agent/installation-upgrade/upgrade/" icon="circle-fading-arrow-up">}}
