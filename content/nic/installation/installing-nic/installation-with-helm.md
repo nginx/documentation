@@ -11,7 +11,7 @@ This document explains how to install F5 NGINX Ingress Controller using [Helm](h
 
 ## Before you begin
 
-{{< note >}} All documentation should only be used with the latest stable release, indicated on [the releases page]({{< ref "/nic/releases.md" >}}) of the GitHub repository. {{< /note >}}
+{{< call-out "note" >}} All documentation should only be used with the latest stable release, indicated on [the releases page]({{< ref "/nic/releases.md" >}}) of the GitHub repository. {{< /call-out >}}
 
 - A [Kubernetes Version Supported by NGINX Ingress Controller]({{< ref "/nic/technical-specifications.md#supported-kubernetes-versions" >}})
 - Helm 3.0+.
@@ -30,8 +30,7 @@ If you do not use the custom resources that require those CRDs (which correspond
 
 ### Upgrade the CRDs
 
-{{< note >}} Please make sure to read the steps outlined in [Upgrade to V4]({{< ref "/nic/installation/installing-nic/upgrade-to-v4.md#update-custom-resource-apiversion" >}}) before running the CRD upgrade and perform the steps if applicable.
-{{< /note >}}
+{{< call-out "note" >}} If you are running NGINX Ingress Controller v3.x, you should read [Upgrade from NGINX Ingress Controller v3.x to v4.0.0]({{< ref "/nic/installation/installing-nic/upgrade-to-v4.md" >}}) before continuing. {{< /call-out >}}
 
 To upgrade the CRDs, pull the chart sources as described in [Pull the Chart](#pull-the-chart) and then run:
 
@@ -47,10 +46,10 @@ kubectl apply -f https://raw.githubusercontent.com/nginx/kubernetes-ingress/v{{<
 
 In the above command, `v{{< nic-version >}}` represents the version of NGINX Ingress Controller release rather than the Helm chart version.
 
-{{< note >}} The following warning is expected and can be ignored: `Warning: kubectl apply should be used on resource created by either kubectl create --save-config or kubectl apply`.
+{{< call-out "note" >}} The following warning is expected and can be ignored: `Warning: kubectl apply should be used on resource created by either kubectl create --save-config or kubectl apply`.
 
 Check the [release notes](https://www.github.com/nginx/kubernetes-ingress/releases) for a new release for any special upgrade procedures.
-{{< /note >}}
+{{< /call-out >}}
 
 ### Uninstall the CRDs
 
@@ -60,7 +59,7 @@ To remove the CRDs, pull the chart sources as described in [Pull the Chart](#pul
 kubectl delete -f crds/
 ```
 
-{{< warning >}} This command will delete all the corresponding custom resources in your cluster across all namespaces. Please ensure there are no custom resources that you want to keep and there are no other NGINX Ingress Controller instances running in the cluster. {{< /warning >}}
+{{< call-out "warning" >}} This command will delete all the corresponding custom resources in your cluster across all namespaces. Please ensure there are no custom resources that you want to keep and there are no other NGINX Ingress Controller instances running in the cluster. {{< /call-out >}}
 
 ## Manage the chart with OCI Registry
 
@@ -113,7 +112,7 @@ You can install the `edge` version by specifying the `--version` flag with the v
 helm install my-release oci://ghcr.io/nginx/charts/nginx-ingress --version 0.0.0-edge
 ```
 
-{{< warning >}} The `edge` version is not intended for production use. It is intended for testing and development purposes only. {{< /warning >}}
+{{< call-out "warning" >}} The `edge` version is not intended for production use. It is intended for testing and development purposes only. {{< /call-out >}}
 
 ## Manage the chart with Sources
 
@@ -184,7 +183,7 @@ Although the advisory is to update all resources in accordance with new naming c
 
 ### Upgrade steps
 
-{{< note >}} The following steps apply to both 2.x and 3.0.x releases.  {{</ note >}}
+{{< call-out "note" >}} The following steps apply to both 2.x and 3.0.x releases.  {{</ call-out >}}
 
 The steps you should follow depend on the Helm release name:
 
@@ -299,7 +298,6 @@ The [Run multiple NGINX Ingress Controllers]({{< ref "/nic/installation/run-mult
 
 The following tables lists the configurable parameters of the NGINX Ingress Controller chart and their default values.
 
-{{< table >}}
 {{<bootstrap-table "table table-striped table-bordered table-responsive">}}
 |Parameter | Description | Default |
 | --- | --- | --- |
@@ -490,4 +488,3 @@ The following tables lists the configurable parameters of the NGINX Ingress Cont
 |**nginxAgent.napMonitoring.processorBufferSize** | Buffer size for processor. Will contain log lines and parsed log lines. | 50000 |
 |**nginxAgent.customConfigMap** | The name of a custom ConfigMap to use instead of the one provided by default. | "" |
 {{</bootstrap-table>}}
-{{< /table >}}

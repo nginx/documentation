@@ -1,17 +1,25 @@
 ---
-title: Upgrade to NGINX Ingress Controller 4.0.0
+title: Upgrade from NGINX Ingress Controller v3.x to v4.0.0
 toc: true
 weight: 400
-type: how-to
-product: NIC
+nd-content-type: how-to
+nd-product: NIC
 nd-docs: DOCS-1862
 ---
 
-This document explains how to upgrade F5 NGINX Ingress Controller to 4.0.0.
+This document explains how to upgrade F5 NGINX Ingress Controller from version v3.x to v4.0.0.
 
 There are two necessary steps required: updating the `apiVersion` value of custom resources and configuring structured logging.
 
 For NGINX Plus users, there is a third step to create a Secret for your license.
+
+{{< call-out "warning" "This upgrade path is intended for 3.x to 4.0.0 only" >}}
+
+The instructions in this document are intended only for users upgrading from NGINX Ingress Controller 3.x to 4.0.0. Internal changes meant that backwards compability was not possible, requiring extra steps to upgrade.
+
+From NGINX Ingress Controller v4.0.0 onwards, you can upgrade as normal, based on your installation method: [Helm]({{< ref "/nic/installation/installing-nic/installation-with-helm.md">}}) or [Manifests]({{< ref "/nic/installation/installing-nic/installation-with-manifests.md">}}).
+
+{{< /call-out >}}
 
 ---
 
