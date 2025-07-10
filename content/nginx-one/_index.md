@@ -63,20 +63,20 @@ F5 NGINX One Console makes it easy to manage NGINX instances across locations an
 
 {{< card-layout >}}
   {{< card-section title="Kubernetes Solutions">}}
-    {{< card title="NGINX Ingress Controller" titleUrl="nginx-ingress-controller/" brandIcon="NGINX-Ingress-Controller-product-icon.svg">}}
+    {{< card title="NGINX Ingress Controller" titleUrl="/nginx-ingress-controller/" brandIcon="NGINX-Ingress-Controller-product-icon.svg">}}
       Kubernetes traffic management with API gateway, identity, and observability features.
     {{</ card >}}
-    {{< card title="NGINX Gateway Fabric" titleUrl="nginx-gateway-fabric/" brandIcon="NGINX-product-icon.svg">}}
+    {{< card title="NGINX Gateway Fabric" titleUrl="/nginx-gateway-fabric/" brandIcon="NGINX-product-icon.svg">}}
       Next generation Kubernetes connectivity using the Gateway API.
     {{</ card >}}
   {{</ card-section >}}
   {{< card-section title="Local Console Option">}}
-    {{< card title="NGINX Instance Manager" titleUrl="nginx-instance-manager/" brandIcon="NGINX-Instance-Manager-product-icon.svg">}}
+    {{< card title="NGINX Instance Manager" titleUrl="/nginx-instance-manager/" brandIcon="NGINX-Instance-Manager-product-icon.svg">}}
       Track and control NGINX Open Source and NGINX Plus instances.
     {{</ card >}}
   {{</ card-section >}}
   {{< card-section title="Modern App Delivery">}}
-    {{< card title="NGINX Plus" titleUrl="nginx/" brandIcon="NGINX-Plus-product-icon-RGB.svg">}}
+    {{< card title="NGINX Plus" titleUrl="/nginx/" brandIcon="NGINX-Plus-product-icon-RGB.svg">}}
       The all-in-one load balancer, reverse proxy, web server, content cache, and API gateway.
     {{</ card >}}
     {{< card title="NGINX Open Source" titleUrl="https://nginx.org" brandIcon="NGINX-product-icon.svg">}}
@@ -84,10 +84,10 @@ F5 NGINX One Console makes it easy to manage NGINX instances across locations an
     {{</ card >}}
   {{</ card-section >}}
   {{< card-section title="Security">}}
-    {{< card title="NGINX App Protect WAF" titleUrl="nginx-app-protect-waf/" brandIcon="NGINX-App-Protect-WAF-product-icon.svg">}}
+    {{< card title="NGINX App Protect WAF" titleUrl="/nginx-app-protect-waf/" brandIcon="NGINX-App-Protect-WAF-product-icon.svg">}}
       Lightweight, high-performance, advanced protection against Layer 7 attacks on your apps and APIs.
     {{</ card >}}
-    {{< card title="NGINX App Protect DoS" titleUrl="nginx-app-protect-dos/" brandIcon="NGINX-App-Protect-DoS-product-icon.svg">}}
+    {{< card title="NGINX App Protect DoS" titleUrl="/nginx-app-protect-dos/" brandIcon="NGINX-App-Protect-DoS-product-icon.svg">}}
       Defend, adapt, and mitigate against Layer 7 denial-of-service attacks on your apps and APIs.
     {{</ card >}}
   {{</ card-section >}}
