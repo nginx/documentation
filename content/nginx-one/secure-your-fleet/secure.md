@@ -78,13 +78,13 @@ This page describes basic steps to set up an email alert. For authoritative docu
 To configure security-related alerts, follow these steps:
 
 1. Navigate to the F5 Distributed Cloud Console at https://INSERT_YOUR_TENANT_NAME.console.ves.volterra.io. 
-1. Find **Audit Logs & Alerts** > **Alerts Management**.
-1. Select **Add Alert Receiver**.
+1. Select **Audit Logs & Alerts**
+1. Select **Manage > Alert Receiver**
 1. Configure the **Alert Receivers**
    1. Enter the name of your choice.
    1. (Optional) Specify a label and description.
 1. Under **Receiver**, select Email and enter your email address.
-1. Select **Save and Exit**.
+1. Select **Add Alert Receiver**
 1. Your Email receiver should now appear on the list of Alert Receivers.
 1. Under the Actions column, select Verify Email.
 1. Select **Send email** to confirm.
