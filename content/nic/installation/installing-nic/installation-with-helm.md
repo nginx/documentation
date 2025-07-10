@@ -30,8 +30,7 @@ If you do not use the custom resources that require those CRDs (which correspond
 
 ### Upgrade the CRDs
 
-{{< call-out "note" >}} If you are running  NGINX Ingress Controller v3.x, you should read [Upgrade from NGINX Ingress Controller v3.x to v4.0.0]({{< ref "/nic/installation/installing-nic/upgrade-to-v4.md" >}}) before continuing.
-{{< /call-out >}}
+{{< call-out "note" >}} If you are running NGINX Ingress Controller v3.x, you should read [Upgrade from NGINX Ingress Controller v3.x to v4.0.0]({{< ref "/nic/installation/installing-nic/upgrade-to-v4.md" >}}) before continuing. {{< /call-out >}}
 
 To upgrade the CRDs, pull the chart sources as described in [Pull the Chart](#pull-the-chart) and then run:
 
