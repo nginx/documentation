@@ -94,8 +94,4 @@ F5 NGINX One Console makes it easy to manage NGINX instances across locations an
       Defend, adapt, and mitigate against Layer 7 denial-of-service attacks on your apps and APIs.
     {{</ card >}}
   {{</ card-section >}}
-<<<<<<< HEAD
-{{</card-layout>}}
-=======
 {{</ card-layout >}}
->>>>>>> 7152a0d7 (feat: Secure your fleet, NGINX One)
