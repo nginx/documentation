@@ -19,7 +19,7 @@ The user following performing the uninstall steps needs to have `root` privilege
 Complete the following steps on each host where you've installed NGINX Agent
 
 <details>
-<summary>{{< icon "brands centos" >}} Uninstall NGINX Agent on RHEL, CentOS, Rocky Linux, AlmaLinux, and Oracle Linux</summary>
+<summary>Uninstall NGINX Agent on RHEL, CentOS, Rocky Linux, AlmaLinux, and Oracle Linux</summary>
 
 ### Uninstall NGINX Agent on RHEL, CentOS, Rocky Linux, AlmaLinux, and Oracle Linux
 
@@ -28,7 +28,7 @@ Complete the following steps on each host where you've installed NGINX Agent
 </details>
 
 <details>
-<summary>{{< icon "brands ubuntu" >}} Uninstall NGINX Agent on Ubuntu</summary>
+<summary>Uninstall NGINX Agent on Ubuntu</summary>
 
 ### Uninstall NGINX Agent on Ubuntu
 
@@ -37,7 +37,7 @@ Complete the following steps on each host where you've installed NGINX Agent
 </details>
 
 <details>
-<summary>{{< icon "brands debian" >}} Uninstall NGINX Agent on Debian</summary>
+<summary>Uninstall NGINX Agent on Debian</summary>
 
 ### Uninstall NGINX Agent on Debian
 
@@ -46,7 +46,7 @@ Complete the following steps on each host where you've installed NGINX Agent
 </details>
 
 <details>
-<summary>{{< icon "brands suse" >}} Uninstall NGINX Agent on SLES</summary>
+<summary>Uninstall NGINX Agent on SLES</summary>
 
 ### Uninstall NGINX Agent on SLES
 
@@ -55,7 +55,7 @@ Complete the following steps on each host where you've installed NGINX Agent
 </details>
 
 <details>
-<summary>{{< icon "brands alpine" >}} Uninstall NGINX Agent on Alpine Linux</summary>
+<summary>Uninstall NGINX Agent on Alpine Linux</summary>
 
 ### Uninstall NGINX Agent on Alpine Linux
 
@@ -64,7 +64,7 @@ Complete the following steps on each host where you've installed NGINX Agent
 </details>
 
 <details>
-<summary>{{< icon "brands aws" >}} Uninstall NGINX Agent on Amazon Linux</summary>
+<summary>Uninstall NGINX Agent on Amazon Linux</summary>
 
 ### Uninstall NGINX Agent on Amazon Linux
 
@@ -73,7 +73,7 @@ Complete the following steps on each host where you've installed NGINX Agent
 </details>
 
 <details>
-<summary>{{< icon "brands freebsd" >}} Uninstall NGINX Agent on FreeBSD</summary>
+<summary>Uninstall NGINX Agent on FreeBSD</summary>
 
 ### Uninstall NGINX Agent on FreeBSD
 
