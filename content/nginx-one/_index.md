@@ -21,7 +21,7 @@ F5 NGINX One Console makes it easy to manage NGINX instances across locations an
 [//]: # "Some examples of content could be the latest release note, the most common install path, and a popular new feature."
 {{<card-layout>}}
   {{<card-section showAsCards="true" isFeaturedSection="true">}}
-    {{<card title="Get started" titleUrl="/nginx-one/getting-started/" isFeatured="true" icon="unplug">}}
+    {{<card title="Get started" titleUrl="getting-started/" isFeaturedCard="true" icon="unplug">}}
       Get up and running with NGINX One Console
     {{</card >}}
   {{</card-section>}}
@@ -30,16 +30,16 @@ F5 NGINX One Console makes it easy to manage NGINX instances across locations an
 
 {{<card-layout>}}
   {{<card-section showAsCards="true" >}}
-    {{<card title="Connect more NGINX instances" titleUrl="/nginx-one/connect-instances/" >}}
+    {{<card title="Connect more NGINX instances" titleUrl="connect-instances/" >}}
       Work with data plane keys, containers, and proxy servers
     {{</card>}}
-    {{<card title="Manage your NGINX instances" titleUrl="/nginx-one/nginx-configs/" >}}
+    {{<card title="Manage your NGINX instances" titleUrl="nginx-configs/" >}}
       Manage one instance or groups of instances. Monitor certificates. Set up metrics.
     {{</card>}}
-    {{<card title="Organize users with RBAC" titleUrl="/nginx-one/rbac/" >}}
+    {{<card title="Organize users with RBAC" titleUrl="rbac/" >}}
       Assign responsibilities with role-based access control 
     {{</card>}}
-    {{<card title="Automate with the NGINX One API" titleUrl="/nginx-one/api/" >}}
+    {{<card title="Automate with the NGINX One API" titleUrl="api/" >}}
       Manage your NGINX fleet over REST
     {{</card>}}
   {{</card-section>}}
@@ -49,10 +49,10 @@ F5 NGINX One Console makes it easy to manage NGINX instances across locations an
 
 {{<card-layout>}}
   {{<card-section showAsCards="true" >}}
-    {{<card title="Glossary" titleUrl="/nginx-one/glossary/" >}}
+    {{<card title="Glossary" titleUrl="glossary/" >}}
       See latest updates: New features, improvements, and bug fixes
     {{</card>}}
-    {{<card title="Changelog" titleUrl="/nginx-one/changelog/" icon="clock-alert">}}
+    {{<card title="Changelog" titleUrl="changelog/" icon="clock-alert">}}
       See latest updates: New features, improvements, and bug fixes
     {{</card>}}
   {{</card-section>}}
@@ -63,31 +63,31 @@ F5 NGINX One Console makes it easy to manage NGINX instances across locations an
 
 {{< card-layout >}}
   {{< card-section title="Kubernetes Solutions">}}
-    {{< card title="NGINX Ingress Controller" titleUrl="/nginx-ingress-controller/" brandIcon="NGINX-Ingress-Controller-product-icon">}}
+    {{< card title="NGINX Ingress Controller" titleUrl="nginx-ingress-controller/" brandIcon="NGINX-Ingress-Controller-product-icon.svg">}}
       Kubernetes traffic management with API gateway, identity, and observability features.
     {{</ card >}}
-    {{< card title="NGINX Gateway Fabric" titleUrl="/nginx-gateway-fabric" brandIcon="NGINX-product-icon">}}
+    {{< card title="NGINX Gateway Fabric" titleUrl="nginx-gateway-fabric/" brandIcon="NGINX-product-icon.svg">}}
       Next generation Kubernetes connectivity using the Gateway API.
     {{</ card >}}
   {{</ card-section >}}
   {{< card-section title="Local Console Option">}}
-    {{< card title="NGINX Instance Manager" titleUrl="/nginx-instance-manager" brandIcon="NGINX-Instance-Manager-product-icon">}}
+    {{< card title="NGINX Instance Manager" titleUrl="nginx-instance-manager/" brandIcon="NGINX-Instance-Manager-product-icon.svg">}}
       Track and control NGINX Open Source and NGINX Plus instances.
     {{</ card >}}
   {{</ card-section >}}
   {{< card-section title="Modern App Delivery">}}
-    {{< card title="NGINX Plus" titleUrl="/nginx" brandIcon="NGINX-Plus-product-icon-RGB">}}
+    {{< card title="NGINX Plus" titleUrl="nginx/" brandIcon="NGINX-Plus-product-icon-RGB.svg">}}
       The all-in-one load balancer, reverse proxy, web server, content cache, and API gateway.
     {{</ card >}}
-    {{< card title="NGINX Open Source" titleUrl="https://nginx.org" brandIcon="NGINX-product-icon">}}
+    {{< card title="NGINX Open Source" titleUrl="https://nginx.org" brandIcon="NGINX-product-icon.svg">}}
       The open source all-in-one load balancer, content cache, and web server
     {{</ card >}}
   {{</ card-section >}}
   {{< card-section title="Security">}}
-    {{< card title="NGINX App Protect WAF" titleUrl="/nginx-app-protect-waf" brandIcon="NGINX-App-Protect-WAF-product-icon">}}
+    {{< card title="NGINX App Protect WAF" titleUrl="nginx-app-protect-waf/" brandIcon="NGINX-App-Protect-WAF-product-icon.svg">}}
       Lightweight, high-performance, advanced protection against Layer 7 attacks on your apps and APIs.
     {{</ card >}}
-    {{< card title="NGINX App Protect DoS" titleUrl="/nginx-app-protect-dos" brandIcon="NGINX-App-Protect-DoS-product-icon">}}
+    {{< card title="NGINX App Protect DoS" titleUrl="nginx-app-protect-dos/" brandIcon="NGINX-App-Protect-DoS-product-icon.svg">}}
       Defend, adapt, and mitigate against Layer 7 denial-of-service attacks on your apps and APIs.
     {{</ card >}}
   {{</ card-section >}}
