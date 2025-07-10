@@ -2,8 +2,8 @@
 title: Upgrade from NGINX Ingress Controller v3.x to v4.0.0
 toc: true
 weight: 400
-type: how-to
-product: NIC
+nd-content-type: how-to
+nd-product: NIC
 nd-docs: DOCS-1862
 ---
 
