@@ -35,12 +35,12 @@ configurations, collection and reporting of real-time NGINX performance and oper
 
 {{<card-layout>}}
   {{<card-section showAsCards="true" isFeaturedSection="true">}}
-    {{<card title="About" titleUrl="/nginx-agent/about" icon="info">}}
+    {{<card title="About" titleUrl="about/" icon="info">}}
       Learn everything you need to know about NGINX Agent
     {{</card>}}
     <!-- The titleURL and icon are both optional -->
     <!-- Lucide icon names can be found at https://lucide.dev/icons/ -->
-    {{<card title="Getting started" titleUrl="/nginx-agent/installation-upgrade/getting-started" icon="unplug">}}
+    {{<card title="Getting started" titleUrl="installation-upgrade/getting-started/" icon="unplug">}}
       Install NGINX Agent and run a mock control plane
     {{</card>}}
   {{</card-section>}}
@@ -48,11 +48,11 @@ configurations, collection and reporting of real-time NGINX performance and oper
 
 {{<card-layout>}}
   {{<card-section showAsCards="true" isFeaturedSection="true">}}
-    {{<card title="Upgrade" titleUrl="/nginx-agent/installation-upgrade/upgrade/" icon="circle-fading-arrow-up">}}
+    {{<card title="Upgrade" titleUrl="installation-upgrade/upgrade/" icon="circle-fading-arrow-up">}}
     {{</card>}}
-    {{<card title="Configuration" titleUrl="/nginx-agent/configuration" icon="cog">}}
+    {{<card title="Configuration" titleUrl="configuration/" icon="cog">}}
     {{</card>}}
-    {{<card title="Support" titleUrl="/nginx-agent/support" icon="hand-helping">}}
+    {{<card title="Support" titleUrl="support/" icon="hand-helping">}}
     {{</card>}}
   {{</card-section>}}
 {{</card-layout>}}
