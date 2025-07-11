@@ -132,8 +132,7 @@ The YAML code in the following sections can be found in the [cafe-example folder
 
 ### Create the application resources
 
-Run the below command to deploy the **coffee* application into your cluster.
-This command will also create a file called `cafe.yaml` in your current working directory:
+Run the following command to create the file _cafe.yaml_, which is then used to deploy the *coffee* application to your cluster:
 
 ```yaml
 cat <<EOF > cafe.yaml
