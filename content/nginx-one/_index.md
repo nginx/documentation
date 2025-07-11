@@ -39,6 +39,9 @@ F5 NGINX One Console makes it easy to manage NGINX instances across locations an
     {{<card title="Organize users with RBAC" titleUrl="/nginx-one/rbac/" >}}
       Assign responsibilities with role-based access control 
     {{</card>}}
+    {{<card title="Secure your fleet" titleUrl="/nginx-one/secure-your-fleet/" >}}
+      Configure alerts that match your security policies
+    {{</ card >}}
     {{<card title="Automate with the NGINX One API" titleUrl="/nginx-one/api/" >}}
       Manage your NGINX fleet over REST
     {{</card>}}
@@ -91,4 +94,4 @@ F5 NGINX One Console makes it easy to manage NGINX instances across locations an
       Defend, adapt, and mitigate against Layer 7 denial-of-service attacks on your apps and APIs.
     {{</ card >}}
   {{</ card-section >}}
-{{</card-layout>}}
+{{</ card-layout >}}
