@@ -262,8 +262,7 @@ gateway-nginx-66b5d78f8f-4fmtb   1/1     Running   0          13s
 tea-6fbfdcb95d-9lhbj             1/1     Running   0          31s
 ```
 
-Run the below command to deploy a two `HTTPRoute`resources into your cluster. One for `/coffee` and one for `/tea`.
-This command will also create a file called `cafe-routes.yaml` in your current working directory:
+Run the following command to create the file _cafe-routes.yaml_. It is then used to deploy two *HTTPRoute* resources in your cluster: one each for _/coffee_ and _/tea_.
 
 ```yaml
 cat <<EOF > cafe-routes.yaml
