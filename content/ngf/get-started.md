@@ -226,8 +226,7 @@ tea-6fbfdcb95d-9lhbj      1/1     Running   0          9s
 
 ### Create Gateway and HTTPRoute resources
 
-Run the below command to deploy a gateway your cluster.
-This command will also create a file called `gateway.yaml` in your current working directory:
+Run the following command to create the file _gateway.yaml_, which is then used to deploy a Gateway to your cluster:
 
 ```yaml
 cat <<EOF > gateway.yaml
