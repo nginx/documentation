@@ -1,11 +1,66 @@
 ---
 title: NGINXaaS for Azure
-description: 'NGINX as a Service for Azure is an IaaS offering that is tightly integrated
-  into Microsoft Azure public cloud and its ecosystem, making applications fast, efficient,
-  and reliable with full lifecycle management of advanced NGINX traffic services.
-
-  '
+nd-subtitle: Infrastructure-as-a-Service (IaaS) version of NGINX Plus for your Microsoft Azure application stack
 url: /nginxaas/azure/
+nd-landing-page: true
 cascade:
   logo: NGINX-for-Azure-icon.svg
+nd-content-type: landing-page
+nd-product: N4Azure
 ---
+
+
+## About
+NGINX as a Service for Azure is an IaaS offering that is tightly integrated
+into Microsoft Azure public cloud and its ecosystem, making applications fast, efficient,
+and reliable with full lifecycle management of advanced NGINX traffic services.
+
+## Featured content
+{{<card-layout>}}
+  {{<card-section showAsCards="true" isFeaturedSection="true">}}
+    {{<card title="Overview" titleUrl="/nginxaas/azure/getting-started/" isFeatured="true" icon="unplug">}}
+      Learn about NGINX as a Service for Azure, its features, and its architecture
+    {{</card >}}
+  {{</card-section>}}
+{{</card-layout>}}
+
+
+{{<card-layout>}}
+  {{<card-section showAsCards="true" >}}
+    {{<card title="Create a deployment" titleUrl="/nginxaas/azure/getting-started/create-deployment/" >}}
+      Deploy NGINX as a Service for Azure using the Azure portal, Azure CLI, or Terraform
+    {{</card>}}
+    {{<card title="Manage your NGINX instances" titleUrl="/nginx-one/nginx-configs/" >}}
+      Manage one instance or groups of instances. Monitor certificates. Set up metrics
+    {{</card>}}
+    {{<card title="Disaster recovery" titleUrl="/nginx/azure/disaster-recovery/" >}}
+      Configure your NGINX as a Service for Azure environment to support failover
+    {{</card>}}
+    {{<card title="Quickstart guides" titleUrl="/nginxaas/azure/quickstart/" >}}
+      Learn how to scale your deployment, enable content catching, add security controls, and more
+    {{</card>}}
+  {{</card-section>}}
+{{</card-layout>}}
+
+### Certificates
+
+{{<card-layout>}}
+  {{<card-section showAsCards="true" >}}
+    {{<card title="Add certificates using the Azure portal" titleUrl="/nginxaas/azure/getting-started/ssl-tls-certificates/ssl-tls-certificates-portal/" >}}
+      Learn to manage SSL/TSL certificates using the Azure portal.
+    {{</card>}}
+  {{</card-section>}}
+{{</card-layout>}}
+
+### More information
+
+{{<card-layout>}}
+  {{<card-section showAsCards="true" >}}
+    {{<card title="Billing overview" titleUrl="/nginxaas/azure/billing/overview/" >}}
+      See the pricing plans and learn about NGINX Capacity Units (NCUs)
+    {{</card>}}
+    {{<card title="Changelog" titleUrl="/nginxaas/azure/changelog/" icon="clock-alert">}}
+      See the latest updates: New features, improvements, and bug fixes
+    {{</card>}}
+  {{</card-section>}}
+{{</card-layout>}}
