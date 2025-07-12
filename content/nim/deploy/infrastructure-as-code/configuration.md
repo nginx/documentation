@@ -15,7 +15,7 @@ This guide explains how to install F5 NGINX Instance Manager using the open-sour
 
 With Ansible, you can automate and replicate your installation across multiple environments.
 
-{{< call-out "tip" "Open-Source Project on GitHub" "fa-brands fa-github" >}}
+{{< call-out "tip" "Open-Source Project on GitHub" >}}
 The steps in this guide refer to the [Ansible NGINX Instance Manager Role](https://github.com/nginxinc/ansible-role-nginx-management-suite) project on GitHub.
 {{< /call-out >}}
 

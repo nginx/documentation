@@ -184,7 +184,7 @@ Take the steps below to add an NGINX instance to an API Gateway.
 
 {{</bootstrap-table>}}
 
-> {{< fa "fa-solid fa-circle-question" >}} **Lost your install command?**
+> {{< icon "fa-solid fa-circle-question" >}} **Lost your install command?**
 >
 > Don't worry! You can take the steps below to recover it:
 >

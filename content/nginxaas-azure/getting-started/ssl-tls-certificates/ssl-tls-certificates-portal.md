@@ -24,7 +24,7 @@ Before you begin, refer Azure documentation to [Import a certificate to your Key
 
 1. Select **NGINX certificates** in the left menu.
 
-1. Select {{< fa "plus">}}**Add certificate**.
+1. Select {{< icon "plus">}}**Add certificate**.
 
 1. Provide the required information:
 
@@ -72,7 +72,7 @@ Before you begin, refer Azure documentation to [Import a certificate to your Key
 
 1. Select the checkbox next to the certificate you want to edit.
 
-1. Select {{< fa "pencil">}} **Edit**.
+1. Select {{< icon "pencil">}} **Edit**.
 
 1. Update the Name, Certificate path, Key path fields as needed.
 
@@ -86,7 +86,7 @@ Before you begin, refer Azure documentation to [Import a certificate to your Key
 
 1. Select the checkbox next to the certificate you want to delete.
 
-1. Select {{< fa "trash">}}**Delete**.
+1. Select {{< icon "trash">}}**Delete**.
 
 1. Confirm the delete action.
 
