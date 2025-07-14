@@ -58,7 +58,7 @@ NGINX containers managed by the control plane. No RBAC permissions needed since 
 
 **Volumes:**
 - EmptyDir volumes for NGINX configuration, runtime files, logs, and cache
-- Secret mounts for TLS certificates
+- Secret mounts for TLS certificates and the NGINX Plus JWT token 
 - Projected token mounts for service account authentication
 
 **Volume Permissions:**
