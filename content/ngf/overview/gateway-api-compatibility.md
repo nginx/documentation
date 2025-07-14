@@ -146,7 +146,7 @@ See the [controller]({{< ref "/ngf/reference/cli-help.md#controller">}}) command
 **Fields**:
 
 - `spec`
-  - `parentRefs`: Partially supported. Port not supported.
+  - `parentRefs`: Supported.
   - `hostnames`: Supported.
   - `rules`
     - `matches`
@@ -196,7 +196,7 @@ See the [controller]({{< ref "/ngf/reference/cli-help.md#controller">}}) command
 **Fields**:
 
 - `spec`
-  - `parentRefs`: Partially supported. Port not supported.
+  - `parentRefs`: Supported.
   - `hostnames`: Supported.
   - `rules`
     - `matches`
@@ -259,7 +259,7 @@ Fields:
 **Fields**:
 
 - `spec`
-  - `parentRefs`: Partially supported. Port not supported.
+  - `parentRefs`: Supported.
   - `hostnames`: Supported.
   - `rules`
     - `backendRefs`: Partially supported. Only one backend ref allowed.
