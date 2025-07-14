@@ -24,23 +24,33 @@ F5 NGINX One Console makes it easy to manage NGINX instances across locations an
     {{<card title="Get started" titleUrl="/nginx-one/getting-started/" isFeatured="true" icon="unplug">}}
       Get up and running with NGINX One Console
     {{</card >}}
-  {{</card-section>}}
-{{</card-layout>}}
-
-
-{{<card-layout>}}
-  {{<card-section showAsCards="true" >}}
     {{<card title="Connect more NGINX instances" titleUrl="/nginx-one/connect-instances/" >}}
       Work with data plane keys, containers, and proxy servers
     {{</card>}}
     {{<card title="Manage your NGINX instances" titleUrl="/nginx-one/nginx-configs/" >}}
       Manage one instance or groups of instances. Monitor certificates. Set up metrics.
     {{</card>}}
+  {{</card-section>}}
+{{</card-layout>}}
+
+
+{{<card-layout>}}
+  {{<card-section showAsCards="true" >}}
     {{<card title="Organize users with RBAC" titleUrl="/nginx-one/rbac/" >}}
       Assign responsibilities with role-based access control 
     {{</card>}}
     {{<card title="Automate with the NGINX One API" titleUrl="/nginx-one/api/" >}}
       Manage your NGINX fleet over REST
+    {{</card>}}
+  {{</card-section>}}
+{{</card-layout>}}
+
+### Workshops
+
+{{<card-layout>}}
+  {{<card-section showAsCards="true">}}
+    {{<card title="NGINX One Console workshops" titleUrl="/nginx-one/workshops/" icon="wrench" >}}
+      Learn how to register and manage NGINX instances in NGINX One Console. View CVE and configuration recommendations. Use Config Sync Groups to deploy JWT licenses and upgrade to the latest NGINX Plus.
     {{</card>}}
   {{</card-section>}}
 {{</card-layout>}}
