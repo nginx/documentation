@@ -7,18 +7,20 @@ type: reference
 product: NGF
 ---
 
+## Overview
+
 NGINX Gateway Fabric uses a split-plane architecture with three components that require different permissions:
 
 - **Control Plane**: Manages Kubernetes APIs and data plane deployments. Needs broad API access but handles no user traffic.
 - **Data Plane**: Processes user traffic. Requires minimal permissions since configuration comes from control plane via secure gRPC.
 - **Certificate Generator**: One-time job that creates TLS certificates for inter-plane communication.
 
-## Common Security Context
+## Security Context
 
 All components share these security settings:
 
 - **User ID**: 101 (non-root)
-- **Group ID**: 1001
+- **Group ID**: 1001  
 - **Capabilities**: All dropped (`drop: ALL`)
 - **Root Filesystem**: Read-only
 - **Seccomp**: Runtime default profile
@@ -27,20 +29,13 @@ All components share these security settings:
 
 Runs as a single container in the `nginx-gateway` deployment.
 
-### Additional Security Settings
-
+**Additional Security Settings:**
 - **Privilege Escalation**: Disabled (may need enabling for NGINX reload in some environments)
 
-### Volumes
+**Volumes:**
+- `nginx-agent-tls` (Secret) - TLS certificates for control plane communication
 
-| Volume | Type | Purpose |
-|--------|------|---------|
-| `nginx-agent-tls` | Secret | TLS certificates for control plane communication |
-
-### RBAC Permissions
-
-The control plane requires these Kubernetes API permissions:
-
+**RBAC Permissions:**
 - **Secrets, ConfigMaps, Services**: Create, update, delete, list, get, watch
 - **Deployments, DaemonSets**: Create, update, delete, list, get, watch
 - **ServiceAccounts**: Create, update, delete, list, get, watch
@@ -57,14 +52,12 @@ The control plane requires these Kubernetes API permissions:
 
 NGINX containers managed by the control plane. No RBAC permissions needed since configuration comes via secure gRPC.
 
-### Additional Security Settings
-
+**Additional Security Settings:**
 - **Privilege Escalation**: Disabled
 - **Sysctl**: `net.ipv4.ip_unprivileged_port_start=0` (enables binding to ports < 1024)
 
-### Volumes
+**Volumes:**
 
-#### Core NGINX Operations
 | Volume | Type | Purpose |
 |--------|------|---------|
 | `nginx-conf` | EmptyDir | Main NGINX configuration |
@@ -72,28 +65,15 @@ NGINX containers managed by the control plane. No RBAC permissions needed since 
 | `nginx-secrets` | EmptyDir | TLS secrets for NGINX |
 | `nginx-run` | EmptyDir | Runtime files (PID, sockets) |
 | `nginx-cache` | EmptyDir | Cache directory |
-
-#### Configuration Includes
-| Volume | Type | Purpose |
-|--------|------|---------|
 | `nginx-main-includes` | EmptyDir | Main context includes |
 | `nginx-includes` | EmptyDir | HTTP context includes |
-
-#### NGINX Agent
-| Volume | Type | Purpose |
-|--------|------|---------|
 | `nginx-agent` | EmptyDir | NGINX Agent configuration |
 | `nginx-agent-tls` | Secret | TLS certificates for control plane communication |
 | `nginx-agent-log` | EmptyDir | NGINX Agent logs |
 | `nginx-agent-lib` | EmptyDir | NGINX Agent runtime data |
-
-#### Authentication
-| Volume | Type | Purpose |
-|--------|------|---------|
 | `token` | Projected | Service account token |
 
-### Volume Permissions
-
+**Volume Permissions:**
 - **EmptyDir**: Read-write (required for NGINX operation)
 - **Secret/ConfigMap/Projected**: Read-only
 
@@ -101,40 +81,36 @@ NGINX containers managed by the control plane. No RBAC permissions needed since 
 
 Kubernetes Job that creates initial TLS certificates.
 
-### RBAC Permissions
-
+**RBAC Permissions:**
 - **Secrets**: Create, update, get (NGINX Gateway Fabric namespace only)
 
-## OpenShift Compatibility
+## Platform-Specific Considerations
+
+### OpenShift Compatibility
 
 NGINX Gateway Fabric includes Security Context Constraints (SCCs) for OpenShift:
 
-### Control Plane SCC
-
+**Control Plane SCC:**
 - **Privilege Escalation**: Disabled
 - **Host Access**: Disabled (network, IPC, PID, ports)
 - **User ID Range**: 101-101 (fixed)
 - **Group ID Range**: 1001-1001 (fixed)
 - **Volumes**: Secret only
 
-### Data Plane SCC
-
+**Data Plane SCC:**
 Same restrictions as control plane, plus additional volume types:
-
 - **Additional Volumes**: EmptyDir, ConfigMap, Projected
 
-## Linux Capabilities
+### Linux Capabilities
 
 NGINX Gateway Fabric drops ALL Linux capabilities and adds none, following security best practices.
 
-### How It Works Without Capabilities
-
+**How It Works Without Capabilities:**
 - **Process Management**: Standard Unix signals (no elevated privileges needed)
 - **Port Binding**: Uses sysctl `net.ipv4.ip_unprivileged_port_start=0` for ports < 1024
 - **File Operations**: Volume mounts provide necessary write access
 
-### Troubleshooting
-
+**Troubleshooting:**
 If you encounter "operation not permitted" errors during NGINX reload, temporarily enable `allowPrivilegeEscalation: true` while investigating the root cause.
 
 ## Security Features
