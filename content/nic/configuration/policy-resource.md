@@ -446,12 +446,14 @@ This feature is implemented using the NGINX Plus directive [auth_jwt_key_request
 {{< /note >}}
 
 {{% table %}}
-|Field | Description | Type | Required |
-| ---| ---| ---| --- |
-|``jwksURI`` | The remote URI where the request will be sent to retrieve JSON Web Key set| ``string`` | Yes |
-|``keyCache`` | Enables in-memory caching of JWKS (JSON Web Key Sets) that are obtained from the ``jwksURI`` and sets a valid time for expiration. | ``string`` | Yes |
-|``realm`` | The realm of the JWT. | ``string`` | Yes |
-|``token`` | The token specifies a variable that contains the JSON Web Token. By default the JWT is passed in the ``Authorization`` header as a Bearer Token. JWT may be also passed as a cookie or a part of a query string, for example: ``$cookie_auth_token``. Accepted variables are ``$http_``, ``$arg_``, ``$cookie_``. | ``string`` | No |
+|Field | Description | Type | Required | Default |
+| ---| ---| ---| --- | --- |
+|``jwksURI`` | The remote URI where the request will be sent to retrieve JSON Web Key set| ``string`` | Yes | -- |
+|``keyCache`` | Enables in-memory caching of JWKS (JSON Web Key Sets) that are obtained from the ``jwksURI`` and sets a valid time for expiration. | ``string`` | Yes | -- |
+|``realm`` | The realm of the JWT. | ``string`` | Yes | -- |
+|``token`` | The token specifies a variable that contains the JSON Web Token. By default the JWT is passed in the ``Authorization`` header as a Bearer Token. JWT may be also passed as a cookie or a part of a query string, for example: ``$cookie_auth_token``. Accepted variables are ``$http_``, ``$arg_``, ``$cookie_``. | ``string`` | No | -- |
+|``sniEnabled`` | Enables SNI (Server Name Indication) for the JWT policy. This is useful when the remote server requires SNI to serve the correct certificate. | ``bool`` | No | `false` |
+|``sniName`` | The SNI name to use when connecting to the remote server. If not set, the hostname from the ``jwksURI`` will be used. | ``string`` | No | -- |
 {{% /table %}}
 
 {{< note >}}
