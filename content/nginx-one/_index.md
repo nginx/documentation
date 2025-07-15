@@ -22,7 +22,7 @@ F5 NGINX One Console makes it easy to manage NGINX instances across locations an
 
 {{<card-layout>}}
   {{<card-section showAsCards="true" isFeaturedSection="true">}}
-    {{<card title="Get started" titleUrl="/nginx-one/getting-started/" icon="unplug" isFullSize="true">}}
+    {{<card title="Get started" titleUrl="getting-started/" isFeaturedCard="true" icon="unplug">}}
       Get up and running with NGINX One Console
     {{</card >}}
   {{</card-section>}}
@@ -31,7 +31,7 @@ F5 NGINX One Console makes it easy to manage NGINX instances across locations an
 
 {{<card-layout>}}
   {{<card-section showAsCards="true" >}}
-    {{<card title="Connect more NGINX instances" titleUrl="/nginx-one/connect-instances/" >}}
+    {{<card title="Connect more NGINX instances" titleUrl="connect-instances/" >}}
       Work with data plane keys, containers, and proxy servers
     {{</card>}}
     {{<card title="Secure your fleet" titleUrl="/nginx-one/secure-your-fleet/" >}}
@@ -62,7 +62,7 @@ F5 NGINX One Console makes it easy to manage NGINX instances across locations an
     {{<card title="Glossary" titleUrl="/nginx-one/glossary/" >}}
       See latest updates: New features, improvements, and bug fixes
     {{</card>}}
-    {{<card title="Changelog" titleUrl="/nginx-one/changelog/" icon="clock-alert">}}
+    {{<card title="Changelog" titleUrl="changelog/" icon="clock-alert">}}
       See latest updates: New features, improvements, and bug fixes
     {{</card>}}
   {{</card-section>}}
