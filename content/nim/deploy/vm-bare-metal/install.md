@@ -30,7 +30,7 @@ Follow these steps to prepare for installing NGINX Instance Manager:
 
 - **Download the installation script**:
 
-  {{< icon "download">}} {{<link "/scripts/install-nim-bundle.sh" "Download install-nim-bundle.sh script">}}
+  {{<icon "download">}} {{<link "/scripts/install-nim-bundle.sh" "Download install-nim-bundle.sh script">}}
 
 - **Download the certificate and private key** (see the steps [below](#download-cert-key)):
   Use the certificate and private key for NGINX Instance Manager (the same files used for NGINX Plus).
@@ -91,7 +91,7 @@ Download the certificate and private key required for NGINX Instance Manager. Th
 
 If you haven’t already downloaded the script, you can download it here:
 
-{{< icon "download">}} {{<link "/scripts/install-nim-bundle.sh" "Download install-nim-bundle.sh script">}}
+{{<icon "download">}} {{<link "/scripts/install-nim-bundle.sh" "Download install-nim-bundle.sh script">}}
 
 ### Prepare your system for installation
 
