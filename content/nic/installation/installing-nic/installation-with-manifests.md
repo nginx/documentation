@@ -2,8 +2,8 @@
 title: Installation with Manifests
 toc: true
 weight: 200
-type: how-to
-product: NIC
+nd-content-type: how-to
+nd-product: NIC
 nd-docs: DOCS-603
 ---
 
