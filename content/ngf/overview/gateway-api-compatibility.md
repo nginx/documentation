@@ -167,7 +167,7 @@ See the [static-mode]({{< ref "/ngf/reference/cli-help.md#static-mode">}}) comma
       - `requestHeaderModifier`: Supported. If multiple filters are configured, NGINX Gateway Fabric will choose the first and ignore the rest.
       - `urlRewrite`: Supported. If multiple filters are configured, NGINX Gateway Fabric will choose the first and ignore the rest. Incompatible with `requestRedirect`.
       - `responseHeaderModifier`: Supported. If multiple filters are configured, NGINX Gateway Fabric will choose the first and ignore the rest.
-      - `requestMirror`: Supported. Multiple mirrors can be specified.
+      - `requestMirror`: Supported. Multiple mirrors can be specified. Percent and fraction-based mirroring are supported.
       - `extensionRef`: Supported for SnippetsFilters.
     - `backendRefs`: Partially supported. Backend ref `filters` are not supported.
 - `status`
@@ -189,6 +189,7 @@ See the [static-mode]({{< ref "/ngf/reference/cli-help.md#static-mode">}}) comma
       - `ResolvedRefs/False/BackendNotFound`
       - `ResolvedRefs/False/UnsupportedValue`: Custom reason for when one of the HTTPRoute rules has a backendRef with an unsupported value.
       - `ResolvedRefs/False/InvalidIPFamily`: Custom reason for when one of the HTTPRoute rules has a backendRef that has an invalid IPFamily.
+      - `ResolvedRefs/False/UnsupportedProtocol`
       - `PartiallyInvalid/True/UnsupportedValue`
 
 ### GRPCRoute
