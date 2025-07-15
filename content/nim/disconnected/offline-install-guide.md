@@ -62,7 +62,7 @@ Download the SSL certificate and private key required for NGINX Instance Manager
 
 ### Download the installation script
 
-{{< icon "download">}} {{<link "/scripts/install-nim-bundle.sh" "Download the install-nim-bundle.sh script.">}}
+{{<icon "download">}} {{<link "/scripts/install-nim-bundle.sh" "Download the install-nim-bundle.sh script.">}}
 
 ## Package NGINX Instance Manager and dependencies for offline installation
 

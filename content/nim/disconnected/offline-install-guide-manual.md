@@ -35,7 +35,7 @@ To complete the steps in this guide, you need to download the NGINX Instance Man
 
 Local dependencies are common Linux packages like `curl` or `openssl`, which most Linux distributions include by default. When installing NGINX Instance Manager, your package manager will automatically install these dependencies. Without internet access, ensure your package manager can use a local package repository, such as a distribution DVD/ISO image or internal network mirror. Check your Linux distribution's documentation for details.
 
-{{< call-out "note" "RedHat on AWS" "fa-brands fa-aws" >}}If you're using AWS and can't attach remote or local RedHat package repositories, download the necessary packages on another RedHat machine and copy them to your target machine. Use the `yumdownloader` utility for this task:
+{{< call-out "note" "RedHat on AWS" >}}If you're using AWS and can't attach remote or local RedHat package repositories, download the necessary packages on another RedHat machine and copy them to your target machine. Use the `yumdownloader` utility for this task:
 <https://access.redhat.com/solutions/10154>.
 {{</ call-out >}}
 
@@ -47,7 +47,7 @@ To download external dependencies:
 
 1. Download the `fetch-external-dependencies.sh` script:
 
-    {{< icon "download">}} {{<link "/scripts/fetch-external-dependencies.sh" "Download fetch-external-dependencies.sh script">}}
+    {{<icon "download">}} {{<link "/scripts/fetch-external-dependencies.sh" "Download fetch-external-dependencies.sh script">}}
 
 2. Run the script to download the external dependencies for your specific Linux distribution:
 

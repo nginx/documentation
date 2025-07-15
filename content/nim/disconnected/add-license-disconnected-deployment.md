@@ -51,7 +51,7 @@ To add a license and submit the initial usage report in a disconnected environme
 
 <br>
 
-1. {{< icon "download">}}[Download license_usage_offline.sh](/scripts/license_usage_offline.sh).
+1. {{<icon "download">}}[Download license_usage_offline.sh](/scripts/license_usage_offline.sh).
 1.	Run the following command to allow the script to run:
 
     ```bash
