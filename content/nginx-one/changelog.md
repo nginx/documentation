@@ -30,7 +30,7 @@ h2 {
 
 Stay up-to-date with what's new and improved in the F5 NGINX One Console.
 
-## July 21, 2025
+## July 15, 2025
 
 ### Set up F5 NGINX App Protect WAF security policies
 

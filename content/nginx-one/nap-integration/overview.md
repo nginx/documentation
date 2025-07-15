@@ -52,13 +52,5 @@ NGINX App Protect WAF Version 5 has specific requirements for the configuration 
 
   - You'll need to set a policy bundle (in compressed tar format) in a configured `volume`.
   - Make sure the directory for [NGINX Agent]({{< ref "/agent/configuration/" >}}) includes `/etc/nginx/app_protect_policies`.
-<!--
-Based on discussion from Nick Chen:
-Example:
-if the v5 enforcer configured the container volume mount like /etc/nms:/etc/foo
-then the nginx directive should be /etc/foo/policy_bundle.tgz
-where the file goes should be /etc/nms/policy_bundle.tgz
-and the agent allowed directory should have /etc/nms as prefix
- -->
 
 When  you deploy NAP policy through NGINX One Console, do not also use plain JSON policy in the same NGINX instance.

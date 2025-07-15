@@ -12,7 +12,7 @@ nd-content-type: how-to
 nd-product: NGINX One
 ---
 
-This document describes how you can configure a security policy in the F5 NGINX One Console. When you add a policy, NGINX One Console includes several UI-based options and presets, based on F5 NGINX App Protect WAF.
+This document describes how you can configure a security policy in the F5 NGINX One Console. When you add a policy, NGINX One Console includes several UI-based options and presets, based on NGINX App Protect WAF.
 
 
 If you already know NGINX App Protect WAF, you can go beyond the options available in the UI. 
@@ -34,6 +34,7 @@ You can also set a character encoding. The default encoding is `Unicode (utf-8)`
 ## Configure a policy
 
 With NGINX One Console User Interface, you get a default policy. You can also select **NGINX Strict** for a more rigorous policy:
+
 ### Basic Configuration and the Default Policy
 
 {{< include "/nap-waf/concept/basic-config-default-policy.md" >}}
