@@ -24,7 +24,7 @@ NGINX App Protect DoS supports the following operating systems:
 - [CentOS 7.4.x and above](#centos-74-installation) (Deprecated starting from NGINX Plus R33)
 - [RHEL 7.4.x and above](#rhel-74-installation) (Deprecated starting from NGINX Plus R33)
 - [RHEL 8.1.x / Rocky Linux 8 and above](#rhel-8--rocky-linux-8-installation)
-- [RHEL 9 / Rocky Linux 8 and above](#rhel-9--rocky-linux-9-installation)
+- [RHEL 9 / Rocky Linux 9 and above](#rhel-9--rocky-linux-9-installation)
 - [Debian 10 (Buster)](#debian--ubuntu-installation) - (Deprecated starting from NGINX Plus R28)
 - [Debian 11 (Bullseye)](#debian--ubuntu-installation)
 - [Debian 12 (Bookworm)](#debian--ubuntu-installation)
