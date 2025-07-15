@@ -41,7 +41,7 @@ Use the appropriate example below to deploy an HTTP or HTTPS Developer Portal.
 
 ### HTTP
 
-> {{< fa "lightbulb" >}} Use this example to get up and running quickly in a demo environment.
+> {{< icon "lightbulb" >}} Use this example to get up and running quickly in a demo environment.
 
 
 {{<bootstrap-table "table">}}
@@ -76,7 +76,7 @@ Use the appropriate example below to deploy an HTTP or HTTPS Developer Portal.
 To deploy a cluster that uses HTTPS for secure inbound communication, you'll add the **TLS Inbound** policy.
 Because this is done at the Infrastructure level, this is considered a "Global Policy".
 
-> {{< fa "lightbulb" >}} You need to provide your TLS server certificate and key as base64-encoded strings in this API call.
+> {{< icon "lightbulb" >}} You need to provide your TLS server certificate and key as base64-encoded strings in this API call.
 
 
 {{<bootstrap-table "table">}}
@@ -146,7 +146,7 @@ SSH access to the host and `sudo` permissions are required.
 The NGINX Management Suite management plane host uses the Developer Portal's hostname to communicate with the Dev Portal.
 You’ll need to update your DNS resolver settings with the Developer Portal's internal hostname.
 
-> {{< fa "lightbulb" >}} The internal hostname is the hostname that you provided for the Developer Portal, prefixed with `acm.`.
+> {{< icon "lightbulb" >}} The internal hostname is the hostname that you provided for the Developer Portal, prefixed with `acm.`.
 > For example: `acm.dev-portal.io`
 
 Next, open the Developer Portal in a browser window and make sure the portal loads.
@@ -170,7 +170,7 @@ Because these settings are applied at the Infrastructure level, they are conside
 
 Note that many fields in the example JSON payload -- including the logo image and Markdown documents -- are base64-encoded.
 
-**Example JSON payload**: {{< fa "download" >}} {{< link "/acm/customize-devportal.json" "customize-devportal.json" >}}
+**Example JSON payload**: {{< icon "download" >}} {{< link "/acm/customize-devportal.json" "customize-devportal.json" >}}
 
 Before you move on to the next guide, open the Dev Portal in your browser to view the changes.
 You should see the default Dev Portal replaced by the custom settings.
