@@ -89,7 +89,7 @@ data:
     ## command server settings
     command:
       server:
-        host: product.connect.nginx.com
+        host: agent.connect.nginx.com
         port: 443
       auth:
         tokenpath: "/etc/nginx-agent/secrets/dataplane.key"
