@@ -75,6 +75,6 @@ git push origin
 This allows you to open a _new_ pull request in the open repository. To verify that pull request reflects the changes made in the closed
 repository, check the commit messages.
 
-If you are an authorized user, you can merge the changes without additional approvals.
+If you are a maintainer of https://github.com/nginx/documentation, you can merge the changes without additional approvals.
 
 Once the content changes have been merged in the open repository, they will synchronize back to the closed repository.
