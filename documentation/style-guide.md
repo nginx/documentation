@@ -345,17 +345,20 @@ The following acronyms do not need to be spelled out on first mention:
 | Acronym | Definition |
 |---------|------------|
 | API     | Application Programming Interface |
+| CPU     | Central Processing Unit |
 | CVE     | Common Vulnerabilities and Exposures |
 | CVSS    | Common Vulnerability Scoring System |
 | DHCP    | Dynamic Host Configuration Protocol |
 | DNS     | Domain Name System |
 | FTP     | File Transfer Protocol |
+| GPU     | Graphics Processing Unit |
 | gRPC    | gRPC Remote Procedure Call |
 | HTTP    | Hypertext Transfer Protocol |
 | HTTPS   | Hypertext Transfer Protocol Secure |
 | IP      | Internet Protocol |
 | JWT     | JSON Web Token |
 | NAT     | Network Address Translation |
+| RAM     | Random Access Memory |
 | SMTP    | Simple Mail Transfer Protocol |
 | SSH     | Secure Shell |
 | SSL     | Secure Sockets Layer |
