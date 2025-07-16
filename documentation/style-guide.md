@@ -345,19 +345,23 @@ The following acronyms do not need to be spelled out on first mention:
 | Acronym | Definition |
 |---------|------------|
 | API     | Application Programming Interface |
+| CIDR    | Classless Inter-Domain Routing |
 | CPU     | Central Processing Unit |
 | CVE     | Common Vulnerabilities and Exposures |
 | CVSS    | Common Vulnerability Scoring System |
 | DHCP    | Dynamic Host Configuration Protocol |
 | DNS     | Domain Name System |
+| FQDN    | Fully Qualified Domain Name |
 | FTP     | File Transfer Protocol |
 | GPU     | Graphics Processing Unit |
 | gRPC    | gRPC Remote Procedure Call |
 | HTTP    | Hypertext Transfer Protocol |
 | HTTPS   | Hypertext Transfer Protocol Secure |
 | IP      | Internet Protocol |
+| JSON    | JavaScript Object Notation |
 | JWT     | JSON Web Token |
 | NAT     | Network Address Translation |
+| PEM     | Privacy Enhanced Mail (file format) |
 | RAM     | Random Access Memory |
 | SMTP    | Simple Mail Transfer Protocol |
 | SSH     | Secure Shell |
@@ -368,6 +372,7 @@ The following acronyms do not need to be spelled out on first mention:
 | VLAN    | Virtual Local Area Network |
 | VPN     | Virtual Private Network |
 | WAF     | Web Application Firewall |
+| YAML    | YAML Ain't Markup Language |
 
 
 ## Topic types and templates
