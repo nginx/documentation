@@ -1,12 +1,20 @@
 ---
-nd-docs: DOCS-618
-doctypes:
-- ''
 title: OpenTracing (Removed in v5.0.0)
 toc: true
-weight: 500
+weight: 700
+nd-content-type: how-to
+nd-product: NIC
+nd-docs: DOCS-618
 ---
+
+{{< call-out "warning" "OpenTracing is removed from v5.0.0" >}}
+
 OpenTracing support has been removed from v5.0.0 of F5 NGINX Ingress Controller.
+
+From v5.1.0 onwards, you should follow the guidance in [Configure OpenTelemetry]({{< ref "/nic/logging-and-monitoring/opentelemetry.md" >}}).
+
+{{< /call-out >}}
+
 
 
 Learn how to use OpenTracing with F5 NGINX Ingress Controller.
