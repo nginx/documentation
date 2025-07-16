@@ -340,7 +340,7 @@ The table provides guidelines about the terms you should and should not use for 
 
 ## Acronyms
 
-The following acronyms do not need to be spelled out on first mention:
+The following acronyms do not need to be spelled out:
 
 | Acronym | Definition |
 |---------|------------|
