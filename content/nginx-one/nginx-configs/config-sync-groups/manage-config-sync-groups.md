@@ -258,7 +258,7 @@ If you move an instance with certificates from one Config Sync Group to another,
 If you need to remove an NGINX instance from a Config Sync Group without adding it to another group, follow these steps:
 
 
-{{< tabs name="Add instance to Config Sync Group" >}}
+{{< tabs name="Remove instance from Config Sync Group" >}}
 {{%tab name="NGINX Agent 3.x"%}}
 
 1. Open a command-line terminal on the NGINX instance.
