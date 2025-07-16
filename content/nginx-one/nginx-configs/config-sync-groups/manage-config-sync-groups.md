@@ -210,7 +210,7 @@ For more details on creating and managing data plane keys, see [Create and manag
 
 If you need to move an NGINX instance to a different Config Sync Group, follow these steps:
 
-{{< tabs name="Add instance to Config Sync Group" >}}
+{{< tabs name="Move instance to Config Sync Group" >}}
 
 {{%tab name="NGINX Agent 3.x"%}}
 
@@ -259,6 +259,7 @@ If you need to remove an NGINX instance from a Config Sync Group without adding 
 
 
 {{< tabs name="Remove instance from Config Sync Group" >}}
+
 {{%tab name="NGINX Agent 3.x"%}}
 
 1. Open a command-line terminal on the NGINX instance.
