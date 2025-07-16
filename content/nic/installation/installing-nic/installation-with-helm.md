@@ -472,23 +472,23 @@ The following tables lists the configurable parameters of the NGINX Ingress Cont
 | **serviceNameOverride** | Used to prevent cloud load balancers from being replaced due to service name change during helm upgrades. | "" |
 | **nginxServiceMesh.enable** | Enable integration with NGINX Service Mesh. See the NGINX Service Mesh docs for more details. Requires `controller.nginxplus`. | false |
 | **nginxServiceMesh.enableEgress** | Enable NGINX Service Mesh workloads to route egress traffic through the Ingress Controller. See the NGINX Service Mesh docs for more details. Requires `nginxServiceMesh.enable`. | false |
-|**nginxAgent.enable** | Enable NGINX Agent to integrate the Security Monitoring and App Protect WAF modules. Requires `controller.appprotect.enable`. | false |
+|**nginxAgent.enable** | Enable NGINX Agent to allow [connecting to NGINX One Console]({{< ref "/nginx-one/k8s/add-nic.md" >}}) (V3) or to integrate [Security Monitoring]({{< ref "/nic/tutorials/security-monitoring.md" >}}) and App Protect WAF modules. (V2). | false |
 |**nginxAgent.logLevel** | Log level for NGINX Agent. | "error" |
-|**nginxAgent.dataplaneKeySecretName** | Name of the Kubernetes Secret containing the Data Plane key used to authenticate to NGINX One Console. Learn more [here]({{< ref "/nginx-one/nginx-one/k8s/add-nic.md" >}}). V3 Only | "" |
-|**nginxAgent.endpointHost** | Domain or IP address for the NGINX One Console. V3 Only | "agent.connect.nginx.com" |
-|**nginxAgent.endpointPort** | Port for the NGINX One Console endpoint. V3 Only | 443 |
-|**nginxAgent.tlsSkipVerify** | Skip TLS verification for the NGINX One Console endpoint. V3 Only | false |
-|**nginxAgent.instanceGroup** | Set a custom Instance Group name for the deployment, shown when connected to NGINX Instance Manager. `nginx-ingress.controller.fullname` will be used if not set. V2 Only | "" |
-|**nginxAgent.instanceManager.host** | FQDN or IP for connecting to NGINX Ingress Controller. Required when `nginxAgent.enable` is set to `true`. V2 Only | "" |
-|**nginxAgent.instanceManager.grpcPort** | Port for connecting to NGINX Ingress Controller. V2 Only | 443 |
-|**nginxAgent.instanceManager.sni** | Server Name Indication for Instance Manager. See the NGINX Agent [docs]({{< ref "/agent/configuration/encrypt-communication.md" >}}) for more details. V2 Only | "" |
-|**nginxAgent.instanceManager.tls.enable** | Enable TLS for Instance Manager connection. V2 Only | true |
-|**nginxAgent.instanceManager.tls.skipVerify** | Skip certification verification for Instance Manager connection. V2 Only | false |
-|**nginxAgent.instanceManager.tls.caSecret** | Name of `nginx.org/ca` secret used for verification of Instance Manager TLS. V2 Only | "" |
-|**nginxAgent.instanceManager.tls.secret** | Name of `kubernetes.io/tls` secret with a TLS certificate and key for using mTLS between NGINX Agent and Instance Manager. See the NGINX Instance Manager [docs]({{< ref "/nim/system-configuration/secure-traffic.md#mutual-client-certificate-authentication-setup-mtls" >}}) and the NGINX Agent [docs]({{< ref "/agent/configuration/encrypt-communication.md" >}}) for more details. V2 Only | "" |
-|**nginxAgent.syslog.host** | Address for NGINX Agent to run syslog listener. V2 Only | 127.0.0.1 |
-|**nginxAgent.syslog.port** | Port for NGINX Agent to run syslog listener. V2 Only | 1514 |
-|**nginxAgent.napMonitoring.collectorBufferSize** | Buffer size for collector. Will contain log lines and parsed log lines. V2 Only | 50000 |
-|**nginxAgent.napMonitoring.processorBufferSize** | Buffer size for processor. Will contain log lines and parsed log lines. V2 Only | 50000 |
-|**nginxAgent.customConfigMap** | The name of a custom ConfigMap to use instead of the one provided by default. V2 Only | "" |
+|**nginxAgent.dataplaneKeySecretName** | Name of the Kubernetes Secret containing the Data Plane key used to authenticate to NGINX One Console. Learn more [here]({{< ref "/nginx-one/k8s/add-nic.md" >}}). V3 Only. | "" |
+|**nginxAgent.endpointHost** | Domain or IP address for the NGINX One Console. V3 Only. | "agent.connect.nginx.com" |
+|**nginxAgent.endpointPort** | Port for the NGINX One Console endpoint. V3 Only. | 443 |
+|**nginxAgent.tlsSkipVerify** | Skip TLS verification for the NGINX One Console endpoint. V3 Only. | false |
+|**nginxAgent.instanceGroup** | Set a custom Instance Group name for the deployment, shown when connected to NGINX Instance Manager. `nginx-ingress.controller.fullname` will be used if not set. V2 Only. | "" |
+|**nginxAgent.instanceManager.host** | FQDN or IP for connecting to NGINX Ingress Controller. Required when `nginxAgent.enable` is set to `true`. V2 Only. | "" |
+|**nginxAgent.instanceManager.grpcPort** | Port for connecting to NGINX Ingress Controller. V2 Only. | 443 |
+|**nginxAgent.instanceManager.sni** | Server Name Indication for Instance Manager. See the NGINX Agent [docs]({{< ref "/agent/configuration/encrypt-communication.md" >}}) for more details. V2 Only. | "" |
+|**nginxAgent.instanceManager.tls.enable** | Enable TLS for Instance Manager connection. V2 Only. | true |
+|**nginxAgent.instanceManager.tls.skipVerify** | Skip certification verification for Instance Manager connection. V2 Only. | false |
+|**nginxAgent.instanceManager.tls.caSecret** | Name of `nginx.org/ca` secret used for verification of Instance Manager TLS. V2 Only. | "" |
+|**nginxAgent.instanceManager.tls.secret** | Name of `kubernetes.io/tls` secret with a TLS certificate and key for using mTLS between NGINX Agent and Instance Manager. See the NGINX Instance Manager [docs]({{< ref "/nim/system-configuration/secure-traffic.md#mutual-client-certificate-authentication-setup-mtls" >}}) and the NGINX Agent [docs]({{< ref "/agent/configuration/encrypt-communication.md" >}}) for more details. V2 Only. | "" |
+|**nginxAgent.syslog.host** | Address for NGINX Agent to run syslog listener. V2 Only. | 127.0.0.1 |
+|**nginxAgent.syslog.port** | Port for NGINX Agent to run syslog listener. V2 Only. | 1514 |
+|**nginxAgent.napMonitoring.collectorBufferSize** | Buffer size for collector. Will contain log lines and parsed log lines. V2 Only. | 50000 |
+|**nginxAgent.napMonitoring.processorBufferSize** | Buffer size for processor. Will contain log lines and parsed log lines. V2 Only. | 50000 |
+|**nginxAgent.customConfigMap** | The name of a custom ConfigMap to use instead of the one provided by default. V2 Only. | "" |
 {{</bootstrap-table>}}
