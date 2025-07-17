@@ -10,13 +10,15 @@ nd-docs: DOCS-616
 
 08 Jul 2025
 
-This release includes the ability to configure Rate Limiting for your APIs based on a specific NGINX variable and its value. This allows you more granular control over how frequently specific users access your resources.
+This NGINX Ingress Controller release brings initial connectivity to the NGINX One Console! You can now use NGINX One Console to manage NGINX instances that are part of your NGINX Ingress Controller cluster. See [here]({{< ref "/nginx-one/k8s/add-nic.md" >}}) to configure NGINX One Console with NGINX Ingress Controller.
+
+This release also includes the ability to configure Rate Limiting for your APIs based on a specific NGINX variable and its value. This allows you more granular control over how frequently specific users access your resources.
 
 Lastly, in our previous v5.0.0 release, we removed support for Open Tracing. This release replaces that observability capability with native NGINX Open Telemetry traces, allowing you to monitor the internal traffic of your applications.
 
 ### <i class="fa-solid fa-rocket"></i> Features
 - [7642](https://github.com/nginx/kubernetes-ingress/pull/7642) Add OpenTelemetry support
-- [7916](https://github.com/nginx/kubernetes-ingress/pull/7916) Add support for Agent V3
+- [7916](https://github.com/nginx/kubernetes-ingress/pull/7916) Add support for NGINX Agent version 3 and Connecting to NGINX One Console
 - [7884](https://github.com/nginx/kubernetes-ingress/pull/7884) Tiered rate limits with variables
 - [7765](https://github.com/nginx/kubernetes-ingress/pull/7765) Add OIDC PKCE configuration through Policy
 - [7832](https://github.com/nginx/kubernetes-ingress/pull/7832) Add request_method to rate-limit Policy
@@ -46,7 +48,7 @@ Lastly, in our previous v5.0.0 release, we removed support for Open Tracing. Thi
 [GitHub Container](https://github.com/nginx/kubernetes-ingress/pkgs/container/kubernetes-ingress),
 [Amazon ECR Public Gallery](https://gallery.ecr.aws/nginx/nginx-ingress) or [Quay.io](https://quay.io/repository/nginx/nginx-ingress).
 - For NGINX Plus, use the 5.1.0 images from the F5 Container registry or build your own image using the 5.1.0 source code
-- For Helm, use version 2.2.0 of the chart.
+- For Helm, use version 2.2.1 of the chart.
 
 ### <i class="fa-solid fa-life-ring"></i> Supported Platforms
 
