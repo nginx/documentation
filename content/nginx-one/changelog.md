@@ -30,6 +30,24 @@ h2 {
 
 Stay up-to-date with what's new and improved in the F5 NGINX One Console.
 
+## July 15, 2025
+
+### Set up F5 NGINX App Protect WAF security policies
+
+You can now incorporate [NGINX App Protect WAF]({{< ref "/nap-waf/" >}}) in NGINX One Console UI. For details, see [Secure with NGINX App Protect]({{< ref "/nginx-one/nap-integration/" >}}).
+
+In NGINX One Console, you can:
+
+- Toggle between [Default policy bundles]({{< ref "/nap-waf/v5/configuration-guide/configuration/#updating-default-policy-bundles" >}})
+- Set a blocking or transparant [Policy enforcement mode]({{< ref "/nap-waf/v5/configuration-guide/configuration/#policy-enforcement-modes" >}})
+
+### Monitor F5 NGINX Ingress Controller deployments
+
+You can now monitor your NGINX Ingress Controller deployments. For details, see how
+you can [Connect to NGINX One Console]({{< ref "/nginx-one/k8s/add-nic.md" >}}).
+
+Unlike other NGINX instances, when you connect NGINX Ingress Controller to NGINX One Console, access is read-only. Refer to our [NGINX Ingress Controller]({{< ref "/nic/" >}}) for details on how to modify these instances.
+
 ## July 1, 2025
 
 ### NGINX Agent version 3 support
