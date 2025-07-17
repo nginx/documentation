@@ -24,17 +24,18 @@ NGINX App Protect DoS supports the following operating systems:
 - [CentOS 7.4.x and above](#centos-74-installation) (Deprecated starting from NGINX Plus R33)
 - [RHEL 7.4.x and above](#rhel-74-installation) (Deprecated starting from NGINX Plus R33)
 - [RHEL 8.1.x / Rocky Linux 8 and above](#rhel-8--rocky-linux-8-installation)
-- [RHEL 9 and above](#rhel-9-installation)
+- [RHEL 9 / Rocky Linux 9 and above](#rhel-9--rocky-linux-9-installation)
 - [Debian 10 (Buster)](#debian--ubuntu-installation) - (Deprecated starting from NGINX Plus R28)
 - [Debian 11 (Bullseye)](#debian--ubuntu-installation)
 - [Debian 12 (Bookworm)](#debian--ubuntu-installation)
 - [Ubuntu 18.04 (Bionic)](#debian--ubuntu-installation) - (Deprecated starting from NGINX Plus R30)
-- [Ubuntu 20.04 (Focal)](#debian--ubuntu-installation)
+- [Ubuntu 20.04 (Focal)](#debian--ubuntu-installation) - (Deprecated starting from NGINX Plus R35)
 - [Ubuntu 22.04 (Jammy)](#debian--ubuntu-installation)
 - [Ubuntu 24.04 (Noble)](#debian--ubuntu-installation)
-- [Alpine 3.15](#alpine-315x--317x--319x-installation) - (Deprecated starting from NGINX Plus R30)
-- [Alpine 3.17](#alpine-315x--317x--319x-installation) - (Deprecated starting from NGINX Plus R34)
-- [Alpine 3.19](#alpine-315x--317x--319x-installation)
+- [Alpine 3.15](#alpine-315x--317x--319x--321x-installation) - (Deprecated starting from NGINX Plus R30)
+- [Alpine 3.17](#alpine-315x--317x--319x--321x-installation) - (Deprecated starting from NGINX Plus R34)
+- [Alpine 3.19](#alpine-315x--317x--319x--321x-installation)
+- [Alpine 3.21](#alpine-315x--317x--319x--321x-installation)
 - [AmazonLinux 2023](#amazonlinux-linux-2023-installation)
 
 The NGINX App Protect DoS package has the following dependencies:
@@ -599,7 +600,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     sudo systemctl start app-protect-dos-ebpf-manager
     ```
 
-## RHEL 9+ Installation
+## RHEL 9+ / Rocky Linux 9 Installation
 
 1. If you already have NGINX packages on your system, back up your configs and logs:
 
@@ -997,7 +998,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
      sudo systemctl start app-protect-dos-ebpf-manager
     ```
 
-## Alpine 3.15.x / 3.17.x / 3.19.x Installation
+## Alpine 3.15.x / 3.17.x / 3.19.x / 3.21.x Installation
 
 1. If you already have NGINX packages in your system, back up your configs and logs:
 
@@ -1591,7 +1592,7 @@ COPY entrypoint.sh  /root/
 CMD /root/entrypoint.sh && tail -f /dev/null
 ```
 
-### RHEL 9 Docker Deployment Example
+### RHEL 9 / Rocky Linux 9 Docker Deployment Example
 
 ```Dockerfile
 # For RHEL ubi9:
@@ -1729,9 +1730,9 @@ CMD /root/entrypoint.sh && tail -f /dev/null
 ### Alpine Docker Deployment Example
 
 ```Dockerfile
-# For Alpine 3.15 / 3.17 / 3.19:
+# For Alpine 3.15 / 3.17 / 3.19 / 3.21:
 ARG OS_CODENAME
-# Where OS_CODENAME can be: 3.15 / 3.17 / 3.19
+# Where OS_CODENAME can be: 3.15 / 3.17 / 3.19 / 3.21
 FROM alpine:${OS_CODENAME}
 
 # Download certificate, key, and JWT license from the customer portal (https://my.f5.com)
