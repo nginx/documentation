@@ -18,7 +18,7 @@ and reliable with full lifecycle management of advanced NGINX traffic services.
 ## Featured content
 {{<card-layout>}}
   {{<card-section showAsCards="true" isFeaturedSection="true">}}
-    {{<card title="Overview" titleUrl="/nginxaas/azure/overview/overview/" isFeatured="true" icon="unplug">}}
+    {{<card title="Overview" titleUrl="/nginxaas/azure/overview/overview/" isFullSize="true" icon="unplug">}}
       Learn about NGINX as a Service for Azure, its features, and its architecture
     {{</card >}}
   {{</card-section>}}
