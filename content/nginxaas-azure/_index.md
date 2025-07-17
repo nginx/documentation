@@ -27,14 +27,17 @@ and reliable with full lifecycle management of advanced NGINX traffic services.
 
 {{<card-layout>}}
   {{<card-section showAsCards="true" >}}
-    {{<card title="Create a deployment" titleUrl="/nginxaas/azure/getting-started/create-deployment/" >}}
+    {{<card title="Getting started" titleUrl="/nginxaas/azure/getting-started/" >}}
       Deploy NGINX as a Service for Azure using the Azure portal, Azure CLI, or Terraform
     {{</card>}}
-    {{<card title="Disaster recovery" titleUrl="/nginx/azure/disaster-recovery/" >}}
-      Configure your NGINX as a Service for Azure environment to support failover
+    {{<card title="Changelog" titleUrl="/nginxaas/azure/changelog/" >}}
+      See the latest updates: New features, improvements, and bug fixes
     {{</card>}}
-    {{<card title="Quickstart guides" titleUrl="/nginxaas/azure/quickstart/" >}}
-      Learn how to scale your deployment, enable content catching, add security controls, and more
+    {{<card title="Logging and monitoring" titleUrl="/nginxaas/azure/monitoring/" >}}
+      Collect, correlate, and analyze metrics for a thorough understanding of your application's health and behavior.
+    {{</card>}}
+    {{<card title="Billing overview" titleUrl="/nginxaas/azure/billing/overview/" >}}
+      See the pricing plans and learn about NGINX Capacity Units (NCUs)
     {{</card>}}
   {{</card-section>}}
 {{</card-layout>}}
@@ -53,9 +56,6 @@ and reliable with full lifecycle management of advanced NGINX traffic services.
 
 {{<card-layout>}}
   {{<card-section showAsCards="true" >}}
-    {{<card title="Billing overview" titleUrl="/nginxaas/azure/billing/overview/" >}}
-      See the pricing plans and learn about NGINX Capacity Units (NCUs)
-    {{</card>}}
     {{<card title="Changelog" titleUrl="/nginxaas/azure/changelog/" icon="clock-alert">}}
       See the latest updates: New features, improvements, and bug fixes
     {{</card>}}
