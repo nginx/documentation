@@ -56,7 +56,7 @@ F5 NGINX One Console makes it easy to manage NGINX instances across locations an
     {{<card title="Organize users with RBAC" titleUrl="/nginx-one/rbac/" >}}
       Assign responsibilities with role-based access control 
     {{</card>}}
-    {{<card title="Automate with the NGINX One API" titleUrl="/nginx-one/api/" >}}
+    {{<card title="Automate with the NGINX One Console API" titleUrl="/nginx-one/api/" >}}
       Manage your NGINX fleet over REST
     {{</card>}}
     {{<card title="Glossary" titleUrl="/nginx-one/glossary/" >}}
