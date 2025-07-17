@@ -472,23 +472,23 @@ The following tables lists the configurable parameters of the NGINX Ingress Cont
 | **serviceNameOverride** | Used to prevent cloud load balancers from being replaced due to service name change during helm upgrades. | "" |
 | **nginxServiceMesh.enable** | Enable integration with NGINX Service Mesh. See the NGINX Service Mesh docs for more details. Requires `controller.nginxplus`. | false |
 | **nginxServiceMesh.enableEgress** | Enable NGINX Service Mesh workloads to route egress traffic through the Ingress Controller. See the NGINX Service Mesh docs for more details. Requires `nginxServiceMesh.enable`. | false |
-|**nginxAgent.enable** | Enable NGINX Agent to allow [connecting to NGINX One Console]({{< ref "/nginx-one/k8s/add-nic.md" >}}) (3.x) or to integrate [Security Monitoring]({{< ref "/nic/tutorials/security-monitoring.md" >}}) and App Protect WAF modules. (2.x). | false |
+|**nginxAgent.enable** | Enable NGINX Agent 3.x to allow [connecting to NGINX One Console]({{< ref "/nginx-one/k8s/add-nic.md" >}}) or to integrate NGINX Agent 2.x for [Security Monitoring]({{< ref "/nic/tutorials/security-monitoring.md" >}}) . | false |
 |**nginxAgent.logLevel** | Log level for NGINX Agent. | "error" |
-|**nginxAgent.dataplaneKeySecretName** | Name of the Kubernetes Secret containing the Data Plane key used to authenticate to NGINX One Console. Learn more [here]({{< ref "/nginx-one/k8s/add-nic.md" >}}). Required when `nginxAgent.enable` is set to `true`. 3.x only. | "" |
-|**nginxAgent.endpointHost** | Domain or IP address for the NGINX One Console. 3.x only. | "agent.connect.nginx.com" |
-|**nginxAgent.endpointPort** | Port for the NGINX One Console endpoint. 3.x only. | 443 |
-|**nginxAgent.tlsSkipVerify** | Skip TLS verification for the NGINX One Console endpoint. 3.x only. | false |
-|**nginxAgent.instanceGroup** | Set a custom Instance Group name for the deployment, shown when connected to NGINX Instance Manager. `nginx-ingress.controller.fullname` will be used if not set. 2.x only. | "" |
-|**nginxAgent.instanceManager.host** | FQDN or IP for connecting to NGINX Ingress Controller. Required when `nginxAgent.enable` is set to `true`. 2.x only. | "" |
-|**nginxAgent.instanceManager.grpcPort** | Port for connecting to NGINX Ingress Controller. 2.x only. | 443 |
-|**nginxAgent.instanceManager.sni** | Server Name Indication for Instance Manager. See the NGINX Agent [docs]({{< ref "/agent/configuration/encrypt-communication.md" >}}) for more details. 2.x only. | "" |
-|**nginxAgent.instanceManager.tls.enable** | Enable TLS for Instance Manager connection. 2.x only. | true |
-|**nginxAgent.instanceManager.tls.skipVerify** | Skip certification verification for Instance Manager connection. 2.x only. | false |
-|**nginxAgent.instanceManager.tls.caSecret** | Name of `nginx.org/ca` secret used for verification of Instance Manager TLS. 2.x only. | "" |
-|**nginxAgent.instanceManager.tls.secret** | Name of `kubernetes.io/tls` secret with a TLS certificate and key for using mTLS between NGINX Agent and Instance Manager. See the NGINX Instance Manager [docs]({{< ref "/nim/system-configuration/secure-traffic.md#mutual-client-certificate-authentication-setup-mtls" >}}) and the NGINX Agent [docs]({{< ref "/agent/configuration/encrypt-communication.md" >}}) for more details. 2.x only. | "" |
-|**nginxAgent.syslog.host** | Address for NGINX Agent to run syslog listener. 2.x only. | 127.0.0.1 |
-|**nginxAgent.syslog.port** | Port for NGINX Agent to run syslog listener. 2.x only. | 1514 |
-|**nginxAgent.napMonitoring.collectorBufferSize** | Buffer size for collector. Will contain log lines and parsed log lines. 2.x only. | 50000 |
-|**nginxAgent.napMonitoring.processorBufferSize** | Buffer size for processor. Will contain log lines and parsed log lines. 2.x only. | 50000 |
-|**nginxAgent.customConfigMap** | The name of a custom ConfigMap to use instead of the one provided by default. 2.x only. | "" |
+|**nginxAgent.dataplaneKeySecretName** | Name of the Kubernetes Secret containing the Data Plane key used to authenticate to NGINX One Console. Learn more [here]({{< ref "/nginx-one/k8s/add-nic.md" >}}). Required when `nginxAgent.enable` is set to `true`. Requires NGINX Agent 3.x. | "" |
+|**nginxAgent.endpointHost** | Domain or IP address for the NGINX One Console. Requires NGINX Agent 3.x. | "agent.connect.nginx.com" |
+|**nginxAgent.endpointPort** | Port for the NGINX One Console endpoint. Requires NGINX Agent 3.x. | 443 |
+|**nginxAgent.tlsSkipVerify** | Skip TLS verification for the NGINX One Console endpoint. Requires NGINX Agent 3.x. | false |
+|**nginxAgent.instanceGroup** | Set a custom Instance Group name for the deployment, shown when connected to NGINX Instance Manager. `nginx-ingress.controller.fullname` will be used if not set. Requires NGINX Agent 2.x. | "" |
+|**nginxAgent.instanceManager.host** | FQDN or IP for connecting to NGINX Ingress Controller. Required when `nginxAgent.enable` is set to `true`. Requires NGINX Agent 2.x. | "" |
+|**nginxAgent.instanceManager.grpcPort** | Port for connecting to NGINX Ingress Controller. Requires NGINX Agent 2.x. | 443 |
+|**nginxAgent.instanceManager.sni** | Server Name Indication for Instance Manager. See the NGINX Agent [docs]({{< ref "/agent/configuration/encrypt-communication.md" >}}) for more details. Requires NGINX Agent 2.x. | "" |
+|**nginxAgent.instanceManager.tls.enable** | Enable TLS for Instance Manager connection. Requires NGINX Agent 2.x. | true |
+|**nginxAgent.instanceManager.tls.skipVerify** | Skip certification verification for Instance Manager connection. Requires NGINX Agent 2.x. | false |
+|**nginxAgent.instanceManager.tls.caSecret** | Name of `nginx.org/ca` secret used for verification of Instance Manager TLS. Requires NGINX Agent 2.x. | "" |
+|**nginxAgent.instanceManager.tls.secret** | Name of `kubernetes.io/tls` secret with a TLS certificate and key for using mTLS between NGINX Agent and Instance Manager. See the NGINX Instance Manager [docs]({{< ref "/nim/system-configuration/secure-traffic.md#mutual-client-certificate-authentication-setup-mtls" >}}) and the NGINX Agent [docs]({{< ref "/agent/configuration/encrypt-communication.md" >}}) for more details. Requires NGINX Agent 2.x. | "" |
+|**nginxAgent.syslog.host** | Address for NGINX Agent to run syslog listener. Requires NGINX Agent 2.x. | 127.0.0.1 |
+|**nginxAgent.syslog.port** | Port for NGINX Agent to run syslog listener. Requires NGINX Agent 2.x. | 1514 |
+|**nginxAgent.napMonitoring.collectorBufferSize** | Buffer size for collector. Will contain log lines and parsed log lines. Requires NGINX Agent 2.x. | 50000 |
+|**nginxAgent.napMonitoring.processorBufferSize** | Buffer size for processor. Will contain log lines and parsed log lines. Requires NGINX Agent 2.x. | 50000 |
+|**nginxAgent.customConfigMap** | The name of a custom ConfigMap to use instead of the one provided by default. Requires NGINX Agent 2.x.| "" |
 {{</bootstrap-table>}}

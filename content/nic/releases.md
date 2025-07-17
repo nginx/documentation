@@ -18,7 +18,7 @@ Lastly, in our previous v5.0.0 release, we removed support for Open Tracing. Thi
 
 ### <i class="fa-solid fa-rocket"></i> Features
 - [7642](https://github.com/nginx/kubernetes-ingress/pull/7642) Add OpenTelemetry support
-- [7916](https://github.com/nginx/kubernetes-ingress/pull/7916) Add support for Agent version 3 and Connecting to NGINX One Console
+- [7916](https://github.com/nginx/kubernetes-ingress/pull/7916) Add support for NGINX Agent version 3 and Connecting to NGINX One Console
 - [7884](https://github.com/nginx/kubernetes-ingress/pull/7884) Tiered rate limits with variables
 - [7765](https://github.com/nginx/kubernetes-ingress/pull/7765) Add OIDC PKCE configuration through Policy
 - [7832](https://github.com/nginx/kubernetes-ingress/pull/7832) Add request_method to rate-limit Policy
