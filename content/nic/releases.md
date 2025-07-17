@@ -65,7 +65,7 @@ Added support for [NGINX Plus R34]({{< ref "/nginx/releases.md#nginxplusrelease-
 
 {{< call-out "warning" >}}
 
-With the removal of the OpenTracing dynamic module from [NGINX Plus R34]({{< ref "/nginx/releases.md#nginxplusrelease-34-r34" >}}), NGINX Ingress Controller also removes full OpenTracing support.  This will affect users making use of OpenTracing with the ConfigMap, `server-snippets` & `location-snippets` parameters.  Support for tracing with [OpenTelemetry]({{< ref "/nginx/admin-guide/dynamic-modules/opentelemetry.md" >}}) will come in a future release.
+With the removal of the OpenTracing dynamic module from [NGINX Plus R34]({{< ref "/nginx/releases.md#nginxplusrelease-34-r34" >}}), NGINX Ingress Controller also removes full OpenTracing support. This will affect users making use of OpenTracing with the ConfigMap, `server-snippets` & `location-snippets` parameters.  Support for tracing with [OpenTelemetry]({{< ref "/nginx/admin-guide/dynamic-modules/opentelemetry.md" >}}) will come in a future release.
 
 {{< /call-out >}}
 
