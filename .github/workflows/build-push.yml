@@ -102,7 +102,7 @@ jobs:
                     short: true
                   },
                   {
-                    tilte: 'Description',
+                    title: 'Description',
                     value: `${{ github.event.client_payload.description }}`,
                     short: false
                   },
