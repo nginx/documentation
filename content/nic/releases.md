@@ -48,7 +48,7 @@ Lastly, in our previous v5.0.0 release, we removed support for Open Tracing. Thi
 [GitHub Container](https://github.com/nginx/kubernetes-ingress/pkgs/container/kubernetes-ingress),
 [Amazon ECR Public Gallery](https://gallery.ecr.aws/nginx/nginx-ingress) or [Quay.io](https://quay.io/repository/nginx/nginx-ingress).
 - For NGINX Plus, use the 5.1.0 images from the F5 Container registry or build your own image using the 5.1.0 source code
-- For Helm, use version 2.2.0 of the chart.
+- For Helm, use version 2.2.1 of the chart.
 
 ### <i class="fa-solid fa-life-ring"></i> Supported Platforms
 
