@@ -37,13 +37,27 @@ You can also create a data plane key through the NGINX One Console. Once loggged
 {{<tabs name="deploy-config-resource">}}
 {{%tab name="Helm"%}}
 
-Edit your `values.yaml` file to enable NGINX Agent and configure it to connect to NGINX One Console:
+Upgrade or install NGINX Ingress Controller with the following command to configure NGINX Agent and connect to NGINX One Console:
 
-```yaml
-nginxAgent:
-  enable: true
-  dataplaneKeySecretName: "<data_plane_key_secret_name>"
-```
+- For NGINX:
+
+    ```shell
+    helm upgrade --install my-release oci://ghcr.io/nginx/charts/nginx-ingress --version {{< nic-helm-version >}} \
+      --set nginxAgent.enable=true \
+      --set nginxAgent.dataplaneKeySecretName=<data_plane_key_secret_name> \
+      --set nginxAgent.endpointHost=agent.connect.nginx.com
+    ```
+
+- For NGINX Plus: (This assumes you have pushed NGINX Ingress Controller image `nginx-plus-ingress` to your private registry `myregistry.example.com`)
+
+    ```shell
+    helm upgrade --install my-release oci://ghcr.io/nginx/charts/nginx-ingress --version {{< nic-helm-version >}} \
+      --set controller.image.repository=myregistry.example.com/nginx-plus-ingress \
+      --set controller.nginxplus=true \
+      --set nginxAgent.enable=true \
+      --set nginxAgent.dataplaneKeySecretName=<data_plane_key_secret_name> \
+      --set nginxAgent.endpointHost=agent.connect.nginx.com
+    ```
 
 The `dataplaneKeySecretName` is used to authenticate the agent with NGINX One Console. See the [NGINX One Console Docs]({{< ref "/nginx-one/connect-instances/create-manage-data-plane-keys.md" >}})
 for instructions on how to generate your dataplane key from the NGINX One Console.
@@ -89,7 +103,7 @@ data:
     ## command server settings
     command:
       server:
-        host: product.connect.nginx.com
+        host: agent.connect.nginx.com
         port: 443
       auth:
         tokenpath: "/etc/nginx-agent/secrets/dataplane.key"
