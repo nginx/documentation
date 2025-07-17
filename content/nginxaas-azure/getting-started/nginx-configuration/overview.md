@@ -76,12 +76,7 @@ Some directives cannot be overridden by the user provided configuration.
 
 - Due to port restrictions on Azure Load Balancer health probes, certain ports are not allowed for the `listen` directive in NGINX configuration. The following ports are blocked:
   - `19`, `21`, `70`, `119` - Azure health probe restricted ports
-  - `49151` - Azure system reserved port
-  - `49153` - CoreDNS port (used for internal DNS resolution)
-  - `5140` - NGINX App Protect syslog port (used for internal WAF logging)
-  - `50000` - NGINX App Protect enforcer port (used for internal WAF communication)
-  - `54141` - AIGW traffic port (used for internal gateway communication)
-  - `54779` - IMDS proxy port (used for internal metadata service communication)
+  - `49151`, `49153`, `5140`, `50000`, `54141`, `54779` - reserved ports to support other NGINXaaS features
 
 - The [Basic]({{< ref "/nginxaas-azure/billing/overview.md#basic-plan" >}}) plan (and the deprecated Standard (v1) plan) supports a maximum of 5 listen ports in the NGINX configuration. Configurations that specify over 5 unique ports are rejected.
 
