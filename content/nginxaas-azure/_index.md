@@ -57,7 +57,7 @@ and reliable with full lifecycle management of advanced NGINX traffic services.
 {{<card-layout>}}
   {{<card-section showAsCards="true" >}}
     {{<card title="Feature comparison" titleUrl="/nginxaas/azure/overview/feature-comparison/" icon="book-open-variant">}}
-      See the differences between NGINX as a Service for Azure and NGINX Plus
+      Learn about the differences between NGINX as a Service for Azure and NGINX Plus
     {{</card>}}
     {{<card title="Quickstart guides" titleUrl="/nginxaas/azure/quickstart/" icon="book-open-variant">}}
       Step-by-step guides to help you deploy and configure NGINX as a Service for Azure
