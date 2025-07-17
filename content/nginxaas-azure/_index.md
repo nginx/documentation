@@ -18,7 +18,7 @@ and reliable with full lifecycle management of advanced NGINX traffic services.
 ## Featured content
 {{<card-layout>}}
   {{<card-section showAsCards="true" isFeaturedSection="true">}}
-    {{<card title="Overview" titleUrl="/nginxaas/azure/getting-started/" isFeatured="true" icon="unplug">}}
+    {{<card title="Overview" titleUrl="/nginxaas/azure/overview/overview/" isFeatured="true" icon="unplug">}}
       Learn about NGINX as a Service for Azure, its features, and its architecture
     {{</card >}}
   {{</card-section>}}
@@ -36,7 +36,7 @@ and reliable with full lifecycle management of advanced NGINX traffic services.
     {{<card title="Logging and monitoring" titleUrl="/nginxaas/azure/monitoring/" >}}
       Collect, correlate, and analyze metrics for a thorough understanding of your application's health and behavior.
     {{</card>}}
-    {{<card title="Billing overview" titleUrl="/nginxaas/azure/billing/overview/" >}}
+    {{<card title="Marketplace billing" titleUrl="/nginxaas/azure/billing/overview/" >}}
       See the pricing plans and learn about NGINX Capacity Units (NCUs)
     {{</card>}}
   {{</card-section>}}
