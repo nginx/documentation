@@ -30,7 +30,7 @@ The following is an example of a OpenTelemetry collector running in your cluster
 otel-exporter-endpoint: "http://otel-collector.default.svc.cluster.local:4317"
 ```
 
-A complete ConfigMap example with all OpenTelemetry map options could look as follows:
+A complete ConfigMap example with all OpenTelemetry options could look as follows:
 
 {{< ghcode "https://raw.githubusercontent.com/nginx/kubernetes-ingress/refs/heads/main/examples/shared-examples/otel/nginx-config.yaml" >}}
 
@@ -52,7 +52,7 @@ otel-trace-in-http: "true"
 
 You can configure OpenTelemetry on a per resource basis in NGINX Ingress Controller.
 
-For this functionality, you must [enable snippets]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-snippets.md" >}}), using the `-enable-snippets` command-line argument.
+For this functionality, you must [enable snippets]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-snippets.md" >}}) with the `-enable-snippets` command-line argument.
 
 Based on the state of global configuration, you can selectively enable or disable metrics for each resource.
 
