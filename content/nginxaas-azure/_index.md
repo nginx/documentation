@@ -30,9 +30,6 @@ and reliable with full lifecycle management of advanced NGINX traffic services.
     {{<card title="Getting started" titleUrl="/nginxaas/azure/getting-started/" >}}
       Deploy NGINX as a Service for Azure using the Azure portal, Azure CLI, or Terraform
     {{</card>}}
-    {{<card title="Changelog" titleUrl="/nginxaas/azure/changelog/" >}}
-      See the latest updates: New features, improvements, and bug fixes
-    {{</card>}}
     {{<card title="Logging and monitoring" titleUrl="/nginxaas/azure/monitoring/" >}}
       Collect, correlate, and analyze metrics for a thorough understanding of your application's health and behavior.
     {{</card>}}
