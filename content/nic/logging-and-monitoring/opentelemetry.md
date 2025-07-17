@@ -19,7 +19,6 @@ This topic describes how to enable [OpenTelemetry](https://opentelemetry.io/) fo
 To complete this guide, you need the following pre-requisites:
 
 - An [NGINX Ingress Controller installation]({{< ref "/nic/installation/" >}}) with OpenTelemetry (v5.1.0+)
-- [Snippets enabled]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-snippets.md" >}}), using the `-enable-snippets` command-line argument
 
 ## Load the OpenTelemetry module
 
@@ -30,6 +29,10 @@ The following is an example of a OpenTelemetry collector running in your cluster
 ```yaml
 otel-exporter-endpoint: "http://otel-collector.default.svc.cluster.local:4317"
 ```
+
+A complete ConfigMap example with all OpenTelemetry map options could look as follows:
+
+{{< ghcode "https://raw.githubusercontent.com/nginx/kubernetes-ingress/refs/heads/main/examples/shared-examples/otel/nginx-config.yaml" >}}
 
 ## Enable OpenTelemetry
 
@@ -47,11 +50,13 @@ otel-trace-in-http: "true"
 
 ### Per resource
 
-You can configure OpenTracing on a per resource basis in NGINX Ingress Controller.
+You can configure OpenTelemetry on a per resource basis in NGINX Ingress Controller.
+
+For this functionality, you must [enable snippets]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-snippets.md" >}}), using the `-enable-snippets` command-line argument.
 
 Based on the state of global configuration, you can selectively enable or disable metrics for each resource.
 
-#### Enabling a specific resource or path
+#### Enable a specific resource or path
 
 With OpenTelemetry **disabled** globally, you can enable it for a specific resource using the server snippet annotation:
 
