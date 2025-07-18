@@ -2201,7 +2201,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Successfully retrieved the list of instances affected by the CVE",
+            "description": "Successfully retrieved the list of instances affected by the CVE.",
             "content": {
               "application/json": {
                 "schema": {
@@ -6431,6 +6431,7 @@
         "required": [
           "object_id",
           "name",
+          "created_at",
           "instances_count",
           "config_status"
         ],
@@ -6441,6 +6442,11 @@
           "name": {
             "description": "Name of the Nginx config sync group.",
             "type": "string"
+          },
+          "created_at": {
+            "description": "The date and time when the config sync group was created.",
+            "type": "string",
+            "format": "date-time"
           },
           "instances_count": {
             "description": "Number of instances in the Nginx config sync group.",
@@ -6485,6 +6491,7 @@
             {
               "object_id": "csg_-uvR3F2TQGm18jnl7bpaGw",
               "name": "test-config-sync-group",
+              "created_at": "2023-12-05T22:30:20.220114Z",
               "config_status": "in_sync",
               "instances_count": 1
             }
@@ -6603,7 +6610,8 @@
         "example": {
           "object_id": "csg_-uvR3F2TQGm18jnl7bpaGw",
           "name": "test-config-sync-group",
-          "last_publication": "2023-12-06T22:37:24.120114Z"
+          "last_publication": "2023-12-06T22:37:24.120114Z",
+          "created_at": "2023-12-05T22:30:20.220114Z"
         }
       },
       "InstanceObjectID": {
@@ -7184,6 +7192,7 @@
         "example": {
           "object_id": "csg_-uvR3F2TQGm18jnl7bpaGw",
           "name": "test-config-sync-group",
+          "created_at": "2023-12-06T22:37:24.120114Z",
           "config_status": "in_sync",
           "config_version": "uvR3F2TQGm18jnl7bpaGw",
           "instances": [
@@ -7874,6 +7883,13 @@
               "online_instances_count": {
                 "description": "Total number of online instances in the control plane.",
                 "type": "integer"
+              },
+              "cve_severity": {
+                "type": "array",
+                "description": "An array summarizing identified Common Vulnerabilities and Exposures (CVEs) across the NGINX control plane.",
+                "items": {
+                  "$ref": "#/components/schemas/CveDetails"
+                }
               }
             }
           }
@@ -7911,15 +7927,37 @@
               "object_id": "ecp_tgfVM3KQTxCyiDXgV38G7A",
               "name": "nginx-ingress-001",
               "product_version": "nginx-ingress-controller-4.0.1",
+              "created_at": "2023-12-06T22:37:24.120114Z",
               "instances_count": 5,
-              "online_instances_count": 3
+              "online_instances_count": 3,
+              "cve_severity": [
+                {
+                  "count": 6,
+                  "type": "medium"
+                },
+                {
+                  "count": 1,
+                  "type": "high"
+                }
+              ]
             },
             {
               "object_id": "ecp_-bRQlhscTKmbUIdJaYhGJA",
               "name": "nginx-ingress-002",
+              "created_at": "2023-12-06T22:37:24.120114Z",
               "product_version": "nginx-ingress-controller-4.0.1",
               "instances_count": 3,
-              "online_instances_count": 1
+              "online_instances_count": 1,
+              "cve_severity": [
+                {
+                  "count": 2,
+                  "type": "medium"
+                },
+                {
+                  "count": 3,
+                  "type": "high"
+                }
+              ]
             }
           ]
         }
@@ -8002,6 +8040,7 @@
           "deployment_uuid": "b9b00e37-5ee4-4361-8c61-1329f3828dd3",
           "key_object_id": "key_6AT9LXyUQHyhC8kF7bVMgg",
           "kubernetes_namespace": "nginx-ingress-controller",
+          "created_at": "2023-12-06T22:37:24.120114Z",
           "cert_summary": {
             "total": 9,
             "valid": 1,
@@ -8045,12 +8084,41 @@
           "$ref": "#/components/schemas/SummaryDisplayCount"
         }
       },
+      "CveControlPlaneSummary": {
+        "description": "A summary of Common Vulnerabilities and Exposures (CVEs) across the NGINX control plane.",
+        "type": "object",
+        "required": [
+          "severity",
+          "count",
+          "affected_control_planes"
+        ],
+        "properties": {
+          "severity": {
+            "$ref": "#/components/schemas/CveSeverityType"
+          },
+          "count": {
+            "description": "The number of CVEs at each severity level.",
+            "type": "integer"
+          },
+          "affected_control_planes": {
+            "description": "The number of control planes affected by each CVE.",
+            "type": "integer"
+          }
+        }
+      },
       "ControlPlaneSummary": {
         "description": "A summary of control planes including their product names/version details.",
         "type": "object",
         "properties": {
           "product_versions": {
             "$ref": "#/components/schemas/ControlPlaneProductVersionSummary"
+          },
+          "cves": {
+            "description": "An array summarizing identified Common Vulnerabilities and Exposures (CVEs) across the NGINX control plane.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CveControlPlaneSummary"
+            }
           }
         },
         "example": {
@@ -8058,6 +8126,18 @@
             {
               "count": 10,
               "name": "nginx-ingress-controller-1.0.0"
+            }
+          ],
+          "cves": [
+            {
+              "affected_control_planes": 3,
+              "count": 13,
+              "severity": "medium"
+            },
+            {
+              "affected_control_planes": 2,
+              "count": 2,
+              "severity": "high"
             }
           ]
         }
@@ -8085,6 +8165,10 @@
           },
           "instances_impacted": {
             "description": "Number of instances impacted by the security advisory",
+            "type": "integer"
+          },
+          "control_planes_impacted": {
+            "description": "Number of control planes impacted by the security advisory",
             "type": "integer"
           },
           "published_at": {
@@ -8119,15 +8203,17 @@
       },
       "NginxProduct": {
         "type": "string",
-        "description": "NGINX product :\n  * `noss` - NGINX Open Source.\n  * `nplus` - NGINX PLUS.\n",
+        "description": "NGINX product :\n  * `noss` - NGINX Open Source.\n  * `nplus` - NGINX PLUS.\n  * `nic` - NGINX Ingress Controller.\n",
         "enum": [
           "noss",
           "nplus",
+          "nic",
           "unknown"
         ],
         "x-enum-varnames": [
           "nginx_product_noss",
           "nginx_product_nplus",
+          "nginx_product_nic",
           "nginx_product_unknown"
         ]
       },
@@ -8192,6 +8278,13 @@
                     "1.11.1",
                     "1.20.2",
                     "1.19.9"
+                  ]
+                },
+                {
+                  "name": "nic",
+                  "versions": [
+                    "1.0.0",
+                    "2.1.0"
                   ]
                 }
               ],
@@ -8694,7 +8787,8 @@
           "control_plane": {
             "object_id": "ecp_CO1DdBxZToWmr3pTcaQ8QA",
             "name": "nginx-ingress-001",
-            "product_version": "nginx-ingress-controller-4.0.1"
+            "product_version": "nginx-ingress-controller-4.0.1",
+            "created_at": "2023-12-06T22:37:24.120114Z"
           },
           "last_reported": "2023-12-06T22:37:24.120114Z",
           "nginx_build": {
@@ -10670,9 +10764,9 @@
         "value": {
           "object_id": "csg_-uvR3F2TQGm18jnl7bpaGw",
           "name": "test-config-sync-group",
-          "last_reported": "2023-12-06T22:37:24.120114Z",
           "config_status": "in_sync",
           "config_version": "uvR3F2TQGm18jnl7bpaGw",
+          "created_at": "2023-12-06T22:37:24.120114Z",
           "instances": [
             {
               "object_id": "inst_-uvR3F2TQGm18jnl7bpaGw",
