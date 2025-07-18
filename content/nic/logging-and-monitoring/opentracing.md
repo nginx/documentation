@@ -1,5 +1,5 @@
 ---
-title: OpenTracing (Removed in v5.0.0)
+title: Enable OpenTracing (Removed in v5.0.0)
 toc: true
 weight: 700
 nd-content-type: how-to
@@ -7,19 +7,17 @@ nd-product: NIC
 nd-docs: DOCS-618
 ---
 
-{{< call-out "warning" "OpenTracing is removed from v5.0.0" >}}
+This topic describes how to OpenTracing with F5 NGINX Ingress Controller.
 
-OpenTracing support has been removed from v5.0.0 of F5 NGINX Ingress Controller.
+NGINX Ingress Controller supports [OpenTracing](https://opentracing.io/) with the third-party module [opentracing-contrib/nginx-opentracing](https://github.com/opentracing-contrib/nginx-opentracing).
+
+{{< call-out "warning" >}}
+
+OpenTracing support has been removed from v5.0.0 of NGINX Ingress Controller.
 
 From v5.1.0 onwards, you should follow the guidance in [Configure OpenTelemetry]({{< ref "/nic/logging-and-monitoring/opentelemetry.md" >}}).
 
 {{< /call-out >}}
-
-
-
-Learn how to use OpenTracing with F5 NGINX Ingress Controller.
-
-NGINX Ingress Controller supports [OpenTracing](https://opentracing.io/) with the third-party module [opentracing-contrib/nginx-opentracing](https://github.com/opentracing-contrib/nginx-opentracing).
 
 ## Prerequisites
 
