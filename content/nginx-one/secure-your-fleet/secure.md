@@ -27,7 +27,7 @@ If you already have accessed F5 Distributed Cloud and have NGINX instances avail
 
 ### Confirm access to the F5 Distributed Cloud
 
-Confirm an F5 Distributed Cloud tenant has been provisioned for you. Log in to MyF5 and review your subscriptions. You should see within one of your subscriptions "Distributed Cloud". This could be in either an NGINX subscription or a Distributed Cloud. If the above does not appear in any of your subscriptions, reach out to either your F5 Account Team or Customer Success Manager.
+Confirm an F5 Distributed Cloud tenant has been provisioned for you. Log in to the [MyF5](https://my.f5.com) customer portal and review your subscriptions. You should see within one of your subscriptions "Distributed Cloud". This could be in either an NGINX subscription or a Distributed Cloud. If the above does not appear in any of your subscriptions, reach out to either your F5 Account Team or Customer Success Manager.
 
 With access, you or someone in your organization should have an email from no-reply@cloud.f5.com asking you to update your password when the tenant was created. The account name referenced in the email in bold is the tenant name.
 
@@ -48,7 +48,7 @@ Alternatively, we also have instructions for [Deploying NGINX and NGINX Plus wit
 ## Connect at least one NGINX instance to the NGINX One Console
 
 If you already have connected instances to the NGINX One Console, you can start to [Configure an active alert policy]({{< ref "/nginx-one/secure-your-fleet/secure.md#configure-an-active-alert-policy" >}}).
-Otherwise, you need to generate a data plane key, add an instance, and install NGINX Agent. We assume this is the first time you are connecting an instance.
+Otherwise, you need to add an instance, generate a data plane key, and install NGINX Agent. We assume this is the first time you are connecting an instance.
 
 ### Add an instance
 
@@ -85,8 +85,8 @@ To configure security-related alerts, follow these steps:
    1. (Optional) Specify a label and description.
 1. Under **Receiver**, select **Email** and enter your email address.
 1. Select **Add Alert Receiver**
-1. Your email receiver should now appear on the list of Alert Receivers.
-1. Under the **Actions** column, select **Verify Email**.
+   Your alert receiver should now appear on the list of Alert Receivers.
+1. Select the **Actions** ellipsis (...) for your receiver. Select **Verify Email**.
 1. Select **Send email** to confirm.
 1. You should receive a verification code in the email provided. Copy that code.
 1. Under the **Actions** column, select **Enter verification code**.
@@ -105,13 +105,15 @@ Next, configure the policy that identifies when you'll get an alert.
 1. Select **Add Item**.
 1. Under **Select Alerts** select a filter. If you're interested in all NGINX alerts, select **Matching RegEx of Alertname**. In the text box that appears, enter **NGINX**.
 1. Set the **Action as Send** and select **Apply**.
-1. Select **Apply** again, and then select **Apply Alert Policy**.
 
 Now set a second alert related to Common Vulnerabilities and Exposures (CVEs).
 
 1. Select **Add Item**
+1. Under **Select Alerts** select a filter. If you're interested in all CVEs, select **Matching RegEx of Alertname**. In the text box that appears, enter **CVE**.
 1. Under **Select Alerts**, set the **Action** as **Send** and select **Apply**
-1. Select **Save and Exit**
+   You should now see two alerts under **Policy Rules**.
+1. Select **Apply** to save thse policies.
+1. Select **Add Alert Policy**.
 
 You've now set up F5 Distributed Cloud to send you security-related alerts from NGINX One Console.
 
