@@ -1,7 +1,7 @@
 ---
-title: Status Page
+title: View the NGINX status page
 toc: true
-weight: 1900
+weight: 200
 nd-content-type: how-to
 nd-product: NIC
 nd-docs: DOCS-615
