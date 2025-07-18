@@ -1,0 +1,51 @@
+name: Detect changes in documentation within nginx/nginx.org
+
+on:
+    workflow_dispatch:
+    schedule:
+      - cron: "0 */23 * * *"
+
+jobs:
+  clone-repository:
+    name: Clone nginx/nginx.org repository
+    runs-on: ubuntu-latest
+    steps:
+      - name: PLACEHOLDER
+        run: |
+            echo "PLACEHOLDER"
+      
+  detect-changes:
+    name: Detect changes in 'en' docs of nginx/nginx.org
+    runs-on: ubuntu-latest
+    outputs:
+      IS_CHANGES_DETECTED: ${{ steps.check_changes.outputs.changed }}
+    steps: 
+      - name: PLACEHOLDER
+        id: check_changes
+        run: |
+            echo "PLACEHOLDER"
+
+  execute-make:
+    name: Execute make target 'make hugo-md'
+    if: needs.detect-changes.outputs.IS_CHANGES_DETECTED
+    runs-on: ubuntu-latest
+    steps:
+      - name: PLACEHOLDER
+        run: |
+            echo "PLACEHOLDER"
+
+  move-generated-files:
+    name: Move generated markdown files to '/content/nginx' directory
+    runs-on: ubuntu-latest
+    steps:
+      - name: PLACEHOLDER
+        run: |
+            echo "PLACEHOLDER"
+
+  create-PR:
+    name: Create PR in documentation repository
+    runs-on: ubuntu-latest
+    steps:
+      - name: PLACEHOLDER
+        run: |
+            echo "PLACEHOLDER"
