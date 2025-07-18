@@ -44,121 +44,6 @@ In the above command, `v{{< nic-version >}}` represents the version of NGINX Ing
 Check the [release notes](https://www.github.com/nginx/kubernetes-ingress/releases) for a new release for any special upgrade procedures.
 {{< /call-out >}}
 
-#### Helm upgrades prior to 3.1.0
-
-For NGINX Ingress Controller version v3.1.0, [changes were introduced](https://github.com/nginx/kubernetes-ingress/pull/3606) to Helm resource names, labels and annotations to fit with Helm best practices.
-
-When using Helm to upgrade from a version prior to 3.1.0, certain resources like Deployment, DaemonSet and Service will be recreated during the process, which will result in downtime.
-
-Although the advisory is to update all resources in accordance with new naming convention, to avoid downtime follow the steps listed below.
-
-{{< call-out "note" >}} The following steps apply to both 2.x and 3.0.x releases.  {{</ call-out >}}
-
-The steps you should follow depend on your Helm release name:
-
-{{<tabs name="upgrade-helm">}}
-
-{{%tab name="nginx-ingress"%}}
-
-Use `kubectl describe` on deployment/daemonset to get the `Selector` value:
-
-```shell
-kubectl describe deployments -n <namespace>
-```
-
-Copy the key=value under `Selector`, such as:
-
-```shell
-Selector: app=nginx-ingress-nginx-ingress
-```
-
-Checkout the latest available tag using `git checkout v{{< nic-version >}}`
-
-Navigate to `/kubernetes-ingress/charts/nginx-ingress`
-
-Update the `selectorLabels: {}` field in the `values.yaml` file located at `/kubernetes-ingress/charts/nginx-ingress` with the copied `Selector` value.
-
-```shell
-selectorLabels: {app: nginx-ingress-nginx-ingress}
-```
-
-Run `helm upgrade` with following arguments set:
-
-```shell
---set serviceNameOverride="nginx-ingress-nginx-ingress"
---set controller.name=""
---set fullnameOverride="nginx-ingress-nginx-ingress"
-```
-
-It could look as follows:
-
-```shell
-helm upgrade nginx-ingress oci://ghcr.io/nginx/charts/nginx-ingress --version 0.19.0 --set controller.kind=deployment/daemonset --set controller.nginxplus=false/true --set controller.image.pullPolicy=Always --set serviceNameOverride="nginx-ingress-nginx-ingress" --set controller.name="" --set fullnameOverride="nginx-ingress-nginx-ingress" -f values.yaml
-```
-
-Once the upgrade process has finished, use `kubectl describe` on the deployment to verify the change by reviewing its events:
-
-```text
-    Type    Reason             Age    From                   Message
-----    ------             ----   ----                   -------
-Normal  ScalingReplicaSet  9m11s  deployment-controller  Scaled up replica set nginx-ingress-nginx-ingress-<old_version> to 1
-Normal  ScalingReplicaSet  101s   deployment-controller  Scaled up replica set nginx-ingress-nginx-ingress-<new_version> to 1
-Normal  ScalingReplicaSet  98s    deployment-controller  Scaled down replica set nginx-ingress-nginx-ingress-<old_version> to 0 from 1
-```
-
-{{%/tab%}}
-
-{{%tab name="Other release names"%}}
-
-Use `kubectl describe` on deployment/daemonset to get the `Selector` value:
-
-```shell
-kubectl describe deployment/daemonset -n <namespace>
-```
-
-Copy the key=value under ```Selector```, such as:
-
-```shell
-Selector: app=<helm_release_name>-nginx-ingress
-```
-
-Checkout the latest available tag using `git checkout v{{< nic-version >}}`
-
-Navigate to `/kubernetes-ingress/charts/nginx-ingress`.
-
-Update the `selectorLabels: {}` field in the `values.yaml` file located at `/kubernetes-ingress/charts/nginx-ingress` with the copied `Selector` value.
-
-```shell
-selectorLabels: {app: <helm_release_name>-nginx-ingress}
-```
-
-Run `helm upgrade` with following arguments set:
-
-```shell
---set serviceNameOverride="<helm_release_name>-nginx-ingress"
---set controller.name=""
-```
-
-It could look as follows:
-
-```shell
-helm upgrade test-release oci://ghcr.io/nginx/charts/nginx-ingress --version 0.19.0 --set controller.kind=deployment/daemonset --set controller.nginxplus=false/true --set controller.image.pullPolicy=Always --set serviceNameOverride="test-release-nginx-ingress" --set controller.name="" -f values.yaml
-```
-
-Once the upgrade process has finished, use `kubectl describe` on the deployment to verify the change by reviewing its events:
-
-```shell
-Type    Reason             Age    From                   Message
-----    ------             ----   ----                   -------
-Normal  ScalingReplicaSet  9m11s  deployment-controller  Scaled up replica set test-release-nginx-ingress-<old_version> to 1
-Normal  ScalingReplicaSet  101s   deployment-controller  Scaled up replica set test-release-nginx-ingress-<new_version> to 1
-Normal  ScalingReplicaSet  98s    deployment-controller  Scaled down replica set test-release-nginx-ingress-<old_version> to 0 from 1
-```
-
-{{%/tab%}}
-
-{{</tabs>}}
-
 ### Upgrade NGINX Ingress Controller charts
 
 Once the CRDs have been upgraded, you can then upgrade the release chart.
@@ -309,3 +194,118 @@ If you're using [NGINX Plus]({{< ref "/nic/overview/nginx-plus.md" >}}) with NGI
 The topic also contains guidance for [sending reports to NGINX Instance Manager]({{< ref "/nic/installation/create-license-secret.md#nim">}}), which is necessary for air-gapped environments.
 
 In prior versions, usage reporting with the cluster connector was required: it is no longer necessary, as it is built into NGINX Plus.
+
+## Upgrade a version older than v3.1.0
+
+For NGINX Ingress Controller version v3.1.0, [changes were introduced](https://github.com/nginx/kubernetes-ingress/pull/3606) to Helm resource names, labels and annotations to fit with Helm best practices.
+
+When using Helm to upgrade from a version prior to 3.1.0, certain resources like Deployment, DaemonSet and Service will be recreated during the process, which will result in downtime.
+
+We advise updating all resources to match the new naming convention: the following steps will minimize the aforementioned downtime.
+
+{{< call-out "note" >}} The following steps apply to both 2.x and 3.0.x releases.  {{</ call-out >}}
+
+The steps you should follow depend on your Helm release name:
+
+{{<tabs name="upgrade-helm">}}
+
+{{%tab name="nginx-ingress"%}}
+
+Use `kubectl describe` on deployment/daemonset to get the `Selector` value:
+
+```shell
+kubectl describe deployments -n <namespace>
+```
+
+Copy the key=value under `Selector`, such as:
+
+```shell
+Selector: app=nginx-ingress-nginx-ingress
+```
+
+Checkout the latest available tag using `git checkout v{{< nic-version >}}`
+
+Navigate to `/kubernetes-ingress/charts/nginx-ingress`
+
+Update the `selectorLabels: {}` field in the `values.yaml` file located at `/kubernetes-ingress/charts/nginx-ingress` with the copied `Selector` value.
+
+```shell
+selectorLabels: {app: nginx-ingress-nginx-ingress}
+```
+
+Run `helm upgrade` with following arguments set:
+
+```shell
+--set serviceNameOverride="nginx-ingress-nginx-ingress"
+--set controller.name=""
+--set fullnameOverride="nginx-ingress-nginx-ingress"
+```
+
+It could look as follows:
+
+```shell
+helm upgrade nginx-ingress oci://ghcr.io/nginx/charts/nginx-ingress --version 0.19.0 --set controller.kind=deployment/daemonset --set controller.nginxplus=false/true --set controller.image.pullPolicy=Always --set serviceNameOverride="nginx-ingress-nginx-ingress" --set controller.name="" --set fullnameOverride="nginx-ingress-nginx-ingress" -f values.yaml
+```
+
+Once the upgrade process has finished, use `kubectl describe` on the deployment to verify the change by reviewing its events:
+
+```text
+    Type    Reason             Age    From                   Message
+----    ------             ----   ----                   -------
+Normal  ScalingReplicaSet  9m11s  deployment-controller  Scaled up replica set nginx-ingress-nginx-ingress-<old_version> to 1
+Normal  ScalingReplicaSet  101s   deployment-controller  Scaled up replica set nginx-ingress-nginx-ingress-<new_version> to 1
+Normal  ScalingReplicaSet  98s    deployment-controller  Scaled down replica set nginx-ingress-nginx-ingress-<old_version> to 0 from 1
+```
+
+{{%/tab%}}
+
+{{%tab name="Other release names"%}}
+
+Use `kubectl describe` on deployment/daemonset to get the `Selector` value:
+
+```shell
+kubectl describe deployment/daemonset -n <namespace>
+```
+
+Copy the key=value under ```Selector```, such as:
+
+```shell
+Selector: app=<helm_release_name>-nginx-ingress
+```
+
+Checkout the latest available tag using `git checkout v{{< nic-version >}}`
+
+Navigate to `/kubernetes-ingress/charts/nginx-ingress`.
+
+Update the `selectorLabels: {}` field in the `values.yaml` file located at `/kubernetes-ingress/charts/nginx-ingress` with the copied `Selector` value.
+
+```shell
+selectorLabels: {app: <helm_release_name>-nginx-ingress}
+```
+
+Run `helm upgrade` with following arguments set:
+
+```shell
+--set serviceNameOverride="<helm_release_name>-nginx-ingress"
+--set controller.name=""
+```
+
+It could look as follows:
+
+```shell
+helm upgrade test-release oci://ghcr.io/nginx/charts/nginx-ingress --version 0.19.0 --set controller.kind=deployment/daemonset --set controller.nginxplus=false/true --set controller.image.pullPolicy=Always --set serviceNameOverride="test-release-nginx-ingress" --set controller.name="" -f values.yaml
+```
+
+Once the upgrade process has finished, use `kubectl describe` on the deployment to verify the change by reviewing its events:
+
+```shell
+Type    Reason             Age    From                   Message
+----    ------             ----   ----                   -------
+Normal  ScalingReplicaSet  9m11s  deployment-controller  Scaled up replica set test-release-nginx-ingress-<old_version> to 1
+Normal  ScalingReplicaSet  101s   deployment-controller  Scaled up replica set test-release-nginx-ingress-<new_version> to 1
+Normal  ScalingReplicaSet  98s    deployment-controller  Scaled down replica set test-release-nginx-ingress-<old_version> to 0 from 1
+```
+
+{{%/tab%}}
+
+{{</tabs>}}
