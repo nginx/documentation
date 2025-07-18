@@ -85,8 +85,8 @@ To configure security-related alerts, follow these steps:
    1. (Optional) Specify a label and description.
 1. Under **Receiver**, select **Email** and enter your email address.
 1. Select **Add Alert Receiver**
-1. Your email receiver should now appear on the list of Alert Receivers.
-1. Under the **Actions** column, select **Verify Email**.
+   Your alert receiver should now appear on the list of Alert Receivers.
+1. Select the **Actions** ellipsis (...) for your receiver. Select **Verify Email**.
 1. Select **Send email** to confirm.
 1. You should receive a verification code in the email provided. Copy that code.
 1. Under the **Actions** column, select **Enter verification code**.
@@ -110,8 +110,11 @@ Next, configure the policy that identifies when you'll get an alert.
 Now set a second alert related to Common Vulnerabilities and Exposures (CVEs).
 
 1. Select **Add Item**
+1. Under **Select Alerts** select a filter. If you're interested in all CVEs, select **Matching RegEx of Alertname**. In the text box that appears, enter **CVE**.
 1. Under **Select Alerts**, set the **Action** as **Send** and select **Apply**
-1. Select **Save and Exit**
+   You should now see two alerts under **Policy Rules**.
+1. Select **Apply** to save thse policies.
+1. Select **Add Alert Policy**.
 
 You've now set up F5 Distributed Cloud to send you security-related alerts from NGINX One Console.
 
