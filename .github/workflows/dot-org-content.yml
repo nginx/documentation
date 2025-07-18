@@ -1,0 +1,97 @@
+name: Detect changes in documentation within nginx/nginx.org
+
+on:
+  pull_request:
+  # workflow_dispatch:
+  # schedule:
+  #   - cron: "0 */23 * * *"
+permissions:
+  pull-requests: write
+
+jobs:      
+  detect-changes:
+    name: Detect changes in 'en' docs of nginx/nginx.org
+    runs-on: ubuntu-latest
+    outputs:
+      IS_CHANGES_DETECTED: ${{ steps.check_changes.outputs.changed }}
+    steps: 
+      - name: Clone the nginx/nginx-org repository
+        run: |
+            git clone --depth=2 https://github.com/nginx/nginx.org.git dot-org-repo
+      - name: Change for changes in xml/en folder
+        id: check_changes
+        run: |
+            cd dot-org-repo
+            commit1=$(git rev-parse HEAD)
+            commit2=$(git rev-parse HEAD^)
+
+            if git diff --name-only $commit2 $commit1 | grep '^xml/en/'; then
+              echo "Changes detected in /en"
+              echo "changed=true" >> $GITHUB_OUTPUT
+            else
+              echo "No changes in /en"
+              echo "changed=false" >> $GITHUB_OUTPUT
+            fi
+  
+      - name: Execute make target 'make hugo-md' to generate markdown
+        if: steps.check_changes.outputs.changed == 'true'
+        run: |
+            cd dot-org-repo
+            make module-markdown
+
+  move-generated-files:
+    name: Move generated markdown files to '/content/nginx' directory
+    if: needs.detect-changes.outputs.IS_CHANGES_DETECTED
+    needs: detect-changes
+    runs-on: ubuntu-latest
+    steps:
+      - name: Move the generated folder
+        run: |
+          mv dot-org-repo/libxslt-md/ ./content/nginx/
+  
+  close-stale-PRs:
+    name: Close any related stale PRs
+    needs: move-generated-files
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check for any stale PRs
+        id: check-stale-pr
+        run: |
+          "PLACEHOLDER"
+
+      - name: Close relevant PR if any exists
+        if: steps.check-stale-pr.outputs.IS_STALE_FOUND == 'true'
+        run: |
+          "PLACEHOLDER"
+          
+
+  create-PR:
+    name: Create PR in documentation repository
+    if: needs.detect-changes.outputs.IS_CHANGES_DETECTED
+    needs: close-stale-PRs
+    runs-on: ubuntu-latest
+    steps:
+      - name: Generate the PR
+        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # v7.0.1
+        with:
+          script: |
+            const { repo, owner } = context.repo;
+
+            const result = await github.rest.pulls.create({
+              title: 'NGINX Plus - Module Ref: Update content for content/nginx due to detected changes',
+              owner,
+              repo,
+              head: '${{ github.ref_name }}',
+              base: 'develop',
+              body: [
+                '### Proposed Changes',
+                'Updated NGINX Plus docs',
+              ].join('\n')
+            });
+            
+            github.rest.issues.addLabels({
+              owner,
+              repo,
+              issue_number: result.data.number,
+              labels: ['product/nginx-plus', 'dependencies', 'module-reference']
+            });
