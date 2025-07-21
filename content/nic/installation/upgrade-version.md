@@ -290,7 +290,7 @@ Run `helm upgrade` with following arguments set:
 --set controller.name=""
 ```
 
-It could look as follows:
+It might look like this:
 
 ```shell
 helm upgrade test-release oci://ghcr.io/nginx/charts/nginx-ingress --version 0.19.0 --set controller.kind=deployment/daemonset --set controller.nginxplus=false/true --set controller.image.pullPolicy=Always --set serviceNameOverride="test-release-nginx-ingress" --set controller.name="" -f values.yaml
