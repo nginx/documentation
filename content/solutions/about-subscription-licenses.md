@@ -58,7 +58,7 @@ Each method ensures your NGINX Plus instances have access to the required licens
 
 ### Deploy with a Config Sync Group (Recommended)
 
-If you're using the [NGINX One Console]({{< ref "/nginx-one/getting-started.md" >}}), the easiest way to manage your JWT license is with a [Config Sync Group](https://docs.nginx.com/nginx-one/nginx-configs/config-sync-groups/manage-config-sync-groups/). This method lets you:
+If you're using the [NGINX One Console]({{< ref "/nginx-one/getting-started.md" >}}), the easiest way to manage your JWT license is with a [Config Sync Group]({{< ref "/nginx-one/nginx-configs/config-sync-groups/manage-config-sync-groups.md" >}}). This method lets you:
 
 - Avoid manual file copying
 - Keep your fleet consistent
