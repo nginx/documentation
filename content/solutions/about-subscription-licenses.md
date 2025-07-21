@@ -14,7 +14,9 @@ We’re updating NGINX Plus to align with F5’s entitlement and visibility poli
 
 Starting with NGINX Plus R33, all **NGINX Plus instances require a valid JSON Web Token (JWT) license**. This license is tied to your subscription (not individual instances) and is used to validate your subscription and automatically send usage reports to F5's licensing endpoint (`product.connect.nginx.com`), as required by your subscription agreement. In offline environments, usage reporting is [routed through NGINX Instance Manager]({{< ref "nim/disconnected/report-usage-disconnected-deployment.md" >}}).
 
-If you have multiple JWT licenses, you can assign your NGINX Plus instances to the license of your choice. NGINX consolidates the usage report for all licesnsed instances.
+If you have multiple subscriptions, you’ll also have multiple JWT licenses. You can assign each NGINX Plus instance to the license you prefer. NGINX combines usage reporting across all licensed instances.
+
+This feature is available in NGINX Instance Manager 2.20 and later.
 
 ### Important changes
 
