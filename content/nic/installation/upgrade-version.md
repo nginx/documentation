@@ -193,7 +193,7 @@ If you're using [NGINX Plus]({{< ref "/nic/overview/nginx-plus.md" >}}) with NGI
 
 The topic also contains guidance for [sending reports to NGINX Instance Manager]({{< ref "/nic/installation/create-license-secret.md#nim">}}), which is necessary for air-gapped environments.
 
-In prior versions, usage reporting with the cluster connector was required: it is no longer necessary, as it is built into NGINX Plus.
+Earlier versions required usage reporting through the cluster connector. This is no longer needed because it's now built into NGINX Plus.
 
 ## Upgrade a version older than v3.1.0
 
