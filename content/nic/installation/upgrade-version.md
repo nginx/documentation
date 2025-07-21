@@ -273,7 +273,7 @@ Copy the key=value under ```Selector```, such as:
 Selector: app=<helm_release_name>-nginx-ingress
 ```
 
-Checkout the latest available tag using `git checkout v{{< nic-version >}}`
+Check out the latest available tag using `git checkout v{{< nic-version >}}`
 
 Navigate to `/kubernetes-ingress/charts/nginx-ingress`.
 
