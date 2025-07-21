@@ -161,7 +161,7 @@ With added support for [NGINX R33]({{< ref "/nginx/releases.md#nginxplusrelease-
 For full details on setting up your license `Secret`, see [Upgrading to v4]({{< ref "/nic/installation/upgrade-version.md#upgrade-from-3x-to-4x" >}}).
 
 API Version `v1alpha1` of `GlobalConfiguration`, `Policy` and `TransportServer` resources are now deprecated.
-Please see [Update custom resource apiVersion]({{< ref "/nic/installation/upgrade-version.md#upgrade-from-3x-to-4x" >}}) for full details on updating your resources.
+For full details on updating your resources, see [Update custom resource apiVersion]({{< ref "/nic/installation/upgrade-version.md#upgrade-from-3x-to-4x" >}}).
 
 Updates have been made to our logging library. For a while, F5 NGINX Ingress Controller has been using the [golang/glog](https://github.com/golang/glog). For this release, we have moved to the native golang library [log/slog](https://pkg.go.dev/log/slog).
 This change was made for these reasons:
