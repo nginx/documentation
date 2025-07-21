@@ -161,7 +161,7 @@ To configure structured logging, you must update your log deployment arguments f
 
 {{%tab name="Helm"%}}
 
-The Helm value of `controller.logLevel` has been changed from an integer to a string.
+The Helm value `controller.logLevel` is now a string instead of an integer.
 
 To change the rendering of the log format, use the `controller.logFormat` key.
 
