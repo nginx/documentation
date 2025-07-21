@@ -37,7 +37,7 @@ Alternatively, CRDs can be upgraded without pulling the chart by running:
 kubectl apply -f https://raw.githubusercontent.com/nginx/kubernetes-ingress/v{{< nic-version >}}/deploy/crds.yaml
 ```
 
-In the above command, `v{{< nic-version >}}` represents the version of NGINX Ingress Controller release rather than the Helm chart version.
+In the above command, `v{{< nic-version >}}` represents the version of the NGINX Ingress Controller release rather than the Helm chart version.
 
 {{< call-out "note" >}} The following warning is expected and can be ignored: `Warning: kubectl apply should be used on resource created by either kubectl create --save-config or kubectl apply`.
 
