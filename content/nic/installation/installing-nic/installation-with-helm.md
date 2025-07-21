@@ -9,6 +9,10 @@ nd-docs: DOCS-602
 
 This document explains how to install F5 NGINX Ingress Controller using [Helm](https://helm.sh/).
 
+Following these steps will deploy NGINX Ingress Controller in your Kubernetes cluster with the default configuration.
+
+The [Helm chart parameters](#helm-chart-parameters) lists the parameters that can be configured during installation.
+
 ## Before you begin
 
 {{< call-out "note" >}} All documentation should only be used with the latest stable release, indicated on [the releases page]({{< ref "/nic/releases.md" >}}) of the GitHub repository. {{< /call-out >}}
@@ -16,12 +20,10 @@ This document explains how to install F5 NGINX Ingress Controller using [Helm](h
 - A [Kubernetes Version Supported by NGINX Ingress Controller]({{< ref "/nic/technical-specifications.md#supported-kubernetes-versions" >}})
 - Helm 3.0+.
 
-There are additional requirements if you'd like to use NGINX Plus:
-- [Create a license Secret]({{< ref "/nic/installation/create-license-secret.md" >}}).
-- Download the image using your NGINX Ingress Controller subscription certificate and key. View the [Get NGINX Ingress Controller from the F5 Registry]({{< ref "/nic/installation/nic-images/get-registry-image.md" >}}) topic.
-- The [Get the NGINX Ingress Controller image with JWT]({{< ref "/nic/installation/nic-images/get-image-using-jwt.md" >}}) topic describes how to use your subscription JWT token to get the image.
-- The [Build NGINX Ingress Controller]({{< ref "/nic/installation/build-nginx-ingress-controller.md" >}}) topic explains how to push an image to a private Docker registry.
-- Update the `controller.image.repository` field of the `values-plus.yaml` accordingly.
+If you would like to use NGINX Plus, there are few options: you will need to update the `controller.image.repository` field of `values-plus.yaml` accordingly.
+
+- [Download NGINX Ingress Controller from the F5 Registry]({{< ref "/nic/installation/nic-images/registry-download.md" >}})
+- [Add an NGINX Ingress Controller image to your cluster]({{< ref "/nic/installation/nic-images/add-image-to-cluster.md" >}})
 
 ## Install the Helm chart using the OCI Registry
 
@@ -99,8 +101,6 @@ helm install my-release -f values-plus.yaml .
 {{% /tab %}}
 
 {{< /tabs >}}
-
-The command deploys NGINX Ingress Controller in your Kubernetes cluster in the default configuration. The [Helm chart parameters](#helm-chart-parameters) lists the parameters that can be configured during installation.
 
 ## Custom Resource Definitions
 

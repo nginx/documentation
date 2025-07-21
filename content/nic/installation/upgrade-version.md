@@ -82,9 +82,12 @@ The instructions in this section are intended only for users upgrading from NGIN
 
 This section provides step-by-step instructions for upgrading NGINX Ingress Controller from version v3.x to v4.0.0.
 
-There are two necessary steps required: updating the `apiVersion` value of custom resources and configuring structured logging.
+There are two necessary steps required
 
-For NGINX Plus users, there is a third step to create a Secret for your license.
+- Update the `apiVersion` value of custom resources
+- Configure structured logging.
+
+If you want to use NGINX Plus, you will also need to follow the [Create a license Secret]({{< ref "/nic/installation/create-license-secret.md" >}}) topic.
 
 ### Update custom resource apiVersion
 

@@ -1,5 +1,5 @@
 ---
-title: Get the NGINX Ingress Controller image with JWT
+title: Add an NGINX Ingress Controller image to your cluster
 toc: true
 weight: 150
 nd-content-type: how-to
@@ -7,7 +7,7 @@ nd-product: NIC
 nd-docs: DOCS-1454
 ---
 
-This document describes how to pull the F5 NGINX Plus Ingress Controller image from the F5 Docker registry into your Kubernetes cluster using your JWT token.
+This document describes how to add an F5 NGINX Plus Ingress Controller image from the F5 Docker registry into your Kubernetes cluster using a JWT token.
 
 ## Overview
 
@@ -23,18 +23,18 @@ To list the available image tags using the Docker registry API, you will also ne
 
 {{< note >}}
 
-You can also get the image using alternative methods:
+You can also get an image using these methods:
 
-* You can use Docker to pull an NGINX Ingress Controller image with NGINX Plus and push it to your private registry by following the [Get NGINX Ingress Controller from the F5 Registry]({{< ref "/nic/installation/nic-images/get-registry-image.md" >}}) topic.
-* You can follow the [Build NGINX Ingress Controller]({{< ref "/nic/installation/build-nginx-ingress-controller.md" >}}) topic.
+- [Download NGINX Ingress Controller from the F5 Registry]({{< ref "/nic/installation/nic-images/registry-download.md" >}}) topic.
+- [Build NGINX Ingress Controller]({{< ref "/nic/installation/build-nginx-ingress-controller.md" >}}) topic.
 
 If you would like to use an NGINX Ingress Controller image with NGINX open source, we provide the image through [DockerHub](https://hub.docker.com/r/nginx/nginx-ingress/).
 
 {{< /note >}}
 
-## Before You Begin
+## Before you begin
 
-You will need the following information from [MyF5](https://my.f5.com) for these steps:
+To follow these steps, you will need the following pre-requisites:
 
 - A JWT Access Token (per instance) for NGINX Ingress Controller from an active NGINX Ingress Controller subscription.
 - The certificate (`nginx-repo.crt`) and key (`nginx-repo.key`) for each NGINX Ingress Controller instance, used to list the available image tags from the Docker registry API.
@@ -70,28 +70,6 @@ You will need the following information from [MyF5](https://my.f5.com) for these
 
 ---
 
-## Manifest Deployment
-
-The page ["Installation with Manifests"]({{< ref "/nic/installation/installing-nic/installation-with-manifests.md" >}}) explains how to install NGINX Ingress Controller using manifests. The following snippet is an example of a deployment:
-
-```yaml
-spec:
-  serviceAccountName: nginx-ingress
-  imagePullSecrets:
-  - name: regcred
-  automountServiceAccountToken: true
-  securityContext:
-    seccompProfile:
-      type: RuntimeDefault
-  containers:
-  - image: private-registry.nginx.com/nginx-ic/nginx-plus-ingress:{{< nic-version >}}
-    imagePullPolicy: IfNotPresent
-    name: nginx-plus-ingress
-```
-
-The `imagePullSecrets` and `containers.image` lines represent the Kubernetes secret, as well as the registry and version of NGINX Ingress Controller we are going to deploy.
-
----
 
 ## Helm Deployment
 
@@ -193,11 +171,30 @@ You can also use the certificate and key from the MyF5 portal and the Docker reg
     }
 ```
 
----
+## Manifest Deployment
 
-## Pulling an Image for Local Use
+The page ["Installation with Manifests"]({{< ref "/nic/installation/installing-nic/installation-with-manifests.md" >}}) explains how to install NGINX Ingress Controller using manifests. The following snippet is an example of a deployment:
 
-If you need to pull the image for local use to then push to a different container registry, use this command:
+```yaml
+spec:
+  serviceAccountName: nginx-ingress
+  imagePullSecrets:
+  - name: regcred
+  automountServiceAccountToken: true
+  securityContext:
+    seccompProfile:
+      type: RuntimeDefault
+  containers:
+  - image: private-registry.nginx.com/nginx-ic/nginx-plus-ingress:{{< nic-version >}}
+    imagePullPolicy: IfNotPresent
+    name: nginx-plus-ingress
+```
+
+The `imagePullSecrets` and `containers.image` lines represent the Kubernetes secret, as well as the registry and version of NGINX Ingress Controller we are going to deploy.
+
+## Download an image for local use
+
+If you need to download an image for local use (Such as to push to a different container registry), use this command:
 
 ```shell
 docker login private-registry.nginx.com --username=<output_of_jwt_token> --password=none
