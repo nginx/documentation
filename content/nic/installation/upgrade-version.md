@@ -197,7 +197,7 @@ Earlier versions required usage reporting through the cluster connector. This is
 
 ## Upgrade a version older than v3.1.0
 
-For NGINX Ingress Controller version v3.1.0, [changes were introduced](https://github.com/nginx/kubernetes-ingress/pull/3606) to Helm resource names, labels and annotations to fit with Helm best practices.
+Starting in version 3.1.0, NGINX Ingress Controller uses updated Helm resource names, labels, and annotations to follow Helm best practices. [See the changes.](https://github.com/nginx/kubernetes-ingress/pull/3606)
 
 When using Helm to upgrade from a version prior to 3.1.0, certain resources like Deployment, DaemonSet and Service will be recreated during the process, which will result in downtime.
 
