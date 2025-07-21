@@ -116,7 +116,7 @@ docker run --name nginx-agent -d nginx-agent
 
 ### Enable the gRPC interface
 
-To connect your NGINX Agent container to your NGINX One or NGINX Instance Manager instance, you must enable the gRPC interface. To do this, you must edit the NGINX Agent configuration file, *nginx-agent.conf*. For example:
+To connect your NGINX Agent container to your NGINX One Console or NGINX Instance Manager instance, you must enable the gRPC interface. To do this, you must edit the NGINX Agent configuration file, *nginx-agent.conf*. For example:
 
 ```yaml
 server:
