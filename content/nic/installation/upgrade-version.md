@@ -225,7 +225,7 @@ Selector: app=nginx-ingress-nginx-ingress
 
 Check out the latest available tag using `git checkout v{{< nic-version >}}`
 
-Navigate to `/kubernetes-ingress/charts/nginx-ingress`
+Go to `/kubernetes-ingress/charts/nginx-ingress`
 
 Update the `selectorLabels: {}` field in the `values.yaml` file located at `/kubernetes-ingress/charts/nginx-ingress` with the copied `Selector` value.
 
