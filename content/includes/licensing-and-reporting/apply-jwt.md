@@ -1,5 +1,4 @@
 ---
-docs:
 file:
   - content/solutions/about-subscription-licenses.md
   - content/nap-waf/v5/admin-guide/install.md

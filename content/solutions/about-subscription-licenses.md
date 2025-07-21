@@ -84,7 +84,7 @@ If you're using NGINX Instance Manager instead of the NGINX One Console, the equ
 
 ### Copy the license manually
 
-If you're not using NGINX One, copy the JWT license file to each NGINX Plus instance manually.
+If you're not using the NGINX One Console, copy the JWT license file to each NGINX Plus instance manually.
 
 {{< include "/licensing-and-reporting/apply-jwt.md" >}}
 

@@ -1,5 +1,4 @@
 ---
-docs:
 file:
   - content/solutions/about-subscription-licenses.md
 ---
