@@ -158,7 +158,7 @@ versions: 1.25-1.32.
 16 Dec 2024
 
 With added support for [NGINX R33]({{< ref "/nginx/releases.md#nginxplusrelease-33-r33" >}}), deployments of F5 NGINX Ingress Controller using NGINX Plus now require a valid JSON Web Token to run.
-Please see the [Upgrading to v4]({{< ref "/nic/installation/upgrade-version.md#upgrade-from-3x-to-4x" >}}) for full details on setting up your license `Secret`.
+For full details on setting up your license `Secret`, see [Upgrading to v4]({{< ref "/nic/installation/upgrade-version.md#upgrade-from-3x-to-4x" >}}).
 
 API Version `v1alpha1` of `GlobalConfiguration`, `Policy` and `TransportServer` resources are now deprecated.
 Please see [Update custom resource apiVersion]({{< ref "/nic/installation/upgrade-version.md#upgrade-from-3x-to-4x" >}}) for full details on updating your resources.
