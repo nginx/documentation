@@ -32,7 +32,7 @@ and reliable with full lifecycle management of advanced NGINX traffic services.
   {{</card-section>}}
 {{</card-layout>}}
 
-## Billing
+### Billing
 
 {{<card-layout>}}
   {{<card-section showAsCards="true" >}}
