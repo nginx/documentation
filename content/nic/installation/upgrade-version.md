@@ -241,7 +241,7 @@ Run `helm upgrade` with following arguments set:
 --set fullnameOverride="nginx-ingress-nginx-ingress"
 ```
 
-It could look as follows:
+It might look like this:
 
 ```shell
 helm upgrade nginx-ingress oci://ghcr.io/nginx/charts/nginx-ingress --version 0.19.0 --set controller.kind=deployment/daemonset --set controller.nginxplus=false/true --set controller.image.pullPolicy=Always --set serviceNameOverride="nginx-ingress-nginx-ingress" --set controller.name="" --set fullnameOverride="nginx-ingress-nginx-ingress" -f values.yaml
