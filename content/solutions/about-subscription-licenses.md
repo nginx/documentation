@@ -16,6 +16,10 @@ Starting with NGINX Plus R33, all **NGINX Plus instances require a valid JSON We
 
 ## Important changes
 
+If you have multiple subscriptions, you’ll also have multiple JWT licenses. You can assign each NGINX Plus instance to the license you prefer. NGINX combines usage reporting across all licensed instances.
+
+This feature is available in NGINX Instance Manager 2.20 and later.
+
 ### NGINX Plus won't start if:
 
 - The JWT license is missing or invalid.
