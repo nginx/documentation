@@ -793,7 +793,7 @@ waf:
 |``securityLog.enable`` | Enables security log. | ``bool`` | No |
 |``securityLog.apLogConf`` | The [App Protect WAF log conf]({{< ref "/nic/installation/integrations/app-protect-waf/configuration.md#waf-logs" >}}) resource. Accepts an optional namespace. Only works with ``apPolicy``. | ``string`` | No |
 |``securityLog.apLogBundle`` | The [App Protect WAF log bundle]({{< ref "/nic/installation/integrations/app-protect-waf/configuration.md#waf-bundles" >}}) resource. Only works with ``apBundle``. | ``string`` | No |
-|``securityLog.logDest`` | The log destination for the security log. Only accepted variables are ``syslog:server=<ip-address &#124; localhost; fqdn>:<port>``, ``stderr``, ``<absolute path to file>``. | ``string`` | No |
+|``securityLog.logDest`` | The log destination for the security log. Only accepted variables are ``syslog:server=<ip-address>; localhost; fqdn>:<port>``, ``stderr``, ``<absolute path to file>``. | ``string`` | No |
 {{% /table %}}
 
 #### WAF Merging Behavior
