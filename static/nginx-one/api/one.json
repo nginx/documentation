@@ -58,7 +58,7 @@
     },
     {
       "name": "Control Planes",
-      "description": "The `Control Planes` object represents an external control plane such as NGINX Ingress Controller.\nFrom this endpoint, you can get detailed information about each control plane, including its Nginx instances, configurations, security advisories, and operational status.\n",
+      "description": "The `Control Planes` object represents an external control plane such as NGINX Ingress Controller.\nFrom this endpoint, you can get detailed information about each control plane, including its NGINX instances, configurations, security advisories, and operational status.\n",
       "x-displayName": "Control Planes"
     },
     {
@@ -1736,7 +1736,7 @@
           "Config Sync Groups"
         ],
         "summary": "Retrieves stored NGINX configurations for a NGINX config sync group",
-        "description": "Returns a list of all configurations for a NGINX config sync group. Only the last 5 are kept on the NGINX One Console for a NGINX config sync group.",
+        "description": "Returns a list of all configurations for a NGINX config sync group. Only the last 10 are kept on the NGINX One Console for a NGINX config sync group.",
         "operationId": "listConfigSyncGroupConfigurations",
         "responses": {
           "200": {
@@ -2990,7 +2990,7 @@
           "Instances"
         ],
         "summary": "Retrieves the stored NGINX configurations for an instance",
-        "description": "Returns a list of all configurations for a NGINX instance. Only the last 5 are kept on the NGINX One Console for a NGINX instance.",
+        "description": "Returns a list of all configurations for a NGINX instance. Only the last 10 are kept on the NGINX One Console for a NGINX instance.",
         "operationId": "listInstanceConfigurations",
         "responses": {
           "200": {
@@ -6378,7 +6378,7 @@
       },
       "ConfigSyncStatus": {
         "type": "string",
-        "description": "The current config sync status of the NGINX config sync group, with the following possible values:\n* `unknown` - The status cannot be determined at this moment.\n* `in_sync` - All Nginx instances in config sync group have same config as indicated by config_version.\n* `out_of_sync` - Some Nginx instances in config sync group have config different than indicated by config_version.\n* `sync_in_progress` - The operation of applying config_version to all Nginx instances in config sync group is in progress.\n",
+        "description": "The current config sync status of the NGINX config sync group, with the following possible values:\n* `unknown` - The status cannot be determined at this moment.\n* `in_sync` - All NGINX instances in config sync group have same config as indicated by config_version.\n* `out_of_sync` - Some NGINX instances in config sync group have config different than indicated by config_version.\n* `sync_in_progress` - The operation of applying config_version to all NGINX instances in config sync group is in progress.\n",
         "enum": [
           "unknown",
           "in_sync",
@@ -6440,7 +6440,7 @@
             "$ref": "#/components/schemas/ConfigSyncGroupObjectID"
           },
           "name": {
-            "description": "Name of the Nginx config sync group.",
+            "description": "Name of the NGINX config sync group.",
             "type": "string"
           },
           "created_at": {
@@ -6449,7 +6449,7 @@
             "format": "date-time"
           },
           "instances_count": {
-            "description": "Number of instances in the Nginx config sync group.",
+            "description": "Number of instances in the NGINX config sync group.",
             "type": "integer"
           },
           "config_status": {
@@ -6467,7 +6467,7 @@
           },
           {
             "type": "object",
-            "description": "List of Nginx config sync groups.",
+            "description": "List of NGINX config sync groups.",
             "required": [
               "items"
             ],
@@ -6499,14 +6499,14 @@
         }
       },
       "ConfigSyncGroupCreateRequest": {
-        "description": "Body to create a Nginx config sync group.",
+        "description": "Body to create a NGINX config sync group.",
         "required": [
           "name"
         ],
         "properties": {
           "name": {
             "type": "string",
-            "description": "A name to uniquely identify the Nginx config sync group in a given tenant namespace.",
+            "description": "A name to uniquely identify the NGINX config sync group in a given tenant namespace.",
             "minLength": 1,
             "maxLength": 256
           }
@@ -6516,7 +6516,7 @@
         }
       },
       "ConfigSyncGroupCreateResponse": {
-        "description": "Response to a create Nginx config sync group request.",
+        "description": "Response to a create NGINX config sync group request.",
         "required": [
           "object_id",
           "name"
@@ -6526,7 +6526,7 @@
             "$ref": "#/components/schemas/ConfigSyncGroupObjectID"
           },
           "name": {
-            "description": "Name of the Nginx config sync group.",
+            "description": "Name of the NGINX config sync group.",
             "type": "string"
           }
         },
@@ -6593,7 +6593,7 @@
             "$ref": "#/components/schemas/ConfigSyncGroupObjectID"
           },
           "name": {
-            "description": "Name of the Nginx config sync group.",
+            "description": "Name of the NGINX config sync group.",
             "type": "string"
           },
           "last_publication": {
@@ -8307,7 +8307,7 @@
             "$ref": "#/components/schemas/NginxProduct"
           },
           "version": {
-            "description": "version of the Nginx product installed on the instance.",
+            "description": "version of the NGINX product installed on the instance.",
             "type": "string"
           }
         }
@@ -8988,7 +8988,7 @@
         ],
         "properties": {
           "total": {
-            "description": "Total count of certificates used as `payloads` in Nginx config.",
+            "description": "Total count of certificates used as `payloads` in NGINX config.",
             "type": "integer"
           },
           "expired": {
