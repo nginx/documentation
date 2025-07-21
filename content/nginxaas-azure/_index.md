@@ -11,21 +11,23 @@ nd-product: N4Azure
 
 
 ## About
+
 NGINX as a Service for Azure is an IaaS offering that is tightly integrated
 into Microsoft Azure public cloud and its ecosystem, making applications fast, efficient,
 and reliable with full lifecycle management of advanced NGINX traffic services.
 
 ## Featured content
+
 {{<card-layout>}}
   {{<card-section showAsCards="true" isFeaturedSection="true">}}
-    {{<card title="Overview" titleUrl="/nginxaas/azure/overview/overview/" isFullSize="true" icon="binoculars">}}
-      Learn about NGINX as a Service for Azure, its features, and its architecture
-    {{</card >}}
     {{<card title="Getting started" titleUrl="/nginxaas/azure/getting-started/" icon="power">}}
       Deploy NGINX as a Service for Azure using the Azure portal, Azure CLI, or Terraform
     {{</card>}}
+    {{<card title="Quickstart guides" titleUrl="/nginxaas/azure/quickstart/" icon="square-play">}}
+      Step-by-step guides for several common use cases, including scaling guidance, security controls, and more
+    {{</card>}}
     {{<card title="Logging and monitoring" titleUrl="/nginxaas/azure/monitoring/" icon="eye">}}
-      Collect, correlate, and analyze metrics for a thorough understanding of your application's health and behavior.
+      Collect, correlate, and analyze metrics for a thorough understanding of your application's health and behavior
     {{</card>}}
   {{</card-section>}}
 {{</card-layout>}}
@@ -46,7 +48,7 @@ and reliable with full lifecycle management of advanced NGINX traffic services.
 {{<card-layout>}}
   {{<card-section showAsCards="true" >}}
     {{<card title="Add certificates using the Azure portal" titleUrl="/nginxaas/azure/getting-started/ssl-tls-certificates/ssl-tls-certificates-portal/" icon="shield-check">}}
-      Learn to manage SSL/TSL certificates using the Azure portal.
+      Learn to manage SSL/TSL certificates using the Azure portal
     {{</card>}}
   {{</card-section>}}
 {{</card-layout>}}
@@ -57,9 +59,6 @@ and reliable with full lifecycle management of advanced NGINX traffic services.
   {{<card-section showAsCards="true" >}}
     {{<card title="Feature comparison" titleUrl="/nginxaas/azure/overview/feature-comparison/" icon="git-compare-arrows">}}
       Learn about the differences between NGINX as a Service for Azure and NGINX Plus
-    {{</card>}}
-    {{<card title="Quickstart guides" titleUrl="/nginxaas/azure/quickstart/" icon="square-play">}}
-      Step-by-step guides to help you deploy and configure NGINX as a Service for Azure
     {{</card>}}
     {{<card title="Changelog" titleUrl="/nginxaas/azure/changelog/" icon="file-clock">}}
       See the latest updates: New features, improvements, and bug fixes
