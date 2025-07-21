@@ -199,9 +199,9 @@ Earlier versions required usage reporting through the cluster connector. This is
 
 Starting in version 3.1.0, NGINX Ingress Controller uses updated Helm resource names, labels, and annotations to follow Helm best practices. [See the changes.](https://github.com/nginx/kubernetes-ingress/pull/3606)
 
-When using Helm to upgrade from a version prior to 3.1.0, certain resources like Deployment, DaemonSet and Service will be recreated during the process, which will result in downtime.
+When you upgrade with Helm from a version earlier than 3.1.0, some resources such as `Deployment`, `DaemonSet`, and `Service` are recreated. This causes downtime.
 
-We advise updating all resources to match the new naming convention: the following steps will minimize the aforementioned downtime.
+To reduce downtime, update all resources to use the new naming convention. The following steps help you do that.
 
 {{< call-out "note" >}} The following steps apply to both 2.x and 3.0.x releases.  {{</ call-out >}}
 
