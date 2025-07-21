@@ -132,7 +132,7 @@ spec:
 If a *GlobalConfiguration*, *Policy* or *TransportServer* resource is deployed with `apiVersion: k8s.nginx.org/v1alpha1`, it will be **deleted** during the upgrade process.
 {{</ warning >}}
 
-Once above specified custom resources are moved to `v1` ,please run below `kubectl` commands before upgrading to v4.0.0 Custom Resource Definitions (CRDs) to avoid [this issue](https://github.com/nginx/kubernetes-ingress/issues/7010).
+After you move the custom resources to `v1`, run the following `kubectl` commands before upgrading to v4.0.0 Custom Resource Definitions (CRDs) to avoid webhook errors caused by leftover `v1alpha1` resources. For details, see [GitHub issue #7010](https://github.com/nginx/kubernetes-ingress/issues/7010).
 
 ```shell
 kubectl patch customresourcedefinitions transportservers.k8s.nginx.org --subresource='status' --type='merge' -p '{"status":{"storedVersions": ["v1"]}}'
