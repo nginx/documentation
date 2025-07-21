@@ -90,7 +90,7 @@ For NGINX Plus users, there is a third step to create a Secret for your license.
 
 If you're using Helm chart version `v2.x`, update your `GlobalConfiguration`, `Policy`, and `TransportServer` resources from `apiVersion: k8s.nginx.org/v1alpha1` to `apiVersion: k8s.nginx.org/v1` before upgrading to NGINX Ingress Controller 4.0.0.
 
-If the Helm chart you have been using is `v1.0.2` or earlier (NGINX Ingress Controller `v3.3.2`), upgrade to Helm chart `v1.4.2` (NGINX Ingress Controller `v3.7.2`) before updating your GlobalConfiguration, Policy and TransportServer resources.
+If the Helm chart you have been using is `v1.0.2` or earlier (NGINX Ingress Controller `v3.3.2`), upgrade to Helm chart `v1.4.2` (NGINX Ingress Controller `v3.7.2`) before updating your GlobalConfiguration, Policy, and TransportServer resources.
 
 The example below shows the change for a Policy resource: you must do the same for all GlobalConfiguration and TransportServer resources.
 
