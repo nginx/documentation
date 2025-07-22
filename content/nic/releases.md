@@ -1689,7 +1689,7 @@ We will provide technical support for NGINX Ingress Controller on any Kubernetes
 ### <i class="fa-solid fa-download"></i> Upgrade
 
 - For NGINX, use the 1.12.1 image from our DockerHub: `nginx/nginx-ingress:1.12.1`, `nginx/nginx-ingress:1.12.1-alpine` or `nginx/nginx-ingress:1.12.1-ubi`
-- For NGINX Plus, use the 1.12.1 image from the F5 Container Registry - see [the documentation here]({{< ref "/nic/installation/nic-images/get-registry-image.md">}})
+- For NGINX Plus, use the 1.12.1 image from the F5 Container Registry - see [the documentation here]({{< ref "/nic/installation/nic-images/registry-download.md">}})
 - Alternatively, you can also build your own image using the 1.12.1 source code.
 - For Helm, use version 0.10.1 of the chart.
 

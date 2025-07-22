@@ -9,67 +9,17 @@ nd-docs: DOCS-1454
 
 This document describes how to add an F5 NGINX Plus Ingress Controller image from the F5 Docker registry into your Kubernetes cluster using a JWT token.
 
-## Overview
-
-{{< important >}}
-
-An NGINX Plus subscription certificate and key will not work with the F5 Docker registry.
-
-For NGINX Ingress Controller, you must have an NGINX Ingress Controller subscription -- download the NGINX Plus Ingress Controller (per instance) JWT access token from [MyF5](https://my.f5.com).
-
-To list the available image tags using the Docker registry API, you will also need to download the NGINX Plus Ingress Controller (per instance) certificate (`nginx-repo.crt`) and the key (`nginx-repo.key`) from [MyF5](https://my.f5.com).
-
-{{< /important >}}
-
-{{< note >}}
-
-You can also get an image using these methods:
-
-- [Download NGINX Ingress Controller from the F5 Registry]({{< ref "/nic/installation/nic-images/registry-download.md" >}}) topic.
-- [Build NGINX Ingress Controller]({{< ref "/nic/installation/build-nginx-ingress-controller.md" >}}) topic.
-
-If you would like to use an NGINX Ingress Controller image with NGINX open source, we provide the image through [DockerHub](https://hub.docker.com/r/nginx/nginx-ingress/).
-
-{{< /note >}}
-
 ## Before you begin
 
-To follow these steps, you will need the following pre-requisites:
+To follow these steps, you will need the following pre-requisite:
 
-- A JWT Access Token (per instance) for NGINX Ingress Controller from an active NGINX Ingress Controller subscription.
-- The certificate (`nginx-repo.crt`) and key (`nginx-repo.key`) for each NGINX Ingress Controller instance, used to list the available image tags from the Docker registry API.
+- [Create a license Secret]({{< ref "/nic/installation/create-license-secret.md" >}})
 
-## Prepare NGINX Ingress Controller
+You can also get the NGINX Ingress Controller image using the following alternate methods:
 
-1. Choose your desired [NGINX Ingress Controller Image]({{< ref "/nic/technical-specifications.md#images-with-nginx-plus" >}}).
-1. Log into the [MyF5 Portal](https://my.f5.com/), navigate to your subscription details, and download the relevant .cert, .key and .JWT files.
-1. Create a Kubernetes secret using the JWT token. You should use `cat` to view the contents of the JWT token and store the output for use in later steps.
-1. Ensure there are no additional characters or extra whitespace that might have been accidentally added. This will break authorization and prevent the NGINX Ingress Controller image from being downloaded.
-1. Modify your deployment (manifest or Helm) to use the Kubernetes secret created in step 3.
-1. Deploy NGINX Ingress Controller into your Kubernetes cluster and verify that the installation has been successful.
-
-## Using the JWT token in a Docker Config Secret
-
-1. Create a Kubernetes `docker-registry` secret type on the cluster, using the JWT token as the username and `none` for password (as the password is not used).  The name of the docker server is `private-registry.nginx.com`.
-
-    ```shell
-    kubectl create secret docker-registry regcred --docker-server=private-registry.nginx.com --docker-username=<JWT Token> --docker-password=none [-n nginx-ingress]
-    ```
-
-    It is important that the `--docker-username=<JWT Token>` contains the contents of the token and is not pointing to the token itself. Ensure that when you copy the contents of the JWT token, there are no additional characters or extra whitespaces. This can invalidate the token and cause 401 errors when trying to authenticate to the registry.
-
-1. Confirm the details of the created secret by running:
-
-    ```shell
-    kubectl get secret regcred --output=yaml
-    ```
-
-1. You can now use the newly created Kubernetes secret in Helm and manifest deployments.
-
-{{< include "/nic/installation/jwt-password-note.md" >}}
-
----
-
+- [Download NGINX Ingress Controller from the F5 Registry]({{< ref "/nic/installation/nic-images/registry-download.md" >}})
+- [Build NGINX Ingress Controller]({{< ref "/nic/installation/build-nginx-ingress-controller.md" >}}) 
+- For NGINX Open Source, you can pull the [nginx/nginx-ingress image](https://hub.docker.com/r/nginx/nginx-ingress/) from DockerHub
 
 ## Helm Deployment
 

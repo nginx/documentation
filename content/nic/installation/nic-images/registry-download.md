@@ -7,24 +7,22 @@ nd-product: NIC
 nd-docs: DOCS-605
 ---
 
-This page describes how to download an F5 NGINX Plus Ingress Controller image from the official F5 Docker registr.
+This page describes how to download an F5 NGINX Plus Ingress Controller image from the official F5 Docker registry.
 
 The F5 Registry images include versions with NGINX App Protect WAF and NGINX App Protect DoS.
-
-This guide covers the prerequisites, how to images, upload images to your private registry, and troubleshooting steps.
 
 ## Before you begin
 
 To follow these steps, you will need the following pre-requisites:
 
-- [Create a license Secret]({{< ref "/nic/installation/create-license-secret.md" >}}).
-- [Docker v18.09 or higher](https://docs.docker.com/engine/release-notes/18.09/).
+- [Create a license Secret]({{< ref "/nic/installation/create-license-secret.md" >}})
+- [Docker v18.09 or higher](https://docs.docker.com/engine/release-notes/18.09/)
 
 You can also get the NGINX Ingress Controller image using the following alternate methods:
 
-- [Add an NGINX Ingress Controller image to your cluster]({{< ref "/nic/installation/nic-images/add-image-to-cluster.md" >}}).
+- [Add an NGINX Ingress Controller image to your cluster]({{< ref "/nic/installation/nic-images/add-image-to-cluster.md" >}})
 - [Build NGINX Ingress Controller]({{< ref "/nic/installation/build-nginx-ingress-controller.md" >}}) 
-- For NGINX Open Source, you can pull the [nginx/nginx-ingress image](https://hub.docker.com/r/nginx/nginx-ingress/) from DockerHub.
+- For NGINX Open Source, you can pull [an image from DockerHub](https://hub.docker.com/r/nginx/nginx-ingress/)
 
 ## Set up Docker for F5 Container Registry
 
@@ -40,9 +38,11 @@ The steps provided are for Linux. For Mac or Windows, consult the [Docker for Ma
 
 ## Pull the image
 
-Next, pull the image you need from `private-registry.nginx.com`. To find the correct image, consult the [Technical specifications]({{< ref "/nic/technical-specifications.md#images-with-nginx-plus" >}}).
+Identify which image you need using the [Technical specifications]({{< ref "/nic/technical-specifications.md#images-with-nginx-plus" >}}) topic.
 
-To pull an image, follow these steps. Replace `<version-tag>` with the specific version you need, for example, `{{< nic-version >}}`.
+Next, pull the image from `private-registry.nginx.com`. 
+
+Replace `<version-tag>` with the specific version you need, for example, `{{< nic-version >}}`.
 
 - For NGINX Plus Ingress Controller, run:
 
