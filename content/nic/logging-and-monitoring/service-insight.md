@@ -1,7 +1,7 @@
 ---
-title: Service Insight
+title: Enable Service Insight
 toc: true
-weight: 2100
+weight: 600
 nd-content-type: how-to
 nd-product: NIC
 nd-docs: DOCS-1180
