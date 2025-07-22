@@ -21,13 +21,65 @@ You can also get the NGINX Ingress Controller image using the following alternat
 - [Build NGINX Ingress Controller]({{< ref "/nic/installation/build-nginx-ingress-controller.md" >}}) 
 - For NGINX Open Source, you can pull the [nginx/nginx-ingress image](https://hub.docker.com/r/nginx/nginx-ingress/) from DockerHub
 
-## Helm Deployment
+## Helm deployments
 
-If you are using Helm for deployment, there are two main methods: using *sources* or *charts*.
+If you are using Helm for deployment, there are two main methods: using a _chart_ or _source_.
 
-### Helm Source
+### Add the image from chart
 
-The [Installation with Helm ]({{< ref "/nic/installation/installing-nic/installation-with-helm.md#managing-the-chart-via-sources" >}}) documentation has a section describing how to use sources: these are the unique steps for Docker secrets using JWT tokens.
+The following command installs NGINX Ingress Controller with a Helm chart, passing required arguments using the `set` parameter.
+
+```shell
+helm install my-release -n nginx-ingress oci://ghcr.io/nginx/charts/nginx-ingress --version {{< nic-helm-version >}} --set controller.image.repository=private-registry.nginx.com/nginx-ic/nginx-plus-ingress --set controller.image.tag={{< nic-version >}} --set controller.nginxplus=true --set controller.serviceAccount.imagePullSecretName=regcred
+```
+
+You can also use the certificate and key from the MyF5 portal and the Docker registry API to list the available image tags for the repositories, for example:
+
+```shell
+curl https://private-registry.nginx.com/v2/nginx-ic/nginx-plus-ingress/tags/list --key <path-to-client.key> --cert <path-to-client.cert> | jq
+```
+```text
+{
+"name": "nginx-ic/nginx-plus-ingress",
+"tags": [
+    "{{< nic-version >}}-alpine",
+    "{{< nic-version >}}-alpine-fips",
+    "{{< nic-version >}}-ubi",
+    "{{< nic-version >}}"
+]
+}
+```
+
+```shell
+curl https://private-registry.nginx.com/v2/nginx-ic-nap/nginx-plus-ingress/tags/list --key <path-to-client.key> --cert <path-to-client.cert> | jq
+```
+```text
+{
+"name": "nginx-ic-nap/nginx-plus-ingress",
+"tags": [
+    "{{< nic-version >}}-alpine-fips",
+    "{{< nic-version >}}-ubi",
+    "{{< nic-version >}}"
+]
+}
+```
+
+```shell
+$ curl https://private-registry.nginx.com/v2/nginx-ic-dos/nginx-plus-ingress/tags/list --key <path-to-client.key> --cert <path-to-client.cert> | jq
+```
+```text
+{
+"name": "nginx-ic-dos/nginx-plus-ingress",
+"tags": [
+    "{{< nic-version >}}-ubi",
+    "{{< nic-version >}}"
+]
+}
+```
+
+### Add the image from source
+
+The [Installation with Helm]({{< ref "/nic/installation/installing-nic/installation-with-helm.md#install-the-helm-chart-from-source" >}}) documentation has a section describing how to use sources: these are the unique steps for Docker secrets using JWT tokens.
 
 1. Clone the NGINX [`kubernetes-ingress` repository](https://github.com/nginx/kubernetes-ingress).
 1. Navigate to the `charts/nginx-ingress` folder of your local clone.
@@ -37,36 +89,36 @@ The [Installation with Helm ]({{< ref "/nic/installation/installing-nic/installa
 
     1. Change the `nginxplus` argument to `true`.
     1. Change the `repository` argument to the NGINX Ingress Controller image you intend to use.
-    2. Add an argument to `imagePullSecretName` or `imagePullSecretsNames` to allow Docker to pull the image from the private registry.
+    1. Add an argument to `imagePullSecretName` or `imagePullSecretsNames` to allow Docker to pull the image from the private registry.
 
-    The following code block shows snippets of the parameters you will need to change, and an example of their contents:
+The following code block shows snippets of the parameters you will need to change, and an example of their contents:
 
-    ```yaml
-    ## Deploys the Ingress Controller for NGINX Plus
-    nginxplus: true
-    ## Truncated fields
-    ## ...
-    ## ...
-    image:
-    ## The image repository for the desired NGINX Ingress Controller image
-    repository: private-registry.nginx.com/nginx-ic/nginx-plus-ingress
+```yaml
+## Deploys the Ingress Controller for NGINX Plus
+nginxplus: true
+## Truncated fields
+## ...
+## ...
+image:
+## The image repository for the desired NGINX Ingress Controller image
+repository: private-registry.nginx.com/nginx-ic/nginx-plus-ingress
 
-    ## The version tag
-    tag: {{< nic-version >}}
+## The version tag
+tag: {{< nic-version >}}
 
-    serviceAccount:
-        ## The annotations of the service account of the Ingress Controller pods.
-        annotations: {}
+serviceAccount:
+    ## The annotations of the service account of the Ingress Controller pods.
+    annotations: {}
 
-    ## Truncated fields
-    ## ...
-    ## ...
+## Truncated fields
+## ...
+## ...
 
-        ## The name of the secret containing docker registry credentials.
-        ## Secret must exist in the same namespace as the helm release.
-        ## Note that also imagePullSecretsNames can be used here if multiple secrets need to be set.
-        imagePullSecretName: regcred
-    ```
+    ## The name of the secret containing docker registry credentials.
+    ## Secret must exist in the same namespace as the helm release.
+    ## Note that also imagePullSecretsNames can be used here if multiple secrets need to be set.
+    imagePullSecretName: regcred
+```
 
 With the modified `values.yaml` file, you can now use Helm to install NGINX Ingress Controller, for example:
 
@@ -78,50 +130,7 @@ The above command will install NGINX Ingress Controller in the `nginx-ingress` n
 
 If the namespace does not exist, `--create-namespace` will create it. Using `-f values.yaml` tells Helm to use the `values.yaml` file that you modified earlier with the settings you want to apply for your NGINX Ingress Controller deployment.
 
-
-### Helm Chart
-
-If you want to install NGINX Ingress Controller using the charts method, the following is an example of using the command line to pass the required arguments using the `set` parameter.
-
-```shell
-helm install my-release -n nginx-ingress oci://ghcr.io/nginx/charts/nginx-ingress --version {{< nic-helm-version >}} --set controller.image.repository=private-registry.nginx.com/nginx-ic/nginx-plus-ingress --set controller.image.tag={{< nic-version >}} --set controller.nginxplus=true --set controller.serviceAccount.imagePullSecretName=regcred
-```
-You can also use the certificate and key from the MyF5 portal and the Docker registry API to list the available image tags for the repositories, for example:
-
-```shell
-   $ curl https://private-registry.nginx.com/v2/nginx-ic/nginx-plus-ingress/tags/list --key <path-to-client.key> --cert <path-to-client.cert> | jq
-
-   {
-    "name": "nginx-ic/nginx-plus-ingress",
-    "tags": [
-        "{{< nic-version >}}-alpine",
-        "{{< nic-version >}}-alpine-fips",
-        "{{< nic-version >}}-ubi",
-        "{{< nic-version >}}"
-    ]
-    }
-
-   $ curl <https://private-registry.nginx.com/v2/nginx-ic-nap/nginx-plus-ingress/tags/list> --key <path-to-client.key> --cert <path-to-client.cert> | jq
-   {
-    "name": "nginx-ic-nap/nginx-plus-ingress",
-    "tags": [
-        "{{< nic-version >}}-alpine-fips",
-        "{{< nic-version >}}-ubi",
-        "{{< nic-version >}}"
-    ]
-    }
-
-   $ curl <https://private-registry.nginx.com/v2/nginx-ic-dos/nginx-plus-ingress/tags/list> --key <path-to-client.key> --cert <path-to-client.cert> | jq
-   {
-    "name": "nginx-ic-dos/nginx-plus-ingress",
-    "tags": [
-        "{{< nic-version >}}-ubi",
-        "{{< nic-version >}}"
-    ]
-    }
-```
-
-## Manifest Deployment
+## Manifest deployment
 
 The page ["Installation with Manifests"]({{< ref "/nic/installation/installing-nic/installation-with-manifests.md" >}}) explains how to install NGINX Ingress Controller using manifests. The following snippet is an example of a deployment:
 
