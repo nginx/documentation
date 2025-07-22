@@ -81,7 +81,7 @@ To set up your other NGINX instances to use the proxy instance to connect to NGI
       port: 5000
    auth:
       # Replace YOUR_DATA_PLANE_KEY_HERE with your NGINX One Console data plane key.
-      token: YOUR_DATA_PLANE_KEY_HERE
+      token: "YOUR_DATA_PLANE_KEY_HERE"
    tls:
       skip_verify: False
       server_name: "agent.connect.nginx.com"
