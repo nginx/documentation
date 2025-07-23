@@ -2,7 +2,7 @@
 title: Runtime State Sharing
 weight: 100
 toc: true
-docs: DOCS-1499
+nd-docs: DOCS-1499
 url: /nginxaas/azure/quickstart/runtime-state-sharing/
 type:
 - how-to

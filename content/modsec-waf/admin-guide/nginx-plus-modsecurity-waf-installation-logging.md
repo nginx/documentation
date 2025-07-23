@@ -1,5 +1,5 @@
 ---
-docs: DOCS-726
+nd-docs: DOCS-726
 title: Installing the NGINX ModSecurity WAF
 toc: true
 weight: 100

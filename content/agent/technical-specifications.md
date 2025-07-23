@@ -1,23 +1,21 @@
 ---
-title: Technical specifications
-draft: false
-weight: 200
+title: "Technical specifications"
+weight: 100
 toc: true
-docs: DOCS-1092
-type:
-- how-to
+nd-docs: DOCS-1092
+nd-content-type: how-to
 ---
 
-## Overview
+This document describes the requirements for NGINX Agent version 2.
 
 This document provides technical specifications for NGINX Agent. It includes information on supported distributions, deployment environments, NGINX versions, sizing recommendations, and logging.
 
-## NGINX Agent v3.0 Compatibility 
+## NGINX Agent 3.0 Compatibility
 {{< bootstrap-table "table table-striped table-bordered" >}}
 | NGINX Product                | Agent Version  |
 |------------------------------|----------------|
 | **NGINX One Console**        | 2.x            |
-| **NGINX Gateway Fabric**     | 3.x            | 
+| **NGINX Gateway Fabric**     | 3.x            |
 | **NGINX Plus**               | 2.x, 3.x       |
 | **NGINX Ingress Controller** | 2.x            |
 | **NGINX Instance Manager**   | 2.x            |
@@ -28,21 +26,21 @@ This document provides technical specifications for NGINX Agent. It includes inf
 NGINX Agent can run in most environments. We support the following distributions:
 
 {{< bootstrap-table "table table-striped table-bordered" >}}
-| | AlmaLinux | Alpine Linux | Amazon Linux | Amazon Linux 2 | Debian |
-|-|-----------|--------------|--------------|----------------|--------|
-|**Version**|8 <br><hr>9 | 3.18<br><hr> 3.19<br><hr> 3.20 <br><hr> 3.21|  2023|  LTS|  11<br><hr> 12|
-|**Architecture**| x86_84<br><hr>aarch64| x86_64<br><hr>aarch64 | x86_64<br><hr>aarch64 | x86_64<br><hr>aarch64 | x86_64<br><hr>aarch64 |
+| | AlmaLinux | Alpine Linux | Amazon Linux | Amazon Linux 2 | CentOS | Debian |
+|-|-----------|--------------|--------------|----------------|--------|--------|
+|**Version**|8 <br><hr>9 |  3.16<br><hr>3.17<br><hr> 3.18<br><hr> 3.19|  2023|  LTS|  7.4+|  11<br><hr> 12|
+|**Architecture**| x86_84<br><hr>aarch64| x86_64<br><hr>aarch64 | x86_64<br><hr>aarch64 | x86_64<br><hr>aarch64 | x86_64<br><hr>aarch64 | x86_64<br><hr>aarch64 |
 {{< /bootstrap-table >}}
 
 {{< bootstrap-table "table table-striped table-bordered" >}}
 | |FreeBSD | Oracle Linux | Red Hat <br>Enterprise Linux <br>(RHEL) | Rocky Linux | SUSE Linux <br>Enterprise Server <br>(SLES) | Ubuntu |
 |-|--------|--------------|---------------------------------|-------------|-------------------------------------|--------|
-|**Version**|13<br><hr>14|8.1+<br><hr>9|8.1+<br><hr>9.0+|8<br><hr>9|15 SP2|20.04 LTS<br><hr>22.04 LTS<br><hr>24.04 LTS|
+|**Version**|13<br><hr>14|7.4+<br><hr>8.1+<br><hr>9|7.4+<br><hr>8.1+<br><hr>9.0+|8<br><hr>9|12 SP5<br><hr>15 SP2|20.04 LTS<br><hr>22.04 LTS|
 |**Architecture**|amd64|x86_64|x86_64<br><hr>aarch64|x86_64<br><hr>aarch64|x86_64|x86_64<br><hr>aarch64|
 {{< /bootstrap-table >}}
 
 
-## Supported Deployment Environments
+## Supported deployment environments
 
 NGINX Agent can be deployed in the following environments:
 
@@ -51,12 +49,12 @@ NGINX Agent can be deployed in the following environments:
 - Public Cloud: AWS, Google Cloud Platform, and Microsoft Azure
 - Virtual Machine
 
-## Supported NGINX Versions
+## Supported NGINX versions
 
 NGINX Agent works with all supported versions of NGINX Open Source and NGINX Plus.
 
 
-## Sizing Recommendations
+## Sizing recommendations
 
 Minimum system sizing recommendations for NGINX Agent:
 {{< bootstrap-table "table table-striped table-bordered" >}}

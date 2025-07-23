@@ -1,5 +1,5 @@
 ---
-docs: DOCS-1112
+nd-docs: DOCS-1112
 title: Configurable helm settings
 toc: true
 weight: 300
@@ -77,7 +77,7 @@ To update an existing release, run `helm upgrade` with the `-f <my-values-file>`
 | `nim.dpm.name`                              | Name for `dpm` resources.                                                                                                                                                                                                                                                | `dpm`      |
 | `nim.dpm.image.repository`                  | Repository path for the `dpm` image.                                                                                                                                                                                                                                      | `dpm`      |
 | `nim.dpm.image.tag`                         | Tag used for pulling `dpm` images.                                                                                                                                                                                                                                        | `latest`   |
-| `nim.dpm.image.pullPolicy`                  | Image pull policy.                                                                                                                                                                                                                                                                                                     | `IfNotPresent`|   
+| `nim.dpm.image.pullPolicy`                  | Image pull policy.                                                                                                                                                                                                                                                                                                     | `IfNotPresent`|
 | `nim.dpm.container.port.http`               | Container HTTP port.                                                                                                                                                                                                                                                      | `8034`     |
 | `nim.dpm.container.port.nats`               | Container NATS port.                                                                                                                                                                                                                                                      | `9100`     |
 | `nim.dpm.container.port.db`                 | Container database port.                                                                                                                                                                                                                                                  | `7890`     |

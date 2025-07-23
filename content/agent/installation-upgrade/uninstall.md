@@ -3,9 +3,8 @@ title: Uninstall NGINX Agent package
 draft: false
 weight: 700
 toc: true
-docs: DOCS-1230
-type:
-- how-to
+nd-docs: DOCS-1230
+nd-content-type: how-to
 ---
 
 ## Overview

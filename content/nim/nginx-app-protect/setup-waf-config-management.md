@@ -5,7 +5,7 @@ toc: true
 description: Learn how to set up F5 NGINX Instance Manager to manage NGINX App Protect WAF configurations, including compiler installation, security policy onboarding, and threat update management.
 type: how-to
 product: NIM
-docs: DOCS-996
+nd-docs: DOCS-996
 ---
 
 ## Overview
@@ -55,12 +55,14 @@ The table below shows which WAF compiler version to use for each version of NGIN
 
 | NGINX App Protect WAF version | WAF compiler version       |
 |-------------------------------|----------------------------|
+| 5.7.0                         | nms-nap-compiler-v5.442.0  |
 | 5.6.0                         | nms-nap-compiler-v5.342.0  |
 | 5.5.0                         | nms-nap-compiler-v5.264.0  |
 | 5.4.0                         | nms-nap-compiler-v5.210.0  |
 | 5.3.0                         | nms-nap-compiler-v5.144.0  |
 | 5.2.0                         | nms-nap-compiler-v5.48.0   |
 | 5.1.0                         | nms-nap-compiler-v5.17.0   |
+| 4.15.0                        | nms-nap-compiler-v5.442.0  |
 | 4.14.0                        | nms-nap-compiler-v5.342.0  |
 | 4.13.0                        | nms-nap-compiler-v5.264.0  |
 | 4.12.0                        | nms-nap-compiler-v5.210.0  |
@@ -86,13 +88,13 @@ The table below shows which WAF compiler version to use for each version of NGIN
 To install the WAF compiler on Debian or Ubuntu, run the following command:
 
 ```shell
-sudo apt-get install nms-nap-compiler-v5.342.0
+sudo apt-get install nms-nap-compiler-v5.442.0
 ```
 
 If you want to install more than one version of the WAF compiler on the same system, append the `--force-overwrite` option to the install command after the first installation:
 
 ```shell
-sudo apt-get install nms-nap-compiler-v5.342.0 -o Dpkg::Options::="--force-overwrite"
+sudo apt-get install nms-nap-compiler-v5.442.0 -o Dpkg::Options::="--force-overwrite"
 ```
 
 {{< include "nim/nap-waf/restart-nms-integrations.md" >}}
@@ -114,9 +116,9 @@ To install the WAF compiler on RHEL 8.1 or later:
    ```
 
 3. Install the WAF compiler:
-   
+
    ```shell
-   sudo yum install nms-nap-compiler-v5.342.0
+   sudo yum install nms-nap-compiler-v5.442.0
    ```
 
 4. {{< include "nim/nap-waf/restart-nms-integrations.md" >}}
@@ -140,7 +142,7 @@ To install the WAF compiler on RHEL 7.4 or later or CentOS:
 3. Install the WAF compiler:
 
     ```shell
-    sudo yum install nms-nap-compiler-v5.342.0
+    sudo yum install nms-nap-compiler-v5.442.0
     ```
 
 4.	{{< include "nim/nap-waf/restart-nms-integrations.md" >}}
@@ -167,7 +169,7 @@ To install the WAF compiler on Amazon Linux 2 LTS:
 3. Install the WAF compiler:
 
     ```shell
-    sudo yum install nms-nap-compiler-v5.342.0
+    sudo yum install nms-nap-compiler-v5.442.0
     ```
 
 4. {{< include "nim/nap-waf/restart-nms-integrations.md" >}}
@@ -184,7 +186,7 @@ To install the WAF compiler on Oracle Linux 7.4 or later:
    ```
 
 2. Enable the `ol8_codeready_builder` repository:
-   
+
    ```shell
    sudo yum-config-manager --enable ol8_codeready_builder
    ```
@@ -192,7 +194,7 @@ To install the WAF compiler on Oracle Linux 7.4 or later:
 3. Install the WAF compiler:
 
     ```shell
-    sudo yum install nms-nap-compiler-v5.342.0
+    sudo yum install nms-nap-compiler-v5.442.0
     ```
 
 4. {{< include "nim/nap-waf/restart-nms-integrations.md" >}}
@@ -267,6 +269,185 @@ error when creating the nginx repo retriever - NGINX repo certificates not found
 ```
 
 If needed, you can also [install the WAF compiler manually](#install-the-waf-compiler).
+
+## Install the WAF compiler in a disconnected environment
+
+To install the WAF compiler on a system without internet access, complete these steps:
+
+- **Step 1:** Generate the WAF compiler package on a system that has internet access.  
+- **Step 2:** Move the generated package to the offline target system and install it.
+
+{{<tabs name="WAF compiler installation in offline environment">}}
+
+{{%tab name="Ubuntu"%}}
+
+### Install on Ubuntu 24.04, 22.04, and 20.04
+
+#### Step 1: On a system with internet access
+
+Place your `nginx-repo.crt` and `nginx-repo.key` files on this system.
+```bash
+sudo apt-get update -y
+sudo mkdir -p /etc/ssl/nginx/
+sudo mv nginx-repo.crt /etc/ssl/nginx/
+sudo mv nginx-repo.key /etc/ssl/nginx/
+
+wget -qO - https://cs.nginx.com/static/keys/nginx_signing.key \
+    | gpg --dearmor \
+    | sudo tee /usr/share/keyrings/nginx-archive-keyring.gpg >/dev/null
+
+printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
+https://pkgs.nginx.com/nms/ubuntu $(lsb_release -cs) nginx-plus\n" | \
+sudo tee /etc/apt/sources.list.d/nms.list
+
+sudo wget -q -O /etc/apt/apt.conf.d/90pkgs-nginx https://cs.nginx.com/static/files/90pkgs-nginx
+mkdir -p compiler && cd compiler
+sudo apt-get update
+sudo apt-get download nms-nap-compiler-v5.342.0
+cd ../
+mkdir -p compiler/compiler.deps
+sudo apt-get install --download-only --reinstall --yes --print-uris nms-nap-compiler-v5.342.0 | grep ^\' | cut -d\' -f2 | xargs -n 1 wget -P ./compiler/compiler.deps
+tar -czvf compiler.tar.gz compiler/
+```
+
+#### Step 2: On the target (offline) system
+
+Before running the steps, make sure the OS libraries are up to date, especially `glibc`.  
+Move the `compiler.tar.gz` file from Step 1 to this system.
+
+```bash
+tar -xzvf compiler.tar.gz
+sudo dpkg -i ./compiler/compiler.deps/*.deb
+sudo dpkg -i ./compiler/*.deb
+```
+
+{{%/tab%}}
+
+{{%tab name="Debian"%}}
+
+### Install on Debian 11 and 12
+
+#### Step 1: On a system with internet access
+
+Place your `nginx-repo.crt` and `nginx-repo.key` files on this system.
+```bash
+sudo apt-get update -y
+sudo mkdir -p /etc/ssl/nginx/
+sudo mv nginx-repo.crt /etc/ssl/nginx/
+sudo mv nginx-repo.key /etc/ssl/nginx/
+
+wget -qO - https://cs.nginx.com/static/keys/nginx_signing.key \
+    | gpg --dearmor \
+    | sudo tee /usr/share/keyrings/nginx-archive-keyring.gpg >/dev/null
+
+printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
+https://pkgs.nginx.com/nms/debian $(lsb_release -cs) nginx-plus\n" | \
+sudo tee /etc/apt/sources.list.d/nms.list
+
+sudo wget -q -O /etc/apt/apt.conf.d/90pkgs-nginx https://cs.nginx.com/static/files/90pkgs-nginx
+mkdir -p compiler && cd compiler
+sudo apt-get update
+sudo apt-get download nms-nap-compiler-v5.342.0
+cd ../
+mkdir -p compiler/compiler.deps
+sudo apt-get install --download-only --reinstall --yes --print-uris nms-nap-compiler-v5.342.0 | grep ^\' | cut -d\' -f2 | xargs -n 1 wget -P ./compiler/compiler.deps
+tar -czvf compiler.tar.gz compiler/
+```
+
+#### Step 2: On the target (offline) system
+
+Before running the steps, make sure the OS libraries are up to date, especially `glibc`.  
+Move the `compiler.tar.gz` file from Step 1 to this system.
+
+```bash
+tar -xzvf compiler.tar.gz
+sudo dpkg -i ./compiler/compiler.deps/*.deb
+sudo dpkg -i ./compiler/*.deb
+```
+
+{{%/tab%}}
+
+{{%tab name="RHEL8, RHEL9, Oracle-9 "%}}
+
+### Install on RHEL 8, RHEL 9, or Oracle Linux 9
+
+#### Step 1: On a system with internet access
+
+> For RHEL 8, you can skip the `yum-config-manager` line.
+
+Place your `nginx-repo.crt` and `nginx-repo.key` files on this system.
+```bash
+sudo yum update -y
+sudo yum install yum-utils -y
+sudo mkdir -p /etc/ssl/nginx/
+sudo mv nginx-repo.crt /etc/ssl/nginx/
+sudo mv nginx-repo.key /etc/ssl/nginx/
+sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/nms.repo
+sudo yum-config-manager --disable rhel-9-appstream-rhui-rpms
+sudo yum update -y
+sudo mkdir -p nms-nap-compiler
+sudo yumdownloader --resolve --destdir=nms-nap-compiler nms-nap-compiler-v5.342.0
+tar -czvf compiler.tar.gz nms-nap-compiler/
+```
+
+#### Step 2: On the target (offline) system
+
+Before running the steps, make sure the OS libraries are up to date, especially `glibc`.  
+Move the `compiler.tar.gz` file from Step 1 to this system.
+
+```bash
+tar -xzvf compiler.tar.gz
+cd nms-nap-compiler
+sudo dnf install *.rpm --disablerepo=*
+```
+
+{{%/tab%}}
+
+{{%tab name="Oracle-8"%}}
+
+### Install on Oracle Linux 8
+
+#### Step 1: On a system with internet access
+
+Place your `nginx-repo.crt` and `nginx-repo.key` files on this system.
+```bash
+sudo yum update -y
+sudo yum install yum-utils tar -y
+sudo mkdir -p /etc/ssl/nginx/
+sudo mv nginx-repo.crt /etc/ssl/nginx/
+sudo mv nginx-repo.key /etc/ssl/nginx/
+sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/nms.repo
+
+sudo tee /etc/yum.repos.d/centos-vault-powertools.repo << 'EOF'
+[centos-vault-powertools]
+name=CentOS Vault - PowerTools
+baseurl=https://vault.centos.org/centos/8/PowerTools/x86_64/os/
+enabled=1
+gpgcheck=0
+EOF
+
+sudo yum update -y
+sudo mkdir -p nms-nap-compiler
+sudo yumdownloader --resolve --destdir=nms-nap-compiler nms-nap-compiler-v5.342.0
+tar -czvf compiler.tar.gz nms-nap-compiler/
+```
+
+#### Step 2: On the target (offline) system
+
+Before running the steps, make sure the OS libraries are up to date, especially `glibc`.  
+Move the `compiler.tar.gz` file from Step 1 to this system.
+
+```bash
+sudo yum install tar -y
+tar -xzvf compiler.tar.gz
+sudo dnf install --disablerepo=* nms-nap-compiler/*.rpm
+```
+
+
+{{%/tab%}}
+
+
+{{</tabs>}}
 
 ---
 
@@ -751,7 +932,7 @@ To upload a policy, follow these steps:
    ```
 
 2. Create a JSON request that includes the base64-encoded policy from step 1 as the value for the `content` field.
-   
+
    Replace the example string below with the actual base64-encoded output you generated.
 
     ```json
@@ -898,7 +1079,7 @@ You can use the NGINX Instance Manager REST API to deploy your NGINX App Protect
         ```nginx
         app_protect_enable on;
         ```
-    
+
     - If precompiled publication is enabled, change any `.json` policy references to `.tgz`.
     - If you want to apply a default policy, you can use:
 
@@ -1004,21 +1185,21 @@ sudo /opt/nms-nap-compiler/app_protect-<version>/bin/apcompile -h
 **Example:**
 
 ```shell
-sudo /opt/nms-nap-compiler/app_protect-5.342.0/bin/apcompile -h
+sudo /opt/nms-nap-compiler/app_protect-5.442.0/bin/apcompile -h
 ```
 
 **Expected output:**
 
 ```text
 USAGE:
-    /opt/nms-nap-compiler/app_protect-5.342.0/bin/apcompile <options>
+    /opt/nms-nap-compiler/app_protect-5.442.0/bin/apcompile <options>
 
 Examples:
-    /opt/nms-nap-compiler/app_protect-5.342.0/bin/apcompile -p /path/to/policy.json -o mypolicy.tgz
-    /opt/nms-nap-compiler/app_protect-5.342.0/bin/apcompile -p policyA.json -g myglobal.json -o /path/to/policyA_bundle.tgz
-    /opt/nms-nap-compiler/app_protect-5.342.0/bin/apcompile -g myglobalsettings.json --global-state-outfile /path/to/myglobalstate.tgz
-    /opt/nms-nap-compiler/app_protect-5.342.0/bin/apcompile -b /path/to/policy_bundle.tgz --dump
-    /opt/nms-nap-compiler/app_protect-5.342.0/bin/apcompile -l logprofA.json -o /path/to/logprofA_bundle.tgz
+    /opt/nms-nap-compiler/app_protect-5.442.0/bin/apcompile -p /path/to/policy.json -o mypolicy.tgz
+    /opt/nms-nap-compiler/app_protect-5.442.0/bin/apcompile -p policyA.json -g myglobal.json -o /path/to/policyA_bundle.tgz
+    /opt/nms-nap-compiler/app_protect-5.442.0/bin/apcompile -g myglobalsettings.json --global-state-outfile /path/to/myglobalstate.tgz
+    /opt/nms-nap-compiler/app_protect-5.442.0/bin/apcompile -b /path/to/policy_bundle.tgz --dump
+    /opt/nms-nap-compiler/app_protect-5.442.0/bin/apcompile -l logprofA.json -o /path/to/logprofA_bundle.tgz
 ```
 
 ### Confirm NGINX Agent configuration on the NGINX App Protect WAF instance

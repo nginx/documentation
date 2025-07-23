@@ -811,7 +811,7 @@ printSupportedOS(){
   printf "\n  6. centos8(CentOS 8)"
   printf "\n  7. rhel8(Redhat Enterprise Linux Version 8)"
   printf "\n  8. rhel9( Redhat Enterprise Linux Version 9)"
-  printf "\n  9. oracle8(Oracle Linux Version 8)\n"
+  printf "\n  9. oracle8(Oracle Linux Version 8)"
   printf "\n  10. oracle9(Oracle Linux Version 9)\n"
   exit 0
 }

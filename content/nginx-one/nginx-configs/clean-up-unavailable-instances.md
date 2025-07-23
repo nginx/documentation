@@ -1,6 +1,6 @@
 ---
 description: ''
-docs: null
+nd-docs: null
 title: Clean up unavailable NGINX instances
 toc: true
 weight: 1000
@@ -16,7 +16,7 @@ This guide explains how to set up automatic cleanup for NGINX instances in NGINX
 
 Before you set up automatic cleanup for NGINX instances, ensure:
 
-- You have administrator access to NGINX One.
+- You have [administrator access]({{< ref "/nginx-one/rbac/roles.md" >}}) to NGINX One Console.
 - You understand that this action will delete instances permanently after they are unavailable for the specified duration.
 
 ## Configure instance cleanup

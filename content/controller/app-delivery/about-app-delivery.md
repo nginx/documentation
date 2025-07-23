@@ -1,6 +1,6 @@
 ---
 description: Learn about F5 NGINX Controller Application Delivery concepts.
-docs: DOCS-474
+nd-docs: DOCS-474
 title: About Application Delivery
 toc: true
 weight: 100

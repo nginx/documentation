@@ -4,7 +4,7 @@ description: This topic provides a walkthrough of how to securely route egress t
   through F5 NGINX Ingress Controller for Kubernetes with NGINX Service Mesh.
 weight: 210
 toc: true
-docs: DOCS-722
+nd-docs: DOCS-722
 type:
 - tutorial
 ---

@@ -1,7 +1,7 @@
 ---
 description: Follow the instructions in this guide to install and configure the NGINX
   Agent on your data plane systems.
-docs: DOCS-800
+nd-docs: DOCS-800
 title: Install and Configure NGINX Agent
 toc: true
 weight: 100
@@ -400,31 +400,11 @@ Additionally, you can use the agent installation script to add these fields:
 
 ## SELinux for NGINX Agent
 
-This section explains how to install and configure the SELinux policy for NGINX Agent.
+{{< include "/installation/enable-agent-selinux.md" >}}
 
-### Installing NGINX Agent SELinux Policy Module
+### Add ports to NGINX Agent SELinux context
 
-The NGINX Agent package includes the following SELinux files:
-
-- `/usr/share/man/man8/nginx_agent_selinux.8.gz`
-- `/usr/share/selinux/devel/include/contrib/nginx_agent.if`
-- `/usr/share/selinux/packages/nginx_agent.pp`
-
-To load the NGINX Agent policy, run the following commands:
-
-{{< include "installation/agent-selinux.md" >}}
-
-### Adding Ports for NGINX Agent SELinux Context
-
-You can configure NGINX Agent to work with SELinux. Make sure you add external ports to the firewall exception list.
-
-The following example shows how to allow external ports outside the HTTPD context. You may need to enable NGINX to connect to these ports.
-
-```bash
-sudo setsebool -P httpd_can_network_connect 1
-```
-
-For additional information on using NGINX with SELinux, refer to the guide [Using NGINX and NGINX Plus with SELinux](https://www.nginx.com/blog/using-nginx-plus-with-selinux/).
+{{< include "/installation/add-ports-agent-selinux.md" >}}
 
 ---
 

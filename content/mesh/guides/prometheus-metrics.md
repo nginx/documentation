@@ -3,7 +3,7 @@ title: Prometheus Metrics
 description: How to set up and view prometheus metrics for valuable workload insights
 weight: 40
 toc: true
-docs: DOCS-840
+nd-docs: DOCS-840
 type:
 - how-to
 ---

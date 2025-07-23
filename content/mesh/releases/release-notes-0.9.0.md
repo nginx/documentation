@@ -2,12 +2,12 @@
 title: Release Notes 0.9.0
 draft: false
 toc: true
-description: Release information for F5 GINX Service Mesh, a configurable, low‑latency
+description: Release information for F5 NGINX Service Mesh, a configurable, low‑latency
   infrastructure layer designed to handle a high volume of network‑based interprocess
   communication among application infrastructure services using application programming
   interfaces (APIs).  Lists of new features and known issues are provided.
 weight: -900
-docs: DOCS-709
+nd-docs: DOCS-709
 type:
 - reference
 ---

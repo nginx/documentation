@@ -1,7 +1,7 @@
 ---
 description: Configure NGINX as a reverse proxy for HTTP and other protocols, with
   support for modifying request headers and fine-tuned buffering of responses.
-docs: DOCS-441
+nd-docs: DOCS-441
 title: NGINX Reverse Proxy
 toc: true
 weight: 300
@@ -21,7 +21,7 @@ When NGINX proxies a request, it:
 
 1. Sends the request to a specified proxy server
 1. Fetches the response
-1. Sends the response back to the client. 
+1. Sends the response back to the client.
 
 It is possible to proxy requests to an HTTP server (another NGINX server or any other server) or a non-HTTP server (which can run an application developed with a specific framework, such as PHP or Python) using a specified protocol. Supported protocols include [FastCGI](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html), [uwsgi](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html), [SCGI](https://nginx.org/en/docs/http/ngx_http_scgi_module.html), and [memcached](https://nginx.org/en/docs/http/ngx_http_memcached_module.html).
 
@@ -41,7 +41,7 @@ location ~ \.php {
 }
 ```
 
-Note that in the first example above, the address of the proxied server is followed by a URI, `/link/`. If the URI is specified along with the address, it replaces the part of the request URI that matches the location parameter. 
+Note that in the first example above, the address of the proxied server is followed by a URI, `/link/`. If the URI is specified along with the address, it replaces the part of the request URI that matches the location parameter.
 
 For example, the request with the `/some/path/page.html` URI will be proxied to `http://www.example.com/link/page.html`. However, if the address is specified without a URI, or it is not possible to determine the part of URI to be replaced, the full request URI is passed (possibly, modified).
 

@@ -3,7 +3,7 @@ title: Azure CLI
 weight: 900
 description: Learn how to setup the Azure CLI to manage NGINXaaS for Azure.
 toc: true
-docs: DOCS-1234
+nd-docs: DOCS-1234
 url: /nginxaas/azure/client-tools/cli/
 type:
 - task

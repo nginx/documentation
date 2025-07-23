@@ -14,7 +14,6 @@
     "hugo-bin": "^0.111.3"
   },
   "dependencies": {
-    "axios": "^1.8.2",
     "lighthouse": "^12.2.2",
     "puppeteer": "^23.8.0"
   }

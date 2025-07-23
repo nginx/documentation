@@ -1,6 +1,6 @@
 ---
 description: Follow the steps in this guide to create tags for organizing your instances.
-docs: DOCS-829
+nd-docs: DOCS-829
 title: Organize instances with tags
 toc: true
 weight: 650

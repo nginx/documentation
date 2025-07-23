@@ -1,5 +1,5 @@
 ---
-docs: DOCS-796
+nd-docs: DOCS-796
 title: Configure SELinux
 toc: true
 weight: 250
@@ -118,27 +118,11 @@ sudo semanage port -d -t nms_t 11000
 
 ## Enable SELinux for NGINX Agent {#selinux-agent}
 
-The following SELinux files are added when you install the NGINX Agent package:
-
-- `/usr/share/selinux/packages/nginx_agent.pp` - loadable binary policy module
-- `/usr/share/selinux/devel/include/contrib/nginx_agent.if` - interface definitions file
-- `/usr/share/man/man8/nginx_agent_selinux.8.gz` - policy man page
-
-To load the NGINX Agent policy, run:
-
-{{< include "installation/agent-selinux.md" >}}
+{{< include "/installation/enable-agent-selinux.md" >}}
 
 ### Add ports to NGINX Agent SELinux context
 
-Make sure to add external ports to the firewall exception list.
-
-To allow external ports outside the HTTPD context, run:
-
-```bash
-sudo setsebool -P httpd_can_network_connect 1
-```
-
-{{<see-also>}}For more information, see [Using NGINX and NGINX Plus with SELinux](https://www.nginx.com/blog/using-nginx-plus-with-selinux/).{{</see-also>}}
+{{< include "/installation/add-ports-agent-selinux.md" >}}
 
 ---
 

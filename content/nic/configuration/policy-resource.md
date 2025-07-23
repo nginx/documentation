@@ -175,8 +175,14 @@ condition:
 |Field | Description | Type | Required |
 | ---| ---| ---| --- |
 |``jwt`` | defines a JWT condition to rate limit against. | [ratelimit.condition.jwt](#ratelimitconditionjwt) | No |
-|``default`` | sets the rate limit in this policy to be the default if no conditions are met. In a group of policies with the same JWT condition, only one policy can be the default. | ``bool`` | No |
+|``variables`` | defines a Variable condition to rate limit against. | [ratelimit.condition.variables](#ratelimitconditionvariables) | No |
+|``default`` | sets the rate limit in this policy to be the default if no conditions are met. In a group of policies with the same condition, only one policy can be the default. | ``bool`` | No |
 {{% /table %}}
+{{< note >}}
+ 
+One condition of type `jwt` or `variables` is required. Each Policy supports only one condition.
+
+{{< /note >}}
 
 The rate limit policy with condition is designed to be used in combination with one or more rate limit policies. For example, multiple rate limit policies with [RateLimit.Condition.JWT](#ratelimitconditionjwt) can be used to apply different tiers of rate limit based on the value of a JWT claim. For a practical example of tiered rate limiting by the value of a JWT claim, see the example in our [GitHub repository](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/custom-resources/rate-limit-tiered-jwt-claim/README.md).
 
@@ -201,7 +207,7 @@ The rate limit policy will only apply to requests that contain a JWT with the sp
 {
   "user_details": {
     "level": "premium"
-  }, 
+  },
   "sub": "client1"
 }
 ```
@@ -211,6 +217,27 @@ The rate limit policy will only apply to requests that contain a JWT with the sp
 | ---| ---| ---| --- |
 |``claim`` | Claim is the JWT claim to be rate limit by. Nested claims should be separated by ".". | ``string`` | Yes |
 |``match`` | the value of the claim to match against. | ``string`` | Yes |
+{{% /table %}}
+
+### RateLimit.Condition.Variables
+
+RateLimit.Condition.Variables defines a condition for a rate limit by NGINX variable. The following example defines a condition for a rate limit policy that only applies to requests with the request method with a value `GET`:
+
+```yaml
+variables:
+  - name: $request_method
+    match: GET
+```
+
+{{< note >}}
+Only one variable at a time is supported at present.
+{{< /note >}}
+
+{{% table %}}
+|Field | Description | Type | Required |
+| ---| ---| ---| --- |
+|``name`` | the name of the NGINX variable to be rate limit by. | ``string`` | Yes |
+|``match`` | the value of the NGINX variable to match against.  Values prefixed with the `~` character denote the following is a [regular expression](https://nginx.org/en/docs/http/ngx_http_map_module.html#map).  | ``string`` | Yes |
 {{% /table %}}
 
 ### APIKey
@@ -766,7 +793,7 @@ waf:
 |``securityLog.enable`` | Enables security log. | ``bool`` | No |
 |``securityLog.apLogConf`` | The [App Protect WAF log conf]({{< ref "/nic/installation/integrations/app-protect-waf/configuration.md#waf-logs" >}}) resource. Accepts an optional namespace. Only works with ``apPolicy``. | ``string`` | No |
 |``securityLog.apLogBundle`` | The [App Protect WAF log bundle]({{< ref "/nic/installation/integrations/app-protect-waf/configuration.md#waf-bundles" >}}) resource. Only works with ``apBundle``. | ``string`` | No |
-|``securityLog.logDest`` | The log destination for the security log. Only accepted variables are ``syslog:server=<ip-address &#124; localhost; fqdn>:<port>``, ``stderr``, ``<absolute path to file>``. | ``string`` | No |
+|``securityLog.logDest`` | The log destination for the security log. Only accepted variables are ``syslog:server=<ip-address>; localhost; fqdn>:<port>``, ``stderr``, ``<absolute path to file>``. | ``string`` | No |
 {{% /table %}}
 
 #### WAF Merging Behavior

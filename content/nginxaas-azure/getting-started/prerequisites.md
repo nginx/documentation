@@ -2,7 +2,7 @@
 title: Overview and prerequisites
 weight: 100
 toc: true
-docs: DOCS-880
+nd-docs: DOCS-880
 url: /nginxaas/azure/getting-started/prerequisites/
 type:
 - how-to

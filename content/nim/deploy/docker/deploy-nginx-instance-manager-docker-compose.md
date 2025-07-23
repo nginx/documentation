@@ -3,7 +3,7 @@ description: ''
 title: Deploy using Docker Compose
 toc: true
 weight: 100
-docs: DOCS-1653
+nd-docs: DOCS-1653
 type:
 - task
 ---
@@ -30,9 +30,9 @@ Before you begin, make sure you have the following:
 - [Docker](https://docs.docker.com/get-docker/) installed on your system.
 - A JSON Web Token (JWT) from your [MyF5 subscriptions page](https://my.f5.com/manage/s/subscriptions). This is the same token used for NGINX Plus.
 - The right `docker-compose.yaml` file for your setup:
-  - For **standard mode** (with metrics and dashboards):  
+  - For **standard mode** (with metrics and dashboards):
     {{<fa "download">}} {{<link "/scripts/docker-compose/docker-compose.yaml" "Download the standard docker-compose.yaml file">}}
-  - For **lightweight mode** (no ClickHouse, no metrics):  
+  - For **lightweight mode** (no ClickHouse, no metrics):
     {{<fa "download">}} {{<link "/scripts/docker-compose/docker-compose-lightweight.yaml" "Download the lightweight docker-compose.yaml file">}}
 
 {{< note >}} If you're not sure which one to use, start with lightweight mode. You can always switch later by changing the Compose file and setting `ENABLE_METRICS: "true"`.{{< /note >}}

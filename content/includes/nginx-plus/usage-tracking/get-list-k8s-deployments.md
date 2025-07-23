@@ -1,5 +1,5 @@
 ---
-docs: DOCS-1352
+nd-docs: DOCS-1352
 ---
 
 To report your NGINX Ingress Controller clusters to F5, follow these steps:

@@ -2,10 +2,10 @@
 title: NGINX App Protect DoS 4.5
 toc: true
 weight: 70
-docs: DOCS-000
+nd-docs: DOCS-1784
 ---
 
-Here you can find the release information for F5 NGINX App Protect DoS v4.5  
+Here you can find the release information for F5 NGINX App Protect DoS v4.5
 
 NGINX App Protect DoS provides behavioral protection against Denial of Service (DoS) for your web applications.
 
@@ -24,8 +24,8 @@ NGINX App Protect DoS 4.5 adds support for NGINX Plus R33.
 - Support for NGINX Plus R33
 - Add support for Alpine 3.19
 - Add support for Ubuntu 24.04
-- Remove support for CentOS 7 / RHEL 7 
-- *eBPF Manager - Privileged Process for Secure Command Handling*  
+- Remove support for CentOS 7 / RHEL 7
+- *eBPF Manager - Privileged Process for Secure Command Handling*
 This feature introduces the eBPF Manager, a process that securely handles eBPF commands on behalf of other processes. By allowing certain processes to operate without elevated privileges, it enhances system security. As part of this enhancement, NGINX now runs under a non-root user account, which is required for deploying specific security solutions.
 
 ---

@@ -1,5 +1,5 @@
 ---
-docs: "DOCS-1607"
+nd-docs: "DOCS-1607"
 ---
 
 The last step is to associate the GraphQL profiles with the URLs. As with JSON and XML profiles, in order for a GraphQL Profile to become effective, it has to be associated with a URL that represents the service. Add the GraphQL profile name which you defined previously under the GraphQL profiles in the name field. For example, here we have defined two GraphQL profiles with the "name": "Default" and "My Custom Profile" under the urlContentProfiles. Later we also associated these profiles in "graphql-profiles".

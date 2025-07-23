@@ -1,5 +1,5 @@
 ---
-docs: DOCS-000
+nd-docs: DOCS-000
 files:
   - content/nim/nginx-app-protect/setup-waf-config-management.md
 ---

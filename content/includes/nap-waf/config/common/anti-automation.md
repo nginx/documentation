@@ -1,5 +1,5 @@
 ---
-docs: "DOCS-1575"
+nd-docs: "DOCS-1575"
 ---
 
 Anti Automation provides basic bot protection by detecting bot signatures and clients that falsely claim to be browsers or search engines. The `bot-defense` section in the policy is enabled by default. Anti Automation encompasses both Bot Signatures and Header Anomalies, each of which can be disabled separately.

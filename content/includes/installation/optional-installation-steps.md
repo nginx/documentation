@@ -1,5 +1,5 @@
 ---
-docs: DOCS-1030
+nd-docs: DOCS-1030
 ---
 
 The following steps may be necessary depending on your installation configuration.

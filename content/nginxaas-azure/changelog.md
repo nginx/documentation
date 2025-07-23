@@ -2,7 +2,7 @@
 title: "Changelog"
 weight: 900
 toc: true
-docs: "DOCS-870"
+nd-docs: "DOCS-870"
 url: /nginxaas/azure/changelog/
 
 ---
@@ -15,6 +15,13 @@ To review older entries, visit the [Changelog archive]({{< ref "/nginxaas-azure/
 
 
 ## May 22, 2025
+
+- {{% icon-feature %}} **NGINXaaS for Azure now supports IPv6**
+
+  Users can now configure their NGINXaaS deployments with just a single IPv6 frontend IP or in dual-stack (IPv4 + IPv6) mode.
+
+  If you plan to use an IPv6 IP address whether standalone or in dual-stack mode, ensure that the subnet used by NGINXaaS has both IPv4 and IPv6 address spaces included. For more information on creating a vnets and subnets with IPv6 address spaces, refer to [Add IPv6 to virtual Network](https://learn.microsoft.com/en-us/azure/virtual-network/ip-services/add-dual-stack-ipv6-vm-portal?tabs=azureportal#add-ipv6-to-virtual-network)
+
 
 - {{% icon-feature %}} **NGINXaaS is now running NGINX Plus Release 33 (R33) in the Stable Upgrade Channel**
 

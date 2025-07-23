@@ -2,7 +2,7 @@
 title: Laravel
 weight: 1200
 toc: true
-docs: DOCS-1754
+nd-docs: DOCS-1754
 ---
 
 To run apps based on the [Laravel](https://laravel.com) framework using Unit:

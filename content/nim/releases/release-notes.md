@@ -4,7 +4,7 @@ weight: 100
 toc: true
 type: reference
 product: NIM
-docs: DOCS-938
+nd-docs: DOCS-938
 ---
 
 The release notes for F5 NGINX Instance Manager highlight the latest features, improvements, and bug fixes in each release. This document helps you stay up to date with the changes and enhancements introduced to improve stability, performance, and usability. For each version, you’ll find details about new features, known issues, and resolved problems, ensuring you get the most out of your NGINX instance management experience.

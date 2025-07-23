@@ -1,6 +1,6 @@
 ---
 description: How to forward Analytics data to Datadog.
-docs: DOCS-531
+nd-docs: DOCS-531
 title: Forward Analytics Data to Datadog
 toc: true
 weight: 100

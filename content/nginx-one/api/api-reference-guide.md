@@ -1,6 +1,6 @@
 ---
 description: ''
-docs: DOCS-1398
+nd-docs: DOCS-1398
 doctypes:
   - reference
 type: redoc

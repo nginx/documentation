@@ -1,6 +1,6 @@
 ---
 description: Integrate F5 NGINX Controller with Amazon Web Services.
-docs: DOCS-785
+nd-docs: DOCS-785
 title: AWS Integration
 toc: true
 weight: 20
