@@ -494,6 +494,55 @@ nginx.com/sticky-cookie-services: "serviceName=example-svc cookie_name expires=t
 NGINX Ingress Controller has additional annotations for features using NGINX Plus that have no Ingress-NGINX Controller equivalent, such as active health checks and authentication using JSON Web Tokens (JWTs).
 {{< /note >}}
 
+---
+
+The following snippets outline Ingress-NGINX Controller annotations that correspond to annotations for NGINX Ingress Controller with respect to enabling TLS and gRPC on backend (upstream) services.
+
+**Ingress-NGINX Controller**
+```yaml
+nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+```
+
+**NGINX Ingress Controller**
+```yaml
+nginx.org/ssl-services: "ssl_service_name"
+```
+
+---
+
+**Ingress-NGINX Controller**
+```yaml
+nginx.ingress.kubernetes.io/backend-protocol: "GRPC"
+```
+
+**NGINX Ingress Controller**
+```yaml
+nginx.org/grpc-services: "grpc_service_name"
+```
+
+{{< note >}}
+Requires HTTP/2 (see http2 ConfigMap key) and only works for Ingresses with TLS termination enabled.
+{{< /note >}}
+
+---
+
+**Ingress-NGINX Controller**
+```yaml
+nginx.ingress.kubernetes.io/backend-protocol: "GRPCS"
+```
+
+**NGINX Ingress Controller**
+```yaml
+nginx.org/ssl-services: "grpc_service_name"
+nginx.org/grpc-services: "grpc_service_name"
+```
+
+{{< note >}}
+Requires HTTP/2 (see http2 ConfigMap key) and only works for Ingresses with TLS termination enabled.
+{{< /note >}}
+
+---
+
 ### Global configuration with ConfigMaps
 
 This table maps the Ingress-NGINX Controller ConfigMap keys to NGINX Ingress Controller's equivalent ConfigMap keys.
