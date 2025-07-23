@@ -73,7 +73,7 @@ Before you install NGINX Agent for the first time on your system, you need to se
     enabled=1
     ```
 
-1. To install `nginx-agent`, with a specific version (example: 2.42.0):
+1. To install `nginx-agent` with a specific version (example: 2.42.0):
 
     ```shell
     sudo yum install -y nginx-agent-2.42.0
@@ -131,11 +131,13 @@ Before you install NGINX Agent for the first time on your system, you need to se
       | sudo tee /etc/apt/sources.list.d/nginx-agent.list
     ```
 
-1. To install `nginx-agent`, with a specific version (example: 2.42.0):
+1. To install `nginx-agent` with a specific version (example: 2.42.0):
 
+     Update your package index and install a specific version of the nginx-agent. Replace <VERSION_CODENAME> with your current Ubuntu codename (e.g., jammy, noble).
+   
     ```shell
     sudo apt update
-    sudo apt install -y nginx-agent=2.42.0~`lsb_release -cs`
+    sudo apt install -y nginx-agent=2.42.0~<VERSION_CODENAME>
     ```
 
 1. Verify the installation:
@@ -183,12 +185,14 @@ Before you install NGINX Agent for the first time on your system, you need to se
     Acquire::https::pkgs.nginx.com::SslKey      "/etc/ssl/nginx/nginx-repo.key";
     ```
 
-1. To install `nginx-agent`, with a specific version (example: 2.42.0):
+1. To install `nginx-agent` with a specific version (example: 2.42.0):
 
+    Update your package index and install a specific version of the nginx-agent. Replace <VERSION_CODENAME> with your current Debian codename (e.g., bullseye).
+    
     ```shell
     sudo apt update
-    sudo apt install -y nginx-agent=2.42.0~`lsb_release -cs`
-    ```
+    sudo apt install -y nginx-agent=2.42.0~<VERSION_CODENAME>
+
 
 1. Verify the installation:
 
@@ -265,7 +269,7 @@ Before you install NGINX Agent for the first time on your system, you need to se
     sudo rpmkeys --import /tmp/nginx_signing.key
     ```
 
-1. To install `nginx-agent`, with a specific version (example: 2.42.0):
+1. To install `nginx-agent` with a specific version (example: 2.42.0):
 
     ```shell
     sudo zypper install -y nginx-agent=2.42.0
@@ -394,7 +398,7 @@ Before you install NGINX Agent for the first time on your system, you need to se
     enabled=1
     ```
 
-1. To install `nginx-agent`, with a specific version (example: 2.42.0):
+1. To install `nginx-agent` with a specific version (example: 2.42.0):
 
     ```shell
     sudo dnf install -y nginx-agent-2.42.0
@@ -442,7 +446,7 @@ Before you install NGINX Agent for the first time on your system, you need to se
     enabled=1
     ```
 
-1. To install `nginx-agent`, with a specific version (example: 2.42.0):
+1. To install `nginx-agent` with a specific version (example: 2.42.0):
 
     ```shell
     sudo yum install -y nginx-agent-2.42.0
@@ -496,7 +500,7 @@ Before you install NGINX Agent for the first time on your system, you need to se
     SSL_CLIENT_KEY_FILE: "/etc/ssl/nginx/nginx-repo.key" }
     ```
 
-1. To install `nginx-agent`, with a specific version (example: 2.42.0):
+1. To install `nginx-agent` with a specific version (example: 2.42.0):
 
     ```shell
     sudo pkg install nginx-agent-2.42.0
