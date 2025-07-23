@@ -26,10 +26,8 @@ jobs:
         id: check_changes
         run: |
             cd dot-org-repo
-            commit1=$(git rev-parse HEAD)
-            commit2=$(git rev-parse HEAD^)
 
-            if git diff --name-only $commit2 $commit1 | grep '^xml/en/'; then
+            if git whatchanged --since="1 day ago" -- _xml/en/; then
               echo "Changes detected in /en"
               echo "changed=true" >> $GITHUB_OUTPUT
             else
