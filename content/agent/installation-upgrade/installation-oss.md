@@ -50,10 +50,10 @@ Before you install NGINX Agent for the first time on your system, you need to se
     module_hotfixes=true
     ```
 
-1. To install `nginx-agent`, run the following command:
+1. To install `nginx-agent` with a specific version (example: 2.42.0):
 
     ```shell
-    sudo yum install nginx-agent
+    sudo yum install -y nginx-agent-2.42.0
     ```
 
     When prompted to accept the GPG key, verify that the fingerprint matches `8540 A6F1 8833 A80E 9C16 53A4 2FD2 1310 B49F 6B46`, `573B FD6B 3D8F BC64 1079 A6AB ABF5 BD82 7BD9 BF62`, `9E9B E90E ACBC DE69 FE9B 204C BCDC D8A3 8D88 A2B3`, and if so, accept it.
@@ -105,11 +105,13 @@ Before you install NGINX Agent for the first time on your system, you need to se
       | sudo tee /etc/apt/sources.list.d/nginx-agent.list
     ```
 
-1. To install `nginx-agent`, run the following commands:
-
+1. To install `nginx-agent` with a specific version (example: 2.42.0):
+   
+    Update your package index and install a specific version of the nginx-agent. Replace <VERSION_CODENAME> with your current Ubuntu codename (e.g., jammy, noble).
+   
     ```shell
     sudo apt update
-    sudo apt install nginx-agent
+    sudo apt install -y nginx-agent=2.42.0~<VERSION_CODENAME>
     ```
 
 1. Verify the installation:
@@ -166,12 +168,13 @@ Before you install NGINX Agent for the first time on your system, you need to se
       http://packages.nginx.org/nginx-agent/debian/ `lsb_release -cs` agent" \ | sudo tee /etc/apt/sources.list.d/nginx-agent.list
     ```
 
-1. To install `nginx-agent`, run the following commands:
+1. To install `nginx-agent` with a specific version (example: 2.42.0):
 
+    Update your package index and install a specific version of the nginx-agent. Replace <VERSION_CODENAME> with your current Debian codename (e.g., bullseye).
+    
     ```shell
     sudo apt update
-    sudo apt install nginx-agent
-    ```
+    sudo apt install -y nginx-agent=2.42.0~<VERSION_CODENAME>
 
 1. Verify the installation:
 
@@ -229,10 +232,10 @@ Before you install NGINX Agent for the first time on your system, you need to se
     sudo rpmkeys --import /tmp/nginx_signing.key
     ```
 
-1. To install `nginx-agent`, run the following command:
+1. To install `nginx-agent` with a specific version (example: 2.42.0):
 
     ```shell
-    sudo zypper install nginx-agent
+    sudo zypper install -y nginx-agent=2.42.0
     ```
 
 1. Verify the installation:
@@ -303,10 +306,10 @@ Before you install NGINX Agent for the first time on your system, you need to se
     sudo mv /tmp/nginx_signing.rsa.pub /etc/apk/keys/
     ```
 
-1. To install `nginx-agent`, run the following command:
+1. To install `nginx-agent` with a specific version (example: 2.42.0):
 
     ```shell
-    sudo apk add nginx-agent
+    sudo apk add nginx-agent=2.42.0
     ```
 
 1. Verify the installation:
@@ -334,10 +337,10 @@ Before you install NGINX Agent for the first time on your system, you need to se
     module_hotfixes=true
     ```
 
-1. To install `nginx-agent`, run the following command:
+1. To install `nginx-agent` with a specific version (example: 2.42.0):
 
     ```shell
-    sudo dnf install nginx-agent
+    sudo dnf install -y nginx-agent-2.42.0
     ```
 
 1. When prompted to accept the GPG key, verify that the fingerprint matches
@@ -370,10 +373,10 @@ Before you install NGINX Agent for the first time on your system, you need to se
     module_hotfixes=true
     ```
 
-1. To install `nginx-agent`, run the following command:
+1. To install `nginx-agent` with a specific version (example: 2.42.0):
 
     ```shell
-    sudo yum install nginx-agent
+    sudo yum install -y nginx-agent-2.42.0
     ```
 
 1. When prompted to accept the GPG key, verify that the fingerprint matches `8540 A6F1 8833 A80E 9C16 53A4 2FD2 1310 B49F 6B46`, `573B FD6B 3D8F BC64 1079 A6AB ABF5 BD82 7BD9 BF62`, `9E9B E90E ACBC DE69 FE9B 204C BCDC D8A3 8D88 A2B3`, and if so, accept it.
@@ -396,10 +399,10 @@ Before you install NGINX Agent for the first time on your system, you need to se
     }
     ```
 
-1. To install `nginx-agent`, run the following command:
+1. To install `nginx-agent` with a specific version (example: 2.42.0):
 
     ```shell
-    sudo pkg install nginx-agent
+    sudo pkg install nginx-agent-2.42.0
     ```
 
 1. Verify the installation:
