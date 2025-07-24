@@ -18,7 +18,7 @@ This guide explains how to enable single sign-on (SSO) for applications being pr
 
 The instructions in this document apply to both Ping Identity's on‑premises and cloud products, PingFederate and PingOne for Enterprise.
 
-{{< see-also >}}{{< readfile file="includes/nginx-openid-repo-note.txt" markdown="true" >}}{{< /see-also >}}
+{{< see-also >}}{{<include "nginx-plus/nginx-openid-repo-note">}}{{< /see-also >}}
 
 <span id="prereqs"></span>
 ## Prerequisites
