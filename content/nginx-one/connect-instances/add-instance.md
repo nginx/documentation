@@ -2,7 +2,7 @@
 description: ''
 title: Add an NGINX instance
 toc: true
-weight: 100
+weight: 300
 type:
 - how-to
 ---

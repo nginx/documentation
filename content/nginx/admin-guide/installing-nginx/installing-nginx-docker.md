@@ -156,10 +156,16 @@ For NGINX Plus, run:
 docker pull private-registry.nginx.com/nginx-plus/base:<version-tag>
 ```
 
-For NGINX Plus with NGINX Agent, run:
+For NGINX Plus with NGINX Agent version 2, run:
 
 ```shell
 docker pull private-registry.nginx.com/nginx-plus/agent:<version-tag>
+```
+
+For NGINX Plus with NGINX Agent version 3, run:
+
+```shell
+docker pull private-registry.nginx.com/nginx-plus/agentv3:<version-tag>
 ```
 
 For NGINX Plus installed from `nginx` user (rootless installation), run:
@@ -168,10 +174,16 @@ For NGINX Plus installed from `nginx` user (rootless installation), run:
 docker pull private-registry.nginx.com/nginx-plus/rootless-base:<version-tag>
 ```
 
-For NGINX Plus with NGINX Agent installed from `nginx` user (rootless installation), run:
+For NGINX Plus with NGINX Agent version 2 installed from `nginx` user (rootless installation), run:
 
 ```shell
 docker pull private-registry.nginx.com/nginx-plus/rootless-agent:<version-tag>
+```
+
+For NGINX Plus with NGINX Agent version 3 installed from `nginx` user (rootless installation), run:
+
+```shell
+docker pull private-registry.nginx.com/nginx-plus/rootless-agentv3:<version-tag>
 ```
 
 For NGINX modules, run:<!-- Is this enough info?-->

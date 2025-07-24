@@ -54,13 +54,13 @@ Deploying NGINX Gateway Fabric with Kubernetes manifests takes only a few steps.
 #### Stable release
 
 ```shell
-kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v{{< version-ngf >}}/deploy/crds.yaml
+kubectl apply --server-side -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v{{< version-ngf >}}/deploy/crds.yaml
 ```
 
 #### Edge version
 
 ```shell
-kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/main/deploy/crds.yaml
+kubectl apply --server-side -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/main/deploy/crds.yaml
 ```
 
 ### Deploy NGINX Gateway Fabric
