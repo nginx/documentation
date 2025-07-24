@@ -22,7 +22,7 @@ F5 NGINX One Console makes it easy to manage NGINX instances across locations an
 
 {{<card-layout>}}
   {{<card-section showAsCards="true" isFeaturedSection="true">}}
-    {{<card title="Get started" titleUrl="getting-started/" isFeaturedCard="true" icon="unplug">}}
+    {{<card title="Get started" titleUrl="getting-started/" icon="unplug" isFullSize="true">}}
       Get up and running with NGINX One Console
     {{</card >}}
   {{</card-section>}}
