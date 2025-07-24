@@ -10,7 +10,7 @@ nd-docs: DOCS-616
 
 08 Jul 2025
 
-This NGINX Ingress Controller release brings initial connectivity to the NGINX One Console! You can now use NGINX One Console to manage NGINX instances that are part of your NGINX Ingress Controller cluster. See [here]({{< ref "/nginx-one/k8s/add-nic.md" >}}) to configure NGINX One Console with NGINX Ingress Controller.
+This NGINX Ingress Controller release brings initial connectivity to the NGINX One Console! You can now use NGINX One Console to monitor NGINX instances that are part of your NGINX Ingress Controller cluster. See [here]({{< ref "/nginx-one/k8s/add-nic.md" >}}) to configure NGINX One Console with NGINX Ingress Controller.
 
 This release also includes the ability to configure Rate Limiting for your APIs based on a specific NGINX variable and its value. This allows you more granular control over how frequently specific users access your resources.
 
