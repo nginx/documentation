@@ -53,7 +53,13 @@
     },
     {
       "name": "Staged Configs",
+      "description": "The `StagedConfigs` object represents a NGINX staged config which users can save to publish at a later time.\n",
       "x-displayName": "Staged Configs"
+    },
+    {
+      "name": "Control Planes",
+      "description": "The `Control Planes` object represents an external control plane such as NGINX Ingress Controller.\nFrom this endpoint, you can get detailed information about each control plane, including its NGINX instances, configurations, security advisories, and operational status.\n",
+      "x-displayName": "Control Planes"
     },
     {
       "name": "Metrics",
@@ -63,6 +69,11 @@
       "name": "Settings",
       "description": "Configuration option for different aspect of NGINX One service.\nYou can set NGINX Instance cleanup preferences.\n",
       "x-displayName": "Settings"
+    },
+    {
+      "name": "NGINX App Protect",
+      "description": "Manage and publish security policies on your NGINX data plane instances.\n",
+      "x-displayName": "NGINX App Protect"
     }
   ],
   "paths": {
@@ -1197,6 +1208,11 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ConfigSyncGroupDetails"
+                },
+                "examples": {
+                  "ConfigSyncGroupDetails": {
+                    "$ref": "#/components/examples/ConfigSyncGroupDetails"
+                  }
                 }
               }
             }
@@ -1720,7 +1736,7 @@
           "Config Sync Groups"
         ],
         "summary": "Retrieves stored NGINX configurations for a NGINX config sync group",
-        "description": "Returns a list of all configurations for a NGINX config sync group. Only the last 5 are kept on the NGINX One Console for a NGINX config sync group.",
+        "description": "Returns a list of all configurations for a NGINX config sync group. Only the last 10 are kept on the NGINX One Console for a NGINX config sync group.",
         "operationId": "listConfigSyncGroupConfigurations",
         "responses": {
           "200": {
@@ -1894,6 +1910,151 @@
         }
       ]
     },
+    "/control-planes": {
+      "get": {
+        "tags": [
+          "Control Planes"
+        ],
+        "x-feature-flag": "control_planes_m1",
+        "summary": "List control planes",
+        "operationId": "listControlPlanes",
+        "description": "Returns a paginated list of control planes.\n",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Paginated"
+          },
+          {
+            "$ref": "#/components/parameters/Limit"
+          },
+          {
+            "$ref": "#/components/parameters/Offset"
+          },
+          {
+            "$ref": "#/components/parameters/SortDirection"
+          },
+          {
+            "$ref": "#/components/parameters/SortNameControlPlanes"
+          },
+          {
+            "$ref": "#/components/parameters/FilterOperands"
+          },
+          {
+            "$ref": "#/components/parameters/FilterValues"
+          },
+          {
+            "$ref": "#/components/parameters/FilterFieldControlPlanes"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the list of control planes.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ControlPlaneListResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerErr"
+          }
+        }
+      }
+    },
+    "/control-planes/{controlPlaneObjectID}": {
+      "delete": {
+        "x-nginx-one-action": "delete",
+        "x-nginx-one-entity": "Control Plane",
+        "tags": [
+          "Control Planes"
+        ],
+        "summary": "Delete a control plane",
+        "description": "Delete a control plane from the NGINX One Console. You can delete a control plane, only if it contains no NGINX instances.\n",
+        "operationId": "deleteControlPlane",
+        "responses": {
+          "204": {
+            "description": "Successfully deleted the control plane"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerErr"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Control Planes"
+        ],
+        "summary": "Retrieve a control plane",
+        "description": "Retrieve the details for a control plane, including:\n* Object ID\n* Product name and version\n* Cluster UUID\n* Kubernetes namespace\n* Deployment UUID\n* Data plane key\n* Certificate summary referenced by control plane instances\n* Instance status summary\n",
+        "operationId": "getControlPlane",
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the details of the control plane.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ControlPlaneDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerErr"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/ControlPlaneParamObjectID"
+        }
+      ],
+      "x-feature-flag": "control_planes_m1"
+    },
+    "/control-planes/summary": {
+      "get": {
+        "tags": [
+          "Control Planes"
+        ],
+        "summary": "Retrieve a summary for all Control Planes.",
+        "description": "Retrieves details for all control planes, including:\n  * Number of control planes for each product name/version\n",
+        "operationId": "getControlPlaneSummary",
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the summary of control planes.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ControlPlaneSummary"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerErr"
+          }
+        }
+      },
+      "x-feature-flag": "control_planes_m1"
+    },
     "/cves": {
       "get": {
         "tags": [
@@ -2040,7 +2201,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Successfully retrieved the list of instances affected by the CVE",
+            "description": "Successfully retrieved the list of instances affected by the CVE.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2377,7 +2538,7 @@
           "Instances"
         ],
         "summary": "Retrieve an instance",
-        "description": "Retrieves the details for an NGINX instance, including\n* Hostname\n* System status\n* Timestamps of key actions (registration, last reported, etc.)\n* NGINX build information\n* Certificate data\n* Operating system version\n* NGINX Agent version\n* Config Sync Group membership details\n",
+        "description": "Retrieves the details for an NGINX instance, including\n* Hostname\n* System status\n* Timestamps of key actions (registration, last reported, etc.)\n* NGINX build information\n* Certificate data\n* Operating system version\n* NGINX Agent version\n* Config Sync Group membership details\n* Control plane object ID, name, product and version\n",
         "operationId": "getInstance",
         "parameters": [
           {
@@ -2829,7 +2990,7 @@
           "Instances"
         ],
         "summary": "Retrieves the stored NGINX configurations for an instance",
-        "description": "Returns a list of all configurations for a NGINX instance. Only the last 5 are kept on the NGINX One Console for a NGINX instance.",
+        "description": "Returns a list of all configurations for a NGINX instance. Only the last 10 are kept on the NGINX One Console for a NGINX instance.",
         "operationId": "listInstanceConfigurations",
         "responses": {
           "200": {
@@ -3197,59 +3358,6 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/StagedConfigListResponse"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Access denied.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "An unexpected error occurred on the server. Please try the request again later.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      },
-      "patch": {
-        "x-nginx-one-action": "bulk",
-        "x-nginx-one-entity": "NGINX staged configs",
-        "x-feature-flag": "staged-configs-phase-2",
-        "tags": [
-          "Staged Configs"
-        ],
-        "summary": "Bulk operation on multiple staged configs",
-        "operationId": "bulkStagedConfigs",
-        "description": "Performs bulk operation on one or more staged configs, only delete is supported.",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/StagedConfigBulkRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Batch request completed.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/StagedConfigBulkResponse"
                 }
               }
             }
@@ -3782,153 +3890,6 @@
         }
       }
     },
-    "/staged-configs/{stagedConfigObjectID}/export": {
-      "get": {
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/StagedConfigParamObjectID"
-          }
-        ],
-        "tags": [
-          "Staged Configs"
-        ],
-        "x-feature-flag": "staged-configs-phase-2",
-        "x-nginx-one-action": "export",
-        "x-nginx-one-entity": "NGINX staged config",
-        "summary": "Export staged configuration",
-        "description": "Exports staged configuration as a gzipped tar archive. Does not include sensitive data such as SSL certificates. [Learn more](https://docs.nginx.com/nginx-one/how-to/staged-configs/import-export-staged-config/).\n",
-        "operationId": "exportStagedConfig",
-        "responses": {
-          "200": {
-            "description": "Successfully exported the staged configuration.",
-            "content": {
-              "application/gzip": {
-                "schema": {
-                  "type": "string",
-                  "format": "binary",
-                  "example": "my-staged-config-2025-01-01T20_25_03.tar.gz"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Access denied",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "The NGINX staged config with the specified object_id was not found. Check that the object_id provided is correct and corresponds to an existing resource.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "An unexpected error occurred on the server. Please try the request again later.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/staged-configs/import": {
-      "post": {
-        "tags": [
-          "Staged Configs"
-        ],
-        "x-feature-flag": "staged-configs-phase-2",
-        "x-nginx-one-action": "import",
-        "x-nginx-one-entity": "NGINX staged config",
-        "summary": "Import staged configuration\n",
-        "description": "Imports a gzipped tar archive (.tar.gz) containing configuration and aux files into NGINX One. \nOnly non-hidden files are included in the import.\n\nMaximum compressed archive size: **5 MB**\nMaximum uncompressed individual file size: **10 MB**\n\nIf `parse_only` is set to `true`, the configuration is only validated and not staged.\nBy default, validation is performed and a staged configuration is created upon success.\n",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/StagedConfigImportParseOnly"
-          }
-        ],
-        "operationId": "importStagedConfig",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "multipart/form-data": {
-              "schema": {
-                "$ref": "#/components/schemas/StagedConfigImportRequest"
-              },
-              "encoding": {
-                "file": {
-                  "contentType": "application/gzip, application/x-gzip"
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Return if `parse_only` is `true`: Returns data matching `StagedConfigCreateRequest` that can be used to create the staged config later.  \n",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/StagedConfigCreateRequest"
-                }
-              }
-            }
-          },
-          "201": {
-            "description": "Return if `parse_only` is `false` or omitted: Confirms the import parsed successfully and the staged config was created.\n",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/StagedConfigCreateResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Access denied",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "An unexpected error occurred on the server. Please try the request again later.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/monitor/metrics_query_topx": {
       "post": {
         "tags": [
@@ -4062,6 +4023,757 @@
           },
           "500": {
             "$ref": "#/components/responses/InternalServerErr"
+          }
+        }
+      }
+    },
+    "/app-protect/policies": {
+      "get": {
+        "x-feature-flag": "nap-waf",
+        "tags": [
+          "NGINX App Protect"
+        ],
+        "summary": "List NGINX App Protect policies",
+        "description": "Returns a list of NGINX App Protect policies along with deployment details.",
+        "operationId": "listNapPolicies",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Paginated"
+          },
+          {
+            "$ref": "#/components/parameters/Limit"
+          },
+          {
+            "$ref": "#/components/parameters/Offset"
+          },
+          {
+            "$ref": "#/components/parameters/SortDirection"
+          },
+          {
+            "$ref": "#/components/parameters/SortNameNapPolicies"
+          },
+          {
+            "$ref": "#/components/parameters/FilterOperands"
+          },
+          {
+            "$ref": "#/components/parameters/FilterValues"
+          },
+          {
+            "$ref": "#/components/parameters/FilterFieldNapPolicy"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully returned NGINX App Protect policies.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NapPolicyListResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "x-nginx-one-action": "bulk",
+        "x-nginx-one-entity": "NGINX Nap Policies",
+        "x-feature-flag": "nap-waf",
+        "tags": [
+          "NGINX App Protect"
+        ],
+        "summary": "Bulk operation on multiple Nap policy",
+        "operationId": "bulkNAPPolicy",
+        "description": "Performs bulk operation on one or more Nap policy, only delete is supported.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NapPolicyBulkRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Batch request completed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NapBulkResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "x-feature-flag": "nap-waf",
+        "tags": [
+          "NGINX App Protect"
+        ],
+        "summary": "Create NGINX App Protect policy",
+        "description": "Creates NGINX App Protect policy.",
+        "operationId": "createNapPolicy",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NapPolicy"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successfully created NGINX App Protect policy.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NapPolicyMetadata"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/app-protect/policies/{nap_policy_object_id}": {
+      "delete": {
+        "x-feature-flag": "nap-waf",
+        "tags": [
+          "NGINX App Protect"
+        ],
+        "summary": "Delete NGINX App Protect policy",
+        "description": "Deletes NGINX App Protect policy.",
+        "operationId": "deleteNapPolicy",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/NapPolicyParamObjectID"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successfully deleted NGINX App Protect policy."
+          },
+          "400": {
+            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The NGINX App Protect policy with the specified nap_policy_object_id was not found. Check that the nap_policy_object_id provided is correct and corresponds to an existing resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "x-feature-flag": "nap-waf",
+        "tags": [
+          "NGINX App Protect"
+        ],
+        "summary": "Get NGINX App Protect policy details",
+        "description": "Returns NGINX App Protect policy summary.",
+        "operationId": "getNapPolicy",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/NapPolicyParamObjectID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully returned NGINX App Protect policy details.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NapPolicyObject"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The NGINX App Protect policy with the specified nap_policy_object_id was not found. Check that the nap_policy_object_id provided is correct and corresponds to an existing resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "x-feature-flag": "nap-waf",
+        "tags": [
+          "NGINX App Protect"
+        ],
+        "summary": "Update NGINX App Protect policy details",
+        "description": "Update NGINX App Protect policy details.",
+        "operationId": "updateNapPolicy",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/NapPolicyParamObjectID"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NapPolicy"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successfully created an NGINX App Protect policy version.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NapPolicyMetadata"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The NGINX App Protect policy with the specified nap_policy_object_id was not found. Check that the nap_policy_object_id provided is correct and corresponds to an existing resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/app-protect/policies/{nap_policy_object_id}/deployments": {
+      "get": {
+        "x-feature-flag": "nap-waf",
+        "tags": [
+          "NGINX App Protect"
+        ],
+        "summary": "List NGINX App Protect deployments",
+        "description": "Returns NGINX App Protect deployments, providing details such as:\n  * Target of the deployment\n  * Time of deployment\n  * Enforcement mode\n  * Policy version\n  * Threat campaign\n  * Attack signature\n  * Bot signature\n",
+        "operationId": "listNapPolicyDeployments",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/NapPolicyParamObjectID"
+          },
+          {
+            "$ref": "#/components/parameters/Paginated"
+          },
+          {
+            "$ref": "#/components/parameters/Limit"
+          },
+          {
+            "$ref": "#/components/parameters/Offset"
+          },
+          {
+            "$ref": "#/components/parameters/SortDirection"
+          },
+          {
+            "$ref": "#/components/parameters/SortNameNapPolicyDeployments"
+          },
+          {
+            "$ref": "#/components/parameters/FilterOperands"
+          },
+          {
+            "$ref": "#/components/parameters/FilterValues"
+          },
+          {
+            "$ref": "#/components/parameters/FilterFieldNapPolicyDeployment"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully returned NGINX App Protect deployments.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NapPolicyDeploymentsListResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The NGINX App Protect policy with the specified nap_policy_object_id was not found. Check that the nap_policy_object_id provided is correct and corresponds to an existing resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/app-protect/policies/{nap_policy_object_id}/version": {
+      "get": {
+        "x-feature-flag": "nap-waf",
+        "tags": [
+          "NGINX App Protect"
+        ],
+        "summary": "Get the latest NGINX App Protect policy version details",
+        "description": "Returns the latest NGINX App Protect policy version details.",
+        "operationId": "getLatestNapPolicyVersion",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/NapPolicyParamObjectID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully returned NGINX App Protect policy version details.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NapPolicyVersionDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The NGINX App Protect policy version with the specified nap_policy_object_id was not found. Check that the nap_policy_object_id provided is correct and corresponds to an existing resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/app-protect/policies/{nap_policy_object_id}/versions": {
+      "get": {
+        "x-feature-flag": "nap-waf",
+        "tags": [
+          "NGINX App Protect"
+        ],
+        "summary": "List NGINX App Protect policy versions",
+        "description": "Returns NGINX App Protect policy versions.",
+        "operationId": "listNapPolicyVersions",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/NapPolicyParamObjectID"
+          },
+          {
+            "$ref": "#/components/parameters/Paginated"
+          },
+          {
+            "$ref": "#/components/parameters/Limit"
+          },
+          {
+            "$ref": "#/components/parameters/Offset"
+          },
+          {
+            "$ref": "#/components/parameters/SortDirection"
+          },
+          {
+            "$ref": "#/components/parameters/SortNameNapPolicyVersions"
+          },
+          {
+            "$ref": "#/components/parameters/FilterOperands"
+          },
+          {
+            "$ref": "#/components/parameters/FilterValues"
+          },
+          {
+            "$ref": "#/components/parameters/FilterFieldNapPolicyVersion"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully returned the NGINX App Protect policy versions.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NapPolicyVersionsListResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The NGINX App Protect policy with the specified nap_policy_object_id was not found. Check that the nap_policy_object_id provided is correct and corresponds to an existing resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/app-protect/policies/{nap_policy_object_id}/versions/{nap_policy_version_object_id}": {
+      "delete": {
+        "x-feature-flag": "nap-waf",
+        "tags": [
+          "NGINX App Protect"
+        ],
+        "summary": "Delete NGINX App Protect policy version",
+        "description": "Deletes the NGINX App Protect policy version.",
+        "operationId": "deleteNapPolicyVersion",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/NapPolicyParamObjectID"
+          },
+          {
+            "$ref": "#/components/parameters/NapPolicyVersionParamObjectID"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successfully deleted the NGINX App Protect policy version."
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The NGINX App Protect policy version with the specified nap_policy_version_object_id and nap_policy_version_object_id was not found. Check that the object IDs provided are correct and corresponds to existing resources.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "x-feature-flag": "nap-waf",
+        "tags": [
+          "NGINX App Protect"
+        ],
+        "summary": "Get the specified NGINX App Protect policy version details",
+        "description": "Returns the specified NGINX App Protect policy version details.",
+        "operationId": "getNapPolicyVersion",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/NapPolicyParamObjectID"
+          },
+          {
+            "$ref": "#/components/parameters/NapPolicyVersionParamObjectID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully returned NGINX App Protect policy version details.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NapPolicyVersionDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The NGINX App Protect policy version with the specified nap_policy_version_object_id and nap_policy_version_object_id was not found. Check that the object IDs provided are correct and corresponds to existing resources.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
           }
         }
       }
@@ -4290,6 +5002,43 @@
         "description": "A globally unique identifier for a Publication.\n",
         "required": true
       },
+      "SortNameControlPlanes": {
+        "name": "sort_control_planes",
+        "in": "query",
+        "description": "Sort control planes by enumerate value(s). Ordinal position determines primary, secondary, etc.\n",
+        "schema": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "name"
+            ],
+            "x-enum-varnames": [
+              "sort_name_control_plane_name"
+            ]
+          }
+        }
+      },
+      "FilterFieldControlPlanes": {
+        "name": "filter_fields",
+        "in": "query",
+        "description": "An array of strings. Identifies the fields to filter by (for example, `name`, `product`). This parameter works in conjunction with `filter_values` and `filter_ops`.\n",
+        "schema": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/FilterNameControlPlanes"
+          }
+        }
+      },
+      "ControlPlaneParamObjectID": {
+        "name": "controlPlaneObjectID",
+        "in": "path",
+        "schema": {
+          "$ref": "#/components/schemas/ControlPlaneObjectID"
+        },
+        "description": "A globally unique identifier for the control plane.\n",
+        "required": true
+      },
       "SortNameCVEs": {
         "name": "sort_cves",
         "in": "query",
@@ -4449,15 +5198,133 @@
         "description": "A globally unique identifier for the NGINX staged config.\n",
         "required": true
       },
-      "StagedConfigImportParseOnly": {
-        "name": "parseOnly",
+      "SortNameNapPolicies": {
+        "name": "sort_nap_policies",
         "in": "query",
+        "description": "Sort NGINX App Protect policies by enumerate value(s). Ordinal position determines primary, secondary, etc.\n",
         "schema": {
-          "type": "boolean",
-          "default": false
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "name",
+              "deployment_count",
+              "enforcement_mode",
+              "last_deployed"
+            ],
+            "x-enum-varnames": [
+              "sort_name_nap_policies_name",
+              "sort_name_nap_policies_deployment_count",
+              "sort_name_nap_policies_enforcement_mode",
+              "sort_name_nap_policies_last_deployed"
+            ]
+          }
+        }
+      },
+      "FilterFieldNapPolicy": {
+        "name": "filter_fields",
+        "in": "query",
+        "description": "An array of strings indicating which fields to filter by (for example, `name`). This parameter works in conjunction with `filter_values` and `filter_ops`.\n",
+        "schema": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/FilterNameNapPolicy"
+          }
+        }
+      },
+      "NapPolicyParamObjectID": {
+        "name": "nap_policy_object_id",
+        "in": "path",
+        "schema": {
+          "$ref": "#/components/schemas/NapPolicyObjectID"
         },
-        "description": "Optional flag to control how the request is processed.\n  - When `false` or omitted (by default), the request creates a Staged Config directly. (`StagedConfigCreateResponse`)\n  - When `true`, the request parses the import and returns metadata you can use to create a Staged Config through a POST. ( `StagedConfigCreateRequest`)\n",
-        "required": false
+        "description": "A globally unique identifier for the App Protect policy.\n",
+        "required": true
+      },
+      "SortNameNapPolicyDeployments": {
+        "name": "sort_nap_deployments",
+        "in": "query",
+        "description": "Sort NGINX App Protect deployments by enumerate value(s). Ordinal position determines primary, secondary, etc.\n",
+        "schema": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "name",
+              "type",
+              "policy_version",
+              "status",
+              "deployed_on",
+              "threat_campaign_version",
+              "attack_signature_version",
+              "bot_signature_version"
+            ],
+            "x-enum-varnames": [
+              "sort_name_nap_policy_deployments_name",
+              "sort_name_nap_policy_deployments_type",
+              "sort_name_nap_policy_deployments_policy_version",
+              "sort_name_nap_policy_deployments_status",
+              "sort_name_nap_policy_deployments_deployed_on",
+              "sort_name_nap_policy_deployments_threat_campaign_version",
+              "sort_name_nap_policy_deployments_attack_signature_version",
+              "sort_name_nap_policy_deployments_bot_sigature_version"
+            ]
+          }
+        }
+      },
+      "FilterFieldNapPolicyDeployment": {
+        "name": "filter_fields",
+        "in": "query",
+        "description": "An array of strings indicating which fields to filter by (for example, `name`). This parameter works in conjunction with `filter_values` and `filter_ops`.\n",
+        "schema": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/FilterNameNapPolicyDeployment"
+          }
+        }
+      },
+      "SortNameNapPolicyVersions": {
+        "name": "sort_nap_policy_versions",
+        "in": "query",
+        "description": "Sort NGINX App Protect policy versions by enumerate value(s). Ordinal position determines primary, secondary, etc.\n",
+        "schema": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "created_at",
+              "deployment_status",
+              "deployment_count",
+              "enforcement_mode"
+            ],
+            "x-enum-varnames": [
+              "sort_name_nap_policy_versions_created_at",
+              "sort_name_nap_policy_versions_deployment_status",
+              "sort_name_nap_policy_versions_deployment_count",
+              "sort_name_nap_policy_versions_enforcement_mode"
+            ]
+          }
+        }
+      },
+      "FilterFieldNapPolicyVersion": {
+        "name": "filter_fields",
+        "in": "query",
+        "description": "An array of strings indicating which fields to filter by (for example, `name`). This parameter works in conjunction with `filter_values` and `filter_ops`.\n",
+        "schema": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/FilterNameNapPolicyVersion"
+          }
+        }
+      },
+      "NapPolicyVersionParamObjectID": {
+        "name": "nap_policy_version_object_id",
+        "in": "path",
+        "schema": {
+          "$ref": "#/components/schemas/NapPolicyVersionObjectID"
+        },
+        "description": "A globally unique identifier for the App Protect policy version.\n",
+        "required": true
       }
     },
     "schemas": {
@@ -4579,6 +5446,10 @@
           "instances_count": {
             "type": "integer",
             "description": "The number of registered instances using this data plane key. If field not populated, user should see the key has `unknown` key count"
+          },
+          "control_planes_count": {
+            "type": "integer",
+            "description": "The number of observed control planes using this data plane key."
           }
         }
       },
@@ -5507,7 +6378,7 @@
       },
       "ConfigSyncStatus": {
         "type": "string",
-        "description": "The current config sync status of the NGINX config sync group, with the following possible values:\n* `unknown` - The status cannot be determined at this moment.\n* `in_sync` - All Nginx instances in config sync group have same config as indicated by config_version.\n* `out_of_sync` - Some Nginx instances in config sync group have config different than indicated by config_version.\n* `sync_in_progress` - The operation of applying config_version to all Nginx instances in config sync group is in progress.\n",
+        "description": "The current config sync status of the NGINX config sync group, with the following possible values:\n* `unknown` - The status cannot be determined at this moment.\n* `in_sync` - All NGINX instances in config sync group have same config as indicated by config_version.\n* `out_of_sync` - Some NGINX instances in config sync group have config different than indicated by config_version.\n* `sync_in_progress` - The operation of applying config_version to all NGINX instances in config sync group is in progress.\n",
         "enum": [
           "unknown",
           "in_sync",
@@ -5560,6 +6431,7 @@
         "required": [
           "object_id",
           "name",
+          "created_at",
           "instances_count",
           "config_status"
         ],
@@ -5568,11 +6440,16 @@
             "$ref": "#/components/schemas/ConfigSyncGroupObjectID"
           },
           "name": {
-            "description": "Name of the Nginx config sync group.",
+            "description": "Name of the NGINX config sync group.",
             "type": "string"
           },
+          "created_at": {
+            "description": "The date and time when the config sync group was created.",
+            "type": "string",
+            "format": "date-time"
+          },
           "instances_count": {
-            "description": "Number of instances in the Nginx config sync group.",
+            "description": "Number of instances in the NGINX config sync group.",
             "type": "integer"
           },
           "config_status": {
@@ -5590,7 +6467,7 @@
           },
           {
             "type": "object",
-            "description": "List of Nginx config sync groups.",
+            "description": "List of NGINX config sync groups.",
             "required": [
               "items"
             ],
@@ -5614,6 +6491,7 @@
             {
               "object_id": "csg_-uvR3F2TQGm18jnl7bpaGw",
               "name": "test-config-sync-group",
+              "created_at": "2023-12-05T22:30:20.220114Z",
               "config_status": "in_sync",
               "instances_count": 1
             }
@@ -5621,14 +6499,14 @@
         }
       },
       "ConfigSyncGroupCreateRequest": {
-        "description": "Body to create a Nginx config sync group.",
+        "description": "Body to create a NGINX config sync group.",
         "required": [
           "name"
         ],
         "properties": {
           "name": {
             "type": "string",
-            "description": "A name to uniquely identify the Nginx config sync group in a given tenant namespace.",
+            "description": "A name to uniquely identify the NGINX config sync group in a given tenant namespace.",
             "minLength": 1,
             "maxLength": 256
           }
@@ -5638,7 +6516,7 @@
         }
       },
       "ConfigSyncGroupCreateResponse": {
-        "description": "Response to a create Nginx config sync group request.",
+        "description": "Response to a create NGINX config sync group request.",
         "required": [
           "object_id",
           "name"
@@ -5648,7 +6526,7 @@
             "$ref": "#/components/schemas/ConfigSyncGroupObjectID"
           },
           "name": {
-            "description": "Name of the Nginx config sync group.",
+            "description": "Name of the NGINX config sync group.",
             "type": "string"
           }
         },
@@ -5707,18 +6585,24 @@
         "description": "Meta information of the NGINX config sync group including:\n* NGINX config sync group object ID\n* unique name of the config sync group in the tenant namespace\n* last publication timestamp\n",
         "required": [
           "object_id",
-          "name"
+          "name",
+          "created_at"
         ],
         "properties": {
           "object_id": {
             "$ref": "#/components/schemas/ConfigSyncGroupObjectID"
           },
           "name": {
-            "description": "Name of the Nginx config sync group.",
+            "description": "Name of the NGINX config sync group.",
             "type": "string"
           },
           "last_publication": {
             "description": "The date and time of the most recent config sync group publication.",
+            "type": "string",
+            "format": "date-time"
+          },
+          "created_at": {
+            "description": "The date and time when the config sync group was created.",
             "type": "string",
             "format": "date-time"
           }
@@ -5726,7 +6610,8 @@
         "example": {
           "object_id": "csg_-uvR3F2TQGm18jnl7bpaGw",
           "name": "test-config-sync-group",
-          "last_publication": "2023-12-06T22:37:24.120114Z"
+          "last_publication": "2023-12-06T22:37:24.120114Z",
+          "created_at": "2023-12-05T22:30:20.220114Z"
         }
       },
       "InstanceObjectID": {
@@ -5761,8 +6646,8 @@
           }
         }
       },
-      "NginxAppProtectDetails": {
-        "description": "Information regarding NGINX App Protect.\n",
+      "NginxAppProtectVersions": {
+        "description": "Version information regarding NGINX App Protect.\n",
         "type": "object",
         "required": [
           "engine_version"
@@ -5777,6 +6662,54 @@
             "type": "string"
           }
         }
+      },
+      "NginxAppProtectDeploymentCounts": {
+        "type": "object",
+        "description": "Summary count of NAP policy version deployment statues.",
+        "required": [
+          "total",
+          "deployed",
+          "deploying",
+          "failed"
+        ],
+        "properties": {
+          "total": {
+            "description": "Total count of NAP policy versions across the NGINX data plane.",
+            "type": "integer"
+          },
+          "deployed": {
+            "description": "The number of NAP policy versions that have deployed.",
+            "type": "integer"
+          },
+          "deploying": {
+            "description": "The number of NAP policy versions that are deploying.",
+            "type": "integer"
+          },
+          "failed": {
+            "description": "The number of NAP policy versions that have failed deployment.",
+            "type": "integer"
+          }
+        }
+      },
+      "NginxAppProtectSummary": {
+        "description": "Summary information regarding NGINX App Protect.\n",
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/NginxAppProtectVersions"
+          },
+          {
+            "type": "object",
+            "required": [
+              "deployments"
+            ],
+            "properties": {
+              "deployments": {
+                "$ref": "#/components/schemas/NginxAppProtectDeploymentCounts"
+              }
+            }
+          }
+        ]
       },
       "CveSeverityType": {
         "type": "string",
@@ -5846,6 +6779,40 @@
           }
         }
       },
+      "ControlPlaneObjectID": {
+        "description": "A globally unique identifier for the control plane.",
+        "type": "string",
+        "format": "object_id",
+        "pattern": "^ecp_.*",
+        "x-go-type": "objects.ID"
+      },
+      "ControlPlaneBaseInfo": {
+        "type": "object",
+        "description": "Base information of a control plane, which includes name, product version and optionally an object ID.",
+        "required": [
+          "name",
+          "product_version",
+          "created_at"
+        ],
+        "properties": {
+          "object_id": {
+            "$ref": "#/components/schemas/ControlPlaneObjectID"
+          },
+          "name": {
+            "description": "Control plane name.",
+            "type": "string"
+          },
+          "product_version": {
+            "description": "Control plane product name and version.",
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the control plane was created."
+          }
+        }
+      },
       "Instance": {
         "type": "object",
         "description": "Summary information about a NGINX instance.",
@@ -5890,7 +6857,7 @@
             "example": "ubuntu_jammy"
           },
           "nginx_app_protect": {
-            "$ref": "#/components/schemas/NginxAppProtectDetails"
+            "$ref": "#/components/schemas/NginxAppProtectSummary"
           },
           "registered_at": {
             "description": "The date and time when the NGINX instance first registered with NGINX One.",
@@ -5928,6 +6895,9 @@
             "items": {
               "$ref": "#/components/schemas/IssueDetails"
             }
+          },
+          "control_plane": {
+            "$ref": "#/components/schemas/ControlPlaneBaseInfo"
           }
         }
       },
@@ -6039,6 +7009,136 @@
           }
         }
       },
+      "NapPolicyObjectID": {
+        "description": "A globally unique identifier for the App Protect policy.",
+        "type": "string",
+        "format": "object_id",
+        "pattern": "^pol_.*",
+        "x-go-type": "objects.ID",
+        "x-go-type-import": {
+          "name": "objects",
+          "path": "gitlab.com/f5/nginx/one/saas/control-plane/pkg/collections/objects"
+        }
+      },
+      "NapPolicyVersionObjectID": {
+        "description": "A globally unique identifier for the App Protect policy version.",
+        "type": "string",
+        "format": "object_id",
+        "pattern": "^pv_.*",
+        "x-go-type": "objects.ID",
+        "x-go-type-import": {
+          "name": "objects",
+          "path": "gitlab.com/f5/nginx/one/saas/control-plane/pkg/collections/objects"
+        }
+      },
+      "PublicationObjectID": {
+        "description": "A globally unique identifier for the publication.",
+        "type": "string",
+        "format": "object_id",
+        "example": "pub_72pGHoGsSICL_THZrs964g",
+        "pattern": "^pub_.*",
+        "x-go-type": "objects.ID",
+        "x-go-type-import": {
+          "name": "objects",
+          "path": "gitlab.com/f5/nginx/one/saas/control-plane/pkg/collections/objects"
+        }
+      },
+      "NapPolicyEnforcementMode": {
+        "description": "The current enforcement mode of the NGINX App Protect policy, with the following possible values:\n* `blocking` - Any illegal or suspicious requests are logged and blocked.\n* `transparent` - Any illegal or suspicious requests are logged but not blocked.\n",
+        "type": "string",
+        "enum": [
+          "blocking",
+          "transparent"
+        ],
+        "x-enum-varnames": [
+          "nap_enforcement_mode_blocking",
+          "nap_enforcement_mode_transparent"
+        ]
+      },
+      "NapDeploymentStatus": {
+        "description": "The current enforcement mode of the NGINX App Protect policy, with the following possible values:\n* `deployed` - The NGINX App Protect policy has been deployed.\n* `not_deployed` - The NGINX App Protect policy has not been deployed.\n* `deploying` - The NGINX App Protect policy is currently being deployed.\n* `failed` - The NGINX App Protect policy failed deploying.\n",
+        "type": "string",
+        "enum": [
+          "deployed",
+          "not_deployed",
+          "deploying",
+          "failed"
+        ],
+        "x-enum-varnames": [
+          "nap_deployment_status_deployed",
+          "nap_deployment_status_not_deployed",
+          "nap_deployment_status_deploying",
+          "nap_deployment_status_failed"
+        ]
+      },
+      "NapAssociation": {
+        "description": "Details for a NGINX App Protect policy version that's associated with an instance or a config sync group.",
+        "required": [
+          "name",
+          "version",
+          "policy_object_id",
+          "policy_version_object_id",
+          "paths",
+          "deployment_status",
+          "publication_object_id",
+          "deployed_on",
+          "enforcement_mode"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the policy at the time of the deployment."
+          },
+          "version": {
+            "type": "string",
+            "description": "Version of the policy at the time of the deployment."
+          },
+          "policy_object_id": {
+            "$ref": "#/components/schemas/NapPolicyObjectID"
+          },
+          "policy_version_object_id": {
+            "$ref": "#/components/schemas/NapPolicyVersionObjectID"
+          },
+          "publication_object_id": {
+            "$ref": "#/components/schemas/PublicationObjectID"
+          },
+          "enforcement_mode": {
+            "$ref": "#/components/schemas/NapPolicyEnforcementMode"
+          },
+          "paths": {
+            "type": "array",
+            "description": "The list of file system paths where the compiled NAP policy version bundle file is installed. \nSince a single compiled NAP policy version bundle file may be applied in multiple contexts, all relevant paths are included.\n",
+            "example": [
+              "/etc/nginx/default_policy.tgz",
+              "/etc/nginx/default_policy_server_2.tgz"
+            ],
+            "items": {
+              "type": "string"
+            }
+          },
+          "deployment_status": {
+            "$ref": "#/components/schemas/NapDeploymentStatus"
+          },
+          "deployed_on": {
+            "description": "Date and time of the deployment.",
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "example": {
+          "name": "default_policy",
+          "version": "2025.05.01",
+          "policy_object_id": "pol_panEdeY-Sh2rWm365y7wsw",
+          "policy_version_object_id": "pv_kem7SCosTTOL9mMlNyY2GQ",
+          "publication_object_id": "pub_72pGHoGsSICL_THZrs964g",
+          "paths": [
+            "/etc/nginx/default_policy.tgz"
+          ],
+          "deployment_status": "deployed",
+          "enforcement_mode": "transparent",
+          "deployed_on": "2023-12-06T22:37:24.120114Z"
+        }
+      },
       "ConfigSyncGroup": {
         "allOf": [
           {
@@ -6071,6 +7171,20 @@
                 "items": {
                   "$ref": "#/components/schemas/CertAssociation"
                 }
+              },
+              "nginx_app_protect": {
+                "type": "object",
+                "required": [
+                  "deployments"
+                ],
+                "properties": {
+                  "deployments": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/NapAssociation"
+                    }
+                  }
+                }
               }
             }
           }
@@ -6078,7 +7192,7 @@
         "example": {
           "object_id": "csg_-uvR3F2TQGm18jnl7bpaGw",
           "name": "test-config-sync-group",
-          "last_reported": "2023-12-06T22:37:24.120114Z",
+          "created_at": "2023-12-06T22:37:24.120114Z",
           "config_status": "in_sync",
           "config_version": "uvR3F2TQGm18jnl7bpaGw",
           "instances": [
@@ -6476,18 +7590,6 @@
           }
         ]
       },
-      "PublicationObjectID": {
-        "description": "A globally unique identifier for the publication.",
-        "type": "string",
-        "format": "object_id",
-        "example": "pub_72pGHoGsSICL_THZrs964g",
-        "pattern": "^pub_.*",
-        "x-go-type": "objects.ID",
-        "x-go-type-import": {
-          "name": "objects",
-          "path": "gitlab.com/f5/nginx/one/saas/control-plane/pkg/collections/objects"
-        }
-      },
       "PublicationStatusCause": {
         "description": "Cause of the failure, provided only if the status is `failed`.",
         "type": "object",
@@ -6743,6 +7845,303 @@
           "config_source": "NGINX One"
         }
       },
+      "FilterNameControlPlanes": {
+        "type": "string",
+        "description": "Keywords for control plane filters.\nWhen filtering on `product`, only the following `filter_values` are supported:\n  * nic\n",
+        "enum": [
+          "name",
+          "product_version",
+          "object_id"
+        ],
+        "x-enum-varnames": [
+          "filter_name_control_plane_name",
+          "filter_name_control_plane_product_version",
+          "filter_name_control_plane_object_id"
+        ]
+      },
+      "ListControlPlaneObject": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/ControlPlaneBaseInfo"
+          },
+          {
+            "type": "object",
+            "description": "Summary information about a control plane.",
+            "required": [
+              "object_id",
+              "instances_count",
+              "online_instances_count"
+            ],
+            "properties": {
+              "object_id": {
+                "$ref": "#/components/schemas/ControlPlaneObjectID"
+              },
+              "instances_count": {
+                "description": "Total number of instances in the control plane.",
+                "type": "integer"
+              },
+              "online_instances_count": {
+                "description": "Total number of online instances in the control plane.",
+                "type": "integer"
+              },
+              "cve_severity": {
+                "type": "array",
+                "description": "An array summarizing identified Common Vulnerabilities and Exposures (CVEs) across the NGINX control plane.",
+                "items": {
+                  "$ref": "#/components/schemas/CveDetails"
+                }
+              }
+            }
+          }
+        ]
+      },
+      "ControlPlaneListResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/PaginationResponse"
+          },
+          {
+            "type": "object",
+            "description": "List of control planes.",
+            "required": [
+              "items"
+            ],
+            "properties": {
+              "items": {
+                "description": "An array of control plane objects.",
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ListControlPlaneObject"
+                }
+              }
+            }
+          }
+        ],
+        "example": {
+          "total": 10,
+          "count": 1,
+          "start_index": 1,
+          "items_per_page": 100,
+          "items": [
+            {
+              "object_id": "ecp_tgfVM3KQTxCyiDXgV38G7A",
+              "name": "nginx-ingress-001",
+              "product_version": "nginx-ingress-controller-4.0.1",
+              "created_at": "2023-12-06T22:37:24.120114Z",
+              "instances_count": 5,
+              "online_instances_count": 3,
+              "cve_severity": [
+                {
+                  "count": 6,
+                  "type": "medium"
+                },
+                {
+                  "count": 1,
+                  "type": "high"
+                }
+              ]
+            },
+            {
+              "object_id": "ecp_-bRQlhscTKmbUIdJaYhGJA",
+              "name": "nginx-ingress-002",
+              "created_at": "2023-12-06T22:37:24.120114Z",
+              "product_version": "nginx-ingress-controller-4.0.1",
+              "instances_count": 3,
+              "online_instances_count": 1,
+              "cve_severity": [
+                {
+                  "count": 2,
+                  "type": "medium"
+                },
+                {
+                  "count": 3,
+                  "type": "high"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "StatusSummary": {
+        "description": "An overview of the status for each NGINX instance, indicating availability.",
+        "type": "object",
+        "required": [
+          "online",
+          "offline",
+          "unavailable"
+        ],
+        "properties": {
+          "online": {
+            "description": "The number of NGINX instances reporting as `online`.\nThe NGINX Agent is connected to NGINX One, and the NGINX instance is online.\n",
+            "type": "integer"
+          },
+          "offline": {
+            "description": "The number of NGINX instances reporting as `offline`.\nThe NGINX Agent is connected to NGINX One, but the NGINX instance is offline.\n",
+            "type": "integer"
+          },
+          "unavailable": {
+            "description": "The number of NGINX instances reporting as `unavailable`.\nThe NGINX Agent has lost connection to NGINX One, rendering the NGINX instance unavailable.\n",
+            "type": "integer"
+          }
+        }
+      },
+      "ControlPlane": {
+        "type": "object",
+        "description": "Information on control plane including:\n* Control plane object ID\n* Cluster UUID\n* Deployment UUID\n* Kubernetes namespace\n* Data plane key object ID\n* Certificate summary\n* Instance status summary\n",
+        "required": [
+          "object_id",
+          "cluster_uuid",
+          "deployment_uuid",
+          "kubernetes_namespace"
+        ],
+        "properties": {
+          "object_id": {
+            "$ref": "#/components/schemas/ControlPlaneObjectID"
+          },
+          "cluster_uuid": {
+            "description": "The Kubernetes UID assigned to the cluster that the product is running in.",
+            "type": "string"
+          },
+          "deployment_uuid": {
+            "description": "The Kubernetes UID assigned to the control plane.",
+            "type": "string"
+          },
+          "key_object_id": {
+            "$ref": "#/components/schemas/DataPlaneKeyObjectID"
+          },
+          "kubernetes_namespace": {
+            "description": "The kubernetes namespace that the product is running in.",
+            "type": "string"
+          },
+          "cert_summary": {
+            "$ref": "#/components/schemas/CertificateInstanceSummary"
+          },
+          "statuses": {
+            "$ref": "#/components/schemas/StatusSummary"
+          }
+        }
+      },
+      "ControlPlaneDetails": {
+        "type": "object",
+        "description": "Detailed information of control plane.",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/ControlPlaneBaseInfo"
+          },
+          {
+            "$ref": "#/components/schemas/ControlPlane"
+          }
+        ],
+        "example": {
+          "name": "foo",
+          "object_id": "ecp_-uvR3F2TQGm18jnl7bpaGw",
+          "product_version": "nginx-ingress-controller-1.0.0",
+          "cluster_uuid": "d1ced6c7-8980-467e-a1db-dcdfec16b1f7",
+          "deployment_uuid": "b9b00e37-5ee4-4361-8c61-1329f3828dd3",
+          "key_object_id": "key_6AT9LXyUQHyhC8kF7bVMgg",
+          "kubernetes_namespace": "nginx-ingress-controller",
+          "created_at": "2023-12-06T22:37:24.120114Z",
+          "cert_summary": {
+            "total": 9,
+            "valid": 1,
+            "expired": 5,
+            "expiring": 3,
+            "not_ready": 0
+          },
+          "statuses": {
+            "offline": 0,
+            "online": 3,
+            "unavailable": 0
+          }
+        }
+      },
+      "SummaryDisplayCount": {
+        "description": "The name, the total count, and an optional user-friendly display name of the resource being summarized.",
+        "type": "object",
+        "required": [
+          "name",
+          "count"
+        ],
+        "properties": {
+          "name": {
+            "description": "Identifies the category of data being reported, such as an operating system, NGINX version, or another type.",
+            "type": "string"
+          },
+          "count": {
+            "description": "The number of resources matching the given type.",
+            "type": "integer"
+          },
+          "display": {
+            "description": "A user-friendly label for the category count, intended for display purposes where a more descriptive or readable format is preferred.",
+            "type": "string"
+          }
+        }
+      },
+      "ControlPlaneProductVersionSummary": {
+        "description": "An array of control plane product names/versions.",
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/SummaryDisplayCount"
+        }
+      },
+      "CveControlPlaneSummary": {
+        "description": "A summary of Common Vulnerabilities and Exposures (CVEs) across the NGINX control plane.",
+        "type": "object",
+        "required": [
+          "severity",
+          "count",
+          "affected_control_planes"
+        ],
+        "properties": {
+          "severity": {
+            "$ref": "#/components/schemas/CveSeverityType"
+          },
+          "count": {
+            "description": "The number of CVEs at each severity level.",
+            "type": "integer"
+          },
+          "affected_control_planes": {
+            "description": "The number of control planes affected by each CVE.",
+            "type": "integer"
+          }
+        }
+      },
+      "ControlPlaneSummary": {
+        "description": "A summary of control planes including their product names/version details.",
+        "type": "object",
+        "properties": {
+          "product_versions": {
+            "$ref": "#/components/schemas/ControlPlaneProductVersionSummary"
+          },
+          "cves": {
+            "description": "An array summarizing identified Common Vulnerabilities and Exposures (CVEs) across the NGINX control plane.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CveControlPlaneSummary"
+            }
+          }
+        },
+        "example": {
+          "product_versions": [
+            {
+              "count": 10,
+              "name": "nginx-ingress-controller-1.0.0"
+            }
+          ],
+          "cves": [
+            {
+              "affected_control_planes": 3,
+              "count": 13,
+              "severity": "medium"
+            },
+            {
+              "affected_control_planes": 2,
+              "count": 2,
+              "severity": "high"
+            }
+          ]
+        }
+      },
       "NginxCVEObject": {
         "type": "object",
         "required": [
@@ -6766,6 +8165,10 @@
           },
           "instances_impacted": {
             "description": "Number of instances impacted by the security advisory",
+            "type": "integer"
+          },
+          "control_planes_impacted": {
+            "description": "Number of control planes impacted by the security advisory",
             "type": "integer"
           },
           "published_at": {
@@ -6800,15 +8203,17 @@
       },
       "NginxProduct": {
         "type": "string",
-        "description": "NGINX product :\n  * `noss` - NGINX Open Source.\n  * `nplus` - NGINX PLUS.\n",
+        "description": "NGINX product :\n  * `noss` - NGINX Open Source.\n  * `nplus` - NGINX PLUS.\n  * `nic` - NGINX Ingress Controller.\n",
         "enum": [
           "noss",
           "nplus",
+          "nic",
           "unknown"
         ],
         "x-enum-varnames": [
           "nginx_product_noss",
           "nginx_product_nplus",
+          "nginx_product_nic",
           "nginx_product_unknown"
         ]
       },
@@ -6874,6 +8279,13 @@
                     "1.20.2",
                     "1.19.9"
                   ]
+                },
+                {
+                  "name": "nic",
+                  "versions": [
+                    "1.0.0",
+                    "2.1.0"
+                  ]
                 }
               ],
               "info": "Memory disclosure in the ngx_http_mp4_module",
@@ -6895,7 +8307,7 @@
             "$ref": "#/components/schemas/NginxProduct"
           },
           "version": {
-            "description": "version of the Nginx product installed on the instance.",
+            "description": "version of the NGINX product installed on the instance.",
             "type": "string"
           }
         }
@@ -7020,12 +8432,14 @@
             "enum": [
               "instance_cleanup",
               "certificates",
-              "publications"
+              "publications",
+              "nap_compilation_jobs"
             ],
             "x-enum-varnames": [
               "event_type_instance_cleanup",
               "event_type_certificates",
-              "event_type_publications"
+              "event_type_publications",
+              "event_type_nap_compilation_jobs"
             ]
           },
           "object_id": {
@@ -7248,6 +8662,77 @@
           }
         ]
       },
+      "NapSignatureVersion": {
+        "description": "The version of the NGINX App Protect resource.",
+        "type": "string",
+        "example": "2023.12.06"
+      },
+      "NapInstanceAssociation": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/NapAssociation"
+          },
+          {
+            "type": "object",
+            "required": [
+              "threat_campaign_version",
+              "attack_signature_version",
+              "bot_signature_version"
+            ],
+            "properties": {
+              "threat_campaign_version": {
+                "$ref": "#/components/schemas/NapSignatureVersion"
+              },
+              "attack_signature_version": {
+                "$ref": "#/components/schemas/NapSignatureVersion"
+              },
+              "bot_signature_version": {
+                "$ref": "#/components/schemas/NapSignatureVersion"
+              }
+            }
+          }
+        ],
+        "example": {
+          "name": "default_policy",
+          "version": "2025.05.01",
+          "policy_object_id": "pol_panEdeY-Sh2rWm365y7wsw",
+          "policy_version_object_id": "pv_kem7SCosTTOL9mMlNyY2GQ",
+          "publication_object_id": "pub_72pGHoGsSICL_THZrs964g",
+          "paths": [
+            "/etc/nginx/default_policy.tgz"
+          ],
+          "deployment_status": "deployed",
+          "enforcement_mode": "transparent",
+          "deployed_on": "2023-12-06T22:37:24.120114Z",
+          "threat_campaign_version": "2025.01.23",
+          "attack_signature_version": "2025.01.19",
+          "bot_signature_version": "2025.01.19"
+        }
+      },
+      "NginxAppProtectDetails": {
+        "description": "Information regarding NGINX App Protect. Includes version and deployments.\n",
+        "type": "object",
+        "required": [
+          "engine_version",
+          "deployments"
+        ],
+        "properties": {
+          "release_version": {
+            "description": "The release version of NGINX App Protect.",
+            "type": "string"
+          },
+          "engine_version": {
+            "description": "The version of the App Protect enforcement engine.",
+            "type": "string"
+          },
+          "deployments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NapInstanceAssociation"
+            }
+          }
+        }
+      },
       "InstanceDetails": {
         "type": "object",
         "description": "Detailed information about an NGINX instance.",
@@ -7270,6 +8755,12 @@
               },
               "config_sync_group": {
                 "$ref": "#/components/schemas/ConfigSyncGroupInstanceMeta"
+              },
+              "nginx_app_protect": {
+                "$ref": "#/components/schemas/NginxAppProtectDetails"
+              },
+              "control_plane": {
+                "$ref": "#/components/schemas/ControlPlaneBaseInfo"
               }
             }
           }
@@ -7293,6 +8784,12 @@
           ],
           "hostname": "4d116619f106",
           "key": "key_wN3IhLCmR3qmwybG_6ptEg",
+          "control_plane": {
+            "object_id": "ecp_CO1DdBxZToWmr3pTcaQ8QA",
+            "name": "nginx-ingress-001",
+            "product_version": "nginx-ingress-controller-4.0.1",
+            "created_at": "2023-12-06T22:37:24.120114Z"
+          },
           "last_reported": "2023-12-06T22:37:24.120114Z",
           "nginx_build": {
             "conf_path": "/etc/nginx/nginx.conf",
@@ -7361,63 +8858,18 @@
           }
         }
       },
-      "SummaryDisplayCount": {
-        "description": "The name, the total count, and an optional user-friendly display name of the resource being summarized.",
-        "type": "object",
-        "required": [
-          "name",
-          "count"
-        ],
-        "properties": {
-          "name": {
-            "description": "Identifies the category of data being reported, such as an operating system, NGINX version, or another type.",
-            "type": "string"
-          },
-          "count": {
-            "description": "The number of resources matching the given type.",
-            "type": "integer"
-          },
-          "display": {
-            "description": "A user-friendly label for the category count, intended for display purposes where a more descriptive or readable format is preferred.",
-            "type": "string"
-          }
-        }
-      },
       "OperatingSystemVersionSummary": {
-        "description": "An array summarizing the operating systems and their versions on the NGINX data plane.",
+        "description": "An array of operating systems and their versions on the NGINX data plane.",
         "type": "array",
         "items": {
           "$ref": "#/components/schemas/SummaryDisplayCount"
         }
       },
       "NGINXVersionSummary": {
-        "description": "An array summarizing the versions of NGINX installed across the NGINX data plane.",
+        "description": "An array of NGINX versions installed across the NGINX data plane.",
         "type": "array",
         "items": {
           "$ref": "#/components/schemas/SummaryDisplayCount"
-        }
-      },
-      "StatusSummary": {
-        "description": "An overview of the status for each NGINX instance, indicating availability.",
-        "type": "object",
-        "required": [
-          "online",
-          "offline",
-          "unavailable"
-        ],
-        "properties": {
-          "online": {
-            "description": "The number of NGINX instances reporting as `online`.\nThe NGINX Agent is connected to NGINX One, and the NGINX instance is online.\n",
-            "type": "integer"
-          },
-          "offline": {
-            "description": "The number of NGINX instances reporting as `offline`.\nThe NGINX Agent is connected to NGINX One, but the NGINX instance is offline.\n",
-            "type": "integer"
-          },
-          "unavailable": {
-            "description": "The number of NGINX instances reporting as `unavailable`.\nThe NGINX Agent has lost connection to NGINX One, rendering the NGINX instance unavailable.\n",
-            "type": "integer"
-          }
         }
       },
       "CveSummary": {
@@ -7536,7 +8988,7 @@
         ],
         "properties": {
           "total": {
-            "description": "Total count of certificates used as `payloads` in Nginx config.",
+            "description": "Total count of certificates used as `payloads` in NGINX config.",
             "type": "integer"
           },
           "expired": {
@@ -7689,51 +9141,6 @@
           "object_id": "sc_Tet21AeYTHCj7taOwVfzyw"
         }
       },
-      "StagedConfigBulkRequestData": {
-        "type": "object",
-        "description": "Part of bulk operation on a staged config, only `delete` is supported.",
-        "required": [
-          "action",
-          "object_id"
-        ],
-        "properties": {
-          "object_id": {
-            "$ref": "#/components/schemas/StagedConfigObjectID"
-          },
-          "action": {
-            "$ref": "#/components/schemas/BulkRequestAction"
-          }
-        },
-        "example": {
-          "object_id": "sc_-uvR3F2TQGm18jnl7bpaGw",
-          "action": "delete"
-        }
-      },
-      "StagedConfigBulkRequest": {
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/StagedConfigBulkRequestData"
-        },
-        "minItems": 1,
-        "maxItems": 50,
-        "example": [
-          {
-            "object_id": "sc_-uvR3F2TQGm18jnl7bpaGw",
-            "action": "delete"
-          },
-          {
-            "object_id": "sc_PL0c1XodRemmzVEjiXSsTg",
-            "action": "delete"
-          }
-        ]
-      },
-      "StagedConfigBulkResponse": {
-        "description": "The staged config bulk outcome.",
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/BulkRequestObjectStatus"
-        }
-      },
       "StagedConfigResponse": {
         "description": "Get an NGINX staged config.",
         "required": [
@@ -7810,35 +9217,6 @@
               }
             ]
           }
-        }
-      },
-      "StagedConfigImportRequest": {
-        "type": "object",
-        "description": "Body to import a NGINX staged config",
-        "required": [
-          "name",
-          "file",
-          "conf_path"
-        ],
-        "properties": {
-          "name": {
-            "$ref": "#/components/schemas/StagedConfigName"
-          },
-          "file": {
-            "type": "string",
-            "format": "binary",
-            "example": "my-staged-config.tar.gz",
-            "maxLength": 5242880
-          },
-          "conf_path": {
-            "$ref": "#/components/schemas/ConfigPath"
-          }
-        },
-        "example": {
-          "name": "my-nginx-config",
-          "file": "my-staged-config.tar.gz",
-          "conf_path": "/etc/nginx/nginx.conf",
-          "parse_only": true
         }
       },
       "MetricQueryResultEx": {
@@ -8626,39 +10004,6 @@
           "k8s.cluster.nodes"
         ]
       },
-      "NapPolicyEnforcementMode": {
-        "description": "The current enforcement mode of the NGINX App Protect policy, with the following possible values:\n* `blocking` - Any illegal or suspicious requests are logged and blocked.\n* `transparent` - Any illegal or suspicious requests are logged but not blocked.\n",
-        "type": "string",
-        "enum": [
-          "blocking",
-          "transparent"
-        ],
-        "x-enum-varnames": [
-          "nap_enforcement_mode_blocking",
-          "nap_enforcement_mode_transparent"
-        ]
-      },
-      "NapDeploymentStatus": {
-        "description": "The current enforcement mode of the NGINX App Protect policy, with the following possible values:\n* `deployed` - The NGINX App Protect policy has been deployed.\n* `not_deployed` - The NGINX App Protect policy has not been deployed.\n* `deploying` - The NGINX App Protect policy is currently being deployed.\n* `failed` - The NGINX App Protect policy failed deploying.\n",
-        "type": "string",
-        "enum": [
-          "deployed",
-          "not_deployed",
-          "deploying",
-          "failed"
-        ],
-        "x-enum-varnames": [
-          "nap_deployment_status_deployed",
-          "nap_deployment_status_not_deployed",
-          "nap_deployment_status_deploying",
-          "nap_deployment_status_failed"
-        ]
-      },
-      "Version": {
-        "description": "The version of the NGINX App Protect resource.",
-        "type": "string",
-        "example": "2023.12.06"
-      },
       "VersionsList": {
         "type": "object",
         "required": [
@@ -8669,21 +10014,18 @@
             "description": "An array of versions.",
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Version"
+              "$ref": "#/components/schemas/NapSignatureVersion"
             }
           }
         }
       },
       "ThreatCampaignVersionsListResponse": {
-        "description": "List of Threat Campaign versions.",
         "$ref": "#/components/schemas/VersionsList"
       },
       "AttackSignatureVersionsListResponse": {
-        "description": "List of Attack Signature versions.",
         "$ref": "#/components/schemas/VersionsList"
       },
       "BotSignatureVersionsListResponse": {
-        "description": "List of Bot Signature versions.",
         "$ref": "#/components/schemas/VersionsList"
       },
       "NapPolicy": {
@@ -8778,7 +10120,7 @@
                   "latest": {
                     "object_id": "pv_-uvR3F2TQGm18jnl7bpaGw",
                     "version": "2023-12-06 22:37:24",
-                    "created_on": "2023-12-06T22:37:24.120114Z",
+                    "created_at": "2023-12-06T22:37:24.120114Z",
                     "deployment_status": "deployed",
                     "enforcement_mode": "blocking"
                   }
@@ -8839,7 +10181,7 @@
                 "$ref": "#/components/schemas/NapDeploymentStatus"
               },
               "deployed_on": {
-                "description": "Date and time.",
+                "description": "Date and time of the deployment.",
                 "type": "string",
                 "format": "date-time"
               }
@@ -8944,13 +10286,13 @@
             "type": "object",
             "properties": {
               "threat_campaign_version": {
-                "$ref": "#/components/schemas/Version"
+                "$ref": "#/components/schemas/NapSignatureVersion"
               },
               "attack_signature_version": {
-                "$ref": "#/components/schemas/Version"
+                "$ref": "#/components/schemas/NapSignatureVersion"
               },
               "bot_signature_version": {
-                "$ref": "#/components/schemas/Version"
+                "$ref": "#/components/schemas/NapSignatureVersion"
               }
             }
           }
@@ -9018,19 +10360,19 @@
           "object_id",
           "version",
           "enforcement_mode",
-          "created_on"
+          "created_at"
         ],
         "properties": {
           "object_id": {
             "$ref": "#/components/schemas/NapPolicyVersionObjectID"
           },
           "version": {
-            "$ref": "#/components/schemas/Version"
+            "$ref": "#/components/schemas/NapSignatureVersion"
           },
           "enforcement_mode": {
             "$ref": "#/components/schemas/NapPolicyEnforcementMode"
           },
-          "created_on": {
+          "created_at": {
             "description": "The date and time when the NGINX App Protect policy version was created.",
             "type": "string",
             "format": "date-time"
@@ -9045,7 +10387,7 @@
           "object_id",
           "version",
           "enforcement_mode",
-          "created_on"
+          "created_at"
         ],
         "allOf": [
           {
@@ -9108,7 +10450,7 @@
                 {
                   "version": "2023-12-06 22:37:24",
                   "object_id": "pv_-uvR3F2TQGm18jnl7bpaGw",
-                  "created_on": "2023-12-06T22:37:24.120114Z",
+                  "created_at": "2023-12-06T22:37:24.120114Z",
                   "enforcement_mode": "blocking",
                   "latest": false
                 }
@@ -9243,27 +10585,100 @@
           }
         }
       },
-      "NapPolicyObjectID": {
-        "description": "A globally unique identifier for the App Protect policy.",
-        "type": "string",
-        "format": "object_id",
-        "pattern": "^pol_.*",
-        "x-go-type": "objects.ID",
-        "x-go-type-import": {
-          "name": "objects",
-          "path": "gitlab.com/f5/nginx/one/saas/control-plane/pkg/collections/objects"
+      "NapPolicyBulkRequest": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/NapPolicyBulkRequestData"
+        },
+        "minItems": 1,
+        "maxItems": 50,
+        "example": [
+          {
+            "object_id": "pol_-uvR3F2TQGm18jnl7bpaGw",
+            "action": "delete"
+          },
+          {
+            "object_id": "pol_PL0c1XodRemmzVEjiXSsTg",
+            "action": "delete"
+          }
+        ]
+      },
+      "NapPolicyBulkRequestData": {
+        "type": "object",
+        "description": "Part of bulk operation on a Nap policy, only `delete` is supported.",
+        "required": [
+          "action",
+          "object_id"
+        ],
+        "properties": {
+          "object_id": {
+            "$ref": "#/components/schemas/NapPolicyObjectID"
+          },
+          "action": {
+            "$ref": "#/components/schemas/BulkRequestAction"
+          }
+        },
+        "example": {
+          "object_id": "pol_-uvR3F2TQGm18jnl7bpaGw",
+          "action": "delete"
         }
       },
-      "NapPolicyVersionObjectID": {
-        "description": "A globally unique identifier for the App Protect policy version.",
-        "type": "string",
-        "format": "object_id",
-        "pattern": "^pv_.*",
-        "x-go-type": "objects.ID",
-        "x-go-type-import": {
-          "name": "objects",
-          "path": "gitlab.com/f5/nginx/one/saas/control-plane/pkg/collections/objects"
+      "NapBulkResponse": {
+        "description": "The Nap policy bulk outcome.",
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/BulkRequestObjectStatus"
         }
+      },
+      "FilterNameNapPolicy": {
+        "type": "string",
+        "description": "Keywords for NGINX App Protect policy filters.\nWhen filtering on `enforcement_mode`, only the following `filter_values` are supported:\n  * blocking\n  * transparent\nWhen filtering on `object_id`, both NAP Policy and NAP Policy version object id prefixes are supported.\n",
+        "enum": [
+          "name",
+          "enforcement_mode",
+          "object_id",
+          "deployment_enforcement_mode",
+          "deployment_status"
+        ],
+        "x-enum-varnames": [
+          "filter_name_nap_policy_name",
+          "filter_name_nap_policy_enforcement_mode",
+          "filter_name_nap_policy_object_id",
+          "filter_name_nap_policy_deployment_enforcement_mode",
+          "filter_name_nap_policy_deployment_status"
+        ]
+      },
+      "FilterNameNapPolicyDeployment": {
+        "type": "string",
+        "description": "Keywords for NGINX App Protect deployment filters.\nWhen filtering on `type`, only the following `filter_values` are supported:\n  * instance\n  * config_sync_group\nWhen filtering on `status`, only the following `filter_values` are supported:\n  * deployed\n  * deploying\n  * failed\n",
+        "enum": [
+          "name",
+          "type",
+          "policy_version",
+          "status",
+          "object_id"
+        ],
+        "x-enum-varnames": [
+          "filter_name_nap_deployment_name",
+          "filter_name_nap_deployment_type",
+          "filter_name_nap_deployment_policy_version",
+          "filter_name_nap_deployment_status",
+          "filter_name_nap_deployment_object_id"
+        ]
+      },
+      "FilterNameNapPolicyVersion": {
+        "type": "string",
+        "description": "Keywords for NGINX App Protect policy version filters.\nWhen filtering on `deployment_status`, only the following `filter_values` are supported:\n  * deployed\n  * not_deployed\n  * deploying\n  * failed\nWhen filtering on `enforcement_mode`, only the following `filter_values` are supported:\n  * blocking\n  * transparent\n",
+        "enum": [
+          "deployment_status",
+          "enforcement_mode",
+          "object_id"
+        ],
+        "x-enum-varnames": [
+          "filter_name_nap_policy_version_deployment_status",
+          "filter_name_nap_policy_version_enforcement_mode",
+          "filter_name_nap_policy_version_object_id"
+        ]
       },
       "NapLogProfileObjectID": {
         "description": "A globally unique identifier for the App Protect log profile.",
@@ -9303,7 +10718,8 @@
               "revoked": false,
               "name": "my-data-plane-key",
               "object_id": "key_wN3IhLCmR3qmwybG_6ptEg",
-              "instances_count": 3
+              "instances_count": 3,
+              "control_planes_count": 1
             },
             {
               "expires_at": "2023-12-01T00:00:00Z",
@@ -9312,7 +10728,8 @@
               "revoked": false,
               "name": "my-data-plane-key",
               "object_id": "key_Tet21AeYTHCj7taOwVfzyw",
-              "instances_count": 3
+              "instances_count": 3,
+              "control_planes_count": 1
             }
           ]
         }
@@ -9339,13 +10756,57 @@
           "revoked": false,
           "name": "my-data-plane-key",
           "object_id": "key_wN3IhLCmR3qmwybG_6ptEg",
-          "instances_count": 3
+          "instances_count": 3,
+          "control_planes_count": 1
+        }
+      },
+      "ConfigSyncGroupDetails": {
+        "value": {
+          "object_id": "csg_-uvR3F2TQGm18jnl7bpaGw",
+          "name": "test-config-sync-group",
+          "config_status": "in_sync",
+          "config_version": "uvR3F2TQGm18jnl7bpaGw",
+          "created_at": "2023-12-06T22:37:24.120114Z",
+          "instances": [
+            {
+              "object_id": "inst_-uvR3F2TQGm18jnl7bpaGw",
+              "hostname": "816e3c194d59",
+              "system_id": "6066aad2-211e-3718-be5d-fcc01ffc5cc8",
+              "agent_version": "v2.33.0",
+              "registered_at": "2024-05-16T18:26:40.556048Z",
+              "last_reported": "2023-12-06T22:37:24.120114Z",
+              "status": "unavailable",
+              "nginx_build": {
+                "conf_path": "/etc/nginx/nginx.conf",
+                "version": "1.25.3"
+              },
+              "os_version": "Ubuntu 22.04",
+              "nginx_id": "b636d4376dea15405589692d3c5d3869ff3a9b26b0e7bb4bb1aa7e658ace1437",
+              "config_status": "in_sync",
+              "config_version": "abc123def456"
+            }
+          ],
+          "certs": [
+            {
+              "subject_name": "test.com",
+              "name": "client",
+              "cert_type": "cert_key",
+              "not_after": "2024-01-06T00:01:30Z",
+              "not_before": "2023-12-07T00:01:30Z",
+              "cert_paths": [
+                "/etc/nginx/client.pem"
+              ],
+              "cert_status": "expiring",
+              "deployment_status": "latest",
+              "object_id": "cert_Tet21AeYTHCj7taOwVfzyw"
+            }
+          ]
         }
       }
     },
     "responses": {
-      "InvalidRequest": {
-        "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
+      "Unauthorized": {
+        "description": "Client is not authorized to perform the requested operation.",
         "content": {
           "application/json": {
             "schema": {
@@ -9356,6 +10817,26 @@
       },
       "InternalServerErr": {
         "description": "An unexpected error occurred on the server. Please try the request again later.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "NotFound": {
+        "description": "Requested resource was not found.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "InvalidRequest": {
+        "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
         "content": {
           "application/json": {
             "schema": {
@@ -9388,7 +10869,8 @@
         "Certificates",
         "CVEs",
         "Events",
-        "Staged Configs"
+        "Staged Configs",
+        "Control Planes"
       ]
     },
     {
@@ -9401,6 +10883,12 @@
       "name": "Manage NGINX One Settings",
       "tags": [
         "Settings"
+      ]
+    },
+    {
+      "name": "NGINX One App Protect",
+      "tags": [
+        "NGINX App Protect"
       ]
     }
   ]

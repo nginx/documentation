@@ -11,7 +11,7 @@ This document explains how to install F5 NGINX Ingress Controller using [Helm](h
 
 ## Before you begin
 
-{{< note >}} All documentation should only be used with the latest stable release, indicated on [the releases page]({{< ref "/nic/releases.md" >}}) of the GitHub repository. {{< /note >}}
+{{< call-out "note" >}} All documentation should only be used with the latest stable release, indicated on [the releases page]({{< ref "/nic/releases.md" >}}) of the GitHub repository. {{< /call-out >}}
 
 - A [Kubernetes Version Supported by NGINX Ingress Controller]({{< ref "/nic/technical-specifications.md#supported-kubernetes-versions" >}})
 - Helm 3.0+.
@@ -30,8 +30,7 @@ If you do not use the custom resources that require those CRDs (which correspond
 
 ### Upgrade the CRDs
 
-{{< note >}} Please make sure to read the steps outlined in [Upgrade to V4]({{< ref "/nic/installation/installing-nic/upgrade-to-v4.md#update-custom-resource-apiversion" >}}) before running the CRD upgrade and perform the steps if applicable.
-{{< /note >}}
+{{< call-out "note" >}} If you are running NGINX Ingress Controller v3.x, you should read [Upgrade from NGINX Ingress Controller v3.x to v4.0.0]({{< ref "/nic/installation/installing-nic/upgrade-to-v4.md" >}}) before continuing. {{< /call-out >}}
 
 To upgrade the CRDs, pull the chart sources as described in [Pull the Chart](#pull-the-chart) and then run:
 
@@ -47,10 +46,10 @@ kubectl apply -f https://raw.githubusercontent.com/nginx/kubernetes-ingress/v{{<
 
 In the above command, `v{{< nic-version >}}` represents the version of NGINX Ingress Controller release rather than the Helm chart version.
 
-{{< note >}} The following warning is expected and can be ignored: `Warning: kubectl apply should be used on resource created by either kubectl create --save-config or kubectl apply`.
+{{< call-out "note" >}} The following warning is expected and can be ignored: `Warning: kubectl apply should be used on resource created by either kubectl create --save-config or kubectl apply`.
 
 Check the [release notes](https://www.github.com/nginx/kubernetes-ingress/releases) for a new release for any special upgrade procedures.
-{{< /note >}}
+{{< /call-out >}}
 
 ### Uninstall the CRDs
 
@@ -60,7 +59,7 @@ To remove the CRDs, pull the chart sources as described in [Pull the Chart](#pul
 kubectl delete -f crds/
 ```
 
-{{< warning >}} This command will delete all the corresponding custom resources in your cluster across all namespaces. Please ensure there are no custom resources that you want to keep and there are no other NGINX Ingress Controller instances running in the cluster. {{< /warning >}}
+{{< call-out "warning" >}} This command will delete all the corresponding custom resources in your cluster across all namespaces. Please ensure there are no custom resources that you want to keep and there are no other NGINX Ingress Controller instances running in the cluster. {{< /call-out >}}
 
 ## Manage the chart with OCI Registry
 
@@ -113,7 +112,7 @@ You can install the `edge` version by specifying the `--version` flag with the v
 helm install my-release oci://ghcr.io/nginx/charts/nginx-ingress --version 0.0.0-edge
 ```
 
-{{< warning >}} The `edge` version is not intended for production use. It is intended for testing and development purposes only. {{< /warning >}}
+{{< call-out "warning" >}} The `edge` version is not intended for production use. It is intended for testing and development purposes only. {{< /call-out >}}
 
 ## Manage the chart with Sources
 
@@ -184,7 +183,7 @@ Although the advisory is to update all resources in accordance with new naming c
 
 ### Upgrade steps
 
-{{< note >}} The following steps apply to both 2.x and 3.0.x releases.  {{</ note >}}
+{{< call-out "note" >}} The following steps apply to both 2.x and 3.0.x releases.  {{</ call-out >}}
 
 The steps you should follow depend on the Helm release name:
 
@@ -299,7 +298,6 @@ The [Run multiple NGINX Ingress Controllers]({{< ref "/nic/installation/run-mult
 
 The following tables lists the configurable parameters of the NGINX Ingress Controller chart and their default values.
 
-{{< table >}}
 {{<bootstrap-table "table table-striped table-bordered table-responsive">}}
 |Parameter | Description | Default |
 | --- | --- | --- |
@@ -310,7 +308,7 @@ The following tables lists the configurable parameters of the NGINX Ingress Cont
 | **controller.mgmt.licenseTokenSecretName** | Configures the secret used in the [license_token](https://nginx.org/en/docs/ngx_mgmt_module.html#license_token) directive. This key assumes the secret is in the Namespace that NGINX Ingress Controller is deployed in. The secret must be of type `nginx.com/license` with the base64 encoded JWT in the `license.jwt` key. | license-token |
 | **controller.mgmt.enforceInitialReport** | Configures the [enforce_initial_report](https://nginx.org/en/docs/ngx_mgmt_module.html#enforce_initial_report) directive, which enables or disables the 180-day grace period for sending the initial usage report. | false |
 | **controller.mgmt.usageReport.endpoint** | Configures the endpoint of the [usage_report](https://nginx.org/en/docs/ngx_mgmt_module.html#usage_report) directive. This is used to configure the endpoint NGINX uses to send usage reports to NIM. | product.connect.nginx.com |
-| **controller.mgmt.usageReport.interval** | Configures the interval of the [usage_report](https://nginx.org/en/docs/ngx_mgmt_module.html#usage_report) directive. This specifies the frequency that usage reports are sent. This field takes an [NGINX time](https://nginx.org/en/docs/syntax.html). | 1h |
+| **controller.mgmt.usageReport.interval** | Configures the interval of the [usage_report](https://nginx.org/en/docs/ngx_mgmt_module.html#usage_report) directive. This specifies the frequency that usage reports are sent. Only seconds(s), minutes(m), and hours(h) are allowed and must be between 60s and 24h. | 1h |
 | **controller.mgmt.usageReport.proxyHost** | Configures the host name of the [proxy](https://nginx.org/en/docs/ngx_mgmt_module.html#proxy) directive with optional port. | N/A |
 | **controller.mgmt.usageReport.proxyCredentialsSecretName** | Configures the [proxy_username](https://nginx.org/en/docs/ngx_mgmt_module.html#proxy_username) directive as well as the [proxy_password](https://nginx.org/en/docs/ngx_mgmt_module.html#proxy_password) directive using a Kubernetes Opaque Secret. The Secret must contain `username` and `password` fields. | N/A |
 | **controller.mgmt.sslVerify** | Configures the [ssl_verify](https://nginx.org/en/docs/ngx_mgmt_module.html#ssl_verify) directive, which enables or disables verification of the usage reporting endpoint certificate.  | true |
@@ -474,20 +472,23 @@ The following tables lists the configurable parameters of the NGINX Ingress Cont
 | **serviceNameOverride** | Used to prevent cloud load balancers from being replaced due to service name change during helm upgrades. | "" |
 | **nginxServiceMesh.enable** | Enable integration with NGINX Service Mesh. See the NGINX Service Mesh docs for more details. Requires `controller.nginxplus`. | false |
 | **nginxServiceMesh.enableEgress** | Enable NGINX Service Mesh workloads to route egress traffic through the Ingress Controller. See the NGINX Service Mesh docs for more details. Requires `nginxServiceMesh.enable`. | false |
-|**nginxAgent.enable** | Enable NGINX Agent to integrate the Security Monitoring and App Protect WAF modules. Requires `controller.appprotect.enable`. | false |
-|**nginxAgent.instanceGroup** | Set a custom Instance Group name for the deployment, shown when connected to NGINX Instance Manager. `nginx-ingress.controller.fullname` will be used if not set. | "" |
-|**nginxAgent.logLevel** | Log level for NGINX Agent. | "error |
-|**nginxAgent.instanceManager.host** | FQDN or IP for connecting to NGINX Ingress Controller. Required when `nginxAgent.enable` is set to `true` | "" |
-|**nginxAgent.instanceManager.grpcPort** | Port for connecting to NGINX Ingress Controller. | 443 |
-|**nginxAgent.instanceManager.sni** | Server Name Indication for Instance Manager. See the NGINX Agent [docs]({{< ref "/agent/configuration/encrypt-communication.md" >}}) for more details. | "" |
-|**nginxAgent.instanceManager.tls.enable** | Enable TLS for Instance Manager connection. | true |
-|**nginxAgent.instanceManager.tls.skipVerify** | Skip certification verification for Instance Manager connection. | false |
-|**nginxAgent.instanceManager.tls.caSecret** | Name of `nginx.org/ca` secret used for verification of Instance Manager TLS. | "" |
-|**nginxAgent.instanceManager.tls.secret** | Name of `kubernetes.io/tls` secret with a TLS certificate and key for using mTLS between NGINX Agent and Instance Manager. See the NGINX Instance Manager [docs]({{< ref "/nim/system-configuration/secure-traffic.md#mutual-client-certificate-authentication-setup-mtls" >}}) and the NGINX Agent [docs]({{< ref "/agent/configuration/encrypt-communication.md" >}}) for more details. | "" |
-|**nginxAgent.syslog.host** | Address for NGINX Agent to run syslog listener. | 127.0.0.1 |
-|**nginxAgent.syslog.port** | Port for NGINX Agent to run syslog listener. | 1514 |
-|**nginxAgent.napMonitoring.collectorBufferSize** | Buffer size for collector. Will contain log lines and parsed log lines. | 50000 |
-|**nginxAgent.napMonitoring.processorBufferSize** | Buffer size for processor. Will contain log lines and parsed log lines. | 50000 |
-|**nginxAgent.customConfigMap** | The name of a custom ConfigMap to use instead of the one provided by default. | "" |
+|**nginxAgent.enable** | Enable NGINX Agent 3.x to allow [connecting to NGINX One Console]({{< ref "/nginx-one/k8s/add-nic.md" >}}) or to integrate NGINX Agent 2.x for [Security Monitoring]({{< ref "/nic/tutorials/security-monitoring.md" >}}) . | false |
+|**nginxAgent.logLevel** | Log level for NGINX Agent. | "error" |
+|**nginxAgent.dataplaneKeySecretName** | Name of the Kubernetes Secret containing the Data Plane key used to authenticate to NGINX One Console. Learn more [here]({{< ref "/nginx-one/k8s/add-nic.md" >}}). Required when `nginxAgent.enable` is set to `true`. Requires NGINX Agent 3.x. | "" |
+|**nginxAgent.endpointHost** | Domain or IP address for the NGINX One Console. Requires NGINX Agent 3.x. | "agent.connect.nginx.com" |
+|**nginxAgent.endpointPort** | Port for the NGINX One Console endpoint. Requires NGINX Agent 3.x. | 443 |
+|**nginxAgent.tlsSkipVerify** | Skip TLS verification for the NGINX One Console endpoint. Requires NGINX Agent 3.x. | false |
+|**nginxAgent.instanceGroup** | Set a custom Instance Group name for the deployment, shown when connected to NGINX Instance Manager. `nginx-ingress.controller.fullname` will be used if not set. Requires NGINX Agent 2.x. | "" |
+|**nginxAgent.instanceManager.host** | FQDN or IP for connecting to NGINX Ingress Controller. Required when `nginxAgent.enable` is set to `true`. Requires NGINX Agent 2.x. | "" |
+|**nginxAgent.instanceManager.grpcPort** | Port for connecting to NGINX Ingress Controller. Requires NGINX Agent 2.x. | 443 |
+|**nginxAgent.instanceManager.sni** | Server Name Indication for Instance Manager. See the NGINX Agent [docs]({{< ref "/agent/configuration/encrypt-communication.md" >}}) for more details. Requires NGINX Agent 2.x. | "" |
+|**nginxAgent.instanceManager.tls.enable** | Enable TLS for Instance Manager connection. Requires NGINX Agent 2.x. | true |
+|**nginxAgent.instanceManager.tls.skipVerify** | Skip certification verification for Instance Manager connection. Requires NGINX Agent 2.x. | false |
+|**nginxAgent.instanceManager.tls.caSecret** | Name of `nginx.org/ca` secret used for verification of Instance Manager TLS. Requires NGINX Agent 2.x. | "" |
+|**nginxAgent.instanceManager.tls.secret** | Name of `kubernetes.io/tls` secret with a TLS certificate and key for using mTLS between NGINX Agent and Instance Manager. See the NGINX Instance Manager [docs]({{< ref "/nim/system-configuration/secure-traffic.md#mutual-client-certificate-authentication-setup-mtls" >}}) and the NGINX Agent [docs]({{< ref "/agent/configuration/encrypt-communication.md" >}}) for more details. Requires NGINX Agent 2.x. | "" |
+|**nginxAgent.syslog.host** | Address for NGINX Agent to run syslog listener. Requires NGINX Agent 2.x. | 127.0.0.1 |
+|**nginxAgent.syslog.port** | Port for NGINX Agent to run syslog listener. Requires NGINX Agent 2.x. | 1514 |
+|**nginxAgent.napMonitoring.collectorBufferSize** | Buffer size for collector. Will contain log lines and parsed log lines. Requires NGINX Agent 2.x. | 50000 |
+|**nginxAgent.napMonitoring.processorBufferSize** | Buffer size for processor. Will contain log lines and parsed log lines. Requires NGINX Agent 2.x. | 50000 |
+|**nginxAgent.customConfigMap** | The name of a custom ConfigMap to use instead of the one provided by default. Requires NGINX Agent 2.x.| "" |
 {{</bootstrap-table>}}
-{{< /table >}}
