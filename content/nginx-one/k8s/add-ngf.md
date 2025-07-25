@@ -1,22 +1,22 @@
 ---
-title: Connect NGINX Ingress Controller
+title: Connect NGINX Gateway Fabric
 toc: true
-weight: 200
+weight: 300
 nd-content-type: how-to
 nd-product: NGINX One
 ---
 
-This document explains how to connect F5 NGINX Ingress Controller to F5 NGINX One Console using NGINX Agent.
-Connecting NGINX Ingress Controller to NGINX One Console enables centralized monitoring of all controller instances.
+This document explains how to connect F5 NGINX Gateway Fabric to F5 NGINX One Console using NGINX Agent.
+Connecting NGINX Gateway Fabric to NGINX One Console enables centralized monitoring of all controller instances.
 
-Once connected, you'll see a **read-only** configuration of NGINX Ingress Controller. For each instance, you can review:
+Once connected, you'll see a **read-only** configuration of NGINX Gateway Fabric. For each instance, you can review:
 
 - Read-only configuration file
 - Unmanaged SSL/TLS certificates for Control Planes
 
 ## Before you begin
 
-Before connecting NGINX Ingress Controller to NGINX One Console, you need to create a Kubernetes Secret with the data plane key. Use the following command:
+Before connecting NGINX Gateway Fabric to NGINX One Console, you need to create a Kubernetes Secret with the data plane key. Use the following command:
 
 ```shell
 kubectl create secret generic dataplane-key \
@@ -24,19 +24,22 @@ kubectl create secret generic dataplane-key \
   -n <namespace>
 ```
 
-When you create a Kubernetes Secret, use the same namespace where NGINX Ingress Controller is running. 
+When you create a Kubernetes Secret, use the same namespace where NGINX Gateway Fabric is running. 
+
+<!-- this is from NIC. Do we do anything similar for NGF?
 If you use [`-watch-namespace`]({{< ref "/nic/configuration/global-configuration/command-line-arguments.md#watch-namespace-string" >}}) or [`watch-secret-namespace`]({{< ref "/nic/configuration/global-configuration/command-line-arguments.md#watch-secret-namespace-string" >}}) arguments with NGINX Ingress Controller, 
-you need to add the dataplane key secret to the watched namespaces. This secret will take approximately 60 - 90 seconds to reload on the pod.
+you need to add the dataplane key secret to the watched namespaces. This secret will take approximately 60 - 90 seconds to reload on the pod. -->
 
 {{<note>}}
 You can also create a data plane key through the NGINX One Console. Once loggged in, select **Manage > Control Planes > Add Control Plane**, and follow the steps shown.
 {{</note>}}
 
-## Deploy NGINX Ingress Controller with NGINX Agent
+## Deploy NGINX Gateway Fabric with NGINX Agent
 
 {{<tabs name="deploy-config-resource">}}
 {{%tab name="Helm"%}}
 
+<!-- These are the commands for NIC. Do we have any corresponding commands for NGF?
 Upgrade or install NGINX Ingress Controller with the following command to configure NGINX Agent and connect to NGINX One Console:
 
 - For NGINX:
@@ -62,11 +65,12 @@ Upgrade or install NGINX Ingress Controller with the following command to config
 The `dataplaneKeySecretName` is used to authenticate the agent with NGINX One Console. See the [NGINX One Console Docs]({{< ref "/nginx-one/connect-instances/create-manage-data-plane-keys.md" >}})
 for instructions on how to generate your dataplane key from the NGINX One Console.
 
-Follow the [Installation with Helm]({{< ref "/nic/installation/installing-nic/installation-with-helm.md" >}}) instructions to deploy NGINX Ingress Controller.
+Follow the [Installation with Helm]({{< ref "/nic/installation/installing-nic/installation-with-helm.md" >}}) instructions to deploy NGINX Ingress Controller. -->
 
 {{%/tab%}}
 {{%tab name="Manifests"%}}
 
+<!-- These are the manifests for NIC. Do we have corresponding info for NGF?
 Add the following flag to the Deployment/DaemonSet file of NGINX Ingress Controller:
 
 ```yaml
@@ -132,12 +136,12 @@ volumes:
 
 Follow the [Installation with Manifests]({{< ref "/nic/installation/installing-nic/installation-with-manifests.md" >}}) instructions to deploy NGINX Ingress Controller.
 
-{{%/tab%}}
+{{%/tab%}} -->
 {{</tabs>}}
 
 ## Verify a connection to NGINX One Console
 
-After deploying NGINX Ingress Controller <!-- or NGINX Gateway Fabric --> with NGINX Agent, you can verify the connection to NGINX One Console.
+After deploying NGINX Gateway Fabric with NGINX Agent, you can verify the connection to NGINX One Console.
 Log in to your F5 Distributed Cloud Console account. Select **NGINX One > Visit Service**. In the dashboard, go to **Manage > Instances**. You should see your instances listed by name. The instance name matches both the hostname and the pod name.
 
 ## Troubleshooting
@@ -156,13 +160,13 @@ Otherwise, make sure you are using an image that does not include NGINX App Prot
 Check the NGINX Agent configuration:
 
 ```shell
-kubectl exec -it -n <namespace> <nginx_ingress_pod_name> -- cat /etc/nginx-agent/nginx-agent.conf
+kubectl exec -it -n <namespace> <nginx_pod_name> -- cat /etc/nginx-agent/nginx-agent.conf
 ```
 
 Check NGINX Agent logs:
 
 ```shell
-kubectl exec -it -n <namespace> <nginx_ingress_pod_name> -- nginx-agent
+kubectl exec -it -n <namespace> <nginx_pod_name> -- nginx-agent
 ```
 
 Select the instance associated with your deployment of NGINX Ingress Controller. Under the **Details** tab, you'll see information associated with:
