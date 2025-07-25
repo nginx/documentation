@@ -14,10 +14,10 @@ This document provides technical specifications for NGINX Agent. It includes inf
 {{< bootstrap-table "table table-striped table-bordered" >}}
 | NGINX Product                | Agent Version  |
 |------------------------------|----------------|
-| **NGINX One Console**        | 2.x            |
+| **NGINX One Console**        | 3.x            |
 | **NGINX Gateway Fabric**     | 3.x            |
 | **NGINX Plus**               | 2.x, 3.x       |
-| **NGINX Ingress Controller** | 2.x            |
+| **NGINX Ingress Controller** | 2.x, 3.x       |
 | **NGINX Instance Manager**   | 2.x            |
 {{< /bootstrap-table >}}
 
