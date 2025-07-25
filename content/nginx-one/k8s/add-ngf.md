@@ -16,6 +16,16 @@ Once connected, you'll see a **read-only** configuration of NGINX Gateway Fabric
 
 ## Before you begin
 
+Log in to NGINX One Console. If you need more information, review our [Get started guiden]({{< ref "/nginx-one/getting-started.md#before-you-begin" >}}).
+
+Before you start the integration process, you need to 
+
+- Create a dataplane key
+  - You can use an existing key if available
+- Set up a secure connection between the NGINX Gateway Fabric control plane 
+
+<!-- Do we need to create a K8s secret? 
+
 Before connecting NGINX Gateway Fabric to NGINX One Console, you need to create a Kubernetes Secret with the data plane key. Use the following command:
 
 ```shell
@@ -23,16 +33,19 @@ kubectl create secret generic dataplane-key \
   --from-literal=dataplane.key=<Your Dataplane Key> \
   -n <namespace>
 ```
+-->
 
-When you create a Kubernetes Secret, use the same namespace where NGINX Gateway Fabric is running. 
+### Create a Data Plane Key
 
-<!-- this is from NIC. Do we do anything similar for NGF?
-If you use [`-watch-namespace`]({{< ref "/nic/configuration/global-configuration/command-line-arguments.md#watch-namespace-string" >}}) or [`watch-secret-namespace`]({{< ref "/nic/configuration/global-configuration/command-line-arguments.md#watch-secret-namespace-string" >}}) arguments with NGINX Ingress Controller, 
-you need to add the dataplane key secret to the watched namespaces. This secret will take approximately 60 - 90 seconds to reload on the pod. -->
+You may already have an existing Data Plane Key. To review your list, navigate to **Manage > Data Plane Keys**.
 
-{{<note>}}
+
 You can also create a data plane key through the NGINX One Console. Once loggged in, select **Manage > Control Planes > Add Control Plane**, and follow the steps shown.
-{{</note>}}
+
+## Set up a secure connection
+
+
+
 
 ## Deploy NGINX Gateway Fabric with NGINX Agent
 
