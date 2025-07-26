@@ -1,0 +1,70 @@
+name: Block specific changes
+
+on:
+  pull_request:
+
+jobs:
+  block-direct-markdown-module-changes:
+    name: Block modifying Markdown Module Reference files directly
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@85e6279cec87321a52edac9c87bce653a07cf6c2 # v4.2.2
+        with:
+          fetch-depth: 0
+      - name: Check for changes in /nginx/module_reference
+        id: check_module_changes
+        run: |
+          FOLDER_DIR="content/nginx/module_reference"
+          git diff origin/main -- $FOLDER_DIR > changes.txt
+
+          if [[ -s changes.txt ]]; then
+            echo "Changes detected for $FOLDER_DIR"
+            echo "CHANGES_DETECTED=true" >> $GITHUB_OUTPUT
+          else 
+            echo "CHANGES_DETECTED=false" >> $GITHUB_OUTPUT
+          fi
+      - name: Check for exemption for PR created by dot-org-content workflow
+        id: check_exemption
+        run: |
+            LABELS=$(jq -r '.pull_request.labels[].name' "$GITHUB_EVENT_PATH" || echo "")
+            AUTHOR=$(jq -r '.pull_request.user.login' "$GITHUB_EVENT_PATH")
+            TITLE=$(jq -r '.pull_request.title' "$GITHUB_EVENT_PATH")
+            ACCEPTED_LABEL="module_reference"
+            ACCEPTED_AUTHOR="github-actions"
+            ACCEPTED_TITLE="NGINX Plus - Module Ref"
+
+            EXEMPTION=false
+
+            if echo "$LABELS" | grep -q "$ACCEPTED_LABEL"; then
+              echo "Label match..."
+              EXEMPTION=true
+            fi
+            if [[ "$AUTHOR" == "$ACCEPTED_AUTHOR" ]]; then
+              echo "Author match..."
+              EXEMPTION=true
+            fi
+            if [[ "$TITLE" == *"${ACCEPTED_TITLE}"* ]]; then
+              echo "Title match..."
+              EXEMPTION=true
+            fi
+            
+            echo "EXEMPTION=$EXEMPTION" >> $GITHUB_OUTPUT        
+      - name: Generate PR comment if changes detected
+        if: steps.check_module_changes.outputs.CHANGES_DETECTED == 'true' && steps.check_exemption.outputs.EXEMPTION == 'false'
+        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # v7.0.1
+        with: 
+          script: |
+            const body = `This PR is blocked from being reviewed. Please make direct changes to module_references from the upstream XML in https://github.com/nginx/nginx.org`;
+            await github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: body,
+            });
+      - name: Fail job if changes detected
+        if: steps.check_module_changes.outputs.CHANGES_DETECTED == 'true' && steps.check_exemption.outputs.EXEMPTION == 'false'
+        run: |
+          exit 1
