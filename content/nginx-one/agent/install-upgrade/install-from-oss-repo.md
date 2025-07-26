@@ -82,14 +82,6 @@ NGINX Agent from the repository.
 {{< include "/agent/installation/oss/oss-amazon-linux.md" >}}
 
 </details>
-<details>
-<summary>{{< fa "brands fa-freebsd" >}} Install NGINX Agent on FreeBSD</summary>
-
-### Install NGINX Agent on FreeBSD
-
-{{< include "/agent/installation/oss/oss-freebsd.md" >}}
-
-</details>
 
 ### Manually connect NGINX Agent to NGINX One Console
 

@@ -83,15 +83,6 @@ NGINX Agent from the repository.
 
 </details>
 
-<details>
-<summary>{{< fa "brands fa-freebsd" >}} Install NGINX Agent on FreeBSD</summary>
-
-### Install NGINX Agent on FreeBSD<a name="install-nginx-agent-on-freebsd-plus"></a>
-
-{{< include "/agent/installation/plus/plus-freebsd.md" >}}
-
-</details>
-
 ### Manually connect NGINX Agent to NGINX One Console
 
 {{< include "agent/installation/manually-connect-to-console" >}}

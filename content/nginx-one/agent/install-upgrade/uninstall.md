@@ -71,12 +71,3 @@ Complete the following steps on each host where you've installed NGINX Agent
 {{< include "/agent/installation/uninstall/uninstall-amazon-linux.md" >}}
 
 </details>
-
-<details>
-<summary>{{< fa "brands fa-freebsd" >}} Uninstall NGINX Agent on FreeBSD</summary>
-
-### Uninstall NGINX Agent on FreeBSD
-
-{{< include "/agent/installation/uninstall/uninstall-freebsd.md" >}}
-
-</details>
