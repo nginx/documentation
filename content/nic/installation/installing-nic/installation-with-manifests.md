@@ -2,27 +2,27 @@
 title: Installation with Manifests
 toc: true
 weight: 200
-type: how-to
-product: NIC
+nd-content-type: how-to
+nd-product: NIC
 nd-docs: DOCS-603
 ---
 
 This guide explains how to use Manifests to install F5 NGINX Ingress Controller, then create both common and custom resources and set up role-based access control.
 
-## Before you start
+## Before you begin
 
 If you are using NGINX Plus, get the NGINX Ingress Controller JWT and [create a license secret]({{< ref "/nic/installation/create-license-secret.md" >}}).
 
 ### Get the NGINX Controller Image
 
-{{< note >}} Always use the latest stable release listed on the [releases page]({{< ref "/nic/releases.md" >}}). {{< /note >}}
+{{< call-out "note" >}} Always use the latest stable release listed on the [releases page]({{< ref "/nic/releases.md" >}}). {{< /call-out >}}
 
 Choose one of the following methods to get the NGINX Ingress Controller image:
 
 - **NGINX Ingress Controller**: Download the image `nginx/nginx-ingress` from [DockerHub](https://hub.docker.com/r/nginx/nginx-ingress).
 - **NGINX Plus Ingress Controller**: You have two options for this, both requiring an NGINX Ingress Controller subscription.
-  - Download the image using your NGINX Ingress Controller subscription certificate and key. View the [Get NGINX Ingress Controller from the F5 Registry]({{< ref "/nic/installation/nic-images/get-registry-image.md" >}}) topic.
-  - The [Get the NGINX Ingress Controller image with JWT]({{< ref "/nic/installation/nic-images/get-image-using-jwt.md" >}}) topic describes how to use your subscription JWT token to get the image.
+- - [Download NGINX Ingress Controller from the F5 Registry]({{< ref "/nic/installation/nic-images/registry-download.md" >}}) topic.
+- - [Add an NGINX Ingress Controller image to your cluster]({{< ref "/nic/installation/nic-images/add-image-to-cluster.md" >}})
 - **Build your own image**: To build your own image, follow the [Build NGINX Ingress Controller]({{< ref "/nic/installation/build-nginx-ingress-controller.md" >}}) topic.
 
 ### Clone the repository

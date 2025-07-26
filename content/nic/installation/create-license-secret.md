@@ -27,20 +27,21 @@ The JWT is required for validating your subscription and reporting telemetry dat
 
 ### Create the Secret
 
-The JWT needs to be configured before deploying NGINX Ingress Controller. The JWT will be stored in a Kubernetes Secret of type `nginx.com/license`, and can be created with the following command.
+The JWT needs to be configured before deploying NGINX Ingress Controller. 
+
+It must be stored in a Kubernetes Secret of type `nginx.com/license` in the same namespace as your NGINX Ingress Controller pod(s).
+
+Create the Secret with the following command:
 
 ```shell
-kubectl create secret generic license-token --from-file=license.jwt=<path-to-your-jwt> --type=nginx.com/license -n <Your Namespace>
+kubectl create secret generic license-token --from-file=license.jwt=<path-to-your-jwt> --type=nginx.com/license -n <your-namespace>
 ```
-You can now delete the downloaded `.jwt` file.
 
-{{< note >}}
-The Secret needs to be in the same Namespace as the NGINX Ingress Controller Pod(s).
-{{</ note >}}
+Once created, you can download the `.jwt` file.
 
 {{< include "/nic/installation/jwt-password-note.md" >}}
 
-### Use the NGINX Plus license Secret
+### Add the license Secret to your deployment
 
 If using a name other than the default `license-token`, provide the name of this Secret when installing NGINX Ingress Controller:
 
@@ -50,7 +51,7 @@ If using a name other than the default `license-token`, provide the name of this
 
 Specify the Secret name using the `controller.mgmt.licenseTokenSecretName` Helm value.
 
-For detailed guidance on creating the Management block via Helm, refer to the [Helm configuration documentation]({{< ref "/nic/installation/installing-nic/installation-with-helm/#configuration" >}}).
+For detailed guidance on creating the Management block with Helm, refer to the [Helm configuration documentation]({{< ref "/nic/installation/installing-nic/installation-with-helm/#configuration" >}}).
 
 {{% /tab %}}
 
@@ -129,10 +130,7 @@ Specify the SSL trusted certificate Secret name in the `ssl-trusted-certificate-
 
 {{</tabs>}}
 
-<br>
-
 Once these Secrets are created and configured, you can now [install NGINX Ingress Controller ]({{< ref "/nic/installation/installing-nic/" >}}).
-
 
 ## What’s reported and how it’s protected {#telemetry}
 

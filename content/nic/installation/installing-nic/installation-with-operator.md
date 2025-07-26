@@ -9,17 +9,17 @@ nd-docs: DOCS-604
 
 This document explains how to install F5 NGINX Ingress Controller using NGINX Ingress Operator.
 
-## Before you start
+## Before you begin
 
 If you're using NGINX Plus, get the NGINX Ingress Controller JWT and [create a license secret]({{< ref "/nic/installation/create-license-secret.md" >}}).
 
 {{< note >}} We recommend the most recent stable version of NGINX Ingress Controller, available on the GitHub repository's [releases page]({{< ref "/nic/releases.md" >}}). {{< /note >}}
 
 1. Make sure you have access to the NGINX Ingress Controller image:
-    - For NGINX Ingress Controller, use the image `nginx/nginx-ingress` from [DockerHub](https://hub.docker.com/r/nginx/nginx-ingress).
-    - For NGINX Plus Ingress Controller, view the [Get the F5 Registry NGINX Ingress Controller image]({{< ref "/nic/installation/nic-images/get-registry-image.md" >}}) topic for details on how to pull the image from the F5 Docker registry.
-    - The [Get the NGINX Ingress Controller image with JWT]({{< ref "/nic/installation/nic-images/get-image-using-jwt.md" >}}) topic describes how to use your subscription JWT token to get the image.
-    - The [Build NGINX Ingress Controller]({{< ref "/nic/installation/build-nginx-ingress-controller.md" >}}) topic explains how to push an image to a private Docker registry.
+- - For NGINX Ingress Controller, use the image `nginx/nginx-ingress` from [DockerHub](https://hub.docker.com/r/nginx/nginx-ingress).
+- - For NGINX Plus Ingress Controller, view the [Download NGINX Ingress Controller from the F5 Registry]({{< ref "/nic/installation/nic-images/registry-download" >}}) topic for details on how to pull the image from the F5 Docker registry.
+- - The [Add an NGINX Ingress Controller image to your cluster]({{< ref "/nic/installation/nic-images/add-image-to-cluster.md" >}}) topic describes how to use your subscription JWT token to get the image.
+- - The [Build NGINX Ingress Controller]({{< ref "/nic/installation/build-nginx-ingress-controller.md" >}}) topic explains how to push an image to a private Docker registry.
 1. Install the NGINX Ingress Operator following the [instructions](https://github.com/nginx/nginx-ingress-helm-operator/blob/main/docs/installation.md).
 1. Create the SecurityContextConstraint as outlined in the ["Getting Started" instructions](https://github.com/nginx/nginx-ingress-helm-operator/blob/main/README.md#getting-started).
 
