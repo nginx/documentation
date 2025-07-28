@@ -316,6 +316,7 @@ This command also allows viewing the port mappings set in the previous step: the
 As NGINX Plus is a commercial offering, NGINX Plus Docker images are not available at Docker Hub, so first you will need to create an NGINX Plus Docker image.
 
 > **Note:** Never upload your NGINX Plus images to a public repository such as Docker Hub. Doing so violates your license agreement.
+
 To generate a custom NGINX Plus image:
 
 1. Create the Docker build context, or a Dockerfile, for example:
