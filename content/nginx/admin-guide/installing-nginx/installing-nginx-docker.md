@@ -335,7 +335,7 @@ To generate a custom NGINX Plus image:
 
     - no files are copied from the Docker host as a container is created: you can add `COPY` definitions to each Dockerfile, or the image you create can be used as the basis for another image
 
-3. Log in to [MyF5 Customer Portal](https://account.f5.com/myf5). As noted in the [Prerequisites](#prerequisites] and download your *nginx-repo.crt*, *nginx-repo.key*, and **JSON Web Token** files. In addition, download the corresponding For a trial of NGINX Plus, the files are provided with your trial package.
+3. Log in to [MyF5 Customer Portal](https://account.f5.com/myf5). As noted in the [Prerequisites](#prerequisites], download your *nginx-repo.crt*, *nginx-repo.key*, and **JSON Web Token** files. For a trial of NGINX Plus, the files are provided with your trial package.
 
 4. Copy the files to the directory where the Dockerfile is located.
 
