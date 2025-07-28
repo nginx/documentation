@@ -48,11 +48,8 @@ configurations, collection and reporting of real-time NGINX performance and oper
 
 {{<card-layout>}}
   {{<card-section showAsCards="true" isFeaturedSection="true">}}
-    {{<card title="Upgrade" titleUrl="installation-upgrade/upgrade/" icon="circle-fading-arrow-up">}}
-    {{</card>}}
-    {{<card title="Configuration" titleUrl="configuration/" icon="cog">}}
-    {{</card>}}
-    {{<card title="Support" titleUrl="support/" icon="hand-helping">}}
-    {{</card>}}
+    {{<card title="Upgrade" titleUrl="/nginx-agent/installation-upgrade/upgrade/" icon="circle-fading-arrow-up"/>}}
+    {{<card title="Configuration" titleUrl="/nginx-agent/configuration" icon="cog"/>}}
+    {{<card title="Support" titleUrl="/nginx-agent/support" icon="hand-helping"/>}}
   {{</card-section>}}
 {{</card-layout>}}
