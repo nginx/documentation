@@ -48,6 +48,9 @@ jobs:
           base: main
           branch: update-nginx-module-ref
           title: 'NGINX Plus - Module Ref: Update content for content/nginx due to detected changes'
+          add-paths: |
+            dot-org-repo/libxslt-md/
+            dot-org-repo/yaml/nginx_api.yaml
           body: |
             ### Proposed Changes
             Updated NGINX Plus docs.
