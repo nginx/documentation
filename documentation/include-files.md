@@ -25,8 +25,8 @@ To make sure includes are effective and easy to maintain, follow these guideline
 - **Only use includes for repeated content**: Create an include only if the content appears in at least **two locations**. Using an include for single-use content adds unnecessary complexity and makes maintenance harder.
 - **Keep includes small and modular**: Write narrowly scoped snippets to maximize flexibility and reuse.
 - **Avoid nesting includes**: If there’s another way to achieve the same outcome, avoid nesting includes. While possible, it complicates reviews and maintenance. A flat structure is simple.
-- **Don't include heading**: Do not include headings in include files. These headings won't appear in a document's table of contents and may break the linear flow of the surrounding content. Add headings directly to the document instead.
-- **Don't start documents with includes**: The opening of most document is the introduction which explains its purpose. Includes are reused text, so starting multiple documents with identical content could look odd, especially in search results.
+- **Don't include headings**: Do not include headings in include files. These headings won't appear in a document's table of contents and may break the linear flow of the surrounding content. Add headings directly to the document instead.
+- **Don't start documents with includes**: The opening of most documents is the introduction which explains its purpose. Includes are reused text, so starting multiple documents with identical content could look odd, especially in search results.
 - **Do not add the F5 prefix to product names in includes**: The brand name is required only on [the first mention in a document](/documentation/style-guide.md#f5-brand-trademarks-and-product-names).
 
 ## Include file index
