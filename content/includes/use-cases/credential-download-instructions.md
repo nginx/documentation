@@ -4,7 +4,6 @@ files:
 - content/nic/installation/nic-images/registry-download.md
 ---
 
-
 In order to obtain a container image, you will need the JSON Web Token file or SSL certificate and private key files provided with your NGINX Plus subscription. 
 
 These files grant access to the package repository from which the script will download the NGINX Plus package:
