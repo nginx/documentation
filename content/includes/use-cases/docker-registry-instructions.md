@@ -14,9 +14,9 @@ For more details on Docker Engine security, you can refer to the [Docker Engine 
 
 {{< /call-out >}}
 
-{{<tabs name="docker_login">}}
+{{< tabs name="docker_login" >}}
 
-{{%tab name="JSON Web Token"%}}
+{{% tab name="JSON Web Token"%}}
 
 Open the JSON Web Token file previously downloaded from [MyF5](https://my.f5.com) customer portal (for example, `nginx-repo-12345abc.jwt`) and copy its contents.
 
@@ -28,7 +28,7 @@ docker login private-registry.nginx.com --username=<output_of_jwt_token> --passw
 
 {{% /tab %}}
 
-{{%tab name="SSL"%}}
+{{% tab name="SSL" %}}
 
 Create a directory and copy your certificate and key to this directory:
 
@@ -46,4 +46,4 @@ docker login private-registry.nginx.com
 
 {{% /tab %}}
 
-{{% /tabs %}}
+{{< /tabs >}}

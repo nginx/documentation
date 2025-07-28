@@ -10,16 +10,16 @@ These files grant access to the package repository from which the script will do
 
 {{< tabs name="product_keys" >}}
 
-{{< tab name="JSON Web Token" >}}
+{{% tab name="JSON Web Token" %}}
 
 {{< include "licensing-and-reporting/download-jwt-from-myf5.md" >}}
 
-{{< /tab >}}
+{{% /tab %}}
 
-{{< tab name="SSL" >}}
+{{% tab name="SSL" %}}
 
 {{< include "licensing-and-reporting/download-certificates-from-myf5.md" >}}
 
-{{< /tab >}}
+{{% /tab %}}
 
 {{< /tabs >}}

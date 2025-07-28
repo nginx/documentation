@@ -54,21 +54,21 @@ To upgrade a release named _my-release_, use the following command:
 
 {{< tabs name="upgrade-chart" >}}
 
-{{< tab name="OCI registry" >}}
+{{% tab name="OCI registry" %}}
 
 ```shell
 helm upgrade my-release oci://ghcr.io/nginx/charts/nginx-ingress --version {{< nic-helm-version >}}
 ```
 
-{{< /tab >}}
+{{% /tab %}}
 
-{{< tab name="Source" >}}
+{{% tab name="Source" %}}
 
 ```shell
 helm upgrade my-release .
 ```
 
-{{< /tab >}}
+{{% /tab %}}
 
 {{< /tabs >}}
 
@@ -97,10 +97,9 @@ If the Helm chart you have been using is `v1.0.2` or earlier (NGINX Ingress Cont
 
 The example below shows the change for a Policy resource: you must do the same for all GlobalConfiguration and TransportServer resources.
 
-{{<tabs name="resource-version-update">}}
+{{< tabs name="resource-version-update" >}}
 
-{{< comment >}} Keep this left aligned. {{< /comment >}}
-{{<tab name="Before">}}
+{{% tab name="Before" %}}
 
 ```yaml
 apiVersion: k8s.nginx.org/v1alpha1
@@ -113,9 +112,11 @@ spec:
     key: ${binary_remote_addr}
     zoneSize: 10M
 ```
-{{< /tab >}}
 
-{{<tab name="After">}}
+{{% /tab %}}
+
+{{% tab name="After" %}}
+
 ```yaml
 apiVersion: k8s.nginx.org/v1
 kind: Policy
@@ -127,13 +128,16 @@ spec:
     key: ${binary_remote_addr}
     zoneSize: 10M
 ```
-{{< /tab >}}
 
-{{</tabs>}}
+{{% /tab %}}
 
-{{< warning >}}
+{{< /tabs >}}
+
+{{< call-out "warning" >}}
+
 If a *GlobalConfiguration*, *Policy* or *TransportServer* resource is deployed with `apiVersion: k8s.nginx.org/v1alpha1`, it will be **deleted** during the upgrade process.
-{{</ warning >}}
+
+{{</ call-out >}}
 
 After you move the custom resources to `v1`, run the following `kubectl` commands before upgrading to v4.0.0 Custom Resource Definitions (CRDs) to avoid webhook errors caused by leftover `v1alpha1` resources. For details, see [GitHub issue #7010](https://github.com/nginx/kubernetes-ingress/issues/7010).
 
@@ -160,9 +164,9 @@ To configure structured logging, you must update your log deployment arguments f
 | `error`             |                      |
 | `fatal`             |                      |
 
-{{<tabs name="structured logging">}}
+{{< tabs name="structured logging" >}}
 
-{{<tab name="Helm">}}
+{{% tab name="Helm" %}}
 
 The Helm value `controller.logLevel` is now a string instead of an integer.
 
@@ -173,9 +177,9 @@ controller:
     logLevel: info
     logFormat: json
 ```
-{{< /tab >}}
+{{% /tab %}}
 
-{{<tab name="Manifests">}}
+{{% tab name="Manifests" %}}
 
 The command line argument `-v` has been replaced with `-log-level`, and takes a string instead of an integer. The argument `-logtostderr` has also been deprecated.
 
@@ -186,9 +190,9 @@ args:
     - -log-level=info
     - -log-format=json
 ```
-{{< /tab >}}
+{{% /tab %}}
 
-{{</tabs>}}
+{{< /tabs >}}
 
 ### Create License secret
 
@@ -210,9 +214,9 @@ To reduce downtime, update all resources to use the new naming convention. The f
 
 The steps you should follow depend on your Helm release name:
 
-{{<tabs name="upgrade-helm">}}
+{{< tabs name="upgrade-helm" >}}
 
-{{<tab name="nginx-ingress">}}
+{{% tab name="nginx-ingress" %}}
 
 Use `kubectl describe` on deployment/daemonset to get the `Selector` value:
 
@@ -260,9 +264,9 @@ Normal  ScalingReplicaSet  101s   deployment-controller  Scaled up replica set n
 Normal  ScalingReplicaSet  98s    deployment-controller  Scaled down replica set nginx-ingress-nginx-ingress-<old_version> to 0 from 1
 ```
 
-{{</tab>}}
+{{% /tab %}}
 
-{{<tab name="Other release names">}}
+{{< tab name="Other release names" >}}
 
 Use `kubectl describe` on deployment/daemonset to get the `Selector` value:
 
@@ -309,6 +313,6 @@ Normal  ScalingReplicaSet  101s   deployment-controller  Scaled up replica set t
 Normal  ScalingReplicaSet  98s    deployment-controller  Scaled down replica set test-release-nginx-ingress-<old_version> to 0 from 1
 ```
 
-{{</tab>}}
+{{% /tab %}}
 
-{{</tabs>}}
+{{< /tabs >}}
