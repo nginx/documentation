@@ -342,7 +342,7 @@ To generate a custom NGINX Plus image:
 5. Create a Docker image, for example, `nginxplus` (note the final period in the command).
 
     ```shell
-    docker build  --no-cache --secret id=nginx-key,src=nginx-repo.key --secret id=nginx-crt,src=nginx-repo.crt --secret id=nginx-jwt,src=license.jwt -t nginxplus .
+    docker build --no-cache --secret id=nginx-key,src=nginx-repo.key --secret id=nginx-crt,src=nginx-repo.crt --secret id=nginx-jwt,src=license.jwt -t nginxplus .
     ```
 
     The `--no-cache` option tells Docker to build the image from scratch and ensures the installation of the latest version of NGINX Plus. If the Dockerfile was previously used to build an image without the `--no-cache` option, the new image uses the version of NGINX Plus from the previously built image from the Docker cache.
