@@ -176,8 +176,6 @@ The `install` script writes an `nginx-agent.conf` file to the `/etc/nginx-agent/
 
 {{< include "/nginx-one/conf/nginx-agent-conf.md" >}}
 
-<span style="display: inline-block; margin-top: 20px;" >
-
 {{<call-out "note" "Note: NGINX Agent poll interval" >}} We recommend keeping `dataplane.status.poll_interval` between `30s` and `60s` in the NGINX Agent config (`/etc/nginx-agent/nginx-agent.conf`). If the interval is set above `60s`, NGINX One Console may report incorrect instance statuses.{{</call-out>}}
 
 <br>
