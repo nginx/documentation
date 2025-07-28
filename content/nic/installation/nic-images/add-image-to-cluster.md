@@ -36,9 +36,9 @@ helm install my-release -n nginx-ingress oci://ghcr.io/nginx/charts/nginx-ingres
 You can also use the certificate and key from the MyF5 portal and the Docker registry API to list the available image tags for the repositories, for example:
 
 ```shell
-curl https://private-registry.nginx.com/v2/nginx-ic/nginx-plus-ingress/tags/list --key <path-to-client.key> --cert <path-to-client.cert> | jq
+curl https://private-registry.nginx.com/v2/nginx-ic/nginx-plus-ingress/tags/list --key <path-to-client.key> --cert <path-to-client.cert>
 ```
-```text
+```json
 {
 "name": "nginx-ic/nginx-plus-ingress",
 "tags": [
@@ -51,9 +51,9 @@ curl https://private-registry.nginx.com/v2/nginx-ic/nginx-plus-ingress/tags/list
 ```
 
 ```shell
-curl https://private-registry.nginx.com/v2/nginx-ic-nap/nginx-plus-ingress/tags/list --key <path-to-client.key> --cert <path-to-client.cert> | jq
+curl https://private-registry.nginx.com/v2/nginx-ic-nap/nginx-plus-ingress/tags/list --key <path-to-client.key> --cert <path-to-client.cert>
 ```
-```text
+```json
 {
 "name": "nginx-ic-nap/nginx-plus-ingress",
 "tags": [
@@ -65,9 +65,9 @@ curl https://private-registry.nginx.com/v2/nginx-ic-nap/nginx-plus-ingress/tags/
 ```
 
 ```shell
-$ curl https://private-registry.nginx.com/v2/nginx-ic-dos/nginx-plus-ingress/tags/list --key <path-to-client.key> --cert <path-to-client.cert> | jq
+curl https://private-registry.nginx.com/v2/nginx-ic-dos/nginx-plus-ingress/tags/list --key <path-to-client.key> --cert <path-to-client.cert>
 ```
-```text
+```json
 {
 "name": "nginx-ic-dos/nginx-plus-ingress",
 "tags": [
@@ -76,6 +76,8 @@ $ curl https://private-registry.nginx.com/v2/nginx-ic-dos/nginx-plus-ingress/tag
 ]
 }
 ```
+
+The `jq` command was used in these examples to make the JSON output easier to read.
 
 ### Add the image from source
 
