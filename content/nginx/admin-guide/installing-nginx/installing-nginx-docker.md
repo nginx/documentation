@@ -335,14 +335,14 @@ To generate a custom NGINX Plus image:
 
     - no files are copied from the Docker host as a container is created: you can add `COPY` definitions to each Dockerfile, or the image you create can be used as the basis for another image
 
-3. Log in to [MyF5 Customer Portal](https://account.f5.com/myf5) and download your *nginx-repo.crt* and *nginx-repo.key* files. For a trial of NGINX Plus, the files are provided with your trial package.
+3. Log in to [MyF5 Customer Portal](https://account.f5.com/myf5). As noted in the [Prerequisites](#prerequisites], download your *nginx-repo.crt*, *nginx-repo.key*, and **JSON Web Token** files. For a trial of NGINX Plus, the files are provided with your trial package.
 
 4. Copy the files to the directory where the Dockerfile is located.
 
 5. Create a Docker image, for example, `nginxplus` (note the final period in the command).
 
     ```shell
-    docker build  --no-cache --secret id=nginx-key,src=nginx-repo.key --secret id=nginx-crt,src=nginx-repo.crt -t nginxplus .
+    docker build --no-cache --secret id=nginx-key,src=nginx-repo.key --secret id=nginx-crt,src=nginx-repo.crt --secret id=nginx-jwt,src=license.jwt -t nginxplus .
     ```
 
     The `--no-cache` option tells Docker to build the image from scratch and ensures the installation of the latest version of NGINX Plus. If the Dockerfile was previously used to build an image without the `--no-cache` option, the new image uses the version of NGINX Plus from the previously built image from the Docker cache.
