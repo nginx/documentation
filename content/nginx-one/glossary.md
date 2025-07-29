@@ -41,3 +41,75 @@ Using NGINX One is subject to our End User Service Agreement (EUSA). For [NGINX 
 ## References
 
 - [F5 Distributed Cloud: Core Concepts](https://docs.cloud.f5.com/docs/ves-concepts/core-concepts)
+
+{{< tabs name="Start the NGINX Plus container" >}}
+
+{{%tab name="NGINX Agent 3.x"%}}
+
+
+```sh
+sudo docker run \
+--env=NGINX_LICENSE_JWT="YOUR_JWT_HERE" \
+--env=NGINX_AGENT_SERVER_GRPCPORT=443 \
+--env=NGINX_AGENT_SERVER_HOST=agent.connect.nginx.com \
+--env=NGINX_AGENT_SERVER_TOKEN="YOUR_NGINX_ONE_DATA_PLANE_KEY_HERE" \
+--env=NGINX_AGENT_TLS_ENABLE=true \
+--restart=always \
+--runtime=runc \
+-d private-registry.nginx.com/nginx-plus/agent:<version-tag>
+```
+
+<br>
+
+{{<call-out "" "Example:" "" >}}
+To start the container with the `debian` image:
+
+```sh
+sudo docker run \
+--env=NGINX_LICENSE_JWT="YOUR_JWT_HERE" \
+--env=NGINX_AGENT_COMMAND_SERVER_GRPCPORT=443 \
+--env=NGINX_AGENT_COMMAND_SERVER_HOST=agent.connect.nginx.com \
+--env=NGINX_AGENT_COMMAND_SERVER_TOKEN="YOUR_NGINX_ONE_DATA_PLANE_KEY_HERE" \
+--env=NGINX_AGENT_COMMAND_TLS_SKIP_VERIFY=true \
+--restart=always \
+--runtime=runc \
+-d private-registry.nginx.com/nginx-plus/agent:debian
+```
+{{</call-out>}}
+
+{{%/tab%}}
+{{%tab name="NGINX Agent 2.x"%}}
+
+
+```sh
+sudo docker run \
+--env=NGINX_LICENSE_JWT="YOUR_JWT_HERE" \
+--env=NGINX_AGENT_COMMAND_SERVER_GRPCPORT=443 \
+--env=NGINX_AGENT_COMMAND_SERVER_HOST=agent.connect.nginx.com \
+--env=NGINX_AGENT_COMMAND_SERVER_TOKEN="YOUR_NGINX_ONE_DATA_PLANE_KEY_HERE" \
+--env=NGINX_AGENT_COMMAND_TLS_SKIP_VERIFY=true \
+--restart=always \
+--runtime=runc \
+-d private-registry.nginx.com/nginx-plus/agent:<version-tag>
+```
+
+<br>
+
+{{<call-out "" "Example:" "" >}}
+To start the container with the `debian` image:
+
+```sh
+sudo docker run \
+--env=NGINX_LICENSE_JWT="YOUR_JWT_HERE" \
+--env=NGINX_AGENT_SERVER_GRPCPORT=443 \
+--env=NGINX_AGENT_SERVER_HOST=agent.connect.nginx.com \
+--env=NGINX_AGENT_SERVER_TOKEN="YOUR_NGINX_ONE_DATA_PLANE_KEY_HERE" \
+--env=NGINX_AGENT_TLS_ENABLE=true \
+--restart=always \
+--runtime=runc \
+-d private-registry.nginx.com/nginx-plus/agent:debian
+```
+{{</call-out>}}
+
+{{%/tab%}}
+{{< /tabs >}}
