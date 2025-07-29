@@ -21,8 +21,6 @@ NGINX Plus Release 24 and later supports NGINX App Protect DoS.
 
 NGINX App Protect DoS supports the following operating systems:
 
-- [CentOS 7.4.x and above](#centos-74-installation) (Deprecated starting from NGINX Plus R33)
-- [RHEL 7.4.x and above](#rhel-74-installation) (Deprecated starting from NGINX Plus R33)
 - [RHEL 8.1.x / Rocky Linux 8 and above](#rhel-8--rocky-linux-8-installation)
 - [RHEL 9 / Rocky Linux 9 and above](#rhel-9--rocky-linux-9-installation)
 - [Debian 10 (Buster)](#debian--ubuntu-installation) - (Deprecated starting from NGINX Plus R28)
@@ -52,7 +50,6 @@ See the NGINX Plus full list of prerequisites for more details. NGINX App Protec
 {{< note >}}
 
 - gRPC, HTTP/2 and WebSocket protection require active monitoring of the protected service. The directive `app_protect_dos_monitor` is mandatory for the attack to be detected.
-- TLS fingerprint feature is not used in CentOS 7.4 and RHEL 7 / UBI 7 due to the old OpenSSL version. The required OpenSSL version is 1.1.1 or higher.
 - Monitor directive `app_protect_dos_monitor` with proxy_protocol parameter can not be configured on Ubuntu 18.04. As a result, gRPC and HTTP/2 DoS protection for proxy_protocol configuration is not supported.
 - Regularly update the Operating System (OS) to avoid known OS vulnerabilities which may impact the service.
 {{< /note >}}
@@ -64,334 +61,6 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
 - Restrict permissions to the files on the NGINX App Protect DoS platform to user **nginx** and group **nginx**, especially for the sensitive areas containing the configuration.
 - Remove unnecessary remote access services on the platform.
 - Configure a Syslog destination on the same machine as App Protect DoS and proxy to an external destination. This avoids eavesdropping and [man-in-the-middle](https://en.wikipedia.org/wiki/Man-in-the-middle_attack) attacks on the Syslog channel.
-
-## CentOS 7.4+ Installation
-
-{{< note >}}CentOS 7.4 and RHEL 7.4 are deprecated as of NGINX Plus Release 32 (R32) and are not supported in Release 33 (R33) or later. For the list of supported distributions, refer to the [NGINX Plus Tech Specs]({{< relref "nginx/technical-specs.md" >}}).{{< /note >}}
-
-1. If you already have NGINX packages in your system, back up your configs and logs:
-
-    ```shell
-    sudo cp -a /etc/nginx /etc/nginx-plus-backup
-    sudo cp -a /var/log/nginx /var/log/nginx-plus-backup
-    ```
-
-2. Create the `/etc/ssl/nginx/` directory:
-
-    ```shell
-    sudo mkdir -p /etc/ssl/nginx
-    ```
-
-3. Log in to the NGINX [Customer Portal](https://my.f5.com) and download the following two files:
-
-    ```shell
-    nginx-repo.key
-    nginx-repo.crt
-    ```
-
-4. Copy the above two files to the CentOS server’s `/etc/ssl/nginx/` directory. Use an SCP client or another secure file transfer tool to perform this task.
-
-5. Install prerequisite packages:
-
-    ```shell
-    sudo yum install ca-certificates epel-release wget
-    ```
-
-6. Add NGINX Plus and NGINX App Protect DoS repository:
-
-    ```shell
-    sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/nginx-plus-7.4.repo
-    sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-dos-7.repo
-    ```
-
-7. In case of fresh installation, update the repository and install the most recent version of the NGINX Plus App Protect DoS package (which includes NGINX Plus):
-
-    ```shell
-    sudo yum install app-protect-dos
-    ```
-
-    Alternatively, you can use the following command to list available versions:
-
-    ```shell
-    sudo yum --showduplicates list app-protect-dos
-    ```
-
-    Then, install a specific version from the output of command above. For example:
-
-    ```shell
-    sudo yum install app-protect-dos-27+2.4.0
-    ```
-
-8. In case of upgrading from previously installed NGINX Plus App Protect DoS package (which includes NGINX Plus):
-
-    ```shell
-    sudo yum remove nginx-plus
-    sudo yum install app-protect-dos
-    sudo systemctl start nginx
-    ```
-
-    {{< note >}} Make sure to restore configuration from `/etc/nginx-plus-backup` back to `/etc/nginx-plus`.{{< /note >}}
-
-9. Check the NGINX binary version to ensure that you have NGINX Plus installed correctly:
-
-    ```shell
-    sudo nginx -v
-    ```
-
-10. Check the NGINX App Protect DoS binary version to ensure that you have the right version installed correctly:
-
-    ```shell
-    sudo admd -v
-    ```
-
-11. Load the NGINX App Protect DoS module on the main context in the `nginx.conf`:
-
-    ```nginx
-    load_module modules/ngx_http_app_protect_dos_module.so;
-    ```
-
-12. Enable NGINX App Protect DoS on an `http/server/location` context in the `nginx.conf` file:
-
-    ```nginx
-    app_protect_dos_enable on;
-    app_protect_dos_name "App1";
-    app_protect_dos_monitor uri=serv:80/; # Assuming server_name "serv" on port 80, with the root path "/"
-    ```
-
-13. Configure the SELinux to allow NGINX App Protect DoS:
-
-    a. Using the vi editor, create a file:
-
-    ```shell
-    vi app-protect-dos.te
-    ```
-
-    b. Insert the following contents into the file created above:
-
-    ```shell
-    module app-protect-dos 2.0;
-    require {
-        type unconfined_t;
-        type unconfined_service_t;
-        type httpd_t;
-        type tmpfs_t;
-        type initrc_t;
-        type initrc_state_t;
-        class capability sys_resource;
-        class shm { associate read unix_read unix_write write };
-        class file { read write };
-    }
-    allow httpd_t initrc_state_t:file { read write };
-    allow httpd_t self:capability sys_resource;
-    allow httpd_t tmpfs_t:file { read write };
-    allow httpd_t unconfined_service_t:shm { associate read unix_read unix_write write };
-    allow httpd_t unconfined_t:shm { associate read write unix_read unix_write };
-    allow httpd_t initrc_t:shm { associate read unix_read unix_write write };
-    ```
-
-    c. Run the following chain of commands:
-
-    ```shell
-    sudo checkmodule -M -m -o app-protect-dos.mod app-protect-dos.te
-    sudo semodule_package -o app-protect-dos.pp -m app-protect-dos.mod
-    sudo semodule -i app-protect-dos.pp;
-    ```
-
-    If you encounter any issues, refer to the [Troubleshooting Guide]({{< ref "/nap-dos/troubleshooting-guide/how-to-troubleshoot.md" >}}).
-
-    {{< note >}}Additional SELinux configuration may be required to allow NGINX Plus to listen on specific network ports, connect to upstreams, and send syslog entries to remote systems. Refer to the practices outlined in the [Using NGINX and NGINX Plus with SELinux](https://www.nginx.com/blog/using-nginx-plus-with-selinux/) article for details.{{< /note >}}
-
-14. To enable the NGINX/App-Protect-DoS service to start at boot, run the command:
-
-    ```shell
-    sudo systemctl enable nginx.service
-    ```
-
-15. Start the NGINX service:
-
-    ```shell
-    sudo systemctl start nginx
-    ```
-
-## RHEL 7.4+ Installation
-
-{{< note >}}CentOS 7.4 and RHEL 7.4 are deprecated as of NGINX Plus Release 32 (R32) and are not supported in Release 33 (R33) or later. For the list of supported distributions, refer to the [NGINX Plus Tech Specs]({{< relref "nginx/technical-specs.md" >}}).{{< /note >}}
-1. If you already have NGINX packages in your system, back up your configs and logs:
-
-    ```shell
-    sudo cp -a /etc/nginx /etc/nginx-plus-backup
-    sudo cp -a /var/log/nginx /var/log/nginx-plus-backup
-    ```
-
-2. Create the `/etc/ssl/nginx/` directory:
-
-    ```shell
-    sudo mkdir -p /etc/ssl/nginx
-    ```
-
-3. Log in to the NGINX [Customer Portal](https://my.f5.com) and download the following two files:
-
-    ```shell
-    nginx-repo.key
-    nginx-repo.crt
-    ```
-
-4. Copy the above two files to the CentOS server’s `/etc/ssl/nginx/` directory. Use an SCP client or another secure file transfer tool to perform this task.
-
-5. Install prerequisite packages:
-
-    ```shell
-    sudo yum install ca-certificates wget
-
-6. Enable Yum repositories to pull App Protect DoS dependencies:
-
-    If you have a RHEL subscription:
-
-    ```shell
-     sudo subscription-manager repos --enable rhel-*-optional-rpms \
-                                     --enable rhel-*-extras-rpms \
-                                     --enable rhel-ha-for-rhel-*-server-rpms
-     yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-    ```
-
-    If you don’t have a RHEL subscription, you can pull the dependencies from the CentOS repository: Create a new repository centos.repo in `/etc/yum.repos.d/` with the content:
-
-    ```shell
-    [centos]
-    name=CentOS-7
-    baseurl=http://ftp.heanet.ie/pub/centos/7/os/x86_64/
-    enabled=1
-    gpgcheck=1
-    gpgkey=http://ftp.heanet.ie/pub/centos/7/os/x86_64/RPM-GPG-KEY-CentOS-7
-    [epel]
-    name=epel packages for CentOS/RHEL 7
-    baseurl=https://dl.fedoraproject.org/pub/epel/7/x86_64
-    enabled=1
-    gpgcheck=1
-    gpgkey=https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-7
-    [extras]
-    name=extras packages for CentOS/RHEL 7
-    mirrorlist=http://mirrorlist.centos.org/?release=7&arch=x86_64&repo=extras
-    enabled=1
-    gpgcheck=1
-    gpgkey=http://mirror.centos.org/centos/RPM-GPG-KEY-CentOS-7
-    ```
-
-7. Add NGINX Plus and NGINX App Protect DoS repository:
-
-    ```shell
-    sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/nginx-plus-7.4.repo
-    sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-dos-7.repo
-    ```
-
-8. In case of fresh installation, update the repository and install the most recent version of the NGINX Plus App Protect DoS package (which includes NGINX Plus):
-
-    ```shell
-    sudo yum install app-protect-dos
-    ```
-
-    Alternatively, you can use the following command to list available versions:
-
-    ```shell
-    sudo yum --showduplicates list app-protect-dos
-    ```
-
-    Then, install a specific version from the output of command above. For example:
-
-    ```shell
-    sudo yum install app-protect-dos-27+2.4.0
-    ```
-
-9. In case of upgrading from previously installed NGINX Plus App Protect DoS package (which includes NGINX Plus):
-
-    ```shell
-    sudo yum remove nginx-plus
-    sudo yum install app-protect-dos
-    sudo systemctl start nginx
-    ```
-
-    {{< note >}} Make sure to restore configuration from `/etc/nginx-plus-backup` back to `/etc/nginx-plus`.{{< /note >}}
-
-10. Check the NGINX binary version to ensure that you have NGINX Plus installed correctly:
-
-    ```shell
-    sudo nginx -v
-    ```
-
-11. Check the App Protect DoS binary version to ensure that you have the right version installed correctly:
-
-    ```shell
-    sudo admd -v
-    ```
-
-12. Load the NGINX App Protect DoS module on the main context in the `nginx.conf`:
-
-    ```nginx
-    load_module modules/ngx_http_app_protect_dos_module.so;
-    ```
-
-13. Enable NGINX App Protect DoS on an `http/server/location` context in the `nginx.conf` file:
-
-    ```nginx
-    app_protect_dos_enable on;
-    app_protect_dos_name "App1";
-    app_protect_dos_monitor uri=serv:80/; # Assuming server_name "serv" on port 80, with the root path "/"
-    ```
-
-14. Configure the SELinux to allow NGINX App Protect DoS:
-
-    a. Using the vi editor, create a file:
-
-    ```shell
-    vi app-protect-dos.te
-    ```
-
-    b. Insert the following contents into the file created above:
-
-    ```shell
-    module app-protect-dos 2.0;
-    require {
-        type unconfined_t;
-        type unconfined_service_t;
-        type httpd_t;
-        type tmpfs_t;
-        type initrc_t;
-        type initrc_state_t;
-        class capability sys_resource;
-        class shm { associate read unix_read unix_write write };
-        class file { read write };
-    }
-    allow httpd_t initrc_state_t:file { read write };
-    allow httpd_t self:capability sys_resource;
-    allow httpd_t tmpfs_t:file { read write };
-    allow httpd_t unconfined_service_t:shm { associate read unix_read unix_write write };
-    allow httpd_t unconfined_t:shm { associate read write unix_read unix_write };
-    allow httpd_t initrc_t:shm { associate read unix_read unix_write write };
-    ```
-
-    c. Run the following chain of commands:
-
-    ```shell
-    sudo checkmodule -M -m -o app-protect-dos.mod app-protect-dos.te &&  \
-    sudo semodule_package -o app-protect-dos.pp -m app-protect-dos.mod &&  \
-    sudo semodule -i app-protect-dos.pp;
-    ```
-
-    If you encounter any issues, refer to the [Troubleshooting Guide]({{< ref "/nap-dos/troubleshooting-guide/how-to-troubleshoot.md" >}}).
-
-    {{< note >}}Additional SELinux configuration may be required to allow NGINX Plus to listen on specific network ports, connect to upstreams, and send syslog entries to remote systems. Refer to the practices outlined in the [Using NGINX and NGINX Plus with SELinux](https://www.nginx.com/blog/using-nginx-plus-with-selinux/) article for details.{{< /note >}}
-
-15. To enable the NGINX/App-Protect-DoS service to start at boot, run the command:
-
-    ```shell
-    sudo systemctl enable nginx.service
-    ```
-
-16. Start the NGINX service:
-
-    ```shell
-    sudo systemctl start nginx
-    ```
 
 ## RHEL 8+ / Rocky Linux 8 Installation
 
@@ -1362,8 +1031,6 @@ You need root permissions to execute the following steps.
 
 5. In the same directory create an `entrypoint.sh` file with executable permissions, with the following content:
 
-    For CentOS 7 / UBI 7:
-
     ```shell
     #!/usr/bin/env bash
 
@@ -1372,29 +1039,7 @@ You need root permissions to execute the following steps.
 
     # prepare environment
     mkdir -p /var/run/adm /tmp/cores ${LOGDIR}
-    chmod 755 /var/run/adm /tmp/cores ${LOGDIR}
-    chown ${USER}:${USER} /var/run/adm /tmp/cores ${LOGDIR}
-
-    LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/rpm/lib64
-    export LD_LIBRARY_PATH
-
-    # run processes
-    /bin/su -s /bin/bash -c "/usr/bin/adminstall > ${LOGDIR}/adminstall.log 2>&1" ${USER}
-    /usr/sbin/nginx -g 'daemon off;' &
-    /bin/su -s /bin/bash -c "/usr/bin/admd -d --log info > ${LOGDIR}/admd.log 2>&1 &" ${USER}
-    ```
-
-    For Alpine / Debian / Ubuntu / UBI 8/ UBI 9:
-
-    ```shell
-    #!/usr/bin/env bash
-
-    USER=nginx
-    LOGDIR=/var/log/adm
-
-    # prepare environment
-    mkdir -p /var/run/adm /tmp/cores ${LOGDIR}
-    chmod 755 /var/run/adm /tmp/cores ${LOGDIR}
+    chmod55 /var/run/adm /tmp/cores ${LOGDIR}
     chown ${USER}:${USER} /var/run/adm /tmp/cores ${LOGDIR}
 
     # run processes
@@ -1479,76 +1124,6 @@ You need root permissions to execute the following steps.
    - `app-protect-dos-ebpf-manager` need to run with root privileges.
    {{< /note >}}
 
-### CentOS 7.4 Docker Deployment Example
-
-```dockerfile
-# For CentOS 7:
-FROM centos:7.4.1708
-
-# Download certificate and key from the customer portal (https://my.f5.com)
-# and copy to the build context:
-COPY nginx-repo.crt nginx-repo.key /etc/ssl/nginx/
-
-# Install prerequisite packages:
-RUN yum -y install wget ca-certificates epel-release
-
-# Add NGINX Plus and  NGINX App Protect DoS repo to Yum:
-RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/nginx-plus-7.4.repo
-RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-dos-7.repo
-
-# Install NGINX App Protect DoS:
-RUN yum -y install app-protect-dos \
-    && yum clean all \
-    && rm -rf /var/cache/yum \
-    && rm -rf /etc/ssl/nginx
-
-# Copy configuration files:
-COPY nginx.conf /etc/nginx/
-COPY entrypoint.sh  /root/
-
-CMD /root/entrypoint.sh && tail -f /dev/null
-```
-
-### UBI7 Docker Deployment Example
-
-```Dockerfile
-FROM registry.access.redhat.com/ubi7:ubi
-
-# Download certificate and key from the customer portal (https://my.f5.com)
-# and copy to the build context:
-COPY nginx-repo.crt nginx-repo.key /etc/ssl/nginx/
-
-# Setup the Redhat subscription
-RUN subscription-manager register --force --org=${RHEL_ORG} --activationkey=${RHEL_ACTIVATION_KEY}
-RUN subscription-manager refresh
-RUN subscription-manager attach --auto
-
-# Install prerequisite packages:
-RUN yum -y install wget ca-certificates
-
-# Install dependencies
-RUN subscription-manager repos --enable rhel-*-optional-rpms \
-                               --enable rhel-*-extras-rpms \
-                               --enable rhel-ha-for-rhel-*-server-rpms
-RUN yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-
-# Add NGINX Plus and NGINX App Protect DoS repo to Yum:
-RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/nginx-plus-7.4.repo
-RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-dos-7.repo
-
-# Install NGINX App Protect DoS:
-RUN yum -y install app-protect-dos \
-    && yum clean all \
-    && rm -rf /var/cache/yum \
-    && rm -rf /etc/ssl/nginx
-
-# Copy configuration files:
-COPY nginx.conf /etc/nginx/
-COPY entrypoint.sh  /root/
-
-CMD /root/entrypoint.sh && tail -f /dev/null
-```
-
 ### RHEL 8 / Rocky Linux 8 Docker Deployment Example
 
 ```Dockerfile
@@ -1560,12 +1135,11 @@ FROM registry.access.redhat.com/ubi8:ubi
 RUN mkdir -p /etc/ssl/nginx/
 RUN mkdir -p /etc/nginx/
 COPY nginx-repo.crt nginx-repo.key /etc/ssl/nginx/
-COPY nginx-repo.crt license.jwt /etc/nginx/
+COPY license.jwt /etc/nginx/
 
-# Setup the Redhat subscription
-RUN subscription-manager register --force --org=${RHEL_ORG} --activationkey=${RHEL_ACTIVATION_KEY}
-RUN subscription-manager refresh
-RUN subscription-manager attach --auto
+RUN subscription-manager register --org=${RHEL_ORG} --activationkey=${RHEL_ACTIVATION_KEY} && \
+    subscription-manager refresh && \
+    subscription-manager attach --auto || true
 
 # Setup repos and Install dependencies
 RUN subscription-manager repos --enable=rhel-8-for-x86_64-baseos-rpms
@@ -1603,17 +1177,17 @@ FROM registry.access.redhat.com/ubi9/ubi
 RUN mkdir -p /etc/ssl/nginx/
 RUN mkdir -p /etc/nginx/
 COPY nginx-repo.crt nginx-repo.key /etc/ssl/nginx/
-COPY nginx-repo.crt license.jwt /etc/nginx/
+COPY license.jwt /etc/nginx/
 
 # Setup the Redhat subscription
-RUN subscription-manager register --force --org=${RHEL_ORG} --activationkey=${RHEL_ACTIVATION_KEY}
-RUN subscription-manager refresh
-RUN subscription-manager attach --auto
+RUN subscription-manager register --org=${RHEL_ORG} --activationkey=${RHEL_ACTIVATION_KEY} && \
+    subscription-manager refresh && \
+    subscription-manager attach --auto || true
 
 # Setup repos and Install dependencies
-RUN subscription-manager repos --enable=rhel-9-for-x86_64-baseos-rpms
-RUN subscription-manager repos --enable=rhel-9-for-x86_64-appstream-rpms
-RUN dnf -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
+RUN subscription-manager repos --enable=rhel-9-for-x86_64-baseos-rpms \
+    && subscription-manager repos --enable=rhel-9-for-x86_64-appstream-rpms \
+    && dnf -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
 
 # Install prerequisite packages:
 RUN dnf -y install wget ca-certificates
@@ -1623,7 +1197,7 @@ RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/plus-9.repo
 
 # Add NGINX App-protect & dependencies repo to Yum:
 RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-dos-9.repo
-RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.repo \
+    && wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.repo \
     # You can use either of the dependencies or epel repo
     # && rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm \
     && dnf clean all
@@ -1635,8 +1209,8 @@ RUN dnf -y install app-protect-dos \
     && rm -rf /etc/ssl/nginx
 
 # Copy configuration files:
-COPY nginx.conf /etc/nginx/
-COPY entrypoint.sh  /root/
+COPY nginx.conf /etc/nginx/ \
+     && entrypoint.sh  /root/
 
 CMD /root/entrypoint.sh && tail -f /dev/null
 ```
@@ -1656,7 +1230,7 @@ FROM debian:${OS_CODENAME}
 RUN mkdir -p /etc/ssl/nginx/
 RUN mkdir -p /etc/nginx/
 COPY nginx-repo.crt nginx-repo.key /etc/ssl/nginx/
-COPY nginx-repo.crt license.jwt /etc/nginx/
+COPY license.jwt /etc/nginx/
 
 # Install prerequisite packages:
 RUN apt-get update && apt-get install -y apt-transport-https lsb-release ca-certificates wget gnupg2 debian-archive-keyring
@@ -1679,8 +1253,8 @@ RUN apt-get update && apt-get install -y app-protect-dos
 RUN rm -rf /etc/ssl/nginx
 
 # Copy configuration files:
-COPY nginx.conf /etc/nginx/
-COPY entrypoint.sh  /root/
+COPY nginx.conf /etc/nginx/ \
+     &&  entrypoint.sh  /root/
 
 CMD /root/entrypoint.sh && tail -f /dev/null
 ```
@@ -1699,7 +1273,7 @@ FROM ubuntu:${OS_CODENAME}
 RUN mkdir -p /etc/ssl/nginx/
 RUN mkdir -p /etc/nginx/
 COPY nginx-repo.crt nginx-repo.key /etc/ssl/nginx/
-COPY nginx-repo.crt license.jwt /etc/nginx/
+COPY license.jwt /etc/nginx/
 
 # Install prerequisite packages:
 RUN apt-get update && apt-get install -y apt-transport-https lsb-release ca-certificates wget gnupg2 ubuntu-keyring
@@ -1721,8 +1295,8 @@ RUN apt-get update && apt-get install -y app-protect-dos
 RUN rm -rf /etc/ssl/nginx
 
 # Copy configuration files:
-COPY nginx.conf /etc/nginx/
-COPY entrypoint.sh /root/
+COPY nginx.conf /etc/nginx/ \
+     && entrypoint.sh /root/
 
 CMD /root/entrypoint.sh && tail -f /dev/null
 ```
@@ -1740,7 +1314,7 @@ FROM alpine:${OS_CODENAME}
 RUN mkdir -p /etc/ssl/nginx/
 RUN mkdir -p /etc/nginx/
 COPY nginx-repo.crt nginx-repo.key /etc/ssl/nginx/
-COPY nginx-repo.crt license.jwt /etc/nginx/
+COPY license.jwt /etc/nginx/
 
 # Download and add the NGINX signing key:
 RUN wget -O /etc/apk/keys/nginx_signing.rsa.pub https://cs.nginx.com/static/keys/nginx_signing.rsa.pub
@@ -1777,7 +1351,7 @@ FROM registry.access.redhat.com/ubi9/ubi
 RUN mkdir -p /etc/ssl/nginx/
 RUN mkdir -p /etc/nginx/
 COPY nginx-repo.crt nginx-repo.key /etc/ssl/nginx/
-COPY nginx-repo.crt license.jwt /etc/nginx/
+COPY license.jwt /etc/nginx/
 
 # Install prerequisite packages:
 RUN dnf -y install wget ca-certificates
