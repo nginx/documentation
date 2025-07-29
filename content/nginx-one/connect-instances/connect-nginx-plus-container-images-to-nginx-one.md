@@ -79,7 +79,7 @@ sudo docker run \
 --env=NGINX_AGENT_COMMAND_TLS_SKIP_VERIFY=false \
 --restart=always \
 --runtime=runc \
--d private-registry.nginx.com/nginx-plus/agent:<version-tag>
+-d private-registry.nginx.com/nginx-plus/agentv3:<version-tag>
 ```
 
 <br>
