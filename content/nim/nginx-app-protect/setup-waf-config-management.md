@@ -99,7 +99,7 @@ sudo apt-get install nms-nap-compiler-v5.442.0 -o Dpkg::Options::="--force-overw
 
 {{< include "nim/nap-waf/restart-nms-integrations.md" >}}
 
-### RHEL 8.1 or later
+### RHEL 8.x or later
 
 To install the WAF compiler on RHEL 8.1 or later:
 
