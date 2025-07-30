@@ -87,7 +87,7 @@ Install the chart with the release name _my-release_ (Which you can customize):
 {{% tab name="NGINX Open Source" %}}
 
 ```shell
-helm install my-release .
+helm install my-release . 
 ```
 
 {{% /tab %}}
@@ -95,7 +95,7 @@ helm install my-release .
 {{% tab name="NGINX Plus" %}}
 
 ```shell
-helm install my-release -f values-plus.yaml .
+helm install my-release . --set controller.image.repository=myregistry.example.com/nginx-plus-ingress --set controller.nginxplus=true
 ```
 
 {{% /tab %}}
