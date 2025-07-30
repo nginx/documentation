@@ -25,6 +25,11 @@ Add the NGINX Instance Manager repository:
     sudo yum module disable nginx:1.14
     sudo yum module enable nginx:1.20
     ```
+  - **RHEL 9**: If you're installing on RHEL 9 and using the distro's NGINX, run the following commands to use the new version of NGINX (1.20 at the time of this update):
+
+    ```bash
+    sudo yum install nginx-1.20.*
+    ```
 
 - **Amazon Linux 2**
 
