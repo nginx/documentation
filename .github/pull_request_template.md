@@ -14,7 +14,7 @@
 [//]: # "If the changes were defined by a GitHub issue, reference it using keywords."
 [//]: # "https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/using-keywords-in-issues-and-pull-requests"
 
-[//]: # "DO NOT LINK TO ANY INTERNAL, NON-PUBLIC RESOURCES. THIS INCLUDES INTERNAL REPOSITORY ISSUES OR ANYTHING IN AN INTRANET."
+[//]: # "Do not like to any internal, non-public resources. This includes internal repository issues or anything in an intranet."
 [//]: # "You can make reference to internal discussions without linking to them: see 'Referencing internal information'."
 [//]: # "https://github.com/nginx/documentation/blob/main/documentation/closed-contributions.md#referencing-internal-information"
 
