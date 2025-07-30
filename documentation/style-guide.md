@@ -463,27 +463,6 @@ Ensure content and screenshots are anonymized and don't contain sensitive inform
 - Limit the use of links to external (non-F5) sources. When necessary, only link to reputable sources and foundational sites, such as GitHub.com, Google.com, and Microsoft.com.
   - This helps minimize the risk of prompt injection.
 
-## Guidelines for `includes`
-
-In an ideal world, we'd "write once, publish everywhere." To support this goal, we follow the principle of [Don't repeat yourself](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) in our documentation. This principle shapes how we create and use `includes`, which pull reusable content from files in the [content/includes](https://github.com/nginxinc/docs/tree/main/content/includes) directory.
-
-For example:
-
-```text
-{{< include "controller/helper-script-prereqs.md" >}}
-```
-
-This entry automatically incorporates content from the `helper-script-prereqs.md` file in the `content/includes/controller` subdirectory.
-
-To make sure includes are effective and easy to maintain, follow these practices:
-
-- **Use includes only for reusable content**: Create an include only if the content appears in at least **two locations**. Using an include for single-use content adds unnecessary complexity and makes maintenance harder.
-- **Keep includes small and modular**: Write narrowly scoped snippets to maximize flexibility and reuse.
-- **Avoid branded product names in includes**: Use the full product name (e.g., "NGINX Instance Manager"), but avoid including the branded version (e.g., "F5 NGINX Instance Manager"). The branded name is required only on the first mention in a document; this is a context-specific rule. Includes, however, are designed to be context-agnostic—they should not rely on or assume any prior content—so including the branded name could repeat information unnecessarily in locations where it has already been introduced.
-- **Don't include headers**: Avoid adding H2 or other headers inside includes. These headers won't appear in the document's table of contents (TOC) and may not fit well with the surrounding content hierarchy. Add headers directly in the document instead.
-- **Avoid nesting includes**: If there’s another way to achieve the same outcome, avoid nesting includes. While technically possible, it complicates reviews and maintenance. Use a flat structure for simplicity.
-- **Don't start documents with includes**: The opening of a document is usually the introduction, which explains its purpose. Includes are reused text, so starting multiple documents with identical content could look odd, especially in search results.
-
 ## Guidelines for command-line operations
 
 ### Restarting vs. reloading NGINX

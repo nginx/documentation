@@ -158,10 +158,10 @@ versions: 1.25-1.32.
 16 Dec 2024
 
 With added support for [NGINX R33]({{< ref "/nginx/releases.md#nginxplusrelease-33-r33" >}}), deployments of F5 NGINX Ingress Controller using NGINX Plus now require a valid JSON Web Token to run.
-Please see the [Upgrading to v4]({{< ref "/nic/installation/installing-nic/upgrade-to-v4.md#create-license-secret" >}}) for full details on setting up your license `Secret`.
+For full details on setting up your license `Secret`, see [Upgrading to v4]({{< ref "/nic/installation/upgrade-version.md#upgrade-from-3x-to-4x" >}}).
 
 API Version `v1alpha1` of `GlobalConfiguration`, `Policy` and `TransportServer` resources are now deprecated.
-Please see [Update custom resource apiVersion]({{< ref "/nic/installation/installing-nic/upgrade-to-v4.md#update-custom-resource-apiversion" >}}) for full details on updating your resources.
+For full details on updating your resources, see [Update custom resource apiVersion]({{< ref "/nic/installation/upgrade-version.md#upgrade-from-3x-to-4x" >}}).
 
 Updates have been made to our logging library. For a while, F5 NGINX Ingress Controller has been using the [golang/glog](https://github.com/golang/glog). For this release, we have moved to the native golang library [log/slog](https://pkg.go.dev/log/slog).
 This change was made for these reasons:
@@ -205,7 +205,7 @@ For more details on what this feature does, and how to configure it yourself, pl
 [Amazon ECR Public Gallery](https://gallery.ecr.aws/nginx/nginx-ingress) or [Quay.io](https://quay.io/repository/nginx/nginx-ingress).
 - For NGINX Plus, use the 4.0.0 images from the F5 Container registry or build your own image using the 4.0.0 source code
 - For Helm, use version 2.0.0 of the chart.
-- [Upgrading to v4]({{< ref "/nic/installation/installing-nic/upgrade-to-v4.md" >}})
+- [Upgrading to v4]({{< ref "/nic/installation/upgrade-version.md#upgrade-from-3x-to-4x" >}})
 
 ### <i class="fa-solid fa-life-ring"></i> Supported Platforms
 
@@ -1689,7 +1689,7 @@ We will provide technical support for NGINX Ingress Controller on any Kubernetes
 ### <i class="fa-solid fa-download"></i> Upgrade
 
 - For NGINX, use the 1.12.1 image from our DockerHub: `nginx/nginx-ingress:1.12.1`, `nginx/nginx-ingress:1.12.1-alpine` or `nginx/nginx-ingress:1.12.1-ubi`
-- For NGINX Plus, use the 1.12.1 image from the F5 Container Registry - see [the documentation here]({{< ref "/nic/installation/nic-images/get-registry-image.md">}})
+- For NGINX Plus, use the 1.12.1 image from the F5 Container Registry - see [the documentation here]({{< ref "/nic/installation/nic-images/registry-download.md">}})
 - Alternatively, you can also build your own image using the 1.12.1 source code.
 - For Helm, use version 0.10.1 of the chart.
 
