@@ -83,4 +83,4 @@ sudo docker run \
 | NGINX_AGENT_COLLECTOR_EXTENSIONS_TLS_CERT     | --collector-extensions-health-tls-cert          | TLS Certificate file path for communication with OTel health server.                                         | N/A                                                    |
 | NGINX_AGENT_COLLECTOR_EXTENSIONS_TLS_KEY      | --collector-extensions-health-tls-key           | File path for TLS key used when connecting with OTel health server.                                           | N/A                                                    |
 | NGINX_AGENT_COLLECTOR_PROCESSORS_BATCH_SEND_BATCH_TIMEOUT    | --collector-processors-batch-send-batch-timeout                                               | Maximum time duration for sending batch data metrics regardless of size.                                      | 200ms
-{{< /bootstrap-table >}}                             |%
+{{< /bootstrap-table >}}
