@@ -1,5 +1,5 @@
 ---
-title: Get NGINX Ingress Controller from the F5 Registry
+title: Download NGINX Ingress Controller from the F5 Registry
 toc: true
 weight: 100
 nd-content-type: how-to
@@ -7,38 +7,37 @@ nd-product: NIC
 nd-docs: DOCS-605
 ---
 
-Learn how to pull an F5 NGINX Plus Ingress Controller image from the official F5 Docker registry and upload it to your private registry.
+This page describes how to download an F5 NGINX Plus Ingress Controller image from the official F5 Docker registry.
 
 The F5 Registry images include versions with NGINX App Protect WAF and NGINX App Protect DoS.
 
-This guide covers the prerequisites, image tagging, and troubleshooting steps.
-
 ## Before you begin
 
-Before you start, you'll need these installed on your machine:
+To follow these steps, you will need the following pre-requisites:
 
-- [Docker v18.09 or higher](https://docs.docker.com/engine/release-notes/18.09/).
-- An NGINX Ingress Controller subscription. Download both the certificate (*nginx-repo.crt*) and key (*nginx-repo.key*) from the [MyF5 Customer Portal](https://my.f5.com). Keep in mind that an NGINX Plus certificate and key won't work for for the steps in this guide.
+- [Docker v18.09 or higher](https://docs.docker.com/engine/release-notes/18.09/)
 
----
+You can also get the NGINX Ingress Controller image using the following alternate methods:
 
-## Set up Docker for F5 Container Registry
+- [Add an NGINX Ingress Controller image to your cluster]({{< ref "/nic/installation/nic-images/add-image-to-cluster.md" >}})
+- [Build NGINX Ingress Controller]({{< ref "/nic/installation/build-nginx-ingress-controller.md" >}}) 
+- For NGINX Open Source, you can pull [an image from DockerHub](https://hub.docker.com/r/nginx/nginx-ingress/)
 
-Start by setting up Docker to communicate with the F5 Container Registry located at `private-registry.nginx.com`. If you're using Linux, follow these steps to create a directory and add your certificate and key:
+### Download your subscription credential files
 
-```shell
-mkdir -p /etc/docker/certs.d/private-registry.nginx.com
-cp <path-to-your-nginx-repo.crt> /etc/docker/certs.d/private-registry.nginx.com/client.cert
-cp <path-to-your-nginx-repo.key> /etc/docker/certs.d/private-registry.nginx.com/client.key
-```
+{{< include "use-cases/credential-download-instructions.md" >}}
 
-The steps provided are for Linux. For Mac or Windows, consult the [Docker for Mac](https://docs.docker.com/docker-for-mac/#add-client-certificates) or [Docker for Windows](https://docs.docker.com/docker-for-windows/#how-do-i-add-client-certificates) documentation. For more details on Docker Engine security, you can refer to the [Docker Engine Security documentation](https://docs.docker.com/engine/security/).
+### Set up Docker for the F5 Container Registry
+
+{{< include "use-cases/docker-registry-instructions.md" >}}
 
 ## Pull the image
 
-Next, pull the image you need from `private-registry.nginx.com`. To find the correct image, consult the [Tech Specs guide]({{< ref "/nic/technical-specifications.md#images-with-nginx-plus" >}}).
+Identify which image you need using the [Technical specifications]({{< ref "/nic/technical-specifications.md#images-with-nginx-plus" >}}) topic.
 
-To pull an image, follow these steps. Replace `<version-tag>` with the specific version you need, for example, `{{< nic-version >}}`.
+Next, pull the image from `private-registry.nginx.com`. 
+
+Replace `<version-tag>` with the specific version you need, for example, `{{< nic-version >}}`.
 
 - For NGINX Plus Ingress Controller, run:
 
@@ -66,7 +65,6 @@ To pull an image, follow these steps. Replace `<version-tag>` with the specific 
    docker pull private-registry.nginx.com/nap/waf-enforcer:<waf-version-tag>
    ```
 
-
 - For NGINX Plus Ingress Controller with NGINX App Protect DoS, run:
 
    ```shell
@@ -79,10 +77,14 @@ To pull an image, follow these steps. Replace `<version-tag>` with the specific 
    docker pull private-registry.nginx.com/nginx-ic-nap-dos/nginx-plus-ingress:<version-tag>
    ```
 
-You can use the Docker registry API to list the available image tags by running the following commands. Replace `<path-to-client.key>` with the location of your client key and `<path-to-client.cert>` with the location of your client certificate. The `jq` command is used to format the JSON output for easier reading.
+You can use the Docker registry API to list the available image tags by running the following commands. Replace `<path-to-client.key>` with the location of your client key and `<path-to-client.cert>` with the location of your client certificate. 
 
+The `jq` command was used in these examples to make the JSON output easier to read.
+
+```shell
+curl https://private-registry.nginx.com/v2/nginx-ic/nginx-plus-ingress/tags/list --key <path-to-client.key> --cert <path-to-client.cert>
+```
 ```json
-$ curl https://private-registry.nginx.com/v2/nginx-ic/nginx-plus-ingress/tags/list --key <path-to-client.key> --cert <path-to-client.cert> | jq
 {
   "name": "nginx-ic/nginx-plus-ingress",
   "tags": [
@@ -92,8 +94,12 @@ $ curl https://private-registry.nginx.com/v2/nginx-ic/nginx-plus-ingress/tags/li
     "{{< nic-version >}}"
   ]
 }
+```
 
-$ curl https://private-registry.nginx.com/v2/nginx-ic-nap/nginx-plus-ingress/tags/list --key <path-to-client.key> --cert <path-to-client.cert> | jq
+```shell
+curl https://private-registry.nginx.com/v2/nginx-ic-nap/nginx-plus-ingress/tags/list --key <path-to-client.key> --cert <path-to-client.cert>
+```
+```json
 {
   "name": "nginx-ic-nap/nginx-plus-ingress",
   "tags": [
@@ -102,8 +108,12 @@ $ curl https://private-registry.nginx.com/v2/nginx-ic-nap/nginx-plus-ingress/tag
     "{{< nic-version >}}"
   ]
 }
+```
 
-$ curl https://private-registry.nginx.com/v2/nginx-ic-dos/nginx-plus-ingress/tags/list --key <path-to-client.key> --cert <path-to-client.cert> | jq
+```shell
+curl https://private-registry.nginx.com/v2/nginx-ic-dos/nginx-plus-ingress/tags/list --key <path-to-client.key> --cert <path-to-client.cert>
+```
+```json
 {
   "name": "nginx-ic-dos/nginx-plus-ingress",
   "tags": [
@@ -165,7 +175,7 @@ After pulling the image, tag it and upload it to your private registry.
 
 ## Troubleshooting
 
-If you encounter issues while following this guide, here are solutions to common problems:
+If you encounter issues while following this guide, here are some possible solutions:
 
 - **Certificate errors**
   - **Likely Cause**: Incorrect certificate or key location, or using an NGINX Plus certificate.
@@ -177,17 +187,8 @@ If you encounter issues while following this guide, here are solutions to common
 
 - **Can't pull the image**
   - **Likely Cause**: Mismatched image name or tag.
-  - **Solution**: Double-check the image name and tag against the [Tech Specs guide]({{< ref "/nic/technical-specifications.md#images-with-nginx-plus" >}}).
+  - **Solution**: Double-check the image name and tag matches the [Technical specifications]({{< ref "/nic/technical-specifications.md#images-with-nginx-plus" >}}) document.
 
 - **Failed to push to private registry**
   - **Likely Cause**: Not logged into your private registry or incorrect image tagging.
   - **Solution**: Verify login status and correct image tagging before pushing. Consult the [Docker documentation](https://docs.docker.com/docker-hub/repos/) for more details.
-
-
-## Alternative installation options
-
-You can also get the NGINX Ingress Controller image using the following alternate methods:
-
-- [Get the NGINX Ingress Controller image with JWT]({{< ref "/nic/installation/nic-images/get-image-using-jwt.md" >}}).
-- [Build NGINX Ingress Controller]({{< ref "/nic/installation/build-nginx-ingress-controller.md" >}}) using the source code from the GitHub repository and your NGINX Plus subscription certificate and key.
-- For NGINX Ingress Controller using NGINX OSS, you can pull the [nginx/nginx-ingress image](https://hub.docker.com/r/nginx/nginx-ingress/) from DockerHub.
