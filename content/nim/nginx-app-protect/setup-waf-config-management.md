@@ -270,7 +270,7 @@ error when creating the nginx repo retriever - NGINX repo certificates not found
 
 If needed, you can also [install the WAF compiler manually](#install-the-waf-compiler).
 
-## Install/Update the WAF compiler in a disconnected environment
+## Install or update the WAF compiler in a disconnected environment
 
 To install the WAF compiler on a system without internet access, complete these steps:
 
