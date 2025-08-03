@@ -94,28 +94,45 @@ To configure security-related alerts, follow these steps:
 
 ## Configure Alert Policy
 
-Next, configure the policy that identifies when you'll get an alert. 
+Next, configure the policy that identifies when you'll get an alert. You'll need to reference available alerts in our [NGINX One Console Glossary]({{< ref "/nginx-one/glossary.md#nginx-alerts/" >}}). Relevant security alerts include:
+
+- SecurityRecommendationNGINX
+- HighCVENGINX
+- MediumCVENGINX
+- LowCVENGINX
 
 1. Go to **Alerts Management > Alert Policies**.
 1. Select **Add Alert Policy**.
-   1. Enter the name of your choice.
+   1. Enter the name of your choice. You're limited to lower-case characters, numbers, and dashes.
    1. (Optional) Specify a label and description.
 1. Under **Alert Reciever Configuration > Alert Receivers,** select the **Alert Receiver** you just created.
 1. Under **Policy Rules** select **Configure**.
-1. Select **Add Item**.
-1. Under **Select Alerts** select a filter. If you're interested in all NGINX alerts, select **Matching RegEx of Alertname**. In the text box that appears, enter **NGINX**.
+1. In the **Policy Rules** screen that appears, select **Add Item**.
+1. In the **Route** window that appears, review the **Select Alerts** drop-down.
+1. Under **Select Alerts** select a filter. Now select **Matching Custom Criteria > Alertname > Configure**. In the screen that appears, use **Exact Match** and copy/paste an alert name from the [NGINX One Console Glossary]({{< ref "/nginx-one/glossary.md#nginx-alerts" >}}).
+1. Select **Apply** to exit the **Alertname** window.
+1. Select **Apply** to exit the **Route** window.
+1. Select **Apply** to exit the **Policy Rules** window.
+1. You can now select the **Add Alert policy** button.
 1. Set the **Action as Send** and select **Apply**.
 
-Now set a second alert related to Common Vulnerabilities and Exposures (CVEs).
+## Create more alert policies  
 
+Repeat the process described in [Configure Alert Policy](#configure-alert-policy) section. Repeat again if and as needed for all of the alerts in the 
+[NGINX One Console Glossary]({{< ref "/nginx-one/glossary.md#nginx-alerts/" >}}).
+
+## Activate the alert policy
+
+Now to make sure your new policy works, add your new policies to the list of **Active Alert Policies**. To do so:
+
+1. Select **Alerts Management > Active Alert Policies**
+1. Select **Select Active Alert Policies**. 
+1. In the **Select Active Alert Policies** window, select **Add Item**
+1. In the drop-down box that appears, select the Alert Policy that you created. 
+1. Select the **Add Select Active Alert Policies** button.	
 1. Select **Add Item**
-1. Under **Select Alerts** select a filter. If you're interested in all CVEs, select **Matching RegEx of Alertname**. In the text box that appears, enter **CVE**.
-1. Under **Select Alerts**, set the **Action** as **Send** and select **Apply**
-   You should now see two alerts under **Policy Rules**.
-1. Select **Apply** to save thse policies.
-1. Select **Add Alert Policy**.
 
-You've now set up F5 Distributed Cloud to send you security-related alerts from NGINX One Console.
+You've now set up F5 Distributed Cloud to send you alerts from NGINX One Console, to your email address. When the alert policy identifies an alert, it sends you an email from **alerts@cloud.f5.com**.
 
 ## Summary
 
@@ -123,9 +140,9 @@ In this tutorial, you learned how to:
 
 - Access the NGINX One Console
 - Connect an NGINX instance
-- Configure an Alert
+- Configure and activate an alert
 
-You will now receive an email any time the NGINX One Console recognizes one of your connected instances has a configuration that is insecure or an NGINX CVE impacts it.
+You will now receive an email any time the F5 Distributed Cloud sees one or more of the alerts that you configued. 
 
 ## Next steps
 
