@@ -134,6 +134,17 @@ Now to make sure your new policy works, add your new policies to the list of **A
 
 You've now set up F5 Distributed Cloud to send you alerts from NGINX One Console, to your email address. When the alert policy identifies an alert, it sends you an email from **alerts@cloud.f5.com**.
 
+## Known issues
+
+When you set up an email alert that recognizes a problem, you'll see the alert in: 
+
+- The F5 Distributed Cloud Console, in **Audit Logs & Alerts**, under **Notifications > Alerts**.
+- An email with a subject line like **<number> Alert Requires Action**.
+
+As defined in our [Alert Reference](https://docs.cloud.f5.com/docs-v2/platform/reference/alerts-reference), after a certain period of time, you may also receive an "Alert Resolved" email.
+
+For CVEs, the authoritative source is in **NGINX One**, under **Manage > Instances > <Instance hostname>.** See the list of CVEs on the dashboard details for that instance.
+
 ## Summary
 
 In this tutorial, you learned how to:
