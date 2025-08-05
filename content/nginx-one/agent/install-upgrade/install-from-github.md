@@ -54,12 +54,6 @@ Use your system's package manager to install the package. Some examples:
   sudo apk add nginx-agent-<agent-version>.apk
   ```
 
-- FreeBSD
-
-  ```shell
-  sudo pkg add nginx-agent-<agent-version>.pkg
-  ```
-
 ### Manually connect NGINX Agent to NGINX One Console
 
 {{< include "agent/installation/manually-connect-to-console" >}}
