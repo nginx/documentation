@@ -1363,7 +1363,7 @@ RUN dnf config-manager --set-enabled crb \
 # Install NGINX App Protect WAF:
 RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
-    dnf install --enablerepo=codeready-builder-for-rhel-9-x86_64-rpms -y app-protect \
+    dnf install -y app-protect \
     && dnf clean all \
     && rm -rf /var/cache/dnf
 
