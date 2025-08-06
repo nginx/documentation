@@ -4,7 +4,7 @@ import { handleConsentPopup, waitFor } from '../tests/utils/commonUtils.ts'
 test.describe("Testing search page", () => {
     test('Searchbar is visible', async ({ page }) => {
         await page.goto('/'); 
-        await waitFor(() => handleConsentPopup(page));
+        await waitFor(async () => await handleConsentPopup(page));
 
         const searchBox = page.locator('.CoveoSearchbox').first();
         const searchButton = page.locator('.CoveoSearchButton');
