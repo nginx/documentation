@@ -290,6 +290,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
 
     ```shell
     sudo dnf install ca-certificates wget
+    ```
 
 6. Enable the yum repositories to pull NGINX App Protect DoS dependencies:
 
@@ -680,7 +681,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
 
 1. {{< include "licensing-and-reporting/download-jwt-crt-from-myf5.md" >}}
 
-1. {{< include "nginx-plus/install/copy-crt-and-key.md" >}}
+3. Upload `nginx-repo.key` to `/etc/apk/cert.key` and `nginx-repo.crt` to `/etc/apk/cert.pem`. Make sure that files do not contain other certificates and keys, as Alpine Linux does not support mixing client certificates for different repositories.
 
 1. {{< include "nginx-plus/install/copy-jwt-to-etc-nginx-dir.md" >}}
 
@@ -827,7 +828,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
 
     ```shell
     sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/plus-amazonlinux2023.repo
-    sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-amazonlinux2023.repo
+    sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-dos-amazonlinux2023.repo
     ```
 
 7. In case of fresh installation, update the repository and install the most recent version of the NGINX Plus App Protect DoS package (which includes NGINX Plus):
@@ -1126,7 +1127,7 @@ You need root permissions to execute the following steps.
 
 ```Dockerfile
 # For UBI 8
-FROM registry.access.redhat.com/ubi8:ubi
+FROM registry.access.redhat.com/ubi8
 
 ARG RHEL_ORG
 ARG RHEL_ACTIVATION_KEY
