@@ -58,6 +58,9 @@ If you use custom container images, NGINX Agent must be installed along with NGI
         server:
           host: "<FQDN or IP address of NGINX Instance Manager>"
           grpcPort: 443
+        tls:
+          enable: true
+          skip_verify: false
         features:
         - registration
         - nginx-counting

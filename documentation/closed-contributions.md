@@ -11,6 +11,19 @@ We work in public by default, so this process should only be used on a case by c
 
 For standard content releases, review the [Contributing guidelines](/CONTRIBUTING.md).
 
+## Referencing internal information
+
+During the last stage of this process, or while making any public pull request, you may need to reference something internal.
+
+As mentioned in our pull request template checklist, you should not link to internal resources: they are considered "sensitive content", defined previously.
+
+Instead, include the key outputs of the internal resource as part of describing context:
+
+> "Following an internal discussion, the instructions for foo have been clarified"  
+> "The phrasing of bar has been changed based on an internal requirement"
+
+This allows you to retain the necessary context for a change without exposing a potentially important resource to the public.
+
 ## Overview
 
 This repository (https://github.com/nginx/documentation) is where we work by default. It has a one-way sync to an internal repository, used for closed content.

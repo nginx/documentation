@@ -87,53 +87,58 @@ To install <integation>, refer to the [integration instructions]({{< ref "/integ
 
 ### How to use Hugo shortcodes
 
-[Hugo shortcodes](https://github.com/nginxinc/nginx-hugo-theme/tree/main/layouts/shortcodes) are used to format callouts, add images, and reuse content across different pages.
+[Hugo shortcodes](https://github.com/nginxinc/nginx-hugo-theme/tree/main/layouts/shortcodes) are used to provide extra functionality and special formatting to Markdown content.
 
-For example, to use the `note` callout:
+This is an example of a call-out shortcode:
 
 ```md
-{{< note >}} Provide the text of the note here .{{< /note >}}
+{{< call-out "note" >}} Provide the text of the note here .{{< /call-out >}}
 ```
 
-The callout shortcodes support multi-line blocks:
+Here are some other shortcodes:
+
+- `include`: Include the content of a file in another file: read the [Re-use content with includes](#re-use-content-with-includes) instructions
+- `tabs`: Create mutually exclusive tabbed window panes, useful for parallel instructions
+- `table`: Add scrollbars to wide tables for browsers with smaller viewports
+- `icon`: Add a [Lucide icon](https://lucide.dev/icons/) by using its name as a parameter
+- `link`: Link to a file, prepending its path with the Hugo baseUrl
+- `ghcode`: Embeds the contents of a code file: read the [Add code to documentation pages](#add-code-to-documentation-pages) instructions
+- `openapi`: Loads an OpenAPI specification and render it as HTML using ReDoc
+
+#### Add call-outs to documentation pages
+
+The call out shortcode support multi-line blocks:
 
 ```md
-{{< caution >}}
+{{< call-out "caution" >}}
 You should probably never do this specific thing in a production environment.
 
 If you do, and things break, don't say we didn't warn you.
-{{< /caution >}}
+{{< /call-out >}}
 ```
 
-Supported callouts:
+The first parameter determines the type of call-out, which defines the colour given to it.
+
+Supported types:
 - `note`
 - `tip`
 - `important`
 - `caution`
 - `warning`
 
-You can also create custom callouts using the `call-out` shortcode `{{< call-out "type position" "header" "font-awesome icon >}}`. For example:
+An optional second parameter will add a title to the call-out: without it, it will fall back to the type.
 
 ```md
-{{<call-out "important side-callout" "JWT file required for upgrade" "fa fa-exclamation-triangle">}}
+{{< call-out "important" "This instruction only applies to v#.#.#" >}}
+These instructions are only intended for versions #.#.# onwards.
+
+Follow <these-instructions> if you're using an older version.
+{{< /call-out >}}
 ```
 
-By default, all custom callouts are displayed inline, unless you add `side-callout` which places the callout to the right of the content.
+Finally, you can use an optional third parameter to add a [Lucide icon](https://lucide.dev/icons/) using its name.
 
-Here are some other shortcodes:
-
-- `fa`: Inserts a Font Awesome icon
-- `collapse`: Make a section collapsible
-- `tab`: Create mutually exclusive tabbed window panes, useful for parallel instructions
-- `table`: Add scrollbars to wide tables for browsers with smaller viewports
-- `link`: Link to a file, prepending its path with the Hugo baseUrl
-- `openapi`: Loads an OpenAPI specification and render it as HTML using ReDoc
-- `include`: Include the content of a file in another file; the included file must be present in the '/content/includes/' directory
-- `raw-html`: Include a block of raw HTML
-- `readfile`: Include the content of another file in the current file, which can be in an arbitrary location.
-- `bootstrap-table`: formats a table using Bootstrap classes; accepts any bootstrap table classes as additional arguments, e.g. `{{< bootstrap-table "table-bordered table-hover" }}`
-
-### Add code to documentation pages
+#### Add code to documentation pages
 
 For command, binary, and process names, we sparingly use pairs of backticks (\`\<some-name\>\`): `<some-name>`.
 
@@ -145,22 +150,9 @@ You can also use the `ghcode` shortcode to embed a single file directly from Git
 
 An example of this can be seen in [/content/ngf/get-started.md](https://github.com/nginx/documentation/blob/af8a62b15f86a7b7be7944b7a79f44fd5e526c15/content/ngf/get-started.md?plain=1#L233C1-L233C128), which embeds a YAML file.
 
+#### Re-use content with includes
 
-### Add images to documentation pages
-
-Use the `img` shortcode to add images to documentation pages. It has the same parameters as the Hugo [figure shortcode](https://gohugo.io/content-management/shortcodes/#figure).
-
-1. Add the image to the `/static/img` directory.
-2. Add the `img` shortcode:
-  - `{{< img src="<img-file.png>" alt="<Alternative text>">}}`
-  - Do not include a forward slash at the beginning of the file path or it will [break the image](https://gohugo.io/functions/relurl/#input-begins-with-a-slash).
-
-> **Important**: We have strict guidelines for using images. Review them in our [style guide](/documentation/style-guide.md#guidelines-for-screenshots).
-
-
-### How to use Hugo includes
-
-Hugo includes are a custom shortcode that allows you to embed content stored in the [`/content/includes` directory](https://github.com/nginx/documentation/tree/main/content/includes).
+The includes are a custom shortcode that allows you to embed content stored in the [`/content/includes` directory](https://github.com/nginx/documentation/tree/main/content/includes).
 
 It allows for content to be defined once and display in multiple places without duplication, creating consistency and simplifying the maintenance of items such as reference tables.
 
@@ -180,12 +172,13 @@ This particular include file is used in the following pages:
 
 View the [Guidelines for includes](/templates/style-guide.md#guidelines-for-includes) for instructions on how to write effective include files.
 
-## Linting
+#### Add images to documentation pages
 
-To use markdownlint to check content, run the following command:
+Use the `img` shortcode to add images to documentation pages. It has the same parameters as the Hugo [figure shortcode](https://gohugo.io/content-management/shortcodes/#figure).
 
-```shell
-markdownlint -c .markdownlint.yaml </content/path>
-```
+1. Add the image to the `/static/img` directory.
+2. Add the `img` shortcode:
+  - `{{< img src="<img-file.png>" alt="<Alternative text>">}}`
+  - Do not include a forward slash at the beginning of the file path or it will [break the image](https://gohugo.io/functions/relurl/#input-begins-with-a-slash).
 
-The content path can be an individual file or a folder.
+> **Important**: We have strict guidelines for using images. Review them in our [style guide](/documentation/style-guide.md#guidelines-for-screenshots).

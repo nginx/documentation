@@ -114,7 +114,7 @@ You can add existing NGINX instances that are already registered with NGINX One 
 
    ``` text
    labels:
-      config_sync_group: <config_sync_group>
+      config-sync-group: <config_sync_group>
    ```
 
 4. Restart NGINX Agent:
