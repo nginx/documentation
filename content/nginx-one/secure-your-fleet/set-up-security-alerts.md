@@ -47,7 +47,7 @@ Alternatively, we also have instructions for [Deploying NGINX and NGINX Plus wit
 
 ## Connect at least one NGINX instance to the NGINX One Console
 
-If you already have connected instances to the NGINX One Console, you can start to [Configure an active alert policy]({{< ref "/nginx-one/secure-your-fleet/secure.md#configure-an-active-alert-policy" >}}).
+If you already have connected instances to the NGINX One Console, you can start to [Configure an active alert policy]({{< ref "/nginx-one/secure-your-fleet/set-up-security-alerts.md#configure-an-active-alert-policy" >}}).
 Otherwise, you need to add an instance, generate a data plane key, and install NGINX Agent. We assume this is the first time you are connecting an instance.
 
 ### Add an instance
