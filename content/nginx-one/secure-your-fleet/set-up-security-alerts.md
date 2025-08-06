@@ -136,14 +136,20 @@ You've now set up F5 Distributed Cloud to send you alerts from NGINX One Console
 
 ## Known issues
 
-When you set up an email alert that recognizes a problem, you'll see the alert in: 
+When you set up an email alert for a problem, you'll see the alert in:
 
-- The F5 Distributed Cloud Console, in **Audit Logs & Alerts**, under **Notifications > Alerts**.
-- An email with a subject line like **<number> Alert Requires Action**.
+- The F5 Distributed Cloud Console, under **Notifications > Alerts** in **Audit Logs & Alerts**
+- An email with a subject like **<number> Alert Requires Action**
 
-As defined in our [Alert Reference](https://docs.cloud.f5.com/docs-v2/platform/reference/alerts-reference), after a certain period of time, you may also receive an "Alert Resolved" email.
+You may also get a follow-up email with the subject **Alert Resolved**.
 
-For CVEs, the authoritative source is in **NGINX One**, under **Manage > Instances > <Instance hostname>.** See the list of CVEs on the dashboard details for that instance.
+> **Important:** Sometimes an **Alert Resolved** email is sent even though the issue is still active.
+To check the current status, go to the NGINX One Console.
+
+For CVEs, the trusted source is:
+- **NGINX One Console > Manage > Instances > <Instance hostname>**
+
+Open the instance dashboard to see the latest list of CVEs. Use the Console, not email, to confirm whether an issue is resolved.
 
 ## Summary
 
