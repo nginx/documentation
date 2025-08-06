@@ -10,12 +10,12 @@ files:
 
    - `sudo systemctl stop nginx-agent`
 
-And start it again after the update:
+And start it again after the update or upgrade:
 
    - `sudo systemctl start nginx-agent`
 {{< /note >}}
 
-Follow the steps below to update NGINX Agent to the latest version.
+Follow the steps below to update or upgrade NGINX Agent to the latest version.
 The same steps apply if you are **upgrading from NGINX Agent v2 to NGINX Agent v3**.
 
 1. Open an SSH connection to the server where you've installed NGINX Agent.

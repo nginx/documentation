@@ -69,19 +69,38 @@ To set up your other NGINX instances to use the proxy instance to connect to NGI
 2. Open the NGINX Agent configuration file (**/etc/nginx-agent/nginx-agent.conf**) with a text editor.
 3. Add the following configuration. Replace `YOUR_DATA_PLANE_KEY_HERE` with your actual data plane key and `YOUR_PROXY_IP_ADDRESS_HERE` with the IP address of the NGINX proxy instance.
 
-    ```yaml
+   {{< tabs name="Configure NGINX Agent to use the proxy" >}}
+
+   {{%tab name="NGINX Agent 3.x"%}}
+
+   ```yaml
+    command:
+      server:
+        # Replace YOUR_PROXY_IP_ADDRESS_HERE with the IP address of the NGINX proxy instance.
+        host: YOUR_PROXY_IP_ADDRESS_HERE
+        port: 5000
+      auth:
+        # Replace YOUR_DATA_PLANE_KEY_HERE with your NGINX One Console data plane key.
+        token: "YOUR_DATA_PLANE_KEY_HERE"
+      tls:
+        skip_verify: False
+   ```
+
+   {{%/tab%}}
+   {{%tab name="NGINX Agent 2.x"%}}
+   ```yaml
     server:
       # Replace YOUR_DATA_PLANE_KEY_HERE with your NGINX One Data Plane Key.
       token: "YOUR_DATA_PLANE_KEY_HERE"
       # Replace YOUR_PROXY_IP_ADDRESS_HERE with the IP address of the NGINX proxy instance.
       host: YOUR_PROXY_IP_ADDRESS_HERE
       grpcPort: 5000
-      command: agent.connect.nginx.com
-      metrics: agent.connect.nginx.com
     tls:
-      enable: true
-      skip_verify: false
-    ```
+      enable: True
+      skip_verify: False
+   ```
+   {{%/tab%}}
+   {{%/tabs%}}
 
 4. Restart NGINX Agent:
 

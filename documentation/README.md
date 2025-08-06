@@ -19,4 +19,5 @@ If you're interested in contributing to the [NGINX documentation website](https:
 - [Managing content with Hugo](/documentation/writing-hugo.md)
 - [Proposals](/documentation/proposals/README.md)
 - [Set up pre-commit](/documentation/pre-commit.md)
+- [Using include files](/documentation/include-files.md)
 - [Writing style guide](/documentation/style-guide.md)

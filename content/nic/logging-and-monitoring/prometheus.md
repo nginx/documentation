@@ -1,17 +1,41 @@
 ---
-nd-docs: DOCS-614
-doctypes:
-- concept
-title: Prometheus
+title: Enable Prometheus metrics
 toc: true
-weight: 2000
+weight: 400
+nd-content-type: how-to
+nd-product: NIC
+nd-docs: DOCS-614
 ---
 
-NGINX Ingress Controller exposes metrics in the [Prometheus](https://prometheus.io/) format. Those include NGINX/NGINX Plus and the Ingress Controller metrics.
+This topic describes how to enable [Prometheus metrics](https://prometheus.io/) for F5 NGINX Ingress Controller.
+
+The metrics exposed include NGINX Ingress Controller data, as well as NGINX Open Source and NGINX Plus.
 
 ## Enabling Metrics
 
+### Using Helm
+
+To enable Prometheus metrics when using *Helm* to install NGINX Ingress Controller, configure the `prometheus.*` parameters of the Helm chart. 
+
+See the [Installation with Helm]({{< ref "/nic/installation/installing-nic/installation-with-helm.md" >}}) topic.
+
+#### Using ServiceMonitor
+
+When deploying with *Helm*, you can deploy a `Service` and `ServiceMonitor` resource using the `prometheus.service.*` and `prometheus.serviceMonitor.*` parameters.
+When these resources are deployed, Prometheus metrics exposed by NGINX Ingress Controller can be captured and enumerated using a `Prometheus` resource alongside a Prometheus Operator deployment.
+
+To view metrics captured this way, you will need:
+
+* A working [Prometheus resource and Prometheus Operator](https://prometheus-operator.dev/docs/getting-started/introduction/)
+* The latest ServiceMonitor CRD from the [prometheus-operator](https://github.com/prometheus-operator/prometheus-operator) repository:
+
+```shell
+LATEST=$(curl -s https://api.github.com/repos/prometheus-operator/prometheus-operator/releases/latest | jq -cr .tag_name)
+curl https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/$LATEST/example/prometheus-operator-crd/monitoring.coreos.com_servicemonitors.yaml | kubectl create -f -
+```
+
 ### Using Manifests
+
 If you're using *Kubernetes manifests* (Deployment or DaemonSet) to install the Ingress Controller, to enable Prometheus metrics:
 
 1. Run the Ingress Controller with the `-enable-prometheus-metrics` [command-line argument]({{< ref "/nic/configuration/global-configuration/command-line-arguments.md" >}}). As a result, the Ingress Controller will expose NGINX or NGINX Plus metrics in the Prometheus format via the path `/metrics` on port `9113` (customizable via the `-prometheus-metrics-listen-port` command-line argument).
@@ -31,23 +55,6 @@ If you're using *Kubernetes manifests* (Deployment or DaemonSet) to install the 
         prometheus.io/port: "9113"
         prometheus.io/scheme: http
     ```
-
-### Using Helm
-
-If you're using *Helm* to install the Ingress Controller, to enable Prometheus metrics, configure the `prometheus.*` parameters of the Helm chart. See the [Installation with Helm]({{< ref "/nic/installation/installing-nic/installation-with-helm.md" >}}) doc.
-
-### Using ServiceMonitor
-
-When deploying with *Helm*, you can deploy a `Service` and `ServiceMonitor` resource using the `prometheus.service.*` and `prometheus.serviceMonitor.*` parameters.
-When these resources are deployed, Prometheus metrics exposed by NGINX Ingress Controller can be captured and enumerated using a `Prometheus` resource alongside a Prometheus Operator deployment.
-
-To view metrics captured this way, the following is required:
-* The latest ServiceMonitor CRD from the [prometheus-operator](https://github.com/prometheus-operator/prometheus-operator) repository:
-```shell
-LATEST=$(curl -s https://api.github.com/repos/prometheus-operator/prometheus-operator/releases/latest | jq -cr .tag_name)
-curl https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/$LATEST/example/prometheus-operator-crd/monitoring.coreos.com_servicemonitors.yaml | kubectl create -f -
-```
-* A working [Prometheus resource and Prometheus Operator](https://prometheus-operator.dev/docs/getting-started/introduction/)
 
 ## Available Metrics
 

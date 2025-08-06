@@ -11,7 +11,9 @@ type:
 
 {{< note >}} The `nginx-plus-module-modsecurity` package is no longer available in the NGINX Plus repository.{{< /note >}}
 
-The ModSecurity WAF module was deprecated since [NGINX Plus Release 29]({{< ref "/nginx/releases.md#r29" >}}), and is no longer available since [NGINX Plus Release 32]({{< ref "/nginx/releases.md#r32" >}}).
+NGINX ModSecurity WAF officially reached End-of-Sale status on April 1, 2022 ([NGINX Plus Release 29]({{< ref "/nginx/releases.md#r29" >}})), and End-of-Life status on March 31, 2024 ([NGINX Plus Release 32]({{< ref "/nginx/releases.md#r32" >}})).
+
+For more details, [see this blog](https://www.f5.com/company/blog/nginx/f5-nginx-modsecurity-waf-transitioning-to-eol) announcement.
 
 To remove the module, follow the [Uninstalling a Dynamic Module]({{< ref "uninstall.md" >}}) instructions.
 

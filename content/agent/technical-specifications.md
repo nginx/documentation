@@ -14,10 +14,10 @@ This document provides technical specifications for NGINX Agent. It includes inf
 {{< bootstrap-table "table table-striped table-bordered" >}}
 | NGINX Product                | Agent Version  |
 |------------------------------|----------------|
-| **NGINX One Console**        | 2.x            |
+| **NGINX One Console**        | 3.x            |
 | **NGINX Gateway Fabric**     | 3.x            |
 | **NGINX Plus**               | 2.x, 3.x       |
-| **NGINX Ingress Controller** | 2.x            |
+| **NGINX Ingress Controller** | 2.x, 3.x       |
 | **NGINX Instance Manager**   | 2.x            |
 {{< /bootstrap-table >}}
 
@@ -26,16 +26,16 @@ This document provides technical specifications for NGINX Agent. It includes inf
 NGINX Agent can run in most environments. We support the following distributions:
 
 {{< bootstrap-table "table table-striped table-bordered" >}}
-| | AlmaLinux | Alpine Linux | Amazon Linux | Amazon Linux 2 | CentOS | Debian |
-|-|-----------|--------------|--------------|----------------|--------|--------|
-|**Version**|8 <br><hr>9 |  3.16<br><hr>3.17<br><hr> 3.18<br><hr> 3.19|  2023|  LTS|  7.4+|  11<br><hr> 12|
+| | AlmaLinux | Alpine Linux | Amazon Linux | Amazon Linux 2| Debian |
+|-|-----------|--------------|--------------|----------------|--------|
+|**Version**|8 <br><hr>9 <br><hr>10|  3.19<br><hr>3.20<br><hr> 3.21<br><hr> 3.22|  2023|  LTS|  11<br><hr> 12|
 |**Architecture**| x86_84<br><hr>aarch64| x86_64<br><hr>aarch64 | x86_64<br><hr>aarch64 | x86_64<br><hr>aarch64 | x86_64<br><hr>aarch64 | x86_64<br><hr>aarch64 |
 {{< /bootstrap-table >}}
 
 {{< bootstrap-table "table table-striped table-bordered" >}}
 | |FreeBSD | Oracle Linux | Red Hat <br>Enterprise Linux <br>(RHEL) | Rocky Linux | SUSE Linux <br>Enterprise Server <br>(SLES) | Ubuntu |
 |-|--------|--------------|---------------------------------|-------------|-------------------------------------|--------|
-|**Version**|13<br><hr>14|7.4+<br><hr>8.1+<br><hr>9|7.4+<br><hr>8.1+<br><hr>9.0+|8<br><hr>9|12 SP5<br><hr>15 SP2|20.04 LTS<br><hr>22.04 LTS|
+|**Version**|13<br><hr>14|8.1+<br><hr>9<br><hr>10|8.1+<br><hr>9.0+<br><hr>10|8<br><hr>9<br><hr>10|15 SP2|22.04 LTS<br><hr>24.04 LTS<br><hr>25.04 LTS|
 |**Architecture**|amd64|x86_64|x86_64<br><hr>aarch64|x86_64<br><hr>aarch64|x86_64|x86_64<br><hr>aarch64|
 {{< /bootstrap-table >}}
 
