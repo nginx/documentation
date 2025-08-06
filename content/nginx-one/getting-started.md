@@ -182,6 +182,8 @@ The `install` script writes an `nginx-agent.conf` file to the `/etc/nginx-agent/
 
 ---
 
+## Enable NGINX metrics reporting {#enable-nginx-metrics-reporting}
+
 The NGINX One Console dashboard relies on APIs for NGINX Plus and NGINX Open Source Stub Status to report traffic and system metrics. The following sections show you how to enable those metrics.
 
 ### Enable NGINX Plus API
