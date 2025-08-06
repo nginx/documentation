@@ -147,7 +147,7 @@ You may also get a follow-up email with the subject **Alert Resolved**.
 To check the current status, go to the NGINX One Console.
 
 For CVEs, the trusted source is:
-- **NGINX One Console > Manage > Instances > <Instance hostname>**
+- **NGINX One Console > Manage > Instances > \<Instance hostname\>**
 
 Open the instance dashboard to see the latest list of CVEs. Use the Console, not email, to confirm whether an issue is resolved.
 
