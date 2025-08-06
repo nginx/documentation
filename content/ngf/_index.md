@@ -47,6 +47,15 @@ For a list of supported Gateway API resources and features, see the [Gateway API
 
 ## Design
 
+NGINX Gateway Fabric separates the control plane and data plane into distinct deployments. The control plane interacts with the Kubernetes API, watching for Gateway API resources. 
+
+When a new Gateway resource is provisioned, it dynamically creates and manages a corresponding NGINX data plane Deployment and Service.
+
+Each NGINX data plane pod consists of an NGINX container integrated with [NGINX Agent](https://github.com/nginx/agent). The control plane translates Gateway API resources into NGINX configurations and sends these configurations to the agent to ensure consistent traffic management.
+
+This design enables centralized management of multiple Gateways while ensuring that each NGINX instance stays aligned with the cluster’s current configuration.
+
+For more information, see the [Gateway architecture]({{< ref "/ngf/overview/gateway-architecture.md" >}}) topic.
 
 ## More information
 
