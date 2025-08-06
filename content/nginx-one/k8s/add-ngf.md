@@ -128,11 +128,8 @@ If you encounter issues connecting your instances to NGINX One Console, try the 
 Check the NGINX Agent version:
 
 ```shell
-kubectl exec -it -n <namespace> <nginx_ingress_pod_name> -- nginx-agent -v
+kubectl exec -it -n <namespace> <nginx_pod_name> -- nginx-agent -v
 ```
-  
-If nginx-agent version is v3, continue with the following steps.
-Otherwise, make sure you are using an image that does not include NGINX App Protect. 
 
 Check the NGINX Agent configuration:
 
