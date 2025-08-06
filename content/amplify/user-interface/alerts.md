@@ -23,6 +23,6 @@ There's one special rule which is the about **amplify.agent.status** metric. Thi
 
 You shouldn't see consecutive notifications about the same alert repeatedly. Instead, there will be digest information sent out *every 60 minutes*, describing which alerts were generated and which ones were cleared.
 
-{{< note >}} Gauges are *averaged* over the interval configured in the rule. Counters are *summed up*. Currently, this is not user configurable, and these are the only reduce functions available for configuring metric thresholds. {{< /note >}}
+{{< call-out "note" >}} Gauges are *averaged* over the interval configured in the rule. Counters are *summed up*. Currently, this is not user configurable, and these are the only reduce functions available for configuring metric thresholds. {{< /call-out >}}
 
-{{< note >}} Emails are sent using [AWS SES](https://aws.amazon.com/ses/). Make sure your mail relay accepts their traffic. Also, make sure to verify the specified email and check the verification status in the Account menu. {{< /note >}}
+{{< call-out "note" >}} Emails are sent using [AWS SES](https://aws.amazon.com/ses/). Make sure your mail relay accepts their traffic. Also, make sure to verify the specified email and check the verification status in the Account menu. {{< /call-out >}}

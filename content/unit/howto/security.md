@@ -13,10 +13,10 @@ configuration, and maintenance.
 This guide lists the steps to protect your Unit from installation to individual
 app configuration.
 
-{{< note >}}
+{{< call-out "note" >}}
 The commands in this document starting with a hash (#) must be run as root or
 with superuser privileges.
-{{< /note >}}
+{{< /call-out >}}
 
 ## Update Unit regularly {#security-update}
 
@@ -392,13 +392,13 @@ they're writable for the app alone:
 
    ```
 
-   {{< note >}}
+   {{< call-out "note" >}}
    Usually, apps store and update their data outside the app code
    directories, but some apps may mix code and data.  In such a case,
    assign permissions on an individual basis, making sure you understand
    how the app uses each file or directory: is it code, read-only
    content, or writable data.
-   {{< /note >}}
+   {{< /call-out >}}
 
 1. For [embedded]({{< relref "/unit/howto/modules.md#modules-emb" >}})
    apps, it's usually enough to make the
@@ -517,10 +517,10 @@ they're writable for the app alone:
       }
    ```
 
-{{< note >}}
+{{< call-out "note" >}}
 As usual with permissions, different steps may be required if you use
 ACLs.
-{{< /note >}}
+{{< /call-out >}}
 </details>
 
 <details>
@@ -747,10 +747,10 @@ settings accordingly:
 }
 ```
 
-{{< note >}}
+{{< call-out "note" >}}
 As usual with permissions, different steps may be required if you use
 ACLs.
-{{< /note >}}
+{{< /call-out >}}
 
 </details>
 

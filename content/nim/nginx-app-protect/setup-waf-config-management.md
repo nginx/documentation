@@ -18,7 +18,7 @@ Make sure you've completed the following prerequisites before you get started:
 
 - You have one or more [NGINX App Protect WAF]({{< ref "/nap-waf/" >}}) instances running. For supported versions, see [Support for NGINX App Protect WAF]({{< ref "/nim/fundamentals/tech-specs.md#support-for-nginx-app-protect-waf" >}}).
 
-  {{<note>}}If you're using configuration management and Security Monitoring, follow the steps in the [setup guide]({{< ref "/nim/nginx-app-protect/security-monitoring/set-up-app-protect-instances.md" >}}) to set up your NGINX App Protect WAF instances first.{{</note>}}
+  {{< call-out "note" >}}If you're using configuration management and Security Monitoring, follow the steps in the [setup guide]({{< ref "/nim/nginx-app-protect/security-monitoring/set-up-app-protect-instances.md" >}}) to set up your NGINX App Protect WAF instances first.{{< /call-out >}}
 
 - You're running NGINX Instance Manager v2.6.0 or later. Make sure it's [installed]({{< ref "/nim/deploy/vm-bare-metal/_index.md" >}}), licensed, and running.
 
@@ -645,7 +645,7 @@ curl -X POST 'https://{{NIM_FQDN}}/api/platform/v1/security/threat-campaigns' \
   --form 'filename=@"/threat-campaigns.tgz"'
 ```
 
-{{<important>}}The bundle you upload must match the OS of your NGINX Instance Manager host. For example, if the host is running Ubuntu 20.04, create the `.tgz` from the Ubuntu 20.04 package.{{</important>}}
+{{< call-out "important" >}}The bundle you upload must match the OS of your NGINX Instance Manager host. For example, if the host is running Ubuntu 20.04, create the `.tgz` from the Ubuntu 20.04 package.{{< /call-out >}}
 
 ### Update the Security Monitoring signature database
 
@@ -782,7 +782,7 @@ You should now be able to view your NGINX App Protect WAF instances in the Insta
 
 {{%tab name="API"%}}
 
-{{< see-also >}}{{< include "nim/how-to-access-nim-api.md" >}}{{< /see-also >}}
+{{< call-out "note" >}}{{< include "nim/how-to-access-nim-api.md" >}}{{< /call-out>}}
 
 Use the REST API to confirm the version and status of NGINX App Protect WAF:
 
@@ -1050,7 +1050,7 @@ If you’re using NGINX App Protect WAF v5:
 
 {{%tab name="API"%}}
 
-{{< see-also >}}{{< include "nim/how-to-access-nim-api.md" >}}{{< /see-also >}}
+{{< call-out "note" >}}{{< include "nim/how-to-access-nim-api.md" >}}{{< /call-out>}}
 
 You can use the NGINX Instance Manager REST API to deploy your NGINX App Protect WAF configuration.
 
@@ -1063,7 +1063,7 @@ You can use the NGINX Instance Manager REST API to deploy your NGINX App Protect
 
 {{</bootstrap-table>}}
 
-{{<important>}}Before deploying a configuration to an instance group, make sure all instances in the group are running the same version of NGINX App Protect WAF. Otherwise, the deployment may fail.{{</important>}}
+{{< call-out "important" >}}Before deploying a configuration to an instance group, make sure all instances in the group are running the same version of NGINX App Protect WAF. Otherwise, the deployment may fail.{{< /call-out >}}
 
 1. Send a `GET` request to the `/api/platform/v1/systems/{systemUID}/instances` endpoint to list all instances. This response includes the unique identifier (UID) of the instance that you want to update.
 

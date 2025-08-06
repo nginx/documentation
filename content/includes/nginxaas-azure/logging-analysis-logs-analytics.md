@@ -27,4 +27,4 @@ For more information on the standard attributes that appear in Logs Analytics,se
 
 For more information on using [KQL](https://learn.microsoft.com/en-us/azure/data-explorer/kusto/query/) see [Queries in Log Analytics](https://learn.microsoft.com/en-us/azure/azure-monitor/logs/queries?tabs=groupby).
 
-{{<note>}}It can take up to 90 minutes after adding diagnostic settings for logs to appear in the provided Logs Analytics Workspace.{{</note>}}
+{{< call-out "note" >}}It can take up to 90 minutes after adding diagnostic settings for logs to appear in the provided Logs Analytics Workspace.{{< /call-out >}}

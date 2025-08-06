@@ -22,8 +22,8 @@ that can be defined in an HTTPRoute/GRPCRoute rule and is intended to modify NGI
 
 ## Disadvantages of Snippets
 
-{{< warning >}} We recommend managing NGINX configuration through Gateway API resources, [first-class policies]({{< ref "/ngf/overview/custom-policies.md" >}}), and other existing [NGINX extensions]({{< ref "/ngf/how-to/data-plane-configuration.md" >}})
-before using Snippets. {{< /warning >}}
+{{< call-out "warning" >}} We recommend managing NGINX configuration through Gateway API resources, [first-class policies]({{< ref "/ngf/overview/custom-policies.md" >}}), and other existing [NGINX extensions]({{< ref "/ngf/how-to/data-plane-configuration.md" >}})
+before using Snippets. {{< /call-out >}}
 
 Snippets are configured using the `SnippetsFilter` API, but are disabled by default due to their complexity and security implications.
 
@@ -35,7 +35,7 @@ Snippets have the following disadvantages:
 - _Decreased robustness_. An incorrect Snippet can invalidate NGINX configuration, causing reload failures. Until the snippet is fixed, it will prevent any new configuration updates, including updates for the other Gateway resources.
 - _Security implications_. Snippets give access to NGINX configuration primitives, which are not validated by NGINX Gateway Fabric. For example, a Snippet can configure NGINX to serve the TLS certificates and keys used for TLS termination for Gateway resources.
 
-{{< note >}} If the NGINX configuration includes an invalid Snippet, NGINX will continue to operate with the last valid configuration. No new configuration will be applied until the invalid Snippet is fixed. {{< /note >}}
+{{< call-out "note" >}} If the NGINX configuration includes an invalid Snippet, NGINX will continue to operate with the last valid configuration. No new configuration will be applied until the invalid Snippet is fixed. {{< /call-out >}}
 
 ## Best practices for SnippetsFilters
 
@@ -77,7 +77,7 @@ After creating the Gateway resource, NGINX Gateway Fabric will provision an NGIN
   GW_PORT=<port number>
   ```
 
-  {{< note >}} In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the gateway will forward for. {{< /note >}}
+  {{< call-out "note" >}} In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the gateway will forward for. {{< /call-out >}}
 
 
 - Create HTTPRoutes for the coffee and tea applications:
@@ -455,8 +455,8 @@ Conditions:
       Type:                  ResolvedRefs
 ```
 
-{{< note >}} If you run into situations where an NGINX directive fails to be applied and the troubleshooting information here isn't sufficient, please create an issue in the
-[NGINX Gateway Fabric Github repository](https://github.com/nginx/nginx-gateway-fabric). {{< /note >}}
+{{< call-out "note" >}} If you run into situations where an NGINX directive fails to be applied and the troubleshooting information here isn't sufficient, please create an issue in the
+[NGINX Gateway Fabric Github repository](https://github.com/nginx/nginx-gateway-fabric). {{< /call-out >}}
 
 ## See also
 

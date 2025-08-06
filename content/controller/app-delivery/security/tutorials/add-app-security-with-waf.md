@@ -17,7 +17,7 @@ You can use the App Security add-on for F5 NGINX Controller ADC to enable Web Ap
 ## Before You Begin
 
 Before proceeding with this guide, complete the following tasks.
-{{<note>}}These steps may need to be completed by a user with admin permissions.{{</note>}}
+{{< call-out "note" >}}These steps may need to be completed by a user with admin permissions.{{< /call-out >}}
 
 1. [Add an NGINX App Protect instance]({{< ref "/controller/infrastructure/instances/add-nap-instance.md" >}}) to NGINX Controller.
 
@@ -40,7 +40,7 @@ To enable WAF functionality for Application Security using the default security 
         }
 ```
 
-{{<note>}}You need READ access to the `/security/strategies/` API path to enable WAF on a component. By default, only users with an admin role have full access to all API endpoint resources.{{</note>}}
+{{< call-out "note" >}}You need READ access to the `/security/strategies/` API path to enable WAF on a component. By default, only users with an admin role have full access to all API endpoint resources.{{< /call-out >}}
 
 This JSON object should be added to the Component endpoint similar to the following example:
 
@@ -202,7 +202,7 @@ The JSON object should be similar to the example below:
 
 ```
 
-{{< note >}}
+{{< call-out "note" >}}
 
 The following WAF security parameters are not supported in App Components that reference a custom Security Strategy:
 
@@ -211,7 +211,7 @@ The following WAF security parameters are not supported in App Components that r
 
 These preceding parameters are supported by NGINX Controller's default policy for WAF.
 
-{{< /note >}}
+{{< /call-out >}}
 
 &nbsp;
 
@@ -242,17 +242,17 @@ To view all events:
 3. On the **Analytics** menu, select **Events**.
 4. Select **All Events** to view security violations and the status. Flagged and rejected status means that App Protect and WAF are running.
 
-{{< note >}}
+{{< call-out "note" >}}
 
 The WAF does not begin to emit security events immediately upon activation. We recommend that you wait a minute or two after enabling WAF for your Component to query the REST API for security events.
 
-{{< /note >}}
+{{< /call-out >}}
 
-{{< note >}}
+{{< call-out "note" >}}
 
 If NGINX Controller isn't logging any Security Violation Events for your app component, check [Security Events Not Available]({{< ref "/controller/support/troubleshooting-controller.md#Security-Events-Not-Available" >}}) for troubleshooting instructions.
 
-{{< /note >}}
+{{< /call-out >}}
 
 ## Disable WAF for Component
 

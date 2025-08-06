@@ -63,9 +63,9 @@ $ cargo component build --release
 
 To run the Wasm Component on NGINX Unit, start up Unit and use this initial configuration.
 
-{{< note >}}
+{{< call-out "note" >}}
 Make sure you point to the Wasm component by using an absolute path.
-{{< /note >}}
+{{< /call-out >}}
 
 ```json
 {

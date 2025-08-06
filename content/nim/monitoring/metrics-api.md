@@ -153,9 +153,9 @@ Using only `names` and time window parameters will give you the raw data points 
 
 To get a more organized response, you can provide an aggregate function for each queried metric: `AVG`, `SUM`, `COUNT`, `MAX`, `MIN`, or `RATE`.
 
-{{< note >}}
+{{< call-out "note" >}}
 In the following definitions, `time period` refers to the `resolution` (if provided) or the difference between the `endTime` and `startTime` (when `resolution` is not provided).
-{{< /note >}}
+{{< /call-out >}}
 
 - `AVG` - calculates the average value of the metric data samples over the period
 - `SUM` - calculates the total value of the metric data samples over the period
@@ -163,13 +163,13 @@ In the following definitions, `time period` refers to the `resolution` (if provi
 - `MIN`/`MAX` - returns the minimal/maximal data sample of the metric from the given period
 - `RATE` - returns an average value of the metric calculated per second (always *per second*, regardless of the provided `resolution`), based on the data available in the given period
 
-{{< note >}}
+{{< call-out "note" >}}
 You must define a `startTime` when using aggregate functions.
-{{< /note >}}
+{{< /call-out >}}
 
-{{< see-also >}}
+{{< call-out "note" >}}
 The list of supported aggregate functions for any particular metric is available in the [Metrics Catalog]({{< ref "/nms/reference/catalogs//metrics.md" >}})).
-{{< /see-also >}}
+{{< /call-out>}}
 
 For example, the following query returns a single value (per dimension set), which is the sum of the metric values for the last 12 hours. To get proper values, ensure that the `endTime` is greater than the `startTime`.
 
@@ -213,13 +213,13 @@ For example, the following query includes a simple filter on the app name. The q
 curl -X GET --url "<NMS_FQDN>/api/platform/v1/analytics/metrics?names=nginx.http.request.count&filter=nginx_id='nginx_id1'&startTime=now-12h" -H "Authorization: Bearer <access token>"
 ```
 
-{{< tip >}}
+{{< call-out "tip" >}}
 
 - Predicates can be combined into logical expressions using `OR`, `AND`, and `(` `)`.
 - For matching values, wildcard (`*`) use is supported.
 - We recommend wrapping predicates in single quotes to ensure that the full query string is processed correctly.
 
-{{< /tip >}}
+{{< /call-out >}}
 
 The following example request uses `filter` with logical expressions:
 
@@ -233,12 +233,12 @@ Using filters and aggregation functions may not be enough to allow you to get co
 
 The `groupBy` parameter helps to gather results according to the specified dimension(s). You can provide multiple dimension names as a comma-separated list.
 
-{{< note >}}
+{{< call-out "note" >}}
 
 - When using `groupBy`, you must use an aggregate function and a time window (`startTime` must be defined; `endTime` is optional).
 - If a request contains aggregated and non-aggregated metrics, the `groupBy` parameter will apply only to the aggregated metrics.
 
-{{< /note >}}
+{{< /call-out >}}
 
 For example, the following query returns data grouped by `nginx_id` for the last 12 hours.
 

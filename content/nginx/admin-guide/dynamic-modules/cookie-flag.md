@@ -10,7 +10,7 @@ type:
 - how-to
 ---
 
-{{< note >}} The `nginx-plus-module-cookie-flag` package is no longer available in the NGINX Plus repository.{{< /note >}}
+{{< call-out "note" >}} The `nginx-plus-module-cookie-flag` package is no longer available in the NGINX Plus repository.{{< /call-out >}}
 
 The module was deprecated in [NGINX Plus Release 23]({{< ref "/nginx/releases.md#r23" >}}) and removed in [NGINX Plus Release 26]({{< ref "/nginx/releases.md#r26" >}}). Its functionality has been replaced with natively supported [`proxy_cookie_flags`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_cookie_flags) directive.
 

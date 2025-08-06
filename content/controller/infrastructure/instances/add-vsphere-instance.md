@@ -16,11 +16,11 @@ You can use F5 NGINX Controller to deploy and manage NGINX instances on [VMware 
 
 This tutorial explains how to deploy NGINX Plus on vSphere by defining a vSphere Integration, a Location, and an Instance Template in NGINX Controller.
 
-{{< important >}}
+{{< call-out "important" >}}
 
 You are responsible for applying software and security updates on your NGINX instances. NGINX Controller does not manage these updates for you.
 
-{{< /important >}}
+{{< /call-out >}}
 
 &nbsp;
 
@@ -56,11 +56,11 @@ Install NGINX Plus [as described.](https://docs.nginx.com/nginx/admin-guide/inst
 A template created from a VM that has the prerequisites mentioned above can be used in the vSphere integration.
 
 
-{{< important >}}
+{{< call-out "important" >}}
 
 You are responsible for securing the connection between the vSphere cloud and any VMs that are created. NGINX Controller can't secure those connections.
 
-{{< /important >}}
+{{< /call-out >}}
 
 &nbsp;
 

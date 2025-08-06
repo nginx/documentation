@@ -10,13 +10,13 @@ type:
 
 Rancher Kubernetes Engine (RKE) is a CNCF-certified Kubernetes distribution that runs entirely within Docker containers. It works on bare-metal and virtualized servers.
 
-{{< important >}}
+{{< call-out "important" >}}
 Before deploying F5 NGINX Service Mesh, ensure that no other service meshes exist in your Kubernetes cluster.
-{{< /important >}}
+{{< /call-out >}}
 
-{{< warning >}}
+{{< call-out "warning" >}}
 Rancher has the option to deploy the community [NGINX Ingress Controller](https://github.com/kubernetes/ingress-nginx) when configuring an RKE cluster. While this ingress controller may work, NGINX Service Mesh does not guarantee support. It is recommended to use the [NGINX Plus Ingress Controller]({{< ref "/mesh/tutorials/kic/deploy-with-kic.md" >}}) in conjunction with NGINX Service Mesh.
-{{< /warning >}}
+{{< /call-out >}}
 
 ## Persistent storage
 
@@ -26,9 +26,9 @@ RKE doesn't set up any persistent storage for you, but it's required to run NGIN
 
 When creating a new cluster with RKE, you can configure it to apply a [PodSecurityPolicy](https://kubernetes.io/docs/concepts/policy/pod-security-policy/). If you choose to do this, NGINX Service Mesh requires a few permissions in order to function properly. The following policy is based on the default `restricted-psp` policy used by RKE, with a few additions and changes to allow the NGINX Service Mesh control plane to work.
 
-{{< important >}}
+{{< call-out "important" >}}
 When running a cluster with a PodSecurityPolicy, all of the following resources need to be created/updated before deploying NGINX Service Mesh.
-{{< /important >}}
+{{< /call-out >}}
 
 ```yaml
 apiVersion: policy/v1beta1
@@ -83,17 +83,17 @@ spec:
   - SYS_ADMIN
 ```
 
-{{< important >}}
+{{< call-out "important" >}}
 If you have separate PodSecurityPolicies for the control plane and your workloads, ensure that they are [bound to the proper Service Accounts](#bind-the-policy).
-{{< /important >}}
+{{< /call-out >}}
 
 ### Bind the Policy
 
 The `restricted-psp-nginx-mesh` policy needs to be bound to the NGINX Service Mesh control plane namespace, using the following resources:
 
-{{< note >}}
+{{< call-out "note" >}}
 The ClusterRoleBinding assumes the default namespace of `nginx-mesh`, but should be changed if you are using a different namespace for the control plane.
-{{< /note >}}
+{{< /call-out >}}
 
 ```yaml
 apiVersion: rbac.authorization.k8s.io/v1

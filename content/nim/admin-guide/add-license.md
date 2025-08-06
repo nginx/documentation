@@ -7,7 +7,7 @@ type:
 - how-to
 ---
 
-{{< note >}}For disconnected environments, see [Add a license (disconnected)]({{< ref "nim/disconnected/add-license-disconnected-deployment.md" >}}).{{< /note >}}
+{{< call-out "note" >}}For disconnected environments, see [Add a license (disconnected)]({{< ref "nim/disconnected/add-license-disconnected-deployment.md" >}}).{{< /call-out >}}
 
 ## Overview
 

@@ -104,11 +104,11 @@ NGINX Service Mesh will pull multiple required images into your Kubernetes clust
 Check out the [Configuration Options]({{< ref "/mesh/get-started/install/configuration.md" >}}) to learn about the deployment options.
 You can find the full list of options in the [`nginx-meshctl` Reference]( {{< ref "nginx-meshctl.md" >}} ).
 
-{{< important >}}
+{{< call-out "important" >}}
 `nginx-meshctl` creates the namespace for the NGINX Service Mesh control plane.
 This namespace is dedicated to the NGINX Service Mesh control plane and **should not be used for anything else**.
 If desired, you can specify any name for the namespace via the `--namespace` argument, but do not create this namespace yourself.
-{{< /important >}}
+{{< /call-out >}}
 
 Follow the steps below to install the NGINX Service Mesh control plane.
 

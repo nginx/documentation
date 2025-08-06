@@ -40,9 +40,9 @@ NGINX Controller uses the `/api` location on the NGINX Plus instance to collect 
 
 When you push a configuration to an NGINX Plus instance, NGINX Controller automatically enables the `/api` location for that instance.
 
-{{< note >}}
+{{< call-out "note" >}}
 The `/api` location settings that NGINX Controller creates will override any settings that you have previously defined.
-{{< /note >}}
+{{< /call-out >}}
 
 If you use NGINX Controller solely to monitor your NGINX Plus instances, you may need to enable the `/api` location on your instances manually.
 Refer to the [Configuring the API](https://docs.nginx.com/nginx/admin-guide/monitoring/live-activity-monitoring/#configuring-the-api) section of the NGINX Plus Admin Guide for instructions.
@@ -63,12 +63,12 @@ The Agent will try to detect the [log format](https://nginx.org/en/docs/http/ngx
 
 Some metrics included in the [NGINX Metrics reference]({{< ref "/controller/analytics/catalogs/metrics.md" >}}) are not available unless the corresponding variables are included in a custom [access.log](https://nginx.org/en/docs/http/ngx_http_log_module.html) format in the NGINX config.
 
-{{< see-also >}}
+{{< call-out "note" >}}
 
 - Read [Configuring Logging](https://docs.nginx.com/nginx/admin-guide/monitoring/logging/#setting-up-the-access-log) in the NGINX Admin Guide.
 - View the complete list of [NGINX log variables](https://nginx.org/en/docs/varindex.html).
 
-{{< /see-also >}}.
+{{< /call-out>}}.
 
 Take the steps in this section to enable the NGINX Controller Agent to collect metrics from custom `access.log` variables.
 
@@ -93,9 +93,9 @@ Take the steps in this section to enable the NGINX Controller Agent to collect m
    access_log /var/log/nginx/access.log main_ext;
    ```
 
-   {{< note >}}
+   {{< call-out "note" >}}
 By default, the Controller Agent processes all access logs that it finds in your log directory. If you define a new log file with the extended log format that contains entries that are already being logged to another access log, your metrics might be counted twice. Refer to the [Agent configuration]({{< ref "/controller/admin-guides/config-agent/configure-the-agent.md" >}}) guide to learn how to exclude specific log files from processing.
-   {{< /note >}}
+   {{< /call-out >}}
 
 4. Set the [error.log](https://nginx.org/en/docs/ngx_core_module.html#error_log) log level to `warn`.
 
@@ -135,9 +135,9 @@ Take the steps below to enable metrics collection from Syslog:
 
    For more information, see [Controlling NGINX](https://nginx.org/en/docs/control.html).
 
-{{< note >}}
+{{< call-out "note" >}}
 To send the NGINX logs to both the existing logging facility and the NGINX Controller Agent, include a separate [access.log](https://nginx.org/en/docs/http/ngx_http_log_module.html) directive for each destination.
-{{< /note >}}
+{{< /call-out >}}
 
 
 ## What's Next

@@ -11,9 +11,9 @@ type:
 
 You can upgrade to the latest mesh version from the version immediately before it (for example, from v1.6.0 to v1.7.0). F5 NGINX Service Mesh doesn't support skipping versions.
 
-{{< important >}}
+{{< call-out "important" >}}
 Check out the [Version-specific Notes]({{< ref "#version-specific-notes" >}}) section prior to upgrading to see if there are any extra details required for the version you are using.
-{{< /important >}}
+{{< /call-out >}}
 
 ## Upgrade via Helm
 
@@ -64,9 +64,9 @@ If breaking changes are introduced between versions, or you wish to change the [
 Some deployment configuration fields can be updated after the mesh has already been deployed, avoiding the need for manual upgrades. Those fields are discussed in the [API reference]( {{< ref "api-usage.md#modifying-the-global-mesh-configuration" >}} ) guide.
 
 ### 1. Save Custom Resources
-{{< warning >}}
+{{< call-out "warning" >}}
 When you manually upgrade NGINX Service Mesh, all of your Custom Resources will be deleted. This includes TrafficSplits, TrafficTargets, RateLimits, and so on.
-{{< /warning>}}
+{{< /call-out >}}
 
 Before you proceed with the upgrade, run the commands shown below to back up your Custom Resources.
 

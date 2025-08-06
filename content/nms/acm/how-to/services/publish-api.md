@@ -30,9 +30,9 @@ Complete the following prerequisites before proceeding with this guide:
 
 ## Create a Service Workspace
 
-{{<note>}}
+{{< call-out "note" >}}
 The API Connectivity Manager admin must verify that the user (API Onwer) has CRUD [RBAC](https://en.wikipedia.org/wiki/Role-based_access_control) permissions for the services feature.
-{{</note>}}
+{{< /call-out >}}
 
 Service Workspaces let you group API configurations. Publishing an API requires at least one Service Workspace.
 
@@ -57,9 +57,9 @@ After creating a Service Workspace, two options are displayed:
 5. **Base Path** and **Version** build up the URI, for example **/api/v1/**.
 6. Select **Publish** to save and publish your API Proxy.
 
-{{<note>}}
+{{< call-out "note" >}}
 If you choose to use an OpenAPI spec, it will get processed into a config and published.
-{{</note>}}
+{{< /call-out >}}
 
 ## Advanced Configurations {#advanced-configurations}
 
@@ -77,7 +77,7 @@ To add an Advanced Routing configuration, select the **Ingress** menu item in th
 4. Choose the required **HTTP Method** you want to use for this route match.
 5. Change the **Target Backend Service Label** if required to target a specific backend based on the label value.
 6. Select **Add Parameter** to add a parameter to the Path, Query, or Header that's used to match on the route.
-   {{<note>}}If you choose a path parameter then you must have a placeholder for that parameter in **Match URI**.{{</note>}}
+   {{< call-out "note" >}}If you choose a path parameter then you must have a placeholder for that parameter in **Match URI**.{{< /call-out >}}
 7. Select **Add** to finish adding the route.
 8. Select **Next** to move to the **Backend** configuration page.
 
@@ -110,9 +110,9 @@ You may also upload a new OpenAPI spec in this form by selecting **+Add API Spec
 3. Edit as needed.
 4. Select **Save and Publish**.
 
-{{<note>}}
+{{< call-out "note" >}}
 Certain sections can't be modified for API Proxies created with OpenAPI Specs, for example, **Advanced Routing** in the **Ingress** step.
-{{</note>}}
+{{< /call-out >}}
 
 ## Delete a Published API Proxy
 

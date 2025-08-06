@@ -16,11 +16,11 @@ You can use F5 NGINX Controller to deploy and manage NGINX instances on Amazon W
 
 This tutorial explains how to deploy NGINX Plus on AWS by defining an AWS Integration, a Location, and an Instance Template in NGINX Controller.
 
-{{< important >}}
+{{< call-out "important" >}}
 
 You are responsible for applying software and security updates on your data plane Instances. NGINX Controller does not manage these updates for you.
 
-{{< /important >}}
+{{< /call-out >}}
 
 &nbsp;
 
@@ -123,9 +123,9 @@ To create an Instance Template for AWS NGINX instances, take the following steps
 1. Specify whether a public IP address should be assigned to the instance.
 1. Select **Submit**.
 
-{{< note >}}
+{{< call-out "note" >}}
 Enabling WAF via the App Security add-on is not supported when deploying Instances with an Instance Template.
-{{< /note >}}
+{{< /call-out >}}
 
 ### Steps
 
@@ -148,11 +148,11 @@ To create an Instance Template for AWS NGINX instances, take the following steps
 1. Specify whether a public IP address should be assigned to the instance.
 1. Select **Submit**.
 
-{{< note >}}
+{{< call-out "note" >}}
 
 Enabling WAF via the App Security add-on is not supported when deploying Instances with an Instance Template.
 
-{{< /note >}}
+{{< /call-out >}}
 
 &nbsp;
 

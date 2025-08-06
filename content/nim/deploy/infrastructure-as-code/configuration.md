@@ -68,7 +68,7 @@ The Ansible role for NGINX Instance Manager simplifies the installation process 
     ansible-playbook -i <path-to-your-hostfile> nms-playbook.yml
     ```
 
-{{< see-also >}} For a comprehensive list of configuration options, view the [default `main.yaml` file](https://github.com/nginxinc/ansible-role-nginx-management-suite/blob/main/defaults/main.yml) on GitHub. {{< /see-also >}}
+{{< call-out "note" >}} For a comprehensive list of configuration options, view the [default `main.yaml` file](https://github.com/nginxinc/ansible-role-nginx-management-suite/blob/main/defaults/main.yml) on GitHub. {{< /call-out>}}
 
 ---
 

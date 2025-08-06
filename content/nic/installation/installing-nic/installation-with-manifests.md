@@ -209,7 +209,7 @@ For more information about the _LoadBalancer_ service, refer to the [Kubernetes 
          kubectl apply -f deployments/common/nginx-config.yaml
          ```
 
-    {{<note>}}AWS users have more customization options for their load balancers. These include choosing the load balancer type and configuring SSL termination. Refer to the [Kubernetes documentation](https://kubernetes.io/docs/concepts/services-networking/service/#type-loadbalancer) to learn more. {{</note>}}
+    {{< call-out "note" >}}AWS users have more customization options for their load balancers. These include choosing the load balancer type and configuring SSL termination. Refer to the [Kubernetes documentation](https://kubernetes.io/docs/concepts/services-networking/service/#type-loadbalancer) to learn more. {{< /call-out >}}
 
 3. To access NGINX Ingress Controller, get the public IP of your load balancer.
 
@@ -241,7 +241,7 @@ Connect to ports 80 and 443 using the IP address of any node in the cluster wher
 
 ## Uninstall NGINX Ingress Controller
 
-{{<warning>}}Proceed with caution when performing these steps, as they will remove NGINX Ingress Controller and all related resources, potentially affecting your running services.{{</warning>}}
+{{< call-out "warning" >}}Proceed with caution when performing these steps, as they will remove NGINX Ingress Controller and all related resources, potentially affecting your running services.{{< /call-out >}}
 
 1. **Delete the nginx-ingress namespace**: To remove NGINX Ingress Controller and all auxiliary resources, run:
 

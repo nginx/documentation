@@ -13,20 +13,20 @@ It covers the necessary steps for minor versions as well as major versions (such
 
 Many of the nuances in upgrade paths relate to how custom resource definitions (CRDs) are managed.
 
-{{< tip >}}
+{{< call-out "tip" >}}
 
 To avoid interruptions, review the [Delay pod termination for zero downtime upgrades](#configure-delayed-pod-termination-for-zero-downtime-upgrades) section.
 
-{{< /tip >}}
+{{< /call-out >}}
 
 
 ## Minor NGINX Gateway Fabric upgrades
 
-{{< important >}} NGINX Plus users need a JWT secret before upgrading from version 1.4.0 to 1.5.x.
+{{< call-out "important" >}} NGINX Plus users need a JWT secret before upgrading from version 1.4.0 to 1.5.x.
 
 Follow the steps in [Set up the JWT]({{< ref "/ngf/install/nginx-plus.md#set-up-the-jwt" >}}) to create the Secret.
 
-{{< /important >}}
+{{< /call-out >}}
 
 
 ### Upgrade Gateway resources
@@ -56,7 +56,7 @@ Run the following command to upgrade the CRDs:
 kubectl apply --server-side -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v{{< version-ngf >}}/deploy/crds.yaml
 ```
 
-{{< note >}}
+{{< call-out "note" >}}
 
 Ignore the following warning, as it is expected.
 
@@ -64,7 +64,7 @@ Ignore the following warning, as it is expected.
 Warning: kubectl apply should be used on resource created by either kubectl create --save-config or kubectl apply.
 ```
 
-{{< /note >}}
+{{< /call-out >}}
 
 ### Upgrade NGINX Gateway Fabric release
 
@@ -72,7 +72,7 @@ Warning: kubectl apply should be used on resource created by either kubectl crea
 
 {{% tab name="Helm" %}}
 
-{{< important >}} If you are using NGINX Plus and have a different Secret name than the default `nplus-license` name, specify the Secret name by setting `--set nginx.usage.secretName=<secret-name>` when running `helm upgrade`. {{< /important >}}
+{{< call-out "important" >}} If you are using NGINX Plus and have a different Secret name than the default `nplus-license` name, specify the Secret name by setting `--set nginx.usage.secretName=<secret-name>` when running `helm upgrade`. {{< /call-out >}}
 
 To upgrade the release with Helm, you can use the OCI registry, or download the chart and upgrade from the source.
 
@@ -110,7 +110,7 @@ This section provides step-by-step instructions for upgrading NGINX Gateway Fabr
 
 To upgrade NGINX Gateway Fabric from version 1.x to the new architecture in version 2.x, you must uninstall the existing NGINX Gateway Fabric CRDs and deployment, and perform a fresh installation. This will cause brief downtime during the upgrade process.
 
-{{<note>}} You do not need to uninstall the Gateway API CRDs during the upgrade. These resources are compatible with the new NGINX Gateway Fabric version. {{</note>}}
+{{< call-out "note" >}} You do not need to uninstall the Gateway API CRDs during the upgrade. These resources are compatible with the new NGINX Gateway Fabric version. {{< /call-out >}}
 
 ### Uninstall NGINX Gateway Fabric v1.x
 
@@ -130,13 +130,13 @@ kubectl delete -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v
 
 ### Install NGINX Gateway Fabric 2.x
 
-{{< important >}}
+{{< call-out "important" >}}
 
 Before installing 2.x, we recommend following [Add certificates for secure authentication]({{< ref "/ngf/install/secure-certificates.md" >}}).
 
 By default, NGINX Gateway Fabric installs self-signed certificates, which may be unsuitable for a production environment.
 
-{{< /important >}}
+{{< /call-out >}}
 
 {{<tabs name="install-ngf-2.x">}}
 
@@ -240,20 +240,20 @@ You can then follow [this localhost link](http://localhost:1313/nginx-gateway-fa
 
 ## Upgrade from NGINX Open Source to NGINX Plus
 
-{{< important >}}
+{{< call-out "important" >}}
 
 Ensure that you [Set up the JWT]({{< ref "/ngf/install/nginx-plus.md#set-up-the-jwt" >}}) before upgrading. These instructions only apply to Helm.
 
-{{< /important >}}
+{{< /call-out >}}
 
 To upgrade from NGINX Open Source to NGINX Plus, update the Helm command to include the necessary values for Plus:
 
-{{< note >}} If applicable:
+{{< call-out "note" >}} If applicable:
 
 - Replace the F5 Container registry `private-registry.nginx.com` with your internal registry for your NGINX Plus image
 - Replace `nginx-plus-registry-secret` with your Secret name containing the registry credentials
 - Replace `ngf` with your chosen release name.
-{{< /note >}}
+{{< /call-out >}}
 
 
 ```shell
@@ -299,10 +299,10 @@ Follow these steps to configure delayed pod termination:
 
 1. Save the changes.
 
-{{<see-also>}}
+{{< call-out "note" >}}
 For additional information on configuring and understanding the behavior of containers and pods during their lifecycle, refer to the following Kubernetes documentation:
 
 - [Container Lifecycle Hooks](https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks)
 - [Pod Lifecycle](https://kubernetes.io/docs/concepts/workloads/Pods/Pod-lifecycle/#Pod-termination)
 
-{{</see-also>}}
+{{< /call-out>}}

@@ -28,14 +28,14 @@ To install and run the web UI for the [Mailman 3](https://docs.list.org/en/lates
    # chown -R unit:unit /opt/mailman/web/static/  # User and group that Unit's router runs as by default | Mailman's static file path
    ```
 
-  {{< note >}}
+  {{< call-out "note" >}}
    The **unit:unit** user-group pair is available only with
    [official packages]({{< relref "/unit/installation.md#installation-precomp-pkgs" >}}), Docker
    [images]({{< relref "/unit/installation.md#installation-docker" >}})
    , and some
    [third-party repos]({{< relref "/unit/installation.md#installation-community-repos" >}}).
    Otherwise, account names may differ; run the `ps aux | grep unitd` command to be sure.
-   {{< /note >}}
+   {{< /call-out >}}
 
    Alternatively, add Unit's unprivileged user account to Mailman's group so Unit
    can access the static files. Run the following command as root:

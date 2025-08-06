@@ -6,14 +6,14 @@ nd-docs: DOCS-1714
 ---
 
 
-{{< note >}}
+{{< call-out "note" >}}
 These steps assume Unit was already
 [installed]({{< relref "/unit/installation.md#installation-precomp-pkgs" >}})
 with the language module for each app.
 
 The commands in this document starting with a hash (#) must be run as root or
 with superuser privileges.
-{{< /note >}}
+{{< /call-out >}}
 
 ## Go {#sample-go}
 
@@ -292,11 +292,11 @@ or use a more elaborate app example:
    }).listen()
 ```
 
-{{< note >}}
+{{< call-out "note" >}}
 You can run a version of the same app
 [without]({{< relref "/unit/configuration.md#configuration-nodejs-loader" >}})
 requiring the **unit-http** module explicitly.
-{{< /note >}}
+{{< /call-out >}}
 
 ## Perl {#sample-perl}
 
@@ -657,22 +657,22 @@ $ curl http://localhost:8080
 {{% /tab %}}
 {{% tab name="unit-wasm" %}}
 
-{{< warning >}}
+{{< call-out "warning" >}}
 Unit 1.32.0 and later support the WebAssembly component
 Model and WASI 0.2 APIs.
 We recommend to use the new implementation.
-{{< /warning >}}
+{{< /call-out >}}
 
 Instead of dealing with bytecode, let's build a Unit-capable
 Rust app and compile it into WebAssembly.
 
-{{< note >}}
+{{< call-out "note" >}}
 Currently, WebAssembly support is provided as a Technology Preview.
 This includes support for compiling Rust and C code into Unit-compatible WebAssembly,
 using our SDK in the form of the the `libunit-wasm` library.
 For details, see our `unit-wasm` [repository](https://github.com/nginx/unit-wasm)
 on GitHub.
-{{< /note >}}
+{{< /call-out >}}
 
 First, install the WebAssembly-specific Rust tooling:
 
@@ -788,7 +788,7 @@ $ make WASI_SYSROOT=/path/to/wasi-sysroot/ examples       # C examples
 $ make WASI_SYSROOT=/path/to/wasi-sysroot/  examples-rust  # Rust examples
 ```
 
-{{< note >}}
+{{< call-out "note" >}}
 If the above commands fail like this:
 
 ```console
@@ -817,7 +817,7 @@ $ clang -print-runtime-dir         # Double-check the run-time directory, which 
 # cp lib/wasi/libclang_rt.builtins-wasm32.a /path/to/runtime/dir/wasi/
 ```
 
-{{< /note >}}
+{{< /call-out >}}
 
 {{% /tab %}}
 {{< /tabs >}}

@@ -14,9 +14,9 @@ To run apps based on the [Spring Boot](https://spring.io/projects/spring-boot) f
 
    ![Spring Initializr - Project Setup Screen](/unit/images/springboot.png)
 
-   {{< note >}}
+   {{< call-out "note" >}}
    Choose the same Java version that your Unit language module has.
-   {{< /note >}}
+   {{< /call-out >}}
 
    Download and extract the project files where you need them:
 
@@ -75,11 +75,11 @@ To run apps based on the [Spring Boot](https://spring.io/projects/spring-boot) f
    $ ./mvnw package
    ```
 
-   {{< note >}}
+   {{< call-out "note" >}}
    By default, Gradle puts the **.war** file in the **build/libs/**
    subdirectory, while Maven uses **target/**; note your path for later
    use in Unit configuration.
-   {{< /note >}}
+   {{< /call-out >}}
 
 3. Change ownership:
 

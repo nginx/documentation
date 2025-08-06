@@ -34,9 +34,9 @@ The script does not collect or create:
 - Lua scripts
 - Core dumps
 
-{{< note >}}
+{{< call-out "note" >}}
 It is highly recommended that you review the script and the created resources and verify that they conform with your organization's data sharing policies.
-{{< /note >}}
+{{< /call-out >}}
 
 
 <span id="oses"></span>

@@ -14,9 +14,9 @@ This guide explains the F5 NGINX App Protect WAF security features and how to us
 
 For more information on the NGINX App Protect WAF security features, see [NGINX App Protect WAF Terminology](#nginx-app-protect-waf-terminology).
 
-{{< important >}}
+{{< call-out "important" >}}
 When configuring NGINX App Protect WAF, `app_protect_enable` should always be enabled in a `proxy_pass` location. If configuration returns static content, the user must add a location which enables App Protect, and proxies the request via `proxy_pass` to the internal static content location. An example can be found in [Configure Static Location](#configure-static-location).
-{{< /important >}}
+{{< /call-out >}}
 
 ## Supported Security Policy Features
 
@@ -79,7 +79,7 @@ See [signature sets](#signature-sets) for configuring the signature sets include
 
 The NGINX App Protect WAF security policy configuration uses the declarative format based on a pre-defined base template. The policy is represented in a JSON file which you can edit to add, modify and remove security capabilities with respect to the base template. The way the policy is integrated into the NGINX configuration is via referencing the JSON file (using the full path) in the `nginx.conf` file.
 
-{{< note >}}NGINX App Protect WAF provides a [JSON Schema](https://json-schema.org/) which can be used to validate a JSON policy file to ensure file format compliance. The schema file can be generated using a script once NGINX App Protect WAF is installed: `sudo /opt/app_protect/bin/generate_json_schema.pl`. This script will output the schema to a file named `policy.json` into the current working directory. Once the schema file is generated, you can use validation tools such as [AJV](https://ajv.js.org/standalone.html) to validate a JSON policy file.{{< /note >}}
+{{< call-out "note" >}}NGINX App Protect WAF provides a [JSON Schema](https://json-schema.org/) which can be used to validate a JSON policy file to ensure file format compliance. The schema file can be generated using a script once NGINX App Protect WAF is installed: `sudo /opt/app_protect/bin/generate_json_schema.pl`. This script will output the schema to a file named `policy.json` into the current working directory. Once the schema file is generated, you can use validation tools such as [AJV](https://ajv.js.org/standalone.html) to validate a JSON policy file.{{< /call-out >}}
 
 In the following example, the NGINX configuration file with App Protect enabled in the HTTP context and the policy /etc/app_protect/conf/NginxDefaultPolicy.json is used:
 
@@ -270,8 +270,8 @@ http {
 
 apreload events use the same format as the current operation log events written in the NGINX error log, namely: `configuration_load_success` or `configuration_load_failure` with the details in JSON format. Refer to the [Operation logs]({{< ref "/nap-waf/v4/logging-overview/operation-logs.md" >}}) for more details.
 
-{{< note >}}
-Note that if any of the configuration files are invalid, apreload will discover that and return the proper error message in the `configuration_load_failure` event. The Enforcer continues to run with the previous configuration.{{< /note >}}
+{{< call-out "note" >}}
+Note that if any of the configuration files are invalid, apreload will discover that and return the proper error message in the `configuration_load_failure` event. The Enforcer continues to run with the previous configuration.{{< /call-out >}}
 
 ### Modification to nginx.conf file and App Protect Configurations
 
@@ -339,7 +339,7 @@ An OpenAPI-ready policy template is provided with the NGINX App Protect WAF pack
 
 It contains violations related to OpenAPI set to blocking (enforced).
 
-{{< note >}} NGINX App Protect WAF supports only one OpenAPI Specification file reference per policy.{{< /note >}}
+{{< call-out "note" >}} NGINX App Protect WAF supports only one OpenAPI Specification file reference per policy.{{< /call-out >}}
 
 ### Types of OpenAPI References
 
@@ -435,7 +435,7 @@ It contains violations related to OpenAPI set to blocking (enforced).
 
 {{< include "/nap-waf/concept/graphql-profile.md" >}}
 
-{{< note >}} For GraphQL profile default values and GraphQL violations reference, see NGINX App Protect WAF [Declarative Policy guide.]({{< ref "/nap-waf/v4/declarative-policy/policy.md" >}})  {{< /note >}}
+{{< call-out "note" >}} For GraphQL profile default values and GraphQL violations reference, see NGINX App Protect WAF [Declarative Policy guide.]({{< ref "/nap-waf/v4/declarative-policy/policy.md" >}})  {{< /call-out >}}
 
 ### Define URL settings
 {{< include "nap-waf/config/common/graphql-define-url-settings.md" >}}
@@ -509,7 +509,7 @@ For the full reference of Override Rules condition syntax and usage see the NGIN
 
 NGINX App Protect WAF introduces a new policy entity known as "**access profile**" to authenticate JSON Web Token. Access Profile is added to the app protect policy to enforce JWT settings. JSON Web Token needs to be applied to the URLs for enforcement and includes the actions to be taken with respect to access tokens. It is specifically associated with HTTP URLs and does not have any predefined default profiles.
 
-{{< note >}}At present, only one access profile is supported within the App Protect policy. However, the JSON schema for the policy will be designed to accommodate multiple profiles in the future.{{< /note >}}
+{{< call-out "note" >}}At present, only one access profile is supported within the App Protect policy. However, the JSON schema for the policy will be designed to accommodate multiple profiles in the future.{{< /call-out >}}
 
 The access profile includes:
 
@@ -574,7 +574,7 @@ Refer to the following example where all access profile properties are configure
 }
 ```
 
-{{< note >}} For access profile default values and their related field names, see NGINX App Protect WAF [Declarative Policy guide]({{< ref "/nap-waf/v4/declarative-policy/policy.md" >}}). {{< /note >}}
+{{< call-out "note" >}} For access profile default values and their related field names, see NGINX App Protect WAF [Declarative Policy guide]({{< ref "/nap-waf/v4/declarative-policy/policy.md" >}}). {{< /call-out >}}
 
 #### Access Profile in URL Settings
 
@@ -717,7 +717,7 @@ A login page specifies the login URL that users must pass through to get authent
         ]
 ```
 
-{{< note >}} For further configuration details, see NGINX App Protect WAF Declarative Policy Guide [Declarative Policy guide]({{< ref "/nap-waf/v4/declarative-policy/policy/#policy/login-pages" >}}). {{< /note >}}
+{{< call-out "note" >}} For further configuration details, see NGINX App Protect WAF Declarative Policy Guide [Declarative Policy guide]({{< ref "/nap-waf/v4/declarative-policy/policy/#policy/login-pages" >}}). {{< /call-out >}}
 
 ---
 ### Brute force prevention example
@@ -831,7 +831,7 @@ The following example adds all three of the pieces for a complete example policy
 }
 ```
 
-{{< note >}} For further configuration details, see NGINX App Protect WAF Declarative Policy Guide [Declarative Policy guide]({{< ref "/nap-waf/v4/declarative-policy/policy/#policy/brute-force-attack-preventions" >}}). {{< /note >}}
+{{< call-out "note" >}} For further configuration details, see NGINX App Protect WAF Declarative Policy Guide [Declarative Policy guide]({{< ref "/nap-waf/v4/declarative-policy/policy/#policy/brute-force-attack-preventions" >}}). {{< /call-out >}}
 
 ## Custom Dimensions Log Entries
 
@@ -1010,7 +1010,7 @@ The Policy Converter tool `/opt/app_protect/bin/convert-policy` is used for conv
 
 Elements in the XML policy that are not supported in the NGINX App Protect WAF environment will generate warnings. Note that any configuration that is invalid or irrelevant to the NGINX App Protect WAF environment is removed from the exported declarative policy.
 
-{{< note >}} All NGINX App Protect WAF versions support converting XML policies exported from BIG-IP regardless of any version. If the source XML policy has not changed from when it was in use on BIG-IP, then it's always a good idea to convert it with the Policy Converter tool included with the version of NGINX App Protect WAF you are using. This way, as more configuration items from BIG-IP become supported in NGINX App Protect WAF, they will be included in the converted policy. A policy that was converted will work on the same or greater NGINX App Protect WAF version it originally came from.{{< /note >}}
+{{< call-out "note" >}} All NGINX App Protect WAF versions support converting XML policies exported from BIG-IP regardless of any version. If the source XML policy has not changed from when it was in use on BIG-IP, then it's always a good idea to convert it with the Policy Converter tool included with the version of NGINX App Protect WAF you are using. This way, as more configuration items from BIG-IP become supported in NGINX App Protect WAF, they will be included in the converted policy. A policy that was converted will work on the same or greater NGINX App Protect WAF version it originally came from.{{< /call-out >}}
 
 The Policy Converter tool has options to include the following elements in a full export:
 - Elements that are the same as the default template policy. (Invalid elements are removed, but no warnings reported.)

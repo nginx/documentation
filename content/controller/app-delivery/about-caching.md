@@ -19,11 +19,11 @@ NGINX Controller Caching supports [basic caching](https://www.nginx.com/blog/ngi
 
 When you add a disk store to a component, you define the location of the cache on the hard disk. The path you specify for the disk store is the base path under which you want to store the cache files for the component.
 
-{{< important >}}
+{{< call-out "important" >}}
 The directory that you want to use as the cache must already exist and the NGINX process must have read and write permissions to it. Otherwise, NGINX Controller can't create the cached folders and files.
 
 If NGINX Controller can't create the desired cache directory and/or write files to it, the user interface will display an error for the component.
-{{< /important >}}
+{{< /call-out >}}
 
 When you use the UI or the REST API to create a single disk store, NGINX Controller adds the following directives to the auto-generated `nginx.conf` file:
 
@@ -38,9 +38,9 @@ NGINX Controller Caching also supports splitting the cache across multiple direc
 
 The percentage option lets you set the percentage of the cache to store in each location. Pattern matching lets you define where to store cache contents -- like certain file types -- and which cache location should send a response based on the request.
 
-{{< see-also >}}
+{{< call-out "note" >}}
 Read the [NGINX Caching Guide](https://www.nginx.com/blog/nginx-caching-guide/#Splitting-the-Cache-Across-Multiple-Hard-Drives) to learn more about splitting the cache across multiple hard drives.
-{{< /see-also >}}
+{{< /call-out>}}
 
 When you define a split cache, NGINX Controller adds a `split_clients` configuration block with percentage split or a `map` configuration block with string split to the `http` context of the generated `nginx.conf` file.
 
@@ -68,14 +68,14 @@ To add any of the [`ngx_http_proxy_module`](http://nginx.org/en/docs/http/ngx_ht
 
 In order to enable the collection of app centric caching metrics, NGINX Controller has added a minimal set of APIs to enable and control caching. For more advanced caching features, you can make use of `configSnippets` to configure the directives above.
 
-{{< note >}}
+{{< call-out "note" >}}
 When you enable the temporary path for disk store with `tempPath:ENABLED`, you need to set the temporary path `proxy_temp_path` using the snippets API.
-{{< /note >}}
+{{< /call-out >}}
 
 
-{{< note >}}
+{{< call-out "note" >}}
 NGINX Controller does not collect or report metrics for directives configured using Snippets.
-{{< /note >}}
+{{< /call-out >}}
 
 ## Usage Examples
 

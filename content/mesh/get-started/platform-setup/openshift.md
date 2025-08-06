@@ -47,9 +47,9 @@ kubectl delete scc nginx-mesh-spire-agent-permissions
 kubectl delete clusterrolebinding csi-driver-sentinel.builtin.nsm.nginx
 ```
 
-{{< note >}}
+{{< call-out "note" >}}
 To re-install NGINX Service Mesh, it is not necessary to re-roll or delete injected Pods before removing the CSI Driver. Simply run the removal commands listed in the snippet above and deploy NGINX Service Mesh as usual. The new CSI Driver that is deployed will be able to handle any injected Pods leftover from the previous deployment.
-{{< /note >}}
+{{< /call-out >}}
 
 ## How The CSI Driver Works
 

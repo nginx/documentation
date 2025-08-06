@@ -9,7 +9,7 @@ nd-docs: DOCS-578
 
 This document explains how to use F5 NGINX Ingress Controller to configure NGINX App Protect WAF.
 
-{{< note >}} Check out the complete NGINX Ingress Controller with NGINX App Protect WAF example resources on GitHub [for VirtualServer resources](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/custom-resources/app-protect-waf) and [for Ingress resources](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/ingress-resources/app-protect-waf).{{< /note >}}
+{{< call-out "note" >}} Check out the complete NGINX Ingress Controller with NGINX App Protect WAF example resources on GitHub [for VirtualServer resources](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/custom-resources/app-protect-waf) and [for Ingress resources](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/ingress-resources/app-protect-waf).{{< /call-out >}}
 
 
 ## Global Configuration
@@ -32,7 +32,7 @@ NGINX App Protect WAF Policies can be created for VirtualServer, VirtualServerRo
 - [The Advanced gRPC Protection for Unary Traffic](/nginx-app-protect-waf/v4/configuration-guide/configuration/#grpc-protection-for-unary-traffic) only supports providing an `idl-file` inline. The fields `policy.idl-files[].link`, `policy.idl-files[].$ref`, and
  `policy.idl-files[].file` are not supported. The IDL file should be provided in field `policy.idl-files[].contents`. The value of this field can be base64 encoded. In this case the field `policy.idl-files[].isBase64` should be set to `true`.
 
-{{<warning>}} External references are deprecated in NGINX Ingress Controller and will not be supported in future releases. {{</warning>}}
+{{< call-out "warning" >}} External references are deprecated in NGINX Ingress Controller and will not be supported in future releases. {{< /call-out >}}
 
 To add an [NGINX App Protect WAF policy](/nginx-app-protect-waf/v4/declarative-policy/policy/) to an Ingress resource:
 
@@ -113,11 +113,11 @@ To add the [log configurations](/nginx-app-protect-waf/v4/logging-overview/secur
 1. Add the log configuration to the `spec` field in the `APLogConf` resource.
 1. Add a reference to `APLogConf` in the [VirtualServer Policy resource]({{< ref "/nic/configuration/policy-resource.md#waf" >}}) or the [Ingress resource]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations.md#app-protect" >}}) as per the documentation.
 
-{{< note >}}
+{{< call-out "note" >}}
 
 The fields from the JSON must be presented in the YAML *exactly* the same, in name and level. NGINX Ingress Controller will transform the YAML into a valid JSON WAF log config.
 
-{{< /note >}}
+{{< /call-out >}}
 
 For example, say you want to [log state changing requests](/nginx-app-protect-waf/v4/logging-overview/security-log/#security-log-configuration-file) for your VirtualServer or Ingress resources using NGINX App Protect WAF. The  log configuration looks like this:
 
@@ -154,26 +154,26 @@ spec:
 
 You can define NGINX App Protect WAF [User-Defined Signatures](/nginx-app-protect-waf/v4/configuration-guide/configuration/#user-defined-signatures) for your VirtualServer or Ingress resources by creating an `APUserSig` [Custom Resource](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/).
 
-{{< note >}}
+{{< call-out "note" >}}
 
 The field `revisionDatetime` is not currently supported.
 
 `APUserSig` resources increase the reload time of NGINX Plus compared with `APPolicy` and `APLogConf` resources. Read [NGINX fails to start or reload]({{< ref "/nic/installation/integrations/app-protect-waf-v5/troubleshoot-app-protect-waf.md#nginx-fails-to-start-or-reload" >}}) for more information.
 
-{{< /note >}}
+{{< /call-out >}}
 
 To add the [User Defined Signatures](/nginx-app-protect-waf/v4/configuration-guide/configuration/#user-defined-signatures) to a VirtualServer or Ingress resource:
 
 1. Create an `APUserSig` Custom resource manifest.
 2. Add the desired User defined signature to the `spec` field in the `APUserSig` resource.
 
-{{< note >}}
+{{< call-out "note" >}}
 
 The fields from the JSON must be presented in the YAML *exactly* the same, in name and level.
 
 NGINX Ingress Controller will transform the YAML into a valid JSON User-Defined signature. There is no need to reference the user defined signature resource in the Policy or Ingress resources.
 
-{{< /note >}}
+{{< /call-out >}}
 
 For example, say you want to create the following user defined signature:
 
@@ -230,7 +230,7 @@ You can define App Protect WAF bundles for VirtualServer custom resources by cre
 
 Before applying a policy, a WAF policy bundle must be created, then copied to a volume mounted to `/etc/nginx/waf/bundles`.
 
-{{< note >}} NGINX Ingress Controller supports `securityLogs` for policy bundles when using `apLogBundle` instead of `apLogConf`. Log bundles must also be copied to a volume mounted to `/etc/nginx/waf/bundles`. {{< /note >}}
+{{< call-out "note" >}} NGINX Ingress Controller supports `securityLogs` for policy bundles when using `apLogBundle` instead of `apLogConf`. Log bundles must also be copied to a volume mounted to `/etc/nginx/waf/bundles`. {{< /call-out >}}
 
 This example shows how a policy is configured by referencing a generated WAF Policy Bundle:
 
@@ -305,7 +305,7 @@ These are the typical steps to deploy an OpenAPI protection Policy in NGINX Ingr
 6. Create a `Policy` object which references the `APPolicy` Custom Resource as in [this example](https://github.com/nginx/kubernetes-ingress/blob/v{{< nic-version >}}/examples/custom-resources/app-protect-waf/waf.yaml).
 7. Finally, attach the `Policy` object to a `VirtualServer` resource as in [this example](https://github.com/nginx/kubernetes-ingress/blob/v{{< nic-version >}}/examples/custom-resources/app-protect-waf/virtual-server.yaml).
 
-{{< note >}} You need to make sure that the server where the resource files are located is available while you are compiling your policy. {{< /note >}}
+{{< call-out "note" >}} You need to make sure that the server where the resource files are located is available while you are compiling your policy. {{< /call-out >}}
 
 ### Example Configuration
 
@@ -438,7 +438,7 @@ The `link` option is also available in the `openApiFileReference` property and i
 
 In this example we deploy NGINX Ingress Controller with NGINX Plus and NGINX App Protect WAF, deploy a simple web application, and then configure load balancing and WAF protection for that application using the VirtualServer resource.
 
-{{< note >}} You can find the example, and the files referenced, on [GitHub](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/custom-resources/app-protect-waf).{{< /note >}}
+{{< call-out "note" >}} You can find the example, and the files referenced, on [GitHub](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/custom-resources/app-protect-waf).{{< /call-out >}}
 
 ## Prerequisites
 

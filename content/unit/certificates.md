@@ -11,10 +11,10 @@ handles TLS certificates that are used with Unit's
 To set up SSL/TLS for a listener, upload a **.pem** file with your certificate
 chain and private key to Unit, and name the uploaded bundle in the listener's configuration; next, the listener can be accessed via SSL/TLS.
 
-{{< note >}}
+{{< call-out "note" >}}
 For the details of certificate issuance and renewal in Unit,
 see an example in [TLS with Certbot]({{< relref "/unit/howto/certbot.md" >}}).
-{{< /note >}}
+{{< /call-out >}}
 
 
 First, create a **.pem** file with your certificate chain and private key:
@@ -37,11 +37,11 @@ Upload the resulting bundle file to Unit's certificate storage under a suitable 
 }
 ```
 
-{{< warning >}}
+{{< call-out "warning" >}}
 Don't use **-d** for file upload with `curl`; this option damages **.pem** files.
 Use the **--data-binary** option when uploading file-based data to avoid data
 corruption.
-{{< /warning >}}
+{{< /call-out >}}
 
 Internally, Unit stores the uploaded certificate bundles along with other configuration data in its **state** subdirectory; the
 [control API]({{< relref "/unit/controlapi.md" >}})
@@ -104,7 +104,7 @@ exposes some of their properties as **GET**-table JSON using **/certificates**:
 }
 ```
 
-{{< note >}}
+{{< call-out "note" >}}
 Access array items, such as individual certificates in a chain,
 and their properties by indexing, running the following commands as root:
 
@@ -117,7 +117,7 @@ and their properties by indexing, running the following commands as root:
 # curl -X GET --unix-socket /path/to/control.unit.sock \ # Path to Unit's control socket in your installation
        http://localhost/certificates/bundle/chain/0/subject/alt_names/0/  # Certificate bundle name
 ```
-{{< /note >}}
+{{< /call-out >}}
 
 Next, add the uploaded bundle to a
 [listener]({{< relref "/unit/configuration.md#configuration-listeners" >}}).
@@ -188,7 +188,7 @@ from the storage, running the following command as root:
 }
 ```
 
-{{< note >}}
+{{< call-out "note" >}}
 You can't delete certificate bundles still referenced in your configuration,
 overwrite existing bundles using **put**, or delete non-existent ones.
-{{< /note >}}
+{{< /call-out >}}

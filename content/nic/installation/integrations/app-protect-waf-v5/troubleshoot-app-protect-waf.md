@@ -11,7 +11,7 @@ This document describes how to troubleshoot problems when using NGINX Ingress Co
 
 For general troubleshooting of NGINX Ingress Controller, check the general [troubleshooting]({{< ref "/nic/troubleshooting/troubleshoot-common" >}}) documentation.
 
-{{< see-also >}} You can find more troubleshooting tips in the NGINX App Protect WAF [troubleshooting guide]({{< ref "/nap-waf/v5/troubleshooting-guide/troubleshooting.md" >}}) {{< /see-also >}}.
+{{< call-out "note" >}} You can find more troubleshooting tips in the NGINX App Protect WAF [troubleshooting guide]({{< ref "/nap-waf/v5/troubleshooting-guide/troubleshooting.md" >}}) {{< /call-out>}}.
 
 ## Potential problems
 
@@ -78,7 +78,7 @@ The events section has a *Normal* event with the *AddedOrUpdated reason*, indica
 
 ### Replace the policy
 
-{{< note >}} This method only applies if using [external references](/nginx-app-protect/v4/configuration/#external-references) {{< /note >}}
+{{< call-out "note" >}} This method only applies if using [external references](/nginx-app-protect/v4/configuration/#external-references) {{< /call-out >}}
 
 If items on the external reference change but the spec of the APPolicy remains unchanged (even when re-applying the policy), Kubernetes will not detect the update.
 In this case you can force-replace the resource. This will remove the resource and add it again, triggering a reload. For example:
@@ -89,7 +89,7 @@ kubectl replace appolicy -f your-policy-manifest.yaml --force
 
 ### Check the availability of APPolicy external references
 
-{{< note >}} This method only applies if you're using [external references](/nginx-app-protect/v4/configuration/#external-references) in NGINX App Protect policies. {{< /note >}}
+{{< call-out "note" >}} This method only applies if you're using [external references](/nginx-app-protect/v4/configuration/#external-references) in NGINX App Protect policies. {{< /call-out >}}
 
 To check which servers host the external references of a policy:
 

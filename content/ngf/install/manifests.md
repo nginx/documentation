@@ -18,7 +18,7 @@ To complete this guide, you'll need to install:
 - [kubectl](https://kubernetes.io/docs/tasks/tools/), a command-line interface for managing Kubernetes clusters.
 - [Add certificates for secure authentication]({{< ref "/ngf/install/secure-certificates.md" >}}) in a production environment.
 
-{{< important >}} If you’d like to use NGINX Plus, some additional setup is also required: {{</ important >}}
+{{< call-out "important" >}} If you’d like to use NGINX Plus, some additional setup is also required: {{< /call-out >}}
 
 <details closed>
 <summary>NGINX Plus JWT setup</summary>
@@ -37,7 +37,7 @@ To complete this guide, you'll need to install:
 
 {{< include "/ngf/installation/nginx-plus/nginx-plus-secret.md" >}}
 
-{{< note >}} For more information on why this is needed and additional configuration options, including how to report to NGINX Instance Manager instead, see the [NGINX Plus Image and JWT Requirement]({{< ref "/ngf/install/nginx-plus.md" >}}) document. {{< /note >}}
+{{< call-out "note" >}} For more information on why this is needed and additional configuration options, including how to report to NGINX Instance Manager instead, see the [NGINX Plus Image and JWT Requirement]({{< ref "/ngf/install/nginx-plus.md" >}}) document. {{< /call-out >}}
 
 </details>
 
@@ -65,7 +65,7 @@ kubectl apply --server-side -f https://raw.githubusercontent.com/nginx/nginx-gat
 
 ### Deploy NGINX Gateway Fabric
 
-{{< note >}} By default, NGINX Gateway Fabric is installed in the **nginx-gateway** namespace. You can deploy in another namespace by modifying the manifest files. {{< /note >}}
+{{< call-out "note" >}} By default, NGINX Gateway Fabric is installed in the **nginx-gateway** namespace. You can deploy in another namespace by modifying the manifest files. {{< /call-out >}}
 
 {{<tabs name="install-manifests">}}
 
@@ -129,7 +129,7 @@ Deploys NGINX Gateway Fabric with NGINX OSS and experimental features.
 kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v{{< version-ngf >}}/deploy/experimental/deploy.yaml
 ```
 
-{{< note >}} Requires the Gateway APIs installed from the experimental channel. {{< /note >}}
+{{< call-out "note" >}} Requires the Gateway APIs installed from the experimental channel. {{< /call-out >}}
 
 {{% /tab %}}
 
@@ -143,7 +143,7 @@ The NGINX Plus JWT Secret used to run NGINX Plus is also specified in a volume m
 kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v{{< version-ngf >}}/deploy/nginx-plus-experimental/deploy.yaml
 ```
 
-{{< note >}} Requires the Gateway APIs installed from the experimental channel. {{< /note >}}
+{{< call-out "note" >}} Requires the Gateway APIs installed from the experimental channel. {{< /call-out >}}
 
 {{% /tab %}}
 

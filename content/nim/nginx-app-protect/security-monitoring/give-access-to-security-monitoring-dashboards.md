@@ -13,9 +13,9 @@ F5 NGINX Security Monitoring tracks activity on NGINX App Protect WAF instances.
 
 This guide explains how to create a role to give users access to Security Monitoring and assign it to users or groups.
 
-{{< note >}}
+{{< call-out "note" >}}
 This guide follows the principle of least privilege, so users only get access to Security Monitoring. You can create roles with different permissions if needed.
-{{</ note >}}
+{{< /call-out >}}
 
 ---
 

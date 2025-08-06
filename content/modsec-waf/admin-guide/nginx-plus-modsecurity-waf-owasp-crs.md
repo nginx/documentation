@@ -5,9 +5,9 @@ toc: true
 weight: 200
 ---
 
-{{< important >}}
+{{< call-out "important" >}}
 {{% modsec-eol-notice %}}
-{{< /important >}}
+{{< /call-out >}}
 
 This chapter explains how to enable and test the Open Web Application Security Project Core Rule Set (OWASP CRS) for use with the NGINX ModSecurity web application firewall (WAF).
 

@@ -15,7 +15,7 @@ This requirement is part of F5’s broader licensing program and aligns with ind
 
 The JWT is required for validating your subscription and reporting telemetry data. For environments connected to the internet, telemetry is automatically sent to F5’s licensing endpoint. In offline environments, telemetry is routed through [NGINX Instance Manager]({{< ref "/nim/" >}}). Usage is reported every hour and on startup whenever NGINX is reloaded.
 
-{{< note >}} The following Secrets should be created in the same namespace as the NGINX Gateway Fabric control plane (default: nginx-gateway). The control plane will copy these Secrets into any namespaces where NGINX gets deployed. If you need to update the Secrets, update the originals that you created in the control plane namespace, and the control plane will propagate those updates to all duplicated Secrets. {{< /note >}}
+{{< call-out "note" >}} The following Secrets should be created in the same namespace as the NGINX Gateway Fabric control plane (default: nginx-gateway). The control plane will copy these Secrets into any namespaces where NGINX gets deployed. If you need to update the Secrets, update the originals that you created in the control plane namespace, and the control plane will propagate those updates to all duplicated Secrets. {{< /call-out >}}
 
 ## Set up the JWT
 
@@ -71,7 +71,7 @@ Specify the Secret name in the `--usage-report-secret` command-line flag on the 
 
 {{</tabs>}}
 
-{{< note >}} If you are reporting to the default licensing endpoint, then you can now proceed with [installing NGINX Gateway Fabric]({{< ref "/ngf/install/" >}}). Otherwise, follow the steps below to configure reporting to NGINX Instance Manager. {{< /note >}}
+{{< call-out "note" >}} If you are reporting to the default licensing endpoint, then you can now proceed with [installing NGINX Gateway Fabric]({{< ref "/ngf/install/" >}}). Otherwise, follow the steps below to configure reporting to NGINX Instance Manager. {{< /call-out >}}
 
 ### Reporting to NGINX Instance Manager {#nim}
 
@@ -129,7 +129,7 @@ Specify the CA Secret name in the `--usage-report-ca-secret` command-line flag o
 
 <br>
 
-{{< note >}} Once these Secrets are created and configuration options are set, you can now [install NGINX Gateway Fabric]({{< ref "/ngf/install/" >}}). {{< /note >}}
+{{< call-out "note" >}} Once these Secrets are created and configuration options are set, you can now [install NGINX Gateway Fabric]({{< ref "/ngf/install/" >}}). {{< /call-out >}}
 
 ## Installation flags to configure usage reporting {#flags}
 

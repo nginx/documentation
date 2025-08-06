@@ -70,10 +70,10 @@ are interchangeable as long as Unit version stays the same,
 so you can use a shortcut to replicate a Unit instance. Also, this works with the
 Docker [images]({{< relref "/unit/howto/docker.md" >}}).
 
-{{< warning >}}
+{{< call-out "warning" >}}
 Unit's state can change its structure between versions
 and must not be edited by external means.
-{{< /warning >}}
+{{< /call-out >}}
 
 On the machine where the *reference* Unit instance runs,
 find out where the state is stored:
@@ -102,11 +102,11 @@ Stop both Unit instances, for example, running the following command as root:
 systemctl stop unit
 ```
 
-{{< note >}}
+{{< call-out "note" >}}
 Stop and start commands may differ if Unit was installed from a
 [non-official]({{<relref "/unit/installation.md#installation-community-repos">}})
 repo or built from [source]({{<relref "/unit/installation.md#source">}}).
-{{< /note >}}
+{{< /call-out >}}
 
 Copy the reference state directory to the target state directory by arbitrary means;
 make sure to include subdirectories and hidden files.
@@ -151,9 +151,9 @@ port of the instance's
 
 ## Quick start {#configuration-quickstart}
 
-{{< note >}}
+{{< call-out "note" >}}
 Run the `curl` commands in this section as root.
-{{< /note >}}
+{{< /call-out >}}
 
 For a brief intro, we configure Unit to serve a static file.
 Suppose you saved this as **/www/data/index.html**:
@@ -250,11 +250,11 @@ members or indexes of its
 [JSON array](https://datatracker.ietf.org/doc/html/rfc8259#section-5)
 elements.
 
-{{< note >}}
+{{< call-out "note" >}}
 If you often configure Unit manually, JSON command-line tools such as
 [jq](https://stedolan.github.io/jq/) and [jo](https://jpmens.net/2016/03/05/a-shell-command-to-create-json-jo/) may
 come in handy.
-{{< /note >}}
+{{< /call-out >}}
 
 The API supports the following HTTP methods:
 

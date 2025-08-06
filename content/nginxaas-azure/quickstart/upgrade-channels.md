@@ -19,8 +19,8 @@ Maintaining the latest version NGINX Plus, operating system (OS), and other soft
 | stable      | A deployment running on this channel will receive updates on NGINX Plus and its dependencies at a slower rate than the **Preview** channel. We recommend using this setting for production deployments where you might want stable features instead of the latest ones. This is the **default channel** if you do not specify one for your deployment. |
 {{</bootstrap-table>}}
 
-{{<note>}} All channels will receive continuous updates related to OS patches, and security fixes.
-{{</note>}}
+{{< call-out "note" >}} All channels will receive continuous updates related to OS patches, and security fixes.
+{{< /call-out >}}
 
 ## Availability of new features
 

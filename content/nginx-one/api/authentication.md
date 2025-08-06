@@ -20,9 +20,9 @@ Before you begin, make sure you have either an API Token or API Certificate for 
 
 You can authenticate API requests in two ways: using an API Token or an API Certificate. Below are examples of how to do this with curl, but you can also use other tools like Postman.
 
-{{<see-also>}}
+{{< call-out "note" >}}
 For definitions of terms such as _'tenant'_ and _'namespace'_ used in the following examples, refer to the [NGINX One Glossary]({{<ref "/nginx-one/glossary.md" >}}).
-{{</see-also>}}
+{{< /call-out>}}
 
 <br>
 

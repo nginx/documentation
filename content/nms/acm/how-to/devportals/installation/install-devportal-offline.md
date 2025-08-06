@@ -65,7 +65,7 @@ To install NGINX Plus and njs, take the following steps on the Developer Portal 
 
 5. After you copy and extract the bundle onto your target machine, take the following steps to install the packages:
 
-    {{< note >}}The bundled NGINX Plus package may conflict with installed versions of NGINX Plus. Delete the package from the bundle if you want to keep the existing version.{{< /note >}}
+    {{< call-out "note" >}}The bundled NGINX Plus package may conflict with installed versions of NGINX Plus. Delete the package from the bundle if you want to keep the existing version.{{< /call-out >}}
 
     {{<tabs name="install-acm-dataplane-dependencies">}}
     {{%tab name="CentOS, RHEL, and RPM-Based"%}}

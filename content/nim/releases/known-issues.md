@@ -9,7 +9,7 @@ weight: 200
 {{<rn-styles>}}
 This document lists and describes the known issues and possible workarounds in F5 NGINX Instance Manager. We also list the issues resolved in the latest releases.
 
-{{< tip >}}We recommend you upgrade to the latest version of NGINX Instance Manager to take advantage of new features, improvements, and bug fixes.{{< /tip >}}
+{{< call-out "tip" >}}We recommend you upgrade to the latest version of NGINX Instance Manager to take advantage of new features, improvements, and bug fixes.{{< /call-out >}}
 
 ---
 
@@ -634,7 +634,7 @@ Occasionally, when publishing an NGINX config to a NATS server, the system retur
 
 Remove the existing NATs working directory and restart the NMS Data Plane Manager (`nms-dpm`) service as root.
 
-{{<caution>}}Restarting the `nms-dpm` service is disruptive and may result in the loss of event data. You should schedule a maintenance window for restarting the service.{{</caution>}}
+{{< call-out "caution"  >}}Restarting the `nms-dpm` service is disruptive and may result in the loss of event data. You should schedule a maintenance window for restarting the service.{{< /call-out >}}
 
 ```bash
 rm -rf /var/lib/nms/streaming

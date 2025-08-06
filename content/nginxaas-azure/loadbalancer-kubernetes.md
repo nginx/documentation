@@ -69,7 +69,7 @@ The steps in this section must be completed once for each new setup. We will ins
 
 #### Create an NGINXaaS data plane API key
 
-{{<note>}}
+{{< call-out "note" >}}
 The data plane API key has the following requirements:
 
 - The key should have an expiration date. The default expiration date is six months from the date of creation. The expiration date cannot be longer than two years from the date of creation.
@@ -82,7 +82,7 @@ The data plane API key has the following requirements:
 
 A good example of an API key that will satisfy the requirements is UUIDv4.
 
-{{</note>}}
+{{< /call-out >}}
 
 The data plane API key can be created using the Azure CLI or portal.
 
@@ -95,9 +95,9 @@ The data plane API key can be created using the Azure CLI or portal.
 1. Select the **Add API Key** button.
 1. Copy the value of the new API key.
 
-{{<note>}}
+{{< call-out "note" >}}
 Make sure to write down the key value in a safe location after creation, as you cannot retrieve it again. If you lose the generated value, delete the existing key and create a new one.
-{{</note>}}
+{{< /call-out >}}
 
 ##### Create an NGINXaaS data plane API key using the Azure CLI
 
@@ -211,9 +211,9 @@ You can also install the NLK controller AKS extension by navigating to [F5 NGINX
 - Select **Review + Create** to continue.
 - Azure will validate the extension settings. This page will provide a summary of the provided information. Select **Create**.
 
-{{<note>}}
+{{< call-out "note" >}}
 The NGINXaaS data plane API that NLK uses is mounted at `${dataplaneAPIEndpoint}nplus`. For example, if the data plane API endpoint is `https://mynginx-75b3bf22a555.eastus2.nginxaas.net/` then the value for `nlk.config.nginxHosts` should be `https://mynginx-75b3bf22a555.eastus2.nginxaas.net/nplus`.
-{{</note>}}
+{{< /call-out >}}
 
 ### Create an NGINX configuration with dynamic upstream
 
@@ -257,12 +257,12 @@ Expose a Kubernetes `Service` to route traffic to your workload.  The `Service` 
   - If the upstream is in the `http` context and named `my-service` then the name is `http-my-service`
   - If the upstream is in the `stream` context and named `jet` then the port name is `stream-jet`
 
-{{< note >}}
+{{< call-out "note" >}}
 **NGINX Ingress Controller users**: with v5.0.0 and upwards, if you wish to route traffic from your NGINXaaS deployment to your NGINX Ingress Controller service, please make the following changes to your helm chart values:
 
 - Add `"nginx.com/nginxaas": "nginxaas"` to the NGINX Ingress Controller service annotations.
 - Modify the `service.httpPort.name` or `service.httpsPort.name` values to provide the expected port name format, as above.
-{{</ note >}}
+{{< /call-out >}}
 
 The following example uses a service of type `NodePort`:
 
@@ -345,10 +345,10 @@ flowchart TB
    accDescr:A diagram showing NGINXaaS directing separate user GET requests for `/tea` and `/coffee` to respective Kubernetes-based services "TeaSvc" and "CoffeeSvc" that are running in separate Azure Kubernetes Clusters. An NLK controller in each cluster is independently updating the NGINXaaS with dynamic upstream configuration.
 ```
 
-{{<note>}}
+{{< call-out "note" >}}
 
 - Configuring multiple NLK controllers to update the same upstream isn't supported and will result in unpredictable behavior.
-{{</note>}}
+{{< /call-out >}}
 
 ### Multiple NGINXaaS deployments
 
@@ -356,10 +356,10 @@ Multiple NLK controllers can be installed in the same AKS cluster to update sepa
 
 Each NLK needs a unique helm release name and needs a unique helm value for `nlk.config.serviceAnnotationMatch`. Each NLK will only watch services that have the matching annotation.
 
-{{<note>}}
+{{< call-out "note" >}}
 
 - Consider using `helm` to install multiple NLK controllers on an AKS cluster. Installing multiple copies of the controller on the same AKS cluster is not supported via the [AKS Extension](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/f5-networks.f5-nginx-for-azure-aks-extension?tab=overview).
-{{</note>}}
+{{< /call-out >}}
 
 ## Troubleshooting
 

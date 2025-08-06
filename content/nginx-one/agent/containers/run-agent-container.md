@@ -15,9 +15,9 @@ This guide serves as a step-by-step guide to run NGINX Agent in a container. It 
 
 Before you begin this guide ensure:
 
-{{< note >}}
+{{< call-out "note" >}}
 This guide uses Docker but NGINX Agent also works with other container applications.
-{{< /note >}}
+{{< /call-out >}}
 
 - **Docker:** Ensure Docker is installed and configured on your system. [Download Docker from the official site](https://www.docker.com/products/docker-desktop/).
 - **Credentials:** Acquire any necessary authentication tokens or credentials required for the NGINX Agent.

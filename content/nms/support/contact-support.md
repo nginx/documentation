@@ -12,13 +12,13 @@ type:
 
 F5 NGINX Management Suite adheres to the support policy detailed in the following knowledge base article: [K000140156](https://my.f5.com/manage/s/article/K000140156).
 
-{{<important>}}
+{{< call-out "important" >}}
 Support licenses for Instance Manager **do not include** support for the NGINX instances that are being managed.
 
 Community support is available for NGINX Open Source instances at the [NGINX mailing list](http://mailman.nginx.org/mailman/listinfo).
 If you need support for NGINX Plus or any of the [prebuilt NGINX Open Source packages](https://nginx.org/en/linux_packages.html), you will need to [purchase an NGINX license](https://www.nginx.com/purchase-nginx/).
 
-{{</important>}}
+{{< /call-out >}}
 
 ---
 

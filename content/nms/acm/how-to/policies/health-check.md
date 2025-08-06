@@ -76,7 +76,7 @@ To complete the steps in this guide, you need the following:
 
 {{%tab name="API"%}}
 
-{{<see-also>}}{{< include "acm/how-to/access-acm-api.md" >}}{{</see-also>}}
+{{< call-out "note" >}}{{< include "acm/how-to/access-acm-api.md" >}}{{< /call-out>}}
 
 To create an HTTP health check policy, send an HTTP `POST` to the Proxies endpoint.
 
@@ -228,7 +228,7 @@ To complete the steps in this guide, you need the following:
 
 {{%tab name="API"%}}
 
-{{<see-also>}}{{< include "acm/how-to/access-acm-api.md" >}}{{</see-also>}}
+{{< call-out "note" >}}{{< include "acm/how-to/access-acm-api.md" >}}{{< /call-out>}}
 
 To create a gRPC health check policy, send an HTTP `POST` to the Proxies endpoint.
 

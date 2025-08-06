@@ -80,7 +80,7 @@ Follow these steps to build the NGINX Controller Image with NGINX App Protect WA
 
    **What to expect**: The image is built and tagged with a version number, which is derived from the `VERSION` variable in the [_Makefile_]({{< ref "/nic/installation/build-nginx-ingress-controller.md#makefile-details" >}}). This version number is used for tracking and deployment purposes.
 
-{{<note>}} In the event a patch of NGINX Plus is released, make sure to rebuild your image to get the latest version. If your system is caching the Docker layers and not updating the packages, add `DOCKER_BUILD_OPTIONS="--pull --no-cache"` to the make command. {{</note>}}
+{{< call-out "note" >}} In the event a patch of NGINX Plus is released, make sure to rebuild your image to get the latest version. If your system is caching the Docker layers and not updating the packages, add `DOCKER_BUILD_OPTIONS="--pull --no-cache"` to the make command. {{< /call-out >}}
 
 ### Makefile targets {#makefile-targets}
 
@@ -97,14 +97,14 @@ Create Docker image for NGINX Ingress Controller (Alpine with NGINX Plus, NGINX 
 
 <br>
 
-{{<see-also>}} For the complete list of _Makefile_ targets and customizable variables, see the [Build NGINX Ingress Controller]({{< ref "/nic/installation/build-nginx-ingress-controller.md#makefile-details" >}}) guide. {{</see-also>}}
+{{< call-out "note" >}} For the complete list of _Makefile_ targets and customizable variables, see the [Build NGINX Ingress Controller]({{< ref "/nic/installation/build-nginx-ingress-controller.md#makefile-details" >}}) guide. {{< /call-out>}}
 
 If you intend to use [external references](/nginx-app-protect-waf/v5/configuration-guide/configuration/#external-references) in NGINX App Protect WAF policies, you may want to provide a custom CA certificate to authenticate with the hosting server.
 
 To do so, place the `*.crt` file in the build folder and uncomment the lines following this comment:
 `#Uncomment the lines below if you want to install a custom CA certificate`
 
-{{<warning>}} External references are deprecated in NGINX Ingress Controller and will not be supported in future releases. {{</warning>}}
+{{< call-out "warning" >}} External references are deprecated in NGINX Ingress Controller and will not be supported in future releases. {{< /call-out >}}
 
 ---
 
@@ -135,9 +135,9 @@ docker push <my-docker-registry>/waf-enforcer:<your-tag>
 
 ## Deploy NGINX Ingress Controller {#deploy-ingress-controller}
 
-{{< important >}} NGINX Ingress Controller with the AppProtect WAF v5 module works only with policy bundles. You need to modify the Deployment or DaemonSet file to include volumes, volume mounts and two WAF 5 docker images: `waf-config-mgr` and `waf-enforcer`.
+{{< call-out "important" >}} NGINX Ingress Controller with the AppProtect WAF v5 module works only with policy bundles. You need to modify the Deployment or DaemonSet file to include volumes, volume mounts and two WAF 5 docker images: `waf-config-mgr` and `waf-enforcer`.
 
-NGINX Ingress Controller **requires** the volume mount path to be `/etc/app_protect/bundles`. {{< /important >}}
+NGINX Ingress Controller **requires** the volume mount path to be `/etc/app_protect/bundles`. {{< /call-out >}}
 
 {{<tabs name="deploy-nic">}}
 
@@ -204,7 +204,7 @@ controller:
 ...
 ```
 
-{{< note >}}
+{{< call-out "note" >}}
 By default, `emptyDir` mounts are used.
 Bundles that are added to these kind of volume mounts will **NOT** persist across pod restarts.
 
@@ -220,7 +220,7 @@ controller:
      emptyDir: {}
 ...
 ```
-{{< /note >}}
+{{< /call-out >}}
 
 ### Configuring `readOnlyRootFilesystem`
 

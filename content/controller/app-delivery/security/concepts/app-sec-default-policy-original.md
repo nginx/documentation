@@ -34,7 +34,7 @@ The default policy for NGINX Controller App Security WAF includes these security
 | Malformed cookie | Validates that the cookie format is RFC compliant. |
 | Illegal status code | Responses in the 400–500 range -- except for `400`, `401`, `404`, `407`, `417`, `503` -- are rejected. |
 | Request size exceeds the buffer | Requests that exceed the buffer size |
-| Maximum length for URL, header, query string, cookie, and POST data | URL length: 2048<br>Header length: 4096<br>Query string length: 2048<br>Cookie length: 4096<br>Post data length: 4096<br><br>{{< note >}} The whole request length is not checked. The entire request cannot exceed the maximum buffer size of 10 MB.{{< /note >}} |
+| Maximum length for URL, header, query string, cookie, and POST data | URL length: 2048<br>Header length: 4096<br>Query string length: 2048<br>Cookie length: 4096<br>Post data length: 4096<br><br>{{< call-out "note" >}} The whole request length is not checked. The entire request cannot exceed the maximum buffer size of 10 MB.{{< /call-out >}} |
 | Disallowed file type extension | These file types are disallowed: <ul><li>bak, bat, bck, bkp, cfg, conf, config, ini, log, old, sav, save, temp, tmp</li><li>bin, cgi, cmd, com, dll, exe, msi, sys, shtm, shtml, stm</li><li>cer, crt, der, key, p12, p7b, p7c, pem, pfx</li><li>dat, eml, hta, htr, htw, ida, idc, idq, nws, pol, printer, reg, wmz</li></ul> |
 | Allowed methods | Only these HTTP methods are allowed:<ul><li>GET</li><li>HEAD</li><li>POST</li><li>PUT</li><li>PATCH</li><li>DELETE</li><li>OPTIONS</li></ul> |
 | Character/Metacharacter validation in URL and header | Metacharacters are checked in the URL and header. |
@@ -83,11 +83,11 @@ The Violation Rating is a dimension in Security Violation Events. NGINX App Prot
 - Threat campaigns
 - Malformed request: unparsable header, malformed cookie, and malformed body (JSON or XML).
 
-{{< note >}}
+{{< call-out "note" >}}
 
 With the default policy, all requests rejected by NGINX App Protect generate a Security Event in NGINX Controller. Requests with Violation Rating of `3 (Needs examination)` also generate a Security Event in NGINX Controller. All other requests do not generate a Security Event in NGINX Controller.
 
-{{< /note >}}
+{{< /call-out >}}
 
 ## Additional Information
 

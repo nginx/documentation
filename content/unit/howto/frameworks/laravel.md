@@ -26,9 +26,9 @@ To run apps based on the [Laravel](https://laravel.com) framework using Unit:
 
    {{< include "unit/howto_change_ownership.md" >}}
 
-   {{< note >}}
+   {{< call-out "note" >}}
    See the Laravel docs for further details on [directory structure](https://laravel.com/docs/structure).
-   {{< /note >}}
+   {{< /call-out >}}
 
 5. Next, [prepare]({{< relref "/unit/configuration.md#configuration-php" >}}) the Laravel configuration for
    Unit (use real values for **share** and **root**):

@@ -32,7 +32,7 @@ September 25, 2024
 
 ### Supported packages
 
-{{< important >}} Starting from this release, CentOS 7.4, Rhel 7.4 and Amazon Linux 2 support has been deprecated. {{< /important >}}
+{{< call-out "important" >}} Starting from this release, CentOS 7.4, Rhel 7.4 and Amazon Linux 2 support has been deprecated. {{< /call-out >}}
 
 #### App Protect Module for NGINX Open Source
 

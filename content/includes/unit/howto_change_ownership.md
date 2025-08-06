@@ -7,12 +7,12 @@ each one):
 ```
 
 
-{{< note >}}
+{{< call-out "note" >}}
 The **unit:unit** user-group pair is available only with
 [official packages]({{< relref "/unit/installation.md#installation-precomp-pkgs" >}})
 , Docker [images]({{< relref "/unit/installation.md#installation-docker" >}}),
 and some [third-party repos]({{< relref "/unit/installation.md#installation-community-repos" >}}). Otherwise, account names may differ; run the `ps aux | grep unitd` command to be sure.
-{{< /note >}}
+{{< /call-out >}}
 
 For further details, including permissions, see the
 [security checklist]({{< relref "/unit/howto/security.md#secutiry-apps" >}}).

@@ -70,7 +70,7 @@ The following table lists the configurable settings and their default values for
 
 {{%tab name="API"%}}
 
-{{<see-also>}}{{< include "acm/how-to/access-acm-api.md" >}}{{</see-also>}}
+{{< call-out "note" >}}{{< include "acm/how-to/access-acm-api.md" >}}{{< /call-out>}}
 
 To create an Cluster-Wide Config settings using the REST API, send an HTTP `PUT` request to the Add-Endpoint-Name-Here endpoint.
 

@@ -7,8 +7,8 @@ Assuming the JSON above was added to
    http://localhost/config/      # Path to the config section in Unit's control API
 ```
 
-{{< note >}}
+{{< call-out "note" >}}
 The [control socket]({{< relref "/unit/installation.md#configuration-socket" >}}) path may vary; run
 `unitd -h` or see
 [Startup and shutdown]({{< relref "/unit/howto/source.md#source-startup" >}}) for details.
-{{< /note >}}
+{{< /call-out >}}

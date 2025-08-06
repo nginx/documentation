@@ -4,7 +4,7 @@ nd-docs: "DOCS-1636"
 
 There are different ways of referencing OpenAPI Specification files. The configuration is similar to [External References](#external-references).
 
-{{< note >}} Any update of an OpenAPI Specification file referenced in the policy will not trigger a policy compilation. This action needs to be done actively by reloading the NGINX configuration. {{< /note >}}
+{{< call-out "note" >}} Any update of an OpenAPI Specification file referenced in the policy will not trigger a policy compilation. This action needs to be done actively by reloading the NGINX configuration. {{< /call-out >}}
 
 #### URL Reference
 
@@ -12,7 +12,7 @@ URL reference is the method of referencing an external source by providing its f
 
 Make sure to configure certificates prior to using the HTTPS protocol - see the [HTTPS References](#https-reference) under the External References section for more details.
 
-{{< note >}} You need to make sure that the server where the resource files are located is always available when you are compiling your policy. {{< /note >}}
+{{< call-out "note" >}} You need to make sure that the server where the resource files are located is always available when you are compiling your policy. {{< /call-out >}}
 
 ##### Example Configuration
 

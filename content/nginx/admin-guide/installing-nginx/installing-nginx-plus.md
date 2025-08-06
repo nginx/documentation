@@ -863,7 +863,7 @@ To install NGINX Plus offline, you will need a machine connected to the Internet
 
 ## Upgrade NGINX Plus {#upgrade}
 
-{{< note >}} Starting from [Release 24]({{< ref "nginx/releases.md#r24" >}}) (R24), NGINX Plus repositories have been separated into individual repositories based on operating system distribution and license subscription. Before upgrading from previous NGINX Plus versions, you must first reconfigure your repositories to point to the correct location. To reconfigure your repository, follow the installation instructions above for your operating system. {{< /note >}}
+{{< call-out "note" >}} Starting from [Release 24]({{< ref "nginx/releases.md#r24" >}}) (R24), NGINX Plus repositories have been separated into individual repositories based on operating system distribution and license subscription. Before upgrading from previous NGINX Plus versions, you must first reconfigure your repositories to point to the correct location. To reconfigure your repository, follow the installation instructions above for your operating system. {{< /call-out >}}
 
 To upgrade your NGINX Plus installation to the newest version:
 
@@ -887,7 +887,7 @@ To upgrade your NGINX Plus installation to the newest version:
 
    {{< include "licensing-and-reporting/download-jwt-from-myf5.md" >}}
 
-   {{< note >}} Starting from [NGINX Plus Release 33]({{< ref "nginx/releases.md#r33" >}}), a JWT file is required for each NGINX Plus instance. For more information, see [About Subscription Licenses]({{< ref "/solutions/about-subscription-licenses.md">}}). {{< /note >}}
+   {{< call-out "note" >}} Starting from [NGINX Plus Release 33]({{< ref "nginx/releases.md#r33" >}}), a JWT file is required for each NGINX Plus instance. For more information, see [About Subscription Licenses]({{< ref "/solutions/about-subscription-licenses.md">}}). {{< /call-out >}}
 
 1. Create the **/etc/nginx/** directory for Linux or the **/usr/local/etc/nginx** directory for FreeBSD:
 
@@ -987,7 +987,7 @@ The upgrade procedure depends on how the module was supplied and installed.
 
 - [NGINX‑authored](#nginx-authored-dynamic-modules) and [NGINX‑certified community](#nginx-certified-community-dynamic-modules) dynamic modules are updated automatically together with NGINX Plus.
 
-  {{< note >}} For FreeBSD, each NGINX‑authored and NGINX‑certified module must be updated separately using FreeBSD package management tool. {{< /note >}}
+  {{< call-out "note" >}} For FreeBSD, each NGINX‑authored and NGINX‑certified module must be updated separately using FreeBSD package management tool. {{< /call-out >}}
 
 - [Community](#community-dynamic-modules) dynamic modules must be recompiled against the corresponding NGINX Open Source  version. See [Installing NGINX Community Modules](#install_modules_oss).
 

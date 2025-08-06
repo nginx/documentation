@@ -10,4 +10,4 @@ Download the SSL certificate, private key, and the JWT license file associated w
 - Download the **nginx-repo.crt** and **nginx-repo.key** from the subscription page.
 - Download the **JSON Web Token** (JWT) from the subscription page.
 
-{{< note >}} Starting from [NGINX Plus Release 33]({{< ref "nginx/releases.md#r33" >}}), a JWT file is required for each NGINX Plus instance. For more information, see [About Subscription Licenses]({{< ref "/solutions/about-subscription-licenses.md">}}). {{< /note >}}
+{{< call-out "note" >}} Starting from [NGINX Plus Release 33]({{< ref "nginx/releases.md#r33" >}}), a JWT file is required for each NGINX Plus instance. For more information, see [About Subscription Licenses]({{< ref "/solutions/about-subscription-licenses.md">}}). {{< /call-out >}}

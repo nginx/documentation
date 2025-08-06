@@ -170,7 +170,7 @@ docker push <my-docker-registry>/nginx-plus/base:<version-tag>
 
 ### Run the NGINX Plus container
 
-{{< note >}} Starting from [NGINX Plus Release 33]({{< ref "nginx/releases.md#r33" >}}), the JWT file is required for each NGINX Plus instance. For more information, see [About Subscription Licenses]({{< ref "/solutions/about-subscription-licenses.md">}}). {{< /note >}}
+{{< call-out "note" >}} Starting from [NGINX Plus Release 33]({{< ref "nginx/releases.md#r33" >}}), the JWT file is required for each NGINX Plus instance. For more information, see [About Subscription Licenses]({{< ref "/solutions/about-subscription-licenses.md">}}). {{< /call-out >}}
 
 To start the Docker container with NGINX Plus, you will need to pass your JWT license file named `license.jwt` as the `NGINX_LICENSE_JWT` environment variable. If the license file needs to be located in a non-default directory, specify its full path using the `NGINX_LICENSE_PATH` variable (default path: `/etc/nginx/license.jwt`).
 

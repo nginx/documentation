@@ -117,11 +117,11 @@ Example:
 }
 ```
 
-{{< note >}}
+{{< call-out "note" >}}
 For details of instance connection management,
 refer to
 [Configuration Settings]({{< relref "/unit/configuration.md#configuration-stngs" >}}).
-{{< /note >}}
+{{< /call-out >}}
 
 ---
 
@@ -207,8 +207,8 @@ Example:
 }
 ```
 
-{{< note >}}
+{{< call-out "note" >}}
 For details of per-app process management,
 refer to
 [Process management]({{< relref "/unit/configuration.md#configuration-proc-mgmt" >}}).
-{{< /note >}}
+{{< /call-out >}}

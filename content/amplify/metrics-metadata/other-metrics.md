@@ -6,7 +6,7 @@ toc: true
 nd-docs: DOCS-975
 ---
 
-{{< note >}}Monitoring PHP-FPM and MySQL metrics is only supported by F5 NGINX Amplify Agent.{{< /note >}}
+{{< call-out "note" >}}Monitoring PHP-FPM and MySQL metrics is only supported by F5 NGINX Amplify Agent.{{< /call-out >}}
 
 ## PHP-FPM metrics
 
@@ -24,7 +24,7 @@ To start monitoring PHP-FPM, follow the steps below:
    service php7.0-fpm restart
    ```
 
-2. {{< important >}} Check that NGINX, NGINX Amplify Agent, and the PHP-FPM workers are all run under the same user ID (e.g. `www-data`). You may have to change the used ID for the nginx workers, fix the nginx directories permissions, and then restart NGINX Amplify Agent too. If there are multiple PHP-FPM pools configured with different user IDs, make sure NGINX Amplify Agent's user ID is included in the group IDs of the PHP-FPM workers. This is required in order for NGINX Amplify Agent to access the PHP-FPM pool socket when querying for metrics.{{< /important >}}
+2. {{< call-out "important" >}} Check that NGINX, NGINX Amplify Agent, and the PHP-FPM workers are all run under the same user ID (e.g. `www-data`). You may have to change the used ID for the nginx workers, fix the nginx directories permissions, and then restart NGINX Amplify Agent too. If there are multiple PHP-FPM pools configured with different user IDs, make sure NGINX Amplify Agent's user ID is included in the group IDs of the PHP-FPM workers. This is required in order for NGINX Amplify Agent to access the PHP-FPM pool socket when querying for metrics.{{< /call-out >}}
 
 3. Confirm that the listen socket for the PHP-FPM pool you want to monitor and for which you enabled `pm.status_path`, is correctly configured with `listen.owner` and `listen.group`. Look for the following directives inside the pool configuration file.
 
@@ -219,7 +219,7 @@ To start monitoring MySQL, follow the instructions below.
     353 rows in set (0.01 sec)
     ```
 
-   {{< note >}} NGINX Amplify Agent doesn't use *mysql(1)* for metric collection, however it implements a similar query mechanism via a Python module.{{< /note >}}
+   {{< call-out "note" >}} NGINX Amplify Agent doesn't use *mysql(1)* for metric collection, however it implements a similar query mechanism via a Python module.{{< /call-out >}}
 
 3. [Update]({{< ref "/amplify/nginx-amplify-agent/install/updating-amplify-agent.md" >}}) NGINX Amplify Agent to the most recent version.
 

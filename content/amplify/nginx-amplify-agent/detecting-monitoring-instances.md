@@ -16,4 +16,4 @@ A separate instance of NGINX, as seen by NGINX Amplify Agent, would be the follo
   * A unique master process and its workers, started with an **absolute path** to a distinct NGINX binary
   * A master process running with a default config path; or with a custom path set in the command-line parameters
 
-{{< note >}}NGINX Amplify Agent will try to detect and monitor all unique NGINX instances currently running on a host. Separate sets of metrics and metadata are collected for each unique NGINX instance. {{< /note >}}
+{{< call-out "note" >}}NGINX Amplify Agent will try to detect and monitor all unique NGINX instances currently running on a host. Separate sets of metrics and metadata are collected for each unique NGINX instance. {{< /call-out >}}

@@ -19,9 +19,9 @@ The F5 NGINX App Protect WAF v5 Compiler is a tool that compiles security polici
 
 ## Building Compiler Image
 
-{{< important >}}
+{{< call-out "important" >}}
 To ensure you are using the latest security updates, it is recommended to regularly rebuild your compiler image with the latest signature packages and recompile security policies.
-{{< /important >}}
+{{< /call-out >}}
 
 1. Download Certificates
 
@@ -73,7 +73,7 @@ To ensure you are using the latest security updates, it is recommended to regula
     # non-root default user (UID 101)
     USER nginx
     ```
-{{< note >}}The user can upgrade or downgrade one of the Signatures by specifying a specific version, for example: app-protect-attack-signatures-2020.04.30.{{< /note >}}
+{{< call-out "note" >}}The user can upgrade or downgrade one of the Signatures by specifying a specific version, for example: app-protect-attack-signatures-2020.04.30.{{< /call-out >}}
 
 You can use the Docker registry API to list the available image tags.
 Replace `<path-to-your-nginx-repo.key>` with the location of your client key and `<path-to-your-nginx-repo.crt>` with the location of your client certificate. The optional `jq` command is used to format the JSON output for easier reading and requires the [jq](https://jqlang.github.io/jq/) JSON processor to be installed.
@@ -104,9 +104,9 @@ curl -s https://private-registry.nginx.com/v2/nap/waf-compiler/tags/list --key <
     -t waf-compiler-<version-tag>:custom .
     ```
 
-{{< note >}}
+{{< call-out "note" >}}
 Never upload your NGINX App Protect WAF images to a public container registry such as Docker Hub. Doing so violates your license agreement.
-{{< /note >}}
+{{< /call-out >}}
 
 ## Usage
 
@@ -118,11 +118,11 @@ Make sure that input files are accessible to UID 101.
 
 To compile a security policy from a JSON file and create a policy bundle, execute the following command:
 
-{{< warning >}}
+{{< call-out "warning" >}}
 
 Ensure that the output directory is writable, otherwise you may encounter a permission denied error.
 
-{{< /warning >}}
+{{< /call-out >}}
 
 ```shell
 docker run --rm \
@@ -259,9 +259,9 @@ The Policy Converter tool is used for converting XML formatted ASM and Advanced 
 
 Elements in the XML policy that are not supported in the NGINX App Protect WAF environment will generate warnings. Note that any configuration that is invalid or irrelevant to the NGINX App Protect WAF environment is removed from the exported declarative policy.
 
-{{< note >}}
+{{< call-out "note" >}}
 All NGINX App Protect WAF versions support converting XML policies exported from BIG-IP regardless of any version. If the source XML policy has not changed from when it was in use on BIG-IP, then it's always a good idea to convert it with the Policy Converter tool included with the version of NGINX App Protect WAF you are using. This way, as more configuration items from BIG-IP become supported in NGINX App Protect WAF, they will be included in the converted policy. A policy that was converted will work on the same or greater NGINX App Protect WAF version it originally came from.
-{{< /note >}}
+{{< /call-out >}}
 
 The Policy Converter tool has options to include the following elements in a full export:
 

@@ -56,7 +56,7 @@ Together, these provide an HA, all-active NGINX and NGINX Plus solution.
 
 AWS NLB uses a flow hash routing algorithm to balance traffic and handle Layer 4 TCP connections. AWS NLB listens for incoming connections as defined by its listeners. Each listener forwards a new connection to one of the available instances in a target group. AWS NLB uses the flow hash routing algorithm to chose an available instance.
 
-{{< note >}} By default, an AWS NLB uses a DNS name with a dynamic IP address. As an option, you can attach an Elastic IP address to the AWS NLB. This ensures that the AWS NLB is always reachable at the same IP address.  {{< /note >}}
+{{< call-out "note" >}} By default, an AWS NLB uses a DNS name with a dynamic IP address. As an option, you can attach an Elastic IP address to the AWS NLB. This ensures that the AWS NLB is always reachable at the same IP address.  {{< /call-out >}}
 
 These instructions assume a target group consists of two NGINX Plus load balancer instances. You can register an unlimited number of instances in the target group. Or, you can use an [AWS Auto Scaling group](https://aws.amazon.com/autoscaling/) to dynamically adjust the number of NGINX Plus instances.
 
@@ -248,7 +248,7 @@ The deployed solution in these instructions uses six EC2 instances. Two instance
 
 *Step‑by‑step* instructions for creating EC2 instances and installing NGINX Open Source and NGINX Plus are available. Refer to our deployment guide, [Creating Amazon EC2 Instances for NGINX Open Source and NGINX Plus]({{< ref "/nginx/deployment-guides/amazon-web-services/ec2-instances-for-nginx.md" >}}).
 
-{{< note >}} When installing NGINX Open Source or NGINX Plus, you connect to each instance over SSH. To save time, leave the SSH connection to each instance open after installing the software. This way, you can reuse the connection when configuring the instance. {{< /note >}}
+{{< call-out "note" >}} When installing NGINX Open Source or NGINX Plus, you connect to each instance over SSH. To save time, leave the SSH connection to each instance open after installing the software. This way, you can reuse the connection when configuring the instance. {{< /call-out >}}
 
 Assign the following names to the instances, then install the indicated NGINX software. The screenshot below shows the resulting **Instances** table.
 
@@ -303,7 +303,7 @@ You can automate set up of the six instances described in these instructions. Au
 
 These scripts also create a new set of networking rules and security group settings. These rules and settings help avoid conflicts with any pre‑existing network settings. After you run the scripts, continue to the [instructions for creating an AWS NLB](#nlb-configure). No further setup is required.
 
-{{< note >}} These scripts also create a new VPC. They do not use the default VPC described in the [instructions in our Deployment Guide]({{< ref "/nginx/deployment-guides/amazon-web-services/ec2-instances-for-nginx.md" >}}).  {{< /note >}}
+{{< call-out "note" >}} These scripts also create a new VPC. They do not use the default VPC described in the [instructions in our Deployment Guide]({{< ref "/nginx/deployment-guides/amazon-web-services/ec2-instances-for-nginx.md" >}}).  {{< /call-out >}}
 
 To run the scripts, follow these instructions:
 

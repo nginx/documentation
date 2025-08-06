@@ -63,12 +63,12 @@ Take the steps in this section if you would like to deny or allow access to your
     {{%/tab%}}
 {{</tabs>}}
 
-{{< note >}}
+{{< call-out "note" >}}
 
 - If you only set an allow list, then the deny list will default to deny all and vice versa.
 - If IP addresses are not explicitly allowed they will be denied. To allow IP addresses as default, include the `*` symbol in the allow list.
 - The most specific rule applied will be used to allow or deny traffic. For example, IP addresses take priority over CIDR blocks. Smaller CIDR blocks take priority over larger ones.
-{{< /note >}}
+{{< /call-out >}}
 
 
 
@@ -111,11 +111,11 @@ Specific consumer client IDs or token claims can be denied or allowed access to 
 
 {{</tabs>}}
 
-{{< note >}}
+{{< call-out "note" >}}
 
 - If you only set an allow list, then the deny list will default to deny all and vice versa.
 - If values are not allowed, they will be denied by default if neither list contains a wildcard.
-  {{< /note >}}
+  {{< /call-out >}}
 
 ### Verification
 

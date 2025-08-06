@@ -14,9 +14,9 @@ This topic explains how to uninstall F5 NGINX Service Mesh using nginx-meshctl.
 
 ## Uninstall
 
-{{< important >}}
+{{< call-out "important" >}}
 OpenShift users: Before uninstalling, read through the [OpenShift considerations]({{< ref "/mesh/get-started/platform-setup/openshift.md#remove" >}}) guide to make sure you understand the implications.
-{{< /important >}}
+{{< /call-out >}}
 
 Uninstalling does the following:
 
@@ -54,9 +54,9 @@ For example:
 kubectl rollout restart deployment/frontend
 ```
 
-{{< note >}}
+{{< call-out "note" >}}
 If you want to redeploy NGINX Service Mesh after removing it, you need to re-roll the resources after the new NGINX Service Mesh is installed. Sidecars from an earlier NGINX Service Mesh installation won't work with a new installation.
-{{< /note >}}
+{{< /call-out >}}
 
 ## Troubleshooting
 
