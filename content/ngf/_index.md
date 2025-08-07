@@ -69,10 +69,10 @@ For more information, see the [Gateway architecture]({{< ref "/ngf/overview/gate
       Check which versions of NGINX Gateway Fabric match the API.
     {{</card>}}
     {{<card title="Routing traffic to applications" titleUrl="/nginx-gateway-fabric/traffic-management/basic-routing/">}}
-      Create simple rules for directing network traffic.
+      Create simple rules for directing network traffic with HTTPRoute resources.
     {{</card>}}
-    {{<card title="Secure backend traffic" titleUrl="/nginx-gateway-fabric/traffic-security/secure-backend/">}}
-      Encrypt traffic between pods using a BackendTLSPolicy.
+    {{<card title="Secure traffic using Let's Encrypt and cert-manager" titleUrl="/nginx-gateway-fabric/traffic-security/integrate-cert-manager/">}}
+      Implement HTTPS with Let's Encrypt to secure client-server communication.
     {{</card>}}
 {{</card-section>}}
 
