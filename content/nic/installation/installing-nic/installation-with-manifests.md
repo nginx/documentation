@@ -108,7 +108,7 @@ kubectl apply -f https://raw.githubusercontent.com/nginx/kubernetes-ingress/v{{<
 
 **NGINX App Protect WAF**
 
-{{<  note >}} This step can be skipped if you are using App Protect WAF module with policy bundles. {{<  /note >}}
+{{< call-out "note" >}} This step can be skipped if you are using App Protect WAF module with policy bundles. {{< /call-out >}}
 
 ```shell
 kubectl apply -f config/crd/bases/appprotect.f5.com_aplogconfs.yaml
