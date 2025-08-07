@@ -14,9 +14,9 @@ type:
 This topic explains how to use the [NGINX Controller REST API]({{< ref "/controller/api/_index.md" >}})
  to view traffic metrics.
 
-{{< see-also >}}
+{{< call-out "note" >}}
 Refer to [Overview: Traffic Metrics]({{< ref "/controller/analytics/metrics/overview-traffic-metrics.md" >}}) to learn how NGINX Controller collects, aggregates, and reports traffic metrics.
-{{< /see-also >}}
+{{< /call-out>}}
 
 ## Before You Begin
 
@@ -30,9 +30,9 @@ The following resources should have the status `Configured`:
 
 Initially, the graphs will display `No data yet`, and querying the Metrics API for traffic metrics will result in an empty response. As soon as the Component starts to receive traffic, the traffic-related data will be displayed in the graphs and the [Dashboards]({{< ref "/controller/analytics/dashboards/overview-dashboard.md" >}}) in the NGINX Controller user interface and will be returned in API responses.
 
-{{< note >}}
+{{< call-out "note" >}}
 If traffic stops flowing to a resource (for example, an Application or Component), then no traffic metrics will be available for the resource.
-{{< /note >}}
+{{< /call-out >}}
 
 ## View Traffic Metrics Using the REST API
 
@@ -54,9 +54,9 @@ If traffic stops flowing to a resource (for example, an Application or Component
     curl -X GET --cookie "session=<session cookie>" --url "{Controller-FQDN}/api/v1/analytics/catalogs/dimensions"
     ```
 
-{{< see-also >}}
+{{< call-out "note" >}}
 Refer to the [Catalogs Reference]({{< ref "/controller/analytics/catalogs/_index.md" >}}) for information about all of the dimensions and metrics collected by NGINX Controller.
-{{< /see-also >}}
+{{< /call-out>}}
 
 ## Example REST API Queries for Traffic Metrics
 
@@ -82,9 +82,9 @@ curl -X GET --cookie "session=<session cookie>" --url "{Controller-FQDN}/api/v1/
 
 ### Example 3
 
-{{< important >}}
+{{< call-out "important" >}}
 Because traffic metrics are pre-aggregated, using AVG aggregation with these metrics isn't recommended.
-{{< /important >}}
+{{< /call-out >}}
 
 Imagine you have one application configured with one URI (recorded in the `http.uri` dimension of each traffic-related metric). In the last 30 seconds, a user queried that URI 5 times. The `client.request.latency` values for each request were: 1 ms, 2 ms, 3 ms, 4 ms, 5 ms.
 

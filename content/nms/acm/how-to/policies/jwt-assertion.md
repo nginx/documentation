@@ -100,8 +100,8 @@ Send a `POST` request to add the OAuth2 JWT Assertion policy to the API Proxy.
 {{</bootstrap-table>}}
 
 
-{{< warning >}} Local JSON Web Key usage with the policy configuration value `jwksKeys[]` is recommended for test/debugging environments only. For production environments, `jwksURI` should be used for remote JSON Web Key retrieval. {{< /warning >}}
-{{< note >}} While all request body configuration values are presented in the request body structure example below, not all configuration values are compatible. See the configuration value description table for further information. {{< /note >}}
+{{< call-out "warning" >}} Local JSON Web Key usage with the policy configuration value `jwksKeys[]` is recommended for test/debugging environments only. For production environments, `jwksURI` should be used for remote JSON Web Key retrieval. {{< /call-out >}}
+{{< call-out "note" >}} While all request body configuration values are presented in the request body structure example below, not all configuration values are compatible. See the configuration value description table for further information. {{< /call-out >}}
 
 ```json
 {

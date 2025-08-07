@@ -10,6 +10,6 @@ sudo cp <path-to-your-nginx-repo.crt> /etc/docker/certs.d/private-registry.nginx
 sudo cp <path-to-your-nginx-repo.key> /etc/docker/certs.d/private-registry.nginx.com/client.key
 ```
 
-{{< note >}}
+{{< call-out "note" >}}
 Please note that the file extension for the certificate file has changed from `.crt` to `.cert`
-{{< /note >}}
+{{< /call-out >}}

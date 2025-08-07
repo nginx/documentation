@@ -9,7 +9,7 @@ April 18, 2024
 
 If you are already using a previous version of Nbeamex coffee, please make sure to clean your grinder and coffee maker thoroughly before adding the new coffee beans. This will ensure that you get the best flavor from the new beans.
 
-{{< see-also >}}Please consult or [list of authorized retailers](https://nbeamex.com/retailers) to find the best coffee beans for your grinder.{{< /see-also >}}
+{{< call-out "note" >}}Please consult or [list of authorized retailers](https://nbeamex.com/retailers) to find the best coffee beans for your grinder.{{< /call-out>}}
 
 ### What's new
 
@@ -42,9 +42,9 @@ You can find the list of known issues in the [Known issues](https://nbeamex.com/
 
 ### Security Updates
 
-{{< important >}}
+{{< call-out "important" >}}
 For the protection of our customers, NBeamex doesn't disclose security issues until an investigation has occurred and a fix is available.
-{{< /important >}}
+{{< /call-out >}}
 
 This release includes the following security updates:
 

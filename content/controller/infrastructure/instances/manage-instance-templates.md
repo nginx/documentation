@@ -31,11 +31,11 @@ Take the following steps to create an Instance Template:
 1. Specify whether a public IP address should be assigned to the instance.
 1. Select **Submit**.
 
-{{< note >}}
+{{< call-out "note" >}}
 
 Enabling WAF via the App Security add-on is not supported when deploying Instances with an Instance Template.
 
-{{< /note >}}
+{{< /call-out >}}
 
 ## View or Delete an Instance Template
 

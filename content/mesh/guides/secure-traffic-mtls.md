@@ -12,9 +12,9 @@ type:
 
 TLS authentication is ubiquitous. Because of the baseline level of security TLS provides the client when connecting to an unknown host, and the low barrier to entry created by the advent of services like Let's Encrypt, TLS has become table stakes for any moderately reputable website. In a microservices, multi-tenant Kubernetes environment, it is no longer sufficient for a client to authenticate a server's signature. Clients may be compromised, and in a tightly controlled environment such as a service mesh, it is paramount that clients get vetted to ensure they should be making requests to any particular server. F5 NGINX Service Mesh does this authentication through mTLS, and provides the ability to define [Access Control policies]( {{< ref "/mesh/guides/smi-traffic-policies.md#access-control" >}}) for the additional authorization piece needed to properly grant access to an incoming request from a given client. This document details the steps required to enable mTLS in your cluster using NGINX Service Mesh.
 
-{{< important >}}
+{{< call-out "important" >}}
 NGINX Service Mesh does not support mTLS communication with UDP at this time. UDP datagrams are currently proxied over plaintext.
-{{< /important >}}
+{{< /call-out >}}
 
 Within the mTLS umbrella, NGINX Service Mesh allows for some level of configurability. This allows the flexibility to better support testing, development, and production environments. The options available are:
 
@@ -28,9 +28,9 @@ Within the mTLS umbrella, NGINX Service Mesh allows for some level of configurab
 
   If you need to route traffic to a non-meshed service in a `strict` environment, see our guide on [using the NGINX Ingress Controller for egress traffic]( {{< ref "/mesh/tutorials/kic/egress-walkthrough.md" >}} ). This can be useful when migrating legacy applications. Also, see [Deploy with NGINX Plus Ingress Controller]( {{< ref "/mesh/tutorials/kic/deploy-with-kic.md" >}}) for information on how to get external traffic routed securely to resources managed by NGINX Service Mesh.
 
-  {{< important >}}
+  {{< call-out "important" >}}
 Due to how tracing is set up within NGINX Service Mesh, mTLS `strict` mode does not support tracing originating from the application itself. Each mesh sidecar automatically logs request information and aggregates that information in the configured tracing application. See [Monitoring and Tracing]( {{< ref "/mesh/guides/monitoring-and-tracing.md" >}} ) for more information on how tracing is set up within NGINX Service Mesh.
-  {{< /important >}}
+  {{< /call-out >}}
 
 All Kubernetes Resources that use the NGINX Service Mesh sidecar proxy inherit their mTLS settings from the global configuration.
 You can override the global setting for individual Resources if needed. Refer to [Change the mTLS Settings for a Resource](#change-the-mtls-setting-for-a-resource) for instructions.
@@ -41,9 +41,9 @@ You can override the global setting for individual Resources if needed. Refer to
 
 When deploying NGINX Service Mesh with mTLS enabled, you can opt to use `permissive` or `strict` mode. The default setting for mTLS is `permissive`.
 
-{{< caution >}}
+{{< call-out "caution"  >}}
 Using permissive mode is not recommended for production deployments.
-{{< /caution >}}
+{{< /call-out >}}
 
 To enable mTLS, specify the `--mtls-mode` flag with the desired setting when deploying NGINX Service Mesh. For example:
 
@@ -85,9 +85,9 @@ In order to use a proper PKI, you must first choose one of the upstream authorit
         certificate_authority_arn: "arn:aws:acm-pca::123456789012:certificate-authority/test"
     ```
 
-  {{< important >}}
+  {{< call-out "important" >}}
   This configuration assumes that the SPIRE server has access to your certificate authority in ACM PCA. See below for details on how to configure access.
-  {{< /important >}}
+  {{< /call-out >}}
 
     In order to use the `aws_pca` plugin, you need to give the SPIRE server access to your ACM PCA certificate authority.
 
@@ -97,9 +97,9 @@ In order to use a proper PKI, you must first choose one of the upstream authorit
   - Attach the IAM role to your EC2 instances where NGINX Service Mesh is running.
   - Tell SPIRE to assume the IAM role by specifying the role ARN in the `assume_role_arn` field in the `aws_pca` config file.
 
-  {{< note >}}
+  {{< call-out "note" >}}
   The SPIRE server will need permission to assume this IAM role. Either attach an IAM role to the EC2 instance with the capability to assume the ACM PCA IAM role, or provide your AWS credentials in the `aws_pca` config file.
-  {{< /note >}}
+  {{< /call-out >}}
 
 - [awssecret](https://github.com/spiffe/spire/blob/v1.0.0/doc/plugin_server_upstreamauthority_awssecret.md): Loads CA credentials from AWS SecretsManager.
   - Template: {{< fa "download" >}} {{< link "/examples/upstream-ca/awssecret.yaml" "awssecret.yaml" >}}
@@ -115,9 +115,9 @@ In order to use a proper PKI, you must first choose one of the upstream authorit
         key_file_arn: "arn:aws:acm-pca::123456789012:certificate-authority/test-key"
     ```
 
-  {{< important >}}
+  {{< call-out "important" >}}
   AWS credentials may be necessary depending on your situation. View the [SPIRE guide](https://github.com/spiffe/spire/blob/v1.0.0/doc/plugin_server_upstreamauthority_awssecret.md).
-  {{< /important >}}
+  {{< /call-out >}}
 
 - [vault](https://github.com/spiffe/spire/blob/v0.12.3/doc/plugin_server_upstreamauthority_vault.md): Uses Vault PKI Engine to manage certificates.
   - Template: {{< fa "download" >}} {{< link "/examples/upstream-ca/vault.yaml" "vault.yaml" >}}
@@ -180,9 +180,9 @@ SPIRE maintains a set of keys to sign certificates. NGINX Service Mesh supports 
 
 - `disk` (default): Signing keys are kept on disk and recoverable in the case of a SPIRE server restart, but keys are vulnerable due to being kept on disk.
 
-  {{< note >}}
+  {{< call-out "note" >}}
   The `disk` key manager plugin only maintains the integrity of the SPIRE CA if persistent storage is being used. For most environments, persistent storage will be deployed by default. See [Persistent Storage]( {{< ref "/mesh/get-started/platform-setup/persistent-storage.md" >}} ) setup page for more information on configuring persistent storage in your environment.
-  {{< /note >}}
+  {{< /call-out >}}
 
 - `memory`: Maintains the set of signing keys in memory and out of reach from bad actors should they gain access to your SPIRE server, but keys are lost on SPIRE server restart.
 
@@ -196,9 +196,9 @@ NGINX Service Mesh provides you the ability to modify the global mTLS setting on
 
 When configuring mTLS for resources, if your global mTLS mode is `strict`, you will not be able to modify the mode on a per resource basis. The reason for this is that we want to push users towards the most secure deployment possible when evaluating mTLS `strict` mode and production. Also if an admin configures `strict` mTLS mode globally, it will prevent the Application Developer persona from modifying NGINX Service Mesh's security settings on an ad hoc basis and potentially introducing security holes. We do provide the ability to communicate with non-meshed services using the [NGINX Ingress Controller for egress traffic]( {{< ref "/mesh/tutorials/kic/egress-walkthrough.md" >}} ). If not all of your application components are ready for `strict` mode, we encourage the use of `permissive` mode and a non-production environment.
 
-{{< important >}}
+{{< call-out "important" >}}
 If the global mTLS value is set to `strict`, then the annotation value will be ignored.
-{{< /important >}}
+{{< /call-out >}}
 
 To override the global mTLS setting for a specific resource, add an annotation to the resource's PodTemplateSpec. For example:
 
@@ -220,13 +220,13 @@ To disable mTLS for a specific resource, add the following annotation to the res
 config.nsm.nginx.com/mtls-mode: "off"
 ```
 
-{{< note >}}
+{{< call-out "note" >}}
 Refer to [NGINX Service Mesh Annotations]( {{< ref "/mesh/get-started/install/configuration.md#pod-annotations" >}}) for more information.
-{{< /note >}}
+{{< /call-out >}}
 
-{{< see-also >}}
+{{< call-out "note" >}}
 [How to update mTLS settings after deployment.](#update-mtls-settings-after-deployment)
-{{< /see-also >}}
+{{< /call-out>}}
 
 ## Verify Deployment
 
@@ -280,11 +280,11 @@ The following mTLS settings can be changed after the mesh has been deployed:
 - svidTTL
 - caKeyType
 
-{{< important >}}
+{{< call-out "important" >}}
 When updating `caTTL`, `svidTTL`, or `caKeyType`, the SPIRE server will be restarted and brief downtime should be expected. Certificates cannot be given out during this time, so it is advised to not create any applications until the server has fully restarted. Any existing certificates will live until their expirations, but all new certificates will use the updated mTLS settings. Workload certificates can be forced to be updated by re-rolling the workload Pods.
 
 If using persistent storage--which is the default and recommended setting when deploying the mesh--, updated `caTTL` and `caKeyType` fields will not take effect until the original root CA certificate expires. The expiry time is based on the original `caTTL` value. If you want to change these values immediately, then the fastest--but most disruptive--way to do this is to remove and redeploy NGINX Service Mesh.
-{{< /important >}}
+{{< /call-out >}}
 
 See the [API Usage Guide]( {{< ref "api-usage.md#modify-the-mesh-state-by-using-the-rest-api" >}} ) for instructions on how to update the mTLS settings using the REST API.
 

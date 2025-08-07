@@ -54,9 +54,9 @@ location / {
 
 You can also configure NGINX Instance Manager to compile log profiles when you install a new version of the compiler. When publishing NGINX configs that include the [`app_protect_security_log`](https://docs.nginx.com/nginx-app-protect/logging-overview/security-log/#app_protect_security_log) directive, NGINX Instance Manager pushes the compiled log profile to your WAF instances (when precompiled publication is turned on).
 
-{{<important>}}
+{{< call-out "important" >}}
 NGINX Instance Manager and Security Monitoring both use log profiles, but their configurations are different. If you're using configuration management in NGINX Instance Manager, you must reference the log profile with the `.tgz` file extension, not `.json`.
-{{</important>}}
+{{< /call-out >}}
 
 ## Security management APIs
 

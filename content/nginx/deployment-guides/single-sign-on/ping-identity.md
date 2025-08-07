@@ -11,7 +11,7 @@ nd-docs: DOCS-1684
 
 This guide explains how to enable single sign-on (SSO) for applications being proxied by F5 NGINX Plus. The solution uses OpenID Connect as the authentication mechanism, with [Ping Identity](https://www.pingidentity.com/en.html) (PingFederate or PingOne) as the Identity Provider (IdP), and NGINX Plus as the Relying Party.
 
-{{< note >}} This guide applies to [NGINX Plus Release 34]({{< ref "nginx/releases.md#r34" >}}) and later. In earlier versions, NGINX Plus relied on an [njs-based solution](#legacy-njs-guide), which required NGINX JavaScript files, key-value stores, and advanced OpenID Connect logic. In the latest NGINX Plus version, the new [OpenID Connect module](https://nginx.org/en/docs/http/ngx_http_oidc_module.html) simplifies this process to just a few directives.{{< /note >}}
+{{< call-out "note" >}} This guide applies to [NGINX Plus Release 34]({{< ref "nginx/releases.md#r34" >}}) and later. In earlier versions, NGINX Plus relied on an [njs-based solution](#legacy-njs-guide), which required NGINX JavaScript files, key-value stores, and advanced OpenID Connect logic. In the latest NGINX Plus version, the new [OpenID Connect module](https://nginx.org/en/docs/http/ngx_http_oidc_module.html) simplifies this process to just a few directives.{{< /call-out >}}
 
 
 ## Prerequisites
@@ -25,7 +25,7 @@ This guide explains how to enable single sign-on (SSO) for applications being pr
 
 ## Configure PingFederate or PingOne for Enterprise {#ping-create}
 
-{{< note >}} These steps outline an example with the cloud offering of **PingOne**. If you are using the on‑premises PingFederate, the user interface might slightly differ. {{< /note >}}
+{{< call-out "note" >}} These steps outline an example with the cloud offering of **PingOne**. If you are using the on‑premises PingFederate, the user interface might slightly differ. {{< /call-out >}}
 
 Create a new application for NGINX Plus:
 
@@ -63,7 +63,7 @@ Create a new application for NGINX Plus:
 
 7. Assign the application to the appropriate **Groups** or **Users** who will be allowed to log in.
 
-{{< note >}} You will need the values of **Client ID**, **Client Secret**, and **Issuer** in the next steps. {{< /note >}}
+{{< call-out "note" >}} You will need the values of **Client ID**, **Client Secret**, and **Issuer** in the next steps. {{< /call-out >}}
 
 
 ## Set up NGINX Plus {#nginx-plus-setup}
@@ -191,7 +191,7 @@ With PingOne or PingFederate configured, you can enable OIDC on NGINX Plus. NGIN
 
     - any other OIDC claim using the [`$oidc_claim_ `](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#var_oidc_claim_) variable
 
-    {{< note >}} Ensure the `openid`, `profile`, `email` Scopes are enabled in Ping Identity.{{< /note >}}
+    {{< call-out "note" >}} Ensure the `openid`, `profile`, `email` Scopes are enabled in Ping Identity.{{< /call-out >}}
 
     ```nginx
     # ...

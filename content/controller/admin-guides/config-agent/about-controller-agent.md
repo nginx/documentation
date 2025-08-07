@@ -29,7 +29,7 @@ The NGINX Controller Agent attempts to detect and monitor all unique NGINX proce
 - A unique control process and its workers, started with an **absolute path** to a distinct NGINX binary.
 - A control process running with a default config path, or with a custom path set in the command-line parameters.
 
-{{< caution >}}You should not make manual changes to the `nginx.conf` file on NGINX Plus instances that are managed by NGINX Controller. Manually updating the `nginx.conf` file on managed instances may adversely affect system performance. In most cases, NGINX Controller will revert or overwrite manual updates made to `nginx.conf`.{{< /caution >}}
+{{< call-out "caution"  >}}You should not make manual changes to the `nginx.conf` file on NGINX Plus instances that are managed by NGINX Controller. Manually updating the `nginx.conf` file on managed instances may adversely affect system performance. In most cases, NGINX Controller will revert or overwrite manual updates made to `nginx.conf`.{{< /call-out >}}
 
 <br/>
 
@@ -37,7 +37,7 @@ The NGINX Controller Agent attempts to detect and monitor all unique NGINX proce
 
 NGINX Controller, the NGINX Controller Agent, and the NGINX Controller Application Security Add-on support the following distributions and architectures.
 
-{{< see-also >}}Refer to the [NGINX Plus Technical Specifications](https://docs.nginx.com/nginx/technical-specs/) guide for the distributions that NGINX Plus supports.{{< /see-also >}}
+{{< call-out "note" >}}Refer to the [NGINX Plus Technical Specifications](https://docs.nginx.com/nginx/technical-specs/) guide for the distributions that NGINX Plus supports.{{< /call-out>}}
 
 {{< bootstrap-table "table table-striped table-bordered" >}}
 
@@ -65,9 +65,9 @@ NGINX Controller, the NGINX Controller Agent, and the NGINX Controller Applicati
 
 NGINX Controller v3.1 and later use an Analytics, Visibility, and Reporting daemon (AVRD) to aggregate and report app-centric metrics, which you can use to track and check the health of your apps. To learn more about these metrics, see the [NGINX Metrics Catalog]({{< ref "/controller/analytics/catalogs/metrics.md" >}}) topic.
 
-{{< see-also >}}
+{{< call-out "note" >}}
 See the [NGINX Controller Technical Specifications]({{< ref "/controller/admin-guides/install/nginx-controller-tech-specs.md" >}}) for the complete list of system requirements for NGINX Controller and the NGINX Controller Agent.
-{{< /see-also >}}
+{{< /call-out>}}
 
 ## Supported Python Versions
 

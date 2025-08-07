@@ -47,12 +47,12 @@ To create a new policy or modify an existing policy, you can navigate to the *Ap
 
 *NGINX App Protect* policies can also contain a reference to an Open API Specification which will enable payload schema validation on the dataplane instance.
 
-{{< note >}}
+{{< call-out "note" >}}
 
 For information on how to configure an *App Protect* policy, please visit - [Configure NGINX App Protect WAF](https://docs.nginx.com/nginx-app-protect/configuration-guide/configuration/#policy-configuration-overview)
 
 To create an NGINX App Protect WAF policy to use in your Advanced Security policy, please see the [Create a Policy]({{< ref "/nim/nginx-app-protect/manage-waf-security-policies#create-security-policy" >}}) documentation.
-{{< /note >}}
+{{< /call-out >}}
 
 ---
 
@@ -74,7 +74,7 @@ There are two methods available to enable adding an *Advanced Security* policy t
 
 {{%tab name="API"%}}
 
-{{<see-also>}}{{< include "acm/how-to/access-acm-api.md" >}}{{</see-also>}}
+{{< call-out "note" >}}{{< include "acm/how-to/access-acm-api.md" >}}{{< /call-out>}}
 
 To create an *Advanced Security* policy using the REST API, send an HTTP `POST` or `PUT` request to the *Environments* endpoint.
 
@@ -141,7 +141,7 @@ To create an *Advanced Security* policy using the web interface:
 
 {{%tab name="API"%}}
 
-{{<see-also>}}{{< include "acm/how-to/access-acm-api.md" >}}{{</see-also>}}
+{{< call-out "note" >}}{{< include "acm/how-to/access-acm-api.md" >}}{{< /call-out>}}
 
 To create an *Advanced Security* policy using the REST API, send an HTTP `POST` or `PUT` request to the Proxies endpoint.
 

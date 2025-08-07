@@ -85,7 +85,7 @@ To run apps based on the [CakePHP](https://cakephp.org) framework using Unit:
    }
    ```
 
-   {{< note >}}
+   {{< call-out "note" >}}
    The difference between the **pass** targets is their usage of the
    **script** [setting]({{< relref "/unit/configuration.md#configuration-php" >}}):
 
@@ -93,7 +93,7 @@ To run apps based on the [CakePHP](https://cakephp.org) framework using Unit:
      defaults to **index.php** if the URI omits it.
    - The **index** target specifies the **script** that Unit runs
      for *any* URIs the target receives.
-   {{< /note >}}
+   {{< /call-out >}}
 
    For a detailed discussion, see [Fire It Up](https://book.cakephp.org/4/en/installation.html#fire-it-up) in CakePHP   docs.
 

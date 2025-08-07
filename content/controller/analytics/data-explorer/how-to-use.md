@@ -31,9 +31,9 @@ To get started with the Data Explorer, you need to select the context for the da
 1. Select the NGINX Controller menu icon, then select **Analytics > Explorer**.
 1. On the Data Explorer detail page, select a context area -- **Instances**, **Environments**, **Gateways**, or **Apps** -- for which you want to view data.
 
-{{< note >}}
+{{< call-out "note" >}}
 When you access the Data Explorer from other areas of the browser interface, the context is already defined. So, for example, if you select Data Explorer from within the Instances module (**Infrastructure > Instances > Data Explorer**), the data for your instances is displayed. When you switch between contexts, the metrics options, such as `system.cpu.idle` or `system.load.5`, are updated.
-{{< /note >}}
+{{< /call-out >}}
 
 &nbsp;
 
@@ -41,11 +41,11 @@ When you access the Data Explorer from other areas of the browser interface, the
 
 When you [select the context](#select-the-context) for the Data Explorer, a list of related resources is shown. If there aren't any related resources for the selected context, you'll see the message "No Data" on the Data Explorer detail page.
 
-{{< note >}}
+{{< call-out "note" >}}
 
 If you don't see a resource in the list, but you expect it to be there, check the [selected metric](#metrics) and the [selected time range](#time-range). When a resource doesn't have the data for the [selected time range](#time-range) it won't be added to the resources list.
 
-{{< /note >}}
+{{< /call-out >}}
 
 To view data for a resource, select the resource's name from the resource list.
 
@@ -75,7 +75,7 @@ In the following example image, the data for the `bytes_rcvd` metric is grouped 
 
 When a **Group By** selection is applied, the chart displays a top-10 data series. For example, let's say you want to check disk usage, so you select the metric `system.disk.total` and `file_path` as the dimension to group by. The chart would then display the top-10 mount points with the highest values. If you have more than 10 mount points, you'll see the top-10 mount points plus an 11th data series that's an aggregation of the rest of the data using the same selection criteria. In other words, you'll see a chart of the 10 most used mount points plus a chart of all the other mount points aggregated into one data series. When a **Group By** dimension is selected, and there are more than 10 dimensions, the 11th data series is named "Other."
 
-{{< note >}} When MIN is selected as the aggregation method, the top-10 series are sorted ascending, lowest-to-highest. For all of the other aggregation methods, the top-10 values are sorted descending, highest-to-lowest. {{< /note >}}
+{{< call-out "note" >}} When MIN is selected as the aggregation method, the top-10 series are sorted ascending, lowest-to-highest. For all of the other aggregation methods, the top-10 values are sorted descending, highest-to-lowest. {{< /call-out >}}
 
 &nbsp;
 
@@ -93,12 +93,12 @@ Next to the [time range](#time-range) selector, you'll find the `Compare To` lis
 
 {{< img src="/ctlr/img/data-explorer_comparison.png">}}
 
-{{< note >}}
+{{< call-out "note" >}}
 
 - When comparison is turned on for a data series, the data have the suffix "Compare" in their names.
 - If there is no data available for a comparison period, the comparison data series is not shown.
 - When a Group By dimension is applied, data comparisons are made only with the top-10 data series and not with the "Other" series, if there is one. See the [Group By](#group-by) section for a discussion of the top-10 and "Other" series.
-{{< /note >}}
+{{< /call-out >}}
 
 &nbsp;
 
@@ -108,9 +108,9 @@ On the Data Explorer details page, you can select the **Show Query** button (eye
 
 The query updates whenever the selection options change. The query doesn't include requests for comparison data.
 
-{{< see-also >}}
+{{< call-out "note" >}}
 For instructions on how to understand the Metrics API response, refer to the topic [Using the Metrics API]({{< ref "/controller/analytics/metrics/metrics-api#understanding-the-metrics-api-response" >}}).
-{{< /see-also >}}
+{{< /call-out>}}
 
 &nbsp;
 
@@ -135,12 +135,12 @@ You can see only top-10 values for each dimension, and based on the [selected ag
 - When MIN is selected as the aggregation method, the top-10 series are sorted ascending, lowest-to-highest.
 - For all of the other aggregation methods, the top-10 values are sorted descending, highest-to-lowest.
 
-{{< note >}}
+{{< call-out "note" >}}
 
 - When the selected metric changes, the list of dimensions may change as well, and some of the dimensions you recently explored may disappear from the panel.
 - This panel was added in NGINX Controller v3.18.
 
-{{< /note >}}
+{{< /call-out >}}
 
 &nbsp;
 

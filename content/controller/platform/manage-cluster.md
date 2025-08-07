@@ -14,12 +14,12 @@ type:
 
 This topic explains how to update your cluster settings and how to manage nodes for a multi-node cluster.
 
-{{< see-also >}}
+{{< call-out "note" >}}
 For instructions on how to deploy NGINX Controller as a multi-node resilient cluster, refer to the following deployment guide:
 
 - [Deploy F5 NGINX Controller as a Resilient Cluster on a Private Cloud]({{< ref "/controller/admin-guides/install/resilient-cluster-private-cloud.md" >}})
 
-{{< /see-also >}}
+{{< /call-out>}}
 
 ## Set the Floating IP
 
@@ -27,11 +27,11 @@ For instructions on how to deploy NGINX Controller as a multi-node resilient clu
 
 A floating IP -- also called a virtual IP -- is a static, routable IPv4 address that improves service resiliency by allowing NGINX Controller to continue to receive traffic if a node becomes unavailable. The floating IP is assigned to one of the cluster nodes, and if the node fails, the floating IP is automatically transferred to another node. The floating IP should not be in any DHCP pool.
 
-{{< important>}}
+{{< call-out "important" >}}
 The floating IP needs to be added as an A record for the domain that's used as the Fully Qualified Domain Name (FQDN) for NGINX Controller.
 
 NGINX Controller **does not support IPv6** addresses for the floating IP.
-{{< /important >}}
+{{< /call-out >}}
 
 Take the following steps to add a floating IP for your private cloud cluster:
 
@@ -44,9 +44,9 @@ Take the following steps to add a floating IP for your private cloud cluster:
 1. Select **Save**.
 1. Complete the steps to [update the FQDN](#update-the-fqdn) to use the floating IP.
 
-{{< see-also >}}
+{{< call-out "note" >}}
 To set a floating IP using the [NGINX Controller REST API]({{< ref "/controller/api/_index.md" >}}), send a PATCH request to the `/platform/global` endpoint.
-{{< /see-also >}}
+{{< /call-out>}}
 
 
 ## Update the FQDN
@@ -76,9 +76,9 @@ To change the FQDN for NGINX Controller using the web interface, take the follow
 1. Select **Save**. The cluster services will restart. During this time, the web interface will be briefly unavailable.
 1. Follow the steps to [update the FQDN for Controller Agents](#update-the-fqdn-for-controller-agents).
 
-{{< see-also >}}
+{{< call-out "note" >}}
 To change the FQDN for NGINX Controller using the [NGINX Controller REST API]({{< ref "/controller/api/_index.md" >}}), send a PATCH request to the `/platform/global` endpoint.
-{{< /see-also >}}
+{{< /call-out>}}
 
 ### Update the FQDN for Controller Agents
 
@@ -115,18 +115,18 @@ Take the following steps to update the API Gateway SSL certificate:
 
 1. Select **Save**.
 
-{{< see-also >}}
+{{< call-out "note" >}}
 To update the API Gateway SSL certificate and key using the [NGINX Controller REST API]({{< ref "/controller/api/_index.md" >}}), send a PATCH request to the `/platform/global` endpoint.
-{{< /see-also >}}
+{{< /call-out>}}
 
 
 ## Add Nodes to a Cluster
 
 Nodes are additional control-plane hosts that you can add to your cluster to improve uptime resilience. For a resilient cluster, you should have at least three nodes, of which **two nodes must always be operational**.
 
-{{< important >}}
+{{< call-out "important" >}}
 When adding a third node to the cluster for the first time, NGINX Controller may become momentarily unavailable while the cluster is being created. For this reason, we recommend updating NGINX Controller during a planned maintenance window to minimize disruptions.
-{{< /important >}}
+{{< /call-out >}}
 
 Take the following steps to add a node to the cluster:
 
@@ -158,17 +158,17 @@ Take the following steps to add a node to the cluster:
 1. After the installation finishes, the node status in the web interface changes to `Configured`.
 1. Repeat these steps for each node that you want to add to the cluster.
 
-{{< see-also >}}
+{{< call-out "note" >}}
 To add nodes to your cluster using the [NGINX Controller REST API]({{< ref "/controller/api/_index.md" >}}), send a POST request to the `/platform/nodes` endpoint.
-{{< /see-also >}}
+{{< /call-out>}}
 
 ## View Node Status
 
 Take the following steps to view the status for a node:
 
-{{< see-also >}}
+{{< call-out "note" >}}
 To view a node's status using the [NGINX Controller API Reference]({{< ref "/controller/api/_index.md" >}}), send a GET request to the Nodes endpoint.
-{{< /see-also >}}
+{{< /call-out>}}
 
 1. Open the NGINX Controller web interface and log in.
 1. Select the NGINX Controller menu icon, then select **Platform**.
@@ -181,13 +181,13 @@ There might be situations when you need to delete a node, either temporarily for
 
 If you need to remove a node temporarily, follow the steps in the [Add Nodes to the Cluster](#add-nodes-to-the-cluster) topic when you are ready to re-add it. Make sure to uninstall NGINX Controller from the node before re-installing NGINX Controller with the new join-key.
 
-{{< important >}}
+{{< call-out "important" >}}
 Deleting nodes can cause NGINX Controller to become momentarily unavailable while the cluster is being updated. For this reason, we recommend updating NGINX Controller during a planned maintenance window to minimize disruptions. When deleting nodes, make sure that **at least two nodes are always operational**. If the cluster has fewer than two working nodes, NGINX Controller may become unresponsive, and you may not be able to add new nodes.
-{{< /important >}}
+{{< /call-out >}}
 
-{{< see-also >}}
+{{< call-out "note" >}}
 To delete nodes from your cluster using the [NGINX Controller API Reference]({{< ref "/controller/api/_index.md" >}}), send a DELETE request to the Nodes endpoint.
-{{< /see-also >}}
+{{< /call-out>}}
 
 To delete a node from the cluster using the web interface:
 
@@ -205,9 +205,9 @@ To delete a node from the cluster using the web interface:
       /opt/nginx-controller/uninstall.sh
       ```
 
-{{< see-also >}}
+{{< call-out "note" >}}
 To delete nodes from your cluster using the [NGINX Controller REST API]({{< ref "/controller/api/_index.md" >}}), send a DELETE request to the `/platform/nodes` endpoint.
-{{< /see-also >}}
+{{< /call-out>}}
 
 
 ## Replace a Failed Node
@@ -226,11 +226,11 @@ To replace a failed node:
 
 When updating NGINX Controller on a multi-node cluster, run the `update.sh` script on each node individually -- the order in which you update the nodes doesn't matter.
 
-{{< warning >}}Do not update the nodes in a multi-node cluster in parallel. Doing so may result in race conditions for certain jobs, such as database migrations, and may cause the cluster to become unavailable.{{< /warning >}}
+{{< call-out "warning" >}}Do not update the nodes in a multi-node cluster in parallel. Doing so may result in race conditions for certain jobs, such as database migrations, and may cause the cluster to become unavailable.{{< /call-out >}}
 
-{{< important >}}
+{{< call-out "important" >}}
 Active users will be logged out from NGINX Controller during an update. We recommend updating NGINX Controller during a planned maintenance window to minimize disruptions.
-{{< /important >}}
+{{< /call-out >}}
 
 To update your cluster to a newer version of NGINX Controller, take the following steps:
 

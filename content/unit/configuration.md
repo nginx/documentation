@@ -5,10 +5,10 @@ toc: true
 nd-docs: DOCS-1700
 ---
 
-{{<note>}}
+{{< call-out "note" >}}
 The commands in this document starting with a hash (#) must be run as root or
 with superuser privileges.
-{{</note>}}
+{{< /call-out >}}
 
 The **/config** section of the
 [control API]({{< relref "/unit/controlapi.md#configuration-api" >}})
@@ -32,13 +32,13 @@ the object's name can be:
 - On Linux-based systems, [abstract UNIX sockets](https://man7.org/linux/man-pages/man7/unix.7.html)
 can be used as well: **unix:@abstract_socket**.
 
-{{< note >}}
+{{< call-out "note" >}}
 Also on Linux-based systems, wildcard listeners can't overlap with other listeners
 on the same port due to rules imposed by the kernel.
 For example, **\*:8080** conflicts with **127.0.0.1:8080**;
 in particular, this means **\*:8080** can't be *immediately* replaced
 by **127.0.0.1:8080** (or vice versa) without deleting it first.
-{{< /note >}}
+{{< /call-out >}}
 
 Unit dispatches the requests it receives to destinations referenced by listeners.
 You can plug several listeners into one destination or use a single listener
@@ -325,10 +325,10 @@ The **tickets** option works as follows:
   the last key is always used to create new session tickets
   and update the tickets created earlier.
 
-  {{< note >}}
+  {{< call-out "note" >}}
   An empty array effectively disables session tickets,
   same as setting **tickets** to **false**.
-  {{< /note >}}
+  {{< /call-out >}}
 
 ### IP, protocol forwarding {#configuration-listeners-forwarded}
 
@@ -344,12 +344,12 @@ with the **forwarded** object and its options:
 | **recursive**           | Boolean; controls how the **client_ip** fields are traversed. <br><br> The default is **false** (no recursion).                                                                                                                                                      |
 {{</bootstrap-table>}}
 
-{{< note >}}
+{{< call-out "note" >}}
 Besides **source**, the **forwarded** object must specify
 **client_ip**, **protocol**, or both.
-{{< /note >}}
+{{< /call-out >}}
 
-{{< warning >}}
+{{< call-out "warning" >}}
 Before version 1.28.0, Unit provided the **client_ip** object
 that evolved into **forwarded**:
 
@@ -364,7 +364,7 @@ that evolved into **forwarded**:
 
 This old syntax still works but will be eventually deprecated,
 though not earlier than version 1.30.0.
-{{< /warning >}}
+{{< /call-out >}}
 
 When **forwarded** is set, Unit respects the appropriate header fields
 only if the immediate source IP of the request
@@ -535,11 +535,11 @@ A request passed to a route traverses its steps sequentially:
 - If a step's condition isn't met, Unit proceeds to the next step of the route.
 - If no steps of the route match, a 404 "Not Found" response is returned.
 
-{{< warning >}}
+{{< call-out "warning" >}}
 If a step omits the **match** option, its **action** occurs automatically.
 Thus, use no more than one such step per route, always placing it last to
 avoid potential routing issues.
-{{< /warning >}}
+{{< /call-out >}}
 
 <details>
 <summary>Ad-Hoc examples</summary>
@@ -1507,10 +1507,10 @@ normalizes capitalization and hyphenation in header field names, so the
 **Accept-Encoding** header field can also be referred to as **\$header_Accept_Encoding**,
 **\$header_accept-encoding**, or **\$header_accept_encoding**.
 
-{{< note >}}
+{{< call-out "note" >}}
 With multiple argument instances (think **Color=Red&Color=Blue**),the rightmost
 one is used (**Blue**).
-{{< /note >}}
+{{< /call-out >}}
 
 At runtime, variables expand into dynamically computed values (at your risk!).
 The previous example targets an entire set of routes, picking individual
@@ -1713,9 +1713,9 @@ it to routing:
 }
 ```
 
-{{< warning >}}
+{{< call-out "warning" >}}
 Avoid infinite loops when you **pass** requests back to **routes**.
-{{< /warning >}}
+{{< /call-out >}}
 
 This action normalizes the request URI and passes it to an application:
 
@@ -1907,7 +1907,7 @@ A **share**-based action provides the following options:
 {{</bootstrap-table>}}
 
 
-{{< note >}}
+{{< call-out "note" >}}
 To serve the files, Unit's router process must be able to access them;
 thus, the account this process runs as must have proper permissions
 [assigned]({{< relref "/unit/configuration.md#security-apps" >}}). When
@@ -1915,7 +1915,7 @@ Unit is installed from the [official packages]({{< relref
 "/unit/installation.md#installation-precomp-pkgs" >}}), the process runs
 as **unit:unit**; for details of other installation methods, see
 [installation]({{< relref "/unit/installation/">}}).
-{{< /note >}}
+{{< /call-out >}}
 
 Consider the following configuration:
 
@@ -1944,7 +1944,7 @@ resulting path. If this doesn't yield a servable file, a 404 "Not Found"
 response is returned.
 
 
-{{< warning >}}
+{{< call-out "warning" >}}
 Before version 1.26.0, Unit used **share** as the document root. This was
 changed for flexibility, so now **share** must resolve to specific files.
 A common solution is to append **\$uri** to your document root.
@@ -1960,7 +1960,7 @@ Pre-1.26, the snippet above would've looked like this:
 Mind that URI paths always start with a slash, so there's no need to separate
 the directory from **\$uri**; even if you do, Unit compacts adjacent slashes
 during path resolution, so there won't be an issue.
-{{< /warning >}}
+{{< /call-out >}}
 
 If **share** is an array, its items are searched in order of appearance
 until a servable file is found:
@@ -2009,11 +2009,11 @@ curl http://localhost/ -v
    ...
 ```
 
-{{< note >}}
+{{< call-out "note" >}}
 Unit's ETag response header fields use the **MTIME-FILESIZE** format, where
 **MTIME** stands for file modification timestamp and **FILESIZE** stands for
 file size in bytes, both in hexadecimal.
-{{< /note >}}
+{{< /call-out >}}
 
 ### MIME filtering {#configuration-share-mime}
 
@@ -2085,10 +2085,10 @@ If a share path specifies only the directory name, Unit *doesn't* apply MIME fil
 
 ### Path restrictions {#configuration-share-path}
 
-{{< note >}}
+{{< call-out "note" >}}
 To have these options, Unit must be built and run on a system with Linux kernel
 version 5.6+.
-{{< /note >}}
+{{< /call-out >}}
 
 The **chroot** option confines the path resolution within a share to a
 certain directory. First, it affects symbolic links: any attempts to go up
@@ -2504,9 +2504,9 @@ option of a route step [action]({{< relref "/unit/configuration.md#configuration
 As the example suggests, you can use UNIX, IPv4, and IPv6 socket addresses
 for proxy destinations.
 
-{{< note >}}
+{{< call-out "note" >}}
 The HTTPS scheme is not supported yet.
-{{< /note >}}
+{{< /call-out >}}
 
 ### Load balancing {#configuration-upstreams}
 
@@ -2582,12 +2582,12 @@ Each app that Unit runs is defined as an object in the **/config/applications**
 section of the control API; it lists the app's language and settings, its
 runtime limits, process model, and various language-specific options.
 
-{{< note >}}
+{{< call-out "note" >}}
 Our official
 [language-specific packages]({{< relref "/unit/installation.md#installation-precomp-pkgs" >}})
 include end-to-end examples of application configuration, available for your
 reference at **/usr/share/doc/\<module name>/examples/** after package installation.
-{{< /note >}}
+{{< /call-out >}}
 
 Here, Unit runs 20 processes of a PHP app called **blogs**, stored in the
 **/www/blogs/scripts/** directory:
@@ -2813,11 +2813,11 @@ echo 1G > /sys/fs/cgroup/staging/app/memory.high # cgroup's path set in Unit con
 For more details and possible options,refer to the
 [admin guide](https://docs.kernel.org/admin-guide/cgroup-v2.html).
 
-{{< note >}}
+{{< call-out "note" >}}
 To avoid confusion, mind that the **namespaces/cgroups** option
 controls the application's cgroup *namespace*; instead, the **cgroup/path** option
 specifies the cgroup where Unit puts the application.
-{{< /note >}}
+{{< /call-out >}}
 
 ##### Changing root directory {#conf-rootfs}
 
@@ -2845,7 +2845,7 @@ any path options for the app should be relative to the new root. Note the
 }
 ```
 
-{{< warning >}}
+{{< call-out "warning" >}}
 When using **rootfs** with **credential** set to **true**:
 
 ```json
@@ -2858,7 +2858,7 @@ When using **rootfs** with **credential** set to **true**:
 ```
 
 Ensure that the user the app *runs as* can access the **rootfs** directory.
-{{< /warning >}}
+{{< /call-out >}}
 
 Unit mounts language-specific files and directories to the new root
 so the app stays operational:
@@ -2987,11 +2987,11 @@ idles after 20 seconds:
 }
 ```
 
-{{< note >}}
+{{< call-out "note" >}}
 For details of manual application process restart, see the
 [process management]({{< relref "/unit/configuration.md#configuration-proc-mgmt" >}})
 documentation.
-{{< /note >}}
+{{< /call-out >}}
 
 <a name="configuration-languages"></a>
 
@@ -3131,11 +3131,11 @@ you have:
 }
 ```
 
-{{< note >}}
+{{< call-out "note" >}}
 For Go-based examples, see our [grafana]({{< relref "/unit/howto/apps/grafana/">}})
 howto or a basic
 [sample]({{< relref "/unit/howto/samples.md#sample-go" >}}).
-{{< /note >}}
+{{< /call-out >}}
 
 ### Java {#configuration-java}
 
@@ -3174,7 +3174,7 @@ you have:
 }
 ```
 
-{{< note >}}
+{{< call-out "note" >}}
 For Java-based examples, see our
 [Jira]({{< relref "/unit/howto/apps/jira/">}}),
 [OpenGrok]({{< relref "/unit/howto/apps/opengrok/">}}),
@@ -3182,7 +3182,7 @@ and
 [Springbook]({{< relref "/unit/howto/frameworks/springboot/">}})
 howtos or a basic
 [sample]({{< relref "/unit/configuration.md#sample-java" >}}).
-{{< /note >}}
+{{< /call-out >}}
 
 ### Node.js {#configuration-nodejs}
 
@@ -3296,7 +3296,7 @@ To use the WebSocket protocol, your app only needs to replace the default **webs
 var webSocketServer = require('unit-http/websocket').server;
 ```
 
-{{< note >}}
+{{< call-out "note" >}}
 For Node.js-based examples, see our
 [apollo]({{< relref "/unit/howto/apps/apollo/">}}),
 [express]({{< relref "/unit/howto/frameworks/express/">}}),
@@ -3305,7 +3305,7 @@ and
 [Docker]({{< relref "/unit/howto/docker" >}})
 howtos or a basic
 [sample]({{< relref "/unit/configuration.md#sample-nodejs" >}}).
-{{< /note >}}
+{{< /call-out >}}
 
 ### Perl {#configuration-perl}
 
@@ -3337,7 +3337,7 @@ you have:
 }
 ```
 
-{{< note >}}
+{{< call-out "note" >}}
 For Perl-based examples of Perl,
 see our
 [Bugzilla]({{< relref "/unit/howto/apps/bugzilla/">}})
@@ -3345,7 +3345,7 @@ and
 [Catalyst]({{< relref "/unit/howto/frameworks/catalyst/">}})
 howtos or a basic
 [sample]({{< relref "/unit/configuration.md#sample-perl" >}}).
-{{< /note >}}
+{{< /call-out >}}
 
 ### PHP {#configuration-php}
 
@@ -3414,16 +3414,16 @@ it causes PHP to scan the directory preconfigured with the
 and then the directory you set here, which is **/tmp/php.inis/**.
 To skip the preconfigured directory, drop the **:** prefix.
 
-{{< note >}}
+{{< call-out "note" >}}
 Values in **options** must be strings (for example, **"max_file_uploads": "4"**,
 not **"max_file_uploads": 4**); for boolean flags, use **"0"** and **"1"** only.
 For details aof **PHP_INI\_\*** modes, see the
 [PHP docs](https://www.php.net/manual/en/configuration.changes.modes.php).
-{{< /note >}}
+{{< /call-out >}}
 
-{{< note >}}
+{{< call-out "note" >}}
 Unit implements the **fastcgi_finish_request()** [function](https://www.php.net/manual/en/function.fastcgi-finish-request.php) in a manner similar to PHP-FPM.
-{{< /note >}}
+{{< /call-out >}}
 
 #### Example:
 
@@ -3506,12 +3506,12 @@ in listeners and routes to serve requests:
 App-wide settings (**isolation**, **limits**, **options**, **processes**)
 are shared by all targets within the app.
 
-{{< warning >}}
+{{< call-out "warning" >}}
 If you specify **targets**, there should be no **root**, **index**, or **script**
 defined at the app level.
-{{< /warning >}}
+{{< /call-out >}}
 
-{{< note >}}
+{{< call-out "note" >}}
 For PHP-based examples, see our
 [CakePHP]({{< relref "/unit/howto/frameworks/cakephp/">}}),
 [CodeIgniter]({{< relref "/unit/howto/frameworks/codeigniter/">}}),
@@ -3532,7 +3532,7 @@ and
 [Yii]({{< relref "/unit/howto/frameworks/yii/">}})
 howtos or a basic
 [sample]({{< relref "/unit/configuration.md#sample-php" >}}).
-{{< /note >}}
+{{< /call-out >}}
 
 ### Python {#configuration-python}
 
@@ -3616,21 +3616,21 @@ async def application(scope, receive, send):
     })
 ```
 
-{{< note >}}
+{{< call-out "note" >}}
 Legacy [two-callable](https://asgi.readthedocs.io/en/latest/specs/main.html#legacy-applications)
 ASGI 2.0 applications were not supported prior to Unit 1.21.0.
-{{< /note >}}
+{{< /call-out >}}
 
 Choose either one according to your needs; Unit tries to infer your choice automatically.
 If this inference fails, use the **protocol** option to set the interface explicitly.
 
-{{< note >}}
+{{< call-out "note" >}}
 The **prefix** option controls the **SCRIPT_NAME**
 ([WSGI](https://wsgi.readthedocs.io/en/latest/definitions.html))
 or **root_path**
 ([ASGI](https://asgi.readthedocs.io/en/latest/specs/www.html#http-connection-scope))
 setting in Python's context, allowing to route requests regardless of the app's factual path.
-{{< /note >}}
+{{< /call-out >}}
 
 
 #### Targets {#configuration-python-targets}
@@ -3692,13 +3692,13 @@ in listeners and routes to serve requests:
 The **home**, **path**, **protocol**, **threads**, and **thread_stack_size** settings
 are shared by all targets in the app.
 
-{{< warning >}}
+{{< call-out "warning" >}}
 If you specify **targets**, there should be no **module** or **callable**
 defined at the app level. Moreover, you can't combine WSGI and ASGI targets
 within a single app.
-{{< /warning >}}
+{{< /call-out >}}
 
-{{< note >}}
+{{< call-out "note" >}}
 For Python-based examples, see our
 [Bottle]({{< relref "/unit/howto/frameworks/bottle/">}}),
 [Datasette]({{< relref "/unit/howto/apps/datasette/">}}),
@@ -3723,7 +3723,7 @@ and
 [Zope]({{< relref "/unit/howto/frameworks/zope/">}})
 howtos or a basic
 [sample]({{< relref "/unit/configuration.md#sample-python" >}}).
-{{< /note >}}
+{{< /call-out >}}
 
 
 ### Ruby {#configuration-ruby}
@@ -3731,14 +3731,14 @@ howtos or a basic
 First, make sure to install Unit along with the
 [Ruby language module]({{< relref "/unit/installation.md#installation-precomp-pkgs" >}}).
 
-{{< note >}}
+{{< call-out "note" >}}
 Unit uses the [Rack](https://rack.github.io) interface to run Ruby scripts;
 you need to have it installed as well:
 
 ```console
 $ gem install rack
 ```
-{{< /note >}}
+{{< /call-out >}}
 
 Besides the
 [common options]({{< relref "/unit/configuration.md#configuration-apps-common" >}}),
@@ -3811,14 +3811,14 @@ end
 
 Use these hooks to add custom runtime logic to your app.
 
-{{< note >}}
+{{< call-out "note" >}}
 For Ruby-based examples, see our
 [Rails]({{< relref "/unit/howto/frameworks/rails/">}})
 and
 [Redmine]({{< relref "/unit/howto/apps/redmine/">}})
 howtos or a basic
 [sample]({{< relref "/unit/configuration.md#sample-ruby" >}}).
-{{< /note >}}
+{{< /call-out >}}
 
 
 ### WebAssembly {#configuration-wasm}
@@ -3877,19 +3877,19 @@ The `access` object has the following structure:
    }
 ```
 
-{{< note >}}
+{{< call-out "note" >}}
 A good, first Rust-based project is available at
 [sunfishcode/hello-wasi-http](https://github.com/sunfishcode/hello-wasi-http).
 It also includes all the important steps to get started with WebAssembly, WASI, and Rust.
-{{< /note >}}
+{{< /call-out >}}
 {{%/tab%}}
 
 {{%tab name="unit-wasm"%}}
-{{< warning >}}
+{{< call-out "warning" >}}
 The `unit-wasm` module is deprecated. We recommend using `wasm-wasi-component`
 instead, which supports WebAssembly Components using standard WASI 0.2 interfaces.
 The `wasm-wasi-component` module is available in Unit 1.32 and later.
-{{< /warning >}}
+{{< /call-out >}}
 
 First, make sure to install Unit along with the
 [WebAssembly language module]({{< relref "/unit/installation.md#installation-precomp-pkgs" >}}).
@@ -3942,9 +3942,9 @@ Use these handlers to add custom runtime logic to your app; for a detailed
 discussion of their usage and requirements, see the
 [SDK](https://github.com/nginx/unit-wasm/) source code and documentation.
 
-{{< note >}}
+{{< call-out "note" >}}
 For WASM-based examples, see our [Rust and C samples]({{< relref "/unit/configuration.md#sample-wasm" >}}).
-{{< /note >}}
+{{< /call-out >}}
 {{%/tab%}}
 {{</tabs>}}
 

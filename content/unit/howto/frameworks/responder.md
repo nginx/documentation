@@ -25,13 +25,13 @@ for instance:
    $ deactivate
    ```
 
-   {{< warning >}}
+   {{< call-out "warning" >}}
    Create your virtual environment with a Python version that matches the
    language module from Step 1 up to the minor number (**X.Y** in
    this example). Also, the app **type** in Step 5 must
    [resolve]({{< relref "/unit/configuration.md#configuration-apps-common" >}})
    to a similarly matching version; Unit doesn't infer it from the environment.
-   {{< /warning >}}
+   {{< /call-out >}}
 
 
 3. Let's try a Unit-friendly version of a [tutorial app](https://responder.kennethreitz.org/quickstart.html#declare-a-web-service),

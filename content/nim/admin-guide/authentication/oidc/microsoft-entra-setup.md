@@ -60,7 +60,7 @@ To register an application with Microsoft Entra:
 
 ### Create Client Secret {#az-ad-client-secret}
 
-{{< important >}}Make sure to save the value of the client secret in a secure location for future reference. Once you navigate away from the page, the value cannot be retrieved again.{{< /important >}}
+{{< call-out "important" >}}Make sure to save the value of the client secret in a secure location for future reference. Once you navigate away from the page, the value cannot be retrieved again.{{< /call-out >}}
 
 To create a client secret:
 
@@ -72,7 +72,7 @@ To create a client secret:
 
 ### Add Owners {#az-ad-owners}
 
-{{< important >}}Make sure to add at least one user with administrative privileges. Failure to do so may lock admin users out of NGINX Instance Manager. If that happens, revert to Basic Auth to restore access.{{< /important >}}
+{{< call-out "important" >}}Make sure to add at least one user with administrative privileges. Failure to do so may lock admin users out of NGINX Instance Manager. If that happens, revert to Basic Auth to restore access.{{< /call-out >}}
 
 To add owners (users):
 
@@ -82,7 +82,7 @@ To add owners (users):
 
 ### Add Group Claim to Token {#az-ad-group-claim}
 
-{{< note >}}The only supported group claim format for groups created in Microsoft Entra is **Microsoft Entra group ObjectId**.{{< /note >}}
+{{< call-out "note" >}}The only supported group claim format for groups created in Microsoft Entra is **Microsoft Entra group ObjectId**.{{< /call-out >}}
 
 To include the user's group membership information in the token for authentication and authorization, follow these steps:
 
@@ -93,7 +93,7 @@ To include the user's group membership information in the token for authenticati
 
 ### Assign Group to Application {#az-ad-group}
 
-{{< note >}}By default, tokens expire after 60 minutes. You can find instructions on configuring token expiration in the Microsoft Entra topic [Configurable token lifetime properties](https://learn.microsoft.com/en-us/azure/active-directory/develop/Active-directory-configurable-token-lifetimes#configurable-token-lifetime-properties).{{< /note >}}
+{{< call-out "note" >}}By default, tokens expire after 60 minutes. You can find instructions on configuring token expiration in the Microsoft Entra topic [Configurable token lifetime properties](https://learn.microsoft.com/en-us/azure/active-directory/develop/Active-directory-configurable-token-lifetimes#configurable-token-lifetime-properties).{{< /call-out >}}
 
 Adding a group to the registered application will give all group members the same access.
 

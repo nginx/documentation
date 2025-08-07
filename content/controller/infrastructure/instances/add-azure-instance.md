@@ -16,11 +16,11 @@ You can use F5 NGINX Controller to deploy and manage NGINX instances on [Microso
 
 This tutorial explains how to deploy NGINX Plus on Azure by defining an Azure Integration, a Location, and an Instance Template in NGINX Controller.
 
-{{< important >}}
+{{< call-out "important" >}}
 
 You are responsible for applying software and security updates on your NGINX instances. NGINX Controller does not manage these updates for you.
 
-{{< /important >}}
+{{< /call-out >}}
 
 &nbsp;
 
@@ -157,8 +157,8 @@ For the Instance Template, you can provide the details for an NGINX image on the
 
 - To create an Instance Template for an Azure Marketplace image using the [NGINX Controller REST API]({{< ref "/controller/api/_index.md" >}}), send a POST request similar to the following example to the Instance Templates API endpoint. You can find descriptions of the instance parameters in the API Reference documentation.
 
-  {{< tip >}}To look up the image details — `publisher`, `offer`, `sku`, and `version` — that you'll need to define the Instance Template, you can attempt to deploy an NGINX instance from the [Azure Marketplace](https://azure.microsoft.com/en-us/marketplace/) and look at the template that Azure creates to get the image details.
-  {{</ tip >}}
+  {{< call-out "tip" >}}To look up the image details — `publisher`, `offer`, `sku`, and `version` — that you'll need to define the Instance Template, you can attempt to deploy an NGINX instance from the [Azure Marketplace](https://azure.microsoft.com/en-us/marketplace/) and look at the template that Azure creates to get the image details.
+  {{< /call-out >}}
 
   &nbsp;
 

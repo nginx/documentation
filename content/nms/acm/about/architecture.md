@@ -44,8 +44,8 @@ API Connectivity Manager uses [NATS](https://nats.io) to communicate with the NG
 
 The following diagram shows how API Connectivity Manager's components are organized and interact.
 
-{{< note >}}API Connectivity Manager takes an API-first approach: commands issued using the web interface are processed using the API Connectivity Manager REST API.
-{{</note>}}
+{{< call-out "note" >}}API Connectivity Manager takes an API-first approach: commands issued using the web interface are processed using the API Connectivity Manager REST API.
+{{< /call-out >}}
 
 {{<img src="/acm/about/acm-architecture-diagram.png" alt="API Connectivity Manager architecture" >}}
 

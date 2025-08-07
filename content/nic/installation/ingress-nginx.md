@@ -447,9 +447,9 @@ The other option for migrating from the community Ingress-NGINX Controller to NG
 
 This ensures that all configuration is kept in the Ingress object.
 
-{{< warning >}}
+{{< call-out "warning" >}}
 You should avoid altering the `spec` field of the Ingress resource when taking this option. Ingress-NGINX Controller and NGINX Ingress Controller differ slightly in their implementations: changing the Kubernetes Ingress can create incompatibility issues.
-{{< /warning >}}
+{{< /call-out >}}
 
 ### Advanced configuration with annotations
 This table maps the Ingress-NGINX Controller annotations to NGINX Ingress Controller's equivalent annotations, and the respective NGINX Directive.
@@ -488,17 +488,17 @@ nginx.ingress.kubernetes.io/session-cookie-path: "/route"
 nginx.com/sticky-cookie-services: "serviceName=example-svc cookie_name expires=time path=/route"
 ```
 
-{{< note >}}
+{{< call-out "note" >}}
 NGINX Ingress Controller has additional annotations for features using NGINX Plus that have no Ingress-NGINX Controller equivalent, such as active health checks and authentication using JSON Web Tokens (JWTs).
-{{< /note >}}
+{{< /call-out >}}
 
 ### Global configuration with ConfigMaps
 
 This table maps the Ingress-NGINX Controller ConfigMap keys to NGINX Ingress Controller's equivalent ConfigMap keys.
 
-<!-- {{< note >}}
+<!-- {{< call-out "note" >}}
 Some of the key names are identical, and each Ingress Controller has ConfigMap keys that the other does not (Which are indicated).
-{{< /note >}} -->
+{{< /call-out >}} -->
 
 {{< bootstrap-table "table table-bordered table-striped table-responsive" >}}
 | Ingress-NGINX Controller | NGINX Ingress Controller |

@@ -2,7 +2,7 @@
 nd-docs: "DOCS-1436"
 ---
 
-{{< warning >}} This will remove all corresponding custom resources in your entire cluster, across all namespaces. Double-check to make sure you don't have any custom resources you need to keep, and confirm that there are no other Gateway API implementations active in your cluster. {{</ warning >}}
+{{< call-out "warning" >}} This will remove all corresponding custom resources in your entire cluster, across all namespaces. Double-check to make sure you don't have any custom resources you need to keep, and confirm that there are no other Gateway API implementations active in your cluster. {{< /call-out >}}
 
 To uninstall the Gateway API resources, run the following:
 

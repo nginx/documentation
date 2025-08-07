@@ -22,7 +22,7 @@ To enable GeoIP2 you [update your NGINX configuration]({{< ref "/nginxaas-azure/
 3. Add the `load_module` directive - the modules are available at `modules/ngx_http_geoip2_module.so` or `modules/ngx_stream_geoip2_module.so`.
 4. Add `geoip2` directives to your NGINX configuration as desired. The `EditionIDs` from your `GeoIP.conf` are available at `/usr/local/share/GeoIP`
 
-{{<note>}}NGINXaaS for Azure currently only supports the database directory at the path `/usr/local/share/GeoIP`.{{</note>}}
+{{< call-out "note" >}}NGINXaaS for Azure currently only supports the database directory at the path `/usr/local/share/GeoIP`.{{< /call-out >}}
 
 There are many different ways to use the `geoip2` directives; For example:
 

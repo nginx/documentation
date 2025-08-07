@@ -36,13 +36,13 @@ To install all of the NGINX Controller prerequisites for your system at the same
     ./helper.sh prereqs
     ```
 
-{{< note >}}
+{{< call-out "note" >}}
 After you've installed NGINX Controller, you can install any of the prerequisites by running the following command:
 
   ```bash
 /opt/nginx-controller/helper.sh prereqs [base|docker|nfs]
 ```
 
-{{< /note >}}
+{{< /call-out >}}
 <!-- Do not remove. Keep this code at the bottom of the include -->
 <!-- DOCS-278 -->

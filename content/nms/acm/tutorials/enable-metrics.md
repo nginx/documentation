@@ -13,7 +13,7 @@ weight: 100
 
 This guide walks through setting up and using metrics in API Connectivity Manager.
 
-{{<important>}}The configuration presented in this guide is for demonstration purposes only. Securely configuring environments and proxies in API Connectivity Manager is not in scope for this tutorial but should be given full attention when planning for production use.{{</important>}}
+{{< call-out "important" >}}The configuration presented in this guide is for demonstration purposes only. Securely configuring environments and proxies in API Connectivity Manager is not in scope for this tutorial but should be given full attention when planning for production use.{{< /call-out >}}
 
 Currently, only the following metric is available:
 
@@ -92,7 +92,7 @@ To ensure that the advanced metrics modules are installed across all data plane 
 
 ### Install Echo Server {#install-echo-server}
 
-{{< note >}} The server is designed for testing HTTP proxies and clients. It echoes information about HTTP request headers and bodies back to the client. {{</ note >}}
+{{< call-out "note" >}} The server is designed for testing HTTP proxies and clients. It echoes information about HTTP request headers and bodies back to the client. {{< /call-out >}}
 
 1. [Download and install the latest version of Go](https://go.dev/doc/install) by following the instructions on the official Go website.
 2. Run the following commands to install and start [Echo Server](https://github.com/jmalloc/echo-server):

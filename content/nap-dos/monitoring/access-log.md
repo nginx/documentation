@@ -35,9 +35,9 @@ These are the variables added to Access Log. They are a subset of the Security l
 
 {{</bootstrap-table>}}
 
-   {{< note >}}
+   {{< call-out "note" >}}
 Many of the other Security log attributes that are not included here have exact or similar parallels among the NGINX variables also available for access log. For example, `$request` is parallel to the `request` security log attribute. See the full list of [NGINX variables](https://nginx.org/en/docs/http/ngx_http_log_module.html).
-   {{< /note >}}
+   {{< /call-out >}}
 
 
 ## Logging Rate Limit - mandatory configuration

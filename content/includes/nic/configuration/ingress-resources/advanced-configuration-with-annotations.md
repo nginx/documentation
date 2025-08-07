@@ -86,7 +86,7 @@ Events:
 
 Note how the events section includes a Warning event with the Rejected reason.
 
-{{< note >}} If you make an existing Ingress invalid, NGINX Ingress Controller will reject it and remove the corresponding configuration from NGINX. {{< /note >}}
+{{< call-out "note" >}} If you make an existing Ingress invalid, NGINX Ingress Controller will reject it and remove the corresponding configuration from NGINX. {{< /call-out >}}
 
 The `nginx.com/jwt-token` Ingress annotation has limited validation.
 
@@ -94,7 +94,7 @@ The `nginx.com/jwt-token` Ingress annotation has limited validation.
 
 The table below summarizes the available annotations.
 
-{{< note >}} Annotations that start with `nginx.com` are only supported with NGINX Plus. {{< /note >}}
+{{< call-out "note" >}} Annotations that start with `nginx.com` are only supported with NGINX Plus. {{< /call-out >}}
 
 ### General customization
 
@@ -202,7 +202,7 @@ The table below summarizes the available annotations.
 
 ### App Protect WAF {#app-protect}
 
-{{< note >}} The App Protect annotations only work if the App Protect WAF module is [installed]({{< relref "installation/integrations/app-protect-waf/installation.md" >}}). {{< /note >}}
+{{< call-out "note" >}} The App Protect annotations only work if the App Protect WAF module is [installed]({{< relref "installation/integrations/app-protect-waf/installation.md" >}}). {{< /call-out >}}
 
 {{<bootstrap-table "table table-striped table-bordered table-responsive">}}
 |Annotation | ConfigMap Key | Description | Default | Example |
@@ -216,7 +216,7 @@ The table below summarizes the available annotations.
 
 ### App Protect DoS
 
-{{< note >}} The App Protect DoS annotations only work if the App Protect DoS module is [installed]({{< relref "installation/integrations/app-protect-dos/installation.md" >}}). {{< /note >}}
+{{< call-out "note" >}} The App Protect DoS annotations only work if the App Protect DoS module is [installed]({{< relref "installation/integrations/app-protect-dos/installation.md" >}}). {{< /call-out >}}
 
 {{<bootstrap-table "table table-striped table-bordered table-responsive">}}
 |Annotation | ConfigMap Key | Description | Default | Example |

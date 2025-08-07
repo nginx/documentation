@@ -34,7 +34,7 @@ The following table shows the attributes and dimensions you can view and filter 
 | http.request_endpoint | | Request URI |
 | http.request_method | | Method used for the request|
 | request_outcome |`REJECTED`, `PASSED`| The outcome of the request after Controller App Security processed the request.|
-| request_outcome_reason | `SECURITY_WAF_OK`, `SECURITY_WAF_VIOLATION`, `SECURITY_WAF_FLAGGED`, `SECURITY_WAF_BYPASS`, `SECURITY_NGINX_VIOLATION`, `SECURITY_WAF_FLAGGED` | request_outcome_reason provides the reason why App Security rejected or flagged a request to be reviewed. Outcome reasons for `SECURITY_WAF_BYPASSED` and `SECURITY_NGINX_VIOLATION` have not been implemented.<br />{{< note >}} App Security Events are not created for requests that don't trigger any violations. This means you should not see Events with `outcome_reason = SECURITY_WAF_OK`.{{< /note >}}|
+| request_outcome_reason | `SECURITY_WAF_OK`, `SECURITY_WAF_VIOLATION`, `SECURITY_WAF_FLAGGED`, `SECURITY_WAF_BYPASS`, `SECURITY_NGINX_VIOLATION`, `SECURITY_WAF_FLAGGED` | request_outcome_reason provides the reason why App Security rejected or flagged a request to be reviewed. Outcome reasons for `SECURITY_WAF_BYPASSED` and `SECURITY_NGINX_VIOLATION` have not been implemented.<br />{{< call-out "note" >}} App Security Events are not created for requests that don't trigger any violations. This means you should not see Events with `outcome_reason = SECURITY_WAF_OK`.{{< /call-out >}}|
 | http.response_code | | Response code returned to App Security. A `0` code is returned if App Security did not block the request.|
 | http.hostname | | Hostname of request|
 | http.remote_addr | | Client IP of the request|

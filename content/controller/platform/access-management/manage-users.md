@@ -31,7 +31,7 @@ Take the following steps to create a User:
 9. (Optional) Add one or more tags.
 10. (Optional) Add one or more [Roles]({{< ref "/controller/platform/access-management/manage-roles.md" >}}). The Role specifies the user's permission level.
 
-{{< note >}}
+{{< call-out "note" >}}
 User account passwords for NGINX Controller must meet the following requirements:
 
 - Must be between 8–64 characters. Special characters are allowed.
@@ -42,7 +42,7 @@ User account passwords for NGINX Controller must meet the following requirements
 Dictionary words, mangled dictionary words like `p4ssword`, or systematic passwords like `1234567a` are not allowed.
 
 If your organization requires a different password policy, we recommend that you [configure external authentication using Active Directory]({{< ref "/controller/platform/access-management/manage-active-directory-auth-provider.md" >}}) for all users except the primary NGINX Controller admin user.
-{{< /note >}}
+{{< /call-out >}}
 
 ### Edit or Delete a User
 

@@ -96,9 +96,9 @@ At this point, the packet leaves the node and enters the Host Network. The Host 
 
 ##### UDP and eBPF
 
-{{< note >}}
+{{< call-out "note" >}}
 UDP traffic proxying is a beta feature that is turned off by default. You can turn it on at [deploy time]({{< ref "nginx-meshctl.md#deploy" >}}) if desired. Linux kernel 4.18 or greater is required.
-{{< /note >}}
+{{< /call-out >}}
 
 NGINX Service Mesh has developed an alternate approach to routing datagrams in answer to particular challenges associated with the UDP protocol. Information is routed via an analogous pathway, however, UDP datagrams are redirected with eBPF functions as opposed to iptables with TCP.
 
@@ -219,9 +219,9 @@ If SPIRE is using an upstream CA:
 - Each upstream CA has a different API for that exchange, and each of those transactional processes are unique to each upstream.
 - SPIRE plugins take care of the mechanics of each of those unique upstream CAs. You need to ensure that these plugins are enabled and allowed. You also need to test that it's possible to proxy each one of the auth methods supported by each of the plugins being used.
 
-{{< see-also >}}
+{{< call-out "note" >}}
 Refer to the [Secure Mesh Traffic using mTLS]({{< ref "/mesh/guides/secure-traffic-mtls.md" >}}) guide for more information on configuring mTLS.
-{{< /see-also >}}
+{{< /call-out>}}
 
 ### NATS Message Bus
 
@@ -247,9 +247,9 @@ NGINX Service Mesh sidecars (specifically agents) connect to NATS when they are 
 
 NGINX Service Mesh lets you observe application behavior using a combination of internal and third-party solutions to expose metrics and tracing data.
 
-{{< see-also >}}
+{{< call-out "note" >}}
 See the [Monitoring and Tracing]({{< ref "/mesh/guides/monitoring-and-tracing.md" >}}) guide for more information on integrating your Prometheus, Grafana, and/or tracing backends with NGINX Service Mesh.
-{{< /see-also >}}
+{{< /call-out>}}
 
 #### Metrics
 
@@ -259,9 +259,9 @@ See the [Monitoring and Tracing]({{< ref "/mesh/guides/monitoring-and-tracing.md
 
 - The NGINX Service Mesh metrics server is also a control plane component, extending the Kubernetes API, known as an [aggregation layer](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/apiserver-aggregation/). When queried, this server gets metrics data from Prometheus and formats the data adhering to the Service Mesh Interface (SMI) standards. This server provides quick access to the basic metrics data in a standard format defined by SMI.
 
-{{<see-also>}}
+{{< call-out "note" >}}
 See the [Traffic Metrics]({{< ref "/mesh/guides/smi-traffic-metrics.md" >}}) guide for more information on how to visualize metrics data from NGINX Service Mesh.
-{{</see-also>}}
+{{< /call-out>}}
 
 #### Tracing
 
@@ -288,6 +288,6 @@ NGINX Plus Ingress Controller lets you control the egress traffic from your clus
 
 The NGINX Plus Ingress Controller terminates the mTLS connection from the NGINX Service Mesh workload and routes the request to the egress service. Egress services can be services deployed outside the cluster, or they can be services deployed within the cluster that are not injected with the NGINX Service Mesh sidecar.
 
-{{< see-also >}}
+{{< call-out "note" >}}
 Refer to the [Deploy with NGINX Plus Ingress Controller]({{< ref "/mesh/tutorials/kic/deploy-with-kic.md" >}}) guide for more information on using NGINX Plus Ingress Controller to route ingress and egress traffic to and from your NGINX Service Mesh workloads.
-{{< /see-also >}}
+{{< /call-out>}}

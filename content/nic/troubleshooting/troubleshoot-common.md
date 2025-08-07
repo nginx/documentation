@@ -156,7 +156,7 @@ controller:
 
 Enable the `nginx-debug` CLI argument and change the `error-log-level` to `debug` to capture more output for debugging.
 
-{{< note >}} It is recommended to only enable `nginx-debug` CLI and the `error-log-level` when debugging. {{< /note >}}
+{{< call-out "note" >}} It is recommended to only enable `nginx-debug` CLI and the `error-log-level` when debugging. {{< /call-out >}}
 
 #### Example debug NGINX Ingress Controller Output
 

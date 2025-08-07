@@ -36,9 +36,9 @@ You can find the list of known issues in the [Known issues](https://example.com/
 
 ### (Optional) Security updates
 
-{{< important >}}
+{{< call-out "important" >}}
 For the protection of our customers, F5 NGINX doesn't disclose security issues until an investigation has occurred and a fix is available.
-{{< /important >}}
+{{< /call-out >}}
 
 This release includes the following security updates:
 

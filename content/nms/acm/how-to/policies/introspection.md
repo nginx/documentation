@@ -163,8 +163,8 @@ Send a POST request to add the OAuth2 Introspection policy to the API-Proxy.
 {{</bootstrap-table>}}
 
 
-{{< note >}} While all request body configuration values are presented in the request body structure example below, not all configuration
-    values are compatible. Please see the configuration value description table for further information. {{< /note >}}
+{{< call-out "note" >}} While all request body configuration values are presented in the request body structure example below, not all configuration
+    values are compatible. Please see the configuration value description table for further information. {{< /call-out >}}
 
 <details open>
 <summary>JSON request</summary>

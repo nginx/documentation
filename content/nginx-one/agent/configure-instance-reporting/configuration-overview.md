@@ -8,7 +8,7 @@ nd-docs: DOCS-1879
 
 This page describes how to configure F5 NGINX Agent using configuration files, CLI (Command line interface) flags, and environment variables.
 
-{{<note>}}
+{{< call-out "note" >}}
 
 - NGINX Agent interprets configuration values set by configuration files, CLI flags, and environment variables in the following priorities:
 
@@ -18,7 +18,7 @@ This page describes how to configure F5 NGINX Agent using configuration files, C
 
 - You must open any required firewall ports or add SELinux/AppArmor rules for the ports and IPs you want to use.
 
-{{</note>}}
+{{< /call-out >}}
 
 ## Configuration via Configuration Files 
 

@@ -5,11 +5,11 @@ toc: true
 nd-docs: DOCS-1696
 ---
 
-{{< note >}}
+{{< call-out "note" >}}
 **unitctl** is currently being provided as a "Technical Preview". We welcome
 feedback and suggestions for this early access version. It is provided to test
 its features and should not be used in production environments.
-{{< /note >}}
+{{< /call-out >}}
 
 Unit provides a [Rust SDK](https://github.com/nginx/unit/tree/master/tools/unitctl)
 to interact with its [control API]({{< relref "/unit/controlapi.md" >}}), and a command line
@@ -159,14 +159,14 @@ $ unitctl apps restart wasm
 }
 ```
 
-{{< note >}}
+{{< call-out "note" >}}
 This command supports operating on multiple instances of Unit at once. To do
 this, use the **-s** option multiple times with different values:
 
 ```console
 $ unitctl -s '127.0.0.1:8001' -s /run/nginx-unit.control.sock app list
 ```
-{{< /note >}}
+{{< /call-out >}}
 
 ### Fetch active listeners
 
@@ -184,14 +184,14 @@ No socket path provided - attempting to detect from running instance
 }
 ```
 
-{{< note >}}
+{{< call-out "note" >}}
 This command supports operating on multiple instances of Unit at once. To do
 this, use the **-s** option multiple times with different values:
 
 ```console
 $ unitctl -s '127.0.0.1:8001' -s /run/nginx-unit.control.sock listeners
 ```
-{{< /note >}}
+{{< /call-out >}}
 
 ### Check the status of Unit
 
@@ -213,14 +213,14 @@ requests:
 applications: {}
 ```
 
-{{< note >}}
+{{< call-out "note" >}}
 This command supports operating on multiple instances of Unit at once. To do
 this, use the **-s** option multiple times with different values:
 
 ```console
 $ unitctl -s '127.0.0.1:8001' -s /run/nginx-unit.control.sock status
 ```
-{{< /note >}}
+{{< /call-out >}}
 
 ### Send configuration payloads to Unit
 
@@ -249,14 +249,14 @@ $ echo '{
 }
 ```
 
-{{< note >}}
+{{< call-out "note" >}}
 This command supports operating on multiple instances of Unit at once. To do
 this, use the **-s** option multiple times with different values:
 
 ```console
 $ unitctl -s '127.0.0.1:8001' -s /run/nginx-unit.control.sock execute ...
 ```
-{{< /note >}}
+{{< /call-out >}}
 
 ### Edit current configuration
 
@@ -281,9 +281,9 @@ changes. Once you save and close the editor, you see the following output:
 }
 ```
 
-{{< note >}}
+{{< call-out "note" >}}
 This command does not support operating on multiple instances of Unit at once.
-{{< /note >}}
+{{< /call-out >}}
 
 ### Importing the configuration from a folder
 
@@ -325,13 +325,13 @@ $ unitctl export -f - | tar xf - config.json
 $ unitctl export -f - > config.tar
 ```
 
-{{< warning >}}
+{{< call-out "warning" >}}
 The exported configuration omits certificates.
-{{< /warning >}}
+{{< /call-out >}}
 
-{{< note >}}
+{{< call-out "note" >}}
 This command does not support operating on multiple instances of Unit at once.
-{{< /note >}}
+{{< /call-out >}}
 
 ### Wait for a socket to be available
 

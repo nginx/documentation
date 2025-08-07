@@ -5,10 +5,10 @@ toc: true
 nd-docs: DOCS-1703
 ---
 
-{{< note >}}
+{{< call-out "note" >}}
 The commands in this document starting with a hash (#) must be run as root or
 with superuser privileges.
-{{< /note >}}
+{{< /call-out >}}
 
 ## Logging {#troubleshooting-log}
 
@@ -47,11 +47,11 @@ Available log levels:
 - **[info]**: General-purpose reporting.
 - **[debug]**: Debug events.
 
-{{< note >}}
+{{< call-out "note" >}}
 Mind that our Docker images forward their log output to the
 [Docker log collector](https://docs.docker.com/config/containers/logging/)
 instead of a file.
-{{< /note >}}
+{{< /call-out >}}
 
 ### Router events {#troubleshooting-router-log}
 
@@ -96,10 +96,10 @@ curl --unix-socket /path/to/control.unit.sock http://localhost/config/routes/2  
 Unit's log can be set to record **[debug]**-level events; the steps to enable this
 mode vary by install method.
 
-{{< warning >}}
+{{< call-out "warning" >}}
 Debug log is meant for developers; it grows rapidly, so enable it only for
 detailed reports and inspection.
-{{< /warning >}}
+{{< /call-out >}}
 
 {{< tabs name="debug-log" >}}
 {{% tab name="Installing From Our Repos" %}}
@@ -160,9 +160,9 @@ For builds from
 we maintain debug symbols in special packages; they have the original packages'
 names with the **-dbg** suffix appended, such as **unit-dbg**.
 
-{{< note >}}
+{{< call-out "note" >}}
 This section assumes you're running Unit as **root** (recommended).
-{{< /note >}}
+{{< /call-out >}}
 
 {{< tabs name="core-dumps" >}}
 {{% tab name="Linux: systemd" %}}

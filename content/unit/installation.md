@@ -20,10 +20,10 @@ You can install NGINX Unit in four alternative ways:
   install the [toolchain]({{< relref "/unit/howto/source.md#source-prereq-build" >}}),
   and [build]({{< relref "/unit/howto/source.md#source-config-src" >}}) a custom binary from scratch; just make sure you know what you're doing.
 
-{{< note >}}
+{{< call-out "note" >}}
 The commands in this document starting with a hash (#) must be run as root or
 with superuser privileges.
-{{< /note >}}
+{{< /call-out >}}
 
 ## Prerequisites {#source-prereqs}
 
@@ -90,10 +90,10 @@ We also maintain a Homebrew [tap]({{< relref "/unit/installation.md#installation
 macOS users and a [module]({{< relref "/unit/installation.md#installation-nodejs-package" >}}) for Node.js
 at the [npm](https://www.npmjs.com/package/unit-http) registry.
 
-{{< note >}}
+{{< call-out "note" >}}
 For details of packaging custom modules that install alongside the official Unit,
 see [here]({{< relref "/unit/howto/modules.md#modules-pkg" >}}).
-{{< /note >}}
+{{< /call-out >}}
 
 ### Repository installation script {#repo-install}
 
@@ -212,10 +212,10 @@ Supported architecture: x86-64.
 
 {{%tab name="AMI"%}}
 
-{{< warning >}}
+{{< call-out "warning" >}}
 Unit's 1.22+ packages aren't built for Amazon Linux AMI. This distribution is
 obsolete; please update.
-{{< /warning >}}
+{{< /call-out >}}
 
 Supported architecture: x86-64.
 
@@ -416,10 +416,10 @@ Supported architecture: x86-64.
 
 ### RHEL and derivatives {#installation-precomp-rhel}
 
-{{< note >}}
+{{< call-out "note" >}}
 Use these steps for binary-compatible distributions: AlmaLinux, CentOS,
 Oracle Linux, or Rocky Linux.
-{{< /note >}}
+{{< /call-out >}}
 
 {{<tabs name="RHEL and derivatives">}}
 {{%tab name="9.x"%}}
@@ -510,7 +510,7 @@ Supported architecture: x86-64.
 
 ---
 
-{{< note >}}Use these steps for binary-compatible distributions: AlmaLinux, CentOS, Oracle Linux, or Rocky Linux.{{< /note >}}
+{{< call-out "note" >}}Use these steps for binary-compatible distributions: AlmaLinux, CentOS, Oracle Linux, or Rocky Linux.{{< /call-out >}}
 
 ---
 
@@ -675,10 +675,10 @@ Supported architectures: arm64, x86-64.
 {{%/tab%}}
 {{%tab name="18.04"%}}
 
-{{< warning >}}
+{{< call-out "warning" >}}
 Unit's 1.31+ packages aren't built for Ubuntu 18.04. This distribution is obsolete;
 please update.
-{{< /warning >}}
+{{< /call-out >}}
 
 Supported architectures: arm64, x86-64.
 
@@ -732,10 +732,10 @@ Supported architectures: arm64, x86-64.
 {{%/tab%}}
 {{%tab name="16.04"%}}
 
-{{< warning >}}
+{{< call-out "warning" >}}
 Unit's 1.24+ packages aren't built for Ubuntu 16.04. This distribution is obsolete;
 please update.
-{{< /warning >}}
+{{< /call-out >}}
 
 Supported architectures: arm64, i386, x86-64.
 
@@ -829,7 +829,7 @@ $ brew install unit-java unit-perl unit-php unit-python unit-python3 unit-ruby
 {{</bootstrap-table>}}
 
 
-{{< note >}}
+{{< call-out "note" >}}
 To run Unit as **root** on macOS:
 
 ```console
@@ -839,7 +839,7 @@ $ export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 ```console
 $ sudo --preserve-env=OBJC_DISABLE_INITIALIZE_FORK_SAFETY /path/to/unitd ...
 ```
-{{< /note >}}
+{{< /call-out >}}
 
 ### Node.js {#installation-nodejs-package}
 
@@ -856,12 +856,12 @@ is called `unit-http`. Install it to run Node.js apps on Unit:
    # npm install -g --unsafe-perm unit-http
    ```
 
-   {{< warning >}}
+   {{< call-out "warning" >}}
    The `unit-http` module is platform dependent due to optimizations;
    you can't move it across systems with the rest of **node-modules**.
    Global installation avoids such scenarios; just [relink]({{< relref "/unit/configuration.md#configuration-nodejs" >}})
    the migrated app.
-   {{< /warning >}}
+   {{< /call-out >}}
 
 3. It's entirely possible to run
    [Node.js apps]({{< relref "/unit/configuration.md#configuration-nodejs" >}})
@@ -870,9 +870,9 @@ is called `unit-http`. Install it to run Node.js apps on Unit:
    built-in **http**, but mind that such frameworks as Express may require extra
    [changes]({{< relref "/unit/howto/frameworks/express.md" >}}).
 
-{{< warning >}}
+{{< call-out "warning" >}}
 The `unit-http` module and `Unit` must have matching version numbers.
-{{< /warning >}}
+{{< /call-out >}}
 
 If you update Unit later, make sure to update the module as well:
 
@@ -880,10 +880,10 @@ If you update Unit later, make sure to update the module as well:
 # npm update -g --unsafe-perm unit-http
 ```
 
-{{< note >}}
+{{< call-out "note" >}}
 You can also [configure]({{< relref "/unit/howto/modules.md#howto/source-modules-nodejs" >}}) and
 [install]({{< relref "/unit/installation.md#source-bld-src-ext" >}}) the `unit-http` module from sources.
-{{< /note >}}
+{{< /call-out >}}
 
 #### Working with multiple Node.js versions {#multiple-nodejs-versions}
 <details>
@@ -1024,16 +1024,16 @@ documentation.
 
 ---
 
-{{< note >}} Restarting Unit is necessary after installing or uninstalling any
+{{< call-out "note" >}} Restarting Unit is necessary after installing or uninstalling any
 language modules to pick up the changes.
-{{< /note >}}
+{{< /call-out >}}
 
 ## Community Repositories {#installation-community-repos}
 
-{{< warning >}}
+{{< call-out "warning" >}}
 These distributions are maintained by their respective communities,
 not NGINX. Use them with caution.
-{{< /warning >}}
+{{< /call-out >}}
 
 {{< tabs name="Community Repositories" >}}
 {{% tab name="Alpine" %}}
@@ -1719,11 +1719,11 @@ for the build.
 If not sure whether an official image exists for a specific language version,
 follow the links in the tag table above.
 
-{{< note >}}
+{{< call-out "note" >}}
 Unit relies on the official Docker images, so any customization method offered by their
 maintainers is equally applicable; to tailor a Unit image to your needs,
 see the quick reference for its base image.
-{{< /note >}}
+{{< /call-out >}}
 
 The language name can be **go**, **jsc**, **node**, **perl**, **php**,
 **python**, or **ruby**; the version is defined as **\<major\>.\<minor\>**,
@@ -1818,9 +1818,9 @@ $ docker run -d public.ecr.aws/nginx/unit:TAG # Specific image tag; see above fo
 {{%/tab%}}
 {{% tab name="packages.nginx.org" %}}
 
-{{< warning >}}
+{{< call-out "warning" >}}
 Unit's 1.30+ image tarballs aren't published on the website; this channel is deprecated.
-{{< /warning >}}
+{{< /call-out >}}
 
 To install and run Unit from the tarballs stored on our
 [website](https://packages.nginx.org/unit/docker/):
@@ -1901,11 +1901,11 @@ COPY ./*.json /docker-entrypoint.d/
 COPY ./*.sh   /docker-entrypoint.d/
 ```
 
-{{< note >}}
+{{< call-out "note" >}}
 Mind that running Unit even once populates its state directory;
 this prevents the script from executing, so this script-based initialization must occur
 before you run Unit in your derived container.
-{{< /note >}}
+{{< /call-out >}}
 
 This feature comes in handy if you want to tie Unit to a certain app configuration
 for later use. For ad-hoc initialization, you can mount a directory with configuration files to a container at startup:

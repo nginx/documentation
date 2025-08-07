@@ -236,7 +236,7 @@ If a user other than **nginx** is to be used, note the following:
 
     Update your policy to include the new configuration, then run [apreload]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#apreload" >}})  command to make changes take effect
 
-    {{< note >}} For this capability to function properly, please follow the guidelines listed in the [configuration guide]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#ip-intelligence-configuration" >}}){{< /note >}}
+    {{< call-out "note" >}} For this capability to function properly, please follow the guidelines listed in the [configuration guide]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#ip-intelligence-configuration" >}}){{< /call-out >}}
 
 
 
@@ -374,7 +374,7 @@ If a user other than **nginx** is to be used, note the following:
 
     Update your policy to include the new configuration, then run [apreload]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#apreload" >}})  command to make changes take effect
 
-    {{< note >}} For this capability to function properly, please follow the guidelines listed in the [configuration guide]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#ip-intelligence-configuration" >}}){{< /note >}}
+    {{< call-out "note" >}} For this capability to function properly, please follow the guidelines listed in the [configuration guide]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#ip-intelligence-configuration" >}}){{< /call-out >}}
 
 ## Debian Installation
 
@@ -407,7 +407,7 @@ If a user other than **nginx** is to be used, note the following:
     sudo apt-get update && sudo apt-get install apt-transport-https lsb-release ca-certificates wget gnupg2
     ```
 
-    {{< note >}} In case the apt installation or database update fails due to release info change, run the below command before you install. {{< /note >}}
+    {{< call-out "note" >}} In case the apt installation or database update fails due to release info change, run the below command before you install. {{< /call-out >}}
 
     ```shell
     sudo apt-get update --allow-releaseinfo-change
@@ -471,7 +471,7 @@ If a user other than **nginx** is to be used, note the following:
     sudo apt-cache policy app-protect
     ```
 
-    {{< note >}} When installing an older version of NGINX App Protect WAF, the dependent packages have to be installed manually, as shown in the command above. The following script can be used to find out the dependent packages for a specific version of NGINX App Protect WAF.{{< /note >}}
+    {{< call-out "note" >}} When installing an older version of NGINX App Protect WAF, the dependent packages have to be installed manually, as shown in the command above. The following script can be used to find out the dependent packages for a specific version of NGINX App Protect WAF.{{< /call-out >}}
 
     ```shell
     findDeps () { local pkgs=$(apt show $1 2>/dev/null | grep Depends: | grep -oE "(nginx-plus-module|app-protect)-[a-z]+ *\(= *[0-9\+\.-]+~`lsb_release -cs`\)" | tr -d ' ()'); for p in ${pkgs[@]}; do echo $p; findDeps $p; done; }
@@ -535,10 +535,10 @@ If a user other than **nginx** is to be used, note the following:
 
     Update your policy to include the new configuration, then run [apreload]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#apreload" >}})  command to make changes take effect
 
-    {{< note >}} For this capability to function properly, please follow the guidelines listed in the [configuration guide]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#ip-intelligence-configuration" >}}){{< /note >}}
+    {{< call-out "note" >}} For this capability to function properly, please follow the guidelines listed in the [configuration guide]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#ip-intelligence-configuration" >}}){{< /call-out >}}
 
-{{< warning >}} Debian enables **AppArmor** by default, but NGINX App Protect WAF will run in unconfined mode after being installed as it is shipped with no AppArmor profile. To benefit from AppArmor access control capabilities for NGINX App Protect WAF, you will have to write your own AppArmor profile for NGINX App Protect WAF executables found in `/opt/app_protect/bin` such that it best suits your environment.
-{{< /warning >}}
+{{< call-out "warning" >}} Debian enables **AppArmor** by default, but NGINX App Protect WAF will run in unconfined mode after being installed as it is shipped with no AppArmor profile. To benefit from AppArmor access control capabilities for NGINX App Protect WAF, you will have to write your own AppArmor profile for NGINX App Protect WAF executables found in `/opt/app_protect/bin` such that it best suits your environment.
+{{< /call-out >}}
 
 ## Oracle Linux / RHEL 8.1+ Installation
 
@@ -678,7 +678,7 @@ If a user other than **nginx** is to be used, note the following:
 
     Update your policy to include the new configuration, then run [apreload]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#apreload" >}})  command to make changes take effect
 
-    {{< note >}} For this capability to function properly, please follow the guidelines listed in the [configuration guide]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#ip-intelligence-configuration" >}}){{< /note >}}
+    {{< call-out "note" >}} For this capability to function properly, please follow the guidelines listed in the [configuration guide]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#ip-intelligence-configuration" >}}){{< /call-out >}}
 
     ---
 
@@ -820,7 +820,7 @@ If a user other than **nginx** is to be used, note the following:
 
     Update your policy to include the new configuration, then run [apreload]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#apreload" >}})  command to make changes take effect
 
-    {{< note >}} For this capability to function properly, please follow the guidelines listed in the [configuration guide]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#ip-intelligence-configuration" >}}){{< /note >}}
+    {{< call-out "note" >}} For this capability to function properly, please follow the guidelines listed in the [configuration guide]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#ip-intelligence-configuration" >}}){{< /call-out >}}
 
    ---
 
@@ -926,7 +926,7 @@ If a user other than **nginx** is to be used, note the following:
     <br>
     <br>
 
-    {{< note >}} When installing an older version of NGINX App Protect WAF, the dependent packages have to be installed manually, as shown in the command above. The following script can be used to find out the dependent packages for a specific version of NGINX App Protect WAF.{{< /note >}}
+    {{< call-out "note" >}} When installing an older version of NGINX App Protect WAF, the dependent packages have to be installed manually, as shown in the command above. The following script can be used to find out the dependent packages for a specific version of NGINX App Protect WAF.{{< /call-out >}}
 
     ```shell
     findDeps () { local pkgs=$(apt show $1 2>/dev/null | grep Depends: | grep -oE "(nginx-plus-module|app-protect)-[a-z]+ *\(= *[0-9\+\.-]+~`lsb_release -cs`\)" | tr -d ' ()'); for p in ${pkgs[@]}; do echo $p; findDeps $p; done; }
@@ -977,10 +977,10 @@ If a user other than **nginx** is to be used, note the following:
 
     Update your policy to include the new configuration, then run [apreload]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#apreload" >}})  command to make changes take effect
 
-    {{< note >}} For this capability to function properly, please follow the guidelines listed in the [configuration guide]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#ip-intelligence-configuration" >}}){{< /note >}}
+    {{< call-out "note" >}} For this capability to function properly, please follow the guidelines listed in the [configuration guide]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#ip-intelligence-configuration" >}}){{< /call-out >}}
 
-{{< note >}} Ubuntu 20.04 / Ubuntu 22.04 / Ubuntu 24.04 activates **AppArmor** by default, but NGINX App Protect WAF will run in unconfined mode after being installed as it is shipped with no AppArmor profile. To benefit from AppArmor access control capabilities for NGINX App Protect WAF, you will have to write your own AppArmor profile for NGINX App Protect WAF executables found in `/opt/app_protect/bin` such that it best suits your environment.
-{{< /note >}}
+{{< call-out "note" >}} Ubuntu 20.04 / Ubuntu 22.04 / Ubuntu 24.04 activates **AppArmor** by default, but NGINX App Protect WAF will run in unconfined mode after being installed as it is shipped with no AppArmor profile. To benefit from AppArmor access control capabilities for NGINX App Protect WAF, you will have to write your own AppArmor profile for NGINX App Protect WAF executables found in `/opt/app_protect/bin` such that it best suits your environment.
+{{< /call-out >}}
 
 ## Docker Deployments
 
@@ -1060,7 +1060,7 @@ If a user other than **nginx** is to be used, note the following:
     }
     ```
 
-    {{< important >}}Make sure to replace upstream and proxy pass directives in this example with relevant application backend settings.{{< /important >}}
+    {{< call-out "important" >}}Make sure to replace upstream and proxy pass directives in this example with relevant application backend settings.{{< /call-out >}}
 6. In the same directory create an `entrypoint.sh` file with the following content:
 
     ```shell
@@ -2038,7 +2038,7 @@ The way to achieve the goal of better protection will use the package dependency
 
 In case the user has an older version of NGINX App Protect WAF and never installed the Attack Signatures package, upgrading NGINX App Protect WAF will install the latest Attack Signatures. However, if they have installed Attack Signatures package previously at any point in time, NGINX App Protect WAF will not install the latest Attack Signatures.
 
-{{< note >}}The user can upgrade or downgrade the Attack Signatures regardless of the installed version of NGINX App Protect WAF.{{< /note >}}
+{{< call-out "note" >}}The user can upgrade or downgrade the Attack Signatures regardless of the installed version of NGINX App Protect WAF.{{< /call-out >}}
 
 ### Attack Signatures Package
 The attack signature package is named: app-protect-attack-signatures-2022.08.04. The version number for this package reflects the date the package was released. The format is: _YYYY.MM.DD_ where:
@@ -2270,7 +2270,7 @@ The way to achieve the goal of better protection will use the package dependency
 
 In case the user has an older version of NGINX App Protect WAF and never installed the Threat Campaigns package, upgrading NGINX App Protect will install the latest Threat Campaigns. However, if they have installed Threat Campaigns package previously at any point in time, NGINX App Protect WAF will not install the latest Threat Campaigns.
 
-{{< note >}}The user can upgrade or downgrade the Threat Campaigns regardless of the installed version of NGINX App Protect WAF.{{< /note >}}
+{{< call-out "note" >}}The user can upgrade or downgrade the Threat Campaigns regardless of the installed version of NGINX App Protect WAF.{{< /call-out >}}
 
 ### Installing Threat Campaigns Update
 

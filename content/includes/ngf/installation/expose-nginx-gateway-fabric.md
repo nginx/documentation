@@ -9,7 +9,7 @@ There are two options for accessing NGINX Gateway Fabric depending on the type o
 - If the LoadBalancer type is `NodePort`, Kubernetes will randomly allocate two ports on every node of the cluster.
   To access the NGINX Gateway Fabric, use an IP address of any node of the cluster along with the two allocated ports.
 
-  {{<tip>}} Read more about the type NodePort in the [Kubernetes documentation](https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport). {{</tip>}}
+  {{< call-out "tip" >}} Read more about the type NodePort in the [Kubernetes documentation](https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport). {{< /call-out >}}
 
 - If the LoadBalancer type is `LoadBalancer`:
 
@@ -32,21 +32,21 @@ There are two options for accessing NGINX Gateway Fabric depending on the type o
     kubectl get svc nginx-gateway -n nginx-gateway
     ```
 
-    {{< note >}} We recommend using the NLB DNS whenever possible, but for testing purposes, you can resolve the DNS name to get the IP address of the load balancer:
+    {{< call-out "note" >}} We recommend using the NLB DNS whenever possible, but for testing purposes, you can resolve the DNS name to get the IP address of the load balancer:
 
   ```shell
   nslookup <dns-name>
   ```
 
-    {{< /note >}}
+    {{< /call-out >}}
 
-  {{<tip>}} Learn more about type LoadBalancer in the [Kubernetes documentation](https://kubernetes.io/docs/concepts/services-networking/service/#type-loadbalancer).
+  {{< call-out "tip" >}} Learn more about type LoadBalancer in the [Kubernetes documentation](https://kubernetes.io/docs/concepts/services-networking/service/#type-loadbalancer).
 
   For AWS, additional options regarding an allocated load balancer are available, such as its type and SSL
   termination. Read the [Kubernetes documentation](https://kubernetes.io/docs/concepts/services-networking/service/#type-loadbalancer) to learn more.
-  {{</tip>}}
+  {{< /call-out >}}
 
-{{<important>}}By default Helm and manifests configure NGINX Gateway Fabric on ports `80` and `443`, affecting any gateway [listeners](https://gateway-api.sigs.k8s.io/references/spec/#gateway.networking.k8s.io/v1.Listener) on these ports. To use different ports, update the configuration. NGINX Gateway Fabric requires a configured [gateway](https://gateway-api.sigs.k8s.io/api-types/gateway/#gateway) resource with a valid listener to listen on any ports.{{</important>}}
+{{< call-out "important" >}}By default Helm and manifests configure NGINX Gateway Fabric on ports `80` and `443`, affecting any gateway [listeners](https://gateway-api.sigs.k8s.io/references/spec/#gateway.networking.k8s.io/v1.Listener) on these ports. To use different ports, update the configuration. NGINX Gateway Fabric requires a configured [gateway](https://gateway-api.sigs.k8s.io/api-types/gateway/#gateway) resource with a valid listener to listen on any ports.{{< /call-out >}}
 
 NGINX Gateway Fabric uses the created service to update the **Addresses** field in the **Gateway Status** resource. Using a **LoadBalancer** service sets this field to the IP address and/or hostname of that service. Without a service, the pod IP address is used.
 

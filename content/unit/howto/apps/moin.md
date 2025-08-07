@@ -5,20 +5,20 @@ weight: 1300
 nd-docs: DOCS-1732
 ---
 
-{{< warning >}}
+{{< call-out "warning" >}}
 So far, Unit doesn't support handling the **REMOTE_USER** headers directly, so
 authentication should be implemented via other means. For a
 full list of available authenticators, see [here](https://moinmo.in/HelpOnAuthentication).
-{{< /warning >}}
+{{< /call-out >}}
 
 To run the [MoinMoin](https://moinmo.in/MoinMoinWiki) wiki engine using Unit:
 
 1. Install [Unit]({{< relref "/unit/installation.md#installation-precomp-pkgs" >}}) with a Python 2 language module.
 
-   {{< note >}}
+   {{< call-out "note" >}}
    As of now, MoinMoin [doesn't fully support](https://moinmo.in/Python3)
    Python 3. Mind that Python 2 is officially deprecated.
-   {{< /note >}}
+   {{< /call-out >}}
 
 2. Install and configure MoinMoin's [prerequisites](https://moinmo.in/MoinMoinDependencies)
 

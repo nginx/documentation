@@ -59,7 +59,7 @@ Get your system ready for building and pushing the NGINX Ingress Controller imag
 
 After setting up your environment, follow these steps to build the NGINX Ingress Controller image.
 
-{{< note >}} If you have a local Golang environment and want to build the binary yourself, remove `TARGET=download` from the make commands. If you don't have Golang but still want to build the binary, use `TARGET=container`. {{< /note >}}
+{{< call-out "note" >}} If you have a local Golang environment and want to build the binary yourself, remove `TARGET=download` from the make commands. If you don't have Golang but still want to build the binary, use `TARGET=container`. {{< /call-out >}}
 
 ### For NGINX
 
@@ -103,7 +103,7 @@ make debian-image-plus PREFIX=<my-docker-registry>/nginx-plus-ingress TARGET=dow
 
 **What to expect**: The image is built and tagged with a version number, which is derived from the `VERSION` variable in the [_Makefile_](#makefile-details). This version number is used for tracking and deployment purposes.
 
-{{<note>}} If a patch for NGINX Plus is released, make sure to rebuild your image to get the latest version. If your system is caching the Docker layers and not updating the packages, add `DOCKER_BUILD_OPTIONS="--pull --no-cache"` to the make command. {{</note>}}
+{{< call-out "note" >}} If a patch for NGINX Plus is released, make sure to rebuild your image to get the latest version. If your system is caching the Docker layers and not updating the packages, add `DOCKER_BUILD_OPTIONS="--pull --no-cache"` to the make command. {{< /call-out >}}
 
 ---
 
@@ -135,7 +135,7 @@ This section provides comprehensive information on the targets and variables ava
 
 ### Key Makefile targets {#key-makefile-targets}
 
-{{<tip>}}To view available _Makefile_ targets, run `make` with no target or type `make help`.{{</tip>}}
+{{< call-out "tip" >}}To view available _Makefile_ targets, run `make` with no target or type `make help`.{{< /call-out >}}
 
 Key targets include:
 

@@ -57,9 +57,9 @@ The following table lists the configurable settings and their default values for
 {{< /bootstrap-table >}}
 
 
-{{< note >}}
+{{< call-out "note" >}}
 Setting a wildcard (`*`) in `exposedHeaders` does not include headers related to `Access-Control-Allow-Credentials`; those must explicitly be added to exposed headers.
-{{< /note >}}
+{{< /call-out >}}
 
 ---
 
@@ -69,7 +69,7 @@ Setting a wildcard (`*`) in `exposedHeaders` does not include headers related to
 
 {{%tab name="API"%}}
 
-{{<see-also>}}{{< include "acm/how-to/access-acm-api.md" >}}{{</see-also>}}
+{{< call-out "note" >}}{{< include "acm/how-to/access-acm-api.md" >}}{{< /call-out>}}
 
 To create an CORS policy using the REST API, send an HTTP `PUT` request to the Proxies endpoint.
 

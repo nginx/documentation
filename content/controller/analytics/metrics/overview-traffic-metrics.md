@@ -16,17 +16,17 @@ The data that F5 NGINX Controller collects can be divided into two categories:
 - **System metrics**: Data collected from the NGINX Plus API, the NGINX log files, and NGINX process state.
 - **Traffic metrics**: Data related to processed traffic, with the ability to distinguish the Application, API endpoint, or Environment that traffic is directed through.
 
-{{< note >}}
+{{< call-out "note" >}}
 The key difference between system and traffic metrics is that traffic metrics are pre-aggregated for each time period.
-{{< /note >}}
+{{< /call-out >}}
 
 Metrics are published at a regular interval of 60 or 30 seconds for system and traffic metrics, respectively.
 
 This topic gives an overview of the traffic metrics. Also known as "app-centric" metrics, traffic metrics contain information that lets you easily identify the App to which the data applies.
 
-{{< see-also >}}
+{{< call-out "note" >}}
 Refer to [View traffic metrics]({{< ref "/controller/analytics/metrics/view-traffic-metrics.md" >}}) for instructions on how to view traffic metrics using the [NGINX Controller REST API]({{< ref "/controller/api/_index.md" >}}).
-{{< /see-also >}}
+{{< /call-out>}}
 
 ## Available traffic metrics
 
@@ -42,9 +42,9 @@ Refer to [View traffic metrics]({{< ref "/controller/analytics/metrics/view-traf
 - `http.request.bytes_sent`
 - `http.request.count`
 
-{{< see-also >}}
+{{< call-out "note" >}}
 Refer to the [NGINX Controller Metrics Catalog]({{< ref "/controller/analytics/catalogs/metrics.md" >}}) for details about these and the other metrics that NGINX Controller reports.
-{{< /see-also>}}
+{{< /call-out>}}
 
 ## Calculating traffic metrics
 

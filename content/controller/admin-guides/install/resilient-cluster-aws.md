@@ -19,8 +19,8 @@ To be resilient, a cluster requires three working nodes. That's two nodes for a 
 
 If a node fails in a resilient cluster, NGINX Controller automatically redirects traffic to the other working nodes. A multi-node cluster is operational with only two nodes; however, a two-node cluster isn't resilient to further failures. If one of the nodes in a multi-node cluster becomes degraded or fails, you must take action **as soon as possible** to recover or replace the failed node or risk losing resiliency.
 
-{{< important >}}The failover time can take **up to 5 minutes** when a node fails. During this time, NGINX Controller may be unavailable while services are migrated and restarted. Resiliency will be restored once there are **three working nodes** in the cluster.
-{{< /important >}}
+{{< call-out "important" >}}The failover time can take **up to 5 minutes** when a node fails. During this time, NGINX Controller may be unavailable while services are migrated and restarted. Resiliency will be restored once there are **three working nodes** in the cluster.
+{{< /call-out >}}
 
 The following table shows how many nodes are needed for a cluster to have a quorum and what the failure tolerance is:
 
@@ -72,7 +72,7 @@ Before installing or configuring NGINX Controller as a multi-node cluster, revie
 
 ### Prerequisites
 
-{{< important >}}If you plan to run NGINX Controller on AWS EC2 instances, we recommend you use NFS shares for the external volumes. Using EBS shares for multi-node clusters is not recommended because of the [EBS Availability Zone limitations](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volumes-multi.html#considerations).{{< /important >}}
+{{< call-out "important" >}}If you plan to run NGINX Controller on AWS EC2 instances, we recommend you use NFS shares for the external volumes. Using EBS shares for multi-node clusters is not recommended because of the [EBS Availability Zone limitations](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volumes-multi.html#considerations).{{< /call-out >}}
 
 Things you'll need before installing NGINX Controller as a resilient cluster:
 
@@ -92,7 +92,7 @@ Things you'll need before installing NGINX Controller as a resilient cluster:
 
 ## Configure IAM Roles
 
-{{< important >}}If you plan to run NGINX Controller on AWS EC2 instances, we recommend using NFS shares for the external volumes. Using EBS shares for multi-node clusters is not recommended because of the [EBS Availability Zone limitations](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volumes-multi.html#considerations); for example, the requirement to have EC2 instances and EBS volumes in the same Availability Zone.{{< /important >}}
+{{< call-out "important" >}}If you plan to run NGINX Controller on AWS EC2 instances, we recommend using NFS shares for the external volumes. Using EBS shares for multi-node clusters is not recommended because of the [EBS Availability Zone limitations](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volumes-multi.html#considerations); for example, the requirement to have EC2 instances and EBS volumes in the same Availability Zone.{{< /call-out >}}
 
 If you are installing NGINX Controller on [AWS EC2 instances](https://aws.amazon.com/ec2/getting-started/) and plan to use EBS volumes for the analytics and/or config database, you will need to add an IAM role like the one shown below. This will also allow the automatic creation of Elastic Load Balancers (ELBs). Additionally, for successful automatic creation of ELBs, all the EC2 instances that are or will be part of the cluster must be tagged with the following key-value pair:
   `kubernetes.io/cluster/NGINX-CONTROLLER : owned`
@@ -192,9 +192,9 @@ If you are installing NGINX Controller on [AWS EC2 instances](https://aws.amazon
 
 Nodes are additional control-plane hosts that you can add to your cluster to improve uptime resilience. For a resilient cluster, you should have at least three nodes, of which **two nodes must always be operational**.
 
-{{< important >}}
+{{< call-out "important" >}}
 When adding a third node to the cluster for the first time, NGINX Controller may become momentarily unavailable while the cluster is being created. For this reason, we recommend updating NGINX Controller during a planned maintenance window to minimize disruptions.
-{{< /important >}}
+{{< /call-out >}}
 
 Take the following steps to add a node to the cluster:
 
@@ -226,9 +226,9 @@ Take the following steps to add a node to the cluster:
 1. After the installation finishes, the node status in the web interface changes to `Configured`.
 1. Repeat these steps for each node that you want to add to the cluster.
 
-{{< see-also >}}
+{{< call-out "note" >}}
 To add nodes to your cluster using the [NGINX Controller REST API]({{< ref "/controller/api/_index.md" >}}), send a POST request to the `/platform/nodes` endpoint.
-{{< /see-also >}}
+{{< /call-out>}}
 
 &nbsp;
 
@@ -250,13 +250,13 @@ There might be situations when you need to delete a node, either temporarily for
 
 If you need to remove a node temporarily, follow the steps in the [Add Nodes to the Cluster](#add-nodes-to-the-cluster) topic when you are ready to re-add it. Make sure to uninstall NGINX Controller from the node before re-installing NGINX Controller with the new join-key.
 
-{{< important >}}
+{{< call-out "important" >}}
 Deleting nodes can cause NGINX Controller to become momentarily unavailable while the cluster is being updated. For this reason, we recommend updating NGINX Controller during a planned maintenance window to minimize disruptions. When deleting nodes, make sure that **at least two nodes are always operational**. If the cluster has fewer than two working nodes, NGINX Controller may become unresponsive, and you may not be able to add new nodes.
-{{< /important >}}
+{{< /call-out >}}
 
-{{< see-also >}}
+{{< call-out "note" >}}
 To delete nodes from your cluster using the [NGINX Controller API Reference]({{< ref "/controller/api/_index.md" >}}), send a DELETE request to the Nodes endpoint.
-{{< /see-also >}}
+{{< /call-out>}}
 
 To delete a node from the cluster using the web interface:
 
@@ -274,9 +274,9 @@ To delete a node from the cluster using the web interface:
       /opt/nginx-controller/uninstall.sh
       ```
 
-{{< see-also >}}
+{{< call-out "note" >}}
 To delete nodes from your cluster using the [NGINX Controller REST API]({{< ref "/controller/api/_index.md" >}}), send a DELETE request to the `/platform/nodes` endpoint.
-{{< /see-also >}}
+{{< /call-out>}}
 
 &nbsp;
 
@@ -301,11 +301,11 @@ To replace a failed node:
 
 When updating NGINX Controller on a multi-node cluster, run the `update.sh` script on each node individually -- the order in which you update the nodes doesn't matter.
 
-{{< warning >}}Do not update the nodes in a multi-node cluster in parallel. Doing so may result in race conditions for certain jobs, such as database migrations, and may cause the cluster to become unavailable.{{< /warning >}}
+{{< call-out "warning" >}}Do not update the nodes in a multi-node cluster in parallel. Doing so may result in race conditions for certain jobs, such as database migrations, and may cause the cluster to become unavailable.{{< /call-out >}}
 
-{{< important >}}
+{{< call-out "important" >}}
 Active users will be logged out from NGINX Controller during an update. We recommend updating NGINX Controller during a planned maintenance window to minimize disruptions.
-{{< /important >}}
+{{< /call-out >}}
 
 To update your cluster to a newer version of NGINX Controller, take the following steps:
 

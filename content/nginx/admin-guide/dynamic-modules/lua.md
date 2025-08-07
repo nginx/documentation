@@ -83,7 +83,7 @@ After installation, enable and configure the modules in NGINX Plus configuration
    }
    ```
 
-   {{< note >}} The `ndk_http_module.so` module must be placed first. {{< /note >}}
+   {{< call-out "note" >}} The `ndk_http_module.so` module must be placed first. {{< /call-out >}}
 
 2. Configure additional settings as needed for the modules. For details, see the [`lua-nginx-module`](https://github.com/openresty/lua-nginx-module) and [`stream-lua-nginx-module`](https://github.com/openresty/stream-lua-nginx-module) documentation.
 

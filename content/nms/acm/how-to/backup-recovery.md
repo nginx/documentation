@@ -8,7 +8,7 @@ nd-docs: "DOCS-1668"
 
 F5 NGINX Management Suite includes several scripts for backing up and restoring the configuration files, secrets, and databases used by the platform.
 
-{{<important>}}The backup and recovery scripts are provided for reference and may need to be changed for your deployment.{{</important>}}
+{{< call-out "important" >}}The backup and recovery scripts are provided for reference and may need to be changed for your deployment.{{< /call-out >}}
 
 ---
 
@@ -212,7 +212,7 @@ To back up NGINX Management Suite deployed in a Kubernetes cluster, follow these
     ./k8s-backup.sh
     ```
 
-    {{< note >}}The backup script does not need the `utility` pod or `sudo` permissions to create a backup.{{< /note >}}
+    {{< call-out "note" >}}The backup script does not need the `utility` pod or `sudo` permissions to create a backup.{{< /call-out >}}
 
 1. The command will ask for the NGINX Management Suite namespace. The script will create a backup archive in the same directory called `k8s-backup-<timestamp>.tar.gz`.
 
@@ -245,11 +245,11 @@ To restore NGINX Management Suite and the installed modules deployed in the same
     In the command above, `/etc/kubernetes/admin.conf` is the default configuration location of a Kubernetes cluster. If the configuration location is different for the target Kubernetes cluster, update the command accordingly.
 
 
-    {{< note >}}The restore script [needs root access]({{< ref "/nms/acm/how-to/backup-recovery.md#root-access" >}}) to Kubernetes for the restore operation.{{< /note >}}
+    {{< call-out "note" >}}The restore script [needs root access]({{< ref "/nms/acm/how-to/backup-recovery.md#root-access" >}}) to Kubernetes for the restore operation.{{< /call-out >}}
 
 1. The script will ask for the NGINX Management Suite namespace. Once the namespace has been provided, the script will use the specified backup archive.
 
-    {{< note >}}The script will use the `utility` pod to access all the mounted volumes to restore database directories and core secrets; and `kubectl` to restore the Kubernetes configmaps and secrets. Before starting the restoration, the script will stop all service pods and start the `utility` pod. After finishing the restore, it will stop the `utility` pod and start all service pods.{{< /note >}}
+    {{< call-out "note" >}}The script will use the `utility` pod to access all the mounted volumes to restore database directories and core secrets; and `kubectl` to restore the Kubernetes configmaps and secrets. Before starting the restoration, the script will stop all service pods and start the `utility` pod. After finishing the restore, it will stop the `utility` pod and start all service pods.{{< /call-out >}}
 
 
 ### Data-only restoration to a different Kubernetes Cluster
@@ -281,7 +281,7 @@ To restore NGINX Management Suite and the installed modules into a different Kub
     In the command above, `/etc/kubernetes/admin.conf` is the default configuration location of a Kubernetes cluster. If the configuration location is different for the target Kubernetes cluster, update the command accordingly.
 
 
-    {{< note >}}The restore script [needs root access]({{< ref "/nms/acm/how-to/backup-recovery.md#root-access" >}}) to Kubernetes for the restore operation.{{< /note >}}
+    {{< call-out "note" >}}The restore script [needs root access]({{< ref "/nms/acm/how-to/backup-recovery.md#root-access" >}}) to Kubernetes for the restore operation.{{< /call-out >}}
 
 1. The script will ask for the NGINX Management Suite namespace. Once the namespace has been provided, the script will use the specified backup archive.
 

@@ -25,7 +25,7 @@ We recommend you [upgrade the NGINX Controller Agent]({{< ref "/controller/admin
 
 If you're upgrading NGINX Controller on a multi-node cluster, run the `update.sh` script on each node individually -- the order in which you update the nodes doesn't matter.
 
-  {{< warning >}} Never update the control nodes in parallel. Doing so may result in race conditions for certain jobs, such as database migrations, and may cause the cluster to become unavailable.{{< /warning >}}
+  {{< call-out "warning" >}} Never update the control nodes in parallel. Doing so may result in race conditions for certain jobs, such as database migrations, and may cause the cluster to become unavailable.{{< /call-out >}}
 
 ## Resolved Issues
 
@@ -46,7 +46,7 @@ This release also fixes the following new-found issue:
 
 
 
-  {{< warning >}} Before upgrading to 3.22.2, make sure the expectation for the matchMethod for component FQDN URIs matches the rule mentioned above. If not, the URI needs to be rewritten by putting the hostname portion of the URI in the gateway and using a relative URI in the component. {{< /warning >}}
+  {{< call-out "warning" >}} Before upgrading to 3.22.2, make sure the expectation for the matchMethod for component FQDN URIs matches the rule mentioned above. If not, the URI needs to be rewritten by putting the hostname portion of the URI in the gateway and using a relative URI in the component. {{< /call-out >}}
 
 ## Known Issues
 

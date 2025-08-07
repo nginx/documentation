@@ -21,14 +21,14 @@ Objectives:
 - Deploy the example `bookinfo` app.
 - Create a Kubernetes Ingress resource for the Bookinfo application.
 
-{{< note >}}
+{{< call-out "note" >}}
 NGINX Ingress Controller can be used for free with NGINX Open Source. Paying customers have access to NGINX Ingress Controller with NGINX Plus.
 To complete this tutorial, you must use either:
 
 - Open Source NGINX Ingress Controller version 3.0+
 - NGINX Plus version of NGINX Ingress Controller
 
-{{< /note >}}
+{{< /call-out >}}
 
 ### Install NGINX Service Mesh
 
@@ -82,9 +82,9 @@ NGINX Ingress Controller will try to fetch certs from the Spire agent that gets 
 
 (Optional) Verify that the application works:
 
-{{< note >}}
+{{< call-out "note" >}}
 The steps in this section only work with `permissive` [mTLS mode]( {{< ref "/mesh/guides/secure-traffic-mtls.md" >}} ). With `strict` mTLS mode, the sidecar will drop all traffic that is not encrypted with a certificate issued by NGINX Service Mesh, so the below steps won't work. For `strict` mTLS mode skip forward to the next section which covers how to [Expose the Bookinfo App](#expose-the-bookinfo-app).
-{{< /note >}}
+{{< /call-out >}}
 
 1. Port-forward to the `productpage` Service:
 
@@ -99,9 +99,9 @@ The steps in this section only work with `permissive` [mTLS mode]( {{< ref "/mes
 
 Create an Ingress Resource to expose the Bookinfo application, using the example `bookinfo-ingress.yaml` file.
 
-{{< important >}}
+{{< call-out "important" >}}
 If using Kubernetes v1.18.0 or greater you must use `ingressClassName` in your Ingress resources. Uncomment line 6 in the resource below or the downloaded file, `bookinfo-ingress.yaml`.
-{{< /important >}}
+{{< /call-out >}}
 
 - {{< fa "download" >}} {{< link "/examples/nginx-ingress-controller/bookinfo-ingress.yaml" "bookinfo-ingress.yaml" >}}
 

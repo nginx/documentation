@@ -62,11 +62,11 @@ GW_IP=XXX.YYY.ZZZ.III
 GW_PORT=<port number>
 ```
 
-{{< note >}}
+{{< call-out "note" >}}
 
 In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the gateway will forward for.
 
-{{< /note >}}
+{{< /call-out >}}
 
 The [HTTPRoute](https://gateway-api.sigs.k8s.io/api-types/httproute/) is typically deployed by the [application developer](https://gateway-api.sigs.k8s.io/concepts/roles-and-personas/#roles-and-personas_1). To deploy the `coffee` HTTPRoute:
 
@@ -137,14 +137,14 @@ This HTTPRoute has a few important properties:
   - Request with the path prefix `/coffee` and header `version=v2`.
   - Request with the path prefix `/coffee` and the query parameter `TEST=v2`.
 
-  {{< note >}} The match type is `Exact` for both header and query param, by default. {{< /note >}}
+  {{< call-out "note" >}} The match type is `Exact` for both header and query param, by default. {{< /call-out >}}
 
 - The third rule defines two matching conditions. If *either* of these conditions match, requests are forwarded to the `coffee-v3` Service:
 
   - Request with the path prefix `/coffee` and header `HeaderRegex=Header-[a-z]{1}`.
   - Request with the path prefix `/coffee` and the query parameter `QueryRegex=Query-[a-z]{1}`.
 
-  {{< note >}} The match type used here is `RegularExpression`. A request will succeed if the header or query parameter value matches the specified regular expression. {{< /note >}}
+  {{< call-out "note" >}} The match type used here is `RegularExpression`. A request will succeed if the header or query parameter value matches the specified regular expression. {{< /call-out >}}
 
   If you want both conditions to be required, you can define headers and queryParams in the same match object.
 
@@ -152,7 +152,7 @@ This HTTPRoute has a few important properties:
 
 Using the external IP address and port for the NGINX Service, we can send traffic to our coffee applications.
 
-{{< note >}} If you have a DNS record allocated for `cafe.example.com`, you can send the request directly to that hostname, without needing to resolve. {{< /note >}}
+{{< call-out "note" >}} If you have a DNS record allocated for `cafe.example.com`, you can send the request directly to that hostname, without needing to resolve. {{< /call-out >}}
 
 ```shell
 curl --resolve cafe.example.com:$GW_PORT:$GW_IP http://cafe.example.com:$GW_PORT/coffee
@@ -259,7 +259,7 @@ The properties of this HTTPRoute include:
 
 Using the external IP address and port for the NGINX Service, we can send traffic to our tea applications.
 
-{{< note >}} If you have a DNS record allocated for `cafe.example.com`, you can send the request directly to that hostname, without needing to resolve. {{< /note >}}
+{{< call-out "note" >}} If you have a DNS record allocated for `cafe.example.com`, you can send the request directly to that hostname, without needing to resolve. {{< /call-out >}}
 
 ```shell
 curl --resolve cafe.example.com:$GW_PORT:$GW_IP http://cafe.example.com:$GW_PORT/tea

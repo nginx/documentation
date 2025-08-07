@@ -77,7 +77,7 @@ To see a list of currently active issues, visit the [Known issues]({{< ref "/ngi
 
 NGINXaaS for Azure now supports the [Standard V2](https://docs.nginx.com/nginxaas/azure/billing/overview) plan. We encourage you to use the Standard V2 plan for all new NGINXaaS deployments from now on to take advantage of additional features like NGINX App Protect WAF and a higher number of listen ports. The Standard V2 plan follows a similar pricing model as the Standard plan.
 
-{{<important>}}The Standard plan will be deprecated and will not be available for new deployments starting November 1, 2024.{{</important>}}
+{{< call-out "important" >}}The Standard plan will be deprecated and will not be available for new deployments starting November 1, 2024.{{< /call-out >}}
 
 Your current deployments on the Standard plan will continue to function but won't include any of the new features we've introduced in the Standard V2 plan. Additionally, we intend to phase out the Standard plan in the future. When this happens, we will offer a migration path to the Standard V2 plan for existing NGINXaaS deployments on the Standard plan.
 

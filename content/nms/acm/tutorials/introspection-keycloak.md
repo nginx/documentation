@@ -13,9 +13,9 @@ type:
 
 This tutorial walks through configuring an OAuth2 Introspection policy on an API Proxy in API Connectivity Manager with Keycloak as the authorization server.
 
-{{<important>}}The configuration presented in this guide is for demonstration purposes only. The secure configuration of Environments and Proxies in API Connectivity Manager, or the secure configuration of Keycloak as the authorization server, is not in scope for this tutorial and should be given full attention when planning for production use.{{</important>}}
+{{< call-out "important" >}}The configuration presented in this guide is for demonstration purposes only. The secure configuration of Environments and Proxies in API Connectivity Manager, or the secure configuration of Keycloak as the authorization server, is not in scope for this tutorial and should be given full attention when planning for production use.{{< /call-out >}}
 
-{{<see-also>}}See the [OAuth2 Introspection Policy]({{< ref "/nms/acm/how-to/policies/introspection.md" >}}) reference guide for a detailed overview of the policy.{{</see-also>}}
+{{< call-out "note" >}}See the [OAuth2 Introspection Policy]({{< ref "/nms/acm/how-to/policies/introspection.md" >}}) reference guide for a detailed overview of the policy.{{< /call-out>}}
 
 ---
 
@@ -127,7 +127,7 @@ Production mode sets the following default configuration:
 
 3. Create environment variables for the Keycloak admin username and password:
 
-   {{< important >}} Do not use the example `admin/password` combination in any scenario. Replace the username and password with strong alternatives. {{< /important >}}
+   {{< call-out "important" >}} Do not use the example `admin/password` combination in any scenario. Replace the username and password with strong alternatives. {{< /call-out >}}
 
    ```shell
     export KEYCLOAK_ADMIN=<admin user>
@@ -219,7 +219,7 @@ curl -L -X GET http://{HOST/IP_ADDRESS}:{PORT}/realms/{REALM}/.well-known/openid
 
 #### Example
 
-{{< note >}} `jq` is used in the following examples to format the JSON response from Keycloak in a legible and attractive way. For more information about `jq`   , see the [jq GitHub page](https://github.com/stedolan/jq). {{< /note >}}
+{{< call-out "note" >}} `jq` is used in the following examples to format the JSON response from Keycloak in a legible and attractive way. For more information about `jq`   , see the [jq GitHub page](https://github.com/stedolan/jq). {{< /call-out >}}
 
 ```bash
 curl -L -X GET http://192.0.2.5:8080/realms/nginx/.well-known/openid-configuration | jq
@@ -308,7 +308,7 @@ Typically, the `access_token` is passed in requests to a **Resource Server** (AP
 
 You can mimic the process by which an NGINX client introspects an incoming user `access_token` with Keycloak.
 
-{{< note >}} Keycloak is configured to accept basic auth credentials from the `nginx-plus` client; in this case, the credentials are formatted as `CLIENT_ID:CLIENT_SECRET`. This combination must be [base64 url encoded](https://www.base64url.com/) before it is passed in the `Authorization` header. {{< /note >}}
+{{< call-out "note" >}} Keycloak is configured to accept basic auth credentials from the `nginx-plus` client; in this case, the credentials are formatted as `CLIENT_ID:CLIENT_SECRET`. This combination must be [base64 url encoded](https://www.base64url.com/) before it is passed in the `Authorization` header. {{< /call-out >}}
 
 #### Structure
 
@@ -519,7 +519,7 @@ In this section, we will use the API Connectivity Manager Rest API to set up a p
 
 1. Upsert the API proxy with an OAuth2 Introspection policy. The default `action.introspectionResponse` type `application/json` is used, so you don't need to define it in the API request body.
 
-   {{< note >}} This shortened request body removes all the default API proxy policies. To maintain these default policies, perform a `GET` request on the proxy before the upsert and copy the policy configuration from the response. {{< /note >}}
+   {{< call-out "note" >}} This shortened request body removes all the default API proxy policies. To maintain these default policies, perform a `GET` request on the proxy before the upsert and copy the policy configuration from the response. {{< /call-out >}}
 
    ```bash
    PUT https://192.0.2.2/api/acm/v1/services/workspaces/service-ws/proxies/test-proxy
@@ -787,9 +787,9 @@ You can configure NGINX to cache a copy of the introspection response for each a
 
 #### Security Considerations {#security-considerations}
 
-{{<important>}}There are some security considerations to keep in mind when enabling token caching. For example, a shorter cache expiration time is more secure since the resource servers must query the introspection endpoint more frequently; however, the increased number of queries may put a load on the endpoint. Longer expiration times, by comparison, open a window where a token may actually be expired or revoked but still be able to be used at a resource server for the remaining cache time.
+{{< call-out "important" >}}There are some security considerations to keep in mind when enabling token caching. For example, a shorter cache expiration time is more secure since the resource servers must query the introspection endpoint more frequently; however, the increased number of queries may put a load on the endpoint. Longer expiration times, by comparison, open a window where a token may actually be expired or revoked but still be able to be used at a resource server for the remaining cache time.
 
-You can mitigate these situations by never caching the value beyond the token's expiration time. For example, in Keycloak, the default token duration is **300 seconds**. This should be the upper limit of token caching in the Introspection policy configuration.{{</important>}}
+You can mitigate these situations by never caching the value beyond the token's expiration time. For example, in Keycloak, the default token duration is **300 seconds**. This should be the upper limit of token caching in the Introspection policy configuration.{{< /call-out >}}
 
 #### Token Caching Setup {#token-caching-setup}
 
@@ -1044,7 +1044,7 @@ You can define multiple hostnames/IP addresses and port combinations, along with
 
 When a user access token is introspected with an OAuth server, the token introspection endpoint should respond with a JSON object with the properties listed below. Only the `active` property is required; the rest are optional.
 
-{{< see-also >}} Detailed descriptions of each claim can be found in [Section 2.2 of OAuth 2.0 Token Introspection Token [RFC7662]](https://datatracker.ietf.org/doc/html/rfc7662#section-2.2). {{< /see-also >}}
+{{< call-out "note" >}} Detailed descriptions of each claim can be found in [Section 2.2 of OAuth 2.0 Token Introspection Token [RFC7662]](https://datatracker.ietf.org/doc/html/rfc7662#section-2.2). {{< /call-out>}}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
@@ -1355,7 +1355,7 @@ You can change the `401` and `403` response codes by configuring the `action.err
    }
    ```
 
-   {{< note >}} To edit the response message and format for these custom error codes, add them to the default global policy `error-response-format` with the related `errorCode` and `errorMessage`. {{< /note >}}
+   {{< call-out "note" >}} To edit the response message and format for these custom error codes, add them to the default global policy `error-response-format` with the related `errorCode` and `errorMessage`. {{< /call-out >}}
 
 2. Send a request to the echo server API proxy without providing an access token. The request should not go to the backend, and the API proxy should respond with the status code `410 Gone`.
 
@@ -1369,12 +1369,12 @@ The introspection response, as specified in OAuth 2.0 Token Introspection [RFC76
 
 An example is a resource server using verified personal data to create certificates, which are then used to create qualified electronic signatures. In such use cases, it may be helpful or even required to return a signed [JSON Web token (JWT) [RFC7519]](https://www.rfc-editor.org/rfc/rfc7519) as the introspection response.
 
-{{<important>}}The introspection response type `application/jwt`, configured using `action.introspectionResponse`, has not finalized its security protocol specification at the time of writing, and it remains in **DRAFT** status. While in **DRAFT** status, the specification may change at any time, and API Connectivity Manager may change to meet the requirements of the specification. We recommend using the default OAuth2 Introspection response type `application/json` for all **production** scenarios.
+{{< call-out "important" >}}The introspection response type `application/jwt`, configured using `action.introspectionResponse`, has not finalized its security protocol specification at the time of writing, and it remains in **DRAFT** status. While in **DRAFT** status, the specification may change at any time, and API Connectivity Manager may change to meet the requirements of the specification. We recommend using the default OAuth2 Introspection response type `application/json` for all **production** scenarios.
 
 For reference, see [JWT Response for OAuth Token Introspection](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-jwt-introspection-response).
-{{</important>}}
+{{< /call-out >}}
 
-{{< note >}} Not all OAuth2 servers support the `application/jwt` response type; Keycloak, for example, does not. Check your OAuth2 server documentation to verify support for this introspection response type. {{< /note >}}
+{{< call-out "note" >}} Not all OAuth2 servers support the `application/jwt` response type; Keycloak, for example, does not. Check your OAuth2 server documentation to verify support for this introspection response type. {{< /call-out >}}
 
 1. Upsert the proxy with an updated Introspection policy configuration that sets the `action.introspectionResponse` parameter to `application/jwt`.
 
@@ -1526,7 +1526,7 @@ An opaque token, also known as a phantom token, is a random, unique string of ch
 
 Opaque tokens are supported out-of-the-box with the API Connectivity Manager OAuth2 Introspection policy. Just pass the opaque token in place of the standard access token when a user sends a request to an API proxy with token introspection configured.
 
-{{< note >}} Not all OAuth2 Servers support opaque tokens; Keycloak, for example, does not. Check your OAuth2 server documentation to verify support for this token format. {{< /note >}}
+{{< call-out "note" >}} Not all OAuth2 Servers support opaque tokens; Keycloak, for example, does not. Check your OAuth2 server documentation to verify support for this token format. {{< /call-out >}}
 
 ```bash
 POST https://192.0.2.4/my/test/api

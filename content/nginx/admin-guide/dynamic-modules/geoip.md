@@ -11,7 +11,7 @@ type:
 
 The GeoIP dynamic module captures information from the client IP address in variables using the MaxMind GeoLite databases.
 
-{{< note >}} MaxMind GeoLite Legacy databases are currently [discontinued](https://blog.maxmind.com/2018/01/discontinuation-of-the-geolite-legacy-databases), MaxMind GeoIP2 or Geolite2 databases and F5 NGINX Plus [GeoIP2 module]({{< ref "geoip2.md" >}}) should be used instead. {{< /note >}}
+{{< call-out "note" >}} MaxMind GeoLite Legacy databases are currently [discontinued](https://blog.maxmind.com/2018/01/discontinuation-of-the-geolite-legacy-databases), MaxMind GeoIP2 or Geolite2 databases and F5 NGINX Plus [GeoIP2 module]({{< ref "geoip2.md" >}}) should be used instead. {{< /call-out >}}
 
 ## Installation
 
@@ -28,7 +28,7 @@ The GeoIP dynamic module captures information from the client IP address in vari
    sudo yum install nginx-plus-module-geoip
    ```
 
-   {{< note >}} Only 7.x version of CentOS, Oracle Linux, and RHEL is supported. {{< /note >}}
+   {{< call-out "note" >}} Only 7.x version of CentOS, Oracle Linux, and RHEL is supported. {{< /call-out >}}
 
 
    For Debian and Ubuntu:

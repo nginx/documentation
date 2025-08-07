@@ -96,9 +96,9 @@ The following issues are known to be present in this release. Look for updates t
 
   In some cases, the NGINX Service Mesh `remove` command may fail for unexpected reasons due to environmental, network, or timeout errors. If the `remove` command fails continually, manual intervention may be necessary.
 
-{{< note >}}
+{{< call-out "note" >}}
 If deploying NGINX Service Mesh failed or you pressed ctrl-C during deployment, make sure to first remove the service mesh using the `remove` command before attempting the below steps
-{{< /note >}}
+{{< /call-out >}}
 
   <br/>
   Workaround:

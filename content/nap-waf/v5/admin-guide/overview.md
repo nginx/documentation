@@ -72,9 +72,9 @@ For signature updates, read the [Update App Protect Signatures]({{< ref "/nap-wa
 
 Upgrading from v4 to v5 is not supported due to architectural changes in NGINX App Protect WAF v5.
 
-{{< note >}}
+{{< call-out "note" >}}
 We recommend that you deploy the NGINX App Protect WAF v5 in a staging environment.  Compile policies with WAF compiler and test the enforcement before you transfer the traffic from the v4 to v5. This keeps the v4 deployment for backup.
-{{< /note >}}
+{{< /call-out >}}
 
 1. Back up your NGINX App Protect WAF configuration files. These include NGINX configurations, JSON policies, logging profiles, user-defined signatures, and global settings.
 
@@ -85,14 +85,14 @@ We recommend that you deploy the NGINX App Protect WAF v5 in a staging environme
 
 3. Compile your `.json` policies and logging profiles to `.tgz` bundles using [compiler-image]({{<ref "/nap-waf/v5/admin-guide/compiler.md">}}). NGINX App Protect WAF v5 supports policies and logging profiles in a compiled bundle format only.
 
-   {{< note >}}
+   {{< call-out "note" >}}
    If you were previously using a default [logging profile]({{<ref "/nap-waf/v5/admin-guide/deploy-on-docker.md#using-policy-and-logging-profile-bundles">}}) JSON like `/opt/app_protect/share/defaults/log_all.json`, you can replace it with the default constant such as `log_all`, and then you will not need to compile the logging profile into a bundle.
 
    ```nginx
    app_protect_security_log log_all /log_volume/security.log;
    ```
 
-   {{< /note >}}
+   {{< /call-out >}}
 
 4. Replace the `.json` references in nginx.conf with the above created `.tgz` [bundles]({{<ref "/nap-waf/v5/admin-guide/install.md#using-policy-and-logging-profile-bundles">}}).
 

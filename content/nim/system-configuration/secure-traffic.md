@@ -15,7 +15,7 @@ This guide explains how to secure client connections to NGINX Instance Manager a
 
 With NGINX Plus R33, telemetry data must be reported to a usage reporting endpoint, such as NGINX Instance Manager. This data validates subscription entitlements and tracks usage metrics. This guide also covers how to use the [`ssl_verify`](#ssl_verify-and-usage-reporting-in-nginx-plus-r33) directive to secure telemetry reporting through certificate verification.
 
-{{< important >}}Never expose your management server to the public internet. The settings in this guide reduce risk, but they can't replace keeping your server inaccessible to unauthorized users.{{< /important >}}
+{{< call-out "important" >}}Never expose your management server to the public internet. The settings in this guide reduce risk, but they can't replace keeping your server inaccessible to unauthorized users.{{< /call-out >}}
 
 {{< call-out "tip" "See also:" "fa-solid fa-book" >}}
 - To learn how to secure traffic for NGINX Agent, see [NGINX Agent TLS Settings](https://docs.nginx.com/nginx-agent/configuration/encrypt-communication/).
@@ -332,7 +332,7 @@ To generate the necessary certificates, follow these steps. You can modify these
 	- If the CA is trusted by the operating system, you can omit the ca option.
 	- Update the server host to match the NGINX Instance Manager address.
 
-    {{< see-also >}}For additional information about TLS configurations for the NGINX Agent, refer to the [NGINX Agent TLS Settings](https://docs.nginx.com/nginx-agent/configuration/encrypt-communication/) topic. {{< /see-also >}}
+    {{< call-out "note" >}}For additional information about TLS configurations for the NGINX Agent, refer to the [NGINX Agent TLS Settings](https://docs.nginx.com/nginx-agent/configuration/encrypt-communication/) topic. {{< /call-out>}}
 
     <details>
         <summary>/etc/nginx-agent/nginx-agent.conf</summary>
