@@ -90,7 +90,7 @@ There are optional CRDs that are necessary if you want to use NGINX App Protect 
 
 **NGINX App Protect WAF**
 
-{{<  note >}} This step can be skipped if you are using App Protect WAF module with policy bundles. {{<  /note >}}
+{{< call-out "note" >}} This step can be skipped if you are using App Protect WAF module with policy bundles. {{< /call-out >}}
 
 ```shell
 kubectl apply -f https://raw.githubusercontent.com/nginx/kubernetes-ingress/v{{< nic-version >}}/deploy/crds-nap-waf.yaml
