@@ -42,8 +42,8 @@ az nginx deployment create --deployment-name
    ```bash
    az nginx deployment create --name myDeployment --resource-group \
       myResourceGroup --location eastus2 --sku name="standardv2_Monthly" \
-      --network-profile front-end-ip-configuration="{public-ip-addresses:[{id:/subscriptions/mySubscription/resourceGroups/myResourceGroup/providers/Microsoft.Network/publicIPAddresses/myPublicIP}]}" \
-      network-interface-configuration="{subnet-id:/subscriptions/mySubscription/resourceGroups/myResourceGroup/providers/Microsoft.Network/virtualNetworks/myVNet/subnets/mySubnet}"
+      --network-profile front-end-ip-configuration="{public-ip-addresses:[{id:/subscriptions/mySubscriptionID/resourceGroups/myResourceGroup/providers/Microsoft.Network/publicIPAddresses/myPublicIP}]}" \
+      network-interface-configuration="{subnet-id:/subscriptions/mySubscriptionID/resourceGroups/myResourceGroup/providers/Microsoft.Network/virtualNetworks/myVNet/subnets/mySubnet}"
    ```
 
 - Create a deployment with private IP:
@@ -53,7 +53,7 @@ az nginx deployment create --deployment-name
       myResourceGroup --location eastus2 --sku \
       name="standardv2_Monthly" --network-profile \
       front-end-ip-configuration="{private-ip-addresses:[{private-ip-allocation-method:Static,subnet-id:/subscriptions/mySubscription/resourceGroups/myResourceGroup/providers/Microsoft.Network/virtualNetworks/myVNet/subnets/mySubnet,private-ip-address:10.0.0.2}]}" \
-      network-interface-configuration="{subnet-id:/subscriptions/mySubscription/resourceGroups/myResourceGroup/providers/Microsoft.Network/virtualNetworks/myVNet/subnets/mySubnet}"
+      network-interface-configuration="{subnet-id:/subscriptions/mySubscriptionID/resourceGroups/myResourceGroup/providers/Microsoft.Network/virtualNetworks/myVNet/subnets/mySubnet}"
    ```
 
    ```bash
@@ -61,7 +61,7 @@ az nginx deployment create --deployment-name
       myResourceGroup --location eastus2 --sku \
       name="standardv2_Monthly" --network-profile \
       front-end-ip-configuration="{private-ip-addresses:[{private-ip-allocation-method:Dynamic,subnet-id:/subscriptions/mySubscription/resourceGroups/myResourceGroup/providers/Microsoft.Network/virtualNetworks/myVNet/subnets/mySubnet,private-ip-address:10.0.0.2}]}" \
-      network-interface-configuration="{subnet-id:/subscriptions/mySubscription/resourceGroups/myResourceGroup/providers/Microsoft.Network/virtualNetworks/myVNet/subnets/mySubnet}"
+      network-interface-configuration="{subnet-id:/subscriptions/mySubscriptionID/resourceGroups/myResourceGroup/providers/Microsoft.Network/virtualNetworks/myVNet/subnets/mySubnet}"
    ```
 
 - Create a dual-stack (IPv4 + IPv6) NGINXaaS deployment with public IPs:
@@ -70,7 +70,7 @@ az nginx deployment create --deployment-name
    az nginx deployment create --name myDeployment --resource-group \
       myResourceGroup --location eastus2 --sku name="standardv2_Monthly" \
       --network-profile front-end-ip-configuration="{public-ip-addresses:[{id:/subscriptions/mySubscription/resourceGroups/myResourceGroup/providers/Microsoft.Network/publicIPAddresses/pubIPv4},{id:/subscriptions/mySubscription/resourceGroups/myResourceGroup/providers/Microsoft.Network/publicIPAddresses/pubIPv6}]}" \
-      network-interface-configuration="{subnet-id:/subscriptions/mySubscription/resourceGroups/myResourceGroup/providers/Microsoft.Network/virtualNetworks/myVNet/subnets/mySubnet}"
+      network-interface-configuration="{subnet-id:/subscriptions/mySubscriptionID/resourceGroups/myResourceGroup/providers/Microsoft.Network/virtualNetworks/myVNet/subnets/mySubnet}"
    ```
 
 - Create a dual-stack (IPv4 + IPv6) NGINXaaS deployment with private IPs:
@@ -80,7 +80,7 @@ az nginx deployment create --deployment-name
       myResourceGroup --location eastus2 --sku \
       name="standardv2_Monthly" --network-profile \
       front-end-ip-configuration="{private-ip-addresses:[{private-ip-allocation-method:Static,subnet-id:/subscriptions/mySubscription/resourceGroups/myResourceGroup/providers/Microsoft.Network/virtualNetworks/myVNet/subnets/mySubnet,private-ip-address:10.0.0.2},{private-ip-allocation-method:Static,subnet-id:/subscriptions/mySubscription/resourceGroups/myResourceGroup/providers/Microsoft.Network/virtualNetworks/myVNet/subnets/mySubnet,private-ip-address:2001:0db8:85a3:0000:0000:8a2e:0370:7334}]}" \
-      network-interface-configuration="{subnet-id:/subscriptions/mySubscription/resourceGroups/myResourceGroup/providers/Microsoft.Network/virtualNetworks/myVNet/subnets/mySubnet}"
+      network-interface-configuration="{subnet-id:/subscriptions/mySubscriptionID/resourceGroups/myResourceGroup/providers/Microsoft.Network/virtualNetworks/myVNet/subnets/mySubnet}"
    ```
 
 - Create a deployment with managed identity, storage account and scaling:
@@ -138,8 +138,8 @@ Update an NGINXaaS deployment to a dual-stack (IPv4 + IPv6) network configuratio
 
    ```bash
    az nginx deployment update --name myDeployment --resource-group myResourceGroup \
-      --network-profile front-end-ip-configuration="{public-ip-addresses:[{id:/subscriptions/mySubscription/resourceGroups/myResourceGroup/providers/Microsoft.Network/publicIPAddresses/pubIPv4},{id:/subscriptions/mySubscription/resourceGroups/myResourceGroup/providers/Microsoft.Network/publicIPAddresses/pubIPv6}]}" \
-      network-interface-configuration="{subnet-id:/subscriptions/mySubscription/resourceGroups/myResourceGroup/providers/Microsoft.Network/virtualNetworks/myVNet/subnets/mySubnet}"
+      --network-profile front-end-ip-configuration="{public-ip-addresses:[{id:/subscriptions/mySubscriptionID/resourceGroups/myResourceGroup/providers/Microsoft.Network/publicIPAddresses/pubIPv4},{id:/subscriptions/mySubscriptionID/resourceGroups/myResourceGroup/providers/Microsoft.Network/publicIPAddresses/pubIPv6}]}" \
+      network-interface-configuration="{subnet-id:/subscriptions/mySubscriptionID/resourceGroups/myResourceGroup/providers/Microsoft.Network/virtualNetworks/myVNet/subnets/mySubnet}"
    ```
 
 See the [Azure CLI Deployment Update Documentation](https://learn.microsoft.com/en-us/cli/azure/nginx/deployment#az-nginx-deployment-update) for more details on the required and optional parameters.
@@ -150,7 +150,7 @@ See the [Azure CLI Deployment Update Documentation](https://learn.microsoft.com/
 Use the `az nginx deployment delete` command to delete an NGINXaaS for Azure resource:
 
 ```bash
-az nginx deployment delete [--deployment-name]
+az nginx deployment delete [--name]
                            [--ids]
                            [--no-wait {0, 1, f, false, n, no, t, true, y, yes}]
                            [--resource-group]
