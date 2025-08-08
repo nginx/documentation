@@ -136,9 +136,11 @@ See the [controller]({{< ref "/ngf/reference/cli-help.md#controller">}}) command
       - `ResolvedRefs/True/ResolvedRefs`
       - `ResolvedRefs/False/InvalidCertificateRef`
       - `ResolvedRefs/False/InvalidRouteKinds`
+      - `ResolvedRefs/False/RefNotPermitted`
       - `Conflicted/True/ProtocolConflict`
       - `Conflicted/True/HostnameConflict`
       - `Conflicted/False/NoConflicts`
+      - `OverlappingTLSConfig/True/OverlappingHostnames`
 
 ### HTTPRoute
 
