@@ -84,6 +84,7 @@ To set up your other NGINX instances to use the proxy instance to connect to NGI
         token: "YOUR_DATA_PLANE_KEY_HERE"
       tls:
         skip_verify: False
+        server_name: agent.connect.nginx.com
    ```
 
    {{%/tab%}}
