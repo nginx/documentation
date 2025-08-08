@@ -93,7 +93,7 @@ To run the [phpBB](https://www.phpbb.com) bulletin board using Unit:
    }
    ```
 
-   {{< note >}}
+   {{< call-out "note" >}}
    The difference between the **pass** targets is their usage of the
    **script** [setting]({{< relref "/unit/configuration.md#configuration-php" >}}):
 
@@ -101,7 +101,7 @@ To run the [phpBB](https://www.phpbb.com) bulletin board using Unit:
      defaults to **index.php** if the URI omits it.
    - The **index** target specifies the **script** that Unit runs
      for *any* URIs the target receives.
-   {{< /note >}}
+   {{< /call-out >}}
 
 6. Upload the updated configuration.
 

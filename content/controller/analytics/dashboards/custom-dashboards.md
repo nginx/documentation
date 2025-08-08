@@ -12,12 +12,12 @@ type:
 
 You can use the F5 NGINX Controller user interface to create your own Dashboards populated with customizable graphs of NGINX and system-level metrics.
 
-{{< note >}}
+{{< call-out "note" >}}
 
 - You can add up to 30 Elements to Dashboard.
 - Dashboards are accessible by all Users.
 
-{{< /note >}}
+{{< /call-out >}}
 
 ## Before You Begin
 
@@ -35,12 +35,12 @@ In NGINX Controller, you can create dashboards to display custom graphs. Some us
 
 When building a custom graph, metrics can be summed or averaged across NGINX servers. By using metric filters, it is possible to create additional "metric dimensions", for example, reporting the number of POST requests for a specific URI.
 
-   {{< note >}}
+   {{< call-out "note" >}}
 
 The functionality of user-defined dashboards recently changed in NGINX Controller. Some of the functionalities that were present in the
 previous version might not be currently present or work differently. Your old dashboards were not migrated to the new version.
 
-   {{< /note >}}
+   {{< /call-out >}}
 
 ## Create a Custom Dashboard
 
@@ -66,14 +66,14 @@ To add an Element to a Dashboard:
 
 6. Select a metric from the drop-down menu.
 7. Select the aggregation method for the selected metric.
-   {{< see-also >}}
+   {{< call-out "note" >}}
 For more information about metrics and supported aggregation methods, see the [Metrics Catalog Reference]({{< ref "/controller/analytics/catalogs/metrics.md" >}}).
-   {{< /see-also >}}
+   {{< /call-out>}}
 8. (Optional) Add a filter to refine the data. For example, you can limit the data to a specific App or Environment.
 9. (Optional) Select **Add metrics** to add more metrics.
-   {{< note >}}
+   {{< call-out "note" >}}
 Additional metrics can only be added to a **Line chart** Element.
-   {{< /note >}}
+   {{< /call-out >}}
 10. (Optional) Select the **Override Default Time Settings** option to select a time range for the Element.
 
     - The default time range is the last seven days.
@@ -119,12 +119,12 @@ You can find predefined dashboards on the Dashboards page. Predefined dashboards
 
 Predefined dashboards cannot be deleted or modified.
 
-{{< note >}}
+{{< call-out "note" >}}
 
 - Predefined dashboards were introduced in NGINX Controller 3.21.
 - If you already have custom dashboards, the predefined ones should appear at the end of the list when default sorting is applied.
 
-{{< /note >}}
+{{< /call-out >}}
 
 ## What's Next
 

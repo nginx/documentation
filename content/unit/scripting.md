@@ -41,9 +41,9 @@ shipped with the [official packages]({{< relref "/unit/installation.md#installat
 or
 [built from source]({{< relref "/unit/installation.md#installation-source" >}}).
 
-{{< warning >}}
+{{< call-out "warning" >}}
 Unit 1.32.0 and later require [njs 0.8.2](https://nginx.org/en/docs/njs/changes.html).
-{{< /warning >}}
+{{< /call-out >}}
 
 Some request properties are exposed as `njs` objects or scalars:
 
@@ -108,10 +108,10 @@ curl -X PUT -d '"http"' # Module name to be enabled
    http://localhost/config/settings/js_module
 ```
 
-{{< note >}}
+{{< call-out "note" >}}
 Please note that the **js_module** option
 can be a string or an array; choose the appropriate HTTP method.
-{{< /note >}}
+{{< /call-out >}}
 
 Now, the **http.route()** function can be used with Unit-supplied header field values:
 

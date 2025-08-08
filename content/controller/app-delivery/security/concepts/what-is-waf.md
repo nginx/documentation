@@ -15,7 +15,7 @@ The App Security Add-on for F5 NGINX Controller ADC lets you protect your applic
 
 A WAF protects your web apps by filtering, monitoring, and blocking any malicious HTTP/S traffic traveling to the web application, and prevents any unauthorized data from leaving the app. It does this by adhering to a set of policies that help determine what traffic is malicious and what traffic is safe. Just as a proxy server acts as an intermediary to protect the identity of a client, a WAF operates in similar fashion but in the reverse—called a reverse proxy—acting as an intermediary that protects the web app server from a potentially malicious client.
 
-{{< see-also >}} To learn more about what a WAF is and how it works, check out the F5 DevCentral video: [What is a Web Application Firewall?](https://www.youtube.com/watch?v=p8CQcF_9280){{< /see-also >}}
+{{< call-out "note" >}} To learn more about what a WAF is and how it works, check out the F5 DevCentral video: [What is a Web Application Firewall?](https://www.youtube.com/watch?v=p8CQcF_9280){{< /call-out>}}
 
 &nbsp;
 
@@ -28,7 +28,7 @@ When you enable WAF on an app component using NGINX Controller, a security polic
 
 NGINX App Protect WAF inspects incoming traffic as specified in the Security Policy to identify potential threats. When malicious traffic is suspected or blocked, the NGINX Controller Analytics module logs security events and metrics. These are then included in the NGINX Controller Threat Visibility and Analytics reporting.
 
-{{< see-also >}}To learn more, read the [Threat Visibility and Analytics](https://www.nginx.com/blog/threat-visibility-analytics-nginx-controller-app-security/) blog post on [nginx.com](https://nginx.com).{{< /see-also >}}
+{{< call-out "note" >}}To learn more, read the [Threat Visibility and Analytics](https://www.nginx.com/blog/threat-visibility-analytics-nginx-controller-app-security/) blog post on [nginx.com](https://nginx.com).{{< /call-out>}}
 
 {{< img src="/ctlr/img/cas-overview.png" title="" alt="Controller App Security Overview Image" width="75%">}}
 
@@ -51,7 +51,7 @@ For more about creating, updating, or deleting Security Policies, see the [Strat
 
 You can use a custom Security Strategy to protect your Apps, or you can use NGINX Controller's default Security Strategy, which contains a pre-defined WAF policy.
 
-{{< note >}}
+{{< call-out "note" >}}
 
 The `/services/strategies/balanced_default` endpoint was replaced by `/security/strategies/balanced_default` in NGINX Controller ADC v3.18.
 
@@ -59,5 +59,5 @@ The `/services/strategies/balanced_default` endpoint was replaced by `/security/
 
 Refer to the AskF5 knowledge base article [K02089505](https://support.f5.com/csp/article/K02089505) for more information.
 
-{{< /note >}}
+{{< /call-out >}}
 

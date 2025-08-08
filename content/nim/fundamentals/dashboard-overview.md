@@ -58,7 +58,7 @@ Select **See more** to open a detailed view where you can see a list of all inst
 
 Use the menu in the top-right corner to change the time range for disk utilization data. Select any hostname in the list to view a full set of metrics specific to that instance.
 
-{{< note >}}The value in the **Current Value** column reflects the disk usage of the root partition on the instance. An <i class="fa-solid fa-triangle-exclamation"></i> alert appears next to the hostname if the available space on the root partition drops below 20%.{{< /note >}}
+{{< call-out "note" >}}The value in the **Current Value** column reflects the disk usage of the root partition on the instance. An <i class="fa-solid fa-triangle-exclamation"></i> alert appears next to the hostname if the available space on the root partition drops below 20%.{{< /call-out >}}
 
 ## Network Utilization
 

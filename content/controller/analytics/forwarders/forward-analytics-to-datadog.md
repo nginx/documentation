@@ -43,21 +43,21 @@ Take the following steps to create a Forwarder for Datadog:
 
 13. (Optional) Add additional **Streams** as required using the **Add Stream** button.
 
-{{< important >}}
+{{< call-out "important" >}}
 
 Each metric will be prefixed with a common namespace -- such as "nginx-controller" -- before it is sent to Datadog. This prefix is used by Datadog only and is not applied to any of the internal NGINX Controller metrics. Refer to the [metrics catalog]({{< ref "/controller/analytics/catalogs/metrics.md" >}}) for the full list of valid metric names.
 
 For events, the "nginx-controller" namespace is added to the ["ddsource" key](https://docs.datadoghq.com/api/v1/logs/#send-logs).
 
-{{< /important >}}
+{{< /call-out >}}
 
 NGINX Controller events are sent to Datadog as logs and NGINX Controller dimensions are sent as tags. The Forwarder converts the dimension data to comply with the Datadog [tags format](https://docs.datadoghq.com/getting_started/tagging/#defining-tags) prior to forwarding it. In some cases, the original dimension value may be transformed to fit the tag requirements. This includes replacing comma characters (`,`) with semicolons (`;`) to ensure that Datadog will properly handle the incoming payload.
 
-{{< see-also >}}
+{{< call-out "note" >}}
 
 See the [NGINX Controller Metrics]({{< ref "/controller/analytics/metrics/_index.md" >}}) docs for more information.
 
-{{< /see-also >}}
+{{< /call-out>}}
 
 ## Verification
 

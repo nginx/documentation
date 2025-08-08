@@ -13,12 +13,12 @@ type:
 
 This topic explains how to safely update the management IP of F5 NGINX Controller.
 
-{{< see-also >}}
+{{< call-out "note" >}}
 For instructions on how to deploy NGINX Controller as a multi-node resilient cluster, refer to the following deployment guide:
 
 - [Deploy NGINX Controller as a Resilient Cluster on a Private Cloud]({{< ref "/controller/admin-guides/install/resilient-cluster-private-cloud.md" >}})
 
-{{< /see-also >}}
+{{< /call-out>}}
 
 ## Changing the IP of a multi-node cluster
 
@@ -32,9 +32,9 @@ To change the IP of a multi-node cluster, follow the steps below for each node i
 
 ### 1. <a name="remove-node"></a>Remove node from the cluster
 
-   {{< important >}}
+   {{< call-out "important" >}}
 Deleting nodes makes NGINX Controller momentarily unavailable while the cluster is being updated. Therefore, we recommend updating NGINX Controller during a planned maintenance window to minimize disruptions. When deleting nodes, make sure that **at least two nodes are always operational**. If the cluster has fewer than two working nodes, NGINX Controller may become unresponsive, and you may not be able to add new nodes.
-   {{< /important >}}
+   {{< /call-out >}}
 
    To delete a node from the cluster using the web interface:
 
@@ -44,9 +44,9 @@ Deleting nodes makes NGINX Controller momentarily unavailable while the cluster 
    4. On the **Cluster** overview page, choose the node you want to delete, then select **Delete** (trash icon).
    5. Select **Delete** to confirm.
 
-   {{< see-also >}}
+   {{< call-out "note" >}}
  To delete nodes from your cluster using the [NGINX Controller REST API]({{< ref "/controller/api/_index.md" >}}), send a DELETE request to the `/platform/nodes` endpoint.
-   {{< /see-also >}}
+   {{< /call-out>}}
 
 
 ### 2. <a name="change-ip"></a>Change the IP address (public & private)
@@ -87,17 +87,17 @@ Refer to your Linux distribution documentation for specific instructions.
 
    1. After the installation is complete, the node status in the web interface changes to `Configured`.
 
-   {{< see-also >}}
+   {{< call-out "note" >}}
 To add nodes to your cluster using the [NGINX Controller REST API]({{< ref "/controller/api/_index.md" >}}), send a POST request to the `/platform/nodes` endpoint.
-   {{< /see-also >}}
+   {{< /call-out>}}
 
 ### 5. <a name="fqdn"></a>Change the FQDN
 
 [Change the FQDN]({{< ref "/controller/platform/manage-cluster.md#update-the-fqdn">}}) if it has been affected by the IP change.
 
-{{< important >}}
+{{< call-out "important" >}}
 Repeat the steps for each node in the cluster.
-{{< /important >}}
+{{< /call-out >}}
 
 ## Changing the IP of a single node
 

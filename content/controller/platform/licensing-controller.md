@@ -47,7 +47,7 @@ To add or update a license for NGINX Controller, take the following steps:
 
 1. Select **Save license**.
 
-{{< see-also >}}To add a license using the [NGINX Controller REST API]({{< ref "/controller/api/_index.md" >}}), send a PUT request to the `/platform/license` endpoint. Provide your CAT or NGINX Controller license as a base64-encoded string in the JSON request body.{{< /see-also >}}
+{{< call-out "note" >}}To add a license using the [NGINX Controller REST API]({{< ref "/controller/api/_index.md" >}}), send a PUT request to the `/platform/license` endpoint. Provide your CAT or NGINX Controller license as a base64-encoded string in the JSON request body.{{< /call-out>}}
 
 
 &nbsp;
@@ -61,7 +61,7 @@ To view the details for your NGINX Controller license, take the following steps:
 1. On the NGINX Controller menu, select **Platform** > **License** > **Controller License**.
 2. On the **Licenses** page, you can view the details for the applied licenses, including license limitations, status, and the expiration date.
 
-{{< see-also >}}To view the details for your license(s) using the [NGINX Controller REST API]({{< ref "/controller/api/_index.md" >}}), send a GET request to the `/platform/license` endpoint.{{< /see-also >}}
+{{< call-out "note" >}}To view the details for your license(s) using the [NGINX Controller REST API]({{< ref "/controller/api/_index.md" >}}), send a GET request to the `/platform/license` endpoint.{{< /call-out>}}
 &nbsp;
 
 ---

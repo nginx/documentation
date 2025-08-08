@@ -42,9 +42,9 @@ The `supportpkg` command generates a tar file containing information about the s
 
 ### GitHub Issues
 
-{{< note >}}
+{{< call-out "note" >}}
 Paid customers of NGINX Service Mesh should use [Commercial Support](#commercial-support) instead of GitHub Issues.
-{{< /note >}}
+{{< /call-out >}}
 
 For NGINX Service Mesh support or issues not addressed by documentation, you can reach out via the Issues tab in the [NGINX Service Mesh GitHub repo](https://github.com/nginxinc/nginx-service-mesh/issues).
 

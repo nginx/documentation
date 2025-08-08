@@ -42,7 +42,7 @@ test-static-files $ tree .
 2 directories, 2 files
 ```
 
-{{<note>}}`index.html` is placed under the `srv` directory. When using `tar` to upload static content, the static content has to be placed under one of the allowed paths listed in the [NGINX Filesystem Restrictions table]({{< ref "/nginxaas-azure/getting-started/nginx-configuration/overview/#nginx-filesystem-restrictions" >}}).{{</note>}}
+{{< call-out "note" >}}`index.html` is placed under the `srv` directory. When using `tar` to upload static content, the static content has to be placed under one of the allowed paths listed in the [NGINX Filesystem Restrictions table]({{< ref "/nginxaas-azure/getting-started/nginx-configuration/overview/#nginx-filesystem-restrictions" >}}).{{< /call-out >}}
 
 3. Create the tarball.
 

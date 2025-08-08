@@ -159,7 +159,7 @@ Lookup the name of the NGINX pod and save into shell variable:
 NGINX_POD_NAME=<NGINX Pod>
 ```
 
-{{< note >}}In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the gateway will forward for.{{< /note >}}
+{{< call-out "note" >}}In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the gateway will forward for.{{< /call-out >}}
 
 Create HTTPRoutes for the `coffee` and `tea` applications:
 

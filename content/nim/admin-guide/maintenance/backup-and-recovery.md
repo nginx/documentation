@@ -147,7 +147,7 @@ To back up NGINX Instance Manager deployed in a Kubernetes cluster:
     ./k8s-backup.sh
     ```
 
-    {{< note >}}The backup script does not require `sudo` permissions or the `utility` pod.{{</note>}}
+    {{< call-out "note" >}}The backup script does not require `sudo` permissions or the `utility` pod.{{< /call-out >}}
 
 4. The script will prompt you for the NGINX Instance Manager namespace. It will create a backup archive called `k8s-backup-<timestamp>.tar.gz`.
 
@@ -177,11 +177,11 @@ To restore NGINX Instance Manager to the same Kubernetes cluster:
 
     If the Kubernetes configuration is different, update the path accordingly.
 
-    {{< note >}}The restore script requires [root access]({{< ref "/nim/admin-guide/maintenance/backup-and-recovery.md#root-access" >}}).{{</note>}}
+    {{< call-out "note" >}}The restore script requires [root access]({{< ref "/nim/admin-guide/maintenance/backup-and-recovery.md#root-access" >}}).{{< /call-out >}}
 
 5. After specifying the NGINX Instance Manager namespace, the script will use the provided backup archive.
 
-    {{< note >}}The script uses the `utility` pod to restore databases and core secrets. It stops service pods during the restoration and restarts them afterward.{{</note>}}
+    {{< call-out "note" >}}The script uses the `utility` pod to restore databases and core secrets. It stops service pods during the restoration and restarts them afterward.{{< /call-out >}}
 
 ### Data-only restoration to a different Kubernetes Cluster
 
@@ -209,7 +209,7 @@ To restore NGINX Instance Manager to a different Kubernetes cluster:
 
     If the Kubernetes configuration differs, update the path accordingly.
 
-    {{< note >}}The restore script requires [root access]({{< ref "/nim/admin-guide/maintenance/backup-and-recovery.md#root-access" >}}).{{</note>}}
+    {{< call-out "note" >}}The restore script requires [root access]({{< ref "/nim/admin-guide/maintenance/backup-and-recovery.md#root-access" >}}).{{< /call-out >}}
 
 5. After specifying the NGINX Instance Manager namespace, the script will restore the databases and core secrets.
 

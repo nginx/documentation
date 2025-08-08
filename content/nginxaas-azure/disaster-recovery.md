@@ -30,11 +30,11 @@ This guide describes how to configure disaster recovery (DR) for F5 NGINX as a S
 - Unique, non-overlapping VNet and subnet address spaces for each region.
 - Terraform 1.3+ and AzureRM provider 4.23+.
 
-{{< note >}} Each NGINX deployment **must run on separate subnets and non-overlapping address spaces**. This is critical for [Virtual Network (VNet) peering](https://learn.microsoft.com/en-us/azure/virtual-network/how-to-configure-subnet-peering) between the two regions. For example:
+{{< call-out "note" >}} Each NGINX deployment **must run on separate subnets and non-overlapping address spaces**. This is critical for [Virtual Network (VNet) peering](https://learn.microsoft.com/en-us/azure/virtual-network/how-to-configure-subnet-peering) between the two regions. For example:
 
   - Primary Region Virtual Network Address Space: `10.0.0.0/16`
   - Secondary Region Virtual Network Address Space: `172.16.0.0/16`
-{{< /note >}}
+{{< /call-out >}}
 
 ---
 
@@ -263,7 +263,7 @@ resource "azurerm_virtual_network_peering" "secondary_vnet_to_primary_vnet" {
 - **Subnet Peering for Overlapping VNets:**
 If overlapping address spaces are unavoidable, use subnet-level peering to selectively peer only the required subnets.
 
-   {{< note >}}As of May 2025, subnet peering is not available by default for all subscriptions. To use this feature, you must have the subscription on which you want to configure subnet peering be registered with Azure. Please review the configuration details and limitations in this [document](https://learn.microsoft.com/en-us/azure/virtual-network/how-to-configure-subnet-peering).{{< /note >}}
+   {{< call-out "note" >}}As of May 2025, subnet peering is not available by default for all subscriptions. To use this feature, you must have the subscription on which you want to configure subnet peering be registered with Azure. Please review the configuration details and limitations in this [document](https://learn.microsoft.com/en-us/azure/virtual-network/how-to-configure-subnet-peering).{{< /call-out >}}
 
 ---
 

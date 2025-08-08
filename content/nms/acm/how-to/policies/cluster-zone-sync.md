@@ -33,13 +33,13 @@ To apply the policy or make changes to it, here's what you need to do:
 - Check the cluster config settings for the environment to see if the policy has been applied.
 - Edit the policy to make changes for each cluster. Save and publish the changes.
 
-{{< note >}}
+{{< call-out "note" >}}
 We strongly recommend securing your Zone Sync environment by enabling TLS for your listeners and Zone Sync TLS verification for the policy. To do this, you'll need to provide server certificates, as well as Zone Sync certificates and CA certs.
 
 When adding a new instance to a cluster with the Zone Sync policy applied, make sure the instance is resolvable by DNS if a DNS server is used, or that the Zone Sync Server list is updated to include the instance if the list is provided manually.
 
 Similarly, when removing an instance from a cluster with the Zone Sync policy applied, be sure to do the necessary clean-up in the DNS resolver or the Zone Sync Server list.
-{{< /note >}}
+{{< /call-out >}}
 
 ---
 
@@ -88,7 +88,7 @@ The following table lists the configurable settings and their default values for
 
 {{%tab name="API"%}}
 
-{{<see-also>}}{{< include "acm/how-to/access-acm-api.md" >}}{{</see-also>}}
+{{< call-out "note" >}}{{< include "acm/how-to/access-acm-api.md" >}}{{< /call-out>}}
 
 To create an Cluster Zone Sync policy using the REST API, send an HTTP `PUT` request to the Add-Endpoint-Name-Here endpoint.
 

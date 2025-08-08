@@ -24,7 +24,7 @@ September 06, 2023
 
   If you're upgrading NGINX Controller on a multi-node cluster, run the `update.sh` script on each node individually -- the order in which you update the nodes doesn't matter.
 
-  {{< warning >}} Never update the control nodes in parallel. Doing so may result in race conditions for certain jobs, such as database migrations, and may cause the cluster to become unavailable.{{< /warning >}}
+  {{< call-out "warning" >}} Never update the control nodes in parallel. Doing so may result in race conditions for certain jobs, such as database migrations, and may cause the cluster to become unavailable.{{< /call-out >}}
 
 ---
 
@@ -41,7 +41,7 @@ This release has the following changes in default behavior:
 
 - {{% icon-feature %}} **Kubernetes certificates valid for 2 years**<a name="3-22-9-changes-in-behavior-Kubernetes-certificates-valid-for-2-years"></a>
 
-  {{< important >}}
+  {{< call-out "important" >}}
   The Kubernetes certificates will now default to a 2-year validity, instead of the 1-year validity they had until now.
 
   This default can be overridden during product updates by setting the `CTR_CERT_RENEWAL_PERIOD` environment variable. For example:
@@ -50,7 +50,7 @@ This release has the following changes in default behavior:
   ./update.sh -e CTR_CERT_RENEWAL_PERIOD=3650
   ```
 
-  {{< /important >}}
+  {{< /call-out >}}
 
 
 ### Known Issues{#3-22-9-known-issues}

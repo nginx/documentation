@@ -10,4 +10,4 @@ nd-docs: DOCS-957
 
 [NGINX Amplify Agent Metrics and Metadata]({{< ref "/amplify/nginx-amplify-agent/metadata-metrics-collection" >}})
 
-{{< note >}}For a complete list of metrics, refer to the [Metrics and Metadata documentation]({{< ref "/amplify/metrics-metadata" >}}).{{< /note >}}
+{{< call-out "note" >}}For a complete list of metrics, refer to the [Metrics and Metadata documentation]({{< ref "/amplify/metrics-metadata" >}}).{{< /call-out >}}

@@ -16,10 +16,10 @@ Unit:
 3. Install Bugzilla`s [core files](https://bugzilla.readthedocs.io/en/latest/installing/linux.html#bugzilla).
    Here we install them at **/path/to/app**; use a real path in your configuration.
 
-   {{< note >}}
+   {{< call-out "note" >}}
    Unit uses [PSGI](https://metacpan.org/pod/PSGI) to run Perl
    applications; Bugzilla natively supports PSGI since version 5.1.
-   {{< /note >}}
+   {{< /call-out >}}
 
 4. Change ownership:
 

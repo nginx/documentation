@@ -78,4 +78,4 @@ If administrators miss the initial opt-out:
 1. Select the **User** icon in the top-right corner.
 2. Select **"Collect interaction data (all users)"** to clear the setting.
 
-{{<note>}}The admin's decision to enable or disable web analytics applies to all users.{{</note>}}
+{{< call-out "note" >}}The admin's decision to enable or disable web analytics applies to all users.{{< /call-out >}}

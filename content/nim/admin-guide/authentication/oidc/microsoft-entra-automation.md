@@ -62,7 +62,7 @@ Before proceeding, first secure NGINX Instance Manager with OpenID Connect (OIDC
 6. Under **Application permissions**, select the role you created earlier (for example, "Admin").
 7. Select **Add permissions**.
 
-{{< note >}}If the permission is not granted, contact your Microsoft Entra administrator to approve it.{{< /note >}}
+{{< call-out "note" >}}If the permission is not granted, contact your Microsoft Entra administrator to approve it.{{< /call-out >}}
 
 ## Configure NGINX OIDC to use Microsoft Entra as the IdP
 
@@ -154,7 +154,7 @@ Additionally, complete the following steps:
     }
     ```
 
-    {{< note >}}The `roles` claim will contain the role ID of the role you created in the [Create an app role](#create-app-role) step.{{< /note >}}
+    {{< call-out "note" >}}The `roles` claim will contain the role ID of the role you created in the [Create an app role](#create-app-role) step.{{< /call-out >}}
 
 ## Access NGINX Management Suite API using the access token
 

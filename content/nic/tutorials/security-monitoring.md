@@ -58,6 +58,9 @@ If you use custom container images, NGINX Agent must be installed along with NGI
         server:
           host: "<FQDN or IP address of NGINX Instance Manager>"
           grpcPort: 443
+        tls:
+          enable: true
+          skip_verify: false
         features:
         - registration
         - nginx-counting
@@ -77,7 +80,7 @@ If you use custom container images, NGINX Agent must be installed along with NGI
    ```
    See the [NGINX Agent Configuration Overview]({{< ref "/agent/configuration/configuration-overview.md" >}}) for more configuration options.
 
-{{< note >}} The `features` list must not contain `nginx-config-async` or `nginx-ssl-config` as these features can cause conflicts with NGINX Ingress Controller.{{< /note >}}
+{{< call-out "note" >}} The `features` list must not contain `nginx-config-async` or `nginx-ssl-config` as these features can cause conflicts with NGINX Ingress Controller.{{< /call-out >}}
 
 3. Make sure that the ConfigMap is mounted to the NGINX Ingress Controller pod at `/etc/nginx-agent/nginx-agent.conf` by adding the following to the NGINX Ingress Controller deployment manifest:
 
@@ -103,4 +106,4 @@ NGINX Agent runs a syslog listener which NGINX App Protect WAF can be configured
 - [Custom Resources example](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/custom-resources/security-monitoring)
 - [Ingress Resources example](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/ingress-resources/security-monitoring)
 
-{{< note >}} Modifying the APLogConf in the examples may result in the Security Monitoring integration not working, as NGINX Agent expects a specific log format.{{< /note >}}
+{{< call-out "note" >}} Modifying the APLogConf in the examples may result in the Security Monitoring integration not working, as NGINX Agent expects a specific log format.{{< /call-out >}}

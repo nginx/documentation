@@ -32,17 +32,17 @@ W0817 17:54:27.384011 1526706 configset.go:202] WARNING: kubeadm cannot validate
 [preflight] Running pre-flight checks
 ```
 
-{{< note >}}
+{{< call-out "note" >}}
 You can ignore the warning in the output of `kubeadm init` as we're not providing custom configuration for kubelet or kubeproxy.
-{{< /note >}}
+{{< /call-out >}}
 
 ## Existing cluster
 
 If you are using an existing kubeadm cluster, add the following configuration to `/etc/kubernetes/manifests/kube-apiserver.yaml`:
 
-{{< note >}}
+{{< call-out "note" >}}
 This will cause the Kubernetes API Server to restart, which may lead to it being unavailable for a short period of time. Be sure to schedule a downtime window before modifying the Kubernetes API Server configuration.
-{{< /note >}}
+{{< /call-out >}}
 
 ```yaml
 spec:

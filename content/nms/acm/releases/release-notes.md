@@ -408,10 +408,10 @@ This release includes the following updates:
 
   With new [built-in RBAC roles for API Connectivity Manager]({{< ref "/nim/admin-guide/rbac/overview-rbac.md#build-in-roles" >}}), administrators can grant or restrict user access to workspaces and features, empowering teams to manage their own workflows.
 
-  {{<see-also>}}
+  {{< call-out "note" >}}
   - [Set Up RBAC for API Owners]({{< ref "/nms/acm/tutorials/rbac-api-owners.md" >}})
   - [Set Up RBAC for Infra Admins]({{< ref "/nms/acm/tutorials/rbac-infra-admins.md" >}})
-  {{</see-also>}}
+  {{< /call-out>}}
 
 - {{% icon-feature %}} **Multiple hostname support**<a name="1-5-0-whats-new-Multiple-hostname-support"></a>
 
@@ -440,9 +440,9 @@ This release includes the following updates:
 
 ### Security Updates{#1-5-0-security-updates}
 
-{{< important >}}
+{{< call-out "important" >}}
 For the protection of our customers, NGINX doesn’t disclose security issues until an investigation has occurred and a fix is available.
-{{< /important >}}
+{{< /call-out >}}
 
 This release includes the following security updates:
 
@@ -769,7 +769,7 @@ This release includes the following updates:
 
   API Owners can [restrict access to their APIs with OAuth2 tokens]({{< ref "/nms/acm/how-to/policies/introspection.md" >}}) by swapping an opaque token for claims or a JWT token to be proxied to the backend service. The policy can be configured to grant access to APIs after having the tokens introspected. In addition, the claims in the token can be extracted and forwarded to the backend service.
 
-  {{<tip>}}Learn how to [set up an OAuth2 Introspection policy with Keycloak]({{< ref "/nms/acm/tutorials/introspection-keycloak.md" >}}) as the authorization server.{{</tip>}}
+  {{< call-out "tip" >}}Learn how to [set up an OAuth2 Introspection policy with Keycloak]({{< ref "/nms/acm/tutorials/introspection-keycloak.md" >}}) as the authorization server.{{< /call-out >}}
 
 - {{% icon-feature %}} **Enhanced API documentation on developer portal**<a name="1-2-0-whats-new-Enhanced-API-documentation-on-developer-portal"></a>
 
@@ -795,7 +795,7 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **Publish and manage gRPC services - preview release**<a name="1-2-0-whats-new-Publish-and-manage-gRPC-services---preview-release"></a>
 
-  {{<important>}}This is a **preview** feature for you to try out. You shouldn't use preview features for production purposes.{{</important>}}
+  {{< call-out "important" >}}This is a **preview** feature for you to try out. You shouldn't use preview features for production purposes.{{< /call-out >}}
 
   To handle gRPC traffic, you can now [publish and manage gRPC proxies]({{< ref "/nms/acm/how-to/services/publish-grpc-proxy.md" >}}).
 

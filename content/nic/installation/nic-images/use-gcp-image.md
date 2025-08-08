@@ -32,7 +32,7 @@ Choose one of the following methods to install NGINX Ingress Controller.
 
 2. Select **DEPLOY FROM MARKETPLACE** and search for *NGINX Ingress Controller*.
 
-   {{<note>}}Make sure to choose a _Premium Edition_ image from _NGINX, Inc._, not a third-party one.{{</note>}}
+   {{< call-out "note" >}}Make sure to choose a _Premium Edition_ image from _NGINX, Inc._, not a third-party one.{{< /call-out >}}
 
 3. Choose the appropriate *NGINX Ingress Controller* image, then select **CONFIGURE**.
 
@@ -42,7 +42,7 @@ Choose one of the following methods to install NGINX Ingress Controller.
 
    Recommended settings are pre-selected but feel free to adjust them.
 
-   {{< note >}}If you see the **CREATE NEW CLUSTER** button, select **OR SELECT AN EXISTING CLUSTER** . {{</note>}}
+   {{< call-out "note" >}}If you see the **CREATE NEW CLUSTER** button, select **OR SELECT AN EXISTING CLUSTER** . {{< /call-out >}}
 
 5. Select **DEPLOY** to start NGINX Ingress Controller installation process.
 
@@ -55,7 +55,7 @@ If you prefer to use a new GKE cluster, follow these steps. Ensure you have enou
 1. Open [Google Cloud Console](https://console.cloud.google.com/) and go to **Marketplace*.
 2. Search for *NGINX Ingress Controller*.
 
-   {{<note>}}Make sure to choose a _Premium Edition_ image from _NGINX, Inc._, not a third-party one.{{</note>}}
+   {{< call-out "note" >}}Make sure to choose a _Premium Edition_ image from _NGINX, Inc._, not a third-party one.{{< /call-out >}}
 
 3. Choose the appropriate *NGINX Ingress Controller* image, then select **CONFIGURE**.
 

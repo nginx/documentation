@@ -11,11 +11,11 @@ type:
 
 F5 NGINX Instance Manager follows the support policy detailed in the knowledge base article: [K000140156](https://my.f5.com/manage/s/article/K000140156).
 
-{{<important>}}
+{{< call-out "important" >}}
 Support licenses for NGINX Instance Manager **do not include** support for the NGINX instances being managed.
 
 Community support is available for NGINX Open Source instances on the [NGINX mailing list](http://mailman.nginx.org/mailman/listinfo). If you need support for NGINX Plus or [prebuilt NGINX Open Source packages](https://nginx.org/en/linux_packages.html), you must [purchase an NGINX license](https://www.nginx.com/purchase-nginx/).
-{{</important>}}
+{{< /call-out >}}
 
 ---
 
@@ -86,7 +86,7 @@ tar -f /tmp/nginx-manager-log.tar.gz \
 gzip -9 /tmp/nginx-manager-log.tar.gz
 ```
 
-{{<note>}}Files shared with F5 are protected under the [F5 Support and Maintenance Privacy Statement](https://www.f5.com/company/policies/support-and-maintenance-privacy-statement).{{</note>}}
+{{< call-out "note" >}}Files shared with F5 are protected under the [F5 Support and Maintenance Privacy Statement](https://www.f5.com/company/policies/support-and-maintenance-privacy-statement).{{< /call-out >}}
 
 ---
 

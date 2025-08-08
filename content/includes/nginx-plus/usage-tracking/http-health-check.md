@@ -80,4 +80,4 @@ You can track NGINX Plus instances using an [HTTP Health Check]({{< ref "nginx/a
    - Optionally, you can limit access to the `/api/nginx-usage` location on your NGINX Instance Manager server based on client network address. For guidance on how to do this, refer to [Module ngx_http_access_module](http://nginx.org/en/docs/http/ngx_http_access_module.html).
 3. Save the changes.
 
-{{<important>}}If you install NGINX Agent later, remove this configuration to prevent double-counting instances.{{</important>}}
+{{< call-out "important" >}}If you install NGINX Agent later, remove this configuration to prevent double-counting instances.{{< /call-out >}}

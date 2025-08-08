@@ -27,4 +27,4 @@ You can use F5 NGINX Management Suite Instance Manager to publish configurations
 
 5. [Add or edit a WAF Configuration]({{< ref "/nim/nginx-app-protect/setup-waf-config-management#add-waf-config" >}}) to your NGINX Instances, and publish using Instance Manager.
 
-   {{<note>}}Map the App Protect directives on NGINX configuration to `.tgz` file extensions (not `.json`).{{< /note >}}
+   {{< call-out "note" >}}Map the App Protect directives on NGINX configuration to `.tgz` file extensions (not `.json`).{{< /call-out >}}

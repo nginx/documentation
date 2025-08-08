@@ -43,9 +43,9 @@ To create a support package:
     tar -xvf support-pkg-<timestamp>.tar.gz
     ```
 
-{{< note >}}
+{{< call-out "note" >}}
 The supported shell is `bash`.
-{{< /note >}}
+{{< /call-out >}}
 
 ### Arguments
 
@@ -126,9 +126,9 @@ The status and state information of the host running Instance Manager, including
 
 The support package script uses the `-c` flag ( or `--nms_config_path`) to get the Instance Manager configuration. If the configuration file is not specified, the script uses the default value `/etc/nms/nms.conf`.
 
-{{< note >}}
+{{< call-out "note" >}}
 If the Instance Manager configuration file does not specify addresses for the `core` and `dpm` databases, the default values are assumed: `127.0.0.1:7891` and `127.0.0.1:7890`.
-{{< /note >}}
+{{< /call-out >}}
 
 The support package script uses a small Go executable file called `dqlite-backup` (located in `/etc/nms/scripts/`) to connect to the databases and generate data dumps.
 

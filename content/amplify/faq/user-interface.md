@@ -29,4 +29,4 @@ To completely delete a previously monitored object follow these steps:
 
 To delete a system using the web interface — find it in the [Inventory]({{< ref "/amplify/user-interface/inventory" >}}), and select the [i] icon. You can delete objects from the popup window that appears next.
 
-{{< important >}}Deleting objects in the User Interface will not stop NGINX Amplify Agent. To completely remove a system from monitoring, please stop or uninstall NGINX Amplify Agent, clean it up in the web interface, and clean up any alerts.{{< /important >}}
+{{< call-out "important" >}}Deleting objects in the User Interface will not stop NGINX Amplify Agent. To completely remove a system from monitoring, please stop or uninstall NGINX Amplify Agent, clean it up in the web interface, and clean up any alerts.{{< /call-out >}}

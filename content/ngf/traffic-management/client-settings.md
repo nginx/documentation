@@ -63,11 +63,11 @@ GW_IP=XXX.YYY.ZZZ.III
 GW_PORT=<port number>
 ```
 
-{{< note >}}
+{{< call-out "note" >}}
 
 In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the gateway will forward for.
 
-{{< /note >}}
+{{< /call-out >}}
 
 Test the configuration:
 

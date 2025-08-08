@@ -214,7 +214,7 @@ az nginx deployment configuration update [--add]
 See the [Azure CLI Configuration Update Documentation](https://learn.microsoft.com/en-us/cli/azure/nginx/deployment/configuration?view=azure-cli-latest#az-nginx-deployment-configuration-update) for more details on the available parameters.
 
 
-{{< tip >}}
+{{< call-out "tip" >}}
 
 See the [NGINX connfiguration overview]({{< ref "overview.md" >}}) topic
 to learn more about:
@@ -225,4 +225,4 @@ to learn more about:
 - [Directives that cannot be overridden]({{< ref "overview.md#directives-that-cannot-be-overridden" >}})
 - [Configuration directives list]({{< ref "overview.md#configuration-directives-list" >}})
 
-{{< /tip >}}
+{{< /call-out >}}

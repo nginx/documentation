@@ -68,11 +68,11 @@ For example:
 kubectl rollout restart deployment/frontend
 ```
 
-{{< see-also >}}
+{{< call-out "note" >}}
 See [NGINX Service Mesh Labels and Annotations]( {{< ref "/mesh/get-started/install/configuration.md#supported-labels-and-annotations" >}}) for more information on available labels and annotations.
 
 Refer to the Kubernetes [`kubectl` Cheat Sheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/#updating-resources) documentation for more information about rolling resources.
-{{< /see-also >}}
+{{< /call-out>}}
 
 ## Manual Proxy Injection
 
@@ -105,9 +105,9 @@ You can set the proxy to ignore ports for either incoming or outgoing traffic. T
     nginx-meshctl inject --ignore-incoming-ports "port1,port2,...,portN", --ignore-outgoing-ports "port1,port2,...,portN" < resource.yaml > resource-injected.yaml
     ```
 
-{{< note >}}
+{{< call-out "note" >}}
 Refer to [NGINX Service Mesh Annotations]( {{< ref "/mesh/get-started/install/configuration.md#pod-annotations" >}}) for more information around annotations.
-{{< /note >}}
+{{< /call-out >}}
 
 ## Default Ignored Ports
 

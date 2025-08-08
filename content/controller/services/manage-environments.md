@@ -12,9 +12,9 @@ type:
 
 This page contains instructions for creating and managing Environments in the F5 NGINX Controller user interface.
 
-{{< tip >}}
+{{< call-out "tip" >}}
 If you prefer, you can use the NGINX Controller API to create and manage Environments. See the [NGINX Controller API reference guide]({{< ref "/controller/api/_index.md" >}}) (**Services > Environments**) for details.
-{{< /tip >}}
+{{< /call-out >}}
 
 ## Objective
 

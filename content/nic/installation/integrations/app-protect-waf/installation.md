@@ -64,7 +64,7 @@ Follow these steps to build the NGINX Controller Image with NGINX App Protect WA
 
      **What to expect**: The image is built and tagged with a version number, which is derived from the `VERSION` variable in the [_Makefile_]({{< ref "/nic/installation/build-nginx-ingress-controller.md#makefile-details" >}}). This version number is used for tracking and deployment purposes.
 
-{{<note>}} In the event a patch of NGINX Plus is released, make sure to rebuild your image to get the latest version. If your system is caching the Docker layers and not updating the packages, add `DOCKER_BUILD_OPTIONS="--pull --no-cache"` to the make command. {{</note>}}
+{{< call-out "note" >}} In the event a patch of NGINX Plus is released, make sure to rebuild your image to get the latest version. If your system is caching the Docker layers and not updating the packages, add `DOCKER_BUILD_OPTIONS="--pull --no-cache"` to the make command. {{< /call-out >}}
 
 ### Makefile targets {#makefile-targets}
 
@@ -79,7 +79,7 @@ Follow these steps to build the NGINX Controller Image with NGINX App Protect WA
 
 <br>
 
-{{< see-also >}} For the complete list of _Makefile_ targets and customizable variables, see the [Build NGINX Ingress Controller]({{< ref "/nic/installation/build-nginx-ingress-controller.md#makefile-details" >}}) topic. {{</ see-also >}}
+{{< call-out "note" >}} For the complete list of _Makefile_ targets and customizable variables, see the [Build NGINX Ingress Controller]({{< ref "/nic/installation/build-nginx-ingress-controller.md#makefile-details" >}}) topic. {{< /call-out>}}
 
 ---
 
@@ -116,7 +116,7 @@ make push PREFIX=<my-docker-registry>/nginx-plus-ingress
 
 ## Create App Protect WAF custom resources
 
-{{< note >}} If you're using NGINX Ingress Controller with the App Protect WAF module and policy bundles, you can skip this section. You will need to create and configure [Persistent Volume and Persistent Volume Claim](https://kubernetes.io/docs/concepts/storage/persistent-volumes/) in your Kubernetes cluster. {{< /note >}}
+{{< call-out "note" >}} If you're using NGINX Ingress Controller with the App Protect WAF module and policy bundles, you can skip this section. You will need to create and configure [Persistent Volume and Persistent Volume Claim](https://kubernetes.io/docs/concepts/storage/persistent-volumes/) in your Kubernetes cluster. {{< /call-out >}}
 
 <br>
 
@@ -138,7 +138,7 @@ kubectl apply -f https://raw.githubusercontent.com/nginx/kubernetes-ingress/v{{<
 
 {{%tab name="Install CRDs after cloning the repo"%}}
 
-{{< note >}} If you are installing the CRDs this way, ensure you have first cloned the repository. {{< /note >}}
+{{< call-out "note" >}} If you are installing the CRDs this way, ensure you have first cloned the repository. {{< /call-out >}}
 
 These YAML files create CRDs for the following resources:
 
@@ -162,9 +162,9 @@ kubectl apply -f config/crd/bases/appprotect.f5.com_apusersigs.yaml
 
 {{< include "/nic/installation/deploy-controller.md" >}}
 
-{{< note >}} If you're using NGINX Ingress Controller with the AppProtect WAF module and policy bundles, you will need to modify the Deployment or DaemonSet file to include volumes and volume mounts.
+{{< call-out "note" >}} If you're using NGINX Ingress Controller with the AppProtect WAF module and policy bundles, you will need to modify the Deployment or DaemonSet file to include volumes and volume mounts.
 
-NGINX Ingress Controller **requires** the volume mount path to be `/etc/nginx/waf/bundles`. {{< /note >}}
+NGINX Ingress Controller **requires** the volume mount path to be `/etc/nginx/waf/bundles`. {{< /call-out >}}
 
 Add a `volumes` section to deployment template spec:
 
@@ -217,5 +217,5 @@ For more information, see the [Configuration guide]({{< ref "/nic/installation/i
 
 If you prefer not to build your own NGINX Ingress Controller image, you can use pre-built images. Here are your options:
 
-- Download the image using your NGINX Ingress Controller subscription certificate and key. View the [Get NGINX Ingress Controller from the F5 Registry]({{< ref "/nic/installation/nic-images/get-registry-image.md" >}}) topic.
-- The [Get the NGINX Ingress Controller image with JWT]({{< ref "/nic/installation/nic-images/get-image-using-jwt.md" >}}) topic describes how to use your subscription JWT token to get the image.
+- Download the image using your NGINX Ingress Controller subscription certificate and key. View the [Download NGINX Ingress Controller from the F5 Registry]({{< ref "/nic/installation/nic-images/registry-download.md" >}}) topic.
+- The [Add an NGINX Ingress Controller image to your cluster]({{< ref "/nic/installation/nic-images/add-image-to-cluster.md" >}}) topic describes how to use your subscription JWT token to get the image.

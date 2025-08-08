@@ -144,9 +144,9 @@ NGINX App Protect WAF offers prebuilt bundles for security policies:
 - app_protect_default_policy
 - app_protect_strict_policy
 
-{{< important >}}
+{{< call-out "important" >}}
 You cannot mix these prebuilt bundles with custom policy bundles within the same `nginx.conf` file.
-{{< /important >}}
+{{< /call-out >}}
 
 Example:
 
@@ -166,9 +166,9 @@ Example:
 
 ### Updating Default Policy Bundles
 
-{{< note >}}
+{{< call-out "note" >}}
 This section assumes that you have built a [compiler image]({{< ref "/nap-waf/v5/admin-guide/compiler.md" >}}) named `waf-compiler-1.0.0:custom`.
-{{< /note >}}
+{{< /call-out >}}
 
 To generate versions of the default policies that include the latest security updates, use the `-factory-policy` option instead of a source policy file.
 
@@ -286,8 +286,8 @@ app_protect_policy_file /policies_mount/new_default_policy.tgz;
 
 apreload events use the same format as the current operation log events written in the NGINX error log, namely: `configuration_load_success` or `configuration_load_failure` with the details in JSON format. Refer to the [Operation logs]({{< ref "/nap-waf/v4/logging-overview/operation-logs.md" >}}) for more details.
 
-{{< note >}}
-Note that if any of the configuration files are invalid, apreload will discover that and return the proper error message in the `configuration_load_failure` event. The Enforcer continues to run with the previous configuration.{{< /note >}}
+{{< call-out "note" >}}
+Note that if any of the configuration files are invalid, apreload will discover that and return the proper error message in the `configuration_load_failure` event. The Enforcer continues to run with the previous configuration.{{< /call-out >}}
 
 ### Modification to nginx.conf file and App Protect Configurations
 
@@ -334,7 +334,7 @@ Ensure to substitute 1.0.0 with the specific version that you are using.
 
 It contains violations related to OpenAPI set to blocking (enforced).
 
-{{< note >}} NGINX App Protect WAF supports only one OpenAPI Specification file reference per policy.{{< /note >}}
+{{< call-out "note" >}} NGINX App Protect WAF supports only one OpenAPI Specification file reference per policy.{{< /call-out >}}
 
 ### Types of OpenAPI References
 
@@ -430,7 +430,7 @@ It contains violations related to OpenAPI set to blocking (enforced).
 
 {{< include "/nap-waf/concept/graphql-profile.md" >}}
 
-{{< note >}} For GraphQL profile default values and GraphQL violations reference, see NGINX App Protect WAF [Declarative Policy guide.]({{< ref "/nap-waf/v5/declarative-policy/policy.md" >}}) {{< /note >}}
+{{< call-out "note" >}} For GraphQL profile default values and GraphQL violations reference, see NGINX App Protect WAF [Declarative Policy guide.]({{< ref "/nap-waf/v5/declarative-policy/policy.md" >}}) {{< /call-out >}}
 
 ### Define URL settings
 
@@ -505,7 +505,7 @@ For the full reference of Override Rules condition syntax and usage see the NGIN
 
 NGINX App Protect WAF introduces a new policy entity known as "**access profile**" to authenticate JSON Web Token. Access Profile is added to the app protect policy to enforce JWT settings. JSON Web Token needs to be applied to the URLs for enforcement and includes the actions to be taken with respect to access tokens. It is specifically associated with HTTP URLs and does not have any predefined default profiles.
 
-{{< note >}}At present, only one access profile is supported within the App Protect policy. However, the JSON schema for the policy will be designed to accommodate multiple profiles in the future.{{< /note >}}
+{{< call-out "note" >}}At present, only one access profile is supported within the App Protect policy. However, the JSON schema for the policy will be designed to accommodate multiple profiles in the future.{{< /call-out >}}
 
 The access profile includes:
 
@@ -570,7 +570,7 @@ Refer to the following example where all access profile properties are configure
 }
 ```
 
-{{< note >}} For access profile default values and their related field names, see NGINX App Protect WAF [Declarative Policy guide]({{< ref "/nap-waf/v5/declarative-policy/policy.md" >}}). {{< /note >}}
+{{< call-out "note" >}} For access profile default values and their related field names, see NGINX App Protect WAF [Declarative Policy guide]({{< ref "/nap-waf/v5/declarative-policy/policy.md" >}}). {{< /call-out >}}
 
 #### Access Profile in URL Settings
 
@@ -679,8 +679,8 @@ To enable mTLS in NGINX, you need to perform the following steps:
 
     Below are the steps for using self-signed certificates:
 
-    {{< note >}} The below commands will generate a self-signed certificates in `/etc/ssl/certs/`  valid for the default period of 30 days. You can adjust the command to fit your needs. For instance, to specify a different validity period, add the `-days` option followed by the number of days you want the certificate to be valid (for example, `-days 90`).
-	{{< /note >}}
+    {{< call-out "note" >}} The below commands will generate a self-signed certificates in `/etc/ssl/certs/`  valid for the default period of 30 days. You can adjust the command to fit your needs. For instance, to specify a different validity period, add the `-days` option followed by the number of days you want the certificate to be valid (for example, `-days 90`).
+	{{< /call-out >}}
 
     ```shell
 	mkdir -p /etc/ssl/certs
@@ -857,7 +857,7 @@ A login page specifies the login URL that users must pass through to get authent
         ]
 ```
 
-{{< note >}} For further configuration details, see NGINX App Protect WAF Declarative Policy Guide [Declarative Policy guide]({{< ref "/nap-waf/v5/declarative-policy/policy/#policy/login-pages" >}}). {{< /note >}}
+{{< call-out "note" >}} For further configuration details, see NGINX App Protect WAF Declarative Policy Guide [Declarative Policy guide]({{< ref "/nap-waf/v5/declarative-policy/policy/#policy/login-pages" >}}). {{< /call-out >}}
 
 ---
 
@@ -971,7 +971,7 @@ The following example adds all three of the pieces for a complete example policy
 }
 ```
 
-{{< note >}} For further configuration details, see NGINX App Protect WAF Declarative Policy Guide [Declarative Policy guide]({{< ref "/nap-waf/v5/declarative-policy/policy/#policy/brute-force-attack-preventions" >}}). {{< /note >}}
+{{< call-out "note" >}} For further configuration details, see NGINX App Protect WAF Declarative Policy Guide [Declarative Policy guide]({{< ref "/nap-waf/v5/declarative-policy/policy/#policy/brute-force-attack-preventions" >}}). {{< /call-out >}}
 
 ## Custom Dimensions Log Entries
 

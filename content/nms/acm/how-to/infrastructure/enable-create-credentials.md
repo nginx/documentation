@@ -67,7 +67,7 @@ Afterward, the API consumer can create credentials on the Developer Portal by pe
 
 As mTLS is not enabled by default, the Credentials endpoint is disabled initially. You must enable the Credentials endpoint on the API Connectivity Manager host to use the Developer Portal credentials workflow.
 
-{{<important>}}mTLS is essential to secure communication between API Connectivity Manager and the Developer Portal.{{</important>}}
+{{< call-out "important" >}}mTLS is essential to secure communication between API Connectivity Manager and the Developer Portal.{{< /call-out >}}
 
 To enable the Credentials endpoint on the API Connectivity Manager host, take the following steps:
 
@@ -136,11 +136,11 @@ To add a CORS policy:
 
 Log in to the Developer Portal as an API Consumer. Use the **Create Credentials** option to create credentials for the API.
 
-{{<important>}}
+{{< call-out "important" >}}
 
   To avoid misuse, the API Consumer may create only one APIKey per API.
 
-{{</important>}}
+{{< /call-out >}}
 
 ### Try It Out on the Developer Portal
 

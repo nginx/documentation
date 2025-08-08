@@ -17,7 +17,7 @@ The intended use-case is when a service or backend owner is managing their own T
 
 ## Note on Gateway API Experimental Features
 
-{{< important >}} BackendTLSPolicy is a Gateway API resource from the experimental release channel. {{< /important >}}
+{{< call-out "important" >}} BackendTLSPolicy is a Gateway API resource from the experimental release channel. {{< /call-out >}}
 
 {{< include "/ngf/installation/install-gateway-api-experimental-features.md" >}}
 
@@ -180,7 +180,7 @@ GW_IP=XXX.YYY.ZZZ.III
 GW_PORT=<port number>
 ```
 
-{{< note >}}In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the gateway will forward for.{{< /note >}}
+{{< call-out "note" >}}In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the gateway will forward for.{{< /call-out >}}
 
 ---
 
@@ -188,7 +188,7 @@ GW_PORT=<port number>
 
 Using the external IP address and port for the NGINX Service, we can send traffic to our secure-app application. To show what happens if we send plain HTTP traffic from NGINX to our `secure-app`, let's try sending a request before we create the backend TLS configuration.
 
-{{< note >}}If you have a DNS record allocated for `secure-app.example.com`, you can send the request directly to that hostname, without needing to resolve.{{< /note >}}
+{{< call-out "note" >}}If you have a DNS record allocated for `secure-app.example.com`, you can send the request directly to that hostname, without needing to resolve.{{< /call-out >}}
 
 ```shell
 curl --resolve secure-app.example.com:$GW_PORT:$GW_IP http://secure-app.example.com:$GW_PORT/
@@ -211,7 +211,7 @@ We can see we a status 400 Bad Request message from NGINX.
 
 ## Create the backend TLS configuration
 
-{{< note >}} This example uses a `ConfigMap` to store the CA certificate, but you can also use a `Secret`. This could be a better option if integrating with [cert-manager](https://cert-manager.io/). The `Secret` should have a `ca.crt` key that holds the contents of the CA certificate. {{< /note >}}
+{{< call-out "note" >}} This example uses a `ConfigMap` to store the CA certificate, but you can also use a `Secret`. This could be a better option if integrating with [cert-manager](https://cert-manager.io/). The `Secret` should have a `ca.crt` key that holds the contents of the CA certificate. {{< /call-out >}}
 
 To configure the backend TLS termination, first we will create the ConfigMap that holds the `ca.crt` entry for verifying our self-signed certificates:
 

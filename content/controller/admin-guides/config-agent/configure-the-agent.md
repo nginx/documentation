@@ -32,9 +32,9 @@ NGINX Controller uses the `/api` location on the NGINX Plus instance to collect 
 
 When you push a configuration to an NGINX Plus instance, NGINX Controller automatically enables the `/api` location for that instance.
 
-{{< note >}}
+{{< call-out "note" >}}
 The `/api` location settings that NGINX Controller creates will override any settings that you have previously defined.
-{{< /note >}}
+{{< /call-out >}}
 
 If you use NGINX Controller solely to monitor your NGINX Plus instances, you may need to enable the `/api` location on your instances manually.
 Refer to the [Configuring the API](https://docs.nginx.com/nginx/admin-guide/monitoring/live-activity-monitoring/#configuring-the-api) section of the NGINX Plus Admin Guide for instructions.
@@ -71,13 +71,13 @@ The hostname should be real. The NGINX Controller Agent won't start unless a val
 - localhost6.localdomain6
 - ip6-localhost
 
-{{< note >}}
+{{< call-out "note" >}}
 
 You can use the above method to replace the system's hostname with an arbitrary alias. Keep in mind that if you redefine the hostname for a live object, the existing object will be marked as failed in the NGINX Controller user interface. Redefining the hostname in the NGINX Controller Agent's configuration creates a new UUID and a new system for monitoring.
 
 Alternatively, you can define an alias for the host in the NGINX Controller user interface. Go to the **Graphs** page, select the system that you want to update, and click the gear icon.
 
-{{< /note >}}
+{{< /call-out >}}
 
 ## Preserving the UUID across OS upgrades
 
@@ -97,7 +97,7 @@ After restarting the Controller Agent -- `service controller-agent restart` -- t
 
 The NGINX Controller Agent detects the NGINX configuration file automatically. You shouldn't need to point the NGINX Controller Agent to the `nginx.conf` file explicitly.
 
-{{< caution >}}You should not make manual changes to the `nginx.conf` file on NGINX Plus instances that are managed by NGINX Controller. Manually updating the `nginx.conf` file on managed instances may adversely affect system performance. In most cases, NGINX Controller will revert or overwrite manual updates made to `nginx.conf`.{{< /caution >}}
+{{< call-out "caution"  >}}You should not make manual changes to the `nginx.conf` file on NGINX Plus instances that are managed by NGINX Controller. Manually updating the `nginx.conf` file on managed instances may adversely affect system performance. In most cases, NGINX Controller will revert or overwrite manual updates made to `nginx.conf`.{{< /call-out >}}
 
 If, for some reason, the NGINX Controller Agent cannot find the NGINX configuration, you can use the following option in `/etc/controller-agent/agent.conf` to point to the configuration file:
 
@@ -106,7 +106,7 @@ If, for some reason, the NGINX Controller Agent cannot find the NGINX configurat
 configfile = /etc/nginx/nginx.conf
 ```
 
-{{< note >}} We recommend using this option only as a workaround if needed. If you do need to add the path to the NGINX config file, we ask that you [contact NGINX Support]({{< ref "/controller/support/contact-support.md" >}}) so they can help troubleshoot the issue.{{< /note >}}
+{{< call-out "note" >}} We recommend using this option only as a workaround if needed. If you do need to add the path to the NGINX config file, we ask that you [contact NGINX Support]({{< ref "/controller/support/contact-support.md" >}}) so they can help troubleshoot the issue.{{< /call-out >}}
 
 ## Set Host Tags
 
@@ -117,15 +117,15 @@ You can define arbitrary tags on a "per-host" basis. Tags can be configured in t
 tags = foo bar foo:bar
 ```
 
-{{< note >}} Any changes to instance Tags made in the Controller user interface will overwrite the values stored in `agent.conf`.{{< /note >}}
+{{< call-out "note" >}} Any changes to instance Tags made in the Controller user interface will overwrite the values stored in `agent.conf`.{{< /call-out >}}
 
 You can use tags to build custom graphs, configure alerts, and filter the systems on the **Graphs** page in the Controller user interface.
 
 ## Logging to Syslog
 
-{{< see-also >}}
+{{< call-out "note" >}}
 [NGINX Admin Guide - Logging to Syslog](https://docs.nginx.com/nginx/admin-guide/monitoring/logging/#logging-to-syslog)
-{{< /see-also >}}
+{{< /call-out>}}
 
 The NGINX Controller Agent can collect NGINX log files using `syslog`. This could be useful when you don't keep the NGINX logs on disk, or when monitoring a container environment such as Docker with NGINX Controller.
 
@@ -147,9 +147,9 @@ To configure the NGINX Controller Agent to send logs to `syslog`:
     # service controller-agent restart
     ```
 
-    {{< important >}}
+    {{< call-out "important" >}}
 Make sure you [add the `syslog` settings to your NGINX configuration file]({{< ref "/controller/admin-guides/config-agent/configure-metrics-collection.md#collect-metrics-from-syslog" >}}) as well.
-    {{< /important >}}
+    {{< /call-out >}}
 
 ## Exclude Certain NGINX Log Files
 
@@ -182,9 +182,9 @@ Upon installation, the NGINX Controller Agent's log rotation schedule is added t
 
 The normal level of logging for the NGINX Controller Agent is `INFO`. If you ever need to debug the NGINX Controller Agent, change the level to `DEBUG` as described below.
 
-{{< caution >}}
+{{< call-out "caution"  >}}
 The size of the NGINX Controller Agent's log file can proliferate in `DEBUG` mode. You should use `DEBUG` mode only for troubleshooting purposes.
-{{< /caution >}}
+{{< /call-out >}}
 
 ### Change the Agent Log Level
 

@@ -85,7 +85,7 @@ lowercase using the built-in capabilities of JavaScript:
 }
 ```
 
-{{< note >}}
+{{< call-out "note" >}}
 The path portion of the incoming URI is the only part that is rewritten,
 and any original queries or arguments (anything following the `?`
 character) are preserved.
@@ -93,7 +93,7 @@ character) are preserved.
 The `$uri` and `$request_uri` variables are both updated during
 the rewrite process. When using custom log formatting, use the
 \$request_line variable to log the original URI.
-{{< /note >}}
+{{< /call-out >}}
 
 ## Application Logging
 

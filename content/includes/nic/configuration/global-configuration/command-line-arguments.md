@@ -299,7 +299,7 @@ Format: `[1024 - 65535]` (default `8080`)
 
 ### -proxy `<string>`
 
-{{< warning >}} This argument is intended for testing purposes only. {{< /warning >}}
+{{< call-out "warning" >}} This argument is intended for testing purposes only. {{< /call-out >}}
 
 Use a proxy server to connect to Kubernetes API started with `kubectl proxy`.
 
