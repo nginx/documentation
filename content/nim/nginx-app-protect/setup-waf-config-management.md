@@ -574,7 +574,7 @@ If you prefer not to enable automatic updates, you can manually update the Attac
    - `nginx-repo.crt` (certificate)
    - `nginx-repo.key` (private key)
 
-3. Chose the following options while downloading the packages from NGINX repository(https://pkgs.nginx.com/app-protect-security-updates):
+3. Chose the following options while downloading the packages from the [NGINX repository](https://pkgs.nginx.com/app-protect-security-updates):
     - Select your **Linux Distribution** path.
       - For **Ubuntu**: /ubuntu/pool/nginx-plus/a/
       - For **Debian**: /debian/pool/nginx-plus/a/
