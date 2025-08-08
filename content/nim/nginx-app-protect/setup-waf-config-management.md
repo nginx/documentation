@@ -121,61 +121,31 @@ To install the WAF compiler on RHEL 8.1 or later:
    sudo yum install nms-nap-compiler-v5.442.0
    ```
 
-4. {{< include "nim/nap-waf/restart-nms-integrations.md" >}}
+### RHEL 9 or later
 
-### RHEL 7.4 or later; CentOS
-
-To install the WAF compiler on RHEL 7.4 or later or CentOS:
+To install the WAF compiler on RHEL 9 or later:
 
 1. Download the `dependencies.repo` file to the `/etc/yum.repos.d` directory:
 
-    ```shell
-    sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.repo
-    ```
-
-2. Enable the RHEL 7 server repositories:
-
-    ```shell
-    sudo yum-config-manager --enable rhui-REGION-rhel-server-optional rhui-REGION-rhel-server-releases rhel-7-server-optional-rpms
-    ```
-
-3. Install the WAF compiler:
-
-    ```shell
-    sudo yum install nms-nap-compiler-v5.442.0
-    ```
-
-4.	{{< include "nim/nap-waf/restart-nms-integrations.md" >}}
-
-### Amazon Linux 2 LTS
-
-To install the WAF compiler on Amazon Linux 2 LTS:
-
-1. Download the required repo files to the `/etc/yum.repos.d` directory:
-
    ```shell
-   sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/nms-amazon2.repo
-   sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-7.repo
+   sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.repo
    ```
 
-2. Enable the Extra Packages for Enterprise Linux (EPEL) repository:
+2. Enable the CodeReady Builder repository:
 
-    ```shell
-    sudo amazon-linux-extras enable epel
-    sudo yum clean metadata
-    sudo yum install epel-release
-    ```
+   ```shell
+   sudo subscription-manager repos --enable codeready-builder-for-rhel-9-x86_64-rpms
+   ```
 
 3. Install the WAF compiler:
 
-    ```shell
-    sudo yum install nms-nap-compiler-v5.442.0
-    ```
+   ```shell
+   sudo yum install nms-nap-compiler-v5.442.0
+   ```
 
 4. {{< include "nim/nap-waf/restart-nms-integrations.md" >}}
 
-
-### Oracle Linux 7.4 or later
+### Oracle Linux 8.1 or later
 
 To install the WAF compiler on Oracle Linux 7.4 or later:
 
@@ -281,7 +251,7 @@ To install the WAF compiler on a system without internet access, complete these 
 
 {{%tab name="Ubuntu"%}}
 
-### Install on Ubuntu 24.04, 22.04, and 20.04
+### Install on Ubuntu 24.04, 22.04
 
 #### Step 1: On a system with internet access
 
@@ -303,10 +273,10 @@ sudo tee /etc/apt/sources.list.d/nms.list
 sudo wget -q -O /etc/apt/apt.conf.d/90pkgs-nginx https://cs.nginx.com/static/files/90pkgs-nginx
 mkdir -p compiler && cd compiler
 sudo apt-get update
-sudo apt-get download nms-nap-compiler-v5.342.0
+sudo apt-get download nms-nap-compiler-v5.442.0
 cd ../
 mkdir -p compiler/compiler.deps
-sudo apt-get install --download-only --reinstall --yes --print-uris nms-nap-compiler-v5.342.0 | grep ^\' | cut -d\' -f2 | xargs -n 1 wget -P ./compiler/compiler.deps
+sudo apt-get install --download-only --reinstall --yes --print-uris nms-nap-compiler-v5.442.0 | grep ^\' | cut -d\' -f2 | xargs -n 1 wget -P ./compiler/compiler.deps
 tar -czvf compiler.tar.gz compiler/
 ```
 
@@ -347,10 +317,10 @@ sudo tee /etc/apt/sources.list.d/nms.list
 sudo wget -q -O /etc/apt/apt.conf.d/90pkgs-nginx https://cs.nginx.com/static/files/90pkgs-nginx
 mkdir -p compiler && cd compiler
 sudo apt-get update
-sudo apt-get download nms-nap-compiler-v5.342.0
+sudo apt-get download nms-nap-compiler-v5.442.0
 cd ../
 mkdir -p compiler/compiler.deps
-sudo apt-get install --download-only --reinstall --yes --print-uris nms-nap-compiler-v5.342.0 | grep ^\' | cut -d\' -f2 | xargs -n 1 wget -P ./compiler/compiler.deps
+sudo apt-get install --download-only --reinstall --yes --print-uris nms-nap-compiler-v5.442.0 | grep ^\' | cut -d\' -f2 | xargs -n 1 wget -P ./compiler/compiler.deps
 tar -czvf compiler.tar.gz compiler/
 ```
 
@@ -369,7 +339,7 @@ sudo dpkg -i ./compiler/*.deb
 
 {{%tab name="RHEL8, RHEL9, Oracle-9 "%}}
 
-### Install on RHEL 8, RHEL 9, or Oracle Linux 9
+### Install on RHEL 8, RHEL 9, or Oracle Linux 8.1
 
 #### Step 1: On a system with internet access
 
@@ -386,7 +356,7 @@ sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/nms.repo
 sudo yum-config-manager --disable rhel-9-appstream-rhui-rpms
 sudo yum update -y
 sudo mkdir -p nms-nap-compiler
-sudo yumdownloader --resolve --destdir=nms-nap-compiler nms-nap-compiler-v5.342.0
+sudo yumdownloader --resolve --destdir=nms-nap-compiler nms-nap-compiler-v5.442.0
 tar -czvf compiler.tar.gz nms-nap-compiler/
 ```
 
@@ -405,7 +375,7 @@ sudo dnf install *.rpm --disablerepo=*
 
 {{%tab name="Oracle-8"%}}
 
-### Install on Oracle Linux 8
+### Install on Oracle Linux 8.1
 
 #### Step 1: On a system with internet access
 
@@ -428,7 +398,7 @@ EOF
 
 sudo yum update -y
 sudo mkdir -p nms-nap-compiler
-sudo yumdownloader --resolve --destdir=nms-nap-compiler nms-nap-compiler-v5.342.0
+sudo yumdownloader --resolve --destdir=nms-nap-compiler nms-nap-compiler-v5.442.0
 tar -czvf compiler.tar.gz nms-nap-compiler/
 ```
 
@@ -594,30 +564,66 @@ This means NGINX Instance Manager can’t connect to the NGINX repository to ret
 
 ### Manually update packages
 
-If you prefer not to enable automatic updates, you can manually update the Attack Signature and Threat Campaign packages by downloading them from MyF5 and uploading them to NGINX Instance Manager.
+If you prefer not to enable automatic updates, you can manually update the Attack Signature and Threat Campaign packages by downloading them from NGINX repository and uploading them to NGINX Instance Manager.
 
-#### Download packages from MyF5
+#### Download packages from NGINX Repository
 
-1. Log in to [MyF5](https://my.f5.com), then go to **Resources > Downloads**.
+1. Log in to [MyF5](https://account.f5.com/myf5) and then go to **My Products and Plans > Subscriptions**.
 
-2. Select the following options in the product menu:
-    - **Group/Product Family**: *NGINX*
-    - **Product Line**: *NGINX App Protect*
-    - **Product Version**: Choose a version that matches your WAF compiler version.
-    - Select your **Linux Distribution**, **Version**, and **Architecture**.
+2. Download the following files from your NGINX App Protect WAF subscription:
+   - `nginx-repo.crt` (certificate)
+   - `nginx-repo.key` (private key)
 
-3. Download the `.deb` or `.rpm` packages:
+3. Chose the following options while downloading the packages from the [NGINX repository](https://pkgs.nginx.com/app-protect-security-updates):
+    - Select your **Linux Distribution** path.
+      - For **Ubuntu**: /ubuntu/pool/nginx-plus/a/
+      - For **Debian**: /debian/pool/nginx-plus/a/
+      - For **RHEL**: /centos/<8 or 9>/x86_64/RPMS/
+
+4. Download the `.deb` or `.rpm` packages from https://pkgs.nginx.com using your NGINX App Protect WAF cert and key:
     - For Attack Signatures: package starts with `app-protect-attack-signatures`
+      - Format for `.deb` package:
+      ```text
+      https://pkgs.nginx.com/app-protect-security-updates/<ubuntu or debian>/pool/nginx-plus/a/app-protect-attack-signatures/app-protect-attack-signatures_<Revision Timestamp in YYYY.MM.DD>-<version>~<OS Family>_amd64.deb
+      ```
+      - Example for `.deb` download:
+      ```shell
+      curl --key nginx-repo.key --cert nginx-repo.crt https://pkgs.nginx.com/app-protect-security-updates/ubuntu/pool/nginx-plus/a/app-protect-attack-signatures/app-protect-attack-signatures_2025.07.24-1~noble_amd64.deb --output app-protect-attack-signatures_2025.07.24-1~noble_amd64.deb
+      ```
+      - Format for `.rpm` package:
+      ```text
+      https://pkgs.nginx.com/app-protect-security-updates/centos/<8 or 9>/x86_64/RPMS/app-protect-attack-signatures-<Revision Timestamp in YYYY.MM.DD>-<version>.el<8 or 9>.ngx.x86_64.rpm
+      ```
+      - Example for `.rpm` download:
+      ```shell
+      curl -v --key nginx-repo.key --cert nginx-repo.crt https://pkgs.nginx.com/app-protect-security-updates/centos/8/x86_64/RPMS/app-protect-attack-signatures-2025.07.24-1.el8.ngx.x86_64.rpm --output app-protect-attack-signatures-2025.07.24-1.el8.ngx.x86_64.rpm
+      ```
     - For Threat Campaigns: package starts with `app-protect-threat-campaigns`
+      - Format for `.deb` package:
+      ```text
+      https://pkgs.nginx.com/app-protect-security-updates/<ubuntu or debian>/pool/nginx-plus/a/app-protect-threat-campaigns/app-protect-threat-campaigns_<Revision Timestamp in YYYY.MM.DD>-<version>~<OS Family>_amd64.deb
+      ```
+      - Example for `.deb` download:
+      ```shell
+      curl --key nginx-repo.key --cert nginx-repo.crt https://pkgs.nginx.com/app-protect-security-updates/ubuntu/pool/nginx-plus/a/app-protect-threat-campaigns/app-protect-threat-campaigns_2025.07.29-1~noble_amd64.deb --output app-protect-threat-campaigns_2025.07.29-1~noble_amd64.deb
+      ```
+      - Format for `.rpm` package:
+      ```text
+      https://pkgs.nginx.com/app-protect-security-updates/centos/<8 or 9>/x86_64/RPMS/app-protect-threat-campaigns-<Revision Timestamp in YYYY.MM.DD>-<version>.el<8 or 9>.ngx.x86_64.rpm
+      ```
+      - Example for `.rpm` download:
+      ```shell
+      curl -v --key nginx-repo.key --cert nginx-repo.crt https://pkgs.nginx.com/app-protect-security-updates/centos/8/x86_64/RPMS/app-protect-threat-campaigns-2025.07.29-1.el8.ngx.x86_64.rpm --output app-protect-threat-campaigns-2025.07.29-1.el8.ngx.x86_64.rpm
+      ```
 
-4. Extract the following three files from the package:
+5. Extract the following three files from the package:
     - `signatures.bin.tgz` (or `threat_campaigns.bin.tgz`)
     - `signature_update.yaml` (or `threat_campaign_update.yaml`)
     - `version`
 
     Use tools like `rpm2cpio | cpio` or `ar` (for `.deb`) to extract the files.
 
-5. Create a `.tgz` bundle that includes the three files. For example:
+6. Create a `.tgz` bundle that includes the three files. For example:
 
     ```shell
     tar -czvf attack-signatures.tgz signatures.bin.tgz signature_update.yaml version
