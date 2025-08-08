@@ -26,11 +26,11 @@ You have multiple options for scaling the data plane:
 
 Understanding when to increase worker connections, replicas, or create a new Gateway is key to managing traffic effectively.
 
-Increasing worker connections or replicas is ideal when you need to handle more traffic without changing the overall routing configuration. Setting the worker connections field allows a single nginx data plane instance to handle more connections without needing to scale the replicas. However, scaling the replicas can be beneficial to reduce single points of failure.
+Increasing worker connections or replicas is ideal when you need to handle more traffic without changing the overall routing configuration. Setting the worker connections field allows a single NGINX data plane instance to handle more connections without needing to scale the replicas. However, scaling the replicas can be beneficial to reduce single points of failure.
 
 Scaling replicas can be done manually or automatically using a [Horizontal Pod Autoscaler](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/) (HPA).
 
-To update worker connections (default: 1024), static replicas, or enable autoscaling, you can edit the `NginxProxy` resource:
+To update worker connections (default: 1024), replicas, or enable autoscaling, you can edit the `NginxProxy` resource:
 
 ```shell
 kubectl edit nginxproxies.gateway.nginx.org ngf-proxy-config -n nginx-gateway
