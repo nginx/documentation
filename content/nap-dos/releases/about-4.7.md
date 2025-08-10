@@ -32,8 +32,8 @@ August 13, 2025
 
 | Distribution name        | Package file                                         |
 |--------------------------|------------------------------------------------------|
-| Alpine 3.19              | _app-protect-dos-35+4.7.2-r1.apk_                    |
-| Alpine 3.21              | _app-protect-dos-35+4.7.2-r1.apk_                    |
+| Alpine 3.19              | _app-protect-dos-35+4.7.3-r1.apk_                    |
+| Alpine 3.21              | _app-protect-dos-35+4.7.3-r1.apk_                    |
 | Amazon Linux 2023        | _app-protect-dos-35+4.7.3-1.amzn2023.ngx.x86_64.rpm_ |
 | RHEL 8 and Rocky Linux 8 | _app-protect-dos-35+4.7.3-1.el8.ngx.x86_64.rpm_      |
 | RHEL 9 and Rocky Linux 9 | _app-protect-dos-35+4.7.3-1.el9.ngx.x86_64.rpm_      |
