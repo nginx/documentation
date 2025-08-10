@@ -1141,13 +1141,11 @@ FROM alpine:3.19
 # Download and add the NGINX signing keys:
 RUN wget -O /etc/apk/keys/nginx_signing.rsa.pub https://cs.nginx.com/static/keys/nginx_signing.rsa.pub
 
-# Add NGINX Plus repository:
-RUN printf "https://pkgs.nginx.com/plus/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | tee -a /etc/apk/repositories
+# Add NGINX Plus/NGINX App Protect Dos repository:
+RUN printf "https://pkgs.nginx.com/plus/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | tee -a /etc/apk/repositories && \
+    printf "https://pkgs.nginx.com/app-protect-dos/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | tee -a /etc/apk/repositories
 
-# Add NGINX App Protect Dos repository:
-RUN printf "https://pkgs.nginx.com/app-protect-dos/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | tee -a /etc/apk/repositories
-
-# Update the repository and install the most recent version of the NGINX App Protect Dow package (which includes NGINX Plus):
+# Update the repository and install the most recent version of the NGINX App Protect Dos package (which includes NGINX Plus):
 RUN --mount=type=secret,id=nginx-crt,dst=/etc/apk/cert.pem,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/apk/cert.key,mode=0644 \
     --mount=type=secret,id=license-jwt,dst=license.jwt,mode=0644 \
@@ -1183,7 +1181,7 @@ FROM amazonlinux:2023
 # Install prerequisite packages:
 RUN dnf -y install ca-certificates
 
-# Add NGINX Plus repo to Yum:
+# Add NGINX Plus/NGINX App Protect Dos repository:
 RUN curl -o /etc/yum.repos.d/plus-amazonlinux2023.repo https://cs.nginx.com/static/files/plus-amazonlinux2023.repo && \
     curl -o  /etc/yum.repos.d/app-protect-dos-amazonlinux2023.repo https://cs.nginx.com/static/files/app-protect-dos-amazonlinux2023.repo
 
@@ -1220,15 +1218,16 @@ CMD ["sh", "/root/entrypoint.sh"]
 # Where can be bullseye/bookworm
 FROM debian:bullseye
 
-# Create necessary directories and copy certificates and license and install packages
+# Setup repository keys
 RUN mkdir -p /etc/ssl/nginx/ /etc/nginx/ && \
-    apt-get update && apt-get install -y --no-install-recommends \
-    apt-transport-https lsb-release ca-certificates wget gnupg2 debian-archive-keyring && \
+    apt-get update && \
+    apt-get install -y --no-install-recommends apt-transport-https lsb-release ca-certificates wget gnupg2 debian-archive-keyring && \
     wget -qO - https://cs.nginx.com/static/keys/nginx_signing.key | gpg --dearmor | tee /usr/share/keyrings/nginx-archive-keyring.gpg >/dev/null && \
     printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https://pkgs.nginx.com/plus/debian $(lsb_release -cs) nginx-plus\n" > /etc/apt/sources.list.d/nginx-plus.list && \
     printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https://pkgs.nginx.com/app-protect-dos/debian $(lsb_release -cs) nginx-plus\n" > /etc/apt/sources.list.d/nginx-app-protect-dos.list && \
     wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
 
+# Install Nginx App Protect Dos
 RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
     --mount=type=secret,id=license-jwt,dst=license.jwt,mode=0644 \
@@ -1258,13 +1257,15 @@ CMD ["sh", "/root/entrypoint.sh"]
 # Where version can be: jammy/noble
 FROM ubuntu:noble
 
+# Setup repository keys
 RUN apt-get update && \
-    apt-get install -y apt-transport-https lsb-release ca-certificates wget gnupg2 ubuntu-keyring && \
+    apt-get install -y --no-install-recommends apt-transport-https lsb-release ca-certificates wget gnupg2 ubuntu-keyring && \
     wget -qO - https://cs.nginx.com/static/keys/nginx_signing.key | gpg --dearmor | tee /usr/share/keyrings/nginx-archive-keyring.gpg >/dev/null && \
     printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https://pkgs.nginx.com/plus/ubuntu $(lsb_release -cs) nginx-plus\n" > /etc/apt/sources.list.d/nginx-plus.list && \
     printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https://pkgs.nginx.com/app-protect-dos/ubuntu $(lsb_release -cs) nginx-plus\n" > /etc/apt/sources.list.d/nginx-app-protect-dos.list && \
     wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
 
+# Install Nginx App Protect Dos
 RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
     --mount=type=secret,id=license-jwt,dst=license.jwt,mode=0644 \
@@ -1297,6 +1298,7 @@ FROM registry.access.redhat.com/ubi8
 ARG RHEL_ORG
 ARG RHEL_ACTIVATION_KEY
 
+# Setup repository keys
 RUN subscription-manager register --org=${RHEL_ORG} --activationkey=${RHEL_ACTIVATION_KEY} && \
     subscription-manager refresh && \
     subscription-manager attach --auto || true && \
@@ -1307,6 +1309,7 @@ RUN subscription-manager register --org=${RHEL_ORG} --activationkey=${RHEL_ACTIV
     curl -o /etc/yum.repos.d/plus-8.repo https://cs.nginx.com/static/files/plus-8.repo && \
     curl -o /etc/yum.repos.d/app-protect-dos-8.repo https://cs.nginx.com/static/files/app-protect-dos-8.repo
 
+# Install Nginx App Protect Dos
 RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
     --mount=type=secret,id=license-jwt,dst=license.jwt,mode=0644 \
@@ -1567,7 +1570,6 @@ Make sure to replace upstream and proxy pass directives in this example with rel
     docker ps
     ```
 
-
 ### Alpine Dockerfile example
 
 ```dockerfile
@@ -1623,7 +1625,6 @@ FROM amazonlinux:2023
 # Install prerequisite packages:
 RUN dnf -y install ca-certificates
 
-
 # Add NGINX/NAP WAF/NAP DOS repositories:
 RUN curl -o /etc/yum.repos.d/plus-amazonlinux2023.repo https://cs.nginx.com/static/files/plus-amazonlinux2023.repo && \
     curl -o /etc/yum.repos.d/app-protect-dos-amazonlinux2023.repo https://cs.nginx.com/static/files/app-protect-dos-amazonlinux2023.repo && \
@@ -1661,23 +1662,13 @@ CMD ["sh", "/root/entrypoint.sh"]
 ### Debian Docker Deployment Example
 
 ```Dockerfile
-
-ARG OS_CODENAME
-# Where OS_CODENAME can be: buster/bullseye/bookworm
-
-FROM debian:${OS_CODENAME}
-
-# Download certificate, key, and JWT license from the customer portal (https://my.f5.com)
-# and copy to the build context:
-RUN mkdir -p /etc/ssl/nginx/ &&  mkdir -p /etc/nginx/
-COPY nginx-repo.crt nginx-repo.key /etc/ssl/nginx/ \
-COPY license.jwt /etc/nginx/
+# Where verionn can be: bullseye/bookworm
+FROM debian:bullseye
 
 # Install prerequisite packages:
-RUN apt-get update && apt-get install -y apt-transport-https lsb-release ca-certificates wget gnupg2 debian-archive-keyring
-
-# Download and add the NGINX signing key:
-RUN wget -qO - https://cs.nginx.com/static/keys/nginx_signing.key | gpg --dearmor | tee /usr/share/keyrings/nginx-archive-keyring.gpg >/dev/null
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends apt-transport-https lsb-release ca-certificates wget gnupg2 debian-archive-keyring && \
+    wget -qO - https://cs.nginx.com/static/keys/nginx_signing.key | gpg --dearmor | tee /usr/share/keyrings/nginx-archive-keyring.gpg >/dev/null
 
 # Add NGINX Plus, NGINX App Protect and NGINX App Protect DoS repository:
 RUN printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https://pkgs.nginx.com/plus/debian `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/nginx-plus.list \
@@ -1687,20 +1678,26 @@ RUN printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https:
 # Download the apt configuration to `/etc/apt/apt.conf.d`:
 RUN wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
 
-# Update the repository and install the most recent version of the NGINX App Protect DoS and NGINX App Protect package (which includes NGINX Plus):
-RUN apt-get update && apt-get install -y app-protect-dos app-protect
-
-# Remove nginx repository key/cert from docker
-RUN rm -rf /etc/ssl/nginx
+# Install Nginx App Protect Dos
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
+    --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
+    --mount=type=secret,id=license-jwt,dst=license.jwt,mode=0644 \
+    apt-get update && DEBIAN_FRONTEND="noninteractive" apt-get install -y app-protect-dos && \
+    cat license.jwt > /etc/nginx/license.jwt && \
+    apt-get remove --purge --auto-remove -y && rm -rf /var/lib/apt/lists/* /etc/apt/sources.list.d/nginx-plus.list /etc/apt/sources.list.d/nginx-app-protect-dos.list  && \
+    rm -rf /etc/apt/apt.conf.d/90nginx /var/lib/apt/lists/*
 
 # Forward request logs to Docker log collector:
-RUN ln -sf /dev/stdout /var/log/nginx/access.log \
-    && ln -sf /dev/stderr /var/log/nginx/error.log
+RUN ln -sf /dev/stdout /var/log/nginx/access.log && \
+    ln -sf /dev/stderr /var/log/nginx/error.log
 
-# Copy configuration files:
-COPY nginx.conf custom_log_format.json /etc/nginx/
+COPY nginx.conf /etc/nginx/
 COPY entrypoint.sh /root/
 RUN chmod +x /root/entrypoint.sh
+
+EXPOSE 80
+
+STOPSIGNAL SIGQUIT
 
 CMD ["sh", "/root/entrypoint.sh"]
 ```
@@ -1708,24 +1705,13 @@ CMD ["sh", "/root/entrypoint.sh"]
 ### Ubuntu Docker Deployment Example
 
 ```Dockerfile
-ARG OS_CODENAME
-# Where OS_CODENAME can be: bionic/focal/jammy/noble
-
-FROM ubuntu:${OS_CODENAME}
-
-ARG DEBIAN_FRONTEND=noninteractive
-
-# Download certificate, key, and JWT license from the customer portal (https://my.f5.com)
-# and copy to the build context:
-RUN mkdir -p /etc/ssl/nginx/ &&  mkdir -p /etc/nginx/
-COPY nginx-repo.crt nginx-repo.key /etc/ssl/nginx/
-COPY license.jwt /etc/nginx/
+# Where version can be:jammy/noble
+FROM ubuntu:noble
 
 # Install prerequisite packages:
-RUN apt-get update && apt-get install -y apt-transport-https lsb-release ca-certificates wget gnupg2 ubuntu-keyring
-
-# Download and add the NGINX signing key:
-RUN wget -qO - https://cs.nginx.com/static/keys/nginx_signing.key | gpg --dearmor | tee /usr/share/keyrings/nginx-archive-keyring.gpg >/dev/null
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends apt-transport-https lsb-release ca-certificates wget gnupg2 ubuntu-keyring && \
+    wget -qO - https://cs.nginx.com/static/keys/nginx_signing.key | gpg --dearmor | tee /usr/share/keyrings/nginx-archive-keyring.gpg >/dev/null
 
 # Add NGINX Plus, NGINX App Protect and NGINX App Protect DoS repository:
 RUN printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https://pkgs.nginx.com/plus/ubuntu `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/nginx-plus.list \
@@ -1735,16 +1721,26 @@ RUN printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https:
 # Download the apt configuration to `/etc/apt/apt.conf.d`:
 RUN wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
 
-# Update the repository and install the most recent version of the NGINX App Protect DoS and NGINX App Protect package (which includes NGINX Plus):
-RUN apt-get update && apt-get install -y app-protect-dos app-protect
+# Install Nginx App Protect Dos
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
+    --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
+    --mount=type=secret,id=license-jwt,dst=license.jwt,mode=0644 \
+    apt-get update && DEBIAN_FRONTEND="noninteractive" apt-get install -y app-protect-dos && \
+    cat license.jwt > /etc/nginx/license.jwt && \
+    apt-get remove --purge --auto-remove -y && rm -rf /var/lib/apt/lists/* /etc/apt/sources.list.d/nginx-plus.list /etc/apt/sources.list.d/nginx-app-protect-dos.list  && \
+    rm -rf /etc/apt/apt.conf.d/90nginx /var/lib/apt/lists/*
 
-# Remove nginx repository key/cert from docker
-RUN rm -rf /etc/ssl/nginx
+# Forward request logs to Docker log collector:
+RUN ln -sf /dev/stdout /var/log/nginx/access.log && \
+    ln -sf /dev/stderr /var/log/nginx/error.log
 
-# Copy configuration files:
-COPY nginx.conf custom_log_format.json /etc/nginx/
+COPY nginx.conf /etc/nginx/
 COPY entrypoint.sh /root/
 RUN chmod +x /root/entrypoint.sh
+
+EXPOSE 80
+
+STOPSIGNAL SIGQUIT
 
 CMD ["sh", "/root/entrypoint.sh"]
 ```
