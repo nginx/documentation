@@ -1144,10 +1144,10 @@ RUN wget -O /etc/apk/keys/nginx_signing.rsa.pub https://cs.nginx.com/static/keys
 # Add NGINX Plus repository:
 RUN printf "https://pkgs.nginx.com/plus/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | tee -a /etc/apk/repositories
 
-# Add NGINX App Protect repository:
+# Add NGINX App Protect Dos repository:
 RUN printf "https://pkgs.nginx.com/app-protect-dos/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | tee -a /etc/apk/repositories
 
-# Update the repository and install the most recent version of the NGINX App Protect DoS package (which includes NGINX Plus):
+# Update the repository and install the most recent version of the NGINX App Protect Dow package (which includes NGINX Plus):
 RUN --mount=type=secret,id=nginx-crt,dst=/etc/apk/cert.pem,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/apk/cert.key,mode=0644 \
     --mount=type=secret,id=license-jwt,dst=license.jwt,mode=0644 \
@@ -1536,12 +1536,12 @@ Make sure to replace upstream and proxy pass directives in this example with rel
     For Debian/Ubuntu/Alpine/Amazon Linux:
 
     ```shell
-    DOCKER_BUILDKIT=1 docker build --no-cache --platform linux/amd64 --secret id=nginx-crt,src=nginx-repo.crt --secret id=nginx-key,src=nginx-repo.key -t app-protect app-protect-dos .    ```
+    DOCKER_BUILDKIT=1 docker build --no-cache --platform linux/amd64 --secret id=nginx-crt,src=nginx-repo.crt --secret id=nginx-key,src=nginx-repo.key --secret id=license-jwt,src=./license.jwt -t app-protect-dos .    ```
 
     For RHEL:
 
     ```shell
-    podman build --no-cache --secret id=nginx-crt,src=nginx-repo.crt --secret id=nginx-key,src=nginx-repo.key -t app-protect app-protect-dos.
+    DOCKER_BUILDKIT=1 docker build --build-arg RHEL_ORG=... --build-arg RHEL_ACTIVATION_KEY=...  --no-cache --platform linux/amd64 --secret id=nginx-crt,src=nginx-repo.crt --secret id=nginx-key,src=nginx-repo.key --secret id=license-jwt,src=./license.jwt -t app-protect-dos .
     ```
 
 **Notes:**
@@ -1576,30 +1576,40 @@ Make sure to replace upstream and proxy pass directives in this example with rel
 FROM alpine:3.19
 
 # Download and add the NGINX signing keys:
-RUN wget -O /etc/apk/keys/nginx_signing.rsa.pub https://cs.nginx.com/static/keys/nginx_signing.rsa.pub \
- && wget -O /etc/apk/keys/app-protect-security-updates.rsa.pub https://cs.nginx.com/static/keys/app-protect-security-updates.rsa.pub
+RUN wget -O /etc/apk/keys/nginx_signing.rsa.pub https://cs.nginx.com/static/keys/nginx_signing.rsa.pub && \
+    wget -O /etc/apk/keys/app-protect-security-updates.rsa.pub https://cs.nginx.com/static/keys/app-protect-security-updates.rsa.pub
 
 # Add NGINX Plus repository:
 RUN printf "https://pkgs.nginx.com/plus/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | tee -a /etc/apk/repositories
 
-# Add NGINX App Protect repository:
-RUN printf "https://pkgs.nginx.com/app-protect-dos/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | tee -a /etc/apk/repositories \
- && printf "https://pkgs.nginx.com/app-protect/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | tee -a /etc/apk/repositories \
- && printf "https://pkgs.nginx.com/app-protect-security-updates/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | tee -a /etc/apk/repositories
+# Add NGINX App Protect Waf & Dos repositories:
+RUN printf "https://pkgs.nginx.com/app-protect-dos/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | tee -a /etc/apk/repositories && \
+    printf "https://pkgs.nginx.com/app-protect/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | tee -a /etc/apk/repositories && \
+    printf "https://pkgs.nginx.com/app-protect-security-updates/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | tee -a /etc/apk/repositories
 
-# Update the repository and install the most recent version of the NGINX App Protect and NGINX App Protect DoS packagea (which includes NGINX Plus):
+# Update the repository and install the most recent version of the NGINX App Protect DoS package (which includes NGINX Plus):
 RUN --mount=type=secret,id=nginx-crt,dst=/etc/apk/cert.pem,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/apk/cert.key,mode=0644 \
-    apk update && apk add app-protect app-protect-dos
+    --mount=type=secret,id=license-jwt,dst=license.jwt,mode=0644 \
+    apk update && apk add app-protect app-protect-dos && \
+    cat license.jwt > /etc/nginx/license.jwt
 
 # Forward request logs to Docker log collector:
-RUN ln -sf /dev/stdout /var/log/nginx/access.log \
-    && ln -sf /dev/stderr /var/log/nginx/error.log
+RUN ln -sf /dev/stdout /var/log/nginx/access.log && \
+    ln -sf /dev/stderr /var/log/nginx/error.log
+
+# Forward request logs to Docker log collector:
+RUN ln -sf /dev/stdout /var/log/nginx/access.log && \
+    ln -sf /dev/stderr /var/log/nginx/error.log
 
 # Copy configuration files:
 COPY nginx.conf custom_log_format.json /etc/nginx/
 COPY entrypoint.sh /root/
 RUN chmod +x /root/entrypoint.sh
+
+EXPOSE 80
+
+STOPSIGNAL SIGQUIT
 
 CMD ["sh", "/root/entrypoint.sh"]
 ```
@@ -1608,39 +1618,42 @@ CMD ["sh", "/root/entrypoint.sh"]
 
 ```dockerfile
 # syntax=docker/dockerfile:1
-# For Amazon Linux 2023:
 FROM amazonlinux:2023
 
-# Download certificate, key, and JWT license from the customer portal (https://my.f5.com)
-# and copy to the build context:
-RUN mkdir -p /etc/ssl/nginx/ &&  mkdir -p /etc/nginx/
-COPY nginx-repo.crt nginx-repo.key /etc/ssl/nginx/ \
-COPY license.jwt /etc/nginx/
-
 # Install prerequisite packages:
-RUN dnf -y install wget ca-certificates
+RUN dnf -y install ca-certificates
+
 
 # Add NGINX/NAP WAF/NAP DOS repositories:
-RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/plus-amazonlinux2023.repo \
-    && wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.amazonlinux2023.repo \
-    && wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-amazonlinux2023.repo \
-    && wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-dos-amazonlinux2023.repo
+RUN curl -o /etc/yum.repos.d/plus-amazonlinux2023.repo https://cs.nginx.com/static/files/plus-amazonlinux2023.repo && \
+    curl -o /etc/yum.repos.d/app-protect-dos-amazonlinux2023.repo https://cs.nginx.com/static/files/app-protect-dos-amazonlinux2023.repo && \
+    curl -o /etc/yum.repos.d/app-protect-amazonlinux2023.repo https://cs.nginx.com/static/files/app-protect-amazonlinux2023.repo && \
+    curl -o /etc/yum.repos.d/dependencies.amazonlinux2023.repo https://cs.nginx.com/static/files/dependencies.amazonlinux2023.repo
 
 # Install NGINX App Protect WAF:
 RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
-    dnf -y install app-protect \
-    && dnf clean all \
-    && rm -rf /var/cache/yum
+    --mount=type=secret,id=license-jwt,dst=license.jwt,mode=0644 \
+    dnf -y install app-protect app-protect-dos  && \
+    cat license.jwt > /etc/nginx/license.jwt && \
+    rm /etc/yum.repos.d/plus-amazonlinux2023.repo && \
+    rm /etc/yum.repos.d/app-protect-dos-amazonlinux2023.repo && \
+    dnf clean all && \
+    rm -rf /var/cache/dnf && \
+    rm -rf /var/cache/yum
 
 # Forward request logs to Docker log collector:
-RUN ln -sf /dev/stdout /var/log/nginx/access.log \
-    && ln -sf /dev/stderr /var/log/nginx/error.log
+RUN ln -sf /dev/stdout /var/log/nginx/access.log && \
+    ln -sf /dev/stderr /var/log/nginx/error.log
 
 # Copy configuration files:
 COPY nginx.conf custom_log_format.json /etc/nginx/
 COPY entrypoint.sh /root/
 RUN chmod +x /root/entrypoint.sh
+
+EXPOSE 80
+
+STOPSIGNAL SIGQUIT
 
 CMD ["sh", "/root/entrypoint.sh"]
 ```
