@@ -21,14 +21,13 @@ NGINX Plus Release 24 and later supports NGINX App Protect DoS.
 
 NGINX App Protect DoS supports the following operating systems:
 
-- [RHEL 8.1.x / Rocky Linux 8 and above](#rhel-8--rocky-linux-8-installation)
-- [RHEL 9 / Rocky Linux 9 and above](#rhel-9--rocky-linux-9-installation)
+- [RHEL 8.1+ / Rocky Linux 8](#rhel-8--rocky-linux-8-installation)
+- [RHEL 9.0+ / Rocky Linux 9](#rhel-9--rocky-linux-9-installation)
 - [Debian 11 (Bullseye)](#debian--ubuntu-installation)
 - [Debian 12 (Bookworm)](#debian--ubuntu-installation)
 - [Ubuntu 20.04 (Focal)](#debian--ubuntu-installation) - (Deprecated starting from NGINX Plus R35)
 - [Ubuntu 22.04 (Jammy)](#debian--ubuntu-installation)
 - [Ubuntu 24.04 (Noble)](#debian--ubuntu-installation)
-- [Alpine 3.17](#alpine-installation) - (Deprecated starting from NGINX Plus R34)
 - [Alpine 3.19](#alpine-installation)
 - [Alpine 3.21](#alpine-installation)
 - [AmazonLinux 2023](#amazon-linux-2023-installation)
