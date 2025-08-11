@@ -39,9 +39,9 @@ th {
 | `user`  | `user_group`  | Write       | The predefined `user` Role and `user_group` Role Group have write access to Environments and can publish API Definitions. |
 | `guest` | `guest_group` | Read-Only   | The predefined `guest` Role and `guest_group` Role Group have read-only access to Environments and cannot publish API Definitions. |
 
-{{< important >}}
+{{< call-out "important" >}}
 Beginning in NGINX Controller 3.12, users no longer need to have one of the predefined roles. Users are granted a basic set of `READ` permissions for Analytics, Users, Roles, and Licenses. Users without a built-in role no longer have the implicit `READ` permissions for all Environments, Identity Providers, API Definitions, Locations, Providers, and Integrations. You can use the `/platform/roles` endpoint in the [NGINX Controller REST API]({{< ref "/controller/api/_index.md" >}}) to extend or narrow a role's set of permissions.
-{{< /important >}}
+{{< /call-out >}}
 
 ## Permissions
 
@@ -56,9 +56,9 @@ The four permission levels are:
 
 By default, all users have `READ` permissions for Analytics, Users, Roles, and Licenses.
 
-{{< tip >}}
+{{< call-out "tip" >}}
 You can use the `/platform/roles` endpoint in the [NGINX Controller REST API]({{< ref "/controller/api/_index.md" >}}) to extend this default set of permissions.
-{{< /tip >}}
+{{< /call-out >}}
 
 ### Example: Inheriting Permissions
 
@@ -125,20 +125,20 @@ When users are assigned to multiple overlapping Roles, permissions are determine
 
 So, for example, if you're adding a user to a Role that grants `WRITE` access to the `Production` Environment, and you add the same user to another Role that grants `READ` access to `Production`, the user will have `READ` access, that is, the least permissive restriction.
 
-{{< tip >}}
+{{< call-out "tip" >}}
 
 When assigning Roles or Role Groups for users, you should assign the least permissive Role needed for users to complete their tasks.
 
-{{< /tip >}}
+{{< /call-out >}}
 
 ## Create a Role
 
-{{< note >}}
+{{< call-out "note" >}}
 Roles must belong to [Environments]({{< ref "/controller/services/manage-environments.md#about-environments" >}}). If you don't already have an Environment, or you don't want to place your new Role(s) in your existing Environment, you should [create a new Environment]({{< ref "/controller/services/manage-environments.md#create-an-environment" >}}) before you continue.
 
 The `/platform/roles` endpoint in the [NGINX Controller REST API]({{< ref "/controller/api/_index.md" >}}) allows more freedom when creating roles. You can use the Roles API to grant permissions outside of environments, for example to `/reports/`.
 
-{{< /note >}}
+{{< /call-out >}}
 
 Take the following steps to create a Role:
 
@@ -154,11 +154,11 @@ Take the following steps to create a Role:
 
 Take the following steps to view, edit, or delete a Role:
 
-{{< note >}}
+{{< call-out "note" >}}
 
 The predefined Roles `admin`, `user`, and `guest` cannot be edited or deleted.
 
-{{< /note >}}
+{{< /call-out >}}
 
 1. Open the NGINX Controller user interface and log in.
 2. Select the NGINX Controller menu icon, then select **Platform**.
@@ -189,11 +189,11 @@ Take the following steps to create a Role Group:
 
 Take the following steps to view, edit, or delete a Role Group:
 
-{{< note >}}
+{{< call-out "note" >}}
 
 The predefined Role Groups `admin_group`, `user_group`, and `guest_group` cannot be edited or deleted.
 
-{{< /note >}}
+{{< /call-out >}}
 
 1. Open the NGINX Controller user interface and log in.
 2. Select the NGINX Controller menu icon, then select **Platform**.

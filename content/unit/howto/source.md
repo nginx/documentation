@@ -9,10 +9,10 @@ After you've obtained Unit's
 [source code]({{< relref "/unit/installation.md#source" >}}), configure
 and compile it to fine-tune and run a custom Unit build.
 
-{{< note >}}
+{{< call-out "note" >}}
 The commands in this document starting with a hash (#) must be run as root or
 with superuser privileges.
-{{< /note >}}
+{{< /call-out >}}
 
 ## Installing Required Software {#source-prereq-build}
 
@@ -301,11 +301,11 @@ for further instructions.
 {{% /tab %}}
 {{% tab name="unit-wasm" %}}
 
-{{< warning >}}
+{{< call-out "warning" >}}
 The **unit-wasm** module is deprecated. We recommend using **wasm-wasi-component** instead,
 available in Unit 1.32.0 and later, which supports WebAssembly Components using
 standard WASI 0.2 interfaces.
-{{< /warning >}}
+{{< /call-out >}}
 
 To build Unit with the [WebAssembly](https://webassembly.org)
 language module, you need the [Wasmtime](https://wasmtime.dev) runtime.
@@ -479,11 +479,11 @@ Next, configure a module for each language you want to use with Unit. The
 `./configure <language>` commands set up individual language modules
 and place module-specific instructions in the **Makefile**.
 
-{{< note >}}
+{{< call-out "note" >}}
 To run apps in several versions of a language, build and install a module
 for each version. To package custom modules, see the module
 [howto]({{< relref "/unit/howto/modules.md#modules-pkg" >}}).
-{{< /note >}}
+{{< /call-out >}}
 
 {{< tabs name="modules" >}}
 {{% tab name="Go" %}}
@@ -505,7 +505,7 @@ it in your Go environment. Available configuration options:
 {{</bootstrap-table>}}
 
 
-{{< note >}}
+{{< call-out "note" >}}
 Running `./configure go` doesn't alter the `GOPATH`
 [environment variable](https://github.com/golang/go/wiki/GOPATH), so
 configure-time `--go-path` and compile-time `$GOPATH`
@@ -514,7 +514,7 @@ must be coherent for Go to find the resulting package.
 ```console
 $ GOPATH=<Go package installation path> GO111MODULE=auto go build -o app app.go # App executable name and source code>`
 ```
-{{< /note >}}
+{{< /call-out >}}
 
 {{% /tab %}}
 {{% tab name="Java" %}}
@@ -632,10 +632,10 @@ Available command options:
 {{</bootstrap-table>}}
 
 
-{{< note >}}
+{{< call-out "note" >}}
 The Python interpreter set by `python-config` must be
 compiled with the `--enable-shared` [option](https://docs.python.org/3/using/configure.html#linker-options).
-{{< /note >}}
+{{< /call-out >}}
 
 To configure a module called **py33.unit.so** for Python 3.3:
 
@@ -678,11 +678,11 @@ The module's basename is wasm-wasi-component.
 {{% /tab %}}
 {{% tab name="Unit-Wasm" %}}
 
-{{< warning >}}
+{{< call-out "warning" >}}
 Unit 1.32.0 and later support the WebAssembly Component Model and WASI
 0.2 APIs.
 We recommend using the new implementation.
-{{< /warning >}}
+{{< /call-out >}}
 
 When you run `./configure wasm`, the script configures a module
 to support running WebAssembly applications on Unit.
@@ -746,10 +746,10 @@ You can also build and install language modules individually; the specific
 method depends on whether the language module is embedded in Unit (Java, Perl,
 PHP, Python, Ruby) or packaged externally (Go, Node.js).
 
-{{< note >}}
+{{< call-out "note" >}}
 For further details about Unit's language modules, see
 [Working with language modules]({{< relref "/unit/howto/modules.md" >}})
-{{< /note >}}
+{{< /call-out >}}
 
 ### Embedded Language Modules {#source-bld-src-emb}
 
@@ -778,7 +778,7 @@ configuration, run `make <go>-install` and `make <node>-install`, for example:
 # make node-install # This is the --node option value from ./configure nodejs
 ```
 
-{{< note >}}
+{{< call-out "note" >}}
 To install the Node.js module locally, run `make <node>-local-install`:
 
 ```console
@@ -796,7 +796,7 @@ If both options are specified, `DESTDIR` prefixes the
 `--local` value set by `./configure nodejs`.
 
 Finally, mind that global installation is preferable for the Node.js module.
-{{< /note >}}
+{{< /call-out >}}
 
 If you customized the executable pathname with `--go` or `--node`, use the
 following pattern:
@@ -819,7 +819,7 @@ $ ./configure go --go=/usr/local/bin/go1.7 # Executable pathname
 
 ## Startup and Shutdown {#source-startup}
 
-{{< warning >}}
+{{< call-out "warning" >}}
 We advise installing Unit from
 [precompiled packages]({{< relref "/unit/installation.md#installation-precomp-pkgs" >}});
 in this case, startup is
@@ -829,7 +829,7 @@ automatically.
 Even if you install Unit otherwise, avoid manual startup. Instead, configure a
 service manager (`OpenRC`, `systemd`, and so on) or create an `rc.d` script to
 launch the Unit daemon using the options below.
-{{< /warning >}}
+{{< /call-out >}}
 
 The startup command depends on the directories you set with `./configure`, but
 their default values place the `unitd` binary in a well-known place, so:

@@ -12,10 +12,10 @@ advisable to obtain certificates for your website from a certificate authority
 (CA). For this purpose, you may employ EFF's [Certbot](https://certbot.eff.org) that issues free certificates signed by [Let's
 Encrypt](https://letsencrypt.org), a non-profit CA.
 
-{{< note >}}
+{{< call-out "note" >}}
 The commands in this document starting with a hash (#) must be run as root or
 with superuser privileges.
-{{< /note >}}
+{{< /call-out >}}
 
 ## Generating certificates
 
@@ -93,10 +93,10 @@ with superuser privileges.
 
    ```
 
-   {{< note >}}
+   {{< call-out "note" >}}
    Certbot offers other validation methods ([authenticators](https://eff-certbot.readthedocs.io/en/stable/using.html#getting-certificates-and-choosing-plugins))
    as well, but they're omitted here for brevity.
-   {{< /note >}}
+   {{< /call-out >}}
 
 4. Create a certificate bundle fit for Unit and upload it to the
    **certificates** section of Unit's
@@ -208,10 +208,10 @@ For manual renewal and rollover:
          'http://localhost/config/listeners/*:443/tls/certificate'  # Listener's name in Unit's configuration
    ```
 
-   {{< note >}}
+   {{< call-out "note" >}}
    There's no need to shut Unit down; your server can stay online during the
    rollover.
-   {{< /note >}}
+   {{< /call-out >}}
 
 3. Delete the expired bundle:
 
@@ -276,9 +276,9 @@ For manual renewal and rollover:
    Unit does the rest of the job, automatically figuring out which bundle to
    produce for each incoming connection to both domain names.
 
-{{< note >}}
+{{< call-out "note" >}}
 Currently, Certbot doesn't have [installer plugins](https://eff-certbot.readthedocs.io/en/stable/using.html#getting-certificates-and-choosing-plugins)
 that enable automatic certificate rollover in Unit. However, you can set up
 Certbot's [hooks](https://eff-certbot.readthedocs.io/en/stable/using.html#renewing-certificates)
 using the commands listed here to the same effect.
-{{< /note >}}
+{{< /call-out >}}

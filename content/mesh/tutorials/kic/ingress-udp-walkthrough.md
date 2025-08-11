@@ -21,32 +21,32 @@ Objectives:
 - Create a Kubernetes GlobalConfiguration resource to establish a NGINX Ingress Controller UDP listener.
 - Create a Kubernetes TransportServer resource for the udp-listener application.
 
-{{< note >}}
+{{< call-out "note" >}}
 NGINX Ingress Controller can be used for free with NGINX Open Source. Paying customers have access to NGINX Ingress Controller with NGINX Plus.
 To complete this tutorial, you must use either:
 
 - Open Source NGINX Ingress Controller version 3.0+
 - NGINX Plus version of NGINX Ingress Controller
 
-{{< /note >}}
+{{< /call-out >}}
 
 ### Install NGINX Service Mesh
 
 Follow the installation [instructions]( {{< ref "/mesh/get-started/install/install.md" >}} ) to install NGINX Service Mesh on your Kubernetes cluster. UDP traffic proxying is disabled by default, so you will need to enable it using the `--enable-udp` flag when deploying. Linux kernel 4.18 or greater is required.
 
-{{< caution >}}
+{{< call-out "caution"  >}}
 Before proceeding, verify that the mesh is running (Step 2 of the installation [instructions]( {{< ref "/mesh/get-started/install/install.md" >}} )).
 NGINX Ingress Controller will try to fetch certs from the Spire agent that gets deployed by NGINX Service Mesh on startup. If the mesh is not running, NGINX Ingress controller will fail to start.
-{{< /caution >}}
+{{< /call-out >}}
 
 ### Install NGINX Ingress Controller
 
 1. [Install NGINX Ingress Controller]( {{< ref "/mesh/tutorials/kic/deploy-with-kic.md#install-nginx-ingress-controller-with-mtls-enabled">}} ) with the option to allow UDP ingress traffic. This tutorial will demonstrate installation as a Deployment.
     - Follow the instructions to [enable UDP]( {{< ref "/mesh/tutorials/kic/deploy-with-kic.md#enable-udp-traffic" >}} )
 
-    {{< important >}}
+    {{< call-out "important" >}}
     mTLS does not affect UDP communication, as mTLS in NGINX Service Mesh applies only to TCP traffic at this time.
-    {{< /important >}}
+    {{< /call-out >}}
 2. Get access to the NGINX Ingress Controller by applying the `udp-nodeport.yaml` NodePort resource.
    - {{< fa "download" >}} {{< link "/examples/nginx-ingress-controller/udp/udp-nodeport.yaml" "udp-nodeport.yaml" >}}
 3. Check the exposed port from the NodePort service just defined:

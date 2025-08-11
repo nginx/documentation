@@ -5,22 +5,22 @@ weight: 2200
 nd-docs: DOCS-1729
 ---
 
-{{< warning >}}
+{{< call-out "warning" >}}
 So far, Unit doesn't support handling the **REMOTE_USER** headers
 directly, so authentication should be implemented via external means. For
 example, consider using [trac-oidc](https://pypi.org/project/trac-oidc/) or
 [OAuth2Plugin](https://trac-hacks.org/wiki/OAuth2Plugin).
-{{< /warning >}}
+{{< /call-out >}}
 
 To run the [Trac](https://trac.edgewall.org) issue tracking system using
 Unit:
 
 1. Install [Unit]({{< relref "/unit/installation.md#installation-precomp-pkgs" >}}) with a Python 2 language module.
 
-   {{< note >}}
+   {{< call-out "note" >}}
    As of now, Trac [doesn't fully support](https://trac.edgewall.org/ticket/12130) Python 3. Mind that Python 2
    is officially deprecated.
-   {{< /note >}}
+   {{< /call-out >}}
 
 2. Prepare and activate a [virtual environment](https://virtualenv.pypa.io/en/latest/) to contain your installation
    (assuming `virtualenv` is installed):

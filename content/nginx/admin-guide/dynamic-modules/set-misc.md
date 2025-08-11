@@ -79,7 +79,7 @@ After installation you will need to enable and configure the module in F5 NGINX 
    }
    ```
 
-   {{< note >}} The directives must be in this order. {{< /note >}}
+   {{< call-out "note" >}} The directives must be in this order. {{< /call-out >}}
 
 2. Perform additional configuration as required by the [module](https://github.com/openresty/set-misc-nginx-module).
 

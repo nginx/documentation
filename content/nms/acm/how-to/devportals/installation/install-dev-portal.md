@@ -13,7 +13,7 @@ type:
 
 ## Platform Requirements {#acm-devportal-requirements}
 
-{{<important>}}To run the Developer Portal, you need a **dedicated** Linux host specifically for this purpose. **Do not** install the Developer Portal on a host that is currently serving as a management or data plane.{{</important>}}
+{{< call-out "important" >}}To run the Developer Portal, you need a **dedicated** Linux host specifically for this purpose. **Do not** install the Developer Portal on a host that is currently serving as a management or data plane.{{< /call-out >}}
 
 Complete the following steps to prepare the Developer Portal for use with API Connectivity Manager:
 
@@ -234,9 +234,9 @@ Depending on your [deployment pattern for the Developer Portal]({{< ref "/nms/ac
 1. If mTLS is configured on your Developer Portal service, you must add a TLS Backend Policy to both;
    - The Developer Portal Cluster (Used for communication from users to the Developer Portal API)
    - The Developer Portal Internal Cluster (For communication from the API Connectivity Manager to your Devportal Portal API to publish and maintain information)
-{{< note >}}
+{{< call-out "note" >}}
 To add a TLS Backend Policy to both clusters. Follow the [TLS Policies]({{< ref "/nms/acm/how-to/policies/tls-policies.md#add-tls-listener" >}}) documentation.
-{{< /note >}}
+{{< /call-out >}}
 
 ---
 

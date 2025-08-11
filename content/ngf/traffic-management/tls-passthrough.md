@@ -15,7 +15,7 @@ In this guide, we will show how to configure TLS passthrough for your applicatio
 
 ## Note on Gateway API Experimental Features
 
-{{< important >}} TLSRoute is a Gateway API resource from the experimental release channel. {{< /important >}}
+{{< call-out "important" >}} TLSRoute is a Gateway API resource from the experimental release channel. {{< /call-out >}}
 
 {{< include "/ngf/installation/install-gateway-api-experimental-features.md" >}}
 
@@ -153,7 +153,7 @@ EOF
 
 This Gateway will configure NGINX Gateway Fabric to accept TLS connections on port 443 and route them to the corresponding backend Services without decryption. The routing is done based on the SNI, which allows clients to specify a server name (like example.com) during the SSL handshake.
 
-{{< note >}}It is possible to add an HTTPS listener on the same port that terminates TLS connections so long as the hostname does not overlap with the TLS listener hostname.{{< /note >}}
+{{< call-out "note" >}}It is possible to add an HTTPS listener on the same port that terminates TLS connections so long as the hostname does not overlap with the TLS listener hostname.{{< /call-out >}}
 
 After creating the Gateway resource, NGINX Gateway Fabric will provision an NGINX Pod and Service fronting it to route traffic.
 
@@ -164,11 +164,11 @@ GW_IP=XXX.YYY.ZZZ.III
 GW_TLS_PORT=<port number>
 ```
 
-{{< note >}}
+{{< call-out "note" >}}
 
 In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the Gateway will forward for.
 
-{{< /note >}}
+{{< /call-out >}}
 
 Create a TLSRoute that attaches to the Gateway and routes requests to `app.example.com` to the `secure-app` Service:
 
@@ -192,13 +192,13 @@ spec:
 EOF
 ```
 
-{{< note >}}To route to a Service in a Namespace different from the TLSRoute Namespace, create a [ReferenceGrant](https://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1beta1.ReferenceGrant) to permit the cross-namespace reference. {{< /note >}}
+{{< call-out "note" >}}To route to a Service in a Namespace different from the TLSRoute Namespace, create a [ReferenceGrant](https://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1beta1.ReferenceGrant) to permit the cross-namespace reference. {{< /call-out >}}
 
 ## Send traffic
 
 Using the external IP address and port for the NGINX Service, send traffic to the `secure-app` application.
 
-{{< note >}}If you have a DNS record allocated for `app.example.com`, you can send the request directly to that hostname, without needing to resolve.{{< /note >}}
+{{< call-out "note" >}}If you have a DNS record allocated for `app.example.com`, you can send the request directly to that hostname, without needing to resolve.{{< /call-out >}}
 
 Send a request to the `secure-app` Service on the TLS port with the `--insecure` flag. The `--insecure` flag is required because the `secure-app` is using self-signed certificates.
 

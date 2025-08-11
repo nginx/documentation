@@ -86,4 +86,4 @@ In `/etc/nginx/nginx.conf`:
   app_protect_security_log "/opt/app_protect/share/defaults/log_illegal.json" /var/log/app_protect/security.log;
   ```
 
-{{< note >}} The log rotation policy is provided as a default policy. Users can customize to adapt to their need. {{< /note >}}
+{{< call-out "note" >}} The log rotation policy is provided as a default policy. Users can customize to adapt to their need. {{< /call-out >}}

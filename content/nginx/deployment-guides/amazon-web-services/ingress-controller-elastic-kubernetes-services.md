@@ -12,7 +12,7 @@ type:
 
 This guide explains how to use NGINX Open Source or F5 NGINX Plus with NGINX Ingress Controller for Amazon Elastic Kubernetes Services (EKS).
 
-{{< note >}} These instructions apply to NGINX Ingress Controller with NGINX Open Source or NGINX Plus. For ease of reading, the document refers to NGINX Plus only. {{< /note >}}
+{{< call-out "note" >}} These instructions apply to NGINX Ingress Controller with NGINX Open Source or NGINX Plus. For ease of reading, the document refers to NGINX Plus only. {{< /call-out >}}
 
 
 <span id="prereqs"></span>
@@ -23,7 +23,7 @@ This guide explains how to use NGINX Open Source or F5 NGINX Plus with NGINX Ing
   - For NGINX Open Source you can use the pre-built image [on DockerHub](https://hub.docker.com/r/nginx/nginx-ingress/). You can also build your own image.
   - For NGINX Plus, you must [build an image](https://docs.nginx.com/nginx-ingress-controller/installation/build-nginx-ingress-controller/).
 
-{{< note >}}  Never upload your NGINX Plus Ingress Controller images to a public repository such as Docker Hub. Doing so violates your license agreement.  Run the `make container` command below. {{< /note >}}
+{{< call-out "note" >}}  Never upload your NGINX Plus Ingress Controller images to a public repository such as Docker Hub. Doing so violates your license agreement.  Run the `make container` command below. {{< /call-out >}}
 
 ```shell
 make container DOCKERFILE=DockerfileForPlus PREFIX=nginx/nginx-plus-ingress

@@ -104,7 +104,7 @@ After installing NGINX Controller, you should back up the cluster config and enc
 
 This section explains how to restore the embedded config database from the latest backup file or a specific, timestamped file.
 
-{{< important >}}If you restore the config database on top of a new installation of NGINX Controller, make sure to follow the steps to [restore your NGINX config and encryption keys]({{< ref "/controller/admin-guides/backup-restore/backup-restore-cluster-config.md" >}}) afterward. {{< /important >}}
+{{< call-out "important" >}}If you restore the config database on top of a new installation of NGINX Controller, make sure to follow the steps to [restore your NGINX config and encryption keys]({{< ref "/controller/admin-guides/backup-restore/backup-restore-cluster-config.md" >}}) afterward. {{< /call-out >}}
 
 - To restore the embedded NGINX Controller config database **from the latest automated backup**, run the following command:
 
@@ -134,7 +134,7 @@ To install NGINX Plus as a data plane for NGINX Controller, you need to have the
 
 {{< deprecated >}}Using the helper.sh script to download your NGINX Plus certificate and key bundle is deprecated in in NGINX Controller v3.9.{{< /deprecated >}}
 
-{{< see-also >}}If you're running NGINX Controller v3.10+, you can use the REST API to [Download the NGINX Plus Cert and Key Bundle]({{< ref "/controller/admin-guides/install/get-n-plus-cert-and-key.md" >}}). {{< /see-also >}}&nbsp;
+{{< call-out "note" >}}If you're running NGINX Controller v3.10+, you can use the REST API to [Download the NGINX Plus Cert and Key Bundle]({{< ref "/controller/admin-guides/install/get-n-plus-cert-and-key.md" >}}). {{< /call-out>}}&nbsp;
 
 If you're running NGINX Controller 3.9 or earlier, use the `helper.sh` script to extract the NGINX repository key and certificate files:
 
@@ -142,11 +142,11 @@ If you're running NGINX Controller 3.9 or earlier, use the `helper.sh` script to
 /opt/nginx-controller/helper.sh repository-cred [-c|--cert <file name>] [-k|--key <file name>]
 ```
 
-{{< important >}}
+{{< call-out "important" >}}
 
 Make sure that you've [uploaded your license in NGINX Controller]({{< ref "licensing-controller.md" >}}) first before running the `helper.sh repository-cred` command to extract the repository files.
 
-{{< /important >}}
+{{< /call-out >}}
 
 <style>
 table, th, td {
@@ -361,7 +361,7 @@ The NGINX Controller logo in the user interface is replaceable with a custom log
 - The logo file is in SVG format.
 - The logo is square in shape.
 
-{{< note >}} The above steps modify the logo in the top left corner and in the menu, not the favicon. {{< /note >}}
+{{< call-out "note" >}} The above steps modify the logo in the top left corner and in the menu, not the favicon. {{< /call-out >}}
 
 Follow the steps below to replace the logo:
 
@@ -384,9 +384,9 @@ Follow the steps below to replace the logo:
 
 You can create a support package for NGINX Controller that you can use to diagnose issues.
 
-{{< note >}}
+{{< call-out "note" >}}
 You will need to provide a support package if you open a ticket with NGINX Support via the [MyF5 Customer Portal](https://account.f5.com/myf5).
-{{< /note >}}&nbsp;
+{{< /call-out >}}&nbsp;
 
 ```bash
 /opt/nginx-controller/helper.sh supportpkg [-o|--output <file name>] [-s|--skip-db-dump] [-t|--timeseries-dump <hours>]

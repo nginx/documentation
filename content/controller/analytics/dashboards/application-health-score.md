@@ -62,9 +62,9 @@ app_health_score = m1 * m2 * m3
 
 Take the steps below to customize the Application Health Score (AHS) that displays on the Overview page.
 
-{{< note >}}
+{{< call-out "note" >}}
 By default, the AHS and other metrics on the **Overview** page are calculated for all of the Instances monitored by the Controller Agent.
-{{< /note >}}
+{{< /call-out >}}
 
 1. Open the NGINX Controller user interface and log in.
 2. On the **Overview** page, select the Settings (gear) icon in the Application Health Score panel.

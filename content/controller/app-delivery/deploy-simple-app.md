@@ -25,7 +25,7 @@ If you want to secure your application traffic, you'll need to add Certificates.
 
 If you just want to deploy a simple HTTP application, skip ahead to [Gateways](#create-a-gateway).
 
-{{< tip >}} Make sure that you add the new Cert to the Environment that you created in the previous step.{{< /tip >}}
+{{< call-out "tip" >}} Make sure that you add the new Cert to the Environment that you created in the previous step.{{< /call-out >}}
 
 - [About Certificates]({{< ref "/controller/services/manage-certs.md#about-certificates" >}})
 - [Create a certificate]({{< ref "/controller/services/manage-certs.md#create-a-cert" >}})
