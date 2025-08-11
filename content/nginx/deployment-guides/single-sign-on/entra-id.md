@@ -11,7 +11,7 @@ nd-docs: DOCS-1688
 
 This guide explains how to enable single sign-on (SSO) for applications being proxied by F5 NGINX Plus. The solution uses OpenID Connect as the authentication mechanism, with [Microsoft Entra ID](https://www.microsoft.com/en-us/security/business/identity-access/microsoft-entra-id) as the Identity Provider (IdP), and NGINX Plus as the Relying Party, or OIDC client application that verifies user identity.
 
-{{< note >}} This guide applies to [NGINX Plus Release 34]({{< ref "nginx/releases.md#r34" >}}) and later. In earlier versions, NGINX Plus relied on an [njs-based solution](#legacy-njs-guide), which required NGINX JavaScript files, key-value stores, and advanced OpenID Connect logic. In the latest NGINX Plus version, the new [OpenID Connect module](https://nginx.org/en/docs/http/ngx_http_oidc_module.html) simplifies this process to just a few directives.{{< /note >}}
+{{< call-out "note" >}} This guide applies to [NGINX Plus Release 34]({{< ref "nginx/releases.md#r34" >}}) and later. In earlier versions, NGINX Plus relied on an [njs-based solution](#legacy-njs-guide), which required NGINX JavaScript files, key-value stores, and advanced OpenID Connect logic. In the latest NGINX Plus version, the new [OpenID Connect module](https://nginx.org/en/docs/http/ngx_http_oidc_module.html) simplifies this process to just a few directives.{{< /call-out >}}
 
 
 ## Prerequisites
@@ -62,7 +62,7 @@ Register a new application in Microsoft Entra ID that will represent NGINX Plus 
 
     - From the same command output, copy the the `tenant` value which represents your **Tenant ID**. You will need it later when configuring NGINX Plus.
 
-{{< note >}} You will need the values of **Client ID**, **Client Secret**, and **Tenant ID** in the next steps. {{< /note >}}
+{{< call-out "note" >}} You will need the values of **Client ID**, **Client Secret**, and **Tenant ID** in the next steps. {{< /call-out >}}
 
 ## Set up NGINX Plus {#nginx-plus}
 
@@ -283,7 +283,7 @@ http {
 
 2. Enter valid Entra ID credentials of a user who has access the application. Upon successful sign-in, Entra ID redirects you back to NGINX Plus, and you will see the proxied application content (for example, “Hello, Jane Doe!”).
 
-{{<note>}}If you restricted access to a group of users, be sure to select a user who has access to the application.{{</note>}}
+{{< call-out "note" >}}If you restricted access to a group of users, be sure to select a user who has access to the application.{{< /call-out >}}
 
 
 ## See Also

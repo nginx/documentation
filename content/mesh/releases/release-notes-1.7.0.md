@@ -41,9 +41,9 @@ NGINX Service Mesh 1.7.0 includes the following updates:
 - OpenShift CSI Driver volume plugin has been renamed from `wlapi-mounter.spire.nginx.com` to `csi.spiffe.io`.
 - For OpenShift deployments, NGINX Service Mesh now uses the open source [SPIFFE CSI Driver](https://github.com/spiffe/spiffe-csi).
 
-{{< important >}}
+{{< call-out "important" >}}
 OpenShift users see the [upgrade guide]({{< ref "/mesh/get-started/upgrade/upgrade.md#upgrade-to-170-in-openshift" >}}) for instructions on how to upgrade to this release version.
-{{< /important >}}
+{{< /call-out >}}
 
 
 #### **Deprecation**

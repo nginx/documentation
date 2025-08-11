@@ -102,7 +102,7 @@ The Service type can be changed, as explained in the next section.
 
 The NginxProxy custom resource can modify the provisioning of the Service object and NGINX deployment when a Gateway is created.
 
-{{< note >}} Updating most Kubernetes related fields in NginxProxy will trigger a restart of the related resources. {{< /note >}}
+{{< call-out "note" >}} Updating most Kubernetes related fields in NginxProxy will trigger a restart of the related resources. {{< /call-out >}}
 
 An NginxProxy resource is created by default after deploying NGINX Gateway Fabric. This NginxProxy resource is attached to the GatewayClass (created on NGINX Gateway Fabric installation), and
 its settings are applied globally to all Gateways.
@@ -159,8 +159,8 @@ Under `Spec.Kubernetes` you can see a few things:
 - How many NGINX Deployment replicas are specified
 - The type of Service and external traffic policy
 
-{{< note >}} Depending on installation configuration, the default NginxProxy settings may be slightly different from what is shown in the example.
-For more information on NginxProxy and its configurable fields, see the [API reference]({{< ref "/ngf/reference/api.md" >}}). {{< /note >}}
+{{< call-out "note" >}} Depending on installation configuration, the default NginxProxy settings may be slightly different from what is shown in the example.
+For more information on NginxProxy and its configurable fields, see the [API reference]({{< ref "/ngf/reference/api.md" >}}). {{< /call-out >}}
 
 Modify the NginxProxy resource to change the type of Service.
 

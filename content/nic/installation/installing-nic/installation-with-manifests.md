@@ -2,27 +2,27 @@
 title: Installation with Manifests
 toc: true
 weight: 200
-type: how-to
-product: NIC
+nd-content-type: how-to
+nd-product: NIC
 nd-docs: DOCS-603
 ---
 
 This guide explains how to use Manifests to install F5 NGINX Ingress Controller, then create both common and custom resources and set up role-based access control.
 
-## Before you start
+## Before you begin
 
 If you are using NGINX Plus, get the NGINX Ingress Controller JWT and [create a license secret]({{< ref "/nic/installation/create-license-secret.md" >}}).
 
 ### Get the NGINX Controller Image
 
-{{< note >}} Always use the latest stable release listed on the [releases page]({{< ref "/nic/releases.md" >}}). {{< /note >}}
+{{< call-out "note" >}} Always use the latest stable release listed on the [releases page]({{< ref "/nic/releases.md" >}}). {{< /call-out >}}
 
 Choose one of the following methods to get the NGINX Ingress Controller image:
 
 - **NGINX Ingress Controller**: Download the image `nginx/nginx-ingress` from [DockerHub](https://hub.docker.com/r/nginx/nginx-ingress).
 - **NGINX Plus Ingress Controller**: You have two options for this, both requiring an NGINX Ingress Controller subscription.
-  - Download the image using your NGINX Ingress Controller subscription certificate and key. View the [Get NGINX Ingress Controller from the F5 Registry]({{< ref "/nic/installation/nic-images/get-registry-image.md" >}}) topic.
-  - The [Get the NGINX Ingress Controller image with JWT]({{< ref "/nic/installation/nic-images/get-image-using-jwt.md" >}}) topic describes how to use your subscription JWT token to get the image.
+- - [Download NGINX Ingress Controller from the F5 Registry]({{< ref "/nic/installation/nic-images/registry-download.md" >}}) topic.
+- - [Add an NGINX Ingress Controller image to your cluster]({{< ref "/nic/installation/nic-images/add-image-to-cluster.md" >}})
 - **Build your own image**: To build your own image, follow the [Build NGINX Ingress Controller]({{< ref "/nic/installation/build-nginx-ingress-controller.md" >}}) topic.
 
 ### Clone the repository
@@ -90,7 +90,7 @@ There are optional CRDs that are necessary if you want to use NGINX App Protect 
 
 **NGINX App Protect WAF**
 
-{{<  note >}} This step can be skipped if you are using App Protect WAF module with policy bundles. {{<  /note >}}
+{{< call-out "note" >}} This step can be skipped if you are using App Protect WAF module with policy bundles. {{< /call-out >}}
 
 ```shell
 kubectl apply -f https://raw.githubusercontent.com/nginx/kubernetes-ingress/v{{< nic-version >}}/deploy/crds-nap-waf.yaml
@@ -108,7 +108,7 @@ kubectl apply -f https://raw.githubusercontent.com/nginx/kubernetes-ingress/v{{<
 
 **NGINX App Protect WAF**
 
-{{<  note >}} This step can be skipped if you are using App Protect WAF module with policy bundles. {{<  /note >}}
+{{< call-out "note" >}} This step can be skipped if you are using App Protect WAF module with policy bundles. {{< /call-out >}}
 
 ```shell
 kubectl apply -f config/crd/bases/appprotect.f5.com_aplogconfs.yaml
@@ -209,7 +209,7 @@ For more information about the _LoadBalancer_ service, refer to the [Kubernetes 
          kubectl apply -f deployments/common/nginx-config.yaml
          ```
 
-    {{<note>}}AWS users have more customization options for their load balancers. These include choosing the load balancer type and configuring SSL termination. Refer to the [Kubernetes documentation](https://kubernetes.io/docs/concepts/services-networking/service/#type-loadbalancer) to learn more. {{</note>}}
+    {{< call-out "note" >}}AWS users have more customization options for their load balancers. These include choosing the load balancer type and configuring SSL termination. Refer to the [Kubernetes documentation](https://kubernetes.io/docs/concepts/services-networking/service/#type-loadbalancer) to learn more. {{< /call-out >}}
 
 3. To access NGINX Ingress Controller, get the public IP of your load balancer.
 
@@ -241,7 +241,7 @@ Connect to ports 80 and 443 using the IP address of any node in the cluster wher
 
 ## Uninstall NGINX Ingress Controller
 
-{{<warning>}}Proceed with caution when performing these steps, as they will remove NGINX Ingress Controller and all related resources, potentially affecting your running services.{{</warning>}}
+{{< call-out "warning" >}}Proceed with caution when performing these steps, as they will remove NGINX Ingress Controller and all related resources, potentially affecting your running services.{{< /call-out >}}
 
 1. **Delete the nginx-ingress namespace**: To remove NGINX Ingress Controller and all auxiliary resources, run:
 

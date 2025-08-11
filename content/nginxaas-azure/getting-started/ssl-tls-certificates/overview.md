@@ -29,9 +29,9 @@ Add a certificate from an Azure Key Vault to your NGINXaaS deployment using your
 * [Add certificates using the Azure CLI]({{< ref "/nginxaas-azure/getting-started/ssl-tls-certificates/ssl-tls-certificates-azure-cli.md">}})
 * [Add certificates using Terraform]({{< ref "/nginxaas-azure/getting-started/ssl-tls-certificates/ssl-tls-certificates-terraform.md">}})
 
-{{< note >}}- You can overwrite the NGINX default protocol to configure the desired TLS/SSL policy. Read more about the procedure in the [Module ngx_http_ssl_module](http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_protocols) documentation.
+{{< call-out "note" >}}- You can overwrite the NGINX default protocol to configure the desired TLS/SSL policy. Read more about the procedure in the [Module ngx_http_ssl_module](http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_protocols) documentation.
 
-- You can associate multiple certificates for the same domain; the "ssl_certificate" directive can be specified multiple times to load certificates of different types. To learn more, see the [Module ngx_http_ssl_module](http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_certificate) documentation.{{</ note >}}
+- You can associate multiple certificates for the same domain; the "ssl_certificate" directive can be specified multiple times to load certificates of different types. To learn more, see the [Module ngx_http_ssl_module](http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_certificate) documentation.{{< /call-out >}}
 
 ### Add SSL/TLS certificates bundled with NGINXaaS configuration
 
@@ -56,7 +56,7 @@ NGINXaaS for Azure regularly polls the AKV to check if the certificate has been 
 
 For Azure client tools, such as the Azure CLI or Azure Resource Manager, the certificate is referenced from AKV using its Key Vault secret identifier. If the secret identifier specifies a version, NGINXaaS will not rotate the certificate. To enable certificate rotation, ensure the secret id does not contain a version, for example, `https://myvault.vault.azure.net/secrets/mysecret`. Certificates added using the Azure Portal will automatically be rotated.
 
-{{<warning>}}If any of your SSL/TLS certificates or your NGINX configuration has issues, the certificates will not be rotated.{{</warning>}}
+{{< call-out "warning" >}}If any of your SSL/TLS certificates or your NGINX configuration has issues, the certificates will not be rotated.{{< /call-out >}}
 
 ## Monitor certificates
 

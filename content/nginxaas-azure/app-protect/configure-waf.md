@@ -27,7 +27,7 @@ load_module modules/ngx_http_app_protect_module.so;
 app_protect_enforcer_address 127.0.0.1:50000;
 ```
 
-{{<note>}} The app_protect_enforcer_address directive is a required directive for Nginx App Protect to work and must match 127.0.0.1:50000{{</note>}}
+{{< call-out "note" >}} The app_protect_enforcer_address directive is a required directive for Nginx App Protect to work and must match 127.0.0.1:50000{{< /call-out >}}
 
 
 3. Enable NGINX App Protect WAF with the `app_protect_enable` directives in the appropriate scope. The `app_protect_enable` directive may be set in the `http`, `server`, and `location` contexts.
@@ -116,11 +116,11 @@ To create a custom security policy in the Azure Portal:
 
 In the policy editor, enter the **Name**, **File path**, your policy content, and then select **Save**. The **File path** is optional and will default to the path "/etc/app_protect/conf/" plus the policy **Name** with a ".json" extension. After your policy has been saved, you can then reference it in your NGINX configuration. For more information on policy configuration and syntax, refer to the NGINX App Protect [configuration guide](https://docs.nginx.com/nginx-app-protect-waf/v5/configuration-guide/configuration/).
 
-{{<note>}}The **name** field within the security policy must be unique among the policies referenced in your NGINX configuration.{{</note>}}
+{{< call-out "note" >}}The **name** field within the security policy must be unique among the policies referenced in your NGINX configuration.{{< /call-out >}}
 
-{{<warning>}}Referencing both custom and precompiled policies in your NGINX configuration is not supported at this time. 
+{{< call-out "warning" >}}Referencing both custom and precompiled policies in your NGINX configuration is not supported at this time. 
 As a workaround, make a copy of the default policy you want to use, then add it as a custom policy with a different name.
-{{</warning>}}
+{{< /call-out >}}
 
 The **Custom Policies** tab shows the status of your custom policies (Compilation and Application Status). Custom policies are automatically compiled when created or modified. Policies that are applied to the NGINX configuration cannot be deleted until they are first removed from the configuration. 
 

@@ -15,8 +15,8 @@ This section lists the prerequisites for installing and configuring NGINX Agent.
 
 1. [F5 NGINX Management Suite is installed on a server]({{< ref "/nim/deploy/_index.md" >}}).
 
-    {{<note>}} When installing and configuring NGINX Management Suite, take note of the fully qualified domain name (FQDN) and gRPC port number. You'll need this information to properly configure NGINX Agent to communicate with NGINX Management Suite.
-    {{</note>}}
+    {{< call-out "note" >}} When installing and configuring NGINX Management Suite, take note of the fully qualified domain name (FQDN) and gRPC port number. You'll need this information to properly configure NGINX Agent to communicate with NGINX Management Suite.
+    {{< /call-out >}}
 
 2. Make sure NGINX is running on your instance:
 
@@ -61,13 +61,13 @@ You can choose one of the following two methods to install NGINX Agent on your d
 - Install via the NGINX Management Suite API Gateway
 - Install from packages downloaded from [MyF5 Customer Portal](https://account.f5.com/myf5) or from your NGINX/F5 sales team.
 
-{{< note >}} You can also install NGINX Agent in the following ways:
+{{< call-out "note" >}} You can also install NGINX Agent in the following ways:
 
 - From the [GitHub releases](https://docs.nginx.com/nginx-agent/installation-upgrade/installation-github/)
 - From the [NGINX Repository](https://docs.nginx.com/nginx-agent/installation-upgrade/installation-oss/)
 - From the [NGINX Plus Repository](https://docs.nginx.com/nginx-agent/installation-upgrade/installation-plus/).
 
-{{< /note >}}
+{{< /call-out >}}
 
 ### Install using the API
 
@@ -128,9 +128,9 @@ In a web browser, go to the FQDN for your NGINX Management Suite host and log in
 
 Once you've verified the NGINX Agent instance is registered with NGINX Management Suite, no additional action is required for monitoring the instance.
 
-{{<note>}}
+{{< call-out "note" >}}
 If you need to remove the instance, ensure that the NGINX Agent service is stopped first. Then you can remove the instance from the inventory.
-{{</note>}}
+{{< /call-out >}}
 
 ---
 
@@ -138,7 +138,7 @@ If you need to remove the instance, ensure that the NGINX Agent service is stopp
 
 The following sections explain how to configure NGINX Agent using configuration files, CLI flags, and environment variables.
 
-{{<note>}}
+{{< call-out "note" >}}
 
 - NGINX Agent interprets configuration values set by configuration files, CLI flags, and environment variables in the following priorities:
 
@@ -150,20 +150,20 @@ The following sections explain how to configure NGINX Agent using configuration 
 
 - Open any required firewall ports or SELinux/AppArmor rules for the ports and IPs you want to use.
 
-{{</note>}}
+{{< /call-out >}}
 
 ### Configure with Config Files
 
 The configuration files for NGINX Agent are `/etc/nginx-agent/nginx-agent.conf` and `/var/lib/nginx-agent/agent-dynamic.conf`. These files have comments at the top indicating their purpose.
 
-{{<note>}}If you're running Instance Manager 2.10.1 or earlier or NGINX Agent 2.25.1 or earlier, the `agent-dynamic.conf` file is located in `/etc/nginx-agent/`.{{</note>}}
+{{< call-out "note" >}}If you're running Instance Manager 2.10.1 or earlier or NGINX Agent 2.25.1 or earlier, the `agent-dynamic.conf` file is located in `/etc/nginx-agent/`.{{< /call-out >}}
 
 Examples of the configuration files are provided below:
 
 <details open>
     <summary>example nginx-agent.conf</summary>
 
-{{<note>}}
+{{< call-out "note" >}}
 In the following example `nginx-agent.conf` file, you can change the `server.host` and `server.grpcPort` to connect to the NGINX Management Suite.
 
 If NGINX Agent was previously installed for data reporting purposes only, you may need to find and remove the following line from the NGINX Agent configuration file:
@@ -172,7 +172,7 @@ If NGINX Agent was previously installed for data reporting purposes only, you ma
 features: registration,dataplane-status
 ```
 
-{{</note>}}
+{{< /call-out >}}
 
 ```nginx {hl_lines=[13]}
 #
@@ -288,13 +288,13 @@ nginx-agent
 
 ### CLI Flags and Environment Variables
 
-{{< warning >}}
+{{< call-out "warning" >}}
 
 Before version 2.35.0, the environment variables were prefixed with `NMS_` instead of `NGINX_AGENT_`.
 
 If you are upgrading from an older version, update your configuration accordingly.
 
-{{< /warning >}}
+{{< /call-out >}}
 
 {{<bootstrap-table "table table-responsive table-bordered">}}
 | CLI flag                                    | Environment variable                 | Description                                                                 |
@@ -337,7 +337,7 @@ If you are upgrading from an older version, update your configuration accordingl
 
 <br>
 
-{{<note>}}
+{{< call-out "note" >}}
 Use the `--config-dirs` command-line option, or the `config_dirs` key in the `nginx-agent.conf` file, to identify the directories NGINX Agent can read from or write to. This setting also defines the location to which you can upload config files when using a control plane.
 
 NGINX Agent cannot write to directories outside the specified location when updating a config and cannot upload files to directories outside of the configured location.
@@ -346,7 +346,7 @@ NGINX Agent follows NGINX configuration directives to file paths outside the des
 
 - [`ssl_certificate`](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_certificate)
 
-{{</note>}}
+{{< /call-out >}}
 
 
 ### Enable NGINX App Protect WAF Status Reporting
@@ -410,7 +410,7 @@ Additionally, you can use the agent installation script to add these fields:
 
 ## Secure NGINX Agent with mTLS
 
-{{< important >}}By default, communication between NGINX Agent and NGINX Management Suite is unsecured.{{< /important >}}
+{{< call-out "important" >}}By default, communication between NGINX Agent and NGINX Management Suite is unsecured.{{< /call-out >}}
 
 For instructions on how configure mTLS to secure communication between NGINX Agent and NGINX Management Suite, see [NGINX Agent TLS Settings](https://docs.nginx.com/nginx-agent/configuration/encrypt-communication/).
 

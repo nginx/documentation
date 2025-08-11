@@ -23,13 +23,13 @@ To run apps built with the [FastAPI](https://fastapi.tiangolo.com) web framework
    $ deactivate
    ```
 
-   {{< warning >}}
+   {{< call-out "warning" >}}
    Create your virtual environment with a Python version that matches the
    language module from Step 1 up to the minor number (**X.Y** in
    this example). Also, the app **type** in Step 5 must
    [resolve]({{< relref "/unit/configuration.md#configuration-apps-common" >}})
    to a similarly matching version; Unit doesn't infer it from the environment.
-   {{< /warning >}}
+   {{< /call-out >}}
 
 3. Let's try a version of a [tutorial app](https://fastapi.tiangolo.com/tutorial/first-steps/),
    saving it as **/path/to/app/asgi.py**:
@@ -44,7 +44,7 @@ To run apps built with the [FastAPI](https://fastapi.tiangolo.com) web framework
        return {"message": "Hello, World!"}
    ```
 
-   {{< note >}}
+   {{< call-out "note" >}}
    For something more true-to-life, try the
    [RealWorld example app](https://github.com/nsidnev/fastapi-realworld-example-app); just
    install all its dependencies in the same virtual environment where you've
@@ -52,7 +52,7 @@ To run apps built with the [FastAPI](https://fastapi.tiangolo.com) web framework
    <configuration-apps-common>` like **DB_CONNECTION** or
    **SECRET_KEY** directly to the app configuration in Unit instead of
    the **.env** file.
-   {{< /note >}}
+   {{< /call-out >}}
 
 4. Change ownership:
 

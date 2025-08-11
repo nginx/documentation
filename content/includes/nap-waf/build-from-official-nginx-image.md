@@ -2,9 +2,9 @@
 nd-docs: "DOCS-1509"
 ---
 
-{{< note >}}
+{{< call-out "note" >}}
  While this example utilizes the official NGINX Open Source image as a base, the crucial requirement is that NGINX must be installed as a package from the official NGINX repository, rather than being compiled from source.
-{{< /note >}}
+{{< /call-out >}}
 
 ```dockerfile
 # syntax=docker/dockerfile:1

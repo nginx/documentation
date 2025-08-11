@@ -24,7 +24,7 @@ To complete the steps in this guide, you need:
 
 Access to a Vault requires a renewable token.
 
-{{<note>}}If you attempt to use the Vault's Root Token, NGINX Instance Manager won't start the secrets driver, as that token is not renewable.{{</note>}}
+{{< call-out "note" >}}If you attempt to use the Vault's Root Token, NGINX Instance Manager won't start the secrets driver, as that token is not renewable.{{< /call-out >}}
 
 To create a periodic service token for NGINX Instance Manager:
 

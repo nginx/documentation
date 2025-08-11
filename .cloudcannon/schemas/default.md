@@ -39,7 +39,7 @@ To do xzy, take the following steps:
 
 2. Format as numbered lists.
 
-    {{< note >}}Add notes like this.{{</note>}}
+    {{< call-out "note" >}}Add notes like this.{{< /call-out >}}
 
 3. If there is only one step, you don't need to format it as a numbered list.
 

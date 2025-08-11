@@ -80,7 +80,7 @@ Complete the following prerequisites before proceeding with this guide:
 
 ### Delete Services Workspaces
 
-{{<note>}}To delete a Workspace, you must delete all the API Proxies and API Docs belonging to a Services Workspace.{{</note>}}
+{{< call-out "note" >}}To delete a Workspace, you must delete all the API Proxies and API Docs belonging to a Services Workspace.{{< /call-out >}}
 
 1. On the sidebar, select **Services**.
 1. Select the ellipsis button next to your workspace in the **Actions** column.

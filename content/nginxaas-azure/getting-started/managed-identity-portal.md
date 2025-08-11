@@ -33,7 +33,7 @@ F5 NGINX as a Service for Azure (NGINXaaS) leverages a user assigned and a syste
 3. Select the appropriate **subscription** and **user assigned managed identity**, then select **Add**.
 
 <br>
-   {{<note>}}NGINXaaS supports adding a system assigned managed identity and a user assigned managed identity. Adding more than one user assigned managed identity is not supported.{{</note>}}
+   {{< call-out "note" >}}NGINXaaS supports adding a system assigned managed identity and a user assigned managed identity. Adding more than one user assigned managed identity is not supported.{{< /call-out >}}
 
 4. The added user assigned managed identity will show up in the main table.
 
@@ -53,7 +53,7 @@ F5 NGINX as a Service for Azure (NGINXaaS) leverages a user assigned and a syste
 
 3. To confirm the operation, select **Yes** on the confirmation prompt.
 
-   {{<note>}}NGINXaaS supports using only one type of managed identity per deployment at a time. User assigned and system assigned identities cannot be present simultaneously.{{</note>}}
+   {{< call-out "note" >}}NGINXaaS supports using only one type of managed identity per deployment at a time. User assigned and system assigned identities cannot be present simultaneously.{{< /call-out >}}
 
 4. To provide the role assignments necessary for the deployment, Select **Azure Role Assignments** under Permissions.
 
@@ -71,13 +71,13 @@ F5 NGINX as a Service for Azure (NGINXaaS) leverages a user assigned and a syste
 
 3. Confirm the operation by selecting **Yes** on the confirmation prompt.
 
-{{<note>}}Removing a Managed Identity from an NGINX deployment has the following effects:
+{{< call-out "note" >}}Removing a Managed Identity from an NGINX deployment has the following effects:
 
 - If the NGINX deployment uses any SSL/TLS certificates, then any updates to the deployment (including deployment properties, certificates, and configuration) will result in a failure. If the configuration is updated not to use any certificates, then those requests will succeed.
 
 - If publishing metrics is enabled for the NGINX deployment, then the metrics will no longer be published to Azure Monitor for this deployment until a Managed Identity is added.
 
-- If logging is enabled for the NGINX deployment, then the logs will no longer be exported to the Azure Blob Storage Container for this deployment until a Managed Identity is added.{{</note>}}
+- If logging is enabled for the NGINX deployment, then the logs will no longer be exported to the Azure Blob Storage Container for this deployment until a Managed Identity is added.{{< /call-out >}}
 
 
 ## What's next

@@ -43,9 +43,9 @@ To create a support package:
     tar -xvf support-pkg-<timestamp>.tar.gz
     ```
 
-{{< note >}}
+{{< call-out "note" >}}
 The supported shell is `bash`.
-{{< /note >}}
+{{< /call-out >}}
 
 ### Arguments
 
@@ -99,6 +99,6 @@ The support package script uses the `-c` flag ( or `--devportal_config_path`) to
 
 As the NGINX Developer Portal supports both SQLite & PostreSQL database types, the support package script will determine the database settings from the `devportal.conf` configuration file.
 
-{{< note >}}
+{{< call-out "note" >}}
 The NGINX Developer Portal support package script will try to utilize the relevant data backup tool for the database type used.  For example, the `sqlite3` binary will be needed in your path to allow a SQLite data dump to occur.  Similarly for PostgreSQL the `pg_dump` tool will be required.  If the relevant data dump tool is not currently found in the systems `$PATH`, an error will be logged to the console.
-{{< /note >}}
+{{< /call-out >}}

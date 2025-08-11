@@ -12,15 +12,15 @@ type:
 
 This document provides an overview of the various options you can configure when deploying F5 NGINX Service Mesh. We strongly recommended that you review all of the available options discussed in this document *before* deploying NGINX Service Mesh.
 
-{{< tip >}}
+{{< call-out "tip" >}}
 To manage your configuration after deployment, you can use the NGINX Service Mesh API.
 
 Refer to the [API Usage Guide]( {{< ref "/mesh/reference/api-usage.md" >}} ) for more information.
-{{< /tip >}}
+{{< /call-out >}}
 
-{{< note >}}
+{{< call-out "note" >}}
 For Helm users, the `nginx-meshctl deploy` command-line options map directly to Helm values. Alongside this guide, check out the [Helm Configuration Options]( {{< ref "/mesh/get-started/install/install-with-helm.md#configuration-options" >}} ).
-{{< /note >}}
+{{< /call-out >}}
 
 ## Mutual TLS
 
@@ -54,9 +54,9 @@ To configure the client max body size for a specific Pod, add the `config.nsm.ng
 
 If you need to [modify the global client max body size]( {{< ref "api-usage.md#modifying-the-global-mesh-configuration" >}} ) after you've deployed NGINX Service Mesh, you can do so by using the API.
 
-{{< see-also >}}
+{{< call-out "note" >}}
 [NGINX core module documentation](http://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size) for `client_max_body_size`.
-{{< /see-also >}}
+{{< /call-out>}}
 
 ## Logging
 
@@ -115,10 +115,10 @@ The supported methods (used for both `http` and `stream` blocks) are:
 - `random two least_time`
 - `random two least_time=last_byte`
 
-{{< note >}}
+{{< call-out "note" >}}
 `least_time` and `random two least_time` are treated as "time to first byte" methods. `stream` blocks with either
 of these methods are given the `first_byte` method parameter, and `http` blocks are given the `header` parameter.
-{{< /note >}}
+{{< /call-out >}}
 
 For more information on how these load balancing methods work, see [HTTP Load Balancing](https://docs.nginx.com/nginx/admin-guide/load-balancer/http-load-balancer/) and [TCP and UDP Load Balancing](https://docs.nginx.com/nginx/admin-guide/load-balancer/tcp-udp-load-balancer/).
 

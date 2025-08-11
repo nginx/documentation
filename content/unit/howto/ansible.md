@@ -10,13 +10,13 @@ Steampunk](https://steampunk.si) provides a number of Unit-related tasks
 that you can use with Ansible; some of them simplify installation and setup,
 while others provide common configuration steps.
 
-{{< note >}}
+{{< call-out "note" >}}
 Ansible 2.9+ required; the collection relies on official packages and
 supports Debian only.
 
 A brief intro by the collection's authors can be found [here](https://docs.steampunk.si/unit/quickstart.html); a behind-the-scenes
 blog post is [here](https://steampunk.si/blog/why-and-how-of-the-nginx-unit-ansible-collection/).
-{{< /note >}}
+{{< /call-out >}}
 
 First, install the collection:
 

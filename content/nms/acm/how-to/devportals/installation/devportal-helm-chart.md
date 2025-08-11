@@ -27,13 +27,13 @@ To complete the steps in this section, you need the following:
 - An [externally-accessible private Docker registry](https://docs.docker.com/registry/deploying/) to push the container images to
 - Your F5 NGINX Plus certificate and key files, which you can download from [MyF5](https://my.f5.com/manage/s/)
 
-{{<see-also>}}
+{{< call-out "note" >}}
 
 - Take a few minutes to review the [Configurable Helm Settings](#configuration-options) at the end of this topic. You can change these settings to customize your installation to meet your needs.
 
 - Check out the [Deployment Patterns for Developer Portal]({{< ref "/nms/acm/how-to/infrastructure/configure-devportal-backend.md" >}}) topic if you're considering installing the Developer Portal on a single host or on a cluster for high availability.
 
-{{</see-also>}}
+{{< /call-out>}}
 
 ---
 
@@ -50,9 +50,9 @@ To complete the steps in this section, you need the following:
 
 4. Download the `nginx-devportal-api-<version>-img.tar.gz` file.
 5. Download the `nginx-devportal-apigw-<version>-img.tar.gz` file.
-   {{< note >}}
+   {{< call-out "note" >}}
    If you require a version of NGINX Plus other than what is provided, please see the optional section on [building the API Gateway Container Image](#build-apigw-docker-image).
-   {{</ note >}}
+   {{< /call-out >}}
 
 ---
 
@@ -85,16 +85,16 @@ To complete the steps in this section, you need the following:
    Loaded image: nginx-devportal-apigw:1.5.0-r28
    ```
 
-   {{<important>}}
+   {{< call-out "important" >}}
    Take note of the loaded image's name and tag.  You'll need to reference this information in the next section when pushing the image to your private registry.
 
    In the example output above, `nginx-devportal-api` is the image name and `1.5.0` is the tag for the first image. For the second image `nginx-devportal-apigw` is the image name and `1.5.0-r28` is the tag (where `1.5.0` is the release version and `r28` is the NGINX Plus version). The image names or tags could be different depending on the product version you downloaded from MyF5.
-   {{</important>}}
+   {{< /call-out >}}
 
 ### (Optional) Build the API Gateway Container Image {#build-apigw-docker-image}
-   {{< note >}}
+   {{< call-out "note" >}}
    This is step is only required for versions of API Connectivity Manager Developer Portal prior to `1.5.0` or if you require a specific release of NGINX Plus that is not provided on MyF5.
-   {{< /note >}}
+   {{< /call-out >}}
    <details closed>
    <summary><i class="fa-solid fa-circle-info"></i> Build the API Gateway Container Image</summary>
    The Developer Portal Helm chart requires a container image that includes the NGINX Plus service and NGINX Agent in order to deploy the chart and have the API Gateway register with the API Connectivity Manager control plane.
@@ -362,11 +362,11 @@ A Helm `values.yaml` file is a configuration file you can use to customize the i
     - Replace `<version>` with the tag you used when [pushing the images to your private registry](#push-images-private-registry).
     - In the `imagePullSecrets` section, add the credentials for your private Docker registry.
 
-   {{<note>}}The contents of `api.acm.client.caSecret.key` can be obtained from the `/etc/nms/certs/apigw/ca.pem` on the control plane.{{</note>}}
+   {{< call-out "note" >}}The contents of `api.acm.client.caSecret.key` can be obtained from the `/etc/nms/certs/apigw/ca.pem` on the control plane.{{< /call-out >}}
 
     This `values.yaml` file specifies the Docker images to be used for the NGINX Developer Portal `apigw` and `api` components, including the repository (`<my-docker-registry>`) and tag (`version`) of each image. It also specifies that a secret called `regcred` should be used for image pulls.
 
-    {{<see-also>}}For instructions on creating a secret, see the Kubernetes topic [Pull an Image from a Private Registry](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/).{{</see-also>}}
+    {{< call-out "note" >}}For instructions on creating a secret, see the Kubernetes topic [Pull an Image from a Private Registry](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/).{{< /call-out>}}
 
 2. Save and close the `values.yaml` file.
 
@@ -374,9 +374,9 @@ A Helm `values.yaml` file is a configuration file you can use to customize the i
 
 The Developer Portal does not require (although it is recommended) a dedicated namespace for the data plane. You can create this namespace yourself, or you can allow Helm to create it for you by using the `--create-namespace` flag when installing.
 
-{{< note >}}
+{{< call-out "note" >}}
 If persistent storage is not configured in your cluster, set the `apigw.persistence.enabled` and `api.persistence.enabled` values to `false` either in the values file or using the `--set` helm commands.
-{{< /note >}}
+{{< /call-out >}}
 
 To install the chart with the release name `devportal` and namespace `devportal`, run the following command:
 
@@ -430,17 +430,17 @@ Select from the following options to view some of the commonly used configuratio
 
 ### Deploy Developer Portal with an SQLite database
 
-{{< note >}}
+{{< call-out "note" >}}
 This configuration is recommended for proof of concept installations and not for production deployments.
-{{</ note >}}
+{{< /call-out >}}
 
 {{< include "installation/helm/acm/dev-portal-helm-configurations/configure-helm-devportal-sqlite.md" >}}
 
 ### Deploy Developer Portal with an embedded PostgreSQL database
 
-{{< note >}}
+{{< call-out "note" >}}
 This configuration is recommended for proof of concept installations and not for production deployments.
-{{</ note >}}
+{{< /call-out >}}
 
 {{< include "installation/helm/acm/dev-portal-helm-configurations/configure-devportal-helm-embedded-postgres.md" >}}
 

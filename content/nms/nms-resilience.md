@@ -111,7 +111,7 @@ The recovery time for the DPM (Data Plane Manager) pod depends the number of NGI
 
 ## Business Continuity and Disaster Recovery
 
-{{<important>}}
+{{< call-out "important" >}}
 When integrating NGINX Management Suite into your existing Business Continuity and Disaster Recovery (BC/DR) strategy, consider the following:
 
 - NGINX data plane instances managed by NGINX Management Suite can serve traffic independently of the NGINX Management Suite control plane. Data plane instances will continue to operate seamlessly with their last published configurations as long as they remain healthy.
@@ -120,7 +120,7 @@ When integrating NGINX Management Suite into your existing Business Continuity a
 
 - Establish specific metrics for your disaster recovery plan, such as Recovery Time Objective (RTO) and Recovery Point Objective (RPO), for the NGINX Management Suite control plane independently of the data plane. Regularly review and update these metrics to consider the impact of data plane size on NGINX Management Suite services and storage requirements.
 
-{{</important>}}
+{{< /call-out >}}
 
 ---
 

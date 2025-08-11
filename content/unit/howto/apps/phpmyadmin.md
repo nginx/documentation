@@ -14,10 +14,10 @@ To run the [phpMyAdmin](https://www.phpmyadmin.net) web tool using Unit:
 3. Install phpMyAdmin's [core files](https://docs.phpmyadmin.net/en/latest/setup.html#quick-install-1). Here we install them at **/path/to/app**;
    use a real path in your configuration.
 
-   {{< note >}}
+   {{< call-out "note" >}}
    Make sure to create the **config.inc.php** file [manually](https://docs.phpmyadmin.net/en/latest/setup.html#manually-creating-the-file)
    or using the [setup script](https://docs.phpmyadmin.net/en/latest/setup.html#using-the-setup-script).
-   {{< /note >}}
+   {{< /call-out >}}
 
 4. Change ownership:
 

@@ -47,11 +47,11 @@ This release introduces three new configuration options:
 is a Rust-based CLI tool that allows you to deploy, manage, and configure Unit
 in your environment.
 
-{{< note >}}
+{{< call-out "note" >}}
 This is a "Technical Preview" release of **unitctl**. We welcome feedback and
 suggestions for this early access version. It is provided to test its features
 and should not be used in production environments.
-{{< /note >}}
+{{< /call-out >}}
 
 ## Chunked request body support
 

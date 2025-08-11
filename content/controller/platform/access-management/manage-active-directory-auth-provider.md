@@ -32,7 +32,7 @@ To configure an auth provider in Microsoft Entra using OIDC over HTTPS, complete
 
 1. Record your tenant ID, as well as the Client ID and Client Secret(s) for your App. Keep them handy, you will need this information to set up the Microsoft Entra Auth Provider in NGINX Controller.
 
-    {{< important >}}Microsoft Azure will only display the Client Secret once, during the App Registration process. Be sure to keep this information somewhere safe so you can refer to it later.{{< /important >}}
+    {{< call-out "important" >}}Microsoft Azure will only display the Client Secret once, during the App Registration process. Be sure to keep this information somewhere safe so you can refer to it later.{{< /call-out >}}
 
 1. Add the following application permissions to the App Registration's "Microsoft Graph" API:
 
@@ -41,7 +41,7 @@ To configure an auth provider in Microsoft Entra using OIDC over HTTPS, complete
     - User.Read
     - User.ReadAll
 
-    {{< tip >}}These permissions require approval from the Azure admin. {{< /tip >}}
+    {{< call-out "tip" >}}These permissions require approval from the Azure admin. {{< /call-out >}}
 
 1. Make sure that you can contact Microsoft Entra from the host on which you are running NGINX Controller.
 
@@ -86,7 +86,7 @@ In the previous section, you selected **Microsoft Entra** from the **Authenticat
 
 1. Add a name for the Auth Provider.
 
-    {{< important >}}This name is a permanent setting that cannot be changed.{{< /important >}}
+    {{< call-out "important" >}}This name is a permanent setting that cannot be changed.{{< /call-out >}}
 
     This is the name that your users will be able to select as the authentication provider when logging in to NGINX Controller. Be sure the name you provide is accurate and easy to identify.
 
@@ -134,10 +134,10 @@ On the NGINX Controller Auth Provider *Group Setup* page, provide the following 
     - The minimum allowed value is 300 seconds (5 minutes).
     - The default value is 3600 seconds (1 hour).
 
-    {{< important >}}
+    {{< call-out "important" >}}
 Consider how you want to set this field carefully.
 While deletions in Microsoft Entra are reflected in NGINX Controller immediately, changes such as group permission updates or user reassignments are not. This means that, when using the default poll interval, it could take up to an hour for changes in Microsoft Entra to be reflected in NGINX Controller.
-    {{< /important >}}
+    {{< /call-out >}}
 
 1. (Optional) Cache timeout: This is the time, in seconds, to wait before considering the AD Groups list to be outdated, or, "stale".
 
@@ -166,9 +166,9 @@ While deletions in Microsoft Entra are reflected in NGINX Controller immediately
 
 In order to use role-based access control (RBAC) with Microsoft Entra (AD), you need to map groups from the Microsoft Entra tenant to NGINX Controller RBAC roles.
 
-{{< important >}}
+{{< call-out "important" >}}
 You should complete this step immediately after creating the Microsoft Entra authentication provider, before any other changes can be made.
-{{< /important >}}
+{{< /call-out >}}
 
 1. If you haven't already done so, [create the Role(s) and Role group]({{< ref "manage-roles" >}}) that you want to map the Microsoft Entra permissions to.
 1. On the **Platform** menu in the NGINX Controller user interface, select **Auth Providers**, then select the Auth Provider that contains the Microsoft Entra configuration.
@@ -176,7 +176,7 @@ You should complete this step immediately after creating the Microsoft Entra aut
 
     - Provide the name of the Microsoft Entra Group that you want to use.
 
-      {{< tip >}}The Group filter determines which Groups are available for this setting. Be sure the Group that you want to add is included by your group filter. {{< /tip >}}
+      {{< call-out "tip" >}}The Group filter determines which Groups are available for this setting. Be sure the Group that you want to add is included by your group filter. {{< /call-out >}}
 
     - (Optional) Provide the **Case Sensitive** setting:
 
@@ -194,7 +194,7 @@ In the previous section, you selected **Active Directory** from the **Authentica
 
 1. Add a name for the Auth Provider.
 
-    {{< important >}}This name is a permanent setting that cannot be changed.{{< /important >}}
+    {{< call-out "important" >}}This name is a permanent setting that cannot be changed.{{< /call-out >}}
 
     This is the name that your users will be able to select as the authentication provider when logging in to NGINX Controller. Be sure the name you provide is accurate and easy to identify.
 
@@ -245,9 +245,9 @@ On the Auth Provider *Connection* page, provide the following settings:
 
     - `PLAIN_TEXT` (Not secured) - Unencrypted connection. Does not require SSL certificates.
 
-      {{< warning >}}
+      {{< call-out "warning" >}}
 Use this mode only if you accept the risks associated with using unencrypted LDAP. Data travels "as is," without encryption, and can be spied upon by passive attackers. Not recommended for production environments.
-      {{< /warning >}}
+      {{< /call-out >}}
 
     - `REQUIRE` (Default) - Require an SSL connection. NGINX Controller trusts the certificate that the Active Directory server provides, and no certificate authority (CA) is required. **Unencrypted connections will fail**.
 
@@ -268,9 +268,9 @@ On the Auth Provider *User Binding* page, provide the following settings that wi
 1. Bind username: This is a username that will be used to access the AD.
     For example, `domain\example.user` or `example.user@mydomain`.
 
-    {{< tip >}}
+    {{< call-out "tip" >}}
 You can use either format. This setting isn't governed by the username format that you defined on the Auth Provider *Connection* page.
-    {{< /tip >}}
+    {{< /call-out >}}
 1. Bind user password: The password for the user account that will be used to connect to the AD.
 1. Select **Next**.
 
@@ -284,10 +284,10 @@ On the NGINX Controller Auth Provider *Group Setup* page, provide the following 
     - The minimum allowed value is 300 seconds (5 minutes).
     - The default value is 3600 seconds (1 hour).
 
-    {{< important >}}
+    {{< call-out "important" >}}
 Consider how you want to set this field carefully.
 While deletions in the AD are reflected in NGINX Controller immediately, changes such as group permissions updates or user reassignments are not. This means that, when using the default poll interval, it could take up to an hour for changes to the AD to be reflected in NGINX Controller.
-    {{< /important >}}
+    {{< /call-out >}}
 
 1. (Optional) Cache timeout: This is the time, in seconds, to wait before considering the AD Groups list to be outdated, or, "stale".
 
@@ -413,9 +413,9 @@ If NGINX Controller doesn't find Active Directory users or groups as expected, y
              "(&(objectClass=group)(CN=devops))"
   ```
 
-{{< see-also >}}
+{{< call-out "note" >}}
 For an overview of the `ldapsearch` command and command options, see the [ldapsearch man page](https://linux.die.net/man/1/ldapsearch).
-{{< /see-also >}}
+{{< /call-out>}}
 
 ### How to Immediately Refresh the Active Directory Information
 
@@ -423,9 +423,9 @@ When setting up your Active Directory provider, you specified a poll interval. T
 
 Suppose there's an emergency or pressing circumstance for which you need to update the Active Directory information sooner than the polling interval. Maybe there was a company reorganization, and all the mappings were changed. Or maybe there was an error in the Active Directory configuration, and a group was given the wrong permissions. In either case, you can [delete the Active Directory provider](#view-edit-or-delete-an-active-directory-authentication-provider) in NGINX Controller and then add it back. The changes made on the Active Directory server will be reflected on NGINX Controller once the Active Directory provider is re-added.
 
-{{< warning >}}
+{{< call-out "warning" >}}
 Deleting an authentication provider is disruptive. Once the authentication provider is removed, authenticated users will lose access to NGINX Controller until the authentication provider is added again.
-{{< /warning >}}
+{{< /call-out >}}
 
 
 {{< versions "3.6" "latest" "ctrlvers" >}}

@@ -182,7 +182,7 @@ healthCheck:
   port: 8080
 ```
 
-{{< note >}} This feature is only supported with NGINX Plus. {{< /note >}}
+{{< call-out "note" >}} This feature is only supported with NGINX Plus. {{< /call-out >}}
 
 {{<bootstrap-table "table table-striped table-bordered table-responsive">}}
 |Field | Description | Type | Required |
@@ -337,7 +337,7 @@ spec:
     port: 80
 ```
 
-{{< note >}} To configure snippets in the `stream` context, use `stream-snippets` ConfigMap key. {{< /note >}}
+{{< call-out "note" >}} To configure snippets in the `stream` context, use `stream-snippets` ConfigMap key. {{< /call-out >}}
 
 For additional information, view the [Advanced configuration with Snippets]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-snippets.md" >}}) topic.
 

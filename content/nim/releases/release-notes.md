@@ -214,7 +214,7 @@ This release has the following changes in default behavior:
 
   When installing, users will be prompted to enter a fully qualified domain name (FQDN) to include in the Subject Alternative Name (SAN) of the NGINX Instance Manager's self-signed certificate generated during installation. This FQDN can serve as the server name for NGINX Instance Manager. Users can also specify this FQDN in the Installation Script
 
-  {{< note >}}Starting with NGINX Plus R33, usage data reporting requires validating the SSL certificate of NGINX Instance Manager via the `ssl_verify` directive in the `mgmt` block. Proper SAN configuration ensures seamless SSL verification.{{< /note >}}
+  {{< call-out "note" >}}Starting with NGINX Plus R33, usage data reporting requires validating the SSL certificate of NGINX Instance Manager via the `ssl_verify` directive in the `mgmt` block. Proper SAN configuration ensures seamless SSL verification.{{< /call-out >}}
 
 - {{% icon-feature %}} **Watchdog enhancements to improve stability**<a name="2-19-0-changes-in-behavior-Watchdog-enhancements-to-improve-stability"></a>
 
@@ -1084,9 +1084,9 @@ This release includes the following updates:
 
 ### Security Updates{#2-9-0-security-updates}
 
-{{< important >}}
+{{< call-out "important" >}}
 For the protection of our customers, NGINX doesn’t disclose security issues until an investigation has occurred and a fix is available.
-{{< /important >}}
+{{< /call-out >}}
 
 This release includes the following security updates:
 
@@ -1517,9 +1517,9 @@ If your NGINX Instance Manager version is older, you may need to upgrade to an i
 
 ### Security Updates{#2-3-1-security-updates}
 
-{{< important >}}
+{{< call-out "important" >}}
 For the protection of our customers, NGINX doesn’t disclose security issues until an investigation has occurred and a fix is available.
-{{< /important >}}
+{{< /call-out >}}
 
 This release includes the following security updates:
 
@@ -1684,7 +1684,7 @@ This release includes the following updates:
 
   Refer to the [NGINX Agent Docker Support](https://docs.nginx.com/nginx-agent/installation-upgrade/container-environments/docker-support/) guide for details.
 
-  {{< note >}}Containerizing the NGINX Agent is supported only with Docker at the moment. Look for additional container support in future releases of Instance Manager.{{< /note >}}
+  {{< call-out "note" >}}Containerizing the NGINX Agent is supported only with Docker at the moment. Look for additional container support in future releases of Instance Manager.{{< /call-out >}}
 
 - {{% icon-feature %}} **Redesigned metrics views in the web interface**<a name="2-1-0-whats-new-Redesigned-metrics-views-in-the-web-interface"></a>
 

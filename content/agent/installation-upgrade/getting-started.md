@@ -172,8 +172,8 @@ sudo systemctl enable nginx-agent
 
 NGINX Agent uses formatted log files to collect metrics. Expanding log formats and instance counts will also increase the size of the NGINX Agent log files. We recommend adding a separate partition for `/var/log/nginx-agent`.
 
-{{< important >}}
+{{< call-out "important" >}}
 Without log rotation or storage on a separate partition, log files could use up all the free drive space and cause your system to become unresponsive to certain services.
 
 For more information, see [NGINX Agent Log Rotation]({{< ref "/agent/configuration/configuration-overview.md#nginx-agent-log-rotation" >}}).
-{{< /important >}}
+{{< /call-out >}}

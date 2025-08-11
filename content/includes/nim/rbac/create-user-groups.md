@@ -18,7 +18,7 @@ Here's how to create a user group and assign roles:
 
 1. Select one or more roles from the **Roles** list to assign to the group.
 
-   {{<important>}}At least one user group must have the `admin` role assigned.{{</important>}}
+   {{< call-out "important" >}}At least one user group must have the `admin` role assigned.{{< /call-out >}}
 
 1. Select **Save** to create the group.
 

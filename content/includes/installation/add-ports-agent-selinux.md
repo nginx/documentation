@@ -14,4 +14,4 @@ To allow external ports outside the HTTPD context, run:
 sudo setsebool -P httpd_can_network_connect 1
 ```
 
-{{<see-also>}}For more information, see [Using NGINX and NGINX Plus with SELinux](https://www.nginx.com/blog/using-nginx-plus-with-selinux/).{{</see-also>}}
+{{< call-out "note" >}}For more information, see [Using NGINX and NGINX Plus with SELinux](https://www.nginx.com/blog/using-nginx-plus-with-selinux/).{{< /call-out>}}

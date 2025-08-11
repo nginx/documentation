@@ -28,9 +28,9 @@ sudo cp -a /var/log/nginx /var/log/nginx-plus-backup
 
 1. Follow the steps below for the operating system you are working with.
 
-{{< note >}}
+{{< call-out "note" >}}
 If not already installed, `nginx` or `nginx-plus` will be installed automatically as a dependency.
-{{< /note >}}
+{{< /call-out >}}
 
 
 ### Common Steps for NGINX Open Source and NGINX Plus
@@ -302,9 +302,9 @@ networks:
     driver: bridge
 ```
 
-{{< note >}}
+{{< call-out "note" >}}
 In some operating systems, security mechanisms like **SELinux** or **AppArmor** are enabled by default, potentially blocking necessary file access for the `nginx` process and `waf-config-mgr` and `waf-enforcer` containers. To ensure NGINX App Protect WAF v5 operates smoothly without compromising security, consider setting up a custom SELinux policy or AppArmor profile. For short-term troubleshooting, you may use `permissive` (SELinux) or `complain` (AppArmor) mode to avoid these restrictions, but keep in mind that this lowers security and isn't advised for prolonged use.
-{{< /note >}}
+{{< /call-out >}}
 
 ### Docker Compose File with IP Intelligence
 
@@ -350,9 +350,9 @@ After deploying NGINX App Protect WAF, learn how to utilize the [NGINX App Prote
 
 3. Follow the steps below for the operating system you are working with.
 
-{{< note >}}
+{{< call-out "note" >}}
 If not already installed, `nginx` or `nginx-plus` will be installed automatically as a dependency.
-{{< /note >}}
+{{< /call-out >}}
 
 ### Common Steps for NGINX Open Source and NGINX Plus
 
@@ -993,9 +993,9 @@ networks:
     driver: bridge
 ```
 
-{{< note >}}
+{{< call-out "note" >}}
 In some operating systems, security mechanisms like **SELinux** or **AppArmor** are enabled by default, potentially blocking necessary file access for the `nginx` process and `waf-config-mgr` and `waf-enforcer` containers. To ensure NGINX App Protect WAF v5 operates smoothly without compromising security, consider setting up a custom SELinux policy or AppArmor profile. For short-term troubleshooting, you may use `permissive` (SELinux) or `complain` (AppArmor) mode to avoid these restrictions, but keep in mind that this lowers security and isn't advised for prolonged use.
-{{< /note >}}
+{{< /call-out >}}
 
 #### Docker Compose File with IP Intelligence
 

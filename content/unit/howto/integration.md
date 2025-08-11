@@ -82,10 +82,10 @@ By default, Unit exposes its
 via a UNIX domain socket. These sockets aren't network accessible, so the API is
 local only. To enable secure remote access, you can use NGINX as a reverse proxy.
 
-{{< warning >}}
+{{< call-out "warning" >}}
 Avoid exposing an unprotected control socket to public networks. Use NGINX
 or a different solution such as SSH for security and authentication.
-{{< /warning >}}
+{{< /call-out >}}
 
 Use this configuration template for NGINX (replace placeholders in
 **ssl_certificate**, **ssl_certificate_key**,

@@ -8,7 +8,7 @@ nd-docs: DOCS-1879
 
 This page describes how to configure F5 NGINX Agent using configuration files, CLI (Command line interface) flags, and environment variables.
 
-{{<note>}}
+{{< call-out "note" >}}
 
 - NGINX Agent interprets configuration values set by configuration files, CLI flags, and environment variables in the following priorities:
 
@@ -18,7 +18,7 @@ This page describes how to configure F5 NGINX Agent using configuration files, C
 
 - You must open any required firewall ports or add SELinux/AppArmor rules for the ports and IPs you want to use.
 
-{{</note>}}
+{{< /call-out >}}
 
 ## Configuration via Configuration Files 
 
@@ -49,8 +49,8 @@ sudo docker run \
   --env=NGINX_AGENT_LOG_LEVEL=debug \
   -d agent
 ```
-<details>
-<summary>NGINX Agent configuration options</summary>
+
+### NGINX Agent configuration options
 
 {{< bootstrap-table "table table-striped table-bordered" >}}
 | **Environment Variable**                         | **Command-Line Option**                             | **Description**                                                                                              | **Default Value**                                      |
@@ -83,5 +83,4 @@ sudo docker run \
 | NGINX_AGENT_COLLECTOR_EXTENSIONS_TLS_CERT     | --collector-extensions-health-tls-cert          | TLS Certificate file path for communication with OTel health server.                                         | N/A                                                    |
 | NGINX_AGENT_COLLECTOR_EXTENSIONS_TLS_KEY      | --collector-extensions-health-tls-key           | File path for TLS key used when connecting with OTel health server.                                           | N/A                                                    |
 | NGINX_AGENT_COLLECTOR_PROCESSORS_BATCH_SEND_BATCH_TIMEOUT    | --collector-processors-batch-send-batch-timeout                                               | Maximum time duration for sending batch data metrics regardless of size.                                      | 200ms
-{{< /bootstrap-table >}}                             |%
-</details>
+{{< /bootstrap-table >}}

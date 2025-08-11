@@ -68,9 +68,9 @@ The number API proxy advanced routes which can be deployed to a single API proxy
 
 {{< /bootstrap-table >}}
 
-{{< note >}}
+{{< call-out "note" >}}
 The numbers in the above table are provided only as an example. Other factors may impact the total supported number of routes.
-{{< /note >}}
+{{< /call-out >}}
 
 ### Resolution
 

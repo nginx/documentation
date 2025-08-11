@@ -88,61 +88,13 @@ where:
 
 - the `jq` command is used to format the JSON output for easier reading and requires the [jq](https://jqlang.github.io/jq/) JSON processor to be installed.
 
+### Download your subscription credential files
 
+{{< include "use-cases/credential-download-instructions.md" >}}
 
-### Download the JSON Web Token or NGINX Plus certificate and key {#myf5-download}
+### Set up Docker for the F5 Container Registry
 
-Before you get a container image, you should provide the JSON Web Token file or SSL certificate and private key files provided with your NGINX Plus subscription. These files grant access to the package repository from which the script will download the NGINX Plus package:
-
-{{<tabs name="product_keys">}}
-
-{{%tab name="JSON Web Token"%}}
-{{< include "licensing-and-reporting/download-jwt-from-myf5.md" >}}
-{{% /tab %}}
-
-{{%tab name="SSL"%}}
-1. Log in to the [MyF5](https://my.f5.com) customer portal.
-2. Go to **My Products and Plans** > **Subscriptions**.
-3. Select the product subscription.
-4. Download the **SSL Certificate** and **Private Key** files.
-{{% /tab %}}
-
-{{% /tabs %}}
-
-### Set up Docker for NGINX Plus container registry
-
-Set up Docker to communicate with the NGINX Container Registry located at `private-registry.nginx.com`.
-
-{{<tabs name="docker_login">}}
-
-{{%tab name="JSON Web Token"%}}
-Open the JSON Web Token file previously downloaded from [MyF5](https://my.f5.com) customer portal (for example, `nginx-repo-12345abc.jwt`) and copy its contents.
-
-Log in to the docker registry using the contents of the JSON Web Token file:
-
-```shell
-docker login private-registry.nginx.com --username=<output_of_jwt_token> --password=none
-```
-{{% /tab %}}
-
-{{%tab name="SSL"%}}
-Create a directory and copy your certificate and key to this directory:
-
-```shell
-mkdir -p /etc/docker/certs.d/private-registry.nginx.com
-cp <path-to-your-nginx-repo.crt> /etc/docker/certs.d/private-registry.nginx.com/client.cert
-cp <path-to-your-nginx-repo.key> /etc/docker/certs.d/private-registry.nginx.com/client.key
-```
-The steps provided are for Linux. For Mac or Windows, see the [Docker for Mac](https://docs.docker.com/docker-for-mac/#add-client-certificates) or [Docker for Windows](https://docs.docker.com/docker-for-windows/#how-do-i-add-client-certificates) documentation. For more details on Docker Engine security, you can refer to the [Docker Engine Security documentation](https://docs.docker.com/engine/security/).
-
-Log in to the docker registry:
-
-```shell
-docker login private-registry.nginx.com
-```
-{{% /tab %}}
-
-{{% /tabs %}}
+{{< include "use-cases/docker-registry-instructions.md" >}}
 
 ### Pull the image
 
@@ -192,7 +144,6 @@ For NGINX modules, run:<!-- Is this enough info?-->
 docker pull private-registry.nginx.com/nginx-plus/modules:<version-tag>
 ```
 
-
 {{< include "security/jwt-password-note.md" >}}
 
 ### Push the image to your private registry
@@ -219,7 +170,7 @@ docker push <my-docker-registry>/nginx-plus/base:<version-tag>
 
 ### Run the NGINX Plus container
 
-{{< note >}} Starting from [NGINX Plus Release 33]({{< ref "nginx/releases.md#r33" >}}), the JWT file is required for each NGINX Plus instance. For more information, see [About Subscription Licenses]({{< ref "/solutions/about-subscription-licenses.md">}}). {{< /note >}}
+{{< call-out "note" >}} Starting from [NGINX Plus Release 33]({{< ref "nginx/releases.md#r33" >}}), the JWT file is required for each NGINX Plus instance. For more information, see [About Subscription Licenses]({{< ref "/solutions/about-subscription-licenses.md">}}). {{< /call-out >}}
 
 To start the Docker container with NGINX Plus, you will need to pass your JWT license file named `license.jwt` as the `NGINX_LICENSE_JWT` environment variable. If the license file needs to be located in a non-default directory, specify its full path using the `NGINX_LICENSE_PATH` variable (default path: `/etc/nginx/license.jwt`).
 
@@ -335,14 +286,14 @@ To generate a custom NGINX Plus image:
 
     - no files are copied from the Docker host as a container is created: you can add `COPY` definitions to each Dockerfile, or the image you create can be used as the basis for another image
 
-3. Log in to [MyF5 Customer Portal](https://account.f5.com/myf5) and download your *nginx-repo.crt* and *nginx-repo.key* files. For a trial of NGINX Plus, the files are provided with your trial package.
+3. Log in to [MyF5 Customer Portal](https://account.f5.com/myf5). As noted in the [Prerequisites](#prerequisites], download your *nginx-repo.crt*, *nginx-repo.key*, and **JSON Web Token** files. For a trial of NGINX Plus, the files are provided with your trial package.
 
 4. Copy the files to the directory where the Dockerfile is located.
 
 5. Create a Docker image, for example, `nginxplus` (note the final period in the command).
 
     ```shell
-    docker build  --no-cache --secret id=nginx-key,src=nginx-repo.key --secret id=nginx-crt,src=nginx-repo.crt -t nginxplus .
+    docker build --no-cache --secret id=nginx-key,src=nginx-repo.key --secret id=nginx-crt,src=nginx-repo.crt --secret id=nginx-jwt,src=license.jwt -t nginxplus .
     ```
 
     The `--no-cache` option tells Docker to build the image from scratch and ensures the installation of the latest version of NGINX Plus. If the Dockerfile was previously used to build an image without the `--no-cache` option, the new image uses the version of NGINX Plus from the previously built image from the Docker cache.

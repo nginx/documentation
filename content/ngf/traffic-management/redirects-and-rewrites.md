@@ -53,11 +53,11 @@ GW_IP=XXX.YYY.ZZZ.III
 GW_PORT=<port number>
 ```
 
-{{< note >}}
+{{< call-out "note" >}}
 
 In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the gateway will forward for.
 
-{{< /note >}}
+{{< /call-out >}}
 
 ## URLRewrite example
 
@@ -177,7 +177,7 @@ EOF
 
 Using the external IP address and port for the NGINX Service, we can send traffic to our coffee application.
 
-{{< note >}}If you have a DNS record allocated for `cafe.example.com`, you can send the request directly to that hostname, without needing to resolve.{{< /note >}}
+{{< call-out "note" >}}If you have a DNS record allocated for `cafe.example.com`, you can send the request directly to that hostname, without needing to resolve.{{< /call-out >}}
 
 This example demonstrates a rewrite from `http://cafe.example.com/coffee/flavors` to `http://cafe.example.com/beans`.
 
@@ -416,7 +416,7 @@ EOF
 
 Using the external IP address and port for the NGINX Service, we can send traffic to our tea and soda applications to verify the redirect is successful. We will use curl's `--include` option to print the response headers (we are interested in the `Location` header).
 
-{{< note >}}If you have a DNS record allocated for `cafe.example.com`, you can send the request directly to that hostname, without needing to resolve.{{< /note >}}
+{{< call-out "note" >}}If you have a DNS record allocated for `cafe.example.com`, you can send the request directly to that hostname, without needing to resolve.{{< /call-out >}}
 
 This example demonstrates a redirect from `http://cafe.example.com/tea` to `http://cafe.example.com/organic`.
 

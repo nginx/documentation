@@ -19,14 +19,14 @@ See our [End of Sale announcement](https://my.f5.com/manage/s/article/K000137989
 
 ### Install API Connectivity Manager {#install-acm}
 
-{{< important >}}
+{{< call-out "important" >}}
 API Connectivity Manager requires Instance Manager to be installed first.
 
 Before you begin:
 
 1. Review the [Dependencies with Instance Manager](#acm-nim-dependencies) table above.
 2. [Install a compatible version of Instance Manager](#install-nim-offline).
-{{< /important>}}
+{{< /call-out >}}
 
 &nbsp;
 
@@ -182,7 +182,7 @@ The API Connectivity Manager data plane requires [NGINX Plus R24](https://docs.n
 
 5. After you copy and extract the bundle onto your target machine, take the following steps to install the packages:
 
-    {{< note >}}The bundled NGINX Plus package may conflict with installed versions of NGINX Plus. Delete the package from the bundle if you want to keep the existing version.{{< /note >}}
+    {{< call-out "note" >}}The bundled NGINX Plus package may conflict with installed versions of NGINX Plus. Delete the package from the bundle if you want to keep the existing version.{{< /call-out >}}
 
     {{<tabs name="install-acm-dataplane-dependencies">}}
     {{%tab name="CentOS, RHEL, and RPM-Based"%}}

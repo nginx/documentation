@@ -28,4 +28,4 @@ http {
 }
 ```
 
-{{<note>}}As a prerequisite to using the `sync` parameter with `limit_req_zone` directive for rate limiting, enable [Runtime State Sharing with NGINXaaS for Azure]({{< ref "/nginxaas-azure/quickstart/runtime-state-sharing.md" >}}).{{</note>}}
+{{< call-out "note" >}}As a prerequisite to using the `sync` parameter with `limit_req_zone` directive for rate limiting, enable [Runtime State Sharing with NGINXaaS for Azure]({{< ref "/nginxaas-azure/quickstart/runtime-state-sharing.md" >}}).{{< /call-out >}}

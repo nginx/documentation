@@ -42,19 +42,19 @@ Take the following steps to create a forwarder for OpenTelemetry Collector:
 
 13. (Optional) Select **Add Stream** to add additional streams, as needed.
 
-{{< important >}}
+{{< call-out "important" >}}
 
 Each metric is prefixed with a common namespace -- for example,  "nginx-controller" -- before it's sent to OpenTelemetry Collector. This prefix is used only by OpenTelemetry Collector and is not applied to any internal NGINX Controller metrics. Refer to the [metrics catalog]({{< ref "/controller/analytics/catalogs/metrics.md" >}}) for the full list of valid metric names.
 
 We have tested compatability with OTLP collector v0.33.0.  We will most likely support versions higher than this, assuming backwards compatability from OTLP.
 
-{{< /important >}}
+{{< /call-out >}}
 
-{{< see-also >}}
+{{< call-out "note" >}}
 
 See the [NGINX Controller Metrics]({{< ref "/controller/analytics/metrics/_index.md" >}}) docs for more information.
 
-{{< /see-also >}}
+{{< /call-out>}}
 
 ## What's Next
 

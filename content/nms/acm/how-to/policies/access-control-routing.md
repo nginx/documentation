@@ -88,7 +88,7 @@ Take the steps in this section if you would like to restrict access to Advanced 
     {{%/tab%}}
 {{</tabs>}}
 
-{{< note >}}
+{{< call-out "note" >}}
 
 - Any requests which do not match a specified condition will be allowed to access the API Gateway or Developer Portal. Adding a rule with no route or HTTP method specified means that
 - Adding multiple match conditions in a rule requires that all conditions are matched in order to access the API.
@@ -99,7 +99,7 @@ Take the steps in this section if you would like to restrict access to Advanced 
   - `STRING` will match if any of the values contained in the array match one of the values.
   - `REGEX` will check against the array converted to a comma-separated string. For example, `[ "first", "second", "third" ]` will become `first,second,third` when the regular expression is checked against it.
 
-{{< /note >}}
+{{< /call-out >}}
 
 ## Verification
 

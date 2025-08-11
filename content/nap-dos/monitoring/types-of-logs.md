@@ -15,9 +15,9 @@ There are 4 types of logs corresponding to App Protect DoS:
 - [Debug Logs](#debug-log): Technical messages at different levels of severity used to debug and resolve incidents and error behaviors.
 - [Request Logging](#request-log): F5 NGINX App Protect DoS adds information to each request logged to NGINX's access logging mechanism.
 
-{{% note %}}
+{{< call-out "note" >}}
 NGINX does not have audit logs in the sense of *"**who** did **what**"*. This can be done either from the orchestration system controlling NGINX (such as NGINX Controller) or by tracking the configuration files and the systemd invocations using Linux tools.
-{{% /note %}}
+{{< /call-out >}}
 
  {{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}}
 
@@ -61,9 +61,9 @@ In order to change the log level at run time, the following command can be calle
 admd -l DEBUG_LEVEL
 ```
 
-{{% note %}}
+{{< call-out "note" >}}
 `nginx.conf` does not refer to the NGINX App Protect DoS debug log configuration neither directly nor indirectly.
-{{% /note %}}
+{{< /call-out >}}
 
 ## NGINX Error log
 

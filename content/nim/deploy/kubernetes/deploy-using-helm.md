@@ -404,7 +404,7 @@ Run the `helm install` command to deploy NGINX Instance Manager:
 1. Replace `<path-to-your-values.yaml>` with the path to your `values.yaml` file.
 2. Replace `<your-password>` with a secure password (containing a mix of uppercase, lowercase letters, numbers, and special characters).
 
-   {{< important >}} Remember to save the password for future use. Only the encrypted password is stored, and there's no way to recover or reset it if lost. {{< /important >}}
+   {{< call-out "important" >}} Remember to save the password for future use. Only the encrypted password is stored, and there's no way to recover or reset it if lost. {{< /call-out >}}
 
 
 ```shell
@@ -462,7 +462,7 @@ The `values.yaml` file customizes the Helm chart installation without modifying 
     - In the `imagePullSecrets` section, add the credentials for your private Docker registry.
     - Change the version tag to the version of NGINX Instance Manager you would like to install. See "Install the chart" below for versions.
 
-    {{< see-also >}} For details on creating a secret, see Kubernetes [Pull an Image from a Private Registry](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/). {{</ see-also >}}
+    {{< call-out "note" >}} For details on creating a secret, see Kubernetes [Pull an Image from a Private Registry](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/). {{< /call-out>}}
 
     ```yaml
     nms-hybrid:
@@ -505,7 +505,7 @@ Run the `helm install` command to deploy NGINX Instance Manager:
 1. Replace `<path-to-your-values.yaml>` with the path to your `values.yaml` file.
 2. Replace `YourPassword123#` with a secure password (containing a mix of uppercase, lowercase letters, numbers, and special characters).
 
-   {{< important >}} Remember to save the password for future use. Only the encrypted password is stored, and there's no way to recover or reset it if lost. {{< /important >}}
+   {{< call-out "important" >}} Remember to save the password for future use. Only the encrypted password is stored, and there's no way to recover or reset it if lost. {{< /call-out >}}
 
 3. (Optional) Replace `<chart-version>` with the desired chart version. If omitted, the latest version will be installed.
 

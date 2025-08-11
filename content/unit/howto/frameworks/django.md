@@ -110,9 +110,9 @@ using Unit:
    {{% /tab %}}
    {{% tab name="ASGI" %}}
 
-   {{< note >}}
+   {{< call-out "note" >}}
    ASGI requires Python 3.5+ and Django 3.0+.
-   {{< /note >}}
+   {{< /call-out >}}
 
    ```json
    {

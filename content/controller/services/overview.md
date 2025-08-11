@@ -23,7 +23,7 @@ The diagrams below demonstrate how the different objects at the Service level re
 1. All Service objects are part of an Environment.
 1. Gateways and Certs can be defined at the Environment level --or-- at the Component Level. The diagram below shows an example of how traffic flows through a Gateway to an App.
 1. Components are child objects that represent the back-end server(s) that host your App or API.
-    {{<note>}}A Component can represent an application **or** an API. The same Component cannot be used for both App Delivery and API Management.{{</note>}}
+    {{< call-out "note" >}}A Component can represent an application **or** an API. The same Component cannot be used for both App Delivery and API Management.{{< /call-out >}}
 1. Certs can be added to a Gateway or to an individual Component.
 
 {{< img src="/ctlr/img/services-object-model-example.png" width="600" alt="Diagram showing the relationship of objects in an Environment within the Services area." >}}
@@ -42,7 +42,7 @@ The following are the basic building blocks of any NGINX Controller Service:
 
 Once these shared resources are in place, the teams in your organization can create the resources they need to manage Apps or publish APIs.
 
-{{< tip >}}Refer to the [App Delivery]({{< ref "/controller/app-delivery/" >}}) section for more information about how to use each module.{{< /tip >}}
+{{< call-out "tip" >}}Refer to the [App Delivery]({{< ref "/controller/app-delivery/" >}}) section for more information about how to use each module.{{< /call-out >}}
 
 Finally, to support automation efforts, all of the above and more can be done by using the NGINX Controller REST API. Refer to the [API Reference guide]({{< ref "/controller/api/_index.md" >}}) for more information and examples.
 

@@ -9,7 +9,7 @@ nd-content-type: how-to
 
 The following sections explain how to configure NGINX Agent using configuration files, CLI flags, and environment variables.
 
-{{<note>}}
+{{< call-out "note" >}}
 
 - NGINX Agent interprets configuration values set by configuration files, CLI flags, and environment variables in the following priorities:
 
@@ -19,7 +19,7 @@ The following sections explain how to configure NGINX Agent using configuration 
 
 - You must open any required firewall ports or add SELinux/AppArmor rules for the ports and IPs you want to use.
 
-{{</note>}}
+{{< /call-out >}}
 
 ## Configure with Config Files
 
@@ -30,9 +30,9 @@ Examples of the configuration files are provided below:
 <details open>
     <summary>example nginx-agent.conf</summary>
 
-{{<note>}}
+{{< call-out "note" >}}
 In the following example `nginx-agent.conf` file, you can change the `server.host` and `server.grpcPort` to connect to the control plane.
-{{</note>}}
+{{< /call-out >}}
 
 ```nginx {hl_lines=[13]}
 #
@@ -118,11 +118,11 @@ nginx_app_protect:
 <details open>
     <summary>example dynamic-agent.conf</summary>
 
-{{<note>}}
+{{< call-out "note" >}}
 Default location in Linux environments: `/var/lib/nginx-agent/agent-dynamic.conf`
 
 Default location in FreeBSD environments: `/var/db/nginx-agent/agent-dynamic.conf`
-{{</note>}}
+{{< /call-out >}}
 
 ```yaml
 # Dynamic configuration file for NGINX Agent.
@@ -169,13 +169,13 @@ nginx-agent
 
 ### CLI Flags and Environment Variables
 
-{{< warning >}}
+{{< call-out "warning" >}}
 
 Before version 2.35.0, the environment variables were prefixed with `NMS_` instead of `NGINX_AGENT_`.
 
 If you are upgrading from an older version, update your configuration accordingly.
 
-{{< /warning >}}
+{{< /call-out >}}
 
 {{<bootstrap-table "table table-responsive table-bordered">}}
 | CLI flag                                    | Environment variable                 | Description                                                                 |
@@ -218,7 +218,7 @@ If you are upgrading from an older version, update your configuration accordingl
 
 <br>
 
-{{<note>}}
+{{< call-out "note" >}}
 Use the `--config-dirs` command-line option, or the `config_dirs` key in the `nginx-agent.conf` file, to identify the directories NGINX Agent can read from or write to. This setting also defines the location to which you can upload config files when using a control plane.
 
 NGINX Agent cannot write to directories outside the specified location when updating a config and cannot upload files to directories outside of the configured location.
@@ -227,15 +227,15 @@ NGINX Agent follows NGINX configuration directives to file paths outside the des
 
 - [`ssl_certificate`](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_certificate)
 
-{{</note>}}
+{{< /call-out >}}
 
-{{<note>}} Use the `--dynamic-config-path` command-line option to set the location of the dynamic config file. This setting also requires you to move your dynamic config to the new path, or create a new dynamic config file at the specified location.
+{{< call-out "note" >}} Use the `--dynamic-config-path` command-line option to set the location of the dynamic config file. This setting also requires you to move your dynamic config to the new path, or create a new dynamic config file at the specified location.
 
 Default location in Linux environments: `/var/lib/nginx-agent/agent-dynamic.conf`
 
 Default location in FreeBSD environments: `/var/db/nginx-agent/agent-dynamic.conf`
 
-{{</note>}}
+{{< /call-out >}}
 
 ## Log Rotation
 

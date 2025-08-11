@@ -24,7 +24,7 @@ This figure depicts an example of NGINX Ingress Controller exposing two web appl
 
 {{<img src="/nic/ic-high-level.png" alt="">}}
 
-{{<note>}} For simplicity, necessary Kubernetes resources like Deployments and Services aren't shown, which Admin and the users also need to create.{{</note>}}
+{{< call-out "note" >}} For simplicity, necessary Kubernetes resources like Deployments and Services aren't shown, which Admin and the users also need to create.{{< /call-out >}}
 
 The figure shows:
 

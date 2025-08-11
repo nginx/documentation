@@ -95,7 +95,7 @@ Before you install NGINX Agent for the first time on your system, you need to se
       uid                      nginx signing key <signing-key-3@nginx.com>
     ```
 
-    {{< important >}}If the fingerprint is different, remove the file.{{< /important >}}
+    {{< call-out "important" >}}If the fingerprint is different, remove the file.{{< /call-out >}}
 
 1. Add the nginx agent repository:
 
@@ -159,7 +159,7 @@ Before you install NGINX Agent for the first time on your system, you need to se
       uid                      nginx signing key <signing-key-3@nginx.com>
     ```
 
-    {{< important >}}If the fingerprint is different, remove the file.{{< /important >}}
+    {{< call-out "important" >}}If the fingerprint is different, remove the file.{{< /call-out >}}
 
 1. Add the `nginx-agent` repository:
 

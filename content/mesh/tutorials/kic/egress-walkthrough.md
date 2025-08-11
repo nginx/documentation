@@ -12,14 +12,14 @@ type:
 ## Overview
 
 Learn how to create internal routes in F5 NGINX Ingress Controller to securely route egress traffic to non-meshed services.
-{{< note >}}
+{{< call-out "note" >}}
 NGINX Ingress Controller can be used for free with NGINX Open Source. Paying customers have access to NGINX Ingress Controller with NGINX Plus.
 To complete this tutorial, you must use either:
 
 - Open Source NGINX Ingress Controller version 3.0+
 - NGINX Plus version of NGINX Ingress Controller
 
-{{< /note >}}
+{{< /call-out >}}
 
 ## Objectives
 
@@ -36,9 +36,9 @@ to a non-meshed service.
 
 ## Install NGINX Service Mesh
 
-{{< note >}}
+{{< call-out "note" >}}
 If you want to view metrics for NGINX Ingress Controller, ensure that you have deployed Prometheus and Grafana and then configure NGINX Service Mesh to integrate with them when installing. Refer to the [Monitoring and Tracing]( {{< ref "/mesh/guides/monitoring-and-tracing.md" >}} ) guide for instructions.
-{{< /note >}}
+{{< /call-out >}}
 
 1. Follow the installation [instructions]( {{< ref "/mesh/get-started/install/install.md" >}} ) to install NGINX Service Mesh on your Kubernetes cluster.
 
@@ -173,20 +173,20 @@ To create an internal route from the NGINX Ingress Controller to the legacy `tar
      internalRoute: true
    ```
 
-{{< tip >}}
+{{< call-out "tip" >}}
 For this tutorial, the legacy Service is deployed in Kubernetes so the host name of the Ingress/VirtualServer resource is the Kubernetes
 DNS name.
 
 To create internal routes to services outside of the cluster, refer to [creating internal routes]( {{< ref "/mesh/tutorials/kic/deploy-with-kic.md#create-internal-routes-for-non-meshed-services" >}} ).
-{{< /tip >}}
+{{< /call-out >}}
 
 Either copy and apply the Ingress or VirtualServer resource shown below, or download and apply the linked file.
 
 Ingress:
 
-{{< important >}}
+{{< call-out "important" >}}
 If using Kubernetes v1.18.0 or greater you must use `ingressClassName` in your Ingress resources. Uncomment line 9 in the resource below or the downloaded file, `target-internal-route.yaml`.
-{{< /important >}}
+{{< /call-out >}}
 
 - {{< fa "download" >}} {{< link "/examples/nginx-ingress-controller/target-internal-route.yaml" "nginx-ingress-controller/target-internal-route.yaml" >}}
 

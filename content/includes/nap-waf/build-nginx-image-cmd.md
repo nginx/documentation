@@ -2,9 +2,9 @@
 nd-docs: "DOCS-1512"
 ---
 
-{{< note >}}
+{{< call-out "note" >}}
 Never upload your NGINX App Protect WAF v5 images to a public container registry such as Docker Hub. Doing so violates your license agreement.
-{{< /note >}}
+{{< /call-out >}}
 
 To build the image, execute the following command in the directory containing the `nginx-repo.crt`, `nginx-repo.key`, and `Dockerfile`. Here, `nginx-app-protect-5` is an example image tag.
 

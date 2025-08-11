@@ -94,7 +94,7 @@ NGINX_AGENT_TLS_ENABLE=true
 
 ## Enable Server-Side TLS With Self-Signed Certificate
 
-{{< warning >}}These steps are not recommended for production environments.{{< /warning >}}
+{{< call-out "warning" >}}These steps are not recommended for production environments.{{< /call-out >}}
 
 To enable server-side TLS with a self-signed certificate, you must have TLS enabled and set `skip_verify` to `true`, which disables hostname validation. Setting `skip_verify` can be done done only by updating the configuration file. See the following example:
 

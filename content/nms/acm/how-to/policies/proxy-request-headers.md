@@ -56,7 +56,7 @@ The following table lists the configurable settings and their default values for
 
 ### Default Headers {#default-headers}
 
-{{<note>}}When `proxyDefaultHeadersToBackend` is `true`, the following headers are applied.{{</note>}}
+{{< call-out "note" >}}When `proxyDefaultHeadersToBackend` is `true`, the following headers are applied.{{< /call-out >}}
 
 
 {{< bootstrap-table "table table-striped table-bordered" >}}
@@ -73,7 +73,7 @@ The following table lists the configurable settings and their default values for
 
 ### Header Value Prefixes {#value-prefixes}
 
-{{<note>}}When adding a custom header to `proxyCustomHeadersToBackend,` include one of the following prefixes for the `value` setting.{{</note>}}
+{{< call-out "note" >}}When adding a custom header to `proxyCustomHeadersToBackend,` include one of the following prefixes for the `value` setting.{{< /call-out >}}
 
 
 {{< bootstrap-table "table table-striped table-bordered" >}}
@@ -102,7 +102,7 @@ You can apply this policy using either the web interface or the REST API.
 
 <br>
 
-{{<see-also>}}{{< include "acm/how-to/access-acm-api.md" >}}{{</see-also>}}
+{{< call-out "note" >}}{{< include "acm/how-to/access-acm-api.md" >}}{{< /call-out>}}
 
 To apply the Proxy Request Headers policy using the REST API, send an HTTP `PUT` request to the Proxies endpoint.
 

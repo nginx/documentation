@@ -11,8 +11,8 @@ type:
 
 ## Overview
 
-{{< important >}} Instance groups are supported in the F5 NGINX Controller API Management module beginning with version 3.18-APIM. Instance groups are supported in the NGINX Controller Application Delivery module versions 3.20, 3.21, and 3.22.
-{{< /important >}}
+{{< call-out "important" >}} Instance groups are supported in the F5 NGINX Controller API Management module beginning with version 3.18-APIM. Instance groups are supported in the NGINX Controller Application Delivery module versions 3.20, 3.21, and 3.22.
+{{< /call-out >}}
 
 Instance groups allow an API Gateway to be native in Kubernetes.
 

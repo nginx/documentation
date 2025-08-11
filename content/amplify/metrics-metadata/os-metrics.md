@@ -168,7 +168,7 @@ nd-docs: DOCS-974
 
 ## Agent Metrics
 
-{{< note >}} Agent metrics are available only if you are using F5 NGINX Amplify Agent.{{< /note >}}
+{{< call-out "note" >}} Agent metrics are available only if you are using F5 NGINX Amplify Agent.{{< /call-out >}}
 
 - ####  **amplify.agent.status**
 

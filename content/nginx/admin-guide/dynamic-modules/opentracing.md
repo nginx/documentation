@@ -12,7 +12,7 @@ type:
 - how-to
 ---
 
-{{< note >}} The `nginx-plus-module-opentracing` package is no longer available in the NGINX Plus repository.{{< /note >}}
+{{< call-out "note" >}} The `nginx-plus-module-opentracing` package is no longer available in the NGINX Plus repository.{{< /call-out >}}
 
 The module was deprecated in [NGINX Plus Release 31]({{< ref "/nginx/releases.md#r31" >}}) and removed in [NGINX Plus Release 34]({{< ref "/nginx/releases.md#r34" >}}). Its functionality has been replaced with the [OpenTelemetry]({{< ref "/nginx/admin-guide/dynamic-modules/opentelemetry.md" >}}) module.
 

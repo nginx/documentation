@@ -10,7 +10,7 @@ type:
 
 F5 NGINX as a Service for Azure (NGINXaaS) supports manual and automatic scaling of your deployment, allowing you to adapt to application traffic demands while controlling cost.
 
-{{<note>}}This feature is only available for Standard plan(s).{{</note>}}
+{{< call-out "note" >}}This feature is only available for Standard plan(s).{{< /call-out >}}
 
 An NGINXaaS deployment can be scaled out to increase the capacity (increasing the cost) or scaled in to decrease the capacity (reducing the cost). Capacity is measured in [NGINX Capacity Units (NCU)](#nginx-capacity-unit-ncu).
 
@@ -36,7 +36,7 @@ To update the capacity of your deploymentv using the Azure Portal,
  1. Set the desired number of NCUs. Scale increases in 10 NCU intervals (10, 20, 30, and so on).
  1. Select **Submit** to update your deployment.
 
-  {{< note >}}There's no downtime while an NGINXaaS deployment changes capacity.{{< /note >}}
+  {{< call-out "note" >}}There's no downtime while an NGINXaaS deployment changes capacity.{{< /call-out >}}
 
 ## Autoscaling
 
@@ -72,7 +72,7 @@ The following table outlines constraints on the specified capacity based on the 
 | Standard plan(s)                  | 10                          | 500                         | 10                         |
 {{</bootstrap-table>}}
 
-{{< note >}}If you need a higher maximum capacity, please [open a request](https://my.f5.com/manage/s/) and specify the Resource ID of your NGINXaaS deployment, the region, and the desired maximum capacity you wish to scale to.{{< /note >}}
+{{< call-out "note" >}}If you need a higher maximum capacity, please [open a request](https://my.f5.com/manage/s/) and specify the Resource ID of your NGINXaaS deployment, the region, and the desired maximum capacity you wish to scale to.{{< /call-out >}}
 
 ## Connection processing methods restrictions
 
@@ -91,8 +91,8 @@ NGINXaaS provides metrics for visibility of the current and historical capacity 
 
 See the [Metrics Catalog]({{< ref "/nginxaas-azure/monitoring/metrics-catalog.md" >}}) for a reference of all metrics.
 
-{{< note >}}These metrics aren't visible unless enabled, see how to [Enable Monitoring]({{< ref "/nginxaas-azure/monitoring/enable-monitoring.md" >}}) for details.{{< /note >}}
-{{< warning >}}The `ncu.consumed` metric is now deprecated and is on the path to retirement. Please change any alerting on this metric to use the new Capacity Percentage metric.{{< /warning >}}
+{{< call-out "note" >}}These metrics aren't visible unless enabled, see how to [Enable Monitoring]({{< ref "/nginxaas-azure/monitoring/enable-monitoring.md" >}}) for details.{{< /call-out >}}
+{{< call-out "warning" >}}The `ncu.consumed` metric is now deprecated and is on the path to retirement. Please change any alerting on this metric to use the new Capacity Percentage metric.{{< /call-out >}}
 
 ## Estimating how many NCUs to provision
 

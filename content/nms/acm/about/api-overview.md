@@ -53,18 +53,18 @@ You can make API requests with basic auth by sending the base64-encoded credenti
 curl -X GET "https://<NMS_FQDN>/api/acm/<API_VERSION>/workspaces/infrastructure" -H "Authorization: Basic YWRtaW..."
 ```
 
-{{<warning>}}Even when encoded, basic authentication is not secure. The use of basic auth is not recommended for production environments.{{</warning>}}
+{{< call-out "warning" >}}Even when encoded, basic authentication is not secure. The use of basic auth is not recommended for production environments.{{< /call-out >}}
 
 ### JSON Web Token
 
 If your organization is using OIDC, you will be prompted to log in with your Identity Provider the first time you attempt to reach an API. After authenticating, you can request a JWT to use in subsequent API calls.
 
-{{<note>}}
+{{< call-out "note" >}}
 <br />
 
 - The means of requesting a token varies according to the Identity Provider; if you're not sure which provider your organization uses, check with your system administrator or technical support team.
 - Automated CI/CD workflows are not supported when using OIDC authentication.
-{{</note>}}
+{{< /call-out >}}
 
 The JWT should be sent as a "Bearer" token in the "Authorization" request header, as shown in the example below.
 
@@ -79,7 +79,7 @@ curl -X GET "https://<NMS_FQDN>/api/acm/<API_VERSION>/workspaces/infrastructure"
 You can use tools such as `curl` or [Postman](https://www.postman.com) to interact with the API Connectivity Manager REST API.
 The API URL follows the format `https://<NMS_FQDN>/api/acm/<API_VERSION>`.
 
-{{<note>}}When making API calls by using `curl`, Postman, or any other tool, you will need to provide your authentication information with each call. {{</note>}}
+{{< call-out "note" >}}When making API calls by using `curl`, Postman, or any other tool, you will need to provide your authentication information with each call. {{< /call-out >}}
 
 ### User Interface
 

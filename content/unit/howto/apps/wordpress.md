@@ -5,10 +5,10 @@ weight: 2300
 nd-docs: DOCS-1737
 ---
 
-{{< note >}}
+{{< call-out "note" >}}
 For a more specific walkthrough that includes SSL setup and NGINX as a
 proxy, see our [blog post](https://www.nginx.com/blog/automating-installation-wordpress-with-nginx-unit-on-ubuntu/).
-{{< /note >}}
+{{< /call-out >}}
 
 To run the [WordPress](https://wordpress.org) content management system
 using Unit:
@@ -78,7 +78,7 @@ using Unit:
    }
    ```
 
-   {{< note >}}
+   {{< call-out "note" >}}
    The difference between the **pass** targets is their usage of the
    **script** [setting]({{< relref "/unit/configuration.md#configuration-php" >}}):
 
@@ -86,7 +86,7 @@ using Unit:
      defaults to **index.php** if the URI omits it.
    - The **index** target specifies the **script** that Unit runs
      for *any* URIs the target receives.
-   {{< /note >}}
+   {{< /call-out >}}
 
 7. Upload the updated configuration.
 
@@ -97,7 +97,7 @@ using Unit:
 
    ![WordPress on Unit - Setup Screen](/unit/images/wordpress.png)
 
-   {{< note >}}
+   {{< call-out "note" >}}
    The resulting URI scheme will affect your WordPress configuration; updates
    may require [extra steps](https://wordpress.org/support/article/changing-the-site-url/).
-   {{< /note >}}
+   {{< /call-out >}}

@@ -70,7 +70,7 @@ Once the deployment is no longer needed, run the following to clean up the deplo
 
 {{< include "/nginxaas-azure/terraform-resources.md" >}}
 
-{{< tip >}}
+{{< call-out "tip" >}}
 
 See the [NGINX connfiguration overview]({{< ref "overview.md" >}}) topic
 to learn more about:
@@ -81,4 +81,4 @@ to learn more about:
 - [Directives that cannot be overridden]({{< ref "overview.md#directives-that-cannot-be-overridden" >}})
 - [Configuration directives list]({{< ref "overview.md#configuration-directives-list" >}})
 
-{{< /tip >}}
+{{< /call-out >}}

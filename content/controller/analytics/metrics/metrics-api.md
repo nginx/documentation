@@ -32,9 +32,9 @@ You can use the NGINX Controller [Metrics API]({{< ref "/controller/api/_index.m
 - `orderSeriesBy`
 - `dimensions`
 
-{{< note >}}
+{{< call-out "note" >}}
 Because NGINX Controller is constantly evolving, these example metrics and dimensions may differ from what you see with your NGINX Controller instance. Some metrics may require pre-configured applications to be visible in the API.
-{{< /note >}}
+{{< /call-out >}}
 
 ### Understanding the Metrics API Response
 
@@ -163,9 +163,9 @@ Using only `names` and time window parameters will give you the raw data points 
 
 To get a more organized response, you can provide an aggregate function for each queried metric: `AVG`, `SUM`, `COUNT`, `MAX`, `MIN`, or `RATE`.
 
-{{< note >}}
+{{< call-out "note" >}}
 In the following definitions, `time period` refers to the `resolution` (if provided) or the difference between the `endTime` and `startTime` (when `resolution` is not provided).
-{{< /note >}}
+{{< /call-out >}}
 
 - `AVG` - calculates the average value of the metric data samples over the period
 - `SUM` - calculates the total value of the metric data samples over the period
@@ -173,13 +173,13 @@ In the following definitions, `time period` refers to the `resolution` (if provi
 - `MIN`/`MAX` - returns the minimal/maximal data sample of the metric from the given period
 - `RATE` - returns an average value of the metric calculated per second (always *per second*, regardless of the provided `resolution`), based on the data available in the given period
 
-{{< note >}}
+{{< call-out "note" >}}
 You must define a `startTime` when using aggregate functions.
-{{< /note >}}
+{{< /call-out >}}
 
-{{< see-also >}}
+{{< call-out "note" >}}
 The list of supported aggregate functions for any particular metric is available in the [Metrics Catalog]({{< ref "/controller/analytics/catalogs/metrics.md" >}})).
-{{< /see-also >}}
+{{< /call-out>}}
 
 For example, the following query returns a single value (per dimension set), which is the sum of the metric values for the last three hours. To get proper values, ensure that the `endTime` is greater than the `startTime`.
 
@@ -195,9 +195,9 @@ For example:
 curl -X GET --cookie "session=<session cookie>" --url "{controller-IP}/api/v1/analytics/metrics?names=SUM(http.request.count),http.request.bytes_rcvd&startTime=now-3h"
 ```
 
-{{< important >}}
+{{< call-out "important" >}}
 Using AVG aggregation with traffic metrics with the `.total` suffix may cause confusion because traffic metrics are already aggregated. To learn more, refer to the [Overview: Traffic Metrics]({{< ref "/controller/analytics/metrics/overview-traffic-metrics.md" >}})) topics.
-{{< /important >}}
+{{< /call-out >}}
 
 #### Resolution
 
@@ -239,13 +239,13 @@ For example, the following query includes a simple filter on the app name. The q
 curl -X GET --cookie "session=<session cookie>" --url "{controller-IP}/api/v1/analytics/metrics?names=http.request.count&filter=app='app1'&startTime=now-3h"
 ```
 
-{{< tip >}}
+{{< call-out "tip" >}}
 
 - Predicates can be combined into logical expressions using `OR`, `AND`, and `(` `)`.
 - For matching values, wildcard (`*`) use is supported.
 - We recommend wrapping predicates in single quotes to ensure that the full query string is processed correctly.
 
-{{< /tip >}}
+{{< /call-out >}}
 
 The following example request uses `filter` with logical expressions:
 
@@ -259,12 +259,12 @@ Using filters and aggregation functions may not be enough to allow you to get co
 
 The `groupBy` parameter helps to gather results according to the specified dimension(s). You can provide multiple dimension names as a comma-separated list.
 
-{{< note >}}
+{{< call-out "note" >}}
 
 - When using `groupBy`, you must use an aggregate function and a time window (`startTime` must be defined; `endTime` is optional).
 - If a request contains aggregated and non-aggregated metrics, the `groupBy` parameter will apply only to the aggregated metrics.
 
-{{< /note >}}
+{{< /call-out >}}
 
 For example, the following query returns data for any application with a name that starts with `ap` in the `prod` environment for the last three hours.
 
@@ -328,9 +328,9 @@ There are cases when you might want to view only a specific data series (for exa
 
 When you specify a `seriesLimit`, the response always includes one other series with an `all` metric. This series aggregates the metric values of all the series that are not included in the result. If the total number of series returned is greater than the limit specified in the query parameter, an additional series named `other` is returned. This series aggregates the metrics values of the series outside of the specified limit.
 
-{{< note >}}
+{{< call-out "note" >}}
 When using `seriesLimit`, you can only specify one metric name in the `names` parameter and one `groupBy` parameter.
-{{< /note >}}
+{{< /call-out >}}
 
 **Example 1**
 The following example request uses `seriesLimit` to restrict the data returned to five series:
@@ -464,9 +464,9 @@ The response looks similar to the following example:
 }
 ```
 
-{{< important >}}
+{{< call-out "important" >}}
 You cannot use `dimensions` with the `seriesLimit` parameter.
-{{< /important >}}
+{{< /call-out >}}
 
 ## What's Next
 

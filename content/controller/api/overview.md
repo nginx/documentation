@@ -37,7 +37,7 @@ The diagrams below demonstrate how the different objects at the Service level re
 1. All Service objects are part of an Environment.
 1. Gateways and Certs can be defined at the Environment level --or-- at the Component Level. The diagram below shows an example of how traffic flows through a Gateway to an App.
 1. Components are child objects that represent the back-end server(s) that host your App or API.
-    {{<note>}}A Component can represent an application **or** an API. The same Component cannot be used for both App Delivery and API Management.{{</note>}}
+    {{< call-out "note" >}}A Component can represent an application **or** an API. The same Component cannot be used for both App Delivery and API Management.{{< /call-out >}}
 1. Certs can be added to a Gateway or to an individual Component.
 
 {{< img src="/ctlr/img/services-object-model-example.png" alt="Diagram showing the relationship of objects in an Environment within the Services area." >}}
@@ -55,19 +55,19 @@ The diagram below shows a sample deployment workflow. In this workflow, the user
 
 {{< img src="/ctlr/img/devops-workflow-simple.png" alt="Example deployment workflow" >}}
 
-{{< see-also >}}
+{{< call-out "note" >}}
 
 - [Managing Roles & Users]({{< ref "/controller/platform/access-management/manage-users.md" >}})
 
-{{< /see-also >}}
+{{< /call-out>}}
 
 ## Authentication
 
 The NGINX Controller API uses session cookies to authenticate requests. The session cookie is returned in response to a `GET /api/v1/platform/login` request. See the Login endpoint in the [NGINX Controller API Reference]({{< ref "/controller/api/_index.md" >}}) documentation for information about session cookie timeouts and invalidation.
 
-{{< tip >}}
+{{< call-out "tip" >}}
 You can send a GET request to the login endpoint to find the status of the session token.
-{{< /tip >}}
+{{< /call-out >}}
 
 For example:
 

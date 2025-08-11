@@ -32,7 +32,7 @@ files:
    uid                      nginx signing key <signing-key@nginx.com>
    ```
 
-   {{< important >}}If the fingerprint is different, remove the file.{{< /important >}}
+   {{< call-out "important" >}}If the fingerprint is different, remove the file.{{< /call-out >}}
 
 1. Add the nginx agent repository:
 

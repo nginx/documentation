@@ -32,7 +32,7 @@ The installation process closely follows the [NGINX Plus installation procedure]
 
 1.  Check the [Technical Specifications]({{< ref "/nginx/technical-specs.md" >}}) page to verify that the module is supported by your operating system.
 
-    {{< note >}} The OpenTelemetry module cannot be installed on Amazon Linux 2 LTS and SLES 15 SP5+. {{< /note >}}
+    {{< call-out "note" >}} The OpenTelemetry module cannot be installed on Amazon Linux 2 LTS and SLES 15 SP5+. {{< /call-out >}}
 
 2.  Make sure you have the latest version of NGINX Plus. In Terminal, run the command:
 

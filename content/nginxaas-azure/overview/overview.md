@@ -70,7 +70,7 @@ With the Standard V2 Plan, NGINXaaS uses the following redundancy features to ke
 - We use [Azure Availability  Zones](https://learn.microsoft.com/en-us/azure/availability-zones/az-overview)
   to protect your deployment from local failures within an Azure region. We balance NGINX instances across the possible availability zones in [supported regions](https://learn.microsoft.com/en-us/azure/availability-zones/az-overview#azure-regions-with-availability-zones)
 
-{{< note >}} If you are creating a public IP for your deployment, be sure to make them [zone redundant](https://learn.microsoft.com/en-us/azure/virtual-network/ip-services/public-ip-addresses#availability-zone) to get the best uptime. {{</ note >}}
+{{< call-out "note" >}} If you are creating a public IP for your deployment, be sure to make them [zone redundant](https://learn.microsoft.com/en-us/azure/virtual-network/ip-services/public-ip-addresses#availability-zone) to get the best uptime. {{< /call-out >}}
 
 ### Data plane traffic
 

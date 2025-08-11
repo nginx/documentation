@@ -23,18 +23,18 @@ using Unit:
    $ deactivate
    ```
 
-   {{< warning >}}
+   {{< call-out "warning" >}}
    Create your virtual environment with a Python version that matches the
    language module from Step 1 up to the minor number (**X.Y** in
    this example). Also, the app **type** in Step 5 must
    [resolve]({{< relref "/unit/configuration.md#configuration-apps-common" >}})
    to a similarly matching version; Unit doesn't infer it from the environment.
-   {{< /warning >}}
+   {{< /call-out >}}
 
-   {{< note >}}
+   {{< call-out "note" >}}
    Here, **\$VENV** isn't set because Unit picks up the virtual
    environment from **home** in Step 5.
-   {{< /note >}}
+   {{< /call-out >}}
 
 3. Let's see how the apps from the Pyramid
    [tutorial](https://docs.pylonsproject.org/projects/pyramid/en/latest/quick_tutorial)
