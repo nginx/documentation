@@ -8,114 +8,113 @@ nd-product: NGINX-ONE
 
 ## Introduction
 
-This guide helps you log in to NGINX One Console and understand the basics of how it works. You’ll learn how to get started, find your way around the console, and manage your NGINX instances using data plane keys.
+In this lab, you’ll log in to NGINX One Console, explore its main features, and create a data plane key to register NGINX instances.
 
-## What you’ll learn
+NGINX One Console is a cloud service in the F5 Distributed Cloud platform. It lets you:
 
-By the end of this tutorial, you’ll know how to:
+- Manage all NGINX instances in one place
+- Monitor performance and health metrics
+- Detect security risks like expired SSL certificates or known vulnerabilities
+- Track software versions
+- Get performance tips
 
-- Open and use NGINX One Console
-- Understand what NGINX One Console does and how it works
-- Create, copy, and save a data plane key
-- Revoke or delete a data plane key (optional)
-
-## Before you begin
-
-Make sure you have:
-
-- An F5 Distributed Cloud (XC) account
-- NGINX One service enabled in your account
-- Basic knowledge of Linux and NGINX
+Instead of switching between tools, you get one dashboard with real-time data and alerts.
 
 ---
 
-## Learn what NGINX One Console does
+## What you’ll learn
 
-NGINX One Console is a cloud-based service in the F5 Distributed Cloud platform. It helps you:
+By the end of this tutorial, you can:
 
-- Manage all your NGINX instances from one place
-- Monitor performance and health metrics
-- Catch security risks like expired SSL certificates and known vulnerabilities
-- Keep track of software versions and get performance tips
+- Open and use NGINX One Console
+- Understand how NGINX One Console works
+- Create, copy, and store a data plane key
+- Revoke or delete a data plane key
 
-With NGINX One Console, you don’t need to switch between tools. You get a single dashboard with real-time data and alerts.
+---
+
+## Before you begin
+
+You need:
+
+- An F5 Distributed Cloud (XC) account
+- NGINX One service enabled
+- Basic Linux and NGINX knowledge
 
 ---
 
 ## How NGINX One Console works
 
-NGINX One Console connects to each NGINX instance using a lightweight agent called **NGINX Agent**.
+NGINX One Console connects to each NGINX instance through **NGINX Agent**, a lightweight process that enables secure communication between the instance and NGINX One Console.  
+NGINX Agent applies configuration updates from NGINX One Console, collects performance and operating system metrics, and sends event notifications from the instance.
 
-NGINX Agent is responsible for securely registering and managing each instance through the console.
+You can install NGINX Agent in several ways:
 
-There are a few ways to install NGINX Agent:
+- Use public Docker images of NGINX Open Source with NGINX Agent preinstalled
+- Use public Docker images of NGINX Plus with NGINX Agent preinstalled
+- Install manually with `apt` or `yum`
+- Use the one-line `curl` command provided during registration
 
-- Use public Docker images of NGINX Open source that already include NGINX Agent
-- Use NGINX Plus containers with NGINX Agent preinstalled
-- Install manually using package managers like `apt` or `yum`
-- Use the one-line curl command that NGINX One provides during registration
+When you register a new instance, NGINX One Console gives you a `curl` command that downloads and installs NGINX Agent on your target system.
 
-When you register a new instance in the console, you'll get a ready-to-use `curl` command that downloads and installs the NGINX Agent on your target system.
+A data plane key is required to connect an instance to NGINX One Console. Once connected, you can monitor and manage the instance from the NGINX One Console dashboard.
 
-For more information about NGINX Agent, see the [NGINX Agent documentation]({{< ref "/agent/about.md" >}}).
+For more about NGINX Agent, see the [NGINX Agent overview]({{< ref "/agent/overview/about.md" >}}).
 
 ---
 
-## Open and use NGINX One Console
+## Open NGINX One Console
 
 1. Go to [https://console.ves.volterra.io/login/start](https://console.ves.volterra.io/login/start).
-2. Sign in using your Distributed Cloud account.
+2. Sign in with your F5 Distributed Cloud account.
 3. On the home page, find the **NGINX One** tile.
-4. Select the tile to open the console.
-5. Make sure the service status shows **Enabled**.
-6. Select **Visit Service** to go to the **Overview** dashboard.
+4. Select the tile to open NGINX One Console.
+5. Confirm the service status is **Enabled**.
+6. Select **Visit Service** to open the **Overview** dashboard in NGINX One Console.
 
-If NGINX One Console isn’t enabled, contact your XC administrator to request access.
+If NGINX One Console isn’t enabled, ask your F5 Distributed Cloud administrator for access.
 
-When no NGINX instances are connected, the dashboard will be empty. Once you add instances, it will show metrics like availability, version, and usage trends.
+When no NGINX instances are connected, the NGINX One Console dashboard stays empty. After you add instances, the dashboard shows metrics like availability, version, and usage trends.
 
 ---
 
-## Create and save a data plane key
+## Create a data plane key
 
-To register NGINX instances, you need a data plane key.
-
-1. In the console, go to **Manage > Data Plane Keys**.
+1. In NGINX One Console, go to **Manage > Data Plane Keys**.
 2. Select **Add Data Plane Key**.
-3. Enter a name for the key.
-4. Set an expiration date (or keep the default of one year).
+3. Enter a name for the data plane key.
+4. Set an expiration date, or use the one-year default.
 5. Select **Generate**.
-6. Copy the key when it appears—**you won’t be able to see it again**.
-7. Save it somewhere safe.
+6. Copy the data plane key — **you can’t view it again**.
+7. Store the data plane key in a safe place.
 
-You can use the same key to register many instances. If you lose the key, you’ll need to create a new one.
-
----
-
-## (Optional) Revoke a data plane key
-
-To disable a key:
-
-1. On the **Data Plane Keys** page, find the key you want to revoke.
-2. Select the key.
-3. Choose **Revoke**, then confirm.
+You can use the same data plane key to register multiple instances. If you lose the data plane key, create a new one.
 
 ---
 
-## (Optional) Delete a revoked key
+## Revoke a data plane key
 
-You can only delete a key after you revoke it.
+1. In NGINX One Console, go to **Manage > Data Plane Keys**.
+2. Find the data plane key you want to revoke.
+3. Select the data plane key.
+4. Choose **Revoke**, and confirm.
 
-1. On the **Revoked Keys** tab, find the key you want to delete.
-2. Select the key.
-3. Choose **Delete Selected**, then confirm.
+---
+
+## Delete a revoked data plane key
+
+You can only delete a data plane key after you revoke it.
+
+1. In NGINX One Console, go to the **Revoked Keys** tab.
+2. Find the data plane key you want to delete.
+3. Select the data plane key.
+4. Choose **Delete Selected**, and confirm.
 
 ---
 
 ## Next steps
 
-Now that you’ve explored NGINX One Console and created a key, you’re ready to connect your first NGINX instance.
-
+You’re ready to connect your first NGINX instance to NGINX One Console.  
 Go to [Lab 2: Run workshop components with Docker]({{< ref "nginx-one/workshops/lab2/run-workshop-components-with-docker.md" >}})
 
 ---
@@ -123,4 +122,4 @@ Go to [Lab 2: Run workshop components with Docker]({{< ref "nginx-one/workshops/
 ## References
 
 - [Create and manage data plane keys]({{< ref "nginx-one/connect-instances/create-manage-data-plane-keys.md" >}})
-- [NGINX Agent overview]({{< ref "/agent/about.md" >}})
+- [NGINX Agent overview]({{< ref "/agent/overview/about.md" >}})
