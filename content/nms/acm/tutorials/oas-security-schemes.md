@@ -15,7 +15,7 @@ type:
 
 The OpenAPI Specification (OAS) allows you to specify authentication and authorization requirements, or security schemes, for your APIs, ensuring that only authorized users or applications can access them. These security schemes are applied globally, meaning they are enforced for all APIs within the OAS.
 
-{{<note>}}When configuring security schemes, keep in mind that path-level security requirements will not be applied and are ignored.{{</note>}}
+{{< call-out "note" >}}When configuring security schemes, keep in mind that path-level security requirements will not be applied and are ignored.{{< /call-out >}}
 
 Listed below are the OAS security schemes that API Connectivity Manager supports.
 

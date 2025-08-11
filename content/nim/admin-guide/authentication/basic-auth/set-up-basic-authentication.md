@@ -31,7 +31,7 @@ The `admin` user is associated with an [admin role]({{< ref "/nim/admin-guide/rb
 
 ## Create new users {#create-users}
 
-{{< note >}} Please note that the web interface does not support adding user passwords directly. Once you've created new users, refer to the following steps to [set user passwords](#set-basic-passwords).{{< /note >}}
+{{< call-out "note" >}} Please note that the web interface does not support adding user passwords directly. Once you've created new users, refer to the following steps to [set user passwords](#set-basic-passwords).{{< /call-out >}}
 
 To add users, take the following steps:
 
@@ -53,7 +53,7 @@ To add users, take the following steps:
 
 1. (Required for Basic Auth) Add each user's username and password to the `/etc/nms/nginx/.htpasswd` file on the NGINX Instance Manager server. You can choose to run a script or make the changes manually. Refer to the [Set user passwords]({{< ref "/nim/admin-guide/authentication/basic-auth/set-up-basic-authentication.md#set-basic-passwords" >}}) topic for instructions.
 
-{{< see-also >}} Refer to the [Provision users and groups with SCIM]({{< ref "/nim/admin-guide/authentication/oidc/scim-provisioning.md" >}}) topic for instructions on automating user and group creation using the SCIM API. {{< /see-also >}}
+{{< call-out "note" >}} Refer to the [Provision users and groups with SCIM]({{< ref "/nim/admin-guide/authentication/oidc/scim-provisioning.md" >}}) topic for instructions on automating user and group creation using the SCIM API. {{< /call-out>}}
 
 
 ## Set user passwords {#set-basic-passwords}
@@ -66,7 +66,7 @@ Before you can set users' passwords, ensure you have [created users](#create-use
 
 You can use the `basic_passwords.sh` script to add a user's encrypted password to the `/etc/nms/nginx/.htpasswd` file on the NGINX Instance Manager host.
 
-{{<note>}}The `basic_passwords.sh` script requires the [OpenSSL](https://www.openssl.org) package. We strongly recommend **OpenSSL v1.1.1 or later**.{{</note>}}
+{{< call-out "note" >}}The `basic_passwords.sh` script requires the [OpenSSL](https://www.openssl.org) package. We strongly recommend **OpenSSL v1.1.1 or later**.{{< /call-out >}}
 
 To change a user's password with the `basic_passwords.sh` script:
 
@@ -90,7 +90,7 @@ To manually set user passwords:
 1. Open the `/etc/nms/nginx/.htpasswd` file on the NGINX Instance Manager host and add the username and password for each user.
 2. Save the changes to the file.
 
-{{< see-also >}}Refer to the documentation [Restricting access with HTTP basic auth]({{< ref "/nginx/admin-guide/security-controls/configuring-http-basic-authentication.md" >}}) for detailed instructions on working with the password file.{{< /see-also >}}
+{{< call-out "note" >}}Refer to the documentation [Restricting access with HTTP basic auth]({{< ref "/nginx/admin-guide/security-controls/configuring-http-basic-authentication.md" >}}) for detailed instructions on working with the password file.{{< /call-out>}}
 
 ## Making API requests with basic authentication
 

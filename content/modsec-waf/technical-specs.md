@@ -5,9 +5,9 @@ toc: true
 weight: 300
 ---
 
-{{< important >}}
+{{< call-out "important" >}}
 {{% modsec-eol-notice %}}
-{{< /important >}}
+{{< /call-out >}}
 
 F5 NGINX ModSecurity WAF is a module for NGINX Plus.
 

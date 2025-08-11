@@ -39,7 +39,7 @@ To add an alert rule:
        1. Select the submit (plus sign) icon.
        1. Select **Done** to close the Manage Email Addresses panel.
 
-       {{<note>}}You will need to verify the email address before it can begin receiving alerts.{{</note>}}
+       {{< call-out "note" >}}You will need to verify the email address before it can begin receiving alerts.{{< /call-out >}}
 
 1. (Optional) Select **Mute Alert Rule** if you want to create the alert rule but not receive any associated notifications.
 1. Select **Create**.
@@ -63,11 +63,11 @@ To edit an alert:
 1. Select the edit (pencil) icon for the alert rule.
 1. Make the desired changes to the alert rule, then select **Save**.
 
-{{< important >}}
+{{< call-out "important" >}}
 When you edit an alert rule, any ongoing alerts which previously met that rule will expire immediately.
 
 If the threshold is still exceeded in the new alert rule configuration, new alerts will be triggered.
-{{< /important >}}
+{{< /call-out >}}
 
 ## Mute or Unmute an Alert Rule
 

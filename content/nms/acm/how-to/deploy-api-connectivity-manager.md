@@ -15,7 +15,7 @@ Review the following requirements for API Connectivity Manager before continuing
 
 ### Install Instance Manager
 
-{{< important >}}To install API Connectivity Manager, you must first install Instance Manager. This is because API Connectivity Manager relies on features that are included with Instance Manager.{{< /important >}}
+{{< call-out "important" >}}To install API Connectivity Manager, you must first install Instance Manager. This is because API Connectivity Manager relies on features that are included with Instance Manager.{{< /call-out >}}
 
 - [Deploy Instance Manager on Kubernetes]({{< ref "/nim/deploy/kubernetes/deploy-using-helm.md" >}})
 
@@ -48,7 +48,7 @@ Follow these steps to download the Docker image for API Connectivity Manager:
 
 ## Load Docker Image {#load-docker-image}
 
-{{< note >}} To complete the commands in this section, you need to have [Docker 20.10 or later](https://docs.docker.com/get-docker/) installed. {{< /note >}}
+{{< call-out "note" >}} To complete the commands in this section, you need to have [Docker 20.10 or later](https://docs.docker.com/get-docker/) installed. {{< /call-out >}}
 
 
 1. Change to the directory where you downloaded the Docker image:
@@ -75,17 +75,17 @@ Follow these steps to download the Docker image for API Connectivity Manager:
    Loaded image: nms-acm:1.5.0
    ```
 
-   {{<important>}}
+   {{< call-out "important" >}}
    Take note of the loaded image's name and tag.  You'll need to reference this information in the next section when pushing the image to your private registry.
 
    In the example output above, `nms-acm` is the image name and `1.5.0` is the tag.  The image name or tag could be different depending on the product version you downloaded from MyF5.
-   {{</important>}}
+   {{< /call-out >}}
 
 ---
 
 ## Push Image to Private Registry {#push-docker-image}
 
-{{<note>}}To complete the steps in this section, you need an [externally-accessible private Docker registry](https://docs.docker.com/registry/deploying/) to push the container images to.{{</note>}}
+{{< call-out "note" >}}To complete the steps in this section, you need an [externally-accessible private Docker registry](https://docs.docker.com/registry/deploying/) to push the container images to.{{< /call-out >}}
 
 To push the Docker images to your private registry, take the following steps:
 
@@ -157,14 +157,14 @@ To enable the API Connectivity Manager Module, take the following steps:
 
 ## Upgrade NGINX Management Suite Deployment {#upgrade-nms}
 
-{{< note >}} To complete the steps in this section, you need to have [OpenSSL 1.1.1](https://www.openssl.org/source/) or later installed. {{</ note >}}
+{{< call-out "note" >}} To complete the steps in this section, you need to have [OpenSSL 1.1.1](https://www.openssl.org/source/) or later installed. {{< /call-out >}}
 
 Run the following command to upgrade the NGINX instance deployment:
 
 - Replace `<path-to-your-values.yaml>` with the path to the [values.yaml file you created]({{< ref "/nim/deploy/kubernetes/deploy-using-helm.md#configure-chart" >}}).
 - Replace `YourPassword123#` with a secure password that contains a combination of uppercase and lowercase letters, numbers, and special characters.
 
-    {{< important >}}Make sure to copy and save the password for future reference. Only the encrypted password is stored in Kubernetes. There's no way to recover or reset a lost password.{{< /important >}}
+    {{< call-out "important" >}}Make sure to copy and save the password for future reference. Only the encrypted password is stored in Kubernetes. There's no way to recover or reset a lost password.{{< /call-out >}}
 
 - (Optional) Replace `<nms-chart-version>` with the desired version; see the table below for the available versions. Alternatively, you can omit this flag to install the latest version.
 

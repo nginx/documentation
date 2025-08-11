@@ -18,7 +18,7 @@ A BYO NGINX App Protect policy lets you maintain consistent Security Policies ac
 To export a policy from F5 Advanced WAF or ASM, take the following steps:
 
 1. Convert your F5 XML security policy to an NGINX App Protect WAF declarative JSON policy using the [NGINX App Protect Policy Converter tool](https://docs.nginx.com/nginx-app-protect/configuration/#policy-converter).
-   {{<note>}}We recommend using the Converter tool that corresponds with the most recent NGINX App Protect version.{{</note>}}
+   {{< call-out "note" >}}We recommend using the Converter tool that corresponds with the most recent NGINX App Protect version.{{< /call-out >}}
 
 2. Use the NGINX App Protect declarative JSON policy as the WAF policy in NGINX Controller for your app component(s).
 

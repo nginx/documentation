@@ -9,9 +9,9 @@ nd-docs: DOCS-1786
 
 September 25, 2024
 
-{{< warning >}}
+{{< call-out "warning" >}}
 Release 4.8.1 cannot be upgraded to v4.11. You must uninstall 4.8.1 and install 4.11. Upgrade is supported for versions prior to 4.8.1.
-{{< /warning >}}
+{{< /call-out >}}
 
 ---
 

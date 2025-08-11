@@ -21,7 +21,7 @@ Metrics are served over HTTP by default. Enabling HTTPS will secure the metrics 
 
 ## Installing Prometheus and Grafana
 
-{{< note >}} These installations are for demonstration purposes and have not been tuned for a production environment. {{< /note >}}
+{{< call-out "note" >}} These installations are for demonstration purposes and have not been tuned for a production environment. {{< /call-out >}}
 
 ### Prometheus
 

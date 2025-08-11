@@ -10,13 +10,15 @@ nd-docs: DOCS-616
 
 08 Jul 2025
 
-This release includes the ability to configure Rate Limiting for your APIs based on a specific NGINX variable and its value. This allows you more granular control over how frequently specific users access your resources.
+This NGINX Ingress Controller release brings initial connectivity to the NGINX One Console! You can now use NGINX One Console to monitor NGINX instances that are part of your NGINX Ingress Controller cluster. See [here]({{< ref "/nginx-one/k8s/add-nic.md" >}}) to configure NGINX One Console with NGINX Ingress Controller.
 
-Lastly, in our previous v5.0.0 release, we removed support for Open Tracing. This release replaces that observability capability with native NGINX Open Telemetry traces, allowing you to monitor the internal traffic of your applications.
+This release also includes the ability to configure Rate Limiting for your APIs based on a specific NGINX variable and its value. This allows you more granular control over how frequently specific users access your resources.
+
+Lastly, in our previous v5.0.0 release, we removed support for OpenTracing. This release replaces that observability capability with native [NGINX OpenTelemetry]({{< ref "/nic/logging-and-monitoring/opentelemetry.md" >}}) traces, allowing you to monitor the internal traffic of your applications.
 
 ### <i class="fa-solid fa-rocket"></i> Features
-- [7642](https://github.com/nginx/kubernetes-ingress/pull/7642) Add OpenTelemetry support
-- [7916](https://github.com/nginx/kubernetes-ingress/pull/7916) Add support for Agent V3
+- [7642](https://github.com/nginx/kubernetes-ingress/pull/7642) Add [OpenTelemetry support]({{< ref "/nic/logging-and-monitoring/opentelemetry.md" >}})
+- [7916](https://github.com/nginx/kubernetes-ingress/pull/7916) Add support for NGINX Agent version 3 and NGINX One Console
 - [7884](https://github.com/nginx/kubernetes-ingress/pull/7884) Tiered rate limits with variables
 - [7765](https://github.com/nginx/kubernetes-ingress/pull/7765) Add OIDC PKCE configuration through Policy
 - [7832](https://github.com/nginx/kubernetes-ingress/pull/7832) Add request_method to rate-limit Policy
@@ -46,7 +48,7 @@ Lastly, in our previous v5.0.0 release, we removed support for Open Tracing. Thi
 [GitHub Container](https://github.com/nginx/kubernetes-ingress/pkgs/container/kubernetes-ingress),
 [Amazon ECR Public Gallery](https://gallery.ecr.aws/nginx/nginx-ingress) or [Quay.io](https://quay.io/repository/nginx/nginx-ingress).
 - For NGINX Plus, use the 5.1.0 images from the F5 Container registry or build your own image using the 5.1.0 source code
-- For Helm, use version 2.2.0 of the chart.
+- For Helm, use version 2.2.1 of the chart.
 
 ### <i class="fa-solid fa-life-ring"></i> Supported Platforms
 
@@ -61,17 +63,21 @@ versions: 1.25-1.33.
 
 Added support for [NGINX Plus R34]({{< ref "/nginx/releases.md#nginxplusrelease-34-r34" >}}), users needing to use a forward proxy for license verification are now able to make use of the [`proxy`](https://nginx.org/en/docs/ngx_mgmt_module.html#proxy) directives available in F5 NGINX Plus.
 
-{{< important >}}
-With the removal of the OpenTracing dynamic module from [NGINX Plus R34](({{< ref "/nginx/releases.md#nginxplusrelease-34-r34" >}}), NGINX Ingress Controller also removes full OpenTracing support.  This will affect users making use of OpenTracing with the ConfigMap, `server-snippets` & `location-snippets` parameters.  Support for tracing with [OpenTelemetry]({{< ref "/nginx/admin-guide/dynamic-modules/opentelemetry.md" >}}) will come in a future release.
-{{< /important >}}
+{{< call-out "warning" >}}
+
+With the removal of the OpenTracing dynamic module from [NGINX Plus R34]({{< ref "/nginx/releases.md#nginxplusrelease-34-r34" >}}), NGINX Ingress Controller also removes full OpenTracing support. This will affect users making use of OpenTracing with the ConfigMap, `server-snippets` & `location-snippets` parameters.  Support for tracing with [OpenTelemetry]({{< ref "/nginx/admin-guide/dynamic-modules/opentelemetry.md" >}}) will come in a future release.
+
+{{< /call-out >}}
 
 We have extended the rate-limit Policy to allow tiered rate limit groups with JWT claims.  This will also allow users to apply different rate limits to their `VirtualServer` or `VirtualServerRoutes` with the value of a JWT claim.  See [here](https://github.com/nginx/kubernetes-ingress/tree/v5.0.0/examples/custom-resources/rate-limit-tiered-jwt-claim/) for a working example.
 
 We introduced NGINX Plus Zone Sync as a managed service within NGINX Ingress Controller in this release.  In previous releases, we had examples using `stream-snippets` for OIDC support, users can now enable `zone-sync` without the need for `snippets`.  NGINX Plus Zone Sync is available when utilising two or more replicas, it supports OIDC & rate limiting.
 
-{{< note >}}
+{{< call-out "note" >}}
+
 For users who have previously installed OIDC or used the `zone_sync` directive with `stream-snippets`, please see the note in the [Configmap resources]({{< ref "/nic/configuration/global-configuration/configmap-resource.md#zone-sync" >}}) topic to use the new `zone-sync` ConfigMap option.
-{{< /note >}}
+
+{{< /call-out >}}
 
 Open Source NGINX Ingress Controller architectures `armv7`, `s390x` & `ppc64le` are deprecated and will be removed in the next minor release.
 
@@ -123,7 +129,7 @@ versions: 1.25-1.32.
 - [7295](https://github.com/nginx/kubernetes-ingress/pull/7295) Clean up and fix for NIC Pod failing to bind when NGINX exits unexpectedly
 
 ### <i class="fa-solid fa-box"></i> Helm Chart
-{{< warning >}} From this release onwards, the Helm chart location has changed from `oci://ghcr.io/nginxinc/charts/nginx-ingress` to `oci://ghcr.io/nginx/charts/nginx-ingress`. {{< /warning >}}
+{{< call-out "warning" >}} From this release onwards, the Helm chart location has changed from `oci://ghcr.io/nginxinc/charts/nginx-ingress` to `oci://ghcr.io/nginx/charts/nginx-ingress`. {{< /call-out >}}
 - [7188](https://github.com/nginx/kubernetes-ingress/pull/7188) Correct typo in helm lease annotations template
 
 ### <i class="fa-solid fa-upload"></i> Dependencies
@@ -152,10 +158,10 @@ versions: 1.25-1.32.
 16 Dec 2024
 
 With added support for [NGINX R33]({{< ref "/nginx/releases.md#nginxplusrelease-33-r33" >}}), deployments of F5 NGINX Ingress Controller using NGINX Plus now require a valid JSON Web Token to run.
-Please see the [Upgrading to v4]({{< ref "/nic/installation/installing-nic/upgrade-to-v4.md#create-license-secret" >}}) for full details on setting up your license `Secret`.
+For full details on setting up your license `Secret`, see [Upgrading to v4]({{< ref "/nic/installation/upgrade-version.md#upgrade-from-3x-to-4x" >}}).
 
 API Version `v1alpha1` of `GlobalConfiguration`, `Policy` and `TransportServer` resources are now deprecated.
-Please see [Update custom resource apiVersion]({{< ref "/nic/installation/installing-nic/upgrade-to-v4.md#update-custom-resource-apiversion" >}}) for full details on updating your resources.
+For full details on updating your resources, see [Update custom resource apiVersion]({{< ref "/nic/installation/upgrade-version.md#upgrade-from-3x-to-4x" >}}).
 
 Updates have been made to our logging library. For a while, F5 NGINX Ingress Controller has been using the [golang/glog](https://github.com/golang/glog). For this release, we have moved to the native golang library [log/slog](https://pkg.go.dev/log/slog).
 This change was made for these reasons:
@@ -199,7 +205,7 @@ For more details on what this feature does, and how to configure it yourself, pl
 [Amazon ECR Public Gallery](https://gallery.ecr.aws/nginx/nginx-ingress) or [Quay.io](https://quay.io/repository/nginx/nginx-ingress).
 - For NGINX Plus, use the 4.0.0 images from the F5 Container registry or build your own image using the 4.0.0 source code
 - For Helm, use version 2.0.0 of the chart.
-- [Upgrading to v4]({{< ref "/nic/installation/installing-nic/upgrade-to-v4.md" >}})
+- [Upgrading to v4]({{< ref "/nic/installation/upgrade-version.md#upgrade-from-3x-to-4x" >}})
 
 ### <i class="fa-solid fa-life-ring"></i> Supported Platforms
 
@@ -213,14 +219,14 @@ versions: 1.25-1.32.
 
 25 Nov 2024
 
-{{< note >}}
+{{< call-out "note" >}}
 In our next major release, `v4.0.0`, the default log library for NGINX Ingress Controller will be changed from `golang/glog` to `log/slog`.
 This will mean that logs generated by NGINX Ingress Controller will be in a structured format with the option to choose a `string` or `json` output.
 This will not affect logs generated by NGINX.
 To ensure backwards compatibility, we will ensure the existing log format, `glog`, will be maintained through a configuration option for the next 3 releases.
-{{< /note >}}
+{{< /call-out >}}
 
-{{< important >}}
+{{< call-out "important" >}}
 CRD version removal notice.
 In our next major release, `v4.0.0`, support for the following apiVersions for these listed CRDs will be dropped:
 1. `k8s.nginx.org/v1alpha` for `GlobalConfiguration`
@@ -231,7 +237,7 @@ Prior to upgrading, **please ensure** that any of these resources deployed as `a
 If a resource of `kind: GlobalConfiguration`, `kind: Policy` or `kind: TransportServer` are deployed as `apiVersion: k8s.nginx.org/v1alpha1`, these resources will be **deleted** when upgrading from, at least, `v3.4.0` to `v4.0.0`
 
 When `v4.0.0` is released, the release notes will contain the required upgrade steps to go from `v3.X.X` to `v4.X.X`
-{{< /important >}}
+{{< /call-out >}}
 
 ### <i class="fa-solid fa-bug-slash"></i> Fixes
 - [6838](https://github.com/nginx/kubernetes-ingress/pull/6838) Update oidc_template and conf
@@ -1683,7 +1689,7 @@ We will provide technical support for NGINX Ingress Controller on any Kubernetes
 ### <i class="fa-solid fa-download"></i> Upgrade
 
 - For NGINX, use the 1.12.1 image from our DockerHub: `nginx/nginx-ingress:1.12.1`, `nginx/nginx-ingress:1.12.1-alpine` or `nginx/nginx-ingress:1.12.1-ubi`
-- For NGINX Plus, use the 1.12.1 image from the F5 Container Registry - see [the documentation here]({{< ref "/nic/installation/nic-images/get-registry-image.md">}})
+- For NGINX Plus, use the 1.12.1 image from the F5 Container Registry - see [the documentation here]({{< ref "/nic/installation/nic-images/registry-download.md">}})
 - Alternatively, you can also build your own image using the 1.12.1 source code.
 - For Helm, use version 0.10.1 of the chart.
 

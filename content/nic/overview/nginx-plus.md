@@ -22,7 +22,7 @@ NGINX Ingress Controller works with [NGINX](https://nginx.org/) as well as [NGIN
 
 For a comprehensive guide of NGINX Plus features available with Ingress resources, see the [ConfigMap]({{< ref "/nic/configuration/global-configuration/configmap-resource">}}) and [Annotations]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations">}}) documentation.
 
-{{< note >}} NGINX Plus features are configured for Ingress resources using Annotations that start with `nginx.com`. {{< /note >}}
+{{< call-out "note" >}} NGINX Plus features are configured for Ingress resources using Annotations that start with `nginx.com`. {{< /call-out >}}
 
 For a comprehensive guide of NGINX Plus features available with custom resources, see the [Policy]({{< ref "/nic/configuration/policy-resource" >}}), [VirtualServer]({{< ref "/nic/configuration/virtualserver-and-virtualserverroute-resources" >}}) and [TransportServer]({{< ref "/nic/configuration/transportserver-resource" >}}) documentation.
 

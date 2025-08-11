@@ -14,9 +14,9 @@ This guide walks you through the steps to set up NGINX Ingress Controller using 
 
 Follow this guide to set up NGINX Ingress Controller using AWS Marketplace. This involves some extra steps to make sure everything works as it should.
 
-{{< important >}}This guide focuses on EKS version 1.30. For EKS versions below 1.30, you'll need to adjust security settings in the NGINX Pod to ensure compatibility with marketplace images. Make sure you're using updated versions of `eksctl` and the AWS CLI.{{< /important >}}
+{{< call-out "important" >}}This guide focuses on EKS version 1.30. For EKS versions below 1.30, you'll need to adjust security settings in the NGINX Pod to ensure compatibility with marketplace images. Make sure you're using updated versions of `eksctl` and the AWS CLI.{{< /call-out >}}
 
-{{< note >}}See the `AWS Marketplace Metering Service` section of the [AWS Marketplace documentation](https://docs.aws.amazon.com/general/latest/gr/aws-marketplace.html) for regions where NGINX Ingress Controller is supported.{{</note>}}
+{{< call-out "note" >}}See the `AWS Marketplace Metering Service` section of the [AWS Marketplace documentation](https://docs.aws.amazon.com/general/latest/gr/aws-marketplace.html) for regions where NGINX Ingress Controller is supported.{{< /call-out >}}
 
 ## Instructions
 
@@ -26,10 +26,10 @@ Follow this guide to set up NGINX Ingress Controller using AWS Marketplace. This
 
 3. Link this IAM role to your EKS cluster service account. Doing this will annotate your service account Kubernetes object with the IAM role link.
 
-{{< important >}}Associating your AWS EKS cluster with an OIDC provider is a prerequisite for creating your IAM service account.{{< /important >}}
+{{< call-out "important" >}}Associating your AWS EKS cluster with an OIDC provider is a prerequisite for creating your IAM service account.{{< /call-out >}}
 
 ## Use eksctl
-{{< note >}}Make sure you have an operational EKS cluster and that the namespace for your NGINX Ingress Controller is set up. If you don't have an EKS cluster yet, you'll need to create one.{{< /note >}}
+{{< call-out "note" >}}Make sure you have an operational EKS cluster and that the namespace for your NGINX Ingress Controller is set up. If you don't have an EKS cluster yet, you'll need to create one.{{< /call-out >}}
 
 {{<tabs name="install-aws">}}
 {{%tab name="manifests"%}}
@@ -134,6 +134,6 @@ Follow this guide to set up NGINX Ingress Controller using AWS Marketplace. This
 {{%/tab%}}
 {{</tabs>}}
 
-{{< tip >}}For help with credentials, AWS Labs offers a credential helper. Check out [their GitHub repository](https://github.com/awslabs/amazon-ecr-credential-helper) for setup instructions.{{< /tip >}}
+{{< call-out "tip" >}}For help with credentials, AWS Labs offers a credential helper. Check out [their GitHub repository](https://github.com/awslabs/amazon-ecr-credential-helper) for setup instructions.{{< /call-out >}}
 
 For options to customize your resources, see our [Configuration documentation]({{< ref "/nic/configuration/" >}}).

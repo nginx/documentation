@@ -62,9 +62,9 @@ In this IPv4 example, we use the default configuration while enabling the deny l
 }
 ```
 
-{{< note >}}
+{{< call-out "note" >}}
 The above configuration assumes the IP address represents the original requestor. However, it is also common that the client address may instead represent a downstream proxy device as opposed to the original requestor's IP address. In this case, you may need to configure NGINX App Protect WAF to prefer the use of an `X-Forwarded-For` (or similar) header injected to the request by a downstream proxy in order to more accurately identify the *actual* originator of the request. [See the XFF Headers and Trust](#xff-headers-and-trust) for information regarding the additional settings required for this configuration.
-{{< /note >}}
+{{< /call-out >}}
 
 
 Here's an example of IPv6 notation with a single address and an IP subnet with a 120-bit prefix:

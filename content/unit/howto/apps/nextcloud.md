@@ -15,7 +15,7 @@ platform using Unit:
 3. Install NextCloud's [core files](https://docs.nextcloud.com/server/latest/admin_manual/installation/command_line_installation.html). Here we install them at **/path/to/app**;
    use a real path in your configuration.
 
-   {{< note >}}
+   {{< call-out "note" >}}
    Verify the resulting settings in **/path/to/app/config/config.php**;
    in particular, check the [trusted domains](https://docs.nextcloud.com/server/latest/admin_manual/installation/installation_wizard.html#trusted-domains-label)
    to ensure the installation is accessible within your network:
@@ -27,7 +27,7 @@ platform using Unit:
      1 => '*.example.com',
    ),
    ```
-   {{< /note >}}
+   {{< /call-out >}}
 
 4. Change ownership:
 
@@ -162,7 +162,7 @@ platform using Unit:
    }
    ```
 
-   {{< note >}}
+   {{< call-out "note" >}}
    The difference between the **pass** targets is their usage of the
    **script** [setting]({{< relref "/unit/configuration.md#configuration-php" >}}):
 
@@ -170,7 +170,7 @@ platform using Unit:
      defaults to **index.php** if the URI omits it.
    - Other targets specify the **script** that Unit runs for *any* URIs
      the target receives.
-   {{< /note >}}
+   {{< /call-out >}}
 
 6. Upload the updated configuration.
 

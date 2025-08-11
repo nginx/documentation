@@ -11,9 +11,9 @@ type:
 
 ## Uninstalling the Chart
 
-{{< important >}}
+{{< call-out "important" >}}
 OpenShift users: Before uninstalling, read through the [OpenShift considerations]({{< ref "/mesh/get-started/platform-setup/openshift.md#remove" >}}) guide to make sure you understand the implications.
-{{< /important >}}
+{{< /call-out >}}
 
 To uninstall the `nsm` release in the `nginx-mesh` namespace, run:
 

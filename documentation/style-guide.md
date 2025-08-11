@@ -101,7 +101,6 @@ The table provides guidelines about the terms you should and should not use for 
 | cookie/cookies (noun) | | |
 | covers | As in, "this section/topic/chapter covers the following...". Instead, use a phrase such as, "This topic deals with..." or "This topic provides the following information...". More options: communicates, presents, offers, introduces, explains, describes. | |
 | curly brackets `{}` | The name for the curved `{}` parenthetical markings is "braces". They are not called curly brackets. | |
-| CVSS v3.0 | Do not spell out. (Articles with CVSS metrics should include the CVSS link.) | |
 | daemon | Avoid using this term in generic documentation because it is UNIX-oriented. Instead, we use "agent", "utility", or "application". However, we do refer to specific UNIX daemons, like `named` and `sod`, when daemon is part of the name. | |
 | data center | Write this as two words. | |
 | domain name | example.com, example.net, example.org, or localhost per [RFC 2606](https://www.rfc-editor.org/rfc/rfc2606.html). | |
@@ -147,7 +146,6 @@ The table provides guidelines about the terms you should and should not use for 
 | Forwarding (IP) | See virtual server types. | |
 | Forwarding (Layer 2) | See virtual server types. | |
 | forwards | Use backward and forward, not backwards and forwards. | |
-| FTP | Do not spell out. | |
 | fu, fubar | Do not use; always replace with specific text. Watch for these in code samples. | |
 | future releases and TBD | Do not use TBD in any content, including release notes. Do not reference future releases, such as This OID will be disabled in future releases. | |
 | G | Abbreviation for "giga", but in computer terminology represents 230, or 1,073,741,824. Correct: 4G | |
@@ -190,7 +188,7 @@ The table provides guidelines about the terms you should and should not use for 
 | IPv4-in-IPv6 vs. IPv4 in IPv6 | You can hyphenate IPv4-in-IPv6 when used as an adjective, such as IPv4-in-IPv6 tunnels. Note that the internal v in IPv4 and IPv6 should remain in lowercase format. | |
 | ISO 9001:2015 certification | For example: ISO 9001:2015 certified" or ISO 9001:2015 certification Don't use: ISO certified or ISO certification (Per: ISO - Certification, for questions about the use of ISO Certificate terms and logo, please contact the GS quality team at *qmt) | |
 | it | Avoid ambiguous pronouns. Be explicit: "Check the status of the server. Restart ~~it~~ the server" | |
-| jargon | Jargon is the technical terminology or characteristic idiom of a special activity or group. Try hard to avoid it. Think about explaining something to a member of your family or a friend who doesn't know what you know. F5 products are highly technical, but strive to be as plainspoken as possible when describing or instructing. Spell out abbreviations on first use, use the clearest and easiest word to understand that will still accomplish the job, and so on. | |
+| jargon | Jargon is technical language used by people in a specific group or field. Avoid it whenever you can. Imagine you’re explaining the topic to a friend or family member who doesn’t know the technology. F5 products are technical, but your writing should still be clear and simple. Spell out acronyms the first time you use them. Use words that are easy to understand and still get the job done. For exceptions, see the [Acronyms](#acronyms) section.  | |
 | JWT license file | Include the word "license" when referring to the JSON Web Token that users download as part of their F5 NGINX subscription. | |
 | kill | Avoid this term except in command line syntax, where it is a UNIX command for stopping processes. (It's actually an IEEE POSIX standard command.) Alternatives for describing the action are: § End the process § Interrupt the process § Quit the process § Shut down the process § Stop the process | |
 | known issue | Abbreviate as "KI" when using in public-facing documentation. | |
@@ -296,8 +294,6 @@ The table provides guidelines about the terms you should and should not use for 
 | space | Do not use when referring to an input field or checkbox where the user needs to enter info. Recast to identify as a box. | |
 | SPDY | Correct: a SPDY profile (pronounced speedy). | |
 | spin up/spin down, spinning up/spinning down | Jargon, but becoming more widely used because of AWS. Do not use in our documentation without adding context on first reference. For example You can spin up (create additional virtual instances) or spin down (remove virtual instances) . . . . | |
-| SSH | Do not spell out. | |
-| SSL | Do not spell out. | |
 | SSLi/SSL Intercept | For the SSL Intercept iRule. Spell out. Do not abbreviate except to match UI label. | |
 | Sync-Failover (and Sync-Only) | Title capitalize and hyphenate to Sync-Failover unless referencing the option in tmsh; then lowercase and hyphenate as sync-failover. These guidelines apply to Sync-Only as well. | |
 | tap | Describes action of touching the hardware touchscreens in hardware documentation. Do not use in software documentation; use "select" instead. | |
@@ -314,7 +310,6 @@ The table provides guidelines about the terms you should and should not use for 
 | Traffic Management Microkernel (TMM) | First mention: the Traffic Management Microkernel (TMM)Subsequent references: the TMM | |
 | Traffic Management Operating System (TMOS) | Do not use. See TMOS. | |
 | typically vs. normally | When describing a predictable and expected action in technical content, write in terms of what is typical rather than normal for clarity. Normal implies judgment. Avoid particularly when applying to user actions, practices, or behaviors. Use typical instead. | |
-| UDP | User Datagram Protocol. Do not spell out. | |
 | UI/GUI/WebGUI | Don't use these terms in documentation. For UI, call it the browser interface or user interface if necessary. Don't use GUI, or WebGUI. | |
 | unsecure and non-secure | Use unsecure and not insecure when describing a lack of security regarding something technical or technology-related in our documentation. If preferred and internally consistent with what you are documenting, non-secure may be OK, but defer to your editor. | |
 | update | Use when moving from one minor version of a product to another. For example, from NGINX Instance Manager 2.1 to 2.2. For example: Before updating your system, you should read the release notes to understand any new issues. For example: OIDC-authenticated users can't view the Users list after updating to NGINX Instance Manager 2.9.1. | |
@@ -328,8 +323,6 @@ The table provides guidelines about the terms you should and should not use for 
 | virtual address | Use instead of virtual IP address or VIP. | |
 | virtual address vs. virtual IP address | Although this refers to the IP address part of a virtual server destination address, only use virtual address (which also reflects the GUI). | |
 | virtual edition/Virtual Edition | Use virtual edition as a generic term. For Virtual Edition, see VE. | |
-| Virtual Local Area Network (VLAN) | Do not spell out unless necessary to context. | |
-| Virtual Private Network (VPN) | Do not spell out unless necessary to context. | |
 | walk | Don't use. Anthropomorphism. Instead, try guides, leads, conducts, directs, shows… Example: The Setup utility guides you through a series of pages. | |
 | warning/caution | Caution is less severe than Warning. Use Caution when alerting that damage may occur, such as data loss. Use Warning as the severest form of advisory, reserved for when there's a hazard to personnel (such as you're being directed to install a server rack and there's a chance it may fall on you). | |
 | wget | command.| |
@@ -344,6 +337,42 @@ The table provides guidelines about the terms you should and should not use for 
 | wish, desire | Do not use. Belongs in fairy tales. Use want, need, require, or prefer. | |
 | Wizard and wizard | When documenting the GUI, you can capitalize Wizard if appropriate, such as for the Network Access Setup Wizard. When writing about wizards in general, or when a page title of a dialog box or GUI does not show Wizard in uppercase format, you can leave wizard in lowercase format. | |
 | WWW or www | Do not include www. in web addresses In text, do not use WWW, but use Internet instead. Of course, you can use www as part of a URL. Although we're moving away from that, too. | |
+
+## Acronyms
+
+The following acronyms do not need to be spelled out:
+
+| Acronym | Definition |
+|---------|------------|
+| API     | Application Programming Interface |
+| CIDR    | Classless Inter-Domain Routing |
+| CPU     | Central Processing Unit |
+| CVE     | Common Vulnerabilities and Exposures |
+| CVSS    | Common Vulnerability Scoring System |
+| DHCP    | Dynamic Host Configuration Protocol |
+| DNS     | Domain Name System |
+| FQDN    | Fully Qualified Domain Name |
+| FTP     | File Transfer Protocol |
+| GPU     | Graphics Processing Unit |
+| gRPC    | gRPC Remote Procedure Call |
+| HTTP    | Hypertext Transfer Protocol |
+| HTTPS   | Hypertext Transfer Protocol Secure |
+| IP      | Internet Protocol |
+| JSON    | JavaScript Object Notation |
+| JWT     | JSON Web Token |
+| NAT     | Network Address Translation |
+| PEM     | Privacy Enhanced Mail (file format) |
+| RAM     | Random Access Memory |
+| SMTP    | Simple Mail Transfer Protocol |
+| SSH     | Secure Shell |
+| SSL     | Secure Sockets Layer |
+| TCP     | Transmission Control Protocol |
+| TLS     | Transport Layer Security |
+| UDP     | User Datagram Protocol |
+| VLAN    | Virtual Local Area Network |
+| VPN     | Virtual Private Network |
+| WAF     | Web Application Firewall |
+| YAML    | YAML Ain't Markup Language |
 
 
 ## Topic types and templates
@@ -433,27 +462,6 @@ Ensure content and screenshots are anonymized and don't contain sensitive inform
   - Look for (and replace) content such as UUIDs and OAuth 2 keys (which start with `eY`)
 - Limit the use of links to external (non-F5) sources. When necessary, only link to reputable sources and foundational sites, such as GitHub.com, Google.com, and Microsoft.com.
   - This helps minimize the risk of prompt injection.
-
-## Guidelines for `includes`
-
-In an ideal world, we'd "write once, publish everywhere." To support this goal, we follow the principle of [Don't repeat yourself](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) in our documentation. This principle shapes how we create and use `includes`, which pull reusable content from files in the [content/includes](https://github.com/nginxinc/docs/tree/main/content/includes) directory.
-
-For example:
-
-```text
-{{< include "controller/helper-script-prereqs.md" >}}
-```
-
-This entry automatically incorporates content from the `helper-script-prereqs.md` file in the `content/includes/controller` subdirectory.
-
-To make sure includes are effective and easy to maintain, follow these practices:
-
-- **Use includes only for reusable content**: Create an include only if the content appears in at least **two locations**. Using an include for single-use content adds unnecessary complexity and makes maintenance harder.
-- **Keep includes small and modular**: Write narrowly scoped snippets to maximize flexibility and reuse.
-- **Avoid branded product names in includes**: Use the full product name (e.g., "NGINX Instance Manager"), but avoid including the branded version (e.g., "F5 NGINX Instance Manager"). The branded name is required only on the first mention in a document; this is a context-specific rule. Includes, however, are designed to be context-agnostic—they should not rely on or assume any prior content—so including the branded name could repeat information unnecessarily in locations where it has already been introduced.
-- **Don't include headers**: Avoid adding H2 or other headers inside includes. These headers won't appear in the document's table of contents (TOC) and may not fit well with the surrounding content hierarchy. Add headers directly in the document instead.
-- **Avoid nesting includes**: If there’s another way to achieve the same outcome, avoid nesting includes. While technically possible, it complicates reviews and maintenance. Use a flat structure for simplicity.
-- **Don't start documents with includes**: The opening of a document is usually the introduction, which explains its purpose. Includes are reused text, so starting multiple documents with identical content could look odd, especially in search results.
 
 ## Guidelines for command-line operations
 
