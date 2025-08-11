@@ -12,9 +12,9 @@ type:
 
 You can logically group your NGINX instances and instance groups by their physical locations using the **Locations** settings page in the F5 NGINX Controller web interface.
 
-{{< note >}}
+{{< call-out "note" >}}
 By default, NGINX Instances are added to the `unspecified` Location. The unspecified Location is a system-owned resource that can’t be updated or deleted.
-{{< /note >}}
+{{< /call-out >}}
 
 ## Create a Location
 

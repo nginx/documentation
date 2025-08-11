@@ -8,7 +8,7 @@ weight: 200
 
 {{< include "tech-specs/acm-nim-dependencies.md" >}}
 
-{{< important >}} If you're [installing API Connectivity Manager in an offline environment]({{< ref "/nim/disconnected/offline-install-guide.md#install-acm-offline" >}}) and the minimum required version of Instance Manager is not installed, the API Connectivity Manager installer will exit. You'll need to [install Instance Manager manually]({{< ref "/nim/disconnected/offline-install-guide.md#install-nim-offline" >}}) before installing API Connectivity Manager.{{< /important >}}
+{{< call-out "important" >}} If you're [installing API Connectivity Manager in an offline environment]({{< ref "/nim/disconnected/offline-install-guide.md#install-acm-offline" >}}) and the minimum required version of Instance Manager is not installed, the API Connectivity Manager installer will exit. You'll need to [install Instance Manager manually]({{< ref "/nim/disconnected/offline-install-guide.md#install-nim-offline" >}}) before installing API Connectivity Manager.{{< /call-out >}}
 
 ### API Connectivity Manager Supported NGINX Versions {#acm-supported-nginx}
 

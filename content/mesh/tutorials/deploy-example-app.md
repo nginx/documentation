@@ -16,18 +16,18 @@ In this tutorial, we will use the `bookinfo` example app Deployment.
 
 - {{< fa "download" >}} {{< link "examples/bookinfo.yaml" "examples/bookinfo.yaml" >}}
 
-{{< note >}}
+{{< call-out "note" >}}
 Notice in the above yaml:
 
 - All of the service spec port names are populated with the name of the protocol
 - All deployment `containerPort` fields are specified.
 
 This is used in the mesh to identify the kind of traffic being sent and where it is allowed to be received. For more information on deployment and service identification rules, see [identification-rules]( {{< ref "/mesh/get-started/install/configuration.md#identification-rules" >}} ) in the Getting Started section.
-{{< /note >}}
+{{< /call-out >}}
 
-{{< note >}}
+{{< call-out "note" >}}
 Review the [ports reserved by F5 NGINX Service Mesh sidecar]( {{< ref "/mesh/about/mesh-tech-specs.md#ports" >}} ) and make sure there are no overlaps with ports used by your applications.
-{{< /note >}}
+{{< /call-out >}}
 
 ## Prerequisite
 Ensure that you have deployed Prometheus, Grafana, and a tracing backend and configured NGINX Service Mesh to export data to them. Refer to the [Monitoring and Tracing]( {{< ref "/mesh/guides/monitoring-and-tracing.md" >}} ) guide for instructions.

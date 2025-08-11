@@ -6,9 +6,9 @@ toc: true
 weight: 300
 ---
 
-{{< important >}}
+{{< call-out "important" >}}
 {{% modsec-eol-notice %}}
-{{< /important >}}
+{{< /call-out >}}
 
 This chapter explains how to configure the Commercial ModSecurity Rules from Trustwave SpiderLabs for use with the F5 NGINX ModSecurity web application firewall (WAF)).
 

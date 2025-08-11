@@ -17,12 +17,12 @@ We encourage you to install the latest version of NGINX Controller to take advan
 
 Technical support is provided for earlier versions of NGINX Controller that were released within two years of the current release.
 
-{{< see-also >}}
+{{< call-out "note" >}}
 For related installation documentation, refer to the following publications:
 
 - [NGINX Controller Installation Guide]({{< ref "/controller/admin-guides/backup-restore/_index.md" >}})
 - [NGINX Controller Technical Specifications Guide]({{< ref "/controller/admin-guides/install/nginx-controller-tech-specs.md" >}})
-{{< /see-also >}}
+{{< /call-out>}}
 
 &nbsp;
 
@@ -1057,13 +1057,13 @@ NGINX Controller requires an [8-core CPU @ 2.4 GHz or higher]({{< ref "/controll
 
 If you've installed NGINX Controller on a system that does not have an 8-core CPU @ 2.4 GHz or higher, the upgrade to 3.12 may fail.
 
-{{< caution >}}Installing or upgrading NGINX Controller on systems that do not meet the minimum hardware requirements may cause NGINX Controller to become unresponsive.
+{{< call-out "caution"  >}}Installing or upgrading NGINX Controller on systems that do not meet the minimum hardware requirements may cause NGINX Controller to become unresponsive.
 
 Refer to the [NGINX Controller Tech Specs]({{< ref "/controller/admin-guides/install/nginx-controller-tech-specs" >}}) guide for hardware requirements and system recommendations.
 
 Following the workaround below will restore functionality. However, **running on a system that does not meet the documented minimum requirements is not supported or recommended**.
 
-It is strongly recommended that you upgrade your system to meet the minimum requirements (8-core CPU). Doing so will ensure a successful upgrade to version 3.12. {{< /caution >}}
+It is strongly recommended that you upgrade your system to meet the minimum requirements (8-core CPU). Doing so will ensure a successful upgrade to version 3.12. {{< /call-out >}}
 
 **Workaround:**
 
@@ -1095,7 +1095,7 @@ To restore a failed upgrade, take the steps below:
 
 - Wait 2-3 minutes for all services to start. Then, log in to the NGINX Controller user interface to verify that system functionality is restored.
 
-{{< note >}}If you're not able to confirm that functionality has been restored by following the above steps once, try repeating them. In some test cases, repeating the steps was necessary to complete the upgrade.{{< /note >}}
+{{< call-out "note" >}}If you're not able to confirm that functionality has been restored by following the above steps once, try repeating them. In some test cases, repeating the steps was necessary to complete the upgrade.{{< /call-out >}}
 
 &nbsp;
 
@@ -1200,11 +1200,11 @@ The following issues are known to be present in this release. Look for updates t
 
   If you've installed NGINX Controller on a system that does not have an 8-core CPU @ 2.4 GHz or higher, **you should not upgrade to v3.12**.
 
-  {{< caution >}}
+  {{< call-out "caution"  >}}
 Installing or upgrading NGINX Controller on systems that do not meet the minimum hardware requirements may cause NGINX Controller to become unresponsive.
 
 Refer to the [NGINX Controller Tech Specs]({{< ref "/controller/admin-guides/install/nginx-controller-tech-specs.md" >}}) guide for hardware requirements and system recommendations.
-  {{< /caution >}}
+  {{< /call-out >}}
 
   **Workaround:**
 
@@ -1849,7 +1849,7 @@ This release includes the following fixes. Search by the issue ID -- the number 
 
   - Option 2: If you have already upgraded from a pre-3.4 release to a post-3.4 release without upgrading *to* 3.4 in the interim, you can only work around this issue by elevating the permissions of your guest users to regular users.
 
-    {{< warning >}}This change involves a **significant elevation of privilege** and should be undertaken only with careful consideration. The regular user role has all the same admin role permissions except for the ability to promote new admins. If this change is acceptable for your installation -- for any guest role users and any per-environment users with the guest role -- these users should be edited by the default admin account to remove the guest role and replace it with the user role.{{< /warning >}}
+    {{< call-out "warning" >}}This change involves a **significant elevation of privilege** and should be undertaken only with careful consideration. The regular user role has all the same admin role permissions except for the ability to promote new admins. If this change is acceptable for your installation -- for any guest role users and any per-environment users with the guest role -- these users should be edited by the default admin account to remove the guest role and replace it with the user role.{{< /call-out >}}
 
 #### Documentation
 
@@ -2064,7 +2064,7 @@ NGINX Controller 3.6.0 includes the following updates:
 - Bug fixes and improvements.
 - Adds external authentication using Active Directory (beta).
 
-  {{< note >}} Active Directory users are given user-level access to NGINX Controller in this beta implementation.{{< /note >}}
+  {{< call-out "note" >}} Active Directory users are given user-level access to NGINX Controller in this beta implementation.{{< /call-out >}}
 
 - Adds ability to create orchestrated Instances on AWS using Instance Templates.
 - Adds metrics forwarding for Splunk (beta).
@@ -2340,7 +2340,7 @@ Vulnerability issues are disclosed only when a fix is available. For information
 
   Install the NGINX Controller Agent and AVRD on a 64-bit distribution.
 
-  {{< important >}} NGINX Controller support for 32-bit distributions will be deprecated in a future release.{{< /important >}}
+  {{< call-out "important" >}} NGINX Controller support for 32-bit distributions will be deprecated in a future release.{{< /call-out >}}
 
 <span id="350-supported"></a>
 
@@ -2840,7 +2840,7 @@ NGINX Controller 3.1.0 includes the following updates:
 
   The `strategyRef` and `waf` objects for the Components resource are experimental placeholder objects.  Including the `strategyRef` and/or `waf` blocks in the component specification should not enable additional security-related application traffic services, even if there are no errors. If you see the error “Security module not found on the NGINX instance,” you should remove these blocks.
 
-  {{< note >}} The NGINX Controller REST API may contain API endpoints that are not fully supported. These endpoints are marked with the `x-f5-experimental` vendor extension.{{< /note >}}
+  {{< call-out "note" >}} The NGINX Controller REST API may contain API endpoints that are not fully supported. These endpoints are marked with the `x-f5-experimental` vendor extension.{{< /call-out >}}
 
 - This release adds new app-centric metrics and a new summary page in the UI for viewing these metrics. You can use these app metrics to monitor and evaluate the condition of your apps.
 

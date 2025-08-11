@@ -43,7 +43,7 @@ You can specify the way API clients present a JWT:
 - Bearer token
 - Cookie
 
-{{<note>}} The Bearer token option configures NGINX Plus to verify the JWT in the Authorization Bearer header, which is present in HTTP requests. The Bearer token is the default NGINX Plus use case for JWT. {{</note>}}
+{{< call-out "note" >}} The Bearer token option configures NGINX Plus to verify the JWT in the Authorization Bearer header, which is present in HTTP requests. The Bearer token is the default NGINX Plus use case for JWT. {{< /call-out >}}
 
 A JWK set consists of three parts:
 
@@ -66,11 +66,11 @@ The detailed list of algorithms is available in the [NGINX JWT module documentat
 
 API keys are convenient for testing and small-scale deployments, while JWTs are more appropriate for production use against an external Identity Provider.
 
-{{< see-also >}}
+{{< call-out "note" >}}
 
 To create an Identity Provider by using a JWK set, see [Add an Identity Provider]({{< ref "/controller/services/manage-identity-providers.md#add-an-identity-provider" >}}).
 
-{{< /see-also >}}
+{{< /call-out>}}
 
 ### Conditional Access
 
@@ -99,11 +99,11 @@ When you select Comparison Type 'Is one of', the Value field supports multiple v
 
 A Rate Limiting Policy limits the number of requests the API will accept within a set time frame. Setting a rate-limiting policy protects your upstream application servers from receiving too many user requests at the same time. It also helps protect your services (APIs or Apps) against DDoS attacks or slow down brute-force password-guessing attacks.​
 
-{{< see-also >}}
+{{< call-out "note" >}}
 
 Want to find out more? See [Rate Limiting with NGINX and NGINX Plus](https://www.nginx.com/blog/rate-limiting-nginx/)
 
-{{< /see-also >}}
+{{< /call-out>}}
 
 You can set the following rate limiting options within the component::
 

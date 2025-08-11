@@ -1,6 +1,6 @@
 ---
 files:
-  - content/nginx-one/secure-your-fleet/secure.md
+  - content/nginx-one/secure-your-fleet/set-up-security-alerts.md
   - content/nginx-one/glossary.md
 ---
 

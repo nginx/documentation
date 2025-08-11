@@ -8,8 +8,8 @@ There are different implementations based on the type of references that are bei
 
 URL reference is the method of referencing an external source by providing its full URL. This is a very useful method when trying to combine or consolidate parts of the policy that are present on different server machines.
 
-{{< note >}} You need to make sure that the server where the resource files are located is always available when you are compiling your policy.
-{{< /note >}}
+{{< call-out "note" >}} You need to make sure that the server where the resource files are located is always available when you are compiling your policy.
+{{< /call-out >}}
 
 ##### Example Configuration
 

@@ -23,7 +23,7 @@ To look up your version of NGINX Controller:
 1. Select the NGINX Controller menu icon, then select **Platform**.
 1. On the Platform menu, select **Cluster** > **Overview**.
 
-{{< see-also >}}Refer to the [NGINX Controller release notes]({{< ref "/controller/releases/" >}}) to see what's new in the latest release of NGINX Controller.{{< /see-also >}}
+{{< call-out "note" >}}Refer to the [NGINX Controller release notes]({{< ref "/controller/releases/" >}}) to see what's new in the latest release of NGINX Controller.{{< /call-out>}}
 
 &nbsp;
 
@@ -33,9 +33,9 @@ To look up your version of NGINX Controller:
 
 You can create a support package for NGINX Controller that you can use to diagnose issues.
 
-{{< note >}}
+{{< call-out "note" >}}
 You will need to provide a support package if you open a ticket with NGINX Support via the [MyF5 Customer Portal](https://account.f5.com/myf5).
-{{< /note >}}&nbsp;
+{{< /call-out >}}&nbsp;
 
 ```bash
 /opt/nginx-controller/helper.sh supportpkg [-o|--output <file name>] [-s|--skip-db-dump] [-t|--timeseries-dump <hours>]
@@ -182,9 +182,9 @@ If you don't see the new Instance in the user interface or the Controller Agent 
     systemctl status controller-agent
     ```
 
-    {{< see-also >}}
+    {{< call-out "note" >}}
 For troubleshooting purposes, you can turn on Controller Agent debug logging by editing the `agent.conf` file. For more information, refer to [K64001240: Enabling NGINX Controller Agent debug logging](https://support.f5.com/csp/article/K64001240).
-    {{< /see-also >}}
+    {{< /call-out>}}
 
 1. The system DNS resolver is correctly configured, and the NGINX Controller server's fully qualified domain name (FQDN) can be resolved.
 1. The controller-agent service can be running as `root` or a different user, chosen during the installation if the Controller Agent was [installed to run as a non-root user]({{< ref "/controller/admin-guides/install/install-agent-non-root.md" >}}). To view the user ID for the controller-agent service, run the following command:
@@ -208,7 +208,7 @@ For troubleshooting purposes, you can turn on Controller Agent debug logging by 
 1. `selinux`, `apparmor`, or other third-party OS security tools are not interfering with the metrics collection. For example, for `selinux`, inspect  `/etc/selinux/config` and try `setenforce 0` temporarily to see if it improves the situation for certain metrics.
 1. The virtual private server (VPS) provider has not used hardened Linux kernels that may restrict non-root users from accessing `/proc` and `/sys`. Metrics describing the system and NGINX disk I/O are usually affected. There is no easy workaround for this except to allow the Controller Agent to run as `root`. Fixing permissions for `/proc` and `/sys/block` may also help.
 
-{{< see-also >}}
+{{< call-out "note" >}}
 
 For more information on installing and configuring the Controller Agent, see the following topics:
 
@@ -217,7 +217,7 @@ For more information on installing and configuring the Controller Agent, see the
 - [Configuring the NGINX Controller Agent]({{< ref "/controller/admin-guides/config-agent/configure-the-agent.md" >}})
 - [Configuring metrics collection for NGINX Controller]({{< ref "/controller/admin-guides/config-agent/configure-metrics-collection.md" >}})
 
-{{< /see-also >}}
+{{< /call-out>}}
 
 &nbsp;
 

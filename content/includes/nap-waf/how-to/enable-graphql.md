@@ -1,6 +1,6 @@
 This section describes how to configure GraphQL with minimal configuration. Refer to the following sections for GraphQL elements definitions and details about advanced configuration options.
 
-{{< note >}} GraphQL is supported on NGINX App Protect WAF version starting 4.2. Make sure you're running NGINX App Protect WAF version 4.2 or later to get GraphQL to work properly.{{< /note >}}
+{{< call-out "note" >}} GraphQL is supported on NGINX App Protect WAF version starting 4.2. Make sure you're running NGINX App Protect WAF version 4.2 or later to get GraphQL to work properly.{{< /call-out >}}
 
 GraphQL policy consists of three basic elements: GraphQL Profile, GraphQL Violations and GraphQL URL.
 

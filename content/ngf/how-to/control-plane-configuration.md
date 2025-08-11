@@ -30,7 +30,7 @@ Additionally, the control plane updates the status of the resource (if it exists
 
 ## Viewing and Updating the Configuration
 
-{{< note >}} For the following examples, the name `ngf-config` should be updated to the name of the resource created for your installation.{{< /note >}}
+{{< call-out "note" >}} For the following examples, the name `ngf-config` should be updated to the name of the resource created for your installation.{{< /call-out >}}
 
 To view the current configuration and its status:
 

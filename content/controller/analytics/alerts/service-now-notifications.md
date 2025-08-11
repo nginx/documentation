@@ -21,7 +21,7 @@ The ServiceNow integration sends all notifications from NGINX Controller to the 
 
     Fill out the form and specify a long refresh token lifespan. Consider aligning the token lifespan with the expiry date of your NGINX Controller license.
 
-    {{< important >}} The ServiceNow integration will fail once the refresh token expires.{{< /important >}}
+    {{< call-out "important" >}} The ServiceNow integration will fail once the refresh token expires.{{< /call-out >}}
 
 3. Select the **Configure ServiceNow** button. In the prompt, provide the requested information for the ServiceNow client and select **Save**.
 

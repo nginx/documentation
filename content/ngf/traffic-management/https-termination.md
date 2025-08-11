@@ -164,11 +164,11 @@ Save the public IP address and ports of the NGINX Service into shell variables:
  GW_HTTPS_PORT=<https port number>
  ```
 
-{{< note >}}
+{{< call-out "note" >}}
 
 In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the gateway will forward for.
 
-{{< /note >}}
+{{< /call-out >}}
 
 To create the httproute resources, copy and paste the following into your terminal:
 
@@ -218,7 +218,7 @@ The first route issues a `requestRedirect` from the `http` listener on port 80 t
 
 Using the external IP address and ports for the NGINX Service, we can send traffic to our coffee application.
 
-{{< note >}}If you have a DNS record allocated for `cafe.example.com`, you can send the request directly to that hostname, without needing to resolve.{{< /note >}}
+{{< call-out "note" >}}If you have a DNS record allocated for `cafe.example.com`, you can send the request directly to that hostname, without needing to resolve.{{< /call-out >}}
 
 To test that NGINX sends an HTTPS redirect, we will send requests to the `coffee` service on the HTTP port. We
 will use curl's `--include` option to print the response headers (we are interested in the `Location` header).

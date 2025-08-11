@@ -38,11 +38,11 @@ Before configuring API gateways and Developer Portals as OpenID Connect relying 
 - Client ID
 - Client Secret (needed depending on the OAuth flow)
 
-{{< note >}}
+{{< call-out "note" >}}
 
 The Developer Portal supports both PCKE and AuthCode [authorization code flows](https://auth0.com/docs/get-started/authentication-and-authorization-flow/authorization-code-flow).
 
-{{< /note >}}
+{{< /call-out >}}
 
 ---
 
@@ -323,7 +323,7 @@ You can set up an OIDC policy by using either the web interface or the REST API.
 
 {{%tab name="API"%}}
 
-{{<see-also>}}{{< include "acm/how-to/access-acm-api.md" >}}{{</see-also>}}
+{{< call-out "note" >}}{{< include "acm/how-to/access-acm-api.md" >}}{{< /call-out>}}
 
 To apply the OpenID Connect policy using the REST API, send an HTTP `POST` request to the Environments endpoint.
 
