@@ -1,11 +1,12 @@
 ---
 files:
-  - content/nginx-one/secure-your-fleet/set-up-security-alerts.md
   - content/nginx-one/getting-started.md
 ---
 
-Once you've logged in with your password, you should be able to see and select the NGINX One tile. 
+1. Go to `https://<TENANT_NAME>.console.ves.volterra.io/` to access F5 Distributed Cloud, and sign in.
 
-1. Select the **NGINX One** tile
-1. If needed, select **Enable Service**
-1. After the service has been enables, select **Visit Service** to load NGINX One Console
+   After you sign in, you should see the **NGINX One** tile.
+
+1. Select the **NGINX One** tile.
+1. If needed, select **Enable Service**.
+1. After the service is enabled, select **Visit Service** to open NGINX One Console.
