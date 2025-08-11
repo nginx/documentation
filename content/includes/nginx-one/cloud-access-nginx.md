@@ -7,6 +7,6 @@ files:
 
    After you sign in, you should see the **NGINX One** tile.
 
-2. Select the **NGINX One** tile.
-3. If needed, select **Enable Service**.
-4. After the service is enabled, select **Visit Service** to open NGINX One Console.
+1. Select the **NGINX One** tile.
+1. If needed, select **Enable Service**.
+1. After the service is enabled, select **Visit Service** to open NGINX One Console.
