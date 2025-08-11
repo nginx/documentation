@@ -41,6 +41,8 @@ You need:
 - NGINX One service enabled
 - Basic Linux and NGINX knowledge
 
+{{< include "/nginx-one/cloud-access.md" >}}
+
 ---
 
 ## How NGINX One Console works
@@ -59,22 +61,16 @@ When you register a new instance, NGINX One Console gives you a `curl` command t
 
 A data plane key is required to connect an instance to NGINX One Console. Once connected, you can monitor and manage the instance from the NGINX One Console dashboard.
 
-For more about NGINX Agent, see the [NGINX Agent overview]({{< ref "/agent/overview/about.md" >}}).
+For more about NGINX Agent, see the [NGINX Agent overview]({{< ref "/nginx-one/agent/overview/about.md" >}}).
 
 ---
 
 ## Open NGINX One Console
 
-1. Go to [https://console.ves.volterra.io/login/start](https://console.ves.volterra.io/login/start).
-2. Sign in with your F5 Distributed Cloud account.
-3. On the home page, find the **NGINX One** tile.
-4. Select the tile to open NGINX One Console.
-5. Confirm the service status is **Enabled**.
-6. Select **Visit Service** to open the **Overview** dashboard in NGINX One Console.
+{{< include "/nginx-one/cloud-access-nginx.md" >}}
 
-If NGINX One Console isn’t enabled, ask your F5 Distributed Cloud administrator for access.
 
-When no NGINX instances are connected, the NGINX One Console dashboard stays empty. After you add instances, the dashboard shows metrics like availability, version, and usage trends.
+Until you add NGINX instances are connected, the NGINX One Console dashboard remains empty. After you add instances, the dashboard shows metrics like availability, version, and usage trends.
 
 ---
 
@@ -122,4 +118,4 @@ Go to [Lab 2: Run workshop components with Docker]({{< ref "nginx-one/workshops/
 ## References
 
 - [Create and manage data plane keys]({{< ref "nginx-one/connect-instances/create-manage-data-plane-keys.md" >}})
-- [NGINX Agent overview]({{< ref "/agent/overview/about.md" >}})
+- [NGINX Agent overview]({{< ref "/nginx-one/agent/overview/about.md" >}})
