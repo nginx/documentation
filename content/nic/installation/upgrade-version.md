@@ -153,7 +153,7 @@ kubectl patch customresourcedefinitions globalconfigurations.k8s.nginx.org --sub
 
 To configure structured logging, you must update your log deployment arguments from an integer to a string. You can also choose different formats for the log output.
 
-{{< note >}} These options apply to NGINX Ingress Controller logs, and do not affect NGINX logs. {{< /note >}}
+{{< call-out "note" >}} These options apply to NGINX Ingress Controller logs, and do not affect NGINX logs. {{< /call-out >}}
 
 | **Level arguments** | **Format arguments** |
 |---------------------|----------------------|

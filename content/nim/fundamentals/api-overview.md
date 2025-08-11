@@ -37,7 +37,7 @@ You can use tools such as `curl` or [Postman](https://www.postman.com) to intera
 
 You can find the NGINX Instance Manager API URLs in the following format: `https://<NMS_FQDN>/api/platform/<API_VERSION>`.
 
-{{<note>}}When making API calls by using `curl`, Postman, or any other tool, include your [authentication](#authentication) information with each call. Also include a `-k` to bypass TLS/SSL verification.{{</note>}}
+{{< call-out "note" >}}When making API calls by using `curl`, Postman, or any other tool, include your [authentication](#authentication) information with each call. Also include a `-k` to bypass TLS/SSL verification.{{< /call-out >}}
 
 Alternatively, in the API Reference docs, you can also use the "Try it Out" function. Since you're already logged into the NGINX Instance Manager platform, the "Try it Out" function automatically includes authentication credentials.
 
@@ -64,7 +64,7 @@ To use the NGINX Instance Manager API, you need to use one of the following auth
 
 If your organization is using OIDC, you will be prompted to log in with your Identity Provider the first time you attempt to reach an API. After authenticating, you can request a JWT to use in subsequent API calls.
 
-{{<note>}}The means of requesting a token varies according to the Identity Provider; if you're not sure which provider your organization uses, check with your system administrator or technical support team.{{</note>}}
+{{< call-out "note" >}}The means of requesting a token varies according to the Identity Provider; if you're not sure which provider your organization uses, check with your system administrator or technical support team.{{< /call-out >}}
 
 Once you have a JWT, set it up as a "Bearer" <access token> using the "Authorization" request header field, as shown in the example below.
 

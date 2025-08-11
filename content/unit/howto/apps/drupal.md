@@ -138,7 +138,7 @@ Here we install them at **/path/to/app**; use a real path in your configuration.
    }
    ```
 
-   {{< note >}}
+   {{< call-out "note" >}}
    The difference between the **pass** targets is their usage of
    the **script** [setting]({{< relref "/unit/configuration.md#configuration-php" >}}):
 
@@ -146,7 +146,7 @@ Here we install them at **/path/to/app**; use a real path in your configuration.
      URI or **index.php** if the URI omits it.
    - The **index** target specifies the **script** that Unit
      runs for *any* URIs the target receives.
-   {{< /note >}}
+   {{< /call-out >}}
 
 6. Upload the updated configuration.
 

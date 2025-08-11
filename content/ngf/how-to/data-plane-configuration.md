@@ -180,7 +180,7 @@ When installed using the Helm chart, the NginxProxy resource is named `<release-
 
 **For a full list of configuration options that can be set, see the `NginxProxy spec` in the [API reference]({{< ref "/ngf/reference/api.md" >}}).**
 
-{{< note >}} Some global configuration also requires an [associated policy]({{< ref "/ngf/overview/custom-policies.md" >}}) to fully enable a feature (such as [tracing]({{< ref "/ngf/monitoring/tracing.md" >}}), for example). {{< /note >}}
+{{< call-out "note" >}} Some global configuration also requires an [associated policy]({{< ref "/ngf/overview/custom-policies.md" >}}) to fully enable a feature (such as [tracing]({{< ref "/ngf/monitoring/tracing.md" >}}), for example). {{< /call-out >}}
 
 ---
 
@@ -222,7 +222,7 @@ infrastructure:
         name: ngf-proxy-config
 ```
 
-{{< note >}} The `NginxProxy` resource must reside in the same namespace as the Gateway it is attached to. {{< /note >}}
+{{< call-out "note" >}} The `NginxProxy` resource must reside in the same namespace as the Gateway it is attached to. {{< /call-out >}}
 
 After updating, you can check the status of the Gateway to see if the configuration is valid:
 
@@ -266,9 +266,9 @@ EOF
 
 To view the full list of supported log levels, see the `NginxProxy spec` in the [API reference]({{< ref "/ngf/reference/api.md" >}}).
 
-{{< note >}}For `debug` logging to work, NGINX needs to be built with `--with-debug` or "in debug mode". NGINX Gateway Fabric can easily
+{{< call-out "note" >}}For `debug` logging to work, NGINX needs to be built with `--with-debug` or "in debug mode". NGINX Gateway Fabric can easily
 be [run with NGINX in debug mode](#run-nginx-gateway-fabric-with-nginx-in-debug-mode) upon startup through the addition
-of a few arguments. {{</ note >}}
+of a few arguments. {{< /call-out >}}
 
 ---
 
@@ -299,7 +299,7 @@ spec:
 EOF
 ```
 
-{{< note >}} When modifying any _deployment_ field in the _NginxProxy_ resource, any corresponding NGINX instances will be restarted. {{< /note >}}
+{{< call-out "note" >}} When modifying any _deployment_ field in the _NginxProxy_ resource, any corresponding NGINX instances will be restarted. {{< /call-out >}}
 
 ---
 
@@ -336,7 +336,7 @@ spec:
 EOF
 ```
 
-{{< note >}} When sending curl requests to a server expecting proxy information, use the flag `--haproxy-protocol` to avoid broken header errors. {{< /note >}}
+{{< call-out "note" >}} When sending curl requests to a server expecting proxy information, use the flag `--haproxy-protocol` to avoid broken header errors. {{< /call-out >}}
 
 ---
 

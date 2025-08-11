@@ -28,9 +28,9 @@ When you create a Kubernetes Secret, use the same namespace where NGINX Ingress 
 If you use [`-watch-namespace`]({{< ref "/nic/configuration/global-configuration/command-line-arguments.md#watch-namespace-string" >}}) or [`watch-secret-namespace`]({{< ref "/nic/configuration/global-configuration/command-line-arguments.md#watch-secret-namespace-string" >}}) arguments with NGINX Ingress Controller, 
 you need to add the dataplane key secret to the watched namespaces. This secret will take approximately 60 - 90 seconds to reload on the pod.
 
-{{<note>}}
+{{< call-out "note" >}}
 You can also create a data plane key through the NGINX One Console. Once loggged in, select **Manage > Control Planes > Add Control Plane**, and follow the steps shown.
-{{</note>}}
+{{< /call-out >}}
 
 ## Deploy NGINX Ingress Controller with NGINX Agent
 

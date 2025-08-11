@@ -95,11 +95,11 @@ The **Create Workspace** drawer will display a confirmation when the Workspace h
 
 After creating a Workspace, you must create at least one Environment. When creating an Environment, you will also create the Clusters where your API Gateway(s) and/or Developer Portal(s) will reside.
 
-{{<caution>}}
+{{< call-out "caution"  >}}
 
 - Do not add the same host to both an API Gateway cluster and a Developer Portal cluster.
 - The Developer Portal cluster requires at least one dedicated host.
-{{</caution>}}
+{{< /call-out >}}
 
 Take the steps below to add an Environment.
 
@@ -116,7 +116,7 @@ Take the steps below to add an Environment.
 
    This instance, or instance group, will host the Developer Portal.
 
-   {{<note>}}The Dev Portal requires a separate, dedicated host. Do not install the Dev Portal on a host that is already running the management or data planes.{{</note>}}
+   {{< call-out "note" >}}The Dev Portal requires a separate, dedicated host. Do not install the Dev Portal on a host that is already running the management or data planes.{{< /call-out >}}
 1. Select the **Create** button to create the Environment. The **Add Environment** drawer will display a confirmation when the Environment has been created.
 1. Copy the `cURL` or `wget` command shown in the confirmation drawer and save it -- you will need to use this information to [add your NGINX instances to the cluster](#register-nginx-instance).
 

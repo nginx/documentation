@@ -56,7 +56,7 @@ NGINX Amplify Agent won't start unless a valid hostname is defined. The followin
   * localhost6.localdomain6
   * ip6-localhost
 
-{{< note >}} You can also use the above method to replace the system's hostname with an arbitrary alias. Remember that if you redefine the hostname for a live object, the existing object will be marked as failed in the web interface. Redefining the hostname in NGINX Amplify Agent's configuration creates a new UUID and a new system for monitoring. {{< /note >}}
+{{< call-out "note" >}} You can also use the above method to replace the system's hostname with an arbitrary alias. Remember that if you redefine the hostname for a live object, the existing object will be marked as failed in the web interface. Redefining the hostname in NGINX Amplify Agent's configuration creates a new UUID and a new system for monitoring. {{< /call-out >}}
 
 Alternatively, you can define an "alias" for the host in the UI (see the [Graphs]({{< ref "/amplify/user-interface/graphs" >}}) section).
 
@@ -80,7 +80,7 @@ To override the URI detection of the status API, use the `plus_status` option.
 plus_status = /status
 ```
 
-{{< note >}}  If only the URI part is specified with the options above, NGINX Amplify Agent will use `http://127.0.0.1` to construct the full URL to access either the *stub_status* or the NGINX Plus status API metrics. {{< /note >}}
+{{< call-out "note" >}}  If only the URI part is specified with the options above, NGINX Amplify Agent will use `http://127.0.0.1` to construct the full URL to access either the *stub_status* or the NGINX Plus status API metrics. {{< /call-out >}}
 
 ## Configuring the Path to the NGINX Configuration File
 
@@ -93,7 +93,7 @@ If NGINX Amplify Agent cannot find the NGINX configuration, use the following op
 configfile = /etc/nginx/nginx.conf
 ```
 
-{{< note >}} It is better to avoid using this option and only add it as a workaround. We'd appreciate it if you took some time to fill out a support ticket in case you had to manually add the path to the NGINX config file. {{< /note >}}
+{{< call-out "note" >}} It is better to avoid using this option and only add it as a workaround. We'd appreciate it if you took some time to fill out a support ticket in case you had to manually add the path to the NGINX config file. {{< /call-out >}}
 
 ## Configuring Host Tags
 

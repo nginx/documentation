@@ -365,8 +365,8 @@ volumes:
 
 To secure traffic between NGINX and App Protect Enforcer using mTLS, create a `docker-compose.yml` with the following configuration:
 
-{{< note >}} Refer to the [Configuration Guide]({{< ref "/nap-waf/v5/configuration-guide/configuration.md#secure-traffic-between-nginx-and-app-protect-enforcer-using-mtls" >}}) to generate certificates and modify the `nginx.conf` for mTLS.
-{{< /note >}}
+{{< call-out "note" >}} Refer to the [Configuration Guide]({{< ref "/nap-waf/v5/configuration-guide/configuration.md#secure-traffic-between-nginx-and-app-protect-enforcer-using-mtls" >}}) to generate certificates and modify the `nginx.conf` for mTLS.
+{{< /call-out >}}
 
 ```yaml
 services:

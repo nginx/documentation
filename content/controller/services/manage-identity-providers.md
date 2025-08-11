@@ -12,17 +12,17 @@ type:
 
 The **Identity Providers** page lets you create and manage Identity Providers to control access to your services (APIs for API Management module deployments, and Apps for App Delivery module deployments).
 
-{{< tip >}}
+{{< call-out "tip" >}}
 If you prefer, you can use the F5 NGINX Controller API to create and manage Identity Providers. See the [NGINX Controller API reference guide]({{< ref "/controller/api/_index.md" >}}) (**Security > Identity Providers**) for details.
-{{< /tip >}}
+{{< /call-out >}}
 
 ## Before You Begin
 
-{{< important >}}
+{{< call-out "important" >}}
 
 You must set up NGINX Plus to use the `njs` module to use API key authentication.
 
-{{< /important >}}
+{{< /call-out >}}
 
 ### Set up NGINX Plus Instances to Secure API Keys
 
@@ -60,12 +60,12 @@ Take the following steps to create an Identity Provider:
 
       - Select **Create a Client** and provide a name for the Client. You can use the system-generated key or provide one of your own.
 
-        {{< note >}}
+        {{< call-out "note" >}}
 Keys must be between 8 and 256 characters and alphanumeric.
 
 - Hyphens '-' and underscores '_' are allowed.
 - Other special characters are not allowed.
-        {{< /note >}}
+        {{< /call-out >}}
 
     b. **JWT**:
 

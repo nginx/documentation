@@ -233,7 +233,7 @@ graph LR
     class DataplaneComponentsC dashedSubgraph;
 ```
 
-{{< note >}} The figure does not show many of the necessary Kubernetes resources the Cluster Operators and Application Developers need to create, like deployment and services. {{< /note >}}
+{{< call-out "note" >}} The figure does not show many of the necessary Kubernetes resources the Cluster Operators and Application Developers need to create, like deployment and services. {{< /call-out >}}
 
 The figure shows:
 
