@@ -86,7 +86,7 @@ F5 NGINX One Console makes it easy to manage NGINX instances across locations an
     {{</ card >}}
   {{</ card-section >}}
   {{< card-section title="Modern App Delivery">}}
-    {{< card title="NGINX Plus" titleUrl="/nginx" brandIcon="NGINX-Plus-product-icon-RGB.png">}}
+    {{< card title="NGINX Plus" titleUrl="/nginx/" brandIcon="NGINX-Plus-product-icon.svg">}}
       The all-in-one load balancer, reverse proxy, web server, content cache, and API gateway.
     {{</ card >}}
     {{< card title="NGINX Open Source" titleUrl="https://nginx.org" brandIcon="NGINX-product-icon.png">}}
