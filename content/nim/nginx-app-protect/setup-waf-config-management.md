@@ -99,9 +99,9 @@ sudo apt-get install nms-nap-compiler-v5.442.0 -o Dpkg::Options::="--force-overw
 
 {{< include "nim/nap-waf/restart-nms-integrations.md" >}}
 
-### RHEL 8.1 or later
+### RHEL 8.1
 
-To install the WAF compiler on RHEL 8.1 or later:
+To install the WAF compiler on RHEL 8.1 :
 
 1. Download the `dependencies.repo` file to the `/etc/yum.repos.d` directory:
 
@@ -121,9 +121,9 @@ To install the WAF compiler on RHEL 8.1 or later:
    sudo yum install nms-nap-compiler-v5.442.0
    ```
 
-### RHEL 9 or later
+### RHEL 9
 
-To install the WAF compiler on RHEL 9 or later:
+To install the WAF compiler on RHEL 9:
 
 1. Download the `dependencies.repo` file to the `/etc/yum.repos.d` directory:
 
@@ -145,9 +145,9 @@ To install the WAF compiler on RHEL 9 or later:
 
 4. {{< include "nim/nap-waf/restart-nms-integrations.md" >}}
 
-### Oracle Linux 8.1 or later
+### Oracle Linux 8.1
 
-To install the WAF compiler on Oracle Linux 7.4 or later:
+To install the WAF compiler on Oracle Linux 8.1:
 
 1. Download the `dependencies.repo` file to the `/etc/yum.repos.d` directory:
 
