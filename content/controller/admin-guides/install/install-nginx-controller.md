@@ -37,9 +37,9 @@ NGINX Controller uses a number of open source software packages in the product. 
 
 Before installing NGINX Controller, review the following prerequisites.
 
-{{< important >}}
+{{< call-out "important" >}}
 NGINX Controller should be deployed on a secure, internal network only. We strongly recommend against exposing the NGINX Controller API to the internet.
-{{< /important >}}
+{{< /call-out >}}
 
 Things you'll need before installing NGINX Controller:
 
@@ -93,14 +93,14 @@ To install all of the NGINX Controller prerequisites for your system at the same
     ./helper.sh prereqs
     ```
 
-{{< note >}}
+{{< call-out "note" >}}
 After you've installed NGINX Controller, you can install any of the prerequisites by running the following command:
 
   ```bash
 /opt/nginx-controller/helper.sh prereqs [base|docker|nfs]
 ```
 
-{{< /note >}}
+{{< /call-out >}}
 
 &nbsp;
 
@@ -150,10 +150,10 @@ If you are using Ubuntu-20.04 and want to install Docker on your own, choose the
 - [Docker Community Edition (CE)](https://docs.docker.com/engine/install/ubuntu/) 19.03
 - [Containerd.io](https://containerd.io/) 1.2.13
 
-{{< see-also >}}
-For instructions on installing Docker in offline scenarios on CentOS/RHEL 7, refer to the AskF5 [K84431427](https://support.f5.com/csp/article/K84431427) knowledge base article.{{< /see-also >}}
+{{< call-out "note" >}}
+For instructions on installing Docker in offline scenarios on CentOS/RHEL 7, refer to the AskF5 [K84431427](https://support.f5.com/csp/article/K84431427) knowledge base article.{{< /call-out>}}
 
-{{< important >}} You need to enable Docker log rotation to ensure that the logs don't consume all the free disk space on the server. For instructions on how to enable Docker log rotation, see the Docker guides [Configure logging drivers](https://docs.docker.com/config/containers/logging/configure/) and [JSON File logging driver](https://docs.docker.com/config/containers/logging/json-file/).{{< /important >}}&nbsp;
+{{< call-out "important" >}} You need to enable Docker log rotation to ensure that the logs don't consume all the free disk space on the server. For instructions on how to enable Docker log rotation, see the Docker guides [Configure logging drivers](https://docs.docker.com/config/containers/logging/configure/) and [JSON File logging driver](https://docs.docker.com/config/containers/logging/json-file/).{{< /call-out >}}&nbsp;
 
 #### Red Hat Enterprise Linux
 
@@ -234,9 +234,9 @@ Refer to the AskF5 KB article [K49481224](https://support.f5.com/csp/article/K49
 
 Install NGINX Controller on a dedicated node that **does not** already have Kubernetes configured. NGINX Controller does not support pre-configured Kubernetes implementations at this time. The installer for NGINX Controller will install and configure Kubernetes for you.
 
-{{< important >}}Before installing NGINX Controller, you must **disable swap on the host**; this is required by Kubernetes in order for the kubelet to work properly. Refer to your Linux distribution documentation for specific instructions for disabling swap for your system. For more information about this requirement, see the AskF5 knowledge base article [K82655201](https://support.f5.com/csp/article/K82655201) and the [kubeadm installation guide](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/#before-you-begin) in the Kubernetes documentation.{{< /important >}}
+{{< call-out "important" >}}Before installing NGINX Controller, you must **disable swap on the host**; this is required by Kubernetes in order for the kubelet to work properly. Refer to your Linux distribution documentation for specific instructions for disabling swap for your system. For more information about this requirement, see the AskF5 knowledge base article [K82655201](https://support.f5.com/csp/article/K82655201) and the [kubeadm installation guide](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/#before-you-begin) in the Kubernetes documentation.{{< /call-out >}}
 
-{{< caution >}}**For RHEL 8 deployments**, complete the additional prerequisite steps in the [Installing NGINX on RHEL 8]({{< ref "/controller/admin-guides/install/install-nginx-controller-rhel-8.md" >}}) guide before installing NGINX Controller. RHEL 8 support is a **beta** feature.{{< /caution >}}
+{{< call-out "caution"  >}}**For RHEL 8 deployments**, complete the additional prerequisite steps in the [Installing NGINX on RHEL 8]({{< ref "/controller/admin-guides/install/install-nginx-controller-rhel-8.md" >}}) guide before installing NGINX Controller. RHEL 8 support is a **beta** feature.{{< /call-out >}}
 
 To install NGINX Controller, take the following steps:
 
@@ -254,17 +254,17 @@ To install NGINX Controller, take the following steps:
     ./install.sh
     ```
 
-    {{< important >}}Installing NGINX Controller as `root` is **not supported** on multi-node clusters. Instead, create a user with `sudo` permission for installing and performing all operations with NGINX Controller. Further, NGINX Controller scripts should also run with this dedicated user; scripts shouldn't be run as `sudo`, `sudo su`, or as the `root` user directly.{{< /important >}}
+    {{< call-out "important" >}}Installing NGINX Controller as `root` is **not supported** on multi-node clusters. Instead, create a user with `sudo` permission for installing and performing all operations with NGINX Controller. Further, NGINX Controller scripts should also run with this dedicated user; scripts shouldn't be run as `sudo`, `sudo su`, or as the `root` user directly.{{< /call-out >}}
 
-    {{< note >}}If an HTTPS proxy is configured for the whole system, you should disable the proxy for the IP address and hostname of the host that you're running the NGINX Controller install script on.
-    For example, run the command `export NO_PROXY=<current_ip>,<current_hostname>`. {{< /note >}}
+    {{< call-out "note" >}}If an HTTPS proxy is configured for the whole system, you should disable the proxy for the IP address and hostname of the host that you're running the NGINX Controller install script on.
+    For example, run the command `export NO_PROXY=<current_ip>,<current_hostname>`. {{< /call-out >}}
 
     The installation script walks through a series of steps and asks for the following input:
 
     - **Config database configuration**. Specify whether to use an embedded, self-hosted PostgreSQL database for the config database, or if you want to provide your own external PostgreSQL database. If you choose to provide your own database, make sure you've reviewed the [PostgreSQL prerequisites](#postgresql-optional).
     - **Config database volume type**: Specify the type of volume to use to store the config database: local, NFS, or AWS. We recommend choosing `local` only for demo and trial purposes.
 
-      {{< see-also >}}Refer to the [NGINX Controller Technical Specifications Guide]({{< ref "/controller/admin-guides/install/nginx-controller-tech-specs.md#local-or-external-storage" >}}) for more information about the volume options and requirements.{{< /see-also >}}
+      {{< call-out "note" >}}Refer to the [NGINX Controller Technical Specifications Guide]({{< ref "/controller/admin-guides/install/nginx-controller-tech-specs.md#local-or-external-storage" >}}) for more information about the volume options and requirements.{{< /call-out>}}
 
     - **Analytics database volume type**: Specify the type of volume to use to store the analytics database: local, NFS, or AWS. We recommend choosing `local` for demo and trial purposes.
     - **EULA**: Read the end-user license agreement. Type either `y` to accept or `n` to exit.
@@ -280,10 +280,10 @@ To install NGINX Controller, take the following steps:
       - **Email address**: The contact email address for the initial admin user.
       - **Password**: The initial admin's password. Passwords must be 6-64 characters long and must include letters and digits.
     - **FQDN**: Fully qualified domain name (FQDN) -- a resolvable domain name for the NGINX Controller server. The FQDN is used by Controller Agents when connecting to NGINX Controller.
-    {{< note >}}We recommend setting the FQDN to a internal address when possible, to avoid exposing the traffic between the Agent and NGINX Controller. This also reduces the external traffic in cloud environments. {{< /note >}}
+    {{< call-out "note" >}}We recommend setting the FQDN to a internal address when possible, to avoid exposing the traffic between the Agent and NGINX Controller. This also reduces the external traffic in cloud environments. {{< /call-out >}}
     - **SSL/TLS certificates**: Type `y` to generate and use self-signed certs for running NGINX Controller over HTTPS, or type `n` to provide your own certs.
 
-        {{< important >}}If you provide your own SSL/TLS certificates, you'll need a complete certificate chain file, with the intermediate CA cert appended to the server cert; the server certificate must appear **before** the chained certificates in the combined file. If the certificate contains a wildcard Common Name (CN=*.example.com) it must also contain a Subject Alternate Name (SAN=nginx-controller.example.com). {{< /important >}}
+        {{< call-out "important" >}}If you provide your own SSL/TLS certificates, you'll need a complete certificate chain file, with the intermediate CA cert appended to the server cert; the server certificate must appear **before** the chained certificates in the combined file. If the certificate contains a wildcard Common Name (CN=*.example.com) it must also contain a Subject Alternate Name (SAN=nginx-controller.example.com). {{< /call-out >}}
 
 1. Log in to the NGINX Controller browser interface by navigating to the DNS, FQDN, or IP address of the NGINX Controller host, for example, `https://<Controller-FQDN>/login`. Use the admin email address and password that you provided during the installation process.
 
@@ -306,9 +306,9 @@ To add a license to NGINX Controller, take the following steps:
 
 1. Select **Save license**.
 
-{{< see-also >}}
+{{< call-out "note" >}}
 To add a license using the [NGINX Controller REST API]({{< ref "/controller/api/_index.md" >}}), send a PUT request to the `/platform/license` endpoint. Provide your CAT or NGINX Controller license as a base64-encoded string in the JSON request body.
-{{< /see-also >}}
+{{< /call-out>}}
 
 
 &nbsp;
@@ -358,9 +358,9 @@ To update the NGINX Controller software, take the steps below. When complete, yo
 
 When updating NGINX Controller on a multi-node cluster, run the `update.sh` script on each node individually -- the order in which you update the nodes doesn't matter.
 
-{{< warning >}} Do not update the nodes in a multi-node cluster in parallel. Doing so may result in race conditions for certain jobs, such as database migrations, and may cause the cluster to become unavailable.{{< /warning >}}
+{{< call-out "warning" >}} Do not update the nodes in a multi-node cluster in parallel. Doing so may result in race conditions for certain jobs, such as database migrations, and may cause the cluster to become unavailable.{{< /call-out >}}
 
-{{< caution >}}
+{{< call-out "caution"  >}}
 We strongly recommend that you make a backup of the following information before proceeding, to avoid potential data and/or configuration loss:
 
 - [Back up the NGINX Controller databases]({{< ref "/controller/admin-guides/backup-restore" >}}).
@@ -376,7 +376,7 @@ We strongly recommend that you make a backup of the following information before
     cp /etc/controller-agent/agent.conf <temporary location>
     ```
 
-{{< /caution >}}
+{{< /call-out >}}
 
 1. Download the installer package from the [MyF5 Customer Portal](https://my.f5.com/manage/s/downloads).
 
@@ -401,13 +401,13 @@ We strongly recommend that you make a backup of the following information before
     ./update.sh
     ```
 
-    {{< note >}}If you're upgrading from an older version of NGINX Controller and you installed Controller as root user, use `--allow-with-root` flag when running an update script. {{< /note >}}
+    {{< call-out "note" >}}If you're upgrading from an older version of NGINX Controller and you installed Controller as root user, use `--allow-with-root` flag when running an update script. {{< /call-out >}}
 
 1. If you are logged in to NGINX Controller using a web browser, sign out and log in again.
 
     - To sign out, select your username in the upper right-hand corner, and then select "Sign Out". For optimal performance, also flush your browser cache.
 
-{{< important >}} After you upgrade NGINX Controller, you also need to [update the NGINX Controller Agent]({{< ref "/controller/admin-guides/install/install-nginx-controller-agent" >}}) to the latest version. {{< /important >}}
+{{< call-out "important" >}} After you upgrade NGINX Controller, you also need to [update the NGINX Controller Agent]({{< ref "/controller/admin-guides/install/install-nginx-controller-agent" >}}) to the latest version. {{< /call-out >}}
 
 &nbsp;
 
@@ -426,7 +426,7 @@ To uninstall NGINX Controller, run the uninstall script:
 ---
 
 ## Install NGINX Controller Agent
-{{< see-also >}} If you want to run the NGINX Controller Agent as a non-root user, follow the alternative instructions in the [Install NGINX Controller Agent for Non-root User]({{< ref "/controller/admin-guides/install/install-agent-non-root.md" >}}) guide instead of the steps provided in this section. {{< /see-also >}}
+{{< call-out "note" >}} If you want to run the NGINX Controller Agent as a non-root user, follow the alternative instructions in the [Install NGINX Controller Agent for Non-root User]({{< ref "/controller/admin-guides/install/install-agent-non-root.md" >}}) guide instead of the steps provided in this section. {{< /call-out>}}
 
 Install the Controller Agent on each NGINX Plus instance that you want to manage and monitor.
 
@@ -441,25 +441,25 @@ Take the following steps to add an instance to NGINX Controller:
 7. To add the instance to an existing [Instance Group]({{< ref "/controller/infrastructure/instances/manage-instances.md#instance-groups" >}}), select an Instance Group from the list. Or to create an Instance Group, select **Create New**.
 8. To add the instance to an existing Location, select a Location from the list. Or to create a Location, select **Create New**.
 
-    {{< important >}}
+    {{< call-out "important" >}}
 Once set, the Location for an instance cannot be changed. If you need to change or remove the Location for an instance, you must [remove the instance from NGINX Controller]({{< ref "/controller/infrastructure/instances/manage-instances.md#delete-an-instance" >}}), and then add it back.
-    {{< /important >}}
+    {{< /call-out >}}
 
-    {{< important >}}
+    {{< call-out "important" >}}
 Instances and the instance groups they belong to should specify the same location; however, this requirement is not currently enforced. If different locations are specified, the instance group's location takes precedence. This is important to remember when [assigning locations to workload groups]({{< ref "/controller/app-delivery/manage-apps.md#workload-groups">}}).
-    {{< /important >}}
+    {{< /call-out >}}
 
 9. (Optional) By default, registration of NGINX Plus instances is performed over a secure connection. To use self-signed certificates with the Controller Agent, select **Allow insecure server connections to NGINX Controller using TLS**. For security purposes, we recommend that you secure the Controller Agent with signed certificates when possible.
 10. Use SSH to connect and log in to the NGINX instance that you want to connect to NGINX Controller.
 11. Run the `curl` or `wget` command that's shown in the **Installation Instructions** section on the NGINX instance to download and install the Controller Agent package. When specified, the `-i` and `-l` options for the `install.sh` script refer to the instance name and Location, respectively.
 
-    {{< note >}}
+    {{< call-out "note" >}}
 
 Make sure you enter the commands to download and run the `install.sh` script on the NGINX Plus system, and not on the NGINX Controller.
 
 NGINX Controller 3.6 and earlier require Python 2.6 or 2.7. You'll be prompted to install Python if it's not installed already. Python is not required for NGINX Controller v3.7 and later.
 
-    {{< /note >}}
+    {{< /call-out >}}
 
 After a few minutes, the NGINX instance will appear on the **Instances** overview page.
 
@@ -476,9 +476,9 @@ If NGINX Controller isn't working how you expect, see the knowledge base article
 
 You can create a support package for NGINX Controller that you can use to diagnose issues.
 
-{{< note >}}
+{{< call-out "note" >}}
 You will need to provide a support package if you open a ticket with NGINX Support via the [MyF5 Customer Portal](https://account.f5.com/myf5).
-{{< /note >}}&nbsp;
+{{< /call-out >}}&nbsp;
 
 ```bash
 /opt/nginx-controller/helper.sh supportpkg [-o|--output <file name>] [-s|--skip-db-dump] [-t|--timeseries-dump <hours>]

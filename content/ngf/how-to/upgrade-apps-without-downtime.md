@@ -13,7 +13,7 @@ Learn how to use NGINX Gateway Fabric to upgrade applications without downtime.
 
 ## Overview
 
-{{< note >}} See the [Architecture document]({{< ref "/ngf/overview/gateway-architecture.md" >}}) to learn more about NGINX Gateway Fabric architecture.{{< /note >}}
+{{< call-out "note" >}} See the [Architecture document]({{< ref "/ngf/overview/gateway-architecture.md" >}}) to learn more about NGINX Gateway Fabric architecture.{{< /call-out >}}
 
 NGINX Gateway Fabric allows upgrading applications without downtime. To understand the upgrade methods, you need to be familiar with the NGINX features that help prevent application downtime: Graceful configuration reloads and upstream server updates.
 
@@ -44,7 +44,7 @@ Adding and removing endpoints are two of the most common cases:
 
 As long as you have more than one endpoint ready, clients won't experience downtime during upgrades.
 
-{{< note >}}It is good practice to configure a [Readiness probe](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/) in the deployment so that a pod can report when it is ready to receive traffic. Note that NGINX Gateway Fabric will not add any endpoint to NGINX that is not ready.{{< /note >}}
+{{< call-out "note" >}}It is good practice to configure a [Readiness probe](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/) in the deployment so that a pod can report when it is ready to receive traffic. Note that NGINX Gateway Fabric will not add any endpoint to NGINX that is not ready.{{< /call-out >}}
 
 ---
 
@@ -66,7 +66,7 @@ For example, an application can be exposed using a routing rule like below:
       port: 80
 ```
 
-{{< note >}} See the [Cafe example](https://github.com/nginx/nginx-gateway-fabric/tree/v{{< version-ngf >}}/examples/cafe-example) for a basic example. {{< /note >}}
+{{< call-out "note" >}} See the [Cafe example](https://github.com/nginx/nginx-gateway-fabric/tree/v{{< version-ngf >}}/examples/cafe-example) for a basic example. {{< /call-out >}}
 
 The upgrade methods in the next sections cover:
 
@@ -119,7 +119,7 @@ A more flexible and precise way to implement canary releases is to configure a t
       weight: 5
 ```
 
-{{< note >}} Every request coming from the same client won't necessarily be sent to the same backend. NGINX will independently split each request among the backend references. {{< /note >}}
+{{< call-out "note" >}} Every request coming from the same client won't necessarily be sent to the same backend. NGINX will independently split each request among the backend references. {{< /call-out >}}
 
 By updating the rule you can further increase the share of traffic the new version gets and finally completely switch to the new version:
 

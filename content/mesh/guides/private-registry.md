@@ -30,9 +30,9 @@ There are two methods of accessing a private registry:
 - Registry username and password can be specified with `--registry-username` and `--registry-password`.
 - For a GKE registry, you can specify the path to the JSON key using `--registry-key`. The path can be relative to the working directory or absolute.
 
-{{< warning >}}
+{{< call-out "warning" >}}
 Using the `--registry-password` flag can expose your plain text password on the console and in the console history.
-{{< /warning >}}
+{{< /call-out >}}
 
 ## Images
 

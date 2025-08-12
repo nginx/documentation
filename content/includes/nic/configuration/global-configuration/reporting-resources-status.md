@@ -32,7 +32,7 @@ NGINX Ingress Controller must be configured to report an Ingress status:
 
 View the [ConfigMap keys](/nginx-ingress-controller/configuration/global-configuration/configmap-resource) and [Command-line arguments](/nginx-ingress-controller/configuration/global-configuration/command-line-arguments) topics for more information.
 
-{{< note >}} NGINX Ingress Controller does not clear the status of Ingress resources when it is being shut down. {{< /note >}}
+{{< call-out "note" >}} NGINX Ingress Controller does not clear the status of Ingress resources when it is being shut down. {{< /call-out >}}
 
 ## VirtualServer and VirtualServerRoute resources
 
@@ -58,7 +58,7 @@ kubectl get virtualservers -o wide
   cafe   Valid   cafe.example.com         ae430f41a1a0042908655abcdefghijkl-12345678.eu-west-2.elb.amazonaws.com   [80,443]   106s
 ```
 
-{{< note >}} If there are multiple addresses, only the first one is shown. {{< /note >}}
+{{< call-out "note" >}} If there are multiple addresses, only the first one is shown. {{< /call-out >}}
 
 In order to see additional addresses or extra information about the `Status` of the resource, use the following command:
 
@@ -115,7 +115,7 @@ NGINX Ingress Controller must be configured to report a VirtualServer or Virtual
 
 View the [ConfigMap keys](/nginx-ingress-controller/configuration/global-configuration/configmap-resource) and [Command-line arguments](/nginx-ingress-controller/configuration/global-configuration/command-line-arguments) topics for more information.
 
-{{< note >}} NGINX Ingress Controller does not clear the status of VirtualServer and VirtualServerRoute resources when it is being shut down. {{< /note >}}
+{{< call-out "note" >}} NGINX Ingress Controller does not clear the status of VirtualServer and VirtualServerRoute resources when it is being shut down. {{< /call-out >}}
 
 ## Policy resources
 

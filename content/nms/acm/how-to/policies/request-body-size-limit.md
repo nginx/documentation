@@ -60,7 +60,7 @@ You can apply this policy using either the web interface or the REST API.
 
 {{%tab name="API"%}}
 
-{{<see-also>}}{{< include "acm/how-to/access-acm-api.md" >}}{{</see-also>}}
+{{< call-out "note" >}}{{< include "acm/how-to/access-acm-api.md" >}}{{< /call-out>}}
 
 To add the Request Body Size Limit policy using the REST API, send an HTTP `POST` request to the Environments endpoint.
 

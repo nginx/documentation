@@ -95,7 +95,7 @@ versions 1.1 or 2.0 using Unit:
    For a detailed discussion, see [Configuring Web Servers](https://www.yiiframework.com/doc/guide/2.0/en/start-installation#configuring-web-servers)
    and [Running Applications](https://www.yiiframework.com/doc/guide/2.0/en/start-workflow) in Yii 2.0 docs.
 
-{{< note >}}
+{{< call-out "note" >}}
    The difference between the **pass** targets is their usage of
    the **script**
    [setting]({{< relref "/unit/configuration.md#configuration-php" >}}):
@@ -105,7 +105,7 @@ versions 1.1 or 2.0 using Unit:
 
    - The **index** target specifies the **script** that Unit
    runs for *any* URIs the target receives.
-{{< /note >}}
+{{< /call-out >}}
 
 
 5. Upload the updated configuration.
@@ -197,7 +197,7 @@ Yii and create or deploy your app.
 
    For a detailed discussion, see Yii 1.1 [docs](https://www.yiiframework.com/doc/guide/1.1/en/quickstart.first-app).
 
-{{< note >}}
+{{< call-out "note" >}}
 The difference between the **pass** targets is their usage of
 the **script**
 [setting]({{< relref "/unit/configuration.md#configuration-php" >}}):
@@ -207,7 +207,7 @@ the **script**
 
 - The **index** target specifies the **script** that Unit
    runs for *any* URIs the target receives.
-{{< /note >}}
+{{< /call-out >}}
 
 4. Upload the updated configuration.
 

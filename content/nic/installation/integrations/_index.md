@@ -1,6 +1,6 @@
 ---
 title: Integrations
 description:
-weight: 600
+weight: 800
 url: /nginx-ingress-controller/installation/integrations
 ---

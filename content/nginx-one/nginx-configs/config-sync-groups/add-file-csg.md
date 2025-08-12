@@ -29,11 +29,11 @@ You can use the NGINX One Console to add a file to a specific Config Sync Group.
 1. Select the Config Sync Group to manage.
 1. Select the **Configuration** tab.
 
-   {{< tip >}}
+   {{< call-out "tip" >}}
 
    {{< include "nginx-one/add-file/edit-config-tip.md" >}}
 
-   {{< /tip >}}
+   {{< /call-out >}}
 
 1. Select **Edit Configuration**.
 1. In the **Edit Configuration** window that appears, select **Add File**.
@@ -48,12 +48,12 @@ Enter the name of the desired configuration file, such as `abc.conf` and select 
 
 {{< include "nginx-one/add-file/new-ssl-bundle.md" >}}
 
-  {{< tip >}}
+  {{< call-out "tip" >}}
 
   Make sure to specify the path to your certificate in your NGINX configuration,
   with the `ssl_certificate` and `ssl_certificate_key` directives.
 
-  {{< /tip >}}
+  {{< /call-out >}}
 
 ### Existing SSL Certificate or CA Bundle
 

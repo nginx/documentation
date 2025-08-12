@@ -22,7 +22,7 @@ To look up your version of NGINX Controller:
 1. Select the NGINX Controller menu icon, then select **Platform**.
 1. On the Platform menu, select **Cluster** > **Overview**.
 
-{{< see-also >}}Refer to the [NGINX Controller release notes]({{< ref "/controller/releases/" >}}) to see what's new in the latest release of NGINX Controller.{{< /see-also >}}
+{{< call-out "note" >}}Refer to the [NGINX Controller release notes]({{< ref "/controller/releases/" >}}) to see what's new in the latest release of NGINX Controller.{{< /call-out>}}
 
 &nbsp;
 
@@ -145,7 +145,7 @@ To resolve errors with an Integration:
 1. Remove the Forwarder.
 1. Re-add the Forwarder.
 
-{{< tip >}}Before you remove the Forwarder, perform an HTTP GET request to capture the Forwarder's settings. Then, you can delete the Forwarder. Use the JSON payload returned in the GET request to re-create the Forwarder by sending an HTTP PUT request to the `/analytics/forwarders` endpoint in the [NGINX Controller REST API]]({{< ref "/controller/api/_index.md" >}}).{{< /tip >}}
+{{< call-out "tip" >}}Before you remove the Forwarder, perform an HTTP GET request to capture the Forwarder's settings. Then, you can delete the Forwarder. Use the JSON payload returned in the GET request to re-create the Forwarder by sending an HTTP PUT request to the `/analytics/forwarders` endpoint in the [NGINX Controller REST API]]({{< ref "/controller/api/_index.md" >}}).{{< /call-out >}}
 
 ### Error code 440001 -- Integration cannot be found
 
@@ -176,7 +176,7 @@ In NGINX Controller version 3.13, the output format `SPLUNK_HEC` was changed `SP
 
 To resolve this error, update the Forwarder to use `SPLUNK` instead of `SPLUNK_HEC`, as described in [Forward Analytics Data to Splunk]({{< ref "/controller/analytics/forwarders/forward-analytics-to-splunk.md" >}}).
 
-{{< tip >}}To update the Forwarder settings, you can send an HTTP PUT request that contains the updated `outputFormat` config to the `/analytics/forwarders` endpoint in the [NGINX Controller REST API]({{< ref "/controller/api/_index.md" >}}).{{< /tip >}}
+{{< call-out "tip" >}}To update the Forwarder settings, you can send an HTTP PUT request that contains the updated `outputFormat` config to the `/analytics/forwarders` endpoint in the [NGINX Controller REST API]({{< ref "/controller/api/_index.md" >}}).{{< /call-out >}}
 
 {{< versions "3.6" "latest" "ctrlvers" >}}
 {{< versions "3.18" "latest" "apimvers" >}}

@@ -18,12 +18,12 @@ The F5 NGINX Controller API Management module provides full life cycle managemen
 - A **Published API**, which represents an API Version that has been deployed to an NGINX Plus instance serving as an API Gateway.
 - (Optional) API documentation available via the Developer Portal.
 
-{{< note >}}
+{{< call-out "note" >}}
 
 - You must have an API Management module license installed to complete the steps in this guide.
 - The API Management module is available to users with the predefined [Admin or User Roles]({{< ref "/controller/platform/access-management/manage-roles.md#predefined-roles-and-role-groups" >}}).
 
-{{< /note >}}
+{{< /call-out >}}
 
 ## Create an API Definition
 
@@ -65,11 +65,11 @@ An API Version describes a particular API. It can be thought of as an API specif
 
 9. (Optional) Provide a description.
 
-   {{< note >}}
+   {{< call-out "note" >}}
 
    If your API specification includes a description, that text populates this field automatically when you [add your OpenAPI spec](#import-an-openapi-specification).
 
-   {{< /note >}}
+   {{< /call-out >}}
 
 10. (Optional) Add tags.
 
@@ -77,11 +77,11 @@ An API Version describes a particular API. It can be thought of as an API specif
 
 The APIM module supports import of a valid OpenAPI v3 specification formatted as valid JSON or YAML.
 
-{{< note >}}
+{{< call-out "note" >}}
 
 If your API spec includes documentation elements, the "Enable documentation" option is selected automatically. You do not need to take any additional steps to document your API.
 
-{{< /note >}}
+{{< /call-out >}}
 
 **To import your spec by uploading a file:**
 
@@ -128,19 +128,19 @@ Take the steps below to manually add your API resources.
 
 Follow the steps below to document your API.
 
-{{< note >}}
+{{< call-out "note" >}}
 
 API documentation must follow the OpenAPI 2.0/3.0 Specification.
 
 If you uploaded an API spec that contains documentation, you don't need take any further steps to document your API.
 
-{{< /note >}}
+{{< /call-out >}}
 
-{{< tip >}}
+{{< call-out "tip" >}}
 
 Skip to step 6 if you're continuing from the [Define API Resources Manually](#define-api-resources-manually) section.
 
-{{< /tip >}}
+{{< /call-out >}}
 
 1. Open the NGINX Controller user interface and log in.
 
@@ -192,11 +192,11 @@ Skip to step 6 if you're continuing from the [Define API Resources Manually](#d
 
 ### Import a Web Services Description Language (WSDL) file
 
-   {{< caution >}}
+   {{< call-out "caution"  >}}
 
 Currently, only HTTP is supported for SOAP-REST proxy traffic.  Traffic will be unauthenticated and unencrypted, and as a result will be vulnerable to several security risks. It should be treated as a beta/preview feature.
 
-   {{< /caution >}}
+   {{< /call-out >}}
 
 The APIM module supports importing a WSDL file that describes a SOAP service.
 
@@ -230,11 +230,11 @@ Take the following steps to **Edit** add your API Version:
 
 4. (optional) Modify the **Path** for the API resource as desired.
 
-   {{< tip >}}
+   {{< call-out "tip" >}}
 
    Path should start with `/`, for example, `/userlookup/{userid}/attributes/{surname}`.
 
-   {{< /tip >}}
+   {{< /call-out >}}
 
 5. Select **Next** to continue to the **Schema** page
 
@@ -258,9 +258,9 @@ You need at least one of each of the resources listed below to complete this sec
 
  (required to add Authentication to the Published API Component).
 
-{{< tip >}}
+{{< call-out "tip" >}}
 You can connect one or more [Developer Portals]({{< ref "/controller/api-management/manage-dev-portals.md" >}}) to your Published API to host your API documentation. This can be done either when creating or editing your Published API, or independently via the API Quick Actions menu.
-{{< /tip >}}
+{{< /call-out >}}
 
 ### Add a Published API
 
@@ -284,11 +284,11 @@ On the **Create Published API** *Configuration* page:
 
 3. Specify whether the **Strip Base Path** parameter is required.
 
-   {{< note >}}
+   {{< call-out "note" >}}
 
    The `Strip Base Path` option modifies the path that is passed from the Gateway to the upstream host. When the option is selected, the base path will be removed from the original request when the request is passed to the upstream host. If the option is not selected, the original request -- including the base path -- is passed from the Gateway to the upstream host.
 
-   {{< /note >}}
+   {{< /call-out >}}
 
 4. Provide a Name and/or Display Name for the Published API.
 
@@ -351,16 +351,16 @@ On the **Create Published API** *Routing* page:
     7. (Optional) Select the Desired Proxy Settings (applicable only to Web Components).
 
     8. Select **Next**.
-   {{< see-also >}}
+   {{< call-out "note" >}}
 
    - Refer to the [Manage Locations]({{< ref "/controller/infrastructure/locations/manage-locations.md" >}}) topic for more information.
 
    - Refer to the [NGINX Plus Admin Guide](https://docs.nginx.com/nginx/admin-guide/load-balancer/http-load-balancer/) for more information about the available options.
 
-   {{< /see-also >}}
-   {{< tip >}}
+   {{< /call-out>}}
+   {{< call-out "tip" >}}
    Hover your pointer over the info icon for each setting to learn about the expected values and requirements.
-   {{< /tip >}}
+   {{< /call-out >}}
 
 
 4. On the **Create App Component** *Rate Limiting* page:
@@ -387,11 +387,11 @@ On the **Create Published API** *Routing* page:
 
     4. Select **Next**.
 
-{{< important >}}
+{{< call-out "important" >}}
 
 The **Advanced Security** features require an *NGINX Controller API Management Advanced Security* license.
 
-{{< /important >}}
+{{< /call-out >}}
 
 6. On the **Create App Components** *Advanced Security* page:
 
@@ -403,7 +403,7 @@ The **Advanced Security** features require an *NGINX Controller API Management A
 
     4. Select **Next**
 
-    {{< see-also >}} Refer to the [Default WAF Policy]({{< ref "/controller/app-delivery/security/concepts/app-sec-default-policy-original.md" >}}) topics to learn more about the default protection provided by NGINX App Protect. {{< /see-also >}}
+    {{< call-out "note" >}} Refer to the [Default WAF Policy]({{< ref "/controller/app-delivery/security/concepts/app-sec-default-policy-original.md" >}}) topics to learn more about the default protection provided by NGINX App Protect. {{< /call-out>}}
 
 
 7. On the **Create App Component** *Ingress* page:
@@ -411,11 +411,11 @@ The **Advanced Security** features require an *NGINX Controller API Management A
     1. (Optional) Set the desired **Client Max Body Size**.
     2. Select **Next**.
 
-   {{< see-also >}}
+   {{< call-out "note" >}}
 
    Refer to the [NGINX module docs](http://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size) for more information about this option.
 
-   {{< /see-also >}}
+   {{< /call-out>}}
 
 
 8. On the **Create App Component** *Monitoring* page:
@@ -442,11 +442,11 @@ The **Advanced Security** features require an *NGINX Controller API Management A
 
     11. Select **Next**.
 
-   {{< see-also >}}
+   {{< call-out "note" >}}
 
    Refer to the [NGINX module docs](http://nginx.org/en/docs/http/ngx_http_upstream_hc_module.html#health_check) for more information about these options.
 
-    {{< /see-also >}}
+    {{< /call-out>}}
 
 9. On the **Create App Component** *Logs* page:
 
@@ -460,11 +460,11 @@ The **Advanced Security** features require an *NGINX Controller API Management A
 
     3. Select **Next**.
 
-   {{< see-also >}}
+   {{< call-out "note" >}}
 
    Refer to the [NGINX docs](http://nginx.org/en/docs/http/ngx_http_log_module.html) for more information about these options.
 
-   {{< /see-also >}}
+   {{< /call-out>}}
 
 9. On the **Create App Component** *Programmability* page:
 
@@ -480,11 +480,11 @@ The **Advanced Security** features require an *NGINX Controller API Management A
 
     5. Select **Next**.
 
-   {{< see-also >}}
+   {{< call-out "note" >}}
 
    Refer to the [NGINX module docs](http://nginx.org/en/docs/http/ngx_http_rewrite_module.html) for more information about these options.
 
-   {{< /see-also >}}
+   {{< /call-out>}}
 
     6. Select **Next** to review the API spec that will be sent to create the App Component.
 

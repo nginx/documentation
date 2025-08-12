@@ -32,13 +32,13 @@ To run the [Plone](https://plone.org) content management system using Unit:
                   standalone
    ```
 
-   {{< note >}}
+   {{< call-out "note" >}}
    Plone's [Zope](https://plone.org/what-is-plone/zope) instance and
    virtual environment are created in the **zinstance/** subdirectory;
    later, the resulting path is used to configure Unit, so take care to note
    it in your setup. Also, make sure the Python version specified with
    `--with-python` matches the module version from Step 1.
-   {{< /note >}}
+   {{< /call-out >}}
 
 4. To run Plone on Unit, add a new configuration file named
    **/path/to/app/zinstance/wsgi.cfg**:

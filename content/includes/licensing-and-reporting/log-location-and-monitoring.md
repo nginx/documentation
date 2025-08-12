@@ -30,4 +30,4 @@ Examples of subscription-related log entries include:
   [emerg] license expired
   ```
 
-  {{<important>}}When a license expires, NGINX Plus stops processing traffic.{{</important>}}
+  {{< call-out "important" >}}When a license expires, NGINX Plus stops processing traffic.{{< /call-out >}}

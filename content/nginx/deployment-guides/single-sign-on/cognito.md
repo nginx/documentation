@@ -11,7 +11,7 @@ nd-docs: DOCS-1685
 
 This guide explains how to enable single sign-on (SSO) for applications being proxied by F5 NGINX Plus. The solution uses OpenID Connect as the authentication mechanism, with [Amazon Cognito](https://aws.amazon.com/cognito/) as the Identity Provider (IdP), and NGINX Plus as the Relying Party, or OIDC client application that verifies user identity.
 
-{{< note >}} This guide applies to [NGINX Plus Release 35]({{< ref "nginx/releases.md#r35" >}}) and later. In earlier versions, NGINX Plus relied on an [njs-based solution](#legacy-njs-guide), which required NGINX JavaScript files, key-value stores, and advanced OpenID Connect logic. In the latest NGINX Plus version, the new [OpenID Connect module](https://nginx.org/en/docs/http/ngx_http_oidc_module.html) simplifies this process to just a few directives.{{< /note >}}
+{{< call-out "note" >}} This guide applies to [NGINX Plus Release 35]({{< ref "nginx/releases.md#r35" >}}) and later. In earlier versions, NGINX Plus relied on an [njs-based solution](#legacy-njs-guide), which required NGINX JavaScript files, key-value stores, and advanced OpenID Connect logic. In the latest NGINX Plus version, the new [OpenID Connect module](https://nginx.org/en/docs/http/ngx_http_oidc_module.html) simplifies this process to just a few directives.{{< /call-out >}}
 
 
 ## Prerequisites
@@ -94,7 +94,7 @@ Check the OpenID Connect Discovery URL. By default, Amazon Cognito publishes the
 
 2. Copy the **issuer** value, you will need it later when configuring NGINX Plus. Typically, the OpenID Connect Issuer for Amazon Cognito is `https://cognito-idp.<region>.amazonaws.com/<User Pool ID>`.
 
-{{< note >}} You will need the values of **Client ID**, **Client Secret**, and **Issuer** in the next steps. {{< /note >}}
+{{< call-out "note" >}} You will need the values of **Client ID**, **Client Secret**, and **Issuer** in the next steps. {{< /call-out >}}
 
 
 ## Set up NGINX Plus {#nginx-plus-setup}

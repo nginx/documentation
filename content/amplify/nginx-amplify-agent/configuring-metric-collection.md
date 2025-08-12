@@ -49,7 +49,7 @@ nginx: configuration file /etc/nginx/nginx.conf test is successful
 
 Test your nginx configuration after you've added the `stub_status` section above. Make sure there's no ambiguity with either [listen](http://nginx.org/en/docs/http/ngx_http_core_module.html#listen) or [server_name](http://nginx.org/en/docs/http/ngx_http_core_module.html#server_name) configuration. NGINX Amplify Agent should be able to identify the [stub_status](http://nginx.org/en/docs/http/ngx_http_stub_status_module.html) URL and will default to use 127.0.0.1 if the configuration is incomplete.
 
-{{< note >}} If you use the `conf.d*`directory to keep common parts of your NGINX configuration that are then automatically included in the [server](http://nginx.org/en/docs/http/ngx_http_core_module.html#server) sections across your NGINX config, do not use the snippet above. Instead, you should configure [stub_status](http://nginx.org/en/docs/http/ngx_http_stub_status_module.html) manually within an appropriate location or server block. {{< /note >}}
+{{< call-out "note" >}} If you use the `conf.d*`directory to keep common parts of your NGINX configuration that are then automatically included in the [server](http://nginx.org/en/docs/http/ngx_http_core_module.html#server) sections across your NGINX config, do not use the snippet above. Instead, you should configure [stub_status](http://nginx.org/en/docs/http/ngx_http_stub_status_module.html) manually within an appropriate location or server block. {{< /call-out >}}
 
 The above is an example `nginx_status` URI for [stub_status](http://nginx.org/en/docs/http/ngx_http_stub_status_module.html). NGINX Amplify Agent will determine the correct URI automatically upon parsing your NGINX configuration. Please make sure that the directory and the actual configuration file with `stub_status` are readable by NGINX Amplify Agent; otherwise, NGINX Amplify Agent won't be able to determine the `stub_status` URL correctly. If NGINX Amplify Agent fails to find `stub_status`, please refer to the workaround described [here]({{< ref "/amplify/nginx-amplify-agent/install/configuring-amplify-agent#configuring-the-url-for-stub_status-or-status-api" >}}).
 
@@ -95,7 +95,7 @@ You don't have to specifically point NGINX Amplify Agent to either the NGINX con
 
 NGINX Amplify Agent will also try to detect the [log format](http://nginx.org/en/docs/http/ngx_http_log_module.html#log_format) for a particular log to parse it properly and try to extract even more useful metrics, for example, [$upstream_response_time](http://nginx.org/en/docs/http/ngx_http_upstream_module.html#var_upstream_response_time).
 
-{{< note >}}Several metrics outlined in [Metrics and Metadata]({{< ref "metrics-metadata" >}}) will only be available if the corresponding variables are included in a custom [access.log](http://nginx.org/en/docs/http/ngx_http_log_module.html) format used for logging requests. You can find a complete list of NGINX log variables [here](http://nginx.org/en/docs/varindex.html).{{< /note >}}
+{{< call-out "note" >}}Several metrics outlined in [Metrics and Metadata]({{< ref "metrics-metadata" >}}) will only be available if the corresponding variables are included in a custom [access.log](http://nginx.org/en/docs/http/ngx_http_log_module.html) format used for logging requests. You can find a complete list of NGINX log variables [here](http://nginx.org/en/docs/varindex.html).{{< /call-out >}}
 
 ## Using Syslog for Metric Collection
 
@@ -118,4 +118,4 @@ If you configured NGINX Amplify Agent for syslog metric collection (see the [con
 
       (see more [here](http://nginx.org/en/docs/control.html))
 
-{{< note >}}To send the NGINX logs to both the existing logging facility and NGINX Amplify Agent, include a separate [access.log](http://nginx.org/en/docs/http/ngx_http_log_module.html) directive for each destination.{{< /note >}}
+{{< call-out "note" >}}To send the NGINX logs to both the existing logging facility and NGINX Amplify Agent, include a separate [access.log](http://nginx.org/en/docs/http/ngx_http_log_module.html) directive for each destination.{{< /call-out >}}

@@ -12,17 +12,17 @@ type:
 
 F5 NGINX Service Mesh integrates with Prometheus for metrics and Grafana for visualizations.
 
-{{< note >}}
+{{< call-out "note" >}}
 To configure NGINX Service Mesh to use Prometheus when deploying, refer to the [Monitoring and Tracing]( {{< ref "/mesh/guides/monitoring-and-tracing.md#prometheus" >}} ) guide for instructions.
-{{< /note >}}
+{{< /call-out >}}
 
 The mesh supports the [SMI spec](https://github.com/servicemeshinterface/smi-spec), including traffic metrics.
 The NGINX Service Mesh creates an extension API Server and shim that query Prometheus and return the results in a traffic metrics format. See [SMI Traffic Metrics]( {{< ref "smi-traffic-metrics.md" >}}) for more information.
 
-{{< note >}}
+{{< call-out "note" >}}
 Occasionally metrics are reset when the nginx-mesh-sidecar reloads NGINX Plus. If traffic is flowing and you
 fail to see metrics, retry after 30 seconds.
-{{< /note >}}
+{{< /call-out >}}
 
 If you are deploying NGINX Plus Ingress Controller with the NGINX Service Mesh, make sure to configure the NGINX Plus Ingress Controller to export metrics.
 Refer to the [Metrics]( {{< ref "/mesh/tutorials/kic/deploy-with-kic.md#nginx-plus-ingress-controller-metrics" >}} ) section of the NGINX Plus Ingress Controller Deployment tutorial for instructions.

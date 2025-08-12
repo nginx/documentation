@@ -14,7 +14,7 @@ type:
 - how-to
 ---
 
-{{< note >}}For disconnected environments, see [Report usage data to F5 (disconnected)]({{< ref "nim/disconnected/report-usage-disconnected-deployment.md" >}}).{{< /note >}}
+{{< call-out "note" >}}For disconnected environments, see [Report usage data to F5 (disconnected)]({{< ref "nim/disconnected/report-usage-disconnected-deployment.md" >}}).{{< /call-out >}}
 
 ## Overview
 

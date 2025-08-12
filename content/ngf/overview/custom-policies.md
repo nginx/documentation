@@ -25,9 +25,9 @@ The following table summarizes NGINX Gateway Fabric custom policies:
 
 {{< /bootstrap-table >}}
 
-{{< important >}}
+{{< call-out "important" >}}
 If attaching a Policy to a Route, that Route must not share a hostname:port/path combination with any other Route that is not referenced by the same Policy. If it does, the Policy will be rejected. This is because the Policy would end up affecting other Routes that it is not attached to.
-{{< /important >}}
+{{< /call-out >}}
 
 ## Terminology
 

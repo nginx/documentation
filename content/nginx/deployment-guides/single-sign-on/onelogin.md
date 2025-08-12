@@ -11,7 +11,7 @@ nd-docs: DOCS-1687
 
 This guide explains how to enable single sign-on (SSO) for applications being proxied by F5 NGINX Plus. The solution uses OpenID Connect as the authentication mechanism, with [OneLogin](https://www.onelogin.com/) as the Identity Provider (IdP) and NGINX Plus as the Relying Party (RP), or OIDC client application that verifies user identity.
 
-{{< note >}} This guide applies to [NGINX Plus Release 35]({{< ref "nginx/releases.md#r35" >}}) and later. In earlier versions, NGINX Plus relied on an [njs-based solution](#legacy-njs-guide), which required NGINX JavaScript files, key-value stores, and advanced OpenID Connect logic. In the latest NGINX Plus version, the new [OpenID Connect module](https://nginx.org/en/docs/http/ngx_http_oidc_module.html) simplifies this process to just a few directives.{{< /note >}}
+{{< call-out "note" >}} This guide applies to [NGINX Plus Release 35]({{< ref "nginx/releases.md#r35" >}}) and later. In earlier versions, NGINX Plus relied on an [njs-based solution](#legacy-njs-guide), which required NGINX JavaScript files, key-value stores, and advanced OpenID Connect logic. In the latest NGINX Plus version, the new [OpenID Connect module](https://nginx.org/en/docs/http/ngx_http_oidc_module.html) simplifies this process to just a few directives.{{< /call-out >}}
 
 
 ## Prerequisites
@@ -98,7 +98,7 @@ Check the OpenID Connect Discovery URL. By default, OneLogin publishes the `.wel
 
 2. Copy the **issuer** value, you will need it later when configuring NGINX Plus. Typically, the OpenID Connect Issuer for OneLogin is `https://<subdomain>.onelogin.com/oidc/2`.
 
-{{< note >}} You will need the values of **Client ID**, **Client Secret**, and **Issuer** in the next steps. {{< /note >}}
+{{< call-out "note" >}} You will need the values of **Client ID**, **Client Secret**, and **Issuer** in the next steps. {{< /call-out >}
 
 ### Assign Users and Groups
 
@@ -358,7 +358,7 @@ http {
 
 4. Refresh `https://demo.example.com/` again. You should be redirected to OneLogin for a fresh sign‑in, proving the session has been terminated.
 
-{{<note>}}If you restricted access to a group of users, be sure to select a user who has access to the application.{{</note>}}
+{{< call-out "note" >}}If you restricted access to a group of users, be sure to select a user who has access to the application.{{< /call-out >}}
 
 
 ## Legacy njs-based OneLogin Solution {#legacy-njs-guide}

@@ -19,9 +19,9 @@ This topic explains how to use the [F5 NGINX Controller REST API](https://docs.n
 
 The NGINX Controller API uses session cookies to authenticate requests. The session cookie is returned in response to a `GET /api/v1/platform/login` request. See the Login endpoint in the [NGINX Controller API Reference]({{< ref "/controller/api/_index.md" >}}) documentation for information about session cookie timeouts and invalidation.
 
-{{< tip >}}
+{{< call-out "tip" >}}
 You can send a GET request to the login endpoint to find the status of the session token.
-{{< /tip >}}
+{{< /call-out >}}
 
 For example:
 
@@ -60,9 +60,9 @@ For example:
   curl -b cookie.txt -c cookie.txt -X GET --url 'https://192.0.2.0/api/v1/platform/licenses/nginx-plus-licenses/controller-provided' --output nginx-plus-certs.gz
   ```
 
-{{< note >}}
+{{< call-out "note" >}}
 If you are using a self-signed certificate you will need to add `-k` (allow insecure connections) to your curl command to be able to download your NGINX Plus certificate and key bundle.
-{{< /note >}}
+{{< /call-out >}}
 
 
 Once you have downloaded your certificate and key bundle you will need to expand the `.gz` file to get your certificate and key pair.

@@ -11,9 +11,9 @@ To run the [Review Board](https://www.reviewboard.org) code review tool using Un
 
 2. Install and configure Review Board's [prerequisites](https://www.reviewboard.org/docs/manual/dev/admin/installation/linux/#before-you-begin)
 
-   {{< note >}}
+   {{< call-out "note" >}}
    We'll use Unit as the web server, so you can skip the corresponding step.
-   {{< /note >}}
+   {{< /call-out >}}
 
 3. Install the [core files](https://www.reviewboard.org/docs/manual/dev/admin/installation/linux/#installing-review-board)
    and create a [site](https://www.reviewboard.org/docs/manual/dev/admin/installation/creating-sites/).

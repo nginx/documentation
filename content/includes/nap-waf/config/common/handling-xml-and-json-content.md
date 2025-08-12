@@ -109,9 +109,9 @@ Here is a policy that enforces this:
 }
 ```
 
-{{< note >}}
+{{< call-out "note" >}}
 Defining a JSON or XML profile in a policy has no effect until you assign it to a URL or Parameter you defined in that policy. Profiles can be shared by more than one URL and/or Parameter.
-{{< /note >}}
+{{< /call-out >}}
 
 #### Applying a JSON Schema
 

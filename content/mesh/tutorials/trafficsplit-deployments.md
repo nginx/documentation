@@ -34,15 +34,15 @@ You can use traffic splitting for most deployment scenarios, including canary, b
     - {{< fa "download" >}} {{< link "/examples/traffic-split/trafficsplit-matches.yaml" "trafficsplit-matches.yaml" >}}
 
 
-{{< note >}}
+{{< call-out "note" >}}
 The NGINX Plus Ingress Controller's custom resource [TransportServer](https://docs.nginx.com/nginx-ingress-controller/configuration/transportserver-resource/) has the same Kubernetes short name(`ts`) as the custom resource TrafficSplit.
 If you have the NGINX Plus Ingress Controller installed, use the full name `trafficsplit(s)` instead of `ts` in the following instructions.
-{{< /note >}}
+{{< /call-out >}}
 
-{{< note >}}
+{{< call-out "note" >}}
 Avoid configuring traffic policies such as TrafficSplits, RateLimits, and CircuitBreakers for headless services.
 These policies will not work as expected because NGINX Service Mesh has no way to tie each pod IP address to its headless service.
-{{< /note >}}
+{{< /call-out >}}
 
 ## Objectives
 
@@ -51,9 +51,9 @@ Follow the steps in this guide to learn how to use traffic splitting for various
 ### Deploy the Production Version of the Target App
 
 1. First, let's begin by deploying the "production" v1.0 target app, the load balancer Service, and the ingress gateway.
-{{< tip>}}
+{{< call-out "tip" >}}
 For simplicity, this guide uses a simple NGINX reverse proxy for the ingress gateway. For production usage and for more advanced ingress control, we recommend using the [NGINX Ingress Controller for Kubernetes](https://www.nginx.com/products/nginx-ingress-controller/). Refer to [Deploy NGINX Ingress Controller with NGINX Service Mesh]( {{< ref "ingress-walkthrough.md" >}} ) to learn more.
-{{< /tip>}}
+{{< /call-out >}}
 
     **Command:**
 
@@ -319,9 +319,9 @@ spec:
 The [HTTPRouteGroup](https://github.com/servicemeshinterface/smi-spec/blob/main/apis/traffic-specs/v1alpha3/traffic-specs.md#httproutegroup) is used to describe HTTP traffic. The `spec.matches` field defines a list of routes that an application can serve. Routes are made up of the following match conditions: pathRegex, headers, and HTTP methods.
 In the `target-hrg` example above, we have defined one route, `firefox-users`, using the header filter `user-agent: ".*Firefox.*"`. Incoming HTTP traffic that has the `user-agent` header set to a value that matches the regex `".*Firefox.*"` satisfies the `firefox-users` match condition.
 
-{{< tip >}}
+{{< call-out "tip" >}}
 A route with multiple match conditions (pathRegex, headers, and/or HTTP methods) within a single match represent an `AND` condition. This means that all match conditions must be satisfied for the traffic to match the route.
-{{< /tip >}}
+{{< /call-out >}}
 
 To associate the `target-hrg` HTTPRouteGroup with the traffic split we need to add the `matches` field to our traffic split spec:
 
@@ -394,7 +394,7 @@ In this example, all traffic sent to the root Service `target-svc` that contains
 
    **Expectation:** The `target-hrg` HTTPRouteGroup is created and the `target-ts` traffic split is updated.
 
-   {{< tip >}} Use `kubectl get` and `kubectl describe` for `httproutegroups` and `trafficsplits` to make sure the resources were created or updated. {{< /tip >}}
+   {{< call-out "tip" >}} Use `kubectl get` and `kubectl describe` for `httproutegroups` and `trafficsplits` to make sure the resources were created or updated. {{< /call-out >}}
 
    In the terminal window where you are generating traffic to the gateway Service you should now see responses from both the `target-v2-1` and `target-v3` backends. To test the A/B traffic shaping, open another terminal window and generate traffic to the gateway Service with the header `user-agent: Firefox`:
 

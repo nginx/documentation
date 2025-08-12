@@ -537,7 +537,7 @@ If you are using an API doc with a proxy:
       - url: /api/v3
       ```
 
-      {{< note >}}In the example above only  `/api/v3` is relevant for this issue, and it should be the full base path to which the individual paths in the API document can be appended directly. {{< /note >}}
+      {{< call-out "note" >}}In the example above only  `/api/v3` is relevant for this issue, and it should be the full base path to which the individual paths in the API document can be appended directly. {{< /call-out >}}
 
   2. Set the value of the base path version append rule (`basePathVersionAppendRule`) in the proxy to `NONE`.
 
