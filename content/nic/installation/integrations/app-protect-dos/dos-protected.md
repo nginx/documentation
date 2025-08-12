@@ -9,7 +9,7 @@ nd-docs: DOCS-581
 
 NGINX App Protect DoS protected resource specification
 
-{{< note >}} This feature is only available using the NGINX Plus [NGINX App Protect DoS Module]({{< ref "/nap-dos/deployment-guide/learn-about-deployment.md" >}}). {{< /note >}}
+{{< call-out "note" >}} This feature is only available using the NGINX Plus [NGINX App Protect DoS Module]({{< ref "/nap-dos/deployment-guide/learn-about-deployment.md" >}}). {{< /call-out >}}
 
 ## DoS Protected resource specification
 
@@ -123,4 +123,4 @@ Events:
 
 The events section has Warning event with the rejection error in the message.
 
-{{< warning >}} If you invalidate an existing resource, NGINX Ingress Controller will reject it. {{< /warning >}}
+{{< call-out "warning" >}} If you invalidate an existing resource, NGINX Ingress Controller will reject it. {{< /call-out >}}

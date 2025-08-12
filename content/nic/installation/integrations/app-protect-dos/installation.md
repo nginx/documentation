@@ -73,7 +73,7 @@ Follow these steps to build the NGINX Controller Image with NGINX App Protect Do
 
      **What to expect**: The image is built and tagged with a version number, which is derived from the `VERSION` variable in the [_Makefile_]({{< ref "/nic/installation/build-nginx-ingress-controller.md#makefile-details" >}}). This version number is used for tracking and deployment purposes.
 
-{{<note>}}In the event a patch version of NGINX Plus is released, make sure to rebuild your image to get the latest version. If your system is caching the Docker layers and not updating the packages, add `DOCKER_BUILD_OPTIONS="--pull --no-cache"` to the make command.{{</note>}}
+{{< call-out "note" >}}In the event a patch version of NGINX Plus is released, make sure to rebuild your image to get the latest version. If your system is caching the Docker layers and not updating the packages, add `DOCKER_BUILD_OPTIONS="--pull --no-cache"` to the make command.{{< /call-out >}}
 
 ### Makefile targets {#makefile-targets}
 
@@ -88,7 +88,7 @@ Follow these steps to build the NGINX Controller Image with NGINX App Protect Do
 
 <br>
 
-{{< see-also >}} For the complete list of _Makefile_ targets and customizable variables, see the [Build NGINX Ingress Controller]({{< ref "/nic/installation/build-nginx-ingress-controller.md#makefile-details" >}}) topic. {{</ see-also >}}
+{{< call-out "note" >}} For the complete list of _Makefile_ targets and customizable variables, see the [Build NGINX Ingress Controller]({{< ref "/nic/installation/build-nginx-ingress-controller.md#makefile-details" >}}) topic. {{< /call-out>}}
 
 ---
 
@@ -176,7 +176,7 @@ kubectl apply -f config/crd/bases/appprotectdos.f5.com_dosprotectedresources.yam
 
 ## Install the App Protect DoS Arbitrator
 
-{{< note >}} If you install multiple NGINX Ingress Controllers in the same namespace, they will need to share the same Arbitrator because there can only be one Arbitrator in a single namespace. {{< /note >}}
+{{< call-out "note" >}} If you install multiple NGINX Ingress Controllers in the same namespace, they will need to share the same Arbitrator because there can only be one Arbitrator in a single namespace. {{< /call-out >}}
 
 ### Helm Chart
 

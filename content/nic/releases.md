@@ -129,7 +129,7 @@ versions: 1.25-1.32.
 - [7295](https://github.com/nginx/kubernetes-ingress/pull/7295) Clean up and fix for NIC Pod failing to bind when NGINX exits unexpectedly
 
 ### <i class="fa-solid fa-box"></i> Helm Chart
-{{< warning >}} From this release onwards, the Helm chart location has changed from `oci://ghcr.io/nginxinc/charts/nginx-ingress` to `oci://ghcr.io/nginx/charts/nginx-ingress`. {{< /warning >}}
+{{< call-out "warning" >}} From this release onwards, the Helm chart location has changed from `oci://ghcr.io/nginxinc/charts/nginx-ingress` to `oci://ghcr.io/nginx/charts/nginx-ingress`. {{< /call-out >}}
 - [7188](https://github.com/nginx/kubernetes-ingress/pull/7188) Correct typo in helm lease annotations template
 
 ### <i class="fa-solid fa-upload"></i> Dependencies

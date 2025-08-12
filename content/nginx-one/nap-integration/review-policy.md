@@ -34,7 +34,7 @@ From the NGINX One Console, you can also manage existing policies. In the Polici
 - **Export** the policy in JSON format.
 - **Delete** the policy. Once confirmed, you'll lose all work you've done on that policy.
 
-{{< note >}}
+{{< call-out "note" >}}
 If you use **Save As** to create a new policy, include the `app_protect_cookie_seed` [directive]({{< ref "/nap-waf/v5/configuration-guide/configuration.md#directives" >}}).
-{{< /note >}}
+{{< /call-out >}}
 

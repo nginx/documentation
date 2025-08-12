@@ -11,9 +11,9 @@ type:
 
 ## Configuration changes
 
-{{< important >}}
+{{< call-out "important" >}}
 This section only applies to Kubespray versions older than v2.16.0.
-{{< /important >}}
+{{< /call-out >}}
 
 When creating a new cluster, you need to pass some extra flags to kubespray using [group_vars](https://github.com/kubernetes-sigs/kubespray/blob/master/docs/ansible/vars.md). Add the following to `inventory/<your cluster>/group_vars/k8s-cluster/k8s-cluster.yml`:
 
@@ -26,9 +26,9 @@ kube_kubeadm_apiserver_extra_args:
 
 After making the changes, deploy kubespray as you usually would.
 
-{{< note >}}
+{{< call-out "note" >}}
 If you have an existing kubespray deployment, you need to create a new cluster. First make the changes in this section and then deploy a new cluster using the same command when you deployed the cluster before. The new cluster will reflect the new configuration. After deploying the new cluster, you can delete the old one.
-{{< /note >}}
+{{< /call-out >}}
 
 ## Persistent storage
 

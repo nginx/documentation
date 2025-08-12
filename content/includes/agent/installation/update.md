@@ -6,14 +6,14 @@ files:
 ---
 
 
-{{< note >}} If you are using a version **older than NGINX Agent v2.31.0**, you must stop NGINX Agent before updating:
+{{< call-out "note" >}} If you are using a version **older than NGINX Agent v2.31.0**, you must stop NGINX Agent before updating:
 
    - `sudo systemctl stop nginx-agent`
 
 And start it again after the update or upgrade:
 
    - `sudo systemctl start nginx-agent`
-{{< /note >}}
+{{< /call-out >}}
 
 Follow the steps below to update or upgrade NGINX Agent to the latest version.
 The same steps apply if you are **upgrading from NGINX Agent v2 to NGINX Agent v3**.

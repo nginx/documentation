@@ -114,7 +114,7 @@ documentation platform using Unit:
    }
    ```
 
-   {{< note >}}
+   {{< call-out "note" >}}
    The difference between the **pass** targets is their usage of the
    **script** [setting]({{< relref "/unit/configuration.md#configuration-php" >}}):
 
@@ -122,7 +122,7 @@ documentation platform using Unit:
      defaults to **index.php** if the w omits it.
    - The **index** target specifies the **script** that Unit runs
      for *any* URIs the target receives.
-   {{< /note >}}
+   {{< /call-out >}}
 
 5. Upload the updated configuration.
 

@@ -12,4 +12,4 @@ When you install NGINX Agent on an NGINX Plus instance, it will establish a conn
    features: registration,dataplane-status
    ```
 
-   {{<note>}}If you upgrade to the full version of Instance Manager later, remove the `features: registration,dataplane-status` line from the configuration. This change will enable NGINX Agent to collect a broader range of metrics and manage configurations remotely.{{</note>}}
+   {{< call-out "note" >}}If you upgrade to the full version of Instance Manager later, remove the `features: registration,dataplane-status` line from the configuration. This change will enable NGINX Agent to collect a broader range of metrics and manage configurations remotely.{{< /call-out >}}

@@ -54,7 +54,7 @@ To complete the steps in this guide, you need the following:
 
 Follow these steps to restrict which HTTP methods clients can use to access your API. If the request's HTTP method is not in the allowed methods list, a `405 Method Not Allowed` response is returned by default, or you can specify a different error code.
 
-{{< note >}} By enabling the `GET` method, the `HEAD` method is also enabled. {{< /note >}}
+{{< call-out "note" >}} By enabling the `GET` method, the `HEAD` method is also enabled. {{< /call-out >}}
 
 <br>
 
@@ -62,7 +62,7 @@ Follow these steps to restrict which HTTP methods clients can use to access your
 
 {{%tab name="API"%}}
 
-{{<see-also>}}{{< include "acm/how-to/access-acm-api.md" >}}{{</see-also>}}
+{{< call-out "note" >}}{{< include "acm/how-to/access-acm-api.md" >}}{{< /call-out>}}
 
 To create an *Allowed HTTP Methods* policy using the REST API, send an HTTP `POST` request to the Proxies endpoint.
 

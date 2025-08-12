@@ -65,13 +65,13 @@ For a role, you can grant `FULL`, `WRITE`, `READ`, or `NONE` permissions to a se
 {{</bootstrap-table>}}
 
 
-{{<note>}}When permissions are set to `NONE`:
+{{< call-out "note" >}}When permissions are set to `NONE`:
 
 - You **cannot** view the settings of the security strategy.
 - You **cannot** reference the security strategy for an app component.
 - You **cannot** create or edit the security strategy.
 - You **cannot** delete the security strategy.
-{{</ note>}}
+{{< /call-out >}}
 
 ### Security Policies
 
@@ -88,8 +88,8 @@ For a role, you can grant `FULL`, `WRITE`, `READ` or `NONE` permissions to a sec
 
 {{</bootstrap-table>}}
 
-{{< note >}}You don't need to add permissions to a security policy to reference it in a security strategy.
-{{< / note >}}
+{{< call-out "note" >}}You don't need to add permissions to a security policy to reference it in a security strategy.
+{{< /call-out >}}
 
 ## Restricting Access to the Default Strategy
 

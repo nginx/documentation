@@ -77,7 +77,7 @@ To download external dependencies:
 
 3. Copy the archive to your target machine and extract the contents:
 
-    {{< note >}}The bundled NGINX server package may conflict with existing versions of NGINX or NGINX Plus. Delete the package from the bundle if you want to keep your current version.{{</note >}}
+    {{< call-out "note" >}}The bundled NGINX server package may conflict with existing versions of NGINX or NGINX Plus. Delete the package from the bundle if you want to keep your current version.{{< /call-out >}}
 
     - **For RHEL and RPM-Based systems**:
 

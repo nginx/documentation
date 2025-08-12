@@ -12,9 +12,9 @@ type:
 
 The F5 NGINX Controller Analytics module lets you configure alerts and notifications, so you can stay informed about your system and app performance. In this topic, you'll learn about [alerts](#alerts), [alert rules](#alert-rules), and [alert notifications](#alert-notifications).
 
-{{< see-also >}}
+{{< call-out "note" >}}
 Refer to [Manage Alerts]({{< ref "/controller/analytics/alerts/manage-alerts.md" >}}) to learn how to set up alerts.
-{{< /see-also >}}
+{{< /call-out>}}
 
 ## Alerts
 
@@ -63,12 +63,12 @@ th {
 |---|---|
 | `name` | A unique identifier for the alert rule.|
 | `display name` | A human-friendly name that helps you identify what the alert rule does. |
-| `metric` | The [metric]({{< ref "/controller/analytics/catalogs/metrics.md" >}}) that you want to monitor. <br/>{{< note >}}An alert rule can monitor one metric.{{< /note >}}|
+| `metric` | The [metric]({{< ref "/controller/analytics/catalogs/metrics.md" >}}) that you want to monitor. <br/>{{< call-out "note" >}}An alert rule can monitor one metric.{{< /call-out >}}|
 | `operator` | The operator that will be applied to the value of the metric to check if an alert should be triggered. There are two available operators: `le` - less or equal and `ge` - greater or equal.|
-| `threshold` | Defines the value that, when exceeded, will trigger an alert. <br/>{{< tip >}}You can find the allowed threshold value(s) for each metric in the **unit** field of the metric's entry in the [Metrics Catalogs Reference]({{< ref "/controller/analytics/catalogs/metrics.md" >}}). Select the "Index" button to access the list of all available metrics and jump directly to that item in the catalog.{{< /tip >}} |
+| `threshold` | Defines the value that, when exceeded, will trigger an alert. <br/>{{< call-out "tip" >}}You can find the allowed threshold value(s) for each metric in the **unit** field of the metric's entry in the [Metrics Catalogs Reference]({{< ref "/controller/analytics/catalogs/metrics.md" >}}). Select the "Index" button to access the list of all available metrics and jump directly to that item in the catalog.{{< /call-out >}} |
 | `period` | Defines the time window in which you want to calculate the aggregated metric value.<br />- The maximum possible time window is `24h`.<br/>- The minimum possible time window is `2m`.|
 | `filter` | Lets you refine the alert rule for a more specific set of metric values, based on dimensions.<br/>If no filter is provided, all collected data will be used when calculating the alert rule status.|
-| `group by` | Groups results according to the specified dimension(s). A separate alert will be triggered for each result group. You can provide multiple dimension names as a comma-separated list. <br/>{{<note>}}Using a dimension with a high cardinality of values might result in a high volume of alerts.{{</note>}}|
+| `group by` | Groups results according to the specified dimension(s). A separate alert will be triggered for each result group. You can provide multiple dimension names as a comma-separated list. <br/>{{< call-out "note" >}}Using a dimension with a high cardinality of values might result in a high volume of alerts.{{< /call-out >}}|
 | `notification type` | Defines how you want to receive alert notifications. |
 | `email addresses` | A comma-separated list of email addresses that should receive alert notifications.|
 | `mute` | Boolean; turns alert notifications on and off. Set to 'on' to mute notifications. |
@@ -121,13 +121,13 @@ An *Alert notification* is a message either displayed in the NGINX Controller us
 If you want to stop receiving notifications for an alert rule, but you don't want to delete it, you can [mute the alert rule]({{< ref "/controller/analytics/alerts/manage-alerts.md#mute-or-unmute-an-alert-rule" >}}).
 Likewise, if you want to stop receiving emails for an alert rule, but you do want to continue receiving the user interface notifications, [edit the alert rule]({{< ref "/controller/analytics/alerts/manage-alerts.md#edit-an-alert-rule" >}}) and remove your email address.
 
-{{< note >}}If you mute an alert rule while the alert rule status is "ongoing", you will not receive any further alert notifications, including when the alert rule status changes.{{< /note >}}
+{{< call-out "note" >}}If you mute an alert rule while the alert rule status is "ongoing", you will not receive any further alert notifications, including when the alert rule status changes.{{< /call-out >}}
 
 ### Email notifications
 
-{{< important >}}
+{{< call-out "important" >}}
 You must [verify your email address]({{< ref "/controller/analytics/alerts/manage-registered-emails.md" >}}) in order to receive alert notification emails.
-{{< /important >}}
+{{< /call-out >}}
 
 When an alert rule's conditions are met, NGINX Controller sends an alert email with the subject "[controller-alert] Alert started: <alert_rule_name>" to all of the email addresses that are specified in the alert rule.
 
@@ -191,9 +191,9 @@ Next, the alert rule status is updated. Each alert rule will be updated with a n
 
 Finally, the alert notifications for newly-created or expired alerts will be sent for any rules that are not muted.
 
-{{< important >}}
+{{< call-out "important" >}}
 If the [Metrics API]({{< ref "/controller/analytics/metrics/metrics-api.md" >}}) query does not return any data  -- for example, if there was no traffic through the instance and therefore no metric value -- NGINX Controller assumes a value of `0`. In such cases, the threshold will be compared to `0`.
-{{< /important >}}
+{{< /call-out >}}
 
 ## Alert special cases
 

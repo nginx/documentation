@@ -95,7 +95,7 @@ On the Publish API Proxy window:
 1. Type a name for the API Proxy.
 1. Select No in the **Use an OpenAPI spec** option.
 1. Select the **Gateway Proxy Hostname from** the menu.
-{{< note >}}If this field is disabled, check the job status of your environment on the infrastructure workspace page.{{<  /note >}}
+{{< call-out "note" >}}If this field is disabled, check the job status of your environment on the infrastructure workspace page.{{< /call-out >}}
 
 ### Ingress
 
@@ -114,7 +114,7 @@ On the Publish API Proxy window:
 
 1. If your proxy is set up correctly, you can send traffic.
 
-{{< note >}}By default the ingress append rule is set to `PREFIX` so your request must be in the form of `version/basepath` {{< /note >}}
+{{< call-out "note" >}}By default the ingress append rule is set to `PREFIX` so your request must be in the form of `version/basepath` {{< /call-out >}}
 
 
 
@@ -363,7 +363,7 @@ Populated from API Specification and are read-only
     curl -k -X GET "https://gateway-proxy-hostname/version/basepath"
     ```
 
-{{< note >}} By default the ingress append rule is set to `NONE` when using an OAS Schema so your request must match the `basepath` you have supplied as part of your Global Server URL. {{< /note >}}
+{{< call-out "note" >}} By default the ingress append rule is set to `NONE` when using an OAS Schema so your request must match the `basepath` you have supplied as part of your Global Server URL. {{< /call-out >}}
 
 {{%/tab%}}
 {{%tab name="API"%}}

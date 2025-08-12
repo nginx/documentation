@@ -17,7 +17,7 @@ For this use-case, we include a list of API groups that you can use to specify p
 
 The following table lists the available API groups that you can use to construct a Role. These are narrowly scoped API groups that align with all the features and functionality within the NGINX One Console. These groups can help you create custom roles tailored to your specific needs.
 
-{{< note >}}If you create custom roles using these API groups, users may not have access to all capabilities of the browser web portal.{{< /note >}}
+{{< call-out "note" >}}If you create custom roles using these API groups, users may not have access to all capabilities of the browser web portal.{{< /call-out >}}
 
 | API Group Name                          | Level of Access | Description                                                                                                                   |
 |-----------------------------------------|-----------------|-------------------------------------------------------------------------------------------------------------------------------|

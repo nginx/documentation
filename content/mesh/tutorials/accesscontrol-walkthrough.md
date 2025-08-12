@@ -31,9 +31,9 @@ Follow the steps in this guide to learn how to use access control between servic
 ### Deploy the Destination Service
 
 1. To begin, we'll deploy a destination target server as a Deployment and ConfigMap, a destination Service, and a ServiceAccount to provide a TrafficTarget destination resource.
-  {{< tip >}}
+  {{< call-out "tip" >}}
 ServiceAccount resources are used to classify sets of workloads for access control. Multiple different types of workloads can participate in the same ServiceAccount to create M:N traffic relationships, or scaled down to a workload type per ServiceAccount for more granular control of communications. For example, a collection of frontend services that all need access to authentication or SSO endpoints can be classified together within a ServiceAccount to simplify configuration.
-  {{< /tip >}}
+  {{< /call-out >}}
 
     **Command:**
 
@@ -252,9 +252,9 @@ ServiceAccount resources are used to classify sets of workloads for access contr
     Let's take a look at the subsequent configuration.
     The TrafficTarget `.spec.sources` and `.spec.destination` reference the allowed source and destination identities; this TrafficTarget configuration allows traffic from the ServiceAccount `source-allowed-sa` to the ServiceAccount `destination-sa`.
     Additionally, the `.spec.rules` configuration maps the HTTPRouteGroup's `.spec.matches` directives to the TrafficTarget. The match directive allows `GET` methods to the `/echo` path regex, with the headers `X-Demo-1: ^demo-1$` and `x-demo-2: demo` regex values.
-    {{< note>}}
+    {{< call-out "note" >}}
 The header capitalization mismatches intentionally, header names are not case-sensitive and they match regardless of case.
-    {{< /note>}}
+    {{< /call-out >}}
     We've configured our driver-allowed workload in the `source-allowed-sa` ServiceAccount (that is to say, we've given it the `source-allowed-sa` identity). But our driver-disallowed workload is configured in the `source-disallowed-sa` ServiceAccount. This source identity is not allowed, so even traffic which passes our filtering rules remains forbidden.
 
 1. Activate previously disallowed traffic.
@@ -348,12 +348,12 @@ The following examples show snippets of the relevant sections:
   ```
 
 Traffic can be filtered via sets that are classified via ServiceAccounts. But [TrafficSpecs](https://github.com/servicemeshinterface/smi-spec/blob/master/apis/traffic-specs/v1alpha3/traffic-specs.md) provide additional powerful configurations; lists of HTTP methods, path regular expression matching, header regular expression matching, and specific ports.
-  {{< tip>}}
+  {{< call-out "tip" >}}
 For exact matches, be sure to use regular expression anchors. To exactly match the header value `hello`, be sure to use `^hello$`; otherwise, additional headers that contain the sequence `hello` will be allowed.
-  {{< /tip>}}
-{{< tip>}}
+  {{< /call-out >}}
+{{< call-out "tip" >}}
 For an expanded example showing configuration for an application using a headless service, checkout our example for clustered application traffic policies {{< fa "download" >}} {{< link "/examples/clustered-application.yaml" >}}
-{{< /tip>}}
+{{< /call-out >}}
 
 ## Resources
 

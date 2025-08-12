@@ -17,7 +17,7 @@ type:
 
 ## Basic Authentication
 
-{{< warning >}} Basic authentication is recommended for test environments only. For production environments, consider a more robust authentication method. {{< /warning >}}
+{{< call-out "warning" >}} Basic authentication is recommended for test environments only. For production environments, consider a more robust authentication method. {{< /call-out >}}
 
 Authentication & authorization policies allow a user to restrict access to their APIs by determining the caller's identity and access level. There are several API Gateway authentication/authorization policy types supported by API Connectivity Manager: API key authentication, basic authentication, OAuth2 JWT assertion, and OAuth2 token introspection. This guide focuses specifically on basic authentication.
 
@@ -64,7 +64,7 @@ Send a `POST` request to add the basic authentication policy to the API Proxy.
 {{</bootstrap-table>}}
 
 
-{{< note >}} To include sensitive data in Proxy `GET` requests, provide the query parameter `includes=sensitivedata`; otherwise, the response will have this data redacted. {{< /note >}}
+{{< call-out "note" >}} To include sensitive data in Proxy `GET` requests, provide the query parameter `includes=sensitivedata`; otherwise, the response will have this data redacted. {{< /call-out >}}
 
 ```json
 {

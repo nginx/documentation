@@ -38,9 +38,9 @@ We provide the following Docker images, which include NGINX or NGINX Plus bundle
 
 ### Images with NGINX
 
-{{< important >}}
+{{< call-out "important" >}}
 From release `v5.1.0` onwards, NGINX Ingress Controller will no longer provide binaries for the `armv7`, `s390x` & `ppc64le` architectures.
-{{< /important >}}
+{{< /call-out >}}
 
 _All images include NGINX 1.27.5._
 

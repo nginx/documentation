@@ -87,7 +87,7 @@ Refer to the [Add a License]({{< ref "/nim/admin-guide/add-license.md" >}}) topi
 
 ## Upgrade API Connectivity Manager {#upgrade-acm}
 
-{{<note>}}When you confirm the upgrade, the upgrade process will automatically upgrade dependent packages as needed, including Instance Manager. If you prefer to [back up NGINX Management Suite]({{< ref "/nim/admin-guide/maintenance/backup-and-recovery.md" >}}) before upgrading, you can cancel the upgrade when prompted.{{</note>}}
+{{< call-out "note" >}}When you confirm the upgrade, the upgrade process will automatically upgrade dependent packages as needed, including Instance Manager. If you prefer to [back up NGINX Management Suite]({{< ref "/nim/admin-guide/maintenance/backup-and-recovery.md" >}}) before upgrading, you can cancel the upgrade when prompted.{{< /call-out >}}
 
 <br>
 

@@ -14,14 +14,14 @@ F5 NGINX Instance Manager lets you manage NGINX App Protect WAF configurations u
 
 You can compile a security policy, attack signatures, and threat campaigns into a security policy bundle. The bundle includes all necessary components for a specific NGINX App Protect WAF version. Precompiling the bundle improves performance by avoiding separate compilation of each component during deployment.
 
-{{<note>}}
+{{< call-out "note" >}}
 The following capabilities are available only through the Instance Manager REST API:
 
 - Update security policies
 - Create, read, and update security policy bundles
 - Create, read, update, and delete security log profiles
 - Publish security policies, log profiles, attack signatures, and threat campaigns to instances and instance groups
-{{</note>}}
+{{< /call-out >}}
 
 ---
 
