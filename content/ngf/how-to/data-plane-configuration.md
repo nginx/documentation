@@ -397,7 +397,7 @@ Each patch has two fields:
 
 Patches are applied in the order they appear in the array. Later patches can override fields set by earlier patches.
 
-#### Example: Add a label to the Service
+#### Example: Configure Service with session affinity
 
 ```yaml
 apiVersion: gateway.nginx.org/v1alpha2
@@ -410,12 +410,14 @@ spec:
       patches:
         - type: StrategicMerge
           value:
-            metadata:
-              labels:
-                custom-label: "true"
+            spec:
+              sessionAffinity: ClientIP
+              sessionAffinityConfig:
+                clientIP:
+                  timeoutSeconds: 300
 ```
 
-#### Example: Patch the Deployment replicas and add an annotation
+#### Example: Configure Deployment with custom strategy
 
 ```yaml
 apiVersion: gateway.nginx.org/v1alpha2
@@ -428,14 +430,15 @@ spec:
       patches:
         - type: Merge
           value:
-            metadata:
-              annotations:
-                custom-annotation: "patched"
             spec:
-              replicas: 3
+              strategy:
+                type: RollingUpdate
+                rollingUpdate:
+                  maxUnavailable: 0
+                  maxSurge: 2
 ```
 
-#### Example: Use JSONPatch to add a label to the DaemonSet
+#### Example: Use JSONPatch to configure DaemonSet host networking and priority
 
 ```yaml
 apiVersion: gateway.nginx.org/v1alpha2
@@ -449,8 +452,14 @@ spec:
         - type: JSONPatch
           value:
             - op: add
-              path: /metadata/labels/json-patched
-              value: "true"
+              path: /spec/template/spec/hostNetwork
+              value: true
+            - op: add
+              path: /spec/template/spec/dnsPolicy
+              value: "ClusterFirstWithHostNet"
+            - op: add
+              path: /spec/template/spec/priorityClassName
+              value: "system-node-critical"
 ```
 
 #### Example: Multiple patches, later patch overrides earlier
@@ -466,17 +475,17 @@ spec:
       patches:
         - type: StrategicMerge
           value:
-            metadata:
-              labels:
-                override-label: "first"
+            spec:
+              sessionAffinity: ClientIP
+              publishNotReadyAddresses: false
         - type: StrategicMerge
           value:
-            metadata:
-              labels:
-                override-label: "second"
+            spec:
+              sessionAffinity: None
+              publishNotReadyAddresses: true
 ```
 
-In this example, the final Service will have `override-label: second`.
+In this example, the final Service will have `sessionAffinity: None` and `publishNotReadyAddresses: true` because the second patch overrides the values from the first patch.
 
 {{< note >}}
 **Which patch type should I use?**
