@@ -39,11 +39,11 @@ _Based on NGINX Open Source 1.29.0_
 
 NGINX Plus R35 is a feature release:
 
-- [Automated Certificate Management Environment](https://nginx.org/en/docs/http/ngx_http_acme_module.html) (ACME) protocol [support](https://blog.nginx.org/blog/native-support-for-acme-protocol).
+- [Automated Certificate Management Environment](https://blog.nginx.org/blog/native-support-for-acme-protocol) (ACME) protocol [support](https://nginx.org/en/docs/http/ngx_http_acme_module.html).
 
 - [Automatic renewal](https://docs.nginx.com/solutions/about-subscription-licenses/#update-jwt) of NGINX Plus license.
 
-- [Native OIDC enhancements](https://community.f5.com/kb/technicalarticles/we-heard-you-r35-brings-frictionless-oidc-logout-and-richer-claims-to-nginx-plus): [Relying party (RP) initiated Logout](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#logout_uri) and [UserInfo](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#userinfo) endpoint.
+- [Native OIDC enhancements](https://community.f5.com/kb/technicalarticles/we-heard-you-r35-brings-frictionless-oidc-logout-and-richer-claims-to-nginx-plus/342914): [Relying party (RP) initiated Logout](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#logout_uri) and [UserInfo](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#userinfo) endpoint.
 
 - The [`auth_require`](https://nginx.org/en/docs/http/ngx_http_auth_require_module.html) module that allows access decisions to be made based on any variable values available at the time of invocation, including [key-value](https://nginx.org/en/docs/http/ngx_http_keyval_module.html) pairs and [njs](https://nginx.org/en/docs/njs/) variables. The module is primarily designed for authentication, especially in conjunction with OIDC.
 
@@ -51,7 +51,7 @@ NGINX Plus R35 is a feature release:
 
 - Support for [103 Early Hints](https://blog.nginx.org/blog/nginx-introduces-support-103-early-hints).
 
-- Security: SMTP Authentication process memory over-read. This vulnerability in the NGINX `ngx_mail_smtp_module` may allow an unauthenticated attacker to trigger buffer over-read, resulting in worker process memory disclosure to the authentication server ([CVE-2025-53859](http://cve.mitre.org/cgi-bin/cvename.cgi?name=2025-53859)).
+- Security: SMTP Authentication process memory over-read. This vulnerability in the NGINX `ngx_mail_smtp_module` may allow an unauthenticated attacker to trigger buffer over-read, resulting in worker process memory disclosure to the authentication server ([CVE-2025-53859](https://www.cve.org/CVERecord?id=CVE-2025-53859)).
 
 
 NGINX Plus R35 is supported on:
@@ -148,7 +148,7 @@ _August 13, 2025_
 
 This is a security release for NGINX Plus R34.
 
-- Security: SMTP Authentication process memory over-read. This vulnerability in the NGINX `ngx_mail_smtp_module` may allow an unauthenticated attacker to trigger buffer over-read, resulting in worker process memory disclosure to the authentication server ([CVE-2025-53859](http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-53859)).
+- Security: SMTP Authentication process memory over-read. This vulnerability in the NGINX `ngx_mail_smtp_module` may allow an unauthenticated attacker to trigger buffer over-read, resulting in worker process memory disclosure to the authentication server ([CVE-2025-53859](https://www.cve.org/CVERecord?id=CVE-2025-53859)).
 
 
 ## NGINX Plus Release 33 (R33) {#r33}
@@ -239,7 +239,7 @@ _August 13, 2025_
 
 This is a security release for NGINX Plus R33.
 
-- - Security: SMTP Authentication process memory over-read. This vulnerability in the NGINX `ngx_mail_smtp_module` may allow an unauthenticated attacker to trigger buffer over-read, resulting in worker process memory disclosure to the authentication server ([CVE-2025-53859](http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-53859)).
+- - Security: SMTP Authentication process memory over-read. This vulnerability in the NGINX `ngx_mail_smtp_module` may allow an unauthenticated attacker to trigger buffer over-read, resulting in worker process memory disclosure to the authentication server ([CVE-2025-53859](https://www.cve.org/CVERecord?id=CVE-2025-53859)).
 
 
 ## NGINX Plus Release 32 (R32) {#r32}
@@ -354,7 +354,7 @@ _August 13, 2025_
 
 This is a security release for NGINX Plus R32.
 
-- Security: SMTP Authentication process memory over-read. This vulnerability in the NGINX `ngx_mail_smtp_module` may allow an unauthenticated attacker to trigger buffer over-read, resulting in worker process memory disclosure to the authentication server ([CVE-2025-53859](http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-53859)).
+- Security: SMTP Authentication process memory over-read. This vulnerability in the NGINX `ngx_mail_smtp_module` may allow an unauthenticated attacker to trigger buffer over-read, resulting in worker process memory disclosure to the authentication server ([CVE-2025-53859](https://www.cve.org/CVERecord?id=CVE-2025-53859)).
 
 
 ## NGINX Plus Release 31 (R31) {#r31}
