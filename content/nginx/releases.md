@@ -17,8 +17,9 @@ Critical bug patches and security updates are applied to the two (2) most recent
 {{<bootstrap-table "table table-striped table-bordered table-sm">}}
 | NGINX Plus Release | Release Date | End of Software Development | End of Security Updates | End of Technical Support |
 |--------------------|--------------|-----------------------------|-------------------------|--------------------------|
-| [R34](#r34)        | Apr 1, 2025  | R35 release date            | R36 release date        | Mar 31, 2027             |
-| [R33](#r33)        | Nov 19, 2024 | Apr 1, 2025                 | R35 release date        | Nov 18, 2026             |
+| [R35](#r35)        | Aug 13 2025  | R36 release date            | R37 release date        | Aug 12, 2027             |
+| [R34](#r34)        | Apr 1, 2025  | Aug 13 2025                 | R36 release date        | Mar 31, 2027             |
+| [R33](#r33)        | Nov 19, 2024 | Apr 1, 2025                 | Aug 13 2025             | Nov 18, 2026             |
 | [R32](#r32)        | May 29, 2024 | Nov 19, 2024                | Apr 1, 2025             | May 28, 2026             |
 | [R31](#r31)        | Dec 19, 2023 | May 29, 2024                | Nov 18, 2024            | Dec 18, 2025             |
 | [R30](#r30)        | Aug 15, 2023 | Dec 19, 2023                | May 28, 2024            | Aug 14, 2025             |
@@ -29,7 +30,59 @@ We strongly recommend running the latest version of NGINX Plus in production to 
 
 ### Technical Support Services
 
-F5 offers 24 months of technical support for each F5 NGINX Plus release. The 24-month support period begins on the initial release date for each version of NGINX Plus, as noted in the table. The release of a patch (for example, `NGINX Plus R34p1`) does not reset the 24-month technical support period for the impacted release.
+F5 offers 24 months of technical support for each F5 NGINX Plus release. The 24-month support period begins on the initial release date for each version of NGINX Plus, as noted in the table. The release of a patch (for example, `NGINX Plus R34 P2`) does not reset the 24-month technical support period for the impacted release.
+
+
+## NGINX Plus Release 35 (R35) {#r35}
+_August 13, 2025_<br/>
+_Based on NGINX Open Source 1.29.0_
+
+NGINX Plus R35 is a feature release:
+
+- [Automated Certificate Management Environment](https://nginx.org/en/docs/http/ngx_http_acme_module.html) (ACME) protocol [support](https://blog.nginx.org/blog/native-support-for-acme-protocol).
+
+- [Automatic renewal](https://docs.nginx.com/solutions/about-subscription-licenses/#update-jwt) of NGINX Plus license.
+
+- [Native OIDC enhancements](https://community.f5.com/kb/technicalarticles/we-heard-you-r35-brings-frictionless-oidc-logout-and-richer-claims-to-nginx-plus): [Relying party (RP) initiated Logout](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#logout_uri) and [UserInfo](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#userinfo) endpoint.
+
+- The [`auth_require`](https://nginx.org/en/docs/http/ngx_http_auth_require_module.html) module that allows access decisions to be made based on any variable values available at the time of invocation, including [key-value](https://nginx.org/en/docs/http/ngx_http_keyval_module.html) pairs and [njs](https://nginx.org/en/docs/njs/) variables. The module is primarily designed for authentication, especially in conjunction with OIDC.
+
+- [CUBIC Congestion Control](https://blog.nginx.org/blog/congestion-control-enhancements-for-quic-in-nginx) in HTTP3/QUIC.
+
+- Support for [103 Early Hints](https://blog.nginx.org/blog/nginx-introduces-support-103-early-hints).
+
+- Security: SMTP Authentication process memory over-read. This vulnerability in the NGINX `ngx_mail_smtp_module` may allow an unauthenticated attacker to trigger buffer over-read, resulting in worker process memory disclosure to the authentication server ([CVE-2025-53859](http://cve.mitre.org/cgi-bin/cvename.cgi?name=2025-53859)).
+
+
+NGINX Plus R35 is supported on:
+
+{{<bootstrap-table "table table-striped table-bordered table-sm">}}
+| Distribution                     | Versions                          |
+|----------------------------------|-----------------------------------|
+| AlmaLinux                        | 8, 9, 10                          |
+| Alpine Linux                     | 3.19, 3.20, 3.21, 3.22            |
+| Amazon Linux                     | 2 LTS, 2023                       |
+| Debian                           | 11, 12                            |
+| FreeBSD                          | 13.5+, 14.3+                            |
+| Oracle Linux                     | 8.1+, 9                           |
+| RHEL                             | 8.1+, 9.0+, 10                    |
+| Rocky Linux                      | 8, 9                              |
+| SUSE Linux Enterprise Server     | 15 SP6+                           |
+| Ubuntu                           | 22.04 LTS, 24.04 LTS              |
+{{< /bootstrap-table >}}
+
+**Notes:**
+
+- Alpine Linux 3.18 is removed
+- Alpine Linux 3.19 is deprecated
+- Alpine Linux 3.22 is new in this release
+- AlmaLinux 10 is new in this release
+- RHEL 10 is new in this release
+- Ubuntu 20.04 is removed
+- SLES 15 SP6 is now required
+- the [ACME]({{< ref "/nginx/admin-guide/dynamic-modules/acme.md" >}}) dynamic module is new in this release.
+
+More information: [Announcing NGINX Plus R35](https://community.f5.com/kb/TechnicalArticles/f5-nginx-plus-r35-release-now-available/342962)
 
 
 ## NGINX Plus Release 34 (R34) {#r34}
@@ -50,7 +103,6 @@ NGINX Plus R34 is a feature release:
 - Bugfixes in QUIC and HTTP/3, mail proxy, the MP4 module, the `proxy_store` and `proxy_bind` directives.
 
 - Security: insufficient check in virtual servers handling with TLSv1.3 SNI allowed to reuse SSL sessions in a different virtual server, to bypass client SSL certificates verification ([CVE-2025-23419](http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-23419)).
-
 
 NGINX Plus R34 is supported on:
 
@@ -89,6 +141,14 @@ _May 28, 2025_
 This is a bugfix release for NGINX Plus R34.
 
 - Fixed license expiration warning issue in the NGINX Plus live activity monitoring dashboard specifically for deployments utilizing marketplace images of NGINX Plus.
+
+
+NGINX Plus R34 P2<br/>
+_August 13, 2025_
+
+This is a security release for NGINX Plus R34.
+
+- Security: SMTP Authentication process memory over-read. This vulnerability in the NGINX `ngx_mail_smtp_module` may allow an unauthenticated attacker to trigger buffer over-read, resulting in worker process memory disclosure to the authentication server ([CVE-2025-53859](http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-53859)).
 
 
 ## NGINX Plus Release 33 (R33) {#r33}
@@ -172,6 +232,14 @@ _February 5, 2025_
 This is a security release for NGINX Plus R33.
 
 - Security Fix [CVE-2025-23419](http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-23419) in SNI that adds a restriction for TLSv1.3 cross-SNI session resumption.
+
+
+NGINX Plus R33 P3<br/>
+_August 13, 2025_
+
+This is a security release for NGINX Plus R33.
+
+- - Security: SMTP Authentication process memory over-read. This vulnerability in the NGINX `ngx_mail_smtp_module` may allow an unauthenticated attacker to trigger buffer over-read, resulting in worker process memory disclosure to the authentication server ([CVE-2025-53859](http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-53859)).
 
 
 ## NGINX Plus Release 32 (R32) {#r32}
@@ -279,6 +347,14 @@ _February 5, 2025_
 - Security Fix [CVE-2025-23419](http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-23419) in SNI that adds a restriction for TLSv1.3 cross-SNI session resumption.
 
 - Regression issue fix in SSL Certificate Caching.
+
+
+NGINX Plus R32 P3<br/>
+_August 13, 2025_
+
+This is a security release for NGINX Plus R32.
+
+- Security: SMTP Authentication process memory over-read. This vulnerability in the NGINX `ngx_mail_smtp_module` may allow an unauthenticated attacker to trigger buffer over-read, resulting in worker process memory disclosure to the authentication server ([CVE-2025-53859](http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-53859)).
 
 
 ## NGINX Plus Release 31 (R31) {#r31}
