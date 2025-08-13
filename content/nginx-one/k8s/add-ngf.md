@@ -32,11 +32,19 @@ If you've created and recorded one or more data plane keys, you can edit or revo
 
 If you've forgotten your data plane key, you can create a new one. Select **Manage > Data Plane Keys > Add Data Plane Key**.
 
-For more options associated with data plane keys, see [Create and manage data plane keys]({{ ref "/nginx-one/connect-instances/create-manage-data-plane-keys" >}}).
+For more options associated with data plane keys, see [Create and manage data plane keys]({{< ref "/nginx-one/connect-instances/create-manage-data-plane-keys.md" >}}).
 
 ### Create a Kubernetes secret with the data plane key
-<!-- Maybe this is wrong. I'm assuming that we need to follow this step from the current version of https://docs.nginx.com/nginx-one/k8s/add-nic/#before-you-begin -->
-To create a Kubernetes secret with the data play key, use the following command:
+
+To create a Kubernetes secret, you'll need:
+
+- The Data Plane Key
+- To set up the secret in the same namespace as NGINX Gateway Fabric
+- Use the name `dataplane.key` as shown
+- A namespace. The default NGINX Gateway Fabric namespace is `nginx-gateway`
+
+Once you have that information, run the following command:
+
 
    ```shell
    kubectl create secret generic dataplane-key \
@@ -44,29 +52,6 @@ To create a Kubernetes secret with the data play key, use the following command:
      -n <namespace>
    ```
 
-### Install cert-manager
-
-Add the Helm repository:
-
-```shell
-helm repo add jetstack https://charts.jetstack.io
-helm repo update
-```
-
-Install cert-manager:
-
-```shell
-helm install \
-  cert-manager jetstack/cert-manager \
-  --namespace cert-manager \
-  --create-namespace \
-  --set config.apiVersion="controller.config.cert-manager.io/v1alpha1" \
-  --set config.kind="ControllerConfiguration" \
-  --set config.enableGatewayAPI=true \
-  --set crds.enabled=true
-```
-
-This also enables Gateway API features for cert-manager, which can be useful for [securing your workload traffic]({{< ref "/ngf/traffic-security/integrate-cert-manager.md" >}}).
 
 ## Install the Gateway API resources
 <!-- Corresponds to step 2 in the UX -->
@@ -119,7 +104,11 @@ kubectl wait --timeout=5m -n nginx-gateway deployment/ngf-nginx-gateway-fabric -
 ## Verify a connection to NGINX One Console
 
 After deploying NGINX Gateway Fabric with NGINX Agent, you can verify the connection to NGINX One Console.
-Log in to your F5 Distributed Cloud Console account. Select **NGINX One > Visit Service**. In the dashboard, go to **Manage > Instances**. You should see your instances listed by name. The instance name matches both the hostname and the pod name.
+Log in to your F5 Distributed Cloud Console account. 
+
+- Select **NGINX One > Visit Service**. 
+- In the dashboard, select **Manage > Control Planes**.  You should see your Control Planes listed by name, product, and version. Each control plane is associated with one or more instances.
+- Select the name of the Control Plane. In the **Instances** section, select the instance of your choice. You can review instance details, including the name of the **Control Plane**.
 
 ## Troubleshooting
 
