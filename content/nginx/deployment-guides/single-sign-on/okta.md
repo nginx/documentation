@@ -11,13 +11,14 @@ nd-docs: DOCS-1689
 
 This guide explains how to enable single sign-on (SSO) for applications being proxied by F5 NGINX Plus. The solution uses OpenID Connect as the authentication mechanism, with [Okta](https://www.okta.com/) as the Identity Provider (IdP), and NGINX Plus as the Relying Party, or OIDC client application that verifies user identity.
 
-{{< call-out "note" >}} This guide applies to [NGINX Plus Release 34]({{< ref "nginx/releases.md#r34" >}}) and later. In earlier versions, NGINX Plus relied on an [njs-based solution](#legacy-njs-guide), which required NGINX JavaScript files, key-value stores, and advanced OpenID Connect logic. In the latest NGINX Plus version, the new [OpenID Connect module](https://nginx.org/en/docs/http/ngx_http_oidc_module.html) simplifies this process to just a few directives.{{< /call-out >}}
+{{< call-out "note" >}} This guide applies to [NGINX Plus Release 35]({{< ref "nginx/releases.md#r35" >}}) and later. In earlier versions, NGINX Plus relied on an [njs-based solution](#legacy-njs-guide), which required NGINX JavaScript files, key-value stores, and advanced OpenID Connect logic. In the latest NGINX Plus version, the new [OpenID Connect module](https://nginx.org/en/docs/http/ngx_http_oidc_module.html) simplifies this process to just a few directives.{{< /call-out >}}
+
 
 ## Prerequisites
 
 - An [Okta](https://www.okta.com/) administrator account with privileges to create and manage applications.
 
-- An NGINX Plus [subscription](https://www.f5.com/products/nginx/nginx-plus) and NGINX Plus [Release 34](({{< ref "nginx/releases.md#r34" >}})) or later. For installation instructions, see [Installing NGINX Plus](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/).
+- An NGINX Plus [subscription](https://www.f5.com/products/nginx/nginx-plus) and NGINX Plus [Release 35](({{< ref "nginx/releases.md#r35" >}})) or later. For installation instructions, see [Installing NGINX Plus](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/).
 
 - A domain name pointing to your NGINX Plus instance, for example, `demo.example.com`.
 
@@ -46,6 +47,8 @@ In Okta, register a new application for NGINX Plus as the OIDC client to obtain 
 
    -  Add a URI for the OIDC callback in **Sign-in redirect URIs**, for example,   `https://demo.example.com/oidc_callback`.
 
+   - Add a URI for post logout redirect in **Sign-out redirect URIs**, for example, `https://demo.example.com/post_logout/`.
+
    - Select **Save**.
 
 6. In **Applications**, select **Nginx Demo App**.
@@ -63,6 +66,45 @@ In Okta, register a new application for NGINX Plus as the OIDC client to obtain 
      `https://dev-123456.oktapreview.com/oauth2/default`
 
      You will need it later when configuring NGINX Plus.
+
+### Get the OpenID Connect Discovery URL
+
+Check the OpenID Connect Discovery URL. By default, Okta publishes the `.well-known/openid-configuration` document at the following address:
+
+`https://<okta-domain>/oauth2/default/.well-known/openid-configuration`.
+
+1. Run the following `curl` command in a terminal:
+
+   ```shell
+   curl https://dev-123456.okta.com/oauth2/default/.well-known/openid-configuration | jq
+   ```
+   where:
+
+   - the `dev-123456.okta.com` is your Okta domain
+
+   - the `/oauth2/default` is the default authorization server
+
+   - the `/.well-known/openid-configuration` is the default address for Okta for document location
+
+   - the `jq` command (optional) is used to format the JSON output for easier reading and requires the [jq](https://jqlang.github.io/jq/) JSON processor to be installed.
+
+
+   The configuration metadata is returned in the JSON format:
+
+   ```json
+   {
+       ...
+       "issuer": "https://dev-123456.okta.com/oauth2/default",
+       "authorization_endpoint": "https://dev-123456.okta.com/oauth2/default/v1/authorize",
+       "token_endpoint": "https://dev-123456.okta.com/oauth2/default/v1/token",
+       "jwks_uri": "https://dev-123456.okta.com/oauth2/default/v1/keys",
+       "userinfo_endpoint": "https://dev-123456.okta.com/oauth2/default/v1/userinfo",
+       "end_session_endpoint": "https://dev-123456.okta.com/oauth2/default/v1/logout",
+       ...
+   }
+   ```
+
+2. Copy the **issuer** value, you will need it later when configuring NGINX Plus. Typically, the OpenID Connect Issuer for Okta is `https://<okta-domain>/oauth2/default`.
 
 {{< call-out "note" >}} You will need the values of **Client ID**, **Client Secret**, and **Issuer** in the next steps. {{< /call-out >}}
 
@@ -88,10 +130,10 @@ With Okta configured, you can enable OIDC on NGINX Plus. NGINX Plus serves as th
     ```shell
     nginx -v
     ```
-    The output should match NGINX Plus Release 34 or later:
+    The output should match NGINX Plus Release 35 or later:
 
     ```none
-    nginx version: nginx/1.27.4 (nginx-plus-r34)
+    nginx version: nginx/1.29.0 (nginx-plus-r35)
     ```
 
 2.  Ensure that you have the values of the **Client ID**, **Client Secret**, and **Issuer** obtained during [Okta Configuration](#okta-setup).
@@ -136,16 +178,29 @@ With Okta configured, you can enable OIDC on NGINX Plus. NGINX Plus serves as th
 
         `https://dev-123456.okta.com/oauth2/default`.
 
-    - **Important:** All interaction with the IdP is secured exclusively over SSL/TLS, so NGINX must trust the certificate presented by the IdP. By default, this trust is validated against your system’s CA bundle (the default CA store for your Linux or FreeBSD distribution). If the IdP’s certificate is not included in the system CA bundle, you can explicitly specify a trusted certificate or chain with the [`ssl_trusted_certificate`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#ssl_trusted_certificate) directive so that NGINX can validate and trust the IdP’s certificate.
+    - The **logout_uri** is URI that a user visits to start an RP‑initiated logout flow.
+
+    - The **post_logout_uri** is absolute HTTPS URL where Okta should redirect the user after a successful logout. This value **must also be configured** in the Okta application's Sign-out redirect URIs.
+
+    - If the **logout_token_hint** directive set to `on`, NGINX Plus sends the user's ID token as a *hint* to Okta.
+      This directive is **optional**, however, if it is omitted the Okta may display an extra confirmation page asking the user to approve the logout request.
+
+    - If the **userinfo** directive is set to `on`, NGINX Plus will fetch `/oauth2/default/v1/userinfo` from the Okta and append the claims from userinfo to the `$oidc_claims_` variables.
+
+    - **Important:** All interaction with the IdP is secured exclusively over SSL/TLS, so NGINX must trust the certificate presented by the IdP. By default, this trust is validated against your system's CA bundle (the default CA store for your Linux or FreeBSD distribution). If the IdP's certificate is not included in the system CA bundle, you can explicitly specify a trusted certificate or chain with the [`ssl_trusted_certificate`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#ssl_trusted_certificate) directive so that NGINX can validate and trust the IdP's certificate.
 
     ```nginx
     http {
         resolver 10.0.0.1 ipv4=on valid=300s;
 
         oidc_provider okta {
-            issuer        https://dev-123456.okta.com/oauth2/default;
-            client_id     <client_id>;
-            client_secret <client_secret>;
+            issuer            https://dev-123456.okta.com/oauth2/default;
+            client_id         <client_id>;
+            client_secret     <client_secret>;
+            logout_uri        /logout;
+            post_logout_uri   https://demo.example.com/post_logout/;
+            logout_token_hint on;
+            userinfo          on;
         }
 
         # ...
@@ -214,7 +269,18 @@ With Okta configured, you can enable OIDC on NGINX Plus. NGINX Plus serves as th
     ```
 
     <span id="oidc_app"></span>
-10. Create a simple test application referenced by the `proxy_pass` directive which returns the authenticated user's full name and email upon successful authentication:
+10. Provide endpoint for completing logout:
+
+    ```nginx
+    # ...
+    location /post_logout/ {
+         return 200 "You have been logged out.\n";
+         default_type text/plain;
+    }
+    # ...
+    ```
+
+11. Create a simple test application referenced by the `proxy_pass` directive which returns the authenticated user's full name and email upon successful authentication:
 
     ```nginx
     # ...
@@ -222,12 +288,12 @@ With Okta configured, you can enable OIDC on NGINX Plus. NGINX Plus serves as th
         listen 8080;
 
         location / {
-            return 200 "Hello, $http_name!\nEmail: $http_email\nSub: $http_sub\n";
+            return 200 "Hello, $http_name!\nEmail: $http_email\nOkta sub: $http_sub\n";
             default_type text/plain;
         }
     }
     ```
-11. Save the NGINX configuration file and reload the configuration:
+12. Save the NGINX configuration file and reload the configuration:
     ```nginx
     nginx -s reload
     ```
@@ -247,11 +313,19 @@ http {
         # For okta dev it looks like: https://dev-123456.okta.com/oauth2/default
         issuer https://dev-123456.okta.com/oauth2/default;
 
-        # Your Okta “Client ID” from the application settings
+        # Your Okta "Client ID" from the application settings
         client_id <your_client_id>;
 
-        # Your Okta “Client Secret” from the application settings
+        # Your Okta "Client Secret" from the application settings
         client_secret <your_client_secret>;
+
+        # RP‑initiated logout
+        logout_uri /logout;
+        post_logout_uri https://demo.example.com/post_logout/;
+        logout_token_hint on;
+
+        # Fetch userinfo claims
+        userinfo on;
     }
 
     server {
@@ -272,14 +346,19 @@ http {
 
             proxy_pass http://127.0.0.1:8080;
         }
+
+        location /post_logout/ {
+            return 200 "You have been logged out.\n";
+            default_type text/plain;
+        }
     }
 
     server {
-        # Simple backend listening on 8080
+        # Simple test upstream server
         listen 8080;
 
         location / {
-            return 200 "Hello, $http_name!\nEmail: $http_email\nSub: $http_sub\n";
+            return 200 "Hello, $http_name!\nEmail: $http_email\nOkta sub: $http_sub\n";
             default_type text/plain;
         }
     }
@@ -290,7 +369,11 @@ http {
 
 1. Open `https://demo.example.com/` in a browser. You will be automatically redirected to the Okta sign-in page.
 
-2. Enter valid Okta credentials of a user who has access the application. Upon successful sign-in, Okta redirects you back to NGINX Plus, and you will see the proxied application content (for example, “Hello, Jane Doe!”).
+2. Enter valid Okta credentials of a user who has access the application. Upon successful sign-in, Okta redirects you back to NGINX Plus, and you will see the proxied application content (for example, "Hello, Jane Doe!").
+
+3. Navigate to `https://demo.example.com/logout`. NGINX Plus initiates an RP‑initiated logout; Okta ends the session and redirects back to `https://demo.example.com/post_logout/`.
+
+4. Refresh `https://demo.example.com/` again. You should be redirected to Okta for a fresh sign‑in, proving the session has been terminated.
 
 {{< call-out "note" >}}If you restricted access to a group of users, be sure to select a user who has access to the application.{{< /call-out >}}
 
@@ -304,10 +387,11 @@ If you are running NGINX Plus R33 and earlier or if you still need the njs-based
 
 - [NGINX Plus Native OIDC Module Reference documentation](https://nginx.org/en/docs/http/ngx_http_oidc_module.html)
 
-- [Release Notes for NGINX Plus R34]({{< ref "nginx/releases.md#r34" >}})
+- [Release Notes for NGINX Plus R35]({{< ref "nginx/releases.md#r35" >}})
 
 
 ## Revision History
 
-- Version 1 (March 2025) – Initial version (NGINX Plus Release 34)
+- Version 2 (August 2025) – Added RP‑initiated logout (logout_uri, post_logout_uri, logout_token_hint) and userinfo support.
 
+- Version 1 (March 2025) – Initial version (NGINX Plus Release 34)

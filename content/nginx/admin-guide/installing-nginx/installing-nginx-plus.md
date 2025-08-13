@@ -422,6 +422,7 @@ NGINX-authored dynamic modules are developed and officially maintained by the F5
 {{< bootstrap-table "table table-striped table-bordered" >}}
 | Name                            | Description                       | Package name       |
 |---------------------------------|-----------------------------------|--------------------|
+| [ACME](https://github.com/nginx/nginx-acme) | Automatic certificate management ([ACMEv2](https://www.rfc-editor.org/rfc/rfc8555.html)) protocol support. | [`nginx-plus-module-acme`]({{< ref "nginx/admin-guide/dynamic-modules/acme.md" >}}) |
 | [GeoIP](https://nginx.org/en/docs/http/ngx_http_geoip_module.html) | Enables IP-based geolocation using the precompiled MaxMind databases. | [`nginx-plus-module-geoip`]({{< ref "nginx/admin-guide/dynamic-modules/geoip.md" >}}) |
 | [Image-Filter](https://nginx.org/en/docs/http/ngx_http_image_filter_module.html) | Adds on-the-fly support for JPEG, GIF, PNG, and WebP image resizing and cropping. | [`nginx-plus-module-image-filter`]({{< ref "nginx/admin-guide/dynamic-modules/image-filter.md" >}})                   |
 | [njs Scripting Language](https://nginx.org/en/docs/njs/) | Adds JavaScript-like scripting for advanced server-side logic in NGINX configuration file. | [`nginx-plus-module-njs`]({{< ref "nginx/admin-guide/dynamic-modules/nginscript.md" >}}) |
@@ -605,7 +606,7 @@ For a community dynamic module to work with NGINX Plus, it must be compiled alo
    Expected output of the command:
 
    ```shell
-   nginx version: nginx/1.27.4 (nginx-plus-r34)
+   nginx version: nginx/1.29.0 (nginx-plus-r35)
    ```
 
 1. Prepare the build environment.
@@ -638,10 +639,10 @@ For a community dynamic module to work with NGINX Plus, it must be compiled alo
 
    - Identify the NGINX Open Source version that corresponds to your version of NGINX Plus. See [NGINX Plus Releases]({{< ref "nginx/releases.md" >}}).
 
-   - Download the sources for the appropriate NGINX Open Source mainline version, in this case 1.27.4:
+   - Download the sources for the appropriate NGINX Open Source mainline version, in this case 1.29.0:
 
      ```shell
-     wget -qO - https://nginx.org/download/nginx-1.27.4.tar.gz | tar zxfv -
+     wget -qO - https://nginx.org/download/nginx-1.29.0.tar.gz | tar zxfv -
      ```
 
 1. Obtain the source for the dynamic module.
@@ -657,7 +658,7 @@ For a community dynamic module to work with NGINX Plus, it must be compiled alo
    First, establish binary compatibility by running the `configure` script with the `‑‑with‑compat` option. Then compile the module with `make modules`.
 
    ```shell
-   cd nginx-1.27.4/ && \
+   cd nginx-1.29.0/ && \
    ./configure --with-compat --add-dynamic-module=../<MODULE-SOURCES> && \
    make modules
    ```
@@ -676,7 +677,7 @@ For a community dynamic module to work with NGINX Plus, it must be compiled alo
 1. Make a copy of the module file and include the NGINX Open Source version in the filename. This makes it simpler to manage multiple versions of a dynamic module in the production environment.
 
    ```shell
-   cp objs/ngx_http_hello_world_module.so ./ngx_http_hello_world_module_1.27.4.so
+   cp objs/ngx_http_hello_world_module.so ./ngx_http_hello_world_module_1.29.0.so
    ```
 
 1. Transfer the resulting `.so` file from your build environment to the production environment.
@@ -688,7 +689,7 @@ For a community dynamic module to work with NGINX Plus, it must be compiled alo
    - `/usr/local/etc/nginx/modules` for FreeBSD
 
    ```shell
-   sudo cp ngx_http_hello_world_module_1.27.4.so /usr/local/nginx/modules/ngx_http_hello_world_module_1.27.4.so
+   sudo cp ngx_http_hello_world_module_1.29.0.so /usr/local/nginx/modules/ngx_http_hello_world_module_1.29.0.so
    ```
 
 After installing the module, you need to enable it in the NGINX Plus configuration file. For more information, see [Enabling Dynamic Modules](#enable_dynamic).
@@ -978,7 +979,7 @@ To upgrade your NGINX Plus installation to the newest version:
    The output of the command:
 
    ```shell
-   nginx version: nginx/1.27.4 (nginx-plus-r34)
+   nginx version: nginx/1.29.0 (nginx-plus-r35)
    ```
 
 ## Upgrade NGINX Plus Modules {#upgrade_modules}
