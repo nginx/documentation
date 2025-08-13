@@ -98,7 +98,7 @@ Check the OpenID Connect Discovery URL. By default, OneLogin publishes the `.wel
 
 2. Copy the **issuer** value, you will need it later when configuring NGINX Plus. Typically, the OpenID Connect Issuer for OneLogin is `https://<subdomain>.onelogin.com/oidc/2`.
 
-{{< call-out "note" >}} You will need the values of **Client ID**, **Client Secret**, and **Issuer** in the next steps. {{< /call-out >}
+{{< call-out "note" >}} You will need the values of **Client ID**, **Client Secret**, and **Issuer** in the next steps. {{< /call-out >}}
 
 ### Assign Users and Groups
 
