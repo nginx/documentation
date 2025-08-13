@@ -378,11 +378,6 @@ http {
 {{< call-out "note" >}}If you restricted access to a group of users, be sure to select a user who has access to the application.{{< /call-out >}}
 
 
-## Legacy njs-based Microsoft Entra ID Solution {#legacy-njs-guide}
-
-If you are running NGINX Plus R33 and earlier or if you still need the njs-based solution, refer to the [Legacy njs-based Microsoft Entra ID Guide]({{< ref "nginx/deployment-guides/single-sign-on/oidc-njs/entra-id.md" >}}) for details. The solution uses the [`nginx-openid-connect`](https://github.com/nginxinc/nginx-openid-connect) GitHub repository and NGINX JavaScript files.
-
-
 ## See Also
 
 - [Microsoft identity platform documentation](https://learn.microsoft.com/en-us/entra/identity-platform/)
