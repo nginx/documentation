@@ -11,14 +11,14 @@ nd-docs: DOCS-1686
 
 This guide explains how to enable single sign-on (SSO) for applications being proxied by F5 NGINX Plus. The solution uses OpenID Connect as the authentication mechanism, with [Auth0](https://auth0.com/features/single-sign-on) as the Identity Provider (IdP), and NGINX Plus as the Relying Party, or OIDC client application that verifies user identity.
 
-{{< call-out "note" >}} This guide applies to [NGINX Plus Release 34]({{< ref "nginx/releases.md#r34" >}}) and later. In earlier versions, NGINX Plus relied on an [njs-based solution](#legacy-njs-guide), which required NGINX JavaScript files, key-value stores, and advanced OpenID Connect logic. In the latest NGINX Plus version, the new [OpenID Connect module](https://nginx.org/en/docs/http/ngx_http_oidc_module.html) simplifies this process to just a few directives.{{< /call-out >}}
+{{< call-out "note" >}} This guide applies to [NGINX Plus Release 35]({{< ref "nginx/releases.md#r35" >}}) and later. In earlier versions, NGINX Plus relied on an [njs-based solution](#legacy-njs-guide), which required NGINX JavaScript files, key-value stores, and advanced OpenID Connect logic. In the latest NGINX Plus version, the new [OpenID Connect module](https://nginx.org/en/docs/http/ngx_http_oidc_module.html) simplifies this process to just a few directives.{{< /call-out >}}
 
 
 ## Prerequisites
 
 - An [Auth0](https://auth0.com/) tenant with administrator privileges.
 
-- An NGINX Plus [subscription](https://www.f5.com/products/nginx/nginx-plus) and NGINX Plus [Release 34](({{< ref "nginx/releases.md#r34" >}})) or later. For installation instructions, see [Installing NGINX Plus](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/).
+- An NGINX Plus [subscription](https://www.f5.com/products/nginx/nginx-plus) and NGINX Plus [Release 35](({{< ref "nginx/releases.md#r35" >}})) or later. For installation instructions, see [Installing NGINX Plus](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/).
 
 - A domain name pointing to your NGINX Plus instance, for example, `demo.example.com`.
 
@@ -45,9 +45,13 @@ This guide explains how to enable single sign-on (SSO) for applications being pr
 
 6. On the **Application URIs** section of your application:
 
-   - Add the URI NGINX Plus callback URI in the **Allowed Callback URLs** field, for example:
+   - Add the NGINX Plus callback URI in the **Allowed Callback URLs** field, for example:
 
      `https://demo.example.com/oidc_callback`.
+
+   - Add the post logout URL in the **Allowed Logout URLs** field, for example:
+
+     `https://demo.example.com/post_logout/`.
 
 ### Get the OpenID Connect Discovery URL
 
@@ -80,6 +84,8 @@ Check the OpenID Connect Discovery URL. By default, Auth0 publishes the `.well-k
        "authorization_endpoint": "https://{yourTenantId}.us.auth0.com/oauth/token",
        "token_endpoint": "https://{yourTenantId}.us.auth0.com/oauth/token",
        "jwks_uri": "https://{yourTenantId}.us.auth0.com/.well-known/jwks.json",
+       "userinfo_endpoint": "https://{yourTenantId}.us.auth0.com/userinfo",
+       "end_session_endpoint": "https://{yourTenantId}.us.auth0.com/oidc/logout",
        ...
    }
    ```
@@ -99,10 +105,10 @@ With Auth0 configured, you can enable OIDC on NGINX Plus. NGINX Plus serves as t
     ```shell
     nginx -v
     ```
-    The output should match NGINX Plus Release 34 or later:
+    The output should match NGINX Plus Release 35 or later:
 
     ```none
-    nginx version: nginx/1.27.4 (nginx-plus-r34)
+    nginx version: nginx/1.29.0 (nginx-plus-r35)
     ```
 
 2.  Ensure that you have the values of the **Client ID**, **Client Secret**, and **Issuer** obtained during [Auth0 Configuration](#auth0-setup).
@@ -144,8 +150,17 @@ With Auth0 configured, you can enable OIDC on NGINX Plus. NGINX Plus serves as t
     - The **Issuer** URL obtained in [Auth0 Configuration](#auth0-create) with the [`issuer`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#client_secret) directive
 
       The `issuer` is typically your Auth0 OIDC URL. For Auth0, a trailing slash is included, for example: `https://yourTenantId.us.auth0.com/`.
+    
+    - The **logout_uri** is URI that a user visits to start an RP‑initiated logout flow.
 
-     - **Important:** All interaction with the IdP is secured exclusively over SSL/TLS, so NGINX must trust the certificate presented by the IdP. By default, this trust is validated against your system’s CA bundle (the default CA store for your Linux or FreeBSD distribution). If the IdP’s certificate is not included in the system CA bundle, you can explicitly specify a trusted certificate or chain with the [`ssl_trusted_certificate`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#ssl_trusted_certificate) directive so that NGINX can validate and trust the IdP’s certificate.
+    - The **post_logout_uri** is absolute HTTPS URL where Auth0 should redirect the user after a successful logout. This value **must also be whitelisted** in **Allowed Logout URLs** on the Auth0 side.
+
+    - If the **logout_token_hint** directive set to `on`, NGINX Plus sends the user’s ID token as a *hint* to Auth0.
+      This directive is **optional**, however, if it is omitted the Auth0 may display an extra confirmation page asking the user to approve the logout request.
+
+    - If the **userinfo** directive is set to `on`, NGINX Plus will fetch `/userinfo` from the Auth0 and append the claims from userinfo to the `$oidc_claims_` variables.
+
+    - **Important:** All interaction with the IdP is secured exclusively over SSL/TLS, so NGINX must trust the certificate presented by the IdP. By default, this trust is validated against your system’s CA bundle (the default CA store for your Linux or FreeBSD distribution). If the IdP’s certificate is not included in the system CA bundle, you can explicitly specify a trusted certificate or chain with the [`ssl_trusted_certificate`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#ssl_trusted_certificate) directive so that NGINX can validate and trust the IdP’s certificate.
 
 
     ```nginx
@@ -153,9 +168,13 @@ With Auth0 configured, you can enable OIDC on NGINX Plus. NGINX Plus serves as t
         resolver 10.0.0.1 ipv4=on valid=300s;
 
         oidc_provider auth0 {
-            issuer        https://yourTenantId.us.auth0.com/;
-            client_id     <client_id>;
-            client_secret <client_secret>;
+            issuer            https://yourTenantId.us.auth0.com/;
+            client_id         <client_id>;
+            client_secret     <client_secret>;
+            logout_uri        /logout;
+            post_logout_uri   https://demo.example.com/post_logout/;
+            logout_token_hint on;
+            userinfo          on;
         }
 
         # ...
@@ -224,7 +243,17 @@ With Auth0 configured, you can enable OIDC on NGINX Plus. NGINX Plus serves as t
     ```
 
     <span id="oidc_app"></span>
-10. Create a simple test application referenced by the `proxy_pass` directive which returns the authenticated user's full name and email upon successful authentication:
+10. Provide endpoint for completing logout:
+
+    ```nginx
+    # ...
+    location /post_logout/ {
+         return 200 "You have been logged out.\n";
+         default_type text/plain;
+    }
+    # ...
+    ```
+11. Create a simple test application referenced by the `proxy_pass` directive which returns the authenticated user's full name and email upon successful authentication:
 
     ```nginx
     # ...
@@ -237,7 +266,7 @@ With Auth0 configured, you can enable OIDC on NGINX Plus. NGINX Plus serves as t
         }
     }
     ```
-11. Save the NGINX configuration file and reload the configuration:
+12. Save the NGINX configuration file and reload the configuration:
     ```nginx
     nginx -s reload
     ```
@@ -258,6 +287,14 @@ http {
         # Replace with your actual Client ID and Secret from Auth0
         client_id <client_id>;
         client_secret <client_secret>;
+
+        # RP‑initiated logout
+        logout_uri /logout;
+        post_logout_uri https://demo.example.com/post_logout/;
+        logout_token_hint on;
+
+        # Fetch userinfo claims
+        userinfo on;
     }
 
     server {
@@ -276,6 +313,11 @@ http {
             proxy_set_header name  $oidc_claim_name;
 
             proxy_pass http://127.0.0.1:8080;
+        }
+
+        location /post_logout/ {
+            return 200 "You have been logged out.\n";
+            default_type text/plain;
         }
     }
 
@@ -297,6 +339,9 @@ http {
 
 2. Enter valid Auth0 credentials of a user who has access the application. Upon successful sign-in, Auth0 redirects you back to NGINX Plus, and you will see the proxied application content (for example, “Hello, Jane Doe!”).
 
+3. Navigate to `https://demo.example.com/logout`. NGINX Plus initiates an RP‑initiated logout; Auth0 ends the session and redirects back to `https://demo.example.com/post_logout/`.
+
+4. Refresh `https://demo.example.com/` again. You should be redirected to Auth0 for a fresh sign‑in, proving the session has been terminated.
 
 ## Legacy njs-based Auth0 Solution {#legacy-njs-guide}
 
@@ -307,9 +352,11 @@ If you are running NGINX Plus R33 and earlier or if you still need the njs-based
 
 - [NGINX Plus Native OIDC Module Reference documentation](https://nginx.org/en/docs/http/ngx_http_oidc_module.html)
 
-- [Release Notes for NGINX Plus R34]({{< ref "nginx/releases.md#r34" >}})
+- [Release Notes for NGINX Plus R35]({{< ref "nginx/releases.md#r35" >}})
 
 
 ## Revision History
+
+- Version 2 (August 2025) – Added RP‑initiated logout (logout_uri, post_logout_uri, logout_token_hint) and userinfo support.
 
 - Version 1 (March 2025) – Initial version (NGINX Plus Release 34)

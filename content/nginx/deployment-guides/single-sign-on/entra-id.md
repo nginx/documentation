@@ -11,7 +11,7 @@ nd-docs: DOCS-1688
 
 This guide explains how to enable single sign-on (SSO) for applications being proxied by F5 NGINX Plus. The solution uses OpenID Connect as the authentication mechanism, with [Microsoft Entra ID](https://www.microsoft.com/en-us/security/business/identity-access/microsoft-entra-id) as the Identity Provider (IdP), and NGINX Plus as the Relying Party, or OIDC client application that verifies user identity.
 
-{{< call-out "note" >}} This guide applies to [NGINX Plus Release 34]({{< ref "nginx/releases.md#r34" >}}) and later. In earlier versions, NGINX Plus relied on an [njs-based solution](#legacy-njs-guide), which required NGINX JavaScript files, key-value stores, and advanced OpenID Connect logic. In the latest NGINX Plus version, the new [OpenID Connect module](https://nginx.org/en/docs/http/ngx_http_oidc_module.html) simplifies this process to just a few directives.{{< /call-out >}}
+{{< call-out "note" >}} This guide applies to [NGINX Plus Release 35]({{< ref "nginx/releases.md#r35" >}}) and later. In earlier versions, NGINX Plus relied on an [njs-based solution](#legacy-njs-guide), which required NGINX JavaScript files, key-value stores, and advanced OpenID Connect logic. In the latest NGINX Plus version, the new [OpenID Connect module](https://nginx.org/en/docs/http/ngx_http_oidc_module.html) simplifies this process to just a few directives.{{< /call-out >}}
 
 
 ## Prerequisites
@@ -20,7 +20,7 @@ This guide explains how to enable single sign-on (SSO) for applications being pr
 
 - Azure CLI. For installation instructions, see [How to install the Azure CLI](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli).
 
-- An NGINX Plus [subscription](https://www.f5.com/products/nginx/nginx-plus) and NGINX Plus [Release 34](({{< ref "nginx/releases.md#r34" >}})) or later. For installation instructions, see [Installing NGINX Plus](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/).
+- An NGINX Plus [subscription](https://www.f5.com/products/nginx/nginx-plus) and NGINX Plus [Release 35](({{< ref "nginx/releases.md#r35" >}})) or later. For installation instructions, see [Installing NGINX Plus](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/).
 
 - A domain name pointing to your NGINX Plus instance, for example, `demo.example.com`.
 
@@ -62,6 +62,55 @@ Register a new application in Microsoft Entra ID that will represent NGINX Plus 
 
     - From the same command output, copy the the `tenant` value which represents your **Tenant ID**. You will need it later when configuring NGINX Plus.
 
+4. Configure logout URLs to support RP-initiated logout:
+
+   - Add a logout URL for your application by running:
+
+     ```bash
+     az ad app update --id <appId> --web-logout-urls "https://demo.example.com/post_logout/"
+     ```
+
+   - Replace the `<appId>` with the value obtained in step 2.
+
+### Get the OpenID Connect Discovery URL
+
+Check the OpenID Connect Discovery URL. By default, Microsoft Entra ID publishes the `.well-known/openid-configuration` document at the following address:
+
+`https://login.microsoftonline.com/<tenant_id>/v2.0/.well-known/openid-configuration`.
+
+1. Run the following `curl` command in a terminal:
+
+   ```shell
+   curl https://login.microsoftonline.com/<tenant_id>/v2.0/.well-known/openid-configuration | jq
+   ```
+   where:
+
+   - the `<tenant_id>` is your Microsoft Entra Tenant ID
+
+   - the `login.microsoftonline.com` is your Microsoft Entra server address
+
+   - the `/v2.0/.well-known/openid-configuration` is the default address for Microsoft Entra ID for document location
+
+   - the `jq` command (optional) is used to format the JSON output for easier reading and requires the [jq](https://jqlang.github.io/jq/) JSON processor to be installed.
+
+
+   The configuration metadata is returned in the JSON format:
+
+   ```json
+   {
+       ...
+       "issuer": "https://login.microsoftonline.com/{tenant_id}/v2.0",
+       "authorization_endpoint": "https://login.microsoftonline.com/{tenant_id}/oauth2/v2.0/authorize",
+       "token_endpoint": "https://login.microsoftonline.com/{tenant_id}/oauth2/v2.0/token",
+       "jwks_uri": "https://login.microsoftonline.com/{tenant_id}/discovery/v2.0/keys",
+       "userinfo_endpoint": "https://graph.microsoft.com/oidc/userinfo",
+       "end_session_endpoint": "https://login.microsoftonline.com/{tenant_id}/oauth2/v2.0/logout",
+       ...
+   }
+   ```
+
+2. Copy the **issuer** value, you will need it later when configuring NGINX Plus. Typically, the OpenID Connect Issuer for Microsoft Entra ID is `https://login.microsoftonline.com/<tenant_id>/v2.0`.
+
 {{< call-out "note" >}} You will need the values of **Client ID**, **Client Secret**, and **Tenant ID** in the next steps. {{< /call-out >}}
 
 ## Set up NGINX Plus {#nginx-plus}
@@ -73,10 +122,10 @@ With Microsoft Entra ID configured, you can enable OIDC on NGINX Plus. NGINX Plu
     ```shell
     nginx -v
     ```
-    The output should match NGINX Plus Release 34 or later:
+    The output should match NGINX Plus Release 35 or later:
 
     ```none
-    nginx version: nginx/1.27.4 (nginx-plus-r34)
+    nginx version: nginx/1.29.0 (nginx-plus-r35)
     ```
 
 2.  Ensure that you have the values of the **Client ID**, **Client Secret**, and **Tenant ID** obtained during [Microsoft Entra ID Configuration](#entra-setup).
@@ -123,16 +172,30 @@ With Microsoft Entra ID configured, you can enable OIDC on NGINX Plus. NGINX Plu
 
         By default, NGINX Plus creates the metadata URL by appending the `/.well-known/openid-configuration` part to the Issuer URL. If your metadata URL is different, you can explicitly specify it with the [`config_url`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#config_url) directive.
 
-    - **Important:** All interaction with the IdP is secured exclusively over SSL/TLS, so NGINX must trust the certificate presented by the IdP. By default, this trust is validated against your system’s CA bundle (the default CA store for your Linux or FreeBSD distribution). If the IdP’s certificate is not included in the system CA bundle, you can explicitly specify a trusted certificate or chain with the [`ssl_trusted_certificate`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#ssl_trusted_certificate) directive so that NGINX can validate and trust the IdP’s certificate.
+    - The **logout_uri** is URI that a user visits to start an RP‑initiated logout flow.
+
+    - The **post_logout_uri** is absolute HTTPS URL where Microsoft Entra ID should redirect the user after a successful logout. This value **must also be configured** in the Entra ID application logout URLs.
+
+    - If the **logout_token_hint** directive set to `on`, NGINX Plus sends the user's ID token as a *hint* to Microsoft Entra ID.
+      This directive is **optional**, however, if it is omitted the Microsoft Entra ID may display an extra confirmation page asking the user to approve the logout request.
+      If the “Require ID token in logout requests” option is enabled in your tenant (commonly the case in Azure AD B2C), then the token hint becomes **mandatory**.
+
+    - If the **userinfo** directive is set to `on`, NGINX Plus will fetch userinfo from Microsoft Graph API and append the claims from userinfo to the `$oidc_claims_` variables.
+
+    - **Important:** All interaction with the IdP is secured exclusively over SSL/TLS, so NGINX must trust the certificate presented by the IdP. By default, this trust is validated against your system's CA bundle (the default CA store for your Linux or FreeBSD distribution). If the IdP's certificate is not included in the system CA bundle, you can explicitly specify a trusted certificate or chain with the [`ssl_trusted_certificate`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#ssl_trusted_certificate) directive so that NGINX can validate and trust the IdP's certificate.
 
     ```nginx
     http {
         resolver 10.0.0.1 ipv4=on valid=300s;
 
         oidc_provider entra {
-            issuer        https://login.microsoftonline.com/<tenant_id>/v2.0;
-            client_id     <client_id>;
-            client_secret <client_secret>;
+            issuer            https://login.microsoftonline.com/<tenant_id>/v2.0;
+            client_id         <client_id>;
+            client_secret     <client_secret>;
+            logout_uri        /logout;
+            post_logout_uri   https://demo.example.com/post_logout/;
+            logout_token_hint on;
+            userinfo          on;
 
             ssl_trusted_certificate /etc/ssl/certs/ca-certificates.crt;
         }
@@ -209,7 +272,18 @@ With Microsoft Entra ID configured, you can enable OIDC on NGINX Plus. NGINX Plu
     ```
 
     <span id="oidc_app"></span>
-10. Create a simple test application referenced by the `proxy_pass` directive which returns the authenticated user's full name and email upon successful authentication:
+10. Provide endpoint for completing logout:
+
+    ```nginx
+    # ...
+    location /post_logout/ {
+         return 200 "You have been logged out.\n";
+         default_type text/plain;
+    }
+    # ...
+    ```
+
+11. Create a simple test application referenced by the `proxy_pass` directive which returns the authenticated user's full name and email upon successful authentication:
 
     ```nginx
     # ...
@@ -217,12 +291,12 @@ With Microsoft Entra ID configured, you can enable OIDC on NGINX Plus. NGINX Plu
         listen 8080;
 
         location / {
-            return 200 "Hello, $http_name!\nEmail: $http_email\nSub: $http_sub\n";
+            return 200 "Hello, $http_name!\nEmail: $http_email\nEntra ID sub: $http_sub\n";
             default_type text/plain;
         }
     }
     ```
-11. Save the NGINX configuration file and reload the configuration:
+12. Save the NGINX configuration file and reload the configuration:
     ```nginx
     nginx -s reload
     ```
@@ -244,6 +318,14 @@ http {
         # Replace with your actual Entra client_id and client_secret
         client_id <client_id>;
         client_secret <client_secret>;
+
+        # RP‑initiated logout
+        logout_uri /logout;
+        post_logout_uri https://demo.example.com/post_logout/;
+        logout_token_hint on;
+
+        # Fetch userinfo claims
+        userinfo on;
     }
 
     server {
@@ -264,13 +346,19 @@ http {
 
             proxy_pass http://127.0.0.1:8080;
         }
+
+        location /post_logout/ {
+            return 200 "You have been logged out.\n";
+            default_type text/plain;
+        }
     }
 
     server {
+        # Simple test upstream server
         listen 8080;
 
         location / {
-            return 200 "Hello, $http_username!\n Your email is $http_email\n Your unique id is $http_sub\n";
+            return 200 "Hello, $http_name!\nEmail: $http_email\nEntra ID sub: $http_sub\n";
             default_type text/plain;
         }
     }
@@ -279,9 +367,13 @@ http {
 
 ### Testing
 
-1. Open `https://demo.example.com/` in a browser. You will be automatically redirected to the Enra ID sign-in page.
+1. Open `https://demo.example.com/` in a browser. You will be automatically redirected to the Entra ID sign-in page.
 
-2. Enter valid Entra ID credentials of a user who has access the application. Upon successful sign-in, Entra ID redirects you back to NGINX Plus, and you will see the proxied application content (for example, “Hello, Jane Doe!”).
+2. Enter valid Entra ID credentials of a user who has access the application. Upon successful sign-in, Entra ID redirects you back to NGINX Plus, and you will see the proxied application content (for example, "Hello, Jane Doe!").
+
+3. Navigate to `https://demo.example.com/logout`. NGINX Plus initiates an RP‑initiated logout; Microsoft Entra ID ends the session and redirects back to `https://demo.example.com/post_logout/`.
+
+4. Refresh `https://demo.example.com/` again. You should be redirected to Microsoft Entra ID for a fresh sign‑in, proving the session has been terminated.
 
 {{< call-out "note" >}}If you restricted access to a group of users, be sure to select a user who has access to the application.{{< /call-out >}}
 
@@ -292,8 +384,10 @@ http {
 
 - [NGINX Plus Native OIDC Module Reference documentation](https://nginx.org/en/docs/http/ngx_http_oidc_module.html)
 
-- [Release Notes for NGINX Plus R34]({{< ref "nginx/releases.md#r34" >}})
+- [Release Notes for NGINX Plus R35]({{< ref "nginx/releases.md#r35" >}})
 
 ## Revision History
+
+- Version 2 (August 2025) – Added RP‑initiated logout (logout_uri, post_logout_uri, logout_token_hint) and userinfo support.
 
 - Version 1 (March 2025) – Initial version (NGINX Plus Release 34)
