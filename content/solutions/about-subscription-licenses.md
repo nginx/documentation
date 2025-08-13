@@ -143,6 +143,23 @@ mgmt {
 
 {{< call-out "important" >}}After 180 days, if usage reporting still hasn’t been established, NGINX Plus will stop processing traffic.{{< /call-out >}}
 
+
+## Update the JWT license {#update-jwt}
+
+Updating the JWT license after renewing your F5 NGINX subscription is a simple and seamless process that does not require manually downloading the JWT or reloading/restarting the NGINX service. This procedure applies both to subscriptions nearing expiration (within 30 days) and to those that have expired but are still within the 90-day grace period.
+
+The update process will work automatically provided that license reporting has been configured and at least one report has been successfully transmitted. If this setup is not configured, follow the [Add the JWT license](#add-jwt) steps instead.
+
+The updated JWT license is saved directly as a state file at the path specified by the `state_path` directive. The existing JWT license file located at `/etc/nginx/license.jwt` (or a custom path specified by the `license_token` directive) will remain unchanged during this process and will not impact the performance or functionality of NGINX Plus in the future. If necessary, you may replace it manually with the updated license from MyF5.
+
+### For internet-connected environments
+
+Once your subscription has been successfully renewed by F5 Sales, all NGINX Plus instances will automatically receive and apply the updated JWT license — no manual action is required.
+
+### For network-restricted environments
+
+In network-restricted environments, there is no change in the JWT update process. It follows the same steps as [adding a new JWT](#for-network-restricted-environments).
+
 ---
 
 ## Error log location and monitoring {#log-monitoring}
