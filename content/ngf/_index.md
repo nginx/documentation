@@ -3,8 +3,9 @@
 title: NGINX Gateway Fabric
 # The URL is the base of the deployed path, becoming "docs.nginx.com/<url>/<other-pages>"
 url: /nginx-gateway-fabric/
+# The cascade directive applies its nested parameters down the page tree until overwritten
 cascade:
-  # The cascade directive applies its nested parameters down the page tree until overwritten
+  # The logo file is resolved from the theme, in the folder /static/images/icons/
   logo: NGINX-Gateway-Fabric-product-icon.svg
   nd-banner:
     enabled: true
