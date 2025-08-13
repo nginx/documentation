@@ -4776,6 +4776,10 @@ definitions:
             type: integer
             description: The number of seconds before traffic processing is stopped after unsuccessful report attempt.
             readOnly: true
+          uuid:
+            type: string
+            description: The ID of NGINX Plus instance in the UUID format.
+            readOnly: true
     example:
       eval: false
       active_till: 1749268757
@@ -4783,6 +4787,7 @@ definitions:
         healthy: true
         fails: 2
         grace: 15551961
+        uuid: 13754cba-29fb-53e5-c32e-a6cf57c84b01
   NginxWorker:
     title: Worker process
     description: |
