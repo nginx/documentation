@@ -6,17 +6,11 @@ nd-content-type: reference
 nd-product: NAP-WAF
 ---
 
-July 30th, 2025
+August 13th, 2025
 
 ## New features
 
-
-## Important notes
-
-
-
-## Resolved issues
-
+- This release is for compatibility with NGINX Plus R35
 
 ## Supported packages
 
