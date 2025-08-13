@@ -10,7 +10,7 @@ August 13th, 2025
 
 ## New features
 
-- This release is for compatibility with NGINX Plus R35
+- Added support for NGINX Plus R34
 
 ## Supported packages
 
