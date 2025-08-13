@@ -9,13 +9,9 @@ Here you can find the release information for F5 NGINX App Protect DoS v4.7
 
 NGINX App Protect DoS provides behavioral protection against Denial of Service (DoS) for your web applications.
 
----
-
 ## Release 4.7
 
 August 13, 2025
-
----
 
 ### New features
 
@@ -24,9 +20,6 @@ August 13, 2025
 - Add support for Rocky 9
 - Remove support for Ubuntu 20.04 (EOL)
 - Bugs fixing 
-
-
----
 
 ### Supported packages
 
