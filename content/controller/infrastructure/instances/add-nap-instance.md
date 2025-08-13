@@ -19,10 +19,10 @@ Follow the directions in this topic to deploy F5 NGINX App Protect and add the i
 
 Install NGINX App Protect on a host accessible by your NGINX Controller instance by following the appropriate steps for your operating system in the [Using NGINX App Protect with NGINX Controller]({{< ref "controller/admin-guides/install/install-for-controller.md" >}}) guide.
 
-{{< note >}}
+{{< call-out "note" >}}
 If you install NGINX App Protect by using any of the OS-specific install guides, **do not make changes to the `nginx.conf` file**.
 The NGINX Controller Agent manages `nginx.conf` settings and will make the appropriate adjustments for you.
-{{< /note >}}
+{{< /call-out >}}
 
 </div>
 

@@ -18,7 +18,7 @@ The cumulative [metrics]({{< ref "/amplify/metrics-metadata" >}}) displayed on t
   * Traffic — sum of **system.net.bytes_sent** rate
   * CPU Usage — average of **system.cpu.user**
 
-{{< note >}} By default the metrics above are calculated for all monitored hosts. You can configure specific tags in the **Overview** settings popup to display the metrics for a set of hosts (e.g. only the "production environment"). {{< /note >}}
+{{< call-out "note" >}} By default the metrics above are calculated for all monitored hosts. You can configure specific tags in the **Overview** settings popup to display the metrics for a set of hosts (e.g. only the "production environment"). {{< /call-out >}}
 
 You may see zero numbers if some metrics are not being gathered, for example, if the request time (P95) is 0.000s, please check that you have correctly configured NGINX log for [additional metric]() collection.
 

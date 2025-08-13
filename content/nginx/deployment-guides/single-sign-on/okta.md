@@ -11,7 +11,7 @@ nd-docs: DOCS-1689
 
 This guide explains how to enable single sign-on (SSO) for applications being proxied by F5 NGINX Plus. The solution uses OpenID Connect as the authentication mechanism, with [Okta](https://www.okta.com/) as the Identity Provider (IdP), and NGINX Plus as the Relying Party, or OIDC client application that verifies user identity.
 
-{{< note >}} This guide applies to [NGINX Plus Release 34]({{< ref "nginx/releases.md#r34" >}}) and later. In earlier versions, NGINX Plus relied on an [njs-based solution](#legacy-njs-guide), which required NGINX JavaScript files, key-value stores, and advanced OpenID Connect logic. In the latest NGINX Plus version, the new [OpenID Connect module](https://nginx.org/en/docs/http/ngx_http_oidc_module.html) simplifies this process to just a few directives.{{< /note >}}
+{{< call-out "note" >}} This guide applies to [NGINX Plus Release 34]({{< ref "nginx/releases.md#r34" >}}) and later. In earlier versions, NGINX Plus relied on an [njs-based solution](#legacy-njs-guide), which required NGINX JavaScript files, key-value stores, and advanced OpenID Connect logic. In the latest NGINX Plus version, the new [OpenID Connect module](https://nginx.org/en/docs/http/ngx_http_oidc_module.html) simplifies this process to just a few directives.{{< /call-out >}}
 
 ## Prerequisites
 
@@ -64,7 +64,7 @@ In Okta, register a new application for NGINX Plus as the OIDC client to obtain 
 
      You will need it later when configuring NGINX Plus.
 
-{{< note >}} You will need the values of **Client ID**, **Client Secret**, and **Issuer** in the next steps. {{< /note >}}
+{{< call-out "note" >}} You will need the values of **Client ID**, **Client Secret**, and **Issuer** in the next steps. {{< /call-out >}}
 
 ### Assign Users or Groups
 
@@ -292,7 +292,7 @@ http {
 
 2. Enter valid Okta credentials of a user who has access the application. Upon successful sign-in, Okta redirects you back to NGINX Plus, and you will see the proxied application content (for example, “Hello, Jane Doe!”).
 
-{{<note>}}If you restricted access to a group of users, be sure to select a user who has access to the application.{{</note>}}
+{{< call-out "note" >}}If you restricted access to a group of users, be sure to select a user who has access to the application.{{< /call-out >}}
 
 
 ## Legacy njs-based Okta Solution {#legacy-njs-guide}

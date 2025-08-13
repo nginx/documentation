@@ -16,7 +16,7 @@ This guide lists the technical recommendations for F5 NGINX Controller v3 and NG
 
 NGINX Controller, the NGINX Controller Agent, and the NGINX Controller Application Security Add-on support the following distributions and architectures.
 
-{{< see-also >}}Refer to the [NGINX Plus Technical Specifications](https://docs.nginx.com/nginx/technical-specs/) guide for the distributions that NGINX Plus supports.{{< /see-also >}}
+{{< call-out "note" >}}Refer to the [NGINX Plus Technical Specifications](https://docs.nginx.com/nginx/technical-specs/) guide for the distributions that NGINX Plus supports.{{< /call-out>}}
 
 {{< bootstrap-table "table table-striped table-bordered" >}}
 
@@ -118,9 +118,9 @@ NGINX Controller supports the following [NGINX Plus](https://www.f5.com/products
 
 The App Security add-on for the NGINX Controller Application Delivery module is compatible with the versions of NGINX Plus and NGINX App Protect shown in the table below. New releases of NGINX Controller ADC support the last four versions of NGINX Plus at release time.
 
-{{< see-also >}}
+{{< call-out "note" >}}
 Refer to [Using NGINX App Protect with NGINX Controller]({{< ref "controller/admin-guides/install/install-for-controller.md" >}}) for installation instructions and additional information.
-{{< /see-also >}}
+{{< /call-out>}}
 
 {{< bootstrap-table "table table-striped table-bordered" >}}
 
@@ -160,11 +160,11 @@ NGINX Controller works best with the newest and the last prior version of these 
 - [Safari](https://support.apple.com/downloads/safari)
 - [Internet Explorer](https://support.microsoft.com/en-us/help/17621/internet-explorer-downloads) and [Microsoft Edge](https://www.microsoft.com/en-us/edge)
 
-{{< important >}}
+{{< call-out "important" >}}
 You may need to turn off any ad blockers while using the NGINX Controller user interface.
 
 In some cases, the NGINX Controller user interface may not display analytics or security events if an ad blocker is enabled. Refer to the AskF5 KB article [K48603454](https://support.f5.com/csp/article/K48903454) to learn more about this issue and how to resolve it.
-{{< /important >}}
+{{< /call-out >}}
 
 
 &nbsp;
@@ -204,9 +204,9 @@ When using local storage for the analytics and/or config database, we recommend 
 - 100 IOPS
 - 155–255 GB free disk space. 255 GB of free space is recommended if NGINX Controller App Security is enabled. See the [Storage Requirements]({{< ref "/controller/admin-guides/install/nginx-controller-tech-specs.md#storage-requirements" >}}) section for a categorized list of the storage requirements.
 
-{{< tip >}}
+{{< call-out "tip" >}}
 To conserve IO and/or disk space, you can use a separate disk for the local storage directory `/opt/nginx-controller/clickhouse_data`.
-{{< /tip >}}
+{{< /call-out >}}
 
 &nbsp;
 
@@ -224,9 +224,9 @@ To use NFS for external storage for the analytics and/or config database, consid
 
 ### AWS EBS
 
-{{< important >}}
+{{< call-out "important" >}}
 If you plan to run NGINX Controller on AWS EC2 instances, we recommend using NFS shares for the external volumes. Using EBS shares for multi-node clusters is not recommended because of the [EBS Availability Zone limitations](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volumes-multi.html#considerations); for example, the requirement to have EC2 instances and EBS volumes in the same Availability Zone.
-{{< /important >}}
+{{< /call-out >}}
 
 If you are installing NGINX Controller on [AWS EC2 instances](https://aws.amazon.com/ec2/getting-started/) and plan to use EBS volumes for the analytics and/or config database, consider the following:
 
@@ -361,9 +361,9 @@ NGINX Controller supports the following versions of PostgreSQL:
 
 For a system monitoring **100 NGINX Plus instances**, we recommend at least **32 GB of database storage**. Database storage requirements can vary, depending on the number of NGINX Plus instances, components, published API specs, and the churn rate for configuration changes. For monitor-only implementations, the database storage needs are small; for API Management (APIM) and/or App Delivery Controller (ADC) implementations in production, the storage needs are greater.
 
-{{< important >}}
+{{< call-out "important" >}}
 If you use PostgreSQL 12, we recommend disabling [Just-in-Time (JIT)](https://www.postgresql.org/docs/12/jit.html) compilation to improve NGINX Controller's performance. To disable JIT, edit the `postgresql.conf` file and set `jit=off`.
-{{< /important >}}
+{{< /call-out >}}
 
 
 &nbsp;

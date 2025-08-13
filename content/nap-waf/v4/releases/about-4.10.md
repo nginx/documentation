@@ -9,9 +9,9 @@ nd-docs: DOCS-1787
 
 May 29, 2024
 
-{{< note >}}
+{{< call-out "note" >}}
 Release 4.8.1 cannot be upgraded to v4.10.  You must uninstall 4.8.1 and install 4.10.  Upgrade is supported for versions prior to 4.8.1.
-{{< /note >}}
+{{< /call-out >}}
 
 ### New Features
 

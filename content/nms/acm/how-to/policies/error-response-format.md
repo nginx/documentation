@@ -40,11 +40,11 @@ To apply the policy or make changes to it, follow these steps:
 
 ## Policy Settings
 
-{{< note >}}
+{{< call-out "note" >}}
 
 Either `errorMessage` or `errorMessageBody` must be provided for each error code.
 
-{{< /note >}}
+{{< /call-out >}}
 
 {{< bootstrap-table "table table-striped table-bordered" >}}
 

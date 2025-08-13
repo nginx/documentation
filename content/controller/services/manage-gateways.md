@@ -136,18 +136,18 @@ On the **Gateways > Create Gateway > Placements** page:
 
 1. In the **Instance Refs/Instance Groups Refs** box, select the NGINX instance(s) or instance group(s) on which you want to deploy the gateway.
 
-   {{< note >}}
+   {{< call-out "note" >}}
    If you're enabling **High Availability Mode**, select the [high-availability instances that you prepared]({{< ref "/controller/infrastructure/instances/ha-data-plane.md#prepare-the-high-availability-instances" >}}). NGINX Controller supports up to two high-availability instances.
-   {{< /note >}}
+   {{< /call-out >}}
 
 1. In the **Listen IPs** box, add the IP address(es) on which the server listens for and accepts requests. If you're creating a placement for a BIG-IP Integration, add the virtual IP (VIP) address for the BIG-IP cluster.
 
    You can add multiple placements with different Listen IPs. When multiple placements are defined within a gateway, each placement represents a resilient path for any app component that references that gateway.
 
-   {{< note >}}
+   {{< call-out "note" >}}
    - To use non-local **Listen IPs**, you must enable `net.ipv4.ip_nonlocal_bind` on the instance.
    - When **High Availability Mode** is enabled, Virtual Router Redundancy Protocol ([VRRP](https://en.wikipedia.org/wiki/Virtual_Router_Redundancy_Protocol#:~:text=The%20Virtual%20Router%20Redundancy%20Protocol,selections%20on%20an%20IP%20subnetwork.)) is configured for the Listen IP address(es).
-   {{< /note >}}
+   {{< /call-out >}}
 
 1. To enable high-availability mode for your data paths, select **Use High Availability Mode**.
 
@@ -184,11 +184,11 @@ On the **Gateways** > **Create Gateway** > **Additional** page:
 
 1. (Optional) Add [**Config Snippets**]({{< ref "/controller/app-delivery/about-snippets.md" >}}) to customize your NGINX configuration.
 
-   {{< caution >}}
+   {{< call-out "caution"  >}}
    When you use Snippets to customize your NGINX configuration, your changes are applied to the `nginx.conf` file *as is*. NGINX Controller does not verify that your configuration is valid before applying the snippet.
 
    We strongly recommend verifying Snippets in a lab environment before making any changes in production.
-   {{< /caution >}}
+   {{< /call-out >}}
 
 
 ## View, Edit, and Delete Gateways
@@ -203,7 +203,7 @@ To view, edit, and delete Gateways:
 6. To edit a Gateway, choose the Gateway from the list, then select **Edit** (pencil icon).
 7. To delete a Gateway, choose the Gateway from the list, then select **Delete** (trash icon).
 
-   {{< note >}}If your Gateway has external references, such as Components that reference the Gateway, you'll need to delete or reconfigure the external references before removing the Gateway. Refer to [Manage Apps & Components]({{< ref "/controller/app-delivery/manage-apps.md#edit-or-delete-apps-and-components" >}}) to learn how to edit and delete Components.{{< /note >}}
+   {{< call-out "note" >}}If your Gateway has external references, such as Components that reference the Gateway, you'll need to delete or reconfigure the external references before removing the Gateway. Refer to [Manage Apps & Components]({{< ref "/controller/app-delivery/manage-apps.md#edit-or-delete-apps-and-components" >}}) to learn how to edit and delete Components.{{< /call-out >}}
 
 ## Troubleshooting
 

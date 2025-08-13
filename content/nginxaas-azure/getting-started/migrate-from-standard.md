@@ -13,7 +13,7 @@ F5 NGINX as a Service for Azure (NGINXaaS) now supports in-place migration from 
 
 The Standard V2 plan maintains the same price as the Standard plan for existing capabilities. Enabling new capabilities such as NGINX App Protect WAF or additional listen ports that were added as part of Standard V2 will incur additional charges.
 
-{{< note >}} We currently only support in-place migration from Standard plan to the Standard V2 plan. Please avoid updating your Basic plan deployments to Standard V2 plan using this guide. {{< /note >}}
+{{< call-out "note" >}} We currently only support in-place migration from Standard plan to the Standard V2 plan. Please avoid updating your Basic plan deployments to Standard V2 plan using this guide. {{< /call-out >}}
 
 ## Migration Steps
 

@@ -13,7 +13,7 @@ F5 NGINX Service Mesh generates data that needs to persist across restarts and f
 
 The big three hosted Kubernetes environments (Elastic Kubernetes Service (EKS), Azure Kubernetes Service (AKS), and Google Kubernetes Engine (GKE)) all have built-in persistent storage that NGINX Service Mesh will automatically pick up and use.
 
-{{< important >}}
+{{< call-out "important" >}}
 **EKS Users:** in Kubernetes v1.23+ the in-tree to container storage interface (CSI) volume migration feature is enabled for EKS.
 This means the Amazon EBS CSI driver must be installed in your cluster in order for persistent storage to work.
 If the CSI driver is not installed prior to installing NGINX Service Mesh, the `PersistentVolumeClaim` required by SPIRE Server gets stuck in a pending state and the mesh will fail to install.
@@ -21,7 +21,7 @@ If the CSI driver is not installed prior to installing NGINX Service Mesh, the `
 See the [AWS documentation](https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html) for instructions on how to install the EBS CSI driver on your EKS cluster.
 If you are unable to install the CSI driver you can disable persistent storage, although this is not recommended for production environments.
 Use the `--persistent-storage off` flag if deploying the mesh with `nginx-meshctl` or set the `mtls.persistentStorage` value to `"off"` if using Helm.
-{{< /important >}}
+{{< /call-out >}}
 
 ## Determining Persistent Storage on your Cluster
 
@@ -50,9 +50,9 @@ Without persistent storage, if SPIRE Server restarts for any reason, the entire 
 
 Kubernetes has an extensive ecosystem of plugins for persistent storage. These range from vSphere Volumes to Amazon Web Services (AWS) Elastic Block Store. For more details refer to the [Kubernetes Storage Classes documentation](https://kubernetes.io/docs/concepts/storage/storage-classes/).
 
-{{< important >}}
+{{< call-out "important" >}}
 Based on our testing, NFS Storage Classes introduce too much latency and aren't recommended for use with NGINX Service Mesh.
-{{< /important >}}
+{{< /call-out >}}
 
 
 ## Troubleshooting

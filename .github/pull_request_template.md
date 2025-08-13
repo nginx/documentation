@@ -1,35 +1,31 @@
 ### Proposed changes
 
-Write a clear and concise description that helps reviewers understand the purpose and impact of your changes. Use the
-following format:
+[//]: # "Write a clear and concise description of what the pull request changes."
+[//]: # "You can use our Commit messages guidance for this."
+[//]: # "https://github.com/nginx/documentation/blob/main/documentation/git-conventions.md#commit-messages"
 
-Problem: Give a brief overview of the problem or feature being addressed.
+[//]: # "First, explain what was changed, and why. This should be most of the detail."
+[//]: # "Then how the changes were made, such as referring to existing styles and conventions."
+[//]: # "Finish by noting anything beyond the scope of the PR changes that may be affected."
 
-Solution: Explain the approach you took to implement the solution, highlighting any significant design decisions or
-considerations.
+[//]: # "Include information on testing if relevant and non-obvious from the deployment preview."
+[//]: # "For expediency, you can use screenshots to show small before and after examples."
 
-Testing: Describe any testing that you did.
+[//]: # "If the changes were defined by a GitHub issue, reference it using keywords."
+[//]: # "https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/using-keywords-in-issues-and-pull-requests"
 
-Please focus on (optional): If you any specific areas where you would like reviewers to focus their attention or provide
-specific feedback, add them here.
-
-If this PR addresses an [issue](https://github.com/nginx/documentation/issues) on GitHub, ensure that you link to it here:
-
-Closes #ISSUE
+[//]: # "Do not like to any internal, non-public resources. This includes internal repository issues or anything in an intranet."
+[//]: # "You can make reference to internal discussions without linking to them: see 'Referencing internal information'."
+[//]: # "https://github.com/nginx/documentation/blob/main/documentation/closed-contributions.md#referencing-internal-information"
 
 ### Checklist
 
-Before merging a pull request, run through this checklist and mark each as complete.
+Before sharing this pull request, I completed the following checklist:
 
-- [ ] I have read the [contributing guidelines](https://github.com/nginx/documentation/blob/main/CONTRIBUTING.md)
-- [ ] I have signed the [F5 Contributor License Agreement (CLA)](https://github.com/f5/.github/blob/main/CLA/cla-markdown.md)
-- [ ] I have rebased my branch onto main
-- [ ] I have ensured my PR is targeting the main branch and pulling from my branch from my own fork
-- [ ] I have ensured that the commit messages adhere to [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/#summary)
-- [ ] I have ensured that documentation content adheres to [the style guide](/documentation/style-guide.md)
-- [ ] If the change involves potentially sensitive changes[^1], I have assessed the possible impact
-- [ ] If applicable, I have added tests that prove my fix is effective or that my feature works
-- [ ] I have ensured that existing tests pass after adding my changes
-- [ ] If applicable, I have updated [`README.md`](/README.md)
+- [ ] I read the [Contributing guidelines](https://github.com/nginx/documentation/blob/main/CONTRIBUTING.md)
+- [ ] My branch adheres to the [Git conventions](https://github.com/nginx/documentation/blob/main/documentation/git-conventions.md)
+- [ ] My content changes adhere to the [F5 NGINX Documentation style guide](https://github.com/nginx/documentation/blob/main/documentation/style-guide.md)
+- [ ] If my changes involve potentially sensitive information[^1], I have assessed the possible impact
+- [ ] I have waited to ensure my changes pass tests, and addressed any discovered issues
 
-[^1]: Potentially sensitive changes include anything involving code, personally identify information (PII), live URLs or significant amounts of new or revised documentation. Please refer to [our style guide](/documentation/style-guide.md) for guidance about placeholder content.
+[^1]: Potentially sensitive information includes personally identify information (PII), authentication credentials, and live URLs. Refer to the [style guide](https://github.com/nginx/documentation/blob/main/documentation/style-guide.md) for guidance about placeholder content.

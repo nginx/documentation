@@ -15,10 +15,10 @@ This topic discusses the various traffic policies that are supported by F5 NGINX
 
 Refer to the [SMI GitHub repo](https://github.com/servicemeshinterface/smi-spec) to find out more about the SMI spec and how to configure it.
 
-{{< note >}}
+{{< call-out "note" >}}
 Avoid configuring traffic policies such as TrafficSplits, RateLimits, and CircuitBreakers for headless services.
 These policies will not work as expected because NGINX Service Mesh has no way to tie each pod IP address to its headless service.
-{{< /note >}}
+{{< /call-out >}}
 
 ## SMI Specification
 
@@ -34,10 +34,10 @@ NGINX Service Mesh is also compatible with Flagger and other SMI-compatible proj
 
 The [Deployments using Traffic Splitting]( {{< ref "/mesh/tutorials/trafficsplit-deployments.md" >}} ) tutorial provides a walkthrough of using traffic splits in a deployment.
 
-{{< note >}}
+{{< call-out "note" >}}
 The NGINX Plus Ingress Controller's custom resource [TransportServer](https://docs.nginx.com/nginx-ingress-controller/configuration/transportserver-resource/) has the same Kubernetes short name (`ts`) as the custom resource TrafficSplit.
 If you install the NGINX Plus Ingress Controller, use the full names `transportserver(s)` and `trafficsplit(s)` when managing these resources with `kubectl`.
-{{< /note >}}
+{{< /call-out >}}
 
 #### Traffic Split Matches
 
@@ -82,10 +82,10 @@ spec:
 This example associates all matches defined in the `target-route-group` to the `target` TrafficSplit. When a request is sent to the `target-svc`, if it's a GET request to the `/metrics` endpoint or has the `x-test:true` header set, the traffic split is applied and the request is routed to the `target-v2` service.
 All other requests will be sent to the root `target-svc`, which will forward the request to one of the target services based on the load-balancing algorithm of the mesh.
 
-{{< note >}}
+{{< call-out "note" >}}
 If there are multiple matches defined in a HTTPRouteGroup, or multiple HTTPRouteGroups listed in the TrafficSplit `spec.matches` field, then all the matches across all HTTPRouteGroups will be attached to the TrafficSplit.
 Matches are evaluated with the `OR` operation, meaning that a request only needs to satisfy one of the matches in order for the traffic split to be applied.
-{{< /note >}}
+{{< /call-out >}}
 
 Services named in a TrafficSplit definition should not forward to an overlapping set of Pods. In other words, using the example above, `target-v1` and `target-v2` should have unique selectors to ensure they are forwarding to different sets of Pods. This avoids any unintentional or confusing traffic flow to incorrect destinations.
 
@@ -183,7 +183,7 @@ The rate limit spec contains the following fields:
   list are able to pass unlimited traffic to their destination(s).
   If no sources are provided then the rate limit applies to all resources making requests to the destination.
 
-  {{<note>}} The sources do not have to be in the same namespace as the destination; cross-namespaces rate limiting is supported. {{</note>}}
+  {{< call-out "note" >}} The sources do not have to be in the same namespace as the destination; cross-namespaces rate limiting is supported. {{< /call-out >}}
 
 - `name`: The name of the rate limit (required).
 - `rate`: The rate to restrict traffic to (required). Example: "1r/s", "30r/m"
@@ -207,10 +207,10 @@ The rate limit spec contains the following fields:
   from `source2`, for a total rate of 100 requests per minute. If two separate policies are defined for the
   same destination, then the rate is not divided amongst the sources.
 
-  {{<important>}}
+  {{< call-out "important" >}}
   If you are creating multiple rate limit policies for the same destination, the source lists for each rate limit must be distinct.
   You cannot reference the same source and destination across multiple rate limits.
-  {{</important>}}
+  {{< /call-out >}}
 
 - `burst`: The number of requests to allow beyond a given rate (optional).
 
@@ -226,12 +226,12 @@ The rate limit spec contains the following fields:
   The `rules` field is a list of [HTTPRouteGroups](https://github.com/servicemeshinterface/smi-spec/blob/main/apis/traffic-specs/v1alpha3/traffic-specs.md) with an optional `matches` field.
   The `matches` field allows you to specify one or more matches from a particular HTTPRouteGroup. If the `matches` field is omitted, then all matches from the HTTPRouteGroup are attached to the RateLimit.
 
-  {{<important>}}HTTPRouteGroups must be in the same namespace as the RateLimit.{{</important>}}
+  {{< call-out "important" >}}HTTPRouteGroups must be in the same namespace as the RateLimit.{{< /call-out >}}
 
-  {{< note >}}
+  {{< call-out "note" >}}
   If there are multiple matches defined in an HTTPRouteGroup, or multiple HTTPRouteGroups listed in the RateLimit `spec.rules` field, then all the matches across all HTTPRouteGroups will be attached to the RateLimit.
   Matches are evaluated with the OR operation, meaning that a request only needs to satisfy one of the matches in order for the rate limit to be applied.
-  {{< /note >}}
+  {{< /call-out >}}
 
 Documentation for the v1alpha1 RateLimit can be found [here]({{< ref "v1alpha1-ratelimit.md" >}}).
 
@@ -338,9 +338,9 @@ API Version: v1alpha1
 You can enable circuit breaking by creating a CircuitBreaker resource.
 A circuit breaker requires a destination and an associated spec. The destination takes a `name`, `kind`, and `namespace` in order to bind to a selected resource.
 
-{{< note >}}
+{{< call-out "note" >}}
 Currently, only `kind: Service` is supported.
-{{< /note >}}
+{{< /call-out >}}
 
 The circuit breaker spec has three custom fields:
 
@@ -359,19 +359,19 @@ to wait before closing the circuit.
 
    If no namespace or port is specified, default values are `default` and `80`, respectively.
 
-{{< important >}}
+{{< call-out "important" >}}
 The destination and fallback services must be in the same namespace. The fallback service must be [injected with the sidecar proxy]( {{< ref "/mesh/guides/inject-sidecar-proxy.md" >}} ).
-{{< /important >}}
+{{< /call-out >}}
 
-{{< important >}}
+{{< call-out "important" >}}
 If Circuit Breakers are configured, the load balancing algorithm `random` cannot be used. Combining Circuit Breakers with `random` load balancing will cause sidecars to exit with an error. Data flow will be affected.
 
 To avoid this issue, use a different load balancing algorithm. See the [Configuration]({{< ref "/mesh/get-started/install/configuration.md" >}}) guide.
-{{< /important >}}
+{{< /call-out >}}
 
-{{< important >}}
+{{< call-out "important" >}}
 If a Traffic Split is applied to the same service that a Circuit Breaker is defined for, the Circuit Breaker may no longer function as intended. This is because the Traffic Split changes the destination service to a backend service, not the original root destination for which the Circuit Breaker is defined. Therefore, Circuit Breakers must be defined for each backend service individually.
-{{< /important >}}
+{{< /call-out >}}
 
 > You can download our Circuit Breaker example here: {{< link "/examples/circuit-breaker/circuit-breaker.yaml" "circuit-breaker.yaml" >}} and the Circuit Breaker schema here: [`circuit-breaker-schema.yaml`](https://github.com/nginxinc/nginx-service-mesh/blob/main/helm-chart/crds/circuitbreaker.yaml)
 

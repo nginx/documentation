@@ -2,14 +2,14 @@
 title: Migrate from Custom metrics to Platform metrics
 weight: 1000
 toc: true
-url: /nginxaas/azure/getting-started/migrate-to-platform-metrics/
+url: /nginxaas/azure/monitoring/migrate-to-platform-metrics/
 type:
 - how-to
 ---
 
 ## Overview
 
-F5 NGINXaaS for Azure previously supported monitoring through [Custom Metrics](https://learn.microsoft.com/en-us/azure/azure-monitor/metrics/metrics-custom-overview), which is a preview feature in Azure. As a preview feature, support for Custom Metrics will be removed in the future. We've added support for Platform Metrics, which is the recommended way to monitor resources in Azure. We strongly recommend switching your deployment's monitoring to Platform Metrics to take advantage of lower latency and better reliability.
+F5 NGINXaaS for Azure previously supported monitoring through [Custom Metrics](https://learn.microsoft.com/en-us/azure/azure-monitor/metrics/metrics-custom-overview), which is a preview feature in Azure. Support for Custom Metrics will be removed in the future. We've added support for Platform Metrics, which is the recommended way to monitor resources in Azure. We strongly recommend switching your deployment's monitoring to Platform Metrics to take advantage of lower latency and better reliability.
 
 ## Migration steps
 

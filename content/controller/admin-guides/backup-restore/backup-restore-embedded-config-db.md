@@ -23,9 +23,9 @@ NGINX Controller automatically takes a snapshot of the embedded config database 
 
 These automated config backups do not include backups of metrics data, which must be backed up separately; refer to [Backup & Restore the Metrics Database]({{< ref "/controller/admin-guides/backup-restore/backup-restore-metrics-db.md" >}}) for those instructions.
 
-{{< tip >}}
+{{< call-out "tip" >}}
 As a best practice, we recommend that you make scheduled backups of the entire config DB volume and keep the backups off-site for safekeeping.
-{{< /tip >}}
+{{< /call-out >}}
 
 &nbsp;
 
@@ -35,7 +35,7 @@ As a best practice, we recommend that you make scheduled backups of the entire c
 
 This section explains how to restore the embedded config database from the latest backup file or a specific, timestamped file.
 
-{{< important >}}If you restore the config database on top of a new installation of NGINX Controller, make sure to follow the steps to [restore your NGINX config and encryption keys]({{< ref "/controller/admin-guides/backup-restore/backup-restore-cluster-config.md" >}}) afterward. {{< /important >}}
+{{< call-out "important" >}}If you restore the config database on top of a new installation of NGINX Controller, make sure to follow the steps to [restore your NGINX config and encryption keys]({{< ref "/controller/admin-guides/backup-restore/backup-restore-cluster-config.md" >}}) afterward. {{< /call-out >}}
 
 - To restore the embedded NGINX Controller config database **from the latest automated backup**, run the following command:
 
