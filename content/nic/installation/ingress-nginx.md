@@ -494,54 +494,20 @@ nginx.com/sticky-cookie-services: "serviceName=example-svc cookie_name expires=t
 NGINX Ingress Controller has additional annotations for features using NGINX Plus that have no Ingress-NGINX Controller equivalent, such as active health checks and authentication using JSON Web Tokens (JWTs).
 {{< /note >}}
 
----
+The following table outlines annotation conversions for enabling TLS and gRPC to backend (upstream) services.
 
-The following snippets outline Ingress-NGINX Controller annotations that correspond to annotations for NGINX Ingress Controller with respect to enabling TLS and gRPC on backend (upstream) services.
+{{< bootstrap-table "table table-bordered table-striped table-responsive" >}}
+| Ingress-NGINX Controller | NGINX Ingress Controller |
+| ------------------------ | ------------------------ |
+| [_nginx.ingress.kubernetes.io/backend-protocol_](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#backend-protocol): "HTTPS" | [_nginx.org/ssl-services_]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations.md#backend-services-upstreams" >}}): "ssl_service_name" |
+| [_nginx.ingress.kubernetes.io/backend-protocol_](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#backend-protocol): "GRPC" | [_nginx.org/grpc-services_]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations.md#backend-services-upstreams" >}}): "grpc_service_name" |
+| [_nginx.ingress.kubernetes.io/backend-protocol_](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#backend-protocol): "GRPCS" | [_nginx.org/ssl-services_]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations.md#backend-services-upstreams" >}}): "grpc_service_name" 
+[_nginx.org/grpc-services_]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations.md#backend-services-upstreams" >}}): "grpc_service_name" |
 
-**Ingress-NGINX Controller**
-```yaml
-nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
-```
-
-**NGINX Ingress Controller**
-```yaml
-nginx.org/ssl-services: "ssl_service_name"
-```
-
----
-
-**Ingress-NGINX Controller**
-```yaml
-nginx.ingress.kubernetes.io/backend-protocol: "GRPC"
-```
-
-**NGINX Ingress Controller**
-```yaml
-nginx.org/grpc-services: "grpc_service_name"
-```
-
-{{< note >}}
-Requires HTTP/2 (see http2 ConfigMap key) and only works for Ingresses with TLS termination enabled.
-{{< /note >}}
-
----
-
-**Ingress-NGINX Controller**
-```yaml
-nginx.ingress.kubernetes.io/backend-protocol: "GRPCS"
-```
-
-**NGINX Ingress Controller**
-```yaml
-nginx.org/ssl-services: "grpc_service_name"
-nginx.org/grpc-services: "grpc_service_name"
-```
-
-{{< note >}}
-Requires HTTP/2 (see http2 ConfigMap key) and only works for Ingresses with TLS termination enabled.
-{{< /note >}}
-
----
+{{% /bootstrap-table %}}
+{{< call-out "important" >}}
+GRPC services require Ingresses with TLS termination and HTTP/2 enabled (see [_http2 ConfigMap key_](/nic/configuration/global-configuration/configmap-resource.md#listeners)).
+{{< /call-out >}}
 
 ### Global configuration with ConfigMaps
 
