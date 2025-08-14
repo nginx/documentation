@@ -41,6 +41,11 @@ jobs:
                   "type": "User",
                   "name": "anonymous",
                   "provider": "Email Security Provider"
+                  },
+                  {
+                  "type": "User",
+                  "name": "community.guestuser@f5.com",
+                  "provider": "Email Security Provider"
                   }
               ]
               }')

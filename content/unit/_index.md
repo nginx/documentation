@@ -4,7 +4,7 @@ nd-subtitle: A lightweight web app server that combines several layers of the ty
 url: /nginx-unit/
 nd-landing-page: true
 cascade:
-  logo: "NGINX-Unit-product-icon-RGB.png"
+  logo: "NGINX-Unit-product-icon.svg"
 nd-content-type: landing-page
 nd-product: NGINX Unit
 ---

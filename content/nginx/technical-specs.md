@@ -26,7 +26,7 @@ Dynamic modules are supported on the [same distributions as NGINX Plus](#support
 | Module           | Distribution and details                                                                                   |
 |-------------------|-----------------------------------------------------------------------------------------------------------|
 | [AppProtect]({{< ref "/nap-waf/v5/admin-guide/install.md" >}}) | AlmaLinux: **Not supported**<br>Alpine Linux 3.17 & 3.18: **Not supported**<br>Alpine Linux 3.19: **x86_64 only**<br>Amazon Linux 2: **Not supported**<br>Amazon Linux 2023: **x86_64 only**<br>Debian 11 & 12: **x86_64 only**<br>FreeBSD: **Not supported**<br>Oracle Linux 8: **x86_64 only**<br>RHEL 8 & 9: **x86_64 only**<br>Rocky Linux 8: **Not supported**<br>Rocky Linux 9: **x86_64 only**<br>SLES: **Not supported**<br>Ubuntu 20.04: **Not supported**<br>Ubuntu 22.04 & 24.04: **x86_64 only** |
-| [GeoIP]({{< ref "/nginx/admin-guide/dynamic-modules/geoip.md" >}}) | Amazon Linux 2023  **Not supported**<br>RHEL/Oracle Linux/AlmaLinux/Rocky Linux 8.0+, 9: **Not supported**<br>FreeBSD: **Not supported**           |
+| [GeoIP]({{< ref "/nginx/admin-guide/dynamic-modules/geoip.md" >}}) | Amazon Linux 2023  **Not supported**<br>RHEL/Oracle Linux/AlmaLinux/Rocky Linux 8.0+, 9, RHEL 10: **Not supported**<br>FreeBSD: **Not supported**           |
 | [GeoIP2]({{< ref "/nginx/admin-guide/dynamic-modules/geoip2.md" >}}) | Amazon Linux 2: **Not supported**                                            |
 | [HA-Keepalived]({{< ref "/nginx/admin-guide/high-availability/ha-keepalived-nodes.md#configuring-keepalived-for-an-additional-passive-node" >}}) | FreeBSD: **Not supported**<br>Alpine Linux: **Not supported**<br>Amazon Linux 2: **Not supported**<br>Amazon Linux 2023: **Not supported** |
 | [NGINX sync]({{< ref "/nginx/admin-guide/high-availability/configuration-sharing.md#installing-nginx-sync-on-the-primary-machine" >}}) | FreeBSD: **Not supported**<br>Alpine Linux: **Not supported**                                              |
@@ -179,7 +179,7 @@ See [Sizing Guide for Deploying NGINX Plus on Bare Metal Servers](https://www.ng
 - [Limit Conn](https://nginx.org/en/docs/stream/ngx_stream_limit_conn_module.html) – Limit concurrent connections by key
 - [Log](https://nginx.org/en/docs/stream/ngx_stream_log_module.html) – Log TCP and UDP transactions
 - [Map](https://nginx.org/en/docs/stream/ngx_stream_map_module.html) – Create variables based on other variables in requests
-- [MQTT Preread](https://nginx.org/en/docs/stream/ngx_stream_mqtt_preread_module.html) – Forward MQTT traffic without processing	 it
+- [MQTT Preread](https://nginx.org/en/docs/stream/ngx_stream_mqtt_preread_module.html) – Forward MQTT traffic without processing it
 - [MQTT Filter](https://nginx.org/en/docs/stream/ngx_stream_mqtt_filter_module.html) – Process Message Queuing Telemetry Transport protocol (MQTT) protocol
 - [Proxy](https://nginx.org/en/docs/stream/ngx_stream_proxy_module.html) – Proxy requests to TCP and UDP servers
 - [Pass](https://nginx.org/en/docs/stream/ngx_stream_pass_module.html) – Pass any accepted client connection to any configured listening socket in http, stream, mail, and other similar modules
