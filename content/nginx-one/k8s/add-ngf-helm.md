@@ -1,12 +1,12 @@
 ---
-title: Connect NGINX Gateway Fabric
+title: Connect NGINX Gateway Fabric with Helm
 toc: true
 weight: 300
 nd-content-type: how-to
 nd-product: NGINX One
 ---
 
-This document explains how to connect F5 NGINX Gateway Fabric to F5 NGINX One Console using NGINX Agent.
+This document explains how to connect F5 NGINX Gateway Fabric to F5 NGINX One Console with Helm.
 Connecting NGINX Gateway Fabric to NGINX One Console enables centralized monitoring of all controller instances.
 
 Once connected, you'll see a **read-only** configuration of NGINX Gateway Fabric. For each instance, you can review:
@@ -26,15 +26,7 @@ You also need:
 
 ### Create a data plane key
 
-Data plane keys are displayed only once, when you create that key, and cannot be retrieved later.
-
-If you've created and recorded one or more data plane keys, you can edit or revoke those keys. To do so, select **Manage > Data Plane Keys**. NGINX One Console does not store your actual data plane key.
-
-If you've forgotten your data plane key, you can create a new one. Select **Manage > Data Plane Keys > Add Data Plane Key**.
-
-For more options associated with data plane keys, see [Create and manage data plane keys]({{< ref "/nginx-one/connect-instances/create-manage-data-plane-keys.md" >}}).
-
-<!-- Helm tab -->
+{{< include "/nginx-one/how-to/generate-data-plane-key.md" >}}
 
 ### Create a Kubernetes secret with the data plane key
 
