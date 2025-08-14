@@ -58,76 +58,78 @@ This figure depicts an example of NGINX Gateway Fabric exposing three web applic
 ```mermaid
 graph LR
     %% Nodes and Relationships
-    subgraph KubernetesCluster[Kubernetes Cluster]
-        subgraph ApplicationsNamespaceA[Namespace: applications]
-            subgraph DataplaneComponentsA[Dataplane Components]
-                GatewayA[Gateway A<br>Listener: *.example.com]
-                subgraph NGINXPodA[NGINX Pod]
-                    subgraph NGINXContainerA[NGINX Container]
-                        NGINXProcessA(NGINX)
-                        NGINXAgentA(NGINX Agent)
+    subgraph KubernetesCluster["Kubernetes Cluster"]
+        subgraph NamespaceNGF["Namespace: nginx-gateway"]
+            NGFControlPlanePod["NGINX Gateway Fabric Control Plane Pod"]
+            NGFControlPlanePod --> KubernetesAPI["Kubernetes API"]
+        end
+        subgraph ApplicationsNamespaceA["Namespace: applications"]
+            subgraph DataplaneComponentsA["Dataplane Components"]
+                GatewayA["Gateway A<br>Listener: *.example.com"]
+                subgraph NGINXDataPlanePodA["NGINX Data Plane Pod"]
+                    subgraph NGINXContainerA["NGINX Container"]
+                        NGINXProcessA["NGINX Process"]
+                        NGINXAgentA["NGINX Agent"]
                     end
                 end
             end
-            subgraph HTTPRouteAAndApplications[HTTPRoutes and Applications]
-                HTTPRouteA[HTTPRoute A\nHost: a.example.com]
-                HTTPRouteB[HTTPRoute B\nHost: b.example.com]
-                ApplicationA[Application A<br>Pods: 2]
-                ApplicationB[Application B<br>Pods: 1]
+            subgraph HTTPRouteAAndApplications["HTTPRoutes and Applications"]
+                HTTPRouteA["HTTPRoute A<br>Host: a.example.com"]
+                HTTPRouteB["HTTPRoute B<br>Host: b.example.com"]
+                ApplicationA["Application A<br>Pods: 2"]
+                ApplicationB["Application B<br>Pods: 1"]
             end
         end
-        subgraph ApplicationsNamespaceB[Namespace: applications-2]
-            subgraph DataplaneComponentsB[Dataplane Components]
-                GatewayB[Gateway B<br>Listener: *.other-example.com]
-                subgraph NGINXPodB[NGINX Pod]
-                    subgraph NGINXContainerB[NGINX Container]
-                        NGINXProcessB(NGINX)
-                        NGINXAgentB(NGINX Agent)
+        subgraph ApplicationsNamespaceB["Namespace: applications-2"]
+            subgraph DataplaneComponentsB["Dataplane Components"]
+                GatewayB["Gateway B<br>Listener: *.other-example.com"]
+                subgraph NGINXDataPlanePodB["NGINX Data Plane Pod"]
+                    subgraph NGINXContainerB["NGINX Container"]
+                        NGINXProcessB["NGINX Process"]
+                        NGINXAgentB["NGINX Agent"]
                     end
                 end
             end
-            subgraph HTTPRouteBandApplications[HTTPRoutes and Applications]
-                HTTPRouteC[HTTPRoute C\nHost: c.other-example.com]
-                ApplicationC[Application C<br>Pods: 1]
+            subgraph HTTPRouteBandApplications["HTTPRoutes and Applications"]
+                HTTPRouteC["HTTPRoute C<br>Host: c.other-example.com"]
+                ApplicationC["Application C<br>Pods: 1"]
             end
         end
-        KubernetesAPI[Kubernetes API]
     end
-    subgraph UsersAndClients[Users and Clients]
-        UserOperator[Cluster Operator]
-        UserDevA[Application Developer A]
-        UserDevB[Application Developer B]
-        ClientA[Client A]
-        ClientB[Client B]
+    subgraph UsersAndClients["Users and Clients"]
+        UserOperator["Cluster Operator"]
+        UserDevA["Application Developer A"]
+        UserDevB["Application Developer B"]
+        ClientA["Client A"]
+        ClientB["Client B"]
     end
-    subgraph SharedInfrastructure[Public Endpoint]
-        PublicEndpoint[TCP Load Balancer / NodePort]
+    subgraph SharedInfrastructure["Public Endpoint"]
+        PublicEndpoint["TCP Load Balancer / NodePort"]
     end
     %% Updated Traffic Flow
-    ClientA == a.example.com ==> PublicEndpoint
-    ClientB == c.other-example.com ==> PublicEndpoint
-    PublicEndpoint ==> NGINXProcessA
-    PublicEndpoint ==> NGINXProcessB
-    NGINXProcessA ==> ApplicationA
-    NGINXProcessA ==> ApplicationB
-    NGINXProcessB ==> ApplicationC
+    ClientA-->|a.example.com|PublicEndpoint
+    ClientB-->|c.other-example.com|PublicEndpoint
+    PublicEndpoint==>NGINXProcessA
+    PublicEndpoint==>NGINXProcessB
+    NGINXProcessA==>ApplicationA
+    NGINXProcessA==>ApplicationB
+    NGINXProcessB==>ApplicationC
     %% Kubernetes Configuration Flow
-    HTTPRouteA --> GatewayA
-    HTTPRouteB --> GatewayA
-    HTTPRouteC --> GatewayB
-    UserOperator --> KubernetesAPI
-    NGFPod[NGF Pod] --> KubernetesAPI
-    NGFPod --gRPC--> NGINXAgentA
-    NGFPod --gRPC--> NGINXAgentB
-    NGINXAgentA --> NGINXProcessA
-    NGINXAgentB --> NGINXProcessB
-    UserDevA --> KubernetesAPI
-    UserDevB --> KubernetesAPI
+    HTTPRouteA-->GatewayA
+    HTTPRouteB-->GatewayA
+    HTTPRouteC-->GatewayB
+    UserOperator-->KubernetesAPI
+    NGFControlPlanePod--gRPC-->NGINXAgentA
+    NGFControlPlanePod--gRPC-->NGINXAgentB
+    NGINXAgentA-->NGINXProcessA
+    NGINXAgentB-->NGINXProcessB
+    UserDevA-->KubernetesAPI
+    UserDevB-->KubernetesAPI
     %% Styling
     style UserOperator fill:#66CDAA,stroke:#333,stroke-width:2px
     style GatewayA fill:#66CDAA,stroke:#333,stroke-width:2px
     style GatewayB fill:#66CDAA,stroke:#333,stroke-width:2px
-    style NGFPod fill:#66CDAA,stroke:#333,stroke-width:2px
+    style NGFControlPlanePod fill:#66CDAA,stroke:#333,stroke-width:2px
     style NGINXProcessA fill:#66CDAA,stroke:#333,stroke-width:2px
     style NGINXProcessB fill:#66CDAA,stroke:#333,stroke-width:2px
     style KubernetesAPI fill:#9370DB,stroke:#333,stroke-width:2px
@@ -154,18 +156,18 @@ The figure shows:
 
 | **Category**           | **Description**                                                                                                                                       |
 |-------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Namespaces**          | - _Namespace: applications_: Contains Gateway A for `*.example.com`, handling Application A and Application B.<br>- _Namespace: applications-2_: Contains Gateway B for `*.other-example.com`, handling Application C.    |
-| **Users**               | - _Cluster Operator_: Sets up NGF and manages Gateway API resources by provisioning Gateways (A and B) and the NGF Pod.<br>- _Developers A & B_: Developers deploy their applications and create HTTPRoutes. |
+| **Namespaces**          | - _Namespace: nginx-gateway_: Contains the NGINX Gateway Fabric Control Plane Pod, responsible for managing Gateway API configurations and provisioning NGINX Data Plane Pods.<br>- _Namespace: applications_: Contains Gateway A for `*.example.com`, handling Application A and Application B.<br>- _Namespace: applications-2_: Contains Gateway B for `*.other-example.com`, handling Application C. |
+| **Users**               | - _Cluster Operator_: Sets up the NGINX Gateway Fabric Control Plane Pod and manages Gateway API resources by provisioning Gateways (A and B).<br>- _Developers A & B_: Developers deploy their applications and create HTTPRoutes associated with their Gateways. |
 | **Clients**             | - _Client A_: Interacts with Application A through `a.example.com`.<br>- _Client B_: Interacts with Application C through `c.other-example.com`.     |
-| **NGF Pod**             | The control plane component, deployed in `nginx-gateway`, communicates with the Kubernetes API to:<br>- Fetch Gateway API resources.<br>- Dynamically manage NGINX data plane deployments. |
-| **Gateways**            | - _Gateway A_: Listens for requests under `*.example.com`. Routes:<br>&nbsp;&nbsp;&nbsp;• _HTTPRoute A_: Routes `a.example.com` to Application A.<br>&nbsp;&nbsp;&nbsp;• _HTTPRoute B_: Routes `b.example.com` to Application B.<br>- _Gateway B_: Listens for requests under `*.other-example.com`. Routes:<br>&nbsp;&nbsp;&nbsp;• _HTTPRoute C_: Routes `c.other-example.com` to Application C. |
-| **Applications**        | - _Application A_: Deployed by Developer A (2 pods) and routed to by Gateway A.<br>- _Application B_: Deployed by Developer A (1 pod) and routed to by Gateway A.<br>- _Application C_: Deployed by Developer B (1 pod) and routed to by Gateway B. |
-| **NGINX Pods**          | - _NGINX Pod A_: Handles traffic from Gateway A:<br>&nbsp;&nbsp;&nbsp;• _NGINX Process A_: Routes to Application A and Application B.<br>&nbsp;&nbsp;&nbsp;• _NGINX Agent A_: Updates configuration via gRPC.<br>- _NGINX Pod B_: Handles traffic from Gateway B:<br>&nbsp;&nbsp;&nbsp;• _NGINX Process B_: Routes to Application C.<br>&nbsp;&nbsp;&nbsp;• _NGINX Agent B_: Updates configuration via gRPC. |
-| **Traffic Flow**        | - _Client A_:<br>&nbsp;&nbsp;&nbsp;1. Sends requests to `a.example.com` via Public Endpoint.<br>&nbsp;&nbsp;&nbsp;2. Routed to Application A by NGINX Process A.<br>- _Client B_:<br>&nbsp;&nbsp;&nbsp;1. Sends requests to `c.other-example.com` via Public Endpoint.<br>&nbsp;&nbsp;&nbsp;2. Routed to Application C by NGINX Process B. |
-| **Public Endpoint**     | A shared entry point (TCP Load Balancer or NodePort) that exposes the NGINX Service externally and forwards client traffic into the cluster.                   |
-| **Kubernetes API**      | Acts as the central hub for resource management:<br>- Fetches Gateway API resources.<br>- Updates NGINX configuration dynamically via the NGF Pod.    |
+| **NGINX Gateway Fabric Control Plane Pod** | The control plane pod, deployed in the `nginx-gateway` namespace, communicates with the Kubernetes API to:<br>- Fetch Gateway API resources.<br>- Dynamically provision and configure NGINX Data Plane Pods.<br>- Deliver traffic routing and configuration updates to NGINX Agent instances over gRPC. |
+| **Gateways**            | - _Gateway A_: Listens for requests under `*.example.com`. Routes:<br>&nbsp;&nbsp;&nbsp;• _HTTPRoute A_: Routes requests to `a.example.com` into Application A.<br>&nbsp;&nbsp;&nbsp;• _HTTPRoute B_: Routes requests to `b.example.com` into Application B.<br>- _Gateway B_: Listens for requests under `*.other-example.com`. Routes:<br>&nbsp;&nbsp;&nbsp;• _HTTPRoute C_: Routes requests to `c.other-example.com` into Application C. |
+| **Applications**        | - _Application A_: Deployed by Developer A (2 pods), routed by Gateway A via HTTPRoute A.<br>- _Application B_: Deployed by Developer A (1 pod), routed by Gateway A via HTTPRoute B.<br>- _Application C_: Deployed by Developer B (1 pod), routed by Gateway B via HTTPRoute C. |
+| **NGINX Data Plane Pods** | - _NGINX Data Plane Pod A_: Handles traffic routed from Gateway A:<br>&nbsp;&nbsp;&nbsp;• _NGINX Process A_: Forwards requests to Application A and Application B as defined in Gateway A's HTTPRoutes.<br>&nbsp;&nbsp;&nbsp;• _NGINX Agent A_: Receives configuration updates from the NGINX Gateway Fabric Control Plane Pod via gRPC.<br>- _NGINX Data Plane Pod B_: Manages traffic routed from Gateway B:<br>&nbsp;&nbsp;&nbsp;• _NGINX Process B_: Forwards requests to Application C as defined in Gateway B’s HTTPRoute.<br>&nbsp;&nbsp;&nbsp;• _NGINX Agent B_: Receives configuration updates via gRPC from the NGINX Gateway Fabric Control Plane Pod. |
+| **Traffic Flow**        | - _Client A_:<br>&nbsp;&nbsp;&nbsp;1. Sends requests to `a.example.com` via the Public Endpoint.<br>&nbsp;&nbsp;&nbsp;2. Requests are routed by Gateway A and processed by NGINX Process A.<br>&nbsp;&nbsp;&nbsp;3. Traffic is forwarded to Application A.<br>- _Client B_:<br>&nbsp;&nbsp;&nbsp;1. Sends requests to `c.other-example.com` via the Public Endpoint.<br>&nbsp;&nbsp;&nbsp;2. Requests are routed by Gateway B and processed by NGINX Process B.<br>&nbsp;&nbsp;&nbsp;3. Traffic is forwarded to Application C. |
+| **Public Endpoint**     | A shared entry point (TCP Load Balancer or NodePort) that exposes the NGINX Data Plane externally to forward client traffic into the cluster.                   |
+| **Kubernetes API**      | Acts as the central hub for resource management:<br>- Fetches Gateway API resources for Gateway A and Gateway B.<br>- Facilitates NGINX configuration updates via the NGINX Gateway Fabric Control Plane Pod. |
 
-{{% /bootstrap-table %}}
+{{< /bootstrap-table >}}
 
 
 _Color Coding_ :
@@ -180,14 +182,20 @@ _Color Coding_ :
 ```mermaid
 graph LR
     %% Main Components
-    KubernetesAPI[Kubernetes API]
+    subgraph nginx-gateway["Namespace: nginx-gateway"]
+        NGFPod[NGINX Gateway Fabric Control Plane Pod]
+    end
+    
+    subgraph NGINXDataPlane["NGINX Data Plane Pod"]
+        NGINXAgent[NGINX Agent]
+        NGINXMaster[NGINX Master]
+        NGINXWorker[NGINX Worker]
+        ConfigFiles[Config Files]
+    end
+
     F5Telemetry[F5 Telemetry Service]
     PrometheusMonitor[Prometheus]
-    NGFPod[NGF Pod]
-    NGINXAgent[NGINX Agent]
-    NGINXMaster[NGINX Master]
-    NGINXWorker[NGINX Worker]
-    ConfigFiles[Config Files]
+    KubernetesAPI[Kubernetes API]
     Client[Client]
     BackendApplication[Backend Application]
 
@@ -220,20 +228,23 @@ graph LR
 The following table describes the connections, preceeded by their types in parentheses. For brevity, the suffix "process" has been omitted from the process descriptions.
 
 {{< bootstrap-table "table table-bordered table-striped table-responsive" >}}
+
 | #  | Component/Protocol      | Description                                                                                                  |
 | ---| ----------------------- | ------------------------------------------------------------------------------------------------------------ |
-| 1  | Kubernetes API (HTTPS) | _Kubernetes API → NGF Pod_: The NGF Pod watches the Kubernetes API for Gateway API resources (e.g., Gateways, HTTPRoutes) to fetch the latest cluster configuration. |
-| 2  | gRPC                   | _NGF Pod → NGINX Agent_: The NGF Pod processes the Gateway API resources, generates NGINX configuration metadata, and sends it securely to the NGINX Agent over gRPC. |
-| 3  | File I/O               | _NGINX Agent → Config Files_: The NGINX Agent validates the configuration and writes the configuration files. |
-| 4  | Signal                 | _NGINX Agent → NGINX Master_: The NGINX Agent signals the NGINX Master process to reload the updated configuration. This ensures the updated routes and settings are live. |
-| 5  | HTTP/HTTPS             | _Prometheus → NGINX Worker_: Prometheus collects runtime metrics (e.g., traffic stats, request details) directly from the NGINX Worker via the HTTP endpoint (`:9113/metrics`). This data helps monitor the operational state of the data plane. |
-| 6  | HTTPS                  | _NGF Pod → F5 Telemetry Service_: The NGF Pod sends system and usage telemetry data (like API requests handled, error rates, and performance metrics) to the F5 Telemetry Service for analytics. |
-| 7  | HTTP, HTTPS            | _Client → NGINX Worker_: Clients send traffic (e.g., HTTP/HTTPS requests) to the NGINX Worker. These are typically routed via a public LoadBalancer or NodePort to expose NGINX. |
-{{% /bootstrap-table %}}
+| 1  | Kubernetes API (HTTPS)  | _Kubernetes API → NGINX Gateway Fabric Control Plane Pod_: The NGINX Gateway Fabric Control Plane Pod (in the `nginx-gateway` namespace) watches the Kubernetes API for updates to Gateway API resources (e.g., Gateways, HTTPRoutes), fetching the latest configuration to manage routing and traffic control. |
+| 2  | gRPC                    | _NGINX Gateway Fabric Control Plane Pod → NGINX Agent_: The NGINX Gateway Fabric Control Plane Pod processes Gateway API resources, generates NGINX configuration settings, and securely delivers them to the NGINX Agent inside the NGINX Data Plane Pod via gRPC. |
+| 3  | File I/O                | _NGINX Agent → Config Files_: The NGINX Agent (within the NGINX Data Plane Pod) validates the configuration metadata received from the Control Plane Pod and writes it to NGINX configuration files within the pod. These files store dynamic routing rules and traffic settings. |
+| 4  | Signal                  | _NGINX Agent → NGINX Master_: After writing the configuration files, the NGINX Agent signals the NGINX Master process to reload the configuration. This ensures the NGINX Data Plane Pod immediately applies the updated routes and settings. |
+| 5  | HTTP/HTTPS              | _Prometheus → NGINX Worker_: Prometheus collects runtime metrics (e.g., traffic statistics, request rates, and active connections) from the NGINX Worker process, which is part of the NGINX Data Plane Pod. The `/metrics` endpoint exposes these metrics for monitoring and observability. |
+| 6  | HTTPS                   | _NGINX Gateway Fabric Control Plane Pod → F5 Telemetry Service_: The NGINX Gateway Fabric Control Plane Pod sends telemetry data (e.g., API requests handled, usage metrics, performance stats, error rates) to the external F5 Telemetry Service for centralized monitoring and diagnostics. |
+| 7  | HTTP/HTTPS              | _Client → NGINX Worker_: Clients send incoming application traffic (e.g., HTTP/HTTPS requests) to the NGINX Worker process within the NGINX Data Plane Pod. These requests are typically routed through a shared Public Endpoint (e.g., LoadBalancer or NodePort) before reaching the NGINX Data Plane. |
+| 8  | HTTP/HTTPS              | _NGINX Worker → Backend Application_: The NGINX Worker process forwards client traffic to the appropriate backend application services (e.g., Pods) as defined in the routing rules and configuration received from the Control Plane Pod. |
+
+{{< /bootstrap-table >}}
 
 ---
 
-### NGINX Plus Features and Benefits
+### Additional features and enhancements when using NGINX Plus
 
 NGINX Gateway Fabric supports both NGINX Open Source and NGINX Plus. While the previous diagram shows NGINX Open Source, using NGINX Plus provides additional capabilities, including:
 
@@ -248,7 +259,7 @@ These features enable reduced downtime, improved performance during scaling even
 
 ### Resilience and fault isolation
 
-This architecture separates the control plane and data plane, creating clear operational boundaries that improve resilience and fault isolation. It also enhances scalability, security, and reliability while reducing the risk of failures affecting both components.
+This architecture separates the control plane and data plane, creating clear operational boundaries that improve resilience and fault isolation:
 
 #### Control plane resilience
 
