@@ -432,6 +432,14 @@ The following tables lists the configurable parameters of the NGINX Ingress Cont
 | **controller.readyStatus.enable** | Enables the readiness endpoint `"/nginx-ready"`. The endpoint returns a success code when NGINX has loaded all the config after the startup. This also configures a readiness probe for the Ingress Controller pods that uses the readiness endpoint. | true |
 | **controller.readyStatus.port** | The HTTP port for the readiness endpoint. | 8081 |
 | **controller.readyStatus.initialDelaySeconds** | The number of seconds after the Ingress Controller pod has started before readiness probes are initiated. | 0 |
+| **controller.startupStatus.enable** | Enables the startup probe for the Ingress Controller. | false |
+| **controller.startupStatus.port** | The port where the startup endpoint is exposed. This is a required field if `controller.startupStatus.enable` is set to true. | N/A |
+| **controller.startupStatus.path** | The path to the startup endpoint. This is a required field if `controller.startupStatus.enable` is set to true. | N/A |
+| **controller.startupStatus.initialDelaySeconds** | The number of seconds after the Ingress Controller pod has started before startup probes are initiated. | N/A |
+| **controller.startupStatus.periodSeconds** | The number of seconds between each startup probe. | N/A |
+| **controller.startupStatus.timeoutSeconds** | The number of seconds after which the startup probe times out. | N/A |
+| **controller.startupStatus.successThreshold** | Minimum consecutive successes for the probe to be considered successful. | N/A |
+| **controller.startupStatus.failureThreshold** | When a probe fails, Kubernetes will try failureThreshold times before giving up. | N/A |
 | **controller.enableLatencyMetrics** | Enable collection of latency metrics for upstreams. Requires `prometheus.create`. | false |
 | **controller.minReadySeconds** | Specifies the minimum number of seconds for which a newly created Pod should be ready without any of its containers crashing, for it to be considered available. [docs](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#min-ready-seconds) | 0 |
 | **controller.autoscaling.enabled** | Enables HorizontalPodAutoscaling. | false |
