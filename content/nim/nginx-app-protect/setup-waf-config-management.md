@@ -99,9 +99,9 @@ sudo apt-get install nms-nap-compiler-v5.442.0 -o Dpkg::Options::="--force-overw
 
 {{< include "nim/nap-waf/restart-nms-integrations.md" >}}
 
-### RHEL 8.1 or later
+### RHEL 8.1
 
-To install the WAF compiler on RHEL 8.1 or later:
+To install the WAF compiler on RHEL 8.1 :
 
 1. Download the `dependencies.repo` file to the `/etc/yum.repos.d` directory:
 
@@ -121,9 +121,9 @@ To install the WAF compiler on RHEL 8.1 or later:
    sudo yum install nms-nap-compiler-v5.442.0
    ```
 
-### RHEL 9 or later
+### RHEL 9
 
-To install the WAF compiler on RHEL 9 or later:
+To install the WAF compiler on RHEL 9:
 
 1. Download the `dependencies.repo` file to the `/etc/yum.repos.d` directory:
 
@@ -145,9 +145,9 @@ To install the WAF compiler on RHEL 9 or later:
 
 4. {{< include "nim/nap-waf/restart-nms-integrations.md" >}}
 
-### Oracle Linux 8.1 or later
+### Oracle Linux 8.1
 
-To install the WAF compiler on Oracle Linux 7.4 or later:
+To install the WAF compiler on Oracle Linux 8.1:
 
 1. Download the `dependencies.repo` file to the `/etc/yum.repos.d` directory:
 
@@ -240,12 +240,15 @@ error when creating the nginx repo retriever - NGINX repo certificates not found
 
 If needed, you can also [install the WAF compiler manually](#install-the-waf-compiler).
 
-## Install the WAF compiler in a disconnected environment
+## Install or update the WAF compiler in a disconnected environment
 
 To install the WAF compiler on a system without internet access, complete these steps:
 
 - **Step 1:** Generate the WAF compiler package on a system that has internet access.  
 - **Step 2:** Move the generated package to the offline target system and install it.
+
+Note : Version of NAP compiler can be referred from the table at the top of this page. 
+Current latest version 5.442.0 at the point of writing this document is used in below commands.
 
 {{<tabs name="WAF compiler installation in offline environment">}}
 
@@ -337,9 +340,9 @@ sudo dpkg -i ./compiler/*.deb
 
 {{%/tab%}}
 
-{{%tab name="RHEL8, RHEL9, Oracle-9 "%}}
+{{%tab name="RHEL9, Oracle-9 "%}}
 
-### Install on RHEL 8, RHEL 9, or Oracle Linux 8.1
+### Install on RHEL 9 or Oracle Linux 9
 
 #### Step 1: On a system with internet access
 
@@ -373,9 +376,9 @@ sudo dnf install *.rpm --disablerepo=*
 
 {{%/tab%}}
 
-{{%tab name="Oracle-8"%}}
+{{%tab name="Redhat-8, Oracle-8"%}}
 
-### Install on Oracle Linux 8.1
+### Install on RHEL-8 or Oracle Linux 8
 
 #### Step 1: On a system with internet access
 

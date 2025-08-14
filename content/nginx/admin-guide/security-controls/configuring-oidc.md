@@ -98,6 +98,10 @@ The setup steps are similar for most identity providers, but some details may di
 
    - the `.well-known/openid-configuration` is the default address for IdPs for the `.well-known` document
 
+   - the `userinfo_endpoint` is URI that a user visits to start an RP‑initiated logout flow.
+
+   - the `end_session_endpoint` is the URL where your IdP should redirect the user after a successful logout.
+
    The IdP configuration metadata is returned in the JSON format, for example:
 
    ```json
@@ -107,11 +111,15 @@ The setup steps are similar for most identity providers, but some details may di
        "authorization_endpoint": "https://your-idp-domain/idp/oauth2/authorize/",
        "token_endpoint": "https://your-idp-domain/idp/oauth2/token/",
        "jwks_uri": "https://your-idp-domain/idp/discovery/keys",
+       "userinfo_endpoint": "https://your-idp-domain/idp/userinfo",
+       "end_session_endpoint": "https://your-idp-domain/idp/oauth2/logout",
        ...
    }
    ```
 
   Copy the **issuer** value. You will need it later when [configuring NGINX Plus as the Relying Party](#setup-oidc-provider2).
+
+5. Configure a logout URI - a URI that a user visits to initiate an RP‑initiated logout flow, for example, `https://demo.example.com/post_logout/`. (Optional, supported since [NGINX Plus R35](({{< ref "nginx/releases.md#r35" >}}))).
 
 
 ## Configure the Relying Party (NGINX Plus) {#rp-setup}
@@ -123,10 +131,10 @@ With your IdP configured, you can enable OIDC on NGINX Plus. NGINX Plus serves a
     ```shell
     nginx -v
     ```
-    The output should match NGINX Plus Release 34 or later:
+    The output should match NGINX Plus Release 35:
 
     ```none
-    nginx version: nginx/1.27.4 (nginx-plus-r34)
+    nginx version: nginx/1.29.0 (nginx-plus-r35)
     ```
 
 2.  Ensure that you have the values of the **Client ID**, **Client Secret**, and **Issuer** obtained from your IdP Provider.
@@ -289,6 +297,14 @@ http {
         client_id <client_id>;
         client_secret <client_secret>;
 
+        # RP‑initiated logout
+        logout_uri        /logout;
+        post_logout_uri   https://demo.example.com/post_logout/;
+        logout_token_hint on;
+
+        # Fetch userinfo claims
+        userinfo on;
+
         # If the .well-known endpoint cannot be derived automatically,
         # specify config_url:
         # config_url https://<idp-server>/auth/realms/main/.well-known/openid-configuration;
@@ -297,7 +313,7 @@ http {
     server {
         listen 443 ssl;
         server_name demo.example.com;
-x
+
         ssl_certificate     /etc/ssl/certs/fullchain.pem;
         ssl_certificate_key /etc/ssl/private/key.pem;
 
@@ -312,6 +328,11 @@ x
 
             proxy_pass http://127.0.0.1:8080;
         }
+
+            location /post_logout/ {
+                return 200 "You have been logged out.\n";
+                default_type text/plain;
+            }
     }
 
     server {
@@ -351,6 +372,8 @@ Upon successful sign-in, the IdP redirects you back to NGINX Plus, and you will 
 
 
 ## See Also {#see-also}
+
+- [Simplifying OIDC and SSO with the New NGINX Plus R34 OIDC Module blog post](https://community.f5.com/kb/technicalarticles/simplifying-oidc-and-sso-with-the-new-nginx-plus-r34-oidc-module/340552)
 
 - [NGINX Plus Native OIDC Module Reference documentation](https://nginx.org/en/docs/http/ngx_http_oidc_module.html)
 

@@ -3705,7 +3705,14 @@
 <li><strong>headers['&lt;name&gt;']</strong>: (map-type) The value of the specified header name. Example: "headers['Accept'].startsWith('application')"</li>
 </ul>
 </blockquote>
-<p><strong>Note</strong>: The "headers['&lt;name&gt;']" attribute does not support 'Cookie' as a header name. Attribute "clientIp" supports using "ipAddressLists" in condition: "clientIp.matches(ipAddressLists['<name>'])</p></td>
+<dl>
+<dt><strong>Note</strong>:</dt>
+<dd><ul>
+<li>The "headers['&lt;name&gt;']" attribute does not support 'Cookie' as a header name.</li>
+<li>Attribute "clientIp" supports using "ipAddressLists" in condition: "clientIp.matches(ipAddressLists['&lt;name&gt;'])"</li>
+</ul>
+</dd>
+</dl></td>
 <td></td>
 </tr>
 <tr class="odd">
