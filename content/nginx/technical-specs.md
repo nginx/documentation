@@ -58,14 +58,14 @@ TLSv1.2 and TLSv1.3 are the default SSL protocols starting from NGINX Plus R34 (
 ## Supported Deployment Environments
 
 - Bare metal
-- Container
-- Public cloud: AWS, Google Cloud Platform, Microsoft Azure
-- Virtual machine
+- Containers and Kubernetes
+- Public clouds: AWS, Google Cloud Platform, Microsoft Azure
+- Virtual machines
 
 ---
 
 ## Recommended Hardware
-See [Sizing Guide for Deploying NGINX Plus on Bare Metal Servers](https://www.nginx.com/resources/datasheets/nginx-plus-sizing-guide/)
+See [Sizing Guide for Deploying NGINX Plus](https://www.f5.com/pdf/deployment-guide/Sizing-Guide-for-Deploying-NGINX-Plus-in-Virtualized-Environments-2021-06-03.pdf)
 
 ---
 
@@ -104,6 +104,7 @@ See [Sizing Guide for Deploying NGINX Plus on Bare Metal Servers](https://www.ng
 - [Auth Basic](https://nginx.org/en/docs/http/ngx_http_auth_basic_module.html) – Implement HTTP Basic Authentication scheme
 - [Auth JWT](https://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html) – Validate JSON Web Tokens
 - [Auth Request](https://nginx.org/en/docs/http/ngx_http_auth_request_module.html) – Determine client authorization using subrequests to external authentication server
+- [Auth Require](https://nginx.org/en/docs/http/ngx_http_auth_require_module.html) – Variable-based access control support
 - [OIDC](https://nginx.org/en/docs/http/ngx_http_oidc_module.html) – Implement authentication as a Relying Party in OpenID Connect solution
 - [Referer](https://nginx.org/en/docs/http/ngx_http_referer_module.html) – Control access based on `Referer` field in HTTP request header
 - [Secure Link](https://nginx.org/en/docs/http/ngx_http_secure_link_module.html) – Process encrypted, time-limited links to content
