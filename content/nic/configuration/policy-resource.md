@@ -38,6 +38,7 @@ spec:
 |``accessControl`` | The access control policy based on the client IP address. | [accessControl](#accesscontrol) | No |
 |``ingressClassName`` | Specifies which instance of NGINX Ingress Controller must handle the Policy resource. | ``string`` | No |
 |``rateLimit`` | The rate limit policy controls the rate of processing requests per a defined key. | [rateLimit](#ratelimit) | No |
+|``cache`` | The cache policy configures proxy caching, which improves performance by storing and serving cached responses to client. | [cache](#cache) | No |
 |``apiKey`` | The API Key policy configures NGINX to authorize requests which provide a valid API Key in a specified header or query param. | [apiKey](#apikey) | No |
 |``basicAuth`` | The basic auth policy configures NGINX to authenticate client requests using HTTP Basic authentication credentials. | [basicAuth](#basicauth) | No |
 |``jwt`` | The JWT policy configures NGINX Plus to authenticate client requests using JSON Web Tokens. | [jwt](#jwt) | No |
@@ -239,6 +240,57 @@ Only one variable at a time is supported at present.
 |``name`` | the name of the NGINX variable to be rate limit by. | ``string`` | Yes |
 |``match`` | the value of the NGINX variable to match against.  Values prefixed with the `~` character denote the following is a [regular expression](https://nginx.org/en/docs/http/ngx_http_map_module.html#map).  | ``string`` | Yes |
 {{% /table %}}
+
+### Cache
+
+The cache policy configures proxy caching, which improves performance by storing and serving cached responses to clients without having to proxy every request to upstream servers.
+
+For example, the following policy creates a cache zone named "my-cache" with 10MB memory allocation and caches all GET response codes for 30 seconds:
+
+```yaml
+cache:
+  cacheZoneName: "mycache"
+  cacheZoneSize: "10m"
+  allowedCodes: ["any"]
+  allowedMethods: ["GET"]
+  time: "30s"
+```
+
+Here's an example with more specific configuration:
+
+```yaml
+cache:
+  cacheZoneName: "mycache"
+  cacheZoneSize: "100m"
+  allowedCodes: [200, 301, 302]
+  allowedMethods: ["GET", "POST"]
+  time: "5m"
+  levels: "1:2"
+  overrideUpstreamCache: true
+```
+
+{{< note >}}
+
+The feature is implemented using the NGINX [ngx_http_proxy_module](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_cache_path) proxy_cache_path and related directives.
+
+{{< /note >}}
+
+{{% table %}}
+|Field | Description | Type | Required |
+| --- | ---| ---| --- |
+| ``cacheZoneName`` | CacheZoneName defines the name of the cache zone. Must start with a lowercase letter,followed by alphanumeric characters or underscores, and end with an alphanumeric character. Single lowercase letters are also allowed. Examples: "cache", "my_cache", "cache1". | ``string`` | Yes |
+|``cacheZoneSize`` | CacheZoneSize defines the size of the cache zone. Must be a number followed by a size unit: 'k' for kilobytes, 'm' for megabytes, or 'g' for gigabytes. Examples: "10m", "1g", "512k". | ``string`` | Yes |
+|``allowedCodes`` | AllowedCodes defines which HTTP response codes should be cached. Accepts either: - The string "any" to cache all response codes (must be the only element) - A list of HTTP status codes as integers (100-599) Examples: ["any"], [200, 301, 404], [200]. Invalid: ["any", 200] (cannot mix "any" with specific codes). | ``[]IntOrString`` | No |
+|``time`` | The default cache time for responses. Required when allowedCodes is specified. Must be a number followed by a time unit: 's' for seconds, 'm' for minutes, 'h' for hours, 'd' for days. Examples: "30s", "5m", "1h", "2d". | ``string`` | No |
+|``allowedMethods`` | AllowedMethods defines which HTTP methods should be cached. Only "GET", "HEAD", and "POST" are supported by NGINX proxy_cache_methods directive. GET and HEAD are always cached by default even if not specified. Maximum of 3 items allowed. Examples: ["GET"], ["GET", "HEAD", "POST"]. Invalid methods: PUT, DELETE, PATCH, etc.  | ``[]string`` | No |
+|``levels`` | Levels defines the cache directory hierarchy levels for storing cached files. Must be in format "X:Y" or "X:Y:Z" where X, Y, Z are either 1 or 2. This controls the number of subdirectory levels and their name lengths. Examples: "1:2", "2:2", "1:2:2". Invalid: "3:1", "1:3", "1:2:3". | ``string`` | No |
+|``overrideUpstreamCache`` | OverrideUpstreamCache controls whether to override upstream cache headers (using proxy_ignore_headers directive). When true, NGINX will ignore cache-related headers from upstream servers like Cache-Control, Expires etc, Default: false. | ``bool`` | No |
+|``cachePurgeAllow`` | CachePurgeAllow defines IP addresses or CIDR blocks allowed to purge cache. This feature is only available in NGINX Plus. Examples: ["192.168.1.100", "10.0.0.0/8", "::1"]. | ``[]string`` | No |
+{{% /table %}}
+
+#### Cache Merging Behavior
+
+A VirtualServer/VirtualServerRoute can reference multiple cache policies. However, only one can be applied: every subsequent reference will be ignored.
 
 ### APIKey
 
