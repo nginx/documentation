@@ -499,8 +499,7 @@ The following table outlines annotation conversions for enabling TLS and gRPC to
 | ------------------------ | ------------------------ |
 | [_nginx.ingress.kubernetes.io/backend-protocol_](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#backend-protocol): "HTTPS" | [_nginx.org/ssl-services_]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations.md#backend-services-upstreams" >}}): "ssl_service_name" |
 | [_nginx.ingress.kubernetes.io/backend-protocol_](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#backend-protocol): "GRPC" | [_nginx.org/grpc-services_]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations.md#backend-services-upstreams" >}}): "grpc_service_name" |
-| [_nginx.ingress.kubernetes.io/backend-protocol_](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#backend-protocol): "GRPCS" | [_nginx.org/ssl-services_]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations.md#backend-services-upstreams" >}}): "grpc_service_name" 
-[_nginx.org/grpc-services_]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations.md#backend-services-upstreams" >}}): "grpc_service_name" |
+| [_nginx.ingress.kubernetes.io/backend-protocol_](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#backend-protocol): "GRPCS" | [_nginx.org/ssl-services_]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations.md#backend-services-upstreams" >}}): "grpc_service_name"<br />[_nginx.org/grpc-services_]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations.md#backend-services-upstreams" >}}): "grpc_service_name" |
 
 {{% /bootstrap-table %}}
 {{< call-out "important" >}}
@@ -514,6 +513,7 @@ This table maps the Ingress-NGINX Controller ConfigMap keys to NGINX Ingress Con
 <!-- {{< call-out "note" >}}
 Some of the key names are identical, and each Ingress Controller has ConfigMap keys that the other does not (Which are indicated).
 {{< /call-out >}} -->
+
 
 {{< bootstrap-table "table table-bordered table-striped table-responsive" >}}
 | Ingress-NGINX Controller | NGINX Ingress Controller |
