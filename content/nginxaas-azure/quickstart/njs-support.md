@@ -40,4 +40,4 @@ NGINXaaS will not parse, evaluate, or run any provided njs scripts when validati
 
 ## "fs" module
 
-The njs [File System module](http://nginx.org/en/docs/njs/reference.html#njs_api_fs) provides operations with files. NGINXaaS only allows reading and writing from [specified directories]({{< ref "nginx-configuration.md#nginx-process-restrictions" >}}).
+The njs [File System module](http://nginx.org/en/docs/njs/reference.html#njs_api_fs) provides operations with files. NGINXaaS only allows reading and writing from [specified directories]({{< ref "/nginxaas-azure/getting-started/nginx-configuration.md#nginx-process-restrictions" >}}).

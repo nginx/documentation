@@ -1,0 +1,69 @@
+---
+title: Enable NGINX logs using Terraform
+weight: 100
+toc: true
+nd-docs: DOCS-000
+url: /nginxaas/next/monitoring/enable-logging/logging-using-terraform/
+type:
+- how-to
+---
+
+
+{{< call-out "warning">}}This page has not been updated yet. Currently it has the NGINXaaS for Azure content{{< /call-out >}}
+
+## Overview
+
+F5 NGINX as a Service for NEXCLOUD (NGINXaaS) supports integrating Azure Diagnostic Settings to collect NGINX error and access logs.
+
+{{< call-out "caution"  >}}
+Enabling logs using the **NGINX Logs** blade on your NGINXaaS deployment is now deprecated. This feature will be removed in an upcoming update. If you have issues accessing your NGINX logs using the deprecated method, please follow the steps in this guide to access your NGINX logs.
+{{< /call-out >}}
+
+## Configuring NGINX logs collection using diagnostic settings
+
+### Prerequisites
+
+- A valid NGINX configuration with log directives enabled. NGINX logs can be configured using [error_log](#setting-up-error-logs) and [access_log](#setting-up-access-logs) directives.
+
+- A system-assigned managed identity.
+{{< call-out "note" >}}The system-assigned managed identity does not need any role assignments to enable the logging functionality described in this section. You will need to make sure that the managed identity has the appropriate role assignments to access other resources that it is attached to (for example, certificates stored in Azure Key Vault).
+{{< /call-out >}}
+
+- User must be an owner or user access administrator for the NGINX deployment resource.
+
+ ### Adding diagnostic settings
+
+To setup diagnostic settings to enable logging to a storage account for your NGINXaaS deployment, please refer to [examples](https://github.com/nginxinc/nginxaas-for-azure-snippets/tree/main/terraform/deployments/with-diagnostic-setting-logging) provided.
+
+Once the terraform configurations provided in the repository above are used, the following commands can be used to update the deployment.
+
+```shell
+terraform init
+terraform plan -var="storage_account_resource_group=myresourcegroup" -var="storage_account_name=myaccountname" -out=plan.cache
+terraform apply plan.cache
+```
+
+As NGINXaaS logs are stored in your storage, you can define the retention policy most appropriate for your needs.
+
+{{< call-out "note" >}}Due to limitations imposed by Azure, if the destination chosen is an Azure Storage account, the resource has to be in the same region as the NGINXaaS deployment resource.
+{{< /call-out >}}
+
+### Analyzing NGINX logs in Azure Storage
+
+{{< include "/nginxaas-next/logging-analysis-azure-storage.md" >}}
+
+### Analyzing NGINX logs in Azure Log Analytics workspaces
+
+{{< include "/nginxaas-next/logging-analysis-logs-analytics.md" >}}
+
+## Setting up error logs
+
+{{< include "/nginxaas-next/logging-config-error-logs.md" >}}
+
+## Setting up access logs
+
+{{< include "/nginxaas-next/logging-config-access-logs.md" >}}
+
+## Limitations
+
+{{< include "/nginxaas-next/logging-limitations.md" >}}

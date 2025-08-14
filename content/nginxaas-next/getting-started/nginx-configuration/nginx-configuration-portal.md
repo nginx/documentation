@@ -2,21 +2,24 @@
 title: Upload using the Azure portal
 weight: 100
 toc: true
-nd-docs: DOCS-873
-url: /nginxaas/azure/getting-started/nginx-configuration/nginx-configuration-portal/
+nd-docs: DOCS-000
+url: /nginxaas/next/getting-started/nginx-configuration/nginx-configuration-portal/
 type:
 - how-to
 ---
+
+
+{{< call-out "warning">}}This page has not been updated yet. Currently it has the NGINXaaS for Azure content{{< /call-out >}}
 
 An NGINX configuration can be applied to the deployment using the Azure portal in two different ways:
 
 - Create a new NGINX configuration from scratch or by pasting it in the Azure portal editor.
 - Upload a gzip compressed tar archive containing your NGINX configuration.
 
-As part of applying your NGINX configuration, the service validates the configuration for syntax and compatibility with F5 NGINX as a Service for Azure (NGINXaaS). The use of certain directives and parameters is not allowed to ensure the NGINX configuration’s compatibility with IaaS deployment model in Azure. Validation errors are reported in the editor for you to correct. For more information, check the [NGINX Configuration Validation]({{< ref "/nginxaas-azure/getting-started/nginx-configuration.md#nginx-configuration-validation" >}}) section.
+As part of applying your NGINX configuration, the service validates the configuration for syntax and compatibility with F5 NGINX as a Service for NEXCLOUD (NGINXaaS). The use of certain directives and parameters is not allowed to ensure the NGINX configuration’s compatibility with IaaS deployment model in Azure. Validation errors are reported in the editor for you to correct. For more information, check the [NGINX Configuration Validation]({{< ref "/nginxaas-next/getting-started/nginx-configuration.md#nginx-configuration-validation" >}}) section.
 
 {{< call-out "note" >}}
-NGINXaaS supports Layer 7 HTTP loadbalancing. To configure .com and .net servers, refer to the server name in the server block within the HTTP context. To learn more, and see examples, follow the instructions in the [NGINX configuration validtion]({{< ref "/nginxaas-azure/getting-started/nginx-configuration/nginx-configuration-portal.md#nginx-configuration-validation" >}}) section.{{< /call-out >}}
+NGINXaaS supports Layer 7 HTTP loadbalancing. To configure .com and .net servers, refer to the server name in the server block within the HTTP context. To learn more, and see examples, follow the instructions in the [NGINX configuration validtion]({{< ref "/nginxaas-next/getting-started/nginx-configuration/nginx-configuration-portal.md#nginx-configuration-validation" >}}) section.{{< /call-out >}}
 
 ## Prerequisites
 
@@ -26,7 +29,7 @@ NGINXaaS supports Layer 7 HTTP loadbalancing. To configure .com and .net servers
 
 ## Add an NGINX configuration
 
-1. Go to your NGINXaaS for Azure deployment.
+1. Go to your NGINXaaS for NEXCLOUD deployment.
 
 1. Select **NGINX configuration** in the left menu and you will see the default configuration that NGINXaaS provides.
 
@@ -42,11 +45,11 @@ NGINXaaS supports Layer 7 HTTP loadbalancing. To configure .com and .net servers
    | Protected File | Indicates that the file may contain sensitive data such as passwords or represent an ssl/tls certificate.<ul><li>To protect a file, enable the **Protected** {{<fa "solid fa-toggle-on">}} toggle button.</li><li>You cannot access the file contents of a protected file saved to the NGINX configuration, but you can view its metadata, such as the SHA-256 hash of the file contents.</li><li>You can provide new contents for an existing protected file using the <u>**Overwrite**</u> link or resubmit it without having to provide the file contents again.</li><li>To modify the file path of a protected file or convert it to a regular file, delete the original file and create a new one.</li><li>A protected file is designated with a {{<fa "solid fa-lock">}} icon on the portal.</li></ul> |
    {{</bootstrap-table>}}
 
-   {{< call-out "note" >}}If specifying an absolute file path, see the [NGINX Filesystem Restrictions table]({{< ref "/nginxaas-azure/getting-started/nginx-configuration/overview/#nginx-filesystem-restrictions" >}}) for the allowed directories the file can be written to.{{< /call-out >}}
+   {{< call-out "note" >}}If specifying an absolute file path, see the [NGINX Filesystem Restrictions table]({{< ref "/nginxaas-next/getting-started/nginx-configuration/overview/#nginx-filesystem-restrictions" >}}) for the allowed directories the file can be written to.{{< /call-out >}}
 
 1. Provide your NGINX configuration in the configuration file.
 
-1. Files like SSL/TLS certificates can be added as well. However, we reccommend using Azure Key Vault to store your certificates. See [Add SSL/TLS certificates]({{< ref "/nginxaas-azure/getting-started/ssl-tls-certificates/overview.md#add-ssltls-certificates">}}) for more information.
+1. Files like SSL/TLS certificates can be added as well. However, we reccommend using Azure Key Vault to store your certificates. See [Add SSL/TLS certificates]({{< ref "/nginxaas-next/getting-started/ssl-tls-certificates/overview.md#add-ssltls-certificates">}}) for more information.
 
 1. Select **Submit** to apply the new configuration.
 
@@ -108,7 +111,7 @@ http {
 }
 ```
 
-1. Go to your NGINXaaS for Azure deployment.
+1. Go to your NGINXaaS for NEXCLOUD deployment.
 
 1. Select **NGINX configuration** from the left menu.
 
@@ -124,7 +127,7 @@ http {
 
 ## Update an NGINX configuration
 
-1. Go to your NGINXaaS for Azure deployment.
+1. Go to your NGINXaaS for NEXCLOUD deployment.
 
 1. Select **NGINX configuration** in the left menu.
 
@@ -140,7 +143,7 @@ http {
 
 ## Delete NGINX configuration Files
 
-1. Go to your NGINXaaS for Azure deployment.
+1. Go to your NGINXaaS for NEXCLOUD deployment.
 
 1. Select **NGINX configuration** in the left menu.
 
