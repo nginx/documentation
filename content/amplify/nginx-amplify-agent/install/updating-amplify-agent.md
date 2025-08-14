@@ -6,9 +6,9 @@ toc: true
 nd-docs: DOCS-970
 ---
 
-{{< important >}}
+{{< call-out "important" >}}
 It is *highly* recommended that you periodically check for updates and install the latest stable version of F5 NGINX Amplify Agent.
-{{< /important >}}
+{{< /call-out >}}
 
  1. Updating NGINX Amplify Agent On Ubuntu/Debian
 

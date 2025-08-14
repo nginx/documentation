@@ -26,13 +26,13 @@ framework using Unit:
    $ deactivate
    ```
 
-   {{< warning >}}
+   {{< call-out "warning" >}}
    Create your virtual environment with a Python version that matches the
    language module from Step 1 up to the minor number (**X.Y** in
    this example). Also, the app **type** in Step 5 must
    [resolve]({{< relref "/unit/configuration.md#configuration-apps-common" >}})
    to a similarly matching version; Unit doesn't infer it from the environment.
-   {{< /warning >}}
+   {{< /call-out >}}
 
 3. Let's try a version of a [tutorial app](https://www.starlette.io/applications/),
    saving it as **/path/to/app/asgi.py**:
@@ -73,11 +73,11 @@ framework using Unit:
    app = Starlette(debug=True, routes=routes, on_startup=[startup])
    ```
 
-   {{< note >}}
+   {{< call-out "note" >}}
    This sample omits the static route because Unit's quite
    [capable]({{< relref "/unit/configuration.md#configuration-static" >}})
    of serving static files itself if needed.
-   {{< /note >}}
+   {{< /call-out >}}
 
 4. Change ownership:
 

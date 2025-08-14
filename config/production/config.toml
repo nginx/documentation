@@ -11,7 +11,7 @@ enableGitInfo = true
     useSessionStorage = false
   [privacy.instagram]
     disable = true
-  [privacy.twitter]
+  [privacy.x]
     disable = false
     enableDNT = true
     simple = false

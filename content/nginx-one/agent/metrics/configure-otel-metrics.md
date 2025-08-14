@@ -12,9 +12,9 @@ F5 NGINX Agent now includes an embedded [OpenTelemetry](https://opentelemetry.io
 * Metrics from NGINX Plus and NGINX Open Source
 * Host metrics (CPU, memory, disk, and network activity) from VMs or Containers
 
-{{< note >}}
+{{< call-out "note" >}}
 The OpenTelemetry exporter is enabled by default. Once a valid connection to the management plane is established, the Agent will automatically begin exporting metrics.
-{{< /note >}}
+{{< /call-out >}}
 
 ### Key benefits
 
@@ -27,7 +27,7 @@ You can validate that metrics are successfully exported by using the methods bel
 
 - **NGINX One dashboard**
 
-   - When an instance has connected to NGINX One Console [See: Connect to NGINX One Console]({{< ref "/nginx-one/connect-instances/add-instance.md" >}}), you should see metrics showing on the NGINX One Dashboard.
+   - When an instance has connected to NGINX One Console [See: Connect to NGINX One Console]({{< ref "/nginx-one/connect-instances/add-instance.md" >}}), you should see metrics showing on the NGINX One Console Dashboard.
 
 - **Agent logs**
 

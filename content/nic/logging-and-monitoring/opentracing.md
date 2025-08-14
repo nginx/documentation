@@ -1,17 +1,23 @@
 ---
-nd-docs: DOCS-618
-doctypes:
-- ''
-title: OpenTracing (Deprecated in v5.0.0)
+title: Enable OpenTracing (Removed in v5.0.0)
 toc: true
-weight: 500
+weight: 700
+nd-content-type: how-to
+nd-product: NIC
+nd-docs: DOCS-618
 ---
-OpenTracing support has been deprecated from v5.0.0 of F5 NGINX Ingress Controller.
 
-
-Learn how to use OpenTracing with F5 NGINX Ingress Controller.
+This topic describes how to OpenTracing with F5 NGINX Ingress Controller.
 
 NGINX Ingress Controller supports [OpenTracing](https://opentracing.io/) with the third-party module [opentracing-contrib/nginx-opentracing](https://github.com/opentracing-contrib/nginx-opentracing).
+
+{{< call-out "warning" >}}
+
+OpenTracing support has been removed from v5.0.0 of NGINX Ingress Controller.
+
+From v5.1.0 onwards, you should follow the guidance in [Configure OpenTelemetry]({{< ref "/nic/logging-and-monitoring/opentelemetry.md" >}}).
+
+{{< /call-out >}}
 
 ## Prerequisites
 
@@ -111,4 +117,4 @@ nginx.org/location-snippets: |
    opentracing_propagate_context;
 ```
 
-{{< note >}}The `opentracing_propagate_context` and `opentracing_grpc_propagate_context` directives can be used in `http`, `server` or `location` contexts according to the [module documentation](https://github.com/opentracing-contrib/nginx-opentracing/blob/master/doc/Reference.md#opentracing_propagate_context). However, because of the way the module works and how NGINX Ingress Controller generates the NGINX configuration, it is only possible to use the directive in the `location` context.{{< /note >}}
+{{< call-out "note" >}}The `opentracing_propagate_context` and `opentracing_grpc_propagate_context` directives can be used in `http`, `server` or `location` contexts according to the [module documentation](https://github.com/opentracing-contrib/nginx-opentracing/blob/master/doc/Reference.md#opentracing_propagate_context). However, because of the way the module works and how NGINX Ingress Controller generates the NGINX configuration, it is only possible to use the directive in the `location` context.{{< /call-out >}}

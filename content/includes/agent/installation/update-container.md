@@ -14,7 +14,7 @@ wget https://raw.githubusercontent.com/nginx/agent/refs/heads/v3/scripts/package
 ./upgrade-agent-config.sh --v2-config-file=./nginx-agent-v2.conf --v3-config-file=nginx-agent-v3.conf
 ```
 
-If your NGINX Agent container was previously a member of a config sync group, then your NGINX Agent config must be manually updated to add the config sync group label.
+If your NGINX Agent container was previously a member of a Config Sync Group, then your NGINX Agent config must be manually updated to add the Config Sync Group label.
 See [Add Config Sync Group]({{< ref "/nginx-one/nginx-configs/config-sync-groups/manage-config-sync-groups.md" >}}) for more information.
 
 ### Rolling back from NGINX Agent v3 to v2

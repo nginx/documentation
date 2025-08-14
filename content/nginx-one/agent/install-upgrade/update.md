@@ -1,5 +1,5 @@
 ---
-title: Update NGINX Agent
+title: Upgrade NGINX Agent
 toc: true
 weight: 400
 docs: DOCS-000

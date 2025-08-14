@@ -6,13 +6,13 @@ docs: DOCS-000
 nd-docs: DOCS-1873
 ---
 
-{{< note>}}
+{{< call-out "note" >}}
 If you are using [NGINX One Console]({{< ref "/nginx-one/getting-started.md" >}})
 to manage your NGINX instances, NGINX Agent is installed automatically when you
 add an NGINX instance to NGINX One Console.
 
 For a quick guide on how to connect your instance to NGINX One Console see: [Connect to NGINX One Console]({{< ref "/nginx-one/connect-instances/add-instance.md" >}})
-{{< /note >}}
+{{< /call-out >}}
 
 ## Overview
 
@@ -80,14 +80,6 @@ NGINX Agent from the repository.
 ### Install NGINX Agent on Amazon Linux
 
 {{< include "/agent/installation/oss/oss-amazon-linux.md" >}}
-
-</details>
-<details>
-<summary>{{< fa "brands fa-freebsd" >}} Install NGINX Agent on FreeBSD</summary>
-
-### Install NGINX Agent on FreeBSD
-
-{{< include "/agent/installation/oss/oss-freebsd.md" >}}
 
 </details>
 

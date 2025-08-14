@@ -10,6 +10,6 @@ cascade:
   logo: "NGINX-WAF-product-icon-RGB.svg"
 ---
 
-{{< important >}}
+{{< call-out "important" >}}
 {{% modsec-eol-notice %}}
-{{< /important >}}
+{{< /call-out >}}

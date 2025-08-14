@@ -188,11 +188,11 @@ Zone synchronization with TLS for NGINX Ingress Controller is not yet available 
 
 You will also need to manually add the headless service, such as in [this example](https://github.com/nginx/kubernetes-ingress/blob/v4.0.1/examples/custom-resources/oidc/nginx-ingress-headless.yaml).
 
-{{< caution >}}
+{{< call-out "caution"  >}}
 If you previously installed OIDC or used the `zone_sync` directive with `stream-snippets` in [v4.0.1](https://github.com/nginx/kubernetes-ingress/tree/v4.0.1) or earlier, and you plan to enable the `zone-sync` ConfigMap key, the `zone_sync` directive should be removed from `stream-snippets`.
 
 If you encounter the error `error [emerg] 13#13: "zone_sync" directive is duplicate in /etc/nginx/nginx.conf:164` it is likely due to `zone_sync` being enabled in both `stream-snippets` and the ConfigMap. Once upgraded, remove the [old headless service](https://github.com/nginx/kubernetes-ingress/blob/v4.0.1/examples/custom-resources/oidc/nginx-ingress-headless.yaml) deployed for OIDC.
-{{< /caution >}}
+{{< /call-out >}}
 
 
 {{<bootstrap-table "table table-striped table-bordered table-responsive">}}
@@ -235,7 +235,7 @@ If you encounter the error `error [emerg] 13#13: "zone_sync" directive is duplic
 |*otel-exporter-header-value* | The value of a custom HTTP header to add to telemetry export request. `otel-exporter-endpoint` and `otel-exporter-header-name` required. | N/A | *"custom-value"* |
 |*otel-service-name* | Sets the `service.name` attribute of the OTel resource. `otel-exporter-endpoint` required. | N/A | *"nginx-ingress-controller:nginx"* |
 | *otel-trace-in-http* | Enables [OpenTelemetry](https://opentelemetry.io) globally (for all Ingress, VirtualServer and VirtualServerRoute resources). Set this to *"false"* to enable OpenTelemetry for individual routes with snippets. `otel-exporter-endpoint` required. | *"false"* | *"true"* |
-|*opentracing* | Removed in v5.0.0.  Enables [OpenTracing](https://opentracing.io) globally (for all Ingress, VirtualServer and VirtualServerRoute resources). Note: requires the Ingress Controller image with OpenTracing module and a tracer. See the [docs]({{< ref "/nic/installation/integrations/opentracing.md" >}}) for more information. | *False* |  |
+|*opentracing* | Removed in v5.0.0.  Enables [OpenTracing](https://opentracing.io) globally (for all Ingress, VirtualServer and VirtualServerRoute resources). Note: requires the Ingress Controller image with OpenTracing module and a tracer. See the [docs]({{< ref "/nic/logging-and-monitoring/opentracing.md" >}}) for more information. | *False* |  |
 |*opentracing-tracer* | Removed in v5.0.0.  Sets the path to the vendor tracer binary plugin. | N/A |  |
 |*opentracing-tracer-config* | Removed in v5.0.0.  Sets the tracer configuration in JSON format. | N/A |  |
 |*app-protect-compressed-requests-action* | Sets the *app_protect_compressed_requests_action* [global directive](/nginx-app-protect/configuration/#global-directives). | *drop* |  |

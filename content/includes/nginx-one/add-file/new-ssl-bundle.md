@@ -4,8 +4,7 @@ docs:
 
 First you can select the toggle to allow NGINX One Console to manage the new certificate or bundle.
 
-In the screen that appears, you can add a certificate name. If you don't add a name, NGINX One will add a name for you, based on the expiration date for the certificate.
-
+In the screen that appears, you can add a certificate name. If you don't add a name, NGINX One Console will add a name for you, based on the expiration date for the certificate.   
 You can add certificates in the following formats:
 
 - **SSL Certificate and Key**

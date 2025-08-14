@@ -40,7 +40,7 @@ container-mounted directory on the host; if the file defines a listener on port
 details of the Unit configuration, see
 [Configuration]({{< relref "/unit/controlapi.md#configuration-api" >}}).
 
-{{< note >}}
+{{< call-out "note" >}}
 For app containerization examples, refer to our sample [<i class="fa-solid fa-download" style="margin-right: 0.2;"></i> Go](/unit/downloads/Dockerfile.go.txt),
 [<i class="fa-solid fa-download" style="margin-right: 0.2;"></i> Java](/unit/downloads/Dockerfile.java.txt),
 [<i class="fa-solid fa-download" style="margin-right: 0.2;"></i> Node.js](/unit/downloads/Dockerfile.nodejs.txt),
@@ -50,7 +50,7 @@ For app containerization examples, refer to our sample [<i class="fa-solid fa-do
 and [<i class="fa-solid fa-download" style="margin-right: 0.2;"></i> Ruby](/unit/downloads/Dockerfile.ruby.txt) Dockerfiles;
 also, see a more elaborate discussion
 [below]({{< relref "/unit/howto/docker.md#docker-apps" >}})
-{{< /note >}}
+{{< /call-out >}}
 
 Now for a few detailed scenarios.
 
@@ -175,11 +175,11 @@ $ export UNIT=$(                                                         \
   )
 ```
 
-{{< note >}}
+{{< call-out "note" >}}
 With this mapping, Unit stores its state and log in your file structure. By
 default, our Docker images forward their log output to the [Docker log
 collector](https://docs.docker.com/config/containers/logging/).
-{{< /note >}}
+{{< /call-out >}}
 
 We've mapped the source **config/** to **/docker-entrypoint.d/** in the
 container; the official image
@@ -301,9 +301,9 @@ myapp/
 └── config.json
 ```
 
-{{< note >}}
+{{< call-out "note" >}}
 Don't forget to `chmod +x` the **app.js** file so Unit can run it.
-{{< /note >}}
+{{< /call-out >}}
 
 Let's prepare a **Dockerfile** to install and configure the app in an
 image:
@@ -344,7 +344,7 @@ $ curl -X GET localhost:8080
      Hello, Unit!
 ```
 
-{{< note >}}
+{{< call-out "note" >}}
 This mechanism allows to initialize Unit at container startup only if its
 state is empty; otherwise, the contents of **/docker-entrypoint.d/** is
 ignored. Continuing the previous sample:
@@ -366,7 +366,7 @@ $ export UNIT=$(                                                                
 Here, Unit *does not* pick up the **new-config.json** from the
 **/docker-entrypoint.d/** directory when we run a container from the
 updated image because Unit's state was initialized and saved earlier.
-{{< /note >}}
+{{< /call-out >}}
 
 To configure the app after startup, supply a file or an explicit snippet via
 the [control API]({{< relref "/unit/controlapi.md" >}}):

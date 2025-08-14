@@ -1,9 +1,9 @@
 The Security Monitoring module requires the following versions of NGINX Instance Manager to be installed on the **management plane**.
 
-{{< note >}}
+{{< call-out "note" >}}
 In NGINX Instance Manager 2.18.0 and under, the Security Monitoring module was a separate package that was installed manually.
 From NGINX Instance Manager 2.19.0 onward, Security Monitoring is part of the NGINX Instance Manager feature-set and is packaged by default; no manual installation or upgrade is needed.
-{{< /note >}}
+{{< /call-out >}}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 

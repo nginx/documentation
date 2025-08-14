@@ -36,9 +36,9 @@ Take the following steps to add an instance to NGINX Controller:
 1. Add a name for the instance. If you don't provide a name, the hostname of the instance is used by default.
 1. To add the instance to an existing Location, select a Location from the list. Or to create a Location, select **Create New**.
 
-    {{< important >}}
+    {{< call-out "important" >}}
 Once set, the Location for an instance cannot be changed. If you need to change or remove the Location for an instance, you must [remove the instance from NGINX Controller]({{< ref "/controller/infrastructure/instances/manage-instances.md#delete-an-instance" >}}), and then add it back.
-    {{< /important >}}
+    {{< /call-out >}}
 
 1. (Optional) By default, registration of NGINX Plus instances is performed over a secure connection. To use self-signed certificates with the Controller Agent, select **Allow insecure server connections to NGINX Controller using TLS**. For security purposes, we recommend that you secure the Controller Agent with signed certificates when possible.
 1. Use SSH to connect and log in to the NGINX instance that you want to connect to NGINX Controller.
@@ -51,7 +51,7 @@ Once set, the Location for an instance cannot be changed. If you need to change 
     curl -sS -L https://<controller FQDN>/install/controller-agent > install.sh && API_KEY='<API KEY>' CONTROLLER_USER='<non-root user>' CONTROLLER_GROUP='<optional group>' -i <instance name> -l <instance location>
     ```
 
-    {{< note >}}
+    {{< call-out "note" >}}
 
 Make sure you enter the commands to download and run the `install.sh` script on the NGINX Plus system, and not on the NGINX Controller.
 
@@ -61,7 +61,7 @@ If `CONTROLLER_USER` is not set, during the installation you will see the messag
 
 Running agent as non-root changes the nap-syslog port to `5114` in both containerized and non-containerized instances.
 
-    {{< /note >}}
+    {{< /call-out >}}
 
 &nbsp;
 

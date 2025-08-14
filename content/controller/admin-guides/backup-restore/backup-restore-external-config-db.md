@@ -33,9 +33,9 @@ To backup and restore the external config database, you'll need the following:
     export PGPASSWORD=<postgres password>
     ```
 
-    {{< note >}}
+    {{< call-out "note" >}}
 If you've configured PostgreSQL to use SSL, ensure that you've placed your certs in `~/.postgresql`. For more information, see [Client Certificates](https://www.postgresql.org/docs/9.5/libpq-ssl.html#LIBPQ-SSL-CLIENTCERT) in the PostgreSQL documentation.
-    {{< /note >}}
+    {{< /call-out >}}
 
 &nbsp;
 
@@ -75,7 +75,7 @@ Take the following steps to back up the external NGINX Controller config databas
 
 ## Restore External Config Database
 
-{{< important >}}If you restore the config database on top of a new installation of NGINX Controller, make sure to follow the steps to [restore your NGINX config and encryption keys]({{< ref "/controller/admin-guides/backup-restore/backup-restore-cluster-config.md" >}}) afterward. {{< /important >}}
+{{< call-out "important" >}}If you restore the config database on top of a new installation of NGINX Controller, make sure to follow the steps to [restore your NGINX config and encryption keys]({{< ref "/controller/admin-guides/backup-restore/backup-restore-cluster-config.md" >}}) afterward. {{< /call-out >}}
 
 To restore the external NGINX Controller config database:
 

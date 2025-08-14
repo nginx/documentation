@@ -42,13 +42,13 @@ sudo docker login private-registry.nginx.com --username=YOUR_JWT_HERE --password
 
 ### Pull the NGINX Plus image
 
-Pull the NGINX Plus image from the private registry. Replace `VERSION_TAG` with the desired version, such as `alpine`, `debian`, or `ubi`.
+Pull the NGINX Plus image from the private registry. Replace `<version-tag>` with the desired version, such as `alpine`, `debian`, or `ubi`.
 
 ```sh
-sudo docker pull private-registry.nginx.com/nginx-plus/agent:VERSION_TAG
+docker pull private-registry.nginx.com/nginx-plus/agentv3:<version-tag>
 ```
 
-You must specify a version tag. The `latest` tag is not supported. Learn more in the [Deploying NGINX and NGINX Plus on Docker]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-docker.md#pull-the-image" >}}) guide.
+You must specify a version tag that matches your distribution. The `latest` tag is not supported. Learn more in the [Deploying NGINX and NGINX Plus on Docker]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-docker.md#pull-the-image" >}}) guide.
 
 <br>
 
@@ -62,7 +62,7 @@ sudo docker pull private-registry.nginx.com/nginx-plus/agent:debian
 
 ### Start the NGINX Plus container
 
-Start the Docker container to connect it to NGINX One. Replace `YOUR_NGINX_ONE_DATA_PLANE_KEY_HERE` with your data plane key and `VERSION_TAG` with the version tag you pulled.
+Start the Docker container to connect it to NGINX One. Replace `YOUR_NGINX_ONE_DATA_PLANE_KEY_HERE` with your data plane key and `version-tag` with the version tag you pulled.
 
 **For NGINX Plus R33 or later**:
 
@@ -73,13 +73,13 @@ For more details, see [About subscription licenses]({{< ref "solutions/about-sub
 ```sh
 sudo docker run \
 --env=NGINX_LICENSE_JWT="YOUR_JWT_HERE" \
---env=NGINX_AGENT_SERVER_GRPCPORT=443 \
---env=NGINX_AGENT_SERVER_HOST=agent.connect.nginx.com \
---env=NGINX_AGENT_SERVER_TOKEN="YOUR_NGINX_ONE_DATA_PLANE_KEY_HERE" \
---env=NGINX_AGENT_TLS_ENABLE=true \
+--env=NGINX_AGENT_COMMAND_SERVER_PORT=443 \
+--env=NGINX_AGENT_COMMAND_SERVER_HOST=agent.connect.nginx.com \
+--env=NGINX_AGENT_COMMAND_AUTH_TOKEN="DPK" \
+--env=NGINX_AGENT_COMMAND_TLS_SKIP_VERIFY=false \
 --restart=always \
 --runtime=runc \
--d private-registry.nginx.com/nginx-plus/agent:<VERSION_TAG>
+-d private-registry.nginx.com/nginx-plus/agentv3:<version-tag>
 ```
 
 <br>
@@ -90,13 +90,13 @@ To start the container with the `debian` image:
 ```sh
 sudo docker run \
 --env=NGINX_LICENSE_JWT="YOUR_JWT_HERE" \
---env=NGINX_AGENT_SERVER_GRPCPORT=443 \
---env=NGINX_AGENT_SERVER_HOST=agent.connect.nginx.com \
---env=NGINX_AGENT_SERVER_TOKEN="YOUR_NGINX_ONE_DATA_PLANE_KEY_HERE" \
---env=NGINX_AGENT_TLS_ENABLE=true \
+--env=NGINX_AGENT_COMMAND_SERVER_PORT=443 \
+--env=NGINX_AGENT_COMMAND_SERVER_HOST=agent.connect.nginx.com \
+--env=NGINX_AGENT_COMMAND_AUTH_TOKEN="DPK" \
+--env=NGINX_AGENT_COMMAND_TLS_SKIP_VERIFY=false \
 --restart=always \
 --runtime=runc \
--d private-registry.nginx.com/nginx-plus/agent:debian
+-d private-registry.nginx.com/nginx-plus/agentv3:debian
 ```
 
 {{</call-out>}}

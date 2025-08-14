@@ -66,3 +66,7 @@ Before you can delete a key, it must be expired or revoked. You can revoke a key
 2. Find the key you want to revoke in the list of expired or revoked keys.
 3. Next to the key name, select the check box. You can select multiple keys at the same time.
 4. Select **Delete selected**.
+
+## Use the API
+
+You can use our [API to manage your data plane keys]({{< ref "/nginx-one/api/api-reference-guide/#tag/Data-Plane/Key" >}}) in all of these ways (and more).

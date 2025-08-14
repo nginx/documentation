@@ -34,15 +34,15 @@ From the NGINX One Console you can:
 
 You can manage the certificates for:
 
-- [Unique instances]({{< ref "/nginx-one/nginx-configs/add-file.md#new-ssl-certificate-or-ca-bundle" >}})
+- [Unique instances]({{< ref "/nginx-one/nginx-configs/one-instance/add-file.md#new-ssl-certificate-or-ca-bundle" >}})
 - For all instances that are members of a [Config Sync Group]({{< ref "/nginx-one/nginx-configs/config-sync-groups/manage-config-sync-groups/#configuration-management" >}})
 
 
-{{< tip >}}
+{{< call-out "tip" >}}
 
 If you are managing the certificate from NGINX One Console, we recommend that you avoid directly manipulating the files on the data plane.
 
-{{< /tip >}}
+{{< /call-out >}}
 
 ## Before you start
 
@@ -170,7 +170,7 @@ To delete a certificate, find the name in the **Certificates** screen. Find the 
 
 If that certificate is managed and is part of a Config Sync Group, that change affects all instances in that group.
 
-{{< warning >}} Be cautious if you want to delete certificates that are being used by an instance or a Config Sync Group. Deleting such certificates leads to failure in affected NGINX deployments. {{< /warning >}}
+{{< call-out "warning" >}} Be cautious if you want to delete certificates that are being used by an instance or a Config Sync Group. Deleting such certificates leads to failure in affected NGINX deployments. {{< /call-out >}}
 
 ## Managed and unmanaged certificates
 
@@ -195,4 +195,4 @@ To convert these cerificates to managed, start with the Certificates menu, and s
 
 - [Create and manage data plane keys]({{< ref "/nginx-one/connect-instances/create-manage-data-plane-keys.md" >}})
 - [Add an instance]({{< ref "/nginx-one/connect-instances/add-instance.md" >}})
-- [Add a file in a configuration]({{< ref "/nginx-one/nginx-configs/add-file.md" >}})
+- [Add a file in a configuration]({{< ref "/nginx-one/nginx-configs/one-instance/add-file.md" >}})

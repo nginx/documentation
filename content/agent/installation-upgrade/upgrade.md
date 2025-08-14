@@ -60,10 +60,10 @@ To upgrade NGINX Agent to a specific **v2.x version**, follow these steps:
         sudo apt-get install -y nginx-agent=<specific-version> -o Dpkg::Options::="--force-confold"
         ```
 
-        Example (to upgrade to version 2.41.1~noble):
+        Example (to upgrade to version 2.42.0~noble):
 
         ```shell
-        sudo apt-get install -y nginx-agent=2.41.1~noble -o Dpkg::Options::="--force-confold"
+        sudo apt-get install -y nginx-agent=2.42.0~noble -o Dpkg::Options::="--force-confold"
         ```
 
     - CentOS, RHEL, RPM-Based
@@ -72,10 +72,10 @@ To upgrade NGINX Agent to a specific **v2.x version**, follow these steps:
         sudo yum install -y nginx-agent-<specific-version>
         ```
 
-        Example (to upgrade to version `2.41.1`):
+        Example (to upgrade to version `2.42.0`):
 
         ```shell
-        sudo yum install -y nginx-agent-2.41.1
+        sudo yum install -y nginx-agent-2.42.0
         ```
 
 1. Verify the installed version:
