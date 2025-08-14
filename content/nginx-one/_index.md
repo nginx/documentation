@@ -60,7 +60,7 @@ F5 NGINX One Console makes it easy to manage NGINX instances across locations an
       Manage your NGINX fleet over REST
     {{</card>}}
     {{<card title="Glossary" titleUrl="/nginx-one/glossary/" >}}
-      See latest updates: New features, improvements, and bug fixes
+      Includes NGINX-specific security alert labels
     {{</card>}}
     {{<card title="Changelog" titleUrl="/nginx-one/changelog/" icon="clock-alert">}}
       See latest updates: New features, improvements, and bug fixes
