@@ -7,7 +7,7 @@ nd-product: NGF
 nd-docs: DOCS-1413
 ---
 
-Learn about the architecture and design principles of NGINX Gateway Fabric -- a Kubernetes Gateway API implementation using NGINX as the data plane. 
+Learn about the architecture and design principles of NGINX Gateway Fabric: a Kubernetes Gateway API implementation which uses NGINX as the data plane. 
 
 This document is intended for:
 
@@ -51,7 +51,7 @@ Users can have multiple gateways running side-by-side in the same cluster. This 
 
 ---
 
-## High-Level Overview of NGINX Gateway Fabric in Action
+## High-level overview of NGINX Gateway Fabric in execution
 
 This figure depicts an example of NGINX Gateway Fabric exposing three web applications within a Kubernetes cluster to clients on the internet:
 
@@ -162,7 +162,7 @@ The figure shows:
 | **Applications**        | - _Application A_: Deployed by Developer A (2 pods) and routed to by Gateway A.<br>- _Application B_: Deployed by Developer A (1 pod) and routed to by Gateway A.<br>- _Application C_: Deployed by Developer B (1 pod) and routed to by Gateway B. |
 | **NGINX Pods**          | - _NGINX Pod A_: Handles traffic from Gateway A:<br>&nbsp;&nbsp;&nbsp;• _NGINX Process A_: Routes to Application A and Application B.<br>&nbsp;&nbsp;&nbsp;• _NGINX Agent A_: Updates configuration via gRPC.<br>- _NGINX Pod B_: Handles traffic from Gateway B:<br>&nbsp;&nbsp;&nbsp;• _NGINX Process B_: Routes to Application C.<br>&nbsp;&nbsp;&nbsp;• _NGINX Agent B_: Updates configuration via gRPC. |
 | **Traffic Flow**        | - _Client A_:<br>&nbsp;&nbsp;&nbsp;1. Sends requests to `a.example.com` via Public Endpoint.<br>&nbsp;&nbsp;&nbsp;2. Routed to Application A by NGINX Process A.<br>- _Client B_:<br>&nbsp;&nbsp;&nbsp;1. Sends requests to `c.other-example.com` via Public Endpoint.<br>&nbsp;&nbsp;&nbsp;2. Routed to Application C by NGINX Process B. |
-| **Public Endpoint**     | A shared entry point (TCP Load Balancer or NodePort) that exposes services externally and forwards client traffic into the cluster.                   |
+| **Public Endpoint**     | A shared entry point (TCP Load Balancer or NodePort) that exposes the NGINX Service externally and forwards client traffic into the cluster.                   |
 | **Kubernetes API**      | Acts as the central hub for resource management:<br>- Fetches Gateway API resources.<br>- Updates NGINX configuration dynamically via the NGF Pod.    |
 
 {{% /bootstrap-table %}}
@@ -242,22 +242,22 @@ NGINX Gateway Fabric supports both NGINX Open Source and NGINX Plus. While the p
   - Changes to upstream servers, such as application scaling (e.g., adding or removing pods in Kubernetes), can be applied using the [NGINX Plus API](http://nginx.org/en/docs/http/ngx_http_api_module.html).
   - This reduces the frequency of configuration reloads, minimizing potential disruptions and improving system stability during updates.
 
-These features contribute to reduced downtime, improved performance during scaling events, and more fine-grained control over traffic management.
+These features enable reduced downtime, improved performance during scaling events, and more fine-grained control over traffic management.
 
 ---
 
-### Resilience and Fault Isolation
+### Resilience and fault isolation
 
 This architecture separates the control plane and data plane, creating clear operational boundaries that improve resilience and fault isolation. It also enhances scalability, security, and reliability while reducing the risk of failures affecting both components.
 
-#### Control Plane Resilience
+#### Control plane resilience
 
 In the event of a control plane failure or downtime:
 - Existing data plane pods continue serving traffic using their last-valid cached configurations.
 - Updates to routes or Gateways are temporarily paused, but stable traffic delivery continues without degradation.
 - Recovery restores functionality, resynchronizing configuration updates seamlessly.
 
-#### Data Plane Resilience
+#### Data plane resilience
 
 If a data plane pod encounters an outage or restarts:
 - Only routes tied to the specific linked Gateway object experience brief disruptions.
