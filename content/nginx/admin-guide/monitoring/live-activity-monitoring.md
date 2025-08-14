@@ -27,7 +27,7 @@ NGINX Plus provides various monitoring tools for your server infrastructure:
 
 * * *
 
-[![live activity monitoring](/nginx/images/nginx-plus-dashboard-r34-overview.png)](https://demo.nginx.com/dashboard.html "Live status metrics from NGINX Plus")
+[![live activity monitoring](/nginx/images/nginx-plus-dashboard-r35-overview.png)](https://demo.nginx.com/dashboard.html "Live status metrics from NGINX Plus")
 
 * * *
 
@@ -264,7 +264,7 @@ In the address bar of your browser, type-in the address that corresponds to your
 
 There is also a live demo page from NGINX available at [demo.nginx.com/dashboard.html](https://demo.nginx.com/dashboard.html):
 
-[![live activity monitor](/nginx/images/nginx-plus-dashboard-r34-overview.png)](https://demo.nginx.com/dashboard.html "Live load-balancing status from NGINX Plus")
+[![live activity monitor](/nginx/images/nginx-plus-dashboard-r35-overview.png)](https://demo.nginx.com/dashboard.html "Live load-balancing status from NGINX Plus")
 
 <span id="dashboard_tabs"></span>
 ### Tabs Overview
@@ -521,7 +521,7 @@ To enable the Swagger UI:
 
 |OpenAPI YAML File/API Version | NGINX Plus Version | Changes |
 | ---| --- | --- |
-|[{{<fa "download">}}OpenAPI v2](/nginx/admin-guide/yaml/v9/nginx_api.yaml) for API version 9 | NGINX Plus Releases [35]({{< ref "/nginx/releases.md#r35" >}}) | The `uuid` parameter of the [`/license`](https://nginx.org/en/docs/http/ngx_http_api_module.html#license) data was added|
+|[{{<fa "download">}}OpenAPI v2](/nginx/admin-guide/yaml/v9/nginx_api.yaml) for API version 9 | NGINX Plus Release [35]({{< ref "/nginx/releases.md#r35" >}}) | The `uuid` parameter of the [`/license`](https://nginx.org/en/docs/http/ngx_http_api_module.html#license) data was added|
 |[{{<fa "download">}}OpenAPI v2](/nginx/admin-guide/yaml/v9/nginx_api.yaml) for API version 9 | NGINX Plus Releases [33]({{< ref "/nginx/releases.md#r33" >}}), [34]({{< ref "nginx/releases.md#r34" >}})| The [`/license`](https://nginx.org/en/docs/http/ngx_http_api_module.html#license) data were added|
 |[{{<fa "download">}}OpenAPI v2](/nginx/admin-guide/yaml/v9/nginx_api.yaml) for API version 9 | NGINX Plus Releases [30]({{< ref "nginx/releases.md#r30" >}}), [31]({{< ref "nginx/releases.md#r31" >}}), [32]({{< ref "nginx/releases.md#r32" >}}) | The [`/workers/`](https://nginx.org/en/docs/http/ngx_http_api_module.html#workers_) data were added |
 |[{{<fa "download">}}OpenAPI v2](/nginx/admin-guide/yaml/v8/nginx_api.yaml) for API version 8 | NGINX Plus Releases [27]({{< ref "nginx/releases.md#r27" >}}), [28]({{< ref "nginx/releases.md#r28" >}}), [29]({{< ref "nginx/releases.md#r29" >}}) | SSL statistics for each HTTP [upstream](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_http_upstream) and stream [upstream](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_stream_upstream), SSL statistics for each HTTP [server zone](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_http_server_zone) and stream [server zone](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_stream_server_zone), extended statistics for [SSL](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_ssl_object) endpoint|
