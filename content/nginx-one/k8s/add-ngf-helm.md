@@ -63,10 +63,8 @@ To install the latest stable release of NGINX Gateway Fabric in the **nginx-gate
 
 ```shell
 helm install ngf oci://ghcr.io/nginx/charts/nginx-gateway-fabric \
-  --create-namespace -n nginx-gateway \
-  --set nginxAgent.enable=true \
   --set nginxAgent.dataplaneKeySecretName=<data_plane_key_secret_name> \
-  --set nginxAgent.endpointHost=agent.connect.nginx.com
+  -n nginx-gateway
 ```
 
 {{% /tab %}}
@@ -82,9 +80,7 @@ helm install ngf oci://ghcr.io/nginx/charts/nginx-gateway-fabric \
   --set nginx.image.repository=private-registry.nginx.com/nginx-gateway-fabric/nginx-plus \
   --set nginx.plus=true \
   --set nginx.imagePullSecret=nginx-plus-registry-secret -n nginx-gateway \
-  --set nginxAgent.enable=true \
-  --set nginxAgent.dataplaneKeySecretName=<data_plane_key_secret_name> \
-  --set nginxAgent.endpointHost=agent.connect.nginx.com
+  --set nginxAgent.dataplaneKeySecretName=<data_plane_key_secret_name> 
 ```
 
 {{% /tab %}}
