@@ -36,6 +36,7 @@ To create a Kubernetes secret, you'll need:
 - To set up the secret in the same namespace as NGINX Gateway Fabric
 - Use the name `dataplane.key` as shown
 - A namespace. The default NGINX Gateway Fabric namespace is `nginx-gateway`
+  - You can create it with the following command: `kubectl create namespace nginx-gateway`
 
 Once you have that information, run the following command:
 
@@ -95,6 +96,7 @@ To wait for the Deployment to be ready, you can either add the `--wait` flag to 
 
 ```shell
 kubectl wait --timeout=5m -n nginx-gateway deployment/ngf-nginx-gateway-fabric --for=condition=Available
+```
 
 ### Install from sources {#install-from-sources}
 <!-- Corresponds to step 4 in the UX -->

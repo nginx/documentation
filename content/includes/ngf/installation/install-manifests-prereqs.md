@@ -11,8 +11,3 @@ To complete this guide, you'll need to install:
 - [Add certificates for secure authentication]({{< ref "/ngf/install/secure-certificates.md" >}}) in a production environment.
 
 {{< call-out "important" >}} If you’d like to use NGINX Plus, some additional setup is also required: {{< /call-out >}}
-
-<details closed>
-<summary>NGINX Plus JWT setup</summary>
-
-{{< include "/ngf/installation/jwt-password-note.md" >}}
