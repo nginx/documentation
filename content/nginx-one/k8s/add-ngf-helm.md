@@ -1,0 +1,170 @@
+---
+title: Connect NGINX Gateway Fabric with Helm
+toc: true
+weight: 300
+nd-content-type: how-to
+nd-product: NGINX One
+---
+
+This document explains how to connect F5 NGINX Gateway Fabric to F5 NGINX One Console with Helm.
+Connecting NGINX Gateway Fabric to NGINX One Console enables centralized monitoring of all controller instances.
+
+Once connected, you'll see a **read-only** configuration of NGINX Gateway Fabric. For each instance, you can review:
+
+- Read-only configuration file
+- Unmanaged SSL/TLS certificates for Control Planes
+
+## Before you begin
+
+Log in to NGINX One Console. If you need more information, review our [Get started guide]({{< ref "/nginx-one/getting-started.md#before-you-begin" >}}).
+
+You also need:
+
+- Administrator access to a Kubernetes cluster.
+- If you use [Helm](https://helm.sh) and [kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl), install them locally.
+
+
+### Create a data plane key
+
+{{< include "/nginx-one/how-to/generate-data-plane-key.md" >}}
+
+### Create a Kubernetes secret with the data plane key
+
+To create a Kubernetes secret, you'll need:
+
+- The Data Plane Key
+- To set up the secret in the same namespace as NGINX Gateway Fabric
+- Use the name `dataplane.key` as shown
+- A namespace. The default NGINX Gateway Fabric namespace is `nginx-gateway`
+  - You can create it with the following command: `kubectl create namespace nginx-gateway`
+
+Once you have that information, run the following command:
+
+
+   ```shell
+   kubectl create secret generic dataplane-key \
+     --from-literal=dataplane.key=<Your Dataplane Key> \
+     -n <namespace>
+   ```
+
+## Install Gateway API resources
+<!-- Corresponds to step 2 in the UX -->
+{{< include "/ngf/installation/install-gateway-api-resources.md" >}}
+
+## Install from the OCI registry
+<!-- Corresponds to step 3 in the UX -->
+
+The following steps install NGINX Gateway Fabric directly from the OCI helm registry. If you prefer, you can [install from sources](#install-from-sources) instead.
+
+{{<tabs name="install-helm-oci">}}
+
+{{%tab name="NGINX"%}}
+
+To install the latest stable release of NGINX Gateway Fabric in the **nginx-gateway** namespace, run the following command:
+
+```shell
+helm install ngf oci://ghcr.io/nginx/charts/nginx-gateway-fabric \
+  --set nginxAgent.dataplaneKeySecretName=<data_plane_key_secret_name> \
+  -n nginx-gateway
+```
+
+{{% /tab %}}
+
+{{%tab name="NGINX Plus"%}}
+
+{{< note >}} If applicable, replace the F5 Container registry `private-registry.nginx.com` with your internal registry for your NGINX Plus image, and replace `nginx-plus-registry-secret` with your Secret name containing the registry credentials. If your NGINX Plus JWT Secret has a different name than the default `nplus-license`, then define that name using the `nginx.usage.secretName` flag. {{< /note >}}
+
+To install the latest stable release of NGINX Gateway Fabric in the **nginx-gateway** namespace, run the following command:
+
+```shell
+helm install ngf oci://ghcr.io/nginx/charts/nginx-gateway-fabric \
+  --set nginx.image.repository=private-registry.nginx.com/nginx-gateway-fabric/nginx-plus \
+  --set nginx.plus=true \
+  --set nginx.imagePullSecret=nginx-plus-registry-secret -n nginx-gateway \
+  --set nginxAgent.dataplaneKeySecretName=<data_plane_key_secret_name> 
+```
+
+{{% /tab %}}
+
+{{</tabs>}}
+
+`ngf` is the name of the release, and can be changed to any name you want. This name is added as a prefix to the Deployment name.
+
+If you want the latest version from the **main** branch, add `--version 0.0.0-edge` to your install command.
+
+To wait for the Deployment to be ready, you can either add the `--wait` flag to the `helm install` command, or run the following after installing:
+
+```shell
+kubectl wait --timeout=5m -n nginx-gateway deployment/ngf-nginx-gateway-fabric --for=condition=Available
+```
+
+### Install from sources {#install-from-sources}
+<!-- Corresponds to step 4 in the UX -->
+If you prefer to install directly from sources, instead of through the OCI helm registry, use the following steps.
+
+{{< include "/ngf/installation/helm/pulling-the-chart.md" >}}
+
+{{<tabs name="install-helm-src">}}
+
+{{%tab name="NGINX"%}}
+
+To install the chart into the **nginx-gateway** namespace, run the following command:
+
+```shell
+helm install ngf . --create-namespace -n nginx-gateway
+```
+
+{{% /tab %}}
+
+{{%tab name="NGINX Plus"%}}
+
+{{< note >}} If applicable, replace the F5 Container registry `private-registry.nginx.com` with your internal registry for your NGINX Plus image, and replace `nginx-plus-registry-secret` with your Secret name containing the registry credentials. If your NGINX Plus JWT Secret has a different name than the default `nplus-license`, then define that name using the `nginx.usage.secretName` flag. {{< /note >}}
+
+To install the chart into the **nginx-gateway** namespace, run the following command:
+
+```shell
+helm install ngf . --set nginx.image.repository=private-registry.nginx.com/nginx-gateway-fabric/nginx-plus --set nginx.plus=true --set nginx.imagePullSecret=nginx-plus-registry-secret -n nginx-gateway
+```
+
+{{% /tab %}}
+
+{{</tabs>}}
+
+`ngf` is the name of the release, and can be changed to any name you want. This name is added as a prefix to the Deployment name.
+
+To wait for the Deployment to be ready, you can either add the `--wait` flag to the `helm install` command, or run the following after installing:
+
+```shell
+kubectl wait --timeout=5m -n nginx-gateway deployment/ngf-nginx-gateway-fabric --for=condition=Available
+```
+
+## Verify a connection to NGINX One Console
+
+After deploying NGINX Gateway Fabric with NGINX Agent, you can verify the connection to NGINX One Console.
+Log in to your F5 Distributed Cloud Console account. 
+
+- Select **NGINX One > Visit Service**. 
+- In the dashboard, select **Manage > Control Planes**.  You should see your Control Planes listed by name, product, and version. Each control plane is associated with one or more instances.
+- Select the name of the Control Plane. In the **Instances** section, select the instance of your choice. You can review instance details, including the name of the **Control Plane**.
+
+## Troubleshooting
+
+If you encounter issues connecting your instances to NGINX One Console, try the following commands:
+
+Check the NGINX Agent version:
+
+```shell
+kubectl exec -it -n <namespace> <nginx_pod_name> -- nginx-agent -v
+```
+
+Check the NGINX Agent configuration:
+
+```shell
+kubectl exec -it -n <namespace> <nginx_pod_name> -- cat /etc/nginx-agent/nginx-agent.conf
+```
+
+Check NGINX Agent logs:
+
+```shell
+kubectl exec -it -n <namespace> <nginx_pod_name> -- nginx-agent
+```
