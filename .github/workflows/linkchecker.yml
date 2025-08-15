@@ -32,6 +32,7 @@ env:
     --ignore-url ^https://oauth2.googleapis.com --ignore-url ^https://openidconnect.googleapis.com --ignore-url ^https://www.base64url.com/
     --ignore-url ^https://go.googlesource.com/ --ignore-url ^https://go.googlesource.com/sync --ignore-url ^https://linkerd.io/2.13/
     --ignore-url ^http://www.redirectpage.com/ --ignore-url ^https://www.gnu.org/ --ignore-url ^https://insert_your_tenant_name.console.ves.volterra.io
+    --ignore-url ^https://pkgs.nginx.com
     --ignore-url ^https://\([a-zA-Z0-9-]+\).nginx.com/nginx-ingress-controller/css
     --ignore-url ^https://\([a-zA-Z0-9-]+\).nginx.com/nginxaas/azure/css
     --ignore-url ^https://\([a-zA-Z0-9-]+\).nginx.com/nginx-gateway-fabric/css

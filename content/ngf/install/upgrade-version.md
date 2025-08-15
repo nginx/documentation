@@ -13,14 +13,12 @@ It covers the necessary steps for minor versions as well as major versions (such
 
 Many of the nuances in upgrade paths relate to how custom resource definitions (CRDs) are managed.
 
-{{< call-out "tip" >}}
-
-To avoid interruptions, review the [Delay pod termination for zero downtime upgrades](#configure-delayed-pod-termination-for-zero-downtime-upgrades) section.
-
-{{< /call-out >}}
-
 
 ## Minor NGINX Gateway Fabric upgrades
+
+{{< call-out "important" >}}
+Upgrading from v2.0.x to v2.1 requires the NGINX Gateway Fabric control plane to be uninstalled and then reinstalled to avoid any downtime to user traffic. CRDs do not need to be removed. The NGINX data plane deployment is not affected by this process, and traffic should still flow uninterrupted. The steps are described below.
+{{< /call-out >}}
 
 {{< call-out "important" >}} NGINX Plus users need a JWT secret before upgrading from version 1.4.0 to 1.5.x.
 
@@ -72,13 +70,22 @@ Warning: kubectl apply should be used on resource created by either kubectl crea
 
 {{% tab name="Helm" %}}
 
-{{< call-out "important" >}} If you are using NGINX Plus and have a different Secret name than the default `nplus-license` name, specify the Secret name by setting `--set nginx.usage.secretName=<secret-name>` when running `helm upgrade`. {{< /call-out >}}
+{{< call-out "important" >}} If you are using NGINX Plus and have a different Secret name than the default `nplus-license` name, specify the Secret name by setting `--set nginx.usage.secretName=<secret-name>` when running `helm install` or `helm upgrade`. {{< /call-out >}}
 
 To upgrade the release with Helm, you can use the OCI registry, or download the chart and upgrade from the source.
 
 If needed, replace `ngf` with your chosen release name.
 
 **Upgrade from the OCI registry**
+
+To avoid downtime when upgrading from v2.0.x to v2.1, run the following commands. Be sure to include your previous installation flags and values if necessary. This will not affect user traffic, as the NGINX data plane deployment won't be removed as part of this process.
+
+```shell
+helm uninstall ngf -n nginx-gateway
+helm install ngf oci://ghcr.io/nginx/charts/nginx-gateway-fabric -n nginx-gateway
+```
+
+Otherwise, for all other version upgrades:
 
 ```shell
 helm upgrade ngf oci://ghcr.io/nginx/charts/nginx-gateway-fabric -n nginx-gateway
@@ -88,7 +95,14 @@ helm upgrade ngf oci://ghcr.io/nginx/charts/nginx-gateway-fabric -n nginx-gatewa
 
 {{< include "/ngf/installation/helm/pulling-the-chart.md" >}}
 
-To upgrade, run the following command:
+To avoid downtime when upgrading from v2.0.x to v2.1, run the following. Be sure to include your previous installation flags and values if necessary. This will not affect user traffic, as the NGINX data plane deployment won't be removed as part of this process.
+
+```shell
+helm uninstall ngf -n nginx-gateway
+helm install ngf . -n nginx-gateway
+```
+
+Otherwise, for all other version upgrades:
 
 ```shell
 helm upgrade ngf . -n nginx-gateway
@@ -98,7 +112,9 @@ helm upgrade ngf . -n nginx-gateway
 
 {{% tab name="Manifests" %}}
 
-Select the deployment manifest that matches your current deployment from options available in the [Deploy NGINX Gateway Fabric]({{< ref "/ngf/install/manifests.md#deploy-nginx-gateway-fabric-1">}}) section and apply it.
+Select the deployment manifest that matches your current deployment from options available in the [Deploy NGINX Gateway Fabric]({{< ref "/ngf/install/manifests.md#deploy-nginx-gateway-fabric-1">}}) section.
+
+To avoid downtime when upgrading from v2.0.x to v2.1, delete the previous NGINX Gateway Fabric control plane deployment in the `nginx-gateway` namespace, using `kubectl delete deployment`. Then `kubectl apply` the updated manifest file. This will not affect user traffic, as the NGINX data plane deployment won't be removed as part of this process.
 
 {{% /tab %}}
 
@@ -259,50 +275,3 @@ To upgrade from NGINX Open Source to NGINX Plus, update the Helm command to incl
 ```shell
 helm upgrade ngf oci://ghcr.io/nginx/charts/nginx-gateway-fabric  --set nginx.image.repository=private-registry.nginx.com/nginx-gateway-fabric/nginx-plus --set nginx.plus=true --set nginx.imagePullSecret=nginx-plus-registry-secret -n nginx-gateway
 ```
-
-## Delay pod termination for zero downtime upgrades {#configure-delayed-pod-termination-for-zero-downtime-upgrades}
-
-{{< include "/ngf/installation/delay-pod-termination/delay-pod-termination-overview.md" >}}
-
-Follow these steps to configure delayed pod termination:
-
-1. Open the `values.yaml` for editing.
-
-1. **Add delayed shutdown hooks**:
-
-   - In the `values.yaml` file, add `lifecycle: preStop` hooks to both the `nginx` and `nginx-gateway` container definitions. These hooks instruct the containers to delay their shutdown process, allowing time for connections to close gracefully. Update the `sleep` value to what works for your environment.
-
-     ```yaml
-      nginxGateway:
-      <...>
-      lifecycle:
-          preStop:
-          exec:
-              command:
-              - /usr/bin/gateway
-              - sleep
-              - --duration=40s # This flag is optional, the default is 30s
-
-      nginx:
-      <...>
-      lifecycle:
-          preStop:
-          exec:
-              command:
-              - /bin/sleep
-              - "40"
-     ```
-
-1. **Set the termination grace period**:
-
-   - {{< include "/ngf/installation/delay-pod-termination/termination-grace-period.md">}}
-
-1. Save the changes.
-
-{{< call-out "note" >}}
-For additional information on configuring and understanding the behavior of containers and pods during their lifecycle, refer to the following Kubernetes documentation:
-
-- [Container Lifecycle Hooks](https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks)
-- [Pod Lifecycle](https://kubernetes.io/docs/concepts/workloads/Pods/Pod-lifecycle/#Pod-termination)
-
-{{< /call-out>}}
