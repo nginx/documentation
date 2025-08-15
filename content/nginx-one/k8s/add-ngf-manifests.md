@@ -41,3 +41,9 @@ For more information, review how you can [Secure traffic using Let's Encrypt and
 
 {{< include "/ngf/installation/deploy-ngf-manifests.md" >}}
 
+## References
+
+For more details, see:
+
+- [Install NGINX Gateway Fabric with Manifests]({{< ref "/ngf/install/manifests.md" >}})
+
