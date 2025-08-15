@@ -20,11 +20,6 @@ Log in to NGINX One Console. If you need more information, review our [Get start
 
 {{< include "/ngf/installation/install-manifests-prereqs.md" >}}
 
-<details closed>
-<summary>NGINX Plus JWT setup</summary>
-
-{{< include "/ngf/installation/jwt-password-note.md" >}}
-
 ### Create a data plane key
 
 {{< include "/nginx-one/how-to/generate-data-plane-key.md" >}}
