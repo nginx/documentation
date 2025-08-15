@@ -492,7 +492,7 @@ nginx.com/sticky-cookie-services: "serviceName=example-svc cookie_name expires=t
 NGINX Ingress Controller has additional annotations for features using NGINX Plus that have no Ingress-NGINX Controller equivalent, such as active health checks and authentication using JSON Web Tokens (JWTs).
 {{< /call-out >}}
 
-The following table outlines annotation conversions for enabling TLS and gRPC to backend (upstream) services.
+The following table outlines annotation conversions for enabling TLS and gRPC protocols to backend (upstream) services.
 
 {{< bootstrap-table "table table-bordered table-striped table-responsive" >}}
 | Ingress-NGINX Controller | NGINX Ingress Controller |
