@@ -8,7 +8,7 @@ nd-docs: DOCS-616
 ---
 ## 5.1.1
 
-1.29.1 / R35
+15 Aug 2025
 
 ### <i class="fa-solid fa-bug-slash"></i> Fixes
 - [8046](https://github.com/nginx/kubernetes-ingress/pull/8046) Update interval checks for mgmt directive
