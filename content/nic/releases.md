@@ -6,6 +6,29 @@ nd-content-type: reference
 nd-product: NIC
 nd-docs: DOCS-616
 ---
+## 5.1.1
+
+15 Aug 2025
+
+### <i class="fa-solid fa-bug-slash"></i> Fixes
+- [8046](https://github.com/nginx/kubernetes-ingress/pull/8046) Update interval checks for mgmt directive
+- [8079](https://github.com/nginx/kubernetes-ingress/pull/8079) Status updates for vs endpoints 
+- [8125](https://github.com/nginx/kubernetes-ingress/pull/8125) Don't send request headers & body to jwks uri
+
+### <i class="fa-solid fa-upload"></i> Dependencies
+- [8115](https://github.com/nginx/kubernetes-ingress/pull/8115) & [8131](https://github.com/nginx/kubernetes-ingress/pull/8131) Bump Go dependencies
+- [8030](https://github.com/nginx/kubernetes-ingress/pull/8030), [8080](https://github.com/nginx/kubernetes-ingress/pull/8080) & [8112](https://github.com/nginx/kubernetes-ingress/pull/8112) Bump Docker dependencies
+- [8139](https://github.com/nginx/kubernetes-ingress/pull/8139) Update to nginx oss 1.29.1, plus r35, agent v3.2, app protect and alpine 3.22
+
+### <i class="fa-solid fa-download"></i> Upgrade
+- For NGINX, use the 5.1.1 images from our [DockerHub](https://hub.docker.com/r/nginx/nginx-ingress/tags?page=1&ordering=last_updated&name=5.1.1), [GitHub Container](https://github.com/nginx/kubernetes-ingress/pkgs/container/kubernetes-ingress), [Amazon ECR Public Gallery](https://gallery.ecr.aws/nginx/nginx-ingress) or [Quay.io](https://quay.io/repository/nginx/nginx-ingress).
+- For NGINX Plus, use the 5.1.1 images from the F5 Container registry or build your own image using the 5.1.1 source code.
+- For Helm, use version 2.2.2 of the chart.
+
+### <i class="fa-solid fa-life-ring"></i> Supported Platforms
+We will provide technical support for NGINX Ingress Controller on any Kubernetes platform that is currently supported by its provider and that passes the Kubernetes conformance tests. This release was fully tested on the following Kubernetes versions: 1.25-1.33.
+
+---
 ## 5.1.0
 
 08 Jul 2025
