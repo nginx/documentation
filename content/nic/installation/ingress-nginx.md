@@ -514,7 +514,6 @@ This table maps the Ingress-NGINX Controller ConfigMap keys to NGINX Ingress Con
 Some of the key names are identical, and each Ingress Controller has ConfigMap keys that the other does not (Which are indicated).
 {{< /call-out >}} -->
 
-
 {{< bootstrap-table "table table-bordered table-striped table-responsive" >}}
 | Ingress-NGINX Controller | NGINX Ingress Controller |
 | ------------------------ | ------------------------ |
