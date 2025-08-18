@@ -13,19 +13,17 @@ It covers the necessary steps for minor versions as well as major versions (such
 
 Many of the nuances in upgrade paths relate to how custom resource definitions (CRDs) are managed.
 
-
 ## Minor NGINX Gateway Fabric upgrades
 
-{{< call-out "important" >}}
-Upgrading from v2.0.x to v2.1 requires the NGINX Gateway Fabric control plane to be uninstalled and then reinstalled to avoid any downtime to user traffic. CRDs do not need to be removed. The NGINX data plane deployment is not affected by this process, and traffic should still flow uninterrupted. The steps are described below.
-{{< /call-out >}}
+Upgrading from v2.0.x to v2.1 requires the NGINX Gateway Fabric control plane to be uninstalled and then reinstalled to avoid any downtime to user traffic. 
+
+CRDs **do not** need to be removed. The NGINX data plane deployment **is not** affected by this process, and traffic should still flow uninterrupted.
 
 {{< call-out "important" >}} NGINX Plus users need a JWT secret before upgrading from version 1.4.0 to 1.5.x.
 
 Follow the steps in [Set up the JWT]({{< ref "/ngf/install/nginx-plus.md#set-up-the-jwt" >}}) to create the Secret.
 
 {{< /call-out >}}
-
 
 ### Upgrade Gateway resources
 
