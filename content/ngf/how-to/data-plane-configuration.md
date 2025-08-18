@@ -399,7 +399,7 @@ Patches are applied in the order they appear in the array. Later patches can ove
 
 **Which patch type should I use?**
 
-- **StrategicMerge** is the default and most user-friendly for Kubernetes-native resources like Deployments and Services. It understands lists and merges fields intelligently (e.g., merging containers by name). Use this for most use cases.
+- **StrategicMerge** is the default and most user-friendly for Kubernetes-native resources like Deployments and Services. It understands lists and merges fields intelligently (for example, merging containers by name). Use this for most use cases.
 - **Merge** (JSON Merge Patch) is simpler and works well for basic object merges, but does not handle lists or complex merging. Use this if you want to replace entire fields or for non-Kubernetes-native resources.
 - **JSONPatch** is the most powerful and flexible, allowing you to add, remove, or replace specific fields using RFC 6902 operations. Use this for advanced or fine-grained changes, but it is more verbose and error-prone.
 
