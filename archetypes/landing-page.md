@@ -31,18 +31,16 @@ nd-product:
 [//]: # "One card will take full width page: two will take half width each. Three will stack like an inverse pyramid."
 [//]: # "Some examples of content could be the latest release note, the most common install path, and a popular new feature."
 
-{{<card-layout>}}
-  {{<card-section showAsCards="true" isFeaturedSection="true">}}
-    {{<card title="<some-title>">}}
-      <!-- Each description should be roughly 10 words or less. -->
-    {{</card>}}
-    <!-- The titleURL and icon are both optional -->
-    <!-- Lucide icon names can be found at https://lucide.dev/icons/ -->
-    {{<card title="<some-title>" titleUrl="<some-url>" icon="<some-lucide-icon>">}}
-      <!-- Each description should be roughly 10 words or less. -->
-    {{</card>}}
-  {{</card-section>}}
-{{</card-layout>}}
+{{<card-section showAsCards="true" isFeaturedSection="true">}}
+  {{<card title="<some-title>">}}
+    <!-- Each description should be roughly 10 words or less. -->
+  {{</card>}}
+  <!-- The titleURL and icon are both optional -->
+  <!-- Lucide icon names can be found at https://lucide.dev/icons/ -->
+  {{<card title="<some-title>" titleUrl="<some-url>" icon="<some-lucide-icon>">}}
+    <!-- Each description should be roughly 10 words or less. -->
+  {{</card>}}
+{{</card-section>}}
 
 ## Other content 
 
