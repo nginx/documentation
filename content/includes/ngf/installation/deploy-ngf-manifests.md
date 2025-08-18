@@ -111,19 +111,5 @@ kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v{
 
 ### Provision an NGINX data plane
 
-If you have not already done so, review [Deploy a Gateway for data plane instances]({{< ref "/ngf/install/deploy-data-plane.md" >}}).
+To deploy the NGINX data plane to connect to the NGINX One Console, follow this guide: [Deploy a Gateway for data plane instances]({{< ref "/ngf/install/deploy-data-plane.md" >}}).
 
-### Verify the Deployment
-
-To confirm that NGINX Gateway Fabric is running, check the pods in the `nginx-gateway` namespace:
-
-```shell
-kubectl get pods -n nginx-gateway
-```
-
-The output should look similar to this (note that the pod name will include a unique string):
-
-```text
-NAME                             READY   STATUS    RESTARTS   AGE
-nginx-gateway-5d4f4c7db7-xk2kq   1/1     Running   0          112s
-```
