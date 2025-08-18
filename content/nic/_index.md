@@ -34,7 +34,7 @@ It supports standard [Ingress]({{< ref "/nic/glossary.md#ingress">}}) features s
     {{<card title="Migrate from Ingress-NGINX Controller" titleUrl="/nginx-ingress-controller/installation/ingress-nginx">}}
       Replace an Ingress-NGINX cluster with NGINX Ingress Controller
     {{</card>}}
-    {{<card title="Changelog" titleUrl="/nginx-ingress-controller/changelog">}}
+    {{<card title="Releases" titleUrl="/nginx-ingress-controller/releases">}}
       Review the changes from the latest NGINX Ingress Controller releases
     {{</card>}}
   {{</card-section>}}
