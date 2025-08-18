@@ -14,6 +14,25 @@ To see a list of currently active issues, visit the [Known issues]({{< ref "/ngi
 To review older entries, visit the [Changelog archive]({{< ref "/nginxaas-azure/changelog-archive" >}}) section.
 
 
+## Aug 18, 2025
+
+- {{% icon-feature %}} **Updates to NGINXaaS for Azure GitHub Action**
+
+  - Users can now specify files in their configuration directory to be marked as protected using a new optional Action input called `protected-files`. This new input accepts comma-separated list of file paths relative to the NGINX configuration directory that should be marked as protected. For more information, please visit [NGINXaaS for Azure Deployment Action](https://github.com/marketplace/actions/nginx-configuration-sync) on GitHub actions marketplace. Example:
+      ```yaml
+      - name: Sync NGINX Config to Azure
+        uses: nginxinc/nginx-for-azure-deploy-action@v0.5.0
+        with:
+           nginx-config-directory-path: configs/
+           nginx-root-config-file: nginx.conf
+           transformed-nginx-config-directory-path: /etc/nginx/
+           protected-files: protected-1.conf,protected-2.conf
+      ```
+
+
+  - To enhance security, the service principal used for Azure login prior to running the NGINXaaS for Azure Deployment Action now only requires the Contributor role at the scope of the NGINXaaS for Azure deployment. It no longer needs the Contributor role at the resource group level containing the deployment.
+
+
 ## May 22, 2025
 
 - {{% icon-feature %}} **NGINXaaS for Azure now supports IPv6**
