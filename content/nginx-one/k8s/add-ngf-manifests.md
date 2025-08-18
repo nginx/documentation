@@ -28,7 +28,6 @@ Log in to NGINX One Console. If you need more information, review our [Get start
 
 {{< include "/nginx-one/how-to/k8s-secret-dp-key.md" >}}
 
-
 ## Install Gateway API resources
 <!-- Corresponds to step 2 in the UX -->
 {{< include "/ngf/installation/install-gateway-api-resources.md" >}}
