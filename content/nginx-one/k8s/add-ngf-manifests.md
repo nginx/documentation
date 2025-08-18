@@ -39,7 +39,7 @@ Log in to NGINX One Console. If you need more information, review our [Get start
 
 ## Deploy NGINX Gateway Fabric
 
-Specify the Secret name in the `--nginx-one-dataplane-key-secret` command-line argument of the nginx-gateway container.
+Specify the data plane key Secret name in the `--nginx-one-dataplane-key-secret` command-line argument of the nginx-gateway container.
 
 {{< include "/ngf/installation/deploy-ngf-manifests.md" >}}
 
