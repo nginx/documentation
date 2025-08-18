@@ -18,7 +18,7 @@ To review older entries, visit the [Changelog archive]({{< ref "/nginxaas-azure/
 
 - {{% icon-feature %}} **Updates to NGINXaaS for Azure GitHub Action**
 
-  - Users can now specify files in their config directory to be marked as protected using a new optional Action input called `protected-files`. This new input accepts comma-separated list of file paths relative to the nginx config directory that should be marked as protected. For more information, please visit [NGINXaaS for Azure Deployment Action](https://github.com/marketplace/actions/nginx-configuration-sync) on GitHub actions marketplace. Example:
+  - Users can now specify files in their configuration directory to be marked as protected using a new optional Action input called `protected-files`. This new input accepts comma-separated list of file paths relative to the NGINX configuration directory that should be marked as protected. For more information, please visit [NGINXaaS for Azure Deployment Action](https://github.com/marketplace/actions/nginx-configuration-sync) on GitHub actions marketplace. Example:
       ```yaml
       - name: Sync NGINX Config to Azure
         uses: nginxinc/nginx-for-azure-deploy-action@v0.5.0
