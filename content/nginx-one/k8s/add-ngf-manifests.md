@@ -28,9 +28,6 @@ Log in to NGINX One Console. If you need more information, review our [Get start
 
 {{< include "/nginx-one/how-to/k8s-secret-dp-key.md" >}}
 
-### Secure traffic
-
-For more information, review how you can [Secure traffic using Let's Encrypt and cert-manager]({{< ref "/ngf/traffic-security/integrate-cert-manager.md" >}})
 
 ## Install Gateway API resources
 <!-- Corresponds to step 2 in the UX -->
@@ -42,6 +39,8 @@ For more information, review how you can [Secure traffic using Let's Encrypt and
 {{< include "/ngf/installation/deploy-ngf-crds.md" >}}
 
 ## Deploy NGINX Gateway Fabric
+
+Specify the Secret name in the `--nginx-one-dataplane-key-secret` command-line argument of the nginx-gateway container.
 
 {{< include "/ngf/installation/deploy-ngf-manifests.md" >}}
 
