@@ -47,9 +47,3 @@ Learn how to deliver, manage, and protect your applications using F5 NGINX produ
     Infrastructure-as-a-Service (IaaS) version of NGINX Plus for your Microsoft Azure application stack
   {{</card >}}
 {{</card-section>}}
-
-{{<card-section showAsCards="true" title="More NGINX Products">}}
-  {{<card title="NGINX Unit" titleUrl="https://unit.nginx.org/" brandIcon="NGINX-Unit-product-icon.svg" isLanding="true">}}
-    Dynamic app server that can run beside NGINX, NGINX Plus, or on its own
-  {{</card >}}
-{{</card-section>}}
