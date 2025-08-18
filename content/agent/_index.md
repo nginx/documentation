@@ -33,26 +33,22 @@ configurations, collection and reporting of real-time NGINX performance and oper
 [//]: # "One card will take full width page: two will take half width each. Three will stack like an inverse pyramid."
 [//]: # "Some examples of content could be the latest release note, the most common install path, and a popular new feature."
 
-{{<card-layout>}}
-  {{<card-section showAsCards="true" isFeaturedSection="true">}}
-    {{<card title="About" titleUrl="about/" icon="info">}}
-      Learn everything you need to know about NGINX Agent
-    {{</card>}}
-    <!-- The titleURL and icon are both optional -->
-    <!-- Lucide icon names can be found at https://lucide.dev/icons/ -->
-    {{<card title="Getting started" titleUrl="installation-upgrade/getting-started/" icon="unplug">}}
-      Install NGINX Agent and run a mock control plane
-    {{</card>}}
-  {{</card-section>}}
-{{</card-layout>}}
+{{<card-section showAsCards="true" isFeaturedSection="true">}}
+  {{<card title="About" titleUrl="about/" icon="info">}}
+    Learn everything you need to know about NGINX Agent
+  {{</card>}}
+  <!-- The titleURL and icon are both optional -->
+  <!-- Lucide icon names can be found at https://lucide.dev/icons/ -->
+  {{<card title="Getting started" titleUrl="installation-upgrade/getting-started/" icon="unplug">}}
+    Install NGINX Agent and run a mock control plane
+  {{</card>}}
+{{</card-section>}}
 
-{{<card-layout>}}
-  {{<card-section showAsCards="true" isFeaturedSection="true">}}
-    {{<card title="Upgrade" titleUrl="installation-upgrade/upgrade/" icon="circle-fading-arrow-up">}}
-    {{</card>}}
-    {{<card title="Configuration" titleUrl="configuration/" icon="cog">}}
-    {{</card>}}
-    {{<card title="Support" titleUrl="support/" icon="hand-helping">}}
-    {{</card>}}
-  {{</card-section>}}
-{{</card-layout>}}
+{{<card-section showAsCards="true" isFeaturedSection="true">}}
+  {{<card title="Upgrade" titleUrl="installation-upgrade/upgrade/" icon="circle-fading-arrow-up">}}
+  {{</card>}}
+  {{<card title="Configuration" titleUrl="configuration/" icon="cog">}}
+  {{</card>}}
+  {{<card title="Support" titleUrl="support/" icon="hand-helping">}}
+  {{</card>}}
+{{</card-section>}}
