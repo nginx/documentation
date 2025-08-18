@@ -164,8 +164,6 @@ For more information on using NGINX to secure traffic to upstream servers, refer
 
 If you want to disable public access to your key vault, you can configure a [Network Security Perimeter (NSP)](https://learn.microsoft.com/en-us/azure/private-link/network-security-perimeter-concepts). This will allow you to configure access rules to allow NGINXaaS to fetch certificates from your key vault while ensuring all other public access is denied.
 
-{{< call-out "note" >}} Network Security Perimeter is currently in public preview. Refer to [Azure's NSP documentation](https://learn.microsoft.com/en-us/azure/private-link/network-security-perimeter-concepts) for details on its current capabilities. {{< /call-out >}}
-
 1. Follow [Azure's documentation on prerequisites](https://learn.microsoft.com/en-us/azure/private-link/create-network-security-perimeter-portal#prerequisites) to ensure you are registed to create an NSP.
 1. In the Search box, enter **Network Security Perimeters** and select **Network Security Perimeters** from the search results.
 1. Select {{< fa "plus">}}**Create**.

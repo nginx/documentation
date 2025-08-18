@@ -6,7 +6,7 @@ url: /nginx-ingress-controller/
 # The cascade directive applies its nested parameters down the page tree until overwritten
 cascade:
   # The logo file is resolved from the theme, in the folder /static/images/icons/
-  logo: NGINX-Ingress-Controller-product-icon.png
+  logo: logo: NGINX-Ingress-Controller-product-icon.svg
 # The subtitle displays directly underneath the heading of a given page
 nd-subtitle: 
 # Indicates that this is a custom landing page
