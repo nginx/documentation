@@ -8,16 +8,13 @@ files:
 To create a Kubernetes secret, you'll need:
 
 - The Data Plane Key
-- To set up the secret in the same namespace as NGINX Gateway Fabric
-- Use the name `dataplane.key` as shown
-- A namespace. The default NGINX Gateway Fabric namespace is `nginx-gateway`
-  - You can create it with the following command: `kubectl create namespace nginx-gateway`
+- The `nginx-gateway` namespace must exist. You can create it with the following command: `kubectl create namespace nginx-gateway`
 
-Once you have that information, run the following command:
-
+   - Then create the secret with the following command. The key must be named `dataplane.key`:
 
    ```shell
    kubectl create secret generic dataplane-key \
      --from-literal=dataplane.key=<Your Dataplane Key> \
-     -n <namespace>
+     -n nginx-gateway
    ```
+
