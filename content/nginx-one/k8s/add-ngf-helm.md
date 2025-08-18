@@ -141,22 +141,4 @@ Log in to your F5 Distributed Cloud Console account.
 
 ## Troubleshooting
 
-If you encounter issues connecting your instances to NGINX One Console, try the following commands:
-
-Check the NGINX Agent version:
-
-```shell
-kubectl exec -it -n <namespace> <nginx_pod_name> -- nginx-agent -v
-```
-
-Check the NGINX Agent configuration:
-
-```shell
-kubectl exec -it -n <namespace> <nginx_pod_name> -- cat /etc/nginx-agent/nginx-agent.conf
-```
-
-Check NGINX Agent logs:
-
-```shell
-kubectl exec -it -n <namespace> <nginx_pod_name> -- nginx-agent
-```
+{{< include "/nginx-one/how-to/ngf-troubleshooting.md" >}}

@@ -43,6 +43,10 @@ Specify the data plane key Secret name in the `--nginx-one-dataplane-key-secret`
 
 {{< include "/ngf/installation/deploy-ngf-manifests.md" >}}
 
+## Troubleshooting
+
+{{< include "/nginx-one/how-to/ngf-troubleshooting.md" >}}
+
 ## References
 
 For more details, see:
