@@ -12,6 +12,5 @@ tags:
 title: ADC API
 toc: false
 weight: 300
+nd-api-reference: "./nginx-controller/api/reference/ctlr-adc-openapi.json"
 ---
-
-{{< openapi spec="./nginx-controller/api/reference/ctlr-adc-openapi.json" >}}
