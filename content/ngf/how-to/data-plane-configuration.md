@@ -397,6 +397,16 @@ Each patch has two fields:
 
 Patches are applied in the order they appear in the array. Later patches can override fields set by earlier patches.
 
+**Which patch type should I use?**
+
+- **StrategicMerge** is the default and most user-friendly for Kubernetes-native resources like Deployments and Services. It understands lists and merges fields intelligently (for example, merging containers by name). Use this for most use cases.
+- **Merge** (JSON Merge Patch) is simpler and works well for basic object merges, but does not handle lists or complex merging. Use this if you want to replace entire fields or for non-Kubernetes-native resources.
+- **JSONPatch** is the most powerful and flexible, allowing you to add, remove, or replace specific fields using RFC 6902 operations. Use this for advanced or fine-grained changes, but it is more verbose and error-prone.
+
+If unsure, start with StrategicMerge. Use JSONPatch only if you need to surgically modify fields that cannot be addressed by the other patch types.
+
+Patches are applied after all other NginxProxy configuration is rendered. Invalid patches will result in a validation error and will not be applied.
+
 #### Example: Configure Service with session affinity
 
 ```yaml
@@ -486,17 +496,3 @@ spec:
 ```
 
 In this example, the final Service will have `sessionAffinity: None` and `publishNotReadyAddresses: true` because the second patch overrides the values from the first patch.
-
-{{< note >}}
-**Which patch type should I use?**
-
-- **StrategicMerge** is the default and most user-friendly for Kubernetes-native resources like Deployments and Services. It understands lists and merges fields intelligently (e.g., merging containers by name). Use this for most use cases.
-- **Merge** (JSON Merge Patch) is simpler and works well for basic object merges, but does not handle lists or complex merging. Use this if you want to replace entire fields or for non-Kubernetes-native resources.
-- **JSONPatch** is the most powerful and flexible, allowing you to add, remove, or replace specific fields using RFC 6902 operations. Use this for advanced or fine-grained changes, but it is more verbose and error-prone.
-
-If unsure, start with StrategicMerge. Use JSONPatch only if you need to surgically modify fields that cannot be addressed by the other patch types.
-
-Patches are applied after all other NginxProxy configuration is rendered. Invalid patches will result in a validation error and will not be applied.
-{{< /note >}}
-
----
