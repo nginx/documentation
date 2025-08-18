@@ -35,7 +35,19 @@ To create a Kubernetes secret, you'll need:
 - The Data Plane Key
 - To set up the secret in the same namespace as NGINX Gateway Fabric
 - Use the name `dataplane.key` as shown
-- A namespace. The default NGINX Gateway Fabric namespace is `nginx-gateway`
+
+To create a Kubernetes secret, you'll need:
+
+- The Data Plane Key
+- The `nginx-gateway` namespace must exist. You can create it with the following command: `kubectl create namespace nginx-gateway`
+
+   - Then create the secret with the following command. The key must be named `dataplane.key`:
+
+   ```shell
+   kubectl create secret generic dataplane-key \
+     --from-literal=dataplane.key=<Your Dataplane Key> \
+     -n nginx-gateway
+   ```
   - You can create it with the following command: `kubectl create namespace nginx-gateway`
 
 Once you have that information, run the following command:
@@ -64,7 +76,7 @@ To install the latest stable release of NGINX Gateway Fabric in the **nginx-gate
 
 ```shell
 helm install ngf oci://ghcr.io/nginx/charts/nginx-gateway-fabric \
-  --set nginxAgent.dataplaneKeySecretName=<data_plane_key_secret_name> \
+  --set nginx.nginxOneConsole.dataplaneKeySecretName=<data_plane_key_secret_name> \
   -n nginx-gateway
 ```
 
@@ -81,7 +93,7 @@ helm install ngf oci://ghcr.io/nginx/charts/nginx-gateway-fabric \
   --set nginx.image.repository=private-registry.nginx.com/nginx-gateway-fabric/nginx-plus \
   --set nginx.plus=true \
   --set nginx.imagePullSecret=nginx-plus-registry-secret -n nginx-gateway \
-  --set nginxAgent.dataplaneKeySecretName=<data_plane_key_secret_name> 
+  --set nginx.nginxOneConsole.dataplaneKeySecretName=<data_plane_key_secret_name> 
 ```
 
 {{% /tab %}}
@@ -111,7 +123,9 @@ If you prefer to install directly from sources, instead of through the OCI helm 
 To install the chart into the **nginx-gateway** namespace, run the following command:
 
 ```shell
-helm install ngf . --create-namespace -n nginx-gateway
+helm install ngf .  \
+  --set nginx.nginxOneConsole.dataplaneKeySecretName=<data_plane_key_secret_name> \
+  -n nginx-gateway
 ```
 
 {{% /tab %}}
@@ -123,7 +137,12 @@ helm install ngf . --create-namespace -n nginx-gateway
 To install the chart into the **nginx-gateway** namespace, run the following command:
 
 ```shell
-helm install ngf . --set nginx.image.repository=private-registry.nginx.com/nginx-gateway-fabric/nginx-plus --set nginx.plus=true --set nginx.imagePullSecret=nginx-plus-registry-secret -n nginx-gateway
+helm install ngf . \
+  --set nginx.image.repository=private-registry.nginx.com/nginx-gateway-fabric/nginx-plus \
+  --set nginx.nginxOneConsole.dataplaneKeySecretName=<data_plane_key_secret_name> \
+  --set nginx.plus=true \
+  --set nginx.imagePullSecret=nginx-plus-registry-secret \
+  -n nginx-gateway
 ```
 
 {{% /tab %}}

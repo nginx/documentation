@@ -24,6 +24,10 @@ Log in to NGINX One Console. If you need more information, review our [Get start
 
 {{< include "/nginx-one/how-to/generate-data-plane-key.md" >}}
 
+### Create a Kubernetes secret with the data plane key
+
+{{< include "/nginx-one/how-to/k8s-secret-dp-key.md" >}}
+
 ### Secure traffic
 
 For more information, review how you can [Secure traffic using Let's Encrypt and cert-manager]({{< ref "/ngf/traffic-security/integrate-cert-manager.md" >}})
