@@ -21,21 +21,17 @@ NGINX Plus Release 24 and later supports NGINX App Protect DoS.
 
 NGINX App Protect DoS supports the following operating systems:
 
-- [CentOS 7.4.x and above](#centos-74-installation) (Deprecated starting from NGINX Plus R33)
-- [RHEL 7.4.x and above](#rhel-74-installation) (Deprecated starting from NGINX Plus R33)
-- [RHEL 8.1.x / Rocky Linux 8 and above](#rhel-8--rocky-linux-8-installation)
-- [RHEL 9 and above](#rhel-9-installation)
-- [Debian 10 (Buster)](#debian--ubuntu-installation) - (Deprecated starting from NGINX Plus R28)
+- [RHEL 8.1+ / Rocky Linux 8](#rhel-8--rocky-linux-8-installation)
+- [RHEL 9.0+ / Rocky Linux 9](#rhel-9--rocky-linux-9-installation)
 - [Debian 11 (Bullseye)](#debian--ubuntu-installation)
 - [Debian 12 (Bookworm)](#debian--ubuntu-installation)
-- [Ubuntu 18.04 (Bionic)](#debian--ubuntu-installation) - (Deprecated starting from NGINX Plus R30)
-- [Ubuntu 20.04 (Focal)](#debian--ubuntu-installation)
+- [Ubuntu 20.04 (Focal)](#debian--ubuntu-installation) - (Deprecated starting from NGINX Plus R35)
 - [Ubuntu 22.04 (Jammy)](#debian--ubuntu-installation)
 - [Ubuntu 24.04 (Noble)](#debian--ubuntu-installation)
-- [Alpine 3.15](#alpine-315x--317x--319x-installation) - (Deprecated starting from NGINX Plus R30)
-- [Alpine 3.17](#alpine-315x--317x--319x-installation) - (Deprecated starting from NGINX Plus R34)
-- [Alpine 3.19](#alpine-315x--317x--319x-installation)
-- [AmazonLinux 2023](#amazonlinux-linux-2023-installation)
+- [Alpine 3.19](#alpine-installation)
+- [Alpine 3.21](#alpine-installation)
+- [AmazonLinux 2023](#amazon-linux-2023-installation)
+
 
 The NGINX App Protect DoS package has the following dependencies:
 
@@ -51,7 +47,6 @@ See the NGINX Plus full list of prerequisites for more details. NGINX App Protec
 {{< call-out "note" >}}
 
 - gRPC, HTTP/2 and WebSocket protection require active monitoring of the protected service. The directive `app_protect_dos_monitor` is mandatory for the attack to be detected.
-- TLS fingerprint feature is not used in CentOS 7.4 and RHEL 7 / UBI 7 due to the old OpenSSL version. The required OpenSSL version is 1.1.1 or higher.
 - Monitor directive `app_protect_dos_monitor` with proxy_protocol parameter can not be configured on Ubuntu 18.04. As a result, gRPC and HTTP/2 DoS protection for proxy_protocol configuration is not supported.
 - Regularly update the Operating System (OS) to avoid known OS vulnerabilities which may impact the service.
 {{< /call-out >}}
@@ -599,7 +594,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     sudo systemctl start app-protect-dos-ebpf-manager
     ```
 
-## RHEL 9+ Installation
+## RHEL 9+ / Rocky Linux 9 Installation
 
 1. If you already have NGINX packages on your system, back up your configs and logs:
 
@@ -622,6 +617,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
 
     ```shell
     sudo dnf install ca-certificates wget
+    ```
 
 6. Enable the yum repositories to pull NGINX App Protect DoS dependencies:
 
@@ -997,7 +993,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
      sudo systemctl start app-protect-dos-ebpf-manager
     ```
 
-## Alpine 3.15.x / 3.17.x / 3.19.x Installation
+## Alpine Installation
 
 1. If you already have NGINX packages in your system, back up your configs and logs:
 
@@ -1012,7 +1008,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
 
 1. {{< include "licensing-and-reporting/download-jwt-crt-from-myf5.md" >}}
 
-1. {{< include "nginx-plus/install/copy-crt-and-key.md" >}}
+3. Upload `nginx-repo.key` to `/etc/apk/cert.key` and `nginx-repo.crt` to `/etc/apk/cert.pem`. Make sure that files do not contain other certificates and keys, as Alpine Linux does not support mixing client certificates for different repositories.
 
 1. {{< include "nginx-plus/install/copy-jwt-to-etc-nginx-dir.md" >}}
 
@@ -1159,7 +1155,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
 
     ```shell
     sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/plus-amazonlinux2023.repo
-    sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-amazonlinux2023.repo
+    sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-dos-amazonlinux2023.repo
     ```
 
 7. In case of fresh installation, update the repository and install the most recent version of the NGINX Plus App Protect DoS package (which includes NGINX Plus):
@@ -1270,8 +1266,9 @@ You need root permissions to execute the following steps.
    - `license.jwt`: JWT license file for NGINX Plus license management
    - `nginx.conf`: User defined `nginx.conf` with `app-protect-dos` enabled
    - `entrypoint.sh`: Docker startup script which spins up all App Protect DoS processes, must have executable permissions
+   - custom_log_format.json: Optional user-defined security log format file (if not used - remove its references from the nginx.conf and Dockerfile)
 
-2. Log in to NGINX Plus Customer Portal and download your `nginx-repo.crt`, `nginx-repo.key`, and `license.jwt` files.
+2. Log in to NGINX Plus Customer Portal and download your `nginx-repo.crt`, `nginx-repo.key` and `license.jwt` files.
 
 3. Copy the files to the directory where the Dockerfile is located.
 
@@ -1361,8 +1358,6 @@ You need root permissions to execute the following steps.
 
 5. In the same directory create an `entrypoint.sh` file with executable permissions, with the following content:
 
-    For CentOS 7 / UBI 7:
-
     ```shell
     #!/usr/bin/env bash
 
@@ -1371,64 +1366,48 @@ You need root permissions to execute the following steps.
 
     # prepare environment
     mkdir -p /var/run/adm /tmp/cores ${LOGDIR}
-    chmod 755 /var/run/adm /tmp/cores ${LOGDIR}
-    chown ${USER}:${USER} /var/run/adm /tmp/cores ${LOGDIR}
-
-    LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/rpm/lib64
-    export LD_LIBRARY_PATH
-
-    # run processes
-    /bin/su -s /bin/bash -c "/usr/bin/adminstall > ${LOGDIR}/adminstall.log 2>&1" ${USER}
-    /usr/sbin/nginx -g 'daemon off;' &
-    /bin/su -s /bin/bash -c "/usr/bin/admd -d --log info > ${LOGDIR}/admd.log 2>&1 &" ${USER}
-    ```
-
-    For Alpine / Debian / Ubuntu / UBI 8/ UBI 9:
-
-    ```shell
-    #!/usr/bin/env bash
-
-    USER=nginx
-    LOGDIR=/var/log/adm
-
-    # prepare environment
-    mkdir -p /var/run/adm /tmp/cores ${LOGDIR}
-    chmod 755 /var/run/adm /tmp/cores ${LOGDIR}
+    chmod55 /var/run/adm /tmp/cores ${LOGDIR}
     chown ${USER}:${USER} /var/run/adm /tmp/cores ${LOGDIR}
 
     # run processes
     /bin/su -s /bin/bash -c "/usr/bin/adminstall > ${LOGDIR}/adminstall.log 2>&1" ${USER}
-    /usr/sbin/nginx -g 'daemon off;' &
     /bin/su -s /bin/bash -c "/usr/bin/admd -d --log info > ${LOGDIR}/admd.log 2>&1 &" ${USER}
+    /usr/sbin/nginx -g 'daemon off;'
     ```
 
 6. Create a Docker image:
 
     ```shell
-    docker build --no-cache --platform linux/amd64 -t app-protect-dos .
+    DOCKER_BUILDKIT=1 docker build --no-cache --platform linux/amd64 --secret id=nginx-crt,src=nginx-repo.crt --secret id=nginx-key,src=nginx-repo.key --secret id=license-jwt,src=./license.jwt -t app-protect-dos .
     ```
 
     The `--no-cache` option tells Docker to build the image from scratch and ensures the installation of the latest version of NGINX Plus and NGINX App Protect DoS. If the Dockerfile was previously used to build an image without the `--no-cache` option, the new image uses versions from the previously built image from the Docker cache.
 
-7. Verify that the `app-protect-dos` image was created successfully with the docker images command:
+   For RHEL8/9 with subctiption manager setup add build arguments:
+   
+    ```shell
+    DOCKER_BUILDKIT=1 docker build --build-arg RHEL_ORG=... --build-arg RHEL_ACTIVATION_KEY=...  --no-cache --platform linux/amd64 --secret id=nginx-crt,src=nginx-repo.crt --secret id=nginx-key,src=nginx-repo.key --secret id=license-jwt,src=./license.jwt -t app-protect-dos .
+    ```
+
+8. Verify that the `app-protect-dos` image was created successfully with the docker images command:
 
     ```shell
     docker images app-protect-dos
     ```
 
-8. Create a container based on this image, for example, `my-app-protect-dos` container:
+9. Create a container based on this image, for example, `my-app-protect-dos` container:
 
     ```shell
     docker run --name my-app-protect-dos -p 80:80 -d app-protect-dos
     ```
 
-9. Verify that the `my-app-protect-dos` container is up and running with the `docker ps` command:
+10. Verify that the `my-app-protect-dos` container is up and running with the `docker ps` command:
 
     ```shell
     docker ps
     ```
 
-10. L4 Accelerated Mitigation Deployment Options:<br>
+11. L4 Accelerated Mitigation Deployment Options:<br>
     There are three different ways to deploy the L4 accelerated mitigation feature:<br>
     1. Deploy in a Dedicated Container. <br>
        Create a shared folder on the host:
@@ -1478,289 +1457,44 @@ You need root permissions to execute the following steps.
    - `app-protect-dos-ebpf-manager` need to run with root privileges.
    {{< /call-out >}}
 
-### CentOS 7.4 Docker Deployment Example
-
-```dockerfile
-# For CentOS 7:
-FROM centos:7.4.1708
-
-# Download certificate and key from the customer portal (https://my.f5.com)
-# and copy to the build context:
-COPY nginx-repo.crt nginx-repo.key /etc/ssl/nginx/
-
-# Install prerequisite packages:
-RUN yum -y install wget ca-certificates epel-release
-
-# Add NGINX Plus and  NGINX App Protect DoS repo to Yum:
-RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/nginx-plus-7.4.repo
-RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-dos-7.repo
-
-# Install NGINX App Protect DoS:
-RUN yum -y install app-protect-dos \
-    && yum clean all \
-    && rm -rf /var/cache/yum \
-    && rm -rf /etc/ssl/nginx
-
-# Copy configuration files:
-COPY nginx.conf /etc/nginx/
-COPY entrypoint.sh  /root/
-
-CMD /root/entrypoint.sh && tail -f /dev/null
-```
-
-### UBI7 Docker Deployment Example
-
-```Dockerfile
-FROM registry.access.redhat.com/ubi7:ubi
-
-# Download certificate and key from the customer portal (https://my.f5.com)
-# and copy to the build context:
-COPY nginx-repo.crt nginx-repo.key /etc/ssl/nginx/
-
-# Setup the Redhat subscription
-RUN subscription-manager register --force --org=${RHEL_ORG} --activationkey=${RHEL_ACTIVATION_KEY}
-RUN subscription-manager refresh
-RUN subscription-manager attach --auto
-
-# Install prerequisite packages:
-RUN yum -y install wget ca-certificates
-
-# Install dependencies
-RUN subscription-manager repos --enable rhel-*-optional-rpms \
-                               --enable rhel-*-extras-rpms \
-                               --enable rhel-ha-for-rhel-*-server-rpms
-RUN yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-
-# Add NGINX Plus and NGINX App Protect DoS repo to Yum:
-RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/nginx-plus-7.4.repo
-RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-dos-7.repo
-
-# Install NGINX App Protect DoS:
-RUN yum -y install app-protect-dos \
-    && yum clean all \
-    && rm -rf /var/cache/yum \
-    && rm -rf /etc/ssl/nginx
-
-# Copy configuration files:
-COPY nginx.conf /etc/nginx/
-COPY entrypoint.sh  /root/
-
-CMD /root/entrypoint.sh && tail -f /dev/null
-```
-
-### RHEL 8 / Rocky Linux 8 Docker Deployment Example
-
-```Dockerfile
-# For UBI 8
-FROM registry.access.redhat.com/ubi8:ubi
-
-# Download certificate, key, and JWT license from the customer portal (https://my.f5.com)
-# and copy to the build context:
-RUN mkdir -p /etc/ssl/nginx/
-RUN mkdir -p /etc/nginx/
-COPY nginx-repo.crt nginx-repo.key /etc/ssl/nginx/
-COPY nginx-repo.crt license.jwt /etc/nginx/
-
-# Setup the Redhat subscription
-RUN subscription-manager register --force --org=${RHEL_ORG} --activationkey=${RHEL_ACTIVATION_KEY}
-RUN subscription-manager refresh
-RUN subscription-manager attach --auto
-
-# Setup repos and Install dependencies
-RUN subscription-manager repos --enable=rhel-8-for-x86_64-baseos-rpms
-RUN subscription-manager repos --enable=rhel-8-for-x86_64-appstream-rpms
-RUN dnf -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
-
-# Install prerequisite packages:
-RUN dnf -y install wget ca-certificates
-
-# Add NGINX Plus and NGINX App Protect DoS repo to Yum: https://cs.nginx.com/static/files/nginx-plus-8.4.repo
-RUN wget -P /etc/yum.repos.d
-RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-dos-8.repo
-
-# Install NGINX App Protect DoS:
-RUN dnf -y install app-protect-dos \
-    && dnf clean all \
-    && rm -rf /var/cache/yum \
-    && rm -rf /etc/ssl/nginx
-
-# Copy configuration files:
-COPY nginx.conf /etc/nginx/
-COPY entrypoint.sh  /root/
-
-CMD /root/entrypoint.sh && tail -f /dev/null
-```
-
-### RHEL 9 Docker Deployment Example
-
-```Dockerfile
-# For RHEL ubi9:
-FROM registry.access.redhat.com/ubi9/ubi
-
-# Download certificate, key, and JWT license from the customer portal (https://my.f5.com)
-# and copy to the build context:
-RUN mkdir -p /etc/ssl/nginx/
-RUN mkdir -p /etc/nginx/
-COPY nginx-repo.crt nginx-repo.key /etc/ssl/nginx/
-COPY nginx-repo.crt license.jwt /etc/nginx/
-
-# Setup the Redhat subscription
-RUN subscription-manager register --force --org=${RHEL_ORG} --activationkey=${RHEL_ACTIVATION_KEY}
-RUN subscription-manager refresh
-RUN subscription-manager attach --auto
-
-# Setup repos and Install dependencies
-RUN subscription-manager repos --enable=rhel-9-for-x86_64-baseos-rpms
-RUN subscription-manager repos --enable=rhel-9-for-x86_64-appstream-rpms
-RUN dnf -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
-
-# Install prerequisite packages:
-RUN dnf -y install wget ca-certificates
-
-# Add NGINX Plus repo to Yum:
-RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/plus-9.repo
-
-# Add NGINX App-protect & dependencies repo to Yum:
-RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-dos-9.repo
-RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.repo \
-    # You can use either of the dependencies or epel repo
-    # && rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm \
-    && dnf clean all
-
-# Install NGINX App Protect DoS:
-RUN dnf -y install app-protect-dos \
-    && dnf clean all \
-    && rm -rf /var/cache/yum \
-    && rm -rf /etc/ssl/nginx
-
-# Copy configuration files:
-COPY nginx.conf /etc/nginx/
-COPY entrypoint.sh  /root/
-
-CMD /root/entrypoint.sh && tail -f /dev/null
-```
-
-
-### Debian 10 (Buster) / Debian 11 (Bullseye) / Debian 12 (Bookworm) Docker Deployment Example
-
-```Dockerfile
-
-ARG OS_CODENAME
-# Where OS_CODENAME can be: buster/bullseye/bookworm
-
-FROM debian:${OS_CODENAME}
-
-# Download certificate, key, and JWT license from the customer portal (https://my.f5.com)
-# and copy to the build context:
-RUN mkdir -p /etc/ssl/nginx/
-RUN mkdir -p /etc/nginx/
-COPY nginx-repo.crt nginx-repo.key /etc/ssl/nginx/
-COPY nginx-repo.crt license.jwt /etc/nginx/
-
-# Install prerequisite packages:
-RUN apt-get update && apt-get install -y apt-transport-https lsb-release ca-certificates wget gnupg2 debian-archive-keyring
-
-# Download and add the NGINX signing key:
-RUN wget https://cs.nginx.com/static/keys/nginx_signing.key && apt-key add nginx_signing.key
-RUN wget -qO - https://cs.nginx.com/static/keys/nginx_signing.key | gpg --dearmor | tee /usr/share/keyrings/nginx-archive-keyring.gpg >/dev/null
-
-# Add NGINX Plus and NGINX App Protect DoS repository:
-RUN printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https://pkgs.nginx.com/plus/debian `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/nginx-plus.list
-RUN printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https://pkgs.nginx.com/app-protect-dos/debian `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/nginx-app-protect-dos.list
-
-# Download the apt configuration to `/etc/apt/apt.conf.d`:
-RUN wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
-
-# Update the repository and install the most recent version of the NGINX App Protect package (which includes NGINX Plus):
-RUN apt-get update && apt-get install -y app-protect-dos
-
-# Remove nginx repository key/cert from docker
-RUN rm -rf /etc/ssl/nginx
-
-# Copy configuration files:
-COPY nginx.conf /etc/nginx/
-COPY entrypoint.sh  /root/
-
-CMD /root/entrypoint.sh && tail -f /dev/null
-```
-
-### Ubuntu 18.04 (Bionic) / 20.04 (Focal) / 22.04 (Jammy) / 24.04 (Noble) Docker Deployment Example
-
-```Dockerfile
-
-ARG OS_CODENAME
-# Where OS_CODENAME can be: bionic/focal/jammy/noble
-
-FROM ubuntu:${OS_CODENAME}
-
-# Download certificate, key, and JWT license from the customer portal (https://my.f5.com)
-# and copy to the build context:
-RUN mkdir -p /etc/ssl/nginx/
-RUN mkdir -p /etc/nginx/
-COPY nginx-repo.crt nginx-repo.key /etc/ssl/nginx/
-COPY nginx-repo.crt license.jwt /etc/nginx/
-
-# Install prerequisite packages:
-RUN apt-get update && apt-get install -y apt-transport-https lsb-release ca-certificates wget gnupg2 ubuntu-keyring
-
-# Download and add the NGINX signing key:
-RUN wget -qO - https://cs.nginx.com/static/keys/nginx_signing.key | gpg --dearmor | tee /usr/share/keyrings/nginx-archive-keyring.gpg >/dev/null
-
-# Add NGINX Plus and NGINX App Protect DoS repository:
-RUN printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https://pkgs.nginx.com/plus/ubuntu `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/nginx-plus.list
-RUN printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https://pkgs.nginx.com/app-protect-dos/ubuntu `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/nginx-app-protect-dos.list
-
-# Download the apt configuration to `/etc/apt/apt.conf.d`:
-RUN wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
-
-# Update the repository and install the most recent version of the NGINX App Protect DoS package (which includes NGINX Plus):
-RUN apt-get update && apt-get install -y app-protect-dos
-
-# Remove nginx repository key/cert from docker
-RUN rm -rf /etc/ssl/nginx
-
-# Copy configuration files:
-COPY nginx.conf /etc/nginx/
-COPY entrypoint.sh /root/
-
-CMD /root/entrypoint.sh && tail -f /dev/null
-```
 
 ### Alpine Docker Deployment Example
 
 ```Dockerfile
-# For Alpine 3.15 / 3.17 / 3.19:
-ARG OS_CODENAME
-# Where OS_CODENAME can be: 3.15 / 3.17 / 3.19
-FROM alpine:${OS_CODENAME}
+# syntax=docker/dockerfile:1
+# For Alpine 3.19:
+FROM alpine:3.19
 
-# Download certificate, key, and JWT license from the customer portal (https://my.f5.com)
-# and copy to the build context:
-RUN mkdir -p /etc/ssl/nginx/
-RUN mkdir -p /etc/nginx/
-COPY nginx-repo.crt nginx-repo.key /etc/ssl/nginx/
-COPY nginx-repo.crt license.jwt /etc/nginx/
-
-# Download and add the NGINX signing key:
+# Download and add the NGINX signing keys:
 RUN wget -O /etc/apk/keys/nginx_signing.rsa.pub https://cs.nginx.com/static/keys/nginx_signing.rsa.pub
 
-# Add NGINX Plus repository:
-RUN printf "https://pkgs.nginx.com/plus/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | tee -a /etc/apk/repositories
+# Add NGINX Plus/NGINX App Protect Dos repository:
+RUN printf "https://pkgs.nginx.com/plus/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | tee -a /etc/apk/repositories && \
+    printf "https://pkgs.nginx.com/app-protect-dos/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | tee -a /etc/apk/repositories
 
-# Add NGINX App Protect DoS repository:
-RUN printf "https://pkgs.nginx.com/app-protect-dos/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | tee -a /etc/apk/repositories
-
-# Add prerequisite packages
-RUN apk update && apk add bash
-
-# Update the repository and install the most recent version of the NGINX App Protect DoS package (which includes NGINX Plus):
+# Update the repository and install the most recent version of the NGINX App Protect Dos package (which includes NGINX Plus):
 RUN --mount=type=secret,id=nginx-crt,dst=/etc/apk/cert.pem,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/apk/cert.key,mode=0644 \
-    apk update && apk add nginx-plus app-protect-dos
+    --mount=type=secret,id=license-jwt,dst=license.jwt,mode=0644 \
+    apk update && apk add app-protect-dos && \
+    cat license.jwt > /etc/nginx/license.jwt
+
+# Forward request logs to Docker log collector:
+RUN ln -sf /dev/stdout /var/log/nginx/access.log && \
+    ln -sf /dev/stderr /var/log/nginx/error.log
+
+# Forward request logs to Docker log collector:
+RUN ln -sf /dev/stdout /var/log/nginx/access.log && \
+    ln -sf /dev/stderr /var/log/nginx/error.log
 
 # Copy configuration files:
-COPY nginx.conf /etc/nginx/
+COPY nginx.conf custom_log_format.json /etc/nginx/
 COPY entrypoint.sh /root/
+RUN chmod +x /root/entrypoint.sh
+
+EXPOSE 80
+
+STOPSIGNAL SIGQUIT
 
 CMD ["sh", "/root/entrypoint.sh"]
 ```
@@ -1769,37 +1503,208 @@ CMD ["sh", "/root/entrypoint.sh"]
 
 ```Dockerfile
 # For AmazonLinux 2023:
-FROM registry.access.redhat.com/ubi9/ubi
-
-# Download certificate, key, and JWT license from the customer portal (https://my.f5.com)
-# and copy to the build context:
-RUN mkdir -p /etc/ssl/nginx/
-RUN mkdir -p /etc/nginx/
-COPY nginx-repo.crt nginx-repo.key /etc/ssl/nginx/
-COPY nginx-repo.crt license.jwt /etc/nginx/
+FROM amazonlinux:2023
 
 # Install prerequisite packages:
-RUN dnf -y install wget ca-certificates
+RUN dnf -y install ca-certificates
 
-# Add NGINX Plus repo to Yum:
-RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/plus-amazonlinux2023.repo
-
-# Add NGINX App-protect & dependencies repo to Yum:
-RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-dos-amazonlinux2023.repo
+# Add NGINX Plus/NGINX App Protect Dos repository:
+RUN curl -o /etc/yum.repos.d/plus-amazonlinux2023.repo https://cs.nginx.com/static/files/plus-amazonlinux2023.repo && \
+    curl -o  /etc/yum.repos.d/app-protect-dos-amazonlinux2023.repo https://cs.nginx.com/static/files/app-protect-dos-amazonlinux2023.repo
 
 # Install NGINX App Protect DoS:
-RUN dnf -y install app-protect-dos \
-    && dnf clean all \
-    && rm -rf /var/cache/yum \
-    && rm -rf /etc/ssl/nginx
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
+    --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
+    --mount=type=secret,id=license-jwt,dst=license.jwt,mode=0644 \
+    dnf install -y app-protect-dos && \
+    cat license.jwt > /etc/nginx/license.jwt && \
+    rm /etc/yum.repos.d/plus-amazonlinux2023.repo && \
+    rm /etc/yum.repos.d/app-protect-dos-amazonlinux2023.repo && \
+    dnf clean all && \
+    rm -rf /var/cache/dnf
+
+# Forward request logs to Docker log collector:
+RUN ln -sf /dev/stdout /var/log/nginx/access.log && \
+    ln -sf /dev/stderr /var/log/nginx/error.log
 
 # Copy configuration files:
-COPY nginx.conf /etc/nginx/
-COPY entrypoint.sh  /root/
+COPY nginx.conf custom_log_format.json /etc/nginx/
+COPY entrypoint.sh /root/
+RUN chmod +x /root/entrypoint.sh
 
-CMD /root/entrypoint.sh && tail -f /dev/null
+EXPOSE 80
+
+STOPSIGNAL SIGQUIT
+
+CMD ["sh", "/root/entrypoint.sh"]
 ```
 
+### Debian 11 (Bullseye) / Debian 12 (Bookworm) Docker Deployment Example
+
+```Dockerfile
+# Where can be bullseye/bookworm
+FROM debian:bullseye
+
+# Setup repository keys
+RUN mkdir -p /etc/ssl/nginx/ /etc/nginx/ && \
+    apt-get update && \
+    apt-get install -y --no-install-recommends apt-transport-https lsb-release ca-certificates wget gnupg2 debian-archive-keyring && \
+    wget -qO - https://cs.nginx.com/static/keys/nginx_signing.key | gpg --dearmor | tee /usr/share/keyrings/nginx-archive-keyring.gpg >/dev/null && \
+    printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https://pkgs.nginx.com/plus/debian $(lsb_release -cs) nginx-plus\n" > /etc/apt/sources.list.d/nginx-plus.list && \
+    printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https://pkgs.nginx.com/app-protect-dos/debian $(lsb_release -cs) nginx-plus\n" > /etc/apt/sources.list.d/nginx-app-protect-dos.list && \
+    wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
+
+# Install Nginx App Protect Dos
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
+    --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
+    --mount=type=secret,id=license-jwt,dst=license.jwt,mode=0644 \
+    apt-get update && DEBIAN_FRONTEND="noninteractive" apt-get install -y app-protect-dos && \
+    cat license.jwt > /etc/nginx/license.jwt && \
+    apt-get remove --purge --auto-remove -y && rm -rf /var/lib/apt/lists/* /etc/apt/sources.list.d/nginx-plus.list /etc/apt/sources.list.d/nginx-app-protect-dos.list  && \
+    rm -rf /etc/apt/apt.conf.d/90nginx /var/lib/apt/lists/*
+
+# Forward request logs to Docker log collector:
+RUN ln -sf /dev/stdout /var/log/nginx/access.log && \
+    ln -sf /dev/stderr /var/log/nginx/error.log
+
+COPY nginx.conf /etc/nginx/
+COPY entrypoint.sh /root/
+RUN chmod +x /root/entrypoint.sh
+
+EXPOSE 80
+
+STOPSIGNAL SIGQUIT
+
+CMD ["sh", "/root/entrypoint.sh"]
+```
+
+### Ubuntu 22.04 (Jammy) / 24.04 (Noble) Docker Deployment Example
+
+```Dockerfile
+# Where version can be: jammy/noble
+FROM ubuntu:noble
+
+# Setup repository keys
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends apt-transport-https lsb-release ca-certificates wget gnupg2 ubuntu-keyring && \
+    wget -qO - https://cs.nginx.com/static/keys/nginx_signing.key | gpg --dearmor | tee /usr/share/keyrings/nginx-archive-keyring.gpg >/dev/null && \
+    printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https://pkgs.nginx.com/plus/ubuntu $(lsb_release -cs) nginx-plus\n" > /etc/apt/sources.list.d/nginx-plus.list && \
+    printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https://pkgs.nginx.com/app-protect-dos/ubuntu $(lsb_release -cs) nginx-plus\n" > /etc/apt/sources.list.d/nginx-app-protect-dos.list && \
+    wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
+
+# Install Nginx App Protect Dos
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
+    --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
+    --mount=type=secret,id=license-jwt,dst=license.jwt,mode=0644 \
+    apt-get update && DEBIAN_FRONTEND="noninteractive" apt-get install -y app-protect-dos && \
+    cat license.jwt > /etc/nginx/license.jwt && \
+    apt-get remove --purge --auto-remove -y && rm -rf /var/lib/apt/lists/* /etc/apt/sources.list.d/nginx-plus.list /etc/apt/sources.list.d/nginx-app-protect-dos.list && \
+    rm -rf /etc/apt/apt.conf.d/90nginx /var/lib/apt/lists/*
+
+# Forward request logs to Docker log collector:
+RUN ln -sf /dev/stdout /var/log/nginx/access.log && \
+    ln -sf /dev/stderr /var/log/nginx/error.log
+
+COPY nginx.conf /etc/nginx/
+COPY entrypoint.sh /root/
+RUN chmod +x /root/entrypoint.sh
+
+EXPOSE 80
+
+STOPSIGNAL SIGQUIT
+
+CMD ["sh", "/root/entrypoint.sh"]
+```
+
+### RHEL 8 Docker Deployment Example
+
+```Dockerfile
+# For UBI 8
+FROM registry.access.redhat.com/ubi8
+
+ARG RHEL_ORG
+ARG RHEL_ACTIVATION_KEY
+
+# Setup repository keys
+RUN subscription-manager register --org=${RHEL_ORG} --activationkey=${RHEL_ACTIVATION_KEY} && \
+    subscription-manager refresh && \
+    subscription-manager attach --auto || true && \
+    subscription-manager repos --enable=rhel-8-for-x86_64-baseos-rpms && \
+    subscription-manager repos --enable=rhel-8-for-x86_64-appstream-rpms && \
+    dnf -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm && \
+    dnf -y install ca-certificates && \
+    curl -o /etc/yum.repos.d/plus-8.repo https://cs.nginx.com/static/files/plus-8.repo && \
+    curl -o /etc/yum.repos.d/app-protect-dos-8.repo https://cs.nginx.com/static/files/app-protect-dos-8.repo
+
+# Install Nginx App Protect Dos
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
+    --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
+    --mount=type=secret,id=license-jwt,dst=license.jwt,mode=0644 \
+    dnf -y install app-protect-dos && \
+    cat license.jwt > /etc/nginx/license.jwt && \
+    rm /etc/yum.repos.d/plus-8.repo && \
+    rm /etc/yum.repos.d/app-protect-dos-8.repo && \
+    dnf clean all && \
+    rm -rf /var/cache/yum
+
+# Forward request logs to Docker log collector:
+RUN ln -sf /dev/stdout /var/log/nginx/access.log && \
+    ln -sf /dev/stderr /var/log/nginx/error.log
+
+# Copy configuration files:
+COPY nginx.conf custom_log_format.json /etc/nginx/
+COPY entrypoint.sh /root/
+RUN chmod +x /root/entrypoint.sh
+
+EXPOSE 80
+
+STOPSIGNAL SIGQUIT
+
+CMD ["sh", "/root/entrypoint.sh"]
+```
+
+### Rocky Linux 9 Docker Deployment Example
+
+```Dockerfile
+# syntax=docker/dockerfile:1
+# For Rocky Linux 9:
+FROM rockylinux:9
+
+# Install prerequisite packages:
+RUN dnf -y install ca-certificates epel-release 'dnf-command(config-manager)'
+
+# Add NGINX App-protect-DoS & NGINX Plus repo to Yum:
+RUN curl -o /etc/yum.repos.d/plus-9.repo https://cs.nginx.com/static/files/plus-9.repo && \
+    curl -o /etc/yum.repos.d/app-protect-dos-9.repo https://cs.nginx.com/static/files/app-protect-dos-9.repo && \
+    dnf config-manager --set-enabled crb && \
+    dnf clean all
+
+# Install NGINX App Protect DoS:
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
+    --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
+    --mount=type=secret,id=license-jwt,dst=license.jwt,mode=0644 \
+    dnf install -y app-protect-dos && \
+    cat license.jwt > /etc/nginx/license.jwt && \
+    rm /etc/yum.repos.d/plus-9.repo && \
+    rm /etc/yum.repos.d/app-protect-dos-9.repo && \
+    dnf clean all && \
+    rm -rf /var/cache/dnf
+
+# Forward request logs to Docker log collector:
+RUN ln -sf /dev/stdout /var/log/nginx/access.log && \
+    ln -sf /dev/stderr /var/log/nginx/error.log
+
+# Copy configuration files:
+COPY nginx.conf custom_log_format.json /etc/nginx/
+COPY entrypoint.sh /root/
+RUN chmod +x /root/entrypoint.sh
+
+EXPOSE 80
+
+STOPSIGNAL SIGQUIT
+
+CMD ["sh", "/root/entrypoint.sh"]
+```
 
 ## Docker Deployment with NGINX App Protect
 
@@ -1814,12 +1719,28 @@ You need root permissions to execute the following steps.
     - `license.jwt`: JWT license file for NGINX Plus license management
     - `nginx.conf`: User defined `nginx.conf` with `app-protect-dos` enabled
     - `entrypoint.sh`: Docker startup script which spins up all App Protect DoS processes, must have executable permissions
+    - `custom_log_format.json`: Optional user-defined security log format file (if not used - remove its references from the nginx.conf and Dockerfile)
 
 2. Log in to NGINX Plus Customer Portal and download your `nginx-repo.crt`, `nginx-repo.key` and `license.jwt` files.
 
 3. Copy the files to the directory where the Dockerfile is located.
 
-4. In the same directory create the `nginx.conf` file with the following contents:
+4. Optionally, create `custom_log_format.json` in the same directory, for example:
+
+    ```json
+    {
+        "filter": {
+            "request_type": "all"
+        },
+        "content": {
+            "format": "splunk",
+            "max_request_size": "any",
+            "max_message_size": "10k"
+        }
+    }
+    ```
+
+5. In the same directory create the `nginx.conf` file with the following contents:
 
     ```nginx
     user nginx;
@@ -1856,6 +1777,7 @@ You need root permissions to execute the following steps.
 
             app_protect_policy_file "/etc/app_protect/conf/NginxDefaultPolicy.json";
             app_protect_security_log_enable on;
+            app_protect_security_log "/etc/nginx/custom_log_format.json" syslog:server=127.0.0.1:514;
 
             set $loggable '0';
             access_log /var/log/nginx/access.log log_napd if=$loggable;
@@ -1907,7 +1829,7 @@ You need root permissions to execute the following steps.
 Make sure to replace upstream and proxy pass directives in this example with relevant application backend settings.
 {{< /call-out >}}
 
-5. For the L4 accelerated mitigation feature: <br />
+6. For the L4 accelerated mitigation feature: <br />
    The following line in the `nginx.conf` file needs to be modified:<br />
    Change:
     ```nginx
@@ -1918,29 +1840,7 @@ Make sure to replace upstream and proxy pass directives in this example with rel
    user root;
    ```
 
-5. In the same directory create an `entrypoint.sh` file with executable permissions, with the following content:
-
-   For CentOS 7 / UBI 7:
-
-     ```shell
-     #!/usr/bin/env bash
-    USER=nginx
-    LOGDIR=/var/log/adm
-
-    # prepare environment
-    mkdir -p /var/run/adm /tmp/cores ${LOGDIR}
-    chmod 755 /var/run/adm /tmp/cores ${LOGDIR}
-    chown ${USER}:${USER} /var/run/adm /tmp/cores ${LOGDIR}
-
-    LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/rpm/lib64
-    export LD_LIBRARY_PATH
-
-    # run processes
-    /bin/su -s /bin/bash -c "/usr/bin/adminstall > ${LOGDIR}/adminstall.log 2>&1" ${USER}/bin/su -s /bin/bash -c '/opt/app_protect/bin/bd_agent &' ${USER}
-    /bin/su -s /bin/bash -c "/usr/share/ts/bin/bd-socket-plugin tmm_count 4 proc_cpuinfo_cpu_mhz 2000000 total_xml_memory 307200000 total_umu_max_size 3129344 sys_max_account_id 1024 no_static_config 2>&1 > /var/log/app_protect/bd-socket-plugin.log &" ${USER}
-    /usr/sbin/nginx -g 'daemon off;' &
-    /bin/su -s /bin/bash -c "/usr/bin/admd -d --log info > ${LOGDIR}/admd.log 2>&1 &" ${USER}
-    ```
+7. In the same directory create an `entrypoint.sh` file with executable permissions, with the following content:
 
    For Alpine / Debian / Ubuntu / UBI 8/ UBI 9:
 
@@ -1957,204 +1857,219 @@ Make sure to replace upstream and proxy pass directives in this example with rel
     # run processes
     /bin/su -s /bin/bash -c "/usr/bin/adminstall > ${LOGDIR}/adminstall.log 2>&1" ${USER}/bin/su -s /bin/bash -c '/opt/app_protect/bin/bd_agent &' ${USER}
     /bin/su -s /bin/bash -c "/usr/share/ts/bin/bd-socket-plugin tmm_count 4 proc_cpuinfo_cpu_mhz 2000000 total_xml_memory 307200000 total_umu_max_size 3129344 sys_max_account_id 1024 no_static_config 2>&1 > /var/log/app_protect/bd-socket-plugin.log &" ${USER}
-    /usr/sbin/nginx -g 'daemon off;' &
     /bin/su -s /bin/bash -c "/usr/bin/admd -d --log info > ${LOGDIR}/admd.log 2>&1 &" ${USER}
+    /usr/sbin/nginx -g 'daemon off;'
     ```
+  
+8. Create a Docker image:
 
-6. Create a Docker image:
-
-    For CentOS:
+    For Debian/Ubuntu/Alpine/Amazon Linux:
 
     ```shell
-    docker build --no-cache --platform linux/amd64 -t app-protect-dos .
-    ```
+    DOCKER_BUILDKIT=1 docker build --no-cache --platform linux/amd64 --secret id=nginx-crt,src=nginx-repo.crt --secret id=nginx-key,src=nginx-repo.key --secret id=license-jwt,src=./license.jwt -t app-protect-dos .    ```
 
     For RHEL:
 
     ```shell
-    docker build --platform linux/amd64 --build-arg RHEL_ORGANIZATION=${RHEL_ORGANIZATION} --build-arg RHEL_ACTIVATION_KEY=${RHEL_ACTIVATION_KEY} --no-cache -t app-protect-dos .
+    DOCKER_BUILDKIT=1 docker build --build-arg RHEL_ORG=... --build-arg RHEL_ACTIVATION_KEY=...  --no-cache --platform linux/amd64 --secret id=nginx-crt,src=nginx-repo.crt --secret id=nginx-key,src=nginx-repo.key --secret id=license-jwt,src=./license.jwt -t app-protect-dos .
     ```
 
-    The `--no-cache` option tells Docker to build the image from scratch and ensures the installation of the latest version of NGINX Plus and NGINX App Protect DoS. If the Dockerfile was previously used to build an image without the `--no-cache` option, the new image uses versions from the previously built image from the Docker cache.
+**Notes:**
+    - The `--no-cache` option tells Docker/Podman to build the image from scratch and ensures the installation of the latest version of NGINX Plus and NGINX App Protect WAF 4.x. If the Dockerfile was previously used to build an image without the `--no-cache` option, the new image uses versions from the previously built image from the cache.
+    - For RHEL:<br>
+    The subscription-manager is disabled when running inside containers based on Red Hat Universal Base images. You will need a registered and subscribed RHEL system.
 
-7. Verify that the `app-protect-dos` image was created successfully with the docker images command:
+9. Verify that the `app-protect-dos` image was created successfully with the docker images command:
 
     ```shell
     docker images app-protect-dos
     ```
 
-8. Create a container based on this image, for example, `my-app-protect-dos` container:
+10. Create a container based on this image, for example, `my-app-protect-dos` container:
 
     ```shell
     docker run --name my-app-protect-dos -p 80:80 -d app-protect-dos
     ```
 
-9. Verify that the `my-app-protect-dos` container is up and running with the `docker ps` command:
+11. Verify that the `my-app-protect-dos` container is up and running with the `docker ps` command:
 
     ```shell
     docker ps
     ```
 
-### Centos 7.4 Docker Deployment Example
+### Alpine Dockerfile example
 
-```Dockerfile
-# For CentOS 7:
-FROM centos:7.4.1708
+```dockerfile
+# syntax=docker/dockerfile:1
+# For Alpine 3.19:
+FROM alpine:3.19
 
-# Download certificate and key from the customer portal (https://my.f5.com)
-# and copy to the build context:
-COPY nginx-repo.crt nginx-repo.key /etc/ssl/nginx/
+# Download and add the NGINX signing keys:
+RUN wget -O /etc/apk/keys/nginx_signing.rsa.pub https://cs.nginx.com/static/keys/nginx_signing.rsa.pub && \
+    wget -O /etc/apk/keys/app-protect-security-updates.rsa.pub https://cs.nginx.com/static/keys/app-protect-security-updates.rsa.pub
 
-# Install prerequisite packages:
-RUN yum -y install wget ca-certificates epel-release
+# Add NGINX Plus repository:
+RUN printf "https://pkgs.nginx.com/plus/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | tee -a /etc/apk/repositories
 
-# Add NGINX Plus, NGINX App Protect DoS and NGINX App Protect repo to Yum:
-RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/nginx-plus-7.4.repo
-RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-dos-7.repo
-RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-7.repo
+# Add NGINX App Protect Waf & Dos repositories:
+RUN printf "https://pkgs.nginx.com/app-protect-dos/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | tee -a /etc/apk/repositories && \
+    printf "https://pkgs.nginx.com/app-protect/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | tee -a /etc/apk/repositories && \
+    printf "https://pkgs.nginx.com/app-protect-security-updates/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | tee -a /etc/apk/repositories
 
-# Install NGINX App Protect DoS and NGINX App Protect:
-RUN yum -y install app-protect-dos app-protect\
-    && yum clean all \
-    && rm -rf /var/cache/yum \
-    && rm -rf /etc/ssl/nginx
+# Update the repository and install the most recent version of the NGINX App Protect DoS package (which includes NGINX Plus):
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/apk/cert.pem,mode=0644 \
+    --mount=type=secret,id=nginx-key,dst=/etc/apk/cert.key,mode=0644 \
+    --mount=type=secret,id=license-jwt,dst=license.jwt,mode=0644 \
+    apk update && apk add app-protect app-protect-dos && \
+    cat license.jwt > /etc/nginx/license.jwt
 
+# Forward request logs to Docker log collector:
+RUN ln -sf /dev/stdout /var/log/nginx/access.log && \
+    ln -sf /dev/stderr /var/log/nginx/error.log
 
-# Copy configuration files:
-COPY nginx.conf custom_log_format.json /etc/nginx/
-COPY entrypoint.sh  /root/
-
-CMD /root/entrypoint.sh && tail -f /dev/null
-```
-
-### RHEL 7.4 Docker Deployment Example
-
-```Dockerfile
-# For Red Hat 7.4+:
-FROM registry.access.redhat.com/rhel7:7.4
-
-# Download certificate and key from the customer portal (https://my.f5.com)
-# and copy to the build context:
-COPY nginx-repo.crt nginx-repo.key /etc/ssl/nginx/
-
-# Setup the Red Hat subscription
-RUN subscription-manager register --force --org=${RHEL_ORG} --activationkey=${RHEL_ACTIVATION_KEY}
-RUN subscription-manager refresh
-RUN subscription-manager attach --auto
-
-# Install prerequisite packages
-RUN yum -y install wget ca-certificates
-
-# Install dependencies
-RUN subscription-manager repos --enable rhel-*-optional-rpms \
-                               --enable rhel-*-extras-rpms \
-                               --enable rhel-ha-for-rhel-*-server-rpms
-RUN yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-
-# Add NGINX Plus, NGINX App Protect DoS and NGINX App Protect repo to Yum:
-RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/nginx-plus-7.4.repo
-RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-dos-7.repo
-RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-7.repo
-
-# Install NGINX App Protect DoS and NGINX App Protect:
-RUN yum -y install app-protect-dos app-protect\
-    && yum clean all \
-    && rm -rf /var/cache/yum \
-    && rm -rf /etc/ssl/nginx
-
-# Copy configuration files:
-COPY nginx.conf custom_log_format.json /etc/nginx/
-COPY entrypoint.sh  /root/
-
-CMD /root/entrypoint.sh && tail -f /dev/null
-```
-
-### Debian 10 (Buster) / Debian 11 (Bullseye)  / Debian 12 (Bookworm) Docker Deployment Example
-
-```Dockerfile
-
-ARG OS_CODENAME
-# Where OS_CODENAME can be: buster/bullseye/bookworm
-
-FROM debian:${OS_CODENAME}
-
-# Download certificate, key, and JWT license from the customer portal (https://my.f5.com)
-# and copy to the build context:
-RUN mkdir -p /etc/ssl/nginx/
-RUN mkdir -p /etc/nginx/
-COPY nginx-repo.crt nginx-repo.key /etc/ssl/nginx/
-COPY nginx-repo.crt license.jwt /etc/nginx/
-
-# Install prerequisite packages:
-RUN apt-get update && apt-get install -y apt-transport-https lsb-release ca-certificates wget gnupg2 debian-archive-keyring
-
-# Download and add the NGINX signing key:
-RUN wget -qO - https://cs.nginx.com/static/keys/nginx_signing.key | gpg --dearmor | tee /usr/share/keyrings/nginx-archive-keyring.gpg >/dev/null
-
-# Add NGINX Plus, NGINX App Protect and NGINX App Protect DoS repository:
-RUN printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https://pkgs.nginx.com/plus/debian `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/nginx-plus.list
-RUN printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https://pkgs.nginx.com/app-protect-dos/debian `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/nginx-app-protect-dos.list
-RUN printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https://pkgs.nginx.com/app-protect/debian `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/nginx-app-protect.list
-
-# Download the apt configuration to `/etc/apt/apt.conf.d`:
-RUN wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
-
-# Update the repository and install the most recent version of the NGINX App Protect DoS and NGINX App Protect package (which includes NGINX Plus):
-RUN apt-get update && apt-get install -y app-protect-dos app-protect
-
-# Remove nginx repository key/cert from docker
-RUN rm -rf /etc/ssl/nginx
-
-# Copy configuration files:
-COPY nginx.conf custom_log_format.json /etc/nginx/
-COPY entrypoint.sh  /root/
-
-CMD /root/entrypoint.sh && tail -f /dev/null
-```
-
-### Ubuntu 18.04 (Bionic) / 20.04 (Focal) / 22.04 (Jammy) / 24.04 (Noble)  Docker Deployment Example
-
-```Dockerfile
-
-ARG OS_CODENAME
-# Where OS_CODENAME can be: bionic/focal/jammy/noble
-
-FROM ubuntu:${OS_CODENAME}
-
-ARG DEBIAN_FRONTEND=noninteractive
-
-# Download certificate, key, and JWT license from the customer portal (https://my.f5.com)
-# and copy to the build context:
-RUN mkdir -p /etc/ssl/nginx/
-RUN mkdir -p /etc/nginx/
-COPY nginx-repo.crt nginx-repo.key /etc/ssl/nginx/
-COPY nginx-repo.crt license.jwt /etc/nginx/
-
-# Install prerequisite packages:
-RUN apt-get update && apt-get install -y apt-transport-https lsb-release ca-certificates wget gnupg2 ubuntu-keyring
-
-# Download and add the NGINX signing key:
-RUN wget -qO - https://cs.nginx.com/static/keys/nginx_signing.key | gpg --dearmor | tee /usr/share/keyrings/nginx-archive-keyring.gpg >/dev/null
-
-# Add NGINX Plus, NGINX App Protect and NGINX App Protect DoS repository:
-RUN printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https://pkgs.nginx.com/plus/ubuntu `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/nginx-plus.list
-RUN printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https://pkgs.nginx.com/app-protect-dos/ubuntu `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/nginx-app-protect-dos.list
-RUN printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https://pkgs.nginx.com/app-protect/ubuntu `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/nginx-app-protect.list
-
-# Download the apt configuration to `/etc/apt/apt.conf.d`:
-RUN wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
-
-# Update the repository and install the most recent version of the NGINX App Protect DoS and NGINX App Protect package (which includes NGINX Plus):
-RUN apt-get update && apt-get install -y app-protect-dos app-protect
-
-# Remove nginx repository key/cert from docker
-RUN rm -rf /etc/ssl/nginx
+# Forward request logs to Docker log collector:
+RUN ln -sf /dev/stdout /var/log/nginx/access.log && \
+    ln -sf /dev/stderr /var/log/nginx/error.log
 
 # Copy configuration files:
 COPY nginx.conf custom_log_format.json /etc/nginx/
 COPY entrypoint.sh /root/
+RUN chmod +x /root/entrypoint.sh
 
-CMD /root/entrypoint.sh && tail -f /dev/null
+EXPOSE 80
+
+STOPSIGNAL SIGQUIT
+
+CMD ["sh", "/root/entrypoint.sh"]
+```
+
+### Amazon Linux Dockerfile example
+
+```dockerfile
+# syntax=docker/dockerfile:1
+FROM amazonlinux:2023
+
+# Install prerequisite packages:
+RUN dnf -y install ca-certificates
+
+# Add NGINX/NAP WAF/NAP DOS repositories:
+RUN curl -o /etc/yum.repos.d/plus-amazonlinux2023.repo https://cs.nginx.com/static/files/plus-amazonlinux2023.repo && \
+    curl -o /etc/yum.repos.d/app-protect-dos-amazonlinux2023.repo https://cs.nginx.com/static/files/app-protect-dos-amazonlinux2023.repo && \
+    curl -o /etc/yum.repos.d/app-protect-amazonlinux2023.repo https://cs.nginx.com/static/files/app-protect-amazonlinux2023.repo && \
+    curl -o /etc/yum.repos.d/dependencies.amazonlinux2023.repo https://cs.nginx.com/static/files/dependencies.amazonlinux2023.repo
+
+# Install NGINX App Protect WAF:
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
+    --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
+    --mount=type=secret,id=license-jwt,dst=license.jwt,mode=0644 \
+    dnf -y install app-protect app-protect-dos  && \
+    cat license.jwt > /etc/nginx/license.jwt && \
+    rm /etc/yum.repos.d/plus-amazonlinux2023.repo && \
+    rm /etc/yum.repos.d/app-protect-dos-amazonlinux2023.repo && \
+    dnf clean all && \
+    rm -rf /var/cache/dnf && \
+    rm -rf /var/cache/yum
+
+# Forward request logs to Docker log collector:
+RUN ln -sf /dev/stdout /var/log/nginx/access.log && \
+    ln -sf /dev/stderr /var/log/nginx/error.log
+
+# Copy configuration files:
+COPY nginx.conf custom_log_format.json /etc/nginx/
+COPY entrypoint.sh /root/
+RUN chmod +x /root/entrypoint.sh
+
+EXPOSE 80
+
+STOPSIGNAL SIGQUIT
+
+CMD ["sh", "/root/entrypoint.sh"]
+```
+
+### Debian Docker Deployment Example
+
+```Dockerfile
+# Where verionn can be: bullseye/bookworm
+FROM debian:bullseye
+
+# Install prerequisite packages:
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends apt-transport-https lsb-release ca-certificates wget gnupg2 debian-archive-keyring && \
+    wget -qO - https://cs.nginx.com/static/keys/nginx_signing.key | gpg --dearmor | tee /usr/share/keyrings/nginx-archive-keyring.gpg >/dev/null
+
+# Add NGINX Plus, NGINX App Protect and NGINX App Protect DoS repository:
+RUN printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https://pkgs.nginx.com/plus/debian `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/nginx-plus.list \
+    && printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https://pkgs.nginx.com/app-protect-dos/debian `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/nginx-app-protect-dos.list \
+    && printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https://pkgs.nginx.com/app-protect/debian `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/nginx-app-protect.list
+
+# Download the apt configuration to `/etc/apt/apt.conf.d`:
+RUN wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
+
+# Install Nginx App Protect Dos
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
+    --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
+    --mount=type=secret,id=license-jwt,dst=license.jwt,mode=0644 \
+    apt-get update && DEBIAN_FRONTEND="noninteractive" apt-get install -y app-protect-dos && \
+    cat license.jwt > /etc/nginx/license.jwt && \
+    apt-get remove --purge --auto-remove -y && rm -rf /var/lib/apt/lists/* /etc/apt/sources.list.d/nginx-plus.list /etc/apt/sources.list.d/nginx-app-protect-dos.list  && \
+    rm -rf /etc/apt/apt.conf.d/90nginx /var/lib/apt/lists/*
+
+# Forward request logs to Docker log collector:
+RUN ln -sf /dev/stdout /var/log/nginx/access.log && \
+    ln -sf /dev/stderr /var/log/nginx/error.log
+
+COPY nginx.conf /etc/nginx/
+COPY entrypoint.sh /root/
+RUN chmod +x /root/entrypoint.sh
+
+EXPOSE 80
+
+STOPSIGNAL SIGQUIT
+
+CMD ["sh", "/root/entrypoint.sh"]
+```
+
+### Ubuntu Docker Deployment Example
+
+```Dockerfile
+# Where version can be:jammy/noble
+FROM ubuntu:noble
+
+# Install prerequisite packages:
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends apt-transport-https lsb-release ca-certificates wget gnupg2 ubuntu-keyring && \
+    wget -qO - https://cs.nginx.com/static/keys/nginx_signing.key | gpg --dearmor | tee /usr/share/keyrings/nginx-archive-keyring.gpg >/dev/null
+
+# Add NGINX Plus, NGINX App Protect and NGINX App Protect DoS repository:
+RUN printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https://pkgs.nginx.com/plus/ubuntu `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/nginx-plus.list \
+    && printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https://pkgs.nginx.com/app-protect-dos/ubuntu `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/nginx-app-protect-dos.list \
+    && printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https://pkgs.nginx.com/app-protect/ubuntu `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/nginx-app-protect.list
+
+# Download the apt configuration to `/etc/apt/apt.conf.d`:
+RUN wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
+
+# Install Nginx App Protect Dos
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
+    --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
+    --mount=type=secret,id=license-jwt,dst=license.jwt,mode=0644 \
+    apt-get update && DEBIAN_FRONTEND="noninteractive" apt-get install -y app-protect-dos && \
+    cat license.jwt > /etc/nginx/license.jwt && \
+    apt-get remove --purge --auto-remove -y && rm -rf /var/lib/apt/lists/* /etc/apt/sources.list.d/nginx-plus.list /etc/apt/sources.list.d/nginx-app-protect-dos.list  && \
+    rm -rf /etc/apt/apt.conf.d/90nginx /var/lib/apt/lists/*
+
+# Forward request logs to Docker log collector:
+RUN ln -sf /dev/stdout /var/log/nginx/access.log && \
+    ln -sf /dev/stderr /var/log/nginx/error.log
+
+COPY nginx.conf /etc/nginx/
+COPY entrypoint.sh /root/
+RUN chmod +x /root/entrypoint.sh
+
+EXPOSE 80
+
+STOPSIGNAL SIGQUIT
+
+CMD ["sh", "/root/entrypoint.sh"]
 ```
 
 ## NGINX App Protect DoS Arbitrator

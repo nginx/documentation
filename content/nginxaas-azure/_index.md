@@ -36,7 +36,6 @@ and reliable with full lifecycle management of advanced NGINX traffic services.
 
 {{<card-layout>}}
   {{<card-section showAsCards="true" >}}
-
     {{<card title="Marketplace billing" titleUrl="/nginxaas/azure/billing/overview/" icon="wallet">}}
       See the pricing plans and learn about NGINX Capacity Units (NCUs)
     {{</card>}}
