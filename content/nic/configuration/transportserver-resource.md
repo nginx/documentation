@@ -84,8 +84,8 @@ The TransportServer resource defines load balancing configuration for TCP, UDP, 
       pass: secure-app
   ```
 
-{{<bootstrap-table "table table-striped table-bordered table-responsive">}}
-|Field | Description | Type | Required |
+{{< table >}}
+| Field | Description | Type | Required |
 | ---| ---| ---| --- |
 |``listener`` | The listener on NGINX that will accept incoming connections/datagrams. | [listener](#listener) | Yes |
 |``host`` | The host (domain name) of the server. Must be a valid subdomain as defined in RFC 1123, such as ``my-app`` or ``hello.example.com``. Wildcard domains like ``*.example.com`` are not allowed. When specified, NGINX will use this host for SNI-based routing. For TLS Passthrough, this field is required. For TCP with TLS termination, specifying the host enables SNI routing and requires specifying a TLS secret.| ``string`` | No |
@@ -96,7 +96,8 @@ The TransportServer resource defines load balancing configuration for TCP, UDP, 
 |``ingressClassName`` | Specifies which Ingress Controller must handle the TransportServer resource. | ``string`` | No |
 |``streamSnippets`` | Sets a custom snippet in the ``stream`` context. | ``string`` | No |
 |``serverSnippets`` | Sets a custom snippet in the ``server`` context. | ``string`` | No |
-{{</bootstrap-table>}}
+{{< /table >}}
+
 
 \* -- Required for TLS Passthrough load balancing.
 
@@ -114,12 +115,10 @@ listener:
   protocol: UDP
 ```
 
-{{<bootstrap-table "table table-striped table-bordered table-responsive">}}
 |Field | Description | Type | Required |
 | ---| ---| ---| --- |
 |``name`` | The name of the listener. | ``string`` | Yes |
 |``protocol`` | The protocol of the listener. | ``string`` | Yes |
-{{</bootstrap-table>}}
 
 ### TLS
 
@@ -129,11 +128,9 @@ The tls field defines TLS configuration for a TransportServer. When using TLS te
 secret: cafe-secret
 ```
 
-{{<bootstrap-table "table table-striped table-bordered table-responsive">}}
 |Field | Description | Type | Required |
 | ---| ---| ---| --- |
 |``secret`` | The name of a secret with a TLS certificate and key. The secret must belong to the same namespace as the TransportServer. The secret must be of the type ``kubernetes.io/tls`` and contain keys named ``tls.crt`` and ``tls.key`` that contain the certificate and private key as described [here](https://kubernetes.io/docs/concepts/services-networking/ingress/#tls). | ``string`` | No |
-{{</bootstrap-table>}}
 
 ### Upstream
 
@@ -149,7 +146,7 @@ failTimeout: 30s
 loadBalancingMethod: least_conn
 ```
 
-{{<bootstrap-table "table table-striped table-bordered table-responsive">}}
+{{< table >}}
 |Field | Description | Type | Required |
 | ---| ---| ---| --- |
 |``name`` | The name of the upstream. Must be a valid DNS label as defined in RFC 1035. For example, ``hello`` and ``upstream-123`` are valid. The name must be unique among all upstreams of the resource. | ``string`` | Yes |
@@ -162,7 +159,7 @@ loadBalancingMethod: least_conn
 |``loadBalancingMethod`` | The method used to load balance the upstream servers. By default, connections are distributed between the servers using a weighted round-robin balancing method. See the [upstream](http://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#upstream) section for available methods and their details. | ``string`` | No |
 |``backup`` | The name of the backup service of type [ExternalName](https://kubernetes.io/docs/concepts/services-networking/service/#externalname). This will be used when the primary servers are unavailable. Note: The parameter cannot be used along with the ``random`` , ``hash`` or ``ip_hash`` load balancing methods. | ``string`` | No |
 |``backupPort`` | The port of the backup service. The backup port is required if the backup service name is provided. The port must fall into the range ``1..65535``. | ``uint16`` | No |
-{{</bootstrap-table>}}
+{{< /table >}}
 
 ### Upstream.Healthcheck
 
@@ -184,7 +181,6 @@ healthCheck:
 
 {{< call-out "note" >}} This feature is only supported with NGINX Plus. {{< /call-out >}}
 
-{{<bootstrap-table "table table-striped table-bordered table-responsive">}}
 |Field | Description | Type | Required |
 | ---| ---| ---| --- |
 |``enable`` | Enables a health check for an upstream server. The default is ``false``. | ``boolean`` | No |
@@ -195,7 +191,6 @@ healthCheck:
 |``passes`` | The number of consecutive passed health checks of a particular upstream server after which the server will be considered healthy. The default is ``1``. | ``integer`` | No |
 |``port`` | The port used for health check requests. By default, the [server port is used](https://nginx.org/en/docs/stream/ngx_stream_upstream_hc_module.html#health_check_port). Note: in contrast with the port of the upstream, this port is not a service port, but a port of a pod. | ``integer`` | No |
 |``match`` | Controls the data to send and the response to expect for the healthcheck. | [match](#upstreamhealthcheckmatch) | No |
-{{</bootstrap-table>}}
 
 ### Upstream.Healthcheck.Match
 
@@ -211,12 +206,10 @@ Both `send` and `expect` fields can contain hexadecimal literals with the prefix
 
 See the [match](https://nginx.org/en/docs/stream/ngx_stream_upstream_hc_module.html#match) directive for details.
 
-{{<bootstrap-table "table table-striped table-bordered table-responsive">}}
 |Field | Description | Type | Required |
 | ---| ---| ---| --- |
 |``send`` | A string to send to an upstream server. | ``string`` | No |
 |``expect`` | A literal string or a regular expression that the data obtained from the server should match. The regular expression is specified with the preceding ``~*`` modifier (for case-insensitive matching), or the ``~`` modifier (for case-sensitive matching). NGINX Ingress Controller validates a regular expression using the RE2 syntax. | ``string`` | No |
-{{</bootstrap-table>}}
 
 ### UpstreamParameters
 
@@ -232,7 +225,6 @@ upstreamParameters:
   nextUpstreamTries: 1
 ```
 
-{{<bootstrap-table "table table-striped table-bordered table-responsive">}}
 |Field | Description | Type | Required |
 | ---| ---| ---| --- |
 |``udpRequests`` | The number of datagrams, after receiving which, the next datagram from the same client starts a new session. See the [proxy_requests](https://nginx.org/en/docs/stream/ngx_stream_proxy_module.html#proxy_requests) directive. The default is ``0``. | ``int`` | No |
@@ -241,7 +233,6 @@ upstreamParameters:
 |``nextUpstream`` | If a connection to the proxied server cannot be established, determines whether a client connection will be passed to the next server. See the [proxy_next_upstream](http://nginx.org/en/docs/stream/ngx_stream_proxy_module.html#proxy_next_upstream) directive. The default is ``true``. | bool | No |
 |``nextUpstreamTries`` | The number of tries for passing a connection to the next server. See the [proxy_next_upstream_tries](http://nginx.org/en/docs/stream/ngx_stream_proxy_module.html#proxy_next_upstream_tries) directive. The default is ``0``. | ``int`` | No |
 |``nextUpstreamTimeout`` | The time allowed to pass a connection to the next server. See the [proxy_next_upstream_timeout](http://nginx.org/en/docs/stream/ngx_stream_proxy_module.html#proxy_next_upstream_timeout) directive. The default us ``0``. | ``string`` | No |
-{{</bootstrap-table>}}
 
 ### SessionParameters
 
@@ -252,11 +243,9 @@ sessionParameters:
   timeout: 50s
 ```
 
-{{<bootstrap-table "table table-striped table-bordered table-responsive">}}
 |Field | Description | Type | Required |
 | ---| ---| ---| --- |
 |``timeout`` | The timeout between two successive read or write operations on client or proxied server connections. See [proxy_timeout](http://nginx.org/en/docs/stream/ngx_stream_proxy_module.html#proxy_timeout) directive. The default is ``10m``. | ``string`` | No |
-{{</bootstrap-table>}}
 
 ### Action
 
@@ -269,11 +258,9 @@ action:
   pass: dns-app
 ```
 
-{{<bootstrap-table "table table-striped table-bordered table-responsive">}}
 |Field | Description | Type | Required |
 | ---| ---| ---| --- |
 |``pass`` | Passes connections/datagrams to an upstream. The upstream with that name must be defined in the resource. | ``string`` | Yes |
-{{</bootstrap-table>}}
 
 ## Using TransportServer
 

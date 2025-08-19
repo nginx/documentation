@@ -42,15 +42,12 @@ After installing NGINX Plus, you can install NGINX agent following the steps on 
 
 Run the command corresponding to your operating system to start NGINX Agent:
 
-{{<bootstrap-table "table table-striped table-bordered">}}
 
 | Operating System                                      | Command(s)                                      |
 |------------------------------------------------------|------------------------------------------------|
 | RHEL, CentOS,<br>Rocky Linux, AlmaLinux,<br>Oracle Linux, Ubuntu,<br>Debian, SLES, Amazon Linux | ```sudo systemctl start nginx-agent``` |
 | Alpine Linux                                        | ```sudo rc-service nginx-agent start```<br>or<br>```sudo /etc/init.d/nginx-agent start``` |
 | FreeBSD                                             | ```sudo service nginx-agent start``` |
-
-{{</bootstrap-table>}}
 
 You can confirm that NGINX Agent is running under the same user as NGINX Plus by running the following command:
 

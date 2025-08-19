@@ -98,7 +98,7 @@ The table below summarizes the available annotations.
 
 ### General customization
 
-{{<bootstrap-table "table table-striped table-bordered table-responsive">}}
+{{< table >}}
 |Annotation | ConfigMap Key | Description | Default | Example |
 | ---| ---| ---| ---| --- |
 | *nginx.org/proxy-connect-timeout* | *proxy-connect-timeout* | Sets the value of the [proxy_connect_timeout](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_connect_timeout) and [grpc_connect_timeout](https://nginx.org/en/docs/http/ngx_http_grpc_module.html#grpc_connect_timeout) directive. | *60s* |  |
@@ -111,22 +111,23 @@ The table below summarizes the available annotations.
 | *nginx.org/proxy-max-temp-file-size* | *proxy-max-temp-file-size* | Sets the value of the  [proxy_max_temp_file_size](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_max_temp_file_size) directive. | *1024m* |  |
 | *nginx.org/server-tokens* | *server-tokens* | Enables or disables the [server_tokens](https://nginx.org/en/docs/http/ngx_http_core_module.html#server_tokens) directive. Additionally, with the NGINX Plus, you can specify a custom string value, including the empty string value, which disables the emission of the “Server” field. | *True* |  |
 | *nginx.org/path-regex* | N/A | Enables regular expression modifiers for Ingress path parameter. This translates to the NGINX [location](https://nginx.org/en/docs/http/ngx_http_core_module.html#location) directive. You can specify one of these values: "case_sensitive", "case_insensitive", or "exact". The annotation is applied to the entire Ingress resource and its paths. While using Master and Minion Ingresses i.e. Mergeable Ingresses, this annotation can be specified on Minion types. The `path-regex` annotation specified on Master is ignored, and has no effect on paths defined on Minions.   | N/A |  [path-regex](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/ingress-resources/path-regex) |
-{{</bootstrap-table>}}
+{{< /table >}}
+
 
 ### Request URI/Header Manipulation
 
-{{<bootstrap-table "table table-striped table-bordered table-responsive">}}
+{{< table >}}
 |Annotation | ConfigMap Key | Description | Default | Example |
 | ---| ---| ---| ---| --- |
 | *nginx.org/proxy-hide-headers* | *proxy-hide-headers* | Sets the value of one or more  [proxy_hide_header](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_hide_header) directives. Example: ``"nginx.org/proxy-hide-headers": "header-a,header-b"* | N/A |  |
 | *nginx.org/proxy-pass-headers* | *proxy-pass-headers* | Sets the value of one or more   [proxy_pass_header](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass_header) directives. Example: ``"nginx.org/proxy-pass-headers": "header-a,header-b"* | N/A |  |
 | *nginx.org/rewrites* | N/A | Configures URI rewriting using [proxy_pass](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass) directive. | N/A | [rewrites](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/ingress-resources/rewrites) |
 |*nginx.org/proxy-set-headers* | N/A | Enables customization of proxy headers and values using the [proxy_set_header](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_set_header) directive. Example: ``"nginx.org/proxy-set-headers": "header-a: valueA,header-b: valueB,header-c: valueC"`` | N/A | [Proxy Set Headers](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/ingress-resources/proxy-set-headers). |
-{{</bootstrap-table>}}
+{{< /table >}}
 
 ### Auth and SSL/TLS
 
-{{<bootstrap-table "table table-striped table-bordered table-responsive">}}
+{{< table >}}
 |Annotation | ConfigMap Key | Description | Default | Example |
 | ---| ---| ---| ---| --- |
 | *nginx.org/redirect-to-https* | *redirect-to-https* | Sets the 301 redirect rule based on the value of the ``http_x_forwarded_proto* header on the server block to force incoming traffic to be over HTTPS. Useful when terminating SSL in a load balancer in front of NGINX Ingress Controller — see [115](https://github.com/nginx/kubernetes-ingress/issues/115) | *False* |  |
@@ -141,20 +142,18 @@ The table below summarizes the available annotations.
 | *nginx.com/jwt-realm* | N/A | Specifies a realm. | N/A | [Support for JSON Web Tokens (JWTs)](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/ingress-resources/jwt). |
 | *nginx.com/jwt-token* | N/A | Specifies a variable that contains a JSON Web Token. | By default, a JWT is expected in the ``Authorization* header as a Bearer Token. | [Support for JSON Web Tokens (JWTs)](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/ingress-resources/jwt). |
 | *nginx.com/jwt-login-url* | N/A | Specifies a URL to which a client is redirected in case of an invalid or missing JWT. | N/A | [Support for JSON Web Tokens (JWTs)](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/ingress-resources/jwt). |
-{{</bootstrap-table>}}
+{{< /table >}}
 
 ### Listeners
 
-{{<bootstrap-table "table table-striped table-bordered table-responsive">}}
-|Annotation | ConfigMap Key | Description | Default | Example |
-| ---| ---| ---| ---| --- |
-| *nginx.org/listen-ports* | N/A | Configures HTTP ports that NGINX will listen on. | *[80]* |  |
-| *nginx.org/listen-ports-ssl* | N/A | Configures HTTPS ports that NGINX will listen on. | *[443]* |  |
-{{</bootstrap-table>}}
+|Annotation | ConfigMap Key | Description | Default |
+| ---| ---| ---| ---|
+| *nginx.org/listen-ports* | N/A | Configures HTTP ports that NGINX will listen on. | *[80]* |
+| *nginx.org/listen-ports-ssl* | N/A | Configures HTTPS ports that NGINX will listen on. | *[443]* |
 
 ### Backend services (Upstreams)
 
-{{<bootstrap-table "table table-striped table-bordered table-responsive">}}
+{{< table >}}
 |Annotation | ConfigMap Key | Description | Default | Example |
 | ---| ---| ---| ---| --- |
 | *nginx.org/lb-method* | *lb-method* | Sets the [load balancing method]({{< ref "/nginx/admin-guide/load-balancer/http-load-balancer.md#choosing-a-load-balancing-method" >}}). To use the round-robin method, specify ``"round_robin"``. | *"random two least_conn"* |  |
@@ -172,11 +171,11 @@ The table below summarizes the available annotations.
 | *nginx.com/health-checks-mandatory-queue* | N/A | When active health checks are mandatory, creates a queue where incoming requests are temporarily stored while NGINX Plus is checking the health of the endpoints after a configuration reload. | *0* | [health-checks](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/ingress-resources/health-checks) |
 | *nginx.com/slow-start* | N/A | Sets the upstream server [slow-start period]({{< ref "/nginx/admin-guide/load-balancer/http-load-balancer.md#server-slow-start" >}}). By default, slow-start is activated after a server becomes [available]({{< ref "/nginx/admin-guide/load-balancer/http-health-check.md#passive-health-checks" >}}) or [healthy]({{< ref "/nginx/admin-guide/load-balancer/http-health-check.md#active-health-checks" >}}). To enable slow-start for newly-added servers, configure [mandatory active health checks](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/ingress-resources/health-checks). | *"0s"* |  |
 | *nginx.org/use-cluster-ip* | N/A | Enables using the Cluster IP and port of the service instead of the default behavior of using the IP and port of the pods. When this field is enabled, the fields that configure NGINX behavior related to multiple upstream servers (like ``lb-method* and ``next-upstream``) will have no effect, as NGINX Ingress Controller will configure NGINX with only one upstream server that will match the service Cluster IP.   | *False* |  |
-{{</bootstrap-table>}}
+{{< /table >}}
 
 ### Rate limiting
 
-{{<bootstrap-table "table table-striped table-bordered table-responsive">}}
+{{< table >}}
 |Annotation | ConfigMap Key | Description | Default | Example |
 | ---| ---| ---| ---| --- |
 | *nginx.org/limit-req-rate* | N/A | Enables request-rate-limiting for this ingress by creating a [limit_req_zone](https://nginx.org/en/docs/http/ngx_http_limit_req_module.html#limit_req_zone) and matching [limit_req](https://nginx.org/en/docs/http/ngx_http_limit_req_module.html#limit_req) for each location. All servers/locations of one ingress share the same zone. Must have unit r/s or r/m. | N/A | 200r/s |
@@ -189,22 +188,20 @@ The table below summarizes the available annotations.
 | *nginx.org/limit-req-log-level* | N/A | Sets the desired logging level for cases when the server refuses to process requests due to rate exceeding, or delays request processing. Allowed values are info, notice, warn or error. | error | info |
 | *nginx.org/limit-req-reject-code* | N/A | Sets the status code to return in response to rejected requests. Must fall into the range 400..599. | 429 | 503 |
 | *nginx.org/limit-req-scale* | N/A | Enables a constant rate-limit by dividing the configured rate by the number of nginx-ingress pods currently serving traffic. This adjustment ensures that the rate-limit remains consistent, even as the number of nginx-pods fluctuates due to autoscaling. Note: This will not work properly if requests from a client are not evenly distributed accross all ingress pods (sticky sessions, long lived TCP-Connections with many requests etc.). In such cases using [zone-sync]({{< ref "/nic/configuration/global-configuration/configmap-resource.md#zone-sync" >}}) instead would give better results.  Enabling `zone-sync` will suppress this setting. | false | true |
-{{</bootstrap-table>}}
+{{< /table >}}
 
 ### Snippets and custom templates
 
-{{<bootstrap-table "table table-striped table-bordered table-responsive">}}
-|Annotation | ConfigMap Key | Description | Default | Example |
-| ---| ---| ---| ---| --- |
-| *nginx.org/location-snippets* | *location-snippets* | Sets a custom snippet in location context. | N/A |  |
-| *nginx.org/server-snippets* | *server-snippets* | Sets a custom snippet in server context. | N/A |  |
-{{</bootstrap-table>}}
+|Annotation | ConfigMap Key | Description | Default |
+| ---| ---| ---| ---|
+| *nginx.org/location-snippets* | *location-snippets* | Sets a custom snippet in location context. | N/A |
+| *nginx.org/server-snippets* | *server-snippets* | Sets a custom snippet in server context. | N/A |
 
 ### App Protect WAF {#app-protect}
 
 {{< call-out "note" >}} The App Protect annotations only work if the App Protect WAF module is [installed]({{< ref "/nic/installation/integrations/app-protect-waf/installation.md" >}}). {{< /call-out >}}
 
-{{<bootstrap-table "table table-striped table-bordered table-responsive">}}
+{{< table >}}
 |Annotation | ConfigMap Key | Description | Default | Example |
 | ---| ---| ---| ---| --- |
 | *appprotect.f5.com/app-protect-policy* | N/A | The name of the App Protect Policy for the Ingress Resource. Format is ``namespace/name``. If no namespace is specified, the same namespace of the Ingress Resource is used. If not specified but ``appprotect.f5.com/app-protect-enable* is true, a default policy id applied. If the referenced policy resource does not exist, or policy is invalid, this annotation will be ignored, and the default policy will be applied. | N/A | [app-protect-waf](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/ingress-resources/app-protect-waf) |
@@ -212,14 +209,12 @@ The table below summarizes the available annotations.
 | *appprotect.f5.com/app-protect-security-log-enable* | N/A | Enable the [security log](/nginx-app-protect/troubleshooting/#app-protect-logging-overview) for App Protect. | *False* | [app-protect-waf](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/ingress-resources/app-protect-waf) |
 | *appprotect.f5.com/app-protect-security-log* | N/A | The App Protect log configuration for the Ingress Resource. Format is ``namespace/name``. If no namespace is specified, the same namespace as the Ingress Resource is used. If not specified the  default is used which is:  filter: ``illegal``, format: ``default``. Multiple configurations can be specified in a comma separated list. Both log configurations and destinations list (see below) must be of equal length. Configs and destinations are paired by the list indices. | N/A | [app-protect-waf](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/ingress-resources/app-protect-waf) |
 | *appprotect.f5.com/app-protect-security-log-destination* | N/A | The destination of the security log. For more information check the [DESTINATION argument](/nginx-app-protect/troubleshooting/#app-protect-logging-overview). Multiple destinations can be specified in a comma-separated list.  Both log configurations and destinations list (see above) must be of equal length. Configs and destinations are paired by the list indices. | *syslog:server=localhost:514* | [app-protect-waf](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/ingress-resources/app-protect-waf) |
-{{</bootstrap-table>}}
+{{< /table >}}
 
 ### App Protect DoS
 
 {{< call-out "note" >}} The App Protect DoS annotations only work if the App Protect DoS module is [installed]({{< ref "/nic/installation/integrations/app-protect-dos/installation.md" >}}). {{< /call-out >}}
 
-{{<bootstrap-table "table table-striped table-bordered table-responsive">}}
 |Annotation | ConfigMap Key | Description | Default | Example |
 | ---| ---| ---| ---| --- |
 | *appprotectdos.f5.com/app-protect-dos-resource* | N/A | Enable App Protect DoS for the Ingress Resource by specifying a [DosProtectedResource]({{< ref "/nic/installation/integrations/app-protect-dos/dos-protected.md" >}}). | N/A | [app-protect-dos](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/ingress-resources/app-protect-dos) |
-{{</bootstrap-table>}}

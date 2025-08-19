@@ -283,8 +283,6 @@ Verify that the port number (for example, `8080`) matches the port number you ha
 
 ### Common errors
 
-{{< bootstrap-table "table table-striped table-bordered" >}}
-
 | Problem Area | Symptom | Troubleshooting Method | Common Cause |
 |------------------------------|----------------------------------------|---------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------|
 | Startup | NGINX Gateway Fabric fails to start. | Check logs for _nginx_ and _nginx-gateway_ containers. | Readiness probe failed. |
@@ -292,8 +290,6 @@ Verify that the port number (for example, `8080`) matches the port number you ha
 | NGINX errors | Reload failures on NGINX | Fix permissions for control plane. | Security context not configured. |
 | NGINX Plus errors | Failure to start; traffic interruptions | Set up the [NGINX Plus JWT]({{< ref "/ngf/install/nginx-plus.md" >}}) | License is not configured or has expired. |
 | Client Settings | Request entity too large error | Adjust client settings. Refer to [Client Settings Policy]({{< ref "/ngf/traffic-management/client-settings.md" >}}) | Payload is greater than the [`client_max_body_size`](https://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size) value.|
-
-{{< /bootstrap-table >}}
 
 ##### NGINX fails to reload
 

@@ -346,7 +346,6 @@ NGINX Ingress Controller has multiple proxy and load balancing functionalities y
 
 This table shows how Ingress-NGINX Controller annotations map to statements in the upstream field for [VirtualServer and VirtualServerRoute resources]({{<ref "/nic/configuration/virtualserver-and-virtualserverroute-resources">}}), covering load balancing, proxy timeout, proxy buffering and connection routing for a services' ClusterIP address and port.
 
-{{< bootstrap-table "table table-bordered table-striped table-responsive" >}}
 | Ingress-NGINX Controller | NGINX Ingress Controller |
 | ------------------------ | ------------------------ |
 | _nginx.ingress.kubernetes.io/load-balance_ | _lb-method_ |
@@ -359,7 +358,6 @@ This table shows how Ingress-NGINX Controller annotations map to statements in t
 | _nginx.ingress.kubernetes.io/proxy-read-timeout_ | _read-timeout_ |
 | _nginx.ingress.kubernetes.io/proxy-send-timeout_ | _send-timeout_ |
 | _nginx.ingress.kubernetes.io/service-upstream_ | _use-cluster-ip_ |
-{{% /bootstrap-table %}}
 
 #### mTLS authentication
 
@@ -454,7 +452,6 @@ You should avoid altering the `spec` field of the Ingress resource when taking t
 ### Advanced configuration with annotations
 This table maps the Ingress-NGINX Controller annotations to NGINX Ingress Controller's equivalent annotations, and the respective NGINX Directive.
 
-{{< bootstrap-table "table table-bordered table-striped table-responsive" >}}
 | Ingress-NGINX Controller | NGINX Ingress Controller | NGINX Directive |
 | ------------------------ | ------------------------ | --------------- |
 | [_nginx.ingress.kubernetes.io/configuration-snippet_](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#configuration-snippet) | [_nginx.org/location-snippets_]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations.md#snippets-and-custom-templates" >}}) | N/A |
@@ -468,7 +465,6 @@ This table maps the Ingress-NGINX Controller annotations to NGINX Ingress Contro
 | [_nginx.ingress.kubernetes.io/rewrite-target_](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#rewrite) | [_nginx.org/rewrites_]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations.md#request-uriheader-manipulation" >}}) | [_rewrite_](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html#rewrite) |
 | [_nginx.ingress.kubernetes.io/server-snippet_](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#server-snippet)| [_nginx.org/server-snippets_]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations.md#snippets-and-custom-templates" >}}) | N/A |
 | [_nginx.ingress.kubernetes.io/ssl-redirect_](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#server-side-https-enforcement-through-redirect) | [_ingress.kubernetes.io/ssl-redirect_]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations.md#auth-and-ssltls" >}}) | N/A (2) |
-{{% /bootstrap-table %}}
 
 1. Ingress-NGINX Controller implements some of its load balancing algorithms with Lua, which may not have an equivalent in NGINX Ingress Controller.
 1. To redirect HTTP (80) traffic to HTTPS (443), NGINX Ingress Controller uses built-in NGINX `if` conditions while Ingress-NGINX Controller uses Lua.
@@ -500,7 +496,6 @@ This table maps the Ingress-NGINX Controller ConfigMap keys to NGINX Ingress Con
 Some of the key names are identical, and each Ingress Controller has ConfigMap keys that the other does not (Which are indicated).
 {{< /call-out >}} -->
 
-{{< bootstrap-table "table table-bordered table-striped table-responsive" >}}
 | Ingress-NGINX Controller | NGINX Ingress Controller |
 | ------------------------ | ------------------------ |
 | [_disable-access-log_](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#disable-access-log) | [_access-log-off_]({{< ref "/nic/configuration/global-configuration/configmap-resource.md#logging" >}}) |
@@ -541,4 +536,3 @@ Some of the key names are identical, and each Ingress Controller has ConfigMap k
 | [_worker-cpu-affinity_](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#worker-cpu-affinity) | [_worker-cpu-affinity_]({{< ref "/nic/configuration/global-configuration/configmap-resource.md#general-customization" >}}) |
 | [_worker-processes_](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#worker-processes) | [_worker-processes_]({{< ref "/nic/configuration/global-configuration/configmap-resource.md#general-customization" >}}) |
 | [_worker-shutdown-timeout_](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#worker-shutdown-timeout) | [_worker-shutdown-timeole_]({{< ref "/nic/configuration/global-configuration/configmap-resource.md#general-customization" >}}) |
-{{% /bootstrap-table %}}
