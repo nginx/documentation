@@ -43,8 +43,8 @@ NGINX Plus adds a range of premium features to address enterprise needs.
     {{<card title="Set up HTTP load balancing" titleUrl="/admin-guide/load-balancer/http-load-balancer/" >}}
       Keep your servers running.
     {{</ card >}}
-    {{<card title="Set up a Web server" titleUrl="/nginx/admin-guide/web-server/web-server/" >}}
-      Configure NGINX as a Web server.
+    {{<card title="Set up a web server" titleUrl="/nginx/admin-guide/web-server/web-server/" >}}
+      Configure NGINX as a web server.
     {{</card>}}
     {{<card title="Secure with Single Sign-On" titleUrl="/nginx/admin-guide/security-controls/configuring-oidc/">}}
       Set up Open ID connect with identity providers.
