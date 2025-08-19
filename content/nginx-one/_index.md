@@ -45,7 +45,7 @@ F5 NGINX One Console makes it easy to manage NGINX instances across locations an
 {{<card-layout>}}
   {{<card-section showAsCards="true">}}
     {{<card title="NGINX One Console workshops" titleUrl="/nginx-one/workshops/" icon="wrench" >}}
-      Learn how to register and manage NGINX instances in NGINX One Console. View CVE and configuration recommendations. Use Config Sync Groups to deploy JWT licenses and upgrade to the latest NGINX Plus.
+      Guided labs to help you secure, monitor, and scale your NGINX fleet with NGINX One Console.
     {{</card>}}
   {{</card-section>}}
 {{</card-layout>}}
