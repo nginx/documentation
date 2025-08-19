@@ -17,6 +17,8 @@ Ensure you have the following:
 
 ## Configure Squid
 
+TBD
+
 ## NGINX Agent Proxy configuration
 
 Add a `proxy` section under the `server` block in your NGINX Agent `agent.conf` file:
@@ -65,3 +67,5 @@ NGINX_AGENT_COMMAND_SERVER_PROXY_PASSWORD="pass"
 ```
 
 ## Validate connectivity between NGINX Agent, Squid, and NGINX One Console
+
+TBD
