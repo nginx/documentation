@@ -175,14 +175,11 @@ The NGINX Agent GitHub repo has a set of Make commands that you can use to build
 
 You can pass the following arguments when running the **make** command to build an NGINX Agent container image.
 
-{{<bootstrap-table "table table-striped table-border">}}
 | Argument | Definition |
 | ---------------- | -------------------------|
 | OS_RELEASE      | The Linux distribution to use as the base image. <br>Can also be set in the repo Makefile.|
 | OS_VERSION      | The version of the Linux distribution to use as the base image. <br>Can also be set in the repo Makefile.|
 | AGENT_VERSION      | The versions of NGINX agent that you want installed on the image.|
-
-{{</bootstrap-table>}}
 
 ### Build NGINX open source images
 
