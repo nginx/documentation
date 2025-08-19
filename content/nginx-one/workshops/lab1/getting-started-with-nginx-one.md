@@ -47,9 +47,9 @@ You need:
 
 ## How NGINX One Console works
 
-NGINX One Console connects to each NGINX instance through **NGINX Agent**, a lightweight process that provides secure communication between the instance and NGINX One Console.  
+NGINX One Console connects to each NGINX instance through **NGINX Agent**, a lightweight process that runs alongside NGINX.  
 
-NGINX Agent applies configuration updates, collects performance and system metrics, and sends event notifications.
+NGINX Agent enables secure communication with NGINX One Console. It lets you manage configurations remotely, collect and report real-time performance and system metrics, and receive event notifications from your NGINX instance.
 
 You can install NGINX Agent in several ways:
 
