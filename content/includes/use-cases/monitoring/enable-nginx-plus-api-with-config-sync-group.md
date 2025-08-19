@@ -1,8 +1,8 @@
 ---
 docs:
 files:
--
--
+- content/nginx-one/workshops/lab5/upgrade-nginx-plus-to-latest-version.md
+- content/nginx-one/nginx-configs/metrics/enable-metrics.md
 ---
 
 1. In the NGINX One Console, select **Manage > Config Sync Groups**, then pick your config sync group's name.  
