@@ -32,6 +32,7 @@ Telemetry data is collected once every 24 hours and sent to a service managed by
 - **SnippetsFilters Info** a list of directive-context strings from applied SnippetFilters and a total count per strings. The actual value of any NGINX directive is **not** collected.
 - **Control Plane Pod Count** the count of NGINX Gateway Fabric Pods.
 - **Data Plane Pod Count** the count of NGINX data plane Pods.
+- **NGINX One Console Connection Info** indicates whether the connection to the NGINX One Console is enabled. 
 This data is used to identify the following information:
 
 - The flavors of Kubernetes environments that are most popular among our users.
@@ -39,6 +40,7 @@ This data is used to identify the following information:
 - The scale of NGINX Gateway Fabric Deployments.
 - The scale of Gateway API resources.
 - The used features of NGINX Gateway Fabric.
+- The cluster is connected to NGINX One Console.
 
 Our goal is to publicly discuss data trends to drive roadmap discussions in our [Community Meeting](https://github.com/nginx/nginx-gateway-fabric/discussions/1472).
 

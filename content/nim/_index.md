@@ -4,9 +4,7 @@ description: Track and control NGINX Open Source and NGINX Plus instances.
 url: /nginx-instance-manager/
 nd-landing-page: true
 cascade:
-  logo: "NGINX-Instance-Manager-product-icon.png"
-nd-content-type: landing-page
-nd-product: NIM
+  logo: "NGINX-Instance-Manager-product-icon.svg"
 ---
 
 ## About

@@ -24,4 +24,6 @@ Go to **Notifications > Alerts**. Select the gear icon and select **Alert Name >
 | NGINXOffline                  | An NGINX instance is now offline                                   | Major           | Verify the host is online. Check the NGINX Agent's status on the instance and ensure it is connected to the NGINX One Console. |
 | NGINXUnavailable              | An NGINX instance is now unavailable                               | Major           | Ensure the NGINX Agent and host are active. Verify the NGINX Agent can connect to the NGINX One Console and resolve any network issues. |
 | NewNGINX                      | A new NGINX instance has connected to NGINX One                   | Minor           | Review the instance details in the NGINX One Console. Confirm availability, CVEs, and recommendations to ensure the instance is operational. |
+| NGINXCertificateExpired  | A certificate on an NGINX instance or Config Sync Group has expired  | Critical | Get a new certificate from your certificate authority, then update the TLS/SSL certificate in the NGINX One Console. |
+| NGINXCertificateExpiring | A certificate on an NGINX instance or Config Sync Group will expire soon | Major    | Renew the certificate through your certificate authority, then update the TLS/SSL certificate in the NGINX One Console. |
 {{</bootstrap-table>}}
