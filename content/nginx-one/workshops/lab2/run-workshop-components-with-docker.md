@@ -26,10 +26,11 @@ By the end of this tutorial, you can:
 
 ## Before you begin
 
+
+
 Make sure you have:
 
-- An F5 Distributed Cloud (XC) account
-- NGINX One service enabled in your XC account
+- {{< include "nginx-one/workshops/xc-account.md" >}}
 - Docker and Docker Compose installed and running
 - An active data plane key from [Lab 1: Get started with NGINX One Console]({{< ref "nginx-one/workshops/lab1/getting-started-with-nginx-one.md" >}})
 - A trial or paid NGINX One JWT license (saved as `nginx-repo.jwt`) from [MyF5](https://my.f5.com/manage/s/)

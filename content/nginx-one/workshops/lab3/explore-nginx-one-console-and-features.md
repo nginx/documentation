@@ -36,7 +36,7 @@ By the end of this tutorial, you can:
 
 Make sure you have:
 
-- An F5 Distributed Cloud (XC) account with NGINX One enabled  
+- {{< include "nginx-one/workshops/xc-account.md" >}}
 - All containers from [Lab 2: Run workshop components with Docker]({{< ref "nginx-one/workshops/lab2/run-workshop-components-with-docker.md" >}}) running and registered  
 - {{< include "workshops/nginx-one-env-variables.md" >}}  
 - Basic NGINX and Linux knowledge  

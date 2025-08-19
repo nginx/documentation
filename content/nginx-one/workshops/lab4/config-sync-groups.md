@@ -26,6 +26,7 @@ By the end of this lab, you can:
 
 Make sure you have:
 
+- {{< include "nginx-one/workshops/xc-account.md" >}}
 - Completed [Lab 2: Run workshop components with Docker]({{< ref "nginx-one/workshops/lab2/run-workshop-components-with-docker.md" >}})  
 - Docker and Docker Compose installed and running  
 - {{< include "workshops/nginx-one-env-variables.md" >}}  

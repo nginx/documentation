@@ -37,6 +37,7 @@ By the end of this lab, you can:
 
 Make sure you have:
 
+- {{< include "nginx-one/workshops/xc-account.md" >}}
 - Completed [Lab 4: Config Sync Groups]({{< ref "nginx-one/workshops/lab4/config-sync-groups.md" >}})  
 - Docker and Docker Compose installed and running (for Docker scenario)  
 - A trial or paid NGINX One JWT license (saved as `nginx-repo.jwt`) from [MyF5](https://my.f5.com/manage/s/)  
