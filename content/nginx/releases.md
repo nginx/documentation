@@ -53,7 +53,7 @@ NGINX Plus R35 is a feature release:
 
 - Security: SMTP Authentication process memory over-read. This vulnerability in the NGINX `ngx_mail_smtp_module` may allow an unauthenticated attacker to trigger buffer over-read, resulting in worker process memory disclosure to the authentication server ([CVE-2025-53859](https://www.cve.org/CVERecord?id=CVE-2025-53859)).
 
-{{< call-out "note" "Learn more" "" >}}For highlights of all new features and enhancements in this release, see the [NGINX Plus R35 release blog](https://community.f5.com/kb/technicalarticles/f5-nginx-plus-r35-release-now-available/342962).{{< /call-out >}}
+{{< call-out "note" "Learn more" >}}For highlights of all new features and enhancements in this release, see the [NGINX Plus R35 release blog](https://community.f5.com/kb/technicalarticles/f5-nginx-plus-r35-release-now-available/342962).{{< /call-out >}}
 
 
 NGINX Plus R35 is supported on:
@@ -103,7 +103,7 @@ NGINX Plus R34 is a feature release:
 
 - Security: insufficient check in virtual servers handling with TLSv1.3 SNI allowed to reuse SSL sessions in a different virtual server, to bypass client SSL certificates verification ([CVE-2025-23419](http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-23419)).
 
-{{< call-out "note" "Learn more" "" >}}For highlights of all new features and enhancements in this release, see the [NGINX Plus R34 release blog](https://community.f5.com/kb/technicalarticles/f5-nginx-plus-r34-release-now-available/340300).{{< /call-out >}}
+{{< call-out "note" "Learn more" >}}For highlights of all new features and enhancements in this release, see the [NGINX Plus R34 release blog](https://community.f5.com/kb/technicalarticles/f5-nginx-plus-r34-release-now-available/340300).{{< /call-out >}}
 
 NGINX Plus R34 is supported on:
 
@@ -183,7 +183,7 @@ The argument is a file name in the `SSLKEYLOGFILE` format compatible with Wiresh
 
 - Added initial support for Post Quantum Cryptography.
 
-{{< call-out "note" "Learn more" "" >}}For highlights of all new features and enhancements in this release, see the [NGINX Plus R33 release blog](https://community.f5.com/kb/technicalarticles/f5-nginx-plus-r33-release-now-available/336403).{{< /call-out >}}
+{{< call-out "note" "Learn more" >}}For highlights of all new features and enhancements in this release, see the [NGINX Plus R33 release blog](https://community.f5.com/kb/technicalarticles/f5-nginx-plus-r33-release-now-available/336403).{{< /call-out >}}
 
 
 {{<bootstrap-table "table table-striped table-bordered table-sm">}}
