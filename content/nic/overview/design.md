@@ -52,7 +52,7 @@ The following is an architectural diagram depicting how those processes interact
 
 This table describes each connection, starting with its type:
 
-{{< bootstrap-table "table table-bordered table-striped table-responsive" >}}
+{{< table >}}
 | # | Protocols | Description |
 | --- | --- | --- |
 |1|HTTP| _Prometheus_ fetches NGINX Ingress Controller and NGINX metrics with an NGINX Ingress Controller HTTP endpoint (Default `:9113/metrics`). **Note**: *Prometheus* is not required and the endpoint can be turned off. |
@@ -76,7 +76,7 @@ This table describes each connection, starting with its type:
 |19|HTTP,HTTPS,TCP,UDP| A _client_ sends traffic to and receives traffic from any of the _NGINX workers_ on ports 80 and 443 and any additional ports exposed by the [GlobalConfiguration resource]({{< ref "/nic//configuration/global-configuration/globalconfiguration-resource.md" >}}).
 |20|HTTP,HTTPS,TCP,UDP| An _NGINX worker_ sends traffic to and receives traffic from the _backends_.
 |21|HTTP| _Admin_ can connect to the [NGINX stub_status](http://nginx.org/en/docs/http/ngx_http_stub_status_module.html#stub_status) using port 8080 via an _NGINX worker_. By default, NGINX only allows connections from `localhost`.
-{{% /bootstrap-table %}}
+{{< /table >}}
 
 ### Differences with NGINX Plus
 
