@@ -80,32 +80,26 @@ Status:
 
 The following fields are reported in both VirtualServer and VirtualServerRoute status:
 
-{{<bootstrap-table "table table-striped table-bordered table-responsive">}}
 |Field | Description | Type |
 | ---| ---| --- |
 |*State* | Current state of the resource. Can be ``Valid``, ``Warning`` an ``Invalid``. For more information, refer to the ``message`` field. | *string* |
 |*Reason* | The reason of the last update. | *string* |
 |*Message* | Additional information about the state. | *string* |
 |*ExternalEndpoints* | A list of external endpoints for which the hosts of the resource are publicly accessible. | *[externalEndpoint](#externalendpoint)* |
-{{</bootstrap-table>}}
 
 The *ReferencedBy* field is reported for the VirtualServerRoute status only:
 
-{{<bootstrap-table "table table-striped table-bordered table-responsive">}}
 |Field | Description | Type |
 | ---| ---| --- |
 | *ReferencedBy* | The VirtualServer that references this VirtualServerRoute. Format as ``namespace/name`` | *string* |
-{{</bootstrap-table>}}
 
 ### externalEndpoint
 
-{{<bootstrap-table "table table-striped table-bordered table-responsive">}}
 |Field | Description | Type |
 | ---| ---| --- |
 |``IP`` | The external IP address. | ``string`` |
 |``Hostname`` | The external LoadBalancer Hostname address. | ``string`` |
 |``Ports`` | A list of external ports. | ``string`` |
-{{</bootstrap-table>}}
 
 NGINX Ingress Controller must be configured to report a VirtualServer or VirtualServerRoute status:
 
@@ -148,13 +142,11 @@ Status:
 
 The following fields are reported in Policy status:
 
-{{<bootstrap-table "table table-striped table-bordered table-responsive">}}
 |Field | Description | Type |
 | ---| ---| --- |
 |``State`` | Current state of the resource. Can be ``Valid`` or ``Invalid``. For more information, refer to the ``message`` field. | ``string`` |
 |``Reason`` | The reason of the last update. | ``string`` |
 |``Message`` | Additional information about the state. | ``string`` |
-{{</bootstrap-table>}}
 
 ## TransportServer resources
 
@@ -186,10 +178,8 @@ Status:
 
 The following fields are reported in TransportServer status:
 
-{{<bootstrap-table "table table-striped table-bordered table-responsive">}}
 |Field | Description | Type |
 | ---| ---| --- |
 | *State* | Current state of the resource. Can be ``Valid``, ``Warning`` or ``Invalid``. For more information, refer to the ``message`` field. | *string* |
 | *Reason* | The reason of the last update. | *string* |
 | *Message* | Additional information about the state. | *string* |
-{{</bootstrap-table>}}
