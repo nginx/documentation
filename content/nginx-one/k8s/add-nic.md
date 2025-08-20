@@ -1,12 +1,12 @@
 ---
-title: Connect to NGINX One Console
+title: Connect NGINX Ingress Controller
 toc: true
 weight: 200
 nd-content-type: how-to
 nd-product: NGINX One
 ---
 
-This document explains how to connect F5 NGINX Ingress Controller <!-- and F5 NGINX Gateway Fabric -->to F5 NGINX One Console using NGINX Agent.
+This document explains how to connect F5 NGINX Ingress Controller to F5 NGINX One Console using NGINX Agent.
 Connecting NGINX Ingress Controller to NGINX One Console enables centralized monitoring of all controller instances.
 
 Once connected, you'll see a **read-only** configuration of NGINX Ingress Controller. For each instance, you can review:
@@ -15,6 +15,10 @@ Once connected, you'll see a **read-only** configuration of NGINX Ingress Contro
 - Unmanaged SSL/TLS certificates for Control Planes
 
 ## Before you begin
+
+If you do not already have a [data plane key]({{< ref "/nginx-one/connect-instances/create-manage-data-plane-keys.md" >}}), you can create one. Pay attention to the expiration date of that key. Any instance that's connected to a data plane key that's expired or revoked will stop working.
+
+You can create a data plane key through the NGINX One Console. Once loggged in, select **Manage > Control Planes > Add Control Plane**, and follow the steps shown.
 
 Before connecting NGINX Ingress Controller to NGINX One Console, you need to create a Kubernetes Secret with the data plane key. Use the following command:
 

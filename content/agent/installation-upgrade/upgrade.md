@@ -24,7 +24,7 @@ To upgrade NGINX Agent, follow these steps:
 
 1. Install the updated version of NGINX Agent:
 
-    - CentOS, RHEL, RPM-Based
+    - RHEL, RPM-Based
 
         ```shell
         sudo yum -y makecache

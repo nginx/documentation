@@ -53,6 +53,8 @@ NGINX Plus R35 is a feature release:
 
 - Security: SMTP Authentication process memory over-read. This vulnerability in the NGINX `ngx_mail_smtp_module` may allow an unauthenticated attacker to trigger buffer over-read, resulting in worker process memory disclosure to the authentication server ([CVE-2025-53859](https://www.cve.org/CVERecord?id=CVE-2025-53859)).
 
+{{< call-out "note" "Learn more" >}}For highlights of all new features and enhancements in this release, see the [NGINX Plus R35 release blog](https://community.f5.com/kb/technicalarticles/f5-nginx-plus-r35-release-now-available/342962).{{< /call-out >}}
+
 
 NGINX Plus R35 is supported on:
 
@@ -82,9 +84,6 @@ NGINX Plus R35 is supported on:
 - SLES 15 SP6 is now required
 - the [ACME]({{< ref "/nginx/admin-guide/dynamic-modules/acme.md" >}}) dynamic module is new in this release.
 
-More information: [Announcing NGINX Plus R35](https://community.f5.com/kb/TechnicalArticles/f5-nginx-plus-r35-release-now-available/342962)
-
-
 ## NGINX Plus Release 34 (R34) {#r34}
 _April 01, 2025_<br/>
 _Based on NGINX Open Source 1.27.4_
@@ -103,6 +102,8 @@ NGINX Plus R34 is a feature release:
 - Bugfixes in QUIC and HTTP/3, mail proxy, the MP4 module, the `proxy_store` and `proxy_bind` directives.
 
 - Security: insufficient check in virtual servers handling with TLSv1.3 SNI allowed to reuse SSL sessions in a different virtual server, to bypass client SSL certificates verification ([CVE-2025-23419](http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-23419)).
+
+{{< call-out "note" "Learn more" >}}For highlights of all new features and enhancements in this release, see the [NGINX Plus R34 release blog](https://community.f5.com/kb/technicalarticles/f5-nginx-plus-r34-release-now-available/340300).{{< /call-out >}}
 
 NGINX Plus R34 is supported on:
 
@@ -129,9 +130,6 @@ NGINX Plus R34 is supported on:
 - SUSE Linux Enterprise Server 12 is removed
 - Ubuntu 20.04 is deprecated
 - the [OpenTracing]({{< ref "/nginx/admin-guide/dynamic-modules/opentracing.md" >}}) dynamic module is no longer available. It is recommended to use the [OpenTelemetry Distributed Tracing]({{< ref "/nginx/admin-guide/dynamic-modules/opentelemetry.md" >}}) module, which incorporates all the features of the OpenTracing module.
-
-More information: [Announcing NGINX Plus R34](https://community.f5.com/kb/technicalarticles/f5-nginx-plus-r34-release-now-available/340300)
-
 
 ### NGINX Plus R34 Update {#r34_p1}
 
@@ -185,6 +183,9 @@ The argument is a file name in the `SSLKEYLOGFILE` format compatible with Wiresh
 
 - Added initial support for Post Quantum Cryptography.
 
+{{< call-out "note" "Learn more" >}}For highlights of all new features and enhancements in this release, see the [NGINX Plus R33 release blog](https://community.f5.com/kb/technicalarticles/f5-nginx-plus-r33-release-now-available/336403).{{< /call-out >}}
+
+
 {{<bootstrap-table "table table-striped table-bordered table-sm">}}
 | Distribution                     | Versions                          |
 |----------------------------------|-----------------------------------|
@@ -212,9 +213,6 @@ The argument is a file name in the `SSLKEYLOGFILE` format compatible with Wiresh
 - SUSE Linux Enterprise Server 12 is deprecated
 - support for s390x architecture removed
 - the [Lua]({{< ref "/nginx/admin-guide/dynamic-modules/lua.md" >}}) module is no longer available for SUSE Linux Enterprise Server 12
-
-More information: [Announcing NGINX Plus R33](https://community.f5.com/kb/technicalarticles/announcing-nginx-plus-r33-release/336403)
-
 
 ### NGINX Plus R33 Updates {#r33_p1}
 
