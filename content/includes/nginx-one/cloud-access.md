@@ -21,5 +21,5 @@ If you do not know your TENANT_NAME, you can:
 
 - Email support@cloud.f5.com to get your username and TENANT_NAME.
 - If you have a dedicated F5 tenant administrator, ask them to:
-  - Provide a username to your tenant
+  - Provide a username for your tenant
   - Ask them to reset your password
