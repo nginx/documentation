@@ -35,7 +35,7 @@ Defend your applications and APIs with a software security solution that seamles
     {{<card title="Installing NGINX App Protect WAF" titleUrl="/nginx-app-protect-waf/v5/admin-guide/install/">}}
       Install NGINX App Protect WAF in a virtual environment
     {{</card>}}
-    {{<card title="Releases" titleUrl="/nginx-app-protect-waf/v5/releases/">}}
+    {{<card title="Releases" titleUrl="/nginx-app-protect-waf/v5/releases/" icon="clock-alert">}}
       Review the latest changes to NGINX App Protect WAF
     {{</card>}}
   {{</card-section>}}

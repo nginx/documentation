@@ -38,7 +38,7 @@ Running natively on NGINX Plus and NGINX Ingress Controller, NGINX App Protect D
     {{<card title="Troubleshooting" titleUrl="/nginx-app-protect-dos/troubleshooting-guide/how-to-troubleshoot/">}}
       Learn how to debug NGINX App Protect DoS
     {{</card>}}
-    {{<card title="Releases" titleUrl="/nginx-app-protect-dos/releases/">}}
+    {{<card title="Releases" titleUrl="/nginx-app-protect-dos/releases/" icon="clock-alert">}}
       Review changelogs for NGINX App Protect DoS
     {{</card>}}
   {{</card-section>}}
