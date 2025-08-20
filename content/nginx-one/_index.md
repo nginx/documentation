@@ -25,12 +25,6 @@ F5 NGINX One Console makes it easy to manage NGINX instances across locations an
     {{<card title="Get started" titleUrl="/nginx-one/getting-started/" icon="unplug" isFullSize="true">}}
       Get up and running with NGINX One Console
     {{</card >}}
-  {{</card-section>}}
-{{</card-layout>}}
-
-
-{{<card-layout>}}
-  {{<card-section showAsCards="true" >}}
     {{<card title="Connect more NGINX instances" titleUrl="/nginx-one/connect-instances/" >}}
       Work with data plane keys, containers, and proxy servers
     {{</card>}}
@@ -43,6 +37,16 @@ F5 NGINX One Console makes it easy to manage NGINX instances across locations an
     {{<card title="Connect Kubernetes deployments" titleUrl="/nginx-one/k8s/">}}
       Monitor deployments for CVEs and certificates
     {{</ card >}}
+  {{</card-section>}}
+{{</card-layout>}}
+
+### Workshops
+
+{{<card-layout>}}
+  {{<card-section showAsCards="true">}}
+    {{<card title="NGINX One Console workshops" titleUrl="/nginx-one/workshops/" icon="wrench" >}}
+      Guided labs to help you secure, monitor, and scale your NGINX fleet with NGINX One Console.
+    {{</card>}}
   {{</card-section>}}
 {{</card-layout>}}
 
