@@ -5,6 +5,21 @@
     "description": "The API Reference documentation for NGINX One Console",
     "version": "v1"
   },
+  "servers": [
+    {
+      "url": "https://{tenant_cname}.console.ves.volterra.io/api/nginx/one/namespaces/{namespace}",
+      "variables": {
+        "namespace": {
+          "description": "The application namespace used to organize and scope API resources.",
+          "default": "default"
+        },
+        "tenant_cname": {
+          "description": "The specific DNS name used to access your tenant.",
+          "default": "tenant-example"
+        }
+      }
+    }
+  ],
   "tags": [
     {
       "name": "Data Plane Key",
@@ -63,7 +78,6 @@
   ],
   "paths": {
     "/data-plane-keys": {
-      "servers": [],
       "get": {
         "tags": [
           "Data Plane Key"
@@ -245,7 +259,6 @@
       }
     },
     "/data-plane-keys/{data_plane_key_id}": {
-      "servers": [],
       "delete": {
         "tags": [
           "Data Plane Key"
@@ -425,7 +438,6 @@
       }
     },
     "/data-plane-keys/{data_plane_key_id}/revoke": {
-      "servers": [],
       "put": {
         "tags": [
           "Data Plane Key"
@@ -480,7 +492,6 @@
       }
     },
     "/certificates": {
-      "servers": [],
       "get": {
         "tags": [
           "Certificates"
@@ -611,7 +622,6 @@
       }
     },
     "/certificates/{certificateObjectID}": {
-      "servers": [],
       "delete": {
         "x-nginx-one-action": "delete",
         "x-nginx-one-entity": "NGINX certificate",
@@ -811,7 +821,6 @@
       }
     },
     "/certificates/{certificateObjectID}/deployments": {
-      "servers": [],
       "get": {
         "tags": [
           "Certificates"
@@ -893,7 +902,6 @@
       }
     },
     "/certificates/parse": {
-      "servers": [],
       "post": {
         "x-nginx-one-action": "validate",
         "x-nginx-one-entity": "NGINX certificate",
@@ -957,11 +965,8 @@
         }
       }
     },
-    "/config-report": {
-      "servers": []
-    },
+    "/config-report": {},
     "/config-sync-groups": {
-      "servers": [],
       "get": {
         "tags": [
           "Config Sync Groups"
@@ -1144,7 +1149,6 @@
       }
     },
     "/config-sync-groups/{configSyncGroupObjectID}": {
-      "servers": [],
       "delete": {
         "x-nginx-one-action": "delete",
         "x-nginx-one-entity": "NGINX config sync group",
@@ -1252,7 +1256,6 @@
       ]
     },
     "/config-sync-groups/{configSyncGroupObjectID}/config": {
-      "servers": [],
       "get": {
         "tags": [
           "Config Sync Groups"
@@ -1474,7 +1477,6 @@
       }
     },
     "/config-sync-groups/{configSyncGroupObjectID}/config-report": {
-      "servers": [],
       "get": {
         "tags": [
           "Config Sync Groups"
@@ -1669,7 +1671,6 @@
       }
     },
     "/config-sync-groups/{configSyncGroupObjectID}/config/{configSyncGroupConfigurationObjectID}": {
-      "servers": [],
       "get": {
         "tags": [
           "Config Sync Groups"
@@ -1730,7 +1731,6 @@
       ]
     },
     "/config-sync-groups/{configSyncGroupObjectID}/configs": {
-      "servers": [],
       "get": {
         "tags": [
           "Config Sync Groups"
@@ -1791,7 +1791,6 @@
       ]
     },
     "/config-sync-groups/{configSyncGroupObjectID}/publications": {
-      "servers": [],
       "get": {
         "tags": [
           "Config Sync Groups"
@@ -1852,7 +1851,6 @@
       ]
     },
     "/config-sync-groups/{configSyncGroupObjectID}/publications/{publicationObjectID}": {
-      "servers": [],
       "get": {
         "tags": [
           "Config Sync Groups"
@@ -1913,7 +1911,6 @@
       ]
     },
     "/control-planes": {
-      "servers": [],
       "get": {
         "tags": [
           "Control Planes"
@@ -1968,7 +1965,6 @@
       }
     },
     "/control-planes/{controlPlaneObjectID}": {
-      "servers": [],
       "delete": {
         "x-nginx-one-action": "delete",
         "x-nginx-one-entity": "Control Plane",
@@ -2029,7 +2025,6 @@
       ]
     },
     "/control-planes/summary": {
-      "servers": [],
       "get": {
         "tags": [
           "Control Planes"
@@ -2058,14 +2053,13 @@
       }
     },
     "/cves": {
-      "servers": [],
       "get": {
         "tags": [
           "CVEs"
         ],
-        "summary": "List of all CVEs affecting any instance/control plane",
+        "summary": "List of all CVEs affecting any instance or control plane",
         "operationId": "listNginxCVEs",
-        "description": "Returns a list of all CVEs that affect an instance/control plane under the tenant\n",
+        "description": "Returns a list of all CVEs that affect an instance or control plane under the tenant\n",
         "parameters": [
           {
             "$ref": "#/components/parameters/Paginated"
@@ -2118,7 +2112,6 @@
       }
     },
     "/cves/{nginxCVEID}": {
-      "servers": [],
       "get": {
         "tags": [
           "CVEs"
@@ -2176,7 +2169,6 @@
       }
     },
     "/cves/{nginxCVEID}/impacted_instances": {
-      "servers": [],
       "get": {
         "tags": [
           "CVEs"
@@ -2249,7 +2241,6 @@
       }
     },
     "/events": {
-      "servers": [],
       "get": {
         "tags": [
           "Events"
@@ -2312,7 +2303,6 @@
       }
     },
     "/events/{eventObjectID}": {
-      "servers": [],
       "get": {
         "tags": [
           "Events"
@@ -2370,7 +2360,6 @@
       }
     },
     "/instances": {
-      "servers": [],
       "get": {
         "tags": [
           "Instances"
@@ -2491,7 +2480,6 @@
       }
     },
     "/instances/{instanceObjectID}": {
-      "servers": [],
       "delete": {
         "tags": [
           "Instances"
@@ -2599,7 +2587,6 @@
       }
     },
     "/instances/{instanceObjectID}/config": {
-      "servers": [],
       "get": {
         "tags": [
           "Instances"
@@ -2801,7 +2788,6 @@
       }
     },
     "/instances/{instanceObjectID}/config-report": {
-      "servers": [],
       "get": {
         "tags": [
           "Instances"
@@ -2996,7 +2982,6 @@
       }
     },
     "/instances/{instanceObjectID}/configs": {
-      "servers": [],
       "get": {
         "tags": [
           "Instances"
@@ -3057,7 +3042,6 @@
       ]
     },
     "/instances/{instanceObjectID}/configs/{instanceConfigurationObjectID}": {
-      "servers": [],
       "get": {
         "tags": [
           "Instances"
@@ -3118,7 +3102,6 @@
       ]
     },
     "/instances/{instanceObjectID}/cves": {
-      "servers": [],
       "get": {
         "tags": [
           "Instances"
@@ -3179,7 +3162,6 @@
       }
     },
     "/instances/{instanceObjectID}/publications": {
-      "servers": [],
       "get": {
         "tags": [
           "Instances"
@@ -3230,7 +3212,6 @@
       }
     },
     "/instances/{instanceObjectID}/publications/{publicationObjectID}": {
-      "servers": [],
       "get": {
         "tags": [
           "Instances"
@@ -3291,7 +3272,6 @@
       }
     },
     "/instances/summary": {
-      "servers": [],
       "get": {
         "tags": [
           "Instances"
@@ -3334,7 +3314,6 @@
       }
     },
     "/staged-configs": {
-      "servers": [],
       "get": {
         "x-feature-flag": "staged-configs",
         "tags": [
@@ -3467,7 +3446,6 @@
       }
     },
     "/staged-configs/{stagedConfigObjectID}": {
-      "servers": [],
       "delete": {
         "x-feature-flag": "staged-configs",
         "x-nginx-one-action": "delete",
@@ -3572,7 +3550,6 @@
       ]
     },
     "/staged-configs/{stagedConfigObjectID}/config": {
-      "servers": [],
       "get": {
         "tags": [
           "Staged Configs"
@@ -3787,7 +3764,6 @@
       }
     },
     "/staged-configs/{stagedConfigObjectID}/config-report": {
-      "servers": [],
       "get": {
         "tags": [
           "Staged Configs"
@@ -3912,7 +3888,6 @@
       }
     },
     "/monitor/metrics_query_topx": {
-      "servers": [],
       "post": {
         "tags": [
           "Metrics"
@@ -3987,7 +3962,6 @@
       }
     },
     "/settings/instance-cleanup": {
-      "servers": [],
       "get": {
         "tags": [
           "Settings"
@@ -4051,7 +4025,6 @@
       }
     },
     "/app-protect/policies": {
-      "servers": [],
       "get": {
         "tags": [
           "NGINX App Protect"
@@ -4244,7 +4217,6 @@
       }
     },
     "/app-protect/policies/{nap_policy_object_id}": {
-      "servers": [],
       "delete": {
         "tags": [
           "NGINX App Protect"
@@ -4449,7 +4421,6 @@
       }
     },
     "/app-protect/policies/{nap_policy_object_id}/deployments": {
-      "servers": [],
       "get": {
         "tags": [
           "NGINX App Protect"
@@ -4541,7 +4512,6 @@
       }
     },
     "/app-protect/policies/{nap_policy_object_id}/version": {
-      "servers": [],
       "get": {
         "tags": [
           "NGINX App Protect"
@@ -4599,7 +4569,6 @@
       }
     },
     "/app-protect/policies/{nap_policy_object_id}/versions": {
-      "servers": [],
       "get": {
         "tags": [
           "NGINX App Protect"
@@ -4691,7 +4660,6 @@
       }
     },
     "/app-protect/policies/{nap_policy_object_id}/versions/{nap_policy_version_object_id}": {
-      "servers": [],
       "delete": {
         "x-nginx-one-action": "delete",
         "x-nginx-one-entity": "NGINX App Protect Policy Version",
@@ -5068,7 +5036,7 @@
       "SortNameCVEs": {
         "name": "sort_cves",
         "in": "query",
-        "description": "Sort CVEs by the number of instances/control planes affected by that CVE.\n",
+        "description": "Sort CVEs by the number of instances or control planes affected by that CVE.\n",
         "schema": {
           "type": "array",
           "items": {
@@ -9460,7 +9428,7 @@
       "MetricDimension": {
         "type": "string",
         "default": "display_name",
-        "description": "Static list of all metric dimensions.\n  * `display_name` - The display name of the NGINX instance.\n  * `file_path` - Path to a desired file.\n  * `parent_hostname` - The hostname of the NGINX Plus instance.\n  * `instance_object_id` - Instance Object ID is the unique identifier for an Instance registered with NGINX One Console.\n  * `location_zone` - The name of an HTTP location zone.\n  * `mount_point` - A filesystem mount point.\n  * `namespace` - The Namespace associated with the metric data.\n  * `network_interface` - A server network interface.\n  * `nginx_id` - The unique identifier of an nginx instance running on the data plane.\n  * `server_zone` - The name of an HTTP or Stream server zone.\n  * `system_id` - The unique identifier of the the operating system where nginx-agent is running.\n  * `tenant` - The Tenant associated with the metric data.\n  * `csg_object_id` - Config Sync Group Object ID is the unique identifier for a Config Sync Group registered with NGINX One Console.\n  * `mode` - Variant value associated with metric `system.cpu.utilization`.\n  * `state` - Variant value associated with metrics `system.filesystem.usage`, `system.memory.usage`.\n  * `io_direction` - Variant value associated with metric `system.network.io`.\n  * `status_range` - Variant value associated with metric `nginx.http.response.count`.\n  * `logical_number` - Variant value associated with metrics that result in a processor number.\n  * `outcome` - Variant value associated with metrics that result in an outcome .\n",
+        "description": "Static list of all metric dimensions:\n  * `display_name` - Display name of the NGINX instance.\n  * `file_path` - Path to the file.\n  * `parent_hostname` - Hostname of the NGINX Plus instance.\n  * `instance_object_id` - Unique ID of the instance registered with NGINX One Console.\n  * `location_zone` - Name of an HTTP location zone.\n  * `mount_point` - Filesystem mount point.\n  * `namespace` - Namespace for the metric data.\n  * `network_interface` - Server network interface.\n  * `nginx_id` - Unique ID of the NGINX instance running on the data plane.\n  * `server_zone` - Name of an HTTP or Stream server zone.\n  * `system_id` - Unique ID of the operating system running nginx-agent.\n  * `tenant` - Tenant for the metric data.\n  * `csg_object_id` - Unique ID of the Config Sync Group registered with NGINX One Console.\n  * `mode` - Variant value for metric `system.cpu.utilization`.\n  * `state` - Variant value for metrics `system.filesystem.usage`, `system.memory.usage`.\n  * `io_direction` - Variant value for metric `system.network.io`.\n  * `status_range` - Variant value for metric `nginx.http.response.count`.\n  * `logical_number` - Variant value for metrics that return a processor number.\n  * `outcome` - Variant value for metrics that return an outcome.\n",
         "enum": [
           "display_name",
           "file_path",
@@ -9815,7 +9783,7 @@
       },
       "MetricSystemCpuUtilization": {
         "type": "string",
-        "description": "Total system CPU utilization for 'system' or 'user', percentage. A filter differentiator is needed for specific mode(s).\n\nReplacement for depreciated variant(s):\n  * system.cpu.system\n  * system.cpu.user\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension filter differentiator:\n  * mode (applicable filter values: 'system', 'user')\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n  * logical_number\n",
+        "description": "Total system CPU use for 'system' or 'user' (percent). A filter is required to specify the mode.\n\nReplaces deprecated variants:\n  * system.cpu.system\n  * system.cpu.user\n\nSupported aggregations:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension filter:\n  * mode (valid values:: 'system', 'user')\n\nSupported catalog dimensions:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n  * logical_number\n",
         "enum": [
           "system.cpu.utilization"
         ]
@@ -9843,7 +9811,7 @@
       },
       "MetricNginxHttpConnectionCount": {
         "type": "string",
-        "description": "Number of connections group by outcome (such as 'ACCEPTED', 'DROPPED', 'ACTIVE', 'IDLE').\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n  * outcome\n",
+        "description": "Number of connections grouped by outcome ('ACCEPTED', 'DROPPED', 'ACTIVE', 'IDLE').\nSupported aggregations:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nSupported catalog dimensions:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n  * outcome\n",
         "enum": [
           "nginx.http.connection.count"
         ]
