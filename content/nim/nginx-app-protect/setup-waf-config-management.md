@@ -257,7 +257,7 @@ Current latest version 5.442.0 at the point of writing this document is used in 
 {{%tab name="Ubuntu"%}}
 
 
-### Install on Ubuntu 24.04, 22.04, and 20.04
+### Install on Ubuntu 24.04, 22.04
 
 #### Step 1: On a system with internet access
 
