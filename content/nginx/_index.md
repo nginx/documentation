@@ -28,7 +28,7 @@ NGINX Plus adds a range of premium features to address enterprise needs.
 
 {{<card-layout>}}
   {{<card-section showAsCards="true" isFeaturedSection="true">}}
-    {{<card title="Install NGINX Plus" titleUrl="/nginx/installing-nginx/installing-nginx-plus/" icon="unplug" isFullSize="true">}}
+    {{<card title="Install NGINX Plus" titleUrl="/nginx/admin-guide/installing-nginx/installing-nginx-plus/" icon="unplug" isFullSize="true">}}
       Install NGINX Plus on different operating systems.
     {{</card >}}
   {{</card-section>}}
@@ -37,10 +37,10 @@ NGINX Plus adds a range of premium features to address enterprise needs.
 
 {{<card-layout>}}
   {{<card-section showAsCards="true" >}}
-    {{<card title="Install NGINX Open Source" titleUrl="/nginx/installing-nginx/installing-nginx-open-source/" >}}
+    {{<card title="Install NGINX Open Source" titleUrl="/nginx/admin-guide/installing-nginx/installing-nginx-open-source/" >}}
       Install NGINX Open Source. Compile from source.
     {{</card>}}
-    {{<card title="Set up HTTP load balancing" titleUrl="/admin-guide/load-balancer/http-load-balancer/" >}}
+    {{<card title="Set up HTTP load balancing" titleUrl="/nginx/admin-guide/load-balancer/http-load-balancer/" >}}
       Keep your servers running.
     {{</ card >}}
     {{<card title="Set up a web server" titleUrl="/nginx/admin-guide/web-server/web-server/" >}}
