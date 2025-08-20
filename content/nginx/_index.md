@@ -56,7 +56,7 @@ NGINX Plus adds a range of premium features to address enterprise needs.
 
 {{<card-layout>}}
   {{<card-section showAsCards="true" >}}
-    {{<card title="View release notes and updates" titleUrl="/nginx-instance-manager/releases/" icon="clock-alert">}}
+    {{<card title="View release notes and updates" titleUrl="/nginx/releases/" icon="clock-alert">}}
       Get details on new features, bug fixes, and known issues.
     {{</card>}}
   {{</card-section>}}
