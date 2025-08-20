@@ -67,11 +67,11 @@ accessControl:
   deny:
   - 10.0.0.0/8
 ```
-{{< note >}}
+{{< call-out "note" >}}
 
 The feature is implemented using the NGINX [ngx_http_access_module](http://nginx.org/en/docs/http/ngx_http_access_module.html). NGINX Ingress Controller access control policy supports either allow or deny rules, but not both (as the module does).
 
-{{< /note >}}
+{{< /call-out >}}
 
 {{% table %}}
 |Field | Description | Type | Required |
@@ -113,17 +113,17 @@ rateLimit:
   zoneSize: 10M
   key: ${binary_remote_addr}
 ```
-{{< note >}}
+{{< call-out "note" >}}
 
 The feature is implemented using the NGINX [ngx_http_limit_req_module](https://nginx.org/en/docs/http/ngx_http_limit_req_module.html).
 
-{{< /note >}}
+{{< /call-out >}}
 
-{{< note >}}
+{{< call-out "note" >}}
 
 When the [Zone Sync feature]({{< ref "/nic/configuration/global-configuration/configmap-resource.md#zone-sync" >}}) is enabled with NGINX Plus, the rate limiting zone will be synchronized across all replicas in the cluster.  This means all replicas are aware of the requests that have been rate limited by other replicas in the cluster.
 
-{{< /note >}}
+{{< /call-out >}}
 
 {{% table %}}
 |Field | Description | Type | Required |
@@ -141,11 +141,11 @@ When the [Zone Sync feature]({{< ref "/nic/configuration/global-configuration/co
 |``condition`` | Add a condition to a rate-limit policy. | [ratelimit.condition](#ratelimitcondition) | No |
 {{% /table %}}
 
-{{< note >}}
+{{< call-out "note" >}}
 
 For each policy referenced in a VirtualServer and/or its VirtualServerRoutes, NGINX Ingress Controller will generate a single rate limiting zone defined by the [`limit_req_zone`](http://nginx.org/en/docs/http/ngx_http_limit_req_module.html#limit_req_zone) directive. If two VirtualServer resources reference the same policy, NGINX Ingress Controller will generate two different rate limiting zones, one zone per VirtualServer.
 
-{{< /note >}}
+{{< /call-out >}}
 
 #### RateLimit Merging Behavior
 
@@ -178,20 +178,20 @@ condition:
 |``variables`` | defines a Variable condition to rate limit against. | [ratelimit.condition.variables](#ratelimitconditionvariables) | No |
 |``default`` | sets the rate limit in this policy to be the default if no conditions are met. In a group of policies with the same condition, only one policy can be the default. | ``bool`` | No |
 {{% /table %}}
-{{< note >}}
+{{< call-out "note" >}}
  
 One condition of type `jwt` or `variables` is required. Each Policy supports only one condition.
 
-{{< /note >}}
+{{< /call-out >}}
 
 The rate limit policy with condition is designed to be used in combination with one or more rate limit policies. For example, multiple rate limit policies with [RateLimit.Condition.JWT](#ratelimitconditionjwt) can be used to apply different tiers of rate limit based on the value of a JWT claim. For a practical example of tiered rate limiting by the value of a JWT claim, see the example in our [GitHub repository](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/custom-resources/rate-limit-tiered-jwt-claim/README.md).
 
 ### RateLimit.Condition.JWT
-{{< note >}}
+{{< call-out "note" >}}
 
 This feature is only available with NGINX Plus.
 
-{{< /note >}}
+{{< /call-out >}}
 
 RateLimit.Condition.JWT defines a condition for a rate limit by JWT claim. For example, here we define a condition for a rate limit policy that only applies to requests with a JWT claim `user_details.level` with a value `premium`:
 
@@ -229,9 +229,9 @@ variables:
     match: GET
 ```
 
-{{< note >}}
+{{< call-out "note" >}}
 Only one variable at a time is supported at present.
-{{< /note >}}
+{{< /call-out >}}
 
 {{% table %}}
 |Field | Description | Type | Required |
@@ -244,11 +244,11 @@ Only one variable at a time is supported at present.
 
 The API Key auth policy configures NGINX to authorize client requests based on the presence of a valid API Key in a header or query param specified in the policy.
 
-{{< note >}}
+{{< call-out "note" >}}
 
 The feature is implemented using NGINX [ngx_http_auth_request_module](http://nginx.org/en/docs/http/ngx_http_auth_request_module.html) and [NGINX JavaScript (NJS)](https://nginx.org/en/docs/njs/).
 
-{{< /note >}}
+{{< /call-out >}}
 
 The policies' API keys are securely stored using SHA-256 hashing. When a client sends an API Key, it is hashed by NJS and then compared to the hashed API Key in the NGINX config.
 
@@ -287,7 +287,7 @@ data:
 |``clientSecret`` | The name of the Kubernetes secret that stores the API Key(s). It must be in the same namespace as the Policy resource. The secret must be of the type ``nginx.org/apikey``, and the API Key(s) must be stored in a key: val format where each key is a unique clientID and each value is a unique base64 encoded API Key  | ``string`` | Yes |
 {{% /table %}}
 
-{{<important>}}An APIKey Policy must include a minimum of one of the `suppliedIn.header` or `suppliedIn.query` parameters.  Both can also be supplied.{{</important>}}
+{{< call-out "important" >}}An APIKey Policy must include a minimum of one of the `suppliedIn.header` or `suppliedIn.query` parameters.  Both can also be supplied.{{< /call-out >}}
 
 #### APIKey Merging Behavior
 
@@ -333,9 +333,9 @@ basicAuth:
   secret: htpasswd-secret
   realm: "My API"
 ```
-{{< note >}}
+{{< call-out "note" >}}
 The feature is implemented using the NGINX [ngx_http_auth_basic_module](https://nginx.org/en/docs/http/ngx_http_auth_basic_module.html).
-{{< /note >}}
+{{< /call-out >}}
 
 {{% table %}}
 |Field | Description | Type | Required |
@@ -358,11 +358,11 @@ In this example NGINX Ingress Controller will use the configuration from the fir
 
 ### JWT Using Local Kubernetes Secret
 
-{{< note >}}
+{{< call-out "note" >}}
 
 This feature is only available with NGINX Plus.
 
-{{< /note >}}
+{{< /call-out >}}
 
 The JWT policy configures NGINX Plus to authenticate client requests using JSON Web Tokens.
 
@@ -393,11 +393,11 @@ We use the `requestHeaders` of the [Action.Proxy]({{< ref "/nic/configuration/vi
 
 The value of the `${jwt_claim_user}` variable is the `user` claim of a JWT. For other claims, use `${jwt_claim_name}`, where `name` is the name of the claim. Note that nested claims and claims that include a period (`.`) are not supported. Similarly, use `${jwt_header_name}` where `name` is the name of a header. In our example, we use the `alg` header.
 
-{{< note >}}
+{{< call-out "note" >}}
 
 This feature is implemented using the NGINX Plus [ngx_http_auth_jwt_module](https://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html).
 
-{{< /note >}}
+{{< /call-out >}}
 
 {{% table %}}
 |Field | Description | Type | Required |
@@ -421,11 +421,11 @@ In this example NGINX Ingress Controller will use the configuration from the fir
 
 ### JWT Using JWKS From Remote Location
 
-{{< note >}}
+{{< call-out "note" >}}
 
 This feature is only available with NGINX Plus.
 
-{{< /note >}}
+{{< /call-out >}}
 
 The JWT policy configures NGINX Plus to authenticate client requests using JSON Web Tokens, allowing import of the keys (JWKS) for JWT policy by means of a URL (for a remote server or an identity provider) as a result they don't have to be copied and updated to the IC pod.
 
@@ -439,11 +439,11 @@ jwt:
   keyCache: 1h
 ```
 
-{{< note >}}
+{{< call-out "note" >}}
 
 This feature is implemented using the NGINX Plus directive [auth_jwt_key_request](http://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html#auth_jwt_key_request) under [ngx_http_auth_jwt_module](https://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html).
 
-{{< /note >}}
+{{< /call-out >}}
 
 {{% table %}}
 |Field | Description | Type | Required |
@@ -454,13 +454,13 @@ This feature is implemented using the NGINX Plus directive [auth_jwt_key_request
 |``token`` | The token specifies a variable that contains the JSON Web Token. By default the JWT is passed in the ``Authorization`` header as a Bearer Token. JWT may be also passed as a cookie or a part of a query string, for example: ``$cookie_auth_token``. Accepted variables are ``$http_``, ``$arg_``, ``$cookie_``. | ``string`` | No |
 {{% /table %}}
 
-{{< note >}}
+{{< call-out "note" >}}
 
 Content caching is enabled by default for each JWT policy with a default time of 12 hours.
 
 This is done to ensure to improve resiliency by allowing the JWKS (JSON Web Key Set) to be retrieved from the cache even when it has expired.
 
-{{< /note >}}
+{{< /call-out >}}
 
 #### JWT Merging Behavior
 
@@ -522,22 +522,22 @@ action:
 
 We use the `requestHeaders` of the [Action.Proxy]({{< ref "/nic/configuration/virtualserver-and-virtualserverroute-resources.md#actionproxy" >}}) to set the values of the two headers that NGINX will pass to the upstream servers. See the [list of embedded variables](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#variables) that are supported by the `ngx_http_ssl_module`, which you can use to pass the client certificate details.
 
-{{< note >}}
+{{< call-out "note" >}}
 
  The feature is implemented using the NGINX [ngx_http_ssl_module](https://nginx.org/en/docs/http/ngx_http_ssl_module.html).
 
- {{< /note >}}
+ {{< /call-out >}}
 
 #### Using a Certificate Revocation List
 
 The IngressMTLS policy supports configuring at CRL for your policy.
 This can be done in one of two ways.
 
-{{< note >}}
+{{< call-out "note" >}}
 
  Only one of these configurations options can be used at a time.
 
-{{< /note >}}
+{{< /call-out >}}
 
 1. Adding the `ca.crl` field to the `nginx.org/ca` secret type, which accepts a base64 encoded certificate revocation list (crl).
    Example YAML:
@@ -555,13 +555,13 @@ data:
 
 2. Adding the `crlFileName` field to your IngressMTLS policy spec with the name of the CRL file.
 
-{{< note >}}
+{{< call-out "note" >}}
 
 This configuration option should only be used when using a CRL that is larger than 1MiB.
 
 Otherwise we recommend using the `nginx.org/ca` secret type for managing your CRL.
 
-{{< /note >}}
+{{< /call-out >}}
 
 Example YAML:
 
@@ -621,11 +621,11 @@ egressMTLS:
   verifyDepth: 2
 ```
 
-{{< note >}}
+{{< call-out "note" >}}
 
 The feature is implemented using the NGINX [ngx_http_proxy_module](https://nginx.org/en/docs/http/ngx_http_proxy_module.html).
 
-{{< /note >}}
+{{< /call-out >}}
 
 {{% table %}}
 |Field | Description | Type | Required |
@@ -655,11 +655,11 @@ In this example NGINX Ingress Controller will use the configuration from the fir
 
 ### OIDC
 
-{{< tip >}}
+{{< call-out "tip" >}}
 
 This feature is disabled by default. To enable it, set the [enable-oidc]({{< ref "/nic/configuration/global-configuration/command-line-arguments.md#cmdoption-enable-oidc" >}}) command-line argument of NGINX Ingress Controller.
 
-{{< /tip >}}
+{{< /call-out >}}
 
 The OIDC policy configures NGINX Plus as a relying party for OpenID Connect authentication.
 
@@ -681,22 +681,22 @@ spec:
 
 NGINX Plus will pass the ID of an authenticated user to the backend in the HTTP header `username`.
 
-{{< note >}}
+{{< call-out "note" >}}
 
 The feature is implemented using the [reference implementation](https://github.com/nginxinc/nginx-openid-connect/) of NGINX Plus as a relying party for OpenID Connect authentication.
 
-{{< /note >}}
+{{< /call-out >}}
 
 #### Prerequisites
 
 In order to use OIDC, you need to enable [zone synchronization]({{< ref "/nginx/admin-guide/high-availability/zone_sync.md" >}}). If you don't set up zone synchronization, NGINX Plus will fail to reload.
 You also need to configure a resolver, which NGINX Plus will use to resolve the IDP authorization endpoint. You can find an example configuration [in our GitHub repository](https://github.com/nginx/kubernetes-ingress/blob/v{{< nic-version >}}/examples/custom-resources/oidc#step-7---configure-nginx-plus-zone-synchronization-and-resolver).
 
-{{< warning >}}
+{{< call-out "warning" >}}
 
 The configuration in the example doesn't enable TLS and the synchronization between the replica happens in clear text. This could lead to the exposure of tokens.
 
-{{< /warning >}}
+{{< /call-out >}}
 
 #### Limitations
 
@@ -720,11 +720,11 @@ The OIDC policy defines a few internal locations that can't be customized: `/_jw
 |``pkceEnable`` | Switches Proof Key for Code Exchange on. The OpenID client needs to be in public mode. `clientSecret` is not used in this mode. | ``boolean`` | No |
 {{% /table %}}
 
-{{< note >}}
+{{< call-out "note" >}}
 
 Only one OIDC policy can be referenced in a VirtualServer and its VirtualServerRoutes. However, the same policy can still be applied to different routes in the VirtualServer and VirtualServerRoutes.
 
-{{< /note >}}
+{{< /call-out >}}
 
 #### OIDC Merging Behavior
 
@@ -763,7 +763,7 @@ For `kubectl get` and similar commands, you can also use the short name `pol` in
 
 ### WAF
 
-{{< note >}} The feature is implemented using the NGINX Plus [NGINX App Protect WAF Module]({{< ref "/nap-waf/" >}}). {{< /note >}}
+{{< call-out "note" >}} The feature is implemented using the NGINX Plus [NGINX App Protect WAF Module]({{< ref "/nap-waf/" >}}). {{< /call-out >}}
 
 The WAF policy configures NGINX Plus to secure client requests using App Protect WAF policies.
 
@@ -782,7 +782,7 @@ waf:
     logDest: "syslog:server=syslog-svc-secondary.default:514"
 ```
 
-{{< note >}} The field `waf.securityLog` is deprecated and will be removed in future releases.It will be ignored if `waf.securityLogs` is populated. {{< /note >}}
+{{< call-out "note" >}} The field `waf.securityLog` is deprecated and will be removed in future releases.It will be ignored if `waf.securityLogs` is populated. {{< /call-out >}}
 
 {{% table %}}
 |Field | Description | Type | Required |
@@ -793,7 +793,7 @@ waf:
 |``securityLog.enable`` | Enables security log. | ``bool`` | No |
 |``securityLog.apLogConf`` | The [App Protect WAF log conf]({{< ref "/nic/installation/integrations/app-protect-waf/configuration.md#waf-logs" >}}) resource. Accepts an optional namespace. Only works with ``apPolicy``. | ``string`` | No |
 |``securityLog.apLogBundle`` | The [App Protect WAF log bundle]({{< ref "/nic/installation/integrations/app-protect-waf/configuration.md#waf-bundles" >}}) resource. Only works with ``apBundle``. | ``string`` | No |
-|``securityLog.logDest`` | The log destination for the security log. Only accepted variables are ``syslog:server=<ip-address &#124; localhost; fqdn>:<port>``, ``stderr``, ``<absolute path to file>``. | ``string`` | No |
+|``securityLog.logDest`` | The log destination for the security log. Only accepted variables are ``syslog:server=<ip-address>; localhost; fqdn>:<port>``, ``stderr``, ``<absolute path to file>``. | ``string`` | No |
 {{% /table %}}
 
 #### WAF Merging Behavior

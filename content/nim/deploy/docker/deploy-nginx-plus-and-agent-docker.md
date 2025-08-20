@@ -23,8 +23,8 @@ Before you start, make sure that:
 
 - NGINX Instance Manager is [installed]({{< ref "/nim/deploy/vm-bare-metal/install.md" >}}).
 
-  {{<note>}} When installing and configuring NGINX Instance Manager, remember the domain name/IP address and the gRPC port number. You will need them to configure the NGINX Agent to communicate with NGINX Instance Manager.
-  {{</note>}}
+  {{< call-out "note" >}} When installing and configuring NGINX Instance Manager, remember the domain name/IP address and the gRPC port number. You will need them to configure the NGINX Agent to communicate with NGINX Instance Manager.
+  {{< /call-out >}}
 - You have the JSON Web Token (JWT) from MyF5 Customer Portal. The [download instructions](#download-jwt) are below.
 - The [Docker Engine](https://docs.docker.com/engine/install/) command-line tool is installed.
 - Your private Docker registry is configured and running.

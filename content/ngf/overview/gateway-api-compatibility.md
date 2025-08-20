@@ -38,7 +38,7 @@ Gateway API features has three [support levels](https://gateway-api.sigs.k8s.io/
 - _Not supported_. The resource or field is not yet supported. It will become partially or fully supported in future
   releases.
 
-{{< note >}} It's possible that NGINX Gateway Fabric will never support some resources or fields of the Gateway API. They will be documented on a case by case basis. {{< /note >}}
+{{< call-out "note" >}} It's possible that NGINX Gateway Fabric will never support some resources or fields of the Gateway API. They will be documented on a case by case basis. {{< /call-out >}}
 
 
 ## Resources
@@ -136,9 +136,11 @@ See the [controller]({{< ref "/ngf/reference/cli-help.md#controller">}}) command
       - `ResolvedRefs/True/ResolvedRefs`
       - `ResolvedRefs/False/InvalidCertificateRef`
       - `ResolvedRefs/False/InvalidRouteKinds`
+      - `ResolvedRefs/False/RefNotPermitted`
       - `Conflicted/True/ProtocolConflict`
       - `Conflicted/True/HostnameConflict`
       - `Conflicted/False/NoConflicts`
+      - `OverlappingTLSConfig/True/OverlappingHostnames`
 
 ### HTTPRoute
 
@@ -167,7 +169,7 @@ See the [controller]({{< ref "/ngf/reference/cli-help.md#controller">}}) command
       - `requestHeaderModifier`: Supported. If multiple filters are configured, NGINX Gateway Fabric will choose the first and ignore the rest.
       - `urlRewrite`: Supported. If multiple filters are configured, NGINX Gateway Fabric will choose the first and ignore the rest. Incompatible with `requestRedirect`.
       - `responseHeaderModifier`: Supported. If multiple filters are configured, NGINX Gateway Fabric will choose the first and ignore the rest.
-      - `requestMirror`: Supported. Multiple mirrors can be specified.
+      - `requestMirror`: Supported. Multiple mirrors can be specified. Percent and fraction-based mirroring are supported.
       - `extensionRef`: Supported for SnippetsFilters.
     - `backendRefs`: Partially supported. Backend ref `filters` are not supported.
 - `status`
@@ -189,6 +191,7 @@ See the [controller]({{< ref "/ngf/reference/cli-help.md#controller">}}) command
       - `ResolvedRefs/False/BackendNotFound`
       - `ResolvedRefs/False/UnsupportedValue`: Custom reason for when one of the HTTPRoute rules has a backendRef with an unsupported value.
       - `ResolvedRefs/False/InvalidIPFamily`: Custom reason for when one of the HTTPRoute rules has a backendRef that has an invalid IPFamily.
+      - `ResolvedRefs/False/UnsupportedProtocol`
       - `PartiallyInvalid/True/UnsupportedValue`
 
 ### GRPCRoute
@@ -352,7 +355,7 @@ Fields:
       - `Accepted/True/PolicyReasonAccepted`
       - `Accepted/False/PolicyReasonInvalid`
 
-{{< note >}} If multiple `backendRefs` are defined for a HTTPRoute rule, all the referenced Services *must* have matching BackendTLSPolicy configuration. BackendTLSPolicy configuration is considered to be matching if 1. CACertRefs reference the same ConfigMap, or 2. WellKnownCACerts are the same, and 3. Hostname is the same. {{< /note >}}
+{{< call-out "note" >}} If multiple `backendRefs` are defined for a HTTPRoute rule, all the referenced Services *must* have matching BackendTLSPolicy configuration. BackendTLSPolicy configuration is considered to be matching if 1. CACertRefs reference the same ConfigMap, or 2. WellKnownCACerts are the same, and 3. Hostname is the same. {{< /call-out >}}
 
 ### Custom Policies
 

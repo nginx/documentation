@@ -114,10 +114,10 @@ Repeat the steps in this section on each NGINX App Protect WAF data plane host t
    sudo systemctl restart nginx
    ```
 
-{{<important>}}You can change the values of `syslog_ip` and `syslog_port` to meet your needs.
-   You must use the same values when configuring logging for the Security Monitoring module. If the `syslog:<server><port>` configuration does not match these settings, the monitoring dashboards will not display any data. Also, the networking changes for NGINX App Protect Version 5 preclude the use of `127.0.0.1` as a syslog server address. For Version 5, the address of the `docker0` interface (typically `192.0.10.1`) or the IP address of the data plane host can be used for the syslog server address.{{</important>}}
+{{< call-out "important" >}}You can change the values of `syslog_ip` and `syslog_port` to meet your needs.
+   You must use the same values when configuring logging for the Security Monitoring module. If the `syslog:<server><port>` configuration does not match these settings, the monitoring dashboards will not display any data. Also, the networking changes for NGINX App Protect Version 5 preclude the use of `127.0.0.1` as a syslog server address. For Version 5, the address of the `docker0` interface (typically `192.0.10.1`) or the IP address of the data plane host can be used for the syslog server address.{{< /call-out >}}
 
-   {{<note>}}You can use the NGINX Agent installation script to add the fields for `nginx_app_protect` and `nap_monitoring`:
+   {{< call-out "note" >}}You can use the NGINX Agent installation script to add the fields for `nginx_app_protect` and `nap_monitoring`:
 
 ```shell
 # Download install script via API
@@ -138,7 +138,7 @@ Restart NGINX Agent:
 sudo systemctl restart nginx-agent
 ```
 
-{{</ note >}}
+{{< /call-out >}}
 
 
 ---
@@ -186,7 +186,7 @@ Repeat the steps below on each NGINX App Protect WAF data plane instance.
       app_protect_security_log "/etc/app_protect/conf/log_sm.json" syslog:server=127.0.0.1:514;
    ```
 
-   {{<important>}}The `syslog:server=<syslog_ip>:<syslog_port>` must match the `syslog_ip` and `syslog_port` values specified in the [NGINX Agent configuration file](#agent-config). The dashboards won't display any data if these settings don't match. Also, the networking changes for NGINX App Protect Version 5 preclude the use of `127.0.0.1` as a syslog server address. For Version 5, the address of the `docker0` interface (typically `192.0.10.1`) or the IP address of the data plane host can be used for the syslog server address.{{</important>}}
+   {{< call-out "important" >}}The `syslog:server=<syslog_ip>:<syslog_port>` must match the `syslog_ip` and `syslog_port` values specified in the [NGINX Agent configuration file](#agent-config). The dashboards won't display any data if these settings don't match. Also, the networking changes for NGINX App Protect Version 5 preclude the use of `127.0.0.1` as a syslog server address. For Version 5, the address of the `docker0` interface (typically `192.0.10.1`) or the IP address of the data plane host can be used for the syslog server address.{{< /call-out >}}
 
 1. Restart NGINX Agent and the NGINX web server.
 
@@ -212,7 +212,6 @@ Take the steps below to update your NGINX App Protect WAF configurations by usin
 
    ```nginx
       app_protect_enable on;
-      app_protect_enable on;
       app_protect_policy_file "/etc/nms/NginxDefaultPolicy.tgz";
       app_protect_security_log_enable on;
       app_protect_security_log "/etc/nms/secops_dashboard.tgz" syslog:server=127.0.0.1:514;
@@ -230,7 +229,7 @@ Take the steps below to update your NGINX App Protect WAF configurations by usin
 
       If the `app_protect_security_log_enable` setting is already present, just add the `app_protect_security_log` beneath it in the same context.
 
-      {{<important>}}The `syslog:server=<syslog_ip>:<syslog_port>` must match the `syslog_ip` and `syslog_port` values specified in the [NGINX Agent configuration file](#agent-config). The Security Monitoring dashboards won't display any data if these settings don't match. Also, the networking changes for NGINX App Protect Version 5 preclude the use of `127.0.0.1` as a syslog server address. For Version 5, the address of the `docker0` interface (typically `192.0.10.1`) or the IP address of the data plane host can be used for the syslog server address.{{</important>}}
+      {{< call-out "important" >}}The `syslog:server=<syslog_ip>:<syslog_port>` must match the `syslog_ip` and `syslog_port` values specified in the [NGINX Agent configuration file](#agent-config). The Security Monitoring dashboards won't display any data if these settings don't match. Also, the networking changes for NGINX App Protect Version 5 preclude the use of `127.0.0.1` as a syslog server address. For Version 5, the address of the `docker0` interface (typically `192.0.10.1`) or the IP address of the data plane host can be used for the syslog server address.{{< /call-out >}}
 
 1. Select **Publish** to immediately push the configuration file updates out to your NGINX instance or instance group.
 

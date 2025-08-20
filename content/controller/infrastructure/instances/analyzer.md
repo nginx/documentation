@@ -24,14 +24,14 @@ To access the **Analyzer** page, take the following steps:
 
 When viewing the **Analyzer Overview** page, select a system from the **Systems** pane to see the associated report.
 
-{{< note >}} The Analyzer can only show reports for NGINX instances found by the NGINX Controller Agent. If an instance is missing, check that it is [configured correctly for discovery by the Agent]({{< ref "/controller/support/troubleshooting-controller.md" >}}).{{< /note >}}
+{{< call-out "note" >}} The Analyzer can only show reports for NGINX instances found by the NGINX Controller Agent. If an instance is missing, check that it is [configured correctly for discovery by the Agent]({{< ref "/controller/support/troubleshooting-controller.md" >}}).{{< /call-out >}}
 
 The following information is provided when a report is run against an NGINX config structure:
 
 - Build
   - Path to NGINX config files(s)
   - Whether the parser failed or not, and the results of `nginx -t`
-      {{< note >}} Periodic NGINX configuration syntax checking with `nginx -t` is disabled by default. To enable this setting, select the **Enable periodic "nginx -t"** box on the [Default Agent Settings]({{< ref "/controller/admin-guides/config-agent/configure-the-agent.md#default-agent-settings" >}}) page.{{< /note >}}
+      {{< call-out "note" >}} Periodic NGINX configuration syntax checking with `nginx -t` is disabled by default. To enable this setting, select the **Enable periodic "nginx -t"** box on the [Default Agent Settings]({{< ref "/controller/admin-guides/config-agent/configure-the-agent.md#default-agent-settings" >}}) page.{{< /call-out >}}
   - Last-modified info
   - 3rd party modules found
   - Breakdown of the key configuration elements (servers, locations, upstreams)

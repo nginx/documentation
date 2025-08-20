@@ -32,7 +32,7 @@ Download the following files containing the configurations for the collectors:
 - {{< download "/ngf/otel-collector.yaml" "otel-collector.yaml" >}}
 - {{< download "/ngf/jaeger.yaml" "jaeger.yaml" >}}
 
-{{< note >}} These collectors are for demonstration purposes and are not tuned for production use. {{< /note >}}
+{{< call-out "note" >}} These collectors are for demonstration purposes and are not tuned for production use. {{< /call-out >}}
 
 Then install them:
 
@@ -70,7 +70,7 @@ When installed using the Helm chart, the NginxProxy resource is named `<release-
 
   The `NginxProxy` resource contains configuration for the collector, and applies to all Gateways and routes under the GatewayClass. It does not enable tracing, but is a prerequisite to the next piece of configuration.
 
-{{< note >}} You can also override the tracing configuration for a particular Gateway by manually creating and attaching specific `NginxProxy` resources to target the different Gateways. This guide covers the global tracing configuration only. {{< /note >}}
+{{< call-out "note" >}} You can also override the tracing configuration for a particular Gateway by manually creating and attaching specific `NginxProxy` resources to target the different Gateways. This guide covers the global tracing configuration only. {{< /call-out >}}
 
 - `ObservabilityPolicy`: This resource is a [Direct PolicyAttachment](https://gateway-api.sigs.k8s.io/reference/policy-attachment/) that targets HTTPRoutes or GRPCRoutes. It is created by the [application developer](https://gateway-api.sigs.k8s.io/concepts/roles-and-personas/) and enables tracing for a specific route or routes. It requires the `NginxProxy` resource to exist in order to complete the tracing configuration.
 
@@ -78,7 +78,7 @@ For all the possible configuration options for these resources, see the [API ref
 
 ### Install NGINX Gateway Fabric with global tracing configuration
 
-{{< note >}} Ensure that you [install the Gateway API resources]({{< ref "/ngf/install/helm.md#installing-the-gateway-api-resources" >}}).{{< /note >}}
+{{< call-out "note" >}} Ensure that you [install the Gateway API resources]({{< ref "/ngf/install/helm.md#installing-the-gateway-api-resources" >}}).{{< /call-out >}}
 
 Referencing the previously deployed collector, create the following `values.yaml` file for installing NGINX Gateway Fabric:
 
@@ -255,7 +255,7 @@ GW_PORT=<port number>
 
 Check that traffic can flow to the application.
 
-{{< note >}} If you have a DNS record allocated for `cafe.example.com`, you can send the request directly to that hostname, without needing to resolve. {{< /note >}}
+{{< call-out "note" >}} If you have a DNS record allocated for `cafe.example.com`, you can send the request directly to that hostname, without needing to resolve. {{< /call-out >}}
 
 ```shell
 curl --resolve cafe.example.com:$GW_PORT:$GW_IP http://cafe.example.com:$GW_PORT/coffee

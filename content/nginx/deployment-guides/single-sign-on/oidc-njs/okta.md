@@ -10,13 +10,13 @@ weight: 100
 product: NGINX-PLUS
 ---
 
-{{< note >}} This guide applies to NGINX Plus [Release 15]({{< ref "nginx/releases.md#r15" >}}) and later, based on the [`nginx-openid-connect`](https://github.com/nginxinc/nginx-openid-connect) GitHub repo. Starting with NGINX Plus [Release 34]({{< ref "nginx/releases.md#r34" >}}), use the simpler solution with the [native OpenID connect module](https://nginx.org/en/docs/http/ngx_http_oidc_module.html).
+{{< call-out "note" >}} This guide applies to NGINX Plus [Release 15]({{< ref "nginx/releases.md#r15" >}}) and later, based on the [`nginx-openid-connect`](https://github.com/nginxinc/nginx-openid-connect) GitHub repo. Starting with NGINX Plus [Release 34]({{< ref "nginx/releases.md#r34" >}}), use the simpler solution with the [native OpenID connect module](https://nginx.org/en/docs/http/ngx_http_oidc_module.html).
 
-See [Single Sign-On With Okta]({{< ref "nginx/deployment-guides/single-sign-on/okta.md" >}}) for details.{{< /note >}}
+See [Single Sign-On With Okta]({{< ref "nginx/deployment-guides/single-sign-on/okta.md" >}}) for details.{{< /call-out >}}
 
 You can use NGINX Plus with Okta and OpenID Connect to enable single sign-on (SSO) for your proxied applications. By following the steps in this guide, you will learn how to set up SSO using OpenID Connect as the authentication mechanism, with Okta as the identity provider (IdP), and NGINX Plus as the relying party.
 
-{{< see-also >}}{{< readfile file="includes/nginx-openid-repo-note.txt" markdown="true" >}}{{< /see-also >}}
+{{< call-out "note" >}}{{<include "nginx-plus/nginx-openid-repo-note">}}{{< /call-out>}}
 
 ## Prerequisites
 
@@ -41,7 +41,7 @@ To complete the steps in this guide, you need the following:
 
 Take the steps in this section to create a new application for NGINX Plus.
 
-{{< note >}} This section contains images that reflect the state of the Okta web interface at the time of publication. The actual Okta GUI may differ from the examples shown here. Use this guide as a reference and adapt the instructions to suit the current Okta GUI as necessary.{{< /note >}}
+{{< call-out "note" >}} This section contains images that reflect the state of the Okta web interface at the time of publication. The actual Okta GUI may differ from the examples shown here. Use this guide as a reference and adapt the instructions to suit the current Okta GUI as necessary.{{< /call-out >}}
 
 This section describes the Okta Workforce Identity SSO product. You will need administrator access to your organization in Okta to complete this task. Your experience may differ somewhat if you're using the Okta Customer Identity product.
 
@@ -83,7 +83,7 @@ After you finish creating your application, the Okta Application page should dis
 
 {{< img src="/img/sso/okta/Okta-Client-Credentials.png" alt="Image showing the application landing page in Okta, which contains the Client Credentials for the application." width="65%" >}}
 
-{{< tip >}}If you need to find this information later, log in to your Okta admin account as [described above](#okta-login), select **Applications** in the left-hand menu, then select your application.{{< /tip >}}
+{{< call-out "tip" >}}If you need to find this information later, log in to your Okta admin account as [described above](#okta-login), select **Applications** in the left-hand menu, then select your application.{{< /call-out >}}
 
 Make note of the **Client ID** and **Client secret** values for your application. You will need these when you [configure NGINX Plus](#nginx-plus).
 
@@ -119,7 +119,7 @@ Take the steps in this section to set up NGINX Plus as the OpenID Connect relyi
 1. Get the URLs for the authorization endpoint, token endpoint, and JSON Web Key (JWK) file from the Okta configuration.
 
    Run the following `curl` command in a terminal.
-   {{< tip>}}We recommend piping the output to `jq` to output the entire configuration in an easily readable format.{{< /tip >}}
+   {{< call-out "tip" >}}We recommend piping the output to `jq` to output the entire configuration in an easily readable format.{{< /call-out >}}
    The output in the example below is abridged to show only the relevant fields.
 
    ```shell
@@ -149,9 +149,9 @@ Take the steps in this section to set up NGINX Plus as the OpenID Connect relyi
 
 NGINX Plus can read the JWK file directly from the URL reported as `jwks_uri` in the output of the `curl` command you ran in the [previous section](#nginx-plus-oidc-config).
 
-{{< note >}}
+{{< call-out "note" >}}
 If you are using NGINX Plus R16 or earlier, refer to [Set up JWK Authorization using a local file](#nginx-plus-jwk-auth-local).
-{{< /note >}}
+{{< /call-out >}}
 
 Take the following steps to set up NGINX Plus to access the JWK file by using a URI.
 
@@ -176,7 +176,7 @@ Take the steps below to set up JWK authorization using a local file:
    {{< img src="img/sso/okta/Okta-login-window.png" >}}
 1. Try to log in using the credentials of a user who is part of your organization.
 
-{{<note>}}If you restricted access to a group of users, be sure to select a user who has access to the application.{{</note>}}
+{{< call-out "note" >}}If you restricted access to a group of users, be sure to select a user who has access to the application.{{< /call-out >}}
 
 ## Troubleshooting
 

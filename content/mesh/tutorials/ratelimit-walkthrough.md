@@ -34,10 +34,10 @@ This tutorial shows you how to set up rate limiting policies between your worklo
     - {{< fa "download" >}} {{< link "/examples/rate-limit/ratelimit-burst.yaml" "`ratelimit-burst.yaml`" >}}
     - {{< fa "download" >}} {{< link "/examples/rate-limit/ratelimit-rules.yaml" "`ratelimit-rules.yaml`" >}}
 
-{{< note >}}
+{{< call-out "note" >}}
 Avoid configuring traffic policies such as TrafficSplits, RateLimits, and CircuitBreakers for headless services.
 These policies will not work as expected because NGINX Service Mesh has no way to tie each pod IP address to its headless service.
-{{< /note >}}
+{{< /call-out >}}
 
 ## Objectives
 
@@ -63,9 +63,9 @@ Follow the steps in this guide to configure rate limiting between workloads.
     dest-69f4b86fb4-r8wzh            2/2     Running   0          76s
     ```
 
-   {{< note>}}
+   {{< call-out "note" >}}
    For other resource types -- for example, Deployments or Services -- use `kubectl get` for each type as appropriate.
-   {{< /note>}}
+   {{< /call-out >}}
 
 ### Deploy the Clients
 
@@ -227,9 +227,9 @@ At this point, traffic should be flowing unabated between the clients and the de
 
    This rate limit policy allows 10 requests per minute, or one request every six seconds, to be sent from `client-v1` to `dest-svc`.
 
-   {{< note >}}
+   {{< call-out "note" >}}
    The `.spec.destination.kind` and `spec.source.kind` can be a `Service`, `Deployment`, `Pod`, `Daemonset`, or `StatefulSet`.
-   {{< /note >}}
+   {{< /call-out >}}
 
 1. The rate limit configured above only limits requests sent from `client-v1`. To limit the requests sent from `client-v2`, take the following steps to add `client-v2` to the list of sources:
 
@@ -267,11 +267,11 @@ At this point, traffic should be flowing unabated between the clients and the de
 
    **Expectation:** The requests sent from `client-v2` should be limited now. When multiple sources are listed in the rate limit spec, the rate is divided evenly across all the sources. In this spec, `client-v1` and `client-v2` can send five requests per minute or one request every 12 seconds. To verify, watch the logs of each container and check that 11 out of every 12 requests are denied.
 
-   {{< tip >}}
+   {{< call-out "tip" >}}
    If you want to enforce a single rate limit across all clients, you can omit the source list from the rate limit spec. If there no sources are listed, the rate limit applies to all clients making requests to the destination.
 
    If you want to enforce a different rate limit per source, you can create a separate rate limit for each source.
-   {{< /tip >}}
+   {{< /call-out >}}
 
 ### Rate Limits with L7 Rules
 
@@ -319,9 +319,9 @@ If you want to limit all GET requests, you can create an `HTTPRouteGroup` resour
        - GET
    ```
 
-   {{< note>}}
+   {{< call-out "note" >}}
    The header capitalization `X-Demo` and `X-DEMO` in the `HTTPRouteGroup` mismatches intentionally; header names are not case-sensitive.
-   {{< /note>}}
+   {{< /call-out >}}
 
    The [HTTPRouteGroup](https://github.com/servicemeshinterface/smi-spec/blob/main/apis/traffic-specs/v1alpha3/traffic-specs.md#httproutegroup) is used to describe HTTP traffic.
    The `spec.matches` field defines a list of routes that an application can serve. Routes are made up of the following match conditions: pathRegex, headers, and HTTP methods.
@@ -363,9 +363,9 @@ If you want to limit all GET requests, you can create an `HTTPRouteGroup` resour
 
    In this case, we're mapping just the `get-only` match directive from the `HTTPRouteGroup` : `hrg` to our rate limit . The match `get-only` matches all `GET` requests.
 
-   {{< tip >}}
+   {{< call-out "tip" >}}
    You can reference multiple `HTTPRouteGroups` in the `spec.rules` list, but they all must be in the same namespace of the rate limit.
-   {{< /tip >}}
+   {{< /call-out >}}
 
 1. To rate limit only `GET` requests, take the following steps:
 
@@ -475,9 +475,9 @@ If you want to limit all GET requests, you can create an `HTTPRouteGroup` resour
 
    **Expectation:** Only the requests from `client-v2` are rate limited. Even though `client-v1` has the `x-demo:true` header, the rest of the request's attributes do not match the criteria in the `v2-only` match.
 
-   {{< tip >}}
+   {{< call-out "tip" >}}
    If you want to add all of the matches from a single `HTTPRouteGroup`, you can omit the `matches` field from the rule.
-   {{< /tip >}}
+   {{< /call-out >}}
 
 1. Clean up.
 
@@ -634,9 +634,9 @@ Let's create a bursty application and a rate limit to demonstrate this behavior.
 
     Delaying the excess requests in the queue can make your application appear slow. If you want to have the excess requests forwarded immediately, you can set the `delay` field to `nodelay`.
 
-   {{< tip >}}
+   {{< call-out "tip" >}}
    The default value for `delay` is `0`. A delay of `0` means that every request in the queue is delayed according to the rate specified in the rate limit spec.
-   {{< /tip >}}
+   {{< /call-out >}}
 
 1. To forward the excess requests to the destination service immediately, edit the rate limit and set delay to `nodelay`.
 
@@ -671,9 +671,9 @@ Let's create a bursty application and a rate limit to demonstrate this behavior.
 
    **Expectation:** A delay of `nodelay` means that the requests in the queue are immediately sent to the destination service. You can verify this by looking at the timestamps of the responses in the `bursty-client` logs; they should all be within the same second.
 
-   {{< tip >}}
+   {{< call-out "tip" >}}
    You can also set the `delay` field to an integer. For example, a delay of `1` means that one request is forwarded immediately, and all other requests in the queue are delayed.
-   {{< /tip >}}
+   {{< /call-out >}}
 
 1. Clean up all the resources.
 

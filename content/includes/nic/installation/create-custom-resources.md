@@ -30,10 +30,11 @@ kubectl apply -f https://raw.githubusercontent.com/nginx/kubernetes-ingress/v{{<
 
 {{%tab name="Install CRDs after cloning the repo"%}}
 
-{{< note >}} If you are installing the CRDs this way, ensure you have first cloned the repository. {{< /note >}}
+{{< call-out "note" >}} 
 
-{{< note >}} Please make sure to read the steps outlined in [Upgrade to V4](https://docs.nginx.com/nginx-ingress-controller/installation/installing-nic/upgrade-to-v4/#update-custom-resource-apiversion) before running the CRD upgrade and perform the steps if applicable.
-{{< /note >}}
+Read the steps outlined in [Upgrade from 3.x to 4.x]({{< ref "/nic/installation/upgrade-version.md#upgrade-from-3x-to-4x" >}}) before running the CRD upgrade and perform the steps if applicable.
+
+{{< /call-out >}}
 
 
 ```shell

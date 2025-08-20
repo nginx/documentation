@@ -110,20 +110,9 @@ The following instructions include minimal information, sufficient to "get start
 
 ### Generate a data plane key {#generate-data-plane-key}
 
-A data plane key is a security token that ensures only trusted NGINX instances can register and communicate with NGINX One.
-
-To generate a data plane key:
-
-- **For a new key:** In the **Add Instance** pane, select **Generate Data Plane Key**.
-- **To reuse an existing key:** If you already have a data plane key and want to use it again, select **Use existing key**. Then, enter the key's value in the **Data Plane Key** box.
-
-{{<call-out "caution" "Data plane key guidelines" "fas fa-key" >}}
-Data plane keys are displayed only once and cannot be retrieved later. Be sure to copy and store this key securely.
-
-Data plane keys expire after one year. You can change this expiration date later by [editing the key]({{< ref "nginx-one/connect-instances/create-manage-data-plane-keys.md#change-expiration-date" >}}).
+{{< include "/nginx-one/how-to/generate-data-plane-key.md" >}}
 
 [Revoking a data plane key]({{< ref "nginx-one/connect-instances/create-manage-data-plane-keys.md#revoke-data-plane-key" >}}) disconnects all instances that were registered with that key.
-{{</call-out>}}
 
 ### Add an instance
 
@@ -131,7 +120,6 @@ Depending on whether this is your first time using NGINX One Console or you've u
 
 - **For first-time users:** On the welcome screen, select **Add Instance**.
 - **For returning users:** If you've added instances previously and want to add more, select **Instances** on the left menu, then select **Add Instance**.
-
 
 ### Install NGINX Agent
 
@@ -176,13 +164,13 @@ The `install` script writes an `nginx-agent.conf` file to the `/etc/nginx-agent/
 
 {{< include "/nginx-one/conf/nginx-agent-conf.md" >}}
 
-<span style="display: inline-block; margin-top: 20px;" >
-
 {{<call-out "note" "Note: NGINX Agent poll interval" >}} We recommend keeping `dataplane.status.poll_interval` between `30s` and `60s` in the NGINX Agent config (`/etc/nginx-agent/nginx-agent.conf`). If the interval is set above `60s`, NGINX One Console may report incorrect instance statuses.{{</call-out>}}
 
 <br>
 
 ---
+
+## Enable NGINX metrics reporting {#enable-nginx-metrics-reporting}
 
 The NGINX One Console dashboard relies on APIs for NGINX Plus and NGINX Open Source Stub Status to report traffic and system metrics. The following sections show you how to enable those metrics.
 

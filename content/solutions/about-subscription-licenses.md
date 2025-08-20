@@ -14,14 +14,18 @@ We’re updating NGINX Plus to align with F5’s entitlement and visibility poli
 
 Starting with NGINX Plus R33, all **NGINX Plus instances require a valid JSON Web Token (JWT) license**. This license is tied to your subscription (not individual instances) and is used to validate your subscription and automatically send usage reports to F5's licensing endpoint (`product.connect.nginx.com`), as required by your subscription agreement. In offline environments, usage reporting is [routed through NGINX Instance Manager]({{< ref "nim/disconnected/report-usage-disconnected-deployment.md" >}}).
 
-### Important changes
+## Important changes
 
-##### NGINX Plus won't start if:
+If you have multiple subscriptions, you’ll also have multiple JWT licenses. You can assign each NGINX Plus instance to the license you prefer. NGINX combines usage reporting across all licensed instances.
+
+This feature is available in NGINX Instance Manager 2.20 and later.
+
+### NGINX Plus won't start if:
 
 - The JWT license is missing or invalid.
 - The JWT license expired over 90 days ago.
 
-##### NGINX Plus will **stop processing traffic** if:
+### NGINX Plus will **stop processing traffic** if:
 
 - It can't submit an initial usage report to F5's licensing endpoint or NGINX Instance Manager.
 
@@ -41,17 +45,48 @@ When installing or upgrading to NGINX Plus R33 or later, take the following step
 
 ---
 
-## Add the JWT license {#add-jwt}
-
-Before you install or upgrade to NGINX Plus R33 or later, make sure to:
-
-### Download the license from MyF5 {#download-jwt}
+## Download the license from MyF5 {#download-jwt}
 
 {{< include "licensing-and-reporting/download-jwt-from-myf5.md" >}}
 
-### Copy the license to each NGINX Plus instance
+---
 
-{{< include "licensing-and-reporting/apply-jwt.md" >}}
+## Deploy the JWT license
+
+After you download the JWT license, you can deploy it to your NGINX Plus instances using either of the following methods:
+
+- Use a **Config Sync Group** if you're managing instances with the NGINX One Console (recommended)
+- Copy the license manually to each instance
+
+Each method ensures your NGINX Plus instances have access to the required license file.
+
+### Deploy with a Config Sync Group (Recommended)
+
+If you're using the [NGINX One Console]({{< ref "/nginx-one/getting-started.md" >}}), the easiest way to manage your JWT license is with a [Config Sync Group]({{< ref "/nginx-one/nginx-configs/config-sync-groups/manage-config-sync-groups.md" >}}). This method lets you:
+
+- Avoid manual file copying
+- Keep your fleet consistent
+- Automatically apply updates to new NGINX Plus instances
+
+To deploy the JWT license with a Config Sync Group:
+
+{{< include "/licensing-and-reporting/deploy-jwt-with-csgs.md" >}}
+
+Your JWT license now syncs to all NGINX Plus instances in the group.
+
+When your subscription renews and a new JWT license is issued, update the file in the Config Sync Group to apply the change across your fleet.  
+
+New instances added to the group automatically inherit the license.
+
+{{< call-out "note" "If you’re using NGINX Instance Manager" "" >}}
+If you're using NGINX Instance Manager instead of the NGINX One Console, the equivalent feature is called an *instance group*. You can manage your JWT license in the same way by adding or updating the file in the instance group. For details, see [Manage instance groups]({{< ref "/nim/nginx-instances/manage-instance-groups.md" >}}).
+{{< /call-out >}}
+
+### Copy the license manually
+
+If you're not using the NGINX One Console, copy the JWT license file to each NGINX Plus instance manually.
+
+{{< include "/licensing-and-reporting/apply-jwt.md" >}}
 
 ### Custom paths {#custom-paths}
 
@@ -106,7 +141,24 @@ mgmt {
 }
 ```
 
-{{<important>}}After 180 days, if usage reporting still hasn’t been established, NGINX Plus will stop processing traffic.{{</important>}}
+{{< call-out "important" >}}After 180 days, if usage reporting still hasn’t been established, NGINX Plus will stop processing traffic.{{< /call-out >}}
+
+
+## Update the JWT license {#update-jwt}
+
+Updating the JWT license after renewing your F5 NGINX subscription is a simple and seamless process that does not require manually downloading the JWT or reloading/restarting the NGINX service. This procedure applies both to subscriptions nearing expiration (within 30 days) and to those that have expired but are still within the 90-day grace period.
+
+The update process will work automatically provided that license reporting has been configured and at least one report has been successfully transmitted. If this setup is not configured, follow the [Deploy the JWT license](#deploy-the-jwt-license) steps instead.
+
+The updated JWT license is saved directly as a state file at the path specified by the [`state_path`](https://nginx.org/en/docs/ngx_mgmt_module.html#state_path) directive. The existing JWT license file located at `/etc/nginx/license.jwt` (or a custom path specified by the [`license_token`](https://nginx.org/en/docs/ngx_mgmt_module.html#license_token) directive) will remain unchanged during this process and will not impact the performance or functionality of NGINX Plus in the future. If necessary, you may replace it manually with the updated license from MyF5.
+
+### For internet-connected environments
+
+Once your subscription has been successfully renewed by F5 Sales, all NGINX Plus instances will automatically receive and apply the updated JWT license — no manual action is required.
+
+### For network-restricted environments
+
+In network-restricted environments, there is no change in the JWT update process. It follows the same steps as [adding a new JWT](#for-network-restricted-environments).
 
 ---
 

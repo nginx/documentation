@@ -10,13 +10,13 @@ weight: 100
 product: NGINX-PLUS
 ---
 
-{{< note >}} This guide applies to NGINX Plus [Release 15]({{< ref "nginx/releases.md#r15" >}}) and later, based on the [`nginx-openid-connect`](https://github.com/nginxinc/nginx-openid-connect) GitHub repo. Starting with NGINX Plus [Release 34]({{< ref "nginx/releases.md#r34" >}}), use the simpler solution with the [native OpenID connect module](https://nginx.org/en/docs/http/ngx_http_oidc_module.html).
+{{< call-out "note" >}} This guide applies to NGINX Plus [Release 15]({{< ref "nginx/releases.md#r15" >}}) and later, based on the [`nginx-openid-connect`](https://github.com/nginxinc/nginx-openid-connect) GitHub repo. Starting with NGINX Plus [Release 34]({{< ref "nginx/releases.md#r34" >}}), use the simpler solution with the [native OpenID connect module](https://nginx.org/en/docs/http/ngx_http_oidc_module.html).
 
-See [Single Sign-On With OneLogin]({{< ref "nginx/deployment-guides/single-sign-on/onelogin.md" >}}) for details.{{< /note >}}
+See [Single Sign-On With OneLogin]({{< ref "nginx/deployment-guides/single-sign-on/onelogin.md" >}}) for details.{{< /call-out >}}
 
 You can use NGINX Plus with [OneLogin](https://www.onelogin.com/) and the OpenID Connect protocol to enable single sign-on (SSO) for your proxied applications. By following the steps in this guide, you will learn how to set up SSO using OpenID Connect as the authentication mechanism, with OneLogin as the identity provider (IdP) and NGINX Plus as the relying party.
 
-{{< see-also >}}{{< readfile file="includes/nginx-openid-repo-note.txt" markdown="true" >}}{{< /see-also >}}
+{{< call-out "note" >}}{{<include "nginx-plus/nginx-openid-repo-note">}}{{< /call-out>}}
 
 ## Prerequisites
 

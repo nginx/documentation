@@ -15,9 +15,9 @@ March 19, 2024
 
 ### New features
 
-{{< note >}}
+{{< call-out "note" >}}
 These features are only available in F5 NGINX App Protect WAF version 5.0 and above. Attempting to install this update over an earlier version is not supported.
-{{< /note >}}
+{{< /call-out >}}
 
 In this release, NGINX App Protect WAF supports NGINX Open Source 1.25.4 and NGINX Plus R31 P1.
 

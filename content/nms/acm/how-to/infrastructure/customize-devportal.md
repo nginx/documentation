@@ -41,12 +41,12 @@ Take the steps below to customize your Dev Portal by defining a custom Dev Porta
 
 1. You can save your changes at any time by selecting the **Save and Publish** option.
 
-{{<note>}}
+{{< call-out "note" >}}
 <br/>
 
 - The Preview section to the right of the settings in each section will update automatically as you make changes.
 - The changes will be applied immediately when you select **Save and Publish**; as such we recommend testing any changes in a "non-production" Environment first.
-{{</note>}}
+{{< /call-out >}}
 
 ## Brand Options
 

@@ -14,7 +14,7 @@ F5 NGINX as a Service for Azure (NGINXaaS) supports the open-source [njs module]
 
 Create an njs script file by uploading a gzipped tar file or create the script file in the editor. See [NGINX Configuration]({{< ref "/nginxaas-azure/getting-started/nginx-configuration/nginx-configuration-portal.md" >}}) for a step-by-step guide.
 
-{{<note>}}If specifying an absolute file path as your njs script's `File path`, see the [NGINX Filesystem Restrictions table]({{< ref "/nginxaas-azure/getting-started/nginx-configuration/overview/#nginx-filesystem-restrictions" >}}) for the allowed directories the file can be written to.{{</note>}}
+{{< call-out "note" >}}If specifying an absolute file path as your njs script's `File path`, see the [NGINX Filesystem Restrictions table]({{< ref "/nginxaas-azure/getting-started/nginx-configuration/overview/#nginx-filesystem-restrictions" >}}) for the allowed directories the file can be written to.{{< /call-out >}}
 
 Switch between the language options to see syntax highlighting for NGINX configs or JavaScript.
 

@@ -733,7 +733,7 @@ always: true
 
 \* -- Supported NGINX variables: `$request_uri`, `$request_method`, `$request_body`, `$scheme`, `$http_`, `$args`, `$arg_`, `$cookie_`, `$host`, `$request_time`, `$request_length`, `$nginx_version`, `$pid`, `$connection`, `$remote_addr`, `$remote_port`, `$time_iso8601`, `$time_local`, `$server_addr`, `$server_port`, `$server_name`, `$server_protocol`, `$connections_active`, `$connections_reading`, `$connections_writing`, `$connections_waiting`, `$ssl_cipher`, `$ssl_ciphers`, `$ssl_client_cert`, `$ssl_client_escaped_cert`, `$ssl_client_fingerprint`, `$ssl_client_i_dn`, `$ssl_client_i_dn_legacy`, `$ssl_client_raw_cert`, `$ssl_client_s_dn`, `$ssl_client_s_dn_legacy`, `$ssl_client_serial`, `$ssl_client_v_end`, `$ssl_client_v_remain`, `$ssl_client_v_start`, `$ssl_client_verify`, `$ssl_curves`, `$ssl_early_data`, `$ssl_protocol`, `$ssl_server_name`, `$ssl_session_id`, `$ssl_session_reused`, `$jwt_claim_` (NGINX Plus only) and `$jwt_header_` (NGINX Plus only).
 
-{{< note >}} If `always` is false, the response header is added only if the response status code is any of `200`, `201`, `204`, `206`, `301`, `302`, `303`, `304`, `307` or `308`. {{< /note >}}
+{{< call-out "note" >}} If `always` is false, the response header is added only if the response status code is any of `200`, `201`, `204`, `206`, `301`, `302`, `303`, `304`, `307` or `308`. {{< /call-out >}}
 
 ### Split
 
@@ -810,7 +810,7 @@ action:
 |``splits`` | The splits configuration for traffic splitting. Must include at least 2 splits. | [[]split](#split) | No |
 {{</bootstrap-table>}}
 
-{{< note >}} A match must include exactly one of the following: `action` or `splits`. {{< /note >}}
+{{< call-out "note" >}} A match must include exactly one of the following: `action` or `splits`. {{< /call-out >}}
 
 ### Condition
 
@@ -826,7 +826,7 @@ The condition defines a condition in a match.
 |``value`` | The value to match the condition against. How to define a value is shown below the table. | ``string`` | Yes |
 {{</bootstrap-table>}}
 
-{{< note >}}  a condition must include exactly one of the following: `header`, `cookie`, `argument` or `variable`. {{< /note >}}
+{{< call-out "note" >}}  a condition must include exactly one of the following: `header`, `cookie`, `argument` or `variable`. {{< /call-out >}}
 
 Supported NGINX variables: `$args`, `$http2`, `$https`, `$remote_addr`, `$remote_port`, `$query_string`, `$request`, `$request_body`, `$request_uri`, `$request_method`, `$scheme`. Find the documentation for each variable [here](https://nginx.org/en/docs/varindex.html).
 
@@ -840,7 +840,7 @@ The value supports two kinds of matching:
   - `!~^yes` -- negation of the previous regular expression that succeeds for strings like `YES`, `Yes123`, `noyes`. (The negation mechanism is not part of the PCRE syntax).
   - `~*no$` -- a case-insensitive regular expression that matches any string that ends with `no`. For example: `no`, `123no`, `123NO`.
 
-{{< note >}} A value must not include any unescaped double quotes (`"`) and must not end with an unescaped backslash (`\`). For example, the following are invalid values: `some"value`, `somevalue\`. {{< /note >}}
+{{< call-out "note" >}} A value must not include any unescaped double quotes (`"`) and must not end with an unescaped backslash (`\`). For example, the following are invalid values: `some"value`, `somevalue\`. {{< /call-out >}}
 
 ### ErrorPage
 
@@ -867,7 +867,7 @@ errorPages:
 |``return`` | The canned response action for the given status codes. | [errorPage.Return](#errorpagereturn) | No |
 {{</bootstrap-table>}}
 
-{{< note >}} An errorPage must include exactly one of the following: `return` or `redirect`. {{< /note >}}
+{{< call-out "note" >}} An errorPage must include exactly one of the following: `return` or `redirect`. {{< /call-out >}}
 
 ### ErrorPage.Redirect
 

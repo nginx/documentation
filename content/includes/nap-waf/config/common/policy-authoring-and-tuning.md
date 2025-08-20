@@ -100,9 +100,9 @@ Transparent Mode example:
 
  Adding and enabling additional security features to the policy can be done by specifying the violation name and the `alarm` block state to "true". To set different states to sub-violations within the violation, enable the violation first, then specifying and enable the sub-violations. Also, a violation may have its own section that provides additional configuration granularity for a specific violation/sub-violation.
 
-{{< note >}}
+{{< call-out "note" >}}
 The attack signature violation `VIOL_ATTACK_SIGNATURE` cannot be configured by the user. Rather, the violation is determined by the combination of the [signature sets](#signature-sets) on the policy.
-{{< /note >}}
+{{< /call-out >}}
 
  The examples below show how to enable a violation and sub-violation in a declarative format.
 
