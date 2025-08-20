@@ -43,13 +43,13 @@ F5 NGINX One Console makes it easy to manage NGINX instances across locations an
 
 ### Workshops
 
-{{<card-layout>}}
-  {{<card-section showAsCards="true">}}
-    {{<card title="NGINX One Console workshops" titleUrl="/nginx-one/workshops/" icon="wrench" >}}
-      Guided labs to help you secure, monitor, and scale your NGINX fleet with NGINX One Console.
-    {{</card>}}
-  {{</card-section>}}
-{{</card-layout>}}
+
+{{<card-section showAsCards="true">}}
+  {{<card title="NGINX One Console workshops" titleUrl="/nginx-one/workshops/" icon="wrench" >}}
+    Guided labs to help you secure, monitor, and scale your NGINX fleet with NGINX One Console.
+  {{</card>}}
+{{</card-section>}}
+
 
 ### More information
 
@@ -58,7 +58,7 @@ F5 NGINX One Console makes it easy to manage NGINX instances across locations an
     Set up security policies by instance and group
   {{</card>}}
   {{<card title="Organize users with RBAC" titleUrl="/nginx-one/rbac/" >}}
-    Assign responsibilities with role-based access control 
+    Assign responsibilities with role-based access control
   {{</card>}}
   {{<card title="Automate with the NGINX One API" titleUrl="/nginx-one/api/" >}}
     Manage your NGINX fleet over REST
