@@ -25,6 +25,7 @@ For module‑specific installation and usage instructions, select the correspond
 {{< bootstrap-table "table table-striped table-bordered" >}}
 | Name                            | Description                       | Package name     |
 |---------------------------------|-----------------------------------|--------------------|
+| [ACME](https://github.com/nginx/nginx-acme) | Automatic certificate management ([ACMEv2](https://www.rfc-editor.org/rfc/rfc8555.html)) protocol support. | [`nginx-plus-module-acme`]({{< ref "/nginx/admin-guide/dynamic-modules/acme.md" >}}) |
 | [Brotli](https://github.com/google/ngx_brotli) | Brotli compression support with modules for dynamic compression and for serving pre-compressed `.br` files. | [`nginx-plus-module-brotli`]({{< ref "/nginx/admin-guide/dynamic-modules/brotli.md" >}}) |
 | [Encrypted-Session](https://github.com/openresty/encrypted-session-nginx-module) | AES-256 based encryption/decryption of NGINX variables. | [`nginx-plus-module-encrypted-session`]({{< ref "/nginx/admin-guide/dynamic-modules/encrypted-session.md" >}}) |
 | [FIPS Status Check](https://github.com/ogarrett/nginx-fips-check-module) | Verifies if OpenSSL is operating in FIPS mode. | [`nginx-plus-module-fips-check`]({{< ref "/nginx/admin-guide/dynamic-modules/fips.md" >}})|
@@ -74,6 +75,9 @@ apt-cache search nginx-plus-module
 The output of the command:
 
 ```shell
+nginx-plus-module-acme/stable
+  NGINX Plus ACME dynamic module
+
 nginx-plus-module-auth-spnego/stable
   NGINX Plus 3rd-party kerberos authentication dynamic module
 
