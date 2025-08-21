@@ -441,23 +441,12 @@ The list of Threat Campaigns will disappear when scrolling down, preventing the 
 #### Workaround
 
 Threat Campaign versions can be published with the API using the route: `api/platform/v1/security/publish`
----
-
 
 ---
-
 
 ## 2.6.0
 
 November 17, 2022
-
----
-
-
----
-
-
----
 
 ### {{% icon-bug %}} External references are not supported in App Protect policies {#36265}
 
@@ -478,11 +467,6 @@ For example, in the NGINX App Protect WAF JSON declarative policy, these referen
 - Referenced OpenAPI Spec files
 
 ---
-
-
-## 2.5.0
-
-October 04, 2022
 
 ## 2.3.0
 
@@ -514,27 +498,9 @@ filterBy=<dimension-name>!= ''
 ---
 
 
-## 2.2.0
-
-May 25, 2022
-
-
----
-
-
-## 2.1.0
-
-April 05, 2022
-
----
-
-
 ## 2.0.0
 
 December 21, 2021
-
-
----
 
 ### {{% icon-bug %}} Web interface doesn’t report error when failing to upload large config files {#31081}
 
