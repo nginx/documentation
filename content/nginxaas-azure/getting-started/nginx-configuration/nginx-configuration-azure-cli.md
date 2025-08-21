@@ -163,6 +163,35 @@ az nginx deployment configuration analyze --deployment-name $DEPLOYMENT_NAME \
       'virtual-path':'/etc/nginx/conf.d/proxyprot.conf'}]"
    ```
 
+- Upload package with config files and protected files:
+
+   ```bash
+   az nginx deployment configuration create \
+      --deployment-name myDeployment \
+      --resource-group myResourceGroup \
+      --root-file nginx.conf \
+      --name default \
+      --package data='H4sIAAAAAAAAA+3VbWvbMBAHcL/Op7hCoTCIbckPCU0olG3QvVoog \
+      21QMCK+1qGyJGRlpBv57pPXbsla1wkdZS3c70UMdxfxP2wn6mqhVuFcq8vg2cTeKMt+Xb \
+      37V56zLGBpwvOYpVkyCmLGspwHED9fpI1l44QFCKzWrm9uV/+Vqpwz8GMA3tI0zqKoQRg \
+      zZHfF1net8K6Yp9eTP3WJonGFf3bUptag/YYWWBzGIQvT47G/wb1d1tvlt931w4C8KyB/ \
+      UsCkt5v2drNHAyZdAZMnBcx7u6Pe7vh3wMHWwCaZXDQOFYwf3KRCiRrhTYgrURuJ/iei3 \
+      sqt58IttIJo66hWiZdiKV3hbgyCw5WLKlfLyV8zFt3SKuBxDEfTg3cf3376OnsP7dzJtO \
+      InZyilhs/ayvJgGvnChTraHLDuyHD/eW0Zq1c3RYOuqFCUfuUz3Tg4rPznpH/wy/AchRx \
+      +mMGhxVo7LERZ2p1fmrWl4akxt29K17wRTQPtC3ccRR1D/ijpqmJe4fx698L8ZS3M91m \
+      Y/8vCyctaONln4WT/hdeD9eB//xkQQgghhBBCCCGEEEIIIYQQQggh5FX6CfCArk8AKAAA' 
+      --protected-files '[
+        {
+          "content":"c2VjcmV0X2NvbmZpZ3VyYXRpb25fZGF0YQ==",
+          "virtual-path":"/etc/nginx/ssl/certificates.conf"
+        },
+        {
+          "content":"cHJpdmF0ZV9rZXlfZGF0YQ==",
+          "virtual-path":"/etc/nginx/ssl/private.key"
+        }
+      ]'
+   ```
+
 See the [Azure CLI Configuration Create Documentation](https://learn.microsoft.com/en-us/cli/azure/nginx/deployment/configuration?view=azure-cli-latest#az-nginx-deployment-configuration-create) for more details on the available parameters.
 
 
