@@ -27,12 +27,12 @@ TBD
 
    ```conf
    server:
-   host: mgmt.example.com
-   port: 443
-   type: 1
-   proxy:
-      url: "http://proxy.example.com:3128"
-      timeout: 10s
+      host: mgmt.example.com
+      port: 443
+      type: 1
+      proxy:
+         url: "http://proxy.example.com:3128"
+         timeout: 10s
    ```
 
 1. Reload NGINX Agent to apply the changes:
@@ -61,10 +61,10 @@ If your Squid proxy requires authentication, you can specify the username and pa
 
    ```conf
    proxy:
-   url: "http://proxy.example.com:3128"
-   auth_method: "basic"
-   username: "user"
-   password: "pass"
+      url: "http://proxy.example.com:3128"
+      auth_method: "basic"
+      username: "user"
+      password: "pass"
    ```
 
 1. Reload NGINX Agent to apply the changes:
