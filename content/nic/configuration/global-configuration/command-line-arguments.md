@@ -678,6 +678,18 @@ The default value is `false`.
 
 ---
 
+### -with-directive-autoadjust
+
+Automatically adjusts NGINX buffer directives to prevent configuration errors.
+
+The default value is `false`.
+
+When enabled, the controller automatically adjusts `proxy_buffers`, `proxy_buffer_size`, and `proxy_busy_buffers_size` to ensure they work together properly and NGINX can start successfully.
+
+<a name="cmdoption-with-directive-autoadjust"></a>
+
+---
+
 ### -agent-instance-group
 
 Specify the instance group name to use for the NGINX Ingress Controller deployment when using `-agent`.
