@@ -35,10 +35,10 @@ TBD
       timeout: 10s
    ```
 
-1. Reload NGINX to apply the changes:
+1. Reload NGINX Agent to apply the changes:
 
     ```sh
-    sudo nginx -s reload
+    sudo systemctl restart nginx-agent
     ```
 
 ### In a containerized environment
@@ -67,10 +67,10 @@ If your Squid proxy requires authentication, you can specify the username and pa
    password: "pass"
    ```
 
-1. Reload NGINX to apply the changes:
+1. Reload NGINX Agent to apply the changes:
 
     ```sh
-    sudo nginx -s reload
+    sudo systemctl restart nginx-agent
     ```
 
 ### In a containerized environment
