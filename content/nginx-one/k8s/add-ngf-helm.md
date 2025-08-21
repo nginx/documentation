@@ -23,7 +23,6 @@ You also need:
 - Administrator access to a Kubernetes cluster.
 - If you use [Helm](https://helm.sh) and [kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl), install them locally.
 
-
 ### Create a data plane key
 
 {{< include "/nginx-one/how-to/generate-data-plane-key.md" >}}
@@ -57,7 +56,11 @@ helm install ngf oci://ghcr.io/nginx/charts/nginx-gateway-fabric \
 
 {{%tab name="NGINX Plus"%}}
 
-{{< note >}} If applicable, replace the F5 Container registry `private-registry.nginx.com` with your internal registry for your NGINX Plus image, and replace `nginx-plus-registry-secret` with your Secret name containing the registry credentials. If your NGINX Plus JWT Secret has a different name than the default `nplus-license`, then define that name using the `nginx.usage.secretName` flag. {{< /note >}}
+{{< call-out "note" >}} 
+
+If applicable, replace the F5 Container registry `private-registry.nginx.com` with your internal registry for your NGINX Plus image, and replace `nginx-plus-registry-secret` with your Secret name containing the registry credentials. If your NGINX Plus JWT Secret has a different name than the default `nplus-license`, then define that name using the `nginx.usage.secretName` flag. 
+
+{{< /call-out >}}
 
 To install the latest stable release of NGINX Gateway Fabric in the **nginx-gateway** namespace, run the following command:
 
