@@ -58,7 +58,7 @@
     },
     {
       "name": "Control Planes",
-      "description": "The `Control Planes` object represents an external control plane such as NGINX Ingress Controller.\nFrom this endpoint, you can get detailed information about each control plane, including its NGINX instances, configurations, security advisories, and operational status.\n",
+      "description": "The `Control Planes` object represents an external control plane such as NGINX Ingress Controller or NGINX Gateway Fabric.\nFrom this endpoint, you can get detailed information about each control plane, including its NGINX instances, configurations, security advisories, and operational status.\n",
       "x-displayName": "Control Planes"
     },
     {
@@ -1915,7 +1915,6 @@
         "tags": [
           "Control Planes"
         ],
-        "x-feature-flag": "control_planes_m1",
         "summary": "List control planes",
         "operationId": "listControlPlanes",
         "description": "Returns a paginated list of control planes.\n",
@@ -2023,8 +2022,7 @@
         {
           "$ref": "#/components/parameters/ControlPlaneParamObjectID"
         }
-      ],
-      "x-feature-flag": "control_planes_m1"
+      ]
     },
     "/control-planes/summary": {
       "get": {
@@ -2052,17 +2050,16 @@
             "$ref": "#/components/responses/InternalServerErr"
           }
         }
-      },
-      "x-feature-flag": "control_planes_m1"
+      }
     },
     "/cves": {
       "get": {
         "tags": [
           "CVEs"
         ],
-        "summary": "List of all CVEs affecting the instances",
+        "summary": "List of all CVEs affecting any instance or control plane",
         "operationId": "listNginxCVEs",
-        "description": "Returns a list of all CVEs that affect at least one instance under the tenant\n",
+        "description": "Returns a list of all CVEs that affect an instance or control plane under the tenant\n",
         "parameters": [
           {
             "$ref": "#/components/parameters/Paginated"
@@ -4029,7 +4026,6 @@
     },
     "/app-protect/policies": {
       "get": {
-        "x-feature-flag": "nap-waf",
         "tags": [
           "NGINX App Protect"
         ],
@@ -4107,8 +4103,7 @@
       },
       "patch": {
         "x-nginx-one-action": "bulk",
-        "x-nginx-one-entity": "NGINX Nap Policies",
-        "x-feature-flag": "nap-waf",
+        "x-nginx-one-entity": "NGINX App Protect Policies",
         "tags": [
           "NGINX App Protect"
         ],
@@ -4159,7 +4154,8 @@
         }
       },
       "post": {
-        "x-feature-flag": "nap-waf",
+        "x-nginx-one-action": "create",
+        "x-nginx-one-entity": "NGINX App Protect Policies",
         "tags": [
           "NGINX App Protect"
         ],
@@ -4222,10 +4218,11 @@
     },
     "/app-protect/policies/{nap_policy_object_id}": {
       "delete": {
-        "x-feature-flag": "nap-waf",
         "tags": [
           "NGINX App Protect"
         ],
+        "x-nginx-one-action": "delete",
+        "x-nginx-one-entity": "NGINX App Protect Policies",
         "summary": "Delete NGINX App Protect policy",
         "description": "Deletes NGINX App Protect policy.",
         "operationId": "deleteNapPolicy",
@@ -4281,7 +4278,6 @@
         }
       },
       "get": {
-        "x-feature-flag": "nap-waf",
         "tags": [
           "NGINX App Protect"
         ],
@@ -4347,10 +4343,11 @@
         }
       },
       "put": {
-        "x-feature-flag": "nap-waf",
         "tags": [
           "NGINX App Protect"
         ],
+        "x-nginx-one-action": "update",
+        "x-nginx-one-entity": "NGINX App Protect Policies",
         "summary": "Update NGINX App Protect policy details",
         "description": "Update NGINX App Protect policy details.",
         "operationId": "updateNapPolicy",
@@ -4425,7 +4422,6 @@
     },
     "/app-protect/policies/{nap_policy_object_id}/deployments": {
       "get": {
-        "x-feature-flag": "nap-waf",
         "tags": [
           "NGINX App Protect"
         ],
@@ -4517,7 +4513,6 @@
     },
     "/app-protect/policies/{nap_policy_object_id}/version": {
       "get": {
-        "x-feature-flag": "nap-waf",
         "tags": [
           "NGINX App Protect"
         ],
@@ -4575,7 +4570,6 @@
     },
     "/app-protect/policies/{nap_policy_object_id}/versions": {
       "get": {
-        "x-feature-flag": "nap-waf",
         "tags": [
           "NGINX App Protect"
         ],
@@ -4667,7 +4661,8 @@
     },
     "/app-protect/policies/{nap_policy_object_id}/versions/{nap_policy_version_object_id}": {
       "delete": {
-        "x-feature-flag": "nap-waf",
+        "x-nginx-one-action": "delete",
+        "x-nginx-one-entity": "NGINX App Protect Policy Version",
         "tags": [
           "NGINX App Protect"
         ],
@@ -4719,7 +4714,6 @@
         }
       },
       "get": {
-        "x-feature-flag": "nap-waf",
         "tags": [
           "NGINX App Protect"
         ],
@@ -5042,19 +5036,21 @@
       "SortNameCVEs": {
         "name": "sort_cves",
         "in": "query",
-        "description": "Sort CVEs by the number of instances affected by that CVE.\n",
+        "description": "Sort CVEs by the number of instances or control planes affected by that CVE.\n",
         "schema": {
           "type": "array",
           "items": {
             "type": "string",
             "enum": [
               "instance_count",
+              "control_plane_count",
               "severity",
               "cve_id",
               "published_at"
             ],
             "x-enum-varnames": [
               "sort_instance_count",
+              "sort_control_plane_count",
               "sort_cve_severity",
               "sort_cve_id",
               "sort_published_at"
@@ -7595,17 +7591,19 @@
         "type": "object",
         "properties": {
           "cause": {
-            "description": "Cause of the failure, detailed as follows:\n* `unknown` - The reason for the failure is not known.\n* `timeout` - The publication request reached its time limit without receiving a response from the NGINX Agent.\n* `remote` - The NGINX Agent reported a failure when trying to apply the configuration. See the message for more details.\n",
+            "description": "Cause of the failure, detailed as follows:\n* `unknown` - The reason for the failure is not known.\n* `timeout` - The publication request reached its time limit without receiving a response from the NGINX Agent.\n* `remote` - The NGINX Agent reported a failure when trying to apply the configuration. See the message for more details.\n* `payload` - The publication was successful, but there were warnings reported by attached payloads, see message for more details.\n",
             "type": "string",
             "enum": [
               "unknown",
               "timeout",
-              "remote"
+              "remote",
+              "payload"
             ],
             "x-enum-varnames": [
               "publication_instance_status_cause_unknown",
               "publication_instance_status_cause_timeout",
-              "publication_instance_status_cause_remote"
+              "publication_instance_status_cause_remote",
+              "publication_instance_status_cause_payload"
             ]
           },
           "message": {
@@ -7699,17 +7697,19 @@
             "description": "A hash that uniquely identifies the contents of the config object in the publication.\n"
           },
           "status": {
-            "description": "Publication status for the NGINX instance:\n* `pending` - The publication request has been accepted and is currently processing.\n* `failed` - The publication attempt failed.\n* `succeeded` - The publication was successful.\n",
+            "description": "Publication status for the NGINX instance:\n* `pending` - The publication request has been accepted and is currently processing.\n* `failed` - The publication attempt failed.\n* `succeeded` - The publication was successful.\n* `succeeded_with_warnings` - The publication was successful, but there were warnings.\n",
             "type": "string",
             "enum": [
               "pending",
               "failed",
-              "succeeded"
+              "succeeded",
+              "succeeded_with_warnings"
             ],
             "x-enum-varnames": [
               "publication_instance_status_pending",
               "publication_instance_status_failed",
-              "publication_instance_status_succeeded"
+              "publication_instance_status_succeeded",
+              "publication_instance_status_succeeded_with_warnings"
             ]
           },
           "status_cause": {
@@ -7847,16 +7847,18 @@
       },
       "FilterNameControlPlanes": {
         "type": "string",
-        "description": "Keywords for control plane filters.\nWhen filtering on `product`, only the following `filter_values` are supported:\n  * nic\n",
+        "description": "Keywords for control plane filters.\n",
         "enum": [
           "name",
           "product_version",
-          "object_id"
+          "object_id",
+          "cve_severity"
         ],
         "x-enum-varnames": [
           "filter_name_control_plane_name",
           "filter_name_control_plane_product_version",
-          "filter_name_control_plane_object_id"
+          "filter_name_control_plane_object_id",
+          "filter_name_control_plane_cve_severity"
         ]
       },
       "ListControlPlaneObject": {
@@ -7943,9 +7945,9 @@
             },
             {
               "object_id": "ecp_-bRQlhscTKmbUIdJaYhGJA",
-              "name": "nginx-ingress-002",
+              "name": "ngf-deployment",
               "created_at": "2023-12-06T22:37:24.120114Z",
-              "product_version": "nginx-ingress-controller-4.0.1",
+              "product_version": "nginx-gateway-fabric-2.0.1",
               "instances_count": 3,
               "online_instances_count": 1,
               "cve_severity": [
@@ -8203,17 +8205,19 @@
       },
       "NginxProduct": {
         "type": "string",
-        "description": "NGINX product :\n  * `noss` - NGINX Open Source.\n  * `nplus` - NGINX PLUS.\n  * `nic` - NGINX Ingress Controller.\n",
+        "description": "NGINX product :\n  * `noss` - NGINX Open Source.\n  * `nplus` - NGINX PLUS.\n  * `nic` - NGINX Ingress Controller.\n  * `ngf` - NGINX Gateway Fabric.\n",
         "enum": [
           "noss",
           "nplus",
           "nic",
+          "ngf",
           "unknown"
         ],
         "x-enum-varnames": [
           "nginx_product_noss",
           "nginx_product_nplus",
           "nginx_product_nic",
+          "nginx_product_ngf",
           "nginx_product_unknown"
         ]
       },
@@ -8285,6 +8289,13 @@
                   "versions": [
                     "1.0.0",
                     "2.1.0"
+                  ]
+                },
+                {
+                  "name": "ngf",
+                  "versions": [
+                    "1.6.2",
+                    "2.0.1"
                   ]
                 }
               ],
@@ -9417,7 +9428,7 @@
       "MetricDimension": {
         "type": "string",
         "default": "display_name",
-        "description": "Static list of all metric dimensions.\n  * `display_name` - The display name of the NGINX instance.\n  * `file_path` - Path to a desired file.\n  * `parent_hostname` - The hostname of the NGINX Plus instance.\n  * `instance_object_id` - Instance Object ID is the unique identifier for an Instance registered with NGINX One Console.\n  * `location_zone` - The name of an HTTP location zone.\n  * `mount_point` - A filesystem mount point.\n  * `namespace` - The Namespace associated with the metric data.\n  * `network_interface` - A server network interface.\n  * `nginx_id` - The unique identifier of an nginx instance running on the data plane.\n  * `server_zone` - The name of an HTTP or Stream server zone.\n  * `system_id` - The unique identifier of the the operating system where nginx-agent is running.\n  * `tenant` - The Tenant associated with the metric data.\n  * `csg_object_id` - Config Sync Group Object ID is the unique identifier for a Config Sync Group registered with NGINX One Console.\n  * `mode` - Variant value associated with metric `system.cpu.utilization`.\n  * `state` - Variant value associated with metrics `system.filesystem.usage`, `system.memory.usage`.\n  * `io_direction` - Variant value associated with metric `system.network.io`.\n  * `status_range` - Variant value associated with metric `nginx.http.response.count`.\n",
+        "description": "Static list of all metric dimensions:\n  * `display_name` - Display name of the NGINX instance.\n  * `file_path` - Path to the file.\n  * `parent_hostname` - Hostname of the NGINX Plus instance.\n  * `instance_object_id` - Unique ID of the instance registered with NGINX One Console.\n  * `location_zone` - Name of an HTTP location zone.\n  * `mount_point` - Filesystem mount point.\n  * `namespace` - Namespace for the metric data.\n  * `network_interface` - Server network interface.\n  * `nginx_id` - Unique ID of the NGINX instance running on the data plane.\n  * `server_zone` - Name of an HTTP or Stream server zone.\n  * `system_id` - Unique ID of the operating system running nginx-agent.\n  * `tenant` - Tenant for the metric data.\n  * `csg_object_id` - Unique ID of the Config Sync Group registered with NGINX One Console.\n  * `mode` - Variant value for metric `system.cpu.utilization`.\n  * `state` - Variant value for metrics `system.filesystem.usage`, `system.memory.usage`.\n  * `io_direction` - Variant value for metric `system.network.io`.\n  * `status_range` - Variant value for metric `nginx.http.response.count`.\n  * `logical_number` - Variant value for metrics that return a processor number.\n  * `outcome` - Variant value for metrics that return an outcome.\n",
         "enum": [
           "display_name",
           "file_path",
@@ -9435,7 +9446,9 @@
           "mode",
           "state",
           "io_direction",
-          "status_range"
+          "status_range",
+          "logical_number",
+          "outcome"
         ],
         "x-enum-varnames": [
           "metric_dimension_display_name",
@@ -9454,13 +9467,17 @@
           "metric_dimension_mode",
           "metric_dimension_state",
           "metric_dimension_io_direction",
-          "metric_dimension_status_range"
+          "metric_dimension_status_range",
+          "metric_dimension_logical_number",
+          "metric_dimension_outcome"
         ]
       },
       "BaseMetricQueryRequest": {
         "type": "object",
         "required": [
-          "metrics"
+          "metrics",
+          "start_time",
+          "resolution"
         ],
         "properties": {
           "metrics": {
@@ -9758,12 +9775,15 @@
           },
           {
             "$ref": "#/components/schemas/MetricNginxHttpResponseCount"
+          },
+          {
+            "$ref": "#/components/schemas/MetricNginxHttpConnectionCount"
           }
         ]
       },
       "MetricSystemCpuUtilization": {
         "type": "string",
-        "description": "Total system CPU utilization for 'system' or 'user', percentage. A filter differentiator is needed for specific mode(s).\n\nReplacement for depreciated variant(s):\n  * system.cpu.system\n  * system.cpu.user\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension filter differentiator:\n  * mode (applicable filter values: 'system', 'user')\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n",
+        "description": "Total system CPU use for 'system' or 'user' (percent). A filter is required to specify the mode.\n\nReplaces deprecated variants:\n  * system.cpu.system\n  * system.cpu.user\n\nSupported aggregations:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension filter:\n  * mode (valid values:: 'system', 'user')\n\nSupported catalog dimensions:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n  * logical_number\n",
         "enum": [
           "system.cpu.utilization"
         ]
@@ -9787,6 +9807,13 @@
         "description": "Number of logical (virtual) processor cores created by the operating system.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate      \n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n",
         "enum": [
           "system.cpu.logical.count"
+        ]
+      },
+      "MetricNginxHttpConnectionCount": {
+        "type": "string",
+        "description": "Number of connections grouped by outcome ('ACCEPTED', 'DROPPED', 'ACTIVE', 'IDLE').\nSupported aggregations:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nSupported catalog dimensions:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n  * outcome\n",
+        "enum": [
+          "nginx.http.connection.count"
         ]
       },
       "MetricSystemNetworkIo": {
@@ -10629,6 +10656,435 @@
         "items": {
           "$ref": "#/components/schemas/BulkRequestObjectStatus"
         }
+      },
+      "NapSignatureMeta": {
+        "required": [
+          "signature_id",
+          "name",
+          "attack_type"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "signature_id": {
+            "type": "integer"
+          },
+          "attack_type": {
+            "type": "string"
+          }
+        }
+      },
+      "NapSignature": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/NapSignatureMeta"
+          },
+          {
+            "type": "object",
+            "required": [
+              "description",
+              "signature_type",
+              "risk",
+              "accuracy",
+              "has_cve",
+              "modified_at",
+              "systems"
+            ],
+            "properties": {
+              "accuracy": {
+                "default": "low",
+                "enum": [
+                  "high",
+                  "low",
+                  "medium"
+                ],
+                "x-enum-varnames": [
+                  "nap_signature_accuracy_high",
+                  "nap_signature_accuracy_low",
+                  "nap_signature_accuracy_medium"
+                ],
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              },
+              "has_cve": {
+                "default": false,
+                "type": "boolean"
+              },
+              "modified_at": {
+                "type": "string",
+                "format": "date-time",
+                "description": "The date and time when the signature was last modified."
+              },
+              "references": {
+                "items": {
+                  "required": [
+                    "type",
+                    "value"
+                  ],
+                  "properties": {
+                    "type": {
+                      "default": "nessus",
+                      "enum": [
+                        "bugtraq",
+                        "cve",
+                        "nessus",
+                        "url"
+                      ],
+                      "x-enum-varnames": [
+                        "nap_signature_references_type_bugtrag",
+                        "nap_signature_references_type_cve",
+                        "nap_signature_references_type_nessus",
+                        "nap_signature_references_type_url"
+                      ],
+                      "type": "string"
+                    },
+                    "value": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              "risk": {
+                "default": "low",
+                "enum": [
+                  "high",
+                  "low",
+                  "medium"
+                ],
+                "x-enum-varnames": [
+                  "nap_signature_risk_high",
+                  "nap_signature_risk_low",
+                  "nap_signature_risk_medium"
+                ],
+                "type": "string"
+              },
+              "signature_type": {
+                "default": "request",
+                "enum": [
+                  "request",
+                  "response"
+                ],
+                "type": "string",
+                "x-enum-varnames": [
+                  "nap_signature_signature_type_request",
+                  "nap_signature_signature_type_response"
+                ]
+              },
+              "systems": {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              }
+            }
+          }
+        ],
+        "example": {
+          "signature_id": 123456789,
+          "name": "Example Signature",
+          "description": "This is an example signature.",
+          "signature_type": "request",
+          "attack_type": "SQL Injection",
+          "risk": "high",
+          "accuracy": "medium",
+          "has_cve": true,
+          "modified_at": "2023-10-01T12:00:00Z",
+          "references": [
+            {
+              "type": "cve",
+              "value": "CVE-2023-12345"
+            }
+          ],
+          "systems": [
+            "System A"
+          ]
+        }
+      },
+      "NapSignatureSet": {
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "signature_count",
+          "default_alarm",
+          "default_block",
+          "default_learn",
+          "modified_at"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "signature_count": {
+            "type": "integer"
+          },
+          "assign_to_policy_by_default": {
+            "default": false,
+            "type": "boolean"
+          },
+          "category": {
+            "default": "User-defined",
+            "type": "string"
+          },
+          "default_alarm": {
+            "default": true,
+            "type": "boolean"
+          },
+          "default_block": {
+            "default": true,
+            "type": "boolean"
+          },
+          "default_learn": {
+            "default": true,
+            "type": "boolean"
+          },
+          "filter": {
+            "properties": {
+              "accuracy_filter": {
+                "default": "ge",
+                "enum": [
+                  "all",
+                  "eq",
+                  "ge",
+                  "le"
+                ],
+                "x-enum-varnames": [
+                  "nap_signature_set_accuracy_filter_all",
+                  "nap_signature_set_accuracy_filter_eq",
+                  "nap_signature_set_accuracy_filter_ge",
+                  "nap_signature_set_accuracy_filter_le"
+                ],
+                "type": "string"
+              },
+              "accuracy_value": {
+                "default": "all",
+                "enum": [
+                  "all",
+                  "high",
+                  "low",
+                  "medium"
+                ],
+                "x-enum-varnames": [
+                  "nap_signature_set_accuracy_value_all",
+                  "nap_signature_set_accuracy_value_high",
+                  "nap_signature_set_accuracy_value_low",
+                  "nap_signature_set_accuracy_value_medium"
+                ],
+                "type": "string"
+              },
+              "attack_type": {
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "has_cve": {
+                "default": "all",
+                "enum": [
+                  "all",
+                  "no",
+                  "yes"
+                ],
+                "x-enum-varnames": [
+                  "nap_signature_set_filter_have_cve_all",
+                  "nap_signature_set_filter_have_cve_no",
+                  "nap_signature_set_filter_have_cve_yes"
+                ],
+                "type": "string"
+              },
+              "modified_at_filter": {
+                "default": "all",
+                "enum": [
+                  "after",
+                  "all",
+                  "before"
+                ],
+                "x-enum-varnames": [
+                  "nap_signature_set_filter_modified_at_filter_after",
+                  "nap_signature_set_filter_modified_at_filter_all",
+                  "nap_signature_set_filter_modified_at_filter_before"
+                ],
+                "type": "string"
+              },
+              "modified_at_value": {
+                "default": "1970-01-01",
+                "type": "string"
+              },
+              "risk_filter": {
+                "default": "eq",
+                "enum": [
+                  "all",
+                  "eq",
+                  "ge",
+                  "le"
+                ],
+                "x-enum-varnames": [
+                  "nap_signature_set_filter_risk_filter_all",
+                  "nap_signature_set_filter_risk_filter_eq",
+                  "nap_signature_set_filter_risk_filter_ge",
+                  "nap_signature_set_filter_risk_filter_le"
+                ],
+                "type": "string"
+              },
+              "risk_value": {
+                "default": "low",
+                "enum": [
+                  "all",
+                  "high",
+                  "low",
+                  "medium"
+                ],
+                "x-enum-varnames": [
+                  "nap_signature_set_filter_risk_value_all",
+                  "nap_signature_set_filter_risk_value_high",
+                  "nap_signature_set_filter_risk_value_low",
+                  "nap_signature_set_filter_risk_value_medium"
+                ],
+                "type": "string"
+              },
+              "signature_type": {
+                "default": "request",
+                "enum": [
+                  "all",
+                  "request",
+                  "response"
+                ],
+                "x-enum-varnames": [
+                  "nap_signature_set_filter_signature_type_all",
+                  "nap_signature_set_filter_signature_type_request",
+                  "nap_signature_set_filter_signature_type_response"
+                ],
+                "type": "string"
+              },
+              "user_defined_filter": {
+                "default": "all",
+                "enum": [
+                  "all",
+                  "no",
+                  "yes"
+                ],
+                "x-enum-varnames": [
+                  "nap_signature_set_filter_user_defined_filter_all",
+                  "nap_signature_set_filter_user_defined_filter_no",
+                  "nap_signature_set_filter_user_defined_filter_yes"
+                ],
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "modified_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the signature-set was last modified."
+          },
+          "systems": {
+            "items": {
+              "type": "object",
+              "required": [
+                "name"
+              ],
+              "properties": {
+                "name": {
+                  "type": "string"
+                }
+              }
+            },
+            "type": "array"
+          },
+          "type": {
+            "default": "filter-based",
+            "enum": [
+              "filter-based",
+              "manual"
+            ],
+            "x-enum-varnames": [
+              "nap_signature_set_type_filter_based",
+              "nap_signature_set_type_manual"
+            ],
+            "type": "string"
+          }
+        },
+        "example": {
+          "default_block": true,
+          "default_learn": true,
+          "signature_count": 0,
+          "filter": {
+            "accuracy_value": "all",
+            "accuracy_filter": "all",
+            "attack_type": {
+              "name": "XML External Entities (XXE)"
+            },
+            "risk_filter": "all",
+            "has_cve": "all",
+            "user_defined_filter": "all",
+            "risk_value": "all",
+            "modified_at_filter": "all",
+            "signature_type": "request"
+          },
+          "assign_to_policy_by_default": false,
+          "default_alarm": true,
+          "type": "filter-based",
+          "name": "XML External Entities (XXE) Signatures",
+          "id": "sigset_-ZMshmi83MBL97dr5d0a9w",
+          "category": "User-defined",
+          "modified_at": "2023-08-10T16:59:15Z",
+          "systems": []
+        }
+      },
+      "NapSignatureListResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/PaginationResponse"
+          },
+          {
+            "type": "object",
+            "required": [
+              "items"
+            ],
+            "properties": {
+              "items": {
+                "description": "An array of NGINX App Protect signatures.",
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/NapSignature"
+                }
+              }
+            }
+          }
+        ]
+      },
+      "NapSignatureSetListResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/PaginationResponse"
+          },
+          {
+            "type": "object",
+            "required": [
+              "items"
+            ],
+            "properties": {
+              "items": {
+                "description": "An array of NGINX App Protect signature sets.",
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/NapSignatureSet"
+                }
+              }
+            }
+          }
+        ]
       },
       "FilterNameNapPolicy": {
         "type": "string",
