@@ -132,6 +132,10 @@ The table below shows the estimated storage requirements for **NGINX OSS**, base
 |                       | 250       | 14               | 4 GiB                            |
 {{</bootstrap-table>}}
 
+## Clickhouse tuning {#clickhouse tuning}
+The default configuration that comes with clickhouse works with NIM efficiently . But if you make any changes to the configuration and clickhouse is running out of memory.
+See the [Clickhouse configuration guide]({{< ref "nim/system-configuration/configure-clickhouse.md" >}}) for more details.
+
 ## Firewall ports {#firewall}
 
 NGINX Instance Manager and NGINX Agent use the Unix domain socket by default and proxy through the gateway on port `443`.
