@@ -249,9 +249,13 @@ if [[ "$USE_CASE" != "telemetry" ]]; then
 fi
 
 sleep 5
-echo "Executing telemetry tasks"
+# Continue with further steps for version >= 2.20...
+echo "Executing telemetry tasks "
+# Step 2: Download the usage report
+echo "Downloading usage report from NGINX Instance Manager at $NIM_IP..."
 if [[ "$NIM_VER" == "2.18" ]] || [[ "$NIM_VER" == "2.19" ]]; then
   if [[ "$USE_CASE" == "initial" ]]; then
+    # Perform the request and capture the status code and output
     HTTP_RESPONSE=$(curl -k -sS -w "\n%{http_code}" --location "https://$NIM_IP/api/platform/v1/report/download?format=zip&reportType=initial" \
       --header "accept: application/json" \
       --header "authorization: Basic $AUTH_HEADER" \
@@ -272,8 +276,10 @@ if [[ "$NIM_VER" == "2.18" ]] || [[ "$NIM_VER" == "2.19" ]]; then
     
     if [ "$USE_CASE" == "telemetry" ]; then
       echo "Running telemetry stage: "
+      # Run the saved command and store the response
       response=$(eval $prepare_usage_command)
       sleep 2
+      # Validate if the response contains "Report generation in progress"
       if echo "$response" | grep -q '"telemetry":"Report generation in progress"'; then
         echo -e "Success: Report generation is in progress."
       else
@@ -288,46 +294,52 @@ if [[ "$NIM_VER" == "2.18" ]] || [[ "$NIM_VER" == "2.19" ]]; then
     fi
   fi
 else
+  # Perform the request and capture the status code and output
   HTTP_RESPONSE=$(curl -k -sS -w "\n%{http_code}" --location "https://$NIM_IP/api/platform/v1/report/download?format=zip" \
   --header "accept: application/json" \
   --header "authorization: Basic $AUTH_HEADER" \
   --header "content-type: application/json" \
   --header "origin: https://$NIM_IP" \
   --output /tmp/response.zip)
-
+  # Extract the HTTP status code (last line)
   HTTP_STATUS=$(echo "$HTTP_RESPONSE" | tail -n1)
+
+  # Check the status code  
   if [ "$HTTP_STATUS" -ne 200 ]; then
     echo -e "Failed to download usage report from NGINX Instance Manager. HTTP Status Code: $HTTP_STATUS" >&2
     echo "Please verify that NGINX Instance Manager is reachable and the credentials are correct." >&2
     echo "(or) Verify that NGINX Instance Manager is licensed before using the 'telemetry' flag (run it with 'initial' first)."
-    rm -f /tmp/response.zip
     exit 1
   fi
 fi
 
 echo -e "Usage report downloaded successfully as '/tmp/response.zip'."
-
+# Step 3: Upload the usage report to F5 server
 echo "Uploading the usage report to F5 Licensing server"
 TEEM_UPLOAD_URL="https://product.apis.f5.com/ee/v1/entitlements/telemetry/bulk"
-
+# Capture both response body and status code
 UPLOAD_RESULT=$(curl -sS -w "\n%{http_code}" --location "$TEEM_UPLOAD_URL" \
   --header "Authorization: Bearer $JWT_CONTENT" \
   --form "file=@/tmp/response.zip")
 
+# Extract HTTP status code and body
 UPLOAD_STATUS=$(echo "$UPLOAD_RESULT" | tail -n1)
 UPLOAD_BODY=$(echo "$UPLOAD_RESULT" | sed '$d')
 
+# Validate HTTP status code
 if [ "$UPLOAD_STATUS" -ne 202 ]; then
   echo -e "Usage report upload failed. HTTP Status: $UPLOAD_STATUS$" >&2
   echo "Response Body: $UPLOAD_BODY" >&2
   exit 1
 fi
 
+# Check if response is valid JSON
 if ! echo "$UPLOAD_BODY" | jq empty >/dev/null 2>&1; then
   echo -e "Upload response is not valid JSON. Response: $UPLOAD_BODY$" >&2
   exit 1
 fi
 
+# Extract the statusLink
 STATUS_LINK=$(echo "$UPLOAD_BODY" | jq -r '.statusLink // empty')
 if [ -z "$STATUS_LINK" ]; then
   echo -e "Failed to extract statusLink from the upload response. Response: $UPLOAD_BODY$" >&2
@@ -335,48 +347,61 @@ if [ -z "$STATUS_LINK" ]; then
 fi
 
 echo "StatusLink extracted: $STATUS_LINK"
+
+# Extract the unique status ID from the statusLink
 STATUS_ID=$(echo "$STATUS_LINK" | sed 's|/ee/v1/entitlements/telemetry/bulk/status/||')
 
+# Step 4: Validate the submit report status
 echo "Validating the report status"
 echo "Validating report status using status ID: $STATUS_LINK"
 
 STATUS_URL="https://product.apis.f5.com/ee/v1/entitlements/telemetry/bulk/status/$STATUS_ID"
 
+# Get the response from F5 status endpoint
 sleep 5
 STATUS_RESPONSE=$(curl -k -sS -w "\n%{http_code}" --location "$STATUS_URL" \
   --header "Authorization: Bearer $JWT_CONTENT")
 
+# Separate body and HTTP status code
 STATUS_BODY=$(echo "$STATUS_RESPONSE" | sed '$d')
 STATUS_CODE=$(echo "$STATUS_RESPONSE" | tail -n1)
 
+# Validate HTTP status
 if [ "$STATUS_CODE" -ne 200 ]; then
   echo -e "Status check failed. HTTP Status: $STATUS_CODE$" >&2
   echo "Response Body: $STATUS_BODY" >&2
   exit 1
 fi
 
+# Validate that it's valid JSON
 if ! echo "$STATUS_BODY" | jq empty >/dev/null 2>&1; then
   echo -e "Invalid JSON in status body: $STATUS_BODY$" >&2
   exit 1
 fi
 
+# Now safely extract values
 PERCENTAGE_COMPLETE=$(echo "$STATUS_BODY" | jq -r '.percentageComplete')
 PERCENTAGE_SUCCESSFUL=$(echo "$STATUS_BODY" | jq -r '.percentageSuccessful')
 READY_FOR_DOWNLOAD=$(echo "$STATUS_BODY" | jq -r '.readyForDownload')
 
-TIME_LIMIT=30
+# Set a time limit (in seconds)
+TIME_LIMIT=30  # 30 sec for example
 START_TIME=$(date +%s)
 
+# Function to calculate elapsed time
 elapsed_time() {
   echo $(($(date +%s) - $START_TIME))
 }
 
+# Keep checking until conditions are met or time limit is reached
 while true; do
+  # Validate all required conditions
   if [ "$PERCENTAGE_COMPLETE" -eq "100" ] && [ "$READY_FOR_DOWNLOAD" == "true" ]; then
     echo -e "Validating Report."
     break
   fi
 
+  # Check if we've exceeded the time limit
   if [ $(elapsed_time) -ge "$TIME_LIMIT" ]; then
     echo -e "Time limit exceeded. Report validation failed."
     echo "  percentageComplete: $PERCENTAGE_COMPLETE"
@@ -387,15 +412,19 @@ while true; do
     exit 1
   fi
 
+  # Print current validation status
   echo -e "Report validation failed. Waiting for conditions to be met...$"
   echo "  percentageComplete: $PERCENTAGE_COMPLETE"
   echo "  percentageSuccessful: $PERCENTAGE_SUCCESSFUL"
   echo "  readyForDownload: $READY_FOR_DOWNLOAD"
 
+  # Sleep for some time before checking again (e.g., 30 seconds)
   sleep 5
 done
 
 echo -e "Report validated successfully. All conditions met."
+
+# Step 5: Download the report from F5
 
 echo "Downloading report from F5 License server..."
 DOWNLOAD_URL="https://product.apis.f5.com/ee/v1/entitlements/telemetry/bulk/download/$STATUS_ID"
@@ -403,6 +432,7 @@ DOWNLOAD_RESPONSE=$(curl -sS -w "%{http_code}" --location "$DOWNLOAD_URL" \
   --header "Authorization: Bearer $JWT_CONTENT" \
   --output /tmp/response_teem.zip)
 
+# Check HTTP status code
 HTTP_STATUS=$(echo "$DOWNLOAD_RESPONSE" | tail -n1)
 if [ "$HTTP_STATUS" -ne 200 ]; then
   echo -e "Failed to download the report from F5. HTTP Status Code: $HTTP_STATUS$" >&2
@@ -411,6 +441,7 @@ fi
 
 echo -e "Report downloaded successfully from F5 as '/tmp/response_teem.zip'."
 
+# Step 6: Upload the acknowledgement report to NGINX Instance Manager
 echo "Uploading the license acknowledgement to NGINX Instance Manager..."
 UPLOAD_URL="https://$NIM_IP/api/platform/v1/report/upload"
 UPLOAD_RESPONSE=$(curl -k -sS --location "$UPLOAD_URL" \
@@ -418,14 +449,19 @@ UPLOAD_RESPONSE=$(curl -k -sS --location "$UPLOAD_URL" \
   --form "file=@/tmp/response_teem.zip" \
   -w "%{http_code}" -o /tmp/temp_response.json)
 
+# Extract the HTTP status code
 HTTP_STATUS=$(echo "$UPLOAD_RESPONSE" | tail -n1)
+
+# Extract the message from the response body (temp_response.json)
 UPLOAD_MESSAGE=$(cat /tmp/temp_response.json | jq -r '.message')
 
+# Ensure HTTP_STATUS is a valid integer
 if ! [[ "$HTTP_STATUS" =~ ^[0-9]+$ ]]; then
   echo -e "Invalid HTTP status code. Response: $UPLOAD_RESPONSE$" >&2
   exit 1
 fi
 
+# Check if the upload response contains the success message and validate the status code
 if [ "$UPLOAD_MESSAGE" != "Report uploaded successfully." ] || [ "$HTTP_STATUS" -ne 200 ]; then
   echo -e "Upload failed. Response: $UPLOAD_RESPONSE$" >&2
   exit 1
