@@ -45,14 +45,7 @@ TBD
 
 To configure NGINX Agent in a containerized environment:
 
-1. Configure the following environment variables for the docker command:
-
-```sh
-NGINX_AGENT_COMMAND_SERVER_PROXY_URL=http://proxy.example.com:3128
-NGINX_AGENT_COMMAND_SERVER_PROXY_TIMEOUT=10
-```
-
-1. Run the NGINX Agent container with the environment variables set:
+1. Run the NGINX Agent container with the environment variables set as follows:
 
    ```sh
    docker run -d \
@@ -89,16 +82,7 @@ If your Squid proxy requires authentication, you can specify the username and pa
 
 To set proxy authentication in a containerized environment:
 
-1. Configure the following environment variables for the docker command:
-
-```sh
-NGINX_AGENT_COMMAND_SERVER_PROXY_URL=http://proxy.example.com:3128
-NGINX_AGENT_COMMAND_SERVER_PROXY_AUTH_METHOD=basic
-NGINX_AGENT_COMMAND_SERVER_PROXY_USERNAME="user"
-NGINX_AGENT_COMMAND_SERVER_PROXY_PASSWORD="pass"
-```
-
-1. Run the NGINX Agent container with the environment variables set:
+1. Run the NGINX Agent container with the environment variables set as follows:
 
    ```sh
    docker run -d \
