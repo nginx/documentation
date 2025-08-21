@@ -2,7 +2,7 @@
 nd-docs: DOCS-000
 ---
 
-apreload is a tool that can update that can update the NGINX App Protect WAF configuration without having to reload NGINX if only the App Protect configuration is changed and the `nginx.conf` file remains unchanged. apreload does not affect the existing NGINX reload process and it functions in the same manner as before.
+apreload is a tool that can update that can update the F5 WAF for NGINX configuration without having to reload NGINX if only the App Protect configuration is changed and the `nginx.conf` file remains unchanged. apreload does not affect the existing NGINX reload process and it functions in the same manner as before.
 
 #### Some Conditions Required for apreload to Work:
 

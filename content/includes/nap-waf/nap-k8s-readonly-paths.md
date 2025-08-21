@@ -23,7 +23,7 @@ A full example might look like the following:
 user  nginx;
 worker_processes  auto;
 
-# NGINX App Protect WAF
+# F5 WAF for NGINX
 load_module modules/ngx_http_app_protect_module.so;
 
 error_log  /var/log/nginx/error.log debug;
@@ -57,7 +57,7 @@ http {
 
     #gzip  on;
 
-    # NGINX App Protect WAF
+    # F5 WAF for NGINX
     app_protect_enforcer_address 127.0.0.1:50000;
 
     include /etc/nginx/conf.d/*.conf;

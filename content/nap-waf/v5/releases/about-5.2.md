@@ -1,5 +1,5 @@
 ---
-title: NGINX App Protect WAF 5.2
+title: F5 WAF for NGINX 5.2
 weight: 890
 toc: true
 type: reference
@@ -15,7 +15,7 @@ May 29, 2024
 
 ### New features
 
-In this release, F5 NGINX App Protect WAF supports NGINX Open Source 1.25.5 and NGINX Plus R32.
+In this release, F5 F5 WAF for NGINX supports NGINX Open Source 1.25.5 and NGINX Plus R32.
 
 - [Apreload support]({{<ref "nap-waf/v5/configuration-guide/configuration.md#apreload">}})
 

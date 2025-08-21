@@ -1,5 +1,5 @@
 ---
-title: NGINX App Protect WAF 4.1
+title: F5 WAF for NGINX 4.1
 weight: 400
 toc: true
 type: reference
@@ -18,7 +18,7 @@ This release includes new signatures for [Anti Automation]({{< ref "/nap-waf/v4/
 ### New Features
 
 - [Alpine 3.16 Support]({{< ref "/nap-waf/v4/admin-guide/install.md#alpine-316--alpine-317-installation" >}})
-- [Apreload - NGINX App Protect WAF Standalone Configuration]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#nginx-app-protect-waf-standalone-configuration" >}})
+- [Apreload - F5 WAF for NGINX Standalone Configuration]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#nginx-app-protect-waf-standalone-configuration" >}})
 
 ### Supported Packages
 

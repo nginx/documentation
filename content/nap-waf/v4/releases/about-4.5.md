@@ -1,5 +1,5 @@
 ---
-title: NGINX App Protect WAF 4.5
+title: F5 WAF for NGINX 4.5
 weight: 190
 toc: true
 type: reference
@@ -22,7 +22,7 @@ This release includes new signatures for [Anti Automation]({{< ref "/nap-waf/v4/
 
 ### New Feature
 
-In this release, NGINX App Protect WAF supports NGINX Plus R30.
+In this release, F5 WAF for NGINX supports NGINX Plus R30.
 
 - [Alpine 3.17 Support]({{< ref "/nap-waf/v4/admin-guide/install.md#alpine-316--alpine-317-installation" >}})
 
@@ -66,7 +66,7 @@ In this release, NGINX App Protect WAF supports NGINX Plus R30.
 
 ### Resolved Issues
 
-- 8976 Fixed - When using multiple arcsight remote loggers for NGINX App Protect WAF policy, some requests may cause enforcer to crash.
+- 8976 Fixed - When using multiple arcsight remote loggers for F5 WAF for NGINX policy, some requests may cause enforcer to crash.
 - 8312 Fixed - Running the get-signatures utility writes output to a different location.
 - 8936 Fixed - To reduce potential false positives, user defined Headers and Cookies that do not specify whether their decodeValueAsBase64 value, are now `disabled` instead of `enabled` by default.
 - 8939 Fixed - The issue with rejected gRPC request support id logged as "Passed" has been fixed.

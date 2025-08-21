@@ -1,5 +1,5 @@
 ---
-title: Installing NGINX App Protect WAF
+title: Installing F5 WAF for NGINX
 weight: 200
 toc: true
 type: how-to
@@ -9,11 +9,11 @@ nd-docs: DOCS-1363
 
 ## Prerequisites
 
-- Active F5 NGINX App Protect WAF subscription in [MyF5](https://my.f5.com/) (purchased or trial).
+- Active F5 F5 WAF for NGINX subscription in [MyF5](https://my.f5.com/) (purchased or trial).
 - Docker (with Docker Compose) is [installed and running](https://docs.docker.com/engine/install/).
 - A [supported operating system]({{< ref "/nginx/technical-specs.md#appprotect" >}}) (OS).
 
-## Install NGINX and NGINX App Protect WAF Module
+## Install NGINX and F5 WAF for NGINX Module
 
 If you already have NGINX packages in your system, back up your configuration and log files:
 
@@ -204,7 +204,7 @@ sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/plus-9.repo
 
 In your nginx configuration:
 
-1. Load the NGINX App Protect WAF v5 module at the main context:
+1. Load the F5 WAF for NGINX v5 module at the main context:
 
     ```nginx
     load_module modules/ngx_http_app_protect_module.so;
@@ -216,7 +216,7 @@ In your nginx configuration:
     app_protect_enforcer_address 127.0.0.1:50000;
     ```
 
-3. Enable NGINX App Protect WAF on an `http/server/location` context (make sure you only enable NGINX App Protect WAF with `proxy_pass`/`grpc_pass` locations):
+3. Enable F5 WAF for NGINX on an `http/server/location` context (make sure you only enable F5 WAF for NGINX with `proxy_pass`/`grpc_pass` locations):
 
     ```nginx
     app_protect_enable on;
@@ -245,7 +245,7 @@ In this guide, the following files are used:
 
 ### Permissions
 
-Set up the directories with the correct ownership for NGINX App Protect WAF v5 services, where `101:101` are the default UID/GID.
+Set up the directories with the correct ownership for F5 WAF for NGINX v5 services, where `101:101` are the default UID/GID.
 
 Create Directories:
 
@@ -303,7 +303,7 @@ networks:
 ```
 
 {{< call-out "note" >}}
-In some operating systems, security mechanisms like **SELinux** or **AppArmor** are enabled by default, potentially blocking necessary file access for the `nginx` process and `waf-config-mgr` and `waf-enforcer` containers. To ensure NGINX App Protect WAF v5 operates smoothly without compromising security, consider setting up a custom SELinux policy or AppArmor profile. For short-term troubleshooting, you may use `permissive` (SELinux) or `complain` (AppArmor) mode to avoid these restrictions, but keep in mind that this lowers security and isn't advised for prolonged use.
+In some operating systems, security mechanisms like **SELinux** or **AppArmor** are enabled by default, potentially blocking necessary file access for the `nginx` process and `waf-config-mgr` and `waf-enforcer` containers. To ensure F5 WAF for NGINX v5 operates smoothly without compromising security, consider setting up a custom SELinux policy or AppArmor profile. For short-term troubleshooting, you may use `permissive` (SELinux) or `complain` (AppArmor) mode to avoid these restrictions, but keep in mind that this lowers security and isn't advised for prolonged use.
 {{< /call-out >}}
 
 ### Docker Compose File with IP Intelligence
@@ -338,11 +338,11 @@ In some operating systems, security mechanisms like **SELinux** or **AppArmor** 
 
 {{< include "nap-waf/bundles-volume-mount.md" >}}
 
-After deploying NGINX App Protect WAF, learn how to utilize the [NGINX App Protect WAF Compiler]({{< ref "/nap-waf/v5/admin-guide/compiler.md" >}}) for applying your custom policies and logging profiles.
+After deploying F5 WAF for NGINX, learn how to utilize the [F5 WAF for NGINX Compiler]({{< ref "/nap-waf/v5/admin-guide/compiler.md" >}}) for applying your custom policies and logging profiles.
 
 ## Air-Gap Install: Secure Offline Installation
 
-### Install NGINX and NGINX App Protect WAF module
+### Install NGINX and F5 WAF for NGINX module
 
 1. Log in to [MyF5 Customer Portal](https://account.f5.com/myf5) and download your **nginx-repo.crt** and **nginx-repo.key** files on your online machine.
 
@@ -478,7 +478,7 @@ Follow these steps before you install NGINX Open Source or NGINX Plus.
     module_hotfixes=true
     ```
 
-2. Create NGINX App Protect WAF v5 repository file, named `/etc/yum.repos.d/app-protect-x-oss.repo` with the following contents:
+2. Create F5 WAF for NGINX v5 repository file, named `/etc/yum.repos.d/app-protect-x-oss.repo` with the following contents:
 
     ```none
     [app-protect-x-oss]
@@ -490,7 +490,7 @@ Follow these steps before you install NGINX Open Source or NGINX Plus.
     enabled=1
     ```
 
-3. Install the NGINX App Protect WAF v5 package:
+3. Install the F5 WAF for NGINX v5 package:
 
     ```shell
     sudo yum install app-protect-module-oss
@@ -834,13 +834,13 @@ Then you can move onto the next step, depending on your chosen operating system.
     printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https://pkgs.nginx.com/plus/ubuntu `lsb_release -cs` nginx-plus\n" | sudo tee /etc/apt/sources.list.d/nginx-plus.list
     ```
 
-2. Add the NGINX App Protect WAF v5 repository:
+2. Add the F5 WAF for NGINX v5 repository:
 
     ```shell
     printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https://pkgs.nginx.com/app-protect-x-plus/ubuntu `lsb_release -cs` nginx-plus\n" | sudo tee /etc/apt/sources.list.d/nginx-app-protect.list
     ```
 
-3. Install the NGINX App Protect WAF v5 package.
+3. Install the F5 WAF for NGINX v5 package.
 
     ```shell
     sudo apt-get update
@@ -851,7 +851,7 @@ Then you can move onto the next step, depending on your chosen operating system.
 
 In your NGINX configuration:
 
-1. Load the NGINX App Protect WAF v5 module at the main context:
+1. Load the F5 WAF for NGINX v5 module at the main context:
 
     ```nginx
     load_module modules/ngx_http_app_protect_module.so;
@@ -863,7 +863,7 @@ In your NGINX configuration:
     app_protect_enforcer_address 127.0.0.1:50000;
     ```
 
-3. Enable NGINX App Protect WAF on an `http/server/location` context (make sure you only enable NGINX App Protect WAF with `proxy_pass`/`grpc_pass` locations):
+3. Enable F5 WAF for NGINX on an `http/server/location` context (make sure you only enable F5 WAF for NGINX with `proxy_pass`/`grpc_pass` locations):
 
     ```nginx
     app_protect_enable on;
@@ -892,7 +892,7 @@ In this guide, the following files are used on the offline/air-gap machine:
 
 #### Permissions
 
-Set up the directories with the correct ownership for NGINX App Protect WAF v5 services, where `101:101` are the default UID/GID.
+Set up the directories with the correct ownership for F5 WAF for NGINX v5 services, where `101:101` are the default UID/GID.
 
 Create Directories:
 
@@ -994,7 +994,7 @@ networks:
 ```
 
 {{< call-out "note" >}}
-In some operating systems, security mechanisms like **SELinux** or **AppArmor** are enabled by default, potentially blocking necessary file access for the `nginx` process and `waf-config-mgr` and `waf-enforcer` containers. To ensure NGINX App Protect WAF v5 operates smoothly without compromising security, consider setting up a custom SELinux policy or AppArmor profile. For short-term troubleshooting, you may use `permissive` (SELinux) or `complain` (AppArmor) mode to avoid these restrictions, but keep in mind that this lowers security and isn't advised for prolonged use.
+In some operating systems, security mechanisms like **SELinux** or **AppArmor** are enabled by default, potentially blocking necessary file access for the `nginx` process and `waf-config-mgr` and `waf-enforcer` containers. To ensure F5 WAF for NGINX v5 operates smoothly without compromising security, consider setting up a custom SELinux policy or AppArmor profile. For short-term troubleshooting, you may use `permissive` (SELinux) or `complain` (AppArmor) mode to avoid these restrictions, but keep in mind that this lowers security and isn't advised for prolonged use.
 {{< /call-out >}}
 
 #### Docker Compose File with IP Intelligence
@@ -1021,7 +1021,7 @@ In some operating systems, security mechanisms like **SELinux** or **AppArmor** 
     curl "localhost/<script>"
     ```
 
-## Uninstall NGINX and NGINX App Protect WAF module
+## Uninstall NGINX and F5 WAF for NGINX module
 
 Stop the docker deployment and uninstall the NGINX packages.
 
@@ -1033,21 +1033,21 @@ To stop the WAF services, navigate to the directory that contains the `docker-co
 sudo docker compose stop
 ```
 
-### Uninstall the NGINX App Protect WAF v5 Package
+### Uninstall the F5 WAF for NGINX v5 Package
 
 {{<tabs name="uninstall_nginx_and_nginx_nap">}}
 
 {{%tab name="Alpine Linux 3.16/3.17/3.19"%}}
 
 For NGINX Open Source
-Uninstall the NGINX App Protect WAF v5 package:
+Uninstall the F5 WAF for NGINX v5 package:
 
 ```shell
 sudo apk del app-protect-module-oss
 ```
 
 For NGINX Plus
-Uninstall the NGINX App Protect WAF v5 package:
+Uninstall the F5 WAF for NGINX v5 package:
 
 ```shell
 sudo apk del app-protect-module-plus
@@ -1058,7 +1058,7 @@ sudo apk del app-protect-module-plus
 {{%tab name="Amazon Linux 2"%}}
 
 For NGINX Open Source
-Uninstall the NGINX App Protect WAF v5 package:
+Uninstall the F5 WAF for NGINX v5 package:
 
 ```shell
 sudo yum remove app-protect-module-oss
@@ -1066,7 +1066,7 @@ sudo apt-get remove nginx=1.25.5-1~`lsb_release -cs` app-protect-module-oss
 ```
 
 For NGINX Plus
-Uninstall the NGINX App Protect WAF v5 package:
+Uninstall the F5 WAF for NGINX v5 package:
 
 ```shell
 sudo yum remove app-protect-module-plus
@@ -1076,14 +1076,14 @@ sudo yum remove app-protect-module-plus
 {{%tab name="Centos 7.4+"%}}
 
 For NGINX Open Source
-Uninstall the NGINX App Protect WAF v5 package:
+Uninstall the F5 WAF for NGINX v5 package:
 
 ```shell
 sudo yum remove app-protect-module-oss
 ```
 
 For NGINX Plus
-Uninstall the NGINX App Protect WAF v5 package:
+Uninstall the F5 WAF for NGINX v5 package:
 
 ```shell
 sudo yum remove app-protect-module-plus
@@ -1093,14 +1093,14 @@ sudo yum remove app-protect-module-plus
 {{%tab name="Debian 11"%}}
 
 For NGINX Open Source
-Uninstall the NGINX App Protect WAF v5 package:
+Uninstall the F5 WAF for NGINX v5 package:
 
 ```shell
 sudo apt-get remove app-protect-module-oss
 ```
 
 For NGINX Plus
-Uninstall the NGINX App Protect WAF v5 package:
+Uninstall the F5 WAF for NGINX v5 package:
 
 ```shell
 sudo apt-get remove app-protect-module-plus
@@ -1110,14 +1110,14 @@ sudo apt-get remove app-protect-module-plus
 {{%tab name="Debian 12"%}}
 
 For NGINX Open Source
-Uninstall the NGINX App Protect WAF v5 package:
+Uninstall the F5 WAF for NGINX v5 package:
 
 ```shell
 sudo apt-get remove app-protect-module-oss
 ```
 
 For NGINX Plus
-Uninstall the NGINX App Protect WAF v5 package:
+Uninstall the F5 WAF for NGINX v5 package:
 
 ```shell
 sudo apt-get remove app-protect-module-plus
@@ -1127,14 +1127,14 @@ sudo apt-get remove app-protect-module-plus
 {{%tab name="Oracle Linux 8.1+"%}}
 
 For NGINX Open Source
-Uninstall the NGINX App Protect WAF v5 package:
+Uninstall the F5 WAF for NGINX v5 package:
 
 ```shell
 sudo dnf remove app-protect-module-oss
 ```
 
 For NGINX Plus
-Uninstall the NGINX App Protect WAF v5 package:
+Uninstall the F5 WAF for NGINX v5 package:
 
 ```shell
 sudo dnf remove app-protect-module-plus
@@ -1144,14 +1144,14 @@ sudo dnf remove app-protect-module-plus
 {{%tab name="RHEL 7.4+"%}}
 
 For NGINX Open Source
-Uninstall the NGINX App Protect WAF v5 package:
+Uninstall the F5 WAF for NGINX v5 package:
 
 ```shell
 sudo yum remove app-protect-module-oss
 ```
 
 For NGINX Plus
-Uninstall the NGINX App Protect WAF v5 package:
+Uninstall the F5 WAF for NGINX v5 package:
 
 ```shell
 sudo yum remove app-protect-module-plus
@@ -1161,14 +1161,14 @@ sudo yum remove app-protect-module-plus
 {{%tab name="RHEL 8.1+"%}}
 
 For NGINX Open Source
-Uninstall the NGINX App Protect WAF v5 package:
+Uninstall the F5 WAF for NGINX v5 package:
 
 ```shell
 sudo dnf remove app-protect-module-oss
 ```
 
 For NGINX Plus
-Uninstall the NGINX App Protect WAF v5 package:
+Uninstall the F5 WAF for NGINX v5 package:
 
 ```shell
 sudo dnf remove app-protect-module-plus
@@ -1178,13 +1178,13 @@ sudo dnf remove app-protect-module-plus
 {{%tab name="RHEL 9 / Rocky Linux 9"%}}
 
 For NGINX Open Source
-Uninstall the NGINX App Protect WAF v5 package:
+Uninstall the F5 WAF for NGINX v5 package:
 ```shell
 sudo dnf remove app-protect-module-oss
 ```
 
 For NGINX Plus
-Uninstall the NGINX App Protect WAF v5 package:
+Uninstall the F5 WAF for NGINX v5 package:
 
 ```shell
 sudo dnf remove app-protect-module-plus
@@ -1194,14 +1194,14 @@ sudo dnf remove app-protect-module-plus
 {{%tab name="Ubuntu 20.04"%}}
 
 For NGINX Open Source
-Uninstall the NGINX App Protect WAF v5 package:
+Uninstall the F5 WAF for NGINX v5 package:
 
 ```shell
 sudo apt-get remove app-protect-module-oss
 ```
 
 For NGINX Plus
-Uninstall the NGINX App Protect WAF v5 package:
+Uninstall the F5 WAF for NGINX v5 package:
 
 ```shell
 sudo apt-get remove app-protect-module-plus
@@ -1211,14 +1211,14 @@ sudo apt-get remove app-protect-module-plus
 {{%tab name="Ubuntu 22.04"%}}
 
 For NGINX Open Source
-Uninstall the NGINX App Protect WAF v5 package:
+Uninstall the F5 WAF for NGINX v5 package:
 
 ```shell
 sudo apt-get remove app-protect-module-oss
 ```
 
 For NGINX Plus
-Uninstall the NGINX App Protect WAF v5 package:
+Uninstall the F5 WAF for NGINX v5 package:
 
 ```shell
 sudo apt-get remove app-protect-module-plus
@@ -1228,14 +1228,14 @@ sudo apt-get remove app-protect-module-plus
 {{%tab name="Ubuntu 24.04"%}}
 
 For NGINX Open Source
-Uninstall the NGINX App Protect WAF v5 package:
+Uninstall the F5 WAF for NGINX v5 package:
 
 ```shell
 sudo apt-get remove app-protect-module-oss
 ```
 
 For NGINX Plus
-Uninstall the NGINX App Protect WAF v5 package:
+Uninstall the F5 WAF for NGINX v5 package:
 
 ```shell
 sudo apt-get remove app-protect-module-plus

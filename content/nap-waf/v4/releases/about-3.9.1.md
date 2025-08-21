@@ -1,5 +1,5 @@
 ---
-title: NGINX App Protect WAF 3.9.1
+title: F5 WAF for NGINX 3.9.1
 weight: 700
 toc: true
 type: reference
@@ -10,7 +10,7 @@ nd-docs: DOCS-842
 March 9, 2022
 
 
-Support for NGINX App Protect WAF is added to NGINX Plus R26 starting with release 3.9.
+Support for F5 WAF for NGINX is added to NGINX Plus R26 starting with release 3.9.
 
 This release includes updated signatures for the [Anti Automation]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#anti-automation-bot-mitigation" >}}) (bot defense) feature as follows:
 

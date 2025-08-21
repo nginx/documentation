@@ -23,10 +23,10 @@ A WAF protects your web apps by filtering, monitoring, and blocking any maliciou
 
 App Security on NGINX Controller provides an app‑centric self‑service model to address the security needs of modern apps.
 
-The App Security add-on uses the NGINX App Protect Web Application Firewall (NGINX App Protect WAF) enforcement engine on the data path (data plane).
+The App Security add-on uses the NGINX App Protect Web Application Firewall (F5 WAF for NGINX) enforcement engine on the data path (data plane).
 When you enable WAF on an app component using NGINX Controller, a security policy (sets of security controls and enforcement logic) is deployed and applied to configured NGINX App Protect instances that process traffic for the app component.
 
-NGINX App Protect WAF inspects incoming traffic as specified in the Security Policy to identify potential threats. When malicious traffic is suspected or blocked, the NGINX Controller Analytics module logs security events and metrics. These are then included in the NGINX Controller Threat Visibility and Analytics reporting.
+F5 WAF for NGINX inspects incoming traffic as specified in the Security Policy to identify potential threats. When malicious traffic is suspected or blocked, the NGINX Controller Analytics module logs security events and metrics. These are then included in the NGINX Controller Threat Visibility and Analytics reporting.
 
 {{< call-out "note" >}}To learn more, read the [Threat Visibility and Analytics](https://www.nginx.com/blog/threat-visibility-analytics-nginx-controller-app-security/) blog post on [nginx.com](https://nginx.com).{{< /call-out>}}
 
@@ -34,7 +34,7 @@ NGINX App Protect WAF inspects incoming traffic as specified in the Security Pol
 
 ## Security Policy
 
-In NGINX Controller, the Security Policy contains an NGINX App Protect WAF policy. The NGINX App Protect WAF policy has security controls and settings in a declarative JSON format. The Security Policy defines the rules and settings for application traffic inspection, detection of malicious traffic, and handling violations when they occur. For more about creating, updating, or deleting Security Policies, see the [Policies API Reference](https://docs.nginx.com/nginx-controller/api/ctlr-adc-api/#operation/listPolicies).
+In NGINX Controller, the Security Policy contains an F5 WAF for NGINX policy. The F5 WAF for NGINX policy has security controls and settings in a declarative JSON format. The Security Policy defines the rules and settings for application traffic inspection, detection of malicious traffic, and handling violations when they occur. For more about creating, updating, or deleting Security Policies, see the [Policies API Reference](https://docs.nginx.com/nginx-controller/api/ctlr-adc-api/#operation/listPolicies).
 
 When enabling WAF to protect your Apps, you can either add your own custom Security Policy or use the default Security Policy.
 

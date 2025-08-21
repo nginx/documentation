@@ -9,7 +9,7 @@ nd-docs: DOCS-605
 
 This page describes how to download an F5 NGINX Plus Ingress Controller image from the official F5 Docker registry.
 
-The F5 Registry images include versions with NGINX App Protect WAF and NGINX App Protect DoS.
+The F5 Registry images include versions with F5 WAF for NGINX and F5 DoS for NGINX.
 
 ## Before you begin
 
@@ -45,13 +45,13 @@ Replace `<version-tag>` with the specific version you need, for example, `{{< ni
   docker pull private-registry.nginx.com/nginx-ic/nginx-plus-ingress:<version-tag>
   ```
 
-- For NGINX Plus Ingress Controller with NGINX App Protect WAF, run:
+- For NGINX Plus Ingress Controller with F5 WAF for NGINX, run:
 
    ```shell
    docker pull private-registry.nginx.com/nginx-ic-nap/nginx-plus-ingress:<version-tag>
    ```
 
-- For NGINX Plus Ingress Controller with NGINX App Protect WAF v5, run:
+- For NGINX Plus Ingress Controller with F5 WAF for NGINX v5, run:
 
    ```shell
    docker pull private-registry.nginx.com/nginx-ic-nap-v5/nginx-plus-ingress:<version-tag>
@@ -65,13 +65,13 @@ Replace `<version-tag>` with the specific version you need, for example, `{{< ni
    docker pull private-registry.nginx.com/nap/waf-enforcer:<waf-version-tag>
    ```
 
-- For NGINX Plus Ingress Controller with NGINX App Protect DoS, run:
+- For NGINX Plus Ingress Controller with F5 DoS for NGINX, run:
 
    ```shell
    docker pull private-registry.nginx.com/nginx-ic-dos/nginx-plus-ingress:<version-tag>
    ```
 
-- For NGINX Plus Ingress Controller with NGINX App Protect WAF and NGINX App Protect DoS, run:
+- For NGINX Plus Ingress Controller with F5 WAF for NGINX and F5 DoS for NGINX, run:
 
    ```shell
    docker pull private-registry.nginx.com/nginx-ic-nap-dos/nginx-plus-ingress:<version-tag>
@@ -142,14 +142,14 @@ After pulling the image, tag it and upload it to your private registry.
       docker push <my-docker-registry>/nginx-ic/nginx-plus-ingress:<version-tag>
       ```
 
-   - For NGINX Controller with NGINX App Protect WAF, run:
+   - For NGINX Controller with F5 WAF for NGINX, run:
 
       ```shell
       docker tag private-registry.nginx.com/nginx-ic-nap/nginx-plus-ingress:<version-tag> <my-docker-registry>/nginx-ic-nap/nginx-plus-ingress:<version-tag>
       docker push <my-docker-registry>/nginx-ic-nap/nginx-plus-ingress:<version-tag>
       ```
 
-      - For NGINX Controller with NGINX App Protect WAF v5, run:
+      - For NGINX Controller with F5 WAF for NGINX v5, run:
 
       ```shell
       docker tag private-registry.nginx.com/nginx-ic-nap-v5/nginx-plus-ingress:<version-tag> <my-docker-registry>/nginx-ic-nap/nginx-plus-ingress:<version-tag>
@@ -166,7 +166,7 @@ After pulling the image, tag it and upload it to your private registry.
       docker push <my-docker-registry>/nap/waf-enforcer:<waf-version-tag>
       ```
 
-   - For NGINX Controller with NGINX App Protect DoS, run:
+   - For NGINX Controller with F5 DoS for NGINX, run:
 
       ```shell
       docker tag private-registry.nginx.com/nginx-ic-dos/nginx-plus-ingress:<version-tag> <my-docker-registry>/nginx-ic-dos/nginx-plus-ingress:<version-tag>

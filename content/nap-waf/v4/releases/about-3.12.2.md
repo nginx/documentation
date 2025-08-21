@@ -1,5 +1,5 @@
 ---
-title: NGINX App Protect WAF 3.12.2
+title: F5 WAF for NGINX 3.12.2
 weight: 620
 toc: true
 type: reference
@@ -13,7 +13,7 @@ This release is intended to support NGINX Instance Manager.
 
 ### New Features
 
-- The NGINX App Protect WAF release includes the support of NGINX Instance Manager capability to edit and publish policy bundles. <br> See [NGINX Instance Manager releases](https://docs.nginx.com/nginx-instance-manager/releases/).
+- The F5 WAF for NGINX release includes the support of NGINX Instance Manager capability to edit and publish policy bundles. <br> See [NGINX Instance Manager releases](https://docs.nginx.com/nginx-instance-manager/releases/).
 
 ### Supported Packages
 

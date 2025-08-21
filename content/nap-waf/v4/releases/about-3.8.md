@@ -1,5 +1,5 @@
 ---
-title: NGINX App Protect WAF 3.8
+title: F5 WAF for NGINX 3.8
 weight: 720
 toc: true
 type: reference
@@ -48,7 +48,7 @@ January 18, 2022
 
 - This release introduces a change in dependency for `attack signatures` and `threat campaigns` bundles from `app-protect` to `app-protect-compiler`. Due to the upcoming modern mode of operation development and new packaging, the dependency of these packages is now transferred to `app-protect-compiler` package.  This change in dependency will have a major impact that might be relevant to some customers, who are using commands to only install the attack signatures and on the way NGINX App Protect and NGINX Plus are installed as well.
 
-- **Memory Consumption Improvement** - Beginning in release 3.8, NGINX App Protect WAF is optimized to consume ~70MB less per loaded policy, compared to the previous releases. Currently, when a policy contains an xml profile, NGINX App Protect WAF allocates up to 256 xml parsers, each consuming ~300KB. This is done at startup per thread, per xml profile, per policy.
+- **Memory Consumption Improvement** - Beginning in release 3.8, F5 WAF for NGINX is optimized to consume ~70MB less per loaded policy, compared to the previous releases. Currently, when a policy contains an xml profile, F5 WAF for NGINX allocates up to 256 xml parsers, each consuming ~300KB. This is done at startup per thread, per xml profile, per policy.
 
 
 

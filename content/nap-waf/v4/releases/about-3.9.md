@@ -1,5 +1,5 @@
 ---
-title: NGINX App Protect WAF 3.9
+title: F5 WAF for NGINX 3.9
 weight: 710
 toc: true
 type: reference
@@ -9,7 +9,7 @@ nd-docs: DOCS-838
 
 February 15, 2022
 
-In this release, support for NGINX App Protect WAF is added to NGINX Plus R26.
+In this release, support for F5 WAF for NGINX is added to NGINX Plus R26.
 
 ### Supported Packages
 

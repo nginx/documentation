@@ -12,12 +12,12 @@ nd-content-type: concept
 nd-product: NGINX One
 ---
 
-You can now integrate the features of F5 NGINX App Protect WAF v4 and v5 in F5 NGINX One Console. NGINX App Protect offers advanced Web Application Firewall (WAF) capabilities.
-Through the NGINX One Console UI, you can now set up the [NGINX App Protect WAF]({{< ref "/nap-waf/" >}}) firewall. This solution provides robust security and scalability.
+You can now integrate the features of F5 F5 WAF for NGINX v4 and v5 in F5 NGINX One Console. NGINX App Protect offers advanced Web Application Firewall (WAF) capabilities.
+Through the NGINX One Console UI, you can now set up the [F5 WAF for NGINX]({{< ref "/nap-waf/" >}}) firewall. This solution provides robust security and scalability.
 
 ## Features
 
-Once you've connected to the NGINX One Console, select **App Protect > Policies**. You can add new policies or edit existing policies, as defined in the [NGINX App Protect WAF Administration Guide]({{< ref "/nap-waf/v5/admin-guide/overview.md" >}})
+Once you've connected to the NGINX One Console, select **App Protect > Policies**. You can add new policies or edit existing policies, as defined in the [F5 WAF for NGINX Administration Guide]({{< ref "/nap-waf/v5/admin-guide/overview.md" >}})
 
 Through the NGINX One Console UI, you can:
 
@@ -43,7 +43,7 @@ Version 5:
 
 ### Container-related configuration requirements
 
-NGINX App Protect WAF Version 5 has specific requirements for the configuration with Docker containers:
+F5 WAF for NGINX Version 5 has specific requirements for the configuration with Docker containers:
 
 - Directory associated with the volume, which you may configure in a `docker-compose.yaml` file.
   - You may set it up with the `volumes` directive with a directory like `/etc/nginx/app_protect_policies`.

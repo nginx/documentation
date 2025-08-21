@@ -1,5 +1,5 @@
 ---
-title: NGINX App Protect WAF 3.4
+title: F5 WAF for NGINX 3.4
 weight: 760
 toc: true
 type: reference
@@ -11,7 +11,7 @@ August 10, 2021
 
 ### New Features
 
-- Improved startup times of NGINX App Protect WAF policy compiler when the configuration has not been changed.
+- Improved startup times of F5 WAF for NGINX policy compiler when the configuration has not been changed.
 
 ### Supported Packages
 
@@ -44,7 +44,7 @@ August 10, 2021
 - 4397 Fixed - `Convert-policy` with `--full-export` is not suppressing all warnings.
 - 4332 Fixed - Null character prefix and suffix in the Security log.
 - 4407 Fixed - Empty signature names in the Security log.
-- 4347 Fixed - Added `python3` dependency for NGINX App Protect WAF.
+- 4347 Fixed - Added `python3` dependency for F5 WAF for NGINX.
 
 
 

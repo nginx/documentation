@@ -168,7 +168,7 @@ This particular include file is used in the following pages:
 
 - [About subscription licenses](https://github.com/nginx/documentation/blob/77939c1f9f41ae1984ddfc43c65c3b743836057a/content/solutions/about-subscription-licenses.md?plain=1#L54)
 - [R33 pre-release guidance for automatic upgrades](https://github.com/nginx/documentation/blob/77939c1f9f41ae1984ddfc43c65c3b743836057a/content/solutions/r33-pre-release-guidance-for-automatic-upgrades.md?plain=1#L62)
-- [Installing NGINX App Protect WAF](https://github.com/nginx/documentation/blob/77939c1f9f41ae1984ddfc43c65c3b743836057a/content/nap-waf/v5/admin-guide/install.md?plain=1#L132)
+- [Installing F5 WAF for NGINX](https://github.com/nginx/documentation/blob/77939c1f9f41ae1984ddfc43c65c3b743836057a/content/nap-waf/v5/admin-guide/install.md?plain=1#L132)
 
 View the [Guidelines for includes](/templates/style-guide.md#guidelines-for-includes) for instructions on how to write effective include files.
 

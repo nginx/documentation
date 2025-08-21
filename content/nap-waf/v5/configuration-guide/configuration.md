@@ -1,8 +1,8 @@
 ---
-description: This guide explains the F5 NGINX App Protect WAF security features and
+description: This guide explains the F5 F5 WAF for NGINX security features and
   how to use them.
 nd-docs: DOCS-1368
-title: NGINX App Protect WAF Configuration Guide
+title: F5 WAF for NGINX Configuration Guide
 toc: true
 weight: 200
 type:
@@ -11,9 +11,9 @@ type:
 
 ## Overview
 
-This guide explains the F5 NGINX App Protect WAF security features and how to use them. This guide also assumes that you have some familiarity with various Layer 7 (L7) Hypertext Transfer Protocol (HTTP) concepts, such as Uniform Resource Identifier (URI)/Uniform Resource Locator (URL), method, header, cookie, status code, request, response, and parameters.
+This guide explains the F5 F5 WAF for NGINX security features and how to use them. This guide also assumes that you have some familiarity with various Layer 7 (L7) Hypertext Transfer Protocol (HTTP) concepts, such as Uniform Resource Identifier (URI)/Uniform Resource Locator (URL), method, header, cookie, status code, request, response, and parameters.
 
-For more information on the NGINX App Protect WAF security features, see [NGINX App Protect WAF Terminology](#nginx-app-protect-waf-terminology).
+For more information on the F5 WAF for NGINX security features, see [F5 WAF for NGINX Terminology](#nginx-app-protect-waf-terminology).
 
 ## Supported Security Policy Features
 
@@ -22,7 +22,7 @@ For more information on the NGINX App Protect WAF security features, see [NGINX 
 |[Attack Signatures](#attack-signatures-overview) | Default policy covers all the OWASP top 10 attack patterns enabling signature sets detailed in a section below. The user can disable any of them or add other sets. |
 |[Signature attack for Server Technologies](#server-technologies) | Support adding signatures per added server technology. |
 |[Threat Campaigns](#threat-campaigns) | These are patterns that detect all the known attack campaigns. They are very accurate and have almost no false positives, but are very specific and do not detect malicious traffic that is not part of those campaigns. The default policy enables threat campaigns but it is possible to disable it through the respective violation. |
-|[HTTP Compliance](#http-compliance)  | All HTTP protocol compliance checks are enabled by default except for GET with body and POST without body. It is possible to enable any of these two. Some of the checks enabled by default can be disabled, but others, such as bad HTTP version and null in request are performed by the NGINX parser and NGINX App Protect WAF only reports them. These checks cannot be disabled. |
+|[HTTP Compliance](#http-compliance)  | All HTTP protocol compliance checks are enabled by default except for GET with body and POST without body. It is possible to enable any of these two. Some of the checks enabled by default can be disabled, but others, such as bad HTTP version and null in request are performed by the NGINX parser and F5 WAF for NGINX only reports them. These checks cannot be disabled. |
 |[Evasion Techniques](#evasion-techniques) | All evasion techniques are enabled by default and each can be disabled. These include directory traversal, bad escaped character and more. |
 |[Data Guard](#data-guard---blocking) | Detects and masks Credit Card Number (CCN) and/or U.S. Social Security Number (SSN) and/or [custom patterns](#partial-masking-of-data-using-data-guard) in HTTP responses. Disabled by default but can be enabled. |
 |[Parameter parsing](#http-compliance) | Support only auto-detect parameter value type and acts according to the result: plain alphanumeric string, XML or JSON. |
@@ -72,11 +72,11 @@ See [signature sets](#signature-sets) for configuring the signature sets include
 
 ### Policy Configuration Overview
 
-The NGINX App Protect WAF security policy configuration uses the declarative format based on a pre-defined base template. The policy is represented in a JSON file which you can edit to add, modify and remove security capabilities with respect to the base template. The JSON file then should be compiled to a bundle file (`.tgz`) using the [NGINX App Protect WAF Compiler]({{< ref "/nap-waf/v5/admin-guide/compiler.md" >}}). The way the policy is integrated into the NGINX configuration is via referencing the bundle file (using the full path) in the `nginx.conf` file.
+The F5 WAF for NGINX security policy configuration uses the declarative format based on a pre-defined base template. The policy is represented in a JSON file which you can edit to add, modify and remove security capabilities with respect to the base template. The JSON file then should be compiled to a bundle file (`.tgz`) using the [F5 WAF for NGINX Compiler]({{< ref "/nap-waf/v5/admin-guide/compiler.md" >}}). The way the policy is integrated into the NGINX configuration is via referencing the bundle file (using the full path) in the `nginx.conf` file.
 
 Refer to the [admin guide]({{< ref "/nap-waf/v5/admin-guide/install.md#using-policy-and-logging-profile-bundles" >}}) for instructions on how to mount bundle files to your deployment.
 
-NGINX App Protect WAF provides a [JSON Schema](https://json-schema.org/) which can be used to validate a JSON policy file to ensure file format compliance. The schema file can be generated using a script inside the NGINX App Protect WAF Compiler image:
+F5 WAF for NGINX provides a [JSON Schema](https://json-schema.org/) which can be used to validate a JSON policy file to ensure file format compliance. The schema file can be generated using a script inside the F5 WAF for NGINX Compiler image:
 
 ```shell
 sudo docker run --rm \
@@ -110,7 +110,7 @@ http {
     sendfile        on;
     keepalive_timeout  65;
 
-    app_protect_enable on; # This is how you enable NGINX App Protect WAF in the relevant context/block
+    app_protect_enable on; # This is how you enable F5 WAF for NGINX in the relevant context/block
     app_protect_policy_file "/etc/app_protect/conf/policy1.tgz"; # This is a reference to the policy bundle file to use. If not defined, the default policy is used
     app_protect_security_log_enable on; # This section enables the logging capability
     app_protect_security_log "/etc/app_protect/conf/log_all.tgz" syslog:server=127.0.0.1:514; # This is where the remote logger is defined in terms of: logging options (defined in the referenced file), log server IP, log server port
@@ -139,7 +139,7 @@ http {
 
 ### Default Policy Bundles
 
-NGINX App Protect WAF offers prebuilt bundles for security policies:
+F5 WAF for NGINX offers prebuilt bundles for security policies:
 
 - app_protect_default_policy
 - app_protect_strict_policy
@@ -154,7 +154,7 @@ Example:
     ...
     location / {
 
-        # NGINX App Protect WAF
+        # F5 WAF for NGINX
         app_protect_enable on;
         app_protect_policy_file app_protect_strict_policy;
         app_protect_security_log_enable on;
@@ -276,7 +276,7 @@ app_protect_policy_file /policies_mount/new_default_policy.tgz;
 
 {{< include "nap-waf/config/common/modifying-configurations.md" >}}
 
-## NGINX App Protect WAF Standalone Configuration
+## F5 WAF for NGINX Standalone Configuration
 
 ### apreload
 
@@ -318,7 +318,7 @@ sudo docker logs waf-config-mgr
 
 The OpenAPI Specification defines the spec file format needed to describe RESTful APIs. The spec file can be written either in JSON or YAML. Using a spec file simplifies the work of implementing API protection. Refer to the OpenAPI Specification (formerly called Swagger) for details.
 
-The simplest way to create an API protection policy is using an OpenAPI Specification file to import the details of the APIs. If you use an OpenAPI Specification file, NGINX App Protect WAF will automatically create a policy for the following properties (depending on what's included in the spec file):
+The simplest way to create an API protection policy is using an OpenAPI Specification file to import the details of the APIs. If you use an OpenAPI Specification file, F5 WAF for NGINX will automatically create a policy for the following properties (depending on what's included in the spec file):
 * Methods
 * URLs
 * Parameters
@@ -334,7 +334,7 @@ Ensure to substitute 1.0.0 with the specific version that you are using.
 
 It contains violations related to OpenAPI set to blocking (enforced).
 
-{{< call-out "note" >}} NGINX App Protect WAF supports only one OpenAPI Specification file reference per policy.{{< /call-out >}}
+{{< call-out "note" >}} F5 WAF for NGINX supports only one OpenAPI Specification file reference per policy.{{< /call-out >}}
 
 ### Types of OpenAPI References
 
@@ -406,7 +406,7 @@ It contains violations related to OpenAPI set to blocking (enforced).
 
 {{< include "/nap-waf/concept/grpc-logging.md" >}}
 
-## Securing GraphQL APIs with NGINX App protect WAF
+## Securing GraphQL APIs with F5 WAF for NGINX
 
 ### GraphQL Overview
 {{< include "nap-waf/config/common/graphql-overview.md" >}}
@@ -430,7 +430,7 @@ It contains violations related to OpenAPI set to blocking (enforced).
 
 {{< include "/nap-waf/concept/graphql-profile.md" >}}
 
-{{< call-out "note" >}} For GraphQL profile default values and GraphQL violations reference, see NGINX App Protect WAF [Declarative Policy guide.]({{< ref "/nap-waf/v5/declarative-policy/policy.md" >}}) {{< /call-out >}}
+{{< call-out "note" >}} For GraphQL profile default values and GraphQL violations reference, see F5 WAF for NGINX [Declarative Policy guide.]({{< ref "/nap-waf/v5/declarative-policy/policy.md" >}}) {{< /call-out >}}
 
 ### Define URL settings
 
@@ -452,7 +452,7 @@ It contains violations related to OpenAPI set to blocking (enforced).
 
 ### Condition Syntax Usage
 
-For the full reference of Override Rules condition syntax and usage see the NGINX App Protect WAF [Declarative Policy guide]({{< ref "/nap-waf/v5/declarative-policy/policy.md" >}}/#policy/override-rules).
+For the full reference of Override Rules condition syntax and usage see the F5 WAF for NGINX [Declarative Policy guide]({{< ref "/nap-waf/v5/declarative-policy/policy.md" >}}/#policy/override-rules).
 
 ### First Match Principle
 
@@ -499,11 +499,11 @@ For the full reference of Override Rules condition syntax and usage see the NGIN
 ### Overview
 {{< include "nap-waf/config/common/json-web-token-overview.md" >}}
 
-### Configuring NGINX App Protect WAF to Authenticate JSON Web Token
+### Configuring F5 WAF for NGINX to Authenticate JSON Web Token
 
 #### Access Profile
 
-NGINX App Protect WAF introduces a new policy entity known as "**access profile**" to authenticate JSON Web Token. Access Profile is added to the app protect policy to enforce JWT settings. JSON Web Token needs to be applied to the URLs for enforcement and includes the actions to be taken with respect to access tokens. It is specifically associated with HTTP URLs and does not have any predefined default profiles.
+F5 WAF for NGINX introduces a new policy entity known as "**access profile**" to authenticate JSON Web Token. Access Profile is added to the app protect policy to enforce JWT settings. JSON Web Token needs to be applied to the URLs for enforcement and includes the actions to be taken with respect to access tokens. It is specifically associated with HTTP URLs and does not have any predefined default profiles.
 
 {{< call-out "note" >}}At present, only one access profile is supported within the App Protect policy. However, the JSON schema for the policy will be designed to accommodate multiple profiles in the future.{{< /call-out >}}
 
@@ -570,7 +570,7 @@ Refer to the following example where all access profile properties are configure
 }
 ```
 
-{{< call-out "note" >}} For access profile default values and their related field names, see NGINX App Protect WAF [Declarative Policy guide]({{< ref "/nap-waf/v5/declarative-policy/policy.md" >}}). {{< /call-out >}}
+{{< call-out "note" >}} For access profile default values and their related field names, see F5 WAF for NGINX [Declarative Policy guide]({{< ref "/nap-waf/v5/declarative-policy/policy.md" >}}). {{< /call-out >}}
 
 #### Access Profile in URL Settings
 
@@ -621,7 +621,7 @@ The newly introduced attribute "claims" is a mapping of JSON paths for claims fr
 A few points to remember regarding JWT claims:
 - Please note that at the moment, accessing individual cells within JSON arrays isn't possible. Instead, the entire array gets serialized as a string, and its elements can be evaluated using string operators like "contains".
 - While it's technically feasible to consolidate all conditions into one with "and" between them, it's not recommended. Dividing them into multiple conditions enhances the readability and clarity of the policy, particularly when explaining the reasons for authorization failure.
-For the full reference of authorizationRules condition syntax and usage see the NGINX App Protect WAF [Declarative Policy guide]({{< ref "nap-waf/v5/declarative-policy/policy.md" >}}/#policy/override-rules).
+For the full reference of authorizationRules condition syntax and usage see the F5 WAF for NGINX [Declarative Policy guide]({{< ref "nap-waf/v5/declarative-policy/policy.md" >}}/#policy/override-rules).
 See below example for JWT claims:
 
 ```json
@@ -669,7 +669,7 @@ claims['address'] = "{ \"address\": { .... } }" # JSON structs can be accessed u
 
 ### Overview
 
-NGINX App Protect WAF can be secured with mutual TLS (mTLS) connection to provide an extra layer of security where the mutual authentication is set up between both the NGINX (client) and App Protect Enforcer (server). This adds an extra layer of security, ensuring that both parties are who they claim to be.
+F5 WAF for NGINX can be secured with mutual TLS (mTLS) connection to provide an extra layer of security where the mutual authentication is set up between both the NGINX (client) and App Protect Enforcer (server). This adds an extra layer of security, ensuring that both parties are who they claim to be.
 
 ### mTLS Configuration
 
@@ -814,8 +814,8 @@ To enable mTLS in NGINX, you need to perform the following steps:
 
 Brute force attacks are attempts to break in to secured areas of a web application by trying exhaustive,
 systematic, username/password combinations to discover legitimate authentication credentials.
-To prevent brute force attacks, NGINX App Protect WAF monitors IP addresses, usernames, and the number of failed login attempts beyond a maximum threshold.
-When brute force patterns are detected, the NGINX App Protect WAF policy either trigger an alarm or block the attack if the failed
+To prevent brute force attacks, F5 WAF for NGINX monitors IP addresses, usernames, and the number of failed login attempts beyond a maximum threshold.
+When brute force patterns are detected, the F5 WAF for NGINX policy either trigger an alarm or block the attack if the failed
 login attempts reached a maximum threshold for a specific username or coming from a specific IP address.
 In order to create a brute force configuration for a specific URL in Nginx App Protect you must first create a User-Defined URL, then a Login Page and finally define the URL element in the Brute Force configuration section.
 
@@ -857,7 +857,7 @@ A login page specifies the login URL that users must pass through to get authent
         ]
 ```
 
-{{< call-out "note" >}} For further configuration details, see NGINX App Protect WAF Declarative Policy Guide [Declarative Policy guide]({{< ref "/nap-waf/v5/declarative-policy/policy/#policy/login-pages" >}}). {{< /call-out >}}
+{{< call-out "note" >}} For further configuration details, see F5 WAF for NGINX Declarative Policy Guide [Declarative Policy guide]({{< ref "/nap-waf/v5/declarative-policy/policy/#policy/login-pages" >}}). {{< /call-out >}}
 
 ---
 
@@ -971,7 +971,7 @@ The following example adds all three of the pieces for a complete example policy
 }
 ```
 
-{{< call-out "note" >}} For further configuration details, see NGINX App Protect WAF Declarative Policy Guide [Declarative Policy guide]({{< ref "/nap-waf/v5/declarative-policy/policy/#policy/brute-force-attack-preventions" >}}). {{< /call-out >}}
+{{< call-out "note" >}} For further configuration details, see F5 WAF for NGINX Declarative Policy Guide [Declarative Policy guide]({{< ref "/nap-waf/v5/declarative-policy/policy/#policy/brute-force-attack-preventions" >}}). {{< /call-out >}}
 
 ## Custom Dimensions Log Entries
 
@@ -1041,7 +1041,7 @@ The following example adds all three of the pieces for a complete example policy
 
 ### App Protect Specific Directives
 
-This table summarizes the nginx.conf directives for NGINX App Protect WAF functionality.
+This table summarizes the nginx.conf directives for F5 WAF for NGINX functionality.
 
 |Directive Name | Syntax | Functionality | nginx.conf Contexts | Example |
 | ---| ---| ---| ---| --- |
@@ -1079,7 +1079,7 @@ http {
 
 #### Handling Compressed Requests
 
-Starting with NGINX App Protect WAF release version 4.6, the [`app_protect_compressed_requests_action`](#global-directives) directive has been deprecated from the nginx configuration. When configuring this directive in the `nginx.conf` file, App Protect will disregard any previously used values ("pass" or "drop") and issue a warning.
+Starting with F5 WAF for NGINX release version 4.6, the [`app_protect_compressed_requests_action`](#global-directives) directive has been deprecated from the nginx configuration. When configuring this directive in the `nginx.conf` file, App Protect will disregard any previously used values ("pass" or "drop") and issue a warning.
 
 #### Handling Decompression
 
@@ -1087,9 +1087,9 @@ Now by default the enforcer will decompress all the HTTP compressed payload requ
 
 The 'Content-Encoding' header must match the compression algorithm used while sending compressed payload in a HTTP request, else the enforcer will fail to decompress the payload.
 
-The decompressed request must not exceed the size limit of 10 MB. If it does exceed this limit, NGINX App Protect WAF will only decompress the first 10 KB, ignoring the remainder, and trigger the `VIOL_REQUEST_MAX_LENGTH` violation, just as it would for an uncompressed request that exceeds 10 MB.
+The decompressed request must not exceed the size limit of 10 MB. If it does exceed this limit, F5 WAF for NGINX will only decompress the first 10 KB, ignoring the remainder, and trigger the `VIOL_REQUEST_MAX_LENGTH` violation, just as it would for an uncompressed request that exceeds 10 MB.
 
-In the cases where decompression fails,  NGINX App Protect WAF will continue with the scan in the same manner as it does for uncompressed requests.
+In the cases where decompression fails,  F5 WAF for NGINX will continue with the scan in the same manner as it does for uncompressed requests.
 
 ## Violations
 
@@ -1116,11 +1116,11 @@ In the cases where decompression fails,  NGINX App Protect WAF will continue wit
 
 ## Converter tools
 
-NGINX App Protect WAF includes a number of tools that can be used to facilitate the process of porting existing resources or configuration files from the BIG-IP for use in the NGINX App Protect WAF environment. Note that these tools are available in the compiler package, and do not require a full installation of NGINX App Protect WAF or NGINX Plus.
+F5 WAF for NGINX includes a number of tools that can be used to facilitate the process of porting existing resources or configuration files from the BIG-IP for use in the F5 WAF for NGINX environment. Note that these tools are available in the compiler package, and do not require a full installation of F5 WAF for NGINX or NGINX Plus.
 
 ### Policy Converter
 
-The NGINX App Protect WAF v5 Policy Converter tool `/opt/app_protect/bin/convert-policy` is used to convert XML policies to JSON format. The converted JSON policy is based on the NGINX App Protect WAF policy base template and contains the minimal differences to it in JSON declarative policy format.
+The F5 WAF for NGINX v5 Policy Converter tool `/opt/app_protect/bin/convert-policy` is used to convert XML policies to JSON format. The converted JSON policy is based on the F5 WAF for NGINX policy base template and contains the minimal differences to it in JSON declarative policy format.
 
 The XML policy file can be obtained by exporting the policy from the BIG-IP system on which the policy is currently deployed.
 
@@ -1132,7 +1132,7 @@ Using the tool:
 
 #### Convert Policy using Command Line Interface (CLI Usage)
 
-The input policy can also be converted using convert-policy as a CLI tool from within NGINX App Protect WAF Converter container by using the following commands:
+The input policy can also be converted using convert-policy as a CLI tool from within F5 WAF for NGINX Converter container by using the following commands:
 
 ```docker
 docker run -it --rm \
@@ -1158,7 +1158,7 @@ docker run -it --rm \
 
 ### User Defined Signatures Converter
 
-The User Defined Signatures Converter tool `/opt/app_protect/bin/convert-signatures` takes a User Defined Signatures XML file as input and exports the content as a JSON file suitable for use in an NGINX App Protect WAF environment.
+The User Defined Signatures Converter tool `/opt/app_protect/bin/convert-signatures` takes a User Defined Signatures XML file as input and exports the content as a JSON file suitable for use in an F5 WAF for NGINX environment.
 
 The tool can optionally accept a tag argument as an input. Otherwise, the default tag value `user-defined-signatures` is assigned to the exported JSON file.
 
@@ -1329,13 +1329,13 @@ Note that if the script is run without the required switches and their correspon
 
 Refer to [Logging Overview]({{< ref "/nap-waf/v5/logging-overview/security-log.md" >}}) section for more details on Security Logs.
 
-## NGINX App Protect WAF Terminology
+## F5 WAF for NGINX Terminology
 
 {{< include "nap-waf/config/common/nginx-app-protect-waf-terminology.md" >}}
 
 ## Interaction with NGINX Features
 
-Below are examples of how to configure various NGINX features with NGINX App Protect WAF.
+Below are examples of how to configure various NGINX features with F5 WAF for NGINX.
 
 ### Configure Static Location
 

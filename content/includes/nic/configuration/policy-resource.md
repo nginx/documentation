@@ -734,7 +734,7 @@ For `kubectl get` and similar commands, you can also use the short name `pol` in
 
 ### WAF {#waf}
 
-{{< call-out "note" >}} The feature is implemented using the NGINX Plus [NGINX App Protect WAF Module](https://docs.nginx.com/nginx-app-protect/configuration/). {{< /call-out >}}
+{{< call-out "note" >}} The feature is implemented using the NGINX Plus [F5 WAF for NGINX Module](https://docs.nginx.com/nginx-app-protect/configuration/). {{< /call-out >}}
 
 The WAF policy configures NGINX Plus to secure client requests using App Protect WAF policies.
 
@@ -758,7 +758,7 @@ waf:
 {{% table %}}
 |Field | Description | Type | Required |
 | ---| ---| ---| --- |
-|``enable`` | Enables NGINX App Protect WAF. | ``bool`` | Yes |
+|``enable`` | Enables F5 WAF for NGINX. | ``bool`` | Yes |
 |``apPolicy`` | The [App Protect WAF policy]({{< relref "installation/integrations/app-protect-waf/configuration.md#waf-policies" >}}) of the WAF. Accepts an optional namespace. Mutually exclusive with ``apBundle``. | ``string`` | No |
 |``apBundle`` | The [App Protect WAF policy bundle]({{< relref "installation/integrations/app-protect-waf/configuration.md#waf-bundles" >}}). Mutually exclusive with ``apPolicy``. | ``string`` | No |
 |``securityLog.enable`` | Enables security log. | ``bool`` | No |

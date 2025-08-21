@@ -1,5 +1,5 @@
 ---
-title: NGINX App Protect WAF 3.11
+title: F5 WAF for NGINX 3.11
 weight: 660
 toc: true
 type: reference
@@ -9,7 +9,7 @@ nd-docs: DOCS-891
 
 June 28, 2022
 
-In this release, support for NGINX App Protect WAF is added to NGINX Plus R27.
+In this release, support for F5 WAF for NGINX is added to NGINX Plus R27.
 
 This release includes updated signatures for the [Anti Automation]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#anti-automation-bot-mitigation" >}}) (bot defense) feature as follows:
 
@@ -63,6 +63,6 @@ This release includes updated signatures for the [Anti Automation]({{< ref "/nap
 
 ### **Important Note**
 
-When upgrading the NGINX App Protect WAF deployments on Virtual Machines (VM), where the upgrade includes a NGINX Plus release upgrade as well, customers might witness some error messages about the upgrade failure.
-Customers are advised to ignore these messages and continue with the [upgrade procedure]({{< ref "/nap-waf/v4/admin-guide/install.md#upgrading-app-protect" >}}) as described in the NGINX App Protect WAF Admin guide.
+When upgrading the F5 WAF for NGINX deployments on Virtual Machines (VM), where the upgrade includes a NGINX Plus release upgrade as well, customers might witness some error messages about the upgrade failure.
+Customers are advised to ignore these messages and continue with the [upgrade procedure]({{< ref "/nap-waf/v4/admin-guide/install.md#upgrading-app-protect" >}}) as described in the F5 WAF for NGINX Admin guide.
 Additional NGINX restart might be required in order to complete the upgrade procedure.

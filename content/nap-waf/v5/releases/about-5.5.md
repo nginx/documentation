@@ -1,5 +1,5 @@
 ---
-title: NGINX App Protect WAF 5.5
+title: F5 WAF for NGINX 5.5
 weight: 860
 toc: true
 type: reference

@@ -11,7 +11,7 @@ server {
 
     location / {
 
-        # NGINX App Protect WAF
+        # F5 WAF for NGINX
         app_protect_enable on;
 
         client_max_body_size 0;

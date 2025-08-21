@@ -1,5 +1,5 @@
 ---
-title: NGINX App Protect WAF 4.0
+title: F5 WAF for NGINX 4.0
 weight: 410
 toc: true
 type: reference
@@ -9,7 +9,7 @@ nd-docs: DOCS-994
 
 November 29, 2022
 
-In this release, NGINX App Protect WAF supports NGINX Plus R28.
+In this release, F5 WAF for NGINX supports NGINX Plus R28.
 
 This release includes new signatures for [Anti Automation]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#anti-automation-bot-mitigation" >}}) (bot defense):
 
@@ -63,4 +63,4 @@ This release includes new signatures for [Anti Automation]({{< ref "/nap-waf/v4/
 
 ### Resolved Issues
 
-- 6561 Fixed - Some updates to NGINX App Protect WAF policy template as listed below:<br><br><ol><li>The policy field `enablePassiveMode` is not supported in NGINX App Protect WAF and has been removed from configurable elements.</li><li>HTTP protocol compliance sub-violation "Check maximum number of cookies" is now enabled by default. A request which contains over 100 cookies will be marked illegal.</li></ol>
+- 6561 Fixed - Some updates to F5 WAF for NGINX policy template as listed below:<br><br><ol><li>The policy field `enablePassiveMode` is not supported in F5 WAF for NGINX and has been removed from configurable elements.</li><li>HTTP protocol compliance sub-violation "Check maximum number of cookies" is now enabled by default. A request which contains over 100 cookies will be marked illegal.</li></ol>

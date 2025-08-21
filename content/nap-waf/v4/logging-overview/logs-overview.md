@@ -1,7 +1,7 @@
 ---
-description: Learn about the F5 NGINX App Protect WAF Logs Overview.
+description: Learn about the F5 F5 WAF for NGINX Logs Overview.
 nd-docs: DOCS-911
-title: NGINX App Protect WAF Logs Overview
+title: F5 WAF for NGINX Logs Overview
 toc: true
 weight: 510
 type:
@@ -15,7 +15,7 @@ There are 3 types of logs that F5 NGINX App Protect on NGINX generates:
 - [Operation logs]({{< ref "/nap-waf/v4/logging-overview/operation-logs" >}}): Events such as startup, shutdown and reconfiguration.
 - [Debug logs]({{< ref "/nap-waf/v4/logging-overview/debug-logs" >}}): technical messages at different levels of severity used to debug and resolve incidents and error behaviors.
 
-In addition, NGINX App Protect WAF can be configured to add additional data to NGINX [Access log]({{< ref "/nap-waf/v4/logging-overview/access-log" >}}).
+In addition, F5 WAF for NGINX can be configured to add additional data to NGINX [Access log]({{< ref "/nap-waf/v4/logging-overview/access-log" >}}).
 
 Note that NGINX does not have audit logs in the sense of who did what. This can be done either from the orchestration system controlling NGINX (such as NGINX Controller) or by tracking the configuration files and the systemd invocations using Linux tools.
 
@@ -32,8 +32,8 @@ App Protect uses its own logging mechanism for request logging rather than NGINX
 
 ## Log Rotate
 
-NGINX App Protect WAF supports log rotation.
-If you already have logrotate running, NGINX App Protect WAF log files will be rotated automatically according to the configuration file described below.
+F5 WAF for NGINX supports log rotation.
+If you already have logrotate running, F5 WAF for NGINX log files will be rotated automatically according to the configuration file described below.
 To install logrotate:
 
 For CentOS:
@@ -54,7 +54,7 @@ For Alpine:
   sudo apk add logrotate
   ```
 
-By default the logrotate configuration file included in NGINX App Protect WAF is:
+By default the logrotate configuration file included in F5 WAF for NGINX is:
 
 ```none
 /var/log/app_protect/*.log {

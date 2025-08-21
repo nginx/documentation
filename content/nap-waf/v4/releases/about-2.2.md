@@ -1,5 +1,5 @@
 ---
-title: NGINX App Protect WAF 2.2
+title: F5 WAF for NGINX 2.2
 weight: 940
 toc: true
 type: reference
@@ -11,7 +11,7 @@ December 09, 2020
 
 ### New Features
 
-In this release support for NGINX App Protect WAF is added to NGINX Plus R23.
+In this release support for F5 WAF for NGINX is added to NGINX Plus R23.
 
 - [Detect Base64]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#detect-base64" >}})
 - [Anti Automation Header Anomalies]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#header-anomalies" >}})

@@ -1,5 +1,5 @@
 ---
-title: NGINX App Protect WAF 4.7
+title: F5 WAF for NGINX 4.7
 weight: 170
 toc: true
 type: reference
@@ -9,7 +9,7 @@ nd-docs: DOCS-1360
 
 December 19, 2023
 
-In this release, NGINX App Protect WAF supports NGINX Plus R31.
+In this release, F5 WAF for NGINX supports NGINX Plus R31.
 
 ### New Features
 
@@ -76,4 +76,4 @@ In this release, NGINX App Protect WAF supports NGINX Plus R31.
 - Starting with this release, the bot signatures list is generated automatically as a part of the **app-protect-bot-signatures** package, which is a dependency of the **app-protect-compiler** package. It resembles a format similar to the README-style text file found in the attack signature.
 Refer to the [Bot Signatures Update File]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#bot-signatures-update-file" >}}) for more details.
 
-- Starting with the next release version of NGINX App Protect WAF, the existing bot signatures file `included_bot_signatures` which is located at the following path: `/opt/app-protect/var/update_files/included_bot_signatures` will be removed from the **app-protect-compile** package.
+- Starting with the next release version of F5 WAF for NGINX, the existing bot signatures file `included_bot_signatures` which is located at the following path: `/opt/app-protect/var/update_files/included_bot_signatures` will be removed from the **app-protect-compile** package.

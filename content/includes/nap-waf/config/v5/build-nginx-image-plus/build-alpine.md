@@ -7,7 +7,7 @@ ARG OS_VER="3.19"
 # Base image
 FROM alpine:${OS_VER}
 
-# Install NGINX Plus and NGINX App Protect WAF v5 module
+# Install NGINX Plus and F5 WAF for NGINX v5 module
 RUN --mount=type=secret,id=nginx-crt,dst=/etc/apk/cert.pem,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/apk/cert.key,mode=0644 \
     wget -O /etc/apk/keys/nginx_signing.rsa.pub https://cs.nginx.com/static/keys/nginx_signing.rsa.pub \

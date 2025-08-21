@@ -1,5 +1,5 @@
 ---
-title: Connect NGINX App Protect WAF to NGINX Security Monitoring
+title: Connect F5 WAF for NGINX to NGINX Security Monitoring
 toc: true
 weight: 1800
 nd-content-type: how-to
@@ -7,13 +7,13 @@ nd-product: NIC
 nd-docs: DOCS-1856
 ---
 
-This document explains how to use NGINX Ingress Controller to configure NGINX Agent for sending F5 NGINX App Protect WAF metrics to NGINX Security Monitoring.
+This document explains how to use NGINX Ingress Controller to configure NGINX Agent for sending F5 F5 WAF for NGINX metrics to NGINX Security Monitoring.
 
 ## Prerequisites
 
 This guide assumes that you have an installation of NGINX Instance Manager with NGINX Security Monitoring which is reachable from the Kubernetes cluster on which NGINX Ingress Controller is deployed.
 
-If you use custom container images, NGINX Agent must be installed along with NGINX App Protect WAF. See the [Dockerfile](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/build/Dockerfile) for examples of how to install NGINX Agent or the [NGINX Agent installation documentation]({{< ref "/agent/installation-upgrade/" >}}) for more information.
+If you use custom container images, NGINX Agent must be installed along with F5 WAF for NGINX. See the [Dockerfile](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/build/Dockerfile) for examples of how to install NGINX Agent or the [NGINX Agent installation documentation]({{< ref "/agent/installation-upgrade/" >}}) for more information.
 
 ## Deploying NGINX Ingress Controller with NGINX Agent configuration
 
@@ -99,9 +99,9 @@ If you use custom container images, NGINX Agent must be installed along with NGI
 
 Once NGINX Ingress Controller is installed the pods will be visible in the NGINX Instance Monitoring Instances dashboard.
 
-## Configuring NGINX App Protect WAF to send metrics to NGINX Agent
+## Configuring F5 WAF for NGINX to send metrics to NGINX Agent
 
-NGINX Agent runs a syslog listener which NGINX App Protect WAF can be configured to send logs to, which will then allow NGINX Agent to send metrics to NGINX Security Monitoring. The following examples show how to configure NGINX App Protect WAF to log to NGINX Agent.
+NGINX Agent runs a syslog listener which F5 WAF for NGINX can be configured to send logs to, which will then allow NGINX Agent to send metrics to NGINX Security Monitoring. The following examples show how to configure F5 WAF for NGINX to log to NGINX Agent.
 
 - [Custom Resources example](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/custom-resources/security-monitoring)
 - [Ingress Resources example](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/ingress-resources/security-monitoring)

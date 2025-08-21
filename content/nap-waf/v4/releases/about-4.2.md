@@ -1,5 +1,5 @@
 ---
-title: NGINX App Protect WAF 4.2
+title: F5 WAF for NGINX 4.2
 weight: 310
 toc: true
 type: reference
@@ -72,8 +72,8 @@ convert-policy now writes these elements in the correct order. Importing a polic
 
 ### **Important Note**
 
-- This release introduces a change in the package dependencies for NGINX App Protect WAF. Customers who work in a SELinux-enforced environment should now explicitly list `app-protect-selinux` package when performing App Protect clean install and upgrade.<br><br>
-NGINX App Protect WAF’s SELinux module is now an optional package (meaning -  **not included in default installation**). In order to install `app-protect` with `app-protect-selinux` package, use the following command:<br>
+- This release introduces a change in the package dependencies for F5 WAF for NGINX. Customers who work in a SELinux-enforced environment should now explicitly list `app-protect-selinux` package when performing App Protect clean install and upgrade.<br><br>
+F5 WAF for NGINX’s SELinux module is now an optional package (meaning -  **not included in default installation**). In order to install `app-protect` with `app-protect-selinux` package, use the following command:<br>
 
   ```shell
   yum install app-protect app-protect-selinux

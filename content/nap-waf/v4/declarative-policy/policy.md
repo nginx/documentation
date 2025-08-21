@@ -1,5 +1,5 @@
 ---
-title: NGINX App Protect WAF Declarative Policy
+title: F5 WAF for NGINX Declarative Policy
 toc: true
 weight: 300
 nd-docs: DOCS-648

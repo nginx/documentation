@@ -1,5 +1,5 @@
 ---
-title: NGINX App Protect WAF 1.0
+title: F5 WAF for NGINX 1.0
 weight: 1060
 toc: true
 type: reference
@@ -62,7 +62,7 @@ NGINX Plus R19 and later
 
 #### 1341 - Syslog Clock
 
-The time stamps in the NGINX and NGINX App Protect WAF log messages are presented in the local time zone of your machine. If you would like to see this in a different time zone, for example UTC, you must change the local time zone. On most systems this can be done using the command:
+The time stamps in the NGINX and F5 WAF for NGINX log messages are presented in the local time zone of your machine. If you would like to see this in a different time zone, for example UTC, you must change the local time zone. On most systems this can be done using the command:
 
 ```shell
 sudo datetimectl set-timezone Etc/UTC

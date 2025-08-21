@@ -1,5 +1,5 @@
 ---
-title: Deploy NGINX App Protect WAF with Manifests
+title: Deploy F5 WAF for NGINX with Manifests
 weight: 400
 toc: true
 type: how-to
@@ -9,7 +9,7 @@ nd-docs: DOCS-1366
 
 ## Prerequisites
 
-- An active F5 NGINX App Protect WAF subscription in [MyF5](https://my.f5.com/) (purchased or trial).
+- An active F5 F5 WAF for NGINX subscription in [MyF5](https://my.f5.com/) (purchased or trial).
 - A functional Kubernetes cluster.
 - `kubectl` command-line tool, properly configured.
 
@@ -129,7 +129,7 @@ Next, push it to your private image repository, ensuring it's accessible to your
 
 In your nginx configuration:
 
-1. Load the NGINX App Protect WAF v5 module at the main context:
+1. Load the F5 WAF for NGINX v5 module at the main context:
 
     ```nginx
     load_module modules/ngx_http_app_protect_module.so;
@@ -141,7 +141,7 @@ In your nginx configuration:
     app_protect_enforcer_address 127.0.0.1:50000;
     ```
 
-3. Enable NGINX App Protect WAF on an `http/server/location` context (make sure you only enable NGINX App Protect WAF with `proxy_pass`/`grpc_pass` locations):
+3. Enable F5 WAF for NGINX on an `http/server/location` context (make sure you only enable F5 WAF for NGINX with `proxy_pass`/`grpc_pass` locations):
 
     ```nginx
     app_protect_enable on;
@@ -480,7 +480,7 @@ The NGINX configuration can be integrated using a ConfigMap mount.
 ## Air-Gap Install: Secure Offline Deployment
 
 ### Prerequisites
-- Active NGINX App Protect WAF subscription in [MyF5](https://my.f5.com/) (purchased or trial) on the online machine.
+- Active F5 WAF for NGINX subscription in [MyF5](https://my.f5.com/) (purchased or trial) on the online machine.
 - Docker (with Docker Compose) is [installed and running](https://docs.docker.com/engine/install/) on both the online and offline/Air-Gap machine.
 - Local registry for the offline/Air-Gap machine
 - A functional Kubernetes cluster.
@@ -625,7 +625,7 @@ For the example deployment we will use [Registry](https://www.docker.com/blog/ho
 
 In your nginx configuration:
 
-1. Load the NGINX App Protect WAF v5 module at the main context:
+1. Load the F5 WAF for NGINX v5 module at the main context:
 
     ```nginx
     load_module modules/ngx_http_app_protect_module.so;
@@ -637,7 +637,7 @@ In your nginx configuration:
     app_protect_enforcer_address waf-enforcer:50000;
     ```
 
-3. Enable NGINX App Protect WAF on an `http/server/location` context (make sure you only enable NGINX App Protect WAF with `proxy_pass`/`grpc_pass` locations):
+3. Enable F5 WAF for NGINX on an `http/server/location` context (make sure you only enable F5 WAF for NGINX with `proxy_pass`/`grpc_pass` locations):
 
     ```nginx
     app_protect_enable on;
@@ -899,6 +899,6 @@ If you encounter any issues, check the [Troubleshooting Guide]({{< ref "/nap-waf
 
 ## Conclusion
 
-This guide provides the foundational steps for deploying NGINX App Protect WAF v5 on Kubernetes. You may need to adjust the deployment to fit your specific requirements.
+This guide provides the foundational steps for deploying F5 WAF for NGINX v5 on Kubernetes. You may need to adjust the deployment to fit your specific requirements.
 
-For more detailed configuration options and advanced deployment strategies, refer to the [NGINX App Protect WAF v5 configuration guide]({{< ref "/nap-waf/v5/configuration-guide/configuration.md" >}}).
+For more detailed configuration options and advanced deployment strategies, refer to the [F5 WAF for NGINX v5 configuration guide]({{< ref "/nap-waf/v5/configuration-guide/configuration.md" >}}).

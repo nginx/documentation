@@ -1,6 +1,6 @@
 ---
-description: Learn about the F5 NGINX App Protect WAF Troubleshooting Guide.
-title: NGINX App Protect WAF Troubleshooting Guide
+description: Learn about the F5 F5 WAF for NGINX Troubleshooting Guide.
+title: F5 WAF for NGINX Troubleshooting Guide
 toc: true
 weight: 400
 nd-docs: DOCS-1645
@@ -10,9 +10,9 @@ type:
 
 ## Overview
 
-This Troubleshooting Guide is intended to provide guidance to customers in the detection and correction of programming issues in F5 NGINX App Protect WAF. It may also be useful to IT in resolving any installation or configuration problems. <br>
+This Troubleshooting Guide is intended to provide guidance to customers in the detection and correction of programming issues in F5 F5 WAF for NGINX. It may also be useful to IT in resolving any installation or configuration problems. <br>
 
-Refer to the below table for any NGINX App Protect WAF installation or configuration known problems.
+Refer to the below table for any F5 WAF for NGINX installation or configuration known problems.
 
 ## Resolving Known Problems
 
@@ -22,7 +22,7 @@ Refer to the below table for any NGINX App Protect WAF installation or configura
 |Problem|Solution|
 |-------|--------|
 | NGINX is not running (ps -aux)<br><br> Reloading NGINX fails| Check the error log at `/var/log/nginx/error.log`<br>Fix the problem and re-run NGINX. |
-| NGINX App Protect WAF functionality is not as expected| NGINX App Protect WAF has several logs which can be used for troubleshooting. <br> Usually, it is best to look for any warning or error messages within the logs. <br> Refer to [Logs Overview]({{< ref "/nap-waf/v5/logging-overview/logs-overview.md">}}) |
+| F5 WAF for NGINX functionality is not as expected| F5 WAF for NGINX has several logs which can be used for troubleshooting. <br> Usually, it is best to look for any warning or error messages within the logs. <br> Refer to [Logs Overview]({{< ref "/nap-waf/v5/logging-overview/logs-overview.md">}}) |
 | `Too many open files` error message | Increase number of file descriptors. <br> For example: `worker_rlimit_nofile 65535;` in the main context of `nginx.conf` file. <br> Refer to [worker_rlimit_nofile directive](https://www.nginx.com/blog/using-nginx-plus-with-selinux/#Issue-4:-%3Ccode%3EToo-many-files-are-open%3C/code%3E-Error)|
 | `setrlimit ... failed (Permission denied)` error message | Increase the limit using the following command as the root user:<br> `setsebool -P httpd_setrlimit 1;` <br> Refer to [Issue 4: Too many files are open Error](https://www.nginx.com/blog/using-nginx-plus-with-selinux/#Issue-4:-%3Ccode%3EToo-many-files-are-open%3C/code%3E-Error) |
 | unknown directive `app_protect_xxx` error message  | App Protect module is not loaded. Add this line to the main (global) context of nginx.conf:<br>`load_module "/etc/nginx/modules/ngx_http_app_protect_module.so";`  |
@@ -37,7 +37,7 @@ Refer to the below table for any NGINX App Protect WAF installation or configura
 
 ## SELinux
 
-In some operating systems, security mechanisms like **SELinux** or **AppArmor** are enabled by default, potentially blocking necessary file access for the `nginx` process and `waf-config-mgr` and `waf-enforcer` containers. To ensure NGINX App Protect WAF operates smoothly without compromising security, consider setting up a custom SELinux policy or AppArmor profile. For short-term troubleshooting, you may use `permissive` (SELinux) or `complain` (AppArmor) mode to avoid these restrictions, but keep in mind that this lowers security and isn't advised for prolonged use.
+In some operating systems, security mechanisms like **SELinux** or **AppArmor** are enabled by default, potentially blocking necessary file access for the `nginx` process and `waf-config-mgr` and `waf-enforcer` containers. To ensure F5 WAF for NGINX operates smoothly without compromising security, consider setting up a custom SELinux policy or AppArmor profile. For short-term troubleshooting, you may use `permissive` (SELinux) or `complain` (AppArmor) mode to avoid these restrictions, but keep in mind that this lowers security and isn't advised for prolonged use.
 
 For more information about how to use NGINX Plus with SELinux - check our [blog](https://www.nginx.com/blog/using-nginx-plus-with-selinux/).
 

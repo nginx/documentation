@@ -1,5 +1,5 @@
 ---
-title: Deploy NGINX App Protect WAF with Helm
+title: Deploy F5 WAF for NGINX with Helm
 weight: 300
 toc: true
 type: how-to
@@ -9,7 +9,7 @@ nd-docs: DOCS-1793
 
 ## Overview
 
-This document explains how to install F5 NGINX App Protect WAF with Helm.
+This document explains how to install F5 F5 WAF for NGINX with Helm.
 
 ---
 

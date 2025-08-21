@@ -1,5 +1,5 @@
 ---
-title: NGINX App Protect WAF 4.10
+title: F5 WAF for NGINX 4.10
 weight: 130
 toc: true
 type: reference
@@ -15,7 +15,7 @@ Release 4.8.1 cannot be upgraded to v4.10.  You must uninstall 4.8.1 and install
 
 ### New Features
 
-In this release, NGINX App Protect WAF supports NGINX Plus R32.
+In this release, F5 WAF for NGINX supports NGINX Plus R32.
 
 
 ### Supported Packages

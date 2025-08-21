@@ -1,5 +1,5 @@
 ---
-title: NGINX App Protect WAF Administration Guide
+title: F5 WAF for NGINX Administration Guide
 weight: 100
 toc: true
 type: how-to
@@ -10,22 +10,22 @@ nd-docs: DOCS-646
 
 ## Overview
 
-F5 NGINX App Protect WAF provides web application firewall (WAF) security protection for your web applications, including OWASP Top 10; response inspection; Meta characters check; HTTP protocol compliance; evasion techniques; disallowed file types; JSON & XML well-formedness; sensitive parameters & Data Guard. Refer to [Supported Security Policy Features]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#supported-security-policy-features" >}}) section for a more detailed description.
+F5 F5 WAF for NGINX provides web application firewall (WAF) security protection for your web applications, including OWASP Top 10; response inspection; Meta characters check; HTTP protocol compliance; evasion techniques; disallowed file types; JSON & XML well-formedness; sensitive parameters & Data Guard. Refer to [Supported Security Policy Features]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#supported-security-policy-features" >}}) section for a more detailed description.
 
-This guide explains how to deploy NGINX App Protect WAF as well as upgrade App Protect and the App Protect signature sets.<br>
+This guide explains how to deploy F5 WAF for NGINX as well as upgrade App Protect and the App Protect signature sets.<br>
 
 ### Using NGINX App Protect with NGINX Instance Manager
 
-NGINX Instance Manager provides centralized configuration management and visibility for your NGINX App Protect WAF fleet.
-After completing the NGINX App Protect WAF installation, refer to the [NGINX Instance Manager Installation Guide](https://docs.nginx.com/nginx-instance-manager/deploy/) for the deployment instructions.
+NGINX Instance Manager provides centralized configuration management and visibility for your F5 WAF for NGINX fleet.
+After completing the F5 WAF for NGINX installation, refer to the [NGINX Instance Manager Installation Guide](https://docs.nginx.com/nginx-instance-manager/deploy/) for the deployment instructions.
 
 ## Prerequisites
 
-NGINX App Protect WAF is available to customers as a downloadable dynamic module at an additional cost. To purchase or add NGINX App Protect WAF to an existing NGINX Plus subscription, contact the NGINX sales team.
+F5 WAF for NGINX is available to customers as a downloadable dynamic module at an additional cost. To purchase or add F5 WAF for NGINX to an existing NGINX Plus subscription, contact the NGINX sales team.
 
-NGINX Plus Release 22 and later supports NGINX App Protect WAF.
+NGINX Plus Release 22 and later supports F5 WAF for NGINX.
 
-NGINX App Protect WAF supports the following operating systems:
+F5 WAF for NGINX supports the following operating systems:
 
 - [Alpine 3.19](#alpine-installation)
 - [Amazon Linux 2023](#amazon-linux-installation)
@@ -35,7 +35,7 @@ NGINX App Protect WAF supports the following operating systems:
 - [RHEL 9, Rocky Linux 9 and above](#rhel-9-installation)
 - [Ubuntu 22.04 (Jammy) & 24.04 (Noble)](#ubuntu-installation)
 
-The NGINX App Protect WAF package has the following dependencies:
+The F5 WAF for NGINX package has the following dependencies:
 
 1. **nginx-plus-module-appprotect** - NGINX Plus dynamic module for App Protect
 1. **app-protect-engine** - The App Protect enforcement engine
@@ -47,16 +47,16 @@ The NGINX App Protect WAF package has the following dependencies:
 1. **app-protect-attack-signatures** - The App Protect attack signatures update package
 1. **app-protect-threat-campaigns** - The App Protect threat campaigns update package
 1. **app-protect-bot-signatures** - The App Protect bot signatures update package
-1. **app-protect-selinux** - The prebuilt SELinux policy module for NGINX App Protect WAF (optional dependency)
+1. **app-protect-selinux** - The prebuilt SELinux policy module for F5 WAF for NGINX (optional dependency)
 
-See the NGINX Plus full list of prerequisites for more details. NGINX App Protect WAF can be installed as a module to an existing NGINX Plus installation or as a complete NGINX Plus with App Protect installation in a clean environment.
+See the NGINX Plus full list of prerequisites for more details. F5 WAF for NGINX can be installed as a module to an existing NGINX Plus installation or as a complete NGINX Plus with App Protect installation in a clean environment.
 
 Please note that an additional package **app-protect-ip-intelligence** is required if the customer intends to use the IP Intelligence feature. This package does not come as a dependency of App Protect and needs to be installed and maintained separately. This package installs the client that downloads and updates the database required for enforcing IP Intelligence.
 
 ## Storage I/O Performance
 
 When deploying App Protect on NGINX Plus take into consideration the performance of storage on which it is going to be installed.
-The storage performance may greatly affect the time it takes NGINX Plus to reload whenever there is a configuration change, especially when NGINX App Protect WAF policies are being added or updated.
+The storage performance may greatly affect the time it takes NGINX Plus to reload whenever there is a configuration change, especially when F5 WAF for NGINX policies are being added or updated.
 In order to assess the storage performance you can use a tool called [fio](https://fio.readthedocs.io/en/latest/fio_doc.html). An example of usage follows: (you may need to use `sudo`):
 
 ```shell
@@ -79,7 +79,7 @@ Below is a table showing how many seconds it takes a reload to complete, when NG
 
 When deploying App Protect on NGINX Plus take the following precautions to secure the platform. This avoids the risk of causing a Denial of Service condition or compromising the platform security.
 
-- Restrict permissions to the files on the NGINX App Protect WAF platform to user **nginx** and group **nginx**, especially for the sensitive areas containing the configuration.
+- Restrict permissions to the files on the F5 WAF for NGINX platform to user **nginx** and group **nginx**, especially for the sensitive areas containing the configuration.
 - Remove unnecessary remote access services on the platform.
 - Configure a Syslog destination on the same machine as App Protect and proxy to an external destination. This avoids eavesdropping and [man-in-the-middle](https://en.wikipedia.org/wiki/Man-in-the-middle_attack) attacks on the Syslog channel.
 - Regularly update the Operating System (OS) to avoid known OS vulnerabilities which may impact the service.
@@ -97,13 +97,13 @@ If a user other than **nginx** is to be used, note the following:
 
 - After first installation, upgrade, or security update installation, perform the following steps **before** starting/restarting/reloading NGINX:
 
-  - Modify user permissions on all installed NGINX App Protect WAF files:
+  - Modify user permissions on all installed F5 WAF for NGINX files:
 
     ```shell
     chown -R <user>:<group> /usr/share/ts /var/log/app_protect /opt/app_protect /etc/app_protect
     ```
 
-  - Modify user of NGINX App Protect WAF processes:
+  - Modify user of F5 WAF for NGINX processes:
 
     For service startup modify the **User** in the following files on your platform:
 
@@ -149,7 +149,7 @@ If a user other than **nginx** is to be used, note the following:
     printf "https://pkgs.nginx.com/plus/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | sudo tee -a /etc/apk/repositories
     ```
 
-7. Add the NGINX App Protect WAF repository to `/etc/apk/repositories` file:
+7. Add the F5 WAF for NGINX repository to `/etc/apk/repositories` file:
 
     ```shell
     printf "https://pkgs.nginx.com/app-protect/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | sudo tee -a /etc/apk/repositories
@@ -164,14 +164,14 @@ If a user other than **nginx** is to be used, note the following:
     sudo apk del -r nginx
     ```
 
-9. Update the repository and install the most recent version of the NGINX Plus and NGINX App Protect WAF:
+9. Update the repository and install the most recent version of the NGINX Plus and F5 WAF for NGINX:
 
     ```shell
     sudo apk update
     sudo apk add app-protect
     ```
 
-    Alternatively, use the following commands to install the most recent version of NGINX App Protect WAF for NGINX Plus R28:
+    Alternatively, use the following commands to install the most recent version of F5 WAF for NGINX for NGINX Plus R28:
 
     ```shell
     sudo apk update
@@ -197,13 +197,13 @@ If a user other than **nginx** is to be used, note the following:
     sudo nginx -v
     ```
 
-11. Load the NGINX App Protect WAF module on the main context in the `nginx.conf` file:
+11. Load the F5 WAF for NGINX module on the main context in the `nginx.conf` file:
 
     ```nginx
     load_module modules/ngx_http_app_protect_module.so;
     ```
 
-12. Enable NGINX App Protect WAF on an `http/server/location` context in the `nginx.conf` via:
+12. Enable F5 WAF for NGINX on an `http/server/location` context in the `nginx.conf` via:
 
     ```nginx
     app_protect_enable on;
@@ -284,7 +284,7 @@ If a user other than **nginx** is to be used, note the following:
     sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/plus-amazonlinux2023.repo
     ```
 
-1. Add the NGINX App Protect WAF repository by downloading the file `app-protect-amazonlinux2023.repo` to `/etc/yum.repos.d`:
+1. Add the F5 WAF for NGINX repository by downloading the file `app-protect-amazonlinux2023.repo` to `/etc/yum.repos.d`:
 
     ```shell
     sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-amazonlinux2023.repo
@@ -298,7 +298,7 @@ If a user other than **nginx** is to be used, note the following:
     sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.amazonlinux2023.repo
     ```
 
-1. Install the most recent version of the NGINX App Protect WAF package (which includes NGINX Plus):
+1. Install the most recent version of the F5 WAF for NGINX package (which includes NGINX Plus):
 
     ```shell
     sudo dnf install app-protect
@@ -322,19 +322,19 @@ If a user other than **nginx** is to be used, note the following:
     sudo nginx -v
     ```
 
-1. Load the NGINX App Protect WAF module on the main context in the `nginx.conf`:
+1. Load the F5 WAF for NGINX module on the main context in the `nginx.conf`:
 
     ```nginx
     load_module modules/ngx_http_app_protect_module.so;
     ```
 
-1. Enable NGINX App Protect WAF on an `http/server/location` context in the `nginx.conf` file:
+1. Enable F5 WAF for NGINX on an `http/server/location` context in the `nginx.conf` file:
 
     ```nginx
     app_protect_enable on;
     ```
 
-1. Optionally, install a prebuilt SELinux policy module for NGINX App Protect WAF (or configure SELinux as appropriate per your organization's security policies):
+1. Optionally, install a prebuilt SELinux policy module for F5 WAF for NGINX (or configure SELinux as appropriate per your organization's security policies):
 
     ```shell
     sudo dnf install app-protect-selinux
@@ -439,7 +439,7 @@ If a user other than **nginx** is to be used, note the following:
     sudo tee /etc/apt/sources.list.d/nginx-plus.list
     ```
 
-9. Add NGINX App Protect WAF repositories:
+9. Add F5 WAF for NGINX repositories:
 
     ```shell
     printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
@@ -457,7 +457,7 @@ If a user other than **nginx** is to be used, note the following:
     sudo wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
     ```
 
-11. Update the repository and install the most recent version of the NGINX App Protect WAF package (which includes NGINX Plus):
+11. Update the repository and install the most recent version of the F5 WAF for NGINX package (which includes NGINX Plus):
 
     ```shell
     sudo apt-get update
@@ -471,7 +471,7 @@ If a user other than **nginx** is to be used, note the following:
     sudo apt-cache policy app-protect
     ```
 
-    {{< call-out "note" >}} When installing an older version of NGINX App Protect WAF, the dependent packages have to be installed manually, as shown in the command above. The following script can be used to find out the dependent packages for a specific version of NGINX App Protect WAF.{{< /call-out >}}
+    {{< call-out "note" >}} When installing an older version of F5 WAF for NGINX, the dependent packages have to be installed manually, as shown in the command above. The following script can be used to find out the dependent packages for a specific version of F5 WAF for NGINX.{{< /call-out >}}
 
     ```shell
     findDeps () { local pkgs=$(apt show $1 2>/dev/null | grep Depends: | grep -oE "(nginx-plus-module|app-protect)-[a-z]+ *\(= *[0-9\+\.-]+~`lsb_release -cs`\)" | tr -d ' ()'); for p in ${pkgs[@]}; do echo $p; findDeps $p; done; }
@@ -497,13 +497,13 @@ If a user other than **nginx** is to be used, note the following:
     sudo nginx -v
     ```
 
-13. Load the NGINX App Protect WAF module on the main context in the `nginx.conf` file:
+13. Load the F5 WAF for NGINX module on the main context in the `nginx.conf` file:
 
     ```nginx
     load_module modules/ngx_http_app_protect_module.so;
     ```
 
-14. Enable NGINX App Protect WAF on an `http/server/location` context in the `nginx.conf` via:
+14. Enable F5 WAF for NGINX on an `http/server/location` context in the `nginx.conf` via:
 
     ```nginx
     app_protect_enable on;
@@ -537,7 +537,7 @@ If a user other than **nginx** is to be used, note the following:
 
     {{< call-out "note" >}} For this capability to function properly, please follow the guidelines listed in the [configuration guide]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#ip-intelligence-configuration" >}}){{< /call-out >}}
 
-{{< call-out "warning" >}} Debian enables **AppArmor** by default, but NGINX App Protect WAF will run in unconfined mode after being installed as it is shipped with no AppArmor profile. To benefit from AppArmor access control capabilities for NGINX App Protect WAF, you will have to write your own AppArmor profile for NGINX App Protect WAF executables found in `/opt/app_protect/bin` such that it best suits your environment.
+{{< call-out "warning" >}} Debian enables **AppArmor** by default, but F5 WAF for NGINX will run in unconfined mode after being installed as it is shipped with no AppArmor profile. To benefit from AppArmor access control capabilities for F5 WAF for NGINX, you will have to write your own AppArmor profile for F5 WAF for NGINX executables found in `/opt/app_protect/bin` such that it best suits your environment.
 {{< /call-out >}}
 
 ## Oracle Linux / RHEL 8.1+ Installation
@@ -582,7 +582,7 @@ If a user other than **nginx** is to be used, note the following:
     sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/nginx-plus-8.repo
     ```
 
-8. Add NGINX App Protect WAF repository by downloading the file `app-protect-8.repo` to `/etc/yum.repos.d`:
+8. Add F5 WAF for NGINX repository by downloading the file `app-protect-8.repo` to `/etc/yum.repos.d`:
 
     ```shell
     sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-8.repo
@@ -602,7 +602,7 @@ If a user other than **nginx** is to be used, note the following:
     dnf config-manager --set-enabled ol8_codeready_builder
     ```
 
-10. Install the most recent version of the NGINX App Protect WAF package (which includes NGINX Plus):
+10. Install the most recent version of the F5 WAF for NGINX package (which includes NGINX Plus):
 
     ```shell
     sudo dnf install app-protect
@@ -626,19 +626,19 @@ If a user other than **nginx** is to be used, note the following:
     sudo nginx -v
     ```
 
-12. Load the NGINX App Protect WAF module on the main context in the `nginx.conf`:
+12. Load the F5 WAF for NGINX module on the main context in the `nginx.conf`:
 
     ```nginx
     load_module modules/ngx_http_app_protect_module.so;
     ```
 
-13. Enable NGINX App Protect WAF on an `http/server/location` context in the `nginx.conf` file:
+13. Enable F5 WAF for NGINX on an `http/server/location` context in the `nginx.conf` file:
 
     ```nginx
     app_protect_enable on;
     ```
 
-14. Optionally, install a prebuilt SELinux policy module for NGINX App Protect WAF (or configure SELinux as appropriate per your organization's security policies):
+14. Optionally, install a prebuilt SELinux policy module for F5 WAF for NGINX (or configure SELinux as appropriate per your organization's security policies):
 
     ```shell
     sudo dnf install app-protect-selinux
@@ -724,7 +724,7 @@ If a user other than **nginx** is to be used, note the following:
     sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/plus-9.repo
     ```
 
-8. Add NGINX App Protect WAF repository by downloading the file `app-protect-9.repo` to `/etc/yum.repos.d`:
+8. Add F5 WAF for NGINX repository by downloading the file `app-protect-9.repo` to `/etc/yum.repos.d`:
 
     ```shell
     sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-9.repo
@@ -744,7 +744,7 @@ If a user other than **nginx** is to be used, note the following:
     sudo subscription-manager repos --enable codeready-builder-for-rhel-9-x86_64-rpms
     ```
 
-10. Install the most recent version of the NGINX App Protect WAF package (which includes NGINX Plus):
+10. Install the most recent version of the F5 WAF for NGINX package (which includes NGINX Plus):
 
     ```shell
     sudo dnf install app-protect
@@ -768,19 +768,19 @@ If a user other than **nginx** is to be used, note the following:
     sudo nginx -v
     ```
 
-12. Load the NGINX App Protect WAF module on the main context in the `nginx.conf`:
+12. Load the F5 WAF for NGINX module on the main context in the `nginx.conf`:
 
     ```nginx
     load_module modules/ngx_http_app_protect_module.so;
     ```
 
-13. Enable NGINX App Protect WAF on an `http/server/location` context in the `nginx.conf` file:
+13. Enable F5 WAF for NGINX on an `http/server/location` context in the `nginx.conf` file:
 
     ```nginx
     app_protect_enable on;
     ```
 
-14. Optionally, install a prebuilt SELinux policy module for NGINX App Protect WAF (or configure SELinux as appropriate per your organization's security policies):
+14. Optionally, install a prebuilt SELinux policy module for F5 WAF for NGINX (or configure SELinux as appropriate per your organization's security policies):
 
     ```shell
     sudo dnf install app-protect-selinux
@@ -880,7 +880,7 @@ If a user other than **nginx** is to be used, note the following:
     sudo tee /etc/apt/sources.list.d/nginx-plus.list
     ```
 
-9. Add NGINX App Protect WAF repositories:
+9. Add F5 WAF for NGINX repositories:
 
     ```shell
     printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
@@ -898,7 +898,7 @@ If a user other than **nginx** is to be used, note the following:
     sudo wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
     ```
 
-11. Update the repository and install the most recent version of the NGINX App Protect WAF package (which includes NGINX Plus):
+11. Update the repository and install the most recent version of the F5 WAF for NGINX package (which includes NGINX Plus):
 
     ```shell
     sudo apt-get update
@@ -926,7 +926,7 @@ If a user other than **nginx** is to be used, note the following:
     <br>
     <br>
 
-    {{< call-out "note" >}} When installing an older version of NGINX App Protect WAF, the dependent packages have to be installed manually, as shown in the command above. The following script can be used to find out the dependent packages for a specific version of NGINX App Protect WAF.{{< /call-out >}}
+    {{< call-out "note" >}} When installing an older version of F5 WAF for NGINX, the dependent packages have to be installed manually, as shown in the command above. The following script can be used to find out the dependent packages for a specific version of F5 WAF for NGINX.{{< /call-out >}}
 
     ```shell
     findDeps () { local pkgs=$(apt show $1 2>/dev/null | grep Depends: | grep -oE "(nginx-plus-module|app-protect)-[a-z]+ *\(= *[0-9\+\.-]+~`lsb_release -cs`\)" | tr -d ' ()'); for p in ${pkgs[@]}; do echo $p; findDeps $p; done; }
@@ -939,13 +939,13 @@ If a user other than **nginx** is to be used, note the following:
     sudo nginx -v
     ```
 
-13. Load the NGINX App Protect WAF module on the main context in the `nginx.conf` file:
+13. Load the F5 WAF for NGINX module on the main context in the `nginx.conf` file:
 
     ```nginx
     load_module modules/ngx_http_app_protect_module.so;
     ```
 
-14. Enable NGINX App Protect WAF on an `http/server/location` context in the `nginx.conf` via:
+14. Enable F5 WAF for NGINX on an `http/server/location` context in the `nginx.conf` via:
 
     ```nginx
     app_protect_enable on;
@@ -979,7 +979,7 @@ If a user other than **nginx** is to be used, note the following:
 
     {{< call-out "note" >}} For this capability to function properly, please follow the guidelines listed in the [configuration guide]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#ip-intelligence-configuration" >}}){{< /call-out >}}
 
-{{< call-out "note" >}} Ubuntu 20.04 / Ubuntu 22.04 / Ubuntu 24.04 activates **AppArmor** by default, but NGINX App Protect WAF will run in unconfined mode after being installed as it is shipped with no AppArmor profile. To benefit from AppArmor access control capabilities for NGINX App Protect WAF, you will have to write your own AppArmor profile for NGINX App Protect WAF executables found in `/opt/app_protect/bin` such that it best suits your environment.
+{{< call-out "note" >}} Ubuntu 20.04 / Ubuntu 22.04 / Ubuntu 24.04 activates **AppArmor** by default, but F5 WAF for NGINX will run in unconfined mode after being installed as it is shipped with no AppArmor profile. To benefit from AppArmor access control capabilities for F5 WAF for NGINX, you will have to write your own AppArmor profile for F5 WAF for NGINX executables found in `/opt/app_protect/bin` such that it best suits your environment.
 {{< /call-out >}}
 
 ## Docker Deployments
@@ -1093,7 +1093,7 @@ If a user other than **nginx** is to be used, note the following:
         ```
 
     **Notes:**
-    - The `--no-cache` option tells Docker/Podman to build the image from scratch and ensures the installation of the latest version of NGINX Plus and NGINX App Protect WAF 4.x. If the Dockerfile was previously used to build an image without the `--no-cache` option, the new image uses versions from the previously built image from the cache.
+    - The `--no-cache` option tells Docker/Podman to build the image from scratch and ensures the installation of the latest version of NGINX Plus and F5 WAF for NGINX 4.x. If the Dockerfile was previously used to build an image without the `--no-cache` option, the new image uses versions from the previously built image from the cache.
     - For RHEL:<br>
     The subscription-manager is disabled when running inside containers based on Red Hat Universal Base images. You will need a registered and subscribed RHEL system.
 
@@ -1133,7 +1133,7 @@ RUN printf "https://pkgs.nginx.com/plus/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc
 RUN printf "https://pkgs.nginx.com/app-protect/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | tee -a /etc/apk/repositories \
  && printf "https://pkgs.nginx.com/app-protect-security-updates/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | tee -a /etc/apk/repositories
 
-# Update the repository and install the most recent version of the NGINX App Protect WAF package (which includes NGINX Plus):
+# Update the repository and install the most recent version of the F5 WAF for NGINX package (which includes NGINX Plus):
 RUN --mount=type=secret,id=nginx-crt,dst=/etc/apk/cert.pem,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/apk/cert.key,mode=0644 \
     apk update && apk add app-protect
@@ -1173,7 +1173,7 @@ RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.amaz
 # Add NGINX App-protect repo:
 RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-amazonlinux2023.repo
 
-# Install NGINX App Protect WAF:
+# Install F5 WAF for NGINX:
 RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
     dnf -y install app-protect \
@@ -1221,7 +1221,7 @@ RUN printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
     https://pkgs.nginx.com/plus/debian `lsb_release -cs` nginx-plus\n" | \
     tee /etc/apt/sources.list.d/nginx-plus.list
 
-# Add NGINX App Protect WAF repositories:
+# Add F5 WAF for NGINX repositories:
 RUN printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
     https://pkgs.nginx.com/app-protect/debian `lsb_release -cs` nginx-plus\n" | \
     tee /etc/apt/sources.list.d/nginx-app-protect.list
@@ -1232,7 +1232,7 @@ RUN printf "deb [signed-by=/usr/share/keyrings/app-protect-security-updates.gpg]
 # Download the apt configuration to `/etc/apt/apt.conf.d`:
 RUN wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
 
-# Update the repository and install the most recent version of the NGINX App Protect WAF package (which includes NGINX Plus):
+# Update the repository and install the most recent version of the F5 WAF for NGINX package (which includes NGINX Plus):
 RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
     apt-get update && apt-get install -y app-protect
@@ -1275,7 +1275,7 @@ RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.repo
     # && rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm \
     && dnf clean all
 
-# Install NGINX App Protect WAF:
+# Install F5 WAF for NGINX:
 RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
     dnf install --enablerepo=codeready-builder-for-rhel-8-x86_64-rpms -y app-protect \
@@ -1318,7 +1318,7 @@ RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.repo
     # && rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm \
     && dnf clean all
 
-# Install NGINX App Protect WAF:
+# Install F5 WAF for NGINX:
 RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
     dnf install --enablerepo=codeready-builder-for-rhel-9-x86_64-rpms -y app-protect \
@@ -1360,7 +1360,7 @@ RUN dnf config-manager --set-enabled crb \
     && wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.repo \
     && dnf clean all
 
-# Install NGINX App Protect WAF:
+# Install F5 WAF for NGINX:
 RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
     dnf install -y app-protect \
@@ -1406,7 +1406,7 @@ RUN dnf config-manager --set-enabled ol8_codeready_builder \
     # && rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm \
     && dnf clean all
 
-# Install NGINX App Protect WAF:
+# Install F5 WAF for NGINX:
 RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
     dnf -y install app-protect \
@@ -1454,7 +1454,7 @@ RUN printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
     https://pkgs.nginx.com/plus/ubuntu `lsb_release -cs` nginx-plus\n" | \
     tee /etc/apt/sources.list.d/nginx-plus.list
 
-# Add NGINX App Protect WAF repositories:
+# Add F5 WAF for NGINX repositories:
 RUN printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
     https://pkgs.nginx.com/app-protect/ubuntu `lsb_release -cs` nginx-plus\n" | \
     tee /etc/apt/sources.list.d/nginx-app-protect.list
@@ -1465,7 +1465,7 @@ RUN printf "deb [signed-by=/usr/share/keyrings/app-protect-security-updates.gpg]
 # Download the apt configuration to `/etc/apt/apt.conf.d`:
 RUN wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
 
-# Update the repository and install the most recent version of the NGINX App Protect WAF package (which includes NGINX Plus):
+# Update the repository and install the most recent version of the F5 WAF for NGINX package (which includes NGINX Plus):
 RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
     apt-get update && DEBIAN_FRONTEND="noninteractive" apt-get install -y app-protect
@@ -1488,7 +1488,7 @@ CMD ["sh", "/root/entrypoint.sh"]
 
 ## Converter Tool Docker Image
 
-This section explains how to build a Docker image for the purpose of converting policy files from other F5 WAF products to NGINX App Protect WAF JSON declarative format.
+This section explains how to build a Docker image for the purpose of converting policy files from other F5 WAF products to F5 WAF for NGINX JSON declarative format.
 For more details regarding this feature refer to [Converter Tools]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#converter-tools" >}}).
 
 ### Converter Docker Deployment Instructions
@@ -1520,7 +1520,7 @@ You need root permissions to execute the following steps.
         ```
 
     **Notes:**
-    - The `--no-cache` option tells Docker/Podman to build the image from scratch and ensures the installation of the latest version of NGINX Plus and NGINX App Protect WAF 4.x. If the Dockerfile was previously used to build an image without the `--no-cache` option, the new image uses versions from the previously built image from the cache.
+    - The `--no-cache` option tells Docker/Podman to build the image from scratch and ensures the installation of the latest version of NGINX Plus and F5 WAF for NGINX 4.x. If the Dockerfile was previously used to build an image without the `--no-cache` option, the new image uses versions from the previously built image from the cache.
     - For RHEL:<br>
     The subscription-manager is disabled when running inside containers based on Red Hat Universal Base images. You will need a registered and subscribed RHEL system.
 
@@ -1626,7 +1626,7 @@ RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.repo
     # && rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm \
     && yum clean all
 
-# Install NGINX App Protect WAF:
+# Install F5 WAF for NGINX:
 RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
      yum install --enablerepo=rhel-7-server-extras-rpms --enablerepo=rhel-7-server-optional-rpms --enablerepo=rhel-7-server-rpms -y app-protect-compiler \
@@ -1651,7 +1651,7 @@ RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.repo
     # && rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm \
     && dnf clean all
 
-# Install NGINX App Protect WAF:
+# Install F5 WAF for NGINX:
 RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
     dnf install --enablerepo=codeready-builder-for-rhel-8-x86_64-rpms -y app-protect-compiler \
@@ -1676,7 +1676,7 @@ RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.repo
     # && rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm \
     && dnf clean all
 
-# Install NGINX App Protect WAF:
+# Install F5 WAF for NGINX:
 RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
     dnf install --enablerepo=codeready-builder-for-rhel-9-x86_64-rpms -y app-protect-compiler \
@@ -1700,7 +1700,7 @@ RUN dnf config-manager --set-enabled crb \
     && wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.repo \
     && dnf clean all
 
-# Install NGINX App Protect WAF:
+# Install F5 WAF for NGINX:
 RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
     dnf install -y app-protect-compiler \
@@ -1728,7 +1728,7 @@ RUN dnf config-manager --set-enabled ol8_codeready_builder \
     # && rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm \
     && dnf clean all
 
-# Install NGINX App Protect WAF:
+# Install F5 WAF for NGINX:
 RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
     dnf install -y app-protect-compiler \
@@ -1751,7 +1751,7 @@ RUN yum -y install wget ca-certificates epel-release shadow-utils
 # Add NGINX App-protect repo to Yum:
 RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-7.repo
 
-# Install NGINX App Protect WAF:
+# Install F5 WAF for NGINX:
 RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
     yum -y install app-protect-compiler \
@@ -1775,7 +1775,7 @@ RUN wget -qO - https://cs.nginx.com/static/keys/nginx_signing.key | \
 RUN wget -qO - https://cs.nginx.com/static/keys/app-protect-security-updates.key | \
     gpg --dearmor | tee /usr/share/keyrings/app-protect-security-updates.gpg >/dev/null
 
-# Add NGINX App Protect WAF repositories:
+# Add F5 WAF for NGINX repositories:
 RUN printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
     https://pkgs.nginx.com/app-protect/debian `lsb_release -cs` nginx-plus\n" | \
     tee /etc/apt/sources.list.d/nginx-app-protect.list
@@ -1786,7 +1786,7 @@ RUN printf "deb [signed-by=/usr/share/keyrings/app-protect-security-updates.gpg]
 # Download the apt configuration to `/etc/apt/apt.conf.d`:
 RUN wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
 
-# Update the repository and install the most recent version of the NGINX App Protect WAF Compiler package:
+# Update the repository and install the most recent version of the F5 WAF for NGINX Compiler package:
 RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
     apt-get update && DEBIAN_FRONTEND="noninteractive" apt-get install -y app-protect-compiler
@@ -1810,7 +1810,7 @@ RUN wget -qO - https://cs.nginx.com/static/keys/nginx_signing.key | \
 RUN wget -qO - https://cs.nginx.com/static/keys/app-protect-security-updates.key | \
     gpg --dearmor | tee /usr/share/keyrings/app-protect-security-updates.gpg >/dev/null
 
-# Add NGINX App Protect WAF repositories:
+# Add F5 WAF for NGINX repositories:
 RUN printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
     https://pkgs.nginx.com/app-protect/ubuntu `lsb_release -cs` nginx-plus\n" | \
     tee /etc/apt/sources.list.d/nginx-app-protect.list
@@ -1821,7 +1821,7 @@ RUN printf "deb [signed-by=/usr/share/keyrings/app-protect-security-updates.gpg]
 # Download the apt configuration to `/etc/apt/apt.conf.d`:
 RUN wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
 
-# Update the repository and install the most recent version of the NGINX App Protect WAF Compiler package:
+# Update the repository and install the most recent version of the F5 WAF for NGINX Compiler package:
 RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
     apt-get update && DEBIAN_FRONTEND="noninteractive" apt-get install -y app-protect-compiler
@@ -1842,7 +1842,7 @@ RUN wget -O /etc/apk/keys/nginx_signing.rsa.pub https://cs.nginx.com/static/keys
 RUN printf "https://pkgs.nginx.com/app-protect/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | tee -a /etc/apk/repositories \
  && printf "https://pkgs.nginx.com/app-protect-security-updates/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | tee -a /etc/apk/repositories
 
-# Update the repository and install the most recent version of the NGINX App Protect WAF Compiler package:
+# Update the repository and install the most recent version of the F5 WAF for NGINX Compiler package:
 RUN --mount=type=secret,id=nginx-crt,dst=/etc/apk/cert.pem,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/apk/cert.key,mode=0644 \
     apk update && apk add app-protect-compiler
@@ -1850,13 +1850,13 @@ RUN --mount=type=secret,id=nginx-crt,dst=/etc/apk/cert.pem,mode=0644 \
 
 ## Offline Installation
 
-To perform an offline installation of NGINX App Protect WAF you can use a host with access to the NGINX repository to download all the packages (including dependencies) to your local repository.
+To perform an offline installation of F5 WAF for NGINX you can use a host with access to the NGINX repository to download all the packages (including dependencies) to your local repository.
 
 ### Example Deployment for RHEL
 
-#### Add the NGINX App Protect WAF Packages to an Internal Repository
+#### Add the F5 WAF for NGINX Packages to an Internal Repository
 
-On a host with access to the NGINX App Protect WAF repository:
+On a host with access to the F5 WAF for NGINX repository:
 
 1. Install the `downloadonly` plugin for Yum:
 
@@ -1864,7 +1864,7 @@ On a host with access to the NGINX App Protect WAF repository:
     yum -y install yum-plugin-downloadonly
     ```
 
-2. Download all NGINX App Protect WAF packages, including all dependencies:
+2. Download all F5 WAF for NGINX packages, including all dependencies:
 
     ```shell
     mkdir -p /etc/packages/
@@ -1894,12 +1894,12 @@ wget -P /etc/packages https://dl.fedoraproject.org/pub/epel/epel-release-latest-
 4. Add the packages in `/etc/packages` to your local repository.
 
 
-#### Install NGINX App Protect WAF from an Internal Repository
+#### Install F5 WAF for NGINX from an Internal Repository
 
 On an offline host:
 
 1. Add your internal repository configuration.
-2. Install NGINX App Protect WAF:
+2. Install F5 WAF for NGINX:
 
     ```shell
     yum -y install app-protect
@@ -1913,11 +1913,11 @@ On an offline host:
 
 ### Example Deployment for Debian/Ubuntu
 
-#### Add the NGINX App Protect WAF Packages to an Internal Repository
+#### Add the F5 WAF for NGINX Packages to an Internal Repository
 
-On a host with access to the NGINX App Protect WAF repository:
+On a host with access to the F5 WAF for NGINX repository:
 
-1. Download all NGINX App Protect WAF packages, including all dependencies:
+1. Download all F5 WAF for NGINX packages, including all dependencies:
 
     ```shell
     mkdir -p /etc/packages/
@@ -1936,12 +1936,12 @@ On a host with access to the NGINX App Protect WAF repository:
 2. Add the packages in `/etc/packages` to your local repository.
 
 
-#### Install NGINX App Protect WAF from an Internal Repository
+#### Install F5 WAF for NGINX from an Internal Repository
 
 On an offline host:
 
 1. Add your internal repository configuration.
-2. Install NGINX App Protect WAF:
+2. Install F5 WAF for NGINX:
 
     ```shell
     apt-get update
@@ -1955,9 +1955,9 @@ On an offline host:
 
 ## Post-Installation Checks
 
-You can run the following commands to ensure that NGINX App Protect WAF enforcement is operational.
+You can run the following commands to ensure that F5 WAF for NGINX enforcement is operational.
 
-1. Check that the three processes needed for NGINX App Protect WAF are running using `ps aux`:
+1. Check that the three processes needed for F5 WAF for NGINX are running using `ps aux`:
     - bd-socket-plugin
     - nginx: master process
     - nginx: worker process
@@ -2028,17 +2028,17 @@ You can run the following commands to ensure that NGINX App Protect WAF enforcem
 5. If there are additional problems, refer to the [Troubleshooting Guide]({{< ref "/nap-waf/v4/troubleshooting-guide/troubleshooting#app-protect-troubleshooting-overview" >}}).
 
 
-## Attack Signatures Dependency Change in NGINX App Protect WAF
+## Attack Signatures Dependency Change in F5 WAF for NGINX
 
-Starting with release 3.12 there is a change in dependency of the Attack Signatures package. Until release 3.11, NGINX App Protect WAF used pre-packaged Attack Signatures that did not provide the latest Attack Signatures. <br>
+Starting with release 3.12 there is a change in dependency of the Attack Signatures package. Until release 3.11, F5 WAF for NGINX used pre-packaged Attack Signatures that did not provide the latest Attack Signatures. <br>
 
-From version 3.12, when the user performs the clean install (installing NGINX App Protect WAF for the first time), it will install the latest Attack Signatures package. This will keep the customers up to date with the latest Attack Signatures and provide protection against the latest threats. <br>
+From version 3.12, when the user performs the clean install (installing F5 WAF for NGINX for the first time), it will install the latest Attack Signatures package. This will keep the customers up to date with the latest Attack Signatures and provide protection against the latest threats. <br>
 
 The way to achieve the goal of better protection will use the package dependency mechanism so the app protect package will be dependent on the signatures package thus ensuring that the latest signatures package is deployed once the app protect release is deployed for the first time.<br>
 
-In case the user has an older version of NGINX App Protect WAF and never installed the Attack Signatures package, upgrading NGINX App Protect WAF will install the latest Attack Signatures. However, if they have installed Attack Signatures package previously at any point in time, NGINX App Protect WAF will not install the latest Attack Signatures.
+In case the user has an older version of F5 WAF for NGINX and never installed the Attack Signatures package, upgrading F5 WAF for NGINX will install the latest Attack Signatures. However, if they have installed Attack Signatures package previously at any point in time, F5 WAF for NGINX will not install the latest Attack Signatures.
 
-{{< call-out "note" >}}The user can upgrade or downgrade the Attack Signatures regardless of the installed version of NGINX App Protect WAF.{{< /call-out >}}
+{{< call-out "note" >}}The user can upgrade or downgrade the Attack Signatures regardless of the installed version of F5 WAF for NGINX.{{< /call-out >}}
 
 ### Attack Signatures Package
 The attack signature package is named: app-protect-attack-signatures-2022.08.04. The version number for this package reflects the date the package was released. The format is: _YYYY.MM.DD_ where:
@@ -2059,7 +2059,7 @@ After having updated the Attack Signature package you have to reload the configu
 
 ### RHEL 8.1+ / Oracle Linux 8.1+
 
-1. To add NGINX App Protect WAF Security Updates repository, download the file `app-protect-8.repo` to `/etc/yum.repos.d`:
+1. To add F5 WAF for NGINX Security Updates repository, download the file `app-protect-8.repo` to `/etc/yum.repos.d`:
 
     ```shell
     sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-8.repo
@@ -2091,7 +2091,7 @@ After having updated the Attack Signature package you have to reload the configu
 
 ### RHEL 9+
 
-1. To add NGINX App Protect WAF Security Updates repository, download the file `app-protect-9.repo` to `/etc/yum.repos.d`:
+1. To add F5 WAF for NGINX Security Updates repository, download the file `app-protect-9.repo` to `/etc/yum.repos.d`:
 
     ```shell
     sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-9.repo
@@ -2123,7 +2123,7 @@ After having updated the Attack Signature package you have to reload the configu
 
 ### Debian 11 / Debian 12
 
-1. Add NGINX App Protect WAF Security Updates repository:
+1. Add F5 WAF for NGINX Security Updates repository:
 
 ```shell
 printf "deb [signed-by=/usr/share/keyrings/app-protect-security-updates.gpg] \
@@ -2131,7 +2131,7 @@ https://pkgs.nginx.com/app-protect-security-updates/debian `lsb_release -cs` ngi
 sudo tee /etc/apt/sources.list.d/app-protect-security-updates.list
 ```
 
-2. Download and add the NGINX App Protect WAF signatures signing key:
+2. Download and add the F5 WAF for NGINX signatures signing key:
 
 ```shell
 sudo wget https://cs.nginx.com/static/keys/app-protect-security-updates.key | \
@@ -2170,7 +2170,7 @@ sudo apt-get install app-protect-attack-signatures=2020.04.30-1~bookworm
 
 ### Ubuntu 20.04 / Ubuntu 22.04
 
-1. Add NGINX App Protect WAF Security Updates repository:
+1. Add F5 WAF for NGINX Security Updates repository:
 
     ```shell
     printf "deb [signed-by=/usr/share/keyrings/app-protect-security-updates.gpg] \
@@ -2178,7 +2178,7 @@ sudo apt-get install app-protect-attack-signatures=2020.04.30-1~bookworm
     sudo tee /etc/apt/sources.list.d/app-protect-security-updates.list
     ```
 
-2. Download and add the NGINX App Protect WAF signatures signing key:
+2. Download and add the F5 WAF for NGINX signatures signing key:
 
     ```shell
     sudo wget https://cs.nginx.com/static/keys/app-protect-security-updates.key | \
@@ -2223,13 +2223,13 @@ sudo apt-get install app-protect-attack-signatures=2020.07.16-1~noble
 
 ### Alpine 3.19
 
-1. If not already configured, add the NGINX App Protect WAF Security Updates repository:
+1. If not already configured, add the F5 WAF for NGINX Security Updates repository:
 
     ```shell
     printf "https://pkgs.nginx.com/app-protect-security-updates/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | sudo tee -a /etc/apk/repositories
     ```
 
-2. If not already downloaded, download and add the NGINX App Protect WAF Security Updates signing key:
+2. If not already downloaded, download and add the F5 WAF for NGINX Security Updates signing key:
 
     ```shell
     sudo wget -O /etc/apk/keys/app-protect-security-updates.rsa.pub https://cs.nginx.com/static/keys/app-protect-security-updates.rsa.pub
@@ -2256,21 +2256,21 @@ sudo apt-get install app-protect-attack-signatures=2020.07.16-1~noble
     ```
 
 
-### Attack Signatures When Upgrading NGINX App Protect WAF
+### Attack Signatures When Upgrading F5 WAF for NGINX
 
 Upgrading App Protect does _not_ install new Attack Signatures. You will get the same Attack Signature release after upgrading App Protect. If you want to also upgrade the Attack Signatures, you will have to explicitly update them by the respective command above.
 
-### Threat Campaigns Dependency Change in NGINX App Protect WAF
+### Threat Campaigns Dependency Change in F5 WAF for NGINX
 
 Starting with release 3.12 there is a change in dependency of the Threat Campaigns package. Until release 3.11, App Protect installation did not come with a built-in Threat Campaigns package like Attack Signatures. <br>
 
-From version 3.12, when the user performs the clean install (installing NGINX App Protect WAF for the first time), it will install the latest Threat Campaigns package. This will keep the customers up to date with the latest Threat Campaigns and provide protection against the latest threats. <br>
+From version 3.12, when the user performs the clean install (installing F5 WAF for NGINX for the first time), it will install the latest Threat Campaigns package. This will keep the customers up to date with the latest Threat Campaigns and provide protection against the latest threats. <br>
 
 The way to achieve the goal of better protection will use the package dependency mechanism so the app protect package will be dependent on the Threat Campaigns package thus ensuring that the latest Threat Campaigns package is deployed once the app protect release is deployed for the first time.<br>
 
-In case the user has an older version of NGINX App Protect WAF and never installed the Threat Campaigns package, upgrading NGINX App Protect will install the latest Threat Campaigns. However, if they have installed Threat Campaigns package previously at any point in time, NGINX App Protect WAF will not install the latest Threat Campaigns.
+In case the user has an older version of F5 WAF for NGINX and never installed the Threat Campaigns package, upgrading NGINX App Protect will install the latest Threat Campaigns. However, if they have installed Threat Campaigns package previously at any point in time, F5 WAF for NGINX will not install the latest Threat Campaigns.
 
-{{< call-out "note" >}}The user can upgrade or downgrade the Threat Campaigns regardless of the installed version of NGINX App Protect WAF.{{< /call-out >}}
+{{< call-out "note" >}}The user can upgrade or downgrade the Threat Campaigns regardless of the installed version of F5 WAF for NGINX.{{< /call-out >}}
 
 ### Installing Threat Campaigns Update
 
@@ -2292,7 +2292,7 @@ Example: app-protect-threat-campaigns-2022.07.21
 
 ### RHEL 8.1+ / Oracle Linux 8.1+
 
-1. If not already configured, add NGINX App Protect WAF Security Updates repository by downloading the file `app-protect-8.repo` to `/etc/yum.repos.d`:
+1. If not already configured, add F5 WAF for NGINX Security Updates repository by downloading the file `app-protect-8.repo` to `/etc/yum.repos.d`:
 
     ```shell
     sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-8.repo
@@ -2318,7 +2318,7 @@ Example: app-protect-threat-campaigns-2022.07.21
 
 ### RHEL 9+
 
-1. If not already configured, add NGINX App Protect WAF Security Updates repository by downloading the file `app-protect-9.repo` to `/etc/yum.repos.d`:
+1. If not already configured, add F5 WAF for NGINX Security Updates repository by downloading the file `app-protect-9.repo` to `/etc/yum.repos.d`:
 
     ```shell
     sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-9.repo
@@ -2344,13 +2344,13 @@ Example: app-protect-threat-campaigns-2022.07.21
 
 ### Alpine 3.16 / Alpine 3.17 / Alpine 3.19
 
-1. If not already configured, add the NGINX App Protect WAF Security Updates repository:
+1. If not already configured, add the F5 WAF for NGINX Security Updates repository:
 
     ```shell
     printf "https://pkgs.nginx.com/app-protect-security-updates/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | sudo tee -a /etc/apk/repositories
     ```
 
-2. If not already downloaded, download and add the NGINX App Protect WAF Security Updates signing key:
+2. If not already downloaded, download and add the F5 WAF for NGINX Security Updates signing key:
 
     ```shell
     sudo wget -O /etc/apk/keys/app-protect-security-updates.rsa.pub https://cs.nginx.com/static/keys/app-protect-security-updates.rsa.pub
@@ -2376,7 +2376,7 @@ Example: app-protect-threat-campaigns-2022.07.21
 
 ### Debian 11 / Debian 12
 
-1. If not already configured, add the NGINX App Protect WAF Security Updates repository:
+1. If not already configured, add the F5 WAF for NGINX Security Updates repository:
 
     ```shell
     printf "deb [signed-by=/usr/share/keyrings/app-protect-security-updates.gpg] \
@@ -2384,7 +2384,7 @@ Example: app-protect-threat-campaigns-2022.07.21
     sudo tee /etc/apt/sources.list.d/app-protect-security-updates.list
     ```
 
-2. Download and add the NGINX App Protect WAF Threat Campaigns signing key:
+2. Download and add the F5 WAF for NGINX Threat Campaigns signing key:
 
     ```shell
     sudo wget https://cs.nginx.com/static/keys/app-protect-security-updates.key | \
@@ -2423,7 +2423,7 @@ sudo apt-get install app-protect-threat-campaigns=2020.06.25-1~bookworm
 
 ### Ubuntu 20.04 / Ubuntu 22.04
 
-1. If not already configured, add the NGINX App Protect WAF Security Updates repository:
+1. If not already configured, add the F5 WAF for NGINX Security Updates repository:
 
     ```shell
     printf "deb [signed-by=/usr/share/keyrings/app-protect-security-updates.gpg] \
@@ -2431,7 +2431,7 @@ sudo apt-get install app-protect-threat-campaigns=2020.06.25-1~bookworm
     sudo tee /etc/apt/sources.list.d/app-protect-security-updates.list
     ```
 
-2. Download and add the NGINX App Protect WAF Threat Campaigns signing key:
+2. Download and add the F5 WAF for NGINX Threat Campaigns signing key:
 
     ```shell
     sudo wget https://cs.nginx.com/static/keys/app-protect-security-updates.key | \
@@ -2482,7 +2482,7 @@ The App Protect Bot Signatures is named: app-protect-bot-signatures and it is a 
 
 ### RHEL 8.1+ / Oracle Linux 8.1+
 
-1. If not already configured, add NGINX App Protect WAF Security Updates repository by downloading the file `app-protect-8.repo` to `/etc/yum.repos.d`:
+1. If not already configured, add F5 WAF for NGINX Security Updates repository by downloading the file `app-protect-8.repo` to `/etc/yum.repos.d`:
 
     ```shell
     sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-8.repo
@@ -2514,7 +2514,7 @@ The App Protect Bot Signatures is named: app-protect-bot-signatures and it is a 
 
 ### RHEL 9+
 
-1. If not already configured, add NGINX App Protect WAF Security Updates repository by downloading the file `app-protect-9.repo` to `/etc/yum.repos.d`:
+1. If not already configured, add F5 WAF for NGINX Security Updates repository by downloading the file `app-protect-9.repo` to `/etc/yum.repos.d`:
 
     ```shell
     sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-9.repo
@@ -2546,13 +2546,13 @@ The App Protect Bot Signatures is named: app-protect-bot-signatures and it is a 
 
 ### Alpine 3.16 / Alpine 3.17 / Alpine 3.19
 
-1. If not already configured, add the NGINX App Protect WAF Security Updates repository:
+1. If not already configured, add the F5 WAF for NGINX Security Updates repository:
 
     ```shell
     printf "https://pkgs.nginx.com/app-protect-security-updates/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | sudo tee -a /etc/apk/repositories
     ```
 
-2. If not already downloaded, download and add the NGINX App Protect WAF Security Updates signing key:
+2. If not already downloaded, download and add the F5 WAF for NGINX Security Updates signing key:
 
     ```shell
     sudo wget -O /etc/apk/keys/app-protect-security-updates.rsa.pub https://cs.nginx.com/static/keys/app-protect-security-updates.rsa.pub
@@ -2579,7 +2579,7 @@ The App Protect Bot Signatures is named: app-protect-bot-signatures and it is a 
 
 ### Debian 11 / Debian 12
 
-1. If not already configured, add the NGINX App Protect WAF Security Updates repository:
+1. If not already configured, add the F5 WAF for NGINX Security Updates repository:
 
     ```shell
     printf "deb [signed-by=/usr/share/keyrings/app-protect-security-updates.gpg] \
@@ -2587,7 +2587,7 @@ The App Protect Bot Signatures is named: app-protect-bot-signatures and it is a 
     sudo tee /etc/apt/sources.list.d/app-protect-security-updates.list
     ```
 
-2. Download and add the NGINX App Protect WAF Bot Signatures signing key:
+2. Download and add the F5 WAF for NGINX Bot Signatures signing key:
 
     ```shell
     sudo wget https://cs.nginx.com/static/keys/app-protect-security-updates.key | \
@@ -2629,7 +2629,7 @@ The App Protect Bot Signatures is named: app-protect-bot-signatures and it is a 
 
 ### Ubuntu 20.04 / Ubuntu 22.04
 
-1. If not already configured, add the NGINX App Protect WAF Security Updates repository:
+1. If not already configured, add the F5 WAF for NGINX Security Updates repository:
 
     ```shell
     printf "deb [signed-by=/usr/share/keyrings/app-protect-security-updates.gpg] \
@@ -2637,7 +2637,7 @@ The App Protect Bot Signatures is named: app-protect-bot-signatures and it is a 
     sudo tee /etc/apt/sources.list.d/app-protect-security-updates.list
     ```
 
-2. Download and add the NGINX App Protect WAF Bot Signatures signing key:
+2. Download and add the F5 WAF for NGINX Bot Signatures signing key:
 
     ```shell
     sudo wget https://cs.nginx.com/static/keys/app-protect-security-updates.key | \
@@ -2685,15 +2685,15 @@ The App Protect Bot Signatures is named: app-protect-bot-signatures and it is a 
 
 ## Upgrading App Protect
 
-You can upgrade to the latest NGINX Plus and App Protect 4.x versions by downloading and installing the latest NGINX App Protect WAF 4.x package. When upgrading from this package, App Protect will be uninstalled and reinstalled. The old default security policy is deleted and the new default security policy is installed. If you have created a custom security policy, the policy persists and you will need to update `nginx.conf` and point to the custom security policy by referencing the json file (using the full path).
+You can upgrade to the latest NGINX Plus and App Protect 4.x versions by downloading and installing the latest F5 WAF for NGINX 4.x package. When upgrading from this package, App Protect will be uninstalled and reinstalled. The old default security policy is deleted and the new default security policy is installed. If you have created a custom security policy, the policy persists and you will need to update `nginx.conf` and point to the custom security policy by referencing the json file (using the full path).
 
-After upgrading the NGINX App Protect WAF version, restart NGINX manually:
+After upgrading the F5 WAF for NGINX version, restart NGINX manually:
 
 ```shell
 sudo systemctl restart nginx
 ```
 
-In case of using the prebuilt SELinux policy module for NGINX App Protect WAF (app-protect-selinux) - upgrade it by installing the latest 4.x available version.
+In case of using the prebuilt SELinux policy module for F5 WAF for NGINX (app-protect-selinux) - upgrade it by installing the latest 4.x available version.
 
 ## Uninstall App Protect
 
@@ -2763,7 +2763,7 @@ app-protect-bot-signatures
 
 ### RHEL 8.1+ / Oracle Linux 8.1+ / RHEL 9+
 
-1. Upgrade the NGINX App Protect WAF to the specific version:
+1. Upgrade the F5 WAF for NGINX to the specific version:
 
     ```shell
     sudo dnf -y update app-protect-27+3.1088.0-1
@@ -2778,7 +2778,7 @@ findDeps () { local pkgs=$(apt show $1 2>/dev/null | grep Depends: | grep -oE "(
 findDeps app-protect=27+3.1088.2-1~[OS_CODENAME]
 ```
 
-2. Upgrade the NGINX App Protect WAF to the specific version:
+2. Upgrade the F5 WAF for NGINX to the specific version:
 
 ```shell
 sudo apt-get update && apt-get install -y app-protect-common=10.139.2-1~[OS_CODENAME]
@@ -2800,7 +2800,7 @@ app-protect=27+3.1088.2-1~[OS_CODENAME]
     findDeps app-protect=27+3.1088.2-1~[OS_CODENAME]
     ```
 
-2. Upgrade the NGINX App Protect WAF to the specific version:
+2. Upgrade the F5 WAF for NGINX to the specific version:
 
     ```shell
     sudo apt-get update && apt-get install -y app-protect-common=10.139.2-1~[OS_CODENAME]
@@ -2817,7 +2817,7 @@ app-protect=27+3.1088.2-1~[OS_CODENAME]
 
 ### RHEL 8.1+ / RHEL 9+ / Oracle Linux 8.1+
 
-Upgrade the NGINX App Protect WAF to the latest 4.x version:
+Upgrade the F5 WAF for NGINX to the latest 4.x version:
 
 ```shell
 sudo dnf -y update app-protect
@@ -2825,7 +2825,7 @@ sudo dnf -y update app-protect
 
 ### Debian 11 / Debian 12 / Ubuntu 20.04 / Ubuntu 22.04
 
-Upgrade the NGINX App Protect WAF to the latest 4.x version:
+Upgrade the F5 WAF for NGINX to the latest 4.x version:
 
 ```shell
 sudo apt-get update && apt-get install -y app-protect
@@ -2835,7 +2835,7 @@ sudo apt-get update && apt-get install -y app-protect
 
 The default settings for Security-Enhanced Linux (SELinux) on modern Red Hat Enterprise Linux (RHEL) and related distros can be very strict, erring on the side of security rather than convenience.
 
-Although the NGINX App Protect WAF provides an optional package with prebuilt SELinux policy module - `app-protect-selinux`, your specific configuration might be blocked unless you adjust the policy or modify file labels.
+Although the F5 WAF for NGINX provides an optional package with prebuilt SELinux policy module - `app-protect-selinux`, your specific configuration might be blocked unless you adjust the policy or modify file labels.
 
 ### Modifying File Labels
 

@@ -1,7 +1,7 @@
 ---
-description: Learn about the F5 NGINX App Protect WAF Access Log Request Mechanism.
+description: Learn about the F5 F5 WAF for NGINX Access Log Request Mechanism.
 nd-docs: DOCS-910
-title: NGINX App Protect WAF Access Log
+title: F5 WAF for NGINX Access Log
 toc: true
 weight: 550
 type:

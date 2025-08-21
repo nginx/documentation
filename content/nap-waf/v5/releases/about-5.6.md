@@ -1,5 +1,5 @@
 ---
-title: NGINX App Protect WAF 5.6
+title: F5 WAF for NGINX 5.6
 weight: 850
 toc: true
 type: reference
@@ -14,7 +14,7 @@ April 1st, 2025
 ## New features
 
 - Added support for NGINX Plus R34
-- You can now [deploy NGINX App Protect WAF 5+ using a Helm chart]({{< ref "/nap-waf/v5/admin-guide/deploy-with-helm.md">}})
+- You can now [deploy F5 WAF for NGINX 5+ using a Helm chart]({{< ref "/nap-waf/v5/admin-guide/deploy-with-helm.md">}})
 
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: NGINX App Protect WAF 4.6
+title: F5 WAF for NGINX 4.6
 weight: 180
 toc: true
 type: reference
@@ -78,4 +78,4 @@ This release includes new signatures for [Anti Automation]({{< ref "/nap-waf/v4/
 
 - Starting with this release, the `app_protect_compressed_requests_action` directive has been deprecated from the nginx configuration. Now by default the enforcer will decompress all the HTTP compressed payload request and will apply the enforcment. See [Handling Compressed Requests]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#handling-compressed-requests" >}}) for more details.
 
-- The NGINX App Protect WAF has been enhanced to include response signature checks within the "filetypes" section. You have an option to enable the signature verification in the response by setting the `responseCheck` parameter to true. By default, this parameter is set to false. See [Restrict Response Signatures]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#restrict-response-signatures" >}}) for more details.
+- The F5 WAF for NGINX has been enhanced to include response signature checks within the "filetypes" section. You have an option to enable the signature verification in the response by setting the `responseCheck` parameter to true. By default, this parameter is set to false. See [Restrict Response Signatures]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#restrict-response-signatures" >}}) for more details.

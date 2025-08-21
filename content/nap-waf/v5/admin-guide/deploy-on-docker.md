@@ -1,5 +1,5 @@
 ---
-title: Deploy NGINX App Protect WAF with Docker
+title: Deploy F5 WAF for NGINX with Docker
 weight: 500
 toc: true
 type: how-to
@@ -9,7 +9,7 @@ nd-docs: DOCS-1365
 
 ## Prerequisites
 
-- Active F5 NGINX App Protect WAF subscription in [MyF5](https://my.f5.com/) (purchased or trial).
+- Active F5 F5 WAF for NGINX subscription in [MyF5](https://my.f5.com/) (purchased or trial).
 - Docker (with Docker Compose) is [installed and running](https://docs.docker.com/engine/install/).
 
 ## Build the NGINX Image
@@ -49,7 +49,7 @@ Choose the appropriate `Dockerfile` example based on your Operating System (OS).
 # Base image
 FROM amazonlinux:2023
 
-# Install NGINX OSS and NGINX App Protect WAF v5 module
+# Install NGINX OSS and F5 WAF for NGINX v5 module
 RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
     yum -y install wget ca-certificates shadow-utils yum-utils \
@@ -140,7 +140,7 @@ You are ready to [Build the image](#build-image-main)
 # Base image
 FROM amazonlinux:2023
 
-# Install NGINX Plus and NGINX App Protect WAF v5 module
+# Install NGINX Plus and F5 WAF for NGINX v5 module
 RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
     yum -y install wget ca-certificates shadow-utils \
@@ -209,7 +209,7 @@ CMD ["nginx", "-g", "daemon off;"]
 
 In your nginx configuration:
 
-1. Load the NGINX App Protect WAF v5 module at the main context:
+1. Load the F5 WAF for NGINX v5 module at the main context:
 
     ```nginx
     load_module modules/ngx_http_app_protect_module.so;
@@ -221,7 +221,7 @@ In your nginx configuration:
     app_protect_enforcer_address 127.0.0.1:50000;
     ```
 
-3. Enable NGINX App Protect WAF on an `http/server/location` context (make sure you only enable NGINX App Protect WAF with `proxy_pass`/`grpc_pass` locations):
+3. Enable F5 WAF for NGINX on an `http/server/location` context (make sure you only enable F5 WAF for NGINX with `proxy_pass`/`grpc_pass` locations):
 
     ```nginx
     app_protect_enable on;
@@ -238,7 +238,7 @@ In this guide, we have created the following files under `/conf/` directory:
 user  nginx;
 worker_processes  auto;
 
-# NGINX App Protect WAF
+# F5 WAF for NGINX
 load_module modules/ngx_http_app_protect_module.so;
 
 error_log  /var/log/nginx/error.log notice;
@@ -266,7 +266,7 @@ http {
 
     #gzip  on;
 
-    # NGINX App Protect WAF
+    # F5 WAF for NGINX
     app_protect_enforcer_address waf-enforcer:50000;
 
     include /etc/nginx/conf.d/*.conf;
@@ -290,7 +290,7 @@ http {
 
 ### List all tags
 
-For a complete tag list for NGINX App Protect WAF enforcer and NGINX App Protect WAF configuration manager, use the following commands:
+For a complete tag list for F5 WAF for NGINX enforcer and F5 WAF for NGINX configuration manager, use the following commands:
 
 ```shell
 curl https://private-registry.nginx.com/v2/nap/waf-enforcer/tags/list --key <nginx-repo.key> --cert <nginx-repo.crt> | jq
@@ -462,7 +462,7 @@ If you encounter any other issues, check the [Troubleshooting Guide]({{< ref "/n
 ## Air-Gap Install: Secure Offline Deployment
 
 ### Prerequisites
-- Active NGINX App Protect WAF subscription in [MyF5](https://my.f5.com/) (purchased or trial) on the online machine.
+- Active F5 WAF for NGINX subscription in [MyF5](https://my.f5.com/) (purchased or trial) on the online machine.
 - Docker (with Docker Compose) is [installed and running](https://docs.docker.com/engine/install/) on both the online and offline machine.
 
 ### Build the NGINX Image
@@ -600,7 +600,7 @@ docker pull private-registry.nginx.com/nap/waf-config-mgr:5.4.0
 
 In your nginx configuration:
 
-1. Load the NGINX App Protect WAF v5 module at the main context:
+1. Load the F5 WAF for NGINX v5 module at the main context:
 
     ```nginx
     load_module modules/ngx_http_app_protect_module.so;
@@ -612,7 +612,7 @@ In your nginx configuration:
     app_protect_enforcer_address waf-enforcer:50000;
     ```
 
-3. Enable NGINX App Protect WAF on an `http/server/location` context (make sure you only enable NGINX App Protect WAF with `proxy_pass`/`grpc_pass` locations):
+3. Enable F5 WAF for NGINX on an `http/server/location` context (make sure you only enable F5 WAF for NGINX with `proxy_pass`/`grpc_pass` locations):
 
     ```nginx
     app_protect_enable on;
@@ -717,6 +717,6 @@ volumes:
 
 ## Conclusion
 
-This guide provides the foundational steps for deploying NGINX App Protect WAF v5 using Docker Compose. You may need to adjust the deployment to fit your specific requirements.
+This guide provides the foundational steps for deploying F5 WAF for NGINX v5 using Docker Compose. You may need to adjust the deployment to fit your specific requirements.
 
-For more detailed configuration options and advanced deployment strategies, refer to the [NGINX App Protect WAF v5 Configuration Guide]({{< ref "/nap-waf/v5/configuration-guide/configuration.md" >}}).
+For more detailed configuration options and advanced deployment strategies, refer to the [F5 WAF for NGINX v5 Configuration Guide]({{< ref "/nap-waf/v5/configuration-guide/configuration.md" >}}).

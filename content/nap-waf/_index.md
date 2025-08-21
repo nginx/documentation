@@ -1,6 +1,6 @@
 ---
 # The title is the product name
-title: F5 NGINX App Protect WAF
+title: F5 F5 WAF for NGINX
 # The URL is the base of the deployed path, becoming "docs.nginx.com/<url>/<other-pages>"
 url: /nginx-app-protect-waf/
 # The cascade directive applies its nested parameters down the page tree until overwritten
@@ -30,13 +30,13 @@ Defend your applications and APIs with a software security solution that seamles
 {{<card-layout>}}
   {{<card-section showAsCards="true" isFeaturedSection="true">}}
     {{<card title="Administration Guide" titleUrl="/nginx-app-protect-waf/v5/admin-guide/overview/">}}
-      Read the use cases and technical specifications for NGINX App Protect WAF
+      Read the use cases and technical specifications for F5 WAF for NGINX
     {{</card>}}
-    {{<card title="Installing NGINX App Protect WAF" titleUrl="/nginx-app-protect-waf/v5/admin-guide/install/">}}
-      Install NGINX App Protect WAF in a virtual environment
+    {{<card title="Installing F5 WAF for NGINX" titleUrl="/nginx-app-protect-waf/v5/admin-guide/install/">}}
+      Install F5 WAF for NGINX in a virtual environment
     {{</card>}}
     {{<card title="Releases" titleUrl="/nginx-app-protect-waf/v5/releases/" icon="clock-alert">}}
-      Review the latest changes to NGINX App Protect WAF
+      Review the latest changes to F5 WAF for NGINX
     {{</card>}}
   {{</card-section>}}
 {{</card-layout>}}

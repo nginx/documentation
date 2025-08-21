@@ -1,5 +1,5 @@
 ---
-title: NGINX App Protect WAF 1.1
+title: F5 WAF for NGINX 1.1
 weight: 1040
 toc: true
 type: reference
@@ -9,7 +9,7 @@ nd-docs: DOCS-650
 
 June 9, 2020
 
-In this release support for NGINX App Protect WAF is added to NGINX Plus R22. There are no new NGINX App Protect WAF features in this release.
+In this release support for F5 WAF for NGINX is added to NGINX Plus R22. There are no new F5 WAF for NGINX features in this release.
 
 ### Supported Packages
 

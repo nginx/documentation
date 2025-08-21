@@ -7,7 +7,7 @@ ARG OS_VER="3.19"
 # Base image
 FROM alpine:${OS_VER}
 
-# Install NGINX OSS and NGINX App Protect WAF v5 module
+# Install NGINX OSS and F5 WAF for NGINX v5 module
 RUN --mount=type=secret,id=nginx-crt,dst=/etc/apk/cert.pem,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/apk/cert.key,mode=0644 \
     apk add openssl curl ca-certificates \

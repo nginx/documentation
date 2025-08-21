@@ -24,7 +24,7 @@ When using the Standard V2 plan, NGINXaaS is a consumption-based service, metere
 
 The SKU for the Standard V2 pricing plan is `standardv2_Monthly`.
 
-The Standard V2 plan allows for configuration of NGINX App Protect WAF and a higher number of listen ports.
+The Standard V2 plan allows for configuration of F5 WAF for NGINX and a higher number of listen ports.
 
 
 ### Basic plan

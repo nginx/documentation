@@ -1,5 +1,5 @@
 ---
-title: NGINX App Protect WAF 4.3
+title: F5 WAF for NGINX 4.3
 weight: 210
 toc: true
 type: reference
@@ -9,7 +9,7 @@ nd-docs: DOCS-1202
 
 May 2, 2023
 
-In this release, NGINX App Protect WAF supports NGINX Plus R29.
+In this release, F5 WAF for NGINX supports NGINX Plus R29.
 
 This release includes new signatures for [Anti Automation]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#anti-automation-bot-mitigation" >}}) (bot defense):
 
@@ -64,5 +64,5 @@ This release includes new signatures for [Anti Automation]({{< ref "/nap-waf/v4/
 
 ### **Important Note**
 
-This release introduces a change in the `json_log` field output for Violation details. Starting with NGINX App Protect WAF release 4.3, the Security Log's `json_log` field will include all available information regarding Violation details in JSON format. Refer [Security Log]({{< ref "/nap-waf/v4/logging-overview/security-log.md#available-security-log-attributes" >}}) document for more details.
+This release introduces a change in the `json_log` field output for Violation details. Starting with F5 WAF for NGINX release 4.3, the Security Log's `json_log` field will include all available information regarding Violation details in JSON format. Refer [Security Log]({{< ref "/nap-waf/v4/logging-overview/security-log.md#available-security-log-attributes" >}}) document for more details.
 

@@ -1,7 +1,7 @@
 ---
-description: Learn the types of logs available in F5 NGINX App Protect WAF v5.
+description: Learn the types of logs available in F5 F5 WAF for NGINX v5.
 nd-docs: DOCS-1374
-title: NGINX App Protect WAF Logs Overview
+title: F5 WAF for NGINX Logs Overview
 toc: true
 weight: 1010
 type:
@@ -10,11 +10,11 @@ type:
 
 ## Log Types
 
-Logs in F5 NGINX App Protect WAF v5 can be accessed and configured similarly to NGINX App Protect WAF, though there are some differences in the process.
+Logs in F5 F5 WAF for NGINX v5 can be accessed and configured similarly to F5 WAF for NGINX, though there are some differences in the process.
 
 ### NGINX Access Log
 
-NGINX App Protect WAF v5 can be configured to add additional data to NGINX [Access log]({{< ref "/nap-waf/v5/logging-overview/access-log" >}}).
+F5 WAF for NGINX v5 can be configured to add additional data to NGINX [Access log]({{< ref "/nap-waf/v5/logging-overview/access-log" >}}).
 
 ### Security Logs
 
@@ -40,7 +40,7 @@ For instance:
     ...
     location / {
 
-        # NGINX App Protect WAF
+        # F5 WAF for NGINX
         app_protect_enable on;
         app_protect_security_log_enable on;
         app_protect_security_log log_blocked syslog:server=log-server:514;

@@ -1,7 +1,7 @@
 ---
-description: Learn about the NGINX App Protect WAF Debug Log.
+description: Learn about the F5 WAF for NGINX Debug Log.
 nd-docs: DOCS-913
-title: NGINX App Protect WAF Debug Log
+title: F5 WAF for NGINX Debug Log
 toc: true
 weight: 540
 type:
@@ -12,7 +12,7 @@ type:
 
 Debug log settings determine the minimum log level and the internal App Protect components included in the log.
 
-`nginx.conf` does not refer to the NGINX App Protect WAF debug log configuration neither directly nor indirectly.
+`nginx.conf` does not refer to the F5 WAF for NGINX debug log configuration neither directly nor indirectly.
 
 ### Logger Configuration File
 

@@ -1,7 +1,7 @@
 ---
-description: Learn about the F5 NGINX App Protect WAF Troubleshooting Guide.
+description: Learn about the F5 F5 WAF for NGINX Troubleshooting Guide.
 nd-docs: DOCS-665
-title: NGINX App Protect WAF Troubleshooting Guide
+title: F5 WAF for NGINX Troubleshooting Guide
 toc: true
 weight: 400
 type:
@@ -12,7 +12,7 @@ type:
 
 This Troubleshooting Guide is intended to provide guidance to customers in the detection and correction of programming issues in F5 NGINX App Protect. It may also be useful to IT in resolving any installation or configuration problems. <br>
 
-Refer to the below table for any NGINX App Protect WAF installation or configuration known problems.
+Refer to the below table for any F5 WAF for NGINX installation or configuration known problems.
 
 ## Resolving Known Problems
 
@@ -32,7 +32,7 @@ Refer to the below table for any NGINX App Protect WAF installation or configura
 |Problem|Solution|
 |-------|--------|
 | NGINX is not running (ps -aux)<br><br> Reloading NGINX fails| Check the error log at `/var/log/nginx/error.log`<br>Fix the problem and re-run NGINX. |
-| NGINX App Protect WAF functionality is not as expected| NGINX App Protect WAF has several logs which can be used for troubleshooting. <br> Usually, it is best to look for any warning or error messages within the logs. <br> Refer to [Logs Overview]({{< ref "/nap-waf/v4/logging-overview/logs-overview.md">}}) |
+| F5 WAF for NGINX functionality is not as expected| F5 WAF for NGINX has several logs which can be used for troubleshooting. <br> Usually, it is best to look for any warning or error messages within the logs. <br> Refer to [Logs Overview]({{< ref "/nap-waf/v4/logging-overview/logs-overview.md">}}) |
 | `Too many open files` error message | Increase number of file descriptors. <br> For example: `worker_rlimit_nofile 65535;` in the main context of `nginx.conf` file. <br> Refer to [worker_rlimit_nofile directive](https://www.nginx.com/blog/using-nginx-plus-with-selinux/#Issue-4:-%3Ccode%3EToo-many-files-are-open%3C/code%3E-Error)|
 | `setrlimit ... failed (Permission denied)` error message | Increase the limit using the following command as the root user:<br> `setsebool -P httpd_setrlimit 1;` <br> Refer to [Issue 4: Too many files are open Error](https://www.nginx.com/blog/using-nginx-plus-with-selinux/#Issue-4:-%3Ccode%3EToo-many-files-are-open%3C/code%3E-Error) |
 | unknown directive `app_protect_xxx` error message  | App Protect module is not loaded. Add this line to the main (global) context of nginx.conf:<br>`load_module "/etc/nginx/modules/ngx_http_app_protect_module.so";`  |
@@ -110,4 +110,4 @@ In order to open a support ticket, collect the troubleshooting information in a 
 
  7. Attach `logs.tgz` to support ticket.
 
- 8. On the support ticket, in the NGINX App Protect WAF, set the release version according to the `opt/app_protect/RELEASE` file.
+ 8. On the support ticket, in the F5 WAF for NGINX, set the release version according to the `opt/app_protect/RELEASE` file.

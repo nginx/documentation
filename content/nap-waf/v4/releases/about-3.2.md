@@ -1,5 +1,5 @@
 ---
-title: NGINX App Protect WAF 3.2
+title: F5 WAF for NGINX 3.2
 weight: 780
 toc: true
 type: reference
@@ -11,7 +11,7 @@ April 28, 2021
 
 ### New Features
 
-In this release support for NGINX App Protect WAF is added to NGINX Plus R24, for which Debian 9 support has been deprecated.
+In this release support for F5 WAF for NGINX is added to NGINX Plus R24, for which Debian 9 support has been deprecated.
 
 - [Multiple Security Logs Support]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#app-protect-security-log" >}})
 - [Default Policy Location Update]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#basic-configuration-and-the-default-policy" >}})

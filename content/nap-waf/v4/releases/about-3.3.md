@@ -1,5 +1,5 @@
 ---
-title: NGINX App Protect WAF 3.3
+title: F5 WAF for NGINX 3.3
 weight: 770
 toc: true
 type: reference
@@ -49,10 +49,10 @@ July 7, 2021
 
 - 4214 Fixed - Cookie false positives blocked requests and false reporting
 - 4226 Fixed - Error in parsing OpenAPI file
-- 4318 Fixed - Incorrect Export for convert-policy - gwt-content-profiles are not exported in NGINX App Protect WAF policy converter anymore.
+- 4318 Fixed - Incorrect Export for convert-policy - gwt-content-profiles are not exported in F5 WAF for NGINX policy converter anymore.
 
 ### Known Issues
 
 #### 4347 - Missing dependency of python3 for Alpine Linux
 
-- Workaround - run `apk add python3` before installing NGINX App Protect WAF on Alpine Linux
+- Workaround - run `apk add python3` before installing F5 WAF for NGINX on Alpine Linux

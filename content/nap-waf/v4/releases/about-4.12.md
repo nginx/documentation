@@ -1,5 +1,5 @@
 ---
-title: NGINX App Protect WAF 4.12
+title: F5 WAF for NGINX 4.12
 weight: 110
 toc: true
 type: reference
@@ -14,7 +14,7 @@ November 19th, 2024
 ### New features
 
 - Added support for Amazon Linux 2023
-- NGINX App Protect WAF now supports NGINX Plus R33.
+- F5 WAF for NGINX now supports NGINX Plus R33.
 
 Please read the [subscription licenses]({{< ref "/solutions/about-subscription-licenses.md" >}}) topic for information about R33.
 

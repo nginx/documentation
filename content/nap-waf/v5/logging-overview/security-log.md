@@ -1,6 +1,6 @@
 ---
-description: Learn about the F5 NGINX App Protect WAF Security Log.
-title: NGINX App Protect WAF Security Log
+description: Learn about the F5 F5 WAF for NGINX Security Log.
+title: F5 WAF for NGINX Security Log
 toc: true
 weight: 520
 nd-docs: DOCS-1642
@@ -12,9 +12,9 @@ type:
 
 ### Security Logs Overview
 
-**Security logs** (also known as **Request logs** or **Traffic logs**) contain information on HTTP requests and responses, how F5 NGINX App Protect WAF processes them, and the final decision made based on the configured policy parameters. The policy configuration defines the information contained in the Security log, such as whether requests are passed, blocked or alerted, due to violations, attack signatures, and other criteria.
+**Security logs** (also known as **Request logs** or **Traffic logs**) contain information on HTTP requests and responses, how F5 F5 WAF for NGINX processes them, and the final decision made based on the configured policy parameters. The policy configuration defines the information contained in the Security log, such as whether requests are passed, blocked or alerted, due to violations, attack signatures, and other criteria.
 
-NGINX App Protect WAF uses its own logging mechanism for request logging rather than NGINX's access logging mechanism (which is NGINX's default logging mechanism).
+F5 WAF for NGINX uses its own logging mechanism for request logging rather than NGINX's access logging mechanism (which is NGINX's default logging mechanism).
 
 The Security log has the following properties:
 
@@ -218,7 +218,7 @@ Both `default` and `grpc` strings start like this:
 
 ### Syslog Transport
 
-The syslog transport is over TCP. It is currently unsecured, which means that SSL/TLS is not supported. We highly recommend that you do not send the logs directly to their remote destinations, but rather proxy them through a local syslog server residing on the same pod or same VM as NGINX App Protect WAF. The local syslog server will forward them over a secure channel to the remote destination. We recommend you use mutual authentication TLS (mTLS) to avoid any man-in-the-middle attacks attempting to hijack or alter the logs on their way.
+The syslog transport is over TCP. It is currently unsecured, which means that SSL/TLS is not supported. We highly recommend that you do not send the logs directly to their remote destinations, but rather proxy them through a local syslog server residing on the same pod or same VM as F5 WAF for NGINX. The local syslog server will forward them over a secure channel to the remote destination. We recommend you use mutual authentication TLS (mTLS) to avoid any man-in-the-middle attacks attempting to hijack or alter the logs on their way.
 
 It is *not* guaranteed that all requests that match the filters will indeed reach their destination especially if the system is overwhelmed by the incoming traffic. In this case some log records may be dropped.
 

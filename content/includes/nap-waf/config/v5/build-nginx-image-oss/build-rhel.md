@@ -10,7 +10,7 @@ FROM registry.access.redhat.com/ubi${UBI_VERSION}/ubi
 # Define the ARG again after FROM to use it in this stage
 ARG UBI_VERSION
 
-# Install NGINX OSS and NGINX App Protect WAF v5 module
+# Install NGINX OSS and F5 WAF for NGINX v5 module
 RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
     PKG_MANAGER=dnf; \

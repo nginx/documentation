@@ -1,5 +1,5 @@
 ---
-title: NGINX App Protect WAF 5.1
+title: F5 WAF for NGINX 5.1
 weight: 900
 toc: true
 type: reference
@@ -15,7 +15,7 @@ April 18, 2024
 
 ### New features
 
-In this release, F5 NGINX App Protect WAF supports NGINX Open Source 1.25.4 and NGINX Plus R31 P1.
+In this release, F5 F5 WAF for NGINX supports NGINX Open Source 1.25.4 and NGINX Plus R31 P1.
 
 - [Authorization Rules in URLs]({{< ref "nap-waf/v5/configuration-guide/configuration.md#authorization-rules-in-urls" >}})
 - New [JSON Web Token]({{< ref "nap-waf/v5/configuration-guide/configuration.md#json-web-token-protection" >}}) signature signing algorithm support for:

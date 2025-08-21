@@ -1,5 +1,5 @@
 ---
-title: NGINX App Protect WAF 4.14
+title: F5 WAF for NGINX 4.14
 weight: 90
 toc: true
 type: reference

@@ -1,5 +1,5 @@
 ---
-title: NGINX App Protect WAF 3.6
+title: F5 WAF for NGINX 3.6
 weight: 740
 toc: true
 type: reference
@@ -9,7 +9,7 @@ nd-docs: DOCS-663
 
 October 13, 2021
 
-In this release support for NGINX App Protect WAF is added to NGINX Plus R25.
+In this release support for F5 WAF for NGINX is added to NGINX Plus R25.
 
 ### New Features
 
@@ -38,7 +38,7 @@ In this release support for NGINX App Protect WAF is added to NGINX Plus R25.
 ### Resolved Issues
 
 - 4578 Fixed - Signature sets with *alarm* and *block* turned off still contribute to Violation Rating.
-- 4461 Fixed - When installing an older version of NGINX App Protect WAF in Debian/Ubuntu system, the installation fails due to unmet dependent packages.
+- 4461 Fixed - When installing an older version of F5 WAF for NGINX in Debian/Ubuntu system, the installation fails due to unmet dependent packages.
 - 4658 Fixed - Fixing issue with input normalization.
 - 4704 Fixed - The package for Red Hat Universal Base Image 7 (RHEL UBI7) (registry.redhat.io/ubi7/ubi) supports image tag [7.9-511](https://catalog.redhat.com/software/containers/ubi7/ubi/5c3592dcd70cc534b3a37814?tag=7.9-511&push_date=1633049208000). More recent base images are not yet supported.
 

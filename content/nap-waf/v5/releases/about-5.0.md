@@ -1,5 +1,5 @@
 ---
-title: NGINX App Protect WAF 5.0
+title: F5 WAF for NGINX 5.0
 weight: 1000
 toc: true
 type: reference
@@ -16,10 +16,10 @@ March 19, 2024
 ### New features
 
 {{< call-out "note" >}}
-These features are only available in F5 NGINX App Protect WAF version 5.0 and above. Attempting to install this update over an earlier version is not supported.
+These features are only available in F5 F5 WAF for NGINX version 5.0 and above. Attempting to install this update over an earlier version is not supported.
 {{< /call-out >}}
 
-In this release, NGINX App Protect WAF supports NGINX Open Source 1.25.4 and NGINX Plus R31 P1.
+In this release, F5 WAF for NGINX supports NGINX Open Source 1.25.4 and NGINX Plus R31 P1.
 
 - [New deployment types]({{< ref "/nap-waf/v5/admin-guide/overview.md#deployment-types" >}})
 - [Security policy and logging profile bundles]({{< ref "/nap-waf/v5/admin-guide/compiler.md" >}})

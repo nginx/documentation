@@ -1,5 +1,5 @@
 ---
-title: NGINX App Protect WAF 3.10
+title: F5 WAF for NGINX 3.10
 weight: 680
 toc: true
 type: reference
@@ -49,13 +49,13 @@ This release includes updated signatures for the [Anti Automation]({{< ref "/nap
 ### Resolved Issues
 
 - 5800 Fixed - Fixed warning message on Attack Signatures or Threat Campaigns removal on debian-based operating systems.
-- 5946 Fixed - When using custom security policy in transparent mode with bot defense enabled - NGINX App Protect WAF blocks requests without User-Agent.
-- 5947 Fixed - When using default security policy - NGINX App Protect WAF reports wrong [outcome_reason]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#available-security-log-attributes" >}})) when sending requests without User-Agent.
-- 5780 Fixed - Vulnerability in NGINX App Protect WAF allows a user in some particular circumstances to compose a Security Policy with arbitrary code which will be executed where it is deployed.
+- 5946 Fixed - When using custom security policy in transparent mode with bot defense enabled - F5 WAF for NGINX blocks requests without User-Agent.
+- 5947 Fixed - When using default security policy - F5 WAF for NGINX reports wrong [outcome_reason]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#available-security-log-attributes" >}})) when sending requests without User-Agent.
+- 5780 Fixed - Vulnerability in F5 WAF for NGINX allows a user in some particular circumstances to compose a Security Policy with arbitrary code which will be executed where it is deployed.
 - 6008 Fixed - Using an external reference `botDefenseReference` for the bot-defense configuration did not correctly take effect on the policy.
-- 6196 Fixed - Updated information on changing the [total_xml_memory]({{< ref "/nap-waf/v4/admin-guide/install.md#post-installation-checks" >}}) value in NGINX App Protect WAF Admin guide.
+- 6196 Fixed - Updated information on changing the [total_xml_memory]({{< ref "/nap-waf/v4/admin-guide/install.md#post-installation-checks" >}}) value in F5 WAF for NGINX Admin guide.
 
 ### **Important Note**
 
-When upgrading the NGINX App Protect WAF deployments on Virtual Machines (VM), where the upgrade includes a NGINX Plus release upgrade as well, customers might witness an error message about the upgrade failure.<br>
-Customers are advised to ignore this message and continue with the [upgrade procedure]({{< ref "/nap-waf/v4/admin-guide/install.md#upgrading-app-protect" >}}) as described in the NGINX App Protect WAF Admin guide.
+When upgrading the F5 WAF for NGINX deployments on Virtual Machines (VM), where the upgrade includes a NGINX Plus release upgrade as well, customers might witness an error message about the upgrade failure.<br>
+Customers are advised to ignore this message and continue with the [upgrade procedure]({{< ref "/nap-waf/v4/admin-guide/install.md#upgrading-app-protect" >}}) as described in the F5 WAF for NGINX Admin guide.
