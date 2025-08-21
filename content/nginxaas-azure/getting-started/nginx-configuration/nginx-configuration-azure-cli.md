@@ -163,7 +163,7 @@ az nginx deployment configuration analyze --deployment-name $DEPLOYMENT_NAME \
       'virtual-path':'/etc/nginx/conf.d/proxyprot.conf'}]"
    ```
 
-- Upload package with config files and protected files:
+- Upload a package with config files and protected files:
 
    ```bash
    az nginx deployment configuration create \
