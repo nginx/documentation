@@ -118,10 +118,13 @@ Update the interval value (for example, `30 DAY`) to control how many records to
 
 ```sql
 ALTER TABLE system.trace_log DELETE WHERE event_time < now() - INTERVAL 30 DAY;
-- **metric_log**:  The `system.metric_log` contains history of metrics values from tables system.metrics and system.events, periodically flushed to disk. It serves as a time-series table that periodically records historical data from system.metrics and system.events over time. This table acts like an essential tool providing historical tracking of captured metrics and event data, making it easier to debug performance trends, spikes, or irregularities. Too much of historical data in this table can occupy more memory and make the clickhouse run out of memory if not properly configured. 
+### metric_log
 
-Default settings for metric_log is as follows
-```shell
+Stores historical metrics from `system.metrics` and `system.events`. Useful for analyzing performance trends. Too much historical data can cause memory issues.
+
+Default settings:
+
+```xml
 <metric_log>
         <database>system</database>
         <table>metric_log</table>
