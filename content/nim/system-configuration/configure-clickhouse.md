@@ -112,10 +112,12 @@ If you observe that this table is utilizing more memory, you can configure the T
 ALTER TABLE system.trace_log
 MODIFY TTL event_time + INTERVAL 7 DAY;
 ```
-You can also relieve the memory if its running very low using the below command. Change the interval in the command to how many days of records you want to retain and delete the remaining records.
-```shell
+To free memory immediately:
+
+Update the interval value (for example, `30 DAY`) to control how many records to delete.
+
+```sql
 ALTER TABLE system.trace_log DELETE WHERE event_time < now() - INTERVAL 30 DAY;
-```
 - **metric_log**:  The `system.metric_log` contains history of metrics values from tables system.metrics and system.events, periodically flushed to disk. It serves as a time-series table that periodically records historical data from system.metrics and system.events over time. This table acts like an essential tool providing historical tracking of captured metrics and event data, making it easier to debug performance trends, spikes, or irregularities. Too much of historical data in this table can occupy more memory and make the clickhouse run out of memory if not properly configured. 
 
 Default settings for metric_log is as follows
