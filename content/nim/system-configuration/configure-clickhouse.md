@@ -107,7 +107,9 @@ FROM system.parts
 GROUP BY database, table
 ORDER BY sum(bytes_on_disk) DESC;
 ```
-If you observe that this table is utilizing more memory, you can configure the TTL to ensure that outdated records are removed after the specified TTL duration. The TTL configuration guarantees that your table does not expand excessively and automatically deletes old records following the TTL.
+To configure a time to live (TTL):
+
+Update the interval value (for example, `7 DAY`) to set how long records are kept and prevent the table from growing too large:
 
 ```sql
 ALTER TABLE system.trace_log
