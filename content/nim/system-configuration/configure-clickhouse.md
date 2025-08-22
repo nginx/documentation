@@ -162,7 +162,12 @@ Free memory immediately:
 ```sql
 ALTER TABLE system.metric_log DELETE WHERE event_time < now() - INTERVAL 30 DAY;
 
-- **text_log**: The text_log table contains general logging information, including warnings, errors, system messages, and query-processed events. It is a human-readable diagnostic log for operational debugging. The logging level which goes to this table can be limited to the text_log.level server setting as shown in the below xml snippet.
+### text_log
+
+Stores general logs such as warnings, errors, system messages, and query events. You can control what is logged using the `text_log.level` server setting.
+
+Default settings:
+
 ```shell
 <text_log>
         <database>system</database>
