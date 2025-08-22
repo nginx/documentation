@@ -179,23 +179,19 @@ Default settings:
    <flush_on_crash>false</flush_on_crash>
    <level>trace</level>
 </text_log>
-You can use the below command to view the current memory occupied by each table in the clickhouse database using the below command from clickhouse-client.
-```shell
+Check table memory use:
+
+```sql
 SELECT
-    database,
-    table,
-    formatReadableSize(sum(bytes_on_disk)) AS total_size
+   database,
+   table,
+   formatReadableSize(sum(bytes_on_disk)) AS total_size
 FROM system.parts
 GROUP BY database, table
 ORDER BY sum(bytes_on_disk) DESC;
-```
 
-If it is observed that this table is taking more memory, you can set the TTL(Time to Live) so that old records will be deleted after the TTL time. The TTL setting makes sure your table does not grow uncontrollably and delete the old records automatically after the TTL.
-```shell
+Set TTL:
+
+```sql
 ALTER TABLE system.text_log
 MODIFY TTL event_time + INTERVAL 7 DAY;
-```
-You can also relieve the memory immediately if its running very low using the below command. Change the interval in the command to how many days of records you want to retain and delete the remaining records.
-```shell
-ALTER TABLE system.text_log DELETE WHERE event_time < now() - INTERVAL 30 DAY;
-```
