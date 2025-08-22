@@ -154,11 +154,10 @@ Set TTL:
 ALTER TABLE system.metric_log
 MODIFY TTL event_time + INTERVAL 7 DAY;
 
-You can also relieve the memory immediately if its running very low using the below command. Change the interval in the command to how many days of records you want to retain and delete the remaining records.
-```shell
+Free memory immediately:
+
+```sql
 ALTER TABLE system.metric_log DELETE WHERE event_time < now() - INTERVAL 30 DAY;
-```
-Note: We also have a table called nms.metrics table which stores the metrics collected from the data plane in NIM. Make sure you don't delete the records accidentally from nms.metrics table as deleting from nms.metrics will loose the metrics from the data planes.
 
 - **text_log**: The text_log table contains general logging information, including warnings, errors, system messages, and query-processed events. It is a human-readable diagnostic log for operational debugging. The logging level which goes to this table can be limited to the text_log.level server setting as shown in the below xml snippet.
 ```shell
