@@ -132,9 +132,9 @@ The table below shows the estimated storage requirements for **NGINX OSS**, base
 |                       | 250       | 14               | 4 GiB                            |
 {{</bootstrap-table>}}
 
-## Clickhouse tuning {#clickhouse-tuning}
-The default configuration that comes with clickhouse works with NIM efficiently but if user makes any changes to the configuration and clickhouse is running out of memory, 
-follow the [Clickhouse configuration guide]({{< ref "/nim/system-configuration/configure-clickhouse.md" >}}) for more details.
+## ClickHouse tuning {#clickhouse-tuning}
+The default ClickHouse configuration works efficiently with NGINX Instance Manager.  
+If you change the configuration and ClickHouse runs out of memory, see the [ClickHouse configuration guide]({{< ref "/nim/system-configuration/configure-clickhouse.md#clickhouse-tuning" >}}) to adjust the settings.
 
 ## Firewall ports {#firewall}
 
