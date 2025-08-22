@@ -148,11 +148,11 @@ FROM system.parts
 GROUP BY database, table
 ORDER BY sum(bytes_on_disk) DESC;
 
-If it is observed that system.metric_log table is taking more memory, you can set the TTL(Time to Live) so that old records will be deleted after the TTL time. The TTL setting makes sure your table does not grow uncontrollably and delete the old records automatically after the TTL.
-```shell
+Set TTL:
+
+```sql
 ALTER TABLE system.metric_log
 MODIFY TTL event_time + INTERVAL 7 DAY;
-```
 
 You can also relieve the memory immediately if its running very low using the below command. Change the interval in the command to how many days of records you want to retain and delete the remaining records.
 ```shell
