@@ -168,18 +168,17 @@ Stores general logs such as warnings, errors, system messages, and query events.
 
 Default settings:
 
-```shell
+```xml
 <text_log>
-        <database>system</database>
-        <table>text_log</table>
-        <flush_interval_milliseconds>7500</flush_interval_milliseconds>
-        <max_size_rows>1048576</max_size_rows>
-        <reserved_size_rows>8192</reserved_size_rows>
-        <buffer_size_rows_flush_threshold>524288</buffer_size_rows_flush_threshold>
-        <flush_on_crash>false</flush_on_crash>
-        <level>trace</level>
-    </text_log>
-```
+   <database>system</database>
+   <table>text_log</table>
+   <flush_interval_milliseconds>7500</flush_interval_milliseconds>
+   <max_size_rows>1048576</max_size_rows>
+   <reserved_size_rows>8192</reserved_size_rows>
+   <buffer_size_rows_flush_threshold>524288</buffer_size_rows_flush_threshold>
+   <flush_on_crash>false</flush_on_crash>
+   <level>trace</level>
+</text_log>
 You can use the below command to view the current memory occupied by each table in the clickhouse database using the below command from clickhouse-client.
 ```shell
 SELECT
