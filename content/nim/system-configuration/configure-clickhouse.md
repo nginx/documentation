@@ -137,16 +137,16 @@ Default settings:
     </metric_log>
 ```
 
-You can use the below command to view the current memory occupied by each table in the clickhouse database using the below command from clickhouse-client.
-```shell
+Check table memory use:
+
+```sql
 SELECT
-    database,
-    table,
-    formatReadableSize(sum(bytes_on_disk)) AS total_size
+   database,
+   table,
+   formatReadableSize(sum(bytes_on_disk)) AS total_size
 FROM system.parts
 GROUP BY database, table
 ORDER BY sum(bytes_on_disk) DESC;
-```
 
 If it is observed that system.metric_log table is taking more memory, you can set the TTL(Time to Live) so that old records will be deleted after the TTL time. The TTL setting makes sure your table does not grow uncontrollably and delete the old records automatically after the TTL.
 ```shell
