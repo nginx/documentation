@@ -81,7 +81,8 @@ Records detailed execution traces and profiling data. Useful for query debugging
 You can change the settings for `trace_log` in `/etc/clickhouse-server/config.xml` under the `<trace_log>` section. The `flush_interval_milliseconds` setting controls how often data is flushed from memory to the table. The default is `7500`. Lowering this value can increase captured rows and use more memory.
 
 Default settings for trace_log is as follows
-```shell
+
+```xml
 <trace_log>
     <database>system</database>
     <table>trace_log</table>
