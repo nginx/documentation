@@ -95,8 +95,9 @@ Default settings for trace_log is as follows
 </trace_log>
 ```
 
-You can use the below command to view the current memory occupied by each table in the clickhouse database using the below command from clickhouse-client.
-```shell
+To check memory use by each table:
+
+```sql
 SELECT
     database,
     table,
