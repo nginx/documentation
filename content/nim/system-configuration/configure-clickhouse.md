@@ -107,6 +107,7 @@ FROM system.parts
 GROUP BY database, table
 ORDER BY sum(bytes_on_disk) DESC;
 ```
+
 To configure a time to live (TTL):
 
 Update the interval value (for example, `7 DAY`) to set how long records are kept and prevent the table from growing too large:
@@ -115,12 +116,15 @@ Update the interval value (for example, `7 DAY`) to set how long records are kep
 ALTER TABLE system.trace_log
 MODIFY TTL event_time + INTERVAL 7 DAY;
 ```
+
 To free memory immediately:
 
 Update the interval value (for example, `30 DAY`) to control how many records to delete.
 
 ```sql
 ALTER TABLE system.trace_log DELETE WHERE event_time < now() - INTERVAL 30 DAY;
+```
+
 ### metric_log
 
 Stores historical metrics from `system.metrics` and `system.events`. Useful for analyzing performance trends. Too much historical data can cause memory issues.
@@ -150,17 +154,20 @@ SELECT
 FROM system.parts
 GROUP BY database, table
 ORDER BY sum(bytes_on_disk) DESC;
+```
 
 Set TTL:
 
 ```sql
 ALTER TABLE system.metric_log
 MODIFY TTL event_time + INTERVAL 7 DAY;
+```
 
 Free memory immediately:
 
 ```sql
 ALTER TABLE system.metric_log DELETE WHERE event_time < now() - INTERVAL 30 DAY;
+```
 
 ### text_log
 
@@ -179,6 +186,8 @@ Default settings:
    <flush_on_crash>false</flush_on_crash>
    <level>trace</level>
 </text_log>
+```
+
 Check table memory use:
 
 ```sql
@@ -189,9 +198,17 @@ SELECT
 FROM system.parts
 GROUP BY database, table
 ORDER BY sum(bytes_on_disk) DESC;
+```
 
 Set TTL:
 
 ```sql
 ALTER TABLE system.text_log
 MODIFY TTL event_time + INTERVAL 7 DAY;
+```
+
+Free memory immediately:
+
+```sql
+ALTER TABLE system.text_log DELETE WHERE event_time < now() - INTERVAL 30 DAY;
+```
