@@ -38,6 +38,7 @@ NGINXaaS for Azure places restrictions on the instance’s filesystem; only a sp
 | /var/www/         |     ✔️      |      ✔️      |     ✔️      |      ❌      | Static files (e.g. index.html)   |
 | /tmp/             |     ✔️      |      ✔️      |     ✔️      |      ✔️      | Temporary files                  |
 | /var/cache/nginx/ |     ✔️      |      ✔️      |     ✔️      |      ✔️      | Cache data                       |
+| /etc/app_protect/ |     ✔️      |      ✔️      |     ✔️      |      ❌      | App Protect policies, logs       |
 
 {{</bootstrap-table>}}
 
@@ -47,6 +48,7 @@ NGINXaaS for Azure places restrictions on the instance’s filesystem; only a sp
 - `/opt/` (for application files)
 - `/srv/` (for application files)
 - `/var/www/` (for static files)
+- `/etc/app_protect/` (for App Protect policies and log configurations)
 
 Attempts to access other directories will be denied and result in a `5xx` error.
 
@@ -67,6 +69,9 @@ Attempts to access other directories will be denied and result in a `5xx` error.
 - **Temporary Files:**  
   Use `/tmp/` for temporary data that workers may need to create and modify.
 
+- **App Protect Policies:**  
+  Place in `/etc/app_protect/` for App Protect security policies and log configurations that workers need to read.
+
 ```plaintext
 /etc/nginx/         # Certificates, keys (master only)
 /opt/               # Application files (worker read-only)
@@ -74,6 +79,7 @@ Attempts to access other directories will be denied and result in a `5xx` error.
 /var/www/           # Static files (worker read-only)
 /var/cache/nginx/   # Cache data (worker read/write)
 /tmp/               # Temporary files (worker read/write)
+/etc/app_protect/   # App Protect policies (worker read-only)
 ```
 
 ## Disallowed configuration directives
