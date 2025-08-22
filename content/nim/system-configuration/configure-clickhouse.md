@@ -76,11 +76,15 @@ The default ClickHouse configuration works efficiently with NGINX Instance Manag
 
 ClickHouse has system tables that provide logs and telemetry for monitoring and debugging. These are not user activity logs but internal diagnostic logs. The following tables can cause memory issues if not managed:
 
+### trace_log
+
 Records detailed execution traces and profiling data. Useful for query debugging and performance analysis.
 
 You can change the settings for `trace_log` in `/etc/clickhouse-server/config.xml` under the `<trace_log>` section. The `flush_interval_milliseconds` setting controls how often data is flushed from memory to the table. The default is `7500`. Lowering this value can increase captured rows and use more memory.
 
-Default settings for trace_log is as follows
+### trace_log
+
+Default settings:
 
 ```xml
 <trace_log>
