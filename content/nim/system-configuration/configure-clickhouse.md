@@ -70,11 +70,11 @@ When metrics are turned off:
 - Metrics-related API endpoints return a 403 error.
 - All other NGINX Instance Manager features continue to work as expected.
 
-#### ClickHouse Tunings {#Clickhouse-tuning}
+## ClickHouse tuning {#clickhouse-tuning}
 
-The default configuration that comes with clickhouse works with NIM efficiently. But if you make any changes to the configuration and clickhouse is running out of memory, please follow below steps.
-There are system tables in ClickHouse that provide logging and telemetry mechanisms to monitor and debug the behavior of the database. These logs are not typical event logs that store user activity but are internal logs designed for diagnostics and telemetry related to system operations.
-Below is an explanation of three such tables which may cause an out of memory issue:
+The default ClickHouse configuration works efficiently with NGINX Instance Manager. If you change the configuration and ClickHouse runs out of memory, use the following steps.
+
+ClickHouse has system tables that provide logs and telemetry for monitoring and debugging. These are not user activity logs but internal diagnostic logs. The following tables can cause memory issues if not managed:
 
 - **trace_log**:  The trace_log table records detailed execution traces and profiling information. It is mainly used for query debugging and performance analysis in ClickHouse. The logs here provide insight into CPU usage and stack traces for specific parts of query execution. Stores stack traces collected by query profilers and inserted into this table. You can modify the settings for trace_log under <trace_log> section in /etc/clickhouse-server/config.xml file.  The flush_interval_milliseconds controls the Interval for flushing data from the buffer in memory to the table and the default value is 7500. Any value below default can cause the excessive debug rows captured in the table and eventually eat up more memory.
 
