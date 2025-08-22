@@ -36,6 +36,8 @@ NGINXaaS for Azure places restrictions on the instance’s filesystem; only a sp
 | /opt/             |     ✔️      |      ✔️      |     ✔️      |      ❌      | Application files                |
 | /srv/             |     ✔️      |      ✔️      |     ✔️      |      ❌      | Application files                |
 | /var/www/         |     ✔️      |      ✔️      |     ✔️      |      ❌      | Static files (e.g. index.html)   |
+| /tmp/             |     ✔️      |      ✔️      |     ✔️      |      ✔️      | Temporary files                  |
+| /var/cache/nginx/ |     ✔️      |      ✔️      |     ✔️      |      ✔️      | Cache data                       |
 
 {{</bootstrap-table>}}
 
@@ -46,25 +48,32 @@ NGINXaaS for Azure places restrictions on the instance’s filesystem; only a sp
 - `/srv/` (for application files)
 - `/var/www/` (for static files)
 
-
 Attempts to access other directories will be denied and result in a `5xx` error.
 
 ### Recommended Directory Layout
 
 - **Certificates/Keys:**  
-  Place in `/etc/nginx/` so only the master process can access them. This prevents worker processes from serving them to the internet.
+  Place in `/etc/nginx/` so only the master process can access them. This prevents worker processes from reading private keys and potentially serving them to the internet.
 
 - **Application Files:**  
-  Place in `/opt/` or `/srv/` for files needed by your application.
+  Place in `/opt/` or `/srv/` for files needed by your application that workers need to read but not modify.
 
 - **Static Files:**  
-  Place in `/var/www/` so workers can read (but not write) and serve them.
+  Place in `/var/www/` for content like HTML, CSS, and images that workers need to serve but should not modify.
+
+- **Cache Data:**  
+  Use `/var/cache/nginx/` for NGINX cache storage where workers need both read and write access.
+
+- **Temporary Files:**  
+  Use `/tmp/` for temporary data that workers may need to create and modify.
 
 ```plaintext
 /etc/nginx/         # Certificates, keys (master only)
-/opt/               # Application files
-/srv/               # Application files
-/var/www/           # Static files (worker read)
+/opt/               # Application files (worker read-only)
+/srv/               # Application files (worker read-only)
+/var/www/           # Static files (worker read-only)
+/var/cache/nginx/   # Cache data (worker read/write)
+/tmp/               # Temporary files (worker read/write)
 ```
 
 ## Disallowed configuration directives
