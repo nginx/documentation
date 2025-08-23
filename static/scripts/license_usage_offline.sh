@@ -183,7 +183,7 @@ if [[ "$USE_CASE" == "initial" ]]; then
   if [ "$HTTP_STATUS" -ne 202 ]; then
     echo -e "HTTP request failed with status code $HTTP_STATUS.\nResponse: $HTTP_BODY$" >&2
     if echo "$HTTP_BODY" | jq -r '.message' | grep -q "failed to register token. already registered"; then
-      echo -e "NGINX Instance Manager already registered and licensed.\nIf needed, terminate the current license manually in the NGINX Instance Manager UI and re-run the script with the correct license.\nhttps://docs.nginx.com/nginx-instance-manager/disconnected/add-license-disconnected-deployment/"
+      echo -e "NGINX Instance Manager is already licensed.\nTo use a different license, remove the current one in the NGINX Instance Manager UI, then re-run the script.\nSee https://docs.nginx.com/nginx-instance-manager/disconnected/add-license-disconnected-deployment/ for details."
     fi
     exit 1
   fi
