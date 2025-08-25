@@ -34,7 +34,7 @@ By default, the ServiceAccount has access to all Secret resources in the cluster
 ### Configure root filesystem as read-only
 
 {{< call-out "caution"  >}}
- This feature is compatible with [NGINX App Protect WAF v5]({{< ref "/nap-waf/v5/" >}}). It is not compatible with [NGINX App Protect WAF v4]({{< ref "/nap-waf/v4/" >}}) or [NGINX App Protect DoS]({{< ref "/nap-dos/" >}}).
+ This feature is compatible with [NGINX App Protect WAF v5]({{< ref "/nap-waf/v5/" >}}). It is not compatible with [NGINX App Protect WAF v4]({{< ref "/nap-waf/v4/" >}}) or [F5 DoS for NGINX]({{< ref "/nap-dos/" >}}).
 {{< /call-out >}}
 
 NGINX Ingress Controller is designed to be resilient against attacks in various ways, such as running the service as non-root to avoid changes to files. We recommend setting filesystems on all containers to read-only, this includes `nginx-ingress-controller`, though also includes `waf-enforcer` and `waf-config-mgr` when NGINX App Protect WAFv5 is in use.  This is so that the attack surface is further reduced by limiting changes to binaries and libraries.

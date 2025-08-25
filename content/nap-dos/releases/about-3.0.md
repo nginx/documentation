@@ -1,11 +1,11 @@
 ---
-title: NGINX App Protect DoS 3.0
+title: F5 DoS for NGINX 3.0
 toc: true
 weight: 150
 nd-docs: DOCS-946
 ---
 
-Here you can find the release information for F5 NGINX App Protect DoS v3.0. NGINX App Protect DoS provides behavioral protection against Denial of Service (DoS) for your web applications.
+Here you can find the release information for F5 F5 DoS for NGINX v3.0. F5 DoS for NGINX provides behavioral protection against Denial of Service (DoS) for your web applications.
 
 ## Release 3.0
 
@@ -15,7 +15,7 @@ September 21, 2022
 
 - L4 mitigation (with eBPF)
 - DoS Live Activity Monitoring with requests mitigation graphs
-- DoS Live Activity Monitoring support for multi-instances NGINX App Protect DoS setups (multi-VMs, multi-replicas)
+- DoS Live Activity Monitoring support for multi-instances F5 DoS for NGINX setups (multi-VMs, multi-replicas)
 
 ### Supported Packages
 
@@ -57,8 +57,8 @@ September 21, 2022
 ### Important Notes
 
 - L4 (eBPF) mitigation helps mitigate volumetric attacks by slowing down the opening of TCP connections by the attackers.
-It is recommended to deploy NGINX App Protect DoS with L4 (eBPF) mitigation at the perimeter network or behind L3 load balancer.
-Installing NGINX App Protect DoS with L4 (eBPF) mitigation behind L4/L7 load balancer may result in the load balancer's starvation during an attack.
+It is recommended to deploy F5 DoS for NGINX with L4 (eBPF) mitigation at the perimeter network or behind L3 load balancer.
+Installing F5 DoS for NGINX with L4 (eBPF) mitigation behind L4/L7 load balancer may result in the load balancer's starvation during an attack.
 
 - If NGINX App Protect WAF is installed, app protect should be disabled for the location of DoS Live Activity Monitoring API.
 

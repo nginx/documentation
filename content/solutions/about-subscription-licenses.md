@@ -207,9 +207,9 @@ For details on installing or upgrading NGINX App Protect WAF, visit the guide fo
 - [NGINX App Protect WAF v4 installation guide]({{< ref "/nap-waf/v4/admin-guide/install.md" >}})
 - [NGINX App Protect WAF v5 installation guide]({{< ref "/nap-waf/v5/admin-guide/install.md" >}})
 
-### NGINX App Protect DoS
+### F5 DoS for NGINX
 
-For detailed instructions on installing or upgrading NGINX App Protect DoS, visit the [NGINX App Protect DoS installation guide]({{< ref "/nap-dos/deployment-guide/learn-about-deployment.md" >}}).
+For detailed instructions on installing or upgrading F5 DoS for NGINX, visit the [F5 DoS for NGINX installation guide]({{< ref "/nap-dos/deployment-guide/learn-about-deployment.md" >}}).
 
 ## Watch instructional videos
 

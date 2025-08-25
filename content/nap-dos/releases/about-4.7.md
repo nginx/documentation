@@ -1,13 +1,13 @@
 ---
-title: NGINX App Protect DoS 4.7
+title: F5 DoS for NGINX 4.7
 toc: true
 weight: 50
 nd-docs: DOCS-1783
 ---
 
-Here you can find the release information for F5 NGINX App Protect DoS v4.7
+Here you can find the release information for F5 F5 DoS for NGINX v4.7
 
-NGINX App Protect DoS provides behavioral protection against Denial of Service (DoS) for your web applications.
+F5 DoS for NGINX provides behavioral protection against Denial of Service (DoS) for your web applications.
 
 ## Release 4.7
 

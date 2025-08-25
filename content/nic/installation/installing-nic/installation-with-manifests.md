@@ -71,14 +71,14 @@ To use App Protect DoS, install the App Protect DoS Arbitrator using the provide
 
 ### Create optional custom resources
 
-There are optional CRDs that are necessary if you want to use NGINX App Protect WAF or NGINX App Protect DoS.
+There are optional CRDs that are necessary if you want to use NGINX App Protect WAF or F5 DoS for NGINX.
 
 **NGINX App Protect WAF**:
 - `APPolicy`
 - `APLogConf`
 - `APUserSig`
 
-**NGINX App Protect DoS**:
+**F5 DoS for NGINX**:
 - `APDosPolicy`
 - `APDosLogConf`
 - `DosProtectedResource`
@@ -96,7 +96,7 @@ There are optional CRDs that are necessary if you want to use NGINX App Protect 
 kubectl apply -f https://raw.githubusercontent.com/nginx/kubernetes-ingress/v{{< nic-version >}}/deploy/crds-nap-waf.yaml
 ```
 
-**NGINX App Protect DoS**:
+**F5 DoS for NGINX**:
 
 ```shell
 kubectl apply -f https://raw.githubusercontent.com/nginx/kubernetes-ingress/v{{< nic-version >}}/deploy/crds-nap-dos.yaml
@@ -116,7 +116,7 @@ kubectl apply -f config/crd/bases/appprotect.f5.com_appolicies.yaml
 kubectl apply -f config/crd/bases/appprotect.f5.com_apusersigs.yaml
 ```
 
-**NGINX App Protect DoS**:
+**F5 DoS for NGINX**:
 
 ```shell
 kubectl apply -f config/crd/bases/appprotectdos.f5.com_apdoslogconfs.yaml
@@ -272,7 +272,7 @@ Connect to ports 80 and 443 using the IP address of any node in the cluster wher
     kubectl apply -f https://raw.githubusercontent.com/nginx/kubernetes-ingress/v{{< nic-version >}}/deploy/crds-nap-waf.yaml
     ```
 
-   3. Delete custom resource definitions for the NGINX App Protect DoS module:
+   3. Delete custom resource definitions for the F5 DoS for NGINX module:
    ```shell
     kubectl apply -f https://raw.githubusercontent.com/nginx/kubernetes-ingress/v{{< nic-version >}}/deploy/crds-nap-dos.yaml
     ```
@@ -290,7 +290,7 @@ kubectl delete -f config/crd/bases/crds.yaml
 kubectl apply -f config/crd/bases/crds-nap-waf.yaml
 ```
 
-3. Delete custom resource definitions for the NGINX App Protect DoS module:
+3. Delete custom resource definitions for the F5 DoS for NGINX module:
 ```shell
 kubectl apply -f config/crd/bases/crds-nap-dos.yaml
 ```

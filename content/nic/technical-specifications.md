@@ -74,12 +74,12 @@ NGINX Plus images are available through the F5 Container registry `private-regis
 |Debian-based image | ``debian:12-slim`` | NJS (NGINX JavaScript)<br>OpenTelemetry | `nginx-ic/nginx-plus-ingress:{{< nic-version >}}` | arm64<br>amd64 |
 |Debian-based image with NGINX App Protect WAF | ``debian:12-slim`` | NGINX App Protect WAF<br>NJS (NGINX JavaScript)<br>OpenTelemetry | `nginx-ic-nap/nginx-plus-ingress:{{< nic-version >}}` | amd64 |
 |Debian-based image with NGINX App Protect WAF v5 | ``debian:12-slim`` | NGINX App Protect WAF v5<br>NJS (NGINX JavaScript)<br>OpenTelemetry | `nginx-ic-nap-v5/nginx-plus-ingress:{{< nic-version >}}` | amd64 |
-|Debian-based image with NGINX App Protect DoS | ``debian:12-slim`` | NGINX App Protect DoS<br>NJS (NGINX JavaScript)<br>OpenTelemetry | `nginx-ic-dos/nginx-plus-ingress:{{< nic-version >}}` | amd64 |
+|Debian-based image with F5 DoS for NGINX | ``debian:12-slim`` | F5 DoS for NGINX<br>NJS (NGINX JavaScript)<br>OpenTelemetry | `nginx-ic-dos/nginx-plus-ingress:{{< nic-version >}}` | amd64 |
 |Debian-based image with NGINX App Protect WAF and DoS | ``debian:12-slim`` | NGINX App Protect WAF and DoS<br>NJS (NGINX JavaScript)<br>OpenTelemetry | `nginx-ic-nap-dos/nginx-plus-ingress:{{< nic-version >}}` | amd64 |
 |Ubi-based image | ``redhat/ubi9-minimal`` | NJS (NGINX JavaScript)<br>OpenTelemetry | `nginx-ic/nginx-plus-ingress:{{< nic-version >}}-ubi` | arm64<br>amd64 |
 |Ubi-based image with NGINX App Protect WAF | ``redhat/ubi9`` | NGINX App Protect WAF<br>NJS (NGINX JavaScript)<br>OpenTelemetry | `nginx-ic-nap/nginx-plus-ingress:{{< nic-version >}}-ubi` | amd64 |
 |Ubi-based image with NGINX App Protect WAF v5 | ``redhat/ubi9`` | NGINX App Protect WAF v5<br>NJS (NGINX JavaScript)<br>OpenTelemetry | `nginx-ic-nap-v5/nginx-plus-ingress:{{< nic-version >}}-ubi` | amd64 |
-|Ubi-based image with NGINX App Protect DoS | ``redhat/ubi8`` | NGINX App Protect DoS<br>NJS (NGINX JavaScript)<br>OpenTelemetry | `nginx-ic-dos/nginx-plus-ingress:{{< nic-version >}}-ubi` | amd64 |
+|Ubi-based image with F5 DoS for NGINX | ``redhat/ubi8`` | F5 DoS for NGINX<br>NJS (NGINX JavaScript)<br>OpenTelemetry | `nginx-ic-dos/nginx-plus-ingress:{{< nic-version >}}-ubi` | amd64 |
 |Ubi-based image with NGINX App Protect WAF and DoS | ``redhat/ubi8`` | NGINX App Protect WAF and DoS<br>NJS (NGINX JavaScript)<br>OpenTelemetry | `nginx-ic-nap-dos/nginx-plus-ingress:{{< nic-version >}}-ubi` | amd64 |
 {{% /bootstrap-table %}}
 

@@ -1,7 +1,7 @@
 ---
-description: Learn about the F5 NGINX App Protect DoS Security Log.
+description: Learn about the F5 F5 DoS for NGINX Security Log.
 nd-docs: DOCS-670
-title: NGINX App Protect DoS Security Log
+title: F5 DoS for NGINX Security Log
 toc: true
 weight: 140
 type:
@@ -24,7 +24,7 @@ The following table lists all the possible fields in the logs and their meaning.
 |----------------|--------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `date_time`  |  string  | the date and time of the event                                                                                                                                                                                                                                                                                                                                                                                 |
 | `product`   |  string  | always set to `app-protect-dos`                                                                                                                                                                                                                                                                                                                                                                                |
-| `product_version` | string  | F5 NGINX App Protect DoS version                                                                                                                                                                                                                                                                                                                                                                                  |
+| `product_version` | string  | F5 F5 DoS for NGINX version                                                                                                                                                                                                                                                                                                                                                                                  |
 | `unit_hostname` |  string  | host name of the app-protect-dos instance                                                                                                                                                                                                                                                                                                                                                                      |
 | `instance_id` |  string  | instance ID: container id from `/proc/self/cgroup`or hostname if container is is not available                                                                                                                                                                                                                                                                                                                 |
 | `vs_name` | string  | A unique identifier (representing the protected object's name) of the location in the `nginx.conf` file that this request is associated with. It contains the line number of the containing server block in `nginx.conf`, the server name, a numeric discriminator that distinguishes between multiple entries within the same server, and the location name. <br>For example: `34-mydomain.com:0-~/.*php(2)`. |
@@ -336,7 +336,7 @@ mitigated_connections_rps="0",
 ```
 
 ### 2. Bad actor detection/expiration
-Reports NGINX App Protect DoS decisions regarding bad actors.
+Reports F5 DoS for NGINX decisions regarding bad actors.
 
 a. Example: **Bad Actor Detection**
 
@@ -369,7 +369,7 @@ impact_rps="12",
 ```
 
 ### 3. Attack signatures
-Reports NGINX App Protect DoS decisions regarding signatures.<br>
+Reports F5 DoS for NGINX decisions regarding signatures.<br>
 
 Example: **Attack Signature Detected**
 

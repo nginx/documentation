@@ -56,7 +56,7 @@ Follow these steps to build the NGINX Controller Image with NGINX App Protect WA
     make <makefile target> PREFIX=<my-docker-registry>/nginx-plus-ingress TARGET=download
     ```
 
-    For example, to build a Debian-based image with NGINX Plus and NGINX App Protect DoS, run:
+    For example, to build a Debian-based image with NGINX Plus and F5 DoS for NGINX, run:
 
     ```shell
     make debian-image-dos-plus PREFIX=<my-docker-registry>/nginx-plus-ingress TARGET=download
@@ -72,9 +72,9 @@ Follow these steps to build the NGINX Controller Image with NGINX App Protect WA
 | Makefile Target           | Description                                                       | Compatible Systems  |
 |---------------------------|-------------------------------------------------------------------|---------------------|
 | **debian-image-nap-plus** | Builds a Debian-based image with NGINX Plus and the [NGINX App Protect WAF](/nginx-app-protect-waf/) module. | Debian  |
-| **debian-image-nap-dos-plus** | Builds a Debian-based image with NGINX Plus, [NGINX App Protect WAF](/nginx-app-protect-waf/), and [NGINX App Protect DoS](/nginx-app-protect-dos/) | Debian  |
+| **debian-image-nap-dos-plus** | Builds a Debian-based image with NGINX Plus, [NGINX App Protect WAF](/nginx-app-protect-waf/), and [F5 DoS for NGINX](/nginx-app-protect-dos/) | Debian  |
 | **ubi-image-nap-plus**    | Builds a UBI-based image with NGINX Plus and the [NGINX App Protect WAF](/nginx-app-protect-waf/) module. | OpenShift |
-| **ubi-image-nap-dos-plus** | Builds a UBNI-based image with NGINX Plus, [NGINX App Protect WAF](/nginx-app-protect-waf/), and [NGINX App Protect DoS](/nginx-app-protect-dos/). | OpenShift |
+| **ubi-image-nap-dos-plus** | Builds a UBNI-based image with NGINX Plus, [NGINX App Protect WAF](/nginx-app-protect-waf/), and [F5 DoS for NGINX](/nginx-app-protect-dos/). | OpenShift |
 {{</bootstrap-table>}}
 
 <br>
@@ -199,7 +199,7 @@ volumeMounts:
 
 ## Enable NGINX App Protect WAF module
 
-To enable the NGINX App Protect DoS Module:
+To enable the F5 DoS for NGINX Module:
 
 - Add the `enable-app-protect` [command-line argument]({{< ref "/nic/configuration/global-configuration/command-line-arguments.md#cmdoption-enable-app-protect" >}}) to your Deployment or DaemonSet file.
 
