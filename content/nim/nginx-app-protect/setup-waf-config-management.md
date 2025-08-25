@@ -242,6 +242,7 @@ error when creating the nginx repo retriever - NGINX repo certificates not found
 
 If needed, you can also [install the WAF compiler manually](#install-the-waf-compiler).
 
+
 ## Install or update the WAF compiler in a disconnected environment
 
 To install the WAF compiler on a system without internet access, complete these steps:
@@ -249,12 +250,14 @@ To install the WAF compiler on a system without internet access, complete these 
 - **Step 1:** Generate the WAF compiler package on a system that has internet access.  
 - **Step 2:** Move the generated package to the offline target system and install it.
 
+
 Note : Version of NAP compiler can be referred from the table at the top of this page. 
 Current latest version 5.498.0 at the point of writing this document is used in below commands.
 
 {{<tabs name="WAF compiler installation in offline environment">}}
 
 {{%tab name="Ubuntu"%}}
+
 
 ### Install on Ubuntu 24.04, 22.04
 
@@ -278,10 +281,12 @@ sudo tee /etc/apt/sources.list.d/nms.list
 sudo wget -q -O /etc/apt/apt.conf.d/90pkgs-nginx https://cs.nginx.com/static/files/90pkgs-nginx
 mkdir -p compiler && cd compiler
 sudo apt-get update
+
 sudo apt-get download nms-nap-compiler-v5.498.0
 cd ../
 mkdir -p compiler/compiler.deps
 sudo apt-get install --download-only --reinstall --yes --print-uris nms-nap-compiler-v5.498.0 | grep ^\' | cut -d\' -f2 | xargs -n 1 wget -P ./compiler/compiler.deps
+
 tar -czvf compiler.tar.gz compiler/
 ```
 
@@ -322,7 +327,9 @@ sudo tee /etc/apt/sources.list.d/nms.list
 sudo wget -q -O /etc/apt/apt.conf.d/90pkgs-nginx https://cs.nginx.com/static/files/90pkgs-nginx
 mkdir -p compiler && cd compiler
 sudo apt-get update
+
 sudo apt-get download nms-nap-compiler-v5.498.0
+
 cd ../
 mkdir -p compiler/compiler.deps
 sudo apt-get install --download-only --reinstall --yes --print-uris nms-nap-compiler-v5.498.0 | grep ^\' | cut -d\' -f2 | xargs -n 1 wget -P ./compiler/compiler.deps
@@ -341,6 +348,7 @@ sudo dpkg -i ./compiler/*.deb
 ```
 
 {{%/tab%}}
+
 
 {{%tab name="RHEL9, Oracle-9 "%}}
 
@@ -361,6 +369,7 @@ sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/nms.repo
 sudo yum-config-manager --disable rhel-9-appstream-rhui-rpms
 sudo yum update -y
 sudo mkdir -p nms-nap-compiler
+
 sudo yumdownloader --resolve --destdir=nms-nap-compiler nms-nap-compiler-v5.498.0
 tar -czvf compiler.tar.gz nms-nap-compiler/
 ```
@@ -377,6 +386,7 @@ sudo dnf install *.rpm --disablerepo=*
 ```
 
 {{%/tab%}}
+
 
 {{%tab name="Redhat-8, Oracle-8"%}}
 
@@ -403,6 +413,7 @@ EOF
 
 sudo yum update -y
 sudo mkdir -p nms-nap-compiler
+
 sudo yumdownloader --resolve --destdir=nms-nap-compiler nms-nap-compiler-v5.498.0
 tar -czvf compiler.tar.gz nms-nap-compiler/
 ```
