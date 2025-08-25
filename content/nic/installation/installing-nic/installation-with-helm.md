@@ -20,6 +20,8 @@ The [Helm chart parameters](#helm-chart-parameters) lists the parameters that ca
 - A [Kubernetes Version Supported by NGINX Ingress Controller]({{< ref "/nic/technical-specifications.md#supported-kubernetes-versions" >}})
 - Helm 3.0+.
 
+{{< call-out "note" >}} Helm version 3.18.5 has a [bug that returns an error when charts are referenced on a remote https url](https://github.com/helm/helm/issues/31136). Use versions up to 3.18.4 until they fix it. {{< /call-out >}}
+
 If you would like to use NGINX Plus, there are few options: you will need to update the `controller.image.repository` field of `values-plus.yaml` accordingly.
 
 - [Download NGINX Ingress Controller from the F5 Registry]({{< ref "/nic/installation/nic-images/registry-download.md" >}})
