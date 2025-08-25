@@ -63,7 +63,7 @@ Follow the steps below to configure Squid with basic authentication.
 1. Restart the Squid service to apply the changes:
 
    ```sh
-   sudo systemctl restart squid
+   sudo systemctl reload squid
    ```
 
 ---
