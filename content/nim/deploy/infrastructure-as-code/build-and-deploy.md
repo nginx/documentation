@@ -18,7 +18,7 @@ The deployment process has two stages:
 - Generate an image using Packer.
 - Deploy the image using Terraform.
 
-{{< call-out "tip" "Open-Source Project on GitHub" "fa-brands fa-github" >}}
+{{< call-out "tip" "Open-Source Project on GitHub" >}}
 The steps in this guide refer to the [NGINX Instance Manager Infrastructure as Code (IAC)](https://github.com/nginxinc/nginx-management-suite-iac) project on GitHub.
 {{< /call-out >}}
 

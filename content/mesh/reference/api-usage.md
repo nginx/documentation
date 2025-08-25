@@ -22,7 +22,7 @@ kubectl edit meshconfig nginx-mesh-config -n nginx-mesh
 
 This will open your default text editor to make changes. To see the configurable fields, download the custom resource definition:
 
-{{< fa "download" >}} [`meshconfig-schema.yaml`](https://github.com/nginxinc/nginx-service-mesh/blob/main/helm-chart/crds/meshconfig.yaml)
+{{< icon "download" >}} [`meshconfig-schema.yaml`](https://github.com/nginxinc/nginx-service-mesh/blob/main/helm-chart/crds/meshconfig.yaml)
 
 {{< call-out "warning" >}}
 If the `meshconfig` resource is deleted, or the `spec.meshConfigClassName` field is removed or changed, then the global mesh configuration cannot be updated, and unexpected behavior may occur.

@@ -27,8 +27,6 @@ This command runs the NGINX Gateway Fabric control plane.
 
 ### Flags
 
-{{< bootstrap-table "table table-bordered table-striped table-responsive" >}}
-
 | Name                                | Type     | Description                                                                                                                                                                                                                                                                                                                                                                              |
 |-------------------------------------|----------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | _gateway-ctlr-name_                 | _string_ | The name of the Gateway controller. The controller name must be in the form: `DOMAIN/PATH`. The controller's domain is `gateway.nginx.org`.                                                                                                                                                                                                                                              |
@@ -59,10 +57,6 @@ This command runs the NGINX Gateway Fabric control plane.
 | _nginx-one-telemetry-endpoint-port_ | _int_ | The endpoint port that the NGINX One Console telemetry metrics will be sent to. |
 | _nginx-one-tls-skip-verify_ | _bool_ | Skip TLS verification for NGINX One Console connections. |
 
-{{% /bootstrap-table %}}
-
----
-
 ## Sleep
 
 This command sleeps for specified duration, then exits.
@@ -73,10 +67,6 @@ _Usage_:
   gateway sleep [flags]
 ```
 
-{{< bootstrap-table "table table-bordered table-striped table-responsive" >}}
-
 | Name     | Type            | Description                                                                                                                   |
 | -------- | --------------- | ----------------------------------------------------------------------------------------------------------------------------- |
 | duration | `time.Duration` | Set the duration of sleep. Must be parsable by [`time.ParseDuration`](https://pkg.go.dev/time#ParseDuration). (default `30s`) |
-
-{{% /bootstrap-table %}}

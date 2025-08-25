@@ -46,7 +46,6 @@ For NGINX Agent to work properly with an NGINX Plus instance, the API needs to b
 NGINX Agent allows a gRPC connected control system to register a listener for a specific event. The control mechanism is then invoked when NGINX Agent sends an associated system signal. The source of a notification can be either the NGINX instance or NGINX Agent itself. Here's a list of currently supported events:
 
 
-{{<bootstrap-table "table table-striped table-bordered">}}
 | Event                            | Description                                  |
 | -------------------------------- | -------------------------------------------- |
 | AGENT_START_MESSAGE              | Agent process started                        |
@@ -61,7 +60,6 @@ NGINX Agent allows a gRPC connected control system to register a listener for a 
 | CONFIG_APPLY_FAILURE_MESSAGE     | Failed to apply new NGINX configuration      |
 | CONFIG_ROLLBACK_SUCCESS_MESSAGE  | Successfully rolled back NGINX configuration |
 | CONFIG_ROLLBACK_FAILURE_MESSAGE  | Failed to roll back NGINX configuration      |
-{{</bootstrap-table>}}
 
 
 
