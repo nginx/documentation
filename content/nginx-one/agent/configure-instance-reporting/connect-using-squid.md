@@ -15,102 +15,14 @@ Ensure you have the following:
 - [NGINX Agent is installed]({{< ref "nginx-one/agent/install-upgrade/" >}})
 - Access to the NGINX One console
 
+## Install Squid
+
+Follow the instructions in the [Squid website](https://wiki.squid-cache.org/SquidFaq/BinaryPackages) to install Squid on your server.
+
+
 ## Configure Squid
 
-### Install Squid
-
-{{<tabs name="Install_Squid">}}
-{{%tab name="Mac OS"%}}
-
-1. Open a terminal window.
-1. Install Squid using Homebrew:
-
-   ```sh
-   brew install squid
-   ```
-1. Start the Squid service:
-
-   ```sh
-   brew services start squid
-   ```
----
-
-{{%/tab%}}
-{{%tab name="Ubuntu (including running it under WSL)"%}}
-
-Run the following commands as a superuser:
-
-1. Open a terminal window.
-1. Update the package list:
-   ```sh
-   sudo apt-get update
-   ```
-1. Install Squid:
-   ```sh
-   sudo apt-get install squid -y
-   ```
-1. Start the Squid service:
-   ```sh
-   sudo systemctl start squid
-   ```
----
-
-{{%/tab%}}
-{{</tabs>}}
-
-
-### Configure Squid
-
 Follow the steps below to configure Squid with basic authentication.
-
-{{<tabs name="Configure_Squid">}}
-{{%tab name="Mac OS"%}}
-
-1. Set up an HTTP Proxy with Basic Authentication. This setup requires users to provide a username and password. Run the
-   following commands as a superuser:
-
-   ```sh
-   htpasswd -c /usr/local/squid/passwd your_user # Create a user
-   ```
-
-   - You will be prompted to enter and confirm a password for `your_user`.
-
-1. Locate the Squid configuration file:
-   - Run `squid -v` to find the configuration file path. Look for the `--sysconfdir` flag (usually `/usr/local/etc/squid/squid.conf` or `/opt/homebrew/etc/squid.conf` on Mac OS).
-
-1. Find the path to your basic_ncsa_auth program:
-   - On Mac OS, it is usually be located at `/opt/homebrew/Cellar/squid/7.1/libexec/basic_ncsa_auth`. You can get the version number from the `squid -v` command output.
-
-1. Open the Squid configuration file with a text editor (you might need superuser privileges):
-
-   ```sh
-   sudo nano <path to config file>/squid.conf
-   ```
-
-1. Add or modify the following lines (usually at the top of the file) to configure the proxy settings:
-
-   ```conf
-   auth_param basic program <path_to_basic_ncsa_auth>/basic_ncsa_auth /usr/local/etc/squid/passwd auth_param basic realm Squid proxy-caching web server acl authenticated proxy_auth REQUIRED
-   ```
-
-1. In the same configuration file, find the line that starts with `http_access deny all` and add the `http_access allow authenticated` line above it. It should look like this:
-
-   ```conf
-   http_access allow authenticated
-   http_access deny all
-   ```
-
-1. Save the changes and exit the text editor.
-1. Restart the Squid service to apply the changes:
-
-   ```sh
-   brew services restart squid
-   ```
-
----
-
-{{%/tab%}}
-{{%tab name="Ubuntu"%}}
 
 1. Set up an HTTP Proxy with Basic Authentication. This setup requires users to provide a username and password. Run the
    following commands as a superuser:
@@ -128,10 +40,10 @@ Follow the steps below to configure Squid with basic authentication.
 1. Find the path to your basic_ncsa_auth program:
    - On Ubuntu, it is usually located at `/usr/lib/squid/basic_ncsa_auth`.
 
-1. Open the Squid configuration file with a text editor (you might need superuser privileges):
+1. Open the Squid configuration file with your favorite text editor (you might need superuser privileges):
 
    ```sh
-   sudo nano <path to config file>/squid.conf
+   vim <path to config file>/squid.conf
    ```
 
 1. Add or modify the following lines (usually at the top of the file) to configure the proxy settings:
@@ -155,9 +67,6 @@ Follow the steps below to configure Squid with basic authentication.
    ```
 
 ---
-
-{{%/tab%}}
-{{</tabs>}}
 
 ## NGINX Agent Proxy configuration
 
