@@ -33,6 +33,9 @@ Follow the steps below to configure Squid with basic authentication.
 1. Add the following lines to configure the proxy settings:
 
    ```conf
+   # Standard HTTP port for the proxy.
+   http_port 3128
+   
    # Define an ACL for allowing access from the agent's IP address
    acl agent_ip src <AGENT_IP_ADDRESS>
 
