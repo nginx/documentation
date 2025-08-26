@@ -114,8 +114,8 @@ If your Squid proxy requires authentication, you can specify the username and pa
    proxy:
       url: "http://proxy.example.com:3128"
       auth_method: "basic"
-         username: "user"
-         password: "pass"
+      username: "user"
+      password: "pass"
    ```
 
 1. Reload NGINX Agent to apply the changes:
