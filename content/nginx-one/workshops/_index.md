@@ -8,27 +8,33 @@ nd-content-type: landing-page
 nd-product: NGINX One
 ---
 
+Welcome to the NGINX One Console workshops.
+
+These labs give you hands-on experience using NGINX One Console to connect, manage, and scale your NGINX fleets.  
+
+We recommend starting with Lab 1 and Lab 2. Lab 2 sets up the workshop environment with Docker, which you’ll need for the later labs.
+
 {{<card-layout>}}
   {{<card-section showAsCards="true">}}
 
-    {{<card title="Monitoring overview" titleUrl="/solutions/monitoring/overview/" >}}
-      Learn what metrics mean in NGINX, why monitoring matters, and how NGINX Open Source and NGINX Plus differ in their observability features.
+    {{<card title="Lab 1: Get started with NGINX One Console" titleUrl="/nginx-one/workshops/lab1/getting-started-with-nginx-one-console/" icon="flask-conical" >}}
+      Log in, set up access, and register instances. Learn the basics of managing fleets in NGINX One Console.
     {{</card>}}
 
-    {{<card title="Compare NGINX Open Source and NGINX Plus metrics" titleUrl="/solutions/monitoring/compare-metrics/" >}}
-      See a side-by-side comparison table of available metrics in NGINX Open Source vs NGINX Plus, with quick links into setup instructions.
+    {{<card title="Lab 2: Run workshop components with Docker" titleUrl="/nginx-one/workshops/lab2/run-workshop-components-with-docker/" icon="flask-conical" >}}
+      Use Docker to spin up the full workshop locally for a clean and repeatable environment.
     {{</card>}}
 
-    {{<card title="Configure metrics in NGINX Open Source" titleUrl="/solutions/monitoring/configure-open-source/" >}}
-      Step-by-step instructions for enabling the <code>stub_status</code> module in NGINX Open Source, including configuration snippets and sample outputs.
+    {{<card title="Lab 3: Explore NGINX One Console and features" titleUrl="/nginx-one/workshops/lab3/explore-nginx-one-console-features/" icon="flask-conical" >}}
+      Take a guided tour of NGINX One Console. Explore dashboards, alerts, and insights while trying out key features.
     {{</card>}}
 
-    {{<card title="Configure metrics in NGINX Plus" titleUrl="/solutions/monitoring/configure-plus/" >}}
-      Learn how to enable and use the NGINX Plus API for detailed monitoring and integrations.
+    {{<card title="Lab 4: Config Sync Groups" titleUrl="/nginx-one/workshops/lab4/config-sync-groups/" icon="flask-conical" >}}
+      Create and manage Config Sync Groups to apply consistent changes across all your NGINX instances.
     {{</card>}}
 
-    {{<card title="Integrate with observability tools" titleUrl="/solutions/monitoring/integrations/" >}}
-      Connect NGINX metrics to Prometheus, Grafana, NGINX Amplify, Datadog, and other observability platforms.
+    {{<card title="Lab 5: Upgrade NGINX Plus to the latest version" titleUrl="/nginx-one/workshops/lab5/upgrade-nginx-plus-to-latest-version/" icon="flask-conical" >}}
+      Plan and upgrade NGINX Plus with NGINX One Console workflows, keeping downtime to a minimum.
     {{</card>}}
 
   {{</card-section>}}
