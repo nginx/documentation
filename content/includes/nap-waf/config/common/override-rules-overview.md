@@ -97,7 +97,7 @@ The above "override_rules_example" policy contains five override rules:
 These five rules demonstrate how the override rules feature allows for customization and the ability to modify specific aspects of the original policy based on predefined conditions.
 
 
-{{< note >}}
+{{< call-out "note" >}}
 - By default, the actionType field is configured to "extend-policy".
 - External references are supported for any policy reference.
-{{< /note >}}
+{{< /call-out >}}

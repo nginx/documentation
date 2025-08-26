@@ -5,10 +5,10 @@ weight: 700
 nd-docs: DOCS-1725
 ---
 
-{{< note >}}
+{{< call-out "note" >}}
 This howto uses the 8.19.1 version; other versions may have different
 dependencies and options.
-{{< /note >}}
+{{< /call-out >}}
 
 To run [Atlassian Jira](https://www.atlassian.com/software/jira) using Unit:
 
@@ -153,10 +153,10 @@ To run [Atlassian Jira](https://www.atlassian.com/software/jira) using Unit:
    [Java application options]({{< relref "/unit/configuration.md#configuration-java" >}})
    for details.
 
-   {{< note >}}
+   {{< call-out "note" >}}
    You can't update the configuration in Unit after startup due to Jira's
    own restrictions.
-   {{< /note >}}
+   {{< /call-out >}}
 
 7. Upload the updated configuration.
 

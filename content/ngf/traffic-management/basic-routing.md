@@ -21,7 +21,21 @@ You can route traffic to your Kubernetes applications using the Gateway API and 
 
 The application we are going to use in this guide is a simple **coffee** application comprised of one service and two pods:
 
-{{<img src="ngf/img/route-all-traffic-app.png" alt="This image shows a single 'coffee' Service connecting to two 'coffee' Pods.">}}
+```mermaid
+graph TB
+  subgraph cluster [Kubernetes Cluster]
+    style cluster fill:#FFFFFF,stroke:#000000
+    svc[Service<br>coffee]
+    pod1[Pod<br>coffee]
+    pod2[Pod<br>coffee]
+  end
+
+  svc --> pod1 & pod2
+
+  class pod1,pod2,svc appNode
+  classDef appNode fill:#edbd8c,stroke:#D9822B
+
+```
 
 Using this architecture, the **coffee** application is not accessible outside the cluster. We want to expose this application on the hostname "cafe.example.com" so that clients outside the cluster can access it.
 
@@ -96,7 +110,49 @@ service/coffee       ClusterIP   198.51.100.1     <none>        80/TCP    77s
 
 To route traffic to the **coffee** application, we will create a Gateway and HTTPRoute. The following diagram shows the configuration we are creating in the next step:
 
-{{<img src="ngf/img/route-all-traffic-config.png" alt="">}}
+```mermaid
+graph LR
+    subgraph config [Namespace default]
+      subgraph padding [" "]
+          direction LR
+          style config fill:#FFFFFF,stroke:#000000
+          subgraph gw[Gateway cafe]
+              subgraph gwPadding [" "]
+                  gwContents[HTTP/80]
+              end
+          end
+          subgraph hr[HTTPRoute coffee]
+              subgraph hrPadding [" "]
+                  hrContents[cafe.example.com]
+                  subgraph describeMatchAll [Match all<br>traffic]
+                      subgraph describeMatchPadding [" "]
+                          matchAll[Host: *<br>Path: *]
+                      end
+                  end
+                  subgraph describeService [Group matching<br>pods within a Service]
+                      subgraph describePadding [" "]
+                          coffeeSvc[Service<br>coffee]
+                      end
+                  end
+              end
+          end
+      end
+    end
+
+  gwContents --> hrContents --> matchAll --> coffeeSvc
+  class padding,gwPadding,hrPadding,describeMatchAll,describeService,describePadding,describeMatchPadding noBorder
+  class gw gateway
+  class hr httpRoute
+  class matchAll,hrContents,coffeeSvc appDevNode
+  class gwContents clusterOppNode
+
+  classDef noBorder stroke:none,fill:none,text-align:center
+  classDef default fill:#FFFFFF,stroke:#000000
+  classDef gateway fill:#FFFFFF,stroke:#blue,stroke-dasharray: 3 3,text-align:center
+  classDef httpRoute fill:#FFFFFF,stroke:#D9822B,stroke-dasharray: 3 3,text-align:center
+  classDef appDevNode fill:#edbd8c,stroke:#D9822B
+  classDef clusterOppNode fill:lightblue,stroke:darkblue
+```
 
 We need a Gateway to create an entry point for HTTP traffic coming into the cluster. The **cafe** Gateway we are going to create will open an entry point to the cluster on port 80 for HTTP traffic.
 
@@ -104,13 +160,47 @@ To route HTTP traffic from the Gateway to the **coffee** service, we need to cre
 
 Once NGINX Gateway Fabric processes the **cafe** Gateway and **coffee** HTTPRoute, it will configure a data plane (NGINX) to route all HTTP requests sent to "cafe.example.com" to the pods that the **coffee** service targets:
 
-{{<img src="ngf/img/route-all-traffic-flow.png" alt="Traffic Flow">}}
+```mermaid
+graph LR
+  style cluster fill:#FFFFFF,stroke:#000000
+  clients[Clients]
+  ngfSvc["Public IP Address for<br>cafe.example.com"]
+    subgraph cluster [Kubernetes Cluster]
+        
+        subgraph appNs [Namespace<br>default]
+            subgraph nsPadding [" "]
+            nginxPod[Pod NGINX]
+                coffeePod1[Pod coffee]
+                coffeePod2[Pod coffee]
+            end
+        end
+    end
+
+  ngfSvc --> nginxPod
+  nginxPod --> coffeePod1 & coffeePod2
+  clients --> ngfSvc
+
+  class clusterPadding,nsPadding,clusterPadding2 noBorder
+  class gwNS,appNs namespace
+  class nginxPod nginxNode
+  class coffeePod1,coffeePod2 coffeeNode
+  class ngfSvc svc
+  class clients clientNode
+
+  classDef noBorder stroke:none,fill:none
+  classDef default fill:#FFFFFF,stroke:#000000
+  classDef namespace fill:#FFFFFF,stroke:#036ffc,stroke-dasharray: 5 5,text-align:center
+  classDef nginxNode fill:#b4e0ad,stroke:#2AA317
+  classDef svc fill:lightblue,stroke:darkblue
+  classDef coffeeNode fill:#edbd8c,stroke:#D9822B
+  classDef clientNode fill:#D3D3D3
+```
 
 The **coffee** service is omitted from the diagram above because the NGINX Pod routes directly to the pods that the **coffee** service targets.
 
-{{< note >}}In the diagrams above, all resources that are the responsibility of the cluster operator are shown in blue. The orange resources are the responsibility of the application developers.
+{{< call-out "note" >}}In the diagrams above, all resources that are the responsibility of the cluster operator are shown in blue. The orange resources are the responsibility of the application developers.
 
-See the [roles and personas](https://gateway-api.sigs.k8s.io/concepts/roles-and-personas/#roles-and-personas_1) Gateway API document for more information on these roles.{{< /note >}}
+See the [roles and personas](https://gateway-api.sigs.k8s.io/concepts/roles-and-personas/#roles-and-personas_1) Gateway API document for more information on these roles.{{< /call-out >}}
 
 ---
 
@@ -142,11 +232,11 @@ Save the public IP address and port of the NGINX Service into shell variables:
  GW_PORT=<port number>
  ```
 
-{{< note >}}
+{{< call-out "note" >}}
 
 In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the gateway will forward for.
 
-{{< /note >}}
+{{< /call-out >}}
 
 This Gateway is associated with NGINX Gateway Fabric through the **gatewayClassName** field. The default installation of NGINX Gateway Fabric creates a GatewayClass with the name **nginx**. NGINX Gateway Fabric will only configure Gateways with a **gatewayClassName** of **nginx** unless you change the name via the `--gatewayclass` [command-line flag]({{< ref "/ngf/reference/cli-help.md#controller" >}}).
 
@@ -191,7 +281,7 @@ The [**rules**](https://gateway-api.sigs.k8s.io/references/spec/#gateway.network
 
 To test the configuration, we will send a request to the public IP and port of the NGINX Service that you saved earlier after creating the Gateway resource and verify that the response comes from one of the **coffee** pods.
 
-{{< note >}}Your clients should be able to resolve the domain name "cafe.example.com" to the public IP of the NGINX Service. In this guide we will simulate that using curl's `--resolve` option. {{< /note >}}
+{{< call-out "note" >}}Your clients should be able to resolve the domain name "cafe.example.com" to the public IP of the NGINX Service. In this guide we will simulate that using curl's `--resolve` option. {{< /call-out >}}
 
 
 First, let's send a request to the path "/":
@@ -378,7 +468,7 @@ If you have any issues while testing the configuration, try the following to deb
   }
   ```
 
-{{< note >}} The entire configuration is not shown because it is subject to change. Ellipses indicate that there's configuration not shown. {{< /note >}}
+{{< call-out "note" >}} The entire configuration is not shown because it is subject to change. Ellipses indicate that there's configuration not shown. {{< /call-out >}}
 
 If your issue persists, [contact us](https://github.com/nginx/nginx-gateway-fabric#contacts).
 

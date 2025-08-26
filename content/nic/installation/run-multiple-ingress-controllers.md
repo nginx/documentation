@@ -15,7 +15,7 @@ It explains the following topics:
 - How to run NGINX Ingress Controller in the same cluster with another Ingress Controller and prevent conflicts between them
 - How to run multiple NGINX Ingress Controllers.
 
-{{< note >}} This document refers to [Ingress]({{< ref "/nic/configuration/ingress-resources/basic-configuration.md" >}}), [VirtualServer]({{< ref "/nic/configuration/virtualserver-and-virtualserverroute-resources.md#virtualserver-specification" >}}), [VirtualServerRoute]({{< ref "/nic/configuration/virtualserver-and-virtualserverroute-resources.md#virtualserverroute-specification" >}}), and [TransportServer]({{< ref "/nic/configuration/transportserver-resource.md" >}}) resources as "configuration resources".{{< /note >}}
+{{< call-out "note" >}} This document refers to [Ingress]({{< ref "/nic/configuration/ingress-resources/basic-configuration.md" >}}), [VirtualServer]({{< ref "/nic/configuration/virtualserver-and-virtualserverroute-resources.md#virtualserver-specification" >}}), [VirtualServerRoute]({{< ref "/nic/configuration/virtualserver-and-virtualserverroute-resources.md#virtualserverroute-specification" >}}), and [TransportServer]({{< ref "/nic/configuration/transportserver-resource.md" >}}) resources as "configuration resources".{{< /call-out >}}
 
 ## Ingress class
 
@@ -30,8 +30,8 @@ The IngressClass has the following characteristics:
 
 The default Ingress class of NGINX Ingress Controller is `nginx`, which means that it only handles configuration resources with the Ingress class set to `nginx`. You can customize the class through the `-ingress-class` command-line argument.
 
-{{< note >}}- If the class of an Ingress resource is not set, Kubernetes will set it to the class of the default Ingress Controller. To make the Ingress Controller the default one, the `ingressclass.kubernetes.io/is-default-class` property must be set on the IngressClass resource. To learn more, see Step 3 *Create an IngressClass resource* of the [Create Common Resources]({{< ref "/nic/installation/installing-nic/installation-with-manifests.md#create-common-resources" >}}) section.
-- For VirtualServer, VirtualServerRoute, Policy and TransportServer resources, NGINX Ingress Controller will always handle resources with an empty class.{{< /note >}}
+{{< call-out "note" >}}- If the class of an Ingress resource is not set, Kubernetes will set it to the class of the default Ingress Controller. To make the Ingress Controller the default one, the `ingressclass.kubernetes.io/is-default-class` property must be set on the IngressClass resource. To learn more, see Step 3 *Create an IngressClass resource* of the [Create Common Resources]({{< ref "/nic/installation/installing-nic/installation-with-manifests.md#create-common-resources" >}}) section.
+- For VirtualServer, VirtualServerRoute, Policy and TransportServer resources, NGINX Ingress Controller will always handle resources with an empty class.{{< /call-out >}}
 
 ## Run NGINX Ingress Controller and another Ingress Controller
 
@@ -49,6 +49,6 @@ When running NGINX Ingress Controller, you have the following options with regar
 
 These options allow you to run multiple NGINX Ingress Controllers, each handling a different set of configuration resources.
 
-{{< see-also >}}[Command-line arguments]({{< ref "/nic/configuration/global-configuration/command-line-arguments" >}}){{< /see-also >}}
+{{< call-out "note" >}}[Command-line arguments]({{< ref "/nic/configuration/global-configuration/command-line-arguments" >}}){{< /call-out>}}
 
-{{< note >}}All the mentioned command-line arguments are also available as parameters in the [Helm chart]({{< ref "/nic/installation/installing-nic/installation-with-helm" >}}).{{< /note >}}
+{{< call-out "note" >}}All the mentioned command-line arguments are also available as parameters in the [Helm chart]({{< ref "/nic/installation/installing-nic/installation-with-helm" >}}).{{< /call-out >}}

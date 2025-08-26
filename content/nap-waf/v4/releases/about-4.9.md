@@ -9,9 +9,9 @@ nd-docs: DOCS-1478
 
 April 18, 2024
 
-{{< note >}}
+{{< call-out "note" >}}
 Release 4.8.1 cannot be upgraded to v4.9.  You must uninstall 4.8.1 and install 4.9.  Upgrade is supported for versions prior to 4.8.1.
-{{< /note >}}
+{{< /call-out >}}
 
 ### New Features
 

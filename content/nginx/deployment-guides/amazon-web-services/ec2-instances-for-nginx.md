@@ -36,12 +36,12 @@ To complete this guide, you need the following:
 
 1. In the **Instance Type** section, choose an appropriate instance type. The screenshot shows the **t2.micro** instance type selected by default. This type is sufficient for demo purposes.
 
-   {{<note >}}At the time of publication, AWS offered 750 hours of free usage each month for this instance type. This applies during your first year with an AWS account. Keep in mind, though, that several NGINX instances running all day will use the free 750 hours up quickly. For example, 6 instances will use them in just over 5 days. If you use 8 instances, you'll hit the limit in under 4 days.{{</note>}}
+   {{< call-out "note" >}}At the time of publication, AWS offered 750 hours of free usage each month for this instance type. This applies during your first year with an AWS account. Keep in mind, though, that several NGINX instances running all day will use the free 750 hours up quickly. For example, 6 instances will use them in just over 5 days. If you use 8 instances, you'll hit the limit in under 4 days.{{< /call-out >}}
 
    {{< img src="/img/aws/aws-nlb-instance-choose-type.png" alt="Screenshot of Instance Type on the EC2 Launch Instance page">}}
 
 1. In the **Key pair (login)** section, select an existing key pair or create a new one. If you choose **Create new key pair**, a window appears, allowing you to download the key pair.
-   {{<note>}} It's best practice — and necessary in production — to create a separate key for each EC2 instance. This way, if a key is compromised, only that one instance is at risk.{{</note>}}
+   {{< call-out "note" >}} It's best practice — and necessary in production — to create a separate key for each EC2 instance. This way, if a key is compromised, only that one instance is at risk.{{< /call-out >}}
 
 1. Scroll to the **Network settings** section. You can keep the default **VPC** and **Subnet** settings. Under **Firewall (Security Groups),** either create a new security group or use an existing one.
    - If this is your first setup, keep **Create security group** selected.

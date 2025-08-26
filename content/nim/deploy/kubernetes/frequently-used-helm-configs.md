@@ -28,7 +28,7 @@ To use your own ClickHouse installation, follow these steps:
 1. Set `nms-hybrid.nmsClickhouse.enabled` to `false`.
 2. Add values for `nms-hybrid.externalClickhouse.address`, `.user`, and `.password` that match your ClickHouse installation.
 
-   {{< note >}}The `nms-hybrid.externalClickhouse` field is required when `nms-hybrid.nmsClickhouse` is disabled.{{</ note >}}
+   {{< call-out "note" >}}The `nms-hybrid.externalClickhouse` field is required when `nms-hybrid.nmsClickhouse` is disabled.{{< /call-out >}}
 
 ---
 

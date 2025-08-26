@@ -46,7 +46,7 @@ The rate limit spec contains the following fields:
   list are able to pass unlimited traffic to their destination(s).
   If no sources are provided then the rate limit applies to all resources making requests to the destination.
 
-  {{<note>}} The sources do not have to be in the same namespace as the destination; cross-namespaces rate limiting is supported. {{</note>}}
+  {{< call-out "note" >}} The sources do not have to be in the same namespace as the destination; cross-namespaces rate limiting is supported. {{< /call-out >}}
 
 - `name`: The name of the rate limit (required).
 - `rate`: The rate to restrict traffic to (required). Example: "1r/s", "30r/m"
@@ -70,10 +70,10 @@ The rate limit spec contains the following fields:
   from `source2`, for a total rate of 100 requests per minute. If two separate policies are defined for the
   same destination, then the rate is not divided amongst the sources.
 
-  {{<important>}}
+  {{< call-out "important" >}}
   If you are creating multiple rate limit policies for the same destination, the source lists for each rate limit must be distinct.
   You cannot reference the same source and destination across multiple rate limits.
-  {{</important>}}
+  {{< /call-out >}}
 
 - `burst`: The number of requests to allow beyond a given rate (optional).
 

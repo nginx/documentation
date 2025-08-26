@@ -26,7 +26,7 @@ Support for High Availability (HA) mode is limited to **two NGINX Plus instances
 
 1. NGINX distributes keepalived and some utilities in the `nginx-ha-keepalived` package. Follow the instructions in [Configuring High Availability](https://docs.nginx.com/nginx/admin-guide/high-availability/ha-keepalived/) in the NGINX Plus admin guide to install this version of NGINX `keepalived`.
 
-   {{< caution >}}Other versions or packages of `keepalived` have not been tested and functionality is not guaranteed.{{< /caution >}}
+   {{< call-out "caution"  >}}Other versions or packages of `keepalived` have not been tested and functionality is not guaranteed.{{< /call-out >}}
 
 1. To ensure that `keepalived` starts automatically when the instance restarts, you must enable the service:
 
@@ -54,13 +54,13 @@ After you've installed `keepalived`, there are a few manual steps to take to rea
 
 1. Open the the `keepalived.conf` for editing and add the markers `#NGINX_CONTROLLER_HA_BEGIN` and `#NGINX_CONTROLLER_HA_END` to the `virtual_ipaddress` configuration section, then reload the configuration. This is required to avoid conflicts with the configurations that NGINX Controller Agent applies to keepalived.
 
-    {{< note >}}
+    {{< call-out "note" >}}
 Any IP addresses that are manually added between these markers will be removed during a Gateway configuration operation.
-    {{< /note >}}
+    {{< /call-out >}}
 
-    {{< note >}}
+    {{< call-out "note" >}}
 Managing the `keepalived.conf` file through third-party configuration management software is not supported.
-    {{< /note >}}
+    {{< /call-out >}}
 
     The following is a sample Ubuntu configuration:
 
@@ -156,26 +156,26 @@ On the **Gateways > Create Gateway > Placements** page:
 
 1. In the **Instance Refs/Instance Groups Refs** box, select the NGINX instance(s) or instance group(s) on which you want to deploy the gateway.
 
-   {{< note >}}
+   {{< call-out "note" >}}
    If you're enabling **High Availability Mode**, select the [high-availability instances that you prepared]({{< ref "/controller/infrastructure/instances/ha-data-plane.md#prepare-the-high-availability-instances" >}}). NGINX Controller supports up to two high-availability instances.
-   {{< /note >}}
+   {{< /call-out >}}
 
 1. In the **Listen IPs** box, add the IP address(es) on which the server listens for and accepts requests. If you're creating a placement for a BIG-IP Integration, add the virtual IP (VIP) address for the BIG-IP cluster.
 
    You can add multiple placements with different Listen IPs. When multiple placements are defined within a gateway, each placement represents a resilient path for any app component that references that gateway.
 
-   {{< note >}}
+   {{< call-out "note" >}}
    - To use non-local **Listen IPs**, you must enable `net.ipv4.ip_nonlocal_bind` on the instance.
    - When **High Availability Mode** is enabled, Virtual Router Redundancy Protocol ([VRRP](https://en.wikipedia.org/wiki/Virtual_Router_Redundancy_Protocol#:~:text=The%20Virtual%20Router%20Redundancy%20Protocol,selections%20on%20an%20IP%20subnetwork.)) is configured for the Listen IP address(es).
-   {{< /note >}}
+   {{< /call-out >}}
 
 1. To enable high-availability mode for your data paths, select **Use High Availability Mode**.
 
 ## Performing Maintenance on High-Availability Pairs
 
-{{< caution >}}
+{{< call-out "caution"  >}}
 Configuration pushes made during the maintenance window will fail.
-{{< /caution >}}
+{{< /call-out >}}
 
 To perform maintenance updates on the high-availability pair, take the following steps:
 

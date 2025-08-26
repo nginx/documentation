@@ -27,7 +27,7 @@ Snippets have the following disadvantages:
 - *Decreased robustness*. An incorrect snippet can invalidate NGINX configuration, causing reload failures. Until the snippet is fixed, it will prevent any new configuration updates, including updates for the other Ingress resources.
 - *Security implications*. Snippets give access to NGINX configuration primitives, which are not validated by NGINX Ingress Controller. For example, a snippet can configure NGINX to serve the TLS certificates and keys used for TLS termination for Ingress resources.
 
-{{< note >}} If the NGINX configuration includes an invalid snippet, NGINX will continue to operate with the last valid configuration. {{< /note >}}
+{{< call-out "note" >}} If the NGINX configuration includes an invalid snippet, NGINX will continue to operate with the last valid configuration. {{< /call-out >}}
 
 ## Using snippets
 
@@ -68,7 +68,7 @@ spec:
 
 These snippets generate the following NGINX configuration:
 
-{{< note >}} The example is shortened for conciseness. {{< /note >}}
+{{< call-out "note" >}} The example is shortened for conciseness. {{< /call-out >}}
 
 ```nginx
 server {

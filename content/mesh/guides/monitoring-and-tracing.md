@@ -15,15 +15,15 @@ F5 NGINX Service Mesh can integrate with your Prometheus, Grafana, and tracing b
 
 If you do not have Prometheus, Grafana, or tracing backends deployed, you can follow the [Observability Tutorial]( {{< ref "/mesh/tutorials/observability.md" >}}) to deploy a basic demo setup.
 
-{{< important >}}
+{{< call-out "important" >}}
 In order to prevent automatic sidecar injection into your Prometheus, Grafana, and tracing deployments, they should be deployed in a namespace where auto-injection is disabled. Alternatively, you can disable auto-injection for these deployments specifically by adding the `injector.nsm.nginx.com/auto-inject: disabled` label to the *PodTemplateSpec* of the deployments.
-{{< /important >}}
+{{< /call-out >}}
 
 ### Prometheus
 
-{{< warning >}}
+{{< call-out "warning" >}}
 We do not currently support Prometheus deployments running with TLS encryption.
-{{< /warning>}}
+{{< /call-out >}}
 
 To use NGINX Service Mesh with your Prometheus deployment:
 
@@ -60,9 +60,9 @@ To use NGINX Service Mesh with your Prometheus deployment:
    - {{< fa "download" >}} {{< link "/examples/nginx-mesh-sidecars-scrape-config.yaml" "`nginx-mesh-sidecars-scrape-config.yaml`" >}}
    - {{< fa "download" >}} {{< link "/examples/nginx-plus-ingress-scrape-config.yaml" "`nginx-plus-ingress-scrape-config.yaml`" >}}
 
-{{< see-also >}}
+{{< call-out "note" >}}
 For more information on how to view and understand the metrics that we track, see our [Prometheus Metrics]({{< ref "prometheus-metrics.md" >}}) guide.
-{{< /see-also >}}
+{{< /call-out>}}
 
 ### Grafana
 The custom NGINX Service Mesh Grafana dashboard `NGINX Mesh Top` can be imported into your Grafana instance.

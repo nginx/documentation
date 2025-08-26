@@ -2,7 +2,7 @@
 title: NGINX Agent
 url: /nginx-agent/
 cascade:
-  logo: NGINX-product-icon.png
+  logo: NGINX-Agent-product-icon.svg
   nd-banner:
     enabled: true
     type: deprecation

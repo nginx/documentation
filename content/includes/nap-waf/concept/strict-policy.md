@@ -12,7 +12,7 @@ In addition the Strict Policy also **blocks** the following:
 - Requests with the `VIOL_EVASION` violation (evasion techniques).
 - Requests with violations that restrict options in the request and response: HTTP method, response status code and disallowed file types.
 
-{{< note >}} Other violations, specifically attack signatures and metacharacters, which are more prone to false positives, still have only Alarm turned on, without blocking, contributing to the Violation Rating as in the Default policy.{{< /note >}}
+{{< call-out "note" >}} Other violations, specifically attack signatures and metacharacters, which are more prone to false positives, still have only Alarm turned on, without blocking, contributing to the Violation Rating as in the Default policy.{{< /call-out >}}
 
 In addition, the Strict policy also enables the following features in **alarm only** mode:
 - **Data Guard**: masking Credit Card Number (CCN), US Social Security Number (SSN) and custom patterns found in HTTP responses.

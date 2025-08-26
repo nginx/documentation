@@ -30,13 +30,13 @@ When the [Controller Agent is installed]({{< ref "/controller/admin-guides/insta
 
 An [Instance Template]({{< ref "/controller/infrastructure/instances/manage-instance-templates.md" >}}) defines the parameters to use when creating a data plane instance. Instance Templates are ideal for cloud orchestration and make managing your cloud resources easy and quick.
 
-{{< see-also >}}
+{{< call-out "note" >}}
 For steps on how to deploy NGINX instances on Amazon Web Services or Microsoft Azure, see the following tutorials:
 
 - [Add an AWS NGINX Instance]({{< ref "/controller/infrastructure/instances/add-aws-instance.md" >}})
 - [Add an Azure NGINX Instance]({{< ref "/controller/infrastructure/instances/add-azure-instance.md" >}})
 
-{{< /see-also >}}
+{{< /call-out>}}
 
 Take the following steps to create an instance using an Instance Template:
 
@@ -65,7 +65,7 @@ Take the following steps to view an instance's details or to edit an instance:
 
 Take the following steps to uninstall the Controller Agent and delete an instance.
 
-{{< important >}}Be sure to uninstall the Controller Agent first, before you delete an instance. If you don't uninstall the Controller Agent first, the instance may reappear in NGINX Controller after it has been deleted.{{< /important >}}
+{{< call-out "important" >}}Be sure to uninstall the Controller Agent first, before you delete an instance. If you don't uninstall the Controller Agent first, the instance may reappear in NGINX Controller after it has been deleted.{{< /call-out >}}
 
 1. On your NGINX Plus instance, stop the Controller Agent service:
 
@@ -125,7 +125,7 @@ Take the following steps to uninstall the Controller Agent and delete an instanc
 
 1. Delete alerts:
 
-    {{< note >}}When you delete an instance, any related alerts for that instance are not deleted automatically. You can delete the alerts manually, however.{{< /note >}}
+    {{< call-out "note" >}}When you delete an instance, any related alerts for that instance are not deleted automatically. You can delete the alerts manually, however.{{< /call-out >}}
 
    1. Open the NGINX Controller user interface and log in.
    2. On the Analytics menu, select **Alerts > Alert Rules**.
@@ -138,18 +138,18 @@ Take the following steps to uninstall the Controller Agent and delete an instanc
 
 An instance group is a logically grouped set of instances that can be used as a placement for a gateway, rather than a single instance. This concept supports the ability to scale horizontally without having to update the gateway placement. As instances are added to a group, they receive an NGINX configuration identical to those instances in the group. Instances in an instance group can be stand-alone or clustered NGINX Plus instances.  Instances can also leave the group, with the remaining instances continuing to function as intended.
 
-{{< important >}}
+{{< call-out "important" >}}
 **Workload affinity with instance groups**: Similar to instances, instance groups are associated with a location. If a location is not explicitly specified, the unspecified location is assumed. Instances in an instance group should be configured to use the same location; however, this requirement is not currently enforced.
 
 For the workload affinity feature, the location of the instance group must be specified using the optional `locationRef` field in the component's workload group API request. The locations of the instances in the instance group are ignored. The workload affinity feature uses this information and the workload groups to load balance traffic to the correct endpoints.
-{{< /important >}}
+{{< /call-out >}}
 
-{{< important >}}
+{{< call-out "important" >}}
 Instance groups are supported on the following versions of NGINX Controller:
 
 - NGINX Controller API Management module v3.18 and later
 - NGINX Controller Application Delivery module v3.21 and later
-{{< /important >}}
+{{< /call-out >}}
 
 ### Create an Instance Group
 
@@ -196,11 +196,11 @@ To update the NGINX Controller Agent, take the following steps:
 1. On the **Instances** overview page, select **Create**.
 1. Follow the instructions in the **Install Instructions** pane to connect to the NGINX instance and install the updated Controller Agent package.
 
-      {{< note >}}
+      {{< call-out "note" >}}
 
 NGINX Controller 3.6 and earlier require Python 2.6 or 2.7. You'll be prompted to install Python if it's not installed already. Python is not required for NGINX Controller 3.7 and later.
 
-      {{< /note >}}
+      {{< /call-out >}}
 
 
 ## Troubleshooting

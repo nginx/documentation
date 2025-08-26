@@ -115,7 +115,7 @@ The table below provides storage estimates for **NGINX Plus** based on configura
 |                     | 250       | 14               | 2 TiB                             |
 {{</bootstrap-table>}}
 
-{{<note>}}MiB (mebibyte), GiB (gibibyte), and TiB (tebibyte) are units of data storage. MiB equals 1,024^2 (2^20) bytes, GiB equals 1,024^3 (2^30) bytes, and TiB equals 1,024^4 (2^40) bytes. These are often used in computing to represent binary data storage capacities, as opposed to MB (megabyte), GB (gigabyte), and TB (terabyte), which use decimal units.{{</note>}}
+{{< call-out "note" >}}MiB (mebibyte), GiB (gibibyte), and TiB (tebibyte) are units of data storage. MiB equals 1,024^2 (2^20) bytes, GiB equals 1,024^3 (2^30) bytes, and TiB equals 1,024^4 (2^40) bytes. These are often used in computing to represent binary data storage capacities, as opposed to MB (megabyte), GB (gigabyte), and TB (terabyte), which use decimal units.{{< /call-out >}}
 
 #### Storage requirements for NGINX OSS
 
@@ -131,6 +131,9 @@ The table below shows the estimated storage requirements for **NGINX OSS**, base
 |                       | 100       | 14               | 1.75 GiB                         |
 |                       | 250       | 14               | 4 GiB                            |
 {{</bootstrap-table>}}
+
+## ClickHouse tuning {#clickhouse-tuning}
+The default ClickHouse configuration works efficiently with NGINX Instance Manager. If you change the configuration and ClickHouse runs out of memory, see the [ClickHouse configuration guide]({{< ref "/nim/system-configuration/configure-clickhouse.md#clickhouse-tuning" >}}) to adjust the settings.
 
 ## Firewall ports {#firewall}
 

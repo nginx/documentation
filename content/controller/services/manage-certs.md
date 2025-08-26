@@ -12,9 +12,9 @@ type:
 
 Follow the steps in this topic to create and use Certs with an [Environment]({{< ref "/controller/services/manage-environments.md" >}}).
 
-{{< tip >}}
+{{< call-out "tip" >}}
 If you prefer, you can use the F5 NGINX Controller API to create and manage certificates. Refer to the [NGINX Controller API reference guide]({{< ref "/controller/api/_index.md" >}}) (**Services > Certs API**) for details.
-{{< /tip >}}
+{{< /call-out >}}
 
 ## Before You Begin
 
