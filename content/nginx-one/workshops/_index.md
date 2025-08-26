@@ -18,11 +18,11 @@ We recommend starting with Lab 1 and Lab 2. Lab 2 sets up the workshop environme
   {{<card-section showAsCards="true">}}
 
     {{<card title="Lab 1: Get started with NGINX One Console" titleUrl="/nginx-one/workshops/lab1/getting-started-with-nginx-one-console/" icon="flask-conical" >}}
-      Log in, set up access, and register instances. Learn the basics of managing fleets in NGINX One Console.
+      Register instances. Learn about managing your NGINX fleet.
     {{</card>}}
 
     {{<card title="Lab 2: Run workshop components with Docker" titleUrl="/nginx-one/workshops/lab2/run-workshop-components-with-docker/" icon="flask-conical" >}}
-      Use Docker to spin up the full workshop locally for a clean and repeatable environment.
+      Use Docker to spin up the full workshop locally.
     {{</card>}}
 
     {{<card title="Lab 3: Explore NGINX One Console and features" titleUrl="/nginx-one/workshops/lab3/explore-nginx-one-console-features/" icon="flask-conical" >}}
