@@ -5,7 +5,7 @@ weight: 300
 nd-docs: DOCS-000
 ---
 
-NGINX Agent can be configured to report to NGINX One using a [Squid proxy](https://www.squid-cache.org/). This is useful in environments where direct internet access is restricted or monitored.
+NGINX Agent can be configured to connect to NGINX One using a [Squid proxy](https://www.squid-cache.org/). This is useful in environments where direct internet access is restricted or monitored.
 
 ## Before you start
 
