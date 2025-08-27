@@ -15,10 +15,6 @@ Ensure you have the following:
 - [NGINX Agent is installed]({{< ref "nginx-one/agent/install-upgrade/" >}})
 - Access to the NGINX One console
 
-## Install Squid
-
-Follow the instructions in the [Squid website](https://wiki.squid-cache.org/SquidFaq/BinaryPackages) to install Squid on your server.
-
 
 ## Configure Squid
 
