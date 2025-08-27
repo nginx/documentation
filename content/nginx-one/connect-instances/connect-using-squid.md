@@ -1,7 +1,7 @@
 ---
-title: Connect to NGINX One using Squid
+title: Prepare - Set up Squid as a proxy
 toc: true
-weight: 300
+weight: 250
 nd-docs: DOCS-000
 ---
 
