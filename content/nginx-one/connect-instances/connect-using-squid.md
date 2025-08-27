@@ -107,8 +107,7 @@ To configure NGINX Agent in a containerized environment:
 If your Squid proxy requires authentication, you can specify the username and password in the `proxy` section of the `agent.conf` file:
 
 1. Open a secure connection to your instance using SSH and log in.
-1. Open the NGINX Agent configuration file (/etc/nginx-agent/nginx-agent.conf) with a text editor.
-1. Add or modify the `proxy` section to include the authentication details:
+1. Add or modify the `proxy` section of the NGINX Agent configuration file (/etc/nginx-agent/nginx-agent.conf) to include the authentication details:
 
    ```conf
    proxy:
