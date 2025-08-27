@@ -658,6 +658,20 @@ The default value is `false`.
 
 ---
 
+### -with-directive-autoadjust
+
+Automatically adjusts NGINX buffer directives to prevent configuration errors.
+
+The default value is `false`.
+
+When enabled, the controller automatically adjusts `proxy_buffers`, `proxy_buffer_size`, and `proxy_busy_buffers_size` to ensure they work together properly and NGINX can start successfully.
+
+More explanation about this feature can be found in the guide [here](<ref "/nic/installation/configuration/proxy-buffers-configuration.md">).
+
+<a name="cmdoption-with-directive-autoadjust"></a>
+
+---
+
 ### -enable-telemetry-reporting
 
 Enable gathering and reporting of software telemetry.
@@ -675,20 +689,6 @@ Enable NGINX Agent which can used with `-enable-app-protect` to send events to S
 The default value is `false`.
 
 <a name="cmdoption-agent"></a>
-
----
-
-### -with-directive-autoadjust
-
-Automatically adjusts NGINX buffer directives to prevent configuration errors.
-
-The default value is `false`.
-
-When enabled, the controller automatically adjusts `proxy_buffers`, `proxy_buffer_size`, and `proxy_busy_buffers_size` to ensure they work together properly and NGINX can start successfully.
-
-More explanation about this feature can be found in the guide [here](<ref "/nic/installation/configuration/proxy-buffers-configuration.md">).
-
-<a name="cmdoption-with-directive-autoadjust"></a>
 
 ---
 
