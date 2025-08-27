@@ -15,7 +15,6 @@ Ensure you have the following:
 - [NGINX Agent is installed]({{< ref "nginx-one/agent/install-upgrade/" >}})
 - Access to the NGINX One console
 
-
 ## Configure Squid
 
 Follow the steps below to configure Squid with basic authentication.
@@ -23,7 +22,7 @@ Follow the steps below to configure Squid with basic authentication.
 1. Open the Squid configuration file with your favorite text editor (you might need superuser privileges):
 
    ```sh
-   vi /etc/conf/squid.conf
+   vi /etc/squid/squid.conf
    ```
 
 1. Add the following lines to configure the proxy settings:
@@ -72,7 +71,7 @@ Follow the steps below to configure Squid with basic authentication.
          url: "http://proxy.example.com:3128"
    ```
 
-1. Reload NGINX Agent to apply the changes:
+1. Restart NGINX Agent to apply the changes:
 
     ```sh
     sudo systemctl restart nginx-agent
@@ -113,7 +112,7 @@ If your Squid proxy requires authentication, you can specify the username and pa
       password: "pass"
    ```
 
-1. Reload NGINX Agent to apply the changes:
+1. Restart NGINX Agent to apply the changes:
 
     ```sh
     sudo systemctl restart nginx-agent
