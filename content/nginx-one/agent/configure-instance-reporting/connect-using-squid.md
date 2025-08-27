@@ -27,7 +27,7 @@ Follow the steps below to configure Squid with basic authentication.
 1. Open the Squid configuration file with your favorite text editor (you might need superuser privileges):
 
    ```sh
-   vim /etc/conf/squid.conf
+   vi /etc/conf/squid.conf
    ```
 
 1. Add the following lines to configure the proxy settings:
@@ -35,7 +35,7 @@ Follow the steps below to configure Squid with basic authentication.
    ```conf
    # Standard HTTP port for the proxy.
    http_port myproxy.example.com:3128
-   
+
    # Define an ACL for allowing access from the agent's IP address
    acl agent_ip src <AGENT_IP_ADDRESS>
 
@@ -65,7 +65,7 @@ Follow the steps below to configure Squid with basic authentication.
 ## NGINX Agent Proxy configuration
 
 1. Open a secure connection to your instance using SSH and log in.
-1. Open the NGINX Agent configuration file (/etc/nginx-agent/nginx-agent.conf) with a text editor.
+1. Open the NGINX Agent configuration file (/etc/nginx-agent/nginx-agent.conf) with a text editor. To edit this file you need superuser privileges.
 1. Add or modify the `proxy` section to include the Squid proxy URL and timeout settings:
 
    ```conf
@@ -175,4 +175,4 @@ To test the configuration from a containerized environment, run the following co
    - Run `squid -v | grep "configure options"`
    - Configuration directory should look like `--sysconfdir=/etc/squid'`
    - Log directory should look like `--sysconfdir=/var/log'`
-   
+
