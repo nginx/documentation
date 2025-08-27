@@ -1,0 +1,34 @@
+- productGroup: nginx-one
+  products:
+    - title: "NGINX One Console"
+      url: "/nginx-one"
+    - title: "NGINX Plus"
+      url: "/nginx"
+    - title: "NGINX Instance Manager"
+      url: "/nginx-instance-manager"
+    - title: "NGINX Ingress Controller"
+      url: "/nginx-ingress-controller"
+    - title: "NGINX Gateway Fabric"
+      url: "/nginx-gateway-fabric"
+    - title: "NGINX Open Source"
+      url: "https://nginx.org/en/docs/"
+    - title: "NGINX Agent"
+      url: "/nginx-agent"
+
+- productGroup: nginx-app-protect
+  products:
+    - title: "NGINX App Protect WAF"
+      url: "/nginx-app-protect-waf"
+    - title: "NGINX App Protect DoS"
+      url: "/nginx-app-protect-dos"
+
+- productGroup: nginx-as-a-service
+  products:
+    - title: "NGINX as a Service for Azure"
+      url: "/nginxaas/azure/"
+
+- productGroup: nginx-other
+  order: 3
+  products:
+    - title: "NGINX Unit"
+      url: "https://unit.nginx.org/"
