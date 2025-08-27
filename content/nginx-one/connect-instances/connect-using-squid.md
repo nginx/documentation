@@ -13,7 +13,7 @@ Ensure you have the following:
 
 - [Squid proxy server set up and running](https://wiki.squid-cache.org/SquidFaq/InstallingSquid)
 - [NGINX Agent is installed]({{< ref "nginx-one/agent/install-upgrade/" >}})
-- Access to the NGINX One console
+- Access to the [NGINX One console]({{< ref "/nginx-one/getting-started.md#before-you-begin" >}}).
 
 ## Configure Squid
 
