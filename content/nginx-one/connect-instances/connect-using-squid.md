@@ -13,8 +13,7 @@ Ensure you have the following:
 
 - A forward proxy server installed and configured in your network.
 - [NGINX Agent is installed]({{< ref "nginx-one/agent/install-upgrade/" >}})
-- Access to the NGINX One console
-
+- Access to the [NGINX One console]({{< ref "/nginx-one/getting-started.md#before-you-begin" >}}).
 
 ## Configure a forward proxy server
 
@@ -61,7 +60,7 @@ Make sure to restart your proxy server to apply the changes.
          url: "http://proxy.example.com:3128"
    ```
 
-1. Reload NGINX Agent to apply the changes:
+1. Restart NGINX Agent to apply the changes:
 
     ```sh
     sudo systemctl restart nginx-agent
@@ -102,7 +101,7 @@ If your forward proxy requires authentication, you can specify the username and 
       password: "pass"
    ```
 
-1. Reload NGINX Agent to apply the changes:
+1. Restart NGINX Agent to apply the changes:
 
     ```sh
     sudo systemctl restart nginx-agent
