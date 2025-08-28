@@ -32,7 +32,7 @@ Make sure you have:
 
 - {{< include "nginx-one/workshops/xc-account.md" >}}
 - Docker and Docker Compose installed and running
-- An active data plane key from [Lab 1: Get started with NGINX One Console]({{< ref "nginx-one/workshops/lab1/getting-started-with-nginx-one.md" >}})
+- An active data plane key from [Lab 1: Get started with NGINX One Console]({{< ref "nginx-one/workshops/lab1/getting-started-with-nginx-one-console.md" >}})
 - A trial or paid NGINX One JWT license (saved as `nginx-repo.jwt`) from [MyF5](https://my.f5.com/manage/s/)
 - Basic Linux and NGINX knowledge
 - Git installed and an SSH key set up for GitHub access
@@ -150,7 +150,7 @@ Wait until you see **Started** for each container.
 
 Your containers are now up and registered with NGINX One Console.
 
-Go to [Lab 3: Explore NGINX One Console features]({{< ref "nginx-one/workshops/lab3/explore-nginx-one-console-and-features.md" >}}).
+Go to [Lab 3: Explore NGINX One Console features]({{< ref "nginx-one/workshops/lab3/explore-nginx-one-console-features.md" >}}).
 
 ---
 

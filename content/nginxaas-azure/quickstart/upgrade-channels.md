@@ -15,7 +15,7 @@ Maintaining the latest version NGINX Plus, operating system (OS), and other soft
 {{<bootstrap-table "table table-striped table-bordered">}}
 | Channel     | Description               |
 |-------------|---------------------------|
-| preview     | Selecting this channel automatically upgrades your deployment to the latest supported version of NGINX Plus and its dependencies soon after they become available. We recommend using this setting to try out new capabilities in deployments running in your development, testing, and staging environments. Avoid using it in your production environment. |
+| preview     | Selecting this channel automatically upgrades your deployment to the latest supported version of NGINX Plus and its dependencies soon after they become available. We recommend using this setting to try out new capabilities in deployments running in your development, testing, and staging environments. Do not use the **Preview** channel in your production environment. |
 | stable      | A deployment running on this channel will receive updates on NGINX Plus and its dependencies at a slower rate than the **Preview** channel. We recommend using this setting for production deployments where you might want stable features instead of the latest ones. This is the **default channel** if you do not specify one for your deployment. |
 {{</bootstrap-table>}}
 
