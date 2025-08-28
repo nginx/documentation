@@ -1,21 +1,22 @@
 ---
-title: Prepare - Set up forward proxy
+title: Prepare - Set up an explicit forward proxy
 toc: true
 weight: 250
 nd-docs: DOCS-000
 ---
 
-NGINX Agent can be configured to connect to NGINX One using a forward proxy. This is useful in environments where direct internet access is restricted or monitored.
+NGINX Agent can be configured to connect to NGINX One using an explicit forward
+proxy. This is useful in environments where direct internet access is restricted or monitored.
 
 ## Before you start
 
 Ensure you have the following:
 
-- A forward proxy server installed and configured in your network.
+- An explicit forward proxy server installed and configured in your network.
 - [NGINX Agent is installed]({{< ref "nginx-one/agent/install-upgrade/" >}})
 - Access to the [NGINX One console]({{< ref "/nginx-one/getting-started.md#before-you-begin" >}}).
 
-## Configure a forward proxy server
+## Configure an explicit forward proxy server
 
 Follow the documentation of your proxy server to configure basic authentication.
 
