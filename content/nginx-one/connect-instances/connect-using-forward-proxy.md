@@ -16,38 +16,8 @@ Ensure you have the following:
 - [NGINX Agent is installed]({{< ref "nginx-one/agent/install-upgrade/" >}})
 - Access to the [NGINX One console]({{< ref "/nginx-one/getting-started.md#before-you-begin" >}}).
 
-## Configure an explicit forward proxy server
 
-Follow the documentation of your proxy server to configure basic authentication.
-
-Example configuration:
-
-   ```conf
-   # Standard HTTP port for the proxy.
-   http_port myproxy.example.com:3128
-
-   # Define an ACL for allowing access from the agent's IP address
-   acl agent_ip src <AGENT_IP_ADDRESS>
-
-   # Allow the agent to connect to NGINX One Console
-   acl mgmt_server dstdomain agent.connect.nginx.com
-
-   # Allow HTTPS traffic (port 443 is default for HTTPS)
-   acl ssl_ports port 443
-
-   # HTTP access rules (allow the agent to access the destination server through the proxy)
-   http_access allow agent_ip mgmt_server ssl_ports
-
-   # Deny all other traffic by default (best practice)
-   http_access deny all
-   ```
-
-
-Make sure to restart your proxy server to apply the changes.
-
----
-
-## NGINX Agent Proxy configuration
+## NGINX Agent configuration for proxy usage
 
 1. Open a secure connection to your instance using SSH and log in.
 1. Open the NGINX Agent configuration file (/etc/nginx-agent/nginx-agent.conf) with a text editor. To edit this file you need superuser privileges.
