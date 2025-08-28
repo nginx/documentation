@@ -12,6 +12,7 @@
       url: "/nginx-gateway-fabric"
     - title: "NGINX Open Source"
       url: "https://nginx.org/en/docs/"
+      extUrl: true
     - title: "NGINX Agent"
       url: "/nginx-agent"
 
@@ -32,3 +33,4 @@
   products:
     - title: "NGINX Unit"
       url: "https://unit.nginx.org/"
+      extUrl: true
