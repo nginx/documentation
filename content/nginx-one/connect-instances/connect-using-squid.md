@@ -1,32 +1,26 @@
 ---
-title: Prepare - Set up Squid as a proxy
+title: Prepare - Set up forward proxy
 toc: true
 weight: 250
 nd-docs: DOCS-000
 ---
 
-NGINX Agent can be configured to connect to NGINX One using a [Squid proxy](https://www.squid-cache.org/). This is useful in environments where direct internet access is restricted or monitored.
+NGINX Agent can be configured to connect to NGINX One using a forward proxy. This is useful in environments where direct internet access is restricted or monitored.
 
 ## Before you start
 
 Ensure you have the following:
 
-- [Squid proxy server set up and running](https://wiki.squid-cache.org/SquidFaq/InstallingSquid)
+- A forward proxy server installed and configured in your network.
 - [NGINX Agent is installed]({{< ref "nginx-one/agent/install-upgrade/" >}})
 - Access to the NGINX One console
 
 
-## Configure Squid
+## Configure a forward proxy server
 
-Follow the steps below to configure Squid with basic authentication.
+Follow the documentation of your proxy server to configure basic authentication.
 
-1. Open the Squid configuration file with your favorite text editor (you might need superuser privileges):
-
-   ```sh
-   vi /etc/conf/squid.conf
-   ```
-
-1. Add the following lines to configure the proxy settings:
+Example configuration:
 
    ```conf
    # Standard HTTP port for the proxy.
@@ -49,12 +43,7 @@ Follow the steps below to configure Squid with basic authentication.
    ```
 
 
-1. Save the changes and exit the text editor.
-1. Restart the Squid service to apply the changes:
-
-   ```sh
-   sudo systemctl reload squid
-   ```
+Make sure to restart your proxy server to apply the changes.
 
 ---
 
@@ -62,7 +51,7 @@ Follow the steps below to configure Squid with basic authentication.
 
 1. Open a secure connection to your instance using SSH and log in.
 1. Open the NGINX Agent configuration file (/etc/nginx-agent/nginx-agent.conf) with a text editor. To edit this file you need superuser privileges.
-1. Add or modify the `proxy` section to include the Squid proxy URL and timeout settings:
+1. Add or modify the `proxy` section to include the proxy URL and timeout settings:
 
    ```conf
    server:
@@ -100,7 +89,7 @@ To configure NGINX Agent in a containerized environment:
 
 ## NGINX Agent proxy authentication
 
-If your Squid proxy requires authentication, you can specify the username and password in the `proxy` section of the `agent.conf` file:
+If your forward proxy requires authentication, you can specify the username and password in the `proxy` section of the `agent.conf` file:
 
 1. Open a secure connection to your instance using SSH and log in.
 1. Add or modify the `proxy` section of the NGINX Agent configuration file (/etc/nginx-agent/nginx-agent.conf) to include the authentication details:
@@ -142,9 +131,9 @@ To set proxy authentication in a containerized environment:
       -d private-registry.nginx.com/nginx-plus/agentv3:latest
    ```
 
-## Validate connectivity between NGINX Agent, Squid, and NGINX One Console
+## Validate connectivity between the components
 
-To test the connectivity between NGINX Agent, Squid, and NGINX One Console, you can use the `curl` command with the proxy settings.
+To test the connectivity between NGINX Agent, your proxy, and NGINX One Console, you can use the `curl` command with the proxy settings.
 
 1. Open a secure connection to your instance using SSH and log in.
 1. Run the following `curl` command to test the connection:
@@ -152,8 +141,8 @@ To test the connectivity between NGINX Agent, Squid, and NGINX One Console, you 
    curl -x http://proxy.example.com:3128 -U your_user:your_password https://agent.connect.nginx.com/api/v1/agents
    ```
 
-   - Replace `proxy.example.com:3128` with your Squid proxy address and port.
-   - Replace `your_user` and `your_password` with the credentials you set up for Squid in the previous steps.
+   - Replace `proxy.example.com:3128` with your proxy address and port.
+   - Replace `your_user` and `your_password` with the credentials you set up for proxy in the previous steps.
 
 To test the configuration from a containerized environment, run the following command from within the container:
 
@@ -161,13 +150,5 @@ To test the configuration from a containerized environment, run the following co
    curl -x http://host.docker.internal:3128 -U your_user:your_password https://agent.connect.nginx.com/api/v1/agents
    ```
 
-   - Replace `your_user` and `your_password` with the credentials you set up for Squid in the previous steps.
-
-## Troubleshooting
-
-1. Find the configuration and log files:
-
-   - Run `squid -v | grep "configure options"`
-   - Configuration directory should look like `--sysconfdir=/etc/squid'`
-   - Log directory should look like `--sysconfdir=/var/log'`
+   - Replace `your_user` and `your_password` with the credentials you set up for proxy in the previous steps.
 
