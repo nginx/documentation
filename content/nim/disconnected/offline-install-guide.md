@@ -112,8 +112,8 @@ ClickHouse: libcap2-bin
 
 Users can get the latest dependencies by running below two commands.
 
-Ubuntu/debian: apt-cache depends <package_name>=<version>
-RPM : yum deplist <packagename-version>
+- Ubuntu/Debian: apt-cache depends <package_name>=<version>
+- Red Hat : yum deplist <packagename-version>
 
 
 ### Required flags for installing in offline mode
