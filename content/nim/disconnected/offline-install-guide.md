@@ -94,6 +94,25 @@ Run the installation script in `offline` mode to download NGINX Instance Manager
 
 After you’ve packaged the installation files on a connected system, copy the tarball, script, and SSL files to your disconnected system. Then, run the script again to install NGINX Instance Manager using the tarball.
 
+## Dependencies Needed for Install Script for it to run in Offline mode 
+There are OS dependencies we have for NGINX, NIM and Clickhouse. In offline mode we package only Nginx, NIM and Clickhouse packages, customers should first install OS dependencies also. Below are the dependencies list for debian and rpm systems. In online mode installation, these dependencies are auto resolved and installed.
+
+### Debian/Ubuntu OS
+NGINX : libc6, libcrypt1, libpcre2-8-0, libssl3, zlib1g,lsb-base
+NIM : openssl, rsyslog, systemd, tar, lsb-release, openssl, gawk
+ClickHouse: libcap2-bin
+
+### RPM based OS
+NGINX : bash, glibc, libxcrypt, openssl-libs, glibc, pcre2, openssl-libs, zlib, procps-ng, glibc , shadow-utils, systemd
+NIM : glibc, openssl, rsyslog,systemd, tar, which,zlib, yum-utils
+ClickHouse: -- Nil --
+
+Users can get the latest dependencies by running below two commands.
+
+Ubuntu/debian: apt-cache depends <package_name>=<version>
+RPM : yum deplist <packagename-version>
+
+
 ### Required flags for installing in offline mode
 
 - `-m offline`: Required to run the script in offline mode. When used with `-i`, the script installs NGINX Instance Manager and its dependencies from the specified tarball.
