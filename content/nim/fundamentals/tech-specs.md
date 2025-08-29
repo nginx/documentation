@@ -158,21 +158,6 @@ The NGINX Instance Manager web interface works best on the latest versions of th
 
 {{< include "nim/tech-specs/nim-app-protect-support.md" >}}
 
-## Security Monitoring Module {#security-monitoring}
-
-
-### Dependencies with NGINX Instance Manager
-
-#### Control plane requirements
-
-{{< include "nim/tech-specs/security-management-plane-dependencies.md" >}}
-
-### Dependencies with NGINX App Protect WAF and NGINX Plus
-
-#### Data plane requirements
-
-{{< include "nim/tech-specs/security-data-plane-dependencies.md" >}}
-
 ## NGINX Agent
 
 #### Data plane requirements
