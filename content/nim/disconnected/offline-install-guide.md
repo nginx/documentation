@@ -110,7 +110,7 @@ There are OS dependencies we have for NGINX, NIM and Clickhouse. In offline mode
 - NIM : glibc, openssl, rsyslog,systemd, tar, which,zlib, yum-utils
 - ClickHouse: None
 
-Users can get the latest dependencies by running below two commands.
+You can find the latest dependencies with one of the following commands:
 
 - Ubuntu/Debian: apt-cache depends <package_name>=<version>
 - Red Hat : yum deplist <packagename-version>
