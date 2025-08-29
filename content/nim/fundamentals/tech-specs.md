@@ -135,7 +135,17 @@ The table below shows the estimated storage requirements for **NGINX OSS**, base
 ## Directory Requirements for NGINX Instance Manager
 
 Below are the directory requirements and storage recommendations for fresh, minimal, and moderate usage (<100 instances) of NGINX Instance Manager (NIM).
-Important Note: These recommendations apply if you are using NGINX Agent to connect NGINX instances to NIM for full management capabilities (e.g., managing configurations, viewing metrics, applying WAF policies, managing certificates, etc.). If the use case is solely usage reporting, as introduced in R33+, the Agent is not required, and resources needed are significantly reduced. For usage reporting-only deployments, NIM simply receives and stores usage data sent directly from the instances, which does not require the same resource allocation outlined below.
+
+{{< call-out "important" >}}
+These recommendations apply if you are using NGINX Agent to connect NGINX instances to NIM for full management capabilities, including:
+
+- Managing configurations
+- Viewing metrics
+- Applying WAF policies
+- Managing certificates
+
+If you're concerned solely on usage reporting, you do not need NGINX Agent. Required resources needed are significantly reduced. For usage reporting-only deployments, NIM receives and stores usage data sent directly from the instances.
+{{< /call-out >}}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 | Directory path           | Content | Recommendation |
