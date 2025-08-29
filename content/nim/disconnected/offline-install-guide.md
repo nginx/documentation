@@ -106,9 +106,9 @@ ClickHouse: libcap2-bin
 
 ### Red Hat-based operating systems
 
-NGINX : bash, glibc, libxcrypt, openssl-libs, glibc, pcre2, openssl-libs, zlib, procps-ng, glibc , shadow-utils, systemd
-NIM : glibc, openssl, rsyslog,systemd, tar, which,zlib, yum-utils
-ClickHouse: -- Nil --
+- NGINX : bash, glibc, libxcrypt, openssl-libs, glibc, pcre2, openssl-libs, zlib, procps-ng, glibc , shadow-utils, systemd
+- NIM : glibc, openssl, rsyslog,systemd, tar, which,zlib, yum-utils
+- ClickHouse: None
 
 Users can get the latest dependencies by running below two commands.
 
