@@ -162,6 +162,7 @@ If you're concerned solely on usage reporting, you do not need NGINX Agent. Requ
 {{</bootstrap-table>}}
 
 ## ClickHouse tuning {#clickhouse-tuning}
+
 The default ClickHouse configuration works efficiently with NGINX Instance Manager. If you change the configuration and ClickHouse runs out of memory, see the [ClickHouse configuration guide]({{< ref "/nim/system-configuration/configure-clickhouse.md#clickhouse-tuning" >}}) to adjust the settings.
 
 ## Firewall ports {#firewall}
