@@ -173,7 +173,7 @@ Download the NGINX Plus repository file [nginx-plus-8.repo](https://cs.nginx.com
 sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/nginx-plus-8.repo
 ```
 
-{{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-plus-centos.md" >}}
+{{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-plus-centos-8.md" >}}
 
 
 {{%/tab%}}
@@ -186,7 +186,7 @@ Download the NGINX Plus repository file [plus-9.repo](https://cs.nginx.com/stati
 sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/plus-9.repo
 ```
 
-{{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-plus-centos.md" >}}
+{{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-plus-centos-9.md" >}}
 
 {{%/tab%}}
 
@@ -728,7 +728,7 @@ Then you can move onto the next step, depending on your chosen operating system.
 {{%/tab%}}
 {{%tab name="Oracle Linux 8.1+"%}}
 
-{{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-plus-centos.md" >}}
+{{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-plus-centos-8.md" >}}
 
 3. Download all NGINX Plus packages, including all dependencies: We used repotrack for example:
 
@@ -747,7 +747,7 @@ Then you can move onto the next step, depending on your chosen operating system.
 {{%/tab%}}
 {{%tab name="RHEL 8.1+"%}}
 
-{{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-plus-centos.md" >}}
+{{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-plus-centos-8.md" >}}
 
 3. Download all NGINX Plus packages, including all dependencies: We used repotrack for example:
 
@@ -766,7 +766,7 @@ Then you can move onto the next step, depending on your chosen operating system.
 {{%/tab%}}
 {{%tab name="RHEL 9 / Rocky Linux 9"%}}
 
-{{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-plus-centos.md" >}}
+{{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-plus-centos-9.md" >}}
 
 3. Download all NGINX Plus packages, including all dependencies: We used repotrack for example:
 
