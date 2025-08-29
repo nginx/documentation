@@ -104,7 +104,8 @@ NGINX : libc6, libcrypt1, libpcre2-8-0, libssl3, zlib1g,lsb-base
 NIM : openssl, rsyslog, systemd, tar, lsb-release, openssl, gawk
 ClickHouse: libcap2-bin
 
-### RPM based OS
+### Red Hat-based operating systems
+
 NGINX : bash, glibc, libxcrypt, openssl-libs, glibc, pcre2, openssl-libs, zlib, procps-ng, glibc , shadow-utils, systemd
 NIM : glibc, openssl, rsyslog,systemd, tar, which,zlib, yum-utils
 ClickHouse: -- Nil --
