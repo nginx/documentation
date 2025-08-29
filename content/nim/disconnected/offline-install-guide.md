@@ -100,9 +100,9 @@ There are OS dependencies we have for NGINX, NIM and Clickhouse. In offline mode
 
 ### Debian/Ubuntu and similar operating systems
 
-NGINX : libc6, libcrypt1, libpcre2-8-0, libssl3, zlib1g,lsb-base
-NIM : openssl, rsyslog, systemd, tar, lsb-release, openssl, gawk
-ClickHouse: libcap2-bin
+- NGINX : libc6, libcrypt1, libpcre2-8-0, libssl3, zlib1g,lsb-base
+- NIM : openssl, rsyslog, systemd, tar, lsb-release, openssl, gawk
+- ClickHouse: libcap2-bin
 
 ### Red Hat-based operating systems
 
