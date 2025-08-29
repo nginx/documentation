@@ -98,7 +98,8 @@ After you’ve packaged the installation files on a connected system, copy the t
 
 There are OS dependencies we have for NGINX, NIM and Clickhouse. In offline mode we package only NGINX, NIM and Clickhouse packages, customers should first install OS dependencies also. Below are the dependencies list for Linux distributions with `.deb` (Debian/Ubuntu) and `.rpm` (Red Hat) packages. In online mode, these dependencies are auto resolved and installed.
 
-### Debian/Ubuntu OS
+### Debian/Ubuntu and similar operating systems
+
 NGINX : libc6, libcrypt1, libpcre2-8-0, libssl3, zlib1g,lsb-base
 NIM : openssl, rsyslog, systemd, tar, lsb-release, openssl, gawk
 ClickHouse: libcap2-bin
