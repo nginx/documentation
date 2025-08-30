@@ -33,6 +33,11 @@ env:
     --ignore-url ^https://go.googlesource.com/ --ignore-url ^https://go.googlesource.com/sync --ignore-url ^https://linkerd.io/2.13/
     --ignore-url ^http://www.redirectpage.com/ --ignore-url ^https://www.gnu.org/ --ignore-url ^https://insert_your_tenant_name.console.ves.volterra.io
     --ignore-url ^https://pkgs.nginx.com
+    --ignore-url ^http://backend1.example.com --ignore-url ^http://example.com --ignore-url ^https://my-nginx.example.com
+    --ignore-url ^https://www.nginxroute53.com --ignore-url ^http://cafe --ignore-url ^http://192.168.1.23 --ignore-url ^https://company.com
+    --ignore-url ^https://my-nginx-plus.example.com --ignore-url ^https://cognito-idp --ignore-url ^https:///www.okta.com
+    --ignore-url ^http://www.maxmind.com --ignore-url ^https://www.maxmind.com --ignore-url ^https://www.opswat.com --ignore-url 
+    --ignore-url ^https://support.pingidentity.com --ignore-url ^https://docs.pingidentity.com ^https://demo.example.com
     --ignore-url ^https://\([a-zA-Z0-9-]+\).nginx.com/nginx-ingress-controller/css
     --ignore-url ^https://\([a-zA-Z0-9-]+\).nginx.com/nginxaas/azure/css
     --ignore-url ^https://\([a-zA-Z0-9-]+\).nginx.com/nginx-gateway-fabric/css
@@ -56,6 +61,8 @@ jobs:
           - nginx-waf
           - nginx-management-suite
           - nginx-gateway-fabric
+          - nginx-agent
+          - nginx
     steps:
       # Determine and set basepath for schedule or workflow_dispatch
       - name: Set Basepath
