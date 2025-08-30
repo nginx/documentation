@@ -1,11 +1,11 @@
 ---
-title: NGINX App Protect DoS 2.4
+title: F5 DoS for NGINX 2.4
 toc: true
 weight: 160
 nd-docs: DOCS-890
 ---
 
-Here you can find the release information for F5 NGINX App Protect DoS v2.4. NGINX App Protect DoS provides behavioral protection against Denial of Service (DoS) for your web applications.
+Here you can find the release information for F5 F5 DoS for NGINX v2.4. F5 DoS for NGINX provides behavioral protection against Denial of Service (DoS) for your web applications.
 
 ## Release 2.4
 
@@ -54,7 +54,7 @@ June 28, 2022
 
 ### Resolved Issues
 
-- Honoring allow/deny directives for restricting access to the NGINX App Protect DoS Live Activity Monitoring API location.
+- Honoring allow/deny directives for restricting access to the F5 DoS for NGINX Live Activity Monitoring API location.
 
 ### Important Notes
 

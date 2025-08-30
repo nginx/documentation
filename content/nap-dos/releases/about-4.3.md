@@ -1,17 +1,17 @@
 ---
-title: NGINX App Protect DoS 4.3
+title: F5 DoS for NGINX 4.3
 toc: true
 weight: 90
 nd-docs: DOCS-1361
 ---
 
-Here you can find the release information for F5 NGINX App Protect DoS v4.3. NGINX App Protect DoS provides behavioral protection against Denial of Service (DoS) for your web applications.
+Here you can find the release information for F5 F5 DoS for NGINX v4.3. F5 DoS for NGINX provides behavioral protection against Denial of Service (DoS) for your web applications.
 
 ## Release 4.3
 
 December 19, 2023
 
-In this release, NGINX App Protect DoS supports NGINX Plus R31.
+In this release, F5 DoS for NGINX supports NGINX Plus R31.
 
 ### New Features
 

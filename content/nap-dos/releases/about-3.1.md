@@ -1,26 +1,26 @@
 ---
-title: NGINX App Protect DoS 3.1
+title: F5 DoS for NGINX 3.1
 toc: true
 weight: 140
 nd-docs: DOCS-995
 ---
 
-Here you can find the release information for F5 NGINX App Protect DoS v3.1. NGINX App Protect DoS provides behavioral protection against Denial of Service (DoS) for your web applications.
+Here you can find the release information for F5 F5 DoS for NGINX v3.1. F5 DoS for NGINX provides behavioral protection against Denial of Service (DoS) for your web applications.
 
 ## Release 3.1
 
 November 29, 2022
 
-In this release, NGINX App Protect DoS supports NGINX Plus R28.
+In this release, F5 DoS for NGINX supports NGINX Plus R28.
 
 ### New Features
 
 - Support for NGINX Plus R28.
-- NGINX App protect DoS can be deployed behind L4/L7 load balancers when L4 protection is enabled.
-- Fixed the issue: Installing NGINX App protect DoS with L4 (eBPF) mitigation behind L4/L7 load balancer may result in the load balancer's starvation during an attack.
+- F5 DoS for NGINX can be deployed behind L4/L7 load balancers when L4 protection is enabled.
+- Fixed the issue: Installing F5 DoS for NGINX with L4 (eBPF) mitigation behind L4/L7 load balancer may result in the load balancer's starvation during an attack.
 - Support for [proxy_protocol]({{< ref "/nap-dos/directives-and-policy/learn-about-directives-and-policy.md#monitor-directive-app_protect_dos_monitor" >}}) configuration for server health monitoring.<br>
 Previously, server health monitoring could not be used when the listen directive of the correspondent server block contained the `proxy_protocol` parameter.<br>
-This disallowed using NGINX App protect DoS for Denial of Service (DoS) protection for HTTP2 and gRPC protected objects in the `proxy_protocol` configuration.
+This disallowed using F5 DoS for NGINX for Denial of Service (DoS) protection for HTTP2 and gRPC protected objects in the `proxy_protocol` configuration.
 
 
 ### Supported Packages
