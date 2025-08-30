@@ -26,13 +26,13 @@ This tutorial shows you how to set up rate limiting policies between your worklo
 1. Enable [automatic sidecar injection]( {{< ref "/mesh/guides/inject-sidecar-proxy.md#automatic-proxy-injection" >}} ) for the `default` namespace.
 1. Download all of the example files:
 
-    - {{< fa "download" >}} {{< link "/examples/rate-limit/destination.yaml" "`destination.yaml`" >}}
-    - {{< fa "download" >}} {{< link "/examples/rate-limit/client-v1.yaml" "`client-v1.yaml`" >}}
-    - {{< fa "download" >}} {{< link "/examples/rate-limit/client-v2.yaml" "`client-v2.yaml`" >}}
-    - {{< fa "download" >}} {{< link "/examples/rate-limit/bursty-client.yaml" "`bursty-client.yaml`" >}}
-    - {{< fa "download" >}} {{< link "/examples/rate-limit/ratelimit.yaml" "`ratelimit.yaml`" >}}
-    - {{< fa "download" >}} {{< link "/examples/rate-limit/ratelimit-burst.yaml" "`ratelimit-burst.yaml`" >}}
-    - {{< fa "download" >}} {{< link "/examples/rate-limit/ratelimit-rules.yaml" "`ratelimit-rules.yaml`" >}}
+    - {{< icon "download" >}} {{< link "/examples/rate-limit/destination.yaml" "`destination.yaml`" >}}
+    - {{< icon "download" >}} {{< link "/examples/rate-limit/client-v1.yaml" "`client-v1.yaml`" >}}
+    - {{< icon "download" >}} {{< link "/examples/rate-limit/client-v2.yaml" "`client-v2.yaml`" >}}
+    - {{< icon "download" >}} {{< link "/examples/rate-limit/bursty-client.yaml" "`bursty-client.yaml`" >}}
+    - {{< icon "download" >}} {{< link "/examples/rate-limit/ratelimit.yaml" "`ratelimit.yaml`" >}}
+    - {{< icon "download" >}} {{< link "/examples/rate-limit/ratelimit-burst.yaml" "`ratelimit-burst.yaml`" >}}
+    - {{< icon "download" >}} {{< link "/examples/rate-limit/ratelimit-rules.yaml" "`ratelimit-rules.yaml`" >}}
 
 {{< call-out "note" >}}
 Avoid configuring traffic policies such as TrafficSplits, RateLimits, and CircuitBreakers for headless services.

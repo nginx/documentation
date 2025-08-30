@@ -11,8 +11,6 @@ type:
 - reference
 ---
 
-{{<rn-styles>}}
-
 
 ---
 

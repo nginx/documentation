@@ -8,6 +8,5 @@ tags:
   - api
 title: Platform API
 toc: false
+nd-api-reference: "./nginx-controller/api/reference/ctlr-platform-openapi.json"
 ---
-
-{{< openapi spec="./nginx-controller/api/reference/ctlr-platform-openapi.json" >}}

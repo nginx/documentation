@@ -30,10 +30,9 @@ that make sense for your setup:
     ```
 
     The [NGINX Management](https://nginx.org/en/docs/ngx_mgmt_module.html) block configuration will be updated.
----
+
 ## Management ConfigMap keys
 
-{{<bootstrap-table "table table-striped table-bordered table-responsive">}}
 |ConfigMap Key | Description | Default |
 | ---| ---| ---|
 |*license-token-secret-name* | Configures the secret used in the [license_token](https://nginx.org/en/docs/ngx_mgmt_module.html#license_token) directive. This key assumes the secret is in the Namespace that NGINX Ingress Controller is deployed in. The secret must be of type `nginx.com/license` with the base64 encoded JWT in the `license.jwt` key.  | N/A |
@@ -47,4 +46,3 @@ that make sense for your setup:
 |*resolver-addresses* | Configures addresses used in the mgmt block [resolver](https://nginx.org/en/docs/ngx_mgmt_module.html#resolver) directive. This field takes a comma separated list of addresses. | N/A |
 |*resolver-ipv6* | Configures whether the mgmt block [resolver](https://nginx.org/en/docs/ngx_mgmt_module.html#resolver) directive will look up IPv6 addresses. | `true` |
 |*resolver-valid* | Configures an [NGINX time](https://nginx.org/en/docs/syntax.html) that the mgmt block [resolver](https://nginx.org/en/docs/ngx_mgmt_module.html#resolver) directive will override the TTL value of responses from nameservers with. | N/A |
-{{</bootstrap-table>}}

@@ -56,7 +56,7 @@ Use the appropriate example below to deploy an API Gateway with either HTTP, HTT
 
 ### HTTP
 
-> {{< fa "lightbulb" >}} Use this example to get up and running quickly in a demo environment.
+> {{< icon "lightbulb" >}} Use this example to get up and running quickly in a demo environment.
 
 
 {{<bootstrap-table "table">}}
@@ -91,7 +91,7 @@ Use the appropriate example below to deploy an API Gateway with either HTTP, HTT
 To deploy a cluster that uses HTTPS for secure inbound communication, you'll add the **TLS Inbound** policy.
 Because this is done at the Infrastructure level, this is considered a "Global Policy".
 
-> {{< fa "lightbulb" >}} You need to provide a valid TLS server certificate and key in this API call.
+> {{< icon "lightbulb" >}} You need to provide a valid TLS server certificate and key in this API call.
 
 {{<comment>}}
 Need to add requirements for sending this info? Base64 encoding required?
@@ -140,7 +140,7 @@ Need to add requirements for sending this info? Base64 encoding required?
 To deploy a cluster that uses HTTP2 for secure inbound communication, you'll add the **TLS Inbound** policy.
 Because this is done at the Infrastructure level, this is considered a "Global Policy".
 
-> {{< fa "lightbulb" >}} You need to provide a valid TLS server certificate and key in this API call.
+> {{< icon "lightbulb" >}} You need to provide a valid TLS server certificate and key in this API call.
 
 
 {{<bootstrap-table "table">}}
@@ -224,4 +224,3 @@ Try sending traffic to the hostname you configured for the API Gateway. Send a P
 | GET | `/infrastructure/workspaces/{{infraWorkspaceName}}/environments/{{environmentName}}?includes=instances&includes=status`|
 
 {{</bootstrap-table>}}
-

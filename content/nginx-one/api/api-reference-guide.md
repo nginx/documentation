@@ -9,6 +9,5 @@ tags:
 title: API reference guide
 toc: false
 weight: null
+nd-api-reference: "./nginx-one/api/one.json"
 ---
-
-{{< openapi spec="./nginx-one/api/one.json" >}}

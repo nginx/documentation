@@ -3,8 +3,6 @@ nd-docs: DOCS-1343
 title: Open Source Components
 ---
 
-{{<rn-styles>}}
-
 The F5 NGINX Docs website is made possible thanks to many contributors, which also includes the tools used to build it. We would like to draw attention to the maintainers of the following libraries, which are used to create the NGINX Docs:
 
 ---
@@ -35,9 +33,21 @@ The above copyright notice and this permission notice shall be included in all c
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 </details>
 
-## [Bootstrap](https://github.com/twbs/bootstrap)
+## [Lucide](https://lucide.dev/)
 
-Copyright © 2011-2023 The Bootstrap Authors
+Copyright © 2025 Lucide Contributors
+Copyright (c) 2013-2023 Cole Bemis
+
+<details closed>
+<summary><i class="fa-solid fa-file"></i> ISC License (ISC)</summary>
+
+Copyright (c) for portions of Lucide are held by Cole Bemis 2013-2023 as part of Feather (MIT). All other copyright (c) for Lucide are held by Lucide Contributors 2025.
+
+Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby granted, provided that the above copyright notice and this permission notice appear in all copies.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+
+</details>
 
 <details closed>
 <summary><i class="fa-solid fa-file"></i> The MIT License (MIT)</summary>
@@ -48,17 +58,3 @@ The above copyright notice and this permission notice shall be included in all c
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 </details>
-
-## [Font Awesome Free](https://fontawesome.com/license/free)
-
-- Icons - [CC BY 4.0 License](https://creativecommons.org/licenses/by/4.0/) - In the Font Awesome Free download, the CC BY 4.0 license applies to all icons packaged as .svg and .js files types.
-
-- Fonts - [SIL OFL 1.1 License](https://opensource.org/license/ofl-1-1/) - In the Font Awesome Free download, the SIL OFL license applies to all icons packaged as web and desktop font files.
-
-- Code - [MIT License](https://mit-license.org/) - In the Font Awesome Free download, the MIT license applies to all non-font and non-icon files.
-
----
-
-License information for open source components included in the [NGINX Plus]({{< ref "/nginx/" >}}) software:
-
-- [NGINX Plus Open Source Components]({{< ref "/nginx/open-source-components.md" >}})
