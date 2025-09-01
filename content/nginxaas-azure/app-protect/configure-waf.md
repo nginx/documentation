@@ -129,4 +129,3 @@ It is highly recommended to use logging to monitor the performance of NGINX App 
 ## What's next
 
 [Enable App Protect WAF Logs]({{< ref "/nginxaas-azure/app-protect/enable-logging.md" >}})
-    
