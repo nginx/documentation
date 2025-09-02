@@ -5,12 +5,12 @@ weight: 850
 nd-docs: DOCS-590
 ---
 
-This document explains how the `--with-directive-autoadjust` option prevents NGINX configuration errors by automatically adjusting HTTP proxy buffer directives.
+This document explains how the `--enable-directive-autoadjust` option prevents NGINX configuration errors by automatically adjusting HTTP proxy buffer directives.
 
 ---
 ## What it does
 
-The `--with-directive-autoadjust` feature automatically fixes common proxy buffer configuration mistakes that would otherwise cause NGINX to fail with errors like:
+The `--enable-directive-autoadjust` feature automatically fixes common proxy buffer configuration mistakes that would otherwise cause NGINX to fail with errors like:
 
 ```text
 [emerg] "proxy_busy_buffers_size" must be less than the size of all "proxy_buffers" minus one buffer
@@ -34,7 +34,7 @@ The `--with-directive-autoadjust` feature automatically fixes common proxy buffe
 Add the flag to the controller container:
 ```yaml
     args:
-      - --with-directive-autoadjust=true
+      - --enable-directive-autoadjust=true
 ```
 {{% /tab %}}
 {{% tab name="Helm" %}}
@@ -62,7 +62,7 @@ data:
 
 {{% tab name="Before (Error)" %}}
 
-Before enabling `--with-directive-autoadjust`, NGINX fails to start with configuration validation errors.
+Before enabling `--enable-directive-autoadjust`, NGINX fails to start with configuration validation errors.
 
 ```shell
 stderr: "2025/08/26 14:29:49 [emerg] 196#196: "proxy_busy_buffers_size" must be less than the size of all "proxy_buffers" minus one buffer in /etc/nginx/nginx.conf:121"
@@ -72,7 +72,7 @@ stderr: "2025/08/26 14:29:49 [emerg] 196#196: "proxy_busy_buffers_size" must be 
 
 {{% tab name="After (Fixed)" %}}
 
-With `--with-directive-autoadjust`, the configuration is automatically adjusted:
+With `--enable-directive-autoadjust`, the configuration is automatically adjusted:
 
 ```nginx
 		proxy_buffers 8 1m;
@@ -111,7 +111,7 @@ stderr: "2025/08/26 14:34:46 [emerg] 47#47: "proxy_busy_buffers_size" must be eq
 
 {{% tab name="After (Fixed)" %}}
 
-With `--with-directive-autoadjust`, sensible defaults are applied:
+With `--enable-directive-autoadjust`, sensible defaults are applied:
 
 ```shell
 		proxy_buffers 1024 1m;

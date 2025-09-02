@@ -658,7 +658,7 @@ The default value is `false`.
 
 ---
 
-### -with-directive-autoadjust
+### -enable-directive-autoadjust
 
 Automatically adjusts NGINX buffer directives to prevent configuration errors.
 
@@ -668,7 +668,7 @@ When enabled, the controller automatically adjusts `proxy_buffers`, `proxy_buffe
 
 More explanation about this feature can be found in the guide [here](<ref "/nic/installation/configuration/proxy-buffers-configuration.md">).
 
-<a name="cmdoption-with-directive-autoadjust"></a>
+<a name="cmdoption-enable-directive-autoadjust"></a>
 
 ---
 
