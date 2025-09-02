@@ -3,7 +3,7 @@
     - title: "NGINX One Console"
       url: "nginx-one"
     - title: "NGINX Plus"
-      url: "/nginx"
+      url: "nginx"
     - title: "NGINX Instance Manager"
       url: "nginx-instance-manager"
     - title: "NGINX Ingress Controller"
