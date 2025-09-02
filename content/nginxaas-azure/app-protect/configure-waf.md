@@ -116,10 +116,10 @@ To create a custom security policy in the Azure Portal:
 
 In the policy editor:
 
-- Enter the **Name** (as a filename), **File path**, your policy content, and then select **Save**. 
+- Enter the **Name**, **File path**, your policy content, and then select **Save**. 
 
-    - Be sure to append the filename with ".json". 
-    - The **File path** is automatically generated with "/etc/app_protect/conf/" as the default policies folder.
+    - Be sure to append the **File path** with ".json". 
+    - The **File path** must be set with "/etc/app_protect/conf/" plus a file name with ".json" extension.
 
 After your policy has been saved, you can then reference it in your NGINX configuration. For more information on policy configuration and syntax, refer to the NGINX App Protect [configuration guide](https://docs.nginx.com/nginx-app-protect-waf/v5/configuration-guide/configuration/).
 
