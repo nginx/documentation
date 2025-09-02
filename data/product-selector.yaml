@@ -1,4 +1,4 @@
-- productGroup: NGINX ONE
+- productGroup: NGINX One
   products:
     - title: "NGINX One Console"
       url: "/nginx-one"
@@ -16,19 +16,19 @@
     - title: "NGINX Agent"
       url: "/nginx-agent"
 
-- productGroup: NGINX APP PROTECT
+- productGroup: NGINX App Protect
   products:
     - title: "NGINX App Protect WAF"
       url: "/nginx-app-protect-waf"
     - title: "NGINX App Protect DoS"
       url: "/nginx-app-protect-dos"
 
-- productGroup: NGINX AS A SERVICE
+- productGroup: NGINX as a Service
   products:
     - title: "NGINX as a Service for Azure"
       url: "/nginxaas/azure/"
 
-- productGroup: NGINX OTHER
+- productGroup: NGINX Other
   order: 3
   products:
     - title: "NGINX Unit"
