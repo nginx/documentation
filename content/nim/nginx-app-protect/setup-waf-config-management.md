@@ -55,6 +55,7 @@ The table below shows which WAF compiler version to use for each version of NGIN
 
 | NGINX App Protect WAF version | WAF compiler version       |
 |-------------------------------|----------------------------|
+| 5.8.0                         | nms-nap-compiler-v5.498.0  |
 | 5.7.0                         | nms-nap-compiler-v5.442.0  |
 | 5.6.0                         | nms-nap-compiler-v5.342.0  |
 | 5.5.0                         | nms-nap-compiler-v5.264.0  |
@@ -62,6 +63,7 @@ The table below shows which WAF compiler version to use for each version of NGIN
 | 5.3.0                         | nms-nap-compiler-v5.144.0  |
 | 5.2.0                         | nms-nap-compiler-v5.48.0   |
 | 5.1.0                         | nms-nap-compiler-v5.17.0   |
+| 4.16.0                        | nms-nap-compiler-v5.498.0  |
 | 4.15.0                        | nms-nap-compiler-v5.442.0  |
 | 4.14.0                        | nms-nap-compiler-v5.342.0  |
 | 4.13.0                        | nms-nap-compiler-v5.264.0  |
@@ -88,13 +90,13 @@ The table below shows which WAF compiler version to use for each version of NGIN
 To install the WAF compiler on Debian or Ubuntu, run the following command:
 
 ```shell
-sudo apt-get install nms-nap-compiler-v5.442.0
+sudo apt-get install nms-nap-compiler-v5.498.0
 ```
 
 If you want to install more than one version of the WAF compiler on the same system, append the `--force-overwrite` option to the install command after the first installation:
 
 ```shell
-sudo apt-get install nms-nap-compiler-v5.442.0 -o Dpkg::Options::="--force-overwrite"
+sudo apt-get install nms-nap-compiler-v5.498.0 -o Dpkg::Options::="--force-overwrite"
 ```
 
 {{< include "nim/nap-waf/restart-nms-integrations.md" >}}
@@ -118,7 +120,7 @@ To install the WAF compiler on RHEL 8.1 :
 3. Install the WAF compiler:
 
    ```shell
-   sudo yum install nms-nap-compiler-v5.442.0
+   sudo yum install nms-nap-compiler-v5.498.0
    ```
 
 ### RHEL 9
@@ -140,7 +142,7 @@ To install the WAF compiler on RHEL 9:
 3. Install the WAF compiler:
 
    ```shell
-   sudo yum install nms-nap-compiler-v5.442.0
+   sudo yum install nms-nap-compiler-v5.498.0
    ```
 
 4. {{< include "nim/nap-waf/restart-nms-integrations.md" >}}
@@ -164,7 +166,7 @@ To install the WAF compiler on Oracle Linux 8.1:
 3. Install the WAF compiler:
 
     ```shell
-    sudo yum install nms-nap-compiler-v5.442.0
+    sudo yum install nms-nap-compiler-v5.498.0
     ```
 
 4. {{< include "nim/nap-waf/restart-nms-integrations.md" >}}
@@ -240,6 +242,7 @@ error when creating the nginx repo retriever - NGINX repo certificates not found
 
 If needed, you can also [install the WAF compiler manually](#install-the-waf-compiler).
 
+
 ## Install or update the WAF compiler in a disconnected environment
 
 To install the WAF compiler on a system without internet access, complete these steps:
@@ -247,12 +250,14 @@ To install the WAF compiler on a system without internet access, complete these 
 - **Step 1:** Generate the WAF compiler package on a system that has internet access.  
 - **Step 2:** Move the generated package to the offline target system and install it.
 
+
 Note : Version of NAP compiler can be referred from the table at the top of this page. 
-Current latest version 5.442.0 at the point of writing this document is used in below commands.
+Current latest version 5.498.0 at the point of writing this document is used in below commands.
 
 {{<tabs name="WAF compiler installation in offline environment">}}
 
 {{%tab name="Ubuntu"%}}
+
 
 ### Install on Ubuntu 24.04, 22.04
 
@@ -276,10 +281,12 @@ sudo tee /etc/apt/sources.list.d/nms.list
 sudo wget -q -O /etc/apt/apt.conf.d/90pkgs-nginx https://cs.nginx.com/static/files/90pkgs-nginx
 mkdir -p compiler && cd compiler
 sudo apt-get update
-sudo apt-get download nms-nap-compiler-v5.442.0
+
+sudo apt-get download nms-nap-compiler-v5.498.0
 cd ../
 mkdir -p compiler/compiler.deps
-sudo apt-get install --download-only --reinstall --yes --print-uris nms-nap-compiler-v5.442.0 | grep ^\' | cut -d\' -f2 | xargs -n 1 wget -P ./compiler/compiler.deps
+sudo apt-get install --download-only --reinstall --yes --print-uris nms-nap-compiler-v5.498.0 | grep ^\' | cut -d\' -f2 | xargs -n 1 wget -P ./compiler/compiler.deps
+
 tar -czvf compiler.tar.gz compiler/
 ```
 
@@ -320,10 +327,12 @@ sudo tee /etc/apt/sources.list.d/nms.list
 sudo wget -q -O /etc/apt/apt.conf.d/90pkgs-nginx https://cs.nginx.com/static/files/90pkgs-nginx
 mkdir -p compiler && cd compiler
 sudo apt-get update
-sudo apt-get download nms-nap-compiler-v5.442.0
+
+sudo apt-get download nms-nap-compiler-v5.498.0
+
 cd ../
 mkdir -p compiler/compiler.deps
-sudo apt-get install --download-only --reinstall --yes --print-uris nms-nap-compiler-v5.442.0 | grep ^\' | cut -d\' -f2 | xargs -n 1 wget -P ./compiler/compiler.deps
+sudo apt-get install --download-only --reinstall --yes --print-uris nms-nap-compiler-v5.498.0 | grep ^\' | cut -d\' -f2 | xargs -n 1 wget -P ./compiler/compiler.deps
 tar -czvf compiler.tar.gz compiler/
 ```
 
@@ -339,6 +348,7 @@ sudo dpkg -i ./compiler/*.deb
 ```
 
 {{%/tab%}}
+
 
 {{%tab name="RHEL9, Oracle-9 "%}}
 
@@ -359,7 +369,8 @@ sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/nms.repo
 sudo yum-config-manager --disable rhel-9-appstream-rhui-rpms
 sudo yum update -y
 sudo mkdir -p nms-nap-compiler
-sudo yumdownloader --resolve --destdir=nms-nap-compiler nms-nap-compiler-v5.442.0
+
+sudo yumdownloader --resolve --destdir=nms-nap-compiler nms-nap-compiler-v5.498.0
 tar -czvf compiler.tar.gz nms-nap-compiler/
 ```
 
@@ -375,6 +386,7 @@ sudo dnf install *.rpm --disablerepo=*
 ```
 
 {{%/tab%}}
+
 
 {{%tab name="Redhat-8, Oracle-8"%}}
 
@@ -401,7 +413,8 @@ EOF
 
 sudo yum update -y
 sudo mkdir -p nms-nap-compiler
-sudo yumdownloader --resolve --destdir=nms-nap-compiler nms-nap-compiler-v5.442.0
+
+sudo yumdownloader --resolve --destdir=nms-nap-compiler nms-nap-compiler-v5.498.0
 tar -czvf compiler.tar.gz nms-nap-compiler/
 ```
 
@@ -1194,21 +1207,21 @@ sudo /opt/nms-nap-compiler/app_protect-<version>/bin/apcompile -h
 **Example:**
 
 ```shell
-sudo /opt/nms-nap-compiler/app_protect-5.442.0/bin/apcompile -h
+sudo /opt/nms-nap-compiler/app_protect-5.498.0/bin/apcompile -h
 ```
 
 **Expected output:**
 
 ```text
 USAGE:
-    /opt/nms-nap-compiler/app_protect-5.442.0/bin/apcompile <options>
+    /opt/nms-nap-compiler/app_protect-5.498.0/bin/apcompile <options>
 
 Examples:
-    /opt/nms-nap-compiler/app_protect-5.442.0/bin/apcompile -p /path/to/policy.json -o mypolicy.tgz
-    /opt/nms-nap-compiler/app_protect-5.442.0/bin/apcompile -p policyA.json -g myglobal.json -o /path/to/policyA_bundle.tgz
-    /opt/nms-nap-compiler/app_protect-5.442.0/bin/apcompile -g myglobalsettings.json --global-state-outfile /path/to/myglobalstate.tgz
-    /opt/nms-nap-compiler/app_protect-5.442.0/bin/apcompile -b /path/to/policy_bundle.tgz --dump
-    /opt/nms-nap-compiler/app_protect-5.442.0/bin/apcompile -l logprofA.json -o /path/to/logprofA_bundle.tgz
+    /opt/nms-nap-compiler/app_protect-5.498.0/bin/apcompile -p /path/to/policy.json -o mypolicy.tgz
+    /opt/nms-nap-compiler/app_protect-5.498.0/bin/apcompile -p policyA.json -g myglobal.json -o /path/to/policyA_bundle.tgz
+    /opt/nms-nap-compiler/app_protect-5.498.0/bin/apcompile -g myglobalsettings.json --global-state-outfile /path/to/myglobalstate.tgz
+    /opt/nms-nap-compiler/app_protect-5.498.0/bin/apcompile -b /path/to/policy_bundle.tgz --dump
+    /opt/nms-nap-compiler/app_protect-5.498.0/bin/apcompile -l logprofA.json -o /path/to/logprofA_bundle.tgz
 ```
 
 ### Confirm NGINX Agent configuration on the NGINX App Protect WAF instance
