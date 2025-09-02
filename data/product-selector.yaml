@@ -27,10 +27,3 @@
   products:
     - title: "NGINX as a Service for Azure"
       url: "nginxaas/azure/"
-
-- productGroup: NGINX Other
-  order: 3
-  products:
-    - title: "NGINX Unit"
-      url: "https://unit.nginx.org/"
-      extUrl: true
