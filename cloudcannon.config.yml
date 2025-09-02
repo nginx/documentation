@@ -88,8 +88,8 @@ collections_config:
   nap_dos:
     path: content/nap-dos
     output: true
-    name: NGINX App Protect DoS
-    description: Documentation for NGINX App Protect DoS
+    name: F5 DoS for NGINX
+    description: Documentation for F5 DoS for NGINX
     parse_branch_index: false
     icon: notes
     preview:

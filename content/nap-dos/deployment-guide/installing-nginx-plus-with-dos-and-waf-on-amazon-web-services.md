@@ -17,28 +17,28 @@ The AMIs contain combination of the following components:
 
 - Latest version of [F5 NGINX Plus](https://www.f5.com/products/nginx/nginx-plus), optimized for use on Amazon EC2
 
-- Latest version of [NGINX App Protect DoS](https://docs.nginx.com/nginx-app-protect-dos/), optimized for use on Amazon EC2
+- Latest version of [F5 DoS for NGINX](https://docs.nginx.com/nginx-app-protect-dos/), optimized for use on Amazon EC2
 - Latest version of [NGINX App Protect WAF](https://docs.nginx.com/nginx-app-protect-waf/), optimized for use on Amazon EC2
 - Pre-packaged software for building highly available (HA) NGINX Plus configurations
 
 ## Install NGINX Plus NGINX App Protect WAF + DoS
 
-To quickly set up an environment with NGINX Plus, NGINX App Protect WAF and NGINX App Protect DoS on AWS:
+To quickly set up an environment with NGINX Plus, NGINX App Protect WAF and F5 DoS for NGINX on AWS:
 
 1. Follow the instructions in [Getting Started with Amazon EC2 Linux Instances](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EC2_GetStarted.html) to sign up on AWS and get more information about EC2 itself.
 2. Proceed to the product page for the appropriate AMI at the AWS Marketplace, and launch the AMI.
 
-    - [NGINX Plus with NGINX App Protect DoS – RHEL 7 Linux AMI HVM](https://aws.amazon.com/marketplace/pp/prodview-bjdboufufnb7g?sr=0-4&ref_=beagle&applicationId=AWSMPContessa)
+    - [NGINX Plus with F5 DoS for NGINX – RHEL 7 Linux AMI HVM](https://aws.amazon.com/marketplace/pp/prodview-bjdboufufnb7g?sr=0-4&ref_=beagle&applicationId=AWSMPContessa)
 
-    - [NGINX Plus with NGINX App Protect DoS – RHEL8 Linux AMI HVM](https://aws.amazon.com/marketplace/pp/prodview-e6bifer7o6uzm?sr=0-13&ref_=beagle&applicationId=AWSMPContessa)
+    - [NGINX Plus with F5 DoS for NGINX – RHEL8 Linux AMI HVM](https://aws.amazon.com/marketplace/pp/prodview-e6bifer7o6uzm?sr=0-13&ref_=beagle&applicationId=AWSMPContessa)
 
-    - [NGINX Plus with NGINX App Protect DoS – CentOS 7 Linux AMI HVM](https://aws.amazon.com/marketplace/pp/prodview-deeny2oe7izti?sr=0-12&ref_=beagle&applicationId=AWSMPContessa)
+    - [NGINX Plus with F5 DoS for NGINX – CentOS 7 Linux AMI HVM](https://aws.amazon.com/marketplace/pp/prodview-deeny2oe7izti?sr=0-12&ref_=beagle&applicationId=AWSMPContessa)
 
-    - [NGINX Plus with NGINX App Protect DoS – Debian 11 Linux AMI HVM](https://aws.amazon.com/marketplace/pp/prodview-56oveh2rsxsbq?sr=0-2&ref_=beagle&applicationId=AWSMPContessa)
+    - [NGINX Plus with F5 DoS for NGINX – Debian 11 Linux AMI HVM](https://aws.amazon.com/marketplace/pp/prodview-56oveh2rsxsbq?sr=0-2&ref_=beagle&applicationId=AWSMPContessa)
 
-    - [NGINX Plus with NGINX App Protect DoS – Ubuntu 20.04 Linux AMI HVM](https://aws.amazon.com/marketplace/pp/prodview-gsoln2vnsgpr4?sr=0-5&ref_=beagle&applicationId=AWSMPContessa)
+    - [NGINX Plus with F5 DoS for NGINX – Ubuntu 20.04 Linux AMI HVM](https://aws.amazon.com/marketplace/pp/prodview-gsoln2vnsgpr4?sr=0-5&ref_=beagle&applicationId=AWSMPContessa)
 
-    - [NGINX Plus with NGINX App Protect DoS – Ubuntu 22.04 Linux AMI HVM](https://aws.amazon.com/marketplace/pp/prodview-l6f2q2ykrjufy?sr=0-13&ref_=beagle&applicationId=AWSMPContessa)
+    - [NGINX Plus with F5 DoS for NGINX – Ubuntu 22.04 Linux AMI HVM](https://aws.amazon.com/marketplace/pp/prodview-l6f2q2ykrjufy?sr=0-13&ref_=beagle&applicationId=AWSMPContessa)
 
     - [NGINX Plus with NGINX App Protect WAF + DoS – RHEL 7 Linux AMI HVM](https://aws.amazon.com/marketplace/pp/prodview-jedbygo6xbvto?sr=0-1&ref_=beagle&applicationId=AWSMPContessa)
 
@@ -62,7 +62,7 @@ To quickly set up an environment with NGINX Plus, NGINX App Protect WAF and NGIN
 
   See [NGINX Plus on the AWS Cloud](https://www.nginx.com/resources/datasheets/nginx-quick-start-guide-for-aws/) deployment guide for details.
 
-6. Verify latest NGINX PLUS / NGINX App Protect DoS / NGINX App Protect WAF packages are installed on EC2 after its first start:
+6. Verify latest NGINX PLUS / F5 DoS for NGINX / NGINX App Protect WAF packages are installed on EC2 after its first start:
 
 
      Verify NGINX App Protect WAF latest release from <https://docs.nginx.com/nginx-app-protect-waf/releases/> is
@@ -88,7 +88,7 @@ To quickly set up an environment with NGINX Plus, NGINX App Protect WAF and NGIN
       nginx -v
       ```
 
-    In case NGINX PLUS / NGINX App Protect DoS / NGINX App Protect WAF packages are not latest release then upgrade the following  with these commands:
+    In case NGINX PLUS / F5 DoS for NGINX / NGINX App Protect WAF packages are not latest release then upgrade the following  with these commands:
 
 
     For App Protect DoS solution based on RedHat / CentOS
@@ -151,17 +151,17 @@ To quickly set up an environment with NGINX Plus, NGINX App Protect WAF and NGIN
 
 
 
-8. If AMI includes [NGINX App Protect DoS](https://docs.nginx.com/nginx-app-protect-dos/)
+8. If AMI includes [F5 DoS for NGINX](https://docs.nginx.com/nginx-app-protect-dos/)
 
-    To enable NGINX App Protect DoS use the following steps:
+    To enable F5 DoS for NGINX use the following steps:
 
-    a. Load the NGINX App Protect DoS module on the main context in the `nginx.conf` file:
+    a. Load the F5 DoS for NGINX module on the main context in the `nginx.conf` file:
 
     ```shell
     load_module modules/ngx_http_app_protect_dos_module.so;
     ```
 
-    b. Enable NGINX App Protect DoS on an `http/server/location` context in the `nginx.conf` file:
+    b. Enable F5 DoS for NGINX on an `http/server/location` context in the `nginx.conf` file:
 
     ```shell
     app_protect_dos_enable on;
@@ -182,7 +182,7 @@ To quickly set up an environment with NGINX Plus, NGINX App Protect WAF and NGIN
     sudo systemctl restart nginx
     ```
 
-  For more configuration information follow [NGINX App Protect DoS Directives and Policy](https://docs.nginx.com/nginx-app-protect-dos/directives-and-policy/learn-about-directives-and-policy/).
+  For more configuration information follow [F5 DoS for NGINX Directives and Policy](https://docs.nginx.com/nginx-app-protect-dos/directives-and-policy/learn-about-directives-and-policy/).
 
 
 
@@ -190,7 +190,7 @@ To quickly set up an environment with NGINX Plus, NGINX App Protect WAF and NGIN
 
 If you encounter any problems with NGINX Plus configuration, documentation is available at [nginx.org](https://nginx.org/en/docs/) and in the [NGINX Plus Admin Guide](https://docs.nginx.com/nginx/admin-guide/installing-nginx/).
 
-If you encounter any problems with NGINX App Protect DoS configuration, documentation is available at the [NGINX App Protect DoS Troubleshooting Guide](https://docs.nginx.com/nginx-app-protect-dos/troubleshooting-guide/how-to-troubleshoot/).
+If you encounter any problems with F5 DoS for NGINX configuration, documentation is available at the [F5 DoS for NGINX Troubleshooting Guide](https://docs.nginx.com/nginx-app-protect-dos/troubleshooting-guide/how-to-troubleshoot/).
 
 If you encounter any problems with NGINX App Protect WAF configuration, documentation is available at the [NGINX App Protect WAF Troubleshooting Guide](https://docs.nginx.com/nginx-app-protect-waf/v4/troubleshooting-guide/troubleshooting/).
 

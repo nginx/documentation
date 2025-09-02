@@ -1,5 +1,5 @@
 ---
-title: NGINX App Protect DoS Directives and Policy
+title: F5 DoS for NGINX Directives and Policy
 toc: true
 weight: 120
 nd-docs: DOCS-667
@@ -8,14 +8,14 @@ nd-docs: DOCS-667
 ## Introduction
 
 NGINX directives are specified in the `nginx.conf` file and are used to configure various modules of NGINX.<br>
-F5 NGINX App Protect DoS has its own set of directives, which follow the same rules as other NGINX directives, and are used to enable and configure its features.<br>
+F5 F5 DoS for NGINX has its own set of directives, which follow the same rules as other NGINX directives, and are used to enable and configure its features.<br>
 
-The table below provides a summary of all the F5 NGINX App Protect DoS directives.<br>
+The table below provides a summary of all the F5 F5 DoS for NGINX directives.<br>
 
-While only the first directive is mandatory for enabling NGINX App Protect DoS, it is recommended to use as many directives as possible to leverage the product’s full range of monitoring and application health detection capabilities. After adding these directives, ensure you reload NGINX and check the error log for any errors or warnings.<br>
+While only the first directive is mandatory for enabling F5 DoS for NGINX, it is recommended to use as many directives as possible to leverage the product’s full range of monitoring and application health detection capabilities. After adding these directives, ensure you reload NGINX and check the error log for any errors or warnings.<br>
 
 ## Directives table
-Below is a summary of all NGINX App Protect DoS directives. Detailed descriptions of each directive can be found in the following sections.
+Below is a summary of all F5 DoS for NGINX directives. Detailed descriptions of each directive can be found in the following sections.
 
  {{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}}
 
@@ -130,7 +130,7 @@ Directive is optional. If not written, then each protected object (VS) will have
 seq: 0 for server block, increments for each location block. i.e. VS created from server block will have 0 and VS's from location blocks will be 1,2,3,... (i.e. `1`)
 - `location name:` the name of the location (i.e. `/abc`)
 
-NGINX App Protect DoS supports up to 300 Protected Objects for versions up to 4.3, and 1,000 Protected Objects in version 4.4 and above.<br>
+F5 DoS for NGINX supports up to 300 Protected Objects for versions up to 4.3, and 1,000 Protected Objects in version 4.4 and above.<br>
 <br>
 **Example:**
 
@@ -158,21 +158,21 @@ Monitor directive has four arguments - **uri**, **protocol**, **timeout** and **
 
 - **Protocol** -  determines the protocol type of the service. Options are `http1 / http2 / grpc / websocket`.<br>Default: `http1`.<br>
 
-  {{< call-out "note" >}}HTTP2 and gRPC are supported from NGINX App Protect DoS v2, while WebSocket is supported from NGINX App Protect DoS v4. {{< /call-out >}}
+  {{< call-out "note" >}}HTTP2 and gRPC are supported from F5 DoS for NGINX v2, while WebSocket is supported from F5 DoS for NGINX v4. {{< /call-out >}}
 
-- **Timeout** - determines how long (in seconds) should NGINX App Protect DoS wait for a response. <br>Default: 10 seconds for `http1/http2/websocket` and 5 seconds for `grpc`.<br>
+- **Timeout** - determines how long (in seconds) should F5 DoS for NGINX wait for a response. <br>Default: 10 seconds for `http1/http2/websocket` and 5 seconds for `grpc`.<br>
 
 - **Proxy Protocol** -  Should be used when the listen directive of the corresponding server block contains the proxy_protocol parameter.
  It adds an HAProxy PROXY protocol header to the monitor request.
   <br>Format is **proxy_protocol | proxy_protocol=on**.<br>
   Default: off.<br>
 
-  {{< call-out "note" >}}The proxy_protocol is supported from NGINX App Protect DoS v3.1. {{< /call-out >}}
+  {{< call-out "note" >}}The proxy_protocol is supported from F5 DoS for NGINX v3.1. {{< /call-out >}}
 
 
-#### For Older Versions (NGINX App Protect DoS v1)
+#### For Older Versions (F5 DoS for NGINX v1)
 
-In NGINX App Protect DoS v1, the app_protect_dos_monitor directive has only one argument: uri.
+In F5 DoS for NGINX v1, the app_protect_dos_monitor directive has only one argument: uri.
 Only HTTP1 is supported.
 
 <br><br>
@@ -190,7 +190,7 @@ location / {
 }
 ```
 
-{{< call-out "note" >}}For NGINX App Protect DoS v1, use: app_protect_dos_monitor <http://serv:80/>; {{< /call-out >}}
+{{< call-out "note" >}}For F5 DoS for NGINX v1, use: app_protect_dos_monitor <http://serv:80/>; {{< /call-out >}}
 
 2. HTTP/2 Over SSL
 
@@ -277,7 +277,7 @@ Second argument is the destination (the location which the events will be sent t
 - `stderr` (**default**)
 - `{absolute_file_path}`, i.e. `/shared/dos_sec_logger.log`
 
-Implemented according to: [NGINX App Protect DoS Security Log]({{< ref "/nap-dos/monitoring/security-log.md" >}})
+Implemented according to: [F5 DoS for NGINX Security Log]({{< ref "/nap-dos/monitoring/security-log.md" >}})
 
    {{< call-out "note" >}}
 
@@ -336,7 +336,7 @@ Second and Third arguments are optional; if one or more is not written, the defa
 
 If liveness is enabled, a request with URI and PORT that matches the probe configuration (i.e. `/app_protect_dos_liveness:8090`) will be answered with RC 200 "Alive" by our NGINX module, without being counted or pass to other handlers nor the backend server.
 
-Any other response will indicate that our NGINX module (NGINX App Protect DoS) has not received the request (possibly means that NGINX is down).
+Any other response will indicate that our NGINX module (F5 DoS for NGINX) has not received the request (possibly means that NGINX is down).
 
 **Example:**
 
@@ -363,7 +363,7 @@ Second and Third arguments are optional; if one or more is not written, the defa
 
 If readiness is enabled, a request with URI and PORT that matches the probe configuration (i.e. `/app_protect_dos_readiness:8090`) will be answered with RC 200 "Ready" or RC 503 "Not Ready" by our NGINX module, without being counted or pass to other handlers nor the backend server.
 
-Any other response will indicate that our NGINX module (NGINX App Protect DoS) has not received the request (possibly means that NGINX is down).
+Any other response will indicate that our NGINX module (F5 DoS for NGINX) has not received the request (possibly means that NGINX is down).
 
 RC 200 "Ready" will occur if two conditions are met:
 
@@ -402,7 +402,7 @@ This directive is used to enable the App Protect DoS monitoring capability via R
 The REST API interface provides extended metrics information of the Protected Objects.
 It can be used by sending REST API requests manually or by using the App Protect DoS dashboard page.
 
-For more information refer to [NGINX App Protect DoS Live Activity Monitoring]({{< ref "/nap-dos/monitoring/live-activity-monitoring.md" >}})
+For more information refer to [F5 DoS for NGINX Live Activity Monitoring]({{< ref "/nap-dos/monitoring/live-activity-monitoring.md" >}})
 
 **Example:**
 
@@ -432,13 +432,13 @@ syn_drop is an optional parameter; the default value is "off".<br>
 syn_drop=on mode is applicable for plane HTTP services or HTTPS when the `tls_fingerprint` feature is disabled. Refer to policy parameter "tls_fingerprint" in [Policy directive](#policy-directive-app_protect_dos_policy_file).
 In syn_drop mode, the SYN packet of detected bad actors will be dropped.
 
-syn_drop mode is recommended for the deployments of NGINX App Protect DoS at the perimeter network or behind L3 load balancer.
-Using this mode when NGINX App Protect DoS is deployed behind L4/L7 load balancer may result in the load balancer’s starvation during an attack.
+syn_drop mode is recommended for the deployments of F5 DoS for NGINX at the perimeter network or behind L3 load balancer.
+Using this mode when F5 DoS for NGINX is deployed behind L4/L7 load balancer may result in the load balancer’s starvation during an attack.
 
 {{< call-out "note" >}}
 To use this directive you need to install the eBPF package.
 
-For more information about eBPF, you can read the [Accelerating DDoS Mitigation with eBPF in F5 NGINX App Protect DoS](https://www.f5.com/company/blog/nginx/accelerating-ddos-mitigation-with-ebpf-in-f5-nginx-app-protect-dos) article.
+For more information about eBPF, you can read the [Accelerating DDoS Mitigation with eBPF in F5 F5 DoS for NGINX](https://www.f5.com/company/blog/nginx/accelerating-ddos-mitigation-with-ebpf-in-f5-nginx-app-protect-dos) article.
 
 {{< /call-out >}}
 
