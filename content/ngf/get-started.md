@@ -572,7 +572,7 @@ To convert your existing NGINX Ingress resources to Gateway API resources that w
 
 2. Run the conversion command for NGINX provider:
    ```shell
-   ingress2gateway --providers=nginx --input-file=<your-ingress-file>
+   ingress2gateway print --providers=nginx --input-file=<your-ingress-file>
    ```
 
 3. Review the generated Gateway API resources and apply them to your cluster
