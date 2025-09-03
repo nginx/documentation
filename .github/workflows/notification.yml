@@ -3,7 +3,6 @@ on:
   workflow_run:
     branches: [main]
     workflows:
-      - "UI validation on prod"
       - "QE LinkChecker"
       - "Check for Broken Links"
     types: [completed]

@@ -132,7 +132,37 @@ The table below shows the estimated storage requirements for **NGINX OSS**, base
 |                       | 250       | 14               | 4 GiB                            |
 {{</bootstrap-table>}}
 
+## Directory Requirements for NGINX Instance Manager
+
+Below are the directory requirements and storage recommendations for fresh, minimal, and moderate usage (<100 instances) of NGINX Instance Manager (NIM).
+
+{{< call-out "important" >}}
+These recommendations apply if you are using NGINX Agent to connect NGINX instances to NIM for full management capabilities, including:
+
+- Managing configurations
+- Viewing metrics
+- Applying WAF policies
+- Managing certificates
+
+If you're concerned solely on usage reporting, you do not need NGINX Agent. Required resources needed are significantly reduced. For usage reporting-only deployments, NIM receives and stores usage data sent directly from the instances.
+{{< /call-out >}}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Directory path           | Content | Recommendation |
+|-----------------------|-----------------|----------------------------------|
+| /usr/bin |    Stores NIM binaries            | 500MB                         |
+| /var/lib/nms/dqlite |    Stores DQLite database data| 2GiB without NGINX App Protect; 5GiB with NGINX App Protect enabled and large compiled bundles    |
+| /var/lib/nms/streaming |    Stores NATS streaming messages           | 500MiB                         |
+| /var/lib/nms/secrets |    Stores secrets for LLM license handshakes         | 10MiB                         |
+| /var/lib/nms/modules |    Stores static content like manager.json           | 100KiB (12KiB minimum)                        |
+| /var/lib/clickhouse |    Stores ClickHouse metrics data           | recommend 2.5GB per instance (25GB for 10 instances, 250GB for 100 instances). This is only required if ClickHouse metrics are enabled                         |
+| /var/log/nms |    Stores logs for NIM with rotation enabled            | recommended 50MiB per week if archived once a month                         |
+| /etc/nms/ |      Stores NIM configuration files           | 50MiB                       |
+| /etc/nginx |    Stores NGINX configuration files           | typical size is 10MiB-50MiB   |
+{{</bootstrap-table>}}
+
 ## ClickHouse tuning {#clickhouse-tuning}
+
 The default ClickHouse configuration works efficiently with NGINX Instance Manager. If you change the configuration and ClickHouse runs out of memory, see the [ClickHouse configuration guide]({{< ref "/nim/system-configuration/configure-clickhouse.md#clickhouse-tuning" >}}) to adjust the settings.
 
 ## Firewall ports {#firewall}

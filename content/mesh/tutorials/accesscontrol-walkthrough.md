@@ -19,10 +19,10 @@ The access control mode can be [set to `deny` at the global level]( {{< ref "/me
 1. Enable [automatic sidecar injection]( {{< ref "/mesh/guides/inject-sidecar-proxy.md#automatic-proxy-injection" >}} ) for the `default` namespace.
 1. Download all of the example files:
 
-    - {{< fa "download" >}} {{< link "/examples/dest-svc.yaml" >}}
-    - {{< fa "download" >}} {{< link "/examples/access.yaml" >}}
-    - {{< fa "download" >}} {{< link "/examples/driver-allowed.yaml" >}}
-    - {{< fa "download" >}} {{< link "/examples/driver-disallowed.yaml" >}}
+    - {{< icon "download" >}} {{< link "/examples/dest-svc.yaml" >}}
+    - {{< icon "download" >}} {{< link "/examples/access.yaml" >}}
+    - {{< icon "download" >}} {{< link "/examples/driver-allowed.yaml" >}}
+    - {{< icon "download" >}} {{< link "/examples/driver-disallowed.yaml" >}}
 
 ## Objectives
 
@@ -352,7 +352,7 @@ Traffic can be filtered via sets that are classified via ServiceAccounts. But [T
 For exact matches, be sure to use regular expression anchors. To exactly match the header value `hello`, be sure to use `^hello$`; otherwise, additional headers that contain the sequence `hello` will be allowed.
   {{< /call-out >}}
 {{< call-out "tip" >}}
-For an expanded example showing configuration for an application using a headless service, checkout our example for clustered application traffic policies {{< fa "download" >}} {{< link "/examples/clustered-application.yaml" >}}
+For an expanded example showing configuration for an application using a headless service, checkout our example for clustered application traffic policies {{< icon "download" >}} {{< link "/examples/clustered-application.yaml" >}}
 {{< /call-out >}}
 
 ## Resources

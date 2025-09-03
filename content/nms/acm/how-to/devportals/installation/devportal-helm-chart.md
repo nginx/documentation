@@ -115,7 +115,7 @@ Create a Dockerfile similar to the following example:
     <details closed>
     <summary><i class="fa-solid fa-circle-info"></i> Example Dockerfile</summary>
 
-    {{< fa "download" >}} {{< link "/acm/containers/devportal/Dockerfile" "Download example Dockerfile" >}}
+    {{< icon "download" >}} {{< link "/acm/containers/devportal/Dockerfile" "Download example Dockerfile" >}}
 
     ```Dockerfile
     FROM ubuntu:focal
@@ -193,7 +193,7 @@ Create a Dockerfile similar to the following example:
     <details closed>
       <summary><i class="fa-solid fa-circle-info"></i> Example entrypoint.sh</summary>
 
-    {{< fa "download" >}} {{< link "/acm/containers/devportal/entrypoint.sh" "Download example entrypoint.sh file" >}}
+    {{< icon "download" >}} {{< link "/acm/containers/devportal/entrypoint.sh" "Download example entrypoint.sh file" >}}
 
     ```bash
     #!/bin/bash
@@ -451,4 +451,3 @@ This configuration is recommended for proof of concept installations and not for
 ### Deploy Developer Portal using TLS for the backend API service
 
 {{< include "installation/helm/acm/dev-portal-helm-configurations/configure-devportal-helm-api-mtls.md" >}}
-

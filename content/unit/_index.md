@@ -15,31 +15,25 @@ NGINX Unit is a lightweight and versatile application runtime that provides the 
 
 ## Featured content
 
-{{<card-layout>}}
-  {{<card-section showAsCards="true" isFeaturedSection="true">}}
-    {{<card title="Key features" titleUrl="/nginx-unit/keyfeatures/" isFullSize="true" icon="unplug">}}
-      Learn about the key features of NGINX Unit, including its support for multiple languages, security, performance, and more
-    {{</card >}}
-    {{<card title="Installation" titleUrl="/nginx-unit/installation/" isFullSize="true">}}
-      Get started with NGINX Unit by installing it on your system. Find instructions for various platforms and package managers
-    {{</card >}}
-    {{<card title="Configuration" titleUrl="/nginx-unit/configuration/" isFullSize="true">}}
-      Learn how to configure NGINX Unit for your applications
-    {{</card >}}
-  {{</card-section>}}
-{{</card-layout>}}
+{{<card-section showAsCards="true" isFeaturedSection="true">}}
+  {{<card title="Key features" titleUrl="/nginx-unit/keyfeatures/" isFullSize="true" icon="unplug">}}
+    Learn about the key features of NGINX Unit, including its support for multiple languages, security, performance, and more
+  {{</card >}}
+  {{<card title="Installation" titleUrl="/nginx-unit/installation/" isFullSize="true">}}
+    Get started with NGINX Unit by installing it on your system. Find instructions for various platforms and package managers
+  {{</card >}}
+  {{<card title="Configuration" titleUrl="/nginx-unit/configuration/" isFullSize="true">}}
+    Learn how to configure NGINX Unit for your applications
+  {{</card >}}
+{{</card-section>}}
 
 ## Other resources
 
-{{<card-layout>}}
-  {{<card-section showAsCards="true">}}
-
-    {{<card title="How-to guides" titleUrl="/nginx-unit/howto/" isFullSize="true">}}
-      Learn how to resolve various real-life situations and issues that you may experience with Unit
-    {{</card >}}
-    {{<card title="Changelog" titleUrl="/nginx-unit/changes/" isFullSize="true" icon="file-clock">}}
-      See the latest changes and updates in NGINX Unit, including new features, bug fixes, and improvements
-    {{</card >}}
-
-  {{</card-section>}}
-{{</card-layout>}}
+{{<card-section showAsCards="true">}}
+  {{<card title="How-to guides" titleUrl="/nginx-unit/howto/" isFullSize="true">}}
+    Learn how to resolve various real-life situations and issues that you may experience with Unit
+  {{</card >}}
+  {{<card title="Changelog" titleUrl="/nginx-unit/changes/" isFullSize="true" icon="file-clock">}}
+    See the latest changes and updates in NGINX Unit, including new features, bug fixes, and improvements
+  {{</card >}}
+{{</card-section>}}

@@ -26,16 +26,14 @@ It supports standard [Ingress]({{< ref "/nic/glossary.md#ingress">}}) features s
 
 ## Featured content
 
-{{<card-layout>}}
-  {{<card-section showAsCards="true" isFeaturedSection="true">}}
-    {{<card title="Install NGINX Ingress Controller with Helm" titleUrl="/nginx-ingress-controller/installation/installing-nic/installation-with-helm">}}
-      Use Helm to deploy and configure a NGINX Ingress Controller cluster
-    {{</card>}}
-    {{<card title="Migrate from Ingress-NGINX Controller" titleUrl="/nginx-ingress-controller/installation/ingress-nginx">}}
-      Replace an Ingress-NGINX cluster with NGINX Ingress Controller
-    {{</card>}}
-    {{<card title="Releases" titleUrl="/nginx-ingress-controller/releases">}}
-      Review the changes from the latest NGINX Ingress Controller releases
-    {{</card>}}
-  {{</card-section>}}
-{{</card-layout>}}
+{{<card-section showAsCards="true" isFeaturedSection="true">}}
+  {{<card title="Install NGINX Ingress Controller with Helm" titleUrl="/nginx-ingress-controller/installation/installing-nic/installation-with-helm">}}
+    Use Helm to deploy and configure a NGINX Ingress Controller cluster
+  {{</card>}}
+  {{<card title="Migrate from Ingress-NGINX Controller" titleUrl="/nginx-ingress-controller/installation/ingress-nginx">}}
+    Replace an Ingress-NGINX cluster with NGINX Ingress Controller
+  {{</card>}}
+  {{<card title="Releases" titleUrl="/nginx-ingress-controller/releases">}}
+    Review the changes from the latest NGINX Ingress Controller releases
+  {{</card>}}
+{{</card-section>}}
