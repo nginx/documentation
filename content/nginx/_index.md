@@ -12,6 +12,8 @@ nd-product: NGINX Plus
 ---
 Request your [free 30‑day trial](https://www.nginx.com/free-trial-request) today.
 
+{{< call-out "note" >}}For a detailed comparison between NGINX Plus and NGINX Open Source, refer to [Differences between NGINX OSS and NGINX Plus](https://www.f5.com/placeholder) on the F5 website.{{</ call-out >}}
+
 ## About
 [//]: # "These are Markdown comments to guide you through document structure. Remove them as you go, as well as any unnecessary sections."
 [//]: # "Use underscores for _italics_, and double asterisks for **bold**."
