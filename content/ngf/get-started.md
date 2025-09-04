@@ -558,7 +558,7 @@ Request ID: 1b5c8f3a4532ea7d7510cf14ffeb27af
 
 If you're already using NGINX Ingress Controller and want to migrate to NGINX Gateway Fabric, you can use the [ingress2gateway](https://github.com/kubernetes-sigs/ingress2gateway) tool to automatically convert your existing Ingress resources to Gateway API resources.
 
-The ingress2gateway tool is a Kubernetes SIG project that helps convert Ingress resources to Gateway API resources. It supports various Ingress controllers, including NGINX Ingress Controller.
+The ingress2gateway tool is a Kubernetes SIG project that helps convert Ingress resources to Gateway API resources. It supports various Ingress providers, including NGINX Ingress Controller.
 
 {{< call-out "important" >}}
 The ingress2gateway tool is a conversion utility that translates Ingress resources to Gateway API equivalents. It is not a complete end-to-end migration solution. You will need to manually review the converted resources, test functionality, and make additional configuration changes as needed for your specific environment.
@@ -574,14 +574,17 @@ To convert your existing NGINX Ingress resources to Gateway API resources that w
    ```shell
    ingress2gateway print --providers=nginx --input-file=<your-ingress-file>
    ```
+   This command will analyze your Ingress resources and output the equivalent Gateway API resources to stdout. You can redirect the output to a file for review:
+   ```shell
+   ingress2gateway print --providers=nginx --input-file=<your-ingress-file> > gateway-api-resources.yaml
+   ```
 
-3. Review the generated Gateway API resources and apply them to your cluster
+3. Review the generated Gateway API resources in the output file and apply them to your cluster:
+   ```shell
+   kubectl apply -f gateway-api-resources.yaml
+   ```
 
 For detailed information about NGINX-specific features and conversion options, see the [NGINX provider documentation](https://github.com/kubernetes-sigs/ingress2gateway/blob/main/pkg/i2gw/providers/nginx/README.md).
-
-{{< call-out "note" >}}
-After conversion, you may need to adjust some configurations to take advantage of NGINX Gateway Fabric-specific features or to ensure compatibility with your existing setup.
-{{< /call-out >}}
 
 ## Next steps
 
