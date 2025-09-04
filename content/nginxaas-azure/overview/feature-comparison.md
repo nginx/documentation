@@ -9,14 +9,10 @@ type:
 - concept
 ---
 
-{{< include "/nginx-plus/oss-plus-comparison.md" >}}
-
-
 NGINXaaS for Azure delivers the core capabilities of NGINX as a managed service, integrated with Microsoft Azure. It provides most of the features of NGINX Open Source and many from NGINX Plus, but some capabilities are not included.  
 
 Below is a feature breakdown with notes on support and limitations.  
 
----
 
 ## Load balancing
 
@@ -124,3 +120,7 @@ Below is a feature breakdown with notes on support and limitations.
 
 - [Ingress Controller](https://www.f5.com/products/nginx/nginx-ingress-controller) and OpenShift Router are not included.  
 - Dynamic module repository is limited compared to NGINX Plus.  
+
+---
+
+{{< include "/nginx-plus/oss-plus-comparison.md" >}}
