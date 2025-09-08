@@ -13,13 +13,9 @@ The resource supports configuring listeners for TCP and UDP load balancing, and 
 
 Listeners are required by [TransportServer resources]({{< ref "/nic/configuration/transportserver-resource.md" >}}) and can be used to [configure custom listeners for VirtualServers]({{< ref "/nic/tutorials/virtual-server-with-custom-listener-ports.md" >}}).
 
----
-
 ## Prerequisites
 
 When [installing NGINX Ingress Controller using Manifests]({{< ref "/nic/installation/installing-nic/installation-with-manifests.md" >}}), you need to reference a GlobalConfiguration resource in the [`-global-configuration`]({{< ref "/nic/configuration/global-configuration/command-line-arguments.md#cmdoption-global-configuration" >}}) command-line argument. NGINX Ingress Controller only needs one GlobalConfiguration resource.
-
----
 
 ## GlobalConfiguration specification
 
@@ -48,11 +44,9 @@ spec:
     ssl: true
 ```
 
-{{<bootstrap-table "table table-striped table-bordered table-responsive">}}
 |Field | Description | Type | Required |
 | ---| ---| ---| --- |
 | *listeners* | A list of listeners. | [listener](#listener) | No |
-{{</bootstrap-table>}}
 
 ### Listener
 
@@ -67,7 +61,6 @@ The `listeners:` key defines a listener (a combination of a protocol and a port)
   protocol: HTTP
 ```
 
-{{<bootstrap-table "table table-striped table-bordered table-responsive">}}
 |Field | Description | Type | Required |
 | ---| ---| ---| --- |
 | *name* | The name of the listener. Must be a valid DNS label as defined in RFC 1035. For example, ``hello`` and ``listener-123`` are valid. The name must be unique among all listeners. The name ``tls-passthrough`` is reserved for the built-in TLS Passthrough listener and cannot be used. | *string* | Yes |
@@ -76,10 +69,6 @@ The `listeners:` key defines a listener (a combination of a protocol and a port)
 | *ssl* | Configures the listener with SSL. This is currently only supported for ``HTTP`` listeners. Default value is ``false`` | *bool* | No |
 | *ipv4* | Specifies the IPv4 address to listen on. | *string* | No |
 | *ipv6* | Specifies the IPv6 address to listen on. | *string* | No |
-
-{{</bootstrap-table>}}
-
----
 
 ## Using GlobalConfiguration
 

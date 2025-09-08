@@ -21,9 +21,8 @@ NGINX Instance Manager is part of NGINX One, which includes [NGINX One component
 [//]: # "One card will take full width page: two will take half width each. Three will stack like an inverse pyramid."
 [//]: # "Some examples of content could be the latest release note, the most common install path, and a popular new feature."
 
-{{<card-layout>}}
-  {{<card-section showAsCards="true" isFeaturedSection="true">}}
-    {{<card title="Deploy in a disconnected environment" titleUrl="/nginx-instance-manager/disconnected" icon="unplug" isFullSize="true">}}
+{{<card-section showAsCards="true" isFeaturedSection="true">}}
+  {{<card title="Deploy in a disconnected environment" titleUrl="/nginx-instance-manager/disconnected" icon="unplug" isFullSize="true">}}
       Run NGINX Instance Manager in air-gapped or offline systems
     {{</card >}}
     {{<card title="Manage NGINX instances" titleUrl="/nginx-instance-manager/nginx-instances" >}}
@@ -31,44 +30,37 @@ NGINX Instance Manager is part of NGINX One, which includes [NGINX One component
     {{</card>}}
     {{<card title="Manage NGINX configs" titleUrl="/nginx-instance-manager/nginx-configs" >}}
       Stage, version, and publish configs. Use templates to stay consistent.
-    {{</card>}}
-  {{</card-section>}}
-{{</card-layout>}}
-
+  {{</card>}}
+{{</card-section>}}
 
 ### Set up and configure NGINX Instance Manager
 
-{{<card-layout>}}
-  {{<card-section showAsCards="true" >}}
-    {{<card title="Administer your platform" titleUrl="/nginx-instance-manager/admin-guide" >}}
+{{<card-section showAsCards="true" >}}
+  {{<card title="Administer your platform" titleUrl="/nginx-instance-manager/admin-guide" >}}
       Add licenses, set up user access and roles, and back up your NGINX Instance Manager deployment.
     {{</card>}}
     {{<card title="Configure your system" titleUrl="/nginx-instance-manager/system-configuration/" >}}
       Set platform behavior, enable high availability, and secure traffic. Use Vault and ClickHouse if needed.
-    {{</card>}}
-  {{</card-section>}}
-{{</card-layout>}}
+  {{</card>}}
+{{</card-section>}}
 
 
 ### Monitor and secure your environment
 
-{{<card-layout>}}
-  {{<card-section showAsCards="true" >}}
-    {{<card title="Monitor metrics and events" titleUrl="/nginx-instance-manager/monitoring/" >}}
+{{<card-section showAsCards="true" >}}
+  {{<card title="Monitor metrics and events" titleUrl="/nginx-instance-manager/monitoring/" >}}
       Track performance, system health, and changes using built-in metrics, logs, and the REST API.
     {{</card>}}
     {{<card title="Secure with NGINX App Protect WAF" titleUrl="/nginx-instance-manager/nginx-app-protect/" >}}
       Apply WAF policies and monitor activity from a centralized view.
-    {{</card>}}
-  {{</card-section>}}
-{{</card-layout>}}
+  {{</card>}}
+{{</card-section>}}
 
 
 ### More information
 
-{{<card-layout>}}
-  {{<card-section showAsCards="true" >}}
-      {{<card title="Deploy in connected environments" titleUrl="/nginx-instance-manager/deploy/">}}
+{{<card-section showAsCards="true" >}}
+    {{<card title="Deploy in connected environments" titleUrl="/nginx-instance-manager/deploy/">}}
         Install NGINX Instance Manager using Docker, Kubernetes, or traditional infrastructure with internet access.
       {{</ card >}}
       {{<card title="Get to know NGINX Instance Manager" titleUrl="/nginx-instance-manager/fundamentals/">}}
@@ -76,17 +68,15 @@ NGINX Instance Manager is part of NGINX One, which includes [NGINX One component
       {{</ card >}}
       {{<card title="View release notes and updates" titleUrl="/nginx-instance-manager/releases/" icon="clock-alert">}}
         Get details on new features, bug fixes, and known issues.
-      {{</card>}}
-  {{</card-section>}}
-{{</card-layout>}}
+    {{</card>}}
+{{</card-section>}}
 
 
 ## NGINX One components
 [//]: # "You can add any extra content for the page here, such as additional cards, diagrams or text."
 
-{{<card-layout>}}
-  {{< card-section title="Kubernetes Solutions">}}
-    {{< card title="NGINX Ingress Controller" titleUrl="/nginx-ingress-controller/" brandIcon="NGINX-Ingress-Controller-product-icon.png">}}
+{{< card-section title="Kubernetes Solutions">}}
+  {{< card title="NGINX Ingress Controller" titleUrl="/nginx-ingress-controller/" brandIcon="NGINX-Ingress-Controller-product-icon.png">}}
       Kubernetes traffic management with API gateway, identity, and observability features.
     {{</ card >}}
     {{< card title="NGINX Gateway Fabric" titleUrl="/nginx-gateway-fabric/" brandIcon="NGINX-product-icon.png">}}
@@ -112,6 +102,5 @@ NGINX Instance Manager is part of NGINX One, which includes [NGINX One component
     {{</ card >}}
     {{< card title="NGINX App Protect DoS" titleUrl="/nginx-app-protect-dos" brandIcon="NGINX-App-Protect-DoS-product-icon.png">}}
       Defend, adapt, and mitigate against Layer 7 denial-of-service attacks on your apps and APIs.
-    {{</ card >}}
-  {{</ card-section >}}
-{{</card-layout>}}
+  {{</ card >}}
+{{</ card-section >}}

@@ -60,7 +60,7 @@ SPIRE uses a mechanism called "Upstream Authority" to interface with PKI systems
 In order to use a proper PKI, you must first choose one of the upstream authorities NGINX Service Mesh supports:
 
 - [disk](https://github.com/spiffe/spire/blob/v1.0.0/doc/plugin_server_upstreamauthority_disk.md): Requires certificates and private key be on disk.
-  - Template: {{< fa "download" >}} {{< link "/examples/upstream-ca/disk.yaml" "disk.yaml" >}}
+  - Template: {{< icon "download" >}} {{< link "/examples/upstream-ca/disk.yaml" "disk.yaml" >}}
 
   - The minimal configuration to successfully deploy the mesh using the `disk` upstream authority looks like this:
 
@@ -73,7 +73,7 @@ In order to use a proper PKI, you must first choose one of the upstream authorit
     ```
 
 - [aws_pca](https://github.com/spiffe/spire/blob/v1.0.0/doc/plugin_server_upstreamauthority_aws_pca.md): Uses [Amazon Certificate Manager Private Certificate Authority (ACM PCA)](https://docs.aws.amazon.com/acm-pca/latest/userguide/PcaWelcome.html) to manage certificates.
-  - Template: {{< fa "download" >}} {{< link "/examples/upstream-ca/aws_pca.yaml" "aws_pca.yaml" >}}
+  - Template: {{< icon "download" >}} {{< link "/examples/upstream-ca/aws_pca.yaml" "aws_pca.yaml" >}}
 
   - Here is the minimal configuration to deploy the mesh using the `aws_pca` upstream authority:
 
@@ -102,7 +102,7 @@ In order to use a proper PKI, you must first choose one of the upstream authorit
   {{< /call-out >}}
 
 - [awssecret](https://github.com/spiffe/spire/blob/v1.0.0/doc/plugin_server_upstreamauthority_awssecret.md): Loads CA credentials from AWS SecretsManager.
-  - Template: {{< fa "download" >}} {{< link "/examples/upstream-ca/awssecret.yaml" "awssecret.yaml" >}}
+  - Template: {{< icon "download" >}} {{< link "/examples/upstream-ca/awssecret.yaml" "awssecret.yaml" >}}
 
   - Here is the minimal configuration to deploy the mesh using the `awssecret` upstream authority:
 
@@ -120,10 +120,10 @@ In order to use a proper PKI, you must first choose one of the upstream authorit
   {{< /call-out >}}
 
 - [vault](https://github.com/spiffe/spire/blob/v0.12.3/doc/plugin_server_upstreamauthority_vault.md): Uses Vault PKI Engine to manage certificates.
-  - Template: {{< fa "download" >}} {{< link "/examples/upstream-ca/vault.yaml" "vault.yaml" >}}
+  - Template: {{< icon "download" >}} {{< link "/examples/upstream-ca/vault.yaml" "vault.yaml" >}}
 
 - [cert-manager](https://github.com/spiffe/spire/blob/v1.0.0/doc/plugin_server_upstreamauthority_cert_manager.md): Uses an instance of `cert-manager` running in Kubernetes to request intermediate signing certificates for SPIRE server.
-  - Template: {{< fa "download" >}} {{< link "/examples/upstream-ca/cert-manager.yaml" "cert-manager.yaml" >}}
+  - Template: {{< icon "download" >}} {{< link "/examples/upstream-ca/cert-manager.yaml" "cert-manager.yaml" >}}
 
   - Here is the minimal configuration to deploy the mesh using the `cert-manager` upstream authority:
 
@@ -247,7 +247,7 @@ spire-server-0      2/2     Running   0          24h
 
 We'll use the [Istio `bookinfo`](https://istio.io/docs/examples/bookinfo/) example to test that traffic is, in fact, encrypted with mTLS enabled.
 
-- {{< fa "download" >}} {{< link "/examples/bookinfo.yaml" "`bookinfo.yaml`" >}}
+- {{< icon "download" >}} {{< link "/examples/bookinfo.yaml" "`bookinfo.yaml`" >}}
 
 1. Enable [automatic sidecar injection]( {{< ref "/mesh/guides/inject-sidecar-proxy.md#automatic-proxy-injection" >}} ) for the `default` namespace.
 1. Deploy the `bookinfo` application:

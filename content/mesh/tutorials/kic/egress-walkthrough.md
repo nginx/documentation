@@ -31,8 +31,8 @@ to a non-meshed service.
 1. Install [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/).
 1. Download the example files:
 
-    - {{< fa "download" >}} {{< link "/examples/traffic-split/target-v1.0.yaml" "target-v1.0.yaml" >}}
-    - {{< fa "download" >}} {{< link "/examples/egress-driver.yaml" "egress-driver.yaml" >}}
+    - {{< icon "download" >}} {{< link "/examples/traffic-split/target-v1.0.yaml" "target-v1.0.yaml" >}}
+    - {{< icon "download" >}} {{< link "/examples/egress-driver.yaml" "egress-driver.yaml" >}}
 
 ## Install NGINX Service Mesh
 
@@ -188,7 +188,7 @@ Ingress:
 If using Kubernetes v1.18.0 or greater you must use `ingressClassName` in your Ingress resources. Uncomment line 9 in the resource below or the downloaded file, `target-internal-route.yaml`.
 {{< /call-out >}}
 
-- {{< fa "download" >}} {{< link "/examples/nginx-ingress-controller/target-internal-route.yaml" "nginx-ingress-controller/target-internal-route.yaml" >}}
+- {{< icon "download" >}} {{< link "/examples/nginx-ingress-controller/target-internal-route.yaml" "nginx-ingress-controller/target-internal-route.yaml" >}}
 
 ```yaml
 apiVersion: networking.k8s.io/v1
@@ -216,7 +216,7 @@ spec:
 
 VirtualServer:
 
-- {{< fa "download" >}} {{< link "/examples/nginx-ingress-controller/target-vs-internal-route.yaml" "nginx-ingress-controller/target-vs-internal-route.yaml" >}}
+- {{< icon "download" >}} {{< link "/examples/nginx-ingress-controller/target-vs-internal-route.yaml" "nginx-ingress-controller/target-vs-internal-route.yaml" >}}
 
 ```yaml
 apiVersion: k8s.nginx.org/v1
