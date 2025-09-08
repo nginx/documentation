@@ -68,7 +68,6 @@ Follow these steps to build the NGINX Controller Image with NGINX App Protect WA
 
 ### Makefile targets {#makefile-targets}
 
-{{<bootstrap-table "table table-striped table-bordered table-responsive">}}
 | Makefile Target           | Description                                                       | Compatible Systems  |
 |---------------------------|-------------------------------------------------------------------|---------------------|
 | **debian-image-nap-plus** | Builds a Debian-based image with NGINX Plus and the [NGINX App Protect WAF](/nginx-app-protect-waf/) module. | Debian  |

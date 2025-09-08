@@ -75,9 +75,8 @@ Follow these steps to build the NGINX Controller Image with F5 DoS for NGINX.
 
 {{< call-out "note" >}}In the event a patch version of NGINX Plus is released, make sure to rebuild your image to get the latest version. If your system is caching the Docker layers and not updating the packages, add `DOCKER_BUILD_OPTIONS="--pull --no-cache"` to the make command.{{< /call-out >}}
 
-### Makefile targets {#makefile-targets}
+### Makefile targets
 
-{{<bootstrap-table "table table-striped table-bordered">}}
 | Makefile Target           | Description                                                       | Compatible Systems  |
 |---------------------------|-------------------------------------------------------------------|---------------------|
 | **debian-image-dos-plus** | Builds a Debian-based image with NGINX Plus and the [F5 DoS for NGINX](/nginx-app-protect-dos/) module. | Debian  |
@@ -89,8 +88,6 @@ Follow these steps to build the NGINX Controller Image with F5 DoS for NGINX.
 <br>
 
 {{< call-out "note" >}} For the complete list of _Makefile_ targets and customizable variables, see the [Build NGINX Ingress Controller]({{< ref "/nic/installation/build-nginx-ingress-controller.md#makefile-details" >}}) topic. {{< /call-out>}}
-
----
 
 ## Push the image to your private registry
 

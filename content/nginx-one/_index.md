@@ -20,57 +20,56 @@ F5 NGINX One Console makes it easy to manage NGINX instances across locations an
 [//]: # "One card will take full width page: two will take half width each. Three will stack like an inverse pyramid."
 [//]: # "Some examples of content could be the latest release note, the most common install path, and a popular new feature."
 
-{{<card-layout>}}
-  {{<card-section showAsCards="true" isFeaturedSection="true">}}
-    {{<card title="Get started" titleUrl="/nginx-one/getting-started/" icon="unplug" isFullSize="true">}}
-      Get up and running with NGINX One Console
-    {{</card >}}
-    {{<card title="Connect more NGINX instances" titleUrl="/nginx-one/connect-instances/" >}}
-      Work with data plane keys, containers, and proxy servers
-    {{</card>}}
-    {{<card title="Secure your fleet" titleUrl="/nginx-one/secure-your-fleet/" >}}
-      Configure alerts that match your security policies
-    {{</ card >}}
-    {{<card title="Manage your NGINX instances" titleUrl="/nginx-one/nginx-configs/" >}}
-      Manage one instance or groups of instances. Monitor certificates. Set up metrics.
-    {{</card>}}
-    {{<card title="Connect Kubernetes deployments" titleUrl="/nginx-one/k8s/">}}
-      Monitor deployments for CVEs and certificates
-    {{</ card >}}
-  {{</card-section>}}
-{{</card-layout>}}
+{{<card-section showAsCards="true" isFeaturedSection="true">}}
+  {{<card title="Get started" titleUrl="getting-started/" icon="unplug" isFullSize="true">}}
+    Get up and running with NGINX One Console
+  {{</card >}}
+{{</card-section>}}
+
+{{<card-section showAsCards="true" >}}
+  {{<card title="Connect more NGINX instances" titleUrl="connect-instances/" >}}
+    Work with data plane keys, containers, and proxy servers
+  {{</card>}}
+  {{<card title="Secure your fleet" titleUrl="/nginx-one/secure-your-fleet/" >}}
+    Configure alerts that match your security policies
+  {{</ card >}}
+  {{<card title="Manage your NGINX instances" titleUrl="/nginx-one/nginx-configs/" >}}
+    Manage one instance or groups of instances. Monitor certificates. Set up metrics.
+  {{</card>}}
+  {{<card title="Connect Kubernetes deployments" titleUrl="/nginx-one/k8s/">}}
+    Monitor deployments for CVEs and certificates
+  {{</ card >}}
+{{</card-section>}}
 
 ### Workshops
 
-{{<card-layout>}}
-  {{<card-section showAsCards="true">}}
-    {{<card title="NGINX One Console workshops" titleUrl="/nginx-one/workshops/" icon="wrench" >}}
-      Guided labs to help you secure, monitor, and scale your NGINX fleet with NGINX One Console.
-    {{</card>}}
-  {{</card-section>}}
-{{</card-layout>}}
+
+{{<card-section showAsCards="true">}}
+  {{<card title="NGINX One Console workshops" titleUrl="/nginx-one/workshops/" icon="wrench" >}}
+    Guided labs to help you secure, monitor, and scale your NGINX fleet with NGINX One Console.
+  {{</card>}}
+{{</card-section>}}
+
 
 ### More information
 
-{{<card-layout>}}
-  {{<card-section showAsCards="true" >}}
-    {{<card title="Secure with NGINX App Protect" titleUrl="/nginx-one/nap-integration/" >}}
-      Set up security policies by instance and group
-    {{</card>}}
-    {{<card title="Organize users with RBAC" titleUrl="/nginx-one/rbac/" >}}
-      Assign responsibilities with role-based access control 
-    {{</card>}}
-    {{<card title="Automate with the NGINX One API" titleUrl="/nginx-one/api/" >}}
-      Manage your NGINX fleet over REST
-    {{</card>}}
-    {{<card title="Glossary" titleUrl="/nginx-one/glossary/" >}}
-      Includes NGINX-specific security alert labels
-    {{</card>}}
-    {{<card title="Changelog" titleUrl="/nginx-one/changelog/" icon="clock-alert">}}
-      See latest updates: New features, improvements, and bug fixes
-    {{</card>}}
-  {{</card-section>}}
-{{</card-layout>}}
+{{<card-section showAsCards="true" >}}
+  {{<card title="Secure with NGINX App Protect" titleUrl="/nginx-one/nap-integration/" >}}
+    Set up security policies by instance and group
+  {{</card>}}
+  {{<card title="Organize users with RBAC" titleUrl="/nginx-one/rbac/" >}}
+    Assign responsibilities with role-based access control
+  {{</card>}}
+  {{<card title="Automate with the NGINX One API" titleUrl="/nginx-one/api/" >}}
+    Manage your NGINX fleet over REST
+  {{</card>}}
+  {{<card title="Glossary" titleUrl="/nginx-one/glossary/" >}}
+    Includes NGINX-specific security alert labels
+  {{</card>}}
+  {{<card title="Changelog" titleUrl="changelog/" icon="clock-alert">}}
+    See latest updates: New features, improvements, and bug fixes
+  {{</card>}}
+{{</card-section>}}
 
 ## NGINX One components
 [//]: # "You can add any extra content for the page here, such as additional cards, diagrams or text."

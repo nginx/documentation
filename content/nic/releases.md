@@ -18,7 +18,7 @@ nd-docs: DOCS-616
 ### <i class="fa-solid fa-upload"></i> Dependencies
 - [8115](https://github.com/nginx/kubernetes-ingress/pull/8115) & [8131](https://github.com/nginx/kubernetes-ingress/pull/8131) Bump Go dependencies
 - [8030](https://github.com/nginx/kubernetes-ingress/pull/8030), [8080](https://github.com/nginx/kubernetes-ingress/pull/8080) & [8112](https://github.com/nginx/kubernetes-ingress/pull/8112) Bump Docker dependencies
-- [8139](https://github.com/nginx/kubernetes-ingress/pull/8139) Update to nginx oss 1.29.1, plus r35, agent v3.2, app protect and alpine 3.22
+- [8139](https://github.com/nginx/kubernetes-ingress/pull/8139) Update to NGINX OSS 1.29.1, NGINX Plus r35, NGINX Agent v3.2, NGINX App Protect 4.16.0 & 5.8.0, and Alpine Linux 3.22
 
 ### <i class="fa-solid fa-download"></i> Upgrade
 - For NGINX, use the 5.1.1 images from our [DockerHub](https://hub.docker.com/r/nginx/nginx-ingress/tags?page=1&ordering=last_updated&name=5.1.1), [GitHub Container](https://github.com/nginx/kubernetes-ingress/pkgs/container/kubernetes-ingress), [Amazon ECR Public Gallery](https://gallery.ecr.aws/nginx/nginx-ingress) or [Quay.io](https://quay.io/repository/nginx/nginx-ingress).
