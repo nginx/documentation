@@ -14,17 +14,37 @@ nd-product: NAP-WAF
 
 {{< call-out "warning" "Information architecture note" >}}
 
-The design intention for this page is to act as a single reference point for changes between each release. "Changelog" is the term being adopted across the entire NGINX product ecosystem.
-
-Since both versions of NGINX App Protect WAF are released at the same time, they can be stored in the same note. Change items for only one specific version are explicitly annotated when necessary.
-
-Updating the content of this page will likely be automated in the future, following some procedural changes to how tickets are managed within JIRA.
+This page is incomplete, only listing the most recent releases: the remainder will be migrated and reformatted to fit the package table format.
 
 {{</ call-out>}}
 
 This changelog lists all of the information for F5 WAF for NGINX releases in 2025.
 
 For older releases, check the changelogs for previous years: [2024](), [2023]().
+
+## NGINX App Protect 5.8 / 4.16
+
+### New features
+
+- Added support for NGINX Plus R35
+
+### Packages
+
+{{< table >}}
+
+| Distribution name        | NGINX Open Source (5.8)                                           | NGINX Plus (5.8)                                               | NGINX Plus (4.16) |
+| ------------------------ | ----------------------------------------------------------------- | -------------------------------------------------------------- |------------------ | 
+| Alpine 3.19              | _app-protect-module-oss-1.29.0+5.498.0-r1.apk_                    | _app-protect-module-plus-35+5.498.0-r1.apk_                    | _app-protect-35.5.498.0-r1.apk_ |               
+| Amazon Linux 2023        | _app-protect-module-oss-1.29.0+5.498.0-1.amzn2023.ngx.x86_64.rpm_ | _app-protect-module-plus-35+5.498.0-1.amzn2023.ngx.x86_64.rpm_ | _app-protect-35+5.498.0-1.amzn2023.ngx.x86_64.rpm_ |
+| Debian 11                | _app-protect-module-oss_1.29.0+5.498.0-1\~bullseye_amd64.deb_     | _app-protect-module-plus_35+5.498.0-1\~bullseye_amd64.deb_     | _app-protect_35+5.498.0-1\~bullseye_amd64.deb_     |
+| Debian 12                | _app-protect-module-oss_1.29.0+5.498.0-1\~bookworm_amd64.deb_     | _app-protect-module-plus_35+5.498.0-1\~bookworm_amd64.deb_     | _app-protect_35+5.498.0-1\~bookworm_amd64.deb_     |
+| Oracle Linux 8.1         | _app-protect-module-oss-1.29.0+5.498.0-1.el8.ngx.x86_64.rpm_      | _app-protect-module-plus-35+5.498.0-1.el8.ngx.x86_64.rpm_      | _app-protect-35+5.498.0-1.el8.ngx.x86_64.rpm_      |
+| Ubuntu 22.04             | _app-protect-module-oss_1.29.0+5.498.0-1\~jammy_amd64.deb_        | _app-protect-module-plus_35+5.498.0-1\~jammy_amd64.deb_        | _app-protect_35+5.498.0-1\~jammy_amd64.deb_        | 
+| Ubuntu 24.04             | _app-protect-module-oss_1.29.0+5.498.0-1\~noble_amd64.deb_        | _app-protect-module-plus_35+5.498.0-1\~noble_amd64.deb_        | _app-protect_35+5.498.0-1\~noble_amd64.deb_        |
+| RHEL 8 and Rocky Linux 8 | _app-protect-module-oss-1.29.0+5.498.0-1.el8.ngx.x86_64.rpm_      | _app-protect-module-plus-35+5.498.0-1.el8.ngx.x86_64.rpm_      | _app-protect-35+5.498.0-1.el8.ngx.x86_64.rpm_      | 
+| RHEL 9 and Rocky Linux 9 | _app-protect-module-oss-1.29.0+5.498.0-1.el9.ngx.x86_64.rpm_      | _app-protect-module-plus-35+5.498.0-1.el8.ngx.x86_64.rpm_      | _app-protect-35+5.498.0-1.el9.ngx.x86_64.rpm_      |
+
+{{< /table >}}
 
 ## NGINX App Protect WAF 5.7 / 4.15
 
