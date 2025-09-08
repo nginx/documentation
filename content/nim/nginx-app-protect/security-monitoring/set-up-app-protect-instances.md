@@ -22,12 +22,8 @@ Complete the following prerequisites before proceeding with the steps in this gu
 
 1. If you are new to NGINX App Protect WAF, follow the instructions in the installation and configuration guides to get up and running:
 
-   - [Install NGINX App Protect WAF]({{< ref "/nap-waf/v4/admin-guide/install.md" >}}) on one or more data plane instances. Each data plane instance must have connectivity to the NGINX Instance Manager host.
-   - [Configure NGINX App Protect WAF]({{< ref "/nap-waf/v4//configuration-guide/configuration.md#policy-configuration-overview" >}}) according to your needs on each of the data plane instance.
-
-1. Review the dependencies with NGINX App Protect WAF and NGINX Plus.
-
-   {{< include "nim/tech-specs/security-data-plane-dependencies.md" >}}
+   - [Install NGINX App Protect WAF]({{< ref "/nap-waf/v5/admin-guide/install.md" >}}) on one or more data plane instances. Each data plane instance must have connectivity to the NGINX Instance Manager host.
+   - [Configure NGINX App Protect WAF]({{< ref "/nap-waf/v5/configuration-guide/configuration.md#policy-configuration-overview" >}}) according to your needs on each of the data plane instance.
 
 1. Determine your use case: **Security Monitoring only** or **Security Monitoring and Configuration Management**.
 1. [Upload your license]({{< ref "/nim/admin-guide/add-license.md" >}}).
