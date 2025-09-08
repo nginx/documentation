@@ -28,18 +28,16 @@ Running natively on NGINX Plus and NGINX Ingress Controller, F5 DoS for NGINX is
 [//]: # "One card will take full width page: two will take half width each. Three will stack like an inverse pyramid."
 [//]: # "Some examples of content could be the latest release note, the most common install path, and a popular new feature."
 
-{{<card-layout>}}
-  {{<card-section showAsCards="true" isFeaturedSection="true">}}
-    {{<card title="Deployment" titleUrl="/nginx-app-protect-dos/deployment-guide/learn-about-deployment/">}}
-      Read how to install and upgrade F5 DoS for NGINX
-    {{</card>}}
-    <!-- The titleURL and icon are both optional -->
-    <!-- Lucide icon names can be found at https://lucide.dev/icons/ -->
-    {{<card title="Troubleshooting" titleUrl="/nginx-app-protect-dos/troubleshooting-guide/how-to-troubleshoot/">}}
-      Learn how to debug F5 DoS for NGINX
-    {{</card>}}
-    {{<card title="Releases" titleUrl="/nginx-app-protect-dos/releases/" icon="clock-alert">}}
-      Review changelogs for F5 DoS for NGINX
-    {{</card>}}
-  {{</card-section>}}
-{{</card-layout>}}
+{{<card-section showAsCards="true" isFeaturedSection="true">}}
+  {{<card title="Deployment" titleUrl="/nginx-app-protect-dos/deployment-guide/learn-about-deployment/">}}
+    Read how to install and upgrade F5 DoS for NGINX
+  {{</card>}}
+  <!-- The titleURL and icon are both optional -->
+  <!-- Lucide icon names can be found at https://lucide.dev/icons/ -->
+  {{<card title="Troubleshooting" titleUrl="/nginx-app-protect-dos/troubleshooting-guide/how-to-troubleshoot/">}}
+    Learn how to debug F5 DoS for NGINX
+  {{</card>}}
+  {{<card title="Releases" titleUrl="/nginx-app-protect-dos/releases/" icon="clock-alert">}}
+    Review changelogs for F5 DoS for NGINX
+  {{</card>}}
+{{</card-section>}}

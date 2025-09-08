@@ -92,7 +92,6 @@ Create Docker image for NGINX Ingress Controller (Alpine with NGINX Plus, NGINX 
 | **debian-image-nap-v5-plus** | Builds a Debian-based image with NGINX Plus and the [NGINX App Protect WAF v5](/nginx-app-protect-waf/v5/) module. | Debian  |
 | **ubi-image-nap-v5-plus**    | Builds a UBI-based image with NGINX Plus and the [NGINX App Protect WAF v5](/nginx-app-protect-waf/v5/) module. | OpenShift |
 | **ubi-image-nap-dos-v5-plus** | Builds a UBI-based image with NGINX Plus, [NGINX App Protect WAF v5](/nginx-app-protect-waf/v5/), and [F5 DoS for NGINX](/nginx-app-protect-dos/). | OpenShift |
-{{</bootstrap-table>}}
 
 
 {{< call-out "note" >}} For the complete list of _Makefile_ targets and customizable variables, see the [Build NGINX Ingress Controller]({{< ref "/nic/installation/build-nginx-ingress-controller.md#makefile-details" >}}) guide. {{< /call-out>}}

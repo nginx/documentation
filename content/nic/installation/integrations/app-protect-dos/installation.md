@@ -83,9 +83,7 @@ Follow these steps to build the NGINX Controller Image with F5 DoS for NGINX.
 | **debian-image-nap-dos-plus** | Builds a Debian-based image with NGINX Plus, [F5 DoS for NGINX](/nginx-app-protect-dos/), and [NGINX App Protect WAF](/nginx-app-protect/). | Debian  |
 | **ubi-image-dos-plus**    | Builds a UBI-based image with NGINX Plus and the [F5 DoS for NGINX](/nginx-app-protect-dos/) module. | OpenShift |
 | **ubi-image-nap-dos-plus** | Builds a UBI-based image with NGINX Plus, [F5 DoS for NGINX](/nginx-app-protect-dos/), and [NGINX App Protect WAF](/nginx-app-protect/). | OpenShift |
-{{</bootstrap-table>}}
 
-<br>
 
 {{< call-out "note" >}} For the complete list of _Makefile_ targets and customizable variables, see the [Build NGINX Ingress Controller]({{< ref "/nic/installation/build-nginx-ingress-controller.md#makefile-details" >}}) topic. {{< /call-out>}}
 

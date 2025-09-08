@@ -24,8 +24,7 @@ Defend your applications and APIs with a software security solution that seamles
 
 ## Featured content
 
-{{<card-layout>}}
-  {{<card-section showAsCards="true" isFeaturedSection="true">}}
+{{<card-section showAsCards="true" isFeaturedSection="true">}}
   {{<card title="Overview" titleUrl="/waf/fundamentals/overview">}}
       Learn about how F5 WAF for NGINX works and how it can be used to protect your applications
     {{</card>}}
@@ -35,5 +34,4 @@ Defend your applications and APIs with a software security solution that seamles
     {{<card title="Changelog" titleUrl="/waf/changelog" icon="clock-alert">}}
       Review the latest changes and improvements to F5 WAF for NGINX
     {{</card>}}
-  {{</card-section>}}
-{{</card-layout>}}
+{{</card-section>}}

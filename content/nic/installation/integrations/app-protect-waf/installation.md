@@ -74,9 +74,6 @@ Follow these steps to build the NGINX Controller Image with NGINX App Protect WA
 | **debian-image-nap-dos-plus** | Builds a Debian-based image with NGINX Plus, [NGINX App Protect WAF](/nginx-app-protect-waf/), and [F5 DoS for NGINX](/nginx-app-protect-dos/) | Debian  |
 | **ubi-image-nap-plus**    | Builds a UBI-based image with NGINX Plus and the [NGINX App Protect WAF](/nginx-app-protect-waf/) module. | OpenShift |
 | **ubi-image-nap-dos-plus** | Builds a UBNI-based image with NGINX Plus, [NGINX App Protect WAF](/nginx-app-protect-waf/), and [F5 DoS for NGINX](/nginx-app-protect-dos/). | OpenShift |
-{{</bootstrap-table>}}
-
-<br>
 
 {{< call-out "note" >}} For the complete list of _Makefile_ targets and customizable variables, see the [Build NGINX Ingress Controller]({{< ref "/nic/installation/build-nginx-ingress-controller.md#makefile-details" >}}) topic. {{< /call-out>}}
 
