@@ -58,7 +58,7 @@ NGINX Ingress Controller will try to fetch certs from the Spire agent that gets 
 
 1. Enable [automatic sidecar injection]( {{< ref "/mesh/guides/inject-sidecar-proxy.md#automatic-proxy-injection" >}} ) for the `default` namespace.
 1. Download the manifest for the `bookinfo` app.
-    - {{< fa "download" >}} {{< link "/examples/bookinfo.yaml" "bookinfo.yaml" >}}
+    - {{< icon "download" >}} {{< link "/examples/bookinfo.yaml" "bookinfo.yaml" >}}
 1. Use `kubectl` to deploy the example `bookinfo` app.
 
     ```bash
@@ -103,7 +103,7 @@ Create an Ingress Resource to expose the Bookinfo application, using the example
 If using Kubernetes v1.18.0 or greater you must use `ingressClassName` in your Ingress resources. Uncomment line 6 in the resource below or the downloaded file, `bookinfo-ingress.yaml`.
 {{< /call-out >}}
 
-- {{< fa "download" >}} {{< link "/examples/nginx-ingress-controller/bookinfo-ingress.yaml" "bookinfo-ingress.yaml" >}}
+- {{< icon "download" >}} {{< link "/examples/nginx-ingress-controller/bookinfo-ingress.yaml" "bookinfo-ingress.yaml" >}}
 
 ```bash
 kubectl apply -f bookinfo-ingress.yaml

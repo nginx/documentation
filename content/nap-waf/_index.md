@@ -27,16 +27,15 @@ Defend your applications and APIs with a software security solution that seamles
 [//]: # "One card will take full width page: two will take half width each. Three will stack like an inverse pyramid."
 [//]: # "Some examples of content could be the latest release note, the most common install path, and a popular new feature."
 
-{{<card-layout>}}
-  {{<card-section showAsCards="true" isFeaturedSection="true">}}
-    {{<card title="Administration Guide" titleUrl="/nginx-app-protect-waf/v5/admin-guide/overview/">}}
-      Read the use cases and technical specifications for NGINX App Protect WAF
-    {{</card>}}
-    {{<card title="Installing NGINX App Protect WAF" titleUrl="/nginx-app-protect-waf/v5/admin-guide/install/">}}
-      Install NGINX App Protect WAF in a virtual environment
-    {{</card>}}
-    {{<card title="Releases" titleUrl="/nginx-app-protect-waf/v5/releases/" icon="clock-alert">}}
-      Review the latest changes to NGINX App Protect WAF
-    {{</card>}}
-  {{</card-section>}}
-{{</card-layout>}}
+
+{{<card-section showAsCards="true" isFeaturedSection="true">}}
+  {{<card title="Administration Guide" titleUrl="/nginx-app-protect-waf/v5/admin-guide/overview/">}}
+    Read the use cases and technical specifications for NGINX App Protect WAF
+  {{</card>}}
+  {{<card title="Installing NGINX App Protect WAF" titleUrl="/nginx-app-protect-waf/v5/admin-guide/install/">}}
+    Install NGINX App Protect WAF in a virtual environment
+  {{</card>}}
+  {{<card title="Releases" titleUrl="/nginx-app-protect-waf/v5/releases/" icon="clock-alert">}}
+    Review the latest changes to NGINX App Protect WAF
+  {{</card>}}
+{{</card-section>}}

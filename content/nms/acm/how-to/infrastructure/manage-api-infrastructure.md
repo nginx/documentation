@@ -184,11 +184,10 @@ Take the steps below to add an NGINX instance to an API Gateway.
 
 {{</bootstrap-table>}}
 
-> {{< fa "fa-solid fa-circle-question" >}} **Lost your install command?**
+> {{< icon "fa-solid fa-circle-question" >}} **Lost your install command?**
 >
 > Don't worry! You can take the steps below to recover it:
 >
 > 1. In the API Connectivity Manager user interface, go to **Infrastructure > Environments > \<your environment\>**.
 > 1. Click anywhere in the row of the Cluster that you want to add an instance to.
 > 1. The **Onboarding Commands** will be shown in the cluster details drawer.
-
