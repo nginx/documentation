@@ -281,7 +281,9 @@ Create a Dockerfile similar to the following example:
 
 ## Push Images to Private Registry {#push-images-private-registry}
 
-{{<before-you-begin>}}To complete this step, you need an [externally-accessible private Docker registry](https://docs.docker.com/registry/deploying/) to push the container images to.{{</before-you-begin>}}
+{{< call-out "note" >}}
+To complete this step, you need an [externally-accessible private Docker registry](https://docs.docker.com/registry/deploying/) to push the container images to.
+{{< / call-out >}}
 
 After building or loading the Docker images, you can now tag and push the images to your private Docker registry. Replace `<my-docker-registry>` in the examples below with the path to your private Docker registry.
 
