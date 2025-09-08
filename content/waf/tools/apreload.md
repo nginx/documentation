@@ -12,15 +12,6 @@ nd-content-type: how-to
 nd-product: NAP-WAF
 ---
 
-{{< call-out "warning" "Information architecture note" >}}
-
-This page is for the apreload detail included on the following two pages:
-
-- [V4]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#apreload" >}})
-- [V5]({{< ref "/nap-waf/v5/configuration-guide/configuration.md#apreload" >}})
-
-{{</ call-out >}}
-
 This document describes how to use `apreload`, a tool for updating F5 WAF for NGINX configuration without reloading NGINX.
 
 It interacts independently to NGINX, and can be used when any F5 WAF for NGINX files are modified, such as policies, logging profiles or global settings.
@@ -51,20 +42,24 @@ Optionally, using --help will issue this help message.
 
 ## Concurrent apreload executions
 
-Concurrent NGINX reloads are enqueued and so are the entailed invocations to apreload by the NGINX App Protect WAF module.
+Concurrent NGINX reloads are enqueued and so are calls to _apreload_ by the F5 NGINX for WAF.
 
-However, when invoking apreload directly, it is possible to invoke it while the previous invocation is still in progress. In this case, apreload will wait until the current invocation completes. The new invocation will bring a new configuration and the most recent configuration will only happen when the previous one is loaded.
+When calling _apreload_ directly, it is possible to run it while the previous execution is still in progress. In this case, _apreload_ will wait until the current execution completes.
 
-In a special scenario, when the first invocation comes from the NGINX reload followed immediately by a direct call to apreload. The NGINX workers with the new nginx.conf will be launched as soon as the Enforcer finishes the first configuration. Later, the most recent NGINX App Protect WAF configuration will be loaded (using with the same NGINX worker instances).
+The new execution will will apply a new configuration, and the most recent configuration will only apply during during the execution period.
+
+In a scenario where an execution from an NGINX reload is followed by a direct _ap_reload_ call, the NGINX workers with the new NGINX configuration will be loaded as soon as the Enforcer finishes processing the existing configuration. 
+
+Once complete, the most recent F5 WAF for NGINX configuration will be loaded using with the same NGINX worker instances.
 
 ## Limitations with HTTP Header and XFF Modification
 
 _apreload_ will not apply these two policy modifications:
 
-- New user defined HTTP headers, refer to User-defined HTTP Headers section. Note that modifications to existing user-defined headers will take effect in apreload.
-- XFF trust modifications, refer to XFF Headers and Trust section for more details.
+- New [user-defined HTTP headers](): it **will** apply changes to _existing_ user-defined headers.
+- [XFF trust modifications]()
 
-If you want to apply either of the above modifications, reload NGINX instead of using _apreload_.
+If you want to apply either of the two, reload NGINX instead of using _apreload_.
 
 ## apreload events
 
@@ -72,6 +67,6 @@ _apreload_ events use the same format as operation log events written in the NGI
 
 If any of the configuration files are invalid, _apreload_ will discover that and return the proper error message in the `configuration_load_failure event`. 
 
-The enforcer continues to run with the previous working configuration. 
+The enforcer will continue to run with the previous working configuration. 
 
 For more information, see the [Operation logs]({{< ref "/waf/logging/operation-logs.md">}}) topic.
