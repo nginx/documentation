@@ -16,7 +16,7 @@ nd-product: NAP-WAF
 
 This page replaces [V5 NGINX App Protect WAF Compiler]({{< ref "/nap-waf/v5/admin-guide/compiler.md">}}) page.
 
-Does this exclusively work with V5+ versions?
+Does this exclusively work with V5 versions?
 
 {{</ call-out>}}
 
