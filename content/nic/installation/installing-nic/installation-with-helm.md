@@ -110,7 +110,7 @@ When installing the NGINX Ingress Controller chart, Helm will also install the r
 
 If the CRDs are not installed, NGINX Ingress Controller pods will not become _Ready_.
 
-If you do not use the custom resources that require those CRDs (With `controller.enableCustomResources`,`controller.appprotect.enable` and `controller.appprotectdos.enable` set to `false`), the installation of the CRDs can be skipped by specifying `--skip-crds` in your _helm install_ command.
+If you do not use the custom resources that require those CRDs (With `controller.enableCustomResources`, `controller.appprotect.enable` and `controller.appprotectdos.enable` set to `false`), the installation of the CRDs can be skipped by specifying `--skip-crds` in your _helm install_ command.
 
 {{< call-out "caution" "Running multiple NGINX Ingress Controller instances">}}
 
