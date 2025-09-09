@@ -48,11 +48,15 @@ NGINXaaS for Azure places restrictions on the instance’s filesystem; only a sp
 - `/opt/` (for application files)
 - `/srv/` (for application files)
 - `/var/www/` (for static files)
+- `/tmp/` (for temporary files)
+- `/var/cache/nginx/` (for cache data)
 - `/etc/app_protect/` (for App Protect policies and log configurations)
 
 Attempts to access other directories will be denied and result in a `5xx` error.
 
 ### Recommended Directory Layout
+
+When you organize your directories, we recommend that you set up these categories of files in the following locations:
 
 - **Certificates/Keys:**  
   Place in `/etc/nginx/` so only the master process can access them. This prevents worker processes from reading private keys and potentially serving them to the internet.
