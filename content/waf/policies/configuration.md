@@ -24,6 +24,10 @@ This page describes the security features available with F5 WAF for NGINX and ho
 
 For better understanding of some contextual nouns, read the [Terminology]({{< ref "/waf/fundamentals/terminology.md" >}}) topic.
 
+## Supported security policy features
+
+{{< include "waf/supported-policy-features.md" >}}
+
 ## General configuration
 
 F5 WAF for NGINX ships with two reference policies, both with a default enforcement mode set to Blocking:
@@ -377,8 +381,3 @@ Be aware, however, that in a transparent policy no violations are blocked, even 
     }
 }
 ```
-
-
-## Supported security policy features
-
-{{< include "waf/supported-policy-features.md" >}}
