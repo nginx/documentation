@@ -33,7 +33,7 @@ Follow the [Installation with Helm]({{< ref "/nic/installation/installing-nic/in
 
 {{%tab name="Manifests"%}}
 
-Add the following flag to the deployment/daemonset file of NGINX Ingress Controller:
+Add the following flag to the deployment/daemonset/statefulset file of NGINX Ingress Controller:
 
 ```yaml
 args:
@@ -79,7 +79,7 @@ data:
   
 Make sure you set the namespace in the nginx-agent-config to the same namespace as NGINX Ingress Controller.
 
-Mount the ConfigMap to the deployment/daemonset file of NGINX Ingress Controller:
+Mount the ConfigMap to the deployment/daemonset/statefulset file of NGINX Ingress Controller:
 
 ```yaml
 volumeMounts:
