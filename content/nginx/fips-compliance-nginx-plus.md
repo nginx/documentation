@@ -37,13 +37,13 @@ Many federal programs and regulations mandate FIPS 140 validation, which serves 
 | CMMC                          | 140-2 or 140-3                   | FIPS required for Levels 2 and 3 compliance.                                                        |
 | DoDIN APL                     | 140-2 or 140-3                   | Approved IT products must include FIPS validation.                                                  |
 | Common Criteria               | 140-2 or 140-3                   | Evaluations reference both FIPS versions for cryptographic security.                                |
-| NSA CSfC                      | FIPS 140-2 or 140-3, transitioning to 140-3 | NSA accepts 140-2 but prefers newer certifications under 140-3.                                    |
+| NSA CSfC                      | 140-2 transitioning to 140-3 | NSA accepts 140-2 but prefers newer certifications under 140-3.                                    |
 | CJIS                          | 140-2 or 140-3                   | FIPS required for systems protecting criminal justice data.                                         |
 | State and Local Gov Programs  | 140-2 or 140-3                   | FIPS required for federal grant-funded security systems.                                            |
 | Intelligence Community        | 140-2 transitioning to FIPS 140-3  | Current systems mostly use 140-2; newer systems adopt 140-3.                                        |
 | Military & Tactical Systems   | 140-2 transitioning to FIPS 140-3  | 140-2 used widely; transitioning to 140-3 certifications for future tools.                          |
 | Critical Infrastructure       | 140-2 or 140-3                   | Utilities and systems accept both versions depending on deployments.                                |
-| FAA                           | FIPS 140-2 transitioning to FIPS 140-3**  | 140-2 modules common in existing systems; new systems use 140-3.                                    |
+| FAA                           | 140-2 transitioning to FIPS 140-3  | 140-2 modules common in existing systems; new systems use 140-3.                                    |
 | Department of Veterans Affairs | 140-2 or 140-3                  | Both versions used for securing sensitive health and personal data.                                 |
 | FERPA                         | 140-2 or 140-3                   | Federal-funded educational systems align with 140-2 or 140-3.                                       |
 | Nuclear Regulatory Commission | 140-2 or 140-3                   | Cryptography for nuclear systems relies on both versions.                                           |
@@ -54,27 +54,39 @@ Although FIPS 140 is primarily a North American government certification, it is 
 ### Countries That Base Their Requirements on FIPS
 
 {{<bootstrap-table "table table-striped table-bordered table-sm">}}
-| Country/Region       | FIPS Use                                                                     |
-|----------------------|-----------------------------------------------------------------------------|
-| United States        | Mandatory for federal systems and contractors; core to DoD and government. |
-| Canada               | Required under CMVP for federal cryptography and sensitive systems.         |
-| Germany              | Defense, critical infrastructure, and NATO-related cryptography.            |
-| France               | Defense and critical systems integrate FIPS for secure interoperability.    |
-| Netherlands          | Financial, healthcare, and NATO-critical encryption systems reference FIPS. |
-| Sweden               | Applied in defense and NATO-aligned secure communications systems.          |
-| Denmark              | Used in finance, healthcare, and NATO-related cryptographic activities.     |
-| Finland              | Defense and critical infrastructure support FIPS for NATO collaboration.    |
-| Italy                | Defense and finance systems integrate FIPS-certified cryptographic tools.   |
-| Spain                | Used in NATO-linked systems and national critical infrastructure.           |
-| Poland               | Government and NATO-secure communication systems rely on FIPS modules.      |
-| Estonia              | E-governance and critical systems adopt FIPS for secure collaboration.      |
-| United Kingdom       | NCSC references FIPS for defense, health, and procurement standards.        |
-| Australia            | Applied in government, defense, and ASD-certified cryptographic modules.    |
-| New Zealand          | Referenced in government and national-level cryptographic operations.       |
-| Israel               | Trusted in defense, government, and financial cryptographic systems.        |
-| Japan                | Recognized in secure government and financial cryptography applications.    |
-| UAE                  | Adopted for finance, energy, and interoperability with U.S. cryptography.   |
+| Country/Region       | FIPS Use                                      |
+|----------------------|-----------------------------------------------|
+| Australia        | Referenced for government, defense, and cryptography systems. |
+| Canada           | Mandatory for federal and sensitive systems.       |
+| Denmark          | Referenced in finance, healthcare, and NATO-related systems. |
+| Estonia          | Adopted for e-governance and critical systems.    |
+| Finland          | Relied on for defense and NATO collaboration.      |
+| France           | Relied on for defense and secure systems.          |
+| Germany          | Relied on for defense, critical infrastructure, and NATO interoperability. |
+| Israel           | Trusted in defense, government, and financial systems.       |
+| Italy            | Relied on for defense and financial cryptography.         |
+| Japan            | Referenced in government and financial cryptographic practices. |
+| Netherlands      | Referenced in finance, healthcare, and NATO cryptography systems. |
+| New Zealand      | Referenced for government and national cryptography. |
+| Poland           | Relied on for secure government and NATO-linked communications.     |
+| Spain            | Referenced in NATO interoperability and critical systems.    |
+| Sweden           | Relied on for defense and secure NATO communications.   |
+| UAE              | Trusted in finance, energy, and interoperability with the U.S. cryptography.  |
+| United Kingdom   | Referenced for defense, health, and procurement standards.   |
+| United States    | Mandatory for federal government systems and contractors.      |
 {{< /bootstrap-table >}}
+
+where:
+
+- Mandatory: used for countries that officially require FIPS compliance (United States, Canada).
+
+- Relied on: used for countries where FIPS plays a critical role in defense, finance, and secure communication. While not officially mandated, these countries depend on FIPS due to interoperability with NATO systems.
+
+- Referenced: used when industries or governments incorporate FIPS-certified cryptography as part of their standards but do not enforce it as mandatory.
+
+- Adopted: used when governments or systems actively use FIPS frameworks for secure collaboration.
+
+- Trusted: Used in contexts where FIPS is recognized as a reliable standard for industries such as finance and energy. 
 
 
 ## FIPS Compliant or FIPS Validated
@@ -113,11 +125,17 @@ You also can verify whether your operating system or cryptographic module is FIP
 
 ## Verification of Correct Operation of NGINX Plus
 
-The following process describes how to deploy NGINX Plus in a FIPS‑compliant fashion and then verify that the FIPS operations are correctly performed.
+The following process describes how to deploy NGINX Plus in a FIPS‑compliant fashion and then verify that the FIPS operations are correctly performed:
+
+- [Verify](#os-fips-check) if the operating system is running in FIPS mode. If not, [configure](#os-fips-setup) it to enable FIPS mode.
+
+- [Ensure](#openssl-fips-check) that the OpenSSL library is operating in FIPS mode.
+
+- Run simple checks for [OpenSSL](#openssl-fips-check) and [NGINX Plus](#nginx-plus-fips-check) to ensure FIPS mode.
 
 The process uses Red Hat Enterprise Linux (RHEL) release 9.6 as an example, and can be adapted for other Linux operating systems that can be configured in FIPS mode.
 
-### Step 1: Configure the Operating System to Use FIPS Mode
+### Step 1: Configure the Operating System to Use FIPS Mode {#os-fips-setup}
 
 For the purposes of the following demonstration, we installed and configured a RHEL 9.6 server. The [Red Hat FIPS documentation](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/security_guide/chap-federal_standards_and_regulations#sec-Enabling-FIPS-Mode) explains how to switch the operating system between FIPS mode and non‑FIPS mode by editing the boot options and restarting the system.
 
@@ -131,14 +149,14 @@ For instructions for enabling FIPS mode on other FIPS‑compliant Linux operatin
 
 - Oracle Linux 9: [Configuring FIPS mode](https://docs.oracle.com/en/operating-systems/oracle-linux/9/security/configuring_fips_mode.html#configuring-fips-mode)
 
--  Amazon Linux 2023: [Enabling FIPS mode](https://docs.aws.amazon.com/linux/al2023/ug/fips-mode.html)
+- Amazon Linux 2023: [Enabling FIPS mode](https://docs.aws.amazon.com/linux/al2023/ug/fips-mode.html)
 
 - Amazon Linux 2: [Enabling FIPS mode](https://docs.aws.amazon.com/linux/al2/ug/fips-mode.html)
 
 - AlmaLinux: [FIPS Validation for AlmaLinux](https://almalinux.org/blog/2023-09-19-fips-validation-for-almalinux/)
 
 
-### Step 2: Verify the Operating System is in FIPS Mode
+### Step 2: Verify the Operating System is in FIPS Mode {#os-fips-check}
 
 You can verify that the operating system is in FIPS mode and that the version of OpenSSL provided by the operating system vendor is FIPS‑compliant by using the following tests.
 
@@ -181,7 +199,7 @@ The output of the command shows that FIPS is running:
 FIPS mode is enabled.
 ```
 
-### Step 3: Verify the OpenSSL is in FIPS Mode
+### Step 3: Verify the OpenSSL is in FIPS Mode {#openssl-fips-check}
 
 **Determine the OpenSSL FIPS Provider is active**: This test verifies the correct version of OpenSSL and that the OpenSSL FIPS Provider is active:
 
@@ -231,7 +249,7 @@ The result of the command, showing the MD5 checksum of `/dev/null`:
 MD5(/dev/null)= d41d8cd98f00b204e9800998ecf8427e
 ```
 
-### Step 3: Install NGINX Plus on the Operating System
+### Step 3: Install NGINX Plus on the Operating System {#nginx-plus-instll}
 
 Follow the [F5 NGINX Plus Installation guide](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/) to install NGINX Plus on the host operating system, either directly from the [NGINX Plus repository](https://account.f5.com/myf5), or by downloading the **nginx-plus** package (**rpm** or **deb** package) onto another system and manually installing it on the host operating system.
 
@@ -280,9 +298,9 @@ Verify that you can access the website using HTTPS from a remote host. Connect t
 
 Use `openssl s_client` for this test because it unambiguously confirms which SSL/TLS cipher was negotiated in the connection. After some debugging information (including the cipher selected), the body of the default “Welcome to nginx!” greeting page is displayed.
 
-### Step 4: Verify Compliance with FIPS
+### Step 4: Verify Compliance with FIPS 140-2 {#fips-2-check}
 
-FIPS 140-2 disallows the use of some cryptographic algorithms, including the Camellia block cipher. We can test compliance with FIPS 140-2 by issuing SSL/TLS requests with known ciphers on another (non-FIPS-mode) server:
+FIPS 140-2 disallows the use of some cryptographic algorithms, including the Camellia block cipher. You can test compliance with FIPS 140-2 by issuing SSL/TLS requests with known ciphers on another (non-FIPS-mode) server:
 
 #### RC4-MD5
 
@@ -302,15 +320,33 @@ This cipher is considered secure but is not permitted by the FIPS standard. The 
 
 Note that if you attempt to issue the client request on a host running in FIPS mode, it fails because the OpenSSL client cannot use this cipher.
 
+
+### Step 5: Verify Compliance with FIPS 140-3 {#fips-3-check}
+
+In addition, FIPS 140-3 disallows the use of several ciphers and algorithms that were once allowed or still allowed under FIPS 140-2:
+
 #### AES256-SHA
+
+Althoguh this cipher is permitted by FIPS 140-2, it is not permitted by FIPS 140-3. The SSL handshake fails in case of FIPS 140-3 and succeeds in case of FIPS 140-2.
 
 ```shell
 (echo "GET /" ; sleep 1) | openssl s_client -connect <NGINX-Plus-address>:443 -cipher AES256-SHA
 ```
 
-This cipher is considered secure by NGINX Plus and is permitted by FIPS 140-2. The SSL handshake succeeds.
+#### 3DES
 
+The `3DES` or Triple DES cipher was once supported but is no longer permitted by NIST as of January 1, 2024. The SSL handshake always fails.
 
+```shell
+(echo "GET /" ; sleep 1) | openssl s_client -connect <NGINX-Plus-address>:443 -cipher 3DES
+```
+
+#### RC4
+The `RC4` bulk encryption cipher suite is not allowed in FIPS 140-3. The SSL handshake always fails.
+
+```shell
+(echo "GET /" ; sleep 1) | openssl s_client -connect <NGINX-Plus-address>:443 -cipher RC4
+```
 
 ## Which Ciphers Are Disabled in FIPS Mode?
 
@@ -357,7 +393,7 @@ This statement uses the following terms:
 
 - **Cryptographic module**: The OpenSSL software, comprised of libraries of FIPS‑validated algorithms that can be used by other applications.
 
-- **Cryptographic boundary**: The operational functions that use FIPS‑validated algorithms. For NGINX Plus, the cryptographic boundary includes all functionality that is implemented by the [`http_ssl`](https://nginx.org/en/docs/http/ngx_http_ssl_module.html), [`http_v2`](https://nginx.org/en/docs/http/ngx_http_v2_module.html), [`http_v3`](https://nginx.org/en/docs/http/ngx_http_v3_module.html), [`stream_ssl`](https://nginx.org/en/docs/stream/ngx_stream_ssl_module.html), [`mail_ssl`](https://nginx.org/en/docs/mail/ngx_mail_ssl_module.html), and [`http_auth_jwt`](https://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html) modules. These modules implement SSL and TLS operations for inbound and outbound connections which use HTTP, HTTP/2, HTTP/3, TCP, and mail protocols.
+- **Cryptographic boundary**: The operational functions that use FIPS‑validated algorithms. For NGINX Plus, the cryptographic boundary includes all functionality that is implemented by the [`http_auth_jwt`](https://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html), [`http_ssl`](https://nginx.org/en/docs/http/ngx_http_ssl_module.html), [`http_v2`](https://nginx.org/en/docs/http/ngx_http_v2_module.html), [`http_v3`](https://nginx.org/en/docs/http/ngx_http_v3_module.html), [`mail_ssl`](https://nginx.org/en/docs/mail/ngx_mail_ssl_module.html), and [`stream_ssl`](https://nginx.org/en/docs/stream/ngx_stream_ssl_module.html) modules. These modules implement SSL and TLS operations for inbound and outbound connections which use HTTP, HTTP/2, HTTP/3, TCP, and mail protocols.
 
 - **NGINX Plus**: The NGINX Plus software application developed by NGINX, Inc. and delivered in binary format from NGINX servers.
 
@@ -365,7 +401,7 @@ This statement uses the following terms:
 
 - **FIPS validated**: A component of the OpenSSL cryptographic module (the OpenSSL FIPS Object Module) is formally validated by an authorized certification laboratory. The validation holds if the module is built from source with no modifications to the source or build process. The implementation of FIPS mode that is present in operating system vendors’ distributions of OpenSSL contains this validated module.
 
-- **FIPS compliant**: NGINX Plus is compliant with FIPS 140-2 Level 1 within the cryptographic boundary when used with a FIPS‑validated OpenSSL cryptographic module on an operating system running in FIPS mode.
+- **FIPS compliant**: NGINX Plus is compliant with FIPS 140-2 Level 1 and  FIPS 140-3 Level 1 within the cryptographic boundary when used with a FIPS‑validated OpenSSL cryptographic module on an operating system running in FIPS mode.
 
 
 ## Conclusion
