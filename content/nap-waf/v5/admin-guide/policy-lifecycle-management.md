@@ -181,15 +181,37 @@ appprotect:
 
 4. **Create Storage**
    
-   Create the directory and persistent volume for policy bundles:
+   Create the directory on the cluster:
    ```bash
    mkdir -p /mnt/nap5_bundles_pv_data
    chown -R 101:101 /mnt/nap5_bundles_pv_data
-   kubectl apply -f <your-pv-yaml-file>
    ```
    
+   Create a YAML file `pv-hostpath.yaml` with the persistent volume file content:
+   ```
+   apiVersion: v1
+   kind: PersistentVolume
+   metadata:
+   name: nginx-app-protect-shared-bundles-pv
+   labels:
+       type: local
+   spec:
+   accessModes:
+       - ReadWriteMany
+   capacity:
+       storage: "2Gi"
+   hostPath:
+       path: "/mnt/nap5_bundles_pv_data"
+   persistentVolumeReclaimPolicy: Retain
+   storageClassName: manual
+   ``` 
+   Apply the `pv-hostpath.yaml` file to create the new persistent volume for policy bundles:
+   ```shell
+   kubectl apply -f pv-hostpath.yaml
+   ```
+  
    {{< call-out "note" >}}
-   The PV name defaults to `<release-name>-bundles-pv`, but can be customized using the `appprotect.storage.pv.name` setting in your values.yaml file.
+   The PV name defaults to `<release-name>-shared-bundles-pv`, but can be customized using the `appprotect.storage.pv.name` setting in your values.yaml file. Make sure to update all corresponding values for the PV and PVC to point to the correct names.
    {{< /call-out >}}
 
 5. **Configure Docker Registry Credentials**
@@ -400,6 +422,129 @@ To verify that the policy bundles are being deployed and enforced correctly:
    
    The request should be blocked, confirming that PLM has successfully compiled and deployed the policy.
 
+## Upgrade the chart
+
+1. **Prepare Environment Variables**
+   
+   Set the required environment variables:
+   ```bash
+   export JWT=<your-nginx-jwt-token>
+   export NGINX_REGISTRY_TOKEN=<base64-encoded-docker-credentials>
+   export NGINX_CERT=<base64-encoded-nginx-cert>
+   export NGINX_KEY=<base64-encoded-nginx-key>
+   ```
+
+2. **Pull the new Helm Chart version**
+   
+   Login to the registry and pull the chart:
+   ```bash
+   helm registry login private-registry.nginx.com
+   helm pull oci://private-registry.nginx.com/nap/nginx-app-protect --version <new-release-version> --untar
+   cd nginx-app-protect
+   ```
+
+3. **Apply Custom Resource Definitions**
+   
+   Apply the required CRDs before deploying the chart:
+   ```bash
+   kubectl apply -f crds/
+   ```
+
+4. **Create Storage**
+   
+   Create the directory on the cluster, and persistent volume for policy bundles:
+   ```bash
+   mkdir -p /mnt/nap5_bundles_pv_data
+   chown -R 101:101 /mnt/nap5_bundles_pv_data
+   ```
+   
+   Create a YAML file `pv-hostpath.yaml` with the PV file content:
+   ```
+   apiVersion: v1
+   kind: PersistentVolume
+   metadata:
+   name: nginx-app-protect-shared-bundles-pv
+   labels:
+       type: local
+   spec:
+   accessModes:
+       - ReadWriteMany
+   capacity:
+       storage: "2Gi"
+   hostPath:
+       path: "/mnt/nap5_bundles_pv_data"
+   persistentVolumeReclaimPolicy: Retain
+   storageClassName: manual
+   ``` 
+   Apply the `pv-hostpath.yaml` file to create the new PV:
+   ```shell
+   kubectl apply -f pv-hostpath.yaml
+   ```
+  
+   {{< call-out "note" >}}
+   The PV name defaults to `<release-name>-shared-bundles-pv`, but can be customized using the `appprotect.storage.pv.name` setting in your values.yaml file.
+   {{< /call-out >}}
+
+5. **Configure Docker Registry Credentials**
+   
+   Create the Docker registry secret or configure in values.yaml:
+   ```bash
+   kubectl create secret docker-registry regcred -n <namespace> \
+     --docker-server=private-registry.nginx.com \
+     --docker-username=<JWT-Token> \
+     --docker-password=none
+   ```
+
+6. **Deploy the Helm Chart with Policy Controller**
+   
+   Install the chart with Policy Controller enabled:
+   ```bash
+   helm install <release-name> . \
+     --namespace <namespace> \
+     --create-namespace \
+     --set appprotect.policyController.enable=true \
+     --set dockerConfigJson=$NGINX_REGISTRY_TOKEN \
+     --set appprotect.config.nginxJWT=$JWT \
+     --set appprotect.nginxRepo.nginxCert=$NGINX_CERT \
+     --set appprotect.nginxRepo.nginxKey=$NGINX_KEY
+   ```
+
+7. **Verify Installation**
+   
+   Check that all components are deployed successfully:
+   ```bash
+   kubectl get pods -n <namespace>
+   kubectl get crds | grep appprotect.f5.com
+   kubectl get all -n <namespace>
+   ```
+
+## Uninstall the chart
+
+1. **Manually Delete the CRs**
+
+   Delete all the existing CRs created for the deployment:
+   ```bash
+   kubectl -n <namespace> delete appolicy <policy-name>
+   kubectl -n <namespace> delete aplogconf <logconf-name>
+   kubectl -n <namespace> delete apusersigs <user-defined-signature-name>
+   kubectl -n <namespace> delete apsignatures <signature-update-name>
+   ```
+2. **Uninstall/delete the release `<release-name>`**
+
+   To delete the current release, you just need to delete it using helm:
+   ```bash
+   helm uninstall <release-name> -n <namespace>
+   ```
+
+3. **Delete any possible residual resources**
+
+   Delete any remaining CRDs, PVC, PV, and the namespace:
+   ```bash
+   kubectl delete pvc nginx-app-protect-shared-bundles-pvc -n <namespace>
+   kubectl delete pv nginx-app-protect-shared-bundles-pv
+   kubectl delete crd --all
+   kubectl delete ns <namespace>
+   ```
 ## Troubleshooting
 
 ### Common Issues
