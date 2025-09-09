@@ -76,6 +76,7 @@ The block below shows the code you will look for:
 #        - mountPath: /var/log/nginx
 #          name: nginx-log
 ```
+[//]: # (TODO: do we need to add anything about statefulsets?)
 
 - Add **waf-enforcer** and **waf-config-mgr** container sections
 - Add `readOnlyFilesystem: true` in both containers security context sections

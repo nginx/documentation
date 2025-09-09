@@ -132,10 +132,11 @@ kubectl apply -f config/crd/bases/appprotectdos.f5.com_dosprotectedresources.yam
 
 ## Deploy NGINX Ingress Controller {#deploy-ingress-controller}
 
-You have two options for deploying NGINX Ingress Controller:
+You have three options for deploying NGINX Ingress Controller:
 
 - **Deployment**. Choose this method for the flexibility to dynamically change the number of NGINX Ingress Controller replicas.
 - **DaemonSet**. Choose this method if you want NGINX Ingress Controller to run on all nodes or a subset of nodes.
+- **StatefulSet**. Choose this method when you need stable, persistent storage and ordered deployment/scaling for your NGINX Ingress Controller pods.
 
 Before you start, update the [command-line arguments]({{< ref "/nic/configuration/global-configuration/command-line-arguments.md" >}}) for the NGINX Ingress Controller container in the relevant manifest file to meet your specific requirements.
 
@@ -146,6 +147,10 @@ Before you start, update the [command-line arguments]({{< ref "/nic/configuratio
 ### Using a DaemonSet
 
 {{< include "/nic/installation/manifests/daemonset.md" >}}
+
+### Using a StatefulSet
+
+{{< include "/nic/installation/manifests/statefulset.md" >}}
 
 ---
 
@@ -236,6 +241,15 @@ For more information about the _LoadBalancer_ service, refer to the [Kubernetes 
 ### Using a DaemonSet
 
 Connect to ports 80 and 443 using the IP address of any node in the cluster where NGINX Ingress Controller is running.
+
+### Using a StatefulSet
+
+[//]: # (TODO: add detail)
+For StatefulSets, you can use the same access methods as Deployments (NodePort or LoadBalancer services). StatefulSet pods have stable network identities, which can be useful for certain networking configurations.
+
+{{< call-out "note" >}}
+When using StatefulSets, each pod gets a stable  hostname following the pattern `<statefulset-name>-<ordinal>`. (index)? This can be useful for configurations that require predictable pod names.
+{{< /call-out >}}
 
 ---
 

@@ -132,7 +132,7 @@ docker push <my-docker-registry>/waf-enforcer:<your-tag>
 
 ## Deploy NGINX Ingress Controller {#deploy-ingress-controller}
 
-{{< call-out "important" >}} NGINX Ingress Controller with the AppProtect WAF v5 module works only with policy bundles. You need to modify the Deployment or DaemonSet file to include volumes, volume mounts and two WAF 5 docker images: `waf-config-mgr` and `waf-enforcer`.
+{{< call-out "important" >}} NGINX Ingress Controller with the AppProtect WAF v5 module works only with policy bundles. You need to modify the Deployment, DaemonSet, or StatefulSet file to include volumes, volume mounts and two WAF 5 docker images: `waf-config-mgr` and `waf-enforcer`.
 
 NGINX Ingress Controller **requires** the volume mount path to be `/etc/app_protect/bundles`. {{< /call-out >}}
 
@@ -241,6 +241,7 @@ volumes:
     name: app-protect-bundles
 ```
 
+[//]: # (TODO: edit for statefulset)
 Set `controller.securityContext.readOnlyRootFilesystem` to `true`.
 
 Example Helm values:
@@ -377,7 +378,7 @@ Add `waf-enforcer` image to the `containers` section:
 ...
 ```
 
-### Update NIC container in deployment or daemonset
+### Update NIC container in deployment, daemonset, or statefulset
 
 Add `volumeMounts` as below:
 
@@ -464,6 +465,10 @@ Add `readOnlyRootFilesystem` to the `waf-enforcer` container and set value to `t
 ...
 ```
 
+{{< call-out "note" >}}
+**StatefulSet Volume Configuration**: When using StatefulSet deployments, the `nginx-cache` volume is automatically provided via `volumeClaimTemplates` for persistent storage. App Protect WAF v5 volumes (like app-protect-config, app-protect-bundles) are still configured as regular volumes in the `volumes` section. Use `emptyDir` for temporary data or PersistentVolumeClaims if you need persistence for App Protect configurations across pod restarts.
+{{< /call-out >}}
+
 ### Using a Deployment
 
 {{< include "/nic/installation/manifests/deployment.md" >}}
@@ -472,13 +477,17 @@ Add `readOnlyRootFilesystem` to the `waf-enforcer` container and set value to `t
 
 {{< include "/nic/installation/manifests/daemonset.md" >}}
 
+### Using a StatefulSet
+
+{{< include "/nic/installation/manifests/statefulset.md" >}}
+
 ---
 
 ### Enable NGINX App Protect WAF module
 
 To enable the NGINX App Protect DoS Module:
 
-- Add the `enable-app-protect` [command-line argument]({{< ref "/nic/configuration/global-configuration/command-line-arguments.md#cmdoption-enable-app-protect" >}}) to your Deployment or DaemonSet file.
+- Add the `enable-app-protect` [command-line argument]({{< ref "/nic/configuration/global-configuration/command-line-arguments.md#cmdoption-enable-app-protect" >}}) to your Deployment, DaemonSet, or StatefulSet file.
 
 {{%/tab%}}
 
