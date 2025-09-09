@@ -1,6 +1,6 @@
 ---
 # We use sentence case and present imperative tone
-title: "Use apreload to configure F5 WAF for NGINX"
+title: "Use apreload to update configuration files"
 # Weights are assigned in increments of 100: determines sorting order
 weight: 100
 # Creates a table of contents and sidebar, useful for large documents
@@ -40,6 +40,19 @@ Optional arguments with default values:
 Optionally, using --help will issue this help message.
 ```
 
+In a Kubernetes environment, you can invoke it using _kubectl_:
+
+```shell
+kubectl -n <namespace> exec -it <podname> -c waf-nginx -- bash /opt/app_protect/bin/apreload
+```
+
+The result can then be viewed in the `waf-config-mgr` container logs.
+
+```shell
+kubectl -n <namespace> logs <podname> -c config-mgr
+sudo docker logs waf-config-mgr
+```
+
 ## Concurrent apreload executions
 
 Concurrent NGINX reloads are enqueued and so are calls to _apreload_ by the F5 NGINX for WAF.
@@ -52,12 +65,13 @@ In a scenario where an execution from an NGINX reload is followed by a direct _a
 
 Once complete, the most recent F5 WAF for NGINX configuration will be loaded using with the same NGINX worker instances.
 
-## Limitations with HTTP Header and XFF Modification
+## Limitations with HTTP and XFF header modifications
 
 _apreload_ will not apply these two policy modifications:
 
-- New [user-defined HTTP headers](): it **will** apply changes to _existing_ user-defined headers.
-- [XFF trust modifications]()
+- New [user-defined HTTP headers]({{< ref "/waf/policies/user-headers.md" >}})
+- - It **will** apply changes to _existing_ user-defined headers.
+- [XFF trust modifications]({{< ref "/waf/policies/xff-headers.md" >}})
 
 If you want to apply either of the two, reload NGINX instead of using _apreload_.
 

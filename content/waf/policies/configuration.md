@@ -26,7 +26,7 @@ For better understanding of some contextual nouns, read the [Terminology]({{< re
 
 ## Supported security policy features
 
-{{< include "waf/supported-policy-features.md" >}}
+{{< include "waf/table-policy-features.md" >}}
 
 ## General configuration
 

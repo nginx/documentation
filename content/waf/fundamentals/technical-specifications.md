@@ -65,4 +65,4 @@ The following security policy features are available with F5 WAF for NGINX.
 
 The names link to additional information in the [Policies]({{< ref "/waf/policies/configuration.md" >}}) section.
 
-{{< include "waf/supported-policy-features.md" >}}
+{{< include "waf/table-policy-features.md" >}}

@@ -11,3 +11,41 @@ nd-content-type: reference
 # Agent, N4Azure, NIC, NIM, NGF, NAP-DOS, NAP-WAF, NGINX One, NGINX+, Solutions, Unit
 nd-product: NAP-WAF
 ---
+
+XFF trust is disabled by default but can be enabled.
+
+In this example, we use the default configuration but enable the trust of XFF header.
+
+```json
+{
+    "policy": {
+        "name": "xff_enabled",
+        "template": { "name": "POLICY_TEMPLATE_NGINX_BASE" },
+        "applicationLanguage": "utf-8",
+        "enforcementMode": "blocking",
+        "general": {
+            "customXffHeaders": [],
+            "trustXff": true
+        }
+    }
+}
+```
+
+In this example, we configure a policy with a custom-defined XFF header.
+
+```json
+{
+    "policy": {
+        "name": "xff_custom_headers",
+        "template": { "name": "POLICY_TEMPLATE_NGINX_BASE" },
+        "applicationLanguage": "utf-8",
+        "enforcementMode": "blocking",
+        "general": {
+            "customXffHeaders": [
+                "xff"
+            ],
+            "trustXff": true
+        }
+    }
+}
+```
