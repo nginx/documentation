@@ -170,7 +170,7 @@ In this example, `GET` requests to the destination service from `source-1` will 
 The burst of 10 and a delay of `nodelay` means that 10 excess requests over the rate will be forwarded to the destination service immediately.
 Requests from sources other than `source-1`, or requests from `source-1` that are _not_ `GET` requests, will not be rate limited.
 
-> You can download the schema for the RateLimit CRD here: {{< fa "download" >}} [`rate-limit-schema.yaml`](https://github.com/nginxinc/nginx-service-mesh/blob/main/helm-chart/crds/ratelimit.yaml)
+> You can download the schema for the RateLimit CRD here: {{< icon "download" >}} [`rate-limit-schema.yaml`](https://github.com/nginxinc/nginx-service-mesh/blob/main/helm-chart/crds/ratelimit.yaml)
 
 The rate limit spec contains the following fields:
 

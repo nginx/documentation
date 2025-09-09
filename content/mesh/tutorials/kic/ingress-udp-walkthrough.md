@@ -48,7 +48,7 @@ NGINX Ingress Controller will try to fetch certs from the Spire agent that gets 
     mTLS does not affect UDP communication, as mTLS in NGINX Service Mesh applies only to TCP traffic at this time.
     {{< /call-out >}}
 2. Get access to the NGINX Ingress Controller by applying the `udp-nodeport.yaml` NodePort resource.
-   - {{< fa "download" >}} {{< link "/examples/nginx-ingress-controller/udp/udp-nodeport.yaml" "udp-nodeport.yaml" >}}
+   - {{< icon "download" >}} {{< link "/examples/nginx-ingress-controller/udp/udp-nodeport.yaml" "udp-nodeport.yaml" >}}
 3. Check the exposed port from the NodePort service just defined:
 
     ```bash
@@ -77,7 +77,7 @@ NGINX Ingress Controller will try to fetch certs from the Spire agent that gets 
 
 1. Enable [automatic sidecar injection]( {{< ref "/mesh/guides/inject-sidecar-proxy.md#automatic-proxy-injection" >}} ) for the `default` namespace.
 1. Download the manifest for the `udp-listener` app.
-    - {{< fa "download" >}} {{< link "/examples/nginx-ingress-controller/udp/udp-listener.yaml" "udp-listener.yaml" >}}
+    - {{< icon "download" >}} {{< link "/examples/nginx-ingress-controller/udp/udp-listener.yaml" "udp-listener.yaml" >}}
 1. Use `kubectl` to deploy the example `udp-listener` app.
 
     ```bash
@@ -96,8 +96,8 @@ NGINX Ingress Controller will try to fetch certs from the Spire agent that gets 
 
 To route UDP requests to an application in the mesh through the NGINX Ingress Controller, you will need both a GlobalConfiguration and TransportServer Resource.
 
-- {{< fa "download" >}} {{< link "/examples/nginx-ingress-controller/udp/nic-global-configuration.yaml" "nic-global-configuration.yaml" >}}
-- {{< fa "download" >}} {{< link "/examples/nginx-ingress-controller/udp/udp-transportserver.yaml" "udp-transportserver.yaml" >}}
+- {{< icon "download" >}} {{< link "/examples/nginx-ingress-controller/udp/nic-global-configuration.yaml" "nic-global-configuration.yaml" >}}
+- {{< icon "download" >}} {{< link "/examples/nginx-ingress-controller/udp/udp-transportserver.yaml" "udp-transportserver.yaml" >}}
 
 1. Deploy a GlobalConfiguration to configure what port to listen for UDP requests on:
 

@@ -49,34 +49,47 @@ Policy Lifecycle Management requires specific NGINX configuration to integrate w
 ```nginx
 user nginx;
 worker_processes auto;
+
 load_module modules/ngx_http_app_protect_module.so;
+
 error_log /var/log/nginx/error.log notice;
 pid /var/run/nginx.pid;
+
 events {
     worker_connections 1024;
 }
+
 http {
     include /etc/nginx/mime.types;
     default_type application/octet-stream;
+
     log_format main '$remote_addr - $remote_user [$time_local] "$request" '
     '$status $body_bytes_sent "$http_referer" '
     '"$http_user_agent" "$http_x_forwarded_for"';
+
     access_log stdout main;
     sendfile on;
     keepalive_timeout 65;
+
     app_protect_enforcer_address 127.0.0.1:50000;
+
     # Enable Policy Lifecycle Management
     app_protect_default_config_source "custom-resource";
+
     app_protect_security_log_enable on;
     app_protect_security_log my-logging-cr /opt/app_protect/bd_config/s.log;
+
     server {
         listen       80;
         server_name  localhost;
         proxy_http_version 1.1;
+
         location / {
             app_protect_enable on;
+
             # Reference to Custom Resource policy name
             app_protect_policy_file my-policy-cr;
+
             client_max_body_size 0;
             default_type text/html;
             proxy_pass  http://127.0.0.1/proxy$request_uri;
@@ -124,16 +137,22 @@ appprotect:
         cpu: 100m
         memory: 128Mi
 ```
+
 ### NGINX Repository Configuration
+
 To enable signature updates with the APSignatures CRD, configure the NGINX repository credentials:
+
 ```yaml
 appprotect:
   nginxRepo:
     nginxCrt: <base64-encoded-cert>
     nginxKey: <base64-encoded-key>
 ```
+
 ## Installation Flow
+
 ### Step-by-Step Installation Process
+
 1. **Prepare Environment Variables**
    
    Set the required environment variables:
@@ -145,7 +164,7 @@ appprotect:
    ```
 
 2. **Pull the Helm Chart**
-
+   
    Login to the registry and pull the chart:
    ```bash
    helm registry login private-registry.nginx.com
@@ -154,27 +173,27 @@ appprotect:
    ```
 
 3. **Apply Custom Resource Definitions**
-
+   
    Apply the required CRDs before deploying the chart:
    ```bash
    kubectl apply -f crds/
    ```
 
 4. **Create Storage**
-
+   
    Create the directory and persistent volume for policy bundles:
    ```bash
    mkdir -p /mnt/nap5_bundles_pv_data
    chown -R 101:101 /mnt/nap5_bundles_pv_data
    kubectl apply -f <your-pv-yaml-file>
    ```
-
+   
    {{< call-out "note" >}}
-   The PV must have the name `<release-name>-bundles-pv` to be properly recognized by the Helm chart.
+   The PV name defaults to `<release-name>-bundles-pv`, but can be customized using the `appprotect.storage.pv.name` setting in your values.yaml file.
    {{< /call-out >}}
 
 5. **Configure Docker Registry Credentials**
-
+   
    Create the Docker registry secret or configure in values.yaml:
    ```bash
    kubectl create secret docker-registry regcred -n <namespace> \
@@ -184,7 +203,7 @@ appprotect:
    ```
 
 6. **Deploy the Helm Chart with Policy Controller**
-
+   
    Install the chart with Policy Controller enabled:
    ```bash
    helm install <release-name> . \
@@ -198,7 +217,7 @@ appprotect:
    ```
 
 7. **Verify Installation**
-
+   
    Check that all components are deployed successfully:
    ```bash
    kubectl get pods -n <namespace>
@@ -210,15 +229,17 @@ appprotect:
 
 ### Setting up desired security update versions
 
-Once PLM is deployed, you can create APSignatures resource using Kubernetes manifests and specify desired security update versions:
+Once PLM is deployed, you can create APSignatures resource using Kubernetes manifests and specify desired security update versions. Apply the following Custom Resource example or create your own based on the template:
 
-**Sample APSignatures content:**
+**Sample APSignatures Resource:**
+
+Create a file named `signatures.yaml` with the following content:
+
 ```yaml
 apiVersion: appprotect.f5.com/v1
 kind: APSignatures
 metadata:
   name: signatures
-  namespace: <namespace>
 spec:
   attack-signatures:
     revision: "2025.06.19" # attack signatures revision to be used
@@ -229,10 +250,11 @@ spec:
 ```
 
 {{< call-out "note" >}}
-The APSignatures must have the name `signatures`. Only one APSignatures instance can exist
+The APSignatures must have name `signatures`. Only one APSignatures instance can exist
 {{< /call-out >}}
 
-**Creating APSignatures Resourece**
+Apply the manifest:
+
 ```bash
 kubectl apply -f config/policy-manager/samples/appprotect_v1_apsignatures.yaml
 ```
@@ -243,16 +265,73 @@ Downloading security updates may take several minutes. The version of security u
 
 ### Creating Policy Resources
 
-Once PLM is deployed, you can create policy resources using Kubernetes manifests:
+Once PLM is deployed, you can create policy resources using Kubernetes manifests. Apply the following Custom Resource examples or create your own based on these templates:
 
 **Sample APPolicy Resource:**
+
+Create a file named `dataguard-blocking-policy.yaml` with the following content:
+
+```yaml
+apiVersion: appprotect.f5.com/v1
+kind: APPolicy
+metadata:
+  name: dataguard-blocking
+spec:
+  policy:
+    name: dataguard_blocking
+    template:
+      name: POLICY_TEMPLATE_NGINX_BASE
+    applicationLanguage: utf-8
+    enforcementMode: blocking
+    blocking-settings:
+      violations:
+        - name: VIOL_DATA_GUARD
+          alarm: true
+          block: true
+    data-guard:
+      enabled: true
+      maskData: true
+      creditCardNumbers: true
+      usSocialSecurityNumbers: true
+      enforcementMode: ignore-urls-in-list
+      enforcementUrls: []
+```
+
+Apply the policy:
+
 ```bash
-kubectl apply -f config/policy-manager/samples/appprotect_v1_appolicy.yaml
+kubectl apply -f dataguard-blocking-policy.yaml -n <namespace>
 ```
 
 **Sample APUserSig Resource:**
-```bash  
-kubectl apply -f config/policy-manager/samples/appprotect_v1_apusersigs.yaml
+
+Create a file named `apple-usersig.yaml` with the following content:
+
+```yaml
+apiVersion: appprotect.f5.com/v1
+kind: APUserSig
+metadata:
+  name: apple
+spec:
+  signatures:
+    - accuracy: medium
+      attackType:
+        name: Brute Force Attack
+      description: Medium accuracy user defined signature with tag (Fruits)
+      name: Apple_medium_acc
+      risk: medium
+      rule: content:"apple"; nocase;
+      signatureType: request
+      systems:
+        - name: Microsoft Windows
+        - name: Unix/Linux
+  tag: Fruits
+```
+
+Apply the user signature:
+
+```bash
+kubectl apply -f apple-usersig.yaml -n <namespace>
 ```
 
 ### Monitoring Policy Status
@@ -273,10 +352,10 @@ The Policy Controller will show status information including:
 
 ### 1. Test Policy Compilation
 
-Apply the sample policy Custom Resource to verify PLM is working correctly:
+Apply one of the sample policy Custom Resources to verify PLM is working correctly. For example, using the dataguard policy you created earlier:
 
 ```bash
-kubectl apply -f config/policy-manager/samples/appprotect_v1_appolicy.yaml
+kubectl apply -f dataguard-blocking-policy.yaml -n <namespace>
 ```
 
 ### 2. Check Policy Compilation Status
@@ -303,8 +382,11 @@ status:
     datetime: "2025-09-04T10:05:52Z"
     isCompiled: true
 ```
+
 ### 3. Verify Policy Controller Logs
+
 Check the Policy Controller logs for expected compilation messages:
+
 ```bash
 kubectl logs <policy-controller-pod> -n <namespace>
 ```
@@ -313,7 +395,9 @@ Look for successful compilation messages like:
 
 ```
 2025-09-04T10:05:52Z    INFO    Job is completed        {"controller": "appolicy", "controllerGroup": "appprotect.f5.com", "controllerKind": "APPolicy", "APPolicy": {"name":"dataguard-blocking","namespace":"localenv-plm"}, "namespace": "localenv-plm", "name": "dataguard-blocking", "reconcileID": "6bab7054-8a8a-411f-8ecc-01399a308ef6", "job": "dataguard-blocking-appolicy-compile"}
+
 2025-09-04T10:05:52Z    INFO    job state is    {"controller": "appolicy", "controllerGroup": "appprotect.f5.com", "controllerKind": "APPolicy", "APPolicy": {"name":"dataguard-blocking","namespace":"localenv-plm"}, "namespace": "localenv-plm", "name": "dataguard-blocking", "reconcileID": "6bab7054-8a8a-411f-8ecc-01399a308ef6", "job": "dataguard-blocking-appolicy-compile", "state": "ready"}
+
 2025-09-04T10:05:52Z    INFO    bundle state was changed        {"controller": "appolicy", "controllerGroup": "appprotect.f5.com", "controllerKind": "APPolicy", "APPolicy": {"name":"dataguard-blocking","namespace":"localenv-plm"}, "namespace": "localenv-plm", "name": "dataguard-blocking", "reconcileID": "6bab7054-8a8a-411f-8ecc-01399a308ef6", "job": "dataguard-blocking-appolicy-compile", "from": "processing", "to": "ready"}
 ```
 
@@ -332,21 +416,21 @@ You should see the compiled policy bundle file in the directory structure.
 To verify that the policy bundles are being deployed and enforced correctly:
 
 1. **Update NGINX Configuration**
-
+   
    Use the Custom Resource name in your NGINX configuration:
    ```nginx
    app_protect_policy_file dataguard-blocking;
    ```
 
 2. **Reload NGINX**
-
+   
    Reload NGINX to apply the new policy:
    ```bash
    nginx -s reload
    ```
 
 3. **Test Policy Enforcement**
-
+   
    Send a request that should be blocked by the dataguard policy to verify it's working:
    ```bash
    curl "http://[CLUSTER-IP]:80/?a=<script>"

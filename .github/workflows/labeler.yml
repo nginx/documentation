@@ -12,6 +12,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Apply labels based on file paths
-        uses: actions/labeler@v5
+        uses: actions/labeler@v6
         with:
           repo-token: "${{ secrets.GITHUB_TOKEN }}"

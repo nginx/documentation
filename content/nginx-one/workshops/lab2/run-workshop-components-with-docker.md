@@ -55,9 +55,9 @@ Make sure you have:
 
    This folder contains `compose.yaml` and `generate_certs.sh`.
 
-   {{<fa "download">}} {{<link "/workshops/nginx-one/lab2/compose.yaml" "Download compose.yaml">}}
+   {{<icon "download">}} {{<link "/workshops/nginx-one/lab2/compose.yaml" "Download compose.yaml">}}
 
-   {{<fa "download">}} {{<link "/workshops/nginx-one/lab2/generate_certs.sh" "Download generate_certs.sh">}}
+   {{<icon "download">}} {{<link "/workshops/nginx-one/lab2/generate_certs.sh" "Download generate_certs.sh">}}
 
 ---
 
