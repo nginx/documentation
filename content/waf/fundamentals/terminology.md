@@ -16,11 +16,11 @@ This page defines terminology used when describing functionality of F5 WAF for N
 
 It assumes you are familiar with various layer 7 (L7) hypertext transfer protocol (HTTP) concepts such as:
 
-- Uniform Resource Identifier (URI)
-- Uniform Resource Location (URL)
+- Cookies
 - HTTP methods and status codes
 - HTTP headings, requests, responses, and parameters
-- Cookies
+- Uniform Resource Identifier (URI)
+- Uniform Resource Location (URL)
 
 ## Terms and definitions
 

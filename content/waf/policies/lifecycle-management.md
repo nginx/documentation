@@ -37,7 +37,11 @@ To complete this guide, you will need the following prerequisites:
 
 ## Download your subscription credentials 
 
-{{< include "licensing-and-reporting/download-certificates-from-myf5.md" >}}
+1. Log in to [MyF5](https://my.f5.com/manage/s/).
+1. Go to **My Products & Plans > Subscriptions** to see your active subscriptions.
+1. Find your NGINX subscription, and select the **Subscription ID** for details.
+1. Download the **SSL Certificate** and **Private Key files** from the subscription page.
+1. Download the **JSON Web Token** file from the subscription page.
 
 ## Prepare environment variables
 
@@ -50,7 +54,7 @@ export NGINX_CERT=<base64-encoded-nginx-cert>
 export NGINX_KEY=<base64-encoded-nginx-key>
 ```
 
-They will be used in later steps to download and apply necessary resources for policy lifecycle management.
+They will be used to download and apply necessary resources.
 
 ## Configure Docker for the F5 Container Registry 
 
@@ -109,7 +113,9 @@ kubectl apply -f crds/
 
 ### Update NGINX configuration
 
-Policy Lifecycle Management requires specific NGINX configuration to integrate with the Policy Controller. The key directive `app_protect_default_config_source` must be set to `"custom-resource"` to enable PLM integration.
+Policy lifecycle management requires NGINX configuration to integrate with the Policy Controller. 
+
+The directive `app_protect_default_config_source` must be set to `"custom-resource"` to enable PLM integration.
 
 ```nginx
 user nginx;
@@ -170,16 +176,17 @@ http {
 }
 ```
 
-**Key PLM-specific directives:**
-- `app_protect_default_config_source "custom-resource"` - Enables Policy Controller integration
-- `app_protect_policy_file my-policy-cr` - References the Custom Resource policy name instead of bundle file paths
-- `app_protect_security_log my-logging-cr` - References the Custom Resource logging configuration name
+These are the Policy lifecycle management directives:
+
+- `app_protect_default_config_source "custom-resource"` - Enables the Policy Controller integration
+- `app_protect_policy_file my-policy-cr` - References a Custom Resource policy name instead of bundle file paths
+- `app_protect_security_log my-logging-cr` - References a Custom Resource logging configuration name
 
 ## Update Helm configuration
 
-Policy Lifecycle Management is deployed as part of the NGINX App Protect Helm chart. To enable PLM, you must configure the Policy Controller settings in your `values.yaml` file.  
+Policy lifecycle management is deployed as part of the F5 WAF for NGINX Helm chart. 
 
-Set the following configuration in your `values.yaml`:
+To enable it, you must configure the Policy Controller settings in your `values.yaml` file:
 
 ```yaml
 appprotect:
@@ -203,7 +210,7 @@ appprotect:
 
 ### NGINX Repository Configuration
 
-To enable signature updates with the APSignatures CRD, configure the NGINX repository credentials:
+To enable signature updates with the APSignatures CRD, add your NGINX repository credentials:
 
 ```yaml
 appprotect:
@@ -211,7 +218,6 @@ appprotect:
     nginxCrt: <base64-encoded-cert>
     nginxKey: <base64-encoded-key>
 ```
-
 
 ## Configure Docker
    
@@ -241,7 +247,7 @@ helm install <release-name> . \
 
 ## Verify the Policy Controller is running
    
-Check that all components are deployed successfully:
+Check that all components are deployed successfully using _kubectl get_:
 
 ```shell
 kubectl get pods -n <namespace>
@@ -249,13 +255,17 @@ kubectl get crds | grep appprotect.f5.com
 kubectl get all -n <namespace>
 ```
 
-## Using Policy Lifecycle Management
+## Use Policy lifecycle management
 
-### Creating Policy Resources
+### Create Policy resources
 
-Once PLM is deployed, you can create policy resources using Kubernetes manifests. Apply the following Custom Resource examples or create your own based on these templates:
+Once Policy lifecycle management is deployed, you can create policy resources using Kubernetes manifests. 
 
-**Sample APPolicy Resource:**
+Here are two examples, which you can use to create your own:
+
+{{< tabs name="resource-examples">}}
+
+{{% tab name="APPolicy" %}}
 
 Create a file named `dataguard-blocking-policy.yaml` with the following content:
 
@@ -290,7 +300,9 @@ Apply the policy:
 kubectl apply -f dataguard-blocking-policy.yaml -n <namespace>
 ```
 
-**Sample APUserSig Resource:**
+{{% /tab %}}
+
+{{% tab name="APUserSig" %}}
 
 Create a file named `apple-usersig.yaml` with the following content:
 
@@ -319,6 +331,10 @@ Apply the user signature:
 ```shell
 kubectl apply -f apple-usersig.yaml -n <namespace>
 ```
+
+{{% /tab %}}
+
+{{< /tabs >}}
 
 ### Check policy status
 
@@ -377,9 +393,9 @@ Check the Policy Controller logs for expected compilation messages:
 kubectl logs <policy-controller-pod> -n <namespace>
 ```
 
-Look for successful compilation messages like:
+Successful compilation logs will look similar to this example:
 
-```
+```text
 2025-09-04T10:05:52Z    INFO    Job is completed        {"controller": "appolicy", "controllerGroup": "appprotect.f5.com", "controllerKind": "APPolicy", "APPolicy": {"name":"dataguard-blocking","namespace":"localenv-plm"}, "namespace": "localenv-plm", "name": "dataguard-blocking", "reconcileID": "6bab7054-8a8a-411f-8ecc-01399a308ef6", "job": "dataguard-blocking-appolicy-compile"}
 
 2025-09-04T10:05:52Z    INFO    job state is    {"controller": "appolicy", "controllerGroup": "appprotect.f5.com", "controllerKind": "APPolicy", "APPolicy": {"name":"dataguard-blocking","namespace":"localenv-plm"}, "namespace": "localenv-plm", "name": "dataguard-blocking", "reconcileID": "6bab7054-8a8a-411f-8ecc-01399a308ef6", "job": "dataguard-blocking-appolicy-compile", "state": "ready"}
@@ -399,46 +415,41 @@ You should see the compiled policy bundle file in the directory structure.
 
 ### Test policy enforcement
 
-To verify that the policy bundles are being deployed and enforced correctly:
+There are a few steps involved in testing that policy bundles are being deployed and enforced correctly.
 
-**Update NGINX Configuration**
-   
-Use the Custom Resource name in your NGINX configuration:
+First, use the Custom Resource name in your NGINX configuration:
+
 ```nginx
 app_protect_policy_file dataguard-blocking;
 ```
 
-**Reload NGINX**
-   
-Reload NGINX to apply the new policy:
+Then, reload NGINX to apply the new policy:
+
 ```shell
 nginx -s reload
 ```
-
-**Test Policy Enforcement**
    
-Send a request that should be blocked by the dataguard policy to verify it's working:
+You can then send a request that should be blocked by the dataguard policy to verify it's working:
+
 ```shell
 curl "http://[CLUSTER-IP]:80/?a=<script>"
 ```
 
-The request should be blocked, confirming that PLM has successfully compiled and deployed the policy.
+The request should be blocked, confirming that Policy lifecycle management has successfully compiled and deployed the policy.
 
-## Common issues
+## Possible issues
 
-**Policy Controller Not Starting**
-- Verify CRDs are installed: `kubectl get crds | grep appprotect.f5.com`
-- Check pod logs: `kubectl logs <policy-controller-pod> -n <namespace>`
+**Policy Controller does not start**
+- Verify the CRDs are installed: `kubectl get crds | grep appprotect.f5.com`
+- Check the pod logs: `kubectl logs <policy-controller-pod> -n <namespace>`
 - Ensure proper RBAC permissions are configured
 
-**Policy Compilation Failures**
+**Policies fail to compile**
 - Check Policy Controller logs for compilation errors
-- Verify WAF compiler image is accessible
-- Ensure policy syntax is valid
+- Verify the WAF compiler image is accessible
+- Ensure the policy syntax is valid
 
-**Bundle Storage Issues**  
-- Verify persistent volume is properly mounted
-- Check storage permissions (should be 101:101)
+**Issues with bundle storage**  
+- Verify the persistent volume is properly mounted
+- Check storage permissions (Should be 101:101)
 - Confirm PVC is bound to the correct PV
-
-For additional troubleshooting information, see the [Troubleshooting Guide]({{< ref "/nap-waf/v5/troubleshooting-guide/troubleshooting.md#nginx-app-protect-5" >}}).
