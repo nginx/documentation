@@ -24,6 +24,8 @@ For older releases, check the changelogs for previous years: [2024](), [2023]().
 
 ## NGINX App Protect 5.8 / 4.16
 
+_August 13th, 2025_
+
 ### New features
 
 - Added support for NGINX Plus R35
@@ -47,6 +49,8 @@ For older releases, check the changelogs for previous years: [2024](), [2023]().
 {{< /table >}}
 
 ## NGINX App Protect WAF 5.7 / 4.15
+
+_June 24th, 2025_
 
 ### New features
 
@@ -113,6 +117,8 @@ For older releases, check the changelogs for previous years: [2024](), [2023]().
 | RHEL 9 and Rocky Linux 9 | _app-protect-34+5.442.0-1.el9.ngx.x86_64.rpm_      |
 
 ## NGINX App Protect WAF 5.6 / 4.14
+
+_April 1st, 2025_
 
 ### New features
 

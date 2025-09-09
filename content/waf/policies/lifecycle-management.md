@@ -41,7 +41,7 @@ To complete this guide, you will need the following prerequisites:
 
 ## Prepare environment variables
 
-For simplicity, set the following environment variables, which point towards your credential files:
+Set the following environment variables, which point towards your credential files:
 
 ```shell
 export JWT=<your-nginx-jwt-token>
@@ -50,7 +50,7 @@ export NGINX_CERT=<base64-encoded-nginx-cert>
 export NGINX_KEY=<base64-encoded-nginx-key>
 ```
 
-They will be used in subsequent steps to download and apply necessary resources for the policy lifecycle management feature.
+They will be used in later steps to download and apply necessary resources for policy lifecycle management.
 
 ## Configure Docker for the F5 Container Registry 
 
