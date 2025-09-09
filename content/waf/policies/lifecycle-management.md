@@ -39,6 +39,19 @@ To complete this guide, you will need the following prerequisites:
 
 {{< include "licensing-and-reporting/download-certificates-from-myf5.md" >}}
 
+## Prepare environment variables
+
+For simplicity, set the following environment variables, which point towards your credential files:
+
+```shell
+export JWT=<your-nginx-jwt-token>
+export NGINX_REGISTRY_TOKEN=<base64-encoded-docker-credentials>
+export NGINX_CERT=<base64-encoded-nginx-cert>
+export NGINX_KEY=<base64-encoded-nginx-key>
+```
+
+They will be used in subsequent steps to download and apply necessary resources for the policy lifecycle management feature.
+
 ## Configure Docker for the F5 Container Registry 
 
 Create a directory and copy your certificate and key to this directory:
@@ -54,19 +67,6 @@ Log in to the Docker registry:
 ```shell
 docker login private-registry.nginx.com
 ```
-
-## Prepare environment variables
-
-For simplicity, set the following environment variables, which point towards your credential files:
-
-```shell
-export JWT=<your-nginx-jwt-token>
-export NGINX_REGISTRY_TOKEN=<base64-encoded-docker-credentials>
-export NGINX_CERT=<base64-encoded-nginx-cert>
-export NGINX_KEY=<base64-encoded-nginx-key>
-```
-
-They will be used in subsequent steps to download and apply necessary resources for the policy lifecycle management feature.
 
 ## Create a directory and volume for policy bundles
    
@@ -215,17 +215,18 @@ appprotect:
 
 ## Configure Docker
    
-   Create the Docker registry secret or configure in values.yaml:
-   ```shell
-   kubectl create secret docker-registry regcred -n <namespace> \
-     --docker-server=private-registry.nginx.com \
-     --docker-username=<JWT-Token> \
-     --docker-password=none
-   ```
+Create a Docker registry secret or add the details to _values.yaml_:
+
+```shell
+kubectl create secret docker-registry regcred -n <namespace> \
+  --docker-server=private-registry.nginx.com \
+  --docker-username=$JWT \
+  --docker-password=none
+```
 
 ## Deploy the Helm chart
    
-Install the chart with Policy Controller enabled:
+Install the chart, adding the parameter to enable the Policy Controller:
 
 ```shell
 helm install <release-name> . \
@@ -241,6 +242,7 @@ helm install <release-name> . \
 ## Verify the Policy Controller is running
    
 Check that all components are deployed successfully:
+
 ```shell
 kubectl get pods -n <namespace>
 kubectl get crds | grep appprotect.f5.com
