@@ -126,17 +126,17 @@ These CRDs define the resources that the Policy Controller manages:
 - `apusersigs.appprotect.f5.com` - Handles user-defined signatures
 - `apsignatures.appprotect.f5.com` - Manages signature updates and collections
 
-To obtain the CRDs, log into the registry, pull the chart, then change into the folder:
+To obtain the CRDs, log into the Helm registry and pull the chart, changing the `--version` parameter for your desired version.
 
 ```shell
 helm registry login private-registry.nginx.com
 helm pull oci://private-registry.nginx.com/nap/nginx-app-protect --version <release-version> --untar
-cd nginx-app-protect
 ```
 
-Apply the CRDs using _kubectl apply_:
+Then change into the directory and apply the CRDs using _kubectl apply_:
 
 ```shell
+cd nginx-app-protect
 kubectl apply -f crds/
 ```
 
@@ -511,17 +511,17 @@ Follow these steps to upgrade the Helm chart: they are similar to the initial de
 
 You should first [prepare environment variables](#prepare-environment-variables) and [configure Docker registry credentials](#configure-docker-for-the-f5-container-registry).
    
-Log into the Helm registry, pull the chart and change into the folder, changing the `--version` parameter for the new version.
+Log into the Helm registry and pull the chart, changing the `--version` parameter for the new version.
 
 ```shell
 helm registry login private-registry.nginx.com
 helm pull oci://private-registry.nginx.com/nap/nginx-app-protect --version <new-release-version> --untar
-cd nginx-app-protect
 ```
    
-Then apply the CRDs:
+Then change into the directory and apply the CRDs:
 
 ```shell
+cd nginx-app-protect
 kubectl apply -f crds/
 ```
 
@@ -575,14 +575,7 @@ kubectl apply -f crds/
      --set appprotect.nginxRepo.nginxKey=$NGINX_KEY
    ```
 
-7. **Verify Installation**
-   
-   Check that all components are deployed successfully:
-   ```bash
-   kubectl get pods -n <namespace>
-   kubectl get crds | grep appprotect.f5.com
-   kubectl get all -n <namespace>
-   ```
+Afterwards, you may want to [verify the Policy controller is running](#verify-the-policy-controller-is-running).
 
 ## Uninstall the Helm chart
 
