@@ -14,6 +14,8 @@ This guide explains how to deploy F5 NGINX as a Service for Google Cloud (NGINXa
 
 ## Find the NGINX as a Service for Google Cloud offer in the portal
 
+If it's your first time using NGINX as a Service for Google Cloud, you need to find the offer in the Google Cloud Marketplace and subscribe to it:
+
 1. Access the [Google Cloud Marketplace](https://console.cloud.google.com/marketplace).
 1. Login with your Google Cloud account.
 1. Use the search bar to find "NGINX as a Service for Google Cloud".
