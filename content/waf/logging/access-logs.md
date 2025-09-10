@@ -1,7 +1,7 @@
 ---
 title: Access logs
 toc: false
-weight: 200
+weight: 500
 nd-content-type: reference
 nd-product: NAP-WAF
 ---
