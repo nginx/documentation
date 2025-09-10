@@ -8,9 +8,9 @@ type:
 - concept
 ---
 
-## What Is F5 NGINX as a Service for Google Cloud?
+## What Is F5 NGINXaaS for Google Cloud?
 
-NGINX as a Service for Google Cloud is a service offering that is tightly integrated into Google Cloud platform and its ecosystem, making applications fast, efficient, and reliable with full lifecycle management of advanced NGINX traffic services.
+NGINXaaS for Google Cloud is a service offering that is tightly integrated into Google Cloud platform and its ecosystem, making applications fast, efficient, and reliable with full lifecycle management of advanced NGINX traffic services.
 NGINXaaS for Google Cloud is available in the Google Cloud Marketplace.
 
 NGINXaaS for Google Cloud is powered by [NGINX Plus](https://www.nginx.com/products/nginx/), which extends NGINX Open Source with advanced functionality and provides customers with a complete application delivery solution. Initial use cases covered by NGINXaaS include L4 TCP and L7 HTTP load balancing and reverse proxy which can be managed through various Google Cloud management tools.
@@ -61,4 +61,4 @@ With the Standard Plan, NGINXaaS uses the following redundancy features to keep 
 
 ## What's next
 
-To get started, check the [NGINX as a Service for Google Cloud prerequisites]({{< ref "/nginxaas-google/getting-started/prerequisites.md" >}})
+To get started, check the [NGINXaaS for Google Cloud prerequisites]({{< ref "/nginxaas-google/getting-started/prerequisites.md" >}})

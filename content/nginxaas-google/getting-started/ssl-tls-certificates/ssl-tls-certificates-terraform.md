@@ -8,7 +8,7 @@ type:
 draft: true
 ---
 
-You can manage SSL/TSL certificates for F5 NGINX as a Service for Google Cloud (NGINXaaS) using Terraform.
+You can manage SSL/TSL certificates for F5 NGINXaaS for Google Cloud (NGINXaaS) using Terraform.
 
 ## Prerequisites
 

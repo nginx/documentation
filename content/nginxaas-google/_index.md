@@ -1,5 +1,5 @@
 ---
-title: NGINXaaS for Google Cloud
+title: F5 NGINXaaS for Google Cloud
 nd-subtitle: Infrastructure-as-a-Service (IaaS) version of NGINX Plus for your Google Cloud application stack
 url: /nginxaas/google/
 nd-landing-page: true
@@ -11,7 +11,7 @@ nd-product: N4GC
 
 ## About
 
-NGINX as a Service for Google Cloud is an IaaS offering that is tightly integrated
+F5 NGINXaaS for Google Cloud is an IaaS offering that is tightly integrated
 into Google Cloud platform and its ecosystem, making applications fast, efficient,
 and reliable with full lifecycle management of advanced NGINX traffic services.
 
@@ -19,7 +19,7 @@ and reliable with full lifecycle management of advanced NGINX traffic services.
 
 {{<card-section showAsCards="true" isFeaturedSection="true">}}
   {{<card title="Getting started" titleUrl="/nginxaas/google/getting-started/" icon="power">}}
-    Deploy NGINX as a Service for Google Cloud using the portal
+    Deploy NGINXaaS for Google Cloud using the portal
   {{</card>}}
   {{<card title="Quickstart guides" titleUrl="/nginxaas/google/quickstart/" icon="square-play">}}
     Step-by-step guides for several common use cases, including scaling guidance, security controls, and more
@@ -49,7 +49,7 @@ and reliable with full lifecycle management of advanced NGINX traffic services.
 ### More information
 {{<card-section showAsCards="true" >}}
   {{<card title="Feature comparison" titleUrl="/nginxaas/google/overview/feature-comparison/" icon="git-compare-arrows">}}
-    Learn about the differences between NGINX as a Service for Google Cloud and NGINX Plus
+    Learn about the differences between NGINXaaS for Google Cloud and NGINX Plus
   {{</card>}}
   {{<card title="Changelog" titleUrl="/nginxaas/google/changelog/" icon="file-clock">}}
     See the latest updates: New features, improvements, and bug fixes

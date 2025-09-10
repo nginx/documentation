@@ -8,7 +8,7 @@ type:
 - how-to
 ---
 
-F5 NGINX as a Service for Google Cloud (NGINXaaS) supports manual scaling of your deployment, allowing you to adapt to application traffic demands while controlling cost.
+F5 NGINXaaS for Google Cloud (NGINXaaS) supports manual scaling of your deployment, allowing you to adapt to application traffic demands while controlling cost.
 
 An NGINXaaS deployment can be scaled out to increase the capacity (increasing the cost) or scaled in to decrease the capacity (reducing the cost). Capacity is measured in [NGINX Capacity Units (NCU)](#nginx-capacity-unit-ncu).
 

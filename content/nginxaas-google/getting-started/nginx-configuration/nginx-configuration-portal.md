@@ -8,7 +8,7 @@ type:
 - how-to
 ---
 
-You can apply an NGINX configuration to your F5 NGINX as a Service for Google Cloud (NGINXaaS) deployment using the portal.
+You can apply an NGINX configuration to your F5 NGINXaaS for Google Cloud (NGINXaaS) deployment using the portal.
 
 ## Prerequisites
 

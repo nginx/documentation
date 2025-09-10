@@ -8,7 +8,7 @@ type:
 - how-to
 ---
 
-Monitoring your application's performance is crucial for maintaining its reliability and efficiency. F5 NGINX as a Service for Google Cloud (NGINXaaS) seamlessly integrates with Google Cloud services, allowing you to collect, correlate, and analyze metrics for a thorough understanding of your application's health and behavior.
+Monitoring your application's performance is crucial for maintaining its reliability and efficiency. F5 NGINXaaS for Google Cloud (NGINXaaS) seamlessly integrates with Google Cloud services, allowing you to collect, correlate, and analyze metrics for a thorough understanding of your application's health and behavior.
 
 
 ## Prerequisites

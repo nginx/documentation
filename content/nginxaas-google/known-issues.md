@@ -7,7 +7,7 @@ url: /nginxaas/google/known-issues/
 
 ---
 
-List of known issues in the latest release of F5 NGINX as a Service for Google Cloud (NGINXaaS).
+List of known issues in the latest release of F5 NGINXaaS for Google Cloud (NGINXaaS).
 
 ### {{% icon-bug %}} Issue 1
 

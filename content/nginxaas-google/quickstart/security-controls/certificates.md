@@ -10,7 +10,7 @@ type:
 
 ## Overview
 
-This guide describes how to use a TLS/SSL certificate stored in Google Cloud Secret Manager with NGINX as a Service for Google Cloud.
+This guide describes how to use a TLS/SSL certificate stored in Google Cloud Secret Manager with NGINXaaS for Google Cloud.
 
 ## Before you begin
 

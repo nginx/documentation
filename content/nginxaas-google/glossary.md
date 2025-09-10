@@ -8,7 +8,7 @@ type:
 - reference
 ---
 
-This document provides definitions for terms and acronyms commonly used in F5 NGINX as a Service for Google Cloud (NGINXaaS) documentation.
+This document provides definitions for terms and acronyms commonly used in F5 NGINXaaS for Google Cloud (NGINXaaS) documentation.
 
 {{<table>}}
 

@@ -8,7 +8,7 @@ type:
 - how-to
 ---
 
-You can manage SSL/TSL certificates for F5 NGINX as a Service for Google Cloud (NGINXaaS) using the portal.
+You can manage SSL/TSL certificates for F5 NGINXaaS for Google Cloud (NGINXaaS) using the portal.
 
 ## Prerequisites
 

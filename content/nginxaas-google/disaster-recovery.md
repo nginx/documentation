@@ -9,7 +9,7 @@ draft: true
 ---
 
 
-This guide describes how to configure disaster recovery (DR) for F5 NGINX as a Service for Google Cloud deployments. The deployment architecture ensures users can access backend application servers (upstreams) continuously from an alternative region if the primary NGINXaaS deployment becomes unavailable.
+This guide describes how to configure disaster recovery (DR) for F5 NGINXaaS for Google Cloud deployments. The deployment architecture ensures users can access backend application servers (upstreams) continuously from an alternative region if the primary NGINXaaS deployment becomes unavailable.
 
 
 ### Architecture Overview

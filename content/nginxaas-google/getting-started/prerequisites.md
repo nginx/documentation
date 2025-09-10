@@ -10,7 +10,7 @@ type:
 
 ## Before you begin
 
-Before you deploy F5 NGINX as a Service for Google Cloud you need to meet the following prerequisites:
+Before you deploy F5 NGINXaaS for Google Cloud you need to meet the following prerequisites:
 
 - List
 - Of

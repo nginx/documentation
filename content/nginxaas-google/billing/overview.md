@@ -8,14 +8,14 @@ type:
 - concept
 ---
 
-NGINX as a Service for Google Cloud is deployed into your Google Cloud Platform subscription and is billed through the Google Cloud Marketplace. The billing is based on the resources provisioned and consumed by your NGINXaaS deployment.
+NGINXaaS for Google Cloud is deployed into your Google Cloud Platform subscription and is billed through the Google Cloud Marketplace. The billing is based on the resources provisioned and consumed by your NGINXaaS deployment.
 Your NGINXaaS deployment resource is visible within your subscription, while the underlying infrastructure is managed by F5 and is abstracted away from you.
 
 ## Pricing plans
 
 NGINXaaS for Google Cloud is billed monthly based on hourly consumption.
 
-F5 NGINX as a Service for Google Cloud (NGINXaaS) provides two pricing plans.
+F5 NGINXaaS for Google Cloud (NGINXaaS) provides two pricing plans.
 
 ### Standard
 
