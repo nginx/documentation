@@ -558,7 +558,7 @@ Request ID: 1b5c8f3a4532ea7d7510cf14ffeb27af
 
 If you're already using NGINX Ingress Controller and want to migrate to NGINX Gateway Fabric, you can use the [ingress2gateway](https://github.com/kubernetes-sigs/ingress2gateway) tool to automatically convert your existing Ingress resources to Gateway API resources.
 
-The ingress2gateway tool is a Kubernetes SIG project that helps convert Ingress resources to Gateway API resources. It supports various Ingress providers, including NGINX Ingress Controller.
+The ingress2gateway tool is a Kubernetes SIG project for converting Ingress resources to Gateway API resources. It supports multiple Ingress providers, including NGINX Ingress Controller.
 
 {{< call-out "important" >}}
 The ingress2gateway tool is a conversion utility that translates Ingress resources to Gateway API equivalents. It is not a complete end-to-end migration solution. You will need to manually review the converted resources, test functionality, and make additional configuration changes as needed for your specific environment.
@@ -568,18 +568,13 @@ The ingress2gateway tool is a conversion utility that translates Ingress resourc
 
 To convert your existing NGINX Ingress resources to Gateway API resources that work with NGINX Gateway Fabric:
 
-1. Install the ingress2gateway tool following the [installation instructions](https://github.com/kubernetes-sigs/ingress2gateway?tab=readme-ov-file#installation).
 
-2. Run the conversion command for NGINX provider:
-   ```shell
-   ingress2gateway print --providers=nginx --input-file=<your-ingress-file> > gateway-api-resources.yaml
-   ```
-   This command will analyze your Ingress resources from the input file and output the equivalent Gateway API resources to a file named `gateway-api-resources.yaml`
+First, [install the ingress2gateway tool](https://github.com/kubernetes-sigs/ingress2gateway?tab=readme-ov-file#installation).
 
-3. Review the generated Gateway API resources in the output file and apply them to your cluster:
-   ```shell
-   kubectl apply -f gateway-api-resources.yaml
-   ```
+Then run the conversion command for the NGINX provider:
+   
+```shell
+ingress2gateway print --providers=nginx --input-file=<your-ingress-file> > gateway-api-resources.yaml
 
 For detailed information about NGINX-specific features and conversion options, see the [NGINX provider documentation](https://github.com/kubernetes-sigs/ingress2gateway/blob/main/pkg/i2gw/providers/nginx/README.md).
 
