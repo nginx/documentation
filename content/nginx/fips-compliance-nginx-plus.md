@@ -18,7 +18,7 @@ FIPS 140 is a mandatory cryptographic standard in the United States and Canada f
 
 Non-compliance can result to contract loss, restricted project access, fines, or, in severe cases, data breaches compromising personal information or national security.
 
-In addition, non regulated sectors handling sensitive data, such as finance, healthcare, energy, have widely adopted FIPS to strengthen data protection and operational security.
+Some industries outside regulatory mandates such as finance, healthcare, energy, also adopt FIPS to enhance data protection and operational security.
 
 ### FIPS Compliance Across U.S. Programs, Regulations, and Industries
 
@@ -49,10 +49,21 @@ Currently, both FIPS 140-2 and FIPS 140-3 certifications are accepted. However, 
 | TSA                           | 140-2 or 140-3               | Best practice for cryptographic protection; both versions accepted.       |
 {{< /bootstrap-table >}}
 
-
 ### Countries That Base Their Requirements on FIPS
 
-Although FIPS 140 is primarily a North American government cryptographic standard, it is widely recognized as a a global benchmark for cryptographic security. Numerous countries outside North America align their cryptographic requirements with FIPS, especially in regulated sectors such as finance, defense, healthcare, and critical infrastructure.
+Although FIPS 140 is primarily a North American government cryptographic standard, it is widely recognized as a global benchmark for cryptographic security. Numerous countries outside North America align their cryptographic requirements with FIPS, especially in regulated sectors such as finance, defense, healthcare, and critical infrastructure.
+
+There are several types of acceptance: 
+
+- Mandatory: For countries that legally require FIPS compliance (United States and Canada).
+
+- Relied on: For countries where FIPS is not legally mandated, but plays a critical role in finance, defense, and secure communications.
+
+- Referenced: Governments or industries incorporate FIPS into their standards but do not enforce it as mandatory.
+
+- Adopted: Governments or industries actively use FIPS frameworks for secure collaboration.
+
+- Trusted: FIPS is recognized as a reliable standard for industries such as finance and energy.
 
 {{<bootstrap-table "table table-striped table-bordered table-sm">}}
 | Country/Region | FIPS Use                                                                    |
@@ -77,25 +88,11 @@ Although FIPS 140 is primarily a North American government cryptographic standar
 | United States  | Mandatory for federal government systems and contractors.                   |
 {{< /bootstrap-table >}}
 
-where:
+## FIPS Compliant vs FIPS Validated
 
-- Mandatory: For countries that leagally require FIPS compliance (United States and Canada).
-
-- Relied on: For countries where FIPS is not legally mandated, but plays a critical role in finance, defense, and secure communications.
-
-- Referenced: Governments or industries incorporate FIPS as part of their standards but do not enforce it as mandatory.
-
-- Adopted: Governments or industries actively use FIPS frameworks for secure collaboration.
-
-- Trusted: FIPS is recognized as a reliable standard for industries such as finance and energy.
-
-
-## FIPS Compliant or FIPS Validated
-
-FIPS validation is a multistep process that certifies cryptographic modules through formal testing under the [Cryptographic Module Validation Program](https://csrc.nist.gov/Projects/cryptographic-module-validation-program/cmvp-flow) (CMVP). The process is managed by the [NIST](https://csrc.nist.gov/) and requires accredited third-party laboratories to evaluate the cryptographic module. Once a module passes validation, it is officially recognized as FIPS-certified.
+FIPS validation is a formal, multistep process that certifies cryptographic modules through testing under the [Cryptographic Module Validation Program](https://csrc.nist.gov/Projects/cryptographic-module-validation-program/cmvp-flow) (CMVP). The process is managed by the [NIST](https://csrc.nist.gov/) and requires accredited third-party laboratories to evaluate the cryptographic module. Once a module passes validation, it is officially recognized as FIPS-validated, or FIPS-certified.
 
 In contrast, a system that is FIPS compliant adheres to the security requirements outlined in the FIPS standard by using cryptographic algorithms or modules that implement FIPS-approved functions, such as AES for encryption or SHA-256 for hashing. However, compliance alone does not indicate formal validation or certification under the CMVP program.
-
 
 ## FIPS compliance with NGINX Plus
 
@@ -155,7 +152,6 @@ For instructions for enabling FIPS mode on other FIPS‑compliant Linux operatin
 - Amazon Linux 2: [Enabling FIPS mode](https://docs.aws.amazon.com/linux/al2/ug/fips-mode.html)
 
 - AlmaLinux: [FIPS Validation for AlmaLinux](https://almalinux.org/blog/2023-09-19-fips-validation-for-almalinux/)
-
 
 ### Step 2: Verify the Operating System is in FIPS Mode {#os-fips-check}
 
@@ -330,7 +326,6 @@ This cipher is considered secure but is not permitted by the FIPS standard. The 
 
 Note that if you attempt to issue the client request on a host running in FIPS mode, it fails because the OpenSSL client cannot use this cipher.
 
-
 #### AES256-SHA
 
 The cipher is permitted under FIPS 140-2 as it combines AES encryption with SHA-1. However, under FIPS 140-3, SHA-1 is explicitly disallowed due to its vulnerabilities, such as susceptibility to collision attacks. As a result, the SSL handshake fails under FIPS 140-3 and succeeds under FIPS 140-2:
@@ -339,7 +334,7 @@ The cipher is permitted under FIPS 140-2 as it combines AES encryption with SHA-
 (echo "GET /" ; sleep 1) | openssl s_client -connect <NGINX-Plus-address>:443 -cipher AES256-SHA
 ```
 
-For FIPS 140-3 compliance, you can use alternative cipher suites that leverage SHA-2 or SHA-3 for hashing:
+For FIPS 140-3 compliance, alternative cipher suites that leverage SHA-2 or SHA-3 for hashing can be used:
 
 - AES-GCM-Based Cipher Suites (TLS 1.2): 
   - `TLS_RSA_WITH_AES_256_GCM_SHA384`
@@ -362,7 +357,7 @@ As a result, the SSL handshake always fails in FIPS-3 compliant environment:
 ```shell
 (echo "GET /" ; sleep 1) | openssl s_client -connect <NGINX-Plus-address>:443 -cipher DES-CBC3
 ```
-For FIPS 140-3 compliance, you can use AES-Based or ChaCha20-Based cipher suites:
+For FIPS 140-3 compliance, AES-Based or ChaCha20-Based cipher suites can be used:
 
 - `TLS_RSA_WITH_AES_128_GCM_SHA256`
 - `TLS_RSA_WITH_AES_256_GCM_SHA384`
@@ -388,27 +383,133 @@ The `TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256` algorithm is FIPS 140-3 compliant as
 
 ## Which Ciphers Are Disabled in FIPS Mode?
 
-The FIPS 140-2 standard only permits a [subset of the typical SSL and TLS ciphers](https://csrc.nist.gov/csrc/media/publications/fips/140/2/final/documents/fips1402annexa.pdf).
+The FIPS 140-2 standard only permits a [subset of the typical SSL and TLS ciphers](https://csrc.nist.gov/csrc/media/publications/fips/140/2/final/documents/fips1402annexa.pdf), while FIPS 140-3 [extends this requirements](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.140-3.pdf) to enforce stricter cryptographic algorithms.
 
-In the following test, the ciphers presented by NGINX Plus are surveyed using the [Qualys SSL server test](https://www.ssllabs.com/ssltest). In its default configuration, with the `ssl_ciphers HIGH:!aNULL:!MD5` directive, NGINX Plus presents the following ciphers to SSL/TLS clients:
+In the following test, the ciphers presented by NGINX Plus are surveyed using the `nmap` utility (installed separately). In its default configuration, with the [`ssl_ciphers HIGH:!aNULL:!MD5`](nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_ciphers) directive, NGINX Plus presents the following ciphers to SSL/TLS clients:
 
-<a href="/nginx/images/nginx-plus-ciphers-nonfips.png"><img src="/nginx/images/nginx-plus-ciphers-nonfips.png" alt="Ciphers presented by NGINX Plus to clients when in non-FIPS mode" width="1024" height="521" class="aligncenter size-full wp-image-62740" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
+```shell
+nmap --script ssl-enum-ciphers -p 443 <NGINX-Plus-address>
+```
 
-When FIPS mode is enabled on the host operating system, the two ciphers that use the Camellia block cipher (`TLS_RSA_WITH_CAMELLIA_128_CBC_SHA` and `TLS_RSA_WITH_CAMELLIA_256_CBC_SHA`) are removed:
+The output of the command for NGINX Plus running on Red Hat Enterprise Linux 9 without FIPS enabled:
 
-<a href="/nginx/images/nginx-plus-ciphers-fips.png"><img src="/nginx/images/nginx-plus-ciphers-fips.png" alt="Ciphers presented by NGINX Plus to clients when in FIPS mode" width="1024" height="466" class="aligncenter size-full wp-image-62738" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
+```shell
+PORT    STATE SERVICE
+443/tcp open  https
+| ssl-enum-ciphers: 
+|   TLSv1.2: 
+|     ciphers: 
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (secp256r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256 (secp256r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (secp256r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp256r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384 (secp256r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (secp256r1) - A
+|       TLS_ECDHE_RSA_WITH_ARIA_128_GCM_SHA256 (secp256r1) - A
+|       TLS_ECDHE_RSA_WITH_ARIA_256_GCM_SHA384 (secp256r1) - A
+|       TLS_ECDHE_RSA_WITH_CAMELLIA_128_CBC_SHA256 (secp256r1) - A
+|       TLS_ECDHE_RSA_WITH_CAMELLIA_256_CBC_SHA384 (secp256r1) - A
+|       TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256 (secp256r1) - A
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_AES_128_CBC_SHA256 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_128_CCM (rsa 2048) - A
+|       TLS_RSA_WITH_AES_128_GCM_SHA256 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_AES_256_CBC_SHA256 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_256_CCM (rsa 2048) - A
+|       TLS_RSA_WITH_AES_256_GCM_SHA384 (rsa 2048) - A
+|       TLS_RSA_WITH_ARIA_128_GCM_SHA256 (rsa 2048) - A
+|       TLS_RSA_WITH_ARIA_256_GCM_SHA384 (rsa 2048) - A
+|       TLS_RSA_WITH_CAMELLIA_128_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_CAMELLIA_128_CBC_SHA256 (rsa 2048) - A
+|       TLS_RSA_WITH_CAMELLIA_256_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_CAMELLIA_256_CBC_SHA256 (rsa 2048) - A
+|     compressors: 
+|       NULL
+|     cipher preference: client
+|   TLSv1.3: 
+|     ciphers: 
+|       TLS_AKE_WITH_AES_128_CCM_SHA256 (ecdh_x25519) - A
+|       TLS_AKE_WITH_AES_128_GCM_SHA256 (ecdh_x25519) - A
+|       TLS_AKE_WITH_AES_256_GCM_SHA384 (ecdh_x25519) - A
+|       TLS_AKE_WITH_CHACHA20_POLY1305_SHA256 (ecdh_x25519) - A
+|     cipher preference: client
+|_  least strength: A
+```
 
-When you configure NGINX Plus with the `ssl_ciphers ALL` directive, NGINX Plus presents all the relevant ciphers available in the OpenSSL cryptographic module to the client. FIPS mode disables the following ciphers:
+When FIPS 140-3 mode is enabled, NGINX Plus presents the following ciphers to SSL/TLS clients:
 
-- `TLS_ECDH_anon_WITH_RC4_128_SHA`
-- `TLS_ECDHE_RSA_WITH_RC4_128_SHA`
+```shell
+PORT    STATE SERVICE
+443/tcp open  https
+| ssl-enum-ciphers: 
+|   TLSv1.2: 
+|     ciphers: 
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (secp256r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256 (secp256r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (secp256r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp256r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384 (secp256r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (secp256r1) - A
+|     compressors: 
+|       NULL
+|     cipher preference: client
+|   TLSv1.3: 
+|     ciphers: 
+|       TLS_AKE_WITH_AES_128_CCM_SHA256 (secp256r1) - A
+|       TLS_AKE_WITH_AES_128_GCM_SHA256 (secp256r1) - A
+|       TLS_AKE_WITH_AES_256_GCM_SHA384 (secp256r1) - A
+|     cipher preference: client
+|_  least strength: A
+```
+
+Based on the results above, the following ciphers are disallowed under FIPS 140-3 compliance:
+
+1. Camellia-Based Ciphers: FIPS compliance requires cryptographic algorithms to be validated by NIST, and Camellia is not NIST-approved despite being recognized by ISO/IEC standards.
+
+- `TLS_ECDHE_RSA_WITH_CAMELLIA_128_CBC_SHA256`
+- `TLS_ECDHE_RSA_WITH_CAMELLIA_256_CBC_SHA384`
 - `TLS_RSA_WITH_CAMELLIA_128_CBC_SHA`
+- `TLS_RSA_WITH_CAMELLIA_128_CBC_SHA256`
 - `TLS_RSA_WITH_CAMELLIA_256_CBC_SHA`
-- `TLS_RSA_WITH_IDEA_CBC_SHA`
-- `TLS_RSA_WITH_RC4_128_MD5`
-- `TLS_RSA_WITH_RC4_128_SHA`
-- `TLS_RSA_WITH_SEED_CBC_SHA`
+- `TLS_RSA_WITH_CAMELLIA_256_CBC_SHA256`
 
+2. ARIA-Based Ciphers: similar to Camellia, ARIA is not a NIST-approved algorithm and is therefore excluded from FIPS compliance.
+
+- `TLS_ECDHE_RSA_WITH_ARIA_128_GCM_SHA256`
+- `TLS_ECDHE_RSA_WITH_ARIA_256_GCM_SHA384`
+- `TLS_RSA_WITH_ARIA_128_GCM_SHA256`
+- `TLS_RSA_WITH_ARIA_256_GCM_SHA384`
+
+3. RSA Key Exchange Ciphers: static RSA key exchange lacks Forward Secrecy, allowing decryption of past traffic if the private key is compromised, thus disallowed in FIPS mode.
+
+- `TLS_RSA_WITH_AES_128_CBC_SHA`
+- `TLS_RSA_WITH_AES_128_CBC_SHA256`
+- `TLS_RSA_WITH_AES_128_GCM_SHA256`
+- `TLS_RSA_WITH_AES_256_CBC_SHA`
+- `TLS_RSA_WITH_AES_256_CBC_SHA256`
+- `TLS_RSA_WITH_AES_256_GCM_SHA384`
+
+4. CBC Mode Ciphers (Non-AEAD: CBC is vulnerable to padding oracle attacks (e.g., POODLE, Lucky13), making it insecure. FIPS 140-3 prioritizes AEAD modes like AES-GCM and AES-CCM.
+
+- `TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA`
+- `TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256`
+- `TLS_RSA_WITH_AES_128_CBC_SHA`
+- `TLS_RSA_WITH_AES_128_CBC_SHA256`
+- `TLS_RSA_WITH_AES_256_CBC_SHA`
+- `TLS_RSA_WITH_AES_256_CBC_SHA256`
+
+5. ChaCha20-Poly1305: it is not a NIST-approved algorithm and is excluded from FIPS compliance. FIPS exclusively permits algorithms such as `AES-GCM` and `AES-CCM`.
+
+- `TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256`
+
+6. AES-CCM Variants:
+
+- `TLS_RSA_WITH_AES_128_CCM`
+- `TLS_RSA_WITH_AES_256_CCM`
+
+
+It is also possible to use the [Qualys SSL server test](https://www.ssllabs.com/ssltest) to verify the ciphers presented by NGINX Plus to SSL/TLS clients.
 
 ## Definition of Terms
 
