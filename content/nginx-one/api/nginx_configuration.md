@@ -23,7 +23,6 @@ The workflows for managing NGINX Configs for Instances, Config Sync Groups, and 
 You can retrieve the current NGINX Config for an Instance, Config Sync Group, or Staged Config using a `GET` request. This is useful for making updates based on the existing configuration.
 
 Use the following curl command to retrieve the current NGINX Config for a specific Instance. Replace `<tenant>`, `<namespace>`, `<instance-object-id>`, and `<token-value>` with your actual values.
-
    ```shell
    curl -X GET "https://<tenant>.console.ves.volterra.io/api/nginx/one/namespaces/<namespace>/instances/<instance-object-id>/config" \
    -H "Authorization: APIToken <token-value>" -o current_config.json
@@ -39,47 +38,57 @@ To update the NGINX Config for a Config Sync Group or Staged Config, replace `in
 
  The response will include the current NGINX Config in JSON format. This response is saved to a file (e.g., `current_config.json`) for editing.
 
-## Updating the NGINX Config
-
 You can modify the NGINX Config using either `PUT` or `PATCH` requests. The `PUT` method replaces the entire NGINX Config, while the `PATCH` method allows you to update specific fields without affecting the rest of the configuration.
 
-1. **Update the NGINX Config for an Instance using `PUT`**:
+## How to base64 encode a file for JSON request
 
-    When using the `PUT` method, ensure that your request body includes all necessary contents, as it will overwrite the existing configuration.
-    The following example demonstrates how to update the NGINX Config for a specific Instance using `PUT`. Replace `<tenant>`, `<namespace>`, `<instance-object-id>`, and `<token-value>` with your actual values. The request body should contain the complete NGINX Config in JSON format.
-    ```shell
-    curl -X PUT "https://<tenant>.console.ves.volterra.io/api/nginx/one/namespaces/<namespace>/instances/<instance-object-id>/config" \
-    -H "Authorization : APIToken <token-value>" \
-    -H "Content-Type: application/json" \
-    -d @updated_config.json
-    ```
-    - `<tenant>`: Your tenant name for organization plans.
-    - `<namespace>`: The namespace your Instance belongs to.
-    - `<instance-object-id>`: The object_id of the NGINX Instance you want to update the NGINX Config for.
-    - `<token-value>`: Your API Token.
-   
-2. **Update the NGINX Config for an Instance using `PATCH`**:
+When updating the NGINX Config, file `contents` must be base64 encoded. You can use the following command to base64 encode a file:
 
-    When using the `PATCH` method, you only need to include the files you want to update in your request body.
-    The following example demonstrates how to update the NGINX Config for a specific Instance using `PATCH`. Replace `<tenant>`, `<namespace>`, `<instance-object-id>`, and `<token-value>` with your actual values. The request body should contain only the fields you want to update in JSON format.
-    ```shell
+```shell
+base64 -w 0 -i <path-to-your-file>
+```
+This command reads the file at `<path-to-your-file>` and outputs its base64 encoded content in a single line (due to the `-w 0` option). You can then copy this encoded string and include it in your JSON request body. On some systems the `-w` option may not be available, in which case you can use:
+```shell
+base64 -i <path-to-your-file> | tr -d '\n'
+``` 
+
+## Update the NGINX Config for an Instance using `PUT`
+
+When using the `PUT` method, ensure that your request body includes all necessary contents, as it will overwrite the existing configuration.
+The following example demonstrates how to update the NGINX Config for a specific Instance using `PUT`. Replace `<tenant>`, `<namespace>`, `<instance-object-id>`, and `<token-value>` with your actual values. The request body should contain the complete NGINX Config in JSON format.
+   ```shell
+   curl -X PUT "https://<tenant>.console.ves.volterra.io/api/nginx/one/namespaces/<namespace>/instances/<instance-object-id>/config" \
+   -H "Authorization : APIToken <token-value>" \
+   -H "Content-Type: application/json" \
+   -d @updated_config.json
+   ```
+   - `<tenant>`: Your tenant name for organization plans.
+   - `<namespace>`: The namespace your Instance belongs to.
+   - `<instance-object-id>`: The object_id of the NGINX Instance you want to update the NGINX Config for.
+   - `<token-value>`: Your API Token.
+
+## Update the NGINX Config for an Instance using `PATCH`
+
+When using the `PATCH` method, you only need to include the files you want to update in your request body.
+The following example demonstrates how to update the NGINX Config for a specific Instance using `PATCH`. Replace `<tenant>`, `<namespace>`, `<instance-object-id>`, and `<token-value>` with your actual values. The request body should contain only the fields you want to update in JSON format.
+   ```shell
     curl -X PATCH "https://<tenant>.console.ves.volterra.io/api/nginx/one/namespaces/<namespace>/instances/<instance-object-id>/config" \
     -H "Authorization : APIToken <token-value>" \
     -H "Content-Type: application/json" \
     -d @partial_update_config.json
-    ```
-    - `<tenant>`: Your tenant name for organization plans.
-    - `<namespace>`: The namespace your Instance belongs to.
-    - `<instance-object-id>`: The object_id of the NGINX Instance you want to update the NGINX Config for.
-    - `<token-value>`: Your API Token.
+   ```
+   - `<tenant>`: Your tenant name for organization plans.
+   - `<namespace>`: The namespace your Instance belongs to.
+   - `<instance-object-id>`: The object_id of the NGINX Instance you want to update the NGINX Config for.
+   - `<token-value>`: Your API Token.
 
-    With `PATCH`, you can update specific parts of the NGINX Config without needing to resend the entire configuration. The following file `contents` disposition is observed:
-    - Leave out file `contents` to remove the file from the NGINX Config.
-    - Include file `contents` to add or update the file in the NGINX Config. File `contents` must be base64 encoded. File `contents` can be an empty string to create an empty file.
-    - `config_version` should be included to ensure you're updating the correct version of the configuration. You can get the current `config_version` from the response of the `GET` request.
+With `PATCH`, you can update specific parts of the NGINX Config without needing to resend the entire configuration. The following file `contents` disposition is observed:
+   - Leave out file `contents` to remove the file from the NGINX Config.
+   - Include file `contents` to add or update the file in the NGINX Config. File `contents` must be base64 encoded. File `contents` can be an empty string to create an empty file.
+   - `config_version` should be included to ensure you're updating the correct version of the configuration. You can get the current `config_version` from the response of the `GET` request.
 
-    For example, to update only the `/etc/nginx/nginx.conf` file in the NGINX Config, your `partial_update_config.json` might look like this:
-    ```json
+For example, to update only the `/etc/nginx/nginx.conf` file in the NGINX Config, your `partial_update_config.json` might look like this:
+   ```json
     {
         "conf_path": "/etc/nginx/nginx.conf",
         "config_version": "<config_version from GET response>",
@@ -95,16 +104,9 @@ You can modify the NGINX Config using either `PUT` or `PATCH` requests. The `PUT
             }
         ]
     }
-    ```
-   {{< call-out "note" >}}
-   To encode files in base64, you can use the following command in a Unix-like terminal:
-   ```shell
-   base64 /path/to/your/file
    ```
-   Replace `/path/to/your/file` with the actual path to the file you want to encode.
-   {{< /call-out>}}
-   To remove a file, simply omit the `contents` field for that file in your `PATCH` request body, your `partial_update_config.json` might look like this to remove `/etc/nginx/conf.d/default.conf` from the NGINX Config:
-    ```json
+To remove a file, simply omit the `contents` field for that file in your `PATCH` request body, your `partial_update_config.json` might look like this to remove `/etc/nginx/conf.d/default.conf` from the NGINX Config:
+   ```json
     {
         "conf_path": "/etc/nginx/nginx.conf",
         "config_version": "<config_version from GET response>",
@@ -119,9 +121,11 @@ You can modify the NGINX Config using either `PUT` or `PATCH` requests. The `PUT
             }
         ]
     }
-    ```
-   Multiple updates can be made in a single `PATCH` request. For example, to update `/etc/nginx/nginx.conf` and remove `/etc/nginx/conf.d/default.conf`, your `partial_update_config.json` might look like this:
-    ```json
+   ```
+## Set up multiple updates with PATCH
+
+Multiple updates can be made in a single `PATCH` request. For example, to update `/etc/nginx/nginx.conf` and remove `/etc/nginx/conf.d/default.conf`, your `partial_update_config.json` might look like this:
+   ```json
     {
         "conf_path": "/etc/nginx/nginx.conf",
         "config_version": "<config_version from GET response>",
@@ -145,4 +149,4 @@ You can modify the NGINX Config using either `PUT` or `PATCH` requests. The `PUT
             }
         ]
     }
-    ```
+   ```
