@@ -158,7 +158,7 @@ kubectl apply -f config/crd/bases/appprotect.f5.com_apusersigs.yaml
 
 {{< include "/nic/installation/deploy-controller.md" >}}
 
-{{< note >}} If you're using NGINX Ingress Controller with the AppProtect WAF module and policy bundles, you will need to modify the Deployment, DaemonSet, or StatefulSet file to include volumes and volume mounts.
+{{< call-out "note" >}} If you're using NGINX Ingress Controller with the AppProtect WAF module and policy bundles, you will need to modify the Deployment, DaemonSet, or StatefulSet file to include volumes and volume mounts.
 
 NGINX Ingress Controller **requires** the volume mount path to be `/etc/nginx/waf/bundles`. {{< /call-out >}}
 
