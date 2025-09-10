@@ -9,7 +9,7 @@ type:
 ---
 
 ## Overview
-This guide explains how to deploy F5 NGINXaaS for Google Cloud (NGINXaaS) using [Microsoft portal](https://azure.microsoft.com/en-us/get-started/azure-portal). The deployment process involves creating a new deployment, configuring the deployment, and testing the deployment.
+This guide explains how to deploy F5 NGINXaaS for Google Cloud (NGINXaaS) using [Google Cloud Console](https://console.cloud.google.com). The deployment process involves creating a new deployment, configuring the deployment, and testing the deployment.
 
 ## Find the NGINXaaS for Google Cloud offer in the portal
 
