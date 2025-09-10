@@ -507,31 +507,23 @@ The request should be blocked, confirming that Policy lifecycle management has s
 
 ## Upgrade the Helm chart
 
-1. **Prepare Environment Variables**
-   
-   Set the required environment variables:
-   ```bash
-   export JWT=<your-nginx-jwt-token>
-   export NGINX_REGISTRY_TOKEN=<base64-encoded-docker-credentials>
-   export NGINX_CERT=<base64-encoded-nginx-cert>
-   export NGINX_KEY=<base64-encoded-nginx-key>
-   ```
+Follow these steps to upgrade the Helm chart: they are similar to the initial deployment.
 
-2. **Pull the new Helm Chart version**
+You should first [prepare environment variables](#prepare-environment-variables) and [configure Docker registry credentials](#configure-docker-for-the-f5-container-registry).
    
-   Login to the registry and pull the chart:
-   ```bash
-   helm registry login private-registry.nginx.com
-   helm pull oci://private-registry.nginx.com/nap/nginx-app-protect --version <new-release-version> --untar
-   cd nginx-app-protect
-   ```
+Log into the Helm registry, pull the chart and change into the folder, changing the `--version` parameter for the new version.
 
-3. **Apply Custom Resource Definitions**
+```shell
+helm registry login private-registry.nginx.com
+helm pull oci://private-registry.nginx.com/nap/nginx-app-protect --version <new-release-version> --untar
+cd nginx-app-protect
+```
    
-   Apply the required CRDs before deploying the chart:
-   ```bash
-   kubectl apply -f crds/
-   ```
+Then apply the CRDs:
+
+```shell
+kubectl apply -f crds/
+```
 
 4. **Create Storage**
    
@@ -568,15 +560,6 @@ The request should be blocked, confirming that Policy lifecycle management has s
    The PV name defaults to `<release-name>-shared-bundles-pv`, but can be customized using the `appprotect.storage.pv.name` setting in your values.yaml file.
    {{< /call-out >}}
 
-5. **Configure Docker Registry Credentials**
-   
-   Create the Docker registry secret or configure in values.yaml:
-   ```bash
-   kubectl create secret docker-registry regcred -n <namespace> \
-     --docker-server=private-registry.nginx.com \
-     --docker-username=<JWT-Token> \
-     --docker-password=none
-   ```
 
 6. **Deploy the Helm Chart with Policy Controller**
    
@@ -606,6 +589,7 @@ The request should be blocked, confirming that Policy lifecycle management has s
 1. **Manually Delete the CRs**
 
    Delete all the existing CRs created for the deployment:
+
    ```bash
    kubectl -n <namespace> delete appolicy <policy-name>
    kubectl -n <namespace> delete aplogconf <logconf-name>
