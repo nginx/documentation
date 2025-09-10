@@ -257,7 +257,7 @@ kubectl get all -n <namespace>
 
 ## Use Policy lifecycle management
 
-### Create Policy resources
+### Create policy resources
 
 Once Policy lifecycle management is deployed, you can create policy resources using Kubernetes manifests. 
 
@@ -296,6 +296,7 @@ spec:
 ```
 
 Apply the policy:
+
 ```shell
 kubectl apply -f dataguard-blocking-policy.yaml -n <namespace>
 ```
@@ -328,6 +329,7 @@ spec:
 ```
 
 Apply the user signature:
+
 ```shell
 kubectl apply -f apple-usersig.yaml -n <namespace>
 ```
@@ -349,6 +351,43 @@ The Policy Controller will show status information including:
 - Bundle location
 - Compilation status
 - Signature update timestamps
+
+### Use specific security update versions
+
+Once Policy lifecycle management is deployed, you can define a specific security update version on a per-feature basis.
+
+This is accomplished by adding a `revision:` parameter to the feature.
+
+The following example is for an _APSignatures_ resource, in a file named `signatures.yaml`:
+
+```yaml {hl_lines=[7,9, 11]}
+apiVersion: appprotect.f5.com/v1
+kind: APSignatures
+metadata:
+  name: signatures
+spec:
+  attack-signatures:
+    revision: "2025.06.19" # Attack signatures revision to be used
+  bot-signatures:
+    revision: "latest" # Bot signatures revision to be used
+  threat-campaigns:
+    revision: "2025.06.24" # Threat campaigns revision to be used
+```
+
+{{< call-out "warning" >}}
+The APSignatures `name` argument _must_ be `signatures`. Only one APSignatures instance can exist.
+{{< /call-out >}}
+
+Apply the Manifest:
+
+```shell
+kubectl apply -f signatures.yaml
+```
+
+Downloading security updates may take several minutes, and the version of security updates available at the time of compilation is always used to compile policies.
+
+If _APSignatures_ is not created or the specified versions are not available, it will default to the version stored in the compiler Docker image.
+
 
 ## Testing policy lifecycle management
 

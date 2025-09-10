@@ -40,11 +40,9 @@ The security log attributes are determined by the `app_protect_security_log` dir
 
 ##### Arguments
 
-{{<bootstrap-table "table table-striped table-bordered table-sm table-responsive">}}
-|Argument | Mandatory | Meaning | Default |
+| Argument | Mandatory | Meaning | Default |
 | ---| ---| ---| --- |
 |ON-OFF | Yes | Whether to enable logging or not | off |
-{{</bootstrap-table>}}
 
 #### app_protect_security_log
 
@@ -66,12 +64,10 @@ app_protect_security_log /shared_volume/logging_profile_02.tgz syslog:server=my.
 
 ##### Arguments
 
-{{<bootstrap-table "table table-striped table-bordered table-sm table-responsive">}}
 |Argument | Mandatory | Meaning | Default |
 | ---| ---| ---| --- |
 |LOG-BUNDLE-FILE-OR-NAME | No | The path to the **compiled** logging profile bundle, or built-in profile name. See details below. | `log_default` (identical to `log_illegal`)|
 |DESTINATION | No | The destination of the log messages in NGINX format. The supported destinations options are `stderr`, or an absolute path to a local file, or syslog server as localhost, hostname, IP address or FQDN with an optional port.| syslog:server=localhost:514 |
-{{</bootstrap-table>}}
 
 ### Security Log Configuration File
 
@@ -84,11 +80,9 @@ The file is in JSON format and consists of two parts:
 #### Filter
 The filter is mandatory, although it may be left blank.
 
-{{<bootstrap-table "table table-striped table-bordered table-sm table-responsive">}}
 |Element | Meaning | Type/Values | Default |
 | ---| ---| ---| --- |
 |request_type | Log according to what App Protect detected in the request. | Enumerated values:<ul><li>**all:** all requests, both legal and illegal.</li><li>**illegal:** requests with violations (that is, either alerted or blocked).</li><li>**blocked:** requests with violations that were blocked.</li></ul> | all |
-{{</bootstrap-table>}}
 
 
 #### Content
@@ -96,7 +90,6 @@ This part of the configuration file specifies what will be logged, the format of
 
 Content is mandatory. If the entire content field or any of its attributes are not defined, system-defined default values are used.
 
-{{<bootstrap-table "table table-striped table-bordered table-sm table-responsive">}}
 |Element | Meaning | Type/Values | Mandatory | Default | Comment |
 | ---| ---| ---| ---| ---| --- |
 |format | Selects one of the predefined formats of log messages or a custom format that will be defined by the **format_string** field. | Enumerated values:<ul><li>**arcsight:** formatted according to ArcSight Common Event Format (CEF) with custom fields adapted for F5.</li><li>**big-iq**: formatted for BIG-IQ, the F5 centralized management platform for BIG-IP.</li><li>**default:** default format for App Protect. See the `NGINX Format Strings` section below for more details.</li><li>**grpc:** a variant of the `default` format suited for gRPC traffic. See the `NGINX Format Strings` section below for more details.</li><li>**splunk:** formatted for Splunk SIEM with F5 plugin.</li><li>**user-defined:** custom format defined by the user in the format_string field.</li></ul> | No | default |  |
@@ -107,8 +100,6 @@ Content is mandatory. If the entire content field or any of its attributes are n
 | list_prefix | Defines the prefix of a list of values in the log. | String | No | N/A | |
 | list_delimiter | Defines the delimiter of a list of values in the log. | String | No | `,` | |
 | list_suffix | Defines the suffix of a list of values in the log. | String | No | N/A | |
-{{</bootstrap-table>}}
-
 
 #### Examples
 
@@ -224,7 +215,6 @@ It is *not* guaranteed that all requests that match the filters will indeed reac
 
 NGINX will provide example configuration files under /opt/app_protect/share/defaults/ with the following settings:
 
-{{<bootstrap-table "table table-striped table-bordered table-sm table-responsive">}}
 |Name | Filter | Content |
 | ---| ---| --- |
 |log_all | all | format=default |
@@ -233,14 +223,11 @@ NGINX will provide example configuration files under /opt/app_protect/share/defa
 |log_grpc_blocked | blocked requests | format=grpc |
 |log_grpc_illegal | illegal requests | format=grpc |
 |log_illegal | illegal requests | format=default |
-{{</bootstrap-table>}}
-
 
 ### Available Security Log Attributes
 
 The table below lists attributes that are generated in the security logs. When using customized logs (that is, format=user-defined), you can add or remove entries from the list below. Per each attribute we show whether it is included in each of the predefined formats: `default` and `grpc`.
 
-{{<bootstrap-table "table table-striped table-bordered table-sm table-responsive">}}
 |Attribute Name | Description | Included in formats |
 | ---| ---| --- |
 | attack_type | A list of comma separated names of suspected attacks identified in a transaction. | default, grpc |
@@ -287,7 +274,6 @@ The table below lists attributes that are generated in the security logs. When u
 |violations | Comma-separated list of logical violation names (for example, `VIOL_ATTACK_SIGNATURES`, `VIOL_HTTP_PROTOCOL`). | default, grpc |
 |vs_name | A unique identifier of the location in the nginx.conf file that this request is associated with. It contains the line number of the containing server block in nginx.conf, the server name, a numeric discriminator that distinguishes between multiple entries within the same server, and the location name.  For example: ’34-mydomain.com:0-~/.*php(2). | default, grpc |
 |x_forwarded_for_header_value | `X-Forwarded-For` header information. This option is commonly used when proxies are involved to track the originator of the request. | default, grpc |
-{{</bootstrap-table>}}
 
 ### Blocking Observability
 
@@ -299,7 +285,7 @@ Each detected signature is reported within a JSON block with the `VIOL_ATTACK_SI
 
 Here is an example of `json_log` field for a request with several violations and signatures:
 
-```JSON
+```json 
 {
   "violations": [
     {
