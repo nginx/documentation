@@ -9,7 +9,7 @@ type:
 - how-to
 ---
 
-F5 NGINX as a Service for Google (NGINXaaS) supports integrating with Google Cloud services to collect NGINX error and access logs.
+F5 NGINXaaS for Google (NGINXaaS) supports integrating with Google Cloud services to collect NGINX error and access logs.
 
 ## Configuring NGINX logs collection using diagnostic settings
 
