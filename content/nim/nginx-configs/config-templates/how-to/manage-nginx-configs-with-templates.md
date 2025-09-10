@@ -73,7 +73,7 @@ To import an existing template from a `.tar.gz` archive file:
 8. If an error message appears indicating the archive is unsigned, and you recognize and trust the source of the file, select the checkbox **Allow Signature Bypass**.
 9. Select **Import** to finish importing the templates.
 
-{{<warning>}}<i class="fa fa-exclamation-triangle" aria-hidden="true" aria-label="Warning"></i> Make sure you validate the source of the archive before bypassing the signature requirement to maintain the security of your system.{{</warning>}}
+{{< call-out "warning" >}}<i class="fa fa-exclamation-triangle" aria-hidden="true" aria-label="Warning"></i> Make sure you validate the source of the archive before bypassing the signature requirement to maintain the security of your system.{{< /call-out >}}
 
 ### Create a Config Template from Scratch
 

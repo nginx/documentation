@@ -12,7 +12,7 @@ type:
 
 F5 NGINX Instance Manager provides events and metrics data for your instances. You can access this information in the user interface, or by using the REST API.
 
-{{<note>}}This topic provides examples for using the REST API to view, sort, and filter Events data that can be applied across the NGINX Instance Manager REST API.{{</note>}}
+{{< call-out "note" >}}This topic provides examples for using the REST API to view, sort, and filter Events data that can be applied across the NGINX Instance Manager REST API.{{< /call-out >}}
 
 ## View Events in the User Interface
 
@@ -272,9 +272,9 @@ To view the metrics summary for an NGINX instance, take the following steps:
 4. Select the **Metrics Summary** tab.
 5. To view detailed metrics as graphs, select the **Metrics** tab.
 
-{{<note>}}
+{{< call-out "note" >}}
 Select a time range to change the period for the metrics display. The metrics data refreshes every 30 seconds.
-{{</note>}}
+{{< /call-out >}}
 
 For NGINX OSS instances, you can view basic system metrics and metrics for the NGINX data plane. These provide a high-level overview of your system.
 

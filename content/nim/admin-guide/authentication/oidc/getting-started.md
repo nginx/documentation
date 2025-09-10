@@ -48,9 +48,9 @@ Now that you've created a user group and assigned a role in NGINX Instance Manag
 
 ### Before you begin
 
-{{<warning>}}
+{{< call-out "warning" >}}
 Before switching from basic authentication to OIDC, make sure to add at least one admin user to your IdP. Failure to do so can result in admin users being locked out of NGINX Instance Manager. If this occurs, you can restore access by reverting back to basic authentication.
-{{</warning>}}
+{{< /call-out >}}
 
 When you configure OIDC for NGINX Instance Manager, basic authentication will be disabled for all users, including the default `admin` user. To ensure uninterrupted access, create a user group in NGINX Instance Manager that corresponds to a group in your IdP and assign the appropriate roles.
 

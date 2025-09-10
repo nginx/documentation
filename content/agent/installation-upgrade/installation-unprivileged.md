@@ -30,9 +30,9 @@ The installation process involves installing NGINX Plus without root privileges 
 
 You can install NGINX Plus without root privileges following the steps on the [NGINX Plus installation page]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus/#unpriv_install" >}}). The steps include a script that will allow you to install NGINX Plus in a non-root environment.
 
-{{< note >}}
+{{< call-out "note" >}}
 NGINX Agent has its own user group (`nginx-agent`) which is created when NGINX Agent is installed. The user NGINX is running under is added to this user group during the installation of NGINX Agent. If you change the NGINX user after installing NGINX Agent, you will need to [manually add the new NGINX user]({{< ref "/agent/configuration/configure-nginx-agent-group.md" >}}) to the `nginx-agent` group.
-{{< /note >}}
+{{< /call-out >}}
 
 ### Install NGINX Agent
 
@@ -42,15 +42,12 @@ After installing NGINX Plus, you can install NGINX agent following the steps on 
 
 Run the command corresponding to your operating system to start NGINX Agent:
 
-{{<bootstrap-table "table table-striped table-bordered">}}
 
 | Operating System                                      | Command(s)                                      |
 |------------------------------------------------------|------------------------------------------------|
 | RHEL, CentOS,<br>Rocky Linux, AlmaLinux,<br>Oracle Linux, Ubuntu,<br>Debian, SLES, Amazon Linux | ```sudo systemctl start nginx-agent``` |
 | Alpine Linux                                        | ```sudo rc-service nginx-agent start```<br>or<br>```sudo /etc/init.d/nginx-agent start``` |
 | FreeBSD                                             | ```sudo service nginx-agent start``` |
-
-{{</bootstrap-table>}}
 
 You can confirm that NGINX Agent is running under the same user as NGINX Plus by running the following command:
 

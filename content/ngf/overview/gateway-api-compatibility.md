@@ -11,8 +11,7 @@ Learn which Gateway API resources NGINX Gateway Fabric supports and to which lev
 
 ## Summary
 
-{{< bootstrap-table "table table-striped table-bordered" >}}
-
+{{< table >}}
 | Resource                              | Core Support Level  | Extended Support Level | Implementation-Specific Support Level | API Version | API Release Channel |
 |---------------------------------------|---------------------|------------------------|---------------------------------------|-------------|---------------------|
 | [GatewayClass](#gatewayclass)         | Supported           | Not supported          | Supported                             | v1          | Standard            |
@@ -25,8 +24,7 @@ Learn which Gateway API resources NGINX Gateway Fabric supports and to which lev
 | [UDPRoute](#udproute)                 | Not supported       | Not supported          | Not supported                         | v1alpha2    | Experimental        |
 | [BackendTLSPolicy](#backendtlspolicy) | Partially Supported | Supported              | Partially supported                   | v1alpha3    | Experimental        |
 | [Custom policies](#custom-policies)   | N/A                 | N/A                    | Supported                             | N/A         | N/A                 |
-
-{{< /bootstrap-table >}}
+{{< /table >}}
 
 ## Terminology
 
@@ -38,7 +36,7 @@ Gateway API features has three [support levels](https://gateway-api.sigs.k8s.io/
 - _Not supported_. The resource or field is not yet supported. It will become partially or fully supported in future
   releases.
 
-{{< note >}} It's possible that NGINX Gateway Fabric will never support some resources or fields of the Gateway API. They will be documented on a case by case basis. {{< /note >}}
+{{< call-out "note" >}} It's possible that NGINX Gateway Fabric will never support some resources or fields of the Gateway API. They will be documented on a case by case basis. {{< /call-out >}}
 
 
 ## Resources
@@ -49,13 +47,11 @@ For a description of each field, visit the [Gateway API documentation](https://g
 
 ### GatewayClass
 
-{{< bootstrap-table "table table-striped table-bordered" >}}
-
+{{< table >}}
 | Resource     | Core Support Level | Extended Support Level | Implementation-Specific Support Level | API Version | API Release Channel |
 |--------------|--------------------|------------------------|---------------------------------------|-------------|---------------------|
 | GatewayClass | Supported          | Not supported          | Supported                             | v1          | Standard            |
-
-{{< /bootstrap-table >}}
+{{< /table >}}
 
 NGINX Gateway Fabric supports a single GatewayClass resource configured with the `--gatewayclass` flag of the [controller]({{< ref "/ngf/reference/cli-help.md#controller">}}) command.
 
@@ -77,13 +73,11 @@ NGINX Gateway Fabric supports a single GatewayClass resource configured with the
 
 ### Gateway
 
-{{< bootstrap-table "table table-striped table-bordered" >}}
-
+{{< table >}}
 | Resource | Core Support Level | Extended Support Level | Implementation-Specific Support Level | API Version | API Release Channel |
 |----------|--------------------|------------------------|---------------------------------------|-------------|---------------------|
 | Gateway  | Supported          | Partially supported    | Not supported                         | v1          | Standard            |
-
-{{< /bootstrap-table >}}
+{{< /table >}}
 
 NGINX Gateway Fabric supports multiple Gateway resources. The Gateway resources must reference NGINX Gateway Fabric's corresponding GatewayClass.
 
@@ -136,20 +130,19 @@ See the [controller]({{< ref "/ngf/reference/cli-help.md#controller">}}) command
       - `ResolvedRefs/True/ResolvedRefs`
       - `ResolvedRefs/False/InvalidCertificateRef`
       - `ResolvedRefs/False/InvalidRouteKinds`
+      - `ResolvedRefs/False/RefNotPermitted`
       - `Conflicted/True/ProtocolConflict`
       - `Conflicted/True/HostnameConflict`
       - `Conflicted/False/NoConflicts`
+      - `OverlappingTLSConfig/True/OverlappingHostnames`
 
 ### HTTPRoute
 
-{{< bootstrap-table "table table-striped table-bordered" >}}
-
+{{< table >}}
 | Resource  | Core Support Level | Extended Support Level | Implementation-Specific Support Level | API Version | API Release Channel |
 |-----------|--------------------|------------------------|---------------------------------------|-------------|---------------------|
 | HTTPRoute | Supported          | Partially supported    | Not supported                         | v1          | Standard            |
-
-{{< /bootstrap-table >}}
-
+{{< /table >}}
 **Fields**:
 
 - `spec`
@@ -167,7 +160,7 @@ See the [controller]({{< ref "/ngf/reference/cli-help.md#controller">}}) command
       - `requestHeaderModifier`: Supported. If multiple filters are configured, NGINX Gateway Fabric will choose the first and ignore the rest.
       - `urlRewrite`: Supported. If multiple filters are configured, NGINX Gateway Fabric will choose the first and ignore the rest. Incompatible with `requestRedirect`.
       - `responseHeaderModifier`: Supported. If multiple filters are configured, NGINX Gateway Fabric will choose the first and ignore the rest.
-      - `requestMirror`: Supported. Multiple mirrors can be specified.
+      - `requestMirror`: Supported. Multiple mirrors can be specified. Percent and fraction-based mirroring are supported.
       - `extensionRef`: Supported for SnippetsFilters.
     - `backendRefs`: Partially supported. Backend ref `filters` are not supported.
 - `status`
@@ -189,17 +182,16 @@ See the [controller]({{< ref "/ngf/reference/cli-help.md#controller">}}) command
       - `ResolvedRefs/False/BackendNotFound`
       - `ResolvedRefs/False/UnsupportedValue`: Custom reason for when one of the HTTPRoute rules has a backendRef with an unsupported value.
       - `ResolvedRefs/False/InvalidIPFamily`: Custom reason for when one of the HTTPRoute rules has a backendRef that has an invalid IPFamily.
+      - `ResolvedRefs/False/UnsupportedProtocol`
       - `PartiallyInvalid/True/UnsupportedValue`
 
 ### GRPCRoute
 
-{{< bootstrap-table "table table-striped table-bordered" >}}
-
+{{< table >}}
 | Resource  | Core Support Level | Extended Support Level | Implementation-Specific Support Level | API Version | API Release Channel |
 |-----------|--------------------|------------------------|---------------------------------------|-------------|---------------------|
 | GRPCRoute | Supported          | Partially supported    | Not supported                         | v1          | Standard            |
-
-{{< /bootstrap-table >}}
+{{< /table >}}
 
 **Fields**:
 
@@ -238,13 +230,11 @@ See the [controller]({{< ref "/ngf/reference/cli-help.md#controller">}}) command
 
 ### ReferenceGrant
 
-{{< bootstrap-table "table table-striped table-bordered" >}}
-
+{{< table >}}
 | Resource       | Core Support Level | Extended Support Level | Implementation-Specific Support Level | API Version | API Release Channel |
 |----------------|--------------------|------------------------|---------------------------------------|-------------|---------------------|
 | ReferenceGrant | Supported          | N/A                    | Not supported                         | v1beta1     | Standard            |
-
-{{< /bootstrap-table >}}
+{{< /table >}}
 
 Fields:
 
@@ -260,13 +250,11 @@ Fields:
 
 ### TLSRoute
 
-{{< bootstrap-table "table table-striped table-bordered" >}}
-
+{{< table >}}
 | Resource | Core Support Level | Extended Support Level | Implementation-Specific Support Level | API Version | API Release Channel |
 |----------|--------------------|------------------------|---------------------------------------|-------------|---------------------|
 | TLSRoute | Supported          | Not supported          | Not supported                         | v1alpha2    | Experimental        |
-
-{{< /bootstrap-table >}}
+{{< /table >}}
 
 **Fields**:
 
@@ -300,33 +288,27 @@ Fields:
 
 ### TCPRoute
 
-{{< bootstrap-table "table table-striped table-bordered" >}}
-
+{{< table >}}
 | Resource | Core Support Level | Extended Support Level | Implementation-Specific Support Level | API Version | API Release Channel |
 |----------|--------------------|------------------------|---------------------------------------|-------------|---------------------|
 | TCPRoute | Not supported      | Not supported          | Not supported                         | v1alpha2    | Experimental        |
-
-{{< /bootstrap-table >}}
+{{< /table >}}
 
 ### UDPRoute
 
-{{< bootstrap-table "table table-striped table-bordered" >}}
-
+{{< table >}}
 | Resource | Core Support Level | Extended Support Level | Implementation-Specific Support Level | API Version | API Release Channel |
 |----------|--------------------|------------------------|---------------------------------------|-------------|---------------------|
 | UDPRoute | Not supported      | Not supported          | Not supported                         | v1alpha2    | Experimental        |
-
-{{< /bootstrap-table >}}
+{{< /table >}}
 
 ### BackendTLSPolicy
 
-{{< bootstrap-table "table table-striped table-bordered" >}}
-
+{{< table >}}
 | Resource         | Core Support Level  | Extended Support Level | Implementation-Specific Support Level | API Version | API Release Channel |
 |------------------|---------------------|------------------------|---------------------------------------|-------------|---------------------|
 | BackendTLSPolicy | Partially Supported | Supported              | Partially Supported                   | v1alpha3    | Experimental        |
-
-{{< /bootstrap-table >}}
+{{< /table >}}
 
 Fields:
 
@@ -352,17 +334,15 @@ Fields:
       - `Accepted/True/PolicyReasonAccepted`
       - `Accepted/False/PolicyReasonInvalid`
 
-{{< note >}} If multiple `backendRefs` are defined for a HTTPRoute rule, all the referenced Services *must* have matching BackendTLSPolicy configuration. BackendTLSPolicy configuration is considered to be matching if 1. CACertRefs reference the same ConfigMap, or 2. WellKnownCACerts are the same, and 3. Hostname is the same. {{< /note >}}
+{{< call-out "note" >}} If multiple `backendRefs` are defined for a HTTPRoute rule, all the referenced Services *must* have matching BackendTLSPolicy configuration. BackendTLSPolicy configuration is considered to be matching if 1. CACertRefs reference the same ConfigMap, or 2. WellKnownCACerts are the same, and 3. Hostname is the same. {{< /call-out >}}
 
 ### Custom Policies
 
-{{< bootstrap-table "table table-striped table-bordered" >}}
-
+{{< table >}}
 | Resource        | Core Support Level | Extended Support Level | Implementation-Specific Support Level | API Version | API Release Channel |
 |-----------------|--------------------|------------------------|---------------------------------------|-------------|---------------------|
 | Custom policies | N/A                | N/A                    | Supported                             | N/A         | N/A                 |
-
-{{< /bootstrap-table >}}
+{{< /table >}}
 
 Custom policies are NGINX Gateway Fabric-specific CRDs (Custom Resource Definitions) that support features such as tracing, and client connection settings. These important data-plane features are not part of the Gateway API specifications.
 While these CRDs are not part of the Gateway API, the mechanism to attach them to Gateway API resources is part of the Gateway API. See the [Policy Attachment documentation](https://gateway-api.sigs.k8s.io/references/policy-attachment/).

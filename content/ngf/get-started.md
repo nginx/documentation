@@ -7,11 +7,11 @@ nd-product: NGF
 nd-docs: DOCS-1834
 ---
 
-{{< important >}}
+{{< call-out "important" >}}
 This document is for trying out NGINX Gateway Fabric, and not intended for a production environment.
 
 For standard deployments, you should read the [Install NGINX Gateway Fabric]({{< ref "/ngf/install/" >}}) section.
-{{< /important >}}
+{{< /call-out >}}
 
 This is a guide for getting started with NGINX Gateway Fabric. It explains how to:
 
@@ -47,9 +47,9 @@ nodes:
         protocol: TCP
 ```
 
-{{< note >}}
+{{< call-out "note" >}}
 The _containerPort_ value is used to later configure a _NodePort_.
-{{< /note >}}
+{{< /call-out >}}
 
 Run the following command:
 
@@ -73,14 +73,14 @@ kubectl cluster-info --context kind-kind
 Thanks for using kind! 😊
 ```
 
-{{< note >}}
+{{< call-out "note" >}}
 If you have cloned [the NGINX Gateway Fabric repository](https://github.com/nginx/nginx-gateway-fabric/tree/main), you can also create a kind cluster from the root folder with the following _make_ command:
 
 ```shell
 make create-kind-cluster
 ```
 
-{{< /note >}}
+{{< /call-out >}}
 
 ## Install NGINX Gateway Fabric
 
@@ -109,9 +109,9 @@ NGINX Service when it is provisioned:
 helm install ngf oci://ghcr.io/nginx/charts/nginx-gateway-fabric --create-namespace -n nginx-gateway --set nginx.service.type=NodePort --set-json 'nginx.service.nodePorts=[{"port":31437,"listenerPort":80}]'
 ```
 
-{{< note >}}
+{{< call-out "note" >}}
 The port value should equal the _containerPort_ value from _cluster-config.yaml_ [when you created the kind cluster](#set-up-a-kind-cluster). The _listenerPort_ value will match the port that we expose in the Gateway listener.
-{{< /note >}}
+{{< /call-out >}}
 
 ```text
 NAME: ngf
@@ -126,19 +126,82 @@ TEST SUITE: None
 
 In the previous section, you deployed NGINX Gateway Fabric to a local cluster. This section shows you how to deploy a simple web application to test that NGINX Gateway Fabric works.
 
-{{< note >}}
+{{< call-out "note" >}}
 The YAML code in the following sections can be found in the [cafe-example folder](https://github.com/nginx/nginx-gateway-fabric/tree/main/examples/cafe-example) of the GitHub repository.
-{{< /note >}}
+{{< /call-out >}}
 
 ### Create the application resources
 
-Create the file _cafe.yaml_ with the following contents:
+Run the following command to create the file _cafe.yaml_, which is then used to deploy the *coffee* application to your cluster:
 
-{{< ghcode `https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/refs/heads/main/examples/cafe-example/cafe.yaml`>}}
-
-Apply it using `kubectl`:
-
-```shell
+```yaml
+cat <<EOF > cafe.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: coffee
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: coffee
+  template:
+    metadata:
+      labels:
+        app: coffee
+    spec:
+      containers:
+      - name: coffee
+        image: nginxdemos/nginx-hello:plain-text
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: coffee
+spec:
+  ports:
+  - port: 80
+    targetPort: 8080
+    protocol: TCP
+    name: http
+  selector:
+    app: coffee
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tea
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tea
+  template:
+    metadata:
+      labels:
+        app: tea
+    spec:
+      containers:
+      - name: tea
+        image: nginxdemos/nginx-hello:plain-text
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: tea
+spec:
+  ports:
+  - port: 80
+    targetPort: 8080
+    protocol: TCP
+    name: http
+  selector:
+    app: tea
+EOF
 kubectl apply -f cafe.yaml
 ```
 
@@ -163,13 +226,22 @@ tea-6fbfdcb95d-9lhbj      1/1     Running   0          9s
 
 ### Create Gateway and HTTPRoute resources
 
-Create the file _gateway.yaml_ with the following contents:
+Run the following command to create the file _gateway.yaml_, which is then used to deploy a Gateway to your cluster:
 
-{{< ghcode `https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/refs/heads/main/examples/cafe-example/gateway.yaml`>}}
-
-Apply it using `kubectl`:
-
-```shell
+```yaml
+cat <<EOF > gateway.yaml
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: gateway
+spec:
+  gatewayClassName: nginx
+  listeners:
+  - name: http
+    port: 80
+    protocol: HTTP
+    hostname: "*.example.com"
+EOF
 kubectl apply -f gateway.yaml
 ```
 
@@ -190,13 +262,48 @@ gateway-nginx-66b5d78f8f-4fmtb   1/1     Running   0          13s
 tea-6fbfdcb95d-9lhbj             1/1     Running   0          31s
 ```
 
-Create the file _cafe-routes.yaml_ with the following contents:
+Run the following command to create the file _cafe-routes.yaml_. It is then used to deploy two *HTTPRoute* resources in your cluster: one each for _/coffee_ and _/tea_.
 
-{{< ghcode `https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/refs/heads/main/examples/cafe-example/cafe-routes.yaml`>}}
-
-Apply it using `kubectl`:
-
-```shell
+```yaml
+cat <<EOF > cafe-routes.yaml
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: coffee
+spec:
+  parentRefs:
+  - name: gateway
+    sectionName: http
+  hostnames:
+  - "cafe.example.com"
+  rules:
+  - matches:
+    - path:
+        type: PathPrefix
+        value: /coffee
+    backendRefs:
+    - name: coffee
+      port: 80
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: tea
+spec:
+  parentRefs:
+  - name: gateway
+    sectionName: http
+  hostnames:
+  - "cafe.example.com"
+  rules:
+  - matches:
+    - path:
+        type: Exact
+        value: /tea
+    backendRefs:
+    - name: tea
+      port: 80
+EOF
 kubectl apply -f cafe-routes.yaml
 ```
 

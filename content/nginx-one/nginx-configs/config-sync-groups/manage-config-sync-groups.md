@@ -37,13 +37,13 @@ Config Sync Groups support configuration inheritance and persistance. If you've 
 
 On the other hand, if you remove all instances from a Config Sync Group, the original configuration persists. In other words, the group retains the configuration from that first instance (or the original configuration). Any new instance that you add later still inherits that configuration.
 
-{{< tip >}}You can use _unmanaged_ certificates. Your actions can affect the [Config Sync Group status](#config-sync-group-status). For future instances on the data plane, if it:
+{{< call-out "tip" >}}You can use _unmanaged_ certificates. Your actions can affect the [Config Sync Group status](#config-sync-group-status). For future instances on the data plane, if it:
 
 - Has unmanaged certificates in the same file paths as defined by the NGINX configuration as the Config Sync Group, that instance will be [**In Sync**](#config-sync-group-status).
 - Will be [**Out of Sync**](#config-sync-group-status) if the instance:
    - Does not have unmanaged certificates in the same file paths
    - Has unmanaged certificates in a different directory from the Config Sync Group
-{{< /tip >}}
+{{< /call-out >}}
 
 ### Risk when adding multiple instances to a Config Sync Group
 
@@ -81,7 +81,7 @@ When you plan Config Sync Groups, consider the following factors:
 
 - **Single Config Sync Group membership**: You can add an instance to only one Config Sync Group.
 
-- **NGINX Agent configuration file location**: When you run the NGINX Agent installation script to register an instance with NGINX One, the script creates the `agent-dynamic.conf` file, which contains settings for the NGINX Agent, including the specified Config Sync Group. This file is typically located in `/var/lib/nginx-agent/` on most systems; however, on FreeBSD, it's located at `/var/db/nginx-agent/`.
+- **NGINX Agent configuration file location**: When you run the NGINX Agent installation script to register an instance with NGINX One, the script creates the `nginx-agent.conf` (or `agent-dynamic.conf` if you are using NGINX Agent 2.x) file, which contains settings for the NGINX Agent, including the specified Config Sync Group. This file is typically located in `/etc/nginx-agent/` on most systems.
 
 - **Mixing NGINX Open Source and NGINX Plus instances**: You can add both NGINX Open Source and NGINX Plus instances to the same Config Sync Group, but there are limitations. If your configuration includes features exclusive to NGINX Plus, synchronization will fail on NGINX Open Source instances because they don't support these features. NGINX One allows you to mix NGINX instance types for flexibility, but it’s important to ensure that the configurations you're applying are compatible with all instances in the group.
 
@@ -104,6 +104,28 @@ Any instance that joins the group afterwards inherits that configuration.
 
 You can add existing NGINX instances that are already registered with NGINX One to a Config Sync Group.
 
+{{< tabs name="Add existing instance to Config Sync Group" >}}
+
+{{%tab name="NGINX Agent 3.x"%}}
+
+1. Open a command-line terminal on the NGINX instance.
+2. Open the `/etc/nginx-agent/nginx-agent.conf` file in a text editor.
+3. Find or create the `labels` section and change the `config_sync_group` label to the name of the new Config Sync Group.
+
+   ``` text
+   labels:
+      config-sync-group: <config_sync_group>
+   ```
+
+4. Restart NGINX Agent:
+
+   ``` shell
+   sudo systemctl restart nginx-agent
+   ```
+
+{{%/tab%}}
+{{%tab name="NGINX Agent 2.x"%}}
+
 1. Open a command-line terminal on the NGINX instance.
 2. Open the `/var/lib/nginx-agent/agent-dynamic.conf` file in a text editor.
 3. At the end of the file, add a new line beginning with `instance_group:`, followed by the Config Sync Group name.
@@ -117,6 +139,9 @@ You can add existing NGINX instances that are already registered with NGINX One 
    ``` shell
    sudo systemctl restart nginx-agent
    ```
+
+{{%/tab%}}
+{{< /tabs >}}
 
 ### Add a new instance to a Config Sync Group {#add-a-new-instance-to-a-config-sync-group}
 
@@ -185,6 +210,29 @@ For more details on creating and managing data plane keys, see [Create and manag
 
 If you need to move an NGINX instance to a different Config Sync Group, follow these steps:
 
+{{< tabs name="Move instance to Config Sync Group" >}}
+
+{{%tab name="NGINX Agent 3.x"%}}
+
+1. Open a command-line terminal on the NGINX instance.
+2. Open the `/etc/nginx-agent/nginx-agent.conf` file in a text editor.
+3. Find the `labels` section and change the `config_sync_group` label to the name of the new Config Sync Group.
+
+   ``` text
+   labels:
+      config-sync-group: <new_config_sync_group>
+   ```
+
+4. Restart NGINX Agent by running the following command:
+
+   ```shell
+   sudo systemctl restart nginx-agent
+   ```
+
+{{%/tab%}}
+{{%tab name="NGINX Agent 2.x"%}}
+
+
 1. Open a command-line terminal on the NGINX instance.
 2. Open the `/var/lib/nginx-agent/agent-dynamic.conf` file in a text editor.
 3. Locate the line that begins with `instance_group:` and change it to the name of the new Config Sync Group.
@@ -199,11 +247,38 @@ If you need to move an NGINX instance to a different Config Sync Group, follow t
    sudo systemctl restart nginx-agent
    ```
 
+{{%/tab%}}
+{{< /tabs >}}
+
+
 If you move an instance with certificates from one Config Sync Group to another, NGINX One adds or removes those certificates from the data plane, to synchronize with the deployed certificates of the group.
 
 ### Remove an instance from a Config Sync Group
 
 If you need to remove an NGINX instance from a Config Sync Group without adding it to another group, follow these steps:
+
+
+{{< tabs name="Remove instance from Config Sync Group" >}}
+
+{{%tab name="NGINX Agent 3.x"%}}
+
+1. Open a command-line terminal on the NGINX instance.
+2. Open the `/etc/nginx-agent/nginx-agent.conf` file in a text editor.
+3. Locate the line that begins with `labels:` section and either remove the `config-sync-group` line or comment it out by adding a `#` at the beginning of the line.
+
+   ```text
+   labels:
+      # config-sync-group: <new_config_sync_group>
+   ```
+
+4. Restart NGINX Agent:
+
+   ```shell
+   sudo systemctl restart nginx-agent
+   ```
+
+{{%/tab%}}
+{{%tab name="NGINX Agent 2.x"%}}
 
 1. Open a command-line terminal on the NGINX instance.
 2. Open the `/var/lib/nginx-agent/agent-dynamic.conf` file in a text editor.
@@ -218,6 +293,10 @@ If you need to remove an NGINX instance from a Config Sync Group without adding 
    ```shell
    sudo systemctl restart nginx-agent
    ```
+
+{{%/tab%}}
+{{< /tabs >}}
+
 
 By removing or commenting out this line, the instance will no longer be associated with any Config Sync Group.
 

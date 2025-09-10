@@ -44,13 +44,13 @@ The cumulative [metrics]({{< ref "/controller/analytics/metrics/overview-metrics
 - Avg Upstream Response Latency: AVG of the `upstream.response.latency.max` metric
 - Avg Client Network Latency: AVG of the `client.network.latency.max` metric.
 
-{{< note >}}
+{{< call-out "note" >}}
 
 By default, the metrics are calculated for **all** of your Controller Agent-monitored Instances.
 
 To display metrics for a specific set of hosts (for example, only for "production"), select the gear icon on the Application Health Score panel, then add a tag or tags by which you want to filter the results.
 
-{{< /note >}}
+{{< /call-out >}}
 
 ## What's Next
 

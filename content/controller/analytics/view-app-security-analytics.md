@@ -178,9 +178,9 @@ You can use the following example Events requests to collect App Security Analyt
                 component='app-component')
     ```
 
-   {{< tip >}}
+   {{< call-out "tip" >}}
 To get all Events, remove the Environment, App, and Component filters from the request call.
-   {{< /tip >}}
+   {{< /call-out >}}
 
 - To find requests flagged by App Security’s violation rating algorithm as a possible or likely threat:
 
@@ -197,9 +197,9 @@ To get all Events, remove the Environment, App, and Component filters from the r
             component='app-component')
     ```
 
-    {{< important >}}
+    {{< call-out "important" >}}
 This is important if you are using App Security WAF monitoring only mode. You can use it to understand the type of threats WAF believes should be blocked.
-    {{< /important >}}
+    {{< /call-out >}}
 
 - To get Events that have triggered a specific signature-based violation by signature id:
 

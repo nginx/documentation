@@ -41,6 +41,7 @@ To understand how we use Git in this repository, read our [Git conventions](/doc
 The broad workflow is as follows:
 
 - Fork the NGINX repository
+  - If you're an F5/NGINX user, you can work from a clone
 - Create a branch
 - Implement your changes in your branch
 - Submit a pull request (PR) when your changes are ready for review

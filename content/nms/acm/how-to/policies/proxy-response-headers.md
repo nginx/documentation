@@ -155,7 +155,7 @@ The following table lists the configurable settings and their default values for
 
 {{%tab name="API"%}}
 
-{{<see-also>}}{{< include "acm/how-to/access-acm-api.md" >}}{{</see-also>}}
+{{< call-out "note" >}}{{< include "acm/how-to/access-acm-api.md" >}}{{< /call-out>}}
 
 To create or update a Response Headers policy using the REST API, send an HTTP `PUT` request to the Environment endpoint.
 

@@ -54,18 +54,18 @@ Continue to the next section to create a BIG-IP instance group.
 
 An instance group is a logically grouped set of instances that can be used as a placement for a gateway, rather than a single instance. This concept supports the ability to scale horizontally without having to update the gateway placement. As instances are added to a group, they receive an NGINX configuration identical to those instances in the group. Instances in an instance group can be stand-alone or clustered NGINX Plus instances.  Instances can also leave the group, with the remaining instances continuing to function as intended.
 
-{{< important >}}
+{{< call-out "important" >}}
 **Workload affinity with instance groups**: Similar to instances, instance groups are associated with a location. If a location is not explicitly specified, the unspecified location is assumed. Instances in an instance group should be configured to use the same location; however, this requirement is not currently enforced.
 
 For the workload affinity feature, the location of the instance group must be specified using the optional `locationRef` field in the component's workload group API request. The locations of the instances in the instance group are ignored. The workload affinity feature uses this information and the workload groups to load balance traffic to the correct endpoints.
-{{< /important >}}
+{{< /call-out >}}
 
-{{< important >}}
+{{< call-out "important" >}}
 Instance groups are supported on the following versions of NGINX Controller:
 
 - NGINX Controller API Management module v3.18 and later
 - NGINX Controller Application Delivery module v3.21 and later
-{{< /important >}}
+{{< /call-out >}}
 
 To add an NGINX instance group to a BIG-IP cluster, take the following steps:
 
@@ -84,9 +84,9 @@ To add an NGINX instance group to a BIG-IP cluster, take the following steps:
 1. In the **Server Pool IP** box, specify the IP address or CIDR of the NGINX instances to add to the BIG-IP server pool; for example, `198.51.100.0/24`. If using a CIDR, the NGINX instance IP addresses that match the mask will be the member addresses in the BIG-IP server pool. Otherwise, absolute IP addresses are used as pool member addresses.
 1. Select **Submit** to create the instance group.
 
-{{< important >}}
+{{< call-out "important" >}}
 If you edit an instance group after you've used the group for a gateway placement, you'll need to update the placement as well.
-{{< /important >}}
+{{< /call-out >}}
 
 Continue to the next section to add your BIG-IP instance group to a gateway.
 
@@ -131,18 +131,18 @@ On the **Gateways > Create Gateway > Placements** page:
 
 1. In the **Instance Refs/Instance Groups Refs** box, select the NGINX instance(s) or instance group(s) on which you want to deploy the gateway.
 
-   {{< note >}}
+   {{< call-out "note" >}}
    If you're enabling **High Availability Mode**, select the [high-availability instances that you prepared]({{< ref "/controller/infrastructure/instances/ha-data-plane.md#prepare-the-high-availability-instances" >}}). NGINX Controller supports up to two high-availability instances.
-   {{< /note >}}
+   {{< /call-out >}}
 
 1. In the **Listen IPs** box, add the IP address(es) on which the server listens for and accepts requests. If you're creating a placement for a BIG-IP Integration, add the virtual IP (VIP) address for the BIG-IP cluster.
 
    You can add multiple placements with different Listen IPs. When multiple placements are defined within a gateway, each placement represents a resilient path for any app component that references that gateway.
 
-   {{< note >}}
+   {{< call-out "note" >}}
    - To use non-local **Listen IPs**, you must enable `net.ipv4.ip_nonlocal_bind` on the instance.
    - When **High Availability Mode** is enabled, Virtual Router Redundancy Protocol ([VRRP](https://en.wikipedia.org/wiki/Virtual_Router_Redundancy_Protocol#:~:text=The%20Virtual%20Router%20Redundancy%20Protocol,selections%20on%20an%20IP%20subnetwork.)) is configured for the Listen IP address(es).
-   {{< /note >}}
+   {{< /call-out >}}
 
 1. To enable high-availability mode for your data paths, select **Use High Availability Mode**.
 
@@ -181,10 +181,10 @@ On the **Gateways** > **Create Gateway** > **Additional** page:
 
 1. (Optional) Add [**Config Snippets**]({{< ref "/controller/app-delivery/about-snippets.md" >}}) to customize your NGINX configuration.
 
-   {{< caution >}}
+   {{< call-out "caution"  >}}
    When you use Snippets to customize your NGINX configuration, your changes are applied to the `nginx.conf` file *as is*. NGINX Controller does not verify that your configuration is valid before applying the snippet.
 
    We strongly recommend verifying Snippets in a lab environment before making any changes in production.
-   {{< /caution >}}
+   {{< /call-out >}}
 
 {{< versions "3.21" "latest" "adcvers" >}}

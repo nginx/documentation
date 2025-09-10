@@ -6,13 +6,13 @@ docs: DOCS-000
 nd-docs: DOCS-1876
 ---
 
-{{< note >}}
+{{< call-out "note" >}}
 If you are using [NGINX One Console]({{< ref "/nginx-one/getting-started.md" >}})
 to manage your NGINX instances, NGINX Agent is installed automatically when you
 add an NGINX instance to NGINX One Console.
 
 For a quick guide on how to connect your instance to NGINX One Console see: [Connect to NGINX One Console]({{< ref "/nginx-one/connect-instances/add-instance.md" >}})
-{{< /note >}}
+{{< /call-out >}}
 
 Follow the steps in this guide to install NGINX Agent in your NGINX instance using
 GitHub package files.
@@ -52,12 +52,6 @@ Use your system's package manager to install the package. Some examples:
 
   ```shell
   sudo apk add nginx-agent-<agent-version>.apk
-  ```
-
-- FreeBSD
-
-  ```shell
-  sudo pkg add nginx-agent-<agent-version>.pkg
   ```
 
 ### Manually connect NGINX Agent to NGINX One Console

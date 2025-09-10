@@ -18,7 +18,7 @@ Keep in mind that production environments may require larger instance sizes and 
 
 - Make sure you have an AWS account.
 
-{{< important >}}Because the [minimum requirement for the F5 NGINX Management Suite host]({{< ref "/nim/fundamentals/tech-specs#system-sizing" >}}) requires 2 CPU and 4GB RAM (NOT a free tier size), completing this deployment guide will incur charges from AWS according to their price plan.{{< /important >}}
+{{< call-out "important" >}}Because the [minimum requirement for the F5 NGINX Management Suite host]({{< ref "/nim/fundamentals/tech-specs#system-sizing" >}}) requires 2 CPU and 4GB RAM (NOT a free tier size), completing this deployment guide will incur charges from AWS according to their price plan.{{< /call-out >}}
 
 ### Hosts Specs
 
@@ -90,7 +90,7 @@ Take the steps below to create a new internet gateway:
 1. Select the VPC created from above.
 1. Select **Attach internet gateway**.
 
-{{< note >}}The Internet Gateway is what provides a public subnet internet access.{{< /note >}}
+{{< call-out "note" >}}The Internet Gateway is what provides a public subnet internet access.{{< /call-out >}}
 
 #### Create a New Route Table
 
@@ -153,11 +153,11 @@ The table below summarizes the two security groups that you should create.
 {{</bootstrap-table>}}
 Table 1.3 AWS Inbound Security Group Source
 
-{{< warning >}}Selecting **Anywhere-IPv4** as the _Source_ for **HTTP** and **HTTPS** will cause the instances placed inside your Security Group to be publicly accessible. If this is not suitable for you or your organization, please ensure that appropriate restrictions are in place. {{< /warning >}}
+{{< call-out "warning" >}}Selecting **Anywhere-IPv4** as the _Source_ for **HTTP** and **HTTPS** will cause the instances placed inside your Security Group to be publicly accessible. If this is not suitable for you or your organization, please ensure that appropriate restrictions are in place. {{< /call-out >}}
 
-{{< note >}}Select **My IP** as the _Source_ for **SSH** to prevent SSH connection attempts by anyone other than yourself.
+{{< call-out "note" >}}Select **My IP** as the _Source_ for **SSH** to prevent SSH connection attempts by anyone other than yourself.
 
-If you are not allowed to do this, refer to the [Terminal Access Using Session Manager](#session-manager) section below.{{< /note >}}
+If you are not allowed to do this, refer to the [Terminal Access Using Session Manager](#session-manager) section below.{{< /call-out >}}
 
 <br>
 
@@ -211,7 +211,7 @@ Take the steps below to obtain the public IP so you can access the instance thro
 1. Select your instance.
 1. Select the **Details** tab.
 1. The public IP address is shown in the **Public IPv4 address** section. This is the IP that allows external access (such as from your workstation) to the selected EC2 Instance.
-   {{< note >}}It takes about a minute for the instance to become available for SSH connections.{{< /note >}}
+   {{< call-out "note" >}}It takes about a minute for the instance to become available for SSH connections.{{< /call-out >}}
 
 ## NGINX Management Suite Host Installation
 
@@ -252,7 +252,7 @@ You must create a new IAM Role that grants Session Manager access to EC2 Instanc
 1. Provide the **Role name** and **Tag** (optional) for this IAM Role specifically allowing Session Manager access to EC2 Instances.
 1. Select **Create role**.
 
-{{< note >}}Creating an IAM Role from the AWS Management Console and choosing EC2 as the AWS Service also creates an AWS Instance Profile associated with EC2 Instances. Additional details can be found in [the AWS knowledge article](https://aws.amazon.com/premiumsupport/knowledge-center/attach-replace-ec2-instance-profile/).{{< /note >}}
+{{< call-out "note" >}}Creating an IAM Role from the AWS Management Console and choosing EC2 as the AWS Service also creates an AWS Instance Profile associated with EC2 Instances. Additional details can be found in [the AWS knowledge article](https://aws.amazon.com/premiumsupport/knowledge-center/attach-replace-ec2-instance-profile/).{{< /call-out >}}
 
 ### Associating IAM Instance Profile to EC2 Instance
 
@@ -299,13 +299,13 @@ Take the steps below to get terminal access using **Session Manager**.
 1. Select **Start session**. This takes you to the terminal where you are logged in as `ssm-user`.
 1. When you are done, select **Terminate** at the top.
 
-{{< note >}} If you do not see your instance in the **Target Instances** section:
+{{< call-out "note" >}} If you do not see your instance in the **Target Instances** section:
 
 - Verify the IAM Instance Profile is associated to your instance.
 - Verify the IAM Role has SSM permissions properly configured.
 - The instance allows outbound HTTPS traffic to the endpoints shown in the **Connectivity to endpoints** row from the [Session Manager Prerequisites](https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager-prerequisites.html) page.
 - Wait about 15 minutes if you attached the IAM Instance Profile to an existing instance.
-{{< /note >}}
+{{< /call-out >}}
 
 ### AWS Command Line Interface Tool
 
@@ -329,9 +329,9 @@ Take the steps below to get terminal access on an instance:
     Default output format []: json
     ```
 
-    {{< note >}} If your AWS account is configured to use temporary credentials, you need to provide the `aws_session_token` by running the command below:
+    {{< call-out "note" >}} If your AWS account is configured to use temporary credentials, you need to provide the `aws_session_token` by running the command below:
 
-    aws configure set aws_session_token <sessionToken>{{< /note >}}
+    aws configure set aws_session_token <sessionToken>{{< /call-out >}}
 
 1. Run `aws ssm start-session --target "<instanceId>"` to start a session which provides terminal access.
 

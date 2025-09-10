@@ -36,7 +36,7 @@ NGINXaaS enables customers to securely store SSL/TLS certificates in Azure Key V
 
 If you do not have an NGINXaaS deployment, follow the steps in [Deploy using the Azure portal]({{< ref "/nginxaas-azure/getting-started/create-deployment/deploy-azure-portal.md" >}}).
 
-{{<note>}} Your NGINXaaS deployment and your key vault must be in the same subscription. {{</note>}}
+{{< call-out "note" >}} Your NGINXaaS deployment and your key vault must be in the same subscription. {{< /call-out >}}
 
 ## Add an SSL/TLS certificate to your key vault
 
@@ -44,7 +44,7 @@ Next, you can add an SSL/TLS certificate to your key vault by following [Azure's
 
 1. Go to your key vault, `nginxaas-kv`.
 1. Select **Certificates** in the left menu.
-1. Select {{< fa "plus">}}**Generate/Import** and provide the following information:
+1. Select {{< icon "plus">}}**Generate/Import** and provide the following information:
 
    {{<bootstrap-table "table table-striped table-bordered">}}
   | Field                       | Description                |
@@ -66,9 +66,9 @@ In order for your NGINXaaS deployment to access your key vault, it must have an 
 1. Go to your NGINXaaS deployment.
 1. Select **Identity** in the left menu.
 1. Under **System assigned**, ensure the status is set to "On".
-  {{<note>}} When you create a deployment through the Azure portal, a system-assigned managed identity is automatically enabled for your deployment. {{</note>}}
+  {{< call-out "note" >}} When you create a deployment through the Azure portal, a system-assigned managed identity is automatically enabled for your deployment. {{< /call-out >}}
 1. Under **System assigned**, select **Azure role assignments**.
-1. Select {{< fa "plus">}}**Add role assignment** and provide the following information:
+1. Select {{< icon "plus">}}**Add role assignment** and provide the following information:
 
    {{<bootstrap-table "table table-striped table-bordered">}}
   | Field                       | Description                |
@@ -87,7 +87,7 @@ Now, you can add your SSL/TLS certificate from your key vault to your NGINXaaS d
 
 1. Go to your NGINXaaS deployment.
 1. Select **NGINX certificates** in the left menu.
-1. Select {{< fa "plus">}}**Add certificate** and provide the following information:
+1. Select {{< icon "plus">}}**Add certificate** and provide the following information:
    {{<bootstrap-table "table table-striped table-bordered">}}
    | Field                       | Description                |
    |---------------------------- | ---------------------------- |
@@ -164,11 +164,9 @@ For more information on using NGINX to secure traffic to upstream servers, refer
 
 If you want to disable public access to your key vault, you can configure a [Network Security Perimeter (NSP)](https://learn.microsoft.com/en-us/azure/private-link/network-security-perimeter-concepts). This will allow you to configure access rules to allow NGINXaaS to fetch certificates from your key vault while ensuring all other public access is denied.
 
-{{<note>}} Network Security Perimeter is currently in public preview. Refer to [Azure's NSP documentation](https://learn.microsoft.com/en-us/azure/private-link/network-security-perimeter-concepts) for details on its current capabilities. {{</note>}}
-
 1. Follow [Azure's documentation on prerequisites](https://learn.microsoft.com/en-us/azure/private-link/create-network-security-perimeter-portal#prerequisites) to ensure you are registed to create an NSP.
 1. In the Search box, enter **Network Security Perimeters** and select **Network Security Perimeters** from the search results.
-1. Select {{< fa "plus">}}**Create**.
+1. Select {{< icon "plus">}}**Create**.
 1. In the **Basics** tab, provide the following information:
    {{<bootstrap-table "table table-striped table-bordered">}}
   | Field                       | Description                |
@@ -179,9 +177,9 @@ If you want to disable public access to your key vault, you can configure a [Net
   | Region                      | Select the region you want to deploy to. Refer to any [regional limitations](https://learn.microsoft.com/en-us/azure/private-link/network-security-perimeter-concepts#regional-limitations) NSP has while in public preview. |
   | Profile name | Leave the profile name as the default `defaultProfile`. |
    {{</bootstrap-table>}}
-1. In the **Resources** tab, select {{< fa "plus">}}**Add**.
+1. In the **Resources** tab, select {{< icon "plus">}}**Add**.
 1. Search for your key vault, `nginxaas-kv`, select it, and click **Select**.
-1. In the **Inbound access rules** tab, select {{< fa "plus">}}**Add** and provide the following information:
+1. In the **Inbound access rules** tab, select {{< icon "plus">}}**Add** and provide the following information:
    {{<bootstrap-table "table table-striped table-bordered">}}
   | Field                       | Description                |
   |---------------------------- | ---------------------------- |
@@ -198,4 +196,4 @@ By default, the key vault will be associated to the NSP in [Learning mode](https
 1. Select the `nginxaas-kv` resource association.
 1. Select **Change access mode**, set to **Enforced**, and select **Apply**.
 
-{{<note>}} If you are using the Azure portal to add certificates, you will also need to add an inbound access rule to allow your IP address, so the portal can list the certificates in your key vault. {{</note>}}
+{{< call-out "note" >}} If you are using the Azure portal to add certificates, you will also need to add an inbound access rule to allow your IP address, so the portal can list the certificates in your key vault. {{< /call-out >}}

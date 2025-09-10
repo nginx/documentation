@@ -180,7 +180,7 @@ When installed using the Helm chart, the NginxProxy resource is named `<release-
 
 **For a full list of configuration options that can be set, see the `NginxProxy spec` in the [API reference]({{< ref "/ngf/reference/api.md" >}}).**
 
-{{< note >}} Some global configuration also requires an [associated policy]({{< ref "/ngf/overview/custom-policies.md" >}}) to fully enable a feature (such as [tracing]({{< ref "/ngf/monitoring/tracing.md" >}}), for example). {{< /note >}}
+{{< call-out "note" >}} Some global configuration also requires an [associated policy]({{< ref "/ngf/overview/custom-policies.md" >}}) to fully enable a feature (such as [tracing]({{< ref "/ngf/monitoring/tracing.md" >}}), for example). {{< /call-out >}}
 
 ---
 
@@ -222,7 +222,7 @@ infrastructure:
         name: ngf-proxy-config
 ```
 
-{{< note >}} The `NginxProxy` resource must reside in the same namespace as the Gateway it is attached to. {{< /note >}}
+{{< call-out "note" >}} The `NginxProxy` resource must reside in the same namespace as the Gateway it is attached to. {{< /call-out >}}
 
 After updating, you can check the status of the Gateway to see if the configuration is valid:
 
@@ -266,9 +266,9 @@ EOF
 
 To view the full list of supported log levels, see the `NginxProxy spec` in the [API reference]({{< ref "/ngf/reference/api.md" >}}).
 
-{{< note >}}For `debug` logging to work, NGINX needs to be built with `--with-debug` or "in debug mode". NGINX Gateway Fabric can easily
+{{< call-out "note" >}}For `debug` logging to work, NGINX needs to be built with `--with-debug` or "in debug mode". NGINX Gateway Fabric can easily
 be [run with NGINX in debug mode](#run-nginx-gateway-fabric-with-nginx-in-debug-mode) upon startup through the addition
-of a few arguments. {{</ note >}}
+of a few arguments. {{< /call-out >}}
 
 ---
 
@@ -299,7 +299,7 @@ spec:
 EOF
 ```
 
-{{< note >}} When modifying any _deployment_ field in the _NginxProxy_ resource, any corresponding NGINX instances will be restarted. {{< /note >}}
+{{< call-out "note" >}} When modifying any _deployment_ field in the _NginxProxy_ resource, any corresponding NGINX instances will be restarted. {{< /call-out >}}
 
 ---
 
@@ -336,7 +336,7 @@ spec:
 EOF
 ```
 
-{{< note >}} When sending curl requests to a server expecting proxy information, use the flag `--haproxy-protocol` to avoid broken header errors. {{< /note >}}
+{{< call-out "note" >}} When sending curl requests to a server expecting proxy information, use the flag `--haproxy-protocol` to avoid broken header errors. {{< /call-out >}}
 
 ---
 
@@ -375,3 +375,124 @@ To view the full list of configuration options, see the `NginxProxy spec` in the
 
 ---
 
+### Patch data plane Service, Deployment, and DaemonSet
+
+NGINX Gateway Fabric supports advanced customization of the data plane Service, Deployment, and DaemonSet objects using patches in the `NginxProxy` resource. This allows you to apply Kubernetes-style patches to these resources, enabling custom labels, annotations, or other modifications that are not directly exposed via the NginxProxy spec.
+
+#### Supported Patch Types
+
+You can specify one or more patches for each of the following resources:
+
+- `spec.kubernetes.service.patches`
+- `spec.kubernetes.deployment.patches`
+- `spec.kubernetes.daemonSet.patches`
+
+Each patch has two fields:
+
+- `type`: The patch type. Supported values are:
+    - `StrategicMerge` (default): Strategic merge patch (Kubernetes default for most resources)
+    - `Merge`: JSON merge patch (RFC 7386)
+    - `JSONPatch`: JSON patch (RFC 6902)
+- `value`: The patch data. For `StrategicMerge` and `Merge`, this should be a JSON object. For `JSONPatch`, this should be a JSON array of patch operations.
+
+Patches are applied in the order they appear in the array. Later patches can override fields set by earlier patches.
+
+**Which patch type should I use?**
+
+- **StrategicMerge** is the default and most user-friendly for Kubernetes-native resources like Deployments and Services. It understands lists and merges fields intelligently (for example, merging containers by name). Use this for most use cases.
+- **Merge** (JSON Merge Patch) is simpler and works well for basic object merges, but does not handle lists or complex merging. Use this if you want to replace entire fields or for non-Kubernetes-native resources.
+- **JSONPatch** is the most powerful and flexible, allowing you to add, remove, or replace specific fields using RFC 6902 operations. Use this for advanced or fine-grained changes, but it is more verbose and error-prone.
+
+If unsure, start with StrategicMerge. Use JSONPatch only if you need to surgically modify fields that cannot be addressed by the other patch types.
+
+Patches are applied after all other NginxProxy configuration is rendered. Invalid patches will result in a validation error and will not be applied.
+
+#### Example: Configure Service with session affinity
+
+```yaml
+apiVersion: gateway.nginx.org/v1alpha2
+kind: NginxProxy
+metadata:
+  name: ngf-proxy-patch-service
+spec:
+  kubernetes:
+    service:
+      patches:
+        - type: StrategicMerge
+          value:
+            spec:
+              sessionAffinity: ClientIP
+              sessionAffinityConfig:
+                clientIP:
+                  timeoutSeconds: 300
+```
+
+#### Example: Configure Deployment with custom strategy
+
+```yaml
+apiVersion: gateway.nginx.org/v1alpha2
+kind: NginxProxy
+metadata:
+  name: ngf-proxy-patch-deployment
+spec:
+  kubernetes:
+    deployment:
+      patches:
+        - type: Merge
+          value:
+            spec:
+              strategy:
+                type: RollingUpdate
+                rollingUpdate:
+                  maxUnavailable: 0
+                  maxSurge: 2
+```
+
+#### Example: Use JSONPatch to configure DaemonSet host networking and priority
+
+```yaml
+apiVersion: gateway.nginx.org/v1alpha2
+kind: NginxProxy
+metadata:
+  name: ngf-proxy-patch-daemonset
+spec:
+  kubernetes:
+    daemonSet:
+      patches:
+        - type: JSONPatch
+          value:
+            - op: add
+              path: /spec/template/spec/hostNetwork
+              value: true
+            - op: add
+              path: /spec/template/spec/dnsPolicy
+              value: "ClusterFirstWithHostNet"
+            - op: add
+              path: /spec/template/spec/priorityClassName
+              value: "system-node-critical"
+```
+
+#### Example: Multiple patches, later patch overrides earlier
+
+```yaml
+apiVersion: gateway.nginx.org/v1alpha2
+kind: NginxProxy
+metadata:
+  name: ngf-proxy-multi-patch
+spec:
+  kubernetes:
+    service:
+      patches:
+        - type: StrategicMerge
+          value:
+            spec:
+              sessionAffinity: ClientIP
+              publishNotReadyAddresses: false
+        - type: StrategicMerge
+          value:
+            spec:
+              sessionAffinity: None
+              publishNotReadyAddresses: true
+```
+
+In this example, the final Service will have `sessionAffinity: None` and `publishNotReadyAddresses: true` because the second patch overrides the values from the first patch.
