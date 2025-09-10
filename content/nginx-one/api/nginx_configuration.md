@@ -34,7 +34,7 @@ Use the following curl command to retrieve the current NGINX Config for a specif
    - `<token-value>`: Your API Token.
 
 {{< call-out "note" >}}
-To update the NGINX Config for a Config Sync Group, replace `instances` with `config-sync-groups` or `staged-configs` and use the object_id of the Config Sync Group or Staged Config in the URL.
+To update the NGINX Config for a Config Sync Group or Staged Config, replace `instances` with `config-sync-groups` or `staged-configs` and use the object_id of the Config Sync Group or Staged Config in the URL.
 {{< /call-out>}}
 
  The response will include the current NGINX Config in JSON format. This response is saved to a file (e.g., `current_config.json`) for editing.
@@ -77,6 +77,7 @@ You can modify the NGINX Config using either `PUT` or `PATCH` requests. The `PUT
     - Leave out file `contents` to remove the file from the NGINX Config.
     - Include file `contents` to add or update the file in the NGINX Config. File `contents` must be base64 encoded. File `contents` can be an empty string to create an empty file.
     - `config_version` should be included to ensure you're updating the correct version of the configuration. You can get the current `config_version` from the response of the `GET` request.
+
     For example, to update only the `/etc/nginx/nginx.conf` file in the NGINX Config, your `partial_update_config.json` might look like this:
     ```json
     {
