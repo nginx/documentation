@@ -1,5 +1,5 @@
 ---
-title: F5NGINXaaS for Google Cloud
+title: F5 NGINXaaS for Google Cloud
 nd-subtitle: Infrastructure-as-a-Service (IaaS) version of NGINX Plus for your Google Cloud application stack
 url: /nginxaas/google/
 nd-landing-page: true
