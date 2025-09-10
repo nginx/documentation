@@ -285,6 +285,7 @@ kubectl apply -f config/policy-manager/samples/appprotect_v1_apsignatures.yaml
 Downloading security updates may take several minutes. The version of security updates available at the time of compilation is always used to compile policies. If APSignatures is not created or the specified versions are not downloaded, the versions contained in the compiler docker image will be used.
 {{< /call-out >}}
 
+
 ### Creating Policy Resources
 
 Once PLM is deployed, you can create policy resources using Kubernetes manifests. Apply the following Custom Resource examples or create your own based on these templates:
