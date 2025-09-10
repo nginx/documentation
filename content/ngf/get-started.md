@@ -554,7 +554,7 @@ URI: /tea
 Request ID: 1b5c8f3a4532ea7d7510cf14ffeb27af
 ```
 
-## Migrating from NGINX Ingress Controller
+## Migrate from NGINX Ingress Controller
 
 If you're already using NGINX Ingress Controller and want to migrate to NGINX Gateway Fabric, you can use the [ingress2gateway](https://github.com/kubernetes-sigs/ingress2gateway) tool to automatically convert your existing Ingress resources to Gateway API resources.
 
