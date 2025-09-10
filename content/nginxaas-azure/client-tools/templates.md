@@ -10,7 +10,7 @@ type:
 - task
 ---
 
-F5 NGINX as a Service for Azure (NGINXaaS) deployments can be managed using the ARM API or the Azure CLI with ARM template deployments using JSON or Bicep formats. These deployments can be made locally or in a continuous integration pipeline. This document outlines common workflows using the ARM API. You can find example code to manage NGINXaaS deployments and related objects in the NGINXaaS GitHub repository, [NGINXaaS Snippets](https://github.com/nginxinc/nginxaas-for-azure-snippets).
+F5 NGINXaaS for Azure (NGINXaaS) deployments can be managed using the ARM API or the Azure CLI with ARM template deployments using JSON or Bicep formats. These deployments can be made locally or in a continuous integration pipeline. This document outlines common workflows using the ARM API. You can find example code to manage NGINXaaS deployments and related objects in the NGINXaaS GitHub repository, [NGINXaaS Snippets](https://github.com/nginxinc/nginxaas-for-azure-snippets).
 
 ## Prerequisites
 

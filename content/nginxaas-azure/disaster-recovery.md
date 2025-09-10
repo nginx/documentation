@@ -8,7 +8,7 @@ type:
 ---
 
 
-This guide describes how to configure disaster recovery (DR) for F5 NGINX as a Service for Azure deployments in separate (ideally [paired](https://learn.microsoft.com/en-us/azure/reliability/regions-paired)) Azure regions, ensuring upstream access remains available even if the primary NGINXaaS deployment in a region fails. The deployment architecture ensures users can access backend application servers (upstreams) continuously from an alternative region if the primary NGINXaaS deployment becomes unavailable. The solution leverages Terraform, Azure Traffic Manager, Azure Virtual Network (VNet) peering, and unique subnets to support failover.
+This guide describes how to configure disaster recovery (DR) for F5 NGINXaaS for Azure deployments in separate (ideally [paired](https://learn.microsoft.com/en-us/azure/reliability/regions-paired)) Azure regions, ensuring upstream access remains available even if the primary NGINXaaS deployment in a region fails. The deployment architecture ensures users can access backend application servers (upstreams) continuously from an alternative region if the primary NGINXaaS deployment becomes unavailable. The solution leverages Terraform, Azure Traffic Manager, Azure Virtual Network (VNet) peering, and unique subnets to support failover.
 
 ---
 
@@ -42,7 +42,7 @@ This guide describes how to configure disaster recovery (DR) for F5 NGINX as a S
 
 ### Step 1: Terrraform setup
 
-To get started, please review the [Terraform prerequisites]({{< ref "/nginxaas-azure/getting-started/create-deployment/deploy-terraform.md#prerequisites" >}}) for NGINX as a Service for Azure.
+To get started, please review the [Terraform prerequisites]({{< ref "/nginxaas-azure/getting-started/create-deployment/deploy-terraform.md#prerequisites" >}}) for NGINXaaS for Azure.
 The following steps outline Terraform resources required to set up the disaster recovery topology; these resources can be placed in a `main.tf` file, variables used by these resources can go into `variables.tf`, and outputs you need to collect can be defined in `outputs.tf`. The directory structure looks as follows:
 
 ```bash

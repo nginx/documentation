@@ -13,7 +13,7 @@ An NGINX configuration can be applied to the deployment using the Azure portal i
 - Create a new NGINX configuration from scratch or by pasting it in the Azure portal editor.
 - Upload a gzip compressed tar archive containing your NGINX configuration.
 
-As part of applying your NGINX configuration, the service validates the configuration for syntax and compatibility with F5 NGINX as a Service for Azure (NGINXaaS). The use of certain directives and parameters is not allowed to ensure the NGINX configuration’s compatibility with IaaS deployment model in Azure. Validation errors are reported in the editor for you to correct. For more information, check the [NGINX Configuration Validation]({{< ref "nginx-configuration.md#nginx-configuration-validation" >}}) section.
+As part of applying your NGINX configuration, the service validates the configuration for syntax and compatibility with F5 NGINXaaS for Azure (NGINXaaS). The use of certain directives and parameters is not allowed to ensure the NGINX configuration’s compatibility with IaaS deployment model in Azure. Validation errors are reported in the editor for you to correct. For more information, check the [NGINX Configuration Validation]({{< ref "nginx-configuration.md#nginx-configuration-validation" >}}) section.
 
 {{< call-out "note" >}}
 NGINXaaS supports Layer 7 HTTP loadbalancing. To configure .com and .net servers, refer to the server name in the server block within the HTTP context. To learn more, and see examples, follow the instructions in the [NGINX configuration validtion]({{< ref "/nginxaas-azure/getting-started/nginx-configuration/nginx-configuration-portal.md#nginx-configuration-validation" >}}) section.{{< /call-out >}}
@@ -34,13 +34,13 @@ NGINXaaS supports Layer 7 HTTP loadbalancing. To configure .com and .net servers
 
 1. Select {{< icon "fa fa-plus">}}**New File** to add a file path, then **Confirm**.
 
-   {{<bootstrap-table "table table-striped table-bordered">}}
+   {{< table >}}
    | Property | Description |
    | -------- | ----------- |
    | File path | Each NGINX configuration file can be uniquely identified by a file path (for example, nginx.conf or /etc/nginx/nginx.conf) to align with the intended NGINX configuration file structure. |
    | Root file | The root file is the main NGINX configuration file.<ul><li>The first file created will be the root file by default. You can designate a different root file if you have more than a single configuration file in your deployment.</li><li>The root file is designated with a {{< golden-star >}} icon on the portal.</li></ul> |
    | Protected File | Indicates that the file may contain sensitive data such as passwords or represent an ssl/tls certificate.<ul><li>To protect a file, enable the **Protected** {{<icon "solid fa-toggle-on">}} toggle button.</li><li>You cannot access the file contents of a protected file saved to the NGINX configuration, but you can view its metadata, such as the SHA-256 hash of the file contents.</li><li>You can provide new contents for an existing protected file using the <u>**Overwrite**</u> link or resubmit it without having to provide the file contents again.</li><li>To modify the file path of a protected file or convert it to a regular file, delete the original file and create a new one.</li><li>A protected file is designated with a {{<icon "solid fa-lock">}} icon on the portal.</li></ul> |
-   {{</bootstrap-table>}}
+   {{< /table >}}
 
    {{< call-out "note" >}}If specifying an absolute file path, see the [NGINX Filesystem Restrictions table]({{< ref "/nginxaas-azure/getting-started/nginx-configuration/overview/#nginx-filesystem-restrictions" >}}) for the allowed directories the file can be written to.{{< /call-out >}}
 

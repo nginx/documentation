@@ -7,9 +7,9 @@ type:
 - how-to
 ---
 
-F5 NGINX as a Service for Azure (NGINXaaS) enables customers to secure traffic by adding SSL/TLS certificates to a deployment. NGINXaaS can fetch certificates directly from Azure Key Vault, rotate certificates, and provide observability on the status of your certificates.
+F5 NGINXaaS for Azure (NGINXaaS) enables customers to secure traffic by adding SSL/TLS certificates to a deployment. NGINXaaS can fetch certificates directly from Azure Key Vault, rotate certificates, and provide observability on the status of your certificates.
 
-This document provides details about using SSL/TLS certificates with your F5 NGINX as a Service for Azure deployment.
+This document provides details about using SSL/TLS certificates with your F5 NGINXaaS for Azure deployment.
 
 ## Supported certificate types and formats
 
@@ -62,7 +62,7 @@ For Azure client tools, such as the Azure CLI or Azure Resource Manager, the cer
 
 To view the status of your SSL/TLS certificates, [enable monitoring]({{< ref "/nginxaas-azure/monitoring/enable-monitoring.md" >}}) for your NGINXaaS deployment and navigate to the **Metrics** tab in the Azure portal. View the `nginxaas.certificates` metric under the `nginxaas statistics` metric namespace. The `nginxaas.certificates` metric allows you to filter by certificate name and the status of the certificate. The status dimension reports the health of your certificates through the following values:
 
-   {{<bootstrap-table "table table-striped table-bordered">}}
+   {{< table >}}
 
    | Status        | Description   |
    | ------------- | ------------- |
@@ -71,7 +71,7 @@ To view the status of your SSL/TLS certificates, [enable monitoring]({{< ref "/n
    | `not found`   | Azure returned a 404 error when fetching the certificate from AKV. |
    | `incompatible`| An error occurred while fetching or processing the certificate from AKV. <br><br>The possible reasons include: <br> <br><ul><li>Error while downloading certificate and key</li><li>Missing content type in certificate</li><li>Missing content in certificate</li><li>Unrecognized content type, certificate not in PEM or PKCS12 format</li></ul> |
 
-   {{</bootstrap-table>}}
+   {{< /table >}}
 
    {{< img src="nginxaas-azure/azure-metrics-nginxaas.certificates.png" alt="Interface screenshot showing the Azure metric nginxaas.certificates" >}}
 
