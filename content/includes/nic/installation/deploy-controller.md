@@ -6,5 +6,6 @@ You have two options for deploying NGINX Ingress Controller:
 
 - **Deployment**. Choose this method for the flexibility to dynamically change the number of NGINX Ingress Controller replicas.
 - **DaemonSet**. Choose this method if you want NGINX Ingress Controller to run on all nodes or a subset of nodes.
+- **StatefulSet**. Choose this method when you need stable, persistent storage and ordered deployment/scaling for your NGINX Ingress Controller pods.
 
 Before you start, update the [command-line arguments]({{< ref "/nic/configuration/global-configuration/command-line-arguments.md" >}}) for the NGINX Ingress Controller container in the relevant manifest file to meet your specific requirements.

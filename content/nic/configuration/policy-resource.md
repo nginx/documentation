@@ -770,11 +770,11 @@ cache:
   overrideUpstreamCache: true
 ```
 
-{{< note >}}
+{{< call-out "note" >}}
 
 The feature is implemented using the NGINX [ngx_http_proxy_module](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_cache_path) proxy_cache_path and related directives.
 
-{{< /note >}}
+{{< /call-out >}}
 
 {{% table %}}
 |Field | Description | Type | Required |

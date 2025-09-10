@@ -20,7 +20,7 @@ NGINX Plus determination of healthy can be tuned using advanced health checks, a
 
 ## Enabling Service Insight Endpoint
 
-If you're using *Kubernetes manifests* (Deployment or DaemonSet) to install the Ingress Controller, to enable the Service Insight endpoint:
+If you're using *Kubernetes manifests* (Deployment, DaemonSet, or StatefulSet) to install the Ingress Controller, to enable the Service Insight endpoint:
 
 1. Run the Ingress Controller with the `-enable-service-insight` [command-line argument]({{< ref "/nic/configuration/global-configuration/command-line-arguments.md" >}}). This will expose the Ingress Controller endpoint via paths `/probe/{hostname}` for Virtual Servers, and `/probe/ts/{service_name}` for Transport Servers on port `9114` (customizable with the `-service-insight-listen-port` command-line argument). The `service_name` parameter refers to the name of the deployed service (the service specified under `upstreams` in the transport server).
 1. To enable TLS for the Service Insight endpoint, configure the `-service-insight-tls-secret` cli argument with the namespace and name of a TLS Secret.
