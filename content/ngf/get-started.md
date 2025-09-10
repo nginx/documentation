@@ -575,6 +575,13 @@ Then run the conversion command for the NGINX provider:
    
 ```shell
 ingress2gateway print --providers=nginx --input-file=<your-ingress-file> > gateway-api-resources.yaml
+```
+
+This tool will analyze your Ingress resources from the input file and output the equivalent Gateway API resources to a file named `gateway-api-resources.yaml`. Finally, review the generated Gateway API resources in the output file and apply them to your cluster:
+
+```shell
+kubectl apply -f gateway-api-resources.yaml
+```
 
 For detailed information about NGINX-specific features and conversion options, see the [NGINX provider documentation](https://github.com/kubernetes-sigs/ingress2gateway/blob/main/pkg/i2gw/providers/nginx/README.md).
 
