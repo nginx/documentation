@@ -73,13 +73,13 @@ For more details, see [About subscription licenses]({{< ref "solutions/about-sub
 ```sh
 sudo docker run \
 --env=NGINX_LICENSE_JWT="YOUR_JWT_HERE" \
---env=NGINX_AGENT_SERVER_GRPCPORT=443 \
---env=NGINX_AGENT_SERVER_HOST=agent.connect.nginx.com \
---env=NGINX_AGENT_SERVER_TOKEN="YOUR_NGINX_ONE_DATA_PLANE_KEY_HERE" \
---env=NGINX_AGENT_TLS_ENABLE=true \
+--env=NGINX_AGENT_COMMAND_SERVER_PORT=443 \
+--env=NGINX_AGENT_COMMAND_SERVER_HOST=agent.connect.nginx.com \
+--env=NGINX_AGENT_COMMAND_AUTH_TOKEN="DPK" \
+--env=NGINX_AGENT_COMMAND_TLS_SKIP_VERIFY=false \
 --restart=always \
 --runtime=runc \
--d private-registry.nginx.com/nginx-plus/agent:<version-tag>
+-d private-registry.nginx.com/nginx-plus/agentv3:<version-tag>
 ```
 
 <br>
@@ -90,13 +90,13 @@ To start the container with the `debian` image:
 ```sh
 sudo docker run \
 --env=NGINX_LICENSE_JWT="YOUR_JWT_HERE" \
---env=NGINX_AGENT_SERVER_GRPCPORT=443 \
---env=NGINX_AGENT_SERVER_HOST=agent.connect.nginx.com \
---env=NGINX_AGENT_SERVER_TOKEN="YOUR_NGINX_ONE_DATA_PLANE_KEY_HERE" \
---env=NGINX_AGENT_TLS_ENABLE=true \
+--env=NGINX_AGENT_COMMAND_SERVER_PORT=443 \
+--env=NGINX_AGENT_COMMAND_SERVER_HOST=agent.connect.nginx.com \
+--env=NGINX_AGENT_COMMAND_AUTH_TOKEN="DPK" \
+--env=NGINX_AGENT_COMMAND_TLS_SKIP_VERIFY=false \
 --restart=always \
 --runtime=runc \
--d private-registry.nginx.com/nginx-plus/agent:debian
+-d private-registry.nginx.com/nginx-plus/agentv3:debian
 ```
 
 {{</call-out>}}

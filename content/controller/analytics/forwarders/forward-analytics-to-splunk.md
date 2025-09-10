@@ -43,19 +43,19 @@ Take the following steps to create a Forwarder for Splunk:
 
 1. (Optional) Add additional **Streams** as required using the **Add Stream** button.
 
-{{< important >}}
+{{< call-out "important" >}}
 
 Each metric will be prefixed with a common namespace -- such as `nginx-controller` -- before it is sent to Splunk. This prefix is used by Splunk only and is not applied to any of the internal NGINX Controller metrics. Refer to the [metrics catalog]({{< ref "/controller/analytics/catalogs/metrics.md" >}}) for the full list of valid metric names.
 
 In case of events, the "nginx-controller" namespace will be placed in the ["source" key](https://docs.splunk.com/Documentation/Splunk/8.1.1/Data/FormateventsforHTTPEventCollector#Event_metadata) and sent with each event.
 
-{{< /important >}}
+{{< /call-out >}}
 
-{{< see-also >}}
+{{< call-out "note" >}}
 
 See the [NGINX Controller Metrics]({{< ref "/controller/analytics/metrics/_index.md" >}}) docs for more information.
 
-{{< /see-also >}}
+{{< /call-out>}}
 
 ## What's Next
 

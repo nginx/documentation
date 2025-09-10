@@ -37,7 +37,7 @@ Together, the Component's relative paths and the Gateway's FQDN results form the
 
 Likewise, you can configure a Component with its own FQDN and paths, but inherit the TLS certificates from the Gateway. Or, you can configure a Component that doesn't inherit any resources or configurations from the Gateway and uses its own set of definitions.
 
-{{< note >}}The ability to add resources, like Certificates, is determined by your account permissions. If you don't have the ability to add new Certs, contact your administrator. {{< /note >}}
+{{< call-out "note" >}}The ability to add resources, like Certificates, is determined by your account permissions. If you don't have the ability to add new Certs, contact your administrator. {{< /call-out >}}
 
 {{< versions "3.0" "latest" "ctrlvers" >}}
 {{< versions "3.20" "latest" "adcvers" >}}

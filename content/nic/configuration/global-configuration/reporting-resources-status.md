@@ -32,7 +32,7 @@ NGINX Ingress Controller must be configured to report an Ingress status:
 
 View the [ConfigMap keys]({{< ref "/nic/configuration/global-configuration/configmap-resource.md" >}}) and [Command-line arguments]({{< ref "/nic/configuration/global-configuration/command-line-arguments.md" >}}) topics for more information.
 
-{{< note >}} NGINX Ingress Controller does not clear the status of Ingress resources when it is being shut down. {{< /note >}}
+{{< call-out "note" >}} NGINX Ingress Controller does not clear the status of Ingress resources when it is being shut down. {{< /call-out >}}
 
 ## VirtualServer and VirtualServerRoute resources
 
@@ -58,7 +58,7 @@ kubectl get virtualservers -o wide
   cafe   Valid   cafe.example.com         ae430f41a1a0042908655abcdefghijkl-12345678.eu-west-2.elb.amazonaws.com   [80,443]   106s
 ```
 
-{{< note >}} If there are multiple addresses, only the first one is shown. {{< /note >}}
+{{< call-out "note" >}} If there are multiple addresses, only the first one is shown. {{< /call-out >}}
 
 In order to see additional addresses or extra information about the `Status` of the resource, use the following command:
 
@@ -80,32 +80,26 @@ Status:
 
 The following fields are reported in both VirtualServer and VirtualServerRoute status:
 
-{{<bootstrap-table "table table-striped table-bordered table-responsive">}}
 |Field | Description | Type |
 | ---| ---| --- |
 |*State* | Current state of the resource. Can be ``Valid``, ``Warning`` an ``Invalid``. For more information, refer to the ``message`` field. | *string* |
 |*Reason* | The reason of the last update. | *string* |
 |*Message* | Additional information about the state. | *string* |
 |*ExternalEndpoints* | A list of external endpoints for which the hosts of the resource are publicly accessible. | *[externalEndpoint](#externalendpoint)* |
-{{</bootstrap-table>}}
 
 The *ReferencedBy* field is reported for the VirtualServerRoute status only:
 
-{{<bootstrap-table "table table-striped table-bordered table-responsive">}}
 |Field | Description | Type |
 | ---| ---| --- |
 | *ReferencedBy* | The VirtualServer that references this VirtualServerRoute. Format as ``namespace/name`` | *string* |
-{{</bootstrap-table>}}
 
 ### externalEndpoint
 
-{{<bootstrap-table "table table-striped table-bordered table-responsive">}}
 |Field | Description | Type |
 | ---| ---| --- |
 |``IP`` | The external IP address. | ``string`` |
 |``Hostname`` | The external LoadBalancer Hostname address. | ``string`` |
 |``Ports`` | A list of external ports. | ``string`` |
-{{</bootstrap-table>}}
 
 NGINX Ingress Controller must be configured to report a VirtualServer or VirtualServerRoute status:
 
@@ -115,7 +109,7 @@ NGINX Ingress Controller must be configured to report a VirtualServer or Virtual
 
 View the [ConfigMap keys]({{< ref "/nic/configuration/global-configuration/configmap-resource.md" >}}) and [Command-line arguments]({{< ref "/nic/configuration/global-configuration/command-line-arguments.md" >}}) topics for more information.
 
-{{< note >}} NGINX Ingress Controller does not clear the status of VirtualServer and VirtualServerRoute resources when it is being shut down. {{< /note >}}
+{{< call-out "note" >}} NGINX Ingress Controller does not clear the status of VirtualServer and VirtualServerRoute resources when it is being shut down. {{< /call-out >}}
 
 ## Policy resources
 
@@ -148,13 +142,11 @@ Status:
 
 The following fields are reported in Policy status:
 
-{{<bootstrap-table "table table-striped table-bordered table-responsive">}}
 |Field | Description | Type |
 | ---| ---| --- |
 |``State`` | Current state of the resource. Can be ``Valid`` or ``Invalid``. For more information, refer to the ``message`` field. | ``string`` |
 |``Reason`` | The reason of the last update. | ``string`` |
 |``Message`` | Additional information about the state. | ``string`` |
-{{</bootstrap-table>}}
 
 ## TransportServer resources
 
@@ -186,10 +178,8 @@ Status:
 
 The following fields are reported in TransportServer status:
 
-{{<bootstrap-table "table table-striped table-bordered table-responsive">}}
 |Field | Description | Type |
 | ---| ---| --- |
 | *State* | Current state of the resource. Can be ``Valid``, ``Warning`` or ``Invalid``. For more information, refer to the ``message`` field. | *string* |
 | *Reason* | The reason of the last update. | *string* |
 | *Message* | Additional information about the state. | *string* |
-{{</bootstrap-table>}}

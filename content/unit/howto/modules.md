@@ -16,10 +16,10 @@ Languages supported by Unit fall into these two categories:
 
 For any specific language and its version, Unit needs a language module.
 
-{{< note >}}
+{{< call-out "note" >}}
 The commands in this document starting with a hash (#) must be run as root or
 with superuser privileges.
-{{< /note >}}
+{{< /call-out >}}
 
 ## External language modules {#modules-ext}
 
@@ -110,13 +110,13 @@ Here, we are packaging a custom PHP 7.3
 to be installed next to the official Unit package;
 adjust the command samples as needed to fit your scenario.
 
-{{< note >}}
+{{< call-out "note" >}}
 For details of building Unit language modules, see the source code
 [now-to]({{< relref "/unit/howto/source.md#source-modules" >}}); it also describes building
 [Unit]({{< relref "/unit/howto/source.md" >}}) itself.
 For more packaging examples, see our package
 [sources](https://github.com/nginx/unit/tree/master/pkg).
-{{< /note >}}
+{{< /call-out >}}
 
 
 <a name="modules-deb"></a>

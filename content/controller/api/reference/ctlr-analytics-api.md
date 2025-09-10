@@ -11,6 +11,5 @@ tags:
 title: Analytics API
 toc: false
 weight: 200
+nd-api-reference: "./nginx-controller/api/reference/ctlr-analytics-openapi.json"
 ---
-
-{{< openapi spec="./nginx-controller/api/reference/ctlr-analytics-openapi.json" >}}

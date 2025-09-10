@@ -2,7 +2,7 @@
 nd-docs: "DOCS-000"
 ---
 
-{{< note >}} If you would rather pull the NGINX Plus image and push to a private registry, you can skip this specific step and instead follow [this step]({{< ref "/ngf/install/nginx-plus.md#pull-an-image-for-local-use" >}}). {{< /note >}}
+{{< call-out "note" >}} If you would rather pull the NGINX Plus image and push to a private registry, you can skip this specific step and instead follow [this step]({{< ref "/ngf/install/nginx-plus.md#pull-an-image-for-local-use" >}}). {{< /call-out >}}
 
 If the `nginx-gateway` namespace does not yet exist, create it:
 

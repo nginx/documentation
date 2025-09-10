@@ -13,9 +13,9 @@ type:
 
 This quick-start tutorial shows you how to get started using F5 NGINX Controller with NGINX Plus.
 
-{{< caution >}}In this tutorial, NGINX Controller will install an embedded, self-hosted PostgreSQL database suitable for demo and trial purposes only. **These instructions are not meant for use in production environments**.{{< /caution >}}
+{{< call-out "caution"  >}}In this tutorial, NGINX Controller will install an embedded, self-hosted PostgreSQL database suitable for demo and trial purposes only. **These instructions are not meant for use in production environments**.{{< /call-out >}}
 
-{{< see-also >}}If you want to try out NGINX Controller with the Application Security add-on, refer to [Trial NGINX Controller with App Security]({{< ref "/controller/admin-guides/install/try-nginx-controller-app-sec.md" >}}).{{< /see-also >}}
+{{< call-out "note" >}}If you want to try out NGINX Controller with the Application Security add-on, refer to [Trial NGINX Controller with App Security]({{< ref "/controller/admin-guides/install/try-nginx-controller-app-sec.md" >}}).{{< /call-out>}}
 
 &nbsp;
 
@@ -29,7 +29,7 @@ Make sure to review the [NGINX Controller Technical Specifications Guide]({{< re
 
 NGINX Controller, the NGINX Controller Agent, and the NGINX Controller Application Security Add-on support the following distributions and architectures.
 
-{{< see-also >}}Refer to the [NGINX Plus Technical Specifications](https://docs.nginx.com/nginx/technical-specs/) guide for the distributions that NGINX Plus supports.{{< /see-also >}}
+{{< call-out "note" >}}Refer to the [NGINX Plus Technical Specifications](https://docs.nginx.com/nginx/technical-specs/) guide for the distributions that NGINX Plus supports.{{< /call-out>}}
 
 {{< bootstrap-table "table table-striped table-bordered" >}}
 
@@ -116,9 +116,9 @@ First, you need to sign up for a trial license for NGINX Controller. The trial i
 
 Install NGINX Controller on a dedicated node that **does not** already have Kubernetes configured. NGINX Controller does not support pre-configured Kubernetes implementations at this time. The installer for NGINX Controller will install and configure Kubernetes for you.
 
-{{< important >}}Before installing NGINX Controller, you must **disable swap on the host**; this is required by Kubernetes in order for the kubelet to work properly. Refer to your Linux distribution documentation for specific instructions for disabling swap for your system. For more information about this requirement, see the AskF5 knowledge base article [K82655201](https://support.f5.com/csp/article/K82655201) and the [kubeadm installation guide](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/#before-you-begin) in the Kubernetes documentation.{{< /important >}}
+{{< call-out "important" >}}Before installing NGINX Controller, you must **disable swap on the host**; this is required by Kubernetes in order for the kubelet to work properly. Refer to your Linux distribution documentation for specific instructions for disabling swap for your system. For more information about this requirement, see the AskF5 knowledge base article [K82655201](https://support.f5.com/csp/article/K82655201) and the [kubeadm installation guide](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/#before-you-begin) in the Kubernetes documentation.{{< /call-out >}}
 
-{{< caution >}}**For RHEL 8 deployments**, complete the additional prerequisite steps in the [Installing NGINX on RHEL 8]({{< ref "/controller/admin-guides/install/install-nginx-controller-rhel-8.md" >}}) guide before installing NGINX Controller. RHEL 8 support is a **beta** feature.{{< /caution >}}
+{{< call-out "caution"  >}}**For RHEL 8 deployments**, complete the additional prerequisite steps in the [Installing NGINX on RHEL 8]({{< ref "/controller/admin-guides/install/install-nginx-controller-rhel-8.md" >}}) guide before installing NGINX Controller. RHEL 8 support is a **beta** feature.{{< /call-out >}}
 
 To install NGINX Controller, take the following steps:
 
@@ -142,7 +142,7 @@ To install NGINX Controller, take the following steps:
 
     - **Config database volume type**: Specify the type of volume to use to store the config database: local, NFS, or AWS. We recommend choosing `local` for demo and trial purposes.
 
-      {{< see-also >}}Refer to the [NGINX Controller Technical Specifications Guide]({{< ref "/controller/admin-guides/install/nginx-controller-tech-specs.md#local-or-external-storage" >}}) for more information about the volume options and requirements.{{< /see-also >}}
+      {{< call-out "note" >}}Refer to the [NGINX Controller Technical Specifications Guide]({{< ref "/controller/admin-guides/install/nginx-controller-tech-specs.md#local-or-external-storage" >}}) for more information about the volume options and requirements.{{< /call-out>}}
 
     - **Analytics database volume type**: Specify the type of volume to use to store the analytics database: local, NFS, or AWS. We recommend choosing `local` for demo and trial purposes.
     - **EULA**: Read the end-user license agreement. Type either `y` to accept or `n` to exit.
@@ -161,9 +161,9 @@ To install NGINX Controller, take the following steps:
       Additionally, the FQDN is used by Controller Agents when connecting to NGINX Controller.
     - **SSL/TLS certificates**: Type `y` to generate and use self-signed certs for running NGINX Controller over HTTPS, or type `n` to provide your own certs.
 
-        {{< important >}}
+        {{< call-out "important" >}}
 If you provide your own SSL/TLS certificates, you'll need a complete certificate chain file, with the intermediate CA cert appended to the server cert; the server certificate must appear **before** the chained certificates in the combined file.
-        {{< /important >}}
+        {{< /call-out >}}
 
 1. Log in to NGINX Controller at `https://<Controller-FQDN>/login`. Use the admin email address and password that you provided during the installation process.
 
@@ -185,9 +185,9 @@ To add a license to NGINX Controller, take the following steps:
 
 1. Select **Save license**.
 
-{{< see-also >}}
+{{< call-out "note" >}}
 To add a license using the [NGINX Controller REST API]({{< ref "/controller/api/_index.md" >}}), send a PUT request to the `/platform/license` endpoint. Provide your CAT or NGINX Controller license as a base64-encoded string in the JSON request body.
-{{< /see-also >}}
+{{< /call-out>}}
 
 
 &nbsp;
@@ -205,9 +205,9 @@ To add a license using the [NGINX Controller REST API]({{< ref "/controller/api/
 
 The NGINX Controller API uses session cookies to authenticate requests. The session cookie is returned in response to a `GET /api/v1/platform/login` request. See the Login endpoint in the [NGINX Controller API Reference]({{< ref "/controller/api/_index.md" >}}) documentation for information about session cookie timeouts and invalidation.
 
-{{< tip >}}
+{{< call-out "tip" >}}
 You can send a GET request to the login endpoint to find the status of the session token.
-{{< /tip >}}
+{{< /call-out >}}
 
 For example:
 
@@ -242,9 +242,9 @@ For example:
   curl -b cookie.txt -c cookie.txt -X GET --url 'https://192.0.2.0/api/v1/platform/licenses/nginx-plus-licenses/controller-provided' --output nginx-plus-certs.gz
   ```
 
-{{< note >}}
+{{< call-out "note" >}}
 If you are using a self-signed certificate you will need to add `-k` (allow insecure connections) to your curl command to be able to download your NGINX Plus certificate and key bundle.
-{{< /note >}}
+{{< /call-out >}}
 
 
 Once you have downloaded your certificate and key bundle you will need to expand the `.gz` file to get your certificate and key pair.
@@ -259,9 +259,9 @@ gunzip nginx-plus-certs.gz
 
 Take the following steps to install NGINX Plus:
 
-{{< important >}}
+{{< call-out "important" >}}
 You need the NGINX Plus certificate and public key files (`nginx-repo.crt` and `nginx-repo.key`) that were provided when you signed up for the trial license.
-{{< /important >}}
+{{< /call-out >}}
 
 1. First, make sure to review the [NGINX Plus Technical Specifications Guide](https://docs.nginx.com/nginx/technical-specs/) for the requirements for your distribution and desired configuration.
 2. To install NGINX Plus, follow the instructions in the [NGINX Plus Installation Guide](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/). Refer to the relevant section for your distribution.

@@ -28,9 +28,9 @@ sudo cp -a /var/log/nginx /var/log/nginx-plus-backup
 
 1. Follow the steps below for the operating system you are working with.
 
-{{< note >}}
+{{< call-out "note" >}}
 If not already installed, `nginx` or `nginx-plus` will be installed automatically as a dependency.
-{{< /note >}}
+{{< /call-out >}}
 
 
 ### Common Steps for NGINX Open Source and NGINX Plus
@@ -173,7 +173,7 @@ Download the NGINX Plus repository file [nginx-plus-8.repo](https://cs.nginx.com
 sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/nginx-plus-8.repo
 ```
 
-{{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-plus-centos.md" >}}
+{{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-plus-centos-8.md" >}}
 
 
 {{%/tab%}}
@@ -186,7 +186,7 @@ Download the NGINX Plus repository file [plus-9.repo](https://cs.nginx.com/stati
 sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/plus-9.repo
 ```
 
-{{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-plus-centos.md" >}}
+{{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-plus-centos-9.md" >}}
 
 {{%/tab%}}
 
@@ -302,9 +302,9 @@ networks:
     driver: bridge
 ```
 
-{{< note >}}
+{{< call-out "note" >}}
 In some operating systems, security mechanisms like **SELinux** or **AppArmor** are enabled by default, potentially blocking necessary file access for the `nginx` process and `waf-config-mgr` and `waf-enforcer` containers. To ensure NGINX App Protect WAF v5 operates smoothly without compromising security, consider setting up a custom SELinux policy or AppArmor profile. For short-term troubleshooting, you may use `permissive` (SELinux) or `complain` (AppArmor) mode to avoid these restrictions, but keep in mind that this lowers security and isn't advised for prolonged use.
-{{< /note >}}
+{{< /call-out >}}
 
 ### Docker Compose File with IP Intelligence
 
@@ -350,9 +350,9 @@ After deploying NGINX App Protect WAF, learn how to utilize the [NGINX App Prote
 
 3. Follow the steps below for the operating system you are working with.
 
-{{< note >}}
+{{< call-out "note" >}}
 If not already installed, `nginx` or `nginx-plus` will be installed automatically as a dependency.
-{{< /note >}}
+{{< /call-out >}}
 
 ### Common Steps for NGINX Open Source and NGINX Plus
 
@@ -728,7 +728,7 @@ Then you can move onto the next step, depending on your chosen operating system.
 {{%/tab%}}
 {{%tab name="Oracle Linux 8.1+"%}}
 
-{{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-plus-centos.md" >}}
+{{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-plus-centos-8.md" >}}
 
 3. Download all NGINX Plus packages, including all dependencies: We used repotrack for example:
 
@@ -747,7 +747,7 @@ Then you can move onto the next step, depending on your chosen operating system.
 {{%/tab%}}
 {{%tab name="RHEL 8.1+"%}}
 
-{{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-plus-centos.md" >}}
+{{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-plus-centos-8.md" >}}
 
 3. Download all NGINX Plus packages, including all dependencies: We used repotrack for example:
 
@@ -766,7 +766,7 @@ Then you can move onto the next step, depending on your chosen operating system.
 {{%/tab%}}
 {{%tab name="RHEL 9 / Rocky Linux 9"%}}
 
-{{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-plus-centos.md" >}}
+{{< include "nap-waf/config/v5/host-based-nginx-instructions/nginx-plus-centos-9.md" >}}
 
 3. Download all NGINX Plus packages, including all dependencies: We used repotrack for example:
 
@@ -993,9 +993,9 @@ networks:
     driver: bridge
 ```
 
-{{< note >}}
+{{< call-out "note" >}}
 In some operating systems, security mechanisms like **SELinux** or **AppArmor** are enabled by default, potentially blocking necessary file access for the `nginx` process and `waf-config-mgr` and `waf-enforcer` containers. To ensure NGINX App Protect WAF v5 operates smoothly without compromising security, consider setting up a custom SELinux policy or AppArmor profile. For short-term troubleshooting, you may use `permissive` (SELinux) or `complain` (AppArmor) mode to avoid these restrictions, but keep in mind that this lowers security and isn't advised for prolonged use.
-{{< /note >}}
+{{< /call-out >}}
 
 #### Docker Compose File with IP Intelligence
 

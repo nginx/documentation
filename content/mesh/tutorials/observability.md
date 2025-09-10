@@ -18,10 +18,10 @@ In this tutorial, we will install F5 NGINX Service Mesh with some basic observab
 
 Download the following files containing the configurations for the observability components:
 
-- {{< fa "download" >}} {{< link "/examples/prometheus.yaml" "prometheus.yaml" >}}
-- {{< fa "download" >}} {{< link "/examples/grafana.yaml" "grafana.yaml" >}}
-- {{< fa "download" >}} {{< link "/examples/otel-collector.yaml" "otel-collector.yaml" >}}
-- {{< fa "download" >}} {{< link "/examples/jaeger.yaml" "jaeger.yaml" >}}
+- {{< icon "download" >}} {{< link "/examples/prometheus.yaml" "prometheus.yaml" >}}
+- {{< icon "download" >}} {{< link "/examples/grafana.yaml" "grafana.yaml" >}}
+- {{< icon "download" >}} {{< link "/examples/otel-collector.yaml" "otel-collector.yaml" >}}
+- {{< icon "download" >}} {{< link "/examples/jaeger.yaml" "jaeger.yaml" >}}
 
 Deploy the components:
 
@@ -50,9 +50,9 @@ helm repo update
 helm install nsm nginx-stable/nginx-service-mesh --namespace nginx-mesh --create-namespace --wait --set prometheusAddress=prometheus.nsm-monitoring.svc:9090 --set telemetry.exporters.otlp.host=otel-collector.nsm-monitoring.svc --set telemetry.exporters.otlp.port=4317 --set telemetry.samplerRatio=1
 ```
 
-{{< note >}}
+{{< call-out "note" >}}
 A sampler ratio of 1 results in 100% of traces being sampled. Adjust this value (float from 0 to 1) to your needs.
-{{< /note >}}
+{{< /call-out >}}
 
 ## View the Dashboards
 

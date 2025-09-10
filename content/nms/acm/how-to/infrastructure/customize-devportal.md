@@ -41,12 +41,12 @@ Take the steps below to customize your Dev Portal by defining a custom Dev Porta
 
 1. You can save your changes at any time by selecting the **Save and Publish** option.
 
-{{<note>}}
+{{< call-out "note" >}}
 <br/>
 
 - The Preview section to the right of the settings in each section will update automatically as you make changes.
 - The changes will be applied immediately when you select **Save and Publish**; as such we recommend testing any changes in a "non-production" Environment first.
-{{</note>}}
+{{< /call-out >}}
 
 ## Brand Options
 
@@ -162,7 +162,7 @@ To edit the **Get Started** steps:
 1. Enter your desired **Title** (required), **Description** (required), icon, and **Alt Text** for each of the four steps.
 1. Select **Save Changes**.
 
-> {{< fa "fa-solid fa-lightbulb" >}} At this point, we recommend selecting **Save and Publish** to save any customizations you've made.
+> {{< icon "fa-solid fa-lightbulb" >}} At this point, we recommend selecting **Save and Publish** to save any customizations you've made.
 > Verify that the changes have been applied, then move on to adding your [**Documentation**](#add-documentation).
 
 ### Documentation {#add-documentation}

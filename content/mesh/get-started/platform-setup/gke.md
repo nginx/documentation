@@ -10,9 +10,9 @@ type:
 
 Google Kubernetes Engine (GKE) is a hosted Kubernetes solution created by Google. To use GKE with F5 NGINX Service Mesh, your Kubernetes user account has to have the `ClusterAdmin` role.
 
-{{< warning >}}
+{{< call-out "warning" >}}
 These resources give NGINX Service Mesh administrator access to your cluster. This allows NGINX Service Mesh to access resources across all namespaces in your Kubernetes cluster.
-{{< /warning >}}
+{{< /call-out >}}
 
 To create a ClusterRole and ClusterRoleBinding for NGINX Service Mesh, run the `kubectl` command shown below:
 

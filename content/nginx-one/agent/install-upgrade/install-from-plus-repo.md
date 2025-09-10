@@ -6,13 +6,13 @@ docs: DOCS-000
 nd-docs: DOCS-1877
 ---
 
-{{< note>}}
+{{< call-out "note" >}}
 If you are using [NGINX One Console]({{< ref "/nginx-one/getting-started.md" >}})
 to manage your NGINX instances, NGINX Agent is installed automatically when you
 add an NGINX instance to NGINX One Console.
 
 For a quick guide on how to connect your instance to NGINX One Console see: [Connect to NGINX One Console]({{< ref "/nginx-one/connect-instances/add-instance.md" >}})
-{{< /note >}}
+{{< /call-out >}}
 
 ## Overview
 
@@ -31,7 +31,7 @@ NGINX Agent from the repository.
 
 
 <details>
-<summary>{{< fa "brands fa-centos" >}} Install NGINX Agent on RHEL, CentOS, Rocky Linux, AlmaLinux, and Oracle Linux</summary>
+<summary>Install NGINX Agent on RHEL, CentOS, Rocky Linux, AlmaLinux, and Oracle Linux</summary>
 
 ### Install NGINX Agent on RHEL, CentOS, Rocky Linux, AlmaLinux, and Oracle Linux<a name="install-nginx-agent-on-rhel-centos-rocky-linux-almalinux-and-oracle-linux-plus"></a>
 
@@ -40,7 +40,7 @@ NGINX Agent from the repository.
 </details>
 
 <details>
-<summary>{{< fa "brands fa-ubuntu" >}} Install NGINX Agent on Ubuntu</summary>
+<summary>Install NGINX Agent on Ubuntu</summary>
 
 ### Install NGINX Agent on Ubuntu<a name="install-nginx-agent-on-ubuntu-plus"></a>
 
@@ -49,7 +49,7 @@ NGINX Agent from the repository.
 </details>
 
 <details>
-<summary>{{< fa "brands fa-debian" >}} Install NGINX Agent on Debian</summary>
+<summary>Install NGINX Agent on Debian</summary>
 
 ### Install NGINX Agent on Debian<a name="install-nginx-agent-on-debian-plus"></a>
 
@@ -58,7 +58,7 @@ NGINX Agent from the repository.
 </details>
 
 <details>
-<summary>{{< fa "brands fa-suse" >}} Install NGINX Agent on SLES</summary>
+<summary>Install NGINX Agent on SLES</summary>
 
 ### Install NGINX Agent on SLES<a name="install-nginx-agent-on-sles-plus"></a>
 
@@ -67,7 +67,7 @@ NGINX Agent from the repository.
 </details>
 
 <details>
-<summary>{{< fa "solid fa-mountain-sun" >}} Install NGINX Agent on Alpine Linux</summary>
+<summary>Install NGINX Agent on Alpine Linux</summary>
 
 ### Install NGINX Agent on Alpine Linux<a name="install-nginx-agent-on-alpine-linux-plus"></a>
 
@@ -75,20 +75,11 @@ NGINX Agent from the repository.
 
 </details>
 <details>
-<summary>{{< fa "brands fa-aws" >}} Install NGINX Agent on Amazon Linux</summary>
+<summary>Install NGINX Agent on Amazon Linux</summary>
 
 ### Install NGINX Agent on Amazon Linux<a name="install-nginx-agent-on-amazon-linux-plus"></a>
 
 {{< include "/agent/installation/plus/plus-amazon-linux.md" >}}
-
-</details>
-
-<details>
-<summary>{{< fa "brands fa-freebsd" >}} Install NGINX Agent on FreeBSD</summary>
-
-### Install NGINX Agent on FreeBSD<a name="install-nginx-agent-on-freebsd-plus"></a>
-
-{{< include "/agent/installation/plus/plus-freebsd.md" >}}
 
 </details>
 

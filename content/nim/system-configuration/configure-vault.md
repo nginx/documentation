@@ -15,8 +15,8 @@ HashiCorp's Vault is a popular solution for storing secrets. While F5 NGINX Inst
 
 To complete the steps in this guide, you need:
 
-- A working understanding of [Vault](https://www.vaultproject.io) and its operations.
-- A running version of [Vault 1.8.8 or later](https://www.vaultproject.io/docs/install).
+- A working understanding of [Vault](https://developer.hashicorp.com/vault) and its operations.
+- A running version of [Vault 1.8.8 or later](https://developer.hashicorp.com/vault/install).
 
 ---
 
@@ -24,7 +24,7 @@ To complete the steps in this guide, you need:
 
 Access to a Vault requires a renewable token.
 
-{{<note>}}If you attempt to use the Vault's Root Token, NGINX Instance Manager won't start the secrets driver, as that token is not renewable.{{</note>}}
+{{< call-out "note" >}}If you attempt to use the Vault's Root Token, NGINX Instance Manager won't start the secrets driver, as that token is not renewable.{{< /call-out >}}
 
 To create a periodic service token for NGINX Instance Manager:
 

@@ -24,7 +24,7 @@ Before you begin, refer Azure documentation to [Import a certificate to your Key
 
 1. Select **NGINX certificates** in the left menu.
 
-1. Select {{< fa "plus">}}**Add certificate**.
+1. Select {{< icon "plus">}}**Add certificate**.
 
 1. Provide the required information:
 
@@ -47,9 +47,9 @@ Before you begin, refer Azure documentation to [Import a certificate to your Key
 
       If you need to create a new key vault or certificate, you can do so by selecting **Create new key vault** or **Create new** under the **Key Vault** and **Certificate** fields, respectively.
 
-      {{<note>}}If specifying an absolute file path as the `Certificate path` or `Key path`, see the [NGINX Filesystem Restrictions table]({{< ref "/nginxaas-azure/getting-started/nginx-configuration/overview/#nginx-filesystem-restrictions" >}}) for the allowed directories the file can be written to.{{</note>}}
+      {{< call-out "note" >}}If specifying an absolute file path as the `Certificate path` or `Key path`, see the [NGINX Filesystem Restrictions table]({{< ref "/nginxaas-azure/getting-started/nginx-configuration/overview/#nginx-filesystem-restrictions" >}}) for the allowed directories the file can be written to.{{< /call-out >}}
 
-      {{<note>}}A certificate added to an NGINXaaS for Azure deployment using the Azure Portal refers to an unversioned Azure Key Vault (AKV) secret identifier. To add a certificate with a versioned AKV secret identifier, follow the documented steps with alternative [Client tools]({{< ref "/nginxaas-azure/client-tools/_index.md" >}}) for NGINXaaS for Azure.{{</note>}}
+      {{< call-out "note" >}}A certificate added to an NGINXaaS for Azure deployment using the Azure Portal refers to an unversioned Azure Key Vault (AKV) secret identifier. To add a certificate with a versioned AKV secret identifier, follow the documented steps with alternative [Client tools]({{< ref "/nginxaas-azure/client-tools/_index.md" >}}) for NGINXaaS for Azure.{{< /call-out >}}
 
 1. Select **Add certificate**.
 
@@ -72,7 +72,7 @@ Before you begin, refer Azure documentation to [Import a certificate to your Key
 
 1. Select the checkbox next to the certificate you want to edit.
 
-1. Select {{< fa "pencil">}} **Edit**.
+1. Select {{< icon "pencil">}} **Edit**.
 
 1. Update the Name, Certificate path, Key path fields as needed.
 
@@ -86,11 +86,11 @@ Before you begin, refer Azure documentation to [Import a certificate to your Key
 
 1. Select the checkbox next to the certificate you want to delete.
 
-1. Select {{< fa "trash">}}**Delete**.
+1. Select {{< icon "trash">}}**Delete**.
 
 1. Confirm the delete action.
 
-{{<warning>}}Deleting a TLS/SSL certificate currently in-use by the NGINXaaS for Azure deployment will cause an error.{{</warning>}}
+{{< call-out "warning" >}}Deleting a TLS/SSL certificate currently in-use by the NGINXaaS for Azure deployment will cause an error.{{< /call-out >}}
 
 ## What's next
 

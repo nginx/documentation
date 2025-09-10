@@ -31,17 +31,17 @@ hostname that you provided for the Developer Portal cluster, prefixed with `acm.
 You will need to update your DNS resolver settings to ensure this hostname is resolvable.
 The hostname and port for this server can be updated by selecting the **Edit Portal <-> API Connectivity Manager Connectivity** from the **Actions** menu for your desired developer portal.
 
-{{<important>}}
+{{< call-out "important" >}}
 
 - Be sure to provide the IP address or FQDN of the host where you installed the Dev Portal packages as the `{{portalClusterHostname}}`.
 - The Dev Portal must run on a dedicated host with the [`njs`](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/nginscript/) module installed.
-{{</important>}}
+{{< /call-out >}}
 
 Use the appropriate example below to deploy an HTTP or HTTPS Developer Portal.
 
 ### HTTP
 
-> {{< fa "lightbulb" >}} Use this example to get up and running quickly in a demo environment.
+> {{< icon "lightbulb" >}} Use this example to get up and running quickly in a demo environment.
 
 
 {{<bootstrap-table "table">}}
@@ -76,7 +76,7 @@ Use the appropriate example below to deploy an HTTP or HTTPS Developer Portal.
 To deploy a cluster that uses HTTPS for secure inbound communication, you'll add the **TLS Inbound** policy.
 Because this is done at the Infrastructure level, this is considered a "Global Policy".
 
-> {{< fa "lightbulb" >}} You need to provide your TLS server certificate and key as base64-encoded strings in this API call.
+> {{< icon "lightbulb" >}} You need to provide your TLS server certificate and key as base64-encoded strings in this API call.
 
 
 {{<bootstrap-table "table">}}
@@ -146,7 +146,7 @@ SSH access to the host and `sudo` permissions are required.
 The NGINX Management Suite management plane host uses the Developer Portal's hostname to communicate with the Dev Portal.
 You’ll need to update your DNS resolver settings with the Developer Portal's internal hostname.
 
-> {{< fa "lightbulb" >}} The internal hostname is the hostname that you provided for the Developer Portal, prefixed with `acm.`.
+> {{< icon "lightbulb" >}} The internal hostname is the hostname that you provided for the Developer Portal, prefixed with `acm.`.
 > For example: `acm.dev-portal.io`
 
 Next, open the Developer Portal in a browser window and make sure the portal loads.
@@ -156,7 +156,7 @@ Next, open the Developer Portal in a browser window and make sure the portal loa
 In this step, you'll apply a set of customizations to the Developer Portal.
 Because these settings are applied at the Infrastructure level, they are considered "global", meaning they apply to each Dev Portal Proxy that you associate with the cluster.
 
-{{<see-also>}}Refer to [Customize the Developer Portal]({{< ref "/nms/acm/how-to/infrastructure/customize-devportal.md" >}}) to learn more about the available customization options and how to customize a Dev Portal via the API Connectivity Manager user interface.{{</see-also>}}
+{{< call-out "note" >}}Refer to [Customize the Developer Portal]({{< ref "/nms/acm/how-to/infrastructure/customize-devportal.md" >}}) to learn more about the available customization options and how to customize a Dev Portal via the API Connectivity Manager user interface.{{< /call-out>}}
 
 
 {{<bootstrap-table "table">}}
@@ -170,7 +170,7 @@ Because these settings are applied at the Infrastructure level, they are conside
 
 Note that many fields in the example JSON payload -- including the logo image and Markdown documents -- are base64-encoded.
 
-**Example JSON payload**: {{< fa "download" >}} {{< link "/acm/customize-devportal.json" "customize-devportal.json" >}}
+**Example JSON payload**: {{< icon "download" >}} {{< link "/acm/customize-devportal.json" "customize-devportal.json" >}}
 
 Before you move on to the next guide, open the Dev Portal in your browser to view the changes.
 You should see the default Dev Portal replaced by the custom settings.
