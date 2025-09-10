@@ -170,7 +170,6 @@ If you encounter the error `error [emerg] 13#13: "zone_sync" directive is duplic
 {{< /call-out >}}
 
 
-{{<bootstrap-table "table table-striped table-bordered table-responsive">}}
 |ConfigMap Key | Description | Default |
 | ---| ---| ---| 
 |*zone-sync* | Enables zone synchronization between NGINX Ingress Controller Pods. This autogenerates a [zone_sync_server](https://nginx.org/en/docs/stream/ngx_stream_zone_sync_module.html#zone_sync_server) and a headless service using the `ReplicaSet`, `DaemonSet` or `StatefulSet` name. Please note that this headless service will be automatically cleaned up when uninstalling via Helm or by removing the value from the ConfigMap. The headless service will need to be manually removed if the `controller.customConfigMap` value is set via Helm or the deployment is uninstalled via Manifests. Each Ingress Controller manages its own headless service.  NGINX Plus Required. | *False* |
@@ -178,7 +177,6 @@ If you encounter the error `error [emerg] 13#13: "zone_sync" directive is duplic
 |*zone-sync-resolver-addresses* | Configures optional addresses used in the [resolver](https://nginx.org/en/docs/http/ngx_http_core_module.html#resolver) directive for zone-sync. This field takes a comma separated list of addresses. NGINX Plus & `zone-sync` Required | `kube-dns.kube-system.svc.cluster.local` |
 |*zone-sync-resolver-ipv6* | Configures whether the optional [resolver](https://nginx.org/en/docs/http/ngx_http_core_module.html#resolver) directive for zone-sync will look up IPv6 addresses. NGINX Plus & `zone-sync` Required | `true` |
 |*zone-sync-resolver-valid* | Configures an [NGINX time](https://nginx.org/en/docs/syntax.html) that the optional [resolver](https://nginx.org/en/docs/http/ngx_http_core_module.html#resolver) directive for zone-sync will override the TTL value of responses from nameservers with. NGINX Plus & `zone-sync` Required | `5s` |
-{{</bootstrap-table>}}
 
 
 ### Snippets and custom templates

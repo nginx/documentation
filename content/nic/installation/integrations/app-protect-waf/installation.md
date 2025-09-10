@@ -183,7 +183,7 @@ volumeMounts:
 ...
 ```
 
-{< call-out "note" >}}
+{{< call-out "note" >}}
 **StatefulSet Volume Configuration**: When using StatefulSet deployments, the `nginx-cache` volume is automatically provided via `volumeClaimTemplates` for persistent storage. App Protect WAF v5 volumes (like app-protect-config, app-protect-bundles) are still configured as regular volumes in the `volumes` section. Use `emptyDir` for temporary data or PersistentVolumeClaims if you need persistence for App Protect configurations across pod restarts.
 {{< /call-out >}}
 

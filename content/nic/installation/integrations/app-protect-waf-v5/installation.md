@@ -227,18 +227,18 @@ Create required volumes:
 volumes:
   - name: nginx-etc
     emptyDir: {}
-  - name: nginx-cache
-    emptyDir: {}
+  - name: nginx-cache # not required for statefulset
+    emptyDir: {}      # not required for statefulset
   - name: nginx-lib
     emptyDir: {}
   - name: nginx-log
     emptyDir: {}
   - name: app-protect-bd-config
     emptyDir: {}
-  - emptyDir: {}
-    name: app-protect-config
-  - emptyDir: {}
-    name: app-protect-bundles
+  - name: app-protect-config
+    emptyDir: {}
+  - name: app-protect-bundles
+    emptyDir: {}
 ```
 
 Set `controller.securityContext.readOnlyRootFilesystem` to `true`.
