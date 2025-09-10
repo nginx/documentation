@@ -564,7 +564,7 @@ The ingress2gateway tool is a Kubernetes SIG project that helps convert Ingress 
 The ingress2gateway tool is a conversion utility that translates Ingress resources to Gateway API equivalents. It is not a complete end-to-end migration solution. You will need to manually review the converted resources, test functionality, and make additional configuration changes as needed for your specific environment.
 {{< /call-out >}}
 
-### Using ingress2gateway
+### Use ingress2gateway
 
 To convert your existing NGINX Ingress resources to Gateway API resources that work with NGINX Gateway Fabric:
 
