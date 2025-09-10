@@ -1,5 +1,5 @@
 ---
-title: NGINXaaS for Azure
+title: F5 NGINXaaS for Azure
 nd-subtitle: Infrastructure-as-a-Service (IaaS) version of NGINX Plus for your Microsoft Azure application stack
 url: /nginxaas/azure/
 nd-landing-page: true
