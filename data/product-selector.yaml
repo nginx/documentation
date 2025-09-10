@@ -26,4 +26,4 @@
 - productGroup: NGINX as a Service
   products:
     - title: "NGINX as a Service for Azure"
-      url: "nginxaas/azure/"
+      url: "nginxaas/azure"
