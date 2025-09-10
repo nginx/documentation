@@ -10,7 +10,7 @@ type:
 
 
 
-F5 NGINX as a Service for Google Cloud (NGINXaaS) leverages a user assigned and a system assigned managed identity for some of its integrations with Google Cloud services.
+F5 NGINXaaS for Google Cloud (NGINXaaS) leverages a user assigned and a system assigned managed identity for some of its integrations with Google Cloud services.
 
 ## Prerequisites
 

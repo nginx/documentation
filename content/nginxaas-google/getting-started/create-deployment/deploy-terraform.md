@@ -10,7 +10,7 @@ draft: true
 
 ## Overview
 
-F5 NGINX as a Service for Google Cloud (NGINXaaS) deployments can be managed using Terraform. This document outlines common Terraform workflows for NGINXaaS.
+F5 NGINXaaS for Google Cloud (NGINXaaS) deployments can be managed using Terraform. This document outlines common Terraform workflows for NGINXaaS.
 
 ## Prerequisites
 

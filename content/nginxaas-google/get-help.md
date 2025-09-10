@@ -11,7 +11,7 @@ type:
 
 ## Contact NGINX support
 
-To contact support about F5 NGINX as a Service for Google Cloud (NGINXaaS):
+To contact support about F5 NGINXaaS for Google Cloud (NGINXaaS):
 
 1. TBD
 

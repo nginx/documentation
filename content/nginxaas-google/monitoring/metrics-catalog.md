@@ -9,7 +9,7 @@ type:
 draft: true
 ---
 
-F5 NGINX as a Service for Google Cloud (NGINXaaS) provides a rich set of metrics that you can use to monitor the health and performance of your NGINXaaS deployment. This document provides a catalog of the metrics that are available for monitoring NGINXaaS for Google Cloud.
+F5 NGINXaaS for Google Cloud (NGINXaaS) provides a rich set of metrics that you can use to monitor the health and performance of your NGINXaaS deployment. This document provides a catalog of the metrics that are available for monitoring NGINXaaS for Google Cloud.
 
 ## Available metrics
 

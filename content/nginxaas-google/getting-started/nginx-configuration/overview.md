@@ -9,7 +9,7 @@ type:
 
 
 This document provides details about using NGINX configuration files with your
-F5 NGINX as a Service for Google Cloud deployment, restrictions, and available directives.
+F5 NGINXaaS for Google Cloud deployment, restrictions, and available directives.
 
 ## NGINX configuration common user workflows
 
