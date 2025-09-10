@@ -12,15 +12,15 @@ In this guide, we'll show you how to use API requests to update NGINX Configs fo
 
 ## Getting ready
 
-Before you begin, make sure you can properly authenticate your API requests with either an API Token or API Certificate, following the instructions in the [Authentication]({{<ref "/nginx-one/api/authentication.md" >}}) guide. Ensure you have registered or created your NGINX Instance or Config Sync Group in the F5 NGINX One Console, follow the instructions in the [Manage your NGINX instances]({{<ref "/nginx-one/nginx-configs/" >}}) guide.
+Before you begin, make sure you can properly authenticate your API requests with either an API Token or API Certificate, following the instructions in the [Authentication]({{<ref "/nginx-one/api/authentication.md" >}}) guide. Ensure you have registered or created your NGINX Instance, Config Sync Group, or Staged Config in the F5 NGINX One Console, follow the instructions in the [Manage your NGINX instances]({{<ref "/nginx-one/nginx-configs/" >}}) guide.
 
 {{< call-out "note" >}}
-The workflows for managing NGINX Configs for Instances and Config Sync Groups in the F5 NGINX One Console are quite similar. This guide focuses on the steps for updating NGINX Configs for Instances. If you're working with Config Sync Groups, you'll follow a similar process but will need to update the API endpoints appropriately.
+The workflows for managing NGINX Configs for Instances, Config Sync Groups, and Staged Configs in the F5 NGINX One Console are quite similar. This guide focuses on the steps for updating NGINX Configs for Instances. If you're working with Config Sync Groups, you'll follow a similar process but will need to update the API endpoints appropriately.
 {{< /call-out>}}
 
 ## Getting the current NGINX Config
 
-You can retrieve the current NGINX Config for an Instance or Config Sync Group using a `GET` request. This is useful for making updates based on the existing configuration.
+You can retrieve the current NGINX Config for an Instance, Config Sync Group, or Staged Config using a `GET` request. This is useful for making updates based on the existing configuration.
 
 Use the following curl command to retrieve the current NGINX Config for a specific Instance. Replace `<tenant>`, `<namespace>`, `<instance-object-id>`, and `<token-value>` with your actual values.
 
@@ -34,7 +34,7 @@ Use the following curl command to retrieve the current NGINX Config for a specif
    - `<token-value>`: Your API Token.
 
 {{< call-out "note" >}}
-To update the NGINX Config for a Config Sync Group, replace `instances` with `config-sync-groups` and use the object_id of the Config Sync Group in the URL.
+To update the NGINX Config for a Config Sync Group, replace `instances` with `config-sync-groups` or `staged-configs` and use the object_id of the Config Sync Group or Staged Config in the URL.
 {{< /call-out>}}
 
  The response will include the current NGINX Config in JSON format. This response is saved to a file (e.g., `current_config.json`) for editing.
@@ -77,52 +77,71 @@ You can modify the NGINX Config using either `PUT` or `PATCH` requests. The `PUT
     - Leave out file `contents` to remove the file from the NGINX Config.
     - Include file `contents` to add or update the file in the NGINX Config. File `contents` must be base64 encoded. File `contents` can be an empty string to create an empty file.
     - `config_version` should be included to ensure you're updating the correct version of the configuration. You can get the current `config_version` from the response of the `GET` request.
-    For example, to update only the `nginx.conf` file in the NGINX Config, your `partial_update_config.json` might look like this:
+    For example, to update only the `/etc/nginx/nginx.conf` file in the NGINX Config, your `partial_update_config.json` might look like this:
     ```json
     {
         "conf_path": "/etc/nginx/nginx.conf",
-        "config_version": "<config version from GET response>",
-        "configs": {
-            "/etc/nginx": {
-                "files": [{
-                    "path": "nginx.conf",
-                    "contents": "<base64-encoded-content-here>"
-                }]
+        "config_version": "<config_version from GET response>",
+        "configs": [
+            {
+                "name": "/etc/nginx",
+                "files": [
+                    {
+                        "name": "nginx.conf",
+                        "contents": "<base64-encoded-content-here>"
+                    }
+                ]
             }
-        }
+        ]
     }
     ```
-   To remove a file, simply omit the `contents` field for that file in your `PATCH` request body, your `partial_update_config.json` might look like this:
+   {{< call-out "note" >}}
+   To encode files in base64, you can use the following command in a Unix-like terminal:
+   ```shell
+   base64 /path/to/your/file
+   ```
+   Replace `/path/to/your/file` with the actual path to the file you want to encode.
+   {{< /call-out>}}
+   To remove a file, simply omit the `contents` field for that file in your `PATCH` request body, your `partial_update_config.json` might look like this to remove `/etc/nginx/conf.d/default.conf` from the NGINX Config:
     ```json
     {
         "conf_path": "/etc/nginx/nginx.conf",
-        "config_version": "<config version from GET response>",
-        "configs": {
-            "/etc/nginx/conf.d": {
-                "files": [{
-                    "path": "default.conf"
-                }]
+        "config_version": "<config_version from GET response>",
+        "configs": [
+            {
+                "name": "/etc/nginx/conf.d",
+                "files": [
+                    {
+                        "name": "default.conf"
+                    }
+                ]
             }
-        }
+        ]
     }
     ```
-   Multiple updates can be made in a single `PATCH` request. For example, to update `nginx.conf` and remove `default.conf`, your `partial_update_config.json` might look like this:
+   Multiple updates can be made in a single `PATCH` request. For example, to update `/etc/nginx/nginx.conf` and remove `/etc/nginx/conf.d/default.conf`, your `partial_update_config.json` might look like this:
     ```json
     {
         "conf_path": "/etc/nginx/nginx.conf",
-        "config_version": "<config version from GET response>",
-        "configs": {
-            "/etc/nginx": {
-                "files": [{
-                    "path": "nginx.conf",
-                    "contents": "<base64-encoded-content-here>"
-                }]
+        "config_version": "<config_version from GET response>",
+        "configs": [
+            {
+                "name": "/etc/nginx/conf.d",
+                "files": [
+                    {
+                        "name": "default.conf"
+                    }
+                ]
             },
-            "/etc/nginx/conf.d": {
-                "files": [{
-                    "path": "default.conf"
-                }]
+            {
+                "name": "/etc/nginx",
+                "files": [
+                    {
+                        "name": "nginx.conf",
+                        "contents": "<base64-encoded-content-here>"
+                    }
+                ]
             }
-        }
+        ]
     }
     ```
