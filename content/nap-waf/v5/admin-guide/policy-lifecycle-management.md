@@ -8,7 +8,7 @@ product: NAP-WAF
 
 ## Overview
 
-Policy Lifecycle Management (PLM) provides a comprehensive solution for automating the management, compilation, and deployment of security policies within Kubernetes environments. PLM extends the WAF compiler capabilities by providing a native Kubernetes operator-based approach to policy orchestration.
+Policy Lifecycle Management (PLM) is an integrated feature of NGINX App Protect WAF that provides a comprehensive solution for automating the management, compilation, and deployment of security policies within Kubernetes environments. PLM extends the WAF compiler capabilities by providing a native Kubernetes operator-based approach to policy orchestration.
 
 The Policy Lifecycle Management system is architected around a **Policy Controller** that implements the Kubernetes operator pattern to manage the complete lifecycle of WAF security artifacts. The system addresses the fundamental challenge of policy distribution at scale by eliminating manual intervention points and providing a declarative configuration model through Custom Resource Definitions (CRDs) for policies, logging profiles, signatures, and user-defined signatures.
 
@@ -18,10 +18,9 @@ Before deploying Policy Lifecycle Management, ensure you have the following prer
 
 ### System Requirements
 
-- Kubernetes cluster (tested with k3s)
 - Helm 3 installed
 - Docker installed and configured
-- NGINX Docker Image
+- [NGINX Docker Image]({{< ref "/nap-waf/v5/admin-guide/deploy-on-docker.md#build-the-nginx-app-protect-waf-docker-image" >}})
 - NGINX JWT License
 - Docker registry credentials for private-registry.nginx.com
 
@@ -35,16 +34,52 @@ Policy Lifecycle Management requires specific Custom Resource Definitions to be 
 - `apusersigs.appprotect.f5.com` - Handles user-defined signatures
 - `apsignatures.appprotect.f5.com` - Manages signature updates and collections
 
-Apply the CRDs using the following command:
-```bash
-kubectl apply -f crds/
+
+## Configuration
+
+Policy Lifecycle Management is deployed as part of the NGINX App Protect Helm chart and requires configuration in both the Helm `values.yaml` file and the NGINX configuration.
+
+### Policy Controller Configuration
+
+#### Enable/Disable the Policy Controller
+
+The Policy Controller option is enabled by default (`appprotect.policyController.enable: true`). Helm will also install the required custom resource definitions (CRDs) required by the policy controller pod.
+
+**Important**: Before applying the Policy Controller, the required Custom Resource Definitions (CRDs) must be installed first. If the CRDs are not installed, the Policy Controller pod will fail to start and show CRD-related errors in the logs.
+
+If you do not use the custom resources that require those CRDs (with `appprotect.policyController.enable` set to false), the installation of the CRDs can be skipped by specifying `--skip-crds` in your helm install command. Please also note that when upgrading helm charts, the current CRDs will need to be deleted and the new ones will be created as part of the helm install of the new version.
+
+If you wish to pull security updates from the NGINX repository (with APSignatures CRD), you should set the `appprotect.nginxRepo` value in values.yaml file.
+
+**Helm Configuration (values.yaml):**
+
+```yaml
+appprotect:
+  policyController:
+    enable: true  # Set to false to disable Policy Controller
+    replicas: 1
+    image:
+      repository: private-registry.nginx.com/nap/waf-policy-controller
+      tag: 5.8.0
+      imagePullPolicy: IfNotPresent
+    wafCompiler:
+      image:
+        repository: private-registry.nginx.com/nap/waf-compiler
+        tag: 5.8.0
+    enableJobLogSaving: false
+    resources:
+      requests:
+        cpu: 100m
+        memory: 128Mi
+  # Optional: Configure NGINX repository for signature updates
+  nginxRepo:
+    nginxCrt: <base64-encoded-cert>
+    nginxKey: <base64-encoded-key>
 ```
 
-### NGINX Configuration
+**NGINX Configuration:**
 
-Policy Lifecycle Management requires specific NGINX configuration to integrate with the Policy Controller. The key directive `app_protect_default_config_source` must be set to `"custom-resource"` to enable PLM integration.
-
-**Required NGINX Configuration:**
+When Policy Controller is enabled in Helm, you must also enable it in your NGINX configuration using the `app_protect_default_config_source` directive:
 
 ```nginx
 user nginx;
@@ -110,46 +145,18 @@ http {
 - `app_protect_policy_file my-policy-cr` - References the Custom Resource policy name instead of bundle file paths
 - `app_protect_security_log my-logging-cr` - References the Custom Resource logging configuration name
 
-## Helm Chart Configuration
-
-Policy Lifecycle Management is deployed as part of the NGINX App Protect Helm chart. To enable PLM, you must configure the Policy Controller settings in your `values.yaml` file.
-
-### Enabling Policy Controller
-
-Set the following configuration in your `values.yaml`:
-
-```yaml
-appprotect:
-  policyController:
-    enable: true
-    replicas: 1
-    image:
-      repository: private-registry.nginx.com/nap/waf-policy-controller
-      tag: 5.8.0
-      imagePullPolicy: IfNotPresent
-    wafCompiler:
-      image:
-        repository: private-registry.nginx.com/nap/waf-compiler
-        tag: 5.8.0
-    enableJobLogSaving: false
-    resources:
-      requests:
-        cpu: 100m
-        memory: 128Mi
-```
-
-### NGINX Repository Configuration
-
-To enable signature updates with the APSignatures CRD, configure the NGINX repository credentials:
-
-```yaml
-appprotect:
-  nginxRepo:
-    nginxCrt: <base64-encoded-cert>
-    nginxKey: <base64-encoded-key>
-```
+**To disable Policy Controller:**
+1. Set `appprotect.policyController.enable: false` in your values.yaml
+2. Remove or comment out the `app_protect_default_config_source` directive from your nginx.conf
+3. Use traditional bundle file paths with `app_protect_policy_file`
 
 ## Installation Flow
+
+### New Installations vs. Upgrades
+
+**For New Installations**: Follow the complete step-by-step process below to install NGINX App Protect WAF with Policy Lifecycle Management enabled.
+
+**For Existing Customers**: If you have an existing NGINX App Protect WAF deployment without Policy Lifecycle Management, you need to upgrade your installation to enable PLM functionality. Use `helm upgrade` instead of `helm install` in step 5, and ensure you have the required CRDs and storage configured before upgrading.
 
 ### Step-by-Step Installation Process
 
@@ -172,27 +179,42 @@ appprotect:
    cd nginx-app-protect
    ```
 
-3. **Apply Custom Resource Definitions**
+3. **Create Storage**
    
-   Apply the required CRDs before deploying the chart:
-   ```bash
-   kubectl apply -f crds/
-   ```
-
-4. **Create Storage**
-   
-   Create the directory and persistent volume for policy bundles:
+   Create the directory on the cluster:
    ```bash
    mkdir -p /mnt/nap5_bundles_pv_data
    chown -R 101:101 /mnt/nap5_bundles_pv_data
-   kubectl apply -f <your-pv-yaml-file>
    ```
    
+   Create a YAML file `pv-hostpath.yaml` with the persistent volume file content:
+   ```
+   apiVersion: v1
+   kind: PersistentVolume
+   metadata:
+   name: nginx-app-protect-shared-bundles-pv
+   labels:
+       type: local
+   spec:
+   accessModes:
+       - ReadWriteMany
+   capacity:
+       storage: "2Gi"
+   hostPath:
+       path: "/mnt/nap5_bundles_pv_data"
+   persistentVolumeReclaimPolicy: Retain
+   storageClassName: manual
+   ``` 
+   Apply the `pv-hostpath.yaml` file to create the new persistent volume for policy bundles:
+   ```shell
+   kubectl apply -f pv-hostpath.yaml
+   ```
+  
    {{< call-out "note" >}}
-   The PV name defaults to `<release-name>-bundles-pv`, but can be customized using the `appprotect.storage.pv.name` setting in your values.yaml file.
+   The PV name defaults to `<release-name>-shared-bundles-pv`, but can be customized using the `appprotect.storage.pv.name` setting in your values.yaml file. Make sure to update all corresponding values for the PV and PVC to point to the correct names.
    {{< /call-out >}}
 
-5. **Configure Docker Registry Credentials**
+4. **Configure Docker Registry Credentials**
    
    Create the Docker registry secret or configure in values.yaml:
    ```bash
@@ -202,9 +224,9 @@ appprotect:
      --docker-password=none
    ```
 
-6. **Deploy the Helm Chart with Policy Controller**
+5. **Deploy the Helm Chart with Policy Controller**
    
-   Install the chart with Policy Controller enabled:
+   **For new installations:**
    ```bash
    helm install <release-name> . \
      --namespace <namespace> \
@@ -215,8 +237,19 @@ appprotect:
      --set appprotect.nginxRepo.nginxCert=$NGINX_CERT \
      --set appprotect.nginxRepo.nginxKey=$NGINX_KEY
    ```
+   
+   **For existing deployments (upgrade):**
+   ```bash
+   helm upgrade <release-name> . \
+     --namespace <namespace> \
+     --set appprotect.policyController.enable=true \
+     --set dockerConfigJson=$NGINX_REGISTRY_TOKEN \
+     --set appprotect.config.nginxJWT=$JWT \
+     --set appprotect.nginxRepo.nginxCert=$NGINX_CERT \
+     --set appprotect.nginxRepo.nginxKey=$NGINX_KEY
+   ```
 
-7. **Verify Installation**
+6. **Verify Installation**
    
    Check that all components are deployed successfully:
    ```bash
@@ -226,6 +259,42 @@ appprotect:
    ```
 
 ## Using Policy Lifecycle Management
+
+### Setting up desired security update versions
+
+Once PLM is deployed, you can create APSignatures resource using Kubernetes manifests and specify desired security update versions. Apply the following Custom Resource example or create your own based on the template:
+
+**Sample APSignatures Resource:**
+
+Create a file named `signatures.yaml` with the following content:
+
+```yaml
+apiVersion: appprotect.f5.com/v1
+kind: APSignatures
+metadata:
+  name: signatures
+spec:
+  attack-signatures:
+    revision: "2025.06.19" # attack signatures revision to be used
+  bot-signatures:
+    revision: "latest" # bot signatures revision to be used
+  threat-campaigns:
+    revision: "2025.06.24" # threat campaigns revision to be used
+```
+
+{{< call-out "note" >}}
+The APSignatures must have name `signatures`. Only one APSignatures instance can exist
+{{< /call-out >}}
+
+Apply the manifest:
+
+```bash
+kubectl apply -f signatures.yaml -n <namespace>
+```
+
+{{< call-out "note" >}}
+Downloading security updates may take several minutes. The version of security updates available at the time of compilation is always used to compile policies. If APSignatures is not created or the specified versions are not downloaded, the versions contained in the compiler docker image will be used.
+{{< /call-out >}}
 
 ### Creating Policy Resources
 
@@ -399,6 +468,129 @@ To verify that the policy bundles are being deployed and enforced correctly:
    ```
    
    The request should be blocked, confirming that PLM has successfully compiled and deployed the policy.
+
+## Upgrade the chart
+
+1. **Prepare Environment Variables**
+   
+   Set the required environment variables:
+   ```bash
+   export JWT=<your-nginx-jwt-token>
+   export NGINX_REGISTRY_TOKEN=<base64-encoded-docker-credentials>
+   export NGINX_CERT=<base64-encoded-nginx-cert>
+   export NGINX_KEY=<base64-encoded-nginx-key>
+   ```
+
+2. **Pull the new Helm Chart version**
+   
+   Login to the registry and pull the chart:
+   ```bash
+   helm registry login private-registry.nginx.com
+   helm pull oci://private-registry.nginx.com/nap/nginx-app-protect --version <new-release-version> --untar
+   cd nginx-app-protect
+   ```
+
+3. **Apply Custom Resource Definitions**
+   
+   Apply the required CRDs before deploying the chart:
+   ```bash
+   kubectl apply -f crds/
+   ```
+
+4. **Create Storage**
+   
+   Create the directory on the cluster, and persistent volume for policy bundles:
+   ```bash
+   mkdir -p /mnt/nap5_bundles_pv_data
+   chown -R 101:101 /mnt/nap5_bundles_pv_data
+   ```
+   
+   Create a YAML file `pv-hostpath.yaml` with the PV file content:
+   ```
+   apiVersion: v1
+   kind: PersistentVolume
+   metadata:
+   name: nginx-app-protect-shared-bundles-pv
+   labels:
+       type: local
+   spec:
+   accessModes:
+       - ReadWriteMany
+   capacity:
+       storage: "2Gi"
+   hostPath:
+       path: "/mnt/nap5_bundles_pv_data"
+   persistentVolumeReclaimPolicy: Retain
+   storageClassName: manual
+   ``` 
+   Apply the `pv-hostpath.yaml` file to create the new PV:
+   ```shell
+   kubectl apply -f pv-hostpath.yaml
+   ```
+  
+   {{< call-out "note" >}}
+   The PV name defaults to `<release-name>-shared-bundles-pv`, but can be customized using the `appprotect.storage.pv.name` setting in your values.yaml file.
+   {{< /call-out >}}
+
+5. **Configure Docker Registry Credentials**
+   
+   Create the Docker registry secret or configure in values.yaml:
+   ```bash
+   kubectl create secret docker-registry regcred -n <namespace> \
+     --docker-server=private-registry.nginx.com \
+     --docker-username=<JWT-Token> \
+     --docker-password=none
+   ```
+
+6. **Upgrade the Helm Chart with Policy Controller**
+   
+   Upgrade the chart with Policy Controller enabled:
+   ```bash
+   helm upgrade <release-name> . \
+     --namespace <namespace> \
+     --set appprotect.policyController.enable=true \
+     --set dockerConfigJson=$NGINX_REGISTRY_TOKEN \
+     --set appprotect.config.nginxJWT=$JWT \
+     --set appprotect.nginxRepo.nginxCert=$NGINX_CERT \
+     --set appprotect.nginxRepo.nginxKey=$NGINX_KEY
+   ```
+
+7. **Verify Upgrade**
+   
+   Check that all components are deployed successfully:
+   ```bash
+   kubectl get pods -n <namespace>
+   kubectl get crds | grep appprotect.f5.com
+   kubectl get all -n <namespace>
+   ```
+
+## Uninstall the chart
+
+1. **Manually Delete the CRs**
+
+   Delete all the existing CRs created for the deployment:
+   ```bash
+   kubectl -n <namespace> delete appolicy <policy-name>
+   kubectl -n <namespace> delete aplogconf <logconf-name>
+   kubectl -n <namespace> delete apusersigs <user-defined-signature-name>
+   kubectl -n <namespace> delete apsignatures <signature-update-name>
+   ```
+2. **Uninstall/delete the release `<release-name>`**
+
+   To delete the current release, you just need to delete it using helm:
+   ```bash
+   helm uninstall <release-name> -n <namespace>
+   ```
+
+3. **Delete any possible residual resources**
+
+   Delete any remaining CRDs, PVC, PV, and the namespace:
+   ```bash
+   kubectl delete pvc nginx-app-protect-shared-bundles-pvc -n <namespace>
+   kubectl delete pv nginx-app-protect-shared-bundles-pv
+   kubectl delete crd --all
+   kubectl delete ns <namespace>
+   ```
 
 ## Troubleshooting
 
