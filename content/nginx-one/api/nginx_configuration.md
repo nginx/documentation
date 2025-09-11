@@ -10,7 +10,7 @@ type:
 
 In this guide, we'll show you how to use API requests to update NGINX Configurations for Instances, Config Sync Groups, or Staged Configs in the F5 NGINX One Console.
 
-## Get ready
+## Before you begin
 
 Before you begin, make sure you can properly authenticate your API requests with either an API Token or API Certificate, following the instructions in the [Authentication]({{<ref "/nginx-one/api/authentication.md" >}}) guide. To ensure you have registered or created your NGINX Instance, Config Sync Group, or Staged Config in the F5 NGINX One Console, follow the instructions in the [Manage your NGINX instances]({{<ref "/nginx-one/nginx-configs/" >}}) guide.
 
