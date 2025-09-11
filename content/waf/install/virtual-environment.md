@@ -18,7 +18,10 @@ The disconnected/air-gapped installation use case has very similar steps.
 
 I'm identifying shared steps for it: depending on how large the steps might be, it might re-appear as a section on a page or have its own page.
 
-{{</ call-out>}}
+- [v4]({{< ref "/nap-waf/v4/admin-guide/install.md#offline-installation" >}})
+- [v5]({{< ref "/nap-waf/v5/admin-guide/install.md#air-gap-install-secure-offline-installation" >}})
+
+{{</ call-out >}}
 
 This page describes how to install F5 WAF for NGINX with NGINX Plus on a virtual machine or bare metal environment. 
 
@@ -26,24 +29,22 @@ This page describes how to install F5 WAF for NGINX with NGINX Plus on a virtual
 
 To complete this guide, you will need the following prerequisites:
 
-- An active F5 WAF for NGINX subscription (Purchased or trial)
-- A working [NGINX Plus installation]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}})
+- A [supported operating system]({{< ref "/waf/fundamentals/technical-specifications.md#supported-operating-systems" >}}).
+- A working [NGINX Open Source]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-open-source.md" >}}) or [NGINX Plus]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}) instance.
+- An active F5 WAF for NGINX subscription (Purchased or trial).
 
-You should read the [IP intelligence topic]({{< ref "/waf/policies/ip-intelligence.md" >}}) for additional set-up configuration if you want to use the feature immediately.
+Depending on your deployment type, you may have additional requirements:
 
-To review supported operating systems, please read the [Technical specifications]({{< ref "/waf/fundamentals/technical-specifications.md" >}}) guide.
+- [Docker](https://docs.docker.com/get-started/get-docker/), used for components in a V5 based deployment.
+- The [IP intelligence]({{< ref "/waf/policies/ip-intelligence.md" >}}) topic explains additional set-up configuration to use the feature immediately.
 
-{{< call-out "note" >}}
+### Choose an installation style
 
-To use a V5-based package, you will also need to install [Docker](https://docs.docker.com/get-started/get-docker/).
-
-{{< /call-out>}}
+The instructions on the rest of this page are split into tabs and sections based on your chosen operating system, NGINX version and deployment style. 
 
 ## Platform-specific instructions
 
 Navigate to your chosen operating system, which are alphabetically ordered.
-
-The tabs are used to select steps specific to your F5 WAF for NGINX version.
 
 ### Alpine Linux
 

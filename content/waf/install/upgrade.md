@@ -3,6 +3,7 @@
 title: "Upgrade F5 WAF for NGINX"
 # Weights are assigned in increments of 100: determines sorting order
 weight: 500
+draft: true
 # Creates a table of contents and sidebar, useful for large documents
 toc: false
 # Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this

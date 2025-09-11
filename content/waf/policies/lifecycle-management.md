@@ -28,7 +28,7 @@ It handles policy distribution at scale by removing manual steps and providing a
 
 To complete this guide, you will need the following prerequisites:
 
-- [A functional Kubernetes cluster]({{< ref "/waf/install/plus/kubernetes.md" >}})
+- [A functional Kubernetes cluster]({{< ref "/waf/install/kubernetes.md" >}})
 - [Helm](https://helm.sh/docs/intro/install/)
 - [Docker](https://docs.docker.com/get-started/get-docker/)
 - An active F5 WAF for NGINX subscription (Purchased or trial)

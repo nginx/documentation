@@ -2,7 +2,9 @@
 nd-docs:
 ---
 
-Use the following steps to ensure that F5 WAF for NGINX enforcement is operational.
+The following steps check that F5 WAF for NGINX enforcement is operational.
+
+They should be ran in the environment with the WAF components.
 
 Check that the three processes for F5 WAF for NGINX are running using `ps aux`:
 

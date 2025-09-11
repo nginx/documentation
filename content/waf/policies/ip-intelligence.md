@@ -53,7 +53,7 @@ This section **only** applies to V4 packages.
 
 To enable IP intelligence on a virtual machine or bare metal installation, you must install an extra package. You can install the extra package during or after set-up.
 
-Review the [virtual machine installation instructions]({{< ref "/waf/install/plus/virtual-environment.md" >}}) for information on how to use the package manager for a specific operating system.
+Review the [virtual machine installation instructions]({{< ref "/waf/install/virtual-environment.md" >}}) for information on how to use the package manager for a specific operating system.
 
 | Operating system                    | Package name                  |
 | ----------------------------------- | ----------------------------- |
