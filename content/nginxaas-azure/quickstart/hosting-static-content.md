@@ -8,7 +8,7 @@ type:
 - how-to
 ---
 
-F5 NGINX as a Service for Azure (NGINXaaS) supports hosting static content which allows users to serve static websites from their deployment.
+F5 NGINXaaS for Azure (NGINXaaS) supports hosting static content which allows users to serve static websites from their deployment.
 
 ## Uploading static files as a tarball
 
