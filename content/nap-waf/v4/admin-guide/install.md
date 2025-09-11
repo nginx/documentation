@@ -256,8 +256,7 @@ If a user other than **nginx** is to be used, note the following:
     ```shell
     sudo mkdir -p /etc/ssl/nginx
     ```
-
-1. Log into [MyF5](https://my.f5.com) and download the following two files:
+1. Log in to the [Customer Portal](https://my.f5.com) and download the following two files:
 
     ```shell
     nginx-repo.key
