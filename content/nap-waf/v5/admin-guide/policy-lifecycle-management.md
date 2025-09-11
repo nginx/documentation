@@ -79,10 +79,6 @@ appprotect:
       requests:
         cpu: 100m
         memory: 128Mi
-  # Optional: Configure NGINX repository for signature updates
-  nginxRepo:
-    nginxCrt: <base64-encoded-cert>
-    nginxKey: <base64-encoded-key>
 ```
 
 **NGINX Configuration:**
@@ -217,10 +213,6 @@ http {
    ```shell
    kubectl apply -f pv-hostpath.yaml
    ```
-  
-   {{< call-out "note" >}}
-   The PV name defaults to `<release-name>-shared-bundles-pv`, but can be customized using the `appprotect.storage.pv.name` setting in your values.yaml file. Make sure to update all corresponding values for the PV and PVC to point to the correct names.
-   {{< /call-out >}}
 
 4. **Create Namespace**
    
@@ -244,6 +236,10 @@ http {
    ```
 
 6. **Deploy the Helm Chart with Policy Controller**
+   
+   {{< call-out "note" >}}
+   **Release Name**: Replace `<release-name>` with your chosen Helm release name (e.g., "nginx-app-protect", "nap-plm", or "production-waf"). This name identifies your deployment and is used by Helm to manage the installation.
+   {{< /call-out >}}
    
    **For new installations:**
    ```bash
