@@ -19,7 +19,7 @@ The Azure CLI has an extension to be used for management of F5 NGINXaaS for Azur
 
 To create an NGINXaaS for Azure resource use the `az nginx deployment create` command:
 
-```bash
+```shell
 az nginx deployment create --deployment-name
                            --resource-group
                            [--auto-upgrade-profile]
@@ -39,7 +39,7 @@ az nginx deployment create --deployment-name
 
 - Create a deployment with public IP:
 
-   ```bash
+   ```shell
    az nginx deployment create --name myDeployment --resource-group \
       myResourceGroup --location eastus2 --sku name="standardv2_Monthly" \
       --network-profile front-end-ip-configuration="{public-ip-addresses:[{id:/subscriptions/mySubscriptionID/resourceGroups/myResourceGroup/providers/Microsoft.Network/publicIPAddresses/myPublicIP}]}" \
@@ -48,7 +48,7 @@ az nginx deployment create --deployment-name
 
 - Create a deployment with private IP:
 
-   ```bash
+   ```shell
    az nginx deployment create --name myDeployment --resource-group \
       myResourceGroup --location eastus2 --sku \
       name="standardv2_Monthly" --network-profile \
@@ -56,7 +56,7 @@ az nginx deployment create --deployment-name
       network-interface-configuration="{subnet-id:/subscriptions/mySubscriptionID/resourceGroups/myResourceGroup/providers/Microsoft.Network/virtualNetworks/myVNet/subnets/mySubnet}"
    ```
 
-   ```bash
+   ```shell
    az nginx deployment create --name myDeployment --resource-group \
       myResourceGroup --location eastus2 --sku \
       name="standardv2_Monthly" --network-profile \
@@ -66,7 +66,7 @@ az nginx deployment create --deployment-name
 
 - Create a dual-stack (IPv4 + IPv6) NGINXaaS deployment with public IPs:
 
-   ```bash
+   ```shell
    az nginx deployment create --name myDeployment --resource-group \
       myResourceGroup --location eastus2 --sku name="standardv2_Monthly" \
       --network-profile front-end-ip-configuration="{public-ip-addresses:[{id:/subscriptions/mySubscription/resourceGroups/myResourceGroup/providers/Microsoft.Network/publicIPAddresses/pubIPv4},{id:/subscriptions/mySubscription/resourceGroups/myResourceGroup/providers/Microsoft.Network/publicIPAddresses/pubIPv6}]}" \
@@ -75,7 +75,7 @@ az nginx deployment create --deployment-name
 
 - Create a dual-stack (IPv4 + IPv6) NGINXaaS deployment with private IPs:
 
-   ```bash
+   ```shell
    az nginx deployment create --name myDeployment --resource-group \
       myResourceGroup --location eastus2 --sku \
       name="standardv2_Monthly" --network-profile \
@@ -85,7 +85,7 @@ az nginx deployment create --deployment-name
 
 - Create a deployment with managed identity, storage account and scaling:
 
-   ```bash
+   ```shell
    az nginx deployment create --deployment-name myDeployment --resource-group \
       myResourceGroup --location eastus2 --sku name=standardv2_Monthly \
       --network-profile \
@@ -102,7 +102,7 @@ See the [Azure CLI Deployment Create Documentation](https://learn.microsoft.com/
 
 To update an NGINXaaS for Azure resource use the `az nginx deployment update` command:
 
-```bash
+```shell
 az nginx deployment update [--add]
                            [--auto-upgrade-profile]
                            [--deployment-name]
@@ -128,7 +128,7 @@ az nginx deployment update [--add]
 
 - Update tags and enable diagnostics support for a deployment:
 
-   ```bash
+   ```shell
    az nginx deployment update --name myDeployment --resource-group \
    myResourceGroup --location eastus2 --tags tag1="value1" \
    tag2="value2" --enable-diagnostics
@@ -136,7 +136,7 @@ az nginx deployment update [--add]
 
 Update an NGINXaaS deployment to a dual-stack (IPv4 + IPv6) network configuration with public IPs:
 
-   ```bash
+   ```shell
    az nginx deployment update --name myDeployment --resource-group myResourceGroup \
       --network-profile front-end-ip-configuration="{public-ip-addresses:[{id:/subscriptions/mySubscriptionID/resourceGroups/myResourceGroup/providers/Microsoft.Network/publicIPAddresses/pubIPv4},{id:/subscriptions/mySubscriptionID/resourceGroups/myResourceGroup/providers/Microsoft.Network/publicIPAddresses/pubIPv6}]}" \
       network-interface-configuration="{subnet-id:/subscriptions/mySubscriptionID/resourceGroups/myResourceGroup/providers/Microsoft.Network/virtualNetworks/myVNet/subnets/mySubnet}"
@@ -149,7 +149,7 @@ See the [Azure CLI Deployment Update Documentation](https://learn.microsoft.com/
 
 Use the `az nginx deployment delete` command to delete an NGINXaaS for Azure resource:
 
-```bash
+```shell
 az nginx deployment delete [--name]
                            [--ids]
                            [--no-wait {0, 1, f, false, n, no, t, true, y, yes}]
@@ -162,7 +162,7 @@ az nginx deployment delete [--name]
 
 - Delete a deployment:
 
-   ```bash
+   ```shell
    az nginx deployment delete --name myDeployment \
       --resource-group myResourceGroup
    ```

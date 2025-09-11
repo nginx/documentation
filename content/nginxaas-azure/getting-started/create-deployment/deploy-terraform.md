@@ -21,7 +21,7 @@ You can find examples of Terraform configurations in the [NGINXaaS for Azure Sni
 
 To create a deployment, use the following Terraform commands:
 
-   ```bash
+   ```shell
    terraform init
    terraform plan
    terraform apply --auto-approve
@@ -31,7 +31,7 @@ To create a deployment, use the following Terraform commands:
 
 Once the deployment is no longer needed, run the following to clean up the deployment and related resources:
 
-   ```bash
+   ```shell
    terraform destroy --auto-approve
    ```
 

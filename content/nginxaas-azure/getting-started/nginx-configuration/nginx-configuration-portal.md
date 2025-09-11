@@ -69,7 +69,7 @@ The editing experience consists of a single view for both editing and validation
 
 Given the example gzipped archive,
 
-```bash
+```shell
 $ tar -czf nginx.tar.gz nginx
 $ tar -tzf nginx.tar.gz
 nginx/
@@ -83,7 +83,7 @@ nginx/servers/server2.conf
 
 where `nginx` is a directory with the following structure,
 
-```bash
+```shell
 $ tree nginx
 nginx
 ├── nginx.conf
