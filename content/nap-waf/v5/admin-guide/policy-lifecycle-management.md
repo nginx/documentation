@@ -235,7 +235,7 @@ http {
 
 5. **Configure Docker Registry Credentials**
    
-   Create the Docker registry secret or configure in values.yaml:
+   Create the Docker registry secret:
    ```bash
    kubectl create secret docker-registry regcred -n <namespace> \
      --docker-server=private-registry.nginx.com \
