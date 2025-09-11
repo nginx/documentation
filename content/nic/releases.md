@@ -6,6 +6,83 @@ nd-content-type: reference
 nd-product: NIC
 nd-docs: DOCS-616
 ---
+## 5.2.0
+
+15 Sept 2025
+
+### <i class="fa-solid fa-rocket"></i> Features
+- [8011](https://github.com/nginx/kubernetes-ingress/pull/8011) Allow startupprobe to be configured via helm 
+- [7993](https://github.com/nginx/kubernetes-ingress/pull/7993) Add sni to nic jwt policy
+- [8005](https://github.com/nginx/kubernetes-ingress/pull/8005) Add nginx content cache as cache policy
+- [8093](https://github.com/nginx/kubernetes-ingress/pull/8093) Feat: viol_bot_client and viol_geolocation violations and disallowed-…
+- [8175](https://github.com/nginx/kubernetes-ingress/pull/8175) Add helm gh action
+- [8142](https://github.com/nginx/kubernetes-ingress/pull/8142) Add globalconfigurationcustomname parameter
+- [8195](https://github.com/nginx/kubernetes-ingress/pull/8195) Add support for fips 140-3 compliance
+- [8133](https://github.com/nginx/kubernetes-ingress/pull/8133) Move proxy values balancing to the beginning of parsing
+- [8229](https://github.com/nginx/kubernetes-ingress/pull/8229) Update prometheus metrics with n+ license expiry
+- [8159](https://github.com/nginx/kubernetes-ingress/pull/8159) Statefulset support
+
+### <i class="fa-solid fa-bug-slash"></i> Fixes
+- [7999](https://github.com/nginx/kubernetes-ingress/pull/7999) Remove azure from release flow
+- [8043](https://github.com/nginx/kubernetes-ingress/pull/8043) Update interval checks
+- [8074](https://github.com/nginx/kubernetes-ingress/pull/8074) Fix status updates for vs endpoints 
+- [8119](https://github.com/nginx/kubernetes-ingress/pull/8119) Don&#39;t send request headers &amp; body to jwks uri
+
+### <i class="fa-solid fa-upload"></i> Dependencies
+- [7959](https://github.com/nginx/kubernetes-ingress/pull/7959), [7983](https://github.com/nginx/kubernetes-ingress/pull/7983), [8037](https://github.com/nginx/kubernetes-ingress/pull/8037), [8057](https://github.com/nginx/kubernetes-ingress/pull/8057), [8083](https://github.com/nginx/kubernetes-ingress/pull/8083), [8096](https://github.com/nginx/kubernetes-ingress/pull/8096), [8126](https://github.com/nginx/kubernetes-ingress/pull/8126), [8143](https://github.com/nginx/kubernetes-ingress/pull/8143), [8183](https://github.com/nginx/kubernetes-ingress/pull/8183), [8186](https://github.com/nginx/kubernetes-ingress/pull/8186), [8200](https://github.com/nginx/kubernetes-ingress/pull/8200) &amp; [8231](https://github.com/nginx/kubernetes-ingress/pull/8231) Bump Go dependencies
+- [7946](https://github.com/nginx/kubernetes-ingress/pull/7946), [7961](https://github.com/nginx/kubernetes-ingress/pull/7961), [7977](https://github.com/nginx/kubernetes-ingress/pull/7977), [7979](https://github.com/nginx/kubernetes-ingress/pull/7979), [7978](https://github.com/nginx/kubernetes-ingress/pull/7978), [7984](https://github.com/nginx/kubernetes-ingress/pull/7984), [7996](https://github.com/nginx/kubernetes-ingress/pull/7996), [8012](https://github.com/nginx/kubernetes-ingress/pull/8012), [8024](https://github.com/nginx/kubernetes-ingress/pull/8024), [8036](https://github.com/nginx/kubernetes-ingress/pull/8036), [8044](https://github.com/nginx/kubernetes-ingress/pull/8044), [8063](https://github.com/nginx/kubernetes-ingress/pull/8063), [8085](https://github.com/nginx/kubernetes-ingress/pull/8085), [8107](https://github.com/nginx/kubernetes-ingress/pull/8107), [8114](https://github.com/nginx/kubernetes-ingress/pull/8114), [8128](https://github.com/nginx/kubernetes-ingress/pull/8128), [8134](https://github.com/nginx/kubernetes-ingress/pull/8134), [8147](https://github.com/nginx/kubernetes-ingress/pull/8147), [8154](https://github.com/nginx/kubernetes-ingress/pull/8154), [8173](https://github.com/nginx/kubernetes-ingress/pull/8173), [8188](https://github.com/nginx/kubernetes-ingress/pull/8188), [8228](https://github.com/nginx/kubernetes-ingress/pull/8228), [8239](https://github.com/nginx/kubernetes-ingress/pull/8239), [8235](https://github.com/nginx/kubernetes-ingress/pull/8235) &amp; [8246](https://github.com/nginx/kubernetes-ingress/pull/8246) Bump Docker dependencies
+- [8257](https://github.com/nginx/kubernetes-ingress/pull/8257) Chore(deps): bump python from `a805109` to `f64a1db` in /tests (#8254)
+- [8245](https://github.com/nginx/kubernetes-ingress/pull/8245) Chore(deps): bump the python group with 2 updates (#8243)
+- [8237](https://github.com/nginx/kubernetes-ingress/pull/8237) Chore(deps): bump the docker-tests group in /tests with 2 updates
+- [8238](https://github.com/nginx/kubernetes-ingress/pull/8238) Chore(deps): bump the actions group with 2 updates
+- [8227](https://github.com/nginx/kubernetes-ingress/pull/8227) Chore(deps): bump the actions group with 7 updates
+- [8209](https://github.com/nginx/kubernetes-ingress/pull/8209) Chore(deps): bump the actions group across 1 directory with 2 updates
+- [8210](https://github.com/nginx/kubernetes-ingress/pull/8210) Chore(deps): bump the python group with 2 updates
+- [8208](https://github.com/nginx/kubernetes-ingress/pull/8208) Update nginx agent to 3.3
+- [8187](https://github.com/nginx/kubernetes-ingress/pull/8187) Chore(deps): bump the python group with 2 updates
+- [8202](https://github.com/nginx/kubernetes-ingress/pull/8202) Chore(deps): bump actions/dependency-review-action from 4.7.2 to 4.7.3 in the actions group
+- [8201](https://github.com/nginx/kubernetes-ingress/pull/8201) Chore(deps): bump kindest/node from v1.33.2 to v1.33.4 in /tests in the docker-tests group
+- [8182](https://github.com/nginx/kubernetes-ingress/pull/8182) Chore(deps): bump the actions group across 1 directory with 2 updates
+- [8156](https://github.com/nginx/kubernetes-ingress/pull/8156) [pre-commit.ci] pre-commit autoupdate
+- [8170](https://github.com/nginx/kubernetes-ingress/pull/8170) Chore(deps): bump the python group across 1 directory with 2 updates
+- [8162](https://github.com/nginx/kubernetes-ingress/pull/8162) Chore(deps): bump the actions group with 3 updates
+- [8146](https://github.com/nginx/kubernetes-ingress/pull/8146) Chore(deps): bump the actions group with 2 updates
+- [7971](https://github.com/nginx/kubernetes-ingress/pull/7971) Update to nginx oss 1.29.1, plus r35, agent v3.2, app protect and alpine 3.22
+- [8121](https://github.com/nginx/kubernetes-ingress/pull/8121) Chore(deps): bump the python group with 3 updates
+- [8120](https://github.com/nginx/kubernetes-ingress/pull/8120) [pre-commit.ci] pre-commit autoupdate
+- [8127](https://github.com/nginx/kubernetes-ingress/pull/8127) Chore(deps): bump the actions group across 1 directory with 2 updates
+- [8118](https://github.com/nginx/kubernetes-ingress/pull/8118) Chore(deps): bump github/codeql-action from 3.29.6 to 3.29.8 in the actions group
+- [8113](https://github.com/nginx/kubernetes-ingress/pull/8113) Chore(deps): bump the actions group with 2 updates
+- [8101](https://github.com/nginx/kubernetes-ingress/pull/8101) Chore(deps): bump certifi from 2025.7.14 to 2025.8.3 in the python group
+- [8100](https://github.com/nginx/kubernetes-ingress/pull/8100) [pre-commit.ci] pre-commit autoupdate
+- [8104](https://github.com/nginx/kubernetes-ingress/pull/8104) Chore(deps): bump the actions group with 6 updates
+- [8082](https://github.com/nginx/kubernetes-ingress/pull/8082) Chore(deps): bump the python group with 3 updates
+- [8061](https://github.com/nginx/kubernetes-ingress/pull/8061) Chore(deps): bump kindest/node from v1.33.1 to v1.33.2 in /tests in the docker-tests group
+- [8071](https://github.com/nginx/kubernetes-ingress/pull/8071) Chore(deps): bump github/codeql-action from 3.29.3 to 3.29.4 in the actions group
+- [8062](https://github.com/nginx/kubernetes-ingress/pull/8062) Chore(deps): bump anchore/sbom-action from 0.20.2 to 0.20.4 in the actions group
+- [8056](https://github.com/nginx/kubernetes-ingress/pull/8056) [pre-commit.ci] pre-commit autoupdate
+- [8058](https://github.com/nginx/kubernetes-ingress/pull/8058) Chore(deps): bump the actions group with 3 updates
+- [8048](https://github.com/nginx/kubernetes-ingress/pull/8048) Chore(deps): bump sigstore/cosign-installer from 3.9.1 to 3.9.2 in the actions group
+- [8021](https://github.com/nginx/kubernetes-ingress/pull/8021) Chore(deps): bump certifi from 2025.6.15 to 2025.7.14 in the python group
+- [8018](https://github.com/nginx/kubernetes-ingress/pull/8018) [pre-commit.ci] pre-commit autoupdate
+- [8013](https://github.com/nginx/kubernetes-ingress/pull/8013) Chore(deps): bump lucacome/draft-release from 1.2.3 to 1.2.4 in the actions group
+- [7995](https://github.com/nginx/kubernetes-ingress/pull/7995) Chore(deps): bump the python group with 2 updates
+- [7994](https://github.com/nginx/kubernetes-ingress/pull/7994) [pre-commit.ci] pre-commit autoupdate
+- [7987](https://github.com/nginx/kubernetes-ingress/pull/7987) Chore(deps): bump the actions group with 2 updates
+- [7976](https://github.com/nginx/kubernetes-ingress/pull/7976) Chore(deps): bump the python group with 3 updates
+- [7975](https://github.com/nginx/kubernetes-ingress/pull/7975) Chore(deps): bump github/codeql-action from 3.29.1 to 3.29.2 in the actions group
+- [7972](https://github.com/nginx/kubernetes-ingress/pull/7972) Chore(deps): bump github/codeql-action from 3.29.0 to 3.29.1 in the actions group
+- [7944](https://github.com/nginx/kubernetes-ingress/pull/7944) Chore(deps): bump the python group in /tests with 4 updates
+
+### <i class="fa-solid fa-download"></i> Upgrade
+- For NGINX, use the 5.2.0 images from our [DockerHub](https://hub.docker.com/r/nginx/nginx-ingress/tags?page=1&ordering=last_updated&name=5.2.0), [GitHub Container](https://github.com/nginx/kubernetes-ingress/pkgs/container/kubernetes-ingress), [Amazon ECR Public Gallery](https://gallery.ecr.aws/nginx/nginx-ingress) or [Quay.io](https://quay.io/repository/nginx/nginx-ingress).
+- For NGINX Plus, use the 5.2.0 images from the F5 Container registry or build your own image using the 5.2.0 source code.
+- For Helm, use version 2.3.0 of the chart.
+
+### <i class="fa-solid fa-life-ring"></i> Supported Platforms
+We will provide technical support for NGINX Ingress Controller on any Kubernetes platform that is currently supported by its provider and that passes the Kubernetes conformance tests. This release was fully tested on the following Kubernetes versions: 1.26-1.34.
+
+---
 ## 5.1.1
 
 15 Aug 2025
