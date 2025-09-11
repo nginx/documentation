@@ -1,16 +1,16 @@
 ---
 description: ''
-nd-docs: DOCS-1063
-title: Working with NGINX Configs
+nd-docs: DOCS-000
+title: Manage NGINX configurations with API requests
 toc: true
-weight: 10
+weight: 100
 type:
 - how-to
 ---
 
-In this guide, we'll show you how to use API requests to update NGINX Configs for Instances or Config Sync Groups in the F5 NGINX One Console.
+In this guide, we'll show you how to use API requests to update NGINX Configurations for Instances or Config Sync Groups in the F5 NGINX One Console.
 
-## Getting ready
+## Get ready
 
 Before you begin, make sure you can properly authenticate your API requests with either an API Token or API Certificate, following the instructions in the [Authentication]({{<ref "/nginx-one/api/authentication.md" >}}) guide. Ensure you have registered or created your NGINX Instance, Config Sync Group, or Staged Config in the F5 NGINX One Console, follow the instructions in the [Manage your NGINX instances]({{<ref "/nginx-one/nginx-configs/" >}}) guide.
 
@@ -18,15 +18,16 @@ Before you begin, make sure you can properly authenticate your API requests with
 The workflows for managing NGINX Configs for Instances, Config Sync Groups, and Staged Configs in the F5 NGINX One Console are quite similar. This guide focuses on the steps for updating NGINX Configs for Instances. If you're working with Config Sync Groups, you'll follow a similar process but will need to update the API endpoints appropriately.
 {{< /call-out>}}
 
-## Getting the current NGINX Config
+## Get the current NGINX configuration
 
 You can retrieve the current NGINX Config for an Instance, Config Sync Group, or Staged Config using a `GET` request. This is useful for making updates based on the existing configuration.
 
-Use the following curl command to retrieve the current NGINX Config for a specific Instance. Replace `<tenant>`, `<namespace>`, `<instance-object-id>`, and `<token-value>` with your actual values.
+Use the following `curl` command to retrieve the current NGINX configuration for a specific Instance. Replace `<tenant>`, `<namespace>`, `<instance-object-id>`, and `<token-value>` with your actual values.
    ```shell
    curl -X GET "https://<tenant>.console.ves.volterra.io/api/nginx/one/namespaces/<namespace>/instances/<instance-object-id>/config" \
    -H "Authorization: APIToken <token-value>" -o current_config.json
    ```
+
    - `<tenant>`: Your tenant name for organization plans.
    - `<namespace>`: The namespace your Instance belongs to.
    - `<instance-object-id>`: The object_id of the NGINX Instance you want to retrieve the NGINX Config for.
@@ -36,9 +37,9 @@ Use the following curl command to retrieve the current NGINX Config for a specif
 To update the NGINX Config for a Config Sync Group or Staged Config, replace `instances` with `config-sync-groups` or `staged-configs` and use the object_id of the Config Sync Group or Staged Config in the URL.
 {{< /call-out>}}
 
- The response will include the current NGINX Config in JSON format. This response is saved to a file (e.g., `current_config.json`) for editing.
+ The response will include the current NGINX configuration in JSON format. This response is saved to a file (with a name like `current_config.json`) for editing.
 
-You can modify the NGINX Config using either `PUT` or `PATCH` requests. The `PUT` method replaces the entire NGINX Config, while the `PATCH` method allows you to update specific fields without affecting the rest of the configuration.
+You can modify the NGINX configuration using either `PUT` or `PATCH` requests. The `PUT` method replaces the entire NGINX configuration, while the `PATCH` method allows you to update specific fields without affecting the rest of the configuration.
 
 ## How to base64 encode a file for JSON request
 
