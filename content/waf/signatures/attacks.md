@@ -16,6 +16,6 @@ nd-product: NAP-WAF
 
 The design intention for this page is to act as a replacement for the existing [Updating App Protect Attack Signatures]({{< ref "/nap-waf/v4/admin-guide/install.md#updating-app-protect-attack-signatures" >}}) section in the Administration/Install guides.
 
-Each document should fulfill one specific operation: people may not need information on how to update signatures immediately after installing NGINX App Protect WAF, so this decouples the information into somewhere easily findable.
+Each document should fulfill one specific operation: people may not need information on how to update signatures immediately after installing F5 WAF for NGINX, so this decouples the information into somewhere easily findable.
 
 {{</ call-out >}}

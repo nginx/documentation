@@ -14,7 +14,7 @@ nd-product: NAP-WAF
 
 {{< call-out "warning" "Information architecture note" >}}
 
-The design intention for this page is to migrate the [Compile NGINX App Protect WAF policies using NGINX Instance Manager]({{< ref "/nic/installation/integrations/app-protect-waf-v5/compile-waf-policies.md" >}}) page.
+The design intention for this page is to migrate the [Compile F5 WAF for NGINX policies using NGINX Instance Manager]({{< ref "/nic/installation/integrations/app-protect-waf-v5/compile-waf-policies.md" >}}) page.
 
 As part of changing information architecture for the whole NGINX product portfolio, as much of the context for a specific product is kept within its own documentation set as possible.
 

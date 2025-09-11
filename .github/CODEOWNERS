@@ -25,7 +25,7 @@ content/nginx/nms/agent/*   @nginx/nginx-agent
 # F5 DoS for NGINX
 content/nap-dos/*           @nginx/dos-docs-approvers
 
-# NGINX App Protect WAF
+# F5 WAF for NGINX
 content/nap-waf/*           @nginx/nap-docs-approvers
 data/nap-waf/*              @nginx/nap-docs-approvers
 

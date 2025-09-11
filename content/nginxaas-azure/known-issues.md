@@ -11,7 +11,7 @@ List of known issues in the latest release of F5 NGINX as a Service for Azure (N
 
 ### {{% icon-bug %}} Custom and precompiled security policies cannot both be referenced in an NGINX configuration
 
-When using NGINX App Protect WAF, you can only reference default or custom security policies in your NGINX configuration, not both.
+When using F5 WAF for NGINX, you can only reference default or custom security policies in your NGINX configuration, not both.
 
 **Workaround**: Make a copy of the default policy you want to use, then add it as a custom policy with a different name.
 

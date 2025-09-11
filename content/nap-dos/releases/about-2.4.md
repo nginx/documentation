@@ -58,7 +58,7 @@ June 28, 2022
 
 ### Important Notes
 
-- If NGINX App Protect WAF is installed, app protect should be disabled for the location of DoS Live Activity Monitoring API
+- If F5 WAF for NGINX is installed, app protect should be disabled for the location of DoS Live Activity Monitoring API
 
     For example:
 

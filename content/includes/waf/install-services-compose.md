@@ -41,7 +41,7 @@ networks:
 
 In some operating systems, security mechanisms like SELinux or AppArmor are enabled by default, potentially blocking necessary file access for the nginx process and waf-config-mgr and waf-enforcer containers.
 
-To ensure NGINX App Protect WAF operates smoothly without compromising security, consider setting up a custom SELinux policy or AppArmor profile. 
+To ensure F5 WAF for NGINX operates smoothly without compromising security, consider setting up a custom SELinux policy or AppArmor profile. 
 
 For short-term troubleshooting, you may use permissive (SELinux) or complain (AppArmor) mode to avoid these restrictions, but this is inadvisable for prolonged use.
 

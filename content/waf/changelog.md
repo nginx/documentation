@@ -48,7 +48,7 @@ _August 13th, 2025_
 
 {{< /table >}}
 
-## NGINX App Protect WAF 5.7 / 4.15
+## F5 WAF for NGINX 5.7 / 4.15
 
 _June 24th, 2025_
 
@@ -116,14 +116,14 @@ _June 24th, 2025_
 | RHEL 8 and Rocky Linux 8 | _app-protect-34+5.442.0-1.el8.ngx.x86_64.rpm_      |
 | RHEL 9 and Rocky Linux 9 | _app-protect-34+5.442.0-1.el9.ngx.x86_64.rpm_      |
 
-## NGINX App Protect WAF 5.6 / 4.14
+## F5 WAF for NGINX 5.6 / 4.14
 
 _April 1st, 2025_
 
 ### New features
 
 - Added support for NGINX Plus R34
-- **5.6 Only:** You can now [deploy NGINX App Protect WAF 5+ using a Helm chart]({{< ref "/nap-waf/v5/admin-guide/deploy-with-helm.md">}})
+- **5.6 Only:** You can now [deploy F5 WAF for NGINX 5+ using a Helm chart]({{< ref "/nap-waf/v5/admin-guide/deploy-with-helm.md">}})
 
 ### Important notes
 

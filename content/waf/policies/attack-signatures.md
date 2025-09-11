@@ -30,7 +30,7 @@ You can update the attack signatures without updating F5 WAF for NGINX, and conv
 
 The default and strict policies include and enable common signature sets, which are categorized groups of [signatures](#attack-signatures-overview) applied to the policy. However, you may wish to modify the list of signature sets and their logging and enforcement settings via the `signature-sets` array property. There are several ways to configure the enforced signature sets.
 
-One way is by use of the `All Signatures` signature set, which is simply a predefined signature set that includes all signatures known to NGINX App Protect WAF.
+One way is by use of the `All Signatures` signature set, which is simply a predefined signature set that includes all signatures known to F5 WAF for NGINX.
 
 In this example, the `All Signatures` set (and therefore the signatures included within) are configured to be enforced and logged respectively, by setting their `block` and `alarm` properties:
 

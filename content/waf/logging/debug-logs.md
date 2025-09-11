@@ -10,7 +10,7 @@ nd-product: NAP-WAF
 
 Debug log settings determine the minimum log level and the internal App Protect components included in the log.
 
-`nginx.conf` does not refer to the NGINX App Protect WAF debug log configuration neither directly nor indirectly.
+`nginx.conf` does not refer to the F5 WAF for NGINX debug log configuration neither directly nor indirectly.
 
 ### Logger Configuration File
 

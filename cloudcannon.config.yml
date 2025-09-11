@@ -132,8 +132,8 @@ collections_config:
   nap_waf:
     path: content/nap-waf
     output: true
-    name: NGINX App Protect WAF
-    description: Documentation for NGINX App Protect WAF.
+    name: F5 WAF for NGINX
+    description: Documentation for F5 WAF for NGINX.
     parse_branch_index: false
     icon: notes
     preview:

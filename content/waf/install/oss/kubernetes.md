@@ -16,8 +16,8 @@ nd-product: NAP-WAF
 
 The design intention for this page is to encapsulate the v5+ deployment methods, currently split between the following two pages:
 
-- [Deploy NGINX App Protect WAF with Helm]({{< ref "/nap-waf/v5/admin-guide/deploy-with-helm.md" >}})
-- [Deploy NGINX App Protect WAF with Manifests]({{< ref "/nap-waf/v5/admin-guide/deploy-with-manifests.md" >}})
+- [Deploy F5 WAF for NGINX with Helm]({{< ref "/nap-waf/v5/admin-guide/deploy-with-helm.md" >}})
+- [Deploy F5 WAF for NGINX with Manifests]({{< ref "/nap-waf/v5/admin-guide/deploy-with-manifests.md" >}})
 
 In execution it will probably remain two separate files: the warning banner on top of the page will explicitly indicate what version of NAP the instructions are intended for.
 

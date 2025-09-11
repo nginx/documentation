@@ -60,7 +60,7 @@ September 21, 2022
 It is recommended to deploy F5 DoS for NGINX with L4 (eBPF) mitigation at the perimeter network or behind L3 load balancer.
 Installing F5 DoS for NGINX with L4 (eBPF) mitigation behind L4/L7 load balancer may result in the load balancer's starvation during an attack.
 
-- If NGINX App Protect WAF is installed, app protect should be disabled for the location of DoS Live Activity Monitoring API.
+- If F5 WAF for NGINX is installed, app protect should be disabled for the location of DoS Live Activity Monitoring API.
 
     For example:
 

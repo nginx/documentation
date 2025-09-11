@@ -14,7 +14,7 @@ The operation logs consists of system operational and health events. The events 
 
 |Event Type | Level | Meaning |
 | ---| ---| --- |
-|App Protect Connected | Notice | A worker successfully connected to NGINX App Protect WAF Enforcer.<br> The **mode** attribute should be **operational** unless there is an ongoing problem. |
+|App Protect Connected | Notice | A worker successfully connected to F5 WAF for NGINX Enforcer.<br> The **mode** attribute should be **operational** unless there is an ongoing problem. |
 
 
 ```json
@@ -30,7 +30,7 @@ The operation logs consists of system operational and health events. The events 
 
 |Event Type | Level | Meaning |
 | ---| ---| --- |
-|App Protect Connection Failure | Error | A worker attempted to connect to F5 NGINX App Protect WAF but the operation failed.<br> The **mode** should be **failure**. |
+|App Protect Connection Failure | Error | A worker attempted to connect to F5 WAF for NGINX but the operation failed.<br> The **mode** should be **failure**. |
 
 
 
@@ -142,7 +142,7 @@ The operation logs consists of system operational and health events. The events 
 
 |Event Type | Level | Meaning |
 | ---| ---| --- |
-|Configuration Load Success | Notice | The WAF configuration process ended successfully: all policies, log configuration and global settings were loaded to NGINX App Protect WAF and all traffic will be handled by this configuration.<br>The "error_message" contains warnings.<br>This event is generated also on the initial configuration (when NGINX starts).<br>Also includes the signature update version which reflects the date the package was released and the exact revision time in datetime format that also includes the time of day, thus compatible with the revision date time in the WAF policy `signature-requirements` element. |
+|Configuration Load Success | Notice | The WAF configuration process ended successfully: all policies, log configuration and global settings were loaded to F5 WAF for NGINX and all traffic will be handled by this configuration.<br>The "error_message" contains warnings.<br>This event is generated also on the initial configuration (when NGINX starts).<br>Also includes the signature update version which reflects the date the package was released and the exact revision time in datetime format that also includes the time of day, thus compatible with the revision date time in the WAF policy `signature-requirements` element. |
 
 ```json
 {

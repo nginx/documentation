@@ -33,7 +33,7 @@ F5 WAF for NGINX uses a separate logging mechanism to NGINX's default one, which
 
 ## Log Types
 
-Logs in F5 NGINX App Protect WAF v5 can be accessed and configured similarly to NGINX App Protect WAF, though there are some differences in the process.
+Logs in F5 WAF for NGINX v5 can be accessed and configured similarly to F5 WAF for NGINX, though there are some differences in the process.
 
 ### Security Logs
 
@@ -59,7 +59,7 @@ For instance:
     ...
     location / {
 
-        # NGINX App Protect WAF
+        # F5 WAF for NGINX
         app_protect_enable on;
         app_protect_security_log_enable on;
         app_protect_security_log log_blocked syslog:server=log-server:514;
@@ -96,7 +96,7 @@ docker logs waf-config-mgr
 
 ### NGINX Access Log
 
-NGINX App Protect WAF v5 can be configured to add additional data to NGINX [Access log]({{< ref "/nap-waf/v5/logging-overview/access-log" >}}).
+F5 WAF for NGINX v5 can be configured to add additional data to NGINX [Access log]({{< ref "/nap-waf/v5/logging-overview/access-log" >}}).
 
 ## logrotate support
 

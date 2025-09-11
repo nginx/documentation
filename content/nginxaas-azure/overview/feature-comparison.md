@@ -40,7 +40,7 @@ type:
 |&nbsp;&nbsp;OpenID Connect single sign-on<br>&nbsp;&nbsp;(SSO) |  |{{<check>}}      |{{<check>}}               |
 |&nbsp;&nbsp;Internal redirect |             |{{<check>}}          |                          |
 |&nbsp;&nbsp;NGINX as a SAML Service Provider |             |{{<check>}}          |{{<check>}}                  |
-|&nbsp;&nbsp;[NGINX App Protect WAF](https://www.f5.com/products/nginx/nginx-app-protect) (additional cost) |             |{{<check>}}          |{{<check>}}          |
+|&nbsp;&nbsp;[F5 WAF for NGINX](https://www.f5.com/products/nginx/nginx-app-protect) (additional cost) |             |{{<check>}}          |{{<check>}}          |
 |&nbsp;&nbsp;[F5 DoS for NGINX](https://www.f5.com/products/nginx/nginx-app-protect) (additional cost) |             |{{<check>}}          |                          |
 |**Monitoring**                          |**NGINX Open<br>Source** |**NGINX Plus<br>&nbsp;** |**NGINXaaS<br>for Azure**     |
 |&nbsp;&nbsp;Export to [external monitoring tools](https://docs.nginx.com/nginx/admin-guide/monitoring/live-activity-monitoring/)  |{{<check>}} |{{<check>}}          |Export metrics to<br>Azure Monitor |

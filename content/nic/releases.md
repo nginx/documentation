@@ -434,7 +434,7 @@ versions: 1.25-1.30.
 25 Jun 2024
 
 Added support for the latest generation of NGINX App Protect Web Application Firewall, v5. NGINX Ingress Controller will continue to support the NGINX App Protect v4 family to allow customers to implement new Policy Bundle workflow at their own pace.
-NGINX App Protect WAF v5 does not accept the JSON based policies, instead requiring users to compile a Policy Bundle outside of the NGINX Ingress Controller pod. Policy bundles contain a combination of custom Policy, signatures, and campaigns. Bundles can be compiled using either App Protect [compiler]({{< ref "/nap-waf/v5/admin-guide/compiler/" >}}), or [NGINX Instance Manager]({{< ref "/nim/nginx-app-protect/manage-waf-security-policies.md#list-security-policy-bundles" >}}). Read more in the [NGINX App Protect WAF V5]({{< ref "/nic/installation/integrations/app-protect-waf-v5/" >}})  topic.
+F5 WAF for NGINX v5 does not accept the JSON based policies, instead requiring users to compile a Policy Bundle outside of the NGINX Ingress Controller pod. Policy bundles contain a combination of custom Policy, signatures, and campaigns. Bundles can be compiled using either App Protect [compiler]({{< ref "/nap-waf/v5/admin-guide/compiler/" >}}), or [NGINX Instance Manager]({{< ref "/nim/nginx-app-protect/manage-waf-security-policies.md#list-security-policy-bundles" >}}). Read more in the [F5 WAF for NGINX V5]({{< ref "/nic/installation/integrations/app-protect-waf-v5/" >}})  topic.
 
 With this release, NGINX Ingress Controller is implementing a new image maintenance policy. Container images for subscribed users will be updated on a regular basis in-between releases to reduce the CVE vulnerabilities.
 Customers can observe the 3.6.x tag when listing images in the registry and select the latest image to update to for the current release.
@@ -540,7 +540,7 @@ versions: 1.23-1.29.
 
 26 Mar 2024
 
-NGINX Ingress Controller and NGINX App Protect WAF users can can now view violations through NGINX Instance Manager Security Monitor.  Security Monitor can be used to build Policy bundles, reducing reload time impacts on NGINX Ingress Controller.  Read more information in [NGINX App Protect WAF Bundles]({{< ref "/nic/installation/integrations/app-protect-waf/configuration.md#waf-bundles" >}}) and Security Monitoring.
+NGINX Ingress Controller and F5 WAF for NGINX users can can now view violations through NGINX Instance Manager Security Monitor.  Security Monitor can be used to build Policy bundles, reducing reload time impacts on NGINX Ingress Controller.  Read more information in [F5 WAF for NGINX Bundles]({{< ref "/nic/installation/integrations/app-protect-waf/configuration.md#waf-bundles" >}}) and Security Monitoring.
 
 When using NGINX Plus for two version [split rollouts]({{ ref "/nic/configuration/virtualserver-and-virtualserverroute-resources.md#split" }}), you can now control progressive rollouts of a new backend version without reloading NGINX using the [**-weight-changes-dynamic-reload**]({{< ref "/nic/configuration/global-configuration/command-line-arguments.md#-weight-changes-dynamic-reload" >}}) command line argument.
 
@@ -1120,7 +1120,7 @@ We will provide technical support for NGINX Ingress Controller on any Kubernetes
 ### <i class="fa-solid fa-upload"></i> Dependencies
 
 - Update NGINX Plus version to R28.
-- Update NGINX App Protect WAF version to 4.0.
+- Update F5 WAF for NGINX version to 4.0.
 - Update F5 DoS for NGINX version to 3.1.
 
 ### <i class="fa-solid fa-download"></i> Upgrade

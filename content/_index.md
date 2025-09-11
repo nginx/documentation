@@ -34,7 +34,7 @@ Learn how to deliver, manage, and protect your applications using F5 NGINX produ
 {{</card-section>}}
 
 {{<card-section showAsCards="true" title="F5 NGINX App Protect">}}
-  {{<card title="F5 NGINX App Protect WAF" titleUrl="/nginx-app-protect-waf/" brandIcon="NGINX-App-Protect-WAF-product-icon.svg" isLanding="true">}}
+  {{<card title="F5 WAF for NGINX" titleUrl="/nginx-app-protect-waf/" brandIcon="NGINX-App-Protect-WAF-product-icon.svg" isLanding="true">}}
     Lightweight, high-performance, advanced protection against Layer 7 attacks on your apps and APIs.
   {{</card >}}
   {{<card title="F5 NGINX App Protect DoS" titleUrl="/nginx-app-protect-dos/" brandIcon="NGINX-App-Protect-DoS-product-icon.svg" isLanding="true">}}

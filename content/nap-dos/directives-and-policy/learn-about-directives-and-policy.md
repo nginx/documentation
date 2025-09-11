@@ -452,7 +452,7 @@ app_protect_dos_accelerated_mitigation on syn_drop=on;
 
 The `app_protect_dos_access_file` directive defines an allowlist policy from a specified file.<br>
 This enables specifying IP addresses or ranges that should never be blocked.<br>
-The format of the file is the same as used in NGINX App Protect WAF, making it easy to reuse existing WAF policies with defined allowlist IPs.<br>
+The format of the file is the same as used in F5 WAF for NGINX, making it easy to reuse existing WAF policies with defined allowlist IPs.<br>
 <br>
 The directive is optional. If not written, then the allowlist feature is disabled.<br>
 <br>

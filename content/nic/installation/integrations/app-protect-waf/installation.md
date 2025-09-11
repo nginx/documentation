@@ -1,5 +1,5 @@
 ---
-title: Build NGINX Ingress Controller with NGINX App Protect WAF
+title: Build NGINX Ingress Controller with F5 WAF for NGINX
 weight: 100
 toc: true
 type: how-to
@@ -7,17 +7,17 @@ product: NIC
 nd-docs: DOCS-579
 ---
 
-This document explains how to build a F5 NGINX Ingress Controller image with F5 NGINX App Protect WAF from source code.
+This document explains how to build a F5 NGINX Ingress Controller image with F5 WAF for NGINX from source code.
 
 {{<call-out "tip" "Pre-built image alternatives" >}} If you'd rather not build your own NGINX Ingress Controller image, see the [pre-built image options](#pre-built-images) at the end of this guide.{{</call-out>}}
 
 ## Before you start
 
-- To use NGINX App Protect WAF with NGINX Ingress Controller, you must have NGINX Plus.
+- To use F5 WAF for NGINX with NGINX Ingress Controller, you must have NGINX Plus.
 
 ## Prepare the environment
 
-Get your system ready for building and pushing the NGINX Ingress Controller image with NGINX App Protect WAF.
+Get your system ready for building and pushing the NGINX Ingress Controller image with F5 WAF for NGINX.
 
 1. Sign in to your private registry. Replace `<my-docker-registry>` with the path to your own private registry.
 
@@ -36,7 +36,7 @@ Get your system ready for building and pushing the NGINX Ingress Controller imag
 
 ## Build the image
 
-Follow these steps to build the NGINX Controller Image with NGINX App Protect WAF.
+Follow these steps to build the NGINX Controller Image with F5 WAF for NGINX.
 
 1. Place your NGINX Plus license files (_nginx-repo.crt_ and _nginx-repo.key_) in the project's root folder. To verify they're in place, run:
 
@@ -70,10 +70,10 @@ Follow these steps to build the NGINX Controller Image with NGINX App Protect WA
 
 | Makefile Target           | Description                                                       | Compatible Systems  |
 |---------------------------|-------------------------------------------------------------------|---------------------|
-| **debian-image-nap-plus** | Builds a Debian-based image with NGINX Plus and the [NGINX App Protect WAF](/nginx-app-protect-waf/) module. | Debian  |
-| **debian-image-nap-dos-plus** | Builds a Debian-based image with NGINX Plus, [NGINX App Protect WAF](/nginx-app-protect-waf/), and [F5 DoS for NGINX](/nginx-app-protect-dos/) | Debian  |
-| **ubi-image-nap-plus**    | Builds a UBI-based image with NGINX Plus and the [NGINX App Protect WAF](/nginx-app-protect-waf/) module. | OpenShift |
-| **ubi-image-nap-dos-plus** | Builds a UBNI-based image with NGINX Plus, [NGINX App Protect WAF](/nginx-app-protect-waf/), and [F5 DoS for NGINX](/nginx-app-protect-dos/). | OpenShift |
+| **debian-image-nap-plus** | Builds a Debian-based image with NGINX Plus and the [F5 WAF for NGINX](/nginx-app-protect-waf/) module. | Debian  |
+| **debian-image-nap-dos-plus** | Builds a Debian-based image with NGINX Plus, [F5 WAF for NGINX](/nginx-app-protect-waf/), and [F5 DoS for NGINX](/nginx-app-protect-dos/) | Debian  |
+| **ubi-image-nap-plus**    | Builds a UBI-based image with NGINX Plus and the [F5 WAF for NGINX](/nginx-app-protect-waf/) module. | OpenShift |
+| **ubi-image-nap-dos-plus** | Builds a UBNI-based image with NGINX Plus, [F5 WAF for NGINX](/nginx-app-protect-waf/), and [F5 DoS for NGINX](/nginx-app-protect-dos/). | OpenShift |
 
 {{< call-out "note" >}} For the complete list of _Makefile_ targets and customizable variables, see the [Build NGINX Ingress Controller]({{< ref "/nic/installation/build-nginx-ingress-controller.md#makefile-details" >}}) topic. {{< /call-out>}}
 
@@ -81,7 +81,7 @@ Follow these steps to build the NGINX Controller Image with NGINX App Protect WA
 
 ## Push the image to your private registry
 
-Once you've successfully built the NGINX Ingress Controller image with NGINX App Protect WAF, the next step is to upload it to your private Docker registry. This makes the image available for deployment to your Kubernetes cluster.
+Once you've successfully built the NGINX Ingress Controller image with F5 WAF for NGINX, the next step is to upload it to your private Docker registry. This makes the image available for deployment to your Kubernetes cluster.
 
 To upload the image, run the following command. If you're using a custom tag, add `TAG=your-tag` to the end of the command. Replace `<my-docker-registry>` with your private registry's path.
 
@@ -193,7 +193,7 @@ volumeMounts:
 
 ---
 
-## Enable NGINX App Protect WAF module
+## Enable F5 WAF for NGINX module
 
 To enable the F5 DoS for NGINX Module:
 

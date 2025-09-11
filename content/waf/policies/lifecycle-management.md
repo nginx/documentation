@@ -13,9 +13,8 @@ nd-product: NAP-WAF
 ---
 
 {{< call-out "note" >}}
-This feature is only available for V5-based deployments.
+This functionality is only available for V5-based deployments.
 {{< /call-out >}}
-
 
 Policy lifecycle management (PLM) is a system for managing, compiling and deploying security policies in Kubernetes environments. 
 

@@ -57,7 +57,7 @@ In this release, F5 DoS for NGINX supports NGINX Plus R29.
 
 - Support for `proxy_protocol` configuration: `proxy_protocol` monitor parameter should be used when the `listen` directive of the correspondent server block contains the `proxy_protocol` parameter.
 
-- If NGINX App Protect WAF is installed, app protect should be disabled for the location of DoS Live Activity Monitoring API.
+- If F5 WAF for NGINX is installed, app protect should be disabled for the location of DoS Live Activity Monitoring API.
 
     For example:
 
