@@ -54,7 +54,9 @@ If you wish to pull security updates from the NGINX repository (with APSignature
 **Helm Configuration (values.yaml):**
 
 ```yaml
-# Namespace for the deployment - must match the namespace created in kubectl
+# Specify the target namespace for your deployment
+# Replace <namespace> with your chosen namespace name (e.g., "nap-plm" or "production")
+# This must match the namespace you will create in Step 4 or an existing namespace you plan to use
 namespace: <namespace>
 
 appprotect:
