@@ -54,7 +54,13 @@ If you wish to pull security updates from the NGINX repository (with APSignature
 **Helm Configuration (values.yaml):**
 
 ```yaml
+# Namespace for the deployment - must match the namespace created in kubectl
+namespace: <namespace>
+
 appprotect:
+  ## Enable/Disable Nginx App Protect Deployment
+  enable: true
+  
   policyController:
     enable: true  # Set to false to disable Policy Controller
     replicas: 1
@@ -221,8 +227,8 @@ http {
    kubectl create namespace <namespace>
    ```
    
-   {{< call-out "note" >}}
-   You can name the namespace whatever you want. If you already have an existing namespace, you can skip this step and use your existing namespace in the subsequent commands.
+   {{< call-out "important" >}}
+   **Important**: The namespace name you choose here must be used consistently in ALL subsequent commands throughout this guide AND must also be specified in your values.yaml file. Replace `<namespace>` with your actual namespace name in every command that follows and update the `namespace:` field in your values.yaml file to match. If you already have an existing namespace, you can skip this step and use your existing namespace name in all subsequent commands and configuration files.
    {{< /call-out >}}
 
 5. **Configure Docker Registry Credentials**
