@@ -25,20 +25,66 @@ The topics below provide information on NGINX configuration restrictions and dir
 NGINX configurations stored in GitHub can be applied to existing NGINXaaS for Azure deployments using custom GitHub Action workflows. See [NGINXaaS for Azure Deployment Action](https://github.com/nginxinc/nginx-for-azure-deploy-action) for documentation and examples on how to incorporate these workflows in your GitHub Actions CI/CD pipelines.
 
 ## NGINX filesystem restrictions
-NGINXaaS for Azure places restrictions on the instance's filesystem; only a specific set of directories are allowed to be read from and written to. Below is a table describing what directories the NGINX worker process can read and write to and what directories files can be written to. These files include certificate files and any files uploaded to the deployment, excluding NGINX configuration files.
 
-  {{<bootstrap-table "table table-striped table-bordered">}}
-  | Allowed Directory | NGINX worker process can read/write to | Files can be written to |
-  |------------------ | ----------------- | ----------------- |
-  | /etc/nginx        |                   | &check;           |
-  | /opt              | &check;           | &check;           |
-  | /srv              | &check;           | &check;           |
-  | /tmp              | &check;           |                   |
-  | /var/cache/nginx  | &check;           |                   |
-  | /var/www          | &check;           | &check;           |
+NGINXaaS for Azure places restrictions on the instance’s filesystem; only a specific set of directories are allowed to be read from and written to. Below is a table describing what directories the NGINX worker process can read and write to and what directories files can be written to. These files include certificate files and any files uploaded to the deployment, excluding NGINX configuration files.
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+
+| Directory         | Master Read | Master Write | Worker Read | Worker Write | Recommended Use                  |
+|-------------------|:-----------:|:------------:|:-----------:|:------------:|----------------------------------|
+| /etc/nginx/       |     ✔️      |      ✔️      |     ❌      |      ❌      | Certificates, keys               |
+| /opt/             |     ✔️      |      ✔️      |     ✔️      |      ❌      | Application files                |
+| /srv/             |     ✔️      |      ✔️      |     ✔️      |      ❌      | Application files                |
+| /var/www/         |     ✔️      |      ✔️      |     ✔️      |      ❌      | Static files (e.g. index.html)   |
+| /tmp/             |     ✔️      |      ✔️      |     ✔️      |      ✔️      | Temporary files                  |
+| /var/cache/nginx/ |     ✔️      |      ✔️      |     ✔️      |      ✔️      | Cache data                       |
+| /etc/app_protect/ |     ✔️      |      ✔️      |     ✔️      |      ❌      | App Protect policies, logs       |
+
 {{</bootstrap-table>}}
 
+**Uploaded files can be placed in:**
+
+- `/etc/nginx/` (for certificates, keys)
+- `/opt/` (for application files)
+- `/srv/` (for application files)
+- `/var/www/` (for static files)
+- `/tmp/` (for temporary files)
+- `/var/cache/nginx/` (for cache data)
+- `/etc/app_protect/` (for App Protect policies and log configurations)
+
 Attempts to access other directories will be denied and result in a `5xx` error.
+
+### Recommended Directory Layout
+
+When you organize your directories, we recommend that you set up these categories of files in the following locations:
+
+- **Certificates/Keys:**  
+  Place in `/etc/nginx/` so only the master process can access them. This prevents worker processes from reading private keys and potentially serving them to the internet.
+
+- **Application Files:**  
+  Place in `/opt/` or `/srv/` for files needed by your application that workers need to read but not modify.
+
+- **Static Files:**  
+  Place in `/var/www/` for content like HTML, CSS, and images that workers need to serve but should not modify.
+
+- **Cache Data:**  
+  Use `/var/cache/nginx/` for NGINX cache storage where workers need both read and write access.
+
+- **Temporary Files:**  
+  Use `/tmp/` for temporary data that workers may need to create and modify.
+
+- **App Protect Policies:**  
+  Place in `/etc/app_protect/` for App Protect security policies and log configurations that workers need to read.
+
+```plaintext
+/etc/nginx/         # Certificates, keys (master only)
+/opt/               # Application files (worker read-only)
+/srv/               # Application files (worker read-only)
+/var/www/           # Static files (worker read-only)
+/var/cache/nginx/   # Cache data (worker read/write)
+/tmp/               # Temporary files (worker read/write)
+/etc/app_protect/   # App Protect policies (worker read-only)
+```
 
 ## Disallowed configuration directives
 Some directives are not supported because of specific limitations. If you include one of these directives in your NGINX configuration, you'll get an error.
