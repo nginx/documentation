@@ -8,7 +8,7 @@ type:
 - how-to
 ---
 
-In this guide, we'll show you how to use API requests to update NGINX Configurations for Instances or Config Sync Groups in the F5 NGINX One Console.
+In this guide, we'll show you how to use API requests to update NGINX Configurations for Instances, Config Sync Groups, or Staged Configs in the F5 NGINX One Console.
 
 ## Get ready
 
