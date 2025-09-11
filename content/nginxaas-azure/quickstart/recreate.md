@@ -8,7 +8,7 @@ type:
 - how-to
 ---
 
-Learn how to recreate an existing F5 NGINX as a Service for Azure (NGINXaaS) deployment using an Azure Resource Manager (ARM) template.
+Learn how to recreate an existing F5 NGINXaaS for Azure (NGINXaaS) deployment using an Azure Resource Manager (ARM) template.
 
 There are two ways to replicate a current NGINXaaS for Azure deployment using ARM templates. You can either delete and recreate the deployment, or you can update the DNS to smoothly transition to the new deployment.
 

@@ -9,7 +9,7 @@ type:
 - concept
 ---
 
-{{<bootstrap-table "table table-striped table-bordered">}}
+{{< table >}}
 
 |**Load Balancer**<br>&nbsp;&nbsp;       |**NGINX Open<br>Source** |**NGINX Plus<br>&nbsp;** |**F5 NGINXaaS<br>for Azure**     |
 |----------------------------------------|---------------------|---------------------|--------------------------|
@@ -68,4 +68,4 @@ type:
 |&nbsp;&nbsp;[Dynamic modules repository](https://www.f5.com/go/product/nginx-modules)  |                     |{{<check>}}          |[Image-Filter](https://nginx.org/en/docs/http/ngx_http_image_filter_module.html)<br />[njs](https://nginx.org/en/docs/njs/)<br />[OpenTelemetry](https://nginx.org/en/docs/ngx_otel_module.html)<br />[XSLT](https://nginx.org/en/docs/http/ngx_http_xslt_module.html)       |
 |&nbsp;&nbsp;Deployable as a service     |                     |                     |Microsoft Azure           |
 |&nbsp;&nbsp;[Commercial support](https://my.f5.com/manage/s/article/K000140156/)          |                     |{{<check>}}          |{{<check>}}               |
-{{</bootstrap-table>}}
+{{< /table >}}

@@ -186,18 +186,18 @@ You can also install the NLK controller AKS extension by navigating to [F5 NGINX
 - Select **Continue** to proceed with the installation.
 - On the **Basics** tab, provide the following information:
 
-  {{<bootstrap-table "table table-striped table-bordered">}}
+  {{< table >}}
 
   | Field                       | Description                |
   |---------------------------- | ---------------------------- |
   | Subscription                | Select the appropriate Azure subscription. |
   | Resource group              | Select the AKS cluster's resource group.   |
-  {{</bootstrap-table>}}
+  {{< /table >}}
 
 - Select **Cluster Details**, and provide the AKS cluster name. You can select an existing AKS cluster or create a new one.
 - Select **Application Details**, and provide the following information:
 
-  {{<bootstrap-table "table table-striped table-bordered">}}
+  {{< table >}}
 
   | Field                       | Description                |
   |---------------------------- | ---------------------------- |
@@ -206,7 +206,7 @@ You can also install the NLK controller AKS extension by navigating to [F5 NGINX
   | Allow minor version upgrades of extension   | Select whether to allow the extension to be upgraded automatically to the latest minor version.   |
   | NGINXaaS Dataplane API Key                  | Provide the previously generated data plane API key value: `{keyValue}`                            |
   | NGINXaaS Dataplane API Endpoint             | Provide the previously retrieved data plane API endpoint value:  `{dataplaneAPIEndpoint}nplus`     |
-  {{</bootstrap-table>}}
+  {{< /table >}}
 
 - Select **Review + Create** to continue.
 - Azure will validate the extension settings. This page will provide a summary of the provided information. Select **Create**.

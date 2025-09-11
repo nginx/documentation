@@ -38,7 +38,7 @@ The following example demonstrates this process using an existing virtual machin
 
 Please ensure the following environment variables are exported before copying the below Azure CLI commands.
 
-{{<bootstrap-table "table table-striped table-bordered">}}
+{{< table >}}
   | Name              | Description       |
   |------------------ | ----------------- |
   | APP_LOCATION          | Location of the resource group
@@ -48,7 +48,7 @@ Please ensure the following environment variables are exported before copying th
   | APP_VM_NAME           | Name of the workload virtual machine                          |
   | APP_NIC_NAME          | Name of the network interface of the virtual machine          |
   | APP_IP_CONFIG_NAME    | Name of the IP configuration associated with the NIC          |
-{{</bootstrap-table>}}
+{{< /table >}}
 
 ### Create a load balancer
 
@@ -161,14 +161,14 @@ The following example demonstrates this process using an existing NGINXaaS deplo
 
 Please ensure the following environment variables are exported before copying the below Azure CLI commands.
 
-{{<bootstrap-table "table table-striped table-bordered">}}
+{{< table >}}
   | Name              | Description       |
   |------------------ | ----------------- |
   | DEP_RESOURCE_GROUP                      | Name of the resource group the NGINXaaS deployment is in          |
   | DEP_VNET_NAME                           | Name of the virtual network the NGINXaaS deployment is in         |
   | PRIVATE_ENDPOINT_SUBNET_ADDRESS_SPACE   | Desired address space of the private endpoint's subnet            |
   | PRIVATE_LINK_SERVICE_ID                 | Resource ID of the Private Link service                           |
-{{</bootstrap-table>}}
+{{< /table >}}
 
 ### Create a new subnet
 

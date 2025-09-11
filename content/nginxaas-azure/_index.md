@@ -12,7 +12,7 @@ nd-product: N4Azure
 
 ## About
 
-NGINX as a Service for Azure is an IaaS offering that is tightly integrated
+F5 NGINXaaS for Azure is an IaaS offering that is tightly integrated
 into Microsoft Azure public cloud and its ecosystem, making applications fast, efficient,
 and reliable with full lifecycle management of advanced NGINX traffic services.
 
@@ -20,7 +20,7 @@ and reliable with full lifecycle management of advanced NGINX traffic services.
 
 {{<card-section showAsCards="true" isFeaturedSection="true">}}
   {{<card title="Getting started" titleUrl="/nginxaas/azure/getting-started/" icon="power">}}
-    Deploy NGINX as a Service for Azure using the Azure portal, Azure CLI, or Terraform
+    Deploy NGINXaaS for Azure using the Azure portal, Azure CLI, or Terraform
   {{</card>}}
   {{<card title="Quickstart guides" titleUrl="/nginxaas/azure/quickstart/" icon="square-play">}}
     Step-by-step guides for several common use cases, including scaling guidance, security controls, and more
@@ -50,7 +50,7 @@ and reliable with full lifecycle management of advanced NGINX traffic services.
 
 {{<card-section showAsCards="true" >}}
   {{<card title="Feature comparison" titleUrl="/nginxaas/azure/overview/feature-comparison/" icon="git-compare-arrows">}}
-    Learn about the differences between NGINX as a Service for Azure and NGINX Plus
+    Learn about the differences between NGINXaaS for Azure and NGINX Plus
   {{</card>}}
   {{<card title="Changelog" titleUrl="/nginxaas/azure/changelog/" icon="file-clock">}}
     See the latest updates: New features, improvements, and bug fixes
