@@ -1,5 +1,5 @@
 ---
-title: Overview and prerequisites
+title: Prerequisites
 weight: 100
 toc: true
 nd-docs: DOCS-000
@@ -8,14 +8,12 @@ type:
 - how-to
 ---
 
-## Before you begin
+Before you can deploy F5 NGINXaaS for Google Cloud (NGINXaaS), you need to complete some prerequisites.
 
-Before you deploy F5 NGINXaaS for Google Cloud you need to meet the following prerequisites:
+## Subscribe to the NGINXaaS for Google Cloud offer
 
-- List
-- Of
-- Prerequisites
+{{< include "/nginxaas-google/subscribe.md" >}}
 
 ## What's next
 
-[Create a Deployment]({{< ref "/nginxaas-google/getting-started/create-deployment/" >}})
+[Create a Deployment]({{< ref "/nginxaas-google/getting-started/create-deployment/deploy-portal.md" >}})
