@@ -17,7 +17,7 @@ This feature is only available for V5-based deployments.
 {{< /call-out >}}
 
 
-Policy lifecycle management (PLM) is an automation feature for managing, compiling and deploying security policies in Kubernetes environments. 
+Policy lifecycle management (PLM) is a system for managing, compiling and deploying security policies in Kubernetes environments. 
 
 It extends the WAF compiler capabilities by providing a native Kubernetes operater-based approach for policy orchestration.
 
