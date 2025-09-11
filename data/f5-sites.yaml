@@ -13,3 +13,7 @@
 - title: NGINX
   url: https://nginx.org/
   description: Learn more about NGINX Open Source and read the community blog
+
+- title: Community Forum
+  url: https://community.nginx.org/
+  description: Engage with the broader NGINX community for discussions and troubleshooting
