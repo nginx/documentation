@@ -156,7 +156,7 @@ http {
 
 **For New Installations**: Follow the complete step-by-step process below to install NGINX App Protect WAF with Policy Lifecycle Management enabled.
 
-**For Existing Customers**: If you have an existing NGINX App Protect WAF deployment without Policy Lifecycle Management, you need to upgrade your installation to enable PLM functionality. Use `helm upgrade` instead of `helm install` in step 5, and ensure you have the required CRDs and storage configured before upgrading.
+**For Existing Customers**: If you have an existing NGINX App Protect WAF deployment without Policy Lifecycle Management, you need to upgrade your installation to enable PLM functionality. Use `helm upgrade` instead of `helm install` in step 6, and ensure you have the required CRDs and storage configured before upgrading.
 
 ### Step-by-Step Installation Process
 
@@ -214,7 +214,18 @@ http {
    The PV name defaults to `<release-name>-shared-bundles-pv`, but can be customized using the `appprotect.storage.pv.name` setting in your values.yaml file. Make sure to update all corresponding values for the PV and PVC to point to the correct names.
    {{< /call-out >}}
 
-4. **Configure Docker Registry Credentials**
+4. **Create Namespace**
+   
+   Create a namespace for the deployment (if you don't already have one):
+   ```bash
+   kubectl create namespace <namespace>
+   ```
+   
+   {{< call-out "note" >}}
+   You can name the namespace whatever you want. If you already have an existing namespace, you can skip this step and use your existing namespace in the subsequent commands.
+   {{< /call-out >}}
+
+5. **Configure Docker Registry Credentials**
    
    Create the Docker registry secret or configure in values.yaml:
    ```bash
@@ -224,13 +235,12 @@ http {
      --docker-password=none
    ```
 
-5. **Deploy the Helm Chart with Policy Controller**
+6. **Deploy the Helm Chart with Policy Controller**
    
    **For new installations:**
    ```bash
    helm install <release-name> . \
      --namespace <namespace> \
-     --create-namespace \
      --set appprotect.policyController.enable=true \
      --set dockerConfigJson=$NGINX_REGISTRY_TOKEN \
      --set appprotect.config.nginxJWT=$JWT \
@@ -249,7 +259,7 @@ http {
      --set appprotect.nginxRepo.nginxKey=$NGINX_KEY
    ```
 
-6. **Verify Installation**
+7. **Verify Installation**
    
    Check that all components are deployed successfully:
    ```bash
@@ -532,7 +542,18 @@ To verify that the policy bundles are being deployed and enforced correctly:
    The PV name defaults to `<release-name>-shared-bundles-pv`, but can be customized using the `appprotect.storage.pv.name` setting in your values.yaml file.
    {{< /call-out >}}
 
-5. **Configure Docker Registry Credentials**
+5. **Create Namespace**
+   
+   Create a namespace for the deployment (if you don't already have one):
+   ```bash
+   kubectl create namespace <namespace>
+   ```
+   
+   {{< call-out "note" >}}
+   You can name the namespace whatever you want. If you already have an existing namespace, you can skip this step and use your existing namespace in the subsequent commands.
+   {{< /call-out >}}
+
+6. **Configure Docker Registry Credentials**
    
    Create the Docker registry secret or configure in values.yaml:
    ```bash
@@ -542,7 +563,7 @@ To verify that the policy bundles are being deployed and enforced correctly:
      --docker-password=none
    ```
 
-6. **Upgrade the Helm Chart with Policy Controller**
+7. **Upgrade the Helm Chart with Policy Controller**
    
    Upgrade the chart with Policy Controller enabled:
    ```bash
@@ -555,7 +576,7 @@ To verify that the policy bundles are being deployed and enforced correctly:
      --set appprotect.nginxRepo.nginxKey=$NGINX_KEY
    ```
 
-7. **Verify Upgrade**
+8. **Verify Upgrade**
    
    Check that all components are deployed successfully:
    ```bash
