@@ -38,7 +38,7 @@ The following example demonstrates this process using an existing virtual machin
 
 Please ensure the following environment variables are exported before copying the below Azure CLI commands.
 
-{{<bootstrap-table "table table-striped table-bordered">}}
+{{< table >}}
   | Name              | Description       |
   |------------------ | ----------------- |
   | APP_LOCATION          | Location of the resource group
@@ -48,11 +48,11 @@ Please ensure the following environment variables are exported before copying th
   | APP_VM_NAME           | Name of the workload virtual machine                          |
   | APP_NIC_NAME          | Name of the network interface of the virtual machine          |
   | APP_IP_CONFIG_NAME    | Name of the IP configuration associated with the NIC          |
-{{</bootstrap-table>}}
+{{< /table >}}
 
 ### Create a load balancer
 
-```bash
+```shell
 $ az network lb create \
     --resource-group $APP_RESOURCE_GROUP \
     --name load-balancer \
@@ -75,7 +75,7 @@ upstream {
 
 Create a health probe monitoring on port `8000`:
 
-```bash
+```shell
 $ az network lb probe create \
     --resource-group $APP_RESOURCE_GROUP \
     --lb-name load-balancer \
@@ -86,7 +86,7 @@ $ az network lb probe create \
 
 Create a load balancing rule listening on port `8000`:
 
-```bash
+```shell
 $ az network lb rule create \
     --resource-group $APP_RESOURCE_GROUP \
     --lb-name load-balancer \
@@ -103,7 +103,7 @@ $ az network lb rule create \
 
 ### Configure the workload VM behind the load balancer
 
-```bash
+```shell
 $ az network nic ip-config address-pool add \
   --address-pool backend-pool \
   --ip-config-name $APP_IP_CONFIG_NAME \
@@ -116,7 +116,7 @@ $ az network nic ip-config address-pool add \
 
 The `privateLinkServiceNetworkPolicies` setting must be disabled to add a private link service in a virtual network.
 
-```bash
+```shell
 $ az network vnet subnet update \
     --name $APP_SUBNET_NAME \
     --vnet-name $APP_VNET_NAME \
@@ -126,7 +126,7 @@ $ az network vnet subnet update \
 
 ### Create a private link service
 
-```bash
+```shell
 $ az network private-link-service create \
     --resource-group $APP_RESOURCE_GROUP \
     --name private-link-service \
@@ -161,20 +161,20 @@ The following example demonstrates this process using an existing NGINXaaS deplo
 
 Please ensure the following environment variables are exported before copying the below Azure CLI commands.
 
-{{<bootstrap-table "table table-striped table-bordered">}}
+{{< table >}}
   | Name              | Description       |
   |------------------ | ----------------- |
   | DEP_RESOURCE_GROUP                      | Name of the resource group the NGINXaaS deployment is in          |
   | DEP_VNET_NAME                           | Name of the virtual network the NGINXaaS deployment is in         |
   | PRIVATE_ENDPOINT_SUBNET_ADDRESS_SPACE   | Desired address space of the private endpoint's subnet            |
   | PRIVATE_LINK_SERVICE_ID                 | Resource ID of the Private Link service                           |
-{{</bootstrap-table>}}
+{{< /table >}}
 
 ### Create a new subnet
 
 You must create a new subnet for the private endpoint because the existing NGINXaaS deployment's subnet is already delegated.
 
-```bash
+```shell
 $ az network vnet subnet create \
   --resource-group $DEP_RESOURCE_GROUP \
   --vnet-name $DEP_VNET_NAME \
@@ -184,7 +184,7 @@ $ az network vnet subnet create \
 
 ### Create a private endpoint
 
-```bash
+```shell
 $ az network private-endpoint create \
     --connection-name connection-1 \
     --name private-endpoint \
@@ -199,7 +199,7 @@ $ az network private-endpoint create \
 
 First, get the IP address of the private endpoint:
 
-```bash
+```shell
 $ export nic_id=$(az network private-endpoint show \
     --resource-group $DEP_RESOURCE_GROUP \
     --name private-endpoint \

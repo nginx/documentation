@@ -554,37 +554,6 @@ URI: /tea
 Request ID: 1b5c8f3a4532ea7d7510cf14ffeb27af
 ```
 
-## Migrate from NGINX Ingress Controller
-
-If you're already using NGINX Ingress Controller and want to migrate to NGINX Gateway Fabric, you can use the [ingress2gateway](https://github.com/kubernetes-sigs/ingress2gateway) tool to automatically convert your existing Ingress resources to Gateway API resources.
-
-The ingress2gateway tool is a Kubernetes SIG project for converting Ingress resources to Gateway API resources. It supports multiple Ingress providers, including NGINX Ingress Controller.
-
-{{< call-out "important" >}}
-The ingress2gateway tool is a conversion utility that translates Ingress resources to Gateway API equivalents. It is not a complete end-to-end migration solution. You will need to manually review the converted resources, test functionality, and make additional configuration changes as needed for your specific environment.
-{{< /call-out >}}
-
-### Use ingress2gateway
-
-To convert your existing NGINX Ingress resources to Gateway API resources that work with NGINX Gateway Fabric:
-
-
-First, [install the ingress2gateway tool](https://github.com/kubernetes-sigs/ingress2gateway?tab=readme-ov-file#installation).
-
-Then run the conversion command for the NGINX provider:
-   
-```shell
-ingress2gateway print --providers=nginx --input-file=<your-ingress-file> > gateway-api-resources.yaml
-```
-
-This tool will analyze your Ingress resources from the input file and output the equivalent Gateway API resources to a file named `gateway-api-resources.yaml`. Finally, review the generated Gateway API resources in the output file and apply them to your cluster:
-
-```shell
-kubectl apply -f gateway-api-resources.yaml
-```
-
-For detailed information about NGINX-specific features and conversion options, see the [NGINX provider documentation](https://github.com/kubernetes-sigs/ingress2gateway/blob/main/pkg/i2gw/providers/nginx/README.md).
-
 ## Next steps
 
 - [Install NGINX Gateway Fabric]({{< ref "/ngf/install/" >}}), for additional ways to install NGINX Gateway Fabric
