@@ -1,5 +1,5 @@
 ---
-title: Deploy using the portal
+title: Deploy using the NGINXaaS Console
 weight: 100
 toc: true
 nd-docs: DOCS-000
