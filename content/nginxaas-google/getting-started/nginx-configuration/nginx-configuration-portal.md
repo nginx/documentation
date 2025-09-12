@@ -1,5 +1,5 @@
 ---
-title: Upload using the portal
+title: Upload using the NGINXaaS Console
 weight: 100
 toc: true
 nd-docs: DOCS-000
@@ -8,7 +8,7 @@ type:
 - how-to
 ---
 
-You can apply an NGINX configuration to your F5 NGINXaaS for Google Cloud (NGINXaaS) deployment using the portal.
+You can apply an NGINX configuration to your F5 NGINXaaS for Google Cloud (NGINXaaS) deployment using the NGINXaaS Console.
 
 ## Prerequisites
 
