@@ -10,7 +10,7 @@ type:
 
 ## Overview
 
-This guide explains how to deploy F5 NGINXaaS for Google Cloud (NGINXaaS) using [Google Cloud Console](https://console.cloud.google.com). The deployment process involves creating a new deployment, configuring the deployment, and testing the deployment.
+This guide explains how to deploy F5 NGINXaaS for Google Cloud (NGINXaaS) using [Google Cloud Console](https://console.cloud.google.com) and the NGINXaaS Console. The deployment process involves creating a new deployment, configuring the deployment, and testing the deployment.
 
 ## Before you begin
 
