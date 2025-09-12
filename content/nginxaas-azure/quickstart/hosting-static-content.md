@@ -8,7 +8,7 @@ type:
 - how-to
 ---
 
-F5 NGINX as a Service for Azure (NGINXaaS) supports hosting static content which allows users to serve static websites from their deployment.
+F5 NGINXaaS for Azure (NGINXaaS) supports hosting static content which allows users to serve static websites from their deployment.
 
 ## Uploading static files as a tarball
 
@@ -32,7 +32,7 @@ http {
 
 The following shows the structure of a directory containing an NGINX configuration and an `index.html` file that we will be served from the deployment.
 
-```bash
+```shell
 test-static-files $ tree .
 .
 ├── nginx.conf
@@ -46,7 +46,7 @@ test-static-files $ tree .
 
 3. Create the tarball.
 
-```bash
+```shell
 test-static-files $ tar -cvzf <path to store tarball>/test.tar.gz *
 ```
 

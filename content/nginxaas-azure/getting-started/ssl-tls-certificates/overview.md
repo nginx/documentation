@@ -7,9 +7,9 @@ type:
 - how-to
 ---
 
-F5 NGINX as a Service for Azure (NGINXaaS) enables customers to secure traffic by adding SSL/TLS certificates to a deployment. NGINXaaS can fetch certificates directly from Azure Key Vault, rotate certificates, and provide observability on the status of your certificates.
+F5 NGINXaaS for Azure (NGINXaaS) enables customers to secure traffic by adding SSL/TLS certificates to a deployment. NGINXaaS can fetch certificates directly from Azure Key Vault, rotate certificates, and provide observability on the status of your certificates.
 
-This document provides details about using SSL/TLS certificates with your F5 NGINX as a Service for Azure deployment.
+This document provides details about using SSL/TLS certificates with your F5 NGINXaaS for Azure deployment.
 
 ## Supported certificate types and formats
 
@@ -62,7 +62,7 @@ For Azure client tools, such as the Azure CLI or Azure Resource Manager, the cer
 
 To view the status of your SSL/TLS certificates, [enable monitoring]({{< ref "/nginxaas-azure/monitoring/enable-monitoring.md" >}}) for your NGINXaaS deployment and navigate to the **Metrics** tab in the Azure portal. View the `nginxaas.certificates` metric under the `nginxaas statistics` metric namespace. The `nginxaas.certificates` metric allows you to filter by certificate name and the status of the certificate. The status dimension reports the health of your certificates through the following values:
 
-   {{<bootstrap-table "table table-striped table-bordered">}}
+   {{< table >}}
 
    | Status        | Description   |
    | ------------- | ------------- |
@@ -71,7 +71,7 @@ To view the status of your SSL/TLS certificates, [enable monitoring]({{< ref "/n
    | `not found`   | Azure returned a 404 error when fetching the certificate from AKV. |
    | `incompatible`| An error occurred while fetching or processing the certificate from AKV. <br><br>The possible reasons include: <br> <br><ul><li>Error while downloading certificate and key</li><li>Missing content type in certificate</li><li>Missing content in certificate</li><li>Unrecognized content type, certificate not in PEM or PKCS12 format</li></ul> |
 
-   {{</bootstrap-table>}}
+   {{< /table >}}
 
    {{< img src="nginxaas-azure/azure-metrics-nginxaas.certificates.png" alt="Interface screenshot showing the Azure metric nginxaas.certificates" >}}
 
@@ -98,7 +98,7 @@ The following section describes common errors you might encounter while adding S
       Please ensure the following environment variables are set before copying the below Azure CLI command.
       - `MI_NAME`: the name of the managed identity
       - `MI_RESOURCE_GROUP`: the name of the resource group the managed identity is in
-      ```bash
+      ```shell
       mi_principal_id=$(az identity show --name $MI_NAME \
          --resource-group $MI_RESOURCE_GROUP \
          --query principalId --output tsv)
@@ -109,7 +109,7 @@ The following section describes common errors you might encounter while adding S
       Please ensure the following environment variables are set before copying the below Azure CLI command.
       - `DEP_NAME`: the name of the NGINXaaS deployment
       - `DEP_RESOURCE_GROUP`: the name of the resource group the NGINXaaS deployment is in
-      ```bash
+      ```shell
       mi_principal_id=$(az nginx deployment show --name $DEP_NAME \
          --resource-group $DEP_RESOURCE_GROUP \
          --query identity.principalId --output tsv)
@@ -119,13 +119,13 @@ The following section describes common errors you might encounter while adding S
    Please ensure the following environment variables are set before copying the below Azure CLI command.
    - `KV_NAME`: the name of the key vault
    - `KV_RESOURCE_GROUP`: the name of the resource group the key vault is in
-   ```bash
+   ```shell
    key_vault_id=$(az keyvault show --name $KV_NAME \
       --resource-group $KV_RESOURCE_GROUP \
       --query id --output tsv)
    ```
 1. Create the role assignment.
-   ```bash
+   ```shell
    az role assignment create --assignee $mi_principal_id \
       --role "Key Vault Secrets User" \
       --scope $key_vault_id
@@ -148,7 +148,7 @@ The following section describes common errors you might encounter while adding S
       Please ensure the following environment variables are set before copying the below Azure CLI command.
       - `MI_NAME`: the name of the managed identity
       - `MI_RESOURCE_GROUP`: the name of the resource group the managed identity is in
-      ```bash
+      ```shell
       mi_principal_id=$(az identity show --name $MI_NAME \
          --resource-group $MI_RESOURCE_GROUP \
          --query principalId --output tsv)
@@ -159,7 +159,7 @@ The following section describes common errors you might encounter while adding S
       Please ensure the following environment variables are set before copying the below Azure CLI command.
       - `DEP_NAME`: the name of the NGINXaaS deployment
       - `DEP_RESOURCE_GROUP`: the name of the resource group the NGINXaaS deployment is in
-      ```bash
+      ```shell
       mi_principal_id=$(az nginx deployment show --name $DEP_NAME \
          --resource-group $DEP_RESOURCE_GROUP \
          --query identity.principalId --output tsv)
@@ -170,7 +170,7 @@ The following section describes common errors you might encounter while adding S
    Please ensure the following environment variables are set before copying the below Azure CLI command.
    - `KV_NAME`: the name of the key vault
    - `KV_RESOURCE_GROUP`: the name of the resource group the key vault is in
-   ```bash
+   ```shell
    az keyvault set-policy --name $KV_NAME \
       --resource-group $KV_RESOURCE_GROUP \
       --object-id $mi_principal_id \
@@ -192,14 +192,14 @@ The following section describes common errors you might encounter while adding S
    Please ensure the following environment variables are set before copying the below Azure CLI command.
    - `NSP_NAME`: the name of the network security perimeter
    - `NSP_RESOURCE_GROUP`: the name of the resource group the network security perimeter will be in
-   ```bash
+   ```shell
    az network perimeter create --name $NSP_NAME --resource-group $NSP_RESOURCE_GROUP
    ```
 1. Create a profile for the network security perimeter.
 
    Please ensure the following environment variable is set before copying the below Azure CLI command.
    - `PROFILE_NAME`: the name of the network security perimeter profile
-   ```bash
+   ```shell
    az network perimeter profile create --name $PROFILE_NAME \
       --resource-group $NSP_RESOURCE_GROUP \
       --perimeter-name $NSP_NAME
@@ -209,19 +209,19 @@ The following section describes common errors you might encounter while adding S
    Please ensure the following environment variables are set before copying the below Azure CLI command.
    - `KV_NAME`: the name of the key vault
    - `KV_RESOURCE_GROUP`: the name of the resource group the key vault is in
-   ```bash
+   ```shell
    key_vault_id=$(az keyvault show --name $KV_NAME \
       --resource-group $KV_RESOURCE_GROUP \
       --query id --output tsv)
    ```
 1. Get the resource ID of the network security profile.
-   ```bash
+   ```shell
    nsp_profile_id=$(az network perimeter profile show --name $PROFILE_NAME \
       --resource-group $NSP_RESOURCE_GROUP \
       --perimeter-name $NSP_NAME --query id --output tsv)
    ```
 1. Associate the key vault with the network security perimeter
-   ```bash
+   ```shell
    az network perimeter association create --name key-vault-association \
       --perimeter-name $NSP_NAME \
       --resource-group $NSP_RESOURCE_GROUP \
@@ -233,7 +233,7 @@ The following section describes common errors you might encounter while adding S
    Please ensure the following environment variables are set before copying the below Azure CLI command.
    - `RULE_NAME`: the name of the access rule
    - `DEP_SUBSCRIPTION_ID`: the subscription ID of the NGINXaaS deployment
-   ```bash
+   ```shell
    az network perimeter profile access-rule create --name $RULE_NAME \
       --profile-name $PROFILE_NAME \
       --perimeter-name $NSP_NAME \
@@ -276,7 +276,7 @@ The following section describes common errors you might encounter while adding S
       Please ensure the following environment variables are set before copying the below Azure CLI command.
       - `MI_NAME`: the name of the managed identity
       - `MI_RESOURCE_GROUP`: the name of the resource group the managed identity is in
-      ```bash
+      ```shell
       mi_principal_id=$(az identity show --name $MI_NAME \
          --resource-group $MI_RESOURCE_GROUP \
          --query principalId --output tsv)
@@ -287,7 +287,7 @@ The following section describes common errors you might encounter while adding S
       Please ensure the following environment variables are set before copying the below Azure CLI command.
       - `DEP_NAME`: the name of the NGINXaaS deployment
       - `DEP_RESOURCE_GROUP`: the name of the resource group the NGINXaaS deployment is in
-      ```bash
+      ```shell
       mi_principal_id=$(az nginx deployment show --name $DEP_NAME \
          --resource-group $DEP_RESOURCE_GROUP \
          --query identity.principalId --output tsv)
@@ -298,7 +298,7 @@ The following section describes common errors you might encounter while adding S
    Please ensure the following environment variables are set before copying the below Azure CLI command.
    - `KV_NAME`: the name of the key vault
    - `KV_RESOURCE_GROUP`: the name of the resource group the key vault is in
-   ```bash
+   ```shell
    az keyvault set-policy --name $KV_NAME \
       --resource-group $KV_RESOURCE_GROUP \
       --object-id $mi_principal_id \
@@ -326,14 +326,14 @@ The following section describes common errors you might encounter while adding S
    Please ensure the following environment variables are set before copying the below Azure CLI command.
    - `CERT_NAME`: the name of the certificate
    - `KV_NAME`: the name of the key vault
-   ```bash
+   ```shell
    certificate_id=$(az keyvault certificate show --name $CERT_NAME \
       --vault-name $KV_NAME \
       --query id --output tsv)
    ```
 
 1. Enable the certificate.
-   ```bash
+   ```shell
    az keyvault certificate set-attributes --enabled true --id $certificate_id
    ```
 </details>
