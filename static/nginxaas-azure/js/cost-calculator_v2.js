@@ -1,7 +1,7 @@
 // todo [heftel] - if we are going to live with this for a while then this file should be broken up with
 // modules. Browser support shouldn't be a concern anymore? - https://caniuse.com/es6-module
 
-(function () {
+(() => {
   /**
    * @typedef {typeof costs} Costs
    * @constant
@@ -167,66 +167,66 @@
   };
 
   ////////
-  // Keep element refs with hugo global jquery
+  // Keep element refs with hugo global HTMLElement
   ////////
 
   /**
-   * @type {Object.<string, jQuery>}
+   * @type {Object.<string, HTMLElement>}
    */
   const costFormElements = {
-    region: $("#region"),
-    numNcus: $("#numNcus"),
-    numHours: $("#numHours"),
-    numListenPorts: $("#numListenPorts"),
-    isWAF: $("#isWAF"),
+    region: document.getElementById("region"),
+    numNcus: document.getElementById("numNcus"),
+    numHours: document.getElementById("numHours"),
+    numListenPorts: document.getElementById("numListenPorts"),
+    isWAF: document.getElementById("isWAF"),
   };
 
   /**
-   * @type {Object.<string, jQuery>}
+   * @type {Object.<string, HTMLElement>}
    */
   const costFormLabelElements = {
-    numNcusEstVal: $("#numNcusEstVal"),
+    numNcusEstVal: document.getElementById("numNcusEstVal"),
   };
 
   /**
-   * @type {Object.<string, jQuery>}
+   * @type {Object.<string, HTMLElement>}
    */
   const ncuFormElements = {
-    avgNewConnsPerSec: $("#avgNewConnsPerSec"),
-    avgConnDuration: $("#avgConnDuration"),
-    totalBandwidth: $("#totalBandwidth"),
+    avgNewConnsPerSec: document.getElementById("avgNewConnsPerSec"),
+    avgConnDuration: document.getElementById("avgConnDuration"),
+    totalBandwidth: document.getElementById("totalBandwidth"),
   };
 
   /**
-   * @type {Object.<string, jQuery>}
+   * @type {Object.<string, HTMLElement>}
    */
   const ncuEstimateElements = {
-    ncuEstConnRate: $("#ncuEstConnRate"),
-    ncuEstConnDuration: $("#ncuEstConnDuration"),
-    ncuEstAvgConn: $("#ncuEstAvgConn"),
-    ncuEstAvgConn2: $("#ncuEstAvgConn2"),
-    ncuEstConnRate2: $("#ncuEstConnRate2"),
-    ncuEstDataRate: $("#ncuEstDataRate"),
-    ncuEstMin1: $("#ncuEstMin1"),
-    ncuEstMin: $("#ncuEstMin"),
-    ncuEstTotal: $("#ncuEstTotal"),
-    ncuEstConnsPerNcu: $("#ncuEstConnsPerNcu"),
-    ncuEstConnsPerSecondPerNcu: $("#ncuEstConnsPerSecondPerNcu"),
-    ncuEstMbpsPerNcu: $("#ncuEstMbpsPerNcu"),
+    ncuEstConnRate: document.getElementById("ncuEstConnRate"),
+    ncuEstConnDuration: document.getElementById("ncuEstConnDuration"),
+    ncuEstAvgConn: document.getElementById("ncuEstAvgConn"),
+    ncuEstAvgConn2: document.getElementById("ncuEstAvgConn2"),
+    ncuEstConnRate2: document.getElementById("ncuEstConnRate2"),
+    ncuEstDataRate: document.getElementById("ncuEstDataRate"),
+    ncuEstMin1: document.getElementById("ncuEstMin1"),
+    ncuEstMin: document.getElementById("ncuEstMin"),
+    ncuEstTotal: document.getElementById("ncuEstTotal"),
+    ncuEstConnsPerNcu: document.getElementById("ncuEstConnsPerNcu"),
+    ncuEstConnsPerSecondPerNcu: document.getElementById("ncuEstConnsPerSecondPerNcu"),
+    ncuEstMbpsPerNcu: document.getElementById("ncuEstMbpsPerNcu"),
   };
 
   /**
-   * @type {Object.<string, jQuery>}
+   * @type {Object.<string, HTMLElement>}
    */
   const totalCostDetailElements = {
-    ncus: $("#cost-detail-ncus"),
-    hours: $("#cost-detail-hours"),
-    tierCost: $("#cost-detail-tier-cost"),
-    listenPorts: $("#cost-detail-listen-ports"),
-    listenPortsCost: $("#cost-detail-listen-ports-cost"),
-    waf: $("#cost-detail-waf"),
-    total: $("#cost-detail-total"),
-    tiersCostsTable: $("#tiers-costs-table"),
+    ncus: document.getElementById("cost-detail-ncus"),
+    hours: document.getElementById("cost-detail-hours"),
+    tierCost: document.getElementById("cost-detail-tier-cost"),
+    listenPorts: document.getElementById("cost-detail-listen-ports"),
+    listenPortsCost: document.getElementById("cost-detail-listen-ports-cost"),
+    waf: document.getElementById("cost-detail-waf"),
+    total: document.getElementById("cost-detail-total"),
+    tiersCostsTable: document.getElementById("tiers-costs-table"),
   };
 
   ///////
@@ -245,7 +245,7 @@
     ncuEstimateValues = ncuEstimateValuesState
   ) => {
     Object.keys(costFormElements).map((elName) => {
-      costFormElements[elName].on("change", (evt) => {
+      costFormElements[elName].addEventListener("change", (evt) => {
         if (elName === "isWAF") {
           values[elName] = evt.target.checked;
         } else {
@@ -256,13 +256,13 @@
     });
 
     Object.keys(ncuFormElements).map((elName) => {
-      ncuFormElements[elName].on("change", (evt) => {
+      ncuFormElements[elName].addEventListener("change", (evt) => {
         ncuEstimateValues[elName] = evt.target.value;
         updateNcuEstimate(ncuEstimateValues);
       });
     });
 
-    $("#printButton").click(() => {
+    document.getElementById("printButton").addEventListener('click', () => {
       printCostEstimate();
     });
   };
@@ -276,7 +276,7 @@
    * @param {Costs["regionsTiers"]} regionsTiers
    */
   const populateTierSelect = (regionsTiers) => {
-    const $selectTarget = $("#region");
+    const $selectTarget = document.getElementById("region");
 
     Object.keys(regionsTiers).forEach((tierKey) => {
       const option = document.createElement("option");
@@ -320,10 +320,10 @@
   const initializeValues = (values = calculatorValuesState) => {
     Object.keys(costFormElements).map((elName) => {
       const curEl = costFormElements[elName];
-      if (curEl.is("input") || curEl.is("select")) {
-        curEl.val(values[elName]);
+      if (curEl.tagName.toLowerCase() === "input" || curEl.tagName.toLowerCase() === "select") {
+        curEl.value = values[elName];
       } else {
-        $(curEl).children("input").first().val(values[elName]);
+        $(curEl).children("input").first().value = values[elName];
       }
     });
   };
@@ -336,22 +336,21 @@
   const initializeNcuEstimateValues = (values = ncuEstimateValuesState) => {
     Object.keys(ncuFormElements).map((elName) => {
       const curEl = ncuFormElements[elName];
-      if (curEl.is("input") || curEl.is("select")) {
-        curEl.val(values[elName]);
+      if (curEl.tagName.toLowerCase() === "input" || curEl.tagName.toLowerCase() === "select") {
+        curEl.value = values[elName];
       } else {
-        $(curEl).children("input").first().val(values[elName]);
+        $(curEl).children("input").first().value = values[elName];
       }
     });
 
     updateNcuEstimate(ncuEstimateValuesState);
 
-    ncuEstimateElements.ncuEstConnsPerNcu.text(ncuParameterVals.connsPerNcu);
-    ncuEstimateElements.ncuEstConnsPerSecondPerNcu.text(
+    ncuEstimateElements.ncuEstConnsPerNcu.textContent = ncuParameterVals.connsPerNcu;
+    ncuEstimateElements.ncuEstConnsPerSecondPerNcu.textContent = 
       (
         ncuParameterVals.connsPerSecPerAcu * ncuParameterVals.acusPerNcu
-      ).toFixed(2)
-    );
-    ncuEstimateElements.ncuEstMbpsPerNcu.text(ncuParameterVals.mbpsPerNcu);
+      ).toFixed(2);
+    ncuEstimateElements.ncuEstMbpsPerNcu.textContent = ncuParameterVals.mbpsPerNcu;
   };
 
   //////
@@ -366,30 +365,27 @@
   const updateNcuEstimate = (ncuValues) => {
     const updatedNcuValues = utils.calculateNcuValues(ncuValues);
 
-    $("#ncuEstimateValue").text(`${updatedNcuValues.total} NCUs`);
+    document.getElementById("ncuEstimateValue").textContent = `${updatedNcuValues.total} NCUs`;
 
     // update cost estimate form when estimated number of NCUs changes
     if (calculatorValuesState.numNcus !== updatedNcuValues.total) {
-      costFormElements.numNcus.val(updatedNcuValues.total).trigger("change");
+      costFormElements.numNcus.value = updatedNcuValues.total 
+      costFormElements.numNcus.dispatchEvent(new Event("change"));
     }
 
-    ncuEstimateElements.ncuEstConnRate.text(ncuValues.avgNewConnsPerSec);
-    ncuEstimateElements.ncuEstConnDuration.text(ncuValues.avgConnDuration);
-    ncuEstimateElements.ncuEstAvgConn.text(
-      updatedNcuValues.avgConcurrentConnections
-    );
+    ncuEstimateElements.ncuEstConnRate.textContent = ncuValues.avgNewConnsPerSec;
+    ncuEstimateElements.ncuEstConnDuration.textContent = ncuValues.avgConnDuration;
+    ncuEstimateElements.ncuEstAvgConn.textContent = updatedNcuValues.avgConcurrentConnections;
 
-    ncuEstimateElements.ncuEstAvgConn2.text(
-      updatedNcuValues.avgConcurrentConnections
-    );
-    ncuEstimateElements.ncuEstConnRate2.text(ncuValues.avgNewConnsPerSec);
-    ncuEstimateElements.ncuEstDataRate.text(ncuValues.totalBandwidth);
+    ncuEstimateElements.ncuEstAvgConn2.textContent = updatedNcuValues.avgConcurrentConnections;
+    ncuEstimateElements.ncuEstConnRate2.textContent = ncuValues.avgNewConnsPerSec;
+    ncuEstimateElements.ncuEstDataRate.textContent = ncuValues.totalBandwidth;
 
-    ncuEstimateElements.ncuEstMin1.text((updatedNcuValues.min ?? 0).toFixed(2));
-    ncuEstimateElements.ncuEstMin.text((updatedNcuValues.min ?? 0).toFixed(2));
-    ncuEstimateElements.ncuEstTotal.text(updatedNcuValues.total);
+    ncuEstimateElements.ncuEstMin1.textContent = (updatedNcuValues.min ?? 0).toFixed(2);
+    ncuEstimateElements.ncuEstMin.textContent = (updatedNcuValues.min ?? 0).toFixed(2);
+    ncuEstimateElements.ncuEstTotal.textContent = updatedNcuValues.total;
 
-    costFormLabelElements.numNcusEstVal.text(updatedNcuValues.total);
+    costFormLabelElements.numNcusEstVal.textContent = updatedNcuValues.total;
   };
 
   /**
@@ -402,7 +398,7 @@
   const updateCost = (costs, values = calculatorValuesState) => {
     const updatedTotalCost = utils.calculateCost(costs, values);
 
-    $("#total-value").text(utils.currencyFormatter(updatedTotalCost));
+    document.getElementById("total-value").textContent = utils.currencyFormatter(updatedTotalCost);
     updateTotalCostDetails(values, updatedTotalCost);
   };
 
@@ -411,40 +407,34 @@
    * @param {number} totalCost
    */
   const updateTotalCostDetails = (formValues, totalCost) => {
-    totalCostDetailElements.hours.text(formValues.numHours);
-    totalCostDetailElements.ncus.text(formValues.numNcus);
-    totalCostDetailElements.listenPorts.text(
-      Math.max(formValues.numListenPorts - 5, 0)
-    );
-    totalCostDetailElements.listenPortsCost.text(
-      utils.currencyFormatter(costs.listenPorts)
-    );
+    totalCostDetailElements.hours.textContent = formValues.numHours;
+    totalCostDetailElements.ncus.textContent = formValues.numNcus;
+    totalCostDetailElements.listenPorts.textContent = Math.max(formValues.numListenPorts - 5, 0);
+    totalCostDetailElements.listenPortsCost.textContent = utils.currencyFormatter(costs.listenPorts);
 
     if (formValues.isWAF) {
-      totalCostDetailElements.tierCost.text(
+      totalCostDetailElements.tierCost.textContent =
         `(${utils.currencyFormatter(
           costs.tiersCosts[costs.regionsTiers[formValues.region].tier]
-        )} region cost + ${utils.currencyFormatter(costs.WAF, 3)} WAF cost)`
-      );
+        )} region cost + ${utils.currencyFormatter(costs.WAF, 3)} WAF cost)`;
     } else {
-      totalCostDetailElements.tierCost.text(
+      totalCostDetailElements.tierCost.textContent = 
         utils.currencyFormatter(
           costs.tiersCosts[costs.regionsTiers[formValues.region].tier]
-        )
-      );
+        );
     }
 
-    totalCostDetailElements.total.text(utils.currencyFormatter(totalCost));
+    totalCostDetailElements.total.textContent = utils.currencyFormatter(totalCost);
 
     // update highlighted tier cost
     const rowIndex =
       Object.keys(costs.regionsTiers).indexOf(formValues.region) + 1;
 
-    totalCostDetailElements.tiersCostsTable.find("tr")?.each((index, rowEl) => {
+    totalCostDetailElements.tiersCostsTable.querySelectorAll("tr")?.forEach((rowEl, index) => {
       if (index === rowIndex) {
-        $(rowEl).addClass("selected");
+        rowEl.classList.add("selected");
       } else {
-        $(rowEl).removeClass("selected");
+        rowEl.classList.remove("selected");
       }
     });
   };
@@ -455,25 +445,25 @@
    */
   function printCostEstimate() {
     // expand the total price details if they aren't already
-    const totalDetails = $("#total-cost-details");
-    const detailsOpen = totalDetails.attr("open");
+    const totalDetails = document.getElementById("total-cost-details");
+    const detailsOpen = totalDetails.hasAttribute("open");
     if (!detailsOpen) {
-      totalDetails.attr("open", "true");
+      totalDetails.setAttribute("open", "true");
     }
-    const ncuDetails = $("#ncu-usage-details");
-    const ncuDetailsOpen = ncuDetails.attr("open");
+    const ncuDetails = document.getElementById("ncu-usage-details");
+    const ncuDetailsOpen = ncuDetails.hasAttribute("open");
     if (!ncuDetailsOpen) {
-      ncuDetails.attr("open", "true");
+      ncuDetails.setAttribute("open", "true");
     }
 
     window.print();
 
     // collapse the total price details if it was closed initially
     if (!detailsOpen) {
-      totalDetails.attr("open", null);
+      totalDetails.setAttribute("open", null);
     }
     if (!ncuDetailsOpen) {
-      ncuDetails.attr("open", null);
+      ncuDetails.setAttribute("open", null);
     }
   }
 
