@@ -124,4 +124,8 @@ Once you have updated your configuration files, you can reload NGINX to apply th
 - `nginx -s reload`
 - `sudo systemctl reload nginx`
 
-If you are using a V4 package, you have finished installing F5 WAF for NGINX and can look at [Post-installation checks](#post-installation-checks).
+{{< call-out "note" >}}
+
+If you're using a V4 package, you have finished installing F5 WAF for NGINX and can look at [Post-installation checks](#post-installation-checks).
+
+{{< /call-out >}}
