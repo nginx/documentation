@@ -378,7 +378,7 @@ Add `waf-enforcer` image to the `containers` section:
 ...
 ```
 
-### Update NIC container in deployment, daemonset or statefulset
+### Update NIC container in deployment, daemonset, or statefulset
 
 Add `volumeMounts` as below:
 
