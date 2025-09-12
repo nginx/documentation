@@ -9,7 +9,7 @@ type:
 
 ## Overview
 
-The Azure CLI has an extension to be used for management of F5 NGINX as a Service for Azure (NGINXaaS) deployments whether that be locally or in continuous integration pipelines. This document links you to information around basic NGINXaaS extension usage.
+The Azure CLI has an extension to be used for management of F5 NGINXaaS for Azure (NGINXaaS) deployments whether that be locally or in continuous integration pipelines. This document links you to information around basic NGINXaaS extension usage.
 
 ## Prerequisites
 

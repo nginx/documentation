@@ -9,7 +9,7 @@ type:
 - task
 ---
 
-F5 NGINX as a Service for Azure (NGINXaaS) deployments can be managed using the [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/). This document outlines how to install the CLI tool including the NGINX extension.
+F5 NGINXaaS for Azure (NGINXaaS) deployments can be managed using the [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/). This document outlines how to install the CLI tool including the NGINX extension.
 
 ## Prerequisites
 
