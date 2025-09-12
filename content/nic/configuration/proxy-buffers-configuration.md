@@ -5,7 +5,7 @@ weight: 850
 nd-docs: DOCS-590
 ---
 
-This document explains how the `--enable-directive-autoadjust` option prevents NGINX configuration errors by automatically adjusting HTTP proxy buffer directives.
+This document explains how the `--enable-directive-autoadjust` option prevents NGINX configuration errors by automatically adjusting some HTTP proxy buffer directives.
 
 ---
 ## What it does
