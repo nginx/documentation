@@ -45,7 +45,7 @@ This guide describes how to configure disaster recovery (DR) for F5 NGINXaaS for
 To get started, please review the [Terraform prerequisites]({{< ref "/nginxaas-azure/getting-started/create-deployment/deploy-terraform.md#prerequisites" >}}) for NGINXaaS for Azure.
 The following steps outline Terraform resources required to set up the disaster recovery topology; these resources can be placed in a `main.tf` file, variables used by these resources can go into `variables.tf`, and outputs you need to collect can be defined in `outputs.tf`. The directory structure looks as follows:
 
-```bash
+```shell
 $ tree
 .
 |-- main.tf
@@ -55,7 +55,7 @@ $ tree
 
 To execute the Terraform code, `cd` into the directory with these files and run:
 
-```bash
+```shell
 terraform init
 terraform plan
 terraform apply --auto-approve

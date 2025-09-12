@@ -39,7 +39,7 @@ To recreate the deployment:
 1. Delete the original deployment.
 1. Use the exported ARM template to recreate the deployment using the Azure CLI:
 
-```bash
+```shell
 az deployment group create \
     --subscription=<deployment subscription ID> \
     --resource-group=<resource group name> \

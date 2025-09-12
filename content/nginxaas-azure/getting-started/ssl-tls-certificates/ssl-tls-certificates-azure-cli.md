@@ -21,7 +21,7 @@ Create a certificate under a deployment. This references an existing certificate
 
 To create a certificate, use the `az nginx deployment certificate create` command:
 
-```bash
+```shell
 az nginx deployment certificate create --certificate-name
                                        --deployment-name
                                        --resource-group
@@ -36,7 +36,7 @@ az nginx deployment certificate create --certificate-name
 
 - Create a certificate with a certificate path, key path, and key vault secret ID:
 
-   ```bash
+   ```shell
    az nginx deployment certificate create --certificate-name myCertificate \
       --deployment-name myDeployment --resource-group myResourceGroup \
       --certificate-path /etc/nginx/test.cert --key-path /etc/nginx/test.key \
@@ -49,7 +49,7 @@ See [Azure CLI Certificate Create Documentation](https://learn.microsoft.com/en-
 
 To update a certificate, use the `az nginx deployment certificate update` command:
 
-```bash
+```shell
 az nginx deployment certificate update [--add]
                                        [--certificate-name]
                                        [--certificate-path]
@@ -70,7 +70,7 @@ az nginx deployment certificate update [--add]
 
 - Update the certificate virtual path, key virtual path and certificate:
 
-   ```bash
+   ```shell
    az nginx deployment certificate update --certificate-name myCertificate \
       --deployment-name myDeployment --resource-group myResourceGroup \
       --certificate-path /etc/nginx/testupdated.cert \
@@ -84,7 +84,7 @@ See [Azure CLI Certificate Create Documentation](https://learn.microsoft.com/en-
 
 To delete a certificate, use the `az nginx deployment certificate delete` command:
 
-```bash
+```shell
 az nginx deployment certificate delete [--certificate-name]
                                        [--deployment-name]
                                        [--ids]
@@ -98,7 +98,7 @@ az nginx deployment certificate delete [--certificate-name]
 
 - Delete a certificate:
 
-   ```bash
+   ```shell
    az nginx deployment certificate delete --certificate-name myCertificate \
       --deployment-name myDeployment --resource-group myResourceGroup
    ```
