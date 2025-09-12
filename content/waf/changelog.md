@@ -34,7 +34,7 @@ _September 29th, 2025_
 
 {{< table >}}
 
-| Distribution name        | NGINX Open Source                                                 | NGINX Plus                                                     | NGINX Plus (Virtual environment) |
+| Distribution name        | NGINX Open Source                                                 | NGINX Plus                                                     | V4 |
 | ------------------------ | ----------------------------------------------------------------- | -------------------------------------------------------------- |------------------ | 
 | Alpine 3.19              | _app-protect-module-oss-1.29.0+5.498.0-r1.apk_                    | _app-protect-module-plus-35+5.498.0-r1.apk_                    | _app-protect-35.5.498.0-r1.apk_ |               
 | Amazon Linux 2023        | _app-protect-module-oss-1.29.0+5.498.0-1.amzn2023.ngx.x86_64.rpm_ | _app-protect-module-plus-35+5.498.0-1.amzn2023.ngx.x86_64.rpm_ | _app-protect-35+5.498.0-1.amzn2023.ngx.x86_64.rpm_ |

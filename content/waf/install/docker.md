@@ -26,14 +26,13 @@ I haven't found reference to it in v5 content, but I don't see why it couldn't/w
 
 {{</ call-out >}}
 
-This page describes how to install F5 WAF for NGINX with NGINX Plus using Docker.
+This page describes how to install F5 WAF for NGINX with NGINX Open Source or NGINX Plus using Docker.
 
 ## Before you begin
 
 To complete this guide, you will need the following prerequisites:
 
 - An active F5 WAF for NGINX subscription (Purchased or trial)
-- A working [NGINX Plus installation]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}})
 - [Docker](https://docs.docker.com/get-started/get-docker/)
 
 You should read the [IP intelligence topic]({{< ref "/waf/policies/ip-intelligence.md" >}}) for additional set-up configuration if you want to use the feature immediately.
@@ -157,6 +156,84 @@ If you are not using using `custom_log_format.json` or the IP intelligence featu
 
 {{< tabs name="alpine-instructions" >}}
 
+{{% tab name="NGINX Open Source" %}}
+
+```dockerfile
+# syntax=docker/dockerfile:1
+
+# Supported OS_VER's are 3.16/3.17/3.19
+ARG OS_VER="3.19"
+
+# Base image
+FROM alpine:${OS_VER}
+
+# Install NGINX OSS and F5 WAF for NGINX v5 module
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/apk/cert.pem,mode=0644 \
+    --mount=type=secret,id=nginx-key,dst=/etc/apk/cert.key,mode=0644 \
+    apk add openssl curl ca-certificates \
+    && printf "%s%s%s%s\n" \
+        "http://nginx.org/packages/mainline/alpine/v" \
+        `egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release` \
+        "/main" \
+        | tee -a /etc/apk/repositories \
+    && wget -O /etc/apk/keys/nginx_signing.rsa.pub https://cs.nginx.com/static/keys/nginx_signing.rsa.pub \
+    && printf "https://pkgs.nginx.com/app-protect-x-oss/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | \
+        tee -a /etc/apk/repositories \
+    && apk update \
+    && apk add app-protect-module-oss \
+    && ln -sf /dev/stdout /var/log/nginx/access.log \
+    && ln -sf /dev/stderr /var/log/nginx/error.log \
+    && rm -rf /var/cache/apk/*
+
+# Expose port
+EXPOSE 80
+
+# Define stop signal
+STOPSIGNAL SIGQUIT
+
+# Set default command
+CMD ["nginx", "-g", "daemon off;"]
+```
+
+{{% /tab %}}
+
+{{% tab name="NGINX Plus" %}}
+
+```dockerfile
+# syntax=docker/dockerfile:1
+
+# Supported OS_VER's are 3.16/3.17/3.19
+ARG OS_VER="3.19"
+
+# Base image
+FROM alpine:${OS_VER}
+
+# Install NGINX Plus and F5 WAF for NGINX v5 module
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/apk/cert.pem,mode=0644 \
+    --mount=type=secret,id=nginx-key,dst=/etc/apk/cert.key,mode=0644 \
+    wget -O /etc/apk/keys/nginx_signing.rsa.pub https://cs.nginx.com/static/keys/nginx_signing.rsa.pub \
+    && printf "https://pkgs.nginx.com/plus/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | \
+       tee -a /etc/apk/repositories \
+    && printf "https://pkgs.nginx.com/app-protect-x-plus/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | \
+       tee -a /etc/apk/repositories \
+    && apk update \
+    && apk add app-protect-module-plus \
+    && ln -sf /dev/stdout /var/log/nginx/access.log \
+    && ln -sf /dev/stderr /var/log/nginx/error.log \
+    && rm -rf /var/cache/apk/*
+
+# Expose port
+EXPOSE 80
+
+# Define stop signal
+STOPSIGNAL SIGQUIT
+
+# Set default command
+CMD ["nginx", "-g", "daemon off;"]
+```
+
+{{% /tab %}}
+
 {{% tab name="V4" %}}
 
 ```dockerfile
@@ -198,30 +275,44 @@ CMD ["sh", "/root/entrypoint.sh"]
 
 {{% /tab %}}
 
-{{% tab name="V5" %}}
+{{< /tabs >}}
+
+### Amazon Linux
+
+{{< tabs name="amazon-instructions" >}}
+
+{{% tab name="NGINX Open Source" %}}
 
 ```dockerfile
 # syntax=docker/dockerfile:1
 
-# Supported OS_VER's are 3.16/3.17/3.19
-ARG OS_VER="3.19"
-
 # Base image
-FROM alpine:${OS_VER}
+FROM amazonlinux:2023
 
-# Install NGINX Plus and F5 WAF for NGINX v5 module
-RUN --mount=type=secret,id=nginx-crt,dst=/etc/apk/cert.pem,mode=0644 \
-    --mount=type=secret,id=nginx-key,dst=/etc/apk/cert.key,mode=0644 \
-    wget -O /etc/apk/keys/nginx_signing.rsa.pub https://cs.nginx.com/static/keys/nginx_signing.rsa.pub \
-    && printf "https://pkgs.nginx.com/plus/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | \
-       tee -a /etc/apk/repositories \
-    && printf "https://pkgs.nginx.com/app-protect-x-plus/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | \
-       tee -a /etc/apk/repositories \
-    && apk update \
-    && apk add app-protect-module-plus \
+# Install NGINX OSS and NGINX App Protect WAF v5 module
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
+    --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
+    yum -y install wget ca-certificates shadow-utils yum-utils \
+    && echo "[nginx-mainline]" > /etc/yum.repos.d/nginx.repo \
+    && echo "name=nginx mainline repo" >> /etc/yum.repos.d/nginx.repo \
+    && echo "baseurl=http://nginx.org/packages/mainline/amzn/2023/\$basearch/" >> /etc/yum.repos.d/nginx.repo \
+    && echo "gpgcheck=1" >> /etc/yum.repos.d/nginx.repo \
+    && echo "enabled=1" >> /etc/yum.repos.d/nginx.repo \
+    && echo "gpgkey=https://nginx.org/keys/nginx_signing.key" >> /etc/yum.repos.d/nginx.repo \
+    && echo "module_hotfixes=true" >> /etc/yum.repos.d/nginx.repo \
+    && echo "priority=9" >> /etc/yum.repos.d/nginx.repo \
+    && echo "[app-protect-x-oss]" > /etc/yum.repos.d/app-protect-oss.repo \
+    && echo "name=nginx-app-protect repo" >> /etc/yum.repos.d/app-protect-oss.repo \
+    && echo "baseurl=https://pkgs.nginx.com/app-protect-x-oss/amzn/2023/\$basearch/" >> /etc/yum.repos.d/app-protect-oss.repo \
+    && echo "sslclientcert=/etc/ssl/nginx/nginx-repo.crt" >> /etc/yum.repos.d/app-protect-oss.repo \
+    && echo "sslclientkey=/etc/ssl/nginx/nginx-repo.key" >> /etc/yum.repos.d/app-protect-oss.repo \
+    && echo "gpgcheck=0" >> /etc/yum.repos.d/app-protect-oss.repo \
+    && echo "enabled=1" >> /etc/yum.repos.d/app-protect-oss.repo \
+    && yum -y install app-protect-module-oss \
+    && yum clean all \
+    && rm -rf /var/cache/yum \
     && ln -sf /dev/stdout /var/log/nginx/access.log \
-    && ln -sf /dev/stderr /var/log/nginx/error.log \
-    && rm -rf /var/cache/apk/*
+    && ln -sf /dev/stderr /var/log/nginx/error.log
 
 # Expose port
 EXPOSE 80
@@ -235,11 +326,43 @@ CMD ["nginx", "-g", "daemon off;"]
 
 {{% /tab %}}
 
-{{< /tabs >}}
+{{% tab name="NGINX Plus" %}}
 
-### Amazon Linux
+```dockerfile
+# syntax=docker/dockerfile:1
 
-{{< tabs name="amazon-instructions" >}}
+# Base image
+FROM amazonlinux:2023
+
+# Install NGINX Plus and F5 WAF for NGINX v5 module
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.cert,mode=0644 \
+    --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
+    yum -y install wget ca-certificates shadow-utils \
+    && wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/plus-amazonlinux2023.repo \
+    && echo "[app-protect-x-plus]" > /etc/yum.repos.d/app-protect-plus.repo \
+    && echo "name=nginx-app-protect repo" >> /etc/yum.repos.d/app-protect-plus.repo \
+    && echo "baseurl=https://pkgs.nginx.com/app-protect-x-plus/amzn/2023/\$basearch/" >> /etc/yum.repos.d/app-protect-plus.repo \
+    && echo "sslclientcert=/etc/ssl/nginx/nginx-repo.cert" >> /etc/yum.repos.d/app-protect-plus.repo \
+    && echo "sslclientkey=/etc/ssl/nginx/nginx-repo.key" >> /etc/yum.repos.d/app-protect-plus.repo \
+    && echo "gpgcheck=0" >> /etc/yum.repos.d/app-protect-plus.repo \
+    && echo "enabled=1" >> /etc/yum.repos.d/app-protect-plus.repo \
+    && yum -y install app-protect-module-plus \
+    && yum clean all \
+    && rm -rf /var/cache/yum \
+    && ln -sf /dev/stdout /var/log/nginx/access.log \
+    && ln -sf /dev/stderr /var/log/nginx/error.log
+
+# Expose port
+EXPOSE 80
+
+# Define stop signal
+STOPSIGNAL SIGQUIT
+
+# Set default command
+CMD ["nginx", "-g", "daemon off;"]
+```
+
+{{% /tab %}}
 
 {{% tab name="V4" %}}
 
@@ -285,31 +408,53 @@ CMD ["sh", "/root/entrypoint.sh"]
 
 {{% /tab %}}
 
-{{% tab name="V5" %}}
+{{< /tabs >}}
+
+### Debian
+
+{{< tabs name="debian-instructions" >}}
+
+{{% tab name="NGINX Open Source" %}}
 
 ```dockerfile
 # syntax=docker/dockerfile:1
 
-# Base image
-FROM amazonlinux:2023
+# Supported OS_CODENAME's are: bullseye/bookworm
+ARG OS_CODENAME=bookworm
 
-# Install NGINX Plus and F5 WAF for NGINX v5 module
-RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.cert,mode=0644 \
+# Base image
+FROM debian:${OS_CODENAME}
+
+# Install NGINX OSS and F5 WAF for NGINX v5 module
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
-    yum -y install wget ca-certificates shadow-utils \
-    && wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/plus-amazonlinux2023.repo \
-    && echo "[app-protect-x-plus]" > /etc/yum.repos.d/app-protect-plus.repo \
-    && echo "name=nginx-app-protect repo" >> /etc/yum.repos.d/app-protect-plus.repo \
-    && echo "baseurl=https://pkgs.nginx.com/app-protect-x-plus/amzn/2023/\$basearch/" >> /etc/yum.repos.d/app-protect-plus.repo \
-    && echo "sslclientcert=/etc/ssl/nginx/nginx-repo.cert" >> /etc/yum.repos.d/app-protect-plus.repo \
-    && echo "sslclientkey=/etc/ssl/nginx/nginx-repo.key" >> /etc/yum.repos.d/app-protect-plus.repo \
-    && echo "gpgcheck=0" >> /etc/yum.repos.d/app-protect-plus.repo \
-    && echo "enabled=1" >> /etc/yum.repos.d/app-protect-plus.repo \
-    && yum -y install app-protect-module-plus \
-    && yum clean all \
-    && rm -rf /var/cache/yum \
+    apt-get update \
+    && apt-get install -y \
+      apt-transport-https \
+      lsb-release \
+      ca-certificates \
+      wget \
+      gnupg2 \
+      debian-archive-keyring \
+    && wget -qO - https://nginx.org/keys/nginx_signing.key | gpg --dearmor | \
+      tee /usr/share/keyrings/nginx-archive-keyring.gpg >/dev/null \
+    && gpg --dry-run --quiet --no-keyring --import --import-options import-show /usr/share/keyrings/nginx-archive-keyring.gpg \
+    && printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
+      http://nginx.org/packages/mainline/debian `lsb_release -cs` nginx\n" | \
+      tee /etc/apt/sources.list.d/nginx.list \
+    && wget -qO - https://cs.nginx.com/static/keys/nginx_signing.key | gpg --dearmor | \
+      tee /usr/share/keyrings/nginx-static-archive-keyring.gpg >/dev/null \
+    && gpg --dry-run --quiet --no-keyring --import --import-options import-show /usr/share/keyrings/nginx-static-archive-keyring.gpg \
+    && printf "deb [signed-by=/usr/share/keyrings/nginx-static-archive-keyring.gpg] \
+      https://pkgs.nginx.com/app-protect-x-oss/debian `lsb_release -cs` nginx-plus\n" | \
+      tee /etc/apt/sources.list.d/nginx-app-protect.list \
+    && wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx \
+    && apt-get update \
+    && DEBIAN_FRONTEND="noninteractive" apt-get install -y nginx=1.25.5-1~`lsb_release -cs` app-protect-module-oss \
     && ln -sf /dev/stdout /var/log/nginx/access.log \
-    && ln -sf /dev/stderr /var/log/nginx/error.log
+    && ln -sf /dev/stderr /var/log/nginx/error.log \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
 # Expose port
 EXPOSE 80
@@ -323,11 +468,56 @@ CMD ["nginx", "-g", "daemon off;"]
 
 {{% /tab %}}
 
-{{< /tabs >}}
+{{% tab name="NGINX Plus" %}}
 
-### Debian
+```dockerfile
+# syntax=docker/dockerfile:1
 
-{{< tabs name="debian-instructions" >}}
+# Supported OS_CODENAME's are: bullseye/bookworm
+ARG OS_CODENAME=bookworm
+
+# Base image
+FROM debian:${OS_CODENAME}
+
+# Install NGINX Plus and F5 WAF for NGINX v5 module
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.cert,mode=0644 \
+    --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
+    apt-get update \
+    && apt-get install -y \
+       apt-transport-https \
+       lsb-release \
+       ca-certificates \
+       wget \
+       gnupg2 \
+       debian-archive-keyring \
+    && wget -qO - https://cs.nginx.com/static/keys/nginx_signing.key | \
+       gpg --dearmor | tee /usr/share/keyrings/nginx-archive-keyring.gpg >/dev/null \
+    && gpg --dry-run --quiet --no-keyring --import --import-options import-show /usr/share/keyrings/nginx-archive-keyring.gpg \
+    && printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
+       https://pkgs.nginx.com/plus/debian `lsb_release -cs` nginx-plus\n" | \
+       tee /etc/apt/sources.list.d/nginx-plus.list \
+    && printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
+       https://pkgs.nginx.com/app-protect-x-plus/debian `lsb_release -cs` nginx-plus\n" | \
+       tee /etc/apt/sources.list.d/nginx-app-protect.list \
+    && wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx \
+    && apt-get update \
+    && DEBIAN_FRONTEND="noninteractive" apt-get install -y app-protect-module-plus \
+    && ln -sf /dev/stdout /var/log/nginx/access.log \
+    && ln -sf /dev/stderr /var/log/nginx/error.log \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+# Expose port
+EXPOSE 80
+
+# Define stop signal
+STOPSIGNAL SIGQUIT
+
+# Set default command
+CMD ["nginx", "-g", "daemon off;"]
+```
+
+{{% /tab %}}
 
 {{% tab name="V4" %}}
 
@@ -386,44 +576,44 @@ CMD ["sh", "/root/entrypoint.sh"]
 
 {{% /tab %}}
 
-{{% tab name="V5" %}}
+{{< /tabs >}}
+
+### Oracle Linux
+
+{{< tabs name="oracle-instructions" >}}
+
+{{% tab name="NGINX Open Source" %}}
 
 ```dockerfile
 # syntax=docker/dockerfile:1
 
-# Supported OS_CODENAME's are: bullseye/bookworm
-ARG OS_CODENAME=bookworm
-
 # Base image
-FROM debian:${OS_CODENAME}
+FROM oraclelinux:8
 
-# Install NGINX Plus and F5 WAF for NGINX v5 module
-RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.cert,mode=0644 \
+# Install NGINX OSS and F5 WAF for NGINX v5 module
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
-    apt-get update \
-    && apt-get install -y \
-       apt-transport-https \
-       lsb-release \
-       ca-certificates \
-       wget \
-       gnupg2 \
-       debian-archive-keyring \
-    && wget -qO - https://cs.nginx.com/static/keys/nginx_signing.key | \
-       gpg --dearmor | tee /usr/share/keyrings/nginx-archive-keyring.gpg >/dev/null \
-    && gpg --dry-run --quiet --no-keyring --import --import-options import-show /usr/share/keyrings/nginx-archive-keyring.gpg \
-    && printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
-       https://pkgs.nginx.com/plus/debian `lsb_release -cs` nginx-plus\n" | \
-       tee /etc/apt/sources.list.d/nginx-plus.list \
-    && printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
-       https://pkgs.nginx.com/app-protect-x-plus/debian `lsb_release -cs` nginx-plus\n" | \
-       tee /etc/apt/sources.list.d/nginx-app-protect.list \
-    && wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx \
-    && apt-get update \
-    && DEBIAN_FRONTEND="noninteractive" apt-get install -y app-protect-module-plus \
+    dnf -y install wget ca-certificates yum-utils \
+    && echo "[nginx-mainline]" > /etc/yum.repos.d/nginx.repo \
+    && echo "name=nginx mainline repo" >> /etc/yum.repos.d/nginx.repo \
+    && echo "baseurl=http://nginx.org/packages/mainline/centos/\$releasever/\$basearch/" >> /etc/yum.repos.d/nginx.repo \
+    && echo "gpgcheck=1" >> /etc/yum.repos.d/nginx.repo \
+    && echo "enabled=1" >> /etc/yum.repos.d/nginx.repo \
+    && echo "gpgkey=https://nginx.org/keys/nginx_signing.key" >> /etc/yum.repos.d/nginx.repo \
+    && echo "module_hotfixes=true" >> /etc/yum.repos.d/nginx.repo \
+    && echo "[app-protect-x-oss]" > /etc/yum.repos.d/app-protect-8-x-oss.repo \
+    && echo "name=nginx-app-protect repo" >> /etc/yum.repos.d/app-protect-8-x-oss.repo \
+    && echo "baseurl=https://pkgs.nginx.com/app-protect-x-oss/centos/8/\$basearch/" >> /etc/yum.repos.d/app-protect-8-x-oss.repo \
+    && echo "sslclientcert=/etc/ssl/nginx/nginx-repo.crt" >> /etc/yum.repos.d/app-protect-8-x-oss.repo \
+    && echo "sslclientkey=/etc/ssl/nginx/nginx-repo.key" >> /etc/yum.repos.d/app-protect-8-x-oss.repo \
+    && echo "gpgcheck=0" >> /etc/yum.repos.d/app-protect-8-x-oss.repo \
+    && echo "enabled=1" >> /etc/yum.repos.d/app-protect-8-x-oss.repo \
+    && dnf clean all \
+    && dnf -y install app-protect-module-oss \
+    && dnf clean all \
+    && rm -rf /var/cache/dnf \
     && ln -sf /dev/stdout /var/log/nginx/access.log \
-    && ln -sf /dev/stderr /var/log/nginx/error.log \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
+    && ln -sf /dev/stderr /var/log/nginx/error.log
 
 # Expose port
 EXPOSE 80
@@ -437,11 +627,44 @@ CMD ["nginx", "-g", "daemon off;"]
 
 {{% /tab %}}
 
-{{< /tabs >}}
+{{% tab name="NGINX Plus" %}}
 
-### Oracle Linux
+```dockerfile
+# syntax=docker/dockerfile:1
 
-{{< tabs name="oracle-instructions" >}}
+# Base image
+FROM oraclelinux:8
+
+# Install NGINX Plus and F5 WAF for NGINX v5 module
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.cert,mode=0644 \
+    --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
+    dnf -y install wget ca-certificates yum-utils \
+    && wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/nginx-plus-8.repo \
+    && echo "[app-protect-x-plus]" > /etc/yum.repos.d/app-protect-8-x-plus.repo \
+    && echo "name=nginx-app-protect repo" >> /etc/yum.repos.d/app-protect-8-x-plus.repo \
+    && echo "baseurl=https://pkgs.nginx.com/app-protect-x-plus/centos/8/\$basearch/" >> /etc/yum.repos.d/app-protect-8-x-plus.repo \
+    && echo "sslclientcert=/etc/ssl/nginx/nginx-repo.cert" >> /etc/yum.repos.d/app-protect-8-x-plus.repo \
+    && echo "sslclientkey=/etc/ssl/nginx/nginx-repo.key" >> /etc/yum.repos.d/app-protect-8-x-plus.repo \
+    && echo "gpgcheck=0" >> /etc/yum.repos.d/app-protect-8-x-plus.repo \
+    && echo "enabled=1" >> /etc/yum.repos.d/app-protect-8-x-plus.repo \
+    && dnf clean all \
+    && dnf -y install app-protect-module-plus \
+    && dnf clean all \
+    && rm -rf /var/cache/dnf \
+    && ln -sf /dev/stdout /var/log/nginx/access.log \
+    && ln -sf /dev/stderr /var/log/nginx/error.log
+
+# Expose port
+EXPOSE 80
+
+# Define stop signal
+STOPSIGNAL SIGQUIT
+
+# Set default command
+CMD ["nginx", "-g", "daemon off;"]
+```
+
+{{% /tab %}}
 
 {{% tab name="V4" %}}
 
@@ -491,32 +714,53 @@ CMD ["sh", "/root/entrypoint.sh"]
 
 {{% /tab %}}
 
-{{% tab name="V5" %}}
+{{< /tabs >}}
+
+### Ubuntu
+
+{{< tabs name="ubuntu-instructions" >}}
+
+{{% tab name="NGINX Open Source" %}}
 
 ```dockerfile
 # syntax=docker/dockerfile:1
 
-# Base image
-FROM oraclelinux:8
+# Supported OS_CODENAME's are: focal/jammy
+ARG OS_CODENAME=jammy
 
-# Install NGINX Plus and F5 WAF for NGINX v5 module
-RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.cert,mode=0644 \
+# Base image
+FROM ubuntu:${OS_CODENAME}
+
+# Install NGINX OSS and F5 WAF for NGINX v5 module
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
-    dnf -y install wget ca-certificates yum-utils \
-    && wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/nginx-plus-8.repo \
-    && echo "[app-protect-x-plus]" > /etc/yum.repos.d/app-protect-8-x-plus.repo \
-    && echo "name=nginx-app-protect repo" >> /etc/yum.repos.d/app-protect-8-x-plus.repo \
-    && echo "baseurl=https://pkgs.nginx.com/app-protect-x-plus/centos/8/\$basearch/" >> /etc/yum.repos.d/app-protect-8-x-plus.repo \
-    && echo "sslclientcert=/etc/ssl/nginx/nginx-repo.cert" >> /etc/yum.repos.d/app-protect-8-x-plus.repo \
-    && echo "sslclientkey=/etc/ssl/nginx/nginx-repo.key" >> /etc/yum.repos.d/app-protect-8-x-plus.repo \
-    && echo "gpgcheck=0" >> /etc/yum.repos.d/app-protect-8-x-plus.repo \
-    && echo "enabled=1" >> /etc/yum.repos.d/app-protect-8-x-plus.repo \
-    && dnf clean all \
-    && dnf -y install app-protect-module-plus \
-    && dnf clean all \
-    && rm -rf /var/cache/dnf \
+    apt-get update \
+    && apt-get install -y \
+      apt-transport-https \
+      lsb-release \
+      ca-certificates \
+      wget \
+      gnupg2 \
+      ubuntu-keyring \
+    && wget -qO - https://nginx.org/keys/nginx_signing.key | gpg --dearmor | \
+      tee /usr/share/keyrings/nginx-archive-keyring.gpg >/dev/null \
+    && gpg --dry-run --quiet --no-keyring --import --import-options import-show /usr/share/keyrings/nginx-archive-keyring.gpg \
+    && printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
+      http://nginx.org/packages/mainline/ubuntu `lsb_release -cs` nginx\n" | \
+      tee /etc/apt/sources.list.d/nginx.list \
+    && wget -qO - https://cs.nginx.com/static/keys/nginx_signing.key | gpg --dearmor | \
+      tee /usr/share/keyrings/nginx-static-archive-keyring.gpg >/dev/null \
+    && gpg --dry-run --quiet --no-keyring --import --import-options import-show /usr/share/keyrings/nginx-static-archive-keyring.gpg \
+    && printf "deb [signed-by=/usr/share/keyrings/nginx-static-archive-keyring.gpg] \
+      https://pkgs.nginx.com/app-protect-x-oss/ubuntu `lsb_release -cs` nginx-plus\n" | \
+      tee /etc/apt/sources.list.d/nginx-app-protect.list \
+    && wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx \
+    && apt-get update \
+    && DEBIAN_FRONTEND="noninteractive" apt-get install -y nginx=1.25.5-1~`lsb_release -cs` app-protect-module-oss \
     && ln -sf /dev/stdout /var/log/nginx/access.log \
-    && ln -sf /dev/stderr /var/log/nginx/error.log
+    && ln -sf /dev/stderr /var/log/nginx/error.log \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
 # Expose port
 EXPOSE 80
@@ -530,11 +774,56 @@ CMD ["nginx", "-g", "daemon off;"]
 
 {{% /tab %}}
 
-{{< /tabs >}}
+{{% tab name="NGINX Plus" %}}
 
-### Ubuntu
+```dockerfile
+# syntax=docker/dockerfile:1
 
-{{< tabs name="ubuntu-instructions" >}}
+# Supported OS_CODENAME's are: focal/jammy
+ARG OS_CODENAME=jammy
+
+# Base image
+FROM ubuntu:${OS_CODENAME}
+
+# Install NGINX Plus and F5 WAF for NGINX v5 module
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.cert,mode=0644 \
+    --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
+    apt-get update \
+    && apt-get install -y \
+       apt-transport-https \
+       lsb-release \
+       ca-certificates \
+       wget \
+       gnupg2 \
+       ubuntu-keyring \
+    && wget -qO - https://cs.nginx.com/static/keys/nginx_signing.key | \
+       gpg --dearmor | tee /usr/share/keyrings/nginx-archive-keyring.gpg >/dev/null \
+    && gpg --dry-run --quiet --no-keyring --import --import-options import-show /usr/share/keyrings/nginx-archive-keyring.gpg \
+    && printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
+       https://pkgs.nginx.com/plus/ubuntu `lsb_release -cs` nginx-plus\n" | \
+       tee /etc/apt/sources.list.d/nginx-plus.list \
+    && printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
+       https://pkgs.nginx.com/app-protect-x-plus/ubuntu `lsb_release -cs` nginx-plus\n" | \
+       tee /etc/apt/sources.list.d/nginx-app-protect.list \
+    && wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx \
+    && apt-get update \
+    && DEBIAN_FRONTEND="noninteractive" apt-get install -y app-protect-module-plus \
+    && ln -sf /dev/stdout /var/log/nginx/access.log \
+    && ln -sf /dev/stderr /var/log/nginx/error.log \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+# Expose port
+EXPOSE 80
+
+# Define stop signal
+STOPSIGNAL SIGQUIT
+
+# Set default command
+CMD ["nginx", "-g", "daemon off;"]
+```
+
+{{% /tab %}}
 
 {{% tab name="V4" %}}
 
@@ -593,44 +882,55 @@ CMD ["sh", "/root/entrypoint.sh"]
 
 {{% /tab %}}
 
-{{% tab name="V5" %}}
+{{< /tabs >}}
+
+### RHEL8
+
+{{< tabs name="rhel8-instructions" >}}
+
+{{% tab name="NGINX Open Source" %}}
 
 ```dockerfile
 # syntax=docker/dockerfile:1
 
-# Supported OS_CODENAME's are: focal/jammy
-ARG OS_CODENAME=jammy
+# Supported UBI_VERSION's are 7/8/9
+ARG UBI_VERSION=8
 
-# Base image
-FROM ubuntu:${OS_CODENAME}
+# Base Image
+FROM registry.access.redhat.com/ubi${UBI_VERSION}/ubi
 
-# Install NGINX Plus and F5 WAF for NGINX v5 module
-RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.cert,mode=0644 \
+# Define the ARG again after FROM to use it in this stage
+ARG UBI_VERSION
+
+# Install NGINX OSS and F5 WAF for NGINX v5 module
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
-    apt-get update \
-    && apt-get install -y \
-       apt-transport-https \
-       lsb-release \
-       ca-certificates \
-       wget \
-       gnupg2 \
-       ubuntu-keyring \
-    && wget -qO - https://cs.nginx.com/static/keys/nginx_signing.key | \
-       gpg --dearmor | tee /usr/share/keyrings/nginx-archive-keyring.gpg >/dev/null \
-    && gpg --dry-run --quiet --no-keyring --import --import-options import-show /usr/share/keyrings/nginx-archive-keyring.gpg \
-    && printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
-       https://pkgs.nginx.com/plus/ubuntu `lsb_release -cs` nginx-plus\n" | \
-       tee /etc/apt/sources.list.d/nginx-plus.list \
-    && printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
-       https://pkgs.nginx.com/app-protect-x-plus/ubuntu `lsb_release -cs` nginx-plus\n" | \
-       tee /etc/apt/sources.list.d/nginx-app-protect.list \
-    && wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx \
-    && apt-get update \
-    && DEBIAN_FRONTEND="noninteractive" apt-get install -y app-protect-module-plus \
+    PKG_MANAGER=dnf; \
+    if [ "${UBI_VERSION}" = "7" ]; then \
+        PKG_MANAGER=yum; \
+    fi \
+    && $PKG_MANAGER -y install wget ca-certificates yum-utils \
+    && wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.repo \
+    && echo "[nginx-mainline]" > /etc/yum.repos.d/nginx.repo \
+    && echo "name=nginx mainline repo" >> /etc/yum.repos.d/nginx.repo \
+    && echo "baseurl=http://nginx.org/packages/mainline/centos/\$releasever/\$basearch/" >> /etc/yum.repos.d/nginx.repo \
+    && echo "gpgcheck=1" >> /etc/yum.repos.d/nginx.repo \
+    && echo "enabled=1" >> /etc/yum.repos.d/nginx.repo \
+    && echo "gpgkey=https://nginx.org/keys/nginx_signing.key" >> /etc/yum.repos.d/nginx.repo \
+    && echo "module_hotfixes=true" >> /etc/yum.repos.d/nginx.repo \
+    && echo "[app-protect-x-oss]" > /etc/yum.repos.d/app-protect-${UBI_VERSION}-x-oss.repo \
+    && echo "name=nginx-app-protect repo" >> /etc/yum.repos.d/app-protect-${UBI_VERSION}-x-oss.repo \
+    && echo "baseurl=https://pkgs.nginx.com/app-protect-x-oss/centos/${UBI_VERSION}/\$basearch/" >> /etc/yum.repos.d/app-protect-${UBI_VERSION}-x-oss.repo \
+    && echo "sslclientcert=/etc/ssl/nginx/nginx-repo.crt" >> /etc/yum.repos.d/app-protect-${UBI_VERSION}-x-oss.repo \
+    && echo "sslclientkey=/etc/ssl/nginx/nginx-repo.key" >> /etc/yum.repos.d/app-protect-${UBI_VERSION}-x-oss.repo \
+    && echo "gpgcheck=0" >> /etc/yum.repos.d/app-protect-${UBI_VERSION}-x-oss.repo \
+    && echo "enabled=1" >> /etc/yum.repos.d/app-protect-${UBI_VERSION}-x-oss.repo \
+    && $PKG_MANAGER clean all \
+    && $PKG_MANAGER install -y app-protect-module-oss \
+    && $PKG_MANAGER clean all \
+    && rm -rf /var/cache/$PKG_MANAGER \
     && ln -sf /dev/stdout /var/log/nginx/access.log \
-    && ln -sf /dev/stderr /var/log/nginx/error.log \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
+    && ln -sf /dev/stderr /var/log/nginx/error.log
 
 # Expose port
 EXPOSE 80
@@ -644,58 +944,7 @@ CMD ["nginx", "-g", "daemon off;"]
 
 {{% /tab %}}
 
-{{< /tabs >}}
-
-### RHEL8
-
-{{< tabs name="rhel8-instructions" >}}
-
-{{% tab name="V4" %}}
-
-```dockerfile
-# syntax=docker/dockerfile:1
-# For RHEL ubi8:
-FROM registry.access.redhat.com/ubi8/ubi
-
-# Install prerequisite packages:
-RUN dnf -y install wget ca-certificates
-
-# Add NGINX Plus repo to Yum:
-RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/nginx-plus-8.repo
-
-# Add NGINX App-protect & dependencies repo to Yum:
-RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-8.repo
-RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.repo \
-    # You can use either of the dependencies or epel repo
-    # && rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm \
-    && dnf clean all
-
-# Install F5 WAF for NGINX:
-RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.cert,mode=0644 \
-    --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
-    dnf install --enablerepo=codeready-builder-for-rhel-8-x86_64-rpms -y app-protect \
-    && dnf clean all \
-    && rm -rf /var/cache/dnf
-
-# Only use if you want to install and use the IP intelligence feature:
-RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.cert,mode=0644 \
-    --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
-    dnf install -y app-protect-ip-intelligence
-
-# Forward request logs to Docker log collector:
-RUN ln -sf /dev/stdout /var/log/nginx/access.log \
-    && ln -sf /dev/stderr /var/log/nginx/error.log
-
-# Copy configuration files:
-COPY nginx.conf custom_log_format.json /etc/nginx/
-COPY entrypoint.sh /root/
-
-CMD ["sh", "/root/entrypoint.sh"]
-```
-
-{{% /tab %}}
-
-{{% tab name="V5" %}}
+{{% tab name="NGINX Plus" %}}
 
 ```dockerfile
 # syntax=docker/dockerfile:1
@@ -750,11 +999,152 @@ CMD ["nginx", "-g", "daemon off;"]
 
 {{% /tab %}}
 
+{{% tab name="V4" %}}
+
+```dockerfile
+# syntax=docker/dockerfile:1
+# For RHEL ubi8:
+FROM registry.access.redhat.com/ubi8/ubi
+
+# Install prerequisite packages:
+RUN dnf -y install wget ca-certificates
+
+# Add NGINX Plus repo to Yum:
+RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/nginx-plus-8.repo
+
+# Add NGINX App-protect & dependencies repo to Yum:
+RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-8.repo
+RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.repo \
+    # You can use either of the dependencies or epel repo
+    # && rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm \
+    && dnf clean all
+
+# Install F5 WAF for NGINX:
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.cert,mode=0644 \
+    --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
+    dnf install --enablerepo=codeready-builder-for-rhel-8-x86_64-rpms -y app-protect \
+    && dnf clean all \
+    && rm -rf /var/cache/dnf
+
+# Only use if you want to install and use the IP intelligence feature:
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.cert,mode=0644 \
+    --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
+    dnf install -y app-protect-ip-intelligence
+
+# Forward request logs to Docker log collector:
+RUN ln -sf /dev/stdout /var/log/nginx/access.log \
+    && ln -sf /dev/stderr /var/log/nginx/error.log
+
+# Copy configuration files:
+COPY nginx.conf custom_log_format.json /etc/nginx/
+COPY entrypoint.sh /root/
+
+CMD ["sh", "/root/entrypoint.sh"]
+```
+
+{{% /tab %}}
+
 {{< /tabs >}}
 
 ### RHEL 9
 
 {{< tabs name="rhel9-instructions" >}}
+
+{{% tab name="NGINX Open Source" %}}
+
+```dockerfile
+# syntax=docker/dockerfile:1
+
+# Supported UBI_VERSION's are 7/8/9
+ARG UBI_VERSION=8
+
+# Base Image
+FROM registry.access.redhat.com/ubi${UBI_VERSION}/ubi
+
+# Define the ARG again after FROM to use it in this stage
+ARG UBI_VERSION
+
+# Install NGINX OSS and F5 WAF for NGINX v5 module
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
+    --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
+    PKG_MANAGER=dnf; \
+    if [ "${UBI_VERSION}" = "7" ]; then \
+        PKG_MANAGER=yum; \
+    fi \
+    && $PKG_MANAGER -y install wget ca-certificates yum-utils \
+    && wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.repo \
+    && echo "[nginx-mainline]" > /etc/yum.repos.d/nginx.repo \
+    && echo "name=nginx mainline repo" >> /etc/yum.repos.d/nginx.repo \
+    && echo "baseurl=http://nginx.org/packages/mainline/centos/\$releasever/\$basearch/" >> /etc/yum.repos.d/nginx.repo \
+    && echo "gpgcheck=1" >> /etc/yum.repos.d/nginx.repo \
+    && echo "enabled=1" >> /etc/yum.repos.d/nginx.repo \
+    && echo "gpgkey=https://nginx.org/keys/nginx_signing.key" >> /etc/yum.repos.d/nginx.repo \
+    && echo "module_hotfixes=true" >> /etc/yum.repos.d/nginx.repo \
+    && echo "[app-protect-x-oss]" > /etc/yum.repos.d/app-protect-${UBI_VERSION}-x-oss.repo \
+    && echo "name=nginx-app-protect repo" >> /etc/yum.repos.d/app-protect-${UBI_VERSION}-x-oss.repo \
+    && echo "baseurl=https://pkgs.nginx.com/app-protect-x-oss/centos/${UBI_VERSION}/\$basearch/" >> /etc/yum.repos.d/app-protect-${UBI_VERSION}-x-oss.repo \
+    && echo "sslclientcert=/etc/ssl/nginx/nginx-repo.crt" >> /etc/yum.repos.d/app-protect-${UBI_VERSION}-x-oss.repo \
+    && echo "sslclientkey=/etc/ssl/nginx/nginx-repo.key" >> /etc/yum.repos.d/app-protect-${UBI_VERSION}-x-oss.repo \
+    && echo "gpgcheck=0" >> /etc/yum.repos.d/app-protect-${UBI_VERSION}-x-oss.repo \
+    && echo "enabled=1" >> /etc/yum.repos.d/app-protect-${UBI_VERSION}-x-oss.repo \
+    && $PKG_MANAGER clean all \
+    && $PKG_MANAGER install -y app-protect-module-oss \
+    && $PKG_MANAGER clean all \
+    && rm -rf /var/cache/$PKG_MANAGER \
+    && ln -sf /dev/stdout /var/log/nginx/access.log \
+    && ln -sf /dev/stderr /var/log/nginx/error.log
+
+# Expose port
+EXPOSE 80
+
+# Define stop signal
+STOPSIGNAL SIGQUIT
+
+# Set default command
+CMD ["nginx", "-g", "daemon off;"]
+```
+
+{{% /tab %}}
+
+{{% tab name="NGINX Plus" %}}
+
+```dockerfile
+# syntax=docker/dockerfile:1
+
+# Base Image
+FROM rockylinux:9
+
+# Install NGINX Plus and F5 WAF for NGINX v5 module
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.cert,mode=0644 \
+    --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
+    dnf -y install wget ca-certificates \
+    && wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.repo \
+    && wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/${NGINX_PLUS_REPO} \
+    && echo "[app-protect-x-plus]" > /etc/yum.repos.d/app-protect-${UBI_VERSION}-x-plus.repo \
+    && echo "name=nginx-app-protect repo" >> /etc/yum.repos.d/app-protect-${UBI_VERSION}-x-plus.repo \
+    && echo "baseurl=https://pkgs.nginx.com/app-protect-x-plus/centos/${UBI_VERSION}/\$basearch/" >> /etc/yum.repos.d/app-protect-${UBI_VERSION}-x-plus.repo \
+    && echo "sslclientcert=/etc/ssl/nginx/nginx-repo.cert" >> /etc/yum.repos.d/app-protect-${UBI_VERSION}-x-plus.repo \
+    && echo "sslclientkey=/etc/ssl/nginx/nginx-repo.key" >> /etc/yum.repos.d/app-protect-${UBI_VERSION}-x-plus.repo \
+    && echo "gpgcheck=0" >> /etc/yum.repos.d/app-protect-${UBI_VERSION}-x-plus.repo \
+    && echo "enabled=1" >> /etc/yum.repos.d/app-protect-${UBI_VERSION}-x-plus.repo \
+    && dnf clean all \
+    && dnf install -y app-protect-module-plus \
+    && dnf clean all \
+    && rm -rf /var/cache/dnf \
+    && ln -sf /dev/stdout /var/log/nginx/access.log \
+    && ln -sf /dev/stderr /var/log/nginx/error.log
+
+# Expose port
+EXPOSE 80
+
+# Define stop signal
+STOPSIGNAL SIGQUIT
+
+# Set default command
+CMD ["nginx", "-g", "daemon off;"]
+```
+
+{{% /tab %}}
 
 {{% tab name="V4" %}}
 
@@ -796,46 +1186,6 @@ COPY nginx.conf custom_log_format.json /etc/nginx/
 COPY entrypoint.sh /root/
 
 CMD ["sh", "/root/entrypoint.sh"]
-```
-
-{{% /tab %}}
-
-{{% tab name="V5" %}}
-
-```dockerfile
-# syntax=docker/dockerfile:1
-
-# Base Image
-FROM rockylinux:9
-
-# Install NGINX Plus and F5 WAF for NGINX v5 module
-RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.cert,mode=0644 \
-    --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
-    dnf -y install wget ca-certificates \
-    && wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.repo \
-    && wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/${NGINX_PLUS_REPO} \
-    && echo "[app-protect-x-plus]" > /etc/yum.repos.d/app-protect-${UBI_VERSION}-x-plus.repo \
-    && echo "name=nginx-app-protect repo" >> /etc/yum.repos.d/app-protect-${UBI_VERSION}-x-plus.repo \
-    && echo "baseurl=https://pkgs.nginx.com/app-protect-x-plus/centos/${UBI_VERSION}/\$basearch/" >> /etc/yum.repos.d/app-protect-${UBI_VERSION}-x-plus.repo \
-    && echo "sslclientcert=/etc/ssl/nginx/nginx-repo.cert" >> /etc/yum.repos.d/app-protect-${UBI_VERSION}-x-plus.repo \
-    && echo "sslclientkey=/etc/ssl/nginx/nginx-repo.key" >> /etc/yum.repos.d/app-protect-${UBI_VERSION}-x-plus.repo \
-    && echo "gpgcheck=0" >> /etc/yum.repos.d/app-protect-${UBI_VERSION}-x-plus.repo \
-    && echo "enabled=1" >> /etc/yum.repos.d/app-protect-${UBI_VERSION}-x-plus.repo \
-    && dnf clean all \
-    && dnf install -y app-protect-module-plus \
-    && dnf clean all \
-    && rm -rf /var/cache/dnf \
-    && ln -sf /dev/stdout /var/log/nginx/access.log \
-    && ln -sf /dev/stderr /var/log/nginx/error.log
-
-# Expose port
-EXPOSE 80
-
-# Define stop signal
-STOPSIGNAL SIGQUIT
-
-# Set default command
-CMD ["nginx", "-g", "daemon off;"]
 ```
 
 {{% /tab %}}
@@ -846,6 +1196,93 @@ CMD ["nginx", "-g", "daemon off;"]
 
 {{< tabs name="rocky-instructions" >}}
 
+{{% tab name="NGINX Open Source" %}}
+
+```dockerfile
+# syntax=docker/dockerfile:1
+
+# Base Image
+FROM rockylinux:9
+
+# Install NGINX OSS and F5 WAF for NGINX v5 module
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
+    --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
+    dnf -y install wget ca-certificates yum-utils \
+    && wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.repo \
+    && echo "[nginx-mainline]" > /etc/yum.repos.d/nginx.repo \
+    && echo "name=nginx mainline repo" >> /etc/yum.repos.d/nginx.repo \
+    && echo "baseurl=http://nginx.org/packages/mainline/centos/\$releasever/\$basearch/" >> /etc/yum.repos.d/nginx.repo \
+    && echo "gpgcheck=1" >> /etc/yum.repos.d/nginx.repo \
+    && echo "enabled=1" >> /etc/yum.repos.d/nginx.repo \
+    && echo "gpgkey=https://nginx.org/keys/nginx_signing.key" >> /etc/yum.repos.d/nginx.repo \
+    && echo "module_hotfixes=true" >> /etc/yum.repos.d/nginx.repo \
+    && echo "[app-protect-x-oss]" > /etc/yum.repos.d/app-protect-${UBI_VERSION}-x-oss.repo \
+    && echo "name=nginx-app-protect repo" >> /etc/yum.repos.d/app-protect-${UBI_VERSION}-x-oss.repo \
+    && echo "baseurl=https://pkgs.nginx.com/app-protect-x-oss/centos/${UBI_VERSION}/\$basearch/" >> /etc/yum.repos.d/app-protect-${UBI_VERSION}-x-oss.repo \
+    && echo "sslclientcert=/etc/ssl/nginx/nginx-repo.crt" >> /etc/yum.repos.d/app-protect-${UBI_VERSION}-x-oss.repo \
+    && echo "sslclientkey=/etc/ssl/nginx/nginx-repo.key" >> /etc/yum.repos.d/app-protect-${UBI_VERSION}-x-oss.repo \
+    && echo "gpgcheck=0" >> /etc/yum.repos.d/app-protect-${UBI_VERSION}-x-oss.repo \
+    && echo "enabled=1" >> /etc/yum.repos.d/app-protect-${UBI_VERSION}-x-oss.repo \
+    && dnf clean all \
+    && dnf install -y app-protect-module-oss \
+    && dnf clean all \
+    && rm -rf /var/cache/dnf \
+    && ln -sf /dev/stdout /var/log/nginx/access.log \
+    && ln -sf /dev/stderr /var/log/nginx/error.log
+
+# Expose port
+EXPOSE 80
+
+# Define stop signal
+STOPSIGNAL SIGQUIT
+
+# Set default command
+CMD ["nginx", "-g", "daemon off;"]
+```
+
+{{% /tab %}}
+
+{{% tab name="NGINX Plus" %}}
+
+```dockerfile
+# syntax=docker/dockerfile:1
+
+# Base Image
+FROM rockylinux:9
+
+# Install NGINX Plus and F5 WAF for NGINX v5 module
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.cert,mode=0644 \
+    --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
+    dnf -y install wget ca-certificates \
+    && wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.repo \
+    && wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/${NGINX_PLUS_REPO} \
+    && echo "[app-protect-x-plus]" > /etc/yum.repos.d/app-protect-${UBI_VERSION}-x-plus.repo \
+    && echo "name=nginx-app-protect repo" >> /etc/yum.repos.d/app-protect-${UBI_VERSION}-x-plus.repo \
+    && echo "baseurl=https://pkgs.nginx.com/app-protect-x-plus/centos/${UBI_VERSION}/\$basearch/" >> /etc/yum.repos.d/app-protect-${UBI_VERSION}-x-plus.repo \
+    && echo "sslclientcert=/etc/ssl/nginx/nginx-repo.cert" >> /etc/yum.repos.d/app-protect-${UBI_VERSION}-x-plus.repo \
+    && echo "sslclientkey=/etc/ssl/nginx/nginx-repo.key" >> /etc/yum.repos.d/app-protect-${UBI_VERSION}-x-plus.repo \
+    && echo "gpgcheck=0" >> /etc/yum.repos.d/app-protect-${UBI_VERSION}-x-plus.repo \
+    && echo "enabled=1" >> /etc/yum.repos.d/app-protect-${UBI_VERSION}-x-plus.repo \
+    && dnf clean all \
+    && dnf install -y app-protect-module-plus \
+    && dnf clean all \
+    && rm -rf /var/cache/dnf \
+    && ln -sf /dev/stdout /var/log/nginx/access.log \
+    && ln -sf /dev/stderr /var/log/nginx/error.log
+
+# Expose port
+EXPOSE 80
+
+# Define stop signal
+STOPSIGNAL SIGQUIT
+
+# Set default command
+CMD ["nginx", "-g", "daemon off;"]
+```
+
+{{% /tab %}}
+
+
 {{% tab name="V4" %}}
 
 ```dockerfile
@@ -886,46 +1323,6 @@ COPY nginx.conf custom_log_format.json /etc/nginx/
 COPY entrypoint.sh /root/
 
 CMD ["sh", "/root/entrypoint.sh"]
-```
-
-{{% /tab %}}
-
-{{% tab name="V5" %}}
-
-```dockerfile
-# syntax=docker/dockerfile:1
-
-# Base Image
-FROM rockylinux:9
-
-# Install NGINX Plus and F5 WAF for NGINX v5 module
-RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.cert,mode=0644 \
-    --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
-    dnf -y install wget ca-certificates \
-    && wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.repo \
-    && wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/${NGINX_PLUS_REPO} \
-    && echo "[app-protect-x-plus]" > /etc/yum.repos.d/app-protect-${UBI_VERSION}-x-plus.repo \
-    && echo "name=nginx-app-protect repo" >> /etc/yum.repos.d/app-protect-${UBI_VERSION}-x-plus.repo \
-    && echo "baseurl=https://pkgs.nginx.com/app-protect-x-plus/centos/${UBI_VERSION}/\$basearch/" >> /etc/yum.repos.d/app-protect-${UBI_VERSION}-x-plus.repo \
-    && echo "sslclientcert=/etc/ssl/nginx/nginx-repo.cert" >> /etc/yum.repos.d/app-protect-${UBI_VERSION}-x-plus.repo \
-    && echo "sslclientkey=/etc/ssl/nginx/nginx-repo.key" >> /etc/yum.repos.d/app-protect-${UBI_VERSION}-x-plus.repo \
-    && echo "gpgcheck=0" >> /etc/yum.repos.d/app-protect-${UBI_VERSION}-x-plus.repo \
-    && echo "enabled=1" >> /etc/yum.repos.d/app-protect-${UBI_VERSION}-x-plus.repo \
-    && dnf clean all \
-    && dnf install -y app-protect-module-plus \
-    && dnf clean all \
-    && rm -rf /var/cache/dnf \
-    && ln -sf /dev/stdout /var/log/nginx/access.log \
-    && ln -sf /dev/stderr /var/log/nginx/error.log
-
-# Expose port
-EXPOSE 80
-
-# Define stop signal
-STOPSIGNAL SIGQUIT
-
-# Set default command
-CMD ["nginx", "-g", "daemon off;"]
 ```
 
 {{% /tab %}}
