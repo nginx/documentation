@@ -20,7 +20,34 @@ If you haven't already done so, complete the following prerequisites:
     - Log in to the NGINXaaS console with your Google credentials.
 
 ### Add an SSL/TLS certificate
+- Select **Certificates** in the left menu.
+- Select {{< icon "plus">}} **Add Certificate**.
+- In the **Add Certificate** window, provide the required information:
 
+    {{< table >}}
+   | Field                       | Description                  |
+   |---------------------------- | ---------------------------- |
+   | Name                        | A unique name for the certificate. |
+   | Type                        | Select the type of certificate you are adding. SSL certificate and key, or CA certificate bundle. |
+   | Certificate Import Options  | Choose how you want to import the certificate. Enter the certificate text or upload a file. |
+     {{< /table >}}
+
+- Repeat the same steps to add as many certificates as needed.
+- In your configuration, select **Add File** and either choose to use an existing certificate or add a new one.
+    - If you choose to add a new certificate, select **New SSL Certificate or CA Bundle** and follow the steps above.
+    - If you choose to use an existing certificate, select **Existing SSL Certificate or CA Bundle** and choose the certificate you want to use.
+- Provide the required information:
+
+    {{< table >}}
+   | Field                       | Description                  |
+   |---------------------------- | ---------------------------- |
+   | Certificate File Path       | This path can match one or more ssl_certificate directive file arguments in your NGINX configuration.
+The certificate path must be unique within the same deployment. |
+   | Key File Path                 | This path can match one or more ssl_certificate_key directive file arguments in your NGINX configuration.
+The key path must be unique within the same deployment.|
+     {{< /table >}}
+
+- Now you can provide an NGINX configuration that references the certificate you just added by the path value.
 
 ### Edit an SSL/TLS certificate
 
