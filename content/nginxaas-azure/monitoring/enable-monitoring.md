@@ -66,7 +66,7 @@ This section shows you how to effectively discover, gather and analyze NGINXaaS 
 
 1. **Retrieve metric definitions:** Metrics definitions give you insights into the various metrics available for NGINXaaS within a namespace and what they represent. The following `curl` example shows how to retrieve all metrics definitions within the `nginx connections statistics` namespace for your NGINXaaS deployment:
 
-   ```bash
+   ```shell
    curl --request GET --header "Authorization: Bearer $TOKEN" "https://management.azure.com/subscriptions/12345678-abcd-98765432-abcdef012345/resourceGroups/my-nginx-rg/providers/NGINX.NGINXPLUS/nginxDeployments/my-nginx-dep/providers/microsoft.insights/metricDefinitions?api-version=2024-02-01"
    ```
 
@@ -94,7 +94,7 @@ This section shows you how to effectively discover, gather and analyze NGINXaaS 
 
 2. **Metric values:** You can obtain the actual metric values which represent real-time or historical data points that tell you how your NGINXaaS is performing. The following `curl` example shows how to retrieve the value of metric `nginx.conn.current` over a 10-minute time window averaged over 5 minute intervals:
 
-   ```bash
+   ```shell
    curl --request GET --header "Authorization: Bearer $TOKEN" "https://management.azure.com/subscriptions/12345678-abcd-98765432-abcdef012345/resourceGroups/my-nginx-rg/providers/NGINX.NGINXPLUS/nginxDeployments/my-nginx-dep/providers/microsoft.insights/metrics?metricnames=nginx.conn.current&timespan=2025-03-27T20:00:00Z/2025-03-27T20:10:00Z&aggregation=Average&interval=PT5M&api-version=2024-02-01"
    ```
 
