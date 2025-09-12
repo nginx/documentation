@@ -12,18 +12,32 @@ You can apply an NGINX configuration to your F5 NGINXaaS for Google Cloud (NGINX
 
 ## Prerequisites
 
+- You need to have a subscription to the NGINXaaS for Google Cloud offer. See [Prerequisites]({{< ref "/nginxaas-google/getting-started/prerequisites/" >}}).
 
-## Add an NGINX configuration
+## Access the NGINXaaS Console
 
+- Visit [https://console.nginxaas.net/](https://console.nginxaas.net/) to access the NGINXaaS Console.
+- Log in to the console with your Google credentials.
 
-### NGINX configuration validation
+## Create or import an NGINX configuration
 
-
-## Upload a GZIP NGINX configuration
-
+{{< include "/nginxaas-google/create-or-import-nginx-config.md" >}}
 
 ## Update an NGINX configuration
 
+1. On the left menu, select **Configurations**.
+1. On the list of configurations, select the elipses (three dots) icon next to the configuration you want to update.
+1. Select **Edit**.
+1. Update the "Name" and "Description" fields as needed and select **Next**.
+1. Select the file you want to update in the file tree.
+1. Modify the configuration file(s) as needed and select **Next**.
+1. Review the changes using the "Inline" or "Side-by-side"  views and select **Save**.
+
+You will see a notification confirming that the configuration was updated successfully.
 
 ## Delete NGINX configuration Files
 
+1. On the left menu, select **Configurations**.
+1. On the list of configurations, select the elipses (three dots) icon next to the configuration you want to delete.
+1. Select **Delete**.
+1. Confirm that you want to delete the configuration.

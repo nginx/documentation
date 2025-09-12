@@ -26,24 +26,7 @@ Once you have completed the subscription process, you can access the NGINXaas Co
 
 ## Create or import an NGINX configuration
 
-1. On the left menu, select **Configurations**.
-1. Select **Add Configuration** to add a new NGINX configuration.
-1. You can either create a new configuration or copy an existing configuration:
-   
-   - Select **New configuration** to create a new config (using the default template or a blank file).
-      - Provide a name for your configuration and an optional description.
-      - Change the configuration path if needed.
-      - Select **Next**.
-   - Select **Copy existing configuration** to use one of the existing configuration files in your account as template.
-      - Provide a name for your configuration and an optional description.
-      - Change the configuration path if needed.
-      - Use the **Choose configuration to copy** list to select the configuration file you want to copy.
-      - Use the **Choose configuration version to copy** list to select the version of the configuration file you want to copy.
-      - Select **Next**.
-
-1. Modify the configuration file as needed and select **Save**.
-   - You can import certificates using the **Add file** option.
-   - The portal will validate the configuration file and display any errors or warnings.
+{{< include "/nginxaas-google/create-or-import-nginx-config.md" >}}
 
 ## Create a new deployment
 
