@@ -45,9 +45,17 @@ NGINXaaS for Google Cloud is supported in the following regions:
 - TBD
 
 
-## NGINXaaS architecture
+## NGINXaaS for Google Cloud architecture
 
-TBD << This is where I would put my architecture diagram, if I had one >>
+{{< img src="nginxaas-google/nginxaas-google-cloud-architecture.png" alt="Architecture diagram of NGINXaaS for Google Cloud showing user traffic through load balancers to applications, with control plane management via the NGINXaaS Console, GCP Marketplace, and Identity Provider, plus logging, monitoring, and secret management." >}}
+
+At the top, administrators connect to the NGINXaaS console, which connects to the GCP Marketplace and an SSO Identity Provider. The GCP Marketplace manages accounts and entitlements, and the Identity Provider integrates with the NGINXaaS Console.
+
+The NGINXaaS Console (part of the NGINX One platform) sits in an NGINXaaS Geographic Area Controller (for example, US, CA, EU) and handles control plane/management functions. It communicates with GCP Provisioning APIs and pushes configuration updates to the NGINX Data Plane VPC.
+
+Inside the NGINX Data Plane VPC, a GCP Load Balancer (L4 Passthrough LB) connects to the NGINX instance, which is integrated with an NGINX Agent and optional NAP (App Protect) Enforcer. Application users connect through Public or Private Endpoints via a Proxy Load Balancer and Network Endpoint Group to upstream applications.
+
+Logs and metrics flow to GCP Cloud Logging and Cloud Monitoring, while secrets and certificates are managed by GCP Secret Manager.
 
 
 ### Redundancy
