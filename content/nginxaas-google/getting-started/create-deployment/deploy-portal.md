@@ -16,13 +16,13 @@ This guide explains how to deploy F5 NGINXaaS for Google Cloud (NGINXaaS) using 
 
 Before you can deploy NGINXaaS, follow the steps in the [Prerequisites]({{< ref "/nginxaas-google/getting-started/prerequisites/" >}}) topic to subscribe to the NGINXaaS for Google Cloud offer in the Google Cloud Marketplace.
 
-## Access the NGINX as a Service portal
+## Access the NGINX as a Service Console
 
-Once you have completed the subscription process, you can access the NGINX as a Service portal:
+Once you have completed the subscription process, you can access the NGINXaas Console:
 
-- If you have just completed the subscription process, access the portal selecting **Manage on provider**.
-- In any other cases, access the portal visiting [https://console.nginxaas.net/](https://console.nginxaas.net/).
-- Log in to the NGINXaaS console with your Google credentials.
+- If you have just completed the subscription process, access the console selecting **Manage on provider**.
+- In any other cases, visit [https://console.nginxaas.net/](https://console.nginxaas.net/) to access the NGINXaaS Console.
+- Log in to the console with your Google credentials.
 
 ## Create or import an NGINX configuration
 
