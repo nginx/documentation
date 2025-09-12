@@ -1,6 +1,6 @@
 ---
 title: Manage and deploy WAF policies and log profiles
-description: Learn how to use F5 NGINX Instance Manager to manage NGINX App Protect WAF security policies and security log profiles.
+description: Learn how to use F5 NGINX Instance Manager to manage F5 WAF for NGINX security policies and security log profiles.
 weight: 300
 toc: true
 type: how-to
@@ -10,9 +10,9 @@ nd-docs: DOCS-1105
 
 ## Overview
 
-F5 NGINX Instance Manager lets you manage NGINX App Protect WAF configurations using either the web interface or REST API. You can edit, update, and deploy security policies, log profiles, attack signatures, and threat campaigns to individual instances or instance groups.
+F5 NGINX Instance Manager lets you manage F5 WAF for NGINX configurations using either the web interface or REST API. You can edit, update, and deploy security policies, log profiles, attack signatures, and threat campaigns to individual instances or instance groups.
 
-You can compile a security policy, attack signatures, and threat campaigns into a security policy bundle. The bundle includes all necessary components for a specific NGINX App Protect WAF version. Precompiling the bundle improves performance by avoiding separate compilation of each component during deployment.
+You can compile a security policy, attack signatures, and threat campaigns into a security policy bundle. The bundle includes all necessary components for a specific F5 WAF for NGINX version. Precompiling the bundle improves performance by avoiding separate compilation of each component during deployment.
 
 {{< call-out "note" >}}
 The following capabilities are available only through the Instance Manager REST API:
@@ -69,7 +69,7 @@ To create a security policy using the NGINX Instance Manager web interface:
    - **Description**: (Optional) Add a brief description.
    - **Enter Policy**: Paste or type the JSON-formatted policy into the editor. The interface automatically validates the JSON.
 
-    For help writing custom policies, see the [NGINX App Protect WAF Declarative Policy guide](https://docs.nginx.com/nginx-app-protect/declarative-policy/policy/) and the [Policy Authoring and Tuning section](https://docs.nginx.com/nginx-app-protect/configuration-guide/configuration/#policy-authoring-and-tuning) in the configuration guide.
+    For help writing custom policies, see the [F5 WAF for NGINX Declarative Policy guide](https://docs.nginx.com/nginx-app-protect/declarative-policy/policy/) and the [Policy Authoring and Tuning section](https://docs.nginx.com/nginx-app-protect/configuration-guide/configuration/#policy-authoring-and-tuning) in the configuration guide.
 
 6. Select **Save**.
 
@@ -252,12 +252,12 @@ Each bundle includes:
 - A security policy
 - Attack signatures
 - Threat campaigns
-- A version of NGINX App Protect WAF
+- A version of F5 WAF for NGINX
 - Supporting files required to compile and deploy the bundle
 
 ### Required fields
 
-- `appProtectWAFVersion`: The version of NGINX App Protect WAF to target.
+- `appProtectWAFVersion`: The version of F5 WAF for NGINX to target.
 - `policyName`: The name of the policy to include. Must reference an existing policy.
 - `policyUID`: Optional. If omitted, the latest revision of the specified policy is used. This field does **not** accept the keyword `latest`.
 

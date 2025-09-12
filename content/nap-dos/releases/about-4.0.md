@@ -1,11 +1,11 @@
 ---
-title: NGINX App Protect DoS 4.0
+title: F5 DoS for NGINX 4.0
 toc: true
 weight: 120
 nd-docs: DOCS-1115
 ---
 
-Here you can find the release information for F5 NGINX App Protect DoS v4.0. NGINX App Protect DoS provides behavioral protection against Denial of Service (DoS) for your web applications.
+Here you can find the release information for F5 F5 DoS for NGINX v4.0. F5 DoS for NGINX provides behavioral protection against Denial of Service (DoS) for your web applications.
 
 ## Release 4.0
 
@@ -58,7 +58,7 @@ January 31, 2023
 
 - Support for `proxy_protocol` configuration: `proxy_protocol` monitor parameter should be used when the `listen` directive of the correspondent server block contains the `proxy_protocol` parameter.
 
-- If NGINX App Protect WAF is installed, app protect should be disabled for the location of DoS Live Activity Monitoring API.
+- If F5 WAF for NGINX is installed, app protect should be disabled for the location of DoS Live Activity Monitoring API.
 
     For example:
 

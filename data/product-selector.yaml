@@ -18,7 +18,7 @@
 
 - productGroup: NGINX App Protect
   products:
-    - title: "NGINX App Protect WAF"
+    - title: "F5 WAF for NGINX"
       url: "nginx-app-protect-waf"
     - title: "NGINX App Protect DoS"
       url: "nginx-app-protect-dos"

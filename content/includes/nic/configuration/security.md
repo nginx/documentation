@@ -34,10 +34,10 @@ By default, the ServiceAccount has access to all Secret resources in the cluster
 ### Configure root filesystem as read-only
 
 {{< call-out "caution"  >}}
- This feature is compatible with [NGINX App Protect WAFv5](https://docs.nginx.com/nginx-app-protect-waf/v5/). It is not compatible with [NGINX App Protect WAFv4](https://docs.nginx.com/nginx-app-protect-waf/v4/) or [NGINX App Protect DoS](https://docs.nginx.com/nginx-app-protect-dos/).
+ This feature is compatible with [F5 WAF for NGINXv5](https://docs.nginx.com/nginx-app-protect-waf/v5/). It is not compatible with [F5 WAF for NGINXv4](https://docs.nginx.com/nginx-app-protect-waf/v4/) or [F5 DoS for NGINX](https://docs.nginx.com/nginx-app-protect-dos/).
 {{< /call-out >}}
 
-NGINX Ingress Controller is designed to be resilient against attacks in various ways, such as running the service as non-root to avoid changes to files. We recommend setting filesystems on all containers to read-only, this includes `nginx-ingress-controller`, though also includes `waf-enforcer` and `waf-config-mgr` when NGINX App Protect WAFv5 is in use.  This is so that the attack surface is further reduced by limiting changes to binaries and libraries.
+NGINX Ingress Controller is designed to be resilient against attacks in various ways, such as running the service as non-root to avoid changes to files. We recommend setting filesystems on all containers to read-only, this includes `nginx-ingress-controller`, though also includes `waf-enforcer` and `waf-config-mgr` when F5 WAF for NGINXv5 is in use.  This is so that the attack surface is further reduced by limiting changes to binaries and libraries.
 
 This is not enabled by default, but can be enabled with **Helm** using the [**readOnlyRootFilesystem**]({{< relref "installation/installing-nic/installation-with-helm.md#configuration" >}}) argument in security contexts on all containers: `nginx-ingress-controller`, `waf_enforcer` and `waf_config_mgr`.
 

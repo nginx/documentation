@@ -9,7 +9,7 @@ nd-docs: DOCS-1108
 
 ## Overview
 
-The F5 NGINX Security Monitoring module tracks security violations on NGINX App Protect WAF instances. It uses MaxMind's GeoLite2 Free Database to provide geolocation data in analytics dashboards.
+The F5 NGINX Security Monitoring module tracks security violations on F5 WAF for NGINX instances. It uses MaxMind's GeoLite2 Free Database to provide geolocation data in analytics dashboards.
 
 Follow these steps to update the Security Monitoring module with the latest geolocation database, ensuring dashboards display accurate geolocation data.
 

@@ -10,7 +10,7 @@ nd-docs: DOCS-938
 The release notes for F5 NGINX Instance Manager highlight the latest features, improvements, and bug fixes in each release. This document helps you stay up to date with the changes and enhancements introduced to improve stability, performance, and usability. For each version, you’ll find details about new features, known issues, and resolved problems, ensuring you get the most out of your NGINX instance management experience.
 
 <details open>
-<summary><i class="fa-solid fa-info-circle"></i> Support for NGINX App Protect WAF</summary>
+<summary><i class="fa-solid fa-info-circle"></i> Support for F5 WAF for NGINX</summary>
 
 {{< include "nim/tech-specs/nim-app-protect-support.md" >}}
 
@@ -281,11 +281,11 @@ This release includes the following updates:
 
   Support for [offline installations]({{< ref "nim/disconnected/offline-install-guide.md" >}}) is also available for air-gapped environments.
 
-- {{% icon-feature %}} **Adds support for NGINX App Protect WAF v5.3 and v4.11**<a name="2-18-0-whats-new-Adds-support-for-NGINX-App-Protect-WAF-v5-3-and-v4-11"></a>
+- {{% icon-feature %}} **Adds support for F5 WAF for NGINX v5.3 and v4.11**<a name="2-18-0-whats-new-Adds-support-for-NGINX-App-Protect-WAF-v5-3-and-v4-11"></a>
 
-     NGINX Instance Manager 2.18.0 adds support for [NGINX App Protect WAF v5.3 and v4.11]({{< relref "nap-waf/v5/admin-guide/overview.md" >}}).
+     NGINX Instance Manager 2.18.0 adds support for [F5 WAF for NGINX v5.3 and v4.11]({{< relref "nap-waf/v5/admin-guide/overview.md" >}}).
 
-    NGINX App Protect WAF v5, designed for both NGINX Open Source and NGINX Plus environments, includes a dynamic NGINX module and containerized WAF services. It provides robust security and scalability.
+    F5 WAF for NGINX v5, designed for both NGINX Open Source and NGINX Plus environments, includes a dynamic NGINX module and containerized WAF services. It provides robust security and scalability.
 
 
 ### Changes in Default Behavior{#2-18-0-changes-in-behavior}
@@ -434,11 +434,11 @@ If your NGINX Instance Manager version is older, you may need to upgrade to an i
 ### What's New{#2-17-0-whats-new}
 This release includes the following updates:
 
-- {{% icon-feature %}} **Adds support for NGINX App Protect WAF v5**<a name="2-17-0-whats-new-Adds-support-for-NGINX-App-Protect-WAF-v5"></a>
+- {{% icon-feature %}} **Adds support for F5 WAF for NGINX v5**<a name="2-17-0-whats-new-Adds-support-for-NGINX-App-Protect-WAF-v5"></a>
 
-   NGINX Instance Manager 2.17.0 adds support for [NGINX App Protect WAF v5.](https://docs.nginx.com/nginx-app-protect-waf/v5/admin-guide/overview/).
+   NGINX Instance Manager 2.17.0 adds support for [F5 WAF for NGINX v5.](https://docs.nginx.com/nginx-app-protect-waf/v5/admin-guide/overview/).
 
-  NGINX App Protect WAF v5 (designed for both NGINX Open Source and NGINX Plus environments) consists of a dynamic NGINX module and containerized WAF services, providing robust security and scalability.
+  F5 WAF for NGINX v5 (designed for both NGINX Open Source and NGINX Plus environments) consists of a dynamic NGINX module and containerized WAF services, providing robust security and scalability.
 
 - {{% icon-feature %}} **Hosted Docker images for Kubernetes Helm charts**<a name="2-17-0-whats-new-Hosted-Docker-images-for-Kubernetes-Helm-charts"></a>
 
@@ -847,9 +847,9 @@ This release includes the following updates:
 
    Auxiliary files, such as certificate files and other non-config files on managed instances or instance groups, are now visible in the file tree of the config editor view. This improvement makes it easier to reference these files within a configuration.
 
-- {{% icon-feature %}} **Introducing new predefined log profiles for NGINX App Protect WAF**<a name="2-11-0-whats-new-Introducing-new-predefined-log-profiles-for-NGINX-App-Protect-WAF"></a>
+- {{% icon-feature %}} **Introducing new predefined log profiles for F5 WAF for NGINX**<a name="2-11-0-whats-new-Introducing-new-predefined-log-profiles-for-NGINX-App-Protect-WAF"></a>
 
-   Now, managing your NGINX App Protect WAF configuration is even easier with new predefined log profiles. In addition to the existing log_all, log_blocked, log_illegal, and log_secops log profiles, the following new predefined log profiles are now available:
+   Now, managing your F5 WAF for NGINX configuration is even easier with new predefined log profiles. In addition to the existing log_all, log_blocked, log_illegal, and log_secops log profiles, the following new predefined log profiles are now available:
 
   - log_f5_arcsight
   - log_f5_splunk
@@ -857,7 +857,7 @@ This release includes the following updates:
   - log_grpc_blocked
   - log_grpc_illegal
 
-  These new log profiles make it even easier to integrate NGINX App Protect WAF with other logging systems, such as Splunk, ArcSight, and gRPC.
+  These new log profiles make it even easier to integrate F5 WAF for NGINX with other logging systems, such as Splunk, ArcSight, and gRPC.
 
 - {{% icon-feature %}} **You can now install Advanced Metrics automatically when you install NGINX Agent**<a name="2-11-0-whats-new-You-can-now-install-Advanced-Metrics-automatically-when-you-install-NGINX-Agent"></a>
 
@@ -958,9 +958,9 @@ This release includes the following updates:
 
    You can now filter entries in the Events web interface using a new "Category" filter. Categories for event entries include "Certs", "Instance Groups", and "Templates".
 
-- {{% icon-feature %}} **New NGINX Agent install flag for NGINX App Protect WAF**<a name="2-10-0-whats-new-New-NGINX-Agent-install-flag-for-NGINX-App-Protect-WAF"></a>
+- {{% icon-feature %}} **New NGINX Agent install flag for F5 WAF for NGINX**<a name="2-10-0-whats-new-New-NGINX-Agent-install-flag-for-NGINX-App-Protect-WAF"></a>
 
-   The NGINX Agent installation script now has a flag to enable the default configuration required for NGINX App Protect WAF. It is used to retrieve the deployment status and `precompiled_publication` mode, with an option for the NGINX App Protect WAF instance to use the mode for policies.
+   The NGINX Agent installation script now has a flag to enable the default configuration required for F5 WAF for NGINX. It is used to retrieve the deployment status and `precompiled_publication` mode, with an option for the F5 WAF for NGINX instance to use the mode for policies.
 
 - {{% icon-feature %}} **NGINX Management Suite version now visible in the web interface and API**<a name="2-10-0-whats-new-NGINX-Management-Suite-version-now-visible-in-the-web-interface-and-API"></a>
 
@@ -1296,7 +1296,7 @@ This release has the following changes in default behavior:
 
 - {{% icon-feature %}} **NGINX App Protect upgrades are supported**<a name="2-7-0-changes-in-behavior-NGINX-App-Protect-upgrades-are-supported"></a>
 
-  You can upgrade NGINX App Protect WAF on managed instances where Instance Manager publishes NGINX App Protect policies and configurations. For example, upgrade from App Protect release 3.12.2 to release 4.0.
+  You can upgrade F5 WAF for NGINX on managed instances where Instance Manager publishes NGINX App Protect policies and configurations. For example, upgrade from App Protect release 3.12.2 to release 4.0.
 
 - {{% icon-feature %}} **NGINX Management Suite Config file is now in YAML format**<a name="2-7-0-changes-in-behavior-NGINX-Management-Suite-Config-file-is-now-in-YAML-format"></a>
 
@@ -1342,14 +1342,14 @@ If your NGINX Instance Manager version is older, you may need to upgrade to an i
 ### What's New{#2-6-0-whats-new}
 This release includes the following updates:
 
-- {{% icon-feature %}} **Manage and deploy configurations to NGINX App Protect WAF Instances**<a name="2-6-0-whats-new-Manage-and-deploy-configurations-to-NGINX-App-Protect-WAF-Instances"></a>
+- {{% icon-feature %}} **Manage and deploy configurations to F5 WAF for NGINX Instances**<a name="2-6-0-whats-new-Manage-and-deploy-configurations-to-NGINX-App-Protect-WAF-Instances"></a>
 
    This release introduces the following features to [manage and deploy configurations to NGINX App Protect instances]({{< ref "/nim/nginx-app-protect/overview-nap-waf-config-management.md" >}}):
 
-  - Create, upsert, and delete NGINX App Protect WAF security policies
-  - Manage NGINX App Protect WAF security configurations by using the NGINX Management Suite user interface or REST API
+  - Create, upsert, and delete F5 WAF for NGINX security policies
+  - Manage F5 WAF for NGINX security configurations by using the NGINX Management Suite user interface or REST API
   - Update Signatures and Threat Campaign packages
-  - Compile security configurations into a binary bundle that can be consumed by NGINX App Protect WAF instances
+  - Compile security configurations into a binary bundle that can be consumed by F5 WAF for NGINX instances
 
 - {{% icon-feature %}} **Adds support for RHEL 9**<a name="2-6-0-whats-new-Adds-support-for-RHEL-9"></a>
 
@@ -1381,7 +1381,7 @@ This release has the following changes in default behavior:
 This release fixes the following issues. Check the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic for more information on the latest resolved issues. Use your browser's search function to find the issue ID in the page.
 
 - {{% icon-resolved %}} Password error "option unknown" occurs when installing NGINX Instance Manager on Ubuntu with OpenSSL v1.1.0 (33055)
-- {{% icon-resolved %}} Instance Manager reports the NGINX App Protect WAF build number as the version (37510)
+- {{% icon-resolved %}} Instance Manager reports the F5 WAF for NGINX build number as the version (37510)
 
 
 ### Known Issues{#2-6-0-known-issues}
@@ -1554,12 +1554,12 @@ If your NGINX Instance Manager version is older, you may need to upgrade to an i
 ### What's New{#2-3-0-whats-new}
 This release includes the following updates:
 
-- {{% icon-feature %}} **Instance Manager provides information about your NGINX App Protect WAF installations**<a name="2-3-0-whats-new-Instance-Manager-provides-information-about-your-NGINX-App-Protect-WAF-installations"></a>
+- {{% icon-feature %}} **Instance Manager provides information about your F5 WAF for NGINX installations**<a name="2-3-0-whats-new-Instance-Manager-provides-information-about-your-NGINX-App-Protect-WAF-installations"></a>
 
-   You can configure NGINX Agent to report the following NGINX App Protect WAF installation information to NGINX Management Suite:
+   You can configure NGINX Agent to report the following F5 WAF for NGINX installation information to NGINX Management Suite:
 
-  - The current version of NGINX App Protect WAF
-  - The current status of NGINX App Protect WAF (active or inactive)
+  - The current version of F5 WAF for NGINX
+  - The current status of F5 WAF for NGINX (active or inactive)
   - The Attack Signatures package version
   - The Threat Campaigns package version
 

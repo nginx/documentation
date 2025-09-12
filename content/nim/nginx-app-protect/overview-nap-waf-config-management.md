@@ -1,5 +1,5 @@
 ---
-description: Learn how to use F5 NGINX Instance Manager to set up and manage NGINX App Protect WAF security policies.
+description: Learn how to use F5 NGINX Instance Manager to set up and manage F5 WAF for NGINX security policies.
 nd-docs: DOCS-992
 title: "How WAF policy management works"
 toc: true
@@ -10,9 +10,9 @@ type:
 
 ## Overview
 
-F5 NGINX Instance Manager helps you manage [NGINX App Protect WAF](https://www.nginx.com/products/nginx-app-protect/web-application-firewall/) security configurations.
+F5 NGINX Instance Manager helps you manage [F5 WAF for NGINX](https://www.nginx.com/products/nginx-app-protect/web-application-firewall/) security configurations.
 
-Use NGINX Instance Manager with NGINX App Protect WAF to inspect incoming traffic, detect threats, and block malicious requests. You can define policies in one place and push them to some or all of your NGINX App Protect WAF instances.
+Use NGINX Instance Manager with F5 WAF for NGINX to inspect incoming traffic, detect threats, and block malicious requests. You can define policies in one place and push them to some or all of your F5 WAF for NGINX instances.
 
 ### Key features
 
@@ -22,15 +22,15 @@ Use NGINX Instance Manager with NGINX App Protect WAF to inspect incoming traffi
 
 ## Architecture
 
-NGINX Instance Manager lets you define and manage security policies, upload signature packages, and push configurations to your NGINX App Protect WAF instances. It can also compile your security configuration into a bundle before publishing it to the data plane.
+NGINX Instance Manager lets you define and manage security policies, upload signature packages, and push configurations to your F5 WAF for NGINX instances. It can also compile your security configuration into a bundle before publishing it to the data plane.
 
-The **Security Monitoring** module shows real-time data from NGINX App Protect WAF so you can track traffic, spot anomalies, and fine-tune policies.
+The **Security Monitoring** module shows real-time data from F5 WAF for NGINX so you can track traffic, spot anomalies, and fine-tune policies.
 
-{{< img src="nim/app-sec-overview.png" caption="Figure 1. NGINX Instance Manager with NGINX App Protect architecture overview" alt="Architecture diagram showing NGINX Instance Manager and Security Monitoring in the control plane pushing security bundles to NGINX App Protect WAF instances in the data plane" >}}
+{{< img src="nim/app-sec-overview.png" caption="Figure 1. NGINX Instance Manager with NGINX App Protect architecture overview" alt="Architecture diagram showing NGINX Instance Manager and Security Monitoring in the control plane pushing security bundles to F5 WAF for NGINX instances in the data plane" >}}
 
 ### Security bundle compilation {#security-bundle}
 
-NGINX Instance Manager includes a compiler that packages your complete WAF configuration — security policies, attack signatures, threat campaigns, and log profiles — into a single `.tgz` file. It then pushes this bundle to the selected NGINX App Protect WAF instances.
+NGINX Instance Manager includes a compiler that packages your complete WAF configuration — security policies, attack signatures, threat campaigns, and log profiles — into a single `.tgz` file. It then pushes this bundle to the selected F5 WAF for NGINX instances.
 
 **Why precompile with NGINX Instance Manager?**
 
@@ -60,7 +60,7 @@ NGINX Instance Manager and Security Monitoring both use log profiles, but their 
 
 ## Security management APIs
 
-Use the NGINX Instance Manager REST API to automate updates across your NGINX App Protect WAF instances. You can use the API to manage:
+Use the NGINX Instance Manager REST API to automate updates across your F5 WAF for NGINX instances. You can use the API to manage:
 
 - Security policies
 - Log profiles
@@ -69,7 +69,7 @@ Use the NGINX Instance Manager REST API to automate updates across your NGINX Ap
 
 Just like with the web interface, the compiler creates a binary bundle with your updates that you can push to your WAF instances.
 
-{{< img src="nim/app-sec-api-overview.png" caption="Figure 2. NGINX Instance Manager with NGINX App Protect WAF architecture overview" alt="Diagram showing how the NGINX Instance Manager REST API is used to create policies, upload signatures and campaigns, and publish compiled security bundles to NGINX App Protect WAF instances">}}
+{{< img src="nim/app-sec-api-overview.png" caption="Figure 2. NGINX Instance Manager with F5 WAF for NGINX architecture overview" alt="Diagram showing how the NGINX Instance Manager REST API is used to create policies, upload signatures and campaigns, and publish compiled security bundles to F5 WAF for NGINX instances">}}
 
 For full details, see the API documentation:
 
