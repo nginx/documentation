@@ -9,7 +9,7 @@ type:
 
 ## Overview
 
-F5 NGINX as a Service for Azure (NGINXaaS) supports exporting NGINX App Protect logs to an Azure Storage account or to a Log Analytics workspace.
+F5 NGINXaaS for Azure (NGINXaaS) supports exporting NGINX App Protect logs to an Azure Storage account or to a Log Analytics workspace.
 
 ## Setting up operational logs
 
@@ -81,7 +81,7 @@ NGINXaaS for Azure ships with several pre-compiled log configuration bundles. Mo
 
 The following table shows the path to the log configuration file that needs to be used with the app_protect_security_log directive:
 
- {{<bootstrap-table "table table-striped table-bordered">}}
+ {{< table >}}
   | Profile                     | Path                                         |
   |---------------------------- | -------------------------------------------- |
   | log_default                 | /etc/app_protect/conf/log_default.json |
@@ -91,7 +91,7 @@ The following table shows the path to the log configuration file that needs to b
   | log_grpc_all                | /etc/app_protect/conf/log_grpc_all.json |
   | log_grpc_illegal            | /etc/app_protect/conf/log_grpc_illegal.json |
   | log_grpc_blocked            | /etc/app_protect/conf/log_grpc_blocked.json |
-   {{</bootstrap-table>}}
+   {{< /table >}}
 
 To view the contents of the available log configuration, navigate to the azure portal and select the Log Configurations tab in the App Protect section.
 
@@ -124,7 +124,7 @@ app_protect_security_log "/etc/app_protect/conf/log_all.json" /var/log/app_prote
 
 If the diagnostic setting destination details included a Logs Analytics workspace, logs appear in the "NGXSecurityLogs" table with the following columns:
 
-{{<bootstrap-table "table table-striped table-bordered">}}
+{{< table >}}
 | **Attribute**               | **Description** |
 |-----------------------------|-----------------|
 | **Location**                  | The location of the NGINXaaS resource.|
@@ -133,7 +133,7 @@ If the diagnostic setting destination details included a Logs Analytics workspac
 | **Tag**                 | The tag with which NGINX security logs are generated if syslog-based log configuration is used. |
 | **Facility**                 | The syslog facility that generates the NGINX security logs if syslog-based log configuration is being used. |
 | **Severity**                | The syslog severity with which NGINX security logs were generated if syslog-based log configuration is used. |
-{{</bootstrap-table>}}
+{{< /table >}}
 
 To view the raw data in the NGINX security log, run the following KQL query:
 ```
