@@ -9,7 +9,7 @@ type:
 
 ## Overview
 
-You can manage SSL/TSL certificates for F5 NGINX as a Service for Azure (NGINXaaS) using Terraform.
+You can manage SSL/TSL certificates for F5 NGINXaaS for Azure (NGINXaaS) using Terraform.
 
 ## Prerequisites
 
@@ -21,7 +21,7 @@ You can find examples of Terraform configurations in the [NGINXaaS for Azure Sni
 
 To create a deployment, add a certificate, and use it in a configuration, run the following commands:
 
-   ```bash
+   ```shell
    terraform init
    terraform plan
    terraform apply --auto-approve
@@ -31,7 +31,7 @@ To create a deployment, add a certificate, and use it in a configuration, run th
 
 Once the deployment is no longer needed, run the following to clean up the deployment and related resources:
 
-   ```bash
+   ```shell
    terraform destroy --auto-approve
    ```
 
