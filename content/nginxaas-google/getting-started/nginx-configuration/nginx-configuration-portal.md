@@ -12,7 +12,7 @@ You can apply an NGINX configuration to your F5 NGINXaaS for Google Cloud (NGINX
 
 ## Prerequisites
 
-- You need to have a subscription to the NGINXaaS for Google Cloud offer. See [Prerequisites]({{< ref "/nginxaas-google/getting-started/prerequisites/" >}}).
+- If you haven't done it yet, follow the steps in the [Prerequisites]({{< ref "/nginxaas-google/getting-started/prerequisites/" >}}) topic to subscribe to the NGINXaaS for Google Cloud offer in the Google Cloud Marketplace.
 
 ## Access the NGINXaaS Console
 
