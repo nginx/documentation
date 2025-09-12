@@ -53,8 +53,8 @@ The block below shows the code you will look for:
 #      volumes:
 #      - name: nginx-etc
 #        emptyDir: {}
-#      - name: nginx-cache  # not required for statefulset
-#        emptyDir: {}       # not required for statefulset
+#      - name: nginx-cache  # do not set this value in statefulset if volumeclaimtemplate is set
+#        emptyDir: {}       # do not set this value in statefulset if volumeclaimtemplate is set
 #      - name: nginx-lib
 #        emptyDir: {}
 #      - name: nginx-lib-state
