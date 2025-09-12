@@ -13,22 +13,99 @@ Monitoring your application's performance is crucial for maintaining its reliabi
 
 ## Prerequisites
 
+- Enable the [Cloud Monitoring API](https://cloud.google.com/monitoring/api/enable-api).
+- Grant a project-level role or grant your principal access to the `roles/monitoring.viewer` role. See [Google's documentation on controlling access to Cloud Monitoring with IAM](https://cloud.google.com/monitoring/access-control).
+- Configure Workload Identity Federation (WIF). See [our documentation on setting up WIF]({{< ref "/nginxaas-google/monitoring/access-management.md#configure-wif" >}}) for exact steps.
 
+## Export NGINXaaS metrics to a Google Cloud Project
 
-## Collection
+To enable sending metrics to your desired Google Cloud project, you must specify the project ID when creating or updating a deployment. To create a deployment, see [our documentation on creating an NGINXaaS deployment]({{< ref "/nginxaas-google/getting-started/create-deployment/" >}}) for a step-by-step guide. To update the deployment, in the NGINXaaS console,
 
+1. On the navigation menu, select **Deployments**.
+1. Select the deployment you want to update and select **Edit**.
+1. Enter the project you want metrics to be send to under **Metric Project ID**.
+1. Select **Update**.
 
+## View NGINXaaS metrics in Google Cloud Monitoring
 
-## Exporting
+See the [Metrics Catalog]({{< ref "/nginxaas-google/monitoring/metrics-catalog.md" >}}) for a full list of metrics NGINXaaS provides.
 
+### Google Cloud Console's Metrics Explorer
 
+Log in to your [Google Cloud Console](https://console.cloud.google.com/),
 
-## Cost and retention
+1. Go to your metric project.
+2. Search for "Metrics Explorer".
 
+Refer to the [Google's Metrics Explorer](https://cloud.google.com/monitoring/charts/metrics-explorer) documentation to learn how you can create charts and queries.
 
-## Review metrics
+### Google Cloud Monitoring API
 
-### View metrics using Google Cloud Console
+You can retrieve raw time series metrics from the [Cloud Monitoring API](https://cloud.google.com/monitoring/api/v3).
 
-### Retrieve metrics through Google Cloud API
+For example, you can use [`projects.timeSeries.list`](https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list) to list metrics matching filters from a specified time interval.
+
+```bash
+curl \
+  'https://monitoring.googleapis.com/v3/projects/{project_id}/timeSeries?filter=metric.type%20%3D%20%22workload.googleapis.com%2Fnginxaas.ncus.provisioned%22&interval.endTime=2025-08-27T20%3A59%3A41.502Z&interval.startTime=2025-08-27T20%3A50%3A41.502Z&view=FULL&key=[YOUR_API_KEY]' \
+  --header 'Authorization: Bearer [YOUR_ACCESS_TOKEN]' \
+  --header 'Accept: application/json' \
+  --compressed
+```
+
+The following JSON shows an example response body:
+
+```json
+{
+  "timeSeries": [
+    {
+      "metric": {
+        "labels": {
+          "nginxaas_deployment_location": "us-east1",
+          "nginxaas_deployment_object_id": "depl_AZjtL2OUdCeh-DROeCLp1w",
+          "nginxaas_account_id": "account-id",
+          "service_name": "unknown_service:naasagent",
+          "instrumentation_source": "naasagent",
+          "nginxaas_deployment_name": "test-deployment",
+          "nginxaas_namespace": "default"
+        },
+        "type": "workload.googleapis.com/nginxaas.ncus.provisioned"
+      },
+      "resource": {
+        "type": "generic_node",
+        "labels": {
+          "node_id": "",
+          "location": "global",
+          "namespace": "",
+          "project_id": "test-project"
+        }
+      },
+      "metricKind": "GAUGE",
+      "valueType": "INT64",
+      "points": [
+        {
+          "interval": {
+            "startTime": "2025-08-27T20:56:18.608375Z",
+            "endTime": "2025-08-27T20:56:18.608375Z"
+          },
+          "value": {
+            "int64Value": "10"
+          }
+        }
+      ]
+    }
+  ],
+}
+```
+
+{{< call-out "note" >}}Many of NGINX Plus's advanced statistics need to be enabled in the "nginx.conf" file before they will appear in the Metrics Explorer, for example "plus.http.request.bytes_*". Refer to [Gathering Data to Appear in Statistics]({{< ref "/nginx/admin-guide/monitoring/live-activity-monitoring.md#gathering-data-to-appear-in-statistics" >}}) to learn more.{{< /call-out >}}
+
+## Disable exporting NGINXaaS metrics to a Google Cloud project
+
+To disable sending metrics to your Google Cloud project, update your NGINXaaS deployment to remove the reference to your project ID. To update the deployment, in the NGINXaaS console,
+
+1. On the navigation menu, select **Deployments**.
+1. Select the deployment you want to update and select **Edit**.
+1. Remove the project ID under **Metric Project ID**.
+1. Select **Update**.
 
