@@ -10,7 +10,7 @@ type:
 
 ## Overview
 
-Learn how to configure F5 NGINX as a Service (NGINXaaS) for Azure with OpenID Connect (OIDC) authentication.
+Learn how to configure F5 NGINXaaS for Azure with OpenID Connect (OIDC) authentication.
 
 ## Prerequisites
 
@@ -21,7 +21,7 @@ Learn how to configure F5 NGINX as a Service (NGINXaaS) for Azure with OpenID Co
 3. [Configure the IdP](https://github.com/nginxinc/nginx-openid-connect/blob/main/README.md#configuring-your-idp). For example, you can [register a Microsoft Entra Web application](https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-register-app) as the IdP.
 
 
-## Configure NGINX as a Service for Azure with IdP
+## Configure NGINXaaS for Azure with IdP
 
 Configuring NGINXaaS for Azure with OIDC is similar as [Configuring NGINX Plus](https://github.com/nginxinc/nginx-openid-connect/blob/main/README.md#configuring-nginx-plus) in [nginx-openid-connect](https://github.com/nginxinc/nginx-openid-connect) but it also has its own specific configurations that must be completed to work normally.
 
