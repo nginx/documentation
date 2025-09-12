@@ -90,14 +90,14 @@ For more information on these policies refer the NGINX App Protect [configuratio
 
 The following table shows the path to the precompiled policy file that needs to be used with the `app_protect_policy_file` directive:
 
-{{<bootstrap-table "table table-striped table-bordered">}}
+{{< table >}}
   | Policy                      | Enforcement Mode             | Path                                         |
   |---------------------------- | ---------------------------- | -------------------------------------------- |
   | Default                     | Strict                       | /etc/app_protect/conf/NginxDefaultPolicy.json |
   | Default                     | Transparent                  | /etc/app_protect/conf/NginxDefaultPolicy_transparent.json |
   | Strict                      | Strict                       | /etc/app_protect/conf/NginxStrictPolicy.json |
   | Strict                      | Transparent                  | /etc/app_protect/conf/NginxStrictPolicy_transparent.json |
-{{</bootstrap-table>}}
+{{< /table >}}
 
 To view the contents of the available security policies, navigate to the azure portal and select the **Security Policies** tab in the App Protect section.
 

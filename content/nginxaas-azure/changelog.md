@@ -7,7 +7,7 @@ url: /nginxaas/azure/changelog/
 
 ---
 
-Learn about the latest updates, new features, and resolved bugs in F5 NGINX as a Service for Azure.
+Learn about the latest updates, new features, and resolved bugs in F5 NGINXaaS for Azure.
 
 To see a list of currently active issues, visit the [Known issues]({{< ref "/nginxaas-azure/known-issues.md" >}}) page.
 

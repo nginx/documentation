@@ -5,14 +5,14 @@ toc: true
 url: /nginxaas/azure/module-changelog/
 ---
 
-Learn about the modules supported by the latest versions of F5 NGINX as a Service for Azure.
+Learn about the modules supported by the latest versions of F5 NGINXaaS for Azure.
 
 
 ## July 03, 2025 
 
 ### Stable
 
- {{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}}
+ {{< table >}}
 
 | Name                                     | Version                  | Description                                                            |
 |------------------------------------------|--------------------------|------------------------------------------------------------------------|
@@ -30,13 +30,13 @@ Learn about the modules supported by the latest versions of F5 NGINX as a Servic
 | nginx-plus-module-appprotect             | 33+5.264.0-1        | NGINX Plus app protect dynamic module version 5.264.0                  |
 | app-protect-module-plus                  | 33+5.264.0-1        | App-Protect package for Nginx Plus, includes all of the default files and examples. NGINX App Protect provides web application firewall (WAF) security protection for your web applications, including OWASP Top 10 attacks. |
 | app-protect-plugin                       | 6.9.0-1             | NGINX App Protect plugin |
-{{</bootstrap-table>}}
+{{< /table >}}
 
 
 
 ### Preview
 
- {{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}}
+ {{< table >}}
 
 | Name                                     | Version                  | Description                                                            |
 |------------------------------------------|--------------------------|------------------------------------------------------------------------|
@@ -54,4 +54,4 @@ Learn about the modules supported by the latest versions of F5 NGINX as a Servic
 | nginx-plus-module-appprotect             | 33+5.264.0-1        | NGINX Plus app protect dynamic module version 5.264.0                  |
 | app-protect-module-plus                  | 33+5.264.0-1        | App-Protect package for Nginx Plus, includes all of the default files and examples. NGINX App Protect provides web application firewall (WAF) security protection for your web applications, including OWASP Top 10 attacks. |
 | app-protect-plugin                       | 6.9.0-1             | NGINX App Protect plugin |
-{{</bootstrap-table>}}
+{{< /table >}}

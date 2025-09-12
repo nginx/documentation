@@ -43,7 +43,7 @@ Learn how to deliver, manage, and protect your applications using F5 NGINX produ
 {{</card-section>}}
 
 {{<card-section showAsCards="true" title="F5 NGINX as a Service">}}
-  {{<card title="F5 NGINX as a Service for Azure" titleUrl="/nginxaas/azure/" brandIcon="NGINX-for-Azure-product-icon.svg" isLanding="true">}}
+  {{<card title="F5 NGINXaaS for Azure" titleUrl="/nginxaas/azure/" brandIcon="NGINX-for-Azure-product-icon.svg" isLanding="true">}}
     Infrastructure-as-a-Service (IaaS) version of NGINX Plus for your Microsoft Azure application stack.
   {{</card >}}
 {{</card-section>}}

@@ -14,7 +14,7 @@ For more information on configuring HTTP Basic Authentication please refer to th
 
 ## Uploading a password file
 
-F5 NGINX as a Service for Azure (NGINXaaS) accepts a file containing usernames and passwords using any of the password types specified in the [NGINX documentation](https://nginx.org/en/docs/http/ngx_http_auth_basic_module.html#auth_basic_user_file). The password file can be uploaded as a "protected file" when creating or updating your NGINX configuration to protect the file's contents from being read. The password file can alternatively be uploaded as a regular file.
+F5 NGINXaaS for Azure (NGINXaaS) accepts a file containing usernames and passwords using any of the password types specified in the [NGINX documentation](https://nginx.org/en/docs/http/ngx_http_auth_basic_module.html#auth_basic_user_file). The password file can be uploaded as a "protected file" when creating or updating your NGINX configuration to protect the file's contents from being read. The password file can alternatively be uploaded as a regular file.
 
 {{< img src="nginxaas-azure/auth-basic-htpasswd.png" alt="Screenshot of the Azure portal showing the password file upload" >}}
 
