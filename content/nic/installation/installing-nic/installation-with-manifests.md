@@ -132,10 +132,11 @@ kubectl apply -f config/crd/bases/appprotectdos.f5.com_dosprotectedresources.yam
 
 ## Deploy NGINX Ingress Controller {#deploy-ingress-controller}
 
-You have two options for deploying NGINX Ingress Controller:
+You have three options for deploying NGINX Ingress Controller:
 
 - **Deployment**. Choose this method for the flexibility to dynamically change the number of NGINX Ingress Controller replicas.
 - **DaemonSet**. Choose this method if you want NGINX Ingress Controller to run on all nodes or a subset of nodes.
+- **StatefulSet**. Choose this method when you need stable, persistent storage and ordered deployment/scaling for your NGINX Ingress Controller pods.
 
 Before you start, update the [command-line arguments]({{< ref "/nic/configuration/global-configuration/command-line-arguments.md" >}}) for the NGINX Ingress Controller container in the relevant manifest file to meet your specific requirements.
 
@@ -147,6 +148,10 @@ Before you start, update the [command-line arguments]({{< ref "/nic/configuratio
 
 {{< include "/nic/installation/manifests/daemonset.md" >}}
 
+### Using a StatefulSet
+
+{{< include "/nic/installation/manifests/statefulset.md" >}}
+
 ---
 
 ## Confirm NGINX Ingress Controller is running
@@ -157,9 +162,9 @@ Before you start, update the [command-line arguments]({{< ref "/nic/configuratio
 
 ## How to access NGINX Ingress Controller
 
-### Using a Deployment
+### Using a Deployment or StatefulSet
 
-For Deployments, you have two options for accessing NGINX Ingress Controller pods.
+For Deployments and StatefulSets, you have two options for accessing NGINX Ingress Controller pods.
 
 #### Option 1: Create a NodePort service
 
