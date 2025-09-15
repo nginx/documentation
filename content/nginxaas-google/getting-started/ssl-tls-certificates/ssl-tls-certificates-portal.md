@@ -19,7 +19,7 @@ If you haven't already done so, complete the following prerequisites:
 - Access the portal visiting [https://console.nginxaas.net/](https://console.nginxaas.net/).
     - Log in to the NGINXaaS console with your Google credentials.
 
-### Add an SSL/TLS certificate to NGINXaaS
+## Add an SSL/TLS certificate to NGINXaaS
 - Select **Certificates** in the left menu.
 - Select {{< icon "plus">}} **Add Certificate**.
 - In the **Add Certificate** panel, provide the required information:
@@ -34,7 +34,9 @@ If you haven't already done so, complete the following prerequisites:
 
 - Repeat the same steps to add as many certificates as needed.
 
-### Add a certificate to a configuration
+### Use a certificate in an NGINX configuration
+
+To use a certificate in an NGINX configuration, follow these steps:
 
 - Select **Configurations** in the left menu.
 - Select the ellipsis (three dots) next to the configuration you want to edit, and select **Edit**.
