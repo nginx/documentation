@@ -44,7 +44,7 @@ To use a certificate in an NGINX configuration, follow these steps:
 - In your configuration, select {{< icon "plus">}} **Add File** and either choose to use an existing certificate or add a new one.
     - If you want to add a new certificate, select **New SSL Certificate or CA Bundle** and follo the steps mentioned in [Add an SSL/TLS certificate to NGINXaaS](#add-an-ssltls-certificate-to-nginxaas).
     - If you want to use an existing certificate, select **Existing SSL Certificate or CA Bundle** and use the menu to choose a certificate from the list of certificates you have already added.
-- Provide the required path information and select {{< icon "plus">}} **Add Item**:
+- Provide the required path information:
 
     {{< table >}}
    | Field                       | Description                  | Note |
