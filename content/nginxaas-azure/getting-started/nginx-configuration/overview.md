@@ -43,15 +43,6 @@ NGINXaaS for Azure places restrictions on the instance’s filesystem; only a sp
 
 Attempts to access other directories will be denied and result in a `5xx` error.
 
-```plaintext
-/etc/nginx/         # Certificates, keys (master only)
-/opt/               # Application files (worker read-only)
-/srv/               # Application files (worker read-only)
-/var/www/           # Static files (worker read-only)
-/var/cache/nginx/   # Cache data (worker read/write)
-/tmp/               # Temporary files (worker read/write)
-```
-
 ## Disallowed configuration directives
 Some directives are not supported because of specific limitations. If you include one of these directives in your NGINX configuration, you'll get an error.
 
