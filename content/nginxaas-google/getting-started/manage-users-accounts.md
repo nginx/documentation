@@ -12,7 +12,7 @@ type:
 
 This document explains how to manage users and accounts in F5 NGINXaaS for Google Cloud using the NGINXaaS console. 
 
-Before starting, the following concepts are important to understand:
+Before you start, ensure you understand the following concepts:
 
 - **NGINXaaS Accounts**: Represents a Google Cloud procurement with an active NGINXaaS Marketplace subscription, linked to a billing account. To create an account, see the signup documentation in [prerequisites]({{< ref "/nginxaas-google/getting-started/prerequisites.md" >}}).
 - **Users**: A user is anyone who has access to an NGINXaaS Account through their Google Identity. The same Google Identity can be added to multiple NGINXaaS Accounts, but it is treated as a different user in each account. 
