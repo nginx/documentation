@@ -22,7 +22,7 @@ If you haven't already done so, complete the following prerequisites:
 ### Add an SSL/TLS certificate
 - Select **Certificates** in the left menu.
 - Select {{< icon "plus">}} **Add Certificate**.
-- In the **Add Certificate** window, provide the required information:
+- In the **Add Certificate** panel, provide the required information:
 
     {{< table >}}
    | Field                       | Description                  |
@@ -34,17 +34,15 @@ If you haven't already done so, complete the following prerequisites:
 
 - Repeat the same steps to add as many certificates as needed.
 - In your configuration, select **Add File** and either choose to use an existing certificate or add a new one.
-    - If you choose to add a new certificate, select **New SSL Certificate or CA Bundle** and follow the steps above.
-    - If you choose to use an existing certificate, select **Existing SSL Certificate or CA Bundle** and choose the certificate you want to use.
+    - If you want to add a new certificate, select **New SSL Certificate or CA Bundle** and follow the steps above.
+    - If you want to use an existing certificate, select **Existing SSL Certificate or CA Bundle** and choose the certificate you want to use.
 - Provide the required information:
 
     {{< table >}}
-   | Field                       | Description                  |
-   |---------------------------- | ---------------------------- |
-   | Certificate File Path       | This path can match one or more ssl_certificate directive file arguments in your NGINX configuration.
-The certificate path must be unique within the same deployment. |
-   | Key File Path                 | This path can match one or more ssl_certificate_key directive file arguments in your NGINX configuration.
-The key path must be unique within the same deployment.|
+   | Field                       | Description                  | Note |
+   |---------------------------- | ---------------------------- | ---- |
+   | Certificate File Path       | This path can match one or more ssl_certificate directive file arguments in your NGINX configuration. | The certificate path must be unique within the same deployment. |
+   | Key File Path               | This path can match one or more ssl_certificate_key directive file arguments in your NGINX configuration. | The key path must be unique within the same deployment. |
      {{< /table >}}
 
 - Now you can provide an NGINX configuration that references the certificate you just added by the path value.
