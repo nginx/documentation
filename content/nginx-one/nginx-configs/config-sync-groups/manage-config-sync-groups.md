@@ -333,3 +333,4 @@ Monitor the **Config Sync Status** column. It can help you ensure that your conf
 
 - [Create and manage data plane keys]({{< ref "/nginx-one/connect-instances/create-manage-data-plane-keys.md" >}})
 - [Add an NGINX instance]({{< ref "/nginx-one/connect-instances/add-instance.md" >}})
+- [Updating the NGINX configuration with an NGINX One Console Config Sync Group push fails (My F5 Knowledge article)]((https://my.f5.com/manage/s/article/K000154659)
