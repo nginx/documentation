@@ -27,7 +27,7 @@ NGINXaaS requires a [network attachment](https://cloud.google.com/vpc/docs/about
 
 ## Access the NGINX as a Service Console
 
-Once you have completed the subscription process, you can access the NGINXaas Console:
+Once you have completed the subscription process and created a network attachment, you can access the NGINXaaS Console.
 
 - If you have just completed the subscription process, access the console selecting **Manage on provider**.
 - In any other cases, visit [https://console.nginxaas.net/](https://console.nginxaas.net/) to access the NGINXaaS Console.
