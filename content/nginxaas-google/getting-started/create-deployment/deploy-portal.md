@@ -16,6 +16,15 @@ This guide explains how to deploy F5 NGINXaaS for Google Cloud (NGINXaaS) using 
 
 Before you can deploy NGINXaaS, follow the steps in the [Prerequisites]({{< ref "/nginxaas-google/getting-started/prerequisites/" >}}) topic to subscribe to the NGINXaaS for Google Cloud offer in the Google Cloud Marketplace.
 
+### Create a network attachment
+
+NGINXaaS requires a [network attachment](https://cloud.google.com/vpc/docs/about-network-attachments) to connect your consumer Virtual Private Cloud (VPC) network and your NGINXaaS deployment's VPC network.
+
+1. Access the [Google Cloud Console](https://console.cloud.google.com/).
+1. Create a consumer VPC network and subnetwork. See [Google's documentation on creating a VPC and subnet](https://cloud.google.com/vpc/docs/create-modify-vpc-networks#console_1) for a step-by-step guide.
+   - The region you choose in this step must match the region where your NGINXaaS deployment will be created.
+1. Create a Network Attachment in your new subnet that automatically accepts connections. See [Google's documentation on creating a Network Attachment](https://cloud.google.com/vpc/docs/create-manage-network-attachments#console_1) for a step-by-step guide.
+
 ## Access the NGINX as a Service Console
 
 Once you have completed the subscription process, you can access the NGINXaas Console:
@@ -29,18 +38,6 @@ Once you have completed the subscription process, you can access the NGINXaas Co
 {{< include "/nginxaas-google/create-or-import-nginx-config.md" >}}
 
 ## Create a new deployment
-
-### Create a network attachment
-
-NGINXaaS requires a [network attachment](https://cloud.google.com/vpc/docs/about-network-attachments) to connect your consumer Virtual Private Cloud (VPC) network and your NGINXaaS deployment's VPC network.
-
-1. Access the [Google Cloud Console](https://console.cloud.google.com/).
-1. Create a consumer VPC network and subnetwork. See [Google's documentation on creating a VPC and subnet](https://cloud.google.com/vpc/docs/create-modify-vpc-networks#console_1) for a step-by-step guide.
-   - The region you choose in this step must match the region where your NGINXaaS deployment will be created.
-   - TODO: firewall rules?
-1. Create a Network Attachment in your new subnet that automatically accepts connections. See [Google's documentation on creating a Network Attachment](https://cloud.google.com/vpc/docs/create-manage-network-attachments#console_1) for a step-by-step guide.
-
-### Create a deployment
 
 In the NGINXaaS Console,
 1. On the left menu, select **Deployments**.
