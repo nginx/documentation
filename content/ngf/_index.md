@@ -1,6 +1,6 @@
 ---
 # The title is the product name
-title: NGINX Gateway Fabric
+title: F5 NGINX Gateway Fabric
 # The URL is the base of the deployed path, becoming "docs.nginx.com/<url>/<other-pages>"
 url: /nginx-gateway-fabric/
 # The cascade directive applies its nested parameters down the page tree until overwritten

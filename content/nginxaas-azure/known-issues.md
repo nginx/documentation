@@ -7,7 +7,7 @@ url: /nginxaas/azure/known-issues/
 
 ---
 
-List of known issues in the latest release of F5 NGINX as a Service for Azure (NGINXaaS).
+List of known issues in the latest release of F5 NGINXaaS for Azure (NGINXaaS).
 
 ### {{% icon-bug %}} Custom and precompiled security policies cannot both be referenced in an NGINX configuration
 
