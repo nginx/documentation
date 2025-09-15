@@ -1,14 +1,10 @@
 ---
 title: Security logs
-toc: false
+toc: true
 weight: 200
 nd-content-type: reference
 nd-product: NAP-WAF
 ---
-
-## Security Logs
-
-### Security Logs Overview
 
 **Security logs** (also known as **Request logs** or **Traffic logs**) contain information on HTTP requests and responses, how F5 WAF for NGINX processes them, and the final decision made based on the configured policy parameters. The policy configuration defines the information contained in the Security log, such as whether requests are passed, blocked or alerted, due to violations, attack signatures, and other criteria.
 
@@ -24,9 +20,9 @@ The Security log has the following properties:
 
  * **Syslog Destination?** Yes
 
-### Directives in nginx.conf
+## Directives in nginx.conf
 
-#### app_protect_security_log_enable
+### app_protect_security_log_enable
 
 This directive determines whether security logging will be enabled in the respective context.
 
@@ -38,13 +34,11 @@ The security log attributes are determined by the `app_protect_security_log` dir
 
 •	Example: app_protect_security_log_enable on
 
-##### Arguments
-
 | Argument | Mandatory | Meaning | Default |
 | ---| ---| ---| --- |
 |ON-OFF | Yes | Whether to enable logging or not | off |
 
-#### app_protect_security_log
+### app_protect_security_log
 
 The security log attributes are determined by the `app_protect_security_log` directive, if it was enabled in the respective context. The directive can be at the following context levels: `http`, `server` and `location`. Multiple occurrences of this directive are allowed in a single context, and all the configured logs in this context will be used. When not present in a certain context, all the directives are inherited from the context above it: `location` from `server`, then from `http`. If there is no directive at any of these context levels, but logging is enabled then the default is used for the respective context.
 
@@ -62,30 +56,29 @@ app_protect_security_log log_illegal syslog:server=192.168.12.34:51400;
 app_protect_security_log /shared_volume/logging_profile_02.tgz syslog:server=my.domain.com:514;
 ```
 
-##### Arguments
-
 |Argument | Mandatory | Meaning | Default |
 | ---| ---| ---| --- |
 |LOG-BUNDLE-FILE-OR-NAME | No | The path to the **compiled** logging profile bundle, or built-in profile name. See details below. | `log_default` (identical to `log_illegal`)|
 |DESTINATION | No | The destination of the log messages in NGINX format. The supported destinations options are `stderr`, or an absolute path to a local file, or syslog server as localhost, hostname, IP address or FQDN with an optional port.| syslog:server=localhost:514 |
 
-### Security Log Configuration File
+## Security log configuration file
 
 Before applying, the log configuration file (JSON) should be [compiled]({{< ref "/nap-waf/v5/admin-guide/compiler.md#logging-profile-compilation" >}}) into a logging profile bundle (tgz).
 
 The file is in JSON format and consists of two parts:
-1.	**filter:** which requests are to be logged.
-2.	**content:** how the message is formatted.
+1.	**filter:**, Determining which requests are logged.
+2.	**content:**, Determining how messages are formatted.
 
-#### Filter
+**filter**
+
 The filter is mandatory, although it may be left blank.
 
 |Element | Meaning | Type/Values | Default |
 | ---| ---| ---| --- |
 |request_type | Log according to what App Protect detected in the request. | Enumerated values:<ul><li>**all:** all requests, both legal and illegal.</li><li>**illegal:** requests with violations (that is, either alerted or blocked).</li><li>**blocked:** requests with violations that were blocked.</li></ul> | all |
 
+**Content**
 
-#### Content
 This part of the configuration file specifies what will be logged, the format of the message, and size restrictions.
 
 Content is mandatory. If the entire content field or any of its attributes are not defined, system-defined default values are used.
@@ -101,9 +94,9 @@ Content is mandatory. If the entire content field or any of its attributes are n
 | list_delimiter | Defines the delimiter of a list of values in the log. | String | No | `,` | |
 | list_suffix | Defines the suffix of a list of values in the log. | String | No | N/A | |
 
-#### Examples
+### Examples
 
-##### Default Logging Content
+#### Default logging content
 
 This is the content of `log_default.json`. It is pre-compield (built-in) and is used by default when `app_protect_security_log_enabled on` is set, but `app_protect_security_log` is not:
 
@@ -121,7 +114,7 @@ This is the content of `log_default.json`. It is pre-compield (built-in) and is 
 }
 ```
 
-##### Log Illegal Requests in Key-Value Format
+#### Log Illegal Requests in Key-Value Format
 
 ```json
 {
@@ -137,7 +130,7 @@ This is the content of `log_default.json`. It is pre-compield (built-in) and is 
 }
 ```
 
-##### Log State Changing Requests
+#### Log State Changing Requests
 
 ```json
 {
@@ -152,7 +145,7 @@ This is the content of `log_default.json`. It is pre-compield (built-in) and is 
 }
 ```
 
-##### A Verbose Custom Formatted Message
+#### A Verbose Custom Formatted Message
 
 ```json
 {
@@ -168,7 +161,7 @@ This is the content of `log_default.json`. It is pre-compield (built-in) and is 
 }
 ```
 
-##### Log with Escaped Character and Custom List Prefix / Delimiter / Suffix
+#### Log with Escaped Character and Custom List Prefix / Delimiter / Suffix
 
 ```json
 {
@@ -197,7 +190,7 @@ Note that in the last example:
 
 - all lists will start with `[` and end with `]` and each element of the list will be separated with `::`. For example: `first,second,third` will become `[first::second::third]`.
 
-#### NGINX Format Strings
+### NGINX formatted strings
 
 When format = `default` or `grpc`, messages are shown in comma separated key-value pairs consisting of the attributes appearing in [Available Security Log Attributes](#available-security-log-attributes) with some differences: `grpc` format contains the gRPC-specific fields and the request body encoded in Base64 and separated from the headers, while the `default` format contains the whole request in one field in its original encoding. See details there.
 
@@ -205,13 +198,13 @@ Both `default` and `grpc` strings start like this:
 
 "attack_type=\\"%attack_type%\\",blocking_exception_reason=\\"%blocking_exception_reason%\\",..."
 
-### Syslog Transport
+## Syslog Transport
 
 The syslog transport is over TCP. It is currently unsecured, which means that SSL/TLS is not supported. We highly recommend that you do not send the logs directly to their remote destinations, but rather proxy them through a local syslog server residing on the same pod or same VM as F5 WAF for NGINX. The local syslog server will forward them over a secure channel to the remote destination. We recommend you use mutual authentication TLS (mTLS) to avoid any man-in-the-middle attacks attempting to hijack or alter the logs on their way.
 
 It is *not* guaranteed that all requests that match the filters will indeed reach their destination especially if the system is overwhelmed by the incoming traffic. In this case some log records may be dropped.
 
-### Factory Configuration Files
+## Default configuration files
 
 NGINX will provide example configuration files under /opt/app_protect/share/defaults/ with the following settings:
 
@@ -224,7 +217,7 @@ NGINX will provide example configuration files under /opt/app_protect/share/defa
 |log_grpc_illegal | illegal requests | format=grpc |
 |log_illegal | illegal requests | format=default |
 
-### Available Security Log Attributes
+## Available security log attributes
 
 The table below lists attributes that are generated in the security logs. When using customized logs (that is, format=user-defined), you can add or remove entries from the list below. Per each attribute we show whether it is included in each of the predefined formats: `default` and `grpc`.
 
@@ -275,11 +268,11 @@ The table below lists attributes that are generated in the security logs. When u
 |vs_name | A unique identifier of the location in the nginx.conf file that this request is associated with. It contains the line number of the containing server block in nginx.conf, the server name, a numeric discriminator that distinguishes between multiple entries within the same server, and the location name.  For example: ’34-mydomain.com:0-~/.*php(2). | default, grpc |
 |x_forwarded_for_header_value | `X-Forwarded-For` header information. This option is commonly used when proxies are involved to track the originator of the request. | default, grpc |
 
-### Blocking Observability
+## Blocking Observability
 
-When the NGINX App Protect policy is enforced in Transparent Mode, it is easier to know which transactions would be blocked if the Blocking Mode is set to **True** and also would be able to know which violations and signatures intended for the transaction to be blocked.
+When the F5 WAF for NGINX policy is enforced in Transparent Mode, it is easier to know which transactions would be blocked if the Blocking Mode is set to **True** and also would be able to know which violations and signatures intended for the transaction to be blocked.
 
-To facilitate this, NGINX App Protect introduces a new security log field named `json_log`, which contains JSON formatted data. This field contains the violations and applicable signature names and IDs associated with a transaction. This field will indicate if a particular violation or signature will create a blocking condition (indicated in the `isBlocked` property) according to the signature/violation configuration.
+To facilitate this, F5 WAF for NGINX introduces a new security log field named `json_log`, which contains JSON formatted data. This field contains the violations and applicable signature names and IDs associated with a transaction. This field will indicate if a particular violation or signature will create a blocking condition (indicated in the `isBlocked` property) according to the signature/violation configuration.
 
 Each detected signature is reported within a JSON block with the `VIOL_ATTACK_SIGNATURE` violation and the `isBlocked` boolean property.
 

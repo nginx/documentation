@@ -14,7 +14,7 @@ nd-product: NAP-WAF
 
 {{< call-out "warning" "Information architecture note" >}}
 
-The design intention for this page is to migrate the [Configure NGINX App Protect with NGINX Ingress Controller]({{< ref "/nic/installation/integrations/app-protect-waf-v5/configuration.md" >}}) page.
+The design intention for this page is to migrate the [Configure F5 WAF for NGINX with NGINX Ingress Controller]({{< ref "/nic/installation/integrations/app-protect-waf-v5/configuration.md" >}}) page.
 
 As part of changing information architecture for the whole NGINX product portfolio, as much of the context for a specific product is kept within its own documentation set as possible.
 

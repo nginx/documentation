@@ -8,7 +8,7 @@ nd-product: NAP-WAF
 
 F5 WAF for NGINX generates three types of logs:
 
-- [Security logs]({{< ref "/waf/logging/security-logs.md" >}}), which record HTTP requests and how F5 WAF processed them, including violations and detected signatures.
+- [Security logs]({{< ref "/waf/logging/security-logs.md" >}}), which record HTTP requests and how F5 WAF processes them, including violations and detected signatures.
 - [Operation logs]({{< ref "/waf/logging/operation-logs.md" >}}), covering F5 WAF events such as startup, shutdown and reconfiguration.
 - [Debug logs]({{< ref "/waf/logging/debug-logs.md" >}}), recording technical messages at different levels of severity used to debug and resolve incidents and error behaviors.
 
@@ -30,16 +30,11 @@ F5 WAF for NGINX uses a separate logging mechanism to NGINX's default one, which
 | Operation | `error_log` directive, part of core NGINX | `nginx.conf` - global | Yes, NGINX error log | Yes, NGINX error log |
 | Debug     | `/etc/app_protect/bd/logger.cfg.` Log file name is the redirection in the invocation of the bd command line in the start script | Global (not part of nginx.conf) | Yes. Log file is in `/var/log/app_protect` default debug directory.  No file rotation currently | No |
 
+## Security logs
 
-## Log Types
+To configure [security logs]({{< ref "/waf/logging/security-logs.md" >}}), you need to [compile a security policy]({{< ref "/waf/tools/compiler.md#compile-a-security-policy" >}}) JSON file into a bundle before applying it.
 
-Logs in F5 WAF for NGINX v5 can be accessed and configured similarly to F5 WAF for NGINX, though there are some differences in the process.
-
-### Security Logs
-
-A key change in configuring [Security logs]({{< ref "/nap-waf/v5/logging-overview/security-log" >}}) is the requirement to [compile JSON logging profiles]({{< ref "/nap-waf/v5/configuration-guide/configuration.md#logging-profile-compilation" >}}) into a bundle file before applying them.
-
-#### Default Logging Profile Bundles
+### Default logging profile bundles
 
 There are several pre-compiled logging profile bundles available:
 
@@ -68,11 +63,11 @@ For instance:
     }
 ```
 
-#### Security Log Destination
+### Security log destination
 
-Please refer to [Security logs]({{< ref "/nap-waf/v5/logging-overview/security-log" >}}) page for details.
+View [app_protect_security_log]({{< ref "/waf/logging/security-logs.md#app_protect_security_log" >}}) to configure the log file destination.
 
-#### WAF Enforcer Container Logs
+### WAF Enforcer container logs
 
 When `stderr` is set as the destination for security logs in the `app_protect_security_log` directive, these logs are accessible via the `waf-enforcer` container. To view them, use the following command:
 
@@ -86,17 +81,19 @@ Or in Kubernetes:
 kubectl logs deployment.apps/nap5-deployment -c waf-enforcer
 ```
 
-### Debug Logs
+## Debug logs
 
-Logs for internal components of NGINX App Protect 5 can be accessed by executing `docker logs` or `kubectl logs` on one of the deployment containers. For example:
+Logs for internal components of F5 WAF for NGINX can be accessed by executing `docker logs` or `kubectl logs` on one of the deployment containers. For example:
 
 ```shell
 docker logs waf-config-mgr
 ```
 
-### NGINX Access Log
+For more information, see the [Debug logs]({{< ref "/waf/logging/debug-logs.md" >}}) topic.
 
-F5 WAF for NGINX v5 can be configured to add additional data to NGINX [Access log]({{< ref "/nap-waf/v5/logging-overview/access-log" >}}).
+## NGINX access log
+
+F5 WAF for NGINX can be configured to add additional data to the NGINX [access log]({{< ref "/waf/logging/access-logs.md" >}}).
 
 ## logrotate support
 

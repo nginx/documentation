@@ -1,6 +1,6 @@
 ---
 # We use sentence case and present imperative tone
-title: "XFF headers and trust"
+title: "XFF trusted headers"
 # Weights are assigned in increments of 100: determines sorting order
 weight: 700
 # Creates a table of contents and sidebar, useful for large documents
@@ -12,9 +12,9 @@ nd-content-type: reference
 nd-product: NAP-WAF
 ---
 
-XFF trust is disabled by default but can be enabled.
+XFF trusted headers are disabled by default.
 
-In this example, we use the default configuration but enable the trust of XFF header.
+The following example uses the default configuration while enabling XFF trusted headers.
 
 ```json
 {
@@ -31,7 +31,7 @@ In this example, we use the default configuration but enable the trust of XFF he
 }
 ```
 
-In this example, we configure a policy with a custom-defined XFF header.
+This alternative policy example enables XFF with custom-defined headers.
 
 ```json
 {
