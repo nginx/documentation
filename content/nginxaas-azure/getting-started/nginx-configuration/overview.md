@@ -33,48 +33,15 @@ NGINXaaS for Azure places restrictions on the instance’s filesystem; only a sp
 | Directory         | Master Read | Master Write | Worker Read | Worker Write | Recommended Use                  |
 |-------------------|:-----------:|:------------:|:-----------:|:------------:|----------------------------------|
 | /etc/nginx/       |     ✔️      |      ✔️      |     ❌      |      ❌      | Certificates, keys               |
-| /opt/             |     ✔️      |      ✔️      |     ✔️      |      ❌      | Application files                |
+| /opt/             |     ✔️      |      ✔️      |     ✔️      |      ❌      | Application files (e.g. Lua scripts) |
 | /srv/             |     ✔️      |      ✔️      |     ✔️      |      ❌      | Application files                |
 | /var/www/         |     ✔️      |      ✔️      |     ✔️      |      ❌      | Static files (e.g. index.html)   |
 | /tmp/             |     ✔️      |      ✔️      |     ✔️      |      ✔️      | Temporary files                  |
 | /var/cache/nginx/ |     ✔️      |      ✔️      |     ✔️      |      ✔️      | Cache data                       |
-| /etc/app_protect/ |     ✔️      |      ✔️      |     ✔️      |      ❌      | App Protect policies, logs       |
 
 {{</bootstrap-table>}}
 
-**Uploaded files can be placed in:**
-
-- `/etc/nginx/` (for certificates, keys)
-- `/opt/` (for application files)
-- `/srv/` (for application files)
-- `/var/www/` (for static files)
-- `/tmp/` (for temporary files)
-- `/var/cache/nginx/` (for cache data)
-- `/etc/app_protect/` (for App Protect policies and log configurations)
-
 Attempts to access other directories will be denied and result in a `5xx` error.
-
-### Recommended Directory Layout
-
-When you organize your directories, we recommend that you set up these categories of files in the following locations:
-
-- **Certificates/Keys:**  
-  Place in `/etc/nginx/` so only the master process can access them. This prevents worker processes from reading private keys and potentially serving them to the internet.
-
-- **Application Files:**  
-  Place in `/opt/` or `/srv/` for files needed by your application that workers need to read but not modify.
-
-- **Static Files:**  
-  Place in `/var/www/` for content like HTML, CSS, and images that workers need to serve but should not modify.
-
-- **Cache Data:**  
-  Use `/var/cache/nginx/` for NGINX cache storage where workers need both read and write access.
-
-- **Temporary Files:**  
-  Use `/tmp/` for temporary data that workers may need to create and modify.
-
-- **App Protect Policies:**  
-  Place in `/etc/app_protect/` for App Protect security policies and log configurations that workers need to read.
 
 ```plaintext
 /etc/nginx/         # Certificates, keys (master only)
@@ -83,7 +50,6 @@ When you organize your directories, we recommend that you set up these categorie
 /var/www/           # Static files (worker read-only)
 /var/cache/nginx/   # Cache data (worker read/write)
 /tmp/               # Temporary files (worker read/write)
-/etc/app_protect/   # App Protect policies (worker read-only)
 ```
 
 ## Disallowed configuration directives
