@@ -38,6 +38,6 @@ You will see a notification confirming that the configuration was updated succes
 ## Delete NGINX configuration Files
 
 1. On the left menu, select **Configurations**.
-1. On the list of configurations, select the elipses (three dots) icon next to the configuration you want to delete.
+1. On the list of configurations, select the ellipses (three dots) icon next to the configuration you want to delete.
 1. Select **Delete**.
 1. Confirm that you want to delete the configuration.
