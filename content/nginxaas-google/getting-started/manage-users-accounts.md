@@ -22,7 +22,7 @@ Before you start, ensure you understand the following concepts:
 
 ## Add or edit a user
 
-An existing NGINXaaS Account user can additional users following these steps:
+An existing NGINXaaS Account user can add additional users following these steps:
 
 1. Access the [NGINXaaS Console](https://console.nginxaas.net/).
 1. Log in to the console with your Google credentials.
