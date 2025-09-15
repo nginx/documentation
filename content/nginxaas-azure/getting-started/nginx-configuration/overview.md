@@ -8,7 +8,7 @@ type:
 ---
 
 This document provides details about using NGINX configuration files with your
-F5 NGINX as a Service for Azure deployment, restrictions, and available directives.
+F5 NGINXaaS for Azure deployment, restrictions, and available directives.
 
 ## NGINX configuration common user workflows
 
@@ -28,7 +28,7 @@ NGINX configurations stored in GitHub can be applied to existing NGINXaaS for Az
 
 NGINXaaS for Azure places restrictions on the instance’s filesystem; only a specific set of directories are allowed to be read from and written to. Below is a table describing what directories the NGINX worker process can read and write to and what directories files can be written to. These files include certificate files and any files uploaded to the deployment, excluding NGINX configuration files.
 
-{{<bootstrap-table "table table-striped table-bordered">}}
+ {{< table >}}
 
 | Directory         | Master Read | Master Write | Worker Read | Worker Write | Recommended Use                  |
 |-------------------|:-----------:|:------------:|:-----------:|:------------:|----------------------------------|
@@ -39,7 +39,7 @@ NGINXaaS for Azure places restrictions on the instance’s filesystem; only a sp
 | /tmp/             |     ✔️      |      ✔️      |     ✔️      |      ✔️      | Temporary files                  |
 | /var/cache/nginx/ |     ✔️      |      ✔️      |     ✔️      |      ✔️      | Cache data                       |
 
-{{</bootstrap-table>}}
+{{< /table >}}
 
 Attempts to access other directories will be denied and result in a `5xx` error.
 
@@ -55,7 +55,7 @@ Attempts to access other directories will be denied and result in a `5xx` error.
 ## Disallowed configuration directives
 Some directives are not supported because of specific limitations. If you include one of these directives in your NGINX configuration, you'll get an error.
 
-  {{<bootstrap-table "table table-striped table-bordered">}}
+  {{< table >}}
   | Disallowed Directive | Reason |
   |------------------ | ----------------- |
   | ssl_engine        | No hardware SSL accelerator is available. |
@@ -63,14 +63,14 @@ Some directives are not supported because of specific limitations. If you includ
   | fastcgi_bind <br /> grpc_bind  <br /> memcached_bind  <br /> proxy_bind  <br /> scgi_bind  <br /> uwsgi_bind   | Source IP specification for active-active deployments is not allowed.           |
   | quic_bpf          | QUIC connection migration is not currently supported for active-active deployments.  |
 
-{{</bootstrap-table>}}
+{{< /table >}}
 
 You may find that a few directives are not listed here as either allowed or disallowed. Our team is working on getting these directives supported soon.
 
 ## Directives that cannot be overridden
 Some directives cannot be overridden by the user provided configuration.
 
-  {{<bootstrap-table "table table-striped table-bordered">}}
+  {{< table >}}
   | Persistent Directive | Value | Reason |
   |------------------ | ----------------------- | -----------------|
   | `user` | `nginx` | The `nginx` user has the correct permissions for accessing certificates, policy files and other auxfiles. |
@@ -81,7 +81,7 @@ Some directives cannot be overridden by the user provided configuration.
   | `master_process` | `on` | This directive is intended for NGINX developers. |
   | `worker_cpu_affinity` | `auto` | The value `auto` allows binding worker processes automatically to available CPUs based on the current capacity of the deployment. |
 
-{{</bootstrap-table>}}
+{{< /table >}}
 
 
 ## NGINX listen port restrictions

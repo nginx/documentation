@@ -58,9 +58,9 @@ To add users, take the following steps:
 
 ## Set user passwords {#set-basic-passwords}
 
-{{< before-you-begin >}}
+{{< call-out "note" >}}
 Before you can set users' passwords, ensure you have [created users](#create-users) in NGINX Instance Manager. Once you've created the users, you can use one of the following options to set their passwords.
-{{< /before-you-begin >}}
+{{< /call-out >}}
 
 ### (Recommended) Use the provided script {#set-basic-passwords-script}
 

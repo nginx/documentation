@@ -10,9 +10,9 @@ type:
 
 ## Overview
 
-This guide explains how to deploy F5 NGINX as a Service for Azure (NGINXaaS) using [Microsoft Azure portal](https://azure.microsoft.com/en-us/get-started/azure-portal). The deployment process involves creating a new deployment, configuring the deployment, and testing the deployment.
+This guide explains how to deploy F5 NGINXaaS for Azure (NGINXaaS) using [Microsoft Azure portal](https://azure.microsoft.com/en-us/get-started/azure-portal). The deployment process involves creating a new deployment, configuring the deployment, and testing the deployment.
 
-## Find the NGINX as a Service for Azure offer in the Azure portal
+## Find the NGINXaaS for Azure offer in the Azure portal
 
 You can start the NGINXaaS deployment process by visiting the [Create NGINXaaS](https://portal.azure.com/#create/f5-networks.f5-nginx-for-azure) page or finding the NGINXaaS service in the Azure portal:
 
@@ -27,7 +27,7 @@ You can start the NGINXaaS deployment process by visiting the [Create NGINXaaS](
 
 1. On the Create NGINXaaS Deployment **Basics** page, provide the following information:
 
-   {{<bootstrap-table "table table-striped table-bordered">}}
+   {{< table >}}
   | Field                       | Description                |
   |---------------------------- | ---------------------------- |
   | Subscription                | Select the appropriate Azure subscription that you have access to.|
@@ -39,7 +39,7 @@ You can start the NGINXaaS deployment process by visiting the [Create NGINXaaS](
   | Email                       | Provide an email address that can be notified about service alerts, maintenance data and activity reports. |
   | Upgrade Channel             | Select the desired upgrade channel for your deployment. For more information, see [Upgrade Channels]({{< ref "/nginxaas-azure/quickstart/upgrade-channels.md" >}}). |
 
-   {{</bootstrap-table>}}
+   {{< /table >}}
 
 1. Next, select **Networking**.
 
@@ -47,7 +47,7 @@ You can start the NGINXaaS deployment process by visiting the [Create NGINXaaS](
 
 1. On the Create NGINXaaS Deployment **Networking** page, provide the following information:
 
-   {{<bootstrap-table "table table-striped table-bordered">}}
+   {{< table >}}
    | Field                       | Description                |
    |---------------------------- | ---------------------------- |
    | Virtual Network             | A virtual network is required for communication between the resources you create.<br>You can create a new virtual network or use an existing one (for an existing one see note below).<br>Additionally, you can peer a new virtual network with existing ones (in any region) to create network access from NGINXaaS for Azure to your upstream servers. To peer the virtual network with another see [Create, change, or delete a virtual network peering](https://docs.microsoft.com/en-us/azure/virtual-network/virtual-network-manage-peering).|
@@ -56,7 +56,7 @@ You can start the NGINXaaS deployment process by visiting the [Create NGINXaaS](
    | IP address          | Set the IP address (public or private) that the service listens to for requests:<br><br>If you select a public IP address:<br>- Create a new public IP or use an existing one (for an existing one see the note below).<br>- Set the resource name for your public IP address.<br>Newly created public IPs are [zone-redundant in supported regions](https://learn.microsoft.com/en-us/azure/virtual-network/ip-services/public-ip-addresses#availability-zone). <br><br>If you select a private IP address:<br>- Provide a static IP address from the same subnet range set previously.   |
    | Inbound port rules | Select `None` to disallow inbound access on any port, or choose to allow traffic from one of these common http(s) ports. <br><br> **Note:** This option is only available when specifying a new virtual network as part of the create workflow. If you select an existing virtual network which is associated with a subnet and Network Security Group (NSG), you will need to edit the Inbound security rules to add access for the specific ports you want to allow (for example, ports 80 and 443).|
    | Apply default NGINX configuration | Confirm that you want your NGINXaaS deployment to be bootstrapped with a default NGINX configuration and a browsable splash page. |
-   {{</bootstrap-table>}}
+   {{< /table >}}
 
    #### Notes on subnets:
 

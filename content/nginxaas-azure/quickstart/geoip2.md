@@ -9,7 +9,7 @@ type:
 
 ## Overview
 
-F5 NGINX as a Service for Azure (NGINXaaS) supports GeoIP2 using the [`ngx_http_geoip2_module` or `ngx_stream_geoip2_module`](https://github.com/leev/ngx_http_geoip2_module) dynamic modules, enabling NGINXaaS to implement various user differentiation strategies. For more information on GeoIP2 with NGINX, see [NGINX GeoIP2](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/geoip2/).
+F5 NGINXaaS for Azure (NGINXaaS) supports GeoIP2 using the [`ngx_http_geoip2_module` or `ngx_stream_geoip2_module`](https://github.com/leev/ngx_http_geoip2_module) dynamic modules, enabling NGINXaaS to implement various user differentiation strategies. For more information on GeoIP2 with NGINX, see [NGINX GeoIP2](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/geoip2/).
 
 NGINXaaS uses your MaxMind license to download GeoIP2 databases, puts them in the right place before NGINX starts, and updates the databases daily to reduce your operational overhead. All GeoIP2 data is deleted once you stop using GeoIP2 or delete your deployment. MaxMind provides a variety of [databases](https://www.maxmind.com/en/geoip-databases), including a lower accuracy [free option](https://www.maxmind.com/en/geolite2/signup). NGINXaaS uses a modified form of [MaxMind's `geoipupdate`](https://github.com/maxmind/geoipupdate).
 
@@ -51,11 +51,11 @@ All licenses are [validated with MaxMind](https://dev.maxmind.com/license-key-va
 
 To view the status of your MaxMind license, [enable monitoring]({{< ref "/nginxaas-azure/monitoring/enable-monitoring.md" >}}) for your NGINXaaS deployment and navigate to the Metrics tab. View the `nginxaas.maxmind` metric under the `nginxaas statistics` metric namespace. The `nginxaas.maxmind` metric reports the health of your license through the `status` dimension:
 
-   {{<bootstrap-table "table table-striped table-bordered">}}
+   {{< table >}}
 
    | Status         | Description                                                                                |
    | -------------- | ------------------------------------------------------------------------------------------ |
    | `active`       | The license is valid and in use to update GeoIP2 databases.                                |
    | `unauthorized` | MaxMind returned an license error, which usually indicates an issue with the `GeoIP.conf`. |
 
-   {{</bootstrap-table>}}
+   {{< /table >}}
