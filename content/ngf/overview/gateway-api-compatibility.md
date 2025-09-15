@@ -101,7 +101,7 @@ See the [controller]({{< ref "/ngf/reference/cli-help.md#controller">}}) command
       - `certificateRefs` - The TLS certificate and key must be stored in a Secret resource of type `kubernetes.io/tls`. Only a single reference is supported.
       - `options`: Not supported.
     - `allowedRoutes`: Supported.
-  - `addresses`
+  - `addresses`: Valid IPAddresses will be added to the `externalIP` field in the related Services fronting NGINX.
       - `type`: Partially supported. Allowed value: `IPAddress`.
       - `value`: Partially supported. Dynamic address allocation when value is unspecified is not supported.
   - `backendTLS`: Not supported.
