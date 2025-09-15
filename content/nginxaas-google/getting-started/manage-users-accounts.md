@@ -19,7 +19,7 @@ Before you start, ensure you understand the following concepts:
 
 ## Add or edit a user
 
-As an existing user of an NGINXaaS Account, you can add a new user as follows:
+An existing NGINXaaS Account user can additional users following these steps:
 1. Log into the [NGINXaaS console](https://console.nginxaas.net/) with your Google credentials. 
 2. Navigate to **Users** page on the left bar, and select **Add User**.
 3. Enter **Name** and **Email** for the user to be added.
