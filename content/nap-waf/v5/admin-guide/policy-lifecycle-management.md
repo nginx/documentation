@@ -285,6 +285,22 @@ kubectl apply -f config/policy-manager/samples/appprotect_v1_apsignatures.yaml
 Downloading security updates may take several minutes. The version of security updates available at the time of compilation is always used to compile policies. If APSignatures is not created or the specified versions are not downloaded, the versions contained in the compiler docker image will be used.
 {{< /call-out >}}
 
+#### Using Security Update for users who can't use the nginx repo - Offline solution
+
+For users who prefer not to download the security update packages directly from the NGINX repository when using the APSignatures CR, there are two supported options:
+
+**1. Manual Package Placement**
+
+ - Download the required packages.
+ - Place them in the `/mnt/nap5_bundles_pv_data/security_updates_data/` directory.
+ - Ensure the files have `101:101` ownership and permissions.
+
+**2. Custom Compiler Image**
+
+ - Build a Docker image that includes the desired packages.
+ - Use this custom image in place of downloading packages at runtime.
+
+
 ### Creating Policy Resources
 
 Once PLM is deployed, you can create policy resources using Kubernetes manifests. Apply the following Custom Resource examples or create your own based on these templates:
