@@ -32,7 +32,7 @@ NGINXaaS for Azure places restrictions on the instance’s filesystem; only a sp
 
 | Directory         | Master Read | Master Write | Worker Read | Worker Write | Recommended Use                  |
 |-------------------|:-----------:|:------------:|:-----------:|:------------:|----------------------------------|
-| /etc/nginx/       |     ✔️      |      ✔️      |     ❌      |      ❌      | Certificates, keys               |
+| /etc/nginx/       |     ✔️      |      ✔️      |     ❌      |      ❌      | NGINX configuration, certificates, keys, application files (e.g. Lua or njs scripts)  |
 | /opt/             |     ✔️      |      ✔️      |     ✔️      |      ❌      | Application files (e.g. Lua scripts) |
 | /srv/             |     ✔️      |      ✔️      |     ✔️      |      ❌      | Application files                |
 | /var/www/         |     ✔️      |      ✔️      |     ✔️      |      ❌      | Static files (e.g. index.html)   |
