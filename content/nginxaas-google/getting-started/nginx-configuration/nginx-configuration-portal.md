@@ -26,7 +26,7 @@ You can apply an NGINX configuration to your F5 NGINXaaS for Google Cloud (NGINX
 ## Update an NGINX configuration
 
 1. On the left menu, select **Configurations**.
-1. On the list of configurations, select the elipses (three dots) icon next to the configuration you want to update.
+1. On the list of configurations, select the ellipses (three dots) icon next to the configuration you want to update.
 1. Select **Edit**.
 1. Update the "Name" and "Description" fields as needed and select **Next**.
 1. Select the file you want to update in the file tree.
