@@ -19,7 +19,7 @@ If you haven't already done so, complete the following prerequisites:
 - Access the portal visiting [https://console.nginxaas.net/](https://console.nginxaas.net/).
     - Log in to the NGINXaaS console with your Google credentials.
 
-### Add an SSL/TLS certificate
+### Add an SSL/TLS certificate to NGINXaaS
 - Select **Certificates** in the left menu.
 - Select {{< icon "plus">}} **Add Certificate**.
 - In the **Add Certificate** panel, provide the required information:
@@ -33,10 +33,16 @@ If you haven't already done so, complete the following prerequisites:
      {{< /table >}}
 
 - Repeat the same steps to add as many certificates as needed.
-- In your configuration, select **Add File** and either choose to use an existing certificate or add a new one.
-    - If you want to add a new certificate, select **New SSL Certificate or CA Bundle** and follow the steps above.
-    - If you want to use an existing certificate, select **Existing SSL Certificate or CA Bundle** and choose the certificate you want to use.
-- Provide the required information:
+
+### Add a certificate to a configuration
+
+- Select **Configurations** in the left menu.
+- Select the ellipsis (three dots) next to the configuration you want to edit, and select **Edit**.
+- Select **Continue** to open the configuration editor.
+- In your configuration, select {{< icon "plus">}} **Add File** and either choose to use an existing certificate or add a new one.
+    - If you want to add a new certificate, select **New SSL Certificate or CA Bundle** and follo the steps mentioned in [Add an SSL/TLS certificate to NGINXaaS](#add-an-ssltls-certificate-to-nginxaas).
+    - If you want to use an existing certificate, select **Existing SSL Certificate or CA Bundle** and use the menu to choose a certificate from the list of certificates you have already added.
+- Provide the required path information and select {{< icon "plus">}} **Add Item**:
 
     {{< table >}}
    | Field                       | Description                  | Note |
@@ -45,13 +51,8 @@ If you haven't already done so, complete the following prerequisites:
    | Key File Path               | This path can match one or more ssl_certificate_key directive file arguments in your NGINX configuration. | The key path must be unique within the same deployment. |
      {{< /table >}}
 
-- Now you can provide an NGINX configuration that references the certificate you just added by the path value.
-
-### Edit an SSL/TLS certificate
-
-
-### Delete an SSL/TLS certificate
-
+- Update the NGINX configuration to reference the certificate you just added by the path value.
+- Select **Continue** and then **Save** to save your changes.
 
 ## What's next
 
