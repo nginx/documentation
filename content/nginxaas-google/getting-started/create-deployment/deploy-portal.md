@@ -30,13 +30,13 @@ Once you have completed the subscription process, you can access the NGINXaas Co
 
 ## Create a new deployment
 
-### Create a Network Attachment
+### Create a network attachment
 
-A [Network Attachment](https://cloud.google.com/vpc/docs/about-network-attachments) is necessary so your consumer Virtual Private Cloud (VPC) network and your NGINXaaS deployment's VPC network can communicate with eachother.
+NGINXaaS requires a [network attachment](https://cloud.google.com/vpc/docs/about-network-attachments) to connect your consumer Virtual Private Cloud (VPC) network and your NGINXaaS deployment's VPC network.
 
-In the [Google Cloud Console](https://console.cloud.google.com/),
+1. Access the [Google Cloud Console](https://console.cloud.google.com/).
 1. Create a consumer VPC network and subnetwork. See [Google's documentation on creating a VPC and subnet](https://cloud.google.com/vpc/docs/create-modify-vpc-networks#console_1) for a step-by-step guide.
-   - The region you choose must match the region where your NGINXaaS deployment will get created.
+   - The region you choose in this step must match the region where your NGINXaaS deployment will be created.
    - TODO: firewall rules?
 1. Create a Network Attachment in your new subnet that automatically accepts connections. See [Google's documentation on creating a Network Attachment](https://cloud.google.com/vpc/docs/create-manage-network-attachments#console_1) for a step-by-step guide.
 
@@ -68,7 +68,7 @@ To test connectivity to your NGINXaaS deployment, you will need to set up [Priva
 
 In the [Google Cloud Console](https://console.cloud.google.com/),
 1. Create a public IP address. See [Google's documentation on reserving a static address](https://cloud.google.com/load-balancing/docs/tcp/set-up-ext-reg-tcp-proxy-zonal#console_3) for a step-by-step guide.
-1. Create a Netword Endpoint Group (NEG). See [Google's documentation on creating a NEG](https://cloud.google.com/vpc/docs/access-apis-managed-services-private-service-connect-backends#console) for a step-by-step guide.
+1. Create a Network Endpoint Group (NEG). See [Google's documentation on creating a NEG](https://cloud.google.com/vpc/docs/access-apis-managed-services-private-service-connect-backends#console) for a step-by-step guide.
    - For **Target service**, enter your NGINXaaS deployment's Service Attachment.
    - For **Producer port**, enter the port your NGINX server is listening on. If you're using the default NGINX config, enter port `80`.
    - For **Network** and **Subnetwork** select your consumer VPC network and subnet.
