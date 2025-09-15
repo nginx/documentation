@@ -66,7 +66,7 @@ Your new deployment will appear in the list of deployments. The status of the de
 
 To test connectivity to your NGINXaaS deployment, you will need to set up [Private Service Connect backend](https://cloud.google.com/vpc/docs/private-service-connect-backends).
 
-In the [Google Cloud Console](https://console.cloud.google.com/),
+1. Access the [Google Cloud Console](https://console.cloud.google.com/).
 1. Create a public IP address. See [Google's documentation on reserving a static address](https://cloud.google.com/load-balancing/docs/tcp/set-up-ext-reg-tcp-proxy-zonal#console_3) for a step-by-step guide.
 1. Create a Network Endpoint Group (NEG). See [Google's documentation on creating a NEG](https://cloud.google.com/vpc/docs/access-apis-managed-services-private-service-connect-backends#console) for a step-by-step guide.
    - For **Target service**, enter your NGINXaaS deployment's Service Attachment.
@@ -76,10 +76,10 @@ In the [Google Cloud Console](https://console.cloud.google.com/),
 1. Create a regional external proxy Network Load Balancer. See [Google's documentation on configuring the load balancer](https://cloud.google.com/load-balancing/docs/tcp/set-up-ext-reg-tcp-proxy-zonal#console_6) for a step-by-step guide.
    - For **Network**, select your consumer VPC network.
    - For **Backend configuration**, follow [Google's step-by-step guide to add a backend](https://cloud.google.com/vpc/docs/access-apis-managed-services-private-service-connect-backends#console_5).
-   - For **Frontend configuration**,
-      - For **IP address**, select the IP address created in step 1.
+   - In the **Frontend configuration** section,
+      - For **IP address**, select the public IP address created earlier.
       - For **Port number**, enter the same port as your NEG's Producer port, for example, port `80`.
-1. Connect to your NGINXaaS deployment using the IP address created in step 1.
+1. Connect to your NGINXaaS deployment using the public IP address created earlier.
 
 ## What's next
 
