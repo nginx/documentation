@@ -33,7 +33,7 @@ Make sure your certificates, keys, and pem files are encrypted to one of the fol
 ## Add SSL/TLS certificates
 
 Add a certificate to your NGINXaaS deployment using your preferred client tool:
-* [Add certificates using the NGINXaaS portal]({{< ref "/nginxaas-google/getting-started/ssl-tls-certificates/ssl-tls-certificates-portal.md" >}})
+* [Add certificates using the NGINXaaS Console]({{< ref "/nginxaas-google/getting-started/ssl-tls-certificates/ssl-tls-certificates-portal.md" >}})
 
 
 ## Common certificate errors
