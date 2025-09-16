@@ -48,8 +48,8 @@ type:
                         <span id="ncuEstimateValue" data-testid="label-ncuEstimateValue">--</span>
                         <span> Sold in bundles of 10, with a minimum of 10</span>
                     </div>
-                    <details id="ncu-usage-details" data-testid="button-ncu-usage-details">
-                        <summary>Show calculations</summary>
+                    <details id="ncu-usage-details" data-testid="summary-ncu-usage-details">
+                        <summary data-testid="button-ncu-usage-details">Show calculations</summary>
                         <div id="ncuEstimateDetails">
                         <div class="math">
                             <var id="ncuEstConnRate">x</var> new connections per second *
@@ -117,8 +117,8 @@ Max(
                     <div class="subtitle">
                         The standard Azure networking and bandwidth charges apply to NGINX deployments.
                     </div>
-                    <details id="total-cost-details" data-testid="button-total-cost-details">
-                        <summary>Show calculations</summary>
+                    <details id="total-cost-details" data-testid="summary-total-cost-details">
+                        <summary data-testid="button-total-cost-details">Show calculations</summary>
                         <div class="details-content">
                             <div class="details-section">
                                 <p class="math">
