@@ -23,11 +23,21 @@ The steps are largely identical, so hyperlinks will be used to direct the reader
 
 This pattern is present in the [Virtual environment]({{< ref "/waf/install/virtual-environment.md" >}}) and [IP intelligence]({{< ref "/waf/policies/ip-intelligence.md" >}}) topics already, where users may skip a Docker step if they're using a container services deployment instead of a host services one.
 
-{{</ call-out>}}
+{{</ call-out >}}
 
+This page describes how to install F5 WAF for NGINX with NGINX Open Source or NGINX Plus using Kubernetes.
+
+It explains the common steps necessary for any Kubernetes-based deployment, then provides details specific to Helm or Manifests.
 
 ## Before you begin
 
+To complete this guide, you will need the following pre-requisites:
+
+- A functional Kubernetes cluster
+- An active F5 WAF for NGINX subscription (Purchased or trial)
+- [Docker](https://docs.docker.com/get-started/get-docker/)
+
+You will need [Helm](https://helm.sh/docs/intro/install/) installed for a Helm-based deployment.
 
 ## Download your subscription credentials 
 
@@ -196,3 +206,32 @@ If you are not using using `custom_log_format.json` or the IP intelligence featu
 {{% /tab %}}
 
 {{< /tabs >}}
+
+## Build the Docker image
+
+Your folder should contain the following files:
+
+- _nginx-repo.cert_
+- _nginx-repo.key_
+- _Dockerfile_
+
+To build an image, use the following command, replacing <your-image-name> as appropriate:
+
+```shell
+sudo docker build --no-cache --platform linux/amd64 \
+  --secret id=nginx-crt,src=nginx-repo.crt \
+  --secret id=nginx-key,src=nginx-repo.key \
+  -t <your-image-name> .
+```
+
+Once you have built the image, push it to your private image repository, which should be accessible to your Kubernetes cluster.
+
+From this point, the steps change based on your installation method:
+
+- [Use Helm to install F5 WAF for NGINX](#use-helm-to-install-f5-waf-for-nginx)
+- [Use Manifests to install F5 WAF for NGINX](#use-manifests-to-install-f5-waf-for-nginx)
+
+## Use Helm to install F5 WAF for NGINX
+
+
+## Use Manifests to install F5 WAF for NGINX

@@ -35,12 +35,8 @@ To complete this guide, you will need the following prerequisites:
 
 Depending on your deployment type, you may have additional requirements:
 
-- The [IP intelligence]({{< ref "/waf/policies/ip-intelligence.md" >}}) topic explains additional set-up configuration to use the feature immediately.
 - [Docker](https://docs.docker.com/get-started/get-docker/) is required for NGINX Open Source or NGINX Plus type deployments.
-
-### Choose an installation style
-
-The instructions on the rest of this page are split into tabs and sections based on your chosen operating system, NGINX version and deployment style. 
+- The [IP intelligence]({{< ref "/waf/policies/ip-intelligence.md" >}}) topic explains additional set-up configuration to use the feature immediately.
 
 ## Platform-specific instructions
 
