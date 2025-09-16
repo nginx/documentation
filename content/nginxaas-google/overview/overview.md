@@ -49,22 +49,21 @@ NGINXaaS for Google Cloud is supported in the following regions:
 
 {{< img src="nginxaas-google/nginxaas-google-cloud-architecture.png" alt="Architecture diagram of NGINXaaS for Google Cloud showing user traffic through load balancers to applications, with control plane management via the NGINXaaS Console, GCP Marketplace, and Identity Provider, plus logging, monitoring, and secret management." >}}
 
-At the top, administrators connect to the NGINXaaS Console, which connects to the GCP Marketplace and an SSO Identity Provider. The GCP Marketplace manages accounts and entitlements, and the Identity Provider integrates with the NGINXaaS Console.
 
-The NGINXaaS Console (part of the NGINX One platform) sits in an NGINXaaS Geographic Area Controller (for example, US, CA, EU) and handles control plane/management functions. It communicates with GCP Provisioning APIs and pushes configuration updates to the NGINX Data Plane VPC.
-
-Inside the NGINX Data Plane VPC, a GCP Load Balancer (L4 Passthrough LB) connects to the NGINX instance, which is integrated with an NGINX Agent and optional NAP (App Protect) Enforcer. Application users connect through Public or Private Endpoints via a Proxy Load Balancer and Network Endpoint Group to upstream applications.
-
-Logs and metrics flow to GCP Cloud Logging and Cloud Monitoring, while secrets and certificates are managed by GCP Secret Manager.
-
+- The NGINXaaS Console and other management tools (API, CLI, Terraform) are used to create, update, and delete NGINX configurations, certificates and NGINXaaS deployments
+- Each NGINXaaS deployment has dedicated network and compute resources. There is no possibility of noisy neighbor problems or data leakage between deployments
+- NGINXaaS can route traffic to upstreams even if the upstream servers are located in different geographies. See [Known Issues]({{< ref "/nginxaas-google/known-issues.md" >}}) for any networking restrictions.
+- NGINXaaS supports request tracing. See the [Application Performance Management with NGINX Variables](https://www.f5.com/company/blog/nginx/application-tracing-nginx-plus) blog to learn more about tracing.
+- Supports HTTP to HTTPS, HTTPS to HTTP, and HTTP to HTTP redirects. NGINXaaS also provides the ability to create new rules for redirecting. See [How to Create NGINX Rewrite Rules | NGINX](https://www.nginx.com/blog/creating-nginx-rewrite-rules/) for more details.
+- Google Cloud's Private Service Connect (PSC) enables clients within your Virtual Private Cloud (VPC) to access your NGINXaaS deployments. PSC also provides NGINXaaS a secure and private way to connect to your upstream applications. Known networking limitations can be found in the [Known Issues]({{< ref "/nginxaas-google/known-issues.md" >}}).
 
 ### Redundancy
 
-With the Standard Plan, NGINXaaS uses the following redundancy features to keep your service available.
+With the Enterprise Plan, NGINXaaS uses the following redundancy features to keep your service available.
 
 - We run _at least_ two NGINX Plus instances for each deployment in an active-active pattern
 - NGINX Plus is constantly monitored for health. Any unhealthy instances are replaced with new ones
-- <<If Google Cloud has any redundancy features, we will mention them here>> TBD
+- NGINXaaS deployments utilize multiple [zones within each region](https://cloud.google.com/compute/docs/regions-zones) protecting against zonal failures
 
 
 ## What's next
