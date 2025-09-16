@@ -50,13 +50,13 @@ This section lists common errors when adding SSL/TLS certificates to your NGINXa
 
 **Description:**  The certificate file is not in the correct format or is corrupted.
 
-**Resolution:** Ensure that the certificate file is in PEM format and is not corrupted. You can use tools like OpenSSL to verify the certificate file.
+**Resolution:** Make sure the certificate file is in PEM format and not corrupted. Use a tool like OpenSSL to verify the file.
 
 #### Error message: `private key parse error`
 
 **Description:**  The private key file is not in the correct format or is corrupted.
 
-**Resolution:** Ensure that the private key file is in PEM format and is not corrupted. You can use tools like OpenSSL to verify the private key file.
+**Resolution:** Make sure the private key file is in PEM format and not corrupted. Use a tool like OpenSSL to verify the file.
 
 #### Error message: `certificate input is invalid`
 
@@ -74,6 +74,6 @@ This section lists common errors when adding SSL/TLS certificates to your NGINXa
 
 **Description:**  The private key cannot be updated for a CA bundle.
 
-**Resolution:** Ensure that you are not trying to update the private key for a CA bundle. If you need to update the private key, you must create a new CA bundle.
+**Resolution:** Don’t try to update the private key for a CA bundle. If you need a new private key, create a new CA bundle.
 
 </details>
