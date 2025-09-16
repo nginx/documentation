@@ -10,10 +10,10 @@
     "buildTags": "extended"
   },
   "devDependencies": {
+    "@playwright/test": "^1.55.0",
     "hugo-bin": "^0.111.3"
   },
   "dependencies": {
-    "@playwright/test": "^1.55.0",
     "lighthouse": "^12.2.2",
     "puppeteer": "^23.8.0"
   }

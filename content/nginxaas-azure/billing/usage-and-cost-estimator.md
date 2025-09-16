@@ -11,12 +11,12 @@ type:
 {{< raw-html >}}
 
 <link rel="stylesheet" href="/nginxaas-azure/css/cost-calculator_v2.css">
-<div id="calculator">
-    <h3 id="calculator-section-heading">
+<div id="calculator" data-testid="calculator">
+    <h3 id="calculator-section-heading" data-testid="calculator-section-heading">
             Cost Estimation for Standard V2 Plan
             <button id="printButton">Print Estimate</button>
         </h3>
-    <div class="section">
+    <div class="section" data-testid="calculator-section-content">
         <div class="form-section">
             <div class="form-section-content" data-testid="form-section-content-estimateNCUUsage">
                 <h4>1. Estimate NCU Usage </h4>
@@ -45,10 +45,10 @@ type:
                 <div class=form-section-footer>
                     <div class="totals">
                         <span>NGINX Capacity Units Needed</span>
-                        <span id="ncuEstimateValue" data-testid="label-ncuEstimateValue">--</span>
+                        <span id="ncuEstimateValue" data-testid="ncuEstimateValue">--</span>
                         <span> Sold in bundles of 10, with a minimum of 10</span>
                     </div>
-                    <details id="ncu-usage-details" data-testid="summary-ncu-usage-details">
+                    <details id="ncu-usage-details">
                         <summary data-testid="button-ncu-usage-details">Show calculations</summary>
                         <div id="ncuEstimateDetails">
                         <div class="math">
@@ -61,7 +61,7 @@ Max(
     <var id="ncuEstAvgConn2">x</var> concurrent connections / <span id="ncuEstConnsPerNcu"></span> Conns per NCU,
     <var id="ncuEstConnRate2">y</var> connections per second / <span id="ncuEstConnsPerSecondPerNcu"></span> conns per second per NCU,
     <var id="ncuEstDataRate">z</var> Mbps / <span id="ncuEstMbpsPerNcu"></span>Mbps per NCU
-) = <var id="ncuEstMin1" data-testid="label-ncuEstMin1"></var> NCUs
+) = <var id="ncuEstMin1"></var> NCUs
 </pre>
                         <div class="math">
                             Usage needs at least <var id="ncuEstMin">x</var> NCUs, rounded to the nearest 10, with a minimum of 10 = <var id="ncuEstTotal">total</var> NCUs
@@ -107,18 +107,18 @@ Max(
                 <label for="isWAF">
                     Utilize WAF <span class="label-details"></span>
                 </label>
-                <input type="checkbox" data-testid="isWAF-checkbox" id="isWAF" />
+                <input type="checkbox" id="isWAF" />
             </div>
             </div>
             <div class=form-section-content>
                 <div id="totals-section">
                     <span class="total-text">Total Monthly Payment</span>
-                    <span id="total-value" data-testid="label-total-value" class="total-text">--</span>
+                    <span id="total-value" data-testid="total-value" class="total-text">--</span>
                     <div class="subtitle">
                         The standard Azure networking and bandwidth charges apply to NGINX deployments.
                     </div>
-                    <details id="total-cost-details" data-testid="summary-total-cost-details">
-                        <summary data-testid="button-total-cost-details">Show calculations</summary>
+                    <details id="total-cost-details">
+                        <summary>Show calculations</summary>
                         <div class="details-content">
                             <div class="details-section">
                                 <p class="math">
