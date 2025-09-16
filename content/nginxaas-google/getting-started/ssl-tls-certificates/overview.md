@@ -37,6 +37,7 @@ Add a certificate to your NGINXaaS deployment using your preferred client tool:
 
 
 ## Common certificate errors
+
 The following section describes common errors you might encounter while adding SSL/TLS certificates to your NGINXaaS deployment and how to resolve them.
 
 <details>
