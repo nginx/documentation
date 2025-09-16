@@ -22,7 +22,7 @@ NGINX supports the following certificate formats:
 
 - PEM format certificates.
 
-The NGINXaaS allows you to upload these certificates as text and as files. You can also upload your own certificate files (with file extensions such as .crt and .key).
+NGINXaaS allows you to upload these certificates as text and as files. You can also upload your own certificate files (with file extensions such as `.crt` and `.key`).
 
 Make sure your certificates, keys, and pem files are encrypted to one of the following standards:
 
