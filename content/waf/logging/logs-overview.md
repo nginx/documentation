@@ -20,7 +20,7 @@ F5 WAF for NGINX and NGINX itself do not have logs for auditing system user inte
 
 These events should be examined in the orchestration system controlling NGINX (such as NGINX Ingress Controller), or by tracking configuration files and their systemd invocations.
 
-{{< /call-out>}}
+{{< /call-out >}}
 
 F5 WAF for NGINX uses a separate logging mechanism to NGINX's default one, which is responsible for access logs.
 
