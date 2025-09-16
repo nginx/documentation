@@ -144,7 +144,18 @@ http {
 
 ## Create a Dockerfile
 
-In the same folder as your credential and configuration files, create a _Dockerfile_ based on your desired operating system image using an example below:
+In the same folder as your credential and configuration files, create a _Dockerfile_ based on your desired operating system image using an example from the following sections.
+
+Alternatively, you may want make your own image based on a Dockerfile using the official NGINX image:
+
+{{< details summary="Dockerfile based on official image" >}}
+
+This example uses NGINX Open Source as a base: it requires NGINX to be installed as a package from the official repository, instead of being compiled from source.
+
+{{< include "/waf/dockerfiles/official-oss.md" >}}
+
+{{< /details >}}
+
 
 {{< call-out "note" >}}
 
