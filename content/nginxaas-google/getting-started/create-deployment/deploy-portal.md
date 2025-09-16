@@ -14,7 +14,7 @@ This guide explains how to deploy F5 NGINXaaS for Google Cloud (NGINXaaS) using 
 
 ## Before you begin
 
-Before you can deploy NGINXaaS, follow the steps in the [Prerequisites]({{< ref "/nginxaas-google/getting-started/prerequisites/" >}}) topic to subscribe to the NGINXaaS for Google Cloud offer in the Google Cloud Marketplace.
+Before you can deploy NGINXaaS, follow the steps in the [Prerequisites]({{< ref "/nginxaas-google/getting-started/prerequisites/" >}}) topic to subscribe to the NGINXaaS for Google Cloud offering in the Google Cloud Marketplace.
 
 ### Create a network attachment
 
@@ -24,6 +24,17 @@ NGINXaaS requires a [network attachment](https://cloud.google.com/vpc/docs/about
 1. Create a consumer VPC network and subnetwork. See [Google's documentation on creating a VPC and subnet](https://cloud.google.com/vpc/docs/create-modify-vpc-networks#console_1) for a step-by-step guide.
    - The region you choose in this step must match the region where your NGINXaaS deployment will be created.
 1. Create a Network Attachment in your new subnet that automatically accepts connections. See [Google's documentation on creating a Network Attachment](https://cloud.google.com/vpc/docs/create-manage-network-attachments#console_1) for a step-by-step guide.
+
+   {{< call-out "caution" >}}NGINXaaS for Google Cloud currently supports the following regions:
+
+   {{< table "table" >}}
+   |NGINXaaS Geography | Google Cloud Regions |
+   |-----------|---------|
+   | US  | us-west1, us-east1, us-central1 |
+   | EU    | europe-west2, europe-west1 |
+   {{< /table >}}
+
+   {{< /call-out >}}
 
 ## Access the NGINX as a Service Console
 
@@ -42,14 +53,16 @@ Once you have completed the subscription process and created a network attachmen
 In the NGINXaaS Console,
 
 1. On the left menu, select **Deployments**.
-1. Select **Add deployment** to create a new deployment.
+1. Select {{< icon "plus" >}} **Add Deployment** to create a new deployment.
 
    - Enter a **Name**.
    - Add an optional description for your deployment.
-   - Enter the ID of the Network Attachment created above and select the **+** icon or select a previously used **Network attachment** from the list.
-   - Select an **NGINX configuration** from the list.
+   - Change the **NCU Capacity** if needed. The default value of `10 NCU` should be adequate for most scenarios.
+   - In the Cloud Details section, select a **Network attachment** from the list.
+   - In the Apply Configuration section, select an NGINX configuration from the **Choose Configuration** list.
    - Select the **NGINX configuration version** from the list.
-   - Select **Add** to begin the deployment process.
+   - Select a **Configuration Version** from the list.
+   - Select **Submit** to begin the deployment process.
 
 Your new deployment will appear in the list of deployments. The status of the deployment will be "Pending" while the deployment is being created. Once the deployment is complete, the status will change to "Ready".
 
