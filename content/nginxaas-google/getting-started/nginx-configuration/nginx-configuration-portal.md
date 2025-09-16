@@ -41,3 +41,6 @@ You will see a notification confirming that the configuration was updated succes
 1. On the list of configurations, select the ellipses (three dots) icon next to the configuration you want to delete.
 1. Select **Delete**.
 1. Confirm that you want to delete the configuration.
+
+## What's next
+[Monitor your deployment]({{< ref "/nginxaas-google/monitoring/enable-monitoring.md" >}})

@@ -15,4 +15,4 @@ To see a list of currently active issues, visit the [Known issues]({{< ref "/ngi
 
 - {{% icon-feature %}} **NGINXaaS for Google Cloud Early Access**
 
-   NGINXaaS for Google Cloud is now available in Early Access. This offering provides a fully managed, scalable, and secure solution for deploying and managing NGINX instances on Google Cloud. It includes features such as automated backups, monitoring, and seamless integration with Google Cloud services.
+   NGINXaaS for Google Cloud is now available in Early Access. This offering provides a fully managed, scalable, and secure solution for deploying and managing NGINX instances on Google Cloud.

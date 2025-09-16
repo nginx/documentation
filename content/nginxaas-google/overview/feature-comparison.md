@@ -3,6 +3,7 @@ title: Feature comparison
 weight: 300
 description: Compare NGINXaaS for Google Cloud with other NGINX offerings.
 toc: false
+draft: true
 nd-docs: DOCS-000
 url: /nginxaas/google/overview/feature-comparison/
 type:

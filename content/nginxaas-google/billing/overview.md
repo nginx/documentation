@@ -3,6 +3,7 @@ title: Billing overview
 weight: 100
 toc: true
 nd-docs: DOCS-000
+draft: true
 url: /nginxaas/google/billing/overview/
 type:
 - concept

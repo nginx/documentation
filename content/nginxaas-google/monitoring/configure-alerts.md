@@ -2,7 +2,7 @@
 title: Configure alerts
 weight: 300
 toc: true
-draft: false
+draft: true
 nd-docs: DOCS-000
 url: /nginxaas/google/monitoring/configure-alerts/
 type:

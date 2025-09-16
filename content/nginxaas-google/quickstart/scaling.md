@@ -4,6 +4,7 @@ weight: 100
 toc: true
 nd-docs: DOCS-000
 url: /nginxaas/google/quickstart/scaling/
+draft: true
 type:
 - how-to
 ---

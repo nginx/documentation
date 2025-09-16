@@ -1,5 +1,5 @@
 ---
-title: Add certificates using the portal
+title: Add certificates using the Console
 weight: 100
 toc: true
 nd-docs: DOCS-000

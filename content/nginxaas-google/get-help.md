@@ -8,9 +8,6 @@ type:
 - how-to
 ---
 
-
-## Contact NGINX support
-
 If you need assistance while trying out the Early Access release of F5 NGINXaaS for Google Cloud, our team is here to help.
 
 Please reach out to us by sending an email to [nginxaas-early-access@f5.com](mailto:nginxaas-early-access@f5.com). To ensure a quick and accurate response, include the following details in your message:

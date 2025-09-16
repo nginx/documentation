@@ -18,40 +18,22 @@ and reliable with full lifecycle management of advanced NGINX traffic services.
 ## Featured content
 
 {{<card-section showAsCards="true" isFeaturedSection="true">}}
-  {{<card title="Getting started" titleUrl="/nginxaas/google/getting-started/" icon="power">}}
-    Deploy NGINXaaS for Google Cloud using the portal
+  {{<card title="Prerequisites" titleUrl="/nginxaas/google/getting-started/prerequisites/" icon="power">}}
+    Follow these steps to prepare for your NGINXaaS deployment
   {{</card>}}
-  {{<card title="Quickstart guides" titleUrl="/nginxaas/google/quickstart/" icon="square-play">}}
-    Step-by-step guides for several common use cases, including scaling guidance, security controls, and more
+  {{<card title="Create a deployment" titleUrl="/nginxaas/google/getting-started/create-deployment/deploy-portal/" icon="cloud-upload">}}
+    Step-by-step instructions to deploy NGINXaaS using the NGINXaaS Console
   {{</card>}}
-  {{<card title="Logging and monitoring" titleUrl="/nginxaas/google/monitoring/" icon="eye">}}
-    Collect, correlate, and analyze metrics for a thorough understanding of your application's health and behavior
-  {{</card>}}
-{{</card-section>}}
-
-### Billing
-
-
-{{<card-section showAsCards="true" >}}
-  {{<card title="Marketplace billing" titleUrl="/nginxaas/google/billing/overview/" icon="wallet">}}
-    See the pricing plans and learn about NGINX Capacity Units (NCUs)
+  {{<card title="Add certificates using the portal" titleUrl="/nginxaas/google/getting-started/ssl-tls-certificates/ssl-tls-certificates-portal/" icon="lock">}}
+    Instructions to add SSL/TLS certificates to your NGINXaaS deployment using the NGINXaaS Console
   {{</card>}}
 {{</card-section>}}
 
-### Certificates
+### Get help
+
 
 {{<card-section showAsCards="true" >}}
-  {{<card title="Add certificates using the NGINXaaS portal" titleUrl="/nginxaas/google/getting-started/ssl-tls-certificates/ssl-tls-certificates-portal/" icon="shield-check">}}
-    Learn to manage SSL/TSL certificates using the NGINXaaS portal
-  {{</card>}}
-{{</card-section>}}
-
-### More information
-{{<card-section showAsCards="true" >}}
-  {{<card title="Feature comparison" titleUrl="/nginxaas/google/overview/feature-comparison/" icon="git-compare-arrows">}}
-    Learn about the differences between NGINXaaS for Google Cloud and NGINX Plus
-  {{</card>}}
-  {{<card title="Changelog" titleUrl="/nginxaas/google/changelog/" icon="file-clock">}}
-    See the latest updates: New features, improvements, and bug fixes
+  {{<card title="Get help" titleUrl="/nginxaas/google/get-help/" icon="wallet">}}
+    Get in touch with the NGINX support team for assistance
   {{</card>}}
 {{</card-section>}}
