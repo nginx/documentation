@@ -47,7 +47,7 @@ After saving the changes, restart the client to apply the new settings:
 
 {{< call-out "warning" >}}
 
-This section **only** applies to V4 packages.
+This section **only** applies to virtual machines/bare metal installations.
 
 {{< /call-out >}}
 
@@ -82,7 +82,7 @@ Once complete, you can now [Configure policies for IP intelligence](#configure-p
 
 {{< call-out "warning" >}}
 
-This section **only** applies to NGINX Open Source and NGINX Plus installations.
+This section **only** applies to Docker installations.
 
 {{< /call-out >}}
 
@@ -147,6 +147,98 @@ networks:
   waf_network:
     driver: bridge
 ```
+
+Once complete, you can now [Configure policies for IP intelligence](#configure-policies-for-ip-intelligence).
+
+### Modify Manifest configuration files
+
+To enable IP intelligence on a Manifest-based Kubernetes deployment, you must add it as a container to your deployment file.
+
+```yaml
+        - name: waf-ip-intelligence
+          image: private-registry.nginx.com/napwaf-ip-intelligence:<version-tag>
+          imagePullPolicy: IfNotPresent
+          securityContext:
+            allowPrivilegeEscalation: false
+          volumeMounts:
+            - name: var-iprep
+              mountPath: /var/IpRep
+```
+
+A full example could look as follows:
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nap5-deployment
+spec:
+  selector:
+    matchLabels:
+      app: nap5
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: nap5
+    spec:
+      imagePullSecrets:
+        - name: regcred
+      containers:
+        - name: nginx
+          image: <your-private-registry>/waf:<your-tag>
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - name: app-protect-bd-config
+              mountPath: /opt/app_protect/bd_config
+            - name: app-protect-config
+              mountPath: /opt/app_protect/config
+        - name: waf-enforcer
+          image: private-registry.nginx.com/nap/waf-enforcer:<version-tag>
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: ENFORCER_PORT
+              value: "50000"
+          volumeMounts:
+            - name: app-protect-bd-config
+              mountPath: /opt/app_protect/bd_config
+            - name: var-iprep
+              mountPath: /var/IpRep
+        - name: waf-config-mgr
+          image: private-registry.nginx.com/nap/waf-config-mgr:<version-tag>
+          imagePullPolicy: IfNotPresent
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - all
+          volumeMounts:
+            - name: app-protect-bd-config
+              mountPath: /opt/app_protect/bd_config
+            - name: app-protect-config
+              mountPath: /opt/app_protect/config
+            - name: app-protect-bundles
+              mountPath: /etc/app_protect/bundles
+        - name: waf-ip-intelligence
+          image: private-registry.nginx.com/napwaf-ip-intelligence:<version-tag>
+          imagePullPolicy: IfNotPresent
+          securityContext:
+            allowPrivilegeEscalation: false
+          volumeMounts:
+            - name: var-iprep
+              mountPath: /var/IpRep
+      volumes:
+        - name: app-protect-bd-config
+          emptyDir: {}
+        - name: app-protect-config
+          emptyDir: {}
+         - name: var-iprep
+          emptyDir: {}
+        - name: app-protect-bundles
+          persistentVolumeClaim:
+            claimName: nap5-bundles-pvc
+```
+
 
 Once complete, you can now [Configure policies for IP intelligence](#configure-policies-for-ip-intelligence).
 

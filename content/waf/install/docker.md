@@ -2,7 +2,7 @@
 # We use sentence case and present imperative tone
 title: "Docker"
 # Weights are assigned in increments of 100: determines sorting order
-weight: 200
+weight: 300
 # Creates a table of contents and sidebar, useful for large documents
 toc: true
 # Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
@@ -738,6 +738,12 @@ docker ps
 ## Update configuration files
 
 {{< include "waf/install-update-configuration.md" >}}
+
+{{< call-out "note" >}}
+
+If you're using a V4 package, you have finished installing F5 WAF for NGINX and can look at [Post-installation checks](#post-installation-checks).
+
+{{< /call-out >}}
 
 ## Configure Docker services
 

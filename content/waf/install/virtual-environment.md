@@ -485,6 +485,12 @@ sudo dnf install app-protect
 
 {{< include "waf/install-update-configuration.md" >}}
 
+{{< call-out "note" >}}
+
+If you're using a V4 package, you have finished installing F5 WAF for NGINX and can look at [Post-installation checks](#post-installation-checks).
+
+{{< /call-out >}}
+
 ## Configure Docker services
 
 {{< include "waf/install-services-docker.md" >}}

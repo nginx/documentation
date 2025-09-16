@@ -25,15 +25,15 @@ For more details, see the [Supported security policy features]({{< ref "/waf/fun
 
 It is platform-agnostic and supports a range of deployment options for operational needs:
 
-1. [Virtual environment (Bare metal)]({{< ref "/waf/install/virtual-environment.md" >}})
+1. [Virtual machine or bare metal]({{< ref "/waf/install/virtual-environment.md" >}})
     - NGINX operates on the host system
     - WAF components are deployed in containers
     - Ideal for existing NGINX virtual environments
-1. [Docker]({{< ref "/waf/install/docker.md" >}})
-    - NGINX and WAF components are deployed as containers
-    - Suitable for environments with multiple deployment stages
 1. [Kubernetes]({{< ref "/waf/install/kubernetes.md" >}})
     - Integrates NGINX and WAF components in a single pod
     - Ideal for scalable, cloud-native environments
+1. [Docker]({{< ref "/waf/install/docker.md" >}})
+    - NGINX and WAF components are deployed as containers
+    - Suitable for environments with multiple deployment stages
 
 F5 WAF for NGINX is part of the [NGINX One](https://www.f5.com/products/nginx/one) premium packages and runs natively on [NGINX Plus](https://www.f5.com/products/nginx/nginx-plus) and [NGINX Ingress Controller](https://www.f5.com/products/nginx/nginx-ingress-controller). 
