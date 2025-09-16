@@ -10,12 +10,11 @@ nd-docs: DOCS-616
 
 15 Sept 2025
 
-This Nginx Ingress Controller release focuses on enhancing performance, simplifying configurations, and improving security to better support modern application needs. Highlights of this release are:
-
-- NGINX Content Cache Using Policies which adds policy configuration that enables proxy caching.
-- Support for Kubernetes `StatefulSet` object has been added which can also be use to provide persistent storage for cached content. 
-- Auto-Adjusting Incompatible Proxy Buffer Directive Values, we’ve added a new `--enable-directive-autoadjust` parameter. When enabled, this feature automatically resolves common proxy buffer configuration dependencies that could cause issues during NGINX reloads.
-- Server Name Indication (SNI) Support in JWT Policies, users can now configure `sniName` and `sniEnabled` for scenarios where the remote server requires SNI to serve the correct certificate. 
+This NGINX Ingress Controller release focuses on enhancing performance, simplifying configurations, and improving security to better support modern application needs. The highlights of this release are as follows:
+- NGINX Content Cache using policies: This new feature introduces policy configurations that enable proxy caching.
+- Support for Kubernetes `StatefulSet` Objects: Added support for Kubernetes `StatefulSet` objects, which can also be used to provide persistent storage for cached content.
+- Auto-Adjusting incompatible proxy buffer directive values: A new `-enable-directive-autoadjust` parameter has been added. When enabled, this feature automatically resolves common proxy buffer configuration dependencies that could cause issues during NGINX reloads.
+- Server Name Indication (SNI) support in JWT Policies: Users can now configure sniName and sniEnabled for scenarios where the remote server requires SNI to present the correct certificate
 
 ### <i class="fa-solid fa-rocket"></i> Features
 - [8005](https://github.com/nginx/kubernetes-ingress/pull/8005) Add nginx content cache as NIC cache policy
