@@ -39,6 +39,8 @@ To complete this guide, you will need the following pre-requisites:
 
 You will need [Helm](https://helm.sh/docs/intro/install/) installed for a Helm-based deployment.
 
+You should read the [IP intelligence topic]({{< ref "/waf/policies/ip-intelligence.md" >}}) for additional set-up configuration if you want to use the feature immediately.
+
 ## Download your subscription credentials 
 
 {{< include "licensing-and-reporting/download-certificates-from-myf5.md" >}}
