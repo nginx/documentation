@@ -14,7 +14,7 @@ This guide explains how to deploy F5 NGINXaaS for Google Cloud (NGINXaaS) using 
 
 ## Before you begin
 
-Before you can deploy NGINXaaS, follow the steps in the [Prerequisites]({{< ref "/nginxaas-google/getting-started/prerequisites/" >}}) topic to subscribe to the NGINXaaS for Google Cloud offer in the Google Cloud Marketplace.
+Before you can deploy NGINXaaS, follow the steps in the [Prerequisites]({{< ref "/nginxaas-google/getting-started/prerequisites/" >}}) topic to subscribe to the NGINXaaS for Google Cloud offering in the Google Cloud Marketplace.
 
 ### Create a network attachment
 
@@ -24,6 +24,17 @@ NGINXaaS requires a [network attachment](https://cloud.google.com/vpc/docs/about
 1. Create a consumer VPC network and subnetwork. See [Google's documentation on creating a VPC and subnet](https://cloud.google.com/vpc/docs/create-modify-vpc-networks#console_1) for a step-by-step guide.
    - The region you choose in this step must match the region where your NGINXaaS deployment will be created.
 1. Create a Network Attachment in your new subnet that automatically accepts connections. See [Google's documentation on creating a Network Attachment](https://cloud.google.com/vpc/docs/create-manage-network-attachments#console_1) for a step-by-step guide.
+
+   {{< call-out "caution" >}}NGINXaaS for Google Cloud currently supports the following regions:
+
+   {{< table "table" >}}
+   |NGINXaaS Geography | Google Cloud Regions |
+   |-----------|---------|
+   | US  | us-west1, us-east1, us-central1 |
+   | EU    | europe-west2, europe-west1 |
+   {{< /table >}}
+
+   {{< /call-out >}}
 
 ## Access the NGINX as a Service Console
 
