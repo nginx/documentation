@@ -54,7 +54,7 @@ As an authenticated user, you may modify the authorized domains and name of an N
 
 {{< call-out "note" >}}You cannot remove an authorized domain from the list if it matches an existing user's Google Identity Domain. To remove access from that domain you must first delete every NGINXaaS user that is associated with the domain.{{< /call-out >}}
 
-### Modify the name of an accoun
+### Modify the name of an account
 
 1. Select **Account Details** under the **Settings** section on the left menu.
 2. Select **Edit** in the **Account Info** section.

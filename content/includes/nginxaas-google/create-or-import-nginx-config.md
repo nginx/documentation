@@ -2,6 +2,8 @@
 nd-docs: DOCS-000
 ---
 
+In the NGINXaaS Console,
+
 1. On the left menu, select **Configurations**.
 1. Select **Add Configuration** to add a new NGINX configuration.
 1. You can either create a new configuration from scratch or copy an existing configuration:

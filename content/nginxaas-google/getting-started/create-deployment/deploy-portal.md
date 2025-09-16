@@ -40,6 +40,7 @@ Once you have completed the subscription process and created a network attachmen
 ## Create a new deployment
 
 In the NGINXaaS Console,
+
 1. On the left menu, select **Deployments**.
 1. Select **Add deployment** to create a new deployment.
 
@@ -53,6 +54,8 @@ In the NGINXaaS Console,
 Your new deployment will appear in the list of deployments. The status of the deployment will be "Pending" while the deployment is being created. Once the deployment is complete, the status will change to "Ready".
 
 ## Configure your deployment
+
+In the NGINXaaS Console,
 
 1. To open the details of your deployment, select its name from the list of deployments.
    - You can view the details of your deployment, including the status, region, network attachment, NGINX configuration, and more.
