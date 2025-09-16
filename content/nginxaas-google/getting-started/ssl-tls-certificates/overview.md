@@ -13,6 +13,7 @@ F5 NGINXaaS for Google Cloud (NGINXaaS) enables customers to secure traffic by a
 This document provides details about using SSL/TLS certificates with your F5 NGINXaaS for Google Cloud deployment.
 
 ## Supported certificate types and formats
+
 NGINXaaS supports certificates of the following types:
 
 - Self-signed certificates, Domain Validated (DV) certificates, Organization Validated (OV) certificates, and Extended Validation (EV) certificates.
