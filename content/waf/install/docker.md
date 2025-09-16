@@ -296,7 +296,7 @@ CMD ["sh", "/root/entrypoint.sh"]
 
 {{% tab name="NGINX Plus" %}}
 
-{{< include "/waf/dockerfiles/debian-oss.md" >}}
+{{< include "/waf/dockerfiles/debian-plus.md" >}}
 
 {{% /tab %}}
 

@@ -1,6 +1,6 @@
 ---
 # We use sentence case and present imperative tone
-title: "Virtual environment"
+title: "Virtual machine or bare metal"
 # Weights are assigned in increments of 100: determines sorting order
 weight: 100
 # Creates a table of contents and sidebar, useful for large documents
@@ -23,7 +23,7 @@ I'm identifying shared steps for it: depending on how large the steps might be, 
 
 {{</ call-out >}}
 
-This page describes how to install F5 WAF for NGINX with NGINX Plus on a virtual machine or bare metal environment. 
+This page describes how to install F5 WAF for NGINX in a virtual machine or bare metal environment. 
 
 ## Before you begin
 

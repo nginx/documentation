@@ -12,17 +12,6 @@ nd-content-type: how-to
 nd-product: NAP-WAF
 ---
 
-{{< call-out "warning" "Information architecture note" >}}
-
-This page replaces/combined information from the following two pages:
-
-- [v4 Converter tools]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#converter-tools" >}})
-- [v5 Converter tools]({{< ref "/nap-waf/v5/configuration-guide/configuration.md#converter-tools" >}})
-
-It presumes contextual information from [Build and use the compiler tool]({{< ref "/waf/tools/compiler.md" >}}), trusting that the user has set-up a standalone compiler image for the sake of the examples.
-
-{{</ call-out>}}
-
 F5 WAF for NGINX has multiple tools for converting existing resources or configuration files for use from a BIG-IP for use from a BIG-IP environment. 
 
 {{< call-out "important" >}}

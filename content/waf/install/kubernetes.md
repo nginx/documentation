@@ -215,7 +215,7 @@ Your folder should contain the following files:
 - _nginx-repo.key_
 - _Dockerfile_
 
-To build an image, use the following command, replacing <your-image-name> as appropriate:
+To build an image, use the following command, replacing `<your-image-name>` as appropriate:
 
 ```shell
 sudo docker build --no-cache --platform linux/amd64 \
@@ -233,5 +233,140 @@ From this point, the steps change based on your installation method:
 
 ## Use Helm to install F5 WAF for NGINX
 
+### Download your JSON web token
+
+{{< include "licensing-and-reporting/download-jwt-from-myf5.md" >}}
+
+### Get the Helm chart
+
+To get the Helm chart, first configure Docker for the F5 Container Registry.
+
+{{< include "waf/install-services-registry.md" >}}
+
+Then use `helm pull` to get the chart, replacing `<release-version>`:
+```shell
+helm pull oci://private-registry.nginx.com/nap/nginx-app-protect --version <release-version> --untar
+```
+
+Change the working directory afterwards:
+
+```shell
+cd nginx-app-protect
+```
+
+### Deploy the Helm chart
+
+You will need to edit the `values.yaml` file for a few changes:
+
+- Update _appprotect.nginx.image.repository_ and _appprotect.nginx.image.tag_  with the image name chosen during when [building the Docker image](#build-the-docker-image).
+- Update _appprotect.config.nginxJWT_ with your JSON web token
+- Update _dockerConfigJson_ to contain the base64 encoded Docker registration credentials
+
+You can encode your credentials with the following command:
+
+```shell
+echo '{
+    "auths": {
+        "private-registry.nginx.com": {
+            "username": "<JWT Token>",
+            "password": "none"
+        }
+    }
+}' | base64 -w 0```
+```
+
+Alternatively, you can use `kubectl` to create a secret:
+
+```shell
+kubectl create secret docker-registry regcred -n <namespace> \
+    --docker-server=private-registry.nginx.com \
+    --docker-username=<JWT Token> \
+    --docker-password=none
+```
+
+Once you have updated `values.yaml`, you can install F5 WAF for NGINX using `helm install`:
+
+```shell
+helm install <release-name> .
+```
+
+You can verify the deployment is successful with `kubectl get`, replacing `namespace` accordingly:
+
+```shell
+kubectl get pods -n <namespace>
+kubectl get svc -n <namespace>
+```
+
+{{< call-out "note" >}}
+
+At this stage, you have finished deploying F5 WAF for NGINX and can look at [Post-installation checks](#post-installation-checks).
+
+{{< /call-out >}}
+
+### Helm Chart parameters
+
+This table lists the configurable parameters of the F5 WAF for NGINX Helm chart and their default values.
+
+To understand the _mTLS Configuration_ options, view the [Secure traffic between NGINX and WAF enforcer]() topic.
+
+{{< table >}}
+| **Section** | **Key** | **Description** | **Default Value** |
+|-------------|---------|-----------------|-------------------|
+| **Namespace** | _namespace_ | The target Kubernetes namespace where the Helm chart will be deployed. | N/A |
+| **App Protect Configuration** | _appprotect.replicas_ | The number of replicas of the Nginx App Protect deployment. | 1 |
+| | _appprotect.readOnlyRootFilesystem_ | Specifies if the root filesystem is read-only. | false |
+| | _appprotect.annotations_ | Custom annotations for the deployment. | {} |
+| **NGINX Configuration** | _appprotect.nginx.image.repository_ | Docker image repository for NGINX. | \<your-private-registry>/nginx-app-protect-5 |
+| | _appprotect.nginx.image.tag_ | Docker image tag for NGINX. | latest |
+| | _appprotect.nginx.imagePullPolicy_ | Image pull policy. | IfNotPresent |
+| | _appprotect.nginx.resources_ | The resources of the NGINX container. | requests: cpu=10m,memory=16Mi |
+| **WAF Config Manager** | _appprotect.wafConfigMgr.image.repository_ | Docker image repository for the WAF Configuration Manager. | private-registry.nginx.com/nap/waf-config-mgr |
+| | _appprotect.wafConfigMgr.image.tag_ | Docker image tag for the WAF Configuration Manager. | 5.6.0 |
+| | _appprotect.wafConfigMgr.imagePullPolicy_ | Image pull policy. | IfNotPresent |
+| | _appprotect.wafConfigMgr.resources_ | The resources of the WAF Config Manager container. | requests: cpu=10m,memory=16Mi |
+| **WAF Enforcer** | _appprotect.wafEnforcer.image.repository_ | Docker image repository for the WAF Enforcer. | private-registry.nginx.com/nap/waf-enforcer |
+| | _appprotect.wafEnforcer.image.tag_ | Docker image tag for the WAF Enforcer. | 5.6.0 |
+| | _appprotect.wafEnforcer.imagePullPolicy_ | Image pull policy. | IfNotPresent |
+| | _appprotect.wafEnforcer.env.enforcerPort_ | Port for the WAF Enforcer. | 50000 |
+| | _appprotect.wafEnforcer.resources_ | The resources of the WAF Enforcer container. | requests: cpu=20m,memory=256Mi |
+| **WAF IP Intelligence** | _appprotect.wafIpIntelligence.enable | Enable or disable the use of the IP intelligence container | false |
+| | _appprotect.wafIpIntelligence.image.repository_ | Docker image repository for the WAF IP Intelligence. | private-registry.nginx.com/nap/waf-ip-intelligence |
+| | _appprotect.wafIpIntelligence.image.tag_ | Docker image tag for the WAF Enforcer. | 5.6.0 |
+| | _appprotect.wafIpIntelligence.imagePullPolicy_ | Image pull policy. | IfNotPresent |
+| | _appprotect.wafIpIntelligence.resources_ | The resources of the WAF Enforcer container. | requests: cpu=10m,memory=256Mi |
+| **Config** | _appprotect.config.name_ | The name of the ConfigMap used by the NGINX container. | nginx-config |
+| | _appprotect.config.annotations_ | The annotations of the ConfigMap. | {} |
+| | _appprotect.config.nginxJWT_ | JWT license for NGINX. | "" |
+| | _appprotect.config.nginxConf_ | NGINX configuration file content. | See _values.yaml_ |
+| | _appprotect.config.nginxDefault_ | Default server block configuration for NGINX. | {} |
+| | _appprotect.config.entries_ | Extra entries of the ConfigMap for customizing NGINX configuration. | {} |
+| **mTLS Configuration** | _appprotect.mTLS.serverCert_ | The base64-encoded TLS certificate for the App Protect Enforcer (server). | "" |
+| | _appprotect.mTLS.serverKey_ | The base64-encoded TLS key for the App Protect Enforcer (server). | "" |
+| | _appprotect.mTLS.serverCACert_ | The base64-encoded TLS CA certificate for the App Protect Enforcer (server). | "" |
+| | _appprotect.mTLS.clientCert_ | The base64-encoded TLS certificate for the NGINX (client). | "" |
+| | _appprotect.mTLS.clientKey_ | The base64-encoded TLS key for the NGINX (client). | "" |
+| | _appprotect.mTLS.clientCACert_ | The base64-encoded TLS CA certificate for the NGINX (client). | "" |
+| **Extra Volumes** | _appprotect.volumes_ | The extra volumes of the NGINX container. | [] |
+| **Extra Volume Mounts** | _appprotect.volumeMounts_ | The extra volume mounts of the NGINX container. | [] |
+| **Service** | _appprotect.service.nginx.ports.port_ | Service port. | 80 |
+| | _appprotect.service.nginx.ports.protocol_ | Protocol used. | TCP |
+| | _appprotect.service.nginx.ports.targetPort_ | Target port inside the container. | 80 |
+| | _appprotect.service.nginx.type_ | Service type. | NodePort |
+| **Storage Configuration** | _appprotect.storage.bundlesPath.name_ | Bundles volume name used by WAF Config Manager container for storing policy bundles  | app-protect-bundles |
+| | _appprotect.storage.bundlesPath.mountPath_ | Bundles mount path used by WAF Config Manager container, which is the path to the app_protect_policy_file in nginx.conf. | /etc/app_protect/bundles |
+| | _appprotect.storage.pv.hostPath_ | Host path for persistent volume. | /mnt/nap5_bundles_pv_data |
+| | _appprotect.storage.pvc.bundlesPvc.storageClass_ | Storage class for PVC. | manual |
+| | _appprotect.storage.pvc.bundlesPvc.storageRequest_ | Storage request size. | 2Gi |
+| **Docker Configuration** | _dockerConfigJson_ | A base64-encoded string representing the Docker registry credentials in JSON format. | N/A |
+{{< /table >}}
 
 ## Use Manifests to install F5 WAF for NGINX
+
+
+## Post-installation checks
+
+{{< include "waf/install-post-checks.md" >}}
+
+## Next steps
+
+{{< include "waf/install-next-steps.md" >}}
