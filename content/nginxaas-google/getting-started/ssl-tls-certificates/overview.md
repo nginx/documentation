@@ -27,7 +27,7 @@ NGINX supports the following certificate formats:
 
 NGINXaaS allows you to upload these certificates as text and as files.
 
-Make sure your certificates, keys, and pem files are encrypted to one of the following standards:
+Encrypt your certificates, keys, and PEM files using one of these standards:
 
 - RSA
 - ECC/ECDSA
