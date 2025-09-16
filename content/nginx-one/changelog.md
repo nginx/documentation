@@ -42,7 +42,7 @@ For each instance, you can now visualize the following items from the NGINX One 
 - Response codes
 - Memory and CPU utilization
 
-To access this screen, select **Manage** > **Instances**, select an instance, selct an instance hostname, and then select the **Metrics** tab.
+To access this screen, select **Manage** > **Instances**, select an instance, select an instance hostname, and then select the **Metrics** tab.
 
 ## July 15, 2025
 
