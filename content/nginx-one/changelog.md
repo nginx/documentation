@@ -30,6 +30,15 @@ h2 {
 
 Stay up-to-date with what's new and improved in the F5 NGINX One Console.
 
+## September 17, 2025
+
+### Added observability features
+
+You can now visualize the following items from the NGINX One Console:
+
+- a
+- b
+
 ## July 15, 2025
 
 ### Set up F5 NGINX App Protect WAF security policies
