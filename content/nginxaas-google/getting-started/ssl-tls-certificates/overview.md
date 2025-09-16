@@ -16,7 +16,10 @@ This document provides details about using SSL/TLS certificates with your F5 NGI
 
 NGINXaaS supports certificates of the following types:
 
-- Self-signed certificates, Domain Validated (DV) certificates, Organization Validated (OV) certificates, and Extended Validation (EV) certificates.
+- Self-signed
+- Domain Validated (DV)
+- Organization Validated (OV)
+- Extended Validation (EV)
 
 NGINX supports the following certificate formats:
 
