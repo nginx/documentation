@@ -67,7 +67,7 @@ product/nginx-one:
           - 'content/nginx-one/**'
           - 'content/includes/nginx-one/**'
 
-product/nginxaas:
+product/nginxaas-azure:
   - changed-files:
       - any-glob-to-any-file:
           - 'content/nginxaas-azure/**'
