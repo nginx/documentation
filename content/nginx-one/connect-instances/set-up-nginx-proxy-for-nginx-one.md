@@ -84,6 +84,7 @@ To set up your other NGINX instances to use the proxy instance to connect to NGI
         token: "YOUR_DATA_PLANE_KEY_HERE"
       tls:
         skip_verify: False
+        server_name: agent.connect.nginx.com
    ```
 
    {{%/tab%}}
@@ -95,6 +96,8 @@ To set up your other NGINX instances to use the proxy instance to connect to NGI
       # Replace YOUR_PROXY_IP_ADDRESS_HERE with the IP address of the NGINX proxy instance.
       host: YOUR_PROXY_IP_ADDRESS_HERE
       grpcPort: 5000
+      command: agent.connect.nginx.com
+      metrics: agent.connect.nginx.com
     tls:
       enable: True
       skip_verify: False

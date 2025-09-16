@@ -11,6 +11,5 @@ tags:
 title: APIM API
 toc: false
 weight: 400
+nd-api-reference: "./nginx-controller/api/reference/ctlr-apim-openapi.json"
 ---
-
-{{< openapi spec="./nginx-controller/api/reference/ctlr-apim-openapi.json" >}}
