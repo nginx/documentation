@@ -1,5 +1,5 @@
 ---
 title: "Logging"
 url: /waf/logs/
-weight: 700
+weight: 500
 ---

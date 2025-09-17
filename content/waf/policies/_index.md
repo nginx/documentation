@@ -1,5 +1,5 @@
 ---
 title: "Policies"
 url: /waf/policies/
-weight: 500
+weight: 400
 ---

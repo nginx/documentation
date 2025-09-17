@@ -160,7 +160,7 @@ Example:
 
 {{< call-out "note" >}}
 
-This section assumes that you have built a [compiler image]({{< ref "/waf/tools/compiler.md" >}}) named `waf-compiler-1.0.0:custom`.
+This section assumes that you have built a [compiler image]({{< ref "/waf/configure/compiler.md" >}}) named `waf-compiler-1.0.0:custom`.
 
 {{< /call-out >}}
 

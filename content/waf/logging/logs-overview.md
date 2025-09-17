@@ -32,7 +32,7 @@ F5 WAF for NGINX uses a separate logging mechanism to NGINX's default one, which
 
 ## Security logs
 
-To configure [security logs]({{< ref "/waf/logging/security-logs.md" >}}), you need to [compile a security policy]({{< ref "/waf/tools/compiler.md#compile-a-security-policy" >}}) JSON file into a bundle before applying it.
+To configure [security logs]({{< ref "/waf/logging/security-logs.md" >}}), you need to [compile a security policy]({{< ref "/waf/configure/compiler.md#compile-a-security-policy" >}}) JSON file into a bundle before applying it.
 
 ### Default logging profile bundles
 
