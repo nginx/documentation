@@ -28,7 +28,7 @@ that make sense for your setup:
       client-max-body-size: "2m"
     ```
 
-    See the section [Summary of ConfigMap Keys](#summary-of-configmap-keys) for the explanation of the available ConfigMap keys (such as `proxy-connect-timeout` in this example).
+    See the section [Summary of ConfigMap Keys](#configmap-keys) for the explanation of the available ConfigMap keys (such as `proxy-connect-timeout` in this example).
 
 1. Create a new (or update the existing) ConfigMap resource:
 
