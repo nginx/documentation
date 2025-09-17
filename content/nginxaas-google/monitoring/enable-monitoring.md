@@ -43,15 +43,17 @@ Refer to the [Google's Metrics Explorer](https://cloud.google.com/monitoring/cha
 
 You can retrieve raw time series metrics from the [Cloud Monitoring API](https://cloud.google.com/monitoring/api/v3).
 
-For example, you can use [`projects.timeSeries.list`](https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list) to list metrics matching filters from a specified time interval.
+For example, you can use [`projects.timeSeries.list`](https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list) to list metrics matching filters from a specified time interval. The following `curl` command lists `nginxaas.ncus.provisioned` metrics from the time interval `start_time` to `end_time` in the given `project_id`.
 
 ```bash
 curl \
-  'https://monitoring.googleapis.com/v3/projects/{project_id}/timeSeries?filter=metric.type%20%3D%20%22workload.googleapis.com%2Fnginxaas.ncus.provisioned%22&interval.endTime=2025-08-27T20%3A59%3A41.502Z&interval.startTime=2025-08-27T20%3A50%3A41.502Z&view=FULL&key=[YOUR_API_KEY]' \
-  --header 'Authorization: Bearer [YOUR_ACCESS_TOKEN]' \
-  --header 'Accept: application/json' \
+  "https://monitoring.googleapis.com/v3/projects/{project_id}/timeSeries?filter=metric.type%3D%22workload.googleapis.com%2Fnginxaas.ncus.provisioned%22&interval.endTime={end_time}&interval.startTime={start_time}" \
+  --header "Authorization: Bearer $(gcloud auth print-access-token)" \
+  --header "Accept: application/json" \
   --compressed
 ```
+
+See [Google's documentation to authenticate for using REST](https://cloud.google.com/docs/authentication/rest) for more information.
 
 The following JSON shows an example response body:
 
@@ -77,7 +79,7 @@ The following JSON shows an example response body:
           "node_id": "",
           "location": "global",
           "namespace": "",
-          "project_id": "test-project"
+          "project_id": "{project_id}"
         }
       },
       "metricKind": "GAUGE",
@@ -85,8 +87,8 @@ The following JSON shows an example response body:
       "points": [
         {
           "interval": {
-            "startTime": "2025-08-27T20:56:18.608375Z",
-            "endTime": "2025-08-27T20:56:18.608375Z"
+            "startTime": "{start_time}",
+            "endTime": "{end_time}"
           },
           "value": {
             "int64Value": "10"
