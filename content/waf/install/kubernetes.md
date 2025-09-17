@@ -39,7 +39,9 @@ To complete this guide, you will need the following pre-requisites:
 
 You will need [Helm](https://helm.sh/docs/intro/install/) installed for a Helm-based deployment.
 
-You should read the [IP intelligence topic]({{< ref "/waf/policies/ip-intelligence.md" >}}) for additional set-up configuration if you want to use the feature immediately.
+You should read the [IP intelligence]({{< ref "/waf/policies/ip-intelligence.md" >}}) and [Secure traffic using mTLS]({{< ref "/waf/configure/secure-mtls.md" >}}) topics for additional set-up configuration if you want to use them immediately.
+
+To review supported operating systems, read the [Technical specifications]({{< ref "/waf/fundamentals/technical-specifications.md" >}}) topic.
 
 ## Download your subscription credentials 
 
@@ -311,7 +313,7 @@ At this stage, you have finished deploying F5 WAF for NGINX and can look at [Pos
 
 This table lists the configurable parameters of the F5 WAF for NGINX Helm chart and their default values.
 
-To understand the _mTLS Configuration_ options, view the [Secure traffic between NGINX and WAF enforcer]() topic.
+To understand the _mTLS Configuration_ options, view the [Secure traffic using mTLS]({{< ref "/waf/configure/secure-mtls.md" >}}) topic.
 
 {{< table >}}
 | **Topic** | **Parameter** | **Description** | **Default value** |

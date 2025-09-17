@@ -82,13 +82,11 @@ Once complete, you can now [Configure policies for IP intelligence](#configure-p
 
 {{< call-out "warning" >}}
 
-This section **only** applies to Docker installations.
+This section **only** applies to installations using Docker.
 
 {{< /call-out >}}
 
-IP intelligence has its own Docker container for NGINX Open Source and NGINX Plus installations.
-
-You can add it to the deployment in your Docker Compose file.
+IP intelligence has its own Docker container, which can be added to an existing Docker compose file for deployment.
 
 First, create the required directory:
 

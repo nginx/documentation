@@ -36,7 +36,8 @@ To complete this guide, you will need the following prerequisites:
 Depending on your deployment type, you may have additional requirements:
 
 - [Docker](https://docs.docker.com/get-started/get-docker/) is required for NGINX Open Source or NGINX Plus type deployments.
-- The [IP intelligence]({{< ref "/waf/policies/ip-intelligence.md" >}}) topic explains additional set-up configuration to use the feature immediately.
+
+You should read the [IP intelligence]({{< ref "/waf/policies/ip-intelligence.md" >}}) and [Secure traffic using mTLS]({{< ref "/waf/configure/secure-mtls.md" >}}) topics for additional set-up configuration if you want to use them immediately.
 
 ## Platform-specific instructions
 
