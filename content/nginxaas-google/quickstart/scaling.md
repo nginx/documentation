@@ -41,7 +41,7 @@ The following table outlines constraints on the specified capacity based on the 
 
 | **Marketplace Plan**         | **Minimum Capacity (NCUs)** | **Maximum Capacity (NCUs)** | **Multiple of**            |
 |------------------------------|-----------------------------|-----------------------------|----------------------------|
-| Standard plan(s)                  | TBD                          | TBD                         | TBD                         |
+| Enterprise plan(s)                  | TBD                          | TBD                         | TBD                         |
 {{</bootstrap-table>}}
 
 {{< call-out "note" >}}If you need a higher maximum capacity, please [open a request](https://my.f5.com/manage/s/) and specify the Resource ID of your NGINXaaS deployment, the region, and the desired maximum capacity you wish to scale to.{{< /call-out >}}
