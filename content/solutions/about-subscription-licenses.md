@@ -100,7 +100,7 @@ To ensure NGINX Plus R33 or later can send usage reports, follow these steps bas
 
 ### For internet-connected environments
 
-1. Allow outbound HTTPS traffic on TCP port `443` to communicate with F5's licensing endpoint (`product.connect.nginx.com`). Ensure that the following IP ranges are allowed:
+1. Allow outbound HTTPS traffic on TCP port `443` to communicate with F5's licensing endpoint (`product.connect.nginx.com`). Ensure that the following IP address ranges are allowed:
 
    - `3.135.72.139/32`
    - `3.133.232.50/32`

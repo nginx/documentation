@@ -34,8 +34,8 @@ Stay up-to-date with what's new and improved in the F5 NGINX One Console.
 
 ### IPv6 endpoints for NGINX Agent and NGINX Plus usage reporting
 
-Your instances running in dualstack or IPv6-only environments are now able to communicate with NGINX One APIs via IPv6.
-Please check the [Getting Started Guide]({{< ref "/nginx-one/getting-started.md#install-nginx-agent" >}}) for IP ranges required to be enabled in your firewalls.
+Your instances which run in dual-stack or IPv6-only environments can now communicate with NGINX One Console APIs through IPv6 addresses.
+See the [Getting Started Guide]({{< ref "/nginx-one/getting-started.md#install-nginx-agent" >}}) for the IP address ranges you need to allow in your firewalls.
 
 ## July 15, 2025
 
