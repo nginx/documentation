@@ -9,6 +9,14 @@ url: /nginxaas/azure/known-issues/
 
 List of known issues in the latest release of F5 NGINXaaS for Azure (NGINXaaS).
 
+### {{% icon-bug %}} Certificate failures when managed identities with access is added after deployment creation
+
+This issue occurs when public access is disabled on Azure Key Vault (AKV) and the managed identity that has access to AKV is added to the NGINXaaS deployment after creation.
+
+Updating managed identities on an NGINXaaS deployment after creation may result in the managed identity not being correctly delegated to the dataplane, which can cause certificate fetch failures.
+
+**Workaround**: To avoid this issue, when you create an NGINXaaS deployment, make sure that the managed identity with access to AKV is assigned during initial creation. If managed identities need to be updated after creation, enable public access to AKV or [configure Network Security Perimeter]({{< ref "/nginxaas-azure/quickstart/security-controls/certificates.md#configure-network-security-perimeter-nsp" >}})
+
 ### {{% icon-bug %}} Custom and precompiled security policies cannot both be referenced in an NGINX configuration
 
 When using NGINX App Protect WAF, you can only reference default or custom security policies in your NGINX configuration, not both.
