@@ -47,7 +47,7 @@ terraform {
 
 Run the below command to update your NGINXaaS deployment.
 
-```bash
+```shell
    az nginx deployment update --name myDeployment --resource-group \
    myResourceGroup --sku name="standardv2_Monthly_gmz7xq9ge3py"
 ```

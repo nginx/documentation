@@ -166,6 +166,10 @@ kubectl apply -f config/crd/bases/appprotectdos.f5.com_dosprotectedresources.yam
 
 {{< include "/nic/installation/manifests/daemonset.md" >}}
 
+### Using a StatefulSet
+
+{{< include "/nic/installation/manifests/statefulset.md" >}}
+
 ---
 
 ## Install the App Protect DoS Arbitrator
@@ -204,7 +208,7 @@ Alternatively, you can install the App Protect DoS Arbitrator using the YAML man
 
 To enable the NGINX App Protect DoS Module:
 
-- Add the `enable-app-protect-dos` [command-line argument]({{< ref "/nic/configuration/global-configuration/command-line-arguments.md#cmdoption-enable-app-protect-dos" >}}) to your Deployment or DaemonSet file.
+- Add the `enable-app-protect-dos` [command-line argument]({{< ref "/nic/configuration/global-configuration/command-line-arguments.md#cmdoption-enable-app-protect-dos" >}}) to your Deployment, DaemonSet, or StatefulSet file.
 
 ---
 

@@ -158,7 +158,7 @@ kubectl apply -f config/crd/bases/appprotect.f5.com_apusersigs.yaml
 
 {{< include "/nic/installation/deploy-controller.md" >}}
 
-{{< call-out "note" >}} If you're using NGINX Ingress Controller with the AppProtect WAF module and policy bundles, you will need to modify the Deployment or DaemonSet file to include volumes and volume mounts.
+{{< call-out "note" >}} If you're using NGINX Ingress Controller with the AppProtect WAF module and policy bundles, you will need to modify the Deployment, DaemonSet, or StatefulSet file to include volumes and volume mounts.
 
 NGINX Ingress Controller **requires** the volume mount path to be `/etc/nginx/waf/bundles`. {{< /call-out >}}
 
@@ -183,6 +183,10 @@ volumeMounts:
 ...
 ```
 
+{{< call-out "note" >}}
+**StatefulSet Volume Configuration**: When using StatefulSet deployments, the `nginx-cache` volume is automatically provided via `volumeClaimTemplates` for persistent storage. App Protect WAF v5 volumes (like app-protect-config, app-protect-bundles) are still configured as regular volumes in the `volumes` section. Use `emptyDir` for temporary data or PersistentVolumeClaims if you need persistence for App Protect configurations across pod restarts.
+{{< /call-out >}}
+
 ### Using a Deployment
 
 {{< include "/nic/installation/manifests/deployment.md" >}}
@@ -191,13 +195,17 @@ volumeMounts:
 
 {{< include "/nic/installation/manifests/daemonset.md" >}}
 
+### Using a StatefulSet
+
+{{< include "/nic/installation/manifests/statefulset.md" >}}
+
 ---
 
 ## Enable NGINX App Protect WAF module
 
 To enable the NGINX App Protect DoS Module:
 
-- Add the `enable-app-protect` [command-line argument]({{< ref "/nic/configuration/global-configuration/command-line-arguments.md#cmdoption-enable-app-protect" >}}) to your Deployment or DaemonSet file.
+- Add the `enable-app-protect` [command-line argument]({{< ref "/nic/configuration/global-configuration/command-line-arguments.md#cmdoption-enable-app-protect" >}}) to your Deployment, DaemonSet, or StatefulSet file.
 
 ---
 

@@ -23,7 +23,7 @@ F5 NGINXaaS for Azure (NGINXaaS) configurations can be managed using the Azure C
 
 To create a new NGINX configuration, use the `az nginx deployment configuration create` command:
 
-```bash
+```shell
 az nginx deployment configuration create --configuration-name
                                          --deployment-name
                                          --resource-group
@@ -39,7 +39,7 @@ az nginx deployment configuration create --configuration-name
 
 You can use the `analyze` command to validate your configuration before submitting it to the deployment:
 
-```bash
+```shell
 az nginx deployment configuration analyze --deployment-name $DEPLOYMENT_NAME \
    --resource-group $RESOURCE_GROUP --root-file /etc/nginx/nginx.conf \
    --name default --files "$FILES_CONTENT"
@@ -49,7 +49,7 @@ az nginx deployment configuration analyze --deployment-name $DEPLOYMENT_NAME \
 
 - Create a single file configuration:
 
-   ```bash
+   ```shell
    az nginx deployment configuration create --name default \
       --deployment-name myDeployment --resource-group myResourceGroup \
       --root-file /etc/nginx/nginx.conf \
@@ -70,7 +70,7 @@ az nginx deployment configuration analyze --deployment-name $DEPLOYMENT_NAME \
 
 - Create a multiple file configuration:
 
-   ```bash
+   ```shell
    az nginx deployment configuration create --name default \
       --deployment-name myDeployment --resource-group myResourceGroup \
       --root-file /etc/nginx/nginx.conf \
@@ -92,7 +92,7 @@ az nginx deployment configuration analyze --deployment-name $DEPLOYMENT_NAME \
 
 - Upload package with config files:
 
-   ```bash
+   ```shell
    $ tar -czf nginx.tar.gz nginx
    $ tar -tzf nginx.tar.gz
    nginx/
@@ -106,7 +106,7 @@ az nginx deployment configuration analyze --deployment-name $DEPLOYMENT_NAME \
 
    Where `nginx` is a directory with the following structure:
 
-   ```bash
+   ```shell
    $ tree nginx
    nginx
    ├── nginx.conf
@@ -120,7 +120,7 @@ az nginx deployment configuration analyze --deployment-name $DEPLOYMENT_NAME \
 
    Encode your tar.gz file and create your NGINXaaS configuration
 
-   ```bash
+   ```shell
    TAR_DATA=$(base64 -i nginx.tar.gz)
    az nginx deployment configuration create --deployment-name myDeployment \
       --resource-group myResourceGroup --root-file nginx.conf --name default \
@@ -129,7 +129,7 @@ az nginx deployment configuration analyze --deployment-name $DEPLOYMENT_NAME \
 
 - Multiple file configuration with protected files:
 
-   ```bash
+   ```shell
    az nginx deployment configuration create --name default \
       --deployment-name 0102242023test --resource-group azclitest-geo \
       --root-file /etc/nginx/nginx.conf \
@@ -173,7 +173,7 @@ Update a configuration for a deployment using a gzipped archive.
 
 Use the `az nginx deployment configuration update` command to update an existing NGINX configuration:
 
-```bash
+```shell
 az nginx deployment configuration update [--add]
                                          [--configuration-name]
                                          [--deployment-name]
@@ -193,7 +193,7 @@ az nginx deployment configuration update [--add]
 
 - Update content of the first file in a configuration:
 
-   ```bash
+   ```shell
    az nginx deployment configuration update --name default \
       --deployment-name myDeployment --resource-group myResourceGroup \
       --files [0].content="aHR0cCB7CiAgICB1cHN0cmVhbSBhcHAgewogICAgICAgIHpvbmUg \

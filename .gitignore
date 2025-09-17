@@ -35,9 +35,6 @@ resources/
 .netlify/plugins/*
 .netlify/
 
-# Local Lighthouse artifacts
-lighthouse-reports
-
 *.pyc
 build
 *.swp
