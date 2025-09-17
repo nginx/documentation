@@ -2,7 +2,7 @@
 # We use sentence case and present imperative tone
 title: "Secure traffic using mTLS"
 # Weights are assigned in increments of 100: determines sorting order
-weight: 200
+weight: 500
 # Creates a table of contents and sidebar, useful for large documents
 toc: true
 # Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
@@ -12,7 +12,7 @@ nd-content-type: how-to
 nd-product: NAP-WAF
 ---
 
-This topic describes how to secure traffic between NGINX and the F5 WAF enforcer using mTLS.
+This document describes how to secure traffic between NGINX and the F5 WAF enforcer using mTLS.
 
 It explains how to generate the necessary certificates, then update configuration files to use them.
 

@@ -2,7 +2,7 @@
 # We use sentence case and present imperative tone
 title: "Build and use the converter tools"
 # Weights are assigned in increments of 100: determines sorting order
-weight: 500
+weight: 400
 # Creates a table of contents and sidebar, useful for large documents
 toc: true
 # Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
@@ -316,7 +316,7 @@ docker run -v `pwd`:`pwd` -w `pwd` --entrypoint /opt/app_protect/bin/convert-sig
 
 The Attack Signature Report tool scans the system for attack signatures, then generates a JSON report file with information about these signatures.
 
-This tool can be deployed and used independently from a F5 WAF for NGINX deployment using the [compiler image]({{< ref "/waf/configure/compiler.md" >}}) to generate a report about the default signatures included with F5 WAF, or the signatures included in [an update package]({{< ref "/waf/signatures/">}}).
+This tool can be deployed and used independently from a F5 WAF for NGINX deployment using the [compiler image]({{< ref "/waf/configure/compiler.md" >}}) to generate a report about the default signatures included with F5 WAF, or the signatures included in [an update package]().
 
 The latter case is possible on a standalone compiler deployment by comparing a report from before a signature update and a report from after the signature update.
 

@@ -5,6 +5,7 @@ title: "Update F5 WAF for NGINX threat campaign signatures"
 weight: 200
 # Creates a table of contents and sidebar, useful for large documents
 toc: false
+draft: true
 # Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
 nd-content-type: how-to
 # Intended for internal catalogue and search, case sensitive:
