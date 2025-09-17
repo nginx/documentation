@@ -47,7 +47,7 @@ Logs and metrics flow to GCP Cloud Logging and Cloud Monitoring, while secrets a
 
 ### Geographical Controllers
 
-NGINXaaS for Google has a global presence with management requests being served from various geographical controllers. A Geographical Controller (GC) is a controlplane that serves users in a given geographical boundary while taking into account concerns relating to data residency and localization. Example: A US geographical controller serves US customers. We currently have presence in two Geographies: **US** and **EU**.
+NGINXaaS for Google has a global presence with management requests being served from various geographical controllers. A Geographical Controller (GC) is a control plane that serves users in a given geographical boundary while taking into account concerns relating to data residency and localization. Example: A US geographical controller serves US customers. We currently have presence in two Geographies: **US** and **EU**.
 
 ### Networking
 
