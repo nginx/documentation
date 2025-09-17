@@ -12,14 +12,6 @@ nd-content-type: how-to
 nd-product: NAP-WAF
 ---
 
-{{< call-out "warning" "Information architecture note" >}}
-
-The design intention for this page is to as a single source of truth to replace the two [Configuration]({{< ref "/nap-waf/v4/configuration-guide/configuration.md" >}}) [Guides]({{< ref "/nap-waf/v5/configuration-guide/configuration.md" >}}) (two separate links).
-
-Outside of the overlapping information for Policy configuration, the existing pages also include general configuration information, such as for F5 WAF for NGINX itself. This detail can be added to a separate page, ensuring that each document acts as a solution for exactly one problem at a time.
-
-{{</ call-out >}}
-
 This page describes the security features available with F5 WAF for NGINX and how to configure policies. 
 
 For better understanding of some contextual nouns, read the [Terminology]({{< ref "/waf/fundamentals/terminology.md" >}}) topic.
