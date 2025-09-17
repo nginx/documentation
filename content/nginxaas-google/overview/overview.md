@@ -37,7 +37,7 @@ The key capabilities of NGINXaaS for Google Cloud are:
 
 {{< img src="nginxaas-google/nginxaas-google-cloud-architecture.png" alt="Architecture diagram of NGINXaaS for Google Cloud showing user traffic through load balancers to applications, with control plane management via the NGINXaaS Console, GCP Marketplace, and Identity Provider, plus logging, monitoring, and secret management." >}}
 
-- The NGINXaaS Console and other management tools (API, CLI, Terraform) are used to create, update, and delete NGINX configurations, certificates and NGINXaaS deployments
+- The NGINXaaS Console is used to create, update, and delete NGINX configurations, certificates and NGINXaaS deployments
 - Each NGINXaaS deployment has dedicated network and compute resources. There is no possibility of noisy neighbor problems or data leakage between deployments
 - NGINXaaS can route traffic to upstreams even if the upstream servers are located in different geographies. See [Known Issues]({{< ref "/nginxaas-google/known-issues.md" >}}) for any networking restrictions.
 - NGINXaaS supports request tracing. See the [Application Performance Management with NGINX Variables](https://www.f5.com/company/blog/nginx/application-tracing-nginx-plus) blog to learn more about tracing.
