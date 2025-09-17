@@ -127,6 +127,15 @@ az nginx deployment configuration analyze --deployment-name $DEPLOYMENT_NAME \
       --package data="$TAR_DATA"
    ```
 
+   Upload a package with config files and protected files:
+
+   ```bash
+   az nginx deployment configuration create --deployment-name myDeployment \
+      --resource-group myResourceGroup --root-file nginx.conf --name default \
+      --package data="$TAR_DATA" \
+      protected-files="['nginx/servers/server1.conf','nginx/servers/server2.conf']"
+   ```
+
 - Multiple file configuration with protected files:
 
    ```shell
@@ -161,35 +170,6 @@ az nginx deployment configuration analyze --deployment-name $DEPLOYMENT_NAME \
       eV9idWZmZXJpbmcgb247CnByb3h5X2J1ZmZlcl9zaXplIDRrOwpwcm94eV9idWZmZXJz \
       IDggOGs7CnByb3h5X3JlYWRfdGltZW91dCA2MHM7', \
       'virtual-path':'/etc/nginx/conf.d/proxyprot.conf'}]"
-   ```
-
-- Upload a package with config files and protected files:
-
-   ```bash
-   az nginx deployment configuration create \
-      --deployment-name myDeployment \
-      --resource-group myResourceGroup \
-      --root-file nginx.conf \
-      --name default \
-  --files "[{'content':'dXNlciBuZ2lueDsKd29ya2VyX3Byb2Nlc3NlcyBhdXRvOwp3b3JrZXJfcmx \
-  pbWl0X25vZmlsZSA4MTkyOwpwaWQgL3J1bi9uZ2lueC9uZ2lueC5waWQ7CmVycm9yX2xvZyAvdmFyL2xv \
-  Zy9uZ2lueC9lcnJvci5sb2cgZXJyb3I7Cmh0dHAgewogICAgYWNjZXNzX2xvZyBvZmY7CiAgICBzZXJ2Z \
-  XJfdG9rZW5zICIiOwogICAgc2VydmVyIHsKICAgICAgICBsaXN0ZW4gODAgZGVmYXVsdF9zZXJ2ZXI7Ci \
-  AgICAgICAgc2VydmVyX25hbWUgbG9jYWxob3N0OwogICAgICAgIGxvY2F0aW9uIC8gewogICAgICAgICA \
-  gICByb290IC92YXIvd3d3OwogICAgICAgICAgICBpbmRleCBpbmRleC5odG1sOwogICAgICAgIH0KICAg \
-  IH0KfQo=','virtual-path':'nginx.conf'}]" \
-  --protected-files "[{'content':'aHR0cCB7CiAgICB1cHN0cmVhbSBhcHAgewogICAgICAgIHpv \
-  bmUgYXBwIDY0azsKICAgICAgICBsZWFzdF9jb25uOwogICAgICAgIHNlcnZlciAxMC4wLjEuNDo4MDAw \
-  OwogICAgfQoKICAgIHNlcnZlciB7CiAgICAgICAgbGlzdGVuIDgwOwogICAgICAgIHNlcnZlcl9uYW1l \
-  ICouZXhhbXBsZS5jb207CgogICAgICAgIGxvY2F0aW9uIC8gewogICAgICAgICAgICBpbmNsdWRlIC9l \
-  dGMvbmdpbngvY29uZi5kL3Byb3h5LmNvbmY7CiAgICAgICAgICAgIHByb3h5X3Bhc3MgaHR0cDovL2Fw \
-  cDsKICAgICAgICAgICAgaGVhbHRoX2NoZWNrOwogICAgICAgIH0KICAgICAgICAKICAgIH0KfQ==', \
-  'virtual-path':'/etc/nginx/nginxprot.conf'},{'content':'cHJveHlfc2V0X2hlYWRlciB \
-  Ib3N0ICRob3N0Owpwcm94eV9zZXRfaGVhZGVyIFgtUmV \
-  hbC1JUCAkcmVtb3RlX2FkZHI7CnByb3h5X3NldF9oZWFkZXIgWC1Qcm94eS1BcHAgYXBwOwpwcm94eV \
-  9zZXRfaGVhZGVyIEdpdGh1Yi1SdW4tSWQgMDAwMDAwOwpwcm94eV9idWZmZXJpbmcgb247CnByb3h5X \
-  2J1ZmZlcl9zaXplIDRrOwpwcm94eV9idWZmZXJzIDggOGs7CnByb3h5X3JlYWRfdGltZW91dCA2MHM7' \
-  ,'virtual-path':'/etc/nginx/conf.d/proxyprot.conf'}]"
    ```
 
 See the [Azure CLI Configuration Create Documentation](https://learn.microsoft.com/en-us/cli/azure/nginx/deployment/configuration?view=azure-cli-latest#az-nginx-deployment-configuration-create) for more details on the available parameters.
