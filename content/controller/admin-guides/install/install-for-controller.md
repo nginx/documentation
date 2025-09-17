@@ -442,7 +442,7 @@ Before proceeding, you should review the [Prerequisites]({{< ref "/nap-waf/v4/ad
       sudo wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
       ```
 
-11. Update the repository and install the latest App Protect WAF package.
+11. Update the repository and install the latest F5 WAF for NGINX package.
 
       **See Also:** Please refer to [NGINX App Protect Compatibility Matrix]({{< ref "/controller/admin-guides/install/nginx-controller-tech-specs.md#nginx-app-protect-compatibility-matrix" >}}) for specific version compatibility.
 

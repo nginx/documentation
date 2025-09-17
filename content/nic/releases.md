@@ -150,7 +150,7 @@ Open Source NGINX Ingress Controller architectures `armv7`, `s390x` & `ppc64le` 
 - [7205](https://github.com/nginx/kubernetes-ingress/pull/7205), [7238](https://github.com/nginx/kubernetes-ingress/pull/7238), [7390](https://github.com/nginx/kubernetes-ingress/pull/7390) & [7393](https://github.com/nginx/kubernetes-ingress/pull/7393) Tiered Rate limit groups with JWT claim
 - [7239](https://github.com/nginx/kubernetes-ingress/pull/7239), [7347](https://github.com/nginx/kubernetes-ingress/pull/7347), [7445](https://github.com/nginx/kubernetes-ingress/pull/7445), [7468](https://github.com/nginx/kubernetes-ingress/pull/7468), [7521](https://github.com/nginx/kubernetes-ingress/pull/7521) & [7654](https://github.com/nginx/kubernetes-ingress/pull/7654) Zone Sync support
 - [7560](https://github.com/nginx/kubernetes-ingress/pull/7560) Add forward proxy support for NGINX Plus licensing connectivity
-- [7299](https://github.com/nginx/kubernetes-ingress/pull/7299) & [7597](https://github.com/nginx/kubernetes-ingress/pull/7597) Add support for NGINX OSS 1.27.4, NGINX Plus R34 & App Protect WAF 4.13 & 5.6
+- [7299](https://github.com/nginx/kubernetes-ingress/pull/7299) & [7597](https://github.com/nginx/kubernetes-ingress/pull/7597) Add support for NGINX OSS 1.27.4, NGINX Plus R34 & F5 WAF for NGINX 4.13 & 5.6
 
 ### <i class="fa-solid fa-bug-slash"></i> Fixes
 - [7121](https://github.com/nginx/kubernetes-ingress/pull/7121) Clean up and fix for NIC Pod failing to bind when NGINX exits unexpectedly
@@ -585,7 +585,7 @@ The [**use-cluster-ip**]({{< ref "/nic/configuration/ingress-resources/advanced-
 **use-cluster-ip** supports service meshes and specific use cases where the backend service should be the target instead of individual backend service pods, bypassing upstream load balancing.
 
 ### <i class="fa-solid fa-rocket"></i> Features
-- [5179](https://github.com/nginx/kubernetes-ingress/pull/5179) & [5051](https://github.com/nginx/kubernetes-ingress/pull/5051) Add NIM Security Dashboard integration for App Protect WAF security violations
+- [5179](https://github.com/nginx/kubernetes-ingress/pull/5179) & [5051](https://github.com/nginx/kubernetes-ingress/pull/5051) Add NIM Security Dashboard integration for F5 WAF for NGINX security violations
 - [5212](https://github.com/nginx/kubernetes-ingress/pull/5212) Weight changes Dynamic Reload
 - [4862](https://github.com/nginx/kubernetes-ingress/pull/4862) Add use-cluster-ip annotation for ingress resources
 - [4660](https://github.com/nginx/kubernetes-ingress/pull/4660) Add annotations for controlling request rate limiting
@@ -723,7 +723,7 @@ A number of Helm enhancements have come directly from our community and range fr
 
 To make sure NGINX Ingress Controller follows Helm best practices, we've refactored our helm chart location. You can now find our helm charts under `charts\nginx-ingress`.
 
-We’ve added the functionality to define App Protect WAF bundles for VirtualServers by creating policy bundles and putting them on a mounted volume accessible from NGINX Ingress Controller.
+We’ve added the functionality to define F5 WAF for NGINX bundles for VirtualServers by creating policy bundles and putting them on a mounted volume accessible from NGINX Ingress Controller.
 
 ### <i class="fa-solid fa-rocket"></i> Features
 

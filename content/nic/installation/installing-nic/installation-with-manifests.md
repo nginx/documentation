@@ -90,7 +90,7 @@ There are optional CRDs that are necessary if you want to use F5 WAF for NGINX o
 
 **F5 WAF for NGINX**
 
-{{< call-out "note" >}} This step can be skipped if you are using App Protect WAF module with policy bundles. {{< /call-out >}}
+{{< call-out "note" >}} This step can be skipped if you are using F5 WAF for NGINX module with policy bundles. {{< /call-out >}}
 
 ```shell
 kubectl apply -f https://raw.githubusercontent.com/nginx/kubernetes-ingress/v{{< nic-version >}}/deploy/crds-nap-waf.yaml
@@ -108,7 +108,7 @@ kubectl apply -f https://raw.githubusercontent.com/nginx/kubernetes-ingress/v{{<
 
 **F5 WAF for NGINX**
 
-{{< call-out "note" >}} This step can be skipped if you are using App Protect WAF module with policy bundles. {{< /call-out >}}
+{{< call-out "note" >}} This step can be skipped if you are using F5 WAF for NGINX module with policy bundles. {{< /call-out >}}
 
 ```shell
 kubectl apply -f config/crd/bases/appprotect.f5.com_aplogconfs.yaml

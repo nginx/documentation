@@ -1,5 +1,5 @@
 ---
-title: Configure App Protect WAF
+title: Configure F5 WAF for NGINX
 weight: 300
 toc: true
 url: /nginxaas/azure/app-protect/configure-waf/
@@ -131,8 +131,8 @@ As a workaround, make a copy of the default policy you want to use, then add it 
 
 The **Custom Policies** tab shows the status of your custom policies (Compilation and Application Status). Custom policies are automatically compiled when created or modified. Policies that are applied to the NGINX configuration cannot be deleted until they are first removed from the configuration. 
 
-It is highly recommended to use logging to monitor the performance of F5 WAF for NGINX and to help diagnose problems. See [Enable App Protect WAF Logs]({{< ref "/nginxaas-azure/app-protect/enable-logging.md" >}}) for directions to configure security and operational logs.
+It is highly recommended to use logging to monitor the performance of F5 WAF for NGINX and to help diagnose problems. See [Enable F5 WAF for NGINX Logs]({{< ref "/nginxaas-azure/app-protect/enable-logging.md" >}}) for directions to configure security and operational logs.
 
 ## What's next
 
-[Enable App Protect WAF Logs]({{< ref "/nginxaas-azure/app-protect/enable-logging.md" >}})
+[Enable F5 WAF for NGINX Logs]({{< ref "/nginxaas-azure/app-protect/enable-logging.md" >}})

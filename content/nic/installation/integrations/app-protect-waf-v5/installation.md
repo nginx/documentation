@@ -163,21 +163,21 @@ volumeMounts:
 
 ### Enabling WAF v5
 
-Start by setting `controller.appprotect.enable` to `true` in your Helm values. This will the standard App Protect WAF features.
+Start by setting `controller.appprotect.enable` to `true` in your Helm values. This will the standard F5 WAF for NGINX features.
 Afterwords, set `controller.approtect.v5` to `true`.
 This ensures that both the `waf-enforcer` and `waf-config-mgr` containers are deployed alongside the NGINX Ingress Controller containers.
-These two additional containers are required when using App Protect WAF v5.
+These two additional containers are required when using F5 WAF for NGINX v5.
 
 Your Helm values should look something like this:
 
 ```yaml
 controller:
   ...
-  ## Support for App Protect WAF
+  ## Support for F5 WAF for NGINX
   appprotect:
-    ## Enable the App Protect WAF module in the Ingress Controller.
+    ## Enable the F5 WAF for NGINX module in the Ingress Controller.
     enable: true
-    ## Enables App Protect WAF v5.
+    ## Enables F5 WAF for NGINX v5.
     v5: true
 ```
 
@@ -466,7 +466,7 @@ Add `readOnlyRootFilesystem` to the `waf-enforcer` container and set value to `t
 ```
 
 {{< call-out "note" >}}
-**StatefulSet Volume Configuration**: When using StatefulSet deployments, the `nginx-cache` volume is automatically provided via `volumeClaimTemplates` for persistent storage. App Protect WAF v5 volumes (like app-protect-config, app-protect-bundles) are still configured as regular volumes in the `volumes` section. Use `emptyDir` for temporary data or PersistentVolumeClaims if you need persistence for App Protect configurations across pod restarts.
+**StatefulSet Volume Configuration**: When using StatefulSet deployments, the `nginx-cache` volume is automatically provided via `volumeClaimTemplates` for persistent storage. F5 WAF for NGINX v5 volumes (like app-protect-config, app-protect-bundles) are still configured as regular volumes in the `volumes` section. Use `emptyDir` for temporary data or PersistentVolumeClaims if you need persistence for App Protect configurations across pod restarts.
 {{< /call-out >}}
 
 ### Using a Deployment

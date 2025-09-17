@@ -1,5 +1,5 @@
 ---
-title: Disable App Protect WAF
+title: Disable F5 WAF for NGINX
 weight: 400
 toc: true
 url: /nginxaas/azure/app-protect/disable-waf/
@@ -13,7 +13,7 @@ This guide explains how to disable F5 WAF for NGINX on an NGINX as a Service for
 ## Before you start
 You must remove the WAF directives from your NGINX config file before attempting to disable WAF.
 
-## Disable App Protect WAF
+## Disable F5 WAF for NGINX
 
 ### Using the Microsoft Azure Portal
 

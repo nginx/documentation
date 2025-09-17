@@ -29,7 +29,7 @@ The following capabilities are available only through the Instance Manager REST 
 
 Before continuing, complete the following steps:
 
-- [Set up App Protect WAF configuration management]({{< ref "setup-waf-config-management" >}})
+- [Set up F5 WAF for NGINX configuration management]({{< ref "setup-waf-config-management" >}})
 - Make sure your user account has the [required permissions]({{< ref "/nim/admin-guide/rbac/overview-rbac.md" >}}) to access the REST API:
 
   - **Module**: Instance Manager
@@ -39,7 +39,7 @@ Before continuing, complete the following steps:
 To use policy bundles, you also need to:
 
 - Have `UPDATE` permissions for each referenced security policy
-- [Install the correct `nms-nap-compiler` package]({{< ref "/nim/nginx-app-protect/setup-waf-config-management.md#install-the-waf-compiler" >}}) for your App Protect WAF version
+- [Install the correct `nms-nap-compiler` package]({{< ref "/nim/nginx-app-protect/setup-waf-config-management.md#install-the-waf-compiler" >}}) for your F5 WAF for NGINX version
 - [Install the required attack signatures and threat campaigns]({{< ref "/nim/nginx-app-protect/setup-waf-config-management.md#set-up-attack-signatures-and-threat-campaigns" >}})
 
 ### Access the web interface

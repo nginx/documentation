@@ -1,5 +1,5 @@
 ---
-title: Enable App Protect WAF
+title: Enable F5 WAF for NGINX
 weight: 200
 toc: true
 url: /nginxaas/azure/app-protect/enable-waf/
@@ -30,4 +30,4 @@ Access the [Microsoft Azure portal](https://portal.azure.com)
 
 ## What's next
 
-[Configure App Protect WAF]({{< ref "/nginxaas-azure/app-protect/configure-waf.md" >}})
+[Configure F5 WAF for NGINX]({{< ref "/nginxaas-azure/app-protect/configure-waf.md" >}})

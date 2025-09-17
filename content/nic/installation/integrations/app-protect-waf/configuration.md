@@ -226,7 +226,7 @@ spec:
 
 ## F5 WAF for NGINX Bundles {#waf-bundles}
 
-You can define App Protect WAF bundles for VirtualServer custom resources by creating policy bundles and putting them on a mounted volume accessible from NGINX Ingress Controller.
+You can define F5 WAF for NGINX bundles for VirtualServer custom resources by creating policy bundles and putting them on a mounted volume accessible from NGINX Ingress Controller.
 
 Before applying a policy, a WAF policy bundle must be created, then copied to a volume mounted to `/etc/nginx/waf/bundles`.
 

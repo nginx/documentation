@@ -736,7 +736,7 @@ For `kubectl get` and similar commands, you can also use the short name `pol` in
 
 {{< call-out "note" >}} The feature is implemented using the NGINX Plus [F5 WAF for NGINX Module](https://docs.nginx.com/nginx-app-protect/configuration/). {{< /call-out >}}
 
-The WAF policy configures NGINX Plus to secure client requests using App Protect WAF policies.
+The WAF policy configures NGINX Plus to secure client requests using F5 WAF for NGINX policies.
 
 For example, the following policy will enable the referenced APPolicy. You can configure multiple APLogConfs with log destinations:
 
@@ -759,11 +759,11 @@ waf:
 |Field | Description | Type | Required |
 | ---| ---| ---| --- |
 |``enable`` | Enables F5 WAF for NGINX. | ``bool`` | Yes |
-|``apPolicy`` | The [App Protect WAF policy]({{< relref "installation/integrations/app-protect-waf/configuration.md#waf-policies" >}}) of the WAF. Accepts an optional namespace. Mutually exclusive with ``apBundle``. | ``string`` | No |
-|``apBundle`` | The [App Protect WAF policy bundle]({{< relref "installation/integrations/app-protect-waf/configuration.md#waf-bundles" >}}). Mutually exclusive with ``apPolicy``. | ``string`` | No |
+|``apPolicy`` | The [F5 WAF for NGINX policy]({{< relref "installation/integrations/app-protect-waf/configuration.md#waf-policies" >}}) of the WAF. Accepts an optional namespace. Mutually exclusive with ``apBundle``. | ``string`` | No |
+|``apBundle`` | The [F5 WAF for NGINX policy bundle]({{< relref "installation/integrations/app-protect-waf/configuration.md#waf-bundles" >}}). Mutually exclusive with ``apPolicy``. | ``string`` | No |
 |``securityLog.enable`` | Enables security log. | ``bool`` | No |
-|``securityLog.apLogConf`` | The [App Protect WAF log conf]({{< relref "installation/integrations/app-protect-waf/configuration.md#waf-logs" >}}) resource. Accepts an optional namespace. Only works with ``apPolicy``. | ``string`` | No |
-|``securityLog.apLogBundle`` | The [App Protect WAF log bundle]({{< relref "installation/integrations/app-protect-waf/configuration.md#waf-bundles" >}}) resource. Only works with ``apBundle``. | ``string`` | No |
+|``securityLog.apLogConf`` | The [F5 WAF for NGINX log conf]({{< relref "installation/integrations/app-protect-waf/configuration.md#waf-logs" >}}) resource. Accepts an optional namespace. Only works with ``apPolicy``. | ``string`` | No |
+|``securityLog.apLogBundle`` | The [F5 WAF for NGINX log bundle]({{< relref "installation/integrations/app-protect-waf/configuration.md#waf-bundles" >}}) resource. Only works with ``apBundle``. | ``string`` | No |
 |``securityLog.logDest`` | The log destination for the security log. Only accepted variables are ``syslog:server=<ip-address &#124; localhost; fqdn>:<port>``, ``stderr``, ``<absolute path to file>``. | ``string`` | No |
 {{% /table %}}
 

@@ -108,7 +108,7 @@ To quickly set up an environment with NGINX Plus, F5 WAF for NGINX and F5 DoS fo
       sudo service nginx start
       ```
 
-     For App Protect WAF solution based on RedHat / CentOS
+     For F5 WAF for NGINX solution based on RedHat / CentOS
 
       ```shell
       sudo service nginx stop
@@ -116,7 +116,7 @@ To quickly set up an environment with NGINX Plus, F5 WAF for NGINX and F5 DoS fo
       sudo systemctl start nginx
       ```
 
-    For App Protect WAF solution based on Debian / Ubuntu
+    For F5 WAF for NGINX solution based on Debian / Ubuntu
 
       ```shell
       sudo service nginx stop

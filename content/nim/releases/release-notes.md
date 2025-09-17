@@ -977,7 +977,7 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **Instance Manager can now automatically retrieve WAF compilers associated with NGINX App Protect instances**<a name="2-10-0-whats-new-Instance-Manager-can-now-automatically-retrieve-WAF-compilers-associated-with-NGINX-App-Protect-instances"></a>
 
-   Using a user-provided NGINX repository certificate & key after the first set-up of the WAF compiler, Instance Manager can automatically retrieve WAF compilers associated with NGINX App Protect instances. These can be used to publish App Protect WAF configurations in `precompiled_publication` mode.
+   Using a user-provided NGINX repository certificate & key after the first set-up of the WAF compiler, Instance Manager can automatically retrieve WAF compilers associated with NGINX App Protect instances. These can be used to publish F5 WAF for NGINX configurations in `precompiled_publication` mode.
 
 - {{% icon-feature %}} **Add option to toggle ICMP scanning in the web interface**<a name="2-10-0-whats-new-Add-option-to-toggle-ICMP-scanning-in-the-web-interface"></a>
 

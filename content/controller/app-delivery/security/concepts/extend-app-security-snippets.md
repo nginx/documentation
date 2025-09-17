@@ -197,7 +197,7 @@ We strongly recommend verifying Snippets in a lab environment before making any 
 
 This example adds an HTTP Snippet to a Gateway to control the memory and CPU threshold values which determine when NGINX App Protect enters and exits failure mode.
 
-In *failure mode*, App Protect WAF stops processing app traffic. Traffic is either dropped or passed through, as determined by the `app_protect_failure_mode_action` directive.
+In *failure mode*, F5 WAF for NGINX stops processing app traffic. Traffic is either dropped or passed through, as determined by the `app_protect_failure_mode_action` directive.
 
 The example below directs F5 WAF for NGINX to enter failure mode when memory utilization or CPU utilization reaches 85% and to exit failure mode when memory or CPU utilization drops to 60%.
 

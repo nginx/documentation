@@ -110,9 +110,9 @@ make push PREFIX=<my-docker-registry>/nginx-plus-ingress
 
 ---
 
-## Create App Protect WAF custom resources
+## Create F5 WAF for NGINX custom resources
 
-{{< call-out "note" >}} If you're using NGINX Ingress Controller with the App Protect WAF module and policy bundles, you can skip this section. You will need to create and configure [Persistent Volume and Persistent Volume Claim](https://kubernetes.io/docs/concepts/storage/persistent-volumes/) in your Kubernetes cluster. {{< /call-out >}}
+{{< call-out "note" >}} If you're using NGINX Ingress Controller with the F5 WAF for NGINX module and policy bundles, you can skip this section. You will need to create and configure [Persistent Volume and Persistent Volume Claim](https://kubernetes.io/docs/concepts/storage/persistent-volumes/) in your Kubernetes cluster. {{< /call-out >}}
 
 <br>
 
@@ -184,7 +184,7 @@ volumeMounts:
 ```
 
 {{< call-out "note" >}}
-**StatefulSet Volume Configuration**: When using StatefulSet deployments, the `nginx-cache` volume is automatically provided via `volumeClaimTemplates` for persistent storage. App Protect WAF v5 volumes (like app-protect-config, app-protect-bundles) are still configured as regular volumes in the `volumes` section. Use `emptyDir` for temporary data or PersistentVolumeClaims if you need persistence for App Protect configurations across pod restarts.
+**StatefulSet Volume Configuration**: When using StatefulSet deployments, the `nginx-cache` volume is automatically provided via `volumeClaimTemplates` for persistent storage. F5 WAF for NGINX v5 volumes (like app-protect-config, app-protect-bundles) are still configured as regular volumes in the `volumes` section. Use `emptyDir` for temporary data or PersistentVolumeClaims if you need persistence for App Protect configurations across pod restarts.
 {{< /call-out >}}
 
 ### Using a Deployment

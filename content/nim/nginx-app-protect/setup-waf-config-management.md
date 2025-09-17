@@ -1156,7 +1156,7 @@ To confirm that the F5 WAF for NGINX configuration was applied:
 2. In the left navigation menu, select **Instances**.
 3. In the **NGINX App Protect** column, confirm that the correct version is listed.
 4. Select the instance. Then, scroll to the **App Protect Details** section.
-5. Confirm that the **App Protect WAF** status is **Active**, and the **Build** matches the version installed on the instance.
+5. Confirm that the **F5 WAF for NGINX** status is **Active**, and the **Build** matches the version installed on the instance.
 
 ---
 
