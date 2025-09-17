@@ -54,7 +54,7 @@ NGINXaaS for Google Cloud is supported in the following regions:
 - Each NGINXaaS deployment has dedicated network and compute resources. There is no possibility of noisy neighbor problems or data leakage between deployments
 - NGINXaaS can route traffic to upstreams even if the upstream servers are located in different geographies. See [Known Issues]({{< ref "/nginxaas-google/known-issues.md" >}}) for any networking restrictions.
 - NGINXaaS supports request tracing. See the [Application Performance Management with NGINX Variables](https://www.f5.com/company/blog/nginx/application-tracing-nginx-plus) blog to learn more about tracing.
-- Supports HTTP to HTTPS, HTTPS to HTTP, and HTTP to HTTP redirects. NGINXaaS also provides the ability to create new rules for redirecting. See [How to Create NGINX Rewrite Rules | NGINX](https://www.nginx.com/blog/creating-nginx-rewrite-rules/) for more details.
+- Supports HTTP to HTTPS, HTTPS to HTTP, and HTTP to HTTP redirects. NGINXaaS also provides the ability to create new rules for redirecting. See [How to Create NGINX Rewrite Rules | NGINX](https://blog.nginx.org/blog/creating-nginx-rewrite-rules) for more details.
 - Google Cloud's Private Service Connect (PSC) enables clients within your Virtual Private Cloud (VPC) to access your NGINXaaS deployments. PSC also provides NGINXaaS a secure and private way to connect to your upstream applications. Known networking limitations can be found in the [Known Issues]({{< ref "/nginxaas-google/known-issues.md" >}}).
 
 ### Redundancy
