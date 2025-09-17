@@ -33,22 +33,9 @@ The key capabilities of NGINXaaS for Google Cloud are:
 - Supports the following protocols: HTTPS, HTTP, HTTP/2, HTTP/3, TCP, QUIC, IMAP, POP3, and SMTP.
 - Supports any type of message body for upstream and error status code responses, including text/plain, text/css, text/html, application/javascript, and application/json.
 
-
-## Limitations
-
-- TBD
-
-## Supported regions
-
-NGINXaaS for Google Cloud is supported in the following regions:
-
-- TBD
-
-
 ## NGINXaaS for Google Cloud architecture
 
 {{< img src="nginxaas-google/nginxaas-google-cloud-architecture.png" alt="Architecture diagram of NGINXaaS for Google Cloud showing user traffic through load balancers to applications, with control plane management via the NGINXaaS Console, GCP Marketplace, and Identity Provider, plus logging, monitoring, and secret management." >}}
-
 
 - The NGINXaaS Console and other management tools (API, CLI, Terraform) are used to create, update, and delete NGINX configurations, certificates and NGINXaaS deployments
 - Each NGINXaaS deployment has dedicated network and compute resources. There is no possibility of noisy neighbor problems or data leakage between deployments
@@ -56,6 +43,14 @@ NGINXaaS for Google Cloud is supported in the following regions:
 - NGINXaaS supports request tracing. See the [Application Performance Management with NGINX Variables](https://www.f5.com/company/blog/nginx/application-tracing-nginx-plus) blog to learn more about tracing.
 - Supports HTTP to HTTPS, HTTPS to HTTP, and HTTP to HTTP redirects. NGINXaaS also provides the ability to create new rules for redirecting. See [How to Create NGINX Rewrite Rules | NGINX](https://blog.nginx.org/blog/creating-nginx-rewrite-rules) for more details.
 - Google Cloud's Private Service Connect (PSC) enables clients within your Virtual Private Cloud (VPC) to access your NGINXaaS deployments. PSC also provides NGINXaaS a secure and private way to connect to your upstream applications. Known networking limitations can be found in the [Known Issues]({{< ref "/nginxaas-google/known-issues.md" >}}).
+
+### Geographical Controllers
+
+NGINXaaS for Google has a global presence with management requests being served from various geographical controllers. A Geographical Controller (GC) is a control plane that serves users in a given geographical boundary while taking into account concerns relating to data residency and localization. Example: A US geographical controller serves US customers. We currently have presence in two Geographies: **US** and **EU**.
+
+### Networking
+
+We use Google [Private Service Connect]((https://cloud.google.com/vpc/docs/private-service-connect)) (PSC) to securely connect NGINXaaS to your applications and enable client access to your deployments. A [PSC backend](https://cloud.google.com/vpc/docs/private-service-connect#backends) brings the NGINXaaS deployment into your client network, allowing your application clients to connect seamlessly. A [PSC Interface](https://cloud.google.com/vpc/docs/private-service-connect#interfaces) brings the deployment into your application network, enabling secure connectivity to your applications. This approach gives you full control over traffic flow by leveraging your own networking resources, so you can apply your preferred security controls and ensure a secure deployment environment.
 
 ### Redundancy
 
@@ -65,6 +60,23 @@ With the Enterprise Plan, NGINXaaS uses the following redundancy features to kee
 - NGINX Plus is constantly monitored for health. Any unhealthy instances are replaced with new ones
 - NGINXaaS deployments utilize multiple [zones within each region](https://cloud.google.com/compute/docs/regions-zones) protecting against zonal failures
 
+## Supported regions
+
+NGINXaaS for Google Cloud is supported in the following regions per geography:
+
+   {{< table "table" >}}
+   |NGINXaaS Geography | Google Cloud Regions |
+   |-----------|---------|
+   | US  | us-west1, us-east1, us-central1 |
+   | EU    | europe-west2, europe-west1 |
+   {{< /table >}}
+
+## Limitations
+
+- We currently support two geographies with limited regions only.
+- We only support authentication via Google acting as an identity provider.
+- User Role Based Access Control (RBAC) is not supported.
+- NGINX Configuration needs a specific snippet for an NGINXaaS deployment to work.
 
 ## What's next
 
