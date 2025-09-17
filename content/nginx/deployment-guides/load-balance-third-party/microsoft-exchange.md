@@ -615,7 +615,7 @@ HTTP/2 is fully supported in <span style="white-space: nowrap;">NGINX Plus R7</s
 
 In <span style="white-space: nowrap;">NGINX Plus R8</span> and later, NGINX Plus supports HTTP/2 by default, and does not support SPDY:
 
-- In <span style="white-space: nowrap;">NGINX Plus R11</span> and later, the {{<nb>}}**nginx-plus**{{</nb>}} package continues to support HTTP/2 by default, but the {{<nb>}}**nginx-plus-extras**{{</nb>}} package available in previous releases is deprecated by [dynamic modules](https://www.nginx.com/products/nginx/dynamic-modules/).
+- In <span style="white-space: nowrap;">NGINX Plus R11</span> and later, the {{<nb>}}**nginx-plus**{{</nb>}} package continues to support HTTP/2 by default, but the {{<nb>}}**nginx-plus-extras**{{</nb>}} package available in previous releases is deprecated by [dynamic modules](https://www.f5.com/go/product/nginx-modules/).
 
 - For <span style="white-space: nowrap;">NGINX Plus R8</span> through R10, the {{<nb>}}**nginx-plus**{{</nb>}} and {{<nb>}}**nginx-plus-extras**{{</nb>}} packages support HTTP/2 by default.
 
