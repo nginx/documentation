@@ -30,6 +30,13 @@ h2 {
 
 Stay up-to-date with what's new and improved in the F5 NGINX One Console.
 
+## September 16, 2025
+
+### IPv6 endpoints for NGINX Agent and NGINX Plus usage reporting
+
+Your instances running in dualstack or IPv6-only environments are now able to communicate with NGINX One APIs via IPv6.
+Please check the [Getting Started Guide]({{< ref "/nginx-one/getting-started.md#install-nginx-agent" >}}) for IP ranges required to be enabled in your firewalls.
+
 ## July 15, 2025
 
 ### Set up F5 NGINX App Protect WAF security policies
