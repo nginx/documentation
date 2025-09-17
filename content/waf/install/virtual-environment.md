@@ -12,17 +12,6 @@ nd-content-type: how-to
 nd-product: NAP-WAF
 ---
 
-{{< call-out "warning" "Information architecture note" >}}
-
-The disconnected/air-gapped installation use case has very similar steps.
-
-I'm identifying shared steps for it: depending on how large the steps might be, it might re-appear as a section on a page or have its own page.
-
-- [v4]({{< ref "/nap-waf/v4/admin-guide/install.md#offline-installation" >}})
-- [v5]({{< ref "/nap-waf/v5/admin-guide/install.md#air-gap-install-secure-offline-installation" >}})
-
-{{</ call-out >}}
-
 This page describes how to install F5 WAF for NGINX in a virtual machine or bare metal environment. 
 
 ## Before you begin

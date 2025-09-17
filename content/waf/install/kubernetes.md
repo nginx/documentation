@@ -12,20 +12,7 @@ nd-content-type: how-to
 nd-product: NAP-WAF
 ---
 
-{{< call-out "warning" "Information architecture note" >}}
-
-The design intention for this page is to encapsulate the Kubernetes deployment methods, currently split between the following two pages:
-
-- [Deploy F5 WAF for NGINX with Helm]({{< ref "/nap-waf/v5/admin-guide/deploy-with-helm.md" >}})
-- [Deploy F5 WAF for NGINX with Manifests]({{< ref "/nap-waf/v5/admin-guide/deploy-with-manifests.md" >}})
-
-The steps are largely identical, so hyperlinks will be used to direct the reader to Helm or Manifest-specific steps.
-
-This pattern is present in the [Virtual environment]({{< ref "/waf/install/virtual-environment.md" >}}) and [IP intelligence]({{< ref "/waf/policies/ip-intelligence.md" >}}) topics already, where users may skip a Docker step if they're using a container services deployment instead of a host services one.
-
-{{</ call-out >}}
-
-This page describes how to install F5 WAF for NGINX with NGINX Open Source or NGINX Plus using Kubernetes.
+This page describes how to install F5 WAF for NGINX using Kubernetes.
 
 It explains the common steps necessary for any Kubernetes-based deployment, then provides details specific to Helm or Manifests.
 

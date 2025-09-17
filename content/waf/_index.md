@@ -8,6 +8,10 @@ cascade:
   # The logo file is resolved from the theme, in the folder /static/images/icons/
   logo: NGINX-App-Protect-WAF-product-icon.svg
 # The subtitle displays directly underneath the heading of a given page
+nd-banner:
+    enabled: true
+    start-date: 2025-08-30
+    md: /_banners/waf-unification-notice.md
 nd-subtitle: A lightweight, high-performance web application firewall for protecting APIs and applications
 # Indicates that this is a custom landing page
 nd-landing-page: true
