@@ -11,9 +11,5 @@
   },
   "devDependencies": {
     "hugo-bin": "^0.111.3"
-  },
-  "dependencies": {
-    "lighthouse": "^12.2.2",
-    "puppeteer": "^23.8.0"
   }
 }
