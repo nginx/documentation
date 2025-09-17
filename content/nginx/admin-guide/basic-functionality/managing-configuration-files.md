@@ -9,9 +9,9 @@ type:
 - how-to
 ---
 
-NGINX and NGINX Plus are similar to other services in using a text‑based configuration file with a precise format. By default the file is named **nginx.conf** and for NGINX Plus is placed in the `**/etc/nginx**` directory.
+Similar to other services, NGINX and NGINX Plus use a text‑based configuration file with a precise format. By default the file is named **nginx.conf** and for NGINX Plus is placed in the `/etc/nginx` directory.
 
-For NGINX Open Source, the location depends on the package system used to install NGINX and the operating system. It is typically one of `**/usr/local/nginx/conf**`, `**/etc/nginx**`, or `**/usr/local/etc/nginx**`.
+For NGINX Open Source, the location depends on the package system used to install NGINX and the operating system. It is typically one of `/usr/local/nginx/conf`, `/etc/nginx`, or `/usr/local/etc/nginx`.
 
 ## Directives
 The configuration file consists of _directives_ and their parameters. Simple (single‑line) directives end with a semicolon ( `;` ). Other directives act as “containers” which group together related directives. Containers are enclosed in curly braces ( `{}` ) and are often referred to as _blocks_. Here are some examples of simple directives.
