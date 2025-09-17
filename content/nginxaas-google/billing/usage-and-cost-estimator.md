@@ -14,7 +14,7 @@ type:
 <link rel="stylesheet" href="/nginxaas-google/css/cost-calculator_v2.css">
 <div id="calculator">
     <h3 id="calculator-section-heading">
-            Cost Estimation for Standard V2 Plan
+            Cost Estimation for Enterprise Plan
             <button id="printButton">Print Estimate</button>
         </h3>
     <div class="section">

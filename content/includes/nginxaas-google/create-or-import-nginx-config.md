@@ -7,10 +7,11 @@ In the NGINXaaS Console,
 1. On the left menu, select **Configurations**.
 1. Select **Add Configuration** to add a new NGINX configuration.
 1. You can either create a new configuration from scratch or copy an existing configuration:
-   
-   - Select **New configuration** to create a new config (using the default template or a blank file).
+
+   - Select **New configuration** to create a new config.
       - Provide a name for your configuration and an optional description.
       - Change the configuration path if needed.
+      - Select to start with the "NGINXaaS Default" (a basic NGINX setup) or an empty configuration file.
       - Select **Next**.
    - Select **Copy existing configuration** to use one of the existing configuration files in your account as template.
       - Provide a name for your configuration and an optional description.

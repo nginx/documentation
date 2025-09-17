@@ -55,7 +55,7 @@ We use Google [Private Service Connect]((https://cloud.google.com/vpc/docs/priva
 
 ### Redundancy
 
-With the Standard Plan, NGINXaaS uses the following redundancy features to keep your service available.
+With the Enterprise Plan, NGINXaaS uses the following redundancy features to keep your service available.
 
 - We run _at least_ two NGINX Plus instances for each deployment in an active-active pattern
 - NGINX Plus is constantly monitored for health. Any unhealthy instances are replaced with new ones
