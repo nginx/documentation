@@ -8,7 +8,7 @@ files:
 After entering your data plane key, you'll see a `curl` command to install NGINX Agent, similar to the one below. Copy and run this command on each NGINX instance. Once installed, NGINX Agent typically registers with NGINX One within a few seconds.
 
 {{<call-out "important" "Connecting to NGINX One" >}}
- Ensure that any firewall rules you have in place for your NGINX hosts allows network traffic to port `443` for all of the following IP address ranges:
+ Make sure your firewall rules for NGINX hosts allow traffic to port `443` from these IP address ranges:
 
 - `3.135.72.139/32`
 - `3.133.232.50/32`
