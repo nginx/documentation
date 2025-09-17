@@ -57,7 +57,7 @@ In the NGINXaaS Console,
 
    - Enter a **Name**.
    - Add an optional description for your deployment.
-   - Change the **NCU Capacity** if needed. The default value of `10 NCU` should be adequate for most scenarios.
+   - Change the **NCU Capacity** if needed. The default value of `20 NCU` should be adequate for most scenarios.
    - In the Cloud Details section, select a **Network attachment** from the list.
    - In the Apply Configuration section, select an NGINX configuration from the **Choose Configuration** list.
       - The "default" configuration provides a basic NGINX setup that you can use as a starting point.
