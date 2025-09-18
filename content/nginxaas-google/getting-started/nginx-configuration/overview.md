@@ -24,16 +24,25 @@ The topics below provide information on NGINX configuration restrictions and dir
 
 ## NGINX filesystem restrictions
 
-NGINXaaS for Google Cloud places restrictions on the instance's filesystem; only a specific set of directories are allowed to be read from and written to. Below is a table describing what directories the NGINX worker process can read and write to and what directories files can be written to. These files include certificate files and any files uploaded to the deployment, excluding NGINX configuration files.
+There are limits to where files, including NGINX configuration files, certificate files, and any other files uploaded to the deployment, can be placed on the filesystem. There are also limits on what directories NGINX can access during runtime. These limits help support the separation of roles, enforce the principal of least privilege, and ensure the smooth operation of the system.
 
-{{<bootstrap-table "table table-striped table-bordered">}}
-  | Allowed Directory | NGINX worker process can read/write to | Files can be written to |
-  |------------------ | ----------------- | ----------------- |
-  |                   |                   |                   |
-  |                   |                   |                   |
-{{</bootstrap-table>}}
+{{<table variant="narrow" theme="bordered">}}
+  | Allowed Directory   |  User can upload files to | NGINX master process can read | NGINX master process can write | NGINX worker process can read | NGINX worker process can write |
+  | -------------------- | -------------------- | -------------------- | -------------------- | -------------------- | -------------------- |
+  | /etc/nginx           | {{< icon "check" >}} | {{< icon "check" >}} |                      |                      |                      |
+  | /opt                 | {{< icon "check" >}} | {{< icon "check" >}} | {{< icon "check" >}} | {{< icon "check" >}} | {{< icon "check" >}} |
+  | /srv                 | {{< icon "check" >}} | {{< icon "check" >}} |                      | {{< icon "check" >}} |                      |
+  | /tmp                 |                      | {{< icon "check" >}} | {{< icon "check" >}} | {{< icon "check" >}} | {{< icon "check" >}} |
+  | /spool/nginx         |                      | {{< icon "check" >}} |                      | {{< icon "check" >}} | {{< icon "check" >}} |
+  | /var/cache/nginx     |                      | {{< icon "check" >}} | {{< icon "check" >}} | {{< icon "check" >}} | {{< icon "check" >}} |
+  | /var/log/nginx       |                      | {{< icon "check" >}} | {{< icon "check" >}} |                      |                      |
+  | /var/spool/nginx     |                      | {{< icon "check" >}} |                      | {{< icon "check" >}} | {{< icon "check" >}} |
+  | /var/www             | {{< icon "check" >}} | {{< icon "check" >}} |                      | {{< icon "check" >}} |                      |
+{{< /table >}}
 
-Attempts to access other directories will be denied and result in a `5xx` error.
+For example, `/etc/nginx` is only readable by the NGINX master process, making it a secure location for certificate files that won't be accidentally served due to configuration errors. `/var/www` is a secure location for static content because the NGINX worker process can serve files from it but cannot modify them, ensuring content integrity. `/tmp` is a good choice for storing temporary files with `proxy_temp_path` or `client_body_temp_path` since it is writable by the NGINX worker process.
+
+If you need access to additional directories, please [contact us]({{< ref "/nginxaas-google/get-help.md" >}}).
 
 ## Disallowed configuration directives
 Some directives are not supported because of specific limitations. If you include one of these directives in your NGINX configuration, you'll get an error.
