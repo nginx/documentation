@@ -107,6 +107,14 @@ Several operating system vendors have obtained FIPS 140-2 Level 1 and 140-3 Leve
 
 You also can verify whether your operating system or cryptographic module is FIPS-validated using the [NIST database search tool](https://csrc.nist.gov/Projects/cryptographic-module-validation-program/validated-modules/search).
 
+## FIPS validation of OpenSSL
+
+OpenSSL 3.0 and later versions introduced a FIPS provider that enables cryptographic operations in a FIPS-compliant mode.
+
+FIPS 140-3 validation: starting with OpenSSL 3.1.2, the library has [achieved FIPS 140-3 validation](https://openssl-library.org/post/2025-03-11-fips-140-3/) under certification [#4985](https://csrc.nist.gov/projects/cryptographic-module-validation-program/certificate/4985).
+
+FIPS 140-2 validation: the FIPS provider for OpenSSL 3.0.x has been validated for FIPS 140-2 under certifications [#4811](https://csrc.nist.gov/projects/cryptographic-module-validation-program/certificate/4811) and [#4282](https://csrc.nist.gov/projects/cryptographic-module-validation-program/certificate/4282).
+
 ## Verification of correct operation of NGINX Plus
 
 The following process describes how to deploy NGINX Plus in a FIPS‑compliant environment and verify that the FIPS operations are functioning correctly. It involves three basic steps:
@@ -248,7 +256,6 @@ nginx version: nginx/1.29.0 (nginx-plus-r35)
 built by gcc 11.5.0 20240719 (Red Hat 11.5.0-5) (GCC) 
 built with OpenSSL 3.2.2 4 Jun 2024
 ```
-Note that OpenSSL 1.0.x might include the `–fips` suffix to indicate that the library was linked with a FIPS-validated module, but it did not confirm that the library was operating in FIPS mode. Starting with OpenSSL 3.0, the concept of Providers was introduced, allowing explicit verification of FIPS validation by listing providers with the `openssl list -providers | grep fips` command.
 
 **Configure NGINX Plus to serve a simple SSL/TLS‑protected website**: Add the following simple configuration to NGINX Plus:
 
@@ -515,7 +522,7 @@ The process described above may be used to verify that NGINX Plus is operating i
 
 - **FIPS compliant**: NGINX Plus is compliant with FIPS 140-2 Level 1 and FIPS 140-3 Level 1 within the cryptographic boundary when used with a FIPS‑validated OpenSSL cryptographic module on an operating system running in FIPS mode.
 
-## See also:
+## See also
 
 [FIPS 140-3 Standard in the PDF format](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.140-3.pdf)
     
@@ -524,4 +531,8 @@ The process described above may be used to verify that NGINX Plus is operating i
 [F5 NGINX Plus running on Red Hat Enterprise Linux is now FIPS 140-3 compliant](https://www.redhat.com/en/blog/f5-nginx-plus-running-red-hat-enterprise-linux-now-fips-140-3-compliant)
 
 
+## Revision history
 
+- Version 2 (September 2025) - Added information about FIPS 140-3 Level 1 compliance, updated test procedures, updated product versions, updated URLs to operating systems, NIST certificates and other relevant resources.
+
+- Version 1 (August 2019) - Initial version with FIPS 140-2 Level 1 compliance.
