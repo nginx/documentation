@@ -369,7 +369,7 @@ The `TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256` algorithm is FIPS 140-3 compliant as
 
 The FIPS 140-2 standard only permits a [subset of the typical SSL and TLS ciphers](https://csrc.nist.gov/csrc/media/publications/fips/140/2/final/documents/fips1402annexa.pdf), while FIPS 140-3 [extends this requirements](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.140-3.pdf) to enforce stricter cryptographic algorithms.
 
-In the following test, the ciphers presented by NGINX Plus are surveyed using the `nmap` utility (installed separately). In its default configuration, with the [`ssl_ciphers HIGH:!aNULL:!MD5`](nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_ciphers) directive, NGINX Plus presents the following ciphers to SSL/TLS clients:
+In the following test, the ciphers presented by NGINX Plus are surveyed using the `nmap` utility (installed separately). In its default configuration, with the [`ssl_ciphers HIGH:!aNULL:!MD5`](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_ciphers) directive, NGINX Plus presents the following ciphers to SSL/TLS clients:
 
 ```shell
 nmap --script ssl-enum-ciphers -p 443 <NGINX-Plus-address>
