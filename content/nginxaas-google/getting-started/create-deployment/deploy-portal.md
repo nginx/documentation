@@ -75,9 +75,9 @@ In the NGINXaaS Console,
 1. Select **Edit** to modify the deployment name, description, and NGINX configuration. Select **Update** to save your changes.
 1. Select the configuration name to see the configuration details. On the **Configuration details** page, select **Edit** to modify the configuration file.
 
-## Test your deployment
+## Set up connectivity to your deployment
 
-To test connectivity to your NGINXaaS deployment, you will need to set up [Private Service Connect backend](https://cloud.google.com/vpc/docs/private-service-connect-backends).
+To set up connectivity to your NGINXaaS deployment, you will need to configure a [Private Service Connect backend](https://cloud.google.com/vpc/docs/private-service-connect-backends).
 
 1. Access the [Google Cloud Console](https://console.cloud.google.com/).
 1. Create a public IP address. See [Google's documentation on reserving a static address](https://cloud.google.com/load-balancing/docs/tcp/set-up-ext-reg-tcp-proxy-zonal#console_3) for a step-by-step guide.
@@ -92,7 +92,10 @@ To test connectivity to your NGINXaaS deployment, you will need to set up [Priva
    - In the **Frontend configuration** section,
       - For **IP address**, select the public IP address created earlier.
       - For **Port number**, enter the same port as your NEG's Producer port, for example, port `80`.
-1. Connect to your NGINXaaS deployment using the public IP address created earlier.
+
+## Test your deployment
+
+1. To test your deployment, go to the IP address created in [Set up connectivity to your deployment]({{< ref "/nginxaas-google/getting-started/create-deployment/deploy-portal.md#set-up-connectivity-to-your-deployment" >}}) using your favorite web browser.
 
 ## What's next
 
