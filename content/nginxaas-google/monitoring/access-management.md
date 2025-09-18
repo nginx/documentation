@@ -24,7 +24,7 @@ F5 NGINXaaS for Google Cloud (NGINXaaS) leverages Workload Identity Federation (
 1. Create an OIDC workload identity pool provider. See [Google's documentation on creating a workload identity pool provider](https://cloud.google.com/iam/docs/workload-identity-federation-with-other-providers#create-pool-provider) for a step-by-step guide. Set up the provider settings as follows:
     - `Issuer URL` must be `https://accounts.google.com`.
     - `Allowed audiences` must contain the full canonical resource name of the workload identity pool provider, for example, `https://iam.googleapis.com/projects/<project-number>/locations/<location>/workloadIdentityPools/<pool-id>/providers/<provider-id>`. If `Allowed audiences` is empty, the full canonical resource name of the workload identity pool provider will be included by default.
-    - Add the following attribute mapping: `google.subject=assertion.sub`.
+    - Add the following **attribute mapping**: `google.subject=assertion.sub`.
     - Add the following attribute condition: `assertion.sub=='$NGINXAAS_SERVICE_ACCOUNT_UNIQUE_ID'` where `$NGINXAAS_SERVICE_ACCOUNT_UNIQUE_ID` is your NGINXaaS deployment's service account's unique ID.
 
 ### Grant access to the WIF principal with your desired roles
