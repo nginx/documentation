@@ -56,6 +56,20 @@ To use a certificate in an NGINX configuration, follow these steps:
 - Update the NGINX configuration to reference the certificate you just added by the path value.
 - Select **Continue** and then **Save** to save your changes.
 
+### Edit an SSL/TLS certificate
+
+{{< include "/nginxaas-google/update-nginx-config.md" >}}
+
+### Delete an SSL/TLS certificate
+
+- Select **Certificates** in the left menu.
+- On the list of certificates, select the ellipses (three dots) icon next to the certificate you want to delete.
+- Select **Delete**.
+- Confirm that you want to delete the certificate.
+
+{{< call-out "warning" >}}Deleting a TLS/SSL certificate currently in-use by the NGINXaaS for Google Cloud deployment will cause an error.{{< /call-out >}}
+
+
 ## What's next
 
 [Upload an NGINX Configuration]({{< ref "/nginxaas-google/getting-started/nginx-configuration/nginx-configuration-portal.md" >}})

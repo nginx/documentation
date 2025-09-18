@@ -16,8 +16,7 @@ You can apply an NGINX configuration to your F5 NGINXaaS for Google Cloud (NGINX
 
 ## Access the NGINXaaS Console
 
-- Browse to the [NGINXaaS Console](https://console.nginxaas.net/).
-- Log in to the console with your Google credentials.
+{{< include "/nginxaas-google/access-portal.md" >}}
 
 ## Create or import an NGINX configuration
 
@@ -25,15 +24,7 @@ You can apply an NGINX configuration to your F5 NGINXaaS for Google Cloud (NGINX
 
 ## Update an NGINX configuration
 
-1. On the left menu, select **Configurations**.
-1. On the list of configurations, select the ellipses (three dots) icon next to the configuration you want to update.
-1. Select **Edit**.
-1. Update the "Name" and "Description" fields as needed and select **Next**.
-1. Select the file you want to update in the file tree.
-1. Modify the configuration file(s) as needed and select **Next**.
-1. Review the changes using the "Inline" or "Side-by-side"  views and select **Save**.
-
-You will see a notification confirming that the configuration was updated successfully.
+{{< include "/nginxaas-google/update-nginx-config.md" >}}
 
 ## Delete NGINX configuration Files
 
