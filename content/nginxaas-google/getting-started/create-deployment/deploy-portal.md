@@ -37,7 +37,7 @@ NGINXaaS requires a [network attachment](https://cloud.google.com/vpc/docs/about
 
    {{< /call-out >}}
 
-## Access the NGINX as a Service Console
+## Access the NGINXaaS Console
 
 Once you have completed the subscription process and created a network attachment, you can access the NGINXaaS Console.
 
