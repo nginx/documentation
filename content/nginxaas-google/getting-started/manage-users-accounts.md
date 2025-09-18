@@ -14,7 +14,7 @@ This document explains how to manage users and accounts in F5 NGINXaaS for Googl
 
 Before you start, ensure you understand the following concepts:
 
-- **NGINXaaS Account**: An NGINXaaS Account is created when you subscribe to *F5 NGINXaaS for Google Cloud* via the Google Cloud Marketplace, as described in [prerequisites]({{< ref "/nginxaas-google/getting-started/prerequisites.md" >}}). You may create multiple NGINXaaS Accounts by signing up with different billing accounts.
+- **NGINXaaS Account**: An NGINXaaS Account is created when you subscribe to *F5 NGINXaaS for Google Cloud* via the Google Cloud Marketplace, as described in [prerequisites]({{< ref "/nginxaas-google/getting-started/prerequisites.md" >}}). You may create multiple NGINXaaS Accounts by signing up with different GCP billing accounts.
 - **User**: NGINXaaS Users are granted access to all resources in the NGINXaaS Account. User authentication is performed securely via Google Cloud, requiring a matching identity. Individuals can be added as users to multiple NGINXaaS Accounts, and can switch between them using the steps documented below.
 - **Authorized Domains**: The list of domains allowed to authenticate into the NGINXaaS Account using Google authentication.
    - This can be used to restrict access to Google identities within your Google Cloud Organization or Google Workspace, or other known, trusted Workspaces. For example, your Google Cloud Organization may have users created under the `example.com` domain. By setting the Authorized Domains in your NGINXaaS Account to only allow `example.com`, users attempting to log in with the same email associated with `alternative.net` Google Workspace would not be authenticated.

@@ -24,6 +24,7 @@ NGINXaaS requires a [network attachment](https://cloud.google.com/vpc/docs/about
 1. Create a consumer VPC network and subnetwork. See [Google's documentation on creating a VPC and subnet](https://cloud.google.com/vpc/docs/create-modify-vpc-networks#console_1) for a step-by-step guide.
    - The region you choose in this step must match the region where your NGINXaaS deployment will be created.
 1. Create a Network Attachment in your new subnet that automatically accepts connections. See [Google's documentation on creating a Network Attachment](https://cloud.google.com/vpc/docs/create-manage-network-attachments#console_1) for a step-by-step guide.
+1. Make a note of the Network Attachment ID. You will need it in the next steps to create your NGINXaaS deployment.
 
    {{< call-out "caution" >}}NGINXaaS for Google Cloud currently supports the following regions:
 
@@ -40,8 +41,7 @@ NGINXaaS requires a [network attachment](https://cloud.google.com/vpc/docs/about
 
 Once you have completed the subscription process and created a network attachment, you can access the NGINXaaS Console.
 
-- If you have just completed the subscription process, access the console selecting **Manage on provider**.
-- In any other cases, visit [https://console.nginxaas.net/](https://console.nginxaas.net/) to access the NGINXaaS Console.
+- Visit [https://console.nginxaas.net/](https://console.nginxaas.net/) to access the NGINXaaS Console.
 - Log in to the console with your Google credentials.
 
 ## Create or import an NGINX configuration
@@ -50,7 +50,7 @@ Once you have completed the subscription process and created a network attachmen
 
 ## Create a new deployment
 
-In the NGINXaaS Console,
+Next, create a new NGINXaaS deployment using the NGINXaaS Console:
 
 1. On the left menu, select **Deployments**.
 1. Select {{< icon "plus" >}} **Add Deployment** to create a new deployment.
@@ -58,9 +58,8 @@ In the NGINXaaS Console,
    - Enter a **Name**.
    - Add an optional description for your deployment.
    - Change the **NCU Capacity** if needed. The default value of `20 NCU` should be adequate for most scenarios.
-   - In the Cloud Details section, select a **Network attachment** from the list.
-   - In the Apply Configuration section, select an NGINX configuration from the **Choose Configuration** list.
-      - If no configuration is available, you can follow the steps in the [Create or import an NGINX configuration](#create-or-import-an-nginx-configuration) section to create a new configuration file.
+   - In the Cloud Details section, enter the Network Attachment ID that [you created earlier](#create-a-network-attachment) or select it in the  **Network attachment** list.
+   - In the Apply Configuration section, select an NGINX configuration [you created earlier](#create-or-import-an-nginx-configuration) from the **Choose Configuration** list.
    - Select the **NGINX configuration version** from the list.
    - Select a **Configuration Version** from the list.
    - Select **Submit** to begin the deployment process.
@@ -83,7 +82,7 @@ To test connectivity to your NGINXaaS deployment, you will need to set up [Priva
 1. Access the [Google Cloud Console](https://console.cloud.google.com/).
 1. Create a public IP address. See [Google's documentation on reserving a static address](https://cloud.google.com/load-balancing/docs/tcp/set-up-ext-reg-tcp-proxy-zonal#console_3) for a step-by-step guide.
 1. Create a Network Endpoint Group (NEG). See [Google's documentation on creating a NEG](https://cloud.google.com/vpc/docs/access-apis-managed-services-private-service-connect-backends#console) for a step-by-step guide.
-   - For **Target service**, enter your NGINXaaS deployment's Service Attachment.
+   - For **Target service**, enter your NGINXaaS deployment's Service Attachment, which is visible on the `Deployment Details` section for your deployment.
    - For **Producer port**, enter the port your NGINX server is listening on. If you're using the default NGINX config, enter port `80`.
    - For **Network** and **Subnetwork** select your consumer VPC network and subnet.
 1. Create a proxy-only subnet in your consumer VPC. See [Google's documentation on creating a proxy-only subnet](https://cloud.google.com/load-balancing/docs/tcp/set-up-ext-reg-tcp-proxy-zonal#console_1) for a step-by-step guide.

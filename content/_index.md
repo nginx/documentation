@@ -47,6 +47,6 @@ Learn how to deliver, manage, and protect your applications using F5 NGINX produ
     Infrastructure-as-a-Service (IaaS) version of NGINX Plus for your Microsoft Azure application stack.
   {{</card >}}
   {{<card title="F5 NGINXaaS for Google Cloud" titleUrl="/nginxaas/google/" brandIcon="NGINX-Open-Source-product-icon.svg" isLanding="true">}}
-    Infrastructure-as-a-Service (IaaS) version of NGINX Plus for your Google Cloud application stack.
+    Managed NGINX service for your Google Cloud application stack.
   {{</card >}}
 {{</card-section>}}

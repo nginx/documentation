@@ -1,6 +1,6 @@
 ---
 title: F5 NGINXaaS for Google Cloud
-nd-subtitle: Infrastructure-as-a-Service (IaaS) version of NGINX Plus for your Google Cloud application stack
+nd-subtitle: Managed NGINX service for your Google Cloud application stack
 url: /nginxaas/google/
 nd-landing-page: true
 cascade:
@@ -24,7 +24,7 @@ and reliable with full lifecycle management of advanced NGINX traffic services.
   {{<card title="Create a deployment" titleUrl="/nginxaas/google/getting-started/create-deployment/deploy-portal/" icon="cloud-upload">}}
     Step-by-step instructions to deploy NGINXaaS using the NGINXaaS Console
   {{</card>}}
-  {{<card title="Add certificates using the portal" titleUrl="/nginxaas/google/getting-started/ssl-tls-certificates/ssl-tls-certificates-portal/" icon="lock">}}
+  {{<card title="Add certificates" titleUrl="/nginxaas/google/getting-started/ssl-tls-certificates/ssl-tls-certificates-portal/" icon="lock">}}
     Instructions to add SSL/TLS certificates to your NGINXaaS deployment using the NGINXaaS Console
   {{</card>}}
 {{</card-section>}}
