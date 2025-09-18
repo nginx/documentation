@@ -1,6 +1,6 @@
 ---
 # We use sentence case and present imperative tone
-title: "Disconnected or airgapped environments"
+title: "Disconnected or air-gapped environments"
 # Weights are assigned in increments of 100: determines sorting order
 weight: 400
 # Creates a table of contents and sidebar, useful for large documents
