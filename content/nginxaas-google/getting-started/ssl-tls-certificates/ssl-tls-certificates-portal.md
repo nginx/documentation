@@ -58,9 +58,7 @@ To use a certificate in an NGINX configuration, follow these steps:
 
 ### Edit an SSL/TLS certificate
 
-- Follow the steps mentioned in [Update an NGINX configuration]({{< ref "/nginxaas-google/getting-started/nginx-configuration/nginx-configuration-portal.md#update-an-nginx-configuration" >}}) to edit certificate files.
-- Update the Name, Certificate path, Key path fields as needed.
-
+{{< include "/nginxaas-google/update-nginx-config.md" >}}
 
 ### Delete an SSL/TLS certificate
 
