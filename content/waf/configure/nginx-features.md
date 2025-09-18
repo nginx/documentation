@@ -47,7 +47,7 @@ http {
 }
 ```
 
-## Ranges
+## Range
 
 ```nginx
 load_module modules/ngx_http_app_protect_module.so;

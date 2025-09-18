@@ -5,16 +5,16 @@ title: "Policy lifecycle management"
 weight: 200
 # Creates a table of contents and sidebar, useful for large documents
 toc: true
+nd-banner:
+    enabled: true
+    start-date: 2025-08-30
+    md: /_banners/waf-early-access.md
 # Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
 nd-content-type: reference
 # Intended for internal catalogue and search, case sensitive:
 # Agent, N4Azure, NIC, NIM, NGF, NAP-DOS, NAP-WAF, NGINX One, NGINX+, Solutions, Unit
 nd-product: NAP-WAF
 ---
-
-{{< call-out "note" >}}
-This functionality is only available for V5-based deployments.
-{{< /call-out >}}
 
 Policy lifecycle management (PLM) is a system for managing, compiling and deploying security policies in Kubernetes environments. 
 

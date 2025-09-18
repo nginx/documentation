@@ -25,15 +25,47 @@ You should read the [IP intelligence]({{< ref "/waf/policies/ip-intelligence.md"
 
 To review supported operating systems, read the [Technical specifications]({{< ref "/waf/fundamentals/technical-specifications.md" >}}) topic.
 
+{{< call-out "caution" >}}
+
+Security mechanisms like SELinux or AppArmor may potentially blocking necessary file access for the nginx process and component containers.
+
+To ensure F5 WAF for NGINX operates smoothly without compromising security, consider setting up a custom SELinux policy or AppArmor profile. 
+
+For troubleshooting, you may use permissive (SELinux) or complain (AppArmor) mode to avoid these restrictions, but this is inadvisable for prolonged use.
+
+{{< /call-out >}}
+
+## Docker deployment options
+
+There are three kinds of Docker deployments available:
+
+- Multi-container configuration
+- Hybrid configuration
+- Single container configuration
+
+The multi-container configuration is recommended if you are building a new system, and deploys the F5 for WAF module and its components in seperate images, allowing for nuanced version management.
+
+The hybrid configuration is suitable if you want to add F5 WAF for NGINX to an existing virtual environment and wish to use Docker for the F5 WAF components instead of installing and configuring WAF packages as explained in the [Virtual machine or bare metal]({{< ref "/waf/install/virtual-environment.md" >}}) instructions.
+
+The single container configuration requires a Docker image to be built, which encapsulates all parts of the system in one image. This image will need to be rebuilt with each release.
+
+The steps you should follow on this page are dependent on your configuration type: after the shared steps, links will guide you to the next appropriate section.
+
 ## Download your subscription credentials 
 
 {{< include "licensing-and-reporting/download-certificates-from-myf5.md" >}}
 
-## Create configuration files
+## Configure Docker for the F5 Container Registry
+
+{{< include "waf/install-services-registry.md" >}}
+
+## Multi-container configuration
+
+### Create configuration files
 
 Once you have downloaded your subscription files, place them in a folder.
 
-In the same folder, you can then create three files:
+In the same folder, you create three files:
 
 - _nginx.conf_ - An NGINX configuration file with F5 WAF for NGINX enabled
 - _entrypoint.sh_ - A Docker startup script which spins up all F5 WA for NGINX processes, requiring executable permissions
@@ -128,7 +160,7 @@ http {
 
 {{< /tabs >}}
 
-## Create a Dockerfile
+### Create a Dockerfile
 
 In the same folder as your credential and configuration files, create a _Dockerfile_ based on your desired operating system image using an example from the following sections.
 
@@ -149,7 +181,7 @@ If you are not using using `custom_log_format.json` or the IP intelligence featu
 
 {{< /call-out >}}
 
-### Alpine Linux
+#### Alpine Linux
 
 {{< tabs name="alpine-instructions" >}}
 
@@ -208,7 +240,7 @@ CMD ["sh", "/root/entrypoint.sh"]
 
 {{< /tabs >}}
 
-### Amazon Linux
+#### Amazon Linux
 
 {{< tabs name="amazon-instructions" >}}
 
@@ -270,7 +302,7 @@ CMD ["sh", "/root/entrypoint.sh"]
 
 {{< /tabs >}}
 
-### Debian
+#### Debian
 
 {{< tabs name="debian-instructions" >}}
 
@@ -345,7 +377,7 @@ CMD ["sh", "/root/entrypoint.sh"]
 
 {{< /tabs >}}
 
-### Oracle Linux
+#### Oracle Linux
 
 {{< tabs name="oracle-instructions" >}}
 
@@ -411,7 +443,7 @@ CMD ["sh", "/root/entrypoint.sh"]
 
 {{< /tabs >}}
 
-### RHEL 8
+#### RHEL 8
 
 {{< tabs name="rhel8-instructions" >}}
 
@@ -474,7 +506,7 @@ CMD ["sh", "/root/entrypoint.sh"]
 
 {{< /tabs >}}
 
-### RHEL 9
+#### RHEL 9
 
 {{< tabs name="rhel9-instructions" >}}
 
@@ -536,7 +568,7 @@ CMD ["sh", "/root/entrypoint.sh"]
 
 {{< /tabs >}}
 
-### Rocky Linux 9
+#### Rocky Linux 9
 
 {{< tabs name="rocky-instructions" >}}
 
@@ -599,7 +631,7 @@ CMD ["sh", "/root/entrypoint.sh"]
 
 {{< /tabs >}}
 
-### Ubuntu
+#### Ubuntu
 
 {{< tabs name="ubuntu-instructions" >}}
 
@@ -674,7 +706,7 @@ CMD ["sh", "/root/entrypoint.sh"]
 
 {{< /tabs >}}
 
-## Build the Docker image
+### Build the Docker image
 
 Your folder should contain the following files:
 
@@ -721,7 +753,7 @@ Verify the new container is running using the `docker ps` command:
 docker ps
 ```
 
-## Update configuration files
+### Update configuration files
 
 {{< include "waf/install-update-configuration.md" >}}
 
@@ -731,21 +763,341 @@ If you're using a V4 package, you have finished installing F5 WAF for NGINX and 
 
 {{< /call-out >}}
 
-## Configure Docker services
+### Configure Docker
 
 {{< include "waf/install-services-docker.md" >}}
 
-### Configure Docker for the F5 Container Registry
-
-{{< include "waf/install-services-registry.md" >}}
-
-### Download Docker images
+#### Download Docker images
 
 {{< include "waf/install-services-images.md" >}}
 
-### Create and run a Docker Compose file
+#### Create and run a Docker Compose file
 
 {{< include "waf/install-services-compose.md" >}}
+
+## Hybrid configuration
+
+### Additional requirements
+
+Besides the prerequisites outlined in the [Before you begin](#before-you-begin) section, you will require:
+
+- A working [NGINX Open Source]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-open-source.md" >}}) or [NGINX Plus]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}) instance.
+
+### Install F5 WAF for NGINX packages
+
+### Platform-specific instructions
+
+Navigate to your chosen operating system, which are alphabetically ordered.
+
+#### Alpine Linux
+
+{{< tabs name="alpine-hybrid-instructions" >}}
+
+{{% tab name="NGINX Open Source" %}}
+
+Add the F5 WAF for NGINX repository:
+
+```shell
+printf "https://pkgs.nginx.com/app-protect-x-oss/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | sudo tee -a /etc/apk/repositories
+```
+
+Update the repositories, then install the F5 WAF for NGINX package and its dependencies:
+
+```shell
+sudo apk update
+sudo apk add app-protect-module-oss
+```
+
+{{% /tab %}}
+
+{{% tab name="NGINX Plus" %}}
+
+Add the F5 WAF for NGINX repository:
+
+```shell
+printf "https://pkgs.nginx.com/app-protect-x-plus/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | sudo tee -a /etc/apk/repositories
+```
+
+Update the repositories, then install the F5 WAF for NGINX package and its dependencies:
+
+```shell
+sudo apk update
+sudo apk add openssl ca-certificates app-protect-module-plus
+```
+
+{{% /tab %}}
+
+{{< /tabs >}}
+
+#### Amazon Linux
+
+{{< tabs name="amazon-hybrid-instructions" >}}
+
+{{% tab name="NGINX Open Source" %}}
+
+Create a file for the F5 WAF for NGINX repository:
+
+**/etc/yum.repos.d/app-protect-x-oss.repoo**
+
+```shell
+[app-protect-x-oss]
+name=nginx-app-protect repo
+baseurl=https://pkgs.nginx.com/app-protect-x-oss/amzn/2023/$basearch/
+sslclientcert=/etc/ssl/nginx/nginx-repo.crt
+sslclientkey=/etc/ssl/nginx/nginx-repo.key
+gpgcheck=0
+enabled=1
+```
+
+Install the F5 WAF for NGINX package and its dependencies:
+
+```shell
+sudo dnf install app-protect-module-oss
+```
+
+{{% /tab %}}
+
+{{% tab name="NGINX Plus" %}}
+
+Create a file for the F5 WAF for NGINX repository:
+
+**/etc/yum.repos.d/app-protect-x-plus.repo**
+
+```shell
+[app-protect-x-plus]
+name=nginx-app-protect repo
+baseurl=https://pkgs.nginx.com/app-protect-x-plus/amzn/2023/$basearch/
+sslclientcert=/etc/ssl/nginx/nginx-repo.crt
+sslclientkey=/etc/ssl/nginx/nginx-repo.key
+gpgcheck=0
+enabled=1
+```
+
+Install the F5 WAF for NGINX package and its dependencies:
+
+```shell
+sudo dnf install app-protect-module-plus
+```
+
+{{% /tab %}}
+
+{{< /tabs >}}
+
+#### Debian
+
+{{< tabs name="debian-hybrid-instructions" >}}
+
+{{% tab name="NGINX Open Source" %}}
+
+Add the F5 WAF for NGINX repository:
+
+```shell
+printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
+https://pkgs.nginx.com/app-protect-x-oss/debian `lsb_release -cs` nginx-plus\n" | \
+sudo tee /etc/apt/sources.list.d/nginx-app-protect.list
+```
+
+Update the repositories, then install the F5 WAF for NGINX package and its dependencies:
+
+```shell
+sudo apt-get update
+sudo apt-get install app-protect-module-oss
+```
+
+{{% /tab %}}
+
+{{% tab name="NGINX Plus" %}}
+
+Add the F5 WAF for NGINX repository:
+
+```shell
+printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
+https://pkgs.nginx.com/app-protect-x-plus/debian `lsb_release -cs` nginx-plus\n" | \
+sudo tee /etc/apt/sources.list.d/nginx-app-protect.list
+```
+
+Update the repositories, then install the F5 WAF for NGINX package and its dependencies:
+
+```shell
+sudo apt-get update
+sudo apt-get install app-protect-module-plus
+```
+
+{{% /tab %}}
+
+{{< /tabs >}}
+
+#### Oracle Linux / RHEL / Rocky Linux 8
+
+{{< call-out "important" >}}
+
+The steps are identical for these platforms due to their similar architecture.
+
+{{< /call-out >}}
+
+{{< tabs name="oracle-hybrid-instructions" >}}
+
+{{% tab name="NGINX Open Source" %}}
+
+Create a file for the F5 WAF for NGINX repository:
+
+**/etc/yum.repos.d/app-protect-x-oss.repo**
+
+```shell
+[app-protect-x-oss]
+name=nginx-app-protect repo
+baseurl=https://pkgs.nginx.com/app-protect-x-oss/centos/7/$basearch/
+sslclientcert=/etc/ssl/nginx/nginx-repo.crt
+sslclientkey=/etc/ssl/nginx/nginx-repo.key
+gpgcheck=0
+enabled=1
+```
+
+Install the F5 WAF for NGINX package and its dependencies:
+
+```shell
+sudo yum install app-protect-module-oss
+```
+
+{{% /tab %}}
+
+{{% tab name="NGINX Plus" %}}
+
+Create a file for the F5 WAF for NGINX repository:
+
+**/etc/yum.repos.d/app-protect-x-plus.repo**
+
+```shell
+[app-protect-x-plus]
+name=nginx-app-protect repo
+baseurl=https://pkgs.nginx.com/app-protect-x-plus/centos/8/$basearch/
+sslclientcert=/etc/ssl/nginx/nginx-repo.crt
+sslclientkey=/etc/ssl/nginx/nginx-repo.key
+gpgcheck=0
+enabled=1
+```
+
+Install the F5 WAF for NGINX package and its dependencies:
+
+```shell
+sudo dnf install app-protect-module-plus
+```
+
+{{% /tab %}}
+
+{{< /tabs >}}
+
+#### Ubuntu
+
+{{< tabs name="ubuntu-hybrid-instructions" >}}
+
+{{% tab name="NGINX Open Source" %}}
+
+Add the F5 WAF for NGINX repositories:
+
+```shell
+printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
+https://pkgs.nginx.com/app-protect-x-oss/ubuntu `lsb_release -cs` nginx-plus\n" | \
+sudo tee /etc/apt/sources.list.d/nginx-app-protect.list
+```
+
+Update the repositories, then install the F5 WAF for NGINX package and its dependencies:
+
+```shell
+sudo apt-get update
+sudo apt-get install app-protect-module-oss
+```
+
+{{% /tab %}}
+
+{{% tab name="NGINX Plus" %}}
+
+Add the F5 WAF for NGINX repositories:
+
+```shell
+printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
+https://pkgs.nginx.com/app-protect-x-plus/ubuntu `lsb_release -cs` nginx-plus\n" | \
+sudo tee /etc/apt/sources.list.d/nginx-app-protect.list
+```
+
+Update the repository, then install the F5 WAF for NGINX package and its dependencies:
+
+```shell
+sudo apt-get update
+sudo apt-get install app-protect-module-plus
+```
+
+{{% /tab %}}
+
+{{< /tabs >}}
+
+#### RHEL / Rocky Linux 9
+
+{{< tabs name="rhel-hybrid-instructions" >}}
+
+{{% tab name="NGINX Open Source" %}}
+
+Create a file for the F5 WAF for NGINX repository:
+
+**/etc/yum.repos.d/app-protect-x-oss.repo**
+
+```shell
+[app-protect-x-oss]
+name=nginx-app-protect repo
+baseurl=https://pkgs.nginx.com/app-protect-x-oss/centos/7/$basearch/
+sslclientcert=/etc/ssl/nginx/nginx-repo.crt
+sslclientkey=/etc/ssl/nginx/nginx-repo.key
+gpgcheck=0
+enabled=1
+```
+
+Install the F5 WAF for NGINX package and its dependencies:
+
+```shell
+sudo yum install app-protect-module-oss
+```
+
+{{% /tab %}}
+
+{{% tab name="NGINX Plus" %}}
+
+Create a file for the F5 WAF for NGINX repository:
+
+**/etc/yum.repos.d/app-protect-x-plus.repo**
+
+```shell
+[app-protect-x-plus]
+name=nginx-app-protect repo
+baseurl=https://pkgs.nginx.com/app-protect-x-plus/centos/8/$basearch/
+sslclientcert=/etc/ssl/nginx/nginx-repo.crt
+sslclientkey=/etc/ssl/nginx/nginx-repo.key
+gpgcheck=0
+enabled=1
+```
+
+Install the F5 WAF for NGINX package and its dependencies:
+
+```shell
+sudo dnf install app-protect-module-plus
+```
+
+{{% /tab %}}
+
+{{< /tabs >}}
+
+### Configure Docker
+
+{{< include "waf/install-services-docker.md" >}}
+
+#### Download Docker images
+
+{{< include "waf/install-services-images.md" >}}
+
+#### Create and run a Docker Compose file
+
+{{< include "waf/install-services-compose.md" >}}
+
+## Single container configuration
 
 ## Post-installation checks
 
