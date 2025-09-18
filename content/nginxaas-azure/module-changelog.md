@@ -7,7 +7,7 @@ url: /nginxaas/azure/module-changelog/
 
 Learn about the modules supported by the latest versions of F5 NGINXaaS for Azure.
 
-## Sep 16, 2025 
+## September 18, 2025 
 
 ### Preview
 

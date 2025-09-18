@@ -14,7 +14,7 @@ To see a list of currently active issues, visit the [Known issues]({{< ref "/ngi
 To review older entries, visit the [Changelog archive]({{< ref "/nginxaas-azure/changelog-archive" >}}) section.
 
 
-## September 16, 2025
+## September 18, 2025
 
 - {{% icon-feature %}} **Notification on update to deployments using the Stable Upgrade Channel**
 
