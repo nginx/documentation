@@ -24,6 +24,7 @@ Some industries such as finance, healthcare, energy, also adopt FIPS to enhance 
 
 Currently, both FIPS 140-2 and FIPS 140-3 certifications are accepted. However, FIPS 140-2 is being phased out as part of the [FIPS 140-3 transition plan](https://csrc.nist.gov/projects/fips-140-3-transition-effort). After September 22, 2026, only FIPS 140-3 certifications will be recognized. Organizations are encouraged to migrate to FIPS 140-3 to meet updated cryptographic security requirements.
 
+{{< table >}}
 | **Sector / Program**           | **Version**    | **Status**    |
 |--------------------------------|----------------|---------------|
 | **Federal Programs**           |                |               |
@@ -52,13 +53,13 @@ Currently, both FIPS 140-2 and FIPS 140-3 certifications are accepted. However, 
 | Nuclear Regulatory Commission  | 140-2 or 140-3 | Recommended   |
 | **State & Local Government**   |                |               |
 | State and Local Gov Programs   | 140-2 or 140-3 | Mandatory     |
-
+{{< /table >}}
 
 ### FIPS compliance in other countries
 
 Although FIPS 140 is primarily a North American government cryptographic standard, it is widely recognized as a global benchmark for cryptographic security. Numerous countries outside North America align their cryptographic requirements with FIPS, especially in regulated sectors such as finance, defense, healthcare, and critical infrastructure.
 
-{{<bootstrap-table "table table-striped table-bordered table-sm">}}
+{{< table >}}
 | Country/Region | FIPS Use                                                                    |
 |----------------|-----------------------------------------------------------------------------|
 | Australia      | Referenced for government, defense, and cryptography systems.               |
@@ -79,7 +80,7 @@ Although FIPS 140 is primarily a North American government cryptographic standar
 | UAE            | Trusted in finance, energy, and interoperability with the U.S. cryptography.|
 | United Kingdom | Referenced for defense, health, and procurement standards.                  |
 | United States  | Mandatory for federal government systems and contractors.                   |
-{{< /bootstrap-table >}}
+{{< /table >}}
 
 ## FIPS compliant vs FIPS validated
 
