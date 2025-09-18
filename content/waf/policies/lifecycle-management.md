@@ -24,6 +24,12 @@ The policy lifecycle management system revolves around a _Policy Controller_ whi
 
 It handles policy distribution at scale by removing manual steps and providing a declarative configuration model with Custom Resource Definitions (CRDs) for policies, logging profiles and signatures.
 
+{{< call-out "note" >}}
+
+This system is only available for Helm-based deployments.
+
+{{< /call-out >}}
+
 ## Before you begin
 
 To complete this guide, you will need the following prerequisites:

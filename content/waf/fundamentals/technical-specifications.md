@@ -18,7 +18,7 @@ This page outlines the technical specifications for F5 WAF for NGINX, which incl
 
 You can deploy F5 WAF for NGINX in the following environments:
 
-- [**Virtual environment** (Bare metal)]({{< ref "/waf/install/virtual-environment.md" >}})
+- [**Virtual machine or bare metal**]({{< ref "/waf/install/virtual-environment.md" >}})
 - [**Docker**]({{< ref "/waf/install/docker.md" >}})
 - [**Kubernetes**]({{< ref "/waf/install/kubernetes.md" >}})
 

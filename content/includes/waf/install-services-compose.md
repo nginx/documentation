@@ -42,5 +42,3 @@ To start the F5 WAF for NGINX services, use `docker compose up` in the same fold
 ```shell
 sudo docker compose up -d
 ```
-
-F5 WAF for NGINX should now be operational, and you can move onto [Post-installation checks](#post-installation-checks).

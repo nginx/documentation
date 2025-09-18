@@ -21,19 +21,20 @@ It provides protection for the OWASP Top 10, with additional functionality:
 - Meta character checking
 - Disallowing file types
 
-For more details, see the [Supported security policy features]({{< ref "/waf/fundamentals/technical-specifications.md#supported-security-policy-features">}}).
+For more details, see the [Supported security policy features]({{< ref "/waf/policies/configuration.md#supported-security-policy-features">}}).
 
-It is platform-agnostic and supports a range of deployment options for operational needs:
+It is platform-agnostic and supports a range of deployment options:
 
 1. [Virtual machine or bare metal]({{< ref "/waf/install/virtual-environment.md" >}})
-    - NGINX operates on the host system
-    - WAF components are deployed in containers
+    - NGINX and WAF components operate on the host system
     - Ideal for existing NGINX virtual environments
 1. [Kubernetes]({{< ref "/waf/install/kubernetes.md" >}})
     - Integrates NGINX and WAF components in a single pod
     - Ideal for scalable, cloud-native environments
 1. [Docker]({{< ref "/waf/install/docker.md" >}})
     - NGINX and WAF components are deployed as containers
-    - Suitable for environments with multiple deployment stages
+    - Ideal for environments with multiple deployment stages
+
+For more details, see the [Technical specifications]({{< ref "/waf/fundamentals/technical-specifications.md" >}}).
 
 F5 WAF for NGINX is part of the [NGINX One](https://www.f5.com/products/nginx/one) premium packages and runs natively on [NGINX Plus](https://www.f5.com/products/nginx/nginx-plus) and [NGINX Ingress Controller](https://www.f5.com/products/nginx/nginx-ingress-controller). 
