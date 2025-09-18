@@ -59,6 +59,12 @@ The steps you should follow on this page are dependent on your configuration typ
 
 {{< include "waf/install-services-registry.md" >}}
 
+You should now move to the section based on your configuration type:
+
+- [Multi-container configuration](#multi-container-configuration)
+- [Hybrid configuration](#hybrid-configuration)
+- [Single container configuration](#single-container-configuration)
+
 ## Multi-container configuration
 
 ### Create configuration files
