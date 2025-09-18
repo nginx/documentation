@@ -24,7 +24,6 @@ Some industries such as finance, healthcare, energy, also adopt FIPS to enhance 
 
 Currently, both FIPS 140-2 and FIPS 140-3 certifications are accepted. However, FIPS 140-2 is being phased out as part of the [FIPS 140-3 transition plan](https://csrc.nist.gov/projects/fips-140-3-transition-effort). After September 22, 2026, only FIPS 140-3 certifications will be recognized. Organizations are encouraged to migrate to FIPS 140-3 to meet updated cryptographic security requirements.
 
-{{<bootstrap-table "table table-striped table-bordered table-sm">}}
 | **Sector / Program**           | **Version**    | **Status**    |
 |--------------------------------|----------------|---------------|
 | **Federal Programs**           |                |               |
@@ -53,7 +52,6 @@ Currently, both FIPS 140-2 and FIPS 140-3 certifications are accepted. However, 
 | Nuclear Regulatory Commission  | 140-2 or 140-3 | Recommended   |
 | **State & Local Government**   |                |               |
 | State and Local Gov Programs   | 140-2 or 140-3 | Mandatory     |
-{{< /bootstrap-table >}}
 
 
 ### FIPS compliance in other countries
