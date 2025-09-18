@@ -22,7 +22,7 @@ error_log        logs/error.log notice;
 worker_processes 1;
 ```
 
-## Feature-Specific Configuration Files
+## Feature-specific configuration files
 
 To make the configuration easier to maintain, we recommend that you split it into a set of feature‑specific files stored in the <span style="white-space: nowrap;">**/etc/nginx/conf.d**</span> directory and use the [include](https://nginx.org/en/docs/ngx_core_module.html#include) directive in the main **nginx.conf** file to reference the contents of the feature‑specific files.
 
@@ -43,14 +43,15 @@ A few top‑level directives, referred to as _contexts_, group together the dire
 
 Directives placed outside of these contexts are said to be in the _main_ context.
 
-### Virtual Servers
+### Virtual servers
+
 In each of the traffic‑handling contexts, you include one or more `server` blocks to define _virtual servers_ that control the processing of requests. The directives you can include within a `server` context vary depending on the traffic type.
 
 For HTTP traffic (the `http` context), each [server](https://nginx.org/en/docs/http/ngx_http_core_module.html#server) directive controls the processing of requests for resources at particular domains or IP addresses. One or more [location](https://nginx.org/en/docs/http/ngx_http_core_module.html#location) contexts within a `server` context define how to process specific sets of URIs.
 
 For mail and TCP/UDP traffic (the [mail](https://nginx.org/en/docs/mail/ngx_mail_core_module.html) and [stream](https://nginx.org/en/docs/stream/ngx_stream_core_module.html) contexts) the `server` directives each control the processing of traffic arriving at a particular TCP port or UNIX socket.
 
-### Sample Configuration File with Multiple Contexts
+### Sample configuration file with multiple contexts
 
 The following configuration illustrates the use of contexts.
 
@@ -91,7 +92,7 @@ stream {
 
 In general, a _child_ context – a context contained within another context (its _parent_) – inherits the settings of directives included at the parent level. Some directives can appear in multiple contexts, in which case you can override the setting inherited from the parent by including the directive in the child context. For an example, see the [proxy_set_header](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_set_header) directive.
 
-## Reload Configuration File
+## Reload configuration file
 
 For changes to the configuration file to take effect, it must be reloaded. You can either restart the `nginx` process or send the `reload` signal to upgrade the configuration without interrupting the processing of current requests. For details, see [Control NGINX Processes at Runtime]({{< ref "/nginx/admin-guide/basic-functionality/runtime-control.md" >}}).
 
