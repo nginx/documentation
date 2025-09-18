@@ -82,7 +82,7 @@ To test connectivity to your NGINXaaS deployment, you will need to set up [Priva
 1. Access the [Google Cloud Console](https://console.cloud.google.com/).
 1. Create a public IP address. See [Google's documentation on reserving a static address](https://cloud.google.com/load-balancing/docs/tcp/set-up-ext-reg-tcp-proxy-zonal#console_3) for a step-by-step guide.
 1. Create a Network Endpoint Group (NEG). See [Google's documentation on creating a NEG](https://cloud.google.com/vpc/docs/access-apis-managed-services-private-service-connect-backends#console) for a step-by-step guide.
-   - For **Target service**, enter your NGINXaaS deployment's Service Attachment.
+   - For **Target service**, enter your NGINXaaS deployment's Service Attachment, which is visible on the `Deployment Details` section for your deployment.
    - For **Producer port**, enter the port your NGINX server is listening on. If you're using the default NGINX config, enter port `80`.
    - For **Network** and **Subnetwork** select your consumer VPC network and subnet.
 1. Create a proxy-only subnet in your consumer VPC. See [Google's documentation on creating a proxy-only subnet](https://cloud.google.com/load-balancing/docs/tcp/set-up-ext-reg-tcp-proxy-zonal#console_1) for a step-by-step guide.
