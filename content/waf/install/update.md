@@ -1,11 +1,10 @@
 ---
 # We use sentence case and present imperative tone
-title: "Update F5 WAF for NGINX threat campaign signatures"
+title: "Update F5 WAF for NGINX signatures"
 # Weights are assigned in increments of 100: determines sorting order
-weight: 200
+weight: 500
 # Creates a table of contents and sidebar, useful for large documents
 toc: false
-draft: true
 # Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
 nd-content-type: how-to
 # Intended for internal catalogue and search, case sensitive:
@@ -15,8 +14,11 @@ nd-product: NAP-WAF
 
 {{< call-out "warning" "Information architecture note" >}}
 
-The design intention for this page is to act as a replacement for the existing [Updating App Protect Threat Campaigns ]({{< ref "/nap-waf/v4/admin-guide/install.md#updating-app-protect-threat-campaigns" >}}) section in the Administration/Install guides.
+The design intention for this page is to act as a replacement for:
 
-Each document should fulfill one specific operation: people may not need information on how to update signatures immediately after installing F5 WAF for NGINX, so this decouples the information into somewhere easily findable.
+- [Updating App Protect Attack Signatures]({{< ref "/nap-waf/v4/admin-guide/install.md#updating-app-protect-attack-signatures" >}}) 
+- [Updating App Protect Threat Campaigns]({{< ref "/nap-waf/v4/admin-guide/install.md#updating-app-protect-threat-campaigns" >}})
+- [Updating App Protect Bot Signatures]({{< ref "/nap-waf/v4/admin-guide/install.md#updating-app-protect-bot-signatures" >}}) 
+
 
 {{</ call-out >}}

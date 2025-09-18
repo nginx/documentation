@@ -12,9 +12,7 @@ nd-content-type: how-to
 nd-product: NAP-WAF
 ---
 
-## Support policy
-
-F5 WAF for NGINX adheres to the support policy detailed in the following knowledge base article: [K000140156](https://my.f5.com/manage/s/article/K000140156).
+F5 WAF for NGINX adheres to the support policy detailed in the following MyF5 knowledge base article: [K000140156](https://my.f5.com/manage/s/article/K000140156).
 
 ## Contact F5 Support
 
