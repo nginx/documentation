@@ -18,7 +18,7 @@ To ensure F5 WAF for NGINX operates smoothly without compromising security, cons
 
 For troubleshooting, you may use permissive (SELinux) or complain (AppArmor) mode to avoid these restrictions, but this is inadvisable for prolonged use.
 
-Although F5 WAF for NGINX provides an optional package with prebuilt SELinux policies (`app-protect-selinux`), your specific configuration might be blocked unless you adjust the policy or modify file labels.
+Although F5 WAF for NGINX provides an optional package with prebuilt a SELinux policy (`app-protect-selinux`), your specific configuration might be blocked unless you adjust the policy or modify file labels.
 
 ## Modifying file labels
 
