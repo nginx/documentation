@@ -14,7 +14,7 @@ To see a list of currently active issues, visit the [Known issues]({{< ref "/ngi
 To review older entries, visit the [Changelog archive]({{< ref "/nginxaas-azure/changelog-archive" >}}) section.
 
 
-## Aug 18, 2025
+## August 18, 2025
 
 - {{% icon-feature %}} **Updates to NGINXaaS for Azure GitHub Action**
 
