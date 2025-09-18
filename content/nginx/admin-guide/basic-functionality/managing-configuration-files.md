@@ -9,11 +9,33 @@ type:
 - how-to
 ---
 
-Similar to other services, NGINX and NGINX Plus use a text‑based configuration file with a precise format. By default the file is named **nginx.conf** and for NGINX Plus is placed in the `/etc/nginx` directory.
+NGINX and NGINX Plus use a text‑based configuration file, by default named **nginx.conf**.
 
-For NGINX Open Source, the location depends on the package system used to install NGINX and the operating system. It is typically one of `/usr/local/nginx/conf`, `/etc/nginx`, or `/usr/local/etc/nginx`.
+NGINX Plus: default location is `/etc/nginx` for Linux or `/usr/local/etc/nginx` for FreeBSD.
+
+NGINX Open Source: location depends on the package system used to install NGINX and the operating system. It is typically one of `/usr/local/nginx/conf`, `/etc/nginx`, or `/usr/local/etc/nginx`.
+
+You can verify the exact configuration file path with the `--conf-path=` parameter in the output of the `nginx -V` command:
+
+```shell
+ nginx -V 2>&1 | awk -F: '/configure arguments/ {print $2}' | xargs -n1
+```
+
+Sample output:
+
+```none
+--prefix=/etc/nginx
+--sbin-path=/usr/sbin/nginx
+--modules-path=/usr/lib64/nginx/modules
+--conf-path=/etc/nginx/nginx.conf          # The path to your config file
+--error-log-path=/var/log/nginx/error.log
+--http-log-path=/var/log/nginx/access.log
+--pid-path=/var/run/nginx.pid
+--...<more parameters>
+```
 
 ## Directives
+
 The configuration file consists of _directives_ and their parameters. Simple (single‑line) directives end with a semicolon ( `;` ). Other directives act as “containers” which group together related directives. Containers are enclosed in curly braces ( `{}` ) and are often referred to as _blocks_. Here are some examples of simple directives.
 
 ```nginx
@@ -24,7 +46,7 @@ worker_processes 1;
 
 ## Feature-specific configuration files
 
-To make the configuration easier to maintain, we recommend that you split it into a set of feature‑specific files stored in the <span style="white-space: nowrap;">**/etc/nginx/conf.d**</span> directory and use the [include](https://nginx.org/en/docs/ngx_core_module.html#include) directive in the main **nginx.conf** file to reference the contents of the feature‑specific files.
+To make the configuration easier to maintain, it is possible to split it into a set of feature‑specific files stored in the `/etc/nginx/conf.d` directory and use the [include](https://nginx.org/en/docs/ngx_core_module.html#include) directive in the main **nginx.conf** file to reference the contents of the feature‑specific files.
 
 ```nginx
 include conf.d/http;
