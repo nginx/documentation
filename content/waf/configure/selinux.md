@@ -42,3 +42,5 @@ Review the syslog ports by entering the following command:
 ```shell
 semanage port -l | grep syslog
 ```
+
+For more information related to syslog, see the [Security logs]({{< ref "/waf/logging/security-logs.md" >}}) topic.
