@@ -127,6 +127,15 @@ az nginx deployment configuration analyze --deployment-name $DEPLOYMENT_NAME \
       --package data="$TAR_DATA"
    ```
 
+   Upload a package with config files and protected files:
+
+   ```shell
+   az nginx deployment configuration create --deployment-name myDeployment \
+      --resource-group myResourceGroup --root-file nginx.conf --name default \
+      --package data="$TAR_DATA" \
+      protected-files="['nginx/servers/server1.conf','nginx/servers/server2.conf']"
+   ```
+
 - Multiple file configuration with protected files:
 
    ```shell

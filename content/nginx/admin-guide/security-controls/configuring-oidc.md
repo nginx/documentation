@@ -119,7 +119,7 @@ The setup steps are similar for most identity providers, but some details may di
 
   Copy the **issuer** value. You will need it later when [configuring NGINX Plus as the Relying Party](#setup-oidc-provider2).
 
-5. Configure a logout URI - a URI that a user visits to initiate an RP‑initiated logout flow, for example, `https://demo.example.com/post_logout/`. (Optional, supported since [NGINX Plus R35](({{< ref "nginx/releases.md#r35" >}}))).
+5. Configure a logout URI - a URI that a user visits to initiate an RP‑initiated logout flow, for example, `https://demo.example.com/post_logout/`. (Optional, supported since [NGINX Plus R35]({{< ref "nginx/releases.md#r35" >}})).
 
 
 ## Configure the Relying Party (NGINX Plus) {#rp-setup}

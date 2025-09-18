@@ -35,11 +35,13 @@ resources/
 .netlify/plugins/*
 .netlify/
 
-# Local Lighthouse artifacts
-lighthouse-reports
-
 *.pyc
 build
 *.swp
 *.mo
 node_modules
+
+# Playwright
+/coverage
+*/test-results
+*/playwright-report

@@ -18,7 +18,7 @@ This guide explains how to enable single sign-on (SSO) for applications being pr
 
 - [PingFederate](https://docs.pingidentity.com/pingfederate/latest/pf_pf_landing_page.html) Enterprise Federation Server or [PingOne](https://docs.pingidentity.com/pingone/p1_cloud__platform_main_landing_page.html) Cloud deployment with a Ping Identity account.
 
-- An NGINX Plus [subscription](https://www.f5.com/products/nginx/nginx-plus) and NGINX Plus [Release 35](({{< ref "nginx/releases.md#r35" >}})) or later. For installation instructions, see [Installing NGINX Plus](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/).
+- An NGINX Plus [subscription](https://www.f5.com/products/nginx/nginx-plus) and NGINX Plus [Release 35]({{< ref "nginx/releases.md#r35" >}}) or later. For installation instructions, see [Installing NGINX Plus](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/).
 
 - A domain name pointing to your NGINX Plus instance, for example, `demo.example.com`.
 

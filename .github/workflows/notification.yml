@@ -5,6 +5,7 @@ on:
     workflows:
       - "QE LinkChecker"
       - "Check for Broken Links"
+      - "UI validation on prod"
     types: [completed]
 
 permissions:
