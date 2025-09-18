@@ -63,9 +63,9 @@ The steps you should follow on this page are dependent on your configuration typ
 
 ### Create configuration files
 
-Once you have downloaded your subscription files, place them in a folder.
+Copy or move your subscription files into a new folder.
 
-In the same folder, you create three files:
+In the same folder, create three files:
 
 - _nginx.conf_ - An NGINX configuration file with F5 WAF for NGINX enabled
 - _entrypoint.sh_ - A Docker startup script which spins up all F5 WA for NGINX processes, requiring executable permissions
@@ -173,7 +173,6 @@ This example uses NGINX Open Source as a base: it requires NGINX to be installed
 {{< include "/waf/dockerfiles/official-oss.md" >}}
 
 {{< /details >}}
-
 
 {{< call-out "note" >}}
 
