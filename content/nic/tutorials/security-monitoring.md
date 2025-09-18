@@ -84,7 +84,6 @@ If you use custom container images, NGINX Agent must be installed along with NGI
 
 3. Make sure that the ConfigMap is mounted to the NGINX Ingress Controller pod at `/etc/nginx-agent/nginx-agent.conf` and the dynamic agent config is mounted at `/var/lib/nginx-agent` by adding the following volumes and volumeMounts to the NGINX Ingress Controller deployment manifest:
 
-   **Volumes:**
    ```yaml
    volumes:
      - name: agent-conf
@@ -94,7 +93,6 @@ If you use custom container images, NGINX Agent must be installed along with NGI
        emptyDir: {}
    ```
 
-   **Volume Mounts:**
    ```yaml
    volumeMounts:
      - name: agent-conf
