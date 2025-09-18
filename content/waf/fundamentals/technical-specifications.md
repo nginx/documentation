@@ -55,7 +55,7 @@ The F5 WAF for NGINX package has the following dependencies:
 | app-protect-ip-intelligence (**1**, **2**) | Necessary for the IP intelligence feature |
 
 1. _Optional dependencies_
-2. _This package needs to be installed separately, and includes a client for downloading and updating the feature's database_
+2. _This module needs to be installed separately, and includes a client for downloading and updating the feature's database_
 
 ## Supported security policy features
 

@@ -216,6 +216,22 @@ docker run \
  -dump -bundle $(pwd)/compiled_policy.tgz
 ```
 
+## Add a compiled bundle to Kubernetes
+
+To use compiled bundles with Kubernetes, copy them to _/mnt/nap5_bundles_pv_data_ on a cluster node.
+
+Ensure these files files are accessible to UID 101. 
+
+Then, in your NGINX configuration, refer to these files from _/etc/app_protect/bundles_.
+
+The following example applies the bundle `custom_policy.tgz` located in the folder _/mnt/nap5_bundles_pv_data/_
+
+```shell
+app_protect_policy_file "/etc/app_protect/bundles/custom_policy.tgz";
+```
+
+The NGINX configuration itself can be integrated using a ConfigMap mount.
+
 ## Global settings
 
 The global settings allows configuration of the following items:

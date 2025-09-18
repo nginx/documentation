@@ -32,15 +32,7 @@ Depending on your deployment type, you may have additional requirements:
 
 You should read the [IP intelligence]({{< ref "/waf/policies/ip-intelligence.md" >}}) and [Secure traffic using mTLS]({{< ref "/waf/configure/secure-mtls.md" >}}) topics for additional set-up configuration if you want to use them immediately.
 
-{{< call-out "caution" >}}
-
-Security mechanisms like SELinux or AppArmor may potentially blocking necessary file access for the nginx process and component containers.
-
-To ensure F5 WAF for NGINX operates smoothly without compromising security, consider setting up a custom SELinux policy or AppArmor profile. 
-
-For troubleshooting, you may use permissive (SELinux) or complain (AppArmor) mode to avoid these restrictions, but this is inadvisable for prolonged use.
-
-{{< /call-out >}}
+{{< include "waf/install-selinux-warning.md" >}}
 
 ## Platform-specific instructions
 

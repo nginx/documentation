@@ -28,6 +28,8 @@ You will need [Helm](https://helm.sh/docs/intro/install/) installed for a Helm-b
 
 You should read the [IP intelligence]({{< ref "/waf/policies/ip-intelligence.md" >}}) and [Secure traffic using mTLS]({{< ref "/waf/configure/secure-mtls.md" >}}) topics for additional set-up configuration if you want to use them immediately.
 
+There is another optional topic to [Add a read-only filesystem for Kubernetes]({{< ref "/waf/configure/kubernetes-read-only.md" >}})
+
 To review supported operating systems, read the [Technical specifications]({{< ref "/waf/fundamentals/technical-specifications.md" >}}) topic.
 
 ## Download your subscription credentials 

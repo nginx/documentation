@@ -25,15 +25,7 @@ You should read the [IP intelligence]({{< ref "/waf/policies/ip-intelligence.md"
 
 To review supported operating systems, read the [Technical specifications]({{< ref "/waf/fundamentals/technical-specifications.md" >}}) topic.
 
-{{< call-out "caution" >}}
-
-Security mechanisms like SELinux or AppArmor may potentially blocking necessary file access for the nginx process and component containers.
-
-To ensure F5 WAF for NGINX operates smoothly without compromising security, consider setting up a custom SELinux policy or AppArmor profile. 
-
-For troubleshooting, you may use permissive (SELinux) or complain (AppArmor) mode to avoid these restrictions, but this is inadvisable for prolonged use.
-
-{{< /call-out >}}
+{{< include "waf/install-selinux-warning.md" >}}
 
 ## Docker deployment options
 

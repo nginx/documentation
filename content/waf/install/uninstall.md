@@ -3,7 +3,6 @@
 title: "Uninstall F5 WAF for NGINX"
 # Weights are assigned in increments of 100: determines sorting order
 weight: 600
-draft: true
 # Creates a table of contents and sidebar, useful for large documents
 toc: false
 # Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
@@ -13,19 +12,51 @@ nd-content-type: how-to
 nd-product: NAP-WAF
 ---
 
-{{< call-out "warning" "Information architecture note" >}}
+This document describes how to uninstall F5 WAF for NGINX.
 
-The design intention for this page is as a standalone page for the operating system specific installation use cases:
+The steps vary based on your installation style: ensure that you remove any F5 WAF configuration changes from your NGINX configuration files if you intend to continue using NGINX without F5 WAF.
 
-- [v4]({{< ref "/nap-waf/v4/admin-guide/install.md#uninstall-app-protect" >}})
-- [v5]({{< ref "/nap-waf/v5/admin-guide/install.md#uninstall-nginx-and-nginx-app-protect-waf-module" >}})
+## Virtual environment packages
 
-Instead of having separate top level folders, differences between v4 and v5 will be denoted with whole page sections, tabs, or other unique signifiers.
+Depending on your installation method, you may have installed virtual environment packages as part of a virtual machine/bare metal installation or a hybrid Docker configuration deployment.
 
-This reduces the amount of duplicate content, which makes maintainability much simpler and the text more uniform.
+Using the environment's package manager, identify and uninstall the package. It will be named something in the following list:
 
-With the full context of this section, the page is shorter, being concerned only with one specific method of installation.
+- `app-protect`
+- `app-protect-module-oss`
+- `app-protect-module-plus`
 
-This makes it easier to link to specific instructions, and ensures that the customer sees only the critical information they need.
+If you used the [IP intelligence feature]({{< ref "/waf/policies/ip-intelligence.md" >}}), its package should also be removed first, and is named `app-protect-ip-intelligence`.
 
-{{</ call-out>}}
+Once the packages have been removed, you may also wish to remove the F5 WAF for NGINX repositories you added to the environment during installation.
+
+## Docker deployments
+
+In an installation method involving Docker, navigate to the directory that contains the _docker-compose.yml_ file and run:
+
+```shell
+sudo docker compose stop
+```
+
+For a single container configuration, use this command instead:
+
+```shell
+sudo docker container stop <your-container-name>
+```
+
+## Kubernetes deployments
+
+In an installation method involving Kubernetes, you'll need to remove the resources created for F5 WAF for NGINX.
+
+For Helm, run the following command:
+
+```shell
+helm uninstall <release-name>
+```
+
+For Manifests, locate the folder with your Manifest files:
+
+```shell
+kubectl delete -f manifests/
+```
+
