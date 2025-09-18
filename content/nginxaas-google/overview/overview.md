@@ -28,7 +28,7 @@ The key capabilities of NGINXaaS for Google Cloud are:
 - Supports migration of existing NGINX configurations to the cloud with minimal effort.
 - Integrates with the Google Cloud ecosystem.
 - Addresses a wide range of deployment scenarios (HTTP reverse proxy, JWT authentication, etc).
-- Adopts a consumption-based pricing to align infrastructure costs to actual usage by billing transactions using Azure.
+- Adopts a consumption-based pricing to align infrastructure costs to actual usage by billing transactions using Google.
 - Supports end-to-end encryption from client to upstream server.
 - Supports the following protocols: HTTPS, HTTP, HTTP/2, HTTP/3, TCP, QUIC, IMAP, POP3, and SMTP.
 - Supports any type of message body for upstream and error status code responses, including text/plain, text/css, text/html, application/javascript, and application/json.
