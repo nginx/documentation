@@ -47,7 +47,7 @@ The multi-container configuration is recommended if you are building a new syste
 
 The hybrid configuration is suitable if you want to add F5 WAF for NGINX to an existing virtual environment and wish to use Docker for the F5 WAF components instead of installing and configuring WAF packages as explained in the [Virtual machine or bare metal]({{< ref "/waf/install/virtual-environment.md" >}}) instructions.
 
-The single container configuration requires a Docker image to be built, which encapsulates all parts of the system in one image. This image will need to be rebuilt with each release.
+The single container configuration only supports NGINX Plus and requires a building a Docker image that encapsulates all parts of the system. This image will need to be rebuilt with each release.
 
 The steps you should follow on this page are dependent on your configuration type: after the shared steps, links will guide you to the next appropriate section.
 
@@ -589,7 +589,6 @@ CMD ["sh", "/root/entrypoint.sh"]
 
 {{% /tab %}}
 
-
 {{% tab name="V4" %}}
 
 ```dockerfile
@@ -1103,6 +1102,380 @@ sudo dnf install app-protect-module-plus
 {{< include "waf/install-services-compose.md" >}}
 
 ## Single container configuration
+
+### Create a Dockerfile
+
+In the same folder as your credential and configuration files, create a _Dockerfile_ based on your desired operating system image using an example from the following sections.
+
+{{< call-out "note" >}}
+
+If you are not using using `custom_log_format.json` or the IP intelligence feature,  you should remove any references to them from your Dockerfile.
+
+{{< /call-out >}}
+
+#### Alpine Linux
+
+```dockerfile
+# syntax=docker/dockerfile:1
+# For Alpine 3.19:
+FROM alpine:3.19
+
+# Download and add the NGINX signing keys:
+RUN wget -O /etc/apk/keys/nginx_signing.rsa.pub https://cs.nginx.com/static/keys/nginx_signing.rsa.pub \
+ && wget -O /etc/apk/keys/app-protect-security-updates.rsa.pub https://cs.nginx.com/static/keys/app-protect-security-updates.rsa.pub
+
+# Add NGINX Plus repository:
+RUN printf "https://pkgs.nginx.com/plus/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | tee -a /etc/apk/repositories
+
+# Add F5 WAF for NGINX repository:
+RUN printf "https://pkgs.nginx.com/app-protect/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | tee -a /etc/apk/repositories \
+ && printf "https://pkgs.nginx.com/app-protect-security-updates/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | tee -a /etc/apk/repositories
+
+# Update the repository and install the most recent version of the F5 WAF for NGINX package (which includes NGINX Plus):
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/apk/cert.pem,mode=0644 \
+    --mount=type=secret,id=nginx-key,dst=/etc/apk/cert.key,mode=0644 \
+    apk update && apk add app-protect
+
+# Only use if you want to install and use the IP intelligence feature:
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/apk/cert.pem,mode=0644 \
+    --mount=type=secret,id=nginx-key,dst=/etc/apk/cert.key,mode=0644 \
+    apk update && apk add app-protect-ip-intelligence
+
+# Forward request logs to Docker log collector:
+RUN ln -sf /dev/stdout /var/log/nginx/access.log \
+    && ln -sf /dev/stderr /var/log/nginx/error.log
+
+# Copy configuration files:
+COPY nginx.conf custom_log_format.json /etc/nginx/
+COPY entrypoint.sh /root/
+
+CMD ["sh", "/root/entrypoint.sh"]
+```
+
+#### Amazon Linux
+
+```dockerfile
+# syntax=docker/dockerfile:1
+# For Amazon Linux 2023:
+FROM amazonlinux:2023
+
+# Install prerequisite packages:
+RUN dnf -y install wget ca-certificates
+
+# Add NGINX Plus repo:
+RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/plus-amazonlinux2023.repo
+
+# Add NAP dependencies repo:
+RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.amazonlinux2023.repo
+
+# Add NGINX App-protect repo:
+RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-amazonlinux2023.repo
+
+# Install F5 WAF for NGINX:
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.cert,mode=0644 \
+    --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
+    dnf -y install app-protect \
+    && dnf clean all \
+    && rm -rf /var/cache/yum
+
+# Only use if you want to install and use the IP intelligence feature:
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.cert,mode=0644 \
+    --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
+    dnf -y install app-protect-ip-intelligence
+
+# Forward request logs to Docker log collector:
+RUN ln -sf /dev/stdout /var/log/nginx/access.log \
+    && ln -sf /dev/stderr /var/log/nginx/error.log
+
+# Copy configuration files:
+COPY nginx.conf custom_log_format.json /etc/nginx/
+COPY entrypoint.sh /root/
+
+CMD ["sh", "/root/entrypoint.sh"]
+```
+
+#### Debian
+
+```dockerfile
+ARG OS_CODENAME
+# Where OS_CODENAME can be: buster/bullseye/bookworm
+# syntax=docker/dockerfile:1
+# For Debian 11 / 12:
+FROM debian:${OS_CODENAME}
+
+# Install prerequisite packages:
+RUN apt-get update && apt-get install -y apt-transport-https lsb-release ca-certificates wget gnupg2
+
+# Download and add the NGINX signing keys:
+RUN wget -qO - https://cs.nginx.com/static/keys/nginx_signing.key | \
+    gpg --dearmor | tee /usr/share/keyrings/nginx-archive-keyring.gpg >/dev/null
+RUN wget -qO - https://cs.nginx.com/static/keys/app-protect-security-updates.key | \
+    gpg --dearmor | tee /usr/share/keyrings/app-protect-security-updates.gpg >/dev/null
+
+# Add NGINX Plus repository:
+RUN printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
+    https://pkgs.nginx.com/plus/debian `lsb_release -cs` nginx-plus\n" | \
+    tee /etc/apt/sources.list.d/nginx-plus.list
+
+# Add F5 WAF for NGINX repositories:
+RUN printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
+    https://pkgs.nginx.com/app-protect/debian `lsb_release -cs` nginx-plus\n" | \
+    tee /etc/apt/sources.list.d/nginx-app-protect.list
+RUN printf "deb [signed-by=/usr/share/keyrings/app-protect-security-updates.gpg] \
+    https://pkgs.nginx.com/app-protect-security-updates/debian `lsb_release -cs` nginx-plus\n" | \
+    tee /etc/apt/sources.list.d/app-protect-security-updates.list
+
+# Download the apt configuration to `/etc/apt/apt.conf.d`:
+RUN wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
+
+# Update the repository and install the most recent version of the F5 WAF for NGINX package (which includes NGINX Plus):
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.cert,mode=0644 \
+    --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
+    apt-get update && apt-get install -y app-protect
+
+# Only use if you want to install and use the IP intelligence feature:
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.cert,mode=0644 \
+    --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
+    apt-get install -y app-protect-ip-intelligence
+
+# Forward request logs to Docker log collector:
+RUN ln -sf /dev/stdout /var/log/nginx/access.log \
+    && ln -sf /dev/stderr /var/log/nginx/error.log
+
+# Copy configuration files:
+COPY nginx.conf custom_log_format.json /etc/nginx/
+COPY entrypoint.sh /root/
+
+CMD ["sh", "/root/entrypoint.sh"]
+```
+
+#### Oracle Linux
+
+```dockerfile
+# syntax=docker/dockerfile:1
+# For Oracle Linux 8:
+FROM oraclelinux:8
+
+# Install prerequisite packages:
+RUN dnf -y install wget ca-certificates yum-utils
+
+# Add NGINX Plus repo to Yum:
+RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/nginx-plus-8.repo
+
+# Add NGINX App-protect repo to Yum:
+RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-8.repo
+
+# Enable Yum repositories to pull App Protect dependencies:
+RUN dnf config-manager --set-enabled ol8_codeready_builder \
+    && wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.repo \
+    # You can use either of the dependencies or epel repo
+    # && rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm \
+    && dnf clean all
+
+# Install F5 WAF for NGINX:
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.cert,mode=0644 \
+    --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
+    dnf -y install app-protect \
+    && dnf clean all \
+    && rm -rf /var/cache/dnf
+
+# Only use if you want to install and use the IP intelligence feature:
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.cert,mode=0644 \
+    --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
+    dnf install -y app-protect-ip-intelligence
+
+# Forward request logs to Docker log collector:
+RUN ln -sf /dev/stdout /var/log/nginx/access.log \
+    && ln -sf /dev/stderr /var/log/nginx/error.log
+
+# Copy configuration files:
+COPY nginx.conf custom_log_format.json /etc/nginx/
+COPY entrypoint.sh /root/
+
+CMD ["sh", "/root/entrypoint.sh"]
+```
+
+#### RHEL 8
+
+```dockerfile
+# syntax=docker/dockerfile:1
+# For RHEL ubi8:
+FROM registry.access.redhat.com/ubi8/ubi
+
+# Install prerequisite packages:
+RUN dnf -y install wget ca-certificates
+
+# Add NGINX Plus repo to Yum:
+RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/nginx-plus-8.repo
+
+# Add NGINX App-protect & dependencies repo to Yum:
+RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-8.repo
+RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.repo \
+    # You can use either of the dependencies or epel repo
+    # && rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm \
+    && dnf clean all
+
+# Install F5 WAF for NGINX:
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.cert,mode=0644 \
+    --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
+    dnf install --enablerepo=codeready-builder-for-rhel-8-x86_64-rpms -y app-protect \
+    && dnf clean all \
+    && rm -rf /var/cache/dnf
+
+# Only use if you want to install and use the IP intelligence feature:
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.cert,mode=0644 \
+    --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
+    dnf install -y app-protect-ip-intelligence
+
+# Forward request logs to Docker log collector:
+RUN ln -sf /dev/stdout /var/log/nginx/access.log \
+    && ln -sf /dev/stderr /var/log/nginx/error.log
+
+# Copy configuration files:
+COPY nginx.conf custom_log_format.json /etc/nginx/
+COPY entrypoint.sh /root/
+
+CMD ["sh", "/root/entrypoint.sh"]
+```
+
+#### RHEL 9
+
+```dockerfile
+# syntax=docker/dockerfile:1
+# For Rocky Linux 9:
+FROM rockylinux:9
+
+# Install prerequisite packages:
+RUN dnf -y install wget ca-certificates 'dnf-command(config-manager)'
+
+# Add NGINX Plus repo to Yum:
+RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/plus-9.repo
+
+# Add NGINX App-protect & dependencies repo to Yum:
+RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-9.repo
+RUN dnf config-manager --set-enabled crb \
+    && wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.repo \
+    && dnf clean all
+
+# Install F5 WAF for NGINX:
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.cert,mode=0644 \
+    --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
+    dnf install -y app-protect \
+    && dnf clean all \
+    && rm -rf /var/cache/dnf
+
+# Only use if you want to install and use the IP intelligence feature:
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.cert,mode=0644 \
+    --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
+    dnf install -y app-protect-ip-intelligence
+
+# Forward request logs to Docker log collector:
+RUN ln -sf /dev/stdout /var/log/nginx/access.log \
+    && ln -sf /dev/stderr /var/log/nginx/error.log
+
+# Copy configuration files:
+COPY nginx.conf custom_log_format.json /etc/nginx/
+COPY entrypoint.sh /root/
+
+CMD ["sh", "/root/entrypoint.sh"]
+```
+
+#### Rocky Linux 9
+
+```dockerfile
+# syntax=docker/dockerfile:1
+# For Rocky Linux 9:
+FROM rockylinux:9
+
+# Install prerequisite packages:
+RUN dnf -y install wget ca-certificates 'dnf-command(config-manager)'
+
+# Add NGINX Plus repo to Yum:
+RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/plus-9.repo
+
+# Add NGINX App-protect & dependencies repo to Yum:
+RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-9.repo
+RUN dnf config-manager --set-enabled crb \
+    && wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.repo \
+    && dnf clean all
+
+# Install F5 WAF for NGINX:
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.cert,mode=0644 \
+    --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
+    dnf install -y app-protect \
+    && dnf clean all \
+    && rm -rf /var/cache/dnf
+
+# Only use if you want to install and use the IP intelligence feature:
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.cert,mode=0644 \
+    --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
+    dnf install -y app-protect-ip-intelligence
+
+# Forward request logs to Docker log collector:
+RUN ln -sf /dev/stdout /var/log/nginx/access.log \
+    && ln -sf /dev/stderr /var/log/nginx/error.log
+
+# Copy configuration files:
+COPY nginx.conf custom_log_format.json /etc/nginx/
+COPY entrypoint.sh /root/
+
+CMD ["sh", "/root/entrypoint.sh"]
+```
+
+#### Ubuntu
+
+```dockerfile
+ARG OS_CODENAME
+# Where OS_CODENAME can be: focal/jammy/noble
+# syntax=docker/dockerfile:1
+# For Ubuntu 20.04 / 22.04 / 24.04:
+FROM ubuntu:${OS_CODENAME}
+
+# Install prerequisite packages:
+RUN apt-get update && apt-get install -y apt-transport-https lsb-release ca-certificates wget gnupg2
+
+# Download and add the NGINX signing keys:
+RUN wget -qO - https://cs.nginx.com/static/keys/nginx_signing.key | \
+    gpg --dearmor | tee /usr/share/keyrings/nginx-archive-keyring.gpg >/dev/null
+RUN wget -qO - https://cs.nginx.com/static/keys/app-protect-security-updates.key | \
+    gpg --dearmor | tee /usr/share/keyrings/app-protect-security-updates.gpg >/dev/null
+
+# Add NGINX Plus repository:
+RUN printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
+    https://pkgs.nginx.com/plus/ubuntu `lsb_release -cs` nginx-plus\n" | \
+    tee /etc/apt/sources.list.d/nginx-plus.list
+
+# Add F5 WAF for NGINX repositories:
+RUN printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
+    https://pkgs.nginx.com/app-protect/ubuntu `lsb_release -cs` nginx-plus\n" | \
+    tee /etc/apt/sources.list.d/nginx-app-protect.list
+RUN printf "deb [signed-by=/usr/share/keyrings/app-protect-security-updates.gpg] \
+    https://pkgs.nginx.com/app-protect-security-updates/ubuntu `lsb_release -cs` nginx-plus\n" | \
+    tee /etc/apt/sources.list.d/app-protect-security-updates.list
+
+# Download the apt configuration to `/etc/apt/apt.conf.d`:
+RUN wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
+
+# Update the repository and install the most recent version of the F5 WAF for NGINX package (which includes NGINX Plus):
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.cert,mode=0644 \
+    --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
+    apt-get update && DEBIAN_FRONTEND="noninteractive" apt-get install -y app-protect
+
+# Only use if you want to install and use the IP intelligence feature:
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.cert,mode=0644 \
+    --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
+    apt-get install -y app-protect-ip-intelligence
+
+# Forward request logs to Docker log collector:
+RUN ln -sf /dev/stdout /var/log/nginx/access.log \
+    && ln -sf /dev/stderr /var/log/nginx/error.log
+
+# Copy configuration files:
+COPY nginx.conf custom_log_format.json /etc/nginx/
+COPY entrypoint.sh /root/
+
+CMD ["sh", "/root/entrypoint.sh"]
+```
 
 ## Post-installation checks
 
