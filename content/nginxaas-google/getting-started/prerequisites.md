@@ -14,7 +14,7 @@ Before you can deploy F5 NGINXaaS for Google Cloud (NGINXaaS), you need to compl
 
 If it's your first time using NGINXaaS for Google Cloud, you need to find the offering in the Google Cloud Marketplace and subscribe to it:
 
-### Find the F5 NGINXaaS for Google Cloud offering in the portal
+### Get the offering in the Google Cloud Marketplace
 
 1. Use the link provided by the F5 sales team to access the NGINXaaS for Google Cloud offering in the [Google Cloud Marketplace](https://console.cloud.google.com/marketplace).
 1. Login with your Google Cloud account.

@@ -16,7 +16,7 @@ You can apply an NGINX configuration to your F5 NGINXaaS for Google Cloud (NGINX
 
 ## Access the NGINXaaS Console
 
-- Visit [https://console.nginxaas.net/](https://console.nginxaas.net/) to access the NGINXaaS Console.
+- Browse to the [NGINXaaS Console](https://console.nginxaas.net/).
 - Log in to the console with your Google credentials.
 
 ## Create or import an NGINX configuration
