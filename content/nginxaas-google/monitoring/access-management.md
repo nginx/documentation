@@ -25,7 +25,7 @@ F5 NGINXaaS for Google Cloud (NGINXaaS) leverages Workload Identity Federation (
     - `Issuer URL` must be `https://accounts.google.com`.
     - `Allowed audiences` must contain the full canonical resource name of the workload identity pool provider, for example, `https://iam.googleapis.com/projects/<project-number>/locations/<location>/workloadIdentityPools/<pool-id>/providers/<provider-id>`. If `Allowed audiences` is empty, the full canonical resource name of the workload identity pool provider will be included by default.
     - Add the following **attribute mapping**: `google.subject=assertion.sub`.
-    - Add the following attribute condition: `assertion.sub=='$NGINXAAS_SERVICE_ACCOUNT_UNIQUE_ID'` where `$NGINXAAS_SERVICE_ACCOUNT_UNIQUE_ID` is your NGINXaaS deployment's service account's unique ID.
+    - Add the following **attribute condition**: `assertion.sub=='$NGINXAAS_SERVICE_ACCOUNT_UNIQUE_ID'` where `$NGINXAAS_SERVICE_ACCOUNT_UNIQUE_ID` is your NGINXaaS deployment's service account's unique ID.
 
 ### Grant access to the WIF principal with your desired roles
 
