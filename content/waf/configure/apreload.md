@@ -1,6 +1,6 @@
 ---
 # We use sentence case and present imperative tone
-title: "Use apreload to update configuration files"
+title: "Use apreload to apply configuration updates"
 # Weights are assigned in increments of 100: determines sorting order
 weight: 200
 # Creates a table of contents and sidebar, useful for large documents
@@ -16,7 +16,7 @@ This document describes how to use `apreload`, a tool for updating F5 WAF for NG
 
 It interacts independently to NGINX, and can be used when any F5 WAF for NGINX files are modified, such as policies, logging profiles or global settings.
 
-_apreload_ can handle changes in policy content, with the exception of a policy name.
+_apreload_ can handle changes in policy content, with the exception of policy names.
 
 While _apreload_ can update F5 WAF for NGINX configuration alone, an NGINX reload will update both NGINX and F5 WAF for NGINX configuration.
 
