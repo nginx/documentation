@@ -18,7 +18,7 @@ NGINX and F5 NGINX Plus can continually test your upstream servers, avoid the se
 <span id="prereq"></span>
 ## Prerequisites
 
-- For passive health checks, [NGINX Open Source](https://nginx.org/en/) or [NGINX Plus](https://www.nginx.com/products/nginx)
+- For passive health checks, [NGINX Open Source](https://nginx.org/en/) or [NGINX Plus](https://www.f5.com/products/nginx/nginx-plus)
 - For active health checks and the [live activity monitoring dashboard]({{< ref "nginx/admin-guide/monitoring/live-activity-monitoring.md" >}}), NGINX Plus
 - A load‑balanced group of [HTTP upstream servers]({{< ref "http-load-balancer.md" >}})
 
