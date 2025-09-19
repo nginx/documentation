@@ -793,29 +793,6 @@ The feature is implemented using the NGINX [ngx_http_proxy_module](https://nginx
 
 A VirtualServer/VirtualServerRoute can reference multiple cache policies. However, only one can be applied: every subsequent reference will be ignored.
 
-## Using Policy
-
-You can use the usual `kubectl` commands to work with Policy resources, just as with built-in Kubernetes resources.
-
-For example, the following command creates a Policy resource defined in `access-control-policy-allow.yaml` with the name `webapp-policy`:
-
-```shell
-kubectl apply -f access-control-policy-allow.yaml
-
-policy.k8s.nginx.org/webapp-policy configured
-```
-
-You can get the resource by running:
-
-```shell
-kubectl get policy webapp-policy
-
-NAME            AGE
-webapp-policy   27m
-```
-
-For `kubectl get` and similar commands, you can also use the short name `pol` instead of `policy`.
-
 ### WAF
 
 {{< call-out "note" >}} The feature is implemented using the NGINX Plus [NGINX App Protect WAF Module]({{< ref "/nap-waf/" >}}). {{< /call-out >}}
@@ -862,6 +839,29 @@ policies:
 ```
 
 In this example NGINX Ingress Controller will use the configuration from the first policy reference `waf-policy-one`, and ignores `waf-policy-two`.
+
+## Using Policy
+
+You can use the usual `kubectl` commands to work with Policy resources, just as with built-in Kubernetes resources.
+
+For example, the following command creates a Policy resource defined in `access-control-policy-allow.yaml` with the name `webapp-policy`:
+
+```shell
+kubectl apply -f access-control-policy-allow.yaml
+
+policy.k8s.nginx.org/webapp-policy configured
+```
+
+You can get the resource by running:
+
+```shell
+kubectl get policy webapp-policy
+
+NAME            AGE
+webapp-policy   27m
+```
+
+For `kubectl get` and similar commands, you can also use the short name `pol` instead of `policy`.
 
 ### Applying Policies
 

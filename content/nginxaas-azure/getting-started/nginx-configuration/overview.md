@@ -25,17 +25,20 @@ The topics below provide information on NGINX configuration restrictions and dir
 NGINX configurations stored in GitHub can be applied to existing NGINXaaS for Azure deployments using custom GitHub Action workflows. See [NGINXaaS for Azure Deployment Action](https://github.com/nginxinc/nginx-for-azure-deploy-action) for documentation and examples on how to incorporate these workflows in your GitHub Actions CI/CD pipelines.
 
 ## NGINX filesystem restrictions
-NGINXaaS for Azure places restrictions on the instance's filesystem; only a specific set of directories are allowed to be read from and written to. Below is a table describing what directories the NGINX worker process can read and write to and what directories files can be written to. These files include certificate files and any files uploaded to the deployment, excluding NGINX configuration files.
 
-  {{< table >}}
-  | Allowed Directory | NGINX worker process can read/write to | Files can be written to |
-  |------------------ | ----------------- | ----------------- |
-  | /etc/nginx        |                   | &check;           |
-  | /opt              | &check;           | &check;           |
-  | /srv              | &check;           | &check;           |
-  | /tmp              | &check;           |                   |
-  | /var/cache/nginx  | &check;           |                   |
-  | /var/www          | &check;           | &check;           |
+NGINXaaS for Azure places restrictions on the instance’s filesystem; only a specific set of directories are allowed to be read from and written to. Below is a table describing what directories the NGINX worker process can read and write to and what directories files can be written to. These files include certificate files and any files uploaded to the deployment, excluding NGINX configuration files.
+
+ {{< table >}}
+
+| Directory         | Master Read | Master Write | Worker Read | Worker Write | Recommended Use                  |
+|-------------------|:-----------:|:------------:|:-----------:|:------------:|----------------------------------|
+| /etc/nginx/       |     ✔️      |      ✔️      |     ❌      |      ❌      | NGINX configuration, certificates, keys, application files (e.g. Lua or njs scripts)  |
+| /opt/             |     ✔️      |      ✔️      |     ✔️      |      ❌      | Application files (e.g. Lua scripts) |
+| /srv/             |     ✔️      |      ✔️      |     ✔️      |      ❌      | Application files                |
+| /var/www/         |     ✔️      |      ✔️      |     ✔️      |      ❌      | Static files (e.g. index.html)   |
+| /tmp/             |     ✔️      |      ✔️      |     ✔️      |      ✔️      | Temporary files                  |
+| /var/cache/nginx/ |     ✔️      |      ✔️      |     ✔️      |      ✔️      | Cache data                       |
+
 {{< /table >}}
 
 Attempts to access other directories will be denied and result in a `5xx` error.
