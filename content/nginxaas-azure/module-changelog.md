@@ -7,6 +7,29 @@ url: /nginxaas/azure/module-changelog/
 
 Learn about the modules supported by the latest versions of F5 NGINXaaS for Azure.
 
+## September 18, 2025 
+
+### Preview
+
+ {{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}}
+
+| Name                                     | Version                  | Description                                                            |
+|------------------------------------------|--------------------------|------------------------------------------------------------------------|
+| nginx-plus                               | 1.29.0 (nginx-plus-r35)    | NGINX Plus, provided by Nginx, Inc.                          |
+| nginx-agent                              | 1.20.16-2026591880  | NGINX Agent - Management for NGINXaaS                                  |
+| Operating System                         | Ubuntu 22.04.5      | Jammy Jellyfish, provided by Canonical Ltd.                            |
+| nginx-plus-module-geoip2                 | 35+3.4-1            | NGINX Plus 3rd-party GeoIP2 dynamic modules                            |
+| nginx-plus-module-headers-more           | 35+0.37-1           | NGINX Plus 3rd-party headers-more dynamic module                       |
+| nginx-plus-module-image-filter           | 35-1                | NGINX Plus image filter dynamic module                                 |
+| nginx-plus-module-lua                    | 35+0.10.28-1        | NGINX Plus 3rd-party Lua dynamic modules                               |
+| nginx-plus-module-ndk                    | 35+0.3.3-1          | NGINX Plus 3rd-party NDK dynamic module                                |
+| nginx-plus-module-njs                    | 35+0.9.1-1          | NGINX Plus njs dynamic modules                                         |
+| nginx-plus-module-otel                   | 35+0.1.2-1          | NGINX Plus OpenTelemetry dynamic module                                |
+| nginx-plus-module-xslt                   | 35-1                | NGINX Plus xslt dynamic module                                         |
+| nginx-plus-module-appprotect             | 35+5.498.0-1        | NGINX Plus app protect dynamic module version 5.498.0                  |
+| app-protect-module-plus                  | 35+5.498.0-1        | App-Protect package for Nginx Plus, includes all of the default files and examples. NGINX App Protect provides web application firewall (WAF) security protection for your web applications, including OWASP Top 10 attacks. |
+| app-protect-plugin                       | 6.20.0-1            | NGINX App Protect plugin |
+{{</bootstrap-table>}}
 
 ## Access module versions using data plane API:
 

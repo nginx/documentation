@@ -413,7 +413,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
 
 6. Enable Yum repositories to pull NGINX App Protect DoS dependencies:
 
-    If you have a RHEL subscription:
+    For RHEL subscription:
 
     ```shell
     sudo subscription-manager repos --enable=rhel-8-for-x86_64-baseos-rpms
@@ -421,14 +421,20 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     sudo dnf -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
     ```
 
-7. Add NGINX Plus and NGINX App Protect DoS repository:
+    For RockyLinux:
+   
+    ```shell
+    sudo dnf -y install epel-release
+    ```
+
+8. Add NGINX Plus and NGINX App Protect DoS repository:
 
     ```shell
     sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/nginx-plus-8.repo
     sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-dos-8.repo
     ```
 
-8. In case of fresh installation, update the repository and install the most recent version of the NGINX Plus App Protect DoS package (which includes NGINX Plus):
+9. In case of fresh installation, update the repository and install the most recent version of the NGINX Plus App Protect DoS package (which includes NGINX Plus):
 
     ```shell
     sudo dnf install app-protect-dos
@@ -457,7 +463,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     sudo dnf install app-protect-dos-27+2.4.0
     ```
 
-9. In case of upgrading from previously installed NGINX Plus App Protect DoS package (which includes NGINX Plus):
+10. In case of upgrading from previously installed NGINX Plus App Protect DoS package (which includes NGINX Plus):
 
     ```shell
     sudo dnf remove nginx-plus
@@ -621,12 +627,18 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
 
 6. Enable the yum repositories to pull NGINX App Protect DoS dependencies:
 
-    If you have a RHEL subscription:
+    For RHEL subscription:
 
     ```shell
     sudo subscription-manager repos --enable=rhel-9-for-x86_64-baseos-rpms
     sudo subscription-manager repos --enable=rhel-9-for-x86_64-appstream-rpms
     sudo dnf -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
+    ```
+
+    For RockyLinux:
+   
+    ```shell
+    sudo dnf -y install epel-release
     ```
 
 7. Add the NGINX Plus and NGINX App Protect DoS repositories:
