@@ -14,6 +14,17 @@ To see a list of currently active issues, visit the [Known issues]({{< ref "/ngi
 To review older entries, visit the [Changelog archive]({{< ref "/nginxaas-azure/changelog-archive" >}}) section.
 
 
+## September 18, 2025
+
+- {{% icon-feature %}} **Notification on update to deployments using the Stable Upgrade Channel**
+
+   NGINXaaS for Azure deployments using the **Stable** [Upgrade Channel]({{< ref "/nginxaas-azure/quickstart/upgrade-channels.md" >}}) will be updated to [NGINX Plus Release 35 (R35)]({{< ref "/nginx/releases.md#nginxplusrelease-35-r35" >}}) during the week of Oct 06-10, 2025. This will also include updates to the following NGINX Plus modules:
+  - nginx-plus-module-njs
+
+   Please review the [NGINX Plus Release 35 (R35)]({{< ref "/nginx/releases.md#nginxplusrelease-35-r35" >}}) Release Notes carefully. If you have any concerns, it's recommended to validate your configuration against NGINX Plus R35 by setting up a test deployment using the **Preview** [Upgrade Channel]({{< ref "/nginxaas-azure/quickstart/upgrade-channels.md" >}}). See [these instructions]({{< ref "/nginxaas-azure/quickstart/recreate.md" >}}) on how to set up a deployment similar to your current one.
+
+   If you have any questions or concerns, please [contact us]({{< ref "/nginxaas-azure/get-help.md" >}}).
+
 ## August 18, 2025
 
 - {{% icon-feature %}} **Updates to NGINXaaS for Azure GitHub Action**
