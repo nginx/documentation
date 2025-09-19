@@ -174,7 +174,6 @@ See the [controller]({{< ref "/ngf/reference/cli-help.md#controller">}}) command
       - `Accepted/False/NotAllowedByListeners`
       - `Accepted/False/UnsupportedValue`: Custom reason for when the HTTPRoute includes an invalid or unsupported value.
       - `Accepted/False/InvalidListener`: Custom reason for when the HTTPRoute references an invalid listener.
-      - `Accepted/False/GatewayNotProgrammed`: Custom reason for when the Gateway is not Programmed. HTTPRoute can be valid and configured, but will maintain this status as long as the Gateway is not Programmed.
       - `Accepted/False/GatewayIgnored`: Custom reason for when the Gateway is ignored by NGINX Gateway Fabric. NGINX Gateway Fabric only supports one Gateway.
       - `ResolvedRefs/True/ResolvedRefs`
       - `ResolvedRefs/False/InvalidKind`
@@ -220,7 +219,6 @@ See the [controller]({{< ref "/ngf/reference/cli-help.md#controller">}}) command
       - `Accepted/False/NotAllowedByListeners`
       - `Accepted/False/UnsupportedValue`: Custom reason for when the GRPCRoute includes an invalid or unsupported value.
       - `Accepted/False/InvalidListener`: Custom reason for when the GRPCRoute references an invalid listener.
-      - `Accepted/False/GatewayNotProgrammed`: Custom reason for when the Gateway is not Programmed. GRPCRoute can be valid and configured, but will maintain this status as long as the Gateway is not Programmed.
       - `ResolvedRefs/True/ResolvedRefs`
       - `ResolvedRefs/False/InvalidKind`
       - `ResolvedRefs/False/RefNotPermitted`
@@ -275,7 +273,6 @@ Fields:
       - `Accepted/False/NotAllowedByListeners`
       - `Accepted/False/UnsupportedValue`: Custom reason for when the TLSRoute includes an invalid or unsupported value.
       - `Accepted/False/InvalidListener`: Custom reason for when the TLSRoute references an invalid listener.
-      - `Accepted/False/GatewayNotProgrammed`: Custom reason for when the Gateway is not Programmed. TLSRoute can be valid and configured, but will maintain this status as long as the Gateway is not Programmed.
       - `Accepted/False/HostnameConflict`: Custom reason for when the TLSRoute has a hostname that conflicts with another TLSRoute on the same port.
       - `ResolvedRefs/True/ResolvedRefs`
       - `ResolvedRefs/False/InvalidKind`
