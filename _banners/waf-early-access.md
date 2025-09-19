@@ -1,5 +1,5 @@
 {{< banner "warning" "Early access feature" >}}
 
-This functionality is available in the latest release, but is at the early access stage.
+This functionality is available as an early access feature in the latest release.
 
 {{< /banner >}}

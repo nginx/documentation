@@ -18,7 +18,13 @@ You can use it to get the latest security updates for [Attack signatures]({{< re
 
 The compiler is packaged as a Docker image and can executed using the Docker CLI or as part of a continuous integration/continuous delivery (CI/CD) pipeline.
 
-With a virtual machine/bare-metal installation, read the [Update F5 WAF for NGINX signatures]({{< ref "/waf/install/update-signatures.md" >}}) topic.
+{{< call-out "note" "Alternatives to the compiler tool">}}
+
+If you are using a virtual machine/bare-metal installation, read the [Update F5 WAF for NGINX signatures]({{< ref "/waf/install/update-signatures.md" >}}) topic.
+
+If you are using a Helm-based Kubernetes deployment, read the [Policy lifecycle management]({{< ref "/waf/policies/lifecycle-management.md" >}}) topic.
+
+{{< /call-out >}}
 
 One or more bundle files can be referenced in the NGINX configuration file, and you can configure global settings such as the cookie seed and user-defined signatures.
 
@@ -221,22 +227,6 @@ docker run \
  waf-compiler-<version-tag>:custom \
  -dump -bundle $(pwd)/compiled_policy.tgz
 ```
-
-## Add a compiled bundle to Kubernetes
-
-To use compiled bundles with Kubernetes, copy them to _/mnt/nap5_bundles_pv_data_ on a cluster node.
-
-Ensure these files files are accessible to UID 101. 
-
-Then, in your NGINX configuration, refer to these files from _/etc/app_protect/bundles_.
-
-The following example applies the bundle `custom_policy.tgz` located in the folder _/mnt/nap5_bundles_pv_data/_
-
-```shell
-app_protect_policy_file "/etc/app_protect/bundles/custom_policy.tgz";
-```
-
-The NGINX configuration itself can be integrated using a ConfigMap mount.
 
 ## Global settings
 
