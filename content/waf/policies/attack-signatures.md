@@ -12,11 +12,9 @@ nd-content-type: reference
 nd-product: NAP-WAF
 ---
 
-Attack signatures are rules or patterns that identify attack sequences or classes of attacks on a web application and its components. You can apply attack signatures to both requests and responses. F5 WAF for NGINX includes predefined attack signatures to protect your application against all attack types identified by the system.
+Attack signatures are rules or patterns that identify attack sequences or classes of attacks on a web application and its components. You can apply attack signatures to both requests and responses. 
 
-As new attack signatures are identified, they will become available for download and installation so that your system will always have the most up-to-date protection. 
-
-You can update the attack signatures without updating F5 WAF for NGINX, and conversely, you can update F5 WAF for NGINX without changing the attack signature package, unless you upgrade to a new NGINX Plus release.
+F5 WAF for NGINX includes predefined attack signatures to protect your application against all attack types identified by the system.
 
 ## Signature settings
 
@@ -28,7 +26,7 @@ You can update the attack signatures without updating F5 WAF for NGINX, and conv
 
 ## Signature sets
 
-The default and strict policies include and enable common signature sets, which are categorized groups of [signatures](#attack-signatures-overview) applied to the policy. However, you may wish to modify the list of signature sets and their logging and enforcement settings via the `signature-sets` array property. There are several ways to configure the enforced signature sets.
+The default and strict policies include and enable common signature sets, which are categorized groups of signatures applied to the policy. However, you may wish to modify the list of signature sets and their logging and enforcement settings via the `signature-sets` array property. There are several ways to configure the enforced signature sets.
 
 One way is by use of the `All Signatures` signature set, which is simply a predefined signature set that includes all signatures known to F5 WAF for NGINX.
 
@@ -79,9 +77,13 @@ In this example, only high accuracy signatures are configured to be enforced, bu
 }
 ```
 
-Since the "All Signatures" set is not included in the default policy, turning OFF both alarm and block has no effect because all the other sets with alarm turned ON (and high accuracy signatures with block enabled) are still in place and a signature that is a member of multiple sets behaves in accordance with the strict settings of all sets it belongs to. The only way to remove signature sets is to remove or disable sets that are part of the [default policy](#signature-sets-in-default-policy).
+Since the "All Signatures" set is not included in the default policy, turning OFF for both alarm and block has no effect because all the other sets with alarm turned ON (and high accuracy signatures with block enabled) are still in place, and a signature that is a member of multiple sets behaves in accordance with the strict settings of all sets it belongs to. 
 
-For example, in the below default policy, even though All Signature's Alarm/Block settings are set to false, we cannot ignore all attack signatures enforcement as some of the signature sets will be enabled in their strict policy. If the end users want to remove a specific signature set then they must explicitly mention it under the [strict policy](#the-strict-policy).
+The only way to remove signature sets is to remove or disable sets that are part of the [default policy]({{< ref "/waf/policies/configuration.md#default-policy" >}}).
+
+For example, in the below default policy, even though all signature alarm and block settings are set to false, attack signatures enforcement cannot be ignoredas some of the signature sets will be enabled in their strict policy. 
+
+If you want to remove a specific signature set, you must explicitly mention it under the [strict policy]({{< ref "/waf/policies/configuration.md#strict-policy" >}}).
 
 ```json
 {
@@ -109,11 +111,15 @@ For example, in the below default policy, even though All Signature's Alarm/Bloc
 }
 ```
 
-A signature may belong to more than one set in the policy. Its behavior is determined by the most severe action across all the sets that contain it. In the above example, a high accuracy SQL injection signature will both alarm and block, because the `High Accuracy Signatures` set is blocking and both sets trigger alarm.
+A signature may belong to more than one set in the policy: tts behavior is determined by the most severe action across all the sets that contain it. 
 
-The default policy already includes many signature sets, most of which are determined by the attack type these signatures protect from, for example `Cross-Site Scripting Signatures` or `SQL Injection Signatures`. See [the full list](#signature-sets-in-default-policy) above. In some cases you may want to exclude individual signatures.
+In the above example, a high accuracy SQL injection signature will both alarm and block, because the `High Accuracy Signatures` set is blocking and both sets trigger alarm.
 
-In this example, signature ID 200001834 is excluded from enforcement:
+The default policy already includes many signature sets, most of which are determined by the attack type these signatures protect from, for example `Cross-Site Scripting Signatures` or `SQL Injection Signatures`.
+
+You can view the [full list](#default-signature-sets) at the bottom of this page. In some cases, you may want to exclude individual signatures.
+
+In the following example, signature ID 200001834 is excluded from enforcement:
 
 ```json
 {
@@ -139,7 +145,7 @@ In this example, signature ID 200001834 is excluded from enforcement:
 }
 ```
 
-Another way to exclude signature ID 200001834 is by using the `modifications` section instead of the `signatures` section used in the example above:
+Another way to exclude a signature would be the `modifications` section instead of the `signatures` section:
 
 ```json
 {
@@ -200,9 +206,15 @@ To exclude multiple attack signatures, each signature ID needs to be added as a 
 }
 ```
 
-In the above examples, the signatures were disabled for all the requests that are inspected by the respective policy. You can also exclude signatures for specific URLs or parameters, while still enable them for the other URLs and parameters. See the sections on [User-Defined URLs](#user-defined-urls) and [User-Defined Parameters](#user-defined-parameters) for details.
+In the previous examples, the signatures were disabled for all the requests that are inspected by the respective policy. You can also exclude signatures for specific URLs or parameters, while still enable them for the other URLs and parameters. 
 
-In some cases, you may want to remove a whole signature set that was included in the default policy. For example, suppose your protected application does not use XML and hence is not exposed to XPath injection. You would like to remove the set `XPath Injection Signatures`. There are two ways to do that. The first is to set the `alarm` and `block` flags to `false` for this signature set overriding the settings in the base template:
+The topics [User-defined URLs]() and [User-defined parameters]() have more details.
+
+In some cases, you may want to remove a whole signature set that was included in the default policy. For example, a protected application may not use XML and is not vulnerable to XPath injection. 
+
+If you wanted to remove `XPath Injection Signatures`, there are two methods. 
+
+The first is to set the `alarm` and `block` flags to `false` for this signature set, overriding the base template:
 
 ```json
 {
@@ -220,7 +232,7 @@ In some cases, you may want to remove a whole signature set that was included in
 }
 ```
 
-The second way is to remove this set totally from the policy using the `$action` meta-property.
+The second method is to completely remove this set from the policy using the `$action` meta-property.
 
 ```json
 {
@@ -239,7 +251,13 @@ The second way is to remove this set totally from the policy using the `$action`
 
 Although the two methods are functionally equivalent, the second one is preferable for performance reasons.
 
-The following signature sets are included in the default policy. Most of the sets are defined by the Attack Type they protect from. In all sets the **Alarm** flag is enabled and **Block** disabled except High Accuracy Signatures, which are set to **blocked** (`block` parameter is enabled).
+## Default signature sets
+
+The following signature sets are included in the default policy. 
+
+Most sets are defined by the attack type they protect from. 
+
+In all sets the **Alarm** flag is enabled and **Block** disabled except High Accuracy Signatures, which are set to **blocked** (`block` parameter is enabled).
 
 - Command Execution Signatures
 - Cross Site Scripting Signatures

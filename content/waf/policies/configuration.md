@@ -14,7 +14,9 @@ nd-product: NAP-WAF
 
 This page describes the security features available with F5 WAF for NGINX and how to configure policies. 
 
-For better understanding of some contextual nouns, read the [Terminology]({{< ref "/waf/fundamentals/terminology.md" >}}) topic.
+To convert policies from an existing F5 WAF solution, read the [Build and use the converter tools]({{< ref "/waf/configure/converters.md" >}}).
+
+The [Build and use the compiler tool]({{< ref "/waf/configure/compiler.md" >}}) topic explains how to transform policy files into a format parseable by F5 WAF for NGINX.
 
 ## Supported security policy features
 

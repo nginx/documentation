@@ -16,7 +16,7 @@ This document shows example of how to modify your NGINX configuration to enable 
 
 It is intended as a reference for, small self-contained examples of how F5 WAF for NGINX is configured. 
 
-Certain features do not work well with F5 NGINX, such as modules requiring _subrequest_ when calling or being called from a scope that contains `app_protect_enable on`.
+Certain features do not work well with NGINX, such as modules requiring _subrequest_ when calling or being called from a scope that contains `app_protect_enable on`.
 
 Modules requiring the _Range_ header (Such as _Slice_) are also unsupported in a scope which enables F5 WAF for NGINX.
 

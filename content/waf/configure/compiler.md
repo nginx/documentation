@@ -14,9 +14,15 @@ nd-product: NAP-WAF
 
 This document describes how to use the F5 WAF for NGINX compiler, a tool for converting security policies and logging profiles from JSON to a bundle file that F5 WAF can process and apply.
 
-You can use it to get the latest security updates for Attack Signatures, Threat Campaigns and Bot Signatures. The compiler is packaged as a Docker image and can executed using the Docker CLI or as part of a continuous integration/continuous delivery (CI/CD) pipeline.
+You can use it to get the latest security updates for [Attack signatures]({{< ref "/waf/policies/attack-signatures.md" >}}), Threat campaigns and Bot signatures. 
+
+The compiler is packaged as a Docker image and can executed using the Docker CLI or as part of a continuous integration/continuous delivery (CI/CD) pipeline.
+
+With a virtual machine/bare-metal installation, read the [Update F5 WAF for NGINX signatures]({{< ref "/waf/install/update-signatures.md" >}}) topic.
 
 One or more bundle files can be referenced in the NGINX configuration file, and you can configure global settings such as the cookie seed and user-defined signatures.
+
+For more information about policies, read the [Configure policies]({{< ref "/waf/policies/configuration.md" >}}) topic.
 
 ## Before you begin
 

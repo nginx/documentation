@@ -373,15 +373,13 @@ kubectl create secret docker-registry regcred --docker-server=private-registry.n
 
 The `<JWT Token>` argument should be the _contents_ of the file, not the file itself. Ensure there are no additional characters such as extra whitespace.
 
-
-### Edit Manifest files
+### Create Manifest files
 
 The default configuration provided creates two replicas, each hosting NGINX and WAF services together in a single Kubernetes pod.
 
 Create all of these files in a single folder (Such as `/manifests`).
 
 In each file, replace `<your-private-registry>/waf:<your-tag>` with your actual image tag.
-
 
 {{< tabs name="manifest-files" >}}
 
