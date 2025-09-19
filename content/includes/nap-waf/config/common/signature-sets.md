@@ -4,7 +4,7 @@ nd-docs: "DOCS-1580"
 
 The default and strict policies include and enable common signature sets, which are categorized groups of [signatures](#attack-signatures-overview) applied to the policy. However, you may wish to modify the list of signature sets and their logging and enforcement settings via the `signature-sets` array property. There are several ways to configure the enforced signature sets.
 
-One way is by use of the `All Signatures` signature set, which is simply a predefined signature set that includes all signatures known to NGINX App Protect WAF.
+One way is by use of the `All Signatures` signature set, which is simply a predefined signature set that includes all signatures known to F5 WAF for NGINX.
 
 In this example, the `All Signatures` set (and therefore the signatures included within) are configured to be enforced and logged respectively, by setting their `block` and `alarm` properties:
 
@@ -336,7 +336,7 @@ These signature systems are generic and do not represent a particular technology
 
 #### Threat Campaigns
 
-Threat Campaigns is a threat intelligence feature included in an NGINX App Protect WAF subscription. The feature includes frequent update feeds containing contextual information about active attack campaigns currently being observed by F5 Threat Labs that NGINX App Protect WAF can provide protection against. As an example, without threat campaign updates NGINX App Protect WAF (and any WAF in general) may detect an attack pattern in a web application form parameter, but it cannot correlate the singular attack incident as part of a more extensive and sophisticated threat campaign. Threat Campaigns' contextual information is very specific to current attack campaigns, allowing false positives to be virtually non-existent.
+Threat Campaigns is a threat intelligence feature included in an F5 WAF for NGINX subscription. The feature includes frequent update feeds containing contextual information about active attack campaigns currently being observed by F5 Threat Labs that F5 WAF for NGINX can provide protection against. As an example, without threat campaign updates F5 WAF for NGINX (and any WAF in general) may detect an attack pattern in a web application form parameter, but it cannot correlate the singular attack incident as part of a more extensive and sophisticated threat campaign. Threat Campaigns' contextual information is very specific to current attack campaigns, allowing false positives to be virtually non-existent.
 
 Just like attack signatures, the Threat Campaign patterns, i.e. `app-protect-attack-signatures` and `app-protect-threat-campaigns` are installed as a dependency chain of our main package `app-protect`. Then, these two package dependencies should be updated periodically to get the latest security updates. Due to the highly dynamic nature of threat campaigns the updates are issued far more frequently than the attack signatures. You need to install those updates close to the time they are issued in order to get the most effective protection.
 

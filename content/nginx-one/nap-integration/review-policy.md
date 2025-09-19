@@ -12,7 +12,7 @@ nd-content-type: how-to
 nd-product: NGINX One
 ---
 
-Before you implement a policy on an NGINX instance or Config Sync Group, you may want to review it. F5 NGINX One Console creates a policy for your NGINX App Protect WAF system.
+Before you implement a policy on an NGINX instance or Config Sync Group, you may want to review it. F5 NGINX One Console creates a policy for your F5 WAF for NGINX system.
 
 ## Review NGINX App Protect policies
 

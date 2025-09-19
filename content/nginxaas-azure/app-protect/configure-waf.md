@@ -1,5 +1,5 @@
 ---
-title: Configure App Protect WAF
+title: Configure F5 WAF for NGINX
 weight: 300
 toc: true
 url: /nginxaas/azure/app-protect/configure-waf/
@@ -9,13 +9,13 @@ type:
 
 ## Overview
 
-This guide explains how to configure the F5 NGINX App Protect WAF security features.
+This guide explains how to configure the F5 WAF for NGINX security features.
 
 ## Configure
 
 To use NGINX App Protect apply the following changes to the NGINX config file.
 
-1. Load the NGINX App Protect WAF module on the main context:
+1. Load the F5 WAF for NGINX module on the main context:
 
 ```nginx
 load_module modules/ngx_http_app_protect_module.so;
@@ -30,7 +30,7 @@ app_protect_enforcer_address 127.0.0.1:50000;
 {{< call-out "note" >}} The app_protect_enforcer_address directive is a required directive for Nginx App Protect to work and must match 127.0.0.1:50000{{< /call-out >}}
 
 
-3. Enable NGINX App Protect WAF with the `app_protect_enable` directives in the appropriate scope. The `app_protect_enable` directive may be set in the `http`, `server`, and `location` contexts.
+3. Enable F5 WAF for NGINX with the `app_protect_enable` directives in the appropriate scope. The `app_protect_enable` directive may be set in the `http`, `server`, and `location` contexts.
 
 It is recommended to have a basic policy enabled in the `http` or `server` context to process malicious requests in a more complete manner.
 
@@ -110,7 +110,7 @@ NGINXaas for Azure also supports custom security policies. You can create and mo
 To create a custom security policy in the Azure Portal:
 
 1. Select your deployment
-2. Select **NGINX app protect WAF** from the menu on the left
+2. Select **F5 WAF for NGINX** from the menu on the left
 3. Select **Custom Policies**
 4. Select **Add Custom Security Policy** to open the policy editor
 
@@ -131,8 +131,8 @@ As a workaround, make a copy of the default policy you want to use, then add it 
 
 The **Custom Policies** tab shows the status of your custom policies (Compilation and Application Status). Custom policies are automatically compiled when created or modified. Policies that are applied to the NGINX configuration cannot be deleted until they are first removed from the configuration. 
 
-It is highly recommended to use logging to monitor the performance of NGINX App Protect WAF and to help diagnose problems. See [Enable App Protect WAF Logs]({{< ref "/nginxaas-azure/app-protect/enable-logging.md" >}}) for directions to configure security and operational logs.
+It is highly recommended to use logging to monitor the performance of F5 WAF for NGINX and to help diagnose problems. See [Enable F5 WAF for NGINX Logs]({{< ref "/nginxaas-azure/app-protect/enable-logging.md" >}}) for directions to configure security and operational logs.
 
 ## What's next
 
-[Enable App Protect WAF Logs]({{< ref "/nginxaas-azure/app-protect/enable-logging.md" >}})
+[Enable F5 WAF for NGINX Logs]({{< ref "/nginxaas-azure/app-protect/enable-logging.md" >}})

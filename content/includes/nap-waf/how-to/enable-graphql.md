@@ -1,6 +1,6 @@
 This section describes how to configure GraphQL with minimal configuration. Refer to the following sections for GraphQL elements definitions and details about advanced configuration options.
 
-{{< call-out "note" >}} GraphQL is supported on NGINX App Protect WAF version starting 4.2. Make sure you're running NGINX App Protect WAF version 4.2 or later to get GraphQL to work properly.{{< /call-out >}}
+{{< call-out "note" >}} GraphQL is supported on F5 WAF for NGINX version starting 4.2. Make sure you're running F5 WAF for NGINX version 4.2 or later to get GraphQL to work properly.{{< /call-out >}}
 
 GraphQL policy consists of three basic elements: GraphQL Profile, GraphQL Violations and GraphQL URL.
 
@@ -69,7 +69,7 @@ http {
     sendfile        on;
     keepalive_timeout  65;
 
-    app_protect_enable on;  # This is how you enable NGINX App Protect WAF in the relevant context/block
+    app_protect_enable on;  # This is how you enable F5 WAF for NGINX in the relevant context/block
     app_protect_policy_file "/etc/app_protect/conf/NginxDefaultPolicy.json"; # This is a reference to the policy file to use. If not defined, the default policy is used
     app_protect_security_log_enable on; # This section enables the logging capability
     app_protect_security_log "/etc/app_protect/conf/log_default.json" syslog:server=127.0.0.1:514; # This is where the remote logger is defined in terms of: logging options (defined in the referenced file), log server IP, log server port

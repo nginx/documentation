@@ -51,7 +51,7 @@ NGINX Instance Manager is part of NGINX One, which includes [NGINX One component
   {{<card title="Monitor metrics and events" titleUrl="/nginx-instance-manager/monitoring/" >}}
       Track performance, system health, and changes using built-in metrics, logs, and the REST API.
     {{</card>}}
-    {{<card title="Secure with NGINX App Protect WAF" titleUrl="/nginx-instance-manager/nginx-app-protect/" >}}
+    {{<card title="Secure with F5 WAF for NGINX" titleUrl="/nginx-instance-manager/nginx-app-protect/" >}}
       Apply WAF policies and monitor activity from a centralized view.
   {{</card>}}
 {{</card-section>}}
@@ -97,10 +97,10 @@ NGINX Instance Manager is part of NGINX One, which includes [NGINX One component
     {{</ card >}}
   {{</ card-section >}}
   {{< card-section title="Security">}}
-    {{< card title="NGINX App Protect WAF" titleUrl="/nginx-app-protect-waf" brandIcon="NGINX-App-Protect-WAF-product-icon.png">}}
+    {{< card title="F5 WAF for NGINX" titleUrl="/nginx-app-protect-waf" brandIcon="NGINX-App-Protect-WAF-product-icon.png">}}
       Lightweight, high-performance, advanced protection against Layer 7 attacks on your apps and APIs.
     {{</ card >}}
-    {{< card title="NGINX App Protect DoS" titleUrl="/nginx-app-protect-dos" brandIcon="NGINX-App-Protect-DoS-product-icon.png">}}
+    {{< card title="F5 DoS for NGINX" titleUrl="/nginx-app-protect-dos" brandIcon="NGINX-App-Protect-DoS-product-icon.png">}}
       Defend, adapt, and mitigate against Layer 7 denial-of-service attacks on your apps and APIs.
   {{</ card >}}
 {{</ card-section >}}

@@ -4,7 +4,7 @@ Download the NGINX Plus repository file [plus-amazonlinux2023.repo](https://cs.n
 sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/plus-amazonlinux2023.repo
 ```
 
-Create NGINX App Protect WAF v5 repository file, named `/etc/yum.repos.d/app-protect-x-plus.repo` with the following contents:
+Create F5 WAF for NGINX v5 repository file, named `/etc/yum.repos.d/app-protect-x-plus.repo` with the following contents:
 
 ```none
 [app-protect-x-plus]
@@ -16,7 +16,7 @@ gpgcheck=0
 enabled=1
 ```
 
-Install the NGINX App Protect WAF v5 package:
+Install the F5 WAF for NGINX v5 package:
 
 ```shell
 sudo dnf install app-protect-module-plus

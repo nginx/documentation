@@ -1,11 +1,11 @@
 ---
-title: NGINX App Protect DoS Arbitrator 1.1.1
+title: F5 DoS for NGINX Arbitrator 1.1.1
 toc: true
 weight: 115
 nd-docs: DOCS-1205
 ---
 
-Here you can find the release information for F5 NGINX App Protect DoS Arbitrator v1.1.1.
+Here you can find the release information for F5 F5 DoS for NGINX Arbitrator v1.1.1.
 
 ## Arbitrator Service Release 1.1.1
 
