@@ -13,6 +13,10 @@ To see a list of currently active issues, visit the [Known issues]({{< ref "/ngi
 
 To review older entries, visit the [Changelog archive]({{< ref "/nginxaas-azure/changelog-archive" >}}) section.
 
+## TODO, 2025
+- {{% icon-feature %}} **Support for downloading AKV certificates via Private Endpoints**
+
+NGINXaaS now supports downloading certificate from Azure Key Vault via Private Endpoints. This will allow users to increase network security by disabling public access on their Key Vault. For more information, please visit [Integrate with Private Endpoint]({{< ref "/nginxaas-azure/quickstart/security-controls/certificates.md#integrate-with-private-endpoint" >}})
 
 ## September 18, 2025
 
