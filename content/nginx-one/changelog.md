@@ -30,6 +30,20 @@ h2 {
 
 Stay up-to-date with what's new and improved in the F5 NGINX One Console.
 
+## September 17, 2025
+
+### Added observability features
+
+For each instance, you can now visualize the following items from the NGINX One Console:
+
+- Network traffic
+- Connections (active and idle)
+- Requests
+- Response codes
+- Memory and CPU utilization
+
+To access this screen, select **Manage** > **Instances**, select an instance, select an instance hostname, and then select the **Metrics** tab.
+
 ## July 15, 2025
 
 ### Set up F5 NGINX App Protect WAF security policies
