@@ -608,6 +608,7 @@ cd custom-resources
 
 **Sample APSignatures Resource:**
 
+APSignatures CR is required for download the security update packages directly from the NGINX repository.
 Create a file named `signatures.yaml` with the following content:
 
 ```yaml
@@ -625,7 +626,7 @@ spec:
 ```
 
 {{< call-out "note" >}}
-The APSignatures must have name `signatures`. Only one APSignatures instance can exist
+The APSignatures `metadata.name` must be `signatures`. Only one APSignatures instance can exist
 {{< /call-out >}}
 
 Apply the manifest:
@@ -644,20 +645,46 @@ Downloading security updates may take several minutes. The version of security u
 
 #### Using Security Update for users who can't use the nginx repo - Offline solution
 
-For users who prefer not to download the security update packages directly from the NGINX repository when using the APSignatures CR, there are two supported options:
+For users who prefer not to download the security update packages directly from the NGINX repository, there are two supported options:
+
+{{< call-out "note" >}}
+You should not create APSignatures CR in this case.
+{{< /call-out >}}
+
 
 **1. Manual Package Placement**
 
- - Download the required packages.
+ - Create `/mnt/nap5_bundles_pv_data/security_updates_data/` directory.
+ - Download the required security update packages (attack-signatures/bot-signatures/threat-campaigns). Use Debian packages. Don't change package file names.
  - Place them in the `/mnt/nap5_bundles_pv_data/security_updates_data/` directory.
- - Ensure the files have `101:101` ownership and permissions.
+ - Ensure the files and `security_updates_data` directory have `101:101` ownership and permissions.
 
 **2. Custom Compiler Image**
 
- - Build a Docker image that includes the desired packages.
- - Use this custom image in place of downloading packages at runtime.
-
-
+ - Build a Docker image that includes the desired packages. See [Building Compiler Image]({{< ref "/nap-waf/v5/admin-guide/compiler.md" >}})
+ - Use this custom image in helm chart deployment:
+  
+  Change `appprotect.policyController.wafCompiler.image.repository` and `appprotect.policyController.wafCompiler.image.tag` values in your `values.yaml` file:
+  ```yaml
+  appprotect:
+    policyController:
+      wafCompiler:
+        image:
+          ## The image repository of the WAF Compiler.
+          repository: <your custom repo>
+          ## The tag of the WAF Compiler image.
+          tag: <your custom tag>
+  ```
+    
+  OR use `--set`:
+  ```bash
+  helm install 
+     ...
+     --set appprotect.policyController.wafCompiler.image.repository="<your custom repo>"
+     --set appprotect.policyController.wafCompiler.image.tag="<your custom tag>"
+     ...
+  ```
+    
 ### Creating Policy Resources
 
 Once PLM is deployed, you can create policy resources using Kubernetes manifests. 
