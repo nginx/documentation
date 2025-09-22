@@ -66,6 +66,14 @@ Use the [NGINX App Protect WAF Compiler]({{< ref "/nap-waf/v5/admin-guide/compil
 
 For signature updates, read the [Update App Protect Signatures]({{< ref "/nap-waf/v5/admin-guide/compiler.md#update-app-protect-signatures" >}}) section of the compiler documentation.
 
+## Policy Lifecycle Management
+
+NGINX App Protect WAF v5 introduces Policy Lifecycle Management (PLM) as a comprehensive solution for automating the management, compilation, and deployment of security policies within Kubernetes environments. PLM extends the WAF compiler capabilities by providing a native Kubernetes operator-based approach to policy orchestration.
+
+The Policy Lifecycle Management system is architected around a **Policy Controller** that implements the Kubernetes operator pattern to manage the complete lifecycle of WAF security artifacts. The system addresses the fundamental challenge of policy distribution at scale by eliminating manual intervention points and providing a declarative configuration model through Custom Resource Definitions (CRDs) for policies, logging profiles, signatures, and user-defined signatures.
+
+For detailed information about PLM architecture, functional components, and deployment procedures, see [Policy Lifecycle Management Guide]({{< ref "/nap-waf/v5/admin-guide/policy-lifecycle-management.md" >}}).
+
 ---
 
 ## Transitioning from NGINX App Protect WAF v4 to v5

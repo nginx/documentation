@@ -294,7 +294,7 @@ NGINX Plus can be installed on the following versions of Debian or Ubuntu:
 
 1. {{< include "nginx-plus/install/check-nginx-binary-version.md" >}}
 
-1. {{< include "nginx-plus/install/configure-usage-reporting.md" >}}
+1. Make sure license reporting to F5 licensing endpoint is configured. By default, no configuration is required. However, it becomes necessary when NGINX Plus is installed in a disconnected environment, uses NGINX Instance Manager for usage reporting, or uses a custom path for the license file. Configuration can be done in the [`mgmt {}`](https://nginx.org/en/docs/ngx_mgmt_module.html) block of the NGINX Plus configuration file (`/usr/local/etc/nginx/nginx.conf`). For more information, see [About Subscription Licenses](https://docs.nginx.com/solutions/about-subscription-licenses/).
 
 1. {{< include "nginx-plus/install/install-nginx-agent-for-nim.md" >}}
 
@@ -398,7 +398,7 @@ NGINX Plus can be installed on the following versions of Debian or Ubuntu:
 
 1. {{< include "nginx-plus/install/install-nginx-agent-for-nim.md" >}}
 
-## Install Dynamically Loadable Modules {#install_modules}
+## Install dynamically loadable modules {#install_modules}
 
 NGINX Plus functionality can be extended with dynamically loadable modules. They can be added or updated independently of the core binary, enabling powerful capabilities such as advanced security, traffic shaping, telemetry, embedded scripting, geolocation, and many more.
 
@@ -422,6 +422,7 @@ NGINX-authored dynamic modules are developed and officially maintained by the F5
 {{< bootstrap-table "table table-striped table-bordered" >}}
 | Name                            | Description                       | Package name       |
 |---------------------------------|-----------------------------------|--------------------|
+| [ACME](https://github.com/nginx/nginx-acme) | Automatic certificate management ([ACMEv2](https://www.rfc-editor.org/rfc/rfc8555.html)) protocol support. | [`nginx-plus-module-acme`]({{< ref "nginx/admin-guide/dynamic-modules/acme.md" >}}) |
 | [GeoIP](https://nginx.org/en/docs/http/ngx_http_geoip_module.html) | Enables IP-based geolocation using the precompiled MaxMind databases. | [`nginx-plus-module-geoip`]({{< ref "nginx/admin-guide/dynamic-modules/geoip.md" >}}) |
 | [Image-Filter](https://nginx.org/en/docs/http/ngx_http_image_filter_module.html) | Adds on-the-fly support for JPEG, GIF, PNG, and WebP image resizing and cropping. | [`nginx-plus-module-image-filter`]({{< ref "nginx/admin-guide/dynamic-modules/image-filter.md" >}})                   |
 | [njs Scripting Language](https://nginx.org/en/docs/njs/) | Adds JavaScript-like scripting for advanced server-side logic in NGINX configuration file. | [`nginx-plus-module-njs`]({{< ref "nginx/admin-guide/dynamic-modules/nginscript.md" >}}) |
@@ -514,7 +515,7 @@ After installing the module, you will need to:
 - enable it with the [`load_module`](https://nginx.org/en/docs/ngx_core_module.html#load_module) directive
 - configure it according to the module's documentation
 
-### Enabling Dynamic Modules {#enable_dynamic}
+### Enabling dynamic modules {#enable_dynamic}
 
 To enable a dynamic module:
 
@@ -605,7 +606,7 @@ For a community dynamic module to work with NGINX Plus, it must be compiled alo
    Expected output of the command:
 
    ```shell
-   nginx version: nginx/1.27.4 (nginx-plus-r34)
+   nginx version: nginx/1.29.0 (nginx-plus-r35)
    ```
 
 1. Prepare the build environment.
@@ -638,10 +639,10 @@ For a community dynamic module to work with NGINX Plus, it must be compiled alo
 
    - Identify the NGINX Open Source version that corresponds to your version of NGINX Plus. See [NGINX Plus Releases]({{< ref "nginx/releases.md" >}}).
 
-   - Download the sources for the appropriate NGINX Open Source mainline version, in this case 1.27.4:
+   - Download the sources for the appropriate NGINX Open Source mainline version, in this case 1.29.0:
 
      ```shell
-     wget -qO - https://nginx.org/download/nginx-1.27.4.tar.gz | tar zxfv -
+     wget -qO - https://nginx.org/download/nginx-1.29.0.tar.gz | tar zxfv -
      ```
 
 1. Obtain the source for the dynamic module.
@@ -657,7 +658,7 @@ For a community dynamic module to work with NGINX Plus, it must be compiled alo
    First, establish binary compatibility by running the `configure` script with the `‑‑with‑compat` option. Then compile the module with `make modules`.
 
    ```shell
-   cd nginx-1.27.4/ && \
+   cd nginx-1.29.0/ && \
    ./configure --with-compat --add-dynamic-module=../<MODULE-SOURCES> && \
    make modules
    ```
@@ -676,7 +677,7 @@ For a community dynamic module to work with NGINX Plus, it must be compiled alo
 1. Make a copy of the module file and include the NGINX Open Source version in the filename. This makes it simpler to manage multiple versions of a dynamic module in the production environment.
 
    ```shell
-   cp objs/ngx_http_hello_world_module.so ./ngx_http_hello_world_module_1.27.4.so
+   cp objs/ngx_http_hello_world_module.so ./ngx_http_hello_world_module_1.29.0.so
    ```
 
 1. Transfer the resulting `.so` file from your build environment to the production environment.
@@ -688,12 +689,12 @@ For a community dynamic module to work with NGINX Plus, it must be compiled alo
    - `/usr/local/etc/nginx/modules` for FreeBSD
 
    ```shell
-   sudo cp ngx_http_hello_world_module_1.27.4.so /usr/local/nginx/modules/ngx_http_hello_world_module_1.27.4.so
+   sudo cp ngx_http_hello_world_module_1.29.0.so /usr/local/nginx/modules/ngx_http_hello_world_module_1.29.0.so
    ```
 
 After installing the module, you need to enable it in the NGINX Plus configuration file. For more information, see [Enabling Dynamic Modules](#enable_dynamic).
 
-## NGINX Plus Unprivileged Installation {#unpriv_install}
+## NGINX Plus unprivileged installation {#unpriv_install}
 
 In some environments, access to the root account is restricted for security reasons. On Linux systems, this limitation prevents the use of package managers to install NGINX Plus without root privileges.
 
@@ -786,7 +787,7 @@ With this script, you can also upgrade an existing unprivileged installation of 
 ./ngxunprivinst.sh upgrade [-y] -p <path> <file1.rpm> <file2.rpm>
 ```
 
-## NGINX Plus Offline Installation {#offline_install}
+## NGINX Plus offline installation {#offline_install}
 
 This section explains how to install NGINX Plus and its [dynamic modules]({{< ref "/nginx/admin-guide/dynamic-modules/dynamic-modules.md" >}}) on a server with limited or no Internet access.
 
@@ -978,10 +979,10 @@ To upgrade your NGINX Plus installation to the newest version:
    The output of the command:
 
    ```shell
-   nginx version: nginx/1.27.4 (nginx-plus-r34)
+   nginx version: nginx/1.29.0 (nginx-plus-r35)
    ```
 
-## Upgrade NGINX Plus Modules {#upgrade_modules}
+## Upgrade NGINX Plus modules {#upgrade_modules}
 
 The upgrade procedure depends on how the module was supplied and installed.
 
@@ -991,7 +992,7 @@ The upgrade procedure depends on how the module was supplied and installed.
 
 - [Community](#community-dynamic-modules) dynamic modules must be recompiled against the corresponding NGINX Open Source  version. See [Installing NGINX Community Modules](#install_modules_oss).
 
-## Explore Related Topics
+## Explore related topics
 
 ### Install NGINX App Protect
 

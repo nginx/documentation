@@ -1,10 +1,7 @@
 
 {{ define "main" }}
 <div class="row flex-xl-nowrap">
-  <nav class="sidenav overflow-auto col-md-3 d-none d-xl-block d-print-none align-top">
-    {{ partial "sidebar.html" . }}
-  </nav>
-  
+
     {{ .Content }}
 
 <!-- If there is a script defined in the page metadata, load it  -->
@@ -14,4 +11,3 @@
 {{end }}
 
 {{ end }}
-

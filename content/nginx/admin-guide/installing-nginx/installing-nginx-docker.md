@@ -35,7 +35,7 @@ The registry contains the following image types:
 - [NGINX Plus]({{< ref "/nginx/releases.md" >}}):</br>
   `https://private-registry.nginx.com/v2/nginx-plus/base`
 
-- [Unprivileged]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md#nginx-plus-unprivileged-installation" >}}) installation of NGINX Plus:</br>
+- [Unprivileged]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md#unpriv_install" >}}) installation of NGINX Plus:</br>
   `https://private-registry.nginx.com/v2/nginx-plus/rootless-base`
 
 - NGINX Plus bundled with [NGINX Agent](https://docs.nginx.com/nginx-agent/overview/):</br>

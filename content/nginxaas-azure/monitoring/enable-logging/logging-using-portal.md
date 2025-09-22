@@ -10,7 +10,7 @@ type:
 
 ## Overview
 
-F5 NGINX as a Service for Azure (NGINXaaS) supports integrating Azure Diagnostic Settings to collect NGINX error and access logs.
+F5 NGINXaaS for Azure (NGINXaaS) supports integrating Azure Diagnostic Settings to collect NGINX error and access logs.
 
 {{< call-out "caution"  >}}
 Enabling logs using the **NGINX Logs** blade on your NGINXaaS deployment is now deprecated. This feature will be removed in an upcoming update. If you have issues accessing your NGINX logs using the deprecated method, please follow the steps in this guide to access your NGINX logs.

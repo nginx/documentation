@@ -7,11 +7,41 @@ url: /nginxaas/azure/changelog/
 
 ---
 
-Learn about the latest updates, new features, and resolved bugs in F5 NGINX as a Service for Azure.
+Learn about the latest updates, new features, and resolved bugs in F5 NGINXaaS for Azure.
 
 To see a list of currently active issues, visit the [Known issues]({{< ref "/nginxaas-azure/known-issues.md" >}}) page.
 
 To review older entries, visit the [Changelog archive]({{< ref "/nginxaas-azure/changelog-archive" >}}) section.
+
+
+## September 18, 2025
+
+- {{% icon-feature %}} **Notification on update to deployments using the Stable Upgrade Channel**
+
+   NGINXaaS for Azure deployments using the **Stable** [Upgrade Channel]({{< ref "/nginxaas-azure/quickstart/upgrade-channels.md" >}}) will be updated to [NGINX Plus Release 35 (R35)]({{< ref "/nginx/releases.md#nginxplusrelease-35-r35" >}}) during the week of Oct 06-10, 2025. This will also include updates to the following NGINX Plus modules:
+  - nginx-plus-module-njs
+
+   Please review the [NGINX Plus Release 35 (R35)]({{< ref "/nginx/releases.md#nginxplusrelease-35-r35" >}}) Release Notes carefully. If you have any concerns, it's recommended to validate your configuration against NGINX Plus R35 by setting up a test deployment using the **Preview** [Upgrade Channel]({{< ref "/nginxaas-azure/quickstart/upgrade-channels.md" >}}). See [these instructions]({{< ref "/nginxaas-azure/quickstart/recreate.md" >}}) on how to set up a deployment similar to your current one.
+
+   If you have any questions or concerns, please [contact us]({{< ref "/nginxaas-azure/get-help.md" >}}).
+
+## August 18, 2025
+
+- {{% icon-feature %}} **Updates to NGINXaaS for Azure GitHub Action**
+
+  - Users can now specify files in their configuration directory to be marked as protected using a new optional Action input called `protected-files`. This new input accepts comma-separated list of file paths relative to the NGINX configuration directory that should be marked as protected. For more information, please visit [NGINXaaS for Azure Deployment Action](https://github.com/marketplace/actions/nginx-configuration-sync) on GitHub actions marketplace. Example:
+      ```yaml
+      - name: Sync NGINX Config to Azure
+        uses: nginxinc/nginx-for-azure-deploy-action@v0.5.0
+        with:
+           nginx-config-directory-path: configs/
+           nginx-root-config-file: nginx.conf
+           transformed-nginx-config-directory-path: /etc/nginx/
+           protected-files: protected-1.conf,protected-2.conf
+      ```
+
+
+  - To enhance security, the service principal used for Azure login prior to running the NGINXaaS for Azure Deployment Action now only requires the Contributor role at the scope of the NGINXaaS for Azure deployment. It no longer needs the Contributor role at the resource group level containing the deployment.
 
 
 ## May 22, 2025
