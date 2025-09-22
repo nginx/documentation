@@ -16,12 +16,6 @@ nd-content-type: reference
 nd-product: NAP-WAF
 ---
 
-{{< call-out "warning" "Information architecture note" >}}
-
-There is some content remaining to migrate and rewrite from the equivalent NAP-WAF content.
-
-{{< /call-out >}}
-
 Policy lifecycle management (PLM) is a system for managing, compiling and deploying security policies in Kubernetes environments. 
 
 It extends the WAF compiler capabilities by providing a native Kubernetes operater-based approach for policy orchestration.
@@ -46,6 +40,8 @@ To complete this guide, you will need the following prerequisites:
 - An active F5 WAF for NGINX subscription (Purchased or trial)
 - Credentials to the [MyF5 Customer Portal](https://account.f5.com/myf5), provided by email from F5, Inc.
 
+Guidance for [disconnected or air-gapped environments](#disconnected-or-air-gapped-environments) is available if it is applicable to your deployment.
+
 ## Download your subscription credentials 
 
 1. Log in to [MyF5](https://my.f5.com/manage/s/).
@@ -61,13 +57,17 @@ Set the following environment variables, which point towards your credential fil
 ```shell
 export JWT=<your-nginx-jwt-token>
 export NGINX_REGISTRY_TOKEN=<base64-encoded-docker-credentials>
-export NGINX_CERT=<base64-encoded-nginx-cert>
-export NGINX_KEY=<base64-encoded-nginx-key>
+export NGINX_CERT=$(cat /path/to/your/nginx-repo.crt | base64 -w 0)
+export NGINX_KEY=$(cat /path/to/your/nginx-repo.key | base64 -w 0)
 ```
 
 They will be used to download and apply necessary resources.
 
-## Configure Docker for the F5 Container Registry 
+## Configure Docker for the F5 Container Registry
+
+{{< call-out "note" >}}
+You may be able to skip this step on an existing Kubernetes deployment, where guidance was already given to configure Docker.
+{{< /call-out >}}
 
 Create a directory and copy your certificate and key to this directory:
 
@@ -88,8 +88,8 @@ docker login private-registry.nginx.com
 Create the directory on the cluster:
 
 ```shell
-mkdir -p /mnt/nap5_bundles_pv_data
-chown -R 101:101 /mnt/nap5_bundles_pv_data
+sudo mkdir -p /mnt/nap5_bundles_pv_data
+sudo chown -R 101:101 /mnt/nap5_bundles_pv_data
 ```
 
 Create the file `pv-hostpath.yaml` with the persistent volume file content:
@@ -120,7 +120,7 @@ kubectl apply -f pv-hostpath.yaml
 
 {{< call-out "note" >}}
 
-The volume name defaults to `<release-name>-bundles-pv`, but can be customized using the `appprotect.storage.pv.name` setting in your values.yaml file.
+The volume name defaults to `<release-name>-bundles-pv`, but can be customized using the `appprotect.storage.pv.name` setting in your `values.yaml` file.
 
 If you do this, ensure that all corresponding values for persistent volumes point to the correct names.
 
@@ -229,39 +229,314 @@ Policy lifecycle management is deployed as part of the F5 WAF for NGINX Helm cha
 To enable it, you must configure the Policy Controller settings in your `values.yaml` file:
 
 ```yaml
+# Specify the target namespace for your deployment
+# Replace <namespace> with your chosen namespace name (e.g., "nap-plm" or "production")
+# This must match the namespace you will create in Step 4 or an existing namespace you plan to use
+namespace: <namespace>
+
 appprotect:
+  ## Note: This option is useful if you use Nginx Ingress Controller for example.
+  ## Enable/Disable Nginx App Protect Deployment
+  enable: true
+  
+  ## The number of replicas of the Nginx App Protect deployment
+  replicas: 1
+  
+  ## Configure root filesystem as read-only and add volumes for temporary data
+  readOnlyRootFilesystem: false
+  
+  ## The annotations for deployment
+  annotations: {}
+  
+  ## InitContainers for the Nginx App Protect pod
+  initContainers: []
+    # - name: init-container
+    #   image: busybox:latest
+    #   command: ['sh', '-c', 'echo this is initial setup!']
+  
+  nginx:
+    image:
+      ## The image repository of the Nginx App Protect WAF image you built
+      ## This must reference the Docker image you built following the Docker deployment guide
+      ## Replace <your-private-registry> with your actual registry and update the image name/tag as needed
+      repository: <your-private-registry>/nginx-app-protect-5
+      ## The tag of the Nginx image
+      tag: latest
+    ## The pull policy for the Nginx image
+    imagePullPolicy: IfNotPresent
+    ## The resources of the Nginx container.
+    resources:
+      requests:
+        cpu: 10m
+        memory: 16Mi
+      # limits:
+      #   cpu: 1
+      #   memory: 1Gi
+
+  wafConfigMgr:
+    image:
+      ## The image repository of the WAF Config Mgr
+      repository: private-registry.nginx.com/nap/waf-config-mgr
+      ## The tag of the WAF Config Mgr image
+      tag: 5.9.0
+    ## The pull policy for the WAF Config Mgr image
+    imagePullPolicy: IfNotPresent
+    ## The resources of the Waf Config Manager container
+    resources:
+      requests:
+        cpu: 10m
+        memory: 16Mi
+      # limits:
+      #   cpu: 500m
+      #   memory: 500Mi
+
+  wafEnforcer:
+    image:
+      ## The image repository of the WAF Enforcer
+      repository: private-registry.nginx.com/nap/waf-enforcer
+      ## The tag of the WAF Enforcer image
+      tag: 5.9.0
+    ## The pull policy for the WAF Enforcer image
+    imagePullPolicy: IfNotPresent
+    ## The environment variable for enforcer port to be set on the WAF Enforcer container
+    env:
+      enforcerPort: "50000"
+    ## The resources of the WAF Enforcer container
+    resources:
+      requests:
+        cpu: 20m
+        memory: 256Mi
+      # limits:
+      #   cpu: 1
+      #   memory: 1Gi
+
+  wafIpIntelligence:
+    enable: false
+    image:
+      ## The image repository of the WAF IP Intelligence
+      repository: private-registry.nginx.com/nap/waf-ip-intelligence
+      ## The tag of the WAF IP Intelligence
+      tag: 5.9.0
+    ## The pull policy for the WAF IP Intelligence
+    imagePullPolicy: IfNotPresent
+    ## The resources of the WAF IP Intelligence container
+    resources:
+      requests:
+        cpu: 10m
+        memory: 256Mi
+      # limits:
+      #   cpu: 200m
+      #   memory: 1Gi
+  
   policyController:
+    ## Enable/Disable Policy Controller Deployment
     enable: true
+    ## Number of replicas for the Policy Controller
     replicas: 1
+    ## The image repository of the WAF Policy Controller
     image:
       repository: private-registry.nginx.com/nap/waf-policy-controller
-      tag: 5.8.0
+      ## The tag of the WAF Policy COntroller
+      tag: 5.9.0
+      ## The pull policy for the WAF Policy Controller
       imagePullPolicy: IfNotPresent
     wafCompiler:
+      ## The image repository of the WAF Compiler
       image:
         repository: private-registry.nginx.com/nap/waf-compiler
-        tag: 5.8.0
+         ## The tag of the WAF Compiler image
+        tag: 5.9.0
+    ## Save logs before deleting a job or not
     enableJobLogSaving: false
+    ## The resources of the WAF Policy Controller
     resources:
       requests:
         cpu: 100m
         memory: 128Mi
-```
+      # limits:
+      #   memory: 256Mi
+      #   cpu: 250m
+    ## InitContainers for the Policy Controller pod
+    initContainers: []
+      # - name: init-container
+      #   image: busybox:latest
+      #   command: ['sh', '-c', 'echo this is initial setup!']
 
-### NGINX Repository Configuration
+  storage:
+    bundlesPath:
+      ## Specifies the name of the volume to be used for storing policy bundles
+      name: app-protect-bundles
+      ## Defines the mount path inside the WAF Config Manager container where the bundles will be stored
+      mountPath: /etc/app_protect/bundles
+    pv:
+      ## PV name that pvc will request
+      ## if empty will be used <release-name>-shared-bundles-pv
+      name: nginx-app-protect-shared-bundles-pv
+    pvc:
+      ## The storage class to be used for the PersistentVolumeClaim. 'manual' indicates a manually managed storage class
+      bundlesPvc:
+        storageClass: manual
+        ## The amount of storage requested for the PersistentVolumeClaim
+        storageRequest: 2Gi
 
-To enable signature updates with the APSignatures CRD, add your NGINX repository credentials:
+  # Not needed as values will be set during helm install
+  # nginxRepo:
+  #   ## Used for Policy Controller to pull the security updates from the NGINX repository.
+  #   ## The base64-encoded TLS certificate for the NGINX repository.
+  #   nginxCrt: ""
+  #   ## The base64-encoded TLS key for the NGINX repository.
+  #   nginxKey: ""
 
-```yaml
-appprotect:
-  nginxRepo:
-    nginxCrt: <base64-encoded-cert>
-    nginxKey: <base64-encoded-key>
+  config:
+    ## The name of the ConfigMap used by the Nginx container
+    name: nginx-config
+    ## The annotations of the configmap
+    annotations: {}
+
+    # Not needed as value will be set during helm install
+    # ## The JWT token license.txt of the ConfigMap for customizing NGINX configuration.
+    # nginxJWT: ""
+
+    ## The nginx.conf of the ConfigMap for customizing NGINX configuration
+    nginxConf: |-
+      user nginx;
+      worker_processes auto;
+
+      load_module modules/ngx_http_app_protect_module.so;
+
+      error_log /var/log/nginx/error.log notice;
+      pid /var/run/nginx.pid;
+
+      events {
+          worker_connections 1024;
+      }
+
+      # Uncomment if using mtls
+      # mTLS configuration
+      # stream {
+      #   upstream enforcer {
+      #     # Replace with the actual App Protect Enforcer address and port if different
+      #     server 127.0.0.1:4431;
+      #   }
+      #   server {
+      #     listen 5000;
+      #     proxy_pass enforcer;
+      #     proxy_ssl_server_name on;
+      #     proxy_timeout 30d;
+      #     proxy_ssl on;
+      #     proxy_ssl_certificate /etc/ssl/certs/app_protect_client.crt;
+      #     proxy_ssl_certificate_key /etc/ssl/certs/app_protect_client.key;
+      #     proxy_ssl_trusted_certificate /etc/ssl/certs/app_protect_server_ca.crt;
+      #   }
+      # }
+
+      http {
+          include /etc/nginx/mime.types;
+          default_type application/octet-stream;
+
+          log_format main '$remote_addr - $remote_user [$time_local] "$request" '
+          '$status $body_bytes_sent "$http_referer" '
+          '"$http_user_agent" "$http_x_forwarded_for"';
+
+          access_log stdout main;
+          sendfile on;
+          keepalive_timeout 65;
+
+          # Enable Policy Lifecycle Management
+          # WAF default config source. For policies from CRDs, use "custom-resource"
+          # Remove this line to use default bundled policies
+          app_protect_default_config_source "custom-resource";
+
+          # WAF enforcer address. For mTLS, use port 5000
+          app_protect_enforcer_address 127.0.0.1:50000;
+
+          server {
+              listen       80;
+              server_name  localhost;
+              proxy_http_version 1.1;
+
+              location / {
+                  app_protect_enable on;
+                  app_protect_security_log_enable on;
+                  app_protect_security_log log_all stderr;
+                  
+                  # WAF policy - use Custom Resource name when PLM is enabled
+                  app_protect_policy_file app_protect_default_policy;
+
+                  client_max_body_size 0;
+                  default_type text/html;
+                  proxy_pass  http://127.0.0.1/proxy$request_uri;
+              }
+              
+              location /proxy {
+                  app_protect_enable off;
+                  client_max_body_size 0;
+                  default_type text/html;
+                  return 200 "Hello! I got your URI request - $request_uri\n";
+              }
+          }
+          # include /etc/nginx/conf.d/*.conf;
+      }
+
+    ## The default.conf of the ConfigMap for customizing NGINX configuration
+    nginxDefault: {}
+
+    ## The extra entries of the ConfigMap for customizing NGINX configuration
+    entries: {}
+
+  ## It is recommended to use your own TLS certificates and keys
+  mTLS:
+    ## The base64-encoded TLS certificate for the App Protect Enforcer (server)
+    ## Note: It is recommended that you specify your own certificate
+    serverCert: ""
+    ## The base64-encoded TLS key for the App Protect Enforcer (server)
+    ## Note: It is recommended that you specify your own key
+    serverKey: ""
+    ## The base64-encoded TLS CA certificate for the App Protect Enforcer (server)
+    ## Note: It is recommended that you specify your own certificate
+    serverCACert: ""
+    ## The base64-encoded TLS certificate for the NGINX (client)
+    ## Note: It is recommended that you specify your own certificate
+    clientCert: ""
+    ## The base64-encoded TLS key for the NGINX (client)
+    ## Note: It is recommended that you specify your own key
+    clientKey: ""
+    ## The base64-encoded TLS CA certificate for the NGINX (client)
+    ## Note: It is recommended that you specify your own certificate
+    clientCACert: ""
+
+  ## The extra volumes of the Nginx container
+  volumes: []
+  # - name: extra-conf
+  #   configMap:
+  #     name: extra-conf
+
+  ## The extra volumeMounts of the Nginx container
+  volumeMounts: []
+  # - name: extra-conf
+  #   mountPath: /etc/nginx/conf.d/extra.conf
+  #   subPath: extra.conf
+
+  service:
+    nginx:
+      ports:
+        - port: 80
+          protocol: TCP
+          targetPort: 80
+      ## The type of service to create. NodePort will expose the service on each Node's IP at a static port.
+      type: NodePort
+
+# Not needed as value will be set during helm install
+# ## This is a base64-encoded string representing the contents of the Docker configuration file (config.json).
+# ## This file is used by Docker to manage authentication credentials for accessing private Docker registries.
+# ## By encoding the configuration file in base64, sensitive information such as usernames, passwords, and access tokens are protected from being exposed directly in plain text.
+# ## You can create this base64-encoded string yourself by encoding your config.json file, or you can create the Kubernetes secret containing these credentials before deployment and not use this value directly in the values.yaml file.
+# dockerConfigJson: ""
 ```
 
 ## Configure Docker
    
-Create a Docker registry secret or add the details to _values.yaml_:
+Create a Docker registry secret:
 
 ```shell
 kubectl create secret docker-registry regcred -n <namespace> \
@@ -270,9 +545,9 @@ kubectl create secret docker-registry regcred -n <namespace> \
   --docker-password=none
 ```
 
-## Deploy the Helm chart
+## Deploy or upgrade the Helm chart
    
-Install the chart, adding the parameter to enable the Policy Controller:
+Deploy the chart, adding the parameter to enable the Policy Controller:
 
 ```shell
 helm install <release-name> . \
@@ -283,6 +558,19 @@ helm install <release-name> . \
     --set appprotect.config.nginxJWT=$JWT \
     --set appprotect.nginxRepo.nginxCert=$NGINX_CERT \
     --set appprotect.nginxRepo.nginxKey=$NGINX_KEY
+```
+
+If you would like to instead upgrade an existing deployment, use this `upgrade` command:
+
+```shell
+helm upgrade <release-name> . \
+  --namespace <namespace> \
+  --values /path/to/your/values.yaml \
+  --set appprotect.policyController.enable=true \
+  --set dockerConfigJson=$NGINX_REGISTRY_TOKEN \
+  --set appprotect.config.nginxJWT=$JWT \
+  --set appprotect.nginxRepo.nginxCrt=$NGINX_CERT \
+  --set appprotect.nginxRepo.nginxKey=$NGINX_KEY
 ```
 
 ## Verify the Policy Controller is running
@@ -380,17 +668,115 @@ kubectl apply -f apple-usersig.yaml -n <namespace>
 
 ### Check policy status
 
-Check the status of your policy resources:
-
-```shell
-kubectl get appolicy -n <namespace>
-kubectl describe appolicy <policy-name> -n <namespace>
-```
+You can check the status of your resources using `kubectl get` or `kubectl describe`.
 
 The Policy Controller will show status information including:
 - Bundle location
 - Compilation status
 - Signature update timestamps
+
+```shell
+kubectl get appolicy dataguard-blocking -n <namespace> -o yaml
+```
+```yaml
+apiVersion: appprotect.f5.com/v1
+kind: APPolicy
+metadata:
+  name: dataguard-blocking
+  namespace: localenv-plm
+  # ... other metadata fields
+spec:
+  policy:
+    # ... policy configuration
+status:
+  bundle:
+    compilerVersion: 11.553.0
+    location: /etc/app_protect/bundles/dataguard-blocking-policy/dataguard-blocking_policy20250914102339.tgz
+    signatures:
+      attackSignatures: "2025-09-03T08:36:25Z"
+      botSignatures: "2025-09-03T10:50:19Z"
+      threatCampaigns: "2025-09-02T07:28:43Z"
+    state: ready
+  processing:
+    datetime: "2025-09-14T10:23:48Z"
+    isCompiled: true
+```
+
+```shell
+kubectl describe appolicy dataguard-blocking -n <namespace>
+```
+```text
+Name:         dataguard-blocking
+Namespace:    localenv-plm
+Labels:       <none>
+Annotations:  <none>
+API Version:  appprotect.f5.com/v1
+Kind:         APPolicy
+Metadata:
+  Creation Timestamp:  2025-09-10T11:17:07Z
+  Finalizers:
+    appprotect.f5.com/finalizer
+  Generation:  3
+  # ... other metadata fields
+Spec:
+  Policy:
+    Application Language:  utf-8
+    Blocking - Settings:
+      Violations:
+        Alarm:  true
+        Block:  true
+        Name:   VIOL_DATA_GUARD
+    Data - Guard:
+      Credit Card Numbers:  true
+      Enabled:              true
+      Enforcement Mode:     ignore-urls-in-list
+      # ... other policy settings
+Status:
+  Bundle:
+    Compiler Version:  11.553.0
+    Location:          /etc/app_protect/bundles/dataguard-blocking-policy/dataguard-blocking_policy20250914102339.tgz
+    Signatures:
+      Attack Signatures:  2025-09-03T08:36:25Z
+      Bot Signatures:     2025-09-03T10:50:19Z
+      Threat Campaigns:   2025-09-02T07:28:43Z
+    State:                ready
+  Processing:
+    Datetime:     2025-09-14T10:23:48Z
+    Is Compiled:  true
+Events:           <none>
+```
+
+The key information to review is the following:
+
+- **`Status.Bundle.State`**: Policy compilation state
+  - `ready` - Policy successfully compiled and available
+  - `processing` - Policy is being compiled
+  - `error` - Compilation failed (check Policy Controller logs)
+
+- **`Status.Bundle.Location`**: File path where the compiled policy bundle is stored
+
+- **`Status.Bundle.Compiler Version`**: Version of the WAF compiler used for compilation
+
+- **`Status.Bundle.Signatures`**: Timestamps showing when security signatures were last updated
+  - `Attack Signatures` - Attack signature update timestamp
+  - `Bot Signatures` - Bot signature update timestamp  
+  - `Threat Campaigns` - Threat campaign signature update timestamp
+
+- **`Status.Processing.Is Compiled`**: Boolean indicating if compilation completed successfully
+
+- **`Status.Processing.Datetime`**: Timestamp of the last compilation attempt
+
+- **`Events`**: Shows any Kubernetes events related to the policy (usually none for successful policies)
+
+- **`status.bundle.signatures`**: Timestamps showing when security signatures were last updated
+  - `attackSignatures` - Attack signature update timestamp
+  - `botSignatures` - Bot signature update timestamp  
+  - `threatCampaigns` - Threat campaign signature update timestamp
+
+- **`status.processing.isCompiled`**: Boolean indicating if compilation completed successfully
+
+- **`status.processing.datetime`**: Timestamp of the last compilation attempt
+
 
 ### Use specific security update versions
 
@@ -415,7 +801,9 @@ spec:
 ```
 
 {{< call-out "warning" >}}
-The APSignatures `name` argument _must_ be `signatures`. Only one APSignatures instance can exist.
+The APSignatures `metadata.name` argument _must_ be `signatures`. 
+
+Only one APSignatures instance can exist.
 {{< /call-out >}}
 
 Apply the Manifest:
@@ -518,7 +906,7 @@ The request should be blocked, confirming that Policy lifecycle management has s
 
 ## Upgrade the Helm chart
 
-Follow these steps to upgrade the Helm chart: they are similar to the initial deployment.
+Follow these steps to upgrade the Helm chart once installed: they are similar to the initial deployment.
 
 You should first [prepare environment variables](#prepare-environment-variables) and [configure Docker registry credentials](#configure-docker-for-the-f5-container-registry).
    
@@ -529,6 +917,10 @@ helm registry login private-registry.nginx.com
 helm pull oci://private-registry.nginx.com/nap/nginx-app-protect --version <new-release-version> --untar
 ```
    
+{{< call-out "warning">}}
+Helm charts come with a default `values.yaml` file: this should be ignored in favour of the customized file during set-up.
+{{< /call-out >}}
+
 Then change into the directory and apply the CRDs:
 
 ```shell
@@ -536,100 +928,106 @@ cd nginx-app-protect
 kubectl apply -f crds/
 ```
 
-4. **Create Storage**
-   
-   Create the directory on the cluster, and persistent volume for policy bundles:
-   ```bash
-   mkdir -p /mnt/nap5_bundles_pv_data
-   chown -R 101:101 /mnt/nap5_bundles_pv_data
-   ```
-   
-   Create a YAML file `pv-hostpath.yaml` with the PV file content:
-   ```
-   apiVersion: v1
-   kind: PersistentVolume
-   metadata:
-   name: nginx-app-protect-shared-bundles-pv
-   labels:
-       type: local
-   spec:
-   accessModes:
-       - ReadWriteMany
-   capacity:
-       storage: "2Gi"
-   hostPath:
-       path: "/mnt/nap5_bundles_pv_data"
-   persistentVolumeReclaimPolicy: Retain
-   storageClassName: manual
-   ``` 
-   Apply the `pv-hostpath.yaml` file to create the new PV:
-   ```shell
-   kubectl apply -f pv-hostpath.yaml
-   ```
-  
-   {{< call-out "note" >}}
-   The PV name defaults to `<release-name>-shared-bundles-pv`, but can be customized using the `appprotect.storage.pv.name` setting in your values.yaml file.
-   {{< /call-out >}}
+Finish the the process by using `helm upgrade`:
 
+```shell
+helm upgrade <release-name> . \
+  --namespace <namespace> \
+  --values /path/to/your/values.yaml \
+  --set appprotect.policyController.enable=true \
+  --set dockerConfigJson=$NGINX_REGISTRY_TOKEN \
+  --set appprotect.config.nginxJWT=$JWT \
+  --set appprotect.nginxRepo.nginxCrt=$NGINX_CERT \
+  --set appprotect.nginxRepo.nginxKey=$NGINX_KEY
+```
 
-6. **Deploy the Helm Chart with Policy Controller**
-   
-   Install the chart with Policy Controller enabled:
-   ```bash
-   helm install <release-name> . \
-     --namespace <namespace> \
-     --create-namespace \
-     --set appprotect.policyController.enable=true \
-     --set dockerConfigJson=$NGINX_REGISTRY_TOKEN \
-     --set appprotect.config.nginxJWT=$JWT \
-     --set appprotect.nginxRepo.nginxCert=$NGINX_CERT \
-     --set appprotect.nginxRepo.nginxKey=$NGINX_KEY
-   ```
-
-Afterwards, you may want to [verify the Policy controller is running](#verify-the-policy-controller-is-running).
+You should [verify the Policy Controller is running](#verify-the-policy-controller-is-running) afterwards.
 
 ## Uninstall the Helm chart
 
-1. **Manually Delete the CRs**
+To uninstall the Helm chart, first delete the custom resources created:
 
-   Delete all the existing CRs created for the deployment:
+```shell
+kubectl -n <namespace> delete appolicy <policy-name>
+kubectl -n <namespace> delete aplogconf <logconf-name>
+kubectl -n <namespace> delete apusersigs <user-defined-signature-name>
+kubectl -n <namespace> delete apsignatures <signature-update-name>
+```
 
-   ```bash
-   kubectl -n <namespace> delete appolicy <policy-name>
-   kubectl -n <namespace> delete aplogconf <logconf-name>
-   kubectl -n <namespace> delete apusersigs <user-defined-signature-name>
-   kubectl -n <namespace> delete apsignatures <signature-update-name>
-   ```
-2. **Uninstall/delete the release `<release-name>`**
+Then uninstall the Helm chart, using the release name: 
 
-   To delete the current release, you just need to delete it using helm:
-   ```bash
-   helm uninstall <release-name> -n <namespace>
-   ```
+```shell
+helm uninstall <release-name> -n <namespace>
+```
 
-3. **Delete any possible residual resources**
+Finally, delete any remaining resources, including the namespace:
 
-   Delete any remaining CRDs, PVC, PV, and the namespace:
-   ```bash
-   kubectl delete pvc nginx-app-protect-shared-bundles-pvc -n <namespace>
-   kubectl delete pv nginx-app-protect-shared-bundles-pv
-   kubectl delete crd --all
-   kubectl delete ns <namespace>
-   ```
+```shell
+kubectl delete pvc nginx-app-protect-shared-bundles-pvc -n <namespace>
+kubectl delete pv nginx-app-protect-shared-bundles-pv
+kubectl delete crd --all
+kubectl delete ns <namespace>
+```
+
+## Disconnected or air-gapped environments
+
+{{< call-out "warning" >}}
+
+In this type of environment, you should not create the _APSignatures_ resource.
+
+{{< /call-out >}}
+
+If you have followed the steps for [disconnected or air-gapped environments]({{< ref "/waf/install/disconnected-environment.md">}}) or cannot use the NGINX repository, you have two alternative ways to to manage policies:
+
+**Manual bundle management**
+
+- Create the directory `/mnt/nap5_bundles_pv_data/security_updates_data/`
+- Download Debian security packages from a connected environment, ensuring the names are unmodified
+- Move the security update packages to the directory  
+- Ensure the files and directory have `101:101` ownership and permissions
+
+**Custom Docker image**
+
+- Build a [custom Docker image]({{< ref "/waf/configure/compiler.md" >}}) that includes the target bundles
+- Use the custom Docker image instead of downloading bundles at runtime
+
+You can use this custom image by updating the relevant parts of your `values.yaml` file, or the `--set` parameter:
+
+```yaml
+appprotect:
+  policyController:
+    wafCompiler:
+      image:
+        ## The image repository of the WAF Compiler.
+        repository: <your custom repo>
+        ## The tag of the WAF Compiler image.
+        tag: <your custom tag>
+```
+
+```shell
+helm install 
+   ...
+   --set appprotect.policyController.wafCompiler.image.repository="<your custom repo>"
+   --set appprotect.policyController.wafCompiler.image.tag="<your custom tag>"
+   ...
+```
 
 ## Possible issues
 
 **Policy Controller does not start**
+
 - Verify the CRDs are installed: `kubectl get crds | grep appprotect.f5.com`
 - Check the pod logs: `kubectl logs <policy-controller-pod> -n <namespace>`
 - Ensure proper RBAC permissions are configured
 
 **Policies fail to compile**
+
 - Check Policy Controller logs for compilation errors
 - Verify the WAF compiler image is accessible
 - Ensure the policy syntax is valid
 
-**Issues with bundle storage**  
+**Issues with bundle storage**
+
 - Verify the persistent volume is properly mounted
 - Check storage permissions (Should be 101:101)
 - Confirm PVC is bound to the correct PV
