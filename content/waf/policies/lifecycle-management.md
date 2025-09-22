@@ -827,6 +827,8 @@ Apply one of the sample policy Custom Resources to verify PLM is working correct
 kubectl apply -f dataguard-blocking-policy.yaml -n <namespace>
 ```
 
+
+
 ### Check policy compilation status
 
 Verify that the policy has been compiled successfully by checking the Custom Resource status:
@@ -884,19 +886,54 @@ You should see the compiled policy bundle file in the directory structure.
 
 There are a few steps involved in testing that policy bundles are being deployed and enforced correctly.
 
-First, use the Custom Resource name in your NGINX configuration:
+First, identify and confirm the deployment information:
 
-```nginx
+```shell
+kubectl get all -n <namespace>
+```
+
+Look for the fields _CLUSTER-IP_ and the full deployment name:
+
+```
+NAME                                           TYPE       CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
+service/localenv-plm-nginx-app-protect-nginx   NodePort   10.43.205.101   <none>        80:30970/TCP   21h
+
+NAME                                                        READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/localenv-plm-nginx-app-protect-deployment   1/1     1            1           21h
+```
+
+Then open your `values.yaml` file in an editor and look for the policy directive:
+
+```yaml
+app_protect_policy_file app_protect_default_policy
+```
+
+Replace _app_protect_default_policy with the custom resource name, such as:
+
+```yaml
 app_protect_policy_file dataguard-blocking;
 ```
 
-Then, reload NGINX to apply the new policy:
+Use ``helm upgrade` to apply the new configuration, replacing the name and namespace accordingly:
 
 ```shell
-nginx -s reload
+helm upgrade <release-name> . \
+  --namespace <namespace> \
+  --values /path/to/your/values.yaml \
+  --set appprotect.policyController.enable=true \
+  --set dockerConfigJson=$NGINX_REGISTRY_TOKEN \
+  --set appprotect.config.nginxJWT=$JWT \
+  --set appprotect.nginxRepo.nginxCrt=$NGINX_CERT \
+  --set appprotect.nginxRepo.nginxKey=$NGINX_KEY
+```
+
+You can then restart your Kubernetes deployment to load the new configuration changes:
+
+```shell
+kubectl rollout restart deployment <deployment-name> -n <namespace>
 ```
    
-You can then send a request that should be blocked by the dataguard policy to verify it's working:
+To test the change, send a request that should be blocked by the dataguard policy:
 
 ```shell
 curl "http://[CLUSTER-IP]:80/?a=<script>"
