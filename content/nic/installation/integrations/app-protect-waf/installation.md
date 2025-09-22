@@ -68,16 +68,12 @@ Follow these steps to build the NGINX Controller Image with NGINX App Protect WA
 
 ### Makefile targets {#makefile-targets}
 
-{{<bootstrap-table "table table-striped table-bordered table-responsive">}}
 | Makefile Target           | Description                                                       | Compatible Systems  |
 |---------------------------|-------------------------------------------------------------------|---------------------|
 | **debian-image-nap-plus** | Builds a Debian-based image with NGINX Plus and the [NGINX App Protect WAF](/nginx-app-protect-waf/) module. | Debian  |
 | **debian-image-nap-dos-plus** | Builds a Debian-based image with NGINX Plus, [NGINX App Protect WAF](/nginx-app-protect-waf/), and [NGINX App Protect DoS](/nginx-app-protect-dos/) | Debian  |
 | **ubi-image-nap-plus**    | Builds a UBI-based image with NGINX Plus and the [NGINX App Protect WAF](/nginx-app-protect-waf/) module. | OpenShift |
 | **ubi-image-nap-dos-plus** | Builds a UBNI-based image with NGINX Plus, [NGINX App Protect WAF](/nginx-app-protect-waf/), and [NGINX App Protect DoS](/nginx-app-protect-dos/). | OpenShift |
-{{</bootstrap-table>}}
-
-<br>
 
 {{< call-out "note" >}} For the complete list of _Makefile_ targets and customizable variables, see the [Build NGINX Ingress Controller]({{< ref "/nic/installation/build-nginx-ingress-controller.md#makefile-details" >}}) topic. {{< /call-out>}}
 
@@ -162,7 +158,7 @@ kubectl apply -f config/crd/bases/appprotect.f5.com_apusersigs.yaml
 
 {{< include "/nic/installation/deploy-controller.md" >}}
 
-{{< call-out "note" >}} If you're using NGINX Ingress Controller with the AppProtect WAF module and policy bundles, you will need to modify the Deployment or DaemonSet file to include volumes and volume mounts.
+{{< call-out "note" >}} If you're using NGINX Ingress Controller with the AppProtect WAF module and policy bundles, you will need to modify the Deployment, DaemonSet, or StatefulSet file to include volumes and volume mounts.
 
 NGINX Ingress Controller **requires** the volume mount path to be `/etc/nginx/waf/bundles`. {{< /call-out >}}
 
@@ -187,6 +183,10 @@ volumeMounts:
 ...
 ```
 
+{{< call-out "note" >}}
+**StatefulSet Volume Configuration**: When using StatefulSet deployments, the `nginx-cache` volume is automatically provided via `volumeClaimTemplates` for persistent storage. App Protect WAF v5 volumes (like app-protect-config, app-protect-bundles) are still configured as regular volumes in the `volumes` section. Use `emptyDir` for temporary data or PersistentVolumeClaims if you need persistence for App Protect configurations across pod restarts.
+{{< /call-out >}}
+
 ### Using a Deployment
 
 {{< include "/nic/installation/manifests/deployment.md" >}}
@@ -195,13 +195,17 @@ volumeMounts:
 
 {{< include "/nic/installation/manifests/daemonset.md" >}}
 
+### Using a StatefulSet
+
+{{< include "/nic/installation/manifests/statefulset.md" >}}
+
 ---
 
 ## Enable NGINX App Protect WAF module
 
 To enable the NGINX App Protect DoS Module:
 
-- Add the `enable-app-protect` [command-line argument]({{< ref "/nic/configuration/global-configuration/command-line-arguments.md#cmdoption-enable-app-protect" >}}) to your Deployment or DaemonSet file.
+- Add the `enable-app-protect` [command-line argument]({{< ref "/nic/configuration/global-configuration/command-line-arguments.md#cmdoption-enable-app-protect" >}}) to your Deployment, DaemonSet, or StatefulSet file.
 
 ---
 

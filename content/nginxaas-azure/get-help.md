@@ -10,7 +10,7 @@ type:
 
 ## Contact NGINX support
 
-To contact support about F5 NGINX as a Service for Azure (NGINXaaS):
+To contact support about F5 NGINXaaS for Azure (NGINXaaS):
 
 1. Go to your NGINXaaS deployment.
 
@@ -51,7 +51,7 @@ If your deployment is configured to use NGINX App Protect WAF, please collect th
 
 To provide or update the preferred support contact email:
 
-1. Go to your NGINX as a Service (NGINXaaS) for Azure deployment.
+1. Go to your NGINXaaS for Azure deployment.
 
 2. Select **New Support request** in the left menu.
 

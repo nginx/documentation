@@ -177,7 +177,7 @@ If you are upgrading from an older version, update your configuration accordingl
 
 {{< /call-out >}}
 
-{{<bootstrap-table "table table-responsive table-bordered">}}
+{{< table >}}
 | CLI flag                                    | Environment variable                 | Description                                                                 |
 |---------------------------------------------|--------------------------------------|-----------------------------------------------------------------------------|
 | `--api-cert`                                | `NGINX_AGENT_API_CERT`                       | Specifies the certificate used by the Agent API.                            |
@@ -214,9 +214,7 @@ If you are upgrading from an older version, update your configuration accordingl
 | `--tls-enable`                              | `NGINX_AGENT_TLS_ENABLE`                     | Enables TLS for secure communications.                                      |
 | `--tls-key`                                 | `NGINX_AGENT_TLS_KEY`                        | Specifies the path to the certificate key file for TLS.                     |
 | `--tls-skip-verify`                         | `NGINX_AGENT_TLS_SKIP_VERIFY`                | Insecurely skips verification for gRPC TLS credentials.                     |
-{{</bootstrap-table>}}
-
-<br>
+{{< /table >}}
 
 {{< call-out "note" >}}
 Use the `--config-dirs` command-line option, or the `config_dirs` key in the `nginx-agent.conf` file, to identify the directories NGINX Agent can read from or write to. This setting also defines the location to which you can upload config files when using a control plane.

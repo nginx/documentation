@@ -5,7 +5,7 @@ toc: true
 url: /nginxaas/azure/changelog-archive/changelog-2023/
 ---
 
-Learn about the updates, new features, and resolved bugs in F5 NGINX as a Service for Azure during the year 2023.
+Learn about the updates, new features, and resolved bugs in F5 NGINXaaS for Azure during the year 2023.
 
 To see the latest changes, visit the [Changelog]({{< ref "/nginxaas-azure/changelog" >}}) page.
 
@@ -294,7 +294,7 @@ To see a list of currently active issues, visit the [Known issues]({{< ref "/ngi
 
 - {{% icon-feature %}} **NGINXaaS is generally available**
 
-   We are pleased to announce the general availability of NGINX as a Service (NGINXaaS), a first-party-like experience as a service co-developed by Microsoft and NGINX and tightly integrated into the [Azure](https://azure.microsoft.com/) ecosystem.
+   We are pleased to announce the general availability of NGINXaaS for Azure, a first-party-like experience as a service co-developed by Microsoft and NGINX and tightly integrated into the [Azure](https://azure.microsoft.com/) ecosystem.
 
    NGINXaaS, powered by [NGINX Plus](https://www.nginx.com/products/nginx/), is a fully managed service that removes the burden of deploying your own NGINX Plus cluster, installing libraries, upgrading, and managing it.
 

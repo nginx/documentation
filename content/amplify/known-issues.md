@@ -6,17 +6,13 @@ toc: true
 nd-docs: DOCS-1692
 ---
 
-{{<rn-styles>}}
-
 ---
 
 ### {{% icon-bug %}} Unable to add some NGINX HTTP requests metrics to custom graph {#631}
 
-{{<bootstrap-table "table table-striped table-bordered">}}
 | Issue ID | Status |
 |----------|--------|
 | 631      | Open   |
-{{</bootstrap-table>}}
 
 #### Description
 
