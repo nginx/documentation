@@ -11,45 +11,45 @@ type:
 {{< raw-html >}}
 
 <link rel="stylesheet" href="/nginxaas-azure/css/cost-calculator_v2.css">
-<div id="calculator">
-    <h3 id="calculator-section-heading">
+<div id="calculator" data-testid="calculator">
+    <h3 id="calculator-section-heading" data-testid="calculator-section-heading">
             Cost Estimation for Standard V2 Plan
             <button id="printButton">Print Estimate</button>
         </h3>
-    <div class="section">
+    <div class="section" data-testid="calculator-section-content">
         <div class="form-section">
-            <div class="form-section-content">
+            <div class="form-section-content" data-testid="form-section-content-estimateNCUUsage">
                 <h4>1. Estimate NCU Usage </h4>
                 <div>
                     <div class="form-field">
                         <label for="avgNewConnsPerSec">
                             Average New Connections per Second
                         </label>
-                        <input id="avgNewConnsPerSec" type="number" />
+                        <input id="avgNewConnsPerSec" type="number" data-testid="input-avgNewConnsPerSec"/>
                     </div>
                     <div class="form-field avg-conn-duration-container">
                         <label for="avgConnDuration">
                             Average Connection Duration
                         </label>
-                        <input id="avgConnDuration" type="number" />
+                        <input id="avgConnDuration" type="number" data-testid="input-avgConnDuration"/>
                     </div>
                     <div class="form-field bandwidth-input-container">
                         <label for="totalBandwidth">
                             Total Processed Data
                         </label>
-                        <input id="totalBandwidth" type="number" />
+                        <input id="totalBandwidth" type="number" data-testid="input-totalBandwidth"/>
                     </div>
                 </div>
             </div>
-            <div class="form-section-content">
+            <div class="form-section-content" data-testid="form-section-content-capacityUnitsNeeded">
                 <div class=form-section-footer>
                     <div class="totals">
                         <span>NGINX Capacity Units Needed</span>
-                        <span id="ncuEstimateValue">--</span>
+                        <span id="ncuEstimateValue" data-testid="ncuEstimateValue">--</span>
                         <span> Sold in bundles of 10, with a minimum of 10</span>
                     </div>
                     <details id="ncu-usage-details">
-                        <summary>Show calculations</summary>
+                        <summary data-testid="button-ncu-usage-details">Show calculations</summary>
                         <div id="ncuEstimateDetails">
                         <div class="math">
                             <var id="ncuEstConnRate">x</var> new connections per second *
@@ -72,7 +72,7 @@ Max(
             </div>
         </div>
         <div class="form-section">
-        <div class=form-section-content>
+        <div class="form-section-content" data-testid="form-section-content-estimateMonthlyCost">
             <h4 id="calculator-section-heading">
                2. Estimate Monthly Cost
             </h4>
@@ -80,7 +80,7 @@ Max(
                 <label for="region">
                     Region
                 </label>
-                <select id="region">
+                <select id="region" data-testid="dropdown-region">
                 <!-- options appended from tiers data -->
                 </select>
             </div>
@@ -88,20 +88,20 @@ Max(
                 <label for="numNcus">
                     NCUs <span class="label-details">- value from usage estimate: <span id="numNcusEstVal"> - </span></span>
                 </label>
-                <input id="numNcus" type="number" step="10" min="10" />
+                <input id="numNcus" data-testid="input-numNcus" type="number" step="10" min="10" />
                 <span id="ncuValidation"></span>
             </div>
             <div class="form-field">
                 <label for="numHours">
                     Hours <span class="label-details">- used in a month</span>
                 </label>
-                <input id="numHours" type="number"/>
+                <input id="numHours" data-testid="input-numHours" type="number"/>
             </div>
             <div class="form-field">
                 <label for="numListenPorts">
                     Listen Ports <span class="label-details">- first 5 are included</span>
                 </label>
-                <input id="numListenPorts" type="number"/>
+                <input id="numListenPorts" data-testid="input-numListenPorts" type="number"/>
             </div>
             <div class="form-field">
                 <label for="isWAF">
@@ -113,7 +113,7 @@ Max(
             <div class=form-section-content>
                 <div id="totals-section">
                     <span class="total-text">Total Monthly Payment</span>
-                    <span id="total-value" class="total-text">--</span>
+                    <span id="total-value" data-testid="total-value" class="total-text">--</span>
                     <div class="subtitle">
                         The standard Azure networking and bandwidth charges apply to NGINX deployments.
                     </div>

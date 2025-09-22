@@ -40,3 +40,8 @@ build
 *.swp
 *.mo
 node_modules
+
+# Playwright
+/coverage
+*/test-results
+*/playwright-report
