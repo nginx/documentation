@@ -10,7 +10,7 @@ Learn about the modules supported by the latest versions of F5 NGINXaaS for Azur
 ## Access module versions using data plane API:
 
 To view the versions of the NGINX Plus modules that are part of your deployment, follow these steps:
-- Retrieve your [data plane API endpoint]({{< ref "/nginxaas-azure/loadbalancer-kubernetes.md#nginxaas-data-plane-api-endpoint" >}})
+- Retrieve your [data plane API endpoint]({{< ref "/nginxaas-azure/loadbalancer-kubernetes.md#nginxaas-data-plane-api-endpoint" >}}).
 
 - Create an [API key]({{< ref "/nginxaas-azure/loadbalancer-kubernetes.md#create-an-nginxaas-data-plane-api-key" >}}) if you do not already have one.
 
