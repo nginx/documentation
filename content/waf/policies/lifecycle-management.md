@@ -580,8 +580,46 @@ Check that all components are deployed successfully using _kubectl get_:
 ```shell
 kubectl get pods -n <namespace>
 kubectl get crds | grep appprotect.f5.com
+kubectl get pvc -n <namespace>
+kubectl get pv
 kubectl get all -n <namespace>
 ```
+
+If you don't see a persistent volume claim in the namespace, first check that storage configuration in your values file is correct:
+
+```shell
+helm get values <release-name> -n <namespace>
+```
+
+You should see a section named _appprotect.storage_ with the parameter _bundlesPvc.storageRequest_. If it's missing, use `helm upgrade` to add it:
+
+```shell
+helm upgrade <release-name> . --namespace <namespace> \
+  --values /path/to/your/values.yaml \
+  --set appprotect.policyController.enable=true \
+  --set dockerConfigJson=$NGINX_REGISTRY_TOKEN \
+  --set appprotect.config.nginxJWT=$JWT \
+  --set appprotect.nginxRepo.nginxCrt=$NGINX_CERT \
+  --set appprotect.nginxRepo.nginxKey=$NGINX_KEY \
+  --set appprotect.storage.pvc.bundlesPvc.storageClass=manual \
+  --set appprotect.storage.pvc.bundlesPvc.storageRequest=2Gi
+```
+
+If the volume claim exists but shows "Pending", review the binding:
+
+```shell
+kubectl describe pvc -n <namespace>
+kubectl describe pv nginx-app-protect-shared-bundles-pv
+```
+
+Ensure the `pv` _storageClassName_ matches the `pvc` requirements.
+
+In totality, you should see the following:
+
+- **Policy Controller pod**: `1/1 Running` status
+- **F5 WAF for NGINX pod**: `4/4 Running` status (nginx, waf-config-mgr, waf-enforcer, waf-ip-intelligence containers)
+- **All 4 CRDs**: Each CRD should be installed and show creation timestamps
+- **Service**: The NodePort service should be available with assigned port
 
 ## Use Policy lifecycle management
 
@@ -752,31 +790,21 @@ The key information to review is the following:
   - `ready` - Policy successfully compiled and available
   - `processing` - Policy is being compiled
   - `error` - Compilation failed (check Policy Controller logs)
-
 - **`Status.Bundle.Location`**: File path where the compiled policy bundle is stored
-
 - **`Status.Bundle.Compiler Version`**: Version of the WAF compiler used for compilation
-
 - **`Status.Bundle.Signatures`**: Timestamps showing when security signatures were last updated
   - `Attack Signatures` - Attack signature update timestamp
   - `Bot Signatures` - Bot signature update timestamp  
   - `Threat Campaigns` - Threat campaign signature update timestamp
-
 - **`Status.Processing.Is Compiled`**: Boolean indicating if compilation completed successfully
-
 - **`Status.Processing.Datetime`**: Timestamp of the last compilation attempt
-
 - **`Events`**: Shows any Kubernetes events related to the policy (usually none for successful policies)
-
 - **`status.bundle.signatures`**: Timestamps showing when security signatures were last updated
   - `attackSignatures` - Attack signature update timestamp
   - `botSignatures` - Bot signature update timestamp  
   - `threatCampaigns` - Threat campaign signature update timestamp
-
 - **`status.processing.isCompiled`**: Boolean indicating if compilation completed successfully
-
 - **`status.processing.datetime`**: Timestamp of the last compilation attempt
-
 
 ### Use specific security update versions
 
@@ -826,8 +854,6 @@ Apply one of the sample policy Custom Resources to verify PLM is working correct
 ```shell
 kubectl apply -f dataguard-blocking-policy.yaml -n <namespace>
 ```
-
-
 
 ### Check policy compilation status
 
@@ -908,13 +934,13 @@ Then open your `values.yaml` file in an editor and look for the policy directive
 app_protect_policy_file app_protect_default_policy
 ```
 
-Replace _app_protect_default_policy with the custom resource name, such as:
+Replace _app_protect_default_polic_y_ with the custom resource name, such as:
 
 ```yaml
 app_protect_policy_file dataguard-blocking;
 ```
 
-Use ``helm upgrade` to apply the new configuration, replacing the name and namespace accordingly:
+Use `helm upgrade` to apply the new configuration, replacing the name and namespace accordingly:
 
 ```shell
 helm upgrade <release-name> . \
@@ -927,13 +953,13 @@ helm upgrade <release-name> . \
   --set appprotect.nginxRepo.nginxKey=$NGINX_KEY
 ```
 
-You can then restart your Kubernetes deployment to load the new configuration changes:
+Restart your Kubernetes deployment to load the new configuration changes:
 
 ```shell
 kubectl rollout restart deployment <deployment-name> -n <namespace>
 ```
    
-To test the change, send a request that should be blocked by the dataguard policy:
+Send a test request to trigger the dataguard policy:
 
 ```shell
 curl "http://[CLUSTER-IP]:80/?a=<script>"
@@ -1048,6 +1074,8 @@ helm install
    --set appprotect.policyController.wafCompiler.image.tag="<your custom tag>"
    ...
 ```
+
+For more information relevant to this type of deployment, see the [Disconnected or air-gapped environments]({{< ref "/waf/install/disconnected-environment.md" >}}) topic.
 
 ## Possible issues
 
