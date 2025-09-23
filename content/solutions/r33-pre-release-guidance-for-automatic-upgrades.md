@@ -73,11 +73,12 @@ To ensure NGINX Plus R33 can report telemetry data, follow these steps based on 
 #### For internet-connected environments:
 
 1. **Open port 443**:
-   Allow outbound HTTPS traffic on TCP port 443 to communicate with F5's licensing endpoint (`product.connect.nginx.com`). Ensure that the following IP addresses are allowed:
+   Allow outbound HTTPS traffic on TCP port 443 to communicate with F5's licensing endpoint (`product.connect.nginx.com`). Ensure that the following IP address ranges are allowed:
 
-   - `3.135.72.139`
-   - `3.133.232.50`
-   - `52.14.85.249`
+   - `3.135.72.139/32`
+   - `3.133.232.50/32`
+   - `52.14.85.249/32`
+   - `2600:1f16:19c8:d400::/62`
 
 #### For partially connected environments:
 

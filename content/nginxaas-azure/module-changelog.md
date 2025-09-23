@@ -7,47 +7,25 @@ url: /nginxaas/azure/module-changelog/
 
 Learn about the modules supported by the latest versions of F5 NGINXaaS for Azure.
 
-## September 18, 2025 
-
-### Preview
-
- {{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}}
-
-| Name                                     | Version                  | Description                                                            |
-|------------------------------------------|--------------------------|------------------------------------------------------------------------|
-| nginx-plus                               | 1.29.0 (nginx-plus-r35)    | NGINX Plus, provided by Nginx, Inc.                          |
-| nginx-agent                              | 1.20.16-2026591880  | NGINX Agent - Management for NGINXaaS                                  |
-| Operating System                         | Ubuntu 22.04.5      | Jammy Jellyfish, provided by Canonical Ltd.                            |
-| nginx-plus-module-geoip2                 | 35+3.4-1            | NGINX Plus 3rd-party GeoIP2 dynamic modules                            |
-| nginx-plus-module-headers-more           | 35+0.37-1           | NGINX Plus 3rd-party headers-more dynamic module                       |
-| nginx-plus-module-image-filter           | 35-1                | NGINX Plus image filter dynamic module                                 |
-| nginx-plus-module-lua                    | 35+0.10.28-1        | NGINX Plus 3rd-party Lua dynamic modules                               |
-| nginx-plus-module-ndk                    | 35+0.3.3-1          | NGINX Plus 3rd-party NDK dynamic module                                |
-| nginx-plus-module-njs                    | 35+0.9.1-1          | NGINX Plus njs dynamic modules                                         |
-| nginx-plus-module-otel                   | 35+0.1.2-1          | NGINX Plus OpenTelemetry dynamic module                                |
-| nginx-plus-module-xslt                   | 35-1                | NGINX Plus xslt dynamic module                                         |
-| nginx-plus-module-appprotect             | 35+5.498.0-1        | NGINX Plus app protect dynamic module version 5.498.0                  |
-| app-protect-module-plus                  | 35+5.498.0-1        | App-Protect package for Nginx Plus, includes all of the default files and examples. NGINX App Protect provides web application firewall (WAF) security protection for your web applications, including OWASP Top 10 attacks. |
-| app-protect-plugin                       | 6.20.0-1            | NGINX App Protect plugin |
-{{</bootstrap-table>}}
-
 ## Access module versions using data plane API:
 
-To access available module versions from the data plane API, follow these steps:
-- View Your API Endpoints and Create an API Key
-  - Follow the [NGINXaaS data plane API endpoint]({{< ref "/nginxaas-azure/loadbalancer-kubernetes.md#nginxaas-data-plane-api-endpoint" >}}) and [Create an NGINXaaS data plane API key]({{< ref "/nginxaas-azure/loadbalancer-kubernetes.md#create-an-nginxaas-data-plane-api-key" >}}) to locate your dataplane API endpoint and create an API key.
+To view the version of the NGINX Plus modules that are part of your deployment, follow these steps:
+- Retrieve your [data plane API endpoint]({{< ref "/nginxaas-azure/loadbalancer-kubernetes.md#nginxaas-data-plane-api-endpoint" >}}).
 
-- Construct the Request URL
-    - Add `/packages` to your data plane API endpoint, for example `https://<your-endpoint>/packages`.
+- Create an [API key]({{< ref "/nginxaas-azure/loadbalancer-kubernetes.md#create-an-nginxaas-data-plane-api-key" >}}) if you do not already have one.
 
-- Authenticate API requests
-   - Encode your API key to Base64 and add the prefix `ApiKey` to the encoded string.
-   - Set the `Authorization` HTTP header to:  
-     `ApiKey <your_hashed_api_key>`
+- Construct the package request URL.
+    - Add **/packages** to your data plane API endpoint.
+    - For example: `https://my-deployment-b7e43dfb7e26.eastus.nginxaas.net/packages`
 
+- Authenticate the API requests using the **Authorization** HTTP header.
+   - Encode your API key to **base64** and add the prefix **ApiKey** to the encoded string.
+   - For example: 
+      - Authorization: ApiKey ZjkzY2ZlYWItZjAxNS01MDAwLTgyM2UtNjBmNjY5ZTUwOWF2
 
+Request Example:
 ```shell
-   curl -H "Authorization: ApiKey <your_hashed_api_key>" https://<your-endpoint>/packages
+   curl -H "Authorization: ApiKey <your_base64_api_key>" https://<your-dataplane-api-endpoint>/packages
 ```
 
 Response Example:
@@ -55,63 +33,26 @@ Response Example:
 {
   "packages": [
     {
-      "name": "nginx-plus-module-headers-more",
-      "version":"35+0.37-1~jammy"
+      "name": "nginx-plus",
+      "version": "33-4~jammy"
     },
     {
-      "name": "nginx-plus-module-otel",
-      "version": "35+0.1.2-1~jammy"
+      "name": "nginx-agent",
+      "version": "1.20.15-2010533110"
+    },
+    {
+      "name": "nginx-plus-module-appprotect",
+      "version": "33+5.264.0-1~jammy"
+    },
+    {
+      "name": "nginx-plus-module-ndk",
+      "version": "33+0.3.3-1~jammy"
+    },
+    {
+      "name": "nginx-plus-module-njs",
+      "version": "33+0.8.9-1~jammy"
     },
     ...
   ]
 }
 ```
-
-
-## July 03, 2025 
-
-### Stable
-
- {{< table >}}
-
-| Name                                     | Version                  | Description                                                            |
-|------------------------------------------|--------------------------|------------------------------------------------------------------------|
-| nginx-plus                               | 1.27.2 (nginx-plus-r33-p2)    | NGINX Plus, provided by Nginx, Inc.                          |
-| nginx-agent                              | 1.19.15-1795423089  | NGINX Agent - Management for NGINXaaS                                  |
-| Operating System                         | Ubuntu 22.04.5      | Jammy Jellyfish, provided by Canonical Ltd.                            |
-| nginx-plus-module-geoip2                 | 33+3.4-1            | NGINX Plus 3rd-party GeoIP2 dynamic modules                            |
-| nginx-plus-module-headers-more           | 33+0.37-1           | NGINX Plus 3rd-party headers-more dynamic module                       |
-| nginx-plus-module-image-filter           | 33-1                | NGINX Plus image filter dynamic module                                 |
-| nginx-plus-module-lua                    | 33+0.10.27-1        | NGINX Plus 3rd-party Lua dynamic modules                               |
-| nginx-plus-module-ndk                    | 33+0.3.3-1          | NGINX Plus 3rd-party NDK dynamic module                                |
-| nginx-plus-module-njs                    | 33+0.8.9-1          | NGINX Plus njs dynamic modules                                         |
-| nginx-plus-module-otel                   | 33+0.1.0-1          | NGINX Plus OpenTelemetry dynamic module                                |
-| nginx-plus-module-xslt                   | 33-1                | NGINX Plus xslt dynamic module                                         |
-| nginx-plus-module-appprotect             | 33+5.264.0-1        | NGINX Plus app protect dynamic module version 5.264.0                  |
-| app-protect-module-plus                  | 33+5.264.0-1        | App-Protect package for Nginx Plus, includes all of the default files and examples. NGINX App Protect provides web application firewall (WAF) security protection for your web applications, including OWASP Top 10 attacks. |
-| app-protect-plugin                       | 6.9.0-1             | NGINX App Protect plugin |
-{{< /table >}}
-
-
-
-### Preview
-
- {{< table >}}
-
-| Name                                     | Version                  | Description                                                            |
-|------------------------------------------|--------------------------|------------------------------------------------------------------------|
-| nginx-plus                               | 1.27.2 (nginx-plus-r33-p2)    | NGINX Plus, provided by Nginx, Inc.                          |
-| nginx-agent                              | 1.19.15-1795423089  | NGINX Agent - Management for NGINXaaS                                  |
-| Operating System                         | Ubuntu 22.04.5      | Jammy Jellyfish, provided by Canonical Ltd.                            |
-| nginx-plus-module-geoip2                 | 33+3.4-1            | NGINX Plus 3rd-party GeoIP2 dynamic modules                            |
-| nginx-plus-module-headers-more           | 33+0.37-1           | NGINX Plus 3rd-party headers-more dynamic module                       |
-| nginx-plus-module-image-filter           | 33-1                | NGINX Plus image filter dynamic module                                 |
-| nginx-plus-module-lua                    | 33+0.10.27-1        | NGINX Plus 3rd-party Lua dynamic modules                               |
-| nginx-plus-module-ndk                    | 33+0.3.3-1          | NGINX Plus 3rd-party NDK dynamic module                                |
-| nginx-plus-module-njs                    | 33+0.8.9-1          | NGINX Plus njs dynamic modules                                         |
-| nginx-plus-module-otel                   | 33+0.1.0-1          | NGINX Plus OpenTelemetry dynamic module                                |
-| nginx-plus-module-xslt                   | 33-1                | NGINX Plus xslt dynamic module                                         |
-| nginx-plus-module-appprotect             | 33+5.264.0-1        | NGINX Plus app protect dynamic module version 5.264.0                  |
-| app-protect-module-plus                  | 33+5.264.0-1        | App-Protect package for Nginx Plus, includes all of the default files and examples. NGINX App Protect provides web application firewall (WAF) security protection for your web applications, including OWASP Top 10 attacks. |
-| app-protect-plugin                       | 6.9.0-1             | NGINX App Protect plugin |
-{{< /table >}}
