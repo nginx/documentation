@@ -6,7 +6,7 @@ nd-content-type: reference
 nd-product: NAP-WAF
 ---
 
-This section explains how to configure XML and JSON content profiles in an F5 WAF for NGINX policy. The examples below use JSON for illustration, but the same concepts apply to XML profiles unless noted otherwise.
+This guide explains how to configure XML and JSON content profiles in an F5 WAF for NGINX policy. The examples below use JSON for illustration, but the same concepts apply to XML profiles unless noted otherwise.
 
 ### XML and JSON content profiles
 
