@@ -245,7 +245,7 @@ nginx.ingress.kubernetes.io/limit-burst-multiplier: "multiplier"
 **NGINX Ingress Controller**
 ```yaml
 rateLimit:
-    rate: numberr/m
+    rate: number/m
 
     burst: number * multiplier
     key: ${binary_remote_addr}
@@ -263,7 +263,7 @@ nginx.ingress.kubernetes.io/limit-burst-multiplier: "multiplier"
 **NGINX Ingress Controller**
 ```yaml
 rateLimit:
-    rate: numberr/s
+    rate: number/s
 
     burst: number * multiplier
     key: ${binary_remote_addr}
