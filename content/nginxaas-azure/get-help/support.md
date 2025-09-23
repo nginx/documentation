@@ -1,9 +1,9 @@
 ---
-title: Get help
-weight: 750
+title: Support
+weight: 100
 toc: true
 nd-docs: DOCS-882
-url: /nginxaas/azure/get-help/
+url: /nginxaas/azure/get-help/support
 type:
 - how-to
 ---
