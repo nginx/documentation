@@ -19,17 +19,17 @@ Each IP address list includes:
 Here is an example of a declarative policy using an IP address lists configuration:
 
 ```json
-{ 
-  "policy": { 
-    "name": "IpGroups_policy", 
-    "template": { 
-       "name": "POLICY_TEMPLATE_NGINX_BASE" 
-    }, 
-    "applicationLanguage": "utf-8", 
-    "caseInsensitive": false, 
-    "enforcementMode": "blocking", 
-    "ip-address-lists": [ 
-       { 
+{
+  "policy": {
+    "name": "IpGroups_policy",
+    "template": {
+       "name": "POLICY_TEMPLATE_NGINX_BASE"
+    },
+    "applicationLanguage": "utf-8",
+    "caseInsensitive": false,
+    "enforcementMode": "blocking",
+    "ip-address-lists": [
+       {
          "name": "Standalone",
          "description": "Optional Description",
          "blockRequests": "policy-default",
@@ -52,16 +52,16 @@ The following example shows an IP group definition stored in an external file `e
 
 ```json
 {
-  "policy": { 
-    "name": "IpGroups_policy2", 
-    "template": { 
-       "name": "POLICY_TEMPLATE_NGINX_BASE" 
-    }, 
-    "applicationLanguage": "utf-8", 
-    "caseInsensitive": false, 
-    "enforcementMode": "blocking", 
+  "policy": {
+    "name": "IpGroups_policy2",
+    "template": {
+       "name": "POLICY_TEMPLATE_NGINX_BASE"
+    },
+    "applicationLanguage": "utf-8",
+    "caseInsensitive": false,
+    "enforcementMode": "blocking",
     "ip-address-lists": [
-      { 
+      {
         "name": "external_ip_groups",
         "description": "Optional Description",
         "blockRequests": "always",
@@ -76,7 +76,7 @@ The following example shows an IP group definition stored in an external file `e
 Example of the file `external_ip_groups.json`:
 
 ```json
-{ 
+{
     "name": "External IP address lists",
     "description": "Optional Description",
     "blockRequests": "always",
