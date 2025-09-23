@@ -16,21 +16,21 @@ HTTP header enforcement occurs in the headers section as part of a HTTP request:
 
 There are two distinct types of enforcement for HTTP headers:
 
-**Global enforcement**  
+**Global enforcement**
 
 Global enforcement applies to all header content, regardless of field name or value.
 
-With global enforcement, enabling or disabling violations apply to all contents of the header section of a request, such as `VIOL_HEADER_LENGTH` and `VIOL_HEADER_METACHAR`. 
+With global enforcement, enabling or disabling violations apply to all contents of the header section of a request, such as `VIOL_HEADER_LENGTH` and `VIOL_HEADER_METACHAR`.
 
 These violations can be configured in the `blocking-settings` section under the `violations` list in the declarative policy.
 
-**Violation-specific enforcement**  
+**Violation-specific enforcement**
 
 Violation-specific enforcement applies only to relevant, specific header fields.
 
-Examples of this are allowing repeated instances of the same header field and enabling or disabling Attack Signature checks for an HTTP header field. 
+Examples of this are allowing repeated instances of the same header field and enabling or disabling Attack Signature checks for an HTTP header field.
 
-These violations are configured in the `headers` section where e each HTTP header element is configured separately as an object in the list. 
+These violations are configured in the `headers` section where each HTTP header element is configured separately as an object in the list.
 
 Additionally, the corresponding violations need to be enabled in the `blocking-settings` section under the `violations` list for them to be enforced.
 
@@ -53,7 +53,7 @@ In the [base template]({{< ref "/waf/policies/configuration.md#base-template" >}
 * `Authorization` - This entity handles the `Authorization` header field.
 * `Transfer-Encoding` - This entity handles the `Transfer-Encoding` header field.
 
-It is important to emphasize that the Cookie header field is a special case because its behavior is determined by and configured in the `cookie` policy entity rather than the `header` entity. 
+It is important to emphasize that the Cookie header field is a special case because its behavior is determined by and configured in the `cookie` policy entity rather than the `header` entity.
 
 The `Cookie` HTTP header entity is a read-only placeholder and does not affect the way cookies are enforced. To modify the configuration of the cookie header field behavior, modify the respective `cookie` entity in the declarative policy.
 

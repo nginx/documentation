@@ -19,7 +19,7 @@ For other deployment methods, you should read [Build and use the compiler tool](
 Signatures are divided into three groups:
 
 - [Attack signatures]({{< ref "/waf/policies/attack-signatures.md" >}})
-- Threat campaigns
+- [Threat campaigns]({{< ref "/waf/policies/threat-campaigns.md" >}})
 - Bot signatures
 
 F5 WAF for NGINX signature updates are released at a higher frequency than F5 WAF for NGINX itself, and are subsequently available in their own packages.

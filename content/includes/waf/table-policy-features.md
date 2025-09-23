@@ -18,9 +18,9 @@
 | [IP address lists]()                | Organize lists of allowed and forbidden IP addresses across several lists with common attributes. |
 | [IP intelligence]({{< ref "/waf/policies/ip-intelligence.md" >}}) | Configure the IP Intelligence feature to customize enforcement based on the source IP of the request, limiting access from IP addresses with questionable reputation. |
 | [Parameter parsing]()               | Support only auto-detect parameter value type and acts according to the result: plain alphanumeric string, XML or JSON. |
-| [Sensitive parameters]()            | The default policy masks the “password” parameter in the security log, and can be customized for more | 
+| [Sensitive parameters]()            | The default policy masks the “password” parameter in the security log, and can be customized for more |
 | [Server technology signatures]()    | Support adding signatures per added server technology. |
-| [Threat campaigns]()                | These are patterns that detect all the known attack campaigns. They are very accurate and have almost no false positives, but are very specific and do not detect malicious traffic that is not part of those campaigns. The default policy enables threat campaigns but it is possible to disable it through the respective violation. |
+| [Threat campaigns]({{< ref "/waf/policies/threat-campaigns.md" >}})                | These are patterns that detect all the known attack campaigns. They are very accurate and have almost no false positives, but are very specific and do not detect malicious traffic that is not part of those campaigns. The default policy enables threat campaigns but it is possible to disable it through the respective violation. |
 | [User-defined HTTP headers]({{< ref "/waf/policies/user-headers.md" >}}) | Handling headers as a special part of requests |
 | [XFF trusted headers]({{< ref "/waf/policies/xff-headers.md" >}}) | Disabled by default, and can accept an optional list of custom XFF headers. |
 | [XML and JSON content]({{< ref "/waf/policies/xml-json-content.md" >}})                     | XML content and JSON content detect malformed content and detects signatures in the element values. Default policy checks maximum structure depth. It is possible to enable more size restrictions: maximum total length of XML/JSON data, maximum number of elements are more. |
