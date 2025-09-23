@@ -28,7 +28,15 @@ _September 29th, 2025_
 
 ### New features
 
-- Added [Policy lifecycle management]({{< ref "/waf/policies/lifecycle-management.md" >}})
+- Added [Policy lifecycle management]({{< ref "/waf/policies/lifecycle-management.md" >}}) as early availability
+- Restructured documentation
+
+### Important notes
+
+- Upgrade Go compiler to 1.23.12
+
+### Resolved issues
+
 
 ### Packages
 
