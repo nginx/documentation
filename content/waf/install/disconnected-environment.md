@@ -12,15 +12,6 @@ nd-content-type: how-to
 nd-product: NAP-WAF
 ---
 
-{{< call-out "warning" "Information architecture note" >}}
-
-The design intention for this page is as a standalone page for the operating system specific installation use cases:
-
-- [v4]({{< ref "/nap-waf/v4/admin-guide/install.md#offline-installation" >}})
-- [v5]({{< ref "/nap-waf/v5/admin-guide/install.md#air-gap-install-secure-offline-installation" >}})
-
-{{</ call-out>}}
-
 This topic describes how to install F5 WAF for NGINX in a disconnected or air-gapped environment.
 
 Many of the steps involved are similar to other installation methods: this document will refer to them when appropriate.
@@ -122,7 +113,4 @@ docker load -i waf-ip-intelligence.tar
 ```
 
 Ensure your Docker compose files use the tagged images you've transferred.
-
-## Download Kubernetes files
-
 

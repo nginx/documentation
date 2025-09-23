@@ -12,15 +12,6 @@ nd-content-type: how-to
 nd-product: NAP-WAF
 ---
 
-{{< call-out "warning" "Information architecture note" >}}
-
-The design intention for this page is as a standalone page for the operating system specific installation use cases:
-
-- [v4]({{< ref "/nap-waf/v4/admin-guide/install.md#upgrading-app-protect-to-the-latest-version" >}})
-- [v5]({{< ref "/nap-waf/v5/admin-guide/upgrade-nap-waf.md" >}})
-
-{{</ call-out>}}
-
 This document describes how to upgrade F5 WAF for NGINX.
 
 Security updates can be managed independently from F5 WAF for NGINX versions: based on your installation method, you should read the [Update F5 WAF for NGINX signatures]({{< ref "/waf/install/update-signatures.md" >}}) or [Build and use the compiler tool]({{< ref "/waf/configure/compiler.md" >}}) topics.

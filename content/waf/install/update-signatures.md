@@ -37,3 +37,5 @@ They will be named something in the following list:
 - `app-protect-attack-signatures`
 - `app-protect-threat-campaigns`
 - `app-protect-bot-signatures`
+
+You can update these packages independently of the core F5 WAF for NGINX packages, ensuring you always have the latest signatures.
