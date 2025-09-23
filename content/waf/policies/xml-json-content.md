@@ -1,6 +1,6 @@
 ---
 title: "XML and JSON content"
-weight: 2000
+weight: 2300
 toc: true
 nd-content-type: reference
 nd-product: NAP-WAF
