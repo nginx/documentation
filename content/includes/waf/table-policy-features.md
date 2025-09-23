@@ -8,7 +8,7 @@
 | [Allowed methods]({{< ref "/waf/policies/allowed-methods.md" >}})                 | Checks allowed HTTP methods. By default, all the standard HTTP methods are allowed. |
 | [Attack signatures]({{< ref "/waf/policies/attack-signatures.md" >}}) | The default policy covers the OWASP top 10 attack patterns. Specific signature sets can be added or disabled. |
 | [Brute force attack preventions]({{< ref "/waf/policies/brute-force-attacks.md" >}})  | Configure parameters to secure areas of a web application from brute force attacks. |
-| [Cooke enforcement]()               | By default all cookies are allowed and not enforced for integrity. The user can add specific cookies, wildcards or explicit, that will be enforced for integrity. It is also possible to set the cookie attributes: HttpOnly, Secure and SameSite for cookies found in the response. |
+| [Cookie enforcement]()               | By default all cookies are allowed and not enforced for integrity. The user can add specific cookies, wildcards or explicit, that will be enforced for integrity. It is also possible to set the cookie attributes: HttpOnly, Secure and SameSite for cookies found in the response. |
 | [Data guard]()                      | Detects and masks Credit Card Number (CCN) and/or U.S. Social Security Number (SSN) and/or custom patterns in HTTP responses. Disabled by default. |
 | [Deny and Allow IP lists]()         | Manually define denied & allowed IP addresses as well as IP addresses to never log. |
 | [Disallowed file type extensions]() | Support any file type, and includes a predefined list of file types by default |
