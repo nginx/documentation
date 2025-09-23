@@ -8,7 +8,7 @@ toc: true
 nd-banner:
     enabled: true
     start-date: 2025-08-30
-    md: /_banners/waf-early-access.md
+    md: /_banners/waf-early-availability.md
 # Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
 nd-content-type: reference
 # Intended for internal catalogue and search, case sensitive:

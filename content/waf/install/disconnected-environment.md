@@ -57,6 +57,7 @@ You will need `git` and `wget` in your connected environment.
 
 Run the following two commands: replace `<hugo-release>` with the tarball appropriate to the environment from [the release page](https://github.com/gohugoio/hugo/releases/tag/v0.147.8):
 
+
 ```shell
 git clone git@github.com:nginx/documentation.git
 wget <hugo-release>
@@ -75,9 +76,52 @@ hugo server
 
 ## Download package files
 
+{{< call-out "note" >}}
+
+This section is most relevant for a [Virtual machine or bare metal]({{< ref "/waf/install/virtual-environment.md" >}}) installation.
+
+{{< /call-out >}}
+
+When working with package files, you can install the packages directly in your disconnected environment, or add them to an internal repository.
+
+The first step is to download the package files from your connected environment.
+
+This will vary based on your operating system choice, which determines your package manager.
+
+For example, a `yum` based system will require a special plugin:
+
+```shell
+# Install the download plugin
+yum -y install yum-plugin-downloadonly
+# Create a directory for packages
+mkdir -p /etc/packages/
+# Use yum to download the packages into the directory
+yum install --downloadonly --downloaddir=/etc/packages/ app-protect
+```
+
+Once you've obtained the package files and transferred them to your disconnected environment, you can directly install them or add them to a local repository.
 
 ## Download Docker images
 
+After pulling or building Docker images in a connected environment, you can save them to `.tar` files:
+
+```shell
+docker save -o waf-enforcer.tar waf-enforcer:5.2.0
+docker save -o waf-config-mgr.tar waf-config-mgr:5.2.0
+# Optional, if using IP intelligence
+docker save -o waf-ip-intelligence.tar waf-ip-intelligence:5.2.0
+```
+
+You can then transfer the files and load the images in your disconnected environment:
+
+```shell
+docker load -i waf-enforcer.tar
+docker load -i waf-config-mgr.tar
+# Optional, if using IP intelligence
+docker load -i waf-ip-intelligence.tar
+```
+
+Ensure your Docker compose files use the tagged images you've transferred.
 
 ## Download Kubernetes files
 
