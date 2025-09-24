@@ -6,14 +6,13 @@ nd-content-type: reference
 nd-product: NAP-WAF
 ---
 
-JSON Web Token (JWT) is a compact and self-contained way to represent information between two parties in JSON format, commonly used for authentication and authorization.
-F5 WAF for NGINX validates the authenticity and well-formedness of JWTs, denying access when validation fails. JWT is mainly used for API access.
+JSON Web Tokens (JWTs) are a compact and self-contained way to represent information between two parties in JSON format, commonly used for authentication and authorization.
+F5 WAF for NGINX validates the authenticity and well-formedness of JWTs, denying access when validation fails. JWTs are mainly used for API access.
 
 When a user logs in to an application, they might receive a JWT, which is then included in subsequent requests.
 The server validates the JWT to ensure the user is authorized to access the requested resources.
 
 F5 WAF for NGINX handles tokens on behalf of the application by:
-
 
 1. Validating the token's existence and structure for specific URLs.
 1. Verifying the token's signature using provisioned certificates.
